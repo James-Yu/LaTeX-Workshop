@@ -1,0 +1,951 @@
+{
+  "includes": [
+    "class-memoir",
+    "xcolor",
+    "tabularx",
+    "graphicx",
+    "xstring",
+    "calc",
+    "forarray",
+    "longtable",
+    "textpos",
+    "fancyhdr",
+    "hyperref",
+    "memhfixc"
+  ],
+  "cmds": {
+    "showkeys": {
+      "command": "showkeys",
+      "snippet": "showkeys",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setupdocument{}": {
+      "command": "setupdocument{}",
+      "snippet": "setupdocument{${1:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "letter{}": {
+      "command": "letter{}",
+      "snippet": "letter{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "letter[]{}": {
+      "command": "letter[]{}",
+      "snippet": "letter[${2:options}]{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "invoice{}": {
+      "command": "invoice{}",
+      "snippet": "invoice{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "invoice[]{}": {
+      "command": "invoice[]{}",
+      "snippet": "invoice[${2:options}]{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "itable{}": {
+      "command": "itable{}",
+      "snippet": "itable{${1:table contents%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iitem{}{}": {
+      "command": "iitem{}{}",
+      "snippet": "iitem{${1:item}}{${2:amount}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "itotal{}": {
+      "command": "itotal{}",
+      "snippet": "itotal{${1:amount}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "itotal[]{}": {
+      "command": "itotal[]{}",
+      "snippet": "itotal[${2:text}]{${1:amount}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "paymentdata": {
+      "command": "paymentdata",
+      "snippet": "paymentdata",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "autograph{}{}{}{}{}{}": {
+      "command": "autograph{}{}{}{}{}{}",
+      "snippet": "autograph{${1:number}}{${2:height}}{${3:v-pos-closing}}{${4:v-pos-sig}}{${5:margin-pos}}{${6:image}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "logo": {
+      "command": "logo",
+      "snippet": "logo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LetterSymbol": {
+      "command": "LetterSymbol",
+      "snippet": "LetterSymbol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EuroSymbol": {
+      "command": "EuroSymbol",
+      "snippet": "EuroSymbol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EUR": {
+      "command": "EUR",
+      "snippet": "EUR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EmailSymbol": {
+      "command": "EmailSymbol",
+      "snippet": "EmailSymbol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhoneSymbol": {
+      "command": "PhoneSymbol",
+      "snippet": "PhoneSymbol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MobileSymbol": {
+      "command": "MobileSymbol",
+      "snippet": "MobileSymbol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "headfont": {
+      "command": "headfont",
+      "snippet": "headfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EUROSymbol": {
+      "command": "EUROSymbol",
+      "snippet": "EUROSymbol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Undefined{}": {
+      "command": "Undefined{}",
+      "snippet": "Undefined{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "accept": {
+      "command": "accept",
+      "snippet": "accept",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acceptaccount": {
+      "command": "acceptaccount",
+      "snippet": "acceptaccount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acceptaddress": {
+      "command": "acceptaddress",
+      "snippet": "acceptaddress",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acceptcents": {
+      "command": "acceptcents",
+      "snippet": "acceptcents",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acceptdesc": {
+      "command": "acceptdesc",
+      "snippet": "acceptdesc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acceptdescription": {
+      "command": "acceptdescription",
+      "snippet": "acceptdescription",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "accepteuros": {
+      "command": "accepteuros",
+      "snippet": "accepteuros",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acceptreference": {
+      "command": "acceptreference",
+      "snippet": "acceptreference",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "accepttype": {
+      "command": "accepttype",
+      "snippet": "accepttype",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "accountdata": {
+      "command": "accountdata",
+      "snippet": "accountdata",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "accountname": {
+      "command": "accountname",
+      "snippet": "accountname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "accountnametext": {
+      "command": "accountnametext",
+      "snippet": "accountnametext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "accountno": {
+      "command": "accountno",
+      "snippet": "accountno",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "accountnotext": {
+      "command": "accountnotext",
+      "snippet": "accountnotext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "amounttext": {
+      "command": "amounttext",
+      "snippet": "amounttext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "areacode": {
+      "command": "areacode",
+      "snippet": "areacode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "autographversion": {
+      "command": "autographversion",
+      "snippet": "autographversion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bankname": {
+      "command": "bankname",
+      "snippet": "bankname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "banknametext": {
+      "command": "banknametext",
+      "snippet": "banknametext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bic": {
+      "command": "bic",
+      "snippet": "bic",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bictext": {
+      "command": "bictext",
+      "snippet": "bictext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cellphone": {
+      "command": "cellphone",
+      "snippet": "cellphone",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cellphonetext": {
+      "command": "cellphonetext",
+      "snippet": "cellphonetext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chamber": {
+      "command": "chamber",
+      "snippet": "chamber",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chambertext": {
+      "command": "chambertext",
+      "snippet": "chambertext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "city": {
+      "command": "city",
+      "snippet": "city",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "closing": {
+      "command": "closing",
+      "snippet": "closing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "company": {
+      "command": "company",
+      "snippet": "company",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "copyto": {
+      "command": "copyto",
+      "snippet": "copyto",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "copytotext": {
+      "command": "copytotext",
+      "snippet": "copytotext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "country": {
+      "command": "country",
+      "snippet": "country",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "countrycode": {
+      "command": "countrycode",
+      "snippet": "countrycode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "creditorid": {
+      "command": "creditorid",
+      "snippet": "creditorid",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "creditoridtext": {
+      "command": "creditoridtext",
+      "snippet": "creditoridtext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "currency": {
+      "command": "currency",
+      "snippet": "currency",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "datetext": {
+      "command": "datetext",
+      "snippet": "datetext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "daystext": {
+      "command": "daystext",
+      "snippet": "daystext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "descriptiontext": {
+      "command": "descriptiontext",
+      "snippet": "descriptiontext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "email": {
+      "command": "email",
+      "snippet": "email",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "emailtext": {
+      "command": "emailtext",
+      "snippet": "emailtext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "enclosures": {
+      "command": "enclosures",
+      "snippet": "enclosures",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "enclosurestext": {
+      "command": "enclosurestext",
+      "snippet": "enclosurestext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "enclosuretext": {
+      "command": "enclosuretext",
+      "snippet": "enclosuretext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fax": {
+      "command": "fax",
+      "snippet": "fax",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "faxtext": {
+      "command": "faxtext",
+      "snippet": "faxtext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iban": {
+      "command": "iban",
+      "snippet": "iban",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ibantext": {
+      "command": "ibantext",
+      "snippet": "ibantext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "invoicetext": {
+      "command": "invoicetext",
+      "snippet": "invoicetext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "isodocFootFields": {
+      "command": "isodocFootFields",
+      "snippet": "isodocFootFields",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "logoaddress": {
+      "command": "logoaddress",
+      "snippet": "logoaddress",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mandateid": {
+      "command": "mandateid",
+      "snippet": "mandateid",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mandateidtext": {
+      "command": "mandateidtext",
+      "snippet": "mandateidtext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oftext": {
+      "command": "oftext",
+      "snippet": "oftext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "opening": {
+      "command": "opening",
+      "snippet": "opening",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "openingcomma": {
+      "command": "openingcomma",
+      "snippet": "openingcomma",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ourref": {
+      "command": "ourref",
+      "snippet": "ourref",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ourreftext": {
+      "command": "ourreftext",
+      "snippet": "ourreftext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pagetext": {
+      "command": "pagetext",
+      "snippet": "pagetext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "paymentdatatext": {
+      "command": "paymentdatatext",
+      "snippet": "paymentdatatext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "payref": {
+      "command": "payref",
+      "snippet": "payref",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "payreftext": {
+      "command": "payreftext",
+      "snippet": "payreftext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phone": {
+      "command": "phone",
+      "snippet": "phone",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phoneprefix": {
+      "command": "phoneprefix",
+      "snippet": "phoneprefix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phonetext": {
+      "command": "phonetext",
+      "snippet": "phonetext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "prezip": {
+      "command": "prezip",
+      "snippet": "prezip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "processto{}": {
+      "command": "processto{}",
+      "snippet": "processto{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "returnaddress": {
+      "command": "returnaddress",
+      "snippet": "returnaddress",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "routingno": {
+      "command": "routingno",
+      "snippet": "routingno",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "routingnotext": {
+      "command": "routingnotext",
+      "snippet": "routingnotext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "signature": {
+      "command": "signature",
+      "snippet": "signature",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "street": {
+      "command": "street",
+      "snippet": "street",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subject": {
+      "command": "subject",
+      "snippet": "subject",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subjecttext": {
+      "command": "subjecttext",
+      "snippet": "subjecttext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "temp": {
+      "command": "temp",
+      "snippet": "temp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "term": {
+      "command": "term",
+      "snippet": "term",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "termtext": {
+      "command": "termtext",
+      "snippet": "termtext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thelettercount": {
+      "command": "thelettercount",
+      "snippet": "thelettercount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "toaddress": {
+      "command": "toaddress",
+      "snippet": "toaddress",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "toname": {
+      "command": "toname",
+      "snippet": "toname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "totaltext": {
+      "command": "totaltext",
+      "snippet": "totaltext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "totext": {
+      "command": "totext",
+      "snippet": "totext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vatno": {
+      "command": "vatno",
+      "snippet": "vatno",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vatnotext": {
+      "command": "vatnotext",
+      "snippet": "vatnotext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vattext": {
+      "command": "vattext",
+      "snippet": "vattext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "wacceptaccount": {
+      "command": "wacceptaccount",
+      "snippet": "wacceptaccount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "wacceptaddress": {
+      "command": "wacceptaddress",
+      "snippet": "wacceptaddress",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "wacceptcents": {
+      "command": "wacceptcents",
+      "snippet": "wacceptcents",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "wacceptct": {
+      "command": "wacceptct",
+      "snippet": "wacceptct",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "wacceptdescription": {
+      "command": "wacceptdescription",
+      "snippet": "wacceptdescription",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "website": {
+      "command": "website",
+      "snippet": "website",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "websitetext": {
+      "command": "websitetext",
+      "snippet": "websitetext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "who": {
+      "command": "who",
+      "snippet": "who",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xacceptaccount": {
+      "command": "xacceptaccount",
+      "snippet": "xacceptaccount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xacceptaddress": {
+      "command": "xacceptaddress",
+      "snippet": "xacceptaddress",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xacceptcents": {
+      "command": "xacceptcents",
+      "snippet": "xacceptcents",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xacceptct": {
+      "command": "xacceptct",
+      "snippet": "xacceptct",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xacceptdescription": {
+      "command": "xacceptdescription",
+      "snippet": "xacceptdescription",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xaddress": {
+      "command": "xaddress",
+      "snippet": "xaddress",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xproc{}": {
+      "command": "xproc{}",
+      "snippet": "xproc{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yacceptaccount": {
+      "command": "yacceptaccount",
+      "snippet": "yacceptaccount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yacceptaddress": {
+      "command": "yacceptaddress",
+      "snippet": "yacceptaddress",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yacceptcents": {
+      "command": "yacceptcents",
+      "snippet": "yacceptcents",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yacceptct": {
+      "command": "yacceptct",
+      "snippet": "yacceptct",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yacceptdescription": {
+      "command": "yacceptdescription",
+      "snippet": "yacceptdescription",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yourletter": {
+      "command": "yourletter",
+      "snippet": "yourletter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yourlettertext": {
+      "command": "yourlettertext",
+      "snippet": "yourlettertext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yourref": {
+      "command": "yourref",
+      "snippet": "yourref",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yourreftext": {
+      "command": "yourreftext",
+      "snippet": "yourreftext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yproc{}": {
+      "command": "yproc{}",
+      "snippet": "yproc{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zip": {
+      "command": "zip",
+      "snippet": "zip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zippedcity": {
+      "command": "zippedcity",
+      "snippet": "zippedcity",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

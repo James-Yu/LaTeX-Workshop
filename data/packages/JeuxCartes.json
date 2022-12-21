@@ -1,0 +1,536 @@
+{
+  "includes": [
+    "graphicx",
+    "xcolor",
+    "tikz",
+    "tikzlibrarycalc",
+    "pgffor",
+    "xfp",
+    "listofitems",
+    "xstring",
+    "xparse",
+    "simplekv",
+    "xinttools",
+    "randomlist",
+    "pifont",
+    "colortbl"
+  ],
+  "cmds": {
+    "AffCarteJeu{}": {
+      "command": "AffCarteJeu{}",
+      "snippet": "AffCarteJeu{${1:carte}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AffCarteJeu[]{}": {
+      "command": "AffCarteJeu[]{}",
+      "snippet": "AffCarteJeu[${2:options}]{${1:carte}}",
+      "option": "",
+      "keyvals": [
+        "Hauteur=",
+        "TypeJeu=",
+        "Rotation=",
+        "AlignementV=",
+        "Tikz",
+        "DecalageX=",
+        "DecalageY=",
+        "TikzAutonome"
+      ],
+      "keyvalindex": 0
+    },
+    "AffCartesJeu{}": {
+      "command": "AffCartesJeu{}",
+      "snippet": "AffCartesJeu{${1:liste de cartes}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AffCartesJeu[]{}": {
+      "command": "AffCartesJeu[]{}",
+      "snippet": "AffCartesJeu[${2:options}]{${1:liste de cartes}}",
+      "option": "",
+      "keyvals": [
+        "Hauteur=",
+        "TypeJeu="
+      ],
+      "keyvalindex": 0
+    },
+    "MainCartesJeu{}": {
+      "command": "MainCartesJeu{}",
+      "snippet": "MainCartesJeu{${1:liste de cartes}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainCartesJeu[]{}": {
+      "command": "MainCartesJeu[]{}",
+      "snippet": "MainCartesJeu[${2:options}]{${1:liste de cartes}}",
+      "option": "",
+      "keyvals": [
+        "Hauteur=",
+        "TypeJeu=",
+        "EspH=",
+        "EspV=",
+        "Eventail",
+        "Rotation=",
+        "AlignementV="
+      ],
+      "keyvalindex": 0
+    },
+    "MainCartesJeuAleatoire{}": {
+      "command": "MainCartesJeuAleatoire{}",
+      "snippet": "MainCartesJeuAleatoire{${1:nombre de cartes}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainCartesJeuAleatoire[]{}": {
+      "command": "MainCartesJeuAleatoire[]{}",
+      "snippet": "MainCartesJeuAleatoire[${2:options}]{${1:nombre de cartes}}",
+      "option": "",
+      "keyvals": [
+        "Hauteur=",
+        "TypeJeu=",
+        "EspH=",
+        "EspV=",
+        "Eventail",
+        "Rotation=",
+        "AlignementV="
+      ],
+      "keyvalindex": 0
+    },
+    "AffMiniCarteJeu{}": {
+      "command": "AffMiniCarteJeu{}",
+      "snippet": "AffMiniCarteJeu{${1:carte}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AffMiniCarteJeu[]{}": {
+      "command": "AffMiniCarteJeu[]{}",
+      "snippet": "AffMiniCarteJeu[${2:options}]{${1:carte}}",
+      "option": "",
+      "keyvals": [
+        "Largeur=",
+        "FondAtout="
+      ],
+      "keyvalindex": 0
+    },
+    "MainMiniCartesJeu{}": {
+      "command": "MainMiniCartesJeu{}",
+      "snippet": "MainMiniCartesJeu{${1:liste de cartes}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainMiniCartesJeu[]{}": {
+      "command": "MainMiniCartesJeu[]{}",
+      "snippet": "MainMiniCartesJeu[${2:options}]{${1:liste de cartes}}",
+      "option": "",
+      "keyvals": [
+        "Largeur=",
+        "FondAtout="
+      ],
+      "keyvalindex": 0
+    },
+    "MainMiniCartesJeuAleatoire{}": {
+      "command": "MainMiniCartesJeuAleatoire{}",
+      "snippet": "MainMiniCartesJeuAleatoire{${1:nombre de cartes}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainMiniCartesJeuAleatoire[]{}": {
+      "command": "MainMiniCartesJeuAleatoire[]{}",
+      "snippet": "MainMiniCartesJeuAleatoire[${2:options}]{${1:nombre de cartes}}",
+      "option": "",
+      "keyvals": [
+        "Largeur=",
+        "FondAtout=",
+        "TypeJeu="
+      ],
+      "keyvalindex": 0
+    },
+    "AffCarteJeuAlignementV": {
+      "command": "AffCarteJeuAlignementV",
+      "snippet": "AffCarteJeuAlignementV",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AffCarteJeuDecalageX": {
+      "command": "AffCarteJeuDecalageX",
+      "snippet": "AffCarteJeuDecalageX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AffCarteJeuDecalageY": {
+      "command": "AffCarteJeuDecalageY",
+      "snippet": "AffCarteJeuDecalageY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AffCarteJeuHauteur": {
+      "command": "AffCarteJeuHauteur",
+      "snippet": "AffCarteJeuHauteur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AffCarteJeuRotation": {
+      "command": "AffCarteJeuRotation",
+      "snippet": "AffCarteJeuRotation",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AffCarteJeuType": {
+      "command": "AffCarteJeuType",
+      "snippet": "AffCarteJeuType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CarteDebutRand": {
+      "command": "CarteDebutRand",
+      "snippet": "CarteDebutRand",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CarteMain": {
+      "command": "CarteMain",
+      "snippet": "CarteMain",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CarteMainChoisie": {
+      "command": "CarteMainChoisie",
+      "snippet": "CarteMainChoisie",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CarteMainPrefixe": {
+      "command": "CarteMainPrefixe",
+      "snippet": "CarteMainPrefixe",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CarteMainType": {
+      "command": "CarteMainType",
+      "snippet": "CarteMainType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CartePrefixe": {
+      "command": "CartePrefixe",
+      "snippet": "CartePrefixe",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CartesJeuBataille": {
+      "command": "CartesJeuBataille",
+      "snippet": "CartesJeuBataille",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CartesJeuBelote": {
+      "command": "CartesJeuBelote",
+      "snippet": "CartesJeuBelote",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CartesJeuPoker": {
+      "command": "CartesJeuPoker",
+      "snippet": "CartesJeuPoker",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CartesJeuRami": {
+      "command": "CartesJeuRami",
+      "snippet": "CartesJeuRami",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CartesJeuTarot": {
+      "command": "CartesJeuTarot",
+      "snippet": "CartesJeuTarot",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CartesJeuUno": {
+      "command": "CartesJeuUno",
+      "snippet": "CartesJeuUno",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "csCoul": {
+      "command": "csCoul",
+      "snippet": "csCoul",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "csCplt": {
+      "command": "csCplt",
+      "snippet": "csCplt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "csFond": {
+      "command": "csFond",
+      "snippet": "csFond",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "csSymb": {
+      "command": "csSymb",
+      "snippet": "csSymb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "csVal": {
+      "command": "csVal",
+      "snippet": "csVal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DecAngleMain": {
+      "command": "DecAngleMain",
+      "snippet": "DecAngleMain",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EchelleCarteDecalage": {
+      "command": "EchelleCarteDecalage",
+      "snippet": "EchelleCarteDecalage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HauteurGenerique": {
+      "command": "HauteurGenerique",
+      "snippet": "HauteurGenerique",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ListeCartesMain": {
+      "command": "ListeCartesMain",
+      "snippet": "ListeCartesMain",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ListeCartesMainlen": {
+      "command": "ListeCartesMainlen",
+      "snippet": "ListeCartesMainlen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainAlignementV": {
+      "command": "MainAlignementV",
+      "snippet": "MainAlignementV",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainDecalH": {
+      "command": "MainDecalH",
+      "snippet": "MainDecalH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainDecalV": {
+      "command": "MainDecalV",
+      "snippet": "MainDecalV",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainHauteur": {
+      "command": "MainHauteur",
+      "snippet": "MainHauteur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainJeuType": {
+      "command": "MainJeuType",
+      "snippet": "MainJeuType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainOffset": {
+      "command": "MainOffset",
+      "snippet": "MainOffset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainRotation": {
+      "command": "MainRotation",
+      "snippet": "MainRotation",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainSimpleHauteur": {
+      "command": "MainSimpleHauteur",
+      "snippet": "MainSimpleHauteur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MainSimpleJeuType": {
+      "command": "MainSimpleJeuType",
+      "snippet": "MainSimpleJeuType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniCarteFondAtout": {
+      "command": "MiniCarteFondAtout",
+      "snippet": "MiniCarteFondAtout",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniCarteLargeur": {
+      "command": "MiniCarteLargeur",
+      "snippet": "MiniCarteLargeur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniCarteMainChoisie": {
+      "command": "MiniCarteMainChoisie",
+      "snippet": "MiniCarteMainChoisie",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniCartesJeuBataille": {
+      "command": "MiniCartesJeuBataille",
+      "snippet": "MiniCartesJeuBataille",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniCartesJeuBelote": {
+      "command": "MiniCartesJeuBelote",
+      "snippet": "MiniCartesJeuBelote",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniCartesJeuPoker": {
+      "command": "MiniCartesJeuPoker",
+      "snippet": "MiniCartesJeuPoker",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniCartesJeuRami": {
+      "command": "MiniCartesJeuRami",
+      "snippet": "MiniCartesJeuRami",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniCartesJeuTarot": {
+      "command": "MiniCartesJeuTarot",
+      "snippet": "MiniCartesJeuTarot",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniCartesMain": {
+      "command": "MiniCartesMain",
+      "snippet": "MiniCartesMain",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniMainAleaFondAtout": {
+      "command": "MiniMainAleaFondAtout",
+      "snippet": "MiniMainAleaFondAtout",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniMainAleaLargeur": {
+      "command": "MiniMainAleaLargeur",
+      "snippet": "MiniMainAleaLargeur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniMainAleaType": {
+      "command": "MiniMainAleaType",
+      "snippet": "MiniMainAleaType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniMainFondAtout": {
+      "command": "MiniMainFondAtout",
+      "snippet": "MiniMainFondAtout",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniMainLargeur": {
+      "command": "MiniMainLargeur",
+      "snippet": "MiniMainLargeur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NbCartesMain": {
+      "command": "NbCartesMain",
+      "snippet": "NbCartesMain",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "OptionTikzCBB": {
+      "command": "OptionTikzCBB",
+      "snippet": "OptionTikzCBB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SecondOffset": {
+      "command": "SecondOffset",
+      "snippet": "SecondOffset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

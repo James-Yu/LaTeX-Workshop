@@ -1,0 +1,384 @@
+{
+  "includes": [
+    "ifthen",
+    "pstricks",
+    "pst-xkey",
+    "pst-node",
+    "pst-plot",
+    "multido",
+    "pst-eucl",
+    "pst-intersect",
+    "pstricks-add",
+    "environ"
+  ],
+  "cmds": {
+    "oenode{}{}": {
+      "command": "oenode{}{}",
+      "snippet": "oenode{${1:node}}{${2:comp}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeRefA{}": {
+      "command": "oenodeRefA{}",
+      "snippet": "oenodeRefA{${1:comp}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeRefB{}": {
+      "command": "oenodeRefB{}",
+      "snippet": "oenodeRefB{${1:comp}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeTrefA{}": {
+      "command": "oenodeTrefA{}",
+      "snippet": "oenodeTrefA{${1:comp}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeTrefB{}": {
+      "command": "oenodeTrefB{}",
+      "snippet": "oenodeTrefB{${1:comp}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeCenter{}": {
+      "command": "oenodeCenter{}",
+      "snippet": "oenodeCenter{${1:comp}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeLabel{}": {
+      "command": "oenodeLabel{}",
+      "snippet": "oenodeLabel{${1:comp}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeExt{}": {
+      "command": "oenodeExt{}",
+      "snippet": "oenodeExt{${1:comp}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeIfc{}{}": {
+      "command": "oenodeIfc{}{}",
+      "snippet": "oenodeIfc{${1:number}}{${2:comp}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeIn{}": {
+      "command": "oenodeIn{}",
+      "snippet": "oenodeIn{${1:comp}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeOut{}": {
+      "command": "oenodeOut{}",
+      "snippet": "oenodeOut{${1:comp}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeRotref{}": {
+      "command": "oenodeRotref{}",
+      "snippet": "oenodeRotref{${1:comp}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeBeam{}": {
+      "command": "oenodeBeam{}",
+      "snippet": "oenodeBeam{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeBeamUp{}": {
+      "command": "oenodeBeamUp{}",
+      "snippet": "oenodeBeamUp{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oenodeBeamLow{}": {
+      "command": "oenodeBeamLow{}",
+      "snippet": "oenodeBeamLow{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oeBeamCenter{}": {
+      "command": "oeBeamCenter{}",
+      "snippet": "oeBeamCenter{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oeBeamVec{}": {
+      "command": "oeBeamVec{}",
+      "snippet": "oeBeamVec{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oeBeamVecUp{}": {
+      "command": "oeBeamVecUp{}",
+      "snippet": "oeBeamVecUp{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oeBeamVecLow{}": {
+      "command": "oeBeamVecLow{}",
+      "snippet": "oeBeamVecLow{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oeBeamVecMedian{}": {
+      "command": "oeBeamVecMedian{}",
+      "snippet": "oeBeamVecMedian{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawbeam{}%<{}...{}%>": {
+      "command": "drawbeam{}%<{}...{}%>",
+      "snippet": "drawbeam{${1:%<obj1%>}}%<{${2:obj2}}...{${3:objN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawbeam[]{}%<{}...{}%>": {
+      "command": "drawbeam[]{}%<{}...{}%>",
+      "snippet": "drawbeam[${4:options}]{${1:%<obj1%>}}%<{${2:obj2}}...{${3:objN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawwidebeam{}%<{}...{}%>": {
+      "command": "drawwidebeam{}%<{}...{}%>",
+      "snippet": "drawwidebeam{${1:%<obj1%>}}%<{${2:obj2}}...{${3:objN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawwidebeam[]{}%<{}...{}%>": {
+      "command": "drawwidebeam[]{}%<{}...{}%>",
+      "snippet": "drawwidebeam[${4:options}]{${1:%<obj1%>}}%<{${2:obj2}}...{${3:objN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawfiber{}%<{}...{}%>": {
+      "command": "drawfiber{}%<{}...{}%>",
+      "snippet": "drawfiber{${1:%<obj1%>}}%<{${2:obj2}}...{${3:objN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawfiber[]{}%<{}...{}%>": {
+      "command": "drawfiber[]{}%<{}...{}%>",
+      "snippet": "drawfiber[${4:options}]{${1:%<obj1%>}}%<{${2:obj2}}...{${3:objN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawwire{}%<{}...{}%>": {
+      "command": "drawwire{}%<{}...{}%>",
+      "snippet": "drawwire{${1:%<obj1%>}}%<{${2:obj2}}...{${3:objN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawwire[]{}%<{}...{}%>": {
+      "command": "drawwire[]{}%<{}...{}%>",
+      "snippet": "drawwire[${4:options}]{${1:%<obj1%>}}%<{${2:obj2}}...{${3:objN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "backlayer{}": {
+      "command": "backlayer{}",
+      "snippet": "backlayer{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frontlayer{}": {
+      "command": "frontlayer{}",
+      "snippet": "frontlayer{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpDipole{}": {
+      "command": "newOptexpDipole{}",
+      "snippet": "newOptexpDipole{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpDipole{}{}": {
+      "command": "newOptexpDipole{}{}",
+      "snippet": "newOptexpDipole{${1:name}}{${2:default args}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpDipole[]{}": {
+      "command": "newOptexpDipole[]{}",
+      "snippet": "newOptexpDipole[${2:options}]{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpDipole[]{}{}": {
+      "command": "newOptexpDipole[]{}{}",
+      "snippet": "newOptexpDipole[${3:options}]{${1:name}}{${2:default args}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpTripole{}": {
+      "command": "newOptexpTripole{}",
+      "snippet": "newOptexpTripole{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpTripole{}{}": {
+      "command": "newOptexpTripole{}{}",
+      "snippet": "newOptexpTripole{${1:name}}{${2:default args}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpTripole[]{}": {
+      "command": "newOptexpTripole[]{}",
+      "snippet": "newOptexpTripole[${2:options}]{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpTripole[]{}{}": {
+      "command": "newOptexpTripole[]{}{}",
+      "snippet": "newOptexpTripole[${3:options}]{${1:name}}{${2:default args}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpFiberDipole{}": {
+      "command": "newOptexpFiberDipole{}",
+      "snippet": "newOptexpFiberDipole{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpFiberDipole{}{}": {
+      "command": "newOptexpFiberDipole{}{}",
+      "snippet": "newOptexpFiberDipole{${1:name}}{${2:default args}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpFiberDipole[]{}": {
+      "command": "newOptexpFiberDipole[]{}",
+      "snippet": "newOptexpFiberDipole[${2:options}]{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpFiberDipole[]{}{}": {
+      "command": "newOptexpFiberDipole[]{}{}",
+      "snippet": "newOptexpFiberDipole[${3:options}]{${1:name}}{${2:default args}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpElecDipole{}": {
+      "command": "newOptexpElecDipole{}",
+      "snippet": "newOptexpElecDipole{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpElecDipole{}{}": {
+      "command": "newOptexpElecDipole{}{}",
+      "snippet": "newOptexpElecDipole{${1:name}}{${2:default args}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpElecDipole[]{}": {
+      "command": "newOptexpElecDipole[]{}",
+      "snippet": "newOptexpElecDipole[${2:options}]{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpElecDipole[]{}{}": {
+      "command": "newOptexpElecDipole[]{}{}",
+      "snippet": "newOptexpElecDipole[${3:options}]{${1:name}}{${2:default args}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpComp{}": {
+      "command": "newOptexpComp{}",
+      "snippet": "newOptexpComp{${1:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpCompAmb{}": {
+      "command": "newOptexpCompAmb{}",
+      "snippet": "newOptexpCompAmb{${1:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpElecComp{}": {
+      "command": "newOptexpElecComp{}",
+      "snippet": "newOptexpElecComp{${1:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newOptexpFiberComp{}": {
+      "command": "newOptexpFiberComp{}",
+      "snippet": "newOptexpFiberComp{${1:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oelabel{}": {
+      "command": "oelabel{}",
+      "snippet": "oelabel{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "optexp": {
+      "name": "optexp",
+      "detail": "optexp",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

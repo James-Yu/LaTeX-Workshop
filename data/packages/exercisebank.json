@@ -1,0 +1,921 @@
+{
+  "includes": [
+    "xstring",
+    "pgffor",
+    "scrextend",
+    "comment",
+    "calc",
+    "pgfpages",
+    "geometry",
+    "listofitems",
+    "trimspaces",
+    "needspace"
+  ],
+  "cmds": {
+    "DisplaySolutions": {
+      "command": "DisplaySolutions",
+      "snippet": "DisplaySolutions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SolutionsOnly": {
+      "command": "SolutionsOnly",
+      "snippet": "SolutionsOnly",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "makesetdefaults{}": {
+      "command": "makesetdefaults{}",
+      "snippet": "makesetdefaults{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "spritesets{}": {
+      "command": "spritesets{}",
+      "snippet": "spritesets{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "makeset{}{}": {
+      "command": "makeset{}{}",
+      "snippet": "makeset{${1:name}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "makeset[]{}{}": {
+      "command": "makeset[]{}{}",
+      "snippet": "makeset[${3:options}]{${1:name}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phead": {
+      "command": "phead",
+      "snippet": "phead",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "about{}": {
+      "command": "about{}",
+      "snippet": "about{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "buildall": {
+      "command": "buildall",
+      "snippet": "buildall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sprite": {
+      "command": "sprite",
+      "snippet": "sprite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sprite[]": {
+      "command": "sprite[]",
+      "snippet": "sprite[${1:number}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exec{}": {
+      "command": "exec{}",
+      "snippet": "exec{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareExerciseCommand{}{}": {
+      "command": "DeclareExerciseCommand{}{}",
+      "snippet": "DeclareExerciseCommand{${1:cmd}}{${2:def}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareExerciseCommand{}[]{}": {
+      "command": "DeclareExerciseCommand{}[]{}",
+      "snippet": "DeclareExerciseCommand{${1:cmd}}[${2:args}]{${3:def}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exclude{}{}": {
+      "command": "exclude{}{}",
+      "snippet": "exclude{${1:file}}{${2:list of numbers}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "select{}{}": {
+      "command": "select{}{}",
+      "snippet": "select{${1:file}}{${2:list of numbers}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "buildset{}": {
+      "command": "buildset{}",
+      "snippet": "buildset{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "buildset[]{}": {
+      "command": "buildset[]{}",
+      "snippet": "buildset[${2:options}]{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setName": {
+      "command": "setName",
+      "snippet": "setName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "buildsets{}": {
+      "command": "buildsets{}",
+      "snippet": "buildsets{${1:list of names}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "buildsets[]{}": {
+      "command": "buildsets[]{}",
+      "snippet": "buildsets[${2:options}]{${1:list of sets}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "buildtags{}{}": {
+      "command": "buildtags{}{}",
+      "snippet": "buildtags{${1:list of tags}}{${2:list of sets}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "buildsprite{}": {
+      "command": "buildsprite{}",
+      "snippet": "buildsprite{${1:list of sets}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pplabel{}": {
+      "command": "pplabel{}",
+      "snippet": "pplabel{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ppref{}": {
+      "command": "ppref{}",
+      "snippet": "ppref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ppgref{}": {
+      "command": "ppgref{}",
+      "snippet": "ppgref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pref{}": {
+      "command": "pref{}",
+      "snippet": "pref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgref{}": {
+      "command": "pgref{}",
+      "snippet": "pgref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HideTags{}": {
+      "command": "HideTags{}",
+      "snippet": "HideTags{${1:list of tags}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShowAllTags": {
+      "command": "ShowAllTags",
+      "snippet": "ShowAllTags",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exercisenote{}": {
+      "command": "exercisenote{}",
+      "snippet": "exercisenote{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShowNumbers": {
+      "command": "ShowNumbers",
+      "snippet": "ShowNumbers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShowTags": {
+      "command": "ShowTags",
+      "snippet": "ShowTags",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShowFilenames": {
+      "command": "ShowFilenames",
+      "snippet": "ShowFilenames",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exercisebanksetup{}": {
+      "command": "exercisebanksetup{}",
+      "snippet": "exercisebanksetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "part problems",
+        "tighten paragraphs",
+        "problem header",
+        "problem needs space",
+        "no needspace",
+        "part problem header",
+        "part problem header suffix",
+        "solution header",
+        "exercise directory",
+        "figure root directory",
+        "use margins",
+        "front page",
+        "style margins",
+        "show lonely part problems",
+        "current points style",
+        "disable points"
+      ],
+      "keyvalindex": 0
+    },
+    "translateExBank{}": {
+      "command": "translateExBank{}",
+      "snippet": "translateExBank{${1:keyvals}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nextproblem{}": {
+      "command": "nextproblem{}",
+      "snippet": "nextproblem{${1:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "totalpoints": {
+      "command": "totalpoints",
+      "snippet": "totalpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exercisepoints": {
+      "command": "exercisepoints",
+      "snippet": "exercisepoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PartProblemHeaderSuffix": {
+      "command": "PartProblemHeaderSuffix",
+      "snippet": "PartProblemHeaderSuffix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PostPPHeader": {
+      "command": "PostPPHeader",
+      "snippet": "PostPPHeader",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeginPartproblem": {
+      "command": "BeginPartproblem",
+      "snippet": "BeginPartproblem",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "VeryBeginPartproblem": {
+      "command": "VeryBeginPartproblem",
+      "snippet": "VeryBeginPartproblem",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "InputExercise": {
+      "command": "InputExercise",
+      "snippet": "InputExercise",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeginProblem": {
+      "command": "BeginProblem",
+      "snippet": "BeginProblem",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EndProblem": {
+      "command": "EndProblem",
+      "snippet": "EndProblem",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeginBuildset": {
+      "command": "BeginBuildset",
+      "snippet": "BeginBuildset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EndBuildset": {
+      "command": "EndBuildset",
+      "snippet": "EndBuildset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ownLineNoSpacesGotIt": {
+      "command": "ownLineNoSpacesGotIt",
+      "snippet": "ownLineNoSpacesGotIt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exercisebankversion": {
+      "command": "exercisebankversion",
+      "snippet": "exercisebankversion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exercisebankbuild": {
+      "command": "exercisebankbuild",
+      "snippet": "exercisebankbuild",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thisfilepath": {
+      "command": "thisfilepath",
+      "snippet": "thisfilepath",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exerciseFile": {
+      "command": "exerciseFile",
+      "snippet": "exerciseFile",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theproblemcounter": {
+      "command": "theproblemcounter",
+      "snippet": "theproblemcounter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thepartproblemcounter": {
+      "command": "thepartproblemcounter",
+      "snippet": "thepartproblemcounter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pMarginBelow": {
+      "command": "pMarginBelow",
+      "snippet": "pMarginBelow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pMarginAbove": {
+      "command": "pMarginAbove",
+      "snippet": "pMarginAbove",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pMarginLeft": {
+      "command": "pMarginLeft",
+      "snippet": "pMarginLeft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ppMarginBelow": {
+      "command": "ppMarginBelow",
+      "snippet": "ppMarginBelow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ppMarginAbove": {
+      "command": "ppMarginAbove",
+      "snippet": "ppMarginAbove",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ppMargin": {
+      "command": "ppMargin",
+      "snippet": "ppMargin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "introOutdent": {
+      "command": "introOutdent",
+      "snippet": "introOutdent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setExercisesDir{}": {
+      "command": "setExercisesDir{}",
+      "snippet": "setExercisesDir{${1:directory}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AtNextPar{}": {
+      "command": "AtNextPar{}",
+      "snippet": "AtNextPar{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "buildex{}": {
+      "command": "buildex{}",
+      "snippet": "buildex{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "continueLoop": {
+      "command": "continueLoop",
+      "snippet": "continueLoop",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "csvlist": {
+      "command": "csvlist",
+      "snippet": "csvlist",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "csvsets": {
+      "command": "csvsets",
+      "snippet": "csvsets",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "csvtags": {
+      "command": "csvtags",
+      "snippet": "csvtags",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ea": {
+      "command": "ea",
+      "snippet": "ea",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "emptyList": {
+      "command": "emptyList",
+      "snippet": "emptyList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exerciseFileInfo": {
+      "command": "exerciseFileInfo",
+      "snippet": "exerciseFileInfo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exfile": {
+      "command": "exfile",
+      "snippet": "exfile",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "figuresPath": {
+      "command": "figuresPath",
+      "snippet": "figuresPath",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fileInputBase": {
+      "command": "fileInputBase",
+      "snippet": "fileInputBase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fileInputPath": {
+      "command": "fileInputPath",
+      "snippet": "fileInputPath",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "firstarg": {
+      "command": "firstarg",
+      "snippet": "firstarg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "haystack": {
+      "command": "haystack",
+      "snippet": "haystack",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifppMode{}": {
+      "command": "ifppMode{}",
+      "snippet": "ifppMode{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ignoreOutlineSpaces": {
+      "command": "ignoreOutlineSpaces",
+      "snippet": "ignoreOutlineSpaces",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "incl{}": {
+      "command": "incl{}",
+      "snippet": "incl{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "introarg": {
+      "command": "introarg",
+      "snippet": "introarg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ipm{}": {
+      "command": "ipm{}",
+      "snippet": "ipm{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "isFalse": {
+      "command": "isFalse",
+      "snippet": "isFalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "isInList": {
+      "command": "isInList",
+      "snippet": "isInList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "isppMode{}{}": {
+      "command": "isppMode{}{}",
+      "snippet": "isppMode{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "isTrue": {
+      "command": "isTrue",
+      "snippet": "isTrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "keystring": {
+      "command": "keystring",
+      "snippet": "keystring",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listarg": {
+      "command": "listarg",
+      "snippet": "listarg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marginw": {
+      "command": "marginw",
+      "snippet": "marginw",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "markeverypar": {
+      "command": "markeverypar",
+      "snippet": "markeverypar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mname": {
+      "command": "mname",
+      "snippet": "mname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ncArgs": {
+      "command": "ncArgs",
+      "snippet": "ncArgs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "needle": {
+      "command": "needle",
+      "snippet": "needle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nextprobargs": {
+      "command": "nextprobargs",
+      "snippet": "nextprobargs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nextproblems{}": {
+      "command": "nextproblems{}",
+      "snippet": "nextproblems{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nohead": {
+      "command": "nohead",
+      "snippet": "nohead",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numppex": {
+      "command": "numppex",
+      "snippet": "numppex",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "obeyOutlineSpaces": {
+      "command": "obeyOutlineSpaces",
+      "snippet": "obeyOutlineSpaces",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oldep": {
+      "command": "oldep",
+      "snippet": "oldep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "orderedselect{}{}": {
+      "command": "orderedselect{}{}",
+      "snippet": "orderedselect{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ppList": {
+      "command": "ppList",
+      "snippet": "ppList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ppMode": {
+      "command": "ppMode",
+      "snippet": "ppMode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pppref{}": {
+      "command": "pppref{}",
+      "snippet": "pppref{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pptag": {
+      "command": "pptag",
+      "snippet": "pptag",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "removebs{}": {
+      "command": "removebs{}",
+      "snippet": "removebs{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resetnextproblems": {
+      "command": "resetnextproblems",
+      "snippet": "resetnextproblems",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmacro": {
+      "command": "setmacro",
+      "snippet": "setmacro",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showhideproblem{}": {
+      "command": "showhideproblem{}",
+      "snippet": "showhideproblem{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shownextchar{}": {
+      "command": "shownextchar{}",
+      "snippet": "shownextchar{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skeys": {
+      "command": "skeys",
+      "snippet": "skeys",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solutionMarginAbove": {
+      "command": "solutionMarginAbove",
+      "snippet": "solutionMarginAbove",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "squeeze": {
+      "command": "squeeze",
+      "snippet": "squeeze",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stopfilbreak": {
+      "command": "stopfilbreak",
+      "snippet": "stopfilbreak",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "strif{}{}": {
+      "command": "strif{}{}",
+      "snippet": "strif{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "themetacounter": {
+      "command": "themetacounter",
+      "snippet": "themetacounter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thenumppInFile": {
+      "command": "thenumppInFile",
+      "snippet": "thenumppInFile",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theset": {
+      "command": "theset",
+      "snippet": "theset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thissetid": {
+      "command": "thissetid",
+      "snippet": "thissetid",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tmpargs": {
+      "command": "tmpargs",
+      "snippet": "tmpargs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tpd": {
+      "command": "tpd",
+      "snippet": "tpd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "whenfalse": {
+      "command": "whenfalse",
+      "snippet": "whenfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "whentrue": {
+      "command": "whentrue",
+      "snippet": "whentrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "problem": {
+      "name": "problem",
+      "detail": "problem",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solution": {
+      "name": "solution",
+      "detail": "solution",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intro": {
+      "name": "intro",
+      "detail": "intro",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

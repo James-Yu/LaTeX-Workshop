@@ -1,0 +1,1208 @@
+{
+  "includes": [
+    "tikzlibrarymatrix",
+    "tikzlibrarycalc",
+    "tikzlibrarypositioning"
+  ],
+  "cmds": {
+    "obj {};": {
+      "command": "obj {};",
+      "snippet": "obj {${1:%<object%>}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "obj [] {};": {
+      "command": "obj [] {};",
+      "snippet": "obj [${2:options}] {${1:%<object%>}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "obj[]": {
+      "command": "obj[]",
+      "snippet": "obj[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mor %<morphism%>;": {
+      "command": "mor %<morphism%>;",
+      "snippet": "mor ${1:morphism};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mor [] %<morphism%>;": {
+      "command": "mor [] %<morphism%>;",
+      "snippet": "mor [${1:%<label options%>}] ${2:morphism};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mor []:[] %<morphism%>;": {
+      "command": "mor []:[] %<morphism%>;",
+      "snippet": "mor [${1:%<label options%>}]:[${2:%<arrow options%>}] ${3:morphism};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mor[]": {
+      "command": "mor[]",
+      "snippet": "mor[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDAct": {
+      "command": "kDAct",
+      "snippet": "kDAct",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifkDRammaObjIsMatrix": {
+      "command": "ifkDRammaObjIsMatrix",
+      "snippet": "ifkDRammaObjIsMatrix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaObjIsMatrixtrue": {
+      "command": "kDRammaObjIsMatrixtrue",
+      "snippet": "kDRammaObjIsMatrixtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaObjIsMatrixfalse": {
+      "command": "kDRammaObjIsMatrixfalse",
+      "snippet": "kDRammaObjIsMatrixfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaObjDecideWhetherIsMatrixThen{}": {
+      "command": "kDRammaObjDecideWhetherIsMatrixThen{}",
+      "snippet": "kDRammaObjDecideWhetherIsMatrixThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaObjDWIM": {
+      "command": "kDRammaObjDWIM",
+      "snippet": "kDRammaObjDWIM",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaObjDWIMSightThen{}{}": {
+      "command": "kDRammaObjDWIMSightThen{}{}",
+      "snippet": "kDRammaObjDWIMSightThen{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaObjDWIMGobThen{}{}": {
+      "command": "kDRammaObjDWIMGobThen{}{}",
+      "snippet": "kDRammaObjDWIMGobThen{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaObjOutput": {
+      "command": "kDRammaObjOutput",
+      "snippet": "kDRammaObjOutput",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaObj": {
+      "command": "kDRammaObj",
+      "snippet": "kDRammaObj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaMor": {
+      "command": "kDRammaMor",
+      "snippet": "kDRammaMor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRamma": {
+      "command": "kDRamma",
+      "snippet": "kDRamma",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaOpen": {
+      "command": "kDRammaOpen",
+      "snippet": "kDRammaOpen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaShut": {
+      "command": "kDRammaShut",
+      "snippet": "kDRammaShut",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaOptTok": {
+      "command": "kDRammaOptTok",
+      "snippet": "kDRammaOptTok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaTmpTok": {
+      "command": "kDRammaTmpTok",
+      "snippet": "kDRammaTmpTok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaMaybeFetchOptionsThen{}": {
+      "command": "kDRammaMaybeFetchOptionsThen{}",
+      "snippet": "kDRammaMaybeFetchOptionsThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaFetchOptionsThen{}[]": {
+      "command": "kDRammaFetchOptionsThen{}[]",
+      "snippet": "kDRammaFetchOptionsThen{${1:arg1}}[${2:arg2}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRammaOutput": {
+      "command": "kDRammaOutput",
+      "snippet": "kDRammaOutput",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDEktropiDefaultToksBackup": {
+      "command": "kDEktropiDefaultToksBackup",
+      "snippet": "kDEktropiDefaultToksBackup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDEktropiRestore": {
+      "command": "kDEktropiRestore",
+      "snippet": "kDEktropiRestore",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDKatharizoStringified": {
+      "command": "kDKatharizoStringified",
+      "snippet": "kDKatharizoStringified",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDKatharizoStringify{}": {
+      "command": "kDKatharizoStringify{}",
+      "snippet": "kDKatharizoStringify{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDKatharizoSanitized": {
+      "command": "kDKatharizoSanitized",
+      "snippet": "kDKatharizoSanitized",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDKatharizoSanitize{}": {
+      "command": "kDKatharizoSanitize{}",
+      "snippet": "kDKatharizoSanitize{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDKatharizoSSpace": {
+      "command": "kDKatharizoSSpace",
+      "snippet": "kDKatharizoSSpace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDKatharizoSAppendSpace": {
+      "command": "kDKatharizoSAppendSpace",
+      "snippet": "kDKatharizoSAppendSpace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDKatharizoSString{}{}": {
+      "command": "kDKatharizoSString{}{}",
+      "snippet": "kDKatharizoSString{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDKatharizoSWord{}{}": {
+      "command": "kDKatharizoSWord{}{}",
+      "snippet": "kDKatharizoSWord{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDKatharizoSCharacter{}": {
+      "command": "kDKatharizoSCharacter{}",
+      "snippet": "kDKatharizoSCharacter{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDFoo": {
+      "command": "kDFoo",
+      "snippet": "kDFoo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDEscapecharCounter": {
+      "command": "kDEscapecharCounter",
+      "snippet": "kDEscapecharCounter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDEscapecharDisable": {
+      "command": "kDEscapecharDisable",
+      "snippet": "kDEscapecharDisable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDEscapecharEnable": {
+      "command": "kDEscapecharEnable",
+      "snippet": "kDEscapecharEnable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDStoreCatcodeOf{}": {
+      "command": "kDStoreCatcodeOf{}",
+      "snippet": "kDStoreCatcodeOf{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRestoreCatcodeOf{}": {
+      "command": "kDRestoreCatcodeOf{}",
+      "snippet": "kDRestoreCatcodeOf{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDGobbleHardTok": {
+      "command": "kDGobbleHardTok",
+      "snippet": "kDGobbleHardTok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDGobbleSoftTok{}": {
+      "command": "kDGobbleSoftTok{}",
+      "snippet": "kDGobbleSoftTok{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDIfNextHardCh": {
+      "command": "kDIfNextHardCh",
+      "snippet": "kDIfNextHardCh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDIfNextSoftCh{}{}{}": {
+      "command": "kDIfNextSoftCh{}{}{}",
+      "snippet": "kDIfNextSoftCh{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDINCToken": {
+      "command": "kDINCToken",
+      "snippet": "kDINCToken",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDINCTrue": {
+      "command": "kDINCTrue",
+      "snippet": "kDINCTrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDINC": {
+      "command": "kDINC",
+      "snippet": "kDINC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDAppend{}{}": {
+      "command": "kDAppend{}{}",
+      "snippet": "kDAppend{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDFetchOptAndGrpThen{}": {
+      "command": "kDFetchOptAndGrpThen{}",
+      "snippet": "kDFetchOptAndGrpThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDOptTok": {
+      "command": "kDOptTok",
+      "snippet": "kDOptTok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDGrpTok": {
+      "command": "kDGrpTok",
+      "snippet": "kDGrpTok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDFetchGrpThen{}{}": {
+      "command": "kDFetchGrpThen{}{}",
+      "snippet": "kDFetchGrpThen{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDExit": {
+      "command": "kDExit",
+      "snippet": "kDExit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDLoop": {
+      "command": "kDLoop",
+      "snippet": "kDLoop",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDTmpTok": {
+      "command": "kDTmpTok",
+      "snippet": "kDTmpTok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDFetchTilGrpThen{}{}": {
+      "command": "kDFetchTilGrpThen{}{}",
+      "snippet": "kDFetchTilGrpThen{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDTrimTrailingSpace{}": {
+      "command": "kDTrimTrailingSpace{}",
+      "snippet": "kDTrimTrailingSpace{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRTS": {
+      "command": "kDRTS",
+      "snippet": "kDRTS",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDRTSAct": {
+      "command": "kDRTSAct",
+      "snippet": "kDRTSAct",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDDetectTrailingSpace{}": {
+      "command": "kDDetectTrailingSpace{}",
+      "snippet": "kDDetectTrailingSpace{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifkDDTSHasTrail": {
+      "command": "ifkDDTSHasTrail",
+      "snippet": "ifkDDTSHasTrail",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDDTSHasTrailtrue": {
+      "command": "kDDTSHasTrailtrue",
+      "snippet": "kDDTSHasTrailtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDDTSHasTrailfalse": {
+      "command": "kDDTSHasTrailfalse",
+      "snippet": "kDDTSHasTrailfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDDTSGob": {
+      "command": "kDDTSGob",
+      "snippet": "kDDTSGob",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifkDDTSPrevSpace": {
+      "command": "ifkDDTSPrevSpace",
+      "snippet": "ifkDDTSPrevSpace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDDTSPrevSpacetrue": {
+      "command": "kDDTSPrevSpacetrue",
+      "snippet": "kDDTSPrevSpacetrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDDTSPrevSpacefalse": {
+      "command": "kDDTSPrevSpacefalse",
+      "snippet": "kDDTSPrevSpacefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDTrimLeadingSpace{}": {
+      "command": "kDTrimLeadingSpace{}",
+      "snippet": "kDTrimLeadingSpace{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDGobbleSpaceThen{}": {
+      "command": "kDGobbleSpaceThen{}",
+      "snippet": "kDGobbleSpaceThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDGSGroupThen{}{}": {
+      "command": "kDGSGroupThen{}{}",
+      "snippet": "kDGSGroupThen{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDGSOtherThen{}{}": {
+      "command": "kDGSOtherThen{}{}",
+      "snippet": "kDGSOtherThen{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifConTeXt": {
+      "command": "ifConTeXt",
+      "snippet": "ifConTeXt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ConTeXttrue": {
+      "command": "ConTeXttrue",
+      "snippet": "ConTeXttrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ConTeXtfalse": {
+      "command": "ConTeXtfalse",
+      "snippet": "ConTeXtfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifkDDumping": {
+      "command": "ifkDDumping",
+      "snippet": "ifkDDumping",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDDumpingtrue": {
+      "command": "kDDumpingtrue",
+      "snippet": "kDDumpingtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDDumpingfalse": {
+      "command": "kDDumpingfalse",
+      "snippet": "kDDumpingfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDDumpFile": {
+      "command": "kDDumpFile",
+      "snippet": "kDDumpFile",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDDumpOpen": {
+      "command": "kDDumpOpen",
+      "snippet": "kDDumpOpen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDDump{}": {
+      "command": "kDDump{}",
+      "snippet": "kDDump{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDDumpClose": {
+      "command": "kDDumpClose",
+      "snippet": "kDDumpClose",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDOzos": {
+      "command": "kDOzos",
+      "snippet": "kDOzos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDOzosFetchThen": {
+      "command": "kDOzosFetchThen",
+      "snippet": "kDOzosFetchThen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDOzosMaybeDumpThen{}": {
+      "command": "kDOzosMaybeDumpThen{}",
+      "snippet": "kDOzosMaybeDumpThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDOzosOutput": {
+      "command": "kDOzosOutput",
+      "snippet": "kDOzosOutput",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitra": {
+      "command": "kDMitra",
+      "snippet": "kDMitra",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraTmpTok": {
+      "command": "kDMitraTmpTok",
+      "snippet": "kDMitraTmpTok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraFetchMatrixThen{}": {
+      "command": "kDMitraFetchMatrixThen{}",
+      "snippet": "kDMitraFetchMatrixThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraMatOutTok": {
+      "command": "kDMitraMatOutTok",
+      "snippet": "kDMitraMatOutTok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraParseMatrixTableThen{}": {
+      "command": "kDMitraParseMatrixTableThen{}",
+      "snippet": "kDMitraParseMatrixTableThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraParseTable": {
+      "command": "kDMitraParseTable",
+      "snippet": "kDMitraParseTable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraParseAllRowsThen{}": {
+      "command": "kDMitraParseAllRowsThen{}",
+      "snippet": "kDMitraParseAllRowsThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraParseOneRowThen{}": {
+      "command": "kDMitraParseOneRowThen{}",
+      "snippet": "kDMitraParseOneRowThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraMarkRowEndBefore{}{}": {
+      "command": "kDMitraMarkRowEndBefore{}{}",
+      "snippet": "kDMitraMarkRowEndBefore{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraParseAllColsThen{}": {
+      "command": "kDMitraParseAllColsThen{}",
+      "snippet": "kDMitraParseAllColsThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraParseRowEndThen{}": {
+      "command": "kDMitraParseRowEndThen{}",
+      "snippet": "kDMitraParseRowEndThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraFetchRowEndThen{}": {
+      "command": "kDMitraFetchRowEndThen{}",
+      "snippet": "kDMitraFetchRowEndThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraRowOptTok": {
+      "command": "kDMitraRowOptTok",
+      "snippet": "kDMitraRowOptTok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraPrintRowEndThen{}": {
+      "command": "kDMitraPrintRowEndThen{}",
+      "snippet": "kDMitraPrintRowEndThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraMaybeFetchRowOptionsThen{}": {
+      "command": "kDMitraMaybeFetchRowOptionsThen{}",
+      "snippet": "kDMitraMaybeFetchRowOptionsThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraFetchRowOptionsThen{}[]": {
+      "command": "kDMitraFetchRowOptionsThen{}[]",
+      "snippet": "kDMitraFetchRowOptionsThen{${1:arg1}}[${2:arg2}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraParseOneColThen{}": {
+      "command": "kDMitraParseOneColThen{}",
+      "snippet": "kDMitraParseOneColThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraParseColEndThen{}": {
+      "command": "kDMitraParseColEndThen{}",
+      "snippet": "kDMitraParseColEndThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraColOptTok": {
+      "command": "kDMitraColOptTok",
+      "snippet": "kDMitraColOptTok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraMaybeFetchColOptionsThen{}": {
+      "command": "kDMitraMaybeFetchColOptionsThen{}",
+      "snippet": "kDMitraMaybeFetchColOptionsThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraFetchColOptionsThen{}[]": {
+      "command": "kDMitraFetchColOptionsThen{}[]",
+      "snippet": "kDMitraFetchColOptionsThen{${1:arg1}}[${2:arg2}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraMaybePrintColEndThen{}": {
+      "command": "kDMitraMaybePrintColEndThen{}",
+      "snippet": "kDMitraMaybePrintColEndThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraParseCellThen{}": {
+      "command": "kDMitraParseCellThen{}",
+      "snippet": "kDMitraParseCellThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraCelOptTok": {
+      "command": "kDMitraCelOptTok",
+      "snippet": "kDMitraCelOptTok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraMaybeFetchCellOptionsThen{}": {
+      "command": "kDMitraMaybeFetchCellOptionsThen{}",
+      "snippet": "kDMitraMaybeFetchCellOptionsThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraFetchCellOptionsThen{}": {
+      "command": "kDMitraFetchCellOptionsThen{}",
+      "snippet": "kDMitraFetchCellOptionsThen{${1:%<arg1%>}}|%<arg2%>|",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraCelCntTok": {
+      "command": "kDMitraCelCntTok",
+      "snippet": "kDMitraCelCntTok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraFetchCellContentThen{}{}": {
+      "command": "kDMitraFetchCellContentThen{}{}",
+      "snippet": "kDMitraFetchCellContentThen{${1:arg1}}{${2:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraMaybeDoCellThen{}": {
+      "command": "kDMitraMaybeDoCellThen{}",
+      "snippet": "kDMitraMaybeDoCellThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraPrintCellThen{}": {
+      "command": "kDMitraPrintCellThen{}",
+      "snippet": "kDMitraPrintCellThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraMaybeDumpCell": {
+      "command": "kDMitraMaybeDumpCell",
+      "snippet": "kDMitraMaybeDumpCell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDMitraOutput": {
+      "command": "kDMitraOutput",
+      "snippet": "kDMitraOutput",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosQuoteHandler{}": {
+      "command": "kDVelosQuoteHandler{}",
+      "snippet": "kDVelosQuoteHandler{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosUnquote\"%<arg%>\"": {
+      "command": "kDVelosUnquote\"%<arg%>\"",
+      "snippet": "kDVelosUnquote\"${1:arg}\"",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosTemp": {
+      "command": "kDVelosTemp",
+      "snippet": "kDVelosTemp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosGlobalLabelOptions": {
+      "command": "kDVelosGlobalLabelOptions",
+      "snippet": "kDVelosGlobalLabelOptions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosGlobalEdgeOptions": {
+      "command": "kDVelosGlobalEdgeOptions",
+      "snippet": "kDVelosGlobalEdgeOptions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifkDVelosGOAfterColon": {
+      "command": "ifkDVelosGOAfterColon",
+      "snippet": "ifkDVelosGOAfterColon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosGOAfterColontrue": {
+      "command": "kDVelosGOAfterColontrue",
+      "snippet": "kDVelosGOAfterColontrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosGOAfterColonfalse": {
+      "command": "kDVelosGOAfterColonfalse",
+      "snippet": "kDVelosGOAfterColonfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFetchGlobalOptionsThen{}": {
+      "command": "kDVelosFetchGlobalOptionsThen{}",
+      "snippet": "kDVelosFetchGlobalOptionsThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosGOMaybeFetchThen{}": {
+      "command": "kDVelosGOMaybeFetchThen{}",
+      "snippet": "kDVelosGOMaybeFetchThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosGOFetchThen{}[]": {
+      "command": "kDVelosGOFetchThen{}[]",
+      "snippet": "kDVelosGOFetchThen{${1:arg1}}[${2:arg2}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosGOThinkThen{}": {
+      "command": "kDVelosGOThinkThen{}",
+      "snippet": "kDVelosGOThinkThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosDoFirstEdgeThen{}": {
+      "command": "kDVelosDoFirstEdgeThen{}",
+      "snippet": "kDVelosDoFirstEdgeThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosSource": {
+      "command": "kDVelosSource",
+      "snippet": "kDVelosSource",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosCurFstSrc": {
+      "command": "kDVelosCurFstSrc",
+      "snippet": "kDVelosCurFstSrc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosPrvFstSrc": {
+      "command": "kDVelosPrvFstSrc",
+      "snippet": "kDVelosPrvFstSrc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFetchFirstSourceThen{}": {
+      "command": "kDVelosFetchFirstSourceThen{}",
+      "snippet": "kDVelosFetchFirstSourceThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFFSTillOverThen{}{}": {
+      "command": "kDVelosFFSTillOverThen{}{}",
+      "snippet": "kDVelosFFSTillOverThen{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFetchFirstEdgeThen{}": {
+      "command": "kDVelosFetchFirstEdgeThen{}",
+      "snippet": "kDVelosFetchFirstEdgeThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosEdge": {
+      "command": "kDVelosEdge",
+      "snippet": "kDVelosEdge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFetchEdgeThen{}": {
+      "command": "kDVelosFetchEdgeThen{}",
+      "snippet": "kDVelosFetchEdgeThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFEThen{}": {
+      "command": "kDVelosFEThen{}",
+      "snippet": "kDVelosFEThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifkDVelosTempIsKeysList": {
+      "command": "ifkDVelosTempIsKeysList",
+      "snippet": "ifkDVelosTempIsKeysList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosTempIsKeysListtrue": {
+      "command": "kDVelosTempIsKeysListtrue",
+      "snippet": "kDVelosTempIsKeysListtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosTempIsKeysListfalse": {
+      "command": "kDVelosTempIsKeysListfalse",
+      "snippet": "kDVelosTempIsKeysListfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFEEnquotedThen{}\"%<arg2%>\"": {
+      "command": "kDVelosFEEnquotedThen{}\"%<arg2%>\"",
+      "snippet": "kDVelosFEEnquotedThen{${1:%<arg1%>}}\"%<arg2%>\"",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFEKeysListThen{}[]": {
+      "command": "kDVelosFEKeysListThen{}[]",
+      "snippet": "kDVelosFEKeysListThen{${1:arg1}}[${2:arg2}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFETillOverThen{}": {
+      "command": "kDVelosFETillOverThen{}",
+      "snippet": "kDVelosFETillOverThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFETOThen{}": {
+      "command": "kDVelosFETOThen{}",
+      "snippet": "kDVelosFETOThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFEAppendThen{}{}": {
+      "command": "kDVelosFEAppendThen{}{}",
+      "snippet": "kDVelosFEAppendThen{${1:arg}}{${2:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFEEdgePrepend{}": {
+      "command": "kDVelosFEEdgePrepend{}",
+      "snippet": "kDVelosFEEdgePrepend{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFEEdgePrependNode{}": {
+      "command": "kDVelosFEEdgePrependNode{}",
+      "snippet": "kDVelosFEEdgePrependNode{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFEThinkThen{}": {
+      "command": "kDVelosFEThinkThen{}",
+      "snippet": "kDVelosFEThinkThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFELoop": {
+      "command": "kDVelosFELoop",
+      "snippet": "kDVelosFELoop",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFEBreak": {
+      "command": "kDVelosFEBreak",
+      "snippet": "kDVelosFEBreak",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosTarget": {
+      "command": "kDVelosTarget",
+      "snippet": "kDVelosTarget",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosCurLstTar": {
+      "command": "kDVelosCurLstTar",
+      "snippet": "kDVelosCurLstTar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosPrvLstTar": {
+      "command": "kDVelosPrvLstTar",
+      "snippet": "kDVelosPrvLstTar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFetchTargetThen": {
+      "command": "kDVelosFetchTargetThen",
+      "snippet": "kDVelosFetchTargetThen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFTTillOverThen{}": {
+      "command": "kDVelosFTTillOverThen{}",
+      "snippet": "kDVelosFTTillOverThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFTTOThen{}": {
+      "command": "kDVelosFTTOThen{}",
+      "snippet": "kDVelosFTTOThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFTTOLoop": {
+      "command": "kDVelosFTTOLoop",
+      "snippet": "kDVelosFTTOLoop",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFTTOExit": {
+      "command": "kDVelosFTTOExit",
+      "snippet": "kDVelosFTTOExit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosFTAppendThen{}{}": {
+      "command": "kDVelosFTAppendThen{}{}",
+      "snippet": "kDVelosFTAppendThen{${1:arg}}{${2:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosAlias": {
+      "command": "kDVelosAlias",
+      "snippet": "kDVelosAlias",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosSaila": {
+      "command": "kDVelosSaila",
+      "snippet": "kDVelosSaila",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosDerefSrc": {
+      "command": "kDVelosDerefSrc",
+      "snippet": "kDVelosDerefSrc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosDerefTar": {
+      "command": "kDVelosDerefTar",
+      "snippet": "kDVelosDerefTar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosDrawFetchedEdgeThen{}": {
+      "command": "kDVelosDrawFetchedEdgeThen{}",
+      "snippet": "kDVelosDrawFetchedEdgeThen{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelos": {
+      "command": "kDVelos",
+      "snippet": "kDVelos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kDVelosMaybeChainEdge": {
+      "command": "kDVelosMaybeChainEdge",
+      "snippet": "kDVelosMaybeChainEdge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

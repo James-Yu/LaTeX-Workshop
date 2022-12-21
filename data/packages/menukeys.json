@@ -1,9 +1,29 @@
 {
-  "includes": [],
+  "includes": [
+    "adjustbox",
+    "catoptions",
+    "etoolbox",
+    "kvoptions",
+    "relsize",
+    "tikz",
+    "tikzlibrarycalc",
+    "tikzlibraryshapes.symbols",
+    "tikzlibraryshadows",
+    "xcolor",
+    "xparse",
+    "xstring"
+  ],
   "cmds": {
     "menu{}": {
       "command": "menu{}",
       "snippet": "menu{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "menu[]{}": {
+      "command": "menu[]{}",
+      "snippet": "menu[${2:separator}]{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -15,9 +35,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "directory[]{}": {
+      "command": "directory[]{}",
+      "snippet": "directory[${2:separator}]{${1:path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "keys{}": {
       "command": "keys{}",
       "snippet": "keys{${1:keys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "keys[]{}": {
+      "command": "keys[]{}",
+      "snippet": "keys[${2:separator}]{${1:keys}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -36,9 +70,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "drawtikzfolder[]": {
-      "command": "drawtikzfolder[]",
-      "snippet": "drawtikzfolder[${1:fontcolor}]",
+    "renewmenustylesimple{}[]{}[][]{}": {
+      "command": "renewmenustylesimple{}[]{}[][]{}",
+      "snippet": "renewmenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewmenustylesimple*{}[]{}[][]{}": {
+      "command": "renewmenustylesimple*{}[]{}[][]{}",
+      "snippet": "renewmenustylesimple*{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providemenustylesimple{}[]{}[][]{}": {
+      "command": "providemenustylesimple{}[]{}[][]{}",
+      "snippet": "providemenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providemenustylesimple*{}[]{}[][]{}": {
+      "command": "providemenustylesimple*{}[]{}[][]{}",
+      "snippet": "providemenustylesimple*{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -57,6 +112,34 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "renewmenustyle{}[]{}[]{}{}{}[]{}": {
+      "command": "renewmenustyle{}[]{}[]{}{}{}[]{}",
+      "snippet": "renewmenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewmenustyle*{}[]{}[]{}{}{}[]{}": {
+      "command": "renewmenustyle*{}[]{}[]{}{}{}[]{}",
+      "snippet": "renewmenustyle*{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providemenustyle{}[]{}[]{}{}{}[]{}": {
+      "command": "providemenustyle{}[]{}[]{}{}{}[]{}",
+      "snippet": "providemenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providemenustyle*{}[]{}[]{}{}{}[]{}": {
+      "command": "providemenustyle*{}[]{}[]{}{}{}[]{}",
+      "snippet": "providemenustyle*{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "CurrentMenuElement": {
       "command": "CurrentMenuElement",
       "snippet": "CurrentMenuElement",
@@ -71,9 +154,100 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "drawtikzfolder": {
+      "command": "drawtikzfolder",
+      "snippet": "drawtikzfolder",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawtikzfolder[]": {
+      "command": "drawtikzfolder[]",
+      "snippet": "drawtikzfolder[${1:front fill color%color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawtikzfolder[][]": {
+      "command": "drawtikzfolder[][]",
+      "snippet": "drawtikzfolder[${1:front fill color%color}][${2:draw color%color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "copymenustyle{}{}": {
       "command": "copymenustyle{}{}",
       "snippet": "copymenustyle{${1:copy}}{${2:original}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changemenuelement{}{}{}": {
+      "command": "changemenuelement{}{}{}",
+      "snippet": "changemenuelement{${1:name}}{${2:element}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changemenuelement*{}{}{}": {
+      "command": "changemenuelement*{}{}{}",
+      "snippet": "changemenuelement*{${1:name}}{${2:element}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changemenucolortheme{}{}": {
+      "command": "changemenucolortheme{}{}",
+      "snippet": "changemenucolortheme{${1:name}}{${2:color theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newmenucolortheme{}{}{}{}{}[][][]": {
+      "command": "newmenucolortheme{}{}{}{}{}[][][]",
+      "snippet": "newmenucolortheme{${1:name}}{${2:model}}{${3:bg}}{${4:br}}{${5:txt}}[${6:a}][${7:b}][${8:c}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "copymenucolortheme{}{}": {
+      "command": "copymenucolortheme{}{}",
+      "snippet": "copymenucolortheme{${1:copy}}{${2:original}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changemenucolor{}{}{}{}": {
+      "command": "changemenucolor{}{}{}{}",
+      "snippet": "changemenucolor{${1:name}}{${2:element}}{${3:model}}{${4:color definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewmenucolortheme{}{}{}{}{}[][][]": {
+      "command": "renewmenucolortheme{}{}{}{}{}[][][]",
+      "snippet": "renewmenucolortheme{${1:name}}{${2:model}}{${3:bg}}{${4:br}}{${5:txt}}[${6:a}][${7:b}][${8:c}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newmenumacro{}[]{}": {
+      "command": "newmenumacro{}[]{}",
+      "snippet": "newmenumacro{${1:macro}}[${2:input sep}]{${3:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewmenumacro{}[]{}": {
+      "command": "renewmenumacro{}[]{}",
+      "snippet": "renewmenumacro{${1:macro}}[${2:input sep}]{${3:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providemenumacro{}[]{}": {
+      "command": "providemenumacro{}[]{}",
+      "snippet": "providemenumacro{${1:macro}}[${2:input sep}]{${3:style}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -102,6 +276,13 @@
     "esc": {
       "command": "esc",
       "snippet": "esc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oldesc": {
+      "command": "oldesc",
+      "snippet": "oldesc",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -141,6 +322,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "SPACE": {
+      "command": "SPACE",
+      "snippet": "SPACE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "return": {
       "command": "return",
       "snippet": "return",
@@ -176,6 +364,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "backdel": {
+      "command": "backdel",
+      "snippet": "backdel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "arrowkeyup": {
       "command": "arrowkeyup",
       "snippet": "arrowkeyup",
@@ -190,6 +385,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "arrowkeyright": {
+      "command": "arrowkeyright",
+      "snippet": "arrowkeyright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "arrowkeyleft": {
       "command": "arrowkeyleft",
       "snippet": "arrowkeyleft",
@@ -197,9 +399,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "arrowkeyright": {
-      "command": "arrowkeyright",
-      "snippet": "arrowkeyright",
+    "arrowkey{direction": {
+      "command": "arrowkey{direction",
+      "snippet": "arrowkey{direction",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -218,112 +420,19 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "arrowkey{}": {
-      "command": "arrowkey{}",
-      "snippet": "arrowkey{${1:direction}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "changemenuelement{}{}{}": {
-      "command": "changemenuelement{}{}{}",
-      "snippet": "changemenuelement{${1:name}}{${2:element}}{${3:definition}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "changemenuelement*{}{}{}": {
-      "command": "changemenuelement*{}{}{}",
-      "snippet": "changemenuelement*{${1:name}}{${2:element}}{${3:definition}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "changemenucolortheme{}{}": {
-      "command": "changemenucolortheme{}{}",
-      "snippet": "changemenucolortheme{${1:name}}{${2:color theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "renewmenustylesimple{}[]{}[][]{}": {
-      "command": "renewmenustylesimple{}[]{}[][]{}",
-      "snippet": "renewmenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "providemenustylesimple{}[]{}[][]{}": {
-      "command": "providemenustylesimple{}[]{}[][]{}",
-      "snippet": "providemenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "renewmenustyle{}[]{}[]{}{}{}[]{}": {
-      "command": "renewmenustyle{}[]{}[]{}{}{}[]{}",
-      "snippet": "renewmenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "providemenustyle{}[]{}[]{}{}{}[]{}": {
-      "command": "providemenustyle{}[]{}[]{}{}{}[]{}",
-      "snippet": "providemenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "newmenucolortheme{}{}{}{}{}": {
-      "command": "newmenucolortheme{}{}{}{}{}",
-      "snippet": "newmenucolortheme{${1:name}}{${2:model}}{${3:bg}}{${4:br}}{${5:txt}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "copymenucolortheme{}{}": {
-      "command": "copymenucolortheme{}{}",
-      "snippet": "copymenucolortheme{${1:copy}}{${2:original}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "changemenucolor{}{}{}{}": {
-      "command": "changemenucolor{}{}{}{}",
-      "snippet": "changemenucolor{${1:name}}{${2:element}}{${3:model}}{${4:color definition}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "renewmenucolortheme{}{}{}{}{}": {
-      "command": "renewmenucolortheme{}{}{}{}{}",
-      "snippet": "renewmenucolortheme{${1:name}}{${2:model}}{${3:bg}}{${4:br}}{${5:txt}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "newmenumacro{}[]{}": {
-      "command": "newmenumacro{}[]{}",
-      "snippet": "newmenumacro{${1:macro}}[${2:input sep}]{${3:style}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "renewmenumacro{}[]{}": {
-      "command": "renewmenumacro{}[]{}",
-      "snippet": "renewmenumacro{${1:macro}}[${2:input sep}]{${3:style}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "providemenumacro{}[]{}": {
-      "command": "providemenumacro{}[]{}",
-      "snippet": "providemenumacro{${1:macro}}[${2:input sep}]{${3:style}}",
+    "spacename": {
+      "command": "spacename",
+      "snippet": "spacename",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "definemenumacros",
+    "definekeys",
+    "mackeys=",
+    "os="
+  ]
 }

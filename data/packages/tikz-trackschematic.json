@@ -1,0 +1,823 @@
+{
+  "includes": [
+    "tikz",
+    "xkeyval",
+    "etoolbox",
+    "tikzlibrarycalc",
+    "tikzlibraryintersections",
+    "tikzlibrarypatterns",
+    "booktabs",
+    "xltabular",
+    "multicol",
+    "adjustbox"
+  ],
+  "cmds": {
+    "tsFullSymbology": {
+      "command": "tsFullSymbology",
+      "snippet": "tsFullSymbology",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tsSymbol[]{}": {
+      "command": "tsSymbol[]{}",
+      "snippet": "tsSymbol[${2:width}]{${1:symbol name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "maintrack": {
+      "command": "maintrack",
+      "snippet": "maintrack",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "secondarytrack": {
+      "command": "secondarytrack",
+      "snippet": "secondarytrack",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidetrack": {
+      "command": "sidetrack",
+      "snippet": "sidetrack",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tracklabel": {
+      "command": "tracklabel",
+      "snippet": "tracklabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bufferstop[]": {
+      "command": "bufferstop[]",
+      "snippet": "bufferstop[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trackclosure": {
+      "command": "trackclosure",
+      "snippet": "trackclosure",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "turnout[]": {
+      "command": "turnout[]",
+      "snippet": "turnout[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crossing[]": {
+      "command": "crossing[]",
+      "snippet": "crossing[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "slipturnout[]": {
+      "command": "slipturnout[]",
+      "snippet": "slipturnout[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "derailer[]": {
+      "command": "derailer[]",
+      "snippet": "derailer[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "parkedvehicles[]": {
+      "command": "parkedvehicles[]",
+      "snippet": "parkedvehicles[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shunting[]": {
+      "command": "shunting[]",
+      "snippet": "shunting[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "train[]": {
+      "command": "train[]",
+      "snippet": "train[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "signal[]": {
+      "command": "signal[]",
+      "snippet": "signal[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "distantsignal[]": {
+      "command": "distantsignal[]",
+      "snippet": "distantsignal[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "speedsignal[]": {
+      "command": "speedsignal[]",
+      "snippet": "speedsignal[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "speedsign[]": {
+      "command": "speedsign[]",
+      "snippet": "speedsign[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blocksignal[]": {
+      "command": "blocksignal[]",
+      "snippet": "blocksignal[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "routesignal[]": {
+      "command": "routesignal[]",
+      "snippet": "routesignal[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shuntsignal[]": {
+      "command": "shuntsignal[]",
+      "snippet": "shuntsignal[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shuntlimit[]": {
+      "command": "shuntlimit[]",
+      "snippet": "shuntlimit[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "berthsignal[]": {
+      "command": "berthsignal[]",
+      "snippet": "berthsignal[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "berthsign[]": {
+      "command": "berthsign[]",
+      "snippet": "berthsign[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "viewpoint[]": {
+      "command": "viewpoint[]",
+      "snippet": "viewpoint[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clearingpoint[]": {
+      "command": "clearingpoint[]",
+      "snippet": "clearingpoint[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "standardclearing[]": {
+      "command": "standardclearing[]",
+      "snippet": "standardclearing[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blockclearing[]": {
+      "command": "blockclearing[]",
+      "snippet": "blockclearing[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "routeclearing[]": {
+      "command": "routeclearing[]",
+      "snippet": "routeclearing[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "brakingpoint[]": {
+      "command": "brakingpoint[]",
+      "snippet": "brakingpoint[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "movementauthority[]": {
+      "command": "movementauthority[]",
+      "snippet": "movementauthority[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dangerpoint[]": {
+      "command": "dangerpoint[]",
+      "snippet": "dangerpoint[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "route[]": {
+      "command": "route[]",
+      "snippet": "route[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directioncontrol[]": {
+      "command": "directioncontrol[]",
+      "snippet": "directioncontrol[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "balise[]": {
+      "command": "balise[]",
+      "snippet": "balise[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "transmitter[]": {
+      "command": "transmitter[]",
+      "snippet": "transmitter[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trackloop[]": {
+      "command": "trackloop[]",
+      "snippet": "trackloop[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "platform[]": {
+      "command": "platform[]",
+      "snippet": "platform[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "levelcrossing[]": {
+      "command": "levelcrossing[]",
+      "snippet": "levelcrossing[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bridge[]": {
+      "command": "bridge[]",
+      "snippet": "bridge[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "interlocking": {
+      "command": "interlocking",
+      "snippet": "interlocking",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hump": {
+      "command": "hump",
+      "snippet": "hump",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pylon[]": {
+      "command": "pylon[]",
+      "snippet": "pylon[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "distantpoweroff[]": {
+      "command": "distantpoweroff[]",
+      "snippet": "distantpoweroff[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "poweroff[]": {
+      "command": "poweroff[]",
+      "snippet": "poweroff[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "poweron[]": {
+      "command": "poweron[]",
+      "snippet": "poweron[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "distantpantographdown[]": {
+      "command": "distantpantographdown[]",
+      "snippet": "distantpantographdown[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pantographdown[]": {
+      "command": "pantographdown[]",
+      "snippet": "pantographdown[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pantographup[]": {
+      "command": "pantographup[]",
+      "snippet": "pantographup[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "wirelimit[]": {
+      "command": "wirelimit[]",
+      "snippet": "wirelimit[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trackdistance": {
+      "command": "trackdistance",
+      "snippet": "trackdistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "berth[]": {
+      "command": "berth[]",
+      "snippet": "berth[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "measureline": {
+      "command": "measureline",
+      "snippet": "measureline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hectometer[]": {
+      "command": "hectometer[]",
+      "snippet": "hectometer[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trackmarking[]": {
+      "command": "trackmarking[]",
+      "snippet": "trackmarking[${1:color%plain}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "background": {
+      "command": "background",
+      "snippet": "background",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "barrier": {
+      "command": "barrier",
+      "snippet": "barrier",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "foreground": {
+      "command": "foreground",
+      "snippet": "foreground",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "objectwidth": {
+      "command": "objectwidth",
+      "snippet": "objectwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "roadwidth": {
+      "command": "roadwidth",
+      "snippet": "roadwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shiftleft": {
+      "command": "shiftleft",
+      "snippet": "shiftleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shiftright": {
+      "command": "shiftright",
+      "snippet": "shiftright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "side": {
+      "command": "side",
+      "snippet": "side",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidefactor": {
+      "command": "sidefactor",
+      "snippet": "sidefactor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trafficfactor": {
+      "command": "trafficfactor",
+      "snippet": "trafficfactor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trafficpractice": {
+      "command": "trafficpractice",
+      "snippet": "trafficpractice",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "align": {
+      "command": "align",
+      "snippet": "align",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "coordcommand": {
+      "command": "coordcommand",
+      "snippet": "coordcommand",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "facefactor": {
+      "command": "facefactor",
+      "snippet": "facefactor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelcommand": {
+      "command": "labelcommand",
+      "snippet": "labelcommand",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelcontent": {
+      "command": "labelcontent",
+      "snippet": "labelcontent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelcoord": {
+      "command": "labelcoord",
+      "snippet": "labelcoord",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "signalcolor": {
+      "command": "signalcolor",
+      "snippet": "signalcolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "basecoord": {
+      "command": "basecoord",
+      "snippet": "basecoord",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hectometercolor": {
+      "command": "hectometercolor",
+      "snippet": "hectometercolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "objectlength": {
+      "command": "objectlength",
+      "snippet": "objectlength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "backwardpoints": {
+      "command": "backwardpoints",
+      "snippet": "backwardpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "branch": {
+      "command": "branch",
+      "snippet": "branch",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "branchfactor": {
+      "command": "branchfactor",
+      "snippet": "branchfactor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "forwardpoints": {
+      "command": "forwardpoints",
+      "snippet": "forwardpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "friction": {
+      "command": "friction",
+      "snippet": "friction",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelcontentleft": {
+      "command": "labelcontentleft",
+      "snippet": "labelcontentleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelcontentright": {
+      "command": "labelcontentright",
+      "snippet": "labelcontentright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "operationmode": {
+      "command": "operationmode",
+      "snippet": "operationmode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "patterntype": {
+      "command": "patterntype",
+      "snippet": "patterntype",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "points": {
+      "command": "points",
+      "snippet": "points",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "along": {
+      "command": "along",
+      "snippet": "along",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "alongswitched": {
+      "command": "alongswitched",
+      "snippet": "alongswitched",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "distantspeed": {
+      "command": "distantspeed",
+      "snippet": "distantspeed",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "face": {
+      "command": "face",
+      "snippet": "face",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oppose": {
+      "command": "oppose",
+      "snippet": "oppose",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "opposeswitched": {
+      "command": "opposeswitched",
+      "snippet": "opposeswitched",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "speed": {
+      "command": "speed",
+      "snippet": "speed",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trafficfactorTEST": {
+      "command": "trafficfactorTEST",
+      "snippet": "trafficfactorTEST",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trafficfactorX": {
+      "command": "trafficfactorX",
+      "snippet": "trafficfactorX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "type": {
+      "command": "type",
+      "snippet": "type",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "baseX": {
+      "command": "baseX",
+      "snippet": "baseX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "baseY": {
+      "command": "baseY",
+      "snippet": "baseY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bendfactor": {
+      "command": "bendfactor",
+      "snippet": "bendfactor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bendleftcoord": {
+      "command": "bendleftcoord",
+      "snippet": "bendleftcoord",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bendlength": {
+      "command": "bendlength",
+      "snippet": "bendlength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bendrightcoord": {
+      "command": "bendrightcoord",
+      "snippet": "bendrightcoord",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bendrightX": {
+      "command": "bendrightX",
+      "snippet": "bendrightX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bendrightY": {
+      "command": "bendrightY",
+      "snippet": "bendrightY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bendX": {
+      "command": "bendX",
+      "snippet": "bendX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bendY": {
+      "command": "bendY",
+      "snippet": "bendY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frontBendfactor": {
+      "command": "frontBendfactor",
+      "snippet": "frontBendfactor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frontBendX": {
+      "command": "frontBendX",
+      "snippet": "frontBendX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelalign": {
+      "command": "labelalign",
+      "snippet": "labelalign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelanchor": {
+      "command": "labelanchor",
+      "snippet": "labelanchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rearBendfactor": {
+      "command": "rearBendfactor",
+      "snippet": "rearBendfactor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rearBendX": {
+      "command": "rearBendX",
+      "snippet": "rearBendX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rearBendY": {
+      "command": "rearBendY",
+      "snippet": "rearBendY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trainrun": {
+      "command": "trainrun",
+      "snippet": "trainrun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

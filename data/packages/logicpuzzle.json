@@ -1,0 +1,2557 @@
+{
+  "includes": [
+    "xkeyval",
+    "ifthen",
+    "ragged2e",
+    "marginnote",
+    "tikz",
+    "tikzlibrarydecorations.pathmorphing",
+    "tikzlibrarydecorations.pathreplacing",
+    "tikzlibrarycalc",
+    "tikzlibraryshapes.geometric"
+  ],
+  "cmds": {
+    "logicpuzzlesetup{}": {
+      "command": "logicpuzzlesetup{}",
+      "snippet": "logicpuzzlesetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "setcell{}{}{}": {
+      "command": "setcell{}{}{}",
+      "snippet": "setcell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setcells{}{}": {
+      "command": "setcells{}{}",
+      "snippet": "setcells{${1:col1/row1,col2/row2,...}}{${2:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setbigcell{}{}{}": {
+      "command": "setbigcell{}{}{}",
+      "snippet": "setbigcell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setbigcell[]{}{}{}": {
+      "command": "setbigcell[]{}{}{}",
+      "snippet": "setbigcell[${4:fontsize}]{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setrow{}{}": {
+      "command": "setrow{}{}",
+      "snippet": "setrow{${1:row}}{${2:element list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setcolorrow{}{}": {
+      "command": "setcolorrow{}{}",
+      "snippet": "setcolorrow{${1:row}}{${2:element list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setcolumn{}{}": {
+      "command": "setcolumn{}{}",
+      "snippet": "setcolumn{${1:column}}{${2:element list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setcolorcolumn{}{}": {
+      "command": "setcolorcolumn{}{}",
+      "snippet": "setcolorcolumn{${1:column}}{${2:element list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setrule{}{}{}": {
+      "command": "setrule{}{}{}",
+      "snippet": "setrule{${1:column}}{${2:row}}{${3:rule%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillcell{}{}": {
+      "command": "fillcell{}{}",
+      "snippet": "fillcell{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillrow{}{}": {
+      "command": "fillrow{}{}",
+      "snippet": "fillrow{${1:row}}{${2:csv list of 0 and 1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillcolumn{}{}": {
+      "command": "fillcolumn{}{}",
+      "snippet": "fillcolumn{${1:column}}{${2:csv list of 0 and 1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "filldiagonals": {
+      "command": "filldiagonals",
+      "snippet": "filldiagonals",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "filldiagonals[]": {
+      "command": "filldiagonals[]",
+      "snippet": "filldiagonals[${1:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "framearea{}{}": {
+      "command": "framearea{}{}",
+      "snippet": "framearea{${1:color}}{${2:TikZ path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillarea{}{}": {
+      "command": "fillarea{}{}",
+      "snippet": "fillarea{${1:color}}{${2:TikZ path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "colorarea{}{}": {
+      "command": "colorarea{}{}",
+      "snippet": "colorarea{${1:color}}{${2:TikZ path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "framepuzzle": {
+      "command": "framepuzzle",
+      "snippet": "framepuzzle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "framepuzzle[]": {
+      "command": "framepuzzle[]",
+      "snippet": "framepuzzle[${1:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzpath{}{}{}": {
+      "command": "tikzpath{}{}{}",
+      "snippet": "tikzpath{${1:column}}{${2:row}}{${3:direction list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xtikzpath{}{}{}": {
+      "command": "xtikzpath{}{}{}",
+      "snippet": "xtikzpath{${1:column}}{${2:row}}{${3:dir1/len1,dir2/len2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "titleformat{}": {
+      "command": "titleformat{}",
+      "snippet": "titleformat{${1:format}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "puzzlecounter": {
+      "command": "puzzlecounter",
+      "snippet": "puzzlecounter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setpuzzlecounter{}": {
+      "command": "setpuzzlecounter{}",
+      "snippet": "setpuzzlecounter{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "definecounterstyle{}{}": {
+      "command": "definecounterstyle{}{}",
+      "snippet": "definecounterstyle{${1:name}}{${2:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setgridlinestyle{}": {
+      "command": "setgridlinestyle{}",
+      "snippet": "setgridlinestyle{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setnormallinewidth{}": {
+      "command": "setnormallinewidth{}",
+      "snippet": "setnormallinewidth{${1:width}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setthicklinewidth{}": {
+      "command": "setthicklinewidth{}",
+      "snippet": "setthicklinewidth{${1:width}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ddsudokucell{}{}{}": {
+      "command": "ddsudokucell{}{}{}",
+      "snippet": "ddsudokucell{${1:column}}{${2:row}}{${3:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ddsudokusetup{}": {
+      "command": "ddsudokusetup{}",
+      "snippet": "ddsudokusetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "placeship{}{}{}{}": {
+      "command": "placeship{}{}{}{}",
+      "snippet": "placeship{${1:direction}}{${2:column}}{${3:row}}{${4:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "placesegment{}{}{}": {
+      "command": "placesegment{}{}{}",
+      "snippet": "placesegment{${1:column}}{${2:row}}{${3:ship segment}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ship": {
+      "command": "Ship",
+      "snippet": "Ship",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShipC": {
+      "command": "ShipC",
+      "snippet": "ShipC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShipL": {
+      "command": "ShipL",
+      "snippet": "ShipL",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShipR": {
+      "command": "ShipR",
+      "snippet": "ShipR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShipB": {
+      "command": "ShipB",
+      "snippet": "ShipB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShipT": {
+      "command": "ShipT",
+      "snippet": "ShipT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Island": {
+      "command": "Island",
+      "snippet": "Island",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Water": {
+      "command": "Water",
+      "snippet": "Water",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ship{}{}{}": {
+      "command": "ship{}{}{}",
+      "snippet": "ship{${1:column}}{${2:row}}{${3:ship segment}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "placewater{}{}": {
+      "command": "placewater{}{}",
+      "snippet": "placewater{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "placeisland{}{}": {
+      "command": "placeisland{}{}",
+      "snippet": "placeisland{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shipH{}": {
+      "command": "shipH{}",
+      "snippet": "shipH{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shipV{}": {
+      "command": "shipV{}",
+      "snippet": "shipV{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shipbox{}": {
+      "command": "shipbox{}",
+      "snippet": "shipbox{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "battleshipsetup{}": {
+      "command": "battleshipsetup{}",
+      "snippet": "battleshipsetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "shipcolor=",
+        "sbindent=",
+        "sbwidth=",
+        "sbshipscale="
+      ],
+      "keyvalindex": 0
+    },
+    "classicgame{}": {
+      "command": "classicgame{}",
+      "snippet": "classicgame{${1:csv list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "valueH{}": {
+      "command": "valueH{}",
+      "snippet": "valueH{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "valueV{}": {
+      "command": "valueV{}",
+      "snippet": "valueV{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sumH{}": {
+      "command": "sumH{}",
+      "snippet": "sumH{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sumV{}": {
+      "command": "sumV{}",
+      "snippet": "sumV{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bokkususetup{}": {
+      "command": "bokkususetup{}",
+      "snippet": "bokkususetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "bridgesrow{}{}": {
+      "command": "bridgesrow{}{}",
+      "snippet": "bridgesrow{${1:row}}{${2:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bridgescolumn{}{}": {
+      "command": "bridgescolumn{}{}",
+      "snippet": "bridgescolumn{${1:column}}{${2:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bridge{}": {
+      "command": "bridge{}",
+      "snippet": "bridge{${1:TikZ path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bridge[]{}": {
+      "command": "bridge[]{}",
+      "snippet": "bridge[${2:options}]{${1:TikZ path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bridgessetup{}": {
+      "command": "bridgessetup{}",
+      "snippet": "bridgessetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color=",
+        "grid="
+      ],
+      "keyvalindex": 0
+    },
+    "chaossudokucell{}{}{}": {
+      "command": "chaossudokucell{}{}{}",
+      "snippet": "chaossudokucell{${1:column}}{${2:row}}{${3:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chaossudokusetup{}": {
+      "command": "chaossudokusetup{}",
+      "snippet": "chaossudokusetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "fourwindscell{}{}{}": {
+      "command": "fourwindscell{}{}{}",
+      "snippet": "fourwindscell{${1:column}}{${2:row}}{${3:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fourwindssetup{}": {
+      "command": "fourwindssetup{}",
+      "snippet": "fourwindssetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "hakyuucell{}{}{}": {
+      "command": "hakyuucell{}{}{}",
+      "snippet": "hakyuucell{${1:column}}{${2:row}}{${3:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hakyuusetup{}": {
+      "command": "hakyuusetup{}",
+      "snippet": "hakyuusetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "hitorisetup{}": {
+      "command": "hitorisetup{}",
+      "snippet": "hitorisetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "kakurorow{}{}": {
+      "command": "kakurorow{}{}",
+      "snippet": "kakurorow{${1:row}}{${2:csv list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kakurocolumn{}{}": {
+      "command": "kakurocolumn{}{}",
+      "snippet": "kakurocolumn{${1:column}}{${2:csv list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KKR{}{}": {
+      "command": "KKR{}{}",
+      "snippet": "KKR{${1:sumV}}{${2:sumH}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Black": {
+      "command": "Black",
+      "snippet": "Black",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kakurosetup{}": {
+      "command": "kakurosetup{}",
+      "snippet": "kakurosetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color=",
+        "solution"
+      ],
+      "keyvalindex": 0
+    },
+    "kendokucell{}{}{}": {
+      "command": "kendokucell{}{}{}",
+      "snippet": "kendokucell{${1:column}}{${2:row}}{${3:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kendokusetup{}": {
+      "command": "kendokusetup{}",
+      "snippet": "kendokusetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "killersudokucell{}{}{}": {
+      "command": "killersudokucell{}{}{}",
+      "snippet": "killersudokucell{${1:column}}{${2:row}}{${3:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "killersudokusetup{}": {
+      "command": "killersudokusetup{}",
+      "snippet": "killersudokusetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "laserH{}": {
+      "command": "laserH{}",
+      "snippet": "laserH{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "laserV{}": {
+      "command": "laserV{}",
+      "snippet": "laserV{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mirrorH{}": {
+      "command": "mirrorH{}",
+      "snippet": "mirrorH{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mirrorV{}": {
+      "command": "mirrorV{}",
+      "snippet": "mirrorV{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "placearrow{}{}{}": {
+      "command": "placearrow{}{}{}",
+      "snippet": "placearrow{${1:column}}{${2:row}}{${3:direction}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "placecross{}{}": {
+      "command": "placecross{}{}",
+      "snippet": "placecross{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "placemirror{}{}{}": {
+      "command": "placemirror{}{}{}",
+      "snippet": "placemirror{${1:column}}{${2:row}}{${3:direction}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "laser{}": {
+      "command": "laser{}",
+      "snippet": "laser{${1:TikZ path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "laser[]{}": {
+      "command": "laser[]{}",
+      "snippet": "laser[${2:color}]{${1:TikZ path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "laserbeamsetup{}": {
+      "command": "laserbeamsetup{}",
+      "snippet": "laserbeamsetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "magiclabyrinthcell{}{}{}": {
+      "command": "magiclabyrinthcell{}{}{}",
+      "snippet": "magiclabyrinthcell{${1:column}}{${2:row}}{${3:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlline{}": {
+      "command": "mlline{}",
+      "snippet": "mlline{${1:TikZ path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "magiclabyrinthsetup{}": {
+      "command": "magiclabyrinthsetup{}",
+      "snippet": "magiclabyrinthsetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "plusH{}": {
+      "command": "plusH{}",
+      "snippet": "plusH{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "minusH{}": {
+      "command": "minusH{}",
+      "snippet": "minusH{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "plusV{}": {
+      "command": "plusV{}",
+      "snippet": "plusV{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "minusV{}": {
+      "command": "minusV{}",
+      "snippet": "minusV{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "magnetsH{}": {
+      "command": "magnetsH{}",
+      "snippet": "magnetsH{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "magnetsV{}": {
+      "command": "magnetsV{}",
+      "snippet": "magnetsV{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PMH{}": {
+      "command": "PMH{}",
+      "snippet": "PMH{${1:col1/row1,col2/row2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MPH{}": {
+      "command": "MPH{}",
+      "snippet": "MPH{${1:col1/row1,col2/row2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PMV{}": {
+      "command": "PMV{}",
+      "snippet": "PMV{${1:col1/row1,col2/row2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MPV{}": {
+      "command": "MPV{}",
+      "snippet": "MPV{${1:col1/row1,col2/row2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "magnetssetup{}": {
+      "command": "magnetssetup{}",
+      "snippet": "magnetssetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "masyucell{}{}{}": {
+      "command": "masyucell{}{}{}",
+      "snippet": "masyucell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MasyuW": {
+      "command": "MasyuW",
+      "snippet": "MasyuW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MasyuB": {
+      "command": "MasyuB",
+      "snippet": "MasyuB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "masyuline{}": {
+      "command": "masyuline{}",
+      "snippet": "masyuline{${1:TikZ path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "masyusetup{}": {
+      "command": "masyusetup{}",
+      "snippet": "masyusetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "Mine": {
+      "command": "Mine",
+      "snippet": "Mine",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "minesweepersetup{}": {
+      "command": "minesweepersetup{}",
+      "snippet": "minesweepersetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "nonogramrow{}{}": {
+      "command": "nonogramrow{}{}",
+      "snippet": "nonogramrow{${1:row}}{${2:col1/len1,col2/len2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nonogramcolumn{}{}": {
+      "command": "nonogramcolumn{}{}",
+      "snippet": "nonogramcolumn{${1:column}}{${2:row1/len1,row2/len2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nonogramV{}": {
+      "command": "nonogramV{}",
+      "snippet": "nonogramV{${1:csv list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nonogramH{}": {
+      "command": "nonogramH{}",
+      "snippet": "nonogramH{${1:csv list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "puzzlestrut": {
+      "command": "puzzlestrut",
+      "snippet": "puzzlestrut",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nonogramsetup{}": {
+      "command": "nonogramsetup{}",
+      "snippet": "nonogramsetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color=",
+        "solution",
+        "extracells=",
+        "helplines="
+      ],
+      "keyvalindex": 0
+    },
+    "numberlinkcell{}{}{}": {
+      "command": "numberlinkcell{}{}{}",
+      "snippet": "numberlinkcell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "link{}": {
+      "command": "link{}",
+      "snippet": "link{${1:TikZ path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numberlinksetup{}": {
+      "command": "numberlinksetup{}",
+      "snippet": "numberlinksetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "resukocell{}{}{}": {
+      "command": "resukocell{}{}{}",
+      "snippet": "resukocell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Straight": {
+      "command": "Straight",
+      "snippet": "Straight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "StraightH": {
+      "command": "StraightH",
+      "snippet": "StraightH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "StraightV": {
+      "command": "StraightV",
+      "snippet": "StraightV",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Cross": {
+      "command": "Cross",
+      "snippet": "Cross",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CrossH": {
+      "command": "CrossH",
+      "snippet": "CrossH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CrossV": {
+      "command": "CrossV",
+      "snippet": "CrossV",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CurveTL": {
+      "command": "CurveTL",
+      "snippet": "CurveTL",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CurveTR": {
+      "command": "CurveTR",
+      "snippet": "CurveTR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CurveBL": {
+      "command": "CurveBL",
+      "snippet": "CurveBL",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CurveBR": {
+      "command": "CurveBR",
+      "snippet": "CurveBR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Graveltrap": {
+      "command": "Graveltrap",
+      "snippet": "Graveltrap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pitlane{}{}{}": {
+      "command": "pitlane{}{}{}",
+      "snippet": "pitlane{${1:column}}{${2:row}}{${3:direction}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "parkinglot{}{}": {
+      "command": "parkinglot{}{}",
+      "snippet": "parkinglot{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trackH{}": {
+      "command": "trackH{}",
+      "snippet": "trackH{${1:csv list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trackV{}": {
+      "command": "trackV{}",
+      "snippet": "trackV{${1:csv list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "track{}": {
+      "command": "track{}",
+      "snippet": "track{${1:TikZ path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resukosetup{}": {
+      "command": "resukosetup{}",
+      "snippet": "resukosetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "Diamond": {
+      "command": "Diamond",
+      "snippet": "Diamond",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "◇",
+      "documentation": "WHITE DIAMOND; diamond, open"
+    },
+    "schatzsuchesetup{}": {
+      "command": "schatzsuchesetup{}",
+      "snippet": "schatzsuchesetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "skylineT{}": {
+      "command": "skylineT{}",
+      "snippet": "skylineT{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skylineB{}": {
+      "command": "skylineB{}",
+      "snippet": "skylineB{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skylineL{}": {
+      "command": "skylineL{}",
+      "snippet": "skylineL{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skylineR{}": {
+      "command": "skylineR{}",
+      "snippet": "skylineR{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skylinecell{}{}{}": {
+      "command": "skylinecell{}{}{}",
+      "snippet": "skylinecell{${1:column}}{${2:row}}{${3:height}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skylinesetup{}": {
+      "command": "skylinesetup{}",
+      "snippet": "skylinesetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "sudoku"
+      ],
+      "keyvalindex": 0
+    },
+    "slitherlinkcell{}{}{}": {
+      "command": "slitherlinkcell{}{}{}",
+      "snippet": "slitherlinkcell{${1:column}}{${2:row}}{${3:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "slitherlinksetup{}": {
+      "command": "slitherlinksetup{}",
+      "snippet": "slitherlinksetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "starbattlecell{}{}{}": {
+      "command": "starbattlecell{}{}{}",
+      "snippet": "starbattlecell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "starbattlesetup{}": {
+      "command": "starbattlesetup{}",
+      "snippet": "starbattlesetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "starsH{}": {
+      "command": "starsH{}",
+      "snippet": "starsH{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "starsV{}": {
+      "command": "starsV{}",
+      "snippet": "starsV{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Star": {
+      "command": "Star",
+      "snippet": "Star",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Right": {
+      "command": "Right",
+      "snippet": "Right",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RightUp": {
+      "command": "RightUp",
+      "snippet": "RightUp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Up": {
+      "command": "Up",
+      "snippet": "Up",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LeftUp": {
+      "command": "LeftUp",
+      "snippet": "LeftUp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Left": {
+      "command": "Left",
+      "snippet": "Left",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LeftDown": {
+      "command": "LeftDown",
+      "snippet": "LeftDown",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Down": {
+      "command": "Down",
+      "snippet": "Down",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RightDown": {
+      "command": "RightDown",
+      "snippet": "RightDown",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "starsandarrowssetup{}": {
+      "command": "starsandarrowssetup{}",
+      "snippet": "starsandarrowssetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "lpsudokucell{}{}{}": {
+      "command": "lpsudokucell{}{}{}",
+      "snippet": "lpsudokucell{${1:column}}{${2:row}}{${3:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lpsudokusetup{}": {
+      "command": "lpsudokusetup{}",
+      "snippet": "lpsudokusetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "Cloud": {
+      "command": "Cloud",
+      "snippet": "Cloud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Moon": {
+      "command": "Moon",
+      "snippet": "Moon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MoonT": {
+      "command": "MoonT",
+      "snippet": "MoonT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MoonB": {
+      "command": "MoonB",
+      "snippet": "MoonB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MoonR": {
+      "command": "MoonR",
+      "snippet": "MoonR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MoonL": {
+      "command": "MoonL",
+      "snippet": "MoonL",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MoonTR": {
+      "command": "MoonTR",
+      "snippet": "MoonTR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MoonTL": {
+      "command": "MoonTL",
+      "snippet": "MoonTL",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MoonBR": {
+      "command": "MoonBR",
+      "snippet": "MoonBR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MoonBL": {
+      "command": "MoonBL",
+      "snippet": "MoonBL",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sunandmoonsetup{}": {
+      "command": "sunandmoonsetup{}",
+      "snippet": "sunandmoonsetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "tentH{}": {
+      "command": "tentH{}",
+      "snippet": "tentH{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tentV{}": {
+      "command": "tentV{}",
+      "snippet": "tentV{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Tree": {
+      "command": "Tree",
+      "snippet": "Tree",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Tent": {
+      "command": "Tent",
+      "snippet": "Tent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tentsandtreessetup{}": {
+      "command": "tentsandtreessetup{}",
+      "snippet": "tentsandtreessetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "tunnelH{}": {
+      "command": "tunnelH{}",
+      "snippet": "tunnelH{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tunnelV{}": {
+      "command": "tunnelV{}",
+      "snippet": "tunnelV{${1:number list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "portal{}{}": {
+      "command": "portal{}{}",
+      "snippet": "portal{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tube{}": {
+      "command": "tube{}",
+      "snippet": "tube{${1:TikZ path}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tunnelsetup{}": {
+      "command": "tunnelsetup{}",
+      "snippet": "tunnelsetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "setTikZpreset{}": {
+      "command": "setTikZpreset{}",
+      "snippet": "setTikZpreset{${1:TikZ keys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "logicpuzzlecell{}{}{}": {
+      "command": "logicpuzzlecell{}{}{}",
+      "snippet": "logicpuzzlecell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bridgescell{}{}{}": {
+      "command": "bridgescell{}{}{}",
+      "snippet": "bridgescell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hitoricell{}{}{}": {
+      "command": "hitoricell{}{}{}",
+      "snippet": "hitoricell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kakurocell{}{}{}": {
+      "command": "kakurocell{}{}{}",
+      "snippet": "kakurocell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "magnetscell{}{}{}": {
+      "command": "magnetscell{}{}{}",
+      "snippet": "magnetscell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "minesweepercell{}{}{}": {
+      "command": "minesweepercell{}{}{}",
+      "snippet": "minesweepercell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "schatzsuchecell{}{}{}": {
+      "command": "schatzsuchecell{}{}{}",
+      "snippet": "schatzsuchecell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sunandmooncell{}{}{}": {
+      "command": "sunandmooncell{}{}{}",
+      "snippet": "sunandmooncell{${1:column}}{${2:row}}{${3:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "logicpuzzle": {
+      "name": "logicpuzzle",
+      "detail": "logicpuzzle",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "logicpuzzle[]": {
+      "name": "logicpuzzle",
+      "detail": "logicpuzzle[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "puzzlebackground": {
+      "name": "puzzlebackground",
+      "detail": "puzzlebackground",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "puzzleforeground": {
+      "name": "puzzleforeground",
+      "detail": "puzzleforeground",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ddsudoku": {
+      "name": "ddsudoku",
+      "detail": "ddsudoku",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ddsudoku[]": {
+      "name": "ddsudoku",
+      "detail": "ddsudoku[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "battleship": {
+      "name": "battleship",
+      "detail": "battleship",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "battleship[]": {
+      "name": "battleship",
+      "detail": "battleship[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "shipcolor=",
+        "sbindent=",
+        "sbwidth=",
+        "sbshipscale="
+      ],
+      "keyvalindex": 0
+    },
+    "bokkusu": {
+      "name": "bokkusu",
+      "detail": "bokkusu",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bokkusu[]": {
+      "name": "bokkusu",
+      "detail": "bokkusu[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "bridges": {
+      "name": "bridges",
+      "detail": "bridges",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bridges[]": {
+      "name": "bridges",
+      "detail": "bridges[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color=",
+        "grid="
+      ],
+      "keyvalindex": 0
+    },
+    "chaossudoku": {
+      "name": "chaossudoku",
+      "detail": "chaossudoku",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chaossudoku[]": {
+      "name": "chaossudoku",
+      "detail": "chaossudoku[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "fourwinds": {
+      "name": "fourwinds",
+      "detail": "fourwinds",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fourwinds[]": {
+      "name": "fourwinds",
+      "detail": "fourwinds[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "hakyuu": {
+      "name": "hakyuu",
+      "detail": "hakyuu",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hakyuu[]": {
+      "name": "hakyuu",
+      "detail": "hakyuu[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "hitori": {
+      "name": "hitori",
+      "detail": "hitori",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hitori[]": {
+      "name": "hitori",
+      "detail": "hitori[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "kakuro": {
+      "name": "kakuro",
+      "detail": "kakuro",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kakuro[]": {
+      "name": "kakuro",
+      "detail": "kakuro[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color=",
+        "solution"
+      ],
+      "keyvalindex": 0
+    },
+    "kendoku": {
+      "name": "kendoku",
+      "detail": "kendoku",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kendoku[]": {
+      "name": "kendoku",
+      "detail": "kendoku[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "killersudoku": {
+      "name": "killersudoku",
+      "detail": "killersudoku",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "killersudoku[]": {
+      "name": "killersudoku",
+      "detail": "killersudoku[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "laserbeam": {
+      "name": "laserbeam",
+      "detail": "laserbeam",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "laserbeam[]": {
+      "name": "laserbeam",
+      "detail": "laserbeam[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "magiclabyrinth": {
+      "name": "magiclabyrinth",
+      "detail": "magiclabyrinth",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "magiclabyrinth[]": {
+      "name": "magiclabyrinth",
+      "detail": "magiclabyrinth[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "magnets": {
+      "name": "magnets",
+      "detail": "magnets",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "magnets[]": {
+      "name": "magnets",
+      "detail": "magnets[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "masyu": {
+      "name": "masyu",
+      "detail": "masyu",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "masyu[]": {
+      "name": "masyu",
+      "detail": "masyu[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "minesweeper": {
+      "name": "minesweeper",
+      "detail": "minesweeper",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "minesweeper[]": {
+      "name": "minesweeper",
+      "detail": "minesweeper[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "nonogram": {
+      "name": "nonogram",
+      "detail": "nonogram",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nonogram[]": {
+      "name": "nonogram",
+      "detail": "nonogram[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color=",
+        "solution",
+        "extracells=",
+        "helplines="
+      ],
+      "keyvalindex": 0
+    },
+    "numberlink": {
+      "name": "numberlink",
+      "detail": "numberlink",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numberlink[]": {
+      "name": "numberlink",
+      "detail": "numberlink[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "resuko": {
+      "name": "resuko",
+      "detail": "resuko",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resuko[]": {
+      "name": "resuko",
+      "detail": "resuko[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "schatzsuche": {
+      "name": "schatzsuche",
+      "detail": "schatzsuche",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "schatzsuche[]": {
+      "name": "schatzsuche",
+      "detail": "schatzsuche[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "skyline": {
+      "name": "skyline",
+      "detail": "skyline",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skyline[]": {
+      "name": "skyline",
+      "detail": "skyline[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset=",
+        "sudoku"
+      ],
+      "keyvalindex": 0
+    },
+    "slitherlink": {
+      "name": "slitherlink",
+      "detail": "slitherlink",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "slitherlink[]": {
+      "name": "slitherlink",
+      "detail": "slitherlink[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "starbattle": {
+      "name": "starbattle",
+      "detail": "starbattle",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "starbattle[]": {
+      "name": "starbattle",
+      "detail": "starbattle[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "starsandarrows": {
+      "name": "starsandarrows",
+      "detail": "starsandarrows",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "starsandarrows[]": {
+      "name": "starsandarrows",
+      "detail": "starsandarrows[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "lpsudoku": {
+      "name": "lpsudoku",
+      "detail": "lpsudoku",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lpsudoku[]": {
+      "name": "lpsudoku",
+      "detail": "lpsudoku[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "sunandmoon": {
+      "name": "sunandmoon",
+      "detail": "sunandmoon",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sunandmoon[]": {
+      "name": "sunandmoon",
+      "detail": "sunandmoon[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "tentsandtrees": {
+      "name": "tentsandtrees",
+      "detail": "tentsandtrees",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tentsandtrees[]": {
+      "name": "tentsandtrees",
+      "detail": "tentsandtrees[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    },
+    "tunnel": {
+      "name": "tunnel",
+      "detail": "tunnel",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tunnel[]": {
+      "name": "tunnel",
+      "detail": "tunnel[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "rows=",
+        "columns=",
+        "width=",
+        "scale=",
+        "fontsize=",
+        "title=",
+        "titleindent=",
+        "titlewidth=",
+        "bgcolor=",
+        "counterstyle=",
+        "cvoffset="
+      ],
+      "keyvalindex": 0
+    }
+  },
+  "options": []
+}

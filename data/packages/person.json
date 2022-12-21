@@ -1,0 +1,745 @@
+{
+  "includes": [
+    "ifthen",
+    "datatool"
+  ],
+  "cmds": {
+    "newperson{}{}{}": {
+      "command": "newperson{}{}{}",
+      "snippet": "newperson{${1:full name}}{${2:familiar name}}{${3:gender}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newperson[]{}{}{}": {
+      "command": "newperson[]{}{}{}",
+      "snippet": "newperson[${4:label}]{${1:full name}}{${2:familiar name}}{${3:gender}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "malelabels": {
+      "command": "malelabels",
+      "snippet": "malelabels",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "femalelabels": {
+      "command": "femalelabels",
+      "snippet": "femalelabels",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addmalelabel{}": {
+      "command": "addmalelabel{}",
+      "snippet": "addmalelabel{${1:identifier}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addfemalelabel{}": {
+      "command": "addfemalelabel{}",
+      "snippet": "addfemalelabel{${1:identifier}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thepeople": {
+      "command": "thepeople",
+      "snippet": "thepeople",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "removeperson": {
+      "command": "removeperson",
+      "snippet": "removeperson",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "removeperson[]": {
+      "command": "removeperson[]",
+      "snippet": "removeperson[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "removeallpeople": {
+      "command": "removeallpeople",
+      "snippet": "removeallpeople",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "removepeople{}": {
+      "command": "removepeople{}",
+      "snippet": "removepeople{${1:list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personfullname": {
+      "command": "personfullname",
+      "snippet": "personfullname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personfullname[]": {
+      "command": "personfullname[]",
+      "snippet": "personfullname[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personname": {
+      "command": "personname",
+      "snippet": "personname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personname[]": {
+      "command": "personname[]",
+      "snippet": "personname[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personpronoun": {
+      "command": "personpronoun",
+      "snippet": "personpronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personpronoun[]": {
+      "command": "personpronoun[]",
+      "snippet": "personpronoun[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personobjpronoun": {
+      "command": "personobjpronoun",
+      "snippet": "personobjpronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personobjpronoun[]": {
+      "command": "personobjpronoun[]",
+      "snippet": "personobjpronoun[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personpossadj": {
+      "command": "personpossadj",
+      "snippet": "personpossadj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personpossadj[]": {
+      "command": "personpossadj[]",
+      "snippet": "personpossadj[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personposspronoun": {
+      "command": "personposspronoun",
+      "snippet": "personposspronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personposspronoun[]": {
+      "command": "personposspronoun[]",
+      "snippet": "personposspronoun[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personchild": {
+      "command": "personchild",
+      "snippet": "personchild",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personchild[]": {
+      "command": "personchild[]",
+      "snippet": "personchild[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personparent": {
+      "command": "personparent",
+      "snippet": "personparent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personparent[]": {
+      "command": "personparent[]",
+      "snippet": "personparent[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personsibling": {
+      "command": "personsibling",
+      "snippet": "personsibling",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personsibling[]": {
+      "command": "personsibling[]",
+      "snippet": "personsibling[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personpronoun": {
+      "command": "Personpronoun",
+      "snippet": "Personpronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personpronoun[]": {
+      "command": "Personpronoun[]",
+      "snippet": "Personpronoun[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personobjpronoun": {
+      "command": "Personobjpronoun",
+      "snippet": "Personobjpronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personobjpronoun[]": {
+      "command": "Personobjpronoun[]",
+      "snippet": "Personobjpronoun[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personpossadj": {
+      "command": "Personpossadj",
+      "snippet": "Personpossadj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personpossadj[]": {
+      "command": "Personpossadj[]",
+      "snippet": "Personpossadj[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personposspronoun": {
+      "command": "Personposspronoun",
+      "snippet": "Personposspronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personposspronoun[]": {
+      "command": "Personposspronoun[]",
+      "snippet": "Personposspronoun[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personchild": {
+      "command": "Personchild",
+      "snippet": "Personchild",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personchild[]": {
+      "command": "Personchild[]",
+      "snippet": "Personchild[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personparent": {
+      "command": "Personparent",
+      "snippet": "Personparent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personparent[]": {
+      "command": "Personparent[]",
+      "snippet": "Personparent[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personsibling": {
+      "command": "Personsibling",
+      "snippet": "Personsibling",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Personsibling[]": {
+      "command": "Personsibling[]",
+      "snippet": "Personsibling[${1:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "peoplefullname": {
+      "command": "peoplefullname",
+      "snippet": "peoplefullname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "peoplename": {
+      "command": "peoplename",
+      "snippet": "peoplename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "peoplepronoun": {
+      "command": "peoplepronoun",
+      "snippet": "peoplepronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Peoplepronoun": {
+      "command": "Peoplepronoun",
+      "snippet": "Peoplepronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "peopleobjpronoun": {
+      "command": "peopleobjpronoun",
+      "snippet": "peopleobjpronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Peopleobjpronoun": {
+      "command": "Peopleobjpronoun",
+      "snippet": "Peopleobjpronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "peoplepossadj": {
+      "command": "peoplepossadj",
+      "snippet": "peoplepossadj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Peoplepossadj": {
+      "command": "Peoplepossadj",
+      "snippet": "Peoplepossadj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "peopleposspronoun": {
+      "command": "peopleposspronoun",
+      "snippet": "peopleposspronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Peopleposspronoun": {
+      "command": "Peopleposspronoun",
+      "snippet": "Peopleposspronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "peoplechild": {
+      "command": "peoplechild",
+      "snippet": "peoplechild",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Peoplechild": {
+      "command": "Peoplechild",
+      "snippet": "Peoplechild",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "peopleparent": {
+      "command": "peopleparent",
+      "snippet": "peopleparent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Peopleparent": {
+      "command": "Peopleparent",
+      "snippet": "Peopleparent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "peoplesibling": {
+      "command": "peoplesibling",
+      "snippet": "peoplesibling",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Peoplesibling": {
+      "command": "Peoplesibling",
+      "snippet": "Peoplesibling",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifpersonexists{}{}{}": {
+      "command": "ifpersonexists{}{}{}",
+      "snippet": "ifpersonexists{${1:label}}{${2:true case}}{${3:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifmale{}{}{}": {
+      "command": "ifmale{}{}{}",
+      "snippet": "ifmale{${1:label}}{${2:true case}}{${3:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iffemale{}{}{}": {
+      "command": "iffemale{}{}{}",
+      "snippet": "iffemale{${1:label}}{${2:true case}}{${3:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifallmale{}{}": {
+      "command": "ifallmale{}{}",
+      "snippet": "ifallmale{${1:true case}}{${2:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifallmale[]{}{}": {
+      "command": "ifallmale[]{}{}",
+      "snippet": "ifallmale[${3:label list}]{${1:true case}}{${2:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifallfemale{}{}": {
+      "command": "ifallfemale{}{}",
+      "snippet": "ifallfemale{${1:true case}}{${2:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifallfemale[]{}{}": {
+      "command": "ifallfemale[]{}{}",
+      "snippet": "ifallfemale[${3:label list}]{${1:true case}}{${2:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifmalelabel{}{}{}": {
+      "command": "ifmalelabel{}{}{}",
+      "snippet": "ifmalelabel{${1:identifier}}{${2:true case}}{${3:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iffemalelabel{}{}{}": {
+      "command": "iffemalelabel{}{}{}",
+      "snippet": "iffemalelabel{${1:identifier}}{${2:true case}}{${3:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "do": {
+      "command": "do",
+      "snippet": "do",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "malename": {
+      "command": "malename",
+      "snippet": "malename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "femalename": {
+      "command": "femalename",
+      "snippet": "femalename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getpersongender{}{}": {
+      "command": "getpersongender{}{}",
+      "snippet": "getpersongender{${1:cmd}}{${2:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getpersonname{}{}": {
+      "command": "getpersonname{}{}",
+      "snippet": "getpersonname{${1:cmd}}{${2:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getpersonfullname{}{}": {
+      "command": "getpersonfullname{}{}",
+      "snippet": "getpersonfullname{${1:cmd}}{${2:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "andname": {
+      "command": "andname",
+      "snippet": "andname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "femalechild": {
+      "command": "femalechild",
+      "snippet": "femalechild",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "femalechildren": {
+      "command": "femalechildren",
+      "snippet": "femalechildren",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "femaleobjpronoun": {
+      "command": "femaleobjpronoun",
+      "snippet": "femaleobjpronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "femaleparent": {
+      "command": "femaleparent",
+      "snippet": "femaleparent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "femalepossadj": {
+      "command": "femalepossadj",
+      "snippet": "femalepossadj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "femaleposspronoun": {
+      "command": "femaleposspronoun",
+      "snippet": "femaleposspronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "femalepronoun": {
+      "command": "femalepronoun",
+      "snippet": "femalepronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "femalesibling": {
+      "command": "femalesibling",
+      "snippet": "femalesibling",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "femalesiblings": {
+      "command": "femalesiblings",
+      "snippet": "femalesiblings",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "malechild": {
+      "command": "malechild",
+      "snippet": "malechild",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "malechildren": {
+      "command": "malechildren",
+      "snippet": "malechildren",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "maleobjpronoun": {
+      "command": "maleobjpronoun",
+      "snippet": "maleobjpronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "maleparent": {
+      "command": "maleparent",
+      "snippet": "maleparent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "malepossadj": {
+      "command": "malepossadj",
+      "snippet": "malepossadj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "maleposspronoun": {
+      "command": "maleposspronoun",
+      "snippet": "maleposspronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "malepronoun": {
+      "command": "malepronoun",
+      "snippet": "malepronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "malesibling": {
+      "command": "malesibling",
+      "snippet": "malesibling",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "malesiblings": {
+      "command": "malesiblings",
+      "snippet": "malesiblings",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "persongender{}": {
+      "command": "persongender{}",
+      "snippet": "persongender{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personlastsep": {
+      "command": "personlastsep",
+      "snippet": "personlastsep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "personsep": {
+      "command": "personsep",
+      "snippet": "personsep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pluralchild": {
+      "command": "pluralchild",
+      "snippet": "pluralchild",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pluralobjpronoun": {
+      "command": "pluralobjpronoun",
+      "snippet": "pluralobjpronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pluralparent": {
+      "command": "pluralparent",
+      "snippet": "pluralparent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pluralpossadj": {
+      "command": "pluralpossadj",
+      "snippet": "pluralpossadj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pluralposspronoun": {
+      "command": "pluralposspronoun",
+      "snippet": "pluralposspronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pluralpronoun": {
+      "command": "pluralpronoun",
+      "snippet": "pluralpronoun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pluralsibling": {
+      "command": "pluralsibling",
+      "snippet": "pluralsibling",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theperson": {
+      "command": "theperson",
+      "snippet": "theperson",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "twopeoplesep": {
+      "command": "twopeoplesep",
+      "snippet": "twopeoplesep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

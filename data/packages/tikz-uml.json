@@ -1,0 +1,6243 @@
+{
+  "includes": [
+    "ifthen",
+    "tikz",
+    "tikzlibrarybackgrounds",
+    "tikzlibraryshapes",
+    "tikzlibraryfit",
+    "tikzlibraryshadows",
+    "tikzlibrarydecorations.markings",
+    "xstring",
+    "calc",
+    "pgfopts"
+  ],
+  "cmds": {
+    "umlemptypackage{}": {
+      "command": "umlemptypackage{}",
+      "snippet": "umlemptypackage{${1:package-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlemptypackage[]{}": {
+      "command": "umlemptypackage[]{}",
+      "snippet": "umlemptypackage[${2:options}]{${1:package-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlclass{}{}{}": {
+      "command": "umlclass{}{}{}",
+      "snippet": "umlclass{${1:class-name}}{${2:attributes}}{${3:operations}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlclass[]{}{}{}": {
+      "command": "umlclass[]{}{}{}",
+      "snippet": "umlclass[${4:options}]{${1:class-name}}{${2:attributes}}{${3:operations}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstatic{}": {
+      "command": "umlstatic{}",
+      "snippet": "umlstatic{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlvirt{}": {
+      "command": "umlvirt{}",
+      "snippet": "umlvirt{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlemptyclass{}": {
+      "command": "umlemptyclass{}",
+      "snippet": "umlemptyclass{${1:class-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlemptyclass[]{}": {
+      "command": "umlemptyclass[]{}",
+      "snippet": "umlemptyclass[${2:options}]{${1:class-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlsimpleclass{}": {
+      "command": "umlsimpleclass{}",
+      "snippet": "umlsimpleclass{${1:class-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlsimpleclass[]{}": {
+      "command": "umlsimpleclass[]{}",
+      "snippet": "umlsimpleclass[${2:options}]{${1:class-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlabstract{}{}{}": {
+      "command": "umlabstract{}{}{}",
+      "snippet": "umlabstract{${1:class-name}}{${2:attributes}}{${3:operations}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlabstract[]{}{}{}": {
+      "command": "umlabstract[]{}{}{}",
+      "snippet": "umlabstract[${4:options}]{${1:class-name}}{${2:attributes}}{${3:operations}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umltypedef{}{}{}": {
+      "command": "umltypedef{}{}{}",
+      "snippet": "umltypedef{${1:class-name}}{${2:attributes}}{${3:operations}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umltypedef[]{}{}{}": {
+      "command": "umltypedef[]{}{}{}",
+      "snippet": "umltypedef[${4:options}]{${1:class-name}}{${2:attributes}}{${3:operations}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlenum{}{}{}": {
+      "command": "umlenum{}{}{}",
+      "snippet": "umlenum{${1:class-name}}{${2:attributes}}{${3:operations}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlenum[]{}{}{}": {
+      "command": "umlenum[]{}{}{}",
+      "snippet": "umlenum[${4:options}]{${1:class-name}}{${2:attributes}}{${3:operations}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlinterface{}{}{}": {
+      "command": "umlinterface{}{}{}",
+      "snippet": "umlinterface{${1:class-name}}{${2:attributes}}{${3:operations}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlinterface[]{}{}{}": {
+      "command": "umlinterface[]{}{}{}",
+      "snippet": "umlinterface[${4:options}]{${1:class-name}}{${2:attributes}}{${3:operations}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlsimpleinterface{}": {
+      "command": "umlsimpleinterface{}",
+      "snippet": "umlsimpleinterface{${1:interface-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlsimpleinterface[]{}": {
+      "command": "umlsimpleinterface[]{}",
+      "snippet": "umlsimpleinterface[${2:options}]{${1:interface-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umldep{}{}": {
+      "command": "umldep{}{}",
+      "snippet": "umldep{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umldep[]{}{}": {
+      "command": "umldep[]{}{}",
+      "snippet": "umldep[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlassoc{}{}": {
+      "command": "umlassoc{}{}",
+      "snippet": "umlassoc{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlassoc[]{}{}": {
+      "command": "umlassoc[]{}{}",
+      "snippet": "umlassoc[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umluniassoc{}{}": {
+      "command": "umluniassoc{}{}",
+      "snippet": "umluniassoc{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umluniassoc[]{}{}": {
+      "command": "umluniassoc[]{}{}",
+      "snippet": "umluniassoc[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlbiassoc{}{}": {
+      "command": "umlbiassoc{}{}",
+      "snippet": "umlbiassoc{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlbiassoc[]{}{}": {
+      "command": "umlbiassoc[]{}{}",
+      "snippet": "umlbiassoc[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlaggreg{}{}": {
+      "command": "umlaggreg{}{}",
+      "snippet": "umlaggreg{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlaggreg[]{}{}": {
+      "command": "umlaggreg[]{}{}",
+      "snippet": "umlaggreg[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umluniaggreg{}{}": {
+      "command": "umluniaggreg{}{}",
+      "snippet": "umluniaggreg{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umluniaggreg[]{}{}": {
+      "command": "umluniaggreg[]{}{}",
+      "snippet": "umluniaggreg[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlcompo{}{}": {
+      "command": "umlcompo{}{}",
+      "snippet": "umlcompo{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlcompo[]{}{}": {
+      "command": "umlcompo[]{}{}",
+      "snippet": "umlcompo[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlunicompo{}{}": {
+      "command": "umlunicompo{}{}",
+      "snippet": "umlunicompo{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlunicompo[]{}{}": {
+      "command": "umlunicompo[]{}{}",
+      "snippet": "umlunicompo[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlimport{}{}": {
+      "command": "umlimport{}{}",
+      "snippet": "umlimport{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlimport[]{}{}": {
+      "command": "umlimport[]{}{}",
+      "snippet": "umlimport[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlinherit{}{}": {
+      "command": "umlinherit{}{}",
+      "snippet": "umlinherit{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlinherit[]{}{}": {
+      "command": "umlinherit[]{}{}",
+      "snippet": "umlinherit[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlimpl{}{}": {
+      "command": "umlimpl{}{}",
+      "snippet": "umlimpl{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlimpl[]{}{}": {
+      "command": "umlimpl[]{}{}",
+      "snippet": "umlimpl[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlnest{}{}": {
+      "command": "umlnest{}{}",
+      "snippet": "umlnest{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlnest[]{}{}": {
+      "command": "umlnest[]{}{}",
+      "snippet": "umlnest[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlreal{}{}": {
+      "command": "umlreal{}{}",
+      "snippet": "umlreal{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlreal[]{}{}": {
+      "command": "umlreal[]{}{}",
+      "snippet": "umlreal[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVinherit{}{}": {
+      "command": "umlHVinherit{}{}",
+      "snippet": "umlHVinherit{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVinherit[]{}{}": {
+      "command": "umlHVinherit[]{}{}",
+      "snippet": "umlHVinherit[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVimpl{}{}": {
+      "command": "umlHVimpl{}{}",
+      "snippet": "umlHVimpl{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVimpl[]{}{}": {
+      "command": "umlHVimpl[]{}{}",
+      "snippet": "umlHVimpl[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVreal{}{}": {
+      "command": "umlHVreal{}{}",
+      "snippet": "umlHVreal{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVreal[]{}{}": {
+      "command": "umlHVreal[]{}{}",
+      "snippet": "umlHVreal[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVassoc{}{}": {
+      "command": "umlHVassoc{}{}",
+      "snippet": "umlHVassoc{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVassoc[]{}{}": {
+      "command": "umlHVassoc[]{}{}",
+      "snippet": "umlHVassoc[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVuniassoc{}{}": {
+      "command": "umlHVuniassoc{}{}",
+      "snippet": "umlHVuniassoc{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVuniassoc[]{}{}": {
+      "command": "umlHVuniassoc[]{}{}",
+      "snippet": "umlHVuniassoc[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVaggreg{}{}": {
+      "command": "umlHVaggreg{}{}",
+      "snippet": "umlHVaggreg{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVaggreg[]{}{}": {
+      "command": "umlHVaggreg[]{}{}",
+      "snippet": "umlHVaggreg[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVuniaggreg{}{}": {
+      "command": "umlHVuniaggreg{}{}",
+      "snippet": "umlHVuniaggreg{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVuniaggreg[]{}{}": {
+      "command": "umlHVuniaggreg[]{}{}",
+      "snippet": "umlHVuniaggreg[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVcompo{}{}": {
+      "command": "umlHVcompo{}{}",
+      "snippet": "umlHVcompo{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVcompo[]{}{}": {
+      "command": "umlHVcompo[]{}{}",
+      "snippet": "umlHVcompo[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVunicompo{}{}": {
+      "command": "umlHVunicompo{}{}",
+      "snippet": "umlHVunicompo{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVunicompo[]{}{}": {
+      "command": "umlHVunicompo[]{}{}",
+      "snippet": "umlHVunicompo[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVimport{}{}": {
+      "command": "umlHVimport{}{}",
+      "snippet": "umlHVimport{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVimport[]{}{}": {
+      "command": "umlHVimport[]{}{}",
+      "snippet": "umlHVimport[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVnest{}{}": {
+      "command": "umlHVnest{}{}",
+      "snippet": "umlHVnest{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVnest[]{}{}": {
+      "command": "umlHVnest[]{}{}",
+      "snippet": "umlHVnest[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVdep{}{}": {
+      "command": "umlHVdep{}{}",
+      "snippet": "umlHVdep{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVdep[]{}{}": {
+      "command": "umlHVdep[]{}{}",
+      "snippet": "umlHVdep[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHinherit{}{}": {
+      "command": "umlVHinherit{}{}",
+      "snippet": "umlVHinherit{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHinherit[]{}{}": {
+      "command": "umlVHinherit[]{}{}",
+      "snippet": "umlVHinherit[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHimpl{}{}": {
+      "command": "umlVHimpl{}{}",
+      "snippet": "umlVHimpl{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHimpl[]{}{}": {
+      "command": "umlVHimpl[]{}{}",
+      "snippet": "umlVHimpl[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHreal{}{}": {
+      "command": "umlVHreal{}{}",
+      "snippet": "umlVHreal{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHreal[]{}{}": {
+      "command": "umlVHreal[]{}{}",
+      "snippet": "umlVHreal[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHassoc{}{}": {
+      "command": "umlVHassoc{}{}",
+      "snippet": "umlVHassoc{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHassoc[]{}{}": {
+      "command": "umlVHassoc[]{}{}",
+      "snippet": "umlVHassoc[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHuniassoc{}{}": {
+      "command": "umlVHuniassoc{}{}",
+      "snippet": "umlVHuniassoc{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHuniassoc[]{}{}": {
+      "command": "umlVHuniassoc[]{}{}",
+      "snippet": "umlVHuniassoc[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHaggreg{}{}": {
+      "command": "umlVHaggreg{}{}",
+      "snippet": "umlVHaggreg{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHaggreg[]{}{}": {
+      "command": "umlVHaggreg[]{}{}",
+      "snippet": "umlVHaggreg[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHuniaggreg{}{}": {
+      "command": "umlVHuniaggreg{}{}",
+      "snippet": "umlVHuniaggreg{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHuniaggreg[]{}{}": {
+      "command": "umlVHuniaggreg[]{}{}",
+      "snippet": "umlVHuniaggreg[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHcompo{}{}": {
+      "command": "umlVHcompo{}{}",
+      "snippet": "umlVHcompo{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHcompo[]{}{}": {
+      "command": "umlVHcompo[]{}{}",
+      "snippet": "umlVHcompo[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHunicompo{}{}": {
+      "command": "umlVHunicompo{}{}",
+      "snippet": "umlVHunicompo{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHunicompo[]{}{}": {
+      "command": "umlVHunicompo[]{}{}",
+      "snippet": "umlVHunicompo[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHimport{}{}": {
+      "command": "umlVHimport{}{}",
+      "snippet": "umlVHimport{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHimport[]{}{}": {
+      "command": "umlVHimport[]{}{}",
+      "snippet": "umlVHimport[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHnest{}{}": {
+      "command": "umlVHnest{}{}",
+      "snippet": "umlVHnest{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHnest[]{}{}": {
+      "command": "umlVHnest[]{}{}",
+      "snippet": "umlVHnest[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHdep{}{}": {
+      "command": "umlVHdep{}{}",
+      "snippet": "umlVHdep{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHdep[]{}{}": {
+      "command": "umlVHdep[]{}{}",
+      "snippet": "umlVHdep[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHinherit{}{}": {
+      "command": "umlHVHinherit{}{}",
+      "snippet": "umlHVHinherit{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHinherit[]{}{}": {
+      "command": "umlHVHinherit[]{}{}",
+      "snippet": "umlHVHinherit[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHimpl{}{}": {
+      "command": "umlHVHimpl{}{}",
+      "snippet": "umlHVHimpl{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHimpl[]{}{}": {
+      "command": "umlHVHimpl[]{}{}",
+      "snippet": "umlHVHimpl[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHreal{}{}": {
+      "command": "umlHVHreal{}{}",
+      "snippet": "umlHVHreal{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHreal[]{}{}": {
+      "command": "umlHVHreal[]{}{}",
+      "snippet": "umlHVHreal[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHassoc{}{}": {
+      "command": "umlHVHassoc{}{}",
+      "snippet": "umlHVHassoc{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHassoc[]{}{}": {
+      "command": "umlHVHassoc[]{}{}",
+      "snippet": "umlHVHassoc[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHuniassoc{}{}": {
+      "command": "umlHVHuniassoc{}{}",
+      "snippet": "umlHVHuniassoc{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHuniassoc[]{}{}": {
+      "command": "umlHVHuniassoc[]{}{}",
+      "snippet": "umlHVHuniassoc[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHaggreg{}{}": {
+      "command": "umlHVHaggreg{}{}",
+      "snippet": "umlHVHaggreg{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHaggreg[]{}{}": {
+      "command": "umlHVHaggreg[]{}{}",
+      "snippet": "umlHVHaggreg[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHuniaggreg{}{}": {
+      "command": "umlHVHuniaggreg{}{}",
+      "snippet": "umlHVHuniaggreg{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHuniaggreg[]{}{}": {
+      "command": "umlHVHuniaggreg[]{}{}",
+      "snippet": "umlHVHuniaggreg[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHcompo{}{}": {
+      "command": "umlHVHcompo{}{}",
+      "snippet": "umlHVHcompo{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHcompo[]{}{}": {
+      "command": "umlHVHcompo[]{}{}",
+      "snippet": "umlHVHcompo[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHunicompo{}{}": {
+      "command": "umlHVHunicompo{}{}",
+      "snippet": "umlHVHunicompo{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHunicompo[]{}{}": {
+      "command": "umlHVHunicompo[]{}{}",
+      "snippet": "umlHVHunicompo[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHimport{}{}": {
+      "command": "umlHVHimport{}{}",
+      "snippet": "umlHVHimport{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHimport[]{}{}": {
+      "command": "umlHVHimport[]{}{}",
+      "snippet": "umlHVHimport[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHnest{}{}": {
+      "command": "umlHVHnest{}{}",
+      "snippet": "umlHVHnest{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHnest[]{}{}": {
+      "command": "umlHVHnest[]{}{}",
+      "snippet": "umlHVHnest[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHdep{}{}": {
+      "command": "umlHVHdep{}{}",
+      "snippet": "umlHVHdep{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHdep[]{}{}": {
+      "command": "umlHVHdep[]{}{}",
+      "snippet": "umlHVHdep[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVinherit{}{}": {
+      "command": "umlVHVinherit{}{}",
+      "snippet": "umlVHVinherit{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVinherit[]{}{}": {
+      "command": "umlVHVinherit[]{}{}",
+      "snippet": "umlVHVinherit[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVimpl{}{}": {
+      "command": "umlVHVimpl{}{}",
+      "snippet": "umlVHVimpl{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVimpl[]{}{}": {
+      "command": "umlVHVimpl[]{}{}",
+      "snippet": "umlVHVimpl[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVreal{}{}": {
+      "command": "umlVHVreal{}{}",
+      "snippet": "umlVHVreal{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVreal[]{}{}": {
+      "command": "umlVHVreal[]{}{}",
+      "snippet": "umlVHVreal[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVassoc{}{}": {
+      "command": "umlVHVassoc{}{}",
+      "snippet": "umlVHVassoc{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVassoc[]{}{}": {
+      "command": "umlVHVassoc[]{}{}",
+      "snippet": "umlVHVassoc[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVuniassoc{}{}": {
+      "command": "umlVHVuniassoc{}{}",
+      "snippet": "umlVHVuniassoc{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVuniassoc[]{}{}": {
+      "command": "umlVHVuniassoc[]{}{}",
+      "snippet": "umlVHVuniassoc[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVaggreg{}{}": {
+      "command": "umlVHVaggreg{}{}",
+      "snippet": "umlVHVaggreg{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVaggreg[]{}{}": {
+      "command": "umlVHVaggreg[]{}{}",
+      "snippet": "umlVHVaggreg[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVuniaggreg{}{}": {
+      "command": "umlVHVuniaggreg{}{}",
+      "snippet": "umlVHVuniaggreg{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVuniaggreg[]{}{}": {
+      "command": "umlVHVuniaggreg[]{}{}",
+      "snippet": "umlVHVuniaggreg[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVcompo{}{}": {
+      "command": "umlVHVcompo{}{}",
+      "snippet": "umlVHVcompo{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVcompo[]{}{}": {
+      "command": "umlVHVcompo[]{}{}",
+      "snippet": "umlVHVcompo[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVunicompo{}{}": {
+      "command": "umlVHVunicompo{}{}",
+      "snippet": "umlVHVunicompo{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVunicompo[]{}{}": {
+      "command": "umlVHVunicompo[]{}{}",
+      "snippet": "umlVHVunicompo[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVimport{}{}": {
+      "command": "umlVHVimport{}{}",
+      "snippet": "umlVHVimport{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVimport[]{}{}": {
+      "command": "umlVHVimport[]{}{}",
+      "snippet": "umlVHVimport[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVnest{}{}": {
+      "command": "umlVHVnest{}{}",
+      "snippet": "umlVHVnest{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVnest[]{}{}": {
+      "command": "umlVHVnest[]{}{}",
+      "snippet": "umlVHVnest[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVdep{}{}": {
+      "command": "umlVHVdep{}{}",
+      "snippet": "umlVHVdep{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVdep[]{}{}": {
+      "command": "umlVHVdep[]{}{}",
+      "snippet": "umlVHVdep[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlrelation{}{}": {
+      "command": "umlrelation{}{}",
+      "snippet": "umlrelation{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlrelation[]{}{}": {
+      "command": "umlrelation[]{}{}",
+      "snippet": "umlrelation[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVrelation{}{}": {
+      "command": "umlHVrelation{}{}",
+      "snippet": "umlHVrelation{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVrelation[]{}{}": {
+      "command": "umlHVrelation[]{}{}",
+      "snippet": "umlHVrelation[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHrelation{}{}": {
+      "command": "umlVHrelation{}{}",
+      "snippet": "umlVHrelation{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHrelation[]{}{}": {
+      "command": "umlVHrelation[]{}{}",
+      "snippet": "umlVHrelation[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHrelation{}{}": {
+      "command": "umlHVHrelation{}{}",
+      "snippet": "umlHVHrelation{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHrelation[]{}{}": {
+      "command": "umlHVHrelation[]{}{}",
+      "snippet": "umlHVHrelation[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVrelation{}{}": {
+      "command": "umlVHVrelation{}{}",
+      "snippet": "umlVHVrelation{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVrelation[]{}{}": {
+      "command": "umlVHVrelation[]{}{}",
+      "snippet": "umlVHVrelation[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNrelation{}{}{}": {
+      "command": "umlCNrelation{}{}{}",
+      "snippet": "umlCNrelation{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNrelation[]{}{}{}": {
+      "command": "umlCNrelation[]{}{}{}",
+      "snippet": "umlCNrelation[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNinherit{}{}{}": {
+      "command": "umlCNinherit{}{}{}",
+      "snippet": "umlCNinherit{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNinherit[]{}{}{}": {
+      "command": "umlCNinherit[]{}{}{}",
+      "snippet": "umlCNinherit[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNimpl{}{}{}": {
+      "command": "umlCNimpl{}{}{}",
+      "snippet": "umlCNimpl{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNimpl[]{}{}{}": {
+      "command": "umlCNimpl[]{}{}{}",
+      "snippet": "umlCNimpl[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNreal{}{}{}": {
+      "command": "umlCNreal{}{}{}",
+      "snippet": "umlCNreal{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNreal[]{}{}{}": {
+      "command": "umlCNreal[]{}{}{}",
+      "snippet": "umlCNreal[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNassoc{}{}{}": {
+      "command": "umlCNassoc{}{}{}",
+      "snippet": "umlCNassoc{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNassoc[]{}{}{}": {
+      "command": "umlCNassoc[]{}{}{}",
+      "snippet": "umlCNassoc[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNuniassoc{}{}{}": {
+      "command": "umlCNuniassoc{}{}{}",
+      "snippet": "umlCNuniassoc{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNuniassoc[]{}{}{}": {
+      "command": "umlCNuniassoc[]{}{}{}",
+      "snippet": "umlCNuniassoc[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNaggreg{}{}{}": {
+      "command": "umlCNaggreg{}{}{}",
+      "snippet": "umlCNaggreg{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNaggreg[]{}{}{}": {
+      "command": "umlCNaggreg[]{}{}{}",
+      "snippet": "umlCNaggreg[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNuniaggreg{}{}{}": {
+      "command": "umlCNuniaggreg{}{}{}",
+      "snippet": "umlCNuniaggreg{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNuniaggreg[]{}{}{}": {
+      "command": "umlCNuniaggreg[]{}{}{}",
+      "snippet": "umlCNuniaggreg[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNcompo{}{}{}": {
+      "command": "umlCNcompo{}{}{}",
+      "snippet": "umlCNcompo{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNcompo[]{}{}{}": {
+      "command": "umlCNcompo[]{}{}{}",
+      "snippet": "umlCNcompo[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNunicompo{}{}{}": {
+      "command": "umlCNunicompo{}{}{}",
+      "snippet": "umlCNunicompo{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNunicompo[]{}{}{}": {
+      "command": "umlCNunicompo[]{}{}{}",
+      "snippet": "umlCNunicompo[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNimport{}{}{}": {
+      "command": "umlCNimport{}{}{}",
+      "snippet": "umlCNimport{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNimport[]{}{}{}": {
+      "command": "umlCNimport[]{}{}{}",
+      "snippet": "umlCNimport[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNnest{}{}{}": {
+      "command": "umlCNnest{}{}{}",
+      "snippet": "umlCNnest{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNnest[]{}{}{}": {
+      "command": "umlCNnest[]{}{}{}",
+      "snippet": "umlCNnest[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNdep{}{}{}": {
+      "command": "umlCNdep{}{}{}",
+      "snippet": "umlCNdep{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNdep[]{}{}{}": {
+      "command": "umlCNdep[]{}{}{}",
+      "snippet": "umlCNdep[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlpoint{}": {
+      "command": "umlpoint{}",
+      "snippet": "umlpoint{${1:node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlNarynode{}": {
+      "command": "umlNarynode{}",
+      "snippet": "umlNarynode{${1:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlNarynode[]{}": {
+      "command": "umlNarynode[]{}",
+      "snippet": "umlNarynode[${2:options}]{${1:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlnote{}{}": {
+      "command": "umlnote{}{}",
+      "snippet": "umlnote{${1:node-name}}{${2:note%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlnote[]{}{}": {
+      "command": "umlnote[]{}{}",
+      "snippet": "umlnote[${3:options}]{${1:node-name}}{${2:note%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHnote{}{}": {
+      "command": "umlHVHnote{}{}",
+      "snippet": "umlHVHnote{${1:node-name}}{${2:note%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHnote[]{}{}": {
+      "command": "umlHVHnote[]{}{}",
+      "snippet": "umlHVHnote[${3:options}]{${1:node-name}}{${2:note%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVnote{}{}": {
+      "command": "umlHVnote{}{}",
+      "snippet": "umlHVnote{${1:node-name}}{${2:note%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVnote[]{}{}": {
+      "command": "umlHVnote[]{}{}",
+      "snippet": "umlHVnote[${3:options}]{${1:node-name}}{${2:note%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVnote{}{}": {
+      "command": "umlVHVnote{}{}",
+      "snippet": "umlVHVnote{${1:node-name}}{${2:note%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVnote[]{}{}": {
+      "command": "umlVHVnote[]{}{}",
+      "snippet": "umlVHVnote[${3:options}]{${1:node-name}}{${2:note%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHnote{}{}": {
+      "command": "umlVHnote{}{}",
+      "snippet": "umlVHnote{${1:node-name}}{${2:note%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHnote[]{}{}": {
+      "command": "umlVHnote[]{}{}",
+      "snippet": "umlVHnote[${3:options}]{${1:node-name}}{${2:note%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlassocclass{}{}{}{}": {
+      "command": "umlassocclass{}{}{}{}",
+      "snippet": "umlassocclass{${1:class-name}}{${2:attributes}}{${3:operations}}{${4:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlassocclass[]{}{}{}{}": {
+      "command": "umlassocclass[]{}{}{}{}",
+      "snippet": "umlassocclass[${5:options}]{${1:class-name}}{${2:attributes}}{${3:operations}}{${4:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlset{}": {
+      "command": "tikzumlset{}",
+      "snippet": "tikzumlset{${1:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlactor{}": {
+      "command": "umlactor{}",
+      "snippet": "umlactor{${1:actor-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlactor[]{}": {
+      "command": "umlactor[]{}",
+      "snippet": "umlactor[${2:options}]{${1:actor-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlusecase{}": {
+      "command": "umlusecase{}",
+      "snippet": "umlusecase{${1:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlusecase[]{}": {
+      "command": "umlusecase[]{}",
+      "snippet": "umlusecase[${2:options}]{${1:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlinclude{}{}": {
+      "command": "umlinclude{}{}",
+      "snippet": "umlinclude{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlinclude[]{}{}": {
+      "command": "umlinclude[]{}{}",
+      "snippet": "umlinclude[${3:options}]{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVinclude{}{}": {
+      "command": "umlHVinclude{}{}",
+      "snippet": "umlHVinclude{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVinclude[]{}{}": {
+      "command": "umlHVinclude[]{}{}",
+      "snippet": "umlHVinclude[${3:options}]{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHinclude{}{}": {
+      "command": "umlVHinclude{}{}",
+      "snippet": "umlVHinclude{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHinclude[]{}{}": {
+      "command": "umlVHinclude[]{}{}",
+      "snippet": "umlVHinclude[${3:options}]{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHinclude{}{}": {
+      "command": "umlHVHinclude{}{}",
+      "snippet": "umlHVHinclude{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHinclude[]{}{}": {
+      "command": "umlHVHinclude[]{}{}",
+      "snippet": "umlHVHinclude[${3:options}]{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVinclude{}{}": {
+      "command": "umlVHVinclude{}{}",
+      "snippet": "umlVHVinclude{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVinclude[]{}{}": {
+      "command": "umlVHVinclude[]{}{}",
+      "snippet": "umlVHVinclude[${3:options}]{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNinclude{}{}{}": {
+      "command": "umlCNinclude{}{}{}",
+      "snippet": "umlCNinclude{${1:source-case}}{${2:control-node}}{${3:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNinclude[]{}{}{}": {
+      "command": "umlCNinclude[]{}{}{}",
+      "snippet": "umlCNinclude[${4:options}]{${1:source-case}}{${2:control-node}}{${3:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlextend{}{}": {
+      "command": "umlextend{}{}",
+      "snippet": "umlextend{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlextend[]{}{}": {
+      "command": "umlextend[]{}{}",
+      "snippet": "umlextend[${3:options}]{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVextend{}{}": {
+      "command": "umlHVextend{}{}",
+      "snippet": "umlHVextend{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVextend[]{}{}": {
+      "command": "umlHVextend[]{}{}",
+      "snippet": "umlHVextend[${3:options}]{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHextend{}{}": {
+      "command": "umlVHextend{}{}",
+      "snippet": "umlVHextend{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHextend[]{}{}": {
+      "command": "umlVHextend[]{}{}",
+      "snippet": "umlVHextend[${3:options}]{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHextend{}{}": {
+      "command": "umlHVHextend{}{}",
+      "snippet": "umlHVHextend{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHextend[]{}{}": {
+      "command": "umlHVHextend[]{}{}",
+      "snippet": "umlHVHextend[${3:options}]{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVextend{}{}": {
+      "command": "umlVHVextend{}{}",
+      "snippet": "umlVHVextend{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVextend[]{}{}": {
+      "command": "umlVHVextend[]{}{}",
+      "snippet": "umlVHVextend[${3:options}]{${1:source-case}}{${2:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNextend{}{}{}": {
+      "command": "umlCNextend{}{}{}",
+      "snippet": "umlCNextend{${1:source-case}}{${2:control-node}}{${3:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNextend[]{}{}{}": {
+      "command": "umlCNextend[]{}{}{}",
+      "snippet": "umlCNextend[${4:options}]{${1:source-case}}{${2:control-node}}{${3:target-case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlbasicstate{}": {
+      "command": "umlbasicstate{}",
+      "snippet": "umlbasicstate{${1:state-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlbasicstate[]{}": {
+      "command": "umlbasicstate[]{}",
+      "snippet": "umlbasicstate[${2:options}]{${1:state-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstateinitial": {
+      "command": "umlstateinitial",
+      "snippet": "umlstateinitial",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstateinitial[]": {
+      "command": "umlstateinitial[]",
+      "snippet": "umlstateinitial[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstatefinal": {
+      "command": "umlstatefinal",
+      "snippet": "umlstatefinal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstatefinal[]": {
+      "command": "umlstatefinal[]",
+      "snippet": "umlstatefinal[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstatejoin": {
+      "command": "umlstatejoin",
+      "snippet": "umlstatejoin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstatejoin[]": {
+      "command": "umlstatejoin[]",
+      "snippet": "umlstatejoin[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstatedecision": {
+      "command": "umlstatedecision",
+      "snippet": "umlstatedecision",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstatedecision[]": {
+      "command": "umlstatedecision[]",
+      "snippet": "umlstatedecision[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstateenter": {
+      "command": "umlstateenter",
+      "snippet": "umlstateenter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstateenter[]": {
+      "command": "umlstateenter[]",
+      "snippet": "umlstateenter[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstateexit": {
+      "command": "umlstateexit",
+      "snippet": "umlstateexit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstateexit[]": {
+      "command": "umlstateexit[]",
+      "snippet": "umlstateexit[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstateend": {
+      "command": "umlstateend",
+      "snippet": "umlstateend",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstateend[]": {
+      "command": "umlstateend[]",
+      "snippet": "umlstateend[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstatehistory": {
+      "command": "umlstatehistory",
+      "snippet": "umlstatehistory",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstatehistory[]": {
+      "command": "umlstatehistory[]",
+      "snippet": "umlstatehistory[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstatedeephistory": {
+      "command": "umlstatedeephistory",
+      "snippet": "umlstatedeephistory",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstatedeephistory[]": {
+      "command": "umlstatedeephistory[]",
+      "snippet": "umlstatedeephistory[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umltrans{}{}": {
+      "command": "umltrans{}{}",
+      "snippet": "umltrans{${1:source-state}}{${2:target-state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umltrans[]{}{}": {
+      "command": "umltrans[]{}{}",
+      "snippet": "umltrans[${3:options}]{${1:source-state}}{${2:target-state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVtrans{}{}": {
+      "command": "umlHVtrans{}{}",
+      "snippet": "umlHVtrans{${1:source-state}}{${2:target-state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVtrans[]{}{}": {
+      "command": "umlHVtrans[]{}{}",
+      "snippet": "umlHVtrans[${3:options}]{${1:source-state}}{${2:target-state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHtrans{}{}": {
+      "command": "umlVHtrans{}{}",
+      "snippet": "umlVHtrans{${1:source-state}}{${2:target-state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHtrans[]{}{}": {
+      "command": "umlVHtrans[]{}{}",
+      "snippet": "umlVHtrans[${3:options}]{${1:source-state}}{${2:target-state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVtrans{}{}": {
+      "command": "umlVHVtrans{}{}",
+      "snippet": "umlVHVtrans{${1:source-state}}{${2:target-state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVtrans[]{}{}": {
+      "command": "umlVHVtrans[]{}{}",
+      "snippet": "umlVHVtrans[${3:options}]{${1:source-state}}{${2:target-state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHtrans{}{}": {
+      "command": "umlHVHtrans{}{}",
+      "snippet": "umlHVHtrans{${1:source-state}}{${2:target-state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHtrans[]{}{}": {
+      "command": "umlHVHtrans[]{}{}",
+      "snippet": "umlHVHtrans[${3:options}]{${1:source-state}}{${2:target-state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNtrans{}{}{}": {
+      "command": "umlCNtrans{}{}{}",
+      "snippet": "umlCNtrans{${1:source-state}}{${2:control-node}}{${3:target-state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNtrans[]{}{}{}": {
+      "command": "umlCNtrans[]{}{}{}",
+      "snippet": "umlCNtrans[${4:options}]{${1:source-state}}{${2:control-node}}{${3:target-state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlobject{}": {
+      "command": "umlobject{}",
+      "snippet": "umlobject{${1:object-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlobject[]{}": {
+      "command": "umlobject[]{}",
+      "snippet": "umlobject[${2:options}]{${1:object-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlbasicobject{}": {
+      "command": "umlbasicobject{}",
+      "snippet": "umlbasicobject{${1:object-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlbasicobject[]{}": {
+      "command": "umlbasicobject[]{}",
+      "snippet": "umlbasicobject[${2:options}]{${1:object-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umldatabase{}": {
+      "command": "umldatabase{}",
+      "snippet": "umldatabase{${1:database-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umldatabase[]{}": {
+      "command": "umldatabase[]{}",
+      "snippet": "umldatabase[${2:options}]{${1:database-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlmulti{}": {
+      "command": "umlmulti{}",
+      "snippet": "umlmulti{${1:object-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlmulti[]{}": {
+      "command": "umlmulti[]{}",
+      "snippet": "umlmulti[${2:options}]{${1:object-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlentity{}": {
+      "command": "umlentity{}",
+      "snippet": "umlentity{${1:entity-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlentity[]{}": {
+      "command": "umlentity[]{}",
+      "snippet": "umlentity[${2:options}]{${1:entity-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlboundary{}": {
+      "command": "umlboundary{}",
+      "snippet": "umlboundary{${1:boundary-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlboundary[]{}": {
+      "command": "umlboundary[]{}",
+      "snippet": "umlboundary[${2:options}]{${1:boundary-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlcontrol{}": {
+      "command": "umlcontrol{}",
+      "snippet": "umlcontrol{${1:control-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlcontrol[]{}": {
+      "command": "umlcontrol[]{}",
+      "snippet": "umlcontrol[${2:options}]{${1:control-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlcreatecall{}{}": {
+      "command": "umlcreatecall{}{}",
+      "snippet": "umlcreatecall{${1:call-sender}}{${2:object-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlcreatecall[]{}{}": {
+      "command": "umlcreatecall[]{}{}",
+      "snippet": "umlcreatecall[${3:options}]{${1:call-sender}}{${2:object-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlfpart": {
+      "command": "umlfpart",
+      "snippet": "umlfpart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlfpart[]": {
+      "command": "umlfpart[]",
+      "snippet": "umlfpart[${1:label-text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlbasiccomponent{}": {
+      "command": "umlbasiccomponent{}",
+      "snippet": "umlbasiccomponent{${1:component-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlbasiccomponent[]{}": {
+      "command": "umlbasiccomponent[]{}",
+      "snippet": "umlbasiccomponent[${2:options}]{${1:component-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlprovidedinterface{}": {
+      "command": "umlprovidedinterface{}",
+      "snippet": "umlprovidedinterface{${1:interface-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlprovidedinterface[]{}": {
+      "command": "umlprovidedinterface[]{}",
+      "snippet": "umlprovidedinterface[${2:options}]{${1:interface-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlrequiredinterface{}": {
+      "command": "umlrequiredinterface{}",
+      "snippet": "umlrequiredinterface{${1:interface-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlrequiredinterface[]{}": {
+      "command": "umlrequiredinterface[]{}",
+      "snippet": "umlrequiredinterface[${2:options}]{${1:interface-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlassemblyconnector{}{}": {
+      "command": "umlassemblyconnector{}{}",
+      "snippet": "umlassemblyconnector{${1:component1}}{${2:component2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlassemblyconnector[]{}{}": {
+      "command": "umlassemblyconnector[]{}{}",
+      "snippet": "umlassemblyconnector[${3:options}]{${1:component1}}{${2:component2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVassemblyconnector{}{}": {
+      "command": "umlHVassemblyconnector{}{}",
+      "snippet": "umlHVassemblyconnector{${1:component1}}{${2:component2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVassemblyconnector[]{}{}": {
+      "command": "umlHVassemblyconnector[]{}{}",
+      "snippet": "umlHVassemblyconnector[${3:options}]{${1:component1}}{${2:component2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHassemblyconnector{}{}": {
+      "command": "umlVHassemblyconnector{}{}",
+      "snippet": "umlVHassemblyconnector{${1:component1}}{${2:component2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHassemblyconnector[]{}{}": {
+      "command": "umlVHassemblyconnector[]{}{}",
+      "snippet": "umlVHassemblyconnector[${3:options}]{${1:component1}}{${2:component2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHassemblyconnector{}{}": {
+      "command": "umlHVHassemblyconnector{}{}",
+      "snippet": "umlHVHassemblyconnector{${1:component1}}{${2:component2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHassemblyconnector[]{}{}": {
+      "command": "umlHVHassemblyconnector[]{}{}",
+      "snippet": "umlHVHassemblyconnector[${3:options}]{${1:component1}}{${2:component2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVassemblyconnector{}{}": {
+      "command": "umlVHVassemblyconnector{}{}",
+      "snippet": "umlVHVassemblyconnector{${1:component1}}{${2:component2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVassemblyconnector[]{}{}": {
+      "command": "umlVHVassemblyconnector[]{}{}",
+      "snippet": "umlVHVassemblyconnector[${3:options}]{${1:component1}}{${2:component2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umldelegateconnector{}{}": {
+      "command": "umldelegateconnector{}{}",
+      "snippet": "umldelegateconnector{${1:sub-component}}{${2:parent-component}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umldelegateconnector[]{}{}": {
+      "command": "umldelegateconnector[]{}{}",
+      "snippet": "umldelegateconnector[${3:options}]{${1:sub-component}}{${2:parent-component}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVdelegateconnector{}{}": {
+      "command": "umlHVdelegateconnector{}{}",
+      "snippet": "umlHVdelegateconnector{${1:sub-component}}{${2:parent-component}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVdelegateconnector[]{}{}": {
+      "command": "umlHVdelegateconnector[]{}{}",
+      "snippet": "umlHVdelegateconnector[${3:options}]{${1:sub-component}}{${2:parent-component}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHdelegateconnector{}{}": {
+      "command": "umlVHdelegateconnector{}{}",
+      "snippet": "umlVHdelegateconnector{${1:sub-component}}{${2:parent-component}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHdelegateconnector[]{}{}": {
+      "command": "umlVHdelegateconnector[]{}{}",
+      "snippet": "umlVHdelegateconnector[${3:options}]{${1:sub-component}}{${2:parent-component}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHdelegateconnector{}{}": {
+      "command": "umlHVHdelegateconnector{}{}",
+      "snippet": "umlHVHdelegateconnector{${1:sub-component}}{${2:parent-component}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHdelegateconnector[]{}{}": {
+      "command": "umlHVHdelegateconnector[]{}{}",
+      "snippet": "umlHVHdelegateconnector[${3:options}]{${1:sub-component}}{${2:parent-component}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVdelegateconnector{}{}": {
+      "command": "umlVHVdelegateconnector{}{}",
+      "snippet": "umlVHVdelegateconnector{${1:sub-component}}{${2:parent-component}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVdelegateconnector[]{}{}": {
+      "command": "umlVHVdelegateconnector[]{}{}",
+      "snippet": "umlVHVdelegateconnector[${3:options}]{${1:sub-component}}{${2:parent-component}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlport{}{}": {
+      "command": "umlport{}{}",
+      "snippet": "umlport{${1:component-name}}{${2:anchor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlport[]{}{}": {
+      "command": "umlport[]{}{}",
+      "snippet": "umlport[${3:options}]{${1:component-name}}{${2:anchor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNfriend{}{}": {
+      "command": "umlCNfriend{}{}",
+      "snippet": "umlCNfriend{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlCNfriend[]{}{}": {
+      "command": "umlCNfriend[]{}{}",
+      "snippet": "umlCNfriend[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHfriend{}{}": {
+      "command": "umlHVHfriend{}{}",
+      "snippet": "umlHVHfriend{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVHfriend[]{}{}": {
+      "command": "umlHVHfriend[]{}{}",
+      "snippet": "umlHVHfriend[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVfriend{}{}": {
+      "command": "umlHVfriend{}{}",
+      "snippet": "umlHVfriend{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlHVfriend[]{}{}": {
+      "command": "umlHVfriend[]{}{}",
+      "snippet": "umlHVfriend[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVfriend{}{}": {
+      "command": "umlVHVfriend{}{}",
+      "snippet": "umlVHVfriend{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHVfriend[]{}{}": {
+      "command": "umlVHVfriend[]{}{}",
+      "snippet": "umlVHVfriend[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHfriend{}{}": {
+      "command": "umlVHfriend{}{}",
+      "snippet": "umlVHfriend{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlVHfriend[]{}{}": {
+      "command": "umlVHfriend[]{}{}",
+      "snippet": "umlVHfriend[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlfriend{}{}": {
+      "command": "umlfriend{}{}",
+      "snippet": "umlfriend{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlfriend[]{}{}": {
+      "command": "umlfriend[]{}{}",
+      "snippet": "umlfriend[${3:options}]{${1:source-class}}{${2:target-class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlassemblyconnectorsymbol{}{}": {
+      "command": "umlassemblyconnectorsymbol{}{}",
+      "snippet": "umlassemblyconnectorsymbol{${1:start-name}}{${2:end-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlnode{}{}": {
+      "command": "umlnode{}{}",
+      "snippet": "umlnode{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlsdnode{}": {
+      "command": "umlsdnode{}",
+      "snippet": "umlsdnode{${1:node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlsdnode[]{}": {
+      "command": "umlsdnode[]{}",
+      "snippet": "umlsdnode[${2:options}]{${1:node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstatetext{}": {
+      "command": "umlstatetext{}",
+      "snippet": "umlstatetext{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "arcNum": {
+      "command": "arcNum",
+      "snippet": "arcNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "arcNumT": {
+      "command": "arcNumT",
+      "snippet": "arcNumT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "attrAlign": {
+      "command": "attrAlign",
+      "snippet": "attrAlign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "attrAlignT": {
+      "command": "attrAlignT",
+      "snippet": "attrAlignT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlactorWithoutCoords": {
+      "command": "iftikzumlactorWithoutCoords",
+      "snippet": "iftikzumlactorWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlassocclassWithoutCoords": {
+      "command": "iftikzumlassocclassWithoutCoords",
+      "snippet": "iftikzumlassocclassWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlclassCircleShape": {
+      "command": "iftikzumlclassCircleShape",
+      "snippet": "iftikzumlclassCircleShape",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlclassSimpleStyle": {
+      "command": "iftikzumlclassSimpleStyle",
+      "snippet": "iftikzumlclassSimpleStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlclassWithoutCoords": {
+      "command": "iftikzumlclassWithoutCoords",
+      "snippet": "iftikzumlclassWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlcomponentWithoutCoords": {
+      "command": "iftikzumlcomponentWithoutCoords",
+      "snippet": "iftikzumlcomponentWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlcreatecallNoDDots": {
+      "command": "iftikzumlcreatecallNoDDots",
+      "snippet": "iftikzumlcreatecallNoDDots",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlnoteWithoutCoords": {
+      "command": "iftikzumlnoteWithoutCoords",
+      "snippet": "iftikzumlnoteWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlobjectNoDDots": {
+      "command": "iftikzumlobjectNoDDots",
+      "snippet": "iftikzumlobjectNoDDots",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlpackageSimpleStyle": {
+      "command": "iftikzumlpackageSimpleStyle",
+      "snippet": "iftikzumlpackageSimpleStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlpackageWithoutCoords": {
+      "command": "iftikzumlpackageWithoutCoords",
+      "snippet": "iftikzumlpackageWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlstatedecisionWithoutCoords": {
+      "command": "iftikzumlstatedecisionWithoutCoords",
+      "snippet": "iftikzumlstatedecisionWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlstatedeephistoryWithoutCoords": {
+      "command": "iftikzumlstatedeephistoryWithoutCoords",
+      "snippet": "iftikzumlstatedeephistoryWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlstateendWithoutCoords": {
+      "command": "iftikzumlstateendWithoutCoords",
+      "snippet": "iftikzumlstateendWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlstateenterWithoutCoords": {
+      "command": "iftikzumlstateenterWithoutCoords",
+      "snippet": "iftikzumlstateenterWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlstateexitWithoutCoords": {
+      "command": "iftikzumlstateexitWithoutCoords",
+      "snippet": "iftikzumlstateexitWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlstatefinalWithoutCoords": {
+      "command": "iftikzumlstatefinalWithoutCoords",
+      "snippet": "iftikzumlstatefinalWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlstatehistoryWithoutCoords": {
+      "command": "iftikzumlstatehistoryWithoutCoords",
+      "snippet": "iftikzumlstatehistoryWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlstateinitialWithoutCoords": {
+      "command": "iftikzumlstateinitialWithoutCoords",
+      "snippet": "iftikzumlstateinitialWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlstatejoinWithoutCoords": {
+      "command": "iftikzumlstatejoinWithoutCoords",
+      "snippet": "iftikzumlstatejoinWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlstateWithoutCoords": {
+      "command": "iftikzumlstateWithoutCoords",
+      "snippet": "iftikzumlstateWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftikzumlusecaseWithoutCoords": {
+      "command": "iftikzumlusecaseWithoutCoords",
+      "snippet": "iftikzumlusecaseWithoutCoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "keyname": {
+      "command": "keyname",
+      "snippet": "keyname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "keyvalue": {
+      "command": "keyvalue",
+      "snippet": "keyvalue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multAlign": {
+      "command": "multAlign",
+      "snippet": "multAlign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multAlignT": {
+      "command": "multAlignT",
+      "snippet": "multAlignT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numArcs": {
+      "command": "numArcs",
+      "snippet": "numArcs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "orientationT": {
+      "command": "orientationT",
+      "snippet": "orientationT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfsetlayersArg": {
+      "command": "pgfsetlayersArg",
+      "snippet": "pgfsetlayersArg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "picturedactor{}": {
+      "command": "picturedactor{}",
+      "snippet": "picturedactor{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "picturedboundary{}": {
+      "command": "picturedboundary{}",
+      "snippet": "picturedboundary{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "picturedcomponent{}": {
+      "command": "picturedcomponent{}",
+      "snippet": "picturedcomponent{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "picturedcontrol{}": {
+      "command": "picturedcontrol{}",
+      "snippet": "picturedcontrol{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pictureddatabase{}": {
+      "command": "pictureddatabase{}",
+      "snippet": "pictureddatabase{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pictureddeephistory{}": {
+      "command": "pictureddeephistory{}",
+      "snippet": "pictureddeephistory{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "picturedentity{}": {
+      "command": "picturedentity{}",
+      "snippet": "picturedentity{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "picturedhistory{}": {
+      "command": "picturedhistory{}",
+      "snippet": "picturedhistory{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "posAttrName": {
+      "command": "posAttrName",
+      "snippet": "posAttrName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "posAttrNameT": {
+      "command": "posAttrNameT",
+      "snippet": "posAttrNameT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "posMultiplicity": {
+      "command": "posMultiplicity",
+      "snippet": "posMultiplicity",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "posMultiplicityT": {
+      "command": "posMultiplicityT",
+      "snippet": "posMultiplicityT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stereotype": {
+      "command": "stereotype",
+      "snippet": "stereotype",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thepos": {
+      "command": "thepos",
+      "snippet": "thepos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theposStereo": {
+      "command": "theposStereo",
+      "snippet": "theposStereo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theposT": {
+      "command": "theposT",
+      "snippet": "theposT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlActorNum": {
+      "command": "thetikzumlActorNum",
+      "snippet": "thetikzumlActorNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlCallEndFragmentNum": {
+      "command": "thetikzumlCallEndFragmentNum",
+      "snippet": "thetikzumlCallEndFragmentNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlCallLevel": {
+      "command": "thetikzumlCallLevel",
+      "snippet": "thetikzumlCallLevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlCallNum": {
+      "command": "thetikzumlCallNum",
+      "snippet": "thetikzumlCallNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlCallStartFragmentNum": {
+      "command": "thetikzumlCallStartFragmentNum",
+      "snippet": "thetikzumlCallStartFragmentNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlComponentLayers": {
+      "command": "thetikzumlComponentLayers",
+      "snippet": "thetikzumlComponentLayers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlComponentLevel": {
+      "command": "thetikzumlComponentLevel",
+      "snippet": "thetikzumlComponentLevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlComponentSubComponentNum": {
+      "command": "thetikzumlComponentSubComponentNum",
+      "snippet": "thetikzumlComponentSubComponentNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlConnectorNum": {
+      "command": "thetikzumlConnectorNum",
+      "snippet": "thetikzumlConnectorNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlFragmentLayers": {
+      "command": "thetikzumlFragmentLayers",
+      "snippet": "thetikzumlFragmentLayers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlFragmentLevel": {
+      "command": "thetikzumlFragmentLevel",
+      "snippet": "thetikzumlFragmentLevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlFragmentLevelNum": {
+      "command": "thetikzumlFragmentLevelNum",
+      "snippet": "thetikzumlFragmentLevelNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlFragmentNum": {
+      "command": "thetikzumlFragmentNum",
+      "snippet": "thetikzumlFragmentNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlFragmentPartNum": {
+      "command": "thetikzumlFragmentPartNum",
+      "snippet": "thetikzumlFragmentPartNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlNoteNum": {
+      "command": "thetikzumlNoteNum",
+      "snippet": "thetikzumlNoteNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlObjectNum": {
+      "command": "thetikzumlObjectNum",
+      "snippet": "thetikzumlObjectNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlPackageClassNum": {
+      "command": "thetikzumlPackageClassNum",
+      "snippet": "thetikzumlPackageClassNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlPackageLayers": {
+      "command": "thetikzumlPackageLayers",
+      "snippet": "thetikzumlPackageLayers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlPackageLevel": {
+      "command": "thetikzumlPackageLevel",
+      "snippet": "thetikzumlPackageLevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlPackageSubPackageNum": {
+      "command": "thetikzumlPackageSubPackageNum",
+      "snippet": "thetikzumlPackageSubPackageNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlRelationNum": {
+      "command": "thetikzumlRelationNum",
+      "snippet": "thetikzumlRelationNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlSDNodeNum": {
+      "command": "thetikzumlSDNodeNum",
+      "snippet": "thetikzumlSDNodeNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateDecisionNum": {
+      "command": "thetikzumlStateDecisionNum",
+      "snippet": "thetikzumlStateDecisionNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateDeepHistoryNum": {
+      "command": "thetikzumlStateDeepHistoryNum",
+      "snippet": "thetikzumlStateDeepHistoryNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateEndNum": {
+      "command": "thetikzumlStateEndNum",
+      "snippet": "thetikzumlStateEndNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateEnterNum": {
+      "command": "thetikzumlStateEnterNum",
+      "snippet": "thetikzumlStateEnterNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateExitNum": {
+      "command": "thetikzumlStateExitNum",
+      "snippet": "thetikzumlStateExitNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateFinalNum": {
+      "command": "thetikzumlStateFinalNum",
+      "snippet": "thetikzumlStateFinalNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateHistoryNum": {
+      "command": "thetikzumlStateHistoryNum",
+      "snippet": "thetikzumlStateHistoryNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateInitialNum": {
+      "command": "thetikzumlStateInitialNum",
+      "snippet": "thetikzumlStateInitialNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateJoinNum": {
+      "command": "thetikzumlStateJoinNum",
+      "snippet": "thetikzumlStateJoinNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateLayers": {
+      "command": "thetikzumlStateLayers",
+      "snippet": "thetikzumlStateLayers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateLevel": {
+      "command": "thetikzumlStateLevel",
+      "snippet": "thetikzumlStateLevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateSubStateNum": {
+      "command": "thetikzumlStateSubStateNum",
+      "snippet": "thetikzumlStateSubStateNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlStateText": {
+      "command": "thetikzumlStateText",
+      "snippet": "thetikzumlStateText",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlSystemLevel": {
+      "command": "thetikzumlSystemLevel",
+      "snippet": "thetikzumlSystemLevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlSystemUseCaseNum": {
+      "command": "thetikzumlSystemUseCaseNum",
+      "snippet": "thetikzumlSystemUseCaseNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetikzumlUseCaseNum": {
+      "command": "thetikzumlUseCaseNum",
+      "snippet": "thetikzumlUseCaseNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlActorBelow": {
+      "command": "tikzumlActorBelow",
+      "snippet": "tikzumlActorBelow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlActorDefaultBelow": {
+      "command": "tikzumlActorDefaultBelow",
+      "snippet": "tikzumlActorDefaultBelow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlActorDrawColor": {
+      "command": "tikzumlActorDrawColor",
+      "snippet": "tikzumlActorDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlActorName": {
+      "command": "tikzumlActorName",
+      "snippet": "tikzumlActorName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlActorNodeName": {
+      "command": "tikzumlActorNodeName",
+      "snippet": "tikzumlActorNodeName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlActorPos": {
+      "command": "tikzumlActorPos",
+      "snippet": "tikzumlActorPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlActorScale": {
+      "command": "tikzumlActorScale",
+      "snippet": "tikzumlActorScale",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlActorTextColor": {
+      "command": "tikzumlActorTextColor",
+      "snippet": "tikzumlActorTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlactorWithoutCoordsfalse": {
+      "command": "tikzumlactorWithoutCoordsfalse",
+      "snippet": "tikzumlactorWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlactorWithoutCoordstrue": {
+      "command": "tikzumlactorWithoutCoordstrue",
+      "snippet": "tikzumlactorWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlActorX": {
+      "command": "tikzumlActorX",
+      "snippet": "tikzumlActorX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlActorY": {
+      "command": "tikzumlActorY",
+      "snippet": "tikzumlActorY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorDefaultFillColor": {
+      "command": "tikzumlAssemblyConnectorDefaultFillColor",
+      "snippet": "tikzumlAssemblyConnectorDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorDrawColor": {
+      "command": "tikzumlAssemblyConnectorDrawColor",
+      "snippet": "tikzumlAssemblyConnectorDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorEndAnchor": {
+      "command": "tikzumlAssemblyConnectorEndAnchor",
+      "snippet": "tikzumlAssemblyConnectorEndAnchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorEndAnchorTmp": {
+      "command": "tikzumlAssemblyConnectorEndAnchorTmp",
+      "snippet": "tikzumlAssemblyConnectorEndAnchorTmp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorEndArm": {
+      "command": "tikzumlAssemblyConnectorEndArm",
+      "snippet": "tikzumlAssemblyConnectorEndArm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorFillColor": {
+      "command": "tikzumlAssemblyConnectorFillColor",
+      "snippet": "tikzumlAssemblyConnectorFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorFirstArm": {
+      "command": "tikzumlAssemblyConnectorFirstArm",
+      "snippet": "tikzumlAssemblyConnectorFirstArm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorGeometry": {
+      "command": "tikzumlAssemblyConnectorGeometry",
+      "snippet": "tikzumlAssemblyConnectorGeometry",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorLabel": {
+      "command": "tikzumlAssemblyConnectorLabel",
+      "snippet": "tikzumlAssemblyConnectorLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorLastArm": {
+      "command": "tikzumlAssemblyConnectorLastArm",
+      "snippet": "tikzumlAssemblyConnectorLastArm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorMiddleArm": {
+      "command": "tikzumlAssemblyConnectorMiddleArm",
+      "snippet": "tikzumlAssemblyConnectorMiddleArm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorName": {
+      "command": "tikzumlAssemblyConnectorName",
+      "snippet": "tikzumlAssemblyConnectorName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorPortFillColor": {
+      "command": "tikzumlAssemblyConnectorPortFillColor",
+      "snippet": "tikzumlAssemblyConnectorPortFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorSecondArm": {
+      "command": "tikzumlAssemblyConnectorSecondArm",
+      "snippet": "tikzumlAssemblyConnectorSecondArm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorStartAnchor": {
+      "command": "tikzumlAssemblyConnectorStartAnchor",
+      "snippet": "tikzumlAssemblyConnectorStartAnchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorStartAnchorTmp": {
+      "command": "tikzumlAssemblyConnectorStartAnchorTmp",
+      "snippet": "tikzumlAssemblyConnectorStartAnchorTmp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorStartArm": {
+      "command": "tikzumlAssemblyConnectorStartArm",
+      "snippet": "tikzumlAssemblyConnectorStartArm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorSymbolName": {
+      "command": "tikzumlAssemblyConnectorSymbolName",
+      "snippet": "tikzumlAssemblyConnectorSymbolName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorWidth": {
+      "command": "tikzumlAssemblyConnectorWidth",
+      "snippet": "tikzumlAssemblyConnectorWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssemblyConnectorWithPort": {
+      "command": "tikzumlAssemblyConnectorWithPort",
+      "snippet": "tikzumlAssemblyConnectorWithPort",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassArm": {
+      "command": "tikzumlAssocClassArm",
+      "snippet": "tikzumlAssocClassArm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassAttributes": {
+      "command": "tikzumlAssocClassAttributes",
+      "snippet": "tikzumlAssocClassAttributes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassDestAnchor": {
+      "command": "tikzumlAssocClassDestAnchor",
+      "snippet": "tikzumlAssocClassDestAnchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassDestAnchorold": {
+      "command": "tikzumlAssocClassDestAnchorold",
+      "snippet": "tikzumlAssocClassDestAnchorold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassDrawColor": {
+      "command": "tikzumlAssocClassDrawColor",
+      "snippet": "tikzumlAssocClassDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassFillColor": {
+      "command": "tikzumlAssocClassFillColor",
+      "snippet": "tikzumlAssocClassFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassGeometry": {
+      "command": "tikzumlAssocClassGeometry",
+      "snippet": "tikzumlAssocClassGeometry",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassHPadding": {
+      "command": "tikzumlAssocClassHPadding",
+      "snippet": "tikzumlAssocClassHPadding",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassMinimumWidth": {
+      "command": "tikzumlAssocClassMinimumWidth",
+      "snippet": "tikzumlAssocClassMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassName": {
+      "command": "tikzumlAssocClassName",
+      "snippet": "tikzumlAssocClassName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassNameOld": {
+      "command": "tikzumlAssocClassNameOld",
+      "snippet": "tikzumlAssocClassNameOld",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassNodeName": {
+      "command": "tikzumlAssocClassNodeName",
+      "snippet": "tikzumlAssocClassNodeName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassOperations": {
+      "command": "tikzumlAssocClassOperations",
+      "snippet": "tikzumlAssocClassOperations",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlassocclasspath": {
+      "command": "tikzumlassocclasspath",
+      "snippet": "tikzumlassocclasspath",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassPos": {
+      "command": "tikzumlAssocClassPos",
+      "snippet": "tikzumlAssocClassPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassRelationName": {
+      "command": "tikzumlAssocClassRelationName",
+      "snippet": "tikzumlAssocClassRelationName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassRelationNodeName": {
+      "command": "tikzumlAssocClassRelationNodeName",
+      "snippet": "tikzumlAssocClassRelationNodeName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassSrcAnchor": {
+      "command": "tikzumlAssocClassSrcAnchor",
+      "snippet": "tikzumlAssocClassSrcAnchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassSrcAnchorold": {
+      "command": "tikzumlAssocClassSrcAnchorold",
+      "snippet": "tikzumlAssocClassSrcAnchorold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassTemplateFillColor": {
+      "command": "tikzumlAssocClassTemplateFillColor",
+      "snippet": "tikzumlAssocClassTemplateFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassTemplateParam": {
+      "command": "tikzumlAssocClassTemplateParam",
+      "snippet": "tikzumlAssocClassTemplateParam",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassTextColor": {
+      "command": "tikzumlAssocClassTextColor",
+      "snippet": "tikzumlAssocClassTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassType": {
+      "command": "tikzumlAssocClassType",
+      "snippet": "tikzumlAssocClassType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassTypeTmp": {
+      "command": "tikzumlAssocClassTypeTmp",
+      "snippet": "tikzumlAssocClassTypeTmp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassVPadding": {
+      "command": "tikzumlAssocClassVPadding",
+      "snippet": "tikzumlAssocClassVPadding",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassWeight": {
+      "command": "tikzumlAssocClassWeight",
+      "snippet": "tikzumlAssocClassWeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlassocclassWithoutCoordsfalse": {
+      "command": "tikzumlassocclassWithoutCoordsfalse",
+      "snippet": "tikzumlassocclassWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlassocclassWithoutCoordstrue": {
+      "command": "tikzumlassocclassWithoutCoordstrue",
+      "snippet": "tikzumlassocclassWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassX": {
+      "command": "tikzumlAssocClassX",
+      "snippet": "tikzumlAssocClassX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlAssocClassY": {
+      "command": "tikzumlAssocClassY",
+      "snippet": "tikzumlAssocClassY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlBoundaryScale": {
+      "command": "tikzumlBoundaryScale",
+      "snippet": "tikzumlBoundaryScale",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallBottom": {
+      "command": "tikzumlCallBottom",
+      "snippet": "tikzumlCallBottom",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallBottomSrc": {
+      "command": "tikzumlCallBottomSrc",
+      "snippet": "tikzumlCallBottomSrc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallDefaultDT": {
+      "command": "tikzumlCallDefaultDT",
+      "snippet": "tikzumlCallDefaultDT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallDefaultFillColor": {
+      "command": "tikzumlCallDefaultFillColor",
+      "snippet": "tikzumlCallDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallDefaultPadding": {
+      "command": "tikzumlCallDefaultPadding",
+      "snippet": "tikzumlCallDefaultPadding",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallDefaultType": {
+      "command": "tikzumlCallDefaultType",
+      "snippet": "tikzumlCallDefaultType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallDrawColor": {
+      "command": "tikzumlCallDrawColor",
+      "snippet": "tikzumlCallDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallDT": {
+      "command": "tikzumlCallDT",
+      "snippet": "tikzumlCallDT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallDTold": {
+      "command": "tikzumlCallDTold",
+      "snippet": "tikzumlCallDTold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallEndNodeName": {
+      "command": "tikzumlCallEndNodeName",
+      "snippet": "tikzumlCallEndNodeName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallEndNodeNameold": {
+      "command": "tikzumlCallEndNodeNameold",
+      "snippet": "tikzumlCallEndNodeNameold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallFillColor": {
+      "command": "tikzumlCallFillColor",
+      "snippet": "tikzumlCallFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlcallheight": {
+      "command": "tikzumlcallheight",
+      "snippet": "tikzumlcallheight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlcallheightold": {
+      "command": "tikzumlcallheightold",
+      "snippet": "tikzumlcallheightold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallName": {
+      "command": "tikzumlCallName",
+      "snippet": "tikzumlCallName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallOp": {
+      "command": "tikzumlCallOp",
+      "snippet": "tikzumlCallOp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallPadding": {
+      "command": "tikzumlCallPadding",
+      "snippet": "tikzumlCallPadding",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallReturn": {
+      "command": "tikzumlCallReturn",
+      "snippet": "tikzumlCallReturn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlcallSrc": {
+      "command": "tikzumlcallSrc",
+      "snippet": "tikzumlcallSrc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallStartNodeName": {
+      "command": "tikzumlCallStartNodeName",
+      "snippet": "tikzumlCallStartNodeName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallStartNodeNameold": {
+      "command": "tikzumlCallStartNodeNameold",
+      "snippet": "tikzumlCallStartNodeNameold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlcallstyle": {
+      "command": "tikzumlcallstyle",
+      "snippet": "tikzumlcallstyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallTextColor": {
+      "command": "tikzumlCallTextColor",
+      "snippet": "tikzumlCallTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallType": {
+      "command": "tikzumlCallType",
+      "snippet": "tikzumlCallType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCallWithReturn": {
+      "command": "tikzumlCallWithReturn",
+      "snippet": "tikzumlCallWithReturn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassAttributes": {
+      "command": "tikzumlClassAttributes",
+      "snippet": "tikzumlClassAttributes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlclassCircleShapefalse": {
+      "command": "tikzumlclassCircleShapefalse",
+      "snippet": "tikzumlclassCircleShapefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlclassCircleShapetrue": {
+      "command": "tikzumlclassCircleShapetrue",
+      "snippet": "tikzumlclassCircleShapetrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassDefaultFillColor": {
+      "command": "tikzumlClassDefaultFillColor",
+      "snippet": "tikzumlClassDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassDefaultType": {
+      "command": "tikzumlClassDefaultType",
+      "snippet": "tikzumlClassDefaultType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassDefaultWidth": {
+      "command": "tikzumlClassDefaultWidth",
+      "snippet": "tikzumlClassDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassDrawColor": {
+      "command": "tikzumlClassDrawColor",
+      "snippet": "tikzumlClassDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassFillColor": {
+      "command": "tikzumlClassFillColor",
+      "snippet": "tikzumlClassFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassHPadding": {
+      "command": "tikzumlClassHPadding",
+      "snippet": "tikzumlClassHPadding",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassMinimumWidth": {
+      "command": "tikzumlClassMinimumWidth",
+      "snippet": "tikzumlClassMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassName": {
+      "command": "tikzumlClassName",
+      "snippet": "tikzumlClassName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassNameOld": {
+      "command": "tikzumlClassNameOld",
+      "snippet": "tikzumlClassNameOld",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassNodeName": {
+      "command": "tikzumlClassNodeName",
+      "snippet": "tikzumlClassNodeName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassOperations": {
+      "command": "tikzumlClassOperations",
+      "snippet": "tikzumlClassOperations",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassPos": {
+      "command": "tikzumlClassPos",
+      "snippet": "tikzumlClassPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlclassSimpleStylefalse": {
+      "command": "tikzumlclassSimpleStylefalse",
+      "snippet": "tikzumlclassSimpleStylefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlclassSimpleStyletrue": {
+      "command": "tikzumlclassSimpleStyletrue",
+      "snippet": "tikzumlclassSimpleStyletrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassTags": {
+      "command": "tikzumlClassTags",
+      "snippet": "tikzumlClassTags",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassTagsTmp": {
+      "command": "tikzumlClassTagsTmp",
+      "snippet": "tikzumlClassTagsTmp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassTemplateFillColor": {
+      "command": "tikzumlClassTemplateFillColor",
+      "snippet": "tikzumlClassTemplateFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassTemplateFillColorDefaultFillColor": {
+      "command": "tikzumlClassTemplateFillColorDefaultFillColor",
+      "snippet": "tikzumlClassTemplateFillColorDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassTemplateFillColorParam": {
+      "command": "tikzumlClassTemplateFillColorParam",
+      "snippet": "tikzumlClassTemplateFillColorParam",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassTextColor": {
+      "command": "tikzumlClassTextColor",
+      "snippet": "tikzumlClassTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassType": {
+      "command": "tikzumlClassType",
+      "snippet": "tikzumlClassType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassTypeTmp": {
+      "command": "tikzumlClassTypeTmp",
+      "snippet": "tikzumlClassTypeTmp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassVPadding": {
+      "command": "tikzumlClassVPadding",
+      "snippet": "tikzumlClassVPadding",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlclassWithoutCoordsfalse": {
+      "command": "tikzumlclassWithoutCoordsfalse",
+      "snippet": "tikzumlclassWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlclassWithoutCoordstrue": {
+      "command": "tikzumlclassWithoutCoordstrue",
+      "snippet": "tikzumlclassWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassX": {
+      "command": "tikzumlClassX",
+      "snippet": "tikzumlClassX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlClassY": {
+      "command": "tikzumlClassY",
+      "snippet": "tikzumlClassY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationAlign": {
+      "command": "tikzumlCNRelationAlign",
+      "snippet": "tikzumlCNRelationAlign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationAlignT": {
+      "command": "tikzumlCNRelationAlignT",
+      "snippet": "tikzumlCNRelationAlignT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationAlignTO": {
+      "command": "tikzumlCNRelationAlignTO",
+      "snippet": "tikzumlCNRelationAlignTO",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationAlignTT": {
+      "command": "tikzumlCNRelationAlignTT",
+      "snippet": "tikzumlCNRelationAlignTT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationAttrName": {
+      "command": "tikzumlCNRelationAttrName",
+      "snippet": "tikzumlCNRelationAttrName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationAttrNameT": {
+      "command": "tikzumlCNRelationAttrNameT",
+      "snippet": "tikzumlCNRelationAttrNameT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationAttrNameTO": {
+      "command": "tikzumlCNRelationAttrNameTO",
+      "snippet": "tikzumlCNRelationAttrNameTO",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationAttrNameTT": {
+      "command": "tikzumlCNRelationAttrNameTT",
+      "snippet": "tikzumlCNRelationAttrNameTT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationDestAnchor": {
+      "command": "tikzumlCNRelationDestAnchor",
+      "snippet": "tikzumlCNRelationDestAnchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationDestAnchorold": {
+      "command": "tikzumlCNRelationDestAnchorold",
+      "snippet": "tikzumlCNRelationDestAnchorold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationMultiplicity": {
+      "command": "tikzumlCNRelationMultiplicity",
+      "snippet": "tikzumlCNRelationMultiplicity",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationMultiplicityT": {
+      "command": "tikzumlCNRelationMultiplicityT",
+      "snippet": "tikzumlCNRelationMultiplicityT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationMultiplicityTO": {
+      "command": "tikzumlCNRelationMultiplicityTO",
+      "snippet": "tikzumlCNRelationMultiplicityTO",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationMultiplicityTT": {
+      "command": "tikzumlCNRelationMultiplicityTT",
+      "snippet": "tikzumlCNRelationMultiplicityTT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationName": {
+      "command": "tikzumlCNRelationName",
+      "snippet": "tikzumlCNRelationName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationPositionT": {
+      "command": "tikzumlCNRelationPositionT",
+      "snippet": "tikzumlCNRelationPositionT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationPositionTO": {
+      "command": "tikzumlCNRelationPositionTO",
+      "snippet": "tikzumlCNRelationPositionTO",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationPositionTT": {
+      "command": "tikzumlCNRelationPositionTT",
+      "snippet": "tikzumlCNRelationPositionTT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationSrcAnchor": {
+      "command": "tikzumlCNRelationSrcAnchor",
+      "snippet": "tikzumlCNRelationSrcAnchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationSrcAnchorold": {
+      "command": "tikzumlCNRelationSrcAnchorold",
+      "snippet": "tikzumlCNRelationSrcAnchorold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationStereoType": {
+      "command": "tikzumlCNRelationStereoType",
+      "snippet": "tikzumlCNRelationStereoType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCNRelationStyle": {
+      "command": "tikzumlCNRelationStyle",
+      "snippet": "tikzumlCNRelationStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlComponentDefaultFillColor": {
+      "command": "tikzumlComponentDefaultFillColor",
+      "snippet": "tikzumlComponentDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlComponentDefaultWidth": {
+      "command": "tikzumlComponentDefaultWidth",
+      "snippet": "tikzumlComponentDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlComponentDrawColor": {
+      "command": "tikzumlComponentDrawColor",
+      "snippet": "tikzumlComponentDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlComponentFillColor": {
+      "command": "tikzumlComponentFillColor",
+      "snippet": "tikzumlComponentFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlComponentFitTmp": {
+      "command": "tikzumlComponentFitTmp",
+      "snippet": "tikzumlComponentFitTmp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlComponentLayersNum": {
+      "command": "tikzumlComponentLayersNum",
+      "snippet": "tikzumlComponentLayersNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlComponentMinimumWidth": {
+      "command": "tikzumlComponentMinimumWidth",
+      "snippet": "tikzumlComponentMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlComponentName": {
+      "command": "tikzumlComponentName",
+      "snippet": "tikzumlComponentName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlComponentScale": {
+      "command": "tikzumlComponentScale",
+      "snippet": "tikzumlComponentScale",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlComponentTextColor": {
+      "command": "tikzumlComponentTextColor",
+      "snippet": "tikzumlComponentTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlcomponentWithoutCoordsfalse": {
+      "command": "tikzumlcomponentWithoutCoordsfalse",
+      "snippet": "tikzumlcomponentWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlcomponentWithoutCoordstrue": {
+      "command": "tikzumlcomponentWithoutCoordstrue",
+      "snippet": "tikzumlcomponentWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlComponentXShift": {
+      "command": "tikzumlComponentXShift",
+      "snippet": "tikzumlComponentXShift",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlComponentYShift": {
+      "command": "tikzumlComponentYShift",
+      "snippet": "tikzumlComponentYShift",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlControlScale": {
+      "command": "tikzumlControlScale",
+      "snippet": "tikzumlControlScale",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallClass": {
+      "command": "tikzumlCreateCallClass",
+      "snippet": "tikzumlCreateCallClass",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallDefaultDT": {
+      "command": "tikzumlCreateCallDefaultDT",
+      "snippet": "tikzumlCreateCallDefaultDT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallDrawColor": {
+      "command": "tikzumlCreateCallDrawColor",
+      "snippet": "tikzumlCreateCallDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallDT": {
+      "command": "tikzumlCreateCallDT",
+      "snippet": "tikzumlCreateCallDT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallDTold": {
+      "command": "tikzumlCreateCallDTold",
+      "snippet": "tikzumlCreateCallDTold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallFillColor": {
+      "command": "tikzumlCreateCallFillColor",
+      "snippet": "tikzumlCreateCallFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallName": {
+      "command": "tikzumlCreateCallName",
+      "snippet": "tikzumlCreateCallName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlcreatecallNoDDotsfalse": {
+      "command": "tikzumlcreatecallNoDDotsfalse",
+      "snippet": "tikzumlcreatecallNoDDotsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlcreatecallNoDDotstrue": {
+      "command": "tikzumlcreatecallNoDDotstrue",
+      "snippet": "tikzumlcreatecallNoDDotstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallObjectDrawColor": {
+      "command": "tikzumlCreateCallObjectDrawColor",
+      "snippet": "tikzumlCreateCallObjectDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallObjectFillColor": {
+      "command": "tikzumlCreateCallObjectFillColor",
+      "snippet": "tikzumlCreateCallObjectFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallObjectSrc": {
+      "command": "tikzumlCreateCallObjectSrc",
+      "snippet": "tikzumlCreateCallObjectSrc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallObjectTextColor": {
+      "command": "tikzumlCreateCallObjectTextColor",
+      "snippet": "tikzumlCreateCallObjectTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallStereo": {
+      "command": "tikzumlCreateCallStereo",
+      "snippet": "tikzumlCreateCallStereo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallTextColor": {
+      "command": "tikzumlCreateCallTextColor",
+      "snippet": "tikzumlCreateCallTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlCreateCallX": {
+      "command": "tikzumlCreateCallX",
+      "snippet": "tikzumlCreateCallX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlDatabaseScale": {
+      "command": "tikzumlDatabaseScale",
+      "snippet": "tikzumlDatabaseScale",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlDefaultDrawColor": {
+      "command": "tikzumlDefaultDrawColor",
+      "snippet": "tikzumlDefaultDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlDefaultFont": {
+      "command": "tikzumlDefaultFont",
+      "snippet": "tikzumlDefaultFont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlDefaultTextColor": {
+      "command": "tikzumlDefaultTextColor",
+      "snippet": "tikzumlDefaultTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlDefaultX": {
+      "command": "tikzumlDefaultX",
+      "snippet": "tikzumlDefaultX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlDefaultY": {
+      "command": "tikzumlDefaultY",
+      "snippet": "tikzumlDefaultY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlDelegateConnectorWithEndPort": {
+      "command": "tikzumlDelegateConnectorWithEndPort",
+      "snippet": "tikzumlDelegateConnectorWithEndPort",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlDelegateConnectorWithStartPort": {
+      "command": "tikzumlDelegateConnectorWithStartPort",
+      "snippet": "tikzumlDelegateConnectorWithStartPort",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlDestClassName": {
+      "command": "tikzumlDestClassName",
+      "snippet": "tikzumlDestClassName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlDestClassNodeName": {
+      "command": "tikzumlDestClassNodeName",
+      "snippet": "tikzumlDestClassNodeName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumldrawcall": {
+      "command": "tikzumldrawcall",
+      "snippet": "tikzumldrawcall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlEntityScale": {
+      "command": "tikzumlEntityScale",
+      "snippet": "tikzumlEntityScale",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlfillcall": {
+      "command": "tikzumlfillcall",
+      "snippet": "tikzumlfillcall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFirstArc": {
+      "command": "tikzumlFirstArc",
+      "snippet": "tikzumlFirstArc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentDefaultFillColor": {
+      "command": "tikzumlFragmentDefaultFillColor",
+      "snippet": "tikzumlFragmentDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentDefaultType": {
+      "command": "tikzumlFragmentDefaultType",
+      "snippet": "tikzumlFragmentDefaultType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentDefaultXSep": {
+      "command": "tikzumlFragmentDefaultXSep",
+      "snippet": "tikzumlFragmentDefaultXSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentDefaultYSep": {
+      "command": "tikzumlFragmentDefaultYSep",
+      "snippet": "tikzumlFragmentDefaultYSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentDrawColor": {
+      "command": "tikzumlFragmentDrawColor",
+      "snippet": "tikzumlFragmentDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentFillColor": {
+      "command": "tikzumlFragmentFillColor",
+      "snippet": "tikzumlFragmentFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentFitOld": {
+      "command": "tikzumlFragmentFitOld",
+      "snippet": "tikzumlFragmentFitOld",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentLabel": {
+      "command": "tikzumlFragmentLabel",
+      "snippet": "tikzumlFragmentLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentLabelold": {
+      "command": "tikzumlFragmentLabelold",
+      "snippet": "tikzumlFragmentLabelold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentLayersNum": {
+      "command": "tikzumlFragmentLayersNum",
+      "snippet": "tikzumlFragmentLayersNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentName": {
+      "command": "tikzumlFragmentName",
+      "snippet": "tikzumlFragmentName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentTextColor": {
+      "command": "tikzumlFragmentTextColor",
+      "snippet": "tikzumlFragmentTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentType": {
+      "command": "tikzumlFragmentType",
+      "snippet": "tikzumlFragmentType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentXSep": {
+      "command": "tikzumlFragmentXSep",
+      "snippet": "tikzumlFragmentXSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlFragmentYSep": {
+      "command": "tikzumlFragmentYSep",
+      "snippet": "tikzumlFragmentYSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlIdList": {
+      "command": "tikzumlIdList",
+      "snippet": "tikzumlIdList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlIdListOld": {
+      "command": "tikzumlIdListOld",
+      "snippet": "tikzumlIdListOld",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlInCreateCall": {
+      "command": "tikzumlInCreateCall",
+      "snippet": "tikzumlInCreateCall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlInterfaceWithPort": {
+      "command": "tikzumlInterfaceWithPort",
+      "snippet": "tikzumlInterfaceWithPort",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlLastArc": {
+      "command": "tikzumlLastArc",
+      "snippet": "tikzumlLastArc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlMidOneArc": {
+      "command": "tikzumlMidOneArc",
+      "snippet": "tikzumlMidOneArc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlMidTwoArc": {
+      "command": "tikzumlMidTwoArc",
+      "snippet": "tikzumlMidTwoArc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNaryName": {
+      "command": "tikzumlNaryName",
+      "snippet": "tikzumlNaryName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNaryNodeAnchor": {
+      "command": "tikzumlNaryNodeAnchor",
+      "snippet": "tikzumlNaryNodeAnchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNaryNodeDefaultWidth": {
+      "command": "tikzumlNaryNodeDefaultWidth",
+      "snippet": "tikzumlNaryNodeDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNaryNodeDrawColor": {
+      "command": "tikzumlNaryNodeDrawColor",
+      "snippet": "tikzumlNaryNodeDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNaryNodeFillColor": {
+      "command": "tikzumlNaryNodeFillColor",
+      "snippet": "tikzumlNaryNodeFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNaryNodeLabelPos": {
+      "command": "tikzumlNaryNodeLabelPos",
+      "snippet": "tikzumlNaryNodeLabelPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNaryNodeMinimumWidth": {
+      "command": "tikzumlNaryNodeMinimumWidth",
+      "snippet": "tikzumlNaryNodeMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNaryNodeName": {
+      "command": "tikzumlNaryNodeName",
+      "snippet": "tikzumlNaryNodeName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNarynodePos": {
+      "command": "tikzumlNarynodePos",
+      "snippet": "tikzumlNarynodePos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNaryNodeTextColor": {
+      "command": "tikzumlNaryNodeTextColor",
+      "snippet": "tikzumlNaryNodeTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNaryNodeWidth": {
+      "command": "tikzumlNaryNodeWidth",
+      "snippet": "tikzumlNaryNodeWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNaryNodeX": {
+      "command": "tikzumlNaryNodeX",
+      "snippet": "tikzumlNaryNodeX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNaryNodeY": {
+      "command": "tikzumlNaryNodeY",
+      "snippet": "tikzumlNaryNodeY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNestingSymbolSize": {
+      "command": "tikzumlNestingSymbolSize",
+      "snippet": "tikzumlNestingSymbolSize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteArm": {
+      "command": "tikzumlNoteArm",
+      "snippet": "tikzumlNoteArm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteDefaultFillColor": {
+      "command": "tikzumlNoteDefaultFillColor",
+      "snippet": "tikzumlNoteDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteDefaultWidth": {
+      "command": "tikzumlNoteDefaultWidth",
+      "snippet": "tikzumlNoteDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteDestAnchor": {
+      "command": "tikzumlNoteDestAnchor",
+      "snippet": "tikzumlNoteDestAnchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteDestAnchorold": {
+      "command": "tikzumlNoteDestAnchorold",
+      "snippet": "tikzumlNoteDestAnchorold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteDrawColor": {
+      "command": "tikzumlNoteDrawColor",
+      "snippet": "tikzumlNoteDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteFillColor": {
+      "command": "tikzumlNoteFillColor",
+      "snippet": "tikzumlNoteFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteGeometry": {
+      "command": "tikzumlNoteGeometry",
+      "snippet": "tikzumlNoteGeometry",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlnotepath": {
+      "command": "tikzumlnotepath",
+      "snippet": "tikzumlnotepath",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteSrcAnchor": {
+      "command": "tikzumlNoteSrcAnchor",
+      "snippet": "tikzumlNoteSrcAnchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteSrcAnchorold": {
+      "command": "tikzumlNoteSrcAnchorold",
+      "snippet": "tikzumlNoteSrcAnchorold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteTextColor": {
+      "command": "tikzumlNoteTextColor",
+      "snippet": "tikzumlNoteTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteTextWidth": {
+      "command": "tikzumlNoteTextWidth",
+      "snippet": "tikzumlNoteTextWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteWeight": {
+      "command": "tikzumlNoteWeight",
+      "snippet": "tikzumlNoteWeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlnoteWithoutCoordsfalse": {
+      "command": "tikzumlnoteWithoutCoordsfalse",
+      "snippet": "tikzumlnoteWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlnoteWithoutCoordstrue": {
+      "command": "tikzumlnoteWithoutCoordstrue",
+      "snippet": "tikzumlnoteWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteX": {
+      "command": "tikzumlNoteX",
+      "snippet": "tikzumlNoteX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlNoteY": {
+      "command": "tikzumlNoteY",
+      "snippet": "tikzumlNoteY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlObjectClass": {
+      "command": "tikzumlObjectClass",
+      "snippet": "tikzumlObjectClass",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlObjectDefaultFillColor": {
+      "command": "tikzumlObjectDefaultFillColor",
+      "snippet": "tikzumlObjectDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlObjectDefaultStereo": {
+      "command": "tikzumlObjectDefaultStereo",
+      "snippet": "tikzumlObjectDefaultStereo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlObjectDrawColor": {
+      "command": "tikzumlObjectDrawColor",
+      "snippet": "tikzumlObjectDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlObjectFillColor": {
+      "command": "tikzumlObjectFillColor",
+      "snippet": "tikzumlObjectFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlObjectName": {
+      "command": "tikzumlObjectName",
+      "snippet": "tikzumlObjectName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlobjectNoDDotsfalse": {
+      "command": "tikzumlobjectNoDDotsfalse",
+      "snippet": "tikzumlobjectNoDDotsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlobjectNoDDotstrue": {
+      "command": "tikzumlobjectNoDDotstrue",
+      "snippet": "tikzumlobjectNoDDotstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlObjectScale": {
+      "command": "tikzumlObjectScale",
+      "snippet": "tikzumlObjectScale",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlObjectStereo": {
+      "command": "tikzumlObjectStereo",
+      "snippet": "tikzumlObjectStereo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlObjectTextColor": {
+      "command": "tikzumlObjectTextColor",
+      "snippet": "tikzumlObjectTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlObjectY": {
+      "command": "tikzumlObjectY",
+      "snippet": "tikzumlObjectY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageDefaultFillColor": {
+      "command": "tikzumlPackageDefaultFillColor",
+      "snippet": "tikzumlPackageDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageDefaultType": {
+      "command": "tikzumlPackageDefaultType",
+      "snippet": "tikzumlPackageDefaultType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageDrawColor": {
+      "command": "tikzumlPackageDrawColor",
+      "snippet": "tikzumlPackageDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageFillColor": {
+      "command": "tikzumlPackageFillColor",
+      "snippet": "tikzumlPackageFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageFitOld": {
+      "command": "tikzumlPackageFitOld",
+      "snippet": "tikzumlPackageFitOld",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageFitTmp": {
+      "command": "tikzumlPackageFitTmp",
+      "snippet": "tikzumlPackageFitTmp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageLayersNum": {
+      "command": "tikzumlPackageLayersNum",
+      "snippet": "tikzumlPackageLayersNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageName": {
+      "command": "tikzumlPackageName",
+      "snippet": "tikzumlPackageName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlpackageSimpleStylefalse": {
+      "command": "tikzumlpackageSimpleStylefalse",
+      "snippet": "tikzumlpackageSimpleStylefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlpackageSimpleStyletrue": {
+      "command": "tikzumlpackageSimpleStyletrue",
+      "snippet": "tikzumlpackageSimpleStyletrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageTextColor": {
+      "command": "tikzumlPackageTextColor",
+      "snippet": "tikzumlPackageTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageType": {
+      "command": "tikzumlPackageType",
+      "snippet": "tikzumlPackageType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageTypeTmp": {
+      "command": "tikzumlPackageTypeTmp",
+      "snippet": "tikzumlPackageTypeTmp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlpackageWithoutCoordsfalse": {
+      "command": "tikzumlpackageWithoutCoordsfalse",
+      "snippet": "tikzumlpackageWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlpackageWithoutCoordstrue": {
+      "command": "tikzumlpackageWithoutCoordstrue",
+      "snippet": "tikzumlpackageWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageXShift": {
+      "command": "tikzumlPackageXShift",
+      "snippet": "tikzumlPackageXShift",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPackageYShift": {
+      "command": "tikzumlPackageYShift",
+      "snippet": "tikzumlPackageYShift",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPath": {
+      "command": "tikzumlPath",
+      "snippet": "tikzumlPath",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPicturedActorScale": {
+      "command": "tikzumlPicturedActorScale",
+      "snippet": "tikzumlPicturedActorScale",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPortDefaultFillColor": {
+      "command": "tikzumlPortDefaultFillColor",
+      "snippet": "tikzumlPortDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPortDefaultWidth": {
+      "command": "tikzumlPortDefaultWidth",
+      "snippet": "tikzumlPortDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPortDrawColor": {
+      "command": "tikzumlPortDrawColor",
+      "snippet": "tikzumlPortDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPortFillColor": {
+      "command": "tikzumlPortFillColor",
+      "snippet": "tikzumlPortFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlPortWidth": {
+      "command": "tikzumlPortWidth",
+      "snippet": "tikzumlPortWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlProvidedInterfaceDefaultDistance": {
+      "command": "tikzumlProvidedInterfaceDefaultDistance",
+      "snippet": "tikzumlProvidedInterfaceDefaultDistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlProvidedInterfaceDefaultPadding": {
+      "command": "tikzumlProvidedInterfaceDefaultPadding",
+      "snippet": "tikzumlProvidedInterfaceDefaultPadding",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlProvidedInterfaceDefaultWidth": {
+      "command": "tikzumlProvidedInterfaceDefaultWidth",
+      "snippet": "tikzumlProvidedInterfaceDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlProvidedInterfaceDistance": {
+      "command": "tikzumlProvidedInterfaceDistance",
+      "snippet": "tikzumlProvidedInterfaceDistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlProvidedInterfaceDrawColor": {
+      "command": "tikzumlProvidedInterfaceDrawColor",
+      "snippet": "tikzumlProvidedInterfaceDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlProvidedInterfaceFillColor": {
+      "command": "tikzumlProvidedInterfaceFillColor",
+      "snippet": "tikzumlProvidedInterfaceFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlProvidedInterfaceLabel": {
+      "command": "tikzumlProvidedInterfaceLabel",
+      "snippet": "tikzumlProvidedInterfaceLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlProvidedInterfaceName": {
+      "command": "tikzumlProvidedInterfaceName",
+      "snippet": "tikzumlProvidedInterfaceName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlProvidedInterfacePadding": {
+      "command": "tikzumlProvidedInterfacePadding",
+      "snippet": "tikzumlProvidedInterfacePadding",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlProvidedInterfaceWidth": {
+      "command": "tikzumlProvidedInterfaceWidth",
+      "snippet": "tikzumlProvidedInterfaceWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationAlign": {
+      "command": "tikzumlRelationAlign",
+      "snippet": "tikzumlRelationAlign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationAlignT": {
+      "command": "tikzumlRelationAlignT",
+      "snippet": "tikzumlRelationAlignT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationAlignTO": {
+      "command": "tikzumlRelationAlignTO",
+      "snippet": "tikzumlRelationAlignTO",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationAlignTT": {
+      "command": "tikzumlRelationAlignTT",
+      "snippet": "tikzumlRelationAlignTT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationArmO": {
+      "command": "tikzumlRelationArmO",
+      "snippet": "tikzumlRelationArmO",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationArmT": {
+      "command": "tikzumlRelationArmT",
+      "snippet": "tikzumlRelationArmT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationAttrName": {
+      "command": "tikzumlRelationAttrName",
+      "snippet": "tikzumlRelationAttrName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationAttrNameT": {
+      "command": "tikzumlRelationAttrNameT",
+      "snippet": "tikzumlRelationAttrNameT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationAttrNameTO": {
+      "command": "tikzumlRelationAttrNameTO",
+      "snippet": "tikzumlRelationAttrNameTO",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationAttrNameTT": {
+      "command": "tikzumlRelationAttrNameTT",
+      "snippet": "tikzumlRelationAttrNameTT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationDefaultAngleO": {
+      "command": "tikzumlRelationDefaultAngleO",
+      "snippet": "tikzumlRelationDefaultAngleO",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationDefaultAngleT": {
+      "command": "tikzumlRelationDefaultAngleT",
+      "snippet": "tikzumlRelationDefaultAngleT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationDefaultGeometry": {
+      "command": "tikzumlRelationDefaultGeometry",
+      "snippet": "tikzumlRelationDefaultGeometry",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationDefaultLoopSize": {
+      "command": "tikzumlRelationDefaultLoopSize",
+      "snippet": "tikzumlRelationDefaultLoopSize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationDefaultPosO": {
+      "command": "tikzumlRelationDefaultPosO",
+      "snippet": "tikzumlRelationDefaultPosO",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationDefaultPosStereo": {
+      "command": "tikzumlRelationDefaultPosStereo",
+      "snippet": "tikzumlRelationDefaultPosStereo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationDefaultPosT": {
+      "command": "tikzumlRelationDefaultPosT",
+      "snippet": "tikzumlRelationDefaultPosT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationDefaultWeight": {
+      "command": "tikzumlRelationDefaultWeight",
+      "snippet": "tikzumlRelationDefaultWeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationDestAnchor": {
+      "command": "tikzumlRelationDestAnchor",
+      "snippet": "tikzumlRelationDestAnchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationDestAnchorold": {
+      "command": "tikzumlRelationDestAnchorold",
+      "snippet": "tikzumlRelationDestAnchorold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationEndAngle": {
+      "command": "tikzumlRelationEndAngle",
+      "snippet": "tikzumlRelationEndAngle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationGeometry": {
+      "command": "tikzumlRelationGeometry",
+      "snippet": "tikzumlRelationGeometry",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationLoopSize": {
+      "command": "tikzumlRelationLoopSize",
+      "snippet": "tikzumlRelationLoopSize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationMultiplicity": {
+      "command": "tikzumlRelationMultiplicity",
+      "snippet": "tikzumlRelationMultiplicity",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationMultiplicityT": {
+      "command": "tikzumlRelationMultiplicityT",
+      "snippet": "tikzumlRelationMultiplicityT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationMultiplicityTO": {
+      "command": "tikzumlRelationMultiplicityTO",
+      "snippet": "tikzumlRelationMultiplicityTO",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationMultiplicityTT": {
+      "command": "tikzumlRelationMultiplicityTT",
+      "snippet": "tikzumlRelationMultiplicityTT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationName": {
+      "command": "tikzumlRelationName",
+      "snippet": "tikzumlRelationName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationPositionT": {
+      "command": "tikzumlRelationPositionT",
+      "snippet": "tikzumlRelationPositionT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationPositionTO": {
+      "command": "tikzumlRelationPositionTO",
+      "snippet": "tikzumlRelationPositionTO",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationPositionTT": {
+      "command": "tikzumlRelationPositionTT",
+      "snippet": "tikzumlRelationPositionTT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationRecursiveDirectionEnd": {
+      "command": "tikzumlRelationRecursiveDirectionEnd",
+      "snippet": "tikzumlRelationRecursiveDirectionEnd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationRecursiveDirectionStart": {
+      "command": "tikzumlRelationRecursiveDirectionStart",
+      "snippet": "tikzumlRelationRecursiveDirectionStart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationRecursiveMode": {
+      "command": "tikzumlRelationRecursiveMode",
+      "snippet": "tikzumlRelationRecursiveMode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationSrcAnchor": {
+      "command": "tikzumlRelationSrcAnchor",
+      "snippet": "tikzumlRelationSrcAnchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationSrcAnchorold": {
+      "command": "tikzumlRelationSrcAnchorold",
+      "snippet": "tikzumlRelationSrcAnchorold",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationStartAngle": {
+      "command": "tikzumlRelationStartAngle",
+      "snippet": "tikzumlRelationStartAngle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationStereoType": {
+      "command": "tikzumlRelationStereoType",
+      "snippet": "tikzumlRelationStereoType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationStyle": {
+      "command": "tikzumlRelationStyle",
+      "snippet": "tikzumlRelationStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRelationWeight": {
+      "command": "tikzumlRelationWeight",
+      "snippet": "tikzumlRelationWeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRequiredInterfaceDefaultDistance": {
+      "command": "tikzumlRequiredInterfaceDefaultDistance",
+      "snippet": "tikzumlRequiredInterfaceDefaultDistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRequiredInterfaceDefaultPadding": {
+      "command": "tikzumlRequiredInterfaceDefaultPadding",
+      "snippet": "tikzumlRequiredInterfaceDefaultPadding",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRequiredInterfaceDefaultWidth": {
+      "command": "tikzumlRequiredInterfaceDefaultWidth",
+      "snippet": "tikzumlRequiredInterfaceDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRequiredInterfaceDistance": {
+      "command": "tikzumlRequiredInterfaceDistance",
+      "snippet": "tikzumlRequiredInterfaceDistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRequiredInterfaceDrawColor": {
+      "command": "tikzumlRequiredInterfaceDrawColor",
+      "snippet": "tikzumlRequiredInterfaceDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRequiredInterfaceFillColor": {
+      "command": "tikzumlRequiredInterfaceFillColor",
+      "snippet": "tikzumlRequiredInterfaceFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRequiredInterfaceLabel": {
+      "command": "tikzumlRequiredInterfaceLabel",
+      "snippet": "tikzumlRequiredInterfaceLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRequiredInterfaceName": {
+      "command": "tikzumlRequiredInterfaceName",
+      "snippet": "tikzumlRequiredInterfaceName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRequiredInterfacePadding": {
+      "command": "tikzumlRequiredInterfacePadding",
+      "snippet": "tikzumlRequiredInterfacePadding",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlRequiredInterfaceWidth": {
+      "command": "tikzumlRequiredInterfaceWidth",
+      "snippet": "tikzumlRequiredInterfaceWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSDNodeDT": {
+      "command": "tikzumlSDNodeDT",
+      "snippet": "tikzumlSDNodeDT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSDNodeName": {
+      "command": "tikzumlSDNodeName",
+      "snippet": "tikzumlSDNodeName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSimpleInterfaceDefaultWidth": {
+      "command": "tikzumlSimpleInterfaceDefaultWidth",
+      "snippet": "tikzumlSimpleInterfaceDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlskipescape[]{}{}": {
+      "command": "tikzumlskipescape[]{}{}",
+      "snippet": "tikzumlskipescape[${3:opt}]{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlskipescape{}{}": {
+      "command": "tikzumlskipescape{}{}",
+      "snippet": "tikzumlskipescape{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSrcClassName": {
+      "command": "tikzumlSrcClassName",
+      "snippet": "tikzumlSrcClassName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSrcClassNodeName": {
+      "command": "tikzumlSrcClassNodeName",
+      "snippet": "tikzumlSrcClassNodeName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstatebodyinnerysep": {
+      "command": "tikzumlstatebodyinnerysep",
+      "snippet": "tikzumlstatebodyinnerysep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDecisionColor": {
+      "command": "tikzumlStateDecisionColor",
+      "snippet": "tikzumlStateDecisionColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDecisionDefaultWidth": {
+      "command": "tikzumlStateDecisionDefaultWidth",
+      "snippet": "tikzumlStateDecisionDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDecisionMinimumWidth": {
+      "command": "tikzumlStateDecisionMinimumWidth",
+      "snippet": "tikzumlStateDecisionMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDecisionName": {
+      "command": "tikzumlStateDecisionName",
+      "snippet": "tikzumlStateDecisionName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDecisionPos": {
+      "command": "tikzumlStateDecisionPos",
+      "snippet": "tikzumlStateDecisionPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstatedecisionWithoutCoordsfalse": {
+      "command": "tikzumlstatedecisionWithoutCoordsfalse",
+      "snippet": "tikzumlstatedecisionWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstatedecisionWithoutCoordstrue": {
+      "command": "tikzumlstatedecisionWithoutCoordstrue",
+      "snippet": "tikzumlstatedecisionWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDecisionX": {
+      "command": "tikzumlStateDecisionX",
+      "snippet": "tikzumlStateDecisionX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDecisionY": {
+      "command": "tikzumlStateDecisionY",
+      "snippet": "tikzumlStateDecisionY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDeepHistoryColor": {
+      "command": "tikzumlStateDeepHistoryColor",
+      "snippet": "tikzumlStateDeepHistoryColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDeepHistoryDefaultWidth": {
+      "command": "tikzumlStateDeepHistoryDefaultWidth",
+      "snippet": "tikzumlStateDeepHistoryDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDeepHistoryMinimumWidth": {
+      "command": "tikzumlStateDeepHistoryMinimumWidth",
+      "snippet": "tikzumlStateDeepHistoryMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDeepHistoryName": {
+      "command": "tikzumlStateDeepHistoryName",
+      "snippet": "tikzumlStateDeepHistoryName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDeepHistoryPos": {
+      "command": "tikzumlStateDeepHistoryPos",
+      "snippet": "tikzumlStateDeepHistoryPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstatedeephistoryWithoutCoordsfalse": {
+      "command": "tikzumlstatedeephistoryWithoutCoordsfalse",
+      "snippet": "tikzumlstatedeephistoryWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstatedeephistoryWithoutCoordstrue": {
+      "command": "tikzumlstatedeephistoryWithoutCoordstrue",
+      "snippet": "tikzumlstatedeephistoryWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDeepHistoryX": {
+      "command": "tikzumlStateDeepHistoryX",
+      "snippet": "tikzumlStateDeepHistoryX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDeepHistoryY": {
+      "command": "tikzumlStateDeepHistoryY",
+      "snippet": "tikzumlStateDeepHistoryY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDefaultFillColor": {
+      "command": "tikzumlStateDefaultFillColor",
+      "snippet": "tikzumlStateDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDefaultWidth": {
+      "command": "tikzumlStateDefaultWidth",
+      "snippet": "tikzumlStateDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDo": {
+      "command": "tikzumlStateDo",
+      "snippet": "tikzumlStateDo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateDrawColor": {
+      "command": "tikzumlStateDrawColor",
+      "snippet": "tikzumlStateDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEndColor": {
+      "command": "tikzumlStateEndColor",
+      "snippet": "tikzumlStateEndColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEndDefaultWidth": {
+      "command": "tikzumlStateEndDefaultWidth",
+      "snippet": "tikzumlStateEndDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEndMinimumWidth": {
+      "command": "tikzumlStateEndMinimumWidth",
+      "snippet": "tikzumlStateEndMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEndName": {
+      "command": "tikzumlStateEndName",
+      "snippet": "tikzumlStateEndName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEndPos": {
+      "command": "tikzumlStateEndPos",
+      "snippet": "tikzumlStateEndPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstateendWithoutCoordsfalse": {
+      "command": "tikzumlstateendWithoutCoordsfalse",
+      "snippet": "tikzumlstateendWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstateendWithoutCoordstrue": {
+      "command": "tikzumlstateendWithoutCoordstrue",
+      "snippet": "tikzumlstateendWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEndX": {
+      "command": "tikzumlStateEndX",
+      "snippet": "tikzumlStateEndX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEndY": {
+      "command": "tikzumlStateEndY",
+      "snippet": "tikzumlStateEndY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEnterColor": {
+      "command": "tikzumlStateEnterColor",
+      "snippet": "tikzumlStateEnterColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEnterDefaultWidth": {
+      "command": "tikzumlStateEnterDefaultWidth",
+      "snippet": "tikzumlStateEnterDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEnterMinimumWidth": {
+      "command": "tikzumlStateEnterMinimumWidth",
+      "snippet": "tikzumlStateEnterMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEnterName": {
+      "command": "tikzumlStateEnterName",
+      "snippet": "tikzumlStateEnterName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEnterPos": {
+      "command": "tikzumlStateEnterPos",
+      "snippet": "tikzumlStateEnterPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstateenterWithoutCoordsfalse": {
+      "command": "tikzumlstateenterWithoutCoordsfalse",
+      "snippet": "tikzumlstateenterWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstateenterWithoutCoordstrue": {
+      "command": "tikzumlstateenterWithoutCoordstrue",
+      "snippet": "tikzumlstateenterWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEnterX": {
+      "command": "tikzumlStateEnterX",
+      "snippet": "tikzumlStateEnterX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEnterY": {
+      "command": "tikzumlStateEnterY",
+      "snippet": "tikzumlStateEnterY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateEntry": {
+      "command": "tikzumlStateEntry",
+      "snippet": "tikzumlStateEntry",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateExit": {
+      "command": "tikzumlStateExit",
+      "snippet": "tikzumlStateExit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateExitColor": {
+      "command": "tikzumlStateExitColor",
+      "snippet": "tikzumlStateExitColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateExitDefaultWidth": {
+      "command": "tikzumlStateExitDefaultWidth",
+      "snippet": "tikzumlStateExitDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateExitMinimumWidth": {
+      "command": "tikzumlStateExitMinimumWidth",
+      "snippet": "tikzumlStateExitMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateExitName": {
+      "command": "tikzumlStateExitName",
+      "snippet": "tikzumlStateExitName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateExitPos": {
+      "command": "tikzumlStateExitPos",
+      "snippet": "tikzumlStateExitPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstateexitWithoutCoordsfalse": {
+      "command": "tikzumlstateexitWithoutCoordsfalse",
+      "snippet": "tikzumlstateexitWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstateexitWithoutCoordstrue": {
+      "command": "tikzumlstateexitWithoutCoordstrue",
+      "snippet": "tikzumlstateexitWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateExitX": {
+      "command": "tikzumlStateExitX",
+      "snippet": "tikzumlStateExitX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateExitY": {
+      "command": "tikzumlStateExitY",
+      "snippet": "tikzumlStateExitY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateFillColor": {
+      "command": "tikzumlStateFillColor",
+      "snippet": "tikzumlStateFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateFinalColor": {
+      "command": "tikzumlStateFinalColor",
+      "snippet": "tikzumlStateFinalColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateFinalDefaultWidth": {
+      "command": "tikzumlStateFinalDefaultWidth",
+      "snippet": "tikzumlStateFinalDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateFinalMinimumWidth": {
+      "command": "tikzumlStateFinalMinimumWidth",
+      "snippet": "tikzumlStateFinalMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateFinalName": {
+      "command": "tikzumlStateFinalName",
+      "snippet": "tikzumlStateFinalName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateFinalPos": {
+      "command": "tikzumlStateFinalPos",
+      "snippet": "tikzumlStateFinalPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstatefinalWithoutCoordsfalse": {
+      "command": "tikzumlstatefinalWithoutCoordsfalse",
+      "snippet": "tikzumlstatefinalWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstatefinalWithoutCoordstrue": {
+      "command": "tikzumlstatefinalWithoutCoordstrue",
+      "snippet": "tikzumlstatefinalWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateFinalX": {
+      "command": "tikzumlStateFinalX",
+      "snippet": "tikzumlStateFinalX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateFinalY": {
+      "command": "tikzumlStateFinalY",
+      "snippet": "tikzumlStateFinalY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateFitOld": {
+      "command": "tikzumlStateFitOld",
+      "snippet": "tikzumlStateFitOld",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateFitTmp": {
+      "command": "tikzumlStateFitTmp",
+      "snippet": "tikzumlStateFitTmp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateHistoryColor": {
+      "command": "tikzumlStateHistoryColor",
+      "snippet": "tikzumlStateHistoryColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateHistoryDefaultWidth": {
+      "command": "tikzumlStateHistoryDefaultWidth",
+      "snippet": "tikzumlStateHistoryDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateHistoryMinimumWidth": {
+      "command": "tikzumlStateHistoryMinimumWidth",
+      "snippet": "tikzumlStateHistoryMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateHistoryName": {
+      "command": "tikzumlStateHistoryName",
+      "snippet": "tikzumlStateHistoryName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateHistoryPos": {
+      "command": "tikzumlStateHistoryPos",
+      "snippet": "tikzumlStateHistoryPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstatehistoryWithoutCoordsfalse": {
+      "command": "tikzumlstatehistoryWithoutCoordsfalse",
+      "snippet": "tikzumlstatehistoryWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstatehistoryWithoutCoordstrue": {
+      "command": "tikzumlstatehistoryWithoutCoordstrue",
+      "snippet": "tikzumlstatehistoryWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateHistoryX": {
+      "command": "tikzumlStateHistoryX",
+      "snippet": "tikzumlStateHistoryX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateHistoryY": {
+      "command": "tikzumlStateHistoryY",
+      "snippet": "tikzumlStateHistoryY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateInitialColor": {
+      "command": "tikzumlStateInitialColor",
+      "snippet": "tikzumlStateInitialColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateInitialDefaultWidth": {
+      "command": "tikzumlStateInitialDefaultWidth",
+      "snippet": "tikzumlStateInitialDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateInitialMinimumWidth": {
+      "command": "tikzumlStateInitialMinimumWidth",
+      "snippet": "tikzumlStateInitialMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateInitialName": {
+      "command": "tikzumlStateInitialName",
+      "snippet": "tikzumlStateInitialName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateInitialPos": {
+      "command": "tikzumlStateInitialPos",
+      "snippet": "tikzumlStateInitialPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstateinitialWithoutCoordsfalse": {
+      "command": "tikzumlstateinitialWithoutCoordsfalse",
+      "snippet": "tikzumlstateinitialWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstateinitialWithoutCoordstrue": {
+      "command": "tikzumlstateinitialWithoutCoordstrue",
+      "snippet": "tikzumlstateinitialWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateInitialX": {
+      "command": "tikzumlStateInitialX",
+      "snippet": "tikzumlStateInitialX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateInitialY": {
+      "command": "tikzumlStateInitialY",
+      "snippet": "tikzumlStateInitialY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateJoinColor": {
+      "command": "tikzumlStateJoinColor",
+      "snippet": "tikzumlStateJoinColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateJoinDefaultWidth": {
+      "command": "tikzumlStateJoinDefaultWidth",
+      "snippet": "tikzumlStateJoinDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateJoinMinimumWidth": {
+      "command": "tikzumlStateJoinMinimumWidth",
+      "snippet": "tikzumlStateJoinMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateJoinName": {
+      "command": "tikzumlStateJoinName",
+      "snippet": "tikzumlStateJoinName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateJoinPos": {
+      "command": "tikzumlStateJoinPos",
+      "snippet": "tikzumlStateJoinPos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstatejoinWithoutCoordsfalse": {
+      "command": "tikzumlstatejoinWithoutCoordsfalse",
+      "snippet": "tikzumlstatejoinWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstatejoinWithoutCoordstrue": {
+      "command": "tikzumlstatejoinWithoutCoordstrue",
+      "snippet": "tikzumlstatejoinWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateJoinX": {
+      "command": "tikzumlStateJoinX",
+      "snippet": "tikzumlStateJoinX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateJoinY": {
+      "command": "tikzumlStateJoinY",
+      "snippet": "tikzumlStateJoinY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateLayersNum": {
+      "command": "tikzumlStateLayersNum",
+      "snippet": "tikzumlStateLayersNum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateMinimumWidth": {
+      "command": "tikzumlStateMinimumWidth",
+      "snippet": "tikzumlStateMinimumWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateName": {
+      "command": "tikzumlStateName",
+      "snippet": "tikzumlStateName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstaterootinnerysep": {
+      "command": "tikzumlstaterootinnerysep",
+      "snippet": "tikzumlstaterootinnerysep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstaterootlabel": {
+      "command": "tikzumlstaterootlabel",
+      "snippet": "tikzumlstaterootlabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateText": {
+      "command": "tikzumlStateText",
+      "snippet": "tikzumlStateText",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateTextColor": {
+      "command": "tikzumlStateTextColor",
+      "snippet": "tikzumlStateTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateTextOld": {
+      "command": "tikzumlStateTextOld",
+      "snippet": "tikzumlStateTextOld",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstateWithoutCoordsfalse": {
+      "command": "tikzumlstateWithoutCoordsfalse",
+      "snippet": "tikzumlstateWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlstateWithoutCoordstrue": {
+      "command": "tikzumlstateWithoutCoordstrue",
+      "snippet": "tikzumlstateWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateXShift": {
+      "command": "tikzumlStateXShift",
+      "snippet": "tikzumlStateXShift",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlStateYShift": {
+      "command": "tikzumlStateYShift",
+      "snippet": "tikzumlStateYShift",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSystemDefaultFillColor": {
+      "command": "tikzumlSystemDefaultFillColor",
+      "snippet": "tikzumlSystemDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSystemDrawColor": {
+      "command": "tikzumlSystemDrawColor",
+      "snippet": "tikzumlSystemDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSystemFillColor": {
+      "command": "tikzumlSystemFillColor",
+      "snippet": "tikzumlSystemFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSystemFit": {
+      "command": "tikzumlSystemFit",
+      "snippet": "tikzumlSystemFit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSystemFitOld": {
+      "command": "tikzumlSystemFitOld",
+      "snippet": "tikzumlSystemFitOld",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSystemName": {
+      "command": "tikzumlSystemName",
+      "snippet": "tikzumlSystemName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSystemTextColor": {
+      "command": "tikzumlSystemTextColor",
+      "snippet": "tikzumlSystemTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSystemXShift": {
+      "command": "tikzumlSystemXShift",
+      "snippet": "tikzumlSystemXShift",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlSystemYShift": {
+      "command": "tikzumlSystemYShift",
+      "snippet": "tikzumlSystemYShift",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumltextcall": {
+      "command": "tikzumltextcall",
+      "snippet": "tikzumltextcall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumltypecall": {
+      "command": "tikzumltypecall",
+      "snippet": "tikzumltypecall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlUseCaseDefaultFillColor": {
+      "command": "tikzumlUseCaseDefaultFillColor",
+      "snippet": "tikzumlUseCaseDefaultFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlUseCaseDrawColor": {
+      "command": "tikzumlUseCaseDrawColor",
+      "snippet": "tikzumlUseCaseDrawColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlUseCaseFillColor": {
+      "command": "tikzumlUseCaseFillColor",
+      "snippet": "tikzumlUseCaseFillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlUseCaseName": {
+      "command": "tikzumlUseCaseName",
+      "snippet": "tikzumlUseCaseName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlUseCasePos": {
+      "command": "tikzumlUseCasePos",
+      "snippet": "tikzumlUseCasePos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlUseCaseText": {
+      "command": "tikzumlUseCaseText",
+      "snippet": "tikzumlUseCaseText",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlUseCaseTextColor": {
+      "command": "tikzumlUseCaseTextColor",
+      "snippet": "tikzumlUseCaseTextColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlUseCaseTextWidth": {
+      "command": "tikzumlUseCaseTextWidth",
+      "snippet": "tikzumlUseCaseTextWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlusecaseWithoutCoordsfalse": {
+      "command": "tikzumlusecaseWithoutCoordsfalse",
+      "snippet": "tikzumlusecaseWithoutCoordsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlusecaseWithoutCoordstrue": {
+      "command": "tikzumlusecaseWithoutCoordstrue",
+      "snippet": "tikzumlusecaseWithoutCoordstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlUseCaseX": {
+      "command": "tikzumlUseCaseX",
+      "snippet": "tikzumlUseCaseX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikzumlUseCaseY": {
+      "command": "tikzumlUseCaseY",
+      "snippet": "tikzumlUseCaseY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "umlpackage{}": {
+      "name": "umlpackage",
+      "detail": "umlpackage{}",
+      "snippet": "{${1:package-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlpackage[]{}": {
+      "name": "umlpackage",
+      "detail": "umlpackage[]{}",
+      "snippet": "[${2:options}]{${1:package-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlsystem{}": {
+      "name": "umlsystem",
+      "detail": "umlsystem{}",
+      "snippet": "{${1:system-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlsystem[]{}": {
+      "name": "umlsystem",
+      "detail": "umlsystem[]{}",
+      "snippet": "[${2:options}]{${1:system-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstate{}": {
+      "name": "umlstate",
+      "detail": "umlstate{}",
+      "snippet": "{${1:state-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlstate[]{}": {
+      "name": "umlstate",
+      "detail": "umlstate[]{}",
+      "snippet": "[${2:options}]{${1:state-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlseqdiag": {
+      "name": "umlseqdiag",
+      "detail": "umlseqdiag",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlcall{}{}": {
+      "name": "umlcall",
+      "detail": "umlcall{}{}",
+      "snippet": "{${1:source-object}}{${2:target-object}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlcall[]{}{}": {
+      "name": "umlcall",
+      "detail": "umlcall[]{}{}",
+      "snippet": "[${3:options}]{${1:source-object}}{${2:target-object}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlcallself{}": {
+      "name": "umlcallself",
+      "detail": "umlcallself{}",
+      "snippet": "{${1:object}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlcallself[]{}": {
+      "name": "umlcallself",
+      "detail": "umlcallself[]{}",
+      "snippet": "[${2:options}]{${1:object}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlfragment": {
+      "name": "umlfragment",
+      "detail": "umlfragment",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlfragment[]": {
+      "name": "umlfragment",
+      "detail": "umlfragment[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlcomponent{}": {
+      "name": "umlcomponent",
+      "detail": "umlcomponent{}",
+      "snippet": "{${1:component-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "umlcomponent[]{}": {
+      "name": "umlcomponent",
+      "detail": "umlcomponent[]{}",
+      "snippet": "[${2:options}]{${1:component-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

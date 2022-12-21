@@ -1,0 +1,484 @@
+{
+  "includes": [
+    "luatex",
+    "fontspec",
+    "luatexbase-mcb",
+    "kvoptions",
+    "setspace",
+    "xcolor",
+    "xparse",
+    "stackengine",
+    "ulem",
+    "transparent"
+  ],
+  "cmds": {
+    "cloze{}": {
+      "command": "cloze{}",
+      "snippet": "cloze{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cloze[]{}": {
+      "command": "cloze[]{}",
+      "snippet": "cloze[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "show",
+        "hide",
+        "distance=",
+        "linecolor=",
+        "textcolor=",
+        "thickness=",
+        "margin="
+      ],
+      "keyvalindex": 0
+    },
+    "clozesetfont{}": {
+      "command": "clozesetfont{}",
+      "snippet": "clozesetfont{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozefix{}": {
+      "command": "clozefix{}",
+      "snippet": "clozefix{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozefix[]{}": {
+      "command": "clozefix[]{}",
+      "snippet": "clozefix[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "show",
+        "hide",
+        "distance=",
+        "linecolor=",
+        "textcolor=",
+        "thickness=",
+        "align=",
+        "width=",
+        "margin="
+      ],
+      "keyvalindex": 0
+    },
+    "clozenol{}": {
+      "command": "clozenol{}",
+      "snippet": "clozenol{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozenol[]{}": {
+      "command": "clozenol[]{}",
+      "snippet": "clozenol[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "show",
+        "hide",
+        "distance=",
+        "linecolor=",
+        "textcolor=",
+        "thickness="
+      ],
+      "keyvalindex": 0
+    },
+    "clozefil{}": {
+      "command": "clozefil{}",
+      "snippet": "clozefil{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozefil[]{}": {
+      "command": "clozefil[]{}",
+      "snippet": "clozefil[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "show",
+        "hide",
+        "distance=",
+        "linecolor=",
+        "textcolor=",
+        "thickness=",
+        "margin="
+      ],
+      "keyvalindex": 0
+    },
+    "clozeextend[]": {
+      "command": "clozeextend[]",
+      "snippet": "clozeextend[${1:spaces}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozeparcmd{}": {
+      "command": "clozeparcmd{}",
+      "snippet": "clozeparcmd{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozeparcmd[]{}": {
+      "command": "clozeparcmd[]{}",
+      "snippet": "clozeparcmd[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "show",
+        "hide",
+        "distance=",
+        "linecolor=",
+        "textcolor=",
+        "thickness="
+      ],
+      "keyvalindex": 0
+    },
+    "clozeline": {
+      "command": "clozeline",
+      "snippet": "clozeline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozeline[]": {
+      "command": "clozeline[]",
+      "snippet": "clozeline[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "show",
+        "hide",
+        "distance=",
+        "linecolor=",
+        "textcolor=",
+        "thickness="
+      ],
+      "keyvalindex": 0
+    },
+    "clozelinefil": {
+      "command": "clozelinefil",
+      "snippet": "clozelinefil",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozelinefil[]": {
+      "command": "clozelinefil[]",
+      "snippet": "clozelinefil[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "show",
+        "hide",
+        "distance=",
+        "linecolor=",
+        "textcolor=",
+        "thickness="
+      ],
+      "keyvalindex": 0
+    },
+    "clozestrike{}{}": {
+      "command": "clozestrike{}{}",
+      "snippet": "clozestrike{${1:wrong text%text}}{${2:correct text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozestrike[]{}{}": {
+      "command": "clozestrike[]{}{}",
+      "snippet": "clozestrike[${3:options}]{${1:wrong text%text}}{${2:correct text%text}}",
+      "option": "",
+      "keyvals": [
+        "show",
+        "hide",
+        "distance=",
+        "linecolor=",
+        "textcolor=",
+        "thickness="
+      ],
+      "keyvalindex": 0
+    },
+    "clozesetoption{}{}": {
+      "command": "clozesetoption{}{}",
+      "snippet": "clozesetoption{${1:option}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozeset{}": {
+      "command": "clozeset{}",
+      "snippet": "clozeset{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "show",
+        "hide",
+        "distance=",
+        "linecolor=",
+        "textcolor=",
+        "thickness=",
+        "align=",
+        "width=",
+        "boxheight=",
+        "boxwidth=",
+        "margin=",
+        "spacing="
+      ],
+      "keyvalindex": 0
+    },
+    "clozereset": {
+      "command": "clozereset",
+      "snippet": "clozereset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozeshow": {
+      "command": "clozeshow",
+      "snippet": "clozeshow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozehide": {
+      "command": "clozehide",
+      "snippet": "clozehide",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifclozeshow": {
+      "command": "ifclozeshow",
+      "snippet": "ifclozeshow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozeshowtrue": {
+      "command": "clozeshowtrue",
+      "snippet": "clozeshowtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozeshowfalse": {
+      "command": "clozeshowfalse",
+      "snippet": "clozeshowfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClozeSetToGlobal": {
+      "command": "ClozeSetToGlobal",
+      "snippet": "ClozeSetToGlobal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClozeSetToLocal": {
+      "command": "ClozeSetToLocal",
+      "snippet": "ClozeSetToLocal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClozeGetOption{}": {
+      "command": "ClozeGetOption{}",
+      "snippet": "ClozeGetOption{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClozeColor{}": {
+      "command": "ClozeColor{}",
+      "snippet": "ClozeColor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClozeStartMarker{}": {
+      "command": "ClozeStartMarker{}",
+      "snippet": "ClozeStartMarker{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClozeStopMarker{}": {
+      "command": "ClozeStopMarker{}",
+      "snippet": "ClozeStopMarker{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClozeMargin{}": {
+      "command": "ClozeMargin{}",
+      "snippet": "ClozeMargin{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozefont": {
+      "command": "clozefont",
+      "snippet": "clozefont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClozeSetLocalOptions{}": {
+      "command": "ClozeSetLocalOptions{}",
+      "snippet": "ClozeSetLocalOptions{${1:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClozeTextColor{}": {
+      "command": "ClozeTextColor{}",
+      "snippet": "ClozeTextColor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClozeStrikeLine": {
+      "command": "ClozeStrikeLine",
+      "snippet": "ClozeStrikeLine",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClozeBox": {
+      "command": "ClozeBox",
+      "snippet": "ClozeBox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "clozepar": {
+      "name": "clozepar",
+      "detail": "clozepar",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozepar[]": {
+      "name": "clozepar",
+      "detail": "clozepar[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "show",
+        "hide",
+        "distance=",
+        "linecolor=",
+        "textcolor=",
+        "thickness="
+      ],
+      "keyvalindex": 0
+    },
+    "clozebox": {
+      "name": "clozebox",
+      "detail": "clozebox",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozebox[]": {
+      "name": "clozebox",
+      "detail": "clozebox[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "show",
+        "show",
+        "hide",
+        "hide",
+        "distance=",
+        "distance=",
+        "linecolor=",
+        "linecolor=",
+        "textcolor=",
+        "textcolor=",
+        "thickness=",
+        "thickness=",
+        "boxheight=",
+        "boxheight=",
+        "boxwidth=",
+        "boxwidth="
+      ],
+      "keyvalindex": 0
+    },
+    "clozebox*": {
+      "name": "clozebox",
+      "detail": "clozebox*",
+      "snippet": "*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozebox*[]": {
+      "name": "clozebox",
+      "detail": "clozebox*[]",
+      "snippet": "*[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "show",
+        "show",
+        "hide",
+        "hide",
+        "distance=",
+        "distance=",
+        "linecolor=",
+        "linecolor=",
+        "textcolor=",
+        "textcolor=",
+        "thickness=",
+        "thickness=",
+        "boxheight=",
+        "boxheight=",
+        "boxwidth=",
+        "boxwidth="
+      ],
+      "keyvalindex": 0
+    },
+    "clozespace": {
+      "name": "clozespace",
+      "detail": "clozespace",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clozespace[]": {
+      "name": "clozespace",
+      "detail": "clozespace[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "show",
+        "hide",
+        "distance=",
+        "linecolor=",
+        "textcolor=",
+        "thickness=",
+        "spacing="
+      ],
+      "keyvalindex": 0
+    }
+  },
+  "options": [
+    "align=",
+    "boxheight=",
+    "boxwidth=",
+    "distance=",
+    "hide",
+    "linecolor=",
+    "margin=",
+    "spacing=",
+    "textcolor=",
+    "thickness=",
+    "width="
+  ]
+}

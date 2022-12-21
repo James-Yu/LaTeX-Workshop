@@ -1,83 +1,10 @@
 {
-  "includes": [],
+  "includes": [
+    "ifthen",
+    "calc",
+    "ifmtarg"
+  ],
   "cmds": {
-    "ifthenelse{}{}{}": {
-      "command": "ifthenelse{}{}{}",
-      "snippet": "ifthenelse{${1:test}}{${2:then clause}}{${3:else clause}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "boolean{}": {
-      "command": "boolean{}",
-      "snippet": "boolean{${1:name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "newboolean{}": {
-      "command": "newboolean{}",
-      "snippet": "newboolean{${1:name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "setboolean{}{}": {
-      "command": "setboolean{}{}",
-      "snippet": "setboolean{${1:name}}{${2:truth value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "isodd{}": {
-      "command": "isodd{}",
-      "snippet": "isodd{${1:number}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "isundefined{}": {
-      "command": "isundefined{}",
-      "snippet": "isundefined{${1:command}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "equal{}{}": {
-      "command": "equal{}{}",
-      "snippet": "equal{${1:string}}{${2:string}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "AND": {
-      "command": "AND",
-      "snippet": "AND",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "OR": {
-      "command": "OR",
-      "snippet": "OR",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "NOT": {
-      "command": "NOT",
-      "snippet": "NOT",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lengthtest{}": {
-      "command": "lengthtest{}",
-      "snippet": "lengthtest{${1:dimen operator dimen}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "isnamedefined{}": {
       "command": "isnamedefined{}",
       "snippet": "isnamedefined{${1:command name}}",
@@ -94,7 +21,7 @@
     },
     "isequivalentto{}{}": {
       "command": "isequivalentto{}{}",
-      "snippet": "isequivalentto{${1:command}}{${2:command}}",
+      "snippet": "isequivalentto{${1:command1}}{${2:command2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -113,23 +40,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "cnttest{}<>{}": {
-      "command": "cnttest{}<>{}",
-      "snippet": "cnttest{${1:counter expression}}<${3:comparison}>{${2:counter expression}}",
+    "cnttest{}{}{}": {
+      "command": "cnttest{}{}{}",
+      "snippet": "cnttest{${1:counter-expr1}}{${2:comparison}}{${3:counter-expr2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dimtest{}<>{}": {
-      "command": "dimtest{}<>{}",
-      "snippet": "dimtest{${1:dimen expression}}<${3:comparison}>{${2:dimen expression}}",
+    "dimtest{}{}{}": {
+      "command": "dimtest{}{}{}",
+      "snippet": "dimtest{${1:dimen-expr1}}{${2:comparison}}{${3:dimen-expr2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newtest{}{}": {
+      "command": "newtest{}{}",
+      "snippet": "newtest{${1:command}}{${2:test-expr}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "newtest{}[]{}": {
       "command": "newtest{}[]{}",
-      "snippet": "newtest{${1:command}}[${2:n}]{${3:testexpression}}",
+      "snippet": "newtest{${1:command}}[${2:args}]{${3:test-expr}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1

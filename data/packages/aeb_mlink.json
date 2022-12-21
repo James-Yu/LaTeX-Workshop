@@ -1,0 +1,592 @@
+{
+  "includes": [
+    "xkeyval",
+    "ifpdf",
+    "ifxetex",
+    "hyperref",
+    "eforms",
+    "refcount",
+    "soul"
+  ],
+  "cmds": {
+    "ui{}": {
+      "command": "ui{}",
+      "snippet": "ui{${1:keyvals}}",
+      "option": "useui",
+      "keyvals": [
+        "border=",
+        "linewidth=",
+        "highlight=",
+        "bordercolor={",
+        "linestyle=",
+        "dasharray=",
+        "linktxtcolor=",
+        "annotflags=",
+        "fieldflags=",
+        "maxlength=",
+        "tooltip={",
+        "default=",
+        "value=",
+        "rotate=",
+        "bgcolor={",
+        "uptxt={",
+        "downtxt={",
+        "rollovertxt={",
+        "normappr=",
+        "rollappr=",
+        "downappr=",
+        "importicons=",
+        "layout=",
+        "scalewhen=",
+        "scale=",
+        "position={",
+        "fitbounds",
+        "appr={",
+        "align=",
+        "textfont=",
+        "textsize=",
+        "textcolor=",
+        "autocenter=",
+        "inline=",
+        "presets=",
+        "symbolchoice=",
+        "rectW=",
+        "rectH=",
+        "width=",
+        "height=",
+        "scalefactor=",
+        "goto={",
+        "js={",
+        "mouseup={",
+        "mousedown={",
+        "onenter={",
+        "onexit={",
+        "onfocus={",
+        "onblur={",
+        "format={",
+        "keystroke={",
+        "validate={",
+        "calculate={",
+        "pageopen={",
+        "pageclose={",
+        "pagevisible={",
+        "pageinvisible={",
+        "lock={"
+      ],
+      "keyvalindex": 0
+    },
+    "mlhypertext{}": {
+      "command": "mlhypertext{}",
+      "snippet": "mlhypertext{${1:link text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlhypertext[]{}": {
+      "command": "mlhypertext[]{}",
+      "snippet": "mlhypertext[${2:modifications}]{${1:link text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlsetLink{}": {
+      "command": "mlsetLink{}",
+      "snippet": "mlsetLink{${1:link text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlsetLink[]{}": {
+      "command": "mlsetLink[]{}",
+      "snippet": "mlsetLink[${2:modifications}]{${1:link text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlhyperlink{}{}": {
+      "command": "mlhyperlink{}{}",
+      "snippet": "mlhyperlink{${1:target name}}{${2:link text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlhyperlink[]{}{}": {
+      "command": "mlhyperlink[]{}{}",
+      "snippet": "mlhyperlink[${3:modifications}]{${1:target name}}{${2:link text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlhyperref{}{}": {
+      "command": "mlhyperref{}{}",
+      "snippet": "mlhyperref{${1:label%ref}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlhyperref[]{}{}": {
+      "command": "mlhyperref[]{}{}",
+      "snippet": "mlhyperref[${3:modifications}]{${1:label%ref}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlnameref{}": {
+      "command": "mlnameref{}",
+      "snippet": "mlnameref{${1:label%ref}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlnameref[]{}": {
+      "command": "mlnameref[]{}",
+      "snippet": "mlnameref[${2:modifications}]{${1:label%ref}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlNameref{}": {
+      "command": "mlNameref{}",
+      "snippet": "mlNameref{${1:label%ref}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlNameref[]{}": {
+      "command": "mlNameref[]{}",
+      "snippet": "mlNameref[${2:modifications}]{${1:label%ref}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlhref{}{}": {
+      "command": "mlhref{}{}",
+      "snippet": "mlhref{${1:URL}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlhref[]{}{}": {
+      "command": "mlhref[]{}{}",
+      "snippet": "mlhref[${3:modifications}]{${1:URL}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlurl{}": {
+      "command": "mlurl{}",
+      "snippet": "mlurl{${1:URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlurl[]{}": {
+      "command": "mlurl[]{}",
+      "snippet": "mlurl[${2:modifications}]{${1:URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlfixOn": {
+      "command": "mlfixOn",
+      "snippet": "mlfixOn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlfixOff": {
+      "command": "mlfixOff",
+      "snippet": "mlfixOff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlfix{}": {
+      "command": "mlfix{}",
+      "snippet": "mlfix{${1:y|n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlcs{}": {
+      "command": "mlcs{}",
+      "snippet": "mlcs{${1:csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "OldStyleBoxesOn": {
+      "command": "OldStyleBoxesOn",
+      "snippet": "OldStyleBoxesOn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "OldStyleBoxesOff": {
+      "command": "OldStyleBoxesOff",
+      "snippet": "OldStyleBoxesOff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlMarksOn": {
+      "command": "mlMarksOn",
+      "snippet": "mlMarksOn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlMarksOff": {
+      "command": "mlMarksOff",
+      "snippet": "mlMarksOff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "turnSyllbCntOn": {
+      "command": "turnSyllbCntOn",
+      "snippet": "turnSyllbCntOn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "turnSyllbCntOff": {
+      "command": "turnSyllbCntOff",
+      "snippet": "turnSyllbCntOff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "aebnameref{}": {
+      "command": "aebnameref{}",
+      "snippet": "aebnameref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "atPage{}": {
+      "command": "atPage{}",
+      "snippet": "atPage{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bWebCustomize": {
+      "command": "bWebCustomize",
+      "snippet": "bWebCustomize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CMT{}": {
+      "command": "CMT{}",
+      "snippet": "CMT{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CurrentBorderColor": {
+      "command": "CurrentBorderColor",
+      "snippet": "CurrentBorderColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eWebCustomize": {
+      "command": "eWebCustomize",
+      "snippet": "eWebCustomize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FixupProc": {
+      "command": "FixupProc",
+      "snippet": "FixupProc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iffixmlinks": {
+      "command": "iffixmlinks",
+      "snippet": "iffixmlinks",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iflinknotformed": {
+      "command": "iflinknotformed",
+      "snippet": "iflinknotformed",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifmllinktotalchanged": {
+      "command": "ifmllinktotalchanged",
+      "snippet": "ifmllinktotalchanged",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifmlmarks": {
+      "command": "ifmlmarks",
+      "snippet": "ifmlmarks",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifoldstylequads": {
+      "command": "ifoldstylequads",
+      "snippet": "ifoldstylequads",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifSmallRect": {
+      "command": "ifSmallRect",
+      "snippet": "ifSmallRect",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "isWindow": {
+      "command": "isWindow",
+      "snippet": "isWindow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "itsunderline": {
+      "command": "itsunderline",
+      "snippet": "itsunderline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelRef{}": {
+      "command": "labelRef{}",
+      "snippet": "labelRef{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "linknotformedfalse": {
+      "command": "linknotformedfalse",
+      "snippet": "linknotformedfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "linknotformedtrue": {
+      "command": "linknotformedtrue",
+      "snippet": "linknotformedtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlcsarg{}{}": {
+      "command": "mlcsarg{}{}",
+      "snippet": "mlcsarg{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mldb{}{}": {
+      "command": "mldb{}{}",
+      "snippet": "mldb{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mldblevel": {
+      "command": "mldblevel",
+      "snippet": "mldblevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mldbModeOff": {
+      "command": "mldbModeOff",
+      "snippet": "mldbModeOff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mldbModeOn": {
+      "command": "mldbModeOn",
+      "snippet": "mldbModeOn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlDict": {
+      "command": "mlDict",
+      "snippet": "mlDict",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlinkstotal": {
+      "command": "mlinkstotal",
+      "snippet": "mlinkstotal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mllinktotalchangedfalse": {
+      "command": "mllinktotalchangedfalse",
+      "snippet": "mllinktotalchangedfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mllinktotalchangedtrue": {
+      "command": "mllinktotalchangedtrue",
+      "snippet": "mllinktotalchangedtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mllnkcontainer{}": {
+      "command": "mllnkcontainer{}",
+      "snippet": "mllnkcontainer{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlmarksfalse": {
+      "command": "mlmarksfalse",
+      "snippet": "mlmarksfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlmarkstrue": {
+      "command": "mlmarkstrue",
+      "snippet": "mlmarkstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlMaxNSylls": {
+      "command": "mlMaxNSylls",
+      "snippet": "mlMaxNSylls",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mlpgMsg": {
+      "command": "mlpgMsg",
+      "snippet": "mlpgMsg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MrkLnkLtr": {
+      "command": "MrkLnkLtr",
+      "snippet": "MrkLnkLtr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oldstylequadsfalse": {
+      "command": "oldstylequadsfalse",
+      "snippet": "oldstylequadsfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oldstylequadstrue": {
+      "command": "oldstylequadstrue",
+      "snippet": "oldstylequadstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pboxRect": {
+      "command": "pboxRect",
+      "snippet": "pboxRect",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgmonitoring": {
+      "command": "pgmonitoring",
+      "snippet": "pgmonitoring",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "removelastspace": {
+      "command": "removelastspace",
+      "snippet": "removelastspace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "revCrackAt": {
+      "command": "revCrackAt",
+      "snippet": "revCrackAt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setQuadBox": {
+      "command": "setQuadBox",
+      "snippet": "setQuadBox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SmallRectfalse": {
+      "command": "SmallRectfalse",
+      "snippet": "SmallRectfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "smallRectTF": {
+      "command": "smallRectTF",
+      "snippet": "smallRectTF",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SmallRecttrue": {
+      "command": "SmallRecttrue",
+      "snippet": "SmallRecttrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "syllableCnt": {
+      "command": "syllableCnt",
+      "snippet": "syllableCnt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theView": {
+      "command": "theView",
+      "snippet": "theView",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": [
+    "dvipsone",
+    "dvips",
+    "dblevel=",
+    "urlOpts={",
+    "useui",
+    "setcorder",
+    "nodljs",
+    "debug",
+    "execJS",
+    "nopro",
+    "reqjs",
+    "!reqjs",
+    "usealtadobe"
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "includes": [
+    "tikz",
+    "tikzlibraryquotes",
+    "tikzlibrarycalc",
+    "xparse",
+    "float"
+  ],
+  "cmds": {
+    "newprocess{}": {
+      "command": "newprocess{}",
+      "snippet": "newprocess{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newprocesswithlength{}{}": {
+      "command": "newprocesswithlength{}{}",
+      "snippet": "newprocesswithlength{${1:name}}{${2:length%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "processlength{}{}": {
+      "command": "processlength{}{}",
+      "snippet": "processlength{${1:name}}{${2:length%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newprocesswithstateinterval{}{}": {
+      "command": "newprocesswithstateinterval{}{}",
+      "snippet": "newprocesswithstateinterval{${1:name}}{${2:state name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newprocesswithcrash{}{}{}": {
+      "command": "newprocesswithcrash{}{}{}",
+      "snippet": "newprocesswithcrash{${1:name}}{${2:length%plain}}{${3:crash coord name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawtimeline{}": {
+      "command": "drawtimeline{}",
+      "snippet": "drawtimeline{${1:length%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "send{}{}{}{}": {
+      "command": "send{}{}{}{}",
+      "snippet": "send{${1:sender}}{${2:send time}}{${3:receiver}}{${4:receive time}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sendwithname{}{}{}{}{}": {
+      "command": "sendwithname{}{}{}{}{}",
+      "snippet": "sendwithname{${1:sender}}{${2:send time}}{${3:receiver}}{${4:receive time}}{${5:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sendoutofband{}{}{}{}{}": {
+      "command": "sendoutofband{}{}{}{}{}",
+      "snippet": "sendoutofband{${1:sender}}{${2:send time}}{${3:receiver}}{${4:receive time}}{${5:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crash{}{}{}": {
+      "command": "crash{}{}{}",
+      "snippet": "crash{${1:process}}{${2:time}}{${3:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "restart{}{}{}": {
+      "command": "restart{}{}{}",
+      "snippet": "restart{${1:name}}{${2:date}}{${3:duration}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "checkpoint{}{}{}": {
+      "command": "checkpoint{}{}{}",
+      "snippet": "checkpoint{${1:process}}{${2:time}}{${3:name%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "checkpointspecial{}{}{}{}": {
+      "command": "checkpointspecial{}{}{}{}",
+      "snippet": "checkpointspecial{${1:process}}{${2:time}}{${3:name%formula}}{${4:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stateinterval{}{}{}": {
+      "command": "stateinterval{}{}{}",
+      "snippet": "stateinterval{${1:process}}{${2:time}}{${3:name%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stateintervalspecial{}{}{}{}": {
+      "command": "stateintervalspecial{}{}{}{}",
+      "snippet": "stateintervalspecial{${1:process}}{${2:time}}{${3:name%formula}}{${4:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "colouredbox{}{}{}{}{}": {
+      "command": "colouredbox{}{}{}{}{}",
+      "snippet": "colouredbox{${1:process1}}{${2:process2}}{${3:start time}}{${4:end time}}{${5:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "annotate{}{}{}": {
+      "command": "annotate{}{}{}",
+      "snippet": "annotate{${1:process}}{${2:time}}{${3:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "annotatexplicit{}{}{}{}": {
+      "command": "annotatexplicit{}{}{}{}",
+      "snippet": "annotatexplicit{${1:process}}{${2:time}}{${3:text}}{${4:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sendwithstateinterval{}{}{}{}{}": {
+      "command": "sendwithstateinterval{}{}{}{}{}",
+      "snippet": "sendwithstateinterval{${1:sender}}{${2:send time}}{${3:receiver}}{${4:receive time}}{${5:name%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sendwithstateintervalandname{}{}{}{}{}{}": {
+      "command": "sendwithstateintervalandname{}{}{}{}{}{}",
+      "snippet": "sendwithstateintervalandname{${1:sender}}{${2:send time}}{${3:receiver}}{${4:receive time}}{${5:name%formula}}{${6:message name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "colouredboxcolor{}": {
+      "command": "colouredboxcolor{}",
+      "snippet": "colouredboxcolor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oobcolor{}": {
+      "command": "oobcolor{}",
+      "snippet": "oobcolor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "themaxtime": {
+      "command": "themaxtime",
+      "snippet": "themaxtime",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theprocessnb": {
+      "command": "theprocessnb",
+      "snippet": "theprocessnb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftimeline": {
+      "command": "iftimeline",
+      "snippet": "iftimeline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "timelinetrue": {
+      "command": "timelinetrue",
+      "snippet": "timelinetrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "timelinefalse": {
+      "command": "timelinefalse",
+      "snippet": "timelinefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "messagepassing": {
+      "name": "messagepassing",
+      "detail": "messagepassing",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "messagepassing[]": {
+      "name": "messagepassing",
+      "detail": "messagepassing[]",
+      "snippet": "[${1:TikZ options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "messagepassing[][]": {
+      "name": "messagepassing",
+      "detail": "messagepassing[][]",
+      "snippet": "[${1:TikZ options}][${2:caption%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "messagepassing[][][]": {
+      "name": "messagepassing",
+      "detail": "messagepassing[][][]",
+      "snippet": "[${1:TikZ options}][${2:caption%text}][${3:placement}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "messagepassing[][][][]": {
+      "name": "messagepassing",
+      "detail": "messagepassing[][][][]",
+      "snippet": "[${1:TikZ options}][${2:caption%text}][${3:placement}][${4:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "vertical",
+    "annotatevertical"
+  ]
+}

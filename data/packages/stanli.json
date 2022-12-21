@@ -1,0 +1,1217 @@
+{
+  "includes": [
+    "ifthen",
+    "tikz",
+    "tikzlibraryshapes",
+    "tikzlibrarypositioning",
+    "tikzlibraryautomata",
+    "tikzlibrarycalc",
+    "tikzlibrary3d",
+    "tikzlibrarydecorations.pathreplacing",
+    "tikzlibrarydecorations.pathmorphing",
+    "tikzlibrarypatterns",
+    "xargs",
+    "verbatim"
+  ],
+  "cmds": {
+    "point{}{}{};": {
+      "command": "point{}{}{};",
+      "snippet": "point{${1:name}}{${2:x}}{${3:y}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "beam{}{}{};": {
+      "command": "beam{}{}{};",
+      "snippet": "beam{${1:type}}{${2:init point}}{${3:end point}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "beam{}{}{}[];": {
+      "command": "beam{}{}{}[];",
+      "snippet": "beam{${1:type}}{${2:init point}}{${3:end point}}[${4:rounded init point}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "beam{}{}{}[][];": {
+      "command": "beam{}{}{}[][];",
+      "snippet": "beam{${1:type}}{${2:init point}}{${3:end point}}[${4:rounded init point}][${5:rounded end point}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "support{}{};": {
+      "command": "support{}{};",
+      "snippet": "support{${1:type}}{${2:insertion point}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "support{}{}[];": {
+      "command": "support{}{}[];",
+      "snippet": "support{${1:type}}{${2:insertion point}}[${3:rotation}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hinge{}{};": {
+      "command": "hinge{}{};",
+      "snippet": "hinge{${1:1}}{${2:%<insertion point%>}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hinge{}{}[][][];": {
+      "command": "hinge{}{}[][][];",
+      "snippet": "hinge{${1:2}}{${2:%<insertion point%>}}[${3:%<init point%>}][${4:%<end point%>}][${5:%<orientation%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hinge{}{}[];": {
+      "command": "hinge{}{}[];",
+      "snippet": "hinge{${1:4}}{${2:%<insertion point%>}}[${3:%<rotation%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hinge{}{}[][];": {
+      "command": "hinge{}{}[][];",
+      "snippet": "hinge{${1:5}}{${2:%<insertion point%>}}[${3:%<init point%>}][${4:%<end point%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "load{}{};": {
+      "command": "load{}{};",
+      "snippet": "load{${1:type}}{${2:insertion point}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "load{}{}[];": {
+      "command": "load{}{}[];",
+      "snippet": "load{${1:type}}{${2:insertion point}}[${3:rotation}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "load{}{}[][];": {
+      "command": "load{}{}[][];",
+      "snippet": "load{${1:type}}{${2:insertion point}}[${3:rotation}][${4:length or angle}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "load{}{}[][][];": {
+      "command": "load{}{}[][][];",
+      "snippet": "load{${1:type}}{${2:insertion point}}[${3:rotation}][${4:length or angle}][${5:load distance}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lineload{}{}{}[][][];": {
+      "command": "lineload{}{}{}[][][];",
+      "snippet": "lineload{${1:3}}{${2:%<init point%>}}{${3:%<end point%>}}[${4:%<init force%>}][${5:%<end force%>}][${6:%<force interval%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lineload{}{}{}[][];": {
+      "command": "lineload{}{}{}[][];",
+      "snippet": "lineload{${1:4}}{${2:%<init point%>}}{${3:%<end point%>}}[${4:%<force interval%>}][${5:%<force length%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "temperature{}{}{}{};": {
+      "command": "temperature{}{}{}{};",
+      "snippet": "temperature{${1:init point}}{${2:end point}}{${3:temp below}}{${4:temp above}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "temperature{}{}{}{}[][][];": {
+      "command": "temperature{}{}{}{}[][][];",
+      "snippet": "temperature{${1:init point}}{${2:end point}}{${3:temp below}}{${4:temp above}}[${5:temp pos}][${6:temp val below}][${7:temp val above}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "temperature{}{}{}{}[][][][][];": {
+      "command": "temperature{}{}{}{}[][][][][];",
+      "snippet": "temperature{${1:init point}}{${2:end point}}{${3:temp below}}{${4:temp above}}[${5:temp pos}][${6:temp val below}][${7:temp val above}][${8:text orient below}][${9:text orient above}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "internalforces{}{}{}{};": {
+      "command": "internalforces{}{}{}{};",
+      "snippet": "internalforces{${1:init point}}{${2:end point}}{${3:init val}}{${4:end val}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "internalforces{}{}{}{}[];": {
+      "command": "internalforces{}{}{}{}[];",
+      "snippet": "internalforces{${1:init point}}{${2:end point}}{${3:init val}}{${4:end val}}[${5:parabola height}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "internalforces{}{}{}{}[][];": {
+      "command": "internalforces{}{}{}{}[][];",
+      "snippet": "internalforces{${1:init point}}{${2:end point}}{${3:init val}}{${4:end val}}[${5:parabola height}][${6:color}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "internalforces{}{}{}{}[][][];": {
+      "command": "internalforces{}{}{}{}[][][];",
+      "snippet": "internalforces{${1:init point}}{${2:end point}}{${3:init val}}{${4:end val}}[${5:parabola height}][${6:color}][${7:bend pos}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dimensioning{}{}{}{};": {
+      "command": "dimensioning{}{}{}{};",
+      "snippet": "dimensioning{${1:type}}{${2:init point}}{${3:end point}}{${4:distance}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dimensioning{}{}{}{}[];": {
+      "command": "dimensioning{}{}{}{}[];",
+      "snippet": "dimensioning{${1:type}}{${2:init point}}{${3:end point}}{${4:distance}}[${5:measure}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "influenceline{}{}{};": {
+      "command": "influenceline{}{}{};",
+      "snippet": "influenceline{${1:init point}}{${2:end point}}{${3:distance}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "influenceline{}{}{}[];": {
+      "command": "influenceline{}{}{}[];",
+      "snippet": "influenceline{${1:init point}}{${2:end point}}{${3:distance}}[${4:arrow pos}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notation{}{}{}[];": {
+      "command": "notation{}{}{}[];",
+      "snippet": "notation{${1:2}}{${2:%<insertion point%>}}{${3:%<labelling%>}}[${4:%<orientation%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notation{}{}{}[][][];": {
+      "command": "notation{}{}{}[][][];",
+      "snippet": "notation{${1:3}}{${2:%<init point%>}}{${3:%<end point%>}}[${4:%<labelling%>}][${5:%<pos%>}][${6:%<orientation%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notation{}{}{}[][][][];": {
+      "command": "notation{}{}{}[][][][];",
+      "snippet": "notation{${1:5}}{${2:%<init point%>}}{${3:%<end point%>}}[${4:%<labelling%>}][${5:%<pos%>}][${6:%<orientation%>}][${7:%<text orientation%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notation{}{}{};": {
+      "command": "notation{}{}{};",
+      "snippet": "notation{${1:6}}{${2:%<insertion point%>}}{${3:%<labelling%>}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addon{}{}{}{};": {
+      "command": "addon{}{}{}{};",
+      "snippet": "addon{${1:1}}{${2:%<insertion point%>}}{${3:%<end point%>}}{${4:%<pos%>}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addon{}{}{}{}[];": {
+      "command": "addon{}{}{}{}[];",
+      "snippet": "addon{${1:3}}{${2:%<insertion point%>}}{${3:%<init point%>}}{${4:%<end point%>}}[${5:%<orientation%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scaling{};": {
+      "command": "scaling{};",
+      "snippet": "scaling{${1:factor}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dpoint{}{}{}{};": {
+      "command": "dpoint{}{}{}{};",
+      "snippet": "dpoint{${1:name}}{${2:x}}{${3:y}}{${4:z}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dbeam{}{}{};": {
+      "command": "dbeam{}{}{};",
+      "snippet": "dbeam{${1:type}}{${2:init point}}{${3:end point}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dbeam{}{}{}[];": {
+      "command": "dbeam{}{}{}[];",
+      "snippet": "dbeam{${1:type}}{${2:init point}}{${3:end point}}[${4:rounded init point}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dbeam{}{}{}[][];": {
+      "command": "dbeam{}{}{}[][];",
+      "snippet": "dbeam{${1:type}}{${2:init point}}{${3:end point}}[${4:rounded init point}][${5:rounded end point}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "daxis{}{}[][][];": {
+      "command": "daxis{}{}[][][];",
+      "snippet": "daxis{${1:1}}{${2:%<insertion point%>}}[${3:%<x orient.%>}][${4:%<y orient.%>}][${5:%<z orient.%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "daxis{}{}[][][][][][][];": {
+      "command": "daxis{}{}[][][][][][][];",
+      "snippet": "daxis{${1:3}}{${2:%<plane%>}}[${3:%<insertion point%>}][${4:%<end point%>}][${5:%<pos%>}][${6:%<rot1%>}][${7:%<rot2%>}][${8:%<rot3%>}][${9:%<rotB%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dsupport{}{}[][][];": {
+      "command": "dsupport{}{}[][][];",
+      "snippet": "dsupport{${1:5}}{${2:%<insertion point%>}}[${3:%<x dir%>}][${4:%<y dir%>}][${5:%<z dir%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dsupport{}{}[]": {
+      "command": "dsupport{}{}[]",
+      "snippet": "dsupport{${1:2}}{${2:%<insertion point%>}}[${3:%<plane%>}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dhinge{}{};": {
+      "command": "dhinge{}{};",
+      "snippet": "dhinge{${1:1}}{${2:%<insertion point%>}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dhinge{}{}[][][];": {
+      "command": "dhinge{}{}[][][];",
+      "snippet": "dhinge{${1:2}}{${2:%<insertion point%>}}[${3:%<init point%>}][${4:%<end point%>}][${5:%<orientation%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dhinge{}{}[];": {
+      "command": "dhinge{}{}[];",
+      "snippet": "dhinge{${1:3}}{${2:%<insertion point%>}}[${3:%<rotation%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dhinge{}{}[][];": {
+      "command": "dhinge{}{}[][];",
+      "snippet": "dhinge{${1:4}}{${2:%<insertion point%>}}[${3:%<init point%>}][${4:%<end point%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dload{}{};": {
+      "command": "dload{}{};",
+      "snippet": "dload{${1:type}}{${2:insertion point}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dload{}{}[];": {
+      "command": "dload{}{}[];",
+      "snippet": "dload{${1:type}}{${2:insertion point}}[${3:rotA}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dload{}{}[][];": {
+      "command": "dload{}{}[][];",
+      "snippet": "dload{${1:type}}{${2:insertion point}}[${3:rotA}][${4:rotB}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dload{}{}[][][];": {
+      "command": "dload{}{}[][][];",
+      "snippet": "dload{${1:type}}{${2:insertion point}}[${3:rotA}][${4:length}][${5:distance}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dlineload{}{}[]{}{}[][][];": {
+      "command": "dlineload{}{}[]{}{}[][][];",
+      "snippet": "dlineload{${1:2}}{${2:%<plane%>}}[${3:%<plane dist%>}]{${4:%<init point%>}}{${5:%<end point%>}}[${6:%<init force%>}][${7:%<end force%>}][${8:%<force interval%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dlineload{}{}[]{}{}[][][][];": {
+      "command": "dlineload{}{}[]{}{}[][][][];",
+      "snippet": "dlineload{${1:5}}{${2:%<rotA%>}}[${3:%<rotB%>}]{${4:%<init point%>}}{${5:%<end point%>}}[${6:%<init force%>}][${7:%<end force%>}][${8:%<lineload dist%>}][${9:%<force interval%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dlineload{}{}[]{}{}[][];": {
+      "command": "dlineload{}{}[]{}{}[][];",
+      "snippet": "dlineload{${1:6}}{${2:%<rotA%>}}[${3:%<rotB%>}]{${4:%<init point%>}}{${5:%<end point%>}}[${6:%<force interval%>}][${7:%<force length%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dinternalforces{}{}{}{}{};": {
+      "command": "dinternalforces{}{}{}{}{};",
+      "snippet": "dinternalforces{${1:plane}}{${2:init point}}{${3:end point}}{${4:init val}}{${5:end val}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dinternalforces{}[]{}{}{}{};": {
+      "command": "dinternalforces{}[]{}{}{}{};",
+      "snippet": "dinternalforces{${1:plane}}[${2:plane dist}]{${3:init point}}{${4:end point}}{${5:init val}}{${6:end val}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dinternalforces{}[]{}{}{}{}[];": {
+      "command": "dinternalforces{}[]{}{}{}{}[];",
+      "snippet": "dinternalforces{${1:plane}}[${2:plane dist}]{${3:init point}}{${4:end point}}{${5:init val}}{${6:end val}}[${7:parabola height}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dinternalforces{}[]{}{}{}{}[][];": {
+      "command": "dinternalforces{}[]{}{}{}{}[][];",
+      "snippet": "dinternalforces{${1:plane}}[${2:plane dist}]{${3:init point}}{${4:end point}}{${5:init val}}{${6:end val}}[${7:parabola height}][${8:color}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dinternalforces{}[]{}{}{}{}[][][];": {
+      "command": "dinternalforces{}[]{}{}{}{}[][][];",
+      "snippet": "dinternalforces{${1:plane}}[${2:plane dist}]{${3:init point}}{${4:end point}}{${5:init val}}{${6:end val}}[${7:parabola height}][${8:color}][${9:bend pos}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ddimensioning{}{}{}{};": {
+      "command": "ddimensioning{}{}{}{};",
+      "snippet": "ddimensioning{${1:plane}}{${2:init point}}{${3:end point}}{${4:distance}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ddimensioning{}[]{}{}{};": {
+      "command": "ddimensioning{}[]{}{}{};",
+      "snippet": "ddimensioning{${1:plane}}[${2:plane dist}]{${3:init point}}{${4:end point}}{${5:distance}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dimensioning{}[]{}{}{}[];": {
+      "command": "dimensioning{}[]{}{}{}[];",
+      "snippet": "dimensioning{${1:plane}}[${2:plane dist}]{${3:init point}}{${4:end point}}{${5:distance}}[${6:measure}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dimensioning{}[]{}{}{}[][];": {
+      "command": "dimensioning{}[]{}{}{}[][];",
+      "snippet": "dimensioning{${1:plane}}[${2:plane dist}]{${3:init point}}{${4:end point}}{${5:distance}}[${6:measure}][${7:help line length}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dnotation{}{}{}[];": {
+      "command": "dnotation{}{}{}[];",
+      "snippet": "dnotation{${1:2}}{${2:%<insertion point%>}}{${3:%<labelling%>}}[${4:%<orientation%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dnotation{}{}{}[][][];": {
+      "command": "dnotation{}{}{}[][][];",
+      "snippet": "dnotation{${1:3}}{${2:%<init point%>}}{${3:%<end point%>}}[${4:%<labelling%>}][${5:%<pos%>}][${6:%<orientation%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dnotation{}{}{}[][][][];": {
+      "command": "dnotation{}{}{}[][][][];",
+      "snippet": "dnotation{${1:5}}{${2:%<init point%>}}{${3:%<end point%>}}[${4:%<labelling%>}][${5:%<pos%>}][${6:%<orientation%>}][${7:%<text orientation%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dnotation{}{}{};": {
+      "command": "dnotation{}{}{};",
+      "snippet": "dnotation{${1:6}}{${2:%<insertion point%>}}{${3:%<labelling%>}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "daddon{}{}[]{}{}{};": {
+      "command": "daddon{}{}[]{}{}{};",
+      "snippet": "daddon{${1:1}}{${2:%<plane%>}}[${3:%<plane dist%>}]{${4:%<insertion point%>}}{${5:%<end point%>}}{${6:%<pos%>}};",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "daddon{}{}[]{}{}{}[];": {
+      "command": "daddon{}{}[]{}{}{}[];",
+      "snippet": "daddon{${1:3}}{${2:%<plane%>}}[${3:%<plane dist%>}]{${4:%<insertion point%>}}{${5:%<init point%>}}{${6:%<end point%>}}[${7:%<orientation%>}];",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setcoords{}{}": {
+      "command": "setcoords{}{}",
+      "snippet": "setcoords{${1:x angle}}{${2:y angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setcoords{}{}[][][]": {
+      "command": "setcoords{}{}[][][]",
+      "snippet": "setcoords{${1:x angle}}{${2:y angle}}[${3:x dir}][${4:y dir}][${5:z dir}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setcoords{}{}[][][][]": {
+      "command": "setcoords{}{}[][][][]",
+      "snippet": "setcoords{${1:x angle}}{${2:y angle}}[${3:x dir}][${4:y dir}][${5:z dir}][${6:z angle}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setaxis{}": {
+      "command": "setaxis{}",
+      "snippet": "setaxis{${1:2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setaxis{}[][][][][][]": {
+      "command": "setaxis{}[][][][][][]",
+      "snippet": "setaxis{${1:3}}[${2:%<Xlabel%>}][${3:%<Ylabel%>}][${4:%<Zlabel%>}][${5:%<xlabel%>}][${6:%<ylabel%>}][${7:%<zlabel%>}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setaxis{}[][][]": {
+      "command": "setaxis{}[][][]",
+      "snippet": "setaxis{${1:4}}[${2:%<x orient.%>}][${3:%<y orient.%>}][${4:%<z orient.%>}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showpoint": {
+      "command": "showpoint",
+      "snippet": "showpoint",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dscaling{}{}": {
+      "command": "dscaling{}{}",
+      "snippet": "dscaling{${1:type}}{${2:factor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DaddonLength": {
+      "command": "DaddonLength",
+      "snippet": "DaddonLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DaxisDistance": {
+      "command": "DaxisDistance",
+      "snippet": "DaxisDistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DaxisLength": {
+      "command": "DaxisLength",
+      "snippet": "DaxisLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DbigLineWidth": {
+      "command": "DbigLineWidth",
+      "snippet": "DbigLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DdimensioningBar": {
+      "command": "DdimensioningBar",
+      "snippet": "DdimensioningBar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DforceDistance": {
+      "command": "DforceDistance",
+      "snippet": "DforceDistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DforceLength": {
+      "command": "DforceLength",
+      "snippet": "DforceLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DhelpVarA": {
+      "command": "DhelpVarA",
+      "snippet": "DhelpVarA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DhelpVarB": {
+      "command": "DhelpVarB",
+      "snippet": "DhelpVarB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DhelpVarC": {
+      "command": "DhelpVarC",
+      "snippet": "DhelpVarC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DhingeAxialHeight": {
+      "command": "DhingeAxialHeight",
+      "snippet": "DhingeAxialHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DhingeAxialLength": {
+      "command": "DhingeAxialLength",
+      "snippet": "DhingeAxialLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DhingeBigRadius": {
+      "command": "DhingeBigRadius",
+      "snippet": "DhingeBigRadius",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DhingeCornerLength": {
+      "command": "DhingeCornerLength",
+      "snippet": "DhingeCornerLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DhingeRadius": {
+      "command": "DhingeRadius",
+      "snippet": "DhingeRadius",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DhugeLineWidth": {
+      "command": "DhugeLineWidth",
+      "snippet": "DhugeLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DlineloadDistance": {
+      "command": "DlineloadDistance",
+      "snippet": "DlineloadDistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DlineloadDistanceMM": {
+      "command": "DlineloadDistanceMM",
+      "snippet": "DlineloadDistanceMM",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DlineloadForce": {
+      "command": "DlineloadForce",
+      "snippet": "DlineloadForce",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DlineloadInterval": {
+      "command": "DlineloadInterval",
+      "snippet": "DlineloadInterval",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DlocalaxisLength": {
+      "command": "DlocalaxisLength",
+      "snippet": "DlocalaxisLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DnormalLineWidth": {
+      "command": "DnormalLineWidth",
+      "snippet": "DnormalLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DnoteRadius": {
+      "command": "DnoteRadius",
+      "snippet": "DnoteRadius",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DscalingParameter": {
+      "command": "DscalingParameter",
+      "snippet": "DscalingParameter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DshowPointParameter": {
+      "command": "DshowPointParameter",
+      "snippet": "DshowPointParameter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DsmallLineWidth": {
+      "command": "DsmallLineWidth",
+      "snippet": "DsmallLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DspringAmplitude": {
+      "command": "DspringAmplitude",
+      "snippet": "DspringAmplitude",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DspringLength": {
+      "command": "DspringLength",
+      "snippet": "DspringLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DspringPostLength": {
+      "command": "DspringPostLength",
+      "snippet": "DspringPostLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DspringPreLength": {
+      "command": "DspringPreLength",
+      "snippet": "DspringPreLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DspringSegmentLength": {
+      "command": "DspringSegmentLength",
+      "snippet": "DspringSegmentLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DsupportGap": {
+      "command": "DsupportGap",
+      "snippet": "DsupportGap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DsupportLength": {
+      "command": "DsupportLength",
+      "snippet": "DsupportLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DtinyLineWidth": {
+      "command": "DtinyLineWidth",
+      "snippet": "DtinyLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DxAngle": {
+      "command": "DxAngle",
+      "snippet": "DxAngle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DxLength": {
+      "command": "DxLength",
+      "snippet": "DxLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DxNodePos": {
+      "command": "DxNodePos",
+      "snippet": "DxNodePos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DxVarA": {
+      "command": "DxVarA",
+      "snippet": "DxVarA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DxVarB": {
+      "command": "DxVarB",
+      "snippet": "DxVarB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DyAngle": {
+      "command": "DyAngle",
+      "snippet": "DyAngle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DyLength": {
+      "command": "DyLength",
+      "snippet": "DyLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DyNodePos": {
+      "command": "DyNodePos",
+      "snippet": "DyNodePos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DyVarA": {
+      "command": "DyVarA",
+      "snippet": "DyVarA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DyVarB": {
+      "command": "DyVarB",
+      "snippet": "DyVarB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DzAngle": {
+      "command": "DzAngle",
+      "snippet": "DzAngle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DzLength": {
+      "command": "DzLength",
+      "snippet": "DzLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DzNodePos": {
+      "command": "DzNodePos",
+      "snippet": "DzNodePos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DzVarA": {
+      "command": "DzVarA",
+      "snippet": "DzVarA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DzVarB": {
+      "command": "DzVarB",
+      "snippet": "DzVarB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "barAngle": {
+      "command": "barAngle",
+      "snippet": "barAngle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "barGap": {
+      "command": "barGap",
+      "snippet": "barGap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bigLineWidth": {
+      "command": "bigLineWidth",
+      "snippet": "bigLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "colorGray": {
+      "command": "colorGray",
+      "snippet": "colorGray",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dimensioningBar": {
+      "command": "dimensioningBar",
+      "snippet": "dimensioningBar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "forceDistance": {
+      "command": "forceDistance",
+      "snippet": "forceDistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "forceLength": {
+      "command": "forceLength",
+      "snippet": "forceLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hatchingAmplitude": {
+      "command": "hatchingAmplitude",
+      "snippet": "hatchingAmplitude",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hatchingAngle": {
+      "command": "hatchingAngle",
+      "snippet": "hatchingAngle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hatchingLength": {
+      "command": "hatchingLength",
+      "snippet": "hatchingLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "helpVarA": {
+      "command": "helpVarA",
+      "snippet": "helpVarA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "helpVarB": {
+      "command": "helpVarB",
+      "snippet": "helpVarB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hingeAxialHeight": {
+      "command": "hingeAxialHeight",
+      "snippet": "hingeAxialHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hingeAxialLength": {
+      "command": "hingeAxialLength",
+      "snippet": "hingeAxialLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hingeCornerLength": {
+      "command": "hingeCornerLength",
+      "snippet": "hingeCornerLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hingeRadius": {
+      "command": "hingeRadius",
+      "snippet": "hingeRadius",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hugeLineWidth": {
+      "command": "hugeLineWidth",
+      "snippet": "hugeLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lineloadDistance": {
+      "command": "lineloadDistance",
+      "snippet": "lineloadDistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lineloadForce": {
+      "command": "lineloadForce",
+      "snippet": "lineloadForce",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lineloadInterval": {
+      "command": "lineloadInterval",
+      "snippet": "lineloadInterval",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "momentAngle": {
+      "command": "momentAngle",
+      "snippet": "momentAngle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "momentDistance": {
+      "command": "momentDistance",
+      "snippet": "momentDistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "normalLineWidth": {
+      "command": "normalLineWidth",
+      "snippet": "normalLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pathdrawcolor": {
+      "command": "pathdrawcolor",
+      "snippet": "pathdrawcolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pathfillcolor": {
+      "command": "pathfillcolor",
+      "snippet": "pathfillcolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scalingParameter": {
+      "command": "scalingParameter",
+      "snippet": "scalingParameter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "smallLineWidth": {
+      "command": "smallLineWidth",
+      "snippet": "smallLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "springAmplitude": {
+      "command": "springAmplitude",
+      "snippet": "springAmplitude",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "springLength": {
+      "command": "springLength",
+      "snippet": "springLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "springPostLength": {
+      "command": "springPostLength",
+      "snippet": "springPostLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "springPreLength": {
+      "command": "springPreLength",
+      "snippet": "springPreLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "springSegmentLength": {
+      "command": "springSegmentLength",
+      "snippet": "springSegmentLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "supportBasicHeight": {
+      "command": "supportBasicHeight",
+      "snippet": "supportBasicHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "supportBasicLength": {
+      "command": "supportBasicLength",
+      "snippet": "supportBasicLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "supportGap": {
+      "command": "supportGap",
+      "snippet": "supportGap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "supportHatchingHeight": {
+      "command": "supportHatchingHeight",
+      "snippet": "supportHatchingHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "supportHatchingLength": {
+      "command": "supportHatchingLength",
+      "snippet": "supportHatchingLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "supportHeight": {
+      "command": "supportHeight",
+      "snippet": "supportHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "supportLength": {
+      "command": "supportLength",
+      "snippet": "supportLength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "temperatureHeight": {
+      "command": "temperatureHeight",
+      "snippet": "temperatureHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tinyLineWidth": {
+      "command": "tinyLineWidth",
+      "snippet": "tinyLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tdplotmult{}{}{}": {
+      "command": "tdplotmult{}{}{}",
+      "snippet": "tdplotmult{${1:macro%cmd}}{${2:x}}{${3:y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tdplotresetrotatedcoordsorigin": {
+      "command": "tdplotresetrotatedcoordsorigin",
+      "snippet": "tdplotresetrotatedcoordsorigin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tdplotsetrotatedcoordsorigin{}": {
+      "command": "tdplotsetrotatedcoordsorigin{}",
+      "snippet": "tdplotsetrotatedcoordsorigin{${1:point}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tdplotsetrotatedcoords{}{}{}": {
+      "command": "tdplotsetrotatedcoords{}{}{}",
+      "snippet": "tdplotsetrotatedcoords{${1:angle1}}{${2:angle2}}{${3:angle3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tdplotsinandcos{}{}{}": {
+      "command": "tdplotsinandcos{}{}{}",
+      "snippet": "tdplotsinandcos{${1:macor1%cmd}}{${2:macor2%cmd}}{${3:angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

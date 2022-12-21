@@ -1,0 +1,37 @@
+{
+  "includes": [
+    "shellesc",
+    "pgfkeys",
+    "expl3",
+    "xkeyval"
+  ],
+  "cmds": {
+    "iexec{}": {
+      "command": "iexec{}",
+      "snippet": "iexec{${1:shell command%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iexec[]{}": {
+      "command": "iexec[]{}",
+      "snippet": "iexec[${2:options}]{${1:shell command%definition}}",
+      "option": "",
+      "keyvals": [
+        "quiet",
+        "stdout=",
+        "stderr=",
+        "exit=",
+        "trace",
+        "append",
+        "log",
+        "null"
+      ],
+      "keyvalindex": 0
+    }
+  },
+  "envs": {},
+  "options": [
+    "trace"
+  ]
+}

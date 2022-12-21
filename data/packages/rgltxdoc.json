@@ -1,0 +1,520 @@
+{
+  "includes": [
+    "ifluatex",
+    "etoolbox",
+    "inputenc",
+    "babel",
+    "geometry",
+    "typearea",
+    "fontenc",
+    "lmodern",
+    "microtype",
+    "csquotes",
+    "enumitem",
+    "idxlayout",
+    "amsmath",
+    "varioref",
+    "hypdoc",
+    "cleveref",
+    "doc",
+    "pbox",
+    "keyvaltable",
+    "hologo",
+    "showexpl"
+  ],
+  "cmds": {
+    "NiceDescribeMacro{}{}": {
+      "command": "NiceDescribeMacro{}{}",
+      "snippet": "NiceDescribeMacro{${1:macro%cmd}}{${2:parameters}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeMacro[]{}{}": {
+      "command": "NiceDescribeMacro[]{}{}",
+      "snippet": "NiceDescribeMacro[${3:idx}]{${1:macro%cmd}}{${2:parameters}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeMacros{}{}{}%<...{}{}%>": {
+      "command": "NiceDescribeMacros{}{}{}%<...{}{}%>",
+      "snippet": "NiceDescribeMacros{${1:%<N%>}}{${2:%<macro1%>}}{${3:%<params1%>}}%<...{${4:macroN}}{${5:paramsN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeMacros{}[]{}{}%<...[]{}{}%>": {
+      "command": "NiceDescribeMacros{}[]{}{}%<...[]{}{}%>",
+      "snippet": "NiceDescribeMacros{${1:%<N%>}}[${2:%<idx1%>}]{${3:%<macro1%>}}{${4:%<params1%>}}%<...[${5:idxN}]{${6:macroN}}{${7:paramsN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeEnv{}{}": {
+      "command": "NiceDescribeEnv{}{}",
+      "snippet": "NiceDescribeEnv{${1:envname}}{${2:parameters}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeEnv[]{}{}": {
+      "command": "NiceDescribeEnv[]{}{}",
+      "snippet": "NiceDescribeEnv[${3:idx}]{${1:envname}}{${2:parameters}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeEnvs{}{}{}%<...{}{}%>": {
+      "command": "NiceDescribeEnvs{}{}{}%<...{}{}%>",
+      "snippet": "NiceDescribeEnvs{${1:%<N%>}}{${2:%<envname1%>}}{${3:%<params1%>}}%<...{${4:envnameN}}{${5:paramsN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeEnvs{}[]{}{}%<...[]{}{}%>": {
+      "command": "NiceDescribeEnvs{}[]{}{}%<...[]{}{}%>",
+      "snippet": "NiceDescribeEnvs{${1:%<N%>}}[${2:%<idx1%>}]{${3:%<envname1%>}}{${4:%<params1%>}}%<...[${5:idxN}]{${6:envnameN}}{${7:paramsN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeCounter{}{}": {
+      "command": "NiceDescribeCounter{}{}",
+      "snippet": "NiceDescribeCounter{${1:counter}}{${2:qualifiers}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeCounter[]{}{}": {
+      "command": "NiceDescribeCounter[]{}{}",
+      "snippet": "NiceDescribeCounter[${3:idx}]{${1:counter}}{${2:qualifiers}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeCounters{}{}{}%<...{}{}%>": {
+      "command": "NiceDescribeCounters{}{}{}%<...{}{}%>",
+      "snippet": "NiceDescribeCounters{${1:%<N%>}}{${2:%<counter1%>}}{${3:%<quals1%>}}%<...{${4:counterN}}{${5:qualsN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeCounters{}[]{}{}%<...[]{}{}%>": {
+      "command": "NiceDescribeCounters{}[]{}{}%<...[]{}{}%>",
+      "snippet": "NiceDescribeCounters{${1:%<N%>}}[${2:%<idx1%>}]{${3:%<counter1%>}}{${4:%<quals1%>}}%<...[${5:idxN}]{${6:counterN}}{${7:qualsN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeKey{}{}": {
+      "command": "NiceDescribeKey{}{}",
+      "snippet": "NiceDescribeKey{${1:keyname}}{${2:keyconfig}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeKey[]{}{}": {
+      "command": "NiceDescribeKey[]{}{}",
+      "snippet": "NiceDescribeKey[${3:idx}]{${1:keyname}}{${2:keyconfig}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeKeys{}{}{}%<...{}{}%>": {
+      "command": "NiceDescribeKeys{}{}{}%<...{}{}%>",
+      "snippet": "NiceDescribeKeys{${1:%<N%>}}{${2:%<key1%>}}{${3:%<config1%>}}%<...{${4:keyN}}{${5:configN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NiceDescribeKeys{}[]{}{}%<...[]{}{}%>": {
+      "command": "NiceDescribeKeys{}[]{}{}%<...[]{}{}%>",
+      "snippet": "NiceDescribeKeys{${1:%<N%>}}[${2:%<idx1%>}]{${3:%<key1%>}}{${4:%<config1%>}}%<...[${5:idxN}]{${6:keyN}}{${7:configN}}%>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewNiceDescription{}{}{}{}": {
+      "command": "NewNiceDescription{}{}{}{}",
+      "snippet": "NewNiceDescription{${1:type}}{${2:efmt}}{${3:afmt}}{${4:icmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SpecialOtherIndex{}{}{}": {
+      "command": "SpecialOtherIndex{}{}{}",
+      "snippet": "SpecialOtherIndex{${1:type}}{${2:types}}{${3:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "env{}": {
+      "command": "env{}",
+      "snippet": "env{${1:envname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgname{}": {
+      "command": "pkgname{}",
+      "snippet": "pkgname{${1:package}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgnames{}": {
+      "command": "pkgnames{}",
+      "snippet": "pkgnames{${1:package1,package2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cmarg{}": {
+      "command": "cmarg{}",
+      "snippet": "cmarg{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "coarg{}": {
+      "command": "coarg{}",
+      "snippet": "coarg{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vmeta{}": {
+      "command": "vmeta{}",
+      "snippet": "vmeta{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "captionsenglish": {
+      "command": "captionsenglish",
+      "snippet": "captionsenglish",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dateenglish": {
+      "command": "dateenglish",
+      "snippet": "dateenglish",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extrasenglish": {
+      "command": "extrasenglish",
+      "snippet": "extrasenglish",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noextrasenglish": {
+      "command": "noextrasenglish",
+      "snippet": "noextrasenglish",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "englishhyphenmins": {
+      "command": "englishhyphenmins",
+      "snippet": "englishhyphenmins",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "britishhyphenmins": {
+      "command": "britishhyphenmins",
+      "snippet": "britishhyphenmins",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "americanhyphenmins": {
+      "command": "americanhyphenmins",
+      "snippet": "americanhyphenmins",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "prefacename": {
+      "command": "prefacename",
+      "snippet": "prefacename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bibname": {
+      "command": "bibname",
+      "snippet": "bibname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chaptername": {
+      "command": "chaptername",
+      "snippet": "chaptername",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "enclname": {
+      "command": "enclname",
+      "snippet": "enclname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ccname": {
+      "command": "ccname",
+      "snippet": "ccname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "headtoname": {
+      "command": "headtoname",
+      "snippet": "headtoname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "seename": {
+      "command": "seename",
+      "snippet": "seename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "alsoname": {
+      "command": "alsoname",
+      "snippet": "alsoname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proofname": {
+      "command": "proofname",
+      "snippet": "proofname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glossaryname": {
+      "command": "glossaryname",
+      "snippet": "glossaryname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DH": {
+      "command": "DH",
+      "snippet": "DH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NG": {
+      "command": "NG",
+      "snippet": "NG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dj": {
+      "command": "dj",
+      "snippet": "dj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ng": {
+      "command": "ng",
+      "snippet": "ng",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "k{}": {
+      "command": "k{}",
+      "snippet": "k{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotleft": {
+      "command": "guillemotleft",
+      "snippet": "guillemotleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotright": {
+      "command": "guillemotright",
+      "snippet": "guillemotright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglleft": {
+      "command": "guilsinglleft",
+      "snippet": "guilsinglleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglright": {
+      "command": "guilsinglright",
+      "snippet": "guilsinglright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotedblbase": {
+      "command": "quotedblbase",
+      "snippet": "quotedblbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotesinglbase": {
+      "command": "quotesinglbase",
+      "snippet": "quotesinglbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textquotedbl": {
+      "command": "textquotedbl",
+      "snippet": "textquotedbl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DJ": {
+      "command": "DJ",
+      "snippet": "DJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "th": {
+      "command": "th",
+      "snippet": "th",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TH": {
+      "command": "TH",
+      "snippet": "TH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dh": {
+      "command": "dh",
+      "snippet": "dh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hwithstroke": {
+      "command": "Hwithstroke",
+      "snippet": "Hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hwithstroke": {
+      "command": "hwithstroke",
+      "snippet": "hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textogonekcentered{}": {
+      "command": "textogonekcentered{}",
+      "snippet": "textogonekcentered{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetleft": {
+      "command": "guillemetleft",
+      "snippet": "guillemetleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetright": {
+      "command": "guillemetright",
+      "snippet": "guillemetright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "KeyValTable{}%|": {
+      "name": "KeyValTable",
+      "detail": "KeyValTable{}%|",
+      "snippet": "{${1:ArgDesc}}%|",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "enumerate*": {
+      "name": "enumerate*",
+      "detail": "enumerate*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "enumerate*[]": {
+      "name": "enumerate*",
+      "detail": "enumerate*[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "itemize*": {
+      "name": "itemize*",
+      "detail": "itemize*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "itemize*[]": {
+      "name": "itemize*",
+      "detail": "itemize*[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "description*": {
+      "name": "description*",
+      "detail": "description*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "description*[]": {
+      "name": "description*",
+      "detail": "description*[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

@@ -1,0 +1,435 @@
+{
+  "includes": [
+    "geometry",
+    "helvet",
+    "calc",
+    "longtable",
+    "array",
+    "color",
+    "ifthen",
+    "keyval",
+    "fontenc"
+  ],
+  "cmds": {
+    "kernsetup{}": {
+      "command": "kernsetup{}",
+      "snippet": "kernsetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "encoding=",
+        "series=",
+        "shape=",
+        "size=",
+        "baselineskip=",
+        "designsize=",
+        "example=",
+        "papersize=",
+        "extraname=",
+        "color",
+        "copyquotation",
+        "writeall",
+        "footer"
+      ],
+      "keyvalindex": 0
+    },
+    "testkern{}{}{}{}{}": {
+      "command": "testkern{}{}{}{}{}",
+      "snippet": "testkern{${1:glyph1}}{${2:kerning1}}{${3:glyph2}}{${4:kerning2}}{${5:glyph3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mtxcomment{}": {
+      "command": "mtxcomment{}",
+      "snippet": "mtxcomment{${1:comment}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "encodingsetup{}": {
+      "command": "encodingsetup{}",
+      "snippet": "encodingsetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "ligaturing=",
+        "italicizing"
+      ],
+      "keyvalindex": 0
+    },
+    "defglyphclass{}{}{}": {
+      "command": "defglyphclass{}{}{}",
+      "snippet": "defglyphclass{${1:side}}{${2:name}}{${3:glyphlist}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newglyphclass{}{}{}": {
+      "command": "newglyphclass{}{}{}",
+      "snippet": "newglyphclass{${1:side}}{${2:name}}{${3:glyphlist}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewglyphclass{}{}{}": {
+      "command": "renewglyphclass{}{}{}",
+      "snippet": "renewglyphclass{${1:side}}{${2:name}}{${3:glyphlist}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "provideglyphclass{}{}{}": {
+      "command": "provideglyphclass{}{}{}",
+      "snippet": "provideglyphclass{${1:side}}{${2:name}}{${3:glyphlist}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "firstglyphinclass": {
+      "command": "firstglyphinclass",
+      "snippet": "firstglyphinclass",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "forallclasses{}{}{}": {
+      "command": "forallclasses{}{}{}",
+      "snippet": "forallclasses{${1:side}}{${2:glyph class}}{${3:action}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "forallinclass{}{}{}{}": {
+      "command": "forallinclass{}{}{}{}",
+      "snippet": "forallinclass{${1:side}}{${2:name}}{${3:glyph}}{${4:action}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getclassofglyph{}{}": {
+      "command": "getclassofglyph{}{}",
+      "snippet": "getclassofglyph{${1:side}}{${2:glyph name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getkern{}": {
+      "command": "getkern{}",
+      "snippet": "getkern{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getpsname{}": {
+      "command": "getpsname{}",
+      "snippet": "getpsname{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getpsunit{}": {
+      "command": "getpsunit{}",
+      "snippet": "getpsunit{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getslotnumber{}": {
+      "command": "getslotnumber{}",
+      "snippet": "getslotnumber{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifglyphinclass{}{}{}{}{}": {
+      "command": "ifglyphinclass{}{}{}{}{}",
+      "snippet": "ifglyphinclass{${1:side}}{${2:name}}{${3:glyph}}{${4:true}}{${5:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "leftkern": {
+      "command": "leftkern",
+      "snippet": "leftkern",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mtxfile": {
+      "command": "mtxfile",
+      "snippet": "mtxfile",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mtxfilename": {
+      "command": "mtxfilename",
+      "snippet": "mtxfilename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oldkerna": {
+      "command": "oldkerna",
+      "snippet": "oldkerna",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oldkernb": {
+      "command": "oldkernb",
+      "snippet": "oldkernb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "printglyph{}": {
+      "command": "printglyph{}",
+      "snippet": "printglyph{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProcessOptionsWithKV{}": {
+      "command": "ProcessOptionsWithKV{}",
+      "snippet": "ProcessOptionsWithKV{${1:family}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psunit": {
+      "command": "psunit",
+      "snippet": "psunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rightkern": {
+      "command": "rightkern",
+      "snippet": "rightkern",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "round{}": {
+      "command": "round{}",
+      "snippet": "round{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "saveslotnumber{}{}": {
+      "command": "saveslotnumber{}{}",
+      "snippet": "saveslotnumber{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stoploop": {
+      "command": "stoploop",
+      "snippet": "stoploop",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stoploop[]": {
+      "command": "stoploop[]",
+      "snippet": "stoploop[${1:var}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textleft": {
+      "command": "textleft",
+      "snippet": "textleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textright": {
+      "command": "textright",
+      "snippet": "textright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thisglyphname": {
+      "command": "thisglyphname",
+      "snippet": "thisglyphname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "writemtxkern[]{}{}{}": {
+      "command": "writemtxkern[]{}{}{}",
+      "snippet": "writemtxkern[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "writemtxkern{}{}{}": {
+      "command": "writemtxkern{}{}{}",
+      "snippet": "writemtxkern{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DH": {
+      "command": "DH",
+      "snippet": "DH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dh": {
+      "command": "dh",
+      "snippet": "dh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dj": {
+      "command": "dj",
+      "snippet": "dj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DJ": {
+      "command": "DJ",
+      "snippet": "DJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetleft": {
+      "command": "guillemetleft",
+      "snippet": "guillemetleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetright": {
+      "command": "guillemetright",
+      "snippet": "guillemetright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotleft": {
+      "command": "guillemotleft",
+      "snippet": "guillemotleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotright": {
+      "command": "guillemotright",
+      "snippet": "guillemotright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglleft": {
+      "command": "guilsinglleft",
+      "snippet": "guilsinglleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglright": {
+      "command": "guilsinglright",
+      "snippet": "guilsinglright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hwithstroke": {
+      "command": "Hwithstroke",
+      "snippet": "Hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hwithstroke": {
+      "command": "hwithstroke",
+      "snippet": "hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "k{}": {
+      "command": "k{}",
+      "snippet": "k{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NG": {
+      "command": "NG",
+      "snippet": "NG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ng": {
+      "command": "ng",
+      "snippet": "ng",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotedblbase": {
+      "command": "quotedblbase",
+      "snippet": "quotedblbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotesinglbase": {
+      "command": "quotesinglbase",
+      "snippet": "quotesinglbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textogonekcentered{}": {
+      "command": "textogonekcentered{}",
+      "snippet": "textogonekcentered{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textquotedbl": {
+      "command": "textquotedbl",
+      "snippet": "textquotedbl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "th": {
+      "command": "th",
+      "snippet": "th",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TH": {
+      "command": "TH",
+      "snippet": "TH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "kerntable": {
+      "name": "kerntable",
+      "detail": "kerntable",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

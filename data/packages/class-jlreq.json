@@ -1,0 +1,590 @@
+{
+  "includes": [
+    "l3keys2e",
+    "etoolbox",
+    "jlreq-helpers",
+    "luatexja",
+    "luatexja-adjust",
+    "everyhook",
+    "lmodern",
+    "jlreq-complements"
+  ],
+  "cmds": {
+    "chapter{}[]": {
+      "command": "chapter{}[]",
+      "snippet": "chapter{${1:title}}[${2:subtitle%text}]",
+      "option": "article_type=report",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chapter[]{}[]": {
+      "command": "chapter[]{}[]",
+      "snippet": "chapter[${2:short title}]{${1:title}}[${3:subtitle%text}]",
+      "option": "article_type=report",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chapter*{}[]": {
+      "command": "chapter*{}[]",
+      "snippet": "chapter*{${1:title}}[${2:subtitle%text}]",
+      "option": "article_type=report",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thechapter": {
+      "command": "thechapter",
+      "snippet": "thechapter",
+      "option": "article_type=report",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frontmatter": {
+      "command": "frontmatter",
+      "snippet": "frontmatter",
+      "option": "article_type=book",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mainmatter": {
+      "command": "mainmatter",
+      "snippet": "mainmatter",
+      "option": "article_type=book",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "backmatter": {
+      "command": "backmatter",
+      "snippet": "backmatter",
+      "option": "article_type=book",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jlreqsetup{}": {
+      "command": "jlreqsetup{}",
+      "snippet": "jlreqsetup{${1:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "part{}[]": {
+      "command": "part{}[]",
+      "snippet": "part{${1:title}}[${2:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "part[]{}[]": {
+      "command": "part[]{}[]",
+      "snippet": "part[${2:short title}]{${1:title}}[${3:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "part*{}[]": {
+      "command": "part*{}[]",
+      "snippet": "part*{${1:title}}[${2:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "section{}[]": {
+      "command": "section{}[]",
+      "snippet": "section{${1:title}}[${2:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "section[]{}[]": {
+      "command": "section[]{}[]",
+      "snippet": "section[${2:short title}]{${1:title}}[${3:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "section*{}[]": {
+      "command": "section*{}[]",
+      "snippet": "section*{${1:title}}[${2:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subsection{}[]": {
+      "command": "subsection{}[]",
+      "snippet": "subsection{${1:title}}[${2:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subsection[]{}[]": {
+      "command": "subsection[]{}[]",
+      "snippet": "subsection[${2:short title}]{${1:title}}[${3:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subsection*{}[]": {
+      "command": "subsection*{}[]",
+      "snippet": "subsection*{${1:title}}[${2:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subsubsection{}[]": {
+      "command": "subsubsection{}[]",
+      "snippet": "subsubsection{${1:title}}[${2:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subsubsection[]{}[]": {
+      "command": "subsubsection[]{}[]",
+      "snippet": "subsubsection[${2:short title}]{${1:title}}[${3:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subsubsection*{}[]": {
+      "command": "subsubsection*{}[]",
+      "snippet": "subsubsection*{${1:title}}[${2:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenote{}{}": {
+      "command": "sidenote{}{}",
+      "snippet": "sidenote{${1:heading%text}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotemark{}": {
+      "command": "sidenotemark{}",
+      "snippet": "sidenotemark{${1:heading%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotemark[]{}": {
+      "command": "sidenotemark[]{}",
+      "snippet": "sidenotemark[${2:number}]{${1:heading%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotetext{}{}": {
+      "command": "sidenotetext{}{}",
+      "snippet": "sidenotetext{${1:heading%text}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotetext[]{}{}": {
+      "command": "sidenotetext[]{}{}",
+      "snippet": "sidenotetext[${3:number}]{${1:heading%text}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endnote{}": {
+      "command": "endnote{}",
+      "snippet": "endnote{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endnote[]{}": {
+      "command": "endnote[]{}",
+      "snippet": "endnote[${2:number}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endnotemark": {
+      "command": "endnotemark",
+      "snippet": "endnotemark",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endnotemark[]": {
+      "command": "endnotemark[]",
+      "snippet": "endnotemark[${1:number}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endnotetext{}": {
+      "command": "endnotetext{}",
+      "snippet": "endnotetext{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endnotetext[]{}": {
+      "command": "endnotetext[]{}",
+      "snippet": "endnotetext[${2:number}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theendnotes": {
+      "command": "theendnotes",
+      "snippet": "theendnotes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "warichu{}": {
+      "command": "warichu{}",
+      "snippet": "warichu{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "warichu*{}": {
+      "command": "warichu*{}",
+      "snippet": "warichu*{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tatechuyoko{}": {
+      "command": "tatechuyoko{}",
+      "snippet": "tatechuyoko{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tatechuyoko*{}": {
+      "command": "tatechuyoko*{}",
+      "snippet": "tatechuyoko*{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jidori{}{}": {
+      "command": "jidori{}{}",
+      "snippet": "jidori{${1:width}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "akigumi{}{}": {
+      "command": "akigumi{}{}",
+      "snippet": "akigumi{${1:width}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jafontsize{}{}": {
+      "command": "jafontsize{}{}",
+      "snippet": "jafontsize{${1:size}}{${2:skip}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jlreqkanjiskip": {
+      "command": "jlreqkanjiskip",
+      "snippet": "jlreqkanjiskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jlreqxkanjiskip": {
+      "command": "jlreqxkanjiskip",
+      "snippet": "jlreqxkanjiskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewTobiraHeading{}{}{}": {
+      "command": "NewTobiraHeading{}{}{}",
+      "snippet": "NewTobiraHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewTobiraHeading{}{}{}": {
+      "command": "RenewTobiraHeading{}{}{}",
+      "snippet": "RenewTobiraHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProvideTobiraHeading{}{}{}": {
+      "command": "ProvideTobiraHeading{}{}{}",
+      "snippet": "ProvideTobiraHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareTobiraHeading{}{}{}": {
+      "command": "DeclareTobiraHeading{}{}{}",
+      "snippet": "DeclareTobiraHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewBlockHeading{}{}{}": {
+      "command": "NewBlockHeading{}{}{}",
+      "snippet": "NewBlockHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewBlockHeading{}{}{}": {
+      "command": "RenewBlockHeading{}{}{}",
+      "snippet": "RenewBlockHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProvideBlockHeading{}{}{}": {
+      "command": "ProvideBlockHeading{}{}{}",
+      "snippet": "ProvideBlockHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareBlockHeading{}{}{}": {
+      "command": "DeclareBlockHeading{}{}{}",
+      "snippet": "DeclareBlockHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetBlockHeadingSpaces{}": {
+      "command": "SetBlockHeadingSpaces{}",
+      "snippet": "SetBlockHeadingSpaces{${1:specs}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewRuninHeading{}{}{}": {
+      "command": "NewRuninHeading{}{}{}",
+      "snippet": "NewRuninHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewRuninHeading{}{}{}": {
+      "command": "RenewRuninHeading{}{}{}",
+      "snippet": "RenewRuninHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProvideRuninHeading{}{}{}": {
+      "command": "ProvideRuninHeading{}{}{}",
+      "snippet": "ProvideRuninHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareRuninHeading{}{}{}": {
+      "command": "DeclareRuninHeading{}{}{}",
+      "snippet": "DeclareRuninHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewCutinHeading{}{}{}": {
+      "command": "NewCutinHeading{}{}{}",
+      "snippet": "NewCutinHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewCutinHeading{}{}{}": {
+      "command": "RenewCutinHeading{}{}{}",
+      "snippet": "RenewCutinHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProvideCutinHeading{}{}{}": {
+      "command": "ProvideCutinHeading{}{}{}",
+      "snippet": "ProvideCutinHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareCutinHeading{}{}{}": {
+      "command": "DeclareCutinHeading{}{}{}",
+      "snippet": "DeclareCutinHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ModifyHeading{}{}": {
+      "command": "ModifyHeading{}{}",
+      "snippet": "ModifyHeading{${1:sectionname}}{${2:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SaveHeading{}{}": {
+      "command": "SaveHeading{}{}",
+      "snippet": "SaveHeading{${1:sectionname}}{${2:command}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewPageStyle{}{}": {
+      "command": "NewPageStyle{}{}",
+      "snippet": "NewPageStyle{${1:name}}{${2:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewPageStyle{}{}": {
+      "command": "RenewPageStyle{}{}",
+      "snippet": "RenewPageStyle{${1:name}}{${2:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProvidePageStyle{}{}": {
+      "command": "ProvidePageStyle{}{}",
+      "snippet": "ProvidePageStyle{${1:name}}{${2:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclarePageStyle{}{}": {
+      "command": "DeclarePageStyle{}{}",
+      "snippet": "DeclarePageStyle{${1:name}}{${2:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ModifyPageStyle{}{}": {
+      "command": "ModifyPageStyle{}{}",
+      "snippet": "ModifyPageStyle{${1:pagestyle}}{${2:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifjlreqadjustreferencemark": {
+      "command": "ifjlreqadjustreferencemark",
+      "snippet": "ifjlreqadjustreferencemark",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "if西暦": {
+      "command": "if西暦",
+      "snippet": "if西暦",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlinenote*{}": {
+      "command": "inlinenote*{}",
+      "snippet": "inlinenote*{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlinenote{}": {
+      "command": "inlinenote{}",
+      "snippet": "inlinenote{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlinenotesize": {
+      "command": "inlinenotesize",
+      "snippet": "inlinenotesize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jaspace{}": {
+      "command": "jaspace{}",
+      "snippet": "jaspace{${1:type}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jlreqadjustreferencemarkfalse": {
+      "command": "jlreqadjustreferencemarkfalse",
+      "snippet": "jlreqadjustreferencemarkfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jlreqadjustreferencemarktrue": {
+      "command": "jlreqadjustreferencemarktrue",
+      "snippet": "jlreqadjustreferencemarktrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jlreqHeadingLabel": {
+      "command": "jlreqHeadingLabel",
+      "snippet": "jlreqHeadingLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jlreqHeadingSubtitle": {
+      "command": "jlreqHeadingSubtitle",
+      "snippet": "jlreqHeadingSubtitle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jlreqHeadingText": {
+      "command": "jlreqHeadingText",
+      "snippet": "jlreqHeadingText",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jlreqparindent": {
+      "command": "jlreqparindent",
+      "snippet": "jlreqparindent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jlreqtateheadlength": {
+      "command": "jlreqtateheadlength",
+      "snippet": "jlreqtateheadlength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jlreqyokoheadlength": {
+      "command": "jlreqyokoheadlength",
+      "snippet": "jlreqyokoheadlength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lastnodechar": {
+      "command": "lastnodechar",
+      "snippet": "lastnodechar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thejlreqreversepage": {
+      "command": "thejlreqreversepage",
+      "snippet": "thejlreqreversepage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "toclineskip": {
+      "command": "toclineskip",
+      "snippet": "toclineskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

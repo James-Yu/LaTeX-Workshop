@@ -1,28 +1,31 @@
 {
   "includes": [
-    "amsmath",
+    "expl3",
+    "l3keys2e",
     "calc",
+    "amsmath",
+    "chemgreek",
     "graphics",
     "ifthen",
     "keyval",
     "pgf",
     "tikz",
-    "twoopt"
+    "pgf",
+    "tikz"
   ],
   "cmds": {
-    "bond{-=": {
-      "command": "bond{-=",
-      "snippet": "bond{-=",
+    "mhchemoptions{}": {
+      "command": "mhchemoptions{}",
+      "snippet": "mhchemoptions{${1:options}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cee{}": {
-      "command": "cee{}",
-      "snippet": "cee{${1:equation}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "textfontcommand=",
+        "mathfontcommand=",
+        "textminus=",
+        "cdot=",
+        "textelectrondot="
+      ],
+      "keyvalindex": 0
     },
     "ce{}": {
       "command": "ce{}",
@@ -31,16 +34,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "cf{}{}": {
-      "command": "cf{}{}",
-      "snippet": "cf{${1:arg1}}{${2:arg2}}",
+    "bond{}": {
+      "command": "bond{}",
+      "snippet": "bond{${1:%<-=~.<${2:}> etc.%>}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "cmath{}": {
-      "command": "cmath{}",
-      "snippet": "cmath{${1:arg1}}",
+    "cesplit{}{}": {
+      "command": "cesplit{}{}",
+      "snippet": "cesplit{${1:search-and-replace list}}{${2:string}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -52,42 +55,71 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "mhchem": {
-      "command": "mhchem",
-      "snippet": "mhchem",
-      "option": "",
+    "cee{}": {
+      "command": "cee{}",
+      "snippet": "cee{${1:equation}}",
+      "option": "version=3",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "mhchemoptions{}": {
-      "command": "mhchemoptions{}",
-      "snippet": "mhchemoptions{${1:option=abc}}",
-      "option": "",
+    "cf{}": {
+      "command": "cf{}",
+      "snippet": "cf{${1:arg}}",
+      "option": "version=3",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cf[]{}": {
+      "command": "cf[]{}",
+      "snippet": "cf[${2:opt}]{${1:arg}}",
+      "option": "version=3",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cmath{}": {
+      "command": "cmath{}",
+      "snippet": "cmath{${1:arg}}",
+      "option": "version=3",
       "keyvals": [],
       "keyvalindex": -1
     },
     "sbond": {
       "command": "sbond",
       "snippet": "sbond",
-      "option": "",
+      "option": "version=3",
       "keyvals": [],
       "keyvalindex": -1
     },
     "dbond": {
       "command": "dbond",
       "snippet": "dbond",
-      "option": "",
+      "option": "version=3",
       "keyvals": [],
       "keyvalindex": -1
     },
     "tbond": {
       "command": "tbond",
       "snippet": "tbond",
-      "option": "",
+      "option": "version=3",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "version=",
+    "textfontname=",
+    "mathfontname=",
+    "font=",
+    "text-greek=",
+    "math-greek=",
+    "arrows=",
+    "layout=",
+    "minus-sidebearing-left=",
+    "minus-sidebearing-right=",
+    "minus-math-sidebearing-left=",
+    "minus-math-sidebearing-right=",
+    "minus-text-sidebearing-left=",
+    "minus-text-sidebearing-right="
+  ]
 }

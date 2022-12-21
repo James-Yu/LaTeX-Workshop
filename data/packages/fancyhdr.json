@@ -1,16 +1,51 @@
 {
   "includes": [],
   "cmds": {
-    "chead[]{}": {
-      "command": "chead[]{}",
-      "snippet": "chead[${2:LH-even}]{${1:LH-odd}}",
+    "fancyfoot[]{}": {
+      "command": "fancyfoot[]{}",
+      "snippet": "fancyfoot[${2:places}]{${1:footer%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "chead{}": {
-      "command": "chead{}",
-      "snippet": "chead{${1:stuff}}",
+    "fancyfoot{}": {
+      "command": "fancyfoot{}",
+      "snippet": "fancyfoot{${1:footer%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyhead[]{}": {
+      "command": "fancyhead[]{}",
+      "snippet": "fancyhead[${2:places}]{${1:header%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyhead{}": {
+      "command": "fancyhead{}",
+      "snippet": "fancyhead{${1:header%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyhf[]{}": {
+      "command": "fancyhf[]{}",
+      "snippet": "fancyhf[${2:places}]{${1:output%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyhf{}": {
+      "command": "fancyhf{}",
+      "snippet": "fancyhf{${1:output%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyfootoffset[]{}": {
+      "command": "fancyfootoffset[]{}",
+      "snippet": "fancyfootoffset[${2:places}]{${1:length}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -22,23 +57,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fancyfootoffset[]{}": {
-      "command": "fancyfootoffset[]{}",
-      "snippet": "fancyfootoffset[${2:place}]{${1:length}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "fancyfoot[]{}": {
-      "command": "fancyfoot[]{}",
-      "snippet": "fancyfoot[${2:option}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "fancyfoot{}": {
-      "command": "fancyfoot{}",
-      "snippet": "fancyfoot{${1:stuff}}",
+    "fancyheadoffset[]{}": {
+      "command": "fancyheadoffset[]{}",
+      "snippet": "fancyheadoffset[${2:places}]{${1:length}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -50,23 +71,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fancyheadoffset[]{}": {
-      "command": "fancyheadoffset[]{}",
-      "snippet": "fancyheadoffset[${2:place}]{${1:length}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "fancyhead[]{}": {
-      "command": "fancyhead[]{}",
-      "snippet": "fancyhead[${2:option}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "fancyhead{}": {
-      "command": "fancyhead{}",
-      "snippet": "fancyhead{${1:stuff}}",
+    "fancyhfoffset[]{}": {
+      "command": "fancyhfoffset[]{}",
+      "snippet": "fancyhfoffset[${2:places}]{${1:length}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -78,63 +85,230 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fancyhfoffset[]{}": {
-      "command": "fancyhfoffset[]{}",
-      "snippet": "fancyhfoffset[${2:place}]{${1:length}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "fancyhf[]{}": {
-      "command": "fancyhf[]{}",
-      "snippet": "fancyhf[${2:option}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "fancyhf{}": {
-      "command": "fancyhf{}",
-      "snippet": "fancyhf{${1:stuff}}",
+    "fancypagestyle{}[]{}": {
+      "command": "fancypagestyle{}[]{}",
+      "snippet": "fancypagestyle{${1:style name}}[${2:base style}]{${3:definitions%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "fancypagestyle{}{}": {
       "command": "fancypagestyle{}{}",
-      "snippet": "fancypagestyle{${1:name}}{${2:style}}",
+      "snippet": "fancypagestyle{${1:style name}}{${2:definitions%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftopfloat{}{}": {
+      "command": "iftopfloat{}{}",
+      "snippet": "iftopfloat{${1:float page%text}}{${2:other%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifbotfloat{}{}": {
+      "command": "ifbotfloat{}{}",
+      "snippet": "ifbotfloat{${1:float page%text}}{${2:other%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iffloatpage{}{}": {
+      "command": "iffloatpage{}{}",
+      "snippet": "iffloatpage{${1:float page%text}}{${2:other%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iffootnote{}{}": {
+      "command": "iffootnote{}{}",
+      "snippet": "iffootnote{${1:float page%text}}{${2:other%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "headrulewidth": {
+      "command": "headrulewidth",
+      "snippet": "headrulewidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "footrulewidth": {
+      "command": "footrulewidth",
+      "snippet": "footrulewidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "headruleskip": {
+      "command": "headruleskip",
+      "snippet": "headruleskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "footruleskip": {
+      "command": "footruleskip",
+      "snippet": "footruleskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "headrule": {
+      "command": "headrule",
+      "snippet": "headrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "footrule": {
+      "command": "footrule",
+      "snippet": "footrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "headwidth": {
+      "command": "headwidth",
+      "snippet": "headwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyheadinit{}": {
+      "command": "fancyheadinit{}",
+      "snippet": "fancyheadinit{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyfootinit{}": {
+      "command": "fancyfootinit{}",
+      "snippet": "fancyfootinit{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyhfinit{}": {
+      "command": "fancyhfinit{}",
+      "snippet": "fancyhfinit{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancycenter[][]{}{}{}": {
+      "command": "fancycenter[][]{}{}{}",
+      "snippet": "fancycenter[${4:distance%l}][${5:stretch}]{${1:left-mark%text}}{${2:center-mark%text}}{${3:right-mark%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancycenter[]{}{}{}": {
+      "command": "fancycenter[]{}{}{}",
+      "snippet": "fancycenter[${4:distance%l}]{${1:left-mark%text}}{${2:center-mark%text}}{${3:right-mark%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancycenter{}{}{}": {
+      "command": "fancycenter{}{}{}",
+      "snippet": "fancycenter{${1:left-mark%text}}{${2:center-mark%text}}{${3:right-mark%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chead[]{}": {
+      "command": "chead[]{}",
+      "snippet": "chead[${2:CH-even%text}]{${1:CH-odd%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chead{}": {
+      "command": "chead{}",
+      "snippet": "chead{${1:header%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cfoot[]{}": {
+      "command": "cfoot[]{}",
+      "snippet": "cfoot[${2:CF-even%text}]{${1:CF-odd%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cfoot{}": {
+      "command": "cfoot{}",
+      "snippet": "cfoot{${1:footer%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "lhead[]{}": {
       "command": "lhead[]{}",
-      "snippet": "lhead[${2:LH-even}]{${1:LH-odd}}",
+      "snippet": "lhead[${2:LH-even%text}]{${1:LH-odd%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "lhead{}": {
       "command": "lhead{}",
-      "snippet": "lhead{${1:stuff}}",
+      "snippet": "lhead{${1:header%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lfoot[]{}": {
+      "command": "lfoot[]{}",
+      "snippet": "lfoot[${2:LF-even%text}]{${1:LF-odd%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lfoot{}": {
+      "command": "lfoot{}",
+      "snippet": "lfoot{${1:footer%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "rhead[]{}": {
       "command": "rhead[]{}",
-      "snippet": "rhead[${2:LH-even}]{${1:LH-odd}}",
+      "snippet": "rhead[${2:RH-even%text}]{${1:RH-odd%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "rhead{}": {
       "command": "rhead{}",
-      "snippet": "rhead{${1:stuff}}",
+      "snippet": "rhead{${1:header%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rfoot[]{}": {
+      "command": "rfoot[]{}",
+      "snippet": "rfoot[${2:RF-even%text}]{${1:RF-odd%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rfoot{}": {
+      "command": "rfoot{}",
+      "snippet": "rfoot{${1:footer%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "nocheck",
+    "compatV3",
+    "twoside",
+    "myheadings",
+    "headings"
+  ]
 }

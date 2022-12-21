@@ -1,125 +1,23 @@
 {
   "includes": [
-    "siunitx",
     "tikz",
-    "xstring"
+    "tikzlibrarycalc",
+    "tikzlibrarybending",
+    "tikzlibraryfpu",
+    "xstring",
+    "siunitx"
   ],
   "cmds": {
-    "circuitikzbasekey": {
-      "command": "circuitikzbasekey",
-      "snippet": "circuitikzbasekey",
+    "circuitikz": {
+      "command": "circuitikz",
+      "snippet": "circuitikz",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "circuitikzset{}": {
-      "command": "circuitikzset{}",
-      "snippet": "circuitikzset{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ctikzset": {
-      "command": "ctikzset",
-      "snippet": "ctikzset",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ctikzsetvalof{}": {
-      "command": "ctikzsetvalof{}",
-      "snippet": "ctikzsetvalof{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ctikzvalof{}": {
-      "command": "ctikzvalof{}",
-      "snippet": "ctikzvalof{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "drawpoles": {
-      "command": "drawpoles",
-      "snippet": "drawpoles",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "inheritlogicport{}": {
-      "command": "inheritlogicport{}",
-      "snippet": "inheritlogicport{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "myfrac": {
-      "command": "myfrac",
-      "snippet": "myfrac",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfcircdeclarebipole{}": {
-      "command": "pgfcircdeclarebipole{}",
-      "snippet": "pgfcircdeclarebipole{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfcircdeclareeurologicport{}": {
-      "command": "pgfcircdeclareeurologicport{}",
-      "snippet": "pgfcircdeclareeurologicport{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfcircdeclarefet{}": {
-      "command": "pgfcircdeclarefet{}",
-      "snippet": "pgfcircdeclarefet{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfcircdeclarelogicport{}": {
-      "command": "pgfcircdeclarelogicport{}",
-      "snippet": "pgfcircdeclarelogicport{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfcircdeclaremos{}": {
-      "command": "pgfcircdeclaremos{}",
-      "snippet": "pgfcircdeclaremos{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfcircdeclarequadpole{}": {
-      "command": "pgfcircdeclarequadpole{}",
-      "snippet": "pgfcircdeclarequadpole{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfcircdeclaretransistor{}": {
-      "command": "pgfcircdeclaretransistor{}",
-      "snippet": "pgfcircdeclaretransistor{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfcircmathresult": {
-      "command": "pgfcircmathresult",
-      "snippet": "pgfcircmathresult",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfcircresetpath": {
-      "command": "pgfcircresetpath",
-      "snippet": "pgfcircresetpath",
+    "endcircuitikz": {
+      "command": "endcircuitikz",
+      "snippet": "endcircuitikz",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -131,9 +29,786 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfmathresult": {
-      "command": "pgfmathresult",
-      "snippet": "pgfmathresult",
+    "pgfcircversiondate": {
+      "command": "pgfcircversiondate",
+      "snippet": "pgfcircversiondate",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "circuitikzbasekey": {
+      "command": "circuitikzbasekey",
+      "snippet": "circuitikzbasekey",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "circuitikzset{}": {
+      "command": "circuitikzset{}",
+      "snippet": "circuitikzset{${1:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzset{}": {
+      "command": "ctikzset{}",
+      "snippet": "ctikzset{${1:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzvalof{}": {
+      "command": "ctikzvalof{}",
+      "snippet": "ctikzvalof{${1:option}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzsetvalof{}{}": {
+      "command": "ctikzsetvalof{}{}",
+      "snippet": "ctikzsetvalof{${1:option}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfstartlinewidth": {
+      "command": "pgfstartlinewidth",
+      "snippet": "pgfstartlinewidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "unexpandedvalueof{}": {
+      "command": "unexpandedvalueof{}",
+      "snippet": "unexpandedvalueof{${1:option}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclarebipole{}{}{}{}{}{}": {
+      "command": "pgfcircdeclarebipole{}{}{}{}{}{}",
+      "snippet": "pgfcircdeclarebipole{${1:anchors}}{${2:lower ysize}}{${3:shape}}{${4:upper ysize}}{${5:width}}{${6:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclarebipolescaled{}{}{}{}{}{}{}": {
+      "command": "pgfcircdeclarebipolescaled{}{}{}{}{}{}{}",
+      "snippet": "pgfcircdeclarebipolescaled{${1:scale}}{${2:anchors}}{${3:lower ysize}}{${4:shape}}{${5:upper ysize}}{${6:width}}{${7:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzclass": {
+      "command": "ctikzclass",
+      "snippet": "ctikzclass",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scaledRlen": {
+      "command": "scaledRlen",
+      "snippet": "scaledRlen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "northeastborder": {
+      "command": "northeastborder",
+      "snippet": "northeastborder",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "southwestborder": {
+      "command": "southwestborder",
+      "snippet": "southwestborder",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textanchor": {
+      "command": "textanchor",
+      "snippet": "textanchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzloadstyle{}": {
+      "command": "ctikzloadstyle{}",
+      "snippet": "ctikzloadstyle{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzsetstyle{}": {
+      "command": "ctikzsetstyle{}",
+      "snippet": "ctikzsetstyle{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzgetanchor{}{}": {
+      "command": "ctikzgetanchor{}{}",
+      "snippet": "ctikzgetanchor{${1:name}}{${2:anchor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzgetdirection{}": {
+      "command": "ctikzgetdirection{}",
+      "snippet": "ctikzgetdirection{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzflipx{}": {
+      "command": "ctikzflipx{}",
+      "snippet": "ctikzflipx{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzflipy{}": {
+      "command": "ctikzflipy{}",
+      "snippet": "ctikzflipy{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzflipxy{}": {
+      "command": "ctikzflipxy{}",
+      "snippet": "ctikzflipxy{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikztextnot{}": {
+      "command": "ctikztextnot{}",
+      "snippet": "ctikztextnot{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzsubcircuitdef{}{}{}": {
+      "command": "ctikzsubcircuitdef{}{}{}",
+      "snippet": "ctikzsubcircuitdef{${1:name}}{${2:anchor1,anchor2,...}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikzsubcircuitactivate{}": {
+      "command": "ctikzsubcircuitactivate{}",
+      "snippet": "ctikzsubcircuitactivate{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikztunablearrow{}{}{}{}": {
+      "command": "ctikztunablearrow{}{}{}{}",
+      "snippet": "ctikztunablearrow{${1:thickness}}{${2:length}}{${3:angle}}{${4:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctikztunablearrow[]{}{}{}{}": {
+      "command": "ctikztunablearrow[]{}{}{}{}",
+      "snippet": "ctikztunablearrow[${5:options}]{${1:thickness}}{${2:length}}{${3:angle}}{${4:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircresetpath": {
+      "command": "pgfcircresetpath",
+      "snippet": "pgfcircresetpath",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "comnpatname": {
+      "command": "comnpatname",
+      "snippet": "comnpatname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "compattikzset{}": {
+      "command": "compattikzset{}",
+      "snippet": "compattikzset{${1:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawpoles": {
+      "command": "drawpoles",
+      "snippet": "drawpoles",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scaledwidth": {
+      "command": "scaledwidth",
+      "snippet": "scaledwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gscale": {
+      "command": "gscale",
+      "snippet": "gscale",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "savedwaves": {
+      "command": "savedwaves",
+      "snippet": "savedwaves",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "arcpos": {
+      "command": "arcpos",
+      "snippet": "arcpos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "topright": {
+      "command": "topright",
+      "snippet": "topright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "wiper": {
+      "command": "wiper",
+      "snippet": "wiper",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zigs": {
+      "command": "zigs",
+      "snippet": "zigs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "coredistance": {
+      "command": "coredistance",
+      "snippet": "coredistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dotXdistance": {
+      "command": "dotXdistance",
+      "snippet": "dotXdistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dotYdistance": {
+      "command": "dotYdistance",
+      "snippet": "dotYdistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "midtap": {
+      "command": "midtap",
+      "snippet": "midtap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "centerprim": {
+      "command": "centerprim",
+      "snippet": "centerprim",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "centersec": {
+      "command": "centersec",
+      "snippet": "centersec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "centertert": {
+      "command": "centertert",
+      "snippet": "centertert",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclarethyristor{}{}{}{}": {
+      "command": "pgfcircdeclarethyristor{}{}{}{}",
+      "snippet": "pgfcircdeclarethyristor{${1:name}}{${2:fill}}{${3:gate pos}}{${4:extra code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gatekink": {
+      "command": "gatekink",
+      "snippet": "gatekink",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclaretriac{}{}": {
+      "command": "pgfcircdeclaretriac{}{}",
+      "snippet": "pgfcircdeclaretriac{${1:name}}{${2:fill}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdiodestylemacro": {
+      "command": "pgfcircdiodestylemacro",
+      "snippet": "pgfcircdiodestylemacro",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclarecutesw{}{}{}": {
+      "command": "pgfcircdeclarecutesw{}{}{}",
+      "snippet": "pgfcircdeclarecutesw{${1:name}}{${2:bar pos}}{${3:arrow code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "midlever": {
+      "command": "midlever",
+      "snippet": "midlever",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thisshape": {
+      "command": "thisshape",
+      "snippet": "thisshape",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cshape": {
+      "command": "cshape",
+      "snippet": "cshape",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclarecutespdt{}{}{}": {
+      "command": "pgfcircdeclarecutespdt{}{}{}",
+      "snippet": "pgfcircdeclarecutespdt{${1:name}}{${2:bar pos}}{${3:arrow code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawmeteringcircle": {
+      "command": "drawmeteringcircle",
+      "snippet": "drawmeteringcircle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclarejumper{}{}": {
+      "command": "pgfcircdeclarejumper{}{}",
+      "snippet": "pgfcircdeclarejumper{${1:name}}{${2:link arc height}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tunablewidth": {
+      "command": "tunablewidth",
+      "snippet": "tunablewidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclarelogicport{}{}{}": {
+      "command": "pgfcircdeclarelogicport{}{}{}",
+      "snippet": "pgfcircdeclarelogicport{${1:name}}{${2:number}}{${3:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resize": {
+      "command": "resize",
+      "snippet": "resize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inputs": {
+      "command": "inputs",
+      "snippet": "inputs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "step": {
+      "command": "step",
+      "snippet": "step",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "origin": {
+      "command": "origin",
+      "snippet": "origin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclareeurologicport{}{}{}{}": {
+      "command": "pgfcircdeclareeurologicport{}{}{}{}",
+      "snippet": "pgfcircdeclareeurologicport{${1:name}}{${2:symbol}}{${3:number}}{${4:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclareieeeport{}{}{}{}": {
+      "command": "pgfcircdeclareieeeport{}{}{}{}",
+      "snippet": "pgfcircdeclareieeeport{${1:name}}{${2:type}}{${3:polarity}}{${4:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "baselen": {
+      "command": "baselen",
+      "snippet": "baselen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stdH": {
+      "command": "stdH",
+      "snippet": "stdH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notdiameter": {
+      "command": "notdiameter",
+      "snippet": "notdiameter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pind": {
+      "command": "pind",
+      "snippet": "pind",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pinlen": {
+      "command": "pinlen",
+      "snippet": "pinlen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xorbar": {
+      "command": "xorbar",
+      "snippet": "xorbar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bodyleft": {
+      "command": "bodyleft",
+      "snippet": "bodyleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "topleft": {
+      "command": "topleft",
+      "snippet": "topleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bodyright": {
+      "command": "bodyright",
+      "snippet": "bodyright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bottomright": {
+      "command": "bottomright",
+      "snippet": "bottomright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inners": {
+      "command": "inners",
+      "snippet": "inners",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclareieeeportpair{}{}{}{}": {
+      "command": "pgfcircdeclareieeeportpair{}{}{}{}",
+      "snippet": "pgfcircdeclareieeeportpair{${1:name}}{${2:negated name}}{${3:type}}{${4:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclareieeebufferport{}{}{}": {
+      "command": "pgfcircdeclareieeebufferport{}{}{}",
+      "snippet": "pgfcircdeclareieeebufferport{${1:name}}{${2:polarity}}{${3:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclareieeebufferportpair{}{}{}": {
+      "command": "pgfcircdeclareieeebufferportpair{}{}{}",
+      "snippet": "pgfcircdeclareieeebufferportpair{${1:name}}{${2:negated name}}{${3:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclareieeetgate{}{}{}": {
+      "command": "pgfcircdeclareieeetgate{}{}{}",
+      "snippet": "pgfcircdeclareieeetgate{${1:name}}{${2:1 or 2}}{${3:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclaretransistor{}{}{}": {
+      "command": "pgfcircdeclaretransistor{}{}{}",
+      "snippet": "pgfcircdeclaretransistor{${1:name}}{${2:code1}}{${3:code2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "circlebase": {
+      "command": "circlebase",
+      "snippet": "circlebase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extrabodydiodelen": {
+      "command": "extrabodydiodelen",
+      "snippet": "extrabodydiodelen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scalecircleradius": {
+      "command": "scalecircleradius",
+      "snippet": "scalecircleradius",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "circleradius": {
+      "command": "circleradius",
+      "snippet": "circleradius",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "circleleft": {
+      "command": "circleleft",
+      "snippet": "circleleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "centergap": {
+      "command": "centergap",
+      "snippet": "centergap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawbodydiode{}": {
+      "command": "drawbodydiode{}",
+      "snippet": "drawbodydiode{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "declarebpt{}": {
+      "command": "declarebpt{}",
+      "snippet": "declarebpt{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "declarebjt{}": {
+      "command": "declarebjt{}",
+      "snippet": "declarebjt{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cdir": {
+      "command": "cdir",
+      "snippet": "cdir",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numE": {
+      "command": "numE",
+      "snippet": "numE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numC": {
+      "command": "numC",
+      "snippet": "numC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multistep": {
+      "command": "multistep",
+      "snippet": "multistep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "external": {
+      "command": "external",
+      "snippet": "external",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "basedimension": {
+      "command": "basedimension",
+      "snippet": "basedimension",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numup": {
+      "command": "numup",
+      "snippet": "numup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numdown": {
+      "command": "numdown",
+      "snippet": "numdown",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "declareigbt{}": {
+      "command": "declareigbt{}",
+      "snippet": "declareigbt{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "declaregfet{}": {
+      "command": "declaregfet{}",
+      "snippet": "declaregfet{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawfetcore{}": {
+      "command": "drawfetcore{}",
+      "snippet": "drawfetcore{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfdeclaretransistorwrapperaddbulk{}{}{}": {
+      "command": "pgfdeclaretransistorwrapperaddbulk{}{}{}",
+      "snippet": "pgfdeclaretransistorwrapperaddbulk{${1:name}}{${2:code1}}{${3:code2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclarejunctiontransistor{}{}{}": {
+      "command": "pgfcircdeclarejunctiontransistor{}{}{}",
+      "snippet": "pgfcircdeclarejunctiontransistor{${1:name}}{${2:code1}}{${3:code2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inOneFixed": {
+      "command": "inOneFixed",
+      "snippet": "inOneFixed",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inOne": {
+      "command": "inOne",
+      "snippet": "inOne",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "up": {
+      "command": "up",
+      "snippet": "up",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "leftedge": {
+      "command": "leftedge",
+      "snippet": "leftedge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "refv": {
+      "command": "refv",
+      "snippet": "refv",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "outport": {
+      "command": "outport",
+      "snippet": "outport",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "outportfixed": {
+      "command": "outportfixed",
+      "snippet": "outportfixed",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "raOne": {
+      "command": "raOne",
+      "snippet": "raOne",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclaretube{}{}{}": {
+      "command": "pgfcircdeclaretube{}{}{}",
+      "snippet": "pgfcircdeclaretube{${1:name}}{${2:grid anchors}}{${3:grid code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfcircdeclarequadpole{}{}{}": {
+      "command": "pgfcircdeclarequadpole{}{}{}",
+      "snippet": "pgfcircdeclarequadpole{${1:name}}{${2:code1}}{${3:code2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -145,466 +820,275 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "anchor": {
-      "command": "anchor",
-      "snippet": "anchor",
+    "innerdot": {
+      "command": "innerdot",
+      "snippet": "innerdot",
       "option": "",
       "keyvals": [],
-      "keyvalindex": -1,
-      "detail": "⚓",
-      "documentation": "ANCHOR"
-    },
-    "anchorborder": {
-      "command": "anchorborder",
-      "snippet": "anchorborder",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "backgroundpath": {
-      "command": "backgroundpath",
-      "snippet": "backgroundpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "beforebackgroundpath": {
-      "command": "beforebackgroundpath",
-      "snippet": "beforebackgroundpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "beforeforegroundpath": {
-      "command": "beforeforegroundpath",
-      "snippet": "beforeforegroundpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "behindbackgroundpath": {
-      "command": "behindbackgroundpath",
-      "snippet": "behindbackgroundpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "behindforegroundpath": {
-      "command": "behindforegroundpath",
-      "snippet": "behindforegroundpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "deferredanchor": {
-      "command": "deferredanchor",
-      "snippet": "deferredanchor",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "foregroundpath": {
-      "command": "foregroundpath",
-      "snippet": "foregroundpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "inheritanchor": {
-      "command": "inheritanchor",
-      "snippet": "inheritanchor",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "inheritanchorborder": {
-      "command": "inheritanchorborder",
-      "snippet": "inheritanchorborder",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "inheritbackgroundpath": {
-      "command": "inheritbackgroundpath",
-      "snippet": "inheritbackgroundpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "inheritbeforebackgroundpath": {
-      "command": "inheritbeforebackgroundpath",
-      "snippet": "inheritbeforebackgroundpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "inheritbeforeforegroundpath": {
-      "command": "inheritbeforeforegroundpath",
-      "snippet": "inheritbeforeforegroundpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "inheritbehindbackgroundpath": {
-      "command": "inheritbehindbackgroundpath",
-      "snippet": "inheritbehindbackgroundpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "inheritbehindforegroundpath": {
-      "command": "inheritbehindforegroundpath",
-      "snippet": "inheritbehindforegroundpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "inheritforegroundpath": {
-      "command": "inheritforegroundpath",
-      "snippet": "inheritforegroundpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "inheritnodeparts": {
-      "command": "inheritnodeparts",
-      "snippet": "inheritnodeparts",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "inheritsavedanchors": {
-      "command": "inheritsavedanchors",
-      "snippet": "inheritsavedanchors",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nodeparts": {
-      "command": "nodeparts",
-      "snippet": "nodeparts",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfdeclaredecoration": {
-      "command": "pgfdeclaredecoration",
-      "snippet": "pgfdeclaredecoration",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfdeclaremetadecoration": {
-      "command": "pgfdeclaremetadecoration",
-      "snippet": "pgfdeclaremetadecoration",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfdeclaresnake": {
-      "command": "pgfdeclaresnake",
-      "snippet": "pgfdeclaresnake",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfdecorateaftercode": {
-      "command": "pgfdecorateaftercode",
-      "snippet": "pgfdecorateaftercode",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfdecoratebeforecode": {
-      "command": "pgfdecoratebeforecode",
-      "snippet": "pgfdecoratebeforecode",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfdecoratecurrentpath": {
-      "command": "pgfdecoratecurrentpath",
-      "snippet": "pgfdecoratecurrentpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfdecoratedpath": {
-      "command": "pgfdecoratedpath",
-      "snippet": "pgfdecoratedpath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfdecorateexisitingpath": {
-      "command": "pgfdecorateexisitingpath",
-      "snippet": "pgfdecorateexisitingpath",
-      "option": "",
-      "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfdecoratepath": {
-      "command": "pgfdecoratepath",
-      "snippet": "pgfdecoratepath",
+    "outerdot": {
+      "command": "outerdot",
+      "snippet": "outerdot",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfdecorationinputsegmentclosepath": {
-      "command": "pgfdecorationinputsegmentclosepath",
-      "snippet": "pgfdecorationinputsegmentclosepath",
+    "pgfcircmathresult": {
+      "command": "pgfcircmathresult",
+      "snippet": "pgfcircmathresult",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfdecorationinputsegmentcurveto": {
-      "command": "pgfdecorationinputsegmentcurveto",
-      "snippet": "pgfdecorationinputsegmentcurveto",
+    "componentisboxed": {
+      "command": "componentisboxed",
+      "snippet": "componentisboxed",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfdecorationinputsegmentlast": {
-      "command": "pgfdecorationinputsegmentlast",
-      "snippet": "pgfdecorationinputsegmentlast",
+    "pgfcircdeclarefourport{}{}": {
+      "command": "pgfcircdeclarefourport{}{}",
+      "snippet": "pgfcircdeclarefourport{${1:name}}{${2:code}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfdecorationinputsegmentlineto": {
-      "command": "pgfdecorationinputsegmentlineto",
-      "snippet": "pgfdecorationinputsegmentlineto",
+    "pgfcircdeclaredbipole{}{}{}": {
+      "command": "pgfcircdeclaredbipole{}{}{}",
+      "snippet": "pgfcircdeclaredbipole{${1:arg1}}{${2:arg2}}{${3:arg3}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfdecorationinputsegmentmoveto": {
-      "command": "pgfdecorationinputsegmentmoveto",
-      "snippet": "pgfdecorationinputsegmentmoveto",
+    "numpins": {
+      "command": "numpins",
+      "snippet": "numpins",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfdecorationpath": {
-      "command": "pgfdecorationpath",
-      "snippet": "pgfdecorationpath",
+    "chipspacing": {
+      "command": "chipspacing",
+      "snippet": "chipspacing",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfdecorationsegmentangle": {
-      "command": "pgfdecorationsegmentangle",
-      "snippet": "pgfdecorationsegmentangle",
+    "extshift": {
+      "command": "extshift",
+      "snippet": "extshift",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfdecorationsegmentaspect": {
-      "command": "pgfdecorationsegmentaspect",
-      "snippet": "pgfdecorationsegmentaspect",
+    "mytext": {
+      "command": "mytext",
+      "snippet": "mytext",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfifdecoration": {
-      "command": "pgfifdecoration",
-      "snippet": "pgfifdecoration",
+    "quadrant": {
+      "command": "quadrant",
+      "snippet": "quadrant",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfifmetadecoration": {
-      "command": "pgfifmetadecoration",
-      "snippet": "pgfifmetadecoration",
+    "rot": {
+      "command": "rot",
+      "snippet": "rot",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfmetadecorationsegmentamplitude": {
-      "command": "pgfmetadecorationsegmentamplitude",
-      "snippet": "pgfmetadecorationsegmentamplitude",
+    "central": {
+      "command": "central",
+      "snippet": "central",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfmetadecorationsegmentlength": {
-      "command": "pgfmetadecorationsegmentlength",
-      "snippet": "pgfmetadecorationsegmentlength",
+    "extnorthwest": {
+      "command": "extnorthwest",
+      "snippet": "extnorthwest",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfpathsnakealongvector": {
-      "command": "pgfpathsnakealongvector",
-      "snippet": "pgfpathsnakealongvector",
+    "channels": {
+      "command": "channels",
+      "snippet": "channels",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfpathsnakesto": {
-      "command": "pgfpathsnakesto",
-      "snippet": "pgfpathsnakesto",
+    "stepa": {
+      "command": "stepa",
+      "snippet": "stepa",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfpathsnaketo": {
-      "command": "pgfpathsnaketo",
-      "snippet": "pgfpathsnaketo",
+    "currenta": {
+      "command": "currenta",
+      "snippet": "currenta",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfpointdecoratedinputsegmentfirst": {
-      "command": "pgfpointdecoratedinputsegmentfirst",
-      "snippet": "pgfpointdecoratedinputsegmentfirst",
+    "dotstatus": {
+      "command": "dotstatus",
+      "snippet": "dotstatus",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfpointdecoratedinputsegmentlast": {
-      "command": "pgfpointdecoratedinputsegmentlast",
-      "snippet": "pgfpointdecoratedinputsegmentlast",
+    "dotspace": {
+      "command": "dotspace",
+      "snippet": "dotspace",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfpointdecoratedpathfirst": {
-      "command": "pgfpointdecoratedpathfirst",
-      "snippet": "pgfpointdecoratedpathfirst",
+    "gap": {
+      "command": "gap",
+      "snippet": "gap",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfpointdecoratedpathlast": {
-      "command": "pgfpointdecoratedpathlast",
-      "snippet": "pgfpointdecoratedpathlast",
+    "boxgap": {
+      "command": "boxgap",
+      "snippet": "boxgap",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfsetdecorationsegmenttransformation": {
-      "command": "pgfsetdecorationsegmenttransformation",
-      "snippet": "pgfsetdecorationsegmenttransformation",
+    "NL": {
+      "command": "NL",
+      "snippet": "NL",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfsetsnakesegmenttransformation": {
-      "command": "pgfsetsnakesegmenttransformation",
-      "snippet": "pgfsetsnakesegmenttransformation",
+    "NR": {
+      "command": "NR",
+      "snippet": "NR",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfsnakeangle": {
-      "command": "pgfsnakeangle",
-      "snippet": "pgfsnakeangle",
+    "NT": {
+      "command": "NT",
+      "snippet": "NT",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfsnakecompleteddistance": {
-      "command": "pgfsnakecompleteddistance",
-      "snippet": "pgfsnakecompleteddistance",
+    "NB": {
+      "command": "NB",
+      "snippet": "NB",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfsnakeremainingdistance": {
-      "command": "pgfsnakeremainingdistance",
-      "snippet": "pgfsnakeremainingdistance",
+    "insetnortheast": {
+      "command": "insetnortheast",
+      "snippet": "insetnortheast",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfsnakesegmentamplitude": {
-      "command": "pgfsnakesegmentamplitude",
-      "snippet": "pgfsnakesegmentamplitude",
+    "insethright": {
+      "command": "insethright",
+      "snippet": "insethright",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfsnakesegmentangle": {
-      "command": "pgfsnakesegmentangle",
-      "snippet": "pgfsnakesegmentangle",
+    "myscale": {
+      "command": "myscale",
+      "snippet": "myscale",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfsnakesegmentaspect": {
-      "command": "pgfsnakesegmentaspect",
-      "snippet": "pgfsnakesegmentaspect",
+    "pgfcirclabrot": {
+      "command": "pgfcirclabrot",
+      "snippet": "pgfcirclabrot",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfsnakesegmentlength": {
-      "command": "pgfsnakesegmentlength",
-      "snippet": "pgfsnakesegmentlength",
+    "setscaledRlenforclass": {
+      "command": "setscaledRlenforclass",
+      "snippet": "setscaledRlenforclass",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfsnakesegmentobjectlength": {
-      "command": "pgfsnakesegmentobjectlength",
-      "snippet": "pgfsnakesegmentobjectlength",
+    "addvshift": {
+      "command": "addvshift",
+      "snippet": "addvshift",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "savedanchor": {
-      "command": "savedanchor",
-      "snippet": "savedanchor",
+    "absvshift": {
+      "command": "absvshift",
+      "snippet": "absvshift",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "saveddimen": {
-      "command": "saveddimen",
-      "snippet": "saveddimen",
+    "shiftv": {
+      "command": "shiftv",
+      "snippet": "shiftv",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "savedmacro": {
-      "command": "savedmacro",
-      "snippet": "savedmacro",
+    "bumpa": {
+      "command": "bumpa",
+      "snippet": "bumpa",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "startpgfdecoration": {
-      "command": "startpgfdecoration",
-      "snippet": "startpgfdecoration",
+    "bumpaplus": {
+      "command": "bumpaplus",
+      "snippet": "bumpaplus",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "startpgfmetadecoration": {
-      "command": "startpgfmetadecoration",
-      "snippet": "startpgfmetadecoration",
+    "labeldist": {
+      "command": "labeldist",
+      "snippet": "labeldist",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "state": {
-      "command": "state",
-      "snippet": "state",
+    "partheightf": {
+      "command": "partheightf",
+      "snippet": "partheightf",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "stoppgfdecoration": {
-      "command": "stoppgfdecoration",
-      "snippet": "stoppgfdecoration",
+    "whichtypeshift": {
+      "command": "whichtypeshift",
+      "snippet": "whichtypeshift",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "stoppgfmetadecoration": {
-      "command": "stoppgfmetadecoration",
-      "snippet": "stoppgfmetadecoration",
+    "absfshift": {
+      "command": "absfshift",
+      "snippet": "absfshift",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -619,22 +1103,56 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfdecoration": {
-      "name": "pgfdecoration",
-      "detail": "pgfdecoration",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pgfmetadecoration": {
-      "name": "pgfmetadecoration",
-      "detail": "pgfmetadecoration",
-      "snippet": "",
+    "circuitikz[]": {
+      "name": "circuitikz",
+      "detail": "circuitikz[]",
+      "snippet": "[${1:options}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
-  "options": []
+  "options": [
+    "european",
+    "american",
+    "europeanvoltages",
+    "straightvoltages",
+    "americanvoltages",
+    "oldvoltagedirection",
+    "nooldvoltagedirection",
+    "RPvoltages",
+    "EFvoltages",
+    "europeancurrents",
+    "americancurrents",
+    "americanresistors",
+    "europeanresistors",
+    "americaninductors",
+    "europeaninductors",
+    "cuteinductors",
+    "americanports",
+    "europeanports",
+    "americangfsurgearrester",
+    "europeangfsurgearrester",
+    "fulldiode",
+    "emptydiode",
+    "strokediode",
+    "arrowmos",
+    "noarrowmos",
+    "fetbodydiode",
+    "nofetbodydiode",
+    "fetsolderdot",
+    "nofetsolderdot",
+    "emptypmoscircle",
+    "lazymos",
+    "legacytransistorstext",
+    "nolegacytransistorstext",
+    "centertransistorstext",
+    "straightlabels",
+    "rotatelabels",
+    "smartlabels",
+    "betterproportions",
+    "siunitx",
+    "nosiunitx",
+    "compatibility"
+  ]
 }

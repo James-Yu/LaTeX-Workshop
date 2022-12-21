@@ -1,0 +1,4286 @@
+{
+  "includes": [
+    "mathtools",
+    "xcolor",
+    "tikz",
+    "tkz-tab",
+    "pgf",
+    "pgffor",
+    "ifthen",
+    "xparse",
+    "xkeyval",
+    "xstring",
+    "xintexpr",
+    "xintbinhex",
+    "xinttools",
+    "randomlist",
+    "simplekv",
+    "listofitems",
+    "tabularray",
+    "hvlogos",
+    "siunitx",
+    "fontawesome5",
+    "csvsimple-l3",
+    "tikzlibrarycalc",
+    "tikzlibrarydecorations",
+    "tikzlibrarydecorations.pathreplacing",
+    "tikzlibrarydecorations.markings",
+    "tikzlibrarybabel",
+    "tikzlibraryshapes.geometric",
+    "tikzlibrarydecorations.pathmorphing",
+    "tcolorbox",
+    "tcolorboxlibrarymost",
+    "tcolorboxlibraryminted",
+    "iftex",
+    "piton",
+    "fancyvrb",
+    "pythontex",
+    "csvsimple-legacy",
+    "colortbl"
+  ],
+  "cmds": {
+    "SplineTikz{}": {
+      "command": "SplineTikz{}",
+      "snippet": "SplineTikz{${1:x1/y1/d1§x2/y2/d2§...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SplineTikz[]{}": {
+      "command": "SplineTikz[]{}",
+      "snippet": "SplineTikz[${2:options}]{${1:x1/y1/d1§x2/y2/d2§...}}",
+      "option": "",
+      "keyvals": [
+        "Couleur=",
+        "Epaisseur=",
+        "Style={",
+        "Coeffs=",
+        "CouleurPoints=",
+        "AffPoints",
+        "TaillePoints="
+      ],
+      "keyvalindex": 0
+    },
+    "TangenteTikz{}": {
+      "command": "TangenteTikz{}",
+      "snippet": "TangenteTikz{${1:x1/y1/d1§x2/y2/d2§...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TangenteTikz[]{}": {
+      "command": "TangenteTikz[]{}",
+      "snippet": "TangenteTikz[${2:options}]{${1:x1/y1/d1§x2/y2/d2§...}}",
+      "option": "",
+      "keyvals": [
+        "Point=",
+        "Epaisseur=",
+        "Couleur=",
+        "Style={",
+        "xl=",
+        "xr="
+      ],
+      "keyvalindex": 0
+    },
+    "SolutionTVI{}{}": {
+      "command": "SolutionTVI{}{}",
+      "snippet": "SolutionTVI{${1:fonction}}{${2:valeur}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SolutionTVI[]{}{}": {
+      "command": "SolutionTVI[]{}{}",
+      "snippet": "SolutionTVI[${3:options}]{${1:fonction}}{${2:valeur}}",
+      "option": "",
+      "keyvals": [
+        "NomFct=",
+        "NomSol=",
+        "va=",
+        "vb=",
+        "Precision=",
+        "Stretch=",
+        "Balayage",
+        "Calculatrice",
+        "Majuscule"
+      ],
+      "keyvalindex": 0
+    },
+    "CalculTermeRecurrence{}": {
+      "command": "CalculTermeRecurrence{}",
+      "snippet": "CalculTermeRecurrence{${1:fonction associée}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalculTermeRecurrence[]{}": {
+      "command": "CalculTermeRecurrence[]{}",
+      "snippet": "CalculTermeRecurrence[${2:options}]{${1:fonction associée}}",
+      "option": "",
+      "keyvals": [
+        "No=",
+        "UNo=",
+        "Precision=",
+        "N="
+      ],
+      "keyvalindex": 0
+    },
+    "SolutionSeuil{}{}": {
+      "command": "SolutionSeuil{}{}",
+      "snippet": "SolutionSeuil{${1:fonction associée}}{${2:seuil}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SolutionSeuil[]{}{}": {
+      "command": "SolutionSeuil[]{}{}",
+      "snippet": "SolutionSeuil[${3:options}]{${1:fonction associée}}{${2:seuil}}",
+      "option": "",
+      "keyvals": [
+        "NomSuite=",
+        "No=",
+        "UNo=",
+        "SolN=",
+        "Precision=",
+        "Stretch=",
+        "Balayage",
+        "Calculatrice",
+        "Majuscule",
+        "Sens="
+      ],
+      "keyvalindex": 0
+    },
+    "ToileRecurrence[]": {
+      "command": "ToileRecurrence[]",
+      "snippet": "ToileRecurrence[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "Fct=",
+        "Nom=",
+        "No=",
+        "Uno=",
+        "Nb=",
+        "PosLabel=",
+        "DecalLabel=",
+        "TailleLabel=",
+        "AffTermes"
+      ],
+      "keyvalindex": 0
+    },
+    "ToileRecurrence[][]": {
+      "command": "ToileRecurrence[][]",
+      "snippet": "ToileRecurrence[${1:options}][${2:options du tracé}]",
+      "option": "",
+      "keyvals": [
+        "Fct=",
+        "Nom=",
+        "No=",
+        "Uno=",
+        "Nb=",
+        "PosLabel=",
+        "DecalLabel=",
+        "TailleLabel=",
+        "AffTermes"
+      ],
+      "keyvalindex": 0
+    },
+    "ToileRecurrence[][][]": {
+      "command": "ToileRecurrence[][][]",
+      "snippet": "ToileRecurrence[${1:options}][${2:options du tracé}][${3:option supplémentaire des termes}]",
+      "option": "",
+      "keyvals": [
+        "Fct=",
+        "Nom=",
+        "No=",
+        "Uno=",
+        "Nb=",
+        "PosLabel=",
+        "DecalLabel=",
+        "TailleLabel=",
+        "AffTermes"
+      ],
+      "keyvalindex": 0
+    },
+    "CalculFormelParametres": {
+      "command": "CalculFormelParametres",
+      "snippet": "CalculFormelParametres",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalculFormelParametres[]": {
+      "command": "CalculFormelParametres[]",
+      "snippet": "CalculFormelParametres[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalculFormelLigne{}{}": {
+      "command": "CalculFormelLigne{}{}",
+      "snippet": "CalculFormelLigne{${1:commande%text}}{${2:résultat%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalculFormelLigne[]{}{}": {
+      "command": "CalculFormelLigne[]{}{}",
+      "snippet": "CalculFormelLigne[${3:options}]{${1:commande%text}}{${2:résultat%text}}",
+      "option": "",
+      "keyvals": [
+        "HautCmd=",
+        "HautRes="
+      ],
+      "keyvalindex": 0
+    },
+    "CFchap": {
+      "command": "CFchap",
+      "snippet": "CFchap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFpremcol": {
+      "command": "CFpremcol",
+      "snippet": "CFpremcol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFhpremcol": {
+      "command": "CFhpremcol",
+      "snippet": "CFhpremcol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePythonLstFichier{}{}": {
+      "command": "CodePythonLstFichier{}{}",
+      "snippet": "CodePythonLstFichier{${1:tcolorbox options}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePythonLstFichier[]{}{}": {
+      "command": "CodePythonLstFichier[]{}{}",
+      "snippet": "CodePythonLstFichier[${3:largeur%l}]{${1:tcolorbox options}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePythonLstFichier*{}{}": {
+      "command": "CodePythonLstFichier*{}{}",
+      "snippet": "CodePythonLstFichier*{${1:tcolorbox options}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePythonLstFichier*[]{}{}": {
+      "command": "CodePythonLstFichier*[]{}{}",
+      "snippet": "CodePythonLstFichier*[${3:largeur%l}]{${1:tcolorbox options}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CartoucheCapytale{}": {
+      "command": "CartoucheCapytale{}",
+      "snippet": "CartoucheCapytale{${1:code capytale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CartoucheCapytale[]{}": {
+      "command": "CartoucheCapytale[]{}",
+      "snippet": "CartoucheCapytale[${2:prefix}]{${1:code capytale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CartoucheCapytale*{}": {
+      "command": "CartoucheCapytale*{}",
+      "snippet": "CartoucheCapytale*{${1:code capytale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CartoucheCapytale*[]{}": {
+      "command": "CartoucheCapytale*[]{}",
+      "snippet": "CartoucheCapytale*[${2:prefix}]{${1:code capytale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PaveTikz": {
+      "command": "PaveTikz",
+      "snippet": "PaveTikz",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PaveTikz[]": {
+      "command": "PaveTikz[]",
+      "snippet": "PaveTikz[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "Largeur=",
+        "Profondeur=",
+        "Hauteur=",
+        "Angle=",
+        "Fuite=",
+        "Sommets=",
+        "Epaisseur=",
+        "Aff",
+        "Plein",
+        "Cube"
+      ],
+      "keyvalindex": 0
+    },
+    "TetraedreTikz": {
+      "command": "TetraedreTikz",
+      "snippet": "TetraedreTikz",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TetraedreTikz[]": {
+      "command": "TetraedreTikz[]",
+      "snippet": "TetraedreTikz[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "Largeur=",
+        "Profondeur=",
+        "Hauteur=",
+        "Alpha=",
+        "Beta=",
+        "Sommets=",
+        "Epaisseur=",
+        "Aff",
+        "Plein"
+      ],
+      "keyvalindex": 0
+    },
+    "CercleTrigo": {
+      "command": "CercleTrigo",
+      "snippet": "CercleTrigo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CercleTrigo[]": {
+      "command": "CercleTrigo[]",
+      "snippet": "CercleTrigo[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "Rayon=",
+        "Epaisseur=",
+        "Epaisseursol=",
+        "Marge=",
+        "TailleValeurs=",
+        "TailleAngles=",
+        "CouleurFond=",
+        "Decal=",
+        "MoinsPi",
+        "AffAngles",
+        "AffTraits",
+        "AffValeurs",
+        "Equationcos",
+        "Equationsin",
+        "cos=",
+        "sin=",
+        "CouleurSol="
+      ],
+      "keyvalindex": 0
+    },
+    "CalculsRegLin{}{}": {
+      "command": "CalculsRegLin{}{}",
+      "snippet": "CalculsRegLin{${1:listeX}}{${2:listeY}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalculsRegLin[]{}{}": {
+      "command": "CalculsRegLin[]{}{}",
+      "snippet": "CalculsRegLin[${3:options}]{${1:listeX}}{${2:listeY}}",
+      "option": "",
+      "keyvals": [
+        "NomCoeffa=",
+        "NomCoeffb=",
+        "NomCoeffr=",
+        "NomCoeffrd=",
+        "NomXmin=",
+        "NomXmax="
+      ],
+      "keyvalindex": 0
+    },
+    "LX": {
+      "command": "LX",
+      "snippet": "LX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LY": {
+      "command": "LY",
+      "snippet": "LY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LNB": {
+      "command": "LNB",
+      "snippet": "LNB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LXSomme": {
+      "command": "LXSomme",
+      "snippet": "LXSomme",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LYSomme": {
+      "command": "LYSomme",
+      "snippet": "LYSomme",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LXmoy": {
+      "command": "LXmoy",
+      "snippet": "LXmoy",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LYmoy": {
+      "command": "LYmoy",
+      "snippet": "LYmoy",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LXvar": {
+      "command": "LXvar",
+      "snippet": "LXvar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LYvar": {
+      "command": "LYvar",
+      "snippet": "LYvar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LXYvar": {
+      "command": "LXYvar",
+      "snippet": "LXYvar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PointsRegLin{}{}": {
+      "command": "PointsRegLin{}{}",
+      "snippet": "PointsRegLin{${1:listeX}}{${2:listeY}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PointsRegLin[]{}{}": {
+      "command": "PointsRegLin[]{}{}",
+      "snippet": "PointsRegLin[${3:options}]{${1:listeX}}{${2:listeY}}",
+      "option": "",
+      "keyvals": [
+        "Couleur=",
+        "Taille=",
+        "Ox=",
+        "Oy="
+      ],
+      "keyvalindex": 0
+    },
+    "GrilleTikz": {
+      "command": "GrilleTikz",
+      "snippet": "GrilleTikz",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GrilleTikz[]": {
+      "command": "GrilleTikz[]",
+      "snippet": "GrilleTikz[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "Affp",
+        "Affs"
+      ],
+      "keyvalindex": 0
+    },
+    "GrilleTikz[][]": {
+      "command": "GrilleTikz[][]",
+      "snippet": "GrilleTikz[${1:options}][${2:options grille ppale}]",
+      "option": "",
+      "keyvals": [
+        "Affp",
+        "Affs"
+      ],
+      "keyvalindex": 0
+    },
+    "GrilleTikz[][][]": {
+      "command": "GrilleTikz[][][]",
+      "snippet": "GrilleTikz[${1:options}][${2:options grille ppale}][${3:options grille second}]",
+      "option": "",
+      "keyvals": [
+        "Affp",
+        "Affs"
+      ],
+      "keyvalindex": 0
+    },
+    "AxesTikz": {
+      "command": "AxesTikz",
+      "snippet": "AxesTikz",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AxesTikz[]": {
+      "command": "AxesTikz[]",
+      "snippet": "AxesTikz[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "Epaisseur=",
+        "Police=",
+        "Labelx=",
+        "Labely=",
+        "AffLabel=",
+        "PosLabelx=",
+        "PosLabely=",
+        "EchelleFleche=",
+        "TypeFleche="
+      ],
+      "keyvalindex": 0
+    },
+    "AxexTikz{}": {
+      "command": "AxexTikz{}",
+      "snippet": "AxexTikz{${1:valeurs}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AxexTikz[]{}": {
+      "command": "AxexTikz[]{}",
+      "snippet": "AxexTikz[${2:options}]{${1:valeurs}}",
+      "option": "",
+      "keyvals": [
+        "Epaisseur=",
+        "Police=",
+        "PosGrad=",
+        "HautGrad=",
+        "AffGrad",
+        "AffOrigine",
+        "Annee"
+      ],
+      "keyvalindex": 0
+    },
+    "AxeyTikz{}": {
+      "command": "AxeyTikz{}",
+      "snippet": "AxeyTikz{${1:valeurs}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AxeyTikz[]{}": {
+      "command": "AxeyTikz[]{}",
+      "snippet": "AxeyTikz[${2:options}]{${1:valeurs}}",
+      "option": "",
+      "keyvals": [
+        "Epaisseur=",
+        "Police=",
+        "PosGrad=",
+        "HautGrad=",
+        "AffGrad",
+        "AffOrigine",
+        "Annee"
+      ],
+      "keyvalindex": 0
+    },
+    "FenetreTikz": {
+      "command": "FenetreTikz",
+      "snippet": "FenetreTikz",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FenetreSimpleTikz{}{}": {
+      "command": "FenetreSimpleTikz{}{}",
+      "snippet": "FenetreSimpleTikz{${1:liste abscisses}}{${2:liste ordonnées}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FenetreSimpleTikz{}<>{}": {
+      "command": "FenetreSimpleTikz{}<>{}",
+      "snippet": "FenetreSimpleTikz{${1:liste abscisses}}<${3:options axe Oy}>{${2:liste ordonnées}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FenetreSimpleTikz<>{}{}": {
+      "command": "FenetreSimpleTikz<>{}{}",
+      "snippet": "FenetreSimpleTikz<${3:options axe Ox}>{${1:liste abscisses}}{${2:liste ordonnées}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FenetreSimpleTikz<>{}<>{}": {
+      "command": "FenetreSimpleTikz<>{}<>{}",
+      "snippet": "FenetreSimpleTikz<${3:options axe Ox}>{${1:liste abscisses}}<${4:options axe Oy}>{${2:liste ordonnées}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "OrigineTikz": {
+      "command": "OrigineTikz",
+      "snippet": "OrigineTikz",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "OrigineTikz[]": {
+      "command": "OrigineTikz[]",
+      "snippet": "OrigineTikz[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "Police=",
+        "Pos=",
+        "Decal=",
+        "Valeur="
+      ],
+      "keyvalindex": 0
+    },
+    "NuagePointsTikz{}{}": {
+      "command": "NuagePointsTikz{}{}",
+      "snippet": "NuagePointsTikz{${1:listeX}}{${2:listeY}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NuagePointsTikz[]{}{}": {
+      "command": "NuagePointsTikz[]{}{}",
+      "snippet": "NuagePointsTikz[${3:options}]{${1:listeX}}{${2:listeY}}",
+      "option": "",
+      "keyvals": [
+        "Taille=",
+        "Style=",
+        "Couleur="
+      ],
+      "keyvalindex": 0
+    },
+    "PointMoyenTikz": {
+      "command": "PointMoyenTikz",
+      "snippet": "PointMoyenTikz",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PointMoyenTikz[]": {
+      "command": "PointMoyenTikz[]",
+      "snippet": "PointMoyenTikz[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "Police=",
+        "Taille=",
+        "Couleur=",
+        "Style=",
+        "xg=",
+        "yg=",
+        "Nom=",
+        "Pos=",
+        "Decal=",
+        "AffNom"
+      ],
+      "keyvalindex": 0
+    },
+    "CourbeTikz{}{}": {
+      "command": "CourbeTikz{}{}",
+      "snippet": "CourbeTikz{${1:formule}}{${2:domaine}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CourbeTikz[]{}{}": {
+      "command": "CourbeTikz[]{}{}",
+      "snippet": "CourbeTikz[${3:TikZ clés}]{${1:formule}}{${2:domaine}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axexOx": {
+      "command": "axexOx",
+      "snippet": "axexOx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axeyOy": {
+      "command": "axeyOy",
+      "snippet": "axeyOy",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xmin": {
+      "command": "xmin",
+      "snippet": "xmin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xmax": {
+      "command": "xmax",
+      "snippet": "xmax",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ymin": {
+      "command": "ymin",
+      "snippet": "ymin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ymax": {
+      "command": "ymax",
+      "snippet": "ymax",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xgrille": {
+      "command": "xgrille",
+      "snippet": "xgrille",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xgrilles": {
+      "command": "xgrilles",
+      "snippet": "xgrilles",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ygrille": {
+      "command": "ygrille",
+      "snippet": "ygrille",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ygrilles": {
+      "command": "ygrilles",
+      "snippet": "ygrilles",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xunit": {
+      "command": "xunit",
+      "snippet": "xunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yunit": {
+      "command": "yunit",
+      "snippet": "yunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BoiteMoustaches{}": {
+      "command": "BoiteMoustaches{}",
+      "snippet": "BoiteMoustaches{${1:a1/a2/...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BoiteMoustaches[]{}": {
+      "command": "BoiteMoustaches[]{}",
+      "snippet": "BoiteMoustaches[${2:options}]{${1:a1/a2/...}}",
+      "option": "",
+      "keyvals": [
+        "Couleur=",
+        "Elevation=",
+        "Hauteur=",
+        "Moyenne=",
+        "Epaisseur=",
+        "Remplir=",
+        "AffMoyenne",
+        "Pointilles",
+        "Valeurs"
+      ],
+      "keyvalindex": 0
+    },
+    "BoiteMoustachesAxe[]": {
+      "command": "BoiteMoustachesAxe[]",
+      "snippet": "BoiteMoustachesAxe[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "Min=",
+        "Max=",
+        "Elargir=",
+        "Epaisseur=",
+        "Valeurs={",
+        "AffValeurs"
+      ],
+      "keyvalindex": 0
+    },
+    "CalcBinomP{}{}{}": {
+      "command": "CalcBinomP{}{}{}",
+      "snippet": "CalcBinomP{${1:n}}{${2:p}}{${3:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalcBinomC{}{}{}{}": {
+      "command": "CalcBinomC{}{}{}{}",
+      "snippet": "CalcBinomC{${1:n}}{${2:p}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalcPoissP{}{}": {
+      "command": "CalcPoissP{}{}",
+      "snippet": "CalcPoissP{${1:l}}{${2:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalcPoissC{}{}{}": {
+      "command": "CalcPoissC{}{}{}",
+      "snippet": "CalcPoissC{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalcGeomP{}{}": {
+      "command": "CalcGeomP{}{}",
+      "snippet": "CalcGeomP{${1:p}}{${2:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalcGeomC{}{}{}": {
+      "command": "CalcGeomC{}{}{}",
+      "snippet": "CalcGeomC{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalcHypergeomP{}{}{}{}": {
+      "command": "CalcHypergeomP{}{}{}{}",
+      "snippet": "CalcHypergeomP{${1:N}}{${2:n}}{${3:m}}{${4:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalcHypergeomC{}{}{}{}{}": {
+      "command": "CalcHypergeomC{}{}{}{}{}",
+      "snippet": "CalcHypergeomC{${1:N}}{${2:n}}{${3:m}}{${4:a}}{${5:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalcNormC{}{}{}{}": {
+      "command": "CalcNormC{}{}{}{}",
+      "snippet": "CalcNormC{${1:m}}{${2:s}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalcExpoC{}{}{}": {
+      "command": "CalcExpoC{}{}{}",
+      "snippet": "CalcExpoC{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BinomP{}{}{}": {
+      "command": "BinomP{}{}{}",
+      "snippet": "BinomP{${1:n}}{${2:p}}{${3:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BinomP[]{}{}{}": {
+      "command": "BinomP[]{}{}{}",
+      "snippet": "BinomP[${4:prec}]{${1:n}}{${2:p}}{${3:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BinomP*{}{}{}": {
+      "command": "BinomP*{}{}{}",
+      "snippet": "BinomP*{${1:n}}{${2:p}}{${3:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BinomP*[]{}{}{}": {
+      "command": "BinomP*[]{}{}{}",
+      "snippet": "BinomP*[${4:prec}]{${1:n}}{${2:p}}{${3:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BinomC{}{}{}{}": {
+      "command": "BinomC{}{}{}{}",
+      "snippet": "BinomC{${1:n}}{${2:p}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BinomC[]{}{}{}{}": {
+      "command": "BinomC[]{}{}{}{}",
+      "snippet": "BinomC[${5:prec}]{${1:n}}{${2:p}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BinomC*{}{}{}{}": {
+      "command": "BinomC*{}{}{}{}",
+      "snippet": "BinomC*{${1:n}}{${2:p}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BinomC*[]{}{}{}{}": {
+      "command": "BinomC*[]{}{}{}{}",
+      "snippet": "BinomC*[${5:prec}]{${1:n}}{${2:p}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PoissonP{}{}": {
+      "command": "PoissonP{}{}",
+      "snippet": "PoissonP{${1:l}}{${2:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PoissonP[]{}{}": {
+      "command": "PoissonP[]{}{}",
+      "snippet": "PoissonP[${3:prec}]{${1:l}}{${2:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PoissonP*{}{}": {
+      "command": "PoissonP*{}{}",
+      "snippet": "PoissonP*{${1:l}}{${2:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PoissonP*[]{}{}": {
+      "command": "PoissonP*[]{}{}",
+      "snippet": "PoissonP*[${3:prec}]{${1:l}}{${2:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PoissonC{}{}{}": {
+      "command": "PoissonC{}{}{}",
+      "snippet": "PoissonC{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PoissonC[]{}{}{}": {
+      "command": "PoissonC[]{}{}{}",
+      "snippet": "PoissonC[${4:prec}]{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PoissonC*{}{}{}": {
+      "command": "PoissonC*{}{}{}",
+      "snippet": "PoissonC*{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PoissonC*[]{}{}{}": {
+      "command": "PoissonC*[]{}{}{}",
+      "snippet": "PoissonC*[${4:prec}]{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GeomP{}{}": {
+      "command": "GeomP{}{}",
+      "snippet": "GeomP{${1:p}}{${2:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GeomP[]{}{}": {
+      "command": "GeomP[]{}{}",
+      "snippet": "GeomP[${3:prec}]{${1:p}}{${2:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GeomP*{}{}": {
+      "command": "GeomP*{}{}",
+      "snippet": "GeomP*{${1:p}}{${2:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GeomP*[]{}{}": {
+      "command": "GeomP*[]{}{}",
+      "snippet": "GeomP*[${3:prec}]{${1:p}}{${2:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GeomC{}{}{}": {
+      "command": "GeomC{}{}{}",
+      "snippet": "GeomC{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GeomC[]{}{}{}": {
+      "command": "GeomC[]{}{}{}",
+      "snippet": "GeomC[${4:prec}]{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GeomC*{}{}{}": {
+      "command": "GeomC*{}{}{}",
+      "snippet": "GeomC*{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GeomC*[]{}{}{}": {
+      "command": "GeomC*[]{}{}{}",
+      "snippet": "GeomC*[${4:prec}]{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HypergeomP{}{}{}{}": {
+      "command": "HypergeomP{}{}{}{}",
+      "snippet": "HypergeomP{${1:N}}{${2:n}}{${3:m}}{${4:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HypergeomP[]{}{}{}{}": {
+      "command": "HypergeomP[]{}{}{}{}",
+      "snippet": "HypergeomP[${5:prec}]{${1:N}}{${2:n}}{${3:m}}{${4:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HypergeomP*{}{}{}{}": {
+      "command": "HypergeomP*{}{}{}{}",
+      "snippet": "HypergeomP*{${1:N}}{${2:n}}{${3:m}}{${4:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HypergeomP*[]{}{}{}{}": {
+      "command": "HypergeomP*[]{}{}{}{}",
+      "snippet": "HypergeomP*[${5:prec}]{${1:N}}{${2:n}}{${3:m}}{${4:k}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HypergeomC{}{}{}{}{}": {
+      "command": "HypergeomC{}{}{}{}{}",
+      "snippet": "HypergeomC{${1:N}}{${2:n}}{${3:m}}{${4:a}}{${5:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HypergeomC[]{}{}{}{}{}": {
+      "command": "HypergeomC[]{}{}{}{}{}",
+      "snippet": "HypergeomC[${6:prec}]{${1:N}}{${2:n}}{${3:m}}{${4:a}}{${5:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HypergeomC*{}{}{}{}{}": {
+      "command": "HypergeomC*{}{}{}{}{}",
+      "snippet": "HypergeomC*{${1:N}}{${2:n}}{${3:m}}{${4:a}}{${5:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HypergeomC*[]{}{}{}{}{}": {
+      "command": "HypergeomC*[]{}{}{}{}{}",
+      "snippet": "HypergeomC*[${6:prec}]{${1:N}}{${2:n}}{${3:m}}{${4:a}}{${5:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NormaleC{}{}{}{}": {
+      "command": "NormaleC{}{}{}{}",
+      "snippet": "NormaleC{${1:m}}{${2:s}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NormaleC[]{}{}{}{}": {
+      "command": "NormaleC[]{}{}{}{}",
+      "snippet": "NormaleC[${5:prec}]{${1:m}}{${2:s}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NormaleC*{}{}{}{}": {
+      "command": "NormaleC*{}{}{}{}",
+      "snippet": "NormaleC*{${1:m}}{${2:s}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NormaleC*[]{}{}{}{}": {
+      "command": "NormaleC*[]{}{}{}{}",
+      "snippet": "NormaleC*[${5:prec}]{${1:m}}{${2:s}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ExpoC{}{}{}": {
+      "command": "ExpoC{}{}{}",
+      "snippet": "ExpoC{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ExpoC[]{}{}{}": {
+      "command": "ExpoC[]{}{}{}",
+      "snippet": "ExpoC[${4:prec}]{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ExpoC*{}{}{}": {
+      "command": "ExpoC*{}{}{}",
+      "snippet": "ExpoC*{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ExpoC*[]{}{}{}": {
+      "command": "ExpoC*[]{}{}{}",
+      "snippet": "ExpoC*[${4:prec}]{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ArbreProbasTikz{}": {
+      "command": "ArbreProbasTikz{}",
+      "snippet": "ArbreProbasTikz{${1:donnees}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ArbreProbasTikz[]{}": {
+      "command": "ArbreProbasTikz[]{}",
+      "snippet": "ArbreProbasTikz[${2:options}]{${1:donnees}}",
+      "option": "",
+      "keyvals": [
+        "Unite=",
+        "EspaceNiveau=",
+        "EspaceFeuille=",
+        "Type=",
+        "Police=",
+        "PoliceProbas=",
+        "InclineProbas",
+        "Fleche",
+        "StyleTrait={",
+        "EpaisseurTrait="
+      ],
+      "keyvalindex": 0
+    },
+    "LoiNormaleGraphe{}{}{}{}": {
+      "command": "LoiNormaleGraphe{}{}{}{}",
+      "snippet": "LoiNormaleGraphe{${1:m}}{${2:s}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LoiNormaleGraphe<>{}{}{}{}": {
+      "command": "LoiNormaleGraphe<>{}{}{}{}",
+      "snippet": "LoiNormaleGraphe<${5:TikZ options}>{${1:m}}{${2:s}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LoiNormaleGraphe[]{}{}{}{}": {
+      "command": "LoiNormaleGraphe[]{}{}{}{}",
+      "snippet": "LoiNormaleGraphe[${5:options}]{${1:m}}{${2:s}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [
+        "CouleurAire=",
+        "CouleurCourbe=",
+        "Largeur=",
+        "Hauteur=",
+        "AfficheM",
+        "AfficheCadre"
+      ],
+      "keyvalindex": 0
+    },
+    "LoiNormaleGraphe[]<>{}{}{}{}": {
+      "command": "LoiNormaleGraphe[]<>{}{}{}{}",
+      "snippet": "LoiNormaleGraphe[${5:options}]<${6:TikZ options}>{${1:m}}{${2:s}}{${3:a}}{${4:b}}",
+      "option": "",
+      "keyvals": [
+        "CouleurAire=",
+        "CouleurCourbe=",
+        "Largeur=",
+        "Hauteur=",
+        "AfficheM",
+        "AfficheCadre"
+      ],
+      "keyvalindex": 0
+    },
+    "LoiExpoGraphe{}{}{}": {
+      "command": "LoiExpoGraphe{}{}{}",
+      "snippet": "LoiExpoGraphe{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LoiExpoGraphe<>{}{}{}": {
+      "command": "LoiExpoGraphe<>{}{}{}",
+      "snippet": "LoiExpoGraphe<${4:TikZ options}>{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LoiExpoGraphe[]{}{}{}": {
+      "command": "LoiExpoGraphe[]{}{}{}",
+      "snippet": "LoiExpoGraphe[${4:options}]{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [
+        "CouleurAire=",
+        "CouleurCourbe=",
+        "Largeur=",
+        "Hauteur=",
+        "AfficheM",
+        "AfficheCadre"
+      ],
+      "keyvalindex": 0
+    },
+    "LoiExpoGraphe[]<>{}{}{}": {
+      "command": "LoiExpoGraphe[]<>{}{}{}",
+      "snippet": "LoiExpoGraphe[${4:options}]<${5:TikZ options}>{${1:l}}{${2:a}}{${3:b}}",
+      "option": "",
+      "keyvals": [
+        "CouleurAire=",
+        "CouleurCourbe=",
+        "Largeur=",
+        "Hauteur=",
+        "AfficheM",
+        "AfficheCadre"
+      ],
+      "keyvalindex": 0
+    },
+    "NbAlea{}{}{}": {
+      "command": "NbAlea{}{}{}",
+      "snippet": "NbAlea{${1:a}}{${2:b}}{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NbAlea[]{}{}{}": {
+      "command": "NbAlea[]{}{}{}",
+      "snippet": "NbAlea[${4:n}]{${1:a}}{${2:b}}{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "VarNbAlea{}{}": {
+      "command": "VarNbAlea{}{}",
+      "snippet": "VarNbAlea{${1:macro%cmd}}{${2:calculs}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TirageAleatoireEntiers{}": {
+      "command": "TirageAleatoireEntiers{}",
+      "snippet": "TirageAleatoireEntiers{${1:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TirageAleatoireEntiers[]{}": {
+      "command": "TirageAleatoireEntiers[]{}",
+      "snippet": "TirageAleatoireEntiers[${2:options}]{${1:macro%cmd}}",
+      "option": "",
+      "keyvals": [
+        "ValMin=",
+        "ValMax=",
+        "NbVal=",
+        "Sep=",
+        "Tri=",
+        "Repetition"
+      ],
+      "keyvalindex": 0
+    },
+    "ConversionDecBin{}": {
+      "command": "ConversionDecBin{}",
+      "snippet": "ConversionDecBin{${1:nombre}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ConversionDecBin[]{}": {
+      "command": "ConversionDecBin[]{}",
+      "snippet": "ConversionDecBin[${2:options}]{${1:nombre}}",
+      "option": "",
+      "keyvals": [
+        "AffBase"
+      ],
+      "keyvalindex": 0
+    },
+    "ConversionDecBin*{}": {
+      "command": "ConversionDecBin*{}",
+      "snippet": "ConversionDecBin*{${1:nombre}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ConversionDecBin*[]{}": {
+      "command": "ConversionDecBin*[]{}",
+      "snippet": "ConversionDecBin*[${2:options}]{${1:nombre}}",
+      "option": "",
+      "keyvals": [
+        "AffBase"
+      ],
+      "keyvalindex": 0
+    },
+    "ConversionBinHex{}": {
+      "command": "ConversionBinHex{}",
+      "snippet": "ConversionBinHex{${1:nombre}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ConversionBinHex[]{}": {
+      "command": "ConversionBinHex[]{}",
+      "snippet": "ConversionBinHex[${2:options}]{${1:nombre}}",
+      "option": "",
+      "keyvals": [
+        "AffBase",
+        "Details"
+      ],
+      "keyvalindex": 0
+    },
+    "ConversionVersDec{}": {
+      "command": "ConversionVersDec{}",
+      "snippet": "ConversionVersDec{${1:nombre}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ConversionVersDec[]{}": {
+      "command": "ConversionVersDec[]{}",
+      "snippet": "ConversionVersDec[${2:options}]{${1:nombre}}",
+      "option": "",
+      "keyvals": [
+        "BaseDep=",
+        "AffBase",
+        "Details",
+        "Zeros"
+      ],
+      "keyvalindex": 0
+    },
+    "ConversionBaseDix{}{}": {
+      "command": "ConversionBaseDix{}{}",
+      "snippet": "ConversionBaseDix{${1:nombre}}{${2:base de départ}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ConversionBaseDix[]{}{}": {
+      "command": "ConversionBaseDix[]{}{}",
+      "snippet": "ConversionBaseDix[${3:options}]{${1:nombre}}{${2:base de départ}}",
+      "option": "",
+      "keyvals": [
+        "BaseDep=",
+        "AffBase",
+        "Details",
+        "Zeros"
+      ],
+      "keyvalindex": 0
+    },
+    "ConversionDepuisBaseDix{}{}": {
+      "command": "ConversionDepuisBaseDix{}{}",
+      "snippet": "ConversionDepuisBaseDix{${1:nombre en base 10}}{${2:base d'arrivée}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ConversionDepuisBaseDix[]{}{}": {
+      "command": "ConversionDepuisBaseDix[]{}{}",
+      "snippet": "ConversionDepuisBaseDix[${3:options}]{${1:nombre en base 10}}{${2:base d'arrivée}}",
+      "option": "",
+      "keyvals": [
+        "Couleur=",
+        "DecalH=",
+        "DecalV=",
+        "Noeud=",
+        "Rect",
+        "CouleurRes"
+      ],
+      "keyvalindex": 0
+    },
+    "PresentationPGCD{}{}": {
+      "command": "PresentationPGCD{}{}",
+      "snippet": "PresentationPGCD{${1:a}}{${2:b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PresentationPGCD[]{}{}": {
+      "command": "PresentationPGCD[]{}{}",
+      "snippet": "PresentationPGCD[${3:options}]{${1:a}}{${2:b}}",
+      "option": "",
+      "keyvals": [
+        "Couleur=",
+        "DecalRect=",
+        "Rectangle",
+        "Noeud=",
+        "CouleurResultat",
+        "AfficheConclusion",
+        "AfficheDelimiteurs"
+      ],
+      "keyvalindex": 0
+    },
+    "ConversionFraction{}": {
+      "command": "ConversionFraction{}",
+      "snippet": "ConversionFraction{${1:fraction expr}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ConversionFraction[]{}": {
+      "command": "ConversionFraction[]{}",
+      "snippet": "ConversionFraction[${2:d ou t}]{${1:fraction expr}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EcritureEnsemble{}": {
+      "command": "EcritureEnsemble{}",
+      "snippet": "EcritureEnsemble{${1:a1/a2/...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EcritureEnsemble[]{}": {
+      "command": "EcritureEnsemble[]{}",
+      "snippet": "EcritureEnsemble[${2:options}]{${1:a1/a2/...}}",
+      "option": "",
+      "keyvals": [
+        "Sep={",
+        "Option={",
+        "Mathpunct"
+      ],
+      "keyvalindex": 0
+    },
+    "MiniSchemaSignes": {
+      "command": "MiniSchemaSignes",
+      "snippet": "MiniSchemaSignes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniSchemaSignes[]": {
+      "command": "MiniSchemaSignes[]",
+      "snippet": "MiniSchemaSignes[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniSchemaSignesTkzTab{}": {
+      "command": "MiniSchemaSignesTkzTab{}",
+      "snippet": "MiniSchemaSignesTkzTab{${1:numligne}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniSchemaSignesTkzTab{}[]": {
+      "command": "MiniSchemaSignesTkzTab{}[]",
+      "snippet": "MiniSchemaSignesTkzTab{${1:numligne}}[${2:echelle}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniSchemaSignesTkzTab{}[][]": {
+      "command": "MiniSchemaSignesTkzTab{}[][]",
+      "snippet": "MiniSchemaSignesTkzTab{${1:numligne}}[${2:echelle}][${3:décalage horizontal}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniSchemaSignesTkzTab[]{}": {
+      "command": "MiniSchemaSignesTkzTab[]{}",
+      "snippet": "MiniSchemaSignesTkzTab[${2:options}]{${1:numligne}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniSchemaSignesTkzTab[]{}[]": {
+      "command": "MiniSchemaSignesTkzTab[]{}[]",
+      "snippet": "MiniSchemaSignesTkzTab[${2:options}]{${1:numligne}}[${3:echelle}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MiniSchemaSignesTkzTab[]{}[][]": {
+      "command": "MiniSchemaSignesTkzTab[]{}[][]",
+      "snippet": "MiniSchemaSignesTkzTab[${2:options}]{${1:numligne}}[${3:echelle}][${4:décalage horizontal}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EcritureTrinome{}{}{}": {
+      "command": "EcritureTrinome{}{}{}",
+      "snippet": "EcritureTrinome{${1:a}}{${2:b}}{${3:c}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EcritureTrinome[]{}{}{}": {
+      "command": "EcritureTrinome[]{}{}{}",
+      "snippet": "EcritureTrinome[${4:options}]{${1:a}}{${2:b}}{${3:c}}",
+      "option": "",
+      "keyvals": [
+        "Alea",
+        "Anegatif"
+      ],
+      "keyvalindex": 0
+    },
+    "PixelArtTikz{}": {
+      "command": "PixelArtTikz{}",
+      "snippet": "PixelArtTikz{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PixelArtTikz[]{}": {
+      "command": "PixelArtTikz[]{}",
+      "snippet": "PixelArtTikz[${2:options}]{${1:file}}",
+      "option": "",
+      "keyvals": [
+        "Codes=",
+        "Couleurs={",
+        "Symboles={",
+        "Correction",
+        "Symb",
+        "BordCases",
+        "Style="
+      ],
+      "keyvalindex": 0
+    },
+    "SudoMaths{}": {
+      "command": "SudoMaths{}",
+      "snippet": "SudoMaths{${1:liste}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SudoMaths[]{}": {
+      "command": "SudoMaths[]{}",
+      "snippet": "SudoMaths[${2:options}]{${1:liste}}",
+      "option": "",
+      "keyvals": [
+        "Epaisseurg=",
+        "Epaisseur=",
+        "Unite=",
+        "CouleurCase=",
+        "CouleurTexte=",
+        "NbCol=",
+        "NbSubCol=",
+        "NbLig=",
+        "NbSubLig=",
+        "Police=",
+        "Legendes",
+        "PoliceLeg=",
+        "ListeLegV=",
+        "ListeLegH=",
+        "DecalLegende="
+      ],
+      "keyvalindex": 0
+    },
+    "AleaSigneA": {
+      "command": "AleaSigneA",
+      "snippet": "AleaSigneA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "algomathttPL{}": {
+      "command": "algomathttPL{}",
+      "snippet": "algomathttPL{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axesafflabel": {
+      "command": "axesafflabel",
+      "snippet": "axesafflabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axesechellefleche": {
+      "command": "axesechellefleche",
+      "snippet": "axesechellefleche",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axesfont": {
+      "command": "axesfont",
+      "snippet": "axesfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axeslabelx": {
+      "command": "axeslabelx",
+      "snippet": "axeslabelx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axeslabely": {
+      "command": "axeslabely",
+      "snippet": "axeslabely",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axesordecal": {
+      "command": "axesordecal",
+      "snippet": "axesordecal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axesorfont": {
+      "command": "axesorfont",
+      "snippet": "axesorfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axesorpos": {
+      "command": "axesorpos",
+      "snippet": "axesorpos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axesorval": {
+      "command": "axesorval",
+      "snippet": "axesorval",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axesposlabelx": {
+      "command": "axesposlabelx",
+      "snippet": "axesposlabelx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axesposlabely": {
+      "command": "axesposlabely",
+      "snippet": "axesposlabely",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axestypefleche": {
+      "command": "axestypefleche",
+      "snippet": "axestypefleche",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axeswidth": {
+      "command": "axeswidth",
+      "snippet": "axeswidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axexfont": {
+      "command": "axexfont",
+      "snippet": "axexfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axexposlabel": {
+      "command": "axexposlabel",
+      "snippet": "axexposlabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axextickwidth": {
+      "command": "axextickwidth",
+      "snippet": "axextickwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axextickwidthA": {
+      "command": "axextickwidthA",
+      "snippet": "axextickwidthA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axextickwidthB": {
+      "command": "axextickwidthB",
+      "snippet": "axextickwidthB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axexwidth": {
+      "command": "axexwidth",
+      "snippet": "axexwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axeyfont": {
+      "command": "axeyfont",
+      "snippet": "axeyfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axeyposlabel": {
+      "command": "axeyposlabel",
+      "snippet": "axeyposlabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axeytickwidth": {
+      "command": "axeytickwidth",
+      "snippet": "axeytickwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axeytickwidthA": {
+      "command": "axeytickwidthA",
+      "snippet": "axeytickwidthA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axeytickwidthB": {
+      "command": "axeytickwidthB",
+      "snippet": "axeytickwidthB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axeywidth": {
+      "command": "axeywidth",
+      "snippet": "axeywidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMAxeElarg": {
+      "command": "BaMAxeElarg",
+      "snippet": "BaMAxeElarg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMAxeEpaisseur": {
+      "command": "BaMAxeEpaisseur",
+      "snippet": "BaMAxeEpaisseur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMaxelargeur": {
+      "command": "BaMaxelargeur",
+      "snippet": "BaMaxelargeur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMAxeMax": {
+      "command": "BaMAxeMax",
+      "snippet": "BaMAxeMax",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMAxeMin": {
+      "command": "BaMAxeMin",
+      "snippet": "BaMAxeMin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMAxeValeurs": {
+      "command": "BaMAxeValeurs",
+      "snippet": "BaMAxeValeurs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMaxexmax": {
+      "command": "BaMaxexmax",
+      "snippet": "BaMaxexmax",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMaxexmin": {
+      "command": "BaMaxexmin",
+      "snippet": "BaMaxexmin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMCouleur": {
+      "command": "BaMCouleur",
+      "snippet": "BaMCouleur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMElevation": {
+      "command": "BaMElevation",
+      "snippet": "BaMElevation",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMEpaisseur": {
+      "command": "BaMEpaisseur",
+      "snippet": "BaMEpaisseur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMHauteur": {
+      "command": "BaMHauteur",
+      "snippet": "BaMHauteur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMListeparams": {
+      "command": "BaMListeparams",
+      "snippet": "BaMListeparams",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMmax": {
+      "command": "BaMmax",
+      "snippet": "BaMmax",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMmed": {
+      "command": "BaMmed",
+      "snippet": "BaMmed",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMmin": {
+      "command": "BaMmin",
+      "snippet": "BaMmin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMMoyenne": {
+      "command": "BaMMoyenne",
+      "snippet": "BaMMoyenne",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMqt": {
+      "command": "BaMqt",
+      "snippet": "BaMqt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMqu": {
+      "command": "BaMqu",
+      "snippet": "BaMqu",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BaMRemplissage": {
+      "command": "BaMRemplissage",
+      "snippet": "BaMRemplissage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "basedepart": {
+      "command": "basedepart",
+      "snippet": "basedepart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BorneInf": {
+      "command": "BorneInf",
+      "snippet": "BorneInf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BorneSup": {
+      "command": "BorneSup",
+      "snippet": "BorneSup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "calculargument": {
+      "command": "calculargument",
+      "snippet": "calculargument",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalculInterneTermeRecurrence{}{}{}{}": {
+      "command": "CalculInterneTermeRecurrence{}{}{}{}",
+      "snippet": "CalculInterneTermeRecurrence{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFcoulcmd": {
+      "command": "CFcoulcmd",
+      "snippet": "CFcoulcmd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFcouleur": {
+      "command": "CFcouleur",
+      "snippet": "CFcouleur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFcoulres": {
+      "command": "CFcoulres",
+      "snippet": "CFcoulres",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFesplg": {
+      "command": "CFesplg",
+      "snippet": "CFesplg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFhle": {
+      "command": "CFhle",
+      "snippet": "CFhle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFhlr": {
+      "command": "CFhlr",
+      "snippet": "CFhlr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFL": {
+      "command": "CFL",
+      "snippet": "CFL",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFLA": {
+      "command": "CFLA",
+      "snippet": "CFLA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFlabeltitre": {
+      "command": "CFlabeltitre",
+      "snippet": "CFlabeltitre",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFlarg": {
+      "command": "CFlarg",
+      "snippet": "CFlarg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFposcmd": {
+      "command": "CFposcmd",
+      "snippet": "CFposcmd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFposres": {
+      "command": "CFposres",
+      "snippet": "CFposres",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFtaille": {
+      "command": "CFtaille",
+      "snippet": "CFtaille",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CFtailletitre": {
+      "command": "CFtailletitre",
+      "snippet": "CFtailletitre",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chbrut": {
+      "command": "chbrut",
+      "snippet": "chbrut",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chiffre": {
+      "command": "chiffre",
+      "snippet": "chiffre",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CODPITalign": {
+      "command": "CODPITalign",
+      "snippet": "CODPITalign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CODPITfonte": {
+      "command": "CODPITfonte",
+      "snippet": "CODPITfonte",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CODPITlargeur": {
+      "command": "CODPITlargeur",
+      "snippet": "CODPITlargeur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CODPYfonte": {
+      "command": "CODPYfonte",
+      "snippet": "CODPYfonte",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CODPYlargeur": {
+      "command": "CODPYlargeur",
+      "snippet": "CODPYlargeur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CODPYstretch": {
+      "command": "CODPYstretch",
+      "snippet": "CODPYstretch",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "COEFF": {
+      "command": "COEFF",
+      "snippet": "COEFF",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "COEFFA": {
+      "command": "COEFFA",
+      "snippet": "COEFFA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Coeffa": {
+      "command": "Coeffa",
+      "snippet": "Coeffa",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "COEFFB": {
+      "command": "COEFFB",
+      "snippet": "COEFFB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Coeffc": {
+      "command": "Coeffc",
+      "snippet": "Coeffc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "convertbasedixtobase{}{}": {
+      "command": "convertbasedixtobase{}{}",
+      "snippet": "convertbasedixtobase{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "convertbasetobasedix{}{}": {
+      "command": "convertbasetobasedix{}{}",
+      "snippet": "convertbasetobasedix{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cpt": {
+      "command": "cpt",
+      "snippet": "cpt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CSPYfonte": {
+      "command": "CSPYfonte",
+      "snippet": "CSPYfonte",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CSPYlargeur": {
+      "command": "CSPYlargeur",
+      "snippet": "CSPYlargeur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CSPYstretch": {
+      "command": "CSPYstretch",
+      "snippet": "CSPYstretch",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "denominateur": {
+      "command": "denominateur",
+      "snippet": "denominateur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "densexpo{}": {
+      "command": "densexpo{}",
+      "snippet": "densexpo{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "densnorm{}": {
+      "command": "densnorm{}",
+      "snippet": "densnorm{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DHTnomfct": {
+      "command": "DHTnomfct",
+      "snippet": "DHTnomfct",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DHTnomsol": {
+      "command": "DHTnomsol",
+      "snippet": "DHTnomsol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DHTprec": {
+      "command": "DHTprec",
+      "snippet": "DHTprec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DHTstretch": {
+      "command": "DHTstretch",
+      "snippet": "DHTstretch",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DHTva": {
+      "command": "DHTva",
+      "snippet": "DHTva",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DHTvb": {
+      "command": "DHTvb",
+      "snippet": "DHTvb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extractcoeff{}{}": {
+      "command": "extractcoeff{}{}",
+      "snippet": "extractcoeff{${1:liste}}{${2:numero}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fctdecx": {
+      "command": "fctdecx",
+      "snippet": "fctdecx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fprimea": {
+      "command": "fprimea",
+      "snippet": "fprimea",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fprimeb": {
+      "command": "fprimeb",
+      "snippet": "fprimeb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GRPHPROBcoulcbe": {
+      "command": "GRPHPROBcoulcbe",
+      "snippet": "GRPHPROBcoulcbe",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GRPHPROBcoulsurf": {
+      "command": "GRPHPROBcoulsurf",
+      "snippet": "GRPHPROBcoulsurf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GRPHPROBhauteur": {
+      "command": "GRPHPROBhauteur",
+      "snippet": "GRPHPROBhauteur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GRPHPROBlarg": {
+      "command": "GRPHPROBlarg",
+      "snippet": "GRPHPROBlarg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hookcenterpost": {
+      "command": "hookcenterpost",
+      "snippet": "hookcenterpost",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hookcenterpre": {
+      "command": "hookcenterpre",
+      "snippet": "hookcenterpre",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifinal": {
+      "command": "ifinal",
+      "snippet": "ifinal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iinit": {
+      "command": "iinit",
+      "snippet": "iinit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "indice": {
+      "command": "indice",
+      "snippet": "indice",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "larcolinter": {
+      "command": "larcolinter",
+      "snippet": "larcolinter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "larliginter": {
+      "command": "larliginter",
+      "snippet": "larliginter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LCNA": {
+      "command": "LCNA",
+      "snippet": "LCNA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lcoeffs": {
+      "command": "lcoeffs",
+      "snippet": "lcoeffs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LCPA": {
+      "command": "LCPA",
+      "snippet": "LCPA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listepointsaffiches": {
+      "command": "listepointsaffiches",
+      "snippet": "listepointsaffiches",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MOYENNE": {
+      "command": "MOYENNE",
+      "snippet": "MOYENNE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nbblocs": {
+      "command": "nbblocs",
+      "snippet": "nbblocs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nbchiffres": {
+      "command": "nbchiffres",
+      "snippet": "nbchiffres",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nbdepart": {
+      "command": "nbdepart",
+      "snippet": "nbdepart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NBdepart": {
+      "command": "NBdepart",
+      "snippet": "NBdepart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nbgrp": {
+      "command": "nbgrp",
+      "snippet": "nbgrp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numerateur": {
+      "command": "numerateur",
+      "snippet": "numerateur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PATchiffres": {
+      "command": "PATchiffres",
+      "snippet": "PATchiffres",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PATcouleurs": {
+      "command": "PATcouleurs",
+      "snippet": "PATcouleurs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PATlettres": {
+      "command": "PATlettres",
+      "snippet": "PATlettres",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PATtaille": {
+      "command": "PATtaille",
+      "snippet": "PATtaille",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PaveA": {
+      "command": "PaveA",
+      "snippet": "PaveA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PaveB": {
+      "command": "PaveB",
+      "snippet": "PaveB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PaveC": {
+      "command": "PaveC",
+      "snippet": "PaveC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PaveD": {
+      "command": "PaveD",
+      "snippet": "PaveD",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PaveE": {
+      "command": "PaveE",
+      "snippet": "PaveE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PaveF": {
+      "command": "PaveF",
+      "snippet": "PaveF",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PaveG": {
+      "command": "PaveG",
+      "snippet": "PaveG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PaveH": {
+      "command": "PaveH",
+      "snippet": "PaveH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFListeSommets": {
+      "command": "PFListeSommets",
+      "snippet": "PFListeSommets",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFPaveAngl": {
+      "command": "PFPaveAngl",
+      "snippet": "PFPaveAngl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFPaveFuite": {
+      "command": "PFPaveFuite",
+      "snippet": "PFPaveFuite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFPaveHt": {
+      "command": "PFPaveHt",
+      "snippet": "PFPaveHt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFPaveLg": {
+      "command": "PFPaveLg",
+      "snippet": "PFPaveLg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFPavePf": {
+      "command": "PFPavePf",
+      "snippet": "PFPavePf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFPaveSommets": {
+      "command": "PFPaveSommets",
+      "snippet": "PFPaveSommets",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFPaveThick": {
+      "command": "PFPaveThick",
+      "snippet": "PFPaveThick",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFTetraAlpha": {
+      "command": "PFTetraAlpha",
+      "snippet": "PFTetraAlpha",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFTetraBeta": {
+      "command": "PFTetraBeta",
+      "snippet": "PFTetraBeta",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFTetraHt": {
+      "command": "PFTetraHt",
+      "snippet": "PFTetraHt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFTetraLg": {
+      "command": "PFTetraLg",
+      "snippet": "PFTetraLg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFTetraPf": {
+      "command": "PFTetraPf",
+      "snippet": "PFTetraPf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFTetraSommets": {
+      "command": "PFTetraSommets",
+      "snippet": "PFTetraSommets",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PFTetraThick": {
+      "command": "PFTetraThick",
+      "snippet": "PFTetraThick",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pixchf": {
+      "command": "pixchf",
+      "snippet": "pixchf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pixcnt": {
+      "command": "pixcnt",
+      "snippet": "pixcnt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pixcol": {
+      "command": "pixcol",
+      "snippet": "pixcol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pixpos": {
+      "command": "pixpos",
+      "snippet": "pixpos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLAPeptrait": {
+      "command": "PLAPeptrait",
+      "snippet": "PLAPeptrait",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLAPespfeuille": {
+      "command": "PLAPespfeuille",
+      "snippet": "PLAPespfeuille",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLAPespniv": {
+      "command": "PLAPespniv",
+      "snippet": "PLAPespniv",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLAPfont": {
+      "command": "PLAPfont",
+      "snippet": "PLAPfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLAPfontproba": {
+      "command": "PLAPfontproba",
+      "snippet": "PLAPfontproba",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLAPtype": {
+      "command": "PLAPtype",
+      "snippet": "PLAPtype",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLAPtypetrait": {
+      "command": "PLAPtypetrait",
+      "snippet": "PLAPtypetrait",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLAPunite": {
+      "command": "PLAPunite",
+      "snippet": "PLAPunite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLARBREDONNES": {
+      "command": "PLARBREDONNES",
+      "snippet": "PLARBREDONNES",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLcercleangles": {
+      "command": "PLcercleangles",
+      "snippet": "PLcercleangles",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLcerclecoleq": {
+      "command": "PLcerclecoleq",
+      "snippet": "PLcerclecoleq",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLcercledecal": {
+      "command": "PLcercledecal",
+      "snippet": "PLcercledecal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLcerclefond": {
+      "command": "PLcerclefond",
+      "snippet": "PLcerclefond",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLcerclemarge": {
+      "command": "PLcerclemarge",
+      "snippet": "PLcerclemarge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLcerclerayon": {
+      "command": "PLcerclerayon",
+      "snippet": "PLcerclerayon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLcerclesolthick": {
+      "command": "PLcerclesolthick",
+      "snippet": "PLcerclesolthick",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLcerclethick": {
+      "command": "PLcerclethick",
+      "snippet": "PLcerclethick",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLcerclevalcos": {
+      "command": "PLcerclevalcos",
+      "snippet": "PLcerclevalcos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLcerclevaleurs": {
+      "command": "PLcerclevaleurs",
+      "snippet": "PLcerclevaleurs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLcerclevalsin": {
+      "command": "PLcerclevalsin",
+      "snippet": "PLcerclevalsin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLcommandeswin": {
+      "command": "PLcommandeswin",
+      "snippet": "PLcommandeswin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLConvCouleur": {
+      "command": "PLConvCouleur",
+      "snippet": "PLConvCouleur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLConvDecalH": {
+      "command": "PLConvDecalH",
+      "snippet": "PLConvDecalH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLConvDecalV": {
+      "command": "PLConvDecalV",
+      "snippet": "PLConvDecalV",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLConvNoeud": {
+      "command": "PLConvNoeud",
+      "snippet": "PLConvNoeud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLDm": {
+      "command": "PLDm",
+      "snippet": "PLDm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLDM": {
+      "command": "PLDM",
+      "snippet": "PLDM",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLdomaine": {
+      "command": "PLdomaine",
+      "snippet": "PLdomaine",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLensopt": {
+      "command": "PLensopt",
+      "snippet": "PLensopt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLenssep": {
+      "command": "PLenssep",
+      "snippet": "PLenssep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLnoeud{}{}": {
+      "command": "PLnoeud{}{}",
+      "snippet": "PLnoeud{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLnuagepoints[]{}": {
+      "command": "PLnuagepoints[]{}",
+      "snippet": "PLnuagepoints[${2:opt}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLnuagepoints{}": {
+      "command": "PLnuagepoints{}",
+      "snippet": "PLnuagepoints{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLOSXGreen": {
+      "command": "PLOSXGreen",
+      "snippet": "PLOSXGreen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLOSXLG": {
+      "command": "PLOSXLG",
+      "snippet": "PLOSXLG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLOSXOrange": {
+      "command": "PLOSXOrange",
+      "snippet": "PLOSXOrange",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLOSXRed": {
+      "command": "PLOSXRed",
+      "snippet": "PLOSXRed",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLpgcd": {
+      "command": "PLpgcd",
+      "snippet": "PLpgcd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLPGCDCouleur": {
+      "command": "PLPGCDCouleur",
+      "snippet": "PLPGCDCouleur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLPGCDDecal": {
+      "command": "PLPGCDDecal",
+      "snippet": "PLPGCDDecal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLPGCDNoeud": {
+      "command": "PLPGCDNoeud",
+      "snippet": "PLPGCDNoeud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLRecurfct": {
+      "command": "PLRecurfct",
+      "snippet": "PLRecurfct",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLRecurlabelsize": {
+      "command": "PLRecurlabelsize",
+      "snippet": "PLRecurlabelsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLRecurnb": {
+      "command": "PLRecurnb",
+      "snippet": "PLRecurnb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLRecurno": {
+      "command": "PLRecurno",
+      "snippet": "PLRecurno",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLRecurnom": {
+      "command": "PLRecurnom",
+      "snippet": "PLRecurnom",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLRecuroffset": {
+      "command": "PLRecuroffset",
+      "snippet": "PLRecuroffset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLRecurposlab": {
+      "command": "PLRecurposlab",
+      "snippet": "PLRecurposlab",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLRecuruno": {
+      "command": "PLRecuruno",
+      "snippet": "PLRecuruno",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMcoulcase": {
+      "command": "PLSMcoulcase",
+      "snippet": "PLSMcoulcase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMcoultexte": {
+      "command": "PLSMcoultexte",
+      "snippet": "PLSMcoultexte",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMdecalleg": {
+      "command": "PLSMdecalleg",
+      "snippet": "PLSMdecalleg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMepf": {
+      "command": "PLSMepf",
+      "snippet": "PLSMepf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMepg": {
+      "command": "PLSMepg",
+      "snippet": "PLSMepg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMfonte": {
+      "command": "PLSMfonte",
+      "snippet": "PLSMfonte",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMfonteleg": {
+      "command": "PLSMfonteleg",
+      "snippet": "PLSMfonteleg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMlistelegh": {
+      "command": "PLSMlistelegh",
+      "snippet": "PLSMlistelegh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMlistelegv": {
+      "command": "PLSMlistelegv",
+      "snippet": "PLSMlistelegv",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMnbcol": {
+      "command": "PLSMnbcol",
+      "snippet": "PLSMnbcol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMnblig": {
+      "command": "PLSMnblig",
+      "snippet": "PLSMnblig",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMnbsubcol": {
+      "command": "PLSMnbsubcol",
+      "snippet": "PLSMnbsubcol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMnbsublig": {
+      "command": "PLSMnbsublig",
+      "snippet": "PLSMnbsublig",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLSMunite": {
+      "command": "PLSMunite",
+      "snippet": "PLSMunite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLstrzeros{}": {
+      "command": "PLstrzeros{}",
+      "snippet": "PLstrzeros{${1:nombre}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLUbuntuClose": {
+      "command": "PLUbuntuClose",
+      "snippet": "PLUbuntuClose",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLUbuntuMax": {
+      "command": "PLUbuntuMax",
+      "snippet": "PLUbuntuMax",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLUbuntuMin": {
+      "command": "PLUbuntuMin",
+      "snippet": "PLUbuntuMin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PLUbuntuWhite": {
+      "command": "PLUbuntuWhite",
+      "snippet": "PLUbuntuWhite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptmoycouleur": {
+      "command": "ptmoycouleur",
+      "snippet": "ptmoycouleur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptmoycouleurA": {
+      "command": "ptmoycouleurA",
+      "snippet": "ptmoycouleurA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptmoycouleurB": {
+      "command": "ptmoycouleurB",
+      "snippet": "ptmoycouleurB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptmoydecal": {
+      "command": "ptmoydecal",
+      "snippet": "ptmoydecal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptmoyfont": {
+      "command": "ptmoyfont",
+      "snippet": "ptmoyfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptmoynom": {
+      "command": "ptmoynom",
+      "snippet": "ptmoynom",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptmoypos": {
+      "command": "ptmoypos",
+      "snippet": "ptmoypos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptmoystyle": {
+      "command": "ptmoystyle",
+      "snippet": "ptmoystyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptmoytaille": {
+      "command": "ptmoytaille",
+      "snippet": "ptmoytaille",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptmoyx": {
+      "command": "ptmoyx",
+      "snippet": "ptmoyx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptmoyy": {
+      "command": "ptmoyy",
+      "snippet": "ptmoyy",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptscouleur": {
+      "command": "ptscouleur",
+      "snippet": "ptscouleur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptscouleurA": {
+      "command": "ptscouleurA",
+      "snippet": "ptscouleurA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptscouleurB": {
+      "command": "ptscouleurB",
+      "snippet": "ptscouleurB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptsstyle": {
+      "command": "ptsstyle",
+      "snippet": "ptsstyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ptstaille": {
+      "command": "ptstaille",
+      "snippet": "ptstaille",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "puiss": {
+      "command": "puiss",
+      "snippet": "puiss",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RegLinCoeffa": {
+      "command": "RegLinCoeffa",
+      "snippet": "RegLinCoeffa",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RegLinCoeffb": {
+      "command": "RegLinCoeffb",
+      "snippet": "RegLinCoeffb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RegLinCoeffr": {
+      "command": "RegLinCoeffr",
+      "snippet": "RegLinCoeffr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RegLinCoeffrd": {
+      "command": "RegLinCoeffrd",
+      "snippet": "RegLinCoeffrd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RegLinCoeffXmax": {
+      "command": "RegLinCoeffXmax",
+      "snippet": "RegLinCoeffXmax",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RegLinCoeffXmin": {
+      "command": "RegLinCoeffXmin",
+      "snippet": "RegLinCoeffXmin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RegLinNuageCouleur": {
+      "command": "RegLinNuageCouleur",
+      "snippet": "RegLinNuageCouleur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RegLinNuageOx": {
+      "command": "RegLinNuageOx",
+      "snippet": "RegLinNuageOx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RegLinNuageOy": {
+      "command": "RegLinNuageOy",
+      "snippet": "RegLinNuageOy",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RegLinNuageTaille": {
+      "command": "RegLinNuageTaille",
+      "snippet": "RegLinNuageTaille",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resbrut": {
+      "command": "resbrut",
+      "snippet": "resbrut",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resinter": {
+      "command": "resinter",
+      "snippet": "resinter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "respgcd": {
+      "command": "respgcd",
+      "snippet": "respgcd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "schematdsaff*{}{}{}{}": {
+      "command": "schematdsaff*{}{}{}{}",
+      "snippet": "schematdsaff*{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "schematdsaff{}{}{}{}": {
+      "command": "schematdsaff{}{}{}{}",
+      "snippet": "schematdsaff{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "schematdsparab{}{}{}{}{}": {
+      "command": "schematdsparab{}{}{}{}{}",
+      "snippet": "schematdsparab{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "schematdsparab{}{}{}{}{}[]": {
+      "command": "schematdsparab{}{}{}{}{}[]",
+      "snippet": "schematdsparab{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}[${6:opt}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SensDeb": {
+      "command": "SensDeb",
+      "snippet": "SensDeb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SEUILindiceinit": {
+      "command": "SEUILindiceinit",
+      "snippet": "SEUILindiceinit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SEUILn": {
+      "command": "SEUILn",
+      "snippet": "SEUILn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SEUILnmu": {
+      "command": "SEUILnmu",
+      "snippet": "SEUILnmu",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SEUILnomsuite": {
+      "command": "SEUILnomsuite",
+      "snippet": "SEUILnomsuite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SEUILprec": {
+      "command": "SEUILprec",
+      "snippet": "SEUILprec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SEUILsens": {
+      "command": "SEUILsens",
+      "snippet": "SEUILsens",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SEUILstretch": {
+      "command": "SEUILstretch",
+      "snippet": "SEUILstretch",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SEUILtermeinit": {
+      "command": "SEUILtermeinit",
+      "snippet": "SEUILtermeinit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SMcase": {
+      "command": "SMcase",
+      "snippet": "SMcase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SMcaseb": {
+      "command": "SMcaseb",
+      "snippet": "SMcaseb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SPGrilleSudoMaths": {
+      "command": "SPGrilleSudoMaths",
+      "snippet": "SPGrilleSudoMaths",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SPLcoeffs": {
+      "command": "SPLcoeffs",
+      "snippet": "SPLcoeffs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SPLcouleur": {
+      "command": "SPLcouleur",
+      "snippet": "SPLcouleur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SPLcouleurpoints": {
+      "command": "SPLcouleurpoints",
+      "snippet": "SPLcouleurpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SPLepaisseur": {
+      "command": "SPLepaisseur",
+      "snippet": "SPLepaisseur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SPLlistepoints": {
+      "command": "SPLlistepoints",
+      "snippet": "SPLlistepoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SPLlistepointslen": {
+      "command": "SPLlistepointslen",
+      "snippet": "SPLlistepointslen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SPLnbsplines": {
+      "command": "SPLnbsplines",
+      "snippet": "SPLnbsplines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SPLstyle": {
+      "command": "SPLstyle",
+      "snippet": "SPLstyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SPLtaillepoints": {
+      "command": "SPLtaillepoints",
+      "snippet": "SPLtaillepoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SRnfinal": {
+      "command": "SRnfinal",
+      "snippet": "SRnfinal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SRninit": {
+      "command": "SRninit",
+      "snippet": "SRninit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SRprec": {
+      "command": "SRprec",
+      "snippet": "SRprec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SRuninit": {
+      "command": "SRuninit",
+      "snippet": "SRuninit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TAEEmax": {
+      "command": "TAEEmax",
+      "snippet": "TAEEmax",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TAEEmin": {
+      "command": "TAEEmin",
+      "snippet": "TAEEmin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TAEEnb": {
+      "command": "TAEEnb",
+      "snippet": "TAEEnb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TAEEsep": {
+      "command": "TAEEsep",
+      "snippet": "TAEEsep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TAEEtri": {
+      "command": "TAEEtri",
+      "snippet": "TAEEtri",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tdscouleur": {
+      "command": "tdscouleur",
+      "snippet": "tdscouleur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tdshaut": {
+      "command": "tdshaut",
+      "snippet": "tdshaut",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tdslarg": {
+      "command": "tdslarg",
+      "snippet": "tdslarg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tdsparam": {
+      "command": "tdsparam",
+      "snippet": "tdsparam",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tdsracine": {
+      "command": "tdsracine",
+      "snippet": "tdsracine",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "termnuxtitre": {
+      "command": "termnuxtitre",
+      "snippet": "termnuxtitre",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "termnuxtitre[]": {
+      "command": "termnuxtitre[]",
+      "snippet": "termnuxtitre[${1:opt}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "termosxtitre": {
+      "command": "termosxtitre",
+      "snippet": "termosxtitre",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "termosxtitre[]": {
+      "command": "termosxtitre[]",
+      "snippet": "termosxtitre[${1:opt}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "termwintitre": {
+      "command": "termwintitre",
+      "snippet": "termwintitre",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "termwintitre[]": {
+      "command": "termwintitre[]",
+      "snippet": "termwintitre[${1:opt}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TetraA": {
+      "command": "TetraA",
+      "snippet": "TetraA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TetraB": {
+      "command": "TetraB",
+      "snippet": "TetraB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TetraC": {
+      "command": "TetraC",
+      "snippet": "TetraC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TetraD": {
+      "command": "TetraD",
+      "snippet": "TetraD",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TGTcouleur": {
+      "command": "TGTcouleur",
+      "snippet": "TGTcouleur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TGTDEB": {
+      "command": "TGTDEB",
+      "snippet": "TGTDEB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TGTepaisseur": {
+      "command": "TGTepaisseur",
+      "snippet": "TGTepaisseur",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TGTFIN": {
+      "command": "TGTFIN",
+      "snippet": "TGTFIN",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TGTlistepoints": {
+      "command": "TGTlistepoints",
+      "snippet": "TGTlistepoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TGTnumpt": {
+      "command": "TGTnumpt",
+      "snippet": "TGTnumpt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TGTstyle": {
+      "command": "TGTstyle",
+      "snippet": "TGTstyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TGTXL": {
+      "command": "TGTXL",
+      "snippet": "TGTXL",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TGTXR": {
+      "command": "TGTXR",
+      "snippet": "TGTXR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theCFnum": {
+      "command": "theCFnum",
+      "snippet": "theCFnum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TriListeCroiss{}": {
+      "command": "TriListeCroiss{}",
+      "snippet": "TriListeCroiss{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TriListeDecroiss{}": {
+      "command": "TriListeDecroiss{}",
+      "snippet": "TriListeDecroiss{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TriPartieA": {
+      "command": "TriPartieA",
+      "snippet": "TriPartieA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TriPartieB": {
+      "command": "TriPartieB",
+      "snippet": "TriPartieB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TriPartieC": {
+      "command": "TriPartieC",
+      "snippet": "TriPartieC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TriSigneA": {
+      "command": "TriSigneA",
+      "snippet": "TriSigneA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UNITEX": {
+      "command": "UNITEX",
+      "snippet": "UNITEX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UNITEY": {
+      "command": "UNITEY",
+      "snippet": "UNITEY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ValA": {
+      "command": "ValA",
+      "snippet": "ValA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ValB": {
+      "command": "ValB",
+      "snippet": "ValB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ValMU": {
+      "command": "ValMU",
+      "snippet": "ValMU",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ValQ": {
+      "command": "ValQ",
+      "snippet": "ValQ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ValR": {
+      "command": "ValR",
+      "snippet": "ValR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ValRes": {
+      "command": "ValRes",
+      "snippet": "ValRes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ValTMP": {
+      "command": "ValTMP",
+      "snippet": "ValTMP",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "verbcenterpost": {
+      "command": "verbcenterpost",
+      "snippet": "verbcenterpost",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "verbcenterpre": {
+      "command": "verbcenterpre",
+      "snippet": "verbcenterpre",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xa": {
+      "command": "xa",
+      "snippet": "xa",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xb": {
+      "command": "xb",
+      "snippet": "xb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xliste": {
+      "command": "xliste",
+      "snippet": "xliste",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "XPT": {
+      "command": "XPT",
+      "snippet": "XPT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ya": {
+      "command": "ya",
+      "snippet": "ya",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yb": {
+      "command": "yb",
+      "snippet": "yb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yliste": {
+      "command": "yliste",
+      "snippet": "yliste",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "YPT": {
+      "command": "YPT",
+      "snippet": "YPT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "CodePythonLst{}": {
+      "name": "CodePythonLst",
+      "detail": "CodePythonLst{}",
+      "snippet": "{${1:tcolorbox options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePythonLst[]{}": {
+      "name": "CodePythonLst",
+      "detail": "CodePythonLst[]{}",
+      "snippet": "[${2:largeur%l}]{${1:tcolorbox options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePythonLst*{}": {
+      "name": "CodePythonLst",
+      "detail": "CodePythonLst*{}",
+      "snippet": "*{${1:tcolorbox options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePythonLst*[]{}": {
+      "name": "CodePythonLst",
+      "detail": "CodePythonLst*[]{}",
+      "snippet": "*[${2:largeur%l}]{${1:tcolorbox options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePiton": {
+      "name": "CodePiton",
+      "detail": "CodePiton",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePiton[]": {
+      "name": "CodePiton",
+      "detail": "CodePiton[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "Lignes",
+        "Largeur=",
+        "TaillePolice=",
+        "Alignement="
+      ],
+      "keyvalindex": 0
+    },
+    "CodePythontex": {
+      "name": "CodePythontex",
+      "detail": "CodePythontex",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePythontex[]": {
+      "name": "CodePythontex",
+      "detail": "CodePythontex[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePythonMinted": {
+      "name": "CodePythonMinted",
+      "detail": "CodePythonMinted",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePythonMinted[][]": {
+      "name": "CodePythonMinted",
+      "detail": "CodePythonMinted[][]",
+      "snippet": "[${1:largeur%l}][${2:tcolorbox options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePythonMinted*": {
+      "name": "CodePythonMinted",
+      "detail": "CodePythonMinted*",
+      "snippet": "*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CodePythonMinted*[][]": {
+      "name": "CodePythonMinted",
+      "detail": "CodePythonMinted*[][]",
+      "snippet": "*[${1:largeur%l}][${2:tcolorbox options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ConsolePythontex": {
+      "name": "ConsolePythontex",
+      "detail": "ConsolePythontex",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ConsolePythontex[]": {
+      "name": "ConsolePythontex",
+      "detail": "ConsolePythontex[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "Largeur=",
+        "Centre",
+        "TaillePolice=",
+        "EspacementVertical=",
+        "Label"
+      ],
+      "keyvalindex": 0
+    },
+    "PseudoCode": {
+      "name": "PseudoCode",
+      "detail": "PseudoCode",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PseudoCode[][]": {
+      "name": "PseudoCode",
+      "detail": "PseudoCode[][]",
+      "snippet": "[${1:largeur%l}][${2:tcolorbox options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PseudoCode*": {
+      "name": "PseudoCode",
+      "detail": "PseudoCode*",
+      "snippet": "*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PseudoCode*[][]": {
+      "name": "PseudoCode",
+      "detail": "PseudoCode*[][]",
+      "snippet": "*[${1:largeur%l}][${2:tcolorbox options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TerminalWin{}": {
+      "name": "TerminalWin",
+      "detail": "TerminalWin{}",
+      "snippet": "{${1:Titre=%<texte%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TerminalWin[]{}[]": {
+      "name": "TerminalWin",
+      "detail": "TerminalWin[]{}[]",
+      "snippet": "[${2:%<largeur%>}]{${1:Titre=%<texte%>}}[${3:%<tcolorbox options%>}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TerminalUnix{}": {
+      "name": "TerminalUnix",
+      "detail": "TerminalUnix{}",
+      "snippet": "{${1:Titre=%<texte%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TerminalUnix[]{}[]": {
+      "name": "TerminalUnix",
+      "detail": "TerminalUnix[]{}[]",
+      "snippet": "[${2:%<largeur%>}]{${1:Titre=%<texte%>}}[${3:%<tcolorbox options%>}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TerminalOSX{}": {
+      "name": "TerminalOSX",
+      "detail": "TerminalOSX{}",
+      "snippet": "{${1:Titre=%<texte%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TerminalOSX[]{}[]": {
+      "name": "TerminalOSX",
+      "detail": "TerminalOSX[]{}[]",
+      "snippet": "[${2:%<largeur%>}]{${1:Titre=%<texte%>}}[${3:%<tcolorbox options%>}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PresentationCode[]{}": {
+      "name": "PresentationCode",
+      "detail": "PresentationCode[]{}",
+      "snippet": "[${2:color}]{${1:tcolorbox options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PresentationCode{}": {
+      "name": "PresentationCode",
+      "detail": "PresentationCode{}",
+      "snippet": "{${1:tcolorbox options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnvArbreProbasTikz{}": {
+      "name": "EnvArbreProbasTikz",
+      "detail": "EnvArbreProbasTikz{}",
+      "snippet": "{${1:donnees}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnvArbreProbasTikz[]{}": {
+      "name": "EnvArbreProbasTikz",
+      "detail": "EnvArbreProbasTikz[]{}",
+      "snippet": "[${2:options}]{${1:donnees}}",
+      "option": "",
+      "keyvals": [
+        "Unite=",
+        "EspaceNiveau=",
+        "EspaceFeuille=",
+        "Type=",
+        "Police=",
+        "PoliceProbas=",
+        "InclineProbas",
+        "Fleche",
+        "StyleTrait={",
+        "EpaisseurTrait="
+      ],
+      "keyvalindex": 0
+    },
+    "EnvSudoMaths{}": {
+      "name": "EnvSudoMaths",
+      "detail": "EnvSudoMaths{}",
+      "snippet": "{${1:grille}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnvSudoMaths[]{}": {
+      "name": "EnvSudoMaths",
+      "detail": "EnvSudoMaths[]{}",
+      "snippet": "[${2:options}]{${1:grille}}",
+      "option": "",
+      "keyvals": [
+        "Epaisseurg=",
+        "Epaisseur=",
+        "Unite=",
+        "CouleurCase=",
+        "CouleurTexte=",
+        "NbCol=",
+        "NbSubCol=",
+        "NbLig=",
+        "NbSubLig=",
+        "Police=",
+        "Legendes",
+        "PoliceLeg=",
+        "ListeLegV=",
+        "ListeLegH=",
+        "DecalLegende="
+      ],
+      "keyvalindex": 0
+    },
+    "pythont": {
+      "name": "pythont",
+      "detail": "pythont",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tcpythontexcode": {
+      "name": "tcpythontexcode",
+      "detail": "tcpythontexcode",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tcpythontexcode[]": {
+      "name": "tcpythontexcode",
+      "detail": "tcpythontexcode[]",
+      "snippet": "[${1:width}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tcpythontexcodeno": {
+      "name": "tcpythontexcodeno",
+      "detail": "tcpythontexcodeno",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tcpythontexcodeno[]": {
+      "name": "tcpythontexcodeno",
+      "detail": "tcpythontexcodeno[]",
+      "snippet": "[${1:width}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "nonshellescape",
+    "build",
+    "csvii"
+  ]
+}

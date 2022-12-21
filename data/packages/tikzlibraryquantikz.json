@@ -1,0 +1,815 @@
+{
+  "includes": [
+    "xargs",
+    "ifthen",
+    "xstring",
+    "xparse",
+    "etoolbox",
+    "mathtools",
+    "pgfmath",
+    "environ",
+    "tikzlibrarycd",
+    "tikzlibrarydecorations.pathreplacing",
+    "tikzlibrarycalc",
+    "tikzlibrarypositioning",
+    "tikzlibraryfit",
+    "tikzlibraryshapes.symbols",
+    "tikzlibraryshapes.misc",
+    "tikzlibrarydecorations.pathmorphing",
+    "tikzlibrarybackgrounds",
+    "tikzlibrarydecorations.markings",
+    "tikzlibrarymath"
+  ],
+  "cmds": {
+    "gate{}": {
+      "command": "gate{}",
+      "snippet": "gate{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gate[]{}": {
+      "command": "gate[]{}",
+      "snippet": "gate[${2:options}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gate[][]{}": {
+      "command": "gate[][]{}",
+      "snippet": "gate[${2:options}][${3:width}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gate[][][]{}": {
+      "command": "gate[][][]{}",
+      "snippet": "gate[${2:options}][${3:width}][${4:height}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phase{}": {
+      "command": "phase{}",
+      "snippet": "phase{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phase[]{}": {
+      "command": "phase[]{}",
+      "snippet": "phase[${2:TikZ keys}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lstick{}": {
+      "command": "lstick{}",
+      "snippet": "lstick{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lstick[]{}": {
+      "command": "lstick[]{}",
+      "snippet": "lstick[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rstick{}": {
+      "command": "rstick{}",
+      "snippet": "rstick{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rstick[]{}": {
+      "command": "rstick[]{}",
+      "snippet": "rstick[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qw": {
+      "command": "qw",
+      "snippet": "qw",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cw": {
+      "command": "cw",
+      "snippet": "cw",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "push{}": {
+      "command": "push{}",
+      "snippet": "push{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "alias{}": {
+      "command": "alias{}",
+      "snippet": "alias{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trash{}": {
+      "command": "trash{}",
+      "snippet": "trash{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trash[]{}": {
+      "command": "trash[]{}",
+      "snippet": "trash[${2:TikZ keys}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qwbundle{}": {
+      "command": "qwbundle{}",
+      "snippet": "qwbundle{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qwbundle[]{}": {
+      "command": "qwbundle[]{}",
+      "snippet": "qwbundle[${2:alternate=2}]{${1:%<label%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctrl{}": {
+      "command": "ctrl{}",
+      "snippet": "ctrl{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "octrl{}": {
+      "command": "octrl{}",
+      "snippet": "octrl{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "targ{}": {
+      "command": "targ{}",
+      "snippet": "targ{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "targ[]{}": {
+      "command": "targ[]{}",
+      "snippet": "targ[${2:TikZ keys}]{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "control{}": {
+      "command": "control{}",
+      "snippet": "control{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "control[]{}": {
+      "command": "control[]{}",
+      "snippet": "control[${2:TikZ keys}]{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ocontrol{}": {
+      "command": "ocontrol{}",
+      "snippet": "ocontrol{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ocontrol[]{}": {
+      "command": "ocontrol[]{}",
+      "snippet": "ocontrol[${2:TikZ keys}]{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "targX{}": {
+      "command": "targX{}",
+      "snippet": "targX{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "targX[]{}": {
+      "command": "targX[]{}",
+      "snippet": "targX[${2:TikZ keys}]{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "swap{}": {
+      "command": "swap{}",
+      "snippet": "swap{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vqw{}": {
+      "command": "vqw{}",
+      "snippet": "vqw{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vcw{}": {
+      "command": "vcw{}",
+      "snippet": "vcw{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cwbend{}": {
+      "command": "cwbend{}",
+      "snippet": "cwbend{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctrlbundle{}": {
+      "command": "ctrlbundle{}",
+      "snippet": "ctrlbundle{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctrlbundle[]{}": {
+      "command": "ctrlbundle[]{}",
+      "snippet": "ctrlbundle[${2:1 or 2}]{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctrlbundle[][]{}": {
+      "command": "ctrlbundle[][]{}",
+      "snippet": "ctrlbundle[${2:1 or 2}][${3:TikZ keys}]{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gateinput{}": {
+      "command": "gateinput{}",
+      "snippet": "gateinput{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gateinput[]{}": {
+      "command": "gateinput[]{}",
+      "snippet": "gateinput[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gateoutput{}": {
+      "command": "gateoutput{}",
+      "snippet": "gateoutput{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gateoutput[]{}": {
+      "command": "gateoutput[]{}",
+      "snippet": "gateoutput[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "slice{}": {
+      "command": "slice{}",
+      "snippet": "slice{${1:title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "slice[]{}": {
+      "command": "slice[]{}",
+      "snippet": "slice[${2:options}]{${1:title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phantomgate{}": {
+      "command": "phantomgate{}",
+      "snippet": "phantomgate{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hphantomgate{}": {
+      "command": "hphantomgate{}",
+      "snippet": "hphantomgate{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ghost{}": {
+      "command": "ghost{}",
+      "snippet": "ghost{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ghost[]{}": {
+      "command": "ghost[]{}",
+      "snippet": "ghost[${2:options}]{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ghost[][]{}": {
+      "command": "ghost[][]{}",
+      "snippet": "ghost[${2:options}][${3:width}]{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ghost[][][]{}": {
+      "command": "ghost[][][]{}",
+      "snippet": "ghost[${2:options}][${3:width}][${4:height}]{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "midstick{}": {
+      "command": "midstick{}",
+      "snippet": "midstick{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "midstick[]{}": {
+      "command": "midstick[]{}",
+      "snippet": "midstick[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "linethrough": {
+      "command": "linethrough",
+      "snippet": "linethrough",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "meter{}": {
+      "command": "meter{}",
+      "snippet": "meter{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "meter[]{}": {
+      "command": "meter[]{}",
+      "snippet": "meter[${2:TikZ keys}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "measuretab{}": {
+      "command": "measuretab{}",
+      "snippet": "measuretab{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "measuretab[]{}": {
+      "command": "measuretab[]{}",
+      "snippet": "measuretab[${2:TikZ keys}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "meterD{}": {
+      "command": "meterD{}",
+      "snippet": "meterD{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "meterD[]{}": {
+      "command": "meterD[]{}",
+      "snippet": "meterD[${2:TikZ keys}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "measure{}": {
+      "command": "measure{}",
+      "snippet": "measure{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "measure[]{}": {
+      "command": "measure[]{}",
+      "snippet": "measure[${2:TikZ keys}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gategroup{}": {
+      "command": "gategroup{}",
+      "snippet": "gategroup{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gategroup[]{}": {
+      "command": "gategroup[]{}",
+      "snippet": "gategroup[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "wave": {
+      "command": "wave",
+      "snippet": "wave",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "wave[]": {
+      "command": "wave[]",
+      "snippet": "wave[${1:TikZ keys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "makeebit{}": {
+      "command": "makeebit{}",
+      "snippet": "makeebit{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "makeebit[]{}": {
+      "command": "makeebit[]{}",
+      "snippet": "makeebit[${2:angle}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "makeebit[][]{}": {
+      "command": "makeebit[][]{}",
+      "snippet": "makeebit[${2:angle}][${3:TikZ keys}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ket{}": {
+      "command": "ket{}",
+      "snippet": "ket{${1:arg%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bra{}": {
+      "command": "bra{}",
+      "snippet": "bra{${1:arg%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proj{}": {
+      "command": "proj{}",
+      "snippet": "proj{${1:arg%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "braket{}{}": {
+      "command": "braket{}{}",
+      "snippet": "braket{${1:left%formula}}{${2:right%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "myl": {
+      "command": "myl",
+      "snippet": "myl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "myh": {
+      "command": "myh",
+      "snippet": "myh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "myd": {
+      "command": "myd",
+      "snippet": "myd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theaaa": {
+      "command": "theaaa",
+      "snippet": "theaaa",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfInList{}{}": {
+      "command": "IfInList{}{}",
+      "snippet": "IfInList{${1:item}}{${2:list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifnodedefined{}{}{}": {
+      "command": "ifnodedefined{}{}{}",
+      "snippet": "ifnodedefined{${1:node}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MathAxis": {
+      "command": "MathAxis",
+      "snippet": "MathAxis",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DisableMinSize": {
+      "command": "DisableMinSize",
+      "snippet": "DisableMinSize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quantwires": {
+      "command": "quantwires",
+      "snippet": "quantwires",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dotikzset": {
+      "command": "dotikzset",
+      "snippet": "dotikzset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "undotikzset": {
+      "command": "undotikzset",
+      "snippet": "undotikzset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sliceallr": {
+      "command": "sliceallr",
+      "snippet": "sliceallr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sliceallvr": {
+      "command": "sliceallvr",
+      "snippet": "sliceallvr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DivideRowsCols": {
+      "command": "DivideRowsCols",
+      "snippet": "DivideRowsCols",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmiddle{}": {
+      "command": "setmiddle{}",
+      "snippet": "setmiddle{${1:row num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vqwexplicit{}{}": {
+      "command": "vqwexplicit{}{}",
+      "snippet": "vqwexplicit{${1:from}}{${2:to}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vqbundleexplicit{}{}": {
+      "command": "vqbundleexplicit{}{}",
+      "snippet": "vqbundleexplicit{${1:from}}{${2:to}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vcwexplicit{}{}": {
+      "command": "vcwexplicit{}{}",
+      "snippet": "vcwexplicit{${1:from}}{${2:to}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vcwhexplicit{}{}": {
+      "command": "vcwhexplicit{}{}",
+      "snippet": "vcwhexplicit{${1:from}}{${2:to}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vqwexplicitcenter{}{}": {
+      "command": "vqwexplicitcenter{}{}",
+      "snippet": "vqwexplicitcenter{${1:from}}{${2:to}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resetstyles": {
+      "command": "resetstyles",
+      "snippet": "resetstyles",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "maketransparent": {
+      "command": "maketransparent",
+      "snippet": "maketransparent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "row": {
+      "command": "row",
+      "snippet": "row",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "col": {
+      "command": "col",
+      "snippet": "col",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "arrow[]": {
+      "command": "arrow[]",
+      "snippet": "arrow[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ar[]": {
+      "command": "ar[]",
+      "snippet": "ar[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rar[]": {
+      "command": "rar[]",
+      "snippet": "rar[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lar[]": {
+      "command": "lar[]",
+      "snippet": "lar[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dar[]": {
+      "command": "dar[]",
+      "snippet": "dar[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uar[]": {
+      "command": "uar[]",
+      "snippet": "uar[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drar[]": {
+      "command": "drar[]",
+      "snippet": "drar[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "urar[]": {
+      "command": "urar[]",
+      "snippet": "urar[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dlar[]": {
+      "command": "dlar[]",
+      "snippet": "dlar[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ular[]": {
+      "command": "ular[]",
+      "snippet": "ular[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "quantikz": {
+      "name": "quantikz",
+      "detail": "quantikz",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quantikz[]": {
+      "name": "quantikz",
+      "detail": "quantikz[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "slice all",
+        "remove end slices=",
+        "slice titles=",
+        "slice style={",
+        "slice label style={",
+        "vertical slice labels",
+        "align equals at=",
+        "thin lines",
+        "transparent",
+        "every diagram",
+        "diagrams={",
+        "every matrix",
+        "every cell",
+        "cells={",
+        "row sep=",
+        "column sep=",
+        "sep=",
+        "cramped",
+        "math mode",
+        "background color=",
+        "every arrow",
+        "arrows={",
+        "arrow style=",
+        "every label",
+        "labels={",
+        "center yshift=",
+        "ampersand replacement=",
+        "shorten=",
+        "crossing over",
+        "crossing over clearance=",
+        "marking",
+        "description",
+        "",
+        "color=",
+        "in=",
+        "out=",
+        "font=",
+        "line width=",
+        "shorten=",
+        "crossing over",
+        "crossing over clearance=",
+        "marking",
+        "description",
+        "",
+        "color=",
+        "in=",
+        "out=",
+        "font=",
+        "line width="
+      ],
+      "keyvalindex": 0
+    }
+  },
+  "options": []
+}

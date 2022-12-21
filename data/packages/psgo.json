@@ -1,0 +1,547 @@
+{
+  "includes": [
+    "pstricks",
+    "pst-node",
+    "calc",
+    "ifthen"
+  ],
+  "cmds": {
+    "setgounit{}": {
+      "command": "setgounit{}",
+      "snippet": "setgounit{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stone{}{}{}": {
+      "command": "stone{}{}{}",
+      "snippet": "stone{${1:color%plain}}{${2:column}}{${3:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stone[]{}{}{}": {
+      "command": "stone[]{}{}{}",
+      "snippet": "stone[${4:marker}]{${1:color%plain}}{${2:column}}{${3:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "move{}{}": {
+      "command": "move{}{}",
+      "snippet": "move{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "move[]{}{}": {
+      "command": "move[]{}{}",
+      "snippet": "move[${3:marker}]{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "move*{}{}": {
+      "command": "move*{}{}",
+      "snippet": "move*{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "move*[]{}{}": {
+      "command": "move*[]{}{}",
+      "snippet": "move*[${3:marker}]{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pass": {
+      "command": "pass",
+      "snippet": "pass",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pass*": {
+      "command": "pass*",
+      "snippet": "pass*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "markpos{}{}{}": {
+      "command": "markpos{}{}{}",
+      "snippet": "markpos{${1:marker}}{${2:column}}{${3:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "markma": {
+      "command": "markma",
+      "snippet": "markma",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marktr": {
+      "command": "marktr",
+      "snippet": "marktr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "markcr": {
+      "command": "markcr",
+      "snippet": "markcr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marksq": {
+      "command": "marksq",
+      "snippet": "marksq",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marklb{}": {
+      "command": "marklb{}",
+      "snippet": "marklb{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marksl": {
+      "command": "marksl",
+      "snippet": "marksl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "markdd": {
+      "command": "markdd",
+      "snippet": "markdd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "goline{}{}{}{}": {
+      "command": "goline{}{}{}{}",
+      "snippet": "goline{${1:column1}}{${2:row1}}{${3:column2}}{${4:row2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "goarrow{}{}{}{}": {
+      "command": "goarrow{}{}{}{}",
+      "snippet": "goarrow{${1:column1}}{${2:row1}}{${3:column2}}{${4:row2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgo": {
+      "command": "psgo",
+      "snippet": "psgo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blackstone{}{}": {
+      "command": "blackstone{}{}",
+      "snippet": "blackstone{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blackstone[]{}{}": {
+      "command": "blackstone[]{}{}",
+      "snippet": "blackstone[${3:marker}]{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "factor": {
+      "command": "factor",
+      "snippet": "factor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "golabelformat{}": {
+      "command": "golabelformat{}",
+      "snippet": "golabelformat{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "goxposition{}": {
+      "command": "goxposition{}",
+      "snippet": "goxposition{${1:column}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "goxunit": {
+      "command": "goxunit",
+      "snippet": "goxunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "goyposition{}": {
+      "command": "goyposition{}",
+      "snippet": "goyposition{${1:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "goyunit": {
+      "command": "goyunit",
+      "snippet": "goyunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hatchangle": {
+      "command": "hatchangle",
+      "snippet": "hatchangle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mdd{}{}{}{}": {
+      "command": "mdd{}{}{}{}",
+      "snippet": "mdd{${1:column1}}{${2:row1}}{${3:column2}}{${4:row2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "movenostar{}{}": {
+      "command": "movenostar{}{}",
+      "snippet": "movenostar{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "movenostar[]{}{}": {
+      "command": "movenostar[]{}{}",
+      "snippet": "movenostar[${3:marker}]{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "movestar{}{}": {
+      "command": "movestar{}{}",
+      "snippet": "movestar{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "movestar[]{}{}": {
+      "command": "movestar[]{}{}",
+      "snippet": "movestar[${3:marker}]{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomark": {
+      "command": "nomark",
+      "snippet": "nomark",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "passnostar": {
+      "command": "passnostar",
+      "snippet": "passnostar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "passstar": {
+      "command": "passstar",
+      "snippet": "passstar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "placesymbol{}{}{}": {
+      "command": "placesymbol{}{}{}",
+      "snippet": "placesymbol{${1:symbol}}{${2:column}}{${3:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointbox{}": {
+      "command": "pointbox{}",
+      "snippet": "pointbox{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgollx": {
+      "command": "psgollx",
+      "snippet": "psgollx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgollxval": {
+      "command": "psgollxval",
+      "snippet": "psgollxval",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgolly": {
+      "command": "psgolly",
+      "snippet": "psgolly",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgollyval": {
+      "command": "psgollyval",
+      "snippet": "psgollyval",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgosetboardsizes": {
+      "command": "psgosetboardsizes",
+      "snippet": "psgosetboardsizes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgourx": {
+      "command": "psgourx",
+      "snippet": "psgourx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgourxval": {
+      "command": "psgourxval",
+      "snippet": "psgourxval",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgoury": {
+      "command": "psgoury",
+      "snippet": "psgoury",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgouryval": {
+      "command": "psgouryval",
+      "snippet": "psgouryval",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stmark": {
+      "command": "stmark",
+      "snippet": "stmark",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stmarkbox": {
+      "command": "stmarkbox",
+      "snippet": "stmarkbox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theboardsize": {
+      "command": "theboardsize",
+      "snippet": "theboardsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thegomove": {
+      "command": "thegomove",
+      "snippet": "thegomove",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thegotmpc": {
+      "command": "thegotmpc",
+      "snippet": "thegotmpc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tmplx": {
+      "command": "tmplx",
+      "snippet": "tmplx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tmply": {
+      "command": "tmply",
+      "snippet": "tmply",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tmpxa": {
+      "command": "tmpxa",
+      "snippet": "tmpxa",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tmpxb": {
+      "command": "tmpxb",
+      "snippet": "tmpxb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tmpya": {
+      "command": "tmpya",
+      "snippet": "tmpya",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tmpyb": {
+      "command": "tmpyb",
+      "snippet": "tmpyb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "toggleblackmove": {
+      "command": "toggleblackmove",
+      "snippet": "toggleblackmove",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "whitestone{}{}": {
+      "command": "whitestone{}{}",
+      "snippet": "whitestone{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "whitestone[]{}{}": {
+      "command": "whitestone[]{}{}",
+      "snippet": "whitestone[${3:marker}]{${1:column}}{${2:row}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xoffset": {
+      "command": "xoffset",
+      "snippet": "xoffset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xpositionmarks{}{}": {
+      "command": "xpositionmarks{}{}",
+      "snippet": "xpositionmarks{${1:counter}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ypos": {
+      "command": "ypos",
+      "snippet": "ypos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ypositionmarks{}{}": {
+      "command": "ypositionmarks{}{}",
+      "snippet": "ypositionmarks{${1:counter}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "psgoboard": {
+      "name": "psgoboard",
+      "detail": "psgoboard",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgoboard[]": {
+      "name": "psgoboard",
+      "detail": "psgoboard[]",
+      "snippet": "[${1:size}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgoboard*": {
+      "name": "psgoboard*",
+      "detail": "psgoboard*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgoboard*[]": {
+      "name": "psgoboard*",
+      "detail": "psgoboard*[]",
+      "snippet": "[${1:size}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgopartialboard{}": {
+      "name": "psgopartialboard",
+      "detail": "psgopartialboard{}",
+      "snippet": "{${1:(${2:%<x1,y1%>})(${3:%<x2,y2%>})}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgopartialboard[]{}": {
+      "name": "psgopartialboard",
+      "detail": "psgopartialboard[]{}",
+      "snippet": "[${2:%<size%>}]{${1:(${3:%<x1,y1%>})(${4:%<x2,y2%>})}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgopartialboard*{}": {
+      "name": "psgopartialboard*",
+      "detail": "psgopartialboard*{}",
+      "snippet": "{${1:(${2:%<x1,y1%>})(${3:%<x2,y2%>})}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgopartialboard*[]{}": {
+      "name": "psgopartialboard*",
+      "detail": "psgopartialboard*[]{}",
+      "snippet": "[${2:%<size%>}]{${1:(${3:%<x1,y1%>})(${4:%<x2,y2%>})}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gomoves": {
+      "name": "gomoves",
+      "detail": "gomoves",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

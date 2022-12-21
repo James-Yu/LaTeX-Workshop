@@ -1,9 +1,23 @@
 {
   "includes": [],
   "cmds": {
-    "svnInfo": {
-      "command": "svnInfo",
-      "snippet": "svnInfo",
+    "svnInfo $Id$ %|": {
+      "command": "svnInfo $Id$ %|",
+      "snippet": "svnInfo $Id$ %|",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "svnInfo $Id:$ %|": {
+      "command": "svnInfo $Id:$ %|",
+      "snippet": "svnInfo $Id:$ %|",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "svnInfo $Id: %<file rev YYYY-MM-DD hh:mm:ss owner%> $": {
+      "command": "svnInfo $Id: %<file rev YYYY-MM-DD hh:mm:ss owner%> $",
+      "snippet": "svnInfo $Id: %<file rev YYYY-MM-DD hh:mm:ss owner%> $",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -105,8 +119,36 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "svnKeyword $%<Keyword%>:$": {
+      "command": "svnKeyword $%<Keyword%>:$",
+      "snippet": "svnKeyword $${1:Keyword}:$",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "svnKeyword $%<Keyword%>: %<value%> $": {
+      "command": "svnKeyword $%<Keyword%>: %<value%> $",
+      "snippet": "svnKeyword $${1:Keyword}: ${2:value} $",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "svk",
+    "today",
+    "notoday",
+    "revrange",
+    "fancyhdr",
+    "nofancy",
+    "scrpage",
+    "eso-foot",
+    "margin",
+    "long",
+    "short",
+    "final",
+    "draft"
+  ]
 }

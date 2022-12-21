@@ -1,0 +1,875 @@
+{
+  "includes": [
+    "pstricks",
+    "pst-blur",
+    "multido",
+    "graphicx",
+    "pst-fill"
+  ],
+  "cmds": {
+    "crdback": {
+      "command": "crdback",
+      "snippet": "crdback",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdback[]": {
+      "command": "crdback[]",
+      "snippet": "crdback[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "colorbgname": {
+      "command": "colorbgname",
+      "snippet": "colorbgname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "colorbackname": {
+      "command": "colorbackname",
+      "snippet": "colorbackname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "varclubsuit": {
+      "command": "varclubsuit",
+      "snippet": "varclubsuit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "♧",
+      "documentation": "club, white (card suit)"
+    },
+    "vardiamondsuit": {
+      "command": "vardiamondsuit",
+      "snippet": "vardiamondsuit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "♦",
+      "documentation": "filled diamond (card suit)"
+    },
+    "varheartsuit": {
+      "command": "varheartsuit",
+      "snippet": "varheartsuit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "♥",
+      "documentation": "filled heart (card suit)"
+    },
+    "varspadesuit": {
+      "command": "varspadesuit",
+      "snippet": "varspadesuit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "♤",
+      "documentation": "spade, white (card suit)"
+    },
+    "pspade": {
+      "command": "pspade",
+      "snippet": "pspade",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pheart": {
+      "command": "pheart",
+      "snippet": "pheart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pdiamond": {
+      "command": "pdiamond",
+      "snippet": "pdiamond",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pclub": {
+      "command": "pclub",
+      "snippet": "pclub",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "As": {
+      "command": "As",
+      "snippet": "As",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ah": {
+      "command": "Ah",
+      "snippet": "Ah",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ad": {
+      "command": "Ad",
+      "snippet": "Ad",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ac": {
+      "command": "Ac",
+      "snippet": "Ac",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ks": {
+      "command": "Ks",
+      "snippet": "Ks",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Kh": {
+      "command": "Kh",
+      "snippet": "Kh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Kd": {
+      "command": "Kd",
+      "snippet": "Kd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Kc": {
+      "command": "Kc",
+      "snippet": "Kc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Qs": {
+      "command": "Qs",
+      "snippet": "Qs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Qh": {
+      "command": "Qh",
+      "snippet": "Qh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Qd": {
+      "command": "Qd",
+      "snippet": "Qd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Qc": {
+      "command": "Qc",
+      "snippet": "Qc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Js": {
+      "command": "Js",
+      "snippet": "Js",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Jh": {
+      "command": "Jh",
+      "snippet": "Jh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Jd": {
+      "command": "Jd",
+      "snippet": "Jd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Jc": {
+      "command": "Jc",
+      "snippet": "Jc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tens": {
+      "command": "tens",
+      "snippet": "tens",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tenh": {
+      "command": "tenh",
+      "snippet": "tenh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tend": {
+      "command": "tend",
+      "snippet": "tend",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tenc": {
+      "command": "tenc",
+      "snippet": "tenc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nines": {
+      "command": "nines",
+      "snippet": "nines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nineh": {
+      "command": "nineh",
+      "snippet": "nineh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nined": {
+      "command": "nined",
+      "snippet": "nined",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ninec": {
+      "command": "ninec",
+      "snippet": "ninec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eigs": {
+      "command": "eigs",
+      "snippet": "eigs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eigh": {
+      "command": "eigh",
+      "snippet": "eigh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eigd": {
+      "command": "eigd",
+      "snippet": "eigd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eigc": {
+      "command": "eigc",
+      "snippet": "eigc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sevs": {
+      "command": "sevs",
+      "snippet": "sevs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sevh": {
+      "command": "sevh",
+      "snippet": "sevh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sevd": {
+      "command": "sevd",
+      "snippet": "sevd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sevc": {
+      "command": "sevc",
+      "snippet": "sevc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sixs": {
+      "command": "sixs",
+      "snippet": "sixs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sixh": {
+      "command": "sixh",
+      "snippet": "sixh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sixd": {
+      "command": "sixd",
+      "snippet": "sixd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sixc": {
+      "command": "sixc",
+      "snippet": "sixc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fives": {
+      "command": "fives",
+      "snippet": "fives",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fiveh": {
+      "command": "fiveh",
+      "snippet": "fiveh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fived": {
+      "command": "fived",
+      "snippet": "fived",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fivec": {
+      "command": "fivec",
+      "snippet": "fivec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fours": {
+      "command": "fours",
+      "snippet": "fours",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fourh": {
+      "command": "fourh",
+      "snippet": "fourh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fourd": {
+      "command": "fourd",
+      "snippet": "fourd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fourc": {
+      "command": "fourc",
+      "snippet": "fourc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tres": {
+      "command": "tres",
+      "snippet": "tres",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "treh": {
+      "command": "treh",
+      "snippet": "treh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tred": {
+      "command": "tred",
+      "snippet": "tred",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trec": {
+      "command": "trec",
+      "snippet": "trec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "twos": {
+      "command": "twos",
+      "snippet": "twos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "twoh": {
+      "command": "twoh",
+      "snippet": "twoh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "twod": {
+      "command": "twod",
+      "snippet": "twod",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "twoc": {
+      "command": "twoc",
+      "snippet": "twoc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "icard{}{}{}": {
+      "command": "icard{}{}{}",
+      "snippet": "icard{${1:value}}{${2:suit}}{${3:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdAs": {
+      "command": "crdAs",
+      "snippet": "crdAs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdAh": {
+      "command": "crdAh",
+      "snippet": "crdAh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdAd": {
+      "command": "crdAd",
+      "snippet": "crdAd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdAc": {
+      "command": "crdAc",
+      "snippet": "crdAc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdKs": {
+      "command": "crdKs",
+      "snippet": "crdKs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdKh": {
+      "command": "crdKh",
+      "snippet": "crdKh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdKd": {
+      "command": "crdKd",
+      "snippet": "crdKd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdKc": {
+      "command": "crdKc",
+      "snippet": "crdKc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdQs": {
+      "command": "crdQs",
+      "snippet": "crdQs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdQh": {
+      "command": "crdQh",
+      "snippet": "crdQh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdQd": {
+      "command": "crdQd",
+      "snippet": "crdQd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdQc": {
+      "command": "crdQc",
+      "snippet": "crdQc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdJs": {
+      "command": "crdJs",
+      "snippet": "crdJs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdJh": {
+      "command": "crdJh",
+      "snippet": "crdJh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdJd": {
+      "command": "crdJd",
+      "snippet": "crdJd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdJc": {
+      "command": "crdJc",
+      "snippet": "crdJc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdtens": {
+      "command": "crdtens",
+      "snippet": "crdtens",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdtenh": {
+      "command": "crdtenh",
+      "snippet": "crdtenh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdtend": {
+      "command": "crdtend",
+      "snippet": "crdtend",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdtenc": {
+      "command": "crdtenc",
+      "snippet": "crdtenc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdnines": {
+      "command": "crdnines",
+      "snippet": "crdnines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdnineh": {
+      "command": "crdnineh",
+      "snippet": "crdnineh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdnined": {
+      "command": "crdnined",
+      "snippet": "crdnined",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdninec": {
+      "command": "crdninec",
+      "snippet": "crdninec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdeigs": {
+      "command": "crdeigs",
+      "snippet": "crdeigs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdeigh": {
+      "command": "crdeigh",
+      "snippet": "crdeigh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdeigd": {
+      "command": "crdeigd",
+      "snippet": "crdeigd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdeigc": {
+      "command": "crdeigc",
+      "snippet": "crdeigc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdsevs": {
+      "command": "crdsevs",
+      "snippet": "crdsevs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdsevh": {
+      "command": "crdsevh",
+      "snippet": "crdsevh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdsevd": {
+      "command": "crdsevd",
+      "snippet": "crdsevd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdsevc": {
+      "command": "crdsevc",
+      "snippet": "crdsevc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdsixs": {
+      "command": "crdsixs",
+      "snippet": "crdsixs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdsixh": {
+      "command": "crdsixh",
+      "snippet": "crdsixh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdsixd": {
+      "command": "crdsixd",
+      "snippet": "crdsixd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdsixc": {
+      "command": "crdsixc",
+      "snippet": "crdsixc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdfives": {
+      "command": "crdfives",
+      "snippet": "crdfives",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdfiveh": {
+      "command": "crdfiveh",
+      "snippet": "crdfiveh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdfived": {
+      "command": "crdfived",
+      "snippet": "crdfived",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdfivec": {
+      "command": "crdfivec",
+      "snippet": "crdfivec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdfours": {
+      "command": "crdfours",
+      "snippet": "crdfours",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdfourh": {
+      "command": "crdfourh",
+      "snippet": "crdfourh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdfourd": {
+      "command": "crdfourd",
+      "snippet": "crdfourd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdfourc": {
+      "command": "crdfourc",
+      "snippet": "crdfourc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdtres": {
+      "command": "crdtres",
+      "snippet": "crdtres",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdtreh": {
+      "command": "crdtreh",
+      "snippet": "crdtreh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdtred": {
+      "command": "crdtred",
+      "snippet": "crdtred",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdtrec": {
+      "command": "crdtrec",
+      "snippet": "crdtrec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdtwos": {
+      "command": "crdtwos",
+      "snippet": "crdtwos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdtwoh": {
+      "command": "crdtwoh",
+      "snippet": "crdtwoh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdtwod": {
+      "command": "crdtwod",
+      "snippet": "crdtwod",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdtwoc": {
+      "command": "crdtwoc",
+      "snippet": "crdtwoc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawcard{}{}{}": {
+      "command": "drawcard{}{}{}",
+      "snippet": "drawcard{${1:value}}{${2:suit}}{${3:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawcard[]{}{}{}": {
+      "command": "drawcard[]{}{}{}",
+      "snippet": "drawcard[${4:options}]{${1:value}}{${2:suit}}{${3:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fournier": {
+      "command": "fournier",
+      "snippet": "fournier",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdpair{}{}": {
+      "command": "crdpair{}{}",
+      "snippet": "crdpair{${1:card1}}{${2:card2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crdflop{}{}{}": {
+      "command": "crdflop{}{}{}",
+      "snippet": "crdflop{${1:card1}}{${2:card2}}{${3:card3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

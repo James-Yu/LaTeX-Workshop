@@ -1,0 +1,2405 @@
+{
+  "includes": [
+    "color",
+    "graphics"
+  ],
+  "cmds": {
+    "getsequence{}{}": {
+      "command": "getsequence{}{}",
+      "snippet": "getsequence{${1:type}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getsequence[]{}{}": {
+      "command": "getsequence[]{}{}",
+      "snippet": "getsequence[${3:option}]{${1:type}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MRs{}": {
+      "command": "MRs{}",
+      "snippet": "MRs{${1:start1${1}stop1,start2${2}stop2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Nterm{}": {
+      "command": "Nterm{}",
+      "snippet": "Nterm{${1:intra|extra}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sequence{}": {
+      "command": "sequence{}",
+      "snippet": "sequence{${1:amino-acid-sequence}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scaletopo{}": {
+      "command": "scaletopo{}",
+      "snippet": "scaletopo{${1:factor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "loopextent{}": {
+      "command": "loopextent{}",
+      "snippet": "loopextent{${1:extent}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "loopextent{%<extent%>[}": {
+      "command": "loopextent{%<extent%>[}",
+      "snippet": "loopextent{%<extent%>[${1:%<distance%>]}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "loopextent[]{}": {
+      "command": "loopextent[]{}",
+      "snippet": "loopextent[${2:loop}]{${1:extent}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "loopextent[]{%<extent%>[}": {
+      "command": "loopextent[]{%<extent%>[}",
+      "snippet": "loopextent[${2:%<loop%>}]{${1:%<extent%>[${3:%<distance%>}]}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "loopfoot{}{%<direction%>[}": {
+      "command": "loopfoot{}{%<direction%>[}",
+      "snippet": "loopfoot{${1:%<loop%>}}{%<direction%>[${2:%<neck%>]}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "flipNterm": {
+      "command": "flipNterm",
+      "snippet": "flipNterm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "flipCterm": {
+      "command": "flipCterm",
+      "snippet": "flipCterm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clearMRs": {
+      "command": "clearMRs",
+      "snippet": "clearMRs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "anchor{}": {
+      "command": "anchor{}",
+      "snippet": "anchor{${1:pos}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranecolors{}{}": {
+      "command": "membranecolors{}{}",
+      "snippet": "membranecolors{${1:color}}{${2:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "borderthickness{}": {
+      "command": "borderthickness{}",
+      "snippet": "borderthickness{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labeloutside{}": {
+      "command": "labeloutside{}",
+      "snippet": "labeloutside{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labeloutside[]{}": {
+      "command": "labeloutside[]{}",
+      "snippet": "labeloutside[${2:left|right}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelinside{}": {
+      "command": "labelinside{}",
+      "snippet": "labelinside{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelinside[]{}": {
+      "command": "labelinside[]{}",
+      "snippet": "labelinside[${2:left|right}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "moveinsidelabel{}": {
+      "command": "moveinsidelabel{}",
+      "snippet": "moveinsidelabel{${1:⟨dir,dist⟩ or ⟨x,y⟩}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "moveoutsidelabel{}": {
+      "command": "moveoutsidelabel{}",
+      "snippet": "moveoutsidelabel{${1:⟨dir,dist⟩ or ⟨x,y⟩}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "broadenmembrane{}{}": {
+      "command": "broadenmembrane{}{}",
+      "snippet": "broadenmembrane{${1:left|right}}{${2:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thickenmembrane{}{}": {
+      "command": "thickenmembrane{}{}",
+      "snippet": "thickenmembrane{${1:top|bottom}}{${2:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hidemembrane": {
+      "command": "hidemembrane",
+      "snippet": "hidemembrane",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showmembrane": {
+      "command": "showmembrane",
+      "snippet": "showmembrane",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelTMs{}": {
+      "command": "labelTMs{}",
+      "snippet": "labelTMs{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numcount": {
+      "command": "numcount",
+      "snippet": "numcount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "alphacount": {
+      "command": "alphacount",
+      "snippet": "alphacount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Alphacount": {
+      "command": "Alphacount",
+      "snippet": "Alphacount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "romancount": {
+      "command": "romancount",
+      "snippet": "romancount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Romancount": {
+      "command": "Romancount",
+      "snippet": "Romancount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelTM{}{}": {
+      "command": "labelTM{}{}",
+      "snippet": "labelTM{${1:num}}{${2:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelTM[]{}{}": {
+      "command": "labelTM[]{}{}",
+      "snippet": "labelTM[${3:⟨dir,dist⟩ or ⟨x,y⟩}]{${1:num}}{${2:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "moveTMlabel{}{}": {
+      "command": "moveTMlabel{}{}",
+      "snippet": "moveTMlabel{${1:num}}{${2:⟨dir,dist⟩ or ⟨x,y⟩}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelcolor{}": {
+      "command": "TMlabelcolor{}",
+      "snippet": "TMlabelcolor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hideTMlabels": {
+      "command": "hideTMlabels",
+      "snippet": "hideTMlabels",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelloops{}": {
+      "command": "labelloops{}",
+      "snippet": "labelloops{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelloop[]{}{}": {
+      "command": "labelloop[]{}{}",
+      "snippet": "labelloop[${3:⟨dir,dist⟩ or ⟨x,y⟩}]{${1:num}}{${2:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "movelooplabel{}{}": {
+      "command": "movelooplabel{}{}",
+      "snippet": "movelooplabel{${1:num}}{${2:⟨dir,dist⟩ or ⟨x,y⟩}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelcolor{}": {
+      "command": "looplabelcolor{}",
+      "snippet": "looplabelcolor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hidelooplabels": {
+      "command": "hidelooplabels",
+      "snippet": "hidelooplabels",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showNterm": {
+      "command": "showNterm",
+      "snippet": "showNterm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hideNterm": {
+      "command": "hideNterm",
+      "snippet": "hideNterm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showCterm": {
+      "command": "showCterm",
+      "snippet": "showCterm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hideCterm": {
+      "command": "hideCterm",
+      "snippet": "hideCterm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelstyle{}{}{}{}{}{}": {
+      "command": "labelstyle{}{}{}{}{}{}",
+      "snippet": "labelstyle{${1:name}}{${2:shape}}{${3:color}}{${4:color}}{${5:color}}{${6:legend-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelregion{}{}{}": {
+      "command": "labelregion{}{}{}",
+      "snippet": "labelregion{${1:list-of-regions}}{${2:style-name}}{${3:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelregion[]{}{}{}": {
+      "command": "labelregion[]{}{}{}",
+      "snippet": "labelregion[${4:⟨dir,dist⟩ or ⟨x,y⟩}]{${1:list-of-regions}}{${2:style-name}}{${3:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phosphorylation{}": {
+      "command": "phosphorylation{}",
+      "snippet": "phosphorylation{${1:list-of-positions}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glycosylation{}": {
+      "command": "glycosylation{}",
+      "snippet": "glycosylation{${1:list-of-positions}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "countercolor{}": {
+      "command": "countercolor{}",
+      "snippet": "countercolor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rulethickness{}": {
+      "command": "rulethickness{}",
+      "snippet": "rulethickness{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "place{}{}": {
+      "command": "place{}{}",
+      "snippet": "place{${1:%<x%,y% %>}}{${2:%<label-text%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "place[]{}{}": {
+      "command": "place[]{}{}",
+      "snippet": "place[${3:%<num%>}]{${1:%<x%,y% %>}}{${2:%<label-text%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addtagtoNterm{}{}{}": {
+      "command": "addtagtoNterm{}{}{}",
+      "snippet": "addtagtoNterm{${1:tag-sequence}}{${2:style-name}}{${3:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addtagtoNterm[]{}{}{}": {
+      "command": "addtagtoNterm[]{}{}{}",
+      "snippet": "addtagtoNterm[${4:⟨dir,dist⟩ or ⟨x,y⟩}]{${1:tag-sequence}}{${2:style-name}}{${3:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addtagtoCterm{}{}{}": {
+      "command": "addtagtoCterm{}{}{}",
+      "snippet": "addtagtoCterm{${1:tag-sequence}}{${2:style-name}}{${3:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addtagtoCterm[]{}{}{}": {
+      "command": "addtagtoCterm[]{}{}{}",
+      "snippet": "addtagtoCterm[${4:⟨dir,dist⟩ or ⟨x,y⟩}]{${1:tag-sequence}}{${2:style-name}}{${3:label-text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "seqstart{}": {
+      "command": "seqstart{}",
+      "snippet": "seqstart{${1:num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "applyshading{}{}": {
+      "command": "applyshading{}{}",
+      "snippet": "applyshading{${1:mode}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "applyshading[]{}{}": {
+      "command": "applyshading[]{}{}",
+      "snippet": "applyshading[${3:opt}]{${1:mode}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shadingcolors{}": {
+      "command": "shadingcolors{}",
+      "snippet": "shadingcolors{${1:colorscheme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "allmatchspecial": {
+      "command": "allmatchspecial",
+      "snippet": "allmatchspecial",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "allmatchspecialoff": {
+      "command": "allmatchspecialoff",
+      "snippet": "allmatchspecialoff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "standardresidues{}{}{}{}": {
+      "command": "standardresidues{}{}{}{}",
+      "snippet": "standardresidues{${1:style}}{${2:color}}{${3:color}}{${4:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "similarpositions{}{}{}{}": {
+      "command": "similarpositions{}{}{}{}",
+      "snippet": "similarpositions{${1:style}}{${2:color}}{${3:color}}{${4:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "conservedpositions{}{}{}{}": {
+      "command": "conservedpositions{}{}{}{}",
+      "snippet": "conservedpositions{${1:style}}{${2:color}}{${3:color}}{${4:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "invariablepositions{}{}{}{}": {
+      "command": "invariablepositions{}{}{}{}",
+      "snippet": "invariablepositions{${1:style}}{${2:color}}{${3:color}}{${4:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "donotshadestartMet": {
+      "command": "donotshadestartMet",
+      "snippet": "donotshadestartMet",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shadestartMet": {
+      "command": "shadestartMet",
+      "snippet": "shadestartMet",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hidelegend": {
+      "command": "hidelegend",
+      "snippet": "hidelegend",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showlegend": {
+      "command": "showlegend",
+      "snippet": "showlegend",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "movelegend{}{}": {
+      "command": "movelegend{}{}",
+      "snippet": "movelegend{${1:x-offset}}{${2:y-offset}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "helixstyle{}": {
+      "command": "helixstyle{}",
+      "snippet": "helixstyle{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scalewheel{}": {
+      "command": "scalewheel{}",
+      "snippet": "scalewheel{${1:percent}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "symbolsize{}": {
+      "command": "symbolsize{}",
+      "snippet": "symbolsize{${1:size}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "wheelsperline{}": {
+      "command": "wheelsperline{}",
+      "snippet": "wheelsperline{${1:num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "viewfromextra": {
+      "command": "viewfromextra",
+      "snippet": "viewfromextra",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "viewfromintra": {
+      "command": "viewfromintra",
+      "snippet": "viewfromintra",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showmoment": {
+      "command": "showmoment",
+      "snippet": "showmoment",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hidemoment": {
+      "command": "hidemoment",
+      "snippet": "hidemoment",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hmean{}": {
+      "command": "Hmean{}",
+      "snippet": "Hmean{${1:helix-num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "muH{}": {
+      "command": "muH{}",
+      "snippet": "muH{${1:helix-num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "muHmean{}": {
+      "command": "muHmean{}",
+      "snippet": "muHmean{${1:helix-num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mudelta{}": {
+      "command": "mudelta{}",
+      "snippet": "mudelta{${1:helix-num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "momentcolor{}": {
+      "command": "momentcolor{}",
+      "snippet": "momentcolor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scalemoment{}": {
+      "command": "scalemoment{}",
+      "snippet": "scalemoment{${1:percent}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showwheelnumbering": {
+      "command": "showwheelnumbering",
+      "snippet": "showwheelnumbering",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hidewheelnumbering": {
+      "command": "hidewheelnumbering",
+      "snippet": "hidewheelnumbering",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showbonds": {
+      "command": "showbonds",
+      "snippet": "showbonds",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hidebonds": {
+      "command": "hidebonds",
+      "snippet": "hidebonds",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setfamily{}{}": {
+      "command": "setfamily{}{}",
+      "snippet": "setfamily{${1:text}}{${2:family}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setseries{}{}": {
+      "command": "setseries{}{}",
+      "snippet": "setseries{${1:text}}{${2:series}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setshape{}{}": {
+      "command": "setshape{}{}",
+      "snippet": "setshape{${1:text}}{${2:shape}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setsize{}{}": {
+      "command": "setsize{}{}",
+      "snippet": "setsize{${1:text}}{${2:size}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setfont{}{}{}{}{}": {
+      "command": "setfont{}{}{}{}{}",
+      "snippet": "setfont{${1:text}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelsrm": {
+      "command": "labelsrm",
+      "snippet": "labelsrm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelstiny": {
+      "command": "labelstiny",
+      "snippet": "labelstiny",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelssf": {
+      "command": "labelssf",
+      "snippet": "labelssf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelsscriptsize": {
+      "command": "labelsscriptsize",
+      "snippet": "labelsscriptsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelstt": {
+      "command": "labelstt",
+      "snippet": "labelstt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelsfootnotesize": {
+      "command": "labelsfootnotesize",
+      "snippet": "labelsfootnotesize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelsbf": {
+      "command": "labelsbf",
+      "snippet": "labelsbf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelssmall": {
+      "command": "labelssmall",
+      "snippet": "labelssmall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelsmd": {
+      "command": "labelsmd",
+      "snippet": "labelsmd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelsnormalsize": {
+      "command": "labelsnormalsize",
+      "snippet": "labelsnormalsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelsit": {
+      "command": "labelsit",
+      "snippet": "labelsit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelslarge": {
+      "command": "labelslarge",
+      "snippet": "labelslarge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelssl": {
+      "command": "labelssl",
+      "snippet": "labelssl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelsLarge": {
+      "command": "labelsLarge",
+      "snippet": "labelsLarge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelssc": {
+      "command": "labelssc",
+      "snippet": "labelssc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelsLARGE": {
+      "command": "labelsLARGE",
+      "snippet": "labelsLARGE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelsup": {
+      "command": "labelsup",
+      "snippet": "labelsup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelshuge": {
+      "command": "labelshuge",
+      "snippet": "labelshuge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelsHuge": {
+      "command": "labelsHuge",
+      "snippet": "labelsHuge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelsrm": {
+      "command": "membranelabelsrm",
+      "snippet": "membranelabelsrm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelssf": {
+      "command": "membranelabelssf",
+      "snippet": "membranelabelssf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelstt": {
+      "command": "membranelabelstt",
+      "snippet": "membranelabelstt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelsmd": {
+      "command": "membranelabelsmd",
+      "snippet": "membranelabelsmd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelsbf": {
+      "command": "membranelabelsbf",
+      "snippet": "membranelabelsbf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelsup": {
+      "command": "membranelabelsup",
+      "snippet": "membranelabelsup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelsit": {
+      "command": "membranelabelsit",
+      "snippet": "membranelabelsit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelssl": {
+      "command": "membranelabelssl",
+      "snippet": "membranelabelssl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelssc": {
+      "command": "membranelabelssc",
+      "snippet": "membranelabelssc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelstiny": {
+      "command": "membranelabelstiny",
+      "snippet": "membranelabelstiny",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelsscriptsize": {
+      "command": "membranelabelsscriptsize",
+      "snippet": "membranelabelsscriptsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelsfootnotesize": {
+      "command": "membranelabelsfootnotesize",
+      "snippet": "membranelabelsfootnotesize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelssmall": {
+      "command": "membranelabelssmall",
+      "snippet": "membranelabelssmall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelsnormalsize": {
+      "command": "membranelabelsnormalsize",
+      "snippet": "membranelabelsnormalsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelslarge": {
+      "command": "membranelabelslarge",
+      "snippet": "membranelabelslarge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelsLarge": {
+      "command": "membranelabelsLarge",
+      "snippet": "membranelabelsLarge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelsLARGE": {
+      "command": "membranelabelsLARGE",
+      "snippet": "membranelabelsLARGE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelshuge": {
+      "command": "membranelabelshuge",
+      "snippet": "membranelabelshuge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "membranelabelsHuge": {
+      "command": "membranelabelsHuge",
+      "snippet": "membranelabelsHuge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelsrm": {
+      "command": "looplabelsrm",
+      "snippet": "looplabelsrm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelssf": {
+      "command": "looplabelssf",
+      "snippet": "looplabelssf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelstt": {
+      "command": "looplabelstt",
+      "snippet": "looplabelstt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelsmd": {
+      "command": "looplabelsmd",
+      "snippet": "looplabelsmd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelsbf": {
+      "command": "looplabelsbf",
+      "snippet": "looplabelsbf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelsup": {
+      "command": "looplabelsup",
+      "snippet": "looplabelsup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelsit": {
+      "command": "looplabelsit",
+      "snippet": "looplabelsit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelssl": {
+      "command": "looplabelssl",
+      "snippet": "looplabelssl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelssc": {
+      "command": "looplabelssc",
+      "snippet": "looplabelssc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelstiny": {
+      "command": "looplabelstiny",
+      "snippet": "looplabelstiny",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelsscriptsize": {
+      "command": "looplabelsscriptsize",
+      "snippet": "looplabelsscriptsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelsfootnotesize": {
+      "command": "looplabelsfootnotesize",
+      "snippet": "looplabelsfootnotesize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelssmall": {
+      "command": "looplabelssmall",
+      "snippet": "looplabelssmall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelsnormalsize": {
+      "command": "looplabelsnormalsize",
+      "snippet": "looplabelsnormalsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelslarge": {
+      "command": "looplabelslarge",
+      "snippet": "looplabelslarge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelsLarge": {
+      "command": "looplabelsLarge",
+      "snippet": "looplabelsLarge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelsLARGE": {
+      "command": "looplabelsLARGE",
+      "snippet": "looplabelsLARGE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelshuge": {
+      "command": "looplabelshuge",
+      "snippet": "looplabelshuge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "looplabelsHuge": {
+      "command": "looplabelsHuge",
+      "snippet": "looplabelsHuge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelsrm": {
+      "command": "TMlabelsrm",
+      "snippet": "TMlabelsrm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelssf": {
+      "command": "TMlabelssf",
+      "snippet": "TMlabelssf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelstt": {
+      "command": "TMlabelstt",
+      "snippet": "TMlabelstt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelsmd": {
+      "command": "TMlabelsmd",
+      "snippet": "TMlabelsmd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelsbf": {
+      "command": "TMlabelsbf",
+      "snippet": "TMlabelsbf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelsup": {
+      "command": "TMlabelsup",
+      "snippet": "TMlabelsup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelsit": {
+      "command": "TMlabelsit",
+      "snippet": "TMlabelsit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelssl": {
+      "command": "TMlabelssl",
+      "snippet": "TMlabelssl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelssc": {
+      "command": "TMlabelssc",
+      "snippet": "TMlabelssc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelstiny": {
+      "command": "TMlabelstiny",
+      "snippet": "TMlabelstiny",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelsscriptsize": {
+      "command": "TMlabelsscriptsize",
+      "snippet": "TMlabelsscriptsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelsfootnotesize": {
+      "command": "TMlabelsfootnotesize",
+      "snippet": "TMlabelsfootnotesize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelssmall": {
+      "command": "TMlabelssmall",
+      "snippet": "TMlabelssmall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelsnormalsize": {
+      "command": "TMlabelsnormalsize",
+      "snippet": "TMlabelsnormalsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelslarge": {
+      "command": "TMlabelslarge",
+      "snippet": "TMlabelslarge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelsLarge": {
+      "command": "TMlabelsLarge",
+      "snippet": "TMlabelsLarge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelsLARGE": {
+      "command": "TMlabelsLARGE",
+      "snippet": "TMlabelsLARGE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelshuge": {
+      "command": "TMlabelshuge",
+      "snippet": "TMlabelshuge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TMlabelsHuge": {
+      "command": "TMlabelsHuge",
+      "snippet": "TMlabelsHuge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TeXtopo": {
+      "command": "TeXtopo",
+      "snippet": "TeXtopo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "alignname": {
+      "command": "alignname",
+      "snippet": "alignname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Allmatch": {
+      "command": "Allmatch",
+      "snippet": "Allmatch",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "allmatchresidues{}{}{}{}": {
+      "command": "allmatchresidues{}{}{}{}",
+      "snippet": "allmatchresidues{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "analyzefalse": {
+      "command": "analyzefalse",
+      "snippet": "analyzefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "analyzetopo": {
+      "command": "analyzetopo",
+      "snippet": "analyzetopo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "analyzetrue": {
+      "command": "analyzetrue",
+      "snippet": "analyzetrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsymA": {
+      "command": "bsymA",
+      "snippet": "bsymA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsymB": {
+      "command": "bsymB",
+      "snippet": "bsymB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsymC": {
+      "command": "bsymC",
+      "snippet": "bsymC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsymD": {
+      "command": "bsymD",
+      "snippet": "bsymD",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsymE": {
+      "command": "bsymE",
+      "snippet": "bsymE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsymF": {
+      "command": "bsymF",
+      "snippet": "bsymF",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsymG": {
+      "command": "bsymG",
+      "snippet": "bsymG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsymH": {
+      "command": "bsymH",
+      "snippet": "bsymH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsymI": {
+      "command": "bsymI",
+      "snippet": "bsymI",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsymJ": {
+      "command": "bsymJ",
+      "snippet": "bsymJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsymK": {
+      "command": "bsymK",
+      "snippet": "bsymK",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "clearvariables": {
+      "command": "clearvariables",
+      "snippet": "clearvariables",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "conservedresidues{}{}{}{}": {
+      "command": "conservedresidues{}{}{}{}",
+      "snippet": "conservedresidues{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosE": {
+      "command": "cosE",
+      "snippet": "cosE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosENE": {
+      "command": "cosENE",
+      "snippet": "cosENE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosESE": {
+      "command": "cosESE",
+      "snippet": "cosESE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosN": {
+      "command": "cosN",
+      "snippet": "cosN",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosNE": {
+      "command": "cosNE",
+      "snippet": "cosNE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosNNE": {
+      "command": "cosNNE",
+      "snippet": "cosNNE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosNNW": {
+      "command": "cosNNW",
+      "snippet": "cosNNW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosNW": {
+      "command": "cosNW",
+      "snippet": "cosNW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosS": {
+      "command": "cosS",
+      "snippet": "cosS",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosSE": {
+      "command": "cosSE",
+      "snippet": "cosSE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosSSE": {
+      "command": "cosSSE",
+      "snippet": "cosSSE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosSSW": {
+      "command": "cosSSW",
+      "snippet": "cosSSW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosSW": {
+      "command": "cosSW",
+      "snippet": "cosSW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosW": {
+      "command": "cosW",
+      "snippet": "cosW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosWNW": {
+      "command": "cosWNW",
+      "snippet": "cosWNW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosWSW": {
+      "command": "cosWSW",
+      "snippet": "cosWSW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directE": {
+      "command": "directE",
+      "snippet": "directE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directENE": {
+      "command": "directENE",
+      "snippet": "directENE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directESE": {
+      "command": "directESE",
+      "snippet": "directESE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directN": {
+      "command": "directN",
+      "snippet": "directN",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directNE": {
+      "command": "directNE",
+      "snippet": "directNE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directNNE": {
+      "command": "directNNE",
+      "snippet": "directNNE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directNNW": {
+      "command": "directNNW",
+      "snippet": "directNNW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directNW": {
+      "command": "directNW",
+      "snippet": "directNW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directS": {
+      "command": "directS",
+      "snippet": "directS",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directSE": {
+      "command": "directSE",
+      "snippet": "directSE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directSSE": {
+      "command": "directSSE",
+      "snippet": "directSSE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directSSW": {
+      "command": "directSSW",
+      "snippet": "directSSW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directSW": {
+      "command": "directSW",
+      "snippet": "directSW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directW": {
+      "command": "directW",
+      "snippet": "directW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directWNW": {
+      "command": "directWNW",
+      "snippet": "directWNW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "directWSW": {
+      "command": "directWSW",
+      "snippet": "directWSW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "displaysection{}": {
+      "command": "displaysection{}",
+      "snippet": "displaysection{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dotopo": {
+      "command": "dotopo",
+      "snippet": "dotopo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "filenameHMMTOP": {
+      "command": "filenameHMMTOP",
+      "snippet": "filenameHMMTOP",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "filenamephd": {
+      "command": "filenamephd",
+      "snippet": "filenamephd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "filenameswiss": {
+      "command": "filenameswiss",
+      "snippet": "filenameswiss",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "funcmodefalse": {
+      "command": "funcmodefalse",
+      "snippet": "funcmodefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "funcmodetrue": {
+      "command": "funcmodetrue",
+      "snippet": "funcmodetrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gapcolors{}{}": {
+      "command": "gapcolors{}{}",
+      "snippet": "gapcolors{${1:color}}{${2:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hidegrid": {
+      "command": "hidegrid",
+      "snippet": "hidegrid",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Identical": {
+      "command": "Identical",
+      "snippet": "Identical",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifanalyze": {
+      "command": "ifanalyze",
+      "snippet": "ifanalyze",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iffuncmode": {
+      "command": "iffuncmode",
+      "snippet": "iffuncmode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifletter": {
+      "command": "ifletter",
+      "snippet": "ifletter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifshade": {
+      "command": "ifshade",
+      "snippet": "ifshade",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iloopcount": {
+      "command": "iloopcount",
+      "snippet": "iloopcount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "innerloopcount": {
+      "command": "innerloopcount",
+      "snippet": "innerloopcount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "legendcolor{}": {
+      "command": "legendcolor{}",
+      "snippet": "legendcolor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "letterfalse": {
+      "command": "letterfalse",
+      "snippet": "letterfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lettertrue": {
+      "command": "lettertrue",
+      "snippet": "lettertrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lipoA": {
+      "command": "lipoA",
+      "snippet": "lipoA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lipoB": {
+      "command": "lipoB",
+      "snippet": "lipoB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lipoC": {
+      "command": "lipoC",
+      "snippet": "lipoC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lipoD": {
+      "command": "lipoD",
+      "snippet": "lipoD",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lipoE": {
+      "command": "lipoE",
+      "snippet": "lipoE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lipoF": {
+      "command": "lipoF",
+      "snippet": "lipoF",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lipoG": {
+      "command": "lipoG",
+      "snippet": "lipoG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lipoH": {
+      "command": "lipoH",
+      "snippet": "lipoH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lipoI": {
+      "command": "lipoI",
+      "snippet": "lipoI",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lipoJ": {
+      "command": "lipoJ",
+      "snippet": "lipoJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lipoK": {
+      "command": "lipoK",
+      "snippet": "lipoK",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "loopcount": {
+      "command": "loopcount",
+      "snippet": "loopcount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "moveres{}{}{}": {
+      "command": "moveres{}{}{}",
+      "snippet": "moveres{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "msfline": {
+      "command": "msfline",
+      "snippet": "msfline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newelement{}{}": {
+      "command": "newelement{}{}",
+      "snippet": "newelement{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Nomatch": {
+      "command": "Nomatch",
+      "snippet": "Nomatch",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomatchresidues{}{}{}{}": {
+      "command": "nomatchresidues{}{}{}{}",
+      "snippet": "nomatchresidues{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noPT{}": {
+      "command": "noPT{}",
+      "snippet": "noPT{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "optionHMMTOP": {
+      "command": "optionHMMTOP",
+      "snippet": "optionHMMTOP",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "optionphd": {
+      "command": "optionphd",
+      "snippet": "optionphd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "optionswiss": {
+      "command": "optionswiss",
+      "snippet": "optionswiss",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "remodel{}{}": {
+      "command": "remodel{}{}",
+      "snippet": "remodel{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfdcA": {
+      "command": "sfdcA",
+      "snippet": "sfdcA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfdcB": {
+      "command": "sfdcB",
+      "snippet": "sfdcB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfdcC": {
+      "command": "sfdcC",
+      "snippet": "sfdcC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfdcD": {
+      "command": "sfdcD",
+      "snippet": "sfdcD",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfdcE": {
+      "command": "sfdcE",
+      "snippet": "sfdcE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfdcF": {
+      "command": "sfdcF",
+      "snippet": "sfdcF",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfdcG": {
+      "command": "sfdcG",
+      "snippet": "sfdcG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfdcH": {
+      "command": "sfdcH",
+      "snippet": "sfdcH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfdcI": {
+      "command": "sfdcI",
+      "snippet": "sfdcI",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfdcJ": {
+      "command": "sfdcJ",
+      "snippet": "sfdcJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfdcK": {
+      "command": "sfdcK",
+      "snippet": "sfdcK",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shadefalse": {
+      "command": "shadefalse",
+      "snippet": "shadefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shadetrue": {
+      "command": "shadetrue",
+      "snippet": "shadetrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showgrid": {
+      "command": "showgrid",
+      "snippet": "showgrid",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showgrid[]": {
+      "command": "showgrid[]",
+      "snippet": "showgrid[${1:num}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Similar": {
+      "command": "Similar",
+      "snippet": "Similar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "similarresidues{}{}{}{}": {
+      "command": "similarresidues{}{}{}{}",
+      "snippet": "similarresidues{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sincos": {
+      "command": "sincos",
+      "snippet": "sincos",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinE": {
+      "command": "sinE",
+      "snippet": "sinE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinENE": {
+      "command": "sinENE",
+      "snippet": "sinENE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinESE": {
+      "command": "sinESE",
+      "snippet": "sinESE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinN": {
+      "command": "sinN",
+      "snippet": "sinN",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinNE": {
+      "command": "sinNE",
+      "snippet": "sinNE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinNNE": {
+      "command": "sinNNE",
+      "snippet": "sinNNE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinNNW": {
+      "command": "sinNNW",
+      "snippet": "sinNNW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinNW": {
+      "command": "sinNW",
+      "snippet": "sinNW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinS": {
+      "command": "sinS",
+      "snippet": "sinS",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinSE": {
+      "command": "sinSE",
+      "snippet": "sinSE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinSSE": {
+      "command": "sinSSE",
+      "snippet": "sinSSE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinSSW": {
+      "command": "sinSSW",
+      "snippet": "sinSSW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinSW": {
+      "command": "sinSW",
+      "snippet": "sinSW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinW": {
+      "command": "sinW",
+      "snippet": "sinW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinWNW": {
+      "command": "sinWNW",
+      "snippet": "sinWNW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sinWSW": {
+      "command": "sinWSW",
+      "snippet": "sinWSW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "squareA": {
+      "command": "squareA",
+      "snippet": "squareA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "squareB": {
+      "command": "squareB",
+      "snippet": "squareB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "squareC": {
+      "command": "squareC",
+      "snippet": "squareC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "squareD": {
+      "command": "squareD",
+      "snippet": "squareD",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "squareE": {
+      "command": "squareE",
+      "snippet": "squareE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "squareF": {
+      "command": "squareF",
+      "snippet": "squareF",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "squareG": {
+      "command": "squareG",
+      "snippet": "squareG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "squareH": {
+      "command": "squareH",
+      "snippet": "squareH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "squareI": {
+      "command": "squareI",
+      "snippet": "squareI",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "squareJ": {
+      "command": "squareJ",
+      "snippet": "squareJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "squareK": {
+      "command": "squareK",
+      "snippet": "squareK",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "standardparameters": {
+      "command": "standardparameters",
+      "snippet": "standardparameters",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "structurefilename": {
+      "command": "structurefilename",
+      "snippet": "structurefilename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "structureline": {
+      "command": "structureline",
+      "snippet": "structureline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TextAllmatch": {
+      "command": "TextAllmatch",
+      "snippet": "TextAllmatch",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TextIdentical": {
+      "command": "TextIdentical",
+      "snippet": "TextIdentical",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TextNomatch": {
+      "command": "TextNomatch",
+      "snippet": "TextNomatch",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TextSimilar": {
+      "command": "TextSimilar",
+      "snippet": "TextSimilar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TM": {
+      "command": "TM",
+      "snippet": "TM",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tmpstack": {
+      "command": "tmpstack",
+      "snippet": "tmpstack",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "treeA": {
+      "command": "treeA",
+      "snippet": "treeA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "treeB": {
+      "command": "treeB",
+      "snippet": "treeB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "treeC": {
+      "command": "treeC",
+      "snippet": "treeC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "treeD": {
+      "command": "treeD",
+      "snippet": "treeD",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "treeE": {
+      "command": "treeE",
+      "snippet": "treeE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "treeF": {
+      "command": "treeF",
+      "snippet": "treeF",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "treeG": {
+      "command": "treeG",
+      "snippet": "treeG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "treeH": {
+      "command": "treeH",
+      "snippet": "treeH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "treeI": {
+      "command": "treeI",
+      "snippet": "treeI",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "treeJ": {
+      "command": "treeJ",
+      "snippet": "treeJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "treeK": {
+      "command": "treeK",
+      "snippet": "treeK",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "textopo": {
+      "name": "textopo",
+      "detail": "textopo",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textopo[]": {
+      "name": "textopo",
+      "detail": "textopo[]",
+      "snippet": "[${1:file}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "helicalwheel{}": {
+      "name": "helicalwheel",
+      "detail": "helicalwheel{}",
+      "snippet": "{${1:helix-list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "helicalwheel[]{}": {
+      "name": "helicalwheel",
+      "detail": "helicalwheel[]{}",
+      "snippet": "[${2:file}]{${1:helix-list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rotopo{}": {
+      "name": "rotopo",
+      "detail": "rotopo{}",
+      "snippet": "{${1:degrees}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "monochrome",
+    "debugshow",
+    "setpagesize",
+    "nosetpagesize",
+    "dvips",
+    "xdvi",
+    "dvipdf",
+    "dvipdfm",
+    "dvipdfmx",
+    "pdftex",
+    "luatex",
+    "dvisvgm",
+    "xetex",
+    "dvipsone",
+    "dviwindo",
+    "emtex",
+    "dviwin",
+    "oztex",
+    "textures",
+    "pctexps",
+    "pctexwin",
+    "pctexhp",
+    "pctex32",
+    "truetex",
+    "tcidvi",
+    "vtex",
+    "dvipsnames",
+    "nodvipsnames",
+    "usenames"
+  ]
+}

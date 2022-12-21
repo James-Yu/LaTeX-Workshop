@@ -1,19 +1,102 @@
 {
-  "includes": [],
+  "includes": [
+    "ifthen",
+    "xkeyval",
+    "xcolor",
+    "tikz",
+    "tikzlibrarypositioning",
+    "calc",
+    "tikzlibraryshadows"
+  ],
   "cmds": {
     "todo{}": {
       "command": "todo{}",
-      "snippet": "todo{${1:text}}",
+      "snippet": "todo{${1:text%todo}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "todo[]{}": {
       "command": "todo[]{}",
-      "snippet": "todo[${2:options}]{${1:text}}",
+      "snippet": "todo[${2:options}]{${1:text%todo}}",
+      "option": "",
+      "keyvals": [
+        "disable",
+        "color=",
+        "backgroundcolor=",
+        "textcolor=",
+        "linecolor=",
+        "bordercolor=",
+        "shadow",
+        "noshadow",
+        "tickmarkheight=",
+        "line",
+        "noline",
+        "inline",
+        "noinline",
+        "size=",
+        "list",
+        "nolist",
+        "caption={",
+        "prepend",
+        "noprepend",
+        "fancyline",
+        "author=",
+        "inlinewidth=",
+        "inlinepar",
+        "noinlinepar"
+      ],
+      "keyvalindex": 0
+    },
+    "setuptodonotes{}": {
+      "command": "setuptodonotes{}",
+      "snippet": "setuptodonotes{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "disable",
+        "color=",
+        "backgroundcolor=",
+        "textcolor=",
+        "linecolor=",
+        "bordercolor=",
+        "shadow",
+        "noshadow",
+        "tickmarkheight=",
+        "line",
+        "noline",
+        "inline",
+        "noinline",
+        "size=",
+        "list",
+        "nolist",
+        "caption={",
+        "prepend",
+        "noprepend",
+        "fancyline",
+        "author=",
+        "inlinewidth=",
+        "inlinepar",
+        "noinlinepar"
+      ],
+      "keyvalindex": 0
+    },
+    "missingfigure{}": {
+      "command": "missingfigure{}",
+      "snippet": "missingfigure{${1:text%todo}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "missingfigure[]{}": {
+      "command": "missingfigure[]{}",
+      "snippet": "missingfigure[${2:options}]{${1:text%todo}}",
+      "option": "",
+      "keyvals": [
+        "figwidth=",
+        "figheight=",
+        "figcolor="
+      ],
+      "keyvalindex": 0
     },
     "listoftodos": {
       "command": "listoftodos",
@@ -24,26 +107,48 @@
     },
     "listoftodos[]": {
       "command": "listoftodos[]",
-      "snippet": "listoftodos[${1:caption}]",
+      "snippet": "listoftodos[${1:name}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "missingfigure{}": {
-      "command": "missingfigure{}",
-      "snippet": "missingfigure{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "missingfigure[]{}": {
-      "command": "missingfigure[]{}",
-      "snippet": "missingfigure[${2:options}]{${1:text}}",
+    "todototoc": {
+      "command": "todototoc",
+      "snippet": "todototoc",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "disable",
+    "obeyDraft",
+    "obeyFinal",
+    "danish",
+    "german",
+    "ngerman",
+    "english",
+    "french",
+    "swedish",
+    "spanish",
+    "catalan",
+    "italian",
+    "portuguese",
+    "dutch",
+    "croatian",
+    "colorinlistoftodos",
+    "color=",
+    "backgroundcolor=",
+    "linecolor=",
+    "bordercolor=",
+    "tickmarkheight=",
+    "textwidth=",
+    "textsize=",
+    "prependcaption={",
+    "loadshadowlibrary",
+    "shadow",
+    "dvistyle",
+    "figwidth="
+  ]
 }

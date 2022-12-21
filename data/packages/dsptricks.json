@@ -1,0 +1,777 @@
+{
+  "includes": [
+    "pstricks",
+    "pstricks-add",
+    "pst-xkey",
+    "calc",
+    "fp",
+    "ifthen"
+  ],
+  "cmds": {
+    "dspW": {
+      "command": "dspW",
+      "snippet": "dspW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspH": {
+      "command": "dspH",
+      "snippet": "dspH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspPlotFrame": {
+      "command": "dspPlotFrame",
+      "snippet": "dspPlotFrame",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCustomTicks{}": {
+      "command": "dspCustomTicks{}",
+      "snippet": "dspCustomTicks{${1:pos1 label1 pos2 label2 ...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCustomTicks[]{}": {
+      "command": "dspCustomTicks[]{}",
+      "snippet": "dspCustomTicks[${2:options}]{${1:pos1 label1 pos2 label2 ...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTaps{}": {
+      "command": "dspTaps{}",
+      "snippet": "dspTaps{${1:data}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTaps[]{}": {
+      "command": "dspTaps[]{}",
+      "snippet": "dspTaps[${2:options}]{${1:data}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTapsAt{}{}": {
+      "command": "dspTapsAt{}{}",
+      "snippet": "dspTapsAt{${1:start}}{${2:data}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTapsAt[]{}{}": {
+      "command": "dspTapsAt[]{}{}",
+      "snippet": "dspTapsAt[${3:options}]{${1:start}}{${2:data}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTapsFile{}": {
+      "command": "dspTapsFile{}",
+      "snippet": "dspTapsFile{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTapsFile[]{}": {
+      "command": "dspTapsFile[]{}",
+      "snippet": "dspTapsFile[${2:options}]{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspSignal{}": {
+      "command": "dspSignal{}",
+      "snippet": "dspSignal{${1:PS code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspSignal[]{}": {
+      "command": "dspSignal[]{}",
+      "snippet": "dspSignal[${2:options}]{${1:PS code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspSignalOpt{}{}": {
+      "command": "dspSignalOpt{}{}",
+      "snippet": "dspSignalOpt{${1:init}}{${2:PS code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspSignalOpt[]{}{}": {
+      "command": "dspSignalOpt[]{}{}",
+      "snippet": "dspSignalOpt[${3:options}]{${1:init}}{${2:PS code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspFunc{}": {
+      "command": "dspFunc{}",
+      "snippet": "dspFunc{${1:PS code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspFunc[]{}": {
+      "command": "dspFunc[]{}",
+      "snippet": "dspFunc[${2:options}]{${1:PS code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspFuncData{}": {
+      "command": "dspFuncData{}",
+      "snippet": "dspFuncData{${1:data}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspFuncData[]{}": {
+      "command": "dspFuncData[]{}",
+      "snippet": "dspFuncData[${2:options}]{${1:data}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspFuncFile{}": {
+      "command": "dspFuncFile{}",
+      "snippet": "dspFuncFile{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspFuncFile[]{}": {
+      "command": "dspFuncFile[]{}",
+      "snippet": "dspFuncFile[${2:options}]{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspDiracs{}": {
+      "command": "dspDiracs{}",
+      "snippet": "dspDiracs{${1:pos1 label1 pos2 label2 ...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspDiracs[]{}": {
+      "command": "dspDiracs[]{}",
+      "snippet": "dspDiracs[${2:options}]{${1:pos1 label1 pos2 label2 ...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspPeriodize": {
+      "command": "dspPeriodize",
+      "snippet": "dspPeriodize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspPZ{}": {
+      "command": "dspPZ{}",
+      "snippet": "dspPZ{${1:a,b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspPZ[]{}": {
+      "command": "dspPZ[]{}",
+      "snippet": "dspPZ[${2:options}]{${1:a,b}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PZAROC": {
+      "command": "PZAROC",
+      "snippet": "PZAROC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PZCROC": {
+      "command": "PZCROC",
+      "snippet": "PZCROC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PZLP": {
+      "command": "PZLP",
+      "snippet": "PZLP",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PZLabel": {
+      "command": "PZLabel",
+      "snippet": "PZLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "action": {
+      "command": "action",
+      "snippet": "action",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dirac": {
+      "command": "dirac",
+      "snippet": "dirac",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "doOnPairs{}{}": {
+      "command": "doOnPairs{}{}",
+      "snippet": "doOnPairs{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspAxisColor": {
+      "command": "dspAxisColor",
+      "snippet": "dspAxisColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspBU": {
+      "command": "dspBU",
+      "snippet": "dspBU",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCA": {
+      "command": "dspCA",
+      "snippet": "dspCA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCPArcn{}{}{}{}{}": {
+      "command": "dspCPArcn{}{}{}{}{}",
+      "snippet": "dspCPArcn{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCPArc{}{}{}{}{}": {
+      "command": "dspCPArc{}{}{}{}{}",
+      "snippet": "dspCPArc{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCPCirclePoint{}{}{}{}": {
+      "command": "dspCPCirclePoint{}{}{}{}",
+      "snippet": "dspCPCirclePoint{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCPCircle{}{}{}": {
+      "command": "dspCPCircle{}{}{}",
+      "snippet": "dspCPCircle{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCPPointSC{}{}{}": {
+      "command": "dspCPPointSC{}{}{}",
+      "snippet": "dspCPPointSC{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCPPoint{}{}{}": {
+      "command": "dspCPPoint{}{}{}",
+      "snippet": "dspCPPoint{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCPW": {
+      "command": "dspCPW",
+      "snippet": "dspCPW",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCircle": {
+      "command": "dspCircle",
+      "snippet": "dspCircle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCircleLabel": {
+      "command": "dspCircleLabel",
+      "snippet": "dspCircleLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspDotSize": {
+      "command": "dspDotSize",
+      "snippet": "dspDotSize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspFrameLineWidth": {
+      "command": "dspFrameLineWidth",
+      "snippet": "dspFrameLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspFuncDataAt{}{}{}": {
+      "command": "dspFuncDataAt{}{}{}",
+      "snippet": "dspFuncDataAt{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspFuncOpt{}{}{}": {
+      "command": "dspFuncOpt{}{}{}",
+      "snippet": "dspFuncOpt{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspHeight": {
+      "command": "dspHeight",
+      "snippet": "dspHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspImageFile{}": {
+      "command": "dspImageFile{}",
+      "snippet": "dspImageFile{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspLabels": {
+      "command": "dspLabels",
+      "snippet": "dspLabels",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspLegend": {
+      "command": "dspLegend",
+      "snippet": "dspLegend",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspLineWidth": {
+      "command": "dspLineWidth",
+      "snippet": "dspLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspMainPeriod{}": {
+      "command": "dspMainPeriod{}",
+      "snippet": "dspMainPeriod{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspMakeTicks": {
+      "command": "dspMakeTicks",
+      "snippet": "dspMakeTicks",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspMaxActX": {
+      "command": "dspMaxActX",
+      "snippet": "dspMaxActX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspMinActX": {
+      "command": "dspMinActX",
+      "snippet": "dspMinActX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspMkTk": {
+      "command": "dspMkTk",
+      "snippet": "dspMkTk",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspPeriod{}": {
+      "command": "dspPeriod{}",
+      "snippet": "dspPeriod{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspPointValueSC{}{}{}": {
+      "command": "dspPointValueSC{}{}{}",
+      "snippet": "dspPointValueSC{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspPointValue{}{}{}": {
+      "command": "dspPointValue{}{}{}",
+      "snippet": "dspPointValue{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspPoints{}{}": {
+      "command": "dspPoints{}{}",
+      "snippet": "dspPoints{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspSetDims{}": {
+      "command": "dspSetDims{}",
+      "snippet": "dspSetDims{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspSetupAxes": {
+      "command": "dspSetupAxes",
+      "snippet": "dspSetupAxes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspShowImage[]{}": {
+      "command": "dspShowImage[]{}",
+      "snippet": "dspShowImage[${2:opt}]{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspShowImage{}": {
+      "command": "dspShowImage{}",
+      "snippet": "dspShowImage{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspStemWidth": {
+      "command": "dspStemWidth",
+      "snippet": "dspStemWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTickLabelX": {
+      "command": "dspTickLabelX",
+      "snippet": "dspTickLabelX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTickLabelY": {
+      "command": "dspTickLabelY",
+      "snippet": "dspTickLabelY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTickLabelYR": {
+      "command": "dspTickLabelYR",
+      "snippet": "dspTickLabelYR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTickLen": {
+      "command": "dspTickLen",
+      "snippet": "dspTickLen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTickLineWidth": {
+      "command": "dspTickLineWidth",
+      "snippet": "dspTickLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTickX": {
+      "command": "dspTickX",
+      "snippet": "dspTickX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTickY": {
+      "command": "dspTickY",
+      "snippet": "dspTickY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspTmpLen": {
+      "command": "dspTmpLen",
+      "snippet": "dspTmpLen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspUnitX": {
+      "command": "dspUnitX",
+      "snippet": "dspUnitX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspUnitY": {
+      "command": "dspUnitY",
+      "snippet": "dspUnitY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspWidth": {
+      "command": "dspWidth",
+      "snippet": "dspWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspXLabel": {
+      "command": "dspXLabel",
+      "snippet": "dspXLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspXTickGap": {
+      "command": "dspXTickGap",
+      "snippet": "dspXTickGap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspXlabel": {
+      "command": "dspXlabel",
+      "snippet": "dspXlabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspXmax": {
+      "command": "dspXmax",
+      "snippet": "dspXmax",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspXmin": {
+      "command": "dspXmin",
+      "snippet": "dspXmin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspYLabel": {
+      "command": "dspYLabel",
+      "snippet": "dspYLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspYLabelR": {
+      "command": "dspYLabelR",
+      "snippet": "dspYLabelR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspYTickGap": {
+      "command": "dspYTickGap",
+      "snippet": "dspYTickGap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "haY": {
+      "command": "haY",
+      "snippet": "haY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "incX": {
+      "command": "incX",
+      "snippet": "incX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "incY": {
+      "command": "incY",
+      "snippet": "incY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "outTicks": {
+      "command": "outTicks",
+      "snippet": "outTicks",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pcorps": {
+      "command": "pcorps",
+      "snippet": "pcorps",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "removeFactor{}": {
+      "command": "removeFactor{}",
+      "snippet": "removeFactor{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sg": {
+      "command": "sg",
+      "snippet": "sg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sideGap": {
+      "command": "sideGap",
+      "snippet": "sideGap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "simplifyPiFrac{}{}": {
+      "command": "simplifyPiFrac{}{}",
+      "snippet": "simplifyPiFrac{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thisTickLabelX": {
+      "command": "thisTickLabelX",
+      "snippet": "thisTickLabelX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thisTickX": {
+      "command": "thisTickX",
+      "snippet": "thisTickX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tickColor": {
+      "command": "tickColor",
+      "snippet": "tickColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "twoArgSplit{}": {
+      "command": "twoArgSplit{}",
+      "snippet": "twoArgSplit{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xt": {
+      "command": "xt",
+      "snippet": "xt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yt": {
+      "command": "yt",
+      "snippet": "yt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "dspPlot{}{}": {
+      "name": "dspPlot",
+      "detail": "dspPlot{}{}",
+      "snippet": "{${1:xmin,xmax}}{${2:ymin,ymax}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspPlot[]{}{}": {
+      "name": "dspPlot",
+      "detail": "dspPlot[]{}{}",
+      "snippet": "[${3:options}]{${1:xmin,xmax}}{${2:ymin,ymax}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspClip": {
+      "name": "dspClip",
+      "detail": "dspClip",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspPZPlot{}": {
+      "name": "dspPZPlot",
+      "detail": "dspPZPlot{}",
+      "snippet": "{${1:M}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspPZPlot[]{}": {
+      "name": "dspPZPlot",
+      "detail": "dspPZPlot[]{}",
+      "snippet": "[${2:options}]{${1:M}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dspCP": {
+      "name": "dspCP",
+      "detail": "dspCP",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

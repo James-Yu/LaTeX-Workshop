@@ -1,0 +1,432 @@
+{
+  "includes": [
+    "tikz",
+    "ifthen",
+    "relsize",
+    "xargs",
+    "tikzlibrarycalc",
+    "tikzlibraryfit",
+    "tikzlibraryshapes"
+  ],
+  "cmds": {
+    "FT{}{}": {
+      "command": "FT{}{}",
+      "snippet": "FT{${1:Fonction technique%text}}{${2:Descendance%text}}",
+      "option": "raccourcis",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FT[]{}{}": {
+      "command": "FT[]{}{}",
+      "snippet": "FT[${3:option}]{${1:Fonction technique%text}}{${2:Descendance%text}}",
+      "option": "raccourcis",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ST{}": {
+      "command": "ST{}",
+      "snippet": "ST{${1:Solution technique%text}}",
+      "option": "raccourcis",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ST{}[]": {
+      "command": "ST{}[]",
+      "snippet": "ST{${1:Solution technique%text}}[${2:Descendance%text}]",
+      "option": "raccourcis",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ST[]{}": {
+      "command": "ST[]{}",
+      "snippet": "ST[${2:option}]{${1:Solution technique%text}}",
+      "option": "raccourcis",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ST[]{}[]": {
+      "command": "ST[]{}[]",
+      "snippet": "ST[${2:option}]{${1:Solution technique%text}}[${3:Descendance%text}]",
+      "option": "raccourcis",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FV{}": {
+      "command": "FV{}",
+      "snippet": "FV{${1:text}}",
+      "option": "raccourcis",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FV{}[]": {
+      "command": "FV{}[]",
+      "snippet": "FV{${1:text}}[${2:Descendance%text}]",
+      "option": "raccourcis",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "trait{}": {
+      "command": "trait{}",
+      "snippet": "trait{${1:Descendance%text}}",
+      "option": "raccourcis",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastFT{}{}": {
+      "command": "fastFT{}{}",
+      "snippet": "fastFT{${1:Fonction technique%text}}{${2:Descendance%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastFT[]{}{}": {
+      "command": "fastFT[]{}{}",
+      "snippet": "fastFT[${3:option}]{${1:Fonction technique%text}}{${2:Descendance%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastST{}": {
+      "command": "fastST{}",
+      "snippet": "fastST{${1:Solution technique%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastST{}[]": {
+      "command": "fastST{}[]",
+      "snippet": "fastST{${1:Solution technique%text}}[${2:Descendance%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastST[]{}": {
+      "command": "fastST[]{}",
+      "snippet": "fastST[${2:option}]{${1:Solution technique%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastST[]{}[]": {
+      "command": "fastST[]{}[]",
+      "snippet": "fastST[${2:option}]{${1:Solution technique%text}}[${3:Descendance%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastVide{}": {
+      "command": "fastVide{}",
+      "snippet": "fastVide{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastVide{}[]": {
+      "command": "fastVide{}[]",
+      "snippet": "fastVide{${1:text}}[${2:Descendance%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastTrait{}": {
+      "command": "fastTrait{}",
+      "snippet": "fastTrait{${1:Descendance%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastReset": {
+      "command": "fastReset",
+      "snippet": "fastReset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastInterligne": {
+      "command": "fastInterligne",
+      "snippet": "fastInterligne",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastLargeurBoite": {
+      "command": "fastLargeurBoite",
+      "snippet": "fastLargeurBoite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastHauteurBoite": {
+      "command": "fastHauteurBoite",
+      "snippet": "fastHauteurBoite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastEspaceColonne": {
+      "command": "fastEspaceColonne",
+      "snippet": "fastEspaceColonne",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastDecalageTrait": {
+      "command": "fastDecalageTrait",
+      "snippet": "fastDecalageTrait",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastEpaisseurTraits": {
+      "command": "fastEpaisseurTraits",
+      "snippet": "fastEpaisseurTraits",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastDecalageOuVertical": {
+      "command": "fastDecalageOuVertical",
+      "snippet": "fastDecalageOuVertical",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastDecalageOuHorizontal": {
+      "command": "fastDecalageOuHorizontal",
+      "snippet": "fastDecalageOuHorizontal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSetCouleurBordures{}": {
+      "command": "fastSetCouleurBordures{}",
+      "snippet": "fastSetCouleurBordures{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSetCouleurBordures[]{}": {
+      "command": "fastSetCouleurBordures[]{}",
+      "snippet": "fastSetCouleurBordures[${2:type}]{${1:color%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSetCouleurTexte{}": {
+      "command": "fastSetCouleurTexte{}",
+      "snippet": "fastSetCouleurTexte{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSetCouleurTexte[]{}": {
+      "command": "fastSetCouleurTexte[]{}",
+      "snippet": "fastSetCouleurTexte[${2:type}]{${1:color%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSetCouleurFond{}": {
+      "command": "fastSetCouleurFond{}",
+      "snippet": "fastSetCouleurFond{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSetCouleurFond[]{}": {
+      "command": "fastSetCouleurFond[]{}",
+      "snippet": "fastSetCouleurFond[${2:type}]{${1:color%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSetCouleurConnecteurs{}": {
+      "command": "fastSetCouleurConnecteurs{}",
+      "snippet": "fastSetCouleurConnecteurs{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSetCouleurConnecteurs[]{}": {
+      "command": "fastSetCouleurConnecteurs[]{}",
+      "snippet": "fastSetCouleurConnecteurs[${2:type}]{${1:color%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSetCouleurTraits{}": {
+      "command": "fastSetCouleurTraits{}",
+      "snippet": "fastSetCouleurTraits{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSetCouleurTraits[]{}": {
+      "command": "fastSetCouleurTraits[]{}",
+      "snippet": "fastSetCouleurTraits[${2:type}]{${1:color%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastAvanceColonne": {
+      "command": "fastAvanceColonne",
+      "snippet": "fastAvanceColonne",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastEnregistreMinimum": {
+      "command": "fastEnregistreMinimum",
+      "snippet": "fastEnregistreMinimum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastFSStyle": {
+      "command": "fastFSStyle",
+      "snippet": "fastFSStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastFSarrondi": {
+      "command": "fastFSarrondi",
+      "snippet": "fastFSarrondi",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastFStexteStyle": {
+      "command": "fastFStexteStyle",
+      "snippet": "fastFStexteStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastFTStyle": {
+      "command": "fastFTStyle",
+      "snippet": "fastFTStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastFTarrondi": {
+      "command": "fastFTarrondi",
+      "snippet": "fastFTarrondi",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastFTtexteStyle": {
+      "command": "fastFTtexteStyle",
+      "snippet": "fastFTtexteStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastFVStyle": {
+      "command": "fastFVStyle",
+      "snippet": "fastFVStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastFVtexteStyle": {
+      "command": "fastFVtexteStyle",
+      "snippet": "fastFVtexteStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastReculeColonne": {
+      "command": "fastReculeColonne",
+      "snippet": "fastReculeColonne",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSTStyle": {
+      "command": "fastSTStyle",
+      "snippet": "fastSTStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSTarrondi": {
+      "command": "fastSTarrondi",
+      "snippet": "fastSTarrondi",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastSTtexteStyle": {
+      "command": "fastSTtexteStyle",
+      "snippet": "fastSTtexteStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastTraceConnecteurs": {
+      "command": "fastTraceConnecteurs",
+      "snippet": "fastTraceConnecteurs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fastTraceConnecteurs[]": {
+      "command": "fastTraceConnecteurs[]",
+      "snippet": "fastTraceConnecteurs[${1:option}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "posX": {
+      "command": "posX",
+      "snippet": "posX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thecptAbscisse": {
+      "command": "thecptAbscisse",
+      "snippet": "thecptAbscisse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thecptAbscisseParent": {
+      "command": "thecptAbscisseParent",
+      "snippet": "thecptAbscisseParent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thecptBoite": {
+      "command": "thecptBoite",
+      "snippet": "thecptBoite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ttt": {
+      "command": "ttt",
+      "snippet": "ttt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "fast{}": {
+      "name": "fast",
+      "detail": "fast{}",
+      "snippet": "{${1:Fonction de Service%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "raccourcis"
+  ]
+}

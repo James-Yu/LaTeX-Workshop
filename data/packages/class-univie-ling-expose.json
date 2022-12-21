@@ -1,0 +1,916 @@
+{
+  "includes": [
+    "class-scrartcl",
+    "array",
+    "translator",
+    "fontenc",
+    "mathptmx",
+    "uarial",
+    "sourcecodepro",
+    "url",
+    "geometry",
+    "setspace",
+    "scrlayer-scrpage",
+    "microtype",
+    "csquotes",
+    "graphicx",
+    "datetime2",
+    "covington",
+    "caption",
+    "ragged2e",
+    "biblatex",
+    "varioref",
+    "prettyref",
+    "draftwatermark",
+    "draftwatermark",
+    "draftwatermark",
+    "polyglossia",
+    "fontspec",
+    "polyglossia",
+    "fontspec",
+    "fontspec"
+  ],
+  "cmds": {
+    "foreverunspace": {
+      "command": "foreverunspace",
+      "snippet": "foreverunspace",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "printtexte{}": {
+      "command": "printtexte{}",
+      "snippet": "printtexte{${1:text}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "printtexte[]{}": {
+      "command": "printtexte[]{}",
+      "snippet": "printtexte[${2:format}]{${1:text}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "maxprtauth": {
+      "command": "maxprtauth",
+      "snippet": "maxprtauth",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "apanum{}": {
+      "command": "apanum{}",
+      "snippet": "apanum{${1:num}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mkdaterangeapalong{}": {
+      "command": "mkdaterangeapalong{}",
+      "snippet": "mkdaterangeapalong{${1:datetype}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mkdaterangeapalongextra{}": {
+      "command": "mkdaterangeapalongextra{}",
+      "snippet": "mkdaterangeapalongextra{${1:datetype}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "begrelateddelimcommenton": {
+      "command": "begrelateddelimcommenton",
+      "snippet": "begrelateddelimcommenton",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "begrelateddelimreviewof": {
+      "command": "begrelateddelimreviewof",
+      "snippet": "begrelateddelimreviewof",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "begrelateddelimreprintfrom": {
+      "command": "begrelateddelimreprintfrom",
+      "snippet": "begrelateddelimreprintfrom",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "urldatecomma": {
+      "command": "urldatecomma",
+      "snippet": "urldatecomma",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "apashortdash": {
+      "command": "apashortdash",
+      "snippet": "apashortdash",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citeresetapa": {
+      "command": "citeresetapa",
+      "snippet": "citeresetapa",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fullcitebib[][]{}": {
+      "command": "fullcitebib[][]{}",
+      "snippet": "fullcitebib[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fullcitebib[]{}": {
+      "command": "fullcitebib[]{}",
+      "snippet": "fullcitebib[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fullcitebib{}": {
+      "command": "fullcitebib{}",
+      "snippet": "fullcitebib{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nptextcite[][]{}": {
+      "command": "nptextcite[][]{}",
+      "snippet": "nptextcite[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nptextcite[]{}": {
+      "command": "nptextcite[]{}",
+      "snippet": "nptextcite[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nptextcite{}": {
+      "command": "nptextcite{}",
+      "snippet": "nptextcite{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nptextcites{}{}": {
+      "command": "nptextcites{}{}",
+      "snippet": "nptextcites{${1:bibid}}{${2:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nptextcites[]{}[]{}": {
+      "command": "nptextcites[]{}[]{}",
+      "snippet": "nptextcites[${3:pre}]{${1:bibid}}[${4:pre}]{${2:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nptextcites[][]{}[][]{}": {
+      "command": "nptextcites[][]{}[][]{}",
+      "snippet": "nptextcites[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citet[][]{}": {
+      "command": "citet[][]{}",
+      "snippet": "citet[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citet[]{}": {
+      "command": "citet[]{}",
+      "snippet": "citet[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citet{}": {
+      "command": "citet{}",
+      "snippet": "citet{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citet*[][]{}": {
+      "command": "citet*[][]{}",
+      "snippet": "citet*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citet*[]{}": {
+      "command": "citet*[]{}",
+      "snippet": "citet*[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citet*{}": {
+      "command": "citet*{}",
+      "snippet": "citet*{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citep[][]{}": {
+      "command": "citep[][]{}",
+      "snippet": "citep[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citep[]{}": {
+      "command": "citep[]{}",
+      "snippet": "citep[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citep{}": {
+      "command": "citep{}",
+      "snippet": "citep{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citep*[][]{}": {
+      "command": "citep*[][]{}",
+      "snippet": "citep*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citep*[]{}": {
+      "command": "citep*[]{}",
+      "snippet": "citep*[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citep*{}": {
+      "command": "citep*{}",
+      "snippet": "citep*{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citealt[][]{}": {
+      "command": "citealt[][]{}",
+      "snippet": "citealt[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citealt[]{}": {
+      "command": "citealt[]{}",
+      "snippet": "citealt[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citealt{}": {
+      "command": "citealt{}",
+      "snippet": "citealt{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citealt*[][]{}": {
+      "command": "citealt*[][]{}",
+      "snippet": "citealt*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citealt*[]{}": {
+      "command": "citealt*[]{}",
+      "snippet": "citealt*[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citealt*{}": {
+      "command": "citealt*{}",
+      "snippet": "citealt*{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citealp[][]{}": {
+      "command": "citealp[][]{}",
+      "snippet": "citealp[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citealp[]{}": {
+      "command": "citealp[]{}",
+      "snippet": "citealp[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citealp{}": {
+      "command": "citealp{}",
+      "snippet": "citealp{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citealp*[][]{}": {
+      "command": "citealp*[][]{}",
+      "snippet": "citealp*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citealp*[]{}": {
+      "command": "citealp*[]{}",
+      "snippet": "citealp*[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citealp*{}": {
+      "command": "citealp*{}",
+      "snippet": "citealp*{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citeauthor[][]{}": {
+      "command": "citeauthor[][]{}",
+      "snippet": "citeauthor[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citeauthor[]{}": {
+      "command": "citeauthor[]{}",
+      "snippet": "citeauthor[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citeauthor{}": {
+      "command": "citeauthor{}",
+      "snippet": "citeauthor{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citeauthor*[][]{}": {
+      "command": "citeauthor*[][]{}",
+      "snippet": "citeauthor*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citeauthor*[]{}": {
+      "command": "citeauthor*[]{}",
+      "snippet": "citeauthor*[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citeauthor*{}": {
+      "command": "citeauthor*{}",
+      "snippet": "citeauthor*{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citeyearpar[][]{}": {
+      "command": "citeyearpar[][]{}",
+      "snippet": "citeyearpar[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citeyearpar[]{}": {
+      "command": "citeyearpar[]{}",
+      "snippet": "citeyearpar[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citeyearpar{}": {
+      "command": "citeyearpar{}",
+      "snippet": "citeyearpar{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citet[][]{}": {
+      "command": "Citet[][]{}",
+      "snippet": "Citet[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citet[]{}": {
+      "command": "Citet[]{}",
+      "snippet": "Citet[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citet{}": {
+      "command": "Citet{}",
+      "snippet": "Citet{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citet*[][]{}": {
+      "command": "Citet*[][]{}",
+      "snippet": "Citet*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citet*[]{}": {
+      "command": "Citet*[]{}",
+      "snippet": "Citet*[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citet*{}": {
+      "command": "Citet*{}",
+      "snippet": "Citet*{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citep[][]{}": {
+      "command": "Citep[][]{}",
+      "snippet": "Citep[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citep[]{}": {
+      "command": "Citep[]{}",
+      "snippet": "Citep[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citep{}": {
+      "command": "Citep{}",
+      "snippet": "Citep{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citep*[][]{}": {
+      "command": "Citep*[][]{}",
+      "snippet": "Citep*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citep*[]{}": {
+      "command": "Citep*[]{}",
+      "snippet": "Citep*[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citep*{}": {
+      "command": "Citep*{}",
+      "snippet": "Citep*{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citealt[][]{}": {
+      "command": "Citealt[][]{}",
+      "snippet": "Citealt[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citealt[]{}": {
+      "command": "Citealt[]{}",
+      "snippet": "Citealt[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citealt{}": {
+      "command": "Citealt{}",
+      "snippet": "Citealt{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citealt*[][]{}": {
+      "command": "Citealt*[][]{}",
+      "snippet": "Citealt*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citealt*[]{}": {
+      "command": "Citealt*[]{}",
+      "snippet": "Citealt*[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citealt*{}": {
+      "command": "Citealt*{}",
+      "snippet": "Citealt*{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citealp[][]{}": {
+      "command": "Citealp[][]{}",
+      "snippet": "Citealp[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citealp[]{}": {
+      "command": "Citealp[]{}",
+      "snippet": "Citealp[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citealp{}": {
+      "command": "Citealp{}",
+      "snippet": "Citealp{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citealp*[][]{}": {
+      "command": "Citealp*[][]{}",
+      "snippet": "Citealp*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citealp*[]{}": {
+      "command": "Citealp*[]{}",
+      "snippet": "Citealp*[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citealp*{}": {
+      "command": "Citealp*{}",
+      "snippet": "Citealp*{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citefullauthor[][]{}": {
+      "command": "citefullauthor[][]{}",
+      "snippet": "citefullauthor[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citefullauthor[]{}": {
+      "command": "citefullauthor[]{}",
+      "snippet": "citefullauthor[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citefullauthor{}": {
+      "command": "citefullauthor{}",
+      "snippet": "citefullauthor{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citefullauthor[][]{}": {
+      "command": "Citefullauthor[][]{}",
+      "snippet": "Citefullauthor[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citefullauthor[]{}": {
+      "command": "Citefullauthor[]{}",
+      "snippet": "Citefullauthor[${2:postnote}]{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Citefullauthor{}": {
+      "command": "Citefullauthor{}",
+      "snippet": "Citefullauthor{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citetext{}": {
+      "command": "citetext{}",
+      "snippet": "citetext{${1:text}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defcitealias{}{}": {
+      "command": "defcitealias{}{}",
+      "snippet": "defcitealias{${1:bibid}}{${2:alias}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citetalias{}": {
+      "command": "citetalias{}",
+      "snippet": "citetalias{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "citepalias{}": {
+      "command": "citepalias{}",
+      "snippet": "citepalias{${1:bibid}}",
+      "option": "apa=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "studienkennzahl{}": {
+      "command": "studienkennzahl{}",
+      "snippet": "studienkennzahl{${1:degree program code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "studienrichtung{}": {
+      "command": "studienrichtung{}",
+      "snippet": "studienrichtung{${1:field of study%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "supervisor{}": {
+      "command": "supervisor{}",
+      "snippet": "supervisor{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cosupervisor{}": {
+      "command": "cosupervisor{}",
+      "snippet": "cosupervisor{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "advisor{}": {
+      "command": "advisor{}",
+      "snippet": "advisor{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Expression{}": {
+      "command": "Expression{}",
+      "snippet": "Expression{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Meaning{}": {
+      "command": "Meaning{}",
+      "snippet": "Meaning{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Concept{}": {
+      "command": "Concept{}",
+      "snippet": "Concept{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "footnumwidth": {
+      "command": "footnumwidth",
+      "snippet": "footnumwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lecsemshort": {
+      "command": "lecsemshort",
+      "snippet": "lecsemshort",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lecsemverb": {
+      "command": "lecsemverb",
+      "snippet": "lecsemverb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "origtableofcontents": {
+      "command": "origtableofcontents",
+      "snippet": "origtableofcontents",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "maxfn": {
+      "command": "maxfn",
+      "snippet": "maxfn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "urlprefix": {
+      "command": "urlprefix",
+      "snippet": "urlprefix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DH": {
+      "command": "DH",
+      "snippet": "DH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dh": {
+      "command": "dh",
+      "snippet": "dh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dj": {
+      "command": "dj",
+      "snippet": "dj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DJ": {
+      "command": "DJ",
+      "snippet": "DJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetleft": {
+      "command": "guillemetleft",
+      "snippet": "guillemetleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetright": {
+      "command": "guillemetright",
+      "snippet": "guillemetright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotleft": {
+      "command": "guillemotleft",
+      "snippet": "guillemotleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotright": {
+      "command": "guillemotright",
+      "snippet": "guillemotright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglleft": {
+      "command": "guilsinglleft",
+      "snippet": "guilsinglleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglright": {
+      "command": "guilsinglright",
+      "snippet": "guilsinglright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hwithstroke": {
+      "command": "Hwithstroke",
+      "snippet": "Hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hwithstroke": {
+      "command": "hwithstroke",
+      "snippet": "hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "k{}": {
+      "command": "k{}",
+      "snippet": "k{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NG": {
+      "command": "NG",
+      "snippet": "NG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ng": {
+      "command": "ng",
+      "snippet": "ng",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotedblbase": {
+      "command": "quotedblbase",
+      "snippet": "quotedblbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotesinglbase": {
+      "command": "quotesinglbase",
+      "snippet": "quotesinglbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textogonekcentered{}": {
+      "command": "textogonekcentered{}",
+      "snippet": "textogonekcentered{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textquotedbl": {
+      "command": "textquotedbl",
+      "snippet": "textquotedbl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "th": {
+      "command": "th",
+      "snippet": "th",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TH": {
+      "command": "TH",
+      "snippet": "TH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mkbibdateunified{}{}{}": {
+      "command": "mkbibdateunified{}{}{}",
+      "snippet": "mkbibdateunified{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": [
+    "apamaxprtauth=",
+    "apamaxprtauth=",
+    "issueeditor"
+  ]
+}

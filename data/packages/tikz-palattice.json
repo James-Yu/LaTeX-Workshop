@@ -1,0 +1,699 @@
+{
+  "includes": [
+    "tikz",
+    "ifthen",
+    "siunitx",
+    "xargs",
+    "etoolbox",
+    "iflang",
+    "tikzlibrarycalc",
+    "tikzlibrarypositioning",
+    "tikzlibraryfit",
+    "tikzlibrarychains"
+  ],
+  "cmds": {
+    "drift{}": {
+      "command": "drift{}",
+      "snippet": "drift{${1:length%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drift{}[]": {
+      "command": "drift{}[]",
+      "snippet": "drift{${1:length%plain}}[${2:name}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dipole{}{}{}": {
+      "command": "dipole{}{}{}",
+      "snippet": "dipole{${1:name}}{${2:arc length}}{${3:bending angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dipole{}{}{}[]": {
+      "command": "dipole{}{}{}[]",
+      "snippet": "dipole{${1:name}}{${2:arc length}}{${3:bending angle}}[${4:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dipole{}{}{}[][]": {
+      "command": "dipole{}{}{}[][]",
+      "snippet": "dipole{${1:name}}{${2:arc length}}{${3:bending angle}}[${4:type}][${5:thickness}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quadrupole{}{}": {
+      "command": "quadrupole{}{}",
+      "snippet": "quadrupole{${1:name}}{${2:length%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quadrupole{}{}[]": {
+      "command": "quadrupole{}{}[]",
+      "snippet": "quadrupole{${1:name}}{${2:length%plain}}[${3:thickness}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sextupole{}{}": {
+      "command": "sextupole{}{}",
+      "snippet": "sextupole{${1:name}}{${2:length%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sextupole{}{}[]": {
+      "command": "sextupole{}{}[]",
+      "snippet": "sextupole{${1:name}}{${2:length%plain}}[${3:thickness}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "corrector{}{}": {
+      "command": "corrector{}{}",
+      "snippet": "corrector{${1:name}}{${2:length%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "corrector{}{}[]": {
+      "command": "corrector{}{}[]",
+      "snippet": "corrector{${1:name}}{${2:length%plain}}[${3:thickness}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kicker{}{}": {
+      "command": "kicker{}{}",
+      "snippet": "kicker{${1:name}}{${2:length%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kicker{}{}[]": {
+      "command": "kicker{}{}[]",
+      "snippet": "kicker{${1:name}}{${2:length%plain}}[${3:thickness}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cavity{}{}": {
+      "command": "cavity{}{}",
+      "snippet": "cavity{${1:name}}{${2:length%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cavity{}{}[]": {
+      "command": "cavity{}{}[]",
+      "snippet": "cavity{${1:name}}{${2:length%plain}}[${3:thickness}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solenoid{}{}": {
+      "command": "solenoid{}{}",
+      "snippet": "solenoid{${1:name}}{${2:length%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solenoid{}{}[]": {
+      "command": "solenoid{}{}[]",
+      "snippet": "solenoid{${1:name}}{${2:length%plain}}[${3:thickness}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "beamdump{}{}": {
+      "command": "beamdump{}{}",
+      "snippet": "beamdump{${1:name}}{${2:length%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "beamdump{}{}[]": {
+      "command": "beamdump{}{}[]",
+      "snippet": "beamdump{${1:name}}{${2:length%plain}}[${3:thickness}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "source{}{}": {
+      "command": "source{}{}",
+      "snippet": "source{${1:name}}{${2:length%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "source{}{}[]": {
+      "command": "source{}{}[]",
+      "snippet": "source{${1:name}}{${2:length%plain}}[${3:thickness}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "screen{}": {
+      "command": "screen{}",
+      "snippet": "screen{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "screen{}[]": {
+      "command": "screen{}[]",
+      "snippet": "screen{${1:name}}[${2:length%plain}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "valve{}": {
+      "command": "valve{}",
+      "snippet": "valve{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "valve{}[]": {
+      "command": "valve{}[]",
+      "snippet": "valve{${1:name}}[${2:length%plain}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marker{}": {
+      "command": "marker{}",
+      "snippet": "marker{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marker{}[]": {
+      "command": "marker{}[]",
+      "snippet": "marker{${1:name}}[${2:length%plain}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "start{}": {
+      "command": "start{}",
+      "snippet": "start{${1:coordinate}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rotate{}": {
+      "command": "rotate{}",
+      "snippet": "rotate{${1:degrees}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setangle{}": {
+      "command": "setangle{}",
+      "snippet": "setangle{${1:degrees}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "goto{}": {
+      "command": "goto{}",
+      "snippet": "goto{${1:coordinate}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawrule{}": {
+      "command": "drawrule{}",
+      "snippet": "drawrule{${1:coordinate}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawrule{}[]": {
+      "command": "drawrule{}[]",
+      "snippet": "drawrule{${1:coordinate}}[${2:tick distance}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawrule{}[][]": {
+      "command": "drawrule{}[][]",
+      "snippet": "drawrule{${1:coordinate}}[${2:tick distance}][${3:scale}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawrule{}[][][]": {
+      "command": "drawrule{}[][][]",
+      "snippet": "drawrule{${1:coordinate}}[${2:tick distance}][${3:scale}][${4:height%plain}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "legend{}": {
+      "command": "legend{}",
+      "snippet": "legend{${1:coordinate}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "legend{}[]": {
+      "command": "legend{}[]",
+      "snippet": "legend{${1:coordinate}}[${2:scale}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "completelegend{}": {
+      "command": "completelegend{}",
+      "snippet": "completelegend{${1:coordinate}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "completelegend{}[]": {
+      "command": "completelegend{}[]",
+      "snippet": "completelegend{${1:coordinate}}[${2:scale}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setlegendtext{}{}": {
+      "command": "setlegendtext{}{}",
+      "snippet": "setlegendtext{${1:type}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addlegendentry{}{}": {
+      "command": "addlegendentry{}{}",
+      "snippet": "addlegendentry{${1:text}}{${2:TikZ options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "turnlabels": {
+      "command": "turnlabels",
+      "snippet": "turnlabels",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "northlabels": {
+      "command": "northlabels",
+      "snippet": "northlabels",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "southlabels": {
+      "command": "southlabels",
+      "snippet": "southlabels",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rotatelabels{}": {
+      "command": "rotatelabels{}",
+      "snippet": "rotatelabels{${1:degrees}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rotatelabels{}[]": {
+      "command": "rotatelabels{}[]",
+      "snippet": "rotatelabels{${1:degrees}}[${2:anchor}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setlabeldistance{}": {
+      "command": "setlabeldistance{}",
+      "snippet": "setlabeldistance{${1:distance}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resetlabeldistance": {
+      "command": "resetlabeldistance",
+      "snippet": "resetlabeldistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setlabelfont{}": {
+      "command": "setlabelfont{}",
+      "snippet": "setlabelfont{${1:fontsize cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setlinecolor{}{}": {
+      "command": "setlinecolor{}{}",
+      "snippet": "setlinecolor{${1:type}}{${2:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resetlinecolor{}": {
+      "command": "resetlinecolor{}",
+      "snippet": "resetlinecolor{${1:type}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setelementcolor{}{}": {
+      "command": "setelementcolor{}{}",
+      "snippet": "setelementcolor{${1:type}}{${2:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resetelementcolor{}": {
+      "command": "resetelementcolor{}",
+      "snippet": "resetelementcolor{${1:type}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setlabelcolor{}": {
+      "command": "setlabelcolor{}",
+      "snippet": "setlabelcolor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "savecoordinate{}": {
+      "command": "savecoordinate{}",
+      "snippet": "savecoordinate{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "savecoordinate{}[]": {
+      "command": "savecoordinate{}[]",
+      "snippet": "savecoordinate{${1:name}}[${2:position}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "angleinc": {
+      "command": "angleinc",
+      "snippet": "angleinc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "corners": {
+      "command": "corners",
+      "snippet": "corners",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "declarecoords": {
+      "command": "declarecoords",
+      "snippet": "declarecoords",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dist": {
+      "command": "dist",
+      "snippet": "dist",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "elementheight": {
+      "command": "elementheight",
+      "snippet": "elementheight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "elementlabel{}": {
+      "command": "elementlabel{}",
+      "snippet": "elementlabel{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "elementwidth": {
+      "command": "elementwidth",
+      "snippet": "elementwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "emptycustomlegendkeys": {
+      "command": "emptycustomlegendkeys",
+      "snippet": "emptycustomlegendkeys",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "h": {
+      "command": "h",
+      "snippet": "h",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "h",
+      "documentation": "LATIN SMALL LETTER H"
+    },
+    "iang": {
+      "command": "iang",
+      "snippet": "iang",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iinc": {
+      "command": "iinc",
+      "snippet": "iinc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "jinc": {
+      "command": "jinc",
+      "snippet": "jinc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelanchor": {
+      "command": "labelanchor",
+      "snippet": "labelanchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelang": {
+      "command": "labelang",
+      "snippet": "labelang",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelcolor": {
+      "command": "labelcolor",
+      "snippet": "labelcolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labeldist": {
+      "command": "labeldist",
+      "snippet": "labeldist",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelfont": {
+      "command": "labelfont",
+      "snippet": "labelfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelrot": {
+      "command": "labelrot",
+      "snippet": "labelrot",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "len": {
+      "command": "len",
+      "snippet": "len",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "markerlen": {
+      "command": "markerlen",
+      "snippet": "markerlen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marklabelang": {
+      "command": "marklabelang",
+      "snippet": "marklabelang",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mylist": {
+      "command": "mylist",
+      "snippet": "mylist",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "points": {
+      "command": "points",
+      "snippet": "points",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ra": {
+      "command": "ra",
+      "snippet": "ra",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rectangleelement{}{}{}{}": {
+      "command": "rectangleelement{}{}{}{}",
+      "snippet": "rectangleelement{${1:name}}{${2:length%plain}}{${3:thickness}}{${4:type}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ri": {
+      "command": "ri",
+      "snippet": "ri",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "saveang": {
+      "command": "saveang",
+      "snippet": "saveang",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "savelabeldist": {
+      "command": "savelabeldist",
+      "snippet": "savelabeldist",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "savescal": {
+      "command": "savescal",
+      "snippet": "savescal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scal": {
+      "command": "scal",
+      "snippet": "scal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "straightlength": {
+      "command": "straightlength",
+      "snippet": "straightlength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "updatelabelanchor": {
+      "command": "updatelabelanchor",
+      "snippet": "updatelabelanchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "updatemarkerlabelanchor": {
+      "command": "updatemarkerlabelanchor",
+      "snippet": "updatemarkerlabelanchor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "winkel": {
+      "command": "winkel",
+      "snippet": "winkel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "lattice": {
+      "name": "lattice",
+      "detail": "lattice",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lattice[]": {
+      "name": "lattice",
+      "detail": "lattice[]",
+      "snippet": "[${1:scale}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lattice[][]": {
+      "name": "lattice",
+      "detail": "lattice[][]",
+      "snippet": "[${1:scale}][${2:TikZ options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labeldistance{}": {
+      "name": "labeldistance",
+      "detail": "labeldistance{}",
+      "snippet": "{${1:distance}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fade": {
+      "name": "fade",
+      "detail": "fade",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fade[]": {
+      "name": "fade",
+      "detail": "fade[]",
+      "snippet": "[${1:opacity}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

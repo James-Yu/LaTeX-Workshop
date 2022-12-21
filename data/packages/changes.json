@@ -1,0 +1,417 @@
+{
+  "includes": [
+    "todonotes",
+    "truncate",
+    "ulem",
+    "xcolor",
+    "xkeyval",
+    "xstring",
+    "etoolbox"
+  ],
+  "cmds": {
+    "definechangesauthor[]{}": {
+      "command": "definechangesauthor[]{}",
+      "snippet": "definechangesauthor[${2:keyvals}]{${1:authorid}}",
+      "option": "",
+      "keyvals": [
+        "name=",
+        "color="
+      ],
+      "keyvalindex": 0
+    },
+    "definechangesauthor{}": {
+      "command": "definechangesauthor{}",
+      "snippet": "definechangesauthor{${1:authorid}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "added[]{}": {
+      "command": "added[]{}",
+      "snippet": "added[${2:keyvals}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "id=",
+        "comment="
+      ],
+      "keyvalindex": 0
+    },
+    "added{}": {
+      "command": "added{}",
+      "snippet": "added{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "deleted[]{}": {
+      "command": "deleted[]{}",
+      "snippet": "deleted[${2:keyvals}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "id=",
+        "comment="
+      ],
+      "keyvalindex": 0
+    },
+    "deleted{}": {
+      "command": "deleted{}",
+      "snippet": "deleted{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "replaced[]{}{}": {
+      "command": "replaced[]{}{}",
+      "snippet": "replaced[${3:keyvals}]{${1:new%text}}{${2:old%text}}",
+      "option": "",
+      "keyvals": [
+        "id=",
+        "comment="
+      ],
+      "keyvalindex": 0
+    },
+    "replaced{}{}": {
+      "command": "replaced{}{}",
+      "snippet": "replaced{${1:new%text}}{${2:old%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "highlight[]{}": {
+      "command": "highlight[]{}",
+      "snippet": "highlight[${2:keyvals}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "id=",
+        "comment="
+      ],
+      "keyvalindex": 0
+    },
+    "highlight{}": {
+      "command": "highlight{}",
+      "snippet": "highlight{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "comment[]{}": {
+      "command": "comment[]{}",
+      "snippet": "comment[${2:keyvals}]{${1:text%todo}}",
+      "option": "",
+      "keyvals": [
+        "id="
+      ],
+      "keyvalindex": 0
+    },
+    "comment{}": {
+      "command": "comment{}",
+      "snippet": "comment{${1:text%todo}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listofchanges": {
+      "command": "listofchanges",
+      "snippet": "listofchanges",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listofchanges[]": {
+      "command": "listofchanges[]",
+      "snippet": "listofchanges[${1:keyvals}]",
+      "option": "",
+      "keyvals": [
+        "style=",
+        "title=",
+        "show="
+      ],
+      "keyvalindex": 0
+    },
+    "setaddedmarkup{}": {
+      "command": "setaddedmarkup{}",
+      "snippet": "setaddedmarkup{${1:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setdeletedmarkup{}": {
+      "command": "setdeletedmarkup{}",
+      "snippet": "setdeletedmarkup{${1:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sethighlightmarkup{}": {
+      "command": "sethighlightmarkup{}",
+      "snippet": "sethighlightmarkup{${1:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setcommentmarkup{}": {
+      "command": "setcommentmarkup{}",
+      "snippet": "setcommentmarkup{${1:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setauthormarkup{}": {
+      "command": "setauthormarkup{}",
+      "snippet": "setauthormarkup{${1:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setauthormarkupposition{}": {
+      "command": "setauthormarkupposition{}",
+      "snippet": "setauthormarkupposition{${1:left/right}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setauthormarkuptext{}": {
+      "command": "setauthormarkuptext{}",
+      "snippet": "setauthormarkuptext{${1:id/name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setanonymousname{}": {
+      "command": "setanonymousname{}",
+      "snippet": "setanonymousname{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "settruncatewidth{}": {
+      "command": "settruncatewidth{}",
+      "snippet": "settruncatewidth{${1:width}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setsummarywidth{}": {
+      "command": "setsummarywidth{}",
+      "snippet": "setsummarywidth{${1:width}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setsummarytowidth{}": {
+      "command": "setsummarytowidth{}",
+      "snippet": "setsummarytowidth{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setsocextension{}": {
+      "command": "setsocextension{}",
+      "snippet": "setsocextension{${1:ext}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setlocextension{}": {
+      "command": "setlocextension{}",
+      "snippet": "setlocextension{${1:ext}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dopsvlist": {
+      "command": "dopsvlist",
+      "snippet": "dopsvlist",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "forpsvlist": {
+      "command": "forpsvlist",
+      "snippet": "forpsvlist",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfIsInList{}{}{}{}": {
+      "command": "IfIsInList{}{}{}{}",
+      "snippet": "IfIsInList{${1:arg}}{${2:item1|item2|...}}{${3:true}}{${4:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfIsColored{}{}": {
+      "command": "IfIsColored{}{}",
+      "snippet": "IfIsColored{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfIsEmpty{}{}{}": {
+      "command": "IfIsEmpty{}{}{}",
+      "snippet": "IfIsEmpty{${1:arg}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfIsAnonymous{}{}{}": {
+      "command": "IfIsAnonymous{}{}{}",
+      "snippet": "IfIsAnonymous{${1:arg}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfIsAuthorEmptyAtPosition{}{}{}{}": {
+      "command": "IfIsAuthorEmptyAtPosition{}{}{}{}",
+      "snippet": "IfIsAuthorEmptyAtPosition{${1:arg}}{${2:position}}{${3:true}}{${4:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfIsAuthorOutputEmpty{}{}{}": {
+      "command": "IfIsAuthorOutputEmpty{}{}{}",
+      "snippet": "IfIsAuthorOutputEmpty{${1:arg}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listofchangesname": {
+      "command": "listofchangesname",
+      "snippet": "listofchangesname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "summaryofchangesname": {
+      "command": "summaryofchangesname",
+      "snippet": "summaryofchangesname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "compactsummaryofchangesname": {
+      "command": "compactsummaryofchangesname",
+      "snippet": "compactsummaryofchangesname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changesaddedname": {
+      "command": "changesaddedname",
+      "snippet": "changesaddedname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changesdeletedname": {
+      "command": "changesdeletedname",
+      "snippet": "changesdeletedname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changesreplacedname": {
+      "command": "changesreplacedname",
+      "snippet": "changesreplacedname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changeshighlightname": {
+      "command": "changeshighlightname",
+      "snippet": "changeshighlightname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changescommentname": {
+      "command": "changescommentname",
+      "snippet": "changescommentname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changesauthorname": {
+      "command": "changesauthorname",
+      "snippet": "changesauthorname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changesanonymousname": {
+      "command": "changesanonymousname",
+      "snippet": "changesanonymousname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changesnochanges": {
+      "command": "changesnochanges",
+      "snippet": "changesnochanges",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changesnoloc": {
+      "command": "changesnoloc",
+      "snippet": "changesnoloc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changesnosoc": {
+      "command": "changesnosoc",
+      "snippet": "changesnosoc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theauthorcommentcount": {
+      "command": "theauthorcommentcount",
+      "snippet": "theauthorcommentcount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Changestruncatewidth": {
+      "command": "Changestruncatewidth",
+      "snippet": "Changestruncatewidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ChangesListline{}{}{}{}": {
+      "command": "ChangesListline{}{}{}{}",
+      "snippet": "ChangesListline{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "origcontentsline{}{}{}{}": {
+      "command": "origcontentsline{}{}{}{}",
+      "snippet": "origcontentsline{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": [
+    "draft",
+    "final",
+    "commandnameprefix=",
+    "markup=",
+    "addedmarkup=",
+    "deletedmarkup=",
+    "highlightmarkup=",
+    "commentmarkup=",
+    "authormarkup=",
+    "authormarkupposition=",
+    "authormarkuptext=",
+    "defaultcolor=",
+    "todonotes={",
+    "truncate={",
+    "ulem={",
+    "xcolor={"
+  ]
+}

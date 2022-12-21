@@ -1,6 +1,36 @@
 {
-  "includes": [],
+  "includes": [
+    "iftex",
+    "xcolor",
+    "pgffor",
+    "pst-calculate",
+    "luatex",
+    "xetex",
+    "colortbl",
+    "pdfcolmk"
+  ],
   "cmds": {
+    "addtopsstyle{}{}": {
+      "command": "addtopsstyle{}{}",
+      "snippet": "addtopsstyle{${1:style}}{${2:keyvals}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AltClipMode": {
+      "command": "AltClipMode",
+      "snippet": "AltClipMode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "altcolormode": {
+      "command": "altcolormode",
+      "snippet": "altcolormode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "arrows{}": {
       "command": "arrows{}",
       "snippet": "arrows{${1:arrows}}",
@@ -8,9 +38,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "black": {
+      "command": "black",
+      "snippet": "black",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blue": {
+      "command": "blue",
+      "snippet": "blue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Cartesian": {
+      "command": "Cartesian",
+      "snippet": "Cartesian",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "clipbox[]{}": {
       "command": "clipbox[]{}",
-      "snippet": "clipbox[${2:dim}]{${1:stuff}}",
+      "snippet": "clipbox[${2:dim%l}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -31,7 +82,7 @@
     },
     "closedshadow[]": {
       "command": "closedshadow[]",
-      "snippet": "closedshadow[${1:par}]",
+      "snippet": "closedshadow[${1:keyvals}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -46,6 +97,20 @@
     "code{}": {
       "command": "code{}",
       "snippet": "code{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cyan": {
+      "command": "cyan",
+      "snippet": "cyan",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "darkgray": {
+      "command": "darkgray",
+      "snippet": "darkgray",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -71,6 +136,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "DontKillGlue": {
+      "command": "DontKillGlue",
+      "snippet": "DontKillGlue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "endoverlaybox": {
       "command": "endoverlaybox",
       "snippet": "endoverlaybox",
@@ -81,6 +153,13 @@
     "endpsclip": {
       "command": "endpsclip",
       "snippet": "endpsclip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endpspicture": {
+      "command": "endpspicture",
+      "snippet": "endpspicture",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -108,7 +187,21 @@
     },
     "fill[]": {
       "command": "fill[]",
-      "snippet": "fill[${1:par}]",
+      "snippet": "fill[${1:keyvals}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gray": {
+      "command": "gray",
+      "snippet": "gray",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "green": {
+      "command": "green",
+      "snippet": "green",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -123,6 +216,62 @@
     "gsave": {
       "command": "gsave",
       "snippet": "gsave",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifpsmathbox": {
+      "command": "ifpsmathbox",
+      "snippet": "ifpsmathbox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifPSTlualatex": {
+      "command": "ifPSTlualatex",
+      "snippet": "ifPSTlualatex",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifPSTricks": {
+      "command": "ifPSTricks",
+      "snippet": "ifPSTricks",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifpstUndefined": {
+      "command": "ifpstUndefined",
+      "snippet": "ifpstUndefined",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifshowgrid": {
+      "command": "ifshowgrid",
+      "snippet": "ifshowgrid",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KillGlue": {
+      "command": "KillGlue",
+      "snippet": "KillGlue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lightgray": {
+      "command": "lightgray",
+      "snippet": "lightgray",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "magenta": {
+      "command": "magenta",
+      "snippet": "magenta",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -148,6 +297,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "newcmykcolorx": {
+      "command": "newcmykcolorx",
+      "snippet": "newcmykcolorx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "newgray{}{}": {
       "command": "newgray{}{}",
       "snippet": "newgray{${1:color}}{${2:num}}",
@@ -162,6 +318,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "newhsbcolorx": {
+      "command": "newhsbcolorx",
+      "snippet": "newhsbcolorx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "newpath": {
       "command": "newpath",
       "snippet": "newpath",
@@ -169,16 +332,44 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "newpsfontdot{}[]{}{}": {
+      "command": "newpsfontdot{}[]{}{}",
+      "snippet": "newpsfontdot{${1:arg1}}[${2:arg2}]{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newpsfontdotH{}[]{}{}{}": {
+      "command": "newpsfontdotH{}[]{}{}{}",
+      "snippet": "newpsfontdotH{${1:arg1}}[${2:arg2}]{${3:arg3}}{${4:arg4}}{${5:arg5}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "newpsobject{}{}{}": {
       "command": "newpsobject{}{}{}",
-      "snippet": "newpsobject{${1:name}}{${2:object}}{${3:kv-list}}",
+      "snippet": "newpsobject{${1:name}}{${2:object}}{${3:keyvals}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewPsput": {
+      "command": "NewPsput",
+      "snippet": "NewPsput",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newpsstyle[]{}{}": {
+      "command": "newpsstyle[]{}{}",
+      "snippet": "newpsstyle[${3:package}]{${1:name}}{${2:keyvals}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "newpsstyle{}{}": {
       "command": "newpsstyle{}{}",
-      "snippet": "newpsstyle{${1:name}}{${2:kv-list}}",
+      "snippet": "newpsstyle{${1:name}}{${2:keyvals}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -190,9 +381,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "newrgbcolorx": {
+      "command": "newrgbcolorx",
+      "snippet": "newrgbcolorx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "NormalCoor": {
       "command": "NormalCoor",
       "snippet": "NormalCoor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oldpsput": {
+      "command": "oldpsput",
+      "snippet": "oldpsput",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "OldPsput": {
+      "command": "OldPsput",
+      "snippet": "OldPsput",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -206,7 +418,7 @@
     },
     "openshadow[]": {
       "command": "openshadow[]",
-      "snippet": "openshadow[${1:par}]",
+      "snippet": "openshadow[${1:keyvals}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -218,6 +430,27 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "pgfforeach": {
+      "command": "pgfforeach",
+      "snippet": "pgfforeach",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pgfforeach{}": {
+      "command": "pgfforeach{}",
+      "snippet": "pgfforeach{${1:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Polar": {
+      "command": "Polar",
+      "snippet": "Polar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "psaddtolength{}{}": {
       "command": "psaddtolength{}{}",
       "snippet": "psaddtolength{${1:cmd}}{${2:dim}}",
@@ -225,23 +458,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pscirclebox[]{}": {
-      "command": "pscirclebox[]{}",
-      "snippet": "pscirclebox[${2:par}]{${1:stuff}}",
+    "psarrowlinestyle": {
+      "command": "psarrowlinestyle",
+      "snippet": "psarrowlinestyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psbordercolor": {
+      "command": "psbordercolor",
+      "snippet": "psbordercolor",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "pscirclebox*[]{}": {
       "command": "pscirclebox*[]{}",
-      "snippet": "pscirclebox*[${2:par}]{${1:stuff}}",
+      "snippet": "pscirclebox*[${2:keyvals}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pscirclebox{}": {
-      "command": "pscirclebox{}",
-      "snippet": "pscirclebox{${1:stuff}}",
+    "psCirclebox*[]{}": {
+      "command": "psCirclebox*[]{}",
+      "snippet": "psCirclebox*[${2:keyvals}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -253,6 +493,41 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "psCirclebox*{}": {
+      "command": "psCirclebox*{}",
+      "snippet": "psCirclebox*{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pscirclebox[]{}": {
+      "command": "pscirclebox[]{}",
+      "snippet": "pscirclebox[${2:keyvals}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psCirclebox[]{}": {
+      "command": "psCirclebox[]{}",
+      "snippet": "psCirclebox[${2:keyvals}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pscirclebox{}": {
+      "command": "pscirclebox{}",
+      "snippet": "pscirclebox{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psCirclebox{}": {
+      "command": "psCirclebox{}",
+      "snippet": "psCirclebox{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "psclip{}": {
       "command": "psclip{}",
       "snippet": "psclip{${1:graphics}}",
@@ -260,9 +535,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pscustom{}": {
-      "command": "pscustom{}",
-      "snippet": "pscustom{${1:commands}}",
+    "pscoor": {
+      "command": "pscoor",
+      "snippet": "pscoor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pscustom*[]{}": {
+      "command": "pscustom*[]{}",
+      "snippet": "pscustom*[${2:keyvals}]{${1:commands}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -276,35 +558,28 @@
     },
     "pscustom[]{}": {
       "command": "pscustom[]{}",
-      "snippet": "pscustom[${2:par}]{${1:commands}}",
+      "snippet": "pscustom[${2:keyvals}]{${1:commands}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pscustom*[]{}": {
-      "command": "pscustom*[]{}",
-      "snippet": "pscustom*[${2:par}]{${1:commands}}",
+    "pscustom{}": {
+      "command": "pscustom{}",
+      "snippet": "pscustom{${1:commands}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "psdblframebox[]{}": {
-      "command": "psdblframebox[]{}",
-      "snippet": "psdblframebox[${2:par}]{${1:stuff}}",
+    "psdashcolor": {
+      "command": "psdashcolor",
+      "snippet": "psdashcolor",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "psdblframebox*[]{}": {
       "command": "psdblframebox*[]{}",
-      "snippet": "psdblframebox*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "psdblframebox{}": {
-      "command": "psdblframebox{}",
-      "snippet": "psdblframebox{${1:stuff}}",
+      "snippet": "psdblframebox*[${2:keyvals}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -316,23 +591,37 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "psdiabox[]{}": {
-      "command": "psdiabox[]{}",
-      "snippet": "psdiabox[${2:par}]{${1:stuff}}",
+    "psdblframebox[]{}": {
+      "command": "psdblframebox[]{}",
+      "snippet": "psdblframebox[${2:keyvals}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psdblframebox{}": {
+      "command": "psdblframebox{}",
+      "snippet": "psdblframebox{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psDEBUG[]{}": {
+      "command": "psDEBUG[]{}",
+      "snippet": "psDEBUG[${2:opt}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psDEBUG{}": {
+      "command": "psDEBUG{}",
+      "snippet": "psDEBUG{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "psdiabox*[]{}": {
       "command": "psdiabox*[]{}",
-      "snippet": "psdiabox*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "psdiabox{}": {
-      "command": "psdiabox{}",
-      "snippet": "psdiabox{${1:stuff}}",
+      "snippet": "psdiabox*[${2:keyvals}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -344,16 +633,72 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "psframebox[]{}": {
-      "command": "psframebox[]{}",
-      "snippet": "psframebox[${2:par}]{${1:stuff}}",
+    "psdiabox[]{}": {
+      "command": "psdiabox[]{}",
+      "snippet": "psdiabox[${2:keyvals}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psdiabox{}": {
+      "command": "psdiabox{}",
+      "snippet": "psdiabox{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psdoublecolor": {
+      "command": "psdoublecolor",
+      "snippet": "psdoublecolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psdoublesep": {
+      "command": "psdoublesep",
+      "snippet": "psdoublesep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psfillcolor": {
+      "command": "psfillcolor",
+      "snippet": "psfillcolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psforeach{}{}{}": {
+      "command": "psforeach{}{}{}",
+      "snippet": "psforeach{${1:variable%cmd}}{${2:value list}}{${3:action}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psForeach{}{}{}": {
+      "command": "psForeach{}{}{}",
+      "snippet": "psForeach{${1:variable%cmd}}{${2:value list}}{${3:action}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "psframebox*[]{}": {
       "command": "psframebox*[]{}",
-      "snippet": "psframebox*[${2:par}]{${1:stuff}}",
+      "snippet": "psframebox*[${2:keyvals}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psframebox*{}": {
+      "command": "psframebox*{}",
+      "snippet": "psframebox*{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psframebox[]{}": {
+      "command": "psframebox[]{}",
+      "snippet": "psframebox[${2:keyvals}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -365,9 +710,72 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "psframebox*{}": {
-      "command": "psframebox*{}",
-      "snippet": "psframebox*{${1:stuff}}",
+    "psframesep": {
+      "command": "psframesep",
+      "snippet": "psframesep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgetCMYKColorValues{}": {
+      "command": "psgetCMYKColorValues{}",
+      "snippet": "psgetCMYKColorValues{${1:color macro}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgetColorValues{}": {
+      "command": "psgetColorValues{}",
+      "snippet": "psgetColorValues{${1:color macro}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgetRGBColorValues{}": {
+      "command": "psgetRGBColorValues{}",
+      "snippet": "psgetRGBColorValues{${1:color macro}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgridcolor": {
+      "command": "psgridcolor",
+      "snippet": "psgridcolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psgridlabelcolor": {
+      "command": "psgridlabelcolor",
+      "snippet": "psgridlabelcolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pshatchcolor": {
+      "command": "pshatchcolor",
+      "snippet": "pshatchcolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pshooklength": {
+      "command": "pshooklength",
+      "snippet": "pshooklength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pshookwidth": {
+      "command": "pshookwidth",
+      "snippet": "pshookwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pshskip{}": {
+      "command": "pshskip{}",
+      "snippet": "pshskip{${1:length}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -386,9 +794,58 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "pslinearc": {
+      "command": "pslinearc",
+      "snippet": "pslinearc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pslinecolor": {
+      "command": "pslinecolor",
+      "snippet": "pslinecolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pslinestyle": {
+      "command": "pslinestyle",
+      "snippet": "pslinestyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pslinetype": {
+      "command": "pslinetype",
+      "snippet": "pslinetype",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pslinewidth": {
+      "command": "pslinewidth",
+      "snippet": "pslinewidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "pslongbox{}{}": {
       "command": "pslongbox{}{}",
       "snippet": "pslongbox{${1:name}}{${2:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psLoop{}{}": {
+      "command": "psLoop{}{}",
+      "snippet": "psLoop{${1:n}}{${2:argument}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psLoopIndex": {
+      "command": "psLoopIndex",
+      "snippet": "psLoopIndex",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -407,23 +864,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "psovalbox[]{}": {
-      "command": "psovalbox[]{}",
-      "snippet": "psovalbox[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "psovalbox*[]{}": {
       "command": "psovalbox*[]{}",
-      "snippet": "psovalbox*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "psovalbox{}": {
-      "command": "psovalbox{}",
-      "snippet": "psovalbox{${1:stuff}}",
+      "snippet": "psovalbox*[${2:keyvals}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -435,9 +878,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "psovalbox[]{}": {
+      "command": "psovalbox[]{}",
+      "snippet": "psovalbox[${2:keyvals}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psovalbox{}": {
+      "command": "psovalbox{}",
+      "snippet": "psovalbox{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "psoverlay{}": {
       "command": "psoverlay{}",
       "snippet": "psoverlay{${1:string}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pspicture[]": {
+      "command": "pspicture[]",
+      "snippet": "pspicture[${1:keyvals}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -449,9 +913,51 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "psset{}": {
-      "command": "psset{}",
-      "snippet": "psset{${1:kv-list}}",
+    "psresetColor": {
+      "command": "psresetColor",
+      "snippet": "psresetColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psrotatedown{}": {
+      "command": "psrotatedown{}",
+      "snippet": "psrotatedown{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psrotateleft{}": {
+      "command": "psrotateleft{}",
+      "snippet": "psrotateleft{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psrotateright{}": {
+      "command": "psrotateright{}",
+      "snippet": "psrotateright{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psrunit": {
+      "command": "psrunit",
+      "snippet": "psrunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psscalebox{}{}": {
+      "command": "psscalebox{}{}",
+      "snippet": "psscalebox{${1:num1 num2}}{${2:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pssetGrayscale": {
+      "command": "pssetGrayscale",
+      "snippet": "pssetGrayscale",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -463,23 +969,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "psshadowbox[]{}": {
-      "command": "psshadowbox[]{}",
-      "snippet": "psshadowbox[${2:par}]{${1:stuff}}",
+    "pssetMonochrome": {
+      "command": "pssetMonochrome",
+      "snippet": "pssetMonochrome",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pssetxlength{}{}": {
+      "command": "pssetxlength{}{}",
+      "snippet": "pssetxlength{${1:cmd}}{${2:dim}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pssetylength{}{}": {
+      "command": "pssetylength{}{}",
+      "snippet": "pssetylength{${1:cmd}}{${2:dim}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "psshadowbox*[]{}": {
       "command": "psshadowbox*[]{}",
-      "snippet": "psshadowbox*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "psshadowbox{}": {
-      "command": "psshadowbox{}",
-      "snippet": "psshadowbox{${1:stuff}}",
+      "snippet": "psshadowbox*[${2:keyvals}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -491,16 +1004,107 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pstribox[]{}": {
-      "command": "pstribox[]{}",
-      "snippet": "pstribox[${2:par}]{${1:stuff}}",
+    "psshadowbox[]{}": {
+      "command": "psshadowbox[]{}",
+      "snippet": "psshadowbox[${2:keyvals}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psshadowbox{}": {
+      "command": "psshadowbox{}",
+      "snippet": "psshadowbox{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psshadowcolor": {
+      "command": "psshadowcolor",
+      "snippet": "psshadowcolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pssubgridcolor": {
+      "command": "pssubgridcolor",
+      "snippet": "pssubgridcolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PstAtCode": {
+      "command": "PstAtCode",
+      "snippet": "PstAtCode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstCheckCoorType{}": {
+      "command": "pstCheckCoorType{}",
+      "snippet": "pstCheckCoorType{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstcustomize": {
+      "command": "pstcustomize",
+      "snippet": "pstcustomize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstdriver": {
+      "command": "pstdriver",
+      "snippet": "pstdriver",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstheader{}": {
+      "command": "pstheader{}",
+      "snippet": "pstheader{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PSTlualatexfalse": {
+      "command": "PSTlualatexfalse",
+      "snippet": "PSTlualatexfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PSTlualatextrue": {
+      "command": "PSTlualatextrue",
+      "snippet": "PSTlualatextrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstnodescale": {
+      "command": "pstnodescale",
+      "snippet": "pstnodescale",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "pstribox*[]{}": {
       "command": "pstribox*[]{}",
-      "snippet": "pstribox*[${2:par}]{${1:stuff}}",
+      "snippet": "pstribox*[${2:keyvals}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstribox*{}": {
+      "command": "pstribox*{}",
+      "snippet": "pstribox*{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstribox[]{}": {
+      "command": "pstribox[]{}",
+      "snippet": "pstribox[${2:keyvals}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -512,9 +1116,72 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pstribox*{}": {
-      "command": "pstribox*{}",
-      "snippet": "pstribox*{${1:stuff}}",
+    "PSTricksfalse": {
+      "command": "PSTricksfalse",
+      "snippet": "PSTricksfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PSTricksLoaded": {
+      "command": "PSTricksLoaded",
+      "snippet": "PSTricksLoaded",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PSTricksOff": {
+      "command": "PSTricksOff",
+      "snippet": "PSTricksOff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PSTrickstrue": {
+      "command": "PSTrickstrue",
+      "snippet": "PSTrickstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstrotate": {
+      "command": "pstrotate",
+      "snippet": "pstrotate",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstunit": {
+      "command": "pstunit",
+      "snippet": "pstunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstverb{}": {
+      "command": "pstverb{}",
+      "snippet": "pstverb{${1:commands}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstVerb{}": {
+      "command": "pstVerb{}",
+      "snippet": "pstVerb{${1:commands}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstverbscale": {
+      "command": "pstverbscale",
+      "snippet": "pstverbscale",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psunit": {
+      "command": "psunit",
+      "snippet": "psunit",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -533,6 +1200,20 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "psxunit": {
+      "command": "psxunit",
+      "snippet": "psxunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psyunit": {
+      "command": "psyunit",
+      "snippet": "psyunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "putoverlaybox{}": {
       "command": "putoverlaybox{}",
       "snippet": "putoverlaybox{${1:string}}",
@@ -543,6 +1224,27 @@
     "radians": {
       "command": "radians",
       "snippet": "radians",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "red": {
+      "command": "red",
+      "snippet": "red",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resetArrowOptions": {
+      "command": "resetArrowOptions",
+      "snippet": "resetArrowOptions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "reversepath": {
+      "command": "reversepath",
+      "snippet": "reversepath",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -575,13 +1277,6 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "scalebox{}{}": {
-      "command": "scalebox{}{}",
-      "snippet": "scalebox{${1:num}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "scale{}": {
       "command": "scale{}",
       "snippet": "scale{${1:num1 num2}}",
@@ -592,6 +1287,20 @@
     "setcolor{}": {
       "command": "setcolor{}",
       "snippet": "setcolor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showgridfalse": {
+      "command": "showgridfalse",
+      "snippet": "showgridfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showgridtrue": {
+      "command": "showgridtrue",
+      "snippet": "showgridtrue",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -612,7 +1321,7 @@
     },
     "stroke[]": {
       "command": "stroke[]",
-      "snippet": "stroke[${1:par}]",
+      "snippet": "stroke[${1:keyvals}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -623,13 +1332,119 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "white": {
+      "command": "white",
+      "snippet": "white",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yellow": {
+      "command": "yellow",
+      "snippet": "yellow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psarcOA": {
+      "command": "psarcOA",
+      "snippet": "psarcOA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psSquare": {
+      "command": "psSquare",
+      "snippet": "psSquare",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psset{}": {
+      "command": "psset{}",
+      "snippet": "psset{${1:keyvals}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setkeys{}{}": {
+      "command": "setkeys{}{}",
+      "snippet": "setkeys{${1:family}}{${2:keyvals}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PSTFPloaded": {
+      "command": "PSTFPloaded",
+      "snippet": "PSTFPloaded",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstFPadd{}{}{}": {
+      "command": "pstFPadd{}{}{}",
+      "snippet": "pstFPadd{${1:cmd}}{${2:num1}}{${3:num2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstFPsub{}{}{}": {
+      "command": "pstFPsub{}{}{}",
+      "snippet": "pstFPsub{${1:cmd}}{${2:num1}}{${3:num2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstFPmul{}{}{}": {
+      "command": "pstFPmul{}{}{}",
+      "snippet": "pstFPmul{${1:cmd}}{${2:num1}}{${3:num2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstFPdiv{}{}{}": {
+      "command": "pstFPdiv{}{}{}",
+      "snippet": "pstFPdiv{${1:cmd}}{${2:num1}}{${3:num2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstFPMul{}{}{}": {
+      "command": "pstFPMul{}{}{}",
+      "snippet": "pstFPMul{${1:cmd}}{${2:num1}}{${3:num2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstFPDiv{}{}{}": {
+      "command": "pstFPDiv{}{}{}",
+      "snippet": "pstFPDiv{${1:cmd}}{${2:num1}}{${3:num2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstFPstripZeros{}{}": {
+      "command": "pstFPstripZeros{}{}",
+      "snippet": "pstFPstripZeros{${1:cmd}}{${2:num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
   "envs": {
-    "pspicture[](x0,y0)(x1,y1)": {
-      "name": "pspicture",
-      "detail": "pspicture[](x0,y0)(x1,y1)",
-      "snippet": "[${1:par}](${2:x0,y0})(${3:x1,y1})",
+    "psclip{}": {
+      "name": "psclip",
+      "detail": "psclip{}",
+      "snippet": "{${1:graphics}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pspicture*(x0,y0)(x1,y1)": {
+      "name": "pspicture*",
+      "detail": "pspicture*(x0,y0)(x1,y1)",
+      "snippet": "(${1:x0,y0})(${2:x1,y1})",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -637,7 +1452,7 @@
     "pspicture*[](x0,y0)(x1,y1)": {
       "name": "pspicture*",
       "detail": "pspicture*[](x0,y0)(x1,y1)",
-      "snippet": "[${1:par}](${2:x0,y0})(${3:x1,y1})",
+      "snippet": "[${1:keyvals}](${2:x0,y0})(${3:x1,y1})",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -650,14 +1465,73 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pspicture*(x0,y0)(x1,y1)": {
-      "name": "pspicture*",
-      "detail": "pspicture*(x0,y0)(x1,y1)",
-      "snippet": "(${1:x0,y0})(${2:x1,y1})",
+    "pspicture[](x0,y0)(x1,y1)": {
+      "name": "pspicture",
+      "detail": "pspicture[](x0,y0)(x1,y1)",
+      "snippet": "[${1:keyvals}](${2:x0,y0})(${3:x1,y1})",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
-  "options": []
+  "options": [
+    "noxcolor",
+    "useCalc",
+    "gsfonts",
+    "psfonts",
+    "noEngineCheck",
+    "pdf",
+    "xetex",
+    "distiller",
+    "monochrome",
+    "grayscale",
+    "dvips",
+    "xdvi",
+    "dvipdf",
+    "dvipdfm",
+    "dvipdfmx",
+    "luatex",
+    "pdftex",
+    "dvipsone",
+    "dviwindo",
+    "emtex",
+    "dviwin",
+    "oztex",
+    "textures",
+    "pctexps",
+    "pctexwin",
+    "pctexhp",
+    "pctex32",
+    "truetex",
+    "tcidvi",
+    "vtex",
+    "dvisvgm",
+    "natural",
+    "rgb",
+    "cmy",
+    "cmyk",
+    "hsb",
+    "gray",
+    "RGB",
+    "HTML",
+    "HSB",
+    "Gray",
+    "monochrome",
+    "dvipsnames",
+    "dvipsnames*",
+    "svgnames",
+    "svgnames*",
+    "x11names",
+    "x11names*",
+    "table",
+    "fixpdftex",
+    "hyperref",
+    "prologue",
+    "kernelfbox",
+    "xcdraw",
+    "noxcdraw",
+    "fixinclude",
+    "showerrors",
+    "hideerrors"
+  ]
 }

@@ -1,0 +1,942 @@
+{
+  "includes": [
+    "scrlfile",
+    "keyval",
+    "scrlogo"
+  ],
+  "cmds": {
+    "KOMAScriptVersion": {
+      "command": "KOMAScriptVersion",
+      "snippet": "KOMAScriptVersion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rloop{}": {
+      "command": "rloop{}",
+      "snippet": "rloop{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfLTXAtLeastTF{}{}{}": {
+      "command": "IfLTXAtLeastTF{}{}{}",
+      "snippet": "IfLTXAtLeastTF{${1:date}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefineFamily{}": {
+      "command": "DefineFamily{}",
+      "snippet": "DefineFamily{${1:family}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefineFamilyMember{}": {
+      "command": "DefineFamilyMember{}",
+      "snippet": "DefineFamilyMember{${1:family}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefineFamilyMember[]{}": {
+      "command": "DefineFamilyMember[]{}",
+      "snippet": "DefineFamilyMember[${2:member}]{${1:family}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefineFamilyKey{}{}{}": {
+      "command": "DefineFamilyKey{}{}{}",
+      "snippet": "DefineFamilyKey{${1:family}}{${2:key%plain}}{${3:action}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefineFamilyKey[]{}{}{}": {
+      "command": "DefineFamilyKey[]{}{}{}",
+      "snippet": "DefineFamilyKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:action}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefineFamilyKey[]{}{}[]{}": {
+      "command": "DefineFamilyKey[]{}{}[]{}",
+      "snippet": "DefineFamilyKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:action}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RelaxFamilyKey{}{}": {
+      "command": "RelaxFamilyKey{}{}",
+      "snippet": "RelaxFamilyKey{${1:family}}{${2:key%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RelaxFamilyKey[]{}{}": {
+      "command": "RelaxFamilyKey[]{}{}",
+      "snippet": "RelaxFamilyKey[${3:member}]{${1:family}}{${2:key%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyKeyState": {
+      "command": "FamilyKeyState",
+      "snippet": "FamilyKeyState",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyKeyStateUnknown": {
+      "command": "FamilyKeyStateUnknown",
+      "snippet": "FamilyKeyStateUnknown",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyKeyStateUnknownValue": {
+      "command": "FamilyKeyStateUnknownValue",
+      "snippet": "FamilyKeyStateUnknownValue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyKeyStateNeedValue": {
+      "command": "FamilyKeyStateNeedValue",
+      "snippet": "FamilyKeyStateNeedValue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyKeyStateProcessed": {
+      "command": "FamilyKeyStateProcessed",
+      "snippet": "FamilyKeyStateProcessed",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyOfKey": {
+      "command": "FamilyOfKey",
+      "snippet": "FamilyOfKey",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyMemberOfKey": {
+      "command": "FamilyMemberOfKey",
+      "snippet": "FamilyMemberOfKey",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyProcessOptions{}": {
+      "command": "FamilyProcessOptions{}",
+      "snippet": "FamilyProcessOptions{${1:family}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyProcessOptions[]{}": {
+      "command": "FamilyProcessOptions[]{}",
+      "snippet": "FamilyProcessOptions[${2:member}]{${1:family}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AtEndOfFamilyOptions{}": {
+      "command": "AtEndOfFamilyOptions{}",
+      "snippet": "AtEndOfFamilyOptions{${1:action}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AtEndOfFamilyOptions*{}": {
+      "command": "AtEndOfFamilyOptions*{}",
+      "snippet": "AtEndOfFamilyOptions*{${1:action}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfArgIsEmpty{}{}{}": {
+      "command": "IfArgIsEmpty{}{}{}",
+      "snippet": "IfArgIsEmpty{${1:arg}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "XdivY{}{}": {
+      "command": "XdivY{}{}",
+      "snippet": "XdivY{${1:dividend}}{${2:divisor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "XmodY{}{}": {
+      "command": "XmodY{}{}",
+      "snippet": "XmodY{${1:dividend}}{${2:divisor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifundefinedorrelax{}{}{}": {
+      "command": "Ifundefinedorrelax{}{}{}",
+      "snippet": "Ifundefinedorrelax{${1:name}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifnotundefined{}{}{}": {
+      "command": "Ifnotundefined{}{}{}",
+      "snippet": "Ifnotundefined{${1:name}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifstr{}{}{}{}": {
+      "command": "Ifstr{}{}{}{}",
+      "snippet": "Ifstr{${1:string1}}{${2:string2}}{${3:then code}}{${4:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifstrstart{}{}{}{}": {
+      "command": "Ifstrstart{}{}{}{}",
+      "snippet": "Ifstrstart{${1:string1}}{${2:string2}}{${3:then code}}{${4:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifislengthprimitive{}{}{}": {
+      "command": "Ifislengthprimitive{}{}{}",
+      "snippet": "Ifislengthprimitive{${1:expression}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifisdimen{}{}{}": {
+      "command": "Ifisdimen{}{}{}",
+      "snippet": "Ifisdimen{${1:string}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifisskip{}{}{}": {
+      "command": "Ifisskip{}{}{}",
+      "snippet": "Ifisskip{${1:expression}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifiscount{}{}{}": {
+      "command": "Ifiscount{}{}{}",
+      "snippet": "Ifiscount{${1:count}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifisdimexpr{}{}{}": {
+      "command": "Ifisdimexpr{}{}{}",
+      "snippet": "Ifisdimexpr{${1:expression}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifisglueexpr{}{}{}": {
+      "command": "Ifisglueexpr{}{}{}",
+      "snippet": "Ifisglueexpr{${1:expression}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifisnumexpr{}{}{}": {
+      "command": "Ifisnumexpr{}{}{}",
+      "snippet": "Ifisnumexpr{${1:expression}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifisdefchar{}{}{}": {
+      "command": "Ifisdefchar{}{}{}",
+      "snippet": "Ifisdefchar{${1:arg}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifiscounter{}{}{}": {
+      "command": "Ifiscounter{}{}{}",
+      "snippet": "Ifiscounter{${1:counter}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifisinteger{}{}{}": {
+      "command": "Ifisinteger{}{}{}",
+      "snippet": "Ifisinteger{${1:expression}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifisdimension{}{}{}": {
+      "command": "Ifisdimension{}{}{}",
+      "snippet": "Ifisdimension{${1:expression}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifisglue{}{}{}": {
+      "command": "Ifisglue{}{}{}",
+      "snippet": "Ifisglue{${1:expression}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifnumber{}{}{}": {
+      "command": "Ifnumber{}{}{}",
+      "snippet": "Ifnumber{${1:string}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifintnumber{}{}{}": {
+      "command": "Ifintnumber{}{}{}",
+      "snippet": "Ifintnumber{${1:string}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifdimen{}{}{}": {
+      "command": "Ifdimen{}{}{}",
+      "snippet": "Ifdimen{${1:string}}{${2:then code}}{${3:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifpdfoutput{}{}": {
+      "command": "Ifpdfoutput{}{}",
+      "snippet": "Ifpdfoutput{${1:then code}}{${2:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifpsoutput{}{}": {
+      "command": "Ifpsoutput{}{}",
+      "snippet": "Ifpsoutput{${1:then code}}{${2:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ifdvioutput{}{}": {
+      "command": "Ifdvioutput{}{}",
+      "snippet": "Ifdvioutput{${1:then code}}{${2:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfRTL{}{}": {
+      "command": "IfRTL{}{}",
+      "snippet": "IfRTL{${1:then code}}{${2:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfLTR{}{}": {
+      "command": "IfLTR{}{}",
+      "snippet": "IfLTR{${1:then code}}{${2:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PackageInfoNoLine{}{}": {
+      "command": "PackageInfoNoLine{}{}",
+      "snippet": "PackageInfoNoLine{${1:package}}{${2:information%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClassInfoNoLine{}{}": {
+      "command": "ClassInfoNoLine{}{}",
+      "snippet": "ClassInfoNoLine{${1:class}}{${2:information%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfActiveMkBoth{}{}": {
+      "command": "IfActiveMkBoth{}{}",
+      "snippet": "IfActiveMkBoth{${1:then code}}{${2:else code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeforeFamilyProcessOptions{}{}": {
+      "command": "BeforeFamilyProcessOptions{}{}",
+      "snippet": "BeforeFamilyProcessOptions{${1:family}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeforeFamilyProcessOptions[]{}{}": {
+      "command": "BeforeFamilyProcessOptions[]{}{}",
+      "snippet": "BeforeFamilyProcessOptions[${3:member}]{${1:family}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyExecuteOptions{}{}": {
+      "command": "FamilyExecuteOptions{}{}",
+      "snippet": "FamilyExecuteOptions{${1:family}}{${2:options list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyExecuteOptions[]{}{}": {
+      "command": "FamilyExecuteOptions[]{}{}",
+      "snippet": "FamilyExecuteOptions[${3:member}]{${1:family}}{${2:options list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyOptions{}{}": {
+      "command": "FamilyOptions{}{}",
+      "snippet": "FamilyOptions{${1:family}}{${2:options list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyOption{}{}{}": {
+      "command": "FamilyOption{}{}{}",
+      "snippet": "FamilyOption{${1:family}}{${2:option}}{${3:value list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyUnknownKeyValue{}{}{}{}": {
+      "command": "FamilyUnknownKeyValue{}{}{}{}",
+      "snippet": "FamilyUnknownKeyValue{${1:family}}{${2:key%plain}}{${3:value}}{${4:value list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyElseValues": {
+      "command": "FamilyElseValues",
+      "snippet": "FamilyElseValues",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyBoolKey{}{}{}": {
+      "command": "FamilyBoolKey{}{}{}",
+      "snippet": "FamilyBoolKey{${1:family}}{${2:key%plain}}{${3:switch name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyBoolKey[]{}{}{}": {
+      "command": "FamilyBoolKey[]{}{}{}",
+      "snippet": "FamilyBoolKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:switch name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilySetBool{}{}{}{}": {
+      "command": "FamilySetBool{}{}{}{}",
+      "snippet": "FamilySetBool{${1:family}}{${2:key%plain}}{${3:switch name}}{${4:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyInverseBoolKey{}{}{}": {
+      "command": "FamilyInverseBoolKey{}{}{}",
+      "snippet": "FamilyInverseBoolKey{${1:family}}{${2:key%plain}}{${3:switch name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyInverseBoolKey[]{}{}{}": {
+      "command": "FamilyInverseBoolKey[]{}{}{}",
+      "snippet": "FamilyInverseBoolKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:switch name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilySetInverseBool{}{}{}{}": {
+      "command": "FamilySetInverseBool{}{}{}{}",
+      "snippet": "FamilySetInverseBool{${1:family}}{${2:key%plain}}{${3:switch name}}{${4:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyCounterKey{}{}{}": {
+      "command": "FamilyCounterKey{}{}{}",
+      "snippet": "FamilyCounterKey{${1:family}}{${2:key%plain}}{${3:counter}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyCounterKey[]{}{}{}": {
+      "command": "FamilyCounterKey[]{}{}{}",
+      "snippet": "FamilyCounterKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:counter}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyCounterKey[]{}{}[]{}": {
+      "command": "FamilyCounterKey[]{}{}[]{}",
+      "snippet": "FamilyCounterKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:counter}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilySetCounter{}{}{}{}": {
+      "command": "FamilySetCounter{}{}{}{}",
+      "snippet": "FamilySetCounter{${1:family}}{${2:key%plain}}{${3:counter}}{${4:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyCounterMacroKey{}{}{}": {
+      "command": "FamilyCounterMacroKey{}{}{}",
+      "snippet": "FamilyCounterMacroKey{${1:family}}{${2:key%plain}}{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyCounterMacroKey{}{}[]{}": {
+      "command": "FamilyCounterMacroKey{}{}[]{}",
+      "snippet": "FamilyCounterMacroKey{${1:family}}{${2:key%plain}}[${3:default}]{${4:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyCounterMacroKey[]{}{}{}": {
+      "command": "FamilyCounterMacroKey[]{}{}{}",
+      "snippet": "FamilyCounterMacroKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyCounterMacroKey[]{}{}[]{}": {
+      "command": "FamilyCounterMacroKey[]{}{}[]{}",
+      "snippet": "FamilyCounterMacroKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilySetCounterMacro{}{}{}{}": {
+      "command": "FamilySetCounterMacro{}{}{}{}",
+      "snippet": "FamilySetCounterMacro{${1:family}}{${2:key%plain}}{${3:macro%cmd}}{${4:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyLengthKey{}{}{}": {
+      "command": "FamilyLengthKey{}{}{}",
+      "snippet": "FamilyLengthKey{${1:family}}{${2:key%plain}}{${3:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyLengthKey[]{}{}{}": {
+      "command": "FamilyLengthKey[]{}{}{}",
+      "snippet": "FamilyLengthKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyLengthKey[]{}{}[]{}": {
+      "command": "FamilyLengthKey[]{}{}[]{}",
+      "snippet": "FamilyLengthKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilySetLength{}{}{}{}": {
+      "command": "FamilySetLength{}{}{}{}",
+      "snippet": "FamilySetLength{${1:family}}{${2:key%plain}}{${3:length}}{${4:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyLengthMacroKey{}{}{}": {
+      "command": "FamilyLengthMacroKey{}{}{}",
+      "snippet": "FamilyLengthMacroKey{${1:family}}{${2:key%plain}}{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyLengthMacroKey{}{}[]{}": {
+      "command": "FamilyLengthMacroKey{}{}[]{}",
+      "snippet": "FamilyLengthMacroKey{${1:family}}{${2:key%plain}}[${3:default}]{${4:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyLengthMacroKey[]{}{}{}": {
+      "command": "FamilyLengthMacroKey[]{}{}{}",
+      "snippet": "FamilyLengthMacroKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyLengthMacroKey[]{}{}[]{}": {
+      "command": "FamilyLengthMacroKey[]{}{}[]{}",
+      "snippet": "FamilyLengthMacroKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilySetLengthMacro{}{}{}{}": {
+      "command": "FamilySetLengthMacro{}{}{}{}",
+      "snippet": "FamilySetLengthMacro{${1:family}}{${2:key%plain}}{${3:macro%cmd}}{${4:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyUseLengthMacroKey{}{}{}": {
+      "command": "FamilyUseLengthMacroKey{}{}{}",
+      "snippet": "FamilyUseLengthMacroKey{${1:family}}{${2:key%plain}}{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyUseLengthMacroKey{}{}[]{}": {
+      "command": "FamilyUseLengthMacroKey{}{}[]{}",
+      "snippet": "FamilyUseLengthMacroKey{${1:family}}{${2:key%plain}}[${3:default}]{${4:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyUseLengthMacroKey[]{}{}{}": {
+      "command": "FamilyUseLengthMacroKey[]{}{}{}",
+      "snippet": "FamilyUseLengthMacroKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyUseLengthMacroKey[]{}{}[]{}": {
+      "command": "FamilyUseLengthMacroKey[]{}{}[]{}",
+      "snippet": "FamilyUseLengthMacroKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilySetUseLengthMacro{}{}{}{}": {
+      "command": "FamilySetUseLengthMacro{}{}{}{}",
+      "snippet": "FamilySetUseLengthMacro{${1:family}}{${2:key%plain}}{${3:macro%cmd}}{${4:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyNumericalKey{}{}{}{}": {
+      "command": "FamilyNumericalKey{}{}{}{}",
+      "snippet": "FamilyNumericalKey{${1:family}}{${2:key%plain}}{${3:macro%cmd}}{${4:value list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyLengthMacroKey{}{}[]{}{}": {
+      "command": "FamilyLengthMacroKey{}{}[]{}{}",
+      "snippet": "FamilyLengthMacroKey{${1:family}}{${2:key%plain}}[${3:default}]{${4:macro%cmd}}{${5:value list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyLengthMacroKey[]{}{}{}{}": {
+      "command": "FamilyLengthMacroKey[]{}{}{}{}",
+      "snippet": "FamilyLengthMacroKey[${5:member}]{${1:family}}{${2:key%plain}}{${3:macro%cmd}}{${4:value list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyLengthMacroKey[]{}{}[]{}{}": {
+      "command": "FamilyLengthMacroKey[]{}{}[]{}{}",
+      "snippet": "FamilyLengthMacroKey[${5:member}]{${1:family}}{${2:key%plain}}[${6:default}]{${3:macro%cmd}}{${4:value list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilySetNumerical{}{}{}{}{}": {
+      "command": "FamilySetNumerical{}{}{}{}{}",
+      "snippet": "FamilySetNumerical{${1:family}}{${2:key%plain}}{${3:macro%cmd}}{${4:value list}}{${5:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyStringKey{}{}{}": {
+      "command": "FamilyStringKey{}{}{}",
+      "snippet": "FamilyStringKey{${1:family}}{${2:key%plain}}{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyStringKey{}{}[]{}": {
+      "command": "FamilyStringKey{}{}[]{}",
+      "snippet": "FamilyStringKey{${1:family}}{${2:key%plain}}[${3:default}]{${4:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyStringKey[]{}{}{}": {
+      "command": "FamilyStringKey[]{}{}{}",
+      "snippet": "FamilyStringKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyStringKey[]{}{}[]{}": {
+      "command": "FamilyStringKey[]{}{}[]{}",
+      "snippet": "FamilyStringKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FamilyCSKey{}{}{}": {
+      "command": "FamilyCSKey{}{}{}",
+      "snippet": "FamilyCSKey{${1:family}}{${2:key%plain}}{${3:csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ForDoHook{}{}": {
+      "command": "ForDoHook{}{}",
+      "snippet": "ForDoHook{${1:specification}}{${2:command}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SplitDoHook{}{}{}": {
+      "command": "SplitDoHook{}{}{}",
+      "snippet": "SplitDoHook{${1:specifier}}{${2:head macro%cmd}}{${3:remainder macro%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ExecuteDoHook{}": {
+      "command": "ExecuteDoHook{}",
+      "snippet": "ExecuteDoHook{${1:specifier}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AddtoDoHook{}{}": {
+      "command": "AddtoDoHook{}{}",
+      "snippet": "AddtoDoHook{${1:name}}{${2:command}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AddtoOneTimeDoHook{}{}": {
+      "command": "AddtoOneTimeDoHook{}{}",
+      "snippet": "AddtoOneTimeDoHook{${1:name}}{${2:command}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defcaptionname{}{}{}": {
+      "command": "defcaptionname{}{}{}",
+      "snippet": "defcaptionname{${1:language list}}{${2:term%cmd}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defcaptionname*{}{}{}": {
+      "command": "defcaptionname*{}{}{}",
+      "snippet": "defcaptionname*{${1:language list}}{${2:term%cmd}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providecaptionname{}{}{}": {
+      "command": "providecaptionname{}{}{}",
+      "snippet": "providecaptionname{${1:language list}}{${2:term%cmd}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providecaptionname*{}{}{}": {
+      "command": "providecaptionname*{}{}{}",
+      "snippet": "providecaptionname*{${1:language list}}{${2:term%cmd}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newcaptionname{}{}{}": {
+      "command": "newcaptionname{}{}{}",
+      "snippet": "newcaptionname{${1:language list}}{${2:term%cmd}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newcaptionname*{}{}{}": {
+      "command": "newcaptionname*{}{}{}",
+      "snippet": "newcaptionname*{${1:language list}}{${2:term%cmd}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewcaptionname{}{}{}": {
+      "command": "renewcaptionname{}{}{}",
+      "snippet": "renewcaptionname{${1:language list}}{${2:term%cmd}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewcaptionname*{}{}{}": {
+      "command": "renewcaptionname*{}{}{}",
+      "snippet": "renewcaptionname*{${1:language list}}{${2:term%cmd}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifnotundefined": {
+      "command": "ifnotundefined",
+      "snippet": "ifnotundefined",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifislengthprimitive": {
+      "command": "ifislengthprimitive",
+      "snippet": "ifislengthprimitive",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifisdefchar": {
+      "command": "ifisdefchar",
+      "snippet": "ifisdefchar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifstr": {
+      "command": "ifstr",
+      "snippet": "ifstr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifstrstart": {
+      "command": "ifstrstart",
+      "snippet": "ifstrstart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifisdimen": {
+      "command": "ifisdimen",
+      "snippet": "ifisdimen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifisskip": {
+      "command": "ifisskip",
+      "snippet": "ifisskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifiscount": {
+      "command": "ifiscount",
+      "snippet": "ifiscount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifisdimexpr": {
+      "command": "ifisdimexpr",
+      "snippet": "ifisdimexpr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifisglueexpr": {
+      "command": "ifisglueexpr",
+      "snippet": "ifisglueexpr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifisnumexpr": {
+      "command": "ifisnumexpr",
+      "snippet": "ifisnumexpr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifiscounter": {
+      "command": "ifiscounter",
+      "snippet": "ifiscounter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifisinteger": {
+      "command": "ifisinteger",
+      "snippet": "ifisinteger",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifisdimension": {
+      "command": "ifisdimension",
+      "snippet": "ifisdimension",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifisglue": {
+      "command": "ifisglue",
+      "snippet": "ifisglue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifnumber": {
+      "command": "ifnumber",
+      "snippet": "ifnumber",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifintnumber": {
+      "command": "ifintnumber",
+      "snippet": "ifintnumber",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifdimen": {
+      "command": "ifdimen",
+      "snippet": "ifdimen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifpdfoutput": {
+      "command": "ifpdfoutput",
+      "snippet": "ifpdfoutput",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifpsoutput": {
+      "command": "ifpsoutput",
+      "snippet": "ifpsoutput",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifdvioutput": {
+      "command": "ifdvioutput",
+      "snippet": "ifdvioutput",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

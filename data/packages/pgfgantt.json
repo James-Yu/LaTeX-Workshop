@@ -1,0 +1,471 @@
+{
+  "includes": [
+    "tikz",
+    "pgfcalendar",
+    "tikzlibrarybackgrounds",
+    "tikzlibrarycalc",
+    "tikzlibrarypatterns",
+    "tikzlibrarypositioning",
+    "tikzlibraryshapes.geometric"
+  ],
+  "cmds": {
+    "ganttset{}": {
+      "command": "ganttset{}",
+      "snippet": "ganttset{${1:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newgantttimeslotformat{}{}": {
+      "command": "newgantttimeslotformat{}{}",
+      "snippet": "newgantttimeslotformat{${1:name}}{${2:converter code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttnewline": {
+      "command": "ganttnewline",
+      "snippet": "ganttnewline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttnewline[]": {
+      "command": "ganttnewline[]",
+      "snippet": "ganttnewline[${1:TikZ options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttalignnewline": {
+      "command": "ganttalignnewline",
+      "snippet": "ganttalignnewline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gantttitle{}{}": {
+      "command": "gantttitle{}{}",
+      "snippet": "gantttitle{${1:label}}{${2:number of time slots}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gantttitle[]{}{}": {
+      "command": "gantttitle[]{}{}",
+      "snippet": "gantttitle[${3:options}]{${1:label}}{${2:number of time slots}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gantttitlelist{}{}": {
+      "command": "gantttitlelist{}{}",
+      "snippet": "gantttitlelist{${1:pgffor list}}{${2:length of each element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gantttitlelist[]{}{}": {
+      "command": "gantttitlelist[]{}{}",
+      "snippet": "gantttitlelist[${3:options}]{${1:pgffor list}}{${2:length of each element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gantttitlecalendar{}": {
+      "command": "gantttitlecalendar{}",
+      "snippet": "gantttitlecalendar{${1:calendar lines}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gantttitlecalendar[]{}": {
+      "command": "gantttitlecalendar[]{}",
+      "snippet": "gantttitlecalendar[${2:options}]{${1:calendar lines}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gantttitlecalendar*{}{}{}": {
+      "command": "gantttitlecalendar*{}{}{}",
+      "snippet": "gantttitlecalendar*{${1:start tss}}{${2:end tss}}{${3:calendar lines}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gantttitlecalendar*[]{}{}{}": {
+      "command": "gantttitlecalendar*[]{}{}{}",
+      "snippet": "gantttitlecalendar*[${4:options}]{${1:start tss}}{${2:end tss}}{${3:calendar lines}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "currentweek": {
+      "command": "currentweek",
+      "snippet": "currentweek",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "startyear": {
+      "command": "startyear",
+      "snippet": "startyear",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "startmonth": {
+      "command": "startmonth",
+      "snippet": "startmonth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "startday": {
+      "command": "startday",
+      "snippet": "startday",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttvrule{}{}": {
+      "command": "ganttvrule{}{}",
+      "snippet": "ganttvrule{${1:label%text}}{${2:tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttvrule[]{}{}": {
+      "command": "ganttvrule[]{}{}",
+      "snippet": "ganttvrule[${3:options}]{${1:label%text}}{${2:tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttbar{}{}{}": {
+      "command": "ganttbar{}{}{}",
+      "snippet": "ganttbar{${1:label%text}}{${2:start tss}}{${3:end tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttbar[]{}{}{}": {
+      "command": "ganttbar[]{}{}{}",
+      "snippet": "ganttbar[${4:options}]{${1:label%text}}{${2:start tss}}{${3:end tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttgroup{}{}{}": {
+      "command": "ganttgroup{}{}{}",
+      "snippet": "ganttgroup{${1:label%text}}{${2:start tss}}{${3:end tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttgroup[]{}{}{}": {
+      "command": "ganttgroup[]{}{}{}",
+      "snippet": "ganttgroup[${4:options}]{${1:label%text}}{${2:start tss}}{${3:end tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttmilestone{}{}": {
+      "command": "ganttmilestone{}{}",
+      "snippet": "ganttmilestone{${1:label%text}}{${2:tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttmilestone[]{}{}": {
+      "command": "ganttmilestone[]{}{}",
+      "snippet": "ganttmilestone[${3:options}]{${1:label%text}}{${2:tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttlinkedbar{}{}{}": {
+      "command": "ganttlinkedbar{}{}{}",
+      "snippet": "ganttlinkedbar{${1:label%text}}{${2:start tss}}{${3:end tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttlinkedbar[]{}{}{}": {
+      "command": "ganttlinkedbar[]{}{}{}",
+      "snippet": "ganttlinkedbar[${4:options}]{${1:label%text}}{${2:start tss}}{${3:end tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttlinkedgroup{}{}{}": {
+      "command": "ganttlinkedgroup{}{}{}",
+      "snippet": "ganttlinkedgroup{${1:label%text}}{${2:start tss}}{${3:end tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttlinkedgroup[]{}{}{}": {
+      "command": "ganttlinkedgroup[]{}{}{}",
+      "snippet": "ganttlinkedgroup[${4:options}]{${1:label%text}}{${2:start tss}}{${3:end tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttlinkedmilestone{}{}": {
+      "command": "ganttlinkedmilestone{}{}",
+      "snippet": "ganttlinkedmilestone{${1:label%text}}{${2:tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttlinkedmilestone[]{}{}": {
+      "command": "ganttlinkedmilestone[]{}{}",
+      "snippet": "ganttlinkedmilestone[${3:options}]{${1:label%text}}{${2:tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newganttchartelement{}{}": {
+      "command": "newganttchartelement{}{}",
+      "snippet": "newganttchartelement{${1:name}}{${2:new default keyvals}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newganttchartelement*{}{}": {
+      "command": "newganttchartelement*{}{}",
+      "snippet": "newganttchartelement*{${1:name}}{${2:new default keyvals}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttlink{}{}": {
+      "command": "ganttlink{}{}",
+      "snippet": "ganttlink{${1:start element name}}{${2:end element name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttlink[]{}{}": {
+      "command": "ganttlink[]{}{}",
+      "snippet": "ganttlink[${3:options}]{${1:start element name}}{${2:end element name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newganttlinktype{}{}": {
+      "command": "newganttlinktype{}{}",
+      "snippet": "newganttlinktype{${1:type}}{${2:TikZ code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttsetstartanchor{}": {
+      "command": "ganttsetstartanchor{}",
+      "snippet": "ganttsetstartanchor{${1:anchor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttsetendanchor{}": {
+      "command": "ganttsetendanchor{}",
+      "snippet": "ganttsetendanchor{${1:anchor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xLeft": {
+      "command": "xLeft",
+      "snippet": "xLeft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yUpper": {
+      "command": "yUpper",
+      "snippet": "yUpper",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xRight": {
+      "command": "xRight",
+      "snippet": "xRight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yLower": {
+      "command": "yLower",
+      "snippet": "yLower",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttlinklabel": {
+      "command": "ganttlinklabel",
+      "snippet": "ganttlinklabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttvalueof{}": {
+      "command": "ganttvalueof{}",
+      "snippet": "ganttvalueof{${1:key%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newganttlinktypealias{}{}": {
+      "command": "newganttlinktypealias{}{}",
+      "snippet": "newganttlinktypealias{${1:new type}}{${2:existing type}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setganttlinklabel{}{}": {
+      "command": "setganttlinklabel{}{}",
+      "snippet": "setganttlinklabel{${1:type}}{${2:label%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endofdecade": {
+      "command": "endofdecade",
+      "snippet": "endofdecade",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "querydecade": {
+      "command": "querydecade",
+      "snippet": "querydecade",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "ganttchart{}{}": {
+      "name": "ganttchart",
+      "detail": "ganttchart{}{}",
+      "snippet": "{${1:start tss}}{${2:end tss}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ganttchart[]{}{}": {
+      "name": "ganttchart",
+      "detail": "ganttchart[]{}{}",
+      "snippet": "[${3:options}]{${1:start tss}}{${2:end tss}}",
+      "option": "",
+      "keyvals": [
+        "time slot format=",
+        "time slot format/base century=",
+        "time slot format/start date=",
+        "canvas/.style={",
+        "x unit=",
+        "y unit title=",
+        "y unit chart=",
+        "expand chart=",
+        "hgrid=",
+        "hgrid style/.style={",
+        "vgrid=",
+        "today=",
+        "today offset=",
+        "today rule/.style={",
+        "today label=",
+        "today label font=",
+        "today label node/.style={",
+        "newline shortcut",
+        "title list options={",
+        "calendar week text={",
+        "time slot unit=",
+        "title/.style={",
+        "title label font=",
+        "title label node/.style={",
+        "title label text=",
+        "title left shift=",
+        "title right shift=",
+        "title top shift=",
+        "title height=",
+        "include title in canvas",
+        "vrule offset=",
+        "vrule/.style={",
+        "vrule label font=",
+        "vrule label node/.style={",
+        "chart element start border=",
+        "bar/.style={",
+        "group/.style={",
+        "milestone/.style={",
+        "bar label text=",
+        "group label text=",
+        "milestone label text=",
+        "bar label font=",
+        "group label font=",
+        "milestone label font=",
+        "bar label node/.style={",
+        "group label node/.style={",
+        "milestone label node/.style={",
+        "inline",
+        "bar inline label anchor=",
+        "group inline label anchor=",
+        "milestone inline label anchor=",
+        "bar inline label node/.style={",
+        "group inline label node/.style={",
+        "milestone inline label node/.style={",
+        "bar left shift=",
+        "bar right shift=",
+        "bar top shift=",
+        "bar height=",
+        "group left shift=",
+        "group right shift=",
+        "group top shift=",
+        "group height=",
+        "milestone left shift=",
+        "milestone right shift=",
+        "milestone top shift=",
+        "milestone height=",
+        "group right peak tip position=",
+        "group right peak width=",
+        "group right peak height=",
+        "group left peak tip position=",
+        "group left peak width=",
+        "group left peak height=",
+        "group peaks tip position=",
+        "group peaks width=",
+        "group peaks height=",
+        "progress=",
+        "bar incomplete/.style={",
+        "group incomplete/.style={",
+        "milestone incomplete/.style={",
+        "progress label text=",
+        "bar progress label anchor=",
+        "bar progress label font=",
+        "bar progress label node/.style={",
+        "group progress label anchor=",
+        "group progress label font=",
+        "group progress label node/.style={",
+        "milestone progress label anchor=",
+        "milestone progress label font=",
+        "milestone progress label node/.style={",
+        "on top fraction=",
+        "on bottom fraction=",
+        "on left fraction=",
+        "on right fraction=",
+        "name=",
+        "link/.style={",
+        "link type=",
+        "link mid=",
+        "link bulge=",
+        "link tolerance=",
+        "link label=",
+        "link label font=",
+        "link label node/.style={"
+      ],
+      "keyvalindex": 0
+    }
+  },
+  "options": []
+}

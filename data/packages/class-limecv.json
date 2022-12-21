@@ -1,0 +1,622 @@
+{
+  "includes": [
+    "kvoptions",
+    "ifxetex",
+    "ifluatex",
+    "calc",
+    "xcolor",
+    "tabularx",
+    "hyperref",
+    "url",
+    "parskip",
+    "xstring",
+    "xkeyval",
+    "tikz",
+    "graphicx",
+    "tikzlibrarycalc",
+    "tikzlibrarypositioning",
+    "tikzlibraryfit",
+    "tikzlibrarybackgrounds",
+    "tikzlibrarymatrix",
+    "fontspec",
+    "fontawesome5"
+  ],
+  "cmds": {
+    "cvSetLanguage{}": {
+      "command": "cvSetLanguage{}",
+      "snippet": "cvSetLanguage{${1:language}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvID{}{}{}{}": {
+      "command": "cvID{}{}{}{}",
+      "snippet": "cvID{${1:first name}}{${2:last name}}{${3:imagefile}}{${4:job position}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvContactAddress{}": {
+      "command": "cvContactAddress{}",
+      "snippet": "cvContactAddress{${1:address}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvContactEmail{}{}": {
+      "command": "cvContactEmail{}{}",
+      "snippet": "cvContactEmail{${1:link%URL}}{${2:email address}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvContactPhone{}": {
+      "command": "cvContactPhone{}",
+      "snippet": "cvContactPhone{${1:phone number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvContactWebsite{}{}": {
+      "command": "cvContactWebsite{}{}",
+      "snippet": "cvContactWebsite{${1:URL}}{${2:link text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvContactGithub{}{}": {
+      "command": "cvContactGithub{}{}",
+      "snippet": "cvContactGithub{${1:URL}}{${2:username}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvContactGitlab{}{}": {
+      "command": "cvContactGitlab{}{}",
+      "snippet": "cvContactGitlab{${1:URL}}{${2:username}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvContactLinkedin{}{}": {
+      "command": "cvContactLinkedin{}{}",
+      "snippet": "cvContactLinkedin{${1:URL}}{${2:username}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvContactTwitter{}{}": {
+      "command": "cvContactTwitter{}{}",
+      "snippet": "cvContactTwitter{${1:URL}}{${2:username}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvContactKeybase{}{}": {
+      "command": "cvContactKeybase{}{}",
+      "snippet": "cvContactKeybase{${1:URL}}{${2:fingerprint}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvLanguage{}{}": {
+      "command": "cvLanguage{}{}",
+      "snippet": "cvLanguage{${1:language}}{${2:skill level}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvInterestsPersonal": {
+      "command": "cvInterestsPersonal",
+      "snippet": "cvInterestsPersonal",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvInterestsProfessional": {
+      "command": "cvInterestsProfessional",
+      "snippet": "cvInterestsProfessional",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvInterest{}{}": {
+      "command": "cvInterest{}{}",
+      "snippet": "cvInterest{${1:icon}}{${2:interest}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvProject{}{}": {
+      "command": "cvProject{}{}",
+      "snippet": "cvProject{${1:name}}{${2:description%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvProject[]{}{}": {
+      "command": "cvProject[]{}{}",
+      "snippet": "cvProject[${3:options}]{${1:name}}{${2:description%text}}",
+      "option": "",
+      "keyvals": [
+        "image=",
+        "link=",
+        "width=",
+        "height="
+      ],
+      "keyvalindex": 0
+    },
+    "cvItem{}": {
+      "command": "cvItem{}",
+      "snippet": "cvItem{${1:details%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvSkillTwo{}{}{}{}": {
+      "command": "cvSkillTwo{}{}{}{}",
+      "snippet": "cvSkillTwo{${1:skill-level1}}{${2:skill1}}{${3:skill-level2}}{${4:skill2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvSkillOne{}{}": {
+      "command": "cvSkillOne{}{}",
+      "snippet": "cvSkillOne{${1:skill-level}}{${2:skill}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvAddReference{}": {
+      "command": "cvAddReference{}",
+      "snippet": "cvAddReference{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "name=",
+        "company=",
+        "position=",
+        "address line 1=",
+        "address line 2=",
+        "address line 3=",
+        "mobile phone=",
+        "work phone=",
+        "email="
+      ],
+      "keyvalindex": 0
+    },
+    "cvAddReference*{}": {
+      "command": "cvAddReference*{}",
+      "snippet": "cvAddReference*{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "name=",
+        "company=",
+        "position=",
+        "address line 1=",
+        "address line 2=",
+        "address line 3=",
+        "mobile phone=",
+        "work phone=",
+        "email="
+      ],
+      "keyvalindex": 0
+    },
+    "cvBeneficiary{}": {
+      "command": "cvBeneficiary{}",
+      "snippet": "cvBeneficiary{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "name=",
+        "position=",
+        "company=",
+        "address line 1=",
+        "address line 2=",
+        "address line 3="
+      ],
+      "keyvalindex": 0
+    },
+    "cvFullName": {
+      "command": "cvFullName",
+      "snippet": "cvFullName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvColSep": {
+      "command": "cvColSep",
+      "snippet": "cvColSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvNodeSep": {
+      "command": "cvNodeSep",
+      "snippet": "cvNodeSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvTimeDotDiameter": {
+      "command": "cvTimeDotDiameter",
+      "snippet": "cvTimeDotDiameter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvMargin": {
+      "command": "cvMargin",
+      "snippet": "cvMargin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvSideWidth": {
+      "command": "cvSideWidth",
+      "snippet": "cvSideWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvMainWidth": {
+      "command": "cvMainWidth",
+      "snippet": "cvMainWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvTimeDotSep": {
+      "command": "cvTimeDotSep",
+      "snippet": "cvTimeDotSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvStartEndSep": {
+      "command": "cvStartEndSep",
+      "snippet": "cvStartEndSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvItemSep": {
+      "command": "cvItemSep",
+      "snippet": "cvItemSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvTableSepWidth": {
+      "command": "cvTableSepWidth",
+      "snippet": "cvTableSepWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvCoverLetterHeight": {
+      "command": "cvCoverLetterHeight",
+      "snippet": "cvCoverLetterHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvCoverLetterWidth": {
+      "command": "cvCoverLetterWidth",
+      "snippet": "cvCoverLetterWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvPictureWidth": {
+      "command": "cvPictureWidth",
+      "snippet": "cvPictureWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvProgressAreaWidth": {
+      "command": "cvProgressAreaWidth",
+      "snippet": "cvProgressAreaWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvProgressAreaHeight": {
+      "command": "cvProgressAreaHeight",
+      "snippet": "cvProgressAreaHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvSectionSep": {
+      "command": "cvSectionSep",
+      "snippet": "cvSectionSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvSectionSBSep": {
+      "command": "cvSectionSBSep",
+      "snippet": "cvSectionSBSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvTitleLineWidth": {
+      "command": "cvTitleLineWidth",
+      "snippet": "cvTitleLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvTitleLineSpacing": {
+      "command": "cvTitleLineSpacing",
+      "snippet": "cvTitleLineSpacing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvProjectDetailsSep": {
+      "command": "cvProjectDetailsSep",
+      "snippet": "cvProjectDetailsSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvInterestDetailsSep": {
+      "command": "cvInterestDetailsSep",
+      "snippet": "cvInterestDetailsSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvContactItemSep": {
+      "command": "cvContactItemSep",
+      "snippet": "cvContactItemSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvCoverLetterLineWidth": {
+      "command": "cvCoverLetterLineWidth",
+      "snippet": "cvCoverLetterLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvCoverLetterPositionSpacing": {
+      "command": "cvCoverLetterPositionSpacing",
+      "snippet": "cvCoverLetterPositionSpacing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvSBSectionLineWidth": {
+      "command": "cvSBSectionLineWidth",
+      "snippet": "cvSBSectionLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvCoverLetterLineSpacing": {
+      "command": "cvCoverLetterLineSpacing",
+      "snippet": "cvCoverLetterLineSpacing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvIDNameSep": {
+      "command": "cvIDNameSep",
+      "snippet": "cvIDNameSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvPositionSep": {
+      "command": "cvPositionSep",
+      "snippet": "cvPositionSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvSkillSep": {
+      "command": "cvSkillSep",
+      "snippet": "cvSkillSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvHeaderIconWidth": {
+      "command": "cvHeaderIconWidth",
+      "snippet": "cvHeaderIconWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvComma": {
+      "command": "cvComma",
+      "snippet": "cvComma",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifnodedefined{}{}{}": {
+      "command": "ifnodedefined{}{}{}",
+      "snippet": "ifnodedefined{${1:node name}}{${2:true code}}{${3:false code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "globalcolor{}": {
+      "command": "globalcolor{}",
+      "snippet": "globalcolor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "faVcard": {
+      "command": "faVcard",
+      "snippet": "faVcard",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kright{}": {
+      "command": "kright{}",
+      "snippet": "kright{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kleft{}": {
+      "command": "kleft{}",
+      "snippet": "kleft{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extract{}{}": {
+      "command": "extract{}{}",
+      "snippet": "extract{${1:n}}{${2:string}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvList{}{}{}": {
+      "command": "cvList{}{}{}",
+      "snippet": "cvList{${1:envname}}{${2:name}}{${3:icon}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvContactTemplate[]{}{}": {
+      "command": "cvContactTemplate[]{}{}",
+      "snippet": "cvContactTemplate[${3:opt}]{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "cvSidebar": {
+      "name": "cvSidebar",
+      "detail": "cvSidebar",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvSidebar*": {
+      "name": "cvSidebar*",
+      "detail": "cvSidebar*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvProfile": {
+      "name": "cvProfile",
+      "detail": "cvProfile",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvContact": {
+      "name": "cvContact",
+      "detail": "cvContact",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvLanguages": {
+      "name": "cvLanguages",
+      "detail": "cvLanguages",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvInterests": {
+      "name": "cvInterests",
+      "detail": "cvInterests",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvInterests[]%|": {
+      "name": "cvInterests",
+      "detail": "cvInterests[]%|",
+      "snippet": "[${1:short}]%|",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvProjects": {
+      "name": "cvProjects",
+      "detail": "cvProjects",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvMainContent": {
+      "name": "cvMainContent",
+      "detail": "cvMainContent",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvMainContent*": {
+      "name": "cvMainContent*",
+      "detail": "cvMainContent*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvEducation": {
+      "name": "cvEducation",
+      "detail": "cvEducation",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvExperience": {
+      "name": "cvExperience",
+      "detail": "cvExperience",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvSkills": {
+      "name": "cvSkills",
+      "detail": "cvSkills",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvReferences": {
+      "name": "cvReferences",
+      "detail": "cvReferences",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvCoverLetter": {
+      "name": "cvCoverLetter",
+      "detail": "cvCoverLetter",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

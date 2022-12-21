@@ -1,12 +1,63 @@
 {
-  "includes": [],
+  "includes": [
+    "xetex",
+    "expl3",
+    "xtemplate",
+    "xparse",
+    "fontspec"
+  ],
   "cmds": {
     "xeCJKsetup{}": {
       "command": "xeCJKsetup{}",
       "snippet": "xeCJKsetup{${1:options}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "xeCJKactive",
+        "CJKspace",
+        "CJKmath",
+        "CJKglue=",
+        "CJKecglue=",
+        "xCJKecglue=",
+        "CheckSingle",
+        "WindowPenalty=",
+        "PlainEquation",
+        "NewLineCS={",
+        "NewLineCS+={",
+        "NewLineCS-={",
+        "EnvCS={",
+        "EnvCS+={",
+        "EnvCS-={",
+        "InlineEnv={",
+        "InlineEnv+={",
+        "InlineEnv-={",
+        "AutoFallback",
+        "AutoFakeBold=",
+        "AutoFakeSlant=",
+        "EmboldenFactor=",
+        "SlantFactor=",
+        "PunctStyle=",
+        "PunctFamily=",
+        "KaiMingPunct={",
+        "KaiMingPunct+={",
+        "KaiMingPunct-={",
+        "LongPunct={",
+        "LongPunct+={",
+        "LongPunct-={",
+        "MiddlePunct={",
+        "MiddlePunct+={",
+        "MiddlePunct-={",
+        "PunctWidth=",
+        "PunctBoundWidth=",
+        "AllowBreakBetweenPuncts",
+        "RubberPunctSkip=",
+        "CheckFullRight",
+        "NoBreakCS={",
+        "NoBreakCS+={",
+        "NoBreakCS-={",
+        "Verb=",
+        "LoadFandol"
+      ],
+      "keyvalindex": 0
     },
     "setCJKmainfont{}": {
       "command": "setCJKmainfont{}",
@@ -18,6 +69,13 @@
     "setCJKmainfont{}[]": {
       "command": "setCJKmainfont{}[]",
       "snippet": "setCJKmainfont{${1:font name}}[${2:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setCJKmainfont[]{}": {
+      "command": "setCJKmainfont[]{}",
+      "snippet": "setCJKmainfont[${2:font features}]{${1:font name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -36,6 +94,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "setCJKsansfont[]{}": {
+      "command": "setCJKsansfont[]{}",
+      "snippet": "setCJKsansfont[${2:font features}]{${1:font name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "setCJKmonofont{}": {
       "command": "setCJKmonofont{}",
       "snippet": "setCJKmonofont{${1:font name}}",
@@ -50,6 +115,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "setCJKmonofont[]{}": {
+      "command": "setCJKmonofont[]{}",
+      "snippet": "setCJKmonofont[${2:font features}]{${1:font name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "setCJKfamilyfont{}{}": {
       "command": "setCJKfamilyfont{}{}",
       "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}",
@@ -60,6 +132,13 @@
     "setCJKfamilyfont{}{}[]": {
       "command": "setCJKfamilyfont{}{}[]",
       "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setCJKfamilyfont{}[]{}": {
+      "command": "setCJKfamilyfont{}[]{}",
+      "snippet": "setCJKfamilyfont{${1:family}}[${2:font features}]{${3:font name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -92,9 +171,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "newCJKfontfamily{}{}[]": {
-      "command": "newCJKfontfamily{}{}[]",
-      "snippet": "newCJKfontfamily{${1:cmd}}{${2:font name}}[${3:font features}]",
+    "newCJKfontfamily{}[]{}": {
+      "command": "newCJKfontfamily{}[]{}",
+      "snippet": "newCJKfontfamily{${1:cmd}}[${2:font features}]{${3:font name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -123,6 +202,13 @@
     "CJKfontspec{}[]": {
       "command": "CJKfontspec{}[]",
       "snippet": "CJKfontspec{${1:font name}}[${2:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CJKfontspec[]{}": {
+      "command": "CJKfontspec[]{}",
+      "snippet": "CJKfontspec[${2:font features}]{${1:font name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -204,6 +290,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "setCJKmathfont[]{}": {
+      "command": "setCJKmathfont[]{}",
+      "snippet": "setCJKmathfont[${2:font features}]{${1:font name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "setCJKfallbackfamilyfont{}{}": {
       "command": "setCJKfallbackfamilyfont{}{}",
       "snippet": "setCJKfallbackfamilyfont{${1:family}}{${2:font name}}",
@@ -214,6 +307,13 @@
     "setCJKfallbackfamilyfont{}{}[]": {
       "command": "setCJKfallbackfamilyfont{}{}[]",
       "snippet": "setCJKfallbackfamilyfont{${1:family}}{${2:font name}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setCJKfallbackfamilyfont{}[]{}": {
+      "command": "setCJKfallbackfamilyfont{}[]{}",
+      "snippet": "setCJKfallbackfamilyfont{${1:family}}[${2:font features}]{${3:font name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -297,14 +397,14 @@
     },
     "xeCJKsetwidth{}{}": {
       "command": "xeCJKsetwidth{}{}",
-      "snippet": "xeCJKsetwidth{${1:punt list}}{${2:length}}",
+      "snippet": "xeCJKsetwidth{${1:punct list}}{${2:length}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "xeCJKsetwidth*{}{}": {
       "command": "xeCJKsetwidth*{}{}",
-      "snippet": "xeCJKsetwidth*{${1:punt list}}{${2:length}}",
+      "snippet": "xeCJKsetwidth*{${1:punct list}}{${2:length}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -320,15 +420,83 @@
       "command": "xeCJKDeclarePunctStyle{}{}",
       "snippet": "xeCJKDeclarePunctStyle{${1:style}}{${2:keyvals}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "enabled-global-setting",
+        "fixed-punct-width=",
+        "fixed-punct-ratio=",
+        "mixed-punct-width=",
+        "mixed-punct-ratio=",
+        "middle-punct-width=",
+        "middle-punct-ratio=",
+        "fixed-margin-width=",
+        "fixed-margin-ratio=",
+        "mixed-margin-width=",
+        "mixed-margin-ratio=",
+        "middle-margin-width=",
+        "middle-margin-ratio=",
+        "bound-punct-width=",
+        "bound-punct-ratio=",
+        "bound-margin-width=",
+        "bound-margin-ratio=",
+        "enabled-hanging",
+        "add-min-bound-to-margin",
+        "optimize-margin",
+        "margin-minimum=",
+        "enabled-kerning",
+        "min-bound-to-kerning",
+        "kerning-total-width=",
+        "kerning-total-ratio=",
+        "same-align-margin=",
+        "same-align-ratio=",
+        "different-align-margin=",
+        "different-align-ratio=",
+        "kerning-margin-width=",
+        "kerning-margin-ratio=",
+        "optimize-kerning ",
+        "kerning-margin-minimum="
+      ],
+      "keyvalindex": 1
     },
     "xeCJKEditPunctStyle{}{}": {
       "command": "xeCJKEditPunctStyle{}{}",
       "snippet": "xeCJKEditPunctStyle{${1:style}}{${2:keyvals}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "enabled-global-setting",
+        "fixed-punct-width=",
+        "fixed-punct-ratio=",
+        "mixed-punct-width=",
+        "mixed-punct-ratio=",
+        "middle-punct-width=",
+        "middle-punct-ratio=",
+        "fixed-margin-width=",
+        "fixed-margin-ratio=",
+        "mixed-margin-width=",
+        "mixed-margin-ratio=",
+        "middle-margin-width=",
+        "middle-margin-ratio=",
+        "bound-punct-width=",
+        "bound-punct-ratio=",
+        "bound-margin-width=",
+        "bound-margin-ratio=",
+        "enabled-hanging",
+        "add-min-bound-to-margin",
+        "optimize-margin",
+        "margin-minimum=",
+        "enabled-kerning",
+        "min-bound-to-kerning",
+        "kerning-total-width=",
+        "kerning-total-ratio=",
+        "same-align-margin=",
+        "same-align-ratio=",
+        "different-align-margin=",
+        "different-align-ratio=",
+        "kerning-margin-width=",
+        "kerning-margin-ratio=",
+        "optimize-kerning ",
+        "kerning-margin-minimum="
+      ],
+      "keyvalindex": 1
     },
     "xeCJKVerbAddon": {
       "command": "xeCJKVerbAddon",
@@ -360,5 +528,7 @@
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "LocalConfig="
+  ]
 }

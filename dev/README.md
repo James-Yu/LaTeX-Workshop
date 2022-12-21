@@ -54,10 +54,10 @@ optional arguments:
   -o OUTDIR, --outdir OUTDIR
                         Directory where to write the JSON files. Default is LaTeX-Workshop/data/packages
   -i INFILE [INFILE ...], --infile INFILE [INFILE ...]
-                        Files to process. Default is the content of https://github.com/jlelong/LaTeX-cwl/archive/refs/heads/master.zip
+                        Files to process. Default is the content stored in the `./cwl` sub-directory.
 ```
 
-This script generates intellisense data from the files given by `-i` option and writes the generated `.json` files to the directory specified by `-o`. Note that the directory must already exist.
+This script generates intellisense data from the files given by `-i` option and writes the generated `.json` files to the directory specified by `-o`. Note that the directory must already exist. It is recommended to first run the script `getcwl.sh` to download live raw data from https://github.com/texstudio-org/texstudio. Note that this requires subversion installed.
 
 For every package or class, one `.json` file is generated, containing the data for the package defined in the `.cwl` file. This file has the following structure
 ```typescript

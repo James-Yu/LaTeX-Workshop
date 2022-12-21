@@ -1,0 +1,806 @@
+{
+  "includes": [
+    "class-memoir",
+    "xparse",
+    "newunicodechar",
+    "inputenc",
+    "fontenc",
+    "lmodern",
+    "isomath",
+    "cfr-lm",
+    "eucal",
+    "microtype",
+    "embrac",
+    "amsmath",
+    "amsthm",
+    "amssymb",
+    "braket",
+    "mathtools",
+    "varioref",
+    "longtable",
+    "multicol",
+    "hyperref",
+    "memhfixc",
+    "xcolor",
+    "colortbl",
+    "enumitem",
+    "tcolorbox",
+    "tcolorboxlibrarybreakable",
+    "tcolorboxlibraryskins",
+    "CJKutf8"
+  ],
+  "cmds": {
+    "ChineseTextInThisDocument": {
+      "command": "ChineseTextInThisDocument",
+      "snippet": "ChineseTextInThisDocument",
+      "option": "ContainsChinese",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Chinese{}": {
+      "command": "Chinese{}",
+      "snippet": "Chinese{${1:text%plain}}",
+      "option": "ContainsChinese",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Title{}": {
+      "command": "Title{}",
+      "snippet": "Title{${1:title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Subtitle{}": {
+      "command": "Subtitle{}",
+      "snippet": "Subtitle{${1:subtitle%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Author{}": {
+      "command": "Author{}",
+      "snippet": "Author{${1:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BibliographyFile{}": {
+      "command": "BibliographyFile{}",
+      "snippet": "BibliographyFile{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Colophon{}": {
+      "command": "Colophon{}",
+      "snippet": "Colophon{${1:colophon%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "afterpreface": {
+      "command": "afterpreface",
+      "snippet": "afterpreface",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SubIndex{}": {
+      "command": "SubIndex{}",
+      "snippet": "SubIndex{${1:term}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Notation{}{}{}": {
+      "command": "Notation{}{}{}",
+      "snippet": "Notation{${1:term}}{${2:symbol%formula}}{${3:description%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "define{}": {
+      "command": "define{}",
+      "snippet": "define{${1:term}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chapterSummary{}": {
+      "command": "chapterSummary{}",
+      "snippet": "chapterSummary{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "optionalSection{}": {
+      "command": "optionalSection{}",
+      "snippet": "optionalSection{${1:title}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "imageborderinexample{}": {
+      "command": "imageborderinexample{}",
+      "snippet": "imageborderinexample{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "includegraphicsinexample{}": {
+      "command": "includegraphicsinexample{}",
+      "snippet": "includegraphicsinexample{${1:imagefile}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "includegraphicsinexample[]{}": {
+      "command": "includegraphicsinexample[]{}",
+      "snippet": "includegraphicsinexample[${2:options}]{${1:imagefile}}",
+      "option": "",
+      "keyvals": [
+        "alt={",
+        "bb=",
+        "bbllx=",
+        "bblly=",
+        "bburx=",
+        "bbury=",
+        "natwidth=",
+        "natheight=",
+        "hiresbb",
+        "pagebox=",
+        "viewport=",
+        "trim=",
+        "angle=",
+        "origin=",
+        "width=",
+        "height=",
+        "totalheight=",
+        "keepaspectratio",
+        "scale=",
+        "clip",
+        "draft",
+        "type=",
+        "ext=",
+        "read=",
+        "command=",
+        "quiet",
+        "page=",
+        "interpolate",
+        "decodearray={"
+      ],
+      "keyvalindex": 0
+    },
+    "inputinexample{}": {
+      "command": "inputinexample{}",
+      "snippet": "inputinexample{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scotsMc": {
+      "command": "scotsMc",
+      "snippet": "scotsMc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scotsMC": {
+      "command": "scotsMC",
+      "snippet": "scotsMC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scotsMcx{}": {
+      "command": "scotsMcx{}",
+      "snippet": "scotsMcx{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tallmatrix": {
+      "command": "tallmatrix",
+      "snippet": "tallmatrix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NotationIndexName": {
+      "command": "NotationIndexName",
+      "snippet": "NotationIndexName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "paddedpagenumber": {
+      "command": "paddedpagenumber",
+      "snippet": "paddedpagenumber",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "leftAbs": {
+      "command": "leftAbs",
+      "snippet": "leftAbs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rightAbs": {
+      "command": "rightAbs",
+      "snippet": "rightAbs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "leftDoubleAbs": {
+      "command": "leftDoubleAbs",
+      "snippet": "leftDoubleAbs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rightDoubleAbs": {
+      "command": "rightDoubleAbs",
+      "snippet": "rightDoubleAbs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "normNotation{}": {
+      "command": "normNotation{}",
+      "snippet": "normNotation{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "orderForNotationIndex{}": {
+      "command": "orderForNotationIndex{}",
+      "snippet": "orderForNotationIndex{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lengthForNotationIndex{}": {
+      "command": "lengthForNotationIndex{}",
+      "snippet": "lengthForNotationIndex{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "normForNotationIndex{}": {
+      "command": "normForNotationIndex{}",
+      "snippet": "normForNotationIndex{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lcl": {
+      "command": "lcl",
+      "snippet": "lcl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rcl": {
+      "command": "rcl",
+      "snippet": "rcl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lflr": {
+      "command": "lflr",
+      "snippet": "lflr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rflr": {
+      "command": "rflr",
+      "snippet": "rflr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ceilForNotationIndex{}": {
+      "command": "ceilForNotationIndex{}",
+      "snippet": "ceilForNotationIndex{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "floorForNotationIndex{}": {
+      "command": "floorForNotationIndex{}",
+      "snippet": "floorForNotationIndex{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FancyIndexEntry{}": {
+      "command": "FancyIndexEntry{}",
+      "snippet": "FancyIndexEntry{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "idxmark{}": {
+      "command": "idxmark{}",
+      "snippet": "idxmark{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "doidxbookmark{}": {
+      "command": "doidxbookmark{}",
+      "snippet": "doidxbookmark{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "doglobookmark{}": {
+      "command": "doglobookmark{}",
+      "snippet": "doglobookmark{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stdFigSize": {
+      "command": "stdFigSize",
+      "snippet": "stdFigSize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subfigure{}": {
+      "command": "subfigure{}",
+      "snippet": "subfigure{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subfigure[]{}": {
+      "command": "subfigure[]{}",
+      "snippet": "subfigure[${2:list-entry}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subfigure[][]{}": {
+      "command": "subfigure[][]{}",
+      "snippet": "subfigure[${2:list-entry}][${3:subtitle%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subfigcapskip": {
+      "command": "subfigcapskip",
+      "snippet": "subfigcapskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "heading": {
+      "command": "heading",
+      "snippet": "heading",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "printanswers": {
+      "command": "printanswers",
+      "snippet": "printanswers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newparagraph": {
+      "command": "newparagraph",
+      "snippet": "newparagraph",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defaultArrayRuleColor": {
+      "command": "defaultArrayRuleColor",
+      "snippet": "defaultArrayRuleColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rulecolor{}": {
+      "command": "rulecolor{}",
+      "snippet": "rulecolor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "writetitlepage": {
+      "command": "writetitlepage",
+      "snippet": "writetitlepage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newcolr": {
+      "command": "newcolr",
+      "snippet": "newcolr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "smallboxh": {
+      "command": "smallboxh",
+      "snippet": "smallboxh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "smallboxd": {
+      "command": "smallboxd",
+      "snippet": "smallboxd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "smallboxw": {
+      "command": "smallboxw",
+      "snippet": "smallboxw",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blanksp": {
+      "command": "blanksp",
+      "snippet": "blanksp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "smallcolouredbox": {
+      "command": "smallcolouredbox",
+      "snippet": "smallcolouredbox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifchaptercolours": {
+      "command": "ifchaptercolours",
+      "snippet": "ifchaptercolours",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chaptercolourstrue": {
+      "command": "chaptercolourstrue",
+      "snippet": "chaptercolourstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chaptercoloursfalse": {
+      "command": "chaptercoloursfalse",
+      "snippet": "chaptercoloursfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "negphantom{}": {
+      "command": "negphantom{}",
+      "snippet": "negphantom{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hintsPreamble": {
+      "command": "hintsPreamble",
+      "snippet": "hintsPreamble",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bibliographyPreamble": {
+      "command": "bibliographyPreamble",
+      "snippet": "bibliographyPreamble",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DH": {
+      "command": "DH",
+      "snippet": "DH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NG": {
+      "command": "NG",
+      "snippet": "NG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dj": {
+      "command": "dj",
+      "snippet": "dj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ng": {
+      "command": "ng",
+      "snippet": "ng",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "k{}": {
+      "command": "k{}",
+      "snippet": "k{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotleft": {
+      "command": "guillemotleft",
+      "snippet": "guillemotleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotright": {
+      "command": "guillemotright",
+      "snippet": "guillemotright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglleft": {
+      "command": "guilsinglleft",
+      "snippet": "guilsinglleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglright": {
+      "command": "guilsinglright",
+      "snippet": "guilsinglright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotedblbase": {
+      "command": "quotedblbase",
+      "snippet": "quotedblbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotesinglbase": {
+      "command": "quotesinglbase",
+      "snippet": "quotesinglbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textquotedbl": {
+      "command": "textquotedbl",
+      "snippet": "textquotedbl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DJ": {
+      "command": "DJ",
+      "snippet": "DJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "th": {
+      "command": "th",
+      "snippet": "th",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TH": {
+      "command": "TH",
+      "snippet": "TH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dh": {
+      "command": "dh",
+      "snippet": "dh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hwithstroke": {
+      "command": "Hwithstroke",
+      "snippet": "Hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hwithstroke": {
+      "command": "hwithstroke",
+      "snippet": "hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textogonekcentered{}": {
+      "command": "textogonekcentered{}",
+      "snippet": "textogonekcentered{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetleft": {
+      "command": "guillemetleft",
+      "snippet": "guillemetleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetright": {
+      "command": "guillemetright",
+      "snippet": "guillemetright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "theorem": {
+      "name": "theorem",
+      "detail": "theorem",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theorem[]": {
+      "name": "theorem",
+      "detail": "theorem[]",
+      "snippet": "[${1:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lemma": {
+      "name": "lemma",
+      "detail": "lemma",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lemma[]": {
+      "name": "lemma",
+      "detail": "lemma[]",
+      "snippet": "[${1:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "corollary": {
+      "name": "corollary",
+      "detail": "corollary",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "corollary[]": {
+      "name": "corollary",
+      "detail": "corollary[]",
+      "snippet": "[${1:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proposition": {
+      "name": "proposition",
+      "detail": "proposition",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proposition[]": {
+      "name": "proposition",
+      "detail": "proposition[]",
+      "snippet": "[${1:subtitle%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "example": {
+      "name": "example",
+      "detail": "example",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exampleAndImage{}": {
+      "name": "exampleAndImage",
+      "detail": "exampleAndImage{}",
+      "snippet": "{${1:width}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "examples": {
+      "name": "examples",
+      "detail": "examples",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "problem{}": {
+      "name": "problem",
+      "detail": "problem{}",
+      "snippet": "{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "problem*{}": {
+      "name": "problem*",
+      "detail": "problem*{}",
+      "snippet": "{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "answer{}": {
+      "name": "answer",
+      "detail": "answer{}",
+      "snippet": "{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ReviewExercises": {
+      "name": "ReviewExercises",
+      "detail": "ReviewExercises",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subproblems": {
+      "name": "subproblems",
+      "detail": "subproblems",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "problemTheorem": {
+      "name": "problemTheorem",
+      "detail": "problemTheorem",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HardProblemTheorem": {
+      "name": "HardProblemTheorem",
+      "detail": "HardProblemTheorem",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

@@ -1,0 +1,414 @@
+{
+  "includes": [
+    "etoolbox",
+    "pgfopts",
+    "xparse",
+    "pgffor",
+    "amsfonts",
+    "amsmath",
+    "bbding",
+    "tikz"
+  ],
+  "cmds": {
+    "answer{}": {
+      "command": "answer{}",
+      "snippet": "answer{${1:correct answer%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "answer[]{}": {
+      "command": "answer[]{}",
+      "snippet": "answer[${2:comparison type}]{${1:correct answer%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "answer*{}": {
+      "command": "answer*{}",
+      "snippet": "answer*{${1:correct answer%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "answer*[]{}": {
+      "command": "answer*[]{}",
+      "snippet": "answer*[${2:comparison type}]{${1:correct answer%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "whenRight": {
+      "command": "whenRight",
+      "snippet": "whenRight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "whenWrong": {
+      "command": "whenWrong",
+      "snippet": "whenWrong",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "correct": {
+      "command": "correct",
+      "snippet": "correct",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "incorrect": {
+      "command": "incorrect",
+      "snippet": "incorrect",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "feedback": {
+      "command": "feedback",
+      "snippet": "feedback",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dref{}": {
+      "command": "dref{}",
+      "snippet": "dref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dref[]{}": {
+      "command": "dref[]{}",
+      "snippet": "dref[${2:text}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dref*{}": {
+      "command": "dref*{}",
+      "snippet": "dref*{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dref*[]{}": {
+      "command": "dref*[]{}",
+      "snippet": "dref*[${2:text}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qref{}": {
+      "command": "qref{}",
+      "snippet": "qref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qref[]{}": {
+      "command": "qref[]{}",
+      "snippet": "qref[${2:text}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qref*{}": {
+      "command": "qref*{}",
+      "snippet": "qref*{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qref*[]{}": {
+      "command": "qref*[]{}",
+      "snippet": "qref*[${2:text}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Qref{}": {
+      "command": "Qref{}",
+      "snippet": "Qref{${1:question number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Qref[]{}": {
+      "command": "Qref[]{}",
+      "snippet": "Qref[${2:text}]{${1:question number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Qref*{}": {
+      "command": "Qref*{}",
+      "snippet": "Qref*{${1:question number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Qref*[]{}": {
+      "command": "Qref*[]{}",
+      "snippet": "Qref*[${2:text}]{${1:question number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quiz{}": {
+      "command": "quiz{}",
+      "snippet": "quiz{${1:title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quiz[]{}": {
+      "command": "quiz[]{}",
+      "snippet": "quiz[${2:URL}]{${1:title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quiz*{}": {
+      "command": "quiz*{}",
+      "snippet": "quiz*{${1:title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quiz*[]{}": {
+      "command": "quiz*[]{}",
+      "snippet": "quiz*[${2:URL}]{${1:title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BreadCrumbs{}": {
+      "command": "BreadCrumbs{}",
+      "snippet": "BreadCrumbs{${1:navigation spec%URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BreadCrumb{}": {
+      "command": "BreadCrumb{}",
+      "snippet": "BreadCrumb{${1:breadcrumb}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Department{}": {
+      "command": "Department{}",
+      "snippet": "Department{${1:department%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DepartmentURL{}": {
+      "command": "DepartmentURL{}",
+      "snippet": "DepartmentURL{${1:URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Institution{}": {
+      "command": "Institution{}",
+      "snippet": "Institution{${1:institution%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "InstitutionURL{}": {
+      "command": "InstitutionURL{}",
+      "snippet": "InstitutionURL{${1:URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "QuizzesURL{}": {
+      "command": "QuizzesURL{}",
+      "snippet": "QuizzesURL{${1:URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UnitCode{}": {
+      "command": "UnitCode{}",
+      "snippet": "UnitCode{${1:unit code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UnitName{}": {
+      "command": "UnitName{}",
+      "snippet": "UnitName{${1:unit name%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UnitURL{}": {
+      "command": "UnitURL{}",
+      "snippet": "UnitURL{${1:URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DisplayAsImage{}": {
+      "command": "DisplayAsImage{}",
+      "snippet": "DisplayAsImage{${1:csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DisplayAsImage[]{}": {
+      "command": "DisplayAsImage[]{}",
+      "snippet": "DisplayAsImage[${2:options}]{${1:csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thechoice": {
+      "command": "thechoice",
+      "snippet": "thechoice",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thediscussion": {
+      "command": "thediscussion",
+      "snippet": "thediscussion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thequestion": {
+      "command": "thequestion",
+      "snippet": "thequestion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thequiz": {
+      "command": "thequiz",
+      "snippet": "thequiz",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "webquiz{}": {
+      "command": "webquiz{}",
+      "snippet": "webquiz{${1:key%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AddIniFileKeyValue{}": {
+      "command": "AddIniFileKeyValue{}",
+      "snippet": "AddIniFileKeyValue{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AddIniFileValue{}{}": {
+      "command": "AddIniFileValue{}{}",
+      "snippet": "AddIniFileValue{${1:key%plain}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inifile": {
+      "command": "inifile",
+      "snippet": "inifile",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "apar": {
+      "command": "apar",
+      "snippet": "apar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AddEntry{}": {
+      "command": "AddEntry{}",
+      "snippet": "AddEntry{${1:key%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "question": {
+      "name": "question",
+      "detail": "question",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "choice": {
+      "name": "choice",
+      "detail": "choice",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "discussion": {
+      "name": "discussion",
+      "detail": "discussion",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quizindex": {
+      "name": "quizindex",
+      "detail": "quizindex",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "choice[]": {
+      "name": "choice",
+      "detail": "choice[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "single",
+        "multiple",
+        "columns="
+      ],
+      "keyvalindex": 0
+    },
+    "dicussion": {
+      "name": "dicussion",
+      "detail": "dicussion",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dicussion[]": {
+      "name": "dicussion",
+      "detail": "dicussion[]",
+      "snippet": "[${1:short heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dicussion[][]": {
+      "name": "dicussion",
+      "detail": "dicussion[][]",
+      "snippet": "[${1:short heading%text}][${2:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

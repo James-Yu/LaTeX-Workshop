@@ -1,0 +1,588 @@
+{
+  "includes": [
+    "skak",
+    "xifthen",
+    "etoolbox",
+    "chessboard"
+  ],
+  "cmds": {
+    "newchessgame": {
+      "command": "newchessgame",
+      "snippet": "newchessgame",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newchessgame[]": {
+      "command": "newchessgame[]",
+      "snippet": "newchessgame[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "id",
+        "id=",
+        "movenr=",
+        "player=",
+        "moveid=",
+        "newvar=",
+        "refid=",
+        "refpastmoveid=",
+        "refpastmovenr=",
+        "refpastplayer=",
+        "refnextmoveid=",
+        "refnextmovenr=",
+        "refnextplayer=",
+        "refpast=",
+        "refnext=",
+        "reffen=",
+        "reftag=",
+        "",
+        "result=",
+        "white=",
+        "black=",
+        "whiteelo=",
+        "blackelo=",
+        "site=",
+        "date=",
+        "event=",
+        "round="
+      ],
+      "keyvalindex": 0
+    },
+    "resumechessgame[]": {
+      "command": "resumechessgame[]",
+      "snippet": "resumechessgame[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "id",
+        "id=",
+        "movenr=",
+        "player=",
+        "moveid=",
+        "newvar=",
+        "refid=",
+        "refpastmoveid=",
+        "refpastmovenr=",
+        "refpastplayer=",
+        "refnextmoveid=",
+        "refnextmovenr=",
+        "refnextplayer=",
+        "refpast=",
+        "refnext=",
+        "reffen=",
+        "reftag=",
+        ""
+      ],
+      "keyvalindex": 0
+    },
+    "xskaknewpgninfo{}": {
+      "command": "xskaknewpgninfo{}",
+      "snippet": "xskaknewpgninfo{${1:keyname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskaknewpgninfo[]{}": {
+      "command": "xskaknewpgninfo[]{}",
+      "snippet": "xskaknewpgninfo[${2:default}]{${1:keyname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakgetgame{}": {
+      "command": "xskakgetgame{}",
+      "snippet": "xskakgetgame{${1:type}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakget{}": {
+      "command": "xskakget{}",
+      "snippet": "xskakget{${1:type}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakcomment{}": {
+      "command": "xskakcomment{}",
+      "snippet": "xskakcomment{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakexportgames": {
+      "command": "xskakexportgames",
+      "snippet": "xskakexportgames",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakexportgames[]": {
+      "command": "xskakexportgames[]",
+      "snippet": "xskakexportgames[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "file=",
+        "games={"
+      ],
+      "keyvalindex": 0
+    },
+    "xskakendgamedata": {
+      "command": "xskakendgamedata",
+      "snippet": "xskakendgamedata",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakcurrentgameid": {
+      "command": "xskakcurrentgameid",
+      "snippet": "xskakcurrentgameid",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakset{}": {
+      "command": "xskakset{}",
+      "snippet": "xskakset{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "stepmoveid=",
+        "lastmoveid=",
+        "tag=",
+        "defaultid=",
+        "defaultresult=",
+        "defaultwhite=",
+        "defaultblack=",
+        "defaultwhiteelo=",
+        "defaultblackelo=",
+        "defaultsite=",
+        "defaultdate=",
+        "defaultevent=",
+        "defaultround=",
+        "defaultmovenr=",
+        "defaultplayer=",
+        "defaultmoveid=",
+        "defaultfen=",
+        "style=",
+        "gstyle=",
+        "level=",
+        "glevel=",
+        "invar",
+        "ginvar",
+        "outvar",
+        "goutvar"
+      ],
+      "keyvalindex": 0
+    },
+    "xskaktestmoveid{}{}": {
+      "command": "xskaktestmoveid{}{}",
+      "snippet": "xskaktestmoveid{${1:movenr}}{${2:player}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakloop{}": {
+      "command": "xskakloop{}",
+      "snippet": "xskakloop{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakloop[]{}": {
+      "command": "xskakloop[]{}",
+      "snippet": "xskakloop[${2:options}]{${1:code}}",
+      "option": "",
+      "keyvals": [
+        "id=",
+        "initmovenr=",
+        "initplayer=",
+        "initmoveid=",
+        "stopmovenr=",
+        "stopplayer=",
+        "stopmoveid=",
+        "step=",
+        "showlast"
+      ],
+      "keyvalindex": 0
+    },
+    "xskakenpassanttext": {
+      "command": "xskakenpassanttext",
+      "snippet": "xskakenpassanttext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mainline[]{}": {
+      "command": "mainline[]{}",
+      "snippet": "mainline[${2:option}]{${1:moves}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "variation[]{}": {
+      "command": "variation[]{}",
+      "snippet": "variation[${2:option}]{${1:moves}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskaknewstyleitem{}": {
+      "command": "xskaknewstyleitem{}",
+      "snippet": "xskaknewstyleitem{${1:item}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskaknewstyleitem[]{}": {
+      "command": "xskaknewstyleitem[]{}",
+      "snippet": "xskaknewstyleitem[${2:options}]{${1:item}}",
+      "option": "",
+      "keyvals": [
+        "opencommands=",
+        "closecommands=",
+        "beforenumber=",
+        "whiteopen=",
+        "blackopen=",
+        "beforewhite=",
+        "beforeblack=",
+        "afterwhite=",
+        "afterblack=",
+        "beforeNAG=",
+        "beforecomment=",
+        "template="
+      ],
+      "keyvalindex": 0
+    },
+    "xskaknewstyle{}": {
+      "command": "xskaknewstyle{}",
+      "snippet": "xskaknewstyle{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskaknewstyle[]{}": {
+      "command": "xskaknewstyle[]{}",
+      "snippet": "xskaknewstyle[${2:options}]{${1:style}}",
+      "option": "",
+      "keyvals": [
+        "level=",
+        "styleitem=",
+        "font=",
+        "xfont="
+      ],
+      "keyvalindex": 0
+    },
+    "xskakaddtostyle{}": {
+      "command": "xskakaddtostyle{}",
+      "snippet": "xskakaddtostyle{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakaddtostyle[]{}": {
+      "command": "xskakaddtostyle[]{}",
+      "snippet": "xskakaddtostyle[${2:options}]{${1:style}}",
+      "option": "",
+      "keyvals": [
+        "level=",
+        "styleitem=",
+        "font=",
+        "xfont="
+      ],
+      "keyvalindex": 0
+    },
+    "printchessgame": {
+      "command": "printchessgame",
+      "snippet": "printchessgame",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "printchessgame[]": {
+      "command": "printchessgame[]",
+      "snippet": "printchessgame[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "id=",
+        "refid=",
+        "initmovenr=",
+        "initplayer=",
+        "initmoveid=",
+        "stopmovenr=",
+        "stopplayer=",
+        "stopmoveid=",
+        "reftag="
+      ],
+      "keyvalindex": 0
+    },
+    "chessdiagramname": {
+      "command": "chessdiagramname",
+      "snippet": "chessdiagramname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakaddtoid": {
+      "command": "xskakaddtoid",
+      "snippet": "xskakaddtoid",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifxskakboolcapture": {
+      "command": "ifxskakboolcapture",
+      "snippet": "ifxskakboolcapture",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifxskakboolcastling": {
+      "command": "ifxskakboolcastling",
+      "snippet": "ifxskakboolcastling",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifxskakboolcheck": {
+      "command": "ifxskakboolcheck",
+      "snippet": "ifxskakboolcheck",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifxskakboolcomment": {
+      "command": "ifxskakboolcomment",
+      "snippet": "ifxskakboolcomment",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifxskakboolenpassant": {
+      "command": "ifxskakboolenpassant",
+      "snippet": "ifxskakboolenpassant",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifxskakboollongcastling": {
+      "command": "ifxskakboollongcastling",
+      "snippet": "ifxskakboollongcastling",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifxskakboolmate": {
+      "command": "ifxskakboolmate",
+      "snippet": "ifxskakboolmate",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifxskakboolnag": {
+      "command": "ifxskakboolnag",
+      "snippet": "ifxskakboolnag",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifxskakboolpromotion": {
+      "command": "ifxskakboolpromotion",
+      "snippet": "ifxskakboolpromotion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifxskakboolvar": {
+      "command": "ifxskakboolvar",
+      "snippet": "ifxskakboolvar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifxskakpdfmatch": {
+      "command": "ifxskakpdfmatch",
+      "snippet": "ifxskakpdfmatch",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skaklongmoves": {
+      "command": "skaklongmoves",
+      "snippet": "skaklongmoves",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "variationmovemode": {
+      "command": "variationmovemode",
+      "snippet": "variationmovemode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolcapturefalse": {
+      "command": "xskakboolcapturefalse",
+      "snippet": "xskakboolcapturefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolcapturetrue": {
+      "command": "xskakboolcapturetrue",
+      "snippet": "xskakboolcapturetrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolcastlingfalse": {
+      "command": "xskakboolcastlingfalse",
+      "snippet": "xskakboolcastlingfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolcastlingtrue": {
+      "command": "xskakboolcastlingtrue",
+      "snippet": "xskakboolcastlingtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolcheckfalse": {
+      "command": "xskakboolcheckfalse",
+      "snippet": "xskakboolcheckfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolchecktrue": {
+      "command": "xskakboolchecktrue",
+      "snippet": "xskakboolchecktrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolcommentfalse": {
+      "command": "xskakboolcommentfalse",
+      "snippet": "xskakboolcommentfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolcommenttrue": {
+      "command": "xskakboolcommenttrue",
+      "snippet": "xskakboolcommenttrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolenpassantfalse": {
+      "command": "xskakboolenpassantfalse",
+      "snippet": "xskakboolenpassantfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolenpassanttrue": {
+      "command": "xskakboolenpassanttrue",
+      "snippet": "xskakboolenpassanttrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboollongcastlingfalse": {
+      "command": "xskakboollongcastlingfalse",
+      "snippet": "xskakboollongcastlingfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboollongcastlingtrue": {
+      "command": "xskakboollongcastlingtrue",
+      "snippet": "xskakboollongcastlingtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolmatefalse": {
+      "command": "xskakboolmatefalse",
+      "snippet": "xskakboolmatefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolmatetrue": {
+      "command": "xskakboolmatetrue",
+      "snippet": "xskakboolmatetrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolnagfalse": {
+      "command": "xskakboolnagfalse",
+      "snippet": "xskakboolnagfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolnagtrue": {
+      "command": "xskakboolnagtrue",
+      "snippet": "xskakboolnagtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolpromotionfalse": {
+      "command": "xskakboolpromotionfalse",
+      "snippet": "xskakboolpromotionfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolpromotiontrue": {
+      "command": "xskakboolpromotiontrue",
+      "snippet": "xskakboolpromotiontrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolvarfalse": {
+      "command": "xskakboolvarfalse",
+      "snippet": "xskakboolvarfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakboolvartrue": {
+      "command": "xskakboolvartrue",
+      "snippet": "xskakboolvartrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakmovehyphen": {
+      "command": "xskakmovehyphen",
+      "snippet": "xskakmovehyphen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakpdfmatchfalse": {
+      "command": "xskakpdfmatchfalse",
+      "snippet": "xskakpdfmatchfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xskakpdfmatchtrue": {
+      "command": "xskakpdfmatchtrue",
+      "snippet": "xskakpdfmatchtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": [
+    "nopdfmatch"
+  ]
+}

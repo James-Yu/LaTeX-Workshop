@@ -1,0 +1,782 @@
+{
+  "includes": [
+    "longtable",
+    "array",
+    "booktabs"
+  ],
+  "cmds": {
+    "printunsrttable": {
+      "command": "printunsrttable",
+      "snippet": "printunsrttable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "printunsrttable[]": {
+      "command": "printunsrttable[]",
+      "snippet": "printunsrttable[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "type=",
+        "title=",
+        "toctitle=",
+        "numberedsection=",
+        "nopostdot",
+        "entrycounter",
+        "subentrycounter",
+        "sort=",
+        "target",
+        "targetnameprefix=",
+        "prefix=",
+        "label=",
+        "groups",
+        "leveloffset=",
+        "preamble=",
+        "postamble=",
+        "flatten",
+        "blocks=",
+        "header",
+        "rules",
+        "blocksep=",
+        "par=",
+        "other=",
+        "init={",
+        "block-style=",
+        "clearpage"
+      ],
+      "keyvalindex": 0
+    },
+    "glstableiffilter{}{}{}": {
+      "command": "glstableiffilter{}{}{}",
+      "snippet": "glstableiffilter{${1:label}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableChildEntries{}": {
+      "command": "glstableChildEntries{}",
+      "snippet": "glstableChildEntries{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableiffilterchild{}{}{}": {
+      "command": "glstableiffilterchild{}{}{}",
+      "snippet": "glstableiffilterchild{${1:label}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablePreChildren": {
+      "command": "glstablePreChildren",
+      "snippet": "glstablePreChildren",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablesubentryalign": {
+      "command": "glstablesubentryalign",
+      "snippet": "glstablesubentryalign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableblocksubentrysep": {
+      "command": "glstableblocksubentrysep",
+      "snippet": "glstableblocksubentrysep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablecaption{}{}{}": {
+      "command": "glstablecaption{}{}{}",
+      "snippet": "glstablecaption{${1:lot title%text}}{${2:title%text}}{${3:label code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablenextcaption{}{}": {
+      "command": "glstablenextcaption{}{}",
+      "snippet": "glstablenextcaption{${1:lot title%text}}{${2:title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablepostnextcaption": {
+      "command": "glstablepostnextcaption",
+      "snippet": "glstablepostnextcaption",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablenameheader": {
+      "command": "glstablenameheader",
+      "snippet": "glstablenameheader",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstabledescheader": {
+      "command": "glstabledescheader",
+      "snippet": "glstabledescheader",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablesymbolheader": {
+      "command": "glstablesymbolheader",
+      "snippet": "glstablesymbolheader",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableotherheader": {
+      "command": "glstableotherheader",
+      "snippet": "glstableotherheader",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablesetstyle{}": {
+      "command": "glstablesetstyle{}",
+      "snippet": "glstablesetstyle{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablenewline": {
+      "command": "glstablenewline",
+      "snippet": "glstablenewline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableleftalign{}": {
+      "command": "glstableleftalign{}",
+      "snippet": "glstableleftalign{${1:width}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablerightalign{}": {
+      "command": "glstablerightalign{}",
+      "snippet": "glstablerightalign{${1:width}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablecenteralign{}": {
+      "command": "glstablecenteralign{}",
+      "snippet": "glstablecenteralign{${1:width}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablenamecolalign": {
+      "command": "glstablenamecolalign",
+      "snippet": "glstablenamecolalign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstabledesccolalign": {
+      "command": "glstabledesccolalign",
+      "snippet": "glstabledesccolalign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablesymbolcolalign": {
+      "command": "glstablesymbolcolalign",
+      "snippet": "glstablesymbolcolalign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableothercolalign": {
+      "command": "glstableothercolalign",
+      "snippet": "glstableothercolalign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablenamewidth": {
+      "command": "glstablenamewidth",
+      "snippet": "glstablenamewidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstabledescwidth": {
+      "command": "glstabledescwidth",
+      "snippet": "glstabledescwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablesymbolwidth": {
+      "command": "glstablesymbolwidth",
+      "snippet": "glstablesymbolwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableotherwidth": {
+      "command": "glstableotherwidth",
+      "snippet": "glstableotherwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableblockwidth": {
+      "command": "glstableblockwidth",
+      "snippet": "glstableblockwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablepostpreambleskip": {
+      "command": "glstablepostpreambleskip",
+      "snippet": "glstablepostpreambleskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableprepostambleskip": {
+      "command": "glstableprepostambleskip",
+      "snippet": "glstableprepostambleskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableNameFmt{}": {
+      "command": "glstableNameFmt{}",
+      "snippet": "glstableNameFmt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubNameFmt{}": {
+      "command": "glstableSubNameFmt{}",
+      "snippet": "glstableSubNameFmt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSymbolFmt{}": {
+      "command": "glstableSymbolFmt{}",
+      "snippet": "glstableSymbolFmt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubSymbolFmt{}": {
+      "command": "glstableSubSymbolFmt{}",
+      "snippet": "glstableSubSymbolFmt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableDescFmt{}": {
+      "command": "glstableDescFmt{}",
+      "snippet": "glstableDescFmt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubDescFmt{}": {
+      "command": "glstableSubDescFmt{}",
+      "snippet": "glstableSubDescFmt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableotherfield": {
+      "command": "glstableotherfield",
+      "snippet": "glstableotherfield",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableOtherFmt{}": {
+      "command": "glstableOtherFmt{}",
+      "snippet": "glstableOtherFmt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableOther{}": {
+      "command": "glstableOther{}",
+      "snippet": "glstableOther{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubOtherNoDesc{}": {
+      "command": "glstableSubOtherNoDesc{}",
+      "snippet": "glstableSubOtherNoDesc{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableifhasotherfield{}{}{}": {
+      "command": "glstableifhasotherfield{}{}{}",
+      "snippet": "glstableifhasotherfield{${1:label}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableHeaderFmt{}": {
+      "command": "glstableHeaderFmt{}",
+      "snippet": "glstableHeaderFmt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableblockalign": {
+      "command": "glstableblockalign",
+      "snippet": "glstableblockalign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableblockentry{}": {
+      "command": "glstableblockentry{}",
+      "snippet": "glstableblockentry{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableblockheader": {
+      "command": "glstableblockheader",
+      "snippet": "glstableblockheader",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableblockperrowcount": {
+      "command": "glstableblockperrowcount",
+      "snippet": "glstableblockperrowcount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableblocksubentry{}": {
+      "command": "glstableblocksubentry{}",
+      "snippet": "glstableblocksubentry{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablecolsperblock": {
+      "command": "glstablecolsperblock",
+      "snippet": "glstablecolsperblock",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablecurrentblockindex": {
+      "command": "glstablecurrentblockindex",
+      "snippet": "glstablecurrentblockindex",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableDesc{}": {
+      "command": "glstableDesc{}",
+      "snippet": "glstableDesc{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableDescWithOther{}": {
+      "command": "glstableDescWithOther{}",
+      "snippet": "glstableDescWithOther{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablefinishlengthupdates": {
+      "command": "glstablefinishlengthupdates",
+      "snippet": "glstablefinishlengthupdates",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablefinishrow": {
+      "command": "glstablefinishrow",
+      "snippet": "glstablefinishrow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablefirsthead{}": {
+      "command": "glstablefirsthead{}",
+      "snippet": "glstablefirsthead{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablefoot{}": {
+      "command": "glstablefoot{}",
+      "snippet": "glstablefoot{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablefootstrut": {
+      "command": "glstablefootstrut",
+      "snippet": "glstablefootstrut",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableGroupHeaderFmt": {
+      "command": "glstableGroupHeaderFmt",
+      "snippet": "glstableGroupHeaderFmt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablegroupheading{}": {
+      "command": "glstablegroupheading{}",
+      "snippet": "glstablegroupheading{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablehead{}": {
+      "command": "glstablehead{}",
+      "snippet": "glstablehead{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableifmeasuring": {
+      "command": "glstableifmeasuring",
+      "snippet": "glstableifmeasuring",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableifmeasuring{}{}": {
+      "command": "glstableifmeasuring{}{}",
+      "snippet": "glstableifmeasuring{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableifpar{}": {
+      "command": "glstableifpar{}",
+      "snippet": "glstableifpar{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableinitlengthupdates": {
+      "command": "glstableinitlengthupdates",
+      "snippet": "glstableinitlengthupdates",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablelastfoot{}": {
+      "command": "glstablelastfoot{}",
+      "snippet": "glstablelastfoot{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablelengthupdate{}": {
+      "command": "glstablelengthupdate{}",
+      "snippet": "glstablelengthupdate{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablemeasureandupdate{}{}": {
+      "command": "glstablemeasureandupdate{}{}",
+      "snippet": "glstablemeasureandupdate{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableName{}": {
+      "command": "glstableName{}",
+      "snippet": "glstableName{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableNameNoDesc{}": {
+      "command": "glstableNameNoDesc{}",
+      "snippet": "glstableNameNoDesc{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableNameSingleFmt{}": {
+      "command": "glstableNameSingleFmt{}",
+      "snippet": "glstableNameSingleFmt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableNameSinglePostName": {
+      "command": "glstableNameSinglePostName",
+      "snippet": "glstableNameSinglePostName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableNameSinglePostSubName": {
+      "command": "glstableNameSinglePostSubName",
+      "snippet": "glstableNameSinglePostSubName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableNameSingleSubSuppl{}": {
+      "command": "glstableNameSingleSubSuppl{}",
+      "snippet": "glstableNameSingleSubSuppl{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableNameSingleSuppl{}": {
+      "command": "glstableNameSingleSuppl{}",
+      "snippet": "glstableNameSingleSuppl{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableNameSingleSymSep": {
+      "command": "glstableNameSingleSymSep",
+      "snippet": "glstableNameSingleSymSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableNameTarget{}": {
+      "command": "glstableNameTarget{}",
+      "snippet": "glstableNameTarget{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablenewstyle{}{}": {
+      "command": "glstablenewstyle{}{}",
+      "snippet": "glstablenewstyle{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableOtherNoDesc{}": {
+      "command": "glstableOtherNoDesc{}",
+      "snippet": "glstableOtherNoDesc{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableOtherSep": {
+      "command": "glstableOtherSep",
+      "snippet": "glstableOtherSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableOtherWithSep{}{}{}": {
+      "command": "glstableOtherWithSep{}{}{}",
+      "snippet": "glstableOtherWithSep{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablePostGroupNewLine": {
+      "command": "glstablePostGroupNewLine",
+      "snippet": "glstablePostGroupNewLine",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablerowspan{}": {
+      "command": "glstablerowspan{}",
+      "snippet": "glstablerowspan{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablespanwidth": {
+      "command": "glstablespanwidth",
+      "snippet": "glstablespanwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubDesc{}": {
+      "command": "glstableSubDesc{}",
+      "snippet": "glstableSubDesc{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubDescSymbolOther{}": {
+      "command": "glstableSubDescSymbolOther{}",
+      "snippet": "glstableSubDescSymbolOther{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstablesubentrywidth": {
+      "command": "glstablesubentrywidth",
+      "snippet": "glstablesubentrywidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubName{}": {
+      "command": "glstableSubName{}",
+      "snippet": "glstableSubName{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubNameNoDesc{}": {
+      "command": "glstableSubNameNoDesc{}",
+      "snippet": "glstableSubNameNoDesc{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubNameSep": {
+      "command": "glstableSubNameSep",
+      "snippet": "glstableSubNameSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubNameSingleFmt{}": {
+      "command": "glstableSubNameSingleFmt{}",
+      "snippet": "glstableSubNameSingleFmt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubNameSymbolNoDesc{}": {
+      "command": "glstableSubNameSymbolNoDesc{}",
+      "snippet": "glstableSubNameSymbolNoDesc{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubNameTarget{}": {
+      "command": "glstableSubNameTarget{}",
+      "snippet": "glstableSubNameTarget{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubOtherSep": {
+      "command": "glstableSubOtherSep",
+      "snippet": "glstableSubOtherSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubOtherWithSep{}{}{}": {
+      "command": "glstableSubOtherWithSep{}{}{}",
+      "snippet": "glstableSubOtherWithSep{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubSep": {
+      "command": "glstableSubSep",
+      "snippet": "glstableSubSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubSymbol{}": {
+      "command": "glstableSubSymbol{}",
+      "snippet": "glstableSubSymbol{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubSymbolName{}": {
+      "command": "glstableSubSymbolName{}",
+      "snippet": "glstableSubSymbolName{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubSymbolNameFmt{}": {
+      "command": "glstableSubSymbolNameFmt{}",
+      "snippet": "glstableSubSymbolNameFmt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubSymbolNameTarget{}": {
+      "command": "glstableSubSymbolNameTarget{}",
+      "snippet": "glstableSubSymbolNameTarget{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSubSymbolWithSep{}{}{}": {
+      "command": "glstableSubSymbolWithSep{}{}{}",
+      "snippet": "glstableSubSymbolWithSep{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSymbol{}": {
+      "command": "glstableSymbol{}",
+      "snippet": "glstableSymbol{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSymbolName{}": {
+      "command": "glstableSymbolName{}",
+      "snippet": "glstableSymbolName{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSymbolNameFmt{}": {
+      "command": "glstableSymbolNameFmt{}",
+      "snippet": "glstableSymbolNameFmt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstableSymbolNameTarget{}": {
+      "command": "glstableSymbolNameTarget{}",
+      "snippet": "glstableSymbolNameTarget{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glstabletotalcols": {
+      "command": "glstabletotalcols",
+      "snippet": "glstabletotalcols",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "glstablesubentries": {
+      "name": "glstablesubentries",
+      "detail": "glstablesubentries",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

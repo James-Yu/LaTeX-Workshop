@@ -1,0 +1,595 @@
+{
+  "includes": [
+    "class-scrartcl",
+    "expl3",
+    "sdapsbase",
+    "sdapslayout",
+    "verbatim",
+    "scrkbase",
+    "geometry",
+    "ifthen",
+    "fontenc",
+    "color",
+    "amssymb",
+    "refcount",
+    "lastpage",
+    "environ",
+    "scrlayer-scrpage",
+    "url",
+    "hyperref",
+    "graphicx",
+    "sectsty",
+    "tabularx",
+    "babel",
+    "translator"
+  ],
+  "cmds": {
+    "addinfo{}{}": {
+      "command": "addinfo{}{}",
+      "snippet": "addinfo{${1:key%plain}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sdapsinfo": {
+      "command": "sdapsinfo",
+      "snippet": "sdapsinfo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sdapspagemark": {
+      "command": "sdapspagemark",
+      "snippet": "sdapspagemark",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "checkbox": {
+      "command": "checkbox",
+      "snippet": "checkbox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "checkbox*": {
+      "command": "checkbox*",
+      "snippet": "checkbox*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "checkedbox": {
+      "command": "checkedbox",
+      "snippet": "checkedbox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "checkedbox*": {
+      "command": "checkedbox*",
+      "snippet": "checkedbox*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "filledbox": {
+      "command": "filledbox",
+      "snippet": "filledbox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "filledbox*": {
+      "command": "filledbox*",
+      "snippet": "filledbox*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "correctedbox": {
+      "command": "correctedbox",
+      "snippet": "correctedbox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "correctedbox*": {
+      "command": "correctedbox*",
+      "snippet": "correctedbox*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "singlemark{}{}{}": {
+      "command": "singlemark{}{}{}",
+      "snippet": "singlemark{${1:question%text}}{${2:lower%text}}{${3:upper%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "singlemark[]{}{}{}": {
+      "command": "singlemark[]{}{}{}",
+      "snippet": "singlemark[${4:options}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}",
+      "option": "",
+      "keyvals": [
+        "var=",
+        "count="
+      ],
+      "keyvalindex": 0
+    },
+    "singlemarkother{}{}{}": {
+      "command": "singlemarkother{}{}{}",
+      "snippet": "singlemarkother{${1:question%text}}{${2:lower%text}}{${3:upper%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "singlemarkother[]{}{}{}": {
+      "command": "singlemarkother[]{}{}{}",
+      "snippet": "singlemarkother[${4:options}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}",
+      "option": "",
+      "keyvals": [
+        "var=",
+        "count="
+      ],
+      "keyvalindex": 0
+    },
+    "textbox{}{}": {
+      "command": "textbox{}{}",
+      "snippet": "textbox{${1:height}}{${2:question}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textbox[]{}{}": {
+      "command": "textbox[]{}{}",
+      "snippet": "textbox[${3:options}]{${1:height}}{${2:question}}",
+      "option": "",
+      "keyvals": [
+        "text=",
+        "var="
+      ],
+      "keyvalindex": 0
+    },
+    "textbox*{}{}": {
+      "command": "textbox*{}{}",
+      "snippet": "textbox*{${1:height}}{${2:question}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textbox*[]{}{}": {
+      "command": "textbox*[]{}{}",
+      "snippet": "textbox*[${3:options}]{${1:height}}{${2:question}}",
+      "option": "",
+      "keyvals": [
+        "text=",
+        "var="
+      ],
+      "keyvalindex": 0
+    },
+    "choiceitem{}": {
+      "command": "choiceitem{}",
+      "snippet": "choiceitem{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "choiceitem[]{}": {
+      "command": "choiceitem[]{}",
+      "snippet": "choiceitem[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "var=",
+        "val=",
+        "text="
+      ],
+      "keyvalindex": 0
+    },
+    "choicemulticolitem{}{}": {
+      "command": "choicemulticolitem{}{}",
+      "snippet": "choicemulticolitem{${1:cols}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "choicemulticolitem[]{}{}": {
+      "command": "choicemulticolitem[]{}{}",
+      "snippet": "choicemulticolitem[${3:options}]{${1:cols}}{${2:text}}",
+      "option": "",
+      "keyvals": [
+        "var=",
+        "val=",
+        "text="
+      ],
+      "keyvalindex": 0
+    },
+    "choiceitemtext{}{}{}": {
+      "command": "choiceitemtext{}{}{}",
+      "snippet": "choiceitemtext{${1:height}}{${2:cols}}{${3:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "choiceitemtext[]{}{}{}": {
+      "command": "choiceitemtext[]{}{}{}",
+      "snippet": "choiceitemtext[${4:options}]{${1:height}}{${2:cols}}{${3:text}}",
+      "option": "",
+      "keyvals": [
+        "var=",
+        "text="
+      ],
+      "keyvalindex": 0
+    },
+    "markline{}{}{}": {
+      "command": "markline{}{}{}",
+      "snippet": "markline{${1:question}}{${2:lower}}{${3:upper}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "markline[]{}{}{}": {
+      "command": "markline[]{}{}{}",
+      "snippet": "markline[${4:options}]{${1:question}}{${2:lower}}{${3:upper}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "groupaddchoice{}": {
+      "command": "groupaddchoice{}",
+      "snippet": "groupaddchoice{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "groupaddchoice[]{}": {
+      "command": "groupaddchoice[]{}",
+      "snippet": "groupaddchoice[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "text=",
+        "var=",
+        "val="
+      ],
+      "keyvalindex": 0
+    },
+    "choiceline{}": {
+      "command": "choiceline{}",
+      "snippet": "choiceline{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "choiceline[]{}": {
+      "command": "choiceline[]{}",
+      "snippet": "choiceline[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "text=",
+        "var=",
+        "range="
+      ],
+      "keyvalindex": 0
+    },
+    "qid": {
+      "command": "qid",
+      "snippet": "qid",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sectbox{}": {
+      "command": "sectbox{}",
+      "snippet": "sectbox{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "themarkcheckboxcount": {
+      "command": "themarkcheckboxcount",
+      "snippet": "themarkcheckboxcount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DH": {
+      "command": "DH",
+      "snippet": "DH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NG": {
+      "command": "NG",
+      "snippet": "NG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dj": {
+      "command": "dj",
+      "snippet": "dj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ng": {
+      "command": "ng",
+      "snippet": "ng",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "k{}": {
+      "command": "k{}",
+      "snippet": "k{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotleft": {
+      "command": "guillemotleft",
+      "snippet": "guillemotleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotright": {
+      "command": "guillemotright",
+      "snippet": "guillemotright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglleft": {
+      "command": "guilsinglleft",
+      "snippet": "guilsinglleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglright": {
+      "command": "guilsinglright",
+      "snippet": "guilsinglright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotedblbase": {
+      "command": "quotedblbase",
+      "snippet": "quotedblbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotesinglbase": {
+      "command": "quotesinglbase",
+      "snippet": "quotesinglbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textquotedbl": {
+      "command": "textquotedbl",
+      "snippet": "textquotedbl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DJ": {
+      "command": "DJ",
+      "snippet": "DJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "th": {
+      "command": "th",
+      "snippet": "th",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TH": {
+      "command": "TH",
+      "snippet": "TH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dh": {
+      "command": "dh",
+      "snippet": "dh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hwithstroke": {
+      "command": "Hwithstroke",
+      "snippet": "Hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hwithstroke": {
+      "command": "hwithstroke",
+      "snippet": "hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textogonekcentered{}": {
+      "command": "textogonekcentered{}",
+      "snippet": "textogonekcentered{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetleft": {
+      "command": "guillemetleft",
+      "snippet": "guillemetleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetright": {
+      "command": "guillemetright",
+      "snippet": "guillemetright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "questionnaire": {
+      "name": "questionnaire",
+      "detail": "questionnaire",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "questionnaire[]": {
+      "name": "questionnaire",
+      "detail": "questionnaire[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "noinfo"
+      ],
+      "keyvalindex": 0
+    },
+    "choicequestion{}": {
+      "name": "choicequestion",
+      "detail": "choicequestion{}",
+      "snippet": "{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "choicequestion[]{}": {
+      "name": "choicequestion",
+      "detail": "choicequestion[]{}",
+      "snippet": "[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "cols=",
+        "colsep=",
+        "rowsep=",
+        "var=",
+        "text=",
+        "type=",
+        "multichoice",
+        "singlechoice"
+      ],
+      "keyvalindex": 0
+    },
+    "optionquestion{}": {
+      "name": "optionquestion",
+      "detail": "optionquestion{}",
+      "snippet": "{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "optionquestion[]{}": {
+      "name": "optionquestion",
+      "detail": "optionquestion[]{}",
+      "snippet": "[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "cols=",
+        "colsep=",
+        "rowsep=",
+        "var=",
+        "text="
+      ],
+      "keyvalindex": 0
+    },
+    "info": {
+      "name": "info",
+      "detail": "info",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "markgroup{}": {
+      "name": "markgroup",
+      "detail": "markgroup{}",
+      "snippet": "{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "markgroup[]{}": {
+      "name": "markgroup",
+      "detail": "markgroup[]{}",
+      "snippet": "[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "count=",
+        "align=",
+        "other"
+      ],
+      "keyvalindex": 0
+    },
+    "choicegroup{}": {
+      "name": "choicegroup",
+      "detail": "choicegroup{}",
+      "snippet": "{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "choicegroup[]{}": {
+      "name": "choicegroup",
+      "detail": "choicegroup[]{}",
+      "snippet": "[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "align=",
+        "noalign",
+        "horizontal",
+        "layouter=",
+        "angle=",
+        "vertical",
+        "type=",
+        "multichoice",
+        "singlechoice",
+        "type=",
+        "multichoice",
+        "singlechoice"
+      ],
+      "keyvalindex": 0
+    },
+    "optiongroup{}": {
+      "name": "optiongroup",
+      "detail": "optiongroup{}",
+      "snippet": "{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "optiongroup[]{}": {
+      "name": "optiongroup",
+      "detail": "optiongroup[]{}",
+      "snippet": "[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "align=",
+        "noalign",
+        "horizontal",
+        "layouter=",
+        "angle=",
+        "vertical",
+        "type=",
+        "multichoice",
+        "singlechoice"
+      ],
+      "keyvalindex": 0
+    }
+  },
+  "options": []
+}

@@ -1,109 +1,116 @@
 {
-  "includes": [],
+  "includes": [
+    "ifthen"
+  ],
   "cmds": {
-    "question": {
-      "command": "question",
-      "snippet": "question",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
-      "detail": "?",
-      "documentation": "QUESTION MARK"
-    },
-    "question[]": {
-      "command": "question[]",
-      "snippet": "question[${1:points}]",
+    "addpoints": {
+      "command": "addpoints",
+      "snippet": "addpoints",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "titledquestion{}": {
-      "command": "titledquestion{}",
-      "snippet": "titledquestion{${1:text}}",
+    "addquestionobject": {
+      "command": "addquestionobject",
+      "snippet": "addquestionobject",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "titledquestion{}[]": {
-      "command": "titledquestion{}[]",
-      "snippet": "titledquestion{${1:text}}[${2:points}]",
+    "answerclearance": {
+      "command": "answerclearance",
+      "snippet": "answerclearance",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "thequestiontitle": {
-      "command": "thequestiontitle",
-      "snippet": "thequestiontitle",
+    "answerline": {
+      "command": "answerline",
+      "snippet": "answerline",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "part": {
-      "command": "part",
-      "snippet": "part",
+    "answerline[]": {
+      "command": "answerline[]",
+      "snippet": "answerline[${1:answer%text}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "part[]": {
-      "command": "part[]",
-      "snippet": "part[${1:points}]",
+    "answerlinelength": {
+      "command": "answerlinelength",
+      "snippet": "answerlinelength",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "subpart": {
-      "command": "subpart",
-      "snippet": "subpart",
+    "answerskip": {
+      "command": "answerskip",
+      "snippet": "answerskip",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "subpart[]": {
-      "command": "subpart[]",
-      "snippet": "subpart[${1:points}]",
+    "begingradingrange{}": {
+      "command": "begingradingrange{}",
+      "snippet": "begingradingrange{${1:%<range name%>}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "subsubpart": {
-      "command": "subsubpart",
-      "snippet": "subsubpart",
+    "bhpgword{}": {
+      "command": "bhpgword{}",
+      "snippet": "bhpgword{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "subsubpart[]": {
-      "command": "subsubpart[]",
-      "snippet": "subsubpart[${1:points}]",
+    "bhpword{}": {
+      "command": "bhpword{}",
+      "snippet": "bhpword{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "bonusquestion": {
-      "command": "bonusquestion",
-      "snippet": "bonusquestion",
+    "bhqword{}": {
+      "command": "bhqword{}",
+      "snippet": "bhqword{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "bonusquestion[]": {
-      "command": "bonusquestion[]",
-      "snippet": "bonusquestion[${1:points}]",
+    "bhsword{}": {
+      "command": "bhsword{}",
+      "snippet": "bhsword{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "bonustitledquestion{}": {
-      "command": "bonustitledquestion{}",
-      "snippet": "bonustitledquestion{${1:text}}",
+    "bhtword{}": {
+      "command": "bhtword{}",
+      "snippet": "bhtword{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "bonustitledquestion{}[]": {
-      "command": "bonustitledquestion{}[]",
-      "snippet": "bonustitledquestion{${1:text}}[${2:points}]",
+    "bonusgradetable": {
+      "command": "bonusgradetable",
+      "snippet": "bonusgradetable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonusgradetable[]": {
+      "command": "bonusgradetable[]",
+      "snippet": "bonusgradetable[${1:h or v}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonusgradetable[][]": {
+      "command": "bonusgradetable[][]",
+      "snippet": "bonusgradetable[${1:h or v}][${2:type}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -118,6 +125,97 @@
     "bonuspart[]": {
       "command": "bonuspart[]",
       "snippet": "bonuspart[${1:points}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonuspointformat{}": {
+      "command": "bonuspointformat{}",
+      "snippet": "bonuspointformat{${1:format commands}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonuspointname{}": {
+      "command": "bonuspointname{}",
+      "snippet": "bonuspointname{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonuspointpoints{}{}": {
+      "command": "bonuspointpoints{}{}",
+      "snippet": "bonuspointpoints{${1:singular text%text}}{${2:plural text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonuspoints": {
+      "command": "bonuspoints",
+      "snippet": "bonuspoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonuspointsinrange{}": {
+      "command": "bonuspointsinrange{}",
+      "snippet": "bonuspointsinrange{${1:%<range name%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonuspointsofquestion{}": {
+      "command": "bonuspointsofquestion{}",
+      "snippet": "bonuspointsofquestion{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonuspointsonpage{}": {
+      "command": "bonuspointsonpage{}",
+      "snippet": "bonuspointsonpage{${1:page number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonuspointtable": {
+      "command": "bonuspointtable",
+      "snippet": "bonuspointtable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonuspointtable[]": {
+      "command": "bonuspointtable[]",
+      "snippet": "bonuspointtable[${1:h or v}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonuspointtable[][]": {
+      "command": "bonuspointtable[][]",
+      "snippet": "bonuspointtable[${1:h or v}][${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonusqformat{}": {
+      "command": "bonusqformat{}",
+      "snippet": "bonusqformat{${1:format spec}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonusquestion": {
+      "command": "bonusquestion",
+      "snippet": "bonusquestion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonusquestion[]": {
+      "command": "bonusquestion[]",
+      "snippet": "bonusquestion[${1:points}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -150,9 +248,296 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "bonustitledquestion{}": {
+      "command": "bonustitledquestion{}",
+      "snippet": "bonustitledquestion{${1:title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonustitledquestion{}[]": {
+      "command": "bonustitledquestion{}[]",
+      "snippet": "bonustitledquestion{${1:title%text}}[${2:points}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bonustotalformat{}": {
+      "command": "bonustotalformat{}",
+      "snippet": "bonustotalformat{${1:format commands}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "boxedpoints": {
+      "command": "boxedpoints",
+      "snippet": "boxedpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bracketedpoints": {
+      "command": "bracketedpoints",
+      "snippet": "bracketedpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bvpgword{}": {
+      "command": "bvpgword{}",
+      "snippet": "bvpgword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bvpword{}": {
+      "command": "bvpword{}",
+      "snippet": "bvpword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bvqword{}": {
+      "command": "bvqword{}",
+      "snippet": "bvqword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bvsword{}": {
+      "command": "bvsword{}",
+      "snippet": "bvsword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bvtword{}": {
+      "command": "bvtword{}",
+      "snippet": "bvtword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cancelspace": {
+      "command": "cancelspace",
+      "snippet": "cancelspace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cancelspacefalse": {
+      "command": "cancelspacefalse",
+      "snippet": "cancelspacefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cancelspacetrue": {
+      "command": "cancelspacetrue",
+      "snippet": "cancelspacetrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cellwidth{}": {
+      "command": "cellwidth{}",
+      "snippet": "cellwidth{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cfoot[]{}": {
+      "command": "cfoot[]{}",
+      "snippet": "cfoot[${2:first page text%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cfoot{}": {
+      "command": "cfoot{}",
+      "snippet": "cfoot{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chbpword{}": {
+      "command": "chbpword{}",
+      "snippet": "chbpword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chead[]{}": {
+      "command": "chead[]{}",
+      "snippet": "chead[${2:first page text%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chead{}": {
+      "command": "chead{}",
+      "snippet": "chead{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "checkboxchar{}": {
+      "command": "checkboxchar{}",
+      "snippet": "checkboxchar{${1:symbol}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "checkboxeshook": {
+      "command": "checkboxeshook",
+      "snippet": "checkboxeshook",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "checkedchar{}": {
+      "command": "checkedchar{}",
+      "snippet": "checkedchar{${1:symbol}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "choice": {
       "command": "choice",
       "snippet": "choice",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "choicelabel": {
+      "command": "choicelabel",
+      "snippet": "choicelabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "choiceshook": {
+      "command": "choiceshook",
+      "snippet": "choiceshook",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chpgword{}": {
+      "command": "chpgword{}",
+      "snippet": "chpgword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chpword{}": {
+      "command": "chpword{}",
+      "snippet": "chpword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chqword{}": {
+      "command": "chqword{}",
+      "snippet": "chqword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chsword{}": {
+      "command": "chsword{}",
+      "snippet": "chsword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chtword{}": {
+      "command": "chtword{}",
+      "snippet": "chtword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "colorfbox{}{}": {
+      "command": "colorfbox{}{}",
+      "snippet": "colorfbox{${1:color}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "colorfillwithdottedlines": {
+      "command": "colorfillwithdottedlines",
+      "snippet": "colorfillwithdottedlines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "colorfillwithlines": {
+      "command": "colorfillwithlines",
+      "snippet": "colorfillwithlines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "colorgrids": {
+      "command": "colorgrids",
+      "snippet": "colorgrids",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "colorsolutionboxes": {
+      "command": "colorsolutionboxes",
+      "snippet": "colorsolutionboxes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "combinedgradetable": {
+      "command": "combinedgradetable",
+      "snippet": "combinedgradetable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "combinedgradetable[]": {
+      "command": "combinedgradetable[]",
+      "snippet": "combinedgradetable[${1:h or v}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "combinedgradetable[][]": {
+      "command": "combinedgradetable[][]",
+      "snippet": "combinedgradetable[${1:h or v}][${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "combinedpointtable": {
+      "command": "combinedpointtable",
+      "snippet": "combinedpointtable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "combinedpointtable[]": {
+      "command": "combinedpointtable[]",
+      "snippet": "combinedpointtable[${1:h or v}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "combinedpointtable[][]": {
+      "command": "combinedpointtable[][]",
+      "snippet": "combinedpointtable[${1:h or v}][${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ContinuedQuestion": {
+      "command": "ContinuedQuestion",
+      "snippet": "ContinuedQuestion",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -173,1113 +558,217 @@
     },
     "CorrectChoiceEmphasis{}": {
       "command": "CorrectChoiceEmphasis{}",
-      "snippet": "CorrectChoiceEmphasis{${1:format}}",
+      "snippet": "CorrectChoiceEmphasis{${1:format commands}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "correctchoiceemphasis{}": {
       "command": "correctchoiceemphasis{}",
-      "snippet": "correctchoiceemphasis{${1:format}}",
+      "snippet": "correctchoiceemphasis{${1:format commands}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "checkboxchar{}": {
-      "command": "checkboxchar{}",
-      "snippet": "checkboxchar{${1:char format}}",
+    "covercfoot[]{}": {
+      "command": "covercfoot[]{}",
+      "snippet": "covercfoot[${2:first page text%text}]{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fillin": {
-      "command": "fillin",
-      "snippet": "fillin",
+    "covercfoot{}": {
+      "command": "covercfoot{}",
+      "snippet": "covercfoot{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fillin[]": {
-      "command": "fillin[]",
-      "snippet": "fillin[${1:answer}]",
+    "coverchead[]{}": {
+      "command": "coverchead[]{}",
+      "snippet": "coverchead[${2:first page text%text}]{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fillin[][]": {
-      "command": "fillin[][]",
-      "snippet": "fillin[${1:answer}][${2:lenght}]",
+    "coverchead{}": {
+      "command": "coverchead{}",
+      "snippet": "coverchead{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fillinlinelenght": {
-      "command": "fillinlinelenght",
-      "snippet": "fillinlinelenght",
+    "coverextrafootheight[]{}": {
+      "command": "coverextrafootheight[]{}",
+      "snippet": "coverextrafootheight[${2:first page height%l}]{${1:height}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "uplevel{}": {
-      "command": "uplevel{}",
-      "snippet": "uplevel{${1:text}}",
+    "coverextrafootheight{}": {
+      "command": "coverextrafootheight{}",
+      "snippet": "coverextrafootheight{${1:height}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fullwidth{}": {
-      "command": "fullwidth{}",
-      "snippet": "fullwidth{${1:text}}",
+    "coverextraheadheight[]{}": {
+      "command": "coverextraheadheight[]{}",
+      "snippet": "coverextraheadheight[${2:first page height%l}]{${1:height}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fillwithlines{}": {
-      "command": "fillwithlines{}",
-      "snippet": "fillwithlines{${1:length}}",
+    "coverextraheadheight{}": {
+      "command": "coverextraheadheight{}",
+      "snippet": "coverextraheadheight{${1:height}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "linefillheight": {
-      "command": "linefillheight",
-      "snippet": "linefillheight",
+    "coverfirstpagefooter{}{}{}": {
+      "command": "coverfirstpagefooter{}{}{}",
+      "snippet": "coverfirstpagefooter{${1:left%text}}{${2:center%text}}{${3:right%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fillwithdottedlines{}": {
-      "command": "fillwithdottedlines{}",
-      "snippet": "fillwithdottedlines{${1:length}}",
+    "coverfirstpagefootrule": {
+      "command": "coverfirstpagefootrule",
+      "snippet": "coverfirstpagefootrule",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dottedlinefillheight": {
-      "command": "dottedlinefillheight",
-      "snippet": "dottedlinefillheight",
+    "coverfirstpageheader{}{}{}": {
+      "command": "coverfirstpageheader{}{}{}",
+      "snippet": "coverfirstpageheader{${1:left%text}}{${2:center%text}}{${3:right%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fillwithgrid{}": {
-      "command": "fillwithgrid{}",
-      "snippet": "fillwithgrid{${1:length}}",
+    "coverfirstpageheadrule": {
+      "command": "coverfirstpageheadrule",
+      "snippet": "coverfirstpageheadrule",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "gridsize": {
-      "command": "gridsize",
-      "snippet": "gridsize",
+    "coverfooter{}{}{}": {
+      "command": "coverfooter{}{}{}",
+      "snippet": "coverfooter{${1:left%text}}{${2:center%text}}{${3:right%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "gridlinewidth": {
-      "command": "gridlinewidth",
-      "snippet": "gridlinewidth",
+    "coverfootrule": {
+      "command": "coverfootrule",
+      "snippet": "coverfootrule",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "answerline": {
-      "command": "answerline",
-      "snippet": "answerline",
+    "coverheader{}{}{}": {
+      "command": "coverheader{}{}{}",
+      "snippet": "coverheader{${1:left%text}}{${2:center%text}}{${3:right%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "answerline[]": {
-      "command": "answerline[]",
-      "snippet": "answerline[${1:answer}]",
+    "coverheadrule": {
+      "command": "coverheadrule",
+      "snippet": "coverheadrule",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "answerlinelength": {
-      "command": "answerlinelength",
-      "snippet": "answerlinelength",
+    "coverlfoot[]{}": {
+      "command": "coverlfoot[]{}",
+      "snippet": "coverlfoot[${2:first page text%text}]{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "answerskip": {
-      "command": "answerskip",
-      "snippet": "answerskip",
+    "coverlfoot{}": {
+      "command": "coverlfoot{}",
+      "snippet": "coverlfoot{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "answerclearance": {
-      "command": "answerclearance",
-      "snippet": "answerclearance",
+    "coverlhead[]{}": {
+      "command": "coverlhead[]{}",
+      "snippet": "coverlhead[${2:first page text%text}]{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "shadedsolutions": {
-      "command": "shadedsolutions",
-      "snippet": "shadedsolutions",
+    "coverlhead{}": {
+      "command": "coverlhead{}",
+      "snippet": "coverlhead{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "framedsolutions": {
-      "command": "framedsolutions",
-      "snippet": "framedsolutions",
+    "coverrfoot[]{}": {
+      "command": "coverrfoot[]{}",
+      "snippet": "coverrfoot[${2:first page text%text}]{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "unframedsolutions": {
-      "command": "unframedsolutions",
-      "snippet": "unframedsolutions",
+    "coverrfoot{}": {
+      "command": "coverrfoot{}",
+      "snippet": "coverrfoot{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "solutiontitle": {
-      "command": "solutiontitle",
-      "snippet": "solutiontitle",
+    "coverrhead[]{}": {
+      "command": "coverrhead[]{}",
+      "snippet": "coverrhead[${2:first page text%text}]{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SolutionEmphasis{}": {
-      "command": "SolutionEmphasis{}",
-      "snippet": "SolutionEmphasis{${1:format}}",
+    "coverrhead{}": {
+      "command": "coverrhead{}",
+      "snippet": "coverrhead{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "makeemptybox{}": {
-      "command": "makeemptybox{}",
-      "snippet": "makeemptybox{${1:length}}",
+    "coverrunningfooter{}{}{}": {
+      "command": "coverrunningfooter{}{}{}",
+      "snippet": "coverrunningfooter{${1:left%text}}{${2:center%text}}{${3:right%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "cancelspace": {
-      "command": "cancelspace",
-      "snippet": "cancelspace",
+    "coverrunningfootrule": {
+      "command": "coverrunningfootrule",
+      "snippet": "coverrunningfootrule",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "nocancelspace": {
-      "command": "nocancelspace",
-      "snippet": "nocancelspace",
+    "coverrunningheader{}{}{}": {
+      "command": "coverrunningheader{}{}{}",
+      "snippet": "coverrunningheader{${1:left%text}}{${2:center%text}}{${3:right%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "ifprintanswers": {
-      "command": "ifprintanswers",
-      "snippet": "ifprintanswers",
+    "coverrunningheadrule": {
+      "command": "coverrunningheadrule",
+      "snippet": "coverrunningheadrule",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "else": {
-      "command": "else",
-      "snippet": "else",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "fi": {
-      "command": "fi",
-      "snippet": "fi",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pointsinmargin": {
-      "command": "pointsinmargin",
-      "snippet": "pointsinmargin",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pointsinrightmargin": {
-      "command": "pointsinrightmargin",
-      "snippet": "pointsinrightmargin",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nopointsinmargin": {
-      "command": "nopointsinmargin",
-      "snippet": "nopointsinmargin",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nopointsinrightmargin": {
-      "command": "nopointsinrightmargin",
-      "snippet": "nopointsinrightmargin",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pointsdroppedatright": {
-      "command": "pointsdroppedatright",
-      "snippet": "pointsdroppedatright",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "droppoints": {
-      "command": "droppoints",
-      "snippet": "droppoints",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "half": {
-      "command": "half",
-      "snippet": "half",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "usehorizontalhalf": {
-      "command": "usehorizontalhalf",
-      "snippet": "usehorizontalhalf",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "useslantedhalf": {
-      "command": "useslantedhalf",
-      "snippet": "useslantedhalf",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bracketedpoints": {
-      "command": "bracketedpoints",
-      "snippet": "bracketedpoints",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "boxedpoints": {
-      "command": "boxedpoints",
-      "snippet": "boxedpoints",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nobracketedpoints": {
-      "command": "nobracketedpoints",
-      "snippet": "nobracketedpoints",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "noboxedpoints": {
-      "command": "noboxedpoints",
-      "snippet": "noboxedpoints",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "points": {
-      "command": "points",
-      "snippet": "points",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pointname{}": {
-      "command": "pointname{}",
-      "snippet": "pointname{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pointpoints{}{}": {
-      "command": "pointpoints{}{}",
-      "snippet": "pointpoints{${1:Singular Text}}{${2:Plural Text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "marksnotpoints": {
-      "command": "marksnotpoints",
-      "snippet": "marksnotpoints",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "marginpointname{}": {
-      "command": "marginpointname{}",
-      "snippet": "marginpointname{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pointformat{}": {
-      "command": "pointformat{}",
-      "snippet": "pointformat{${1:format}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonuspointformat{}": {
-      "command": "bonuspointformat{}",
-      "snippet": "bonuspointformat{${1:format}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "thepoints": {
-      "command": "thepoints",
-      "snippet": "thepoints",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "themarginpoints": {
-      "command": "themarginpoints",
-      "snippet": "themarginpoints",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "droptotalpoints": {
-      "command": "droptotalpoints",
-      "snippet": "droptotalpoints",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "totalpoints": {
-      "command": "totalpoints",
-      "snippet": "totalpoints",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "totalformat{}": {
-      "command": "totalformat{}",
-      "snippet": "totalformat{${1:format}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "marginpointssep": {
-      "command": "marginpointssep",
-      "snippet": "marginpointssep",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "rightpointsmargin": {
-      "command": "rightpointsmargin",
-      "snippet": "rightpointsmargin",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "qformat{}": {
-      "command": "qformat{}",
-      "snippet": "qformat{${1:format}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "noqformat": {
-      "command": "noqformat",
-      "snippet": "noqformat",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonusqformat{}": {
-      "command": "bonusqformat{}",
-      "snippet": "bonusqformat{${1:format}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nobonusqformat": {
-      "command": "nobonusqformat",
-      "snippet": "nobonusqformat",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonuspointpoints{}{}": {
-      "command": "bonuspointpoints{}{}",
-      "snippet": "bonuspointpoints{${1:Singular Text}}{${2:Plural Text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonuspointname{}": {
-      "command": "bonuspointname{}",
-      "snippet": "bonuspointname{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "marginbonuspointname{}": {
-      "command": "marginbonuspointname{}",
-      "snippet": "marginbonuspointname{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "droptotalbonuspoints": {
-      "command": "droptotalbonuspoints",
-      "snippet": "droptotalbonuspoints",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "totalbonuspoints": {
-      "command": "totalbonuspoints",
-      "snippet": "totalbonuspoints",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonustotalformat{}": {
-      "command": "bonustotalformat{}",
-      "snippet": "bonustotalformat{${1:format}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "numquestions": {
-      "command": "numquestions",
-      "snippet": "numquestions",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "numparts": {
-      "command": "numparts",
-      "snippet": "numparts",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "numsubparts": {
-      "command": "numsubparts",
-      "snippet": "numsubparts",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "numsubsubparts": {
-      "command": "numsubsubparts",
-      "snippet": "numsubsubparts",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "thequestion": {
-      "command": "thequestion",
-      "snippet": "thequestion",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "thepartno": {
-      "command": "thepartno",
-      "snippet": "thepartno",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "thesubpart": {
-      "command": "thesubpart",
-      "snippet": "thesubpart",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "thesubsubpart": {
-      "command": "thesubsubpart",
-      "snippet": "thesubsubpart",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "thechoice": {
-      "command": "thechoice",
-      "snippet": "thechoice",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "greeknum{}": {
-      "command": "greeknum{}",
-      "snippet": "greeknum{${1:counter}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "questionlabel": {
-      "command": "questionlabel",
-      "snippet": "questionlabel",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partlabel": {
-      "command": "partlabel",
-      "snippet": "partlabel",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "subpartlabel": {
-      "command": "subpartlabel",
-      "snippet": "subpartlabel",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "subsubpartlabel": {
-      "command": "subsubpartlabel",
-      "snippet": "subsubpartlabel",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "choicelabel": {
-      "command": "choicelabel",
-      "snippet": "choicelabel",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "questionshook": {
-      "command": "questionshook",
-      "snippet": "questionshook",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partshook": {
-      "command": "partshook",
-      "snippet": "partshook",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "subpartshook": {
-      "command": "subpartshook",
-      "snippet": "subpartshook",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "subsubpartshook": {
-      "command": "subsubpartshook",
-      "snippet": "subsubpartshook",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "choiceshook": {
-      "command": "choiceshook",
-      "snippet": "choiceshook",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "checkboxshook": {
-      "command": "checkboxshook",
-      "snippet": "checkboxshook",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "gradetable": {
-      "command": "gradetable",
-      "snippet": "gradetable",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "gradetable[]": {
-      "command": "gradetable[]",
-      "snippet": "gradetable[${1:v or h}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "gradetable[][]": {
-      "command": "gradetable[][]",
-      "snippet": "gradetable[${1:v or h}][${2:questions or pages}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pointtable": {
-      "command": "pointtable",
-      "snippet": "pointtable",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pointtable[]": {
-      "command": "pointtable[]",
-      "snippet": "pointtable[${1:v or h}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pointtable[][]": {
-      "command": "pointtable[][]",
-      "snippet": "pointtable[${1:v or h}][${2:questions or pages}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "begingradingrange{}": {
-      "command": "begingradingrange{}",
-      "snippet": "begingradingrange{${1:range name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "endgradingrange{}": {
-      "command": "endgradingrange{}",
-      "snippet": "endgradingrange{${1:range name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pointsinrange{}": {
-      "command": "pointsinrange{}",
-      "snippet": "pointsinrange{${1:range name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "firstqinrange{}": {
-      "command": "firstqinrange{}",
-      "snippet": "firstqinrange{${1:range name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lastqinrange{}": {
-      "command": "lastqinrange{}",
-      "snippet": "lastqinrange{${1:range name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "numqinrange{}": {
-      "command": "numqinrange{}",
-      "snippet": "numqinrange{${1:range name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialgradetable{}": {
-      "command": "partialgradetable{}",
-      "snippet": "partialgradetable{${1:range name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialgradetable{}[]": {
-      "command": "partialgradetable{}[]",
-      "snippet": "partialgradetable{${1:range name}}[${2:v or h}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialgradetable{}[][]": {
-      "command": "partialgradetable{}[][]",
-      "snippet": "partialgradetable{${1:range name}}[${2:v or h}][${3:questions or pages}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialpointtable{}": {
-      "command": "partialpointtable{}",
-      "snippet": "partialpointtable{${1:range name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialpointtable{}[]": {
-      "command": "partialpointtable{}[]",
-      "snippet": "partialpointtable{${1:range name}}[${2:v or h}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialpointtable{}[][]": {
-      "command": "partialpointtable{}[][]",
-      "snippet": "partialpointtable{${1:range name}}[${2:v or h}][${3:questions or pages}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pointsofquestion{}": {
-      "command": "pointsofquestion{}",
-      "snippet": "pointsofquestion{${1:question number}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pointsonpage{}": {
-      "command": "pointsonpage{}",
-      "snippet": "pointsonpage{${1:page number}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonusgradetable": {
-      "command": "bonusgradetable",
-      "snippet": "bonusgradetable",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonusgradetable[]": {
-      "command": "bonusgradetable[]",
-      "snippet": "bonusgradetable[${1:v or h}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonusgradetable[][]": {
-      "command": "bonusgradetable[][]",
-      "snippet": "bonusgradetable[${1:v or h}][${2:questions or pages}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonuspointtable": {
-      "command": "bonuspointtable",
-      "snippet": "bonuspointtable",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonuspointtable[]": {
-      "command": "bonuspointtable[]",
-      "snippet": "bonuspointtable[${1:v or h}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonuspointtable[][]": {
-      "command": "bonuspointtable[][]",
-      "snippet": "bonuspointtable[${1:v or h}][${2:questions or pages}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonuspointsinrange{}": {
-      "command": "bonuspointsinrange{}",
-      "snippet": "bonuspointsinrange{${1:range name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonuspointsinrange{}[]": {
-      "command": "bonuspointsinrange{}[]",
-      "snippet": "bonuspointsinrange{${1:range name}}[${2:v or h}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonuspointsinrange{}[][]": {
-      "command": "bonuspointsinrange{}[][]",
-      "snippet": "bonuspointsinrange{${1:range name}}[${2:v or h}][${3:questions or pages}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialbonusgradetable{}": {
-      "command": "partialbonusgradetable{}",
-      "snippet": "partialbonusgradetable{${1:range name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialbonusgradetable{}[]": {
-      "command": "partialbonusgradetable{}[]",
-      "snippet": "partialbonusgradetable{${1:range name}}[${2:v or h}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialbonusgradetable{}[][]": {
-      "command": "partialbonusgradetable{}[][]",
-      "snippet": "partialbonusgradetable{${1:range name}}[${2:v or h}][${3:questions or pages}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonuspointsofquestion{}": {
-      "command": "bonuspointsofquestion{}",
-      "snippet": "bonuspointsofquestion{${1:question number}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bonuspointsofpage{}": {
-      "command": "bonuspointsofpage{}",
-      "snippet": "bonuspointsofpage{${1:page number}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "combinedgradetable": {
-      "command": "combinedgradetable",
-      "snippet": "combinedgradetable",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "combinedgradetable[]": {
-      "command": "combinedgradetable[]",
-      "snippet": "combinedgradetable[${1:v or h}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "combinedgradetable[][]": {
-      "command": "combinedgradetable[][]",
-      "snippet": "combinedgradetable[${1:v or h}][${2:questions or pages}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "combinedpointtable": {
-      "command": "combinedpointtable",
-      "snippet": "combinedpointtable",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "combinedpointtable[]": {
-      "command": "combinedpointtable[]",
-      "snippet": "combinedpointtable[${1:v or h}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "combinedpointtable[][]": {
-      "command": "combinedpointtable[][]",
-      "snippet": "combinedpointtable[${1:v or h}][${2:questions or pages}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialcombinedgradetable{}": {
-      "command": "partialcombinedgradetable{}",
-      "snippet": "partialcombinedgradetable{${1:range name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialcombinedgradetable{}[]": {
-      "command": "partialcombinedgradetable{}[]",
-      "snippet": "partialcombinedgradetable{${1:range name}}[${2:v or h}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialcombinedgradetable{}[][]": {
-      "command": "partialcombinedgradetable{}[][]",
-      "snippet": "partialcombinedgradetable{${1:range name}}[${2:v or h}][${3:questions or pages}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialcombinedpointtable{}": {
-      "command": "partialcombinedpointtable{}",
-      "snippet": "partialcombinedpointtable{${1:range name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialcombinedpointtable{}[]": {
-      "command": "partialcombinedpointtable{}[]",
-      "snippet": "partialcombinedpointtable{${1:range name}}[${2:v or h}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "partialcombinedpointtable{}[][]": {
-      "command": "partialcombinedpointtable{}[][]",
-      "snippet": "partialcombinedpointtable{${1:range name}}[${2:v or h}][${3:questions or pages}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "settabletotalpoints{}": {
-      "command": "settabletotalpoints{}",
-      "snippet": "settabletotalpoints{${1:number}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "settabletotalbonuspoints{}": {
-      "command": "settabletotalbonuspoints{}",
-      "snippet": "settabletotalbonuspoints{${1:number}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cellwidth{}": {
-      "command": "cellwidth{}",
-      "snippet": "cellwidth{${1:length}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "gradetablestretch{}": {
-      "command": "gradetablestretch{}",
-      "snippet": "gradetablestretch{${1:number}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "vqword{}": {
-      "command": "vqword{}",
-      "snippet": "vqword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "vpgword{}": {
-      "command": "vpgword{}",
-      "snippet": "vpgword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "vsword{}": {
-      "command": "vsword{}",
-      "snippet": "vsword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "vtword{}": {
-      "command": "vtword{}",
-      "snippet": "vtword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "hqword{}": {
-      "command": "hqword{}",
-      "snippet": "hqword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "hpgword{}": {
-      "command": "hpgword{}",
-      "snippet": "hpgword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "hsword{}": {
-      "command": "hsword{}",
-      "snippet": "hsword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "htword{}": {
-      "command": "htword{}",
-      "snippet": "htword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bvqword{}": {
-      "command": "bvqword{}",
-      "snippet": "bvqword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bvpgword{}": {
-      "command": "bvpgword{}",
-      "snippet": "bvpgword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bvpword{}": {
-      "command": "bvpword{}",
-      "snippet": "bvpword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bvsword{}": {
-      "command": "bvsword{}",
-      "snippet": "bvsword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bvtword{}": {
-      "command": "bvtword{}",
-      "snippet": "bvtword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bhqword{}": {
-      "command": "bhqword{}",
-      "snippet": "bhqword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bhpgword{}": {
-      "command": "bhpgword{}",
-      "snippet": "bhpgword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bhpword{}": {
-      "command": "bhpword{}",
-      "snippet": "bhpword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bhsword{}": {
-      "command": "bhsword{}",
-      "snippet": "bhsword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bhtword{}": {
-      "command": "bhtword{}",
-      "snippet": "bhtword{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cvqword{}": {
-      "command": "cvqword{}",
-      "snippet": "cvqword{${1:text}}",
+    "cvbpword{}": {
+      "command": "cvbpword{}",
+      "snippet": "cvbpword{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1298,6 +787,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "cvqword{}": {
+      "command": "cvqword{}",
+      "snippet": "cvqword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "cvsword{}": {
       "command": "cvsword{}",
       "snippet": "cvsword{${1:text}}",
@@ -1312,44 +808,58 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "chqword{}": {
-      "command": "chqword{}",
-      "snippet": "chqword{${1:text}}",
+    "dottedlinefillheight": {
+      "command": "dottedlinefillheight",
+      "snippet": "dottedlinefillheight",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "chpgword{}": {
-      "command": "chpgword{}",
-      "snippet": "chpgword{${1:text}}",
+    "droppoints": {
+      "command": "droppoints",
+      "snippet": "droppoints",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "chpword{}": {
-      "command": "chpword{}",
-      "snippet": "chpword{${1:text}}",
+    "droptotalbonuspoints": {
+      "command": "droptotalbonuspoints",
+      "snippet": "droptotalbonuspoints",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "chsword{}": {
-      "command": "chsword{}",
-      "snippet": "chsword{${1:text}}",
+    "droptotalpoints": {
+      "command": "droptotalpoints",
+      "snippet": "droptotalpoints",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "chtword{}": {
-      "command": "chtword{}",
-      "snippet": "chtword{${1:text}}",
+    "endgradingrange{}": {
+      "command": "endgradingrange{}",
+      "snippet": "endgradingrange{${1:%<range name%>}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "extrawidth{}": {
-      "command": "extrawidth{}",
-      "snippet": "extrawidth{${1:length}}",
+    "extrafootheight[]{}": {
+      "command": "extrafootheight[]{}",
+      "snippet": "extrafootheight[${2:first page height%l}]{${1:height}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extrafootheight{}": {
+      "command": "extrafootheight{}",
+      "snippet": "extrafootheight{${1:height}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extraheadheight[]{}": {
+      "command": "extraheadheight[]{}",
+      "snippet": "extraheadheight[${2:first page height%l}]{${1:height}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1361,170 +871,79 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "extraheadheight[]{}": {
-      "command": "extraheadheight[]{}",
-      "snippet": "extraheadheight[${2:height for first page}]{${1:height for later pages}}",
+    "extrawidth{}": {
+      "command": "extrawidth{}",
+      "snippet": "extrawidth{${1:width}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "extrafootheight[]{}": {
-      "command": "extrafootheight[]{}",
-      "snippet": "extrafootheight[${2:height for first page}]{${1:height for later pages}}",
+    "filedate": {
+      "command": "filedate",
+      "snippet": "filedate",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "firstpageheader{}{}{}": {
-      "command": "firstpageheader{}{}{}",
-      "snippet": "firstpageheader{${1:left part}}{${2:center part}}{${3:right part}}",
+    "fileversion": {
+      "command": "fileversion",
+      "snippet": "fileversion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillin": {
+      "command": "fillin",
+      "snippet": "fillin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillin[]": {
+      "command": "fillin[]",
+      "snippet": "fillin[${1:answer%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillin[][]": {
+      "command": "fillin[][]",
+      "snippet": "fillin[${1:answer%text}][${2:length}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillinlinelength": {
+      "command": "fillinlinelength",
+      "snippet": "fillinlinelength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillwithdottedlines{}": {
+      "command": "fillwithdottedlines{}",
+      "snippet": "fillwithdottedlines{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillwithgrid{}": {
+      "command": "fillwithgrid{}",
+      "snippet": "fillwithgrid{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillwithlines{}": {
+      "command": "fillwithlines{}",
+      "snippet": "fillwithlines{${1:length}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "firstpagefooter{}{}{}": {
       "command": "firstpagefooter{}{}{}",
-      "snippet": "firstpagefooter{${1:left part}}{${2:center part}}{${3:right part}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "runningheader{}{}{}": {
-      "command": "runningheader{}{}{}",
-      "snippet": "runningheader{${1:left part}}{${2:center part}}{${3:right part}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "runningfooter{}{}{}": {
-      "command": "runningfooter{}{}{}",
-      "snippet": "runningfooter{${1:left part}}{${2:center part}}{${3:right part}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "header{}{}{}": {
-      "command": "header{}{}{}",
-      "snippet": "header{${1:left part}}{${2:center part}}{${3:right part}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "footer{}{}{}": {
-      "command": "footer{}{}{}",
-      "snippet": "footer{${1:left part}}{${2:center part}}{${3:right part}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lhead{}": {
-      "command": "lhead{}",
-      "snippet": "lhead{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lhead[]{}": {
-      "command": "lhead[]{}",
-      "snippet": "lhead[${2:text on first page}]{${1:text on later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "chead{}": {
-      "command": "chead{}",
-      "snippet": "chead{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "chead[]{}": {
-      "command": "chead[]{}",
-      "snippet": "chead[${2:text on first page}]{${1:text on later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "rhead{}": {
-      "command": "rhead{}",
-      "snippet": "rhead{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "rhead[]{}": {
-      "command": "rhead[]{}",
-      "snippet": "rhead[${2:text on first page}]{${1:text on later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lfoot{}": {
-      "command": "lfoot{}",
-      "snippet": "lfoot{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lfoot[]{}": {
-      "command": "lfoot[]{}",
-      "snippet": "lfoot[${2:text on first page}]{${1:text on later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cfoot{}": {
-      "command": "cfoot{}",
-      "snippet": "cfoot{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cfoot[]{}": {
-      "command": "cfoot[]{}",
-      "snippet": "cfoot[${2:text on first page}]{${1:text on later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "rfoot{}": {
-      "command": "rfoot{}",
-      "snippet": "rfoot{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "rfoot[]{}": {
-      "command": "rfoot[]{}",
-      "snippet": "rfoot[${2:text on first page}]{${1:text on later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "headrule": {
-      "command": "headrule",
-      "snippet": "headrule",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "firstpageheadrule": {
-      "command": "firstpageheadrule",
-      "snippet": "firstpageheadrule",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "runningheadrule": {
-      "command": "runningheadrule",
-      "snippet": "runningheadrule",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "footrule": {
-      "command": "footrule",
-      "snippet": "footrule",
+      "snippet": "firstpagefooter{${1:left%text}}{${2:center%text}}{${3:right%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1536,51 +955,184 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "runningfootrule": {
-      "command": "runningfootrule",
-      "snippet": "runningfootrule",
+    "firstpageheader{}{}{}": {
+      "command": "firstpageheader{}{}{}",
+      "snippet": "firstpageheader{${1:left%text}}{${2:center%text}}{${3:right%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "numpages": {
-      "command": "numpages",
-      "snippet": "numpages",
+    "firstpageheadrule": {
+      "command": "firstpageheadrule",
+      "snippet": "firstpageheadrule",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "iflastpage{}{}": {
-      "command": "iflastpage{}{}",
-      "snippet": "iflastpage{${1:text if it isn't last page}}{${2:text if it's last page}}",
+    "firstqinrange{}": {
+      "command": "firstqinrange{}",
+      "snippet": "firstqinrange{${1:%<range name%>}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "oddeven{}{}": {
-      "command": "oddeven{}{}",
-      "snippet": "oddeven{${1:text on odd pages}}{${2:text on even pages}}",
+    "footer{}{}{}": {
+      "command": "footer{}{}{}",
+      "snippet": "footer{${1:left%text}}{${2:center%text}}{${3:right%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "footrule": {
+      "command": "footrule",
+      "snippet": "footrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "framedsolutions": {
+      "command": "framedsolutions",
+      "snippet": "framedsolutions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fullwidth{}": {
+      "command": "fullwidth{}",
+      "snippet": "fullwidth{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gradetable": {
+      "command": "gradetable",
+      "snippet": "gradetable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gradetable[]": {
+      "command": "gradetable[]",
+      "snippet": "gradetable[${1:h or v}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gradetable[][]": {
+      "command": "gradetable[][]",
+      "snippet": "gradetable[${1:h or v}][${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gradetablestretch{}": {
+      "command": "gradetablestretch{}",
+      "snippet": "gradetablestretch{${1:factor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "greeknum{}": {
+      "command": "greeknum{}",
+      "snippet": "greeknum{${1:counter}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gridlinewidth": {
+      "command": "gridlinewidth",
+      "snippet": "gridlinewidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gridsize": {
+      "command": "gridsize",
+      "snippet": "gridsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "half": {
+      "command": "half",
+      "snippet": "half",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "header{}{}{}": {
+      "command": "header{}{}{}",
+      "snippet": "header{${1:left%text}}{${2:center%text}}{${3:right%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "headrule": {
+      "command": "headrule",
+      "snippet": "headrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hpgword{}": {
+      "command": "hpgword{}",
+      "snippet": "hpgword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hpword{}": {
+      "command": "hpword{}",
+      "snippet": "hpword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hqword{}": {
+      "command": "hqword{}",
+      "snippet": "hqword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hsword{}": {
+      "command": "hsword{}",
+      "snippet": "hsword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "htword{}": {
+      "command": "htword{}",
+      "snippet": "htword{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "ifcontinuation{}{}": {
       "command": "ifcontinuation{}{}",
-      "snippet": "ifcontinuation{${1:text 1}}{${2:text 2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ContinuedQuestion": {
-      "command": "ContinuedQuestion",
-      "snippet": "ContinuedQuestion",
+      "snippet": "ifcontinuation{${1:true text%text}}{${2:false text%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "ifincomplete{}{}": {
       "command": "ifincomplete{}{}",
-      "snippet": "ifincomplete{${1:text 1}}{${2:text 2}}",
+      "snippet": "ifincomplete{${1:true text%text}}{${2:false text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iflastpage{}{}": {
+      "command": "iflastpage{}{}",
+      "snippet": "iflastpage{${1:true text%text}}{${2:false text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifprintanswers": {
+      "command": "ifprintanswers",
+      "snippet": "ifprintanswers",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1592,9 +1144,604 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "lastqinrange{}": {
+      "command": "lastqinrange{}",
+      "snippet": "lastqinrange{${1:%<range name%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lfoot[]{}": {
+      "command": "lfoot[]{}",
+      "snippet": "lfoot[${2:first page text%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lfoot{}": {
+      "command": "lfoot{}",
+      "snippet": "lfoot{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lhead[]{}": {
+      "command": "lhead[]{}",
+      "snippet": "lhead[${2:first page text%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lhead{}": {
+      "command": "lhead{}",
+      "snippet": "lhead{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "linefill": {
+      "command": "linefill",
+      "snippet": "linefill",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "linefillheight": {
+      "command": "linefillheight",
+      "snippet": "linefillheight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "linefillthickness": {
+      "command": "linefillthickness",
+      "snippet": "linefillthickness",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "makeemptybox{}": {
+      "command": "makeemptybox{}",
+      "snippet": "makeemptybox{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marginbonuspointname{}": {
+      "command": "marginbonuspointname{}",
+      "snippet": "marginbonuspointname{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marginpointname{}": {
+      "command": "marginpointname{}",
+      "snippet": "marginpointname{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marginpointssep": {
+      "command": "marginpointssep",
+      "snippet": "marginpointssep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marksnotpoints": {
+      "command": "marksnotpoints",
+      "snippet": "marksnotpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnbonusgradetable{}": {
+      "command": "multicolumnbonusgradetable{}",
+      "snippet": "multicolumnbonusgradetable{${1:numcols}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnbonusgradetable{}[]": {
+      "command": "multicolumnbonusgradetable{}[]",
+      "snippet": "multicolumnbonusgradetable{${1:numcols}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnbonuspointtable{}": {
+      "command": "multicolumnbonuspointtable{}",
+      "snippet": "multicolumnbonuspointtable{${1:numcols}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnbonuspointtable{}[]": {
+      "command": "multicolumnbonuspointtable{}[]",
+      "snippet": "multicolumnbonuspointtable{${1:numcols}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumncombinedgradetable{}": {
+      "command": "multicolumncombinedgradetable{}",
+      "snippet": "multicolumncombinedgradetable{${1:numcols}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumncombinedgradetable{}[]": {
+      "command": "multicolumncombinedgradetable{}[]",
+      "snippet": "multicolumncombinedgradetable{${1:numcols}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumncombinedpointtable{}": {
+      "command": "multicolumncombinedpointtable{}",
+      "snippet": "multicolumncombinedpointtable{${1:numcols}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumncombinedpointtable{}[]": {
+      "command": "multicolumncombinedpointtable{}[]",
+      "snippet": "multicolumncombinedpointtable{${1:numcols}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumngradetable{}": {
+      "command": "multicolumngradetable{}",
+      "snippet": "multicolumngradetable{${1:numcols}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumngradetable{}[]": {
+      "command": "multicolumngradetable{}[]",
+      "snippet": "multicolumngradetable{${1:numcols}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpartialbonusgradetable{}{}": {
+      "command": "multicolumnpartialbonusgradetable{}{}",
+      "snippet": "multicolumnpartialbonusgradetable{${1:numcols}}{${2:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpartialbonusgradetable{}{}[]": {
+      "command": "multicolumnpartialbonusgradetable{}{}[]",
+      "snippet": "multicolumnpartialbonusgradetable{${1:numcols}}{${2:range name}}[${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpartialbonuspointtable{}{}": {
+      "command": "multicolumnpartialbonuspointtable{}{}",
+      "snippet": "multicolumnpartialbonuspointtable{${1:numcols}}{${2:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpartialbonuspointtable{}{}[]": {
+      "command": "multicolumnpartialbonuspointtable{}{}[]",
+      "snippet": "multicolumnpartialbonuspointtable{${1:numcols}}{${2:range name}}[${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpartialcombinedgradetable{}{}": {
+      "command": "multicolumnpartialcombinedgradetable{}{}",
+      "snippet": "multicolumnpartialcombinedgradetable{${1:numcols}}{${2:rangename}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpartialcombinedgradetable{}{}[]": {
+      "command": "multicolumnpartialcombinedgradetable{}{}[]",
+      "snippet": "multicolumnpartialcombinedgradetable{${1:numcols}}{${2:rangename}}[${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpartialcombinedpointtable{}{}": {
+      "command": "multicolumnpartialcombinedpointtable{}{}",
+      "snippet": "multicolumnpartialcombinedpointtable{${1:numcols}}{${2:rangename}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpartialcombinedpointtable{}{}[]": {
+      "command": "multicolumnpartialcombinedpointtable{}{}[]",
+      "snippet": "multicolumnpartialcombinedpointtable{${1:numcols}}{${2:rangename}}[${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpartialgradetable{}{}": {
+      "command": "multicolumnpartialgradetable{}{}",
+      "snippet": "multicolumnpartialgradetable{${1:numcols}}{${2:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpartialgradetable{}{}[]": {
+      "command": "multicolumnpartialgradetable{}{}[]",
+      "snippet": "multicolumnpartialgradetable{${1:numcols}}{${2:range name}}[${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpartialpointtable{}{}": {
+      "command": "multicolumnpartialpointtable{}{}",
+      "snippet": "multicolumnpartialpointtable{${1:numcols}}{${2:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpartialpointtable{}{}[]": {
+      "command": "multicolumnpartialpointtable{}{}[]",
+      "snippet": "multicolumnpartialpointtable{${1:numcols}}{${2:range name}}[${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpointtable{}": {
+      "command": "multicolumnpointtable{}",
+      "snippet": "multicolumnpointtable{${1:numcols}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multicolumnpointtable{}[]": {
+      "command": "multicolumnpointtable{}[]",
+      "snippet": "multicolumnpointtable{${1:numcols}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowbonusgradetable{}": {
+      "command": "multirowbonusgradetable{}",
+      "snippet": "multirowbonusgradetable{${1:numrows}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowbonusgradetable{}[]": {
+      "command": "multirowbonusgradetable{}[]",
+      "snippet": "multirowbonusgradetable{${1:numrows}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowbonuspointtable{}": {
+      "command": "multirowbonuspointtable{}",
+      "snippet": "multirowbonuspointtable{${1:numrows}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowbonuspointtable{}[]": {
+      "command": "multirowbonuspointtable{}[]",
+      "snippet": "multirowbonuspointtable{${1:numrows}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowcombinedgradetable{}": {
+      "command": "multirowcombinedgradetable{}",
+      "snippet": "multirowcombinedgradetable{${1:numrows}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowcombinedgradetable{}[]": {
+      "command": "multirowcombinedgradetable{}[]",
+      "snippet": "multirowcombinedgradetable{${1:numrows}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowcombinedpointtable{}": {
+      "command": "multirowcombinedpointtable{}",
+      "snippet": "multirowcombinedpointtable{${1:numrows}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowcombinedpointtable{}[]": {
+      "command": "multirowcombinedpointtable{}[]",
+      "snippet": "multirowcombinedpointtable{${1:numrows}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowgradetable{}": {
+      "command": "multirowgradetable{}",
+      "snippet": "multirowgradetable{${1:numrows}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowgradetable{}[]": {
+      "command": "multirowgradetable{}[]",
+      "snippet": "multirowgradetable{${1:numrows}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpartialbonusgradetable{}{}": {
+      "command": "multirowpartialbonusgradetable{}{}",
+      "snippet": "multirowpartialbonusgradetable{${1:numrows}}{${2:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpartialbonusgradetable{}{}[]": {
+      "command": "multirowpartialbonusgradetable{}{}[]",
+      "snippet": "multirowpartialbonusgradetable{${1:numrows}}{${2:range name}}[${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpartialbonuspointtable{}{}": {
+      "command": "multirowpartialbonuspointtable{}{}",
+      "snippet": "multirowpartialbonuspointtable{${1:numrows}}{${2:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpartialbonuspointtable{}{}[]": {
+      "command": "multirowpartialbonuspointtable{}{}[]",
+      "snippet": "multirowpartialbonuspointtable{${1:numrows}}{${2:range name}}[${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpartialcombinedgradetable{}{}": {
+      "command": "multirowpartialcombinedgradetable{}{}",
+      "snippet": "multirowpartialcombinedgradetable{${1:numrows}}{${2:rangename}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpartialcombinedgradetable{}{}[]": {
+      "command": "multirowpartialcombinedgradetable{}{}[]",
+      "snippet": "multirowpartialcombinedgradetable{${1:numrows}}{${2:rangename}}[${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpartialcombinedpointtable{}{}": {
+      "command": "multirowpartialcombinedpointtable{}{}",
+      "snippet": "multirowpartialcombinedpointtable{${1:numrows}}{${2:rangename}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpartialcombinedpointtable{}{}[]": {
+      "command": "multirowpartialcombinedpointtable{}{}[]",
+      "snippet": "multirowpartialcombinedpointtable{${1:numrows}}{${2:rangename}}[${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpartialgradetable{}{}": {
+      "command": "multirowpartialgradetable{}{}",
+      "snippet": "multirowpartialgradetable{${1:numrows}}{${2:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpartialgradetable{}{}[]": {
+      "command": "multirowpartialgradetable{}{}[]",
+      "snippet": "multirowpartialgradetable{${1:numrows}}{${2:range name}}[${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpartialpointtable{}{}": {
+      "command": "multirowpartialpointtable{}{}",
+      "snippet": "multirowpartialpointtable{${1:numrows}}{${2:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpartialpointtable{}{}[]": {
+      "command": "multirowpartialpointtable{}{}[]",
+      "snippet": "multirowpartialpointtable{${1:numrows}}{${2:range name}}[${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpointtable{}": {
+      "command": "multirowpointtable{}",
+      "snippet": "multirowpointtable{${1:numrows}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multirowpointtable{}[]": {
+      "command": "multirowpointtable{}[]",
+      "snippet": "multirowpointtable{${1:numrows}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noaddpoints": {
+      "command": "noaddpoints",
+      "snippet": "noaddpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nobonusqformat": {
+      "command": "nobonusqformat",
+      "snippet": "nobonusqformat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noboxedpoints": {
+      "command": "noboxedpoints",
+      "snippet": "noboxedpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nobracketedpoints": {
+      "command": "nobracketedpoints",
+      "snippet": "nobracketedpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nocancelspace": {
+      "command": "nocancelspace",
+      "snippet": "nocancelspace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nocolorfillwithdottedlines": {
+      "command": "nocolorfillwithdottedlines",
+      "snippet": "nocolorfillwithdottedlines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nocolorfillwithlines": {
+      "command": "nocolorfillwithlines",
+      "snippet": "nocolorfillwithlines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nocolorgrids": {
+      "command": "nocolorgrids",
+      "snippet": "nocolorgrids",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nocolorsolutionboxes": {
+      "command": "nocolorsolutionboxes",
+      "snippet": "nocolorsolutionboxes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nocoverfirstpagefootrule": {
+      "command": "nocoverfirstpagefootrule",
+      "snippet": "nocoverfirstpagefootrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nocoverfirstpageheadrule": {
+      "command": "nocoverfirstpageheadrule",
+      "snippet": "nocoverfirstpageheadrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nocoverfootrule": {
+      "command": "nocoverfootrule",
+      "snippet": "nocoverfootrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nocoverheadrule": {
+      "command": "nocoverheadrule",
+      "snippet": "nocoverheadrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nocoverrunningfootrule": {
+      "command": "nocoverrunningfootrule",
+      "snippet": "nocoverrunningfootrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nocoverrunningheadrule": {
+      "command": "nocoverrunningheadrule",
+      "snippet": "nocoverrunningheadrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nofirstpagefootrule": {
+      "command": "nofirstpagefootrule",
+      "snippet": "nofirstpagefootrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nofirstpageheadrule": {
+      "command": "nofirstpageheadrule",
+      "snippet": "nofirstpageheadrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nofootrule": {
+      "command": "nofootrule",
+      "snippet": "nofootrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noheadrule": {
+      "command": "noheadrule",
+      "snippet": "noheadrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "nomorequestions": {
       "command": "nomorequestions",
       "snippet": "nomorequestions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nopointsinleftmargin": {
+      "command": "nopointsinleftmargin",
+      "snippet": "nopointsinleftmargin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nopointsinmargin": {
+      "command": "nopointsinmargin",
+      "snippet": "nopointsinmargin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nopointsinrightmargin": {
+      "command": "nopointsinrightmargin",
+      "snippet": "nopointsinrightmargin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noprintanswers": {
+      "command": "noprintanswers",
+      "snippet": "noprintanswers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noqformat": {
+      "command": "noqformat",
+      "snippet": "noqformat",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1606,156 +1753,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "coverheader{}{}{}": {
-      "command": "coverheader{}{}{}",
-      "snippet": "coverheader{${1:left part}}{${2:center part}}{${3:right part}}",
+    "norunningfootrule": {
+      "command": "norunningfootrule",
+      "snippet": "norunningfootrule",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "coverrunningheader{}{}{}": {
-      "command": "coverrunningheader{}{}{}",
-      "snippet": "coverrunningheader{${1:left part}}{${2:center part}}{${3:right part}}",
+    "norunningheadrule": {
+      "command": "norunningheadrule",
+      "snippet": "norunningheadrule",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "coverfirstpageheader{}{}{}": {
-      "command": "coverfirstpageheader{}{}{}",
-      "snippet": "coverfirstpageheader{${1:left part}}{${2:center part}}{${3:right part}}",
+    "nounstarredvspace": {
+      "command": "nounstarredvspace",
+      "snippet": "nounstarredvspace",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "coverlhead{}": {
-      "command": "coverlhead{}",
-      "snippet": "coverlhead{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverlhead[]{}": {
-      "command": "coverlhead[]{}",
-      "snippet": "coverlhead[${2:text on first page}]{${1:text on later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverchead{}": {
-      "command": "coverchead{}",
-      "snippet": "coverchead{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverchead[]{}": {
-      "command": "coverchead[]{}",
-      "snippet": "coverchead[${2:text on first page}]{${1:text on later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverrhead{}": {
-      "command": "coverrhead{}",
-      "snippet": "coverrhead{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverrhead[]{}": {
-      "command": "coverrhead[]{}",
-      "snippet": "coverrhead[${2:text on first page}]{${1:text on later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverfooter{}{}{}": {
-      "command": "coverfooter{}{}{}",
-      "snippet": "coverfooter{${1:left part}}{${2:center part}}{${3:right part}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverrunningfooter{}{}{}": {
-      "command": "coverrunningfooter{}{}{}",
-      "snippet": "coverrunningfooter{${1:left part}}{${2:center part}}{${3:right part}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverfirstpagefooter{}{}{}": {
-      "command": "coverfirstpagefooter{}{}{}",
-      "snippet": "coverfirstpagefooter{${1:left part}}{${2:center part}}{${3:right part}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverlfoot{}": {
-      "command": "coverlfoot{}",
-      "snippet": "coverlfoot{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverlfoot[]{}": {
-      "command": "coverlfoot[]{}",
-      "snippet": "coverlfoot[${2:text on first page}]{${1:text on later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "covercfoot{}": {
-      "command": "covercfoot{}",
-      "snippet": "covercfoot{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "covercfoot[]{}": {
-      "command": "covercfoot[]{}",
-      "snippet": "covercfoot[${2:text on first page}]{${1:text on later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverrfoot{}": {
-      "command": "coverrfoot{}",
-      "snippet": "coverrfoot{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverrfoot[]{}": {
-      "command": "coverrfoot[]{}",
-      "snippet": "coverrfoot[${2:text on first page}]{${1:text on later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverextraheadheight{}": {
-      "command": "coverextraheadheight{}",
-      "snippet": "coverextraheadheight{${1:height}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverextraheadheight[]{}": {
-      "command": "coverextraheadheight[]{}",
-      "snippet": "coverextraheadheight[${2:height for first page}]{${1:height for later pages}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverextrafootheight{}": {
-      "command": "coverextrafootheight{}",
-      "snippet": "coverextrafootheight{${1:height}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverextrafootheight[]{}": {
-      "command": "coverextrafootheight[]{}",
-      "snippet": "coverextrafootheight[${2:height for first page}]{${1:height for later pages}}",
+    "numbonuspoints": {
+      "command": "numbonuspoints",
+      "snippet": "numbonuspoints",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1767,18 +1788,812 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "totalnumberpages": {
-      "command": "totalnumberpages",
-      "snippet": "totalnumberpages",
+    "numpages": {
+      "command": "numpages",
+      "snippet": "numpages",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numparts": {
+      "command": "numparts",
+      "snippet": "numparts",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numpoints": {
+      "command": "numpoints",
+      "snippet": "numpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numqinrange{}": {
+      "command": "numqinrange{}",
+      "snippet": "numqinrange{${1:%<range name%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numquestions": {
+      "command": "numquestions",
+      "snippet": "numquestions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numsubparts": {
+      "command": "numsubparts",
+      "snippet": "numsubparts",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numsubsubparts": {
+      "command": "numsubsubparts",
+      "snippet": "numsubsubparts",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oddeven{}{}": {
+      "command": "oddeven{}{}",
+      "snippet": "oddeven{${1:odd text%text}}{${2:even text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "part": {
+      "command": "part",
+      "snippet": "part",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "part[]": {
+      "command": "part[]",
+      "snippet": "part[${1:points}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialbonusgradetable{}": {
+      "command": "partialbonusgradetable{}",
+      "snippet": "partialbonusgradetable{${1:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialbonusgradetable{}[]": {
+      "command": "partialbonusgradetable{}[]",
+      "snippet": "partialbonusgradetable{${1:range name}}[${2:h or v}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialbonusgradetable{}[][]": {
+      "command": "partialbonusgradetable{}[][]",
+      "snippet": "partialbonusgradetable{${1:range name}}[${2:h or v}][${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialbonuspointtable{}": {
+      "command": "partialbonuspointtable{}",
+      "snippet": "partialbonuspointtable{${1:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialbonuspointtable{}[]": {
+      "command": "partialbonuspointtable{}[]",
+      "snippet": "partialbonuspointtable{${1:range name}}[${2:h or v}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialbonuspointtable{}[][]": {
+      "command": "partialbonuspointtable{}[][]",
+      "snippet": "partialbonuspointtable{${1:range name}}[${2:h or v}][${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialcombinedgradetable{}": {
+      "command": "partialcombinedgradetable{}",
+      "snippet": "partialcombinedgradetable{${1:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialcombinedgradetable{}[]": {
+      "command": "partialcombinedgradetable{}[]",
+      "snippet": "partialcombinedgradetable{${1:range name}}[${2:h or v}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialcombinedgradetable{}[][]": {
+      "command": "partialcombinedgradetable{}[][]",
+      "snippet": "partialcombinedgradetable{${1:range name}}[${2:h or v}][${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialcombinedpointtable{}": {
+      "command": "partialcombinedpointtable{}",
+      "snippet": "partialcombinedpointtable{${1:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialcombinedpointtable{}[]": {
+      "command": "partialcombinedpointtable{}[]",
+      "snippet": "partialcombinedpointtable{${1:range name}}[${2:h or v}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialcombinedpointtable{}[][]": {
+      "command": "partialcombinedpointtable{}[][]",
+      "snippet": "partialcombinedpointtable{${1:range name}}[${2:h or v}][${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialgradetable{}": {
+      "command": "partialgradetable{}",
+      "snippet": "partialgradetable{${1:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialgradetable{}[]": {
+      "command": "partialgradetable{}[]",
+      "snippet": "partialgradetable{${1:range name}}[${2:h or v}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialgradetable{}[][]": {
+      "command": "partialgradetable{}[][]",
+      "snippet": "partialgradetable{${1:range name}}[${2:h or v}][${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialpointtable{}": {
+      "command": "partialpointtable{}",
+      "snippet": "partialpointtable{${1:range name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialpointtable{}[]": {
+      "command": "partialpointtable{}[]",
+      "snippet": "partialpointtable{${1:range name}}[${2:h or v}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partialpointtable{}[][]": {
+      "command": "partialpointtable{}[][]",
+      "snippet": "partialpointtable{${1:range name}}[${2:h or v}][${3:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partlabel": {
+      "command": "partlabel",
+      "snippet": "partlabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partshook": {
+      "command": "partshook",
+      "snippet": "partshook",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PgInfo{}{}": {
+      "command": "PgInfo{}{}",
+      "snippet": "PgInfo{${1:question label}}{${2:page}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointformat{}": {
+      "command": "pointformat{}",
+      "snippet": "pointformat{${1:format commands}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointname{}": {
+      "command": "pointname{}",
+      "snippet": "pointname{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointpoints{}{}": {
+      "command": "pointpoints{}{}",
+      "snippet": "pointpoints{${1:singular text%text}}{${2:plural text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "points": {
+      "command": "points",
+      "snippet": "points",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointsdroppedatright": {
+      "command": "pointsdroppedatright",
+      "snippet": "pointsdroppedatright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointsinleftmargin": {
+      "command": "pointsinleftmargin",
+      "snippet": "pointsinleftmargin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointsinmargin": {
+      "command": "pointsinmargin",
+      "snippet": "pointsinmargin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointsinrange{}": {
+      "command": "pointsinrange{}",
+      "snippet": "pointsinrange{${1:%<range name%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointsinrightmargin": {
+      "command": "pointsinrightmargin",
+      "snippet": "pointsinrightmargin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointsofquestion{}": {
+      "command": "pointsofquestion{}",
+      "snippet": "pointsofquestion{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointsonpage{}": {
+      "command": "pointsonpage{}",
+      "snippet": "pointsonpage{${1:page number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointstwosided": {
+      "command": "pointstwosided",
+      "snippet": "pointstwosided",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointstwosidedreversed": {
+      "command": "pointstwosidedreversed",
+      "snippet": "pointstwosidedreversed",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointtable": {
+      "command": "pointtable",
+      "snippet": "pointtable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointtable[]": {
+      "command": "pointtable[]",
+      "snippet": "pointtable[${1:h or v}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pointtable[][]": {
+      "command": "pointtable[][]",
+      "snippet": "pointtable[${1:h or v}][${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "printanswers": {
+      "command": "printanswers",
+      "snippet": "printanswers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "printanswersfalse": {
+      "command": "printanswersfalse",
+      "snippet": "printanswersfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "printanswerstrue": {
+      "command": "printanswerstrue",
+      "snippet": "printanswerstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qformat{}": {
+      "command": "qformat{}",
+      "snippet": "qformat{${1:format spec}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "question": {
+      "command": "question",
+      "snippet": "question",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "?",
+      "documentation": "QUESTION MARK"
+    },
+    "question[]": {
+      "command": "question[]",
+      "snippet": "question[${1:points}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "questionlabel": {
+      "command": "questionlabel",
+      "snippet": "questionlabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "questionshook": {
+      "command": "questionshook",
+      "snippet": "questionshook",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rfoot[]{}": {
+      "command": "rfoot[]{}",
+      "snippet": "rfoot[${2:first page text%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rfoot{}": {
+      "command": "rfoot{}",
+      "snippet": "rfoot{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rhead[]{}": {
+      "command": "rhead[]{}",
+      "snippet": "rhead[${2:first page text%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rhead{}": {
+      "command": "rhead{}",
+      "snippet": "rhead{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rightpointsmargin": {
+      "command": "rightpointsmargin",
+      "snippet": "rightpointsmargin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runningfooter{}{}{}": {
+      "command": "runningfooter{}{}{}",
+      "snippet": "runningfooter{${1:left%text}}{${2:center%text}}{${3:right%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runningfootrule": {
+      "command": "runningfootrule",
+      "snippet": "runningfootrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runningheader{}{}{}": {
+      "command": "runningheader{}{}{}",
+      "snippet": "runningheader{${1:left%text}}{${2:center%text}}{${3:right%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runningheadrule": {
+      "command": "runningheadrule",
+      "snippet": "runningheadrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "settabletotalbonuspoints{}": {
+      "command": "settabletotalbonuspoints{}",
+      "snippet": "settabletotalbonuspoints{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "settabletotalpoints{}": {
+      "command": "settabletotalpoints{}",
+      "snippet": "settabletotalpoints{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shadedsolutions": {
+      "command": "shadedsolutions",
+      "snippet": "shadedsolutions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SolutionEmphasis{}": {
+      "command": "SolutionEmphasis{}",
+      "snippet": "SolutionEmphasis{${1:format commands}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solutiontitle": {
+      "command": "solutiontitle",
+      "snippet": "solutiontitle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subpart": {
+      "command": "subpart",
+      "snippet": "subpart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subpart[]": {
+      "command": "subpart[]",
+      "snippet": "subpart[${1:points}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subpartlabel": {
+      "command": "subpartlabel",
+      "snippet": "subpartlabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subpartshook": {
+      "command": "subpartshook",
+      "snippet": "subpartshook",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subsubpart": {
+      "command": "subsubpart",
+      "snippet": "subsubpart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subsubpart[]": {
+      "command": "subsubpart[]",
+      "snippet": "subsubpart[${1:points}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subsubpartlabel": {
+      "command": "subsubpartlabel",
+      "snippet": "subsubpartlabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subsubpartshook": {
+      "command": "subsubpartshook",
+      "snippet": "subsubpartshook",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thechoice": {
+      "command": "thechoice",
+      "snippet": "thechoice",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "themarginpoints": {
+      "command": "themarginpoints",
+      "snippet": "themarginpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thenumparts": {
+      "command": "thenumparts",
+      "snippet": "thenumparts",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thenumquestions": {
+      "command": "thenumquestions",
+      "snippet": "thenumquestions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thenumsubparts": {
+      "command": "thenumsubparts",
+      "snippet": "thenumsubparts",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thenumsubsubparts": {
+      "command": "thenumsubsubparts",
+      "snippet": "thenumsubsubparts",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thepartno": {
+      "command": "thepartno",
+      "snippet": "thepartno",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thepoints": {
+      "command": "thepoints",
+      "snippet": "thepoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thequestion": {
+      "command": "thequestion",
+      "snippet": "thequestion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thequestiontitle": {
+      "command": "thequestiontitle",
+      "snippet": "thequestiontitle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thesubpart": {
+      "command": "thesubpart",
+      "snippet": "thesubpart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thesubsubpart": {
+      "command": "thesubsubpart",
+      "snippet": "thesubsubpart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "titledquestion{}": {
+      "command": "titledquestion{}",
+      "snippet": "titledquestion{${1:title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "titledquestion{}[]": {
+      "command": "titledquestion{}[]",
+      "snippet": "titledquestion{${1:title%text}}[${2:points}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "totalbonuspoints": {
+      "command": "totalbonuspoints",
+      "snippet": "totalbonuspoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "totalformat{}": {
+      "command": "totalformat{}",
+      "snippet": "totalformat{${1:format commands}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "totalnumpages": {
+      "command": "totalnumpages",
+      "snippet": "totalnumpages",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "totalpoints": {
+      "command": "totalpoints",
+      "snippet": "totalpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "unframedsolutions": {
+      "command": "unframedsolutions",
+      "snippet": "unframedsolutions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "unstarredvspace": {
+      "command": "unstarredvspace",
+      "snippet": "unstarredvspace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uplevel{}": {
+      "command": "uplevel{}",
+      "snippet": "uplevel{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "usehorizontalhalf": {
+      "command": "usehorizontalhalf",
+      "snippet": "usehorizontalhalf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "useslantedhalf": {
+      "command": "useslantedhalf",
+      "snippet": "useslantedhalf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vpgword{}": {
+      "command": "vpgword{}",
+      "snippet": "vpgword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vpword{}": {
+      "command": "vpword{}",
+      "snippet": "vpword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vqword{}": {
+      "command": "vqword{}",
+      "snippet": "vqword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vsword{}": {
+      "command": "vsword{}",
+      "snippet": "vsword{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vtword{}": {
+      "command": "vtword{}",
+      "snippet": "vtword{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {
-    "questions": {
-      "name": "questions",
-      "detail": "questions",
+    "checkboxes": {
+      "name": "checkboxes",
+      "detail": "checkboxes",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "choices": {
+      "name": "choices",
+      "detail": "choices",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "coverpages": {
+      "name": "coverpages",
+      "detail": "coverpages",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnvFullwidth": {
+      "name": "EnvFullwidth",
+      "detail": "EnvFullwidth",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnvUplevel": {
+      "name": "EnvUplevel",
+      "detail": "EnvUplevel",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "examframed": {
+      "name": "examframed",
+      "detail": "examframed",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "examleftbar": {
+      "name": "examleftbar",
+      "detail": "examleftbar",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oneparcheckboxes": {
+      "name": "oneparcheckboxes",
+      "detail": "oneparcheckboxes",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oneparchoices": {
+      "name": "oneparchoices",
+      "detail": "oneparchoices",
       "snippet": "",
       "option": "",
       "keyvals": [],
@@ -1788,6 +2603,102 @@
       "name": "parts",
       "detail": "parts",
       "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "questions": {
+      "name": "questions",
+      "detail": "questions",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solution": {
+      "name": "solution",
+      "detail": "solution",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solution[]": {
+      "name": "solution",
+      "detail": "solution[]",
+      "snippet": "[${1:space%l}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solutionbox{}": {
+      "name": "solutionbox",
+      "detail": "solutionbox{}",
+      "snippet": "{${1:size%l}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solutionorbox": {
+      "name": "solutionorbox",
+      "detail": "solutionorbox",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solutionorbox[]": {
+      "name": "solutionorbox",
+      "detail": "solutionorbox[]",
+      "snippet": "[${1:space%l}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solutionordottedlines": {
+      "name": "solutionordottedlines",
+      "detail": "solutionordottedlines",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solutionordottedlines[]": {
+      "name": "solutionordottedlines",
+      "detail": "solutionordottedlines[]",
+      "snippet": "[${1:space%l}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solutionorgrid": {
+      "name": "solutionorgrid",
+      "detail": "solutionorgrid",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solutionorgrid[]": {
+      "name": "solutionorgrid",
+      "detail": "solutionorgrid[]",
+      "snippet": "[${1:space%l}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solutionorlines": {
+      "name": "solutionorlines",
+      "detail": "solutionorlines",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "solutionorlines[]": {
+      "name": "solutionorlines",
+      "detail": "solutionorlines[]",
+      "snippet": "[${1:space%l}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1808,145 +2719,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "choices": {
-      "name": "choices",
-      "detail": "choices",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "oneparchoices": {
-      "name": "oneparchoices",
-      "detail": "oneparchoices",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "checkboxes": {
-      "name": "checkboxes",
-      "detail": "checkboxes",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "oneparcheckboxes": {
-      "name": "oneparcheckboxes",
-      "detail": "oneparcheckboxes",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "EnvUplevel": {
-      "name": "EnvUplevel",
-      "detail": "EnvUplevel",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "EnvFullwidth": {
-      "name": "EnvFullwidth",
-      "detail": "EnvFullwidth",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "solution": {
-      "name": "solution",
-      "detail": "solution",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "solution[]": {
-      "name": "solution",
-      "detail": "solution[]",
-      "snippet": "[${1:height}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "solutionorbox": {
-      "name": "solutionorbox",
-      "detail": "solutionorbox",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "solutionorbox[]": {
-      "name": "solutionorbox",
-      "detail": "solutionorbox[]",
-      "snippet": "[${1:height}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "solutionorlines": {
-      "name": "solutionorlines",
-      "detail": "solutionorlines",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "solutionorlines[]": {
-      "name": "solutionorlines",
-      "detail": "solutionorlines[]",
-      "snippet": "[${1:height}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "solutionordottedlines": {
-      "name": "solutionordottedlines",
-      "detail": "solutionordottedlines",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "solutionordottedlines[]": {
-      "name": "solutionordottedlines",
-      "detail": "solutionordottedlines[]",
-      "snippet": "[${1:height}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "solutionorgrid": {
-      "name": "solutionorgrid",
-      "detail": "solutionorgrid",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "solutionorgrid[]": {
-      "name": "solutionorgrid",
-      "detail": "solutionorgrid[]",
-      "snippet": "[${1:height}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "solutionbox{}": {
-      "name": "solutionbox",
-      "detail": "solutionbox{}",
-      "snippet": "{${1:height}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coverpages": {
-      "name": "coverpages",
-      "detail": "coverpages",
+    "TheSolution": {
+      "name": "TheSolution",
+      "detail": "TheSolution",
       "snippet": "",
       "option": "",
       "keyvals": [],

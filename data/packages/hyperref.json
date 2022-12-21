@@ -1,16 +1,263 @@
 {
-  "includes": [],
+  "includes": [
+    "iftex",
+    "keyval",
+    "kvsetkeys",
+    "kvdefinekeys",
+    "pdfescape",
+    "hycolor",
+    "letltxmacro",
+    "auxhook",
+    "kvoptions",
+    "intcalc",
+    "url",
+    "bitset",
+    "bigintcalc",
+    "atbegshi",
+    "atveryend",
+    "rerunfilecheck",
+    "nameref",
+    "backref",
+    "backref",
+    "backref",
+    "backref",
+    "backref",
+    "backref",
+    "color",
+    "color"
+  ],
   "cmds": {
+    "HyperDestRename{}{}": {
+      "command": "HyperDestRename{}{}",
+      "snippet": "HyperDestRename{${1:destination}}{${2:newname}}",
+      "option": "destlabel=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hyperindexformat{}{}": {
+      "command": "hyperindexformat{}{}",
+      "snippet": "hyperindexformat{${1:arg1}}{${2:arg2}}",
+      "option": "hyperindex=true",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "hypersetup{}": {
       "command": "hypersetup{}",
-      "snippet": "hypersetup{${1:options}}",
+      "snippet": "hypersetup{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "addtopdfcreator=",
+        "allbordercolors=",
+        "allcolors=",
+        "anchorcolor=",
+        "backref=",
+        "baseurl=",
+        "bookmarks",
+        "bookmarksdepth",
+        "bookmarksdepth=",
+        "bookmarksnumbered",
+        "bookmarksopen",
+        "bookmarksopenlevel=",
+        "bookmarkstype=",
+        "breaklinks",
+        "citebordercolor=",
+        "citecolor=",
+        "CJKbookmarks",
+        "colorlinks",
+        "customdriver=",
+        "debug",
+        "destlabel",
+        "draft",
+        "driverfallback=",
+        "dvipdfm",
+        "dvipdfmx",
+        "dvipdfmx-outline-open",
+        "dvips",
+        "dvipsone",
+        "dviwindo",
+        "encap=",
+        "extension=",
+        "filebordercolor=",
+        "filecolor=",
+        "final",
+        "frenchlinks",
+        "hidelinks",
+        "hyperfigures",
+        "hyperfootnotes",
+        "hyperindex",
+        "hypertex",
+        "hypertexnames",
+        "implicit",
+        "linkbordercolor=",
+        "linkcolor=",
+        "linkfileprefix=",
+        "linktoc=",
+        "linktocpage",
+        "luatex",
+        "menubordercolor=",
+        "menucolor=",
+        "nativepdf",
+        "naturalnames",
+        "nesting",
+        "next-anchor=",
+        "ocgcolorlinks",
+        "pageanchor",
+        "pagebackref",
+        "pdfa",
+        "pdfauthor=",
+        "pdfborder=",
+        "pdfborderstyle=",
+        "pdfcenterwindow",
+        "pdfcreationdate=",
+        "pdfcreator=",
+        "pdfdirection=",
+        "pdfdisplaydoctitle",
+        "pdfduplex=",
+        "pdfencoding=",
+        "pdfescapeform",
+        "pdffitwindow",
+        "pdfhighlight=",
+        "pdfinfo={",
+        "pdfkeywords={",
+        "pdflang=",
+        "pdflinkmargin=",
+        "pdfmark",
+        "pdfmenubar",
+        "pdfmoddate=",
+        "pdfnewwindow",
+        "pdfnonfullscreenpagemode",
+        "pdfnumcopies=",
+        "pdfpageduration=",
+        "pdfpagelabels",
+        "pdfpagelayout=",
+        "pdfpagemode=",
+        "pdfpagescrop=",
+        "pdfpagetransition=",
+        "pdfpicktraybypdfsize",
+        "pdfprintarea=",
+        "pdfprintclip=",
+        "pdfprintpagerange=",
+        "pdfprintscaling=",
+        "pdfproducer=",
+        "pdfremotestartview=",
+        "pdfstartpage=",
+        "pdfstartview=",
+        "pdfsubject=",
+        "pdftex",
+        "pdftitle=",
+        "pdftoolbar",
+        "pdftrapped=",
+        "pdfusetitle",
+        "pdfversion=",
+        "pdfview=",
+        "pdfviewarea=",
+        "pdfviewclip=",
+        "pdfwindowui",
+        "plainpages",
+        "ps2pdf",
+        "psdextra",
+        "raiselinks",
+        "runbordercolor=",
+        "runcolor=",
+        "setpagesize",
+        "tex4ht",
+        "textures",
+        "unicode",
+        "urlbordercolor=",
+        "urlcolor=",
+        "verbose",
+        "vtex",
+        "vtexpdfmark",
+        "xetex"
+      ],
+      "keyvalindex": 0
+    },
+    "href[]{}{}": {
+      "command": "href[]{}{}",
+      "snippet": "href[${3:options}]{${1:URL}}{${2:text%plain}}",
+      "option": "",
+      "keyvals": [
+        "pdfremotestartview=",
+        "pdfnewwindow",
+        "page=",
+        "ismap",
+        "nextactionraw={"
+      ],
+      "keyvalindex": 0
+    },
+    "href{}{}": {
+      "command": "href{}{}",
+      "snippet": "href{${1:URL}}{${2:text%plain}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "href{}{}": {
-      "command": "href{}{}",
-      "snippet": "href{${1:URL}}{${2:text}}",
+    "AddToDocumentProperties{}{}": {
+      "command": "AddToDocumentProperties{}{}",
+      "snippet": "AddToDocumentProperties{${1:property}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AddToDocumentProperties[]{}{}": {
+      "command": "AddToDocumentProperties[]{}{}",
+      "snippet": "AddToDocumentProperties[${3:category}]{${1:property}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GetDocumentProperties{}": {
+      "command": "GetDocumentProperties{}",
+      "snippet": "GetDocumentProperties{${1:property}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MakeLinkTarget{}": {
+      "command": "MakeLinkTarget{}",
+      "snippet": "MakeLinkTarget{${1:counter}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MakeLinkTarget[]{}": {
+      "command": "MakeLinkTarget[]{}",
+      "snippet": "MakeLinkTarget[${2:prefix}]{${1:counter}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MakeLinkTarget*{}": {
+      "command": "MakeLinkTarget*{}",
+      "snippet": "MakeLinkTarget*{${1:target name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NextLinkTarget{}": {
+      "command": "NextLinkTarget{}",
+      "snippet": "NextLinkTarget{${1:target name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LinkTargetOn": {
+      "command": "LinkTargetOn",
+      "snippet": "LinkTargetOn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LinkTargetOff": {
+      "command": "LinkTargetOff",
+      "snippet": "LinkTargetOff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetLinkTargetFilter{}": {
+      "command": "SetLinkTargetFilter{}",
+      "snippet": "SetLinkTargetFilter{${1:filter code}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -38,7 +285,7 @@
     },
     "hyperimage{}{}": {
       "command": "hyperimage{}{}",
-      "snippet": "hyperimage{${1:imageURL}}{${2:text}}",
+      "snippet": "hyperimage{${1:imageURL%URL}}{${2:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -57,23 +304,37 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "hyperref[]{}{}{}{}": {
+      "command": "hyperref[]{}{}{}{}",
+      "snippet": "hyperref[${5:label%ref}]{${1:URL}}{${2:category}}{${3:name}}{${4:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "hyperref[]{}": {
       "command": "hyperref[]{}",
-      "snippet": "hyperref[${2:label}]{${1:text}}",
+      "snippet": "hyperref[${2:label%ref}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hyperref{}": {
+      "command": "hyperref{}",
+      "snippet": "hyperref{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "hyperlink{}{}": {
       "command": "hyperlink{}{}",
-      "snippet": "hyperlink{${1:name}}{${2:text}}",
+      "snippet": "hyperlink{${1:target name}}{${2:link text%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "hypertarget{}{}": {
       "command": "hypertarget{}{}",
-      "snippet": "hypertarget{${1:name}}{${2:text}}",
+      "snippet": "hypertarget{${1:target name}}{${2:anchor text%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -85,6 +346,27 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "hyperget{}{}": {
+      "command": "hyperget{}{}",
+      "snippet": "hyperget{${1:anchor}}{${2:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "autopageref{}": {
+      "command": "autopageref{}",
+      "snippet": "autopageref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "autopageref*{}": {
+      "command": "autopageref*{}",
+      "snippet": "autopageref*{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "autoref{}": {
       "command": "autoref{}",
       "snippet": "autoref{${1:label}}",
@@ -92,23 +374,58 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "ref*{}": {
-      "command": "ref*{}",
-      "snippet": "ref*{${1:label}}",
+    "autoref*{}": {
+      "command": "autoref*{}",
+      "snippet": "autoref*{${1:label}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pageref*{}": {
-      "command": "pageref*{}",
-      "snippet": "pageref*{${1:label}}",
+    "thispdfpagelabel": {
+      "command": "thispdfpagelabel",
+      "snippet": "thispdfpagelabel",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "pdfstringdef{}{}": {
       "command": "pdfstringdef{}{}",
-      "snippet": "pdfstringdef{${1:macroname}}{${2:TEXstring}}",
+      "snippet": "pdfstringdef{${1:macroname%cmd}}{${2:TeXstring}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pdfbookmark{}{}": {
+      "command": "pdfbookmark{}{}",
+      "snippet": "pdfbookmark{${1:text}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pdfbookmark[]{}{}": {
+      "command": "pdfbookmark[]{}{}",
+      "snippet": "pdfbookmark[${3:level}]{${1:text}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "currentpdfbookmark{}{}": {
+      "command": "currentpdfbookmark{}{}",
+      "snippet": "currentpdfbookmark{${1:text}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subpdfbookmark{}{}": {
+      "command": "subpdfbookmark{}{}",
+      "snippet": "subpdfbookmark{${1:text}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "belowpdfbookmark{}{}": {
+      "command": "belowpdfbookmark{}{}",
+      "snippet": "belowpdfbookmark{${1:text}}{${2:name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -116,6 +433,13 @@
     "texorpdfstring{}{}": {
       "command": "texorpdfstring{}{}",
       "snippet": "texorpdfstring{${1:TEXstring}}{${2:PDFstring}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pdfstringdefDisableCommands{}": {
+      "command": "pdfstringdefDisableCommands{}",
+      "snippet": "pdfstringdefDisableCommands{${1:hooks}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -134,9 +458,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "TextField{}": {
+      "command": "TextField{}",
+      "snippet": "TextField{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "TextField[]{}": {
       "command": "TextField[]{}",
       "snippet": "TextField[${2:parameters}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CheckBox{}": {
+      "command": "CheckBox{}",
+      "snippet": "CheckBox{${1:label}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -148,9 +486,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "ChoiceMenu{}{}": {
+      "command": "ChoiceMenu{}{}",
+      "snippet": "ChoiceMenu{${1:label}}{${2:choices}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "ChoiceMenu[]{}{}": {
       "command": "ChoiceMenu[]{}{}",
       "snippet": "ChoiceMenu[${3:parameters}]{${1:label}}{${2:choices}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PushButton{}": {
+      "command": "PushButton{}",
+      "snippet": "PushButton{${1:label}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -162,9 +514,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "Submit{}": {
+      "command": "Submit{}",
+      "snippet": "Submit{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "Submit[]{}": {
       "command": "Submit[]{}",
       "snippet": "Submit[${2:parameters}]{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Reset{}": {
+      "command": "Reset{}",
+      "snippet": "Reset{${1:label}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -231,8 +597,625 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "DefaultHeightofSubmit": {
+      "command": "DefaultHeightofSubmit",
+      "snippet": "DefaultHeightofSubmit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultWidthofSubmit": {
+      "command": "DefaultWidthofSubmit",
+      "snippet": "DefaultWidthofSubmit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultHeightofReset": {
+      "command": "DefaultHeightofReset",
+      "snippet": "DefaultHeightofReset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultWidthofReset": {
+      "command": "DefaultWidthofReset",
+      "snippet": "DefaultWidthofReset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultHeightofCheckBox": {
+      "command": "DefaultHeightofCheckBox",
+      "snippet": "DefaultHeightofCheckBox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultWidthofCheckBox": {
+      "command": "DefaultWidthofCheckBox",
+      "snippet": "DefaultWidthofCheckBox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultHeightofChoiceMenu": {
+      "command": "DefaultHeightofChoiceMenu",
+      "snippet": "DefaultHeightofChoiceMenu",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultWidthofChoiceMenu": {
+      "command": "DefaultWidthofChoiceMenu",
+      "snippet": "DefaultWidthofChoiceMenu",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultHeightofText": {
+      "command": "DefaultHeightofText",
+      "snippet": "DefaultHeightofText",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultHeightofTextMultiline": {
+      "command": "DefaultHeightofTextMultiline",
+      "snippet": "DefaultHeightofTextMultiline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultWidthofText": {
+      "command": "DefaultWidthofText",
+      "snippet": "DefaultWidthofText",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultOptionsofSubmit": {
+      "command": "DefaultOptionsofSubmit",
+      "snippet": "DefaultOptionsofSubmit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultOptionsofReset": {
+      "command": "DefaultOptionsofReset",
+      "snippet": "DefaultOptionsofReset",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultOptionsofPushButton": {
+      "command": "DefaultOptionsofPushButton",
+      "snippet": "DefaultOptionsofPushButton",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultOptionsofCheckBox": {
+      "command": "DefaultOptionsofCheckBox",
+      "snippet": "DefaultOptionsofCheckBox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultOptionsofText": {
+      "command": "DefaultOptionsofText",
+      "snippet": "DefaultOptionsofText",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultOptionsofListBox": {
+      "command": "DefaultOptionsofListBox",
+      "snippet": "DefaultOptionsofListBox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultOptionsofComboBox": {
+      "command": "DefaultOptionsofComboBox",
+      "snippet": "DefaultOptionsofComboBox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultOptionsofPopdownBox": {
+      "command": "DefaultOptionsofPopdownBox",
+      "snippet": "DefaultOptionsofPopdownBox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultOptionsofRadio": {
+      "command": "DefaultOptionsofRadio",
+      "snippet": "DefaultOptionsofRadio",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AfterBeginDocument{}": {
+      "command": "AfterBeginDocument{}",
+      "snippet": "AfterBeginDocument{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AMSautorefname": {
+      "command": "AMSautorefname",
+      "snippet": "AMSautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "appendixautorefname": {
+      "command": "appendixautorefname",
+      "snippet": "appendixautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chapterautorefname": {
+      "command": "chapterautorefname",
+      "snippet": "chapterautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "equationautorefname": {
+      "command": "equationautorefname",
+      "snippet": "equationautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FancyVerbLineautorefname": {
+      "command": "FancyVerbLineautorefname",
+      "snippet": "FancyVerbLineautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "figureautorefname": {
+      "command": "figureautorefname",
+      "snippet": "figureautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "footnoteautorefname": {
+      "command": "footnoteautorefname",
+      "snippet": "footnoteautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hfootnoteautorefname": {
+      "command": "Hfootnoteautorefname",
+      "snippet": "Hfootnoteautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hurl{}": {
+      "command": "Hurl{}",
+      "snippet": "Hurl{${1:URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HyperDestLabelReplace{}": {
+      "command": "HyperDestLabelReplace{}",
+      "snippet": "HyperDestLabelReplace{${1:dest}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HyperDestNameFilter{}": {
+      "command": "HyperDestNameFilter{}",
+      "snippet": "HyperDestNameFilter{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hypergetpageref{}": {
+      "command": "hypergetpageref{}",
+      "snippet": "hypergetpageref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hypergetref{}": {
+      "command": "hypergetref{}",
+      "snippet": "hypergetref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hyperlinkfileprefix{}": {
+      "command": "hyperlinkfileprefix{}",
+      "snippet": "hyperlinkfileprefix{${1:prefix}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hyperpage{}": {
+      "command": "hyperpage{}",
+      "snippet": "hyperpage{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HyperRaiseLinkDefault": {
+      "command": "HyperRaiseLinkDefault",
+      "snippet": "HyperRaiseLinkDefault",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HyperRaiseLinkHook": {
+      "command": "HyperRaiseLinkHook",
+      "snippet": "HyperRaiseLinkHook",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfHyperBoolean{}{}{}": {
+      "command": "IfHyperBoolean{}{}{}",
+      "snippet": "IfHyperBoolean{${1:options}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfHyperBooleanExists{}{}{}": {
+      "command": "IfHyperBooleanExists{}{}{}",
+      "snippet": "IfHyperBooleanExists{${1:option}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifpdfstringunicode{}{}": {
+      "command": "ifpdfstringunicode{}{}",
+      "snippet": "ifpdfstringunicode{${1:unicode chars}}{${2:chars}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Itemautorefname": {
+      "command": "Itemautorefname",
+      "snippet": "Itemautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "itemautorefname": {
+      "command": "itemautorefname",
+      "snippet": "itemautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MakeLowercaseUnsupportedInPdfStrings{}": {
+      "command": "MakeLowercaseUnsupportedInPdfStrings{}",
+      "snippet": "MakeLowercaseUnsupportedInPdfStrings{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MakeUppercaseUnsupportedInPdfStrings{}": {
+      "command": "MakeUppercaseUnsupportedInPdfStrings{}",
+      "snippet": "MakeUppercaseUnsupportedInPdfStrings{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MaybeStopEarly": {
+      "command": "MaybeStopEarly",
+      "snippet": "MaybeStopEarly",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MaybeStopNow": {
+      "command": "MaybeStopNow",
+      "snippet": "MaybeStopNow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nohyperpage{}": {
+      "command": "nohyperpage{}",
+      "snippet": "nohyperpage{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pageautorefname": {
+      "command": "pageautorefname",
+      "snippet": "pageautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "paragraphautorefname": {
+      "command": "paragraphautorefname",
+      "snippet": "paragraphautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partautorefname": {
+      "command": "partautorefname",
+      "snippet": "partautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pdfstringdefPostHook": {
+      "command": "pdfstringdefPostHook",
+      "snippet": "pdfstringdefPostHook",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pdfstringdefPreHook": {
+      "command": "pdfstringdefPreHook",
+      "snippet": "pdfstringdefPreHook",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pdfstringdefWarn{}": {
+      "command": "pdfstringdefWarn{}",
+      "snippet": "pdfstringdefWarn{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sectionautorefname": {
+      "command": "sectionautorefname",
+      "snippet": "sectionautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setpdflinkmargin{}": {
+      "command": "setpdflinkmargin{}",
+      "snippet": "setpdflinkmargin{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subparagraphautorefname": {
+      "command": "subparagraphautorefname",
+      "snippet": "subparagraphautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subsectionautorefname": {
+      "command": "subsectionautorefname",
+      "snippet": "subsectionautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subsubsectionautorefname": {
+      "command": "subsubsectionautorefname",
+      "snippet": "subsubsectionautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tableautorefname": {
+      "command": "tableautorefname",
+      "snippet": "tableautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHchapter": {
+      "command": "theHchapter",
+      "snippet": "theHchapter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHenumi": {
+      "command": "theHenumi",
+      "snippet": "theHenumi",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHenumii": {
+      "command": "theHenumii",
+      "snippet": "theHenumii",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHenumiii": {
+      "command": "theHenumiii",
+      "snippet": "theHenumiii",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHenumiv": {
+      "command": "theHenumiv",
+      "snippet": "theHenumiv",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHequation": {
+      "command": "theHequation",
+      "snippet": "theHequation",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHfigure": {
+      "command": "theHfigure",
+      "snippet": "theHfigure",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHHfootnote": {
+      "command": "theHHfootnote",
+      "snippet": "theHHfootnote",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHHmpfootnote": {
+      "command": "theHHmpfootnote",
+      "snippet": "theHHmpfootnote",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHItem": {
+      "command": "theHItem",
+      "snippet": "theHItem",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHmpfootnote": {
+      "command": "theHmpfootnote",
+      "snippet": "theHmpfootnote",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHparagraph": {
+      "command": "theHparagraph",
+      "snippet": "theHparagraph",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHpart": {
+      "command": "theHpart",
+      "snippet": "theHpart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHsection": {
+      "command": "theHsection",
+      "snippet": "theHsection",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHsubparagraph": {
+      "command": "theHsubparagraph",
+      "snippet": "theHsubparagraph",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHsubsection": {
+      "command": "theHsubsection",
+      "snippet": "theHsubsection",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHsubsubsection": {
+      "command": "theHsubsubsection",
+      "snippet": "theHsubsubsection",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHtable": {
+      "command": "theHtable",
+      "snippet": "theHtable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHtheorem": {
+      "command": "theHtheorem",
+      "snippet": "theHtheorem",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHthm": {
+      "command": "theHthm",
+      "snippet": "theHthm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theoremautorefname": {
+      "command": "theoremautorefname",
+      "snippet": "theoremautorefname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "unichar{}": {
+      "command": "unichar{}",
+      "snippet": "unichar{${1:char num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "XeTeXLinkBox{}": {
+      "command": "XeTeXLinkBox{}",
+      "snippet": "XeTeXLinkBox{${1:contents}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "XeTeXLinkMargin": {
+      "command": "XeTeXLinkMargin",
+      "snippet": "XeTeXLinkMargin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
-  "envs": {},
+  "envs": {
+    "NoHyper": {
+      "name": "NoHyper",
+      "detail": "NoHyper",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Form": {
+      "name": "Form",
+      "detail": "Form",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Form[]": {
+      "name": "Form",
+      "detail": "Form[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "action=",
+        "encoding=",
+        "method="
+      ],
+      "keyvalindex": 0
+    }
+  },
   "options": []
 }

@@ -1,6 +1,24 @@
 {
-  "includes": [],
+  "includes": [
+    "amstext",
+    "amsbsy",
+    "amsopn"
+  ],
   "cmds": {
+    "allowdisplaybreaks": {
+      "command": "allowdisplaybreaks",
+      "snippet": "allowdisplaybreaks",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "allowdisplaybreaks[]": {
+      "command": "allowdisplaybreaks[]",
+      "snippet": "allowdisplaybreaks[${1:value}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "AmS": {
       "command": "AmS",
       "snippet": "AmS",
@@ -15,6 +33,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "And": {
+      "command": "And",
+      "snippet": "And",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "binom{}{}": {
       "command": "binom{}{}",
       "snippet": "binom{${1:above}}{${2:below}}",
@@ -24,21 +49,21 @@
     },
     "boxed{}": {
       "command": "boxed{}",
-      "snippet": "boxed{${1:argument}}",
+      "snippet": "boxed{${1:formula}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "cfrac[]{}{}": {
       "command": "cfrac[]{}{}",
-      "snippet": "cfrac[${3:align}]{${1:numerator}}{${2:denominator}}",
+      "snippet": "cfrac[${3:%<align%>}]{${1:%<num%:translatable%>}}{${2:%<den%:translatable%>}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "cfrac{}{}": {
       "command": "cfrac{}{}",
-      "snippet": "cfrac{${1:numerator}}{${2:denominator}}",
+      "snippet": "cfrac{${1:%<num%:translatable%>}}{${2:%<den%:translatable%>}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -52,35 +77,21 @@
     },
     "ddddot{}": {
       "command": "ddddot{}",
-      "snippet": "ddddot{${1:text}}",
+      "snippet": "ddddot{${1:arg}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "dddot{}": {
       "command": "dddot{}",
-      "snippet": "dddot{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DeclareMathOperator{}{}": {
-      "command": "DeclareMathOperator{}{}",
-      "snippet": "DeclareMathOperator{${1:command}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DeclareMathOperator*{}{}": {
-      "command": "DeclareMathOperator*{}{}",
-      "snippet": "DeclareMathOperator*{${1:command}}{${2:text}}",
+      "snippet": "dddot{${1:arg}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "dfrac{}{}": {
       "command": "dfrac{}{}",
-      "snippet": "dfrac{${1:numerator}}{${2:denominator}}",
+      "snippet": "dfrac{${1:%<num%:translatable%>}}{${2:%<den%:translatable%>}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -95,6 +106,27 @@
     "displaybreak[]": {
       "command": "displaybreak[]",
       "snippet": "displaybreak[${1:value}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DOTSB": {
+      "command": "DOTSB",
+      "snippet": "DOTSB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DOTSI": {
+      "command": "DOTSI",
+      "snippet": "DOTSI",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DOTSX": {
+      "command": "DOTSX",
+      "snippet": "DOTSX",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -134,9 +166,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "endmathdisplay{}": {
+      "command": "endmathdisplay{}",
+      "snippet": "endmathdisplay{${1:envname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "eqref{}": {
       "command": "eqref{}",
       "snippet": "eqref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "genfrac{}{}{}{}{}{}": {
+      "command": "genfrac{}{}{}{}{}{}",
+      "snippet": "genfrac{${1:left-delim}}{${2:right-delim}}{${3:thickness%l}}{${4:mathstyle}}{${5:numerator}}{${6:denominator}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hdots": {
+      "command": "hdots",
+      "snippet": "hdots",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -209,7 +262,7 @@
     },
     "intertext{}": {
       "command": "intertext{}",
-      "snippet": "intertext{${1:word or phrase}}",
+      "snippet": "intertext{${1:word or phrase%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -235,18 +288,37 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "medspace": {
-      "command": "medspace",
-      "snippet": "medspace",
+    "mathaccentV": {
+      "command": "mathaccentV",
+      "snippet": "mathaccentV",
       "option": "",
       "keyvals": [],
-      "keyvalindex": -1,
-      "detail": " ",
-      "documentation": "MEDIUM MATHEMATICAL SPACE, four-eighteenths of an em"
+      "keyvalindex": -1
     },
-    "mod{}": {
-      "command": "mod{}",
-      "snippet": "mod{${1:value}}",
+    "mathdisplay{}": {
+      "command": "mathdisplay{}",
+      "snippet": "mathdisplay{${1:envname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mintagsep": {
+      "command": "mintagsep",
+      "snippet": "mintagsep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "minalignsep": {
+      "command": "minalignsep",
+      "snippet": "minalignsep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mod": {
+      "command": "mod",
+      "snippet": "mod",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -258,23 +330,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "negmedspace": {
-      "command": "negmedspace",
-      "snippet": "negmedspace",
+    "MultiIntegral{}": {
+      "command": "MultiIntegral{}",
+      "snippet": "MultiIntegral{${1:integer}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "negthickspace": {
-      "command": "negthickspace",
-      "snippet": "negthickspace",
+    "multlinegap": {
+      "command": "multlinegap",
+      "snippet": "multlinegap",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "negthinspace": {
-      "command": "negthinspace",
-      "snippet": "negthinspace",
+    "multlinetaggap": {
+      "command": "multlinetaggap",
+      "snippet": "multlinetaggap",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -293,16 +365,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "operatorname{}": {
-      "command": "operatorname{}",
-      "snippet": "operatorname{${1:name}}",
+    "numberwithin{}{}": {
+      "command": "numberwithin{}{}",
+      "snippet": "numberwithin{${1:env}}{${2:counter}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "operatornamewithlimits{}": {
-      "command": "operatornamewithlimits{}",
-      "snippet": "operatornamewithlimits{${1:name}}",
+    "numberwithin[]{}{}": {
+      "command": "numberwithin[]{}{}",
+      "snippet": "numberwithin[${3:format}]{${1:env}}{${2:counter}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -321,9 +393,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pod{}": {
-      "command": "pod{}",
-      "snippet": "pod{${1:value}}",
+    "overunderset{}{}{}": {
+      "command": "overunderset{}{}{}",
+      "snippet": "overunderset{${1:superscript}}{${2:subscript}}{${3:argument}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pod": {
+      "command": "pod",
+      "snippet": "pod",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -345,6 +424,20 @@
     "rVert": {
       "command": "rVert",
       "snippet": "rVert",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shoveright{}": {
+      "command": "shoveright{}",
+      "snippet": "shoveright{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shoveleft{}": {
+      "command": "shoveleft{}",
+      "snippet": "shoveleft{${1:arg}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -400,21 +493,21 @@
     },
     "tfrac{}{}": {
       "command": "tfrac{}{}",
-      "snippet": "tfrac{${1:numerator}}{${2:denominator}}",
+      "snippet": "tfrac{${1:%<num%:translatable%>}}{${2:%<den%:translatable%>}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "thickspace": {
-      "command": "thickspace",
-      "snippet": "thickspace",
+    "theparentequation": {
+      "command": "theparentequation",
+      "snippet": "theparentequation",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "thinspace": {
-      "command": "thinspace",
-      "snippet": "thinspace",
+    "thetag": {
+      "command": "thetag",
+      "snippet": "thetag",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -553,6 +646,13 @@
       "detail": "𝛯",
       "documentation": "MATHEMATICAL ITALIC CAPITAL XI"
     },
+    "veqno{}": {
+      "command": "veqno{}",
+      "snippet": "veqno{${1:eqn num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "xleftarrow[]{}": {
       "command": "xleftarrow[]{}",
       "snippet": "xleftarrow[${2:subscript}]{${1:superscript}}",
@@ -580,6 +680,76 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "Hat{}": {
+      "command": "Hat{}",
+      "snippet": "Hat{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Check{}": {
+      "command": "Check{}",
+      "snippet": "Check{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Tilde{}": {
+      "command": "Tilde{}",
+      "snippet": "Tilde{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acute{}": {
+      "command": "Acute{}",
+      "snippet": "Acute{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Grave{}": {
+      "command": "Grave{}",
+      "snippet": "Grave{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dot{}": {
+      "command": "Dot{}",
+      "snippet": "Dot{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ddot{}": {
+      "command": "Ddot{}",
+      "snippet": "Ddot{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Breve{}": {
+      "command": "Breve{}",
+      "snippet": "Breve{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Bar{}": {
+      "command": "Bar{}",
+      "snippet": "Bar{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Vec{}": {
+      "command": "Vec{}",
+      "snippet": "Vec{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
   "envs": {
@@ -602,7 +772,7 @@
     "alignat[]{}": {
       "name": "alignat",
       "detail": "alignat[]{}",
-      "snippet": "[${2:alignment}]{${1:n}}",
+      "snippet": "[${2:alignment}]{${1:ncols}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -610,7 +780,7 @@
     "alignat*[]{}": {
       "name": "alignat*",
       "detail": "alignat*[]{}",
-      "snippet": "[${2:alignment}]{${1:n}}",
+      "snippet": "[${2:alignment}]{${1:ncols}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -618,7 +788,7 @@
     "alignat{}": {
       "name": "alignat",
       "detail": "alignat{}",
-      "snippet": "{${1:n}}",
+      "snippet": "{${1:ncols}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -626,7 +796,7 @@
     "alignat*{}": {
       "name": "alignat*",
       "detail": "alignat*{}",
-      "snippet": "{${1:n}}",
+      "snippet": "{${1:ncols}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -647,10 +817,10 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "alignedat": {
+    "alignedat{}": {
       "name": "alignedat",
-      "detail": "alignedat",
-      "snippet": "",
+      "detail": "alignedat{}",
+      "snippet": "{${1:ncols}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -791,10 +961,10 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "subarray[]": {
+    "subarray{}": {
       "name": "subarray",
-      "detail": "subarray[]",
-      "snippet": "[${1:align}]",
+      "detail": "subarray{}",
+      "snippet": "{${1:align}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -848,5 +1018,21 @@
       "keyvalindex": -1
     }
   },
-  "options": []
+  "options": [
+    "intlimits",
+    "nointlimits",
+    "sumlimits",
+    "nosumlimits",
+    "namelimits",
+    "nonamelimits",
+    "leqno",
+    "reqno",
+    "centertags",
+    "tbtags",
+    "cmex10",
+    "fleqn",
+    "alignedleftspaceyes",
+    "alignedleftspaceno",
+    "alignedleftspaceyesifneg"
+  ]
 }

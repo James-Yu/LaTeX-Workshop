@@ -1,0 +1,481 @@
+{
+  "includes": [
+    "morewrites",
+    "tcolorbox",
+    "tcolorboxlibrarymany",
+    "xcolor",
+    "inputenc",
+    "textgreek",
+    "filecontents",
+    "xifthen",
+    "xparse",
+    "xstring",
+    "minted"
+  ],
+  "cmds": {
+    "runExtCode{}{}{}": {
+      "command": "runExtCode{}{}{}",
+      "snippet": "runExtCode{${1:program}}{${2:file}}{${3:output file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runExtCode{}{}{}[]": {
+      "command": "runExtCode{}{}{}[]",
+      "snippet": "runExtCode{${1:program}}{${2:source file}}{${3:output file}}[${4:run|cache}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showCode{}{}": {
+      "command": "showCode{}{}",
+      "snippet": "showCode{${1:lang}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showCode{}{}[]": {
+      "command": "showCode{}{}[]",
+      "snippet": "showCode{${1:lang}}{${2:source file}}[${3:first line}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showCode{}{}[][]": {
+      "command": "showCode{}{}[][]",
+      "snippet": "showCode{${1:lang}}{${2:source file}}[${3:first line}][${4:last line}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "includeOutput{}": {
+      "command": "includeOutput{}",
+      "snippet": "includeOutput{${1:output file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "includeOutput{}[]": {
+      "command": "includeOutput{}[]",
+      "snippet": "includeOutput{${1:output file}}[${2:type}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inln{}{}": {
+      "command": "inln{}{}",
+      "snippet": "inln{${1:program}}{${2:code%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inln{}{}[]": {
+      "command": "inln{}{}[]",
+      "snippet": "inln{${1:program}}{${2:code%definition}}[${3:vbox|inline}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runJulia{}{}": {
+      "command": "runJulia{}{}",
+      "snippet": "runJulia{${1:file}}{${2:output file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runJulia{}{}[]": {
+      "command": "runJulia{}{}[]",
+      "snippet": "runJulia{${1:source file}}{${2:output file}}[${3:run|cache}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runJulia[]{}{}": {
+      "command": "runJulia[]{}{}",
+      "snippet": "runJulia[${3:server spec}]{${1:file}}{${2:output file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runJulia[]{}{}[]": {
+      "command": "runJulia[]{}{}[]",
+      "snippet": "runJulia[${3:server spec}]{${1:source file}}{${2:output file}}[${4:run|cache}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnJulia{}": {
+      "command": "inlnJulia{}",
+      "snippet": "inlnJulia{${1:code%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnJulia{}[]": {
+      "command": "inlnJulia{}[]",
+      "snippet": "inlnJulia{${1:code%definition}}[${2:vbox|inline}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnJulia[]{}": {
+      "command": "inlnJulia[]{}",
+      "snippet": "inlnJulia[${2:server spec}]{${1:code%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnJulia[]{}[]": {
+      "command": "inlnJulia[]{}[]",
+      "snippet": "inlnJulia[${2:server spec}]{${1:code%definition}}[${3:vbox|inline}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runMatlab{}{}": {
+      "command": "runMatlab{}{}",
+      "snippet": "runMatlab{${1:file}}{${2:output file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runMatlab{}{}[]": {
+      "command": "runMatlab{}{}[]",
+      "snippet": "runMatlab{${1:source file}}{${2:output file}}[${3:run|cache}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runMatlab[]{}{}": {
+      "command": "runMatlab[]{}{}",
+      "snippet": "runMatlab[${3:server spec}]{${1:file}}{${2:output file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runMatlab[]{}{}[]": {
+      "command": "runMatlab[]{}{}[]",
+      "snippet": "runMatlab[${3:server spec}]{${1:source file}}{${2:output file}}[${4:run|cache}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnMatlab{}": {
+      "command": "inlnMatlab{}",
+      "snippet": "inlnMatlab{${1:code%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnMatlab{}[]": {
+      "command": "inlnMatlab{}[]",
+      "snippet": "inlnMatlab{${1:code%definition}}[${2:vbox|inline}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnMatlab[]{}": {
+      "command": "inlnMatlab[]{}",
+      "snippet": "inlnMatlab[${2:server spec}]{${1:code%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnMatlab[]{}[]": {
+      "command": "inlnMatlab[]{}[]",
+      "snippet": "inlnMatlab[${2:server spec}]{${1:code%definition}}[${3:vbox|inline}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runR{}{}": {
+      "command": "runR{}{}",
+      "snippet": "runR{${1:file}}{${2:output file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runR{}{}[]": {
+      "command": "runR{}{}[]",
+      "snippet": "runR{${1:source file}}{${2:output file}}[${3:run|cache}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runR[]{}{}": {
+      "command": "runR[]{}{}",
+      "snippet": "runR[${3:server spec}]{${1:file}}{${2:output file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runR[]{}{}[]": {
+      "command": "runR[]{}{}[]",
+      "snippet": "runR[${3:server spec}]{${1:source file}}{${2:output file}}[${4:run|cache}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnR{}": {
+      "command": "inlnR{}",
+      "snippet": "inlnR{${1:code%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnR{}[]": {
+      "command": "inlnR{}[]",
+      "snippet": "inlnR{${1:code%definition}}[${2:vbox|inline}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnR[]{}": {
+      "command": "inlnR[]{}",
+      "snippet": "inlnR[${2:server spec}]{${1:code%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnR[]{}[]": {
+      "command": "inlnR[]{}[]",
+      "snippet": "inlnR[${2:server spec}]{${1:code%definition}}[${3:vbox|inline}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runPython{}{}": {
+      "command": "runPython{}{}",
+      "snippet": "runPython{${1:file}}{${2:output file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runPython{}{}[]": {
+      "command": "runPython{}{}[]",
+      "snippet": "runPython{${1:source file}}{${2:output file}}[${3:run|cache}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runPython[]{}{}": {
+      "command": "runPython[]{}{}",
+      "snippet": "runPython[${3:server spec}]{${1:file}}{${2:output file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runPython[]{}{}[]": {
+      "command": "runPython[]{}{}[]",
+      "snippet": "runPython[${3:server spec}]{${1:source file}}{${2:output file}}[${4:run|cache}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnPython{}": {
+      "command": "inlnPython{}",
+      "snippet": "inlnPython{${1:code%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnPython{}[]": {
+      "command": "inlnPython{}[]",
+      "snippet": "inlnPython{${1:code%definition}}[${2:vbox|inline}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnPython[]{}": {
+      "command": "inlnPython[]{}",
+      "snippet": "inlnPython[${2:server spec}]{${1:code%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlnPython[]{}[]": {
+      "command": "inlnPython[]{}[]",
+      "snippet": "inlnPython[${2:server spec}]{${1:code%definition}}[${3:vbox|inline}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runPythonBatch{}{}": {
+      "command": "runPythonBatch{}{}",
+      "snippet": "runPythonBatch{${1:code%definition}}{${2:output file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "checkZeroBytes{}": {
+      "command": "checkZeroBytes{}",
+      "snippet": "checkZeroBytes{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runcmd": {
+      "command": "runcmd",
+      "snippet": "runcmd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setvalue{}{}": {
+      "command": "setvalue{}{}",
+      "snippet": "setvalue{${1:cmd}}{${2:def}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thecodeOutput": {
+      "command": "thecodeOutput",
+      "snippet": "thecodeOutput",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thecodelisting": {
+      "command": "thecodelisting",
+      "snippet": "thecodelisting",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "generated": {
+      "command": "generated",
+      "snippet": "generated",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tempfile": {
+      "command": "tempfile",
+      "snippet": "tempfile",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tmpname": {
+      "command": "tmpname",
+      "snippet": "tmpname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifruncode": {
+      "command": "ifruncode",
+      "snippet": "ifruncode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runcodetrue": {
+      "command": "runcodetrue",
+      "snippet": "runcodetrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "runcodefalse": {
+      "command": "runcodefalse",
+      "snippet": "runcodefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifminted": {
+      "command": "ifminted",
+      "snippet": "ifminted",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mintedtrue": {
+      "command": "mintedtrue",
+      "snippet": "mintedtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mintedfalse": {
+      "command": "mintedfalse",
+      "snippet": "mintedfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifreducedspace": {
+      "command": "ifreducedspace",
+      "snippet": "ifreducedspace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "reducedspacetrue": {
+      "command": "reducedspacetrue",
+      "snippet": "reducedspacetrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "reducedspacefalse": {
+      "command": "reducedspacefalse",
+      "snippet": "reducedspacefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifnotnohup": {
+      "command": "ifnotnohup",
+      "snippet": "ifnotnohup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notnohuptrue": {
+      "command": "notnohuptrue",
+      "snippet": "notnohuptrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notnohupfalse": {
+      "command": "notnohupfalse",
+      "snippet": "notnohupfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "codelisting": {
+      "name": "codelisting",
+      "detail": "codelisting",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "codelisting[]": {
+      "name": "codelisting",
+      "detail": "codelisting[]",
+      "snippet": "[${1:number}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "run",
+    "cache",
+    "nominted",
+    "reducedspace",
+    "nohup",
+    "R",
+    "julia",
+    "matlab",
+    "python",
+    "stopserver"
+  ]
+}

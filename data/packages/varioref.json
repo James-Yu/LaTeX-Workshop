@@ -1,79 +1,16 @@
 {
   "includes": [],
   "cmds": {
-    "fullref{}": {
-      "command": "fullref{}",
-      "snippet": "fullref{${1:label}}",
+    "vref{}": {
+      "command": "vref{}",
+      "snippet": "vref{${1:label}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "labelformat{}{}": {
-      "command": "labelformat{}{}",
-      "snippet": "labelformat{${1:counter}}{${2:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Ref{}": {
-      "command": "Ref{}",
-      "snippet": "Ref{${1:label}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "reftextafter{}": {
-      "command": "reftextafter{}",
-      "snippet": "reftextafter{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "reftextbefore{}": {
-      "command": "reftextbefore{}",
-      "snippet": "reftextbefore{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "reftextcurrent{}": {
-      "command": "reftextcurrent{}",
-      "snippet": "reftextcurrent{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "reftextfaceafter{}": {
-      "command": "reftextfaceafter{}",
-      "snippet": "reftextfaceafter{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "reftextfacebefore{}": {
-      "command": "reftextfacebefore{}",
-      "snippet": "reftextfacebefore{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "reftextfaraway": {
-      "command": "reftextfaraway",
-      "snippet": "reftextfaraway",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "reftextlabelrange": {
-      "command": "reftextlabelrange",
-      "snippet": "reftextlabelrange",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "reftextpagerange": {
-      "command": "reftextpagerange",
-      "snippet": "reftextpagerange",
+    "vref*{}": {
+      "command": "vref*{}",
+      "snippet": "vref*{${1:label}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -88,34 +25,6 @@
     "vpageref*{}": {
       "command": "vpageref*{}",
       "snippet": "vpageref*{${1:label}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "vpagerefrange{}{}": {
-      "command": "vpagerefrange{}{}",
-      "snippet": "vpagerefrange{${1:fromlabel}}{${2:tolabel}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "vpagerefrange*{}{}": {
-      "command": "vpagerefrange*{}{}",
-      "snippet": "vpagerefrange*{${1:fromlabel}}{${2:tolabel}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "vpagerefrange[]{}{}": {
-      "command": "vpagerefrange[]{}{}",
-      "snippet": "vpagerefrange[${3:same page}]{${1:fromlabel}}{${2:tolabel}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "vpagerefrange*[]{}{}": {
-      "command": "vpagerefrange*[]{}{}",
-      "snippet": "vpagerefrange*[${3:same page}]{${1:fromlabel}}{${2:tolabel}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -148,16 +57,72 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "vref{}": {
-      "command": "vref{}",
-      "snippet": "vref{${1:label}}",
+    "vrefrange{}{}": {
+      "command": "vrefrange{}{}",
+      "snippet": "vrefrange{${1:fromlabel%ref}}{${2:tolabel%ref}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "vref*{}": {
-      "command": "vref*{}",
-      "snippet": "vref*{${1:label}}",
+    "vrefrange[]{}{}": {
+      "command": "vrefrange[]{}{}",
+      "snippet": "vrefrange[${3:same page text}]{${1:fromlabel%ref}}{${2:tolabel%ref}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vpagerefrange{}{}": {
+      "command": "vpagerefrange{}{}",
+      "snippet": "vpagerefrange{${1:fromlabel%ref}}{${2:tolabel%ref}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vpagerefrange*{}{}": {
+      "command": "vpagerefrange*{}{}",
+      "snippet": "vpagerefrange*{${1:fromlabel%ref}}{${2:tolabel%ref}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vpagerefrange[]{}{}": {
+      "command": "vpagerefrange[]{}{}",
+      "snippet": "vpagerefrange[${3:same page text}]{${1:fromlabel%ref}}{${2:tolabel%ref}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vpagerefrange*[]{}{}": {
+      "command": "vpagerefrange*[]{}{}",
+      "snippet": "vpagerefrange*[${3:same page text}]{${1:fromlabel%ref}}{${2:tolabel%ref}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vrefpagenum{}{}": {
+      "command": "vrefpagenum{}{}",
+      "snippet": "vrefpagenum{${1:cmd}}{${2:label%ref}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vpagerefcompare{}{}{}{}": {
+      "command": "vpagerefcompare{}{}{}{}",
+      "snippet": "vpagerefcompare{${1:label1%ref}}{${2:label2%ref}}{${3:true}}{${4:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vpagerefnearby{}{}{}": {
+      "command": "vpagerefnearby{}{}{}",
+      "snippet": "vpagerefnearby{${1:label}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelformat{}{}": {
+      "command": "labelformat{}{}",
+      "snippet": "labelformat{${1:counter}}{${2:argument}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -176,28 +141,214 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "vrefpagenum{}{}": {
-      "command": "vrefpagenum{}{}",
-      "snippet": "vrefpagenum{${1:cmd}}{${2:label}}",
+    "Ref{}": {
+      "command": "Ref{}",
+      "snippet": "Ref{${1:label}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "vrefrange{}{}": {
-      "command": "vrefrange{}{}",
-      "snippet": "vrefrange{${1:fromlabel}}{${2:tolabel}}",
+    "thevpagerefnum": {
+      "command": "thevpagerefnum",
+      "snippet": "thevpagerefnum",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "vreftextvario{}{}": {
-      "command": "vreftextvario{}{}",
-      "snippet": "vreftextvario{${1:text1}}{${2:text2}}",
+    "reftextbefore": {
+      "command": "reftextbefore",
+      "snippet": "reftextbefore",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "reftextfacebefore": {
+      "command": "reftextfacebefore",
+      "snippet": "reftextfacebefore",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "reftextafter": {
+      "command": "reftextafter",
+      "snippet": "reftextafter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "reftextfaceafter": {
+      "command": "reftextfaceafter",
+      "snippet": "reftextfaceafter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "reftextcurrent": {
+      "command": "reftextcurrent",
+      "snippet": "reftextcurrent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "reftextfaraway{}": {
+      "command": "reftextfaraway{}",
+      "snippet": "reftextfaraway{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "reftextvario{}{}": {
+      "command": "reftextvario{}{}",
+      "snippet": "reftextvario{${1:text1}}{${2:text2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "reftextpagerange{}{}": {
+      "command": "reftextpagerange{}{}",
+      "snippet": "reftextpagerange{${1:label1%ref}}{${2:label2%ref}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "reftextlabelrange{}{}": {
+      "command": "reftextlabelrange{}{}",
+      "snippet": "reftextlabelrange{${1:label1%ref}}{${2:label2%ref}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vrefformat": {
+      "command": "vrefformat",
+      "snippet": "vrefformat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Vrefformat": {
+      "command": "Vrefformat",
+      "snippet": "Vrefformat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vrefrangeformat": {
+      "command": "vrefrangeformat",
+      "snippet": "vrefrangeformat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fullrefformat": {
+      "command": "fullrefformat",
+      "snippet": "fullrefformat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vrefdefaultformat": {
+      "command": "vrefdefaultformat",
+      "snippet": "vrefdefaultformat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Vrefdefaultformat": {
+      "command": "Vrefdefaultformat",
+      "snippet": "Vrefdefaultformat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vrefrangedefaultformat": {
+      "command": "vrefrangedefaultformat",
+      "snippet": "vrefrangedefaultformat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fullrefdefaultformat": {
+      "command": "fullrefdefaultformat",
+      "snippet": "fullrefdefaultformat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vrefwarning": {
+      "command": "vrefwarning",
+      "snippet": "vrefwarning",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vrefshowerrors": {
+      "command": "vrefshowerrors",
+      "snippet": "vrefshowerrors",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fullref{}": {
+      "command": "fullref{}",
+      "snippet": "fullref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vpagerefcomparenearby{}{}{}{}": {
+      "command": "vpagerefcomparenearby{}{}{}{}",
+      "snippet": "vpagerefcomparenearby{${1:label1%ref}}{${2:label2%ref}}{${3:true}}{${4:false}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "afrikaans",
+    "american",
+    "arabic",
+    "austrian",
+    "naustrian",
+    "basque",
+    "bahasam",
+    "brazil",
+    "breton",
+    "bulgarian",
+    "catalan",
+    "croatian",
+    "czech",
+    "danish",
+    "dutch",
+    "english",
+    "esperanto",
+    "finnish",
+    "french",
+    "galician",
+    "german",
+    "ngerman",
+    "greek",
+    "icelandic",
+    "italian",
+    "japanese",
+    "magyar",
+    "norsk",
+    "nynorsk",
+    "polish",
+    "portuges",
+    "romanian",
+    "russian",
+    "slovak",
+    "slovene",
+    "spanish",
+    "swedish",
+    "turkish",
+    "ukrainian",
+    "francais",
+    "germanb",
+    "draft",
+    "final",
+    "space",
+    "nospace"
+  ]
 }

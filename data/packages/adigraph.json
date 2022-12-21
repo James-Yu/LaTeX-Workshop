@@ -1,0 +1,567 @@
+{
+  "includes": [
+    "etoolbox",
+    "fp",
+    "xparse",
+    "xstring",
+    "tikz",
+    "tikzlibrarycalc"
+  ],
+  "cmds": {
+    "NewAdigraph{}{}": {
+      "command": "NewAdigraph{}{}",
+      "snippet": "NewAdigraph{${1:name}}{${2:nodes}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewAdigraph{}{}{}": {
+      "command": "NewAdigraph{}{}{}",
+      "snippet": "NewAdigraph{${1:name}}{${2:nodes}}{${3:edges}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewAdigraph{}{}{}[]": {
+      "command": "NewAdigraph{}{}{}[]",
+      "snippet": "NewAdigraph{${1:name}}{${2:nodes}}{${3:edges}}[${4:edge style}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewAdigraph{}{}": {
+      "command": "RenewAdigraph{}{}",
+      "snippet": "RenewAdigraph{${1:name}}{${2:nodes}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewAdigraph{}{}{}": {
+      "command": "RenewAdigraph{}{}{}",
+      "snippet": "RenewAdigraph{${1:name}}{${2:nodes}}{${3:edges}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewAdigraph{}{}{}[]": {
+      "command": "RenewAdigraph{}{}{}[]",
+      "snippet": "RenewAdigraph{${1:name}}{${2:nodes}}{${3:edges}}[${4:edge style}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnableAdigraphs": {
+      "command": "EnableAdigraphs",
+      "snippet": "EnableAdigraphs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DisableAdigraphs": {
+      "command": "DisableAdigraphs",
+      "snippet": "DisableAdigraphs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphApplyKleenePlusEdgeBuilder{}": {
+      "command": "AdigraphApplyKleenePlusEdgeBuilder{}",
+      "snippet": "AdigraphApplyKleenePlusEdgeBuilder{${1:element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphBackwardPathColor": {
+      "command": "AdigraphBackwardPathColor",
+      "snippet": "AdigraphBackwardPathColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphBackwardPathWidth": {
+      "command": "AdigraphBackwardPathWidth",
+      "snippet": "AdigraphBackwardPathWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphBuildEdge{}{}{}{}": {
+      "command": "AdigraphBuildEdge{}{}{}{}",
+      "snippet": "AdigraphBuildEdge{${1:edge nodes}}{${2:weight}}{${3:label}}{${4:label pos}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphBuildEdgeWrapper{}{}{}{}": {
+      "command": "AdigraphBuildEdgeWrapper{}{}{}{}",
+      "snippet": "AdigraphBuildEdgeWrapper{${1:edge nodes}}{${2:weight}}{${3:label}}{${4:label pos}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphBuildNode{}{}{}": {
+      "command": "AdigraphBuildNode{}{}{}",
+      "snippet": "AdigraphBuildNode{${1:node name}}{${2:list of coords}}{${3:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphBuildNodeWrapper{}{}{}": {
+      "command": "AdigraphBuildNodeWrapper{}{}{}",
+      "snippet": "AdigraphBuildNodeWrapper{${1:node name}}{${2:list of coords}}{${3:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphBuildPath{}{}{}{}": {
+      "command": "AdigraphBuildPath{}{}{}{}",
+      "snippet": "AdigraphBuildPath{${1:nodes}}{${2:units}}{${3:colors}}{${4:widths}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphCalculateInclination{}{}{}": {
+      "command": "AdigraphCalculateInclination{}{}{}",
+      "snippet": "AdigraphCalculateInclination{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphCalculateOrientation{}{}{}": {
+      "command": "AdigraphCalculateOrientation{}{}{}",
+      "snippet": "AdigraphCalculateOrientation{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphCountPaths{}": {
+      "command": "AdigraphCountPaths{}",
+      "snippet": "AdigraphCountPaths{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphCurrentElaboratingEdge": {
+      "command": "AdigraphCurrentElaboratingEdge",
+      "snippet": "AdigraphCurrentElaboratingEdge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphCurrentNode": {
+      "command": "AdigraphCurrentNode",
+      "snippet": "AdigraphCurrentNode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphCutBuilder{}": {
+      "command": "AdigraphCutBuilder{}",
+      "snippet": "AdigraphCutBuilder{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphCyan": {
+      "command": "AdigraphCyan",
+      "snippet": "AdigraphCyan",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphDefaultColor": {
+      "command": "AdigraphDefaultColor",
+      "snippet": "AdigraphDefaultColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphDefaultWidth": {
+      "command": "AdigraphDefaultWidth",
+      "snippet": "AdigraphDefaultWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphDrawEdge{}{}": {
+      "command": "AdigraphDrawEdge{}{}",
+      "snippet": "AdigraphDrawEdge{${1:nodeID1}}{${2:nodeID2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphDrawNode{}": {
+      "command": "AdigraphDrawNode{}",
+      "snippet": "AdigraphDrawNode{${1:nodeID}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphEdgeBuilder{}": {
+      "command": "AdigraphEdgeBuilder{}",
+      "snippet": "AdigraphEdgeBuilder{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphEdgeDrawer{}": {
+      "command": "AdigraphEdgeDrawer{}",
+      "snippet": "AdigraphEdgeDrawer{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphEdgeList": {
+      "command": "AdigraphEdgeList",
+      "snippet": "AdigraphEdgeList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphElaboratePathColors{}{}": {
+      "command": "AdigraphElaboratePathColors{}{}",
+      "snippet": "AdigraphElaboratePathColors{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphElaboratePathWidth{}{}": {
+      "command": "AdigraphElaboratePathWidth{}{}",
+      "snippet": "AdigraphElaboratePathWidth{${1:forward width}}{${2:backward width}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphElaboratePath{}{}": {
+      "command": "AdigraphElaboratePath{}{}",
+      "snippet": "AdigraphElaboratePath{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphExecuteCutBuilder{}{}{}": {
+      "command": "AdigraphExecuteCutBuilder{}{}{}",
+      "snippet": "AdigraphExecuteCutBuilder{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphFirstEdgeRenormalizer{}": {
+      "command": "AdigraphFirstEdgeRenormalizer{}",
+      "snippet": "AdigraphFirstEdgeRenormalizer{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphFirstNode": {
+      "command": "AdigraphFirstNode",
+      "snippet": "AdigraphFirstNode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphForwardPathColor": {
+      "command": "AdigraphForwardPathColor",
+      "snippet": "AdigraphForwardPathColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphForwardPathWidth": {
+      "command": "AdigraphForwardPathWidth",
+      "snippet": "AdigraphForwardPathWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphGenerateNodeName{}": {
+      "command": "AdigraphGenerateNodeName{}",
+      "snippet": "AdigraphGenerateNodeName{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphKleenePlusEdgeBuilder{}": {
+      "command": "AdigraphKleenePlusEdgeBuilder{}",
+      "snippet": "AdigraphKleenePlusEdgeBuilder{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphKleeneStarEdgeBuilder{}": {
+      "command": "AdigraphKleeneStarEdgeBuilder{}",
+      "snippet": "AdigraphKleeneStarEdgeBuilder{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphLastParsedNode": {
+      "command": "AdigraphLastParsedNode",
+      "snippet": "AdigraphLastParsedNode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphMemorizeEdge{}{}": {
+      "command": "AdigraphMemorizeEdge{}{}",
+      "snippet": "AdigraphMemorizeEdge{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphMemorizeNode{}": {
+      "command": "AdigraphMemorizeNode{}",
+      "snippet": "AdigraphMemorizeNode{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphNodeBuilder{}": {
+      "command": "AdigraphNodeBuilder{}",
+      "snippet": "AdigraphNodeBuilder{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphNodeCounterSecondWrapper{}": {
+      "command": "AdigraphNodeCounterSecondWrapper{}",
+      "snippet": "AdigraphNodeCounterSecondWrapper{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphNodeCounterWrapper{}{}{}{}": {
+      "command": "AdigraphNodeCounterWrapper{}{}{}{}",
+      "snippet": "AdigraphNodeCounterWrapper{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphNodeCounter{}": {
+      "command": "AdigraphNodeCounter{}",
+      "snippet": "AdigraphNodeCounter{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphNodeList": {
+      "command": "AdigraphNodeList",
+      "snippet": "AdigraphNodeList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphNodeName": {
+      "command": "AdigraphNodeName",
+      "snippet": "AdigraphNodeName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphNodesCounter{}": {
+      "command": "AdigraphNodesCounter{}",
+      "snippet": "AdigraphNodesCounter{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphPathBuilder{}{}{}{}{}{}{}": {
+      "command": "AdigraphPathBuilder{}{}{}{}{}{}{}",
+      "snippet": "AdigraphPathBuilder{${1:node1}}{${2:node2}}{${3:units}}{${4:forward color}}{${5:backward color}}{${6:forward width}}{${7:backward width}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphProcessAugmentingPathsList{}": {
+      "command": "AdigraphProcessAugmentingPathsList{}",
+      "snippet": "AdigraphProcessAugmentingPathsList{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphProcessAugmentingPaths{}": {
+      "command": "AdigraphProcessAugmentingPaths{}",
+      "snippet": "AdigraphProcessAugmentingPaths{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphProcessCuts{}": {
+      "command": "AdigraphProcessCuts{}",
+      "snippet": "AdigraphProcessCuts{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphProcessEdges{}": {
+      "command": "AdigraphProcessEdges{}",
+      "snippet": "AdigraphProcessEdges{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphProcessNodes{}": {
+      "command": "AdigraphProcessNodes{}",
+      "snippet": "AdigraphProcessNodes{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphProcessPaths{}": {
+      "command": "AdigraphProcessPaths{}",
+      "snippet": "AdigraphProcessPaths{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphRed": {
+      "command": "AdigraphRed",
+      "snippet": "AdigraphRed",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphRom{}": {
+      "command": "AdigraphRom{}",
+      "snippet": "AdigraphRom{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphSecondEdgeRenormalizer{}": {
+      "command": "AdigraphSecondEdgeRenormalizer{}",
+      "snippet": "AdigraphSecondEdgeRenormalizer{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphSecondNode": {
+      "command": "AdigraphSecondNode",
+      "snippet": "AdigraphSecondNode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphSimpleSum{}{}{}": {
+      "command": "AdigraphSimpleSum{}{}{}",
+      "snippet": "AdigraphSimpleSum{${1:num1}}{${2:num2}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphTempList": {
+      "command": "AdigraphTempList",
+      "snippet": "AdigraphTempList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphTextualZero": {
+      "command": "AdigraphTextualZero",
+      "snippet": "AdigraphTextualZero",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphTwinEdgeWeight": {
+      "command": "AdigraphTwinEdgeWeight",
+      "snippet": "AdigraphTwinEdgeWeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphVersionNumber": {
+      "command": "AdigraphVersionNumber",
+      "snippet": "AdigraphVersionNumber",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphWeightA": {
+      "command": "AdigraphWeightA",
+      "snippet": "AdigraphWeightA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphWeightB": {
+      "command": "AdigraphWeightB",
+      "snippet": "AdigraphWeightB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AdigraphZero": {
+      "command": "AdigraphZero",
+      "snippet": "AdigraphZero",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Adigraph{}{}{}{}{}{}": {
+      "command": "Adigraph{}{}{}{}{}{}",
+      "snippet": "Adigraph{${1:vertices}}{${2:edges}}{${3:paths}}{${4:cuts}}{${5:current paths}}{${6:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "myCosSum": {
+      "command": "myCosSum",
+      "snippet": "myCosSum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mySinSum": {
+      "command": "mySinSum",
+      "snippet": "mySinSum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sumOfOrientations{}": {
+      "command": "sumOfOrientations{}",
+      "snippet": "sumOfOrientations{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theAdigraphAdjacentNodes": {
+      "command": "theAdigraphAdjacentNodes",
+      "snippet": "theAdigraphAdjacentNodes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theAdigraphCurrentNodeCounter": {
+      "command": "theAdigraphCurrentNodeCounter",
+      "snippet": "theAdigraphCurrentNodeCounter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theAdigraphCurrentPathNumber": {
+      "command": "theAdigraphCurrentPathNumber",
+      "snippet": "theAdigraphCurrentPathNumber",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theAdigraphNumberOfPaths": {
+      "command": "theAdigraphNumberOfPaths",
+      "snippet": "theAdigraphNumberOfPaths",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theAdigraphTotalNodeCounter": {
+      "command": "theAdigraphTotalNodeCounter",
+      "snippet": "theAdigraphTotalNodeCounter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

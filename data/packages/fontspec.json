@@ -1,182 +1,958 @@
 {
-  "includes": [],
+  "includes": [
+    "xunicode"
+  ],
   "cmds": {
-    "fontspec{}": {
-      "command": "fontspec{}",
-      "snippet": "fontspec{${1:fontname}}",
+    "oldstylenums{}": {
+      "command": "oldstylenums{}",
+      "snippet": "oldstylenums{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fontspec[]{}": {
-      "command": "fontspec[]{}",
-      "snippet": "fontspec[${2:fontfeature=option,fontfeature=option}]{${1:fontname}}",
+    "liningnums{}": {
+      "command": "liningnums{}",
+      "snippet": "liningnums{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "strong{}": {
+      "command": "strong{}",
+      "snippet": "strong{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "strongfontdeclare{}": {
+      "command": "strongfontdeclare{}",
+      "snippet": "strongfontdeclare{${1:font-switching list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "strongreset": {
+      "command": "strongreset",
+      "snippet": "strongreset",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "setmainfont{}": {
       "command": "setmainfont{}",
-      "snippet": "setmainfont{${1:fontname}}",
+      "snippet": "setmainfont{${1:font}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "setmainfont[]{}": {
       "command": "setmainfont[]{}",
-      "snippet": "setmainfont[${2:fontfeature=option,fontfeature=option}]{${1:fontname}}",
+      "snippet": "setmainfont[${2:font features}]{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmainfont{}[]": {
+      "command": "setmainfont{}[]",
+      "snippet": "setmainfont{${1:font}}[${2:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmainfont[]{}[]": {
+      "command": "setmainfont[]{}[]",
+      "snippet": "setmainfont[${2:font features}]{${1:font}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setromanfont{}": {
+      "command": "setromanfont{}",
+      "snippet": "setromanfont{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setromanfont[]{}": {
+      "command": "setromanfont[]{}",
+      "snippet": "setromanfont[${2:font features}]{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setromanfont{}[]": {
+      "command": "setromanfont{}[]",
+      "snippet": "setromanfont{${1:font}}[${2:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setromanfont[]{}[]": {
+      "command": "setromanfont[]{}[]",
+      "snippet": "setromanfont[${2:font features}]{${1:font}}[${3:font features}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "setsansfont{}": {
       "command": "setsansfont{}",
-      "snippet": "setsansfont{${1:fontname}}",
+      "snippet": "setsansfont{${1:font}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "setsansfont[]{}": {
       "command": "setsansfont[]{}",
-      "snippet": "setsansfont[${2:fontfeature=option,fontfeature=option}]{${1:fontname}}",
+      "snippet": "setsansfont[${2:font features}]{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setsansfont{}[]": {
+      "command": "setsansfont{}[]",
+      "snippet": "setsansfont{${1:font}}[${2:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setsansfont[]{}[]": {
+      "command": "setsansfont[]{}[]",
+      "snippet": "setsansfont[${2:font features}]{${1:font}}[${3:font features}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "setmonofont{}": {
       "command": "setmonofont{}",
-      "snippet": "setmonofont{${1:fontname}}",
+      "snippet": "setmonofont{${1:font}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "setmonofont[]{}": {
       "command": "setmonofont[]{}",
-      "snippet": "setmonofont[${2:fontfeature=option,fontfeature=option}]{${1:fontname}}",
+      "snippet": "setmonofont[${2:font features}]{${1:font}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "newfontfamily<>{}": {
-      "command": "newfontfamily<>{}",
-      "snippet": "newfontfamily<${2:fontinstance}>{${1:fontname}}",
+    "setmonofont{}[]": {
+      "command": "setmonofont{}[]",
+      "snippet": "setmonofont{${1:font}}[${2:font features}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "newfontface<>{}": {
-      "command": "newfontface<>{}",
-      "snippet": "newfontface<${2:fontface}>{${1:fontname}}",
+    "setmonofont[]{}[]": {
+      "command": "setmonofont[]{}[]",
+      "snippet": "setmonofont[${2:font features}]{${1:font}}[${3:font features}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "newfontface<>[]{}": {
-      "command": "newfontface<>[]{}",
-      "snippet": "newfontface<${3:fontface}>[${2:fontfeature=option,fontfeature=option}]{${1:fontname}}",
+    "newfontfamily{}{}": {
+      "command": "newfontfamily{}{}",
+      "snippet": "newfontfamily{${1:cmd}}{${2:font}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "setmathrm": {
-      "command": "setmathrm",
-      "snippet": "setmathrm",
+    "newfontfamily{}[]{}": {
+      "command": "newfontfamily{}[]{}",
+      "snippet": "newfontfamily{${1:cmd}}[${2:font features}]{${3:font}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "setboldmathrm": {
-      "command": "setboldmathrm",
-      "snippet": "setboldmathrm",
+    "newfontfamily{}{}[]": {
+      "command": "newfontfamily{}{}[]",
+      "snippet": "newfontfamily{${1:cmd}}{${2:font}}[${3:font features}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "setmathsf": {
-      "command": "setmathsf",
-      "snippet": "setmathsf",
+    "newfontfamily{}[]{}[]": {
+      "command": "newfontfamily{}[]{}[]",
+      "snippet": "newfontfamily{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "setmathtt": {
-      "command": "setmathtt",
-      "snippet": "setmathtt",
+    "setfontfamily{}{}": {
+      "command": "setfontfamily{}{}",
+      "snippet": "setfontfamily{${1:cmd}}{${2:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setfontfamily{}[]{}": {
+      "command": "setfontfamily{}[]{}",
+      "snippet": "setfontfamily{${1:cmd}}[${2:font features}]{${3:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setfontfamily{}{}[]": {
+      "command": "setfontfamily{}{}[]",
+      "snippet": "setfontfamily{${1:cmd}}{${2:font}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setfontfamily{}[]{}[]": {
+      "command": "setfontfamily{}[]{}[]",
+      "snippet": "setfontfamily{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewfontfamily{}{}": {
+      "command": "renewfontfamily{}{}",
+      "snippet": "renewfontfamily{${1:cmd}}{${2:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewfontfamily{}[]{}": {
+      "command": "renewfontfamily{}[]{}",
+      "snippet": "renewfontfamily{${1:cmd}}[${2:font features}]{${3:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewfontfamily{}{}[]": {
+      "command": "renewfontfamily{}{}[]",
+      "snippet": "renewfontfamily{${1:cmd}}{${2:font}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewfontfamily{}[]{}[]": {
+      "command": "renewfontfamily{}[]{}[]",
+      "snippet": "renewfontfamily{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providefontfamily{}{}": {
+      "command": "providefontfamily{}{}",
+      "snippet": "providefontfamily{${1:cmd}}{${2:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providefontfamily{}[]{}": {
+      "command": "providefontfamily{}[]{}",
+      "snippet": "providefontfamily{${1:cmd}}[${2:font features}]{${3:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providefontfamily{}{}[]": {
+      "command": "providefontfamily{}{}[]",
+      "snippet": "providefontfamily{${1:cmd}}{${2:font}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providefontfamily{}[]{}[]": {
+      "command": "providefontfamily{}[]{}[]",
+      "snippet": "providefontfamily{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fontspec{}": {
+      "command": "fontspec{}",
+      "snippet": "fontspec{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fontspec[]{}": {
+      "command": "fontspec[]{}",
+      "snippet": "fontspec[${2:font features}]{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fontspec{}[]": {
+      "command": "fontspec{}[]",
+      "snippet": "fontspec{${1:font}}[${2:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fontspec[]{}[]": {
+      "command": "fontspec[]{}[]",
+      "snippet": "fontspec[${2:font features}]{${1:font}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfFontExistsTF{}{}{}": {
+      "command": "IfFontExistsTF{}{}{}",
+      "snippet": "IfFontExistsTF{${1:font name}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newfontface{}{}": {
+      "command": "newfontface{}{}",
+      "snippet": "newfontface{${1:cmd}}{${2:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newfontface{}[]{}": {
+      "command": "newfontface{}[]{}",
+      "snippet": "newfontface{${1:cmd}}[${2:font features}]{${3:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newfontface{}{}[]": {
+      "command": "newfontface{}{}[]",
+      "snippet": "newfontface{${1:cmd}}{${2:font}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newfontface{}[]{}[]": {
+      "command": "newfontface{}[]{}[]",
+      "snippet": "newfontface{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setfontface{}{}": {
+      "command": "setfontface{}{}",
+      "snippet": "setfontface{${1:cmd}}{${2:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setfontface{}[]{}": {
+      "command": "setfontface{}[]{}",
+      "snippet": "setfontface{${1:cmd}}[${2:font features}]{${3:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setfontface{}{}[]": {
+      "command": "setfontface{}{}[]",
+      "snippet": "setfontface{${1:cmd}}{${2:font}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setfontface{}[]{}[]": {
+      "command": "setfontface{}[]{}[]",
+      "snippet": "setfontface{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewfontface{}{}": {
+      "command": "renewfontface{}{}",
+      "snippet": "renewfontface{${1:cmd}}{${2:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewfontface{}[]{}": {
+      "command": "renewfontface{}[]{}",
+      "snippet": "renewfontface{${1:cmd}}[${2:font features}]{${3:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewfontface{}{}[]": {
+      "command": "renewfontface{}{}[]",
+      "snippet": "renewfontface{${1:cmd}}{${2:font}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewfontface{}[]{}[]": {
+      "command": "renewfontface{}[]{}[]",
+      "snippet": "renewfontface{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providefontface{}{}": {
+      "command": "providefontface{}{}",
+      "snippet": "providefontface{${1:cmd}}{${2:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providefontface{}[]{}": {
+      "command": "providefontface{}[]{}",
+      "snippet": "providefontface{${1:cmd}}[${2:font features}]{${3:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providefontface{}{}[]": {
+      "command": "providefontface{}{}[]",
+      "snippet": "providefontface{${1:cmd}}{${2:font}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providefontface{}[]{}[]": {
+      "command": "providefontface{}[]{}[]",
+      "snippet": "providefontface{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmathrm{}": {
+      "command": "setmathrm{}",
+      "snippet": "setmathrm{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmathrm[]{}": {
+      "command": "setmathrm[]{}",
+      "snippet": "setmathrm[${2:font features}]{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmathrm{}[]": {
+      "command": "setmathrm{}[]",
+      "snippet": "setmathrm{${1:font}}[${2:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmathrm[]{}[]": {
+      "command": "setmathrm[]{}[]",
+      "snippet": "setmathrm[${2:font features}]{${1:font}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmathsf{}": {
+      "command": "setmathsf{}",
+      "snippet": "setmathsf{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmathsf[]{}": {
+      "command": "setmathsf[]{}",
+      "snippet": "setmathsf[${2:font features}]{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmathsf{}[]": {
+      "command": "setmathsf{}[]",
+      "snippet": "setmathsf{${1:font}}[${2:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmathsf[]{}[]": {
+      "command": "setmathsf[]{}[]",
+      "snippet": "setmathsf[${2:font features}]{${1:font}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmathtt{}": {
+      "command": "setmathtt{}",
+      "snippet": "setmathtt{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmathtt[]{}": {
+      "command": "setmathtt[]{}",
+      "snippet": "setmathtt[${2:font features}]{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmathtt{}[]": {
+      "command": "setmathtt{}[]",
+      "snippet": "setmathtt{${1:font}}[${2:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmathtt[]{}[]": {
+      "command": "setmathtt[]{}[]",
+      "snippet": "setmathtt[${2:font features}]{${1:font}}[${3:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setboldmathrm{}": {
+      "command": "setboldmathrm{}",
+      "snippet": "setboldmathrm{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setboldmathrm[]{}": {
+      "command": "setboldmathrm[]{}",
+      "snippet": "setboldmathrm[${2:font features}]{${1:font}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setboldmathrm{}[]": {
+      "command": "setboldmathrm{}[]",
+      "snippet": "setboldmathrm{${1:font}}[${2:font features}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setboldmathrm[]{}[]": {
+      "command": "setboldmathrm[]{}[]",
+      "snippet": "setboldmathrm[${2:font features}]{${1:font}}[${3:font features}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "defaultfontfeatures{}": {
       "command": "defaultfontfeatures{}",
-      "snippet": "defaultfontfeatures{${1:fontfeature=option,fontfeature=option}}",
+      "snippet": "defaultfontfeatures{${1:font features}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defaultfontfeatures[]{}": {
+      "command": "defaultfontfeatures[]{}",
+      "snippet": "defaultfontfeatures[${2:font name list}]{${1:font features}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defaultfontfeatures+{}": {
+      "command": "defaultfontfeatures+{}",
+      "snippet": "defaultfontfeatures+{${1:font features}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defaultfontfeatures+[]{}": {
+      "command": "defaultfontfeatures+[]{}",
+      "snippet": "defaultfontfeatures+[${2:font name list}]{${1:font features}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfFontFeatureActiveTF{}{}{}": {
+      "command": "IfFontFeatureActiveTF{}{}{}",
+      "snippet": "IfFontFeatureActiveTF{${1:font feature}}{${2:true}}{${3:false}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "addfontfeatures{}": {
       "command": "addfontfeatures{}",
-      "snippet": "addfontfeatures{${1:fontfeature=option,fontfeature=option}}",
+      "snippet": "addfontfeatures{${1:font features}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "newfontscript{}{}": {
-      "command": "newfontscript{}{}",
-      "snippet": "newfontscript{${1:fontspecname}}{${2:OpenTypedefinition}}",
+    "addfontfeature{}": {
+      "command": "addfontfeature{}",
+      "snippet": "addfontfeature{${1:font features}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "newfontlanguage{}{}": {
-      "command": "newfontlanguage{}{}",
-      "snippet": "newfontlanguage{${1:fontspecname}}{${2:OpenTypedefinition}}",
+    "EncodingCommand{}[][]{}": {
+      "command": "EncodingCommand{}[][]{}",
+      "snippet": "EncodingCommand{${1:cmd}}[${2:num}][${3:default}]{${4:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EncodingAccent{}{}": {
+      "command": "EncodingAccent{}{}",
+      "snippet": "EncodingAccent{${1:cmd}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EncodingSymbol{}{}": {
+      "command": "EncodingSymbol{}{}",
+      "snippet": "EncodingSymbol{${1:cmd}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EncodingComposite{}{}{}": {
+      "command": "EncodingComposite{}{}{}",
+      "snippet": "EncodingComposite{${1:cmd}}{${2:letter}}{${3:slot}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UndeclareSymbol{}": {
+      "command": "UndeclareSymbol{}",
+      "snippet": "UndeclareSymbol{${1:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UndeclareAccent{}": {
+      "command": "UndeclareAccent{}",
+      "snippet": "UndeclareAccent{${1:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UndeclareCommand{}": {
+      "command": "UndeclareCommand{}",
+      "snippet": "UndeclareCommand{${1:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UndeclareComposite{}{}": {
+      "command": "UndeclareComposite{}{}",
+      "snippet": "UndeclareComposite{${1:cmd}}{${2:letter}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "newAATfeature{}{}{}{}": {
       "command": "newAATfeature{}{}{}{}",
-      "snippet": "newAATfeature{${1:feature}}{${2:option}}{${3:featurecode}}{${4:selectorcode}}",
+      "snippet": "newAATfeature{${1:feature}}{${2:option}}{${3:feature code}}{${4:selector code}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "newfeaturecode{}{}{}{}": {
-      "command": "newfeaturecode{}{}{}{}",
-      "snippet": "newfeaturecode{${1:feature}}{${2:option}}{${3:featurecode}}{${4:selectorcode}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "newICUfeature{}{}{}": {
-      "command": "newICUfeature{}{}{}",
-      "snippet": "newICUfeature{${1:feature}}{${2:option}}{${3:featuretag}}",
+    "newopentypefeature{}{}{}": {
+      "command": "newopentypefeature{}{}{}",
+      "snippet": "newopentypefeature{${1:feature}}{${2:option}}{${3:feature tag}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "newfontfeature{}{}": {
       "command": "newfontfeature{}{}",
-      "snippet": "newfontfeature{${1:name}}{${2:inputstring}}",
+      "snippet": "newfontfeature{${1:name}}{${2:input string}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newfontscript{}{}": {
+      "command": "newfontscript{}{}",
+      "snippet": "newfontscript{${1:fontspec name}}{${2:OpenType tag list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newfontlanguage{}{}": {
+      "command": "newfontlanguage{}{}",
+      "snippet": "newfontlanguage{${1:fontspec name}}{${2:OpenType tag list}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "aliasfontfeature{}{}": {
       "command": "aliasfontfeature{}{}",
-      "snippet": "aliasfontfeature{${1:existingname}}{${2:newname}}",
+      "snippet": "aliasfontfeature{${1:existing name}}{${2:new name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "aliasfontfeatureoption{}{}{}": {
       "command": "aliasfontfeatureoption{}{}{}",
-      "snippet": "aliasfontfeatureoption{${1:fontfeature}}{${2:existingname}}{${3:newname}}",
+      "snippet": "aliasfontfeatureoption{${1:font feature}}{${2:existing name}}{${3:new name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cyrillicencoding": {
+      "command": "cyrillicencoding",
+      "snippet": "cyrillicencoding",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "latinencoding": {
+      "command": "latinencoding",
+      "snippet": "latinencoding",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UTFencname": {
+      "command": "UTFencname",
+      "snippet": "UTFencname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "emfontdeclare{}": {
+      "command": "emfontdeclare{}",
+      "snippet": "emfontdeclare{${1:font-switching list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FontspecSetCheckBoolFalse": {
+      "command": "FontspecSetCheckBoolFalse",
+      "snippet": "FontspecSetCheckBoolFalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FontspecSetCheckBoolTrue": {
+      "command": "FontspecSetCheckBoolTrue",
+      "snippet": "FontspecSetCheckBoolTrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scitdefault": {
+      "command": "scitdefault",
+      "snippet": "scitdefault",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scsldefault": {
+      "command": "scsldefault",
+      "snippet": "scsldefault",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scswdefault": {
+      "command": "scswdefault",
+      "snippet": "scswdefault",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UnicodeEncodingName": {
+      "command": "UnicodeEncodingName",
+      "snippet": "UnicodeEncodingName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UnicodeFontTeXLigatures": {
+      "command": "UnicodeFontTeXLigatures",
+      "snippet": "UnicodeFontTeXLigatures",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UnicodeFontFile{}{}": {
+      "command": "UnicodeFontFile{}{}",
+      "snippet": "UnicodeFontFile{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UnicodeFontName{}{}": {
+      "command": "UnicodeFontName{}{}",
+      "snippet": "UnicodeFontName{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareUnicodeAccent{}{}{}": {
+      "command": "DeclareUnicodeAccent{}{}{}",
+      "snippet": "DeclareUnicodeAccent{${1:cmd}}{${2:encoding}}{${3:char code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareUnicodeCommand{}{}": {
+      "command": "DeclareUnicodeCommand{}{}",
+      "snippet": "DeclareUnicodeCommand{${1:command}}{${2:slot}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareUnicodeComposite{}{}{}": {
+      "command": "DeclareUnicodeComposite{}{}{}",
+      "snippet": "DeclareUnicodeComposite{${1:cmd}}{${2:letter}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareUnicodeSymbol{}{}": {
+      "command": "DeclareUnicodeSymbol{}{}",
+      "snippet": "DeclareUnicodeSymbol{${1:command}}{${2:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textquotedbl": {
+      "command": "textquotedbl",
+      "snippet": "textquotedbl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetleft": {
+      "command": "guillemetleft",
+      "snippet": "guillemetleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotleft": {
+      "command": "guillemotleft",
+      "snippet": "guillemotleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetright": {
+      "command": "guillemetright",
+      "snippet": "guillemetright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotright": {
+      "command": "guillemotright",
+      "snippet": "guillemotright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DH": {
+      "command": "DH",
+      "snippet": "DH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TH": {
+      "command": "TH",
+      "snippet": "TH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dh": {
+      "command": "dh",
+      "snippet": "dh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "th": {
+      "command": "th",
+      "snippet": "th",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DJ": {
+      "command": "DJ",
+      "snippet": "DJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dj": {
+      "command": "dj",
+      "snippet": "dj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NG": {
+      "command": "NG",
+      "snippet": "NG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ng": {
+      "command": "ng",
+      "snippet": "ng",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotesinglbase": {
+      "command": "quotesinglbase",
+      "snippet": "quotesinglbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotedblbase": {
+      "command": "quotedblbase",
+      "snippet": "quotedblbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglleft": {
+      "command": "guilsinglleft",
+      "snippet": "guilsinglleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglright": {
+      "command": "guilsinglright",
+      "snippet": "guilsinglright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hwithstroke": {
+      "command": "Hwithstroke",
+      "snippet": "Hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hwithstroke": {
+      "command": "hwithstroke",
+      "snippet": "hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "k{}": {
+      "command": "k{}",
+      "snippet": "k{${1:arg}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
-  "envs": {},
-  "options": []
+  "envs": {
+    "strongenv": {
+      "name": "strongenv",
+      "detail": "strongenv",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "tuenc",
+    "euenc",
+    "math",
+    "no-math",
+    "config",
+    "no-config",
+    "quiet",
+    "silent"
+  ]
 }

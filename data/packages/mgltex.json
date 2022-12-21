@@ -1,0 +1,597 @@
+{
+  "includes": [
+    "keyval",
+    "graphicx",
+    "ifpdf",
+    "verbatim"
+  ],
+  "cmds": {
+    "mglplot{}": {
+      "command": "mglplot{}",
+      "snippet": "mglplot{${1:MGL code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglplot[]{}": {
+      "command": "mglplot[]{}",
+      "snippet": "mglplot[${2:options}]{${1:MGL code}}",
+      "option": "",
+      "keyvals": [
+        "bb=",
+        "bbllx=",
+        "bblly=",
+        "bburx=",
+        "bbury=",
+        "natwidth=",
+        "natheight=",
+        "hiresbb",
+        "viewport=",
+        "trim=",
+        "angle=",
+        "origin=",
+        "width=",
+        "height=",
+        "totalheight=",
+        "keepaspectratio",
+        "scale=",
+        "clip",
+        "draft",
+        "type=",
+        "ext=",
+        "read=",
+        "command=",
+        "gray=",
+        "mglscale=",
+        "quality=",
+        "variant=",
+        "imgext=",
+        "label=",
+        "setup=",
+        "separator="
+      ],
+      "keyvalindex": 0
+    },
+    "mglgraphics{}": {
+      "command": "mglgraphics{}",
+      "snippet": "mglgraphics{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglgraphics[]{}": {
+      "command": "mglgraphics[]{}",
+      "snippet": "mglgraphics[${2:options}]{${1:file}}",
+      "option": "",
+      "keyvals": [
+        "bb=",
+        "bbllx=",
+        "bblly=",
+        "bburx=",
+        "bbury=",
+        "natwidth=",
+        "natheight=",
+        "hiresbb",
+        "viewport=",
+        "trim=",
+        "angle=",
+        "origin=",
+        "width=",
+        "height=",
+        "totalheight=",
+        "keepaspectratio",
+        "scale=",
+        "clip",
+        "draft",
+        "type=",
+        "ext=",
+        "read=",
+        "command=",
+        "gray=",
+        "mglscale=",
+        "quality=",
+        "variant=",
+        "imgext=",
+        "path="
+      ],
+      "keyvalindex": 0
+    },
+    "mglinclude{}": {
+      "command": "mglinclude{}",
+      "snippet": "mglinclude{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglinclude[]{}": {
+      "command": "mglinclude[]{}",
+      "snippet": "mglinclude[${2:options}]{${1:file}}",
+      "option": "",
+      "keyvals": [
+        "lineno",
+        "path="
+      ],
+      "keyvalindex": 0
+    },
+    "mglinclude*{}": {
+      "command": "mglinclude*{}",
+      "snippet": "mglinclude*{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglinclude*[]{}": {
+      "command": "mglinclude*[]{}",
+      "snippet": "mglinclude*[${2:options}]{${1:file}}",
+      "option": "",
+      "keyvals": [
+        "lineno",
+        "path="
+      ],
+      "keyvalindex": 0
+    },
+    "listofmglscripts": {
+      "command": "listofmglscripts",
+      "snippet": "listofmglscripts",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglTeX": {
+      "command": "mglTeX",
+      "snippet": "mglTeX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglTeX*": {
+      "command": "mglTeX*",
+      "snippet": "mglTeX*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglswitch{}": {
+      "command": "mglswitch{}",
+      "snippet": "mglswitch{${1:off|on}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglcomments{}": {
+      "command": "mglcomments{}",
+      "snippet": "mglcomments{${1:off|on}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglgray{}": {
+      "command": "mglgray{}",
+      "snippet": "mglgray{${1:off|on}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglscale{}": {
+      "command": "mglscale{}",
+      "snippet": "mglscale{${1:factor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglquality{}": {
+      "command": "mglquality{}",
+      "snippet": "mglquality{${1:integer}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglvariant{}": {
+      "command": "mglvariant{}",
+      "snippet": "mglvariant{${1:variant}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglimgext{}": {
+      "command": "mglimgext{}",
+      "snippet": "mglimgext{${1:image extension}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglname{}": {
+      "command": "mglname{}",
+      "snippet": "mglname{${1:script name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mgldir{}": {
+      "command": "mgldir{}",
+      "snippet": "mgldir{${1:directory%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglscriptsdir{}": {
+      "command": "mglscriptsdir{}",
+      "snippet": "mglscriptsdir{${1:directory%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglgraphicsdir{}": {
+      "command": "mglgraphicsdir{}",
+      "snippet": "mglgraphicsdir{${1:directory%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglbackupsdir{}": {
+      "command": "mglbackupsdir{}",
+      "snippet": "mglbackupsdir{${1:directory%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglpaths{}": {
+      "command": "mglpaths{}",
+      "snippet": "mglpaths{${1:directory list%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglsettings{}": {
+      "command": "mglsettings{}",
+      "snippet": "mglsettings{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "dir=",
+        "scriptsdir=",
+        "graphicsdir=",
+        "backupsdir=",
+        "paths=",
+        "switch=",
+        "comments=",
+        "gray=",
+        "mglscale=",
+        "quality=",
+        "variant=",
+        "imgext="
+      ],
+      "keyvalindex": 0
+    },
+    "mglsetupscriptname": {
+      "command": "mglsetupscriptname",
+      "snippet": "mglsetupscriptname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglcommentname": {
+      "command": "mglcommentname",
+      "snippet": "mglcommentname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listofmglscriptsname": {
+      "command": "listofmglscriptsname",
+      "snippet": "listofmglscriptsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglverbatimname": {
+      "command": "mglverbatimname",
+      "snippet": "mglverbatimname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mgllinenostyle": {
+      "command": "mgllinenostyle",
+      "snippet": "mgllinenostyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mgldashwidth": {
+      "command": "mgldashwidth",
+      "snippet": "mgldashwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mgllinethickness": {
+      "command": "mgllinethickness",
+      "snippet": "mgllinethickness",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglbreakindent": {
+      "command": "mglbreakindent",
+      "snippet": "mglbreakindent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "mgl": {
+      "name": "mgl",
+      "detail": "mgl",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mgl[]": {
+      "name": "mgl",
+      "detail": "mgl[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "bb=",
+        "bbllx=",
+        "bblly=",
+        "bburx=",
+        "bbury=",
+        "natwidth=",
+        "natheight=",
+        "hiresbb",
+        "viewport=",
+        "trim=",
+        "angle=",
+        "origin=",
+        "width=",
+        "height=",
+        "totalheight=",
+        "keepaspectratio",
+        "scale=",
+        "clip",
+        "draft",
+        "type=",
+        "ext=",
+        "read=",
+        "command=",
+        "gray=",
+        "mglscale=",
+        "quality=",
+        "variant=",
+        "imgext=",
+        "label="
+      ],
+      "keyvalindex": 0
+    },
+    "mgladdon": {
+      "name": "mgladdon",
+      "detail": "mgladdon",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglfunc{}": {
+      "name": "mglfunc",
+      "detail": "mglfunc{}",
+      "snippet": "{${1:function name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglfunc[]{}": {
+      "name": "mglfunc",
+      "detail": "mglfunc[]{}",
+      "snippet": "[${2:number of arguments}]{${1:function name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglcode{}": {
+      "name": "mglcode",
+      "detail": "mglcode{}",
+      "snippet": "{${1:script name%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglcode[]{}": {
+      "name": "mglcode",
+      "detail": "mglcode[]{}",
+      "snippet": "[${2:options}]{${1:script name%definition}}",
+      "option": "",
+      "keyvals": [
+        "bb=",
+        "bbllx=",
+        "bblly=",
+        "bburx=",
+        "bbury=",
+        "natwidth=",
+        "natheight=",
+        "hiresbb",
+        "viewport=",
+        "trim=",
+        "angle=",
+        "origin=",
+        "width=",
+        "height=",
+        "totalheight=",
+        "keepaspectratio",
+        "scale=",
+        "clip",
+        "draft",
+        "type=",
+        "ext=",
+        "read=",
+        "command=",
+        "gray=",
+        "mglscale=",
+        "quality=",
+        "variant=",
+        "imgext="
+      ],
+      "keyvalindex": 0
+    },
+    "mglscript{}": {
+      "name": "mglscript",
+      "detail": "mglscript{}",
+      "snippet": "{${1:script name%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglsetupscript": {
+      "name": "mglsetupscript",
+      "detail": "mglsetupscript",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglsetup{}": {
+      "name": "mglsetup",
+      "detail": "mglsetup{}",
+      "snippet": "{${1:keyword}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglblock{}": {
+      "name": "mglblock",
+      "detail": "mglblock{}",
+      "snippet": "{${1:script name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglblock[]{}": {
+      "name": "mglblock",
+      "detail": "mglblock[]{}",
+      "snippet": "[${2:options}]{${1:script name}}",
+      "option": "",
+      "keyvals": [
+        "lineno"
+      ],
+      "keyvalindex": 0
+    },
+    "mglblock*{}": {
+      "name": "mglblock*",
+      "detail": "mglblock*{}",
+      "snippet": "{${1:script name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglblock*[]{}": {
+      "name": "mglblock*",
+      "detail": "mglblock*[]{}",
+      "snippet": "[${2:options}]{${1:script name}}",
+      "option": "",
+      "keyvals": [
+        "lineno"
+      ],
+      "keyvalindex": 0
+    },
+    "mglverbatim": {
+      "name": "mglverbatim",
+      "detail": "mglverbatim",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglverbatim[]": {
+      "name": "mglverbatim",
+      "detail": "mglverbatim[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "lineno",
+        "label="
+      ],
+      "keyvalindex": 0
+    },
+    "mglverbatim*": {
+      "name": "mglverbatim*",
+      "detail": "mglverbatim*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglverbatim*[]": {
+      "name": "mglverbatim*",
+      "detail": "mglverbatim*[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "lineno",
+        "label="
+      ],
+      "keyvalindex": 0
+    },
+    "mglcomment": {
+      "name": "mglcomment",
+      "detail": "mglcomment",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mglcommon": {
+      "name": "mglcommon",
+      "detail": "mglcommon",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "draft",
+    "final",
+    "on",
+    "off",
+    "nocomments",
+    "comments",
+    "gray",
+    "color",
+    "1x",
+    "2x",
+    "3x",
+    "4x",
+    "5x",
+    "6x",
+    "7x",
+    "8x",
+    "9x",
+    "0q",
+    "1q",
+    "2q",
+    "3q",
+    "4q",
+    "5q",
+    "6q",
+    "7q",
+    "8q",
+    "9q",
+    "0v",
+    "1v",
+    "2v",
+    "eps",
+    "epsz",
+    "epsgz",
+    "bps",
+    "bpsz",
+    "bpsgz",
+    "pdf",
+    "png",
+    "jpg",
+    "jpeg",
+    "gif",
+    "tex"
+  ]
+}

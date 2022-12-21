@@ -1,0 +1,587 @@
+{
+  "includes": [
+    "caption",
+    "varwidth",
+    "subcaption",
+    "atbegshi",
+    "picture",
+    "trimclip",
+    "etoolbox",
+    "marginnote",
+    "multido",
+    "graphicx",
+    "xkeyval",
+    "ifoddpage",
+    "afterpage",
+    "stfloats",
+    "hyperref"
+  ],
+  "cmds": {
+    "hvFloatSet{}": {
+      "command": "hvFloatSet{}",
+      "snippet": "hvFloatSet{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "floatPos=",
+        "rotAngle=",
+        "capWidth=",
+        "capAngle=",
+        "capPos=",
+        "capVPos=",
+        "capHPos=",
+        "objectPos=",
+        "objectAngle=",
+        "floatCapSep=",
+        "useOBox",
+        "onlyText",
+        "nonFloat",
+        "wide",
+        "inMargin",
+        "objectFrame",
+        "style=",
+        "capFormat={",
+        "subcapFormat={",
+        "fullpage",
+        "FullPage",
+        "FULLPAGE",
+        "doublePage",
+        "doublePAGE",
+        "doubleFULLPAGE",
+        "vFill",
+        "sameHeight",
+        "multiFloat",
+        "subFloat",
+        "separatorLine",
+        "bindCorr=",
+        "twoColumnCaption"
+      ],
+      "keyvalindex": 0
+    },
+    "hvFloatSetDefaults": {
+      "command": "hvFloatSetDefaults",
+      "snippet": "hvFloatSetDefaults",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvFloat{}{}{}{}": {
+      "command": "hvFloat{}{}{}{}",
+      "snippet": "hvFloat{${1:float type}}{${2:object}}{${3:caption%text}}{${4:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvFloat{}{}[]{}{}": {
+      "command": "hvFloat{}{}[]{}{}",
+      "snippet": "hvFloat{${1:float type}}{${2:object}}[${3:short caption%text}]{${4:caption%text}}{${5:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvFloat[]{}{}{}{}": {
+      "command": "hvFloat[]{}{}{}{}",
+      "snippet": "hvFloat[${5:options}]{${1:float type}}{${2:object}}{${3:caption%text}}{${4:label}}",
+      "option": "",
+      "keyvals": [
+        "floatPos=",
+        "rotAngle=",
+        "capWidth=",
+        "capAngle=",
+        "capPos=",
+        "capVPos=",
+        "capHPos=",
+        "objectPos=",
+        "objectAngle=",
+        "floatCapSep=",
+        "useOBox",
+        "onlyText",
+        "nonFloat",
+        "wide",
+        "inMargin",
+        "objectFrame",
+        "style=",
+        "capFormat={",
+        "subcapFormat={",
+        "fullpage",
+        "FullPage",
+        "FULLPAGE",
+        "doublePage",
+        "doublePAGE",
+        "doubleFULLPAGE",
+        "vFill",
+        "sameHeight",
+        "multiFloat",
+        "subFloat",
+        "separatorLine",
+        "bindCorr=",
+        "twoColumnCaption"
+      ],
+      "keyvalindex": 0
+    },
+    "hvFloat[]{}{}[]{}{}": {
+      "command": "hvFloat[]{}{}[]{}{}",
+      "snippet": "hvFloat[${5:options}]{${1:float type}}{${2:object}}[${6:short caption%text}]{${3:caption%text}}{${4:label}}",
+      "option": "",
+      "keyvals": [
+        "floatPos=",
+        "rotAngle=",
+        "capWidth=",
+        "capAngle=",
+        "capPos=",
+        "capVPos=",
+        "capHPos=",
+        "objectPos=",
+        "objectAngle=",
+        "floatCapSep=",
+        "useOBox",
+        "onlyText",
+        "nonFloat",
+        "wide",
+        "inMargin",
+        "objectFrame",
+        "style=",
+        "capFormat={",
+        "subcapFormat={",
+        "fullpage",
+        "FullPage",
+        "FULLPAGE",
+        "doublePage",
+        "doublePAGE",
+        "doubleFULLPAGE",
+        "vFill",
+        "sameHeight",
+        "multiFloat",
+        "subFloat",
+        "separatorLine",
+        "bindCorr=",
+        "twoColumnCaption"
+      ],
+      "keyvalindex": 0
+    },
+    "hvFloat*{}{}{}{}": {
+      "command": "hvFloat*{}{}{}{}",
+      "snippet": "hvFloat*{${1:float type}}{${2:object}}{${3:caption%text}}{${4:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvFloat*{}{}[]{}{}": {
+      "command": "hvFloat*{}{}[]{}{}",
+      "snippet": "hvFloat*{${1:float type}}{${2:object}}[${3:short caption%text}]{${4:caption%text}}{${5:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvFloat*[]{}{}{}{}": {
+      "command": "hvFloat*[]{}{}{}{}",
+      "snippet": "hvFloat*[${5:options}]{${1:float type}}{${2:object}}{${3:caption%text}}{${4:label}}",
+      "option": "",
+      "keyvals": [
+        "floatPos=",
+        "rotAngle=",
+        "capWidth=",
+        "capAngle=",
+        "capPos=",
+        "capVPos=",
+        "capHPos=",
+        "objectPos=",
+        "objectAngle=",
+        "floatCapSep=",
+        "useOBox",
+        "onlyText",
+        "nonFloat",
+        "wide",
+        "inMargin",
+        "objectFrame",
+        "style=",
+        "capFormat={",
+        "subcapFormat={",
+        "fullpage",
+        "FullPage",
+        "FULLPAGE",
+        "doublePage",
+        "doublePAGE",
+        "doubleFULLPAGE",
+        "vFill",
+        "sameHeight",
+        "multiFloat",
+        "subFloat",
+        "separatorLine",
+        "bindCorr=",
+        "twoColumnCaption"
+      ],
+      "keyvalindex": 0
+    },
+    "hvFloat*[]{}{}[]{}{}": {
+      "command": "hvFloat*[]{}{}[]{}{}",
+      "snippet": "hvFloat*[${5:options}]{${1:float type}}{${2:object}}[${6:short caption%text}]{${3:caption%text}}{${4:label}}",
+      "option": "",
+      "keyvals": [
+        "floatPos=",
+        "rotAngle=",
+        "capWidth=",
+        "capAngle=",
+        "capPos=",
+        "capVPos=",
+        "capHPos=",
+        "objectPos=",
+        "objectAngle=",
+        "floatCapSep=",
+        "useOBox",
+        "onlyText",
+        "nonFloat",
+        "wide",
+        "inMargin",
+        "objectFrame",
+        "style=",
+        "capFormat={",
+        "subcapFormat={",
+        "fullpage",
+        "FullPage",
+        "FULLPAGE",
+        "doublePage",
+        "doublePAGE",
+        "doubleFULLPAGE",
+        "vFill",
+        "sameHeight",
+        "multiFloat",
+        "subFloat",
+        "separatorLine",
+        "bindCorr=",
+        "twoColumnCaption"
+      ],
+      "keyvalindex": 0
+    },
+    "figcaption{}": {
+      "command": "figcaption{}",
+      "snippet": "figcaption{${1:caption%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "figcaption[]{}": {
+      "command": "figcaption[]{}",
+      "snippet": "figcaption[${2:short caption%text}]{${1:caption%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabcaption{}": {
+      "command": "tabcaption{}",
+      "snippet": "tabcaption{${1:caption%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabcaption[]{}": {
+      "command": "tabcaption[]{}",
+      "snippet": "tabcaption[${2:short caption%text}]{${1:caption%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabcaptionbelow{}": {
+      "command": "tabcaptionbelow{}",
+      "snippet": "tabcaptionbelow{${1:caption%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabcaptionbelow[]{}": {
+      "command": "tabcaptionbelow[]{}",
+      "snippet": "tabcaptionbelow[${2:short caption%text}]{${1:caption%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvDefFloatStyle{}{}": {
+      "command": "hvDefFloatStyle{}{}",
+      "snippet": "hvDefFloatStyle{${1:name}}{${2:options}}",
+      "option": "",
+      "keyvals": [
+        "floatPos=",
+        "rotAngle=",
+        "capWidth=",
+        "capAngle=",
+        "capPos=",
+        "capVPos=",
+        "capHPos=",
+        "objectPos=",
+        "objectAngle=",
+        "floatCapSep=",
+        "useOBox",
+        "onlyText",
+        "nonFloat",
+        "wide",
+        "inMargin",
+        "objectFrame",
+        "style=",
+        "capFormat={",
+        "subcapFormat={",
+        "fullpage",
+        "FullPage",
+        "FULLPAGE",
+        "doublePage",
+        "doublePAGE",
+        "doubleFULLPAGE",
+        "vFill",
+        "sameHeight",
+        "multiFloat",
+        "subFloat",
+        "separatorLine",
+        "bindCorr=",
+        "twoColumnCaption"
+      ],
+      "keyvalindex": 1
+    },
+    "IncludeGraphics{}": {
+      "command": "IncludeGraphics{}",
+      "snippet": "IncludeGraphics{${1:imagefile}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IncludeGraphics[]{}": {
+      "command": "IncludeGraphics[]{}",
+      "snippet": "IncludeGraphics[${2:keyvals}]{${1:imagefile}}",
+      "option": "",
+      "keyvals": [
+        "columnWidth",
+        "fullpage",
+        "FullPage",
+        "FULLPAGE",
+        "doubleFULLPAGE",
+        "doublefullPage",
+        "doubleFULLPAGEbindCorr",
+        "alt={",
+        "bb=",
+        "bbllx=",
+        "bblly=",
+        "bburx=",
+        "bbury=",
+        "natwidth=",
+        "natheight=",
+        "hiresbb",
+        "pagebox=",
+        "viewport=",
+        "trim=",
+        "angle=",
+        "origin=",
+        "width=",
+        "height=",
+        "totalheight=",
+        "keepaspectratio",
+        "scale=",
+        "clip",
+        "draft",
+        "type=",
+        "ext=",
+        "read=",
+        "command=",
+        "quiet",
+        "page=",
+        "interpolate",
+        "decodearray={"
+      ],
+      "keyvalindex": 0
+    },
+    "LenToUnit{}": {
+      "command": "LenToUnit{}",
+      "snippet": "LenToUnit{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawSepLine": {
+      "command": "drawSepLine",
+      "snippet": "drawSepLine",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getMultiCaptionAndLabel": {
+      "command": "getMultiCaptionAndLabel",
+      "snippet": "getMultiCaptionAndLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getMultiObjectAndLabel": {
+      "command": "getMultiObjectAndLabel",
+      "snippet": "getMultiObjectAndLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getMultiSubCaptionAndLabel": {
+      "command": "getMultiSubCaptionAndLabel",
+      "snippet": "getMultiSubCaptionAndLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getMultiSubObjectAndLabel": {
+      "command": "getMultiSubObjectAndLabel",
+      "snippet": "getMultiSubObjectAndLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getSingleCaptionAndLabel": {
+      "command": "getSingleCaptionAndLabel",
+      "snippet": "getSingleCaptionAndLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvObjectBox": {
+      "command": "hvObjectBox",
+      "snippet": "hvObjectBox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "restoreCaptionSkip": {
+      "command": "restoreCaptionSkip",
+      "snippet": "restoreCaptionSkip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "saveCaptionSkip": {
+      "command": "saveCaptionSkip",
+      "snippet": "saveCaptionSkip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setBottomCaption": {
+      "command": "setBottomCaption",
+      "snippet": "setBottomCaption",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setDefaults": {
+      "command": "setDefaults",
+      "snippet": "setDefaults",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setPageObject": {
+      "command": "setPageObject",
+      "snippet": "setPageObject",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defhvstyle{}{}": {
+      "command": "defhvstyle{}{}",
+      "snippet": "defhvstyle{${1:name}}{${2:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvFloatFileVersion": {
+      "command": "hvFloatFileVersion",
+      "snippet": "hvFloatFileVersion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvFloatFullWidth": {
+      "command": "hvFloatFullWidth",
+      "snippet": "hvFloatFullWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvObjectWidth": {
+      "command": "hvObjectWidth",
+      "snippet": "hvObjectWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvCapWidth": {
+      "command": "hvCapWidth",
+      "snippet": "hvCapWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvWideWidth": {
+      "command": "hvWideWidth",
+      "snippet": "hvWideWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvMultiFloatSkip": {
+      "command": "hvMultiFloatSkip",
+      "snippet": "hvMultiFloatSkip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvMaxCapWidth": {
+      "command": "hvMaxCapWidth",
+      "snippet": "hvMaxCapWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvAboveCaptionSkip": {
+      "command": "hvAboveCaptionSkip",
+      "snippet": "hvAboveCaptionSkip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvBelowCaptionSkip": {
+      "command": "hvBelowCaptionSkip",
+      "snippet": "hvBelowCaptionSkip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fboxlinewidth": {
+      "command": "fboxlinewidth",
+      "snippet": "fboxlinewidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvOBox": {
+      "command": "hvOBox",
+      "snippet": "hvOBox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "hvFloatEnv": {
+      "name": "hvFloatEnv",
+      "detail": "hvFloatEnv",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hvFloatEnv[]": {
+      "name": "hvFloatEnv",
+      "detail": "hvFloatEnv[]",
+      "snippet": "[${1:width}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "fbox",
+    "hyperref",
+    "nostfloats"
+  ]
+}

@@ -1,0 +1,912 @@
+{
+  "includes": [
+    "xkeyval",
+    "kvoptions",
+    "etoolbox",
+    "xparse",
+    "xcolor",
+    "geometry",
+    "sectsty",
+    "amsmath",
+    "amsfonts",
+    "amssymb",
+    "amsthm",
+    "setspace",
+    "caption",
+    "enumitem",
+    "graphicx",
+    "fontenc",
+    "inputenc",
+    "iftex",
+    "microtype",
+    "hyperref",
+    "float",
+    "verbdef",
+    "csquotes",
+    "dsfont",
+    "bbm",
+    "mathtools",
+    "opensans",
+    "fourier",
+    "MnSymbol",
+    "MinionPro",
+    "MyriadPro",
+    "tcolorbox",
+    "verbdef"
+  ],
+  "cmds": {
+    "PrintChangesAndIndexSpacing": {
+      "command": "PrintChangesAndIndexSpacing",
+      "snippet": "PrintChangesAndIndexSpacing",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PrintChangesAndIndex": {
+      "command": "PrintChangesAndIndex",
+      "snippet": "PrintChangesAndIndex",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ScaleHorizontallyAndHyphenateAnywhere{}{}": {
+      "command": "ScaleHorizontallyAndHyphenateAnywhere{}{}",
+      "snippet": "ScaleHorizontallyAndHyphenateAnywhere{${1:arg1}}{${2:arg2}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PrintMarginLabelContents{}": {
+      "command": "PrintMarginLabelContents{}",
+      "snippet": "PrintMarginLabelContents{${1:arg}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PrintMarginLabel{}": {
+      "command": "PrintMarginLabel{}",
+      "snippet": "PrintMarginLabel{${1:arg}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgname{}": {
+      "command": "pkgname{}",
+      "snippet": "pkgname{${1:package}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgnamefmt{}": {
+      "command": "pkgnamefmt{}",
+      "snippet": "pkgnamefmt{${1:text}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thephfnotechanged": {
+      "command": "thephfnotechanged",
+      "snippet": "thephfnotechanged",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changed{}{}{}": {
+      "command": "changed{}{}{}",
+      "snippet": "changed{${1:version}}{${2:date}}{${3:description%text}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changed[]{}{}{}": {
+      "command": "changed[]{}{}{}",
+      "snippet": "changed[${4:label name}]{${1:version}}{${2:date}}{${3:description%text}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changedreftext{}": {
+      "command": "changedreftext{}",
+      "snippet": "changedreftext{${1:label name}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changedtextfmt{}{}{}": {
+      "command": "changedtextfmt{}{}{}",
+      "snippet": "changedtextfmt{${1:version}}{${2:date}}{${3:description%text}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "metatruefalsearg": {
+      "command": "metatruefalsearg",
+      "snippet": "metatruefalsearg",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgoptionfmt{}": {
+      "command": "pkgoptionfmt{}",
+      "snippet": "pkgoptionfmt{${1:text}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgoptionfmt[]{}": {
+      "command": "pkgoptionfmt[]{}",
+      "snippet": "pkgoptionfmt[${2:opt}]{${1:text}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "handleitemindex{}": {
+      "command": "handleitemindex{}",
+      "snippet": "handleitemindex{${1:arg}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgoptname": {
+      "command": "pkgoptname",
+      "snippet": "pkgoptname",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "packageoptionsname": {
+      "command": "packageoptionsname",
+      "snippet": "packageoptionsname",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cmdoptname": {
+      "command": "cmdoptname",
+      "snippet": "cmdoptname",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "commandoptionsname": {
+      "command": "commandoptionsname",
+      "snippet": "commandoptionsname",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setcmdnotpkgoptions": {
+      "command": "setcmdnotpkgoptions",
+      "snippet": "setcmdnotpkgoptions",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cmdoptionsfbox{}": {
+      "command": "cmdoptionsfbox{}",
+      "snippet": "cmdoptionsfbox{${1:text}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgoptattrib{}": {
+      "command": "pkgoptattrib{}",
+      "snippet": "pkgoptattrib{${1:arg}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgoptattribnodots{}": {
+      "command": "pkgoptattribnodots{}",
+      "snippet": "pkgoptattribnodots{${1:arg}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgoptattribempty": {
+      "command": "pkgoptattribempty",
+      "snippet": "pkgoptattribempty",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phfqitltxPkgTitle{}": {
+      "command": "phfqitltxPkgTitle{}",
+      "snippet": "phfqitltxPkgTitle{${1:package}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgfmtdate{}": {
+      "command": "pkgfmtdate{}",
+      "snippet": "pkgfmtdate{${1:date}}",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitlefont{}": {
+      "command": "notetitlefont{}",
+      "snippet": "notetitlefont{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleauthorfont{}": {
+      "command": "notetitleauthorfont{}",
+      "snippet": "notetitleauthorfont{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitledatefont{}": {
+      "command": "notetitledatefont{}",
+      "snippet": "notetitledatefont{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitlebelowspace": {
+      "command": "notetitlebelowspace",
+      "snippet": "notetitlebelowspace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitlebottomspace": {
+      "command": "notetitlebottomspace",
+      "snippet": "notetitlebottomspace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitletopspace": {
+      "command": "notetitletopspace",
+      "snippet": "notetitletopspace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitlehrule": {
+      "command": "notetitlehrule",
+      "snippet": "notetitlehrule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleinnervsep": {
+      "command": "notetitleinnervsep",
+      "snippet": "notetitleinnervsep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitlewidth": {
+      "command": "notetitlewidth",
+      "snippet": "notetitlewidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleparskip": {
+      "command": "notetitleparskip",
+      "snippet": "notetitleparskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitlefontparsetup": {
+      "command": "notetitlefontparsetup",
+      "snippet": "notetitlefontparsetup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleaftertitleskip": {
+      "command": "notetitleaftertitleskip",
+      "snippet": "notetitleaftertitleskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleauthorfontparsetup": {
+      "command": "notetitleauthorfontparsetup",
+      "snippet": "notetitleauthorfontparsetup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitledatefontparsetup": {
+      "command": "notetitledatefontparsetup",
+      "snippet": "notetitledatefontparsetup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitledonextvskip": {
+      "command": "notetitledonextvskip",
+      "snippet": "notetitledonextvskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitlemakecontents": {
+      "command": "notetitlemakecontents",
+      "snippet": "notetitlemakecontents",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitlemakecontentstop": {
+      "command": "notetitlemakecontentstop",
+      "snippet": "notetitlemakecontentstop",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitlemakecontentsbottom": {
+      "command": "notetitlemakecontentsbottom",
+      "snippet": "notetitlemakecontentsbottom",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitlebeginrender": {
+      "command": "notetitlebeginrender",
+      "snippet": "notetitlebeginrender",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleendrender": {
+      "command": "notetitleendrender",
+      "snippet": "notetitleendrender",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleusemainbox{}": {
+      "command": "notetitleusemainbox{}",
+      "snippet": "notetitleusemainbox{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifnotetitleusempfootnotes": {
+      "command": "ifnotetitleusempfootnotes",
+      "snippet": "ifnotetitleusempfootnotes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleusempfootnotestrue": {
+      "command": "notetitleusempfootnotestrue",
+      "snippet": "notetitleusempfootnotestrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleusempfootnotesfalse": {
+      "command": "notetitleusempfootnotesfalse",
+      "snippet": "notetitleusempfootnotesfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "singlespace": {
+      "command": "singlespace",
+      "snippet": "singlespace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thanks[]{}": {
+      "command": "thanks[]{}",
+      "snippet": "thanks[${2:number}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thanksmark[]": {
+      "command": "thanksmark[]",
+      "snippet": "thanksmark[${1:number}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleprettylsiderulewidth": {
+      "command": "notetitleprettylsiderulewidth",
+      "snippet": "notetitleprettylsiderulewidth",
+      "option": "title=pretty2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleprettylsidespacewidth": {
+      "command": "notetitleprettylsidespacewidth",
+      "snippet": "notetitleprettylsidespacewidth",
+      "option": "title=pretty2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleprettyrsiderulewidth": {
+      "command": "notetitleprettyrsiderulewidth",
+      "snippet": "notetitleprettyrsiderulewidth",
+      "option": "title=pretty2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleprettyrsidespacewidth": {
+      "command": "notetitleprettyrsidespacewidth",
+      "snippet": "notetitleprettyrsidespacewidth",
+      "option": "title=pretty2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleprettytopspace": {
+      "command": "notetitleprettytopspace",
+      "snippet": "notetitleprettytopspace",
+      "option": "title=pretty2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleprettybottomspace": {
+      "command": "notetitleprettybottomspace",
+      "snippet": "notetitleprettybottomspace",
+      "option": "title=pretty2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleprettytophrulewidth": {
+      "command": "notetitleprettytophrulewidth",
+      "snippet": "notetitleprettytophrulewidth",
+      "option": "title=pretty2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitleprettybottomhrulewidth": {
+      "command": "notetitleprettybottomhrulewidth",
+      "snippet": "notetitleprettybottomhrulewidth",
+      "option": "title=pretty2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notetitlesmallauthordatesep": {
+      "command": "notetitlesmallauthordatesep",
+      "snippet": "notetitlesmallauthordatesep",
+      "option": "title=small",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noteabstracttextfont": {
+      "command": "noteabstracttextfont",
+      "snippet": "noteabstracttextfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noteabstractnamefont": {
+      "command": "noteabstractnamefont",
+      "snippet": "noteabstractnamefont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noteabstracttextwidth": {
+      "command": "noteabstracttextwidth",
+      "snippet": "noteabstracttextwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noteabstractafterspacing": {
+      "command": "noteabstractafterspacing",
+      "snippet": "noteabstractafterspacing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noteabstractbeforespacing": {
+      "command": "noteabstractbeforespacing",
+      "snippet": "noteabstractbeforespacing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notesectionallfont": {
+      "command": "notesectionallfont",
+      "snippet": "notesectionallfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notesectionallfontfamily": {
+      "command": "notesectionallfontfamily",
+      "snippet": "notesectionallfontfamily",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notesectionfont": {
+      "command": "notesectionfont",
+      "snippet": "notesectionfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notesubsectionfont": {
+      "command": "notesubsectionfont",
+      "snippet": "notesubsectionfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notesubsubsectionfont": {
+      "command": "notesubsubsectionfont",
+      "snippet": "notesubsubsectionfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noteparagraphfont": {
+      "command": "noteparagraphfont",
+      "snippet": "noteparagraphfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notesubparagraphfont": {
+      "command": "notesubparagraphfont",
+      "snippet": "notesubparagraphfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notesectionsetfonts{}{}{}": {
+      "command": "notesectionsetfonts{}{}{}",
+      "snippet": "notesectionsetfonts{${1:sec style}}{${2:subsec style}}{${3:subsubsec style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noteparagraphsetfonts{}{}": {
+      "command": "noteparagraphsetfonts{}{}",
+      "snippet": "noteparagraphsetfonts{${1:para style}}{${2:subpara style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "email{}": {
+      "command": "email{}",
+      "snippet": "email{${1:email%URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phfnoteEmail{}": {
+      "command": "phfnoteEmail{}",
+      "snippet": "phfnoteEmail{${1:email%URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phfnotePdfLinkColor{}": {
+      "command": "phfnotePdfLinkColor{}",
+      "snippet": "phfnotePdfLinkColor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eprint{}": {
+      "command": "eprint{}",
+      "snippet": "eprint{${1:arxiv ID%URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "doibase{}": {
+      "command": "doibase{}",
+      "snippet": "doibase{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notesmaller": {
+      "command": "notesmaller",
+      "snippet": "notesmaller",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notesmaller[]": {
+      "command": "notesmaller[]",
+      "snippet": "notesmaller[${1:factor}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notesmallerfrac": {
+      "command": "notesmallerfrac",
+      "snippet": "notesmallerfrac",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlinetoc": {
+      "command": "inlinetoc",
+      "snippet": "inlinetoc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phfnoteHackSectionStarWithTOC": {
+      "command": "phfnoteHackSectionStarWithTOC",
+      "snippet": "phfnoteHackSectionStarWithTOC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phfnoteHackSectionStarWithTOCInCommand{}": {
+      "command": "phfnoteHackSectionStarWithTOCInCommand{}",
+      "snippet": "phfnoteHackSectionStarWithTOCInCommand{${1:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phfnoteSaveDefs{}{}": {
+      "command": "phfnoteSaveDefs{}{}",
+      "snippet": "phfnoteSaveDefs{${1:identifier}}{${2:list of macro names}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phfnoteRestoreDefs{}": {
+      "command": "phfnoteRestoreDefs{}",
+      "snippet": "phfnoteRestoreDefs{${1:identifier}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phfverb{}": {
+      "command": "phfverb{}",
+      "snippet": "phfverb{${1:text%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phfverbfmt{}": {
+      "command": "phfverbfmt{}",
+      "snippet": "phfverbfmt{${1:text%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DH": {
+      "command": "DH",
+      "snippet": "DH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NG": {
+      "command": "NG",
+      "snippet": "NG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dj": {
+      "command": "dj",
+      "snippet": "dj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ng": {
+      "command": "ng",
+      "snippet": "ng",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "k{}": {
+      "command": "k{}",
+      "snippet": "k{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotleft": {
+      "command": "guillemotleft",
+      "snippet": "guillemotleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotright": {
+      "command": "guillemotright",
+      "snippet": "guillemotright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglleft": {
+      "command": "guilsinglleft",
+      "snippet": "guilsinglleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglright": {
+      "command": "guilsinglright",
+      "snippet": "guilsinglright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotedblbase": {
+      "command": "quotedblbase",
+      "snippet": "quotedblbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotesinglbase": {
+      "command": "quotesinglbase",
+      "snippet": "quotesinglbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textquotedbl": {
+      "command": "textquotedbl",
+      "snippet": "textquotedbl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DJ": {
+      "command": "DJ",
+      "snippet": "DJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "th": {
+      "command": "th",
+      "snippet": "th",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TH": {
+      "command": "TH",
+      "snippet": "TH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dh": {
+      "command": "dh",
+      "snippet": "dh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hwithstroke": {
+      "command": "Hwithstroke",
+      "snippet": "Hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hwithstroke": {
+      "command": "hwithstroke",
+      "snippet": "hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textogonekcentered{}": {
+      "command": "textogonekcentered{}",
+      "snippet": "textogonekcentered{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetleft": {
+      "command": "guillemetleft",
+      "snippet": "guillemetleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetright": {
+      "command": "guillemetright",
+      "snippet": "guillemetright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "pkgoptions": {
+      "name": "pkgoptions",
+      "detail": "pkgoptions",
+      "snippet": "",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cmdoptions": {
+      "name": "cmdoptions",
+      "detail": "cmdoptions",
+      "snippet": "",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgnote": {
+      "name": "pkgnote",
+      "detail": "pkgnote",
+      "snippet": "",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgwarning": {
+      "name": "pkgwarning",
+      "detail": "pkgwarning",
+      "snippet": "",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkgtip": {
+      "name": "pkgtip",
+      "detail": "pkgtip",
+      "snippet": "",
+      "option": "preset=xpkgdoc",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noteabstract": {
+      "name": "noteabstract",
+      "detail": "noteabstract",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "notedefaultabstract": {
+      "name": "notedefaultabstract",
+      "detail": "notedefaultabstract",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "preset=",
+    "title=",
+    "notitle",
+    "abstract={",
+    "noabstract",
+    "pkgset=",
+    "pagegeom=",
+    "nopagegeom",
+    "secfmt=={",
+    "nosecfmt",
+    "par=",
+    "nopar",
+    "spacingdefs",
+    "nospacingdefs",
+    "fontdefs",
+    "nofontdefs",
+    "footnotedefs",
+    "nofootnotedefs",
+    "hyperrefdefs={",
+    "nohyperrefdefs",
+    "bibliographydefs",
+    "nobibliographydefs"
+  ]
+}

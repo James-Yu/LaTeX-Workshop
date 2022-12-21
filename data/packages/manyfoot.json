@@ -1,5 +1,8 @@
 {
-  "includes": [],
+  "includes": [
+    "nccfoots",
+    "perpage"
+  ],
   "cmds": {
     "extrafootnoterule": {
       "command": "extrafootnoterule",
@@ -15,30 +18,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "newfootnote": {
-      "command": "newfootnote",
-      "snippet": "newfootnote",
+    "newfootnote{}": {
+      "command": "newfootnote{}",
+      "snippet": "newfootnote{${1:suffix}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Footnotemark{}": {
-      "command": "Footnotemark{}",
-      "snippet": "Footnotemark{${1:marker}}",
+    "newfootnote[]{}": {
+      "command": "newfootnote[]{}",
+      "snippet": "newfootnote[${2:style}]{${1:suffix}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Footnotetext{}{}": {
-      "command": "Footnotetext{}{}",
-      "snippet": "Footnotetext{${1:marker}}{${2:inserted text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Footnote{}{}": {
-      "command": "Footnote{}{}",
-      "snippet": "Footnote{${1:marker}}{${2:inserted text}}",
+    "DeclareNewFootnote{}": {
+      "command": "DeclareNewFootnote{}",
+      "snippet": "DeclareNewFootnote{${1:suffix}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -52,7 +48,7 @@
     },
     "SelectFootnoteRule{}": {
       "command": "SelectFootnoteRule{}",
-      "snippet": "SelectFootnoteRule{${1:default}}",
+      "snippet": "SelectFootnoteRule{${1:rule-name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -71,9 +67,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetFootnoteHook": {
-      "command": "SetFootnoteHook",
-      "snippet": "SetFootnoteHook",
+    "SetFootnoteHook{}": {
+      "command": "SetFootnoteHook{}",
+      "snippet": "SetFootnoteHook{${1:code}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -85,14 +81,19 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "ExtraParaSkip": {
-      "command": "ExtraParaSkip",
-      "snippet": "ExtraParaSkip",
+    "ExtraParaSkip{}": {
+      "command": "ExtraParaSkip{}",
+      "snippet": "ExtraParaSkip{${1:space%l}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "ruled",
+    "para",
+    "para*",
+    "perpage"
+  ]
 }

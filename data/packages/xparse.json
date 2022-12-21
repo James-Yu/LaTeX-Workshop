@@ -1,79 +1,235 @@
 {
-  "includes": [],
+  "includes": [
+    "expl3"
+  ],
   "cmds": {
-    "DeclareDocumentCommand{}{}{}": {
-      "command": "DeclareDocumentCommand{}{}{}",
-      "snippet": "DeclareDocumentCommand{${1:function}}{${2:arg spec}}{${3:code}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "NewDocumentCommand{}{}{}": {
       "command": "NewDocumentCommand{}{}{}",
-      "snippet": "NewDocumentCommand{${1:function}}{${2:arg spec}}{${3:code}}",
+      "snippet": "NewDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "RenewDocumentCommand{}{}{}": {
       "command": "RenewDocumentCommand{}{}{}",
-      "snippet": "RenewDocumentCommand{${1:function}}{${2:arg spec}}{${3:code}}",
+      "snippet": "RenewDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "ProvideDocumentCommand{}{}{}": {
       "command": "ProvideDocumentCommand{}{}{}",
-      "snippet": "ProvideDocumentCommand{${1:function}}{${2:arg spec}}{${3:code}}",
+      "snippet": "ProvideDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DeclareDocumentEnvironment{}{}{}{}": {
-      "command": "DeclareDocumentEnvironment{}{}{}{}",
-      "snippet": "DeclareDocumentEnvironment{${1:environment}}{${2:arg spec}}{${3:starting code}}{${4:ending code}}",
+    "DeclareDocumentCommand{}{}{}": {
+      "command": "DeclareDocumentCommand{}{}{}",
+      "snippet": "DeclareDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "NewDocumentEnvironment{}{}{}{}": {
       "command": "NewDocumentEnvironment{}{}{}{}",
-      "snippet": "NewDocumentEnvironment{${1:environment}}{${2:arg spec}}{${3:starting code}}{${4:ending code}}",
+      "snippet": "NewDocumentEnvironment{${1:envname}}{${2:xargs}}{${3:begindef}}{${4:enddef}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "RenewDocumentEnvironment{}{}{}{}": {
       "command": "RenewDocumentEnvironment{}{}{}{}",
-      "snippet": "RenewDocumentEnvironment{${1:environment}}{${2:arg spec}}{${3:starting code}}{${4:ending code}}",
+      "snippet": "RenewDocumentEnvironment{${1:envname}}{${2:xargs}}{${3:begindef}}{${4:enddef}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "ProvideDocumentEnvironment{}{}{}{}": {
       "command": "ProvideDocumentEnvironment{}{}{}{}",
-      "snippet": "ProvideDocumentEnvironment{${1:environment}}{${2:arg spec}}{${3:starting code}}{${4:ending code}}",
+      "snippet": "ProvideDocumentEnvironment{${1:envname}}{${2:xargs}}{${3:begindef}}{${4:enddef}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareDocumentEnvironment{}{}{}{}": {
+      "command": "DeclareDocumentEnvironment{}{}{}{}",
+      "snippet": "DeclareDocumentEnvironment{${1:envname}}{${2:xargs}}{${3:begindef}}{${4:enddef}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewExpandableDocumentCommand{}{}{}": {
+      "command": "NewExpandableDocumentCommand{}{}{}",
+      "snippet": "NewExpandableDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewExpandableDocumentCommand{}{}{}": {
+      "command": "RenewExpandableDocumentCommand{}{}{}",
+      "snippet": "RenewExpandableDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProvideExpandableDocumentCommand{}{}{}": {
+      "command": "ProvideExpandableDocumentCommand{}{}{}",
+      "snippet": "ProvideExpandableDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "DeclareExpandableDocumentCommand{}{}{}": {
       "command": "DeclareExpandableDocumentCommand{}{}{}",
-      "snippet": "DeclareExpandableDocumentCommand{${1:function}}{${2:arg spec}}{${3:code}}",
+      "snippet": "DeclareExpandableDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "IfNoValueTF{}{}{}": {
       "command": "IfNoValueTF{}{}{}",
-      "snippet": "IfNoValueTF{${1:arg}}{${2:true code}}{${3:false code}}",
+      "snippet": "IfNoValueTF{${1:arg}}{${2:-NoValue-Code}}{${3:ValueCode}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfNoValueT{}{}": {
+      "command": "IfNoValueT{}{}",
+      "snippet": "IfNoValueT{${1:arg}}{${2:-NoValue-Code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfNoValueF{}{}": {
+      "command": "IfNoValueF{}{}",
+      "snippet": "IfNoValueF{${1:arg}}{${2:ValueCode}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfValueTF{}{}{}": {
+      "command": "IfValueTF{}{}{}",
+      "snippet": "IfValueTF{${1:arg}}{${2:trueCode}}{${3:-NoValue-Code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfValueT{}{}": {
+      "command": "IfValueT{}{}",
+      "snippet": "IfValueT{${1:arg}}{${2:ValueCode}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfValueF{}{}": {
+      "command": "IfValueF{}{}",
+      "snippet": "IfValueF{${1:arg}}{${2:-NoValue-Code}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "IfBooleanTF{}{}{}": {
       "command": "IfBooleanTF{}{}{}",
-      "snippet": "IfBooleanTF{${1:arg}}{${2:true code}}{${3:false code}}",
+      "snippet": "IfBooleanTF{${1:arg}}{${2:trueCode}}{${3:falseCode}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfBooleanT{}{}": {
+      "command": "IfBooleanT{}{}",
+      "snippet": "IfBooleanT{${1:arg}}{${2:trueCode}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfBooleanF{}{}": {
+      "command": "IfBooleanF{}{}",
+      "snippet": "IfBooleanF{${1:arg}}{${2:falseCode}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BooleanFalse": {
+      "command": "BooleanFalse",
+      "snippet": "BooleanFalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BooleanTrue": {
+      "command": "BooleanTrue",
+      "snippet": "BooleanTrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProcessedArgument": {
+      "command": "ProcessedArgument",
+      "snippet": "ProcessedArgument",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ReverseBoolean": {
+      "command": "ReverseBoolean",
+      "snippet": "ReverseBoolean",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SplitArgument": {
+      "command": "SplitArgument",
+      "snippet": "SplitArgument",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SplitList": {
+      "command": "SplitList",
+      "snippet": "SplitList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProcessList": {
+      "command": "ProcessList",
+      "snippet": "ProcessList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TrimSpaces": {
+      "command": "TrimSpaces",
+      "snippet": "TrimSpaces",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GetDocumentCommandArgSpec": {
+      "command": "GetDocumentCommandArgSpec",
+      "snippet": "GetDocumentCommandArgSpec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GetDocumentEnvironmentArgSpec": {
+      "command": "GetDocumentEnvironmentArgSpec",
+      "snippet": "GetDocumentEnvironmentArgSpec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShowDocumentCommandArgSpec": {
+      "command": "ShowDocumentCommandArgSpec",
+      "snippet": "ShowDocumentCommandArgSpec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShowDocumentEnvironmentArgSpec": {
+      "command": "ShowDocumentEnvironmentArgSpec",
+      "snippet": "ShowDocumentEnvironmentArgSpec",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1

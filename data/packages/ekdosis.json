@@ -1,0 +1,932 @@
+{
+  "includes": [
+    "luatex",
+    "iftex",
+    "expkv-opt",
+    "expkv-def",
+    "luacode",
+    "paracol",
+    "etoolbox",
+    "lineno",
+    "trivfloat",
+    "refcount",
+    "zref-user",
+    "zref-abspage",
+    "ltxcmds",
+    "pdftexcmds",
+    "ifoddpage",
+    "keyfloat",
+    "tcolorbox",
+    "tcolorboxlibraryfitting",
+    "tcolorboxlibraryskins",
+    "verse",
+    "parnotes"
+  ],
+  "cmds": {
+    "ekdsetup{}": {
+      "command": "ekdsetup{}",
+      "snippet": "ekdsetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "showpagebreaks",
+        "spbmk=",
+        "hpbmk="
+      ],
+      "keyvalindex": 0
+    },
+    "DeclareWitness{}{}{}": {
+      "command": "DeclareWitness{}{}{}",
+      "snippet": "DeclareWitness{${1:unique id}}{${2:rendition}}{${3:description%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareWitness{}{}{}[]": {
+      "command": "DeclareWitness{}{}{}[]",
+      "snippet": "DeclareWitness{${1:unique id}}{${2:rendition}}{${3:description%text}}[${4:options}]",
+      "option": "",
+      "keyvals": [
+        "settlement=",
+        "institution=",
+        "repository=",
+        "collection=",
+        "idno=",
+        "msName=",
+        "origDate=",
+        "locus="
+      ],
+      "keyvalindex": 3
+    },
+    "DeclareHand{}{}{}": {
+      "command": "DeclareHand{}{}{}",
+      "snippet": "DeclareHand{${1:unique id}}{${2:base ms.}}{${3:rendition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareHand{}{}{}[]": {
+      "command": "DeclareHand{}{}{}[]",
+      "snippet": "DeclareHand{${1:unique id}}{${2:base ms.}}{${3:rendition}}[${4:note}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareSource{}{}": {
+      "command": "DeclareSource{}{}",
+      "snippet": "DeclareSource{${1:unique label}}{${2:rendition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareScholar{}{}": {
+      "command": "DeclareScholar{}{}",
+      "snippet": "DeclareScholar{${1:unique id}}{${2:rendition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareScholar{}{}[]": {
+      "command": "DeclareScholar{}{}[]",
+      "snippet": "DeclareScholar{${1:unique id}}{${2:rendition}}[${3:options}]",
+      "option": "",
+      "keyvals": [
+        "rawname=",
+        "forename=",
+        "surname=",
+        "addname=",
+        "note="
+      ],
+      "keyvalindex": 2
+    },
+    "DeclareShorthand{}{}{}": {
+      "command": "DeclareShorthand{}{}{}",
+      "snippet": "DeclareShorthand{${1:unique id}}{${2:rendition}}{${3:list of ids}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "getsiglum{}": {
+      "command": "getsiglum{}",
+      "snippet": "getsiglum{${1:list of witnesses}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SigLine{}": {
+      "command": "SigLine{}",
+      "snippet": "SigLine{${1:unique id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "app{}": {
+      "command": "app{}",
+      "snippet": "app{${1:apparatus entries%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "app[]{}": {
+      "command": "app[]{}",
+      "snippet": "app[${2:type=%<type%>}]{${1:%<apparatus entries%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lem{}": {
+      "command": "lem{}",
+      "snippet": "lem{${1:lemma text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lem[]{}": {
+      "command": "lem[]{}",
+      "snippet": "lem[${2:options}]{${1:lemma text%text}}",
+      "option": "",
+      "keyvals": [
+        "wit=",
+        "source=",
+        "resp=",
+        "alt=",
+        "sep=",
+        "nosep",
+        "nolem",
+        "type=",
+        "num",
+        "nonum",
+        "pre=",
+        "post=",
+        "prewit=",
+        "postwit="
+      ],
+      "keyvalindex": 0
+    },
+    "rdg{}": {
+      "command": "rdg{}",
+      "snippet": "rdg{${1:variant reading}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rdg[]{}": {
+      "command": "rdg[]{}",
+      "snippet": "rdg[${2:options}]{${1:variant reading}}",
+      "option": "",
+      "keyvals": [
+        "wit=",
+        "source=",
+        "resp=",
+        "alt=",
+        "nordg",
+        "type=",
+        "pre=",
+        "post=",
+        "prewit=",
+        "postwit=",
+        "subsep=",
+        "nosubsep"
+      ],
+      "keyvalindex": 0
+    },
+    "note{}": {
+      "command": "note{}",
+      "snippet": "note{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "note[]{}": {
+      "command": "note[]{}",
+      "snippet": "note[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "pre=",
+        "post=",
+        "sep",
+        "subsep",
+        "type=",
+        "sep=",
+        "nosep",
+        "lem=",
+        "num",
+        "nonum",
+        "labelb=",
+        "labele="
+      ],
+      "keyvalindex": 0
+    },
+    "note*{}": {
+      "command": "note*{}",
+      "snippet": "note*{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "note*[]{}": {
+      "command": "note*[]{}",
+      "snippet": "note*[${2:options}]{${1:text}}",
+      "option": "",
+      "keyvals": [
+        "pre=",
+        "post=",
+        "sep",
+        "subsep"
+      ],
+      "keyvalindex": 0
+    },
+    "rdgGrp{}": {
+      "command": "rdgGrp{}",
+      "snippet": "rdgGrp{${1:lemma text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rdgGrpe[]{}": {
+      "command": "rdgGrpe[]{}",
+      "snippet": "rdgGrpe[${2:type=%<type%>}]{${1:%<lemma text%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetCritSymbols{}": {
+      "command": "SetCritSymbols{}",
+      "snippet": "SetCritSymbols{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "suppbegin=",
+        "suppend=",
+        "delbegin=",
+        "delend=",
+        "sicbegin=",
+        "sicend=",
+        "gapmark=",
+        "keepinapp"
+      ],
+      "keyvalindex": 0
+    },
+    "supplied{}": {
+      "command": "supplied{}",
+      "snippet": "supplied{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "surplus{}": {
+      "command": "surplus{}",
+      "snippet": "surplus{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sic{}": {
+      "command": "sic{}",
+      "snippet": "sic{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sic*{}": {
+      "command": "sic*{}",
+      "snippet": "sic*{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gap{}": {
+      "command": "gap{}",
+      "snippet": "gap{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "reason=",
+        "unit=",
+        "quantity=",
+        "extent="
+      ],
+      "keyvalindex": 0
+    },
+    "SetAlignment{}": {
+      "command": "SetAlignment{}",
+      "snippet": "SetAlignment{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "tcols=",
+        "lcols=",
+        "texts=",
+        "apparatus=",
+        "paired",
+        "lineation=",
+        "flush",
+        "segmentation="
+      ],
+      "keyvalindex": 0
+    },
+    "SetHooks{}": {
+      "command": "SetHooks{}",
+      "snippet": "SetHooks{${1:list of hooks}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetLTRapp": {
+      "command": "SetLTRapp",
+      "snippet": "SetLTRapp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetRTLapp": {
+      "command": "SetRTLapp",
+      "snippet": "SetRTLapp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetSeparator{}": {
+      "command": "SetSeparator{}",
+      "snippet": "SetSeparator{${1:separator}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetSubseparator{}": {
+      "command": "SetSubseparator{}",
+      "snippet": "SetSubseparator{${1:subseparator}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdsep": {
+      "command": "ekdsep",
+      "snippet": "ekdsep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdsubsep": {
+      "command": "ekdsubsep",
+      "snippet": "ekdsubsep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetBeginApparatus{}": {
+      "command": "SetBeginApparatus{}",
+      "snippet": "SetBeginApparatus{${1:characters or commands}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetEndApparatus{}": {
+      "command": "SetEndApparatus{}",
+      "snippet": "SetEndApparatus{${1:characters}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetUnitDelimiter{}": {
+      "command": "SetUnitDelimiter{}",
+      "snippet": "SetUnitDelimiter{${1:delimiter}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetDefaultRule{}": {
+      "command": "SetDefaultRule{}",
+      "snippet": "SetDefaultRule{${1:line definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetApparatusLanguage{}": {
+      "command": "SetApparatusLanguage{}",
+      "snippet": "SetApparatusLanguage{${1:language}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetApparatusNoteLanguage{}": {
+      "command": "SetApparatusNoteLanguage{}",
+      "snippet": "SetApparatusNoteLanguage{${1:language}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetApparatus{}": {
+      "command": "SetApparatus{}",
+      "snippet": "SetApparatus{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "direction=",
+        "sep=",
+        "subsep=",
+        "delim=",
+        "bhook=",
+        "ehook=",
+        "rule=",
+        "norule",
+        "lang=",
+        "notelang=",
+        "maxentries="
+      ],
+      "keyvalindex": 0
+    },
+    "iffootnoterule": {
+      "command": "iffootnoterule",
+      "snippet": "iffootnoterule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "footnoteruletrue": {
+      "command": "footnoteruletrue",
+      "snippet": "footnoteruletrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "footnoterulefalse": {
+      "command": "footnoterulefalse",
+      "snippet": "footnoterulefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetDefaultApparatus{}": {
+      "command": "SetDefaultApparatus{}",
+      "snippet": "SetDefaultApparatus{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareApparatus{}": {
+      "command": "DeclareApparatus{}",
+      "snippet": "DeclareApparatus{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareApparatus{}[]": {
+      "command": "DeclareApparatus{}[]",
+      "snippet": "DeclareApparatus{${1:name}}[${2:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetLineation{}": {
+      "command": "SetLineation{}",
+      "snippet": "SetLineation{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "lineation=",
+        "modulo",
+        "modulonum=",
+        "margin=",
+        "numbers=",
+        "vlineation=",
+        "vmodulo=",
+        "vnumbrokenlines",
+        "vmargin=",
+        "continuousvnum"
+      ],
+      "keyvalindex": 0
+    },
+    "innerlinenumbers": {
+      "command": "innerlinenumbers",
+      "snippet": "innerlinenumbers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "outerlinenumbers": {
+      "command": "outerlinenumbers",
+      "snippet": "outerlinenumbers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vmodulolinenumbers": {
+      "command": "vmodulolinenumbers",
+      "snippet": "vmodulolinenumbers",
+      "option": "poetry=verse",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vmodulolinenumbers[]": {
+      "command": "vmodulolinenumbers[]",
+      "snippet": "vmodulolinenumbers[${1:n}]",
+      "option": "poetry=verse",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resetvlinenumber": {
+      "command": "resetvlinenumber",
+      "snippet": "resetvlinenumber",
+      "option": "poetry=verse",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resetvlinenumber[]": {
+      "command": "resetvlinenumber[]",
+      "snippet": "resetvlinenumber[${1:n}]",
+      "option": "poetry=verse",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setRL": {
+      "command": "setRL",
+      "snippet": "setRL",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setLR": {
+      "command": "setLR",
+      "snippet": "setLR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MkBodyDivs{}{}{}{}{}{}": {
+      "command": "MkBodyDivs{}{}{}{}{}{}",
+      "snippet": "MkBodyDivs{${1:div1}}{${2:div2}}{${3:div3}}{${4:div4}}{${5:div5}}{${6:div6}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekddiv{}": {
+      "command": "ekddiv{}",
+      "snippet": "ekddiv{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "type=",
+        "n=",
+        "head=",
+        "barehead=",
+        "depth=",
+        "toc=",
+        "mark="
+      ],
+      "keyvalindex": 0
+    },
+    "FormatDiv{}{}{}": {
+      "command": "FormatDiv{}{}{}",
+      "snippet": "FormatDiv{${1:n}}{${2:code before}}{${3:code after}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdmark": {
+      "command": "ekdmark",
+      "snippet": "ekdmark",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endmark": {
+      "command": "endmark",
+      "snippet": "endmark",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdprintmark{}{}": {
+      "command": "ekdprintmark{}{}",
+      "snippet": "ekdprintmark{${1:selector}}{${2:signpost}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdnohfmark": {
+      "command": "ekdnohfmark",
+      "snippet": "ekdnohfmark",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdresethfmarks": {
+      "command": "ekdresethfmarks",
+      "snippet": "ekdresethfmarks",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdpb{}": {
+      "command": "ekdpb{}",
+      "snippet": "ekdpb{${1:line no}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdpb[]{}": {
+      "command": "ekdpb[]{}",
+      "snippet": "ekdpb[${2:page no}]{${1:line no}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdpb*{}": {
+      "command": "ekdpb*{}",
+      "snippet": "ekdpb*{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addentries{}": {
+      "command": "addentries{}",
+      "snippet": "addentries{${1:n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addentries[]{}": {
+      "command": "addentries[]{}",
+      "snippet": "addentries[${2:layer}]{${1:n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetTEIFileName{}": {
+      "command": "SetTEIFileName{}",
+      "snippet": "SetTEIFileName{${1:arg1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetTEIxmlExport{}": {
+      "command": "SetTEIxmlExport{}",
+      "snippet": "SetTEIxmlExport{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "autopar"
+      ],
+      "keyvalindex": 0
+    },
+    "TeXtoTEI{}{}": {
+      "command": "TeXtoTEI{}{}",
+      "snippet": "TeXtoTEI{${1:csname}}{${2:TEI element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TeXtoTEI{}{}[]": {
+      "command": "TeXtoTEI{}{}[]",
+      "snippet": "TeXtoTEI{${1:csname}}{${2:TEI element}}[${3:TEI attributes}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnvtoTEI{}{}": {
+      "command": "EnvtoTEI{}{}",
+      "snippet": "EnvtoTEI{${1:envname}}{${2:TEI element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnvtoTEI{}{}[]": {
+      "command": "EnvtoTEI{}{}[]",
+      "snippet": "EnvtoTEI{${1:envname}}{${2:TEI element}}[${3:TEI attributes}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnvtoTEI*{}{}": {
+      "command": "EnvtoTEI*{}{}",
+      "snippet": "EnvtoTEI*{${1:envname}}{${2:TEI element}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnvtoTEI*{}{}[]": {
+      "command": "EnvtoTEI*{}{}[]",
+      "snippet": "EnvtoTEI*{${1:envname}}{${2:TEI element}}[${3:TEI attributes}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TeXtoTEIPat{}{}": {
+      "command": "TeXtoTEIPat{}{}",
+      "snippet": "TeXtoTEIPat{${1:TeX pattern}}{${2:TEI pattern}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "teidirect{}{}": {
+      "command": "teidirect{}{}",
+      "snippet": "teidirect{${1:XML element}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "teidirect[]{}{}": {
+      "command": "teidirect[]{}{}",
+      "snippet": "teidirect[${3:XML attributes}]{${1:XML element}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AddxmlBibResource{}": {
+      "command": "AddxmlBibResource{}",
+      "snippet": "AddxmlBibResource{${1:file name%definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EkdosisColStart": {
+      "command": "EkdosisColStart",
+      "snippet": "EkdosisColStart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EkdosisColStop": {
+      "command": "EkdosisColStop",
+      "snippet": "EkdosisColStop",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EkdosisOff": {
+      "command": "EkdosisOff",
+      "snippet": "EkdosisOff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EkdosisOn": {
+      "command": "EkdosisOn",
+      "snippet": "EkdosisOn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LRnum{}": {
+      "command": "LRnum{}",
+      "snippet": "LRnum{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NLS": {
+      "command": "NLS",
+      "snippet": "NLS",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "apparatus": {
+      "command": "apparatus",
+      "snippet": "apparatus",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blfootnote{}": {
+      "command": "blfootnote{}",
+      "snippet": "blfootnote{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdatbegshihook": {
+      "command": "ekdatbegshihook",
+      "snippet": "ekdatbegshihook",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdpage": {
+      "command": "ekdpage",
+      "snippet": "ekdpage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdverseindentlength": {
+      "command": "ekdverseindentlength",
+      "snippet": "ekdverseindentlength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "ekdosis": {
+      "name": "ekdosis",
+      "detail": "ekdosis",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "alignment": {
+      "name": "alignment",
+      "detail": "alignment",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "alignment[]": {
+      "name": "alignment",
+      "detail": "alignment[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "tcols=",
+        "lcols=",
+        "texts=",
+        "apparatus=",
+        "paired",
+        "lineation=",
+        "flush",
+        "segmentation="
+      ],
+      "keyvalindex": 0
+    },
+    "edition": {
+      "name": "edition",
+      "detail": "edition",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "edition*": {
+      "name": "edition*",
+      "detail": "edition*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "translation": {
+      "name": "translation",
+      "detail": "translation",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "translation*": {
+      "name": "translation*",
+      "detail": "translation*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdverse": {
+      "name": "ekdverse",
+      "detail": "ekdverse",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdverse[]": {
+      "name": "ekdverse",
+      "detail": "ekdverse[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "width=",
+        "type="
+      ],
+      "keyvalindex": 0
+    },
+    "ekdstanza": {
+      "name": "ekdstanza",
+      "detail": "ekdstanza",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ekdstanza[]": {
+      "name": "ekdstanza",
+      "detail": "ekdstanza[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "type="
+      ],
+      "keyvalindex": 0
+    },
+    "ekdpar": {
+      "name": "ekdpar",
+      "detail": "ekdpar",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "layout=",
+    "divs=",
+    "poetry=verse",
+    "parnotes=",
+    "teiexport="
+  ]
+}

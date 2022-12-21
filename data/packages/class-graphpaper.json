@@ -1,0 +1,705 @@
+{
+  "includes": [
+    "xkeyval",
+    "geometry",
+    "euclideangeometry",
+    "graphicx",
+    "xcolor"
+  ],
+  "cmds": {
+    "bilinear": {
+      "command": "bilinear",
+      "snippet": "bilinear",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "semilogx{}": {
+      "command": "semilogx{}",
+      "snippet": "semilogx{${1:decades along x}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "semilogy{}": {
+      "command": "semilogy{}",
+      "snippet": "semilogy{${1:decades along y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "loglog{}{}": {
+      "command": "loglog{}{}",
+      "snippet": "loglog{${1:decades along x}}{${2:decades along y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "loglog[]{}{}": {
+      "command": "loglog[]{}{}",
+      "snippet": "loglog[${3:0 or 1}]{${1:decades along x}}{${2:decades along y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "polar": {
+      "command": "polar",
+      "snippet": "polar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "logpolar{}": {
+      "command": "logpolar{}",
+      "snippet": "logpolar{${1:decades along radius}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "smith": {
+      "command": "smith",
+      "snippet": "smith",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setxside{}": {
+      "command": "setxside{}",
+      "snippet": "setxside{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setyside{}": {
+      "command": "setyside{}",
+      "snippet": "setyside{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setminimumdistance{}": {
+      "command": "setminimumdistance{}",
+      "snippet": "setminimumdistance{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setgridcolor{}": {
+      "command": "setgridcolor{}",
+      "snippet": "setgridcolor{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmajorlinethickness{}": {
+      "command": "setmajorlinethickness{}",
+      "snippet": "setmajorlinethickness{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setmediumlinethickness{}": {
+      "command": "setmediumlinethickness{}",
+      "snippet": "setmediumlinethickness{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setminorlinethickness{}": {
+      "command": "setminorlinethickness{}",
+      "snippet": "setminorlinethickness{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "customcode{}": {
+      "command": "customcode{}",
+      "snippet": "customcode{${1:picture env cmds}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "customcode[]{}": {
+      "command": "customcode[]{}",
+      "snippet": "customcode[${2:0 or 1}]{${1:picture env cmds}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GradPolar{}": {
+      "command": "GradPolar{}",
+      "snippet": "GradPolar{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "GradResist{}": {
+      "command": "GradResist{}",
+      "snippet": "GradResist{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CalcRxx{}": {
+      "command": "CalcRxx{}",
+      "snippet": "CalcRxx{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PolarChart[]{}": {
+      "command": "PolarChart[]{}",
+      "snippet": "PolarChart[${2:diameter}]{${1:decades}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PolarChart{}": {
+      "command": "PolarChart{}",
+      "snippet": "PolarChart{${1:decades}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SmithChart[]": {
+      "command": "SmithChart[]",
+      "snippet": "SmithChart[${1:diameter}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "WhileDoOne[]{}{}{}": {
+      "command": "WhileDoOne[]{}{}{}",
+      "snippet": "WhileDoOne[${4:step}]{${1:init value}}{${2:final value}}{${3:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "WhileDoOne{}{}{}": {
+      "command": "WhileDoOne{}{}{}",
+      "snippet": "WhileDoOne{${1:init value}}{${2:final value}}{${3:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "WhileDoTwo[]{}{}{}": {
+      "command": "WhileDoTwo[]{}{}{}",
+      "snippet": "WhileDoTwo[${4:step}]{${1:init value}}{${2:final value}}{${3:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "WhileDoTwo{}{}{}": {
+      "command": "WhileDoTwo{}{}{}",
+      "snippet": "WhileDoTwo{${1:init value}}{${2:final value}}{${3:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Xcircle{}": {
+      "command": "Xcircle{}",
+      "snippet": "Xcircle{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ycircle{}": {
+      "command": "Ycircle{}",
+      "snippet": "Ycircle{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ycircle{}*": {
+      "command": "Ycircle{}*",
+      "snippet": "Ycircle{${1:number}}*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "carta[]{}{}": {
+      "command": "carta[]{}{}",
+      "snippet": "carta[${3:0 or 1}]{${1:x-decades}}{${2:y-decades}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "carta{}{}": {
+      "command": "carta{}{}",
+      "snippet": "carta{${1:x-decades}}{${2:y-decades}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "A": {
+      "command": "A",
+      "snippet": "A",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "𝐴",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL A"
+    },
+    "Adue": {
+      "command": "Adue",
+      "snippet": "Adue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Auxx": {
+      "command": "Auxx",
+      "snippet": "Auxx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Cifre": {
+      "command": "Cifre",
+      "snippet": "Cifre",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Czero": {
+      "command": "Czero",
+      "snippet": "Czero",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dec": {
+      "command": "Dec",
+      "snippet": "Dec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "decx": {
+      "command": "decx",
+      "snippet": "decx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "decxx": {
+      "command": "decxx",
+      "snippet": "decxx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "decy": {
+      "command": "decy",
+      "snippet": "decy",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "decyy": {
+      "command": "decyy",
+      "snippet": "decyy",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "factor": {
+      "command": "factor",
+      "snippet": "factor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hlines": {
+      "command": "hlines",
+      "snippet": "hlines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "I": {
+      "command": "I",
+      "snippet": "I",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "𝐼",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL I"
+    },
+    "Idue": {
+      "command": "Idue",
+      "snippet": "Idue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IIdue": {
+      "command": "IIdue",
+      "snippet": "IIdue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Inter": {
+      "command": "Inter",
+      "snippet": "Inter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "J": {
+      "command": "J",
+      "snippet": "J",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "𝐽",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL J"
+    },
+    "LAng": {
+      "command": "LAng",
+      "snippet": "LAng",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LnDieci": {
+      "command": "LnDieci",
+      "snippet": "LnDieci",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Logaritmo": {
+      "command": "Logaritmo",
+      "snippet": "Logaritmo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LowResUno": {
+      "command": "LowResUno",
+      "snippet": "LowResUno",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LowResZero": {
+      "command": "LowResZero",
+      "snippet": "LowResZero",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPLA": {
+      "command": "LPLA",
+      "snippet": "LPLA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lwa": {
+      "command": "lwa",
+      "snippet": "lwa",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lwb": {
+      "command": "lwb",
+      "snippet": "lwb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lwc": {
+      "command": "lwc",
+      "snippet": "lwc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mb": {
+      "command": "mb",
+      "snippet": "mb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Mdue": {
+      "command": "Mdue",
+      "snippet": "Mdue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mindistanceunit": {
+      "command": "mindistanceunit",
+      "snippet": "mindistanceunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "minimumdistance": {
+      "command": "minimumdistance",
+      "snippet": "minimumdistance",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "minorticklength": {
+      "command": "minorticklength",
+      "snippet": "minorticklength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ml": {
+      "command": "ml",
+      "snippet": "ml",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Mod": {
+      "command": "Mod",
+      "snippet": "Mod",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mr": {
+      "command": "mr",
+      "snippet": "mr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mt": {
+      "command": "mt",
+      "snippet": "mt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "plstep": {
+      "command": "plstep",
+      "snippet": "plstep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pmargin": {
+      "command": "pmargin",
+      "snippet": "pmargin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Rbox": {
+      "command": "Rbox",
+      "snippet": "Rbox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RotLab": {
+      "command": "RotLab",
+      "snippet": "RotLab",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Rout": {
+      "command": "Rout",
+      "snippet": "Rout",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RoutCifre": {
+      "command": "RoutCifre",
+      "snippet": "RoutCifre",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RoutTak": {
+      "command": "RoutTak",
+      "snippet": "RoutTak",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Rxx": {
+      "command": "Rxx",
+      "snippet": "Rxx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Rzero": {
+      "command": "Rzero",
+      "snippet": "Rzero",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Scala": {
+      "command": "Scala",
+      "snippet": "Scala",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ScalaDecade": {
+      "command": "ScalaDecade",
+      "snippet": "ScalaDecade",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SmithChart": {
+      "command": "SmithChart",
+      "snippet": "SmithChart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ticklength": {
+      "command": "ticklength",
+      "snippet": "ticklength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vlines": {
+      "command": "vlines",
+      "snippet": "vlines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xlength": {
+      "command": "xlength",
+      "snippet": "xlength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xlinsq": {
+      "command": "xlinsq",
+      "snippet": "xlinsq",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xmindiv": {
+      "command": "xmindiv",
+      "snippet": "xmindiv",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xmindivfloat": {
+      "command": "xmindivfloat",
+      "snippet": "xmindivfloat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xsideunit": {
+      "command": "xsideunit",
+      "snippet": "xsideunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xstep": {
+      "command": "xstep",
+      "snippet": "xstep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xtick": {
+      "command": "xtick",
+      "snippet": "xtick",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ylength": {
+      "command": "ylength",
+      "snippet": "ylength",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yline": {
+      "command": "yline",
+      "snippet": "yline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ylinsq": {
+      "command": "ylinsq",
+      "snippet": "ylinsq",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ymindiv": {
+      "command": "ymindiv",
+      "snippet": "ymindiv",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ymindivfloat": {
+      "command": "ymindivfloat",
+      "snippet": "ymindivfloat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ysideunit": {
+      "command": "ysideunit",
+      "snippet": "ysideunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ystep": {
+      "command": "ystep",
+      "snippet": "ystep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ytickstart": {
+      "command": "ytickstart",
+      "snippet": "ytickstart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ytickstop": {
+      "command": "ytickstop",
+      "snippet": "ytickstop",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yytickstop": {
+      "command": "yytickstop",
+      "snippet": "yytickstop",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

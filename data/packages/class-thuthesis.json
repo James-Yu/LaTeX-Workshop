@@ -1,0 +1,676 @@
+{
+  "includes": [
+    "iftex",
+    "kvdefinekeys",
+    "kvsetkeys",
+    "kvoptions",
+    "class-ctexbook",
+    "etoolbox",
+    "filehook",
+    "xparse",
+    "geometry",
+    "fancyhdr",
+    "titletoc",
+    "notoccite",
+    "amsmath",
+    "graphicx",
+    "subcaption",
+    "pdfpages",
+    "enumitem",
+    "environ",
+    "footmisc",
+    "xeCJKfntef",
+    "array",
+    "booktabs",
+    "url",
+    "natbib",
+    "unicode-math",
+    "bibunits",
+    "newtxmath",
+    "bm",
+    "newtxtext"
+  ],
+  "cmds": {
+    "thusetup{}": {
+      "command": "thusetup{}",
+      "snippet": "thusetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "thesis-type=",
+        "title={",
+        "title*={",
+        "degree-name={",
+        "degree-name*={",
+        "department={",
+        "discipline={",
+        "discipline*={",
+        "author={",
+        "author*={",
+        "student-id={",
+        "supervisor={",
+        "supervisor*={",
+        "associate-supervisor={",
+        "associate-supervisor*={",
+        "co-supervisor={",
+        "co-supervisor*={",
+        "date={",
+        "secret-year=",
+        "secret-level={",
+        "clc={",
+        "udc={",
+        "id={",
+        "discipline-level-1={",
+        "discipline-level-2={",
+        "start-date={",
+        "end-date={",
+        "keywords={",
+        "keywords*={",
+        "toc-chapter-style=",
+        "figure-number-separator={",
+        "table-number-separator={",
+        "equation-number-separator={",
+        "number-separator={",
+        "math-style=",
+        "uppercase-greek=",
+        "less-than-or-equal=",
+        "integral=",
+        "integral-limits",
+        "partial=",
+        "math-ellipsis=",
+        "real-part=",
+        "math-font=",
+        "cite-style=",
+        "toc-depth=",
+        "spine-font={",
+        "spine-title={",
+        "spine-author={",
+        "include-spine",
+        "appendix-figure-in-lof",
+        "main-language=",
+        "language=",
+        "system=",
+        "font=",
+        "cjk-font=",
+        "output=",
+        "statement-page-style="
+      ],
+      "keyvalindex": 0
+    },
+    "copyrightpage": {
+      "command": "copyrightpage",
+      "snippet": "copyrightpage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "copyrightpage[]": {
+      "command": "copyrightpage[]",
+      "snippet": "copyrightpage[${1:file=%<PDF file%>}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listoffigures*": {
+      "command": "listoffigures*",
+      "snippet": "listoffigures*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listoftables*": {
+      "command": "listoftables*",
+      "snippet": "listoftables*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listofequations": {
+      "command": "listofequations",
+      "snippet": "listofequations",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listofequations*": {
+      "command": "listofequations*",
+      "snippet": "listofequations*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listofalgorithms*": {
+      "command": "listofalgorithms*",
+      "snippet": "listofalgorithms*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "equcaption{}": {
+      "command": "equcaption{}",
+      "snippet": "equcaption{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inlinecite{}": {
+      "command": "inlinecite{}",
+      "snippet": "inlinecite{${1:keylist}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "statement": {
+      "command": "statement",
+      "snippet": "statement",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "statement[]": {
+      "command": "statement[]",
+      "snippet": "statement[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "page-style=",
+        "file="
+      ],
+      "keyvalindex": 0
+    },
+    "record{}": {
+      "command": "record{}",
+      "snippet": "record{${1:file=%<PDF file%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "spine": {
+      "command": "spine",
+      "snippet": "spine",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blacksquare": {
+      "command": "blacksquare",
+      "snippet": "blacksquare",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "⬛",
+      "documentation": "BLACK LARGE SQUARE"
+    },
+    "bm{}": {
+      "command": "bm{}",
+      "snippet": "bm{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "checkmark": {
+      "command": "checkmark",
+      "snippet": "checkmark",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "✓",
+      "documentation": "CHECK MARK"
+    },
+    "cls{}": {
+      "command": "cls{}",
+      "snippet": "cls{${1:class}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cs{}": {
+      "command": "cs{}",
+      "snippet": "cs{${1:csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "env{}": {
+      "command": "env{}",
+      "snippet": "env{${1:envname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "file{}": {
+      "command": "file{}",
+      "snippet": "file{${1:filename%URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkg{}": {
+      "command": "pkg{}",
+      "snippet": "pkg{${1:package}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "square": {
+      "command": "square",
+      "snippet": "square",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "⬜",
+      "documentation": "WHITE LARGE SQUARE"
+    },
+    "CJKmove": {
+      "command": "CJKmove",
+      "snippet": "CJKmove",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CJKmovesymbol{}": {
+      "command": "CJKmovesymbol{}",
+      "snippet": "CJKmovesymbol{${1:symbol}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CJKpunctsymbol{}": {
+      "command": "CJKpunctsymbol{}",
+      "snippet": "CJKpunctsymbol{${1:symbol}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CJKsymbol{}": {
+      "command": "CJKsymbol{}",
+      "snippet": "CJKsymbol{${1:symbol}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listequationname": {
+      "command": "listequationname",
+      "snippet": "listequationname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listoffiguresandtables": {
+      "command": "listoffiguresandtables",
+      "snippet": "listoffiguresandtables",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thuthesis": {
+      "command": "thuthesis",
+      "snippet": "thuthesis",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "version": {
+      "command": "version",
+      "snippet": "version",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "onlinecite{}": {
+      "command": "onlinecite{}",
+      "snippet": "onlinecite{${1:keylist}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "committee": {
+      "name": "committee",
+      "detail": "committee",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "committee[]": {
+      "name": "committee",
+      "detail": "committee[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "name={",
+        "file="
+      ],
+      "keyvalindex": 0
+    },
+    "abstract": {
+      "name": "abstract",
+      "detail": "abstract",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "abstract*": {
+      "name": "abstract*",
+      "detail": "abstract*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "denotation": {
+      "name": "denotation",
+      "detail": "denotation",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "denotation[]": {
+      "name": "denotation",
+      "detail": "denotation[]",
+      "snippet": "[${1:width}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axiom": {
+      "name": "axiom",
+      "detail": "axiom",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axiom[]": {
+      "name": "axiom",
+      "detail": "axiom[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theorem": {
+      "name": "theorem",
+      "detail": "theorem",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theorem[]": {
+      "name": "theorem",
+      "detail": "theorem[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "definition": {
+      "name": "definition",
+      "detail": "definition",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "definition[]": {
+      "name": "definition",
+      "detail": "definition[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proposition": {
+      "name": "proposition",
+      "detail": "proposition",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proposition[]": {
+      "name": "proposition",
+      "detail": "proposition[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lemma": {
+      "name": "lemma",
+      "detail": "lemma",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lemma[]": {
+      "name": "lemma",
+      "detail": "lemma[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "conjecture": {
+      "name": "conjecture",
+      "detail": "conjecture",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "conjecture[]": {
+      "name": "conjecture",
+      "detail": "conjecture[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proof": {
+      "name": "proof",
+      "detail": "proof",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proof[]": {
+      "name": "proof",
+      "detail": "proof[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "corollary": {
+      "name": "corollary",
+      "detail": "corollary",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "corollary[]": {
+      "name": "corollary",
+      "detail": "corollary[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "example": {
+      "name": "example",
+      "detail": "example",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "example[]": {
+      "name": "example",
+      "detail": "example[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exercise": {
+      "name": "exercise",
+      "detail": "exercise",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "exercise[]": {
+      "name": "exercise",
+      "detail": "exercise[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "assumption": {
+      "name": "assumption",
+      "detail": "assumption",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "assumption[]": {
+      "name": "assumption",
+      "detail": "assumption[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "remark": {
+      "name": "remark",
+      "detail": "remark",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "remark[]": {
+      "name": "remark",
+      "detail": "remark[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "problem": {
+      "name": "problem",
+      "detail": "problem",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "problem[]": {
+      "name": "problem",
+      "detail": "problem[]",
+      "snippet": "[${1:heading%text}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acknowledgements": {
+      "name": "acknowledgements",
+      "detail": "acknowledgements",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "survey": {
+      "name": "survey",
+      "detail": "survey",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "translation": {
+      "name": "translation",
+      "detail": "translation",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "translation-index": {
+      "name": "translation-index",
+      "detail": "translation-index",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resume": {
+      "name": "resume",
+      "detail": "resume",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "achievements": {
+      "name": "achievements",
+      "detail": "achievements",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "comments": {
+      "name": "comments",
+      "detail": "comments",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "comments[name={]": {
+      "name": "comments",
+      "detail": "comments[name={]",
+      "snippet": "[name={${1:%<name%>}}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "resolution": {
+      "name": "resolution",
+      "detail": "resolution",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acknowledgement": {
+      "name": "acknowledgement",
+      "detail": "acknowledgement",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "publications": {
+      "name": "publications",
+      "detail": "publications",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

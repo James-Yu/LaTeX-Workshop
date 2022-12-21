@@ -1,0 +1,483 @@
+{
+  "includes": [
+    "ifthen",
+    "kvoptions",
+    "tikz",
+    "tikzlibrarycalc",
+    "tikzlibrarydecorations.pathreplacing",
+    "tikzlibrarypositioning",
+    "xkeyval",
+    "xparse",
+    "xstring"
+  ],
+  "cmds": {
+    "setstructmech{}": {
+      "command": "setstructmech{}",
+      "snippet": "setstructmech{${1:options}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NodalForce{}": {
+      "command": "NodalForce{}",
+      "snippet": "NodalForce{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NodalForce[]{}": {
+      "command": "NodalForce[]{}",
+      "snippet": "NodalForce[${2:color}]{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NodalForce[]{}[][][]": {
+      "command": "NodalForce[]{}[][][]",
+      "snippet": "NodalForce[${2:color}]{${1:x,y}}[${3:Hlabel}][${4:Vlabel}][${5:Rlabel}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NodalForce[]{}[][][]{}[]": {
+      "command": "NodalForce[]{}[][][]{}[]",
+      "snippet": "NodalForce[${3:color}]{${1:x,y}}[${4:Hlabel}][${5:Vlabel}][${6:Rlabel}]{${2:rotation}}[${7:scale}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BasicForce{}{}{}": {
+      "command": "BasicForce{}{}{}",
+      "snippet": "BasicForce{${1:x1,y1}}{${2:x2,y2}}{${3:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BasicForce[]{}{}{}": {
+      "command": "BasicForce[]{}{}{}",
+      "snippet": "BasicForce[${4:number}]{${1:x1,y1}}{${2:x2,y2}}{${3:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BasicForce[]{}{}{}{}": {
+      "command": "BasicForce[]{}{}{}{}",
+      "snippet": "BasicForce[${5:number}]{${1:x1,y1}}{${2:x2,y2}}{${3:label}}{${4:TikZ keys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BasicForce[]{}{}{}{}[][][]": {
+      "command": "BasicForce[]{}{}{}{}[][][]",
+      "snippet": "BasicForce[${5:number}]{${1:x1,y1}}{${2:x2,y2}}{${3:label}}{${4:TikZ keys}}[${6:label1}][${7:label2}][${8:label3}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UDL{}{}": {
+      "command": "UDL{}{}",
+      "snippet": "UDL{${1:x1,y1}}{${2:x2,y2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UDL[]{}{}": {
+      "command": "UDL[]{}{}",
+      "snippet": "UDL[${3:F}]{${1:%<x1,y1%>}}{${2:%<x2,y2%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UDL[]{}{}[]": {
+      "command": "UDL[]{}{}[]",
+      "snippet": "UDL[${3:F}]{${1:x1,y1}}{${2:x2,y2}}[${4:label}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UDL[]{}{}[]{}": {
+      "command": "UDL[]{}{}[]{}",
+      "snippet": "UDL[${4:F}]{${1:x1,y1}}{${2:x2,y2}}[${5:label}]{${3:scale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HingeSupport{}": {
+      "command": "HingeSupport{}",
+      "snippet": "HingeSupport{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HingeSupport[]{}": {
+      "command": "HingeSupport[]{}",
+      "snippet": "HingeSupport[${2:rotation}]{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HingeSupport[]{}{}": {
+      "command": "HingeSupport[]{}{}",
+      "snippet": "HingeSupport[${3:rotation}]{${1:x,y}}{${2:scale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FixedSupport{}": {
+      "command": "FixedSupport{}",
+      "snippet": "FixedSupport{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FixedSupport[]{}": {
+      "command": "FixedSupport[]{}",
+      "snippet": "FixedSupport[${2:rotation}]{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FixedSupport[]{}{}": {
+      "command": "FixedSupport[]{}{}",
+      "snippet": "FixedSupport[${3:rotation}]{${1:x,y}}{${2:scale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RollerSupport{}": {
+      "command": "RollerSupport{}",
+      "snippet": "RollerSupport{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RollerSupport[]{}": {
+      "command": "RollerSupport[]{}",
+      "snippet": "RollerSupport[${2:rotation}]{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RollerSupport[]{}{}": {
+      "command": "RollerSupport[]{}{}",
+      "snippet": "RollerSupport[${3:rotation}]{${1:x,y}}{${2:scale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SliderSupport{}": {
+      "command": "SliderSupport{}",
+      "snippet": "SliderSupport{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SliderSupport[]{}": {
+      "command": "SliderSupport[]{}",
+      "snippet": "SliderSupport[${2:rotation}]{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SliderSupport[]{}{}": {
+      "command": "SliderSupport[]{}{}",
+      "snippet": "SliderSupport[${3:rotation}]{${1:x,y}}{${2:scale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SleeveSupport{}": {
+      "command": "SleeveSupport{}",
+      "snippet": "SleeveSupport{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SleeveSupport[]{}": {
+      "command": "SleeveSupport[]{}",
+      "snippet": "SleeveSupport[${2:rotation}]{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SleeveSupport[]{}[]": {
+      "command": "SleeveSupport[]{}[]",
+      "snippet": "SleeveSupport[${2:rotation}]{${1:x,y}}[${3:gap%l}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SleeveSupport[]{}[]{}": {
+      "command": "SleeveSupport[]{}[]{}",
+      "snippet": "SleeveSupport[${3:rotation}]{${1:x,y}}[${4:gap%l}]{${2:scale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Rigid{}": {
+      "command": "Rigid{}",
+      "snippet": "Rigid{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Rigid[]{}": {
+      "command": "Rigid[]{}",
+      "snippet": "Rigid[${2:rotation}]{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Rigid[]{}{}": {
+      "command": "Rigid[]{}{}",
+      "snippet": "Rigid[${3:rotation}]{${1:x,y}}{${2:scale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CoorOrigin{}": {
+      "command": "CoorOrigin{}",
+      "snippet": "CoorOrigin{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CoorOrigin[]{}": {
+      "command": "CoorOrigin[]{}",
+      "snippet": "CoorOrigin[${2:rotation}]{${1:x,y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CoorOrigin[]{}[][]": {
+      "command": "CoorOrigin[]{}[][]",
+      "snippet": "CoorOrigin[${2:rotation}]{${1:x,y}}[${3:xlabel}][${4:ylabel}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CoorOrigin[]{}[][]{}": {
+      "command": "CoorOrigin[]{}[][]{}",
+      "snippet": "CoorOrigin[${3:rotation}]{${1:x,y}}[${4:xlabel}][${5:ylabel}]{${2:scale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IForceA{}{}{}{}": {
+      "command": "IForceA{}{}{}{}",
+      "snippet": "IForceA{${1:x1,y1}}{${2:x2,y2}}{${3:force-lower}}{${4:force-higher}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IForceA[]{}{}{}{}": {
+      "command": "IForceA[]{}{}{}{}",
+      "snippet": "IForceA[${5:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:force-lower}}{${4:force-higher}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IForceA[]{}{}{}{}{}": {
+      "command": "IForceA[]{}{}{}{}{}",
+      "snippet": "IForceA[${6:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:force-lower}}{${4:force-higher}}{${5:scale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IForceB{}{}{}{}{}": {
+      "command": "IForceB{}{}{}{}{}",
+      "snippet": "IForceB{${1:x1,y1}}{${2:x2,y2}}{${3:moment-lower}}{${4:moment-higher}}{${5:increment}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IForceB[]{}{}{}{}{}": {
+      "command": "IForceB[]{}{}{}{}{}",
+      "snippet": "IForceB[${6:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:moment-lower}}{${4:moment-higher}}{${5:increment}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IForceB[]{}{}{}{}{}{}": {
+      "command": "IForceB[]{}{}{}{}{}{}",
+      "snippet": "IForceB[${7:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:moment-lower}}{${4:moment-higher}}{${5:increment}}{${6:scale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeamDeformP{}{}{}{}": {
+      "command": "BeamDeformP{}{}{}{}",
+      "snippet": "BeamDeformP{${1:x1,y1}}{${2:x2,y2}}{${3:disp-lower}}{${4:disp-higher}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeamDeformP[]{}{}{}{}": {
+      "command": "BeamDeformP[]{}{}{}{}",
+      "snippet": "BeamDeformP[${5:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:disp-lower}}{${4:disp-higher}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeamDeformP[]{}{}{}[]{}[]": {
+      "command": "BeamDeformP[]{}{}{}[]{}[]",
+      "snippet": "BeamDeformP[${5:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:disp-lower}}[${6:rot-lower}]{${4:disp-higher}}[${7:rot-higher}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeamDeformP[]{}{}{}[]{}[]{}": {
+      "command": "BeamDeformP[]{}{}{}[]{}[]{}",
+      "snippet": "BeamDeformP[${6:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:disp-lower}}[${7:rot-lower}]{${4:disp-higher}}[${8:rot-higher}]{${5:scale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeamDeformR{}{}": {
+      "command": "BeamDeformR{}{}",
+      "snippet": "BeamDeformR{${1:x1,y1}}{${2:x2,y2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeamDeformR[]{}{}": {
+      "command": "BeamDeformR[]{}{}",
+      "snippet": "BeamDeformR[${3:color}]{${1:x1,y1}}{${2:x2,y2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeamDeformR[]{}{}[][]": {
+      "command": "BeamDeformR[]{}{}[][]",
+      "snippet": "BeamDeformR[${3:color}]{${1:x1,y1}}{${2:x2,y2}}[${4:rot-lower}][${5:rot-higher}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BeamDeformR[]{}{}[][]{}": {
+      "command": "BeamDeformR[]{}{}[][]{}",
+      "snippet": "BeamDeformR[${4:color}]{${1:x1,y1}}{${2:x2,y2}}[${5:rot-lower}][${6:rot-higher}]{${3:scale}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Angle": {
+      "command": "Angle",
+      "snippet": "Angle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AngleB": {
+      "command": "AngleB",
+      "snippet": "AngleB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FAC": {
+      "command": "FAC",
+      "snippet": "FAC",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Length": {
+      "command": "Length",
+      "snippet": "Length",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LengthB": {
+      "command": "LengthB",
+      "snippet": "LengthB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "absvalue": {
+      "command": "absvalue",
+      "snippet": "absvalue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "axisColor": {
+      "command": "axisColor",
+      "snippet": "axisColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "convention": {
+      "command": "convention",
+      "snippet": "convention",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillColor": {
+      "command": "fillColor",
+      "snippet": "fillColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fillOpacity": {
+      "command": "fillOpacity",
+      "snippet": "fillOpacity",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lineColor": {
+      "command": "lineColor",
+      "snippet": "lineColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lineWidth": {
+      "command": "lineWidth",
+      "snippet": "lineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nodeColor": {
+      "command": "nodeColor",
+      "snippet": "nodeColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rotationColor": {
+      "command": "rotationColor",
+      "snippet": "rotationColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showvalue": {
+      "command": "showvalue",
+      "snippet": "showvalue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": [
+    "fill=",
+    "line=",
+    "node=",
+    "axis=",
+    "rotation=",
+    "convention=",
+    "showvalue=",
+    "absvalue=",
+    "opacity=",
+    "linewidth="
+  ]
+}

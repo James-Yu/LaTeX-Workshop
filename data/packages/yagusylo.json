@@ -1,0 +1,589 @@
+{
+  "includes": [
+    "xifthen",
+    "suffix",
+    "xargs",
+    "xcolor",
+    "colortbl",
+    "pdfcolmk"
+  ],
+  "cmds": {
+    "setyagusylokeys{}": {
+      "command": "setyagusylokeys{}",
+      "snippet": "setyagusylokeys{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "*",
+        "symfam=",
+        "symcolor=",
+        "leadtype=",
+        "symplace=",
+        "sympos=",
+        "boxwidth=",
+        "before=",
+        "after=",
+        "head=",
+        "tail="
+      ],
+      "keyvalindex": 0
+    },
+    "yagding{}": {
+      "command": "yagding{}",
+      "snippet": "yagding{${1:char-num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagding{}[]": {
+      "command": "yagding{}[]",
+      "snippet": "yagding{${1:char-num}}[${2:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagding[]{}": {
+      "command": "yagding[]{}",
+      "snippet": "yagding[${2:symfam}]{${1:char-num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagding[]{}[]": {
+      "command": "yagding[]{}[]",
+      "snippet": "yagding[${2:symfam}]{${1:char-num}}[${3:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defdingname{}{}": {
+      "command": "defdingname{}{}",
+      "snippet": "defdingname{${1:char-num}}{${2:ding-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defdingname{}{}[]": {
+      "command": "defdingname{}{}[]",
+      "snippet": "defdingname{${1:char-num}}{${2:ding-name}}[${3:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defdingname[]{}{}": {
+      "command": "defdingname[]{}{}",
+      "snippet": "defdingname[${3:symfam}]{${1:char-num}}{${2:ding-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defdingname[]{}{}[]": {
+      "command": "defdingname[]{}{}[]",
+      "snippet": "defdingname[${3:symfam}]{${1:char-num}}{${2:ding-name}}[${4:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defdingname[][]{}{}": {
+      "command": "defdingname[][]{}{}",
+      "snippet": "defdingname[${3:symfam}][${4:defext}]{${1:char-num}}{${2:ding-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defdingname[][]{}{}[]": {
+      "command": "defdingname[][]{}{}[]",
+      "snippet": "defdingname[${3:symfam}][${4:defext}]{${1:char-num}}{${2:ding-name}}[${5:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagding*{}": {
+      "command": "yagding*{}",
+      "snippet": "yagding*{${1:ding-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagding+{}{}{}{}": {
+      "command": "yagding+{}{}{}{}",
+      "snippet": "yagding+{${1:family}}{${2:series}}{${3:shape}}{${4:char-num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagding+{}{}{}{}[]": {
+      "command": "yagding+{}{}{}{}[]",
+      "snippet": "yagding+{${1:family}}{${2:series}}{${3:shape}}{${4:char-num}}[${5:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagding+[]{}{}{}{}": {
+      "command": "yagding+[]{}{}{}{}",
+      "snippet": "yagding+[${5:encoding}]{${1:family}}{${2:series}}{${3:shape}}{${4:char-num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagding+[]{}{}{}{}[]": {
+      "command": "yagding+[]{}{}{}{}[]",
+      "snippet": "yagding+[${5:encoding}]{${1:family}}{${2:series}}{${3:shape}}{${4:char-num}}[${6:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defdingname+{}{}{}{}{}": {
+      "command": "defdingname+{}{}{}{}{}",
+      "snippet": "defdingname+{${1:family}}{${2:series}}{${3:shape}}{${4:char-num}}{${5:ding-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defdingname+{}{}{}{}{}[]": {
+      "command": "defdingname+{}{}{}{}{}[]",
+      "snippet": "defdingname+{${1:family}}{${2:series}}{${3:shape}}{${4:char-num}}{${5:ding-name}}[${6:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defdingname+[]{}{}{}{}{}": {
+      "command": "defdingname+[]{}{}{}{}{}",
+      "snippet": "defdingname+[${6:encoding}]{${1:family}}{${2:series}}{${3:shape}}{${4:char-num}}{${5:ding-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defdingname+[]{}{}{}{}{}[]": {
+      "command": "defdingname+[]{}{}{}{}{}[]",
+      "snippet": "defdingname+[${6:encoding}]{${1:family}}{${2:series}}{${3:shape}}{${4:char-num}}{${5:ding-name}}[${7:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defdingname+[][]{}{}{}{}{}": {
+      "command": "defdingname+[][]{}{}{}{}{}",
+      "snippet": "defdingname+[${6:encoding}][${7:defext}]{${1:family}}{${2:series}}{${3:shape}}{${4:char-num}}{${5:ding-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defdingname+[][]{}{}{}{}{}[]": {
+      "command": "defdingname+[][]{}{}{}{}{}[]",
+      "snippet": "defdingname+[${6:encoding}][${7:defext}]{${1:family}}{${2:series}}{${3:shape}}{${4:char-num}}{${5:ding-name}}[${8:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagfill{}": {
+      "command": "yagfill{}",
+      "snippet": "yagfill{${1:char-num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagfill[]{}": {
+      "command": "yagfill[]{}",
+      "snippet": "yagfill[${2:options}]{${1:char-num}}",
+      "option": "",
+      "keyvals": [
+        "symfam=",
+        "symcolor=",
+        "leadtype=",
+        "symplace=",
+        "sympos=",
+        "boxwidth=",
+        "before=",
+        "after=",
+        "head=",
+        "tail="
+      ],
+      "keyvalindex": 0
+    },
+    "yagfill*{}": {
+      "command": "yagfill*{}",
+      "snippet": "yagfill*{${1:ding-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagfill*[]{}": {
+      "command": "yagfill*[]{}",
+      "snippet": "yagfill*[${2:options}]{${1:ding-name}}",
+      "option": "",
+      "keyvals": [
+        "symfam=",
+        "symcolor=",
+        "leadtype=",
+        "symplace=",
+        "sympos=",
+        "boxwidth=",
+        "before=",
+        "after=",
+        "head=",
+        "tail="
+      ],
+      "keyvalindex": 0
+    },
+    "yagfill+{}": {
+      "command": "yagfill+{}",
+      "snippet": "yagfill+{${1:material}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagfill+[]{}": {
+      "command": "yagfill+[]{}",
+      "snippet": "yagfill+[${2:options}]{${1:material}}",
+      "option": "",
+      "keyvals": [
+        "symfam=",
+        "symcolor=",
+        "leadtype=",
+        "symplace=",
+        "sympos=",
+        "boxwidth=",
+        "before=",
+        "after=",
+        "head=",
+        "tail="
+      ],
+      "keyvalindex": 0
+    },
+    "setyagline{}": {
+      "command": "setyagline{}",
+      "snippet": "setyagline{${1:head-value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setyagline{}[]": {
+      "command": "setyagline{}[]",
+      "snippet": "setyagline{${1:head-value}}[${2:tail-value}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagline{}": {
+      "command": "yagline{}",
+      "snippet": "yagline{${1:char-num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagline[]{}": {
+      "command": "yagline[]{}",
+      "snippet": "yagline[${2:options}]{${1:char-num}}",
+      "option": "",
+      "keyvals": [
+        "symfam=",
+        "symcolor=",
+        "leadtype=",
+        "symplace=",
+        "sympos=",
+        "boxwidth=",
+        "before=",
+        "after=",
+        "head=",
+        "tail="
+      ],
+      "keyvalindex": 0
+    },
+    "yagline*{}": {
+      "command": "yagline*{}",
+      "snippet": "yagline*{${1:ding-name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagline*[]{}": {
+      "command": "yagline*[]{}",
+      "snippet": "yagline*[${2:options}]{${1:ding-name}}",
+      "option": "",
+      "keyvals": [
+        "symfam=",
+        "symcolor=",
+        "leadtype=",
+        "symplace=",
+        "sympos=",
+        "boxwidth=",
+        "before=",
+        "after=",
+        "head=",
+        "tail="
+      ],
+      "keyvalindex": 0
+    },
+    "yagline+{}": {
+      "command": "yagline+{}",
+      "snippet": "yagline+{${1:material}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagline+[]{}": {
+      "command": "yagline+[]{}",
+      "snippet": "yagline+[${2:options}]{${1:material}}",
+      "option": "",
+      "keyvals": [
+        "symfam=",
+        "symcolor=",
+        "leadtype=",
+        "symplace=",
+        "sympos=",
+        "boxwidth=",
+        "before=",
+        "after=",
+        "head=",
+        "tail="
+      ],
+      "keyvalindex": 0
+    },
+    "setyagitemize{}": {
+      "command": "setyagitemize{}",
+      "snippet": "setyagitemize{${1:symfam1, number1, color1. symfam2, number2, color2. ...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setyagitemize*{}": {
+      "command": "setyagitemize*{}",
+      "snippet": "setyagitemize*{${1:dingname1. dingname2. ...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newenumpattern{}{}": {
+      "command": "newenumpattern{}{}",
+      "snippet": "newenumpattern{${1:name}}{${2:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "symfam=",
+        "symcolor=",
+        "firstitemnum=",
+        "enumlength=",
+        "enumpattern="
+      ],
+      "keyvalindex": 1
+    },
+    "setyagenumeratekeys{}": {
+      "command": "setyagenumeratekeys{}",
+      "snippet": "setyagenumeratekeys{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "*",
+        "symfam=",
+        "symcolor=",
+        "firstitemnum=",
+        "enumlength=",
+        "enumpattern="
+      ],
+      "keyvalindex": 0
+    },
+    "LaBoite": {
+      "command": "LaBoite",
+      "snippet": "LaBoite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Leaders": {
+      "command": "Leaders",
+      "snippet": "Leaders",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "STOP": {
+      "command": "STOP",
+      "snippet": "STOP",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "docdate": {
+      "command": "docdate",
+      "snippet": "docdate",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "filedate": {
+      "command": "filedate",
+      "snippet": "filedate",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fileinfo": {
+      "command": "fileinfo",
+      "snippet": "fileinfo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fileversion": {
+      "command": "fileversion",
+      "snippet": "fileversion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "motif": {
+      "command": "motif",
+      "snippet": "motif",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "numero": {
+      "command": "numero",
+      "snippet": "numero",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagnumber{}{}{}": {
+      "command": "yagnumber{}{}{}",
+      "snippet": "yagnumber{${1:symfam}}{${2:counter}}{${3:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rowcolors{}{}{}": {
+      "command": "rowcolors{}{}{}",
+      "snippet": "rowcolors{${1:row}}{${2:color}}{${3:color}}",
+      "option": "XcolorOptions=table",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rowcolors[]{}{}{}": {
+      "command": "rowcolors[]{}{}{}",
+      "snippet": "rowcolors[${4:commands}]{${1:row}}{${2:color}}{${3:color}}",
+      "option": "XcolorOptions=table",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rowcolors*{}{}{}": {
+      "command": "rowcolors*{}{}{}",
+      "snippet": "rowcolors*{${1:row}}{${2:color}}{${3:color}}",
+      "option": "XcolorOptions=table",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rowcolors*[]{}{}{}": {
+      "command": "rowcolors*[]{}{}{}",
+      "snippet": "rowcolors*[${4:commands}]{${1:row}}{${2:color}}{${3:color}}",
+      "option": "XcolorOptions=table",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showrowcolors": {
+      "command": "showrowcolors",
+      "snippet": "showrowcolors",
+      "option": "XcolorOptions=table",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hiderowcolors": {
+      "command": "hiderowcolors",
+      "snippet": "hiderowcolors",
+      "option": "XcolorOptions=table",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rownum": {
+      "command": "rownum",
+      "snippet": "rownum",
+      "option": "XcolorOptions=table",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "yagitemize{}": {
+      "name": "yagitemize",
+      "detail": "yagitemize{}",
+      "snippet": "{${1:char-num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagitemize{}[]": {
+      "name": "yagitemize",
+      "detail": "yagitemize{}[]",
+      "snippet": "{${1:char-num}}[${2:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagitemize[]{}": {
+      "name": "yagitemize",
+      "detail": "yagitemize[]{}",
+      "snippet": "[${2:symfam}]{${1:char-num}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagitemize[]{}[]": {
+      "name": "yagitemize",
+      "detail": "yagitemize[]{}[]",
+      "snippet": "[${2:symfam}]{${1:char-num}}[${3:color}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagitemize*": {
+      "name": "yagitemize*",
+      "detail": "yagitemize*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagitemize*[]": {
+      "name": "yagitemize*",
+      "detail": "yagitemize*[]",
+      "snippet": "[${1:ding-name}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagenumerate": {
+      "name": "yagenumerate",
+      "detail": "yagenumerate",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yagenumerate[]": {
+      "name": "yagenumerate",
+      "detail": "yagenumerate[]",
+      "snippet": "[${1:keyvals}]",
+      "option": "",
+      "keyvals": [
+        "symfam=",
+        "symcolor=",
+        "firstitemnum=",
+        "enumlength=",
+        "enumpattern="
+      ],
+      "keyvalindex": 0
+    },
+    "notyagenum": {
+      "name": "notyagenum",
+      "detail": "notyagenum",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "info=",
+    "onerror=",
+    "color",
+    "XcolorOptions={",
+    "configfile"
+  ]
+}

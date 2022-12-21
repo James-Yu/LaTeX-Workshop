@@ -1,9 +1,11 @@
 {
-  "includes": [],
+  "includes": [
+    "scrpage2"
+  ],
   "cmds": {
     "addchap[]{}": {
       "command": "addchap[]{}",
-      "snippet": "addchap[${2:short}]{${1:title}}",
+      "snippet": "addchap[${2:short title}]{${1:title}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -24,7 +26,7 @@
     },
     "addpart[]{}": {
       "command": "addpart[]{}",
-      "snippet": "addpart[${2:short}]{${1:title}}",
+      "snippet": "addpart[${2:short title}]{${1:title}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -45,7 +47,7 @@
     },
     "addsec[]{}": {
       "command": "addsec[]{}",
-      "snippet": "addsec[${2:short}]{${1:title}}",
+      "snippet": "addsec[${2:short title}]{${1:title}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -204,9 +206,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "maketitle{}": {
-      "command": "maketitle{}",
-      "snippet": "maketitle{${1:pagenumber}}",
+    "maketitle[]": {
+      "command": "maketitle[]",
+      "snippet": "maketitle[${1:pagenumber}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -393,6 +395,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "subtitle{}": {
+      "command": "subtitle{}",
+      "snippet": "subtitle{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "textsubscript{}": {
       "command": "textsubscript{}",
       "snippet": "textsubscript{${1:text}}",
@@ -508,27 +517,6 @@
     "chapterpagestyle": {
       "command": "chapterpagestyle",
       "snippet": "chapterpagestyle",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cleardoubleemptypage": {
-      "command": "cleardoubleemptypage",
-      "snippet": "cleardoubleemptypage",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cleardoubleplainpage": {
-      "command": "cleardoubleplainpage",
-      "snippet": "cleardoubleplainpage",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cleardoublestandardpage": {
-      "command": "cleardoublestandardpage",
-      "snippet": "cleardoublestandardpage",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -704,6 +692,132 @@
     "KOMAScript{}": {
       "command": "KOMAScript{}",
       "snippet": "KOMAScript{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoublepageusingstyle{}": {
+      "command": "cleardoublepageusingstyle{}",
+      "snippet": "cleardoublepageusingstyle{${1:pagestyle%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoubleemptypage": {
+      "command": "cleardoubleemptypage",
+      "snippet": "cleardoubleemptypage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoubleplainpage": {
+      "command": "cleardoubleplainpage",
+      "snippet": "cleardoubleplainpage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoublestandardpage": {
+      "command": "cleardoublestandardpage",
+      "snippet": "cleardoublestandardpage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoubleoddusingstyle{}": {
+      "command": "cleardoubleoddusingstyle{}",
+      "snippet": "cleardoubleoddusingstyle{${1:pagestyle%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoubleoddemptypage": {
+      "command": "cleardoubleoddemptypage",
+      "snippet": "cleardoubleoddemptypage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoubleoddpage": {
+      "command": "cleardoubleoddpage",
+      "snippet": "cleardoubleoddpage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoubleoddplainpage": {
+      "command": "cleardoubleoddplainpage",
+      "snippet": "cleardoubleoddplainpage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoubleoddstandardpage": {
+      "command": "cleardoubleoddstandardpage",
+      "snippet": "cleardoubleoddstandardpage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoubleevenusingstyle{}": {
+      "command": "cleardoubleevenusingstyle{}",
+      "snippet": "cleardoubleevenusingstyle{${1:pagestyle%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoubleevenemptypage": {
+      "command": "cleardoubleevenemptypage",
+      "snippet": "cleardoubleevenemptypage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoubleevenpage": {
+      "command": "cleardoubleevenpage",
+      "snippet": "cleardoubleevenpage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoubleevenplainpage": {
+      "command": "cleardoubleevenplainpage",
+      "snippet": "cleardoubleevenplainpage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cleardoubleevenstandardpage": {
+      "command": "cleardoubleevenstandardpage",
+      "snippet": "cleardoubleevenstandardpage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defpagestyle{}{}{}": {
+      "command": "defpagestyle{}{}{}",
+      "snippet": "defpagestyle{${1:pagestyle}}{${2:header}}{${3:footer}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newpagestyle{}{}{}": {
+      "command": "newpagestyle{}{}{}",
+      "snippet": "newpagestyle{${1:pagestyle}}{${2:header}}{${3:footer}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewpagestyle{}{}{}": {
+      "command": "renewpagestyle{}{}{}",
+      "snippet": "renewpagestyle{${1:pagestyle}}{${2:header}}{${3:footer}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "providepagestyle{}{}{}": {
+      "command": "providepagestyle{}{}{}",
+      "snippet": "providepagestyle{${1:pagestyle}}{${2:header}}{${3:footer}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1

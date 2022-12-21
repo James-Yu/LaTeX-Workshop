@@ -1,0 +1,708 @@
+{
+  "includes": [
+    "tikz",
+    "tikzlibraryangles",
+    "tikzlibrarybackgrounds",
+    "tikzlibrarycalc",
+    "tikzlibrarydecorations",
+    "tikzlibrarydecorations.markings",
+    "tikzlibrarydecorations.pathreplacing",
+    "tikzlibrarydecorations.shapes",
+    "tikzlibrarydecorations.text",
+    "tikzlibrarydecorations.pathmorphing",
+    "tikzlibraryintersections",
+    "tikzlibrarypatterns",
+    "tikzlibraryplotmarks",
+    "tikzlibrarypositioning",
+    "tikzlibraryquotes",
+    "tikzlibraryshapes.misc",
+    "tikzlibraryshadows",
+    "tikzlibrarythrough",
+    "numprint",
+    "xfp",
+    "fp"
+  ],
+  "cmds": {
+    "tkzInit[]": {
+      "command": "tkzInit[]",
+      "snippet": "tkzInit[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzDrawX[]": {
+      "command": "tkzDrawX[]",
+      "snippet": "tkzDrawX[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzLabelX[]": {
+      "command": "tkzLabelX[]",
+      "snippet": "tkzLabelX[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzDrawY[]": {
+      "command": "tkzDrawY[]",
+      "snippet": "tkzDrawY[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzLabelY[]": {
+      "command": "tkzLabelY[]",
+      "snippet": "tkzLabelY[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzAxeX[]": {
+      "command": "tkzAxeX[]",
+      "snippet": "tkzAxeX[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzAxeY[]": {
+      "command": "tkzAxeY[]",
+      "snippet": "tkzAxeY[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzAxeXY[]": {
+      "command": "tkzAxeXY[]",
+      "snippet": "tkzAxeXY[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzDrawXY[]": {
+      "command": "tkzDrawXY[]",
+      "snippet": "tkzDrawXY[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzLabelXY[]": {
+      "command": "tkzLabelXY[]",
+      "snippet": "tkzLabelXY[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSetUpAxis[]": {
+      "command": "tkzSetUpAxis[]",
+      "snippet": "tkzSetUpAxis[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzGrid[]": {
+      "command": "tkzGrid[]",
+      "snippet": "tkzGrid[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzDefPoints{}": {
+      "command": "tkzDefPoints{}",
+      "snippet": "tkzDefPoints{${1:x1/y1/name1,x2/y2/name2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzDefPoints[]{}": {
+      "command": "tkzDefPoints[]{}",
+      "snippet": "tkzDefPoints[${2:options}]{${1:x1/y1/name1,x2/y2/name2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSetUpPoint[]": {
+      "command": "tkzSetUpPoint[]",
+      "snippet": "tkzSetUpPoint[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzClip": {
+      "command": "tkzClip",
+      "snippet": "tkzClip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzClip[]": {
+      "command": "tkzClip[]",
+      "snippet": "tkzClip[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzShowBB[]": {
+      "command": "tkzShowBB[]",
+      "snippet": "tkzShowBB[${1:TikZ options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzClipBB": {
+      "command": "tkzClipBB",
+      "snippet": "tkzClipBB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSaveBB": {
+      "command": "tkzSaveBB",
+      "snippet": "tkzSaveBB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzRestoreBB": {
+      "command": "tkzRestoreBB",
+      "snippet": "tkzRestoreBB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzRep[]": {
+      "command": "tkzRep[]",
+      "snippet": "tkzRep[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzHLine{}": {
+      "command": "tkzHLine{}",
+      "snippet": "tkzHLine{${1:decimal number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzHLine[]{}": {
+      "command": "tkzHLine[]{}",
+      "snippet": "tkzHLine[${2:options}]{${1:decimal number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzHLines{}": {
+      "command": "tkzHLines{}",
+      "snippet": "tkzHLines{${1:list of decimal numbers}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzHLines[]{}": {
+      "command": "tkzHLines[]{}",
+      "snippet": "tkzHLines[${2:options}]{${1:list of decimal numbers}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzVLine{}": {
+      "command": "tkzVLine{}",
+      "snippet": "tkzVLine{${1:decimal number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzVLine[]{}": {
+      "command": "tkzVLine[]{}",
+      "snippet": "tkzVLine[${2:options}]{${1:decimal number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzVLines{}": {
+      "command": "tkzVLines{}",
+      "snippet": "tkzVLines{${1:list of decimal numbers}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzVLines[]{}": {
+      "command": "tkzVLines[]{}",
+      "snippet": "tkzVLines[${2:options}]{${1:list of decimal numbers}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzHTick{}": {
+      "command": "tkzHTick{}",
+      "snippet": "tkzHTick{${1:decimal number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzHTick[]{}": {
+      "command": "tkzHTick[]{}",
+      "snippet": "tkzHTick[${2:options}]{${1:decimal number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzHTicks{}": {
+      "command": "tkzHTicks{}",
+      "snippet": "tkzHTicks{${1:list of decimal numbers}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzHTicks[]{}": {
+      "command": "tkzHTicks[]{}",
+      "snippet": "tkzHTicks[${2:options}]{${1:list of decimal numbers}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzVTick{}": {
+      "command": "tkzVTick{}",
+      "snippet": "tkzVTick{${1:decimal number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzVTick[]{}": {
+      "command": "tkzVTick[]{}",
+      "snippet": "tkzVTick[${2:options}]{${1:decimal number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzVTicks{}": {
+      "command": "tkzVTicks{}",
+      "snippet": "tkzVTicks{${1:list of decimal numbers}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzVTicks[]{}": {
+      "command": "tkzVTicks[]{}",
+      "snippet": "tkzVTicks[${2:options}]{${1:list of decimal numbers}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzDefSetOfPoints{}": {
+      "command": "tkzDefSetOfPoints{}",
+      "snippet": "tkzDefSetOfPoints{${1:x1/y1,x2/y2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzDefSetOfPoints[]{}": {
+      "command": "tkzDefSetOfPoints[]{}",
+      "snippet": "tkzDefSetOfPoints[${2:options}]{${1:x1/y1,x2/y2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzDrawSetOfPoints[]": {
+      "command": "tkzDrawSetOfPoints[]",
+      "snippet": "tkzDrawSetOfPoints[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzJoinSetOfPoints[]": {
+      "command": "tkzJoinSetOfPoints[]",
+      "snippet": "tkzJoinSetOfPoints[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSetUpMark[]": {
+      "command": "tkzSetUpMark[]",
+      "snippet": "tkzSetUpMark[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzLegend{}": {
+      "command": "tkzLegend{}",
+      "snippet": "tkzLegend{${1:style/size/color/text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzLegend[]{}": {
+      "command": "tkzLegend[]{}",
+      "snippet": "tkzLegend[${2:options}]{${1:style/size/color/text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzGetPoint{}": {
+      "command": "tkzGetPoint{}",
+      "snippet": "tkzGetPoint{${1:point}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzGetFirstPoint{}": {
+      "command": "tkzGetFirstPoint{}",
+      "snippet": "tkzGetFirstPoint{${1:point}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzGetSecondPoint{}": {
+      "command": "tkzGetSecondPoint{}",
+      "snippet": "tkzGetSecondPoint{${1:point}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzmathstyle": {
+      "command": "tkzmathstyle",
+      "snippet": "tkzmathstyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fileversion": {
+      "command": "fileversion",
+      "snippet": "fileversion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "filedate": {
+      "command": "filedate",
+      "snippet": "filedate",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzInvPhi": {
+      "command": "tkzInvPhi",
+      "snippet": "tkzInvPhi",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzPhi": {
+      "command": "tkzPhi",
+      "snippet": "tkzPhi",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSqrtPhi": {
+      "command": "tkzSqrtPhi",
+      "snippet": "tkzSqrtPhi",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSqrTwo": {
+      "command": "tkzSqrTwo",
+      "snippet": "tkzSqrTwo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSqrThree": {
+      "command": "tkzSqrThree",
+      "snippet": "tkzSqrThree",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSqrFive": {
+      "command": "tkzSqrFive",
+      "snippet": "tkzSqrFive",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSqrTwobyTwo": {
+      "command": "tkzSqrTwobyTwo",
+      "snippet": "tkzSqrTwobyTwo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzPi": {
+      "command": "tkzPi",
+      "snippet": "tkzPi",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzEuler": {
+      "command": "tkzEuler",
+      "snippet": "tkzEuler",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSetUpStyle[]{}": {
+      "command": "tkzSetUpStyle[]{}",
+      "snippet": "tkzSetUpStyle[${2:TikZ options}]{${1:style name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "usetkzobj{}": {
+      "command": "usetkzobj{}",
+      "snippet": "usetkzobj{${1:list of objects}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "usetkztool{}": {
+      "command": "usetkztool{}",
+      "snippet": "usetkztool{${1:list of tools}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzPrintFrac{}{}": {
+      "command": "tkzPrintFrac{}{}",
+      "snippet": "tkzPrintFrac{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzPrintFracWithPi{}{}": {
+      "command": "tkzPrintFracWithPi{}{}",
+      "snippet": "tkzPrintFracWithPi{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzprintfrac": {
+      "command": "tkzprintfrac",
+      "snippet": "tkzprintfrac",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzfactors{}": {
+      "command": "tkzfactors{}",
+      "snippet": "tkzfactors{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzReducFrac{}{}": {
+      "command": "tkzReducFrac{}{}",
+      "snippet": "tkzReducFrac{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzMathFirstResult": {
+      "command": "tkzMathFirstResult",
+      "snippet": "tkzMathFirstResult",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzMathSecondResult": {
+      "command": "tkzMathSecondResult",
+      "snippet": "tkzMathSecondResult",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extractxy{}": {
+      "command": "extractxy{}",
+      "snippet": "extractxy{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftkznodedefined{}{}{}": {
+      "command": "iftkznodedefined{}{}{}",
+      "snippet": "iftkznodedefined{${1:node}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzActivOff": {
+      "command": "tkzActivOff",
+      "snippet": "tkzActivOff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzActivOn": {
+      "command": "tkzActivOn",
+      "snippet": "tkzActivOn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzTwoPtCode": {
+      "command": "tkzTwoPtCode",
+      "snippet": "tkzTwoPtCode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzPtExCode": {
+      "command": "tkzPtExCode",
+      "snippet": "tkzPtExCode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzPtVirCode": {
+      "command": "tkzPtVirCode",
+      "snippet": "tkzPtVirCode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CountToken{}": {
+      "command": "CountToken{}",
+      "snippet": "CountToken{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SubStringConditional{}{}": {
+      "command": "SubStringConditional{}{}",
+      "snippet": "SubStringConditional{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RecursionMacroEnd{}{}{}": {
+      "command": "RecursionMacroEnd{}{}{}",
+      "snippet": "RecursionMacroEnd{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ReplaceSubStrings{}{}{}": {
+      "command": "ReplaceSubStrings{}{}{}",
+      "snippet": "ReplaceSubStrings{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DisabledNumprint": {
+      "command": "DisabledNumprint",
+      "snippet": "DisabledNumprint",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnabledNumprint": {
+      "command": "EnabledNumprint",
+      "snippet": "EnabledNumprint",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzGetResult{}": {
+      "command": "tkzGetResult{}",
+      "snippet": "tkzGetResult{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzHelpGrid": {
+      "command": "tkzHelpGrid",
+      "snippet": "tkzHelpGrid",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setupcolorkeys{}": {
+      "command": "setupcolorkeys{}",
+      "snippet": "setupcolorkeys{${1:color keys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSetUpColors[]": {
+      "command": "tkzSetUpColors[]",
+      "snippet": "tkzSetUpColors[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSetUpAllColors[]": {
+      "command": "tkzSetUpAllColors[]",
+      "snippet": "tkzSetUpAllColors[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzAddName[]{}": {
+      "command": "tkzAddName[]{}",
+      "snippet": "tkzAddName[${2:TikZ options}]{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifinteger": {
+      "command": "ifinteger",
+      "snippet": "ifinteger",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "integertrue": {
+      "command": "integertrue",
+      "snippet": "integertrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "integerfalse": {
+      "command": "integerfalse",
+      "snippet": "integerfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "removedot": {
+      "command": "removedot",
+      "snippet": "removedot",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzgetinteger{}": {
+      "command": "tkzgetinteger{}",
+      "snippet": "tkzgetinteger{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSetUpGrid[]": {
+      "command": "tkzSetUpGrid[]",
+      "snippet": "tkzSetUpGrid[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzGetPoints{}{}": {
+      "command": "tkzGetPoints{}{}",
+      "snippet": "tkzGetPoints{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tkzSetUpLabel[]": {
+      "command": "tkzSetUpLabel[]",
+      "snippet": "tkzSetUpLabel[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

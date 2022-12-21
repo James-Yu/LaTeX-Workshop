@@ -1,0 +1,662 @@
+{
+  "includes": [
+    "tikz",
+    "graphicx",
+    "xcolor",
+    "ifsym",
+    "cookingsymbols",
+    "wrapfig",
+    "iflang",
+    "ifthen",
+    "xkeyval",
+    "lettrine",
+    "fancyhdr",
+    "units",
+    "eso-pic",
+    "picture",
+    "tabulary",
+    "framed",
+    "emerald"
+  ],
+  "cmds": {
+    "graph{}": {
+      "command": "graph{}",
+      "snippet": "graph{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "small=",
+        "smallpicturewidth=",
+        "bigpicturewidth=",
+        "big="
+      ],
+      "keyvalindex": 0
+    },
+    "ingredients{}": {
+      "command": "ingredients{}",
+      "snippet": "ingredients{${1:ingredients%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ingredients[]{}": {
+      "command": "ingredients[]{}",
+      "snippet": "ingredients[${2:lines}]{${1:ingredients%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "preparation{}": {
+      "command": "preparation{}",
+      "snippet": "preparation{${1:steps%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "step": {
+      "command": "step",
+      "snippet": "step",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "introduction{}": {
+      "command": "introduction{}",
+      "snippet": "introduction{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "suggestion{}": {
+      "command": "suggestion{}",
+      "snippet": "suggestion{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "suggestion[]{}": {
+      "command": "suggestion[]{}",
+      "snippet": "suggestion[${2:headline%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "portion{}": {
+      "command": "portion{}",
+      "snippet": "portion{${1:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "portion[]{}": {
+      "command": "portion[]{}",
+      "snippet": "portion[${2:unit}]{${1:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hint{}": {
+      "command": "hint{}",
+      "snippet": "hint{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bakingtemperature{}": {
+      "command": "bakingtemperature{}",
+      "snippet": "bakingtemperature{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "fanoven=",
+        "topbottomheat=",
+        "topheat=",
+        "bottomheat=",
+        "gasstove="
+      ],
+      "keyvalindex": 0
+    },
+    "setRecipeColors{}": {
+      "command": "setRecipeColors{}",
+      "snippet": "setRecipeColors{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "recipename=",
+        "intro=",
+        "ing=",
+        "inghead=",
+        "prep=",
+        "prephead=",
+        "suggestion=",
+        "suggestionhead=",
+        "separationgraph=",
+        "hint=",
+        "hinthead=",
+        "hintline=",
+        "numeration="
+      ],
+      "keyvalindex": 0
+    },
+    "setRecipeLengths{}": {
+      "command": "setRecipeLengths{}",
+      "snippet": "setRecipeLengths{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "pictureheight=",
+        "bigpicturewidth=",
+        "smallpicturewidth=",
+        "introductionwidth=",
+        "preparationwidth=",
+        "ingredientswidth="
+      ],
+      "keyvalindex": 0
+    },
+    "setRecipeSizes{}": {
+      "command": "setRecipeSizes{}",
+      "snippet": "setRecipeSizes{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "recipename=",
+        "intro=",
+        "ing=",
+        "inghead=",
+        "prep=",
+        "prephead=",
+        "suggestion=",
+        "hint=",
+        "hinthead="
+      ],
+      "keyvalindex": 0
+    },
+    "setRecipenameFont{}{}{}{}": {
+      "command": "setRecipenameFont{}{}{}{}",
+      "snippet": "setRecipenameFont{${1:family}}{${2:encoding}}{${3:series}}{${4:shape}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setHeadlines{}": {
+      "command": "setHeadlines{}",
+      "snippet": "setHeadlines{${1:keyvals}}",
+      "option": "",
+      "keyvals": [
+        "inghead=",
+        "prephead=",
+        "hinthead=",
+        "continuationhead=",
+        "continuationfoot=",
+        "preparationtime=",
+        "bakingtime=",
+        "bakingtemperature=",
+        "portion=",
+        "portionvalue=",
+        "calory=",
+        "source="
+      ],
+      "keyvalindex": 0
+    },
+    "setBackgroundPicture{}": {
+      "command": "setBackgroundPicture{}",
+      "snippet": "setBackgroundPicture{${1:imagefile}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setBackgroundPicture[]{}": {
+      "command": "setBackgroundPicture[]{}",
+      "snippet": "setBackgroundPicture[${2:options}]{${1:imagefile}}",
+      "option": "",
+      "keyvals": [
+        "width=",
+        "height=",
+        "x=",
+        "y=",
+        "orientation="
+      ],
+      "keyvalindex": 0
+    },
+    "postingredients{}": {
+      "command": "postingredients{}",
+      "snippet": "postingredients{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "postpreparation{}": {
+      "command": "postpreparation{}",
+      "snippet": "postpreparation{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pregraph{}": {
+      "command": "pregraph{}",
+      "snippet": "pregraph{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "preingredients{}": {
+      "command": "preingredients{}",
+      "snippet": "preingredients{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "prepreparation{}": {
+      "command": "prepreparation{}",
+      "snippet": "prepreparation{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "prerecipeoverview{}": {
+      "command": "prerecipeoverview{}",
+      "snippet": "prerecipeoverview{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pretitle{}": {
+      "command": "pretitle{}",
+      "snippet": "pretitle{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "recipesection{}": {
+      "command": "recipesection{}",
+      "snippet": "recipesection{${1:title}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "recipesection[]{}": {
+      "command": "recipesection[]{}",
+      "snippet": "recipesection[${2:short title}]{${1:title}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thestep": {
+      "command": "thestep",
+      "snippet": "thestep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifclkfamily": {
+      "command": "ifclkfamily",
+      "snippet": "ifclkfamily",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textifclk{}": {
+      "command": "textifclk{}",
+      "snippet": "textifclk{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showclock{}{}": {
+      "command": "showclock{}{}",
+      "snippet": "showclock{${1:hour}}{${2:minute}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Taschenuhr": {
+      "command": "Taschenuhr",
+      "snippet": "Taschenuhr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "VarTaschenuhr": {
+      "command": "VarTaschenuhr",
+      "snippet": "VarTaschenuhr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "StopWatchStart": {
+      "command": "StopWatchStart",
+      "snippet": "StopWatchStart",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "StopWatchEnd": {
+      "command": "StopWatchEnd",
+      "snippet": "StopWatchEnd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Interval": {
+      "command": "Interval",
+      "snippet": "Interval",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Wecker": {
+      "command": "Wecker",
+      "snippet": "Wecker",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "VarClock": {
+      "command": "VarClock",
+      "snippet": "VarClock",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Letter": {
+      "command": "Letter",
+      "snippet": "Letter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Telephone": {
+      "command": "Telephone",
+      "snippet": "Telephone",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SectioningDiamond": {
+      "command": "SectioningDiamond",
+      "snippet": "SectioningDiamond",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FilledSectioningDiamond": {
+      "command": "FilledSectioningDiamond",
+      "snippet": "FilledSectioningDiamond",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PaperPortrait": {
+      "command": "PaperPortrait",
+      "snippet": "PaperPortrait",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PaperLandscape": {
+      "command": "PaperLandscape",
+      "snippet": "PaperLandscape",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Cube{}": {
+      "command": "Cube{}",
+      "snippet": "Cube{${1:integer}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Irritant": {
+      "command": "Irritant",
+      "snippet": "Irritant",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Fire": {
+      "command": "Fire",
+      "snippet": "Fire",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Radiation": {
+      "command": "Radiation",
+      "snippet": "Radiation",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "StrokeOne": {
+      "command": "StrokeOne",
+      "snippet": "StrokeOne",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "StrokeTwo": {
+      "command": "StrokeTwo",
+      "snippet": "StrokeTwo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "StrokeThree": {
+      "command": "StrokeThree",
+      "snippet": "StrokeThree",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "StrokeFour": {
+      "command": "StrokeFour",
+      "snippet": "StrokeFour",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "StrokeFive": {
+      "command": "StrokeFive",
+      "snippet": "StrokeFive",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textweathersymbol{}": {
+      "command": "textweathersymbol{}",
+      "snippet": "textweathersymbol{${1:slot}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Sun": {
+      "command": "Sun",
+      "snippet": "Sun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "☉",
+      "documentation": "SUN"
+    },
+    "HalfSun": {
+      "command": "HalfSun",
+      "snippet": "HalfSun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoSun": {
+      "command": "NoSun",
+      "snippet": "NoSun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Fog": {
+      "command": "Fog",
+      "snippet": "Fog",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ThinFog": {
+      "command": "ThinFog",
+      "snippet": "ThinFog",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Rain": {
+      "command": "Rain",
+      "snippet": "Rain",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "WeakRain": {
+      "command": "WeakRain",
+      "snippet": "WeakRain",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hail": {
+      "command": "Hail",
+      "snippet": "Hail",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Sleet": {
+      "command": "Sleet",
+      "snippet": "Sleet",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Snow": {
+      "command": "Snow",
+      "snippet": "Snow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Lightning": {
+      "command": "Lightning",
+      "snippet": "Lightning",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Cloud": {
+      "command": "Cloud",
+      "snippet": "Cloud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RainCloud": {
+      "command": "RainCloud",
+      "snippet": "RainCloud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "WeakRainCloud": {
+      "command": "WeakRainCloud",
+      "snippet": "WeakRainCloud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SunCloud": {
+      "command": "SunCloud",
+      "snippet": "SunCloud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SnowCloud": {
+      "command": "SnowCloud",
+      "snippet": "SnowCloud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FilledCloud": {
+      "command": "FilledCloud",
+      "snippet": "FilledCloud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FilledRainCloud": {
+      "command": "FilledRainCloud",
+      "snippet": "FilledRainCloud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FilledWeakRainCloud": {
+      "command": "FilledWeakRainCloud",
+      "snippet": "FilledWeakRainCloud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FilledSunCloud": {
+      "command": "FilledSunCloud",
+      "snippet": "FilledSunCloud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FilledSnowCloud": {
+      "command": "FilledSnowCloud",
+      "snippet": "FilledSnowCloud",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "wind{}{}{}": {
+      "command": "wind{}{}{}",
+      "snippet": "wind{${1:integer}}{${2:angle}}{${3:speed}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Thermo{}": {
+      "command": "Thermo{}",
+      "snippet": "Thermo{${1:integer}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "recipe{}": {
+      "name": "recipe",
+      "detail": "recipe{}",
+      "snippet": "{${1:name%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "recipe[]{}": {
+      "name": "recipe",
+      "detail": "recipe[]{}",
+      "snippet": "[${2:options}]{${1:name%text}}",
+      "option": "",
+      "keyvals": [
+        "preparationtime={",
+        "bakingtime={",
+        "bakingtemperature={",
+        "portion={",
+        "calory={",
+        "source={"
+      ],
+      "keyvalindex": 0
+    }
+  },
+  "options": [
+    "handwritten",
+    "nowarnings",
+    "myconfig"
+  ]
+}

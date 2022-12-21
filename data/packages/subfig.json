@@ -1,23 +1,72 @@
 {
-  "includes": [],
+  "includes": [
+    "keyval",
+    "caption",
+    "ragged2e",
+    "ragged2e",
+    "ragged2e",
+    "ragged2e"
+  ],
   "cmds": {
-    "captionsetup{}": {
-      "command": "captionsetup{}",
-      "snippet": "captionsetup{${1:kv-list}}",
+    "subfigure{}": {
+      "command": "subfigure{}",
+      "snippet": "subfigure{${1:body%text}}",
+      "option": "config=altsf",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subfigure[]{}": {
+      "command": "subfigure[]{}",
+      "snippet": "subfigure[${2:subcaption%text}]{${1:body%text}}",
+      "option": "config=altsf",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subfigure[][]{}": {
+      "command": "subfigure[][]{}",
+      "snippet": "subfigure[${2:listentry%text}][${3:subcaption%text}]{${1:body%text}}",
+      "option": "config=altsf",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subtable{}": {
+      "command": "subtable{}",
+      "snippet": "subtable{${1:body%text}}",
+      "option": "config=altsf",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subtable[]{}": {
+      "command": "subtable[]{}",
+      "snippet": "subtable[${2:subcaption%text}]{${1:body%text}}",
+      "option": "config=altsf",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subtable[][]{}": {
+      "command": "subtable[][]{}",
+      "snippet": "subtable[${2:listentry%text}][${3:subcaption%text}]{${1:body%text}}",
+      "option": "config=altsf",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Subref{}": {
+      "command": "Subref{}",
+      "snippet": "Subref{${1:label}}",
+      "option": "config=altsf",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newsubfloat{}": {
+      "command": "newsubfloat{}",
+      "snippet": "newsubfloat{${1:float name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "captionsetup[]{}": {
-      "command": "captionsetup[]{}",
-      "snippet": "captionsetup[${2:variable}]{${1:kv-list}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ContinuedFloat": {
-      "command": "ContinuedFloat",
-      "snippet": "ContinuedFloat",
+    "newsubfloat[]{}": {
+      "command": "newsubfloat[]{}",
+      "snippet": "newsubfloat[${2:kv-list}]{${1:float name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -29,44 +78,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "listsubcaptions": {
-      "command": "listsubcaptions",
-      "snippet": "listsubcaptions",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "newsubfloat{}": {
-      "command": "newsubfloat{}",
-      "snippet": "newsubfloat{${1:floatname}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "newsubfloat[]{}": {
-      "command": "newsubfloat[]{}",
-      "snippet": "newsubfloat[${2:kv-list}]{${1:floatname}}",
+    "DeclareSubrefFormat{}{}": {
+      "command": "DeclareSubrefFormat{}{}",
+      "snippet": "DeclareSubrefFormat{${1:keyword}}{${2:code}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "subfloat{}": {
       "command": "subfloat{}",
-      "snippet": "subfloat{${1:body}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "subfloat[][]{}": {
-      "command": "subfloat[][]{}",
-      "snippet": "subfloat[${2:listentry}][${3:subcaption}]{${1:body}}",
+      "snippet": "subfloat{${1:body%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "subfloat[]{}": {
       "command": "subfloat[]{}",
-      "snippet": "subfloat[${2:subcaption}]{${1:body}}",
+      "snippet": "subfloat[${2:subcaption%text}]{${1:body%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subfloat[][]{}": {
+      "command": "subfloat[][]{}",
+      "snippet": "subfloat[${2:listentry%text}][${3:subcaption%text}]{${1:body%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -84,8 +119,122 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "listsubcaptions": {
+      "command": "listsubcaptions",
+      "snippet": "listsubcaptions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thesubfigure": {
+      "command": "thesubfigure",
+      "snippet": "thesubfigure",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thesubtable": {
+      "command": "thesubtable",
+      "snippet": "thesubtable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subfigurename": {
+      "command": "subfigurename",
+      "snippet": "subfigurename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subtablename": {
+      "command": "subtablename",
+      "snippet": "subtablename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theKVtest": {
+      "command": "theKVtest",
+      "snippet": "theKVtest",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifhyperrefloaded": {
+      "command": "ifhyperrefloaded",
+      "snippet": "ifhyperrefloaded",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hyperrefloadedtrue": {
+      "command": "hyperrefloadedtrue",
+      "snippet": "hyperrefloadedtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hyperrefloadedfalse": {
+      "command": "hyperrefloadedfalse",
+      "snippet": "hyperrefloadedfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifmaincaptiontop": {
+      "command": "ifmaincaptiontop",
+      "snippet": "ifmaincaptiontop",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "maincaptiontoptrue": {
+      "command": "maincaptiontoptrue",
+      "snippet": "maincaptiontoptrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "maincaptiontopfalse": {
+      "command": "maincaptiontopfalse",
+      "snippet": "maincaptiontopfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "caption",
+    "config=",
+    "font=",
+    "labelfont=",
+    "textfont=",
+    "style=",
+    "singlelinecheck",
+    "format=",
+    "indention=",
+    "hangindent=",
+    "width=",
+    "margin=",
+    "parskip=",
+    "justification=",
+    "labelformat=",
+    "aboveskip=",
+    "belowskip=",
+    "labelsep=",
+    "position=",
+    "lofdepth=",
+    "lotdepth=",
+    "listofformat=",
+    "subrefformat=",
+    "listofindent=",
+    "listofnumwidth=",
+    "farskip=",
+    "captionskip=",
+    "topadjust=",
+    "nearskip="
+  ]
 }

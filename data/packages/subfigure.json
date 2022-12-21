@@ -1,93 +1,44 @@
 {
   "includes": [],
   "cmds": {
-    "Subref{}": {
-      "command": "Subref{}",
-      "snippet": "Subref{${1:label}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "listsubcaptions": {
-      "command": "listsubcaptions",
-      "snippet": "listsubcaptions",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "subcapfont": {
-      "command": "subcapfont",
-      "snippet": "subcapfont",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "subcaplabelfont": {
-      "command": "subcaplabelfont",
-      "snippet": "subcaplabelfont",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "subcapsize": {
-      "command": "subcapsize",
-      "snippet": "subcapsize",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "subfigure[][]{}": {
-      "command": "subfigure[][]{}",
-      "snippet": "subfigure[${2:listentry}][${3:caption}]{${1:file}}",
+    "subfigure{}": {
+      "command": "subfigure{}",
+      "snippet": "subfigure{${1:figure%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "subfigure[]{}": {
       "command": "subfigure[]{}",
-      "snippet": "subfigure[${2:caption}]{${1:file}}",
+      "snippet": "subfigure[${2:caption%text}]{${1:figure%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "subfigure{}": {
-      "command": "subfigure{}",
-      "snippet": "subfigure{${1:file}}",
+    "subfigure[][]{}": {
+      "command": "subfigure[][]{}",
+      "snippet": "subfigure[${2:listentry%text}][${3:caption%text}]{${1:figure%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "subref{}": {
-      "command": "subref{}",
-      "snippet": "subref{${1:label}}",
+    "subtable{}": {
+      "command": "subtable{}",
+      "snippet": "subtable{${1:figure%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "theHsubfigure": {
-      "command": "theHsubfigure",
-      "snippet": "theHsubfigure",
+    "subtable[]{}": {
+      "command": "subtable[]{}",
+      "snippet": "subtable[${2:caption%text}]{${1:figure%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "theHsubtable": {
-      "command": "theHsubtable",
-      "snippet": "theHsubtable",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "thelofdepth": {
-      "command": "thelofdepth",
-      "snippet": "thelofdepth",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "thelotdepth": {
-      "command": "thelotdepth",
-      "snippet": "thelotdepth",
+    "subtable[][]{}": {
+      "command": "subtable[][]{}",
+      "snippet": "subtable[${2:listentry%text}][${3:caption%text}]{${1:figure%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -102,6 +53,20 @@
     "thesubtable": {
       "command": "thesubtable",
       "snippet": "thesubtable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHsubfigure": {
+      "command": "theHsubfigure",
+      "snippet": "theHsubfigure",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHsubtable": {
+      "command": "theHsubtable",
+      "snippet": "theHsubtable",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -147,8 +112,324 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "subref{}": {
+      "command": "subref{}",
+      "snippet": "subref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Subref{}": {
+      "command": "Subref{}",
+      "snippet": "Subref{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listsubcaptions": {
+      "command": "listsubcaptions",
+      "snippet": "listsubcaptions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifsubfiguretopcap": {
+      "command": "ifsubfiguretopcap",
+      "snippet": "ifsubfiguretopcap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subfiguretopcaptrue": {
+      "command": "subfiguretopcaptrue",
+      "snippet": "subfiguretopcaptrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subfiguretopcapfalse": {
+      "command": "subfiguretopcapfalse",
+      "snippet": "subfiguretopcapfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifsubtabletopcap": {
+      "command": "ifsubtabletopcap",
+      "snippet": "ifsubtabletopcap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subtabletopcaptrue": {
+      "command": "subtabletopcaptrue",
+      "snippet": "subtabletopcaptrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subtabletopcapfalse": {
+      "command": "subtabletopcapfalse",
+      "snippet": "subtabletopcapfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iffiguretopcap": {
+      "command": "iffiguretopcap",
+      "snippet": "iffiguretopcap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "figuretopcaptrue": {
+      "command": "figuretopcaptrue",
+      "snippet": "figuretopcaptrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "figuretopcapfalse": {
+      "command": "figuretopcapfalse",
+      "snippet": "figuretopcapfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "figureotopcapfalse": {
+      "command": "figureotopcapfalse",
+      "snippet": "figureotopcapfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftabletopcap": {
+      "command": "iftabletopcap",
+      "snippet": "iftabletopcap",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabletopcaptrue": {
+      "command": "tabletopcaptrue",
+      "snippet": "tabletopcaptrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabletopcapfalse": {
+      "command": "tabletopcapfalse",
+      "snippet": "tabletopcapfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcapfont": {
+      "command": "subcapfont",
+      "snippet": "subcapfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcaplabelfont": {
+      "command": "subcaplabelfont",
+      "snippet": "subcaplabelfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcapsize": {
+      "command": "subcapsize",
+      "snippet": "subcapsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thelofdepth": {
+      "command": "thelofdepth",
+      "snippet": "thelofdepth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thelotdepth": {
+      "command": "thelotdepth",
+      "snippet": "thelotdepth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifhyperrefloaded": {
+      "command": "ifhyperrefloaded",
+      "snippet": "ifhyperrefloaded",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hyperrefloadedtrue": {
+      "command": "hyperrefloadedtrue",
+      "snippet": "hyperrefloadedtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hyperrefloadedfalse": {
+      "command": "hyperrefloadedfalse",
+      "snippet": "hyperrefloadedfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifsubcaphang": {
+      "command": "ifsubcaphang",
+      "snippet": "ifsubcaphang",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcaphangtrue": {
+      "command": "subcaphangtrue",
+      "snippet": "subcaphangtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcaphangfalse": {
+      "command": "subcaphangfalse",
+      "snippet": "subcaphangfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifsubcapcenter": {
+      "command": "ifsubcapcenter",
+      "snippet": "ifsubcapcenter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcapcentertrue": {
+      "command": "subcapcentertrue",
+      "snippet": "subcapcentertrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcapcenterfalse": {
+      "command": "subcapcenterfalse",
+      "snippet": "subcapcenterfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifsubcapcenterlast": {
+      "command": "ifsubcapcenterlast",
+      "snippet": "ifsubcapcenterlast",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcapcenterlasttrue": {
+      "command": "subcapcenterlasttrue",
+      "snippet": "subcapcenterlasttrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcapcenterlastfalse": {
+      "command": "subcapcenterlastfalse",
+      "snippet": "subcapcenterlastfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifsubcapnooneline": {
+      "command": "ifsubcapnooneline",
+      "snippet": "ifsubcapnooneline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcapnoonelinetrue": {
+      "command": "subcapnoonelinetrue",
+      "snippet": "subcapnoonelinetrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcapnoonelinefalse": {
+      "command": "subcapnoonelinefalse",
+      "snippet": "subcapnoonelinefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifsubcapraggedright": {
+      "command": "ifsubcapraggedright",
+      "snippet": "ifsubcapraggedright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcapraggedrighttrue": {
+      "command": "subcapraggedrighttrue",
+      "snippet": "subcapraggedrighttrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "subcapraggedrightfalse": {
+      "command": "subcapraggedrightfalse",
+      "snippet": "subcapraggedrightfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "normal",
+    "hang",
+    "center",
+    "centerlast",
+    "nooneline",
+    "raggedright",
+    "isu",
+    "anne",
+    "scriptsize",
+    "footnotesize",
+    "small",
+    "normalsize",
+    "large",
+    "Large",
+    "rm",
+    "sf",
+    "tt",
+    "md",
+    "bf",
+    "up",
+    "it",
+    "sl",
+    "sc",
+    "RM",
+    "SF",
+    "TT",
+    "MD",
+    "BF",
+    "IT",
+    "SL",
+    "SC",
+    "UP",
+    "figbotcap",
+    "figtopcap",
+    "tabbotcap",
+    "tabtopcap",
+    "FIGBOTCAP",
+    "FIGTOPCAP",
+    "TABBOTCAP",
+    "TABTOPCAP",
+    "loose",
+    "tight"
+  ]
 }

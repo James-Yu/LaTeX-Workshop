@@ -1,0 +1,684 @@
+{
+  "includes": [
+    "class-memoir",
+    "hyperref",
+    "datetime",
+    "multicol",
+    "marvosym",
+    "graphicx",
+    "xcolor",
+    "roboto",
+    "fontenc",
+    "etoolbox",
+    "xstring"
+  ],
+  "cmds": {
+    "setPageColour{}": {
+      "command": "setPageColour{}",
+      "snippet": "setPageColour{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setHeaderAlignment{}": {
+      "command": "setHeaderAlignment{}",
+      "snippet": "setHeaderAlignment{${1:alignment}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setHeadingColours{}": {
+      "command": "setHeadingColours{}",
+      "snippet": "setHeadingColours{${1:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setContactLocation{}": {
+      "command": "setContactLocation{}",
+      "snippet": "setContactLocation{${1:location}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setYourName{}": {
+      "command": "setYourName{}",
+      "snippet": "setYourName{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setYourJobTitle{}": {
+      "command": "setYourJobTitle{}",
+      "snippet": "setYourJobTitle{${1:job title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setYourMobileNo{}": {
+      "command": "setYourMobileNo{}",
+      "snippet": "setYourMobileNo{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setYourHomeNo{}": {
+      "command": "setYourHomeNo{}",
+      "snippet": "setYourHomeNo{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setYourEmailAddr{}": {
+      "command": "setYourEmailAddr{}",
+      "snippet": "setYourEmailAddr{${1:address}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setYourWebAddr{}": {
+      "command": "setYourWebAddr{}",
+      "snippet": "setYourWebAddr{${1:URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showHeader": {
+      "command": "showHeader",
+      "snippet": "showHeader",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setSectionAlignment{}": {
+      "command": "setSectionAlignment{}",
+      "snippet": "setSectionAlignment{${1:alignment}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newHeading{}": {
+      "command": "newHeading{}",
+      "snippet": "newHeading{${1:heading%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addSkills{}{}{}{}{}{}{}{}{}": {
+      "command": "addSkills{}{}{}{}{}{}{}{}{}",
+      "snippet": "addSkills{${1:sk1%text}}{${2:sk2%text}}{${3:sk3%text}}{${4:sk4%text}}{${5:sk5%text}}{${6:sk6%text}}{${7:sk7%text}}{${8:sk8%text}}{${9:sk9%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setJobCompanyOrder{}": {
+      "command": "setJobCompanyOrder{}",
+      "snippet": "setJobCompanyOrder{${1:order type}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newRole{}{}{}{}": {
+      "command": "newRole{}{}{}{}",
+      "snippet": "newRole{${1:dates}}{${2:job title%text}}{${3:company}}{${4:role summary%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "roleAchievements{}{}{}{}{}{}": {
+      "command": "roleAchievements{}{}{}{}{}{}",
+      "snippet": "roleAchievements{${1:ach1%text}}{${2:ach2%text}}{${3:ach3%text}}{${4:ach4%text}}{${5:ach5%text}}{${6:ach6%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "roleResponsibilities{}{}{}{}{}": {
+      "command": "roleResponsibilities{}{}{}{}{}",
+      "snippet": "roleResponsibilities{${1:resp1%text}}{${2:resp2%text}}{${3:resp3%text}}{${4:resp4%text}}{${5:resp5%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newCourse{}{}{}{}": {
+      "command": "newCourse{}{}{}{}",
+      "snippet": "newCourse{${1:date}}{${2:course title%text}}{${3:institution}}{${4:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setRecpName{}": {
+      "command": "setRecpName{}",
+      "snippet": "setRecpName{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setRecpJobTitle{}": {
+      "command": "setRecpJobTitle{}",
+      "snippet": "setRecpJobTitle{${1:job title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setRecpRoad{}": {
+      "command": "setRecpRoad{}",
+      "snippet": "setRecpRoad{${1:road name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setRecpTown{}": {
+      "command": "setRecpTown{}",
+      "snippet": "setRecpTown{${1:town name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setRecpCity{}": {
+      "command": "setRecpCity{}",
+      "snippet": "setRecpCity{${1:city name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setRecpPostcode{}": {
+      "command": "setRecpPostcode{}",
+      "snippet": "setRecpPostcode{${1:postcode}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "makeLetter": {
+      "command": "makeLetter",
+      "snippet": "makeLetter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "closeletter{}": {
+      "command": "closeletter{}",
+      "snippet": "closeletter{${1:imagefile}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HeaderAlignment": {
+      "command": "HeaderAlignment",
+      "snippet": "HeaderAlignment",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HeaderLeftContact": {
+      "command": "HeaderLeftContact",
+      "snippet": "HeaderLeftContact",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HeaderLeftImage": {
+      "command": "HeaderLeftImage",
+      "snippet": "HeaderLeftImage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HeaderRightContact": {
+      "command": "HeaderRightContact",
+      "snippet": "HeaderRightContact",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HeaderRightImage": {
+      "command": "HeaderRightImage",
+      "snippet": "HeaderRightImage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HeaderText": {
+      "command": "HeaderText",
+      "snippet": "HeaderText",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HeaderTextOppo": {
+      "command": "HeaderTextOppo",
+      "snippet": "HeaderTextOppo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HeadingColour": {
+      "command": "HeadingColour",
+      "snippet": "HeadingColour",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PageColour": {
+      "command": "PageColour",
+      "snippet": "PageColour",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SectionAlignment": {
+      "command": "SectionAlignment",
+      "snippet": "SectionAlignment",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "contactloc": {
+      "command": "contactloc",
+      "snippet": "contactloc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setImage{}": {
+      "command": "setImage{}",
+      "snippet": "setImage{${1:option}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rcvemailaddr": {
+      "command": "rcvemailaddr",
+      "snippet": "rcvemailaddr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rcvhomeno": {
+      "command": "rcvhomeno",
+      "snippet": "rcvhomeno",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rcvimageloc": {
+      "command": "rcvimageloc",
+      "snippet": "rcvimageloc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rcvjobtitle": {
+      "command": "rcvjobtitle",
+      "snippet": "rcvjobtitle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rcvmobileno": {
+      "command": "rcvmobileno",
+      "snippet": "rcvmobileno",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rcvname": {
+      "command": "rcvname",
+      "snippet": "rcvname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rcvwebaddr": {
+      "command": "rcvwebaddr",
+      "snippet": "rcvwebaddr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "recpcity": {
+      "command": "recpcity",
+      "snippet": "recpcity",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "recpjobtitle": {
+      "command": "recpjobtitle",
+      "snippet": "recpjobtitle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "recpname": {
+      "command": "recpname",
+      "snippet": "recpname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "recppostcode": {
+      "command": "recppostcode",
+      "snippet": "recppostcode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "recproad": {
+      "command": "recproad",
+      "snippet": "recproad",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "recptown": {
+      "command": "recptown",
+      "snippet": "recptown",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClassDate": {
+      "command": "ClassDate",
+      "snippet": "ClassDate",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ClassVersion": {
+      "command": "ClassVersion",
+      "snippet": "ClassVersion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "afive": {
+      "command": "afive",
+      "snippet": "afive",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "afour": {
+      "command": "afour",
+      "snippet": "afour",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "aone": {
+      "command": "aone",
+      "snippet": "aone",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "asix": {
+      "command": "asix",
+      "snippet": "asix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "athree": {
+      "command": "athree",
+      "snippet": "athree",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "atwo": {
+      "command": "atwo",
+      "snippet": "atwo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rfive": {
+      "command": "rfive",
+      "snippet": "rfive",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rfour": {
+      "command": "rfour",
+      "snippet": "rfour",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rone": {
+      "command": "rone",
+      "snippet": "rone",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rthree": {
+      "command": "rthree",
+      "snippet": "rthree",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rtwo": {
+      "command": "rtwo",
+      "snippet": "rtwo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "seight": {
+      "command": "seight",
+      "snippet": "seight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfive": {
+      "command": "sfive",
+      "snippet": "sfive",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sfour": {
+      "command": "sfour",
+      "snippet": "sfour",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "snine": {
+      "command": "snine",
+      "snippet": "snine",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sone": {
+      "command": "sone",
+      "snippet": "sone",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sseven": {
+      "command": "sseven",
+      "snippet": "sseven",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ssix": {
+      "command": "ssix",
+      "snippet": "ssix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sthree": {
+      "command": "sthree",
+      "snippet": "sthree",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "stwo": {
+      "command": "stwo",
+      "snippet": "stwo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DH": {
+      "command": "DH",
+      "snippet": "DH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NG": {
+      "command": "NG",
+      "snippet": "NG",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dj": {
+      "command": "dj",
+      "snippet": "dj",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ng": {
+      "command": "ng",
+      "snippet": "ng",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "k{}": {
+      "command": "k{}",
+      "snippet": "k{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotleft": {
+      "command": "guillemotleft",
+      "snippet": "guillemotleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemotright": {
+      "command": "guillemotright",
+      "snippet": "guillemotright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglleft": {
+      "command": "guilsinglleft",
+      "snippet": "guilsinglleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guilsinglright": {
+      "command": "guilsinglright",
+      "snippet": "guilsinglright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotedblbase": {
+      "command": "quotedblbase",
+      "snippet": "quotedblbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "quotesinglbase": {
+      "command": "quotesinglbase",
+      "snippet": "quotesinglbase",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textquotedbl": {
+      "command": "textquotedbl",
+      "snippet": "textquotedbl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DJ": {
+      "command": "DJ",
+      "snippet": "DJ",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "th": {
+      "command": "th",
+      "snippet": "th",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TH": {
+      "command": "TH",
+      "snippet": "TH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dh": {
+      "command": "dh",
+      "snippet": "dh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hwithstroke": {
+      "command": "Hwithstroke",
+      "snippet": "Hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hwithstroke": {
+      "command": "hwithstroke",
+      "snippet": "hwithstroke",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textogonekcentered{}": {
+      "command": "textogonekcentered{}",
+      "snippet": "textogonekcentered{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetleft": {
+      "command": "guillemetleft",
+      "snippet": "guillemetleft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "guillemetright": {
+      "command": "guillemetright",
+      "snippet": "guillemetright",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

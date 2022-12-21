@@ -1,0 +1,614 @@
+{
+  "includes": [
+    "tikz",
+    "pdftexcmds",
+    "ifplatform",
+    "environ",
+    "pgfplots",
+    "pgfplotslibrarygroupplots"
+  ],
+  "cmds": {
+    "BodeZPK{%<z/{},p/{},k/{},d/{}{}{}": {
+      "command": "BodeZPK{%<z/{},p/{},k/{},d/{}{}{}",
+      "snippet": "BodeZPK{%<z/{${1:zeros}},p/{${2:poles}},k/{${3:gain}},d/{${4:delay}%>}}{${5:%<min-freq%>}}{${6:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BodeZPK[%<obj1/typ1/{]{%<z/{},p/{},k/{},d/{}{}{}": {
+      "command": "BodeZPK[%<obj1/typ1/{]{%<z/{},p/{},k/{},d/{}{}{}",
+      "snippet": "BodeZPK[%<obj1/typ1/{${1:opt1}},...%>]{%<z/{${2:zeros}},p/{${3:poles}},k/{${4:gain}},d/{${5:delay}%>}}{${6:%<min-freq%>}}{${7:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BodeTF{%<num/{},den/{},d/{}{}{}": {
+      "command": "BodeTF{%<num/{},den/{},d/{}{}{}",
+      "snippet": "BodeTF{%<num/{${1:coeffs}},den/{${2:coeffs}},d/{${3:delay}%>}}{${4:%<min-freq%>}}{${5:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BodeTF[%<obj1/typ1/{]{%<num/{},den/{},d/{}{}{}": {
+      "command": "BodeTF[%<obj1/typ1/{]{%<num/{},den/{},d/{}{}{}",
+      "snippet": "BodeTF[%<obj1/typ1/{${1:opt1}},...%>]{%<num/{${2:coeffs}},den/{${3:coeffs}},d/{${4:delay}%>}}{${5:%<min-freq%>}}{${6:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addBodeZPKPlots{}{%<z/{},p/{},k/{},d/{}": {
+      "command": "addBodeZPKPlots{}{%<z/{},p/{},k/{},d/{}",
+      "snippet": "addBodeZPKPlots{${1:%<plot-type%>}}{%<z/{${2:zeros}},p/{${3:poles}},k/{${4:gain}},d/{${5:delay}%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addBodeZPKPlots[%<approx1/{]{}{%<z/{},p/{},k/{},d/{}": {
+      "command": "addBodeZPKPlots[%<approx1/{]{}{%<z/{},p/{},k/{},d/{}",
+      "snippet": "addBodeZPKPlots[%<approx1/{${1:opt1}}%>]{${2:%<plot-type%>}}{%<z/{${3:zeros}},p/{${4:poles}},k/{${5:gain}},d/{${6:delay}%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addBodeTFPlot{}{%<num/{},den/{},d/{}": {
+      "command": "addBodeTFPlot{}{%<num/{},den/{},d/{}",
+      "snippet": "addBodeTFPlot{${1:%<plot-type%>}}{%<num/{${2:coeffs}},den/{${3:coeffs}},d/{${4:delay}%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addBodeTFPlot[]{}{%<num/{},den/{},d/{}": {
+      "command": "addBodeTFPlot[]{}{%<num/{},den/{},d/{}",
+      "snippet": "addBodeTFPlot[${5:%<plot-options%>}]{${1:%<plot-type%>}}{%<num/{${2:coeffs}},den/{${3:coeffs}},d/{${4:delay}%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addBodeComponentPlot{}": {
+      "command": "addBodeComponentPlot{}",
+      "snippet": "addBodeComponentPlot{${1:plot-command}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addBodeComponentPlot[]{}": {
+      "command": "addBodeComponentPlot[]{}",
+      "snippet": "addBodeComponentPlot[${2:plot-options}]{${1:plot-command}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagK{}{}": {
+      "command": "MagK{}{}",
+      "snippet": "MagK{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagKAsymp{}{}": {
+      "command": "MagKAsymp{}{}",
+      "snippet": "MagKAsymp{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagKLin{}{}": {
+      "command": "MagKLin{}{}",
+      "snippet": "MagKLin{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhK{}{}": {
+      "command": "PhK{}{}",
+      "snippet": "PhK{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhKAsymp{}{}": {
+      "command": "PhKAsymp{}{}",
+      "snippet": "PhKAsymp{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhKLin{}{}": {
+      "command": "PhKLin{}{}",
+      "snippet": "PhKLin{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagDel{}{}": {
+      "command": "MagDel{}{}",
+      "snippet": "MagDel{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhDel{}{}": {
+      "command": "PhDel{}{}",
+      "snippet": "PhDel{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagPole{}{}": {
+      "command": "MagPole{}{}",
+      "snippet": "MagPole{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagPoleLin{}{}": {
+      "command": "MagPoleLin{}{}",
+      "snippet": "MagPoleLin{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagPoleAsymp{}{}": {
+      "command": "MagPoleAsymp{}{}",
+      "snippet": "MagPoleAsymp{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhPole{}{}": {
+      "command": "PhPole{}{}",
+      "snippet": "PhPole{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhPoleLin{}{}": {
+      "command": "PhPoleLin{}{}",
+      "snippet": "PhPoleLin{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhPoleAsymp{}{}": {
+      "command": "PhPoleAsymp{}{}",
+      "snippet": "PhPoleAsymp{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagZero{}{}": {
+      "command": "MagZero{}{}",
+      "snippet": "MagZero{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagZeroLin{}{}": {
+      "command": "MagZeroLin{}{}",
+      "snippet": "MagZeroLin{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagZeroAsymp{}{}": {
+      "command": "MagZeroAsymp{}{}",
+      "snippet": "MagZeroAsymp{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhZero{}{}": {
+      "command": "PhZero{}{}",
+      "snippet": "PhZero{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhZeroLin{}{}": {
+      "command": "PhZeroLin{}{}",
+      "snippet": "PhZeroLin{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhZeroAsymp{}{}": {
+      "command": "PhZeroAsymp{}{}",
+      "snippet": "PhZeroAsymp{${1:real-part}}{${2:imaginary-part}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagCSPoles{}{}": {
+      "command": "MagCSPoles{}{}",
+      "snippet": "MagCSPoles{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagCSPolesLin{}{}": {
+      "command": "MagCSPolesLin{}{}",
+      "snippet": "MagCSPolesLin{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagCSPolesAsymp{}{}": {
+      "command": "MagCSPolesAsymp{}{}",
+      "snippet": "MagCSPolesAsymp{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhCSPoles{}{}": {
+      "command": "PhCSPoles{}{}",
+      "snippet": "PhCSPoles{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhCSPolesLin{}{}": {
+      "command": "PhCSPolesLin{}{}",
+      "snippet": "PhCSPolesLin{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhCSPolesAsymp{}{}": {
+      "command": "PhCSPolesAsymp{}{}",
+      "snippet": "PhCSPolesAsymp{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagCSZeros{}{}": {
+      "command": "MagCSZeros{}{}",
+      "snippet": "MagCSZeros{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagCSZerosLin{}{}": {
+      "command": "MagCSZerosLin{}{}",
+      "snippet": "MagCSZerosLin{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagCSZerosAsymp{}{}": {
+      "command": "MagCSZerosAsymp{}{}",
+      "snippet": "MagCSZerosAsymp{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhCSZeros{}{}": {
+      "command": "PhCSZeros{}{}",
+      "snippet": "PhCSZeros{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhCSZerosLin{}{}": {
+      "command": "PhCSZerosLin{}{}",
+      "snippet": "PhCSZerosLin{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhCSZerosAsymp{}{}": {
+      "command": "PhCSZerosAsymp{}{}",
+      "snippet": "PhCSZerosAsymp{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagCSPolesPeak{}{}": {
+      "command": "MagCSPolesPeak{}{}",
+      "snippet": "MagCSPolesPeak{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagCSPolesPeak[]{}{}": {
+      "command": "MagCSPolesPeak[]{}{}",
+      "snippet": "MagCSPolesPeak[${3:draw-options}]{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagCSZerosPeak{}{}": {
+      "command": "MagCSZerosPeak{}{}",
+      "snippet": "MagCSZerosPeak{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagCSZerosPeak[]{}{}": {
+      "command": "MagCSZerosPeak[]{}{}",
+      "snippet": "MagCSZerosPeak[${3:draw-options}]{${1:zeta}}{${2:omega-n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagSOPoles{}{}": {
+      "command": "MagSOPoles{}{}",
+      "snippet": "MagSOPoles{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagSOPolesLin{}{}": {
+      "command": "MagSOPolesLin{}{}",
+      "snippet": "MagSOPolesLin{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagSOPolesAsymp{}{}": {
+      "command": "MagSOPolesAsymp{}{}",
+      "snippet": "MagSOPolesAsymp{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhSOPoles{}{}": {
+      "command": "PhSOPoles{}{}",
+      "snippet": "PhSOPoles{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhSOPolesLin{}{}": {
+      "command": "PhSOPolesLin{}{}",
+      "snippet": "PhSOPolesLin{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhSOPolesAsymp{}{}": {
+      "command": "PhSOPolesAsymp{}{}",
+      "snippet": "PhSOPolesAsymp{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagSOZeros{}{}": {
+      "command": "MagSOZeros{}{}",
+      "snippet": "MagSOZeros{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagSOZerosLin{}{}": {
+      "command": "MagSOZerosLin{}{}",
+      "snippet": "MagSOZerosLin{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagSOZerosAsymp{}{}": {
+      "command": "MagSOZerosAsymp{}{}",
+      "snippet": "MagSOZerosAsymp{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhSOZeros{}{}": {
+      "command": "PhSOZeros{}{}",
+      "snippet": "PhSOZeros{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhSOZerosLin{}{}": {
+      "command": "PhSOZerosLin{}{}",
+      "snippet": "PhSOZerosLin{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PhSOZerosAsymp{}{}": {
+      "command": "PhSOZerosAsymp{}{}",
+      "snippet": "PhSOZerosAsymp{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagSOPolesPeak{}{}": {
+      "command": "MagSOPolesPeak{}{}",
+      "snippet": "MagSOPolesPeak{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagSOPolesPeak[]{}{}": {
+      "command": "MagSOPolesPeak[]{}{}",
+      "snippet": "MagSOPolesPeak[${3:draw-options}]{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagSOZerosPeak{}{}": {
+      "command": "MagSOZerosPeak{}{}",
+      "snippet": "MagSOZerosPeak{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MagSOZerosPeak[]{}{}": {
+      "command": "MagSOZerosPeak[]{}{}",
+      "snippet": "MagSOZerosPeak[${3:draw-options}]{${1:a1}}{${2:a0}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NyquistZPK{%<z/{},p/{},k/{},d/{}{}{}": {
+      "command": "NyquistZPK{%<z/{},p/{},k/{},d/{}{}{}",
+      "snippet": "NyquistZPK{%<z/{${1:zeros}},p/{${2:poles}},k/{${3:gain}},d/{${4:delay}%>}}{${5:%<min-freq%>}}{${6:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NyquistZPK[%<plot/{},axes/{]{%<z/{},p/{},k/{},d/{}{}{}": {
+      "command": "NyquistZPK[%<plot/{},axes/{]{%<z/{},p/{},k/{},d/{}{}{}",
+      "snippet": "NyquistZPK[%<plot/{${1:opt}},axes/{${2:opt}}%>]{%<z/{${3:zeros}},p/{${4:poles}},k/{${5:gain}},d/{${6:delay}%>}}{${7:%<min-freq%>}}{${8:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NyquistTF{%<num/{},den/{},d/{}{}{}": {
+      "command": "NyquistTF{%<num/{},den/{},d/{}{}{}",
+      "snippet": "NyquistTF{%<num/{${1:coeffs}},den/{${2:coeffs}},d/{${3:delay}%>}}{${4:%<min-freq%>}}{${5:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NyquistTF[%<plot/{},axes/{]{%<num/{},den/{},d/{}{}{}": {
+      "command": "NyquistTF[%<plot/{},axes/{]{%<num/{},den/{},d/{}{}{}",
+      "snippet": "NyquistTF[%<plot/{${1:opt}},axes/{${2:opt}}%>]{%<num/{${3:coeffs}},den/{${4:coeffs}},d/{${5:delay}%>}}{${6:%<min-freq%>}}{${7:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addNyquistZPKPlot{%<z/{},p/{},k/{},d/{}": {
+      "command": "addNyquistZPKPlot{%<z/{},p/{},k/{},d/{}",
+      "snippet": "addNyquistZPKPlot{%<z/{${1:zeros}},p/{${2:poles}},k/{${3:gain}},d/{${4:delay}%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addNyquistZPKPlot[]{%<z/{},p/{},k/{},d/{}": {
+      "command": "addNyquistZPKPlot[]{%<z/{},p/{},k/{},d/{}",
+      "snippet": "addNyquistZPKPlot[${5:%<plot-options%>}]{%<z/{${1:zeros}},p/{${2:poles}},k/{${3:gain}},d/{${4:delay}%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addNyquistTFPlot{%<num/{},den/{},d/{}": {
+      "command": "addNyquistTFPlot{%<num/{},den/{},d/{}",
+      "snippet": "addNyquistTFPlot{%<num/{${1:coeffs}},den/{${2:coeffs}},d/{${3:delay}%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addNyquistTFPlot[]{%<num/{},den/{},d/{}": {
+      "command": "addNyquistTFPlot[]{%<num/{},den/{},d/{}",
+      "snippet": "addNyquistTFPlot[${4:%<plot-options%>}]{%<num/{${1:coeffs}},den/{${2:coeffs}},d/{${3:delay}%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NicholsZPK{%<z/{},p/{},k/{},d/{}{}{}": {
+      "command": "NicholsZPK{%<z/{},p/{},k/{},d/{}{}{}",
+      "snippet": "NicholsZPK{%<z/{${1:zeros}},p/{${2:poles}},k/{${3:gain}},d/{${4:delay}%>}}{${5:%<min-freq%>}}{${6:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NicholsZPK[%<plot/{},axes/{]{%<z/{},p/{},k/{},d/{}{}{}": {
+      "command": "NicholsZPK[%<plot/{},axes/{]{%<z/{},p/{},k/{},d/{}{}{}",
+      "snippet": "NicholsZPK[%<plot/{${1:opt}},axes/{${2:opt}}%>]{%<z/{${3:zeros}},p/{${4:poles}},k/{${5:gain}},d/{${6:delay}%>}}{${7:%<min-freq%>}}{${8:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NicholsTF{%<num/{},den/{},d/{}{}{}": {
+      "command": "NicholsTF{%<num/{},den/{},d/{}{}{}",
+      "snippet": "NicholsTF{%<num/{${1:coeffs}},den/{${2:coeffs}},d/{${3:delay}%>}}{${4:%<min-freq%>}}{${5:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NicholsTF[%<plot/{},axes/{]{%<num/{},den/{},d/{}{}{}": {
+      "command": "NicholsTF[%<plot/{},axes/{]{%<num/{},den/{},d/{}{}{}",
+      "snippet": "NicholsTF[%<plot/{${1:opt}},axes/{${2:opt}}%>]{%<num/{${3:coeffs}},den/{${4:coeffs}},d/{${5:delay}%>}}{${6:%<min-freq%>}}{${7:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addNicholsZPKChart{%<z/{},p/{},k/{},d/{}": {
+      "command": "addNicholsZPKChart{%<z/{},p/{},k/{},d/{}",
+      "snippet": "addNicholsZPKChart{%<z/{${1:zeros}},p/{${2:poles}},k/{${3:gain}},d/{${4:delay}%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addNicholsZPKChart[]{%<z/{},p/{},k/{},d/{}": {
+      "command": "addNicholsZPKChart[]{%<z/{},p/{},k/{},d/{}",
+      "snippet": "addNicholsZPKChart[${5:%<plot-options%>}]{%<z/{${1:zeros}},p/{${2:poles}},k/{${3:gain}},d/{${4:delay}%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addNicholsTFChart{%<num/{},den/{},d/{}": {
+      "command": "addNicholsTFChart{%<num/{},den/{},d/{}",
+      "snippet": "addNicholsTFChart{%<num/{${1:coeffs}},den/{${2:coeffs}},d/{${3:delay}%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "addNicholsTFChart[]{%<num/{},den/{},d/{}": {
+      "command": "addNicholsTFChart[]{%<num/{},den/{},d/{}",
+      "snippet": "addNicholsTFChart[${4:%<plot-options%>}]{%<num/{${1:coeffs}},den/{${2:coeffs}},d/{${3:delay}%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "BodePlot{}{}": {
+      "name": "BodePlot",
+      "detail": "BodePlot{}{}",
+      "snippet": "{${1:%<min-freq%>}}{${2:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BodePlot[%<obj1/{]{}{}": {
+      "name": "BodePlot",
+      "detail": "BodePlot[%<obj1/{]{}{}",
+      "snippet": "[%<obj1/{${1:opt1}},...%>]{${2:%<min-freq%>}}{${3:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NyquistPlot{}{}": {
+      "name": "NyquistPlot",
+      "detail": "NyquistPlot{}{}",
+      "snippet": "{${1:%<min-freq%>}}{${2:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NyquistPlot[%<obj1/{]{}{}": {
+      "name": "NyquistPlot",
+      "detail": "NyquistPlot[%<obj1/{]{}{}",
+      "snippet": "[%<obj1/{${1:opt1}},...%>]{${2:%<min-freq%>}}{${3:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NicholsChart{}{}": {
+      "name": "NicholsChart",
+      "detail": "NicholsChart{}{}",
+      "snippet": "{${1:%<min-freq%>}}{${2:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NicholsChart[%<obj1/{]{}{}": {
+      "name": "NicholsChart",
+      "detail": "NicholsChart[%<obj1/{]{}{}",
+      "snippet": "[%<obj1/{${1:opt1}},...%>]{${2:%<min-freq%>}}{${3:%<max-freq%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "pgf",
+    "declutter",
+    "rad",
+    "Hz"
+  ]
+}

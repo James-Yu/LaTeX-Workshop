@@ -1,0 +1,544 @@
+{
+  "includes": [
+    "ifthen",
+    "pgffor",
+    "tikz",
+    "tikzlibraryshapes"
+  ],
+  "cmds": {
+    "bXInput{}": {
+      "command": "bXInput{}",
+      "snippet": "bXInput{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXInput[]{}": {
+      "command": "bXInput[]{}",
+      "snippet": "bXInput[${2:label}]{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXOutput{}{}": {
+      "command": "bXOutput{}{}",
+      "snippet": "bXOutput{${1:name}}{${2:preceding node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXOutput[]{}{}": {
+      "command": "bXOutput[]{}{}",
+      "snippet": "bXOutput[${3:distance%l}]{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLinkName{}{}": {
+      "command": "bXLinkName{}{}",
+      "snippet": "bXLinkName{${1:previous node}}{${2:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLinkName[]{}{}": {
+      "command": "bXLinkName[]{}{}",
+      "snippet": "bXLinkName[${3:distance%l}]{${1:previous node}}{${2:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBloc{}{}{}": {
+      "command": "bXBloc{}{}{}",
+      "snippet": "bXBloc{${1:name}}{${2:contents}}{${3:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBloc[]{}{}{}": {
+      "command": "bXBloc[]{}{}{}",
+      "snippet": "bXBloc[${4:distance%l}]{${1:name}}{${2:contents}}{${3:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBlocL{}{}{}": {
+      "command": "bXBlocL{}{}{}",
+      "snippet": "bXBlocL{${1:name}}{${2:contents}}{${3:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBlocL[]{}{}{}": {
+      "command": "bXBlocL[]{}{}{}",
+      "snippet": "bXBlocL[${4:distance%l}]{${1:name}}{${2:contents}}{${3:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBlocr{}{}{}": {
+      "command": "bXBlocr{}{}{}",
+      "snippet": "bXBlocr{${1:name}}{${2:contents}}{${3:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBlocr[]{}{}{}": {
+      "command": "bXBlocr[]{}{}{}",
+      "snippet": "bXBlocr[${4:distance%l}]{${1:name}}{${2:contents}}{${3:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBlocrL{}{}{}": {
+      "command": "bXBlocrL{}{}{}",
+      "snippet": "bXBlocrL{${1:name}}{${2:contents}}{${3:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBlocrL[]{}{}{}": {
+      "command": "bXBlocrL[]{}{}{}",
+      "snippet": "bXBlocrL[${4:distance%l}]{${1:name}}{${2:contents}}{${3:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBlocPotato{}{}{}": {
+      "command": "bXBlocPotato{}{}{}",
+      "snippet": "bXBlocPotato{${1:name}}{${2:contents}}{${3:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBlocPotato[]{}{}{}": {
+      "command": "bXBlocPotato[]{}{}{}",
+      "snippet": "bXBlocPotato[${4:distance%l}]{${1:name}}{${2:contents}}{${3:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXonlyOneBloc{}{}{}": {
+      "command": "bXonlyOneBloc{}{}{}",
+      "snippet": "bXonlyOneBloc{${1:input label}}{${2:block label}}{${3:output label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXonlyOneBloc[]{}{}{}": {
+      "command": "bXonlyOneBloc[]{}{}{}",
+      "snippet": "bXonlyOneBloc[${4:distance%l}]{${1:input label}}{${2:block label}}{${3:output label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXComp{}{}": {
+      "command": "bXComp{}{}",
+      "snippet": "bXComp{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXComp[]{}{}": {
+      "command": "bXComp[]{}{}",
+      "snippet": "bXComp[${3:distance%l}]{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXComp*{}{}": {
+      "command": "bXComp*{}{}",
+      "snippet": "bXComp*{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXComp*[]{}{}": {
+      "command": "bXComp*[]{}{}",
+      "snippet": "bXComp*[${3:distance%l}]{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXSum{}{}{}{}{}": {
+      "command": "bXSum{}{}{}{}{}",
+      "snippet": "bXSum{${1:name}}{${2:previous node}}{${3:a}}{${4:b}}{${5:c}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXSum[]{}{}{}{}{}": {
+      "command": "bXSum[]{}{}{}{}{}",
+      "snippet": "bXSum[${6:distance%l}]{${1:name}}{${2:previous node}}{${3:a}}{${4:b}}{${5:c}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXCompa{}{}": {
+      "command": "bXCompa{}{}",
+      "snippet": "bXCompa{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXCompa[]{}{}": {
+      "command": "bXCompa[]{}{}",
+      "snippet": "bXCompa[${3:distance%l}]{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXCompa*{}{}": {
+      "command": "bXCompa*{}{}",
+      "snippet": "bXCompa*{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXCompa*[]{}{}": {
+      "command": "bXCompa*[]{}{}",
+      "snippet": "bXCompa*[${3:distance%l}]{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXSuma{}{}": {
+      "command": "bXSuma{}{}",
+      "snippet": "bXSuma{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXSuma[]{}{}": {
+      "command": "bXSuma[]{}{}",
+      "snippet": "bXSuma[${3:distance%l}]{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXSuma*{}{}": {
+      "command": "bXSuma*{}{}",
+      "snippet": "bXSuma*{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXSuma*[]{}{}": {
+      "command": "bXSuma*[]{}{}",
+      "snippet": "bXSuma*[${3:distance%l}]{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXCompb{}{}": {
+      "command": "bXCompb{}{}",
+      "snippet": "bXCompb{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXCompb[]{}{}": {
+      "command": "bXCompb[]{}{}",
+      "snippet": "bXCompb[${3:distance%l}]{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXCompb*{}{}": {
+      "command": "bXCompb*{}{}",
+      "snippet": "bXCompb*{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXCompb*[]{}{}": {
+      "command": "bXCompb*[]{}{}",
+      "snippet": "bXCompb*[${3:distance%l}]{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXSumb{}{}": {
+      "command": "bXSumb{}{}",
+      "snippet": "bXSumb{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXSumb[]{}{}": {
+      "command": "bXSumb[]{}{}",
+      "snippet": "bXSumb[${3:distance%l}]{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXSumb*{}{}": {
+      "command": "bXSumb*{}{}",
+      "snippet": "bXSumb*{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXSumb*[]{}{}": {
+      "command": "bXSumb*[]{}{}",
+      "snippet": "bXSumb*[${3:distance%l}]{${1:name}}{${2:previous node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXCompSum{}{}{}{}{}{}": {
+      "command": "bXCompSum{}{}{}{}{}{}",
+      "snippet": "bXCompSum{${1:name}}{${2:previous node}}{${3:n}}{${4:s}}{${5:w}}{${6:e}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXCompSum[]{}{}{}{}{}{}": {
+      "command": "bXCompSum[]{}{}{}{}{}{}",
+      "snippet": "bXCompSum[${7:distance%l}]{${1:name}}{${2:previous node}}{${3:n}}{${4:s}}{${5:w}}{${6:e}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXCompSum*{}{}{}{}{}{}": {
+      "command": "bXCompSum*{}{}{}{}{}{}",
+      "snippet": "bXCompSum*{${1:name}}{${2:previous node}}{${3:n}}{${4:s}}{${5:w}}{${6:e}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXCompSum*[]{}{}{}{}{}{}": {
+      "command": "bXCompSum*[]{}{}{}{}{}{}",
+      "snippet": "bXCompSum*[${7:distance%l}]{${1:name}}{${2:previous node}}{${3:n}}{${4:s}}{${5:w}}{${6:e}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLink{}{}": {
+      "command": "bXLink{}{}",
+      "snippet": "bXLink{${1:previous node}}{${2:next node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLink[]{}{}": {
+      "command": "bXLink[]{}{}",
+      "snippet": "bXLink[${3:label}]{${1:previous node}}{${2:next node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLinkxy{}{}": {
+      "command": "bXLinkxy{}{}",
+      "snippet": "bXLinkxy{${1:previous node}}{${2:next node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLinkxy[]{}{}": {
+      "command": "bXLinkxy[]{}{}",
+      "snippet": "bXLinkxy[${3:label}]{${1:previous node}}{${2:next node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLinkyx{}{}": {
+      "command": "bXLinkyx{}{}",
+      "snippet": "bXLinkyx{${1:previous node}}{${2:next node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLinktyx{}{}": {
+      "command": "bXLinktyx{}{}",
+      "snippet": "bXLinktyx{${1:previous node}}{${2:next node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLinktb{}{}": {
+      "command": "bXLinktb{}{}",
+      "snippet": "bXLinktb{${1:previous node}}{${2:next node}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXReturn{}{}{}": {
+      "command": "bXReturn{}{}{}",
+      "snippet": "bXReturn{${1:previous node}}{${2:next node}}{${3:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXReturn[]{}{}{}": {
+      "command": "bXReturn[]{}{}{}",
+      "snippet": "bXReturn[${4:distance%l}]{${1:previous node}}{${2:next node}}{${3:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXChain{}{}": {
+      "command": "bXChain{}{}",
+      "snippet": "bXChain{${1:previous node}}{${2:list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXChain[]{}{}": {
+      "command": "bXChain[]{}{}",
+      "snippet": "bXChain[${3:distance%l}]{${1:previous node}}{${2:list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXChainReturn{}{}": {
+      "command": "bXChainReturn{}{}",
+      "snippet": "bXChainReturn{${1:previous node}}{${2:list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXChainReturn[]{}{}": {
+      "command": "bXChainReturn[]{}{}",
+      "snippet": "bXChainReturn[${3:distance%l}]{${1:previous node}}{${2:list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLoop{}{}": {
+      "command": "bXLoop{}{}",
+      "snippet": "bXLoop{${1:previous node}}{${2:list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLoop[]{}{}": {
+      "command": "bXLoop[]{}{}",
+      "snippet": "bXLoop[${3:distance%l}]{${1:previous node}}{${2:list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lastx": {
+      "command": "lastx",
+      "snippet": "lastx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBranchx{}{}": {
+      "command": "bXBranchx{}{}",
+      "snippet": "bXBranchx{${1:previous node}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBranchx[]{}{}": {
+      "command": "bXBranchx[]{}{}",
+      "snippet": "bXBranchx[${3:distance%l}]{${1:previous node}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXNodeShiftx": {
+      "command": "bXNodeShiftx",
+      "snippet": "bXNodeShiftx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBranchy{}{}": {
+      "command": "bXBranchy{}{}",
+      "snippet": "bXBranchy{${1:previous node}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXBranchy[]{}{}": {
+      "command": "bXBranchy[]{}{}",
+      "snippet": "bXBranchy[${3:distance%l}]{${1:previous node}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXNodeShifty": {
+      "command": "bXNodeShifty",
+      "snippet": "bXNodeShifty",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXDefaultLineStyle": {
+      "command": "bXDefaultLineStyle",
+      "snippet": "bXDefaultLineStyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLineStyle{}": {
+      "command": "bXLineStyle{}",
+      "snippet": "bXLineStyle{${1:TikZ keys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXStyleBlocDefault": {
+      "command": "bXStyleBlocDefault",
+      "snippet": "bXStyleBlocDefault",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXStyleBloc{}": {
+      "command": "bXStyleBloc{}",
+      "snippet": "bXStyleBloc{${1:TikZ keys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXStyleSumDefault": {
+      "command": "bXStyleSumDefault",
+      "snippet": "bXStyleSumDefault",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXStyleSum{}": {
+      "command": "bXStyleSum{}",
+      "snippet": "bXStyleSum{${1:TikZ keys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLabelStyleDefault": {
+      "command": "bXLabelStyleDefault",
+      "snippet": "bXLabelStyleDefault",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXLabelStyle{}": {
+      "command": "bXLabelStyle{}",
+      "snippet": "bXLabelStyle{${1:TikZ keys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXStylePotatoDefault": {
+      "command": "bXStylePotatoDefault",
+      "snippet": "bXStylePotatoDefault",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bXStylePotato{}": {
+      "command": "bXStylePotato{}",
+      "snippet": "bXStylePotato{${1:TikZ keys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

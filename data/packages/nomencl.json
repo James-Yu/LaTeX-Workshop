@@ -1,5 +1,12 @@
 {
-  "includes": [],
+  "includes": [
+    "xkeyval",
+    "ifthen",
+    "tocbasic",
+    "array",
+    "longtable",
+    "siunitx"
+  ],
   "cmds": {
     "makenomenclature": {
       "command": "makenomenclature",
@@ -17,7 +24,7 @@
     },
     "printnomenclature[]": {
       "command": "printnomenclature[]",
-      "snippet": "printnomenclature[${1:space}]",
+      "snippet": "printnomenclature[${1:space%l}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -77,8 +84,164 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "nomenclature[]{}{}{}{}": {
+      "command": "nomenclature[]{}{}{}{}",
+      "snippet": "nomenclature[${5:prefix}]{${1:symbol}}{${2:description}}{${3:units}}{${4:note}}",
+      "option": "nomentbl",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomenclature{}{}{}{}": {
+      "command": "nomenclature{}{}{}{}",
+      "snippet": "nomenclature{${1:symbol}}{${2:description}}{${3:units}}{${4:note}}",
+      "option": "nomentbl",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setnomtableformat{}": {
+      "command": "setnomtableformat{}",
+      "snippet": "setnomtableformat{${1:column format}}",
+      "option": "nomentbl",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomlabelwidth": {
+      "command": "nomlabelwidth",
+      "snippet": "nomlabelwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomname": {
+      "command": "nomname",
+      "snippet": "nomname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomAname": {
+      "command": "nomAname",
+      "snippet": "nomAname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomGname": {
+      "command": "nomGname",
+      "snippet": "nomGname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomXname": {
+      "command": "nomXname",
+      "snippet": "nomXname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomZname": {
+      "command": "nomZname",
+      "snippet": "nomZname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomgroup": {
+      "command": "nomgroup",
+      "snippet": "nomgroup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nompreamble": {
+      "command": "nompreamble",
+      "snippet": "nompreamble",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nompostamble": {
+      "command": "nompostamble",
+      "snippet": "nompostamble",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomitemsep": {
+      "command": "nomitemsep",
+      "snippet": "nomitemsep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomprefix": {
+      "command": "nomprefix",
+      "snippet": "nomprefix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomlabel": {
+      "command": "nomlabel",
+      "snippet": "nomlabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomentryend": {
+      "command": "nomentryend",
+      "snippet": "nomentryend",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eqdeclaration": {
+      "command": "eqdeclaration",
+      "snippet": "eqdeclaration",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pagedeclaration": {
+      "command": "pagedeclaration",
+      "snippet": "pagedeclaration",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nomeqref{}": {
+      "command": "nomeqref{}",
+      "snippet": "nomeqref{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nompageref{}": {
+      "command": "nompageref{}",
+      "snippet": "nompageref{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "printglossary": {
+      "command": "printglossary",
+      "snippet": "printglossary",
+      "option": "compatible",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
-  "envs": {},
+  "envs": {
+    "thenomenclature": {
+      "name": "thenomenclature",
+      "detail": "thenomenclature",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
   "options": []
 }

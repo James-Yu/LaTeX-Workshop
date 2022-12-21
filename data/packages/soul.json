@@ -3,49 +3,105 @@
   "cmds": {
     "so{}": {
       "command": "so{}",
-      "snippet": "so{${1:text to add letter spacing}}",
+      "snippet": "so{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textso{}": {
+      "command": "textso{}",
+      "snippet": "textso{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "caps{}": {
       "command": "caps{}",
-      "snippet": "caps{${1:small caps text}}",
+      "snippet": "caps{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textcaps{}": {
+      "command": "textcaps{}",
+      "snippet": "textcaps{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "capsfont": {
+      "command": "capsfont",
+      "snippet": "capsfont",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "ul{}": {
       "command": "ul{}",
-      "snippet": "ul{${1:text to underline}}",
+      "snippet": "ul{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textul{}": {
+      "command": "textul{}",
+      "snippet": "textul{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "st{}": {
       "command": "st{}",
-      "snippet": "st{${1:text to strikeout}}",
+      "snippet": "st{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textst{}": {
+      "command": "textst{}",
+      "snippet": "textst{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "hl{}": {
       "command": "hl{}",
-      "snippet": "hl{${1:text to highlight}}",
+      "snippet": "hl{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "texthl{}": {
+      "command": "texthl{}",
+      "snippet": "texthl{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "soulaccent{}": {
       "command": "soulaccent{}",
-      "snippet": "soulaccent{${1:accent}}",
+      "snippet": "soulaccent{${1:cmd}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "soulregister{}{}": {
       "command": "soulregister{}{}",
-      "snippet": "soulregister{${1:cmd}}{${2:text}}",
+      "snippet": "soulregister{${1:cmd}}{${2:args}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "soulfont{}{}": {
+      "command": "soulfont{}{}",
+      "snippet": "soulfont{${1:cmd}}{${2:args}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "soulomit{}": {
+      "command": "soulomit{}",
+      "snippet": "soulomit{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -59,7 +115,7 @@
     },
     "sodef{}{}{}{}{}": {
       "command": "sodef{}{}{}{}{}",
-      "snippet": "sodef{${1:cmd}}{${2:font}}{${3:inner letter space}}{${4:inner space}}{${5:outer space}}",
+      "snippet": "sodef{${1:cmd}}{${2:font}}{${3:innerletter%l}}{${4:inner%l}}{${5:outer%l}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -71,9 +127,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "capsdef{}{}{}{}": {
-      "command": "capsdef{}{}{}{}",
-      "snippet": "capsdef{${1:cmd}}{${2:inner letter space}}{${3:inner space}}{${4:outer space}}",
+    "capsdef{}{}{}{}{}": {
+      "command": "capsdef{}{}{}{}{}",
+      "snippet": "capsdef{${1:enc/fam/series/shape/size}}{${2:optcmd}}{${3:innerletter%l}}{${4:inner%l}}{${5:outer%l}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -99,9 +155,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "capsdefault": {
+      "command": "capsdefault",
+      "snippet": "capsdefault",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "setul{}{}": {
       "command": "setul{}{}",
-      "snippet": "setul{${1:underline depth}}{${2:underline thickness}}",
+      "snippet": "setul{${1:ul-depth%l}}{${2:ul-thickness%l}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -115,47 +178,42 @@
     },
     "setuldepth{}": {
       "command": "setuldepth{}",
-      "snippet": "setuldepth{${1:characters}}",
+      "snippet": "setuldepth{${1:string}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "setuloverlap{}": {
       "command": "setuloverlap{}",
-      "snippet": "setuloverlap{${1:underline overlap}}",
+      "snippet": "setuloverlap{${1:dimen%l}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "setulcolor{}": {
       "command": "setulcolor{}",
-      "snippet": "setulcolor{${1:named color}}",
+      "snippet": "setulcolor{${1:color}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "setstcolor{}": {
       "command": "setstcolor{}",
-      "snippet": "setstcolor{${1:named color}}",
+      "snippet": "setstcolor{${1:color}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "sethlcolor{}": {
       "command": "sethlcolor{}",
-      "snippet": "sethlcolor{${1:named color}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "soulomit{}": {
-      "command": "soulomit{}",
-      "snippet": "soulomit{${1:text to ignore}}",
+      "snippet": "sethlcolor{${1:color}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "capsdefault"
+  ]
 }

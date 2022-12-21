@@ -3,7 +3,7 @@
   "cmds": {
     "email{}": {
       "command": "email{}",
-      "snippet": "email{${1:text}}",
+      "snippet": "email{${1:text%plain}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -17,14 +17,14 @@
     },
     "Logo{}": {
       "command": "Logo{}",
-      "snippet": "Logo{${1:logo}}",
+      "snippet": "Logo{${1:logo text%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "overlays{}{}": {
       "command": "overlays{}{}",
-      "snippet": "overlays{${1:number}}{${2:slide environment}}",
+      "snippet": "overlays{${1:number}}{${2:slide environment%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -64,16 +64,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "untilsSlide*{}{}": {
-      "command": "untilsSlide*{}{}",
-      "snippet": "untilsSlide*{${1:slide number}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "untilsSlide{}{}": {
-      "command": "untilsSlide{}{}",
-      "snippet": "untilsSlide{${1:slide number}}{${2:text}}",
+    "untilSlide*{}{}": {
+      "command": "untilSlide*{}{}",
+      "snippet": "untilSlide*{${1:slide number}}{${2:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -134,13 +127,6 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "prosperpart[]{}": {
-      "command": "prosperpart[]{}",
-      "snippet": "prosperpart[${2:options}]{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "prosperpart{}": {
       "command": "prosperpart{}",
       "snippet": "prosperpart{${1:text}}",
@@ -148,61 +134,94 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "tsection*{}": {
-      "command": "tsection*{}",
-      "snippet": "tsection*{${1:section name}}",
+    "prosperpart[]{}": {
+      "command": "prosperpart[]{}",
+      "snippet": "prosperpart[${2:options}]{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "tsection{}": {
       "command": "tsection{}",
-      "snippet": "tsection{${1:section name}}",
+      "snippet": "tsection{${1:title}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "tsectionandpart*{}": {
-      "command": "tsectionandpart*{}",
-      "snippet": "tsectionandpart*{${1:part text}}",
+    "tsection*{}": {
+      "command": "tsection*{}",
+      "snippet": "tsection*{${1:title}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "tsectionandpart{}": {
       "command": "tsectionandpart{}",
-      "snippet": "tsectionandpart{${1:part text}}",
+      "snippet": "tsectionandpart{${1:title}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tsectionandpart[]{}": {
+      "command": "tsectionandpart[]{}",
+      "snippet": "tsectionandpart[${2:options}]{${1:title}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tsectionandpart*{}": {
+      "command": "tsectionandpart*{}",
+      "snippet": "tsectionandpart*{${1:title}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tsectionandpart*[]{}": {
+      "command": "tsectionandpart*[]{}",
+      "snippet": "tsectionandpart*[${2:options}]{${1:title}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "dualslide[][][]{}{}{}": {
       "command": "dualslide[][][]{}{}{}",
-      "snippet": "dualslide[${4:x}][${5:y}][${6:z}]{${1:options}}{${2:left column}}{${3:right column}}",
+      "snippet": "dualslide[${4:x}][${5:y}][${6:z}]{${1:options}}{${2:left column%text}}{${3:right column%text}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "lcolwidth=",
+        "rcolwidth="
+      ],
+      "keyvalindex": 3
     },
     "dualslide[][]{}{}{}": {
       "command": "dualslide[][]{}{}{}",
-      "snippet": "dualslide[${4:y}][${5:z}]{${1:options}}{${2:left column}}{${3:right column}}",
+      "snippet": "dualslide[${4:y}][${5:z}]{${1:options}}{${2:left column%text}}{${3:right column%text}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "lcolwidth=",
+        "rcolwidth="
+      ],
+      "keyvalindex": 2
     },
     "dualslide[]{}{}{}": {
       "command": "dualslide[]{}{}{}",
-      "snippet": "dualslide[${4:z}]{${1:options}}{${2:left column}}{${3:right column}}",
+      "snippet": "dualslide[${4:z}]{${1:options}}{${2:left column%text}}{${3:right column%text}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "lcolwidth=",
+        "rcolwidth="
+      ],
+      "keyvalindex": 1
     },
     "dualslide{}{}{}": {
       "command": "dualslide{}{}{}",
-      "snippet": "dualslide{${1:options}}{${2:left column}}{${3:right column}}",
+      "snippet": "dualslide{${1:options}}{${2:left column%text}}{${3:right column%text}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "lcolwidth=",
+        "rcolwidth="
+      ],
+      "keyvalindex": 0
     },
     "PDForPS{}{}": {
       "command": "PDForPS{}{}",
@@ -211,42 +230,111 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "onlyInPDF<>": {
-      "command": "onlyInPDF<>",
-      "snippet": "onlyInPDF<${1:PDF text}>",
+    "onlyInPDF{}": {
+      "command": "onlyInPDF{}",
+      "snippet": "onlyInPDF{${1:PDF text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "onlyInPS<>": {
-      "command": "onlyInPS<>",
-      "snippet": "onlyInPS<${1:PS text}>",
+    "onlyInPS{}": {
+      "command": "onlyInPS{}",
+      "snippet": "onlyInPS{${1:PostScript text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "myitem": {
+      "command": "myitem",
+      "snippet": "myitem",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FontTitle": {
+      "command": "FontTitle",
+      "snippet": "FontTitle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FontText": {
+      "command": "FontText",
+      "snippet": "FontText",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ColorFoot": {
+      "command": "ColorFoot",
+      "snippet": "ColorFoot",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultTransition": {
+      "command": "DefaultTransition",
+      "snippet": "DefaultTransition",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoFrenchBabelItemize": {
+      "command": "NoFrenchBabelItemize",
+      "snippet": "NoFrenchBabelItemize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TitleSlideNav": {
+      "command": "TitleSlideNav",
+      "snippet": "TitleSlideNav",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NormalSlideNav": {
+      "command": "NormalSlideNav",
+      "snippet": "NormalSlideNav",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HAPsetup": {
+      "command": "HAPsetup",
+      "snippet": "HAPsetup",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LeftFoot": {
+      "command": "LeftFoot",
+      "snippet": "LeftFoot",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RightFoot": {
+      "command": "RightFoot",
+      "snippet": "RightFoot",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {
-    "slides[]{}": {
-      "name": "slides",
-      "detail": "slides[]{}",
-      "snippet": "[${2:options}]{${1:frame title}}",
+    "slide{}": {
+      "name": "slide",
+      "detail": "slide{}",
+      "snippet": "{${1:frame title%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "slides{}": {
-      "name": "slides",
-      "detail": "slides{}",
-      "snippet": "{${1:frame title}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "notes{}": {
-      "name": "notes",
-      "detail": "notes{}",
-      "snippet": "{${1:title}}",
+    "slide[]{}": {
+      "name": "slide",
+      "detail": "slide[]{}",
+      "snippet": "[${2:options}]{${1:frame title%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -274,7 +362,25 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "notes{}": {
+      "name": "notes",
+      "detail": "notes{}",
+      "snippet": "{${1:title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "wideslide": {
+      "name": "wideslide",
+      "detail": "wideslide",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
-  "options": []
+  "options": [
+    "framesassubsections"
+  ]
 }

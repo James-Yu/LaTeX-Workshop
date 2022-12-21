@@ -1,0 +1,810 @@
+{
+  "includes": [
+    "expl3",
+    "class-scrartcl",
+    "etoolbox",
+    "xstring",
+    "xparse",
+    "atbegshi",
+    "kvoptions",
+    "pdftexcmds",
+    "everyhook",
+    "verbatim",
+    "needspace",
+    "marginnote",
+    "calc",
+    "hyperref",
+    "multicol",
+    "hologo",
+    "glossaries",
+    "ydoc-code",
+    "ydoc-desc",
+    "scrlayer-scrpage",
+    "babel",
+    "csquotes",
+    "caption",
+    "PTSerif",
+    "sourcecodepro",
+    "opensans",
+    "microtype",
+    "minted"
+  ],
+  "cmds": {
+    "package{}": {
+      "command": "package{}",
+      "snippet": "package{${1:package}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "package[]{}": {
+      "command": "package[]{}",
+      "snippet": "package[${2:options}]{${1:package}}",
+      "option": "",
+      "keyvals": [
+        "ctan=",
+        "vcs="
+      ],
+      "keyvalindex": 0
+    },
+    "version{}": {
+      "command": "version{}",
+      "snippet": "version{${1:version}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ctan{}": {
+      "command": "ctan{}",
+      "snippet": "ctan{${1:identifier}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "repository{}": {
+      "command": "repository{}",
+      "snippet": "repository{${1:URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "email{}": {
+      "command": "email{}",
+      "snippet": "email{${1:email%URL}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theversion": {
+      "command": "theversion",
+      "snippet": "theversion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thepackage": {
+      "command": "thepackage",
+      "snippet": "thepackage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thepkg": {
+      "command": "thepkg",
+      "snippet": "thepkg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PrintLPPL": {
+      "command": "PrintLPPL",
+      "snippet": "PrintLPPL",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Notice{}": {
+      "command": "Notice{}",
+      "snippet": "Notice{${1:notice%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Warning{}": {
+      "command": "Warning{}",
+      "snippet": "Warning{${1:warning%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LongWarning{}": {
+      "command": "LongWarning{}",
+      "snippet": "LongWarning{${1:warning%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cs*{}": {
+      "command": "cs*{}",
+      "snippet": "cs*{${1:csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "env*{}": {
+      "command": "env*{}",
+      "snippet": "env*{${1:envname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pkg*{}": {
+      "command": "pkg*{}",
+      "snippet": "pkg*{${1:package}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "opt*{}": {
+      "command": "opt*{}",
+      "snippet": "opt*{${1:option}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bib{}": {
+      "command": "bib{}",
+      "snippet": "bib{${1:BibTeX entry type}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bib*{}": {
+      "command": "bib*{}",
+      "snippet": "bib*{${1:BibTeX entry type}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thm{}": {
+      "command": "thm{}",
+      "snippet": "thm{${1:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thm*{}": {
+      "command": "thm*{}",
+      "snippet": "thm*{${1:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "file*{}": {
+      "command": "file*{}",
+      "snippet": "file*{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Option{}": {
+      "command": "Option{}",
+      "snippet": "Option{${1:option}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Options{}": {
+      "command": "Options{}",
+      "snippet": "Options{${1:option1,option2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "WithValues{}": {
+      "command": "WithValues{}",
+      "snippet": "WithValues{${1:value1,value2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AndDefault{}": {
+      "command": "AndDefault{}",
+      "snippet": "AndDefault{${1:default value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BibEntry{}": {
+      "command": "BibEntry{}",
+      "snippet": "BibEntry{${1:entry}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "WithFields{}": {
+      "command": "WithFields{}",
+      "snippet": "WithFields{${1:mandatory fields}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "WithFields[]{}": {
+      "command": "WithFields[]{}",
+      "snippet": "WithFields[${2:optional fields}]{${1:mandatory fields}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Theme{}": {
+      "command": "Theme{}",
+      "snippet": "Theme{${1:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DescribeFile{}": {
+      "command": "DescribeFile{}",
+      "snippet": "DescribeFile{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareFile{}": {
+      "command": "DeclareFile{}",
+      "snippet": "DeclareFile{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareFile[]{}": {
+      "command": "DeclareFile[]{}",
+      "snippet": "DeclareFile[${2:options}]{${1:file}}",
+      "option": "",
+      "keyvals": [
+        "key=",
+        "preamble="
+      ],
+      "keyvalindex": 0
+    },
+    "PreambleTo{}{}": {
+      "command": "PreambleTo{}{}",
+      "snippet": "PreambleTo{${1:token}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SelfPreambleTo{}": {
+      "command": "SelfPreambleTo{}",
+      "snippet": "SelfPreambleTo{${1:token}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Implementation": {
+      "command": "Implementation",
+      "snippet": "Implementation",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Finale": {
+      "command": "Finale",
+      "snippet": "Finale",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "OnlyDescription": {
+      "command": "OnlyDescription",
+      "snippet": "OnlyDescription",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "changes{}{}": {
+      "command": "changes{}{}",
+      "snippet": "changes{${1:version}}{${2:description}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PrintChanges": {
+      "command": "PrintChanges",
+      "snippet": "PrintChanges",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PrintIndex": {
+      "command": "PrintIndex",
+      "snippet": "PrintIndex",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPPL": {
+      "command": "LPPL",
+      "snippet": "LPPL",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPPLdocfile{}": {
+      "command": "LPPLdocfile{}",
+      "snippet": "LPPLdocfile{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPPLfile{}": {
+      "command": "LPPLfile{}",
+      "snippet": "LPPLfile{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPPLicense": {
+      "command": "LPPLicense",
+      "snippet": "LPPLicense",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPPLparagraph": {
+      "command": "LPPLparagraph",
+      "snippet": "LPPLparagraph",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPPLparagraph{}": {
+      "command": "LPPLparagraph{}",
+      "snippet": "LPPLparagraph{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPPLsection": {
+      "command": "LPPLsection",
+      "snippet": "LPPLsection",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPPLsection{}": {
+      "command": "LPPLsection{}",
+      "snippet": "LPPLsection{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPPLsubsection": {
+      "command": "LPPLsubsection",
+      "snippet": "LPPLsubsection",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPPLsubsection{}": {
+      "command": "LPPLsubsection{}",
+      "snippet": "LPPLsubsection{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPPLsubsubsection": {
+      "command": "LPPLsubsubsection",
+      "snippet": "LPPLsubsubsection",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LPPLsubsubsection{}": {
+      "command": "LPPLsubsubsection{}",
+      "snippet": "LPPLsubsubsection{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PY": {
+      "command": "PY",
+      "snippet": "PY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZam": {
+      "command": "PYZam",
+      "snippet": "PYZam",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZat": {
+      "command": "PYZat",
+      "snippet": "PYZat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZbs": {
+      "command": "PYZbs",
+      "snippet": "PYZbs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZca": {
+      "command": "PYZca",
+      "snippet": "PYZca",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZcb": {
+      "command": "PYZcb",
+      "snippet": "PYZcb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZdl": {
+      "command": "PYZdl",
+      "snippet": "PYZdl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZdq": {
+      "command": "PYZdq",
+      "snippet": "PYZdq",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZgt": {
+      "command": "PYZgt",
+      "snippet": "PYZgt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZhy": {
+      "command": "PYZhy",
+      "snippet": "PYZhy",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZlb": {
+      "command": "PYZlb",
+      "snippet": "PYZlb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZlt": {
+      "command": "PYZlt",
+      "snippet": "PYZlt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZob": {
+      "command": "PYZob",
+      "snippet": "PYZob",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZpc": {
+      "command": "PYZpc",
+      "snippet": "PYZpc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZrb": {
+      "command": "PYZrb",
+      "snippet": "PYZrb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZsh": {
+      "command": "PYZsh",
+      "snippet": "PYZsh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZsq": {
+      "command": "PYZsq",
+      "snippet": "PYZsq",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZti": {
+      "command": "PYZti",
+      "snippet": "PYZti",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PYZus": {
+      "command": "PYZus",
+      "snippet": "PYZus",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "descframe{}": {
+      "command": "descframe{}",
+      "snippet": "descframe{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endDescribeEnv": {
+      "command": "endDescribeEnv",
+      "snippet": "endDescribeEnv",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endLPPLicense": {
+      "command": "endLPPLicense",
+      "snippet": "endLPPLicense",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "generalname": {
+      "command": "generalname",
+      "snippet": "generalname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hyperul{}": {
+      "command": "hyperul{}",
+      "snippet": "hyperul{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "name": {
+      "command": "name",
+      "snippet": "name",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oldmakeatletter": {
+      "command": "oldmakeatletter",
+      "snippet": "oldmakeatletter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skdocpdfsettings": {
+      "command": "skdocpdfsettings",
+      "snippet": "skdocpdfsettings",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "captionsenglish": {
+      "command": "captionsenglish",
+      "snippet": "captionsenglish",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dateenglish": {
+      "command": "dateenglish",
+      "snippet": "dateenglish",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extrasenglish": {
+      "command": "extrasenglish",
+      "snippet": "extrasenglish",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noextrasenglish": {
+      "command": "noextrasenglish",
+      "snippet": "noextrasenglish",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "englishhyphenmins": {
+      "command": "englishhyphenmins",
+      "snippet": "englishhyphenmins",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "britishhyphenmins": {
+      "command": "britishhyphenmins",
+      "snippet": "britishhyphenmins",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "americanhyphenmins": {
+      "command": "americanhyphenmins",
+      "snippet": "americanhyphenmins",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "prefacename": {
+      "command": "prefacename",
+      "snippet": "prefacename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bibname": {
+      "command": "bibname",
+      "snippet": "bibname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chaptername": {
+      "command": "chaptername",
+      "snippet": "chaptername",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "enclname": {
+      "command": "enclname",
+      "snippet": "enclname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ccname": {
+      "command": "ccname",
+      "snippet": "ccname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "headtoname": {
+      "command": "headtoname",
+      "snippet": "headtoname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "seename": {
+      "command": "seename",
+      "snippet": "seename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "alsoname": {
+      "command": "alsoname",
+      "snippet": "alsoname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proofname": {
+      "command": "proofname",
+      "snippet": "proofname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glossaryname": {
+      "command": "glossaryname",
+      "snippet": "glossaryname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "example": {
+      "name": "example",
+      "detail": "example",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "macro*{}": {
+      "name": "macro*",
+      "detail": "macro*{}",
+      "snippet": "{${1:macro}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "environment*{}": {
+      "name": "environment*",
+      "detail": "environment*{}",
+      "snippet": "{${1:envname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "option{}": {
+      "name": "option",
+      "detail": "option{}",
+      "snippet": "{${1:option}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "option*{}": {
+      "name": "option*",
+      "detail": "option*{}",
+      "snippet": "{${1:option}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bibentry{}": {
+      "name": "bibentry",
+      "detail": "bibentry{}",
+      "snippet": "{${1:entry}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bibentry*{}": {
+      "name": "bibentry*",
+      "detail": "bibentry*{}",
+      "snippet": "{${1:entry}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theme{}": {
+      "name": "theme",
+      "detail": "theme{}",
+      "snippet": "{${1:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theme*{}": {
+      "name": "theme*",
+      "detail": "theme*{}",
+      "snippet": "{${1:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MacroCode": {
+      "name": "MacroCode",
+      "detail": "MacroCode",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "enum": {
+      "name": "enum",
+      "detail": "enum",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

@@ -1,0 +1,487 @@
+{
+  "includes": [
+    "tikz",
+    "tikzlibrarydecorations.pathreplacing",
+    "tikzlibrarydecorations.markings",
+    "tikzlibrarycalc",
+    "tikzlibraryfadings",
+    "etoolbox",
+    "environ",
+    "ifthen",
+    "kvsetkeys",
+    "kvoptions"
+  ],
+  "cmds": {
+    "drawBall": {
+      "command": "drawBall",
+      "snippet": "drawBall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawBall[]": {
+      "command": "drawBall[]",
+      "snippet": "drawBall[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawBallGrid{}{}": {
+      "command": "drawBallGrid{}{}",
+      "snippet": "drawBallGrid{${1:lat deg sep}}{${2:long deg sep}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawBallGrid[]{}{}": {
+      "command": "drawBallGrid[]{}{}",
+      "snippet": "drawBallGrid[${3:options}]{${1:lat deg sep}}{${2:long deg sep}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setDrawingPlane{}{}": {
+      "command": "setDrawingPlane{}{}",
+      "snippet": "setDrawingPlane{${1:tilt angle}}{${2:rotation angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setDrawingPlane[]": {
+      "command": "setDrawingPlane[]",
+      "snippet": "setDrawingPlane[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setLatitudinalDrawingPlane{}": {
+      "command": "setLatitudinalDrawingPlane{}",
+      "snippet": "setLatitudinalDrawingPlane{${1:latitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setLatitudinalDrawingPlane[]{}": {
+      "command": "setLatitudinalDrawingPlane[]{}",
+      "snippet": "setLatitudinalDrawingPlane[${2:options}]{${1:latitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setLongitudinalDrawingPlane{}": {
+      "command": "setLongitudinalDrawingPlane{}",
+      "snippet": "setLongitudinalDrawingPlane{${1:longitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setLongitudinalDrawingPlane[]{}": {
+      "command": "setLongitudinalDrawingPlane[]{}",
+      "snippet": "setLongitudinalDrawingPlane[${2:options}]{${1:longitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawCircle{}{}": {
+      "command": "drawCircle{}{}",
+      "snippet": "drawCircle{${1:tilt angle}}{${2:rotation angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawCircle[]{}{}": {
+      "command": "drawCircle[]{}{}",
+      "snippet": "drawCircle[${3:options}]{${1:tilt angle}}{${2:rotation angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawGreatCircle{}{}": {
+      "command": "drawGreatCircle{}{}",
+      "snippet": "drawGreatCircle{${1:tilt angle}}{${2:rotation angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawGreatCircle[]{}{}": {
+      "command": "drawGreatCircle[]{}{}",
+      "snippet": "drawGreatCircle[${3:options}]{${1:tilt angle}}{${2:rotation angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawSmallCircle{}{}{}": {
+      "command": "drawSmallCircle{}{}{}",
+      "snippet": "drawSmallCircle{${1:tilt angle}}{${2:rotation angle}}{${3:offset latitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawSmallCircle[]{}{}{}": {
+      "command": "drawSmallCircle[]{}{}{}",
+      "snippet": "drawSmallCircle[${4:options}]{${1:tilt angle}}{${2:rotation angle}}{${3:offset latitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawLatitudeCircle{}": {
+      "command": "drawLatitudeCircle{}",
+      "snippet": "drawLatitudeCircle{${1:latitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawLatitudeCircle[]{}": {
+      "command": "drawLatitudeCircle[]{}",
+      "snippet": "drawLatitudeCircle[${2:options}]{${1:latitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawLongitudeCircle{}": {
+      "command": "drawLongitudeCircle{}",
+      "snippet": "drawLongitudeCircle{${1:longitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawLongitudeCircle[]{}": {
+      "command": "drawLongitudeCircle[]{}",
+      "snippet": "drawLongitudeCircle[${2:options}]{${1:longitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawRotationLeft{}{}{}{}": {
+      "command": "drawRotationLeft{}{}{}{}",
+      "snippet": "drawRotationLeft{${1:tilt angle}}{${2:rotation angle}}{${3:axis offset}}{${4:clear angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawRotationLeft[]{}{}{}{}": {
+      "command": "drawRotationLeft[]{}{}{}{}",
+      "snippet": "drawRotationLeft[${5:options}]{${1:tilt angle}}{${2:rotation angle}}{${3:axis offset}}{${4:clear angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawRotationRight{}{}{}{}": {
+      "command": "drawRotationRight{}{}{}{}",
+      "snippet": "drawRotationRight{${1:tilt angle}}{${2:rotation angle}}{${3:axis offset}}{${4:clear angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawRotationRight[]{}{}{}{}": {
+      "command": "drawRotationRight[]{}{}{}{}",
+      "snippet": "drawRotationRight[${5:options}]{${1:tilt angle}}{${2:rotation angle}}{${3:axis offset}}{${4:clear angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawAxis{}{}": {
+      "command": "drawAxis{}{}",
+      "snippet": "drawAxis{${1:tilt angle}}{${2:rotation angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawAxis[]{}{}": {
+      "command": "drawAxis[]{}{}",
+      "snippet": "drawAxis[${3:options}]{${1:tilt angle}}{${2:rotation angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelPolar{}{}{}": {
+      "command": "labelPolar{}{}{}",
+      "snippet": "labelPolar{${1:TikZ label}}{${2:tilt angle}}{${3:rotation angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelPolar[]{}{}{}": {
+      "command": "labelPolar[]{}{}{}",
+      "snippet": "labelPolar[${4:options}]{${1:TikZ label}}{${2:tilt angle}}{${3:rotation angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelLatLon{}{}{}": {
+      "command": "labelLatLon{}{}{}",
+      "snippet": "labelLatLon{${1:TikZ label}}{${2:latitude}}{${3:longitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelLatLon[]{}{}{}": {
+      "command": "labelLatLon[]{}{}{}",
+      "snippet": "labelLatLon[${4:options}]{${1:TikZ label}}{${2:latitude}}{${3:longitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawStatePolar{}{}{}": {
+      "command": "drawStatePolar{}{}{}",
+      "snippet": "drawStatePolar{${1:TikZ label}}{${2:tilt angle}}{${3:rotation angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawStatePolar[]{}{}{}": {
+      "command": "drawStatePolar[]{}{}{}",
+      "snippet": "drawStatePolar[${4:options}]{${1:TikZ label}}{${2:tilt angle}}{${3:rotation angle}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawStateLatLon{}{}{}": {
+      "command": "drawStateLatLon{}{}{}",
+      "snippet": "drawStateLatLon{${1:TikZ label}}{${2:latitude}}{${3:longitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drawStateLatLon[]{}{}{}": {
+      "command": "drawStateLatLon[]{}{}{}",
+      "snippet": "drawStateLatLon[${4:options}]{${1:TikZ label}}{${2:latitude}}{${3:longitude}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "computeOffset{}": {
+      "command": "computeOffset{}",
+      "snippet": "computeOffset{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "computeOffset[]{}": {
+      "command": "computeOffset[]{}",
+      "snippet": "computeOffset[${2:options}]{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "computeVisibility{}{}{}{}": {
+      "command": "computeVisibility{}{}{}{}",
+      "snippet": "computeVisibility{${1:name1}}{${2:name2}}{${3:name3}}{${4:name4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "computeVisibility[]{}{}{}{}": {
+      "command": "computeVisibility[]{}{}{}{}",
+      "snippet": "computeVisibility[${5:options}]{${1:name1}}{${2:name2}}{${3:name3}}{${4:name4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tmp{}": {
+      "command": "tmp{}",
+      "snippet": "tmp{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "aphi": {
+      "command": "aphi",
+      "snippet": "aphi",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "atheta": {
+      "command": "atheta",
+      "snippet": "atheta",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dot": {
+      "command": "dot",
+      "snippet": "dot",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "⦁",
+      "documentation": "Z NOTATION SPOT"
+    },
+    "norm": {
+      "command": "norm",
+      "snippet": "norm",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xx": {
+      "command": "xx",
+      "snippet": "xx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xy": {
+      "command": "xy",
+      "snippet": "xy",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yx": {
+      "command": "yx",
+      "snippet": "yx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yy": {
+      "command": "yy",
+      "snippet": "yy",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xshift": {
+      "command": "xshift",
+      "snippet": "xshift",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yshift": {
+      "command": "yshift",
+      "snippet": "yshift",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zshift": {
+      "command": "zshift",
+      "snippet": "zshift",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "behind": {
+      "command": "behind",
+      "snippet": "behind",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newphi": {
+      "command": "newphi",
+      "snippet": "newphi",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newtheta": {
+      "command": "newtheta",
+      "snippet": "newtheta",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "myval": {
+      "command": "myval",
+      "snippet": "myval",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tatheta": {
+      "command": "tatheta",
+      "snippet": "tatheta",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "domaintest": {
+      "command": "domaintest",
+      "snippet": "domaintest",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "domaintesttwo": {
+      "command": "domaintesttwo",
+      "snippet": "domaintesttwo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "domaintestthree": {
+      "command": "domaintestthree",
+      "snippet": "domaintestthree",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "agamma": {
+      "command": "agamma",
+      "snippet": "agamma",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "aalpha": {
+      "command": "aalpha",
+      "snippet": "aalpha",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "aalphatest": {
+      "command": "aalphatest",
+      "snippet": "aalphatest",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "abeta": {
+      "command": "abeta",
+      "snippet": "abeta",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "blochsphere": {
+      "name": "blochsphere",
+      "detail": "blochsphere",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blochsphere[]": {
+      "name": "blochsphere",
+      "detail": "blochsphere[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "radius=",
+    "tilt=",
+    "rotation=",
+    "color=",
+    "opacity=",
+    "style={",
+    "scale=",
+    "plane=",
+    "shift={",
+    "ball=",
+    "statecolor=",
+    "statewidth=",
+    "axisarrow=",
+    "labelmark",
+    "nested"
+  ]
+}

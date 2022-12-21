@@ -1,0 +1,474 @@
+{
+  "includes": [
+    "marginnote",
+    "caption",
+    "xparse",
+    "calc",
+    "etoolbox",
+    "l3keys2e",
+    "ifoddpage",
+    "mparhack",
+    "xspace",
+    "changepage",
+    "ragged2e"
+  ],
+  "cmds": {
+    "sidenote{}": {
+      "command": "sidenote{}",
+      "snippet": "sidenote{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenote<%<fixed offset%>>{}": {
+      "command": "sidenote<%<fixed offset%>>{}",
+      "snippet": "sidenote|${2:float offset}|<${3:fixed offset}>{${1:%<content%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenote*{}": {
+      "command": "sidenote*{}",
+      "snippet": "sidenote*{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenote*<%<fixed offset%>>{}": {
+      "command": "sidenote*<%<fixed offset%>>{}",
+      "snippet": "sidenote*|${2:float offset}|<${3:fixed offset}>{${1:%<content%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotetext{}": {
+      "command": "sidenotetext{}",
+      "snippet": "sidenotetext{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotetext<%<fixed offset%>>{}": {
+      "command": "sidenotetext<%<fixed offset%>>{}",
+      "snippet": "sidenotetext|${2:float offset}|<${3:fixed offset}>{${1:%<content%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotetext*{}": {
+      "command": "sidenotetext*{}",
+      "snippet": "sidenotetext*{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotetext*<%<fixed offset%>>{}": {
+      "command": "sidenotetext*<%<fixed offset%>>{}",
+      "snippet": "sidenotetext*|${2:float offset}|<${3:fixed offset}>{${1:%<content%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotetextbefore{}": {
+      "command": "sidenotetextbefore{}",
+      "snippet": "sidenotetextbefore{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotetextbefore<%<fixed offset%>>{}": {
+      "command": "sidenotetextbefore<%<fixed offset%>>{}",
+      "snippet": "sidenotetextbefore|${2:float offset}|<${3:fixed offset}>{${1:%<content%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotetextbefore*{}": {
+      "command": "sidenotetextbefore*{}",
+      "snippet": "sidenotetextbefore*{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotetextbefore*<%<fixed offset%>>{}": {
+      "command": "sidenotetextbefore*<%<fixed offset%>>{}",
+      "snippet": "sidenotetextbefore*|${2:float offset}|<${3:fixed offset}>{${1:%<content%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotemark": {
+      "command": "sidenotemark",
+      "snippet": "sidenotemark",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidenotemark*": {
+      "command": "sidenotemark*",
+      "snippet": "sidenotemark*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidealert{}": {
+      "command": "sidealert{}",
+      "snippet": "sidealert{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidealert<%<fixed offset%>>{}": {
+      "command": "sidealert<%<fixed offset%>>{}",
+      "snippet": "sidealert|${2:float offset}|<${3:fixed offset}>{${1:%<content%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidealert*{}": {
+      "command": "sidealert*{}",
+      "snippet": "sidealert*{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidealert*<%<fixed offset%>>{}": {
+      "command": "sidealert*<%<fixed offset%>>{}",
+      "snippet": "sidealert*|${2:float offset}|<${3:fixed offset}>{${1:%<content%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidepar": {
+      "command": "sidepar",
+      "snippet": "sidepar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecaption{}": {
+      "command": "sidecaption{}",
+      "snippet": "sidecaption{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecaption[]{}": {
+      "command": "sidecaption[]{}",
+      "snippet": "sidecaption[${2:short text%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecaption<>[]{}": {
+      "command": "sidecaption<>[]{}",
+      "snippet": "sidecaption<${3:offset}>[${2:short text%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecaption*{}": {
+      "command": "sidecaption*{}",
+      "snippet": "sidecaption*{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecaption*[]{}": {
+      "command": "sidecaption*[]{}",
+      "snippet": "sidecaption*[${2:short text%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecaption*<>[]{}": {
+      "command": "sidecaption*<>[]{}",
+      "snippet": "sidecaption*<${3:offset}>[${2:short text%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "raggedinner": {
+      "command": "raggedinner",
+      "snippet": "raggedinner",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "raggedouter": {
+      "command": "raggedouter",
+      "snippet": "raggedouter",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "margincaption{}": {
+      "command": "margincaption{}",
+      "snippet": "margincaption{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "margincaption[]{}": {
+      "command": "margincaption[]{}",
+      "snippet": "margincaption[${2:short text%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "margincaption*{}": {
+      "command": "margincaption*{}",
+      "snippet": "margincaption*{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "margincaption*[]{}": {
+      "command": "margincaption*[]{}",
+      "snippet": "margincaption*[${2:short text%text}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecite{}": {
+      "command": "sidecite{}",
+      "snippet": "sidecite{${1:bibid}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecite[]{}": {
+      "command": "sidecite[]{}",
+      "snippet": "sidecite[${2:postnote}]{${1:bibid}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecite[][]{}": {
+      "command": "sidecite[][]{}",
+      "snippet": "sidecite[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecitet{}": {
+      "command": "sidecitet{}",
+      "snippet": "sidecitet{${1:bibid}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecitet[]{}": {
+      "command": "sidecitet[]{}",
+      "snippet": "sidecitet[${2:postnote}]{${1:bibid}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecitet[][]{}": {
+      "command": "sidecitet[][]{}",
+      "snippet": "sidecitet[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecitet*{}": {
+      "command": "sidecitet*{}",
+      "snippet": "sidecitet*{${1:bibid}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecitet*[]{}": {
+      "command": "sidecitet*[]{}",
+      "snippet": "sidecitet*[${2:postnote}]{${1:bibid}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "sidecitet*[][]{}": {
+      "command": "sidecitet*[][]{}",
+      "snippet": "sidecitet*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "snptest": {
+      "command": "snptest",
+      "snippet": "snptest",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfNoValueOrEmptyTF{}{}{}": {
+      "command": "IfNoValueOrEmptyTF{}{}{}",
+      "snippet": "IfNoValueOrEmptyTF{${1:arg}}{${2:-NoValue-Code}}{${3:ValueCode}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thesidenote": {
+      "command": "thesidenote",
+      "snippet": "thesidenote",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thesidealert": {
+      "command": "thesidealert",
+      "snippet": "thesidealert",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "oldmarginpar": {
+      "command": "oldmarginpar",
+      "snippet": "oldmarginpar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfsTF{}{}{}": {
+      "command": "IfsTF{}{}{}",
+      "snippet": "IfsTF{${1:arg}}{${2:-NoValue-Code}}{${3:ValueCode}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "istwosided{}{}": {
+      "command": "istwosided{}{}",
+      "snippet": "istwosided{${1:true code}}{${2:false code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marginparsepodd": {
+      "command": "marginparsepodd",
+      "snippet": "marginparsepodd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marginparsepeven": {
+      "command": "marginparsepeven",
+      "snippet": "marginparsepeven",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "patcherr": {
+      "command": "patcherr",
+      "snippet": "patcherr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "patchok": {
+      "command": "patchok",
+      "snippet": "patchok",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "patch": {
+      "command": "patch",
+      "snippet": "patch",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "marginfigure": {
+      "name": "marginfigure",
+      "detail": "marginfigure",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marginfigure|%<float offset%>|": {
+      "name": "marginfigure",
+      "detail": "marginfigure|%<float offset%>|",
+      "snippet": "|${1:float offset}|",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marginfigure<%<fixed offset%>>": {
+      "name": "marginfigure",
+      "detail": "marginfigure<%<fixed offset%>>",
+      "snippet": "<${1:fixed offset}>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "marginfigure|%<float offset%>|<%<fixed offset%>>": {
+      "name": "marginfigure",
+      "detail": "marginfigure|%<float offset%>|<%<fixed offset%>>",
+      "snippet": "|${1:float offset}|<${2:fixed offset}>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "margintable": {
+      "name": "margintable",
+      "detail": "margintable",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "margintable|%<float offset%>|": {
+      "name": "margintable",
+      "detail": "margintable|%<float offset%>|",
+      "snippet": "|${1:float offset}|",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "margintable<%<fixed offset%>>": {
+      "name": "margintable",
+      "detail": "margintable<%<fixed offset%>>",
+      "snippet": "<${1:fixed offset}>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "margintable|%<float offset%>|<%<fixed offset%>>": {
+      "name": "margintable",
+      "detail": "margintable|%<float offset%>|<%<fixed offset%>>",
+      "snippet": "|${1:float offset}|<${2:fixed offset}>",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "text*": {
+      "name": "text*",
+      "detail": "text*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "text*[]": {
+      "name": "text*",
+      "detail": "text*[]",
+      "snippet": "[${1:width factor}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "mark=",
+    "font=",
+    "size=",
+    "shape=",
+    "ragged",
+    "Ragged",
+    "classic",
+    "sepdiff=",
+    "alerton"
+  ]
+}

@@ -1,0 +1,806 @@
+{
+  "includes": [
+    "calc",
+    "etoolbox",
+    "dsfont",
+    "mathrsfs",
+    "mathtools",
+    "xparse",
+    "kvoptions"
+  ],
+  "cmds": {
+    "Hs": {
+      "command": "Hs",
+      "snippet": "Hs",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ident": {
+      "command": "Ident",
+      "snippet": "Ident",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IdentProc{}": {
+      "command": "IdentProc{}",
+      "snippet": "IdentProc{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IdentProc[]{}": {
+      "command": "IdentProc[]{}",
+      "snippet": "IdentProc[${2:sub}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IdentProc[][]{}": {
+      "command": "IdentProc[][]{}",
+      "snippet": "IdentProc[${2:sub from}][${3:sub to}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ee^{}": {
+      "command": "ee^{}",
+      "snippet": "ee^{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tr": {
+      "command": "tr",
+      "snippet": "tr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "supp": {
+      "command": "supp",
+      "snippet": "supp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rank": {
+      "command": "rank",
+      "snippet": "rank",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "linspan": {
+      "command": "linspan",
+      "snippet": "linspan",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "spec": {
+      "command": "spec",
+      "snippet": "spec",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "diag": {
+      "command": "diag",
+      "snippet": "diag",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "poly": {
+      "command": "poly",
+      "snippet": "poly",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bit{}": {
+      "command": "bit{}",
+      "snippet": "bit{${1:0 or 1}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bitstring{}": {
+      "command": "bitstring{}",
+      "snippet": "bitstring{${1:string}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gate{}": {
+      "command": "gate{}",
+      "snippet": "gate{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AND": {
+      "command": "AND",
+      "snippet": "AND",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "XOR": {
+      "command": "XOR",
+      "snippet": "XOR",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CNOT": {
+      "command": "CNOT",
+      "snippet": "CNOT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NOT": {
+      "command": "NOT",
+      "snippet": "NOT",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NOOP": {
+      "command": "NOOP",
+      "snippet": "NOOP",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ket{}": {
+      "command": "ket{}",
+      "snippet": "ket{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ket[]{}": {
+      "command": "ket[]{}",
+      "snippet": "ket[${2:size cmd}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ket*{}": {
+      "command": "ket*{}",
+      "snippet": "ket*{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bra{}": {
+      "command": "bra{}",
+      "snippet": "bra{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bra[]{}": {
+      "command": "bra[]{}",
+      "snippet": "bra[${2:size cmd}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bra*{}": {
+      "command": "bra*{}",
+      "snippet": "bra*{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "braket{}{}": {
+      "command": "braket{}{}",
+      "snippet": "braket{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "braket[]{}{}": {
+      "command": "braket[]{}{}",
+      "snippet": "braket[${3:size cmd}]{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "braket*{}{}": {
+      "command": "braket*{}{}",
+      "snippet": "braket*{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ketbra{}{}": {
+      "command": "ketbra{}{}",
+      "snippet": "ketbra{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ketbra[]{}{}": {
+      "command": "ketbra[]{}{}",
+      "snippet": "ketbra[${3:size cmd}]{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ketbra*{}{}": {
+      "command": "ketbra*{}{}",
+      "snippet": "ketbra*{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proj{}": {
+      "command": "proj{}",
+      "snippet": "proj{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proj[]{}": {
+      "command": "proj[]{}",
+      "snippet": "proj[${2:size cmd}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proj*{}": {
+      "command": "proj*{}",
+      "snippet": "proj*{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "matrixel{}{}{}": {
+      "command": "matrixel{}{}{}",
+      "snippet": "matrixel{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "matrixel[]{}{}{}": {
+      "command": "matrixel[]{}{}{}",
+      "snippet": "matrixel[${4:size cmd}]{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "matrixel*{}{}{}": {
+      "command": "matrixel*{}{}{}",
+      "snippet": "matrixel*{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dmatrixel{}{}": {
+      "command": "dmatrixel{}{}",
+      "snippet": "dmatrixel{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dmatrixel[]{}{}": {
+      "command": "dmatrixel[]{}{}",
+      "snippet": "dmatrixel[${3:size cmd}]{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dmatrixel*{}{}": {
+      "command": "dmatrixel*{}{}",
+      "snippet": "dmatrixel*{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "innerprod{}{}": {
+      "command": "innerprod{}{}",
+      "snippet": "innerprod{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "innerprod[]{}{}": {
+      "command": "innerprod[]{}{}",
+      "snippet": "innerprod[${3:size cmd}]{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "innerprod*{}{}": {
+      "command": "innerprod*{}{}",
+      "snippet": "innerprod*{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "abs{}": {
+      "command": "abs{}",
+      "snippet": "abs{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "abs[]{}": {
+      "command": "abs[]{}",
+      "snippet": "abs[${2:size cmd}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "abs*{}": {
+      "command": "abs*{}",
+      "snippet": "abs*{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "avg{}": {
+      "command": "avg{}",
+      "snippet": "avg{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "avg[]{}": {
+      "command": "avg[]{}",
+      "snippet": "avg[${2:size cmd}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "avg*{}": {
+      "command": "avg*{}",
+      "snippet": "avg*{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "norm{}": {
+      "command": "norm{}",
+      "snippet": "norm{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "norm[]{}": {
+      "command": "norm[]{}",
+      "snippet": "norm[${2:size cmd}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "norm*{}": {
+      "command": "norm*{}",
+      "snippet": "norm*{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intervalc{}{}": {
+      "command": "intervalc{}{}",
+      "snippet": "intervalc{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intervalc[]{}{}": {
+      "command": "intervalc[]{}{}",
+      "snippet": "intervalc[${3:size cmd}]{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intervalc*{}{}": {
+      "command": "intervalc*{}{}",
+      "snippet": "intervalc*{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intervalo{}{}": {
+      "command": "intervalo{}{}",
+      "snippet": "intervalo{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intervalo[]{}{}": {
+      "command": "intervalo[]{}{}",
+      "snippet": "intervalo[${3:size cmd}]{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intervalo*{}{}": {
+      "command": "intervalo*{}{}",
+      "snippet": "intervalo*{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intervalco{}{}": {
+      "command": "intervalco{}{}",
+      "snippet": "intervalco{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intervalco[]{}{}": {
+      "command": "intervalco[]{}{}",
+      "snippet": "intervalco[${3:size cmd}]{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intervalco*{}{}": {
+      "command": "intervalco*{}{}",
+      "snippet": "intervalco*{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intervaloc{}{}": {
+      "command": "intervaloc{}{}",
+      "snippet": "intervaloc{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intervaloc[]{}{}": {
+      "command": "intervaloc[]{}{}",
+      "snippet": "intervaloc[${3:size cmd}]{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intervaloc*{}{}": {
+      "command": "intervaloc*{}{}",
+      "snippet": "intervaloc*{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hmin{}": {
+      "command": "Hmin{}",
+      "snippet": "Hmin{${1:target sys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hmin[]{}": {
+      "command": "Hmin[]{}",
+      "snippet": "Hmin[${2:state}]{${1:target sys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hmin{}[]": {
+      "command": "Hmin{}[]",
+      "snippet": "Hmin{${1:target sys}}[${2:cond sys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hmin[][]{}[]": {
+      "command": "Hmin[][]{}[]",
+      "snippet": "Hmin[${2:state}][${3:epsilon}]{${1:target sys}}[${4:cond sys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HH{}": {
+      "command": "HH{}",
+      "snippet": "HH{${1:target sys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HH[]{}": {
+      "command": "HH[]{}",
+      "snippet": "HH[${2:state}]{${1:target sys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HH{}[]": {
+      "command": "HH{}[]",
+      "snippet": "HH{${1:target sys}}[${2:cond sys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HH[][]{}[]": {
+      "command": "HH[][]{}[]",
+      "snippet": "HH[${2:state}][${3:epsilon}]{${1:target sys}}[${4:cond sys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hzero{}": {
+      "command": "Hzero{}",
+      "snippet": "Hzero{${1:target sys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hzero[]{}": {
+      "command": "Hzero[]{}",
+      "snippet": "Hzero[${2:state}]{${1:target sys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hzero{}[]": {
+      "command": "Hzero{}[]",
+      "snippet": "Hzero{${1:target sys}}[${2:cond sys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hzero[][]{}[]": {
+      "command": "Hzero[][]{}[]",
+      "snippet": "Hzero[${2:state}][${3:epsilon}]{${1:target sys}}[${4:cond sys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hmaxf{}": {
+      "command": "Hmaxf{}",
+      "snippet": "Hmaxf{${1:target sys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hmaxf[]{}": {
+      "command": "Hmaxf[]{}",
+      "snippet": "Hmaxf[${2:state}]{${1:target sys}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hmaxf{}[]": {
+      "command": "Hmaxf{}[]",
+      "snippet": "Hmaxf{${1:target sys}}[${2:cond sys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hmaxf[][]{}[]": {
+      "command": "Hmaxf[][]{}[]",
+      "snippet": "Hmaxf[${2:state}][${3:epsilon}]{${1:target sys}}[${4:cond sys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HSym": {
+      "command": "HSym",
+      "snippet": "HSym",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Hbase{}{}[][]{}[]": {
+      "command": "Hbase{}{}[][]{}[]",
+      "snippet": "Hbase{${1:Hsym}}{${2:subscript}}[${3:state}][${4:epsilon}]{${5:target sys}}[${6:cond sys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DD{}{}": {
+      "command": "DD{}{}",
+      "snippet": "DD{${1:state}}{${2:relative-to state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DD_{}^{}{}{}": {
+      "command": "DD_{}^{}{}{}",
+      "snippet": "DD_{${1:sub}}^{${2:sup}}{${3:state}}{${4:relative-to state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dmax{}{}": {
+      "command": "Dmax{}{}",
+      "snippet": "Dmax{${1:state}}{${2:relative-to state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dmax[]{}{}": {
+      "command": "Dmax[]{}{}",
+      "snippet": "Dmax[${3:epsilon}]{${1:state}}{${2:relative-to state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dminz{}{}": {
+      "command": "Dminz{}{}",
+      "snippet": "Dminz{${1:state}}{${2:relative-to state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dminz[]{}{}": {
+      "command": "Dminz[]{}{}",
+      "snippet": "Dminz[${3:epsilon}]{${1:state}}{${2:relative-to state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dminf{}{}": {
+      "command": "Dminf{}{}",
+      "snippet": "Dminf{${1:state}}{${2:relative-to state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dminf[]{}{}": {
+      "command": "Dminf[]{}{}",
+      "snippet": "Dminf[${3:epsilon}]{${1:state}}{${2:relative-to state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dr{}{}": {
+      "command": "Dr{}{}",
+      "snippet": "Dr{${1:state}}{${2:relative-to state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dr[]{}{}": {
+      "command": "Dr[]{}{}",
+      "snippet": "Dr[${3:epsilon}]{${1:state}}{${2:relative-to state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dsym": {
+      "command": "Dsym",
+      "snippet": "Dsym",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dbase{}_{}^{}{}{}": {
+      "command": "Dbase{}_{}^{}{}{}",
+      "snippet": "Dbase{${1:Dsym}}_{${2:sub}}^{${3:sup}}{${4:state}}{${5:relative-to state}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DCohx{}{}{}{}{}": {
+      "command": "DCohx{}{}{}{}{}",
+      "snippet": "DCohx{${1:rho}}{${2:X}}{${3:X'}}{${4:GammaX}}{${5:GammaX'}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DCohx[]{}{}{}{}{}": {
+      "command": "DCohx[]{}{}{}{}{}",
+      "snippet": "DCohx[${6:epsilon}]{${1:rho}}{${2:X}}{${3:X'}}{${4:GammaX}}{${5:GammaX'}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "emptysystem": {
+      "command": "emptysystem",
+      "snippet": "emptysystem",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DCohxRefSystemName": {
+      "command": "DCohxRefSystemName",
+      "snippet": "DCohxRefSystemName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DCSym": {
+      "command": "DCSym",
+      "snippet": "DCSym",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DCoh{}{}{}{}{}": {
+      "command": "DCoh{}{}{}{}{}",
+      "snippet": "DCoh{${1:rho}}{${2:R}}{${3:X'}}{${4:GammaR}}{${5:GammaX'}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DCoh[]{}{}{}{}{}": {
+      "command": "DCoh[]{}{}{}{}{}",
+      "snippet": "DCoh[${6:epsilon}]{${1:rho}}{${2:R}}{${3:X'}}{${4:GammaR}}{${5:GammaX'}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DCohbase{}[]{}{}{}{}{}": {
+      "command": "DCohbase{}[]{}{}{}{}{}",
+      "snippet": "DCohbase{${1:Dsym}}[${2:epsilon}]{${3:rho}}{${4:R}}{${5:X'}}{${6:GammaR}}{${7:GammaX'}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qitobjAddArg": {
+      "command": "qitobjAddArg",
+      "snippet": "qitobjAddArg",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qitobjAddArgx": {
+      "command": "qitobjAddArgx",
+      "snippet": "qitobjAddArgx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qitobjParseDone": {
+      "command": "qitobjParseDone",
+      "snippet": "qitobjParseDone",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qitobjDone": {
+      "command": "qitobjDone",
+      "snippet": "qitobjDone",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefineQitObject{}{}{}": {
+      "command": "DefineQitObject{}{}{}",
+      "snippet": "DefineQitObject{${1:name}}{${2:parse cmd}}{${3:render cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefineTunedQitObject{}{}{}{}{}": {
+      "command": "DefineTunedQitObject{}{}{}{}{}",
+      "snippet": "DefineTunedQitObject{${1:name}}{${2:parse cmd}}{${3:render cmd}}{${4:first arg}}{${5:custom defs}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phfqitParen": {
+      "command": "phfqitParen",
+      "snippet": "phfqitParen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phfqitSquareBrackets": {
+      "command": "phfqitSquareBrackets",
+      "snippet": "phfqitSquareBrackets",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "phfqitCurlyBrackets": {
+      "command": "phfqitCurlyBrackets",
+      "snippet": "phfqitCurlyBrackets",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": []
+}

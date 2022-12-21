@@ -1,9 +1,86 @@
 {
-  "includes": [],
+  "includes": [
+    "keyval",
+    "calc",
+    "mhsetup",
+    "amsmath",
+    "graphicx"
+  ],
   "cmds": {
-    "adjustlimits{}_{}{}_{}": {
-      "command": "adjustlimits{}_{}{}_{}",
-      "snippet": "adjustlimits{${1:operator1}}_{${2:limit1}}{${3:operator2}}_{${4:limit2}}",
+    "mathtoolsset{}": {
+      "command": "mathtoolsset{}",
+      "snippet": "mathtoolsset{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "showonlyrefs",
+        "showmanualtags",
+        "original-intertext",
+        "original-shortintertext",
+        "mathic",
+        "above-intertext-sep=",
+        "below-intertext-sep=",
+        "above-shortintertext-sep=",
+        "below-shortintertext-sep=",
+        "smallmatrix-align=",
+        "smallmatrix-inner-space=",
+        "firstline-afterskip=",
+        "lastline-preskip=",
+        "multlined-width=",
+        "multlined-pos=",
+        "centercolon",
+        "prescript-sup-format=",
+        "prescript-sub-format=",
+        "prescript-arg-format=",
+        "shortvdotsadjustabove=",
+        "shortvdotsadjustbelow="
+      ],
+      "keyvalindex": 0
+    },
+    "mathllap[]{}": {
+      "command": "mathllap[]{}",
+      "snippet": "mathllap[${2:mathstyle}]{${1:math}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mathllap{}": {
+      "command": "mathllap{}",
+      "snippet": "mathllap{${1:math}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mathrlap[]{}": {
+      "command": "mathrlap[]{}",
+      "snippet": "mathrlap[${2:mathstyle}]{${1:math}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mathrlap{}": {
+      "command": "mathrlap{}",
+      "snippet": "mathrlap{${1:math}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mathmbox{}": {
+      "command": "mathmbox{}",
+      "snippet": "mathmbox{${1:math}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mathclap[]{}": {
+      "command": "mathclap[]{}",
+      "snippet": "mathclap[${2:mathstyle}]{${1:math}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mathclap{}": {
+      "command": "mathclap{}",
+      "snippet": "mathclap{${1:math}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -15,37 +92,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "crampedclap{}": {
-      "command": "crampedclap{}",
-      "snippet": "crampedclap{${1:math}}",
+    "mathmakebox[][]{}": {
+      "command": "mathmakebox[][]{}",
+      "snippet": "mathmakebox[${2:width}][${3:pos}]{${1:math}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "crampedclap[]{}": {
-      "command": "crampedclap[]{}",
-      "snippet": "crampedclap[${2:mathstyle}]{${1:math}}",
+    "mathmakebox[]{}": {
+      "command": "mathmakebox[]{}",
+      "snippet": "mathmakebox[${2:width}]{${1:math}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "crampedllap{}": {
-      "command": "crampedllap{}",
-      "snippet": "crampedllap{${1:math}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "crampedllap[]{}": {
-      "command": "crampedllap[]{}",
-      "snippet": "crampedllap[${2:mathstyle}]{${1:math}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cramped{}": {
-      "command": "cramped{}",
-      "snippet": "cramped{${1:math}}",
+    "mathmakebox{}": {
+      "command": "mathmakebox{}",
+      "snippet": "mathmakebox{${1:math}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -57,9 +120,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "crampedrlap{}": {
-      "command": "crampedrlap{}",
-      "snippet": "crampedrlap{${1:math}}",
+    "cramped{}": {
+      "command": "cramped{}",
+      "snippet": "cramped{${1:math}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crampedllap[]{}": {
+      "command": "crampedllap[]{}",
+      "snippet": "crampedllap[${2:mathstyle}]{${1:math}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crampedllap{}": {
+      "command": "crampedllap{}",
+      "snippet": "crampedllap{${1:math}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -71,9 +148,359 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "LaTeXoverbrace{}": {
-      "command": "LaTeXoverbrace{}",
-      "snippet": "LaTeXoverbrace{${1:arg}}",
+    "crampedrlap{}": {
+      "command": "crampedrlap{}",
+      "snippet": "crampedrlap{${1:math}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crampedclap[]{}": {
+      "command": "crampedclap[]{}",
+      "snippet": "crampedclap[${2:mathstyle}]{${1:math}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crampedclap{}": {
+      "command": "crampedclap{}",
+      "snippet": "crampedclap{${1:math}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crampedsubstack{}": {
+      "command": "crampedsubstack{}",
+      "snippet": "crampedsubstack{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "smashoperator[]{}": {
+      "command": "smashoperator[]{}",
+      "snippet": "smashoperator[${2:pos}]{${1:operator with limits}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "smashoperator{}": {
+      "command": "smashoperator{}",
+      "snippet": "smashoperator{${1:operator with limits}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "adjustlimits{}_{}{}_{}": {
+      "command": "adjustlimits{}_{}{}_{}",
+      "snippet": "adjustlimits{${1:operator1}}_{${2:limit1}}{${3:operator2}}_{${4:limit2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SwapAboveDisplaySkip": {
+      "command": "SwapAboveDisplaySkip",
+      "snippet": "SwapAboveDisplaySkip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newtagform{}[]{}{}": {
+      "command": "newtagform{}[]{}{}",
+      "snippet": "newtagform{${1:name}}[${2:inner format}]{${3:left}}{${4:right}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newtagform{}{}{}": {
+      "command": "newtagform{}{}{}",
+      "snippet": "newtagform{${1:name}}{${2:left}}{${3:right}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewtagform{}[]{}{}": {
+      "command": "renewtagform{}[]{}{}",
+      "snippet": "renewtagform{${1:name}}[${2:inner format}]{${3:left}}{${4:right}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewtagform{}{}{}": {
+      "command": "renewtagform{}{}{}",
+      "snippet": "renewtagform{${1:name}}{${2:left}}{${3:right}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "usetagform{}": {
+      "command": "usetagform{}",
+      "snippet": "usetagform{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "refeq{}": {
+      "command": "refeq{}",
+      "snippet": "refeq{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noeqref{}": {
+      "command": "noeqref{}",
+      "snippet": "noeqref{${1:labellist}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xleftrightarrow{}": {
+      "command": "xleftrightarrow{}",
+      "snippet": "xleftrightarrow{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xleftrightarrow[]{}": {
+      "command": "xleftrightarrow[]{}",
+      "snippet": "xleftrightarrow[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xLeftarrow{}": {
+      "command": "xLeftarrow{}",
+      "snippet": "xLeftarrow{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xLeftarrow[]{}": {
+      "command": "xLeftarrow[]{}",
+      "snippet": "xLeftarrow[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xhookleftarrow{}": {
+      "command": "xhookleftarrow{}",
+      "snippet": "xhookleftarrow{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xhookleftarrow[]{}": {
+      "command": "xhookleftarrow[]{}",
+      "snippet": "xhookleftarrow[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xmapsto{}": {
+      "command": "xmapsto{}",
+      "snippet": "xmapsto{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xmapsto[]{}": {
+      "command": "xmapsto[]{}",
+      "snippet": "xmapsto[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xRightarrow{}": {
+      "command": "xRightarrow{}",
+      "snippet": "xRightarrow{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xRightarrow[]{}": {
+      "command": "xRightarrow[]{}",
+      "snippet": "xRightarrow[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xLeftrightarrow{}": {
+      "command": "xLeftrightarrow{}",
+      "snippet": "xLeftrightarrow{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xLeftrightarrow[]{}": {
+      "command": "xLeftrightarrow[]{}",
+      "snippet": "xLeftrightarrow[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xhookrightarrow{}": {
+      "command": "xhookrightarrow{}",
+      "snippet": "xhookrightarrow{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xhookrightarrow[]{}": {
+      "command": "xhookrightarrow[]{}",
+      "snippet": "xhookrightarrow[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xrightharpoondown{}": {
+      "command": "xrightharpoondown{}",
+      "snippet": "xrightharpoondown{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xrightharpoondown[]{}": {
+      "command": "xrightharpoondown[]{}",
+      "snippet": "xrightharpoondown[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xleftharpoondown{}": {
+      "command": "xleftharpoondown{}",
+      "snippet": "xleftharpoondown{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xleftharpoondown[]{}": {
+      "command": "xleftharpoondown[]{}",
+      "snippet": "xleftharpoondown[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xrightleftharpoons{}": {
+      "command": "xrightleftharpoons{}",
+      "snippet": "xrightleftharpoons{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xrightleftharpoons[]{}": {
+      "command": "xrightleftharpoons[]{}",
+      "snippet": "xrightleftharpoons[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xrightharpoonup{}": {
+      "command": "xrightharpoonup{}",
+      "snippet": "xrightharpoonup{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xrightharpoonup[]{}": {
+      "command": "xrightharpoonup[]{}",
+      "snippet": "xrightharpoonup[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xleftharpoonup{}": {
+      "command": "xleftharpoonup{}",
+      "snippet": "xleftharpoonup{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xleftharpoonup[]{}": {
+      "command": "xleftharpoonup[]{}",
+      "snippet": "xleftharpoonup[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xleftrightharpoons{}": {
+      "command": "xleftrightharpoons{}",
+      "snippet": "xleftrightharpoons{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xleftrightharpoons[]{}": {
+      "command": "xleftrightharpoons[]{}",
+      "snippet": "xleftrightharpoons[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xlongrightarrow{}": {
+      "command": "xlongrightarrow{}",
+      "snippet": "xlongrightarrow{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xlongrightarrow[]{}": {
+      "command": "xlongrightarrow[]{}",
+      "snippet": "xlongrightarrow[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xlongleftarrow{}": {
+      "command": "xlongleftarrow{}",
+      "snippet": "xlongleftarrow{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xlongleftarrow[]{}": {
+      "command": "xlongleftarrow[]{}",
+      "snippet": "xlongleftarrow[${2:sub}]{${1:sup}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "underbracket[][]{}": {
+      "command": "underbracket[][]{}",
+      "snippet": "underbracket[${2:rule thickness}][${3:bracket height}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "underbracket[]{}": {
+      "command": "underbracket[]{}",
+      "snippet": "underbracket[${2:rule thickness}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "underbracket{}": {
+      "command": "underbracket{}",
+      "snippet": "underbracket{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "overbracket[][]{}": {
+      "command": "overbracket[][]{}",
+      "snippet": "overbracket[${2:rule thickness}][${3:bracket height}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "overbracket[]{}": {
+      "command": "overbracket[]{}",
+      "snippet": "overbracket[${2:rule thickness}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "overbracket{}": {
+      "command": "overbracket{}",
+      "snippet": "overbracket{${1:arg}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -81,6 +508,202 @@
     "LaTeXunderbrace{}": {
       "command": "LaTeXunderbrace{}",
       "snippet": "LaTeXunderbrace{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LaTeXoverbrace{}": {
+      "command": "LaTeXoverbrace{}",
+      "snippet": "LaTeXoverbrace{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "newgathered{}{}{}{}": {
+      "command": "newgathered{}{}{}{}",
+      "snippet": "newgathered{${1:envname}}{${2:pre line}}{${3:post line}}{${4:after}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "renewgathered{}{}{}{}": {
+      "command": "renewgathered{}{}{}{}",
+      "snippet": "renewgathered{${1:envname}}{${2:pre line}}{${3:post line}}{${4:after}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MultlinedHook": {
+      "command": "MultlinedHook",
+      "snippet": "MultlinedHook",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shoveleft{}": {
+      "command": "shoveleft{}",
+      "snippet": "shoveleft{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shoveleft[]{}": {
+      "command": "shoveleft[]{}",
+      "snippet": "shoveleft[${2:dimen}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shoveright{}": {
+      "command": "shoveright{}",
+      "snippet": "shoveright{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shoveright[]{}": {
+      "command": "shoveright[]{}",
+      "snippet": "shoveright[${2:dimen}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MoveEqLeft": {
+      "command": "MoveEqLeft",
+      "snippet": "MoveEqLeft",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MoveEqLeft[]": {
+      "command": "MoveEqLeft[]",
+      "snippet": "MoveEqLeft[${1:number}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Aboxed{}": {
+      "command": "Aboxed{}",
+      "snippet": "Aboxed{${1:left hand side & right hand side}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MakeAboxedCommand{}": {
+      "command": "MakeAboxedCommand{}",
+      "snippet": "MakeAboxedCommand{${1:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ArrowBetweenLines": {
+      "command": "ArrowBetweenLines",
+      "snippet": "ArrowBetweenLines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ArrowBetweenLines[]": {
+      "command": "ArrowBetweenLines[]",
+      "snippet": "ArrowBetweenLines[${1:symbol}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ArrowBetweenLines*": {
+      "command": "ArrowBetweenLines*",
+      "snippet": "ArrowBetweenLines*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ArrowBetweenLines*[]": {
+      "command": "ArrowBetweenLines*[]",
+      "snippet": "ArrowBetweenLines*[${1:symbol}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vdotswithin{}": {
+      "command": "vdotswithin{}",
+      "snippet": "vdotswithin{${1:symbol}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shortvdotswithin{}": {
+      "command": "shortvdotswithin{}",
+      "snippet": "shortvdotswithin{${1:symbol}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shortvdotswithin*{}": {
+      "command": "shortvdotswithin*{}",
+      "snippet": "shortvdotswithin*{${1:symbol}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MTFlushSpaceAbove": {
+      "command": "MTFlushSpaceAbove",
+      "snippet": "MTFlushSpaceAbove",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MTFlushSpaceBelow": {
+      "command": "MTFlushSpaceBelow",
+      "snippet": "MTFlushSpaceBelow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "origjot": {
+      "command": "origjot",
+      "snippet": "origjot",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "shortintertext{}": {
+      "command": "shortintertext{}",
+      "snippet": "shortintertext{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "intertext{}": {
+      "command": "intertext{}",
+      "snippet": "intertext{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclarePairedDelimiter{}{}{}": {
+      "command": "DeclarePairedDelimiter{}{}{}",
+      "snippet": "DeclarePairedDelimiter{${1:cmd}}{${2:left delim%formula}}{${3:right delim%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclarePairedDelimiterX{}[]{}{}{}": {
+      "command": "DeclarePairedDelimiterX{}[]{}{}{}",
+      "snippet": "DeclarePairedDelimiterX{${1:cmd}}[${2:args}]{${3:left delim%formula}}{${4:right delim%formula}}{${5:body%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclarePairedDelimiterXPP{}[]{}{}{}{}{}": {
+      "command": "DeclarePairedDelimiterXPP{}[]{}{}{}{}{}",
+      "snippet": "DeclarePairedDelimiterXPP{${1:cmd}}[${2:args}]{${3:pre code}}{${4:left delim%formula}}{${5:right delim%formula}}{${6:post code%formula}}{${7:body%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "reDeclarePairedDelimiterInnerWrapper{}{}{}": {
+      "command": "reDeclarePairedDelimiterInnerWrapper{}{}{}",
+      "snippet": "reDeclarePairedDelimiterInnerWrapper{${1:macro name}}{${2:star option}}{${3:code}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -94,139 +717,6 @@
       "detail": "(",
       "documentation": "LEFT PARENTHESIS"
     },
-    "mathclap{}": {
-      "command": "mathclap{}",
-      "snippet": "mathclap{${1:math}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "mathclap[]{}": {
-      "command": "mathclap[]{}",
-      "snippet": "mathclap[${2:mathstyle}]{${1:math}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "mathllap{}": {
-      "command": "mathllap{}",
-      "snippet": "mathllap{${1:math}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "mathllap[]{}": {
-      "command": "mathllap[]{}",
-      "snippet": "mathllap[${2:mathstyle}]{${1:math}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "mathmakebox{}": {
-      "command": "mathmakebox{}",
-      "snippet": "mathmakebox{${1:math}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "mathmakebox[]{}": {
-      "command": "mathmakebox[]{}",
-      "snippet": "mathmakebox[${2:width}]{${1:math}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "mathmakebox[][]{}": {
-      "command": "mathmakebox[][]{}",
-      "snippet": "mathmakebox[${2:width}][${3:pos}]{${1:math}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "mathmbox{}": {
-      "command": "mathmbox{}",
-      "snippet": "mathmbox{${1:math}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "mathrlap{}": {
-      "command": "mathrlap{}",
-      "snippet": "mathrlap{${1:math}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "mathrlap[]{}": {
-      "command": "mathrlap[]{}",
-      "snippet": "mathrlap[${2:mathstyle}]{${1:math}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "mathtoolsset{}": {
-      "command": "mathtoolsset{}",
-      "snippet": "mathtoolsset{${1:key val list}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "newtagform{}[]{}{}": {
-      "command": "newtagform{}[]{}{}",
-      "snippet": "newtagform{${1:name}}[${2:inner_format}]{${3:left}}{${4:right}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "newtagform{}{}{}": {
-      "command": "newtagform{}{}{}",
-      "snippet": "newtagform{${1:name}}{${2:left}}{${3:right}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "overbracket{}": {
-      "command": "overbracket{}",
-      "snippet": "overbracket{${1:arg}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "overbracket[]{}": {
-      "command": "overbracket[]{}",
-      "snippet": "overbracket[${2:rule thickness}]{${1:arg}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "overbracket[][]{}": {
-      "command": "overbracket[][]{}",
-      "snippet": "overbracket[${2:rule thickness}][${3:bracket height}]{${1:arg}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "refeq{}": {
-      "command": "refeq{}",
-      "snippet": "refeq{${1:label}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "renewtagform{}[]{}{}": {
-      "command": "renewtagform{}[]{}{}",
-      "snippet": "renewtagform{${1:name}}[${2:inner_format}]{${3:left}}{${4:right}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "renewtagform{}{}{}": {
-      "command": "renewtagform{}{}{}",
-      "snippet": "renewtagform{${1:name}}{${2:left}}{${3:right}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "rparen": {
       "command": "rparen",
       "snippet": "rparen",
@@ -236,30 +726,207 @@
       "detail": ")",
       "documentation": "RIGHT PARENTHESIS"
     },
-    "shortintertext{}": {
-      "command": "shortintertext{}",
-      "snippet": "shortintertext{${1:text}}",
+    "vcentcolon": {
+      "command": "vcentcolon",
+      "snippet": "vcentcolon",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "smashoperator{}": {
-      "command": "smashoperator{}",
-      "snippet": "smashoperator{${1:operator with limits}}",
+    "ordinarycolon": {
+      "command": "ordinarycolon",
+      "snippet": "ordinarycolon",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "smashoperator[]{}": {
-      "command": "smashoperator[]{}",
-      "snippet": "smashoperator[${2:pos}]{${1:operator with limits}}",
+    "coloneqq": {
+      "command": "coloneqq",
+      "snippet": "coloneqq",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "≔",
+      "documentation": "# : equals"
+    },
+    "eqqcolon": {
+      "command": "eqqcolon",
+      "snippet": "eqqcolon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "≕",
+      "documentation": "equals, colon"
+    },
+    "colonapprox": {
+      "command": "colonapprox",
+      "snippet": "colonapprox",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "splitdfrac{}{}": {
-      "command": "splitdfrac{}{}",
-      "snippet": "splitdfrac{${1:numer}}{${2:denom}}",
+    "dblcolon": {
+      "command": "dblcolon",
+      "snippet": "dblcolon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Coloneqq": {
+      "command": "Coloneqq",
+      "snippet": "Coloneqq",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "⩴",
+      "documentation": "DOUBLE COLON EQUAL"
+    },
+    "Eqqcolon": {
+      "command": "Eqqcolon",
+      "snippet": "Eqqcolon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Colonapprox": {
+      "command": "Colonapprox",
+      "snippet": "Colonapprox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "coloneq": {
+      "command": "coloneq",
+      "snippet": "coloneq",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "≔",
+      "documentation": "# : equals"
+    },
+    "eqcolon": {
+      "command": "eqcolon",
+      "snippet": "eqcolon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "≕",
+      "documentation": "equals, colon"
+    },
+    "colonsim": {
+      "command": "colonsim",
+      "snippet": "colonsim",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Coloneq": {
+      "command": "Coloneq",
+      "snippet": "Coloneq",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "⩴",
+      "documentation": "DOUBLE COLON EQUAL"
+    },
+    "Eqcolon": {
+      "command": "Eqcolon",
+      "snippet": "Eqcolon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Colonsim": {
+      "command": "Colonsim",
+      "snippet": "Colonsim",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "approxcolon": {
+      "command": "approxcolon",
+      "snippet": "approxcolon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Approxcolon": {
+      "command": "Approxcolon",
+      "snippet": "Approxcolon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "simcolon": {
+      "command": "simcolon",
+      "snippet": "simcolon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Simcolon": {
+      "command": "Simcolon",
+      "snippet": "Simcolon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "colondash": {
+      "command": "colondash",
+      "snippet": "colondash",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Colondash": {
+      "command": "Colondash",
+      "snippet": "Colondash",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dashcolon": {
+      "command": "dashcolon",
+      "snippet": "dashcolon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "∹",
+      "documentation": "EXCESS"
+    },
+    "Dashcolon": {
+      "command": "Dashcolon",
+      "snippet": "Dashcolon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nuparrow": {
+      "command": "nuparrow",
+      "snippet": "nuparrow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ndownarrow": {
+      "command": "ndownarrow",
+      "snippet": "ndownarrow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bigtimes": {
+      "command": "bigtimes",
+      "snippet": "bigtimes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "⨉",
+      "documentation": "N-ARY TIMES OPERATOR"
+    },
+    "prescript{}{}{}": {
+      "command": "prescript{}{}{}",
+      "snippet": "prescript{${1:sup}}{${2:sub}}{${3:arg}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -271,274 +938,75 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "underbracket{}": {
-      "command": "underbracket{}",
-      "snippet": "underbracket{${1:arg}}",
+    "splitdfrac{}{}": {
+      "command": "splitdfrac{}{}",
+      "snippet": "splitdfrac{${1:numer}}{${2:denom}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "underbracket[]{}": {
-      "command": "underbracket[]{}",
-      "snippet": "underbracket[${2:rule thickness}]{${1:arg}}",
+    "xmathstrut{}": {
+      "command": "xmathstrut{}",
+      "snippet": "xmathstrut{${1:increase}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "underbracket[][]{}": {
-      "command": "underbracket[][]{}",
-      "snippet": "underbracket[${2:rule thickness}][${3:bracket height}]{${1:arg}}",
+    "xmathstrut[]{}": {
+      "command": "xmathstrut[]{}",
+      "snippet": "xmathstrut[${2:depth increase}]{${1:increase}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "usetagform{}": {
-      "command": "usetagform{}",
-      "snippet": "usetagform{${1:name}}",
+    "newcases{}{}{}{}{}": {
+      "command": "newcases{}{}{}{}{}",
+      "snippet": "newcases{${1:envname}}{${2:sep}}{${3:preamble}}{${4:left}}{${5:right}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "xhookleftarrow[]{}": {
-      "command": "xhookleftarrow[]{}",
-      "snippet": "xhookleftarrow[${2:sub}]{${1:sup}}",
+    "renewcases{}{}{}{}{}": {
+      "command": "renewcases{}{}{}{}{}",
+      "snippet": "renewcases{${1:envname}}{${2:sep}}{${3:preamble}}{${4:left}}{${5:right}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "xhookleftarrow{}": {
-      "command": "xhookleftarrow{}",
-      "snippet": "xhookleftarrow{${1:sup}}",
+    "upbracketfill{}{}": {
+      "command": "upbracketfill{}{}",
+      "snippet": "upbracketfill{${1:arg1}}{${2:arg2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "xhookrightarrow[]{}": {
-      "command": "xhookrightarrow[]{}",
-      "snippet": "xhookrightarrow[${2:sub}]{${1:sup}}",
+    "upbracketend{}{}": {
+      "command": "upbracketend{}{}",
+      "snippet": "upbracketend{${1:arg1}}{${2:arg2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "xhookrightarrow{}": {
-      "command": "xhookrightarrow{}",
-      "snippet": "xhookrightarrow{${1:sup}}",
+    "downbracketfill{}{}": {
+      "command": "downbracketfill{}{}",
+      "snippet": "downbracketfill{${1:arg1}}{${2:arg2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "xleftarrow[]{}": {
-      "command": "xleftarrow[]{}",
-      "snippet": "xleftarrow[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xLeftarrow[]{}": {
-      "command": "xLeftarrow[]{}",
-      "snippet": "xLeftarrow[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xleftarrow{}": {
-      "command": "xleftarrow{}",
-      "snippet": "xleftarrow{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xLeftarrow{}": {
-      "command": "xLeftarrow{}",
-      "snippet": "xLeftarrow{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xleftharpoondown[]{}": {
-      "command": "xleftharpoondown[]{}",
-      "snippet": "xleftharpoondown[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xleftharpoondown{}": {
-      "command": "xleftharpoondown{}",
-      "snippet": "xleftharpoondown{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xleftharpoonup[]{}": {
-      "command": "xleftharpoonup[]{}",
-      "snippet": "xleftharpoonup[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xleftharpoonup{}": {
-      "command": "xleftharpoonup{}",
-      "snippet": "xleftharpoonup{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xleftrightarrow[]{}": {
-      "command": "xleftrightarrow[]{}",
-      "snippet": "xleftrightarrow[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xLeftrightarrow[]{}": {
-      "command": "xLeftrightarrow[]{}",
-      "snippet": "xLeftrightarrow[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xleftrightarrow{}": {
-      "command": "xleftrightarrow{}",
-      "snippet": "xleftrightarrow{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xLeftrightarrow{}": {
-      "command": "xLeftrightarrow{}",
-      "snippet": "xLeftrightarrow{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xleftrightharpoons[]{}": {
-      "command": "xleftrightharpoons[]{}",
-      "snippet": "xleftrightharpoons[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xleftrightharpoons{}": {
-      "command": "xleftrightharpoons{}",
-      "snippet": "xleftrightharpoons{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xmapsto[]{}": {
-      "command": "xmapsto[]{}",
-      "snippet": "xmapsto[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xmapsto{}": {
-      "command": "xmapsto{}",
-      "snippet": "xmapsto{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xrightarrow[]{}": {
-      "command": "xrightarrow[]{}",
-      "snippet": "xrightarrow[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xRightarrow[]{}": {
-      "command": "xRightarrow[]{}",
-      "snippet": "xRightarrow[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xrightarrow{}": {
-      "command": "xrightarrow{}",
-      "snippet": "xrightarrow{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xRightarrow{}": {
-      "command": "xRightarrow{}",
-      "snippet": "xRightarrow{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xrightharpoondown[]{}": {
-      "command": "xrightharpoondown[]{}",
-      "snippet": "xrightharpoondown[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xrightharpoondown{}": {
-      "command": "xrightharpoondown{}",
-      "snippet": "xrightharpoondown{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xrightharpoonup[]{}": {
-      "command": "xrightharpoonup[]{}",
-      "snippet": "xrightharpoonup[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xrightharpoonup{}": {
-      "command": "xrightharpoonup{}",
-      "snippet": "xrightharpoonup{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xrightleftharpoons[]{}": {
-      "command": "xrightleftharpoons[]{}",
-      "snippet": "xrightleftharpoons[${2:sub}]{${1:sup}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xrightleftharpoons{}": {
-      "command": "xrightleftharpoons{}",
-      "snippet": "xrightleftharpoons{${1:sup}}",
+    "downbracketend{}{}": {
+      "command": "downbracketend{}{}",
+      "snippet": "downbracketend{${1:arg1}}{${2:arg2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {
-    "bmatrix*": {
-      "name": "bmatrix*",
-      "detail": "bmatrix*",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Bmatrix*": {
-      "name": "Bmatrix*",
-      "detail": "Bmatrix*",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "bmatrix*[]": {
-      "name": "bmatrix*",
-      "detail": "bmatrix*[]",
-      "snippet": "[${1:col}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Bmatrix*[]": {
-      "name": "Bmatrix*",
-      "detail": "Bmatrix*[]",
-      "snippet": "[${1:col}]",
+    "crampedsubarray{}": {
+      "name": "crampedsubarray",
+      "detail": "crampedsubarray{}",
+      "snippet": "{${1:col}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -559,25 +1027,41 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "lgathered": {
-      "name": "lgathered",
-      "detail": "lgathered",
+    "rcases": {
+      "name": "rcases",
+      "detail": "rcases",
       "snippet": "",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "lgathered[]": {
-      "name": "lgathered",
-      "detail": "lgathered[]",
-      "snippet": "[${1:pos}]",
+    "rcases*": {
+      "name": "rcases*",
+      "detail": "rcases*",
+      "snippet": "",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "matrix*": {
-      "name": "matrix*",
-      "detail": "matrix*",
+    "drcases": {
+      "name": "drcases",
+      "detail": "drcases",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drcases*": {
+      "name": "drcases*",
+      "detail": "drcases*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cases*": {
+      "name": "cases*",
+      "detail": "cases*",
       "snippet": "",
       "option": "",
       "keyvals": [],
@@ -591,38 +1075,6 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "multlined": {
-      "name": "multlined",
-      "detail": "multlined",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "multlined[]": {
-      "name": "multlined",
-      "detail": "multlined[]",
-      "snippet": "[${1:pos}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "multlined[][]": {
-      "name": "multlined",
-      "detail": "multlined[][]",
-      "snippet": "[${1:pos}][${2:width}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pmatrix*": {
-      "name": "pmatrix*",
-      "detail": "pmatrix*",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "pmatrix*[]": {
       "name": "pmatrix*",
       "detail": "pmatrix*[]",
@@ -631,42 +1083,18 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "rgathered": {
-      "name": "rgathered",
-      "detail": "rgathered",
-      "snippet": "",
+    "bmatrix*[]": {
+      "name": "bmatrix*",
+      "detail": "bmatrix*[]",
+      "snippet": "[${1:col}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "rgathered[]": {
-      "name": "rgathered",
-      "detail": "rgathered[]",
-      "snippet": "[${1:pos}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "spreadlines{}": {
-      "name": "spreadlines",
-      "detail": "spreadlines{}",
-      "snippet": "{${1:dimen}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "vmatrix*": {
-      "name": "vmatrix*",
-      "detail": "vmatrix*",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Vmatrix*": {
-      "name": "Vmatrix*",
-      "detail": "Vmatrix*",
-      "snippet": "",
+    "Bmatrix*[]": {
+      "name": "Bmatrix*",
+      "detail": "Bmatrix*[]",
+      "snippet": "[${1:col}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -686,7 +1114,156 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "smallmatrix*[]": {
+      "name": "smallmatrix*",
+      "detail": "smallmatrix*[]",
+      "snippet": "[${1:col}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psmallmatrix": {
+      "name": "psmallmatrix",
+      "detail": "psmallmatrix",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psmallmatrix*[]": {
+      "name": "psmallmatrix*",
+      "detail": "psmallmatrix*[]",
+      "snippet": "[${1:col}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsmallmatrix": {
+      "name": "bsmallmatrix",
+      "detail": "bsmallmatrix",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bsmallmatrix*[]": {
+      "name": "bsmallmatrix*",
+      "detail": "bsmallmatrix*[]",
+      "snippet": "[${1:col}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Bsmallmatrix": {
+      "name": "Bsmallmatrix",
+      "detail": "Bsmallmatrix",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Bsmallmatrix*[]": {
+      "name": "Bsmallmatrix*",
+      "detail": "Bsmallmatrix*[]",
+      "snippet": "[${1:col}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vsmallmatrix": {
+      "name": "vsmallmatrix",
+      "detail": "vsmallmatrix",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vsmallmatrix*[]": {
+      "name": "vsmallmatrix*",
+      "detail": "vsmallmatrix*[]",
+      "snippet": "[${1:col}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Vsmallmatrix": {
+      "name": "Vsmallmatrix",
+      "detail": "Vsmallmatrix",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Vsmallmatrix*[]": {
+      "name": "Vsmallmatrix*",
+      "detail": "Vsmallmatrix*[]",
+      "snippet": "[${1:col}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "spreadlines{}": {
+      "name": "spreadlines",
+      "detail": "spreadlines{}",
+      "snippet": "{${1:dimen}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lgathered[]": {
+      "name": "lgathered",
+      "detail": "lgathered[]",
+      "snippet": "[${1:pos}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rgathered[]": {
+      "name": "rgathered",
+      "detail": "rgathered[]",
+      "snippet": "[${1:pos}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multlined": {
+      "name": "multlined",
+      "detail": "multlined",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multlined[][]": {
+      "name": "multlined",
+      "detail": "multlined[][]",
+      "snippet": "[${1:pos}][${2:width}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
-  "options": []
+  "options": [
+    "fixamsmath",
+    "donotfixamsmathbugs",
+    "allowspaces",
+    "disallowspaces",
+    "legacycolonsymbols",
+    "intlimits",
+    "nointlimits",
+    "sumlimits",
+    "nosumlimits",
+    "namelimits",
+    "nonamelimits",
+    "leqno",
+    "reqno",
+    "centertags",
+    "tbtags",
+    "cmex10",
+    "fleqn",
+    "alignedleftspaceyes",
+    "alignedleftspaceno",
+    "alignedleftspaceyesifneg"
+  ]
 }

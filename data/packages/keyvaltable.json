@@ -1,0 +1,654 @@
+{
+  "includes": [
+    "etoolbox",
+    "xkeyval",
+    "trimspaces",
+    "xcolor",
+    "booktabs",
+    "colortbl"
+  ],
+  "cmds": {
+    "NewKeyValTable{}{}": {
+      "command": "NewKeyValTable{}{}",
+      "snippet": "NewKeyValTable{${1:table name}}{${2:colspecs}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewKeyValTable[]{}{}": {
+      "command": "NewKeyValTable[]{}{}",
+      "snippet": "NewKeyValTable[${3:options}]{${1:table name}}{${2:colspecs}}",
+      "option": "",
+      "keyvals": [
+        "backend=",
+        "shape=",
+        "width=",
+        "valign=",
+        "halign=",
+        "showhead",
+        "showrules",
+        "norules",
+        "headalign=",
+        "headbg=",
+        "headformat=",
+        "rowbg=",
+        "norowbg",
+        "nobg",
+        "style=",
+        "captionpos="
+      ],
+      "keyvalindex": 0
+    },
+    "NewKeyValTable{}{}[]": {
+      "command": "NewKeyValTable{}{}[]",
+      "snippet": "NewKeyValTable{${1:table name}}{${2:colspecs}}[${3:layout}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewKeyValTable[]{}{}[]": {
+      "command": "NewKeyValTable[]{}{}[]",
+      "snippet": "NewKeyValTable[${3:options}]{${1:table name}}{${2:colspecs}}[${4:layout}]",
+      "option": "",
+      "keyvals": [
+        "backend=",
+        "shape=",
+        "width=",
+        "valign=",
+        "halign=",
+        "showhead",
+        "showrules",
+        "norules",
+        "headalign=",
+        "headbg=",
+        "headformat=",
+        "rowbg=",
+        "norowbg",
+        "nobg",
+        "style=",
+        "captionpos="
+      ],
+      "keyvalindex": 0
+    },
+    "Row{}": {
+      "command": "Row{}",
+      "snippet": "Row{${1:col=text,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Row[]{}": {
+      "command": "Row[]{}",
+      "snippet": "Row[${2:options}]{${1:col=text,...}}",
+      "option": "",
+      "keyvals": [
+        "uncounted",
+        "hidden",
+        "align=",
+        "bg=",
+        "format=",
+        "format*=",
+        "format!=",
+        "headlike",
+        "above=",
+        "below=",
+        "around=",
+        "style=",
+        "expandonce",
+        "expand"
+      ],
+      "keyvalindex": 0
+    },
+    "NewCollectedTable{}{}": {
+      "command": "NewCollectedTable{}{}",
+      "snippet": "NewCollectedTable{${1:collection name}}{${2:table name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CollectRow{}{}": {
+      "command": "CollectRow{}{}",
+      "snippet": "CollectRow{${1:collection name}}{${2:col=text,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CollectRow[]{}{}": {
+      "command": "CollectRow[]{}{}",
+      "snippet": "CollectRow[${3:options}]{${1:collection name}}{${2:col=text,...}}",
+      "option": "",
+      "keyvals": [
+        "uncounted",
+        "hidden",
+        "align=",
+        "bg=",
+        "format=",
+        "format*=",
+        "format!=",
+        "headlike",
+        "above=",
+        "below=",
+        "around=",
+        "style=",
+        "expandonce",
+        "expand"
+      ],
+      "keyvalindex": 0
+    },
+    "ShowCollectedTable{}": {
+      "command": "ShowCollectedTable{}",
+      "snippet": "ShowCollectedTable{${1:collection name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShowCollectedTable[]{}": {
+      "command": "ShowCollectedTable[]{}",
+      "snippet": "ShowCollectedTable[${2:options}]{${1:collection name}}",
+      "option": "",
+      "keyvals": [
+        "backend=",
+        "shape=",
+        "width=",
+        "valign=",
+        "halign=",
+        "showhead",
+        "showrules",
+        "norules",
+        "headalign=",
+        "headbg=",
+        "headformat=",
+        "rowbg=",
+        "norowbg",
+        "nobg",
+        "style=",
+        "captionpos="
+      ],
+      "keyvalindex": 0
+    },
+    "ShowKeyValTableFile{}{}": {
+      "command": "ShowKeyValTableFile{}{}",
+      "snippet": "ShowKeyValTableFile{${1:table name}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShowKeyValTableFile[]{}{}": {
+      "command": "ShowKeyValTableFile[]{}{}",
+      "snippet": "ShowKeyValTableFile[${3:options}]{${1:table name}}{${2:file}}",
+      "option": "",
+      "keyvals": [
+        "backend=",
+        "shape=",
+        "width=",
+        "valign=",
+        "halign=",
+        "showhead",
+        "showrules",
+        "norules",
+        "headalign=",
+        "headbg=",
+        "headformat=",
+        "rowbg=",
+        "norowbg",
+        "nobg",
+        "style=",
+        "captionpos="
+      ],
+      "keyvalindex": 0
+    },
+    "AddKeyValRow{}{}": {
+      "command": "AddKeyValRow{}{}",
+      "snippet": "AddKeyValRow{${1:table name}}{${2:col=text,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AddKeyValRow{}[]{}": {
+      "command": "AddKeyValRow{}[]{}",
+      "snippet": "AddKeyValRow{${1:table name}}[${2:options}]{${3:col=text,...}}",
+      "option": "",
+      "keyvals": [
+        "uncounted",
+        "hidden",
+        "align=",
+        "bg=",
+        "format=",
+        "format*=",
+        "format!=",
+        "headlike",
+        "above=",
+        "below=",
+        "around=",
+        "style=",
+        "expandonce",
+        "expand"
+      ],
+      "keyvalindex": 1
+    },
+    "ShowKeyValTable{}": {
+      "command": "ShowKeyValTable{}",
+      "snippet": "ShowKeyValTable{${1:table name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShowKeyValTable[]{}": {
+      "command": "ShowKeyValTable[]{}",
+      "snippet": "ShowKeyValTable[${2:options}]{${1:table name}}",
+      "option": "",
+      "keyvals": [
+        "backend=",
+        "shape=",
+        "width=",
+        "valign=",
+        "halign=",
+        "showhead",
+        "showrules",
+        "norules",
+        "headalign=",
+        "headbg=",
+        "headformat=",
+        "rowbg=",
+        "norowbg",
+        "nobg",
+        "style=",
+        "captionpos="
+      ],
+      "keyvalindex": 0
+    },
+    "thekvtRow": {
+      "command": "thekvtRow",
+      "snippet": "thekvtRow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thekvtTypeRow": {
+      "command": "thekvtTypeRow",
+      "snippet": "thekvtTypeRow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thekvtTotalRow": {
+      "command": "thekvtTotalRow",
+      "snippet": "thekvtTotalRow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kvtLabel{}{}": {
+      "command": "kvtLabel{}{}",
+      "snippet": "kvtLabel{${1:counter}}{${2:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kvtLabel[]{}{}": {
+      "command": "kvtLabel[]{}{}",
+      "snippet": "kvtLabel[${3:options}]{${1:counter}}{${2:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kvtDeclareTableMacros{}": {
+      "command": "kvtDeclareTableMacros{}",
+      "snippet": "kvtDeclareTableMacros{${1:macro list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kvtDeclareTableCounters{}": {
+      "command": "kvtDeclareTableCounters{}",
+      "snippet": "kvtDeclareTableCounters{${1:counter list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kvtDeclareCtrFormatters{}": {
+      "command": "kvtDeclareCtrFormatters{}",
+      "snippet": "kvtDeclareCtrFormatters{${1:macro list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kvtNewTableStyle{}{}": {
+      "command": "kvtNewTableStyle{}{}",
+      "snippet": "kvtNewTableStyle{${1:name}}{${2:options}}",
+      "option": "",
+      "keyvals": [
+        "backend=",
+        "shape=",
+        "width=",
+        "valign=",
+        "halign=",
+        "showhead",
+        "showrules",
+        "norules",
+        "headalign=",
+        "headbg=",
+        "headformat=",
+        "rowbg=",
+        "norowbg",
+        "nobg",
+        "style=",
+        "captionpos="
+      ],
+      "keyvalindex": 1
+    },
+    "kvtRenewTableStyle{}{}": {
+      "command": "kvtRenewTableStyle{}{}",
+      "snippet": "kvtRenewTableStyle{${1:name}}{${2:options}}",
+      "option": "",
+      "keyvals": [
+        "backend=",
+        "shape=",
+        "width=",
+        "valign=",
+        "halign=",
+        "showhead",
+        "showrules",
+        "norules",
+        "headalign=",
+        "headbg=",
+        "headformat=",
+        "rowbg=",
+        "norowbg",
+        "nobg",
+        "style=",
+        "captionpos="
+      ],
+      "keyvalindex": 1
+    },
+    "kvtStrutted{}": {
+      "command": "kvtStrutted{}",
+      "snippet": "kvtStrutted{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kvtStrutted[]{}": {
+      "command": "kvtStrutted[]{}",
+      "snippet": "kvtStrutted[${2:inner}]{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kvtNewRowStyle{}{}": {
+      "command": "kvtNewRowStyle{}{}",
+      "snippet": "kvtNewRowStyle{${1:name}}{${2:options}}",
+      "option": "",
+      "keyvals": [
+        "uncounted",
+        "hidden",
+        "align=",
+        "bg=",
+        "format=",
+        "format*=",
+        "format!=",
+        "headlike",
+        "above=",
+        "below=",
+        "around=",
+        "style=",
+        "expandonce",
+        "expand"
+      ],
+      "keyvalindex": 1
+    },
+    "kvtRenewRowStyle{}{}": {
+      "command": "kvtRenewRowStyle{}{}",
+      "snippet": "kvtRenewRowStyle{${1:name}}{${2:options}}",
+      "option": "",
+      "keyvals": [
+        "uncounted",
+        "hidden",
+        "align=",
+        "bg=",
+        "format=",
+        "format*=",
+        "format!=",
+        "headlike",
+        "above=",
+        "below=",
+        "around=",
+        "style=",
+        "expandonce",
+        "expand"
+      ],
+      "keyvalindex": 1
+    },
+    "kvtTableOpt{}": {
+      "command": "kvtTableOpt{}",
+      "snippet": "kvtTableOpt{${1:option}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "kvtSet{}": {
+      "command": "kvtSet{}",
+      "snippet": "kvtSet{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "align=",
+        "default=",
+        "format=",
+        "head=",
+        "hidden",
+        "Row/uncounted",
+        "Row/hidden",
+        "Row/align=",
+        "Row/bg=",
+        "Row/format=",
+        "Row/format*=",
+        "Row/format!=",
+        "Row/headlike",
+        "Row/above=",
+        "Row/below=",
+        "Row/around=",
+        "Row/style=",
+        "Row/expandonce",
+        "Row/expand",
+        "HeadCell/align=",
+        "HeadCell/head=",
+        "ColGroup/span=",
+        "ColGroup/align=",
+        "ColGroup/format=",
+        "backend=",
+        "shape=",
+        "width=",
+        "valign=",
+        "halign=",
+        "showhead",
+        "showrules",
+        "norules",
+        "headalign=",
+        "headbg=",
+        "headformat=",
+        "rowbg=",
+        "norowbg",
+        "nobg",
+        "style=",
+        "captionpos="
+      ],
+      "keyvalindex": 0
+    },
+    "metatblRegisterEnv{}{}": {
+      "command": "metatblRegisterEnv{}{}",
+      "snippet": "metatblRegisterEnv{${1:envname}}{${2:properties}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "metatblRegistered{}{}{}": {
+      "command": "metatblRegistered{}{}{}",
+      "snippet": "metatblRegistered{${1:envname}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "metatblIsLong{}{}{}": {
+      "command": "metatblIsLong{}{}{}",
+      "snippet": "metatblIsLong{${1:envname}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "metatblIsTabu{}{}{}": {
+      "command": "metatblIsTabu{}{}{}",
+      "snippet": "metatblIsTabu{${1:envname}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "metatblHasWidth{}{}{}": {
+      "command": "metatblHasWidth{}{}{}",
+      "snippet": "metatblHasWidth{${1:envname}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "metatblHasCaption{}{}{}": {
+      "command": "metatblHasCaption{}{}{}",
+      "snippet": "metatblHasCaption{${1:envname}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "metatblCanVAlign{}{}{}": {
+      "command": "metatblCanVAlign{}{}{}",
+      "snippet": "metatblCanVAlign{${1:envname}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "metatblCanHAlign{}{}{}": {
+      "command": "metatblCanHAlign{}{}{}",
+      "snippet": "metatblCanHAlign{${1:envname}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "metatblUsePackage{}": {
+      "command": "metatblUsePackage{}",
+      "snippet": "metatblUsePackage{${1:envnames}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "metatblRequire{}": {
+      "command": "metatblRequire{}",
+      "snippet": "metatblRequire{${1:envnames}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "metatblAtEnd{}{}": {
+      "command": "metatblAtEnd{}{}",
+      "snippet": "metatblAtEnd{${1:envname}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rowcolors{}{}{}": {
+      "command": "rowcolors{}{}{}",
+      "snippet": "rowcolors{${1:row}}{${2:color}}{${3:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rowcolors[]{}{}{}": {
+      "command": "rowcolors[]{}{}{}",
+      "snippet": "rowcolors[${4:commands}]{${1:row}}{${2:color}}{${3:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rowcolors*{}{}{}": {
+      "command": "rowcolors*{}{}{}",
+      "snippet": "rowcolors*{${1:row}}{${2:color}}{${3:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rowcolors*[]{}{}{}": {
+      "command": "rowcolors*[]{}{}{}",
+      "snippet": "rowcolors*[${4:commands}]{${1:row}}{${2:color}}{${3:color}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showrowcolors": {
+      "command": "showrowcolors",
+      "snippet": "showrowcolors",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "hiderowcolors": {
+      "command": "hiderowcolors",
+      "snippet": "hiderowcolors",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rownum": {
+      "command": "rownum",
+      "snippet": "rownum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "KeyValTable{}": {
+      "name": "KeyValTable",
+      "detail": "KeyValTable{}",
+      "snippet": "{${1:table name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KeyValTable[]{}": {
+      "name": "KeyValTable",
+      "detail": "KeyValTable[]{}",
+      "snippet": "[${2:options}]{${1:table name}}",
+      "option": "",
+      "keyvals": [
+        "resume",
+        "resume*",
+        "caption=",
+        "caption/lot=",
+        "caption/alt=",
+        "label=",
+        "backend=",
+        "shape=",
+        "width=",
+        "valign=",
+        "halign=",
+        "showhead",
+        "showrules",
+        "norules",
+        "headalign=",
+        "headbg=",
+        "headformat=",
+        "rowbg=",
+        "norowbg",
+        "nobg",
+        "style=",
+        "captionpos="
+      ],
+      "keyvalindex": 0
+    },
+    "KeyValTableContent{}": {
+      "name": "KeyValTableContent",
+      "detail": "KeyValTableContent{}",
+      "snippet": "{${1:table name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": []
+}

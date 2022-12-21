@@ -1,0 +1,940 @@
+{
+  "includes": [
+    "amssymb",
+    "etoolbox",
+    "ifthen",
+    "xparse",
+    "bm",
+    "tikzlibrarycd",
+    "tikzlibrarybackgrounds",
+    "tikzlibrarypositioning",
+    "tikzlibraryshapes",
+    "tikzlibrarycalc",
+    "tikzlibraryintersections"
+  ],
+  "cmds": {
+    "zx{}": {
+      "command": "zx{}",
+      "snippet": "zx{${1:diagram%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zx[]{}": {
+      "command": "zx[]{}",
+      "snippet": "zx[${2:options}]{${1:diagram%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxEmptyDiagram": {
+      "command": "zxEmptyDiagram",
+      "snippet": "zxEmptyDiagram",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxNone{}": {
+      "command": "zxNone{}",
+      "snippet": "zxNone{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxNone+{}": {
+      "command": "zxNone+{}",
+      "snippet": "zxNone+{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxNone-{}": {
+      "command": "zxNone-{}",
+      "snippet": "zxNone-{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxNone|{}": {
+      "command": "zxNone|{}",
+      "snippet": "zxNone|{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxN{}": {
+      "command": "zxN{}",
+      "snippet": "zxN{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxN+{}": {
+      "command": "zxN+{}",
+      "snippet": "zxN+{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxN-{}": {
+      "command": "zxN-{}",
+      "snippet": "zxN-{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxN|{}": {
+      "command": "zxN|{}",
+      "snippet": "zxN|{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxNoneDouble{}": {
+      "command": "zxNoneDouble{}",
+      "snippet": "zxNoneDouble{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxNoneDouble+{}": {
+      "command": "zxNoneDouble+{}",
+      "snippet": "zxNoneDouble+{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxNoneDouble-{}": {
+      "command": "zxNoneDouble-{}",
+      "snippet": "zxNoneDouble-{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxNoneDouble|{}": {
+      "command": "zxNoneDouble|{}",
+      "snippet": "zxNoneDouble|{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxFracZ{}{}": {
+      "command": "zxFracZ{}{}",
+      "snippet": "zxFracZ{${1:numerator}}{${2:denominator}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxFracZ{}[][]{}": {
+      "command": "zxFracZ{}[][]{}",
+      "snippet": "zxFracZ{${1:numerator}}[${2:num with parens}][${3:denom with parens}]{${4:denominator}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxFracZ-{}{}": {
+      "command": "zxFracZ-{}{}",
+      "snippet": "zxFracZ-{${1:numerator}}{${2:denominator}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxFracZ-{}[][]{}": {
+      "command": "zxFracZ-{}[][]{}",
+      "snippet": "zxFracZ-{${1:numerator}}[${2:num with parens}][${3:denom with parens}]{${4:denominator}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxFracX{}{}": {
+      "command": "zxFracX{}{}",
+      "snippet": "zxFracX{${1:numerator}}{${2:denominator}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxFracX-{}{}": {
+      "command": "zxFracX-{}{}",
+      "snippet": "zxFracX-{${1:numerator}}{${2:denominator}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxZ{}": {
+      "command": "zxZ{}",
+      "snippet": "zxZ{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxZ[]{}": {
+      "command": "zxZ[]{}",
+      "snippet": "zxZ[${2:options}]{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxZ*{}": {
+      "command": "zxZ*{}",
+      "snippet": "zxZ*{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxZ[]*{}": {
+      "command": "zxZ[]*{}",
+      "snippet": "zxZ[${2:options}]*{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxZ-{}": {
+      "command": "zxZ-{}",
+      "snippet": "zxZ-{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxZ[]-{}": {
+      "command": "zxZ[]-{}",
+      "snippet": "zxZ[${2:options}]-{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxX{}": {
+      "command": "zxX{}",
+      "snippet": "zxX{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxX[]{}": {
+      "command": "zxX[]{}",
+      "snippet": "zxX[${2:options}]{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxX*{}": {
+      "command": "zxX*{}",
+      "snippet": "zxX*{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxX[]*{}": {
+      "command": "zxX[]*{}",
+      "snippet": "zxX[${2:options}]*{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxX-{}": {
+      "command": "zxX-{}",
+      "snippet": "zxX-{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxX[]-{}": {
+      "command": "zxX[]-{}",
+      "snippet": "zxX[${2:options}]-{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxH{}": {
+      "command": "zxH{}",
+      "snippet": "zxH{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxH[]{}": {
+      "command": "zxH[]{}",
+      "snippet": "zxH[${2:options}]{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "leftManyDots{}": {
+      "command": "leftManyDots{}",
+      "snippet": "leftManyDots{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "leftManyDots[]{}": {
+      "command": "leftManyDots[]{}",
+      "snippet": "leftManyDots[${2:text scale}]{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "leftManyDots[][]{}": {
+      "command": "leftManyDots[][]{}",
+      "snippet": "leftManyDots[${2:text scale}][${3:dots scale}]{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rightManyDots{}": {
+      "command": "rightManyDots{}",
+      "snippet": "rightManyDots{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rightManyDots[]{}": {
+      "command": "rightManyDots[]{}",
+      "snippet": "rightManyDots[${2:text scale}]{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rightManyDots[][]{}": {
+      "command": "rightManyDots[][]{}",
+      "snippet": "rightManyDots[${2:text scale}][${3:dots scale}]{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "middleManyDots": {
+      "command": "middleManyDots",
+      "snippet": "middleManyDots",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxLoop{}": {
+      "command": "zxLoop{}",
+      "snippet": "zxLoop{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxLoop[]{}": {
+      "command": "zxLoop[]{}",
+      "snippet": "zxLoop[${2:dir angle}]{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxLoop[][]{}": {
+      "command": "zxLoop[][]{}",
+      "snippet": "zxLoop[${2:dir angle}][${3:open angle}]{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxLoop[][][]{}": {
+      "command": "zxLoop[][][]{}",
+      "snippet": "zxLoop[${2:dir angle}][${3:open angle}][${4:styles}]{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxLoopAboveDots{}": {
+      "command": "zxLoopAboveDots{}",
+      "snippet": "zxLoopAboveDots{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxLoopAboveDots[]{}": {
+      "command": "zxLoopAboveDots[]{}",
+      "snippet": "zxLoopAboveDots[${2:open angle}]{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxLoopAboveDots[][]{}": {
+      "command": "zxLoopAboveDots[][]{}",
+      "snippet": "zxLoopAboveDots[${2:open angle}][${3:styles}]{${1:}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxDebugMode": {
+      "command": "zxDebugMode",
+      "snippet": "zxDebugMode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "arrow[]": {
+      "command": "arrow[]",
+      "snippet": "arrow[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "arrow[]{}": {
+      "command": "arrow[]{}",
+      "snippet": "arrow[${2:options}]{${1:direction}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ar[]": {
+      "command": "ar[]",
+      "snippet": "ar[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rar[]{}": {
+      "command": "rar[]{}",
+      "snippet": "rar[${2:options}]{${1:%<labels%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lar[]{}": {
+      "command": "lar[]{}",
+      "snippet": "lar[${2:options}]{${1:%<labels%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dar[]{}": {
+      "command": "dar[]{}",
+      "snippet": "dar[${2:options}]{${1:%<labels%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uar[]{}": {
+      "command": "uar[]{}",
+      "snippet": "uar[${2:options}]{${1:%<labels%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drar[]{}": {
+      "command": "drar[]{}",
+      "snippet": "drar[${2:options}]{${1:%<labels%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "urar[]{}": {
+      "command": "urar[]{}",
+      "snippet": "urar[${2:options}]{${1:%<labels%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dlar[]{}": {
+      "command": "dlar[]{}",
+      "snippet": "dlar[${2:options}]{${1:%<labels%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ular[]{}": {
+      "command": "ular[]{}",
+      "snippet": "ular[${2:options}]{${1:%<labels%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxConvertToFracInContent": {
+      "command": "zxConvertToFracInContent",
+      "snippet": "zxConvertToFracInContent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxConvertToFracInLabel": {
+      "command": "zxConvertToFracInLabel",
+      "snippet": "zxConvertToFracInLabel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxMinusInShort": {
+      "command": "zxMinusInShort",
+      "snippet": "zxMinusInShort",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxHCol": {
+      "command": "zxHCol",
+      "snippet": "zxHCol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxHRow": {
+      "command": "zxHRow",
+      "snippet": "zxHRow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxHColFlat": {
+      "command": "zxHColFlat",
+      "snippet": "zxHColFlat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxHRowFlat": {
+      "command": "zxHRowFlat",
+      "snippet": "zxHRowFlat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxSCol": {
+      "command": "zxSCol",
+      "snippet": "zxSCol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxSRow": {
+      "command": "zxSRow",
+      "snippet": "zxSRow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxSColFlat": {
+      "command": "zxSColFlat",
+      "snippet": "zxSColFlat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxSRowFlat": {
+      "command": "zxSRowFlat",
+      "snippet": "zxSRowFlat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxHSCol": {
+      "command": "zxHSCol",
+      "snippet": "zxHSCol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxHSRow": {
+      "command": "zxHSRow",
+      "snippet": "zxHSRow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxHSColFlat": {
+      "command": "zxHSColFlat",
+      "snippet": "zxHSColFlat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxHSRowFlat": {
+      "command": "zxHSRowFlat",
+      "snippet": "zxHSRowFlat",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxWCol": {
+      "command": "zxWCol",
+      "snippet": "zxWCol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxWRow": {
+      "command": "zxWRow",
+      "snippet": "zxWRow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxwCol": {
+      "command": "zxwCol",
+      "snippet": "zxwCol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxwRow": {
+      "command": "zxwRow",
+      "snippet": "zxwRow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxDotsCol": {
+      "command": "zxDotsCol",
+      "snippet": "zxDotsCol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxDotsRow": {
+      "command": "zxDotsRow",
+      "snippet": "zxDotsRow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxZeroCol": {
+      "command": "zxZeroCol",
+      "snippet": "zxZeroCol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxZeroRow": {
+      "command": "zxZeroRow",
+      "snippet": "zxZeroRow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxNCol": {
+      "command": "zxNCol",
+      "snippet": "zxNCol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxNRow": {
+      "command": "zxNRow",
+      "snippet": "zxNRow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxDefaultColumnSep": {
+      "command": "zxDefaultColumnSep",
+      "snippet": "zxDefaultColumnSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxDefaultRowSep": {
+      "command": "zxDefaultRowSep",
+      "snippet": "zxDefaultRowSep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxDefaultSoftAngleS": {
+      "command": "zxDefaultSoftAngleS",
+      "snippet": "zxDefaultSoftAngleS",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxDefaultSoftAngleN": {
+      "command": "zxDefaultSoftAngleN",
+      "snippet": "zxDefaultSoftAngleN",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxDefaultSoftAngleO": {
+      "command": "zxDefaultSoftAngleO",
+      "snippet": "zxDefaultSoftAngleO",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxDefaultSoftAngleChevron": {
+      "command": "zxDefaultSoftAngleChevron",
+      "snippet": "zxDefaultSoftAngleChevron",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxScaleDots": {
+      "command": "zxScaleDots",
+      "snippet": "zxScaleDots",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxMinus": {
+      "command": "zxMinus",
+      "snippet": "zxMinus",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxEdgesAbove": {
+      "command": "zxEdgesAbove",
+      "snippet": "zxEdgesAbove",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxControlPointsVisible": {
+      "command": "zxControlPointsVisible",
+      "snippet": "zxControlPointsVisible",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxEnableIntersections": {
+      "command": "zxEnableIntersections",
+      "snippet": "zxEnableIntersections",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxDisableIntersections": {
+      "command": "zxDisableIntersections",
+      "snippet": "zxDisableIntersections",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxEnableIntersectionsNodes": {
+      "command": "zxEnableIntersectionsNodes",
+      "snippet": "zxEnableIntersectionsNodes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxEnableIntersectionsWires": {
+      "command": "zxEnableIntersectionsWires",
+      "snippet": "zxEnableIntersectionsWires",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxIntersectionLineBetweenStartEnd": {
+      "command": "zxIntersectionLineBetweenStartEnd",
+      "snippet": "zxIntersectionLineBetweenStartEnd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxDefaultLineWidth": {
+      "command": "zxDefaultLineWidth",
+      "snippet": "zxDefaultLineWidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxSaveDiagram{}{}": {
+      "command": "zxSaveDiagram{}{}",
+      "snippet": "zxSaveDiagram{${1:cmd}}{${2:diagram%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxSaveDiagram{}[]{}": {
+      "command": "zxSaveDiagram{}[]{}",
+      "snippet": "zxSaveDiagram{${1:cmd}}[${2:options}]{${3:diagram%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chdots": {
+      "command": "chdots",
+      "snippet": "chdots",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "controlOne": {
+      "command": "controlOne",
+      "snippet": "controlOne",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "controlTwo": {
+      "command": "controlTwo",
+      "snippet": "controlTwo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvdots": {
+      "command": "cvdots",
+      "snippet": "cvdots",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvdotsAboveBaseline": {
+      "command": "cvdotsAboveBaseline",
+      "snippet": "cvdotsAboveBaseline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvdotsCenterBaseline": {
+      "command": "cvdotsCenterBaseline",
+      "snippet": "cvdotsCenterBaseline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cvdotsCenterMathline": {
+      "command": "cvdotsCenterMathline",
+      "snippet": "cvdotsCenterMathline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifAnchorExists{}{}{}{}": {
+      "command": "ifAnchorExists{}{}{}{}",
+      "snippet": "ifAnchorExists{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifAnchorExistsFromShape{}{}{}{}": {
+      "command": "ifAnchorExistsFromShape{}{}{}{}",
+      "snippet": "ifAnchorExistsFromShape{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifPgfpointOrNode{}{}{}": {
+      "command": "ifPgfpointOrNode{}{}{}",
+      "snippet": "ifPgfpointOrNode{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "StartPoint": {
+      "command": "StartPoint",
+      "snippet": "StartPoint",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TargetPoint": {
+      "command": "TargetPoint",
+      "snippet": "TargetPoint",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxChooseStyle{}{}{}{}": {
+      "command": "zxChooseStyle{}{}{}{}",
+      "snippet": "zxChooseStyle{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxMaxDepthPlusHeight": {
+      "command": "zxMaxDepthPlusHeight",
+      "snippet": "zxMaxDepthPlusHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxMaxRatio": {
+      "command": "zxMaxRatio",
+      "snippet": "zxMaxRatio",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxUseDiagram{}": {
+      "command": "zxUseDiagram{}",
+      "snippet": "zxUseDiagram{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zxWireInsideIfNoIntersectionName": {
+      "command": "zxWireInsideIfNoIntersectionName",
+      "snippet": "zxWireInsideIfNoIntersectionName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {
+    "ZX": {
+      "name": "ZX",
+      "detail": "ZX",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ZX[]": {
+      "name": "ZX",
+      "detail": "ZX[]",
+      "snippet": "[${1:options}]",
+      "option": "",
+      "keyvals": [
+        "every diagram",
+        "diagrams={",
+        "every matrix",
+        "every cell",
+        "cells={",
+        "row sep=",
+        "column sep=",
+        "sep=",
+        "cramped",
+        "math mode",
+        "background color=",
+        "every arrow",
+        "arrows={",
+        "arrow style=",
+        "every label",
+        "labels={",
+        "center yshift=",
+        "ampersand replacement=",
+        "shorten=",
+        "crossing over",
+        "crossing over clearance=",
+        "marking",
+        "description",
+        "",
+        "color=",
+        "in=",
+        "out=",
+        "font=",
+        "line width=",
+        "execute at begin picture={",
+        "math baseline=",
+        "zx column sep=",
+        "zx row sep=",
+        "use diagram={",
+        "phase in content",
+        "phase in label",
+        "phase in label={",
+        "pil",
+        "pil={",
+        "phase in label above",
+        "phase in label above={",
+        "pila",
+        "pila={",
+        "phase in label below",
+        "phase in label below={",
+        "pilb",
+        "pilb={",
+        "phase in label right",
+        "phase in label right={",
+        "pilr",
+        "pilr={",
+        "phase in label left",
+        "phase in label left={",
+        "pill",
+        "pill={",
+        "text="
+      ],
+      "keyvalindex": 0
+    }
+  },
+  "options": []
+}

@@ -1,0 +1,584 @@
+{
+  "includes": [
+    "luatex",
+    "etoolbox",
+    "xparse",
+    "xkeyval",
+    "xcolor",
+    "tcolorbox",
+    "tcolorboxlibrarybreakable",
+    "babel",
+    "tocloft",
+    "ifluatex",
+    "hyperref",
+    "bookmark",
+    "luacolor"
+  ],
+  "cmds": {
+    "JumplineArticle{}": {
+      "command": "JumplineArticle{}",
+      "snippet": "JumplineArticle{${1:content%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JumplineArticle[]{}": {
+      "command": "JumplineArticle[]{}",
+      "snippet": "JumplineArticle[${2:options}]{${1:content%text}}",
+      "option": "",
+      "keyvals": [
+        "TeaserHeight=",
+        "ArticleHeadline={",
+        "TeaserHeaderOptions={",
+        "ContinuedArticleHeaderOptions={",
+        "ContinuedOnTopskip=",
+        "ContinuedOnBottomskip=",
+        "ArticleAuthor={"
+      ],
+      "keyvalindex": 0
+    },
+    "ShipoutArticleTeasers": {
+      "command": "ShipoutArticleTeasers",
+      "snippet": "ShipoutArticleTeasers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShipoutArticleHangingArticles": {
+      "command": "ShipoutArticleHangingArticles",
+      "snippet": "ShipoutArticleHangingArticles",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listofarticle": {
+      "command": "listofarticle",
+      "snippet": "listofarticle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listofcontarticle": {
+      "command": "listofcontarticle",
+      "snippet": "listofcontarticle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listofarticlesname": {
+      "command": "listofarticlesname",
+      "snippet": "listofarticlesname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listofcontinuedarticlesname": {
+      "command": "listofcontinuedarticlesname",
+      "snippet": "listofcontinuedarticlesname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thearticle": {
+      "command": "thearticle",
+      "snippet": "thearticle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ContinuedArticleList": {
+      "command": "ContinuedArticleList",
+      "snippet": "ContinuedArticleList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ContinuedFrom": {
+      "command": "ContinuedFrom",
+      "snippet": "ContinuedFrom",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ContinuedOn": {
+      "command": "ContinuedOn",
+      "snippet": "ContinuedOn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultContinuedArticleTocExt": {
+      "command": "DefaultContinuedArticleTocExt",
+      "snippet": "DefaultContinuedArticleTocExt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultTeaserTocExt": {
+      "command": "DefaultTeaserTocExt",
+      "snippet": "DefaultTeaserTocExt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DisplayContinuedArticle{}{}": {
+      "command": "DisplayContinuedArticle{}{}",
+      "snippet": "DisplayContinuedArticle{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DisplayJumplineTeaser{}{}": {
+      "command": "DisplayJumplineTeaser{}{}",
+      "snippet": "DisplayJumplineTeaser{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLArticleName": {
+      "command": "JLArticleName",
+      "snippet": "JLArticleName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLBookmarkEntry": {
+      "command": "JLBookmarkEntry",
+      "snippet": "JLBookmarkEntry",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroArticleAuthor": {
+      "command": "JLKVMacroArticleAuthor",
+      "snippet": "JLKVMacroArticleAuthor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroArticleFullHeight": {
+      "command": "JLKVMacroArticleFullHeight",
+      "snippet": "JLKVMacroArticleFullHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroArticleHeadline": {
+      "command": "JLKVMacroArticleHeadline",
+      "snippet": "JLKVMacroArticleHeadline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroBookmarkEntry": {
+      "command": "JLKVMacroBookmarkEntry",
+      "snippet": "JLKVMacroBookmarkEntry",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroContinuedArticleBottomskip": {
+      "command": "JLKVMacroContinuedArticleBottomskip",
+      "snippet": "JLKVMacroContinuedArticleBottomskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroContinuedArticleHeaderContent": {
+      "command": "JLKVMacroContinuedArticleHeaderContent",
+      "snippet": "JLKVMacroContinuedArticleHeaderContent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroContinuedArticleHeaderOptions": {
+      "command": "JLKVMacroContinuedArticleHeaderOptions",
+      "snippet": "JLKVMacroContinuedArticleHeaderOptions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroContinuedArticleHeight": {
+      "command": "JLKVMacroContinuedArticleHeight",
+      "snippet": "JLKVMacroContinuedArticleHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroContinuedBookmarkLevel": {
+      "command": "JLKVMacroContinuedBookmarkLevel",
+      "snippet": "JLKVMacroContinuedBookmarkLevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroContinuedFromBottomskip": {
+      "command": "JLKVMacroContinuedFromBottomskip",
+      "snippet": "JLKVMacroContinuedFromBottomskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroContinuedFromTopskip": {
+      "command": "JLKVMacroContinuedFromTopskip",
+      "snippet": "JLKVMacroContinuedFromTopskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroContinuedHeaderColor": {
+      "command": "JLKVMacroContinuedHeaderColor",
+      "snippet": "JLKVMacroContinuedHeaderColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroContinuedOnBottomskip": {
+      "command": "JLKVMacroContinuedOnBottomskip",
+      "snippet": "JLKVMacroContinuedOnBottomskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroContinuedOnTopskip": {
+      "command": "JLKVMacroContinuedOnTopskip",
+      "snippet": "JLKVMacroContinuedOnTopskip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroContinuedTocExt": {
+      "command": "JLKVMacroContinuedTocExt",
+      "snippet": "JLKVMacroContinuedTocExt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroContinuedTocLevel": {
+      "command": "JLKVMacroContinuedTocLevel",
+      "snippet": "JLKVMacroContinuedTocLevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroGenericBookmarkDest": {
+      "command": "JLKVMacroGenericBookmarkDest",
+      "snippet": "JLKVMacroGenericBookmarkDest",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroGenericBookmarkLevel": {
+      "command": "JLKVMacroGenericBookmarkLevel",
+      "snippet": "JLKVMacroGenericBookmarkLevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroInternalMode": {
+      "command": "JLKVMacroInternalMode",
+      "snippet": "JLKVMacroInternalMode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroTeaserBookmarkLevel": {
+      "command": "JLKVMacroTeaserBookmarkLevel",
+      "snippet": "JLKVMacroTeaserBookmarkLevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroTeaserHeaderColor": {
+      "command": "JLKVMacroTeaserHeaderColor",
+      "snippet": "JLKVMacroTeaserHeaderColor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroTeaserHeaderContent": {
+      "command": "JLKVMacroTeaserHeaderContent",
+      "snippet": "JLKVMacroTeaserHeaderContent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroTeaserHeaderOptions": {
+      "command": "JLKVMacroTeaserHeaderOptions",
+      "snippet": "JLKVMacroTeaserHeaderOptions",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroTeaserHeight": {
+      "command": "JLKVMacroTeaserHeight",
+      "snippet": "JLKVMacroTeaserHeight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroTeaserTocExt": {
+      "command": "JLKVMacroTeaserTocExt",
+      "snippet": "JLKVMacroTeaserTocExt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroTeaserTocLevel": {
+      "command": "JLKVMacroTeaserTocLevel",
+      "snippet": "JLKVMacroTeaserTocLevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLKVMacroToc": {
+      "command": "JLKVMacroToc",
+      "snippet": "JLKVMacroToc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLPackageMacroLanguages": {
+      "command": "JLPackageMacroLanguages",
+      "snippet": "JLPackageMacroLanguages",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JLTocEntry": {
+      "command": "JLTocEntry",
+      "snippet": "JLTocEntry",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "JumplineOptionsList": {
+      "command": "JumplineOptionsList",
+      "snippet": "JumplineOptionsList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "OnPage": {
+      "command": "OnPage",
+      "snippet": "OnPage",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Pagename": {
+      "command": "Pagename",
+      "snippet": "Pagename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TeaserBoxList": {
+      "command": "TeaserBoxList",
+      "snippet": "TeaserBoxList",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "articlesname": {
+      "command": "articlesname",
+      "snippet": "articlesname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "byauthor": {
+      "command": "byauthor",
+      "snippet": "byauthor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "captionsngerman": {
+      "command": "captionsngerman",
+      "snippet": "captionsngerman",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "datengerman": {
+      "command": "datengerman",
+      "snippet": "datengerman",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extrasngerman": {
+      "command": "extrasngerman",
+      "snippet": "extrasngerman",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noextrasngerman": {
+      "command": "noextrasngerman",
+      "snippet": "noextrasngerman",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dq": {
+      "command": "dq",
+      "snippet": "dq",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ntosstrue": {
+      "command": "ntosstrue",
+      "snippet": "ntosstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ntossfalse": {
+      "command": "ntossfalse",
+      "snippet": "ntossfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "prefacename": {
+      "command": "prefacename",
+      "snippet": "prefacename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "bibname": {
+      "command": "bibname",
+      "snippet": "bibname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "chaptername": {
+      "command": "chaptername",
+      "snippet": "chaptername",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "enclname": {
+      "command": "enclname",
+      "snippet": "enclname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ccname": {
+      "command": "ccname",
+      "snippet": "ccname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "headtoname": {
+      "command": "headtoname",
+      "snippet": "headtoname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "seename": {
+      "command": "seename",
+      "snippet": "seename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "alsoname": {
+      "command": "alsoname",
+      "snippet": "alsoname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "proofname": {
+      "command": "proofname",
+      "snippet": "proofname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "glossaryname": {
+      "command": "glossaryname",
+      "snippet": "glossaryname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mdqon": {
+      "command": "mdqon",
+      "snippet": "mdqon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "mdqoff": {
+      "command": "mdqoff",
+      "snippet": "mdqoff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "captionsenglish": {
+      "command": "captionsenglish",
+      "snippet": "captionsenglish",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dateenglish": {
+      "command": "dateenglish",
+      "snippet": "dateenglish",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extrasenglish": {
+      "command": "extrasenglish",
+      "snippet": "extrasenglish",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noextrasenglish": {
+      "command": "noextrasenglish",
+      "snippet": "noextrasenglish",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "englishhyphenmins": {
+      "command": "englishhyphenmins",
+      "snippet": "englishhyphenmins",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "britishhyphenmins": {
+      "command": "britishhyphenmins",
+      "snippet": "britishhyphenmins",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "americanhyphenmins": {
+      "command": "americanhyphenmins",
+      "snippet": "americanhyphenmins",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "envs": {},
+  "options": [
+    "languages="
+  ]
+}
