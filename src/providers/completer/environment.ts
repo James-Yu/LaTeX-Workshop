@@ -11,7 +11,8 @@ export type EnvType = {
     name: string, // Name of the environment, what comes inside \begin{...}
     snippet?: string, // To be inserted after \begin{..}
     option?: string,
-    keyvals?: {key: string, snippet: string}[],
+    keyvals?: string[],
+    keyvalindex?: number,
     package?: string, // The package providing the environment
     detail?: string
 }
@@ -67,17 +68,14 @@ export class Environment implements IProvider {
         }
     }
 
-    private getPackageEnvs(type: EnvSnippetType): Map<string, CmdEnvSuggestion[]> {
+    getPackageEnvs(type?: EnvSnippetType): Map<string, CmdEnvSuggestion[]> {
         switch (type) {
             case EnvSnippetType.AsName:
                 return this.packageEnvsAsName
-                break
             case EnvSnippetType.AsCommand:
                 return this.packageEnvsAsCommand
-                break
             case EnvSnippetType.ForBegin:
                 return this.packageEnvsForBegin
-                break
             default:
                 return new Map<string, CmdEnvSuggestion[]>()
         }
@@ -208,7 +206,7 @@ export class Environment implements IProvider {
         // Here we only check `isEnvironment` which excludes `align*` and `verbatim`.
         // Nonetheless, they have already been included in `defaultEnvs`.
         if (latexParser.isEnvironment(node)) {
-            const env = new CmdEnvSuggestion(`${node.name}`, '', { name: node.name, args: '' }, vscode.CompletionItemKind.Module)
+            const env = new CmdEnvSuggestion(`${node.name}`, '', [], -1, { name: node.name, args: '' }, vscode.CompletionItemKind.Module)
             env.documentation = '`' + node.name + '`'
             env.filterText = node.name
             envs.push(env)
@@ -253,7 +251,7 @@ export class Environment implements IProvider {
             if (envList.includes(result[1])) {
                 continue
             }
-            const env = new CmdEnvSuggestion(`${result[1]}`, '', { name: result[1], args: '' }, vscode.CompletionItemKind.Module)
+            const env = new CmdEnvSuggestion(`${result[1]}`, '', [], -1, { name: result[1], args: '' }, vscode.CompletionItemKind.Module)
             env.documentation = '`' + result[1] + '`'
             env.filterText = result[1]
 
@@ -280,11 +278,17 @@ export class Environment implements IProvider {
 
     private entryEnvToCompletion(itemKey: string, item: EnvType, type: EnvSnippetType): CmdEnvSuggestion {
         const label = item.detail ? item.detail : item.name
-        const suggestion = new CmdEnvSuggestion(item.name, 'latex', splitSignatureString(itemKey), vscode.CompletionItemKind.Module)
-        suggestion.detail = `Insert environment ${item.name}.`
-        suggestion.documentation = item.name
+        const suggestion = new CmdEnvSuggestion(
+            item.name,
+            item.package || 'latex',
+            item.keyvals || [],
+            item.keyvalindex === undefined ? -1 : item.keyvalindex,
+            splitSignatureString(itemKey),
+            vscode.CompletionItemKind.Module)
+        suggestion.detail = `\\begin{${item.name}}${item.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}\n...\n\\end{${item.name}}`
+        suggestion.documentation = `Environment ${item.name}.`
         if (item.package) {
-            suggestion.documentation += '\n' + `Package: ${item.package}`
+            suggestion.documentation += ` From package: ${item.package}.`
         }
         suggestion.sortText = label.replace(/^[a-zA-Z]/, c => {
             const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)

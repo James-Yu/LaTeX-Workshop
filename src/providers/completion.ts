@@ -8,6 +8,7 @@ import {Command} from './completer/command'
 import type {CmdType} from './completer/command'
 import {Environment, EnvSnippetType} from './completer/environment'
 import type {EnvType} from './completer/environment'
+import { Argument } from './completer/argument'
 import {AtSuggestion} from './completer/atsuggestion'
 import {Reference} from './completer/reference'
 import {Package} from './completer/package'
@@ -45,6 +46,7 @@ export class Completer implements vscode.CompletionItemProvider {
     readonly command: Command
     readonly documentClass: DocumentClass
     readonly environment: Environment
+    readonly argument: Argument
     readonly reference: Reference
     readonly package: Package
     readonly input: Input
@@ -59,6 +61,7 @@ export class Completer implements vscode.CompletionItemProvider {
         this.citation = new Citation(extension)
         this.environment = new Environment(extension) // Must be created before command
         this.command = new Command(extension)
+        this.argument = new Argument(extension)
         this.documentClass = new DocumentClass(extension)
         this.reference = new Reference(extension)
         this.package = new Package(extension)
@@ -129,7 +132,7 @@ export class Completer implements vscode.CompletionItemProvider {
         const line = document.lineAt(position.line).text.substring(0, position.character)
         // Note that the order of the following array affects the result.
         // 'command' must be at the last because it matches any commands.
-        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'command']) {
+        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'argument', 'command']) {
             const suggestions = this.completion(type, line, {document, position, token, context})
             if (suggestions.length > 0) {
                 if (type === 'citation') {
@@ -209,6 +212,10 @@ export class Completer implements vscode.CompletionItemProvider {
             case 'command':
                 reg = args.document.languageId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)$/ : /\\(\+?[a-zA-Z]*|(?:left|[Bb]ig{1,2}l)?[({[]?)$/
                 provider = this.command
+                break
+            case 'argument':
+                reg = args.document.languageId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)((?:\[(?:\[.*?\]|{.*?}|.)*?\]|{(?:\[.*?\]|{.*?}|.)*?})*)[[{][^[\]{}]*$/ : /\\(\+?[a-zA-Z]*)((?:\[(?:\[.*?\]|{.*?}|.)*?\]|{(?:\[.*?\]|{.*?}|.)*?})*)[[{][^[\]{}]*$/
+                provider = this.argument
                 break
             case 'package':
                 reg = /(?:\\usepackage(?:\[[^[\]]*\])*){([^}]*)$/

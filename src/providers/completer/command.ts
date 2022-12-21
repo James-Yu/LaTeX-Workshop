@@ -15,7 +15,8 @@ export type CmdType = {
     command: string,
     snippet?: string,
     option?: string,
-    keyvals?: {key: string, snippet: string}[],
+    keyvals?: string[],
+    keyvalindex?: number,
     detail?: string,
     documentation?: string,
     package?: string,
@@ -208,13 +209,17 @@ export class Command implements IProvider {
 
     private entryCmdToCompletion(itemKey: string, item: CmdType): CmdEnvSuggestion {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
-        const label = item.label ? `${item.label}` : `${backslash}${item.command}`
-        const suggestion = new CmdEnvSuggestion(label, 'latex', splitSignatureString(itemKey), vscode.CompletionItemKind.Function)
+        const suggestion = new CmdEnvSuggestion(
+            item.label || `${backslash}${item.command}`,
+            item.package || 'latex',
+            item.keyvals || [],
+            item.keyvalindex === undefined ? -1 : item.keyvalindex,
+            splitSignatureString(itemKey),
+            vscode.CompletionItemKind.Function)
 
         if (item.snippet) {
-            if (useTabStops) {
+            if (!configuration.get('intellisense.argumentHint.enabled')) {
                 item.snippet = item.snippet.replace(/\$\{(\d+):[^$}]*\}/g, '$${$1}')
             }
             // Wrap the selected text when there is a single placeholder
@@ -226,8 +231,11 @@ export class Command implements IProvider {
             suggestion.insertText = item.command
         }
         suggestion.filterText = itemKey
-        suggestion.detail = item.detail
-        suggestion.documentation = item.documentation ? item.documentation : '`' + item.command + '`'
+        suggestion.detail = item.detail || `\\${item.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}`
+        suggestion.documentation = item.documentation ? item.documentation : `Command \\${item.command}.`
+        if (item.package) {
+            suggestion.documentation += ` From package: ${item.package}.`
+        }
         suggestion.sortText = item.command.replace(/^[a-zA-Z]/, c => {
             const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
             return n !== undefined ? n.toString(16): c
@@ -253,6 +261,10 @@ export class Command implements IProvider {
             }
         })
         this.packageCmds.set(packageName, commands)
+    }
+
+    getPackageCmds(packageName: string) {
+        return this.packageCmds.get(packageName) || []
     }
 
     provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
