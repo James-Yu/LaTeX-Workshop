@@ -1,16 +1,33 @@
 {
-  "includes": [],
+  "includes": [
+    "pstricks",
+    "pst-xkey"
+  ],
   "cmds": {
-    "psshadow[]{}": {
-      "command": "psshadow[]{}",
-      "snippet": "psshadow[${2:par}]{${1:stuff}}",
+    "psAffinTransform[]{}{}": {
+      "command": "psAffinTransform[]{}{}",
+      "snippet": "psAffinTransform[${3:options}]{${1:transformation matrix}}{${2:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "psshadow*[]{}": {
-      "command": "psshadow*[]{}",
-      "snippet": "psshadow*[${2:par}]{${1:stuff}}",
+    "psAffinTransform{}{}": {
+      "command": "psAffinTransform{}{}",
+      "snippet": "psAffinTransform{${1:transformation matrix}}{${2:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pssetzlength{}{}": {
+      "command": "pssetzlength{}{}",
+      "snippet": "pssetzlength{${1:cmd}}{${2:dim}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psshadow[]{}": {
+      "command": "psshadow[]{}",
+      "snippet": "psshadow[${2:options}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -22,37 +39,37 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "psshadow*{}": {
-      "command": "psshadow*{}",
-      "snippet": "psshadow*{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pstilt{}{}": {
-      "command": "pstilt{}{}",
-      "snippet": "pstilt{${1:degrees}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "psTilt{}{}": {
-      "command": "psTilt{}{}",
-      "snippet": "psTilt{${1:degrees}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "pstilt[]{}{}": {
       "command": "pstilt[]{}{}",
-      "snippet": "pstilt[${3:par}]{${1:degrees}}{${2:stuff}}",
+      "snippet": "pstilt[${3:options}]{${1:angle}}{${2:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "psTilt[]{}{}": {
       "command": "psTilt[]{}{}",
-      "snippet": "psTilt[${3:par}]{${1:degrees}}{${2:stuff}}",
+      "snippet": "psTilt[${3:options}]{${1:angle}}{${2:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstilt{}{}": {
+      "command": "pstilt{}{}",
+      "snippet": "pstilt{${1:angle}}{${2:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psTilt{}{}": {
+      "command": "psTilt{}{}",
+      "snippet": "psTilt{${1:angle}}{${2:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PSTthreeDLoaded": {
+      "command": "PSTthreeDLoaded",
+      "snippet": "PSTthreeDLoaded",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1

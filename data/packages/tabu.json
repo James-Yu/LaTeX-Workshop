@@ -1,5 +1,10 @@
 {
-  "includes": [],
+  "includes": [
+    "array",
+    "varwidth",
+    "delarray",
+    "linegoal"
+  ],
   "cmds": {
     "tabulinestyle{}": {
       "command": "tabulinestyle{}",
@@ -36,9 +41,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "preamble": {
-      "command": "preamble",
-      "snippet": "preamble",
+    "preamble{}": {
+      "command": "preamble{}",
+      "snippet": "preamble{${1:username}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -57,6 +62,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "extrarowdepth": {
+      "command": "extrarowdepth",
+      "snippet": "extrarowdepth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "abovetabulinesep": {
       "command": "abovetabulinesep",
       "snippet": "abovetabulinesep",
@@ -67,6 +79,13 @@
     "belowtabulinesep": {
       "command": "belowtabulinesep",
       "snippet": "belowtabulinesep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabustrutrule": {
+      "command": "tabustrutrule",
+      "snippet": "tabustrutrule",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -101,7 +120,7 @@
     },
     "taburulecolor{}": {
       "command": "taburulecolor{}",
-      "snippet": "taburulecolor|doubleRuleSepColor|{${1:color}}",
+      "snippet": "taburulecolor|${2:doubleRuleSepColor}|{${1:%<color%>}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -129,7 +148,7 @@
     },
     "taburowcolors[]%<number%>{}": {
       "command": "taburowcolors[]%<number%>{}",
-      "snippet": "taburowcolors [${2:<%first line%>}] ${3:number} {${1:%<first%> .. %<last%>}}",
+      "snippet": "taburowcolors [${2:%<first line%>}] ${3:number} {${1:%<first%> .. %<last%>}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -151,6 +170,111 @@
     "tabudecimal{}": {
       "command": "tabudecimal{}",
       "snippet": "tabudecimal{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "firstline": {
+      "command": "firstline",
+      "snippet": "firstline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lastline": {
+      "command": "lastline",
+      "snippet": "lastline",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iftabuscantokens": {
+      "command": "iftabuscantokens",
+      "snippet": "iftabuscantokens",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabuscantokenstrue": {
+      "command": "tabuscantokenstrue",
+      "snippet": "tabuscantokenstrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabuscantokensfalse": {
+      "command": "tabuscantokensfalse",
+      "snippet": "tabuscantokensfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabucolumn{}": {
+      "command": "tabucolumn{}",
+      "snippet": "tabucolumn{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabucolX": {
+      "command": "tabucolX",
+      "snippet": "tabucolX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabudefaulttarget": {
+      "command": "tabudefaulttarget",
+      "snippet": "tabudefaulttarget",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabuDisableCommands": {
+      "command": "tabuDisableCommands",
+      "snippet": "tabuDisableCommands",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabuendlongtrial": {
+      "command": "tabuendlongtrial",
+      "snippet": "tabuendlongtrial",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabulineoff": {
+      "command": "tabulineoff",
+      "snippet": "tabulineoff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabulineon": {
+      "command": "tabulineon",
+      "snippet": "tabulineon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tabuthepreamble": {
+      "command": "tabuthepreamble",
+      "snippet": "tabuthepreamble",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thetaburow": {
+      "command": "thetaburow",
+      "snippet": "thetaburow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tracingtabu": {
+      "command": "tracingtabu",
+      "snippet": "tracingtabu",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -206,5 +330,10 @@
       "keyvalindex": -1
     }
   },
-  "options": []
+  "options": [
+    "delarray",
+    "linegoal",
+    "scantokens",
+    "debugshow"
+  ]
 }

@@ -1,5 +1,7 @@
 {
-  "includes": [],
+  "includes": [
+    "varioref"
+  ],
   "cmds": {
     "fref{}": {
       "command": "fref{}",
@@ -31,33 +33,315 @@
     },
     "fancyrefchangeprefix{}{}": {
       "command": "fancyrefchangeprefix{}{}",
-      "snippet": "fancyrefchangeprefix{${1:macro}}{${2:preﬁx}}",
+      "snippet": "fancyrefchangeprefix{${1:prefix macro}}{${2:preﬁx}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "fancyrefaddcaptions{}{}": {
       "command": "fancyrefaddcaptions{}{}",
-      "snippet": "fancyrefaddcaptions{${1:language}}{${2:stringdefs}}",
+      "snippet": "fancyrefaddcaptions{${1:language}}{${2:string defs}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "frefformat{}{}{}": {
       "command": "frefformat{}{}{}",
-      "snippet": "frefformat{${1:format}}{${2:preﬁxmacro}}{${3:output}}",
+      "snippet": "frefformat{${1:format}}{${2:preﬁx macro}}{${3:output}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "Frefformat{}{}{}": {
       "command": "Frefformat{}{}{}",
-      "snippet": "Frefformat{${1:format}}{${2:preﬁxmacro}}{${3:output}}",
+      "snippet": "Frefformat{${1:format}}{${2:preﬁx macro}}{${3:output}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyrefhook{}": {
+      "command": "fancyrefhook{}",
+      "snippet": "fancyrefhook{${1:output of format}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyrefchaplabelprefix": {
+      "command": "fancyrefchaplabelprefix",
+      "snippet": "fancyrefchaplabelprefix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyrefseclabelprefix": {
+      "command": "fancyrefseclabelprefix",
+      "snippet": "fancyrefseclabelprefix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyrefeqlabelprefix": {
+      "command": "fancyrefeqlabelprefix",
+      "snippet": "fancyrefeqlabelprefix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyreffiglabelprefix": {
+      "command": "fancyreffiglabelprefix",
+      "snippet": "fancyreffiglabelprefix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyreftablabelprefix": {
+      "command": "fancyreftablabelprefix",
+      "snippet": "fancyreftablabelprefix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyrefenumlabelprefix": {
+      "command": "fancyrefenumlabelprefix",
+      "snippet": "fancyrefenumlabelprefix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyreffnlabelprefix": {
+      "command": "fancyreffnlabelprefix",
+      "snippet": "fancyreffnlabelprefix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyrefargdelim": {
+      "command": "fancyrefargdelim",
+      "snippet": "fancyrefargdelim",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyrefloosespacing": {
+      "command": "fancyrefloosespacing",
+      "snippet": "fancyrefloosespacing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyreftightspacing": {
+      "command": "fancyreftightspacing",
+      "snippet": "fancyreftightspacing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyrefdefaultspacing": {
+      "command": "fancyrefdefaultspacing",
+      "snippet": "fancyrefdefaultspacing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Frefchapname": {
+      "command": "Frefchapname",
+      "snippet": "Frefchapname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Frefenumname": {
+      "command": "Frefenumname",
+      "snippet": "Frefenumname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Frefeqname": {
+      "command": "Frefeqname",
+      "snippet": "Frefeqname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Freffigname": {
+      "command": "Freffigname",
+      "snippet": "Freffigname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Freffnname": {
+      "command": "Freffnname",
+      "snippet": "Freffnname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Frefonname": {
+      "command": "Frefonname",
+      "snippet": "Frefonname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Frefpgname": {
+      "command": "Frefpgname",
+      "snippet": "Frefpgname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Frefsecname": {
+      "command": "Frefsecname",
+      "snippet": "Frefsecname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Frefseename": {
+      "command": "Frefseename",
+      "snippet": "Frefseename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Freftabname": {
+      "command": "Freftabname",
+      "snippet": "Freftabname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frefchapname": {
+      "command": "frefchapname",
+      "snippet": "frefchapname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frefenumname": {
+      "command": "frefenumname",
+      "snippet": "frefenumname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frefeqname": {
+      "command": "frefeqname",
+      "snippet": "frefeqname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "freffigname": {
+      "command": "freffigname",
+      "snippet": "freffigname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "freffnname": {
+      "command": "freffnname",
+      "snippet": "freffnname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frefonname": {
+      "command": "frefonname",
+      "snippet": "frefonname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frefpgname": {
+      "command": "frefpgname",
+      "snippet": "frefpgname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frefsecname": {
+      "command": "frefsecname",
+      "snippet": "frefsecname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frefseename": {
+      "command": "frefseename",
+      "snippet": "frefseename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "freftabname": {
+      "command": "freftabname",
+      "snippet": "freftabname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Freffigshortname": {
+      "command": "Freffigshortname",
+      "snippet": "Freffigshortname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Frefpgshortname": {
+      "command": "Frefpgshortname",
+      "snippet": "Frefpgshortname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Freftabshortname": {
+      "command": "Freftabshortname",
+      "snippet": "Freftabshortname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "freffigshortname": {
+      "command": "freffigshortname",
+      "snippet": "freffigshortname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frefpgshortname": {
+      "command": "frefpgshortname",
+      "snippet": "frefpgshortname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "freftabshortname": {
+      "command": "freftabshortname",
+      "snippet": "freftabshortname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fancyrefdefaultformat": {
+      "command": "fancyrefdefaultformat",
+      "snippet": "fancyrefdefaultformat",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "german",
+    "english",
+    "loose",
+    "margin",
+    "paren",
+    "plain",
+    "tight",
+    "vario"
+  ]
 }

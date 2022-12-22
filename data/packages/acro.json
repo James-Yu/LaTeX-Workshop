@@ -1,9 +1,34 @@
 {
-  "includes": [],
+  "includes": [
+    "l3keys2e",
+    "translations",
+    "etoolbox"
+  ],
   "cmds": {
     "DeclareAcronym{}{}": {
       "command": "DeclareAcronym{}{}",
-      "snippet": "DeclareAcronym{${1:id}}{${2:short = , long = }}",
+      "snippet": "DeclareAcronym{${1:id}}{${2:properties}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewAcroPreset{}{}": {
+      "command": "NewAcroPreset{}{}",
+      "snippet": "NewAcroPreset{${1:set name}}{${2:properties}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewAcroPreset{}{}": {
+      "command": "RenewAcroPreset{}{}",
+      "snippet": "RenewAcroPreset{${1:set name}}{${2:properties}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareAcroPreset{}{}": {
+      "command": "DeclareAcroPreset{}{}",
+      "snippet": "DeclareAcroPreset{${1:set name}}{${2:properties}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -15,9 +40,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "ac[]{}": {
+      "command": "ac[]{}",
+      "snippet": "ac[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "ac*{}": {
       "command": "ac*{}",
       "snippet": "ac*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ac*[]{}": {
+      "command": "ac*[]{}",
+      "snippet": "ac*[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -29,6 +68,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "Ac[]{}": {
+      "command": "Ac[]{}",
+      "snippet": "Ac[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "Ac*{}": {
       "command": "Ac*{}",
       "snippet": "Ac*{${1:id}}",
@@ -36,86 +82,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "acs{}": {
-      "command": "acs{}",
-      "snippet": "acs{${1:id}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "acs*{}": {
-      "command": "acs*{}",
-      "snippet": "acs*{${1:id}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "acl{}": {
-      "command": "acl{}",
-      "snippet": "acl{${1:id}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "acl*{}": {
-      "command": "acl*{}",
-      "snippet": "acl*{${1:id}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Acl{}": {
-      "command": "Acl{}",
-      "snippet": "Acl{${1:id}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Acl*{}": {
-      "command": "Acl*{}",
-      "snippet": "Acl*{${1:id}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "aca{}": {
-      "command": "aca{}",
-      "snippet": "aca{${1:id}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "aca*{}": {
-      "command": "aca*{}",
-      "snippet": "aca*{${1:id}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "acf{}": {
-      "command": "acf{}",
-      "snippet": "acf{${1:id}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "acf*{}": {
-      "command": "acf*{}",
-      "snippet": "acf*{${1:id}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Acf{}": {
-      "command": "Acf{}",
-      "snippet": "Acf{${1:id}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Acf*{}": {
-      "command": "Acf*{}",
-      "snippet": "Acf*{${1:id}}",
+    "Ac*[]{}": {
+      "command": "Ac*[]{}",
+      "snippet": "Ac*[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -127,9 +96,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "acp[]{}": {
+      "command": "acp[]{}",
+      "snippet": "acp[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "acp*{}": {
       "command": "acp*{}",
       "snippet": "acp*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acp*[]{}": {
+      "command": "acp*[]{}",
+      "snippet": "acp*[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -141,9 +124,135 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "Acp[]{}": {
+      "command": "Acp[]{}",
+      "snippet": "Acp[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "Acp*{}": {
       "command": "Acp*{}",
       "snippet": "Acp*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acp*[]{}": {
+      "command": "Acp*[]{}",
+      "snippet": "Acp*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iac{}": {
+      "command": "iac{}",
+      "snippet": "iac{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iac[]{}": {
+      "command": "iac[]{}",
+      "snippet": "iac[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iac*{}": {
+      "command": "iac*{}",
+      "snippet": "iac*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iac*[]{}": {
+      "command": "iac*[]{}",
+      "snippet": "iac*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iac{}": {
+      "command": "Iac{}",
+      "snippet": "Iac{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iac[]{}": {
+      "command": "Iac[]{}",
+      "snippet": "Iac[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iac*{}": {
+      "command": "Iac*{}",
+      "snippet": "Iac*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iac*[]{}": {
+      "command": "Iac*[]{}",
+      "snippet": "Iac*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acs{}": {
+      "command": "acs{}",
+      "snippet": "acs{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acs[]{}": {
+      "command": "acs[]{}",
+      "snippet": "acs[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acs*{}": {
+      "command": "acs*{}",
+      "snippet": "acs*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acs*[]{}": {
+      "command": "acs*[]{}",
+      "snippet": "acs*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acs{}": {
+      "command": "Acs{}",
+      "snippet": "Acs{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acs[]{}": {
+      "command": "Acs[]{}",
+      "snippet": "Acs[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acs*{}": {
+      "command": "Acs*{}",
+      "snippet": "Acs*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acs*[]{}": {
+      "command": "Acs*[]{}",
+      "snippet": "Acs*[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -155,9 +264,163 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "acsp[]{}": {
+      "command": "acsp[]{}",
+      "snippet": "acsp[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "acsp*{}": {
       "command": "acsp*{}",
       "snippet": "acsp*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acsp*[]{}": {
+      "command": "acsp*[]{}",
+      "snippet": "acsp*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acsp{}": {
+      "command": "Acsp{}",
+      "snippet": "Acsp{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acsp[]{}": {
+      "command": "Acsp[]{}",
+      "snippet": "Acsp[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acsp*{}": {
+      "command": "Acsp*{}",
+      "snippet": "Acsp*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acsp*[]{}": {
+      "command": "Acsp*[]{}",
+      "snippet": "Acsp*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iacs{}": {
+      "command": "iacs{}",
+      "snippet": "iacs{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iacs[]{}": {
+      "command": "iacs[]{}",
+      "snippet": "iacs[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iacs*{}": {
+      "command": "iacs*{}",
+      "snippet": "iacs*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iacs*[]{}": {
+      "command": "iacs*[]{}",
+      "snippet": "iacs*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iacs{}": {
+      "command": "Iacs{}",
+      "snippet": "Iacs{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iacs[]{}": {
+      "command": "Iacs[]{}",
+      "snippet": "Iacs[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iacs*{}": {
+      "command": "Iacs*{}",
+      "snippet": "Iacs*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iacs*[]{}": {
+      "command": "Iacs*[]{}",
+      "snippet": "Iacs*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acl{}": {
+      "command": "acl{}",
+      "snippet": "acl{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acl[]{}": {
+      "command": "acl[]{}",
+      "snippet": "acl[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acl*{}": {
+      "command": "acl*{}",
+      "snippet": "acl*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acl*[]{}": {
+      "command": "acl*[]{}",
+      "snippet": "acl*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acl{}": {
+      "command": "Acl{}",
+      "snippet": "Acl{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acl[]{}": {
+      "command": "Acl[]{}",
+      "snippet": "Acl[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acl*{}": {
+      "command": "Acl*{}",
+      "snippet": "Acl*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acl*[]{}": {
+      "command": "Acl*[]{}",
+      "snippet": "Acl*[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -169,9 +432,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "aclp[]{}": {
+      "command": "aclp[]{}",
+      "snippet": "aclp[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "aclp*{}": {
       "command": "aclp*{}",
       "snippet": "aclp*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "aclp*[]{}": {
+      "command": "aclp*[]{}",
+      "snippet": "aclp*[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -183,9 +460,135 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "Aclp[]{}": {
+      "command": "Aclp[]{}",
+      "snippet": "Aclp[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "Aclp*{}": {
       "command": "Aclp*{}",
       "snippet": "Aclp*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Aclp*[]{}": {
+      "command": "Aclp*[]{}",
+      "snippet": "Aclp*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iacl{}": {
+      "command": "iacl{}",
+      "snippet": "iacl{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iacl[]{}": {
+      "command": "iacl[]{}",
+      "snippet": "iacl[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iacl*{}": {
+      "command": "iacl*{}",
+      "snippet": "iacl*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iacl*[]{}": {
+      "command": "iacl*[]{}",
+      "snippet": "iacl*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iacl{}": {
+      "command": "Iacl{}",
+      "snippet": "Iacl{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iacl[]{}": {
+      "command": "Iacl[]{}",
+      "snippet": "Iacl[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iacl*{}": {
+      "command": "Iacl*{}",
+      "snippet": "Iacl*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iacl*[]{}": {
+      "command": "Iacl*[]{}",
+      "snippet": "Iacl*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "aca{}": {
+      "command": "aca{}",
+      "snippet": "aca{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "aca[]{}": {
+      "command": "aca[]{}",
+      "snippet": "aca[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "aca*{}": {
+      "command": "aca*{}",
+      "snippet": "aca*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "aca*[]{}": {
+      "command": "aca*[]{}",
+      "snippet": "aca*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Aca{}": {
+      "command": "Aca{}",
+      "snippet": "Aca{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Aca[]{}": {
+      "command": "Aca[]{}",
+      "snippet": "Aca[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Aca*{}": {
+      "command": "Aca*{}",
+      "snippet": "Aca*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Aca*[]{}": {
+      "command": "Aca*[]{}",
+      "snippet": "Aca*[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -197,9 +600,163 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "acap[]{}": {
+      "command": "acap[]{}",
+      "snippet": "acap[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "acap*{}": {
       "command": "acap*{}",
       "snippet": "acap*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acap*[]{}": {
+      "command": "acap*[]{}",
+      "snippet": "acap*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acap{}": {
+      "command": "Acap{}",
+      "snippet": "Acap{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acap[]{}": {
+      "command": "Acap[]{}",
+      "snippet": "Acap[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acap*{}": {
+      "command": "Acap*{}",
+      "snippet": "Acap*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acap*[]{}": {
+      "command": "Acap*[]{}",
+      "snippet": "Acap*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iaca{}": {
+      "command": "iaca{}",
+      "snippet": "iaca{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iaca[]{}": {
+      "command": "iaca[]{}",
+      "snippet": "iaca[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iaca*{}": {
+      "command": "iaca*{}",
+      "snippet": "iaca*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "iaca*[]{}": {
+      "command": "iaca*[]{}",
+      "snippet": "iaca*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iaca{}": {
+      "command": "Iaca{}",
+      "snippet": "Iaca{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iaca[]{}": {
+      "command": "Iaca[]{}",
+      "snippet": "Iaca[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iaca*{}": {
+      "command": "Iaca*{}",
+      "snippet": "Iaca*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Iaca*[]{}": {
+      "command": "Iaca*[]{}",
+      "snippet": "Iaca*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acf{}": {
+      "command": "acf{}",
+      "snippet": "acf{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acf[]{}": {
+      "command": "acf[]{}",
+      "snippet": "acf[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acf*{}": {
+      "command": "acf*{}",
+      "snippet": "acf*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acf*[]{}": {
+      "command": "acf*[]{}",
+      "snippet": "acf*[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acf{}": {
+      "command": "Acf{}",
+      "snippet": "Acf{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acf[]{}": {
+      "command": "Acf[]{}",
+      "snippet": "Acf[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acf*{}": {
+      "command": "Acf*{}",
+      "snippet": "Acf*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Acf*[]{}": {
+      "command": "Acf*[]{}",
+      "snippet": "Acf*[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -211,9 +768,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "acfp[]{}": {
+      "command": "acfp[]{}",
+      "snippet": "acfp[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "acfp*{}": {
       "command": "acfp*{}",
       "snippet": "acfp*{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acfp*[]{}": {
+      "command": "acfp*[]{}",
+      "snippet": "acfp*[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -225,6 +796,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "Acfp[]{}": {
+      "command": "Acfp[]{}",
+      "snippet": "Acfp[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "Acfp*{}": {
       "command": "Acfp*{}",
       "snippet": "Acfp*{${1:id}}",
@@ -232,72 +810,65 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "acfirstupper{}": {
-      "command": "acfirstupper{}",
-      "snippet": "acfirstupper{${1:token list}}",
+    "Acfp*[]{}": {
+      "command": "Acfp*[]{}",
+      "snippet": "Acfp*[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "acflike{}{}": {
-      "command": "acflike{}{}",
-      "snippet": "acflike{${1:id}}{${2:instead of long form}}",
+    "iacf{}": {
+      "command": "iacf{}",
+      "snippet": "iacf{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "acflike*{}{}": {
-      "command": "acflike*{}{}",
-      "snippet": "acflike*{${1:id}}{${2:instead of long form}}",
+    "iacf[]{}": {
+      "command": "iacf[]{}",
+      "snippet": "iacf[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "acfplike{}{}": {
-      "command": "acfplike{}{}",
-      "snippet": "acfplike{${1:id}}{${2:instead of long form}}",
+    "iacf*{}": {
+      "command": "iacf*{}",
+      "snippet": "iacf*{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "acfplike*{}{}": {
-      "command": "acfplike*{}{}",
-      "snippet": "acfplike*{${1:id}}{${2:instead of long form}}",
+    "iacf*[]{}": {
+      "command": "iacf*[]{}",
+      "snippet": "iacf*[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "acreset{}": {
-      "command": "acreset{}",
-      "snippet": "acreset{${1:comma separated list of id}}",
+    "Iacf{}": {
+      "command": "Iacf{}",
+      "snippet": "Iacf{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "acresetall": {
-      "command": "acresetall",
-      "snippet": "acresetall",
+    "Iacf[]{}": {
+      "command": "Iacf[]{}",
+      "snippet": "Iacf[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "acifused{}{}{}": {
-      "command": "acifused{}{}{}",
-      "snippet": "acifused{${1:id}}{${2:true}}{${3:false}}",
+    "Iacf*{}": {
+      "command": "Iacf*{}",
+      "snippet": "Iacf*{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "acuse{}": {
-      "command": "acuse{}",
-      "snippet": "acuse{${1:comma separated list of ids}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "acuseall": {
-      "command": "acuseall",
-      "snippet": "acuseall",
+    "Iacf*[]{}": {
+      "command": "Iacf*[]{}",
+      "snippet": "Iacf*[${2:options}]{${1:id}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -315,8 +886,864 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "acrodotfill": {
+      "command": "acrodotfill",
+      "snippet": "acrodotfill",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acbarrier": {
+      "command": "acbarrier",
+      "snippet": "acbarrier",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acdot": {
+      "command": "acdot",
+      "snippet": "acdot",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acspace": {
+      "command": "acspace",
+      "snippet": "acspace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "abbrdot": {
+      "command": "abbrdot",
+      "snippet": "abbrdot",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "aciftrailing{}{}{}": {
+      "command": "aciftrailing{}{}{}",
+      "snippet": "aciftrailing{${1:list of token names}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acuse{}": {
+      "command": "acuse{}",
+      "snippet": "acuse{${1:list of ids}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acuseall": {
+      "command": "acuseall",
+      "snippet": "acuseall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acreset{}": {
+      "command": "acreset{}",
+      "snippet": "acreset{${1:list of ids}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acresetall": {
+      "command": "acresetall",
+      "snippet": "acresetall",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acrotranslate{}": {
+      "command": "acrotranslate{}",
+      "snippet": "acrotranslate{${1:key%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acswitchoff": {
+      "command": "acswitchoff",
+      "snippet": "acswitchoff",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acswitchon": {
+      "command": "acswitchon",
+      "snippet": "acswitchon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewAcroTemplate{}{}": {
+      "command": "NewAcroTemplate{}{}",
+      "snippet": "NewAcroTemplate{${1:name}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewAcroTemplate[]{}{}": {
+      "command": "NewAcroTemplate[]{}{}",
+      "snippet": "NewAcroTemplate[${3:type}]{${1:name}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewAcroTemplate{}{}": {
+      "command": "RenewAcroTemplate{}{}",
+      "snippet": "RenewAcroTemplate{${1:name}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewAcroTemplate[]{}{}": {
+      "command": "RenewAcroTemplate[]{}{}",
+      "snippet": "RenewAcroTemplate[${3:type}]{${1:name}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetupAcroTemplate{}{}": {
+      "command": "SetupAcroTemplate{}{}",
+      "snippet": "SetupAcroTemplate{${1:name}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetupAcroTemplate[]{}{}": {
+      "command": "SetupAcroTemplate[]{}{}",
+      "snippet": "SetupAcroTemplate[${3:type}]{${1:name}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetupNextAcroTemplate{}{}": {
+      "command": "SetupNextAcroTemplate{}{}",
+      "snippet": "SetupNextAcroTemplate{${1:name}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetupNextAcroTemplate[]{}{}": {
+      "command": "SetupNextAcroTemplate[]{}{}",
+      "snippet": "SetupNextAcroTemplate[${3:type}]{${1:name}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroTemplateType": {
+      "command": "AcroTemplateType",
+      "snippet": "AcroTemplateType",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroTemplateName": {
+      "command": "AcroTemplateName",
+      "snippet": "AcroTemplateName",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acrolistname": {
+      "command": "acrolistname",
+      "snippet": "acrolistname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acrowrite{}": {
+      "command": "acrowrite{}",
+      "snippet": "acrowrite{${1:property}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroformat{}{}": {
+      "command": "acroformat{}{}",
+      "snippet": "acroformat{${1:type}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroshow{}": {
+      "command": "acroshow{}",
+      "snippet": "acroshow{${1:property}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifTF{}{}{}": {
+      "command": "acroifTF{}{}{}",
+      "snippet": "acroifTF{${1:property}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifT{}{}{}": {
+      "command": "acroifT{}{}{}",
+      "snippet": "acroifT{${1:property}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifF{}{}{}": {
+      "command": "acroifF{}{}{}",
+      "snippet": "acroifF{${1:property}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifbooleanTF{}{}{}": {
+      "command": "acroifbooleanTF{}{}{}",
+      "snippet": "acroifbooleanTF{${1:property}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifbooleanT{}{}{}": {
+      "command": "acroifbooleanT{}{}{}",
+      "snippet": "acroifbooleanT{${1:property}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifbooleanF{}{}{}": {
+      "command": "acroifbooleanF{}{}{}",
+      "snippet": "acroifbooleanF{${1:property}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifallTF{}{}{}": {
+      "command": "acroifallTF{}{}{}",
+      "snippet": "acroifallTF{${1:properties}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifallT{}{}{}": {
+      "command": "acroifallT{}{}{}",
+      "snippet": "acroifallT{${1:properties}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifallF{}{}{}": {
+      "command": "acroifallF{}{}{}",
+      "snippet": "acroifallF{${1:properties}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifanyTF{}{}{}": {
+      "command": "acroifanyTF{}{}{}",
+      "snippet": "acroifanyTF{${1:properties}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifanyT{}{}{}": {
+      "command": "acroifanyT{}{}{}",
+      "snippet": "acroifanyT{${1:properties}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifanyF{}{}{}": {
+      "command": "acroifanyF{}{}{}",
+      "snippet": "acroifanyF{${1:properties}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroiftagTF{}{}{}": {
+      "command": "acroiftagTF{}{}{}",
+      "snippet": "acroiftagTF{${1:tag}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroiftagT{}{}{}": {
+      "command": "acroiftagT{}{}{}",
+      "snippet": "acroiftagT{${1:tag}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroiftagF{}{}{}": {
+      "command": "acroiftagF{}{}{}",
+      "snippet": "acroiftagF{${1:tag}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifstarredTF{}{}": {
+      "command": "acroifstarredTF{}{}",
+      "snippet": "acroifstarredTF{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifstarredT{}{}": {
+      "command": "acroifstarredT{}{}",
+      "snippet": "acroifstarredT{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifstarredF{}{}": {
+      "command": "acroifstarredF{}{}",
+      "snippet": "acroifstarredF{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroPropertiesMap{}": {
+      "command": "AcroPropertiesMap{}",
+      "snippet": "AcroPropertiesMap{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroAcronymsMap{}": {
+      "command": "AcroAcronymsMap{}",
+      "snippet": "AcroAcronymsMap{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcronymID": {
+      "command": "AcronymID",
+      "snippet": "AcronymID",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroMapBreak": {
+      "command": "AcroMapBreak",
+      "snippet": "AcroMapBreak",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroPropertiesSet{}{}": {
+      "command": "AcroPropertiesSet{}{}",
+      "snippet": "AcroPropertiesSet{${1:id}}{${2:list of properties}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifusedTF{}{}": {
+      "command": "acroifusedTF{}{}",
+      "snippet": "acroifusedTF{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifusedT{}{}": {
+      "command": "acroifusedT{}{}",
+      "snippet": "acroifusedT{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifusedF{}{}": {
+      "command": "acroifusedF{}{}",
+      "snippet": "acroifusedF{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroiffirstTF{}{}": {
+      "command": "acroiffirstTF{}{}",
+      "snippet": "acroiffirstTF{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroiffirstT{}{}": {
+      "command": "acroiffirstT{}{}",
+      "snippet": "acroiffirstT{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroiffirstF{}{}": {
+      "command": "acroiffirstF{}{}",
+      "snippet": "acroiffirstF{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifsingleTF{}{}": {
+      "command": "acroifsingleTF{}{}",
+      "snippet": "acroifsingleTF{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifsingleT{}{}": {
+      "command": "acroifsingleT{}{}",
+      "snippet": "acroifsingleT{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifsingleF{}{}": {
+      "command": "acroifsingleF{}{}",
+      "snippet": "acroifsingleF{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acrogroupcite": {
+      "command": "acrogroupcite",
+      "snippet": "acrogroupcite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifchapterTF{}{}": {
+      "command": "acroifchapterTF{}{}",
+      "snippet": "acroifchapterTF{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifchapterT{}{}": {
+      "command": "acroifchapterT{}{}",
+      "snippet": "acroifchapterT{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifchapterF{}{}": {
+      "command": "acroifchapterF{}{}",
+      "snippet": "acroifchapterF{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifpagesTF{}{}": {
+      "command": "acroifpagesTF{}{}",
+      "snippet": "acroifpagesTF{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifpagesT{}{}": {
+      "command": "acroifpagesT{}{}",
+      "snippet": "acroifpagesT{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifpagesF{}{}": {
+      "command": "acroifpagesF{}{}",
+      "snippet": "acroifpagesF{${1:true}}{${2:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acropages{}{}": {
+      "command": "acropages{}{}",
+      "snippet": "acropages{${1:first}}{${2:range}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acronopagerange": {
+      "command": "acronopagerange",
+      "snippet": "acronopagerange",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroneedpages": {
+      "command": "acroneedpages",
+      "snippet": "acroneedpages",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acropagefill": {
+      "command": "acropagefill",
+      "snippet": "acropagefill",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acronymsmap{}": {
+      "command": "acronymsmap{}",
+      "snippet": "acronymsmap{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acronymsmapTF{}{}{}": {
+      "command": "acronymsmapTF{}{}{}",
+      "snippet": "acronymsmapTF{${1:code}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acronymsmapT{}{}{}": {
+      "command": "acronymsmapT{}{}{}",
+      "snippet": "acronymsmapT{${1:code}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acronymsmapF{}{}{}": {
+      "command": "acronymsmapF{}{}{}",
+      "snippet": "acronymsmapF{${1:code}}{${2:true}}{${3:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcronymTable": {
+      "command": "AcronymTable",
+      "snippet": "AcronymTable",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroAddRow{}": {
+      "command": "AcroAddRow{}",
+      "snippet": "AcroAddRow{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroNeedPackage{}": {
+      "command": "AcroNeedPackage{}",
+      "snippet": "AcroNeedPackage{${1:package}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroRerun": {
+      "command": "AcroRerun",
+      "snippet": "AcroRerun",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareAcroEnding{}{}{}": {
+      "command": "DeclareAcroEnding{}{}{}",
+      "snippet": "DeclareAcroEnding{${1:name}}{${2:short default}}{${3:long default}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareAcroArticle{}{}": {
+      "command": "DeclareAcroArticle{}{}",
+      "snippet": "DeclareAcroArticle{${1:name}}{${2:default}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareAcroTranslation{}{}": {
+      "command": "DeclareAcroTranslation{}{}",
+      "snippet": "DeclareAcroTranslation{${1:key%plain}}{${2:language-translation list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AddAcroTranslations{}{}": {
+      "command": "AddAcroTranslations{}{}",
+      "snippet": "AddAcroTranslations{${1:key%plain}}{${2:language-translation list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareAcroProperty{}": {
+      "command": "DeclareAcroProperty{}",
+      "snippet": "DeclareAcroProperty{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareAcroProperty*{}": {
+      "command": "DeclareAcroProperty*{}",
+      "snippet": "DeclareAcroProperty*{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareAcroPropertyAlias{}{}": {
+      "command": "DeclareAcroPropertyAlias{}{}",
+      "snippet": "DeclareAcroPropertyAlias{${1:name1}}{${2:name2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MakeAcroPropertyAlias{}{}": {
+      "command": "MakeAcroPropertyAlias{}{}",
+      "snippet": "MakeAcroPropertyAlias{${1:name1}}{${2:name2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NewAcroCommand{}{}{}": {
+      "command": "NewAcroCommand{}{}{}",
+      "snippet": "NewAcroCommand{${1:cmd}}{${2:xargs}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RenewAcroCommand{}{}{}": {
+      "command": "RenewAcroCommand{}{}{}",
+      "snippet": "RenewAcroCommand{${1:cmd}}{${2:xargs}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareAcroCommand{}{}{}": {
+      "command": "DeclareAcroCommand{}{}{}",
+      "snippet": "DeclareAcroCommand{${1:cmd}}{${2:xargs}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProvideAcroCommand{}{}{}": {
+      "command": "ProvideAcroCommand{}{}{}",
+      "snippet": "ProvideAcroCommand{${1:cmd}}{${2:xargs}}{${3:definition}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseAcroTemplate{}": {
+      "command": "UseAcroTemplate{}",
+      "snippet": "UseAcroTemplate{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseAcroTemplate[]{}[]": {
+      "command": "UseAcroTemplate[]{}[]",
+      "snippet": "UseAcroTemplate[${2:type}]{${1:name}}[${3:argument number}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acrocite": {
+      "command": "acrocite",
+      "snippet": "acrocite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acrodonotuse": {
+      "command": "acrodonotuse",
+      "snippet": "acrodonotuse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroplural": {
+      "command": "acroplural",
+      "snippet": "acroplural",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroindefinite": {
+      "command": "acroindefinite",
+      "snippet": "acroindefinite",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroupper": {
+      "command": "acroupper",
+      "snippet": "acroupper",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acrofull": {
+      "command": "acrofull",
+      "snippet": "acrofull",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nospace": {
+      "command": "nospace",
+      "snippet": "nospace",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroModule{}{}": {
+      "command": "AcroModule{}{}",
+      "snippet": "AcroModule{${1:name}}{${2:description%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroModuleEnd": {
+      "command": "AcroModuleEnd",
+      "snippet": "AcroModuleEnd",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroStyle{}": {
+      "command": "AcroStyle{}",
+      "snippet": "AcroStyle{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AcroMap{}{}": {
+      "command": "AcroMap{}{}",
+      "snippet": "AcroMap{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroloadstyle{}": {
+      "command": "acroloadstyle{}",
+      "snippet": "acroloadstyle{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acsimple{}{}": {
+      "command": "acsimple{}{}",
+      "snippet": "acsimple{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acfootnote{}": {
+      "command": "acfootnote{}",
+      "snippet": "acfootnote{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acgobbletrail": {
+      "command": "acgobbletrail",
+      "snippet": "acgobbletrail",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroheading": {
+      "command": "acroheading",
+      "snippet": "acroheading",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acropreamble": {
+      "command": "acropreamble",
+      "snippet": "acropreamble",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acropostamble": {
+      "command": "acropostamble",
+      "snippet": "acropostamble",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acrofield{}{}": {
+      "command": "acrofield{}{}",
+      "snippet": "acrofield{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroprintfield{}{}": {
+      "command": "acroprintfield{}{}",
+      "snippet": "acroprintfield{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroiffieldTF{}{}{}{}": {
+      "command": "acroiffieldTF{}{}{}{}",
+      "snippet": "acroiffieldTF{${1:arg1}}{${2:arg2}}{${3:true}}{${4:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifanyfieldTF{}{}{}{}": {
+      "command": "acroifanyfieldTF{}{}{}{}",
+      "snippet": "acroifanyfieldTF{${1:arg1}}{${2:arg2}}{${3:true}}{${4:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifallfieldsTF{}{}{}{}": {
+      "command": "acroifallfieldsTF{}{}{}{}",
+      "snippet": "acroifallfieldsTF{${1:arg1}}{${2:arg2}}{${3:true}}{${4:false}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifpagefieldTF{}": {
+      "command": "acroifpagefieldTF{}",
+      "snippet": "acroifpagefieldTF{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifpropertyTF{}": {
+      "command": "acroifpropertyTF{}",
+      "snippet": "acroifpropertyTF{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifpropertyT{}": {
+      "command": "acroifpropertyT{}",
+      "snippet": "acroifpropertyT{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroifpropertyF{}": {
+      "command": "acroifpropertyF{}",
+      "snippet": "acroifpropertyF{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acshow{}": {
+      "command": "acshow{}",
+      "snippet": "acshow{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acshow[]{}": {
+      "command": "acshow[]{}",
+      "snippet": "acshow[${2:options}]{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acroendfootnote": {
+      "command": "acroendfootnote",
+      "snippet": "acroendfootnote",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "upgrade"
+  ]
 }

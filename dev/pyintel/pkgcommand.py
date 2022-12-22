@@ -288,7 +288,7 @@ class CwlIntel:
                                 pkg.envs[pkgenv].keyvalindex = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.envs[pkgenv].snippet[:haskeyvals.start()])))
                             pkg.envs[pkgenv].keyvals.append(match[1])
                     else:
-                        cmd = re.match(r'\\([^{\[]*)', envcmd)[1]
+                        cmd = re.match(r'\\?([^{\[]*)', envcmd)[1]
                         for pkgcmd in pkg.cmds:
                             if (re.sub(r'\[\]|\(\)|<>|{}', '', pkg.cmds[pkgcmd].command) != cmd):
                                 continue

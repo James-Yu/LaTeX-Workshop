@@ -1,6 +1,4 @@
 import json
-import urllib.request
-import zipfile
 from shutil import copy
 import argparse
 import sys
@@ -21,7 +19,7 @@ INFILES = None
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-o', '--outdir', help=f'Directory where to write the JSON files. Default is {OUT_DIR}', type=str)
-parser.add_argument('-i', '--infile', help='Files to process. Default is the content of https://github.com/LaTeXing/LaTeX-cwl/', type=str, nargs='+')
+parser.add_argument('-i', '--infile', help='Files to process. Default is the content from cwl.list and cwl/ folder', type=str, nargs='+')
 args = parser.parse_args()
 
 if args.outdir:
@@ -35,15 +33,11 @@ if args.infile:
 
 def get_cwl_files() -> List[Path]:
     """ Get the list of cwl files from github if not already available on disk."""
-    cwl_zip = CWD.joinpath('cwl.zip')
-    if not cwl_zip.exists():
-        urllib.request.urlretrieve('https://github.com/jlelong/LaTeX-cwl/archive/refs/heads/master.zip', cwl_zip)
-    zip_ref = zipfile.ZipFile(cwl_zip, 'r')
-    zip_ref.extractall(CWD.joinpath('cwl/'))
-    zip_ref.close()
     files = []
-    for f in CWD.joinpath('cwl/LaTeX-cwl-master').iterdir():
-        if f.suffix == '.cwl':
+    with open('cwl.list', 'r') as l:
+        candidates = l.read().splitlines() 
+    for f in CWD.joinpath('cwl').iterdir():
+        if f.suffix == '.cwl' and f.name in candidates:
             files.append(f)
     return files
 
@@ -56,6 +50,7 @@ def parse_cwl_files(cwl_files):
     cwlIntel = CwlIntel(COMMANDS_FILE, ENVS_FILE, UNIMATHSYMBOLS)
     for cwl_file in cwl_files:
         # Skip some files
+        print(cwl_file)
         if cwl_file.name in FILES_TO_IGNORE:
             continue
         remove_spaces = False
@@ -67,18 +62,10 @@ def parse_cwl_files(cwl_files):
 
 
 if __name__ == '__main__':
-    do_copy = False
     if INFILES is None:
         cwl_files = get_cwl_files()
-        do_copy = True
     else:
         # Convert to an array of Path objects
         cwl_files = [Path(f) for f in INFILES]
 
     parse_cwl_files(cwl_files)
-
-    if do_copy:
-        # Handle aggregated files
-        for scr in ['scrartcl', 'scrreprt', 'scrbook']:
-            dest = OUT_DIR.joinpath('class-' + scr)
-            copy(OUT_DIR.joinpath('class-scrartcl,scrreprt,scrbook.json'), dest.as_posix() + '.json')

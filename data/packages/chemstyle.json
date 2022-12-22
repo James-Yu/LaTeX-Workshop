@@ -1,12 +1,12 @@
 {
   "includes": [
-    "SIunits",
     "amstext",
     "caption",
     "chemscheme",
     "siunitx",
     "varioref",
-    "xspace"
+    "xspace",
+    "xcolor"
   ],
   "cmds": {
     "Hz": {
@@ -30,16 +30,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "cst": {
-      "command": "cst",
-      "snippet": "cst",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cstsetup": {
-      "command": "cstsetup",
-      "snippet": "cstsetup",
+    "cstsetup{}": {
+      "command": "cstsetup{}",
+      "snippet": "cstsetup{${1:options}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -72,13 +65,6 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "expandafter": {
-      "command": "expandafter",
-      "snippet": "expandafter",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "ie": {
       "command": "ie",
       "snippet": "ie",
@@ -93,9 +79,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "latin": {
-      "command": "latin",
-      "snippet": "latin",
+    "latin{}": {
+      "command": "latin{}",
+      "snippet": "latin{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -148,8 +134,31 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "torr": {
+      "command": "torr",
+      "snippet": "torr",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "abbrcomma",
+    "abbremph",
+    "journal=",
+    "language=",
+    "nonotes",
+    "nophrases",
+    "notes",
+    "notesbefore",
+    "phrases",
+    "rademph",
+    "radhyphen",
+    "radprefix",
+    "radsuper",
+    "varioref",
+    "xspace"
+  ]
 }

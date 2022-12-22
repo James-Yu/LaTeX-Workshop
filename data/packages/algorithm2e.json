@@ -1,100 +1,346 @@
 {
   "includes": [
-    "color",
-    "endfloat",
     "ifthen",
+    "ifoddpage",
+    "xspace",
     "relsize",
     "tocbibind",
-    "xspace"
+    "endfloat",
+    "color"
   ],
   "cmds": {
-    "AlCapFnt": {
-      "command": "AlCapFnt",
-      "snippet": "AlCapFnt",
+    "listofalgorithmes": {
+      "command": "listofalgorithmes",
+      "snippet": "listofalgorithmes",
+      "option": "algo2e",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thepostalgo": {
+      "command": "thepostalgo",
+      "snippet": "thepostalgo",
+      "option": "endfloat",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetNoLine": {
+      "command": "SetNoLine",
+      "snippet": "SetNoLine",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetNoline": {
+      "command": "SetNoline",
+      "snippet": "SetNoline",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetVline": {
+      "command": "SetVline",
+      "snippet": "SetVline",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetLine": {
+      "command": "SetLine",
+      "snippet": "SetLine",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dontprintsemicolon": {
+      "command": "dontprintsemicolon",
+      "snippet": "dontprintsemicolon",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "printsemicolon": {
+      "command": "printsemicolon",
+      "snippet": "printsemicolon",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "incmargin{}": {
+      "command": "incmargin{}",
+      "snippet": "incmargin{${1:length}}",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "decmargin{}": {
+      "command": "decmargin{}",
+      "snippet": "decmargin{${1:length}}",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Setnlskip{}": {
+      "command": "Setnlskip{}",
+      "snippet": "Setnlskip{${1:length}}",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setnlskip{}": {
+      "command": "setnlskip{}",
+      "snippet": "setnlskip{${1:length}}",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setalcapskip{}": {
+      "command": "setalcapskip{}",
+      "snippet": "setalcapskip{${1:length}}",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setalcaphskip{}": {
+      "command": "setalcaphskip{}",
+      "snippet": "setalcaphskip{${1:length}}",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nlSty{}": {
+      "command": "nlSty{}",
+      "snippet": "nlSty{${1:text}}",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Setnlsty{}{}{}": {
+      "command": "Setnlsty{}{}{}",
+      "snippet": "Setnlsty{${1:font csname}}{${2:text before}}{${3:text after}}",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "linesnumbered": {
+      "command": "linesnumbered",
+      "snippet": "linesnumbered",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "linesnumberedhidden": {
+      "command": "linesnumberedhidden",
+      "snippet": "linesnumberedhidden",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "linesnotnumbered": {
+      "command": "linesnotnumbered",
+      "snippet": "linesnotnumbered",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showln": {
+      "command": "showln",
+      "snippet": "showln",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "showlnlabel{}": {
+      "command": "showlnlabel{}",
+      "snippet": "showlnlabel{${1:text%plain}}",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nocaptionofalgo": {
+      "command": "nocaptionofalgo",
+      "snippet": "nocaptionofalgo",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "restorecaptionofalgo": {
+      "command": "restorecaptionofalgo",
+      "snippet": "restorecaptionofalgo",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "restylealgo{}": {
+      "command": "restylealgo{}",
+      "snippet": "restylealgo{${1:style}}",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Titleofalgo{}": {
+      "command": "Titleofalgo{}",
+      "snippet": "Titleofalgo{${1:text}}",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwIf{}{}{}{}{}{}{}{}": {
+      "command": "SetKwIf{}{}{}{}{}{}{}{}",
+      "snippet": "SetKwIf{${1:if csname}}{${2:elseif csname}}{${3:else csname}}{${4:if text}}{${5:then text}}{${6:elseif text}}{${7:else text}}{${8:endif text}}",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gSi": {
+      "command": "gSi",
+      "snippet": "gSi",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gSinonSi": {
+      "command": "gSinonSi",
+      "snippet": "gSinonSi",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gSinon": {
+      "command": "gSinon",
+      "snippet": "gSinon",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gIf": {
+      "command": "gIf",
+      "snippet": "gIf",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gElsIf": {
+      "command": "gElsIf",
+      "snippet": "gElsIf",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gElse": {
+      "command": "gElse",
+      "snippet": "gElse",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gElseIf": {
+      "command": "gElseIf",
+      "snippet": "gElseIf",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gWenn": {
+      "command": "gWenn",
+      "snippet": "gWenn",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gSonstWenn": {
+      "command": "gSonstWenn",
+      "snippet": "gSonstWenn",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gSonst": {
+      "command": "gSonst",
+      "snippet": "gSonst",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gSe": {
+      "command": "gSe",
+      "snippet": "gSe",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gSenaoSe": {
+      "command": "gSenaoSe",
+      "snippet": "gSenaoSe",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gSenao": {
+      "command": "gSenao",
+      "snippet": "gSenao",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gSea": {
+      "command": "gSea",
+      "snippet": "gSea",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gAltSe": {
+      "command": "gAltSe",
+      "snippet": "gAltSe",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gAltrimenti": {
+      "command": "gAltrimenti",
+      "snippet": "gAltrimenti",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ret": {
+      "command": "Ret",
+      "snippet": "Ret",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Data": {
+      "command": "Data",
+      "snippet": "Data",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Result": {
+      "command": "Result",
+      "snippet": "Result",
+      "option": "oldcommands",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlgorithmName{}{}{}": {
+      "command": "SetAlgorithmName{}{}{}",
+      "snippet": "SetAlgorithmName{${1:name}}{${2:autoref name}}{${3:listofalgorithms name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "AlCapNameFnt": {
-      "command": "AlCapNameFnt",
-      "snippet": "AlCapNameFnt",
+    "SetAlgoProcName{}{}": {
+      "command": "SetAlgoProcName{}{}",
+      "snippet": "SetAlgoProcName{${1:name}}{${2:autoref name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "AlCapNameSty{}": {
-      "command": "AlCapNameSty{}",
-      "snippet": "AlCapNameSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "AlCapSty{}": {
-      "command": "AlCapSty{}",
-      "snippet": "AlCapSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "AlFnt": {
-      "command": "AlFnt",
-      "snippet": "AlFnt",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "AlTitleFnt": {
-      "command": "AlTitleFnt",
-      "snippet": "AlTitleFnt",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "AlTitleSty{}": {
-      "command": "AlTitleSty{}",
-      "snippet": "AlTitleSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "AlgoLineautorefname": {
-      "command": "AlgoLineautorefname",
-      "snippet": "AlgoLineautorefname",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ArgSty{}": {
-      "command": "ArgSty{}",
-      "snippet": "ArgSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "BlankLine": {
-      "command": "BlankLine",
-      "snippet": "BlankLine",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "CommentSty{}": {
-      "command": "CommentSty{}",
-      "snippet": "CommentSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DataSty{}": {
-      "command": "DataSty{}",
-      "snippet": "DataSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DecMargin{}": {
-      "command": "DecMargin{}",
-      "snippet": "DecMargin{${1:arg1}}",
+    "SetAlgoFuncName{}{}": {
+      "command": "SetAlgoFuncName{}{}",
+      "snippet": "SetAlgoFuncName{${1:name}}{${2:autoref name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -106,51 +352,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "FuncSty{}": {
-      "command": "FuncSty{}",
-      "snippet": "FuncSty{${1:arg1}}",
+    "PrintSemicolon": {
+      "command": "PrintSemicolon",
+      "snippet": "PrintSemicolon",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Hlne": {
-      "command": "Hlne",
-      "snippet": "Hlne",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "InOutSizeDefined": {
-      "command": "InOutSizeDefined",
-      "snippet": "InOutSizeDefined",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "IncMargin{}": {
-      "command": "IncMargin{}",
-      "snippet": "IncMargin{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Indentp{}": {
-      "command": "Indentp{}",
-      "snippet": "Indentp{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Indm": {
-      "command": "Indm",
-      "snippet": "Indm",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Indmm": {
-      "command": "Indmm",
-      "snippet": "Indmm",
+    "BlankLine": {
+      "command": "BlankLine",
+      "snippet": "BlankLine",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -162,23 +373,156 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Indpp": {
-      "command": "Indpp",
-      "snippet": "Indpp",
+    "Indm": {
+      "command": "Indm",
+      "snippet": "Indm",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "KwSty{}": {
-      "command": "KwSty{}",
-      "snippet": "KwSty{${1:arg1}}",
+    "SetStartEndCondition{}{}{}": {
+      "command": "SetStartEndCondition{}{}{}",
+      "snippet": "SetStartEndCondition{${1:typo1}}{${2:typo2}}{${3:typo3}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "LinesNotNumbered": {
-      "command": "LinesNotNumbered",
-      "snippet": "LinesNotNumbered",
+    "AlgoDisplayBlockMarkers": {
+      "command": "AlgoDisplayBlockMarkers",
+      "snippet": "AlgoDisplayBlockMarkers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AlgoDontDisplayBlockMarkers": {
+      "command": "AlgoDontDisplayBlockMarkers",
+      "snippet": "AlgoDontDisplayBlockMarkers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AlgoDisplayGroupMarkers": {
+      "command": "AlgoDisplayGroupMarkers",
+      "snippet": "AlgoDisplayGroupMarkers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AlgoDontDisplayGroupMarkers": {
+      "command": "AlgoDontDisplayGroupMarkers",
+      "snippet": "AlgoDontDisplayGroupMarkers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlgoBlockMarkers{}{}": {
+      "command": "SetAlgoBlockMarkers{}{}",
+      "snippet": "SetAlgoBlockMarkers{${1:begin keywords}}{${2:end keywords}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "listofalgorithms": {
+      "command": "listofalgorithms",
+      "snippet": "listofalgorithms",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TitleOfAlgo{}": {
+      "command": "TitleOfAlgo{}",
+      "snippet": "TitleOfAlgo{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlgoRefName{}": {
+      "command": "SetAlgoRefName{}",
+      "snippet": "SetAlgoRefName{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlgoRefRelativeSize{}": {
+      "command": "SetAlgoRefRelativeSize{}",
+      "snippet": "SetAlgoRefRelativeSize{${1:integer}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlgoCaptionSeparator{}": {
+      "command": "SetAlgoCaptionSeparator{}",
+      "snippet": "SetAlgoCaptionSeparator{${1:separator}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetCustomAlgoRuledWidth{}": {
+      "command": "SetCustomAlgoRuledWidth{}",
+      "snippet": "SetCustomAlgoRuledWidth{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AlCapSkip": {
+      "command": "AlCapSkip",
+      "snippet": "AlCapSkip",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlCapSkip{}": {
+      "command": "SetAlCapSkip{}",
+      "snippet": "SetAlCapSkip{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlCapHSkip{}": {
+      "command": "SetAlCapHSkip{}",
+      "snippet": "SetAlCapHSkip{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetTitleSty{}{}": {
+      "command": "SetTitleSty{}{}",
+      "snippet": "SetTitleSty{${1:type style}}{${2:type size}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TitleSty{}": {
+      "command": "TitleSty{}",
+      "snippet": "TitleSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoCaptionOfAlgo": {
+      "command": "NoCaptionOfAlgo",
+      "snippet": "NoCaptionOfAlgo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RestoreCaptionOfAlgo": {
+      "command": "RestoreCaptionOfAlgo",
+      "snippet": "RestoreCaptionOfAlgo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlgoCaptionLayout{}": {
+      "command": "SetAlgoCaptionLayout{}",
+      "snippet": "SetAlgoCaptionLayout{${1:style csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theAlgoLine": {
+      "command": "theAlgoLine",
+      "snippet": "theAlgoLine",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -197,37 +541,149 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "LinesNotNumbered": {
+      "command": "LinesNotNumbered",
+      "snippet": "LinesNotNumbered",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nllabel{}": {
+      "command": "nllabel{}",
+      "snippet": "nllabel{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nl": {
+      "command": "nl",
+      "snippet": "nl",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lnl{}": {
+      "command": "lnl{}",
+      "snippet": "lnl{${1:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nlset{}": {
+      "command": "nlset{}",
+      "snippet": "nlset{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lnlset{}{}": {
+      "command": "lnlset{}{}",
+      "snippet": "lnlset{${1:text%plain}}{${2:label}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShowLn": {
+      "command": "ShowLn",
+      "snippet": "ShowLn",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShowLnLabel{}": {
+      "command": "ShowLnLabel{}",
+      "snippet": "ShowLnLabel{${1:text%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetNlSty{}{}{}": {
+      "command": "SetNlSty{}{}{}",
+      "snippet": "SetNlSty{${1:font csname}}{${2:text before}}{${3:text after}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetNlSkip{}": {
+      "command": "SetNlSkip{}",
+      "snippet": "SetNlSkip{${1:length}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlgoNlRelativeSize{}": {
+      "command": "SetAlgoNlRelativeSize{}",
+      "snippet": "SetAlgoNlRelativeSize{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AlFnt": {
+      "command": "AlFnt",
+      "snippet": "AlFnt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwSty{}": {
+      "command": "KwSty{}",
+      "snippet": "KwSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FuncSty{}": {
+      "command": "FuncSty{}",
+      "snippet": "FuncSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FuncArgSty{}": {
+      "command": "FuncArgSty{}",
+      "snippet": "FuncArgSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProgSty{}": {
+      "command": "ProgSty{}",
+      "snippet": "ProgSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ArgSty{}": {
+      "command": "ArgSty{}",
+      "snippet": "ArgSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DataSty{}": {
+      "command": "DataSty{}",
+      "snippet": "DataSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CommentSty{}": {
+      "command": "CommentSty{}",
+      "snippet": "CommentSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "NlSty{}": {
       "command": "NlSty{}",
-      "snippet": "NlSty{${1:arg1}}",
+      "snippet": "NlSty{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "NoCaptionOfAlgo": {
-      "command": "NoCaptionOfAlgo",
-      "snippet": "NoCaptionOfAlgo",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "PrintSemicolon": {
-      "command": "PrintSemicolon",
-      "snippet": "PrintSemicolon",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ProcArgFnt": {
-      "command": "ProcArgFnt",
-      "snippet": "ProcArgFnt",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ProcArgSty{}": {
-      "command": "ProcArgSty{}",
-      "snippet": "ProcArgSty{${1:arg1}}",
+    "ProcNameSty{}": {
+      "command": "ProcNameSty{}",
+      "snippet": "ProcNameSty{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -239,6 +695,62 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "ProcArgSty{}": {
+      "command": "ProcArgSty{}",
+      "snippet": "ProcArgSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProcArgFnt": {
+      "command": "ProcArgFnt",
+      "snippet": "ProcArgFnt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "BlockMarkersSty{}": {
+      "command": "BlockMarkersSty{}",
+      "snippet": "BlockMarkersSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AlCapSty{}": {
+      "command": "AlCapSty{}",
+      "snippet": "AlCapSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AlCapNameSty{}": {
+      "command": "AlCapNameSty{}",
+      "snippet": "AlCapNameSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AlCapFnt": {
+      "command": "AlCapFnt",
+      "snippet": "AlCapFnt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AlCapNameFnt": {
+      "command": "AlCapNameFnt",
+      "snippet": "AlCapNameFnt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ProcSty{}": {
+      "command": "ProcSty{}",
+      "snippet": "ProcSty{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "ProcNameFnt": {
       "command": "ProcNameFnt",
       "snippet": "ProcNameFnt",
@@ -246,128 +758,184 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "ProcNameSty{}": {
-      "command": "ProcNameSty{}",
-      "snippet": "ProcNameSty{${1:arg1}}",
+    "AlTitleSty{}": {
+      "command": "AlTitleSty{}",
+      "snippet": "AlTitleSty{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "ProcSty{}": {
-      "command": "ProcSty{}",
-      "snippet": "ProcSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ResetInOut{}": {
-      "command": "ResetInOut{}",
-      "snippet": "ResetInOut{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "RestoreCaptionOfAlgo": {
-      "command": "RestoreCaptionOfAlgo",
-      "snippet": "RestoreCaptionOfAlgo",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "RestyleAlgo{}": {
-      "command": "RestyleAlgo{}",
-      "snippet": "RestyleAlgo{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetAlCapFnt{}": {
-      "command": "SetAlCapFnt{}",
-      "snippet": "SetAlCapFnt{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetAlCapHSkip{}": {
-      "command": "SetAlCapHSkip{}",
-      "snippet": "SetAlCapHSkip{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetAlCapNameFnt{}": {
-      "command": "SetAlCapNameFnt{}",
-      "snippet": "SetAlCapNameFnt{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetAlCapNameSty{}": {
-      "command": "SetAlCapNameSty{}",
-      "snippet": "SetAlCapNameSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetAlCapSkip{}": {
-      "command": "SetAlCapSkip{}",
-      "snippet": "SetAlCapSkip{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetAlCapSty{}": {
-      "command": "SetAlCapSty{}",
-      "snippet": "SetAlCapSty{${1:arg1}}",
+    "AlTitleFnt": {
+      "command": "AlTitleFnt",
+      "snippet": "AlTitleFnt",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "SetAlFnt{}": {
       "command": "SetAlFnt{}",
-      "snippet": "SetAlFnt{${1:arg1}}",
+      "snippet": "SetAlFnt{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwSty{}": {
+      "command": "SetKwSty{}",
+      "snippet": "SetKwSty{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetFuncSty{}": {
+      "command": "SetFuncSty{}",
+      "snippet": "SetFuncSty{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetFuncArgSty{}": {
+      "command": "SetFuncArgSty{}",
+      "snippet": "SetFuncArgSty{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetProgSty{}": {
+      "command": "SetProgSty{}",
+      "snippet": "SetProgSty{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetArgSty{}": {
+      "command": "SetArgSty{}",
+      "snippet": "SetArgSty{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetDataSty{}": {
+      "command": "SetDataSty{}",
+      "snippet": "SetDataSty{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetCommentSty{}": {
+      "command": "SetCommentSty{}",
+      "snippet": "SetCommentSty{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetProcNameSty{}": {
+      "command": "SetProcNameSty{}",
+      "snippet": "SetProcNameSty{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetProcArgSty{}": {
+      "command": "SetProcArgSty{}",
+      "snippet": "SetProcArgSty{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetBlockMarkersSty{}": {
+      "command": "SetBlockMarkersSty{}",
+      "snippet": "SetBlockMarkersSty{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlCapFnt{}": {
+      "command": "SetAlCapFnt{}",
+      "snippet": "SetAlCapFnt{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlCapNameFnt{}": {
+      "command": "SetAlCapNameFnt{}",
+      "snippet": "SetAlCapNameFnt{${1:font csname}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "SetAlTitleFnt{}": {
       "command": "SetAlTitleFnt{}",
-      "snippet": "SetAlTitleFnt{${1:arg1}}",
+      "snippet": "SetAlTitleFnt{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlCapSty{}": {
+      "command": "SetAlCapSty{}",
+      "snippet": "SetAlCapSty{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlCapNameSty{}": {
+      "command": "SetAlCapNameSty{}",
+      "snippet": "SetAlCapNameSty{${1:font csname}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "SetAlTitleSty{}": {
       "command": "SetAlTitleSty{}",
-      "snippet": "SetAlTitleSty{${1:arg1}}",
+      "snippet": "SetAlTitleSty{${1:font csname}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetAlgoCaptionLayout{}": {
-      "command": "SetAlgoCaptionLayout{}",
-      "snippet": "SetAlgoCaptionLayout{${1:arg1}}",
+    "SetProcFnt{}": {
+      "command": "SetProcFnt{}",
+      "snippet": "SetProcFnt{${1:font csname}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetAlgoCaptionSeparator{}": {
-      "command": "SetAlgoCaptionSeparator{}",
-      "snippet": "SetAlgoCaptionSeparator{${1:arg1}}",
+    "SetProcNameFnt{}": {
+      "command": "SetProcNameFnt{}",
+      "snippet": "SetProcNameFnt{${1:font csname}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetAlgoFuncName{}{}": {
-      "command": "SetAlgoFuncName{}{}",
-      "snippet": "SetAlgoFuncName{${1:arg1}}{${2:arg2}}",
+    "SetProcSty{}": {
+      "command": "SetProcSty{}",
+      "snippet": "SetProcSty{${1:font csname}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetAlgoInsideSkip{}": {
-      "command": "SetAlgoInsideSkip{}",
-      "snippet": "SetAlgoInsideSkip{${1:arg1}}",
+    "SetProcArgFnt{}": {
+      "command": "SetProcArgFnt{}",
+      "snippet": "SetProcArgFnt{${1:font csname}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RestyleAlgo{}": {
+      "command": "RestyleAlgo{}",
+      "snippet": "RestyleAlgo{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlgoVlined": {
+      "command": "SetAlgoVlined",
+      "snippet": "SetAlgoVlined",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetAlgoNoLine": {
+      "command": "SetAlgoNoLine",
+      "snippet": "SetAlgoNoLine",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -386,9 +954,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetAlgoNlRelativeSize{}": {
-      "command": "SetAlgoNlRelativeSize{}",
-      "snippet": "SetAlgoNlRelativeSize{${1:arg1}}",
+    "SetAlgoShortEnd": {
+      "command": "SetAlgoShortEnd",
+      "snippet": "SetAlgoShortEnd",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -400,289 +968,79 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetAlgoNoLine": {
-      "command": "SetAlgoNoLine",
-      "snippet": "SetAlgoNoLine",
+    "SetInd{}{}": {
+      "command": "SetInd{}{}",
+      "snippet": "SetInd{${1:before space%l}}{${2:after space%l}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetAlgoProcName{}{}": {
-      "command": "SetAlgoProcName{}{}",
-      "snippet": "SetAlgoProcName{${1:arg1}}{${2:arg2}}",
+    "SetAlgoHangIndent{}": {
+      "command": "SetAlgoHangIndent{}",
+      "snippet": "SetAlgoHangIndent{${1:length}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetAlgoRefName{}": {
-      "command": "SetAlgoRefName{}",
-      "snippet": "SetAlgoRefName{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetAlgoRefRelativeSize{}": {
-      "command": "SetAlgoRefRelativeSize{}",
-      "snippet": "SetAlgoRefRelativeSize{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetAlgoShortEnd": {
-      "command": "SetAlgoShortEnd",
-      "snippet": "SetAlgoShortEnd",
+    "SetVlineSkip{}": {
+      "command": "SetVlineSkip{}",
+      "snippet": "SetVlineSkip{${1:length}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "SetAlgoSkip{}": {
       "command": "SetAlgoSkip{}",
-      "snippet": "SetAlgoSkip{${1:arg1}}",
+      "snippet": "SetAlgoSkip{${1:skip csname}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetAlgoVlined": {
-      "command": "SetAlgoVlined",
-      "snippet": "SetAlgoVlined",
+    "SetAlgoInsideSkip{}": {
+      "command": "SetAlgoInsideSkip{}",
+      "snippet": "SetAlgoInsideSkip{${1:skip csname}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetAlgorithmName{}{}{}": {
-      "command": "SetAlgorithmName{}{}{}",
-      "snippet": "SetAlgorithmName{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+    "algomargin": {
+      "command": "algomargin",
+      "snippet": "algomargin",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetArgSty{}": {
-      "command": "SetArgSty{}",
-      "snippet": "SetArgSty{${1:arg1}}",
+    "IncMargin{}": {
+      "command": "IncMargin{}",
+      "snippet": "IncMargin{${1:length}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetCommentSty{}": {
-      "command": "SetCommentSty{}",
-      "snippet": "SetCommentSty{${1:arg1}}",
+    "DecMargin{}": {
+      "command": "DecMargin{}",
+      "snippet": "DecMargin{${1:length}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetDataSty{}": {
-      "command": "SetDataSty{}",
-      "snippet": "SetDataSty{${1:arg1}}",
+    "interspacetitleruled": {
+      "command": "interspacetitleruled",
+      "snippet": "interspacetitleruled",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetEndCharOfAlgoLine{}": {
-      "command": "SetEndCharOfAlgoLine{}",
-      "snippet": "SetEndCharOfAlgoLine{${1:arg1}}",
+    "interspacealgoruled": {
+      "command": "interspacealgoruled",
+      "snippet": "interspacealgoruled",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetFillComment": {
-      "command": "SetFillComment",
-      "snippet": "SetFillComment",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetFuncSty{}": {
-      "command": "SetFuncSty{}",
-      "snippet": "SetFuncSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetInd{}{}": {
-      "command": "SetInd{}{}",
-      "snippet": "SetInd{${1:arg1}}{${2:arg2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwArray{}{}": {
-      "command": "SetKwArray{}{}",
-      "snippet": "SetKwArray{${1:arg1}}{${2:arg2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwBlock{}{}{}": {
-      "command": "SetKwBlock{}{}{}",
-      "snippet": "SetKwBlock{${1:arg1}}{${2:arg2}}{${3:arg3}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwComment{}{}{}": {
-      "command": "SetKwComment{}{}{}",
-      "snippet": "SetKwComment{${1:arg1}}{${2:arg2}}{${3:arg3}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwData{}{}": {
-      "command": "SetKwData{}{}",
-      "snippet": "SetKwData{${1:arg1}}{${2:arg2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwFor{}{}{}{}": {
-      "command": "SetKwFor{}{}{}{}",
-      "snippet": "SetKwFor{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwFunction{}{}": {
-      "command": "SetKwFunction{}{}",
-      "snippet": "SetKwFunction{${1:arg1}}{${2:arg2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwHangingKw{}{}": {
-      "command": "SetKwHangingKw{}{}",
-      "snippet": "SetKwHangingKw{${1:arg1}}{${2:arg2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwIF{}{}{}{}{}{}{}{}": {
-      "command": "SetKwIF{}{}{}{}{}{}{}{}",
-      "snippet": "SetKwIF{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwInOut{}{}": {
-      "command": "SetKwInOut{}{}",
-      "snippet": "SetKwInOut{${1:arg1}}{${2:arg2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwInput{}{}": {
-      "command": "SetKwInput{}{}",
-      "snippet": "SetKwInput{${1:arg1}}{${2:arg2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwRepeat{}{}{}": {
-      "command": "SetKwRepeat{}{}{}",
-      "snippet": "SetKwRepeat{${1:arg1}}{${2:arg2}}{${3:arg3}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwSty{}": {
-      "command": "SetKwSty{}",
-      "snippet": "SetKwSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKwSwitch{}{}{}{}{}{}{}{}": {
-      "command": "SetKwSwitch{}{}{}{}{}{}{}{}",
-      "snippet": "SetKwSwitch{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetKw{}{}": {
-      "command": "SetKw{}{}",
-      "snippet": "SetKw{${1:arg1}}{${2:arg2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetLine": {
-      "command": "SetLine",
-      "snippet": "SetLine",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetNlSkip{}": {
-      "command": "SetNlSkip{}",
-      "snippet": "SetNlSkip{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetNlSty{}{}{}": {
-      "command": "SetNlSty{}{}{}",
-      "snippet": "SetNlSty{${1:arg1}}{${2:arg2}}{${3:arg3}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetNoFillComment": {
-      "command": "SetNoFillComment",
-      "snippet": "SetNoFillComment",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetNoLine": {
-      "command": "SetNoLine",
-      "snippet": "SetNoLine",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetNothing": {
-      "command": "SetNothing",
-      "snippet": "SetNothing",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetProcArgFnt{}": {
-      "command": "SetProcArgFnt{}",
-      "snippet": "SetProcArgFnt{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetProcArgSty{}": {
-      "command": "SetProcArgSty{}",
-      "snippet": "SetProcArgSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetProcFnt{}": {
-      "command": "SetProcFnt{}",
-      "snippet": "SetProcFnt{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetProcNameFnt{}": {
-      "command": "SetProcNameFnt{}",
-      "snippet": "SetProcNameFnt{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetProcNameSty{}": {
-      "command": "SetProcNameSty{}",
-      "snippet": "SetProcNameSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "SetProcSty{}": {
-      "command": "SetProcSty{}",
-      "snippet": "SetProcSty{${1:arg1}}",
+    "interspacetitleboxruled": {
+      "command": "interspacetitleboxruled",
+      "snippet": "interspacetitleboxruled",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -701,73 +1059,1879 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetTitleSty{}{}": {
-      "command": "SetTitleSty{}{}",
-      "snippet": "SetTitleSty{${1:arg1}}{${2:arg2}}",
+    "SetFillComment": {
+      "command": "SetFillComment",
+      "snippet": "SetFillComment",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetVline": {
-      "command": "SetVline",
-      "snippet": "SetVline",
+    "SetNoFillComment": {
+      "command": "SetNoFillComment",
+      "snippet": "SetNoFillComment",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SetVlineSkip{}": {
-      "command": "SetVlineSkip{}",
-      "snippet": "SetVlineSkip{${1:arg1}}",
+    "KwIn{}": {
+      "command": "KwIn{}",
+      "snippet": "KwIn{${1:input}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Setnlskip{}": {
-      "command": "Setnlskip{}",
-      "snippet": "Setnlskip{${1:arg1}}",
+    "KwOut{}": {
+      "command": "KwOut{}",
+      "snippet": "KwOut{${1:output}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Setnlsty{}{}{}": {
-      "command": "Setnlsty{}{}{}",
-      "snippet": "Setnlsty{${1:arg1}}{${2:arg2}}{${3:arg3}}",
+    "KwData{}": {
+      "command": "KwData{}",
+      "snippet": "KwData{${1:input}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "ShowLn": {
-      "command": "ShowLn",
-      "snippet": "ShowLn",
+    "KwHData{}": {
+      "command": "KwHData{}",
+      "snippet": "KwHData{${1:input}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "ShowLnLabel{}": {
-      "command": "ShowLnLabel{}",
-      "snippet": "ShowLnLabel{${1:arg1}}",
+    "KwResult{}": {
+      "command": "KwResult{}",
+      "snippet": "KwResult{${1:output}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "TitleOfAlgo{}": {
-      "command": "TitleOfAlgo{}",
-      "snippet": "TitleOfAlgo{${1:arg1}}",
+    "KwTo": {
+      "command": "KwTo",
+      "snippet": "KwTo",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "TitleSty{}": {
-      "command": "TitleSty{}",
-      "snippet": "TitleSty{${1:arg1}}",
+    "KwRet{}": {
+      "command": "KwRet{}",
+      "snippet": "KwRet{${1:value}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Titleofalgo{}": {
-      "command": "Titleofalgo{}",
-      "snippet": "Titleofalgo{${1:arg1}}",
+    "Return{}": {
+      "command": "Return{}",
+      "snippet": "Return{${1:value}}",
       "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Begin{}": {
+      "command": "Begin{}",
+      "snippet": "Begin{${1:block inside}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tcc{}": {
+      "command": "tcc{}",
+      "snippet": "tcc{${1:comments%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tcc*{}": {
+      "command": "tcc*{}",
+      "snippet": "tcc*{${1:comments%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tcc*[]{}": {
+      "command": "tcc*[]{}",
+      "snippet": "tcc*[${2:alignment}]{${1:comments%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tcp{}": {
+      "command": "tcp{}",
+      "snippet": "tcp{${1:comments%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tcp*{}": {
+      "command": "tcp*{}",
+      "snippet": "tcp*{${1:comments%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tcp*[]{}": {
+      "command": "tcp*[]{}",
+      "snippet": "tcp*[${2:alignment}]{${1:comments%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "If{}{}": {
+      "command": "If{}{}",
+      "snippet": "If{${1:condition}}{${2:then block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uIf{}{}": {
+      "command": "uIf{}{}",
+      "snippet": "uIf{${1:condition}}{${2:then block without end}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lIf{}{}": {
+      "command": "lIf{}{}",
+      "snippet": "lIf{${1:condition}}{${2:then line}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ElseIf{}": {
+      "command": "ElseIf{}",
+      "snippet": "ElseIf{${1:elseif block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uElseIf{}": {
+      "command": "uElseIf{}",
+      "snippet": "uElseIf{${1:elseif block without end}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lElseIf{}": {
+      "command": "lElseIf{}",
+      "snippet": "lElseIf{${1:elseif line}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Else{}": {
+      "command": "Else{}",
+      "snippet": "Else{${1:else block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uElse{}": {
+      "command": "uElse{}",
+      "snippet": "uElse{${1:else block without end}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lElse{}": {
+      "command": "lElse{}",
+      "snippet": "lElse{${1:else line}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eIf{}{}{}": {
+      "command": "eIf{}{}{}",
+      "snippet": "eIf{${1:condition}}{${2:then block}}{${3:else block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "leIf{}{}{}": {
+      "command": "leIf{}{}{}",
+      "snippet": "leIf{${1:condition}}{${2:then line}}{${3:else line}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Switch{}{}": {
+      "command": "Switch{}{}",
+      "snippet": "Switch{${1:condition}}{${2:switch block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Case{}{}": {
+      "command": "Case{}{}",
+      "snippet": "Case{${1:case}}{${2:case block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uCase{}{}": {
+      "command": "uCase{}{}",
+      "snippet": "uCase{${1:case}}{${2:case block without end}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lCase{}{}": {
+      "command": "lCase{}{}",
+      "snippet": "lCase{${1:case}}{${2:case line}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Other{}": {
+      "command": "Other{}",
+      "snippet": "Other{${1:otherwise block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uOther{}": {
+      "command": "uOther{}",
+      "snippet": "uOther{${1:otherwise text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lOther{}": {
+      "command": "lOther{}",
+      "snippet": "lOther{${1:otherwise line}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "For{}{}": {
+      "command": "For{}{}",
+      "snippet": "For{${1:condition}}{${2:for block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lFor{}{}": {
+      "command": "lFor{}{}",
+      "snippet": "lFor{${1:condition}}{${2:for line}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "While{}{}": {
+      "command": "While{}{}",
+      "snippet": "While{${1:condition}}{${2:while block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lWhile{}{}": {
+      "command": "lWhile{}{}",
+      "snippet": "lWhile{${1:condition}}{${2:while line}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ForPar{}{}": {
+      "command": "ForPar{}{}",
+      "snippet": "ForPar{${1:condition}}{${2:foreach block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ForEach{}{}": {
+      "command": "ForEach{}{}",
+      "snippet": "ForEach{${1:condition}}{${2:foreach block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lForEach{}{}": {
+      "command": "lForEach{}{}",
+      "snippet": "lForEach{${1:condition}}{${2:foreach line}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ForAll{}{}": {
+      "command": "ForAll{}{}",
+      "snippet": "ForAll{${1:condition}}{${2:forall block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lForAll{}{}": {
+      "command": "lForAll{}{}",
+      "snippet": "lForAll{${1:condition}}{${2:forall line}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Repeat{}{}": {
+      "command": "Repeat{}{}",
+      "snippet": "Repeat{${1:end condition}}{${2:repeat block}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lRepeat{}{}": {
+      "command": "lRepeat{}{}",
+      "snippet": "lRepeat{${1:end condition}}{${2:repeat line}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwInput{}{}": {
+      "command": "SetKwInput{}{}",
+      "snippet": "SetKwInput{${1:csname}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwInOut{}{}": {
+      "command": "SetKwInOut{}{}",
+      "snippet": "SetKwInOut{${1:csname}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ResetInOut{}": {
+      "command": "ResetInOut{}",
+      "snippet": "ResetInOut{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKw{}{}": {
+      "command": "SetKw{}{}",
+      "snippet": "SetKw{${1:csname}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwHangingKw{}{}": {
+      "command": "SetKwHangingKw{}{}",
+      "snippet": "SetKwHangingKw{${1:csname}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwData{}{}": {
+      "command": "SetKwData{}{}",
+      "snippet": "SetKwData{${1:csname}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwArray{}{}": {
+      "command": "SetKwArray{}{}",
+      "snippet": "SetKwArray{${1:csname}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwBlock{}{}{}": {
+      "command": "SetKwBlock{}{}{}",
+      "snippet": "SetKwBlock{${1:csname}}{${2:begin text}}{${3:end text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwProg{}{}{}{}": {
+      "command": "SetKwProg{}{}{}{}",
+      "snippet": "SetKwProg{${1:csname}}{${2:name}}{${3:begin text}}{${4:end text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwFunction{}{}": {
+      "command": "SetKwFunction{}{}",
+      "snippet": "SetKwFunction{${1:csname}}{${2:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwComment{}{}{}": {
+      "command": "SetKwComment{}{}{}",
+      "snippet": "SetKwComment{${1:csname}}{${2:begin text}}{${3:end text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwIF{}{}{}{}{}{}{}{}": {
+      "command": "SetKwIF{}{}{}{}{}{}{}{}",
+      "snippet": "SetKwIF{${1:if csname}}{${2:elseif csname}}{${3:else csname}}{${4:if text}}{${5:then text}}{${6:elseif text}}{${7:else text}}{${8:endif text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwSwitch{}{}{}{}{}{}{}{}": {
+      "command": "SetKwSwitch{}{}{}{}{}{}{}{}",
+      "snippet": "SetKwSwitch{${1:switch csname}}{${2:case csname}}{${3:other csname}}{${4:switch text}}{${5:do text}}{${6:case text}}{${7:other text}}{${8:endcase text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwFor{}{}{}{}": {
+      "command": "SetKwFor{}{}{}{}",
+      "snippet": "SetKwFor{${1:csname}}{${2:for text}}{${3:do text}}{${4:endfor text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SetKwRepeat{}{}{}": {
+      "command": "SetKwRepeat{}{}{}",
+      "snippet": "SetKwRepeat{${1:csname}}{${2:repeat text}}{${3:until text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "HDonnees{}": {
+      "command": "HDonnees{}",
+      "snippet": "HDonnees{${1:données}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Donnees{}": {
+      "command": "Donnees{}",
+      "snippet": "Donnees{${1:données}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Res{}": {
+      "command": "Res{}",
+      "snippet": "Res{${1:résultats}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Entree{}": {
+      "command": "Entree{}",
+      "snippet": "Entree{${1:entrées}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Sortie{}": {
+      "command": "Sortie{}",
+      "snippet": "Sortie{${1:sorties}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwA": {
+      "command": "KwA",
+      "snippet": "KwA",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Retour{}": {
+      "command": "Retour{}",
+      "snippet": "Retour{${1:valeur}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Deb{}": {
+      "command": "Deb{}",
+      "snippet": "Deb{${1:intérieur du bloc}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Repeter{}{}": {
+      "command": "Repeter{}{}",
+      "snippet": "Repeter{${1:condition d’arrêt}}{${2:bloc de la boucle}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Si{}{}": {
+      "command": "Si{}{}",
+      "snippet": "Si{${1:condition}}{${2:bloc du alors}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eSi{}{}{}": {
+      "command": "eSi{}{}{}",
+      "snippet": "eSi{${1:condition}}{${2:bloc du alors}}{${3:bloc du sinon}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uSi{}{}": {
+      "command": "uSi{}{}",
+      "snippet": "uSi{${1:condition}}{${2:bloc du alors sans fin}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lSi{}{}": {
+      "command": "lSi{}{}",
+      "snippet": "lSi{${1:condition}}{${2:ligne du alors}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SinonSi{}{}": {
+      "command": "SinonSi{}{}",
+      "snippet": "SinonSi{${1:condition}}{${2:bloc du sinonsi}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uSinonSi{}{}": {
+      "command": "uSinonSi{}{}",
+      "snippet": "uSinonSi{${1:condition}}{${2:bloc du sinonsi sans fin}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lSinonSi{}{}": {
+      "command": "lSinonSi{}{}",
+      "snippet": "lSinonSi{${1:condition}}{${2:bloc du sinonsi sans fin}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Sinon{}": {
+      "command": "Sinon{}",
+      "snippet": "Sinon{${1:bloc du sinon}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uSinon{}": {
+      "command": "uSinon{}",
+      "snippet": "uSinon{${1:bloc du sinon sans fin}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lSinon{}": {
+      "command": "lSinon{}",
+      "snippet": "lSinon{${1:ligne du sinon}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Suivant{}{}": {
+      "command": "Suivant{}{}",
+      "snippet": "Suivant{${1:condition}}{${2:bloc du suivant-cas-alors}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Cas{}{}": {
+      "command": "Cas{}{}",
+      "snippet": "Cas{${1:cas où}}{${2:bloc de ce cas}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uCas{}{}": {
+      "command": "uCas{}{}",
+      "snippet": "uCas{${1:cas où}}{${2:bloc de ce cas sans fin}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lCas{}{}": {
+      "command": "lCas{}{}",
+      "snippet": "lCas{${1:cas où}}{${2:ligne de ce cas}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Autre{}": {
+      "command": "Autre{}",
+      "snippet": "Autre{${1:bloc de l’alternative}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lAutre{}": {
+      "command": "lAutre{}",
+      "snippet": "lAutre{${1:bloc de l’alternative}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Pour{}{}": {
+      "command": "Pour{}{}",
+      "snippet": "Pour{${1:condition}}{${2:bloc de la boucle}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lPour{}{}": {
+      "command": "lPour{}{}",
+      "snippet": "lPour{${1:condition}}{${2:ligne de la boucle}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PourPar{}{}": {
+      "command": "PourPar{}{}",
+      "snippet": "PourPar{${1:condition}}{${2:bloc de la boucle}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lPourPar{}{}": {
+      "command": "lPourPar{}{}",
+      "snippet": "lPourPar{${1:condition}}{${2:ligne de la boucle}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PourCh{}{}": {
+      "command": "PourCh{}{}",
+      "snippet": "PourCh{${1:condition}}{${2:bloc de la boucle}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lPourCh{}{}": {
+      "command": "lPourCh{}{}",
+      "snippet": "lPourCh{${1:condition}}{${2:ligne de la boucle}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PourTous{}{}": {
+      "command": "PourTous{}{}",
+      "snippet": "PourTous{${1:condition}}{${2:bloc de la boucle}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lPourTous{}{}": {
+      "command": "lPourTous{}{}",
+      "snippet": "lPourTous{${1:condition}}{${2:ligne de la boucle}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Tq{}{}": {
+      "command": "Tq{}{}",
+      "snippet": "Tq{${1:condition}}{${2:bloc de la boucle}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lTq{}{}": {
+      "command": "lTq{}{}",
+      "snippet": "lTq{${1:condition}}{${2:ligne de la boucle}}",
+      "option": "frenchkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ein{}": {
+      "command": "Ein{}",
+      "snippet": "Ein{${1:Eingabe}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Aus{}": {
+      "command": "Aus{}",
+      "snippet": "Aus{${1:Ausgabe}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Daten{}": {
+      "command": "Daten{}",
+      "snippet": "Daten{${1:Daten}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ergebnis{}": {
+      "command": "Ergebnis{}",
+      "snippet": "Ergebnis{${1:Ergebnis}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Bis{}": {
+      "command": "Bis{}",
+      "snippet": "Bis{${1:bis}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwZurueck{}": {
+      "command": "KwZurueck{}",
+      "snippet": "KwZurueck{${1:zurück}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Zurueck{}": {
+      "command": "Zurueck{}",
+      "snippet": "Zurueck{${1:zurück}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Beginn{}": {
+      "command": "Beginn{}",
+      "snippet": "Beginn{${1:Beginn}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Wiederh{}{}": {
+      "command": "Wiederh{}{}",
+      "snippet": "Wiederh{${1:stop condition}}{${2:loop}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lWiederh{}{}": {
+      "command": "lWiederh{}{}",
+      "snippet": "lWiederh{${1:stop condition}}{${2:line loop}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eWenn{}{}{}": {
+      "command": "eWenn{}{}{}",
+      "snippet": "eWenn{${1:condition}}{${2:then text}}{${3:else text}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Wenn{}{}": {
+      "command": "Wenn{}{}",
+      "snippet": "Wenn{${1:condition}}{${2:then text}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uWenn{}{}": {
+      "command": "uWenn{}{}",
+      "snippet": "uWenn{${1:condition}}{${2:then text without end}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lWenn{}{}": {
+      "command": "lWenn{}{}",
+      "snippet": "lWenn{${1:condition}}{${2:then line}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SonstWenn{}{}": {
+      "command": "SonstWenn{}{}",
+      "snippet": "SonstWenn{${1:condition}}{${2:elseif text}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uSonstWenn{}{}": {
+      "command": "uSonstWenn{}{}",
+      "snippet": "uSonstWenn{${1:condition}}{${2:elseif text without end}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lSonstWenn{}{}": {
+      "command": "lSonstWenn{}{}",
+      "snippet": "lSonstWenn{${1:condition}}{${2:elseif line}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Sonst{}": {
+      "command": "Sonst{}",
+      "snippet": "Sonst{${1:else text}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uSonst{}": {
+      "command": "uSonst{}",
+      "snippet": "uSonst{${1:else text without end}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lSonst{}": {
+      "command": "lSonst{}",
+      "snippet": "lSonst{${1:else line}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Unterscheide{}{}": {
+      "command": "Unterscheide{}{}",
+      "snippet": "Unterscheide{${1:condition}}{${2:switch block}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Fall{}{}": {
+      "command": "Fall{}{}",
+      "snippet": "Fall{${1:case of}}{${2:text}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uFall{}{}": {
+      "command": "uFall{}{}",
+      "snippet": "uFall{${1:case of}}{${2:text}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lFall{}{}": {
+      "command": "lFall{}{}",
+      "snippet": "lFall{${1:case of}}{${2:line text}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Anderes{}": {
+      "command": "Anderes{}",
+      "snippet": "Anderes{${1:default text}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lAnderes{}": {
+      "command": "lAnderes{}",
+      "snippet": "lAnderes{${1:default line}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Fuer{}{}": {
+      "command": "Fuer{}{}",
+      "snippet": "Fuer{${1:condition}}{${2:loop}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lFuer{}{}": {
+      "command": "lFuer{}{}",
+      "snippet": "lFuer{${1:condition}}{${2:line loop}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FuerPar{}{}": {
+      "command": "FuerPar{}{}",
+      "snippet": "FuerPar{${1:condition}}{${2:loop}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lFuerPar{}{}": {
+      "command": "lFuerPar{}{}",
+      "snippet": "lFuerPar{${1:condition}}{${2:line}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FuerJedes{}{}": {
+      "command": "FuerJedes{}{}",
+      "snippet": "FuerJedes{${1:condition}}{${2:loop}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lFuerJedes{}{}": {
+      "command": "lFuerJedes{}{}",
+      "snippet": "lFuerJedes{${1:condition}}{${2:line}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FuerAlle{}{}": {
+      "command": "FuerAlle{}{}",
+      "snippet": "FuerAlle{${1:condition}}{${2:loop}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lFuerAlle{}{}": {
+      "command": "lFuerAlle{}{}",
+      "snippet": "lFuerAlle{${1:condition}}{${2:line}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Solange{}{}": {
+      "command": "Solange{}{}",
+      "snippet": "Solange{${1:condition}}{${2:loop}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lSolange{}{}": {
+      "command": "lSolange{}{}",
+      "snippet": "lSolange{${1:condition}}{${2:line}}",
+      "option": "germankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Vst{}": {
+      "command": "Vst{}",
+      "snippet": "Vst{${1:input}}",
+      "option": "czechkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Vyst{}": {
+      "command": "Vyst{}",
+      "snippet": "Vyst{${1:input}}",
+      "option": "czechkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Vysl{}": {
+      "command": "Vysl{}",
+      "snippet": "Vysl{${1:input}}",
+      "option": "czechkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Entrada{}": {
+      "command": "Entrada{}",
+      "snippet": "Entrada{${1:Entrada}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Saida{}": {
+      "command": "Saida{}",
+      "snippet": "Saida{${1:Saída}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dados{}": {
+      "command": "Dados{}",
+      "snippet": "Dados{${1:Dados}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Resultado{}": {
+      "command": "Resultado{}",
+      "snippet": "Resultado{${1:Resultado}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ate": {
+      "command": "Ate",
+      "snippet": "Ate",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwRetorna{}": {
+      "command": "KwRetorna{}",
+      "snippet": "KwRetorna{${1:val}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Retorna{}": {
+      "command": "Retorna{}",
+      "snippet": "Retorna{${1:val}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Inicio{}": {
+      "command": "Inicio{}",
+      "snippet": "Inicio{${1:inside block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Repita{}{}": {
+      "command": "Repita{}{}",
+      "snippet": "Repita{${1:stop condition}}{${2:text loop}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lRepita{}{}": {
+      "command": "lRepita{}{}",
+      "snippet": "lRepita{${1:stop condition}}{${2:line of the loop}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eSe{}{}{}": {
+      "command": "eSe{}{}{}",
+      "snippet": "eSe{${1:condition}}{${2:then block}}{${3:else block}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Se{}{}": {
+      "command": "Se{}{}",
+      "snippet": "Se{${1:condition}}{${2:then block}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uSe{}{}": {
+      "command": "uSe{}{}",
+      "snippet": "uSe{${1:condition}}{${2:then block without end}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lSe{}{}": {
+      "command": "lSe{}{}",
+      "snippet": "lSe{${1:condition}}{${2:then’s line text}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Senao{}": {
+      "command": "Senao{}",
+      "snippet": "Senao{${1:else block}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uSenao{}": {
+      "command": "uSenao{}",
+      "snippet": "uSenao{${1:else block without else}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lSenao{}": {
+      "command": "lSenao{}",
+      "snippet": "lSenao{${1:else’s line text}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SenaoSe{}{}": {
+      "command": "SenaoSe{}{}",
+      "snippet": "SenaoSe{${1:condition}}{${2:elseif block}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uSenaoSe{}{}": {
+      "command": "uSenaoSe{}{}",
+      "snippet": "uSenaoSe{${1:condition}}{${2:elseif block without end}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lSenaoSe{}{}": {
+      "command": "lSenaoSe{}{}",
+      "snippet": "lSenaoSe{${1:condition}}{${2:elseif’s line text}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Selec{}{}": {
+      "command": "Selec{}{}",
+      "snippet": "Selec{${1:condition}}{${2:switch block}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Caso{}{}": {
+      "command": "Caso{}{}",
+      "snippet": "Caso{${1:seleccionar}}{${2:caso block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uCaso{}{}": {
+      "command": "uCaso{}{}",
+      "snippet": "uCaso{${1:a case}}{${2:case block without end}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lCaso{}{}": {
+      "command": "lCaso{}{}",
+      "snippet": "lCaso{${1:seleccionar}}{${2:caso line}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Outro{}": {
+      "command": "Outro{}",
+      "snippet": "Outro{${1:otherwise block}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lOutro{}": {
+      "command": "lOutro{}",
+      "snippet": "lOutro{${1:otherwise’s line}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Para{}{}": {
+      "command": "Para{}{}",
+      "snippet": "Para{${1:condition}}{${2:loop block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lPara{}{}": {
+      "command": "lPara{}{}",
+      "snippet": "lPara{${1:condition}}{${2:loop line}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ParaPar{}{}": {
+      "command": "ParaPar{}{}",
+      "snippet": "ParaPar{${1:condition}}{${2:text loop}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lParaPar{}{}": {
+      "command": "lParaPar{}{}",
+      "snippet": "lParaPar{${1:condition}}{${2:line text loop}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ParaCada{}{}": {
+      "command": "ParaCada{}{}",
+      "snippet": "ParaCada{${1:condition}}{${2:loop block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lParaCada{}{}": {
+      "command": "lParaCada{}{}",
+      "snippet": "lParaCada{${1:condition}}{${2:loop line}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ParaTodo{}{}": {
+      "command": "ParaTodo{}{}",
+      "snippet": "ParaTodo{${1:condition}}{${2:loop block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lParaTodo{}{}": {
+      "command": "lParaTodo{}{}",
+      "snippet": "lParaTodo{${1:condition}}{${2:loop line}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Enqto{}{}": {
+      "command": "Enqto{}{}",
+      "snippet": "Enqto{${1:stop condition}}{${2:text loop}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lEnqto{}{}": {
+      "command": "lEnqto{}{}",
+      "snippet": "lEnqto{${1:stop condition}}{${2:text loop}}",
+      "option": "portuguesekw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwIng{}": {
+      "command": "KwIng{}",
+      "snippet": "KwIng{${1:Ingresso}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwUsc{}": {
+      "command": "KwUsc{}",
+      "snippet": "KwUsc{${1:Uscita}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwDati{}": {
+      "command": "KwDati{}",
+      "snippet": "KwDati{${1:Dati}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwRisult{}": {
+      "command": "KwRisult{}",
+      "snippet": "KwRisult{${1:Risultato}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwRitorna{}": {
+      "command": "KwRitorna{}",
+      "snippet": "KwRitorna{${1:ritorna}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ritorna{}": {
+      "command": "Ritorna{}",
+      "snippet": "Ritorna{${1:ritorna}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Inizio{}": {
+      "command": "Inizio{}",
+      "snippet": "Inizio{${1:inside block}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ripeti{}{}": {
+      "command": "Ripeti{}{}",
+      "snippet": "Ripeti{${1:stop condition}}{${2:text loop}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lRipeti{}{}": {
+      "command": "lRipeti{}{}",
+      "snippet": "lRipeti{${1:stop condition}}{${2:line of the loop}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eSea{}{}{}": {
+      "command": "eSea{}{}{}",
+      "snippet": "eSea{${1:condition}}{${2:then block}}{${3:else block}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Sea{}{}": {
+      "command": "Sea{}{}",
+      "snippet": "Sea{${1:condition}}{${2:then block}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uSea{}{}": {
+      "command": "uSea{}{}",
+      "snippet": "uSea{${1:condition}}{${2:then block without end}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lSea{}{}": {
+      "command": "lSea{}{}",
+      "snippet": "lSea{${1:condition}}{${2:then’s line text}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AltSe{}": {
+      "command": "AltSe{}",
+      "snippet": "AltSe{${1:else block}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uAltSe{}": {
+      "command": "uAltSe{}",
+      "snippet": "uAltSe{${1:else block without else}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lAltSe{}": {
+      "command": "lAltSe{}",
+      "snippet": "lAltSe{${1:else’s line text}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Altrimenti{}{}": {
+      "command": "Altrimenti{}{}",
+      "snippet": "Altrimenti{${1:condition}}{${2:elseif block}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uAltrimenti{}{}": {
+      "command": "uAltrimenti{}{}",
+      "snippet": "uAltrimenti{${1:condition}}{${2:elseif block without end}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lAltrimenti{}{}": {
+      "command": "lAltrimenti{}{}",
+      "snippet": "lAltrimenti{${1:condition}}{${2:elseif’s line text}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Per{}{}": {
+      "command": "Per{}{}",
+      "snippet": "Per{${1:condition}}{${2:text loop}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lPer{}{}": {
+      "command": "lPer{}{}",
+      "snippet": "lPer{${1:condition}}{${2:line text loop}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PerPar{}{}": {
+      "command": "PerPar{}{}",
+      "snippet": "PerPar{${1:condition}}{${2:text loop}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lPerPar{}{}": {
+      "command": "lPerPar{}{}",
+      "snippet": "lPerPar{${1:condition}}{${2:line text loop}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PerCiascun{}{}": {
+      "command": "PerCiascun{}{}",
+      "snippet": "PerCiascun{${1:condition}}{${2:text loop}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lPerCiascun{}{}": {
+      "command": "lPerCiascun{}{}",
+      "snippet": "lPerCiascun{${1:condition}}{${2:line text loop}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PerTutti{}{}": {
+      "command": "PerTutti{}{}",
+      "snippet": "PerTutti{${1:condition}}{${2:text loop}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lPerTutti{}{}": {
+      "command": "lPerTutti{}{}",
+      "snippet": "lPerTutti{${1:condition}}{${2:line text loop}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Finche{}{}": {
+      "command": "Finche{}{}",
+      "snippet": "Finche{${1:stop condition}}{${2:text loop}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lFinche{}{}": {
+      "command": "lFinche{}{}",
+      "snippet": "lFinche{${1:stop condition}}{${2:text loop}}",
+      "option": "italianokw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Datos{}": {
+      "command": "Datos{}",
+      "snippet": "Datos{${1:Datos}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Salida{}": {
+      "command": "Salida{}",
+      "snippet": "Salida{${1:Salida}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwDevolver{}": {
+      "command": "KwDevolver{}",
+      "snippet": "KwDevolver{${1:value}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Devolver{}": {
+      "command": "Devolver{}",
+      "snippet": "Devolver{${1:value}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eSSi{}{}{}": {
+      "command": "eSSi{}{}{}",
+      "snippet": "eSSi{${1:condition}}{${2:then block}}{${3:else block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SSi{}{}": {
+      "command": "SSi{}{}",
+      "snippet": "SSi{${1:condition}}{${2:then block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uSSi{}{}": {
+      "command": "uSSi{}{}",
+      "snippet": "uSSi{${1:condition}}{${2:then block without end}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lSSi{}{}": {
+      "command": "lSSi{}{}",
+      "snippet": "lSSi{${1:condition}}{${2:then line}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnOtroCasoSi{}{}": {
+      "command": "EnOtroCasoSi{}{}",
+      "snippet": "EnOtroCasoSi{${1:condition}}{${2:elseif block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uEnOtroCasoSi{}{}": {
+      "command": "uEnOtroCasoSi{}{}",
+      "snippet": "uEnOtroCasoSi{${1:condition}}{${2:elseif block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lEnOtroCasoSi{}{}": {
+      "command": "lEnOtroCasoSi{}{}",
+      "snippet": "lEnOtroCasoSi{${1:condition}}{${2:elseif line without end}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnOtroCaso{}": {
+      "command": "EnOtroCaso{}",
+      "snippet": "EnOtroCaso{${1:else block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uEnOtroCaso{}": {
+      "command": "uEnOtroCaso{}",
+      "snippet": "uEnOtroCaso{${1:else block without end}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lEnOtroCaso{}": {
+      "command": "lEnOtroCaso{}",
+      "snippet": "lEnOtroCaso{${1:else line}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Seleccionar{}{}": {
+      "command": "Seleccionar{}{}",
+      "snippet": "Seleccionar{${1:seleccionar}}{${2:caso block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uSeleccionar{}{}": {
+      "command": "uSeleccionar{}{}",
+      "snippet": "uSeleccionar{${1:seleccionar}}{${2:caso block without end}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Otro{}": {
+      "command": "Otro{}",
+      "snippet": "Otro{${1:sinó block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lOtro{}": {
+      "command": "lOtro{}",
+      "snippet": "lOtro{${1:sinó line}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ParaPara{}{}": {
+      "command": "ParaPara{}{}",
+      "snippet": "ParaPara{${1:condition}}{${2:loop block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lParaPara{}{}": {
+      "command": "lParaPara{}{}",
+      "snippet": "lParaPara{${1:condition}}{${2:loop line}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "EnParalelo{}{}": {
+      "command": "EnParalelo{}{}",
+      "snippet": "EnParalelo{${1:condition}}{${2:loop block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lEnParalelo{}{}": {
+      "command": "lEnParalelo{}{}",
+      "snippet": "lEnParalelo{${1:condition}}{${2:loop line}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Mientras{}{}": {
+      "command": "Mientras{}{}",
+      "snippet": "Mientras{${1:condition}}{${2:loop block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lMientras{}{}": {
+      "command": "lMientras{}{}",
+      "snippet": "lMientras{${1:condition}}{${2:loop line}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Repetir{}{}": {
+      "command": "Repetir{}{}",
+      "snippet": "Repetir{${1:stop condition}}{${2:loop block}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lRepetir{}{}": {
+      "command": "lRepetir{}{}",
+      "snippet": "lRepetir{${1:stop condition}}{${2:line loop}}",
+      "option": "spanishkw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwUlaz{}": {
+      "command": "KwUlaz{}",
+      "snippet": "KwUlaz{${1:input}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwIzlaz{}": {
+      "command": "KwIzlaz{}",
+      "snippet": "KwIzlaz{${1:input}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwPodatci{}": {
+      "command": "KwPodatci{}",
+      "snippet": "KwPodatci{${1:input}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwRezultat{}": {
+      "command": "KwRezultat{}",
+      "snippet": "KwRezultat{${1:input}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwDo": {
+      "command": "KwDo",
+      "snippet": "KwDo",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "KwVrati": {
+      "command": "KwVrati",
+      "snippet": "KwVrati",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Vrati": {
+      "command": "Vrati",
+      "snippet": "Vrati",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Pocetak{}": {
+      "command": "Pocetak{}",
+      "snippet": "Pocetak{${1:inside block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ponavljaj{}{}": {
+      "command": "Ponavljaj{}{}",
+      "snippet": "Ponavljaj{${1:stop condition}}{${2:loop block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lPonavljaj{}{}": {
+      "command": "lPonavljaj{}{}",
+      "snippet": "lPonavljaj{${1:stop condition}}{${2:line loop}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "eAko{}{}{}": {
+      "command": "eAko{}{}{}",
+      "snippet": "eAko{${1:condition}}{${2:then block}}{${3:else block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ako{}{}": {
+      "command": "Ako{}{}",
+      "snippet": "Ako{${1:condition}}{${2:then block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uAko{}{}": {
+      "command": "uAko{}{}",
+      "snippet": "uAko{${1:condition}}{${2:then block without end}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lAko{}{}": {
+      "command": "lAko{}{}",
+      "snippet": "lAko{${1:condition}}{${2:then line}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "InaceAko{}{}": {
+      "command": "InaceAko{}{}",
+      "snippet": "InaceAko{${1:condition}}{${2:elseif block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uInaceAko{}{}": {
+      "command": "uInaceAko{}{}",
+      "snippet": "uInaceAko{${1:condition}}{${2:elseif block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lInaceAko{}{}": {
+      "command": "lInaceAko{}{}",
+      "snippet": "lInaceAko{${1:condition}}{${2:elseif line without end}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Inace{}": {
+      "command": "Inace{}",
+      "snippet": "Inace{${1:else block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uInace{}": {
+      "command": "uInace{}",
+      "snippet": "uInace{${1:else block without end}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lInace{}": {
+      "command": "lInace{}",
+      "snippet": "lInace{${1:else line}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Granaj{}{}": {
+      "command": "Granaj{}{}",
+      "snippet": "Granaj{${1:condition}}{${2:Seleccionar caso block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uGranaj{}{}": {
+      "command": "uGranaj{}{}",
+      "snippet": "uGranaj{${1:seleccionar}}{${2:caso block without end}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Slucaj{}{}": {
+      "command": "Slucaj{}{}",
+      "snippet": "Slucaj{${1:case}}{${2:case block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uSlucaj{}{}": {
+      "command": "uSlucaj{}{}",
+      "snippet": "uSlucaj{${1:case}}{${2:case block without end}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lSlucaj{}{}": {
+      "command": "lSlucaj{}{}",
+      "snippet": "lSlucaj{${1:case}}{${2:case line}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "OstaliSlucajevi{}": {
+      "command": "OstaliSlucajevi{}",
+      "snippet": "OstaliSlucajevi{${1:otherwise block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lOstaliSlucajevi{}": {
+      "command": "lOstaliSlucajevi{}",
+      "snippet": "lOstaliSlucajevi{${1:otherwise line}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uOstaliSlucajevi{}": {
+      "command": "uOstaliSlucajevi{}",
+      "snippet": "uOstaliSlucajevi{${1:otherwise text}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Za{}{}": {
+      "command": "Za{}{}",
+      "snippet": "Za{${1:condition}}{${2:loop block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lZa{}{}": {
+      "command": "lZa{}{}",
+      "snippet": "lZa{${1:condition}}{${2:loop line}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ZaPar{}{}": {
+      "command": "ZaPar{}{}",
+      "snippet": "ZaPar{${1:condition}}{${2:loop block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lZaPar{}{}": {
+      "command": "lZaPar{}{}",
+      "snippet": "lZaPar{${1:condition}}{${2:loop line}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ZaSvaki{}{}": {
+      "command": "ZaSvaki{}{}",
+      "snippet": "ZaSvaki{${1:condition}}{${2:loop block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lZaSvaki{}{}": {
+      "command": "lZaSvaki{}{}",
+      "snippet": "lZaSvaki{${1:condition}}{${2:loop line}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ZaSvaku{}{}": {
+      "command": "ZaSvaku{}{}",
+      "snippet": "ZaSvaku{${1:condition}}{${2:loop block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lZaSvaku{}{}": {
+      "command": "lZaSvaku{}{}",
+      "snippet": "lZaSvaku{${1:condition}}{${2:loop line}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ZaSvako{}{}": {
+      "command": "ZaSvako{}{}",
+      "snippet": "ZaSvako{${1:condition}}{${2:loop block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lZaSvako{}{}": {
+      "command": "lZaSvako{}{}",
+      "snippet": "lZaSvako{${1:condition}}{${2:loop line}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ZaSve{}{}": {
+      "command": "ZaSve{}{}",
+      "snippet": "ZaSve{${1:condition}}{${2:loop block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lZaSve{}{}": {
+      "command": "lZaSve{}{}",
+      "snippet": "lZaSve{${1:condition}}{${2:loop line}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Dok{}{}": {
+      "command": "Dok{}{}",
+      "snippet": "Dok{${1:condition}}{${2:loop block}}",
+      "option": "croatiankw",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lDok{}{}": {
+      "command": "lDok{}{}",
+      "snippet": "lDok{${1:condition}}{${2:loop line}}",
+      "option": "croatiankw",
       "keyvals": [],
       "keyvalindex": -1
     },
@@ -809,6 +2973,13 @@
     "algoheightruledefault": {
       "command": "algoheightruledefault",
       "snippet": "algoheightruledefault",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AlgoLineautorefname": {
+      "command": "AlgoLineautorefname",
+      "snippet": "AlgoLineautorefname",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -855,16 +3026,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "decmargin{}": {
-      "command": "decmargin{}",
-      "snippet": "decmargin{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dontprintsemicolon": {
-      "command": "dontprintsemicolon",
-      "snippet": "dontprintsemicolon",
+    "algowidth": {
+      "command": "algowidth",
+      "snippet": "algowidth",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -883,39 +3047,51 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "incmargin{}": {
-      "command": "incmargin{}",
-      "snippet": "incmargin{${1:arg1}}",
+    "Hlne": {
+      "command": "Hlne",
+      "snippet": "Hlne",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "l": {
-      "command": "l",
-      "snippet": "l",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
-      "detail": "𝑙",
-      "documentation": "MATHEMATICAL ITALIC SMALL L"
-    },
-    "linesnotnumbered": {
-      "command": "linesnotnumbered",
-      "snippet": "linesnotnumbered",
+    "Indentp{}": {
+      "command": "Indentp{}",
+      "snippet": "Indentp{${1:arg}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "linesnumbered": {
-      "command": "linesnumbered",
-      "snippet": "linesnumbered",
+    "Indmm": {
+      "command": "Indmm",
+      "snippet": "Indmm",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "linesnumberedhidden": {
-      "command": "linesnumberedhidden",
-      "snippet": "linesnumberedhidden",
+    "Indpp": {
+      "command": "Indpp",
+      "snippet": "Indpp",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inoutindent": {
+      "command": "inoutindent",
+      "snippet": "inoutindent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "inoutsize": {
+      "command": "inoutsize",
+      "snippet": "inoutsize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "InOutSizeDefined": {
+      "command": "InOutSizeDefined",
+      "snippet": "InOutSizeDefined",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -934,65 +3110,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "lnlset{}{}": {
-      "command": "lnlset{}{}",
-      "snippet": "lnlset{${1:arg1}}{${2:arg2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lnl{}": {
-      "command": "lnl{}",
-      "snippet": "lnl{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "next": {
       "command": "next",
       "snippet": "next",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nl": {
-      "command": "nl",
-      "snippet": "nl",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nlSty{}": {
-      "command": "nlSty{}",
-      "snippet": "nlSty{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nllabel{}": {
-      "command": "nllabel{}",
-      "snippet": "nllabel{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nlset{}": {
-      "command": "nlset{}",
-      "snippet": "nlset{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nocaptionofalgo": {
-      "command": "nocaptionofalgo",
-      "snippet": "nocaptionofalgo",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "printsemicolon": {
-      "command": "printsemicolon",
-      "snippet": "printsemicolon",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1004,23 +3124,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "relsize{}": {
-      "command": "relsize{}",
-      "snippet": "relsize{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "restorecaptionofalgo": {
-      "command": "restorecaptionofalgo",
-      "snippet": "restorecaptionofalgo",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "restylealgo{}": {
-      "command": "restylealgo{}",
-      "snippet": "restylealgo{${1:arg1}}",
+    "SetEndCharOfAlgoLine{}": {
+      "command": "SetEndCharOfAlgoLine{}",
+      "snippet": "SetEndCharOfAlgoLine{${1:arg}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1032,6 +3138,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "SetNothing": {
+      "command": "SetNothing",
+      "snippet": "SetNothing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "setRightLinesNumbers": {
       "command": "setRightLinesNumbers",
       "snippet": "setRightLinesNumbers",
@@ -1039,37 +3152,51 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "setalcaphskip{}": {
-      "command": "setalcaphskip{}",
-      "snippet": "setalcaphskip{${1:arg1}}",
+    "skipalgocfslide": {
+      "command": "skipalgocfslide",
+      "snippet": "skipalgocfslide",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "setalcapskip{}": {
-      "command": "setalcapskip{}",
-      "snippet": "setalcapskip{${1:arg1}}",
+    "skiphlne": {
+      "command": "skiphlne",
+      "snippet": "skiphlne",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "setnlskip{}": {
-      "command": "setnlskip{}",
-      "snippet": "setnlskip{${1:arg1}}",
+    "skiplength": {
+      "command": "skiplength",
+      "snippet": "skiplength",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "showln": {
-      "command": "showln",
-      "snippet": "showln",
+    "skiplinenumber": {
+      "command": "skiplinenumber",
+      "snippet": "skiplinenumber",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "showlnlabel{}": {
-      "command": "showlnlabel{}",
-      "snippet": "showlnlabel{${1:arg1}}",
+    "skiprule": {
+      "command": "skiprule",
+      "snippet": "skiprule",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skiptext": {
+      "command": "skiptext",
+      "snippet": "skiptext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skiptotal": {
+      "command": "skiptotal",
+      "snippet": "skiptotal",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1077,41 +3204,6 @@
     "test": {
       "command": "test",
       "snippet": "test",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "theAlgoLine": {
-      "command": "theAlgoLine",
-      "snippet": "theAlgoLine",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "theHAlgoLine": {
-      "command": "theHAlgoLine",
-      "snippet": "theHAlgoLine",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "theHalgocf": {
-      "command": "theHalgocf",
-      "snippet": "theHalgocf",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "theHalgocffunc": {
-      "command": "theHalgocffunc",
-      "snippet": "theHalgocffunc",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "theHalgocfproc": {
-      "command": "theHalgocfproc",
-      "snippet": "theHalgocfproc",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1137,9 +3229,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "thepostalgo": {
-      "command": "thepostalgo",
-      "snippet": "thepostalgo",
+    "theHalgocf": {
+      "command": "theHalgocf",
+      "snippet": "theHalgocf",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHalgocffunc": {
+      "command": "theHalgocffunc",
+      "snippet": "theHalgocffunc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHalgocfproc": {
+      "command": "theHalgocfproc",
+      "snippet": "theHalgocfproc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theHAlgoLine": {
+      "command": "theHAlgoLine",
+      "snippet": "theHAlgoLine",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1150,300 +3263,69 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
-    },
-    "KwIn{}": {
-      "command": "KwIn{}",
-      "snippet": "KwIn{${1:input}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "KwOut{}": {
-      "command": "KwOut{}",
-      "snippet": "KwOut{${1:output}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "KwData{}": {
-      "command": "KwData{}",
-      "snippet": "KwData{${1:input}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "KwResult{}": {
-      "command": "KwResult{}",
-      "snippet": "KwResult{${1:output}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "KwTo": {
-      "command": "KwTo",
-      "snippet": "KwTo",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "KwRet{}": {
-      "command": "KwRet{}",
-      "snippet": "KwRet{${1:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Return{}": {
-      "command": "Return{}",
-      "snippet": "Return{${1:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Begin{}": {
-      "command": "Begin{}",
-      "snippet": "Begin{${1:block-inside}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tcc{}": {
-      "command": "tcc{}",
-      "snippet": "tcc{${1:lines-of-comments}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tcc*{}": {
-      "command": "tcc*{}",
-      "snippet": "tcc*{${1:right-justified-side-comment}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tcc*[]{}": {
-      "command": "tcc*[]{}",
-      "snippet": "tcc*[${2:h}]{${1:left-justified-side-comment-without-line-ending}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tcp{}": {
-      "command": "tcp{}",
-      "snippet": "tcp{${1:lines-of-comments}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tcp*{}": {
-      "command": "tcp*{}",
-      "snippet": "tcp*{${1:right-justified-side-comment}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tcp*[]{}": {
-      "command": "tcp*[]{}",
-      "snippet": "tcp*[${2:h}]{${1:left-justified-side-comment-without-line-ending}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "If{}{}": {
-      "command": "If{}{}",
-      "snippet": "If{${1:condition}}{${2:then-block}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "uIf{}{}": {
-      "command": "uIf{}{}",
-      "snippet": "uIf{${1:condition}}{${2:then-block-without-end}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lIf{}{}": {
-      "command": "lIf{}{}",
-      "snippet": "lIf{${1:condition}}{${2:then-line}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ElseIf{}": {
-      "command": "ElseIf{}",
-      "snippet": "ElseIf{${1:elseif-block}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "uElseIf{}": {
-      "command": "uElseIf{}",
-      "snippet": "uElseIf{${1:elseif-block-without-end}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lElseIf{}": {
-      "command": "lElseIf{}",
-      "snippet": "lElseIf{${1:elseif-line}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Else{}": {
-      "command": "Else{}",
-      "snippet": "Else{${1:else-block}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "uElse{}": {
-      "command": "uElse{}",
-      "snippet": "uElse{${1:else-block-without-end}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lElse{}": {
-      "command": "lElse{}",
-      "snippet": "lElse{${1:else-line}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "eIf{}{}{}": {
-      "command": "eIf{}{}{}",
-      "snippet": "eIf{${1:condition}}{${2:then-block}}{${3:else-block}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "leIf{}{}{}": {
-      "command": "leIf{}{}{}",
-      "snippet": "leIf{${1:condition}}{${2:then-line}}{${3:else-line}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Switch{}{}": {
-      "command": "Switch{}{}",
-      "snippet": "Switch{${1:condition}}{${2:switch-block}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Case{}{}": {
-      "command": "Case{}{}",
-      "snippet": "Case{${1:case}}{${2:case-block}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "uCase{}{}": {
-      "command": "uCase{}{}",
-      "snippet": "uCase{${1:case}}{${2:case-block-without-end}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lCase{}{}": {
-      "command": "lCase{}{}",
-      "snippet": "lCase{${1:case}}{${2:case-line}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Other{}": {
-      "command": "Other{}",
-      "snippet": "Other{${1:otherwise-block}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lOther{}": {
-      "command": "lOther{}",
-      "snippet": "lOther{${1:otherwise-line}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "For{}{}": {
-      "command": "For{}{}",
-      "snippet": "For{${1:condition}}{${2:for-block}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lFor{}{}": {
-      "command": "lFor{}{}",
-      "snippet": "lFor{${1:condition}}{${2:for-line}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "While{}{}": {
-      "command": "While{}{}",
-      "snippet": "While{${1:condition}}{${2:while-block}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lWhile{}{}": {
-      "command": "lWhile{}{}",
-      "snippet": "lWhile{${1:condition}}{${2:while-line}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ForEach{}{}": {
-      "command": "ForEach{}{}",
-      "snippet": "ForEach{${1:condition}}{${2:foreach-block}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lForEach{}{}": {
-      "command": "lForEach{}{}",
-      "snippet": "lForEach{${1:condition}}{${2:foreach-line}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ForAll{}{}": {
-      "command": "ForAll{}{}",
-      "snippet": "ForAll{${1:condition}}{${2:forall-block}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lForAll{}{}": {
-      "command": "lForAll{}{}",
-      "snippet": "lForAll{${1:condition}}{${2:forall-line}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Repeat{}{}": {
-      "command": "Repeat{}{}",
-      "snippet": "Repeat{${1:end-condition}}{${2:repeat-block}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "lRepeat{}{}": {
-      "command": "lRepeat{}{}",
-      "snippet": "lRepeat{${1:end-condition}}{${2:repeat-line}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
     }
   },
   "envs": {
-    "algocf": {
-      "name": "algocf",
-      "detail": "algocf",
+    "algorithm2e": {
+      "name": "algorithm2e",
+      "detail": "algorithm2e",
       "snippet": "",
+      "option": "algo2e",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "algorithm2e[]": {
+      "name": "algorithm2e",
+      "detail": "algorithm2e[]",
+      "snippet": "[${1:placement}]",
+      "option": "algo2e",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "algorithm2e*": {
+      "name": "algorithm2e*",
+      "detail": "algorithm2e*",
+      "snippet": "",
+      "option": "algo2e",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "algorithm2e*[]": {
+      "name": "algorithm2e*",
+      "detail": "algorithm2e*[]",
+      "snippet": "[${1:placement}]",
+      "option": "algo2e",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "algorithm": {
+      "name": "algorithm",
+      "detail": "algorithm",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "algorithm[]": {
+      "name": "algorithm",
+      "detail": "algorithm[]",
+      "snippet": "[${1:placement}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "algorithm*": {
+      "name": "algorithm*",
+      "detail": "algorithm*",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "algorithm*[]": {
+      "name": "algorithm*",
+      "detail": "algorithm*[]",
+      "snippet": "[${1:placement}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1456,10 +3338,26 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "function[]": {
+      "name": "function",
+      "detail": "function[]",
+      "snippet": "[${1:placement}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "function*": {
       "name": "function*",
       "detail": "function*",
       "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "function*[]": {
+      "name": "function*",
+      "detail": "function*[]",
+      "snippet": "[${1:placement}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1472,6 +3370,14 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "procedure[]": {
+      "name": "procedure",
+      "detail": "procedure[]",
+      "snippet": "[${1:placement}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "procedure*": {
       "name": "procedure*",
       "detail": "procedure*",
@@ -1480,22 +3386,123 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "algorithm": {
-      "name": "algorithm",
-      "detail": "algorithm",
+    "procedure*[]": {
+      "name": "procedure*",
+      "detail": "procedure*[]",
+      "snippet": "[${1:placement}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "algomathdisplay": {
+      "name": "algomathdisplay",
+      "detail": "algomathdisplay",
       "snippet": "",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "algorithm*": {
-      "name": "algorithm*",
-      "detail": "algorithm*",
+    "algocf*": {
+      "name": "algocf*",
+      "detail": "algocf*",
       "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "algocf*[]": {
+      "name": "algocf*",
+      "detail": "algocf*[]",
+      "snippet": "[${1:placement}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "algocf": {
+      "name": "algocf",
+      "detail": "algocf",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "algocf[]": {
+      "name": "algocf",
+      "detail": "algocf[]",
+      "snippet": "[${1:placement}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
-  "options": []
+  "options": [
+    "algo2e",
+    "algochapter",
+    "algonl",
+    "algopart",
+    "algoruled",
+    "algosection",
+    "boxed",
+    "boxruled",
+    "commentsnumbered",
+    "croatian",
+    "croatiankw",
+    "czech",
+    "czechkw",
+    "displayblockmarkers",
+    "displaygroupmarkers",
+    "dotocloa",
+    "endfloat",
+    "english",
+    "englishkw",
+    "figure",
+    "fillcomment",
+    "french",
+    "frenchkw",
+    "german",
+    "germankw",
+    "hangingcomment",
+    "hanginginout",
+    "inoutnumbered",
+    "italiano",
+    "italianokw",
+    "lined",
+    "linesnumbered",
+    "linesnumberedhidden",
+    "longend",
+    "ngerman",
+    "ngermankw",
+    "noalgohanging",
+    "noend",
+    "nofillcomment",
+    "nokwfunc",
+    "noline",
+    "norelsize",
+    "noresetcount",
+    "nosemicolon",
+    "oldcommands",
+    "onelanguage",
+    "plain",
+    "plainruled",
+    "portuguese",
+    "portuguesekw",
+    "procnumbered",
+    "resetcount",
+    "rightnl",
+    "ruled",
+    "scleft",
+    "shortend",
+    "slide",
+    "slovak",
+    "slovakkw",
+    "spanish",
+    "spanishkw",
+    "sright",
+    "titlenotnumbered",
+    "titlenumbered",
+    "turkish",
+    "turkishkw",
+    "tworuled",
+    "vlined"
+  ]
 }

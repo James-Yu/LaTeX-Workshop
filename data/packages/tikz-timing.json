@@ -1,39 +1,22 @@
 {
   "includes": [
-    "tikz"
+    "tikz",
+    "tikzlibrarycalc",
+    "tikzlibrarybackgrounds",
+    "tikzlibrarydecorations.pathmorphing",
+    "environ"
   ],
   "cmds": {
-    "tikztimingwidth": {
-      "command": "tikztimingwidth",
-      "snippet": "tikztimingwidth",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tikztimingsetwscale{}": {
-      "command": "tikztimingsetwscale{}",
-      "snippet": "tikztimingsetwscale{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "timingwidth": {
-      "command": "timingwidth",
-      "snippet": "timingwidth",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "timingheight": {
-      "command": "timingheight",
-      "snippet": "timingheight",
+    "texttiming{}": {
+      "command": "texttiming{}",
+      "snippet": "texttiming{${1:characters}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "texttiming[]{}": {
       "command": "texttiming[]{}",
-      "snippet": "texttiming[${2:initial char}]{${1:timing}}",
+      "snippet": "texttiming[${2:init char/TikZ keys}]{${1:characters}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -45,9 +28,205 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "timing[]": {
+      "command": "timing[]",
+      "snippet": "timing[${1:TikZ options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extracode": {
+      "command": "extracode",
+      "snippet": "extracode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extracode[]": {
+      "command": "extracode[]",
+      "snippet": "extracode[${1:TikZ keys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endextracode": {
+      "command": "endextracode",
+      "snippet": "endextracode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tablegrid": {
+      "command": "tablegrid",
+      "snippet": "tablegrid",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tablegrid[]": {
+      "command": "tablegrid[]",
+      "snippet": "tablegrid[${1:TikZ keys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tablegrid*": {
+      "command": "tablegrid*",
+      "snippet": "tablegrid*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tablegrid*[]": {
+      "command": "tablegrid*[]",
+      "snippet": "tablegrid*[${1:TikZ keys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fulltablegrid": {
+      "command": "fulltablegrid",
+      "snippet": "fulltablegrid",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fulltablegrid[]": {
+      "command": "fulltablegrid[]",
+      "snippet": "fulltablegrid[${1:TikZ keys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nrows": {
+      "command": "nrows",
+      "snippet": "nrows",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rowdist": {
+      "command": "rowdist",
+      "snippet": "rowdist",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "coldist": {
+      "command": "coldist",
+      "snippet": "coldist",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "twidth": {
+      "command": "twidth",
+      "snippet": "twidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "horlines{}": {
+      "command": "horlines{}",
+      "snippet": "horlines{${1:list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "horlines[]{}": {
+      "command": "horlines[]{}",
+      "snippet": "horlines[${2:TikZ keys}]{${1:list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vertlines{}": {
+      "command": "vertlines{}",
+      "snippet": "vertlines{${1:list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vertlines[]{}": {
+      "command": "vertlines[]{}",
+      "snippet": "vertlines[${2:TikZ keys}]{${1:list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tableheader{}{}": {
+      "command": "tableheader{}{}",
+      "snippet": "tableheader{${1:description title%text}}{${2:signal title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tableheader[]{}{}": {
+      "command": "tableheader[]{}{}",
+      "snippet": "tableheader[${3:TikZ keys}]{${1:description title%text}}{${2:signal title%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tablerules": {
+      "command": "tablerules",
+      "snippet": "tablerules",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tablerules[]": {
+      "command": "tablerules[]",
+      "snippet": "tablerules[${1:TikZ keys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "background": {
+      "command": "background",
+      "snippet": "background",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endbackground": {
+      "command": "endbackground",
+      "snippet": "endbackground",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikztimingsetwscale{}": {
+      "command": "tikztimingsetwscale{}",
+      "snippet": "tikztimingsetwscale{${1:math expr}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "setwscale{}": {
+      "command": "setwscale{}",
+      "snippet": "setwscale{${1:math expr}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "wscale": {
       "command": "wscale",
       "snippet": "wscale",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xunit": {
+      "command": "xunit",
+      "snippet": "xunit",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "yunit": {
+      "command": "yunit",
+      "snippet": "yunit",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -80,6 +259,212 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "tikztimingmetachar{}{}": {
+      "command": "tikztimingmetachar{}{}",
+      "snippet": "tikztimingmetachar{${1:meta char}}{${2:char group}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikztimingmetachar{}[]{}": {
+      "command": "tikztimingmetachar{}[]{}",
+      "snippet": "tikztimingmetachar{${1:meta char}}[${2:args}]{${3:char group}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "usetikztiminglibrary{}": {
+      "command": "usetikztiminglibrary{}",
+      "snippet": "usetikztiminglibrary{${1:libraries}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "usetikztiminglibrary[]{}": {
+      "command": "usetikztiminglibrary[]{}",
+      "snippet": "usetikztiminglibrary[${2:options}]{${1:libraries}}",
+      "option": "",
+      "keyvals": [
+        "arrows",
+        "either",
+        "overlays",
+        "clockarrows",
+        "columntype",
+        "nicetabs",
+        "counters",
+        "advnodes",
+        "ifsym",
+        "interval",
+        "beamer"
+      ],
+      "keyvalindex": 0
+    },
+    "usetikztiminglibrary[]{}[]": {
+      "command": "usetikztiminglibrary[]{}[]",
+      "snippet": "usetikztiminglibrary[${2:options}]{${1:libraries}}[${3:date}]",
+      "option": "",
+      "keyvals": [
+        "arrows",
+        "either",
+        "overlays",
+        "clockarrows",
+        "columntype",
+        "nicetabs",
+        "counters",
+        "advnodes",
+        "ifsym",
+        "interval",
+        "beamer"
+      ],
+      "keyvalindex": 0
+    },
+    "celltiming{}": {
+      "command": "celltiming{}",
+      "snippet": "celltiming{${1:arg}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endcelltiming": {
+      "command": "endcelltiming",
+      "snippet": "endcelltiming",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikztimingcounter{}": {
+      "command": "tikztimingcounter{}",
+      "snippet": "tikztimingcounter{${1:char}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikztimingsetcounter{}{}": {
+      "command": "tikztimingsetcounter{}{}",
+      "snippet": "tikztimingsetcounter{${1:char}}{${2:pgfmath expr}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "RaisingEdge": {
+      "command": "RaisingEdge",
+      "snippet": "RaisingEdge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FallingEdge": {
+      "command": "FallingEdge",
+      "snippet": "FallingEdge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShortPulseHigh": {
+      "command": "ShortPulseHigh",
+      "snippet": "ShortPulseHigh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShortPulseLow": {
+      "command": "ShortPulseLow",
+      "snippet": "ShortPulseLow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PulseHigh": {
+      "command": "PulseHigh",
+      "snippet": "PulseHigh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PulseLow": {
+      "command": "PulseLow",
+      "snippet": "PulseLow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LongPulseHigh": {
+      "command": "LongPulseHigh",
+      "snippet": "LongPulseHigh",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LongPulseLow": {
+      "command": "LongPulseLow",
+      "snippet": "LongPulseLow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textifsym": {
+      "command": "textifsym",
+      "snippet": "textifsym",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "anchoralias{}{}": {
+      "command": "anchoralias{}{}",
+      "snippet": "anchoralias{${1:arg1}}{${2:arg2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "anchorpoints": {
+      "command": "anchorpoints",
+      "snippet": "anchorpoints",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "anchorpoint": {
+      "command": "anchorpoint",
+      "snippet": "anchorpoint",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fromchar": {
+      "command": "fromchar",
+      "snippet": "fromchar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tochar": {
+      "command": "tochar",
+      "snippet": "tochar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "tikztimingwidth": {
+      "command": "tikztimingwidth",
+      "snippet": "tikztimingwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "timingwidth": {
+      "command": "timingwidth",
+      "snippet": "timingwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "timingheight": {
+      "command": "timingheight",
+      "snippet": "timingheight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "charc": {
       "command": "charc",
       "snippet": "charc",
@@ -94,79 +479,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "expandafter": {
-      "command": "expandafter",
-      "snippet": "expandafter",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tikztimingmetachar{}": {
-      "command": "tikztimingmetachar{}",
-      "snippet": "tikztimingmetachar{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "abc": {
       "command": "abc",
       "snippet": "abc",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "background": {
-      "command": "background",
-      "snippet": "background",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "endbackground": {
-      "command": "endbackground",
-      "snippet": "endbackground",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tablerules": {
-      "command": "tablerules",
-      "snippet": "tablerules",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tableheader": {
-      "command": "tableheader",
-      "snippet": "tableheader",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "rowdist": {
-      "command": "rowdist",
-      "snippet": "rowdist",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "coldist": {
-      "command": "coldist",
-      "snippet": "coldist",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nrows": {
-      "command": "nrows",
-      "snippet": "nrows",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "twidth": {
-      "command": "twidth",
-      "snippet": "twidth",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -178,23 +493,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "width": {
-      "command": "width",
-      "snippet": "width",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "fwidth": {
       "command": "fwidth",
       "snippet": "fwidth",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "height": {
-      "command": "height",
-      "snippet": "height",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -234,6 +535,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "newdraw[]": {
+      "command": "newdraw[]",
+      "snippet": "newdraw[${1:TikZ options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "newdrawns": {
       "command": "newdrawns",
       "snippet": "newdrawns",
@@ -241,108 +549,82 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "code": {
-      "command": "code",
-      "snippet": "code",
+    "newdrawns[]": {
+      "command": "newdrawns[]",
+      "snippet": "newdrawns[${1:TikZ options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "code{}": {
+      "command": "code{}",
+      "snippet": "code{${1:code}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "tikztimingsetslope{}": {
       "command": "tikztimingsetslope{}",
-      "snippet": "tikztimingsetslope{${1:arg1}}",
+      "snippet": "tikztimingsetslope{${1:value}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "tikztimingsetdslope{}": {
       "command": "tikztimingsetdslope{}",
-      "snippet": "tikztimingsetdslope{${1:arg1}}",
+      "snippet": "tikztimingsetdslope{${1:value}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "tikztimingsetzslope{}": {
       "command": "tikztimingsetzslope{}",
-      "snippet": "tikztimingsetzslope{${1:arg1}}",
+      "snippet": "tikztimingsetzslope{${1:value}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "tikztiminguse{}": {
-      "command": "tikztiminguse{}",
-      "snippet": "tikztiminguse{${1:arg1}}",
+    "tikztiminguse{}{}": {
+      "command": "tikztiminguse{}{}",
+      "snippet": "tikztiminguse{${1:char}}{${2:code}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "tikztimingdef{}": {
-      "command": "tikztimingdef{}",
-      "snippet": "tikztimingdef{${1:arg1}}",
+    "tikztimingdef{}{}": {
+      "command": "tikztimingdef{}{}",
+      "snippet": "tikztimingdef{${1:char}}{${2:code}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "tikztimingcpy{}": {
-      "command": "tikztimingcpy{}",
-      "snippet": "tikztimingcpy{${1:arg1}}",
+    "tikztimingcpy{}{}": {
+      "command": "tikztimingcpy{}{}",
+      "snippet": "tikztimingcpy{${1:char1}}{${2:char2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "tikztiminglet{}": {
-      "command": "tikztiminglet{}",
-      "snippet": "tikztiminglet{${1:arg1}}",
+    "tikztiminglet{}{}": {
+      "command": "tikztiminglet{}{}",
+      "snippet": "tikztiminglet{${1:char1}}{${2:char2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "tikztimingchar{}": {
-      "command": "tikztimingchar{}",
-      "snippet": "tikztimingchar{${1:arg1}}",
+    "tikztimingchar{}{}{}": {
+      "command": "tikztimingchar{}{}{}",
+      "snippet": "tikztimingchar{${1:char}}{${2:code1}}{${3:code2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "tikztimingecopy{}": {
-      "command": "tikztimingecopy{}",
-      "snippet": "tikztimingecopy{${1:arg1}}",
+    "tikztimingecopy{}{}": {
+      "command": "tikztimingecopy{}{}",
+      "snippet": "tikztimingecopy{${1:char1}}{${2:char2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
-    },
-    "extracode": {
-      "command": "extracode",
-      "snippet": "extracode",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "vertlines[]{}": {
-      "command": "vertlines[]{}",
-      "snippet": "vertlines[${2:name}]{${1:points}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "usetikztiminglibrary{}": {
-      "command": "usetikztiminglibrary{}",
-      "snippet": "usetikztiminglibrary{${1:keyvals}}",
-      "option": "",
-      "keyvals": [
-        "arrows",
-        "either",
-        "overlays",
-        "clockarrows",
-        "columntype",
-        "nicetabs",
-        "counters",
-        "advnodes",
-        "ifsym",
-        "interval",
-        "beamer"
-      ],
-      "keyvalindex": 0
     }
   },
   "envs": {
@@ -354,10 +636,34 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pgfonlayer": {
-      "name": "pgfonlayer",
-      "detail": "pgfonlayer",
+    "extracode": {
+      "name": "extracode",
+      "detail": "extracode",
       "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "extracode[]": {
+      "name": "extracode",
+      "detail": "extracode[]",
+      "snippet": "[${1:TikZ keys}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "background": {
+      "name": "background",
+      "detail": "background",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "background[]": {
+      "name": "background",
+      "detail": "background[]",
+      "snippet": "[${1:TikZ keys}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1

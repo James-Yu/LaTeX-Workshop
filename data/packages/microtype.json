@@ -1,9 +1,41 @@
 {
-  "includes": [],
+  "includes": [
+    "keyval",
+    "etoolbox"
+  ],
   "cmds": {
     "microtypesetup{}": {
       "command": "microtypesetup{}",
-      "snippet": "microtypesetup{${1:key=value}}",
+      "snippet": "microtypesetup{${1:options}}",
+      "option": "",
+      "keyvals": [
+        "protrusion=",
+        "expansion=",
+        "activate=",
+        "tracking=",
+        "kerning=",
+        "spacing=",
+        "factor=",
+        "patch=",
+        "nopatch=",
+        "unit=",
+        "auto",
+        "stretch=",
+        "shrink=",
+        "step=",
+        "selected",
+        "letterspace=",
+        "disable=",
+        "final",
+        "verbose=",
+        "babel",
+        "DVIoutput"
+      ],
+      "keyvalindex": 0
+    },
+    "DeclareMicrotypeSet{}{}": {
+      "command": "DeclareMicrotypeSet{}{}",
+      "snippet": "DeclareMicrotypeSet{${1:name}}{${2:fonts}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -15,9 +47,37 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "DeclareMicrotypeSet*{}{}": {
+      "command": "DeclareMicrotypeSet*{}{}",
+      "snippet": "DeclareMicrotypeSet*{${1:name}}{${2:fonts}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareMicrotypeSet*[]{}{}": {
+      "command": "DeclareMicrotypeSet*[]{}{}",
+      "snippet": "DeclareMicrotypeSet*[${3:features}]{${1:name}}{${2:fonts}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseMicrotypeSet{}": {
+      "command": "UseMicrotypeSet{}",
+      "snippet": "UseMicrotypeSet{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "UseMicrotypeSet[]{}": {
       "command": "UseMicrotypeSet[]{}",
       "snippet": "UseMicrotypeSet[${2:features}]{${1:name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareMicrotypeSetDefault{}": {
+      "command": "DeclareMicrotypeSetDefault{}",
+      "snippet": "DeclareMicrotypeSetDefault{${1:name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -29,9 +89,31 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "SetProtrusion{}{}": {
+      "command": "SetProtrusion{}{}",
+      "snippet": "SetProtrusion{${1:fonts}}{${2:settings}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "SetProtrusion[]{}{}": {
       "command": "SetProtrusion[]{}{}",
       "snippet": "SetProtrusion[${3:options}]{${1:fonts}}{${2:settings}}",
+      "option": "",
+      "keyvals": [
+        "name=",
+        "load=",
+        "factor=",
+        "unit=",
+        "preset=",
+        "inputenc=",
+        "context="
+      ],
+      "keyvalindex": 0
+    },
+    "SetExpansion{}{}": {
+      "command": "SetExpansion{}{}",
+      "snippet": "SetExpansion{${1:fonts}}{${2:settings}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -40,12 +122,45 @@
       "command": "SetExpansion[]{}{}",
       "snippet": "SetExpansion[${3:options}]{${1:fonts}}{${2:settings}}",
       "option": "",
+      "keyvals": [
+        "name=",
+        "load=",
+        "preset=",
+        "inputenc=",
+        "context=",
+        "auto",
+        "stretch=",
+        "shrink=",
+        "step=",
+        "factor="
+      ],
+      "keyvalindex": 0
+    },
+    "SetTracking{}{}": {
+      "command": "SetTracking{}{}",
+      "snippet": "SetTracking{${1:fonts}}{${2:settings}}",
+      "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "SetTracking[]{}{}": {
       "command": "SetTracking[]{}{}",
       "snippet": "SetTracking[${3:options}]{${1:fonts}}{${2:settings}}",
+      "option": "",
+      "keyvals": [
+        "name=",
+        "unit=",
+        "context=",
+        "spacing=",
+        "outer spacing=",
+        "outer kerning=",
+        "no ligatures="
+      ],
+      "keyvalindex": 0
+    },
+    "SetExtraKerning{}{}": {
+      "command": "SetExtraKerning{}{}",
+      "snippet": "SetExtraKerning{${1:fonts}}{${2:settings}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -54,12 +169,42 @@
       "command": "SetExtraKerning[]{}{}",
       "snippet": "SetExtraKerning[${3:options}]{${1:fonts}}{${2:settings}}",
       "option": "",
+      "keyvals": [
+        "name=",
+        "load=",
+        "factor=",
+        "preset=",
+        "inputenc=",
+        "unit=",
+        "context="
+      ],
+      "keyvalindex": 0
+    },
+    "SetExtraSpacing{}{}": {
+      "command": "SetExtraSpacing{}{}",
+      "snippet": "SetExtraSpacing{${1:fonts}}{${2:settings}}",
+      "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "SetExtraSpacing[]{}{}": {
       "command": "SetExtraSpacing[]{}{}",
       "snippet": "SetExtraSpacing[${3:options}]{${1:fonts}}{${2:settings}}",
+      "option": "",
+      "keyvals": [
+        "name=",
+        "load=",
+        "factor=",
+        "preset=",
+        "inputenc=",
+        "context=",
+        "unit="
+      ],
+      "keyvalindex": 0
+    },
+    "DeclareCharacterInheritance{}{}": {
+      "command": "DeclareCharacterInheritance{}{}",
+      "snippet": "DeclareCharacterInheritance{${1:fonts}}{${2:list}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -74,6 +219,13 @@
     "DeclareMicrotypeVariants{}": {
       "command": "DeclareMicrotypeVariants{}",
       "snippet": "DeclareMicrotypeVariants{${1:suffixes}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareMicrotypeVariants*{}": {
+      "command": "DeclareMicrotypeVariants*{}",
+      "snippet": "DeclareMicrotypeVariants*{${1:suffixes}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -113,16 +265,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DisableLigatures[]{}": {
-      "command": "DisableLigatures[]{}",
-      "snippet": "DisableLigatures[${2:charac}]{${1:fonts}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DisableLigatures{}": {
-      "command": "DisableLigatures{}",
-      "snippet": "DisableLigatures{${1:fonts}}",
+    "textls{}": {
+      "command": "textls{}",
+      "snippet": "textls{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -130,6 +275,20 @@
     "textls[]{}": {
       "command": "textls[]{}",
       "snippet": "textls[${2:amount}]{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textls*{}": {
+      "command": "textls*{}",
+      "snippet": "textls*{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "textls*[]{}": {
+      "command": "textls*[]{}",
+      "snippet": "textls*[${2:amount}]{${1:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -147,17 +306,54 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
-    }
-  },
-  "envs": {
-    "microtypecontext": {
-      "name": "microtypecontext",
-      "detail": "microtypecontext",
-      "snippet": "",
+    },
+    "DisableLigatures{}": {
+      "command": "DisableLigatures{}",
+      "snippet": "DisableLigatures{${1:fonts}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DisableLigatures[]{}": {
+      "command": "DisableLigatures[]{}",
+      "snippet": "DisableLigatures[${2:characters}]{${1:fonts}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "leftprotrusion{}": {
+      "command": "leftprotrusion{}",
+      "snippet": "leftprotrusion{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rightprotrusion{}": {
+      "command": "rightprotrusion{}",
+      "snippet": "rightprotrusion{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "noprotrusionifhmode": {
+      "command": "noprotrusionifhmode",
+      "snippet": "noprotrusionifhmode",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
-  "options": []
+  "envs": {
+    "microtypecontext{}": {
+      "name": "microtypecontext",
+      "detail": "microtypecontext{}",
+      "snippet": "{${1:context}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "config="
+  ]
 }

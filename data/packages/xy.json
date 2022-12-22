@@ -1,30 +1,123 @@
 {
-  "includes": [],
+  "includes": [
+    "ifpdf"
+  ],
   "cmds": {
-    "ar": {
-      "command": "ar",
-      "snippet": "ar",
+    "xyoption{}": {
+      "command": "xyoption{}",
+      "snippet": "xyoption{${1:option}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "xymatrix": {
-      "command": "xymatrix",
-      "snippet": "xymatrix",
+    "xyrequire{}": {
+      "command": "xyrequire{}",
+      "snippet": "xyrequire{${1:option}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "txt{}": {
-      "command": "txt{}",
-      "snippet": "txt{${1:text}}",
+    "xywithoption{}{}": {
+      "command": "xywithoption{}{}",
+      "snippet": "xywithoption{${1:option}}{${2:code}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "frm{}": {
-      "command": "frm{}",
-      "snippet": "frm{${1:}}",
+    "xyeverywithoption{}{}": {
+      "command": "xyeverywithoption{}{}",
+      "snippet": "xyeverywithoption{${1:option}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xyeveryrequest{}{}": {
+      "command": "xyeveryrequest{}{}",
+      "snippet": "xyeveryrequest{${1:option}}{${2:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "afterPATH{}": {
+      "command": "afterPATH{}",
+      "snippet": "afterPATH{${1:decor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "afterPOS{}": {
+      "command": "afterPOS{}",
+      "snippet": "afterPOS{${1:decor}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AliasPattern{}{}{}": {
+      "command": "AliasPattern{}{}{}",
+      "snippet": "AliasPattern{${1:alias}}{${2:name}}{${3:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ar[]": {
+      "command": "ar[]",
+      "snippet": "ar[${1:hop}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "arrowobject{}": {
+      "command": "arrowobject{}",
+      "snippet": "arrowobject{${1:object}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cir{}": {
+      "command": "cir{}",
+      "snippet": "cir{${1:spec}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "cir<>{}": {
+      "command": "cir<>{}",
+      "snippet": "cir<${2:radius}>{${1:spec}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "circleEdge": {
+      "command": "circleEdge",
+      "snippet": "circleEdge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Col": {
+      "command": "Col",
+      "snippet": "Col",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CompileFixPoint{}": {
+      "command": "CompileFixPoint{}",
+      "snippet": "CompileFixPoint{${1:id}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CompileMatrices": {
+      "command": "CompileMatrices",
+      "snippet": "CompileMatrices",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "CompilePrefix{}": {
+      "command": "CompilePrefix{}",
+      "snippet": "CompilePrefix{${1:prefix}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -36,6 +129,356 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "connect": {
+      "command": "connect",
+      "snippet": "connect",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "croplattice{}{}{}{}{}{}{}{}": {
+      "command": "croplattice{}{}{}{}{}{}{}{}",
+      "snippet": "croplattice{${1:pt1}}{${2:pt2}}{${3:pt3}}{${4:pt4}}{${5:pt5}}{${6:pt6}}{${7:pt7}}{${8:pt8}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crv{}": {
+      "command": "crv{}",
+      "snippet": "crv{${1:poslist}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "crvs{}": {
+      "command": "crvs{}",
+      "snippet": "crvs{${1:dir}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "curve{}": {
+      "command": "curve{}",
+      "snippet": "curve{${1:poslist}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "curveobject{}": {
+      "command": "curveobject{}",
+      "snippet": "curveobject{${1:object}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ddtwocell": {
+      "command": "ddtwocell",
+      "snippet": "ddtwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "defaultlatticebody": {
+      "command": "defaultlatticebody",
+      "snippet": "defaultlatticebody",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dir{}": {
+      "command": "dir{}",
+      "snippet": "dir{${1:dir}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Direction": {
+      "command": "Direction",
+      "snippet": "Direction",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dltwocell": {
+      "command": "dltwocell",
+      "snippet": "dltwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drop": {
+      "command": "drop",
+      "snippet": "drop",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "drtwocell": {
+      "command": "drtwocell",
+      "snippet": "drtwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtwocell": {
+      "command": "dtwocell",
+      "snippet": "dtwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dumpPSdict{}": {
+      "command": "dumpPSdict{}",
+      "snippet": "dumpPSdict{${1:filename}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dutwocell": {
+      "command": "dutwocell",
+      "snippet": "dutwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ellipse{}": {
+      "command": "ellipse{}",
+      "snippet": "ellipse{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ellipse<>{}": {
+      "command": "ellipse<>{}",
+      "snippet": "ellipse<${2:dimen}>{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endxy": {
+      "command": "endxy",
+      "snippet": "endxy",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "entrymodifiers={}": {
+      "command": "entrymodifiers={}",
+      "snippet": "entrymodifiers={${1:%<modifiers%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "everyentry={}": {
+      "command": "everyentry={}",
+      "snippet": "everyentry={${1:%<decor%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "everyxy={}": {
+      "command": "everyxy={}",
+      "snippet": "everyxy={${1:%<text%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frm{}": {
+      "command": "frm{}",
+      "snippet": "frm{${1:frame}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frm<dimen%l>{}": {
+      "command": "frm<dimen%l>{}",
+      "snippet": "frm<dimen%l>{${1:frame}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "halfrootthree": {
+      "command": "halfrootthree",
+      "snippet": "halfrootthree",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "halfroottwo": {
+      "command": "halfroottwo",
+      "snippet": "halfroottwo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "knotstyle{}": {
+      "command": "knotstyle{}",
+      "snippet": "knotstyle{${1:char}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "knotSTYLE{}": {
+      "command": "knotSTYLE{}",
+      "snippet": "knotSTYLE{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "knotstyles{}{}": {
+      "command": "knotstyles{}{}",
+      "snippet": "knotstyles{${1:char1}}{${2:char2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelbox": {
+      "command": "labelbox",
+      "snippet": "labelbox",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelmargin": {
+      "command": "labelmargin",
+      "snippet": "labelmargin",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "labelstyle": {
+      "command": "labelstyle",
+      "snippet": "labelstyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "latticeA": {
+      "command": "latticeA",
+      "snippet": "latticeA",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "latticeB": {
+      "command": "latticeB",
+      "snippet": "latticeB",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "latticebody": {
+      "command": "latticebody",
+      "snippet": "latticebody",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "latticeX": {
+      "command": "latticeX",
+      "snippet": "latticeX",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "latticeY": {
+      "command": "latticeY",
+      "snippet": "latticeY",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ldtwocell": {
+      "command": "ldtwocell",
+      "snippet": "ldtwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lltwocell": {
+      "command": "lltwocell",
+      "snippet": "lltwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LoadAllPatterns{}": {
+      "command": "LoadAllPatterns{}",
+      "snippet": "LoadAllPatterns{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "LoadPattern{}{}": {
+      "command": "LoadPattern{}{}",
+      "snippet": "LoadPattern{${1:name}}{${2:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lowercurveobject{}": {
+      "command": "lowercurveobject{}",
+      "snippet": "lowercurveobject{${1:object}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lrtwocell": {
+      "command": "lrtwocell",
+      "snippet": "lrtwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ltwocell": {
+      "command": "ltwocell",
+      "snippet": "ltwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "lutwocell": {
+      "command": "lutwocell",
+      "snippet": "lutwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MakeOutlines": {
+      "command": "MakeOutlines",
+      "snippet": "MakeOutlines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "maxTPICpoints{}": {
+      "command": "maxTPICpoints{}",
+      "snippet": "maxTPICpoints{${1:number}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "modmapobject{}": {
+      "command": "modmapobject{}",
+      "snippet": "modmapobject{${1:object}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MovieSetup{}": {
+      "command": "MovieSetup{}",
+      "snippet": "MovieSetup{${1:width=%<width%>,height=%<height%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MultipleDrivers": {
+      "command": "MultipleDrivers",
+      "snippet": "MultipleDrivers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "newdir{}{}": {
       "command": "newdir{}{}",
       "snippet": "newdir{${1:directional}}{${2:composite}}",
@@ -43,23 +486,149 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "SelectTips{}{}": {
-      "command": "SelectTips{}{}",
-      "snippet": "SelectTips{${1:cm}}{${2:}}",
+    "newgraphescape{}{}": {
+      "command": "newgraphescape{}{}",
+      "snippet": "newgraphescape{${1:letter}}{${2:graph%formula}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "save": {
-      "command": "save",
-      "snippet": "save",
+    "newxycolor{}{}": {
+      "command": "newxycolor{}{}",
+      "snippet": "newxycolor{${1:name}}{${2:code}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "restore": {
-      "command": "restore",
-      "snippet": "restore",
+    "newxypattern{}{}": {
+      "command": "newxypattern{}{}",
+      "snippet": "newxypattern{${1:name}}{${2:data}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoCompileMatrices": {
+      "command": "NoCompileMatrices",
+      "snippet": "NoCompileMatrices",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoEMspecials": {
+      "command": "NoEMspecials",
+      "snippet": "NoEMspecials",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoOutlines": {
+      "command": "NoOutlines",
+      "snippet": "NoOutlines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoPScolor": {
+      "command": "NoPScolor",
+      "snippet": "NoPScolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoPSframes": {
+      "command": "NoPSframes",
+      "snippet": "NoPSframes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoPSlines": {
+      "command": "NoPSlines",
+      "snippet": "NoPSlines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoPSrotate": {
+      "command": "NoPSrotate",
+      "snippet": "NoPSrotate",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoPSspecials": {
+      "command": "NoPSspecials",
+      "snippet": "NoPSspecials",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoPStiles": {
+      "command": "NoPStiles",
+      "snippet": "NoPStiles",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoResizing": {
+      "command": "NoResizing",
+      "snippet": "NoResizing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoRules": {
+      "command": "NoRules",
+      "snippet": "NoRules",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoTips": {
+      "command": "NoTips",
+      "snippet": "NoTips",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoTPICframes": {
+      "command": "NoTPICframes",
+      "snippet": "NoTPICframes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "NoTPICspecials": {
+      "command": "NoTPICspecials",
+      "snippet": "NoTPICspecials",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "object": {
+      "command": "object",
+      "snippet": "object",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "objectbox{}": {
+      "command": "objectbox{}",
+      "snippet": "objectbox{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "objectheight": {
+      "command": "objectheight",
+      "snippet": "objectheight",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "objectmargin": {
+      "command": "objectmargin",
+      "snippet": "objectmargin",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -71,14 +640,718 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "labelstyle": {
-      "command": "labelstyle",
-      "snippet": "labelstyle",
+    "objectwidth": {
+      "command": "objectwidth",
+      "snippet": "objectwidth",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "OnlyOutlines": {
+      "command": "OnlyOutlines",
+      "snippet": "OnlyOutlines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "partroottwo": {
+      "command": "partroottwo",
+      "snippet": "partroottwo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PATH": {
+      "command": "PATH",
+      "snippet": "PATH",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PATHaction={}": {
+      "command": "PATHaction={}",
+      "snippet": "PATHaction={${1:%<stuff%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PATHafterPOS": {
+      "command": "PATHafterPOS",
+      "snippet": "PATHafterPOS",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "POS": {
+      "command": "POS",
+      "snippet": "POS",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qspline{}": {
+      "command": "qspline{}",
+      "snippet": "qspline{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rdtwocell": {
+      "command": "rdtwocell",
+      "snippet": "rdtwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rectangleEdge": {
+      "command": "rectangleEdge",
+      "snippet": "rectangleEdge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "restore": {
+      "command": "restore",
+      "snippet": "restore",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rltwocell": {
+      "command": "rltwocell",
+      "snippet": "rltwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Row": {
+      "command": "Row",
+      "snippet": "Row",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rrtwocell": {
+      "command": "rrtwocell",
+      "snippet": "rrtwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rtwocell": {
+      "command": "rtwocell",
+      "snippet": "rtwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "rutwocell": {
+      "command": "rutwocell",
+      "snippet": "rutwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "save": {
+      "command": "save",
+      "snippet": "save",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "scene": {
+      "command": "scene",
+      "snippet": "scene",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SelectTips{}{}": {
+      "command": "SelectTips{}{}",
+      "snippet": "SelectTips{${1:family}}{${2:size}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ShowOutlines": {
+      "command": "ShowOutlines",
+      "snippet": "ShowOutlines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SilentMatrices": {
+      "command": "SilentMatrices",
+      "snippet": "SilentMatrices",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "SloppyCurves": {
+      "command": "SloppyCurves",
+      "snippet": "SloppyCurves",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "splinetolerance{}": {
+      "command": "splinetolerance{}",
+      "snippet": "splinetolerance{${1:dimen%l}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "turnradius": {
+      "command": "turnradius",
+      "snippet": "turnradius",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "twocell": {
+      "command": "twocell",
+      "snippet": "twocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "twocellhead{}": {
+      "command": "twocellhead{}",
+      "snippet": "twocellhead{${1:object}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "twocellstyle": {
+      "command": "twocellstyle",
+      "snippet": "twocellstyle",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "twocelltail{}": {
+      "command": "twocelltail{}",
+      "snippet": "twocelltail{${1:object}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "txt{}": {
+      "command": "txt{}",
+      "snippet": "txt{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "txt<>{}": {
+      "command": "txt<>{}",
+      "snippet": "txt<${2:width}>{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "udtwocell": {
+      "command": "udtwocell",
+      "snippet": "udtwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ultwocell": {
+      "command": "ultwocell",
+      "snippet": "ultwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uppercurveobject{}": {
+      "command": "uppercurveobject{}",
+      "snippet": "uppercurveobject{${1:object}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "urtwocell": {
+      "command": "urtwocell",
+      "snippet": "urtwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseAllTwocells": {
+      "command": "UseAllTwocells",
+      "snippet": "UseAllTwocells",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseCompositeMaps": {
+      "command": "UseCompositeMaps",
+      "snippet": "UseCompositeMaps",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseCrayolaColors": {
+      "command": "UseCrayolaColors",
+      "snippet": "UseCrayolaColors",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseCurvedFrames": {
+      "command": "UseCurvedFrames",
+      "snippet": "UseCurvedFrames",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseEMspecials": {
+      "command": "UseEMspecials",
+      "snippet": "UseEMspecials",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseFontFrames": {
+      "command": "UseFontFrames",
+      "snippet": "UseFontFrames",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseHalfTwocells": {
+      "command": "UseHalfTwocells",
+      "snippet": "UseHalfTwocells",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UsePatternFile{}": {
+      "command": "UsePatternFile{}",
+      "snippet": "UsePatternFile{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UsePScolor": {
+      "command": "UsePScolor",
+      "snippet": "UsePScolor",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UsePSframes": {
+      "command": "UsePSframes",
+      "snippet": "UsePSframes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UsePSheader{}": {
+      "command": "UsePSheader{}",
+      "snippet": "UsePSheader{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UsePSlines": {
+      "command": "UsePSlines",
+      "snippet": "UsePSlines",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UsePSrotate": {
+      "command": "UsePSrotate",
+      "snippet": "UsePSrotate",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UsePSspecials{}": {
+      "command": "UsePSspecials{}",
+      "snippet": "UsePSspecials{${1:driver}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UsePStiles": {
+      "command": "UsePStiles",
+      "snippet": "UsePStiles",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseResizing": {
+      "command": "UseResizing",
+      "snippet": "UseResizing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseRules": {
+      "command": "UseRules",
+      "snippet": "UseRules",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseSingleDriver": {
+      "command": "UseSingleDriver",
+      "snippet": "UseSingleDriver",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseTips": {
+      "command": "UseTips",
+      "snippet": "UseTips",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseTPICframes": {
+      "command": "UseTPICframes",
+      "snippet": "UseTPICframes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseTPICspecials": {
+      "command": "UseTPICspecials",
+      "snippet": "UseTPICspecials",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "UseTwocells": {
+      "command": "UseTwocells",
+      "snippet": "UseTwocells",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "utwocell": {
+      "command": "utwocell",
+      "snippet": "utwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "uutwocell": {
+      "command": "uutwocell",
+      "snippet": "uutwocell",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xtwocell[]{}": {
+      "command": "xtwocell[]{}",
+      "snippet": "xtwocell[${2:hop}]{${1:displace}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xtwocell{}": {
+      "command": "xtwocell{}",
+      "snippet": "xtwocell{${1:displace}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xy": {
+      "command": "xy",
+      "snippet": "xy",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xyatipfont": {
+      "command": "xyatipfont",
+      "snippet": "xyatipfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xybox{}": {
+      "command": "xybox{}",
+      "snippet": "xybox{${1:%<<${2:pos}><${3:decor}>%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xybsqlfont": {
+      "command": "xybsqlfont",
+      "snippet": "xybsqlfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xybtipfont": {
+      "command": "xybtipfont",
+      "snippet": "xybtipfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xycircfont": {
+      "command": "xycircfont",
+      "snippet": "xycircfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xycircle<>{}": {
+      "command": "xycircle<>{}",
+      "snippet": "xycircle<${2:radius}>{${1:style}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xycompile{}": {
+      "command": "xycompile{}",
+      "snippet": "xycompile{${1:%<<${2:pos}><${3:decor}>%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xycompileto{}{}": {
+      "command": "xycompileto{}{}",
+      "snippet": "xycompileto{${1:%<name%>}}{${2:%<<${3:pos}><${4:decor}>%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xydashfont": {
+      "command": "xydashfont",
+      "snippet": "xydashfont",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xydate": {
+      "command": "xydate",
+      "snippet": "xydate",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xyecho": {
+      "command": "xyecho",
+      "snippet": "xyecho",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xygraph{}": {
+      "command": "xygraph{}",
+      "snippet": "xygraph{${1:graph%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xyignore{}": {
+      "command": "xyignore{}",
+      "snippet": "xyignore{${1:%<<${2:pos}><${3:decor}>%>}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xylattice{}{}{}{}": {
+      "command": "xylattice{}{}{}{}",
+      "snippet": "xylattice{${1:pt1}}{${2:pt2}}{${3:pt3}}{${4:pt4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xymatrix{}": {
+      "command": "xymatrix{}",
+      "snippet": "xymatrix{${1:xy code%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xymatrixcolsep": {
+      "command": "xymatrixcolsep",
+      "snippet": "xymatrixcolsep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xymatrixcompile{}": {
+      "command": "xymatrixcompile{}",
+      "snippet": "xymatrixcompile{${1:xy code%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xymatrixnocompile{}": {
+      "command": "xymatrixnocompile{}",
+      "snippet": "xymatrixnocompile{${1:xy code%formula}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xymatrixrowsep": {
+      "command": "xymatrixrowsep",
+      "snippet": "xymatrixrowsep",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xypolygon": {
+      "command": "xypolygon",
+      "snippet": "xypolygon",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xypolyline{}": {
+      "command": "xypolyline{}",
+      "snippet": "xypolyline{${1:toks}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xypolyname": {
+      "command": "xypolyname",
+      "snippet": "xypolyname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xypolynode": {
+      "command": "xypolynode",
+      "snippet": "xypolynode",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xypolynum": {
+      "command": "xypolynum",
+      "snippet": "xypolynum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xyprovide{}{}{}{}{}{}": {
+      "command": "xyprovide{}{}{}{}{}{}",
+      "snippet": "xyprovide{${1:option}}{${2:name}}{${3:version}}{${4:author}}{${5:email}}{${6:address}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xyPSdefaultdict": {
+      "command": "xyPSdefaultdict",
+      "snippet": "xyPSdefaultdict",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xyquiet": {
+      "command": "xyquiet",
+      "snippet": "xyquiet",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xyReloadDrivers": {
+      "command": "xyReloadDrivers",
+      "snippet": "xyReloadDrivers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xyresetcatcodes": {
+      "command": "xyresetcatcodes",
+      "snippet": "xyresetcatcodes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xyShowDrivers": {
+      "command": "xyShowDrivers",
+      "snippet": "xyShowDrivers",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xytracing": {
+      "command": "xytracing",
+      "snippet": "xytracing",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xyverbose": {
+      "command": "xyverbose",
+      "snippet": "xyverbose",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xyversion": {
+      "command": "xyversion",
+      "snippet": "xyversion",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "zeroDivideLimit{}": {
+      "command": "zeroDivideLimit{}",
+      "snippet": "zeroDivideLimit{${1:number}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
-  "envs": {},
-  "options": []
+  "envs": {
+    "xy": {
+      "name": "xy",
+      "detail": "xy",
+      "snippet": "",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    }
+  },
+  "options": [
+    "curve",
+    "frame",
+    "tips",
+    "line",
+    "rotate",
+    "color",
+    "tile",
+    "import",
+    "movie",
+    "ps",
+    "tpic",
+    "emtex",
+    "necula",
+    "picture",
+    "all",
+    "dummy",
+    "arrow",
+    "2cell",
+    "matrix",
+    "graph",
+    "poly",
+    "web",
+    "arc",
+    "knot",
+    "smart",
+    "barr",
+    "dvidrv",
+    "dvips",
+    "dvitops",
+    "oztex",
+    "17oztex",
+    "textures",
+    "16textures",
+    "xdvi",
+    "pdf",
+    "v2"
+  ]
 }

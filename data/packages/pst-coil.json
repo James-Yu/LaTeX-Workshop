@@ -1,9 +1,20 @@
 {
-  "includes": [],
+  "includes": [
+    "pstricks",
+    "pst-node",
+    "pst-xkey"
+  ],
   "cmds": {
     "psCoil{}{}": {
       "command": "psCoil{}{}",
       "snippet": "psCoil{${1:angle1}}{${2:angle2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psCoil[]{}{}": {
+      "command": "psCoil[]{}{}",
+      "snippet": "psCoil[${3:options}]{${1:angle1}}{${2:angle2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -15,16 +26,352 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "psCoil[]{}{}": {
-      "command": "psCoil[]{}{}",
-      "snippet": "psCoil[${3:par}]{${1:angle1}}{${2:angle2}}",
+    "psCoil*[]{}{}": {
+      "command": "psCoil*[]{}{}",
+      "snippet": "psCoil*[${3:options}]{${1:angle1}}{${2:angle2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "psCoil*[]{}{}": {
-      "command": "psCoil*[]{}{}",
-      "snippet": "psCoil*[${3:par}]{${1:angle1}}{${2:angle2}}",
+    "nccoil{}{}": {
+      "command": "nccoil{}{}",
+      "snippet": "nccoil{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nccoil{}{}{}": {
+      "command": "nccoil{}{}{}",
+      "snippet": "nccoil{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nccoil[]{}{}": {
+      "command": "nccoil[]{}{}",
+      "snippet": "nccoil[${3:options}]{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nccoil[]{}{}{}": {
+      "command": "nccoil[]{}{}{}",
+      "snippet": "nccoil[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nccoil*{}{}": {
+      "command": "nccoil*{}{}",
+      "snippet": "nccoil*{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nccoil*{}{}{}": {
+      "command": "nccoil*{}{}{}",
+      "snippet": "nccoil*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nccoil*[]{}{}": {
+      "command": "nccoil*[]{}{}",
+      "snippet": "nccoil*[${3:options}]{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nccoil*[]{}{}{}": {
+      "command": "nccoil*[]{}{}{}",
+      "snippet": "nccoil*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nczigzag{}{}": {
+      "command": "nczigzag{}{}",
+      "snippet": "nczigzag{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nczigzag{}{}{}": {
+      "command": "nczigzag{}{}{}",
+      "snippet": "nczigzag{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nczigzag[]{}{}": {
+      "command": "nczigzag[]{}{}",
+      "snippet": "nczigzag[${3:options}]{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nczigzag[]{}{}{}": {
+      "command": "nczigzag[]{}{}{}",
+      "snippet": "nczigzag[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nczigzag*{}{}": {
+      "command": "nczigzag*{}{}",
+      "snippet": "nczigzag*{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nczigzag*{}{}{}": {
+      "command": "nczigzag*{}{}{}",
+      "snippet": "nczigzag*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nczigzag*[]{}{}": {
+      "command": "nczigzag*[]{}{}",
+      "snippet": "nczigzag*[${3:options}]{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "nczigzag*[]{}{}{}": {
+      "command": "nczigzag*[]{}{}{}",
+      "snippet": "nczigzag*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pccoil{}{}": {
+      "command": "pccoil{}{}",
+      "snippet": "pccoil{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pccoil{}{}{}": {
+      "command": "pccoil{}{}{}",
+      "snippet": "pccoil{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pccoil[]{}{}": {
+      "command": "pccoil[]{}{}",
+      "snippet": "pccoil[${3:options}]{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pccoil[]{}{}{}": {
+      "command": "pccoil[]{}{}{}",
+      "snippet": "pccoil[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pccoil*{}{}": {
+      "command": "pccoil*{}{}",
+      "snippet": "pccoil*{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pccoil*{}{}{}": {
+      "command": "pccoil*{}{}{}",
+      "snippet": "pccoil*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pccoil*[]{}{}": {
+      "command": "pccoil*[]{}{}",
+      "snippet": "pccoil*[${3:options}]{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pccoil*[]{}{}{}": {
+      "command": "pccoil*[]{}{}{}",
+      "snippet": "pccoil*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pczigzag{}{}": {
+      "command": "pczigzag{}{}",
+      "snippet": "pczigzag{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pczigzag{}{}{}": {
+      "command": "pczigzag{}{}{}",
+      "snippet": "pczigzag{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pczigzag[]{}{}": {
+      "command": "pczigzag[]{}{}",
+      "snippet": "pczigzag[${3:options}]{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pczigzag[]{}{}{}": {
+      "command": "pczigzag[]{}{}{}",
+      "snippet": "pczigzag[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pczigzag*{}{}": {
+      "command": "pczigzag*{}{}",
+      "snippet": "pczigzag*{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pczigzag*{}{}{}": {
+      "command": "pczigzag*{}{}{}",
+      "snippet": "pczigzag*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pczigzag*[]{}{}": {
+      "command": "pczigzag*[]{}{}",
+      "snippet": "pczigzag*[${3:options}]{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pczigzag*[]{}{}{}": {
+      "command": "pczigzag*[]{}{}{}",
+      "snippet": "pczigzag*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ncsin{}{}": {
+      "command": "ncsin{}{}",
+      "snippet": "ncsin{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ncsin{}{}{}": {
+      "command": "ncsin{}{}{}",
+      "snippet": "ncsin{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ncsin[]{}{}": {
+      "command": "ncsin[]{}{}",
+      "snippet": "ncsin[${3:options}]{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ncsin[]{}{}{}": {
+      "command": "ncsin[]{}{}{}",
+      "snippet": "ncsin[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ncsin*{}{}": {
+      "command": "ncsin*{}{}",
+      "snippet": "ncsin*{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ncsin*{}{}{}": {
+      "command": "ncsin*{}{}{}",
+      "snippet": "ncsin*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ncsin*[]{}{}": {
+      "command": "ncsin*[]{}{}",
+      "snippet": "ncsin*[${3:options}]{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ncsin*[]{}{}{}": {
+      "command": "ncsin*[]{}{}{}",
+      "snippet": "ncsin*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pcsin{}{}": {
+      "command": "pcsin{}{}",
+      "snippet": "pcsin{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pcsin{}{}{}": {
+      "command": "pcsin{}{}{}",
+      "snippet": "pcsin{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pcsin[]{}{}": {
+      "command": "pcsin[]{}{}",
+      "snippet": "pcsin[${3:options}]{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pcsin[]{}{}{}": {
+      "command": "pcsin[]{}{}{}",
+      "snippet": "pcsin[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pcsin*{}{}": {
+      "command": "pcsin*{}{}",
+      "snippet": "pcsin*{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pcsin*{}{}{}": {
+      "command": "pcsin*{}{}{}",
+      "snippet": "pcsin*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pcsin*[]{}{}": {
+      "command": "pcsin*[]{}{}",
+      "snippet": "pcsin*[${3:options}]{${1:nodeA}}{${2:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pcsin*[]{}{}{}": {
+      "command": "pcsin*[]{}{}{}",
+      "snippet": "pcsin*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PSTcoilsLoaded": {
+      "command": "PSTcoilsLoaded",
+      "snippet": "PSTcoilsLoaded",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1

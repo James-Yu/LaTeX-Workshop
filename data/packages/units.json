@@ -1,5 +1,8 @@
 {
-  "includes": [],
+  "includes": [
+    "ifthen",
+    "nicefrac"
+  ],
   "cmds": {
     "unit[]{}": {
       "command": "unit[]{}",
@@ -17,33 +20,24 @@
     },
     "unitfrac[]{}{}": {
       "command": "unitfrac[]{}{}",
-      "snippet": "unitfrac[${3:value}]{${1:numerator}}{${2:denominator}}",
+      "snippet": "unitfrac[${3:%<value%:translatable%>}]{${1:%<num%:translatable%>}}{${2:%<den%:translatable%>}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "unitfrac{}{}": {
       "command": "unitfrac{}{}",
-      "snippet": "unitfrac{${1:numerator}}{${2:denominator}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nicefrac[]{}{}": {
-      "command": "nicefrac[]{}{}",
-      "snippet": "nicefrac[${3:fontcmd}]{${1:numerator}}{${2:denominator}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nicefrac{}{}": {
-      "command": "nicefrac{}{}",
-      "snippet": "nicefrac{${1:numerator}}{${2:denominator}}",
+      "snippet": "unitfrac{${1:%<num%:translatable%>}}{${2:%<den%:translatable%>}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "tight",
+    "loose",
+    "nice",
+    "ugly"
+  ]
 }

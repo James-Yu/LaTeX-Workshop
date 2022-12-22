@@ -1,6 +1,16 @@
 {
-  "includes": [],
+  "includes": [
+    "pstricks",
+    "pst-xkey"
+  ],
   "cmds": {
+    "TeXtoEPS": {
+      "command": "TeXtoEPS",
+      "snippet": "TeXtoEPS",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "endTeXtoEPS": {
       "command": "endTeXtoEPS",
       "snippet": "endTeXtoEPS",
@@ -10,21 +20,34 @@
     },
     "PSTtoEPS{}{}": {
       "command": "PSTtoEPS{}{}",
-      "snippet": "PSTtoEPS{${1:file}}{${2:graphics objects}}",
+      "snippet": "PSTtoEPS{${1:file%definition}}{${2:graphics objects}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "PSTtoEPS[]{}{}": {
       "command": "PSTtoEPS[]{}{}",
-      "snippet": "PSTtoEPS[${3:par}]{${1:file}}{${2:graphics objects}}",
+      "snippet": "PSTtoEPS[${3:options}]{${1:file%definition}}{${2:graphics objects}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "bbllx=",
+        "bblly=",
+        "bburx=",
+        "bburx=",
+        "makeeps=",
+        "checkfile",
+        "headerfile=",
+        "headers=",
+        "GraphicsRef={",
+        "Translation={",
+        "Rotation=",
+        "Scale="
+      ],
+      "keyvalindex": 0
     },
-    "TeXtoEPS": {
-      "command": "TeXtoEPS",
-      "snippet": "TeXtoEPS",
+    "PSTfilesLoaded": {
+      "command": "PSTfilesLoaded",
+      "snippet": "PSTfilesLoaded",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1

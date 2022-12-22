@@ -1,5 +1,7 @@
 {
-  "includes": [],
+  "includes": [
+    "xspace"
+  ],
   "cmds": {
     "blinddocument": {
       "command": "blinddocument",
@@ -15,65 +17,149 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "blindtext": {
+      "command": "blindtext",
+      "snippet": "blindtext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "blindtext[]": {
       "command": "blindtext[]",
-      "snippet": "blindtext[${1:x}]",
+      "snippet": "blindtext[${1:repetition}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Blindtext": {
+      "command": "Blindtext",
+      "snippet": "Blindtext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Blindtext[]": {
+      "command": "Blindtext[]",
+      "snippet": "Blindtext[${1:repetition}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "Blindtext[][]": {
       "command": "Blindtext[][]",
-      "snippet": "Blindtext[${1:x}][${2:y}]",
+      "snippet": "Blindtext[${1:paragraphs}][${2:repetition}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "parstart": {
-      "command": "parstart",
-      "snippet": "parstart",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "parend": {
-      "command": "parend",
-      "snippet": "parend",
+    "blindlist{}": {
+      "command": "blindlist{}",
+      "snippet": "blindlist{${1:list env}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "blindlist{}[]": {
       "command": "blindlist{}[]",
-      "snippet": "blindlist{${1:env}}[${2:x}]",
+      "snippet": "blindlist{${1:list env}}[${2:repetition}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "blindlistlist[]{}[]": {
-      "command": "blindlistlist[]{}[]",
-      "snippet": "blindlistlist[${2:level}]{${1:env}}[${3:x}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "blindlistoptional{}[]": {
-      "command": "blindlistoptional{}[]",
-      "snippet": "blindlistoptional{${1:env}}[${2:x}]",
+    "Blindlist{}": {
+      "command": "Blindlist{}",
+      "snippet": "Blindlist{${1:list env}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "Blindlist{}[]": {
       "command": "Blindlist{}[]",
-      "snippet": "Blindlist{${1:env}}[${2:x}]",
+      "snippet": "Blindlist{${1:list env}}[${2:repetition}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindlistlist{}": {
+      "command": "blindlistlist{}",
+      "snippet": "blindlistlist{${1:list env}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindlistlist[]{}": {
+      "command": "blindlistlist[]{}",
+      "snippet": "blindlistlist[${2:level}]{${1:list env}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindlistlist{}[]": {
+      "command": "blindlistlist{}[]",
+      "snippet": "blindlistlist{${1:list env}}[${2:repetition}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindlistlist[]{}[]": {
+      "command": "blindlistlist[]{}[]",
+      "snippet": "blindlistlist[${2:level}]{${1:list env}}[${3:repetition}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindlistoptional{}": {
+      "command": "blindlistoptional{}",
+      "snippet": "blindlistoptional{${1:list env}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindlistoptional{}[]": {
+      "command": "blindlistoptional{}[]",
+      "snippet": "blindlistoptional{${1:list env}}[${2:repetition}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Blindlistoptional{}": {
+      "command": "Blindlistoptional{}",
+      "snippet": "Blindlistoptional{${1:list env}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "Blindlistoptional{}[]": {
       "command": "Blindlistoptional{}[]",
-      "snippet": "Blindlistoptional{${1:env}}[${2:x}]",
+      "snippet": "Blindlistoptional{${1:list env}}[${2:repetition}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindlistlistoptional{}": {
+      "command": "blindlistlistoptional{}",
+      "snippet": "blindlistlistoptional{${1:list env}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindlistlistoptional[]{}": {
+      "command": "blindlistlistoptional[]{}",
+      "snippet": "blindlistlistoptional[${2:level}]{${1:list env}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindlistlistoptional{}[]": {
+      "command": "blindlistlistoptional{}[]",
+      "snippet": "blindlistlistoptional{${1:list env}}[${2:repetition}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindlistlistoptional[]{}[]": {
+      "command": "blindlistlistoptional[]{}[]",
+      "snippet": "blindlistlistoptional[${2:level}]{${1:list env}}[${3:repetition}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -85,9 +171,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "blinditemize[]": {
+      "command": "blinditemize[]",
+      "snippet": "blinditemize[${1:repetition}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "blindenumerate": {
       "command": "blindenumerate",
       "snippet": "blindenumerate",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindenumerate[]": {
+      "command": "blindenumerate[]",
+      "snippet": "blindenumerate[${1:repetition}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -99,9 +199,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "blinddescription[]": {
+      "command": "blinddescription[]",
+      "snippet": "blinddescription[${1:repetition}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "Blinditemize": {
       "command": "Blinditemize",
       "snippet": "Blinditemize",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Blinditemize[]": {
+      "command": "Blinditemize[]",
+      "snippet": "Blinditemize[${1:repetition}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -113,6 +227,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "Blindenumerate[]": {
+      "command": "Blindenumerate[]",
+      "snippet": "Blindenumerate[${1:repetition}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "Blinddescription": {
       "command": "Blinddescription",
       "snippet": "Blinddescription",
@@ -120,9 +241,44 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "Blinddescription[]": {
+      "command": "Blinddescription[]",
+      "snippet": "Blinddescription[${1:repetition}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "blindmathpaper": {
       "command": "blindmathpaper",
       "snippet": "blindmathpaper",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindmarkup{}": {
+      "command": "blindmarkup{}",
+      "snippet": "blindmarkup{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "parstart{}": {
+      "command": "parstart{}",
+      "snippet": "parstart{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "parend{}": {
+      "command": "parend{}",
+      "snippet": "parend{${1:code}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifblindmath": {
+      "command": "ifblindmath",
+      "snippet": "ifblindmath",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -141,14 +297,125 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "blindmarkup": {
-      "command": "blindmarkup",
-      "snippet": "blindmarkup",
+    "ifblindtoc": {
+      "command": "ifblindtoc",
+      "snippet": "ifblindtoc",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindtoctrue": {
+      "command": "blindtoctrue",
+      "snippet": "blindtoctrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindtocfalse": {
+      "command": "blindtocfalse",
+      "snippet": "blindtocfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifblindbible": {
+      "command": "ifblindbible",
+      "snippet": "ifblindbible",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindbibletrue": {
+      "command": "blindbibletrue",
+      "snippet": "blindbibletrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindbiblefalse": {
+      "command": "blindbiblefalse",
+      "snippet": "blindbiblefalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifblindrandom": {
+      "command": "ifblindrandom",
+      "snippet": "ifblindrandom",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindrandomtrue": {
+      "command": "blindrandomtrue",
+      "snippet": "blindrandomtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindrandomfalse": {
+      "command": "blindrandomfalse",
+      "snippet": "blindrandomfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifblindpangram": {
+      "command": "ifblindpangram",
+      "snippet": "ifblindpangram",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindpangramtrue": {
+      "command": "blindpangramtrue",
+      "snippet": "blindpangramtrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "blindpangramfalse": {
+      "command": "blindpangramfalse",
+      "snippet": "blindpangramfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theblindtext": {
+      "command": "theblindtext",
+      "snippet": "theblindtext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theBlindtext": {
+      "command": "theBlindtext",
+      "snippet": "theBlindtext",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theblindlist": {
+      "command": "theblindlist",
+      "snippet": "theblindlist",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "theblindlistlevel": {
+      "command": "theblindlistlevel",
+      "snippet": "theblindlistlevel",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "bible",
+    "random",
+    "pangram",
+    "math",
+    "toc"
+  ]
 }

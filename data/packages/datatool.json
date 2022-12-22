@@ -1,220 +1,17 @@
 {
   "includes": [
-    "datatool-base",
-    "etex",
+    "xkeyval",
     "ifthen",
-    "substr",
     "xfor",
-    "xkeyval"
+    "substr",
+    "etoolbox",
+    "datatool-base",
+    "datatool-pgfmath"
   ],
   "cmds": {
-    "DTLaddcolumn{}{}": {
-      "command": "DTLaddcolumn{}{}",
-      "snippet": "DTLaddcolumn{${1:db%special}}{${2:dbkey}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLaddentryforrow{}{}{}{}{}": {
-      "command": "DTLaddentryforrow{}{}{}{}{}",
-      "snippet": "DTLaddentryforrow{${1:db%special}}{${2:assign list}}{${3:condition}}{${4:dbkey}}{${5:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLappendtorow{}{}": {
-      "command": "DTLappendtorow{}{}",
-      "snippet": "DTLappendtorow{${1:dbkey}}{${2:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLassign{}{}{}": {
-      "command": "DTLassign{}{}{}",
-      "snippet": "DTLassign{${1:db%special}}{${2:row index}}{${3:assign list}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLassignfirstmatch{}{}{}{}": {
-      "command": "DTLassignfirstmatch{}{}{}{}",
-      "snippet": "DTLassignfirstmatch{${1:db%special}}{${2:dbkey}}{${3:value}}{${4:assign list}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xDTLassignfirstmatch{}{}{}{}": {
-      "command": "xDTLassignfirstmatch{}{}{}{}",
-      "snippet": "xDTLassignfirstmatch{${1:db%special}}{${2:dbkey}}{${3:value}}{${4:assign list}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLcleardb{}": {
-      "command": "DTLcleardb{}",
-      "snippet": "DTLcleardb{${1:db%special}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLcolumncount{}": {
-      "command": "DTLcolumncount{}",
-      "snippet": "DTLcolumncount{${1:db%special}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLcomputebounds{}{}{}{}{}{}{}": {
-      "command": "DTLcomputebounds{}{}{}{}{}{}{}",
-      "snippet": "DTLcomputebounds{${1:db%special}}{${2:x key}}{${3:y key}}{${4:minX%cmd}}{${5:minY%cmd}}{${6:maxX%cmd}}{${7:maxY%cmd}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLcurrencytype": {
-      "command": "DTLcurrencytype",
-      "snippet": "DTLcurrencytype",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLcurrentindex": {
-      "command": "DTLcurrentindex",
-      "snippet": "DTLcurrentindex",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLdeletedb{}": {
-      "command": "DTLdeletedb{}",
-      "snippet": "DTLdeletedb{${1:db%special}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLdisplaydb[]{}": {
-      "command": "DTLdisplaydb[]{}",
-      "snippet": "DTLdisplaydb[${2:omit list}]{${1:db%special}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLdisplaylongdb[]{}": {
-      "command": "DTLdisplaylongdb[]{}",
-      "snippet": "DTLdisplaylongdb[${2:keyvals}]{${1:db%special}}",
-      "option": "",
-      "keyvals": [
-        "caption",
-        "label",
-        "shortcaption",
-        "contcaption",
-        "omit",
-        "foot",
-        "lastfoot"
-      ],
-      "keyvalindex": 0
-    },
-    "DTLfetch{}{}{}{}": {
-      "command": "DTLfetch{}{}{}{}",
-      "snippet": "DTLfetch{${1:db%special}}{${2:dbkey}}{${3:value}}{${4:dkey2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLforeach[]{}{}{}": {
-      "command": "DTLforeach[]{}{}{}",
-      "snippet": "DTLforeach[${4:condition}]{${1:db%special}}{${2:assign list}}{${3:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLforeach*[]{}{}{}": {
-      "command": "DTLforeach*[]{}{}{}",
-      "snippet": "DTLforeach*[${4:condition}]{${1:db%special}}{${2:assign list}}{${3:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLforeachkeyinrow{}{}": {
-      "command": "DTLforeachkeyinrow{}{}",
-      "snippet": "DTLforeachkeyinrow{${1:cmd}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLgcleardb{}": {
-      "command": "DTLgcleardb{}",
-      "snippet": "DTLgcleardb{${1:db%special}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLgdeletedb{}": {
-      "command": "DTLgdeletedb{}",
-      "snippet": "DTLgdeletedb{${1:db%special}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLgetcolumnindex{}{}{}": {
-      "command": "DTLgetcolumnindex{}{}{}",
-      "snippet": "DTLgetcolumnindex{${1:cmd}}{${2:db%special}}{${3:dbkey}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLgetdatatype{}{}{}": {
-      "command": "DTLgetdatatype{}{}{}",
-      "snippet": "DTLgetdatatype{${1:cmd}}{${2:db%special}}{${3:dbkey}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLgetkeydata{}{}{}{}{}": {
-      "command": "DTLgetkeydata{}{}{}{}{}",
-      "snippet": "DTLgetkeydata{${1:dbkey}}{${2:db%special}}{${3:col cs%cmd}}{${4:type cs%cmd}}{${5:header cs%cmd}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLgetkeyforcolumn{}{}{}": {
-      "command": "DTLgetkeyforcolumn{}{}{}",
-      "snippet": "DTLgetkeyforcolumn{${1:cmd}}{${2:db%special}}{${3:column index}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLgetlocation{}{}{}{}": {
-      "command": "DTLgetlocation{}{}{}{}",
-      "snippet": "DTLgetlocation{${1:row cs%cmd}}{${2:column cs%cmd}}{${3:db%special}}{${4:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLgetrowforkey{}{}{}{}": {
-      "command": "DTLgetrowforkey{}{}{}{}",
-      "snippet": "DTLgetrowforkey{${1:arg}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLgetrowindex{}{}{}{}": {
-      "command": "DTLgetrowindex{}{}{}{}",
-      "snippet": "DTLgetrowindex{${1:row cs%cmd}}{${2:db%special}}{${3:col idx}}{${4:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLgetvalueforkey{}{}{}{}{}": {
-      "command": "DTLgetvalueforkey{}{}{}{}{}",
-      "snippet": "DTLgetvalueforkey{${1:cmd}}{${2:dbkey}}{${3:db%special}}{${4:ref key}}{${5:ref value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLgetvalue{}{}{}{}": {
-      "command": "DTLgetvalue{}{}{}{}",
-      "snippet": "DTLgetvalue{${1:cmd}}{${2:db%special}}{${3:row}}{${4:column}}",
+    "DTLnewdb{}": {
+      "command": "DTLnewdb{}",
+      "snippet": "DTLnewdb{${1:db%special}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -233,126 +30,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLifdbexists{}{}{}": {
-      "command": "DTLifdbexists{}{}{}",
-      "snippet": "DTLifdbexists{${1:db%special}}{${2:true case}}{${3:false case}}",
+    "DTLrowcount{}": {
+      "command": "DTLrowcount{}",
+      "snippet": "DTLrowcount{${1:db%special}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLiffirstrow{}{}": {
-      "command": "DTLiffirstrow{}{}",
-      "snippet": "DTLiffirstrow{${1:true case}}{${2:false case}}",
+    "DTLcolumncount{}": {
+      "command": "DTLcolumncount{}",
+      "snippet": "DTLcolumncount{${1:db%special}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLifhaskey{}{}{}{}": {
-      "command": "DTLifhaskey{}{}{}{}",
-      "snippet": "DTLifhaskey{${1:db%special}}{${2:dbkey}}{${3:true case}}{${4:false case}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLiflastrow{}{}": {
-      "command": "DTLiflastrow{}{}",
-      "snippet": "DTLiflastrow{${1:true case}}{${2:false case}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLifnull{}{}{}": {
-      "command": "DTLifnull{}{}{}",
-      "snippet": "DTLifnull{${1:cmd seq}}{${2:true case}}{${3:false case}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLifnullorempty{}{}{}": {
-      "command": "DTLifnullorempty{}{}{}",
-      "snippet": "DTLifnullorempty{${1:cmd seq}}{${2:true case}}{${3:false case}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLifoddrow{}{}": {
-      "command": "DTLifoddrow{}{}",
-      "snippet": "DTLifoddrow{${1:true case}}{${2:false case}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLinttype": {
-      "command": "DTLinttype",
-      "snippet": "DTLinttype",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLloaddb[]{}{}": {
-      "command": "DTLloaddb[]{}{}",
-      "snippet": "DTLloaddb[${3:keyvals}]{${1:db}}{${2:filename}}",
-      "option": "",
-      "keyvals": [
-        "noheader",
-        "keys={",
-        "headers={",
-        "omitlines="
-      ],
-      "keyvalindex": 0
-    },
-    "DTLloadsbtex{}{}": {
-      "command": "DTLloadsbtex{}{}",
-      "snippet": "DTLloadsbtex{${1:cmd}}{${2:filename}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLloadrawdb[]{}{}": {
-      "command": "DTLloadrawdb[]{}{}",
-      "snippet": "DTLloadrawdb[${3:options}]{${1:db}}{${2:filename}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLmaxforcolumn{}{}{}": {
-      "command": "DTLmaxforcolumn{}{}{}",
-      "snippet": "DTLmaxforcolumn{${1:db%special}}{${2:key list}}{${3:cmd}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLmaxforkeys[][]{}{}{}": {
-      "command": "DTLmaxforkeys[][]{}{}{}",
-      "snippet": "DTLmaxforkeys[${4:condition}][${5:assign list}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLmeanforcolumn{}{}{}": {
-      "command": "DTLmeanforcolumn{}{}{}",
-      "snippet": "DTLmeanforcolumn{${1:db%special}}{${2:key list}}{${3:cmd}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLmeanforkeys[][]{}{}{}": {
-      "command": "DTLmeanforkeys[][]{}{}{}",
-      "snippet": "DTLmeanforkeys[${4:condition}][${5:assign list}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLminforcolumn{}{}{}": {
-      "command": "DTLminforcolumn{}{}{}",
-      "snippet": "DTLminforcolumn{${1:db%special}}{${2:key list}}{${3:cmd}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLminforkeys[][]{}{}{}": {
-      "command": "DTLminforkeys[][]{}{}{}",
-      "snippet": "DTLminforkeys[${4:condition}][${5:assign list}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+    "DTLnewrow{}": {
+      "command": "DTLnewrow{}",
+      "snippet": "DTLnewrow{${1:db%special}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -364,16 +58,71 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLnewdb{}": {
-      "command": "DTLnewdb{}",
-      "snippet": "DTLnewdb{${1:db%special}}",
+    "dtlexpandnewvalue": {
+      "command": "dtlexpandnewvalue",
+      "snippet": "dtlexpandnewvalue",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLnewrow{}": {
-      "command": "DTLnewrow{}",
-      "snippet": "DTLnewrow{${1:db%special}}",
+    "dtlnoexpandnewvalue": {
+      "command": "dtlnoexpandnewvalue",
+      "snippet": "dtlnoexpandnewvalue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLpar": {
+      "command": "DTLpar",
+      "snippet": "DTLpar",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLaddentryforrow{}{}{}{}{}": {
+      "command": "DTLaddentryforrow{}{}{}{}{}",
+      "snippet": "DTLaddentryforrow{${1:db%special}}{${2:assign list}}{${3:condition}}{${4:dbkey}}{${5:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsetheader{}{}{}": {
+      "command": "DTLsetheader{}{}{}",
+      "snippet": "DTLsetheader{${1:db%special}}{${2:dbkey}}{${3:header}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLaddcolumn{}{}": {
+      "command": "DTLaddcolumn{}{}",
+      "snippet": "DTLaddcolumn{${1:db%special}}{${2:dbkey}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLloaddb{}{}": {
+      "command": "DTLloaddb{}{}",
+      "snippet": "DTLloaddb{${1:db}}{${2:filename}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLloaddb[]{}{}": {
+      "command": "DTLloaddb[]{}{}",
+      "snippet": "DTLloaddb[${3:options}]{${1:db}}{${2:filename}}",
+      "option": "",
+      "keyvals": [
+        "noheader",
+        "keys={",
+        "autokeys",
+        "headers={",
+        "omitlines="
+      ],
+      "keyvalindex": 0
+    },
+    "ifDTLnewdbonload": {
+      "command": "ifDTLnewdbonload",
+      "snippet": "ifDTLnewdbonload",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -392,121 +141,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLnumbernull": {
-      "command": "DTLnumbernull",
-      "snippet": "DTLnumbernull",
+    "dtldefaultkey": {
+      "command": "dtldefaultkey",
+      "snippet": "dtldefaultkey",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLrawmap{}{}": {
-      "command": "DTLrawmap{}{}",
-      "snippet": "DTLrawmap{${1:string}}{${2:replacement}}",
+    "DTLsettabseparator{}": {
+      "command": "DTLsettabseparator{}",
+      "snippet": "DTLsettabseparator{${1:character}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLrealtype": {
-      "command": "DTLrealtype",
-      "snippet": "DTLrealtype",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLremovecurrentrow": {
-      "command": "DTLremovecurrentrow",
-      "snippet": "DTLremovecurrentrow",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLremoveentryfromrow{}": {
-      "command": "DTLremoveentryfromrow{}",
-      "snippet": "DTLremoveentryfromrow{${1:dbkey}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLremoverow{}{}": {
-      "command": "DTLremoverow{}{}",
-      "snippet": "DTLremoverow{${1:db%special}}{${2:row index}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLreplaceentryforrow{}{}": {
-      "command": "DTLreplaceentryforrow{}{}",
-      "snippet": "DTLreplaceentryforrow{${1:dbkey}}{${2:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLrowcount{}": {
-      "command": "DTLrowcount{}",
-      "snippet": "DTLrowcount{${1:db%special}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLsavedb{}{}": {
-      "command": "DTLsavedb{}{}",
-      "snippet": "DTLsavedb{${1:db%special}}{${2:filename}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLsavelastrowcount{}": {
-      "command": "DTLsavelastrowcount{}",
-      "snippet": "DTLsavelastrowcount{${1:cmd}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLsaverawdb{}{}": {
-      "command": "DTLsaverawdb{}{}",
-      "snippet": "DTLsaverawdb{${1:db%special}}{${2:filename}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLprotectedsaverawdb{}{}": {
-      "command": "DTLprotectedsaverawdb{}{}",
-      "snippet": "DTLprotectedsaverawdb{${1:db%special}}{${2:filename}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLsavetexdb{}{}": {
-      "command": "DTLsavetexdb{}{}",
-      "snippet": "DTLsavetexdb{${1:db%special}}{${2:filename}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLsdforcolumn{}{}{}": {
-      "command": "DTLsdforcolumn{}{}{}",
-      "snippet": "DTLsdforcolumn{${1:db%special}}{${2:key list}}{${3:cmd}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLsdforkeys[][]{}{}{}": {
-      "command": "DTLsdforkeys[][]{}{}{}",
-      "snippet": "DTLsdforkeys[${4:condition}][${5:assign list}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLsetdelimiter{}": {
-      "command": "DTLsetdelimiter{}",
-      "snippet": "DTLsetdelimiter{${1:character}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLsetheader{}{}{}": {
-      "command": "DTLsetheader{}{}{}",
-      "snippet": "DTLsetheader{${1:db%special}}{${2:dbkey}}{${3:header}}",
+    "DTLmaketabspace": {
+      "command": "DTLmaketabspace",
+      "snippet": "DTLmaketabspace",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -518,331 +169,73 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLsettabseparator": {
-      "command": "DTLsettabseparator",
-      "snippet": "DTLsettabseparator",
+    "DTLsetdelimiter{}": {
+      "command": "DTLsetdelimiter{}",
+      "snippet": "DTLsetdelimiter{${1:character}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLsort{}{}": {
-      "command": "DTLsort{}{}",
-      "snippet": "DTLsort{${1:sort criteria}}{${2:db%special}}",
+    "DTLloadrawdb{}{}": {
+      "command": "DTLloadrawdb{}{}",
+      "snippet": "DTLloadrawdb{${1:db}}{${2:filename}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLsort[]{}{}": {
-      "command": "DTLsort[]{}{}",
-      "snippet": "DTLsort[${3:replacement key list}]{${1:sort criteria}}{${2:db%special}}",
+    "DTLloadrawdb[]{}{}": {
+      "command": "DTLloadrawdb[]{}{}",
+      "snippet": "DTLloadrawdb[${3:options}]{${1:db}}{${2:filename}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLsort*[]{}{}": {
-      "command": "DTLsort*[]{}{}",
-      "snippet": "DTLsort*[${3:replacement key list}]{${1:sort criteria}}{${2:db%special}}",
+    "DTLrawmap{}{}": {
+      "command": "DTLrawmap{}{}",
+      "snippet": "DTLrawmap{${1:string}}{${2:replacement}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLstringnull": {
-      "command": "DTLstringnull",
-      "snippet": "DTLstringnull",
+    "DTLdisplaydb{}": {
+      "command": "DTLdisplaydb{}",
+      "snippet": "DTLdisplaydb{${1:db%special}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLstringtype": {
-      "command": "DTLstringtype",
-      "snippet": "DTLstringtype",
+    "DTLdisplaydb[]{}": {
+      "command": "DTLdisplaydb[]{}",
+      "snippet": "DTLdisplaydb[${2:omit list}]{${1:db%special}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLsumcolumn{}{}{}": {
-      "command": "DTLsumcolumn{}{}{}",
-      "snippet": "DTLsumcolumn{${1:db%special}}{${2:key list}}{${3:cmd}}",
+    "DTLdisplaylongdb{}": {
+      "command": "DTLdisplaylongdb{}",
+      "snippet": "DTLdisplaylongdb{${1:db%special}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLsumforkeys[][]{}{}{}": {
-      "command": "DTLsumforkeys[][]{}{}{}",
-      "snippet": "DTLsumforkeys[${4:condition}][${5:assign list}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+    "DTLdisplaylongdb[]{}": {
+      "command": "DTLdisplaylongdb[]{}",
+      "snippet": "DTLdisplaylongdb[${2:options}]{${1:db%special}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "caption={",
+        "contcaption={",
+        "shortcaption={",
+        "label=",
+        "omit={",
+        "foot={",
+        "lastfoot={"
+      ],
+      "keyvalindex": 0
     },
-    "DTLswaprows{}{}{}": {
-      "command": "DTLswaprows{}{}{}",
-      "snippet": "DTLswaprows{${1:db%special}}{${2:row1 index}}{${3:row2 index}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLunsettype": {
-      "command": "DTLunsettype",
-      "snippet": "DTLunsettype",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLvarianceforcolumn{}{}{}": {
-      "command": "DTLvarianceforcolumn{}{}{}",
-      "snippet": "DTLvarianceforcolumn{${1:db%special}}{${2:key list}}{${3:cmd}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DTLvarianceforkeys[][]{}{}{}": {
-      "command": "DTLvarianceforkeys[][]{}{}{}",
-      "snippet": "DTLvarianceforkeys[${4:condition}][${5:assign list}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "datatoolpersoncomma": {
-      "command": "datatoolpersoncomma",
-      "snippet": "datatoolpersoncomma",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "datatoolplacecomma": {
-      "command": "datatoolplacecomma",
-      "snippet": "datatoolplacecomma",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "datatoolsubjectcomma": {
-      "command": "datatoolsubjectcomma",
-      "snippet": "datatoolsubjectcomma",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "datatoolparenstart": {
-      "command": "datatoolparenstart",
-      "snippet": "datatoolparenstart",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtladdalign{}{}{}{}": {
-      "command": "dtladdalign{}{}{}{}",
-      "snippet": "dtladdalign{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlaftercols": {
-      "command": "dtlaftercols",
-      "snippet": "dtlaftercols",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlafterrow": {
-      "command": "dtlafterrow",
-      "snippet": "dtlafterrow",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlappendentrytocurrentrow{}{}": {
-      "command": "dtlappendentrytocurrentrow{}{}",
-      "snippet": "dtlappendentrytocurrentrow{${1:dbkey}}{${2:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlbeforecols": {
-      "command": "dtlbeforecols",
-      "snippet": "dtlbeforecols",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlbeforerow": {
-      "command": "dtlbeforerow",
-      "snippet": "dtlbeforerow",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlbetweencols": {
-      "command": "dtlbetweencols",
-      "snippet": "dtlbetweencols",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlbreak": {
-      "command": "dtlbreak",
-      "snippet": "dtlbreak",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlcolumnindex{}{}": {
-      "command": "dtlcolumnindex{}{}",
-      "snippet": "dtlcolumnindex{${1:db%special}}{${2:dbkey}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlcurrencyalign": {
-      "command": "dtlcurrencyalign",
-      "snippet": "dtlcurrencyalign",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlcurrencyformat{}": {
-      "command": "dtlcurrencyformat{}",
-      "snippet": "dtlcurrencyformat{${1:format}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtldefaultkey": {
-      "command": "dtldefaultkey",
-      "snippet": "dtldefaultkey",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtldbname": {
-      "command": "dtldbname",
-      "snippet": "dtldbname",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtldisplayafterhead": {
-      "command": "dtldisplayafterhead",
-      "snippet": "dtldisplayafterhead",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtldisplaycr": {
-      "command": "dtldisplaycr",
-      "snippet": "dtldisplaycr",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtldisplayendtab": {
-      "command": "dtldisplayendtab",
-      "snippet": "dtldisplayendtab",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtldisplaystartrow": {
-      "command": "dtldisplaystartrow",
-      "snippet": "dtldisplaystartrow",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtldisplaystarttab": {
-      "command": "dtldisplaystarttab",
-      "snippet": "dtldisplaystarttab",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtldisplayvalign": {
-      "command": "dtldisplayvalign",
-      "snippet": "dtldisplayvalign",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlexpandnewvalue": {
-      "command": "dtlexpandnewvalue",
-      "snippet": "dtlexpandnewvalue",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlforcolumn{}{}{}{}": {
-      "command": "dtlforcolumn{}{}{}{}",
-      "snippet": "dtlforcolumn{${1:cmd}}{${2:db%special}}{${3:dbkey}}{${4:body}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlforcolumnidx{}{}{}{}": {
-      "command": "dtlforcolumnidx{}{}{}{}",
-      "snippet": "dtlforcolumnidx{${1:cmd}}{${2:db%special}}{${3:col index}}{${4:body}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "in{}": {
-      "command": "in{}",
-      "snippet": "in{${1:db%special}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "do{}": {
-      "command": "do{}",
-      "snippet": "do{${1:body}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlgetentryfromcurrentrow{}{}": {
-      "command": "dtlgetentryfromcurrentrow{}{}",
-      "snippet": "dtlgetentryfromcurrentrow{${1:cmd}}{${2:col idx}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlgetentryfromrow{}{}{}": {
-      "command": "dtlgetentryfromrow{}{}{}",
-      "snippet": "dtlgetentryfromrow{${1:arg1}}{${2:arg2}}{${3:arg3}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlgetrowforvalue{}{}{}": {
-      "command": "dtlgetrowforvalue{}{}{}",
-      "snippet": "dtlgetrowforvalue{${1:db%special}}{${2:col idx}}{${3:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "edtlgetrowforvalue{}{}{}": {
-      "command": "edtlgetrowforvalue{}{}{}",
-      "snippet": "edtlgetrowforvalue{${1:db%special}}{${2:col idx}}{${3:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlgetrowindex{}{}{}{}": {
-      "command": "dtlgetrowindex{}{}{}{}",
-      "snippet": "dtlgetrowindex{${1:row cs%cmd}}{${2:db%special}}{${3:col idx}}{${4:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlgetrow{}{}": {
-      "command": "dtlgetrow{}{}",
-      "snippet": "dtlgetrow{${1:db%special}}{${2:row idx}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlheaderformat{}": {
-      "command": "dtlheaderformat{}",
-      "snippet": "dtlheaderformat{${1:format}}",
+    "dtlstringalign": {
+      "command": "dtlstringalign",
+      "snippet": "dtlstringalign",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -854,37 +247,65 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlintformat{}": {
-      "command": "dtlintformat{}",
-      "snippet": "dtlintformat{${1:format}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtllastloadeddb": {
-      "command": "dtllastloadeddb",
-      "snippet": "dtllastloadeddb",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlnoexpandnewvalue": {
-      "command": "dtlnoexpandnewvalue",
-      "snippet": "dtlnoexpandnewvalue",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlnovalue": {
-      "command": "dtlnovalue",
-      "snippet": "dtlnovalue",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "dtlrealalign": {
       "command": "dtlrealalign",
       "snippet": "dtlrealalign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlcurrencyalign": {
+      "command": "dtlcurrencyalign",
+      "snippet": "dtlcurrencyalign",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlbeforecols": {
+      "command": "dtlbeforecols",
+      "snippet": "dtlbeforecols",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlbetweencols": {
+      "command": "dtlbetweencols",
+      "snippet": "dtlbetweencols",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlaftercols": {
+      "command": "dtlaftercols",
+      "snippet": "dtlaftercols",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtladdalign{}{}{}{}": {
+      "command": "dtladdalign{}{}{}{}",
+      "snippet": "dtladdalign{${1:cmd}}{${2:type}}{${3:col index}}{${4:max cols}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlheaderformat{}": {
+      "command": "dtlheaderformat{}",
+      "snippet": "dtlheaderformat{${1:format}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlstringformat{}": {
+      "command": "dtlstringformat{}",
+      "snippet": "dtlstringformat{${1:format}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlintformat{}": {
+      "command": "dtlintformat{}",
+      "snippet": "dtlintformat{${1:format}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -896,107 +317,79 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlrecombine": {
-      "command": "dtlrecombine",
-      "snippet": "dtlrecombine",
+    "dtlcurrencyformat{}": {
+      "command": "dtlcurrencyformat{}",
+      "snippet": "dtlcurrencyformat{${1:format}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlrecombineomitcurrent": {
-      "command": "dtlrecombineomitcurrent",
-      "snippet": "dtlrecombineomitcurrent",
+    "dtldisplayvalign": {
+      "command": "dtldisplayvalign",
+      "snippet": "dtldisplayvalign",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlremoveentryincurrentrow{}": {
-      "command": "dtlremoveentryincurrentrow{}",
-      "snippet": "dtlremoveentryincurrentrow{${1:col idx}}",
+    "dtldisplaycr": {
+      "command": "dtldisplaycr",
+      "snippet": "dtldisplaycr",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlreplaceentryincurrentrow{}{}": {
-      "command": "dtlreplaceentryincurrentrow{}{}",
-      "snippet": "dtlreplaceentryincurrentrow{${1:new value}}{${2:col idx}}",
+    "dtldisplaystarttab": {
+      "command": "dtldisplaystarttab",
+      "snippet": "dtldisplaystarttab",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlshowdbkeys{}": {
-      "command": "dtlshowdbkeys{}",
-      "snippet": "dtlshowdbkeys{${1:arg1}}",
+    "dtldisplayendtab": {
+      "command": "dtldisplayendtab",
+      "snippet": "dtldisplayendtab",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlshowdb{}": {
-      "command": "dtlshowdb{}",
-      "snippet": "dtlshowdb{${1:arg1}}",
+    "dtldisplayafterhead": {
+      "command": "dtldisplayafterhead",
+      "snippet": "dtldisplayafterhead",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlshowtype{}{}": {
-      "command": "dtlshowtype{}{}",
-      "snippet": "dtlshowtype{${1:arg1}}{${2:arg2}}",
+    "dtldisplaystartrow": {
+      "command": "dtldisplaystartrow",
+      "snippet": "dtldisplaystartrow",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlsort[]{}{}{}": {
-      "command": "dtlsort[]{}{}{}",
-      "snippet": "dtlsort[${4:replacement list}]{${1:sort criteria}}{${2:db%special}}{${3:handler}}",
+    "DTLforeach{}{}{}": {
+      "command": "DTLforeach{}{}{}",
+      "snippet": "DTLforeach{${1:db%special}}{${2:assign list}}{${3:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlsplitrow{}{}{}{}": {
-      "command": "dtlsplitrow{}{}{}{}",
-      "snippet": "dtlsplitrow{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+    "DTLforeach[]{}{}{}": {
+      "command": "DTLforeach[]{}{}{}",
+      "snippet": "DTLforeach[${4:condition}]{${1:db%special}}{${2:assign list}}{${3:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlstringalign": {
-      "command": "dtlstringalign",
-      "snippet": "dtlstringalign",
+    "DTLforeach*{}{}{}": {
+      "command": "DTLforeach*{}{}{}",
+      "snippet": "DTLforeach*{${1:db%special}}{${2:assign list}}{${3:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlstringformat{}": {
-      "command": "dtlstringformat{}",
-      "snippet": "dtlstringformat{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlswapentriesincurrentrow{}{}": {
-      "command": "dtlswapentriesincurrentrow{}{}",
-      "snippet": "dtlswapentriesincurrentrow{${1:col1 idx}}{${2:col2 idx}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlswaprows{}{}{}": {
-      "command": "dtlswaprows{}{}{}",
-      "snippet": "dtlswaprows{${1:arg1}}{${2:arg2}}{${3:arg3}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlupdateentryincurrentrow{}{}": {
-      "command": "dtlupdateentryincurrentrow{}{}",
-      "snippet": "dtlupdateentryincurrentrow{${1:dbkey}}{${2:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dtlwordindexcompare": {
-      "command": "dtlwordindexcompare",
-      "snippet": "dtlwordindexcompare",
+    "DTLforeach*[]{}{}{}": {
+      "command": "DTLforeach*[]{}{}{}",
+      "snippet": "DTLforeach*[${4:condition}]{${1:db%special}}{${2:assign list}}{${3:text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1029,6 +422,769 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "DTLcurrentindex": {
+      "command": "DTLcurrentindex",
+      "snippet": "DTLcurrentindex",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLiffirstrow{}{}": {
+      "command": "DTLiffirstrow{}{}",
+      "snippet": "DTLiffirstrow{${1:true case}}{${2:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLiflastrow{}{}": {
+      "command": "DTLiflastrow{}{}",
+      "snippet": "DTLiflastrow{${1:true case}}{${2:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLifoddrow{}{}": {
+      "command": "DTLifoddrow{}{}",
+      "snippet": "DTLifoddrow{${1:true case}}{${2:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsavelastrowcount{}": {
+      "command": "DTLsavelastrowcount{}",
+      "snippet": "DTLsavelastrowcount{${1:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLforeachkeyinrow{}{}": {
+      "command": "DTLforeachkeyinrow{}{}",
+      "snippet": "DTLforeachkeyinrow{${1:cmd}}{${2:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlkey": {
+      "command": "dtlkey",
+      "snippet": "dtlkey",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlcol": {
+      "command": "dtlcol",
+      "snippet": "dtlcol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtltype": {
+      "command": "dtltype",
+      "snippet": "dtltype",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlheader": {
+      "command": "dtlheader",
+      "snippet": "dtlheader",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLstringnull": {
+      "command": "DTLstringnull",
+      "snippet": "DTLstringnull",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLnumbernull": {
+      "command": "DTLnumbernull",
+      "snippet": "DTLnumbernull",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLifnull{}{}{}": {
+      "command": "DTLifnull{}{}{}",
+      "snippet": "DTLifnull{${1:cmd}}{${2:true case}}{${3:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLifnullorempty{}{}{}": {
+      "command": "DTLifnullorempty{}{}{}",
+      "snippet": "DTLifnullorempty{${1:cmd}}{${2:true case}}{${3:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlnovalue": {
+      "command": "dtlnovalue",
+      "snippet": "dtlnovalue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlswaprows{}{}{}": {
+      "command": "dtlswaprows{}{}{}",
+      "snippet": "dtlswaprows{${1:db%special}}{${2:row1 index}}{${3:row2 index}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLremoverow{}{}": {
+      "command": "DTLremoverow{}{}",
+      "snippet": "DTLremoverow{${1:db%special}}{${2:row index}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLappendtorow{}{}": {
+      "command": "DTLappendtorow{}{}",
+      "snippet": "DTLappendtorow{${1:dbkey}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLreplaceentryforrow{}{}": {
+      "command": "DTLreplaceentryforrow{}{}",
+      "snippet": "DTLreplaceentryforrow{${1:dbkey}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLremoveentryfromrow{}": {
+      "command": "DTLremoveentryfromrow{}",
+      "snippet": "DTLremoveentryfromrow{${1:dbkey}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLremovecurrentrow": {
+      "command": "DTLremovecurrentrow",
+      "snippet": "DTLremovecurrentrow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsumforkeys{}{}{}": {
+      "command": "DTLsumforkeys{}{}{}",
+      "snippet": "DTLsumforkeys{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsumforkeys[]{}{}{}": {
+      "command": "DTLsumforkeys[]{}{}{}",
+      "snippet": "DTLsumforkeys[${4:condition}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsumforkeys[][]{}{}{}": {
+      "command": "DTLsumforkeys[][]{}{}{}",
+      "snippet": "DTLsumforkeys[${4:condition}][${5:assign list}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsumcolumn{}{}{}": {
+      "command": "DTLsumcolumn{}{}{}",
+      "snippet": "DTLsumcolumn{${1:db%special}}{${2:dbkey}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLmeanforkeys{}{}{}": {
+      "command": "DTLmeanforkeys{}{}{}",
+      "snippet": "DTLmeanforkeys{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLmeanforkeys[]{}{}{}": {
+      "command": "DTLmeanforkeys[]{}{}{}",
+      "snippet": "DTLmeanforkeys[${4:condition}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLmeanforkeys[][]{}{}{}": {
+      "command": "DTLmeanforkeys[][]{}{}{}",
+      "snippet": "DTLmeanforkeys[${4:condition}][${5:assign list}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLmeanforcolumn{}{}{}": {
+      "command": "DTLmeanforcolumn{}{}{}",
+      "snippet": "DTLmeanforcolumn{${1:db%special}}{${2:dbkey}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLvarianceforkeys{}{}{}": {
+      "command": "DTLvarianceforkeys{}{}{}",
+      "snippet": "DTLvarianceforkeys{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLvarianceforkeys[]{}{}{}": {
+      "command": "DTLvarianceforkeys[]{}{}{}",
+      "snippet": "DTLvarianceforkeys[${4:condition}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLvarianceforkeys[][]{}{}{}": {
+      "command": "DTLvarianceforkeys[][]{}{}{}",
+      "snippet": "DTLvarianceforkeys[${4:condition}][${5:assign list}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLvarianceforcolumn{}{}{}": {
+      "command": "DTLvarianceforcolumn{}{}{}",
+      "snippet": "DTLvarianceforcolumn{${1:db%special}}{${2:dbkey}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsdforkeys{}{}{}": {
+      "command": "DTLsdforkeys{}{}{}",
+      "snippet": "DTLsdforkeys{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsdforkeys[]{}{}{}": {
+      "command": "DTLsdforkeys[]{}{}{}",
+      "snippet": "DTLsdforkeys[${4:condition}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsdforkeys[][]{}{}{}": {
+      "command": "DTLsdforkeys[][]{}{}{}",
+      "snippet": "DTLsdforkeys[${4:condition}][${5:assign list}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsdforcolumn{}{}{}": {
+      "command": "DTLsdforcolumn{}{}{}",
+      "snippet": "DTLsdforcolumn{${1:db%special}}{${2:dbkey}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLminforkeys{}{}{}": {
+      "command": "DTLminforkeys{}{}{}",
+      "snippet": "DTLminforkeys{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLminforkeys[]{}{}{}": {
+      "command": "DTLminforkeys[]{}{}{}",
+      "snippet": "DTLminforkeys[${4:condition}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLminforkeys[][]{}{}{}": {
+      "command": "DTLminforkeys[][]{}{}{}",
+      "snippet": "DTLminforkeys[${4:condition}][${5:assign list}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLminforcolumn{}{}{}": {
+      "command": "DTLminforcolumn{}{}{}",
+      "snippet": "DTLminforcolumn{${1:db%special}}{${2:dbkey}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLmaxforkeys{}{}{}": {
+      "command": "DTLmaxforkeys{}{}{}",
+      "snippet": "DTLmaxforkeys{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLmaxforkeys[]{}{}{}": {
+      "command": "DTLmaxforkeys[]{}{}{}",
+      "snippet": "DTLmaxforkeys[${4:condition}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLmaxforkeys[][]{}{}{}": {
+      "command": "DTLmaxforkeys[][]{}{}{}",
+      "snippet": "DTLmaxforkeys[${4:condition}][${5:assign list}]{${1:db%special}}{${2:key list}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLmaxforcolumn{}{}{}": {
+      "command": "DTLmaxforcolumn{}{}{}",
+      "snippet": "DTLmaxforcolumn{${1:db%special}}{${2:dbkey}}{${3:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLcomputebounds{}{}{}{}{}{}{}": {
+      "command": "DTLcomputebounds{}{}{}{}{}{}{}",
+      "snippet": "DTLcomputebounds{${1:db%special}}{${2:x key}}{${3:y key}}{${4:minX%cmd}}{${5:minY%cmd}}{${6:maxX%cmd}}{${7:maxY%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlsort{}{}{}": {
+      "command": "dtlsort{}{}{}",
+      "snippet": "dtlsort{${1:sort criteria}}{${2:db%special}}{${3:handler}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlsort[]{}{}{}": {
+      "command": "dtlsort[]{}{}{}",
+      "snippet": "dtlsort[${4:replacement key list}]{${1:sort criteria}}{${2:db%special}}{${3:handler}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsort{}{}": {
+      "command": "DTLsort{}{}",
+      "snippet": "DTLsort{${1:sort criteria}}{${2:db%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsort[]{}{}": {
+      "command": "DTLsort[]{}{}",
+      "snippet": "DTLsort[${3:replacement key list}]{${1:sort criteria}}{${2:db%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsort*{}{}": {
+      "command": "DTLsort*{}{}",
+      "snippet": "DTLsort*{${1:sort criteria}}{${2:db%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsort*[]{}{}": {
+      "command": "DTLsort*[]{}{}",
+      "snippet": "DTLsort*[${3:replacement key list}]{${1:sort criteria}}{${2:db%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsavedb{}{}": {
+      "command": "DTLsavedb{}{}",
+      "snippet": "DTLsavedb{${1:db%special}}{${2:filename}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsavetexdb{}{}": {
+      "command": "DTLsavetexdb{}{}",
+      "snippet": "DTLsavetexdb{${1:db%special}}{${2:filename}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLsaverawdb{}{}": {
+      "command": "DTLsaverawdb{}{}",
+      "snippet": "DTLsaverawdb{${1:db%special}}{${2:filename}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLprotectedsaverawdb{}{}": {
+      "command": "DTLprotectedsaverawdb{}{}",
+      "snippet": "DTLprotectedsaverawdb{${1:db%special}}{${2:filename}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLloaddbtex{}{}": {
+      "command": "DTLloaddbtex{}{}",
+      "snippet": "DTLloaddbtex{${1:cmd}}{${2:filename}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtllastloadeddb": {
+      "command": "dtllastloadeddb",
+      "snippet": "dtllastloadeddb",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLcleardb{}": {
+      "command": "DTLcleardb{}",
+      "snippet": "DTLcleardb{${1:db%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLgcleardb{}": {
+      "command": "DTLgcleardb{}",
+      "snippet": "DTLgcleardb{${1:db%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLdeletedb{}": {
+      "command": "DTLdeletedb{}",
+      "snippet": "DTLdeletedb{${1:db%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLgdeletedb{}": {
+      "command": "DTLgdeletedb{}",
+      "snippet": "DTLgdeletedb{${1:db%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLgetdatatype{}{}{}": {
+      "command": "DTLgetdatatype{}{}{}",
+      "snippet": "DTLgetdatatype{${1:cmd}}{${2:db%special}}{${3:dbkey}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLunsettype": {
+      "command": "DTLunsettype",
+      "snippet": "DTLunsettype",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLstringtype": {
+      "command": "DTLstringtype",
+      "snippet": "DTLstringtype",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLinttype": {
+      "command": "DTLinttype",
+      "snippet": "DTLinttype",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLrealtype": {
+      "command": "DTLrealtype",
+      "snippet": "DTLrealtype",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLcurrencytype": {
+      "command": "DTLcurrencytype",
+      "snippet": "DTLcurrencytype",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLifdbexists{}{}{}": {
+      "command": "DTLifdbexists{}{}{}",
+      "snippet": "DTLifdbexists{${1:db%special}}{${2:true case}}{${3:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLifhaskey{}{}{}{}": {
+      "command": "DTLifhaskey{}{}{}{}",
+      "snippet": "DTLifhaskey{${1:db%special}}{${2:dbkey}}{${3:true case}}{${4:false case}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLgetcolumnindex{}{}{}": {
+      "command": "DTLgetcolumnindex{}{}{}",
+      "snippet": "DTLgetcolumnindex{${1:cmd}}{${2:db%special}}{${3:dbkey}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLgetkeyforcolumn{}{}{}": {
+      "command": "DTLgetkeyforcolumn{}{}{}",
+      "snippet": "DTLgetkeyforcolumn{${1:cmd}}{${2:db%special}}{${3:column index}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlcolumnindex{}{}": {
+      "command": "dtlcolumnindex{}{}",
+      "snippet": "dtlcolumnindex{${1:db%special}}{${2:dbkey}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLgetkeydata{}{}{}{}{}": {
+      "command": "DTLgetkeydata{}{}{}{}{}",
+      "snippet": "DTLgetkeydata{${1:dbkey}}{${2:db%special}}{${3:col cmd%cmd}}{${4:type cmd%cmd}}{${5:header cmd%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLgetvalue{}{}{}{}": {
+      "command": "DTLgetvalue{}{}{}{}",
+      "snippet": "DTLgetvalue{${1:cmd}}{${2:db%special}}{${3:row}}{${4:column}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLgetlocation{}{}{}{}": {
+      "command": "DTLgetlocation{}{}{}{}",
+      "snippet": "DTLgetlocation{${1:row cmd%cmd}}{${2:column cmd%cmd}}{${3:db%special}}{${4:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLgetvalueforkey{}{}{}{}{}": {
+      "command": "DTLgetvalueforkey{}{}{}{}{}",
+      "snippet": "DTLgetvalueforkey{${1:cmd}}{${2:dbkey}}{${3:db%special}}{${4:ref key}}{${5:ref value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLgetrowforkey{}{}{}{}": {
+      "command": "DTLgetrowforkey{}{}{}{}",
+      "snippet": "DTLgetrowforkey{${1:cmd}}{${2:db%special}}{${3:ref key}}{${4:ref value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLfetch{}{}{}{}": {
+      "command": "DTLfetch{}{}{}{}",
+      "snippet": "DTLfetch{${1:db%special}}{${2:col1 name}}{${3:col1 value}}{${4:col2 name}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLassign{}{}{}": {
+      "command": "DTLassign{}{}{}",
+      "snippet": "DTLassign{${1:db%special}}{${2:row index}}{${3:assign list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLassignfirstmatch{}{}{}{}": {
+      "command": "DTLassignfirstmatch{}{}{}{}",
+      "snippet": "DTLassignfirstmatch{${1:db%special}}{${2:dbkey}}{${3:value}}{${4:assign list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xDTLassignfirstmatch{}{}{}{}": {
+      "command": "xDTLassignfirstmatch{}{}{}{}",
+      "snippet": "xDTLassignfirstmatch{${1:db%special}}{${2:dbkey}}{${3:value}}{${4:assign list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLswaprows{}{}{}": {
+      "command": "DTLswaprows{}{}{}",
+      "snippet": "DTLswaprows{${1:db%special}}{${2:row1 index}}{${3:row2 index}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLgetrowindex{}{}{}{}": {
+      "command": "DTLgetrowindex{}{}{}{}",
+      "snippet": "DTLgetrowindex{${1:row cmd%cmd}}{${2:db%special}}{${3:col index}}{${4:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlgetrowindex{}{}{}{}": {
+      "command": "dtlgetrowindex{}{}{}{}",
+      "snippet": "dtlgetrowindex{${1:row cmd%cmd}}{${2:db%special}}{${3:col index}}{${4:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "xdtlgetrowindex{}{}{}{}": {
+      "command": "xdtlgetrowindex{}{}{}{}",
+      "snippet": "xdtlgetrowindex{${1:row cmd%cmd}}{${2:db%special}}{${3:col index}}{${4:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlcurrentrow": {
+      "command": "dtlcurrentrow",
+      "snippet": "dtlcurrentrow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlbeforerow": {
+      "command": "dtlbeforerow",
+      "snippet": "dtlbeforerow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlafterrow": {
+      "command": "dtlafterrow",
+      "snippet": "dtlafterrow",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlrownum": {
+      "command": "dtlrownum",
+      "snippet": "dtlrownum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlcolumnnum": {
+      "command": "dtlcolumnnum",
+      "snippet": "dtlcolumnnum",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtldbname": {
+      "command": "dtldbname",
+      "snippet": "dtldbname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlgetrow{}{}": {
+      "command": "dtlgetrow{}{}",
+      "snippet": "dtlgetrow{${1:db%special}}{${2:row index}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlgetrowforvalue{}{}{}": {
+      "command": "dtlgetrowforvalue{}{}{}",
+      "snippet": "dtlgetrowforvalue{${1:db%special}}{${2:col index}}{${3:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "edtlgetrowforvalue{}{}{}": {
+      "command": "edtlgetrowforvalue{}{}{}",
+      "snippet": "edtlgetrowforvalue{${1:db%special}}{${2:col index}}{${3:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlrecombine": {
+      "command": "dtlrecombine",
+      "snippet": "dtlrecombine",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlrecombineomitcurrent": {
+      "command": "dtlrecombineomitcurrent",
+      "snippet": "dtlrecombineomitcurrent",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlsplitrow{}{}{}{}": {
+      "command": "dtlsplitrow{}{}{}{}",
+      "snippet": "dtlsplitrow{${1:row specs}}{${2:col index}}{${3:before cmd%cmd}}{${4:after cmd%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlgetentryfromcurrentrow{}{}": {
+      "command": "dtlgetentryfromcurrentrow{}{}",
+      "snippet": "dtlgetentryfromcurrentrow{${1:cmd}}{${2:col index}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlgetentryfromrow{}{}{}": {
+      "command": "dtlgetentryfromrow{}{}{}",
+      "snippet": "dtlgetentryfromrow{${1:cmd}}{${2:col index}}{${3:row toks}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlreplaceentryincurrentrow{}{}": {
+      "command": "dtlreplaceentryincurrentrow{}{}",
+      "snippet": "dtlreplaceentryincurrentrow{${1:new value}}{${2:col index}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlswapentriesincurrentrow{}{}": {
+      "command": "dtlswapentriesincurrentrow{}{}",
+      "snippet": "dtlswapentriesincurrentrow{${1:col1 index}}{${2:col2 index}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlappendentrytocurrentrow{}{}": {
+      "command": "dtlappendentrytocurrentrow{}{}",
+      "snippet": "dtlappendentrytocurrentrow{${1:dbkey}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlupdateentryincurrentrow{}{}": {
+      "command": "dtlupdateentryincurrentrow{}{}",
+      "snippet": "dtlupdateentryincurrentrow{${1:dbkey}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlremoveentryincurrentrow{}": {
+      "command": "dtlremoveentryincurrentrow{}",
+      "snippet": "dtlremoveentryincurrentrow{${1:col index}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "in{}": {
+      "command": "in{}",
+      "snippet": "in{${1:db%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "do{}": {
+      "command": "do{}",
+      "snippet": "do{${1:body}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlforcolumn{}{}{}{}": {
+      "command": "dtlforcolumn{}{}{}{}",
+      "snippet": "dtlforcolumn{${1:cmd}}{${2:db%special}}{${3:dbkey}}{${4:body}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlforcolumnidx{}{}{}{}": {
+      "command": "dtlforcolumnidx{}{}{}{}",
+      "snippet": "dtlforcolumnidx{${1:cmd}}{${2:db%special}}{${3:col index}}{${4:body}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "theHDTLrow": {
       "command": "theHDTLrow",
       "snippet": "theHDTLrow",
@@ -1057,23 +1213,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLgetvalue": {
-      "command": "DTLgetvalue",
-      "snippet": "DTLgetvalue",
+    "dtlforeachlevel": {
+      "command": "dtlforeachlevel",
+      "snippet": "dtlforeachlevel",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "DTLpar": {
-      "command": "DTLpar",
-      "snippet": "DTLpar",
+    "dtlshowdb{}": {
+      "command": "dtlshowdb{}",
+      "snippet": "dtlshowdb{${1:db%special}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dtlshowdb": {
-      "command": "dtlshowdb",
-      "snippet": "dtlshowdb",
+    "dtlshowdbkeys{}": {
+      "command": "dtlshowdbkeys{}",
+      "snippet": "dtlshowdbkeys{${1:db%special}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlshowtype{}{}": {
+      "command": "dtlshowtype{}{}",
+      "snippet": "dtlshowtype{${1:db%special}}{${2:dbkey}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1085,19 +1248,63 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "ifdtlverbose": {
-      "command": "ifdtlverbose",
-      "snippet": "ifdtlverbose",
+    "dtlnoheadertrue": {
+      "command": "dtlnoheadertrue",
+      "snippet": "dtlnoheadertrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlnoheaderfalse": {
+      "command": "dtlnoheaderfalse",
+      "snippet": "dtlnoheaderfalse",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ifdtlautokeys": {
+      "command": "ifdtlautokeys",
+      "snippet": "ifdtlautokeys",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlautokeystrue": {
+      "command": "dtlautokeystrue",
+      "snippet": "dtlautokeystrue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "dtlautokeysfalse": {
+      "command": "dtlautokeysfalse",
+      "snippet": "dtlautokeysfalse",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {
+    "DTLenvforeach{}{}": {
+      "name": "DTLenvforeach",
+      "detail": "DTLenvforeach{}{}",
+      "snippet": "{${1:db%special}}{${2:assign list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "DTLenvforeach[]{}{}": {
       "name": "DTLenvforeach",
       "detail": "DTLenvforeach[]{}{}",
       "snippet": "[${3:condition}]{${1:db%special}}{${2:assign list}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DTLenvforeach*{}{}": {
+      "name": "DTLenvforeach*",
+      "detail": "DTLenvforeach*{}{}",
+      "snippet": "{${1:db%special}}{${2:assign list}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1111,5 +1318,11 @@
       "keyvalindex": -1
     }
   },
-  "options": []
+  "options": [
+    "utf8",
+    "verbose",
+    "math=",
+    "delimiter=",
+    "separator="
+  ]
 }

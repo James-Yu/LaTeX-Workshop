@@ -1,5 +1,8 @@
 {
-  "includes": [],
+  "includes": [
+    "amsmath",
+    "xparse"
+  ],
   "cmds": {
     "Bqty{}": {
       "command": "Bqty{}",
@@ -50,6 +53,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "Residue": {
+      "command": "Residue",
+      "snippet": "Residue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "Tr": {
       "command": "Tr",
       "snippet": "Tr",
@@ -71,16 +81,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "absolutevalue{}": {
-      "command": "absolutevalue{}",
-      "snippet": "absolutevalue{${1:expression}}",
+    "abs{}": {
+      "command": "abs{}",
+      "snippet": "abs{${1:expression}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "abs{}": {
-      "command": "abs{}",
-      "snippet": "abs{${1:expression}}",
+    "absolutevalue{}": {
+      "command": "absolutevalue{}",
+      "snippet": "absolutevalue{${1:expression}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -95,6 +105,13 @@
     "acomm{}{}": {
       "command": "acomm{}{}",
       "snippet": "acomm{${1:expression1}}{${2:expression2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "acommutator{}{}": {
+      "command": "acommutator{}{}",
+      "snippet": "acommutator{${1:expression1}}{${2:expression2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -120,9 +137,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "admat{}": {
+      "command": "admat{}",
+      "snippet": "admat{${1:matrix element 1,matrix element 2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "anticommutator{}{}": {
       "command": "anticommutator{}{}",
       "snippet": "anticommutator{${1:expression1}}{${2:expression2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "antidiagonalmatrix{}": {
+      "command": "antidiagonalmatrix{}",
+      "snippet": "antidiagonalmatrix{${1:matrix element 1,matrix element 2,...}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -169,6 +200,34 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "argclose": {
+      "command": "argclose",
+      "snippet": "argclose",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "argclose*": {
+      "command": "argclose*",
+      "snippet": "argclose*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "argopen": {
+      "command": "argopen",
+      "snippet": "argopen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "argopen*": {
+      "command": "argopen*",
+      "snippet": "argopen*",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "asecant": {
       "command": "asecant",
       "snippet": "asecant",
@@ -211,6 +270,20 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "bra{}": {
+      "command": "bra{}",
+      "snippet": "bra{${1:expression}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "braces{}{}{}": {
+      "command": "braces{}{}{}",
+      "snippet": "braces{${1:ldelim}}{${2:rdelim}}{${3:expression}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "braket*{}{}": {
       "command": "braket*{}{}",
       "snippet": "braket*{${1:expression1}}{${2:expression2}}",
@@ -232,9 +305,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "bra{}": {
-      "command": "bra{}",
-      "snippet": "bra{${1:expression}}",
+    "colcount": {
+      "command": "colcount",
+      "snippet": "colcount",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -246,16 +319,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "commutator{}{}": {
-      "command": "commutator{}{}",
-      "snippet": "commutator{${1:expression1}}{${2:expression2}}",
+    "comm{}{}": {
+      "command": "comm{}{}",
+      "snippet": "comm{${1:expression1}}{${2:expression2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "comm{}{}": {
-      "command": "comm{}{}",
-      "snippet": "comm{${1:expression1}}{${2:expression2}}",
+    "commutator{}{}": {
+      "command": "commutator{}{}",
+      "snippet": "commutator{${1:expression1}}{${2:expression2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -367,6 +440,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "diagonalmatrix{}": {
+      "command": "diagonalmatrix{}",
+      "snippet": "diagonalmatrix{${1:matrix element 1,matrix element 2,...}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "differential": {
       "command": "differential",
       "snippet": "differential",
@@ -384,6 +464,13 @@
     "div[]": {
       "command": "div[]",
       "snippet": "div[${1:expression}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "div{}": {
+      "command": "div{}",
+      "snippet": "div{${1:expression}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -409,9 +496,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "div{}": {
-      "command": "div{}",
-      "snippet": "div{${1:expression}}",
+    "dmat{}": {
+      "command": "dmat{}",
+      "snippet": "dmat{${1:matrix element 1,matrix element 2,...}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -458,16 +545,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dyad{}{}": {
-      "command": "dyad{}{}",
-      "snippet": "dyad{${1:expression1}}{${2:expression2}}",
+    "dyad{}": {
+      "command": "dyad{}",
+      "snippet": "dyad{${1:expression}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "dyad{}": {
-      "command": "dyad{}",
-      "snippet": "dyad{${1:expression}}",
+    "dyad{}{}": {
+      "command": "dyad{}{}",
+      "snippet": "dyad{${1:expression1}}{${2:expression2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -482,6 +569,20 @@
     "ev*{}{}": {
       "command": "ev*{}{}",
       "snippet": "ev*{${1:expression1}}{${2:expression2}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ev{}": {
+      "command": "ev{}",
+      "snippet": "ev{${1:expression}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "ev{}{}": {
+      "command": "ev{}{}",
+      "snippet": "ev{${1:expression1}}{${2:expression2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -507,13 +608,6 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "evaluated{}_{}^{}": {
-      "command": "evaluated{}_{}^{}",
-      "snippet": "evaluated{${1:expression}}_{${2:limit1}}^{${3:limit2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "eval{}_{}^{}": {
       "command": "eval{}_{}^{}",
       "snippet": "eval{${1:expression}}_{${2:limit1}}^{${3:limit2}}",
@@ -521,16 +615,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "ev{}{}": {
-      "command": "ev{}{}",
-      "snippet": "ev{${1:expression1}}{${2:expression2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ev{}": {
-      "command": "ev{}",
-      "snippet": "ev{${1:expression}}",
+    "evaluated{}_{}^{}": {
+      "command": "evaluated{}_{}^{}",
+      "snippet": "evaluated{${1:expression}}_{${2:limit1}}^{${3:limit2}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -556,6 +643,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "expval{}": {
+      "command": "expval{}",
+      "snippet": "expval{${1:expression}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "expval{}{}": {
       "command": "expval{}{}",
       "snippet": "expval{${1:expression1}}{${2:expression2}}",
@@ -563,9 +657,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "expval{}": {
-      "command": "expval{}",
-      "snippet": "expval{${1:expression}}",
+    "fbraces{}{}{}{}": {
+      "command": "fbraces{}{}{}{}",
+      "snippet": "fbraces{${1:ldelim}}{${2:rdelim}}{${3:symbol}}{${4:expression}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fderivative{}{}": {
+      "command": "fderivative{}{}",
+      "snippet": "fderivative{${1:function}}{${2:expression}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -619,6 +720,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "grad{}": {
+      "command": "grad{}",
+      "snippet": "grad{${1:expression}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "gradient": {
       "command": "gradient",
       "snippet": "gradient",
@@ -633,9 +741,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "grad{}": {
-      "command": "grad{}",
-      "snippet": "grad{${1:expression}}",
+    "homework": {
+      "command": "homework",
+      "snippet": "homework",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -682,9 +790,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "identitymatrix{}": {
+      "command": "identitymatrix{}",
+      "snippet": "identitymatrix{${1:n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "imaginary": {
       "command": "imaginary",
       "snippet": "imaginary",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "imat{}": {
+      "command": "imat{}",
+      "snippet": "imat{${1:n}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -717,6 +839,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "ket{}": {
+      "command": "ket{}",
+      "snippet": "ket{${1:expression}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "ketbra*{}{}": {
       "command": "ketbra*{}{}",
       "snippet": "ketbra*{${1:expression1}}{${2:expression2}}",
@@ -727,13 +856,6 @@
     "ketbra{}{}": {
       "command": "ketbra{}{}",
       "snippet": "ketbra{${1:expression1}}{${2:expression2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ket{}": {
-      "command": "ket{}",
-      "snippet": "ket{${1:expression}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -773,6 +895,15 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "lparen": {
+      "command": "lparen",
+      "snippet": "lparen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": "(",
+      "documentation": "LEFT PARENTHESIS"
+    },
     "matrixdeterminant{}": {
       "command": "matrixdeterminant{}",
       "snippet": "matrixdeterminant{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element}}",
@@ -783,6 +914,13 @@
     "matrixel*{}{}{}": {
       "command": "matrixel*{}{}{}",
       "snippet": "matrixel*{${1:expression1}}{${2:expression2}}{${3:expression3}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "matrixel{}{}{}": {
+      "command": "matrixel{}{}{}",
+      "snippet": "matrixel{${1:expression1}}{${2:expression2}}{${3:expression3}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -801,16 +939,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "matrixel{}{}{}": {
-      "command": "matrixel{}{}{}",
-      "snippet": "matrixel{${1:expression1}}{${2:expression2}}{${3:expression3}}",
+    "matrixquantity{}": {
+      "command": "matrixquantity{}",
+      "snippet": "matrixquantity{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "matrixquantity{}": {
-      "command": "matrixquantity{}",
-      "snippet": "matrixquantity{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}",
+    "matrixtoks": {
+      "command": "matrixtoks",
+      "snippet": "matrixtoks",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -913,6 +1051,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "ordersymbol": {
+      "command": "ordersymbol",
+      "snippet": "ordersymbol",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "outerproduct{}{}": {
       "command": "outerproduct{}{}",
       "snippet": "outerproduct{${1:expression1}}{${2:expression2}}",
@@ -923,6 +1068,34 @@
     "partialderivative{}{}": {
       "command": "partialderivative{}{}",
       "snippet": "partialderivative{${1:function}}{${2:expression}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "paulimatrix{}": {
+      "command": "paulimatrix{}",
+      "snippet": "paulimatrix{${1:n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "paulixmatrix": {
+      "command": "paulixmatrix",
+      "snippet": "paulixmatrix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pauliymatrix": {
+      "command": "pauliymatrix",
+      "snippet": "pauliymatrix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "paulizmatrix": {
+      "command": "paulizmatrix",
+      "snippet": "paulizmatrix",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -969,6 +1142,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "pdv{}{}{}": {
+      "command": "pdv{}{}{}",
+      "snippet": "pdv{${1:f}}{${2:x}}{${3:y}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "pdv{}{}": {
       "command": "pdv{}{}",
       "snippet": "pdv{${1:function}}{${2:expression}}",
@@ -976,9 +1156,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pdv{}{}{}": {
-      "command": "pdv{}{}{}",
-      "snippet": "pdv{${1:f}}{${2:x}}{${3:y}}",
+    "pmat{}": {
+      "command": "pmat{}",
+      "snippet": "pmat{${1:n}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1000,6 +1180,20 @@
     "pqty{}": {
       "command": "pqty{}",
       "snippet": "pqty{${1:expression}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "principalvalue": {
+      "command": "principalvalue",
+      "snippet": "principalvalue",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "principalvalue{}": {
+      "command": "principalvalue{}",
+      "snippet": "principalvalue{${1:expression}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1067,6 +1261,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "qc{}": {
+      "command": "qc{}",
+      "snippet": "qc{${1:word or phrase}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "qcc": {
       "command": "qcc",
       "snippet": "qcc",
@@ -1084,13 +1285,6 @@
     "qcomma{}": {
       "command": "qcomma{}",
       "snippet": "qcomma{${1:word or phrase}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "qc{}": {
-      "command": "qc{}",
-      "snippet": "qc{${1:word or phrase}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1263,6 +1457,20 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "qqtext*{}": {
+      "command": "qqtext*{}",
+      "snippet": "qqtext*{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "qqtext{}": {
+      "command": "qqtext{}",
+      "snippet": "qqtext{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "qsince": {
       "command": "qsince",
       "snippet": "qsince",
@@ -1361,12 +1569,21 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "sPmqty{}": {
-      "command": "sPmqty{}",
-      "snippet": "sPmqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}",
+    "rowcount": {
+      "command": "rowcount",
+      "snippet": "rowcount",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "rparen": {
+      "command": "rparen",
+      "snippet": "rparen",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1,
+      "detail": ")",
+      "documentation": "RIGHT PARENTHESIS"
     },
     "sbmqty{}": {
       "command": "sbmqty{}",
@@ -1385,6 +1602,13 @@
     "sine": {
       "command": "sine",
       "snippet": "sine",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "smallmatrixdeterminant{}": {
+      "command": "smallmatrixdeterminant{}",
+      "snippet": "smallmatrixdeterminant{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1424,6 +1648,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "sPmqty{}": {
+      "command": "sPmqty{}",
+      "snippet": "sPmqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "spmqty{}": {
       "command": "spmqty{}",
       "snippet": "spmqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}",
@@ -1459,6 +1690,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "trigopt": {
+      "command": "trigopt",
+      "snippet": "trigopt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "va*{}": {
       "command": "va*{}",
       "snippet": "va*{${1:expression}}",
@@ -1466,9 +1704,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "variation{}": {
-      "command": "variation{}",
-      "snippet": "variation{${1:expression}}",
+    "va{}": {
+      "command": "va{}",
+      "snippet": "va{${1:expression}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1480,9 +1718,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "va{}": {
-      "command": "va{}",
-      "snippet": "va{${1:expression}}",
+    "varE": {
+      "command": "varE",
+      "snippet": "varE",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "variation{}": {
+      "command": "variation{}",
+      "snippet": "variation{${1:expression}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1529,9 +1774,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "vev{}": {
+      "command": "vev{}",
+      "snippet": "vev{${1:expression}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "vmqty{}": {
       "command": "vmqty{}",
       "snippet": "vmqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "vnabla": {
+      "command": "vnabla",
+      "snippet": "vnabla",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1557,58 +1816,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "diagonalmatrix{}": {
-      "command": "diagonalmatrix{}",
-      "snippet": "diagonalmatrix{${1:matrix element 1,matrix element 2,...}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dmat{}": {
-      "command": "dmat{}",
-      "snippet": "dmat{${1:matrix element 1,matrix element 2,...}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "antidiagonalmatrix{}": {
-      "command": "antidiagonalmatrix{}",
-      "snippet": "antidiagonalmatrix{${1:matrix element 1,matrix element 2,...}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "admat{}": {
-      "command": "admat{}",
-      "snippet": "admat{${1:matrix element 1,matrix element 2,...}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "identitymatrix{}": {
-      "command": "identitymatrix{}",
-      "snippet": "identitymatrix{${1:n}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "imat{}": {
-      "command": "imat{}",
-      "snippet": "imat{${1:n}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "paulimatrix{}": {
-      "command": "paulimatrix{}",
-      "snippet": "paulimatrix{${1:n}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pmat{}": {
-      "command": "pmat{}",
-      "snippet": "pmat{${1:n}}",
+    "xmat{}{}{}": {
+      "command": "xmat{}{}{}",
+      "snippet": "xmat{${1:matrix element}}{${2:n}}{${3:m}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1616,13 +1826,6 @@
     "xmatrix{}{}{}": {
       "command": "xmatrix{}{}{}",
       "snippet": "xmatrix{${1:matrix element}}{${2:n}}{${3:m}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xmat{}{}{}": {
-      "command": "xmat{}{}{}",
-      "snippet": "xmat{${1:matrix element}}{${2:n}}{${3:m}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -1643,5 +1846,12 @@
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "trig",
+    "notrig",
+    "uprightdiff",
+    "italicdiff",
+    "bolddel",
+    "arrowdel"
+  ]
 }

@@ -1,5 +1,12 @@
 {
-  "includes": [],
+  "includes": [
+    "kvoptions",
+    "filehook",
+    "currfile-abspath",
+    "currfile-abspath",
+    "currfile-abspath",
+    "currfile-abspath"
+  ],
   "cmds": {
     "currfiledir": {
       "command": "currfiledir",
@@ -73,84 +80,7 @@
     },
     "ifcurrfile{}{}{}{}": {
       "command": "ifcurrfile{}{}{}{}",
-      "snippet": "ifcurrfile{${1:currfile macro or text}}{${2:text}}{${3:true}}{${4:false}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "currfileabsdir": {
-      "command": "currfileabsdir",
-      "snippet": "currfileabsdir",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "currfileabspath": {
-      "command": "currfileabspath",
-      "snippet": "currfileabspath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ifcurrfileabsdir{}{}{}": {
-      "command": "ifcurrfileabsdir{}{}{}",
-      "snippet": "ifcurrfileabsdir{${1:text}}{${2:true}}{${3:false}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ifcurrfileabspath{}{}{}": {
-      "command": "ifcurrfileabspath{}{}{}",
-      "snippet": "ifcurrfileabspath{${1:text}}{${2:true}}{${3:false}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "getpwd": {
-      "command": "getpwd",
-      "snippet": "getpwd",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "thepwd": {
-      "command": "thepwd",
-      "snippet": "thepwd",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "getmainfile": {
-      "command": "getmainfile",
-      "snippet": "getmainfile",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "themainfile": {
-      "command": "themainfile",
-      "snippet": "themainfile",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "getabspath{}": {
-      "command": "getabspath{}",
-      "snippet": "getabspath{${1:dir/file name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "theabspath": {
-      "command": "theabspath",
-      "snippet": "theabspath",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "theabsdir": {
-      "command": "theabsdir",
-      "snippet": "theabsdir",
+      "snippet": "ifcurrfile{${1:macro or text}}{${2:text}}{${3:true}}{${4:false}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -158,158 +88,164 @@
     "parentfiledir": {
       "command": "parentfiledir",
       "snippet": "parentfiledir",
-      "option": "",
+      "option": "parent",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfilebase": {
       "command": "parentfilebase",
       "snippet": "parentfilebase",
-      "option": "",
+      "option": "parent",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfileext": {
       "command": "parentfileext",
       "snippet": "parentfileext",
-      "option": "",
+      "option": "parent",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfilename": {
       "command": "parentfilename",
       "snippet": "parentfilename",
-      "option": "",
+      "option": "parent",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfilepath": {
       "command": "parentfilepath",
       "snippet": "parentfilepath",
-      "option": "",
+      "option": "parent",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfileabsdir": {
       "command": "parentfileabsdir",
       "snippet": "parentfileabsdir",
-      "option": "",
+      "option": "parent",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfileabspath": {
       "command": "parentfileabspath",
       "snippet": "parentfileabspath",
-      "option": "",
+      "option": "parent",
       "keyvals": [],
       "keyvalindex": -1
     },
     "currfilegetparents": {
       "command": "currfilegetparents",
       "snippet": "currfilegetparents",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfilediri": {
       "command": "parentfilediri",
       "snippet": "parentfilediri",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfiledirii": {
       "command": "parentfiledirii",
       "snippet": "parentfiledirii",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfilebasei": {
       "command": "parentfilebasei",
       "snippet": "parentfilebasei",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfilebaseii": {
       "command": "parentfilebaseii",
       "snippet": "parentfilebaseii",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfileexti": {
       "command": "parentfileexti",
       "snippet": "parentfileexti",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfileextii": {
       "command": "parentfileextii",
       "snippet": "parentfileextii",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfilenamei": {
       "command": "parentfilenamei",
       "snippet": "parentfilenamei",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfilenameii": {
       "command": "parentfilenameii",
       "snippet": "parentfilenameii",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfilepathi": {
       "command": "parentfilepathi",
       "snippet": "parentfilepathi",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfilepathii": {
       "command": "parentfilepathii",
       "snippet": "parentfilepathii",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfileabsdiri": {
       "command": "parentfileabsdiri",
       "snippet": "parentfileabsdiri",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfileabsdirii": {
       "command": "parentfileabsdirii",
       "snippet": "parentfileabsdirii",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfileabspathi": {
       "command": "parentfileabspathi",
       "snippet": "parentfileabspathi",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     },
     "parentfileabspathii": {
       "command": "parentfileabspathii",
       "snippet": "parentfileabspathii",
-      "option": "",
+      "option": "parents",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "mainext=",
+    "maindir=",
+    "fink",
+    "abspath",
+    "realmainfile"
+  ]
 }

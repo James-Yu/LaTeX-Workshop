@@ -1,13 +1,8 @@
 {
-  "includes": [],
+  "includes": [
+    "mathtools"
+  ],
   "cmds": {
-    "fbox": {
-      "command": "fbox",
-      "snippet": "fbox",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "empheqset{}": {
       "command": "empheqset{}",
       "snippet": "empheqset{${1:markup instructions}}",
@@ -239,34 +234,6 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "shoveleft{}": {
-      "command": "shoveleft{}",
-      "snippet": "shoveleft{${1:arg}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "shoveleft[]{}": {
-      "command": "shoveleft[]{}",
-      "snippet": "shoveleft[${2:dimen}]{${1:arg}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "shoveright{}": {
-      "command": "shoveright{}",
-      "snippet": "shoveright{${1:arg}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "shoveright[]{}": {
-      "command": "shoveright[]{}",
-      "snippet": "shoveright[${2:dimen}]{${1:arg}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "shadowbox*{}": {
       "command": "shadowbox*{}",
       "snippet": "shadowbox*{${1:arg}}",
@@ -281,9 +248,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "DeclareLeftDelimiter{}": {
+      "command": "DeclareLeftDelimiter{}",
+      "snippet": "DeclareLeftDelimiter{${1:delimiter}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "DeclareLeftDelimiter[]{}": {
       "command": "DeclareLeftDelimiter[]{}",
       "snippet": "DeclareLeftDelimiter[${2:space adjustment}]{${1:delimiter}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DeclareRightDelimiter{}": {
+      "command": "DeclareRightDelimiter{}",
+      "snippet": "DeclareRightDelimiter{${1:delimiter}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -339,14 +320,6 @@
     }
   },
   "envs": {
-    "empheq": {
-      "name": "empheq",
-      "detail": "empheq",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "empheq{}": {
       "name": "empheq",
       "detail": "empheq{}",
@@ -362,7 +335,240 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "MTmultlined": {
+      "name": "MTmultlined",
+      "detail": "MTmultlined",
+      "snippet": "",
+      "option": "oldmultline",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MTmultlined[][]": {
+      "name": "MTmultlined",
+      "detail": "MTmultlined[][]",
+      "snippet": "[${1:pos}][${2:width}]",
+      "option": "oldmultline",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "align[]": {
+      "name": "align",
+      "detail": "align[]",
+      "snippet": "[${1:markup instructions}]",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "align*[]": {
+      "name": "align*",
+      "detail": "align*[]",
+      "snippet": "[${1:markup instructions}]",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "alignat{}[]": {
+      "name": "alignat",
+      "detail": "alignat{}[]",
+      "snippet": "{${1:ncols}}[${2:markup instructions}]",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "alignat*{}[]": {
+      "name": "alignat*",
+      "detail": "alignat*{}[]",
+      "snippet": "{${1:ncols}}[${2:markup instructions}]",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "equation[]": {
+      "name": "equation",
+      "detail": "equation[]",
+      "snippet": "[${1:markup instructions}]",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "equation*[]": {
+      "name": "equation*",
+      "detail": "equation*[]",
+      "snippet": "[${1:markup instructions}]",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "flalign[]": {
+      "name": "flalign",
+      "detail": "flalign[]",
+      "snippet": "[${1:markup instructions}]",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "flalign*[]": {
+      "name": "flalign*",
+      "detail": "flalign*[]",
+      "snippet": "[${1:markup instructions}]",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gather[]": {
+      "name": "gather",
+      "detail": "gather[]",
+      "snippet": "[${1:markup instructions}]",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "gather*[]": {
+      "name": "gather*",
+      "detail": "gather*[]",
+      "snippet": "[${1:markup instructions}]",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multline[]": {
+      "name": "multline",
+      "detail": "multline[]",
+      "snippet": "[${1:markup instructions}]",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "multline*[]": {
+      "name": "multline*",
+      "detail": "multline*[]",
+      "snippet": "[${1:markup instructions}]",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AmSalign": {
+      "name": "AmSalign",
+      "detail": "AmSalign",
+      "snippet": "",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AmSalign*": {
+      "name": "AmSalign*",
+      "detail": "AmSalign*",
+      "snippet": "",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AmSalignat{}": {
+      "name": "AmSalignat",
+      "detail": "AmSalignat{}",
+      "snippet": "{${1:ncols}}",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AmSalignat*{}": {
+      "name": "AmSalignat*",
+      "detail": "AmSalignat*{}",
+      "snippet": "{${1:ncols}}",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AmSequation": {
+      "name": "AmSequation",
+      "detail": "AmSequation",
+      "snippet": "",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AmSequation*": {
+      "name": "AmSequation*",
+      "detail": "AmSequation*",
+      "snippet": "",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AmSflalign": {
+      "name": "AmSflalign",
+      "detail": "AmSflalign",
+      "snippet": "",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AmSflalign*": {
+      "name": "AmSflalign*",
+      "detail": "AmSflalign*",
+      "snippet": "",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AmSgather": {
+      "name": "AmSgather",
+      "detail": "AmSgather",
+      "snippet": "",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AmSgather*": {
+      "name": "AmSgather*",
+      "detail": "AmSgather*",
+      "snippet": "",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AmSmultline": {
+      "name": "AmSmultline",
+      "detail": "AmSmultline",
+      "snippet": "",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AmSmultline*": {
+      "name": "AmSmultline*",
+      "detail": "AmSmultline*",
+      "snippet": "",
+      "option": "overload2",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
-  "options": []
+  "options": [
+    "overload",
+    "overload2",
+    "oldmultline",
+    "newmultline",
+    "ntheorem",
+    "fixamsmath",
+    "donotfixamsmathbugs",
+    "allowspaces",
+    "disallowspaces",
+    "intlimits",
+    "nointlimits",
+    "sumlimits",
+    "nosumlimits",
+    "namelimits",
+    "nonamelimits",
+    "leqno",
+    "reqno",
+    "centertags",
+    "tbtags",
+    "cmex10",
+    "fleqn",
+    "alignedleftspaceyes",
+    "alignedleftspaceno",
+    "alignedleftspaceyesifneg"
+  ]
 }

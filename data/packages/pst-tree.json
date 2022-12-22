@@ -1,9 +1,41 @@
 {
-  "includes": [],
+  "includes": [
+    "pstricks",
+    "pst-node",
+    "pst-xkey"
+  ],
   "cmds": {
+    "endpsTree": {
+      "command": "endpsTree",
+      "snippet": "endpsTree",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "endskiplevels": {
+      "command": "endskiplevels",
+      "snippet": "endskiplevels",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "MakeShortTnput{}": {
+      "command": "MakeShortTnput{}",
+      "snippet": "MakeShortTnput{${1:char}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "psedge": {
       "command": "psedge",
       "snippet": "psedge",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "psnodecnt": {
+      "command": "psnodecnt",
+      "snippet": "psnodecnt",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -22,37 +54,170 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "pstree{}{}": {
-      "command": "pstree{}{}",
-      "snippet": "pstree{${1:node}}{${2:subtrees}}",
+    "pstree[]{}{}": {
+      "command": "pstree[]{}{}",
+      "snippet": "pstree[${3:options}]{${1:root}}{${2:successors}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "skiplevel[]{}": {
-      "command": "skiplevel[]{}",
-      "snippet": "skiplevel[${2:par}]{${1:subtrees}}",
+    "psTree{}": {
+      "command": "psTree{}",
+      "snippet": "psTree{${1:root}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstree{}{}": {
+      "command": "pstree{}{}",
+      "snippet": "pstree{${1:root}}{${2:successors}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstreecnt": {
+      "command": "pstreecnt",
+      "snippet": "pstreecnt",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstreehooki": {
+      "command": "pstreehooki",
+      "snippet": "pstreehooki",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstreehookii": {
+      "command": "pstreehookii",
+      "snippet": "pstreehookii",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstreehookiii": {
+      "command": "pstreehookiii",
+      "snippet": "pstreehookiii",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstreehookiv": {
+      "command": "pstreehookiv",
+      "snippet": "pstreehookiv",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstreehookix": {
+      "command": "pstreehookix",
+      "snippet": "pstreehookix",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstreehookv": {
+      "command": "pstreehookv",
+      "snippet": "pstreehookv",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstreehookvi": {
+      "command": "pstreehookvi",
+      "snippet": "pstreehookvi",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstreehookvii": {
+      "command": "pstreehookvii",
+      "snippet": "pstreehookvii",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstreehookviii": {
+      "command": "pstreehookviii",
+      "snippet": "pstreehookviii",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstreehookx": {
+      "command": "pstreehookx",
+      "snippet": "pstreehookx",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "pstreelevel": {
+      "command": "pstreelevel",
+      "snippet": "pstreelevel",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "PSTreeLoaded": {
+      "command": "PSTreeLoaded",
+      "snippet": "PSTreeLoaded",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "skiplevel*[]{}": {
       "command": "skiplevel*[]{}",
-      "snippet": "skiplevel*[${2:par}]{${1:subtrees}}",
+      "snippet": "skiplevel*[${2:options}]{${1:subtrees}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "skiplevels[]{}": {
-      "command": "skiplevels[]{}",
-      "snippet": "skiplevels[${2:par}]{${1:n}}",
+    "skiplevel*{}": {
+      "command": "skiplevel*{}",
+      "snippet": "skiplevel*{${1:subtrees}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skiplevel[]{}": {
+      "command": "skiplevel[]{}",
+      "snippet": "skiplevel[${2:options}]{${1:subtrees}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skiplevel{}": {
+      "command": "skiplevel{}",
+      "snippet": "skiplevel{${1:subtrees}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "skiplevels*[]{}": {
       "command": "skiplevels*[]{}",
-      "snippet": "skiplevels*[${2:par}]{${1:n}}",
+      "snippet": "skiplevels*[${2:options}]{${1:n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skiplevels*{}": {
+      "command": "skiplevels*{}",
+      "snippet": "skiplevels*{${1:n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skiplevels[]{}": {
+      "command": "skiplevels[]{}",
+      "snippet": "skiplevels[${2:options}]{${1:n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skiplevels{}": {
+      "command": "skiplevels{}",
+      "snippet": "skiplevels{${1:n}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -71,9 +236,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Tc{}": {
-      "command": "Tc{}",
-      "snippet": "Tc{${1:dim}}",
+    "TC*[]": {
+      "command": "TC*[]",
+      "snippet": "TC*[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Tc*[]{}": {
+      "command": "Tc*[]{}",
+      "snippet": "Tc*[${2:options}]{${1:dim}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -85,37 +257,37 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Tcircle[]{}": {
-      "command": "Tcircle[]{}",
-      "snippet": "Tcircle[${2:par}]{${1:stuff}}",
+    "TC[]": {
+      "command": "TC[]",
+      "snippet": "TC[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Tc[]{}": {
+      "command": "Tc[]{}",
+      "snippet": "Tc[${2:options}]{${1:dim}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Tc{}": {
+      "command": "Tc{}",
+      "snippet": "Tc{${1:dim}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "Tcircle*[]{}": {
       "command": "Tcircle*[]{}",
-      "snippet": "Tcircle*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "TCircle[]{}": {
-      "command": "TCircle[]{}",
-      "snippet": "TCircle[${2:par}]{${1:stuff}}",
+      "snippet": "Tcircle*[${2:options}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "TCircle*[]{}": {
       "command": "TCircle*[]{}",
-      "snippet": "TCircle*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Tcircle{}": {
-      "command": "Tcircle{}",
-      "snippet": "Tcircle{${1:stuff}}",
+      "snippet": "TCircle*[${2:options}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -127,13 +299,6 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "TCircle{}": {
-      "command": "TCircle{}",
-      "snippet": "TCircle{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "TCircle*{}": {
       "command": "TCircle*{}",
       "snippet": "TCircle*{${1:stuff}}",
@@ -141,51 +306,37 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "TC[]": {
-      "command": "TC[]",
-      "snippet": "TC[${1:par}]",
+    "Tcircle[]{}": {
+      "command": "Tcircle[]{}",
+      "snippet": "Tcircle[${2:options}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "TC*[]": {
-      "command": "TC*[]",
-      "snippet": "TC*[${1:par}]",
+    "TCircle[]{}": {
+      "command": "TCircle[]{}",
+      "snippet": "TCircle[${2:options}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Tc[]{}": {
-      "command": "Tc[]{}",
-      "snippet": "Tc[${2:par}]{${1:dim}}",
+    "Tcircle{}": {
+      "command": "Tcircle{}",
+      "snippet": "Tcircle{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Tc*[]{}": {
-      "command": "Tc*[]{}",
-      "snippet": "Tc*[${2:par}]{${1:dim}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Tdia[]{}": {
-      "command": "Tdia[]{}",
-      "snippet": "Tdia[${2:par}]{${1:stuff}}",
+    "TCircle{}": {
+      "command": "TCircle{}",
+      "snippet": "TCircle{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "Tdia*[]{}": {
       "command": "Tdia*[]{}",
-      "snippet": "Tdia*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Tdia{}": {
-      "command": "Tdia{}",
-      "snippet": "Tdia{${1:stuff}}",
+      "snippet": "Tdia*[${2:options}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -193,6 +344,20 @@
     "Tdia*{}": {
       "command": "Tdia*{}",
       "snippet": "Tdia*{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Tdia[]{}": {
+      "command": "Tdia[]{}",
+      "snippet": "Tdia[${2:options}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Tdia{}": {
+      "command": "Tdia{}",
+      "snippet": "Tdia{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -211,16 +376,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Tdot[]": {
-      "command": "Tdot[]",
-      "snippet": "Tdot[${1:par}]",
+    "Tdot*[]": {
+      "command": "Tdot*[]",
+      "snippet": "Tdot*[${1:options}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Tdot*[]": {
-      "command": "Tdot*[]",
-      "snippet": "Tdot*[${1:par}]",
+    "Tdot[]": {
+      "command": "Tdot[]",
+      "snippet": "Tdot[${1:options}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -239,6 +404,20 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "Tf*[]": {
+      "command": "Tf*[]",
+      "snippet": "Tf*[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Tf[]": {
+      "command": "Tf[]",
+      "snippet": "Tf[${1:options}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "Tfan": {
       "command": "Tfan",
       "snippet": "Tfan",
@@ -253,30 +432,16 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Tfan[]": {
-      "command": "Tfan[]",
-      "snippet": "Tfan[${1:par}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "Tfan*[]": {
       "command": "Tfan*[]",
-      "snippet": "Tfan*[${1:par}]",
+      "snippet": "Tfan*[${1:options}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Tf[]": {
-      "command": "Tf[]",
-      "snippet": "Tf[${1:par}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Tf*[]": {
-      "command": "Tf*[]",
-      "snippet": "Tf*[${1:par}]",
+    "Tfan[]": {
+      "command": "Tfan[]",
+      "snippet": "Tfan[${1:options}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -288,23 +453,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Toval[]{}": {
-      "command": "Toval[]{}",
-      "snippet": "Toval[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "Toval*[]{}": {
       "command": "Toval*[]{}",
-      "snippet": "Toval*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Toval{}": {
-      "command": "Toval{}",
-      "snippet": "Toval{${1:stuff}}",
+      "snippet": "Toval*[${2:options}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -312,6 +463,20 @@
     "Toval*{}": {
       "command": "Toval*{}",
       "snippet": "Toval*{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Toval[]{}": {
+      "command": "Toval[]{}",
+      "snippet": "Toval[${2:options}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Toval{}": {
+      "command": "Toval{}",
+      "snippet": "Toval{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -330,51 +495,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Tp[]": {
-      "command": "Tp[]",
-      "snippet": "Tp[${1:par}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "Tp*[]": {
       "command": "Tp*[]",
-      "snippet": "Tp*[${1:par}]",
+      "snippet": "Tp*[${1:options}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Tr[]{}": {
-      "command": "Tr[]{}",
-      "snippet": "Tr[${2:par}]{${1:stuff}}",
+    "Tp[]": {
+      "command": "Tp[]",
+      "snippet": "Tp[${1:options}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "Tr*[]{}": {
       "command": "Tr*[]{}",
-      "snippet": "Tr*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "TR[]{}": {
-      "command": "TR[]{}",
-      "snippet": "TR[${2:par}]{${1:stuff}}",
+      "snippet": "Tr*[${2:options}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
     "TR*[]{}": {
       "command": "TR*[]{}",
-      "snippet": "TR*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Tr{}": {
-      "command": "Tr{}",
-      "snippet": "Tr{${1:stuff}}",
+      "snippet": "TR*[${2:options}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -386,16 +530,37 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "TR{}": {
-      "command": "TR{}",
-      "snippet": "TR{${1:stuff}}",
+    "TR*{}": {
+      "command": "TR*{}",
+      "snippet": "TR*{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "TR*{}": {
-      "command": "TR*{}",
-      "snippet": "TR*{${1:stuff}}",
+    "Tr[]{}": {
+      "command": "Tr[]{}",
+      "snippet": "Tr[${2:options}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TR[]{}": {
+      "command": "TR[]{}",
+      "snippet": "TR[${2:options}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Tr{}": {
+      "command": "Tr{}",
+      "snippet": "Tr{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "TR{}": {
+      "command": "TR{}",
+      "snippet": "TR{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -407,23 +572,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "Ttri[]{}": {
-      "command": "Ttri[]{}",
-      "snippet": "Ttri[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "Ttri*[]{}": {
       "command": "Ttri*[]{}",
-      "snippet": "Ttri*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Ttri{}": {
-      "command": "Ttri{}",
-      "snippet": "Ttri{${1:stuff}}",
+      "snippet": "Ttri*[${2:options}]{${1:stuff}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -434,13 +585,43 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "Ttri[]{}": {
+      "command": "Ttri[]{}",
+      "snippet": "Ttri[${2:options}]{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Ttri{}": {
+      "command": "Ttri{}",
+      "snippet": "Ttri{${1:stuff}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
   "envs": {
     "psTree{}": {
       "name": "psTree",
       "detail": "psTree{}",
-      "snippet": "{${1:node}}",
+      "snippet": "{${1:root}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skiplevels[]{}": {
+      "name": "skiplevels",
+      "detail": "skiplevels[]{}",
+      "snippet": "[${2:options}]{${1:n}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "skiplevels{}": {
+      "name": "skiplevels",
+      "detail": "skiplevels{}",
+      "snippet": "{${1:n}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1

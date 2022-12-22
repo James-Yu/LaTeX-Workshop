@@ -2,26 +2,31 @@
   "includes": [
     "ifthen",
     "verbatim",
-    "xkeyval"
+    "xkeyval",
+    "xspace"
   ],
   "cmds": {
     "fxsetup{}": {
       "command": "fxsetup{}",
-      "snippet": "fxsetup{${1:setup}}",
+      "snippet": "fxsetup{${1:options}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "listoffixmes": {
-      "command": "listoffixmes",
-      "snippet": "listoffixmes",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "envlayout=",
+        "targetlayout=",
+        "theme="
+      ],
+      "keyvalindex": 0
     },
     "fxnote{}": {
       "command": "fxnote{}",
       "snippet": "fxnote{${1:FIX%todo}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxnote[]{}": {
+      "command": "fxnote[]{}",
+      "snippet": "fxnote[${2:options}]{${1:FIX%todo}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -33,9 +38,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "fxwarning[]{}": {
+      "command": "fxwarning[]{}",
+      "snippet": "fxwarning[${2:options}]{${1:FIX%todo}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "fxerror{}": {
       "command": "fxerror{}",
       "snippet": "fxerror{${1:FIX%todo}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxerror[]{}": {
+      "command": "fxerror[]{}",
+      "snippet": "fxerror[${2:options}]{${1:FIX%todo}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -47,9 +66,9 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "fxsetup*{}": {
-      "command": "fxsetup*{}",
-      "snippet": "fxsetup*{${1:setup}}",
+    "fxfatal[]{}": {
+      "command": "fxfatal[]{}",
+      "snippet": "fxfatal[${2:options}]{${1:FIX%todo}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -61,12 +80,30 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "fxnote*[]{}": {
+      "command": "fxnote*[]{}",
+      "snippet": "fxnote*[${2:options}]{${1:FIX%todo}}",
+      "option": "",
+      "keyvals": [
+        "targetlayout="
+      ],
+      "keyvalindex": 0
+    },
     "fxwarning*{}": {
       "command": "fxwarning*{}",
       "snippet": "fxwarning*{${1:FIX%todo}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "fxwarning*[]{}": {
+      "command": "fxwarning*[]{}",
+      "snippet": "fxwarning*[${2:options}]{${1:FIX%todo}}",
+      "option": "",
+      "keyvals": [
+        "targetlayout="
+      ],
+      "keyvalindex": 0
     },
     "fxerror*{}": {
       "command": "fxerror*{}",
@@ -75,54 +112,1092 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "fxerror*[]{}": {
+      "command": "fxerror*[]{}",
+      "snippet": "fxerror*[${2:options}]{${1:FIX%todo}}",
+      "option": "",
+      "keyvals": [
+        "targetlayout="
+      ],
+      "keyvalindex": 0
+    },
     "fxfatal*{}": {
       "command": "fxfatal*{}",
       "snippet": "fxfatal*{${1:FIX%todo}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "fxfatal*[]{}": {
+      "command": "fxfatal*[]{}",
+      "snippet": "fxfatal*[${2:options}]{${1:FIX%todo}}",
+      "option": "",
+      "keyvals": [
+        "targetlayout="
+      ],
+      "keyvalindex": 0
+    },
+    "listoffixmes": {
+      "command": "listoffixmes",
+      "snippet": "listoffixmes",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxuselayouts{}": {
+      "command": "fxuselayouts{}",
+      "snippet": "fxuselayouts{${1:layouts}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxloadlayouts{}": {
+      "command": "fxloadlayouts{}",
+      "snippet": "fxloadlayouts{${1:layouts}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxuseenvlayout{}": {
+      "command": "fxuseenvlayout{}",
+      "snippet": "fxuseenvlayout{${1:layout}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxloadenvlayouts{}": {
+      "command": "fxloadenvlayouts{}",
+      "snippet": "fxloadenvlayouts{${1:layouts}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxusetargetlayout{}": {
+      "command": "fxusetargetlayout{}",
+      "snippet": "fxusetargetlayout{${1:layout}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxloadtargetlayouts{}": {
+      "command": "fxloadtargetlayouts{}",
+      "snippet": "fxloadtargetlayouts{${1:layouts}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxsetface{}{}": {
+      "command": "fxsetface{}{}",
+      "snippet": "fxsetface{${1:face}}{${2:value}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXRegisterAuthor{}{}{}": {
+      "command": "FXRegisterAuthor{}{}{}",
+      "snippet": "FXRegisterAuthor{${1:cmdprefix}}{${2:envprefix}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxusetheme{}": {
+      "command": "fxusetheme{}",
+      "snippet": "fxusetheme{${1:theme}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutInline{}{}{}": {
+      "command": "FXLayoutInline{}{}{}",
+      "snippet": "FXLayoutInline{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutMargin{}{}{}": {
+      "command": "FXLayoutMargin{}{}{}",
+      "snippet": "FXLayoutMargin{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutFootnote{}{}{}": {
+      "command": "FXLayoutFootnote{}{}{}",
+      "snippet": "FXLayoutFootnote{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutIndex{}{}{}": {
+      "command": "FXLayoutIndex{}{}{}",
+      "snippet": "FXLayoutIndex{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutMarginClue{}{}{}": {
+      "command": "FXLayoutMarginClue{}{}{}",
+      "snippet": "FXLayoutMarginClue{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutMarginNote{}{}{}": {
+      "command": "FXLayoutMarginNote{}{}{}",
+      "snippet": "FXLayoutMarginNote{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutPDFNote{}{}{}": {
+      "command": "FXLayoutPDFNote{}{}{}",
+      "snippet": "FXLayoutPDFNote{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutPDFMargin{}{}{}": {
+      "command": "FXLayoutPDFMargin{}{}{}",
+      "snippet": "FXLayoutPDFMargin{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutPDFSigNote{}{}{}": {
+      "command": "FXLayoutPDFSigNote{}{}{}",
+      "snippet": "FXLayoutPDFSigNote{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutPDFSigMargin{}{}{}": {
+      "command": "FXLayoutPDFSigMargin{}{}{}",
+      "snippet": "FXLayoutPDFSigMargin{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutPDFCNote{}{}{}": {
+      "command": "FXLayoutPDFCNote{}{}{}",
+      "snippet": "FXLayoutPDFCNote{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutPDFCMargin{}{}{}": {
+      "command": "FXLayoutPDFCMargin{}{}{}",
+      "snippet": "FXLayoutPDFCMargin{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutPDFCSigNote{}{}{}": {
+      "command": "FXLayoutPDFCSigNote{}{}{}",
+      "snippet": "FXLayoutPDFCSigNote{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutPDFCSigMargin{}{}{}": {
+      "command": "FXLayoutPDFCSigMargin{}{}{}",
+      "snippet": "FXLayoutPDFCSigMargin{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLayoutContentsLine{}{}{}": {
+      "command": "FXLayoutContentsLine{}{}{}",
+      "snippet": "FXLayoutContentsLine{${1:type}}{${2:annotation}}{${3:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXEnvLayoutPlainBegin{}{}": {
+      "command": "FXEnvLayoutPlainBegin{}{}",
+      "snippet": "FXEnvLayoutPlainBegin{${1:type}}{${2:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXEnvLayoutPlainEnd{}{}": {
+      "command": "FXEnvLayoutPlainEnd{}{}",
+      "snippet": "FXEnvLayoutPlainEnd{${1:type}}{${2:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXEnvLayoutSignatureBegin{}{}": {
+      "command": "FXEnvLayoutSignatureBegin{}{}",
+      "snippet": "FXEnvLayoutSignatureBegin{${1:type}}{${2:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXEnvLayoutSignatureEnd{}{}": {
+      "command": "FXEnvLayoutSignatureEnd{}{}",
+      "snippet": "FXEnvLayoutSignatureEnd{${1:type}}{${2:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXEnvLayoutColorBegin{}{}": {
+      "command": "FXEnvLayoutColorBegin{}{}",
+      "snippet": "FXEnvLayoutColorBegin{${1:type}}{${2:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXEnvLayoutColorEnd{}{}": {
+      "command": "FXEnvLayoutColorEnd{}{}",
+      "snippet": "FXEnvLayoutColorEnd{${1:type}}{${2:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXEnvLayoutColorSigBegin{}{}": {
+      "command": "FXEnvLayoutColorSigBegin{}{}",
+      "snippet": "FXEnvLayoutColorSigBegin{${1:type}}{${2:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXEnvLayoutColorSigEnd{}{}": {
+      "command": "FXEnvLayoutColorSigEnd{}{}",
+      "snippet": "FXEnvLayoutColorSigEnd{${1:type}}{${2:author}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXTargetLayoutPlain{}{}": {
+      "command": "FXTargetLayoutPlain{}{}",
+      "snippet": "FXTargetLayoutPlain{${1:type}}{${2:target}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXTargetLayoutChangeBar{}{}": {
+      "command": "FXTargetLayoutChangeBar{}{}",
+      "snippet": "FXTargetLayoutChangeBar{${1:type}}{${2:target}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXTargetLayoutColor{}{}": {
+      "command": "FXTargetLayoutColor{}{}",
+      "snippet": "FXTargetLayoutColor{${1:type}}{${2:target}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXTargetLayoutColorCB{}{}": {
+      "command": "FXTargetLayoutColorCB{}{}",
+      "snippet": "FXTargetLayoutColorCB{${1:type}}{${2:target}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXRegisterLayout[]{}{}": {
+      "command": "FXRegisterLayout[]{}{}",
+      "snippet": "FXRegisterLayout[${3:excluded layouts}]{${1:name}}{${2:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXRegisterLayout*[]{}{}": {
+      "command": "FXRegisterLayout*[]{}{}",
+      "snippet": "FXRegisterLayout*[${3:excluded layouts}]{${1:name}}{${2:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXProvidesLayout{}[]": {
+      "command": "FXProvidesLayout{}[]",
+      "snippet": "FXProvidesLayout{${1:name}}[${2:release info}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXRegisterEnvLayout{}{}{}": {
+      "command": "FXRegisterEnvLayout{}{}{}",
+      "snippet": "FXRegisterEnvLayout{${1:name}}{${2:begincmd%cmd}}{${3:endcmd%cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXProvidesEnvLayout{}[]": {
+      "command": "FXProvidesEnvLayout{}[]",
+      "snippet": "FXProvidesEnvLayout{${1:name}}[${2:release info}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXRegisterTargetLayout{}{}": {
+      "command": "FXRegisterTargetLayout{}{}",
+      "snippet": "FXRegisterTargetLayout{${1:name}}{${2:cmd}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXProvidesTargetLayout{}[]": {
+      "command": "FXProvidesTargetLayout{}[]",
+      "snippet": "FXProvidesTargetLayout{${1:name}}[${2:relase info}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineLayoutKey{}[]{}": {
+      "command": "FXDefineLayoutKey{}[]{}",
+      "snippet": "FXDefineLayoutKey{${1:key%plain}}[${2:default}]{${3:function}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineEnvLayoutKey{}[]{}": {
+      "command": "FXDefineEnvLayoutKey{}[]{}",
+      "snippet": "FXDefineEnvLayoutKey{${1:key%plain}}[${2:default}]{${3:function}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineTargetLayoutKey{}[]{}": {
+      "command": "FXDefineTargetLayoutKey{}[]{}",
+      "snippet": "FXDefineTargetLayoutKey{${1:key%plain}}[${2:default}]{${3:function}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineLayoutCmdKey[]{}[]{}": {
+      "command": "FXDefineLayoutCmdKey[]{}[]{}",
+      "snippet": "FXDefineLayoutCmdKey[${3:mp}]{${1:key%plain}}[${4:default}]{${2:function}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineEnvLayoutCmdKey[]{}[]{}": {
+      "command": "FXDefineEnvLayoutCmdKey[]{}[]{}",
+      "snippet": "FXDefineEnvLayoutCmdKey[${3:mp}]{${1:key%plain}}[${4:default}]{${2:function}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineTargetLayoutCmdKey[]{}[]{}": {
+      "command": "FXDefineTargetLayoutCmdKey[]{}[]{}",
+      "snippet": "FXDefineTargetLayoutCmdKey[${3:mp}]{${1:key%plain}}[${4:default}]{${2:function}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineLayoutChoiceKey{}[]{}[]{}": {
+      "command": "FXDefineLayoutChoiceKey{}[]{}[]{}",
+      "snippet": "FXDefineLayoutChoiceKey{${1:key%plain}}[${2:bin}]{${3:alternatives}}[${4:default}]{${5:function}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineEnvLayoutChoiceKey{}[]{}[]{}": {
+      "command": "FXDefineEnvLayoutChoiceKey{}[]{}[]{}",
+      "snippet": "FXDefineEnvLayoutChoiceKey{${1:key%plain}}[${2:bin}]{${3:alternatives}}[${4:default}]{${5:function}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineTargetLayoutChoiceKey{}[]{}[]{}": {
+      "command": "FXDefineTargetLayoutChoiceKey{}[]{}[]{}",
+      "snippet": "FXDefineTargetLayoutChoiceKey{${1:key%plain}}[${2:bin}]{${3:alternatives}}[${4:default}]{${5:function}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineLayoutVoidKey{}{}": {
+      "command": "FXDefineLayoutVoidKey{}{}",
+      "snippet": "FXDefineLayoutVoidKey{${1:key%plain}}{${2:function}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineEnvLayoutVoidKey{}{}": {
+      "command": "FXDefineEnvLayoutVoidKey{}{}",
+      "snippet": "FXDefineEnvLayoutVoidKey{${1:key%plain}}{${2:function}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineTargetLayoutVoidKey{}{}": {
+      "command": "FXDefineTargetLayoutVoidKey{}{}",
+      "snippet": "FXDefineTargetLayoutVoidKey{${1:key%plain}}{${2:function}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineLayoutBoolKey[]{}": {
+      "command": "FXDefineLayoutBoolKey[]{}",
+      "snippet": "FXDefineLayoutBoolKey[${2:function}]{${1:key%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineEnvLayoutBoolKey[]{}": {
+      "command": "FXDefineEnvLayoutBoolKey[]{}",
+      "snippet": "FXDefineEnvLayoutBoolKey[${2:function}]{${1:key%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXDefineTargetLayoutBoolKey[]{}": {
+      "command": "FXDefineTargetLayoutBoolKey[]{}",
+      "snippet": "FXDefineTargetLayoutBoolKey[${2:function}]{${1:key%plain}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXRequireLayouts{}": {
+      "command": "FXRequireLayouts{}",
+      "snippet": "FXRequireLayouts{${1:layouts}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXRequireEnvLayout{}": {
+      "command": "FXRequireEnvLayout{}",
+      "snippet": "FXRequireEnvLayout{${1:layout}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXRequireTargetLayout{}": {
+      "command": "FXRequireTargetLayout{}",
+      "snippet": "FXRequireTargetLayout{${1:layout}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXProvidesTheme{}[]": {
+      "command": "FXProvidesTheme{}[]",
+      "snippet": "FXProvidesTheme{${1:name}}[${2:release info}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "croatianlistfixmename": {
+      "command": "croatianlistfixmename",
+      "snippet": "croatianlistfixmename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "danishlistfixmename": {
+      "command": "danishlistfixmename",
+      "snippet": "danishlistfixmename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "englishlistfixmename": {
+      "command": "englishlistfixmename",
+      "snippet": "englishlistfixmename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fixmeindexname": {
+      "command": "fixmeindexname",
+      "snippet": "fixmeindexname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fixmelogo": {
+      "command": "fixmelogo",
+      "snippet": "fixmelogo",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "francaislistfixmename": {
+      "command": "francaislistfixmename",
+      "snippet": "francaislistfixmename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "frenchlistfixmename": {
+      "command": "frenchlistfixmename",
+      "snippet": "frenchlistfixmename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxaddcontentsline{}": {
+      "command": "fxaddcontentsline{}",
+      "snippet": "fxaddcontentsline{${1:contents}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxcontentsline{}{}": {
+      "command": "fxcontentsline{}{}",
+      "snippet": "fxcontentsline{${1:contents}}{${2:target}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxcroatianerrorname": {
+      "command": "fxcroatianerrorname",
+      "snippet": "fxcroatianerrorname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxcroatianerrorsname": {
+      "command": "fxcroatianerrorsname",
+      "snippet": "fxcroatianerrorsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxcroatianfatalname": {
+      "command": "fxcroatianfatalname",
+      "snippet": "fxcroatianfatalname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxcroatianfatalsname": {
+      "command": "fxcroatianfatalsname",
+      "snippet": "fxcroatianfatalsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxcroatiannotename": {
+      "command": "fxcroatiannotename",
+      "snippet": "fxcroatiannotename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxcroatiannotesname": {
+      "command": "fxcroatiannotesname",
+      "snippet": "fxcroatiannotesname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxcroatianwarningname": {
+      "command": "fxcroatianwarningname",
+      "snippet": "fxcroatianwarningname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxcroatianwarningsname": {
+      "command": "fxcroatianwarningsname",
+      "snippet": "fxcroatianwarningsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxdanisherrorname": {
+      "command": "fxdanisherrorname",
+      "snippet": "fxdanisherrorname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxdanisherrorsname": {
+      "command": "fxdanisherrorsname",
+      "snippet": "fxdanisherrorsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxdanishfatalname": {
+      "command": "fxdanishfatalname",
+      "snippet": "fxdanishfatalname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxdanishfatalsname": {
+      "command": "fxdanishfatalsname",
+      "snippet": "fxdanishfatalsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxdanishnotename": {
+      "command": "fxdanishnotename",
+      "snippet": "fxdanishnotename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxdanishnotesname .": {
+      "command": "fxdanishnotesname .",
+      "snippet": "fxdanishnotesname .",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxdanishwarningname": {
+      "command": "fxdanishwarningname",
+      "snippet": "fxdanishwarningname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxdanishwarningsname": {
+      "command": "fxdanishwarningsname",
+      "snippet": "fxdanishwarningsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxenglisherrorname": {
+      "command": "fxenglisherrorname",
+      "snippet": "fxenglisherrorname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxenglisherrorsname": {
+      "command": "fxenglisherrorsname",
+      "snippet": "fxenglisherrorsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxenglishfatalname": {
+      "command": "fxenglishfatalname",
+      "snippet": "fxenglishfatalname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxenglishfatalsname": {
+      "command": "fxenglishfatalsname",
+      "snippet": "fxenglishfatalsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxenglishnotename": {
+      "command": "fxenglishnotename",
+      "snippet": "fxenglishnotename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxenglishnotesname": {
+      "command": "fxenglishnotesname",
+      "snippet": "fxenglishnotesname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxenglishwarningname": {
+      "command": "fxenglishwarningname",
+      "snippet": "fxenglishwarningname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxenglishwarningsname": {
+      "command": "fxenglishwarningsname",
+      "snippet": "fxenglishwarningsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxfrancaiserrorname": {
+      "command": "fxfrancaiserrorname",
+      "snippet": "fxfrancaiserrorname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxfrancaisfatalname": {
+      "command": "fxfrancaisfatalname",
+      "snippet": "fxfrancaisfatalname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxfrancaisnotename": {
+      "command": "fxfrancaisnotename",
+      "snippet": "fxfrancaisnotename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxfrancaiswarningname": {
+      "command": "fxfrancaiswarningname",
+      "snippet": "fxfrancaiswarningname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxfrencherrorname": {
+      "command": "fxfrencherrorname",
+      "snippet": "fxfrencherrorname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxfrencherrorsname": {
+      "command": "fxfrencherrorsname",
+      "snippet": "fxfrencherrorsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxfrenchfatalname": {
+      "command": "fxfrenchfatalname",
+      "snippet": "fxfrenchfatalname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxfrenchfatalsname": {
+      "command": "fxfrenchfatalsname",
+      "snippet": "fxfrenchfatalsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxfrenchnotename": {
+      "command": "fxfrenchnotename",
+      "snippet": "fxfrenchnotename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxfrenchnotesname": {
+      "command": "fxfrenchnotesname",
+      "snippet": "fxfrenchnotesname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxfrenchwarningname": {
+      "command": "fxfrenchwarningname",
+      "snippet": "fxfrenchwarningname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxfrenchwarningsname": {
+      "command": "fxfrenchwarningsname",
+      "snippet": "fxfrenchwarningsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxgermanerrorname": {
+      "command": "fxgermanerrorname",
+      "snippet": "fxgermanerrorname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxgermanerrorsname": {
+      "command": "fxgermanerrorsname",
+      "snippet": "fxgermanerrorsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxgermanfatalname": {
+      "command": "fxgermanfatalname",
+      "snippet": "fxgermanfatalname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxgermanfatalsname": {
+      "command": "fxgermanfatalsname",
+      "snippet": "fxgermanfatalsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxgermannotename": {
+      "command": "fxgermannotename",
+      "snippet": "fxgermannotename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxgermannotesname": {
+      "command": "fxgermannotesname",
+      "snippet": "fxgermannotesname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxgermanwarningname": {
+      "command": "fxgermanwarningname",
+      "snippet": "fxgermanwarningname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxgermanwarningsname": {
+      "command": "fxgermanwarningsname",
+      "snippet": "fxgermanwarningsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxitalianerrorname": {
+      "command": "fxitalianerrorname",
+      "snippet": "fxitalianerrorname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxitalianerrorsname": {
+      "command": "fxitalianerrorsname",
+      "snippet": "fxitalianerrorsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxitalianfatalname": {
+      "command": "fxitalianfatalname",
+      "snippet": "fxitalianfatalname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxitalianfatalsname": {
+      "command": "fxitalianfatalsname",
+      "snippet": "fxitalianfatalsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxitaliannotename": {
+      "command": "fxitaliannotename",
+      "snippet": "fxitaliannotename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxitaliannotesname": {
+      "command": "fxitaliannotesname",
+      "snippet": "fxitaliannotesname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxitalianwarningname": {
+      "command": "fxitalianwarningname",
+      "snippet": "fxitalianwarningname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxitalianwarningsname": {
+      "command": "fxitalianwarningsname",
+      "snippet": "fxitalianwarningsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxngermanerrorname": {
+      "command": "fxngermanerrorname",
+      "snippet": "fxngermanerrorname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxngermanfatalname": {
+      "command": "fxngermanfatalname",
+      "snippet": "fxngermanfatalname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxngermannotename": {
+      "command": "fxngermannotename",
+      "snippet": "fxngermannotename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxngermanwarningname": {
+      "command": "fxngermanwarningname",
+      "snippet": "fxngermanwarningname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxnotename{}": {
+      "command": "fxnotename{}",
+      "snippet": "fxnotename{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxnotesname{}": {
+      "command": "fxnotesname{}",
+      "snippet": "fxnotesname{${1:text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxspanisherrorname": {
+      "command": "fxspanisherrorname",
+      "snippet": "fxspanisherrorname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxspanisherrorsname": {
+      "command": "fxspanisherrorsname",
+      "snippet": "fxspanisherrorsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxspanishfatalname": {
+      "command": "fxspanishfatalname",
+      "snippet": "fxspanishfatalname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxspanishfatalsname": {
+      "command": "fxspanishfatalsname",
+      "snippet": "fxspanishfatalsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxspanishnotename": {
+      "command": "fxspanishnotename",
+      "snippet": "fxspanishnotename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxspanishnotesname": {
+      "command": "fxspanishnotesname",
+      "snippet": "fxspanishnotesname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxspanishwarningname": {
+      "command": "fxspanishwarningname",
+      "snippet": "fxspanishwarningname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "fxspanishwarningsname": {
+      "command": "fxspanishwarningsname",
+      "snippet": "fxspanishwarningsname",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "germanlistfixmename": {
+      "command": "germanlistfixmename",
+      "snippet": "germanlistfixmename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "italianlistfixmename": {
+      "command": "italianlistfixmename",
+      "snippet": "italianlistfixmename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "spanishlistfixmename": {
+      "command": "spanishlistfixmename",
+      "snippet": "spanishlistfixmename",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLogError{}": {
+      "command": "FXLogError{}",
+      "snippet": "FXLogError{${1:error text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLogFatal{}": {
+      "command": "FXLogFatal{}",
+      "snippet": "FXLogFatal{${1:error text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLogNote{}": {
+      "command": "FXLogNote{}",
+      "snippet": "FXLogNote{${1:note text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "FXLogWarning{}": {
+      "command": "FXLogWarning{}",
+      "snippet": "FXLogWarning{${1:warning text%text}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thefixmecount": {
+      "command": "thefixmecount",
+      "snippet": "thefixmecount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thefxnotecount": {
+      "command": "thefxnotecount",
+      "snippet": "thefxnotecount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thefxwarningcount": {
+      "command": "thefxwarningcount",
+      "snippet": "thefxwarningcount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thefxerrorcount": {
+      "command": "thefxerrorcount",
+      "snippet": "thefxerrorcount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "thefxfatalcount": {
+      "command": "thefxfatalcount",
+      "snippet": "thefxfatalcount",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
   "envs": {
-    "anfxerror*{}": {
-      "name": "anfxerror*",
-      "detail": "anfxerror*{}",
-      "snippet": "{${1:summary}}",
+    "anfxnote[]{}": {
+      "name": "anfxnote",
+      "detail": "anfxnote[]{}",
+      "snippet": "[${2:options}]{${1:summary}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "anfxerror{}": {
-      "name": "anfxerror",
-      "detail": "anfxerror{}",
-      "snippet": "{${1:summary}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "anfxfatal*{}": {
-      "name": "anfxfatal*",
-      "detail": "anfxfatal*{}",
-      "snippet": "{${1:summary}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "anfxfatal{}": {
-      "name": "anfxfatal",
-      "detail": "anfxfatal{}",
-      "snippet": "{${1:summary}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "anfxnote*{}": {
-      "name": "anfxnote*",
-      "detail": "anfxnote*{}",
-      "snippet": "{${1:summary}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "envlayout="
+      ],
+      "keyvalindex": 0
     },
     "anfxnote{}": {
       "name": "anfxnote",
@@ -132,13 +1207,15 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "anfxwarning*{}": {
-      "name": "anfxwarning*",
-      "detail": "anfxwarning*{}",
-      "snippet": "{${1:summary}}",
+    "anfxwarning[]{}": {
+      "name": "anfxwarning",
+      "detail": "anfxwarning[]{}",
+      "snippet": "[${2:options}]{${1:summary}}",
       "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "envlayout="
+      ],
+      "keyvalindex": 0
     },
     "anfxwarning{}": {
       "name": "anfxwarning",
@@ -147,7 +1224,178 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "anfxerror[]{}": {
+      "name": "anfxerror",
+      "detail": "anfxerror[]{}",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "option": "",
+      "keyvals": [
+        "envlayout="
+      ],
+      "keyvalindex": 0
+    },
+    "anfxerror{}": {
+      "name": "anfxerror",
+      "detail": "anfxerror{}",
+      "snippet": "{${1:summary}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "anfxfatal[]{}": {
+      "name": "anfxfatal",
+      "detail": "anfxfatal[]{}",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "option": "",
+      "keyvals": [
+        "envlayout="
+      ],
+      "keyvalindex": 0
+    },
+    "anfxfatal{}": {
+      "name": "anfxfatal",
+      "detail": "anfxfatal{}",
+      "snippet": "{${1:summary}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "anfxnote*[]{}": {
+      "name": "anfxnote*",
+      "detail": "anfxnote*[]{}",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "option": "",
+      "keyvals": [
+        "envlayout=",
+        "targetlayout="
+      ],
+      "keyvalindex": 0
+    },
+    "anfxnote*{}": {
+      "name": "anfxnote*",
+      "detail": "anfxnote*{}",
+      "snippet": "{${1:summary}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "anfxwarning*[]{}": {
+      "name": "anfxwarning*",
+      "detail": "anfxwarning*[]{}",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "option": "",
+      "keyvals": [
+        "envlayout=",
+        "targetlayout="
+      ],
+      "keyvalindex": 0
+    },
+    "anfxwarning*{}": {
+      "name": "anfxwarning*",
+      "detail": "anfxwarning*{}",
+      "snippet": "{${1:summary}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "anfxerror*[]{}": {
+      "name": "anfxerror*",
+      "detail": "anfxerror*[]{}",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "option": "",
+      "keyvals": [
+        "envlayout=",
+        "targetlayout="
+      ],
+      "keyvalindex": 0
+    },
+    "anfxerror*{}": {
+      "name": "anfxerror*",
+      "detail": "anfxerror*{}",
+      "snippet": "{${1:summary}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "anfxfatal*[]{}": {
+      "name": "anfxfatal*",
+      "detail": "anfxfatal*[]{}",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "option": "",
+      "keyvals": [
+        "envlayout=",
+        "targetlayout="
+      ],
+      "keyvalindex": 0
+    },
+    "anfxfatal*{}": {
+      "name": "anfxfatal*",
+      "detail": "anfxfatal*{}",
+      "snippet": "{${1:summary}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
-  "options": []
+  "options": [
+    "final",
+    "draft",
+    "status=",
+    "layout={",
+    "morelayout={",
+    "inline",
+    "noinline",
+    "margin",
+    "nomargin",
+    "footnote",
+    "nofootnote",
+    "index",
+    "noindex",
+    "marginclue",
+    "nomarginclue",
+    "marginnote",
+    "nomarginnote",
+    "pdfnote",
+    "nopdfnote",
+    "pdfmargin",
+    "nopdfmargin",
+    "pdfsignote",
+    "nopdfsignote",
+    "pdfsigmargin",
+    "nopdfsigmargin",
+    "pdfcnote",
+    "nopdfcnote",
+    "pdfcmargin",
+    "nopdfcmargin",
+    "pdfcsignote",
+    "nopdfcsignote",
+    "pdfcsigmargin",
+    "nopdfcsigmargin",
+    "innerlayout={",
+    "target=",
+    "inlineface=",
+    "marginface=",
+    "envface=",
+    "signatureface=",
+    "targetface=",
+    "silent",
+    "nosilent",
+    "english",
+    "french",
+    "francais",
+    "spanish",
+    "italian",
+    "german",
+    "ngerman",
+    "danish",
+    "croatian",
+    "lang=",
+    "langtrack",
+    "defaultlang=",
+    "author=",
+    "singleuser",
+    "multiuser",
+    "mode="
+  ]
 }

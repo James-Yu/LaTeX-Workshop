@@ -1,5 +1,7 @@
 {
-  "includes": [],
+  "includes": [
+    "ifthen"
+  ],
   "cmds": {
     "cvplace{}": {
       "command": "cvplace{}",
@@ -62,7 +64,7 @@
     "cv{}": {
       "name": "cv",
       "detail": "cv{}",
-      "snippet": "{${1:heading of the curriculum vitae}}",
+      "snippet": "{${1:heading of the curriculum vitae%text}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -70,11 +72,17 @@
     "cvlist{}\\item": {
       "name": "cvlist",
       "detail": "cvlist{}\\item",
-      "snippet": "{${1:heading of the list}}\\item",
+      "snippet": "{${1:heading of the list%text}}\\item",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     }
   },
-  "options": []
+  "options": [
+    "LabelsAligned",
+    "TextAligned",
+    "openbib",
+    "ManyBibs",
+    "NoDate"
+  ]
 }

@@ -1,23 +1,12 @@
 {
-  "includes": [],
+  "includes": [
+    "moredefs",
+    "afterpage"
+  ],
   "cmds": {
-    "include*[]{}[]": {
-      "command": "include*[]{}[]",
-      "snippet": "include*[${2:prehook}]{${1:file}}[${3:posthook}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "IncludeSurround": {
-      "command": "IncludeSurround",
-      "snippet": "IncludeSurround",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DefaultIncludeSurround": {
-      "command": "DefaultIncludeSurround",
-      "snippet": "DefaultIncludeSurround",
+    "include[]{}": {
+      "command": "include[]{}",
+      "snippet": "include[${2:prehook}]{${1:file}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -25,6 +14,20 @@
     "include[]{}[]": {
       "command": "include[]{}[]",
       "snippet": "include[${2:prehook}]{${1:file}}[${3:posthook}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "include*[]{}": {
+      "command": "include*[]{}",
+      "snippet": "include*[${2:prehook}]{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "include*[]{}[]": {
+      "command": "include*[]{}[]",
+      "snippet": "include*[${2:prehook}]{${1:file}}[${3:posthook}]",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -43,6 +46,20 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "IncludeSurround": {
+      "command": "IncludeSurround",
+      "snippet": "IncludeSurround",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefaultIncludeSurround": {
+      "command": "DefaultIncludeSurround",
+      "snippet": "DefaultIncludeSurround",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "includeall": {
       "command": "includeall",
       "snippet": "includeall",
@@ -50,16 +67,51 @@
       "keyvals": [],
       "keyvalindex": -1
     },
-    "includeenv[]{}{}{}[]": {
-      "command": "includeenv[]{}{}{}[]",
-      "snippet": "includeenv[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}[${5:posthook}]",
+    "IncludeEnv{}{}{}": {
+      "command": "IncludeEnv{}{}{}",
+      "snippet": "IncludeEnv{${1:file}}{${2:envname}}{${3:instance}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
     },
-    "includeenv*[]{}{}{}[]": {
-      "command": "includeenv*[]{}{}{}[]",
-      "snippet": "includeenv*[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}[${5:posthook}]",
+    "IncludeEnv[]{}{}{}": {
+      "command": "IncludeEnv[]{}{}{}",
+      "snippet": "IncludeEnv[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IncludeEnv[]{}{}{}[]": {
+      "command": "IncludeEnv[]{}{}{}[]",
+      "snippet": "IncludeEnv[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}[${5:posthook}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IncludeEnv*{}{}{}": {
+      "command": "IncludeEnv*{}{}{}",
+      "snippet": "IncludeEnv*{${1:file}}{${2:envname}}{${3:instance}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IncludeEnv*[]{}{}{}": {
+      "command": "IncludeEnv*[]{}{}{}",
+      "snippet": "IncludeEnv*[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IncludeEnv*[]{}{}{}[]": {
+      "command": "IncludeEnv*[]{}{}{}[]",
+      "snippet": "IncludeEnv*[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}[${5:posthook}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "includedoc[]{}": {
+      "command": "includedoc[]{}",
+      "snippet": "includedoc[${2:prehook}]{${1:file}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -71,6 +123,13 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "includedoc*[]{}": {
+      "command": "includedoc*[]{}",
+      "snippet": "includedoc*[${2:prehook}]{${1:file}}",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "includedoc*[]{}[]": {
       "command": "includedoc*[]{}[]",
       "snippet": "includedoc*[${2:prehook}]{${1:file}}[${3:posthook}]",
@@ -78,9 +137,23 @@
       "keyvals": [],
       "keyvalindex": -1
     },
+    "includedocskip[]{}[]": {
+      "command": "includedocskip[]{}[]",
+      "snippet": "includedocskip[${2:prehook}]{${1:file}}[${3:posthook}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "includedocskip*[]{}[]": {
+      "command": "includedocskip*[]{}[]",
+      "snippet": "includedocskip*[${2:prehook}]{${1:file}}[${3:posthook}]",
+      "option": "",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
     "IfAllowed{}{}{}": {
       "command": "IfAllowed{}{}{}",
-      "snippet": "IfAllowed {${1:part}}{${2:true}}{${3:false}}",
+      "snippet": "IfAllowed{${1:part name}}{${2:true}}{${3:false}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -101,7 +174,7 @@
     },
     "DeclareFormattingPackage{}": {
       "command": "DeclareFormattingPackage{}",
-      "snippet": "DeclareFormattingPackage{${1:packagename}}",
+      "snippet": "DeclareFormattingPackage{${1:package name}}",
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
@@ -140,8 +213,75 @@
       "option": "",
       "keyvals": [],
       "keyvalindex": -1
+    },
+    "NextAux": {
+      "command": "NextAux",
+      "snippet": "NextAux",
+      "option": "allocate",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DynamicAux": {
+      "command": "DynamicAux",
+      "snippet": "DynamicAux",
+      "option": "allocate",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "StaticAux{}": {
+      "command": "StaticAux{}",
+      "snippet": "StaticAux{${1:number of streams}}",
+      "option": "allocate",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "InitWheel{}": {
+      "command": "InitWheel{}",
+      "snippet": "InitWheel{${1:cmd}}",
+      "option": "allocate",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "DefWheel{}{}": {
+      "command": "DefWheel{}{}",
+      "snippet": "DefWheel{${1:cmd}}{${2:spokes}}",
+      "option": "allocate",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Roll{}": {
+      "command": "Roll{}",
+      "snippet": "Roll{${1:wheel}}",
+      "option": "allocate",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "Top{}": {
+      "command": "Top{}",
+      "snippet": "Top{${1:wheel}}",
+      "option": "allocate",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "AddSpokes{}{}": {
+      "command": "AddSpokes{}{}",
+      "snippet": "AddSpokes{${1:wheel}}{${2:spokes}}",
+      "option": "allocate",
+      "keyvals": [],
+      "keyvalindex": -1
+    },
+    "IfTop{}{}{}{}": {
+      "command": "IfTop{}{}{}{}",
+      "snippet": "IfTop{${1:wheel}}{${2:spoke}}{${3:true}}{${4:false}}",
+      "option": "allocate",
+      "keyvals": [],
+      "keyvalindex": -1
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "simple",
+    "tag",
+    "allocate"
+  ]
 }
