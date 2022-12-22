@@ -51,7 +51,7 @@ export class Command implements IProvider {
     initialize(defaultCmds: {[key: string]: CmdType}, defaultEnvs: CmdEnvSuggestion[]) {
         const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.commandsJSON.replace') as {[key: string]: string}
 
-        // Initialize default commands and `latex-mathsymbols`
+        // Initialize default commands and the ones in `tex.json`
         Object.keys(defaultCmds).forEach(key => {
             if (key in snippetReplacements) {
                 const action = snippetReplacements[key]
