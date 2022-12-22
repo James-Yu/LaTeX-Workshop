@@ -206,7 +206,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.reference
                 break
             case 'environment':
-                reg = /(?:\\begin(?:\[[^[\]]*\])?){([^}]*)$/
+                reg = /(?:\\begin|\\end){([^}]*)$/
                 provider = this.environment
                 break
             case 'command':
