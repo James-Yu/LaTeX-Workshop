@@ -12,7 +12,7 @@ import {SurroundCommand} from './commandlib/surround'
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 
 export type CmdType = {
-    command: string,
+    command?: string,
     snippet?: string,
     option?: string,
     keyvals?: string[],
@@ -208,6 +208,7 @@ export class Command implements IProvider {
     }
 
     private entryCmdToCompletion(itemKey: string, item: CmdType): CmdEnvSuggestion {
+        item.command = item.command || itemKey
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
         const suggestion = new CmdEnvSuggestion(

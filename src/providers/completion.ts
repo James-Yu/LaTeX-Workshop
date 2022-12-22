@@ -89,13 +89,21 @@ export class Completer implements vscode.CompletionItemProvider {
         }
 
         try {
-            const pkgData = JSON.parse(fs.readFileSync(filePath).toString()) as PkgType
-            this.package.setPackageDeps(packageName, pkgData.includes)
-            this.command.setPackageCmds(packageName, pkgData.cmds)
-            this.environment.setPackageEnvs(packageName, pkgData.envs)
+            const packageData = JSON.parse(fs.readFileSync(filePath).toString()) as PkgType
+            this.populatePackageData(packageData)
+            this.package.setPackageDeps(packageName, packageData.includes)
+            this.command.setPackageCmds(packageName, packageData.cmds)
+            this.environment.setPackageEnvs(packageName, packageData.envs)
         } catch (e) {
             this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
         }
+    }
+
+    private populatePackageData(packageData: PkgType) {
+        Object.keys(packageData.cmds).forEach(key => {
+            packageData.cmds[key].command = key
+            packageData.cmds[key].snippet = packageData.cmds[key].snippet || key
+        })
     }
 
     private loadDefaultItems() {

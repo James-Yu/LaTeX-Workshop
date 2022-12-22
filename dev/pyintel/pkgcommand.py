@@ -14,7 +14,6 @@ class KeyVal:
 
 @dataclass
 class Cmd:
-    command: str
     snippet: str
     option: Union[str, None]
     keyvals: Union[List[KeyVal], None]
@@ -265,7 +264,13 @@ class CwlIntel:
                 snippet = create_snippet(match[1] + (match[2] if len(match.groups()) >= 2 and match[2] else ''))
                 detail = self.unimath_dict[name]['detail'] if self.unimath_dict.get(name) else None
                 documentation = self.unimath_dict[name]['documentation'] if self.unimath_dict.get(name) else None
-                pkg.cmds[name] = Cmd(command=name, snippet=snippet, option=cwl_option, keyvals=None, keyvalindex=None, detail=detail, documentation=documentation)
+                pkg.cmds[name] = Cmd(
+                    snippet=None if name == snippet else snippet,
+                    option=cwl_option,
+                    keyvals=None,
+                    keyvalindex=None,
+                    detail=detail,
+                    documentation=documentation)
             elif cwl_keyval == 'PACKAGE_OPTIONS':
                 match = re.match(r'^([^#%\n]*)', line)
                 if match is None:
@@ -291,9 +296,9 @@ class CwlIntel:
                     else:
                         cmd = re.match(r'\\?([^{\[]*)', envcmd)[1]
                         for pkgcmd in pkg.cmds:
-                            if (re.sub(r'\[\]|\(\)|<>|{}', '', pkg.cmds[pkgcmd].command) != cmd):
+                            if (re.sub(r'\[\]|\(\)|<>|{}', '', pkgcmd) != cmd):
                                 continue
-                            haskeyvals = re.search(r':keys|:keyvals|:options', pkg.cmds[pkgcmd].snippet)
+                            haskeyvals = re.search(r':keys|:keyvals|:options', pkg.cmds[pkgcmd].snippet or pkgcmd)
                             if (haskeyvals is None):
                                 continue
                             if (pkg.cmds[pkgcmd].keyvalindex is None):
