@@ -72,9 +72,8 @@ For every package or class, one `.json` file is generated, containing the data f
 In this `json` object, the commands have the following structure:
 ```typescript
 {
-  command: string, // the command name
-  snippet: string, // the snippet to insert
-  option: string, // the package option that enables this command
+  snippet: string | undefined, // the snippet to insert, undefined if the same as item key.
+  option: string | undefined, // the package option that enables this command
   keyvals: string[] | undefined, // the possible optional keyvals of this command
   keyvalindex: number | undefined, // the index of argument (mandatory and optional together) where the keyvals should be hinted
   detail: string | undefined,
@@ -84,14 +83,12 @@ In this `json` object, the commands have the following structure:
 An example is:
 ```json
 "acro{}{}": {
-  "command": "acro{}{}",
   "snippet": "acro{${1:acronym}}{${2:full name}}"
 }
 ```
 The optional argument intellisense are typically defined as follows:
 ```json
 "mint[]{}{}": {
-  "command": "mint[]{}{}",
   "snippet": "mint[${3:keys}]{${1:language}}{${2:verbatimSymbol}}",
   "keyvals": [
     "autogobble",
@@ -105,10 +102,9 @@ The optional argument intellisense are typically defined as follows:
 The environments have the following structure:
 ```typescript
 {
-  name: string, // the environment name
-  detail: string, // the signature of this environment, including its name and arguments
-  snippet: string, // the snippet to insert after \begin{env}
-  option: string, // the package option that enables this environment
+  name: string | undefined, // the environment name, undefined if the same as item key.
+  snippet: string | undefined, // the snippet to insert after \begin{env}, undefined if is an empty string
+  option: string | undefined, // the package option that enables this environment
   keyvals: string[] | undefined, // the possible optional keyvals of this environment
   keyvalindex: number | undefined, // the index of argument (mandatory and optional together) where the keyvals should be hinted
 }
@@ -117,7 +113,6 @@ An example is:
 ```json
 "aligned[]": {
   "name": "aligned",
-  "detail": "aligned[]",
   "snippet": "[${1:alignment}]"
 }
 ```

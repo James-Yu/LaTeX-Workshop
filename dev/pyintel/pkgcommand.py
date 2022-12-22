@@ -14,7 +14,7 @@ class KeyVal:
 
 @dataclass
 class Cmd:
-    snippet: str
+    snippet: Union[str, None]
     option: Union[str, None]
     keyvals: Union[List[KeyVal], None]
     keyvalindex: Union[int, None]
@@ -23,9 +23,8 @@ class Cmd:
 
 @dataclass
 class Env:
-    name: str
-    detail: str
-    snippet: str
+    name: Union[str, None]
+    snippet: Union[str, None]
     option: Union[str, None]
     keyvals: Union[List[KeyVal], None]
     keyvalindex: Union[int, None]
@@ -237,7 +236,12 @@ class CwlIntel:
                 if re.match(r'[^A-Za-z\[\]{}<>*\s]', name) is not None:
                     continue
                 snippet = create_snippet(match[2] if len(match.groups()) >= 2 and match[2] else '')
-                pkg.envs[name] = Env(name=match[1],detail=name,snippet=snippet,option=cwl_option,keyvals=None,keyvalindex=None)
+                pkg.envs[name] = Env(
+                    name=None if name == match[1] else match[1],
+                    snippet=None if snippet == '' else snippet,
+                    option=cwl_option,
+                    keyvals=None,
+                    keyvalindex=None)
             elif line.startswith('\\end{'):         # '\end{minted}'
                 continue
             elif line.startswith('\\'):             # '\inputminted[options%keyvals]{language}{file}#i'

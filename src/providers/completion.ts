@@ -100,9 +100,14 @@ export class Completer implements vscode.CompletionItemProvider {
     }
 
     private populatePackageData(packageData: PkgType) {
-        Object.keys(packageData.cmds).forEach(key => {
-            packageData.cmds[key].command = key
-            packageData.cmds[key].snippet = packageData.cmds[key].snippet || key
+        Object.keys(packageData.cmds).forEach(cmd => {
+            packageData.cmds[cmd].command = cmd
+            packageData.cmds[cmd].snippet = packageData.cmds[cmd].snippet || cmd
+        })
+        Object.keys(packageData.envs).forEach(env => {
+            packageData.envs[env].detail = env
+            packageData.envs[env].name = packageData.envs[env].name || env
+            packageData.envs[env].snippet = packageData.envs[env].snippet || ''
         })
     }
 
