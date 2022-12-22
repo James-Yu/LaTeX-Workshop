@@ -75,8 +75,8 @@ In this `json` object, the commands have the following structure:
   command: string, // the command name
   snippet: string, // the snippet to insert
   option: string, // the package option that enables this command
-  keyvals: {key: string, snippet: string}[], // the possible optional keyvals of this command
-  keyvalindex: number, // the index of argument (mandatory and optional together) where the keyvals should be hinted
+  keyvals: string[] | undefined, // the possible optional keyvals of this command
+  keyvalindex: number | undefined, // the index of argument (mandatory and optional together) where the keyvals should be hinted
   detail: string | undefined,
   documentation: string | undefined
 }
@@ -85,10 +85,7 @@ An example is:
 ```json
 "acro{}{}": {
   "command": "acro{}{}",
-  "snippet": "acro{${1:acronym}}{${2:full name}}",
-  "option": "",
-  "keyvals": [],
-  "keyvalindex": -1
+  "snippet": "acro{${1:acronym}}{${2:full name}}"
 }
 ```
 The optional argument intellisense are typically defined as follows:
@@ -96,7 +93,6 @@ The optional argument intellisense are typically defined as follows:
 "mint[]{}{}": {
   "command": "mint[]{}{}",
   "snippet": "mint[${3:keys}]{${1:language}}{${2:verbatimSymbol}}",
-  "option": "",
   "keyvals": [
     "autogobble",
     "baselinestretch=",
@@ -109,11 +105,12 @@ The optional argument intellisense are typically defined as follows:
 The environments have the following structure:
 ```typescript
 {
-    name: string, // the environment name
-    detail: string, // the signature of this environment, including its name and arguments
-    snippet: string, // the snippet to insert after \begin{env}
-    option: string, // the package option that enables this environment
-    keyvals: {key: string, snippet: string}[] // the possible optional keyvals of this environment
+  name: string, // the environment name
+  detail: string, // the signature of this environment, including its name and arguments
+  snippet: string, // the snippet to insert after \begin{env}
+  option: string, // the package option that enables this environment
+  keyvals: string[] | undefined, // the possible optional keyvals of this environment
+  keyvalindex: number | undefined, // the index of argument (mandatory and optional together) where the keyvals should be hinted
 }
 ```
 An example is:
@@ -121,10 +118,7 @@ An example is:
 "aligned[]": {
   "name": "aligned",
   "detail": "aligned[]",
-  "snippet": "[${1:alignment}]",
-  "option": "",
-  "keyvals": [],
-  "keyvalindex": -1
+  "snippet": "[${1:alignment}]"
 }
 ```
 
