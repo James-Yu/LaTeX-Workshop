@@ -55,7 +55,7 @@ jobs:
         npm ci
         npm run compile
     - name: Run tests
-      run: npm run test
+      run: npm run test | findstr /v "is not in the list of known options"
     - run: npm run release
     - uses: actions/upload-artifact@v3
       with:

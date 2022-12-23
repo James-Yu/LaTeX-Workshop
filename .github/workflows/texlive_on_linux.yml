@@ -52,7 +52,8 @@ jobs:
     - run: |
         npm ci
         npm run compile
-    - run: xvfb-run -a npm run test | sed 's/^.*Failed to connect to the bus:.*$//'
+    - name: Run tests
+      run: xvfb-run -a npm run test | grep -v 'Failed to connect to the bus:\|gpu_memory_buffer_support_x11\|is not in the list of known options'
     - run: npm run release
     - uses: actions/upload-artifact@v3
       with:
