@@ -1,5 +1,18 @@
 # Change Log
 
+## [9.2.0] - 2022-12-23
+
+### Added
+- (#3579) Intellisense for optional arguments.
+
+### Changed
+- `intellisense.useTabStops.enabled` does not prevents tabbing.
+  - It is replace with a new `intellisense.argumentHint.enabled` config.
+- (#3594) Hinting data for many packages are updated.
+
+### Fixed
+- (#3578) Force no indent after `\begin{document}`.
+
 ## [9.1.1] - 2022-12-08
 
 ### Fixed

@@ -16,6 +16,7 @@ export class Package implements IProvider {
     private readonly extension: Extension
     private readonly suggestions: vscode.CompletionItem[] = []
     private readonly packageDeps: {[packageName: string]: string[]} = {}
+    private readonly packageOptions: {[packageName: string]: string[]} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -45,6 +46,14 @@ export class Package implements IProvider {
 
     setPackageDeps(packageName: string, deps: string[]) {
         this.packageDeps[packageName] = deps
+    }
+
+    setPackageOptions(packageName: string, options: string[]) {
+        this.packageOptions[packageName] = options
+    }
+
+    getPackageOptions(packageName: string) {
+        return this.packageOptions[packageName] || []
     }
 
     private getPackageDeps(packageName: string): string[] {

@@ -9,7 +9,13 @@ export class Argument implements IProvider {
 
     constructor(private readonly extension: Extension) {}
 
-    provideFrom(result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+    provideFrom(result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+        if (result[1] === 'usepackage') {
+            return this.providePackageOptions(args)
+        }
+        if (result[1] === 'documentclass') {
+            return this.provideClassOptions(args)
+        }
         const index = this.getArgumentIndex(result[2])
         const packages = this.extension.completer.package.getPackagesIncluded(args.document.languageId)
         let candidate: CmdEnvSuggestion | undefined
@@ -47,6 +53,28 @@ export class Argument implements IProvider {
             }
         }
         return candidate?.keyvals?.map(keyval => new vscode.CompletionItem(keyval, vscode.CompletionItemKind.Constant)) || []
+    }
+
+    private providePackageOptions(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+        const line = args.document.lineAt(args.position.line).text
+        const regex = /\\usepackage.*?{(.*?)}/
+        const match = line.match(regex)
+        if (!match) {
+            return []
+        }
+        this.extension.completer.loadPackageData(match[1])
+        return this.extension.completer.package.getPackageOptions(match[1]).map(opt => new vscode.CompletionItem(opt, vscode.CompletionItemKind.Constant))
+    }
+
+    private provideClassOptions(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+        const line = args.document.lineAt(args.position.line).text
+        const regex = /\\documentclass.*?{(.*?)}/
+        const match = line.match(regex)
+        if (!match) {
+            return []
+        }
+        this.extension.completer.loadPackageData(`class-${match[1]}`)
+        return this.extension.completer.package.getPackageOptions(`class-${match[1]}`).map(opt => new vscode.CompletionItem(opt, vscode.CompletionItemKind.Constant))
     }
 
     private getArgumentIndex(argstr: string) {

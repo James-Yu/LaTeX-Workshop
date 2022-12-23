@@ -94,6 +94,7 @@ export class Completer implements vscode.CompletionItemProvider {
             this.package.setPackageDeps(packageName, packageData.includes)
             this.command.setPackageCmds(packageName, packageData.cmds)
             this.environment.setPackageEnvs(packageName, packageData.envs)
+            this.package.setPackageOptions(packageName, packageData.options)
         } catch (e) {
             this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
         }
