@@ -1,9 +1,12 @@
 # Visual Studio Code LaTeX Workshop Extension
 
-[![version](https://vsmarketplacebadge.apphb.com/version/James-Yu.latex-workshop.svg)](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-[![downloads](https://vsmarketplacebadge.apphb.com/downloads-short/James-Yu.latex-workshop.svg)](https://vsmarketplacebadge.apphb.com/downloads-short/James-Yu.latex-workshop.svg)
-[![installs](https://vsmarketplacebadge.apphb.com/installs-short/James-Yu.latex-workshop.svg)](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-[![rating](https://vsmarketplacebadge.apphb.com/rating-short/James-Yu.latex-workshop.svg)](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+[![version](https://img.shields.io/visual-studio-marketplace/v/James-Yu.latex-workshop)](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+[![updated](https://img.shields.io/visual-studio-marketplace/last-updated/James-Yu.latex-workshop)](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+[![release](https://img.shields.io/visual-studio-marketplace/release-date/James-Yu.latex-workshop)](https://vsmarketplacebadge.apphb.com/downloads-short/James-Yu.latex-workshop.svg)
+
+[![downloads](https://img.shields.io/visual-studio-marketplace/d/James-Yu.latex-workshop)](https://vsmarketplacebadge.apphb.com/downloads-short/James-Yu.latex-workshop.svg)
+[![installs](https://img.shields.io/visual-studio-marketplace/i/James-Yu.latex-workshop)](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+[![rating](https://img.shields.io/visual-studio-marketplace/r/James-Yu.latex-workshop)](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/James-Yu/LaTeX-Workshop/master/LICENSE.txt)
 
 [![TeX Live on Windows](https://github.com/James-Yu/LaTeX-Workshop/workflows/TeX%20Live%20on%20Windows/badge.svg)](https://github.com/James-Yu/LaTeX-Workshop/actions?query=workflow%3A%22TeX+Live+on+Windows%22)
