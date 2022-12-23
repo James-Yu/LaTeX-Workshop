@@ -1,93 +1,81 @@
 {
   "includes": [
-    "amsmath",
+    "expl3",
+    "l3keys2e",
     "calc",
+    "amsmath",
+    "chemgreek",
     "graphics",
     "ifthen",
     "keyval",
     "pgf",
     "tikz",
-    "twoopt"
+    "pgf",
+    "tikz"
   ],
   "cmds": {
-    "bond{-=": {
-      "command": "bond{-=",
-      "snippet": "bond{-=",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cee{}": {
-      "command": "cee{}",
-      "snippet": "cee{${1:equation}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "mhchemoptions{}": {
+      "snippet": "mhchemoptions{${1:options}}",
+      "keyvals": [
+        "textfontcommand=",
+        "mathfontcommand=",
+        "textminus=",
+        "cdot=",
+        "textelectrondot="
+      ],
+      "keyvalindex": 0
     },
     "ce{}": {
-      "command": "ce{}",
-      "snippet": "ce{${1:formula}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ce{${1:formula}}"
     },
-    "cf{}{}": {
-      "command": "cf{}{}",
-      "snippet": "cf{${1:arg1}}{${2:arg2}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "bond{}": {
+      "snippet": "bond{${1:%<-=~.<${2:}> etc.%>}}"
+    },
+    "cesplit{}{}": {
+      "snippet": "cesplit{${1:search-and-replace list}}{${2:string}}"
+    },
+    "hyphen": {},
+    "cee{}": {
+      "snippet": "cee{${1:equation}}",
+      "option": "version=3"
+    },
+    "cf{}": {
+      "snippet": "cf{${1:arg}}",
+      "option": "version=3"
+    },
+    "cf[]{}": {
+      "snippet": "cf[${2:opt}]{${1:arg}}",
+      "option": "version=3"
     },
     "cmath{}": {
-      "command": "cmath{}",
-      "snippet": "cmath{${1:arg1}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "hyphen": {
-      "command": "hyphen",
-      "snippet": "hyphen",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "mhchem": {
-      "command": "mhchem",
-      "snippet": "mhchem",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "mhchemoptions{}": {
-      "command": "mhchemoptions{}",
-      "snippet": "mhchemoptions{${1:option=abc}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "cmath{${1:arg}}",
+      "option": "version=3"
     },
     "sbond": {
-      "command": "sbond",
-      "snippet": "sbond",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "option": "version=3"
     },
     "dbond": {
-      "command": "dbond",
-      "snippet": "dbond",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "option": "version=3"
     },
     "tbond": {
-      "command": "tbond",
-      "snippet": "tbond",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "option": "version=3"
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "version=",
+    "textfontname=",
+    "mathfontname=",
+    "font=",
+    "text-greek=",
+    "math-greek=",
+    "arrows=",
+    "layout=",
+    "minus-sidebearing-left=",
+    "minus-sidebearing-right=",
+    "minus-math-sidebearing-left=",
+    "minus-math-sidebearing-right=",
+    "minus-text-sidebearing-left=",
+    "minus-text-sidebearing-right="
+  ]
 }

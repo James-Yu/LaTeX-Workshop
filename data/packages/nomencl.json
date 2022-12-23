@@ -1,84 +1,69 @@
 {
-  "includes": [],
+  "includes": [
+    "xkeyval",
+    "ifthen",
+    "tocbasic",
+    "array",
+    "longtable",
+    "siunitx"
+  ],
   "cmds": {
-    "makenomenclature": {
-      "command": "makenomenclature",
-      "snippet": "makenomenclature",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "printnomenclature": {
-      "command": "printnomenclature",
-      "snippet": "printnomenclature",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
+    "makenomenclature": {},
+    "printnomenclature": {},
     "printnomenclature[]": {
-      "command": "printnomenclature[]",
-      "snippet": "printnomenclature[${1:space}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "printnomenclature[${1:space%l}]"
     },
     "nomenclature[]{}{}": {
-      "command": "nomenclature[]{}{}",
-      "snippet": "nomenclature[${3:prefix}]{${1:symbol}}{${2:description}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nomenclature[${3:prefix}]{${1:symbol}}{${2:description}}"
     },
     "nomenclature{}{}": {
-      "command": "nomenclature{}{}",
-      "snippet": "nomenclature{${1:symbol}}{${2:description}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nomenclature{${1:symbol}}{${2:description}}"
     },
-    "nomrefeq": {
-      "command": "nomrefeq",
-      "snippet": "nomrefeq",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nomrefeq": {},
+    "nomrefpage": {},
+    "nomrefeqpage": {},
+    "nomnorefeq": {},
+    "nomnorefpage": {},
+    "nomnorefeqpage": {},
+    "nomenclature[]{}{}{}{}": {
+      "snippet": "nomenclature[${5:prefix}]{${1:symbol}}{${2:description}}{${3:units}}{${4:note}}",
+      "option": "nomentbl"
     },
-    "nomrefpage": {
-      "command": "nomrefpage",
-      "snippet": "nomrefpage",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nomenclature{}{}{}{}": {
+      "snippet": "nomenclature{${1:symbol}}{${2:description}}{${3:units}}{${4:note}}",
+      "option": "nomentbl"
     },
-    "nomrefeqpage": {
-      "command": "nomrefeqpage",
-      "snippet": "nomrefeqpage",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "setnomtableformat{}": {
+      "snippet": "setnomtableformat{${1:column format}}",
+      "option": "nomentbl"
     },
-    "nomnorefeq": {
-      "command": "nomnorefeq",
-      "snippet": "nomnorefeq",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nomlabelwidth": {},
+    "nomname": {},
+    "nomAname": {},
+    "nomGname": {},
+    "nomXname": {},
+    "nomZname": {},
+    "nomgroup": {},
+    "nompreamble": {},
+    "nompostamble": {},
+    "nomitemsep": {},
+    "nomprefix": {},
+    "nomlabel": {},
+    "nomentryend": {},
+    "eqdeclaration": {},
+    "pagedeclaration": {},
+    "nomeqref{}": {
+      "snippet": "nomeqref{${1:arg}}"
     },
-    "nomnorefpage": {
-      "command": "nomnorefpage",
-      "snippet": "nomnorefpage",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nompageref{}": {
+      "snippet": "nompageref{${1:arg}}"
     },
-    "nomnorefeqpage": {
-      "command": "nomnorefeqpage",
-      "snippet": "nomnorefeqpage",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "printglossary": {
+      "option": "compatible"
     }
   },
-  "envs": {},
+  "envs": {
+    "thenomenclature": {}
+  },
   "options": []
 }

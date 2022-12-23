@@ -2,53 +2,35 @@
   "includes": [],
   "cmds": {
     "indices{}": {
-      "command": "indices{}",
-      "snippet": "indices{${1:indices}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "indices{${1:%<^sup1_sub1^sup2_sub2...%>}}"
     },
     "indices*{}": {
-      "command": "indices*{}",
-      "snippet": "indices*{${1:indices}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "indices*{${1:%<^sup1_sub1^sup2_sub2...%>}}"
     },
     "tensor{}{}": {
-      "command": "tensor{}{}",
-      "snippet": "tensor{${1:tensor}}{${2:indices}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tensor*{}{}": {
-      "command": "tensor*{}{}",
-      "snippet": "tensor*{${1:tensor}}{${2:indices}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tensor{${1:%<symbol%>}}{${2:%<^sup1_sub1^sup2_sub2...%>}}"
     },
     "tensor[]{}{}": {
-      "command": "tensor[]{}{}",
-      "snippet": "tensor[${3:indices}]{${1:tensor}}{${2:indices}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tensor[${3:%<pre-indices%>}]{${1:%<symbol%>}}{${2:%<^sup1_sub1^sup2_sub2...%>}}"
+    },
+    "tensor*{}{}": {
+      "snippet": "tensor*{${1:%<symbol%>}}{${2:%<^sup1_sub1^sup2_sub2...%>}}"
     },
     "tensor*[]{}{}": {
-      "command": "tensor*[]{}{}",
-      "snippet": "tensor*[${3:indices}]{${1:tensor}}{${2:indices}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tensor*[${3:%<pre-indices%>}]{${1:%<symbol%>}}{${2:%<^sup1_sub1^sup2_sub2...%>}}"
+    },
+    "indexmarker": {},
+    "nuclide{}": {
+      "snippet": "nuclide{${1:symbol%formula}}"
+    },
+    "nuclide[]{}": {
+      "snippet": "nuclide[${2:mass no%formula}]{${1:symbol%formula}}"
     },
     "nuclide[][]{}": {
-      "command": "nuclide[][]{}",
-      "snippet": "nuclide[${2:mass}][${3:atomic}]{${1:symbol}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nuclide[${2:mass no%formula}][${3:atomic no%formula}]{${1:symbol%formula}}"
+    },
+    "nuclideFont{}": {
+      "snippet": "nuclideFont{${1:text%plain}}"
     }
   },
   "envs": {},

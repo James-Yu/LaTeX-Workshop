@@ -1,329 +1,148 @@
 {
-  "includes": [],
+  "includes": [
+    "adjustbox",
+    "catoptions",
+    "etoolbox",
+    "kvoptions",
+    "relsize",
+    "tikz",
+    "tikzlibrarycalc",
+    "tikzlibraryshapes.symbols",
+    "tikzlibraryshadows",
+    "xcolor",
+    "xparse",
+    "xstring"
+  ],
   "cmds": {
     "menu{}": {
-      "command": "menu{}",
-      "snippet": "menu{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "menu{${1:text}}"
+    },
+    "menu[]{}": {
+      "snippet": "menu[${2:separator}]{${1:text}}"
     },
     "directory{}": {
-      "command": "directory{}",
-      "snippet": "directory{${1:path}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "directory{${1:path}}"
+    },
+    "directory[]{}": {
+      "snippet": "directory[${2:separator}]{${1:path}}"
     },
     "keys{}": {
-      "command": "keys{}",
-      "snippet": "keys{${1:keys}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "keys{${1:keys}}"
+    },
+    "keys[]{}": {
+      "snippet": "keys[${2:separator}]{${1:keys}}"
     },
     "newmenustylesimple{}[]{}[][]{}": {
-      "command": "newmenustylesimple{}[]{}[][]{}",
-      "snippet": "newmenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "newmenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}"
     },
     "newmenustylesimple*{}[]{}[][]{}": {
-      "command": "newmenustylesimple*{}[]{}[][]{}",
-      "snippet": "newmenustylesimple*{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "drawtikzfolder[]": {
-      "command": "drawtikzfolder[]",
-      "snippet": "drawtikzfolder[${1:fontcolor}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "newmenustyle{}[]{}[]{}{}{}[]{}": {
-      "command": "newmenustyle{}[]{}[]{}{}{}[]{}",
-      "snippet": "newmenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "newmenustyle*{}[]{}[]{}{}{}[]{}": {
-      "command": "newmenustyle*{}[]{}[]{}{}{}[]{}",
-      "snippet": "newmenustyle*{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "CurrentMenuElement": {
-      "command": "CurrentMenuElement",
-      "snippet": "CurrentMenuElement",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "usemenucolor{}": {
-      "command": "usemenucolor{}",
-      "snippet": "usemenucolor{${1:element}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "copymenustyle{}{}": {
-      "command": "copymenustyle{}{}",
-      "snippet": "copymenustyle{${1:copy}}{${2:original}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "shift": {
-      "command": "shift",
-      "snippet": "shift",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "capslock": {
-      "command": "capslock",
-      "snippet": "capslock",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tab": {
-      "command": "tab",
-      "snippet": "tab",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "esc": {
-      "command": "esc",
-      "snippet": "esc",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ctrl": {
-      "command": "ctrl",
-      "snippet": "ctrl",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Alt": {
-      "command": "Alt",
-      "snippet": "Alt",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "AltGr": {
-      "command": "AltGr",
-      "snippet": "AltGr",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cmd": {
-      "command": "cmd",
-      "snippet": "cmd",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Space": {
-      "command": "Space",
-      "snippet": "Space",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "return": {
-      "command": "return",
-      "snippet": "return",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "enter": {
-      "command": "enter",
-      "snippet": "enter",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "winmenu": {
-      "command": "winmenu",
-      "snippet": "winmenu",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "backspace": {
-      "command": "backspace",
-      "snippet": "backspace",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "del": {
-      "command": "del",
-      "snippet": "del",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "arrowkeyup": {
-      "command": "arrowkeyup",
-      "snippet": "arrowkeyup",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "arrowkeydown": {
-      "command": "arrowkeydown",
-      "snippet": "arrowkeydown",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "arrowkeyleft": {
-      "command": "arrowkeyleft",
-      "snippet": "arrowkeyleft",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "arrowkeyright": {
-      "command": "arrowkeyright",
-      "snippet": "arrowkeyright",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ctrlname": {
-      "command": "ctrlname",
-      "snippet": "ctrlname",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "delname": {
-      "command": "delname",
-      "snippet": "delname",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "arrowkey{}": {
-      "command": "arrowkey{}",
-      "snippet": "arrowkey{${1:direction}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "changemenuelement{}{}{}": {
-      "command": "changemenuelement{}{}{}",
-      "snippet": "changemenuelement{${1:name}}{${2:element}}{${3:definition}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "changemenuelement*{}{}{}": {
-      "command": "changemenuelement*{}{}{}",
-      "snippet": "changemenuelement*{${1:name}}{${2:element}}{${3:definition}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "changemenucolortheme{}{}": {
-      "command": "changemenucolortheme{}{}",
-      "snippet": "changemenucolortheme{${1:name}}{${2:color theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "newmenustylesimple*{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}"
     },
     "renewmenustylesimple{}[]{}[][]{}": {
-      "command": "renewmenustylesimple{}[]{}[][]{}",
-      "snippet": "renewmenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "renewmenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}"
+    },
+    "renewmenustylesimple*{}[]{}[][]{}": {
+      "snippet": "renewmenustylesimple*{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}"
     },
     "providemenustylesimple{}[]{}[][]{}": {
-      "command": "providemenustylesimple{}[]{}[][]{}",
-      "snippet": "providemenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "providemenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}"
+    },
+    "providemenustylesimple*{}[]{}[][]{}": {
+      "snippet": "providemenustylesimple*{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}"
+    },
+    "newmenustyle{}[]{}[]{}{}{}[]{}": {
+      "snippet": "newmenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}"
+    },
+    "newmenustyle*{}[]{}[]{}{}{}[]{}": {
+      "snippet": "newmenustyle*{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}"
     },
     "renewmenustyle{}[]{}[]{}{}{}[]{}": {
-      "command": "renewmenustyle{}[]{}[]{}{}{}[]{}",
-      "snippet": "renewmenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "renewmenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}"
+    },
+    "renewmenustyle*{}[]{}[]{}{}{}[]{}": {
+      "snippet": "renewmenustyle*{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}"
     },
     "providemenustyle{}[]{}[]{}{}{}[]{}": {
-      "command": "providemenustyle{}[]{}[]{}{}{}[]{}",
-      "snippet": "providemenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "providemenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}"
     },
-    "newmenucolortheme{}{}{}{}{}": {
-      "command": "newmenucolortheme{}{}{}{}{}",
-      "snippet": "newmenucolortheme{${1:name}}{${2:model}}{${3:bg}}{${4:br}}{${5:txt}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "providemenustyle*{}[]{}[]{}{}{}[]{}": {
+      "snippet": "providemenustyle*{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}"
+    },
+    "CurrentMenuElement": {},
+    "usemenucolor{}": {
+      "snippet": "usemenucolor{${1:element}}"
+    },
+    "drawtikzfolder": {},
+    "drawtikzfolder[]": {
+      "snippet": "drawtikzfolder[${1:front fill color%color}]"
+    },
+    "drawtikzfolder[][]": {
+      "snippet": "drawtikzfolder[${1:front fill color%color}][${2:draw color%color}]"
+    },
+    "copymenustyle{}{}": {
+      "snippet": "copymenustyle{${1:copy}}{${2:original}}"
+    },
+    "changemenuelement{}{}{}": {
+      "snippet": "changemenuelement{${1:name}}{${2:element}}{${3:definition}}"
+    },
+    "changemenuelement*{}{}{}": {
+      "snippet": "changemenuelement*{${1:name}}{${2:element}}{${3:definition}}"
+    },
+    "changemenucolortheme{}{}": {
+      "snippet": "changemenucolortheme{${1:name}}{${2:color theme}}"
+    },
+    "newmenucolortheme{}{}{}{}{}[][][]": {
+      "snippet": "newmenucolortheme{${1:name}}{${2:model}}{${3:bg}}{${4:br}}{${5:txt}}[${6:a}][${7:b}][${8:c}]"
     },
     "copymenucolortheme{}{}": {
-      "command": "copymenucolortheme{}{}",
-      "snippet": "copymenucolortheme{${1:copy}}{${2:original}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "copymenucolortheme{${1:copy}}{${2:original}}"
     },
     "changemenucolor{}{}{}{}": {
-      "command": "changemenucolor{}{}{}{}",
-      "snippet": "changemenucolor{${1:name}}{${2:element}}{${3:model}}{${4:color definition}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "changemenucolor{${1:name}}{${2:element}}{${3:model}}{${4:color definition}}"
     },
-    "renewmenucolortheme{}{}{}{}{}": {
-      "command": "renewmenucolortheme{}{}{}{}{}",
-      "snippet": "renewmenucolortheme{${1:name}}{${2:model}}{${3:bg}}{${4:br}}{${5:txt}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "renewmenucolortheme{}{}{}{}{}[][][]": {
+      "snippet": "renewmenucolortheme{${1:name}}{${2:model}}{${3:bg}}{${4:br}}{${5:txt}}[${6:a}][${7:b}][${8:c}]"
     },
     "newmenumacro{}[]{}": {
-      "command": "newmenumacro{}[]{}",
-      "snippet": "newmenumacro{${1:macro}}[${2:input sep}]{${3:style}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "newmenumacro{${1:macro}}[${2:input sep}]{${3:style}}"
     },
     "renewmenumacro{}[]{}": {
-      "command": "renewmenumacro{}[]{}",
-      "snippet": "renewmenumacro{${1:macro}}[${2:input sep}]{${3:style}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "renewmenumacro{${1:macro}}[${2:input sep}]{${3:style}}"
     },
     "providemenumacro{}[]{}": {
-      "command": "providemenumacro{}[]{}",
-      "snippet": "providemenumacro{${1:macro}}[${2:input sep}]{${3:style}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    }
+      "snippet": "providemenumacro{${1:macro}}[${2:input sep}]{${3:style}}"
+    },
+    "shift": {},
+    "capslock": {},
+    "tab": {},
+    "esc": {},
+    "oldesc": {},
+    "ctrl": {},
+    "Alt": {},
+    "AltGr": {},
+    "cmd": {},
+    "Space": {},
+    "SPACE": {},
+    "return": {},
+    "enter": {},
+    "winmenu": {},
+    "backspace": {},
+    "del": {},
+    "backdel": {},
+    "arrowkeyup": {},
+    "arrowkeydown": {},
+    "arrowkeyright": {},
+    "arrowkeyleft": {},
+    "arrowkey{direction": {},
+    "ctrlname": {},
+    "delname": {},
+    "spacename": {}
   },
   "envs": {},
-  "options": []
+  "options": [
+    "definemenumacros",
+    "definekeys",
+    "mackeys=",
+    "os="
+  ]
 }

@@ -4,42 +4,32 @@
     "xparse"
   ],
   "cmds": {
+    "kant": {},
+    "kant[]": {
+      "snippet": "kant[${1:%<num%>-%<num%>}]"
+    },
+    "kant[][]": {
+      "snippet": "kant[${1:%<num%>}][${2:%<num%>-%<num%>}]"
+    },
+    "kant*": {},
+    "kant*[]": {
+      "snippet": "kant*[${1:%<num%>-%<num%>}]"
+    },
+    "kant*[][]": {
+      "snippet": "kant*[${1:%<num%>}][${2:%<num%>-%<num%>}]"
+    },
     "kantdef{}{}": {
-      "command": "kantdef{}{}",
-      "snippet": "kantdef{${1:cmd}}{${2:num}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "kantdef{${1:cmd}}{${2:num}}"
     },
-    "kantlipsum": {
-      "command": "kantlipsum",
-      "snippet": "kantlipsum",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "kantlipsum[]": {
-      "command": "kantlipsum[]",
-      "snippet": "kantlipsum[${1:%<num%>-%<num%>}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "kantlipsum*": {
-      "command": "kantlipsum*",
-      "snippet": "kantlipsum*",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "kantlipsum*[]": {
-      "command": "kantlipsum*[]",
-      "snippet": "kantlipsum*[${1:%<num%>-%<num%>}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "kantdef{}{}[]": {
+      "snippet": "kantdef{${1:cmd}}{${2:num}}[${3:num-num}]"
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "par",
+    "nopar",
+    "numbers",
+    "index"
+  ]
 }

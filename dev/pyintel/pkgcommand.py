@@ -14,22 +14,20 @@ class KeyVal:
 
 @dataclass
 class Cmd:
-    command: str
-    snippet: str
-    option: str
-    keyvals: List[KeyVal]
-    keyvalindex: int
+    snippet: Union[str, None]
+    option: Union[str, None]
+    keyvals: Union[List[KeyVal], None]
+    keyvalindex: Union[int, None]
     detail: Union[str, None]
     documentation: Union[str, None]
 
 @dataclass
 class Env:
-    name: str
-    detail: str
-    snippet: str
-    option: str
-    keyvals: List[KeyVal]
-    keyvalindex: int
+    name: Union[str, None]
+    snippet: Union[str, None]
+    option: Union[str, None]
+    keyvals: Union[List[KeyVal], None]
+    keyvalindex: Union[int, None]
 
 @dataclass
 class Pkg:
@@ -201,7 +199,7 @@ class CwlIntel:
             lines = apply_caption_tweaks(lines)
         
         cwl_keyval = None
-        cwl_option = ''
+        cwl_option = None
         for line in lines:
             line = line.rstrip()
             if len(line) == 0:                      # empty line
@@ -211,7 +209,7 @@ class CwlIntel:
             elif line.startswith('#ifOption:'):     # '#ifOption:newfloat=true'
                 cwl_option = line[10:]              # 'newfloat=true'
             elif line.startswith('#endif'):         # '#endif'
-                cwl_option = ''
+                cwl_option = None
             elif line.startswith('#keyvals:\\usepackage/'): # '#keyvals:\usepackage/color#c'
                 cwl_keyval = 'PACKAGE_OPTIONS'
             elif line.startswith('#keyvals:'):      # '#keyvals:\begin{minted},\mint,\inputminted'
@@ -238,7 +236,12 @@ class CwlIntel:
                 if re.match(r'[^A-Za-z\[\]{}<>*\s]', name) is not None:
                     continue
                 snippet = create_snippet(match[2] if len(match.groups()) >= 2 and match[2] else '')
-                pkg.envs[name] = Env(name=match[1],detail=name,snippet=snippet,option=cwl_option,keyvals=[],keyvalindex=-1)
+                pkg.envs[name] = Env(
+                    name=None if name == match[1] else match[1],
+                    snippet=None if snippet == '' else snippet,
+                    option=cwl_option,
+                    keyvals=None,
+                    keyvalindex=None)
             elif line.startswith('\\end{'):         # '\end{minted}'
                 continue
             elif line.startswith('\\'):             # '\inputminted[options%keyvals]{language}{file}#i'
@@ -265,7 +268,13 @@ class CwlIntel:
                 snippet = create_snippet(match[1] + (match[2] if len(match.groups()) >= 2 and match[2] else ''))
                 detail = self.unimath_dict[name]['detail'] if self.unimath_dict.get(name) else None
                 documentation = self.unimath_dict[name]['documentation'] if self.unimath_dict.get(name) else None
-                pkg.cmds[name] = Cmd(command=name, snippet=snippet, option=cwl_option, keyvals=[], keyvalindex=-1, detail=detail, documentation=documentation)
+                pkg.cmds[name] = Cmd(
+                    snippet=None if name == snippet else snippet,
+                    option=cwl_option,
+                    keyvals=None,
+                    keyvalindex=None,
+                    detail=detail,
+                    documentation=documentation)
             elif cwl_keyval == 'PACKAGE_OPTIONS':
                 match = re.match(r'^([^#%\n]*)', line)
                 if match is None:
@@ -284,19 +293,21 @@ class CwlIntel:
                             haskeyvals = re.search(r':keys|:keyvals|:options', pkg.envs[pkgenv].snippet)
                             if (haskeyvals is None):
                                 continue
-                            if (pkg.envs[pkgenv].keyvalindex == -1):
+                            if (pkg.envs[pkgenv].keyvalindex is None):
                                 pkg.envs[pkgenv].keyvalindex = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.envs[pkgenv].snippet[:haskeyvals.start()])))
+                            pkg.envs[pkgenv].keyvals = pkg.envs[pkgenv].keyvals or []
                             pkg.envs[pkgenv].keyvals.append(match[1])
                     else:
-                        cmd = re.match(r'\\([^{\[]*)', envcmd)[1]
+                        cmd = re.match(r'\\?([^{\[]*)', envcmd)[1]
                         for pkgcmd in pkg.cmds:
-                            if (re.sub(r'\[\]|\(\)|<>|{}', '', pkg.cmds[pkgcmd].command) != cmd):
+                            if (re.sub(r'\[\]|\(\)|<>|{}', '', pkgcmd) != cmd):
                                 continue
-                            haskeyvals = re.search(r':keys|:keyvals|:options', pkg.cmds[pkgcmd].snippet)
+                            haskeyvals = re.search(r':keys|:keyvals|:options', pkg.cmds[pkgcmd].snippet or pkgcmd)
                             if (haskeyvals is None):
                                 continue
-                            if (pkg.cmds[pkgcmd].keyvalindex == -1):
+                            if (pkg.cmds[pkgcmd].keyvalindex is None):
                                 pkg.cmds[pkgcmd].keyvalindex = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.cmds[pkgcmd].snippet[:haskeyvals.start()])))
+                            pkg.cmds[pkgcmd].keyvals = pkg.cmds[pkgcmd].keyvals or []
                             pkg.cmds[pkgcmd].keyvals.append(match[1])
 
         return pkg

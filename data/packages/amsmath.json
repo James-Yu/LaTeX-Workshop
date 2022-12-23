@@ -1,852 +1,347 @@
 {
-  "includes": [],
+  "includes": [
+    "amstext",
+    "amsbsy",
+    "amsopn"
+  ],
   "cmds": {
-    "AmS": {
-      "command": "AmS",
-      "snippet": "AmS",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "allowdisplaybreaks": {},
+    "allowdisplaybreaks[]": {
+      "snippet": "allowdisplaybreaks[${1:value}]"
     },
-    "AmSfont": {
-      "command": "AmSfont",
-      "snippet": "AmSfont",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
+    "AmS": {},
+    "AmSfont": {},
+    "And": {},
     "binom{}{}": {
-      "command": "binom{}{}",
-      "snippet": "binom{${1:above}}{${2:below}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "binom{${1:above}}{${2:below}}"
     },
     "boxed{}": {
-      "command": "boxed{}",
-      "snippet": "boxed{${1:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "boxed{${1:formula}}"
     },
     "cfrac[]{}{}": {
-      "command": "cfrac[]{}{}",
-      "snippet": "cfrac[${3:align}]{${1:numerator}}{${2:denominator}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "cfrac[${3:%<align%>}]{${1:%<num%:translatable%>}}{${2:%<den%:translatable%>}}"
     },
     "cfrac{}{}": {
-      "command": "cfrac{}{}",
-      "snippet": "cfrac{${1:numerator}}{${2:denominator}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "cfrac{${1:%<num%:translatable%>}}{${2:%<den%:translatable%>}}"
     },
     "dbinom{}{}": {
-      "command": "dbinom{}{}",
-      "snippet": "dbinom{${1:above}}{${2:below}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "dbinom{${1:above}}{${2:below}}"
     },
     "ddddot{}": {
-      "command": "ddddot{}",
-      "snippet": "ddddot{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ddddot{${1:arg}}"
     },
     "dddot{}": {
-      "command": "dddot{}",
-      "snippet": "dddot{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DeclareMathOperator{}{}": {
-      "command": "DeclareMathOperator{}{}",
-      "snippet": "DeclareMathOperator{${1:command}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "DeclareMathOperator*{}{}": {
-      "command": "DeclareMathOperator*{}{}",
-      "snippet": "DeclareMathOperator*{${1:command}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "dddot{${1:arg}}"
     },
     "dfrac{}{}": {
-      "command": "dfrac{}{}",
-      "snippet": "dfrac{${1:numerator}}{${2:denominator}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "dfrac{${1:%<num%:translatable%>}}{${2:%<den%:translatable%>}}"
     },
-    "displaybreak": {
-      "command": "displaybreak",
-      "snippet": "displaybreak",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
+    "displaybreak": {},
     "displaybreak[]": {
-      "command": "displaybreak[]",
-      "snippet": "displaybreak[${1:value}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "displaybreak[${1:value}]"
     },
-    "dotsb": {
-      "command": "dotsb",
-      "snippet": "dotsb",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dotsc": {
-      "command": "dotsc",
-      "snippet": "dotsc",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dotsi": {
-      "command": "dotsi",
-      "snippet": "dotsi",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dotsm": {
-      "command": "dotsm",
-      "snippet": "dotsm",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dotso": {
-      "command": "dotso",
-      "snippet": "dotso",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "DOTSB": {},
+    "DOTSI": {},
+    "DOTSX": {},
+    "dotsb": {},
+    "dotsc": {},
+    "dotsi": {},
+    "dotsm": {},
+    "dotso": {},
+    "endmathdisplay{}": {
+      "snippet": "endmathdisplay{${1:envname}}"
     },
     "eqref{}": {
-      "command": "eqref{}",
-      "snippet": "eqref{${1:label}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "eqref{${1:label}}"
     },
+    "genfrac{}{}{}{}{}{}": {
+      "snippet": "genfrac{${1:left-delim}}{${2:right-delim}}{${3:thickness%l}}{${4:mathstyle}}{${5:numerator}}{${6:denominator}}"
+    },
+    "hdots": {},
     "hdotsfor{}": {
-      "command": "hdotsfor{}",
-      "snippet": "hdotsfor{${1:columns}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "hdotsfor{${1:columns}}"
     },
     "hdotsfor[]{}": {
-      "command": "hdotsfor[]{}",
-      "snippet": "hdotsfor[${2:multiplier}]{${1:columns}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "hdotsfor[${2:multiplier}]{${1:columns}}"
     },
-    "idotsint": {
-      "command": "idotsint",
-      "snippet": "idotsint",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
+    "idotsint": {},
     "iiiint": {
-      "command": "iiiint",
-      "snippet": "iiiint",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "⨌",
       "documentation": "QUADRUPLE INTEGRAL OPERATOR"
     },
     "iiint": {
-      "command": "iiint",
-      "snippet": "iiint",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "∭",
       "documentation": "TRIPLE INTEGRAL operator"
     },
     "iint": {
-      "command": "iint",
-      "snippet": "iint",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "∬",
       "documentation": "DOUBLE INTEGRAL operator"
     },
     "impliedby": {
-      "command": "impliedby",
-      "snippet": "impliedby",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "⟸",
       "documentation": "LONG LEFTWARDS DOUBLE ARROW"
     },
     "implies": {
-      "command": "implies",
-      "snippet": "implies",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "⟹",
       "documentation": "LONG RIGHTWARDS DOUBLE ARROW"
     },
     "intertext{}": {
-      "command": "intertext{}",
-      "snippet": "intertext{${1:word or phrase}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "intertext{${1:word or phrase%text}}"
     },
     "leftroot{}": {
-      "command": "leftroot{}",
-      "snippet": "leftroot{${1:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "leftroot{${1:argument}}"
     },
-    "lvert": {
-      "command": "lvert",
-      "snippet": "lvert",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "lvert": {},
+    "lVert": {},
+    "mathaccentV": {},
+    "mathdisplay{}": {
+      "snippet": "mathdisplay{${1:envname}}"
     },
-    "lVert": {
-      "command": "lVert",
-      "snippet": "lVert",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "medspace": {
-      "command": "medspace",
-      "snippet": "medspace",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
-      "detail": " ",
-      "documentation": "MEDIUM MATHEMATICAL SPACE, four-eighteenths of an em"
-    },
-    "mod{}": {
-      "command": "mod{}",
-      "snippet": "mod{${1:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
+    "mintagsep": {},
+    "minalignsep": {},
+    "mod": {},
     "mspace{}": {
-      "command": "mspace{}",
-      "snippet": "mspace{${1:dimen}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "mspace{${1:dimen}}"
     },
-    "negmedspace": {
-      "command": "negmedspace",
-      "snippet": "negmedspace",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "MultiIntegral{}": {
+      "snippet": "MultiIntegral{${1:integer}}"
     },
-    "negthickspace": {
-      "command": "negthickspace",
-      "snippet": "negthickspace",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "multlinegap": {},
+    "multlinetaggap": {},
+    "nobreakdash": {},
+    "notag": {},
+    "numberwithin{}{}": {
+      "snippet": "numberwithin{${1:env}}{${2:counter}}"
     },
-    "negthinspace": {
-      "command": "negthinspace",
-      "snippet": "negthinspace",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nobreakdash": {
-      "command": "nobreakdash",
-      "snippet": "nobreakdash",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "notag": {
-      "command": "notag",
-      "snippet": "notag",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "operatorname{}": {
-      "command": "operatorname{}",
-      "snippet": "operatorname{${1:name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "operatornamewithlimits{}": {
-      "command": "operatornamewithlimits{}",
-      "snippet": "operatornamewithlimits{${1:name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "numberwithin[]{}{}": {
+      "snippet": "numberwithin[${3:format}]{${1:env}}{${2:counter}}"
     },
     "overleftrightarrow{}": {
-      "command": "overleftrightarrow{}",
-      "snippet": "overleftrightarrow{${1:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "overleftrightarrow{${1:argument}}"
     },
     "overset{}{}": {
-      "command": "overset{}{}",
-      "snippet": "overset{${1:superscript}}{${2:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "overset{${1:superscript}}{${2:argument}}"
     },
-    "pod{}": {
-      "command": "pod{}",
-      "snippet": "pod{${1:value}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "overunderset{}{}{}": {
+      "snippet": "overunderset{${1:superscript}}{${2:subscript}}{${3:argument}}"
     },
+    "pod": {},
     "raisetag{}": {
-      "command": "raisetag{}",
-      "snippet": "raisetag{${1:dimen}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "raisetag{${1:dimen}}"
     },
-    "rvert": {
-      "command": "rvert",
-      "snippet": "rvert",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "rvert": {},
+    "rVert": {},
+    "shoveright{}": {
+      "snippet": "shoveright{${1:arg}}"
     },
-    "rVert": {
-      "command": "rVert",
-      "snippet": "rVert",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "shoveleft{}": {
+      "snippet": "shoveleft{${1:arg}}"
     },
     "sideset{}{}{}": {
-      "command": "sideset{}{}{}",
-      "snippet": "sideset{${1:left}}{${2:right}}{${3:symbol}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "sideset{${1:left}}{${2:right}}{${3:symbol}}"
     },
     "smash{}": {
-      "command": "smash{}",
-      "snippet": "smash{${1:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "smash{${1:argument}}"
     },
     "smash[]{}": {
-      "command": "smash[]{}",
-      "snippet": "smash[${2:valign}]{${1:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "smash[${2:valign}]{${1:argument}}"
     },
     "substack{}": {
-      "command": "substack{}",
-      "snippet": "substack{${1:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "substack{${1:argument}}"
     },
     "tag{}": {
-      "command": "tag{}",
-      "snippet": "tag{${1:label}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tag{${1:label}}"
     },
     "tag*{}": {
-      "command": "tag*{}",
-      "snippet": "tag*{${1:label}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tag*{${1:label}}"
     },
     "tbinom{}{}": {
-      "command": "tbinom{}{}",
-      "snippet": "tbinom{${1:above}}{${2:below}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tbinom{${1:above}}{${2:below}}"
     },
     "tfrac{}{}": {
-      "command": "tfrac{}{}",
-      "snippet": "tfrac{${1:numerator}}{${2:denominator}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tfrac{${1:%<num%:translatable%>}}{${2:%<den%:translatable%>}}"
     },
-    "thickspace": {
-      "command": "thickspace",
-      "snippet": "thickspace",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "thinspace": {
-      "command": "thinspace",
-      "snippet": "thinspace",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
+    "theparentequation": {},
+    "thetag": {},
     "underleftarrow{}": {
-      "command": "underleftarrow{}",
-      "snippet": "underleftarrow{${1:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "underleftarrow{${1:argument}}"
     },
     "underleftrightarrow{}": {
-      "command": "underleftrightarrow{}",
-      "snippet": "underleftrightarrow{${1:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "underleftrightarrow{${1:argument}}"
     },
     "underrightarrow{}": {
-      "command": "underrightarrow{}",
-      "snippet": "underrightarrow{${1:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "underrightarrow{${1:argument}}"
     },
     "underset{}{}": {
-      "command": "underset{}{}",
-      "snippet": "underset{${1:subscript}}{${2:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "underset{${1:subscript}}{${2:argument}}"
     },
     "uproot{}": {
-      "command": "uproot{}",
-      "snippet": "uproot{${1:argument}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "uproot{${1:argument}}"
     },
     "varDelta": {
-      "command": "varDelta",
-      "snippet": "varDelta",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "𝛥",
       "documentation": "MATHEMATICAL ITALIC CAPITAL DELTA"
     },
     "varGamma": {
-      "command": "varGamma",
-      "snippet": "varGamma",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "𝛤",
       "documentation": "MATHEMATICAL ITALIC CAPITAL GAMMA"
     },
     "varLambda": {
-      "command": "varLambda",
-      "snippet": "varLambda",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "𝛬",
       "documentation": "mathematical italic capital lambda"
     },
     "varOmega": {
-      "command": "varOmega",
-      "snippet": "varOmega",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "𝛺",
       "documentation": "MATHEMATICAL ITALIC CAPITAL OMEGA"
     },
     "varPhi": {
-      "command": "varPhi",
-      "snippet": "varPhi",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "𝛷",
       "documentation": "MATHEMATICAL ITALIC CAPITAL PHI"
     },
     "varPi": {
-      "command": "varPi",
-      "snippet": "varPi",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "𝛱",
       "documentation": "MATHEMATICAL ITALIC CAPITAL PI"
     },
     "varPsi": {
-      "command": "varPsi",
-      "snippet": "varPsi",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "𝛹",
       "documentation": "MATHEMATICAL ITALIC CAPITAL PSI"
     },
     "varSigma": {
-      "command": "varSigma",
-      "snippet": "varSigma",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "𝛴",
       "documentation": "MATHEMATICAL ITALIC CAPITAL SIGMA"
     },
     "varTheta": {
-      "command": "varTheta",
-      "snippet": "varTheta",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "𝛩",
       "documentation": "MATHEMATICAL ITALIC CAPITAL THETA"
     },
     "varUpsilon": {
-      "command": "varUpsilon",
-      "snippet": "varUpsilon",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "𝛶",
       "documentation": "MATHEMATICAL ITALIC CAPITAL UPSILON"
     },
     "varXi": {
-      "command": "varXi",
-      "snippet": "varXi",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
       "detail": "𝛯",
       "documentation": "MATHEMATICAL ITALIC CAPITAL XI"
     },
+    "veqno{}": {
+      "snippet": "veqno{${1:eqn num}}"
+    },
     "xleftarrow[]{}": {
-      "command": "xleftarrow[]{}",
-      "snippet": "xleftarrow[${2:subscript}]{${1:superscript}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xleftarrow[${2:subscript}]{${1:superscript}}"
     },
     "xleftarrow{}": {
-      "command": "xleftarrow{}",
-      "snippet": "xleftarrow{${1:superscript}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xleftarrow{${1:superscript}}"
     },
     "xrightarrow[]{}": {
-      "command": "xrightarrow[]{}",
-      "snippet": "xrightarrow[${2:subscript}]{${1:superscript}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xrightarrow[${2:subscript}]{${1:superscript}}"
     },
     "xrightarrow{}": {
-      "command": "xrightarrow{}",
-      "snippet": "xrightarrow{${1:superscript}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xrightarrow{${1:superscript}}"
+    },
+    "Hat{}": {
+      "snippet": "Hat{${1:arg}}"
+    },
+    "Check{}": {
+      "snippet": "Check{${1:arg}}"
+    },
+    "Tilde{}": {
+      "snippet": "Tilde{${1:arg}}"
+    },
+    "Acute{}": {
+      "snippet": "Acute{${1:arg}}"
+    },
+    "Grave{}": {
+      "snippet": "Grave{${1:arg}}"
+    },
+    "Dot{}": {
+      "snippet": "Dot{${1:arg}}"
+    },
+    "Ddot{}": {
+      "snippet": "Ddot{${1:arg}}"
+    },
+    "Breve{}": {
+      "snippet": "Breve{${1:arg}}"
+    },
+    "Bar{}": {
+      "snippet": "Bar{${1:arg}}"
+    },
+    "Vec{}": {
+      "snippet": "Vec{${1:arg}}"
     }
   },
   "envs": {
-    "align": {
-      "name": "align",
-      "detail": "align",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "align*": {
-      "name": "align*",
-      "detail": "align*",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
+    "align": {},
+    "align*": {},
     "alignat[]{}": {
       "name": "alignat",
-      "detail": "alignat[]{}",
-      "snippet": "[${2:alignment}]{${1:n}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "[${2:alignment}]{${1:ncols}}"
     },
     "alignat*[]{}": {
       "name": "alignat*",
-      "detail": "alignat*[]{}",
-      "snippet": "[${2:alignment}]{${1:n}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "[${2:alignment}]{${1:ncols}}"
     },
     "alignat{}": {
       "name": "alignat",
-      "detail": "alignat{}",
-      "snippet": "{${1:n}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "{${1:ncols}}"
     },
     "alignat*{}": {
       "name": "alignat*",
-      "detail": "alignat*{}",
-      "snippet": "{${1:n}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "{${1:ncols}}"
     },
-    "aligned": {
-      "name": "aligned",
-      "detail": "aligned",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
+    "aligned": {},
     "aligned[]": {
       "name": "aligned",
-      "detail": "aligned[]",
-      "snippet": "[${1:alignment}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "[${1:alignment}]"
     },
-    "alignedat": {
+    "alignedat{}": {
       "name": "alignedat",
-      "detail": "alignedat",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "{${1:ncols}}"
     },
-    "bmatrix": {
-      "name": "bmatrix",
-      "detail": "bmatrix",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Bmatrix": {
-      "name": "Bmatrix",
-      "detail": "Bmatrix",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "cases": {
-      "name": "cases",
-      "detail": "cases",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "equation*": {
-      "name": "equation*",
-      "detail": "equation*",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "flalign": {
-      "name": "flalign",
-      "detail": "flalign",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "flalign*": {
-      "name": "flalign*",
-      "detail": "flalign*",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "gather": {
-      "name": "gather",
-      "detail": "gather",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "gather*": {
-      "name": "gather*",
-      "detail": "gather*",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "gathered": {
-      "name": "gathered",
-      "detail": "gathered",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
+    "bmatrix": {},
+    "Bmatrix": {},
+    "cases": {},
+    "equation*": {},
+    "flalign": {},
+    "flalign*": {},
+    "gather": {},
+    "gather*": {},
+    "gathered": {},
     "gathered[]": {
       "name": "gathered",
-      "detail": "gathered[]",
-      "snippet": "[${1:alignment}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "[${1:alignment}]"
     },
-    "matrix": {
-      "name": "matrix",
-      "detail": "matrix",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "multline": {
-      "name": "multline",
-      "detail": "multline",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "multline*": {
-      "name": "multline*",
-      "detail": "multline*",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pmatrix": {
-      "name": "pmatrix",
-      "detail": "pmatrix",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "smallmatrix": {
-      "name": "smallmatrix",
-      "detail": "smallmatrix",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "split": {
-      "name": "split",
-      "detail": "split",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "subarray": {
+    "matrix": {},
+    "multline": {},
+    "multline*": {},
+    "pmatrix": {},
+    "smallmatrix": {},
+    "split": {},
+    "subarray": {},
+    "subarray{}": {
       "name": "subarray",
-      "detail": "subarray",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "{${1:align}}"
     },
-    "subarray[]": {
-      "name": "subarray",
-      "detail": "subarray[]",
-      "snippet": "[${1:align}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "subequations": {
-      "name": "subequations",
-      "detail": "subequations",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "vmatrix": {
-      "name": "vmatrix",
-      "detail": "vmatrix",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "Vmatrix": {
-      "name": "Vmatrix",
-      "detail": "Vmatrix",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xalignat": {
-      "name": "xalignat",
-      "detail": "xalignat",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xalignat*": {
-      "name": "xalignat*",
-      "detail": "xalignat*",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xxalignat": {
-      "name": "xxalignat",
-      "detail": "xxalignat",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    }
+    "subequations": {},
+    "vmatrix": {},
+    "Vmatrix": {},
+    "xalignat": {},
+    "xalignat*": {},
+    "xxalignat": {}
   },
-  "options": []
+  "options": [
+    "intlimits",
+    "nointlimits",
+    "sumlimits",
+    "nosumlimits",
+    "namelimits",
+    "nonamelimits",
+    "leqno",
+    "reqno",
+    "centertags",
+    "tbtags",
+    "cmex10",
+    "fleqn",
+    "alignedleftspaceyes",
+    "alignedleftspaceno",
+    "alignedleftspaceyesifneg"
+  ]
 }

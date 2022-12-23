@@ -1,229 +1,409 @@
 {
   "includes": [
+    "etoolbox",
+    "ifthen",
     "xcolor",
+    "iftex",
     "url",
+    "hyperref",
     "graphicx",
     "fancyhdr",
     "tweaklist",
     "calc",
     "xparse",
     "microtype",
-    "hyperref"
+    "moderncvcollection",
+    "moderncvcompatibility",
+    "expl3",
+    "colortbl"
   ],
   "cmds": {
-    "moderncvstyle{}": {
-      "command": "moderncvstyle{}",
-      "snippet": "moderncvstyle{${1:%<style%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "moderncvcolor{}": {
-      "command": "moderncvcolor{}",
-      "snippet": "moderncvcolor{${1:%<color%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nopagenumbers": {
-      "command": "nopagenumbers",
-      "snippet": "nopagenumbers",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "firstname{}": {
-      "command": "firstname{}",
-      "snippet": "firstname{${1:%<first name%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "familyname{}": {
-      "command": "familyname{}",
-      "snippet": "familyname{${1:%<${2:family name}>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ifxetexorluatex": {},
+    "xetexorluatextrue": {},
+    "xetexorluatexfalse": {},
+    "pdfpagemode": {},
+    "nopagenumbers": {},
+    "pagenumberwidth": {},
+    "name{}{}": {
+      "snippet": "name{${1:first name}}{${2:last name}}"
     },
     "address{}{}{}": {
-      "command": "address{}{}{}",
-      "snippet": "address{${1:%<street and number%>}}{${2:%<postcode city%>}}{${3:%<country%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "address{${1:street}}{${2:city}}{${3:country}}"
     },
-    "mobile{}": {
-      "command": "mobile{}",
-      "snippet": "mobile{${1:%<mobile phone number%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "phone{}": {
-      "command": "phone{}",
-      "snippet": "phone{${1:%<phone number%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "fax{}": {
-      "command": "fax{}",
-      "snippet": "fax{${1:%<fax%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "born{}": {
+      "snippet": "born{${1:date}}"
     },
     "email{}": {
-      "command": "email{}",
-      "snippet": "email{${1:%<email%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "email{${1:address%URL}}"
     },
     "homepage{}": {
-      "command": "homepage{}",
-      "snippet": "homepage{${1:%<home% page>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "homepage{${1:URL}}"
+    },
+    "phone{}": {
+      "snippet": "phone{${1:number}}"
+    },
+    "phone[]{}": {
+      "snippet": "phone[${2:type}]{${1:number}}"
+    },
+    "SplitMyMacro": {},
+    "social{}": {
+      "snippet": "social{${1:user name}}"
+    },
+    "social[]{}": {
+      "snippet": "social[${2:type}]{${1:user name}}"
+    },
+    "social[][]{}": {
+      "snippet": "social[${2:type}][${3:URL}]{${1:user name}}"
     },
     "extrainfo{}": {
-      "command": "extrainfo{}",
-      "snippet": "extrainfo{${1:%<extra info%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "extrainfo{${1:extra info%text}}"
+    },
+    "listitemsymbol": {},
+    "addresssymbol": {},
+    "bornsymbol": {},
+    "mobilephonesymbol": {},
+    "fixedphonesymbol": {},
+    "faxphonesymbol": {},
+    "emailsymbol": {},
+    "homepagesymbol": {},
+    "linkedinsocialsymbol": {},
+    "xingsocialsymbol": {},
+    "twittersocialsymbol": {},
+    "mastodonsocialsymbol": {},
+    "githubsocialsymbol": {},
+    "gitlabsocialsymbol": {},
+    "stackoverflowsocialsymbol": {},
+    "bitbucketsocialsymbol": {},
+    "skypesocialsymbol": {},
+    "orcidsocialsymbol": {},
+    "researchgatesocialsymbol": {},
+    "researcheridsocialsymbol": {},
+    "googlescholarsocialsymbol": {},
+    "telegramsocialsymbol": {},
+    "whatsappsocialsymbol": {},
+    "matrixsocialsymbol": {},
+    "signalsocialsymbol": {},
+    "codebergsocialsymbol": {},
+    "discordsocialsymbol": {},
+    "enclname": {},
+    "makefooter": {},
+    "moderncvstyle{}": {
+      "snippet": "moderncvstyle{${1:style}}"
+    },
+    "moderncvstyle[]{}": {
+      "snippet": "moderncvstyle[${2:options}]{${1:style}}"
+    },
+    "moderncvhead{}": {
+      "snippet": "moderncvhead{${1:header variant number}}"
+    },
+    "moderncvhead[]{}": {
+      "snippet": "moderncvhead[${2:options}]{${1:header variant number}}"
+    },
+    "moderncvbody{}": {
+      "snippet": "moderncvbody{${1:body variant number}}"
+    },
+    "moderncvbody[]{}": {
+      "snippet": "moderncvbody[${2:options}]{${1:body variant number}}"
+    },
+    "moderncvfoot{}": {
+      "snippet": "moderncvfoot{${1:foot variant number}}"
+    },
+    "moderncvfoot[]{}": {
+      "snippet": "moderncvfoot[${2:options}]{${1:foot variant number}}"
+    },
+    "moderncvcolor{}": {
+      "snippet": "moderncvcolor{${1:color-scheme}}"
+    },
+    "moderncvicons{}": {
+      "snippet": "moderncvicons{${1:icon set}}"
+    },
+    "recomputeheadlengths": {},
+    "recomputebodylengths": {},
+    "recomputefootlengths": {},
+    "recomputelengths": {},
+    "photo{}": {
+      "snippet": "photo{${1:imagefile}}"
+    },
+    "photo[]{}": {
+      "snippet": "photo[${2:width}]{${1:imagefile}}"
     },
     "photo[][]{}": {
-      "command": "photo[][]{}",
-      "snippet": "photo[${2:%<height photo%>}][${3:%<frame thickness%>}]{${1:%<picture file%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "photo[${2:width}][${3:frame thickness%l}]{${1:imagefile}}"
     },
     "quote{}": {
-      "command": "quote{}",
-      "snippet": "quote{${1:%<some quote%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "quote{${1:text}}"
     },
-    "makecvtitle": {
-      "command": "makecvtitle",
-      "snippet": "makecvtitle",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "namefont": {},
+    "titlefont": {},
+    "addressfont": {},
+    "quotefont": {},
+    "sectionfont": {},
+    "subsectionfont": {},
+    "hintfont": {},
+    "pagenumberfont": {},
+    "namestyle{}": {
+      "snippet": "namestyle{${1:text}}"
     },
-    "cventry{}{}{}{}{}{}": {
-      "command": "cventry{}{}{}{}{}{}",
-      "snippet": "cventry{${1:%<year%>--%<year%>}}{${2:%<degree or job title%>}}{${3:%<institution or employer%>}}{${4:%<city%>}}{${5:%<grade%>}}{${6:%<description%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "titlestyle{}": {
+      "snippet": "titlestyle{${1:text}}"
     },
+    "addressstyle{}": {
+      "snippet": "addressstyle{${1:text}}"
+    },
+    "quotestyle{}": {
+      "snippet": "quotestyle{${1:text}}"
+    },
+    "sectionstyle{}": {
+      "snippet": "sectionstyle{${1:text}}"
+    },
+    "subsectionstyle{}": {
+      "snippet": "subsectionstyle{${1:text}}"
+    },
+    "hintstyle{}": {
+      "snippet": "hintstyle{${1:text}}"
+    },
+    "pagenumberstyle{}": {
+      "snippet": "pagenumberstyle{${1:text}}"
+    },
+    "recomputecvheadlengths": {},
+    "recomputecvbodylengths": {},
+    "recomputecvfootlengths": {},
+    "recomputecvlengths": {},
+    "makenewline": {},
+    "makecvtitle": {},
+    "makecvhead": {},
+    "makecvfoot": {},
     "cvitem{}{}": {
-      "command": "cvitem{}{}",
-      "snippet": "cvitem{${1:%<item%>}}{${2:%<item description%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "cvitem{${1:heading%text}}{${2:text}}"
     },
-    "cvitemwithcomment{}{}{}": {
-      "command": "cvitemwithcomment{}{}{}",
-      "snippet": "cvitemwithcomment{${1:%<item%>}}{${2:%<item description%>}}{${3:%<comment%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "cvitem[]{}{}": {
+      "snippet": "cvitem[${3:spacing%l}]{${1:heading%text}}{${2:text}}"
     },
     "cvdoubleitem{}{}{}{}": {
-      "command": "cvdoubleitem{}{}{}{}",
-      "snippet": "cvdoubleitem{${1:%<item%>}}{${2:%<item description%>}}{${3:%<item%>}}{${4:%<item description%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "cvdoubleitem{${1:heading1%text}}{${2:text1%text}}{${3:heading2%text}}{${4:text2%text}}"
+    },
+    "cvdoubleitem[]{}{}{}{}": {
+      "snippet": "cvdoubleitem[${5:spacing%l}]{${1:heading1%text}}{${2:text1%text}}{${3:heading2%text}}{${4:text2%text}}"
     },
     "cvlistitem{}": {
-      "command": "cvlistitem{}",
-      "snippet": "cvlistitem{${1:%<item%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "cvlistitem{${1:item%text}}"
+    },
+    "cvlistitem[]{}": {
+      "snippet": "cvlistitem[${2:spacing%l}]{${1:item%text}}"
     },
     "cvlistdoubleitem{}{}": {
-      "command": "cvlistdoubleitem{}{}",
-      "snippet": "cvlistdoubleitem{${1:%<item%>}}{${2:%<item%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "cvlistdoubleitem{${1:item1%text}}{${2:item2%text}}"
     },
+    "cvlistdoubleitem[]{}{}": {
+      "snippet": "cvlistdoubleitem[${3:spacing%l}]{${1:item1%text}}{${2:item2%text}}"
+    },
+    "cventry{}{}{}{}{}{}": {
+      "snippet": "cventry{${1:years%text}}{${2:degree or job title%text}}{${3:institution or employer%text}}{${4:city%text}}{${5:grade%text}}{${6:description%text}}"
+    },
+    "cventry[]{}{}{}{}{}{}": {
+      "snippet": "cventry[${7:spacing%l}]{${1:years%text}}{${2:degree or job title%text}}{${3:institution or employer%text}}{${4:city%text}}{${5:grade%text}}{${6:description%text}}"
+    },
+    "cvitemwithcomment{}{}{}": {
+      "snippet": "cvitemwithcomment{${1:item%text}}{${2:item description%text}}{${3:comment%text}}"
+    },
+    "link{}": {
+      "snippet": "link{${1:URL}}"
+    },
+    "link[]{}": {
+      "snippet": "link[${2:text}]{${1:URL}}"
+    },
+    "httplink{}": {
+      "snippet": "httplink{${1:URL}}"
+    },
+    "httplink[]{}": {
+      "snippet": "httplink[${2:text}]{${1:URL}}"
+    },
+    "httpslink{}": {
+      "snippet": "httpslink{${1:URL}}"
+    },
+    "httpslink[]{}": {
+      "snippet": "httpslink[${2:text}]{${1:URL}}"
+    },
+    "emaillink{}": {
+      "snippet": "emaillink{${1:address%URL}}"
+    },
+    "emaillink[]{}": {
+      "snippet": "emaillink[${2:text}]{${1:address%URL}}"
+    },
+    "tellink{}": {
+      "snippet": "tellink{${1:phone number}}"
+    },
+    "tellink[]{}": {
+      "snippet": "tellink[${2:text}]{${1:phone number}}"
+    },
+    "onlynumberslink{}": {
+      "snippet": "onlynumberslink{${1:arg}}"
+    },
+    "thecvcolumnscounter": {},
+    "thecvcolumnsautowidthcounter": {},
+    "thetmpiteratorcounter": {},
+    "cvcolumnsdummywidth": {},
+    "cvcolumnswidth": {},
+    "cvcolumnsautowidth": {},
+    "cvcolumnautowidth": {},
     "cvcolumn{}{}": {
-      "command": "cvcolumn{}{}",
-      "snippet": "cvcolumn{${1:%<category%>}}{${2:%<comment%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "cvcolumn{${1:head%text}}{${2:content%text}}"
+    },
+    "cvcolumn[]{}{}": {
+      "snippet": "cvcolumn[${3:width}]{${1:head%text}}{${2:content%text}}"
+    },
+    "cvcolumncell{}": {
+      "snippet": "cvcolumncell{${1:arg}}"
+    },
+    "bibindent": {},
+    "bibliographyhead{}": {
+      "snippet": "bibliographyhead{${1:title}}"
     },
     "recipient{}{}": {
-      "command": "recipient{}{}",
-      "snippet": "recipient{${1:%<recipient%>}}{${2:%<recipient address%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "recipient{${1:recipient}}{${2:recipient address}}"
     },
     "opening{}": {
-      "command": "opening{}",
-      "snippet": "opening{${1:%<opening%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "opening{${1:opening%text}}"
     },
     "closing{}": {
-      "command": "closing{}",
-      "snippet": "closing{${1:%<${2:closing}>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "closing{${1:closing%text}}"
     },
     "enclosure{}": {
-      "command": "enclosure{}",
-      "snippet": "enclosure{${1:%<enclosure%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "enclosure{${1:enclosure%text}}"
     },
     "enclosure[]{}": {
-      "command": "enclosure[]{}",
-      "snippet": "enclosure[${2:%<alternative name%>}]{${1:%<enclosure%>}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "enclosure[${2:alternative name%text}]{${1:enclosure%text}}"
     },
-    "makelettertitle": {
-      "command": "makelettertitle",
-      "snippet": "makelettertitle",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "recomputeletterheadlengths": {},
+    "recomputeletterbodylengths": {},
+    "recomputeletterfootlengths": {},
+    "recomputeletterlengths": {},
+    "makelettertitle": {},
+    "makeletterhead": {},
+    "makeletterfoot": {},
+    "makeletterclosing": {},
+    "separatorcolumnwidth": {},
+    "maincolumnwidth": {},
+    "doubleitemcolumnwidth": {},
+    "separatorrulewidth": {},
+    "listitemsymbolwidth": {},
+    "listitemcolumnwidth": {},
+    "listdoubleitemcolumnwidth": {},
+    "cventryyearbox": {},
+    "cventrytitleboxwidth": {},
+    "cvskill{}": {
+      "snippet": "cvskill{${1:integer}}"
     },
-    "makeletterclosing": {
-      "command": "makeletterclosing",
-      "snippet": "makeletterclosing",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "setcvskillcolumns[]": {
+      "snippet": "setcvskillcolumns[${1:width}]"
+    },
+    "setcvskillcolumns[][]": {
+      "snippet": "setcvskillcolumns[${1:width}][${2:factor}]"
+    },
+    "setcvskillcolumns[][][]": {
+      "snippet": "setcvskillcolumns[${1:width}][${2:factor}][${3:exp-width%l}]"
+    },
+    "setcvskilllegendcolumns[]": {
+      "snippet": "setcvskilllegendcolumns[${1:width}]"
+    },
+    "setcvskilllegendcolumns[][]": {
+      "snippet": "setcvskilllegendcolumns[${1:width}][${2:factor}]"
+    },
+    "cvskilllegend{}": {
+      "snippet": "cvskilllegend{${1:name}}"
+    },
+    "cvskilllegend[]{}": {
+      "snippet": "cvskilllegend[${2:padding%l}]{${1:name}}"
+    },
+    "cvskilllegend[][][][][][]{}": {
+      "snippet": "cvskilllegend[${2:padding%l}][${3:1st}][${4:2nd}][${5:3rd}][${6:4th}][${7:5th}]{${1:name}}"
+    },
+    "cvskilllegend*{}": {
+      "snippet": "cvskilllegend*{${1:name}}"
+    },
+    "cvskilllegend*[]{}": {
+      "snippet": "cvskilllegend*[${2:padding%l}]{${1:name}}"
+    },
+    "cvskilllegend*[][][][][][]{}": {
+      "snippet": "cvskilllegend*[${2:padding%l}][${3:1st}][${4:2nd}][${5:3rd}][${6:4th}][${7:5th}]{${1:name}}"
+    },
+    "cvskillplainlegend{}": {
+      "snippet": "cvskillplainlegend{${1:name}}"
+    },
+    "cvskillplainlegend[]{}": {
+      "snippet": "cvskillplainlegend[${2:padding%l}]{${1:name}}"
+    },
+    "cvskillplainlegend[][][][][][]{}": {
+      "snippet": "cvskillplainlegend[${2:padding%l}][${3:1st}][${4:2nd}][${5:3rd}][${6:4th}][${7:5th}]{${1:name}}"
+    },
+    "cvskillplainlegend*{}": {
+      "snippet": "cvskillplainlegend*{${1:name}}"
+    },
+    "cvskillplainlegend*[]{}": {
+      "snippet": "cvskillplainlegend*[${2:padding%l}]{${1:name}}"
+    },
+    "cvskillplainlegend*[][][][][][]{}": {
+      "snippet": "cvskillplainlegend*[${2:padding%l}][${3:1st}][${4:2nd}][${5:3rd}][${6:4th}][${7:5th}]{${1:name}}"
+    },
+    "cvskillhead[]": {
+      "snippet": "cvskillhead[${1:padding%l}]"
+    },
+    "cvskillhead[][][][][]": {
+      "snippet": "cvskillhead[${1:padding%l}][${2:name1}][${3:name2}][${4:name3}][${5:name4}]"
+    },
+    "cvskillentry{}{}{}{}{}": {
+      "snippet": "cvskillentry{${1:category%text}}{${2:level}}{${3:name%text}}{${4:years}}{${5:comment%text}}"
+    },
+    "cvskillentry[]{}{}{}{}{}": {
+      "snippet": "cvskillentry[${6:padding%l}]{${1:category%text}}{${2:level}}{${3:name%text}}{${4:years}}{${5:comment%text}}"
+    },
+    "cvskillentry*{}{}{}{}{}": {
+      "snippet": "cvskillentry*{${1:category%text}}{${2:level}}{${3:name%text}}{${4:years}}{${5:comment%text}}"
+    },
+    "cvskillentry*[]{}{}{}{}{}": {
+      "snippet": "cvskillentry*[${6:padding%l}]{${1:category%text}}{${2:level}}{${3:name%text}}{${4:years}}{${5:comment%text}}"
+    },
+    "footsymbol": {},
+    "footbox": {},
+    "foottempbox": {},
+    "footboxwidth": {},
+    "addtofoot{}": {
+      "snippet": "addtofoot{${1:element}}"
+    },
+    "addtofoot[]{}": {
+      "snippet": "addtofoot[${2:symbol}]{${1:element}}"
+    },
+    "flushfoot": {},
+    "quotewidth": {},
+    "makecvheadnamewidth": {},
+    "makecvheadpicturebox": {},
+    "makecvheaddetailswidth": {},
+    "makecvheadpicturewidth": {},
+    "makecvheadnamebox": {},
+    "makeheaddetailssymbol": {},
+    "makeheaddetailsbox": {},
+    "makeheaddetailstempbox": {},
+    "makeheaddetailswidth": {},
+    "makeheaddetailsboxwidth": {},
+    "addtomakeheaddetails{}": {
+      "snippet": "addtomakeheaddetails{${1:element}}"
+    },
+    "addtomakeheaddetails[]{}": {
+      "snippet": "addtomakeheaddetails[${2:symbol}]{${1:element}}"
+    },
+    "flushmakeheaddetails": {},
+    "makehead": {},
+    "makecvheadinfo{}": {
+      "snippet": "makecvheadinfo{${1:arg}}"
+    },
+    "makecvheadinfobox": {},
+    "makecvheadinfoheight": {},
+    "marvosymbol{}": {
+      "snippet": "marvosymbol{${1:number}}"
     }
   },
   "envs": {
-    "cvcolumns": {
-      "name": "cvcolumns",
-      "detail": "cvcolumns",
-      "snippet": "",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    }
+    "cvcolumns": {}
   },
   "options": []
 }

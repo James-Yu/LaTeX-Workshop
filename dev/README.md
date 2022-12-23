@@ -54,10 +54,10 @@ optional arguments:
   -o OUTDIR, --outdir OUTDIR
                         Directory where to write the JSON files. Default is LaTeX-Workshop/data/packages
   -i INFILE [INFILE ...], --infile INFILE [INFILE ...]
-                        Files to process. Default is the content of https://github.com/jlelong/LaTeX-cwl/archive/refs/heads/master.zip
+                        Files to process. Default is the content stored in the `./cwl` sub-directory.
 ```
 
-This script generates intellisense data from the files given by `-i` option and writes the generated `.json` files to the directory specified by `-o`. Note that the directory must already exist.
+This script generates intellisense data from the files given by `-i` option and writes the generated `.json` files to the directory specified by `-o`. Note that the directory must already exist. It is recommended to first run the script `getcwl.sh` to download live raw data from https://github.com/texstudio-org/texstudio. Note that this requires subversion installed.
 
 For every package or class, one `.json` file is generated, containing the data for the package defined in the `.cwl` file. This file has the following structure
 ```typescript
@@ -72,11 +72,10 @@ For every package or class, one `.json` file is generated, containing the data f
 In this `json` object, the commands have the following structure:
 ```typescript
 {
-  command: string, // the command name
-  snippet: string, // the snippet to insert
-  option: string, // the package option that enables this command
-  keyvals: {key: string, snippet: string}[], // the possible optional keyvals of this command
-  keyvalindex: number, // the index of argument (mandatory and optional together) where the keyvals should be hinted
+  snippet: string | undefined, // the snippet to insert, undefined if the same as item key.
+  option: string | undefined, // the package option that enables this command
+  keyvals: string[] | undefined, // the possible optional keyvals of this command
+  keyvalindex: number | undefined, // the index of argument (mandatory and optional together) where the keyvals should be hinted
   detail: string | undefined,
   documentation: string | undefined
 }
@@ -84,19 +83,13 @@ In this `json` object, the commands have the following structure:
 An example is:
 ```json
 "acro{}{}": {
-  "command": "acro{}{}",
-  "snippet": "acro{${1:acronym}}{${2:full name}}",
-  "option": "",
-  "keyvals": [],
-  "keyvalindex": -1
+  "snippet": "acro{${1:acronym}}{${2:full name}}"
 }
 ```
 The optional argument intellisense are typically defined as follows:
 ```json
 "mint[]{}{}": {
-  "command": "mint[]{}{}",
   "snippet": "mint[${3:keys}]{${1:language}}{${2:verbatimSymbol}}",
-  "option": "",
   "keyvals": [
     "autogobble",
     "baselinestretch=",
@@ -109,22 +102,18 @@ The optional argument intellisense are typically defined as follows:
 The environments have the following structure:
 ```typescript
 {
-    name: string, // the environment name
-    detail: string, // the signature of this environment, including its name and arguments
-    snippet: string, // the snippet to insert after \begin{env}
-    option: string, // the package option that enables this environment
-    keyvals: {key: string, snippet: string}[] // the possible optional keyvals of this environment
+  name: string | undefined, // the environment name, undefined if the same as item key.
+  snippet: string | undefined, // the snippet to insert after \begin{env}, undefined if is an empty string
+  option: string | undefined, // the package option that enables this environment
+  keyvals: string[] | undefined, // the possible optional keyvals of this environment
+  keyvalindex: number | undefined, // the index of argument (mandatory and optional together) where the keyvals should be hinted
 }
 ```
 An example is:
 ```json
 "aligned[]": {
   "name": "aligned",
-  "detail": "aligned[]",
-  "snippet": "[${1:alignment}]",
-  "option": "",
-  "keyvals": [],
-  "keyvalindex": -1
+  "snippet": "[${1:alignment}]"
 }
 ```
 

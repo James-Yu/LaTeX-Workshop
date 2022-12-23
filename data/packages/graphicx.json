@@ -1,154 +1,86 @@
 {
-  "includes": [],
+  "includes": [
+    "keyval",
+    "trig"
+  ],
   "cmds": {
-    "color{}": {
-      "command": "color{}",
-      "snippet": "color{${1:specification}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "color[]{}": {
-      "command": "color[]{}",
-      "snippet": "color[${2:model}]{${1:specification}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "colorbox{}{}": {
-      "command": "colorbox{}{}",
-      "snippet": "colorbox{${1:name}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "colorbox[]{}{}": {
-      "command": "colorbox[]{}{}",
-      "snippet": "colorbox[${3:model}]{${1:specification}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "DeclareGraphicsExtensions{}": {
-      "command": "DeclareGraphicsExtensions{}",
-      "snippet": "DeclareGraphicsExtensions{${1:ext-list}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "DeclareGraphicsExtensions{${1:ext-list}}"
     },
     "DeclareGraphicsRule{}{}{}{}": {
-      "command": "DeclareGraphicsRule{}{}{}{}",
-      "snippet": "DeclareGraphicsRule{${1:ext}}{${2:type}}{${3:read-file}}{${4:command}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "definecolor{}{}{}": {
-      "command": "definecolor{}{}{}",
-      "snippet": "definecolor{${1:name}}{${2:model}}{${3:colour specification}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "fcolorbox{}{}{}": {
-      "command": "fcolorbox{}{}{}",
-      "snippet": "fcolorbox{${1:name1}}{${2:name2}}{${3:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "fcolorbox[]{}{}{}": {
-      "command": "fcolorbox[]{}{}{}",
-      "snippet": "fcolorbox[${4:model}]{${1:specification1}}{${2:specification2}}{${3:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "DeclareGraphicsRule{${1:ext}}{${2:type}}{${3:read-file}}{${4:command%plain}}"
     },
     "graphicspath{}": {
-      "command": "graphicspath{}",
-      "snippet": "graphicspath{${1:dir-list}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "graphicspath{${1:dir-list%definition}}"
+    },
+    "includegraphics*{}": {
+      "snippet": "includegraphics*{${1:imagefile}}"
     },
     "includegraphics*[]{}": {
-      "command": "includegraphics*[]{}",
-      "snippet": "includegraphics*[${2:key val list}]{${1:file}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pagecolor{}": {
-      "command": "pagecolor{}",
-      "snippet": "pagecolor{${1:name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "pagecolor[]{}": {
-      "command": "pagecolor[]{}",
-      "snippet": "pagecolor[${2:model}]{${1:specification}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "includegraphics*[${2:keyvals}]{${1:imagefile}}"
     },
     "reflectbox{}": {
-      "command": "reflectbox{}",
-      "snippet": "reflectbox{${1:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "reflectbox{${1:text}}"
     },
     "resizebox*{}{}{}": {
-      "command": "resizebox*{}{}{}",
-      "snippet": "resizebox*{${1:h-length}}{${2:v-length}}{${3:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "resizebox*{${1:h-length%l}}{${2:v-length%l}}{${3:text}}"
+    },
+    "resizebox{}{}{}": {
+      "snippet": "resizebox{${1:h-length%l}}{${2:v-length%l}}{${3:text}}"
     },
     "rotatebox[]{}{}": {
-      "command": "rotatebox[]{}{}",
-      "snippet": "rotatebox[${3:key val list}]{${1:angle}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "rotatebox[${3:keyvals}]{${1:angle}}{${2:text}}",
+      "keyvals": [
+        "origin=",
+        "x=",
+        "y=",
+        "units="
+      ],
+      "keyvalindex": 0
+    },
+    "rotatebox{}{}": {
+      "snippet": "rotatebox{${1:angle}}{${2:text}}"
     },
     "scalebox{}{}": {
-      "command": "scalebox{}{}",
-      "snippet": "scalebox{${1:h-scale}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "scalebox{${1:h-scale}}{${2:text}}"
     },
     "scalebox{}[]{}": {
-      "command": "scalebox{}[]{}",
-      "snippet": "scalebox{${1:h-scale}}[${2:v-scale}]{${3:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "setkeys{}{}": {
-      "command": "setkeys{}{}",
-      "snippet": "setkeys{${1:Gin}}{${2:key val}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "textcolor{}{}": {
-      "command": "textcolor{}{}",
-      "snippet": "textcolor{${1:name}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "textcolor[]{}{}": {
-      "command": "textcolor[]{}{}",
-      "snippet": "textcolor[${3:model}]{${1:specification}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "scalebox{${1:h-scale}}[${2:v-scale}]{${3:text}}"
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "unknownkeysallowed",
+    "draft",
+    "final",
+    "hiresbb",
+    "demo",
+    "setpagesize",
+    "nosetpagesize",
+    "dvips",
+    "xdvi",
+    "dvipdf",
+    "dvipdfm",
+    "dvipdfmx",
+    "xetex",
+    "pdftex",
+    "luatex",
+    "dvisvgm",
+    "dvipsone",
+    "dviwindo",
+    "emtex",
+    "dviwin",
+    "oztex",
+    "textures",
+    "pctexps",
+    "pctexwin",
+    "pctexhp",
+    "pctex32",
+    "truetex",
+    "tcidvi",
+    "vtex",
+    "debugshow",
+    "hiderotate",
+    "hidescale"
+  ]
 }

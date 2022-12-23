@@ -1,100 +1,221 @@
 {
   "includes": [
-    "caption"
+    "caption",
+    "setspace",
+    "setspace",
+    "setspace",
+    "setspace",
+    "setspace",
+    "setspace",
+    "setspace",
+    "setspace",
+    "setspace",
+    "setspace",
+    "setspace",
+    "setspace",
+    "sansmath",
+    "sansmath",
+    "sansmath",
+    "sansmath",
+    "sansmath",
+    "sansmath",
+    "ragged2e",
+    "ragged2e",
+    "ragged2e",
+    "ragged2e",
+    "ragged2e",
+    "ragged2e"
   ],
   "cmds": {
-    "p": {
-      "command": "p",
-      "snippet": "p",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1,
-      "detail": "𝑝",
-      "documentation": "MATHEMATICAL ITALIC SMALL P"
+    "subcaptionbox{}{}": {
+      "snippet": "subcaptionbox{${1:heading%text}}{${2:content%text}}"
     },
-    "newtheorem{}": {
-      "command": "newtheorem{}",
-      "snippet": "newtheorem{${1:subfigure}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "subcaptionbox{}[]{}": {
+      "snippet": "subcaptionbox{${1:heading%text}}[${2:width}]{${3:content%text}}"
     },
-    "captionsetup[]{}": {
-      "command": "captionsetup[]{}",
-      "snippet": "captionsetup[${2:sub}]{${1:options}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "subcaptionbox{}[][]{}": {
+      "snippet": "subcaptionbox{${1:heading%text}}[${2:width}][${3:inner-pos}]{${4:content%text}}"
     },
-    "phantomsubcaption": {
-      "command": "phantomsubcaption",
-      "snippet": "phantomsubcaption",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "subcaptionbox[]{}{}": {
+      "snippet": "subcaptionbox[${3:list entry}]{${1:heading%text}}{${2:content%text}}"
     },
-    "subcaptionbox": {
-      "command": "subcaptionbox",
-      "snippet": "subcaptionbox",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "subcaptionbox[]{}[]{}": {
+      "snippet": "subcaptionbox[${3:list entry}]{${1:heading%text}}[${4:width}]{${2:content%text}}"
+    },
+    "subcaptionbox[]{}[][]{}": {
+      "snippet": "subcaptionbox[${3:list entry}]{${1:heading%text}}[${4:width}][${5:inner-pos}]{${2:content%text}}"
+    },
+    "subcaptionbox*{}{}": {
+      "snippet": "subcaptionbox*{${1:heading%text}}{${2:content%text}}"
+    },
+    "subcaptionbox*{}[]{}": {
+      "snippet": "subcaptionbox*{${1:heading%text}}[${2:width}]{${3:content%text}}"
+    },
+    "subcaptionbox*{}[][]{}": {
+      "snippet": "subcaptionbox*{${1:heading%text}}[${2:width}][${3:inner-pos}]{${4:content%text}}"
     },
     "subcaption{}": {
-      "command": "subcaption{}",
-      "snippet": "subcaption{${1:heading}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "subcaption{${1:heading%text}}"
     },
     "subcaption[]{}": {
-      "command": "subcaption[]{}",
-      "snippet": "subcaption[${2:list entry}]{${1:heading}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "subcaption[${2:list entry}]{${1:heading%text}}"
     },
     "subcaption*{}": {
-      "command": "subcaption*{}",
-      "snippet": "subcaption*{${1:heading}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "subcaption*{${1:heading%text}}"
+    },
+    "subref{}": {
+      "snippet": "subref{${1:key}}"
+    },
+    "subref*{}": {
+      "snippet": "subref*{${1:key}}"
+    },
+    "thesubfigure": {},
+    "thesubtable": {},
+    "phantomsubcaption": {},
+    "subfloat[][]{}": {
+      "snippet": "subfloat[${2:list entry}][${3:sub-caption}]{${1:body%text}}"
+    },
+    "subfloat[]{}": {
+      "snippet": "subfloat[${2:sub-caption}]{${1:body%text}}"
+    },
+    "subfloat{}": {
+      "snippet": "subfloat{${1:body%text}}"
+    },
+    "subcaptionlistentry{}": {
+      "snippet": "subcaptionlistentry{${1:list entry}}"
+    },
+    "subcaptiontext{}": {
+      "snippet": "subcaptiontext{${1:text}}"
+    },
+    "subcaptiontext[]{}": {
+      "snippet": "subcaptiontext[${2:number}]{${1:text}}"
+    },
+    "subcaptiontext*{}": {
+      "snippet": "subcaptiontext*{${1:text}}"
+    },
+    "subcaptiontext*[]{}": {
+      "snippet": "subcaptiontext*[${2:number}]{${1:text}}"
     }
   },
   "envs": {
-    "subfigure{}": {
+    "subfigure[][][]{}": {
       "name": "subfigure",
-      "detail": "subfigure{}",
-      "snippet": "{${1:width}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "[${2:position}][${3:height}][${4:inner pos}]{${1:width}}"
+    },
+    "subfigure[][]{}": {
+      "name": "subfigure",
+      "snippet": "[${2:position}][${3:height}]{${1:width}}"
     },
     "subfigure[]{}": {
       "name": "subfigure",
-      "detail": "subfigure[]{}",
-      "snippet": "[${2:pos}]{${1:width}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "[${2:position}]{${1:width}}"
     },
-    "subtable{}": {
+    "subfigure{}": {
+      "name": "subfigure",
+      "snippet": "{${1:width}}"
+    },
+    "subtable[][][]{}": {
       "name": "subtable",
-      "detail": "subtable{}",
-      "snippet": "{${1:width}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "[${2:position}][${3:height}][${4:inner pos}]{${1:width}}"
+    },
+    "subtable[][]{}": {
+      "name": "subtable",
+      "snippet": "[${2:position}][${3:height}]{${1:width}}"
     },
     "subtable[]{}": {
       "name": "subtable",
-      "detail": "subtable[]{}",
-      "snippet": "[${2:pos}]{${1:width}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    }
+      "snippet": "[${2:position}]{${1:width}}"
+    },
+    "subtable{}": {
+      "name": "subtable",
+      "snippet": "{${1:width}}"
+    },
+    "subcaptionblock{}": {
+      "name": "subcaptionblock",
+      "snippet": "{${1:width}}"
+    },
+    "subcaptionblock[]{}": {
+      "name": "subcaptionblock",
+      "snippet": "[${2:position}]{${1:width}}"
+    },
+    "subcaptionblock[][]{}": {
+      "name": "subcaptionblock",
+      "snippet": "[${2:position}][${3:height}]{${1:width}}"
+    },
+    "subcaptionblock[][][]{}": {
+      "name": "subcaptionblock",
+      "snippet": "[${2:position}][${3:height}][${4:inner pos}]{${1:width}}"
+    },
+    "subcaptiongroup": {},
+    "subcaptiongroup*": {}
   },
-  "options": []
+  "options": [
+    "aboveskip=",
+    "belowskip=",
+    "box=",
+    "boxcolor=",
+    "boxsep=",
+    "calcmargin*=",
+    "calcmargin=",
+    "calcwidth*=",
+    "calcwidth=",
+    "debug",
+    "figurename=",
+    "figureposition=",
+    "figurewithin=",
+    "figurewithout",
+    "font+=",
+    "font=",
+    "format=",
+    "hangindent=",
+    "indention=",
+    "justification=",
+    "labelfont+=",
+    "labelfont=",
+    "labelsep=",
+    "list=",
+    "listfigurename=",
+    "listformat=",
+    "listtablename=",
+    "listtype=",
+    "listtype+=",
+    "lofdepth=",
+    "lotdepth=",
+    "margin*=",
+    "margin=",
+    "maxmargin=",
+    "minmargin=",
+    "name=",
+    "oneside",
+    "parbox=",
+    "parindent=",
+    "parskip=",
+    "position=",
+    "singlelinecheck",
+    "skip=",
+    "strut=",
+    "style=",
+    "style*=",
+    "tablename=",
+    "tableposition=",
+    "tablewithin=",
+    "tablewithout",
+    "textfont+=",
+    "textfont=",
+    "textformat=",
+    "twoside",
+    "width*=",
+    "width=",
+    "within=",
+    "without",
+    "list-entry=",
+    "hypcap",
+    "hypcapspace=",
+    "type=",
+    "type*=",
+    "subtype=",
+    "subtype*=",
+    "compatibility",
+    "config="
+  ]
 }

@@ -1,49 +1,135 @@
 {
-  "includes": [],
+  "includes": [
+    "xcolor",
+    "ifluatex",
+    "ifthen",
+    "xkeyval",
+    "tikz",
+    "tikzlibrarypositioning",
+    "tikzlibraryintersections",
+    "tikzlibrarydecorations.pathmorphing",
+    "luacode",
+    "atbegshi",
+    "xstring",
+    "zref-abspage",
+    "ifoddpage",
+    "soul",
+    "soulpos",
+    "etoolbox",
+    "tikzlibraryshadows"
+  ],
   "cmds": {
     "todo{}": {
-      "command": "todo{}",
-      "snippet": "todo{${1:text%todo}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "todo{${1:text%todo}}"
     },
     "todo[]{}": {
-      "command": "todo[]{}",
       "snippet": "todo[${2:options}]{${1:text%todo}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "disable",
+        "color=",
+        "backgroundcolor=",
+        "linecolor=",
+        "bordercolor=",
+        "line",
+        "noline",
+        "inline",
+        "noinline",
+        "size=",
+        "list",
+        "nolist",
+        "caption=",
+        "prepend",
+        "noprepend",
+        "author="
+      ],
+      "keyvalindex": 0
     },
-    "listoftodos": {
-      "command": "listoftodos",
-      "snippet": "listoftodos",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "todoarea{}{}": {
+      "snippet": "todoarea{${1:note text%todo}}{${2:highlighted text}}"
     },
-    "listoftodos[]": {
-      "command": "listoftodos[]",
-      "snippet": "listoftodos[${1:caption}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "todoarea[]{}{}": {
+      "snippet": "todoarea[${3:options}]{${1:note text%todo}}{${2:highlighted text}}",
+      "keyvals": [
+        "disable",
+        "color=",
+        "backgroundcolor=",
+        "linecolor=",
+        "bordercolor=",
+        "line",
+        "noline",
+        "inline",
+        "noinline",
+        "size=",
+        "list",
+        "nolist",
+        "caption=",
+        "prepend",
+        "noprepend",
+        "author="
+      ],
+      "keyvalindex": 0
     },
     "missingfigure{}": {
-      "command": "missingfigure{}",
-      "snippet": "missingfigure{${1:text%todo}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "missingfigure{${1:text%todo}}"
     },
     "missingfigure[]{}": {
-      "command": "missingfigure[]{}",
       "snippet": "missingfigure[${2:options}]{${1:text%todo}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    }
+      "keyvals": [
+        "figwidth=",
+        "figheight=",
+        "figcolor="
+      ],
+      "keyvalindex": 0
+    },
+    "listoftodos": {},
+    "listoftodos[]": {
+      "snippet": "listoftodos[${1:name}]"
+    },
+    "todototoc": {}
   },
   "envs": {},
-  "options": []
+  "options": [
+    "disable",
+    "obeyDraft",
+    "obeyFinal",
+    "danish",
+    "german",
+    "ngerman",
+    "english",
+    "french",
+    "swedish",
+    "spanish",
+    "catalan",
+    "italian",
+    "portuguese",
+    "dutch",
+    "croatian",
+    "colorinlistoftodos",
+    "color=",
+    "backgroundcolor=",
+    "linecolor=",
+    "bordercolor=",
+    "textsize=",
+    "prependcaption=",
+    "shadow",
+    "figwidth=",
+    "figheight=",
+    "leaderwidth=",
+    "leadertype=",
+    "positioning=",
+    "s",
+    "bezier",
+    "opo",
+    "po",
+    "splitting=",
+    "interNoteSpace=",
+    "noteInnerSep=",
+    "routingAreaWidth=",
+    "minNoteWidth=",
+    "distanceNotesPageBorder=",
+    "distanceNotesText=",
+    "rasterHeight=",
+    "additionalMargin=",
+    "debug"
+  ]
 }

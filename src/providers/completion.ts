@@ -20,7 +20,7 @@ import {resolvePkgFile} from './completer/commandlib/commandfinder'
 
 type DataEnvsJsonType = typeof import('../../data/environments.json')
 type DataCmdsJsonType = typeof import('../../data/commands.json')
-type DataLatexMathSymbolsJsonType = typeof import('../../data/packages/latex-mathsymbols.json')
+type DataTeXJsonType = typeof import('../../data/packages/tex.json')
 
 
 export type PkgType = {includes: string[], cmds: {[key: string]: CmdType}, envs: {[key: string]: EnvType}, options: string[]}
@@ -89,22 +89,35 @@ export class Completer implements vscode.CompletionItemProvider {
         }
 
         try {
-            const pkgData = JSON.parse(fs.readFileSync(filePath).toString()) as PkgType
-            this.package.setPackageDeps(packageName, pkgData.includes)
-            this.command.setPackageCmds(packageName, pkgData.cmds)
-            this.environment.setPackageEnvs(packageName, pkgData.envs)
+            const packageData = JSON.parse(fs.readFileSync(filePath).toString()) as PkgType
+            this.populatePackageData(packageData)
+            this.package.setPackageDeps(packageName, packageData.includes)
+            this.command.setPackageCmds(packageName, packageData.cmds)
+            this.environment.setPackageEnvs(packageName, packageData.envs)
         } catch (e) {
             this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
         }
     }
 
+    private populatePackageData(packageData: PkgType) {
+        Object.keys(packageData.cmds).forEach(cmd => {
+            packageData.cmds[cmd].command = cmd
+            packageData.cmds[cmd].snippet = packageData.cmds[cmd].snippet || cmd
+        })
+        Object.keys(packageData.envs).forEach(env => {
+            packageData.envs[env].detail = env
+            packageData.envs[env].name = packageData.envs[env].name || env
+            packageData.envs[env].snippet = packageData.envs[env].snippet || ''
+        })
+    }
+
     private loadDefaultItems() {
         const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
         const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
-        const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols.json`, {encoding: 'utf8'})
+        const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})
         const env: { [key: string]: EnvType } = JSON.parse(defaultEnvs) as DataEnvsJsonType
         const cmds = JSON.parse(defaultCommands) as DataCmdsJsonType
-        const maths: { [key: string]: CmdType } = (JSON.parse(defaultLaTeXMathSymbols) as DataLatexMathSymbolsJsonType).cmds
+        const maths: { [key: string]: CmdType } = (JSON.parse(defaultLaTeXMathSymbols) as DataTeXJsonType).cmds
         for (const key of Object.keys(maths)) {
             if (key.match(/\{.*?\}/)) {
                 const ent = maths[key]

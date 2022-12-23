@@ -1,14 +1,18 @@
 {
-  "includes": [],
+  "includes": [
+    "ifthen"
+  ],
   "cmds": {
+    "nicefrac[]{}{}": {
+      "snippet": "nicefrac[${3:%<fontcmd%:translatable%>}]{${1:%<num%:translatable%>}}{${2:%<den%:translatable%>}}"
+    },
     "nicefrac{}{}": {
-      "command": "nicefrac{}{}",
-      "snippet": "nicefrac{${1:nom}}{${2:denom}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nicefrac{${1:%<num%:translatable%>}}{${2:%<den%:translatable%>}}"
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "nice",
+    "ugly"
+  ]
 }

@@ -2,20 +2,32 @@
   "includes": [],
   "cmds": {
     "multirow{}{}{}": {
-      "command": "multirow{}{}{}",
-      "snippet": "multirow{${1:number of rows}}{${2:*}}{${3:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "multirow{${1:number of rows}}{${2:width or *}}{${3:text}}"
     },
-    "multirow{}[]{}[]{}": {
-      "command": "multirow{}[]{}[]{}",
-      "snippet": "multirow{${1:number of rows}}[${2:bigstruts}]{${3:width}}[${4:fixup}]{${5:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "multirow[]{}{}{}": {
+      "snippet": "multirow[${4:vpos}]{${1:number of rows}}{${2:width or *}}{${3:text}}"
+    },
+    "multirow{}[]{}{}": {
+      "snippet": "multirow{${1:number of rows}}[${2:bigstruts}]{${3:width or *}}{${4:text}}"
+    },
+    "multirow{}{}[]{}": {
+      "snippet": "multirow{${1:number of rows}}{${2:width or *}}[${3:vmove%l}]{${4:text}}"
+    },
+    "multirow[]{}[]{}[]{}": {
+      "snippet": "multirow[${4:vpos}]{${1:number of rows}}[${5:bigstruts}]{${2:width or *}}[${6:vmove%l}]{${3:text}}"
+    },
+    "multirowsetup": {},
+    "multirowdebugtrue": {},
+    "multirowdebugfalse": {},
+    "bigstrutjot": {},
+    "STneed{}": {
+      "snippet": "STneed{${1:length}}",
+      "option": "supertabular"
     }
   },
   "envs": {},
-  "options": []
+  "options": [
+    "debug",
+    "longtable"
+  ]
 }

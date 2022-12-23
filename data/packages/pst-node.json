@@ -1,1197 +1,755 @@
 {
-  "includes": [],
+  "includes": [
+    "pstricks",
+    "pst-xkey"
+  ],
   "cmds": {
-    "circlenode{}{}": {
-      "command": "circlenode{}{}",
-      "snippet": "circlenode{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "actualscale{}": {
+      "snippet": "actualscale{${1:arg}}"
     },
-    "circlenode*{}{}": {
-      "command": "circlenode*{}{}",
-      "snippet": "circlenode*{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "algparnode{}{}{}": {
+      "snippet": "algparnode{${1:t}}{${2:expr in t%definition}}{${3:node name}}"
     },
-    "circlenode[]{}{}": {
-      "command": "circlenode[]{}{}",
-      "snippet": "circlenode[${3:par}]{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ArrowNotch{}{}{}{}": {
+      "snippet": "ArrowNotch{${1:node name}}{${2:node index}}{${3:direction}}{${4:notch}}"
+    },
+    "Circlenode*[]{}{}": {
+      "snippet": "Circlenode*[${3:options}]{${1:name}}{${2:stuff}}"
+    },
+    "Circlenode*{}{}": {
+      "snippet": "Circlenode*{${1:name}}{${2:stuff}}"
+    },
+    "Circlenode[]{}{}": {
+      "snippet": "Circlenode[${3:options}]{${1:name}}{${2:stuff}}"
+    },
+    "Circlenode{}{}": {
+      "snippet": "Circlenode{${1:name}}{${2:stuff}}"
     },
     "circlenode*[]{}{}": {
-      "command": "circlenode*[]{}{}",
-      "snippet": "circlenode*[${3:par}]{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "circlenode*[${3:options}]{${1:name}}{${2:stuff}}"
     },
-    "dianode{}{}": {
-      "command": "dianode{}{}",
-      "snippet": "dianode{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "circlenode*{}{}": {
+      "snippet": "circlenode*{${1:name}}{${2:stuff}}"
     },
-    "dianode*{}{}": {
-      "command": "dianode*{}{}",
-      "snippet": "dianode*{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "circlenode[]{}{}": {
+      "snippet": "circlenode[${3:options}]{${1:name}}{${2:stuff}}"
     },
-    "dianode[]{}{}": {
-      "command": "dianode[]{}{}",
-      "snippet": "dianode[${3:par}]{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "circlenode{}{}": {
+      "snippet": "circlenode{${1:name}}{${2:stuff}}"
+    },
+    "curvepnode{}{}{}": {
+      "snippet": "curvepnode{${1:tval}}{${2:expr in t%definition}}{${3:node name}}"
+    },
+    "curvepnodes{}{}{}{}": {
+      "snippet": "curvepnodes{${1:tmin}}{${2:tmax}}{${3:expr in t%definition}}{${4:node root}}"
+    },
+    "defaultvalue{}{}": {
+      "snippet": "defaultvalue{${1:cmd}}{${2:val}}"
     },
     "dianode*[]{}{}": {
-      "command": "dianode*[]{}{}",
-      "snippet": "dianode*[${3:par}]{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "dianode*[${3:options}]{${1:name}}{${2:stuff}}"
     },
-    "naput[]{}": {
-      "command": "naput[]{}",
-      "snippet": "naput[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "dianode*{}{}": {
+      "snippet": "dianode*{${1:name}}{${2:stuff}}"
+    },
+    "dianode[]{}{}": {
+      "snippet": "dianode[${3:options}]{${1:name}}{${2:stuff}}"
+    },
+    "dianode{}{}": {
+      "snippet": "dianode{${1:name}}{${2:stuff}}"
+    },
+    "endpsmatrix": {},
+    "equalwhat": {},
+    "fnpnode{}{}{}": {
+      "snippet": "fnpnode{${1:xval}}{${2:expr in x%definition}}{${3:node name}}"
+    },
+    "fnpnodes{}{}{}{}": {
+      "snippet": "fnpnodes{${1:xmin}}{${2:xmax}}{${3:expr in x%definition}}{${4:node root}}"
+    },
+    "getnodelist{}{}": {
+      "snippet": "getnodelist{${1:node root}}{${2:next command}}"
+    },
+    "hasparen": {},
+    "hasequal": {},
+    "hascolon": {},
+    "MakeShortNab{}{}": {
+      "snippet": "MakeShortNab{${1:char1}}{${2:char2}}"
+    },
+    "MakeShortTab{}{}": {
+      "snippet": "MakeShortTab{${1:char1}}{${2:char2}}"
+    },
+    "MakeShortTablr{}{}{}{}": {
+      "snippet": "MakeShortTablr{${1:char1}}{${2:char2}}{${3:char3}}{${4:char4}}"
     },
     "naput*[]{}": {
-      "command": "naput*[]{}",
-      "snippet": "naput*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "naput{}": {
-      "command": "naput{}",
-      "snippet": "naput{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "naput*[${2:options}]{${1:stuff}}"
     },
     "naput*{}": {
-      "command": "naput*{}",
-      "snippet": "naput*{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "naput*{${1:stuff}}"
     },
-    "nbput[]{}": {
-      "command": "nbput[]{}",
-      "snippet": "nbput[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "naput[]{}": {
+      "snippet": "naput[${2:options}]{${1:stuff}}"
+    },
+    "naput{}": {
+      "snippet": "naput{${1:stuff}}"
     },
     "nbput*[]{}": {
-      "command": "nbput*[]{}",
-      "snippet": "nbput*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nbput{}": {
-      "command": "nbput{}",
-      "snippet": "nbput{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nbput*[${2:options}]{${1:stuff}}"
     },
     "nbput*{}": {
-      "command": "nbput*{}",
-      "snippet": "nbput*{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nbput*{${1:stuff}}"
     },
-    "ncangle{}{}{}": {
-      "command": "ncangle{}{}{}",
-      "snippet": "ncangle{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nbput[]{}": {
+      "snippet": "nbput[${2:options}]{${1:stuff}}"
     },
-    "ncangle*{}{}{}": {
-      "command": "ncangle*{}{}{}",
-      "snippet": "ncangle*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncangle{}{}": {
-      "command": "ncangle{}{}",
-      "snippet": "ncangle{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncangle*{}{}": {
-      "command": "ncangle*{}{}",
-      "snippet": "ncangle*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncangle[]{}{}{}": {
-      "command": "ncangle[]{}{}{}",
-      "snippet": "ncangle[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nbput{}": {
+      "snippet": "nbput{${1:stuff}}"
     },
     "ncangle*[]{}{}{}": {
-      "command": "ncangle*[]{}{}{}",
-      "snippet": "ncangle*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncangle[]{}{}": {
-      "command": "ncangle[]{}{}",
-      "snippet": "ncangle[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncangle*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
     "ncangle*[]{}{}": {
-      "command": "ncangle*[]{}{}",
-      "snippet": "ncangle*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncangle*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncangles{}{}{}": {
-      "command": "ncangles{}{}{}",
-      "snippet": "ncangles{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncangle*{}{}{}": {
+      "snippet": "ncangle*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncangles*{}{}{}": {
-      "command": "ncangles*{}{}{}",
-      "snippet": "ncangles*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncangle*{}{}": {
+      "snippet": "ncangle*{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncangles{}{}": {
-      "command": "ncangles{}{}",
-      "snippet": "ncangles{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncangle[]{}{}{}": {
+      "snippet": "ncangle[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncangles*{}{}": {
-      "command": "ncangles*{}{}",
-      "snippet": "ncangles*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncangle[]{}{}": {
+      "snippet": "ncangle[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncangles[]{}{}{}": {
-      "command": "ncangles[]{}{}{}",
-      "snippet": "ncangles[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncangle{}{}{}": {
+      "snippet": "ncangle{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncangle{}{}": {
+      "snippet": "ncangle{${1:nodeA}}{${2:nodeB}}"
     },
     "ncangles*[]{}{}{}": {
-      "command": "ncangles*[]{}{}{}",
-      "snippet": "ncangles*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncangles[]{}{}": {
-      "command": "ncangles[]{}{}",
-      "snippet": "ncangles[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncangles*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
     "ncangles*[]{}{}": {
-      "command": "ncangles*[]{}{}",
-      "snippet": "ncangles*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncangles*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncarc{}{}{}": {
-      "command": "ncarc{}{}{}",
-      "snippet": "ncarc{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncangles*{}{}{}": {
+      "snippet": "ncangles*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncarc*{}{}{}": {
-      "command": "ncarc*{}{}{}",
-      "snippet": "ncarc*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncangles*{}{}": {
+      "snippet": "ncangles*{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncarcbox{}{}": {
-      "command": "ncarcbox{}{}",
-      "snippet": "ncarcbox{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncangles[]{}{}{}": {
+      "snippet": "ncangles[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncarcbox*{}{}": {
-      "command": "ncarcbox*{}{}",
-      "snippet": "ncarcbox*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncangles[]{}{}": {
+      "snippet": "ncangles[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncarcbox[]{}{}": {
-      "command": "ncarcbox[]{}{}",
-      "snippet": "ncarcbox[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncangles{}{}{}": {
+      "snippet": "ncangles{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncarcbox*[]{}{}": {
-      "command": "ncarcbox*[]{}{}",
-      "snippet": "ncarcbox*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncarc{}{}": {
-      "command": "ncarc{}{}",
-      "snippet": "ncarc{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncarc*{}{}": {
-      "command": "ncarc*{}{}",
-      "snippet": "ncarc*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncarc[]{}{}{}": {
-      "command": "ncarc[]{}{}{}",
-      "snippet": "ncarc[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncangles{}{}": {
+      "snippet": "ncangles{${1:nodeA}}{${2:nodeB}}"
     },
     "ncarc*[]{}{}{}": {
-      "command": "ncarc*[]{}{}{}",
-      "snippet": "ncarc*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncarc[]{}{}": {
-      "command": "ncarc[]{}{}",
-      "snippet": "ncarc[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncarc*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
     "ncarc*[]{}{}": {
-      "command": "ncarc*[]{}{}",
-      "snippet": "ncarc*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncarc*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncbar{}{}{}": {
-      "command": "ncbar{}{}{}",
-      "snippet": "ncbar{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncarc*{}{}{}": {
+      "snippet": "ncarc*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncbar*{}{}{}": {
-      "command": "ncbar*{}{}{}",
-      "snippet": "ncbar*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncarc*{}{}": {
+      "snippet": "ncarc*{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncbar{}{}": {
-      "command": "ncbar{}{}",
-      "snippet": "ncbar{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncarc[]{}{}{}": {
+      "snippet": "ncarc[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncbar*{}{}": {
-      "command": "ncbar*{}{}",
-      "snippet": "ncbar*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncarc[]{}{}": {
+      "snippet": "ncarc[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncbar[]{}{}{}": {
-      "command": "ncbar[]{}{}{}",
-      "snippet": "ncbar[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncarc{}{}{}": {
+      "snippet": "ncarc{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncarc{}{}": {
+      "snippet": "ncarc{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncarcbox*[]{}{}": {
+      "snippet": "ncarcbox*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncarcbox*{}{}": {
+      "snippet": "ncarcbox*{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncarcbox[]{}{}": {
+      "snippet": "ncarcbox[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncarcbox{}{}": {
+      "snippet": "ncarcbox{${1:nodeA}}{${2:nodeB}}"
     },
     "ncbar*[]{}{}{}": {
-      "command": "ncbar*[]{}{}{}",
-      "snippet": "ncbar*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncbar[]{}{}": {
-      "command": "ncbar[]{}{}",
-      "snippet": "ncbar[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncbar*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
     "ncbar*[]{}{}": {
-      "command": "ncbar*[]{}{}",
-      "snippet": "ncbar*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncbar*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncbox{}{}": {
-      "command": "ncbox{}{}",
-      "snippet": "ncbox{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncbar*{}{}{}": {
+      "snippet": "ncbar*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncbox*{}{}": {
-      "command": "ncbox*{}{}",
-      "snippet": "ncbox*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncbar*{}{}": {
+      "snippet": "ncbar*{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncbox[]{}{}": {
-      "command": "ncbox[]{}{}",
-      "snippet": "ncbox[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncbar[]{}{}{}": {
+      "snippet": "ncbar[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncbar[]{}{}": {
+      "snippet": "ncbar[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncbar{}{}{}": {
+      "snippet": "ncbar{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncbar{}{}": {
+      "snippet": "ncbar{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncbarr[]{}{}": {
+      "snippet": "ncbarr[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncbarr{}{}": {
+      "snippet": "ncbarr{${1:nodeA}}{${2:nodeB}}"
     },
     "ncbox*[]{}{}": {
-      "command": "ncbox*[]{}{}",
-      "snippet": "ncbox*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncbox*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "nccircle{}{}{}": {
-      "command": "nccircle{}{}{}",
-      "snippet": "nccircle{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncbox*{}{}": {
+      "snippet": "ncbox*{${1:nodeA}}{${2:nodeB}}"
     },
-    "nccircle*{}{}{}": {
-      "command": "nccircle*{}{}{}",
-      "snippet": "nccircle*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncbox[]{}{}": {
+      "snippet": "ncbox[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "nccircle{}{}": {
-      "command": "nccircle{}{}",
-      "snippet": "nccircle{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nccircle*{}{}": {
-      "command": "nccircle*{}{}",
-      "snippet": "nccircle*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nccircle[]{}{}{}": {
-      "command": "nccircle[]{}{}{}",
-      "snippet": "nccircle[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncbox{}{}": {
+      "snippet": "ncbox{${1:nodeA}}{${2:nodeB}}"
     },
     "nccircle*[]{}{}{}": {
-      "command": "nccircle*[]{}{}{}",
-      "snippet": "nccircle*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nccircle[]{}{}": {
-      "command": "nccircle[]{}{}",
-      "snippet": "nccircle[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nccircle*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
     "nccircle*[]{}{}": {
-      "command": "nccircle*[]{}{}",
-      "snippet": "nccircle*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nccircle*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "nccoil{}{}{}": {
-      "command": "nccoil{}{}{}",
-      "snippet": "nccoil{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccircle*{}{}{}": {
+      "snippet": "nccircle*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "nccoil*{}{}{}": {
-      "command": "nccoil*{}{}{}",
-      "snippet": "nccoil*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccircle*{}{}": {
+      "snippet": "nccircle*{${1:nodeA}}{${2:nodeB}}"
     },
-    "nccoil{}{}": {
-      "command": "nccoil{}{}",
-      "snippet": "nccoil{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccircle[]{}{}{}": {
+      "snippet": "nccircle[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "nccoil*{}{}": {
-      "command": "nccoil*{}{}",
-      "snippet": "nccoil*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccircle[]{}{}": {
+      "snippet": "nccircle[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "nccoil[]{}{}{}": {
-      "command": "nccoil[]{}{}{}",
-      "snippet": "nccoil[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccircle{}{}{}": {
+      "snippet": "nccircle{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "nccircle{}{}": {
+      "snippet": "nccircle{${1:nodeA}}{${2:nodeB}}"
     },
     "nccoil*[]{}{}{}": {
-      "command": "nccoil*[]{}{}{}",
-      "snippet": "nccoil*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nccoil[]{}{}": {
-      "command": "nccoil[]{}{}",
-      "snippet": "nccoil[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nccoil*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
     "nccoil*[]{}{}": {
-      "command": "nccoil*[]{}{}",
-      "snippet": "nccoil*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nccoil*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "nccurve{}{}{}": {
-      "command": "nccurve{}{}{}",
-      "snippet": "nccurve{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccoil*{}{}{}": {
+      "snippet": "nccoil*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "nccurve*{}{}{}": {
-      "command": "nccurve*{}{}{}",
-      "snippet": "nccurve*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccoil*{}{}": {
+      "snippet": "nccoil*{${1:nodeA}}{${2:nodeB}}"
     },
-    "nccurve{}{}": {
-      "command": "nccurve{}{}",
-      "snippet": "nccurve{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccoil[]{}{}{}": {
+      "snippet": "nccoil[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "nccurve*{}{}": {
-      "command": "nccurve*{}{}",
-      "snippet": "nccurve*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccoil[]{}{}": {
+      "snippet": "nccoil[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "nccurve[]{}{}{}": {
-      "command": "nccurve[]{}{}{}",
-      "snippet": "nccurve[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccoil{}{}{}": {
+      "snippet": "nccoil{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "nccoil{}{}": {
+      "snippet": "nccoil{${1:nodeA}}{${2:nodeB}}"
     },
     "nccurve*[]{}{}{}": {
-      "command": "nccurve*[]{}{}{}",
-      "snippet": "nccurve*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nccurve[]{}{}": {
-      "command": "nccurve[]{}{}",
-      "snippet": "nccurve[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nccurve*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
     "nccurve*[]{}{}": {
-      "command": "nccurve*[]{}{}",
-      "snippet": "nccurve*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nccurve*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncdiag{}{}{}": {
-      "command": "ncdiag{}{}{}",
-      "snippet": "ncdiag{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccurve*{}{}{}": {
+      "snippet": "nccurve*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncdiag*{}{}{}": {
-      "command": "ncdiag*{}{}{}",
-      "snippet": "ncdiag*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccurve*{}{}": {
+      "snippet": "nccurve*{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncdiagg{}{}{}": {
-      "command": "ncdiagg{}{}{}",
-      "snippet": "ncdiagg{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccurve[]{}{}{}": {
+      "snippet": "nccurve[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncdiagg*{}{}{}": {
-      "command": "ncdiagg*{}{}{}",
-      "snippet": "ncdiagg*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccurve[]{}{}": {
+      "snippet": "nccurve[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncdiagg{}{}": {
-      "command": "ncdiagg{}{}",
-      "snippet": "ncdiagg{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccurve{}{}{}": {
+      "snippet": "nccurve{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncdiagg*{}{}": {
-      "command": "ncdiagg*{}{}",
-      "snippet": "ncdiagg*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncdiagg[]{}{}{}": {
-      "command": "ncdiagg[]{}{}{}",
-      "snippet": "ncdiagg[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncdiagg*[]{}{}{}": {
-      "command": "ncdiagg*[]{}{}{}",
-      "snippet": "ncdiagg*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncdiagg[]{}{}": {
-      "command": "ncdiagg[]{}{}",
-      "snippet": "ncdiagg[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncdiagg*[]{}{}": {
-      "command": "ncdiagg*[]{}{}",
-      "snippet": "ncdiagg*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncdiag{}{}": {
-      "command": "ncdiag{}{}",
-      "snippet": "ncdiag{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncdiag*{}{}": {
-      "command": "ncdiag*{}{}",
-      "snippet": "ncdiag*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncdiag[]{}{}{}": {
-      "command": "ncdiag[]{}{}{}",
-      "snippet": "ncdiag[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nccurve{}{}": {
+      "snippet": "nccurve{${1:nodeA}}{${2:nodeB}}"
     },
     "ncdiag*[]{}{}{}": {
-      "command": "ncdiag*[]{}{}{}",
-      "snippet": "ncdiag*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncdiag[]{}{}": {
-      "command": "ncdiag[]{}{}",
-      "snippet": "ncdiag[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncdiag*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
     "ncdiag*[]{}{}": {
-      "command": "ncdiag*[]{}{}",
-      "snippet": "ncdiag*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncdiag*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncline{}{}{}": {
-      "command": "ncline{}{}{}",
-      "snippet": "ncline{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncdiag*{}{}{}": {
+      "snippet": "ncdiag*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncline*{}{}{}": {
-      "command": "ncline*{}{}{}",
-      "snippet": "ncline*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncdiag*{}{}": {
+      "snippet": "ncdiag*{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncLine{}{}{}": {
-      "command": "ncLine{}{}{}",
-      "snippet": "ncLine{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncdiag[]{}{}{}": {
+      "snippet": "ncdiag[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncLine*{}{}{}": {
-      "command": "ncLine*{}{}{}",
-      "snippet": "ncLine*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncdiag[]{}{}": {
+      "snippet": "ncdiag[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncline{}{}": {
-      "command": "ncline{}{}",
-      "snippet": "ncline{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncdiag{}{}{}": {
+      "snippet": "ncdiag{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncline*{}{}": {
-      "command": "ncline*{}{}",
-      "snippet": "ncline*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncdiag{}{}": {
+      "snippet": "ncdiag{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncLine{}{}": {
-      "command": "ncLine{}{}",
-      "snippet": "ncLine{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncdiagg*[]{}{}{}": {
+      "snippet": "ncdiagg*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncLine*{}{}": {
-      "command": "ncLine*{}{}",
-      "snippet": "ncLine*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncdiagg*[]{}{}": {
+      "snippet": "ncdiagg*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncline[]{}{}{}": {
-      "command": "ncline[]{}{}{}",
-      "snippet": "ncline[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncdiagg*{}{}{}": {
+      "snippet": "ncdiagg*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncdiagg*{}{}": {
+      "snippet": "ncdiagg*{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncdiagg[]{}{}{}": {
+      "snippet": "ncdiagg[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncdiagg[]{}{}": {
+      "snippet": "ncdiagg[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncdiagg{}{}{}": {
+      "snippet": "ncdiagg{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncdiagg{}{}": {
+      "snippet": "ncdiagg{${1:nodeA}}{${2:nodeB}}"
     },
     "ncline*[]{}{}{}": {
-      "command": "ncline*[]{}{}{}",
-      "snippet": "ncline*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncLine[]{}{}{}": {
-      "command": "ncLine[]{}{}{}",
-      "snippet": "ncLine[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncline*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
     "ncLine*[]{}{}{}": {
-      "command": "ncLine*[]{}{}{}",
-      "snippet": "ncLine*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncline[]{}{}": {
-      "command": "ncline[]{}{}",
-      "snippet": "ncline[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncLine*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
     "ncline*[]{}{}": {
-      "command": "ncline*[]{}{}",
-      "snippet": "ncline*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncLine[]{}{}": {
-      "command": "ncLine[]{}{}",
-      "snippet": "ncLine[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncline*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
     "ncLine*[]{}{}": {
-      "command": "ncLine*[]{}{}",
-      "snippet": "ncLine*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncLine*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncloop{}{}{}": {
-      "command": "ncloop{}{}{}",
-      "snippet": "ncloop{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncline*{}{}{}": {
+      "snippet": "ncline*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncloop*{}{}{}": {
-      "command": "ncloop*{}{}{}",
-      "snippet": "ncloop*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncLine*{}{}{}": {
+      "snippet": "ncLine*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
-    "ncloop{}{}": {
-      "command": "ncloop{}{}",
-      "snippet": "ncloop{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncline*{}{}": {
+      "snippet": "ncline*{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncloop*{}{}": {
-      "command": "ncloop*{}{}",
-      "snippet": "ncloop*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncLine*{}{}": {
+      "snippet": "ncLine*{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncloop[]{}{}{}": {
-      "command": "ncloop[]{}{}{}",
-      "snippet": "ncloop[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncline[]{}{}{}": {
+      "snippet": "ncline[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncLine[]{}{}{}": {
+      "snippet": "ncLine[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncline[]{}{}": {
+      "snippet": "ncline[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncLine[]{}{}": {
+      "snippet": "ncLine[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncline{}{}{}": {
+      "snippet": "ncline{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncLine{}{}{}": {
+      "snippet": "ncLine{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncline{}{}": {
+      "snippet": "ncline{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncLine{}{}": {
+      "snippet": "ncLine{${1:nodeA}}{${2:nodeB}}"
+    },
+    "nclines[]{}{}{}": {
+      "snippet": "nclines[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "nclines[]{}{}": {
+      "snippet": "nclines[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    },
+    "nclines{}{}{}": {
+      "snippet": "nclines{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "nclines{}{}": {
+      "snippet": "nclines{${1:nodeA}}{${2:nodeB}}"
     },
     "ncloop*[]{}{}{}": {
-      "command": "ncloop*[]{}{}{}",
-      "snippet": "ncloop*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncloop[]{}{}": {
-      "command": "ncloop[]{}{}",
-      "snippet": "ncloop[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncloop*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
     "ncloop*[]{}{}": {
-      "command": "ncloop*[]{}{}",
-      "snippet": "ncloop*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncloop*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "ncput[]{}": {
-      "command": "ncput[]{}",
-      "snippet": "ncput[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncloop*{}{}{}": {
+      "snippet": "ncloop*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncloop*{}{}": {
+      "snippet": "ncloop*{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncloop[]{}{}{}": {
+      "snippet": "ncloop[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncloop[]{}{}": {
+      "snippet": "ncloop[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    },
+    "ncloop{}{}{}": {
+      "snippet": "ncloop{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "ncloop{}{}": {
+      "snippet": "ncloop{${1:nodeA}}{${2:nodeB}}"
     },
     "ncput*[]{}": {
-      "command": "ncput*[]{}",
-      "snippet": "ncput*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ncput{}": {
-      "command": "ncput{}",
-      "snippet": "ncput{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncput*[${2:options}]{${1:stuff}}"
     },
     "ncput*{}": {
-      "command": "ncput*{}",
-      "snippet": "ncput*{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ncput*{${1:stuff}}"
     },
-    "nczigzag{}{}{}": {
-      "command": "nczigzag{}{}{}",
-      "snippet": "nczigzag{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncput[]{}": {
+      "snippet": "ncput[${2:options}]{${1:stuff}}"
     },
-    "nczigzag*{}{}{}": {
-      "command": "nczigzag*{}{}{}",
-      "snippet": "nczigzag*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nczigzag{}{}": {
-      "command": "nczigzag{}{}",
-      "snippet": "nczigzag{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nczigzag*{}{}": {
-      "command": "nczigzag*{}{}",
-      "snippet": "nczigzag*{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nczigzag[]{}{}{}": {
-      "command": "nczigzag[]{}{}{}",
-      "snippet": "nczigzag[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ncput{}": {
+      "snippet": "ncput{${1:stuff}}"
     },
     "nczigzag*[]{}{}{}": {
-      "command": "nczigzag*[]{}{}{}",
-      "snippet": "nczigzag*[${4:par}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nczigzag[]{}{}": {
-      "command": "nczigzag[]{}{}",
-      "snippet": "nczigzag[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nczigzag*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
     },
     "nczigzag*[]{}{}": {
-      "command": "nczigzag*[]{}{}",
-      "snippet": "nczigzag*[${3:par}]{${1:nodeA}}{${2:nodeB}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nczigzag*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
     },
-    "nput[]{}{}{}": {
-      "command": "nput[]{}{}{}",
-      "snippet": "nput[${4:par}]{${1:refangle}}{${2:name}}{${3:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nczigzag*{}{}{}": {
+      "snippet": "nczigzag*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "nczigzag*{}{}": {
+      "snippet": "nczigzag*{${1:nodeA}}{${2:nodeB}}"
+    },
+    "nczigzag[]{}{}{}": {
+      "snippet": "nczigzag[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "nczigzag[]{}{}": {
+      "snippet": "nczigzag[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    },
+    "nczigzag{}{}{}": {
+      "snippet": "nczigzag{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    },
+    "nczigzag{}{}": {
+      "snippet": "nczigzag{${1:nodeA}}{${2:nodeB}}"
+    },
+    "nodenameA": {},
+    "nodenameB": {},
+    "nodex{}": {
+      "snippet": "nodex{${1:expr%definition}}"
+    },
+    "nodexn{}{}": {
+      "snippet": "nodexn{${1:expr%definition}}{${2:node name}}"
     },
     "nput*[]{}{}{}": {
-      "command": "nput*[]{}{}{}",
-      "snippet": "nput*[${4:par}]{${1:refangle}}{${2:name}}{${3:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "nput{}{}{}": {
-      "command": "nput{}{}{}",
-      "snippet": "nput{${1:refangle}}{${2:name}}{${3:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nput*[${4:options}]{${1:refangle}}{${2:name}}{${3:stuff}}"
     },
     "nput*{}{}{}": {
-      "command": "nput*{}{}{}",
-      "snippet": "nput*{${1:refangle}}{${2:name}}{${3:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "nput*{${1:refangle}}{${2:name}}{${3:stuff}}"
     },
-    "ovalnode{}{}": {
-      "command": "ovalnode{}{}",
-      "snippet": "ovalnode{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nput[]{}{}{}": {
+      "snippet": "nput[${4:options}]{${1:refangle}}{${2:name}}{${3:stuff}}"
     },
-    "ovalnode*{}{}": {
-      "command": "ovalnode*{}{}",
-      "snippet": "ovalnode*{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "ovalnode[]{}{}": {
-      "command": "ovalnode[]{}{}",
-      "snippet": "ovalnode[${3:par}]{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "nput{}{}{}": {
+      "snippet": "nput{${1:refangle}}{${2:name}}{${3:stuff}}"
     },
     "ovalnode*[]{}{}": {
-      "command": "ovalnode*[]{}{}",
-      "snippet": "ovalnode*[${3:par}]{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "ovalnode*[${3:options}]{${1:name}}{${2:stuff}}"
+    },
+    "ovalnode*{}{}": {
+      "snippet": "ovalnode*{${1:name}}{${2:stuff}}"
+    },
+    "ovalnode[]{}{}": {
+      "snippet": "ovalnode[${3:options}]{${1:name}}{${2:stuff}}"
+    },
+    "ovalnode{}{}": {
+      "snippet": "ovalnode{${1:name}}{${2:stuff}}"
+    },
+    "pscloseNodeFile": {},
+    "pscolhooki": {},
+    "pscolhookii": {},
+    "pscolhookiii": {},
+    "pscolhookiv": {},
+    "pscolhookix": {},
+    "pscolhookv": {},
+    "pscolhookvi": {},
+    "pscolhookvii": {},
+    "pscolhookviii": {},
+    "pscolhookx": {},
+    "psDefBoxNodes{}{}": {
+      "snippet": "psDefBoxNodes{${1:node name}}{${2:text}}"
+    },
+    "psDefPSPNodes": {},
+    "psGetCenter{}": {
+      "snippet": "psGetCenter{${1:node name}}"
+    },
+    "psGetEdgeA{}{}": {
+      "snippet": "psGetEdgeA{${1:node1}}{${2:node2}}"
+    },
+    "psGetEdgeB{}{}": {
+      "snippet": "psGetEdgeB{${1:node1}}{${2:node2}}"
+    },
+    "psGetNodeCenter{}": {
+      "snippet": "psGetNodeCenter{${1:node name}}"
+    },
+    "psGetNodeEdgeA{}": {
+      "snippet": "psGetNodeEdgeA{${1:node name}}"
+    },
+    "psGetNodeEdgeB{}": {
+      "snippet": "psGetNodeEdgeB{${1:node name}}"
+    },
+    "psLCNode[]{}[]{}{}": {
+      "snippet": "psLCNode[${4:P1}]{${1:val1}}[${5:P2}]{${2:val2}}{${3:node name}}"
+    },
+    "psLCNode{}{}{}": {
+      "snippet": "psLCNode{${1:val1}}{${2:val2}}{${3:node name}}"
+    },
+    "psLNode[][]{}{}": {
+      "snippet": "psLNode[${3:P1}][${4:P2}]{${1:value}}{${2:node name}}"
+    },
+    "psLNode[]{}{}": {
+      "snippet": "psLNode[${3:P1}]{${1:value}}{${2:node name}}"
+    },
+    "psLNode{}{}": {
+      "snippet": "psLNode{${1:value}}{${2:node name}}"
+    },
+    "psmatrix": {},
+    "psmatrix[]": {
+      "snippet": "psmatrix[${1:options}]"
+    },
+    "psopenNodeFile": {},
+    "psparnode{}{}{}": {
+      "snippet": "psparnode{${1:t}}{${2:expr in t%definition}}{${3:node name}}"
+    },
+    "psRelNode[][]{}{}": {
+      "snippet": "psRelNode[${3:P0}][${4:P1}]{${1:length factor}}{${2:end node name}}"
+    },
+    "psRelNode[]{}{}": {
+      "snippet": "psRelNode[${3:P0}]{${1:length factor}}{${2:end node name}}"
+    },
+    "psRelNode{}{}": {
+      "snippet": "psRelNode{${1:length factor}}{${2:end node name}}"
+    },
+    "psrowhooki": {},
+    "psrowhookii": {},
+    "psrowhookiii": {},
+    "psrowhookiv": {},
+    "psrowhookix": {},
+    "psrowhookv": {},
+    "psrowhookvi": {},
+    "psrowhookvii": {},
+    "psrowhookviii": {},
+    "psrowhookx": {},
+    "psspan{}": {
+      "snippet": "psspan{${1:integer}}"
+    },
+    "pstiterate": {},
+    "pstloop{}": {
+      "snippet": "pstloop{${1:arg}}"
+    },
+    "PSTnodesLoaded": {},
+    "rnode[]{}{}": {
+      "snippet": "rnode[${3:refpoint}]{${1:name}}{${2:stuff}}"
+    },
+    "Rnode{}{}": {
+      "snippet": "Rnode{${1:name}}{${2:stuff}}"
     },
     "rnode{}{}": {
-      "command": "rnode{}{}",
-      "snippet": "rnode{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "rnode{${1:name}}{${2:stuff}}"
     },
-    "rnode[]{}{}": {
-      "command": "rnode[]{}{}",
-      "snippet": "rnode[${3:refpoint}]{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "taput[]{}": {
-      "command": "taput[]{}",
-      "snippet": "taput[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "saveDataAsNodes{}{}": {
+      "snippet": "saveDataAsNodes{${1:data}}{${2:node prefix}}"
     },
     "taput*[]{}": {
-      "command": "taput*[]{}",
-      "snippet": "taput*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "taput{}": {
-      "command": "taput{}",
-      "snippet": "taput{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "taput*[${2:options}]{${1:stuff}}"
     },
     "taput*{}": {
-      "command": "taput*{}",
-      "snippet": "taput*{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "taput*{${1:stuff}}"
     },
-    "tbput[]{}": {
-      "command": "tbput[]{}",
-      "snippet": "tbput[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "taput[]{}": {
+      "snippet": "taput[${2:options}]{${1:stuff}}"
+    },
+    "taput{}": {
+      "snippet": "taput{${1:stuff}}"
     },
     "tbput*[]{}": {
-      "command": "tbput*[]{}",
-      "snippet": "tbput*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tbput{}": {
-      "command": "tbput{}",
-      "snippet": "tbput{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tbput*[${2:options}]{${1:stuff}}"
     },
     "tbput*{}": {
-      "command": "tbput*{}",
-      "snippet": "tbput*{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tbput*{${1:stuff}}"
     },
-    "thput[]{}": {
-      "command": "thput[]{}",
-      "snippet": "thput[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "tbput[]{}": {
+      "snippet": "tbput[${2:options}]{${1:stuff}}"
     },
+    "tbput{}": {
+      "snippet": "tbput{${1:stuff}}"
+    },
+    "testAlg": {},
     "thput*[]{}": {
-      "command": "thput*[]{}",
-      "snippet": "thput*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "thput{}": {
-      "command": "thput{}",
-      "snippet": "thput{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "thput*[${2:options}]{${1:stuff}}"
     },
     "thput*{}": {
-      "command": "thput*{}",
-      "snippet": "thput*{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "thput*{${1:stuff}}"
     },
-    "tlput[]{}": {
-      "command": "tlput[]{}",
-      "snippet": "tlput[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "thput[]{}": {
+      "snippet": "thput[${2:options}]{${1:stuff}}"
+    },
+    "thput{}": {
+      "snippet": "thput{${1:stuff}}"
     },
     "tlput*[]{}": {
-      "command": "tlput*[]{}",
-      "snippet": "tlput*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tlput{}": {
-      "command": "tlput{}",
-      "snippet": "tlput{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tlput*[${2:options}]{${1:stuff}}"
     },
     "tlput*{}": {
-      "command": "tlput*{}",
-      "snippet": "tlput*{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tlput*{${1:stuff}}"
     },
-    "trinode{}{}": {
-      "command": "trinode{}{}",
-      "snippet": "trinode{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "tlput[]{}": {
+      "snippet": "tlput[${2:options}]{${1:stuff}}"
+    },
+    "tlput{}": {
+      "snippet": "tlput{${1:stuff}}"
+    },
+    "trim": {},
+    "trinode*[]{}{}": {
+      "snippet": "trinode*[${3:options}]{${1:name}}{${2:stuff}}"
     },
     "trinode*{}{}": {
-      "command": "trinode*{}{}",
-      "snippet": "trinode*{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "trinode*{${1:name}}{${2:stuff}}"
     },
     "trinode[]{}{}": {
-      "command": "trinode[]{}{}",
-      "snippet": "trinode[${3:par}]{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "trinode[${3:options}]{${1:name}}{${2:stuff}}"
     },
-    "trinode*[]{}{}": {
-      "command": "trinode*[]{}{}",
-      "snippet": "trinode*[${3:par}]{${1:name}}{${2:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "trput[]{}": {
-      "command": "trput[]{}",
-      "snippet": "trput[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "trinode{}{}": {
+      "snippet": "trinode{${1:name}}{${2:stuff}}"
     },
     "trput*[]{}": {
-      "command": "trput*[]{}",
-      "snippet": "trput*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "trput{}": {
-      "command": "trput{}",
-      "snippet": "trput{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "trput*[${2:options}]{${1:stuff}}"
     },
     "trput*{}": {
-      "command": "trput*{}",
-      "snippet": "trput*{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "trput*{${1:stuff}}"
     },
-    "tvput[]{}": {
-      "command": "tvput[]{}",
-      "snippet": "tvput[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "trput[]{}": {
+      "snippet": "trput[${2:options}]{${1:stuff}}"
+    },
+    "trput{}": {
+      "snippet": "trput{${1:stuff}}"
     },
     "tvput*[]{}": {
-      "command": "tvput*[]{}",
-      "snippet": "tvput*[${2:par}]{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "tvput{}": {
-      "command": "tvput{}",
-      "snippet": "tvput{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tvput*[${2:options}]{${1:stuff}}"
     },
     "tvput*{}": {
-      "command": "tvput*{}",
-      "snippet": "tvput*{${1:stuff}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "tvput*{${1:stuff}}"
+    },
+    "tvput[]{}": {
+      "snippet": "tvput[${2:options}]{${1:stuff}}"
+    },
+    "tvput{}": {
+      "snippet": "tvput{${1:stuff}}"
+    },
+    "unbrace{}": {
+      "snippet": "unbrace{${1:arg}}"
+    },
+    "Aput{}": {
+      "snippet": "Aput{${1:stuff}}"
+    },
+    "Aput[]{}": {
+      "snippet": "Aput[${2:labelsep}]{${1:stuff}}"
+    },
+    "aput{}{}": {
+      "snippet": "aput{${1:angle}}{${2:stuff}}"
+    },
+    "aput[]{}{}": {
+      "snippet": "aput[${3:labelsep}]{${1:angle}}{${2:stuff}}"
+    },
+    "aput*{}{}": {
+      "snippet": "aput*{${1:angle}}{${2:stuff}}"
+    },
+    "aput*[]{}{}": {
+      "snippet": "aput*[${3:labelsep}]{${1:angle}}{${2:stuff}}"
+    },
+    "Bput{}": {
+      "snippet": "Bput{${1:stuff}}"
+    },
+    "Bput[]{}": {
+      "snippet": "Bput[${2:labelsep}]{${1:stuff}}"
+    },
+    "bput{}{}": {
+      "snippet": "bput{${1:angle}}{${2:stuff}}"
+    },
+    "bput[]{}{}": {
+      "snippet": "bput[${3:labelsep}]{${1:angle}}{${2:stuff}}"
+    },
+    "bput*{}{}": {
+      "snippet": "bput*{${1:angle}}{${2:stuff}}"
+    },
+    "bput*[]{}{}": {
+      "snippet": "bput*[${3:labelsep}]{${1:angle}}{${2:stuff}}"
+    },
+    "lput{}{}": {
+      "snippet": "lput{${1:angle}}{${2:stuff}}"
+    },
+    "lput*{}{}": {
+      "snippet": "lput*{${1:angle}}{${2:stuff}}"
+    },
+    "Mput{}{}": {
+      "snippet": "Mput{${1:labelsep}}{${2:stuff}}"
+    },
+    "Mput{}[]{}": {
+      "snippet": "Mput{${1:labelsep}}[${2:refpoint}]{${3:stuff}}"
+    },
+    "mput{}": {
+      "snippet": "mput{${1:stuff}}"
+    },
+    "mput[]{}": {
+      "snippet": "mput[${2:refpoint}]{${1:stuff}}"
     }
   },
-  "envs": {},
-  "options": []
+  "envs": {
+    "psmatrix": {},
+    "psmatrix[]": {
+      "name": "psmatrix",
+      "snippet": "[${1:options}]"
+    }
+  },
+  "options": [
+    "97"
+  ]
 }

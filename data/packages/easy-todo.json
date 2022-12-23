@@ -1,21 +1,32 @@
 {
-  "includes": [],
+  "includes": [
+    "color",
+    "tocloft",
+    "ifthen",
+    "ifdraft"
+  ],
   "cmds": {
     "todo{}": {
-      "command": "todo{}",
-      "snippet": "todo{${1:note}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "todo{${1:note%todo}}"
     },
-    "listoftodos": {
-      "command": "listoftodos",
-      "snippet": "listoftodos",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    }
+    "todoi{}": {
+      "snippet": "todoi{${1:note%todo}}"
+    },
+    "todoii{}{}": {
+      "snippet": "todoii{${1:note%todo}}{${2:information%text}}"
+    },
+    "listoftodos": {},
+    "todoindextitle": {},
+    "todoindexpagetitle": {},
+    "todocolor": {},
+    "listoftodosname": {}
   },
   "envs": {},
-  "options": []
+  "options": [
+    "chapter",
+    "section",
+    "obeyFinal",
+    "enable",
+    "disable"
+  ]
 }

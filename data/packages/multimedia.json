@@ -1,33 +1,92 @@
 {
-  "includes": [],
+  "includes": [
+    "keyval",
+    "ifpdf"
+  ],
   "cmds": {
     "movie[]{}{}": {
-      "command": "movie[]{}{}",
-      "snippet": "movie[${3:options}]{${1:poster text}}{${2:file}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "movie[${3:options}]{${1:poster text}}{${2:movie filename}}",
+      "keyvals": [
+        "autostart",
+        "borderwidth=",
+        "depth=",
+        "duration=",
+        "externalviewer",
+        "height=",
+        "label=",
+        "loop",
+        "once",
+        "open",
+        "palindrome",
+        "poster",
+        "repeat",
+        "showcontrols",
+        "start=",
+        "width="
+      ],
+      "keyvalindex": 0
     },
     "movie{}{}": {
-      "command": "movie{}{}",
-      "snippet": "movie{${1:poster text}}{${2:file}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "movie{${1:poster text}}{${2:movie filename}}"
     },
     "hyperlinkmovie[]{}{}": {
-      "command": "hyperlinkmovie[]{}{}",
       "snippet": "hyperlinkmovie[${3:options}]{${1:movie label}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "duration=",
+        "loop",
+        "once",
+        "palindrome",
+        "pause",
+        "play",
+        "repeat",
+        "resume",
+        "showcontrols",
+        "start=",
+        "stop"
+      ],
+      "keyvalindex": 0
     },
     "hyperlinkmovie{}{}": {
-      "command": "hyperlinkmovie{}{}",
-      "snippet": "hyperlinkmovie{${1:movie label}}{${2:text}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "hyperlinkmovie{${1:movie label}}{${2:text}}"
+    },
+    "sound[]{}{}": {
+      "snippet": "sound[${3:options}]{${1:sound poster text}}{${2:sound filename}}",
+      "keyvals": [
+        "autostart",
+        "automute",
+        "bitspersample=",
+        "channels=",
+        "depth=",
+        "encoding=",
+        "externalviewer",
+        "height=",
+        "inlinesound",
+        "label=",
+        "loop",
+        "mixsound",
+        "repeat",
+        "samplingrate=",
+        "width="
+      ],
+      "keyvalindex": 0
+    },
+    "sound{}{}": {
+      "snippet": "sound{${1:sound poster text}}{${2:sound filename}}"
+    },
+    "hyperlinksound[]{}{}": {
+      "snippet": "hyperlinksound[${3:options}]{${1:sound label}}{${2:text}}",
+      "keyvals": [
+        "loop",
+        "mixsound",
+        "repeat"
+      ],
+      "keyvalindex": 0
+    },
+    "hyperlinksound{}{}": {
+      "snippet": "hyperlinksound{${1:sound label}}{${2:text}}"
+    },
+    "hyperlinkmute{}": {
+      "snippet": "hyperlinkmute{${1:text}}"
     }
   },
   "envs": {},

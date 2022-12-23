@@ -72,8 +72,8 @@ suite('unit test suite', () => {
             Object.keys(pkg.cmds).forEach(name => {
                 assertDictKeyNames(
                     Object.keys(pkg.cmds[name]),
-                    ['command', 'snippet', 'option', 'keyvals', 'keyvalindex'],
-                    ['documentation', 'detail'],
+                    [],
+                    ['command', 'snippet', 'option', 'keyvals', 'keyvalindex', 'documentation', 'detail'],
                     file + ': ' + JSON.stringify(pkg.cmds[name])
                 )
             })
@@ -82,8 +82,8 @@ suite('unit test suite', () => {
             Object.keys(pkg.envs).forEach(name => {
                 assertDictKeyNames(
                     Object.keys(pkg.envs[name]),
-                    ['name', 'snippet', 'detail', 'option', 'keyvals', 'keyvalindex'],
                     [],
+                    ['name', 'snippet', 'detail', 'option', 'keyvals', 'keyvalindex'],
                     file + ': ' + JSON.stringify(pkg.envs[name])
                 )
             })

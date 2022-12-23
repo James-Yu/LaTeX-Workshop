@@ -1,364 +1,288 @@
 {
-  "includes": [],
+  "includes": [
+    "xetex",
+    "expl3",
+    "xtemplate",
+    "xparse",
+    "fontspec"
+  ],
   "cmds": {
     "xeCJKsetup{}": {
-      "command": "xeCJKsetup{}",
       "snippet": "xeCJKsetup{${1:options}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "xeCJKactive",
+        "CJKspace",
+        "CJKmath",
+        "CJKglue=",
+        "CJKecglue=",
+        "xCJKecglue=",
+        "CheckSingle",
+        "WindowPenalty=",
+        "PlainEquation",
+        "NewLineCS={",
+        "NewLineCS+={",
+        "NewLineCS-={",
+        "EnvCS={",
+        "EnvCS+={",
+        "EnvCS-={",
+        "InlineEnv={",
+        "InlineEnv+={",
+        "InlineEnv-={",
+        "AutoFallback",
+        "AutoFakeBold=",
+        "AutoFakeSlant=",
+        "EmboldenFactor=",
+        "SlantFactor=",
+        "PunctStyle=",
+        "PunctFamily=",
+        "KaiMingPunct={",
+        "KaiMingPunct+={",
+        "KaiMingPunct-={",
+        "LongPunct={",
+        "LongPunct+={",
+        "LongPunct-={",
+        "MiddlePunct={",
+        "MiddlePunct+={",
+        "MiddlePunct-={",
+        "PunctWidth=",
+        "PunctBoundWidth=",
+        "AllowBreakBetweenPuncts",
+        "RubberPunctSkip=",
+        "CheckFullRight",
+        "NoBreakCS={",
+        "NoBreakCS+={",
+        "NoBreakCS-={",
+        "Verb=",
+        "LoadFandol"
+      ],
+      "keyvalindex": 0
     },
     "setCJKmainfont{}": {
-      "command": "setCJKmainfont{}",
-      "snippet": "setCJKmainfont{${1:font name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "setCJKmainfont{${1:font name}}"
     },
     "setCJKmainfont{}[]": {
-      "command": "setCJKmainfont{}[]",
-      "snippet": "setCJKmainfont{${1:font name}}[${2:font features}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "setCJKmainfont{${1:font name}}[${2:font features}]"
+    },
+    "setCJKmainfont[]{}": {
+      "snippet": "setCJKmainfont[${2:font features}]{${1:font name}}"
     },
     "setCJKsansfont{}": {
-      "command": "setCJKsansfont{}",
-      "snippet": "setCJKsansfont{${1:font name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "setCJKsansfont{${1:font name}}"
     },
     "setCJKsansfont{}[]": {
-      "command": "setCJKsansfont{}[]",
-      "snippet": "setCJKsansfont{${1:font name}}[${2:font features}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "setCJKsansfont{${1:font name}}[${2:font features}]"
+    },
+    "setCJKsansfont[]{}": {
+      "snippet": "setCJKsansfont[${2:font features}]{${1:font name}}"
     },
     "setCJKmonofont{}": {
-      "command": "setCJKmonofont{}",
-      "snippet": "setCJKmonofont{${1:font name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "setCJKmonofont{${1:font name}}"
     },
     "setCJKmonofont{}[]": {
-      "command": "setCJKmonofont{}[]",
-      "snippet": "setCJKmonofont{${1:font name}}[${2:font features}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "setCJKmonofont{${1:font name}}[${2:font features}]"
+    },
+    "setCJKmonofont[]{}": {
+      "snippet": "setCJKmonofont[${2:font features}]{${1:font name}}"
     },
     "setCJKfamilyfont{}{}": {
-      "command": "setCJKfamilyfont{}{}",
-      "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}"
     },
     "setCJKfamilyfont{}{}[]": {
-      "command": "setCJKfamilyfont{}{}[]",
-      "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}[${3:font features}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}[${3:font features}]"
+    },
+    "setCJKfamilyfont{}[]{}": {
+      "snippet": "setCJKfamilyfont{${1:family}}[${2:font features}]{${3:font name}}"
     },
     "CJKfamily{}": {
-      "command": "CJKfamily{}",
-      "snippet": "CJKfamily{${1:family}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "CJKfamily{${1:family}}"
     },
     "CJKfamily+{}": {
-      "command": "CJKfamily+{}",
-      "snippet": "CJKfamily+{${1:family}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "CJKfamily+{${1:family}}"
     },
     "CJKfamily-{}": {
-      "command": "CJKfamily-{}",
-      "snippet": "CJKfamily-{${1:family}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "CJKfamily-{${1:family}}"
     },
     "newCJKfontfamily{}{}": {
-      "command": "newCJKfontfamily{}{}",
-      "snippet": "newCJKfontfamily{${1:cmd}}{${2:font name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "newCJKfontfamily{${1:cmd}}{${2:font name}}"
     },
-    "newCJKfontfamily{}{}[]": {
-      "command": "newCJKfontfamily{}{}[]",
-      "snippet": "newCJKfontfamily{${1:cmd}}{${2:font name}}[${3:font features}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "newCJKfontfamily{}[]{}": {
+      "snippet": "newCJKfontfamily{${1:cmd}}[${2:font features}]{${3:font name}}"
     },
     "newCJKfontfamily[]{}{}": {
-      "command": "newCJKfontfamily[]{}{}",
-      "snippet": "newCJKfontfamily[${3:family}]{${1:cmd}}{${2:font name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "newCJKfontfamily[${3:family}]{${1:cmd}}{${2:font name}}"
     },
     "newCJKfontfamily[]{}[]{}": {
-      "command": "newCJKfontfamily[]{}[]{}",
-      "snippet": "newCJKfontfamily[${3:family}]{${1:cmd}}[${4:font features}]{${2:font name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "newCJKfontfamily[${3:family}]{${1:cmd}}[${4:font features}]{${2:font name}}"
     },
     "CJKfontspec{}": {
-      "command": "CJKfontspec{}",
-      "snippet": "CJKfontspec{${1:font name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "CJKfontspec{${1:font name}}"
     },
     "CJKfontspec{}[]": {
-      "command": "CJKfontspec{}[]",
-      "snippet": "CJKfontspec{${1:font name}}[${2:font features}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "CJKfontspec{${1:font name}}[${2:font features}]"
+    },
+    "CJKfontspec[]{}": {
+      "snippet": "CJKfontspec[${2:font features}]{${1:font name}}"
     },
     "defaultCJKfontfeatures{}": {
-      "command": "defaultCJKfontfeatures{}",
-      "snippet": "defaultCJKfontfeatures{${1:font features}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "defaultCJKfontfeatures{${1:font features}}"
     },
     "addCJKfontfeatures{}": {
-      "command": "addCJKfontfeatures{}",
-      "snippet": "addCJKfontfeatures{${1:font features}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "addCJKfontfeatures{${1:font features}}"
     },
     "addCJKfontfeatures*{}": {
-      "command": "addCJKfontfeatures*{}",
-      "snippet": "addCJKfontfeatures*{${1:font features}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "addCJKfontfeatures*{${1:font features}}"
     },
     "addCJKfontfeatures[]{}": {
-      "command": "addCJKfontfeatures[]{}",
-      "snippet": "addCJKfontfeatures[${2:blocks}]{${1:font features}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "addCJKfontfeatures[${2:blocks}]{${1:font features}}"
     },
     "addCJKfontfeatures*[]{}": {
-      "command": "addCJKfontfeatures*[]{}",
-      "snippet": "addCJKfontfeatures*[${2:blocks}]{${1:font features}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "addCJKfontfeatures*[${2:blocks}]{${1:font features}}"
     },
-    "CJKrmdefault": {
-      "command": "CJKrmdefault",
-      "snippet": "CJKrmdefault",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "CJKsfdefault": {
-      "command": "CJKsfdefault",
-      "snippet": "CJKsfdefault",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "CJKttdefault": {
-      "command": "CJKttdefault",
-      "snippet": "CJKttdefault",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "CJKfamilydefault": {
-      "command": "CJKfamilydefault",
-      "snippet": "CJKfamilydefault",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
+    "CJKrmdefault": {},
+    "CJKsfdefault": {},
+    "CJKttdefault": {},
+    "CJKfamilydefault": {},
     "setCJKmathfont{}": {
-      "command": "setCJKmathfont{}",
-      "snippet": "setCJKmathfont{${1:font name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "setCJKmathfont{${1:font name}}"
     },
     "setCJKmathfont{}[]": {
-      "command": "setCJKmathfont{}[]",
-      "snippet": "setCJKmathfont{${1:font name}}[${2:font features}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "setCJKmathfont{${1:font name}}[${2:font features}]"
+    },
+    "setCJKmathfont[]{}": {
+      "snippet": "setCJKmathfont[${2:font features}]{${1:font name}}"
     },
     "setCJKfallbackfamilyfont{}{}": {
-      "command": "setCJKfallbackfamilyfont{}{}",
-      "snippet": "setCJKfallbackfamilyfont{${1:family}}{${2:font name}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "setCJKfallbackfamilyfont{${1:family}}{${2:font name}}"
     },
     "setCJKfallbackfamilyfont{}{}[]": {
-      "command": "setCJKfallbackfamilyfont{}{}[]",
-      "snippet": "setCJKfallbackfamilyfont{${1:family}}{${2:font name}}[${3:font features}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "setCJKfallbackfamilyfont{${1:family}}{${2:font name}}[${3:font features}]"
+    },
+    "setCJKfallbackfamilyfont{}[]{}": {
+      "snippet": "setCJKfallbackfamilyfont{${1:family}}[${2:font features}]{${3:font name}}"
     },
     "xeCJKDeclareSubCJKBlock{}{}": {
-      "command": "xeCJKDeclareSubCJKBlock{}{}",
-      "snippet": "xeCJKDeclareSubCJKBlock{${1:block}}{${2:block range}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xeCJKDeclareSubCJKBlock{${1:block}}{${2:block range}}"
     },
     "xeCJKDeclareSubCJKBlock*{}{}": {
-      "command": "xeCJKDeclareSubCJKBlock*{}{}",
-      "snippet": "xeCJKDeclareSubCJKBlock*{${1:block}}{${2:block range}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xeCJKDeclareSubCJKBlock*{${1:block}}{${2:block range}}"
     },
     "xeCJKCancelSubCJKBlock{}": {
-      "command": "xeCJKCancelSubCJKBlock{}",
-      "snippet": "xeCJKCancelSubCJKBlock{${1:blocks}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xeCJKCancelSubCJKBlock{${1:blocks}}"
     },
     "xeCJKCancelSubCJKBlock*{}": {
-      "command": "xeCJKCancelSubCJKBlock*{}",
-      "snippet": "xeCJKCancelSubCJKBlock*{${1:blocks}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xeCJKCancelSubCJKBlock*{${1:blocks}}"
     },
     "xeCJKRestoreSubCJKBlock{}": {
-      "command": "xeCJKRestoreSubCJKBlock{}",
-      "snippet": "xeCJKRestoreSubCJKBlock{${1:blocks}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xeCJKRestoreSubCJKBlock{${1:blocks}}"
     },
     "xeCJKRestoreSubCJKBlock*{}": {
-      "command": "xeCJKRestoreSubCJKBlock*{}",
-      "snippet": "xeCJKRestoreSubCJKBlock*{${1:blocks}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xeCJKRestoreSubCJKBlock*{${1:blocks}}"
     },
     "xeCJKDeclareCharClass{}{}": {
-      "command": "xeCJKDeclareCharClass{}{}",
-      "snippet": "xeCJKDeclareCharClass{${1:class}}{${2:class range}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xeCJKDeclareCharClass{${1:class}}{${2:class range}}"
     },
     "xeCJKDeclareCharClass*{}{}": {
-      "command": "xeCJKDeclareCharClass*{}{}",
-      "snippet": "xeCJKDeclareCharClass*{${1:class}}{${2:class range}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xeCJKDeclareCharClass*{${1:class}}{${2:class range}}"
     },
-    "xeCJKResetCharClass": {
-      "command": "xeCJKResetCharClass",
-      "snippet": "xeCJKResetCharClass",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xeCJKResetPunctClass": {
-      "command": "xeCJKResetPunctClass",
-      "snippet": "xeCJKResetPunctClass",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
+    "xeCJKResetCharClass": {},
+    "xeCJKResetPunctClass": {},
     "normalspacechars{}": {
-      "command": "normalspacechars{}",
-      "snippet": "normalspacechars{${1:char list}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "normalspacechars{${1:char list}}"
     },
     "xeCJKsetwidth{}{}": {
-      "command": "xeCJKsetwidth{}{}",
-      "snippet": "xeCJKsetwidth{${1:punt list}}{${2:length}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xeCJKsetwidth{${1:punct list}}{${2:length}}"
     },
     "xeCJKsetwidth*{}{}": {
-      "command": "xeCJKsetwidth*{}{}",
-      "snippet": "xeCJKsetwidth*{${1:punt list}}{${2:length}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xeCJKsetwidth*{${1:punct list}}{${2:length}}"
     },
     "xeCJKsetkern{}{}{}": {
-      "command": "xeCJKsetkern{}{}{}",
-      "snippet": "xeCJKsetkern{${1:first punct}}{${2:second punct}}{${3:length}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "xeCJKsetkern{${1:first punct}}{${2:second punct}}{${3:length}}"
     },
     "xeCJKDeclarePunctStyle{}{}": {
-      "command": "xeCJKDeclarePunctStyle{}{}",
       "snippet": "xeCJKDeclarePunctStyle{${1:style}}{${2:keyvals}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "enabled-global-setting",
+        "fixed-punct-width=",
+        "fixed-punct-ratio=",
+        "mixed-punct-width=",
+        "mixed-punct-ratio=",
+        "middle-punct-width=",
+        "middle-punct-ratio=",
+        "fixed-margin-width=",
+        "fixed-margin-ratio=",
+        "mixed-margin-width=",
+        "mixed-margin-ratio=",
+        "middle-margin-width=",
+        "middle-margin-ratio=",
+        "bound-punct-width=",
+        "bound-punct-ratio=",
+        "bound-margin-width=",
+        "bound-margin-ratio=",
+        "enabled-hanging",
+        "add-min-bound-to-margin",
+        "optimize-margin",
+        "margin-minimum=",
+        "enabled-kerning",
+        "min-bound-to-kerning",
+        "kerning-total-width=",
+        "kerning-total-ratio=",
+        "same-align-margin=",
+        "same-align-ratio=",
+        "different-align-margin=",
+        "different-align-ratio=",
+        "kerning-margin-width=",
+        "kerning-margin-ratio=",
+        "optimize-kerning ",
+        "kerning-margin-minimum="
+      ],
+      "keyvalindex": 1
     },
     "xeCJKEditPunctStyle{}{}": {
-      "command": "xeCJKEditPunctStyle{}{}",
       "snippet": "xeCJKEditPunctStyle{${1:style}}{${2:keyvals}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "keyvals": [
+        "enabled-global-setting",
+        "fixed-punct-width=",
+        "fixed-punct-ratio=",
+        "mixed-punct-width=",
+        "mixed-punct-ratio=",
+        "middle-punct-width=",
+        "middle-punct-ratio=",
+        "fixed-margin-width=",
+        "fixed-margin-ratio=",
+        "mixed-margin-width=",
+        "mixed-margin-ratio=",
+        "middle-margin-width=",
+        "middle-margin-ratio=",
+        "bound-punct-width=",
+        "bound-punct-ratio=",
+        "bound-margin-width=",
+        "bound-margin-ratio=",
+        "enabled-hanging",
+        "add-min-bound-to-margin",
+        "optimize-margin",
+        "margin-minimum=",
+        "enabled-kerning",
+        "min-bound-to-kerning",
+        "kerning-total-width=",
+        "kerning-total-ratio=",
+        "same-align-margin=",
+        "same-align-ratio=",
+        "different-align-margin=",
+        "different-align-ratio=",
+        "kerning-margin-width=",
+        "kerning-margin-ratio=",
+        "optimize-kerning ",
+        "kerning-margin-minimum="
+      ],
+      "keyvalindex": 1
     },
-    "xeCJKVerbAddon": {
-      "command": "xeCJKVerbAddon",
-      "snippet": "xeCJKVerbAddon",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xeCJKOffVerbAddon": {
-      "command": "xeCJKOffVerbAddon",
-      "snippet": "xeCJKOffVerbAddon",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xeCJKnobreak": {
-      "command": "xeCJKnobreak",
-      "snippet": "xeCJKnobreak",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "xeCJKShipoutHook": {
-      "command": "xeCJKShipoutHook",
-      "snippet": "xeCJKShipoutHook",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    }
+    "xeCJKVerbAddon": {},
+    "xeCJKOffVerbAddon": {},
+    "xeCJKnobreak": {},
+    "xeCJKShipoutHook": {}
   },
   "envs": {},
-  "options": []
+  "options": [
+    "LocalConfig="
+  ]
 }

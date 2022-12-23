@@ -1,189 +1,213 @@
 {
-  "includes": [],
+  "includes": [
+    "pstricks",
+    "pst-xkey",
+    "multido",
+    "pstricks-add",
+    "pst-tools"
+  ],
   "cmds": {
-    "dataplot{}": {
-      "command": "dataplot{}",
-      "snippet": "dataplot{${1:commands}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "dataplot*{}": {
-      "command": "dataplot*{}",
-      "snippet": "dataplot*{${1:commands}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
     "dataplot[]{}": {
-      "command": "dataplot[]{}",
-      "snippet": "dataplot[${2:par}]{${1:commands}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "dataplot[${2:options}]{${1:macro}}"
     },
-    "dataplot*[]{}": {
-      "command": "dataplot*[]{}",
-      "snippet": "dataplot*[${2:par}]{${1:commands}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "dataplot{}": {
+      "snippet": "dataplot{${1:macro}}"
+    },
+    "endpsgraph": {},
+    "fileplot[]{}": {
+      "snippet": "fileplot[${2:options}]{${1:file}}"
     },
     "fileplot{}": {
-      "command": "fileplot{}",
-      "snippet": "fileplot{${1:file}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "fileplot{${1:file}}"
     },
-    "fileplot*{}": {
-      "command": "fileplot*{}",
-      "snippet": "fileplot*{${1:file}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "fileplot[]{}": {
-      "command": "fileplot[]{}",
-      "snippet": "fileplot[${2:par}]{${1:file}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "fileplot*[]{}": {
-      "command": "fileplot*[]{}",
-      "snippet": "fileplot*[${2:par}]{${1:file}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "ifSpecialLabelsDone": {},
+    "listplot[]{}": {
+      "snippet": "listplot[${2:options}]{${1:list}}"
     },
     "listplot{}": {
-      "command": "listplot{}",
-      "snippet": "listplot{${1:list}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "listplot{${1:data}}"
     },
-    "listplot*{}": {
-      "command": "listplot*{}",
-      "snippet": "listplot*{${1:list}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "listplot[]{}": {
-      "command": "listplot[]{}",
-      "snippet": "listplot[${2:par}]{${1:list}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
-    },
-    "listplot*[]{}": {
-      "command": "listplot*[]{}",
-      "snippet": "listplot*[${2:par}]{${1:list}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "parametricplot[]{}{}[]{}": {
+      "snippet": "parametricplot[${4:options}]{${1:tmin}}{${2:tmax}}[${5:PS commands}]{${3:function%definition}}"
     },
     "parametricplot[]{}{}{}": {
-      "command": "parametricplot[]{}{}{}",
-      "snippet": "parametricplot[${4:par}]{${1:tmin}}{${2:tmax}}{${3:function}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "parametricplot[${4:options}]{${1:tmin}}{${2:tmax}}{${3:function%definition}}"
     },
-    "parametricplot*[]{}{}{}": {
-      "command": "parametricplot*[]{}{}{}",
-      "snippet": "parametricplot*[${4:par}]{${1:tmin}}{${2:tmax}}{${3:function}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "parametricplot{}{}[]{}": {
+      "snippet": "parametricplot{${1:tmin}}{${2:tmax}}[${3:PS commands}]{${4:function%definition}}"
     },
     "parametricplot{}{}{}": {
-      "command": "parametricplot{}{}{}",
-      "snippet": "parametricplot{${1:tmin}}{${2:tmax}}{${3:function}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "parametricplot{${1:tmin}}{${2:tmax}}{${3:function%definition}}"
     },
-    "parametricplot*{}{}{}": {
-      "command": "parametricplot*{}{}{}",
-      "snippet": "parametricplot*{${1:tmin}}{${2:tmax}}{${3:function}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "psBoxplot[]{}": {
+      "snippet": "psBoxplot[${2:options}]{${1:macro}}"
     },
-    "pshlabel": {
-      "command": "pshlabel",
-      "snippet": "pshlabel",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "psBoxplot{}": {
+      "snippet": "psBoxplot{${1:macro}}"
+    },
+    "psdataplot[]{}": {
+      "snippet": "psdataplot[${2:options}]{${1:macro}}"
+    },
+    "psdataplot{}": {
+      "snippet": "psdataplot{${1:macro}}"
+    },
+    "psfileplot[]{}": {
+      "snippet": "psfileplot[${2:options}]{${1:file}}"
+    },
+    "psfileplot{}": {
+      "snippet": "psfileplot{${1:file}}"
+    },
+    "psFixpoint[]{}{}{}": {
+      "snippet": "psFixpoint[${4:options}]{${1:%<x0%>}}{${2:%<f(${5:x})%>}}{${3:%<n%>}}"
+    },
+    "psFixpoint{}{}{}": {
+      "snippet": "psFixpoint{${1:%<x0%>}}{${2:%<f(${4:x})%>}}{${3:%<n%>}}"
+    },
+    "psgraphLLx": {},
+    "psgraphLLy": {},
+    "psgraphURx": {},
+    "psgraphURy": {},
+    "pshlabel": {},
+    "pslegend[]{}": {
+      "snippet": "pslegend[${2:reference}]{${1:text}}"
+    },
+    "pslegend{}": {
+      "snippet": "pslegend{${1:text}}"
+    },
+    "pslistplot[]{}": {
+      "snippet": "pslistplot[${2:options}]{${1:list}}"
+    },
+    "pslistplot{}": {
+      "snippet": "pslistplot{${1:data}}"
+    },
+    "psNewton[]{}{}{}": {
+      "snippet": "psNewton[${4:options}]{${1:%<x_0%>}}{${2:%<f(${5:x})%>}}{${3:%<n%>}}"
+    },
+    "psNewton[]{}{}[]{}": {
+      "snippet": "psNewton[${4:options}]{${1:%<x0%>}}{${2:%<f(${6:x})%>}}[${5:%<f'(${7:x})%>}]{${3:%<n%>}}"
+    },
+    "psNewton{}{}[]{}": {
+      "snippet": "psNewton{${1:%<x0%>}}{${2:%<f(${5:x})%>}}[${3:%<f'(${6:x})%>}]{${4:%<n%>}}"
+    },
+    "psNewton{}{}{}": {
+      "snippet": "psNewton{${1:%<x0%>}}{${2:%<f(${4:x})%>}}{${3:%<n%>}}"
+    },
+    "psparametricplot[]{}{}[]{}": {
+      "snippet": "psparametricplot[${4:options}]{${1:tmin}}{${2:tmax}}[${5:PS commands}]{${3:function%definition}}"
+    },
+    "psparametricplot[]{}{}{}": {
+      "snippet": "psparametricplot[${4:options}]{${1:tmin}}{${2:tmax}}{${3:function%definition}}"
+    },
+    "psparametricplot{}{}[]{}": {
+      "snippet": "psparametricplot{${1:tmin}}{${2:tmax}}[${3:PS commands}]{${4:function%definition}}"
+    },
+    "psparametricplot{}{}{}": {
+      "snippet": "psparametricplot{${1:tmin}}{${2:tmax}}{${3:function%definition}}"
+    },
+    "psPi": {},
+    "psPiFour": {},
+    "psPiH": {},
+    "psPiTwo": {},
+    "psplot[]{}{}[]{}": {
+      "snippet": "psplot[${4:options}]{${1:xmin}}{${2:xmax}}[${5:PS commands}]{${3:function%definition}}"
     },
     "psplot[]{}{}{}": {
-      "command": "psplot[]{}{}{}",
-      "snippet": "psplot[${4:par}]{${1:xmin}}{${2:xmax}}{${3:function}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "psplot[${4:options}]{${1:xmin}}{${2:xmax}}{${3:function%definition}}"
     },
-    "psplot*[]{}{}{}": {
-      "command": "psplot*[]{}{}{}",
-      "snippet": "psplot*[${4:par}]{${1:xmin}}{${2:xmax}}{${3:function}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "psplot{}{}[]{}": {
+      "snippet": "psplot{${1:xmin}}{${2:xmax}}[${3:PS commands}]{${4:function%definition}}"
     },
     "psplot{}{}{}": {
-      "command": "psplot{}{}{}",
-      "snippet": "psplot{${1:xmin}}{${2:xmax}}{${3:function}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "psplot{${1:xmin}}{${2:xmax}}{${3:function%definition}}"
     },
-    "psplot*{}{}{}": {
-      "command": "psplot*{}{}{}",
-      "snippet": "psplot*{${1:xmin}}{${2:xmax}}{${3:function}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "psplotinit{}": {
+      "snippet": "psplotinit{${1:arg}}"
     },
-    "psvlabel": {
-      "command": "psvlabel",
-      "snippet": "psvlabel",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "psplotstyle": {},
+    "psPutXLabel{}": {
+      "snippet": "psPutXLabel{${1:arg}}"
     },
-    "psxlabel": {
-      "command": "psxlabel",
-      "snippet": "psxlabel",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "psPutYLabel{}": {
+      "snippet": "psPutYLabel{${1:arg}}"
     },
-    "psylabel": {
-      "command": "psylabel",
-      "snippet": "psylabel",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+    "psreadDataColumn[]{}{}{}{}": {
+      "snippet": "psreadDataColumn[${5:options}]{${1:colNo}}{${2:delim}}{${3:macro%cmd}}{${4:file%definition}}"
     },
+    "psreadDataColumn{}{}{}{}": {
+      "snippet": "psreadDataColumn{${1:colNo}}{${2:delim}}{${3:macro%cmd}}{${4:file%definition}}"
+    },
+    "psResetPlotValues": {},
+    "psrotatebox{}{}": {
+      "snippet": "psrotatebox{${1:angle}}{${2:contents}}"
+    },
+    "PSTplotLoaded": {},
+    "pstRadUnit": {},
+    "pstRadUnitInv": {},
+    "pstXPSScale": {},
+    "pstXScale": {},
+    "pstYPSScale": {},
+    "pstYScale": {},
+    "psvlabel": {},
+    "psxlabelsep": {},
+    "psxsubticklinestyle": {},
+    "psxticklinestyle": {},
+    "psylabelsep": {},
+    "psysubticklinestyle": {},
+    "psyticklinestyle": {},
     "readdata{}{}": {
-      "command": "readdata{}{}",
-      "snippet": "readdata{${1:command}}{${2:file}}",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "readdata{${1:macro%cmd}}{${2:file%definition}}"
+    },
+    "readdata[]{}{}": {
+      "snippet": "readdata[${3:options}]{${1:macro%cmd}}{${2:file%definition}}"
     },
     "savedata{}[]": {
-      "command": "savedata{}[]",
-      "snippet": "savedata{${1:command}}[${2:data}]",
-      "option": "",
-      "keyvals": [],
-      "keyvalindex": -1
+      "snippet": "savedata{${1:macro%cmd}}[${2:data}]"
+    },
+    "setDefaulthLabels": {},
+    "setDefaultvLabels": {},
+    "setFractionhLabels": {},
+    "setFractionvLabels": {},
+    "setTrighLabels": {},
+    "setTrigvLabels": {},
+    "SpecialLabelsDonefalse": {},
+    "SpecialLabelsDonetrue": {},
+    "stripDecimals": {}
+  },
+  "envs": {
+    "psgraph(x0,y0)(x1,y1)(x2,y2){}{}": {
+      "name": "psgraph",
+      "snippet": "(${3:x0,y0})(${4:x1,y1})(${5:x2,y2}){${1:xlength%l}}{${2:ylength%l}}"
+    },
+    "psgraph[](x0,y0)(x1,y1)(x2,y2){}{}": {
+      "name": "psgraph",
+      "snippet": "[${3:options}](${4:x0,y0})(${5:x1,y1})(${6:x2,y2}){${1:xlength%l}}{${2:ylength%l}}"
+    },
+    "psgraph[]{}(x0,y0)(x1,y1)(x2,y2){}{}": {
+      "name": "psgraph",
+      "snippet": "[${4:options}]{${1:arrows}}(${5:x0,y0})(${6:x1,y1})(${7:x2,y2}){${2:xlength%l}}{${3:ylength%l}}"
+    },
+    "psgraph{}(x0,y0)(x1,y1)(x2,y2){}{}": {
+      "name": "psgraph",
+      "snippet": "{${1:arrows}}(${4:x0,y0})(${5:x1,y1})(${6:x2,y2}){${2:xlength%l}}{${3:ylength%l}}"
+    },
+    "psgraph*(x0,y0)(x1,y1)(x2,y2){}{}": {
+      "name": "psgraph*",
+      "snippet": "(${3:x0,y0})(${4:x1,y1})(${5:x2,y2}){${1:xlength%l}}{${2:ylength%l}}"
+    },
+    "psgraph*[](x0,y0)(x1,y1)(x2,y2){}{}": {
+      "name": "psgraph*",
+      "snippet": "[${3:options}](${4:x0,y0})(${5:x1,y1})(${6:x2,y2}){${1:xlength%l}}{${2:ylength%l}}"
+    },
+    "psgraph*[]{}(x0,y0)(x1,y1)(x2,y2){}{}": {
+      "name": "psgraph*",
+      "snippet": "[${4:options}]{${1:arrows}}(${5:x0,y0})(${6:x1,y1})(${7:x2,y2}){${2:xlength%l}}{${3:ylength%l}}"
+    },
+    "psgraph*{}(x0,y0)(x1,y1)(x2,y2){}{}": {
+      "name": "psgraph*",
+      "snippet": "{${1:arrows}}(${4:x0,y0})(${5:x1,y1})(${6:x2,y2}){${2:xlength%l}}{${3:ylength%l}}"
     }
   },
-  "envs": {},
-  "options": []
+  "options": [
+    "97"
+  ]
 }
