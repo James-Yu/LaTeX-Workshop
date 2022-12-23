@@ -53,7 +53,7 @@ jobs:
         npm ci
         npm run compile
     - name: Run tests
-      run: npm run test | grep -v 'Code Helper (Renderer)\|is not in the list of known options'
+      run: npm run test
     - run: npm run release
     - uses: actions/upload-artifact@v3
       with:
