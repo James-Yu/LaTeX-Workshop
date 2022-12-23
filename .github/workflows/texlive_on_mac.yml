@@ -54,3 +54,7 @@ jobs:
         npm run compile
     - name: Run tests
       run: npm run test
+    - run: npm run release
+    - uses: actions/upload-artifact@v3
+      with:
+        path: latex-workshop-*.vsix

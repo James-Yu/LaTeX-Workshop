@@ -52,4 +52,8 @@ jobs:
     - run: |
         npm ci
         npm run compile
-    - run: xvfb-run -a npm run test
+    - run: xvfb-run -a npm run test | sed 's/^.*Failed to connect to the bus:.*$//'
+    - run: npm run release
+    - uses: actions/upload-artifact@v3
+      with:
+        path: latex-workshop-*.vsix
