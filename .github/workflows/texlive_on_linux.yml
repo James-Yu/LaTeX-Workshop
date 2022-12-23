@@ -53,3 +53,7 @@ jobs:
         npm ci
         npm run compile
     - run: xvfb-run -a npm run test
+    - run: npm run release
+    - uses: actions/upload-artifact@v3
+      with:
+        path: latex-workshop-*.vsix
