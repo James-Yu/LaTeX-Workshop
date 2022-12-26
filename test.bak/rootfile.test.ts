@@ -52,9 +52,9 @@ suite('RootFile test suite', () => {
         assert.strictEqual(extension.exports.extension?.manager.rootFile, path.join(fixtureDir, mainFileName))
         if (extension.exports.extension) {
             extension.exports.extension.manager.rootFile = undefined
-            await extension.exports.extension?.manager.findRoot()
-            const includedTeX = extension.exports.extension?.manager.getIncludedTeX()
-            console.log(`rootFile: ${extension.exports.extension?.manager.rootFile}`)
+            await extension.exports.extension.manager.findRoot()
+            const includedTeX = extension.exports.extension.manager.getIncludedTeX()
+            console.log(`rootFile: ${extension.exports.extension.manager.rootFile}`)
             console.log(JSON.stringify(includedTeX))
             return assert.ok(includedTeX.includes(path.join(fixtureDir, texFileName)) && includedTeX.includes(path.join(fixtureDir, tex2FileName)) && includedTeX.includes(path.join(fixtureDir, mainFileName)))
         }

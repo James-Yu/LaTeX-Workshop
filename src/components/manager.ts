@@ -421,6 +421,19 @@ export class Manager {
             this.extension.logger.addLogMessage(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
             return undefined
         }
+
+        const currentWorkspaceDirUri = this.findWorkspace()
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', currentWorkspaceDirUri)
+        const rootFilesIncludePatterns = configuration.get('latex.search.rootFiles.include') as string[]
+        const rootFilesExcludePatterns = configuration.get('latex.search.rootFiles.exclude') as string[]
+
+        if (!micromatch.any(path.relative(currentWorkspaceDirUri?.path || '.', this.rootFile), rootFilesIncludePatterns)) {
+            return undefined
+        }
+        if (micromatch.any(path.relative(currentWorkspaceDirUri?.path || '.', this.rootFile), rootFilesExcludePatterns)) {
+            return undefined
+        }
+
         if (this.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
             return this.rootFile
         }
