@@ -29,57 +29,6 @@ suite('Build TeX files test suite', () => {
     //
     // Basic build tests
     //
-    runTestWithFixture('fixture001', 'basic build', async () => {
-        const fixtureDir = getFixtureDir()
-        const texFileName = 't.tex'
-        const pdfFileName = 't.pdf'
-        const pdfFilePath = path.join(fixtureDir, pdfFileName)
-        await assertPdfIsGenerated(pdfFilePath, async () => {
-            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
-            const doc = await vscode.workspace.openTextDocument(texFilePath)
-            await vscode.window.showTextDocument(doc)
-            await executeVscodeCommandAfterActivation('latex-workshop.build')
-        })
-    })
-
-    runTestWithFixture('fixture002', 'build with subfiles', async () => {
-        const fixtureDir = getFixtureDir()
-        const texFileName = 'main.tex'
-        const pdfFileName = 'main.pdf'
-        const pdfFilePath = path.join(fixtureDir, pdfFileName)
-        await assertPdfIsGenerated(pdfFilePath, async () => {
-            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
-            const doc = await vscode.workspace.openTextDocument(texFilePath)
-            await vscode.window.showTextDocument(doc)
-            await executeVscodeCommandAfterActivation('latex-workshop.build')
-        })
-    })
-
-    runTestWithFixture('fixture003', 'the same multiple placeholders in a recipe', async () => {
-        const fixtureDir = getFixtureDir()
-        const texFileName = 't.tex'
-        const pdfFileName = 't.pdf'
-        const pdfFilePath = path.join(fixtureDir, pdfFileName)
-        await assertPdfIsGenerated(pdfFilePath, async () => {
-            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
-            const doc = await vscode.workspace.openTextDocument(texFilePath)
-            await vscode.window.showTextDocument(doc)
-            await executeVscodeCommandAfterActivation('latex-workshop.build')
-        })
-    })
-
-    runTestWithFixture('fixture004', 'automatically detect root', async () => {
-        const fixtureDir = getFixtureDir()
-        const texFileName = 's.tex'
-        const pdfFileName = 'main.pdf'
-        const pdfFilePath = path.join(fixtureDir, pdfFileName)
-        await assertPdfIsGenerated(pdfFilePath, async () => {
-            const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
-            const doc = await vscode.workspace.openTextDocument(texFilePath)
-            await vscode.window.showTextDocument(doc)
-            await executeVscodeCommandAfterActivation('latex-workshop.build')
-        })
-    })
 
     runTestWithFixture('fixture005', 'basic build with outDir', async () => {
         const fixtureDir = getFixtureDir()

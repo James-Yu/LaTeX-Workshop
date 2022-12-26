@@ -3,23 +3,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch Node Program",
-            "program": "${file}",
-            "request": "launch",
-            "cwd": "${fileDirname}",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "type": "pwa-node"
-        },
-        {
-            "name": "Python: Current File",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal"
-        },
-        {
             "name": "Run Extension",
             "type": "extensionHost",
             "request": "launch",
@@ -48,58 +31,30 @@
             "preLaunchTask": "task-watch-all"
         },
         {
-            "name": "Run Unit Tests with unittest/fixture001",
+            "name": "Run Tests",
             "type": "extensionHost",
             "request": "launch",
             "runtimeExecutable": "${execPath}",
             "args": [
-                "${workspaceFolder}/test/fixtures/unittest/fixture001",
+                "${workspaceFolder}/test/fixtures/basic/",
                 "--extensionDevelopmentPath=${workspaceFolder}",
-                "--extensionTestsPath=${workspaceFolder}/out/test/unittest.index"
+                "--extensionTestsPath=${workspaceFolder}/out/test/suites/index"
             ],
             "outFiles": [
-                "${workspaceFolder}/out/src/**/*.js",
-                "${workspaceFolder}/out/test/**/*.js"
-            ],
-            "preLaunchTask": "task-watch-all"
-        },
-        {
-            "name": "Run Unit Tests with unittest/fixture020",
-            "type": "extensionHost",
-            "request": "launch",
-            "runtimeExecutable": "${execPath}",
-            "args": [
-                "${workspaceFolder}/test/fixtures/unittest/fixture020_structure/",
-                "--extensionDevelopmentPath=${workspaceFolder}",
-                "--extensionTestsPath=${workspaceFolder}/out/test/unittest.index"
-            ],
-            "outFiles": [
-                "${workspaceFolder}/out/src/**/*.js",
                 "${workspaceFolder}/out/test/**/*.js"
             ],
             "preLaunchTask": "task-watch-all",
             "env": {
-                "LATEXWORKSHOP_CI": "1"
+                "LATEXWORKSHOP_CI": "1",
+                "LATEXWORKSHOP_CISUITE": ""
             }
         },
         {
-            "name": "Run Unit Tests with unittest/fixture030",
-            "type": "extensionHost",
+            "name": "Python: Current File",
+            "type": "python",
             "request": "launch",
-            "runtimeExecutable": "${execPath}",
-            "args": [
-                "${workspaceFolder}/test/fixtures/unittest/fixture030_linter/",
-                "--extensionDevelopmentPath=${workspaceFolder}",
-                "--extensionTestsPath=${workspaceFolder}/out/test/unittest.index"
-            ],
-            "outFiles": [
-                "${workspaceFolder}/out/src/**/*.js",
-                "${workspaceFolder}/out/test/**/*.js"
-            ],
-            "preLaunchTask": "task-watch-all",
-            "env": {
-                "LATEXWORKSHOP_CI": "1"
-            }
+            "program": "${file}",
+            "console": "integratedTerminal"
         }
     ]
 }

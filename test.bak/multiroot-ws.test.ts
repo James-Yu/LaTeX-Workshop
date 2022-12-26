@@ -17,7 +17,7 @@ import {
 
 function getCompletionItems(extension: vscode.Extension<ReturnType<typeof activate>>, doc: vscode.TextDocument, pos: vscode.Position): vscode.CompletionItem[] | undefined {
     const token = new vscode.CancellationTokenSource().token
-    return extension.exports.extension.completer.provideCompletionItems?.(
+    return extension.exports.extension?.completer.provideCompletionItems?.(
         doc, pos, token,
         {
             triggerKind: vscode.CompletionTriggerKind.Invoke,
@@ -205,8 +205,8 @@ suite('Multi-root workspace test suite', () => {
         await waitGivenRootFile(docA.fileName)
         await sleep(1000)
 
-        const structure = extension.exports.extension.structureViewer.getTreeData()
-        const filesWatched = extension.exports.extension.manager.getFilesWatched()
+        const structure = extension.exports.extension?.structureViewer.getTreeData()
+        const filesWatched = extension.exports.extension?.manager.getFilesWatched()
         const isStructureOK = structure && structure.length > 0 && structure[0].fileName === docA.fileName
         const isWatcherOK = filesWatched && filesWatched.length === 1 && filesWatched[0] === docA.fileName
         assert.ok(isStructureOK, JSON.stringify(structure))

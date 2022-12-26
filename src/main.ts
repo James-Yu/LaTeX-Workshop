@@ -134,7 +134,9 @@ function registerLatexWorkshopCommands(extension: Extension, context: vscode.Ext
 }
 
 function generateLatexWorkshopApi(extension: Extension) {
-    return { extension }
+    return {
+        extension: process.env['LATEXWORKSHOP_CI'] ? extension : undefined
+    }
 }
 
 let extensionToDispose: Extension | undefined
