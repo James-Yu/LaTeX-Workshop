@@ -1,11 +1,11 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
 import * as os from 'os'
 import * as assert from 'assert'
 import glob from 'glob'
 
 import type { Extension } from '../../src/main'
+import { PdfViewerState } from '../../types/latex-workshop-protocol-types'
 
 type RunTestOption = {
     suiteName: string,
@@ -84,19 +84,8 @@ export async function assertBuild(option: AssertBuildOption) {
     await option.extension?.manager.findRoot()
     await executeBuild(editor, doc, option)
 
-    let pdfs: string[] = []
-    for (const ext of ['pdf', 'aux', 'fdb_latexmk', 'fls', 'log', 'synctex.gz', '.idx', '.ilg', '.ind']) {
-        const files = glob.sync(`**/**.${ext}`, { cwd: option.fixture })
-        files.forEach(file => {
-            if (!fs.existsSync(path.resolve(option.fixture, file))) {
-                return
-            }
-            fs.unlinkSync(path.resolve(option.fixture, file))
-        })
-        pdfs = ext === 'pdf' ? files : pdfs
-    }
-
-    assert.strictEqual(pdfs.map(file => path.resolve(option.fixture, file)).join(','), option.pdfFileName === '' ? option.pdfFileName : pdfFilePath)
+    const files = glob.sync('**/**.pdf', { cwd: option.fixture })
+    assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), option.pdfFileName === '' ? option.pdfFileName : pdfFilePath)
 }
 
 async function executeBuild(editor: vscode.TextEditor, doc: vscode.TextDocument, option: AssertBuildOption) {
@@ -126,4 +115,46 @@ export async function waitBuild(extension?: Extension) {
             disposable?.dispose()
         })
     })
+}
+
+export async function waitViewer(extension?: Extension) {
+    return Promise.all([
+        new Promise<void>((resolve, _) => {
+            const disposable = extension?.eventBus.on('pdfviewerpagesloaded', () => {
+                resolve()
+                disposable?.dispose()
+            })
+        }),
+        waitViewerChange(extension)
+    ])
+}
+
+export async function waitViewerChange(extension?: Extension) {
+    return new Promise<void>((resolve, _) => {
+        const disposable = extension?.eventBus.on('pdfviewerstatuschanged', () => {
+            resolve()
+            disposable?.dispose()
+        })
+    })
+}
+
+export function getViewerStatus(pdfFilePath: string, extension?: Extension) {
+    const pdfFileUri = vscode.Uri.file(pdfFilePath)
+    const rs = extension?.viewer.getViewerState(pdfFileUri)
+    let ret: PdfViewerState | undefined
+    if (rs && rs.length > 0 && rs[0]) {
+        ret = rs[0]
+    }
+    if (ret && ret.pdfFileUri !== undefined && ret.scrollTop !== undefined) {
+        return [{ pdfFileUri: ret.pdfFileUri, scrollTop: ret.scrollTop }]
+    } else {
+        assert.fail('PDF Viewer not loaded.')
+    }
+}
+
+export function assertKeys(keys: string[], mendatory: string[], optional: string[] = [], message: string): void {
+    assert.ok(
+        keys.every(k => mendatory.includes(k) || optional.includes(k)) && mendatory.every(k => keys.includes(k)),
+        message
+    )
 }

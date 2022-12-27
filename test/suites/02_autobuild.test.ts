@@ -1,5 +1,7 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
 import * as path from 'path'
+import glob from 'glob'
 import * as assert from 'assert'
 
 import type { Extension, activate } from '../../src/main'
@@ -21,6 +23,18 @@ suite('Auto-build TeX files test suite', () => {
     })
 
     teardown(async () => {
+        const fixture = vscode.workspace.workspaceFolders?.[0].uri.path
+        if (fixture) {
+            for (const ext of ['pdf', 'aux', 'fdb_latexmk', 'fls', 'log', 'synctex.gz', '.idx', '.ilg', '.ind']) {
+                const files = glob.sync(`**/**.${ext}`, { cwd: fixture })
+                files.forEach(file => {
+                    if (!fs.existsSync(path.resolve(fixture, file))) {
+                        return
+                    }
+                    fs.unlinkSync(path.resolve(fixture, file))
+                })
+            }
+        }
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.autoBuild.run', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', undefined)
@@ -164,6 +178,10 @@ suite('Auto-build TeX files test suite', () => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.watch.files.ignore', ['**/s.tex'])
         await vscode.commands.executeCommand('latex-workshop.activate')
         await assertBuild({fixture, texFileName: 'main_011.tex', pdfFileName: 'main_011.pdf', extension})
+        if (!fs.existsSync(path.resolve(fixture, 'main_011.pdf'))) {
+            return
+        }
+        fs.unlinkSync(path.resolve(fixture, 'main_011.pdf'))
         await assertBuild({fixture, texFileName: 'sub_004/s.tex', pdfFileName: '', extension, edits: (builder) => {
             builder.insert(new vscode.Position(0, 3), 'z')
         }, nobuild: true})

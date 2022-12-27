@@ -94,7 +94,7 @@ suite('Completion test suite', () => {
         assert.ok(undefined === items.find(item => item.label === '#8'))
     })
 
-    runTest({only: true, suiteName, fixtureName: 'basic', testName: 'glossary completion'}, async (fixture: string) => {
+    runTest({suiteName, fixtureName: 'basic', testName: 'glossary completion'}, async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.search.rootFiles.include', ['main_017.tex'])
         const texFileName = 'main_017.tex'
         const texFilePath = vscode.Uri.file(path.join(fixture, texFileName))
