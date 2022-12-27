@@ -274,14 +274,19 @@ export class Completer implements vscode.CompletionItemProvider {
 }
 
 export class AtSuggestionCompleter implements vscode.CompletionItemProvider {
-    private readonly atSuggestion: AtSuggestion
-    private readonly triggerCharacter: string
+    private atSuggestion: AtSuggestion
+    private triggerCharacter: string
 
-    constructor(extension: Extension) {
+    constructor(private readonly extension: Extension) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const triggerCharacter = configuration.get('intellisense.atSuggestion.trigger.latex') as string
-        this.atSuggestion = new AtSuggestion(extension, triggerCharacter)
-        this.triggerCharacter = triggerCharacter
+        this.triggerCharacter = configuration.get('intellisense.atSuggestion.trigger.latex') as string
+        this.atSuggestion = new AtSuggestion(this.extension, this.triggerCharacter)
+    }
+
+    updateTrigger() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        this.triggerCharacter = configuration.get('intellisense.atSuggestion.trigger.latex') as string
+        this.atSuggestion = new AtSuggestion(this.extension, this.triggerCharacter)
     }
 
     provideCompletionItems(

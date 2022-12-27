@@ -23,14 +23,10 @@ suite('Auto-build TeX files test suite', () => {
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.autoBuild.run', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.tools', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.recipes', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.build.forceRecipeUsage', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.search.rootFiles.include', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.search.rootFiles.exclude', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.watch.files.ignore', undefined)
     })
 

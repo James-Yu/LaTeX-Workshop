@@ -235,7 +235,7 @@ export class Builder {
         } else if (!step.isExternal) {
             if (step.command === 'latexmk' && step.rootFile === this.extension.manager.localRootFile && this.extension.manager.rootDir) {
                 cwd = this.extension.manager.rootDir
-                if (step.args && !step.args?.includes('-cd')) {
+                if (step.args && !step.args.includes('-cd')) {
                     step.args.push('-cd')
                 }
             } else {

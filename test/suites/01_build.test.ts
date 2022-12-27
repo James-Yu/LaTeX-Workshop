@@ -22,7 +22,6 @@ suite('Build TeX files test suite', () => {
 
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.autoBuild.run', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.tools', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.recipes', undefined)
@@ -31,7 +30,6 @@ suite('Build TeX files test suite', () => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.search.rootFiles.include', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.search.rootFiles.exclude', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.watch.files.ignore', undefined)
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'build'}, async (fixture: string) => {

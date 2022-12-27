@@ -31,4 +31,16 @@ suite('Detect root file test suite', () => {
         assert.strictEqual(extension?.manager.rootFile, path.join(fixture, mainFileName))
     })
 
+    runTest({suiteName, fixtureName: 'basic', testName: 'circular inclusion'}, async (fixture: string) => {
+        const texFileName = 'main_016b.tex'
+        const mainFileName = 'main_016.tex'
+        const texFilePath = vscode.Uri.file(path.join(fixture, texFileName))
+        const doc = await vscode.workspace.openTextDocument(texFilePath)
+        await vscode.window.showTextDocument(doc)
+        await extension?.manager.findRoot()
+        assert.strictEqual(extension?.manager.rootFile, path.join(fixture, mainFileName))
+        const includedTeX = extension?.manager.getIncludedTeX()
+        assert.ok(includedTeX.includes(path.join(fixture, texFileName)) && includedTeX.includes(path.join(fixture, mainFileName)) && includedTeX.includes(path.join(fixture, 'sub_004/s.tex')))
+    })
+
 })

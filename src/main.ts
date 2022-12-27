@@ -287,12 +287,27 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
         vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'bibtex'}, new BibtexCompleter(extension), '@')
     )
 
-    const atSuggestionLatexTrigger = configuration.get('intellisense.atSuggestion.trigger.latex') as string
-    if (atSuggestionLatexTrigger !== '') {
-        context.subscriptions.push(
-            vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.atSuggestionCompleter, atSuggestionLatexTrigger)
-        )
+    let atSuggestionDisposable: vscode.Disposable | undefined
+    const registerAtSuggestion = () => {
+        const atSuggestionLatexTrigger = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.atSuggestion.trigger.latex') as string
+        if (atSuggestionLatexTrigger !== '') {
+            extension.atSuggestionCompleter.updateTrigger()
+            atSuggestionDisposable = vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.atSuggestionCompleter, atSuggestionLatexTrigger)
+            context.subscriptions.push(atSuggestionDisposable)
+        }
     }
+
+    registerAtSuggestion()
+    context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+        if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestion.trigger.latex')) {
+            if (atSuggestionDisposable) {
+                atSuggestionDisposable.dispose()
+                atSuggestionDisposable = undefined
+            }
+            registerAtSuggestion()
+        }
+        return
+    }))
 
     context.subscriptions.push(
         vscode.languages.registerCodeActionsProvider(latexSelector, extension.codeActions),
