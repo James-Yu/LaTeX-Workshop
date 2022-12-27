@@ -40,6 +40,7 @@ suite('Detect root file test suite', () => {
         await extension?.manager.findRoot()
         assert.strictEqual(extension?.manager.rootFile, path.join(fixture, mainFileName))
         const includedTeX = extension?.manager.getIncludedTeX()
+        assert.ok(includedTeX)
         assert.ok(includedTeX.includes(path.join(fixture, texFileName)) && includedTeX.includes(path.join(fixture, mainFileName)) && includedTeX.includes(path.join(fixture, 'sub_004/s.tex')))
     })
 
