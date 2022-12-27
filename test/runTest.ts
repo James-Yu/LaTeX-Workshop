@@ -52,9 +52,41 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
         clearTimeout(nodejsTimeout)
     }
 }
+async function runTestground() {
+    try {
+        const extensionDevelopmentPath = path.resolve(__dirname, '../../')
+        const extensionTestsPath = path.resolve(__dirname, './suites/index')
+
+        const fixtures = glob.sync('test/fixtures/testground', { cwd: extensionDevelopmentPath })
+        for (const fixture of fixtures) {
+            await runTests({
+                version: '1.71.0',
+                extensionDevelopmentPath,
+                extensionTestsPath,
+                launchArgs: [
+                    fixture,
+                    '--user-data-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name,
+                    '--extensions-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name,
+                    '--lang=C',
+                    '--disable-keytar',
+                    '--disable-telemetry',
+                    '--disable-gpu'
+                ],
+                extensionTestsEnv: {
+                    LATEXWORKSHOP_CI: '1'
+                }
+            })
+        }
+    } catch (error) {
+        console.error(error)
+        console.error('Failed to run tests')
+        process.exit(1)
+    }
+}
 
 async function main() {
     try {
+        await runTestground()
         await runTestsOnEachFixture('rootfile')
         await runTestsOnEachFixture('build')
         await runTestsOnEachFixture('viewer')
