@@ -1,42 +1,14 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
 import * as assert from 'assert'
-import glob from 'glob'
 
 import { Extension, activate } from '../../src/main'
-import { runTest } from './utils'
+import { assertBuild, runTest, sleep, waitBuild } from './utils'
 
 suite('Build TeX files test suite', () => {
 
     let extension: Extension | undefined
     const suiteName = path.basename(__filename).replace('.test.js', '')
-
-    async function assertBuild(fixture: string, texFileName: string, pdfFileName: string) {
-        const texFilePath = vscode.Uri.file(path.join(fixture, texFileName))
-        const pdfFilePath = path.join(fixture, pdfFileName)
-        const doc = await vscode.workspace.openTextDocument(texFilePath)
-        await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
-        await vscode.commands.executeCommand('latex-workshop.build')
-        for (const ext of ['aux', 'fdb_latexmk', 'fls', 'log', 'synctex.gz']) {
-            const files = glob.sync(`**/**.${ext}`, { cwd: fixture })
-            files.forEach(file => {
-                if (!fs.existsSync(path.resolve(fixture, file))) {
-                    return
-                }
-                fs.unlinkSync(path.resolve(fixture, file))
-            })
-        }
-        const pdfs = glob.sync('**/**.pdf', { cwd: fixture })
-        pdfs.forEach(file => {
-            if (!fs.existsSync(path.resolve(fixture, file))) {
-                return
-            }
-            fs.unlinkSync(path.resolve(fixture, file))
-        })
-        assert.strictEqual(pdfs.map(file => path.resolve(fixture, file)).join(','), pdfFileName === '' ? pdfFileName : pdfFilePath)
-    }
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
@@ -63,12 +35,12 @@ suite('Build TeX files test suite', () => {
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'build'}, async (fixture: string) => {
-        await assertBuild(fixture, 'main_001.tex', 'main_001.pdf')
+        await assertBuild({fixture, texFileName: 'main_001.tex', pdfFileName: 'main_001.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'build with subfiles'}, async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
-        await assertBuild(fixture, 'main_002.tex', 'main_002.pdf')
+        await assertBuild({fixture, texFileName: 'main_002.tex', pdfFileName: 'main_002.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'same placeholders multiple times'}, async (fixture: string) => {
@@ -86,19 +58,19 @@ suite('Build TeX files test suite', () => {
             ]
         }]
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.tools', tools)
-        await assertBuild(fixture, 'main_001.tex', 'main_001.pdf')
+        await assertBuild({fixture, texFileName: 'main_001.tex', pdfFileName: 'main_001.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'auto-detect subfile root 1'}, async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', true)
-        await assertBuild(fixture, 'sub_002/sub_002.tex', 'sub_002/sub_002.pdf')
+        await assertBuild({fixture, texFileName: 'sub_002/sub_002.tex', pdfFileName: 'sub_002/sub_002.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'auto-detect subfile root 2'}, async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', false)
-        await assertBuild(fixture, 'sub_002/sub_002.tex', 'main_002.pdf')
+        await assertBuild({fixture, texFileName: 'sub_002/sub_002.tex', pdfFileName: 'main_002.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'build with outDir'}, async (fixture: string) => {
@@ -116,60 +88,167 @@ suite('Build TeX files test suite', () => {
         }]
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.tools', tools)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', './out')
-        await assertBuild(fixture, 'main_001.tex', 'out/main_001.pdf')
+        await assertBuild({fixture, texFileName: 'main_001.tex', pdfFileName: 'out/main_001.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'detect root with search.rootFiles.include'}, async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.search.rootFiles.include', ['main_004/*.tex'])
-        await assertBuild(fixture, 'sub_004/s.tex', 'main_004/main.pdf')
+        await assertBuild({fixture, texFileName: 'sub_004/s.tex', pdfFileName: 'main_004/main.pdf', extension})
     })
 
-    runTest({only: true, suiteName, fixtureName: 'basic', testName: 'detect root with search.rootFiles.exclude'}, async (fixture: string) => {
+    runTest({suiteName, fixtureName: 'basic', testName: 'detect root with search.rootFiles.exclude'}, async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.search.rootFiles.exclude', ['*.tex'])
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.search.rootFiles.include', ['main_004.tex', 'main_004/*.tex'])
-        await assertBuild(fixture, 'sub_004/s.tex', 'main_004/main.pdf')
+        await assertBuild({fixture, texFileName: 'sub_004/s.tex', pdfFileName: 'main_004/main.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'basic build with spaces in names'}, async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', './')
-        await assertBuild(fixture, 'main_005 space/main 005.tex', 'main_005 space/main 005.pdf')
+        await assertBuild({fixture, texFileName: 'main_005 space/main 005.tex', pdfFileName: 'main_005 space/main 005.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'basic build with spaces in outdir'}, async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', '%DIR%/main_005 space')
-        await assertBuild(fixture, 'main_001.tex', 'main_005 space/main_001.pdf')
+        await assertBuild({fixture, texFileName: 'main_001.tex', pdfFileName: 'main_005 space/main_001.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'auto-detect root with verbatim'}, async (fixture: string) => {
-        await assertBuild(fixture, 'sub_005.tex', 'main_005.pdf')
+        await assertBuild({fixture, texFileName: 'sub_005.tex', pdfFileName: 'main_005.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'build with magic comment'}, async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.recipes', [])
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.build.forceRecipeUsage', false)
-        await assertBuild(fixture, 'main_006.tex', 'main_006.pdf')
+        await assertBuild({fixture, texFileName: 'main_006.tex', pdfFileName: 'main_006.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'build with !TEX program and !TEX options'}, async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.recipes', [])
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.build.forceRecipeUsage', false)
-        await assertBuild(fixture, 'main_007.tex', 'main_007/main_007.pdf')
+        await assertBuild({fixture, texFileName: 'main_007.tex', pdfFileName: 'main_007/main_007.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'build with !TEX program and !TEX options'}, async (fixture: string) => {
-        await assertBuild(fixture, 'sub_008/s.tex', 'main_008.pdf')
+        await assertBuild({fixture, texFileName: 'sub_008/s.tex', pdfFileName: 'main_008.pdf', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'build with invalid !TEX program'}, async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.build.forceRecipeUsage', false)
-        await assertBuild(fixture, 'main_009.tex', '')
+        await assertBuild({fixture, texFileName: 'main_009.tex', pdfFileName: '', extension})
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'build with forceRecipeUsage: true'}, async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.build.forceRecipeUsage', true)
-        await assertBuild(fixture, 'main_009.tex', 'main_009.pdf')
+        await assertBuild({fixture, texFileName: 'main_009.tex', pdfFileName: 'main_009.pdf', extension})
+    })
+
+    runTest({suiteName, fixtureName: 'basic', testName: 'build a subfile when main.tex opened'}, async (fixture: string) => {
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', true)
+
+        const docMain = await vscode.workspace.openTextDocument(vscode.Uri.file(path.join(fixture, 'main_002.tex')))
+        await vscode.window.showTextDocument(docMain)
+        const docSub = await vscode.workspace.openTextDocument(vscode.Uri.file(path.join(fixture, 'sub_002/sub_002.tex')))
+        await vscode.window.showTextDocument(docSub, vscode.ViewColumn.Beside)
+
+        await assertBuild({fixture, texFileName: 'sub_002/sub_002.tex', pdfFileName: 'sub_002/sub_002.pdf', extension})
+    })
+
+    runTest({suiteName, fixtureName: 'basic', testName: 'build main.tex choosing it in QuickPick'}, async (fixture: string) => {
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', false)
+        await assertBuild({fixture, texFileName: 'sub_002/sub_002.tex', pdfFileName: 'main_002.pdf', extension, build: async () => {
+            void vscode.commands.executeCommand('latex-workshop.build')
+            await sleep(1000)
+            await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+            await waitBuild(extension)
+        }})
+    })
+
+    runTest({suiteName, fixtureName: 'basic', testName: 'build sub.tex choosing it in QuickPick'}, async (fixture: string) => {
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', false)
+        await assertBuild({fixture, texFileName: 'sub_002/sub_002.tex', pdfFileName: 'sub_002/sub_002.pdf', extension, build: async () => {
+            void vscode.commands.executeCommand('latex-workshop.build')
+            await sleep(1000)
+            await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
+            await sleep(500)
+            await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+            await waitBuild(extension)
+        }})
+    })
+
+    runTest({suiteName, fixtureName: 'basic', testName: 'build sub.tex choosing it in QuickPick'}, async (fixture: string) => {
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', './out')
+        await assertBuild({fixture, texFileName: 'sub_014/s.tex', pdfFileName: 'sub_014/out/s.pdf', extension})
+    })
+
+    runTest({suiteName, fixtureName: 'basic', testName: 'basic build with makeindex'}, async (fixture: string) => {
+        await assertBuild({fixture, texFileName: 'main_015.tex', pdfFileName: 'main_015.pdf', extension})
+    })
+
+    runTest({win32only: true, suiteName, fixtureName: 'basic', testName: 'test q/.../ on Windows'}, async (fixture: string) => {
+        const tools = [{
+            'name': 'latexmk',
+            'command': 'latexmk',
+            'args': [
+                '-e',
+                '$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/',
+                '-outdir=%OUTDIR%',
+                '-pdf',
+                '%DOC%'
+            ],
+            'env': {}
+        }]
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.tools', tools)
+        await assertBuild({fixture, texFileName: 'main_001.tex', pdfFileName: 'main_001.pdf', extension})
+    })
+
+    runTest({win32only: true, suiteName, fixtureName: 'basic', testName: 'test q/.../ with spaces in outdir on Windows'}, async (fixture: string) => {
+        const tools = [{
+            'name': 'latexmk',
+            'command': 'latexmk',
+            'args': [
+                '-e',
+                '$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/',
+                '-outdir=%OUTDIR%',
+                '-pdf',
+                '%DOC%'
+            ],
+            'env': {}
+        }]
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.tools', tools)
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', '%DIR%/out dir')
+        await assertBuild({fixture, texFileName: 'main_001.tex', pdfFileName: 'out dir/main_001.pdf', extension})
+    })
+
+    runTest({win32only: true, suiteName, fixtureName: 'basic', testName: 'test copy on Windows'}, async (fixture: string) => {
+        const tools = [{
+            'name': 'latexmk',
+            'command': 'latexmk',
+            'args': [
+                '-e',
+                '$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/',
+                '-outdir=%OUTDIR%',
+                '-pdf',
+                '%DOC%'
+            ],
+            'env': {}
+        }, {
+            'name': 'copyPDF',
+            'command': 'copy',
+            'args': ['%OUTDIR_W32%\\%DOCFILE%.pdf', '%OUTDIR_W32%\\copy_001.pdf'],
+            'env': {}
+        }]
+        const recipes = [{
+            'name': 'latexmk_copy',
+            'tools': ['latexmk', 'copyPDF']
+        }]
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.tools', tools)
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.recipes', recipes)
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', '%DIR%/out dir')
+        await assertBuild({fixture, texFileName: 'main_001.tex', pdfFileName: 'out dir/copy_001.pdf', extension})
     })
 
 })
