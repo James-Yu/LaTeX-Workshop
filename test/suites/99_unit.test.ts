@@ -10,12 +10,12 @@ import type { PkgType } from '../../src/providers/completion'
 import type { CmdType } from '../../src/providers/completer/command'
 import { EnvSnippetType, EnvType } from '../../src/providers/completer/environment'
 import { SectionNodeProvider } from '../../src/providers/structure'
-import { ITextDocumentLike, TextDocumentLike } from '../../src/providers/preview/mathpreviewlib/textdocumentlike'
 import { TeXMathEnvFinder } from '../../src/providers/preview/mathpreviewlib/texmathenvfinder'
 import { CursorRenderer } from '../../src/providers/preview/mathpreviewlib/cursorrenderer'
 import { isTriggerSuggestNeeded } from '../../src/providers/completer/commandlib/commandfinder'
 import { ChkTeX } from '../../src/components/linterlib/chktex'
 import { LaCheck } from '../../src/components/linterlib/lacheck'
+import { TextDocumentLike } from '../../src/providers/preview/mathpreviewlib/textdocumentlike'
 
 
 suite('Unit test suite', () => {
@@ -210,37 +210,6 @@ suite('Unit test suite', () => {
         assert.strictEqual(sections[5].children[3].label, 'Frame: Frame Title 1')
         assert.strictEqual(sections[5].children[4].label, 'Frame: Frame Title 2')
         assert.strictEqual(sections[5].children[5].label, 'Frame: Untitled')
-    })
-
-
-    runTest({suiteName, fixtureName: 'basic', testName: 'mathpreviewlib/textdocumentlike: test load and getWordRangeAtPosition'}, (fixture: string) => {
-        const s =
-`\\documentclass{article}
-\\begin{document}
-
-abc
-
-\\end{document}
-`
-        const a = TextDocumentLike.load(path.join(fixture, 'main_001.tex'))
-        assert.strictEqual(s, a.getText())
-
-        const docLike = new TextDocumentLike(s)
-        const pos = new vscode.Position(0,0)
-        assert.strictEqual('\\documentclass{article}', docLike.lineAt(pos.line).text)
-        assert.strictEqual('\\documentclass{article}', docLike.lineAt(pos).text)
-        let range = docLike.getWordRangeAtPosition(pos)
-        assert.strictEqual('\\documentclass', docLike.getText(range))
-        range = docLike.getWordRangeAtPosition(new vscode.Position(1, 0))
-        assert.strictEqual('\\begin', docLike.getText(range))
-        range = docLike.getWordRangeAtPosition(new vscode.Position(2, 0))
-        assert.strictEqual(undefined, range)
-    })
-
-    runTest({suiteName, fixtureName: 'basic', testName: 'mathpreviewlib/textdocumentlike: test TextDocument is assignable to ITextDocumentLike'}, (_: string) => {
-        let doc: vscode.TextDocument | undefined
-        const a: ITextDocumentLike | undefined = doc
-        assert.ok(!a)
     })
 
     runTest({suiteName, fixtureName: 'basic', testName: 'mathpreviewlib/cursorrenderer: test insertCursor'}, async (_: string) => {
