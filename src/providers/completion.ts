@@ -54,7 +54,7 @@ export class Completer implements vscode.CompletionItemProvider {
     readonly subImport: SubImport
     readonly glossary: Glossary
 
-    private readonly packageData: {[key: string]: PkgType | null} = {}
+    private readonly packagesLoaded: string[] = []
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -77,24 +77,26 @@ export class Completer implements vscode.CompletionItemProvider {
     }
 
     loadPackageData(packageName: string) {
-        const candidate = this.packageData[packageName]
-        if (candidate || candidate === null) {
+        if (this.packagesLoaded.includes(packageName)) {
             return
         }
 
         const filePath: string | undefined = resolvePkgFile(`${packageName}.json`, `${this.extension.extensionRoot}/data/packages/`)
         if (filePath === undefined) {
-            this.packageData[packageName] = null
+            this.packagesLoaded.push(packageName)
             return
         }
 
         try {
             const packageData = JSON.parse(fs.readFileSync(filePath).toString()) as PkgType
             this.populatePackageData(packageData)
+
             this.package.setPackageDeps(packageName, packageData.includes)
             this.command.setPackageCmds(packageName, packageData.cmds)
             this.environment.setPackageEnvs(packageName, packageData.envs)
             this.package.setPackageOptions(packageName, packageData.options)
+
+            this.packagesLoaded.push(packageName)
         } catch (e) {
             this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
         }
