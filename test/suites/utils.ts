@@ -82,7 +82,6 @@ type AssertBuildOption = {
     pdfFileName: string,
     extension?: Extension,
     build?: () => unknown,
-    edits?: (cb: vscode.TextEditorEdit) => unknown,
     nobuild?: boolean
 }
 
@@ -90,32 +89,44 @@ export async function assertBuild(option: AssertBuildOption) {
     const texFilePath = vscode.Uri.file(path.join(option.fixture, option.texFileName))
     const pdfFilePath = path.join(option.fixture, option.pdfFileName)
     const doc = await vscode.workspace.openTextDocument(texFilePath)
-    const editor = await vscode.window.showTextDocument(doc)
+    await vscode.window.showTextDocument(doc)
     await option.extension?.manager.findRoot()
-    await executeBuild(editor, doc, option)
+    if (option.build) {
+        await option.build()
+    } else {
+        await vscode.commands.executeCommand('latex-workshop.build')
+    }
 
     const files = glob.sync('**/**.pdf', { cwd: option.fixture })
     assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), option.pdfFileName === '' ? option.pdfFileName : pdfFilePath)
 }
 
-async function executeBuild(editor: vscode.TextEditor, doc: vscode.TextDocument, option: AssertBuildOption) {
-    if (option.edits) {
-        await sleep(500)
-        await editor.edit(option.edits)
-        await sleep(500)
-        await doc.save()
-        if (option.nobuild) {
-            await sleep(3000)
-        } else {
-            await waitBuild(option.extension)
-        }
-        return
+export async function assertAutoBuild(option: AssertBuildOption, mode?: 'skipFirstBuild' | 'noAutoBuild' | 'onSave') {
+    if (mode !== 'skipFirstBuild' && mode !== 'noAutoBuild') {
+        await assertBuild(option)
     }
-    if (option.build) {
-        await option.build()
-        return
+    fs.rmSync(path.resolve(option.fixture, option.pdfFileName))
+
+    let files = glob.sync('**/**.pdf', { cwd: option.fixture })
+    assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), '')
+    await sleep(250)
+
+    const wait = waitBuild(option.extension)
+    if (mode !== 'onSave') {
+        fs.appendFileSync(path.resolve(option.fixture, option.texFileName), ' % edit')
+    } else {
+        await vscode.commands.executeCommand('workbench.action.files.save')
     }
-    await vscode.commands.executeCommand('latex-workshop.build')
+
+    if (mode !== 'noAutoBuild') {
+        await wait
+        files = glob.sync('**/**.pdf', { cwd: option.fixture })
+        assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), path.resolve(option.fixture, option.pdfFileName))
+    } else {
+        await sleep(3000)
+        files = glob.sync('**/**.pdf', { cwd: option.fixture })
+        assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), '')
+    }
 }
 
 export async function waitBuild(extension?: Extension) {
@@ -125,4 +136,75 @@ export async function waitBuild(extension?: Extension) {
             disposable?.dispose()
         })
     })
+}
+
+type WriteTeXType = 'main' | 'makeindex' | 'magicprogram' | 'magicoption' | 'magicroot' | 'magicinvalidprogram' |
+    'subfile' | 'subfileverbatim' | 'subfiletwomain' | 'subfilethreelayer' | 'importthreelayer' | 'bibtex' |
+    'input' | 'inputmacro' | 'inputfromfolder'
+
+export async function writeTeX(type: WriteTeXType, fixture: string, payload?: {fileName?: string}) {
+    switch (type) {
+        case 'main':
+            writeTest({fixture, fileName: payload?.fileName || 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc', '\\end{document}')
+            break
+        case 'makeindex':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{makeidx}', '\\makeindex', '\\begin{document}', 'abc\\index{abc}', '\\printindex', '\\end{document}')
+            break
+        case 'magicprogram':
+            writeTest({fixture, fileName: 'main.tex'}, '% !TEX program = pdflatex', '\\documentclass{article}', '\\begin{document}', 'abc', '\\end{document}')
+            break
+        case 'magicoption':
+            writeTest({fixture, fileName: 'main.tex'}, '% !TEX program = latexmk', '% !TEX options = -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir="./out/" "%DOC%"', '\\documentclass{article}', '\\begin{document}', 'abc', '\\end{document}')
+            break
+        case 'magicroot':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'main main', '\\input{sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: 'alt.tex'}, '\\documentclass{article}', '\\begin{document}', 'alt alt', '\\input{sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, '% !TEX root = ../main.tex', 'sub sub')
+            break
+        case 'magicinvalidprogram':
+            writeTest({fixture, fileName: 'main.tex'}, '% !TEX program = noexistprogram', '\\documentclass{article}', '\\begin{document}', 'abc', '\\end{document}')
+            break
+        case 'input':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'main main', '\\input{sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, 'sub sub')
+            break
+        case 'inputmacro':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\providecommand{\\main}{sub}', '\\begin{document}', 'main main', '\\input{\\main/s}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, 'sub sub')
+            break
+        case 'inputfromfolder':
+            writeTest({fixture, fileName: 'main/main.tex'}, '\\documentclass{article}', '\\begin{document}', 'main main', '\\input{../sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, 'sub sub')
+            break
+        case 'bibtex':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'main main', '\\bibliographystyle{plain}', '\\bibliography{bib}', '\\end{document}')
+            writeTest({fixture, fileName: 'bib.bib'}, '%')
+            break
+        case 'subfile':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{subfiles}', '\\begin{document}', 'main main', '\\subfile{sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, '\\documentclass[../main.tex]{subfiles}', '\\begin{document}', 'sub sub', '\\end{document}')
+            break
+        case 'subfileverbatim':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'main main', '\\input{sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, '\\section{Introduction}', 'This is a minimum \\LaTeX\\ document:', '\\begin{verbatim}', '\\documentclass{article}', '\\begin{document}', 'sub sub', '\\end{document}', '\\end{verbatim}')
+            break
+        case 'subfiletwomain':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{subfiles}', '\\begin{document}', 'main main', '\\subfile{sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: 'alt/main.tex'}, '\\documentclass{article}', '\\begin{document}', 'alt alt', '\\input{../sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, 'sub sub')
+            break
+        case 'subfilethreelayer':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{subfiles}', '\\begin{document}', 'main main', '\\subfile{sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, '\\documentclass[../main.tex]{subfiles}', '\\begin{document}', 'sub sub', '\\input{./subsub/infile}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/subsub/infile.tex'}, 'subsub subsub')
+            break
+        case 'importthreelayer':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{import}', '\\begin{document}', 'main main', '\\subimport{sub}{s}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, '\\subimport{subsub/sss}{sss}')
+            writeTest({fixture, fileName: 'sub/subsub/sss/sss.tex'}, 'sss sss')
+            break
+        default:
+            break
+    }
+    await sleep(500)
 }

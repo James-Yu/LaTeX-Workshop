@@ -6,7 +6,7 @@ import { runTests } from '@vscode/test-electron'
 import { getExtensionDevelopmentPath } from './utils/runnerutils'
 
 
-async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer' | 'completion' | 'multiroot-ws' | 'unittest') {
+async function runTestsOnEachFixture(targetName: 'rootfile' | 'viewer' | 'completion' | 'multiroot-ws' | 'unittest') {
     const extensionDevelopmentPath = getExtensionDevelopmentPath()
     const extensionTestsPath = path.resolve(__dirname, `./${targetName}.index`)
     const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
@@ -66,11 +66,7 @@ async function runTestground() {
                 launchArgs: [
                     fixture,
                     '--user-data-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name,
-                    '--extensions-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name,
-                    '--lang=C',
-                    '--disable-keytar',
-                    '--disable-telemetry',
-                    '--disable-gpu'
+                    '--extensions-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name
                 ],
                 extensionTestsEnv: {
                     LATEXWORKSHOP_CI: '1'
@@ -88,7 +84,6 @@ async function main() {
     try {
         await runTestground()
         await runTestsOnEachFixture('rootfile')
-        await runTestsOnEachFixture('build')
         await runTestsOnEachFixture('viewer')
         await runTestsOnEachFixture('completion')
         await runTestsOnEachFixture('multiroot-ws')
