@@ -95,14 +95,14 @@ suite('Build TeX files test suite', () => {
         await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'alt/main.pdf', extension})
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: 'detect root with search.rootFiles.exclude'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'detect root with search.rootFiles.exclude'}, async () => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.search.rootFiles.exclude', ['*.tex'])
         await writeTeX('subfiletwomain', fixture)
         await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'alt/main.pdf', extension})
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: 'basic build with spaces in names'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'basic build with spaces in names'}, async () => {
         await writeTeX('main', fixture, {fileName: 'main space/main.tex'})
         await assertBuild({fixture, texFileName: 'main space/main.tex', pdfFileName: 'main space/main.pdf', extension})
     })
