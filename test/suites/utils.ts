@@ -206,5 +206,5 @@ export async function writeTeX(type: WriteTeXType, fixture: string, payload?: {f
         default:
             break
     }
-    await sleep(500)
+    await sleep(250)
 }
