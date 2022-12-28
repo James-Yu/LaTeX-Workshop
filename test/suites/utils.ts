@@ -45,6 +45,7 @@ export function runTest(option: RunTestOption, cb: (fixture: string) => unknown)
             await log()
             throw error
         }
+        // await cb(fixture || '.')
     }).timeout(option.timeout || 30000)
 }
 
@@ -54,13 +55,13 @@ export function sleep(ms: number) {
 
 async function log() {
     await vscode.commands.executeCommand('workbench.action.output.toggleOutput')
-    await sleep(500)
+    await sleep(250)
     await vscode.commands.executeCommand('latex-workshop.log')
-    await sleep(500)
+    await sleep(250)
     const logMessage = vscode.window.activeTextEditor?.document.getText()
     console.log(logMessage)
     await vscode.commands.executeCommand('latex-workshop.compilerlog')
-    await sleep(500)
+    await sleep(250)
     const compilerLogMessage = vscode.window.activeTextEditor?.document.getText()
     console.log(compilerLogMessage)
 }
