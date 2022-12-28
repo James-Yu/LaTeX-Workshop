@@ -154,9 +154,9 @@ suite('Build TeX files test suite', () => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', true)
         await writeTeX('subfile', fixture)
 
-        const docMain = await vscode.workspace.openTextDocument(vscode.Uri.file(path.join(fixture, 'main.tex')))
+        const docMain = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(docMain)
-        const docSub = await vscode.workspace.openTextDocument(vscode.Uri.file(path.join(fixture, 'sub/s.tex')))
+        const docSub = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'sub/s.tex')))
         await vscode.window.showTextDocument(docSub, vscode.ViewColumn.Beside)
 
         await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'sub/s.pdf', extension})

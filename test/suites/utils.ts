@@ -140,7 +140,7 @@ export async function waitBuild(extension?: Extension) {
 
 type WriteTeXType = 'main' | 'makeindex' | 'magicprogram' | 'magicoption' | 'magicroot' | 'magicinvalidprogram' |
     'subfile' | 'subfileverbatim' | 'subfiletwomain' | 'subfilethreelayer' | 'importthreelayer' | 'bibtex' |
-    'input' | 'inputmacro' | 'inputfromfolder'
+    'input' | 'inputmacro' | 'inputfromfolder' | 'circularinclude' | 'intellisense'
 
 export async function writeTeX(type: WriteTeXType, fixture: string, payload?: {fileName?: string}) {
     switch (type) {
@@ -202,6 +202,16 @@ export async function writeTeX(type: WriteTeXType, fixture: string, payload?: {f
             writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{import}', '\\begin{document}', 'main main', '\\subimport{sub}{s}', '\\end{document}')
             writeTest({fixture, fileName: 'sub/s.tex'}, '\\subimport{subsub/sss}{sss}')
             writeTest({fixture, fileName: 'sub/subsub/sss/sss.tex'}, 'sss sss')
+            break
+        case 'circularinclude':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'main main', '\\include{alt}', '\\end{document}')
+            writeTest({fixture, fileName: 'alt.tex'}, '\\begin{texminted}', '\\include{alt}', '\\end{texminted}', '\\include{sub/s}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, 'sub sub')
+            break
+        case 'intellisense':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{glossaries}', '\\makeglossaries', '\\loadglsentries{sub/glossary}', '\\begin{document}', '\\gls{}', 'main main', '\\', '@', '#', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/glossary.tex'}, '\\newacronym{rf}{RF}{radio-frequency}', '\\newacronym{te}{TM}{Transverse Magnetic}', '\\newacronym{E_P}{E}{Elastic $\\varepsilon$ toto}','\\newacronym[argopt]{EPE_x}{E} % Badly formed entry',
+                                                               '\\newglossaryentry{lw}{name={LaTeX Workshop}, description={What this extension is $\\mathbb{A}$}}', '\\newglossaryentry{vs_code}{name=VSCode, description=Editor}', '\\newabbr{abbr_x}{Ebbr}{A first abbreviation}', '\\newabbreviation[optional arg]{abbr_y}{Ybbr}{A second abbreviation}')
             break
         default:
             break
