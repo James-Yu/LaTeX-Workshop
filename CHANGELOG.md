@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.2.1] - 2022-12-28
+
+### Fixed
+- Performance regression due to improper caching of package intellisense data.
+
 ## [9.2.0] - 2022-12-23
 
 ### Added
