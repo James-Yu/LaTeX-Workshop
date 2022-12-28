@@ -52,19 +52,22 @@ async function runTestsOnEachFixture(targetName: 'viewer' | 'multiroot-ws') {
         clearTimeout(nodejsTimeout)
     }
 }
-async function runTestground() {
+async function runTestSuites() {
     try {
         const extensionDevelopmentPath = path.resolve(__dirname, '../../')
         const extensionTestsPath = path.resolve(__dirname, './suites/index')
 
-        const fixtures = glob.sync('test/fixtures/testground', { cwd: extensionDevelopmentPath })
+        const fixtures = [
+            path.resolve(extensionDevelopmentPath, 'test', 'fixtures', 'testground'),
+            path.resolve(extensionDevelopmentPath, 'test', 'fixtures', 'multiroot')
+        ]
         for (const fixture of fixtures) {
             await runTests({
                 version: '1.71.0',
                 extensionDevelopmentPath,
                 extensionTestsPath,
                 launchArgs: [
-                    fixture,
+                    fixture + path.basename(fixture) === 'multiroot' ? '/resource.code-workspace' : '',
                     '--user-data-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name,
                     '--extensions-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name
                 ],
@@ -82,7 +85,7 @@ async function runTestground() {
 
 async function main() {
     try {
-        await runTestground()
+        await runTestSuites()
         await runTestsOnEachFixture('viewer')
         await runTestsOnEachFixture('multiroot-ws')
     } catch (err) {
