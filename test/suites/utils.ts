@@ -140,7 +140,7 @@ export async function waitBuild(extension?: Extension) {
 
 type WriteTeXType = 'main' | 'makeindex' | 'magicprogram' | 'magicoption' | 'magicroot' | 'magicinvalidprogram' |
     'subfile' | 'subfileverbatim' | 'subfiletwomain' | 'subfilethreelayer' | 'importthreelayer' | 'bibtex' |
-    'input' | 'inputmacro' | 'inputfromfolder' | 'circularinclude' | 'intellisense'
+    'input' | 'inputmacro' | 'inputfromfolder' | 'circularinclude' | 'intellisense' | 'structure' | 'linter'
 
 export async function writeTeX(type: WriteTeXType, fixture: string, payload?: {fileName?: string}) {
     switch (type) {
@@ -212,6 +212,18 @@ export async function writeTeX(type: WriteTeXType, fixture: string, payload?: {f
             writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{glossaries}', '\\makeglossaries', '\\loadglsentries{sub/glossary}', '\\begin{document}', '\\gls{}', 'main main', '\\', '@', '#', '\\end{document}')
             writeTest({fixture, fileName: 'sub/glossary.tex'}, '\\newacronym{rf}{RF}{radio-frequency}', '\\newacronym{te}{TM}{Transverse Magnetic}', '\\newacronym{E_P}{E}{Elastic $\\varepsilon$ toto}','\\newacronym[argopt]{EPE_x}{E} % Badly formed entry',
                                                                '\\newglossaryentry{lw}{name={LaTeX Workshop}, description={What this extension is $\\mathbb{A}$}}', '\\newglossaryentry{vs_code}{name=VSCode, description=Editor}', '\\newabbr{abbr_x}{Ebbr}{A first abbreviation}', '\\newabbreviation[optional arg]{abbr_y}{Ybbr}{A second abbreviation}')
+            break
+        case 'structure':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{import}', '\\usepackage{hyperref}', '\\begin{document}', '\\input{sub/s}', '\\label{sec11}', '\\subsubsection{1.1.1}', '\\subsection{1.2}', '\\import{sub/}{s2.tex}', '\\subsubsection{2.0.1}', '\\subimport{sub/}{s3.tex}',
+                                                       '\\section{4 A long title split', 'over two lines}', '\\section*{No \\textit{Number} Section}', '\\section{Section \\texorpdfstring{tex}{pdf} Caption}', '\\begin{figure}', '\\end{figure}', '\\begin{figure}', '\\caption{Figure Caption}', '\\end{figure}', '\\begin{table}', '\\caption{Table Caption}', '\\end{table}',
+                                                       '\\begin{frame}', '\\frametitle{Frame Title 1}', '\\end{frame}', '\\begin{frame} {Frame Title 2}', '\\end{frame}', '\\begin{frame}', '\\end{frame}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, '\\section{1}\\label{sec1}', '\\subsection{1.1}', '\\altsection{1.1?}')
+            writeTest({fixture, fileName: 'sub/s2.tex'}, '\\subsubsection{1.2.1}', '\\section{2}')
+            writeTest({fixture, fileName: 'sub/s3.tex'}, '\\section{3}')
+            break
+        case 'linter':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', '\\section{Section} \\label{section}', 'LaCheck~~Test', '\\input{sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, '\\section{Another Section} \\label{another}', 'LaCheck~~Sub')
             break
         default:
             break

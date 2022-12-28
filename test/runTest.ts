@@ -6,7 +6,7 @@ import { runTests } from '@vscode/test-electron'
 import { getExtensionDevelopmentPath } from './utils/runnerutils'
 
 
-async function runTestsOnEachFixture(targetName: 'viewer' | 'multiroot-ws' | 'unittest') {
+async function runTestsOnEachFixture(targetName: 'viewer' | 'multiroot-ws') {
     const extensionDevelopmentPath = getExtensionDevelopmentPath()
     const extensionTestsPath = path.resolve(__dirname, `./${targetName}.index`)
     const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
@@ -85,7 +85,6 @@ async function main() {
         await runTestground()
         await runTestsOnEachFixture('viewer')
         await runTestsOnEachFixture('multiroot-ws')
-        await runTestsOnEachFixture('unittest')
     } catch (err) {
         console.error('Failed to run tests')
         process.exit(1)
