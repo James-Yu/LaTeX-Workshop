@@ -206,9 +206,13 @@ suite('Build TeX files test suite', () => {
         await assertBuild({fixture, texFileName: 'main.tex', pdfFileName: 'out space/main.pdf', extension})
     })
 
-    runTest({win32only: true, suiteName, fixtureName, testName: 'test q/.../ with spaces in outdir on Windows'}, async () => {
-        const tools = [{ name: 'latexmk', command: 'latexmk', args: ['-e', '$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/', '-outdir=%OUTDIR%', '-pdf', '%DOC%'], env: {} }, {name: 'copyPDF', command: 'copy', args: ['%OUTDIR_W32%\\%DOCFILE%.pdf', '%OUTDIR_W32%\\copy.pdf'], env: {}}]
-        const recipes = [{name: 'latexmk_copy', tools: ['latexmk', 'copyPDF']}]
+    runTest({win32only: true, suiteName, fixtureName, testName: 'test q/.../ with copy and remove on Windows'}, async () => {
+        const tools = [
+            { name: 'latexmk', command: 'latexmk', args: ['-e', '$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/', '-outdir=%OUTDIR%', '-pdf', '%DOC%'], env: {} },
+            {name: 'copyPDF', command: 'copy', args: ['%OUTDIR_W32%\\%DOCFILE%.pdf', '%OUTDIR_W32%\\copy.pdf'], env: {}},
+            {name: 'removePDF', command: 'del', args: ['%OUTDIR_W32%\\%DOCFILE%.pdf'], env: {}}
+        ]
+        const recipes = [{name: 'latexmk_copy', tools: ['latexmk', 'copyPDF', 'removePDF']}]
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.tools', tools)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.recipes', recipes)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', '%DIR%/out space')

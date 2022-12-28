@@ -45,8 +45,7 @@ export function runTest(option: RunTestOption, cb: (fixture: string) => unknown)
             await log()
             throw error
         }
-        // await cb(fixture || '.')
-    }).timeout(option.timeout || 30000)
+    }).timeout(option.timeout || 60000)
 }
 
 export function sleep(ms: number) {
