@@ -1,23 +1,20 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import rimraf from 'rimraf'
-import * as assert from 'assert'
 
-import { Extension, activate } from '../../src/main'
-import { assertBuild, runTest, waitBuild, writeTeX } from './utils'
+import { Extension } from '../../src/main'
+import { assertBuild, getExtension, runTest, waitBuild, writeTeX } from './utils'
 import { sleep } from '../utils/ciutils'
 
 suite('Build TeX files test suite', () => {
 
-    let extension: Extension | undefined
+    let extension: Extension
     const suiteName = path.basename(__filename).replace('.test.js', '')
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
     suiteSetup(async () => {
-        await vscode.commands.executeCommand('latex-workshop.activate')
-        extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')?.exports.extension
-        assert.ok(extension)
+        extension = await getExtension()
         fixture = path.resolve(extension.extensionRoot, 'test/fixtures/testground')
     })
 
@@ -28,7 +25,6 @@ suite('Build TeX files test suite', () => {
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
         if (extension) {
-            extension.manager.invalidateCache()
             extension.manager.rootFile = undefined
         }
 
@@ -42,8 +38,7 @@ suite('Build TeX files test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', undefined)
 
         if (path.basename(fixture) === 'testground') {
-            await sleep(250)
-            rimraf(fixture + '/*', (e) => {if (e) {console.error(e)}})
+            rimraf(fixture + '/{*,.vscode}', (e) => {if (e) {console.error(e)}})
             await sleep(500) // Required for pooling
         }
     })
@@ -67,14 +62,14 @@ suite('Build TeX files test suite', () => {
         await assertBuild({fixture, texFileName: 'main.tex', pdfFileName: 'main.pdf', extension})
     })
 
-    runTest({suiteName, fixtureName, testName: 'auto-detect subfile root 1'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'auto-detect subfile root and build 1'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
         await writeTeX('subfile', fixture)
         await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'sub/s.pdf', extension})
     })
 
-    runTest({suiteName, fixtureName, testName: 'auto-detect subfile root 2'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'auto-detect subfile root and build 2'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
         await writeTeX('subfile', fixture)
@@ -87,20 +82,6 @@ suite('Build TeX files test suite', () => {
         await assertBuild({fixture, texFileName: 'main.tex', pdfFileName: 'out/main.pdf', extension})
     })
 
-    runTest({suiteName, fixtureName, testName: 'detect root with search.rootFiles.include'}, async () => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', ['alt/*.tex'])
-        await writeTeX('subfiletwomain', fixture)
-        await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'alt/main.pdf', extension})
-    })
-
-    runTest({suiteName, fixtureName, testName: 'detect root with search.rootFiles.exclude'}, async () => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', ['*.tex'])
-        await writeTeX('subfiletwomain', fixture)
-        await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'alt/main.pdf', extension})
-    })
-
     runTest({suiteName, fixtureName, testName: 'basic build with spaces in names'}, async () => {
         await writeTeX('main', fixture, {fileName: 'main space/main.tex'})
         await assertBuild({fixture, texFileName: 'main space/main.tex', pdfFileName: 'main space/main.pdf', extension})
@@ -110,11 +91,6 @@ suite('Build TeX files test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', '%DIR%/out space')
         await writeTeX('main', fixture)
         await assertBuild({fixture, texFileName: 'main.tex', pdfFileName: 'out space/main.pdf', extension})
-    })
-
-    runTest({suiteName, fixtureName, testName: 'auto-detect root with verbatim'}, async () => {
-        await writeTeX('subfileverbatim', fixture)
-        await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension})
     })
 
     runTest({suiteName, fixtureName, testName: 'build with magic comment'}, async () => {

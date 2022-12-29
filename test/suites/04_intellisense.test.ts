@@ -3,21 +3,19 @@ import * as path from 'path'
 import rimraf from 'rimraf'
 import * as assert from 'assert'
 
-import { Extension, activate } from '../../src/main'
-import { getIntellisense, runTest, writeTeX } from './utils'
+import { Extension } from '../../src/main'
+import { getExtension, getIntellisense, runTest, writeTeX } from './utils'
 import { sleep } from '../utils/ciutils'
 
 suite('Intellisense test suite', () => {
 
-    let extension: Extension | undefined
+    let extension: Extension
     const suiteName = path.basename(__filename).replace('.test.js', '')
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
     suiteSetup(async () => {
-        await vscode.commands.executeCommand('latex-workshop.activate')
-        extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')?.exports.extension
-        assert.ok(extension)
+        extension = await getExtension()
         fixture = path.resolve(extension.extensionRoot, 'test/fixtures/testground')
     })
 
@@ -36,8 +34,7 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', undefined)
 
         if (path.basename(fixture) === 'testground') {
-            await sleep(250)
-            rimraf(fixture + '/*', (e) => {if (e) {console.error(e)}})
+            rimraf(fixture + '/{*,.vscode}', (e) => {if (e) {console.error(e)}})
             await sleep(500) // Required for pooling
         }
     })

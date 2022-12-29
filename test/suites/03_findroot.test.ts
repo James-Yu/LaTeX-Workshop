@@ -3,21 +3,19 @@ import * as path from 'path'
 import rimraf from 'rimraf'
 import * as assert from 'assert'
 
-import { Extension, activate } from '../../src/main'
-import { runTest, writeTeX } from './utils'
+import { Extension } from '../../src/main'
+import { assertRoot, getExtension, runTest, writeTeX } from './utils'
 import { sleep } from '../utils/ciutils'
 
 suite('Find root file test suite', () => {
 
-    let extension: Extension | undefined
+    let extension: Extension
     const suiteName = path.basename(__filename).replace('.test.js', '')
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
     suiteSetup(async () => {
-        await vscode.commands.executeCommand('latex-workshop.activate')
-        extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')?.exports.extension
-        assert.ok(extension)
+        extension = await getExtension()
         fixture = path.resolve(extension.extensionRoot, 'test/fixtures/testground')
     })
 
@@ -33,27 +31,45 @@ suite('Find root file test suite', () => {
         }
 
         if (path.basename(fixture) === 'testground') {
-            await sleep(250)
-            rimraf(fixture + '/*', (e) => {if (e) {console.error(e)}})
+            rimraf(fixture + '/{*,.vscode}', (e) => {if (e) {console.error(e)}})
             await sleep(500) // Required for pooling
         }
     })
 
+
+    runTest({suiteName, fixtureName, testName: 'detect root with search.rootFiles.include'}, async () => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', ['alt/*.tex'])
+        await writeTeX('subfiletwomain', fixture)
+        assert.ok(extension)
+        await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'alt/main.tex', extension})
+    })
+
+    runTest({suiteName, fixtureName, testName: 'detect root with search.rootFiles.exclude'}, async () => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', ['*.tex'])
+        await writeTeX('subfiletwomain', fixture)
+        assert.ok(extension)
+        await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'alt/main.tex', extension})
+    })
+
+    runTest({suiteName, fixtureName, testName: 'auto-detect root with verbatim'}, async () => {
+        await writeTeX('subfileverbatim', fixture)
+        assert.ok(extension)
+        await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'main.tex', extension})
+    })
+
     runTest({suiteName, fixtureName, testName: 'import package'}, async () => {
         await writeTeX('importthreelayer', fixture)
-        const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'sub/subsub/sss/sss.tex')))
-        await vscode.window.showTextDocument(doc)
-        const root = await extension?.manager.findRoot()
-        assert.strictEqual(root, path.resolve(fixture, 'main.tex'))
+        assert.ok(extension)
+        await assertRoot({fixture, openName: 'sub/subsub/sss/sss.tex', rootName: 'main.tex', extension})
     })
 
     runTest({suiteName, fixtureName, testName: 'circular inclusion'}, async () => {
         await writeTeX('circularinclude', fixture)
-        const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'alt.tex')))
-        await vscode.window.showTextDocument(doc)
-        const root = await extension?.manager.findRoot()
-        assert.strictEqual(root, path.join(fixture, 'main.tex'))
-        const includedTeX = extension?.manager.getIncludedTeX()
+        assert.ok(extension)
+        await assertRoot({fixture, openName: 'alt.tex', rootName: 'main.tex', extension})
+        const includedTeX = extension.manager.getIncludedTeX()
         assert.ok(includedTeX)
         assert.ok(
             includedTeX.includes(path.resolve(fixture, 'main.tex')) &&

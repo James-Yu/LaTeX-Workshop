@@ -1,23 +1,20 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as assert from 'assert'
 import rimraf from 'rimraf'
 
-import { Extension, activate } from '../../src/main'
-import { assertAutoBuild, assertBuild, runTest, writeTeX } from './utils'
+import { Extension } from '../../src/main'
+import { assertAutoBuild, assertBuild, getExtension, runTest, writeTeX } from './utils'
 import { sleep } from '../utils/ciutils'
 
 suite('Auto-build test suite', () => {
 
-    let extension: Extension | undefined
+    let extension: Extension
     const suiteName = path.basename(__filename).replace('.test.js', '')
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
     suiteSetup(async () => {
-        await vscode.commands.executeCommand('latex-workshop.activate')
-        extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')?.exports.extension
-        assert.ok(extension)
+        extension = await getExtension()
         fixture = path.resolve(extension.extensionRoot, 'test/fixtures/testground')
     })
 
@@ -30,7 +27,6 @@ suite('Auto-build test suite', () => {
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
         if (extension) {
-            extension.manager.invalidateCache()
             extension.manager.rootFile = undefined
         }
 
@@ -43,8 +39,7 @@ suite('Auto-build test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.files.ignore', undefined)
 
         if (path.basename(fixture) === 'testground') {
-            await sleep(250)
-            rimraf(fixture + '/*', (e) => {if (e) {console.error(e)}})
+            rimraf(fixture + '/{*,.vscode}', (e) => {if (e) {console.error(e)}})
             await sleep(500) // Required for pooling
         }
     })

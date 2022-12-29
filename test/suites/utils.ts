@@ -5,8 +5,15 @@ import * as glob from 'glob'
 import * as os from 'os'
 import * as assert from 'assert'
 
-import { Extension } from '../../src/main'
+import { Extension, activate } from '../../src/main'
 import { BuildFinished } from '../../src/components/eventbus'
+
+export async function getExtension() {
+    await vscode.commands.executeCommand('latex-workshop.activate')
+    const extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')?.exports.extension
+    assert.ok(extension)
+    return extension
+}
 
 export function touch(filePath: string) {
     fs.closeSync(fs.openSync(filePath, 'a'))
@@ -99,7 +106,7 @@ type AssertBuildOption = {
     fixture: string,
     texFileName: string,
     pdfFileName: string,
-    extension?: Extension,
+    extension: Extension,
     build?: () => unknown,
     nobuild?: boolean,
     removepdf?: boolean
@@ -110,15 +117,17 @@ export async function assertBuild(option: AssertBuildOption) {
     const pdfFilePath = path.join(option.fixture, option.pdfFileName)
     const doc = await vscode.workspace.openTextDocument(texFilePath)
     await vscode.window.showTextDocument(doc)
-    await option.extension?.manager.findRoot()
+    await option.extension.manager.findRoot()
     if (option.build) {
         await option.build()
     } else {
-        await vscode.commands.executeCommand('latex-workshop.build')
+        await option.extension.commander.build()
     }
 
     const files = glob.sync('**/**.pdf', { cwd: option.fixture })
     assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), option.pdfFileName === '' ? option.pdfFileName : pdfFilePath)
+    await sleep(500) // Wait for post-build processing
+
     if (option.removepdf) {
         files.forEach(async file => {
             if (fs.existsSync(path.join(option.fixture, file))) {
@@ -155,15 +164,33 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFi
         files = glob.sync('**/**.pdf', { cwd: option.fixture })
         assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), path.resolve(option.fixture, option.pdfFileName))
     }
+    await sleep(500) // Wait for post-build processing
 }
 
-export async function waitBuild(extension?: Extension) {
+export async function waitBuild(extension: Extension) {
     return new Promise<void>((resolve, _) => {
-        const disposable = extension?.eventBus.on(BuildFinished, () => {
+        const disposable = extension.eventBus.on(BuildFinished, () => {
             resolve()
             disposable?.dispose()
         })
     })
+}
+
+type AssertRootOption = {
+    fixture: string,
+    openName: string,
+    rootName: string,
+    extension: Extension
+}
+
+export async function assertRoot(option: AssertRootOption) {
+    await vscode.commands.executeCommand('latex-workshop.activate')
+    const openFilePath = vscode.Uri.file(path.join(option.fixture, option.openName))
+    const rootFilePath = path.join(option.fixture, option.rootName)
+    const doc = await vscode.workspace.openTextDocument(openFilePath)
+    await vscode.window.showTextDocument(doc)
+    const root = await option.extension.manager.findRoot()
+    assert.strictEqual(root, rootFilePath)
 }
 
 type WriteTeXType = 'main' | 'makeindex' | 'makesubfileindex' | 'magicprogram' | 'magicoption' | 'magicroot' | 'magicinvalidprogram' |
@@ -263,8 +290,8 @@ export async function writeTeX(type: WriteTeXType, fixture: string, payload?: {f
     await sleep(250)
 }
 
-export function getIntellisense(doc: vscode.TextDocument, pos: vscode.Position, extension?: Extension, atSuggestion = false) {
-    const completer = atSuggestion ? extension?.atSuggestionCompleter : extension?.completer
+export function getIntellisense(doc: vscode.TextDocument, pos: vscode.Position, extension: Extension, atSuggestion = false) {
+    const completer = atSuggestion ? extension.atSuggestionCompleter : extension.completer
     return completer?.provideCompletionItems(
         doc, pos, new vscode.CancellationTokenSource().token, {
             triggerKind: vscode.CompletionTriggerKind.Invoke,
