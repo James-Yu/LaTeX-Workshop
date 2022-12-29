@@ -29,6 +29,7 @@ suite('Multi-root workspace test suite', () => {
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
         if (extension) {
+            extension.manager.invalidateCache()
             extension.manager.rootFile = undefined
         }
 
@@ -46,8 +47,7 @@ suite('Multi-root workspace test suite', () => {
 
         if (path.basename(fixture) === 'multiroot') {
             await sleep(250)
-            rimraf(fixture + '/A/{*,.vscode}', (e) => {if (e) {console.error(e)}})
-            rimraf(fixture + '/B/{*,.vscode}', (e) => {if (e) {console.error(e)}})
+            rimraf(fixture + '/{A,B}/{*,.vscode}', (e) => {if (e) {console.error(e)}})
             await sleep(500) // Required for pooling
         }
     })
@@ -156,7 +156,7 @@ suite('Multi-root workspace test suite', () => {
         await assertAutoBuild({fixture, texFileName: 'A/sub/s.tex', pdfFileName: 'A/main.pdf', extension}, ['onSave'])
     })
 
-    runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onSave 2'}, async () => {
+    runTest({only: true, suiteName, fixtureName, testName: 'auto build with subfiles and onSave 2'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
@@ -165,7 +165,7 @@ suite('Multi-root workspace test suite', () => {
         await assertAutoBuild({fixture, texFileName: 'A/sub/s.tex', pdfFileName: 'A/sub/s.pdf', extension}, ['onSave'])
     })
 
-    runTest({suiteName, fixtureName, testName: 'switching rootFile'}, async () => {
+    runTest({only: true, suiteName, fixtureName, testName: 'switching rootFile'}, async () => {
         await writeTeX('main', fixture, {fileName: 'A/main.tex'})
         await writeTeX('main', fixture, {fileName: 'B/main.tex'})
         await assertBuild({fixture, texFileName: 'A/main.tex', pdfFileName: 'A/main.pdf', extension, removepdf: true})
@@ -173,32 +173,39 @@ suite('Multi-root workspace test suite', () => {
         await assertBuild({fixture, texFileName: 'A/main.tex', pdfFileName: 'A/main.pdf', extension})
     })
 
-    runTest({suiteName, fixtureName, testName: 'switching intellisense'}, async () => {
+    runTest({only: true, suiteName, fixtureName, testName: 'switching intellisense'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
         writeTestFile({fixture, fileName: 'A/main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{A.bib}', '\\end{document}')
         writeTestFile({fixture, fileName: 'B/main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{B.bib}', '\\end{document}')
         copyTestFile(fixture, '../arsenal/05_multiroot_intellisense/A/A.bib', 'A/A.bib')
-        await extension?.completer.citation.parseBibFile(path.resolve(fixture, 'A/A.bib'))
         copyTestFile(fixture, '../arsenal/05_multiroot_intellisense/B/B.bib', 'B/B.bib')
+        await extension?.completer.citation.parseBibFile(path.resolve(fixture, 'A/A.bib'))
         await extension?.completer.citation.parseBibFile(path.resolve(fixture, 'B/B.bib'))
 
         const docA = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'A/main.tex')))
         await vscode.window.showTextDocument(docA)
         await extension?.manager.findRoot()
+        await extension?.manager.parseFileAndSubs(path.resolve(fixture, 'A/main.tex'), path.resolve(fixture, 'A/main.tex'))
+
         const uri = vscode.window.activeTextEditor?.document.uri
         assert.ok(uri)
         const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri)
         await vscode.workspace.getConfiguration('latex-workshop', workspaceFolder).update('intellisense.citation.label', 'title', vscode.ConfigurationTarget.WorkspaceFolder)
+
         const itemsA = getIntellisense(docA, new vscode.Position(2, 9), extension)
-        assert.ok(itemsA && itemsA.length === 3)
+        assert.ok(itemsA)
+        assert.strictEqual(itemsA.length, 3)
         assert.strictEqual(itemsA[0].label, 'A fake article')
         assert.ok(itemsA[0].filterText && itemsA[0].filterText.includes('Journal of CI tests') && !itemsA[0].filterText.includes('hintFake'))
 
         const docB = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'B/main.tex')))
         await vscode.window.showTextDocument(docB)
         await extension?.manager.findRoot()
+        await extension?.manager.parseFileAndSubs(path.resolve(fixture, 'B/main.tex'), path.resolve(fixture, 'B/main.tex'))
+
         const itemsB = getIntellisense(docB, new vscode.Position(2, 9), extension)
-        assert.ok(itemsB && itemsB.length === 3)
+        assert.ok(itemsB)
+        assert.strictEqual(itemsB.length, 3)
         assert.strictEqual(itemsB[0].label, 'art1')
     })
 })

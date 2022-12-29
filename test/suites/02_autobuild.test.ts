@@ -30,6 +30,7 @@ suite('Auto-build test suite', () => {
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
         if (extension) {
+            extension.manager.invalidateCache()
             extension.manager.rootFile = undefined
         }
 

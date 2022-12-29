@@ -28,6 +28,7 @@ suite('Intellisense test suite', () => {
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
         if (extension) {
+            extension.manager.invalidateCache()
             extension.manager.rootFile = undefined
         }
 
@@ -82,7 +83,7 @@ suite('Intellisense test suite', () => {
         assert.ok(undefined === items.find(item => item.label === '#8'))
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: 'glossary completion'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'glossary completion'}, async () => {
         await writeTeX('intellisense', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)

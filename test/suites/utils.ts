@@ -4,7 +4,9 @@ import * as fs from 'fs'
 import * as glob from 'glob'
 import * as os from 'os'
 import * as assert from 'assert'
+
 import { Extension } from '../../src/main'
+import { BuildFinished } from '../../src/components/eventbus'
 
 export function touch(filePath: string) {
     fs.closeSync(fs.openSync(filePath, 'a'))
@@ -35,7 +37,7 @@ export function runTest(option: RunTestOption, cb: () => unknown) {
     if (path.basename(fixture) !== option.fixtureName) {
         return
     }
-    if (process.env['LATEXWORKSHOP_CISUITE'] && !process.env['LATEXWORKSHOP_CISUITE'].split(',').includes(option.suiteName)) {
+    if (process.env['LATEXWORKSHOP_SUITE'] && !process.env['LATEXWORKSHOP_SUITE'].split(',').includes(option.suiteName)) {
         return
     }
     if (option.win32only && os.platform() !== 'win32') {
@@ -43,7 +45,7 @@ export function runTest(option: RunTestOption, cb: () => unknown) {
     }
 
     testCounter++
-    const testFunction = option.only ? test.only : test
+    const testFunction = (process.env['LATEXWORKSHOP_CLI'] || !option.only) ? test : test.only
     const counterString = testCounter.toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping: false})
 
     testFunction(`[${counterString}] ${option.suiteName}: ${option.testName}`, async () => {
@@ -61,6 +63,8 @@ export function sleep(ms: number) {
 }
 
 async function log(counter: string) {
+    await vscode.commands.executeCommand('workbench.action.closeAllEditors')
+    await sleep(500)
     await vscode.commands.executeCommand('workbench.action.output.toggleOutput')
     await sleep(500)
     await vscode.commands.executeCommand('latex-workshop.log')
@@ -155,7 +159,7 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFi
 
 export async function waitBuild(extension?: Extension) {
     return new Promise<void>((resolve, _) => {
-        const disposable = extension?.eventBus.on('buildfinished', () => {
+        const disposable = extension?.eventBus.on(BuildFinished, () => {
             resolve()
             disposable?.dispose()
         })

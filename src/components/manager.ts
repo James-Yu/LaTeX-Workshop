@@ -164,6 +164,10 @@ export class Manager {
         }
     }
 
+    invalidateCache() {
+        Object.keys(this.cachedContent).forEach(filePath => delete this.cachedContent[filePath])
+    }
+
     updateCachedContent(document: vscode.TextDocument) {
         const cache = this.getCachedContent(document.fileName)
         if (cache !== undefined) {
