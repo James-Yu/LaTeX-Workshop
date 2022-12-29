@@ -48,6 +48,7 @@ suite('Multi-root workspace test suite', () => {
             await sleep(250)
             rimraf(fixture + '/A/{*,.vscode}', (e) => {if (e) {console.error(e)}})
             rimraf(fixture + '/B/{*,.vscode}', (e) => {if (e) {console.error(e)}})
+            await sleep(500) // Required for pooling
         }
     })
 

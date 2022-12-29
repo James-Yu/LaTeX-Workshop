@@ -34,6 +34,7 @@ suite('Find root file test suite', () => {
         if (path.basename(fixture) === 'testground') {
             await sleep(250)
             rimraf(fixture + '/*', (e) => {if (e) {console.error(e)}})
+            await sleep(500) // Required for pooling
         }
     })
 
