@@ -4,7 +4,7 @@ import * as assert from 'assert'
 import rimraf from 'rimraf'
 
 import { Extension, activate } from '../../src/main'
-import { assertAutoBuild, assertBuild, runTest, touch, writeTeX } from './utils'
+import { assertAutoBuild, assertBuild, runTest, writeTeX } from './utils'
 import { sleep } from '../utils/ciutils'
 
 suite('Auto-build test suite', () => {
@@ -23,8 +23,8 @@ suite('Auto-build test suite', () => {
 
     setup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.autoBuild.interval', 250)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.autoBuild.run', 'onFileChange')
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.interval', 250)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onFileChange')
     })
 
     teardown(async () => {
@@ -33,19 +33,17 @@ suite('Auto-build test suite', () => {
             extension.manager.rootFile = undefined
         }
 
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.autoBuild.run', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.autoBuild.interval', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.search.rootFiles.include', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.watch.files.ignore', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.interval', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.files.ignore', undefined)
 
         if (path.basename(fixture) === 'testground') {
             await sleep(250)
             rimraf(fixture + '/*', (e) => {if (e) {console.error(e)}})
-            await sleep(250)
-            touch(fixture + '/.gitkeep')
         }
     })
 
@@ -55,15 +53,15 @@ suite('Auto-build test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onFileChange 1'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', false)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
         await writeTeX('subfile', fixture)
         await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onFileChange 2'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
         await writeTeX('subfile', fixture)
         await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'sub/s.pdf', extension})
     })
@@ -97,30 +95,30 @@ suite('Auto-build test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with input and outDir'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', './out')
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
         await writeTeX('input', fixture)
         await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'out/main.pdf', extension})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with watch.files.ignore'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.watch.files.ignore', ['**/s.tex'])
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.files.ignore', ['**/s.tex'])
         await writeTeX('input', fixture)
         await assertBuild({fixture, texFileName: 'main.tex', pdfFileName: 'main.pdf', extension})
         await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension}, 'noAutoBuild')
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onSave 1'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.autoBuild.run', 'onSave')
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', false)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
         await writeTeX('subfile', fixture)
         await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension}, 'onSave')
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onSave 2'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.autoBuild.run', 'onSave')
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
         await writeTeX('subfile', fixture)
         await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'sub/s.pdf', extension}, 'onSave')
     })

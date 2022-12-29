@@ -4,7 +4,7 @@ import rimraf from 'rimraf'
 import * as assert from 'assert'
 
 import { Extension, activate } from '../../src/main'
-import { runTest, touch, writeTeX } from './utils'
+import { getIntellisense, runTest, writeTeX } from './utils'
 import { sleep } from '../utils/ciutils'
 
 suite('Intellisense test suite', () => {
@@ -31,44 +31,32 @@ suite('Intellisense test suite', () => {
             extension.manager.rootFile = undefined
         }
 
-        await vscode.workspace.getConfiguration().update('latex-workshop.intellisense.atSuggestion.trigger.latex', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.intellisense.atSuggestionJSON.replace', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', undefined)
 
         if (path.basename(fixture) === 'testground') {
             await sleep(250)
             rimraf(fixture + '/*', (e) => {if (e) {console.error(e)}})
-            await sleep(250)
-            touch(path.resolve(fixture, '.gitkeep'))
         }
     })
-
-    function getIntellisense(doc: vscode.TextDocument, pos: vscode.Position, atSuggestion = false) {
-        const completer = atSuggestion ? extension?.atSuggestionCompleter : extension?.completer
-        return completer?.provideCompletionItems(
-            doc, pos, new vscode.CancellationTokenSource().token, {
-                triggerKind: vscode.CompletionTriggerKind.Invoke,
-                triggerCharacter: undefined
-            }
-        )
-    }
 
     runTest({suiteName, fixtureName, testName: 'basic completion'}, async () => {
         await writeTeX('intellisense', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
         await extension?.manager.findRoot()
-        const items = getIntellisense(doc, new vscode.Position(7, 1))
+        const items = getIntellisense(doc, new vscode.Position(7, 1), extension)
         assert.ok(items && items.length > 0)
     })
 
     runTest({suiteName, fixtureName, testName: '@-snippet completion'}, async () => {
         const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
-        await vscode.workspace.getConfiguration().update('latex-workshop.intellisense.atSuggestionJSON.replace', replaces)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', replaces)
         await writeTeX('intellisense', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
         await extension?.manager.findRoot()
-        const items = getIntellisense(doc, new vscode.Position(8, 1), true)
+        const items = getIntellisense(doc, new vscode.Position(8, 1), extension, true)
         assert.ok(items && items.length > 0)
         assert.ok(items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
         assert.ok(undefined === items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
@@ -78,13 +66,13 @@ suite('Intellisense test suite', () => {
 
     runTest({suiteName, fixtureName, testName: '@-snippet completion with trigger #'}, async () => {
         const replaces = {'@+': '\\sum', '@8': ''}
-        await vscode.workspace.getConfiguration().update('latex-workshop.intellisense.atSuggestionJSON.replace', replaces)
-        await vscode.workspace.getConfiguration().update('latex-workshop.intellisense.atSuggestion.trigger.latex', '#')
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', replaces)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', '#')
         await writeTeX('intellisense', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
         await extension?.manager.findRoot()
-        const items = getIntellisense(doc, new vscode.Position(9, 1), true)
+        const items = getIntellisense(doc, new vscode.Position(9, 1), extension, true)
         assert.ok(items && items.length > 0)
         assert.ok(items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
         assert.ok(items.find(item => item.label === '#ve' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\varepsilon'))

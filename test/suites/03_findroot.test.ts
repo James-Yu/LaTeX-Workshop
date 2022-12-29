@@ -4,7 +4,7 @@ import rimraf from 'rimraf'
 import * as assert from 'assert'
 
 import { Extension, activate } from '../../src/main'
-import { runTest, touch, writeTeX } from './utils'
+import { runTest, writeTeX } from './utils'
 import { sleep } from '../utils/ciutils'
 
 suite('Find root file test suite', () => {
@@ -34,8 +34,6 @@ suite('Find root file test suite', () => {
         if (path.basename(fixture) === 'testground') {
             await sleep(250)
             rimraf(fixture + '/*', (e) => {if (e) {console.error(e)}})
-            await sleep(250)
-            touch(path.resolve(fixture, '.gitkeep'))
         }
     })
 

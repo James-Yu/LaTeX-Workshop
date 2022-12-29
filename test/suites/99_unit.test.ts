@@ -36,11 +36,11 @@ suite('Unit test suite', () => {
 
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.search.rootFiles.include', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.numbers.enabled', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.sections', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.floats.enabled', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.fastparse.enabled', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.enabled', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.fastparse.enabled', undefined)
     })
 
     function assertKeys(keys: string[], mendatory: string[], optional: string[] = [], message: string): void {
@@ -157,7 +157,7 @@ suite('Unit test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.numbers.enabled'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.numbers.enabled', false)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.enabled', false)
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
@@ -173,7 +173,7 @@ suite('Unit test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.sections'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.sections', ['section', 'altsection', 'subsubsection'])
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', ['section', 'altsection', 'subsubsection'])
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
@@ -190,7 +190,7 @@ suite('Unit test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.floats.enabled'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.floats.enabled', false)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', false)
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
@@ -209,7 +209,7 @@ suite('Unit test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.fastparse.enabled'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.fastparse.enabled', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.fastparse.enabled', true)
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
