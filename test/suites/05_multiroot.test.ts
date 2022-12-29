@@ -16,7 +16,7 @@ suite('Multi-root workspace test suite', () => {
 
     suiteSetup(async () => {
         extension = await getExtension()
-        fixture = path.resolve(extension.extensionRoot, 'test/fixtures/testground')
+        fixture = path.resolve(extension.extensionRoot, 'test/fixtures/multiroot')
     })
 
     setup(async () => {
@@ -26,10 +26,7 @@ suite('Multi-root workspace test suite', () => {
 
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        if (extension) {
-            extension.manager.invalidateCache()
-            extension.manager.rootFile = undefined
-        }
+        extension.manager.rootFile = undefined
 
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', undefined)
@@ -186,6 +183,7 @@ suite('Multi-root workspace test suite', () => {
         await vscode.window.showTextDocument(docA)
         await extension?.manager.findRoot()
         await extension?.manager.parseFileAndSubs(path.resolve(fixture, 'A/main.tex'), path.resolve(fixture, 'A/main.tex'))
+        await sleep(3000) // Wait for cache update
 
         const uri = vscode.window.activeTextEditor?.document.uri
         assert.ok(uri)
@@ -202,6 +200,7 @@ suite('Multi-root workspace test suite', () => {
         await vscode.window.showTextDocument(docB)
         await extension?.manager.findRoot()
         await extension?.manager.parseFileAndSubs(path.resolve(fixture, 'B/main.tex'), path.resolve(fixture, 'B/main.tex'))
+        await sleep(3000) // Wait for cache update
 
         const itemsB = getIntellisense(docB, new vscode.Position(2, 9), extension)
         assert.ok(itemsB)

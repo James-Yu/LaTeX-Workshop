@@ -126,7 +126,6 @@ export async function assertBuild(option: AssertBuildOption) {
 
     const files = glob.sync('**/**.pdf', { cwd: option.fixture })
     assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), option.pdfFileName === '' ? option.pdfFileName : pdfFilePath)
-    await sleep(500) // Wait for post-build processing
 
     if (option.removepdf) {
         files.forEach(async file => {
@@ -164,7 +163,6 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFi
         files = glob.sync('**/**.pdf', { cwd: option.fixture })
         assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), path.resolve(option.fixture, option.pdfFileName))
     }
-    await sleep(500) // Wait for post-build processing
 }
 
 export async function waitBuild(extension: Extension) {

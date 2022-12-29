@@ -25,10 +25,7 @@ suite('Intellisense test suite', () => {
 
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        if (extension) {
-            extension.manager.invalidateCache()
-            extension.manager.rootFile = undefined
-        }
+        extension.manager.rootFile = undefined
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', undefined)

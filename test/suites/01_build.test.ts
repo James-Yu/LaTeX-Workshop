@@ -24,9 +24,7 @@ suite('Build TeX files test suite', () => {
 
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        if (extension) {
-            extension.manager.rootFile = undefined
-        }
+        extension.manager.rootFile = undefined
 
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', undefined)

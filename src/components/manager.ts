@@ -150,22 +150,8 @@ export class Manager {
         return this.cachedContent[filePath]
     }
 
-    private setCachedContent(filePath: string, cacheEntry: Content[string]) {
-        return this.cachedContent[filePath] = cacheEntry
-    }
-
     get cachedFilePaths() {
         return Object.keys(this.cachedContent)
-    }
-
-    private invalidateCachedContent(filePath: string) {
-        if (filePath in this.cachedContent) {
-            this.cachedContent[filePath].content = undefined
-        }
-    }
-
-    invalidateCache() {
-        Object.keys(this.cachedContent).forEach(filePath => delete this.cachedContent[filePath])
     }
 
     updateCachedContent(document: vscode.TextDocument) {
@@ -576,9 +562,8 @@ export class Manager {
         const fileContent = this.extension.lwfs.readFileSyncGracefully(file)
         if (fileContent === undefined) {
             this.extension.logger.addLogMessage(`Cannot read dirty content of unknown ${file}`)
-            return undefined
         }
-        this.setCachedContent(file, {content: fileContent, element: {}, children: [], bibs: []})
+        this.cachedContent[file] = {content: fileContent, element: {}, children: [], bibs: []}
         return fileContent
     }
 
@@ -780,6 +765,8 @@ export class Manager {
                 continue
             }
             if (path.extname(inputFile) === '.tex') {
+                // In rare cases, the cache was cleared
+                this.getDirtyContent(texFile)
                 // Parse tex files as imported subfiles.
                 this.cachedContent[texFile].children.push({
                     index: Number.MAX_VALUE,
@@ -885,7 +872,9 @@ export class Manager {
         // It is possible for either tex or non-tex files in the watcher.
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
-            this.invalidateCachedContent(file)
+            if (file in this.cachedContent) {
+                this.cachedContent[file].content = undefined
+            }
             await this.parseFileAndSubs(file, this.rootFile)
             await this.updateCompleterOnChange(file)
         }
