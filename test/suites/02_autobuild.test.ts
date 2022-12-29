@@ -1,11 +1,10 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
 import * as assert from 'assert'
 import rimraf from 'rimraf'
 
 import { Extension, activate } from '../../src/main'
-import { assertAutoBuild, assertBuild, runTest, writeTeX } from './utils'
+import { assertAutoBuild, assertBuild, runTest, touch, writeTeX } from './utils'
 import { sleep } from '../utils/ciutils'
 
 suite('Auto-build test suite', () => {
@@ -46,7 +45,7 @@ suite('Auto-build test suite', () => {
             await sleep(250)
             rimraf(fixture + '/*', (e) => {if (e) {console.error(e)}})
             await sleep(250)
-            fs.closeSync(fs.openSync(fixture + '/.gitkeep', 'a'))
+            touch(fixture + '/.gitkeep')
         }
     })
 

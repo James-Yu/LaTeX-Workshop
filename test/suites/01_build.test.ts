@@ -1,11 +1,10 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
 import rimraf from 'rimraf'
 import * as assert from 'assert'
 
 import { Extension, activate } from '../../src/main'
-import { assertBuild, runTest, waitBuild, writeTeX } from './utils'
+import { assertBuild, runTest, touch, waitBuild, writeTeX } from './utils'
 import { sleep } from '../utils/ciutils'
 
 suite('Build TeX files test suite', () => {
@@ -45,7 +44,7 @@ suite('Build TeX files test suite', () => {
             await sleep(250)
             rimraf(fixture + '/*', (e) => {if (e) {console.error(e)}})
             await sleep(250)
-            fs.closeSync(fs.openSync(path.resolve(fixture, '.gitkeep'), 'a'))
+            touch(path.resolve(fixture, '.gitkeep'))
         }
     })
 

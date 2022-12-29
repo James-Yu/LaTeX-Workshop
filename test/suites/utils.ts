@@ -6,6 +6,10 @@ import * as os from 'os'
 import * as assert from 'assert'
 import { Extension } from '../../src/main'
 
+export function touch(filePath: string) {
+    fs.closeSync(fs.openSync(filePath, 'a'))
+}
+
 type RunTestOption = {
     suiteName: string,
     fixtureName: string,
@@ -81,7 +85,8 @@ type AssertBuildOption = {
     pdfFileName: string,
     extension?: Extension,
     build?: () => unknown,
-    nobuild?: boolean
+    nobuild?: boolean,
+    removepdf?: boolean
 }
 
 export async function assertBuild(option: AssertBuildOption) {
@@ -98,6 +103,14 @@ export async function assertBuild(option: AssertBuildOption) {
 
     const files = glob.sync('**/**.pdf', { cwd: option.fixture })
     assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), option.pdfFileName === '' ? option.pdfFileName : pdfFilePath)
+    if (option.removepdf) {
+        files.forEach(async file => {
+            if (fs.existsSync(path.join(option.fixture, file))) {
+                fs.unlinkSync(path.join(option.fixture, file))
+                await sleep(250)
+            }
+        })
+    }
 }
 
 export async function assertAutoBuild(option: AssertBuildOption, mode?: 'skipFirstBuild' | 'noAutoBuild' | 'onSave') {
@@ -114,6 +127,9 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: 'skipFir
     if (mode !== 'onSave') {
         fs.appendFileSync(path.resolve(option.fixture, option.texFileName), ' % edit')
     } else {
+        await sleep(250)
+        await vscode.commands.executeCommand('workbench.action.files.save')
+        await sleep(250)
         await vscode.commands.executeCommand('workbench.action.files.save')
     }
 
@@ -141,7 +157,7 @@ type WriteTeXType = 'main' | 'makeindex' | 'makesubfileindex' | 'magicprogram' |
     'subfile' | 'subfileverbatim' | 'subfiletwomain' | 'subfilethreelayer' | 'importthreelayer' | 'bibtex' |
     'input' | 'inputmacro' | 'inputfromfolder' | 'circularinclude' | 'intellisense' | 'structure' | 'linter'
 
-export async function writeTeX(type: WriteTeXType, fixture: string, payload?: {fileName?: string}) {
+export async function writeTeX(type: WriteTeXType, fixture: string, payload?: {fileName?: string, fileDir?: string}) {
     switch (type) {
         case 'main':
             writeTest({fixture, fileName: payload?.fileName || 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc', '\\end{document}')
@@ -165,7 +181,7 @@ export async function writeTeX(type: WriteTeXType, fixture: string, payload?: {f
             writeTest({fixture, fileName: 'sub/s.tex'}, '% !TEX root = ../main.tex', 'sub sub')
             break
         case 'magicinvalidprogram':
-            writeTest({fixture, fileName: 'main.tex'}, '% !TEX program = noexistprogram', '\\documentclass{article}', '\\begin{document}', 'abc', '\\end{document}')
+            writeTest({fixture, fileName: payload?.fileName || 'main.tex'}, '% !TEX program = noexistprogram', '\\documentclass{article}', '\\begin{document}', 'abc', '\\end{document}')
             break
         case 'input':
             writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'main main', '\\input{sub/s}', '\\end{document}')
@@ -184,17 +200,17 @@ export async function writeTeX(type: WriteTeXType, fixture: string, payload?: {f
             writeTest({fixture, fileName: 'bib.bib'}, '%')
             break
         case 'subfile':
-            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{subfiles}', '\\begin{document}', 'main main', '\\subfile{sub/s}', '\\end{document}')
-            writeTest({fixture, fileName: 'sub/s.tex'}, '\\documentclass[../main.tex]{subfiles}', '\\begin{document}', 'sub sub', '\\end{document}')
+            writeTest({fixture, fileName: (payload?.fileDir || '') + 'main.tex'}, '\\documentclass{article}', '\\usepackage{subfiles}', '\\begin{document}', 'main main', '\\subfile{sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: (payload?.fileDir || '') + 'sub/s.tex'}, '\\documentclass[../main.tex]{subfiles}', '\\begin{document}', 'sub sub', '\\end{document}')
             break
         case 'subfileverbatim':
             writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'main main', '\\input{sub/s}', '\\end{document}')
             writeTest({fixture, fileName: 'sub/s.tex'}, '\\section{Introduction}', 'This is a minimum \\LaTeX\\ document:', '\\begin{verbatim}', '\\documentclass{article}', '\\begin{document}', 'sub sub', '\\end{document}', '\\end{verbatim}')
             break
         case 'subfiletwomain':
-            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{subfiles}', '\\begin{document}', 'main main', '\\subfile{sub/s}', '\\end{document}')
-            writeTest({fixture, fileName: 'alt/main.tex'}, '\\documentclass{article}', '\\begin{document}', 'alt alt', '\\input{../sub/s}', '\\end{document}')
-            writeTest({fixture, fileName: 'sub/s.tex'}, 'sub sub')
+            writeTest({fixture, fileName: (payload?.fileDir || '') + 'main.tex'}, '\\documentclass{article}', '\\usepackage{subfiles}', '\\begin{document}', 'main main', '\\subfile{sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: (payload?.fileDir || '') + 'alt/main.tex'}, '\\documentclass{article}', '\\begin{document}', 'alt alt', '\\input{../sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: (payload?.fileDir || '') + 'sub/s.tex'}, 'sub sub')
             break
         case 'subfilethreelayer':
             writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{subfiles}', '\\begin{document}', 'main main', '\\subfile{sub/s}', '\\end{document}')
