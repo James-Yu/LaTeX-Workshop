@@ -118,8 +118,8 @@ export async function assertBuild(option: AssertBuildOption) {
     }
 }
 
-export async function assertAutoBuild(option: AssertBuildOption, mode?: 'skipFirstBuild' | 'noAutoBuild' | 'onSave') {
-    if (mode !== 'skipFirstBuild' && mode !== 'noAutoBuild') {
+export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFirstBuild' | 'noAutoBuild' | 'onSave')[]) {
+    if (!mode?.includes('skipFirstBuild')) {
         await assertBuild(option)
     }
     fs.rmSync(path.resolve(option.fixture, option.pdfFileName))
@@ -129,23 +129,20 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: 'skipFir
     await sleep(250)
 
     const wait = waitBuild(option.extension)
-    if (mode !== 'onSave') {
-        fs.appendFileSync(path.resolve(option.fixture, option.texFileName), ' % edit')
+    if (mode?.includes('onSave')) {
+        await vscode.commands.executeCommand('workbench.action.files.save')
     } else {
-        await sleep(250)
-        await vscode.commands.executeCommand('workbench.action.files.save')
-        await sleep(250)
-        await vscode.commands.executeCommand('workbench.action.files.save')
+        fs.appendFileSync(path.resolve(option.fixture, option.texFileName), ' % edit')
     }
 
-    if (mode !== 'noAutoBuild') {
-        await wait
-        files = glob.sync('**/**.pdf', { cwd: option.fixture })
-        assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), path.resolve(option.fixture, option.pdfFileName))
-    } else {
+    if (mode?.includes('noAutoBuild')) {
         await sleep(3000)
         files = glob.sync('**/**.pdf', { cwd: option.fixture })
         assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), '')
+    } else {
+        await wait
+        files = glob.sync('**/**.pdf', { cwd: option.fixture })
+        assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), path.resolve(option.fixture, option.pdfFileName))
     }
 }
 

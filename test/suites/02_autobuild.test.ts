@@ -79,19 +79,19 @@ suite('Auto-build test suite', () => {
     runTest({suiteName, fixtureName, testName: 'auto build when editing bib'}, async () => {
         await writeTeX('bibtex', fixture)
         await assertBuild({fixture, texFileName: 'main.tex', pdfFileName: 'main.pdf', extension})
-        await assertAutoBuild({fixture, texFileName: 'bib.bib', pdfFileName: 'main.pdf', extension}, 'skipFirstBuild')
+        await assertAutoBuild({fixture, texFileName: 'bib.bib', pdfFileName: 'main.pdf', extension}, ['skipFirstBuild'])
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with input whose path uses a macro'}, async () => {
         await writeTeX('inputmacro', fixture)
         await assertBuild({fixture, texFileName: 'main.tex', pdfFileName: 'main.pdf', extension})
-        await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension}, 'skipFirstBuild')
+        await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension}, ['skipFirstBuild'])
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build when main.tex not in root dir and editing a sub file'}, async () => {
         await writeTeX('inputfromfolder', fixture)
         await assertBuild({fixture, texFileName: 'main/main.tex', pdfFileName: 'main/main.pdf', extension})
-        await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main/main.pdf', extension}, 'skipFirstBuild')
+        await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main/main.pdf', extension}, ['skipFirstBuild'])
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with input and outDir'}, async () => {
@@ -104,7 +104,7 @@ suite('Auto-build test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.files.ignore', ['**/s.tex'])
         await writeTeX('input', fixture)
         await assertBuild({fixture, texFileName: 'main.tex', pdfFileName: 'main.pdf', extension})
-        await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension}, 'noAutoBuild')
+        await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension}, ['skipFirstBuild', 'noAutoBuild'])
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onSave 1'}, async () => {
@@ -112,7 +112,7 @@ suite('Auto-build test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
         await writeTeX('subfile', fixture)
-        await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension}, 'onSave')
+        await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension}, ['onSave'])
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onSave 2'}, async () => {
@@ -120,6 +120,6 @@ suite('Auto-build test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
         await writeTeX('subfile', fixture)
-        await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'sub/s.pdf', extension}, 'onSave')
+        await assertAutoBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'sub/s.pdf', extension}, ['onSave'])
     })
 })
