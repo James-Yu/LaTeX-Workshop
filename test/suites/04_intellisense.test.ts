@@ -31,7 +31,7 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', undefined)
 
         if (path.basename(fixture) === 'testground') {
-            rimraf(fixture + '/{*,.vscode}', (e) => {if (e) {console.error(e)}})
+            rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
             await sleep(500) // Required for pooling
         }
     })
@@ -40,7 +40,7 @@ suite('Intellisense test suite', () => {
         await writeTeX('intellisense', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
         const items = getIntellisense(doc, new vscode.Position(7, 1), extension)
         assert.ok(items && items.length > 0)
     })
@@ -51,7 +51,7 @@ suite('Intellisense test suite', () => {
         await writeTeX('intellisense', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
         const items = getIntellisense(doc, new vscode.Position(8, 1), extension, true)
         assert.ok(items && items.length > 0)
         assert.ok(items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
@@ -67,7 +67,7 @@ suite('Intellisense test suite', () => {
         await writeTeX('intellisense', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
         const items = getIntellisense(doc, new vscode.Position(9, 1), extension, true)
         assert.ok(items && items.length > 0)
         assert.ok(items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
@@ -81,11 +81,11 @@ suite('Intellisense test suite', () => {
         await writeTeX('intellisense', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
-        const content = extension?.manager.getDirtyContent(path.resolve(fixture, 'sub/glossary.tex'))
+        const content = extension.manager.getDirtyContent(path.resolve(fixture, 'sub/glossary.tex'))
         assert.ok(content)
-        await extension?.manager.updateCompleter(path.resolve(fixture, 'sub/glossary.tex'), content)
+        await extension.manager.updateCompleter(path.resolve(fixture, 'sub/glossary.tex'), content)
 
         const items = getIntellisense(doc, new vscode.Position(5, 5), extension)
         assert.ok(items && items.length === 7)

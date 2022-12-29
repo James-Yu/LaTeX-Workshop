@@ -28,7 +28,7 @@ suite('Find root file test suite', () => {
         extension.manager.rootFile = undefined
 
         if (path.basename(fixture) === 'testground') {
-            rimraf(fixture + '/{*,.vscode}', (e) => {if (e) {console.error(e)}})
+            rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
             await sleep(500) // Required for pooling
         }
     })

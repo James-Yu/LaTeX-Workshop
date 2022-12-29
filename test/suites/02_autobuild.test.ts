@@ -37,7 +37,7 @@ suite('Auto-build test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.files.ignore', undefined)
 
         if (path.basename(fixture) === 'testground') {
-            rimraf(fixture + '/{*,.vscode}', (e) => {if (e) {console.error(e)}})
+            rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
             await sleep(500) // Required for pooling
         }
     })

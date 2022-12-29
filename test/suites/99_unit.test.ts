@@ -45,7 +45,7 @@ suite('Unit test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.fastparse.enabled', undefined)
 
         if (path.basename(fixture) === 'testground') {
-            rimraf(fixture + '/{*,.vscode}', (e) => {if (e) {console.error(e)}})
+            rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
             await sleep(500) // Required for pooling
         }
     })
@@ -137,7 +137,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const structure = new SectionNodeProvider(extension)
@@ -168,7 +168,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const structure = new SectionNodeProvider(extension)
@@ -184,7 +184,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const structure = new SectionNodeProvider(extension)
@@ -201,7 +201,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const structure = new SectionNodeProvider(extension)
@@ -220,7 +220,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const structure = new SectionNodeProvider(extension)
@@ -354,7 +354,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const linter = new ChkTeX(extension)
@@ -366,7 +366,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const linter = new ChkTeX(extension)
@@ -382,7 +382,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const linter = new LaCheck(extension)
@@ -394,7 +394,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const linter = new LaCheck(extension)
