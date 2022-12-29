@@ -55,6 +55,14 @@ jobs:
     - name: Run tests
       run: npm run test
     - run: npm run release
-    - uses: actions/upload-artifact@v3
+    - name: Archive extension package
+      uses: actions/upload-artifact@v3
       with:
+        name: latex-workshop
         path: latex-workshop-*.vsix
+    - name: Archive test logs
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-error-log
+        path: test/log/*.log

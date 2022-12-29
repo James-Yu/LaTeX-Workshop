@@ -6,7 +6,7 @@ import { runTests } from '@vscode/test-electron'
 import { getExtensionDevelopmentPath } from './utils/runnerutils'
 
 
-async function runTestsOnEachFixture(targetName: 'viewer' | 'multiroot-ws') {
+async function runTestsOnEachFixture(targetName: 'viewer') {
     const extensionDevelopmentPath = getExtensionDevelopmentPath()
     const extensionTestsPath = path.resolve(__dirname, `./${targetName}.index`)
     const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
@@ -52,30 +52,27 @@ async function runTestsOnEachFixture(targetName: 'viewer' | 'multiroot-ws') {
         clearTimeout(nodejsTimeout)
     }
 }
-async function runTestSuites() {
+
+async function runTestSuites(fixture: 'testground' | 'multiroot') {
     try {
         const extensionDevelopmentPath = path.resolve(__dirname, '../../')
         const extensionTestsPath = path.resolve(__dirname, './suites/index')
 
-        const fixtures = [
-            path.resolve(extensionDevelopmentPath, 'test', 'fixtures', 'testground'),
-            path.resolve(extensionDevelopmentPath, 'test', 'fixtures', 'multiroot')
-        ]
-        for (const fixture of fixtures) {
-            await runTests({
-                version: '1.71.0',
-                extensionDevelopmentPath,
-                extensionTestsPath,
-                launchArgs: [
-                    fixture + path.basename(fixture) === 'multiroot' ? '/resource.code-workspace' : '',
-                    '--user-data-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name,
-                    '--extensions-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name
-                ],
-                extensionTestsEnv: {
-                    LATEXWORKSHOP_CI: '1'
-                }
-            })
-        }
+        await runTests({
+            version: '1.71.0',
+            extensionDevelopmentPath,
+            extensionTestsPath,
+            launchArgs: [
+                'test/fixtures/' + fixture + (fixture === 'multiroot' ? '/resource.code-workspace' : ''),
+                '--user-data-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name,
+                '--extensions-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name,
+                '--disable-gpu'
+            ],
+            extensionTestsEnv: {
+                LATEXWORKSHOP_CI: '1',
+                LATEXWORKSHOP_CLI: '1'
+            }
+        })
     } catch (error) {
         console.error(error)
         console.error('Failed to run tests')
@@ -85,9 +82,9 @@ async function runTestSuites() {
 
 async function main() {
     try {
-        await runTestSuites()
+        await runTestSuites('testground')
+        await runTestSuites('multiroot')
         await runTestsOnEachFixture('viewer')
-        await runTestsOnEachFixture('multiroot-ws')
     } catch (err) {
         console.error('Failed to run tests')
         process.exit(1)

@@ -2,10 +2,11 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as assert from 'assert'
+import rimraf from 'rimraf'
 import glob from 'glob'
 
-import { Extension, activate } from '../../src/main'
-import { runTest, writeTeX } from './utils'
+import { Extension } from '../../src/main'
+import { getExtension, runTest, writeTeX } from './utils'
 import type { PkgType } from '../../src/providers/completion'
 import type { CmdType } from '../../src/providers/completer/command'
 import { EnvSnippetType, EnvType } from '../../src/providers/completer/environment'
@@ -16,31 +17,37 @@ import { isTriggerSuggestNeeded } from '../../src/providers/completer/commandlib
 import { ChkTeX } from '../../src/components/linterlib/chktex'
 import { LaCheck } from '../../src/components/linterlib/lacheck'
 import { TextDocumentLike } from '../../src/providers/preview/mathpreviewlib/textdocumentlike'
+import { sleep } from '../utils/ciutils'
 
 
 suite('Unit test suite', () => {
 
-    let extension: Extension | undefined
+    let extension: Extension
     let extensionRoot = path.resolve(__dirname, '../../')
     const suiteName = path.basename(__filename).replace('.test.js', '')
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
     suiteSetup(async () => {
-        await vscode.commands.executeCommand('latex-workshop.activate')
-        extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')?.exports.extension
-        assert.ok(extension)
+        extension = await getExtension()
         extensionRoot = extension.extensionRoot
         fixture = path.resolve(extension.extensionRoot, 'test/fixtures/testground')
     })
 
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        await vscode.workspace.getConfiguration().update('latex-workshop.latex.search.rootFiles.include', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.numbers.enabled', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.sections', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.floats.enabled', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.fastparse.enabled', undefined)
+        extension.manager.rootFile = undefined
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.enabled', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.fastparse.enabled', undefined)
+
+        if (path.basename(fixture) === 'testground') {
+            rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
+            await sleep(500) // Required for pooling
+        }
     })
 
     function assertKeys(keys: string[], mendatory: string[], optional: string[] = [], message: string): void {
@@ -130,7 +137,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const structure = new SectionNodeProvider(extension)
@@ -157,11 +164,11 @@ suite('Unit test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.numbers.enabled'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.numbers.enabled', false)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.enabled', false)
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const structure = new SectionNodeProvider(extension)
@@ -173,11 +180,11 @@ suite('Unit test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.sections'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.sections', ['section', 'altsection', 'subsubsection'])
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', ['section', 'altsection', 'subsubsection'])
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const structure = new SectionNodeProvider(extension)
@@ -190,11 +197,11 @@ suite('Unit test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.floats.enabled'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.floats.enabled', false)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', false)
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const structure = new SectionNodeProvider(extension)
@@ -209,11 +216,11 @@ suite('Unit test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.fastparse.enabled'}, async () => {
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.outline.fastparse.enabled', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.fastparse.enabled', true)
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const structure = new SectionNodeProvider(extension)
@@ -347,7 +354,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const linter = new ChkTeX(extension)
@@ -359,7 +366,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const linter = new ChkTeX(extension)
@@ -375,7 +382,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const linter = new LaCheck(extension)
@@ -387,7 +394,7 @@ suite('Unit test suite', () => {
         await writeTeX('structure', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
-        await extension?.manager.findRoot()
+        await extension.manager.findRoot()
 
         assert.ok(extension)
         const linter = new LaCheck(extension)
