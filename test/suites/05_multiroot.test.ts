@@ -147,7 +147,7 @@ suite('Multi-root workspace test suite', () => {
         await assertBuild({fixture, texFileName: 'B/sub/s.tex', pdfFileName: 'B/main.pdf', extension})
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: 'auto build with subfiles and onSave 1'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onSave 1'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
@@ -156,7 +156,7 @@ suite('Multi-root workspace test suite', () => {
         await assertAutoBuild({fixture, texFileName: 'A/sub/s.tex', pdfFileName: 'A/main.pdf', extension}, ['onSave'])
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: 'auto build with subfiles and onSave 2'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onSave 2'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)

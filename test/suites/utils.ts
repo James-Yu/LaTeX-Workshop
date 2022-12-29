@@ -19,7 +19,9 @@ type RunTestOption = {
     win32only?: boolean
 }
 
-export function runTest(option: RunTestOption, cb: (fixture: string) => unknown) {
+let testCounter = 0
+
+export function runTest(option: RunTestOption, cb: () => unknown) {
     let fixture: string | undefined
     if (vscode.workspace.workspaceFile) {
         fixture = path.dirname(vscode.workspace.workspaceFile.fsPath)
@@ -40,13 +42,15 @@ export function runTest(option: RunTestOption, cb: (fixture: string) => unknown)
         return
     }
 
+    testCounter++
     const testFunction = option.only ? test.only : test
+    const counterString = testCounter.toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping: false})
 
-    testFunction(`${option.suiteName}: ${option.testName}`, async () => {
+    testFunction(`[${counterString}] ${option.suiteName}: ${option.testName}`, async () => {
         try {
-            await cb(fixture || '.')
+            await cb()
         } catch (error) {
-            await log()
+            await log(counterString)
             throw error
         }
     }).timeout(option.timeout || 60000)
@@ -56,17 +60,20 @@ export function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-async function log() {
+async function log(counter: string) {
     await vscode.commands.executeCommand('workbench.action.output.toggleOutput')
-    await sleep(250)
+    await sleep(500)
     await vscode.commands.executeCommand('latex-workshop.log')
-    await sleep(250)
-    const logMessage = vscode.window.activeTextEditor?.document.getText()
-    console.log(logMessage)
+    await sleep(500)
+    const extensionMessage = vscode.window.activeTextEditor?.document.getText()
     await vscode.commands.executeCommand('latex-workshop.compilerlog')
-    await sleep(250)
-    const compilerLogMessage = vscode.window.activeTextEditor?.document.getText()
-    console.log(compilerLogMessage)
+    await sleep(500)
+    const compilerMessage = vscode.window.activeTextEditor?.document.getText()
+
+    const logFolder = path.resolve(__dirname, '../../../test/log')
+    fs.mkdirSync(logFolder, {recursive: true})
+    fs.writeFileSync(path.resolve(logFolder, `${counter}.extension.log`), extensionMessage || '')
+    fs.writeFileSync(path.resolve(logFolder, `${counter}.compiler.log`), compilerMessage || '')
 }
 
 type WriteTestOption = {

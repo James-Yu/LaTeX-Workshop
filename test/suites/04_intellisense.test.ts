@@ -82,7 +82,7 @@ suite('Intellisense test suite', () => {
         assert.ok(undefined === items.find(item => item.label === '#8'))
     })
 
-    runTest({suiteName, fixtureName, testName: '@-snippet completion with trigger #'}, async () => {
+    runTest({only: true, suiteName, fixtureName, testName: 'glossary completion'}, async () => {
         await writeTeX('intellisense', fixture)
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(doc)
@@ -92,7 +92,7 @@ suite('Intellisense test suite', () => {
         assert.ok(content)
         await extension?.manager.updateCompleter(path.resolve(fixture, 'sub/glossary.tex'), content)
 
-        const items = getIntellisense(doc, new vscode.Position(5, 5))
+        const items = getIntellisense(doc, new vscode.Position(5, 5), extension)
         assert.ok(items && items.length === 7)
         assert.ok(items.find(item => item.label === 'rf' && item.detail === 'radio-frequency'))
         assert.ok(items.find(item => item.label === 'te' && item.detail === 'Transverse Magnetic'))
