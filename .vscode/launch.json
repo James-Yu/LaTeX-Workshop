@@ -17,7 +17,26 @@
             "preLaunchTask": "task-watch-all"
         },
         {
-            "name": "Run Tests",
+            "name": "Run Tests (testground)",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
+                "${workspaceFolder}/test/fixtures/testground",
+                "--extensionDevelopmentPath=${workspaceFolder}",
+                "--extensionTestsPath=${workspaceFolder}/out/test/suites/index"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/out/test/**/*.js"
+            ],
+            "preLaunchTask": "task-watch-all",
+            "env": {
+                "LATEXWORKSHOP_CI": "1",
+                "LATEXWORKSHOP_CISUITE": "01_build"
+            }
+        },
+        {
+            "name": "Run Tests (multiroot)",
             "type": "extensionHost",
             "request": "launch",
             "runtimeExecutable": "${execPath}",

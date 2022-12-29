@@ -137,7 +137,7 @@ export async function waitBuild(extension?: Extension) {
     })
 }
 
-type WriteTeXType = 'main' | 'makeindex' | 'magicprogram' | 'magicoption' | 'magicroot' | 'magicinvalidprogram' |
+type WriteTeXType = 'main' | 'makeindex' | 'makesubfileindex' | 'magicprogram' | 'magicoption' | 'magicroot' | 'magicinvalidprogram' |
     'subfile' | 'subfileverbatim' | 'subfiletwomain' | 'subfilethreelayer' | 'importthreelayer' | 'bibtex' |
     'input' | 'inputmacro' | 'inputfromfolder' | 'circularinclude' | 'intellisense' | 'structure' | 'linter'
 
@@ -148,6 +148,10 @@ export async function writeTeX(type: WriteTeXType, fixture: string, payload?: {f
             break
         case 'makeindex':
             writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{makeidx}', '\\makeindex', '\\begin{document}', 'abc\\index{abc}', '\\printindex', '\\end{document}')
+            break
+        case 'makesubfileindex':
+            writeTest({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\usepackage{subfiles}', '\\begin{document}', 'main main', '\\subfile{sub/s}', '\\end{document}')
+            writeTest({fixture, fileName: 'sub/s.tex'}, '\\documentclass[../main.tex]{subfiles}', '\\usepackage{makeidx}', '\\makeindex', '\\begin{document}', 'abc\\index{abc}', '\\printindex', '\\end{document}')
             break
         case 'magicprogram':
             writeTest({fixture, fileName: 'main.tex'}, '% !TEX program = pdflatex', '\\documentclass{article}', '\\begin{document}', 'abc', '\\end{document}')

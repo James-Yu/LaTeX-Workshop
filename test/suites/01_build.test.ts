@@ -198,6 +198,13 @@ suite('Build TeX files test suite', () => {
         await assertBuild({fixture, texFileName: 'main.tex', pdfFileName: 'main.pdf', extension})
     })
 
+    runTest({suiteName, fixtureName, testName: 'build sub.tex to outdir with makeindex'}, async () => {
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
+        await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', './out')
+        await writeTeX('makesubfileindex', fixture)
+        await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'sub/out/s.pdf', extension})
+    })
+
     runTest({win32only: true, suiteName, fixtureName, testName: 'test q/.../ with spaces in outdir on Windows'}, async () => {
         const tools = [{ name: 'latexmk', command: 'latexmk', args: ['-e', '$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/', '-outdir=%OUTDIR%', '-pdf', '%DOC%'], env: {} }]
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.tools', tools)
