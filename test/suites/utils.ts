@@ -62,7 +62,7 @@ export function runTest(option: RunTestOption, cb: () => unknown) {
             await log(counterString)
             throw error
         }
-    }).timeout(option.timeout || 60000)
+    }).timeout(option.timeout || 15000)
 }
 
 export function sleep(ms: number) {

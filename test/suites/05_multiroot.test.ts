@@ -192,7 +192,9 @@ suite('Multi-root workspace test suite', () => {
         assert.ok(itemsA)
         assert.strictEqual(itemsA.length, 3)
         assert.strictEqual(itemsA[0].label, 'A fake article')
-        assert.ok(itemsA[0].filterText && itemsA[0].filterText.includes('Journal of CI tests') && !itemsA[0].filterText.includes('hintFake'))
+        assert.ok(itemsA[0].filterText)
+        assert.ok(itemsA[0].filterText.includes('Journal of CI tests'))
+        assert.ok(!itemsA[0].filterText.includes('hintFake'))
 
         const docB = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'B/main.tex')))
         await vscode.window.showTextDocument(docB)
