@@ -2,15 +2,15 @@
 
 ## Executing tests
 
-We start a new VS Code instance for `testground`, `multiroot`, and `viewer` directories in `test/fixtures/`, which includes a series of TeX-related files for tests, and execute appropriate tests defined in `suites/*.test.ts` (`viewer.test.ts` for `viewer` fixture) while skipping other tests not related to the directory.
+We start a new VS Code instance for `testground` and `multiroot` directories in `test/fixtures/`, which includes a series of TeX-related files for tests, and execute appropriate tests defined in `suites/*.test.ts` while skipping other tests not related to the directory.
 For tests of building a LaTeX file, we try to build a LaTeX file in the directory.
 If a PDF file is not generated, the test fails.
 The TeX files related are automatically created before the test and removed after.
 
 ### How tests are executed via CLI
 
-1. `runTest.ts` starts a new VS Code instance for each `fixture` directory and executes `suites/index.ts` (`viewer.test.ts` for `viewer` fixture).
-2. Tests in `*.test.ts` are executed through `runTest` defined in `suites/utils.ts`, which skip tests in `*.test.ts` if they are not related to the current `fixture` directory.
+1. `runTest.ts` starts a new VS Code instance for each `fixture` directory and executes `suites/index.ts`.
+2. Tests in `*.test.ts` are executed through test `runTest()` function defined in `suites/utils.ts`, which skip tests in `*.test.ts` if they are not related to the current `fixture` directory.
 
 ### How tests are executed via VS Code launch
 
