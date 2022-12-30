@@ -4,8 +4,7 @@ import rimraf from 'rimraf'
 import * as assert from 'assert'
 
 import { Extension } from '../../src/main'
-import { assertRoot, getExtension, runTest, writeTeX } from './utils'
-import { sleep } from '../utils/ciutils'
+import { sleep, assertRoot, getExtension, runTest, writeTeX } from './utils'
 
 suite('Find root file test suite', () => {
 

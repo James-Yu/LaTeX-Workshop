@@ -1,21 +1,35 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
 import * as path from 'path'
-import rimraf from 'rimraf'
 import * as assert from 'assert'
+import rimraf from 'rimraf'
+import glob from 'glob'
 
 import { Extension } from '../../src/main'
-import { getExtension, getIntellisense, runTest, writeTeX } from './utils'
-import { sleep } from '../utils/ciutils'
+import { sleep, getExtension, getIntellisense, runTest, writeTeX } from './utils'
+import { EnvSnippetType, EnvType } from '../../src/providers/completer/environment'
+import { CmdType } from '../../src/providers/completer/command'
+import { PkgType } from '../../src/providers/completion'
+import { isTriggerSuggestNeeded } from '../../src/providers/completer/commandlib/commandfinder'
+
+function assertKeys(keys: string[], mendatory: string[], optional: string[] = [], message: string): void {
+    assert.ok(
+        keys.every(k => mendatory.includes(k) || optional.includes(k)) && mendatory.every(k => keys.includes(k)),
+        message
+    )
+}
 
 suite('Intellisense test suite', () => {
 
     let extension: Extension
+    let extensionRoot = path.resolve(__dirname, '../../')
     const suiteName = path.basename(__filename).replace('.test.js', '')
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
     suiteSetup(async () => {
         extension = await getExtension()
+        extensionRoot = extension.extensionRoot
         fixture = path.resolve(extension.extensionRoot, 'test/fixtures/testground')
     })
 
@@ -34,6 +48,82 @@ suite('Intellisense test suite', () => {
             rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
             await sleep(500) // Required for pooling
         }
+    })
+
+    runTest({suiteName, fixtureName, testName: 'check default environment .json completion file'}, () => {
+        const file = `${extensionRoot}/data/environments.json`
+        const envs = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: EnvType}
+        assert.ok(Object.keys(envs).length > 0)
+        Object.keys(envs).forEach(name => {
+            assertKeys(
+                Object.keys(envs[name]),
+                ['name'],
+                ['snippet', 'detail'],
+                file + ': ' + JSON.stringify(envs[name])
+            )
+        })
+    })
+
+    runTest({suiteName, fixtureName, testName: 'check default commands .json completion file'}, () => {
+        const file = `${extensionRoot}/data/commands.json`
+        const cmds = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: CmdType}
+        assert.ok(Object.keys(cmds).length > 0)
+        Object.keys(cmds).forEach(name => {
+            assertKeys(
+                Object.keys(cmds[name]),
+                ['command'],
+                ['snippet', 'documentation', 'detail', 'postAction', 'label'],
+                file + ': ' + JSON.stringify(cmds[name])
+            )
+        })
+    })
+
+    runTest({suiteName, fixtureName, testName: 'test default envs'}, () => {
+        assert.ok(extension)
+        let defaultEnvs = extension.completer.environment.getDefaultEnvs(EnvSnippetType.AsCommand).map(e => e.label)
+        assert.ok(defaultEnvs.includes('document'))
+        assert.ok(defaultEnvs.includes('align'))
+        defaultEnvs = extension.completer.environment.getDefaultEnvs(EnvSnippetType.AsName).map(e => e.label)
+        assert.ok(defaultEnvs.includes('document'))
+        assert.ok(defaultEnvs.includes('align'))
+        defaultEnvs = extension.completer.environment.getDefaultEnvs(EnvSnippetType.ForBegin).map(e => e.label)
+        assert.ok(defaultEnvs.includes('document'))
+        assert.ok(defaultEnvs.includes('align'))
+    })
+
+    runTest({suiteName, fixtureName, testName: 'test default cmds'}, () => {
+        assert.ok(extension)
+        const defaultCommands = extension.completer.command.getDefaultCmds().map(e => e.label)
+        assert.ok(defaultCommands.includes('\\begin'))
+        assert.ok(defaultCommands.includes('\\left('))
+        assert.ok(defaultCommands.includes('\\section{title}'))
+    })
+
+    runTest({suiteName, fixtureName, testName: 'check package .json completion file'}, () => {
+        const files = glob.sync('data/packages/*.json', {cwd: extensionRoot})
+        files.forEach(file => {
+            const pkg = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})) as PkgType
+            Object.keys(pkg.cmds).forEach(name => {
+                assertKeys(
+                    Object.keys(pkg.cmds[name]),
+                    [],
+                    ['command', 'snippet', 'option', 'keyvals', 'keyvalindex', 'documentation', 'detail'],
+                    file + ': ' + JSON.stringify(pkg.cmds[name])
+                )
+            })
+            Object.keys(pkg.envs).forEach(name => {
+                assertKeys(
+                    Object.keys(pkg.envs[name]),
+                    [],
+                    ['name', 'snippet', 'detail', 'option', 'keyvals', 'keyvalindex'],
+                    file + ': ' + JSON.stringify(pkg.envs[name])
+                )
+            })
+        })
+    })
+
+    runTest({suiteName, fixtureName, testName: 'test isTriggerSuggestNeeded'}, () => {
+        assert.ok(!isTriggerSuggestNeeded('frac'))
     })
 
     runTest({suiteName, fixtureName, testName: 'basic completion'}, async () => {

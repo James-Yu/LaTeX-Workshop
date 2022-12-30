@@ -3,8 +3,7 @@ import * as path from 'path'
 import rimraf from 'rimraf'
 
 import { Extension } from '../../src/main'
-import { assertAutoBuild, assertBuild, getExtension, runTest, writeTeX } from './utils'
-import { sleep } from '../utils/ciutils'
+import { sleep, assertAutoBuild, assertBuild, getExtension, runTest, writeTeX } from './utils'
 
 suite('Auto-build test suite', () => {
 

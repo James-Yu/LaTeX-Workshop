@@ -4,8 +4,7 @@ import rimraf from 'rimraf'
 import * as assert from 'assert'
 
 import { Extension } from '../../src/main'
-import { runTest, writeTeX, assertBuild, touch, assertAutoBuild, writeTestFile, copyTestFile, getIntellisense, assertRoot, getExtension } from './utils'
-import { sleep } from '../utils/ciutils'
+import { sleep, runTest, writeTeX, assertBuild, touch, assertAutoBuild, writeTestFile, copyTestFile, getIntellisense, assertRoot, getExtension } from './utils'
 
 suite('Multi-root workspace test suite', () => {
 

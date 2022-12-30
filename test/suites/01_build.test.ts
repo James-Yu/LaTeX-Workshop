@@ -3,8 +3,7 @@ import * as path from 'path'
 import rimraf from 'rimraf'
 
 import { Extension } from '../../src/main'
-import { assertBuild, getExtension, runTest, waitBuild, writeTeX } from './utils'
-import { sleep } from '../utils/ciutils'
+import { sleep, assertBuild, getExtension, runTest, waitBuild, writeTeX } from './utils'
 
 suite('Build TeX files test suite', () => {
 
@@ -135,18 +134,19 @@ suite('Build TeX files test suite', () => {
         await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'sub/s.pdf', extension})
     })
 
-    runTest({suiteName, fixtureName, testName: 'build main.tex choosing it in QuickPick'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'build main.tex with QuickPick'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
         await writeTeX('subfile', fixture)
         await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension, build: async () => {
+            const wait = waitBuild(extension)
             void vscode.commands.executeCommand('latex-workshop.build')
             await sleep(1000)
             await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
-            await waitBuild(extension)
+            await wait
         }})
     })
 
-    runTest({suiteName, fixtureName, testName: 'build s.tex choosing it in QuickPick'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'build s.tex with QuickPick'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
         await writeTeX('subfile', fixture)
         await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'sub/s.pdf', extension, build: async () => {

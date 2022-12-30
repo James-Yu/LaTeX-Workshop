@@ -6,7 +6,8 @@ import * as os from 'os'
 import * as assert from 'assert'
 
 import { Extension, activate } from '../../src/main'
-import { BuildFinished } from '../../src/components/eventbus'
+import { BuildFinished, PdfViewerPagesLoaded, PdfViewerStatusChanged } from '../../src/components/eventbus'
+import type { EventName } from '../../src/components/eventbus'
 
 export async function getExtension() {
     await vscode.commands.executeCommand('latex-workshop.activate')
@@ -107,9 +108,7 @@ type AssertBuildOption = {
     texFileName: string,
     pdfFileName: string,
     extension: Extension,
-    build?: () => unknown,
-    nobuild?: boolean,
-    removepdf?: boolean
+    build?: () => unknown
 }
 
 export async function assertBuild(option: AssertBuildOption) {
@@ -126,15 +125,6 @@ export async function assertBuild(option: AssertBuildOption) {
 
     const files = glob.sync('**/**.pdf', { cwd: option.fixture })
     assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), option.pdfFileName === '' ? option.pdfFileName : pdfFilePath)
-
-    if (option.removepdf) {
-        files.forEach(async file => {
-            if (fs.existsSync(path.join(option.fixture, file))) {
-                fs.unlinkSync(path.join(option.fixture, file))
-                await sleep(250)
-            }
-        })
-    }
 }
 
 export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFirstBuild' | 'noAutoBuild' | 'onSave')[]) {
@@ -165,13 +155,17 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFi
     }
 }
 
-export async function waitBuild(extension: Extension) {
+async function waitEvent(extension: Extension, event: EventName) {
     return new Promise<void>((resolve, _) => {
-        const disposable = extension.eventBus.on(BuildFinished, () => {
+        const disposable = extension.eventBus.on(event, () => {
             resolve()
             disposable?.dispose()
         })
     })
+}
+
+export async function waitBuild(extension: Extension) {
+    return waitEvent(extension, BuildFinished)
 }
 
 type AssertRootOption = {
@@ -189,6 +183,42 @@ export async function assertRoot(option: AssertRootOption) {
     await vscode.window.showTextDocument(doc)
     const root = await option.extension.manager.findRoot()
     assert.strictEqual(root, rootFilePath)
+}
+
+type AssertViewerOption = {
+    fixture: string,
+    pdfFileName: string,
+    extension: Extension,
+    action?: () => unknown
+}
+
+export async function assertViewer(option: AssertViewerOption) {
+    await sleep(500)
+    const wait = waitViewer(option.extension)
+    void vscode.commands.executeCommand('latex-workshop.view')
+    if (option.action) {
+        await option.action()
+    }
+    await wait
+    const status = getViewerStatus(option.extension, path.resolve(option.fixture, option.pdfFileName))
+    assert.strictEqual(status.pdfFileUri, vscode.Uri.file(path.resolve(option.fixture, option.pdfFileName)).toString(true))
+}
+
+async function waitViewer(extension: Extension) {
+    return Promise.all([
+        waitEvent(extension, PdfViewerPagesLoaded),
+        waitViewerChange(extension)
+    ])
+}
+
+async function waitViewerChange(extension: Extension) {
+    return waitEvent(extension, PdfViewerStatusChanged)
+}
+
+function getViewerStatus(extension: Extension, pdfFilePath: string) {
+    const status = extension.viewer.getViewerState(vscode.Uri.file(pdfFilePath))[0]
+    assert.ok(status)
+    return status
 }
 
 type WriteTeXType = 'main' | 'makeindex' | 'makesubfileindex' | 'magicprogram' | 'magicoption' | 'magicroot' | 'magicinvalidprogram' |
