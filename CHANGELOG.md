@@ -1,5 +1,11 @@
 # Change Log
 
+## [9.2.2] - 2022-12-31
+
+### Fixed
+- (#3607) Try reconnect websocket multiple times after operating system sleep.
+- (#3610) Catastrophic backtracking of argument regex that may cause unresponsiveness on intellisense from a long line.
+
 ## [9.2.1] - 2022-12-28
 
 ### Fixed
