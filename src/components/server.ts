@@ -182,83 +182,83 @@ export class Server {
                 response.end()
             }
             return
-        } else if (request.url === '/config.json') {
+        }
+        if (request.url === '/config.json') {
             const params = this.extension.viewer.viewerParams()
             const content = JSON.stringify(params)
             this.sendOkResponse(response, Buffer.from(content), 'application/json')
             return
-        } else {
-            let root: string
-            if (request.url.startsWith('/build/') || request.url.startsWith('/cmaps/') || request.url.startsWith('/standard_fonts/')) {
-                root = path.resolve(`${this.extension.extensionRoot}/node_modules/pdfjs-dist`)
-            } else if (request.url.startsWith('/out/viewer/') || request.url.startsWith('/viewer/')) {
-                // For requests to /out/viewer/*.js and requests to /viewer/*.ts.
-                // The latter is for debugging with sourcemap.
-                root = path.resolve(this.extension.extensionRoot)
-            } else {
-                root = path.resolve(`${this.extension.extensionRoot}/viewer`)
-            }
-            //
-            // Prevent directory traversal attack.
-            // - https://en.wikipedia.org/wiki/Directory_traversal_attack
-            //
-            const reqFileName = path.posix.resolve('/', request.url.split('?')[0])
-            const fileName = path.resolve(root, '.' + reqFileName)
-            let contentType: string
-            switch (path.extname(fileName)) {
-                case '.html': {
-                    contentType = 'text/html'
-                    break
-                }
-                case '.js': {
-                    contentType = 'text/javascript'
-                    break
-                }
-                case '.css': {
-                    contentType = 'text/css'
-                    break
-                }
-                case '.json': {
-                    contentType = 'application/json'
-                    break
-                }
-                case '.png': {
-                    contentType = 'image/png'
-                    break
-                }
-                case '.jpg': {
-                    contentType = 'image/jpg'
-                    break
-                }
-                case '.gif': {
-                    contentType = 'image/gif'
-                    break
-                }
-                case '.svg': {
-                    contentType = 'image/svg+xml'
-                    break
-                }
-                case '.ico': {
-                    contentType = 'image/x-icon'
-                    break
-                }
-                default: {
-                    contentType = 'application/octet-stream'
-                    break
-                }
-            }
-            fs.readFile(fileName, (err, content) => {
-                if (err) {
-                    if (err.code === 'ENOENT') {
-                        response.writeHead(404)
-                    } else {
-                        response.writeHead(500)
-                    }
-                    response.end()
-                } else {
-                    this.sendOkResponse(response, content, contentType)
-                }
-            })
         }
+        let root: string
+        if (request.url.startsWith('/build/') || request.url.startsWith('/cmaps/') || request.url.startsWith('/standard_fonts/')) {
+            root = path.resolve(`${this.extension.extensionRoot}/node_modules/pdfjs-dist`)
+        } else if (request.url.startsWith('/out/viewer/') || request.url.startsWith('/viewer/')) {
+            // For requests to /out/viewer/*.js and requests to /viewer/*.ts.
+            // The latter is for debugging with sourcemap.
+            root = path.resolve(this.extension.extensionRoot)
+        } else {
+            root = path.resolve(`${this.extension.extensionRoot}/viewer`)
+        }
+        //
+        // Prevent directory traversal attack.
+        // - https://en.wikipedia.org/wiki/Directory_traversal_attack
+        //
+        const reqFileName = path.posix.resolve('/', request.url.split('?')[0])
+        const fileName = path.resolve(root, '.' + reqFileName)
+        let contentType: string
+        switch (path.extname(fileName)) {
+            case '.html': {
+                contentType = 'text/html'
+                break
+            }
+            case '.js': {
+                contentType = 'text/javascript'
+                break
+            }
+            case '.css': {
+                contentType = 'text/css'
+                break
+            }
+            case '.json': {
+                contentType = 'application/json'
+                break
+            }
+            case '.png': {
+                contentType = 'image/png'
+                break
+            }
+            case '.jpg': {
+                contentType = 'image/jpg'
+                break
+            }
+            case '.gif': {
+                contentType = 'image/gif'
+                break
+            }
+            case '.svg': {
+                contentType = 'image/svg+xml'
+                break
+            }
+            case '.ico': {
+                contentType = 'image/x-icon'
+                break
+            }
+            default: {
+                contentType = 'application/octet-stream'
+                break
+            }
+        }
+        fs.readFile(fileName, (err, content) => {
+            if (err) {
+                if (err.code === 'ENOENT') {
+                    response.writeHead(404)
+                } else {
+                    response.writeHead(500)
+                }
+                response.end()
+            } else {
+                this.sendOkResponse(response, content, contentType)
+            }
+        })
     }
 }
