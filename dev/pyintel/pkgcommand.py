@@ -214,6 +214,8 @@ class CwlIntel:
                 cwl_option = None
             elif line.startswith('#keyvals:\\usepackage/'): # '#keyvals:\usepackage/color#c'
                 cwl_keyval = 'PACKAGE_OPTIONS'
+            elif line.startswith('#keyvals:\\documentclass/'): # '#keyvals:\usepackage/color#c'
+                cwl_keyval = 'PACKAGE_OPTIONS'
             elif line.startswith('#keyvals:'):      # '#keyvals:\begin{minted},\mint,\inputminted'
                 cwl_keyval = line[9:]               # '\begin{minted},\mint,\inputminted'
             elif line.startswith('#endkeyvals'):    # '#endkeyvals'
