@@ -72,7 +72,7 @@
       "snippet": "aliasshorthand{${1:original}}{${2:alias}}"
     },
     "textormath{}{}": {
-      "snippet": "textormath{${1:text code}}{${2:math code%formula}}"
+      "snippet": "textormath{${1:text code}}{${2:math code}}"
     },
     "AfterBabelLanguage{}{}": {
       "snippet": "AfterBabelLanguage{${1:option_name}}{${2:code}}",
@@ -138,10 +138,10 @@
       "keyvalindex": 0
     },
     "babelcalendar{}{}{}{}": {
-      "snippet": "babelcalendar{${1:calendar}}{${2:year-macro%cmd}}{${3:month-macro%cmd}}{${4:day-macro%cmd}}"
+      "snippet": "babelcalendar{${1:calendar}}{${2:year-macro}}{${3:month-macro}}{${4:day-macro}}"
     },
     "babelcalendar[]{}{}{}{}": {
-      "snippet": "babelcalendar[${5:YYYY-MM-DD}]{${1:calendar}}{${2:year-macro%cmd}}{${3:month-macro%cmd}}{${4:day-macro%cmd}}"
+      "snippet": "babelcalendar[${5:YYYY-MM-DD}]{${1:calendar}}{${2:year-macro}}{${3:month-macro}}{${4:day-macro}}"
     },
     "languagename": {},
     "iflanguage{}{}{}": {
@@ -246,15 +246,22 @@
     "babeladjust{}": {
       "snippet": "babeladjust{${1:keyvals}}",
       "keyvals": [
-        "bidi.text=",
-        "bidi.mirroring=",
         "bidi.mapdigits=",
-        "layout.lists=",
-        "layout.tabular=",
+        "bidi.mirroring=",
+        "bidi.text=",
         "linebreak.sea=",
         "linebreak.cjk=",
         "justify.arabic=",
-        "autoload.options="
+        "layout.tabular=",
+        "layout.lists=",
+        "autoload.bcp47=",
+        "bcp47.toname=",
+        "autoload.options=",
+        "autoload.bcp47.prefix=",
+        "autoload.bcp47.options=",
+        "prehyphenation.disable=",
+        "select.write=",
+        "select.encoding="
       ],
       "keyvalindex": 0
     },
@@ -1495,7 +1502,7 @@
       "option": "acadian"
     },
     "FBWarning{}": {
-      "snippet": "FBWarning{${1:message%text}}",
+      "snippet": "FBWarning{${1:message}}",
       "option": "acadian"
     },
     "fg": {
@@ -2622,11 +2629,11 @@
       "option": "italian"
     },
     "ap{}": {
-      "snippet": "ap{${1:text%plain}}",
+      "snippet": "ap{${1:text}}",
       "option": "italian"
     },
     "ped{}": {
-      "snippet": "ped{${1:text%plain}}",
+      "snippet": "ped{${1:text}}",
       "option": "italian"
     },
     "unit{}": {
@@ -2955,14 +2962,6 @@
       "snippet": "Aref{${1:label}}",
       "option": "hungarian"
     },
-    "atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{}": {
-      "snippet": "atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{${1:}}",
-      "option": "hungarian"
-    },
-    "Atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{}": {
-      "snippet": "Atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{${1:}}",
-      "option": "hungarian"
-    },
     "az*{}": {
       "snippet": "az*{${1:szó}}",
       "option": "hungarian"
@@ -3010,7 +3009,7 @@
       "option": "hungarian"
     },
     "editorfootnote{}": {
-      "snippet": "editorfootnote{${1:lábjegyzet-szöveg%text}}",
+      "snippet": "editorfootnote{${1:lábjegyzet-szöveg}}",
       "option": "hungarian"
     },
     "emitdate[]{}{}": {
@@ -3033,11 +3032,11 @@
       "option": "hungarian"
     },
     "headingfootnote[]{}": {
-      "snippet": "headingfootnote[${2:szám}]{${1:lábjegyzet-szöveg%text}}",
+      "snippet": "headingfootnote[${2:szám}]{${1:lábjegyzet-szöveg}}",
       "option": "hungarian"
     },
     "headingfootnote{}": {
-      "snippet": "headingfootnote{${1:lábjegyzet-szöveg%text}}",
+      "snippet": "headingfootnote{${1:lábjegyzet-szöveg}}",
       "option": "hungarian"
     },
     "HuComma": {
@@ -3078,10 +3077,7 @@
       "option": "hungarian"
     },
     "MathReal{}": {
-      "snippet": "MathReal{${1:képlet tizedestörtekkel%formula}}",
-      "option": "hungarian"
-    },
-    "mond %<⟨kimondott szöveg⟩%>": {
+      "snippet": "MathReal{${1:képlet tizedestörtekkel}}",
       "option": "hungarian"
     },
     "refstruc{}": {
@@ -3096,15 +3092,7 @@
       "option": "hungarian"
     },
     "textqq{}": {
-      "snippet": "textqq{${1:szövegközti idézet%text}}",
-      "option": "hungarian"
-    },
-    "told%<⟨szám⟩%>+%<⟨toldalék⟩%>{}": {
-      "snippet": "told%<⟨szám⟩%>+%<⟨toldalék⟩%>{${1:}}",
-      "option": "hungarian"
-    },
-    "told%<⟨szám⟩%>+%<⟨toldalék1⟩%>+%<⟨toldalék2⟩%>{}": {
-      "snippet": "told%<⟨szám⟩%>+%<⟨toldalék1⟩%>+%<⟨toldalék2⟩%>{${1:}}",
+      "snippet": "textqq{${1:szövegközti idézet}}",
       "option": "hungarian"
     },
     "captionshungarian": {
@@ -3740,7 +3728,7 @@
       "option": "spanish"
     },
     "spanishdecimal{}": {
-      "snippet": "spanishdecimal{${1:math%formula}}",
+      "snippet": "spanishdecimal{${1:math}}",
       "option": "spanish"
     },
     "spanishplainpercent": {

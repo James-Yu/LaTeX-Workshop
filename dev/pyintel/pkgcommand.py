@@ -59,7 +59,9 @@ def create_snippet(line: str) -> str:
     snippet = re.sub(r'(?<![\. ])\.\.(?![\. ])', t.sub, snippet)
 
     snippet = re.sub(r'%keyvals', '', snippet)
-    snippet = re.sub(r'%<options%>', 'options', snippet)
+    snippet = re.sub(r'%<([^%]*?)%:.*?%>', r'\1', snippet)
+    snippet = re.sub(r'%<([^%]*?)%>', r'\1', snippet)
+    snippet = re.sub(r'\$\{(\d+:.*?)%.*?\}', r'${\1}', snippet)
     return snippet
 
 
@@ -233,7 +235,7 @@ class CwlIntel:
                     name = name.strip()
                 # The name field can only contain letters, `{`, `}`, `[`, `]` and `*`.
                 # https://github.com/James-Yu/LaTeX-Workshop/issues/3264#issuecomment-1138733921
-                if re.match(r'[^A-Za-z\[\]{}<>*\s]', name) is not None:
+                if re.match(r'[^A-Za-z\[\]\{\}\<\>\*\s]', name) is not None or '%' in name:
                     continue
                 snippet = create_snippet(match[2] if len(match.groups()) >= 2 and match[2] else '')
                 pkg.envs[name] = Env(
@@ -261,7 +263,7 @@ class CwlIntel:
                     name = name.strip()
                 # The name field can only contain letters, `{`, `}`, `[`, `]` and `*`.
                 # https://github.com/James-Yu/LaTeX-Workshop/issues/3264#issuecomment-1138733921
-                if re.match(r'[^A-Za-z\[\]{}<>*\s]', name) is not None or '(' in name or ')' in name or '\\' in name:
+                if re.match(r'[^A-Za-z\[\]\{\}\<\>\*\s]', name) is not None or '(' in name or ')' in name or '\\' in name or '%' in name:
                     continue
                 if name in self.commands:
                     continue

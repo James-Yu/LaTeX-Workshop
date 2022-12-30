@@ -9,22 +9,13 @@
   ],
   "cmds": {
     "addplot{};": {
-      "snippet": "addplot {${1:%<input data%>}};"
-    },
-    "addplot[]{}%<<>%>;": {
-      "snippet": "addplot[${2:options}] {${1:%<input data%>}} %<<${3:trailing path commands}>%>;"
+      "snippet": "addplot {${1:input data}};"
     },
     "addplot3{};": {
-      "snippet": "addplot3 {${1:%<input data%>}};"
-    },
-    "addplot3[]{}%<<>%>;": {
-      "snippet": "addplot3[${2:options}] {${1:%<input data%>}} %<<${3:trailing path commands}>%>;"
+      "snippet": "addplot3 {${1:input data}};"
     },
     "addplot+{};": {
-      "snippet": "addplot+ {${1:%<input data%>}};"
-    },
-    "addplot+[]{}%<<>%>;": {
-      "snippet": "addplot+[${2:options}] {${1:%<input data%>}} %<<${3:trailing path commands}>%>;"
+      "snippet": "addplot+ {${1:input data}};"
     },
     "pgfplotsset{}": {
       "snippet": "pgfplotsset{${1:options}}"
@@ -37,28 +28,28 @@
       "snippet": "pgfplotscolorbarfromname{${1:label}}"
     },
     "addplottable[]{};": {
-      "snippet": "addplot table [${2:x=%<column header%>,y=%<column header%>}] {${1:%<file%>}};"
+      "snippet": "addplot table [${2:x=column header,y=column header}] {${1:file}};"
     },
     "addplotcoordinates{};": {
-      "snippet": "addplot coordinates {${1:%<coord list%>}};"
+      "snippet": "addplot coordinates {${1:coord list}};"
     },
     "addplotgnuplot{};": {
-      "snippet": "addplot gnuplot {${1:%<gnuplot code%>}};"
+      "snippet": "addplot gnuplot {${1:gnuplot code}};"
     },
     "addplotfile{};": {
-      "snippet": "addplot file {${1:%<file%>}};"
+      "snippet": "addplot file {${1:file}};"
     },
     "addplotexpression{};": {
-      "snippet": "addplot expression {${1:%<math expr%>}};"
+      "snippet": "addplot expression {${1:math expr}};"
     },
     "addplotfunction{};": {
-      "snippet": "addplot function {${1:%<gnuplot code%>}};"
+      "snippet": "addplot function {${1:gnuplot code}};"
     },
     "addplotshell{};": {
-      "snippet": "addplot shell {${1:%<shell commands%>}};"
+      "snippet": "addplot shell {${1:shell commands}};"
     },
     "addplotgraphics{};": {
-      "snippet": "addplot graphics {${1:%<file%>}};"
+      "snippet": "addplot graphics {${1:file}};"
     },
     "pgfplotsrevision": {},
     "pgfplotsversion": {},
@@ -291,7 +282,7 @@
       "snippet": "pgfplotsaftergroupcollectinto{${1:cmd}}{${2:tokens}}"
     },
     "pgfplotscommandtostring{}{}": {
-      "snippet": "pgfplotscommandtostring{${1:cmd1}}{${2:cmd2%cmd}}"
+      "snippet": "pgfplotscommandtostring{${1:cmd1}}{${2:cmd2}}"
     },
     "pgfplotsmathmin{}{}": {
       "snippet": "pgfplotsmathmin{${1:x}}{${2:y}}"
@@ -321,13 +312,13 @@
       "snippet": "as{${1:cmd}}"
     },
     "pgfplotsforeachentryinCSV{}{}{}": {
-      "snippet": "pgfplotsforeachentryinCSV{${1:macro%cmd}}{${2:list}}{${3:code}}"
+      "snippet": "pgfplotsforeachentryinCSV{${1:macro}}{${2:list}}{${3:code}}"
     },
     "pgfplotsforeachentryinCSVisterminated{}{}{}": {
-      "snippet": "pgfplotsforeachentryinCSVisterminated{${1:macro%cmd}}{${2:list}}{${3:code}}"
+      "snippet": "pgfplotsforeachentryinCSVisterminated{${1:macro}}{${2:list}}{${3:code}}"
     },
     "pgfplotsforeachungrouped{}": {
-      "snippet": "pgfplotsforeachungrouped{${1:macro%cmd}}"
+      "snippet": "pgfplotsforeachungrouped{${1:macro}}"
     },
     "pgfplotsforeachtodomain{}": {
       "snippet": "pgfplotsforeachtodomain{${1:domain}}"
@@ -358,16 +349,16 @@
       "snippet": "pgfplotsutilstrcmp{${1:string1}}{${2:string2}}"
     },
     "pgfplotsmathcarttopol{}{}{}{}": {
-      "snippet": "pgfplotsmathcarttopol{${1:x}}{${2:y}}{${3:angle macro%cmd}}{${4:radius macro%cmd}}"
+      "snippet": "pgfplotsmathcarttopol{${1:x}}{${2:y}}{${3:angle macro}}{${4:radius macro}}"
     },
     "pgfplotsmathcarttopolbasic{}{}{}{}": {
-      "snippet": "pgfplotsmathcarttopolbasic{${1:x}}{${2:y}}{${3:angle macro%cmd}}{${4:radius macro%cmd}}"
+      "snippet": "pgfplotsmathcarttopolbasic{${1:x}}{${2:y}}{${3:angle macro}}{${4:radius macro}}"
     },
     "pgfplotsmathpoltocart{}{}{}{}": {
-      "snippet": "pgfplotsmathpoltocart{${1:angle}}{${2:radius}}{${3:x macro%cmd}}{${4:y macro%cmd}}"
+      "snippet": "pgfplotsmathpoltocart{${1:angle}}{${2:radius}}{${3:x macro}}{${4:y macro}}"
     },
     "pgfplotsmathpoltocartbasic{}{}{}{}": {
-      "snippet": "pgfplotsmathpoltocartbasic{${1:angle}}{${2:radius}}{${3:x macro%cmd}}{${4:y macro%cmd}}"
+      "snippet": "pgfplotsmathpoltocartbasic{${1:angle}}{${2:radius}}{${3:x macro}}{${4:y macro}}"
     },
     "pgfplotsmathdeclarepseudoconstant{}{}": {
       "snippet": "pgfplotsmathdeclarepseudoconstant{${1:name}}{${2:code}}"
@@ -376,7 +367,7 @@
       "snippet": "pgfplotsmathredeclarepseudoconstant{${1:name}}{${2:code}}"
     },
     "pgfplotsmathdefinemacrolnbase{}{}": {
-      "snippet": "pgfplotsmathdefinemacrolnbase{${1:macro%cmd}}{${2:number}}"
+      "snippet": "pgfplotsmathdefinemacrolnbase{${1:macro}}{${2:number}}"
     },
     "pgfplotsutilifstartswith{}{}{}{}": {
       "snippet": "pgfplotsutilifstartswith{${1:pattern}}{${2:string}}{${3:true}}{${4:false}}"
@@ -452,10 +443,10 @@
     "pgfplotslistemptytrue": {},
     "pgfplotslistemptyfalse": {},
     "pgfplotslistnewempty{}": {
-      "snippet": "pgfplotslistnewempty{${1:macro%cmd}}"
+      "snippet": "pgfplotslistnewempty{${1:macro}}"
     },
     "pgfplotslistnew{}{}": {
-      "snippet": "pgfplotslistnew{${1:macro%cmd}}{${2:list}}"
+      "snippet": "pgfplotslistnew{${1:macro}}{${2:list}}"
     },
     "to{}": {
       "snippet": "to{${1:cmd}}"
@@ -465,13 +456,13 @@
     },
     "of": {},
     "pgfplotsapplistnewempty{}": {
-      "snippet": "pgfplotsapplistnewempty{${1:macro%cmd}}"
+      "snippet": "pgfplotsapplistnewempty{${1:macro}}"
     },
     "pgfplotsapplistexecute{}": {
       "snippet": "pgfplotsapplistexecute{${1:code}}"
     },
     "pgfplotsapplistXnewempty{}": {
-      "snippet": "pgfplotsapplistXnewempty{${1:macro%cmd}}"
+      "snippet": "pgfplotsapplistXnewempty{${1:macro}}"
     },
     "pgfplotsapplistXflushbuffers{}": {
       "snippet": "pgfplotsapplistXflushbuffers{${1:list}}"
@@ -488,11 +479,8 @@
     "pgfplotsprependlistXflushbuffers{}": {
       "snippet": "pgfplotsprependlistXflushbuffers{${1:list}}"
     },
-    "pgfplotsprependlistXlet%<cs%>=%<list%>": {
-      "snippet": "pgfplotsprependlistXlet ${1:cs}=%<list%>"
-    },
     "pgfplotsapplistXXnewempty{}": {
-      "snippet": "pgfplotsapplistXXnewempty{${1:macro%cmd}}"
+      "snippet": "pgfplotsapplistXXnewempty{${1:macro}}"
     },
     "pgfplotsapplistXX": {},
     "pgfplotsapplistXXclear{}": {
@@ -505,19 +493,19 @@
       "snippet": "pgfplotsapplistXXflushbuffers{${1:list}}"
     },
     "pgfplotsapplistXXedefcontenttomacro{}{}": {
-      "snippet": "pgfplotsapplistXXedefcontenttomacro{${1:list}}{${2:macro%cmd}}"
+      "snippet": "pgfplotsapplistXXedefcontenttomacro{${1:list}}{${2:macro}}"
     },
     "pgfplotsapplistXXxdefcontenttomacro{}{}": {
-      "snippet": "pgfplotsapplistXXxdefcontenttomacro{${1:list}}{${2:macro%cmd}}"
+      "snippet": "pgfplotsapplistXXxdefcontenttomacro{${1:list}}{${2:macro}}"
     },
     "pgfplotsapplistXXlet{}": {
-      "snippet": "pgfplotsapplistXXlet{${1:macro%cmd}}"
+      "snippet": "pgfplotsapplistXXlet{${1:macro}}"
     },
     "pgfplotsapplistXXexecute{}": {
       "snippet": "pgfplotsapplistXXexecute{${1:code}}"
     },
     "pgfplotsapplistXXglobalnewempty{}": {
-      "snippet": "pgfplotsapplistXXglobalnewempty{${1:macro%cmd}}"
+      "snippet": "pgfplotsapplistXXglobalnewempty{${1:macro}}"
     },
     "pgfplotsapplistXXglobal": {},
     "pgfplotsapplistXXglobalclear{}": {
@@ -530,13 +518,13 @@
       "snippet": "pgfplotsapplistXXglobalflushbuffers{${1:list}}"
     },
     "pgfplotsapplistXXglobaledefcontenttomacro{}{}": {
-      "snippet": "pgfplotsapplistXXglobaledefcontenttomacro{${1:list}}{${2:macro%cmd}}"
+      "snippet": "pgfplotsapplistXXglobaledefcontenttomacro{${1:list}}{${2:macro}}"
     },
     "pgfplotsapplistXXglobalxdefcontenttomacro{}{}": {
-      "snippet": "pgfplotsapplistXXglobalxdefcontenttomacro{${1:list}}{${2:macro%cmd}}"
+      "snippet": "pgfplotsapplistXXglobalxdefcontenttomacro{${1:list}}{${2:macro}}"
     },
     "pgfplotsapplistXXgloballet{}": {
-      "snippet": "pgfplotsapplistXXgloballet{${1:macro%cmd}}"
+      "snippet": "pgfplotsapplistXXgloballet{${1:macro}}"
     },
     "pgfplotsapplistXXglobalexecute{}": {
       "snippet": "pgfplotsapplistXXglobalexecute{${1:code}}"
@@ -546,7 +534,7 @@
       "snippet": "pgfplotsgloballet{${1:cmd}}"
     },
     "pgfplotsapplistXglobalnewempty{}": {
-      "snippet": "pgfplotsapplistXglobalnewempty{${1:macro%cmd}}"
+      "snippet": "pgfplotsapplistXglobalnewempty{${1:macro}}"
     },
     "pgfplotsapplistXglobalflushbuffers{}": {
       "snippet": "pgfplotsapplistXglobalflushbuffers{${1:list}}"
@@ -558,10 +546,10 @@
     "pgfplotsarrayemptytrue": {},
     "pgfplotsarrayemptyfalse": {},
     "pgfplotsarraynewempty{}": {
-      "snippet": "pgfplotsarraynewempty{${1:macro%cmd}}"
+      "snippet": "pgfplotsarraynewempty{${1:macro}}"
     },
     "pgfplotsarraynewemptyglobal{}": {
-      "snippet": "pgfplotsarraynewemptyglobal{${1:macro%cmd}}"
+      "snippet": "pgfplotsarraynewemptyglobal{${1:macro}}"
     },
     "pgfplotsarrayresize{}{}": {
       "snippet": "pgfplotsarrayresize{${1:array macro}}{${2:size}}"
@@ -573,7 +561,7 @@
       "snippet": "pgfplotsarrayifdefined{${1:array macro}}{${2:true}}{${3:false}}"
     },
     "pgfplotsarraynew{}{}": {
-      "snippet": "pgfplotsarraynew{${1:macro%cmd}}{${2:array}}"
+      "snippet": "pgfplotsarraynew{${1:macro}}{${2:array}}"
     },
     "pgfplotsarrayfrompgfplotslist{}{}": {
       "snippet": "pgfplotsarrayfrompgfplotslist{${1:array macro}}{${2:list}}"
@@ -598,7 +586,7 @@
       "snippet": "pgfplotsarraybinarysearch{${1:array}}{${2:value}}{${3:start index}}{${4:end index}}"
     },
     "pgfplotsmatrixnewempty{}": {
-      "snippet": "pgfplotsmatrixnewempty{${1:macro%cmd}}"
+      "snippet": "pgfplotsmatrixnewempty{${1:macro}}"
     },
     "pgfplotsmatrixresize{}{}{}": {
       "snippet": "pgfplotsmatrixresize{${1:matrix}}{${2:rows}}{${3:cols}}"
@@ -633,13 +621,13 @@
       "snippet": "pgfplotstablegenerateuniquecolnamefor{${1:table}}"
     },
     "pgfplotstablegetname{}{}": {
-      "snippet": "pgfplotstablegetname{${1:table}}{${2:macro%cmd}}"
+      "snippet": "pgfplotstablegetname{${1:table}}{${2:macro}}"
     },
     "pgfplotstablenameof{}": {
       "snippet": "pgfplotstablenameof{${1:table}}"
     },
     "pgfplotstablegetscanlinelength{}{}": {
-      "snippet": "pgfplotstablegetscanlinelength{${1:table}}{${2:macro%cmd}}"
+      "snippet": "pgfplotstablegetscanlinelength{${1:table}}{${2:macro}}"
     },
     "pgfplotstablescanlinelengthof{}": {
       "snippet": "pgfplotstablescanlinelengthof{${1:table}}"
@@ -663,10 +651,10 @@
       "snippet": "pgfplotstablereadgetcolname{${1:name}}{${2:content}}"
     },
     "pgfplotstablereadgetptrtocolname{}{}": {
-      "snippet": "pgfplotstablereadgetptrtocolname{${1:name}}{${2:macro%cmd}}"
+      "snippet": "pgfplotstablereadgetptrtocolname{${1:name}}{${2:macro}}"
     },
     "pgfplotstablereadgetptrtocolindex{}{}": {
-      "snippet": "pgfplotstablereadgetptrtocolindex{${1:index}}{${2:macro%cmd}}"
+      "snippet": "pgfplotstablereadgetptrtocolindex{${1:index}}{${2:macro}}"
     },
     "pgfplotstablereadevalptr{}{}": {
       "snippet": "pgfplotstablereadevalptr{${1:pointer}}{${2:content}}"
@@ -681,7 +669,7 @@
       "snippet": "pgfplotstablereadvalueofcolindex{${1:index}}"
     },
     "getthisrow{}{}": {
-      "snippet": "getthisrow{${1:name}}{${2:macro%cmd}}"
+      "snippet": "getthisrow{${1:name}}{${2:macro}}"
     },
     "thisrow{}": {
       "snippet": "thisrow{${1:col name}}"
@@ -691,7 +679,7 @@
     },
     "lineno": {},
     "getthisrowno{}{}": {
-      "snippet": "getthisrowno{${1:name}}{${2:macro%cmd}}"
+      "snippet": "getthisrowno{${1:name}}{${2:macro}}"
     },
     "pgfplotstableset{}": {
       "snippet": "pgfplotstableset{${1:options}}"
@@ -790,13 +778,13 @@
       "snippet": "pgfplotscolormapgetmeshwidth{${1:colormap}}"
     },
     "pgfplotscolormapserializecomponentstomacro{}{}": {
-      "snippet": "pgfplotscolormapserializecomponentstomacro{${1:colormap}}{${2:macro%cmd}}"
+      "snippet": "pgfplotscolormapserializecomponentstomacro{${1:colormap}}{${2:macro}}"
     },
     "pgfplotscolormapserializeXtomacro{}{}": {
-      "snippet": "pgfplotscolormapserializeXtomacro{${1:colormap}}{${2:macro%cmd}}"
+      "snippet": "pgfplotscolormapserializeXtomacro{${1:colormap}}{${2:macro}}"
     },
     "pgfplotscolormapserializetomacro{}{}": {
-      "snippet": "pgfplotscolormapserializetomacro{${1:colormap}}{${2:macro%cmd}}"
+      "snippet": "pgfplotscolormapserializetomacro{${1:colormap}}{${2:macro}}"
     },
     "pgfplotscolormapgetpositions[]{}": {
       "snippet": "pgfplotscolormapgetpositions[${2:start:end}]{${1:colormap}}"
@@ -827,11 +815,11 @@
       "snippet": "pgfplotscolormapassertexists{${1:colormap}}"
     },
     "pgfplotscolormaptoshadingspec{}{}{}": {
-      "snippet": "pgfplotscolormaptoshadingspec{${1:colormap}}{${2:pgf size}}{${3:macro%cmd}}"
+      "snippet": "pgfplotscolormaptoshadingspec{${1:colormap}}{${2:pgf size}}{${3:macro}}"
     },
     "pgfplotscolormaptoshadingspectorgb": {},
     "pgfplotscolormapreversedtoshadingspec{}{}{}": {
-      "snippet": "pgfplotscolormapreversedtoshadingspec{${1:colormap}}{${2:pgf size}}{${3:macro%cmd}}"
+      "snippet": "pgfplotscolormapreversedtoshadingspec{${1:colormap}}{${2:pgf size}}{${3:macro}}"
     },
     "pgfplotscolormaprange": {},
     "pgfplotscolormapgetcolorspace{}": {
@@ -900,7 +888,7 @@
     "pgfplotssurveyphaseinputclass": {},
     "pgfplotsresetplothandler": {},
     "pgfplotsplothandlerserializepointto{}": {
-      "snippet": "pgfplotsplothandlerserializepointto{${1:macro%cmd}}"
+      "snippet": "pgfplotsplothandlerserializepointto{${1:macro}}"
     },
     "pgfplotsplothandlerdeserializepointfrom{}": {
       "snippet": "pgfplotsplothandlerdeserializepointfrom{${1:macro}}"
@@ -909,7 +897,7 @@
       "snippet": "pgfplotsplothandlerpointtokeys{${1:key prefix}}"
     },
     "pgfplotsplothandlerserializestateto{}": {
-      "snippet": "pgfplotsplothandlerserializestateto{${1:macro%cmd}}"
+      "snippet": "pgfplotsplothandlerserializestateto{${1:macro}}"
     },
     "pgfplotsplothandlervisualizejump": {},
     "pgfplotsplothandlersurveypointattime{}{}{}": {
@@ -1024,7 +1012,7 @@
     "factor": {},
     "curelem": {},
     "pgfplotssetaxesfromazel{}{}{}": {
-      "snippet": "pgfplotssetaxesfromazel{${1:azimuth}}{${2:elevation}}{${3:macro%cmd}}"
+      "snippet": "pgfplotssetaxesfromazel{${1:azimuth}}{${2:elevation}}{${3:macro}}"
     },
     "sinaz": {},
     "cosaz": {},
@@ -1063,7 +1051,7 @@
       "snippet": "pgfplotspointticklabelnoshiftcs{${1:axis}}{${2:coord}}"
     },
     "pgfplotsconvertunittocoordinate{}{}": {
-      "snippet": "pgfplotsconvertunittocoordinate{${1:axis}}{${2:dimen%l}}"
+      "snippet": "pgfplotsconvertunittocoordinate{${1:axis}}{${2:dimen}}"
     },
     "pgfplotsqpointxyzabsolutesize{}{}{}": {
       "snippet": "pgfplotsqpointxyzabsolutesize{${1:x}}{${2:y}}{${3:z}}"
@@ -1077,9 +1065,6 @@
     "pgfplotspointonorientedsurfacespec": {},
     "pgfplotspointonorientedsurfacespecunordered": {},
     "pgfplotspointonorientedsurfacespecsymbol": {},
-    "pgfplotspointonorientedsurfaceabsetupfor%<surfacestring%>": {
-      "snippet": "pgfplotspointonorientedsurfaceabsetupfor ${1:surface string}"
-    },
     "pgfplotspointonorientedsurfaceabsetupforsetx{}{}": {
       "snippet": "pgfplotspointonorientedsurfaceabsetupforsetx{${1:x}}{${2:char}}"
     },
@@ -1096,7 +1081,7 @@
       "snippet": "pgfplotspointonorientedsurfaceabtolinespec{${1:value}}{${2:surface}}"
     },
     "pgfplotspointonorientedsurfaceabgetcontainedaxisline{}{}": {
-      "snippet": "pgfplotspointonorientedsurfaceabgetcontainedaxisline{${1:value}}{${2:macro%cmd}}"
+      "snippet": "pgfplotspointonorientedsurfaceabgetcontainedaxisline{${1:value}}{${2:macro}}"
     },
     "pgfplotsifaxissurfaceisforeground{}{}{}": {
       "snippet": "pgfplotsifaxissurfaceisforeground{${1:surface}}{${2:true}}{${3:false}}"
@@ -1105,19 +1090,19 @@
       "snippet": "pgfplotsifaxislineisonconvexhull{${1:surface}}{${2:true}}{${3:false}}"
     },
     "pgfplotspointonorientedsurfaceabmatchaxisline{}{}": {
-      "snippet": "pgfplotspointonorientedsurfaceabmatchaxisline{${1:surface}}{${2:macro%cmd}}"
+      "snippet": "pgfplotspointonorientedsurfaceabmatchaxisline{${1:surface}}{${2:macro}}"
     },
     "pgfplotsmatchcubeparts{}{}{}": {
-      "snippet": "pgfplotsmatchcubeparts{${1:cube part}}{${2:surface}}{${3:macro%cmd}}"
+      "snippet": "pgfplotsmatchcubeparts{${1:cube part}}{${2:surface}}{${3:macro}}"
     },
     "pgfplotsqpointoutsideofaxis{}{}{}": {
-      "snippet": "pgfplotsqpointoutsideofaxis{${1:axis}}{${2:coord}}{${3:dimen%l}}"
+      "snippet": "pgfplotsqpointoutsideofaxis{${1:axis}}{${2:coord}}{${3:dimen}}"
     },
     "pgfplotsqpointoutsideofaxisrel{}{}{}": {
-      "snippet": "pgfplotsqpointoutsideofaxisrel{${1:axis}}{${2:coord}}{${3:dimen%l}}"
+      "snippet": "pgfplotsqpointoutsideofaxisrel{${1:axis}}{${2:coord}}{${3:dimen}}"
     },
     "pgfplotsqpointoutsideofaxistransformed{}{}{}": {
-      "snippet": "pgfplotsqpointoutsideofaxistransformed{${1:axis}}{${2:coord}}{${3:dimen%l}}"
+      "snippet": "pgfplotsqpointoutsideofaxistransformed{${1:axis}}{${2:coord}}{${3:dimen}}"
     },
     "pgfplotspointouternormalvectorofaxis{}": {
       "snippet": "pgfplotspointouternormalvectorofaxis{${1:axis}}"
@@ -1283,13 +1268,13 @@
       "snippet": "pgfplotsvalueoflargesttickdimen{${1:x, y, or z}}"
     },
     "pgfplotsqpointoutsideofticklabelaxis{}{}{}": {
-      "snippet": "pgfplotsqpointoutsideofticklabelaxis{${1:x, y, or z}}{${2:coord}}{${3:dimen%l}}"
+      "snippet": "pgfplotsqpointoutsideofticklabelaxis{${1:x, y, or z}}{${2:coord}}{${3:dimen}}"
     },
     "pgfplotsqpointoutsideofticklabelaxisrel{}{}{}": {
-      "snippet": "pgfplotsqpointoutsideofticklabelaxisrel{${1:x, y, or z}}{${2:coord}}{${3:dimen%l}}"
+      "snippet": "pgfplotsqpointoutsideofticklabelaxisrel{${1:x, y, or z}}{${2:coord}}{${3:dimen}}"
     },
     "pgfplotsqpointoutsideofticklabelaxistransformed{}{}{}": {
-      "snippet": "pgfplotsqpointoutsideofticklabelaxistransformed{${1:x, y, or z}}{${2:coord}}{${3:dimen%l}}"
+      "snippet": "pgfplotsqpointoutsideofticklabelaxistransformed{${1:x, y, or z}}{${2:coord}}{${3:dimen}}"
     },
     "pgfplotsticklabelaxisspec{}": {
       "snippet": "pgfplotsticklabelaxisspec{${1:x, y, or z}}"
@@ -3545,47 +3530,7 @@
       ],
       "keyvalindex": 0
     },
-    "pgfplotsinterruptdatabb": {},
-    "tikzpicture%function%\\\\begin{}[]%\\\\addplot{};%\\\\end{}%\\\\end{}": {
-      "name": "tikzpicture",
-      "snippet": "% function%\\\\begin{${1:axis}}[${2:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]%\\\\addplot {${3:%|}};%\\\\end{${4:axis}}%\\\\end{${5:tikzpicture}}"
-    },
-    "tikzpicture%table%\\\\begin{}[]%\\\\addplottable[]{};%\\\\end{}%\\\\end{}": {
-      "name": "tikzpicture",
-      "snippet": "% table%\\\\begin{${1:axis}}[${2:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]%\\\\addplot table[${3:x=%<column header%>,y=%<column header%>}] {${4:%<file%>}};%\\\\end{${5:axis}}%\\\\end{${6:tikzpicture}}"
-    },
-    "tikzpicture%coordinates%\\\\begin{}[]%\\\\addplotcoordinates{};%\\\\end{}%\\\\end{}": {
-      "name": "tikzpicture",
-      "snippet": "% coordinates%\\\\begin{${1:axis}}[${2:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]%\\\\addplot coordinates {${3:%|}};%\\\\end{${4:axis}}%\\\\end{${5:tikzpicture}}"
-    },
-    "tikzpicture%file%\\\\begin{}[]%\\\\addplotfile{};%\\\\end{}%\\\\end{}": {
-      "name": "tikzpicture",
-      "snippet": "% file%\\\\begin{${1:axis}}[${2:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]%\\\\addplot file {${3:%<file%>}};%\\\\end{${4:axis}}%\\\\end{${5:tikzpicture}}"
-    },
-    "tikzpicture%gnuplot%\\\\begin{}[]%\\\\addplotgnuplot{};%\\\\end{}%\\\\end{}": {
-      "name": "tikzpicture",
-      "snippet": "% gnuplot%\\\\begin{${1:axis}}[${2:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]%\\\\addplot gnuplot {${3:%<gnuplot code%>}};%\\\\end{${4:axis}}%\\\\end{${5:tikzpicture}}"
-    },
-    "axis[]%function%\\\\addplot{};%\\\\end{}": {
-      "name": "axis",
-      "snippet": "[${3:options}]% function%\\\\addplot {${1:%|}};%\\\\end{${2:axis}}"
-    },
-    "axis[]%table%\\\\addplottable[]{};%\\\\end{}": {
-      "name": "axis",
-      "snippet": "[${3:options}]% table%\\\\addplot table[${4:x=%<column header%>,y=%<column header%>}] {${1:%<file%>}};%\\\\end{${2:axis}}"
-    },
-    "axis[]%coordinates%\\\\addplotcoordinates{};%\\\\end{}": {
-      "name": "axis",
-      "snippet": "[${3:options}]% coordinates%\\\\addplot coordinates {${1:%|}};%\\\\end{${2:axis}}"
-    },
-    "axis[]%file%\\\\addplotfile{};%\\\\end{}": {
-      "name": "axis",
-      "snippet": "[${3:options}]% file%\\\\addplot file {${1:%<file%>}};%\\\\end{${2:axis}}"
-    },
-    "axis[]%gnuplot%\\\\addplotgnuplot{};%\\\\end{}": {
-      "name": "axis",
-      "snippet": "[${3:options}]% gnuplot%\\\\addplot gnuplot {${1:%<gnuplot code%>}};%\\\\end{${2:axis}}"
-    }
+    "pgfplotsinterruptdatabb": {}
   },
   "options": []
 }

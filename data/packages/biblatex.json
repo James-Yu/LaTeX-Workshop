@@ -423,7 +423,7 @@
       "snippet": "defbibheading{${1:name}}{${2:code}}"
     },
     "defbibheading{}[]{}": {
-      "snippet": "defbibheading{${1:name}}[${2:title%text}]{${3:code}}"
+      "snippet": "defbibheading{${1:name}}[${2:title}]{${3:code}}"
     },
     "defbibnote{}{}": {
       "snippet": "defbibnote{${1:name}}{${2:text}}"
@@ -617,7 +617,7 @@
       "snippet": "footcite[${2:prenote}][${3:postnote}]{${1:bibid}}"
     },
     "footcite[]{}": {
-      "snippet": "footcite[${2:(${3:%<postnote:prefix%>})%<postnote:stem%>}]{${1:%<bibid%>}}",
+      "snippet": "footcite[${2:(${3:postnote:prefix})postnote:stem}]{${1:bibid}}",
       "option": "style=jura2"
     },
     "footcite{}": {
@@ -2085,52 +2085,52 @@
       "snippet": "DeclareBibliographyAlias{${1:alias}}{${2:entrytype}}"
     },
     "DeclareBibliographyOption{}{}": {
-      "snippet": "DeclareBibliographyOption{${1:key%plain}}{${2:code}}"
+      "snippet": "DeclareBibliographyOption{${1:key}}{${2:code}}"
     },
     "DeclareBibliographyOption[]{}{}": {
-      "snippet": "DeclareBibliographyOption[${3:datatype}]{${1:key%plain}}{${2:code}}"
+      "snippet": "DeclareBibliographyOption[${3:datatype}]{${1:key}}{${2:code}}"
     },
     "DeclareBibliographyOption{}[]{}": {
-      "snippet": "DeclareBibliographyOption{${1:key%plain}}[${2:value}]{${3:code}}"
+      "snippet": "DeclareBibliographyOption{${1:key}}[${2:value}]{${3:code}}"
     },
     "DeclareBibliographyOption[]{}[]{}": {
-      "snippet": "DeclareBibliographyOption[${3:datatype}]{${1:key%plain}}[${4:value}]{${2:code}}"
+      "snippet": "DeclareBibliographyOption[${3:datatype}]{${1:key}}[${4:value}]{${2:code}}"
     },
     "DeclareTypeOption{}{}": {
-      "snippet": "DeclareTypeOption{${1:key%plain}}{${2:code}}"
+      "snippet": "DeclareTypeOption{${1:key}}{${2:code}}"
     },
     "DeclareTypeOption[]{}{}": {
-      "snippet": "DeclareTypeOption[${3:datatype}]{${1:key%plain}}{${2:code}}"
+      "snippet": "DeclareTypeOption[${3:datatype}]{${1:key}}{${2:code}}"
     },
     "DeclareTypeOption{}[]{}": {
-      "snippet": "DeclareTypeOption{${1:key%plain}}[${2:value}]{${3:code}}"
+      "snippet": "DeclareTypeOption{${1:key}}[${2:value}]{${3:code}}"
     },
     "DeclareTypeOption[]{}[]{}": {
-      "snippet": "DeclareTypeOption[${3:datatype}]{${1:key%plain}}[${4:value}]{${2:code}}"
+      "snippet": "DeclareTypeOption[${3:datatype}]{${1:key}}[${4:value}]{${2:code}}"
     },
     "DeclareEntryOption{}{}": {
-      "snippet": "DeclareEntryOption{${1:key%plain}}{${2:code}}"
+      "snippet": "DeclareEntryOption{${1:key}}{${2:code}}"
     },
     "DeclareEntryOption[]{}{}": {
-      "snippet": "DeclareEntryOption[${3:datatype}]{${1:key%plain}}{${2:code}}"
+      "snippet": "DeclareEntryOption[${3:datatype}]{${1:key}}{${2:code}}"
     },
     "DeclareEntryOption{}[]{}": {
-      "snippet": "DeclareEntryOption{${1:key%plain}}[${2:value}]{${3:code}}"
+      "snippet": "DeclareEntryOption{${1:key}}[${2:value}]{${3:code}}"
     },
     "DeclareEntryOption[]{}[]{}": {
-      "snippet": "DeclareEntryOption[${3:datatype}]{${1:key%plain}}[${4:value}]{${2:code}}"
+      "snippet": "DeclareEntryOption[${3:datatype}]{${1:key}}[${4:value}]{${2:code}}"
     },
     "DeclareBiblatexOption{}{}{}": {
-      "snippet": "DeclareBiblatexOption{${1:scope}}{${2:key%plain}}{${3:code}}"
+      "snippet": "DeclareBiblatexOption{${1:scope}}{${2:key}}{${3:code}}"
     },
     "DeclareBiblatexOption{}[]{}{}": {
-      "snippet": "DeclareBiblatexOption{${1:scope}}[${2:datatype}]{${3:key%plain}}{${4:code}}"
+      "snippet": "DeclareBiblatexOption{${1:scope}}[${2:datatype}]{${3:key}}{${4:code}}"
     },
     "DeclareBiblatexOption{}{}[]{}": {
-      "snippet": "DeclareBiblatexOption{${1:scope}}{${2:key%plain}}[${3:value}]{${4:code}}"
+      "snippet": "DeclareBiblatexOption{${1:scope}}{${2:key}}[${3:value}]{${4:code}}"
     },
     "DeclareBiblatexOption{}[]{}[]{}": {
-      "snippet": "DeclareBiblatexOption{${1:scope}}[${2:datatype}]{${3:key%plain}}[${4:value}]{${5:code}}"
+      "snippet": "DeclareBiblatexOption{${1:scope}}[${2:datatype}]{${3:key}}[${4:value}]{${5:code}}"
     },
     "RequireCitationStyle{}": {
       "snippet": "RequireCitationStyle{${1:style}}"
@@ -2259,10 +2259,10 @@
       "snippet": "indexnames[${2:format}][${3:start-stop}]{${1:name list}}"
     },
     "entrydata{}{}": {
-      "snippet": "entrydata{${1:key%plain}}{${2:code}}"
+      "snippet": "entrydata{${1:key}}{${2:code}}"
     },
     "entrydata*{}{}": {
-      "snippet": "entrydata*{${1:key%plain}}{${2:code}}"
+      "snippet": "entrydata*{${1:key}}{${2:code}}"
     },
     "entryset{}{}": {
       "snippet": "entryset{${1:precode}}{${2:postcode}}"
@@ -3156,7 +3156,7 @@
       "snippet": "ifiscomputable{${1:string}}{${2:true}}{${3:false}}"
     },
     "getcomputableequivalent{}{}": {
-      "snippet": "getcomputableequivalent{${1:string}}{${2:macro%cmd}}"
+      "snippet": "getcomputableequivalent{${1:string}}{${2:macro}}"
     },
     "ifnumeral{}{}{}": {
       "snippet": "ifnumeral{${1:string}}{${2:true}}{${3:false}}"
@@ -3238,64 +3238,64 @@
       "snippet": "ifthenelse{${1:tests}}{${2:true}}{${3:false}}"
     },
     "newbibmacro{}{}": {
-      "snippet": "newbibmacro{${1:name%cmd}}{${2:definition}}"
+      "snippet": "newbibmacro{${1:name}}{${2:definition}}"
     },
     "newbibmacro{}[]{}": {
-      "snippet": "newbibmacro{${1:name%cmd}}[${2:args}]{${3:definition}}"
+      "snippet": "newbibmacro{${1:name}}[${2:args}]{${3:definition}}"
     },
     "newbibmacro{}[][]{}": {
-      "snippet": "newbibmacro{${1:name%cmd}}[${2:args}][${3:default}]{${4:definition}}"
+      "snippet": "newbibmacro{${1:name}}[${2:args}][${3:default}]{${4:definition}}"
     },
     "newbibmacro*{}{}": {
-      "snippet": "newbibmacro*{${1:name%cmd}}{${2:definition}}"
+      "snippet": "newbibmacro*{${1:name}}{${2:definition}}"
     },
     "newbibmacro*{}[]{}": {
-      "snippet": "newbibmacro*{${1:name%cmd}}[${2:args}]{${3:definition}}"
+      "snippet": "newbibmacro*{${1:name}}[${2:args}]{${3:definition}}"
     },
     "newbibmacro*{}[][]{}": {
-      "snippet": "newbibmacro*{${1:name%cmd}}[${2:args}][${3:default}]{${4:definition}}"
+      "snippet": "newbibmacro*{${1:name}}[${2:args}][${3:default}]{${4:definition}}"
     },
     "renewbibmacro{}{}": {
-      "snippet": "renewbibmacro{${1:name%cmd}}{${2:definition}}"
+      "snippet": "renewbibmacro{${1:name}}{${2:definition}}"
     },
     "renewbibmacro{}[]{}": {
-      "snippet": "renewbibmacro{${1:name%cmd}}[${2:args}]{${3:definition}}"
+      "snippet": "renewbibmacro{${1:name}}[${2:args}]{${3:definition}}"
     },
     "renewbibmacro{}[][]{}": {
-      "snippet": "renewbibmacro{${1:name%cmd}}[${2:args}][${3:default}]{${4:definition}}"
+      "snippet": "renewbibmacro{${1:name}}[${2:args}][${3:default}]{${4:definition}}"
     },
     "renewbibmacro*{}{}": {
-      "snippet": "renewbibmacro*{${1:name%cmd}}{${2:definition}}"
+      "snippet": "renewbibmacro*{${1:name}}{${2:definition}}"
     },
     "renewbibmacro*{}[]{}": {
-      "snippet": "renewbibmacro*{${1:name%cmd}}[${2:args}]{${3:definition}}"
+      "snippet": "renewbibmacro*{${1:name}}[${2:args}]{${3:definition}}"
     },
     "renewbibmacro*{}[][]{}": {
-      "snippet": "renewbibmacro*{${1:name%cmd}}[${2:args}][${3:default}]{${4:definition}}"
+      "snippet": "renewbibmacro*{${1:name}}[${2:args}][${3:default}]{${4:definition}}"
     },
     "providebibmacro{}{}": {
-      "snippet": "providebibmacro{${1:name%cmd}}{${2:definition}}"
+      "snippet": "providebibmacro{${1:name}}{${2:definition}}"
     },
     "providebibmacro{}[]{}": {
-      "snippet": "providebibmacro{${1:name%cmd}}[${2:args}]{${3:definition}}"
+      "snippet": "providebibmacro{${1:name}}[${2:args}]{${3:definition}}"
     },
     "providebibmacro{}[][]{}": {
-      "snippet": "providebibmacro{${1:name%cmd}}[${2:args}][${3:default}]{${4:definition}}"
+      "snippet": "providebibmacro{${1:name}}[${2:args}][${3:default}]{${4:definition}}"
     },
     "providebibmacro*{}{}": {
-      "snippet": "providebibmacro*{${1:name%cmd}}{${2:definition}}"
+      "snippet": "providebibmacro*{${1:name}}{${2:definition}}"
     },
     "providebibmacro*{}[]{}": {
-      "snippet": "providebibmacro*{${1:name%cmd}}[${2:args}]{${3:definition}}"
+      "snippet": "providebibmacro*{${1:name}}[${2:args}]{${3:definition}}"
     },
     "providebibmacro*{}[][]{}": {
-      "snippet": "providebibmacro*{${1:name%cmd}}[${2:args}][${3:default}]{${4:definition}}"
+      "snippet": "providebibmacro*{${1:name}}[${2:args}][${3:default}]{${4:definition}}"
     },
     "letbibmacro{}{}": {
-      "snippet": "letbibmacro{${1:alias%cmd}}{${2:name}}"
+      "snippet": "letbibmacro{${1:alias}}{${2:name}}"
     },
     "letbibmacro*{}{}": {
-      "snippet": "letbibmacro*{${1:alias%cmd}}{${2:name}}"
+      "snippet": "letbibmacro*{${1:alias}}{${2:name}}"
     },
     "usebibmacro{}": {
       "snippet": "usebibmacro{${1:name}}"
@@ -3568,7 +3568,7 @@
       "snippet": "DeclareCaseLangs*{${1:languages}}"
     },
     "BibliographyWarning{}": {
-      "snippet": "BibliographyWarning{${1:message%text}}"
+      "snippet": "BibliographyWarning{${1:message}}"
     },
     "pagetrackertrue": {},
     "pagetrackerfalse": {},
@@ -3951,14 +3951,14 @@
     "BiblatexSplitbibDefernumbersWarningOff": {},
     "biburlsetup": {},
     "blxcitecmd{}{}{}{}{}": {
-      "snippet": "blxcitecmd{${1:name}}{${2:prenote}}{${3:postnote}}{${4:citekey%plain}}{${5:punct}}"
+      "snippet": "blxcitecmd{${1:name}}{${2:prenote}}{${3:postnote}}{${4:citekey}}{${5:punct}}"
     },
     "blxciteicmd{}{}{}{}{}": {
-      "snippet": "blxciteicmd{${1:name}}{${2:prenote}}{${3:postnote}}{${4:citekey%plain}}{${5:punct}}"
+      "snippet": "blxciteicmd{${1:name}}{${2:prenote}}{${3:postnote}}{${4:citekey}}{${5:punct}}"
     },
     "blxendmcites": {},
     "blxmciteicmd{}{}{}{}{}{}": {
-      "snippet": "blxmciteicmd{${1:multicitecount}}{${2:<name>}}{${3:prenote}}{${4:postnote}}{${5:citekey%plain}}{${6:punct}}"
+      "snippet": "blxmciteicmd{${1:multicitecount}}{${2:<name>}}{${3:prenote}}{${4:postnote}}{${5:citekey}}{${6:punct}}"
     },
     "blxmcites{}{}{}": {
       "snippet": "blxmcites{${1:multicitetotal}}{${2:multiprenote}}{${3:multipostnote}}"
@@ -4342,10 +4342,6 @@
       "option": "style=archaeologie"
     },
     "archaeologieoptions": {
-      "option": "style=archaeologie"
-    },
-    "archaeologieoptions[]%|": {
-      "snippet": "archaeologieoptions[${1:plain}]%|",
       "option": "style=archaeologie"
     },
     "seperator": {
@@ -6208,11 +6204,11 @@
       "option": "bibstyle=publist"
     },
     "plisbnlink{}": {
-      "snippet": "plisbnlink{${1:ISBN%URL}}",
+      "snippet": "plisbnlink{${1:ISBN}}",
       "option": "bibstyle=publist"
     },
     "plissnlink{}": {
-      "snippet": "plissnlink{${1:ISSN%URL}}",
+      "snippet": "plissnlink{${1:ISSN}}",
       "option": "bibstyle=publist"
     },
     "mkbibdesc{}": {
