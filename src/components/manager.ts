@@ -1001,7 +1001,7 @@ export class Manager {
                     break
                 }
                 const packages = result[2].split(',')
-                const options = result[1].slice(1,-1).replaceAll(/\s*=\s*/g,'=').split(',')
+                const options = (result[1] || '[]').slice(1,-1).replaceAll(/\s*=\s*/g,'=').split(',')
                 const optionsNoTrue = options.filter(option => option.includes('=true')).map(option => option.replace('=true', ''))
                 packages.forEach(packageName => this.pushUsepackage(file, packageName, [...options, ...optionsNoTrue]))
             }
