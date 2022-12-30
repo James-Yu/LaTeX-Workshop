@@ -409,7 +409,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
             // Since WebSockets are disconnected when PC resumes from sleep,
             // we have to reconnect. https://github.com/James-Yu/LaTeX-Workshop/pull/1812
-            const reconnect = (tries: number) => async () => {
+            const reconnect = (tries: number) => () => {
                 console.log(`Try to reconnect to LaTeX Workshop: (${tries}/10).`)
                 try {
                     this.connectionPort = createConnectionPort(this)
@@ -421,7 +421,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 }
                 catch {
                     if (tries <= 10) {
-                        tries++ 
+                        tries++
                         setTimeout(reconnect(tries), 1000 * (tries + 2))
                     } else {
                         console.log('Cannot reconnect to LaTeX Workshop.')
