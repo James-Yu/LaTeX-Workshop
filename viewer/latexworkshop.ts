@@ -1,6 +1,7 @@
 import {IConnectionPort, createConnectionPort} from './components/connection.js'
+import {editHTML} from './components/htmleditor.js'
 import {SyncTex} from './components/synctex.js'
-import {PageTrimmer} from './components/pagetrimmer.js'
+import {PageTrimmer, registerPageTrimmer} from './components/pagetrimmer.js'
 import * as utils from './components/utils.js'
 import {ExternalPromise} from './components/externalpromise.js'
 import {ViewerHistory} from './components/viewerhistory.js'
@@ -50,6 +51,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         document.title = this.documentTitle
         this.pdfFileUri = pack.pdfFileUri
 
+        editHTML()
+
         this.viewerHistory = new ViewerHistory(this)
         this.connectionPort = createConnectionPort(this)
         this.synctex = new SyncTex(this)
@@ -72,6 +75,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.startRebroadcastingKeyboardEvent()
         this.startSendingState()
         void this.startReceivingPanelManagerResponse()
+
+        registerPageTrimmer()
 
         this.pdfPagesLoaded = new Promise((resolve) => {
             this.onPagesLoaded(() => resolve(), {once: true})

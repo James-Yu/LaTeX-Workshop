@@ -14,60 +14,60 @@ function getTrimScale() {
     return 1.0/(1 - 2*Number(trimValue))
 }
 
-
-(document.getElementById('trimSelect') as HTMLElement).addEventListener('change', () => {
-    const trimScale = getTrimScale()
-    const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
-    const scaleSelect = document.getElementById('scaleSelect') as HTMLSelectElement
-    const ev = new Event('change')
-    if (trimSelect.selectedIndex <= 0) {
-        for ( const opt of scaleSelect.options ) {
-            opt.disabled = false
-        }
-        (document.getElementById('trimOption') as HTMLOptionElement).disabled = true;
-        (document.getElementById('trimOption') as HTMLOptionElement).hidden = true
-        if (originalUserSelectIndex !== undefined) {
-            /**
-             * If the original scale is custom, selectedIndex === 4,
-             * we use page-width, selectedIndex === 3.
-             * There is no way to set the custom scale.
-             */
-            if (originalUserSelectIndex === 4) {
-                scaleSelect.selectedIndex = 3
-            } else {
-                scaleSelect.selectedIndex = originalUserSelectIndex
+export function registerPageTrimmer() {
+    (document.getElementById('trimSelect') as HTMLElement).addEventListener('change', () => {
+        const trimScale = getTrimScale()
+        const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
+        const scaleSelect = document.getElementById('scaleSelect') as HTMLSelectElement
+        const ev = new Event('change')
+        if (trimSelect.selectedIndex <= 0) {
+            for ( const opt of scaleSelect.options ) {
+                opt.disabled = false
             }
-        }
-        scaleSelect.dispatchEvent(ev)
-        currentUserSelectScale = undefined
-        originalUserSelectIndex = undefined
-        const viewer = document.getElementById('viewer') as HTMLElement
-        for ( const page of viewer.getElementsByClassName('page') ) {
-            for ( const layer of page.getElementsByClassName('annotationLayer') ) {
-                for ( const secionOfAnnotation of layer.getElementsByTagName('section') ) {
-                    if (secionOfAnnotation.dataset.originalLeft !== undefined) {
-                        secionOfAnnotation.style.left = secionOfAnnotation.dataset.originalLeft
+            (document.getElementById('trimOption') as HTMLOptionElement).disabled = true;
+            (document.getElementById('trimOption') as HTMLOptionElement).hidden = true
+            if (originalUserSelectIndex !== undefined) {
+                /**
+                 * If the original scale is custom, selectedIndex === 4,
+                 * we use page-width, selectedIndex === 3.
+                 * There is no way to set the custom scale.
+                 */
+                if (originalUserSelectIndex === 4) {
+                    scaleSelect.selectedIndex = 3
+                } else {
+                    scaleSelect.selectedIndex = originalUserSelectIndex
+                }
+            }
+            scaleSelect.dispatchEvent(ev)
+            currentUserSelectScale = undefined
+            originalUserSelectIndex = undefined
+            const viewer = document.getElementById('viewer') as HTMLElement
+            for ( const page of viewer.getElementsByClassName('page') ) {
+                for ( const layer of page.getElementsByClassName('annotationLayer') ) {
+                    for ( const secionOfAnnotation of layer.getElementsByTagName('section') ) {
+                        if (secionOfAnnotation.dataset.originalLeft !== undefined) {
+                            secionOfAnnotation.style.left = secionOfAnnotation.dataset.originalLeft
+                        }
                     }
                 }
             }
+            return
         }
-        return
-    }
-    for ( const opt of scaleSelect.options ) {
-        opt.disabled = true
-    }
-    if (currentUserSelectScale === undefined) {
-        currentUserSelectScale = PDFViewerApplication.pdfViewer._currentScale
-    }
-    if (originalUserSelectIndex === undefined) {
-        originalUserSelectIndex = scaleSelect.selectedIndex
-    }
-    const opt = document.getElementById('trimOption') as HTMLOptionElement
-    opt.value = (currentUserSelectScale * trimScale).toString()
-    opt.selected = true
-    scaleSelect.dispatchEvent(ev)
-})
-
+        for ( const opt of scaleSelect.options ) {
+            opt.disabled = true
+        }
+        if (currentUserSelectScale === undefined) {
+            currentUserSelectScale = PDFViewerApplication.pdfViewer._currentScale
+        }
+        if (originalUserSelectIndex === undefined) {
+            originalUserSelectIndex = scaleSelect.selectedIndex
+        }
+        const opt = document.getElementById('trimOption') as HTMLOptionElement
+        opt.value = (currentUserSelectScale * trimScale).toString()
+        opt.selected = true
+        scaleSelect.dispatchEvent(ev)
+    })
+}
 
 function trimPage(page: HTMLElement) {
     const trimScale = getTrimScale()
