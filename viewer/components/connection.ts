@@ -27,15 +27,20 @@ export class WebSocketPort implements IConnectionPort {
             sock.addEventListener('open', () => {
                 resolve(sock)
             })
-            sock.addEventListener('error', () => reject(new Error(`Failed to connect to ${server}`)) )
+            sock.addEventListener('error', () => reject(new Error(`Failed to connect to ${server}`)))
         })
         this.startConnectionKeeper()
     }
 
     private startConnectionKeeper() {
         // Send packets every 30 sec to prevent the connection closed by timeout.
-        setInterval(() => {
-            void this.send({type: 'ping'})
+        const id = setInterval(async () => {
+            try {
+                await this.send({type: 'ping'})
+            }
+            catch {
+                clearInterval(id)
+            }
         }, 30000)
     }
 
