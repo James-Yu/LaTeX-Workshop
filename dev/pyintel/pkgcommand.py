@@ -280,6 +280,7 @@ class CwlIntel:
                     detail=detail,
                     documentation=documentation)
             elif cwl_keyval == 'PACKAGE_OPTIONS':
+                line = re.sub(r'%<([^%]*?)%>', r'${1:\1}', line)
                 match = re.match(r'^([^#%\n]*)', line)
                 if match is None:
                     continue

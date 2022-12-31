@@ -63,7 +63,12 @@ export class Argument implements IProvider {
             return []
         }
         this.extension.completer.loadPackageData(match[1])
-        return this.extension.completer.package.getPackageOptions(match[1]).map(opt => new vscode.CompletionItem(opt, vscode.CompletionItemKind.Constant))
+        return this.extension.completer.package.getPackageOptions(match[1])
+            .map(option => {
+                const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
+                item.insertText = new vscode.SnippetString(option)
+                return item
+            })
     }
 
     private provideClassOptions(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
@@ -74,7 +79,12 @@ export class Argument implements IProvider {
             return []
         }
         this.extension.completer.loadPackageData(`class-${match[1]}`)
-        return this.extension.completer.package.getPackageOptions(`class-${match[1]}`).map(opt => new vscode.CompletionItem(opt, vscode.CompletionItemKind.Constant))
+        return this.extension.completer.package.getPackageOptions(`class-${match[1]}`)
+            .map(option => {
+                const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
+                item.insertText = new vscode.SnippetString(option)
+                return item
+            })
     }
 
     private getArgumentIndex(argstr: string) {
