@@ -993,15 +993,15 @@ export class Manager {
         if (nodes !== undefined) {
             this.updateUsepackageNodes(file, nodes)
         } else if (content !== undefined) {
-            const pkgReg = /\\usepackage(\[[^[\]{}]*\])?{(.*)}/g
+            const pkgReg = /\\usepackage(\[[^[\]{}]*\])?{(.*)}/gs
 
             while (true) {
                 const result = pkgReg.exec(content)
                 if (result === null) {
                     break
                 }
-                const packages = result[2].split(',')
-                const options = (result[1] || '[]').slice(1,-1).replaceAll(/\s*=\s*/g,'=').split(',')
+                const packages = result[2].split(',').map(packageName => packageName.trim())
+                const options = (result[1] || '[]').slice(1,-1).replaceAll(/\s*=\s*/g,'=').split(',').map(option => option.trim())
                 const optionsNoTrue = options.filter(option => option.includes('=true')).map(option => option.replace('=true', ''))
                 packages.forEach(packageName => this.pushUsepackage(file, packageName, [...options, ...optionsNoTrue]))
             }
