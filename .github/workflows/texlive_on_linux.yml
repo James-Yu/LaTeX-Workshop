@@ -53,8 +53,16 @@ jobs:
         npm ci
         npm run compile
     - name: Run tests
-      run: xvfb-run -a npm run test | grep -v 'Failed to connect to the bus:\|gpu_memory_buffer_support_x11\|is not in the list of known options'
+      run: xvfb-run -a npm run test | grep -v 'Failed to connect to the bus:\|is not in the list of known options' ; test ${PIPESTATUS[0]} -eq 0
     - run: npm run release
-    - uses: actions/upload-artifact@v3
+    - name: Archive extension package
+      uses: actions/upload-artifact@v3
       with:
+        name: latex-workshop
         path: latex-workshop-*.vsix
+    - name: Archive test logs
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-error-log
+        path: test/log/*.log
