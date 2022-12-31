@@ -199,18 +199,6 @@ export class Command implements IProvider {
         }
     }
 
-    getExtraPkgs(languageId: string): string[] {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const extraPackages = Array.from(configuration.get('intellisense.package.extra') as string[])
-        if (languageId === 'latex-expl3') {
-            extraPackages.push('latex-document')
-            extraPackages.push('expl3')
-        } else if (languageId === 'latex') {
-            extraPackages.push('latex-document')
-        }
-        return extraPackages
-    }
-
     private entryCmdToCompletion(itemKey: string, item: CmdType): CmdEnvSuggestion {
         item.command = item.command || itemKey
         const configuration = vscode.workspace.getConfiguration('latex-workshop')

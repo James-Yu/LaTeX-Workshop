@@ -62,8 +62,15 @@ export class Package implements IProvider {
 
     getPackagesIncluded(languageId: string): Set<string> {
         const packages: Set<string> = new Set()
+        if (['latex', 'latex-expl3'].includes(languageId)) {
+            packages.add('latex-document')
+        }
+        if (languageId === 'latex-expl3') {
+            packages.add('expl3')
+        }
 
-        this.extension.completer.command.getExtraPkgs(languageId).forEach(packageName => packages.add(packageName))
+        (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.extra') as string[])
+            .forEach(packageName => packages.add(packageName))
 
         this.extension.manager.getIncludedTeX().forEach(tex => {
             const included = this.extension.manager.getCachedContent(tex)?.element.package
