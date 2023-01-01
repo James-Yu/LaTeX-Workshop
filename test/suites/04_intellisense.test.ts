@@ -6,7 +6,7 @@ import rimraf from 'rimraf'
 import glob from 'glob'
 
 import { Extension } from '../../src/main'
-import { sleep, getExtension, getIntellisense, runTest, writeTeX } from './utils'
+import { sleep, getExtension, getIntellisense, runTest, writeTeX, writeTestFile, copyTestFile, waitFileParsed } from './utils'
 import { EnvSnippetType, EnvType } from '../../src/providers/completer/environment'
 import { CmdType } from '../../src/providers/completer/command'
 import { PkgType } from '../../src/providers/completion'
@@ -43,6 +43,7 @@ suite('Intellisense test suite', () => {
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', undefined)
 
         if (path.basename(fixture) === 'testground') {
             rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
@@ -168,6 +169,25 @@ suite('Intellisense test suite', () => {
         assert.ok(undefined === items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
         assert.ok(undefined === items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
         assert.ok(undefined === items.find(item => item.label === '#8'))
+    })
+
+    runTest({only: true, suiteName, fixtureName, testName: 'basic citation'}, async () => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
+        writeTestFile({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{main}', '\\end{document}')
+        copyTestFile(fixture, '../arsenal/citation/main.bib', 'main.bib')
+
+        const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
+        await vscode.window.showTextDocument(doc)
+        await extension.manager.findRoot()
+
+        await waitFileParsed(extension, path.resolve(fixture, 'main.bib'))
+        const items = getIntellisense(doc, new vscode.Position(2, 9), extension)
+        assert.ok(items)
+        assert.strictEqual(items.length, 3)
+        assert.strictEqual(items[0].label, 'art1')
+        assert.ok(items[0].filterText)
+        assert.ok(items[0].filterText.includes('Journal of CI tests'))
+        assert.ok(!items[0].filterText.includes('hintFake'))
     })
 
     runTest({suiteName, fixtureName, testName: 'glossary completion'}, async () => {

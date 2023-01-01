@@ -96,7 +96,7 @@ suite('Find root file test suite', () => {
         }})
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: 'build with outDir and view it'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'build with outDir and view it'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
         await writeTeX('main', fixture)
         await assertBuild({fixture, texFileName: 'main.tex', pdfFileName: 'out/main.pdf', extension})

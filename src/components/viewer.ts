@@ -13,7 +13,7 @@ import type {ClientRequest, PdfViewerParams, PdfViewerState} from '../../types/l
 import {Client} from './viewerlib/client'
 import {PdfViewerPanel, PdfViewerPanelSerializer, PdfViewerPanelService} from './viewerlib/pdfviewerpanel'
 import {PdfViewerManagerService} from './viewerlib/pdfviewermanager'
-import {PdfViewerPagesLoaded} from './eventbus'
+import {ViewerPageLoaded} from './eventbus'
 export {PdfViewerHookProvider} from './viewerlib/pdfviewerhook'
 
 
@@ -244,7 +244,7 @@ export class Viewer {
                 break
             }
             case 'loaded': {
-                this.extension.eventBus.fire(PdfViewerPagesLoaded)
+                this.extension.eventBus.fire(ViewerPageLoaded)
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (configuration.get('synctex.afterBuild.enabled') as boolean) {
                     this.extension.logger.addLogMessage('SyncTex after build invoked.')

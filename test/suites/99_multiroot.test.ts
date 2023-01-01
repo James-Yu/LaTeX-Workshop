@@ -160,7 +160,7 @@ suite('Multi-root workspace test suite', () => {
         await assertAutoBuild({fixture, texFileName: 'A/sub/s.tex', pdfFileName: 'A/sub/s.pdf', extension}, ['onSave'])
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: 'switching rootFile'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'switching rootFile'}, async () => {
         await writeTeX('main', fixture, {fileName: 'A/main.tex'})
         await writeTeX('main', fixture, {fileName: 'B/main.tex'})
         assert.ok(extension)
@@ -169,12 +169,12 @@ suite('Multi-root workspace test suite', () => {
         await assertRoot({fixture, openName: 'A/main.tex', rootName: 'A/main.tex', extension})
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: 'switching intellisense'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'switching intellisense'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
         writeTestFile({fixture, fileName: 'A/main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{A.bib}', '\\end{document}')
         writeTestFile({fixture, fileName: 'B/main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{B.bib}', '\\end{document}')
-        copyTestFile(fixture, '../arsenal/05_multiroot_intellisense/A/A.bib', 'A/A.bib')
-        copyTestFile(fixture, '../arsenal/05_multiroot_intellisense/B/B.bib', 'B/B.bib')
+        copyTestFile(fixture, '../arsenal/citation/main.bib', 'A/A.bib')
+        copyTestFile(fixture, '../arsenal/citation/main.bib', 'B/B.bib')
         await extension.completer.citation.parseBibFile(path.resolve(fixture, 'A/A.bib'))
         await extension.completer.citation.parseBibFile(path.resolve(fixture, 'B/B.bib'))
 

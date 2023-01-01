@@ -6,7 +6,7 @@ import * as cs from 'cross-spawn'
 
 import type { Extension } from '../main'
 import { replaceArgumentPlaceholders } from '../utils/utils'
-import { BuildFinished } from './eventbus'
+import { BuildDone } from './eventbus'
 
 export class Builder {
     private lastBuild: number = 0
@@ -381,7 +381,7 @@ export class Builder {
         }
         this.extension.logger.addLogMessage(`Successfully built ${step.rootFile}.`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
-        this.extension.eventBus.fire(BuildFinished)
+        this.extension.eventBus.fire(BuildDone)
         if (this.extension.compilerLogParser.isLaTeXmkSkipped) {
             return
         }

@@ -6,7 +6,7 @@ import * as os from 'os'
 import * as assert from 'assert'
 
 import { Extension, activate } from '../../src/main'
-import { BuildFinished, PdfViewerPagesLoaded, PdfViewerStatusChanged } from '../../src/components/eventbus'
+import { BuildDone, FileParsed, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
 import type { EventName } from '../../src/components/eventbus'
 
 export async function getExtension() {
@@ -155,9 +155,12 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFi
     }
 }
 
-async function waitEvent(extension: Extension, event: EventName) {
+async function waitEvent(extension: Extension, event: EventName, arg?: any) {
     return new Promise<void>((resolve, _) => {
-        const disposable = extension.eventBus.on(event, () => {
+        const disposable = extension.eventBus.on(event, (eventArg) => {
+            if (arg !== eventArg) {
+                return
+            }
             resolve()
             disposable?.dispose()
         })
@@ -165,7 +168,7 @@ async function waitEvent(extension: Extension, event: EventName) {
 }
 
 export async function waitBuild(extension: Extension) {
-    return waitEvent(extension, BuildFinished)
+    return waitEvent(extension, BuildDone)
 }
 
 type AssertRootOption = {
@@ -206,19 +209,23 @@ export async function assertViewer(option: AssertViewerOption) {
 
 async function waitViewer(extension: Extension) {
     return Promise.all([
-        waitEvent(extension, PdfViewerPagesLoaded),
+        waitEvent(extension, ViewerPageLoaded),
         waitViewerChange(extension)
     ])
 }
 
 async function waitViewerChange(extension: Extension) {
-    return waitEvent(extension, PdfViewerStatusChanged)
+    return waitEvent(extension, ViewerStatusChanged)
 }
 
 function getViewerStatus(extension: Extension, pdfFilePath: string) {
     const status = extension.viewer.getViewerState(vscode.Uri.file(pdfFilePath))[0]
     assert.ok(status)
     return status
+}
+
+export async function waitFileParsed(extension: Extension, fileName: string) {
+    return waitEvent(extension, FileParsed, fileName)
 }
 
 type WriteTeXType = 'main' | 'makeindex' | 'makesubfileindex' | 'magicprogram' | 'magicoption' | 'magicroot' | 'magicinvalidprogram' |
