@@ -53,7 +53,7 @@ jobs:
         npm ci
         npm run compile
     - name: Run tests
-      run: xvfb-run -a npm run test | grep -v 'Failed to connect to the bus:\|is not in the list of known options' ; test ${PIPESTATUS[0]} -eq 0
+      run: xvfb-run -a npm run test | grep -v 'Failed to connect to the bus:\|is not in the list of known options\|gpu_memory_buffer_support_x11' ; test ${PIPESTATUS[0]} -eq 0
     - run: npm run release
     - name: Archive extension package
       uses: actions/upload-artifact@v3
