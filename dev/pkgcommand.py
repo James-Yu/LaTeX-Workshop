@@ -58,8 +58,12 @@ def parse_cwl_files(cwl_files):
             remove_spaces = True
         pkg = cwlIntel.parse_cwl_file(cwl_file, remove_spaces)
         json.dump(dataclasses.asdict(pkg, dict_factory=lambda x: {k: v for (k, v) in x if v is not None}),
-                  open(OUT_DIR.joinpath(cwl_file.stem + '.json'), 'w', encoding='utf8'), indent=2, ensure_ascii=False)
+                  open(OUT_DIR.joinpath(change_json_name(cwl_file.stem) + '.json'), 'w', encoding='utf8'), indent=2, ensure_ascii=False)
 
+def change_json_name(file_stem):
+    if (file_stem in ['yathesis']):
+        return 'class-' + file_stem
+    return file_stem
 
 if __name__ == '__main__':
     if INFILES is None:
