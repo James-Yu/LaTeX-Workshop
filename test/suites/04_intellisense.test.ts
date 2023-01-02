@@ -166,7 +166,7 @@ suite('Intellisense test suite', () => {
         assert.ok(undefined === items.find(item => item.label === '#8'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'basic citation'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'citation and related configs intellisense.citation.*'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
         writeTestFile({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{main}', '\\end{document}')
         copyTestFile(fixture, 'basic.bib', 'main.bib')
@@ -174,52 +174,29 @@ suite('Intellisense test suite', () => {
         const wait = waitFileParsed(extension, path.resolve(fixture, 'main.bib'))
         await extension.completer.citation.parseBibFile(path.resolve(fixture, 'main.bib'))
         await wait
-        const items = getIntellisense(result.doc, new vscode.Position(2, 9), extension)
+
+        let items = getIntellisense(result.doc, new vscode.Position(2, 9), extension)
         assert.ok(items)
         assert.strictEqual(items.length, 3)
         assert.strictEqual(items[0].label, 'art1')
         assert.ok(items[0].filterText)
         assert.ok(items[0].filterText.includes('Journal of CI tests'))
         assert.ok(!items[0].filterText.includes('hintFake'))
-    })
 
-    runTest({suiteName, fixtureName, testName: 'citation with intellisense.citation.label: title'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'title')
-        writeTestFile({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{main}', '\\end{document}')
-        copyTestFile(fixture, 'basic.bib', 'main.bib')
-        const result = await openActive(extension, fixture, 'main.tex')
-        const wait = waitFileParsed(extension, path.resolve(fixture, 'main.bib'))
-        await extension.completer.citation.parseBibFile(path.resolve(fixture, 'main.bib'))
-        await wait
-        const items = getIntellisense(result.doc, new vscode.Position(2, 9), extension)
+        items = getIntellisense(result.doc, new vscode.Position(2, 9), extension)
         assert.ok(items)
         assert.strictEqual(items.length, 3)
         assert.strictEqual(items[0].label, 'A fake article')
-    })
 
-    runTest({suiteName, fixtureName, testName: 'citation with intellisense.citation.label: authors'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'authors')
-        writeTestFile({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{main}', '\\end{document}')
-        copyTestFile(fixture, 'basic.bib', 'main.bib')
-        const result = await openActive(extension, fixture, 'main.tex')
-        const wait = waitFileParsed(extension, path.resolve(fixture, 'main.bib'))
-        await extension.completer.citation.parseBibFile(path.resolve(fixture, 'main.bib'))
-        await wait
-        const items = getIntellisense(result.doc, new vscode.Position(2, 9), extension)
+        items = getIntellisense(result.doc, new vscode.Position(2, 9), extension)
         assert.ok(items)
         assert.strictEqual(items.length, 3)
         assert.strictEqual(items[0].label, 'Davis, J. and Jones, M.')
-    })
 
-    runTest({suiteName, fixtureName, testName: 'citation with additional intellisense.citation.format'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.format', ['title', 'year', 'description', 'nonexisting'])
-        writeTestFile({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{main}', '\\end{document}')
-        copyTestFile(fixture, 'basic.bib', 'main.bib')
-        const result = await openActive(extension, fixture, 'main.tex')
-        const wait = waitFileParsed(extension, path.resolve(fixture, 'main.bib'))
-        await extension.completer.citation.parseBibFile(path.resolve(fixture, 'main.bib'))
-        await wait
-        const items = getIntellisense(result.doc, new vscode.Position(2, 9), extension)
+        items = getIntellisense(result.doc, new vscode.Position(2, 9), extension)
         assert.ok(items)
         assert.strictEqual(items.length, 3)
         assert.ok(items[0].filterText)
