@@ -4,11 +4,11 @@ import * as assert from 'assert'
 import rimraf from 'rimraf'
 
 import { Extension } from '../../src/main'
-import { sleep, getExtension, runTest, writeTeX, openActive } from './utils'
+import { sleep, getExtension, runTest, openActive, loadTestFile } from './utils'
 import { ChkTeX } from '../../src/components/linterlib/chktex'
 import { LaCheck } from '../../src/components/linterlib/lacheck'
 
-suite('Intellisense test suite', () => {
+suite('Linter test suite', () => {
 
     let extension: Extension
     const suiteName = path.basename(__filename).replace('.test.js', '')
@@ -35,7 +35,10 @@ suite('Intellisense test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'test chktex log parser'}, async () => {
-        await writeTeX('structure', fixture)
+        await loadTestFile(fixture, [
+            {src: 'linter_base.tex', dst: 'main.tex'},
+            {src: 'linter_sub.tex', dst: 'sub/s.tex'}
+        ])
         await openActive(extension, fixture, 'main.tex')
 
         assert.ok(extension)
@@ -49,7 +52,10 @@ suite('Intellisense test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'test lacheck'}, async () => {
-        await writeTeX('structure', fixture)
+        await loadTestFile(fixture, [
+            {src: 'linter_base.tex', dst: 'main.tex'},
+            {src: 'linter_sub.tex', dst: 'sub/s.tex'}
+        ])
         await openActive(extension, fixture, 'main.tex')
 
         assert.ok(extension)
@@ -59,7 +65,10 @@ suite('Intellisense test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'test lacheck log parser'}, async () => {
-        await writeTeX('structure', fixture)
+        await loadTestFile(fixture, [
+            {src: 'linter_base.tex', dst: 'main.tex'},
+            {src: 'linter_sub.tex', dst: 'sub/s.tex'}
+        ])
         await openActive(extension, fixture, 'main.tex')
 
         assert.ok(extension)

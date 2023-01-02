@@ -4,10 +4,19 @@ import * as assert from 'assert'
 import rimraf from 'rimraf'
 
 import { Extension } from '../../src/main'
-import { sleep, getExtension, runTest, writeTeX, openActive } from './utils'
+import { sleep, getExtension, runTest, openActive, loadTestFile } from './utils'
 import { SectionNodeProvider } from '../../src/providers/structure'
 
-suite('Intellisense test suite', () => {
+async function loadTestFiles(fixture: string) {
+    await loadTestFile(fixture, [
+        {src: 'structure_base.tex', dst: 'main.tex'},
+        {src: 'structure_sub.tex', dst: 'sub/s.tex'},
+        {src: 'structure_s2.tex', dst: 'sub/s2.tex'},
+        {src: 'structure_s3.tex', dst: 'sub/s3.tex'}
+    ])
+}
+
+suite('Document structure test suite', () => {
 
     let extension: Extension
     const suiteName = path.basename(__filename).replace('.test.js', '')
@@ -39,7 +48,7 @@ suite('Intellisense test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'test structure'}, async () => {
-        await writeTeX('structure', fixture)
+        await loadTestFiles(fixture)
         await openActive(extension, fixture, 'main.tex')
 
         assert.ok(extension)
@@ -68,7 +77,7 @@ suite('Intellisense test suite', () => {
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.numbers.enabled'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.enabled', false)
-        await writeTeX('structure', fixture)
+        await loadTestFiles(fixture)
         await openActive(extension, fixture, 'main.tex')
 
         assert.ok(extension)
@@ -82,7 +91,7 @@ suite('Intellisense test suite', () => {
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.sections'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', ['section', 'altsection', 'subsubsection'])
-        await writeTeX('structure', fixture)
+        await loadTestFiles(fixture)
         await openActive(extension, fixture, 'main.tex')
 
         assert.ok(extension)
@@ -97,7 +106,7 @@ suite('Intellisense test suite', () => {
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.floats.enabled'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', false)
-        await writeTeX('structure', fixture)
+        await loadTestFiles(fixture)
         await openActive(extension, fixture, 'main.tex')
 
         assert.ok(extension)
@@ -114,7 +123,7 @@ suite('Intellisense test suite', () => {
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.fastparse.enabled'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.fastparse.enabled', true)
-        await writeTeX('structure', fixture)
+        await loadTestFiles(fixture)
         await openActive(extension, fixture, 'main.tex')
 
         assert.ok(extension)

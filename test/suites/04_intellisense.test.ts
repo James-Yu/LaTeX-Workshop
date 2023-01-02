@@ -6,7 +6,7 @@ import rimraf from 'rimraf'
 import glob from 'glob'
 
 import { Extension } from '../../src/main'
-import { sleep, getExtension, getIntellisense, runTest, writeTeX, openActive, writeTestFile, copyTestFile, waitFileParsed } from './utils'
+import { sleep, getExtension, getIntellisense, runTest, openActive, writeTestFile, loadTestFile, waitFileParsed } from './utils'
 import { EnvSnippetType, EnvType } from '../../src/providers/completer/environment'
 import { CmdType } from '../../src/providers/completer/command'
 import { PkgType } from '../../src/providers/completion'
@@ -129,34 +129,34 @@ suite('Intellisense test suite', () => {
     })
 
     runTest({suiteName, fixtureName, testName: 'basic completion'}, async () => {
-        await writeTeX('intellisense', fixture)
+        await loadTestFile(fixture, [
+            {src: 'intellisense_base.tex', dst: 'main.tex'},
+            {src: 'intellisense_glossary.tex', dst: 'sub/glossary.tex'}
+        ])
         const result = await openActive(extension, fixture, 'main.tex')
         const items = getIntellisense(result.doc, new vscode.Position(7, 1), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
     })
 
-    runTest({suiteName, fixtureName, testName: '@-snippet completion'}, async () => {
+    runTest({suiteName, fixtureName, testName: '@-snippet intellisense and configs intellisense.atSuggestion*'}, async () => {
         const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', replaces)
-        await writeTeX('intellisense', fixture)
+        await loadTestFile(fixture, [
+            {src: 'intellisense_base.tex', dst: 'main.tex'},
+            {src: 'intellisense_glossary.tex', dst: 'sub/glossary.tex'}
+        ])
         const result = await openActive(extension, fixture, 'main.tex')
-        const items = getIntellisense(result.doc, new vscode.Position(8, 1), extension, true)
+        let items = getIntellisense(result.doc, new vscode.Position(8, 1), extension, true)
         assert.ok(items)
         assert.ok(items.length > 0)
         assert.ok(items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
         assert.ok(undefined === items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
         assert.ok(items.find(item => item.label === '@M' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
         assert.ok(undefined === items.find(item => item.label === '@8'))
-    })
 
-    runTest({suiteName, fixtureName, testName: '@-snippet completion with trigger #'}, async () => {
-        const replaces = {'@+': '\\sum', '@8': ''}
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', replaces)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', '#')
-        await writeTeX('intellisense', fixture)
-        const result = await openActive(extension, fixture, 'main.tex')
-        const items = getIntellisense(result.doc, new vscode.Position(9, 1), extension, true)
+        items = getIntellisense(result.doc, new vscode.Position(9, 1), extension, true)
         assert.ok(items)
         assert.ok(items.length > 0)
         assert.ok(items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
@@ -166,10 +166,10 @@ suite('Intellisense test suite', () => {
         assert.ok(undefined === items.find(item => item.label === '#8'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'citation and related configs intellisense.citation.*'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'citation intellisense and configs intellisense.citation.*'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
         writeTestFile({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{main}', '\\end{document}')
-        copyTestFile(fixture, 'basic.bib', 'main.bib')
+        await loadTestFile(fixture, [{src: 'base.bib', dst: 'main.bib'}])
         const result = await openActive(extension, fixture, 'main.tex')
         const wait = waitFileParsed(extension, path.resolve(fixture, 'main.bib'))
         await extension.completer.citation.parseBibFile(path.resolve(fixture, 'main.bib'))
@@ -204,8 +204,11 @@ suite('Intellisense test suite', () => {
         assert.ok(items[0].filterText.includes('hintFake'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'glossary completion'}, async () => {
-        await writeTeX('intellisense', fixture)
+    runTest({suiteName, fixtureName, testName: 'glossary intellisense'}, async () => {
+        await loadTestFile(fixture, [
+            {src: 'intellisense_base.tex', dst: 'main.tex'},
+            {src: 'intellisense_glossary.tex', dst: 'sub/glossary.tex'}
+        ])
         const result = await openActive(extension, fixture, 'main.tex')
 
         const content = extension.manager.getDirtyContent(path.resolve(fixture, 'sub/glossary.tex'))
