@@ -5,7 +5,7 @@ import rimraf from 'rimraf'
 import { Extension } from '../../src/main'
 import { sleep, assertBuild, assertViewer, getExtension, runTest, waitBuild, writeTeX } from './utils'
 
-suite('Find root file test suite', () => {
+suite('PDF viewer test suite', () => {
 
     let extension: Extension
     const suiteName = path.basename(__filename).replace('.test.js', '')
@@ -40,37 +40,37 @@ suite('Find root file test suite', () => {
 
     runTest({suiteName, fixtureName, testName: 'basic build and view'}, async () => {
         await writeTeX('main', fixture)
-        await assertBuild({fixture, texFileName: 'main.tex', pdfFileName: 'main.pdf', extension})
-        await assertViewer({fixture, pdfFileName: 'main.pdf', extension})
+        await assertBuild({fixture, texName: 'main.tex', pdfName: 'main.pdf', extension})
+        await assertViewer({fixture, pdfName: 'main.pdf', extension})
     })
 
     runTest({suiteName, fixtureName, testName: 'build main.tex and view it'}, async () => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', false)
         await writeTeX('subfile', fixture)
-        await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension})
-        await assertViewer({fixture, pdfFileName: 'main.pdf', extension})
+        await assertBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf', extension})
+        await assertViewer({fixture, pdfName: 'main.pdf', extension})
     })
 
     runTest({suiteName, fixtureName, testName: 'build a subfile and view it'}, async () => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', true)
         await writeTeX('subfile', fixture)
-        await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'sub/s.pdf', extension})
-        await assertViewer({fixture, pdfFileName: 'sub/s.pdf', extension})
+        await assertBuild({fixture, texName: 'sub/s.tex', pdfName: 'sub/s.pdf', extension})
+        await assertViewer({fixture, pdfName: 'sub/s.pdf', extension})
     })
 
     runTest({suiteName, fixtureName, testName: 'build main.tex with QuickPick and view it'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
         await writeTeX('subfile', fixture)
-        await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'main.pdf', extension, build: async () => {
+        await assertBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf', extension, build: async () => {
             const wait = waitBuild(extension)
             void vscode.commands.executeCommand('latex-workshop.build')
             await sleep(1000)
             await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
             await wait
         }})
-        await assertViewer({fixture, pdfFileName: 'main.pdf', extension, action: async () => {
+        await assertViewer({fixture, pdfName: 'main.pdf', extension, action: async () => {
             await sleep(1000)
             await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
         }})
@@ -79,7 +79,7 @@ suite('Find root file test suite', () => {
     runTest({suiteName, fixtureName, testName: 'build s.tex with QuickPick and view it'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
         await writeTeX('subfile', fixture)
-        await assertBuild({fixture, texFileName: 'sub/s.tex', pdfFileName: 'sub/s.pdf', extension, build: async () => {
+        await assertBuild({fixture, texName: 'sub/s.tex', pdfName: 'sub/s.pdf', extension, build: async () => {
             const wait = waitBuild(extension)
             void vscode.commands.executeCommand('latex-workshop.build')
             await sleep(1000)
@@ -88,7 +88,7 @@ suite('Find root file test suite', () => {
             await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
             await wait
         }})
-        await assertViewer({fixture, pdfFileName: 'sub/s.pdf', extension, action: async () => {
+        await assertViewer({fixture, pdfName: 'sub/s.pdf', extension, action: async () => {
             await sleep(1000)
             await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
             await sleep(500)
@@ -96,10 +96,10 @@ suite('Find root file test suite', () => {
         }})
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: 'build with outDir and view it'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'build with outDir and view it'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
         await writeTeX('main', fixture)
-        await assertBuild({fixture, texFileName: 'main.tex', pdfFileName: 'out/main.pdf', extension})
-        await assertViewer({fixture, pdfFileName: 'out/main.pdf', extension})
+        await assertBuild({fixture, texName: 'main.tex', pdfName: 'out/main.pdf', extension})
+        await assertViewer({fixture, pdfName: 'out/main.pdf', extension})
     })
 })

@@ -4,7 +4,7 @@ import * as assert from 'assert'
 import rimraf from 'rimraf'
 
 import { Extension } from '../../src/main'
-import { sleep, getExtension, runTest, writeTeX } from './utils'
+import { sleep, getExtension, runTest, writeTeX, openActive } from './utils'
 import { ChkTeX } from '../../src/components/linterlib/chktex'
 import { LaCheck } from '../../src/components/linterlib/lacheck'
 
@@ -36,9 +36,7 @@ suite('Intellisense test suite', () => {
 
     runTest({suiteName, fixtureName, testName: 'test chktex log parser'}, async () => {
         await writeTeX('structure', fixture)
-        const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
-        await vscode.window.showTextDocument(doc)
-        await extension.manager.findRoot()
+        await openActive(extension, fixture, 'main.tex')
 
         assert.ok(extension)
         const linter = new ChkTeX(extension)
@@ -52,9 +50,7 @@ suite('Intellisense test suite', () => {
 
     runTest({suiteName, fixtureName, testName: 'test lacheck'}, async () => {
         await writeTeX('structure', fixture)
-        const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
-        await vscode.window.showTextDocument(doc)
-        await extension.manager.findRoot()
+        await openActive(extension, fixture, 'main.tex')
 
         assert.ok(extension)
         const linter = new LaCheck(extension)
@@ -64,9 +60,7 @@ suite('Intellisense test suite', () => {
 
     runTest({suiteName, fixtureName, testName: 'test lacheck log parser'}, async () => {
         await writeTeX('structure', fixture)
-        const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
-        await vscode.window.showTextDocument(doc)
-        await extension.manager.findRoot()
+        await openActive(extension, fixture, 'main.tex')
 
         assert.ok(extension)
         const linter = new LaCheck(extension)

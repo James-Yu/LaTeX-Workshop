@@ -98,25 +98,32 @@ export function writeTestFile(option: WriteTestOption, ...contents: string[]) {
     fs.writeFileSync(path.resolve(option.fixture, option.fileName), contents.join('\n'))
 }
 
-export function copyTestFile(fixture: string, srcFileName: string, dstFileName: string) {
-    fs.mkdirSync(path.resolve(fixture, path.dirname(dstFileName)), {recursive: true})
-    fs.copyFileSync(path.resolve(fixture, srcFileName), path.resolve(fixture, dstFileName))
+export function copyTestFile(fixture: string, src: string, dst: string) {
+    fs.mkdirSync(path.resolve(fixture, path.dirname(dst)), {recursive: true})
+    fs.copyFileSync(path.resolve(fixture, '../arsenal', src), path.resolve(fixture, dst))
+}
+
+export async function openActive(extension: Extension, fixture: string, fileName: string, skipSleep: boolean = false) {
+    const texFilePath = vscode.Uri.file(path.join(fixture, fileName))
+    const doc = await vscode.workspace.openTextDocument(texFilePath)
+    await vscode.window.showTextDocument(doc)
+    if (!skipSleep) {
+        await sleep(250)
+    }
+    const root = await extension.manager.findRoot()
+    return {root, doc}
 }
 
 type AssertBuildOption = {
     fixture: string,
-    texFileName: string,
-    pdfFileName: string,
+    texName: string,
+    pdfName: string,
     extension: Extension,
     build?: () => unknown
 }
 
 export async function assertBuild(option: AssertBuildOption) {
-    const texFilePath = vscode.Uri.file(path.join(option.fixture, option.texFileName))
-    const pdfFilePath = path.join(option.fixture, option.pdfFileName)
-    const doc = await vscode.workspace.openTextDocument(texFilePath)
-    await vscode.window.showTextDocument(doc)
-    await option.extension.manager.findRoot()
+    await openActive(option.extension, option.fixture, option.texName, true)
     if (option.build) {
         await option.build()
     } else {
@@ -124,14 +131,15 @@ export async function assertBuild(option: AssertBuildOption) {
     }
 
     const files = glob.sync('**/**.pdf', { cwd: option.fixture })
-    assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), option.pdfFileName === '' ? option.pdfFileName : pdfFilePath)
+    const pdfPath = path.join(option.fixture, option.pdfName)
+    assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), option.pdfName === '' ? option.pdfName : pdfPath)
 }
 
 export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFirstBuild' | 'noAutoBuild' | 'onSave')[]) {
     if (!mode?.includes('skipFirstBuild')) {
         await assertBuild(option)
     }
-    fs.rmSync(path.resolve(option.fixture, option.pdfFileName))
+    fs.rmSync(path.resolve(option.fixture, option.pdfName))
 
     let files = glob.sync('**/**.pdf', { cwd: option.fixture })
     assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), '')
@@ -141,7 +149,7 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFi
     if (mode?.includes('onSave')) {
         await vscode.commands.executeCommand('workbench.action.files.save')
     } else {
-        fs.appendFileSync(path.resolve(option.fixture, option.texFileName), ' % edit')
+        fs.appendFileSync(path.resolve(option.fixture, option.texName), ' % edit')
     }
 
     if (mode?.includes('noAutoBuild')) {
@@ -151,7 +159,7 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFi
     } else {
         await wait
         files = glob.sync('**/**.pdf', { cwd: option.fixture })
-        assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), path.resolve(option.fixture, option.pdfFileName))
+        assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), path.resolve(option.fixture, option.pdfName))
     }
 }
 
@@ -177,17 +185,13 @@ type AssertRootOption = {
 
 export async function assertRoot(option: AssertRootOption) {
     await vscode.commands.executeCommand('latex-workshop.activate')
-    const openFilePath = vscode.Uri.file(path.join(option.fixture, option.openName))
-    const rootFilePath = path.join(option.fixture, option.rootName)
-    const doc = await vscode.workspace.openTextDocument(openFilePath)
-    await vscode.window.showTextDocument(doc)
-    const root = await option.extension.manager.findRoot()
-    assert.strictEqual(root, rootFilePath)
+    const result = await openActive(option.extension, option.fixture, option.openName)
+    assert.strictEqual(result.root, path.join(option.fixture, option.rootName))
 }
 
 type AssertViewerOption = {
     fixture: string,
-    pdfFileName: string,
+    pdfName: string,
     extension: Extension,
     action?: () => unknown
 }
@@ -200,8 +204,8 @@ export async function assertViewer(option: AssertViewerOption) {
         await option.action()
     }
     await wait
-    const status = getViewerStatus(option.extension, path.resolve(option.fixture, option.pdfFileName))
-    assert.strictEqual(status.pdfFileUri, vscode.Uri.file(path.resolve(option.fixture, option.pdfFileName)).toString(true))
+    const status = getViewerStatus(option.extension, path.resolve(option.fixture, option.pdfName))
+    assert.strictEqual(status.pdfFileUri, vscode.Uri.file(path.resolve(option.fixture, option.pdfName)).toString(true))
 }
 
 async function waitViewer(extension: Extension) {
