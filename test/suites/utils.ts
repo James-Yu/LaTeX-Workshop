@@ -166,7 +166,7 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFi
 async function waitEvent(extension: Extension, event: EventName, arg?: any) {
     return new Promise<void>((resolve, _) => {
         const disposable = extension.eventBus.on(event, (eventArg) => {
-            if (arg !== eventArg) {
+            if (arg && arg !== eventArg) {
                 return
             }
             resolve()
@@ -200,7 +200,7 @@ type AssertViewerOption = {
 }
 
 export async function assertViewer(option: AssertViewerOption) {
-    await sleep(500)
+    await sleep(250)
     const wait = waitViewer(option.extension)
     void vscode.commands.executeCommand('latex-workshop.view')
     if (option.action) {
