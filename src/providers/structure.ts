@@ -348,6 +348,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      * @returns The caption found, or empty.
      */
     private findEnvCaption(node: latexParser.Environment): string {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('view.outline.floats.caption.enabled')) {
+            return ''
+        }
         let captionNode: latexParser.Command | undefined
         let caption: string = ''
         if (node.name.replace(/\*$/, '') === 'frame') {

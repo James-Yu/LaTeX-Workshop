@@ -40,6 +40,7 @@ suite('Document structure test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.number.enabled', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.caption.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.fastparse.enabled', undefined)
 
         if (path.basename(fixture) === 'testground') {
@@ -130,6 +131,24 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[5].children[3].label, 'Frame: Frame Title 1')
         assert.strictEqual(sections[5].children[4].label, 'Frame: Frame Title 2')
         assert.strictEqual(sections[5].children[5].label, 'Frame')
+    })
+
+    runTest({suiteName, fixtureName, testName: 'test view.outline.floats.caption.enabled'}, async () => {
+        await loadTestFiles(fixture)
+        await openActive(extension, fixture, 'main.tex')
+        assert.ok(extension)
+        const structure = new SectionNodeProvider(extension)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.caption.enabled', false)
+        await structure.update(true)
+        const sections = structure.ds
+        assert.ok(sections)
+        assert.strictEqual(sections[5].children.length, 6)
+        assert.strictEqual(sections[5].children[0].label, 'Figure 1')
+        assert.strictEqual(sections[5].children[1].label, 'Figure 2')
+        assert.strictEqual(sections[5].children[2].label, 'Table 1')
+        assert.strictEqual(sections[5].children[3].label, 'Frame 1')
+        assert.strictEqual(sections[5].children[4].label, 'Frame 2')
+        assert.strictEqual(sections[5].children[5].label, 'Frame 3')
     })
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.fastparse.enabled'}, async () => {
