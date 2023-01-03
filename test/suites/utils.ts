@@ -95,6 +95,16 @@ export function writeTestFile(option: WriteTestOption, ...contents: string[]) {
 }
 
 export async function loadTestFile(fixture: string, files: {src: string, dst: string}[]) {
+    let unlinked = false
+    for (const file of files) {
+        if (fs.existsSync(path.resolve(fixture, file.dst))) {
+            fs.unlinkSync(path.resolve(fixture, file.dst))
+            unlinked = true
+        }
+    }
+    if (unlinked) {
+        await sleep(500)
+    }
     for (const file of files) {
         fs.mkdirSync(path.resolve(fixture, path.dirname(file.dst)), {recursive: true})
         fs.copyFileSync(path.resolve(fixture, '../armory', file.src), path.resolve(fixture, file.dst))

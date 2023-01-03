@@ -146,6 +146,7 @@ suite('Intellisense test suite', () => {
             {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
         ])
         let result = await openActive(extension, fixture, 'main.tex')
+        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
         let items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -161,6 +162,7 @@ suite('Intellisense test suite', () => {
             {src: 'intellisense_glossaryentries.tex', dst: 'sub/glossary.tex'}
         ])
         result = await openActive(extension, fixture, 'main.tex')
+        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
         items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
