@@ -3,6 +3,7 @@ import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
 
 import type { Extension } from '../../main'
+import * as eventbus from '../../components/eventbus'
 import {trimMultiLineString} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
 import type { IProvider, ICompletionItem } from '../completion'
@@ -240,22 +241,22 @@ export class Citation implements IProvider {
     /**
      * Parses `.bib` file. The results are stored in this instance.
      *
-     * @param file The path of `.bib` file.
+     * @param fileName The path of `.bib` file.
      */
-    async parseBibFile(file: string) {
-        this.extension.logger.addLogMessage(`Parsing .bib entries from ${file}`)
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
-        if (fs.statSync(file).size >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
-            this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${file}`)
-            this.bibEntries.delete(file)
+    async parseBibFile(fileName: string) {
+        this.extension.logger.addLogMessage(`Parsing .bib entries from ${fileName}`)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(fileName))
+        if (fs.statSync(fileName).size >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
+            this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${fileName}`)
+            this.bibEntries.delete(fileName)
             return
         }
         const newEntry: CiteSuggestion[] = []
-        const bibtex = fs.readFileSync(file).toString()
+        const bibtex = fs.readFileSync(fileName).toString()
         const ast = await this.extension.pegParser.parseBibtex(bibtex).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
-                this.extension.logger.addLogMessage(`Error parsing BibTeX: line ${line} in ${file}.`)
+                this.extension.logger.addLogMessage(`Error parsing BibTeX: line ${line} in ${fileName}.`)
             }
             throw e
         })
@@ -268,7 +269,7 @@ export class Citation implements IProvider {
                 const item: CiteSuggestion = {
                     key: entry.internalKey,
                     label: entry.internalKey,
-                    file,
+                    file: fileName,
                     position: new vscode.Position(entry.location.start.line - 1, entry.location.start.column - 1),
                     kind: vscode.CompletionItemKind.Reference,
                     fields: new Fields()
@@ -280,8 +281,9 @@ export class Citation implements IProvider {
                 })
                 newEntry.push(item)
             })
-        this.bibEntries.set(file, newEntry)
-        this.extension.logger.addLogMessage(`Parsed ${newEntry.length} bib entries from ${file}.`)
+        this.bibEntries.set(fileName, newEntry)
+        this.extension.logger.addLogMessage(`Parsed ${newEntry.length} bib entries from ${fileName}.`)
+        this.extension.eventBus.fire(eventbus.FileParsed, fileName)
     }
 
     removeEntriesInFile(file: string) {

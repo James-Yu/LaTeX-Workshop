@@ -159,7 +159,7 @@ export class Manager {
         if (cache !== undefined) {
             cache.content = document.getText()
         }
-        this.extension.eventBus.fire(eventbus.CachedContentUpdated)
+        this.extension.eventBus.fire(eventbus.CacheUpdated)
     }
 
     getFilesWatched() {
@@ -384,10 +384,10 @@ export class Manager {
             } else {
                 this.extension.logger.addLogMessage(`Keep using the same root file: ${this.rootFile}`)
             }
-            this.extension.eventBus.fire(eventbus.FindRootFileEnd)
+            this.extension.eventBus.fire(eventbus.RootFileSearched)
             return rootFile
         }
-        this.extension.eventBus.fire(eventbus.FindRootFileEnd)
+        this.extension.eventBus.fire(eventbus.RootFileSearched)
         return undefined
     }
 
@@ -613,6 +613,7 @@ export class Manager {
         this.cachedContent[file].bibs = []
         await this.parseInputFiles(content, file, baseFile)
         await this.parseBibFiles(content, file)
+        this.extension.eventBus.fire(eventbus.FileParsed, file)
     }
 
     /**
@@ -709,7 +710,7 @@ export class Manager {
         }
     }
 
-    private async parseBibFiles(content: string, baseFile: string) {
+    private async parseBibFiles(content: string, fileName: string) {
         const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(.+?)}|(?:\\putbib)\[(.+?)\]/g
         while (true) {
             const result = bibReg.exec(content)
@@ -720,11 +721,11 @@ export class Manager {
                 return bib.trim()
             })
             for (const bib of bibs) {
-                const bibPath = this.pathUtils.resolveBibPath(bib, path.dirname(baseFile))
+                const bibPath = this.pathUtils.resolveBibPath(bib, path.dirname(fileName))
                 if (bibPath === undefined) {
                     continue
                 }
-                this.cachedContent[baseFile].bibs.push(bibPath)
+                this.cachedContent[fileName].bibs.push(bibPath)
                 await this.bibWatcher.watchBibFile(bibPath)
             }
         }

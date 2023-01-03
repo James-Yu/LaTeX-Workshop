@@ -4,7 +4,7 @@ import rimraf from 'rimraf'
 import * as assert from 'assert'
 
 import { Extension } from '../../src/main'
-import { sleep, assertRoot, getExtension, runTest, writeTeX } from './utils'
+import { sleep, assertRoot, getExtension, runTest, loadTestFile } from './utils'
 
 suite('Find root file test suite', () => {
 
@@ -36,7 +36,11 @@ suite('Find root file test suite', () => {
     runTest({suiteName, fixtureName, testName: 'detect root with search.rootFiles.include'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', ['alt/*.tex'])
-        await writeTeX('subfiletwomain', fixture)
+        await loadTestFile(fixture, [
+            {src: 'subfile_base.tex', dst: 'main.tex'},
+            {src: 'input_parentsub.tex', dst: 'alt/main.tex'},
+            {src: 'plain.tex', dst: 'sub/s.tex'}
+        ])
         assert.ok(extension)
         await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'alt/main.tex', extension})
     })
@@ -44,25 +48,40 @@ suite('Find root file test suite', () => {
     runTest({suiteName, fixtureName, testName: 'detect root with search.rootFiles.exclude'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', ['*.tex'])
-        await writeTeX('subfiletwomain', fixture)
+        await loadTestFile(fixture, [
+            {src: 'subfile_base.tex', dst: 'main.tex'},
+            {src: 'input_parentsub.tex', dst: 'alt/main.tex'},
+            {src: 'plain.tex', dst: 'sub/s.tex'}
+        ])
         assert.ok(extension)
         await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'alt/main.tex', extension})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto-detect root with verbatim'}, async () => {
-        await writeTeX('subfileverbatim', fixture)
+        await loadTestFile(fixture, [
+            {src: 'input_base.tex', dst: 'main.tex'},
+            {src: 'plain_verbatim.tex', dst: 'sub/s.tex'}
+        ])
         assert.ok(extension)
         await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'main.tex', extension})
     })
 
     runTest({suiteName, fixtureName, testName: 'import package'}, async () => {
-        await writeTeX('importthreelayer', fixture)
+        await loadTestFile(fixture, [
+            {src: 'import_base.tex', dst: 'main.tex'},
+            {src: 'import_sub.tex', dst: 'sub/s.tex'},
+            {src: 'plain.tex', dst: 'sub/subsub/sss/sss.tex'}
+        ])
         assert.ok(extension)
         await assertRoot({fixture, openName: 'sub/subsub/sss/sss.tex', rootName: 'main.tex', extension})
     })
 
     runTest({suiteName, fixtureName, testName: 'circular inclusion'}, async () => {
-        await writeTeX('circularinclude', fixture)
+        await loadTestFile(fixture, [
+            {src: 'include_base.tex', dst: 'main.tex'},
+            {src: 'include_sub.tex', dst: 'alt.tex'},
+            {src: 'plain.tex', dst: 'sub/s.tex'}
+        ])
         assert.ok(extension)
         await assertRoot({fixture, openName: 'alt.tex', rootName: 'main.tex', extension})
         const includedTeX = extension.manager.getIncludedTeX()

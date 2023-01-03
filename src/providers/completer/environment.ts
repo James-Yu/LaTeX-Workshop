@@ -217,7 +217,7 @@ export class Environment implements IProvider {
         return envs
     }
 
-    private getEnvFromPkg(pkg: string, type: EnvSnippetType): CmdEnvSuggestion[] {
+    getEnvFromPkg(pkg: string, type: EnvSnippetType): CmdEnvSuggestion[] {
         const packageEnvs = this.getPackageEnvs(type)
         const entry = packageEnvs.get(pkg)
         if (entry !== undefined) {

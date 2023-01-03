@@ -5,7 +5,7 @@ import type {Extension} from '../../main'
 import type {PanelRequest, PdfViewerState} from '../../../types/latex-workshop-protocol-types/index'
 import {escapeHtml, sleep} from '../../utils/utils'
 import type {PdfViewerManagerService} from './pdfviewermanager'
-import {PdfViewerStatusChanged} from '../eventbus'
+import {ViewerStatusChanged} from '../eventbus'
 
 
 export class PdfViewerPanel {
@@ -22,7 +22,7 @@ export class PdfViewerPanel {
             switch(msg.type) {
                 case 'state': {
                     this.#state = msg.state
-                    this.extension.eventBus.fire(PdfViewerStatusChanged, msg.state)
+                    this.extension.eventBus.fire(ViewerStatusChanged, msg.state)
                     break
                 }
                 default: {

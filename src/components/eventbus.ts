@@ -2,24 +2,27 @@ import {EventEmitter} from 'events'
 import type {PdfViewerState} from '../../types/latex-workshop-protocol-types/index'
 import type {Disposable} from 'vscode'
 
-export const BuildFinished = 'buildfinished'
-export const PdfViewerPagesLoaded = 'pdfviewerpagesloaded'
-export const PdfViewerStatusChanged = 'pdfviewerstatuschanged'
-export const RootFileChanged = 'rootfilechanged'
-export const FindRootFileEnd = 'findrootfileend'
-export const CachedContentUpdated = 'cachedcontentupdated'
+export const BuildDone = 'BUILD_DONE'
+export const RootFileChanged = 'ROOT_FILE_CHANGED'
+export const RootFileSearched = 'ROOT_FILE_SEARCHED'
+export const FileParsed = 'FILE_PARSED'
+export const ViewerPageLoaded = 'VIEWER_PAGE_LOADED'
+export const ViewerStatusChanged = 'VIEWER_STATUS_CHANGED'
+export const CacheUpdated = 'CACHE_UPDATED'
 
 type EventArgTypeMap = {
-    [PdfViewerStatusChanged]: PdfViewerState,
-    [RootFileChanged]: string
+    [RootFileChanged]: string,
+    [FileParsed]: string,
+    [ViewerStatusChanged]: PdfViewerState
 }
 
-export type EventName = typeof BuildFinished
-                    | typeof PdfViewerPagesLoaded
-                    | typeof PdfViewerStatusChanged
+export type EventName = typeof BuildDone
                     | typeof RootFileChanged
-                    | typeof FindRootFileEnd
-                    | typeof CachedContentUpdated
+                    | typeof RootFileSearched
+                    | typeof ViewerPageLoaded
+                    | typeof FileParsed
+                    | typeof ViewerStatusChanged
+                    | typeof CacheUpdated
 
 export class EventBus {
     private readonly eventEmitter = new EventEmitter()
@@ -34,20 +37,20 @@ export class EventBus {
         this.eventEmitter.emit(eventName, arg)
     }
 
-    onDidChangeRootFile(cb: (rootFile: EventArgTypeMap['rootfilechanged']) => void): Disposable {
-        return this.registerListener('rootfilechanged', cb)
+    onDidChangeRootFile(cb: (rootFile: EventArgTypeMap[typeof RootFileChanged]) => void): Disposable {
+        return this.registerListener(RootFileChanged, cb)
     }
 
     onDidEndFindRootFile(cb: () => void): Disposable {
-        return this.registerListener('findrootfileend', cb)
+        return this.registerListener(RootFileSearched, cb)
     }
 
     onDidUpdateCachedContent(cb: () => void): Disposable {
-        return this.registerListener('cachedcontentupdated', cb)
+        return this.registerListener(CacheUpdated, cb)
     }
 
-    onDidChangePdfViewerStatus(cb: (status: EventArgTypeMap['pdfviewerstatuschanged']) => void): Disposable {
-        return this.registerListener('pdfviewerstatuschanged', cb)
+    onDidChangePdfViewerStatus(cb: (status: EventArgTypeMap[typeof ViewerStatusChanged]) => void): Disposable {
+        return this.registerListener(ViewerStatusChanged, cb)
     }
 
     private registerListener<T extends keyof EventArgTypeMap>(
@@ -70,8 +73,7 @@ export class EventBus {
         return disposable
     }
 
-    on(eventName: EventName, argCb: () => void) {
-        const cb = () => argCb()
+    on(eventName: EventName, cb: (arg?: any) => void): Disposable {
         this.eventEmitter.on(eventName, cb)
         const disposable = {
             dispose: () => { this.eventEmitter.removeListener(eventName, cb) }

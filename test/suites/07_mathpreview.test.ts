@@ -9,7 +9,7 @@ import { TextDocumentLike } from '../../src/providers/preview/mathpreviewlib/tex
 import { TeXMathEnvFinder } from '../../src/providers/preview/mathpreviewlib/texmathenvfinder'
 import { CursorRenderer } from '../../src/providers/preview/mathpreviewlib/cursorrenderer'
 
-suite('Intellisense test suite', () => {
+suite('Math preview test suite', () => {
 
     let extension: Extension
     const suiteName = path.basename(__filename).replace('.test.js', '')
