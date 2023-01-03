@@ -84,3 +84,18 @@ export function computeFilteringRange(document: vscode.TextDocument, position: v
     }
     return undefined
 }
+
+export function filterArgumentHint(suggestions: vscode.CompletionItem[]) {
+    if (!vscode.workspace.getConfiguration('latex-workshop').get('intellisense.argumentHint.enabled')) {
+        suggestions.forEach(item => {
+            if (!item.insertText) {
+                return
+            }
+            if (typeof item.insertText === 'string') {
+                item.insertText = item.insertText.replace(/\$\{(\d+):[^$}]*\}/g, '$${$1}')
+            } else {
+                item.insertText = new vscode.SnippetString(item.insertText.value.replace(/\$\{(\d+):[^$}]*\}/g, '$${$1}'))
+            }
+        })
+    }
+}

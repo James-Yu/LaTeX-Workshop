@@ -5,7 +5,7 @@ import {latexParser} from 'latex-utensils'
 import type { Extension } from '../../main'
 import type { IProvider, ICompletionItem } from '../completion'
 import {CommandFinder, isTriggerSuggestNeeded} from './commandlib/commandfinder'
-import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions} from './completerutils'
+import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint} from './completerutils'
 import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
 
@@ -154,6 +154,8 @@ export class Command implements IProvider {
             }
         })
 
+        filterArgumentHint(suggestions)
+
         return suggestions
     }
 
@@ -201,7 +203,6 @@ export class Command implements IProvider {
 
     private entryCmdToCompletion(itemKey: string, item: CmdType): CmdEnvSuggestion {
         item.command = item.command || itemKey
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
         const suggestion = new CmdEnvSuggestion(
             item.label || `${backslash}${item.command}`,
@@ -212,9 +213,6 @@ export class Command implements IProvider {
             vscode.CompletionItemKind.Function)
 
         if (item.snippet) {
-            if (!configuration.get('intellisense.argumentHint.enabled')) {
-                item.snippet = item.snippet.replace(/\$\{(\d+):[^$}]*\}/g, '$${$1}')
-            }
             // Wrap the selected text when there is a single placeholder
             if (! (item.snippet.match(/\$\{?2/) || (item.snippet.match(/\$\{?0/) && item.snippet.match(/\$\{?1/)))) {
                 item.snippet = item.snippet.replace(/\$1|\$\{1\}/, '$${1:$${TM_SELECTED_TEXT}}').replace(/\$\{1:([^$}]+)\}/, '$${1:$${TM_SELECTED_TEXT:$1}}')

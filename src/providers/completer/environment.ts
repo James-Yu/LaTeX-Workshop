@@ -5,7 +5,7 @@ import type { Extension } from '../../main'
 import type { ICompletionItem } from '../completion'
 import type { IProvider } from '../completion'
 import {CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
-import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions} from './completerutils'
+import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint} from './completerutils'
 
 export type EnvType = {
     name: string, // Name of the environment, what comes inside \begin{...}
@@ -134,6 +134,8 @@ export class Environment implements IProvider {
                 })
             }
         })
+
+        filterArgumentHint(suggestions)
 
         return suggestions
     }
