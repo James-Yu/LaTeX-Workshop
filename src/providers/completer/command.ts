@@ -8,8 +8,11 @@ import {CommandFinder, isTriggerSuggestNeeded} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint} from './completerutils'
 import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
+import { Environment, EnvSnippetType } from './environment'
 
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
+type DataCmdsJsonType = typeof import('../../../data/commands.json')
+type DataTeXJsonType = typeof import('../../../data/packages/tex.json')
 
 export type CmdType = {
     command?: string,
@@ -38,7 +41,7 @@ export class Command implements IProvider {
     private readonly commandFinder: CommandFinder
     private readonly surroundCommand: SurroundCommand
 
-    private readonly defaultCmds: CmdEnvSuggestion[] = []
+    private defaultCmds: CmdEnvSuggestion[] = []
     private readonly _defaultSymbols: CmdEnvSuggestion[] = []
     private readonly packageCmds = new Map<string, CmdEnvSuggestion[]>()
 
@@ -46,21 +49,45 @@ export class Command implements IProvider {
         this.extension = extension
         this.commandFinder = new CommandFinder(extension)
         this.surroundCommand = new SurroundCommand()
+
+        this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+            if (!e.affectsConfiguration('latex-workshop.intellisense.commandsJSON.replace')) {
+                return
+            }
+            this.initialize(this.extension.completer.environment)
+        }))
     }
 
-    initialize(defaultCmds: {[key: string]: CmdType}, defaultEnvs: CmdEnvSuggestion[]) {
+    initialize(environment: Environment) {
+        const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
+        const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})
+        const cmds = JSON.parse(defaultCommands) as DataCmdsJsonType
+        const maths: { [key: string]: CmdType } = (JSON.parse(defaultLaTeXMathSymbols) as DataTeXJsonType).cmds
+        for (const key of Object.keys(maths)) {
+            if (key.match(/\{.*?\}/)) {
+                const ent = maths[key]
+                const newKey = key.replace(/\{.*?\}/, '')
+                delete maths[key]
+                maths[newKey] = ent
+            }
+        }
+        Object.assign(maths, cmds)
+        const defaultEnvs = environment.getDefaultEnvs(EnvSnippetType.AsCommand)
+
         const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.commandsJSON.replace') as {[key: string]: string}
+        this.defaultCmds = []
 
         // Initialize default commands and the ones in `tex.json`
-        Object.keys(defaultCmds).forEach(key => {
+        Object.keys(maths).forEach(key => {
+            const entry = JSON.parse(JSON.stringify(maths[key])) as CmdType
             if (key in snippetReplacements) {
                 const action = snippetReplacements[key]
                 if (action === '') {
                     return
                 }
-                defaultCmds[key].snippet = action
+                entry.snippet = action
             }
-            this.defaultCmds.push(this.entryCmdToCompletion(key, defaultCmds[key]))
+            this.defaultCmds.push(this.entryCmdToCompletion(key, entry))
         })
 
         // Initialize default env begin-end pairs

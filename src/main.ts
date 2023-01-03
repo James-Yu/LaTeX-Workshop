@@ -146,7 +146,7 @@ export function deactivate() {
 }
 
 export function activate(context: vscode.ExtensionContext): ReturnType<typeof generateLatexWorkshopApi> {
-    const extension = new Extension()
+    const extension = new Extension(context)
     extensionToDispose = extension
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
@@ -344,6 +344,7 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
 
 export class Extension {
     readonly extensionRoot: string
+    readonly context: vscode.ExtensionContext
     readonly logger: Logger
     readonly eventBus = new EventBus()
     readonly lwfs: LwFileSystem
@@ -374,8 +375,9 @@ export class Extension {
     readonly mathPreviewPanel: MathPreviewPanel
     readonly duplicateLabels: DuplicateLabels
 
-    constructor() {
+    constructor(context: vscode.ExtensionContext) {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
+        this.context = context
         // We must create an instance of Logger first to enable
         // adding log messages during initialization.
         this.logger = new Logger()
