@@ -22,7 +22,7 @@ type RunTestOption = {
     testName: string,
     timeout?: number,
     only?: boolean,
-    win32only?: boolean
+    platforms?: NodeJS.Platform[]
 }
 
 let testCounter = 0
@@ -44,7 +44,7 @@ export function runTest(option: RunTestOption, cb: () => unknown) {
     if (process.env['LATEXWORKSHOP_SUITE'] && !process.env['LATEXWORKSHOP_SUITE'].split(',').includes(option.suiteName)) {
         return
     }
-    if (option.win32only && os.platform() !== 'win32') {
+    if (option.platforms && option.platforms.includes(os.platform())) {
         return
     }
 
