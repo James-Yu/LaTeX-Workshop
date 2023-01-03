@@ -25,7 +25,7 @@ export class Argument implements IProvider {
         }
         for (const packageName of packages) {
             if (environment) {
-                const environments = this.extension.completer.environment.getPackageEnvs(EnvSnippetType.AsCommand).get(packageName) || []
+                const environments = this.extension.completer.environment.getEnvFromPkg(packageName, EnvSnippetType.AsCommand) || []
                 for (const env of environments) {
                     if (environment !== env.signature.name) {
                         continue
@@ -52,7 +52,11 @@ export class Argument implements IProvider {
                 break
             }
         }
-        return candidate?.keyvals?.map(keyval => new vscode.CompletionItem(keyval, vscode.CompletionItemKind.Constant)) || []
+        return candidate?.keyvals?.map(option => {
+            const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
+            item.insertText = new vscode.SnippetString(option)
+            return item
+        }) || []
     }
 
     private providePackageOptions(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
@@ -78,8 +82,9 @@ export class Argument implements IProvider {
         if (!match) {
             return []
         }
-        this.extension.completer.loadPackageData(`class-${match[1]}`)
-        return this.extension.completer.package.getPackageOptions(`class-${match[1]}`)
+        const isDefaultClass = ['article', 'report', 'book'].includes(match[1])
+        this.extension.completer.loadPackageData(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
+        return this.extension.completer.package.getPackageOptions(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
             .map(option => {
                 const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
                 item.insertText = new vscode.SnippetString(option)

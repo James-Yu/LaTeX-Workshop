@@ -280,13 +280,16 @@ class CwlIntel:
                     detail=detail,
                     documentation=documentation)
             elif cwl_keyval == 'PACKAGE_OPTIONS':
-                line = re.sub(r'%<([^%]*?)%>', r'${1:\1}', line)
+                for i in range(len(re.findall(r'%<([^%]*?)%>', line))):
+                    line = re.sub(r'%<([^%]*?)%>', '${' + str(i + 1) + r':\1}', line, 1)
                 match = re.match(r'^([^#%\n]*)', line)
                 if match is None:
                     continue
                 pkg.options.append(match[1])
             elif cwl_keyval is not None and file_path.stem not in PKGS_IGNORE_KEYVALS:
-                match = re.match(r'^([^#%\n]*)', line)
+                for i in range(len(re.findall(r'%<([^%]*?)%>', line))):
+                    line = re.sub(r'%<([^%]*?)%>', '${' + str(i + 1) + r':\1}', line, 1)
+                match = re.match(r'^([^#\n]*)', line)
                 if match is None:
                     continue
                 for envcmd in cwl_keyval.split(','):

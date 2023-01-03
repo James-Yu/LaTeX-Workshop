@@ -45,6 +45,7 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.format', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', undefined)
 
         if (path.basename(fixture) === 'testground') {
             rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
@@ -128,42 +129,83 @@ suite('Intellisense test suite', () => {
         assert.ok(!isTriggerSuggestNeeded('frac'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'basic completion'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'command intellisense'}, async () => {
         await loadTestFile(fixture, [
             {src: 'intellisense_base.tex', dst: 'main.tex'},
-            {src: 'intellisense_glossary.tex', dst: 'sub/glossary.tex'}
+            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await openActive(extension, fixture, 'main.tex')
-        const items = getIntellisense(result.doc, new vscode.Position(7, 1), extension)
+        const items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
     })
 
-    runTest({suiteName, fixtureName, testName: '@-snippet intellisense and configs intellisense.atSuggestion*'}, async () => {
-        const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', replaces)
+    runTest({suiteName, fixtureName, testName: 'reference intellisense and config intellisense.label.keyval'}, async () => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', true)
         await loadTestFile(fixture, [
             {src: 'intellisense_base.tex', dst: 'main.tex'},
-            {src: 'intellisense_glossary.tex', dst: 'sub/glossary.tex'}
+            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await openActive(extension, fixture, 'main.tex')
-        let items = getIntellisense(result.doc, new vscode.Position(8, 1), extension, true)
+        let items = getIntellisense(result.doc, new vscode.Position(7, 5), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
-        assert.ok(items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
-        assert.ok(undefined === items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
-        assert.ok(items.find(item => item.label === '@M' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
-        assert.ok(undefined === items.find(item => item.label === '@8'))
 
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', '#')
-        items = getIntellisense(result.doc, new vscode.Position(9, 1), extension, true)
+        let labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('sec1'))
+        assert.ok(labels.includes('eq1'))
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', false)
+        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        items = getIntellisense(result.doc, new vscode.Position(7, 5), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
-        assert.ok(items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
-        assert.ok(items.find(item => item.label === '#ve' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\varepsilon'))
-        assert.ok(undefined === items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
-        assert.ok(undefined === items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
-        assert.ok(undefined === items.find(item => item.label === '#8'))
+
+        labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('sec1'))
+        assert.ok(!labels.includes('eq1'))
+    })
+
+    runTest({suiteName, fixtureName, testName: 'environment intellisense'}, async () => {
+        await loadTestFile(fixture, [
+            {src: 'intellisense_base.tex', dst: 'main.tex'},
+            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+        ])
+        const result = await openActive(extension, fixture, 'main.tex')
+        const items = getIntellisense(result.doc, new vscode.Position(8, 7), extension)
+        assert.ok(items)
+        assert.ok(items.length > 0)
+    })
+
+    runTest({only: true, suiteName, fixtureName, testName: 'argument intellisense'}, async () => {
+        await loadTestFile(fixture, [
+            {src: 'intellisense_base.tex', dst: 'main.tex'},
+            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+        ])
+        const result = await openActive(extension, fixture, 'main.tex')
+        let items = getIntellisense(result.doc, new vscode.Position(0, 15), extension)
+        assert.ok(items)
+        let labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('a4paper'))
+        assert.ok(labels.includes('10pt'))
+
+        items = getIntellisense(result.doc, new vscode.Position(1, 12), extension)
+        assert.ok(items)
+        labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('savemem'))
+        assert.ok(labels.includes('noaspects'))
+
+        items = getIntellisense(result.doc, new vscode.Position(12, 11), extension)
+        assert.ok(items)
+        labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('print'))
+        assert.ok(labels.includes('showlines'))
+
+        items = getIntellisense(result.doc, new vscode.Position(13, 19), extension)
+        assert.ok(items)
+        labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('print'))
+        assert.ok(labels.includes('showlines'))
     })
 
     runTest({suiteName, fixtureName, testName: 'citation intellisense and configs intellisense.citation.*'}, async () => {
@@ -206,8 +248,8 @@ suite('Intellisense test suite', () => {
 
     runTest({suiteName, fixtureName, testName: 'glossary intellisense'}, async () => {
         await loadTestFile(fixture, [
-            {src: 'intellisense_base.tex', dst: 'main.tex'},
-            {src: 'intellisense_glossary.tex', dst: 'sub/glossary.tex'}
+            {src: 'intellisense_glossary.tex', dst: 'main.tex'},
+            {src: 'intellisense_glossaryentries.tex', dst: 'sub/glossary.tex'}
         ])
         const result = await openActive(extension, fixture, 'main.tex')
 
@@ -225,5 +267,32 @@ suite('Intellisense test suite', () => {
         assert.ok(items.find(item => item.label === 'vs_code' && item.detail === 'Editor'))
         assert.ok(items.find(item => item.label === 'abbr_y' && item.detail === 'A second abbreviation'))
         assert.ok(items.find(item => item.label === 'abbr_x' && item.detail === 'A first abbreviation'))
+    })
+
+    runTest({suiteName, fixtureName, testName: '@-snippet intellisense and configs intellisense.atSuggestion*'}, async () => {
+        const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', replaces)
+        await loadTestFile(fixture, [
+            {src: 'intellisense_base.tex', dst: 'main.tex'},
+            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+        ])
+        const result = await openActive(extension, fixture, 'main.tex')
+        let items = getIntellisense(result.doc, new vscode.Position(4, 1), extension, true)
+        assert.ok(items)
+        assert.ok(items.length > 0)
+        assert.ok(items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
+        assert.ok(undefined === items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
+        assert.ok(items.find(item => item.label === '@M' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
+        assert.ok(undefined === items.find(item => item.label === '@8'))
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', '#')
+        items = getIntellisense(result.doc, new vscode.Position(5, 1), extension, true)
+        assert.ok(items)
+        assert.ok(items.length > 0)
+        assert.ok(items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
+        assert.ok(items.find(item => item.label === '#ve' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\varepsilon'))
+        assert.ok(undefined === items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
+        assert.ok(undefined === items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
+        assert.ok(undefined === items.find(item => item.label === '#8'))
     })
 })
