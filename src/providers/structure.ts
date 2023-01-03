@@ -100,18 +100,23 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return []
         }
 
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+
         this.refreshLaTeXModelConfig()
         // To avoid looping import, this variable is used to store file paths
         // that have been parsed.
         const filesBuilt = new Set<string>()
 
         // Step 1: Create a flat array of sections.
-        const flatStructure = await this.buildLaTeXSectionFromFile(file, subFile, filesBuilt)
+        let flatStructure = await this.buildLaTeXSectionFromFile(file, subFile, filesBuilt)
+        if (configuration.get('view.outline.numbers.floats.enabled') as boolean) {
+            flatStructure = this.countFloats(flatStructure)
+        }
 
         // Step 2: Create the hierarchy of these sections.
         const structure = this.buildLaTeXHierarchy(
             flatStructure,
-            subFile && vscode.workspace.getConfiguration('latex-workshop').get('view.outline.numbers.enabled') as boolean
+            subFile && configuration.get('view.outline.numbers.enabled') as boolean
         )
 
         // Step 3: Determine the toLine of all sections.
@@ -383,6 +388,24 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
         const caption = latexParser.stringify(argNode).replace(/\n/g, ' ')
         return caption.slice(1, caption.length - 1) // {Title} -> Title
+    }
+
+    private countFloats(flatStructure: Section[]) {
+        if (flatStructure.length === 0) {
+            return []
+        }
+        const counter: {[key: string]: number} = {}
+
+        flatStructure.forEach(section => {
+            if (section.kind !== SectionKind.Env) {
+                return
+            }
+            const labelSegments = section.label.split(':')
+            counter[labelSegments[0]] = counter[labelSegments[0]] ? counter[labelSegments[0]] + 1 : 1
+            labelSegments[0] = `${labelSegments[0]} ${counter[labelSegments[0]]}`
+            section.label = labelSegments.join(':')
+        })
+        return flatStructure
     }
 
     /**

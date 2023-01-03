@@ -310,7 +310,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items[0].filterText.includes('hintFake'))
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: 'glossary intellisense'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'glossary intellisense'}, async () => {
         await loadTestFile(fixture, [
             {src: 'intellisense_glossary.tex', dst: 'main.tex'},
             {src: 'intellisense_glossaryentries.tex', dst: 'sub/glossary.tex'}
@@ -333,7 +333,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items.find(item => item.label === 'abbr_x' && item.detail === 'A first abbreviation'))
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: '@-snippet intellisense and configs intellisense.atSuggestion*'}, async () => {
+    runTest({suiteName, fixtureName, testName: '@-snippet intellisense and configs intellisense.atSuggestion*'}, async () => {
         const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', replaces)
         await loadTestFile(fixture, [
