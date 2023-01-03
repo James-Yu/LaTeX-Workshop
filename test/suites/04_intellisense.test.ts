@@ -140,6 +140,36 @@ suite('Intellisense test suite', () => {
         assert.ok(items.length > 0)
     })
 
+    runTest({suiteName, fixtureName, testName: 'command intellisense with usepackage'}, async () => {
+        await loadTestFile(fixture, [
+            {src: 'intellisense_base.tex', dst: 'main.tex'},
+            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+        ])
+        let result = await openActive(extension, fixture, 'main.tex')
+        let items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        let labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('\\includefrom{}{}'))
+        assert.ok(!labels.includes('\\gls{}'))
+
+        await vscode.commands.executeCommand('workbench.action.closeAllEditors')
+
+        await loadTestFile(fixture, [
+            {src: 'intellisense_glossary.tex', dst: 'main.tex'},
+            {src: 'intellisense_glossaryentries.tex', dst: 'sub/glossary.tex'}
+        ])
+        result = await openActive(extension, fixture, 'main.tex')
+        items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        labels = items.map(item => item.label.toString())
+        assert.ok(!labels.includes('\\includefrom{}{}'))
+        assert.ok(labels.includes('\\gls{}'))
+    })
+
     runTest({suiteName, fixtureName, testName: 'reference intellisense and config intellisense.label.keyval'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', true)
         await loadTestFile(fixture, [
@@ -310,7 +340,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items[0].filterText.includes('hintFake'))
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: 'glossary intellisense'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'glossary intellisense'}, async () => {
         await loadTestFile(fixture, [
             {src: 'intellisense_glossary.tex', dst: 'main.tex'},
             {src: 'intellisense_glossaryentries.tex', dst: 'sub/glossary.tex'}
@@ -333,7 +363,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items.find(item => item.label === 'abbr_x' && item.detail === 'A first abbreviation'))
     })
 
-    runTest({only: true, suiteName, fixtureName, testName: '@-snippet intellisense and configs intellisense.atSuggestion*'}, async () => {
+    runTest({suiteName, fixtureName, testName: '@-snippet intellisense and configs intellisense.atSuggestion*'}, async () => {
         const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', replaces)
         await loadTestFile(fixture, [
