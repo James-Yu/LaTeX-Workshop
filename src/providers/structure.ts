@@ -100,18 +100,23 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return []
         }
 
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+
         this.refreshLaTeXModelConfig()
         // To avoid looping import, this variable is used to store file paths
         // that have been parsed.
         const filesBuilt = new Set<string>()
 
         // Step 1: Create a flat array of sections.
-        const flatStructure = await this.buildLaTeXSectionFromFile(file, subFile, filesBuilt)
+        let flatStructure = await this.buildLaTeXSectionFromFile(file, subFile, filesBuilt)
+        if (configuration.get('view.outline.floats.number.enabled') as boolean) {
+            flatStructure = this.countFloats(flatStructure)
+        }
 
         // Step 2: Create the hierarchy of these sections.
         const structure = this.buildLaTeXHierarchy(
             flatStructure,
-            subFile && vscode.workspace.getConfiguration('latex-workshop').get('view.outline.numbers.enabled') as boolean
+            subFile && configuration.get('view.outline.numbers.enabled') as boolean
         )
 
         // Step 3: Determine the toLine of all sections.
@@ -256,10 +261,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             ))
         } else if (latexParser.isEnvironment(node) && this.LaTeXCommands.envs.includes(node.name.replace(/\*$/, ''))) {
             // \begin{figure}...\end{figure}
+            const caption = this.findEnvCaption(node)
             sections.push(new Section(
                 SectionKind.Env,
                 // -> Figure: Caption of figure
-                `${node.name.charAt(0).toUpperCase() + node.name.slice(1)}: ${this.findEnvCaption(node)}`,
+                node.name.charAt(0).toUpperCase() + node.name.slice(1) + (caption ? `: ${caption}` : ''),
                 vscode.TreeItemCollapsibleState.Expanded,
                 -1,
                 node.location.start.line - 1,
@@ -339,11 +345,15 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      * `table` using their respective syntax.
      *
      * @param node The environment node to be parsed
-     * @returns The caption found, or 'Untitled'.
+     * @returns The caption found, or empty.
      */
     private findEnvCaption(node: latexParser.Environment): string {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('view.outline.floats.caption.enabled')) {
+            return ''
+        }
         let captionNode: latexParser.Command | undefined
-        let caption: string = 'Untitled'
+        let caption: string = ''
         if (node.name.replace(/\*$/, '') === 'frame') {
             // Frame titles can be specified as either \begin{frame}{Frame Title}
             // or \begin{frame} \frametitle{Frame Title}
@@ -383,6 +393,24 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
         const caption = latexParser.stringify(argNode).replace(/\n/g, ' ')
         return caption.slice(1, caption.length - 1) // {Title} -> Title
+    }
+
+    private countFloats(flatStructure: Section[]) {
+        if (flatStructure.length === 0) {
+            return []
+        }
+        const counter: {[key: string]: number} = {}
+
+        flatStructure.forEach(section => {
+            if (section.kind !== SectionKind.Env) {
+                return
+            }
+            const labelSegments = section.label.split(':')
+            counter[labelSegments[0]] = counter[labelSegments[0]] ? counter[labelSegments[0]] + 1 : 1
+            labelSegments[0] = `${labelSegments[0]} ${counter[labelSegments[0]]}`
+            section.label = labelSegments.join(':')
+        })
+        return flatStructure
     }
 
     /**
@@ -449,6 +477,38 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
         })
 
+        const findChild = (parentNode: Section, childNode: Section): boolean => {
+            if (childNode.lineNumber >= parentNode.lineNumber && childNode.toLine <= parentNode.toLine) {
+                let added = false
+                for (let index = 0; index < parentNode.children.length; index++) {
+                    const parentCandidate = parentNode.children[index]
+                    if (findChild(parentCandidate, childNode)) {
+                        added = true
+                        break
+                    }
+                }
+                if (!added) {
+                    parentNode.children.push(childNode)
+                }
+                return true
+            }
+            return false
+        }
+
+        // Non-sections may also be nested.
+        const preamble = preambleNodes[0] ? [preambleNodes[0]] : []
+        for (let index = 1; index < preambleNodes.length; index++) {
+            if (!findChild(preamble[preamble.length - 1], preambleNodes[index])) {
+                preamble.push(preambleNodes[index])
+            }
+        }
+        flatSections.forEach(section => {
+            const children = [section.children[0]]
+            for (let index = 1; index < section.children.length; index++) {
+                findChild(children[children.length - 1], section.children[index])
+            }
+        })
+
         const sections: Section[] = []
 
         flatSections.forEach(section => {
@@ -477,7 +537,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
         })
 
-        return [...preambleNodes, ...sections]
+        return [...preamble, ...sections]
     }
 
     private buildLaTeXSectionToLine(structure: Section[], lastLine: number) {
