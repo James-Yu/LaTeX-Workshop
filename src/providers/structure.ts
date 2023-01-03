@@ -477,6 +477,38 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
         })
 
+        const findChild = (parentNode: Section, childNode: Section): boolean => {
+            if (childNode.lineNumber >= parentNode.lineNumber && childNode.toLine <= parentNode.toLine) {
+                let added = false
+                for (let index = 0; index < parentNode.children.length; index++) {
+                    const parentCandidate = parentNode.children[index]
+                    if (findChild(parentCandidate, childNode)) {
+                        added = true
+                        break
+                    }
+                }
+                if (!added) {
+                    parentNode.children.push(childNode)
+                }
+                return true
+            }
+            return false
+        }
+
+        // Non-sections may also be nested.
+        const preamble = preambleNodes[0] ? [preambleNodes[0]] : []
+        for (let index = 1; index < preambleNodes.length; index++) {
+            if (!findChild(preamble[preamble.length - 1], preambleNodes[index])) {
+                preamble.push(preambleNodes[index])
+            }
+        }
+        flatSections.forEach(section => {
+            const children = [section.children[0]]
+            for (let index = 1; index < section.children.length; index++) {
+                findChild(children[children.length - 1], section.children[index])
+            }
+        })
+
         const sections: Section[] = []
 
         flatSections.forEach(section => {
@@ -505,7 +537,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
         })
 
-        return [...preambleNodes, ...sections]
+        return [...preamble, ...sections]
     }
 
     private buildLaTeXSectionToLine(structure: Section[], lastLine: number) {

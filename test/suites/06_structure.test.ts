@@ -75,6 +75,19 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[5].children[5].label, 'Frame 3')
     })
 
+    runTest({suiteName, fixtureName, testName: 'test structure with nested floats'}, async () => {
+        await loadTestFile(fixture, [{src: 'structure_nested.tex', dst: 'main.tex'}])
+        await openActive(extension, fixture, 'main.tex')
+        assert.ok(extension)
+        const structure = new SectionNodeProvider(extension)
+        await structure.update(true)
+        const sections = structure.ds
+        assert.ok(sections)
+        assert.strictEqual(sections.length, 3)
+        assert.strictEqual(sections[0].children.length, 1)
+        assert.strictEqual(sections[0].children[0].children.length, 1)
+    })
+
     runTest({suiteName, fixtureName, testName: 'test view.outline.numbers.enabled'}, async () => {
         await loadTestFiles(fixture)
         await openActive(extension, fixture, 'main.tex')
