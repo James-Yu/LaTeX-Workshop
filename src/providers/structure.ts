@@ -109,7 +109,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
         // Step 1: Create a flat array of sections.
         let flatStructure = await this.buildLaTeXSectionFromFile(file, subFile, filesBuilt)
-        if (configuration.get('view.outline.numbers.floats.enabled') as boolean) {
+        if (configuration.get('view.outline.floats.number.enabled') as boolean) {
             flatStructure = this.countFloats(flatStructure)
         }
 
@@ -261,10 +261,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             ))
         } else if (latexParser.isEnvironment(node) && this.LaTeXCommands.envs.includes(node.name.replace(/\*$/, ''))) {
             // \begin{figure}...\end{figure}
+            const caption = this.findEnvCaption(node)
             sections.push(new Section(
                 SectionKind.Env,
                 // -> Figure: Caption of figure
-                `${node.name.charAt(0).toUpperCase() + node.name.slice(1)}: ${this.findEnvCaption(node)}`,
+                node.name.charAt(0).toUpperCase() + node.name.slice(1) + (caption ? `: ${caption}` : ''),
                 vscode.TreeItemCollapsibleState.Expanded,
                 -1,
                 node.location.start.line - 1,
@@ -344,11 +345,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      * `table` using their respective syntax.
      *
      * @param node The environment node to be parsed
-     * @returns The caption found, or 'Untitled'.
+     * @returns The caption found, or empty.
      */
     private findEnvCaption(node: latexParser.Environment): string {
         let captionNode: latexParser.Command | undefined
-        let caption: string = 'Untitled'
+        let caption: string = ''
         if (node.name.replace(/\*$/, '') === 'frame') {
             // Frame titles can be specified as either \begin{frame}{Frame Title}
             // or \begin{frame} \frametitle{Frame Title}

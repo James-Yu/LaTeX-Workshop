@@ -37,9 +37,9 @@ suite('Document structure test suite', () => {
         extension.manager.rootFile = undefined
 
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.enabled', undefined)
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.floats.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.number.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.fastparse.enabled', undefined)
 
         if (path.basename(fixture) === 'testground') {
@@ -66,12 +66,12 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[3].label, '4 4 A long title split over two lines')
         assert.strictEqual(sections[4].label, '* No \\textit{Number} Section')
         assert.strictEqual(sections[5].label, '5 Section pdf Caption')
-        assert.strictEqual(sections[5].children[0].label, 'Figure 1: Untitled')
+        assert.strictEqual(sections[5].children[0].label, 'Figure 1')
         assert.strictEqual(sections[5].children[1].label, 'Figure 2: Figure Caption')
         assert.strictEqual(sections[5].children[2].label, 'Table 1: Table Caption')
         assert.strictEqual(sections[5].children[3].label, 'Frame 1: Frame Title 1')
         assert.strictEqual(sections[5].children[4].label, 'Frame 2: Frame Title 2')
-        assert.strictEqual(sections[5].children[5].label, 'Frame 3: Untitled')
+        assert.strictEqual(sections[5].children[5].label, 'Frame 3')
     })
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.numbers.enabled'}, async () => {
@@ -111,25 +111,25 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[5].children.length, 3)
         assert.strictEqual(sections[5].children[0].label, 'Frame 1: Frame Title 1')
         assert.strictEqual(sections[5].children[1].label, 'Frame 2: Frame Title 2')
-        assert.strictEqual(sections[5].children[2].label, 'Frame 3: Untitled')
+        assert.strictEqual(sections[5].children[2].label, 'Frame 3')
     })
 
-    runTest({suiteName, fixtureName, testName: 'test view.outline.numbers.floats.enabled'}, async () => {
+    runTest({suiteName, fixtureName, testName: 'test view.outline.floats.number.enabled'}, async () => {
         await loadTestFiles(fixture)
         await openActive(extension, fixture, 'main.tex')
         assert.ok(extension)
         const structure = new SectionNodeProvider(extension)
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.floats.enabled', false)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.number.enabled', false)
         await structure.update(true)
         const sections = structure.ds
         assert.ok(sections)
         assert.strictEqual(sections[5].children.length, 6)
-        assert.strictEqual(sections[5].children[0].label, 'Figure: Untitled')
+        assert.strictEqual(sections[5].children[0].label, 'Figure')
         assert.strictEqual(sections[5].children[1].label, 'Figure: Figure Caption')
         assert.strictEqual(sections[5].children[2].label, 'Table: Table Caption')
         assert.strictEqual(sections[5].children[3].label, 'Frame: Frame Title 1')
         assert.strictEqual(sections[5].children[4].label, 'Frame: Frame Title 2')
-        assert.strictEqual(sections[5].children[5].label, 'Frame: Untitled')
+        assert.strictEqual(sections[5].children[5].label, 'Frame')
     })
 
     runTest({suiteName, fixtureName, testName: 'test view.outline.fastparse.enabled'}, async () => {
@@ -151,11 +151,11 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[3].label, '4 4 A long title split over two lines')
         assert.strictEqual(sections[4].label, '* No \\textit{Number} Section')
         assert.strictEqual(sections[5].label, '5 Section pdf Caption')
-        assert.strictEqual(sections[5].children[0].label, 'Figure 1: Untitled')
+        assert.strictEqual(sections[5].children[0].label, 'Figure 1')
         assert.strictEqual(sections[5].children[1].label, 'Figure 2: Figure Caption')
         assert.strictEqual(sections[5].children[2].label, 'Table 1: Table Caption')
         assert.strictEqual(sections[5].children[3].label, 'Frame 1: Frame Title 1')
         assert.strictEqual(sections[5].children[4].label, 'Frame 2: Frame Title 2')
-        assert.strictEqual(sections[5].children[5].label, 'Frame 3: Untitled')
+        assert.strictEqual(sections[5].children[5].label, 'Frame 3')
     })
 })
