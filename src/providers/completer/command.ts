@@ -162,7 +162,7 @@ export class Command implements IProvider {
             const packages = this.extension.completer.package.getPackagesIncluded(languageId)
             Object.keys(packages).forEach(packageName => {
                 this.provideCmdInPkg(packageName, packages[packageName], suggestions, cmdDuplicationDetector)
-                this.extension.completer.environment.provideEnvsAsCommandInPkg(packageName, suggestions, cmdDuplicationDetector)
+                this.extension.completer.environment.provideEnvsAsCommandInPkg(packageName, packages[packageName], suggestions, cmdDuplicationDetector)
             })
         }
 
