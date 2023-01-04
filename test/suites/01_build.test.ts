@@ -206,7 +206,7 @@ suite('Build TeX files test suite', () => {
         await assertBuild({fixture, texName: 'sub/s.tex', pdfName: 'sub/out/s.pdf', extension})
     })
 
-    runTest({win32only: true, suiteName, fixtureName, testName: 'test q/.../ with spaces in outdir on Windows'}, async () => {
+    runTest({platforms: ['win32'], suiteName, fixtureName, testName: 'test q/.../ with spaces in outdir on Windows'}, async () => {
         const tools = [{ name: 'latexmk', command: 'latexmk', args: ['-e', '$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/', '-outdir=%OUTDIR%', '-pdf', '%DOC%'], env: {} }]
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', tools)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', '%DIR%/out space')
@@ -214,7 +214,7 @@ suite('Build TeX files test suite', () => {
         await assertBuild({fixture, texName: 'main.tex', pdfName: 'out space/main.pdf', extension})
     })
 
-    runTest({win32only: true, suiteName, fixtureName, testName: 'test q/.../ with copy and remove on Windows'}, async () => {
+    runTest({platforms: ['win32'], suiteName, fixtureName, testName: 'test q/.../ with copy and remove on Windows'}, async () => {
         const tools = [
             { name: 'latexmk', command: 'latexmk', args: ['-e', '$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/', '-outdir=%OUTDIR%', '-pdf', '%DOC%'], env: {} },
             {name: 'copyPDF', command: 'copy', args: ['%OUTDIR_W32%\\%DOCFILE%.pdf', '%OUTDIR_W32%\\copy.pdf'], env: {}},
