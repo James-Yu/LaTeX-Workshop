@@ -60,30 +60,35 @@ export class Package implements IProvider {
         return this.packageDeps[packageName] || []
     }
 
-    getPackagesIncluded(languageId: string): Set<string> {
-        const packages: Set<string> = new Set()
+    getPackagesIncluded(languageId: string): {[packageName: string]: string[]} {
+        const packages: {[packageName: string]: string[]} = {}
         if (['latex', 'latex-expl3'].includes(languageId)) {
-            packages.add('latex-document')
+            packages['latex-document'] = []
         }
         if (languageId === 'latex-expl3') {
-            packages.add('expl3')
+            packages['expl3'] = []
         }
 
         (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.extra') as string[])
-            .forEach(packageName => packages.add(packageName))
+            .forEach(packageName => packages[packageName] = [])
 
         this.extension.manager.getIncludedTeX().forEach(tex => {
             const included = this.extension.manager.getCachedContent(tex)?.element.package
             if (included === undefined) {
                 return
             }
-            Object.keys(included).forEach(packageName => packages.add(packageName))
+            Object.keys(included).forEach(packageName => packages[packageName] = included[packageName])
         })
 
         while (true) {
-            const initLength = packages.size
-            packages.forEach(packageName => this.getPackageDeps(packageName).forEach(dependName => packages.add(dependName)))
-            if (packages.size === initLength) {
+            let newPackageInserted = false
+            Object.keys(packages).forEach(packageName => this.getPackageDeps(packageName).forEach(dependName => {
+                if (packages[dependName] === undefined) {
+                    packages[dependName] = []
+                    newPackageInserted = true
+                }
+            }))
+            if (!newPackageInserted) {
                 break
             }
         }

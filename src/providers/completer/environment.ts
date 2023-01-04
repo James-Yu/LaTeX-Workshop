@@ -114,7 +114,7 @@ export class Environment implements IProvider {
         // Insert package environments
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('intellisense.package.enabled')) {
-            this.extension.completer.package.getPackagesIncluded(args.document.languageId).forEach(packageName => {
+            Object.keys(this.extension.completer.package.getPackagesIncluded(args.document.languageId)).forEach(packageName => {
                 this.getEnvFromPkg(packageName, snippetType).forEach(env => {
                     if (!envList.includes(env.label)) {
                         suggestions.push(env)

@@ -174,6 +174,30 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('\\gls{}'))
     })
 
+    runTest({suiteName, fixtureName, testName: 'command intellisense with usepackage and option'}, async () => {
+        await loadTestFile(fixture, [{src: 'intellisense/package_option_on_cmd_1.tex', dst: 'main.tex'}])
+        let result = await openActive(extension, fixture, 'main.tex')
+        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        let items = getIntellisense(result.doc, new vscode.Position(2, 1), extension)
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        let labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('\\lstformatfiles'))
+
+        await vscode.commands.executeCommand('workbench.action.closeAllEditors')
+
+        await loadTestFile(fixture, [{src: 'intellisense/package_option_on_cmd_2.tex', dst: 'main.tex'}])
+        result = await openActive(extension, fixture, 'main.tex')
+        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        items = getIntellisense(result.doc, new vscode.Position(2, 1), extension)
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        labels = items.map(item => item.label.toString())
+        assert.ok(!labels.includes('\\lstformatfiles'))
+    })
+
     runTest({suiteName, fixtureName, testName: 'command intellisense with config `intellisense.argumentHint.enabled`'}, async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', true)
         await loadTestFile(fixture, [
