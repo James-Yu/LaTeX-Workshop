@@ -44,7 +44,7 @@ export function runTest(option: RunTestOption, cb: () => unknown) {
     if (process.env['LATEXWORKSHOP_SUITE'] && !process.env['LATEXWORKSHOP_SUITE'].split(',').includes(option.suiteName)) {
         return
     }
-    if (option.platforms && option.platforms.includes(os.platform())) {
+    if (option.platforms && !option.platforms.includes(os.platform())) {
         return
     }
 
