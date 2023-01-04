@@ -28,7 +28,7 @@ export class PdfWatcher {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const usePolling = configuration.get('latex.watch.usePolling') as boolean
         const interval = configuration.get('latex.watch.interval') as number
-        const pdfDelay = configuration.get('latex.watch.pdfDelay') as number
+        const pdfDelay = configuration.get('latex.watch.pdf.delay') as number
         const pdfWatcherOptions = {
             useFsEvents: false,
             usePolling,
@@ -42,6 +42,10 @@ export class PdfWatcher {
         pdfWatcher.on('change', (file: string) => this.onWatchedPdfChanged(file))
         pdfWatcher.on('unlink', (file: string) => this.onWatchedPdfDeleted(file))
         return pdfWatcher
+    }
+
+    updateWatcherOptions() {
+        this.extension.manager.updateWatcherOptions(this.pdfWatcher, true)
     }
 
     private isWatchedVirtualUri(pdfFile: vscode.Uri): boolean {

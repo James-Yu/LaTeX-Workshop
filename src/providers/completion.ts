@@ -6,7 +6,7 @@ import {Citation} from './completer/citation'
 import {DocumentClass} from './completer/documentclass'
 import {Command} from './completer/command'
 import type {CmdType} from './completer/command'
-import {Environment, EnvSnippetType} from './completer/environment'
+import {Environment} from './completer/environment'
 import type {EnvType} from './completer/environment'
 import { Argument } from './completer/argument'
 import {AtSuggestion} from './completer/atsuggestion'
@@ -17,11 +17,6 @@ import {Glossary} from './completer/glossary'
 import type {ReferenceDocType} from './completer/reference'
 import {escapeRegExp} from '../utils/utils'
 import {resolvePkgFile} from './completer/commandlib/commandfinder'
-
-type DataEnvsJsonType = typeof import('../../data/environments.json')
-type DataCmdsJsonType = typeof import('../../data/commands.json')
-type DataTeXJsonType = typeof import('../../data/packages/tex.json')
-
 
 export type PkgType = {includes: string[], cmds: {[key: string]: CmdType}, envs: {[key: string]: EnvType}, options: string[]}
 
@@ -115,24 +110,9 @@ export class Completer implements vscode.CompletionItemProvider {
     }
 
     private loadDefaultItems() {
-        const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
-        const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
-        const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})
-        const env: { [key: string]: EnvType } = JSON.parse(defaultEnvs) as DataEnvsJsonType
-        const cmds = JSON.parse(defaultCommands) as DataCmdsJsonType
-        const maths: { [key: string]: CmdType } = (JSON.parse(defaultLaTeXMathSymbols) as DataTeXJsonType).cmds
-        for (const key of Object.keys(maths)) {
-            if (key.match(/\{.*?\}/)) {
-                const ent = maths[key]
-                const newKey = key.replace(/\{.*?\}/, '')
-                delete maths[key]
-                maths[newKey] = ent
-            }
-        }
-        Object.assign(maths, cmds)
         // Make sure to initialize environment first
-        this.environment.initialize(env)
-        this.command.initialize(maths, this.environment.getDefaultEnvs(EnvSnippetType.AsCommand))
+        const environment = this.environment.initialize()
+        this.command.initialize(environment)
     }
 
     provideCompletionItems(

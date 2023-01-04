@@ -124,6 +124,17 @@ export class Manager {
         this.registerSetEnvVar()
         this.extension.eventBus.onDidChangeRootFile(() => this.logWatchedFiles())
 
+        this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+            if (e.affectsConfiguration('latex-workshop.latex.watch.usePolling') ||
+                e.affectsConfiguration('latex-workshop.latex.watch.interval') ||
+                e.affectsConfiguration('latex-workshop.latex.watch.delay') ||
+                e.affectsConfiguration('latex-workshop.latex.watch.pdf.delay')) {
+                this.updateWatcherOptions(this.fileWatcher)
+                this.bibWatcher.updateWatcherOptions()
+                this.pdfWatcher.updateWatcherOptions()
+            }
+        }))
+
         // Create temp folder
         try {
             this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
@@ -137,6 +148,15 @@ export class Manager {
                 console.log(msg)
             }
             throw error
+        }
+    }
+
+    updateWatcherOptions(watcher: chokidar.FSWatcher, pdf = false) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        watcher.options.usePolling = configuration.get('latex.watch.usePolling') as boolean
+        watcher.options.interval = configuration.get('latex.watch.interval') as number
+        watcher.options.awaitWriteFinish = {
+            stabilityThreshold: pdf ? configuration.get('latex.watch.pdf.delay') : configuration.get('latex.watch.delay') as number
         }
     }
 

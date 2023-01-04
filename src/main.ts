@@ -146,7 +146,7 @@ export function deactivate() {
 }
 
 export function activate(context: vscode.ExtensionContext): ReturnType<typeof generateLatexWorkshopApi> {
-    const extension = new Extension()
+    const extension = new Extension(context)
     extensionToDispose = extension
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
@@ -275,15 +275,31 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
         vscode.languages.registerWorkspaceSymbolProvider(new ProjectSymbolProvider(extension))
     )
 
-    const userTriggersLatex = configuration.get('intellisense.triggers.latex') as string[]
-    const latexTriggers = ['\\', ','].concat(userTriggersLatex)
-    extension.logger.addLogMessage(`Trigger characters for intellisense of LaTeX documents: ${JSON.stringify(latexTriggers)}`)
-
     context.subscriptions.push(
         vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, extension.completer, '\\', '{'),
-        vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.completer, ...latexTriggers),
         vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'bibtex'}, new BibtexCompleter(extension), '@')
     )
+
+    let triggerDisposable: vscode.Disposable | undefined
+    const registerTrigger = () => {
+        const userTriggersLatex = configuration.get('intellisense.triggers.latex') as string[]
+        const latexTriggers = ['\\', ','].concat(userTriggersLatex)
+        extension.logger.addLogMessage(`Trigger characters for intellisense of LaTeX documents: ${JSON.stringify(latexTriggers)}`)
+
+        triggerDisposable = vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.completer, ...latexTriggers)
+        context.subscriptions.push(triggerDisposable)
+    }
+    registerTrigger()
+    context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+        if (e.affectsConfiguration('latex-workshop.intellisense.triggers.latex')) {
+            if (triggerDisposable) {
+                triggerDisposable.dispose()
+                triggerDisposable = undefined
+            }
+            registerTrigger()
+        }
+        return
+    }))
 
     let atSuggestionDisposable: vscode.Disposable | undefined
     const registerAtSuggestion = () => {
@@ -294,7 +310,6 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
             context.subscriptions.push(atSuggestionDisposable)
         }
     }
-
     registerAtSuggestion()
     context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
         if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestion.trigger.latex')) {
@@ -329,6 +344,7 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
 
 export class Extension {
     readonly extensionRoot: string
+    readonly context: vscode.ExtensionContext
     readonly logger: Logger
     readonly eventBus = new EventBus()
     readonly lwfs: LwFileSystem
@@ -359,8 +375,9 @@ export class Extension {
     readonly mathPreviewPanel: MathPreviewPanel
     readonly duplicateLabels: DuplicateLabels
 
-    constructor() {
+    constructor(context: vscode.ExtensionContext) {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
+        this.context = context
         // We must create an instance of Logger first to enable
         // adding log messages during initialization.
         this.logger = new Logger()

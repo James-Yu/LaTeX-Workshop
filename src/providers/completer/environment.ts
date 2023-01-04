@@ -1,11 +1,14 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
 import type { Extension } from '../../main'
 import type { ICompletionItem } from '../completion'
 import type { IProvider } from '../completion'
 import {CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
-import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions} from './completerutils'
+import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint} from './completerutils'
+
+type DataEnvsJsonType = typeof import('../../../data/environments.json')
 
 export type EnvType = {
     name: string, // Name of the environment, what comes inside \begin{...}
@@ -37,7 +40,9 @@ export class Environment implements IProvider {
         this.extension = extension
     }
 
-    initialize(envs: {[key: string]: EnvType}) {
+    initialize() {
+        const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
+        const envs: { [key: string]: EnvType } = JSON.parse(defaultEnvs) as DataEnvsJsonType
         this.defaultEnvsAsCommand = []
         this.defaultEnvsForBegin = []
         this.defaultEnvsAsName = []
@@ -46,6 +51,8 @@ export class Environment implements IProvider {
            this.defaultEnvsForBegin.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.ForBegin))
            this.defaultEnvsAsName.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsName))
         })
+
+        return this
     }
 
     /**
@@ -134,6 +141,8 @@ export class Environment implements IProvider {
                 })
             }
         })
+
+        filterArgumentHint(suggestions)
 
         return suggestions
     }

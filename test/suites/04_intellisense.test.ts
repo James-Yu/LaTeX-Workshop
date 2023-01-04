@@ -46,6 +46,8 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.format', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.commandsJSON.replace', undefined)
 
         if (path.basename(fixture) === 'testground') {
             rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
@@ -170,6 +172,62 @@ suite('Intellisense test suite', () => {
         labels = items.map(item => item.label.toString())
         assert.ok(!labels.includes('\\includefrom{}{}'))
         assert.ok(labels.includes('\\gls{}'))
+    })
+
+    runTest({suiteName, fixtureName, testName: 'command intellisense with config `intellisense.argumentHint.enabled`'}, async () => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', true)
+        await loadTestFile(fixture, [
+            {src: 'intellisense_base.tex', dst: 'main.tex'},
+            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+        ])
+        const result = await openActive(extension, fixture, 'main.tex')
+        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        let items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        let labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('\\includefrom{}{}'))
+        let snippet = items.filter(item => item.label === '\\includefrom{}{}')[0].insertText
+        assert.ok(snippet)
+        assert.ok(typeof snippet !== 'string')
+        assert.ok(snippet.value.includes('${1:'))
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', false)
+        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('\\includefrom{}{}'))
+        snippet = items.filter(item => item.label === '\\includefrom{}{}')[0].insertText
+        assert.ok(snippet)
+        assert.ok(typeof snippet !== 'string')
+        assert.ok(!snippet.value.includes('${1:'))
+    })
+
+    runTest({suiteName, fixtureName, testName: 'command intellisense with config `intellisense.commandsJSON.replace`'}, async () => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.commandsJSON.replace', {'mathbb{}': ''})
+        await loadTestFile(fixture, [
+            {src: 'intellisense_base.tex', dst: 'main.tex'},
+            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+        ])
+        const result = await openActive(extension, fixture, 'main.tex')
+        let items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        let labels = items.map(item => item.label.toString())
+        assert.ok(!labels.includes('\\mathbb{text}'))
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.commandsJSON.replace', undefined)
+        items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('\\mathbb{text}'))
     })
 
     runTest({suiteName, fixtureName, testName: 'reference intellisense and config intellisense.label.keyval'}, async () => {

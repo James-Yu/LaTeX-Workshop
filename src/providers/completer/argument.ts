@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 
 import type { Extension } from '../../main'
 import type { IProvider } from '../completion'
-import { CmdEnvSuggestion } from './completerutils'
+import { CmdEnvSuggestion, filterArgumentHint } from './completerutils'
 import { EnvSnippetType } from './environment'
 
 export class Argument implements IProvider {
@@ -52,11 +52,15 @@ export class Argument implements IProvider {
                 break
             }
         }
-        return candidate?.keyvals?.map(option => {
+        const suggestions = candidate?.keyvals?.map(option => {
             const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
             item.insertText = new vscode.SnippetString(option)
             return item
         }) || []
+
+        filterArgumentHint(suggestions)
+
+        return suggestions
     }
 
     private providePackageOptions(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
@@ -67,12 +71,16 @@ export class Argument implements IProvider {
             return []
         }
         this.extension.completer.loadPackageData(match[1])
-        return this.extension.completer.package.getPackageOptions(match[1])
+        const suggestions = this.extension.completer.package.getPackageOptions(match[1])
             .map(option => {
                 const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
                 item.insertText = new vscode.SnippetString(option)
                 return item
             })
+
+        filterArgumentHint(suggestions)
+
+        return suggestions
     }
 
     private provideClassOptions(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
@@ -84,12 +92,16 @@ export class Argument implements IProvider {
         }
         const isDefaultClass = ['article', 'report', 'book'].includes(match[1])
         this.extension.completer.loadPackageData(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
-        return this.extension.completer.package.getPackageOptions(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
+        const suggestions = this.extension.completer.package.getPackageOptions(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
             .map(option => {
                 const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
                 item.insertText = new vscode.SnippetString(option)
                 return item
             })
+
+        filterArgumentHint(suggestions)
+
+        return suggestions
     }
 
     private getArgumentIndex(argstr: string) {

@@ -26,11 +26,11 @@ export class AtSuggestion implements IProvider {
 
         const allSuggestions: {[key: string]: AtSuggestionItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/at-suggestions.json`).toString()) as DataAtSuggestionJsonType
         this.initialize(allSuggestions)
-        vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+        this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestionJSON.replace')) {
                 this.initialize(allSuggestions)
             }
-        })
+        }))
     }
 
     private initialize(suggestions: {[key: string]: AtSuggestionItemEntry}) {
