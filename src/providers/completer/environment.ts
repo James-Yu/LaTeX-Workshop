@@ -114,8 +114,12 @@ export class Environment implements IProvider {
         // Insert package environments
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('intellisense.package.enabled')) {
-            this.extension.completer.package.getPackagesIncluded(args.document.languageId).forEach(packageName => {
+            const packages = this.extension.completer.package.getPackagesIncluded(args.document.languageId)
+            Object.keys(packages).forEach(packageName => {
                 this.getEnvFromPkg(packageName, snippetType).forEach(env => {
+                    if (env.option && packages[packageName] && !packages[packageName].includes(env.option)) {
+                        return
+                    }
                     if (!envList.includes(env.label)) {
                         suggestions.push(env)
                         envList.push(env.label)
@@ -151,7 +155,7 @@ export class Environment implements IProvider {
      * Environments can be inserted using `\envname`.
      * This function is called by Command.provide to compute these commands for every package in use.
      */
-    provideEnvsAsCommandInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
+    provideEnvsAsCommandInPkg(pkg: string, options: string[], suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
 
@@ -172,6 +176,9 @@ export class Environment implements IProvider {
                 return
             }
             if (!cmdDuplicationDetector.has(env)) {
+                if (env.option && options && !options.includes(env.option)) {
+                    return
+                }
                 suggestions.push(env)
                 cmdDuplicationDetector.add(env)
             }
@@ -293,7 +300,8 @@ export class Environment implements IProvider {
             item.keyvals || [],
             item.keyvalindex === undefined ? -1 : item.keyvalindex,
             splitSignatureString(itemKey),
-            vscode.CompletionItemKind.Module)
+            vscode.CompletionItemKind.Module,
+            item.option)
         suggestion.detail = `\\begin{${item.name}}${item.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}\n...\n\\end{${item.name}}`
         suggestion.documentation = `Environment ${item.name}.`
         if (item.package) {

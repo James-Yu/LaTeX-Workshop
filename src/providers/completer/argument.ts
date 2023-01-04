@@ -23,7 +23,7 @@ export class Argument implements IProvider {
         if (result[1] === 'begin') {
             environment = result[2].match(/{(.*?)}/)?.[1]
         }
-        for (const packageName of packages) {
+        for (const packageName of Object.keys(packages)) {
             if (environment) {
                 const environments = this.extension.completer.environment.getEnvFromPkg(packageName, EnvSnippetType.AsCommand) || []
                 for (const env of environments) {

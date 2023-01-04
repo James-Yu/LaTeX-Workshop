@@ -159,9 +159,10 @@ export class Command implements IProvider {
 
         // Insert commands from packages
         if ((configuration.get('intellisense.package.enabled'))) {
-            this.extension.completer.package.getPackagesIncluded(languageId).forEach(packageName => {
-                this.provideCmdInPkg(packageName, suggestions, cmdDuplicationDetector)
-                this.extension.completer.environment.provideEnvsAsCommandInPkg(packageName, suggestions, cmdDuplicationDetector)
+            const packages = this.extension.completer.package.getPackagesIncluded(languageId)
+            Object.keys(packages).forEach(packageName => {
+                this.provideCmdInPkg(packageName, packages[packageName], suggestions, cmdDuplicationDetector)
+                this.extension.completer.environment.provideEnvsAsCommandInPkg(packageName, packages[packageName], suggestions, cmdDuplicationDetector)
             })
         }
 
@@ -237,7 +238,8 @@ export class Command implements IProvider {
             item.keyvals || [],
             item.keyvalindex === undefined ? -1 : item.keyvalindex,
             splitSignatureString(itemKey),
-            vscode.CompletionItemKind.Function)
+            vscode.CompletionItemKind.Function,
+            item.option)
 
         if (item.snippet) {
             // Wrap the selected text when there is a single placeholder
@@ -285,14 +287,14 @@ export class Command implements IProvider {
         return this.packageCmds.get(packageName) || []
     }
 
-    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
+    provideCmdInPkg(packageName: string, options: string[], suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
-        this.extension.completer.loadPackageData(pkg)
+        this.extension.completer.loadPackageData(packageName)
 
         // No package command defined
-        const pkgCmds = this.packageCmds.get(pkg)
+        const pkgCmds = this.packageCmds.get(packageName)
         if (!pkgCmds || pkgCmds.length === 0) {
             return
         }
@@ -303,6 +305,9 @@ export class Command implements IProvider {
                 return
             }
             if (!cmdDuplicationDetector.has(cmd)) {
+                if (cmd.option && options && !options.includes(cmd.option)) {
+                    return
+                }
                 suggestions.push(cmd)
                 cmdDuplicationDetector.add(cmd)
             }

@@ -273,20 +273,20 @@ export class CommandFinder {
     private whichPackageProvidesCommand(cmdName: string): string {
         if (this.extension.manager.rootFile !== undefined) {
             for (const file of this.extension.manager.getIncludedTeX()) {
-                const cachedPkgs = this.extension.manager.getCachedContent(file)?.element.package
-                if (cachedPkgs === undefined) {
+                const packages = this.extension.manager.getCachedContent(file)?.element.package
+                if (packages === undefined) {
                     continue
                 }
-                for (const pkg of Object.keys(cachedPkgs)) {
+                for (const packageName of Object.keys(packages)) {
                     const commands: ICompletionItem[] = []
-                    this.extension.completer.command.provideCmdInPkg(pkg, commands, new CommandSignatureDuplicationDetector())
+                    this.extension.completer.command.provideCmdInPkg(packageName, packages[packageName], commands, new CommandSignatureDuplicationDetector())
                     for (const cmd of commands) {
                         const label = cmd.label.slice(1)
                         if (label.startsWith(cmdName) &&
                             ((label.length === cmdName.length) ||
                             (label.charAt(cmdName.length) === '[') ||
                             (label.charAt(cmdName.length) === '{'))) {
-                            return pkg
+                            return packageName
                         }
                     }
                 }
