@@ -184,7 +184,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         const workerPort = new Worker('/build/pdf.worker.js')
         const params = await this.fetchParams()
         document.addEventListener('webviewerloaded', () => {
-            const color = this.isPrefersColorSchemeDark() ? params.color.dark : params.color.light
+            const color = this.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark : params.color.light
             const options = {
                 annotationEditorMode: -1,
                 disablePreferences: true,
@@ -347,7 +347,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, {once: true})
     }
 
-    isPrefersColorSchemeDark() {
+    isPrefersColorSchemeDark(codeColorTheme: 'light' | 'dark') {
+        if (this.embedded) {
+            return codeColorTheme === 'dark'
+        }
         return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
     }
 
@@ -360,7 +363,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         if (params.invertMode.enabled) {
             const { brightness, grayscale, hueRotate, invert, sepia } = params.invertMode
             const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`
-            if (this.isPrefersColorSchemeDark()) {
+            if (this.isPrefersColorSchemeDark(params.codeColorTheme)) {
                 (document.querySelector('#viewerContainer') as HTMLHtmlElement).style.filter = filter;
                 (document.querySelector('#thumbnailView') as HTMLHtmlElement).style.filter = filter;
                 (document.querySelector('#sidebarContent') as HTMLHtmlElement).style.background = 'var(--body-bg-color)'
@@ -370,7 +373,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
         }
         const css = document.styleSheets[document.styleSheets.length - 1]
-        if (this.isPrefersColorSchemeDark()) {
+        if (this.isPrefersColorSchemeDark(params.codeColorTheme)) {
             (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.dark.backgroundColor
             css.insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.dark.pageBorderColor}}`, css.cssRules.length)
         } else {

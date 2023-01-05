@@ -329,6 +329,7 @@ export class Viewer {
                     pageBorderColor: configuration.get('view.pdf.color.dark.pageBorderColor', 'lightgrey')
                 }
             },
+            codeColorTheme: getCurrentThemeLightness(),
             keybindings: {
                 synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
             }

@@ -36,7 +36,8 @@ export type PdfViewerParams = {
             backgroundColor: string,
             pageBorderColor: string
         }
-    }
+    },
+    codeColorTheme: 'light' | 'dark',
     keybindings: {
         synctex: 'ctrl-click' | 'double-click'
     }
