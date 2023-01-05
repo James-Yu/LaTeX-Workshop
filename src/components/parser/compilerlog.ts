@@ -120,7 +120,7 @@ export class CompilerLogParser {
         if (!item.errorPosText) {
             return undefined
         }
-        const content = this.extension.manager.getDirtyContent(item.file)
+        const content = this.extension.cacher.getDirtyContent(item.file)
         if (!content) {
             return undefined
         }

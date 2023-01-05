@@ -22,13 +22,13 @@ export class DuplicateLabels {
      * Compute the dictionary of labels holding their file and position
      */
     private computeDuplicates(file: string): string[] {
-        if (!this.extension.manager.getCachedContent(file)) {
+        if (!this.extension.cacher.getCachedContent(file)) {
             this.extension.logger.addLogMessage(`Cannot check for duplicate labels in a file not in manager: ${file}.`)
             return []
         }
         const labelsCount = new Map<string, number>()
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.manager.getCachedContent(cachedFile)?.element.reference
+            const cachedRefs = this.extension.cacher.getCachedContent(cachedFile)?.element.reference
             if (cachedRefs === undefined) {
                 return
             }
@@ -67,7 +67,7 @@ export class DuplicateLabels {
         const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
 
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.manager.getCachedContent(cachedFile)?.element.reference
+            const cachedRefs = this.extension.cacher.getCachedContent(cachedFile)?.element.reference
             if (cachedRefs === undefined) {
                 return
             }

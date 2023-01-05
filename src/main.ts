@@ -39,6 +39,7 @@ import {FoldingProvider, WeaveFoldingProvider} from './providers/folding'
 import {SelectionRangeProvider} from './providers/selection'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import {SnippetView} from './components/snippetview'
+import { Cacher } from './components/cacher'
 
 
 function conflictExtensionCheck() {
@@ -158,7 +159,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         }
         if (extension.manager.hasTexId(e.languageId)) {
             extension.logger.addLogMessage(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
-            extension.manager.updateCachedContent(e)
+            extension.cacher.updateCachedContent(e)
             extension.linter.lintRootFileIfEnabled()
             void extension.manager.buildOnSaveIfEnabled(e.fileName)
             extension.counter.countOnSaveIfEnabled(e.fileName)
@@ -184,8 +185,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             return
         }
         extension.linter.lintActiveFileIfEnabledAfterInterval(e.document)
-        const cache = extension.manager.getCachedContent(e.document.fileName)
-        if (cache === undefined) {
+        if (!(e.document.fileName in extension.cacher.cachedFilePaths)) {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -194,7 +194,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
                 clearTimeout(updateCompleter)
             }
             updateCompleter = setTimeout(async () => {
-                extension.manager.updateCachedContent(e.document)
+                extension.cacher.updateCachedContent(e.document)
                 const content = e.document.getText()
                 const file = e.document.uri.fsPath
                 await extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
@@ -350,6 +350,7 @@ export class Extension {
     readonly lwfs: LwFileSystem
     readonly commander: Commander
     readonly configuration: Configuration
+    readonly cacher: Cacher
     readonly manager: Manager
     readonly builder: Builder
     readonly viewer: Viewer
@@ -385,6 +386,7 @@ export class Extension {
         this.configuration = new Configuration(this)
         this.lwfs = new LwFileSystem(this)
         this.commander = new Commander(this)
+        this.cacher = new Cacher(this)
         this.manager = new Manager(this)
         this.builder = new Builder(this)
         this.viewer = new Viewer(this)

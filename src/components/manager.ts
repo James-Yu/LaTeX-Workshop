@@ -11,57 +11,12 @@ import {InputFileRegExp} from '../utils/inputfilepath'
 
 import type {Extension} from '../main'
 import * as eventbus from './eventbus'
-import type {CmdEnvSuggestion} from '../providers/completer/completerutils'
-import type {CiteSuggestion} from '../providers/completer/citation'
-import type {GlossarySuggestion} from '../providers/completer/glossary'
-import type { ICompletionItem } from '../providers/completion'
 
 import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'
 import {FinderUtils} from './managerlib/finderutils'
 import {PathUtils} from './managerlib/pathutils'
 import {IntellisenseWatcher} from './managerlib/intellisensewatcher'
-
-/**
- * The content cache for each LaTeX file `filepath`.
- */
-export interface Content {
-    [filepath: string]: { // The path of a LaTeX file.
-        /**
-         * The dirty (under editing) content of the LaTeX file if opened in vscode,
-         * the content on disk otherwise.
-         */
-        content: string | undefined,
-        /**
-         * Completion item and other items for the LaTeX file.
-         */
-        element: {
-            reference?: ICompletionItem[],
-            glossary?: GlossarySuggestion[],
-            environment?: CmdEnvSuggestion[],
-            bibitem?: CiteSuggestion[],
-            command?: CmdEnvSuggestion[],
-            package?: {[packageName: string]: string[]}
-        },
-        /**
-         * The sub-files of the LaTeX file. They should be tex or plain files.
-         */
-        children: {
-            /**
-             * The index of character sub-content is inserted
-             */
-            index: number,
-            /**
-             * The path of the sub-file
-             */
-            file: string
-        }[],
-        /**
-         * The array of the paths of `.bib` files referenced from the LaTeX file.
-         */
-        bibs: string[]
-    }
-}
 
 export const enum BuildEvents {
     never = 'never',
@@ -78,11 +33,6 @@ type RootFileType = {
 }
 
 export class Manager {
-    /**
-     * The content cache for each LaTeX file.
-     */
-    private readonly cachedContent = Object.create(null) as Content
-
     private _localRootFile: string | undefined
     private _rootFileLanguageId: string | undefined
     private _rootFile: RootFileType | undefined
@@ -164,22 +114,6 @@ export class Manager {
         await this.fileWatcher.close()
         await this.pdfWatcher.dispose()
         await this.bibWatcher.dispose()
-    }
-
-    getCachedContent(filePath: string): Content[string] | undefined {
-        return this.cachedContent[filePath]
-    }
-
-    get cachedFilePaths() {
-        return Object.keys(this.cachedContent)
-    }
-
-    updateCachedContent(document: vscode.TextDocument) {
-        const cache = this.getCachedContent(document.fileName)
-        if (cache !== undefined) {
-            cache.content = document.getText()
-        }
-        this.extension.eventBus.fire(eventbus.CacheUpdated)
     }
 
     getFilesWatched() {
@@ -524,12 +458,13 @@ export class Manager {
         if (file === undefined) {
             return []
         }
-        if (!(file in this.extension.manager.cachedContent)) {
+        if (!this.extension.cacher.cachedFilePaths.includes(file)) {
             return []
         }
         children.push(file)
-        includedBib.push(...this.extension.manager.cachedContent[file].bibs)
-        for (const child of this.extension.manager.cachedContent[file].children) {
+        const cache = this.extension.cacher.getCachedContent(file)
+        includedBib.push(...cache.bibs)
+        for (const child of cache.children) {
             if (children.includes(child.file)) {
                 // Already parsed
                 continue
@@ -555,11 +490,11 @@ export class Manager {
         if (file === undefined) {
             return []
         }
-        if (!(file in this.extension.manager.cachedContent)) {
+        if (!this.extension.cacher.cachedFilePaths.includes(file)) {
             return []
         }
         includedTeX.push(file)
-        for (const child of this.extension.manager.cachedContent[file].children) {
+        for (const child of this.extension.cacher.getCachedContent(file).children) {
             if (includedTeX.includes(child.file)) {
                 // Already included
                 continue
@@ -567,24 +502,6 @@ export class Manager {
             this.getIncludedTeX(child.file, includedTeX)
         }
         return includedTeX
-    }
-
-    /**
-     * Get the buffer content of a file if it is opened in vscode. Otherwise, read the file from disk
-     */
-    getDirtyContent(file: string): string | undefined {
-        const cache = this.cachedContent[file]
-        if (cache !== undefined) {
-            if (cache.content) {
-                return cache.content
-            }
-        }
-        const fileContent = this.extension.lwfs.readFileSyncGracefully(file)
-        if (fileContent === undefined) {
-            this.extension.logger.addLogMessage(`Cannot read dirty content of unknown ${file}`)
-        }
-        this.cachedContent[file] = {content: fileContent, element: {}, children: [], bibs: []}
-        return fileContent
     }
 
     private isExcluded(file: string): boolean {
@@ -624,13 +541,14 @@ export class Manager {
             // in case of circular inclusion
             this.addToFileWatcher(file)
         }
-        let content = this.getDirtyContent(file)
+        let content = this.extension.cacher.getDirtyContent(file)
         if (!content) {
             return
         }
         content = utils.stripCommentsAndVerbatim(content)
-        this.cachedContent[file].children = []
-        this.cachedContent[file].bibs = []
+        const cache = this.extension.cacher.getCachedContent(file)
+        cache.children = []
+        cache.bibs = []
         await this.parseInputFiles(content, file, baseFile)
         await this.parseBibFiles(content, file)
         this.extension.eventBus.fire(eventbus.FileParsed, file)
@@ -650,8 +568,10 @@ export class Manager {
         }
 
         // Update children of current file
-        if (this.cachedContent[file] === undefined) {
-            this.cachedContent[file] = {content, element: {}, bibs: [], children: []}
+        if (!this.extension.cacher.cachedFilePaths.includes(file)) {
+            this.extension.cacher.getDirtyContent(file)
+            const cache = this.extension.cacher.getCachedContent(file)
+            cache.content = content
             const inputFileRegExp = new InputFileRegExp()
             while (true) {
                 const result = inputFileRegExp.exec(content, file, baseFile)
@@ -664,14 +584,14 @@ export class Manager {
                     continue
                 }
 
-                this.cachedContent[file].children.push({
+                cache.children.push({
                     index: result.match.index,
                     file: result.path
                 })
             }
         }
 
-        this.cachedContent[file].children.forEach(child => {
+        this.extension.cacher.getCachedContent(file).children.forEach(child => {
             if (children.includes(child.file)) {
                 // Already included
                 return
@@ -715,7 +635,7 @@ export class Manager {
                 continue
             }
 
-            this.cachedContent[baseFile].children.push({
+            this.extension.cacher.getCachedContent(baseFile).children.push({
                 index: result.match.index,
                 file: result.path
             })
@@ -745,7 +665,7 @@ export class Manager {
                 if (bibPath === undefined) {
                     continue
                 }
-                this.cachedContent[fileName].bibs.push(bibPath)
+                this.extension.cacher.getCachedContent(fileName).bibs.push(bibPath)
                 await this.bibWatcher.watchBibFile(bibPath)
             }
         }
@@ -787,9 +707,9 @@ export class Manager {
             }
             if (path.extname(inputFile) === '.tex') {
                 // In rare cases, the cache was cleared
-                this.getDirtyContent(texFile)
+                this.extension.cacher.getDirtyContent(texFile)
                 // Parse tex files as imported subfiles.
-                this.cachedContent[texFile].children.push({
+                this.extension.cacher.getCachedContent(texFile).children.push({
                     index: Number.MAX_VALUE,
                     file: inputFile
                 })
@@ -824,8 +744,8 @@ export class Manager {
                 if (bibPath === undefined) {
                     continue
                 }
-                if (this.rootFile && !this.cachedContent[this.rootFile].bibs.includes(bibPath)) {
-                    this.cachedContent[this.rootFile].bibs.push(bibPath)
+                if (this.rootFile && !this.extension.cacher.getCachedContent(this.rootFile).bibs.includes(bibPath)) {
+                    this.extension.cacher.getCachedContent(this.rootFile).bibs.push(bibPath)
                 }
                 await this.bibWatcher.watchBibFile(bibPath)
             }
@@ -893,8 +813,8 @@ export class Manager {
         // It is possible for either tex or non-tex files in the watcher.
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
-            if (file in this.cachedContent) {
-                this.cachedContent[file].content = undefined
+            if (this.extension.cacher.cachedFilePaths.includes(file)) {
+                this.extension.cacher.getCachedContent(file).content = undefined
             }
             await this.parseFileAndSubs(file, this.rootFile)
             await this.updateCompleterOnChange(file)
@@ -905,7 +825,7 @@ export class Manager {
     private onWatchedFileDeleted(file: string) {
         this.extension.logger.addLogMessage(`File watcher - file deleted: ${file}`)
         this.deleteFromFileWatcher(file)
-        delete this.cachedContent[file]
+        this.extension.cacher.removeCachedContent(file)
         if (file === this.rootFile) {
             this.extension.logger.addLogMessage(`Root file deleted: ${file}`)
             this.extension.logger.addLogMessage('Start searching a new root file.')
@@ -955,7 +875,7 @@ export class Manager {
 
     // This function updates all completers upon tex-file changes.
     private async updateCompleterOnChange(file: string) {
-        const content = this.getDirtyContent(file)
+        const content = this.extension.cacher.getDirtyContent(file)
         if (!content) {
             return
         }
@@ -1056,7 +976,7 @@ export class Manager {
         if (node?.name === 'documentclass') {
             packageName = 'class-' + packageName
         }
-        const cache = this.getCachedContent(fileName)
+        const cache = this.extension.cacher.getCachedContent(fileName)
         if (cache === undefined) {
             return
         }
