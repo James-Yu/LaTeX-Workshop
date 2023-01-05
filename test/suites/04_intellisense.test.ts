@@ -494,10 +494,7 @@ suite('Intellisense test suite', () => {
             {src: 'intellisense_glossaryentries.tex', dst: 'sub/glossary.tex'}
         ])
         const result = await openActive(extension, fixture, 'main.tex')
-
-        const content = extension.manager.getDirtyContent(path.resolve(fixture, 'sub/glossary.tex'))
-        assert.ok(content)
-        await extension.manager.updateCompleter(path.resolve(fixture, 'sub/glossary.tex'), content)
+        await extension.manager.updateCompleter(path.resolve(fixture, 'sub/glossary.tex'), result.doc.getText())
 
         const items = getIntellisense(result.doc, new vscode.Position(5, 5), extension)
         assert.ok(items)
