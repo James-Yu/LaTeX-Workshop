@@ -100,24 +100,27 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return []
         }
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-
         this.refreshLaTeXModelConfig()
         // To avoid looping import, this variable is used to store file paths
         // that have been parsed.
         const filesBuilt = new Set<string>()
 
         // Step 1: Create a flat array of sections.
-        let flatStructure = await this.buildLaTeXSectionFromFile(file, subFile, filesBuilt)
-        if (configuration.get('view.outline.floats.number.enabled') as boolean) {
-            flatStructure = this.countFloats(flatStructure)
-        }
+        const flatNodes = await this.buildLaTeXSectionFromFile(file, subFile, filesBuilt)
+
+        // Normalize section depth. It's possible that there is no `chapter` in
+        // a document. In such a case, `section` is the lowest level with a
+        // depth 1. However, later logic is 0-based. So.
+        this.normalizeDepths(flatNodes)
+
+        this.buildFloatNumber(flatNodes, subFile)
+
+        const {preambleFloats, flatSections} = this.buildSectionNumber(flatNodes, subFile)
 
         // Step 2: Create the hierarchy of these sections.
-        const structure = this.buildLaTeXHierarchy(
-            flatStructure,
-            subFile && configuration.get('view.outline.numbers.enabled') as boolean
-        )
+        const preamble = this.buildNestedFloats(preambleFloats, flatSections)
+        const sections = this.buildNestedSections(flatSections)
+        const structure = [...preamble, ...sections]
 
         // Step 3: Determine the toLine of all sections.
         this.buildLaTeXSectionToLine(structure, Number.MAX_SAFE_INTEGER)
@@ -395,13 +398,17 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return caption.slice(1, caption.length - 1) // {Title} -> Title
     }
 
-    private countFloats(flatStructure: Section[]) {
-        if (flatStructure.length === 0) {
-            return []
+    private buildFloatNumber(flatNodes: Section[], subFile: boolean) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('view.outline.floats.number.enabled' || ! subFile)) {
+            return
+        }
+        if (flatNodes.length === 0) {
+            return
         }
         const counter: {[key: string]: number} = {}
 
-        flatStructure.forEach(section => {
+        flatNodes.forEach(section => {
             if (section.kind !== SectionKind.Env) {
                 return
             }
@@ -410,59 +417,46 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             labelSegments[0] = `${labelSegments[0]} ${counter[labelSegments[0]]}`
             section.label = labelSegments.join(':')
         })
-        return flatStructure
+    }
+
+    private normalizeDepths(flatNodes: Section[]) {
+        let lowest = 65535
+        flatNodes.filter(node => node.depth > -1).forEach(section => {
+            lowest = lowest < section.depth ? lowest : section.depth
+        })
+        flatNodes.filter(node => node.depth > -1).forEach(section => {
+            section.depth -= lowest
+        })
     }
 
     /**
-     * This function builds the hierarchy of a flat {@link Section} array
-     * according to the input hierarchy data. This is a two-step process. The
-     * first step puts all non-section {@link Section}s into their leading
-     * section {@link Section}. The section numbers are also optionally added in
-     * this step. Then in the second step, the section {@link Section}s are
-     * iterated to build the hierarchy.
-     *
-     * @param flatStructure The flat sections whose hierarchy is to be built.
-     * @param showHierarchyNumber Whether the section numbers should be computed
-     * and prepended to section captions.
-     * @returns The final sections to be shown with hierarchy.
+     * Build the number of sections. Also put all non-sections into their
+     * leading section. This is to make the subsequent logic clearer.
      */
-    private buildLaTeXHierarchy(flatStructure: Section[], showHierarchyNumber: boolean): Section[] {
-        if (flatStructure.length === 0) {
-            return []
-        }
-
+    private buildSectionNumber(flatNodes: Section[], subFile: boolean) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const sectionNumber = subFile && configuration.get('view.outline.numbers.enabled') as boolean
         // All non-section nodes before the first section
-        const preambleNodes: Section[] = []
+        const preambleFloats: Section[] = []
         // Only holds section-like Sections
         const flatSections: Section[] = []
-
-        // Calculate the lowest depth. It's possible that there is no `chapter`
-        // in a document. In such a case, `section` is the lowest level with a
-        // depth 1. However, later logic is 0-based. So.
-        let lowest = 65535
-        flatStructure.filter(node => node.depth > -1).forEach(section => {
-            lowest = lowest < section.depth ? lowest : section.depth
-        })
-
-        // Step 1: Put all non-sections into their leading section. This is to
-        // make the subsequent logic clearer.
 
         // This counter is used to calculate the section numbers. The array
         // holds the current numbering. When developing the numbers, just +1 to
         // the appropriate item and retrieve the sub-array.
         let counter: number[] = []
-        flatStructure.forEach(node => {
+        flatNodes.forEach(node => {
             if (node.depth === -1) {
                 // non-section node
                 if (flatSections.length === 0) {
                     // no section appeared yet
-                    preambleNodes.push(node)
+                    preambleFloats.push(node)
                 } else {
                     flatSections[flatSections.length - 1].children.push(node)
                 }
             } else {
-                if (showHierarchyNumber && node.kind === SectionKind.Section) {
-                    const depth = node.depth - lowest
+                if (sectionNumber && node.kind === SectionKind.Section) {
+                    const depth = node.depth
                     if (depth + 1 > counter.length) {
                         counter = [...counter, ...new Array(depth + 1 - counter.length).fill(0) as number[]]
                     } else {
@@ -470,13 +464,17 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     }
                     counter[counter.length - 1] += 1
                     node.label = `${counter.join('.')} ${node.label}`
-                } else if (showHierarchyNumber && node.kind === SectionKind.NoNumberSection) {
+                } else if (sectionNumber && node.kind === SectionKind.NoNumberSection) {
                     node.label = `* ${node.label}`
                 }
                 flatSections.push(node)
             }
         })
 
+        return {preambleFloats, flatSections}
+    }
+
+    private buildNestedFloats(preambleFloats: Section[], flatSections: Section[]) {
         const findChild = (parentNode: Section, childNode: Section): boolean => {
             if (childNode.lineNumber >= parentNode.lineNumber && childNode.toLine <= parentNode.toLine) {
                 let added = false
@@ -496,10 +494,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
 
         // Non-sections may also be nested.
-        const preamble = preambleNodes[0] ? [preambleNodes[0]] : []
-        for (let index = 1; index < preambleNodes.length; index++) {
-            if (!findChild(preamble[preamble.length - 1], preambleNodes[index])) {
-                preamble.push(preambleNodes[index])
+        const preamble = preambleFloats[0] ? [preambleFloats[0]] : []
+        for (let index = 1; index < preambleFloats.length; index++) {
+            if (!findChild(preamble[preamble.length - 1], preambleFloats[index])) {
+                preamble.push(preambleFloats[index])
             }
         }
         flatSections.forEach(section => {
@@ -509,10 +507,27 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
         })
 
+        return preamble
+    }
+
+    /**
+     * This function builds the hierarchy of a flat {@link Section} array
+     * according to the input hierarchy data. This is a two-step process. The
+     * first step puts all non-section {@link Section}s into their leading
+     * section {@link Section}. The section numbers are also optionally added in
+     * this step. Then in the second step, the section {@link Section}s are
+     * iterated to build the hierarchy.
+     *
+     * @param flatStructure The flat sections whose hierarchy is to be built.
+     * @param showHierarchyNumber Whether the section numbers should be computed
+     * and prepended to section captions.
+     * @returns The final sections to be shown with hierarchy.
+     */
+    private buildNestedSections(flatSections: Section[]): Section[] {
         const sections: Section[] = []
 
         flatSections.forEach(section => {
-            if (section.depth - lowest === 0) {
+            if (section.depth === 0) {
                 // base level section
                 sections.push(section)
             } else if (sections.length === 0) {
@@ -537,7 +552,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
         })
 
-        return [...preamble, ...sections]
+        return sections
     }
 
     private buildLaTeXSectionToLine(structure: Section[], lastLine: number) {
@@ -673,7 +688,7 @@ export class Section extends vscode.TreeItem {
         public readonly kind: SectionKind,
         public label: string,
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
-        public readonly depth: number,
+        public depth: number,
         public readonly lineNumber: number,
         public toLine: number,
         public readonly fileName: string,
