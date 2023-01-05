@@ -79,7 +79,7 @@ export class PdfWatcher {
             return
         }
         this.extension.logger.addLogMessage(`PDF file watcher - file changed: ${file}`)
-        this.extension.viewer.refreshExistingViewer()
+        this.extension.viewer.refreshExistingViewer(undefined, file)
     }
 
     private onWatchedPdfDeleted(file: string) {
