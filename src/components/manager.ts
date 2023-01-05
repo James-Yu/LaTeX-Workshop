@@ -365,7 +365,7 @@ export class Manager {
             this.extension.logger.addLogMessage(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
             return undefined
         }
-        if (this.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
+        if (this.extension.cacher.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
             return this.rootFile
         }
         return undefined
@@ -427,7 +427,7 @@ export class Manager {
                 const result = content.match(regex)
                 if (result) {
                     // Can be a root
-                    const children = this.getTeXChildren(file.fsPath, file.fsPath, [], content)
+                    const children = this.extension.cacher.getTeXChildren(file.fsPath, file.fsPath, [], content)
                     if (vscode.window.activeTextEditor && children.includes(vscode.window.activeTextEditor.document.fileName)) {
                         this.extension.logger.addLogMessage(`Found root file from parent: ${file.fsPath}`)
                         return file.fsPath
@@ -442,66 +442,6 @@ export class Manager {
             }
         } catch (e) {}
         return undefined
-    }
-
-    /**
-     * Return a string array which holds all imported bib files
-     * from the given tex `file`. If `file` is `undefined`, traces from the
-     * root file, or return empty array if the root file is `undefined`
-     *
-     * @param file The path of a LaTeX file
-     */
-    getIncludedBib(file?: string, includedBib: string[] = [], children: string[] = []): string[] {
-        if (file === undefined) {
-            file = this.rootFile
-        }
-        if (file === undefined) {
-            return []
-        }
-        if (!this.extension.cacher.cachedFilePaths.includes(file)) {
-            return []
-        }
-        children.push(file)
-        const cache = this.extension.cacher.getCachedContent(file)
-        includedBib.push(...cache.bibs)
-        for (const child of cache.children) {
-            if (children.includes(child.file)) {
-                // Already parsed
-                continue
-            }
-            this.getIncludedBib(child.file, includedBib)
-        }
-        // Make sure to return an array with unique entries
-        return Array.from(new Set(includedBib))
-    }
-
-    /**
-     * Return a string array which holds all imported tex files
-     * from the given `file` including the `file` itself.
-     * If `file` is `undefined`, trace from the * root file,
-     * or return empty array if the root file is `undefined`
-     *
-     * @param file The path of a LaTeX file
-     */
-    getIncludedTeX(file?: string, includedTeX: string[] = []): string[] {
-        if (file === undefined) {
-            file = this.rootFile
-        }
-        if (file === undefined) {
-            return []
-        }
-        if (!this.extension.cacher.cachedFilePaths.includes(file)) {
-            return []
-        }
-        includedTeX.push(file)
-        for (const child of this.extension.cacher.getCachedContent(file).children) {
-            if (includedTeX.includes(child.file)) {
-                // Already included
-                continue
-            }
-            this.getIncludedTeX(child.file, includedTeX)
-        }
-        return includedTeX
     }
 
     private isExcluded(file: string): boolean {
@@ -552,54 +492,6 @@ export class Manager {
         await this.parseInputFiles(content, file, baseFile)
         await this.parseBibFiles(content, file)
         this.extension.eventBus.fire(eventbus.FileParsed, file)
-    }
-
-    /**
-     * Return the list of files (recursively) included in `file`
-     *
-     * @param file The file in which children are recursively computed
-     * @param baseFile The file currently considered as the rootFile
-     * @param children The list of already computed children
-     * @param content The content of `file`. If undefined, it is read from disk
-     */
-    private getTeXChildren(file: string, baseFile: string, children: string[], content?: string): string[] {
-        if (content === undefined) {
-            content = utils.stripCommentsAndVerbatim(fs.readFileSync(file).toString())
-        }
-
-        // Update children of current file
-        if (!this.extension.cacher.cachedFilePaths.includes(file)) {
-            this.extension.cacher.getDirtyContent(file)
-            const cache = this.extension.cacher.getCachedContent(file)
-            cache.content = content
-            const inputFileRegExp = new InputFileRegExp()
-            while (true) {
-                const result = inputFileRegExp.exec(content, file, baseFile)
-                if (!result) {
-                    break
-                }
-
-                if (!fs.existsSync(result.path) ||
-                    path.relative(result.path, baseFile) === '') {
-                    continue
-                }
-
-                cache.children.push({
-                    index: result.match.index,
-                    file: result.path
-                })
-            }
-        }
-
-        this.extension.cacher.getCachedContent(file).children.forEach(child => {
-            if (children.includes(child.file)) {
-                // Already included
-                return
-            }
-            children.push(child.file)
-            this.getTeXChildren(child.file, baseFile, children)
-        })
-        return children
     }
 
     private getTeXChildrenFromFls(texFile: string) {

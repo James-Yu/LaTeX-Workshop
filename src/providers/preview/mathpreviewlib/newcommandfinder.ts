@@ -62,7 +62,7 @@ export class NewCommandFinder {
         let commands: string[] = []
         let exceeded = false
         setTimeout( () => { exceeded = true }, 5000)
-        for (const tex of this.extension.manager.getIncludedTeX()) {
+        for (const tex of this.extension.cacher.getIncludedTeX()) {
             if (ctoken?.isCancellationRequested) {
                 return ''
             }

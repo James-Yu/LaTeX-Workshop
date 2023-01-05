@@ -179,7 +179,7 @@ export class Glossary implements IProvider {
         // Extract cached references
         const glossaryList: string[] = []
 
-        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
+        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
             const cachedGlossaries = this.extension.cacher.getCachedContent(cachedFile)?.element.glossary
             if (cachedGlossaries === undefined) {
                 return

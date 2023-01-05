@@ -69,7 +69,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const pkgs: string[] = []
         const tokenWithoutSlash = token.substring(1)
 
-        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
+        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
             const cachedCmds = this.extension.cacher.getCachedContent(cachedFile)?.element.command
             if (cachedCmds === undefined) {
                 return

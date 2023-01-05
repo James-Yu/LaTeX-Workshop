@@ -622,7 +622,7 @@ export class Builder {
         }
         this.extension.logger.addLogMessage(`outDir: ${outDir}`)
         try {
-            this.extension.manager.getIncludedTeX(rootFile).forEach(file => {
+            this.extension.cacher.getIncludedTeX(rootFile).forEach(file => {
                 const relativePath = path.dirname(file.replace(rootDir, '.'))
                 const fullOutDir = path.resolve(outDir, relativePath)
                 // To avoid issues when fullOutDir is the root dir

@@ -84,7 +84,7 @@ export class BibLogParser {
         if (!this.extension.cacher.getCachedContent(rootFile)) {
             return filename
         }
-        const texFiles = this.extension.manager.getIncludedTeX(rootFile)
+        const texFiles = this.extension.cacher.getIncludedTeX(rootFile)
         for (const tex of texFiles) {
             if (tex.endsWith(filename)) {
                 return tex
@@ -98,7 +98,7 @@ export class BibLogParser {
         if (!this.extension.cacher.getCachedContent(rootFile)) {
             return filename
         }
-        const bibFiles = this.extension.manager.getIncludedBib(rootFile)
+        const bibFiles = this.extension.cacher.getIncludedBib(rootFile)
         for (const bib of bibFiles) {
             if (bib.endsWith(filename)) {
                 return bib

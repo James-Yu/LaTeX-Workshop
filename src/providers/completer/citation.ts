@@ -221,7 +221,7 @@ export class Citation implements IProvider {
             }
         })
         // From caches
-        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
+        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
             const cachedBibs = this.extension.cacher.getCachedContent(cachedFile)?.element.bibitem
             if (cachedBibs === undefined) {
                 return

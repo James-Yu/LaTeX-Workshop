@@ -169,7 +169,7 @@ export class Command implements IProvider {
         // Start working on commands in tex. To avoid over populating suggestions, we do not include
         // user defined commands, whose name matches a default command or one provided by a package
         const commandNameDuplicationDetector = new CommandNameDuplicationDetector(suggestions)
-        this.extension.manager.getIncludedTeX().forEach(tex => {
+        this.extension.cacher.getIncludedTeX().forEach(tex => {
             const cmds = this.extension.cacher.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {

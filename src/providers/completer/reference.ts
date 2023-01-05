@@ -109,7 +109,7 @@ export class Reference implements IProvider {
         if (args) {
             range = computeFilteringRange(args.document, args.position)
         }
-        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
+        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
             const cachedRefs = this.extension.cacher.getCachedContent(cachedFile)?.element.reference
             if (cachedRefs === undefined) {
                 return

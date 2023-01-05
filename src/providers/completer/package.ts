@@ -72,7 +72,7 @@ export class Package implements IProvider {
         (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.extra') as string[])
             .forEach(packageName => packages[packageName] = [])
 
-        this.extension.manager.getIncludedTeX().forEach(tex => {
+        this.extension.cacher.getIncludedTeX().forEach(tex => {
             const included = this.extension.cacher.getCachedContent(tex)?.element.package
             if (included === undefined) {
                 return

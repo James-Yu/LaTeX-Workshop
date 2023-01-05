@@ -27,7 +27,7 @@ export class DuplicateLabels {
             return []
         }
         const labelsCount = new Map<string, number>()
-        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
+        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
             const cachedRefs = this.extension.cacher.getCachedContent(cachedFile)?.element.reference
             if (cachedRefs === undefined) {
                 return
@@ -66,7 +66,7 @@ export class DuplicateLabels {
         }
         const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
 
-        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
+        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
             const cachedRefs = this.extension.cacher.getCachedContent(cachedFile)?.element.reference
             if (cachedRefs === undefined) {
                 return
