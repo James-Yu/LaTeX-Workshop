@@ -1,5 +1,25 @@
 # Change Log
 
+## [9.3.0] - 2023-01-05
+
+### Added
+- Class/package options now provide snippet completion.
+- (#3617) More structure/outline configurations.
+  - Floats can now be nested
+  - Add config `view.outline.floats.caption.enabled` to disable float caption.
+  - Add `config view.outline.numbers.floats.enabled` to show float number.
+- (#3618) Now all extension config items are free from vscode reload
+  - Selected ones related to viewer display requires to reopen the pdf viewer.
+- (#3619) Command and environment intellisense are now based on packages used and their options if `latex-workshop.intellisense.package.enabled` is `true`.
+
+### Changed
+- Deprecated config items are removed.
+- Let's use fast parse for structure/outline by default.
+- (#3603) Remove unicode chars in recipe names.
+
+### Fixed
+- (#3611) Filter package cmds/envs with %, remove arg % part.
+
 ## [9.2.2] - 2022-12-31
 
 ### Fixed

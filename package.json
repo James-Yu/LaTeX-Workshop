@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icons/icon.png",
-  "version": "9.2.2",
+  "version": "9.3.0",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -1416,7 +1416,7 @@
             "ctrl-click",
             "double-click"
           ],
-          "markdownDescription": "Which keybinding to use for the internal viewer for reverse synctex. `ctrl`/`cmd` + click (default) or double click. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] Which keybinding to use for the internal viewer for reverse synctex. `ctrl`/`cmd` + click (default) or double click."
         },
         "latex-workshop.viewer.pdf.internal.keyboardEvent": {
           "scope": "window",
@@ -1517,7 +1517,7 @@
             "never"
           ],
           "default": "compat",
-          "markdownDescription": "Enable the CSS invert filter. Reload the viewer to make any change in this configuration effective.",
+          "markdownDescription": "[Reopen Viewer] Enable the CSS invert filter.",
           "enumDescriptions": [
             "Enable the invert filter when using a dark theme.",
             "Always enable invert filter.",
@@ -1529,86 +1529,79 @@
           "scope": "window",
           "type": "number",
           "default": 0,
-          "markdownDescription": "Define the CSS invert filter level of the PDF viewer. This config can invert the color of PDF. Possible values are from 0 to 1. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] Define the CSS invert filter level of the PDF viewer. This config can invert the color of PDF. Possible values are from 0 to 1."
         },
         "latex-workshop.view.pdf.invertMode.brightness": {
           "scope": "window",
           "type": "number",
           "default": 1,
-          "markdownDescription": "Define the CSS brightness filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 2. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] Define the CSS brightness filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 2."
         },
         "latex-workshop.view.pdf.invertMode.grayscale": {
           "scope": "window",
           "type": "number",
           "default": 0.6,
-          "markdownDescription": "Define the CSS grayscale filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] Define the CSS grayscale filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1."
         },
         "latex-workshop.view.pdf.invertMode.hueRotate": {
           "scope": "window",
           "type": "number",
           "default": 180,
-          "markdownDescription": "Define the CSS hue-rotate filter angle of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 360. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] Define the CSS hue-rotate filter angle of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 360."
         },
         "latex-workshop.view.pdf.invertMode.sepia": {
           "scope": "window",
           "type": "number",
           "default": 0,
-          "markdownDescription": "Define the CSS sepia filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1. Reload the viewer to make any change in this configuration effective."
-        },
-        "latex-workshop.view.pdf.backgroundColor": {
-          "scope": "window",
-          "type": "string",
-          "default": "#ffffff",
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.view.pdf.color.light.backgroundColor#` and `#latex-workshop.view.pdf.color.dark.backgroundColor#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.view.pdf.color.light.backgroundColor\" and \"latex-workshop.view.pdf.color.dark.backgroundColor\" instead."
+          "markdownDescription": "[Reopen Viewer] Define the CSS sepia filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1."
         },
         "latex-workshop.view.pdf.color.light.pageColorsForeground": {
           "scope": "window",
           "type": "string",
           "default": "",
-          "markdownDescription": "The foreground color of the document when the OS appearance is light. The string must represent a color in HTML. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] The foreground color of the document when the OS appearance is light. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.light.pageColorsBackground": {
           "scope": "window",
           "type": "string",
           "default": "",
-          "markdownDescription": "The background color of the document when the OS appearance is light. The string must represent a color in HTML. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] The background color of the document when the OS appearance is light. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.light.backgroundColor": {
           "scope": "window",
           "type": "string",
           "default": "#ffffff",
-          "markdownDescription": "The background color of the viewer when the OS appearance is light. The string must represent a color in HTML. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] The background color of the viewer when the OS appearance is light. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.light.pageBorderColor": {
           "scope": "window",
           "type": "string",
           "default": "lightgrey",
-          "markdownDescription": "The border color of pages when the OS appearance is light. The string must represent a color in HTML. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] The border color of pages when the OS appearance is light. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.dark.pageColorsForeground": {
           "scope": "window",
           "type": "string",
           "default": "",
-          "markdownDescription": "The foreground color of the document when the OS appearance is dark. The string must represent a color in HTML. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] The foreground color of the document when the OS appearance is dark. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.dark.pageColorsBackground": {
           "scope": "window",
           "type": "string",
           "default": "",
-          "markdownDescription": "The background color of the document when the OS appearance is dark. The string must represent a color in HTML. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] The background color of the document when the OS appearance is dark. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.dark.backgroundColor": {
           "scope": "window",
           "type": "string",
           "default": "#ffffff",
-          "markdownDescription": "The background color of the viewer when the OS appearance is dark. The string must represent a color in HTML. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] The background color of the viewer when the OS appearance is dark. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.dark.pageBorderColor": {
           "scope": "window",
           "type": "string",
           "default": "lightgrey",
-          "markdownDescription": "The border color of pages when the OS appearance is dark. The string must represent a color in HTML. Reload the viewer to make any change in this configuration effective."
+          "markdownDescription": "[Reopen Viewer] The border color of pages when the OS appearance is dark. The string must represent a color in HTML."
         },
         "latex-workshop.synctex.path": {
           "scope": "window",
@@ -1698,99 +1691,6 @@
           "type": "string",
           "default": "lacheck",
           "markdownDescription": "Define the location of LaCheck executive file."
-        },
-        "latex-workshop.chktex.enabled": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": false,
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.enabled#` and `#latex-workshop.linting.chktex.exec.path#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.enabled\" and \"latex-workshop.linting.chktex.exec.path\" instead."
-        },
-        "latex-workshop.chktex.run": {
-          "scope": "resource",
-          "type": "string",
-          "enum": [
-            "onSave",
-            "onType"
-          ],
-          "enumDescriptions": [
-            "Lint the whole LaTeX project upon saving",
-            "Lint the active document when input is stopped"
-          ],
-          "default": "onSave",
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.run#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.linting.run\" instead."
-        },
-        "latex-workshop.chktex.exec.path": {
-          "scope": "window",
-          "type": "string",
-          "default": "chktex",
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.path#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.path\" instead."
-        },
-        "latex-workshop.chktex.path": {
-          "scope": "window",
-          "type": "string",
-          "default": "",
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.path#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.path\" instead."
-        },
-        "latex-workshop.chktex.exec.args": {
-          "scope": "resource",
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [
-            "-wall",
-            "-n22",
-            "-n30",
-            "-e16",
-            "-q"
-          ],
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.args#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.args\" instead."
-        },
-        "latex-workshop.chktex.args.active": {
-          "scope": "resource",
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [],
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.args#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.args\" instead."
-        },
-        "latex-workshop.chktex.args.root": {
-          "scope": "resource",
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [],
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.args#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.args\" instead."
-        },
-        "latex-workshop.chktex.delay": {
-          "scope": "resource",
-          "type": "number",
-          "default": 500,
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.delay#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.linting.delay\" instead."
-        },
-        "latex-workshop.chktex.convertOutput.column.enabled": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": true,
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.convertOutput.column.enabled#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.convertOutput.column.enabled\" instead."
-        },
-        "latex-workshop.chktex.convertOutput.column.chktexrcTabSize": {
-          "scope": "resource",
-          "type": "number",
-          "default": -1,
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.convertOutput.column.chktexrcTabSize#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.convertOutput.column.chktexrcTabSize\" instead."
         },
         "latex-workshop.check.duplicatedLabels.enabled": {
           "scope": "window",
@@ -1891,14 +1791,6 @@
           ],
           "markdownDescription": "List of fields to display for citation preview and intellisense. This list is also used as the filter text to narrow down the intellisense suggestions."
         },
-        "latex-workshop.intellisense.citation.maxfilesizeMB": {
-          "scope": "window",
-          "type": "number",
-          "default": 5,
-          "markdownDescription": "Defines the maximum bibtex file size for the extension to parse in MB.",
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.bibtex.maxFileSize#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.bibtex.maxFileSize\" instead."
-        },
         "latex-workshop.intellisense.triggers.latex": {
           "scope": "window",
           "type": "array",
@@ -1909,14 +1801,6 @@
             "{"
           ],
           "markdownDescription": "Additional trigger characters for intellisense of LaTeX documents."
-        },
-        "latex-workshop.intellisense.snippets.trigger.latex": {
-          "scope": "window",
-          "type": "string",
-          "default": "@",
-          "markdownDescription": "Character to trigger snippet suggestions as part of intellisense. Set this variable to `''` to deactivate these snippets.",
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.intellisense.atSuggestion.trigger.latex#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.intellisense.atSuggestion.trigger.latex\" instead."
         },
         "latex-workshop.intellisense.atSuggestion.trigger.latex": {
           "scope": "window",
