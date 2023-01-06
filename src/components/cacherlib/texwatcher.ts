@@ -68,7 +68,7 @@ export class Watcher {
     private onUnlink(filePath: string) {
         this.watcher.unwatch(filePath)
         this.watched.delete(filePath)
-        this.cacher.removeCachedContent(filePath)
+        this.cacher.remove(filePath)
         if (filePath === this.extension.manager.rootFile) {
             this.extension.logger.addLogMessage(`[Cacher][Watcher] Root deleted ${filePath}.`)
             this.extension.manager.rootFile = undefined
@@ -96,7 +96,7 @@ export class Watcher {
                     }
                     this.watcher.unwatch(filePath)
                     this.watched.delete(filePath)
-                    this.cacher.removeCachedContent(filePath)
+                    this.cacher.remove(filePath)
                     this.extension.logger.addLogMessage(`[Cacher][Watcher] Ignored ${filePath}.`)
                     void this.extension.manager.findRoot()
                 })

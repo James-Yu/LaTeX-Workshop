@@ -159,7 +159,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         }
         if (extension.manager.hasTexId(e.languageId)) {
             extension.logger.addLogMessage(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
-            extension.cacher.updateCachedContent(e)
+            void extension.cacher.refreshContext(e.fileName)
             extension.linter.lintRootFileIfEnabled()
             void extension.builder.buildOnSaveIfEnabled(e.fileName)
             extension.counter.countOnSaveIfEnabled(e.fileName)
@@ -194,7 +194,6 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
                 clearTimeout(updateCompleter)
             }
             updateCompleter = setTimeout(async () => {
-                extension.cacher.updateCachedContent(e.document)
                 const file = e.document.uri.fsPath
                 // await extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
                 await extension.cacher.refreshContext(file, extension.manager.rootFile)

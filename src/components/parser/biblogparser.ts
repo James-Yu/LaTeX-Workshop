@@ -81,7 +81,7 @@ export class BibLogParser {
 
     private resolveAuxFile(filename: string, rootFile: string): string {
         filename = filename.replace(/\.aux$/, '.tex')
-        if (!this.extension.cacher.getCachedContent(rootFile)) {
+        if (!this.extension.cacher.get(rootFile)) {
             return filename
         }
         const texFiles = this.extension.cacher.getIncludedTeX(rootFile)
@@ -95,7 +95,7 @@ export class BibLogParser {
     }
 
     private resolveBibFile(filename: string, rootFile: string): string {
-        if (!this.extension.cacher.getCachedContent(rootFile)) {
+        if (!this.extension.cacher.get(rootFile)) {
             return filename
         }
         const bibFiles = this.extension.cacher.getIncludedBib(rootFile)

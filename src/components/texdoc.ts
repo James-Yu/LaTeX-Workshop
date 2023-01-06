@@ -67,7 +67,7 @@ export class TeXDoc {
     texdocUsepackages() {
         const names: Set<string> = new Set()
         for (const tex of this.extension.cacher.getIncludedTeX()) {
-            const content = this.extension.cacher.getCachedContent(tex)
+            const content = this.extension.cacher.get(tex)
             const pkgs = content && content.elements.package
             if (!pkgs) {
                 continue

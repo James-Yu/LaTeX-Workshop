@@ -86,7 +86,7 @@ export class Reference implements IProvider {
      * @param content The content of a LaTeX file.
      */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
-        const cache = this.extension.cacher.getCachedContent(file)
+        const cache = this.extension.cacher.get(file)
         if (cache === undefined) {
             return
         }
@@ -110,7 +110,7 @@ export class Reference implements IProvider {
             range = computeFilteringRange(args.document, args.position)
         }
         this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.cacher.getCachedContent(cachedFile)?.elements.reference
+            const cachedRefs = this.extension.cacher.get(cachedFile)?.elements.reference
             if (cachedRefs === undefined) {
                 return
             }

@@ -184,10 +184,10 @@ export class Citation implements IProvider {
             // Only happens when rootFile is undefined
             return Array.from(this.bibEntries.keys())
         }
-        if (!this.extension.cacher.getCachedContent(file)) {
+        if (!this.extension.cacher.get(file)) {
             return []
         }
-        const cache = this.extension.cacher.getCachedContent(file)
+        const cache = this.extension.cacher.get(file)
         if (cache === undefined) {
             return []
         }
@@ -222,7 +222,7 @@ export class Citation implements IProvider {
         })
         // From caches
         this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedBibs = this.extension.cacher.getCachedContent(cachedFile)?.elements.bibitem
+            const cachedBibs = this.extension.cacher.get(cachedFile)?.elements.bibitem
             if (cachedBibs === undefined) {
                 return
             }
@@ -300,7 +300,7 @@ export class Citation implements IProvider {
      * @param content The content of a LaTeX file.
      */
     update(file: string, content: string) {
-        const cache = this.extension.cacher.getCachedContent(file)
+        const cache = this.extension.cacher.get(file)
         if (cache !== undefined) {
             cache.elements.bibitem = this.parseContent(file, content)
         }

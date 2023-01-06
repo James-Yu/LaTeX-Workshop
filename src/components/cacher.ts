@@ -74,8 +74,23 @@ export class Cacher {
         }
     }
 
+    remove(filePath: string) {
+        if (!(filePath in this.contexts)) {
+            return
+        }
+        delete this.contexts[filePath]
+    }
+
     has(filePath: string) {
         return Object.keys(this.contexts).includes(filePath)
+    }
+
+    get(filePath: string): Context {
+        return this.contexts[filePath]
+    }
+
+    get allPaths() {
+        return Object.keys(this.contexts)
     }
 
     watched(filePath: string) {
@@ -194,51 +209,6 @@ export class Cacher {
         this.extension.logger.addLogMessage(`[Cacher] Updated bibs of ${filePath}.`)
     }
 
-    //////////////////////////////////////
-
-    /**
-     * Get the buffer content of a file if it is opened in vscode. Otherwise, read the file from disk
-     */
-    getDirtyContent(file: string): string | undefined {
-        const cache = this.contexts[file]
-        if (cache !== undefined) {
-            if (cache.content) {
-                return cache.content
-            }
-        }
-        const fileContent = this.extension.lwfs.readFileSyncGracefully(file)
-        if (fileContent === undefined) {
-            this.extension.logger.addLogMessage(`Cannot read dirty content of unknown ${file}`)
-        }
-        this.contexts[file] = {content: fileContent, elements: {}, children: [], bibfiles: []}
-        return fileContent
-    }
-
-    getCachedContent(filePath: string): Context {
-        if (!(filePath in this.contexts)) {
-            this.getDirtyContent(filePath)
-        }
-        return this.contexts[filePath]
-    }
-
-    removeCachedContent(filePath: string) {
-        if (filePath in this.contexts) {
-            delete this.contexts[filePath]
-        }
-    }
-
-    get cachedFilePaths() {
-        return Object.keys(this.contexts)
-    }
-
-    updateCachedContent(document: vscode.TextDocument) {
-        const cache = this.getCachedContent(document.fileName)
-        if (cache !== undefined) {
-            cache.content = document.getText()
-        }
-        this.extension.eventBus.fire(eventbus.CacheUpdated)
-    }
-
     /**
      * Parses the content of a `.fls` file attached to the given `srcFile`.
      * All `INPUT` files are considered as subfiles/non-tex files included in `srcFile`,
@@ -274,10 +244,11 @@ export class Cacher {
                 continue
             }
             if (path.extname(inputFile) === '.tex') {
-                // In rare cases, the cache was cleared
-                this.getDirtyContent(texFile)
+                if (!this.has(texFile)) {
+                    await this.refreshContext(texFile)
+                }
                 // Parse tex files as imported subfiles.
-                this.getCachedContent(texFile).children.push({
+                this.contexts[texFile].children.push({
                     index: Number.MAX_VALUE,
                     file: inputFile
                 })
@@ -313,8 +284,8 @@ export class Cacher {
                     continue
                 }
                 const rootFile = this.extension.manager.rootFile
-                if (rootFile && !this.getCachedContent(rootFile).bibfiles.includes(bibPath)) {
-                    this.getCachedContent(rootFile).bibfiles.push(bibPath)
+                if (rootFile && !this.get(rootFile).bibfiles.includes(bibPath)) {
+                    this.get(rootFile).bibfiles.push(bibPath)
                 }
                 await this.bibWatcher.watchBibFile(bibPath)
             }
@@ -349,7 +320,7 @@ export class Cacher {
             return []
         }
         children.push(file)
-        const cache = this.getCachedContent(file)
+        const cache = this.get(file)
         includedBib.push(...cache.bibfiles)
         for (const child of cache.children) {
             if (children.includes(child.file)) {
@@ -381,7 +352,7 @@ export class Cacher {
             return []
         }
         includedTeX.push(file)
-        for (const child of this.getCachedContent(file).children) {
+        for (const child of this.get(file).children) {
             if (includedTeX.includes(child.file)) {
                 // Already included
                 continue
@@ -399,16 +370,14 @@ export class Cacher {
      * @param children The list of already computed children
      * @param content The content of `file`. If undefined, it is read from disk
      */
-    getTeXChildren(file: string, baseFile: string, children: string[], content?: string): string[] {
+    async getTeXChildren(file: string, baseFile: string, children: string[], content?: string) {
         if (content === undefined) {
             content = utils.stripCommentsAndVerbatim(fs.readFileSync(file).toString())
         }
 
         // Update children of current file
         if (!this.has(file)) {
-            this.getDirtyContent(file)
-            const cache = this.getCachedContent(file)
-            cache.content = content
+            await this.refreshContext(file)
             const inputFileRegExp = new InputFileRegExp()
             while (true) {
                 const result = inputFileRegExp.exec(content, file, baseFile)
@@ -421,20 +390,20 @@ export class Cacher {
                     continue
                 }
 
-                cache.children.push({
+                this.get(file).children.push({
                     index: result.match.index,
                     file: result.path
                 })
             }
         }
 
-        this.getCachedContent(file).children.forEach(child => {
+        this.get(file).children.forEach(async child => {
             if (children.includes(child.file)) {
                 // Already included
                 return
             }
             children.push(child.file)
-            this.getTeXChildren(child.file, baseFile, children)
+            await this.getTeXChildren(child.file, baseFile, children)
         })
         return children
     }

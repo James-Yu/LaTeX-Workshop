@@ -345,7 +345,7 @@ export class Manager {
                 const result = content.match(regex)
                 if (result) {
                     // Can be a root
-                    const children = this.extension.cacher.getTeXChildren(file.fsPath, file.fsPath, [], content)
+                    const children = await this.extension.cacher.getTeXChildren(file.fsPath, file.fsPath, [], content)
                     if (vscode.window.activeTextEditor && children.includes(vscode.window.activeTextEditor.document.fileName)) {
                         this.extension.logger.addLogMessage(`Found root file from parent: ${file.fsPath}`)
                         return file.fsPath

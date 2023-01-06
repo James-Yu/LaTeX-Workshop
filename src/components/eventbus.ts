@@ -11,7 +11,6 @@ export const ViewerStatusChanged = 'VIEWER_STATUS_CHANGED'
 export const FileWatched = 'FILE_WATCHED'
 export const FileChanged = 'FILE_CHANGED'
 export const FileRemoved = 'FILE_REMOVED'
-export const CacheUpdated = 'CACHE_UPDATED'
 
 type EventArgTypeMap = {
     [RootFileChanged]: string,
@@ -31,7 +30,6 @@ export type EventName = typeof BuildDone
                     | typeof FileWatched
                     | typeof FileChanged
                     | typeof FileRemoved
-                    | typeof CacheUpdated
 
 export class EventBus {
     private readonly eventEmitter = new EventEmitter()
@@ -54,8 +52,8 @@ export class EventBus {
         return this.registerListener(RootFileSearched, cb)
     }
 
-    onDidUpdateCachedContent(cb: () => void): Disposable {
-        return this.registerListener(CacheUpdated, cb)
+    onDidFileParsed(cb: () => void): Disposable {
+        return this.registerListener(FileParsed, cb)
     }
 
     onDidChangePdfViewerStatus(cb: (status: EventArgTypeMap[typeof ViewerStatusChanged]) => void): Disposable {
