@@ -576,6 +576,8 @@ export class Builder {
                  candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('rnw|rsweave'))
             } else if (langId === 'jlweave') {
                  candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('jnw|jlweave|weave.jl'))
+            } else if (langId === 'pweave') {
+                candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('pnw|pweave'))
             }
              if (candidates.length < 1) {
                  this.extension.logger.addLogMessage(`Failed to resolve build recipe: ${recipeName}`)

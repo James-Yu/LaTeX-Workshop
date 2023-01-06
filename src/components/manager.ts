@@ -28,6 +28,7 @@ export class Manager {
     private readonly finderUtils: FinderUtils
     private readonly rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
     private readonly jlweaveExt: string[] = ['.jnw', '.jtexw']
+    private readonly pweaveExt: string[] = ['.pnw', '.ptexw']
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -163,6 +164,8 @@ export class Manager {
         const ext = path.extname(filename).toLocaleLowerCase()
         if (ext === '.tex') {
             return 'latex'
+        } else if (this.pweaveExt.includes(ext)) {
+            return 'pweave'
         } else if (this.jlweaveExt.includes(ext)) {
             return 'jlweave'
         } else if (this.rsweaveExt.includes(ext)) {
@@ -194,7 +197,7 @@ export class Manager {
      * @param id The language identifier
      */
     hasTexId(id: string) {
-        return ['tex', 'latex', 'latex-expl3', 'doctex', 'jlweave', 'rsweave'].includes(id)
+        return ['tex', 'latex', 'latex-expl3', 'doctex', 'pweave', 'jlweave', 'rsweave'].includes(id)
     }
 
     /**

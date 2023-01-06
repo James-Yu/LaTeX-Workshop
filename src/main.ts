@@ -244,9 +244,9 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 function registerProviders(extension: Extension, context: vscode.ExtensionContext) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
-    const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave'])
-    const weaveSelector = selectDocumentsWithId(['jlweave', 'rsweave'])
-    const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave', 'doctex'])
+    const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave'])
+    const weaveSelector = selectDocumentsWithId(['pweave', 'jlweave', 'rsweave'])
+    const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'doctex'])
     const bibtexSelector = selectDocumentsWithId(['bibtex'])
     const latexFormatter = new LatexFormatterProvider(extension)
     const bibtexFormatter = new BibtexFormatterProvider(extension)
