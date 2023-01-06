@@ -83,6 +83,10 @@ export class Cacher {
         await this.watcher.reset()
     }
 
+    async dispose() {
+        await this.watcher.watcher.close()
+    }
+
     async refreshContext(filePath: string, rootPath?: string) {
         if (isExcluded(filePath)) {
             this.extension.logger.addLogMessage(`[Cacher] Ignored ${filePath}.`)

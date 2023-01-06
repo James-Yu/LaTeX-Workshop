@@ -416,6 +416,7 @@ export class Extension {
     }
 
     async dispose() {
+        await this.cacher.dispose()
         await this.manager.dispose()
         this.server.dispose()
         await this.pegParser.dispose()
