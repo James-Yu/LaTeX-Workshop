@@ -195,7 +195,7 @@ export class Environment implements IProvider {
      */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
         // First, we must update the package list
-        this.extension.manager.updateUsepackage(file, nodes, content)
+        this.extension.completer.package.updateUsepackage(file, nodes, content)
 
         const cache = this.extension.cacher.getCachedContent(file)
         if (cache === undefined) {
