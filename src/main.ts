@@ -159,7 +159,6 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         }
         if (extension.manager.hasTexId(e.languageId)) {
             extension.logger.addLogMessage(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
-            void extension.cacher.refreshContext(e.fileName)
             extension.linter.lintRootFileIfEnabled()
             void extension.builder.buildOnSaveIfEnabled(e.fileName)
             extension.counter.countOnSaveIfEnabled(e.fileName)

@@ -368,33 +368,10 @@ export class Cacher {
      * @param file The file in which children are recursively computed
      * @param baseFile The file currently considered as the rootFile
      * @param children The list of already computed children
-     * @param content The content of `file`. If undefined, it is read from disk
      */
-    async getTeXChildren(file: string, baseFile: string, children: string[], content?: string) {
-        if (content === undefined) {
-            content = utils.stripCommentsAndVerbatim(fs.readFileSync(file).toString())
-        }
-
-        // Update children of current file
+    async getTeXChildren(file: string, baseFile: string, children: string[]) {
         if (!this.has(file)) {
-            await this.refreshContext(file)
-            const inputFileRegExp = new InputFileRegExp()
-            while (true) {
-                const result = inputFileRegExp.exec(content, file, baseFile)
-                if (!result) {
-                    break
-                }
-
-                if (!fs.existsSync(result.path) ||
-                    path.relative(result.path, baseFile) === '') {
-                    continue
-                }
-
-                this.get(file).children.push({
-                    index: result.match.index,
-                    file: result.path
-                })
-            }
+            await this.refreshContext(file, baseFile)
         }
 
         this.get(file).children.forEach(async child => {
