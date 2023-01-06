@@ -7,7 +7,7 @@ import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import {latexParser} from 'latex-utensils'
 import * as utils from '../utils/utils'
-import {InputFileRegExp} from '../utils/inputfilepath'
+// import {InputFileRegExp} from '../utils/inputfilepath'
 
 import type {Extension} from '../main'
 import * as eventbus from './eventbus'
@@ -39,47 +39,47 @@ export class Manager {
     readonly tmpDir: string
 
     private readonly extension: Extension
-    private readonly fileWatcher: chokidar.FSWatcher
+    // private readonly fileWatcher: chokidar.FSWatcher
     private readonly pdfWatcher: PdfWatcher
-    private readonly bibWatcher: BibWatcher
-    private readonly intellisenseWatcher: IntellisenseWatcher
+    readonly bibWatcher: BibWatcher
+    readonly intellisenseWatcher: IntellisenseWatcher
     private readonly finderUtils: FinderUtils
     private readonly pathUtils: PathUtils
     private readonly filesWatched = new Set<string>()
-    private readonly watcherOptions: chokidar.WatchOptions
+    // private readonly watcherOptions: chokidar.WatchOptions
     private readonly rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
     private readonly jlweaveExt: string[] = ['.jnw', '.jtexw']
-    private readonly weaveExt: string[] = []
+    // private readonly weaveExt: string[] = []
 
     constructor(extension: Extension) {
         this.extension = extension
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const usePolling = configuration.get('latex.watch.usePolling') as boolean
-        const interval = configuration.get('latex.watch.interval') as number
-        const delay = configuration.get('latex.watch.delay') as number
-        this.weaveExt = this.jlweaveExt.concat(this.rsweaveExt)
-        this.watcherOptions = {
-            useFsEvents: false,
-            usePolling,
-            interval,
-            binaryInterval: Math.max(interval, 1000),
-            awaitWriteFinish: {stabilityThreshold: delay}
-        }
-        this.fileWatcher = this.createFileWatcher()
+        // const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        // const usePolling = configuration.get('latex.watch.usePolling') as boolean
+        // const interval = configuration.get('latex.watch.interval') as number
+        // const delay = configuration.get('latex.watch.delay') as number
+        // this.weaveExt = this.jlweaveExt.concat(this.rsweaveExt)
+        // this.watcherOptions = {
+        //     useFsEvents: false,
+        //     usePolling,
+        //     interval,
+        //     binaryInterval: Math.max(interval, 1000),
+        //     awaitWriteFinish: {stabilityThreshold: delay}
+        // }
+        // this.fileWatcher = this.createFileWatcher()
         this.pdfWatcher = new PdfWatcher(extension)
         this.bibWatcher = new BibWatcher(extension)
         this.intellisenseWatcher = new IntellisenseWatcher()
         this.finderUtils = new FinderUtils(extension)
         this.pathUtils = new PathUtils(extension)
         this.registerSetEnvVar()
-        this.extension.eventBus.onDidChangeRootFile(() => this.logWatchedFiles())
+        // this.extension.eventBus.onDidChangeRootFile(() => this.logWatchedFiles())
 
         this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (e.affectsConfiguration('latex-workshop.latex.watch.usePolling') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.interval') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.delay') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.pdf.delay')) {
-                this.updateWatcherOptions(this.fileWatcher)
+                // this.updateWatcherOptions(this.fileWatcher)
                 this.bibWatcher.updateWatcherOptions()
                 this.pdfWatcher.updateWatcherOptions()
             }
@@ -111,7 +111,7 @@ export class Manager {
     }
 
     async dispose() {
-        await this.fileWatcher.close()
+        // await this.fileWatcher.close()
         await this.pdfWatcher.dispose()
         await this.bibWatcher.dispose()
     }
@@ -329,8 +329,14 @@ export class Manager {
                 this.rootFile = rootFile
                 this.rootFileLanguageId = this.inferLanguageId(rootFile)
                 this.extension.logger.addLogMessage(`Root file languageId: ${this.rootFileLanguageId}`)
-                await this.initiateFileWatcher()
-                await this.parseFileAndSubs(this.rootFile, this.rootFile) // Finishing the parsing is required for subsequent refreshes.
+                // We also clean the completions from the old project
+                this.extension.completer.input.reset()
+                this.extension.duplicateLabels.reset()
+                await this.extension.cacher.resetWatcher()
+                this.extension.cacher.add(this.rootFile)
+                await this.extension.cacher.refreshContext(this.rootFile)
+                // await this.initiateFileWatcher()
+                // await this.parseFileAndSubs(this.rootFile, this.rootFile) // Finishing the parsing is required for subsequent refreshes.
                 // We need to parse the fls to discover file dependencies when defined by TeX macro
                 // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
                 await this.parseFlsFile(this.rootFile)
@@ -345,17 +351,17 @@ export class Manager {
         return undefined
     }
 
-    private logWatchedFiles(delay = 2000) {
-        return setTimeout(
-            () => {
-                this.extension.logger.addLogMessage(`Manager.fileWatcher.getWatched: ${JSON.stringify(this.fileWatcher.getWatched())}`)
-                this.extension.logger.addLogMessage(`Manager.filesWatched: ${JSON.stringify(Array.from(this.filesWatched))}`)
-                this.bibWatcher.logWatchedFiles()
-                this.pdfWatcher.logWatchedFiles()
-            },
-            delay
-        )
-    }
+    // private logWatchedFiles(delay = 2000) {
+    //     return setTimeout(
+    //         () => {
+    //             this.extension.logger.addLogMessage(`Manager.fileWatcher.getWatched: ${JSON.stringify(this.fileWatcher.getWatched())}`)
+    //             this.extension.logger.addLogMessage(`Manager.filesWatched: ${JSON.stringify(Array.from(this.filesWatched))}`)
+    //             this.bibWatcher.logWatchedFiles()
+    //             this.pdfWatcher.logWatchedFiles()
+    //         },
+    //         delay
+    //     )
+    // }
 
     private findRootFromCurrentRoot(): string | undefined {
         if (!vscode.window.activeTextEditor || this.rootFile === undefined) {
@@ -466,33 +472,33 @@ export class Manager {
      * @param file The path of a LaTeX file. It is added to the watcher if not being watched.
      * @param baseFile The file currently considered as the rootFile. If undefined, we use `file`
      */
-    async parseFileAndSubs(file: string, baseFile: string | undefined) {
-        if (this.isExcluded(file)) {
-            this.extension.logger.addLogMessage(`Ignoring: ${file}`)
-            return
-        }
-        if (baseFile === undefined) {
-            baseFile = file
-        }
-        this.extension.logger.addLogMessage(`Parsing a file and its subfiles: ${file}`)
-        if (!this.filesWatched.has(file)) {
-            // The file is considered for the first time.
-            // We must add the file to watcher to make sure we avoid infinite loops
-            // in case of circular inclusion
-            this.addToFileWatcher(file)
-        }
-        let content = this.extension.cacher.getDirtyContent(file)
-        if (!content) {
-            return
-        }
-        content = utils.stripCommentsAndVerbatim(content)
-        const cache = this.extension.cacher.getCachedContent(file)
-        cache.children = []
-        cache.bibs = []
-        await this.parseInputFiles(content, file, baseFile)
-        await this.parseBibFiles(content, file)
-        this.extension.eventBus.fire(eventbus.FileParsed, file)
-    }
+    // async parseFileAndSubs(file: string, baseFile: string | undefined) {
+    //     if (this.isExcluded(file)) {
+    //         this.extension.logger.addLogMessage(`Ignoring: ${file}`)
+    //         return
+    //     }
+    //     if (baseFile === undefined) {
+    //         baseFile = file
+    //     }
+    //     this.extension.logger.addLogMessage(`Parsing a file and its subfiles: ${file}`)
+    //     if (!this.filesWatched.has(file)) {
+    //         // The file is considered for the first time.
+    //         // We must add the file to watcher to make sure we avoid infinite loops
+    //         // in case of circular inclusion
+    //         this.addToFileWatcher(file)
+    //     }
+    //     let content = this.extension.cacher.getDirtyContent(file)
+    //     if (!content) {
+    //         return
+    //     }
+    //     content = utils.stripCommentsAndVerbatim(content)
+    //     const cache = this.extension.cacher.getCachedContent(file)
+    //     cache.children = []
+    //     cache.bibfiles = []
+    //     await this.parseInputFiles(content, file, baseFile)
+    //     await this.parseBibFiles(content, file)
+    //     this.extension.eventBus.fire(eventbus.FileParsed, file)
+    // }
 
     private getTeXChildrenFromFls(texFile: string) {
         const flsFile = this.pathUtils.getFlsFilePath(texFile)
@@ -514,54 +520,54 @@ export class Manager {
      * @param currentFile the name of the current file
      * @param baseFile the name of the supposed rootFile
      */
-    private async parseInputFiles(content: string, currentFile: string, baseFile: string) {
-        const inputFileRegExp = new InputFileRegExp()
-        while (true) {
-            const result = inputFileRegExp.exec(content, currentFile, baseFile)
-            if (!result) {
-                break
-            }
+    // private async parseInputFiles(content: string, currentFile: string, baseFile: string) {
+    //     const inputFileRegExp = new InputFileRegExp()
+    //     while (true) {
+    //         const result = inputFileRegExp.exec(content, currentFile, baseFile)
+    //         if (!result) {
+    //             break
+    //         }
 
-            if (!fs.existsSync(result.path) ||
-                path.relative(result.path, baseFile) === '') {
-                continue
-            }
+    //         if (!fs.existsSync(result.path) ||
+    //             path.relative(result.path, baseFile) === '') {
+    //             continue
+    //         }
 
-            this.extension.cacher.getCachedContent(baseFile).children.push({
-                index: result.match.index,
-                file: result.path
-            })
+    //         this.extension.cacher.getCachedContent(baseFile).children.push({
+    //             index: result.match.index,
+    //             file: result.path
+    //         })
 
-            if (this.filesWatched.has(result.path)) {
-                // This file is already watched. Ignore it to avoid infinite loops
-                // in case of circular inclusion.
-                // Note that parseFileAndSubs calls parseInputFiles in return
-                continue
-            }
-            await this.parseFileAndSubs(result.path, baseFile)
-        }
-    }
+    //         if (this.filesWatched.has(result.path)) {
+    //             // This file is already watched. Ignore it to avoid infinite loops
+    //             // in case of circular inclusion.
+    //             // Note that parseFileAndSubs calls parseInputFiles in return
+    //             continue
+    //         }
+    //         await this.parseFileAndSubs(result.path, baseFile)
+    //     }
+    // }
 
-    private async parseBibFiles(content: string, fileName: string) {
-        const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(.+?)}|(?:\\putbib)\[(.+?)\]/g
-        while (true) {
-            const result = bibReg.exec(content)
-            if (!result) {
-                break
-            }
-            const bibs = (result[1] ? result[1] : result[2]).split(',').map((bib) => {
-                return bib.trim()
-            })
-            for (const bib of bibs) {
-                const bibPath = this.pathUtils.resolveBibPath(bib, path.dirname(fileName))
-                if (bibPath === undefined) {
-                    continue
-                }
-                this.extension.cacher.getCachedContent(fileName).bibs.push(bibPath)
-                await this.bibWatcher.watchBibFile(bibPath)
-            }
-        }
-    }
+    // private async parseBibFiles(content: string, fileName: string) {
+    //     const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(.+?)}|(?:\\putbib)\[(.+?)\]/g
+    //     while (true) {
+    //         const result = bibReg.exec(content)
+    //         if (!result) {
+    //             break
+    //         }
+    //         const bibs = (result[1] ? result[1] : result[2]).split(',').map((bib) => {
+    //             return bib.trim()
+    //         })
+    //         for (const bib of bibs) {
+    //             const bibPath = this.pathUtils.resolveBibPath(bib, path.dirname(fileName))
+    //             if (bibPath === undefined) {
+    //                 continue
+    //             }
+    //             this.extension.cacher.getCachedContent(fileName).bibfiles.push(bibPath)
+    //             await this.bibWatcher.watchBibFile(bibPath)
+    //         }
+    //     }
+    // }
 
     /**
      * Parses the content of a `.fls` file attached to the given `srcFile`.
@@ -605,10 +611,13 @@ export class Manager {
                     index: Number.MAX_VALUE,
                     file: inputFile
                 })
-                await this.parseFileAndSubs(inputFile, texFile)
+                this.extension.cacher.add(inputFile)
+                await this.extension.cacher.refreshContext(inputFile, texFile)
+                // await this.parseFileAndSubs(inputFile, texFile)
             } else if (!this.filesWatched.has(inputFile)) {
                 // Watch non-tex files.
-                this.addToFileWatcher(inputFile)
+                this.extension.cacher.add(inputFile)
+                // this.addToFileWatcher(inputFile)
             }
         }
 
@@ -636,94 +645,94 @@ export class Manager {
                 if (bibPath === undefined) {
                     continue
                 }
-                if (this.rootFile && !this.extension.cacher.getCachedContent(this.rootFile).bibs.includes(bibPath)) {
-                    this.extension.cacher.getCachedContent(this.rootFile).bibs.push(bibPath)
+                if (this.rootFile && !this.extension.cacher.getCachedContent(this.rootFile).bibfiles.includes(bibPath)) {
+                    this.extension.cacher.getCachedContent(this.rootFile).bibfiles.push(bibPath)
                 }
                 await this.bibWatcher.watchBibFile(bibPath)
             }
         }
     }
 
-    private async initiateFileWatcher() {
-        await this.resetFileWatcher()
-        if (this.rootFile !== undefined) {
-            this.addToFileWatcher(this.rootFile)
-        }
-    }
+    // private async initiateFileWatcher() {
+    //     await this.resetFileWatcher()
+    //     if (this.rootFile !== undefined) {
+    //         this.addToFileWatcher(this.rootFile)
+    //     }
+    // }
 
-    private addToFileWatcher(file: string) {
-        if (this.filesWatched.has(file)) {
-            return
-        }
-        this.filesWatched.add(file)
-        this.fileWatcher.add(file)
-    }
+    // private addToFileWatcher(file: string) {
+    //     if (this.filesWatched.has(file)) {
+    //         return
+    //     }
+    //     this.filesWatched.add(file)
+    //     this.fileWatcher.add(file)
+    // }
 
-    private deleteFromFileWatcher(file: string) {
-        if (!this.filesWatched.has(file)) {
-            return
-        }
-        this.filesWatched.delete(file)
-        this.fileWatcher.unwatch(file)
-    }
+    // private deleteFromFileWatcher(file: string) {
+    //     if (!this.filesWatched.has(file)) {
+    //         return
+    //     }
+    //     this.filesWatched.delete(file)
+    //     this.fileWatcher.unwatch(file)
+    // }
 
-    private createFileWatcher() {
-        this.extension.logger.addLogMessage('Creating a new file watcher.')
-        this.extension.logger.addLogMessage(`watcherOptions: ${JSON.stringify(this.watcherOptions)}`)
-        const fileWatcher = chokidar.watch([], this.watcherOptions)
-        this.registerListeners(fileWatcher)
-        return fileWatcher
-    }
+    // private createFileWatcher() {
+    //     this.extension.logger.addLogMessage('Creating a new file watcher.')
+    //     this.extension.logger.addLogMessage(`watcherOptions: ${JSON.stringify(this.watcherOptions)}`)
+    //     const fileWatcher = chokidar.watch([], this.watcherOptions)
+    //     this.registerListeners(fileWatcher)
+    //     return fileWatcher
+    // }
 
-    private registerListeners(fileWatcher: chokidar.FSWatcher) {
-        fileWatcher.on('add', (file: string) => this.onWatchingNewFile(file))
-        fileWatcher.on('change', (file: string) => this.onWatchedFileChanged(file))
-        fileWatcher.on('unlink', (file: string) => this.onWatchedFileDeleted(file))
-    }
+    // private registerListeners(fileWatcher: chokidar.FSWatcher) {
+    //     fileWatcher.on('add', (file: string) => this.onWatchingNewFile(file))
+    //     fileWatcher.on('change', (file: string) => this.onWatchedFileChanged(file))
+    //     fileWatcher.on('unlink', (file: string) => this.onWatchedFileDeleted(file))
+    // }
 
-    private async resetFileWatcher() {
-        this.extension.logger.addLogMessage('Reset file watcher.')
-        await this.fileWatcher.close()
-        this.registerListeners(this.fileWatcher)
-        this.filesWatched.clear()
-        // We also clean the completions from the old project
-        this.extension.completer.input.reset()
-        this.extension.duplicateLabels.reset()
-    }
+    // private async resetFileWatcher() {
+    //     this.extension.logger.addLogMessage('Reset file watcher.')
+    //     await this.fileWatcher.close()
+    //     this.registerListeners(this.fileWatcher)
+    //     this.filesWatched.clear()
+    //     // We also clean the completions from the old project
+    //     this.extension.completer.input.reset()
+    //     this.extension.duplicateLabels.reset()
+    // }
 
-    private onWatchingNewFile(file: string) {
-        this.extension.logger.addLogMessage(`Added to file watcher: ${file}`)
-        if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
-            !file.includes('expl3-code.tex')) {
-            return this.updateCompleterOnChange(file)
-        }
-        return
-    }
+    // private onWatchingNewFile(file: string) {
+    //     this.extension.logger.addLogMessage(`Added to file watcher: ${file}`)
+    //     if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
+    //         !file.includes('expl3-code.tex')) {
+    //         return this.updateCompleterOnChange(file)
+    //     }
+    //     return
+    // }
 
-    private async onWatchedFileChanged(file: string) {
-        this.extension.logger.addLogMessage(`File watcher - file changed: ${file}`)
-        // It is possible for either tex or non-tex files in the watcher.
-        if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
-            !file.includes('expl3-code.tex')) {
-            if (this.extension.cacher.cachedFilePaths.includes(file)) {
-                this.extension.cacher.getCachedContent(file).content = undefined
-            }
-            await this.parseFileAndSubs(file, this.rootFile)
-            await this.updateCompleterOnChange(file)
-        }
-        await this.buildOnFileChanged(file)
-    }
+    // private async onWatchedFileChanged(file: string) {
+    //     this.extension.logger.addLogMessage(`File watcher - file changed: ${file}`)
+    //     // It is possible for either tex or non-tex files in the watcher.
+    //     if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
+    //         !file.includes('expl3-code.tex')) {
+    //         if (this.extension.cacher.has(file)) {
+    //             this.extension.cacher.getCachedContent(file).content = undefined
+    //         }
+    //         await this.parseFileAndSubs(file, this.rootFile)
+    //         await this.updateCompleterOnChange(file)
+    //     }
+    //     await this.buildOnFileChanged(file)
+    // }
 
-    private onWatchedFileDeleted(file: string) {
-        this.extension.logger.addLogMessage(`File watcher - file deleted: ${file}`)
-        this.deleteFromFileWatcher(file)
-        this.extension.cacher.removeCachedContent(file)
-        if (file === this.rootFile) {
-            this.extension.logger.addLogMessage(`Root file deleted: ${file}`)
-            this.extension.logger.addLogMessage('Start searching a new root file.')
-            void this.findRoot()
-        }
-    }
+    // private onWatchedFileDeleted(file: string) {
+    //     this.extension.logger.addLogMessage(`File watcher - file deleted: ${file}`)
+    //     this.deleteFromFileWatcher(file)
+    //     this.extension.cacher.removeCachedContent(file)
+    //     if (file === this.rootFile) {
+    //         this.extension.logger.addLogMessage(`Root file deleted: ${file}`)
+    //         this.extension.logger.addLogMessage('Start searching a new root file.')
+    //         void this.findRoot()
+    //     }
+    // }
 
     onDidUpdateIntellisense(cb: (file: string) => void) {
         return this.intellisenseWatcher.onDidUpdateIntellisense(cb)
@@ -766,14 +775,14 @@ export class Manager {
 
 
     // This function updates all completers upon tex-file changes.
-    private async updateCompleterOnChange(file: string) {
-        const content = this.extension.cacher.getDirtyContent(file)
-        if (!content) {
-            return
-        }
-        await this.updateCompleter(file, content)
-        this.extension.completer.input.setGraphicsPath(content)
-    }
+    // private async updateCompleterOnChange(file: string) {
+    //     const content = this.extension.cacher.getDirtyContent(file)
+    //     if (!content) {
+    //         return
+    //     }
+    //     await this.updateCompleter(file, content)
+    //     this.extension.completer.input.setGraphicsPath(content)
+    // }
 
     /**
      * Updates all completers upon tex-file changes, or active file content is changed.
@@ -872,8 +881,8 @@ export class Manager {
         if (cache === undefined) {
             return
         }
-        cache.element.package = cache.element.package || {}
-        cache.element.package[packageName] = options
+        cache.elements.package = cache.elements.package || {}
+        cache.elements.package[packageName] = options
     }
 
     private registerSetEnvVar() {

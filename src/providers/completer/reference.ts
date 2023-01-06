@@ -91,9 +91,9 @@ export class Reference implements IProvider {
             return
         }
         if (nodes !== undefined && lines !== undefined) {
-            cache.element.reference = this.getRefFromNodeArray(nodes, lines)
+            cache.elements.reference = this.getRefFromNodeArray(nodes, lines)
         } else if (content !== undefined) {
-            cache.element.reference = this.getRefFromContent(content)
+            cache.elements.reference = this.getRefFromContent(content)
         }
     }
 
@@ -110,7 +110,7 @@ export class Reference implements IProvider {
             range = computeFilteringRange(args.document, args.position)
         }
         this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.cacher.getCachedContent(cachedFile)?.element.reference
+            const cachedRefs = this.extension.cacher.getCachedContent(cachedFile)?.elements.reference
             if (cachedRefs === undefined) {
                 return
             }

@@ -73,7 +73,7 @@ export class Package implements IProvider {
             .forEach(packageName => packages[packageName] = [])
 
         this.extension.cacher.getIncludedTeX().forEach(tex => {
-            const included = this.extension.cacher.getCachedContent(tex)?.element.package
+            const included = this.extension.cacher.getCachedContent(tex)?.elements.package
             if (included === undefined) {
                 return
             }

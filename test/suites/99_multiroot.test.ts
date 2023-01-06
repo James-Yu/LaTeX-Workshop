@@ -238,7 +238,7 @@ suite('Multi-root workspace test suite', () => {
         const resultB = await openActive(extension, fixture, 'B/main.tex')
         const cache = extension.cacher.getCachedContent(path.resolve(fixture, 'B/main.tex'))
         if (cache) {
-            cache.bibs = [path.resolve(fixture, 'B/B.bib')]
+            cache.bibfiles = [path.resolve(fixture, 'B/B.bib')]
         } else {
             return
         }

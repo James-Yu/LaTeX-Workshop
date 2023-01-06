@@ -3,7 +3,7 @@ import * as path from 'path'
 import rimraf from 'rimraf'
 
 import { Extension } from '../../src/main'
-import { sleep, assertAutoBuild, assertBuild, getExtension, runTest, loadTestFile } from './utils'
+import { sleep, assertAutoBuild, assertBuild, getExtension, runTest, loadTestFile, waitFileWatched } from './utils'
 
 suite('Auto-build test suite', () => {
 
@@ -97,7 +97,9 @@ suite('Auto-build test suite', () => {
             {src: 'input_macro.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
+        const wait = waitFileWatched(extension, path.resolve(fixture, 'sub/s.tex'))
         await assertBuild({fixture, texName: 'main.tex', pdfName: 'main.pdf', extension})
+        await wait
         await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf', extension}, ['skipFirstBuild'])
     })
 

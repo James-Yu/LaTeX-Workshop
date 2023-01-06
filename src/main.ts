@@ -185,7 +185,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             return
         }
         extension.linter.lintActiveFileIfEnabledAfterInterval(e.document)
-        if (!(e.document.fileName in extension.cacher.cachedFilePaths)) {
+        if (!extension.cacher.has(e.document.fileName)) {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -197,7 +197,8 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
                 extension.cacher.updateCachedContent(e.document)
                 const content = e.document.getText()
                 const file = e.document.uri.fsPath
-                await extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
+                // await extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
+                await extension.cacher.refreshContext(file, extension.manager.rootFile)
                 await extension.manager.parseFlsFile(extension.manager.rootFile ? extension.manager.rootFile : file)
                 await extension.manager.updateCompleter(file, content)
             }, configuration.get('intellisense.update.delay', 1000))

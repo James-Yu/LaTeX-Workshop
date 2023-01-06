@@ -6,7 +6,7 @@ import * as os from 'os'
 import * as assert from 'assert'
 
 import { Extension, activate } from '../../src/main'
-import { BuildDone, FileParsed, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
+import { BuildDone, FileParsed, FileWatched, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
 import type { EventName } from '../../src/components/eventbus'
 
 export async function getExtension() {
@@ -154,7 +154,12 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFi
     assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), '')
     await sleep(250)
 
-    const wait = waitBuild(option.extension)
+    let wait = waitFileWatched(option.extension, path.resolve(option.fixture, option.texName))
+    if (!mode?.includes('noAutoBuild') && option.texName.endsWith('.tex') && !option.extension.cacher.watched(path.resolve(option.fixture, option.texName))) {
+        await wait
+    }
+
+    wait = waitBuild(option.extension)
     if (mode?.includes('onSave')) {
         await vscode.commands.executeCommand('workbench.action.files.save')
     } else {
@@ -186,6 +191,10 @@ async function waitEvent(extension: Extension, event: EventName, arg?: any) {
 
 export async function waitBuild(extension: Extension) {
     return waitEvent(extension, BuildDone)
+}
+
+export async function waitFileWatched(extension: Extension, filePath: string) {
+    return waitEvent(extension, FileWatched, filePath)
 }
 
 type AssertRootOption = {

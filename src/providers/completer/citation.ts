@@ -191,7 +191,7 @@ export class Citation implements IProvider {
         if (cache === undefined) {
             return []
         }
-        let bibs = cache.bibs
+        let bibs = cache.bibfiles
         visitedTeX.push(file)
         for (const child of cache.children) {
             if (visitedTeX.includes(child.file)) {
@@ -222,7 +222,7 @@ export class Citation implements IProvider {
         })
         // From caches
         this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedBibs = this.extension.cacher.getCachedContent(cachedFile)?.element.bibitem
+            const cachedBibs = this.extension.cacher.getCachedContent(cachedFile)?.elements.bibitem
             if (cachedBibs === undefined) {
                 return
             }
@@ -302,7 +302,7 @@ export class Citation implements IProvider {
     update(file: string, content: string) {
         const cache = this.extension.cacher.getCachedContent(file)
         if (cache !== undefined) {
-            cache.element.bibitem = this.parseContent(file, content)
+            cache.elements.bibitem = this.parseContent(file, content)
         }
     }
 

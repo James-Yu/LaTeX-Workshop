@@ -170,7 +170,7 @@ export class Command implements IProvider {
         // user defined commands, whose name matches a default command or one provided by a package
         const commandNameDuplicationDetector = new CommandNameDuplicationDetector(suggestions)
         this.extension.cacher.getIncludedTeX().forEach(tex => {
-            const cmds = this.extension.cacher.getCachedContent(tex)?.element.command
+            const cmds = this.extension.cacher.getCachedContent(tex)?.elements.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
                     if (!commandNameDuplicationDetector.has(cmd)) {
@@ -223,9 +223,9 @@ export class Command implements IProvider {
             return
         }
         if (nodes !== undefined) {
-            cache.element.command = this.commandFinder.getCmdFromNodeArray(file, nodes, new CommandNameDuplicationDetector())
+            cache.elements.command = this.commandFinder.getCmdFromNodeArray(file, nodes, new CommandNameDuplicationDetector())
         } else if (content !== undefined) {
-            cache.element.command = this.commandFinder.getCmdFromContent(file, content)
+            cache.elements.command = this.commandFinder.getCmdFromContent(file, content)
         }
     }
 
