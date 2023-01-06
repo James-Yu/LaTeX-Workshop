@@ -3,15 +3,12 @@ import * as os from 'os'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as tmp from 'tmp'
-import * as chokidar from 'chokidar'
 import * as utils from '../utils/utils'
 // import {InputFileRegExp} from '../utils/inputfilepath'
 
 import type {Extension} from '../main'
 import * as eventbus from './eventbus'
 
-import {PdfWatcher} from './managerlib/pdfwatcher'
-import {BibWatcher} from './managerlib/bibwatcher'
 import {FinderUtils} from './managerlib/finderutils'
 import {IntellisenseWatcher} from './managerlib/intellisensewatcher'
 
@@ -30,8 +27,6 @@ export class Manager {
     readonly tmpDir: string
 
     private readonly extension: Extension
-    private readonly pdfWatcher: PdfWatcher
-    readonly bibWatcher: BibWatcher
     readonly intellisenseWatcher: IntellisenseWatcher
     private readonly finderUtils: FinderUtils
     private readonly rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
@@ -39,22 +34,9 @@ export class Manager {
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.pdfWatcher = new PdfWatcher(extension)
-        this.bibWatcher = new BibWatcher(extension)
         this.intellisenseWatcher = new IntellisenseWatcher()
         this.finderUtils = new FinderUtils(extension)
         this.registerSetEnvVar()
-
-        this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            if (e.affectsConfiguration('latex-workshop.latex.watch.usePolling') ||
-                e.affectsConfiguration('latex-workshop.latex.watch.interval') ||
-                e.affectsConfiguration('latex-workshop.latex.watch.delay') ||
-                e.affectsConfiguration('latex-workshop.latex.watch.pdf.delay')) {
-                // this.updateWatcherOptions(this.fileWatcher)
-                this.bibWatcher.updateWatcherOptions()
-                this.pdfWatcher.updateWatcherOptions()
-            }
-        }))
 
         // Create temp folder
         try {
@@ -72,19 +54,6 @@ export class Manager {
         }
     }
 
-    updateWatcherOptions(watcher: chokidar.FSWatcher, pdf = false) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        watcher.options.usePolling = configuration.get('latex.watch.usePolling') as boolean
-        watcher.options.interval = configuration.get('latex.watch.interval') as number
-        watcher.options.awaitWriteFinish = {
-            stabilityThreshold: pdf ? configuration.get('latex.watch.pdf.delay') : configuration.get('latex.watch.delay') as number
-        }
-    }
-
-    async dispose() {
-        await this.pdfWatcher.dispose()
-        await this.bibWatcher.dispose()
-    }
     /**
      * Returns the output directory developed according to the input tex path
      * and 'latex.outDir' config. If `texPath` is `undefined`, the default root
@@ -221,12 +190,6 @@ export class Manager {
             outDir = this.getOutDir(texPath)
         }
         return path.resolve(path.dirname(texPath), outDir, path.basename(`${texPath.substring(0, texPath.lastIndexOf('.'))}.pdf`))
-    }
-
-    ignorePdfFile(rootFile: string) {
-        const pdfFilePath = this.tex2pdf(rootFile)
-        const pdfFileUri = vscode.Uri.file(pdfFilePath)
-        this.pdfWatcher.ignorePdfFile(pdfFileUri)
     }
 
     /**
@@ -405,10 +368,6 @@ export class Manager {
 
     onDidUpdateIntellisense(cb: (file: string) => void) {
         return this.intellisenseWatcher.onDidUpdateIntellisense(cb)
-    }
-
-    watchPdfFile(pdfFileUri: vscode.Uri) {
-        this.pdfWatcher.watchPdfFile(pdfFileUri)
     }
 
     private registerSetEnvVar() {

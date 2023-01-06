@@ -58,7 +58,7 @@ export class PdfViewerManagerService {
 
     initiatePdfViewerPanel(pdfPanel: PdfViewerPanel): PdfViewerPanel | undefined {
         const pdfFileUri = pdfPanel.pdfFileUri
-        this.extension.manager.watchPdfFile(pdfFileUri)
+        this.extension.cacher.watchPdfFile(pdfFileUri)
         this.createClientSet(pdfFileUri)
         const panelSet = this.getPanelSet(pdfFileUri)
         if (!panelSet) {

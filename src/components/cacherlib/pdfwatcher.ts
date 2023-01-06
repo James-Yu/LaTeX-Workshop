@@ -14,6 +14,14 @@ export class PdfWatcher {
         this.extension = extension
         this.pdfWatcher = this.initiatePdfWatcher()
         this.initiateVirtualUriWatcher()
+
+        this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+            if (e.affectsConfiguration('latex-workshop.latex.watch.usePolling') ||
+                e.affectsConfiguration('latex-workshop.latex.watch.interval') ||
+                e.affectsConfiguration('latex-workshop.latex.watch.pdf.delay')) {
+                this.updateWatcherOptions()
+            }
+        }))
     }
 
     async dispose() {
@@ -25,27 +33,20 @@ export class PdfWatcher {
     }
 
     private initiatePdfWatcher() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const usePolling = configuration.get('latex.watch.usePolling') as boolean
-        const interval = configuration.get('latex.watch.interval') as number
-        const pdfDelay = configuration.get('latex.watch.pdf.delay') as number
-        const pdfWatcherOptions = {
-            useFsEvents: false,
-            usePolling,
-            interval,
-            binaryInterval: Math.max(interval, 1000),
-            awaitWriteFinish: {stabilityThreshold: pdfDelay}
-        }
         this.extension.logger.addLogMessage('Creating PDF file watcher.')
-        this.extension.logger.addLogMessage(`watcherOptions: ${JSON.stringify(pdfWatcherOptions)}`)
-        const pdfWatcher = chokidar.watch([], pdfWatcherOptions)
+        const pdfWatcher = chokidar.watch([], {useFsEvents: false})
+        this.updateWatcherOptions()
         pdfWatcher.on('change', (file: string) => this.onWatchedPdfChanged(file))
         pdfWatcher.on('unlink', (file: string) => this.onWatchedPdfDeleted(file))
         return pdfWatcher
     }
 
-    updateWatcherOptions() {
-        this.extension.manager.updateWatcherOptions(this.pdfWatcher, true)
+    private updateWatcherOptions() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        this.pdfWatcher.options.usePolling = configuration.get('latex.watch.usePolling') as boolean
+        this.pdfWatcher.options.interval = configuration.get('latex.watch.interval') as number
+        this.pdfWatcher.options.binaryInterval = Math.max(configuration.get('latex.watch.interval') as number, 1000)
+        this.pdfWatcher.options.awaitWriteFinish = {stabilityThreshold: configuration.get('latex.watch.pdf.delay')}
     }
 
     private isWatchedVirtualUri(pdfFile: vscode.Uri): boolean {

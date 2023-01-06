@@ -126,7 +126,7 @@ export class Builder {
         this.lastBuild = Date.now()
 
         if (rootFile) {
-            this.extension.manager.ignorePdfFile(rootFile)
+            this.extension.cacher.ignorePdfFile(rootFile)
         }
 
         await vscode.workspace.saveAll()
@@ -162,7 +162,7 @@ export class Builder {
 
         // Stop watching the PDF file to avoid reloading the PDF viewer twice.
         // The builder will be responsible for refreshing the viewer.
-        this.extension.manager.ignorePdfFile(rootFile)
+        this.extension.cacher.ignorePdfFile(rootFile)
 
         await vscode.workspace.saveAll()
 

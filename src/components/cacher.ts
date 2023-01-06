@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as chokidar from 'chokidar'
 import { latexParser } from 'latex-utensils'
 
 import type { CmdEnvSuggestion } from '../providers/completer/completerutils'
@@ -15,6 +14,9 @@ import * as utils from '../utils/utils'
 import { InputFileRegExp } from '../utils/inputfilepath'
 import { canContext, isExcluded, parseFlsContent } from './cacherlib/cacherutils'
 import { PathUtils } from './cacherlib/pathutils'
+import { Watcher } from './cacherlib/texwatcher'
+import { PdfWatcher } from './cacherlib/pdfwatcher'
+import { BibWatcher } from './cacherlib/bibwatcher'
 
 export interface Context {
     /**
@@ -55,10 +57,11 @@ export interface Context {
 export class Cacher {
     private readonly contexts: {[filePath: string]: Context} = {}
     private readonly watcher: Watcher = new Watcher(this.extension, this)
+    private readonly pdfWatcher: PdfWatcher = new PdfWatcher(this.extension)
+    private readonly bibWatcher: BibWatcher = new BibWatcher(this.extension)
     private readonly pathUtils: PathUtils = new PathUtils(this.extension)
 
-    constructor(private readonly extension: Extension) {
-    }
+    constructor(private readonly extension: Extension) {}
 
     add(filePath: string) {
         if (isExcluded(filePath)) {
@@ -85,6 +88,8 @@ export class Cacher {
 
     async dispose() {
         await this.watcher.watcher.close()
+        await this.pdfWatcher.dispose()
+        await this.bibWatcher.dispose()
     }
 
     async refreshContext(filePath: string, rootPath?: string) {
@@ -183,7 +188,7 @@ export class Cacher {
                 }
                 this.contexts[filePath].bibfiles.push(bibPath)
                 this.extension.logger.addLogMessage(`[Cacher] Bib ${bibPath} from ${filePath}.`)
-                await this.extension.manager.bibWatcher.watchBibFile(bibPath)
+                await this.bibWatcher.watchBibFile(bibPath)
             }
         }
         this.extension.logger.addLogMessage(`[Cacher] Updated bibs of ${filePath}.`)
@@ -311,7 +316,7 @@ export class Cacher {
                 if (rootFile && !this.getCachedContent(rootFile).bibfiles.includes(bibPath)) {
                     this.getCachedContent(rootFile).bibfiles.push(bibPath)
                 }
-                await this.extension.manager.bibWatcher.watchBibFile(bibPath)
+                await this.bibWatcher.watchBibFile(bibPath)
             }
         }
     }
@@ -433,103 +438,14 @@ export class Cacher {
         })
         return children
     }
-}
 
-class Watcher {
-    readonly watcher: chokidar.FSWatcher
-    readonly watched: Set<string> = new Set()
-
-    constructor(
-        private readonly extension: Extension,
-        private readonly cacher: Cacher
-    ) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const watcherOption = {
-            useFsEvents: false,
-            usePolling: configuration.get('latex.watch.usePolling') as boolean,
-            interval: configuration.get('latex.watch.interval') as number,
-            binaryInterval: Math.max(configuration.get('latex.watch.interval') as number, 1000),
-            awaitWriteFinish: {stabilityThreshold: configuration.get('latex.watch.delay') as number}
-        }
-        this.extension.logger.addLogMessage(`[Cacher][Watcher]Create watcher: ${JSON.stringify(watcherOption)}`)
-        this.watcher = chokidar.watch([], watcherOption)
-
-        this.watcher.on('add', (file: string) => this.onAdd(file))
-        this.watcher.on('change', (file: string) => this.onChange(file))
-        this.watcher.on('unlink', (file: string) => this.onUnlink(file))
-
-        this.registerOptionReload()
+    ignorePdfFile(rootFile: string) {
+        const pdfFilePath = this.extension.manager.tex2pdf(rootFile)
+        const pdfFileUri = vscode.Uri.file(pdfFilePath)
+        this.pdfWatcher.ignorePdfFile(pdfFileUri)
     }
 
-    add(filePath: string) {
-        this.watcher.add(filePath)
-        this.watched.add(filePath)
-    }
-
-    has(filePath: string) {
-        return this.watched.has(filePath)
-    }
-
-    async reset() {
-        await this.watcher.close()
-        this.watched.clear()
-
-        this.watcher.on('add', (file: string) => this.onAdd(file))
-        this.watcher.on('change', (file: string) => this.onChange(file))
-        this.watcher.on('unlink', (file: string) => this.onUnlink(file))
-    }
-
-    private onAdd(filePath: string) {
-        this.extension.logger.addLogMessage(`[Cacher][Watcher] Watched ${filePath}.`)
-        this.extension.eventBus.fire(eventbus.FileWatched, filePath)
-    }
-
-    private onChange(filePath: string) {
-        if (canContext(filePath)) {
-            void this.cacher.refreshContext(filePath)
-        }
-        void this.extension.builder.buildOnFileChanged(filePath)
-        this.extension.logger.addLogMessage(`[Cacher][Watcher] Changed ${filePath}.`)
-        this.extension.eventBus.fire(eventbus.FileChanged, filePath)
-    }
-
-    private onUnlink(filePath: string) {
-        this.watcher.unwatch(filePath)
-        this.watched.delete(filePath)
-        this.cacher.removeCachedContent(filePath)
-        if (filePath === this.extension.manager.rootFile) {
-            this.extension.logger.addLogMessage(`[Cacher][Watcher] Root deleted ${filePath}.`)
-            this.extension.manager.rootFile = undefined
-            void this.extension.manager.findRoot()
-        } else {
-            this.extension.logger.addLogMessage(`[Cacher][Watcher] Deleted ${filePath}.`)
-        }
-        this.extension.eventBus.fire(eventbus.FileRemoved, filePath)
-    }
-
-    private registerOptionReload() {
-        this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            if (e.affectsConfiguration('latex-workshop.latex.watch.usePolling') ||
-                e.affectsConfiguration('latex-workshop.latex.watch.interval') ||
-                e.affectsConfiguration('latex-workshop.latex.watch.delay') ||
-                e.affectsConfiguration('latex-workshop.latex.watch.pdf.delay')) {
-                this.watcher.options.usePolling = configuration.get('latex.watch.usePolling') as boolean
-                this.watcher.options.interval = configuration.get('latex.watch.interval') as number
-                this.watcher.options.awaitWriteFinish = {stabilityThreshold: configuration.get('latex.watch.delay') as number}
-            }
-            if (e.affectsConfiguration('latex-workshop.latex.watch.files.ignore')) {
-                this.watched.forEach(filePath => {
-                    if (!isExcluded(filePath)) {
-                        return
-                    }
-                    this.watcher.unwatch(filePath)
-                    this.watched.delete(filePath)
-                    this.cacher.removeCachedContent(filePath)
-                    this.extension.logger.addLogMessage(`[Cacher][Watcher] Ignored ${filePath}.`)
-                    void this.extension.manager.findRoot()
-                })
-            }
-        }))
+    watchPdfFile(pdfFileUri: vscode.Uri) {
+        this.pdfWatcher.watchPdfFile(pdfFileUri)
     }
 }
