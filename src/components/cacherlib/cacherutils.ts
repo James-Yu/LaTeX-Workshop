@@ -2,12 +2,10 @@ import vscode from 'vscode'
 import path from 'path'
 import os from 'os'
 import micromatch from 'micromatch'
+import { JLWEAVE_EXT, PWEAVE_EXT, RSWEAVE_EXT, TEX_EXT } from '../manager'
 
 export function canContext(filePath: string) {
-    const texExt: string[] = ['.tex', '.bib']
-    const rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
-    const jlweaveExt: string[] = ['.jnw', '.jtexw']
-    return [...texExt, rsweaveExt, jlweaveExt].includes(path.extname(filePath))
+    return [...TEX_EXT, ...RSWEAVE_EXT, ...JLWEAVE_EXT, ...PWEAVE_EXT].includes(path.extname(filePath))
         && !filePath.includes('expl3-code.tex')
 }
 

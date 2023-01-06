@@ -18,6 +18,11 @@ type RootFileType = {
     uri: vscode.Uri
 }
 
+export const TEX_EXT: string[] = ['.tex', '.bib']
+export const RSWEAVE_EXT: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
+export const JLWEAVE_EXT: string[] = ['.jnw', '.jtexw']
+export const PWEAVE_EXT: string[] = ['.pnw', '.ptexw']
+
 export class Manager {
     private _localRootFile: string | undefined
     private _rootFileLanguageId: string | undefined
@@ -26,9 +31,6 @@ export class Manager {
 
     private readonly extension: Extension
     private readonly finderUtils: FinderUtils
-    private readonly rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
-    private readonly jlweaveExt: string[] = ['.jnw', '.jtexw']
-    private readonly pweaveExt: string[] = ['.pnw', '.ptexw']
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -164,11 +166,11 @@ export class Manager {
         const ext = path.extname(filename).toLocaleLowerCase()
         if (ext === '.tex') {
             return 'latex'
-        } else if (this.pweaveExt.includes(ext)) {
+        } else if (PWEAVE_EXT.includes(ext)) {
             return 'pweave'
-        } else if (this.jlweaveExt.includes(ext)) {
+        } else if (JLWEAVE_EXT.includes(ext)) {
             return 'jlweave'
-        } else if (this.rsweaveExt.includes(ext)) {
+        } else if (RSWEAVE_EXT.includes(ext)) {
             return 'rsweave'
         } else if (ext === '.dtx') {
             return 'doctex'
