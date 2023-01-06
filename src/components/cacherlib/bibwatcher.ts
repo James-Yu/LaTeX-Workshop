@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as chokidar from 'chokidar'
 
 import type {Extension} from '../../main'
+import { Logger } from '../logger'
 
 export class BibWatcher {
     private bibWatcher: chokidar.FSWatcher
@@ -44,13 +45,13 @@ export class BibWatcher {
     }
 
     private async onWatchedBibChanged(file: string) {
-        this.extension.logger.addLogMessage(`Bib file watcher - file changed: ${file}`)
+        Logger.log(`Bib file watcher - file changed: ${file}`)
         await this.extension.completer.citation.parseBibFile(file)
         await this.extension.builder.buildOnFileChanged(file, true)
     }
 
     private onWatchedBibDeleted(file: string) {
-        this.extension.logger.addLogMessage(`Bib file watcher - file deleted: ${file}`)
+        Logger.log(`Bib file watcher - file deleted: ${file}`)
         this.bibWatcher.unwatch(file)
         this.bibsWatched.delete(file)
         this.extension.completer.citation.removeEntriesInFile(file)
@@ -58,7 +59,7 @@ export class BibWatcher {
 
     async watchBibFile(bibPath: string) {
         if (!this.bibsWatched.has(bibPath)) {
-            this.extension.logger.addLogMessage(`Added to bib file watcher: ${bibPath}`)
+            Logger.log(`Added to bib file watcher: ${bibPath}`)
             this.bibWatcher.add(bibPath)
             this.bibsWatched.add(bibPath)
             await this.extension.completer.citation.parseBibFile(bibPath)
@@ -66,8 +67,8 @@ export class BibWatcher {
     }
 
     logWatchedFiles() {
-        this.extension.logger.addLogMessage(`BibWatcher.bibWatcher.getWatched: ${JSON.stringify(this.bibWatcher.getWatched())}`)
-        this.extension.logger.addLogMessage(`BibWatcher.bibsWatched: ${JSON.stringify(Array.from(this.bibsWatched))}`)
+        Logger.log(`BibWatcher.bibWatcher.getWatched: ${JSON.stringify(this.bibWatcher.getWatched())}`)
+        Logger.log(`BibWatcher.bibsWatched: ${JSON.stringify(Array.from(this.bibsWatched))}`)
     }
 
 }

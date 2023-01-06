@@ -3,6 +3,7 @@ import * as path from 'path'
 
 import type { Extension } from '../../main'
 import * as utils from '../../utils/utils'
+import { Logger } from '../logger'
 
 export class FinderUtils {
     private readonly extension: Extension
@@ -25,27 +26,27 @@ export class FinderUtils {
             content = this.extension.lwfs.readFileSyncGracefully(file)
             if (content === undefined) {
                 const msg = `Not found root file specified in the magic comment: ${file}`
-                this.extension.logger.addLogMessage(msg)
+                Logger.log(msg)
                 throw new Error(msg)
             }
             fileStack.push(file)
-            this.extension.logger.addLogMessage(`Found root file by magic comment: ${file}`)
+            Logger.log(`Found root file by magic comment: ${file}`)
 
             result = content.match(regex)
             while (result) {
                 file = path.resolve(path.dirname(file), result[1])
                 if (fileStack.includes(file)) {
-                    this.extension.logger.addLogMessage(`Looped root file by magic comment found: ${file}, stop here.`)
+                    Logger.log(`Looped root file by magic comment found: ${file}, stop here.`)
                     return file
                 } else {
                     fileStack.push(file)
-                    this.extension.logger.addLogMessage(`Recursively found root file by magic comment: ${file}`)
+                    Logger.log(`Recursively found root file by magic comment: ${file}`)
                 }
 
                 content = this.extension.lwfs.readFileSyncGracefully(file)
                 if (content === undefined) {
                     const msg = `Not found root file specified in the magic comment: ${file}`
-                    this.extension.logger.addLogMessage(msg)
+                    Logger.log(msg)
                     throw new Error(msg)
 
                 }
@@ -65,9 +66,9 @@ export class FinderUtils {
         if (result) {
             const file = utils.resolveFile([path.dirname(vscode.window.activeTextEditor.document.fileName)], result[1])
             if (file) {
-                this.extension.logger.addLogMessage(`Found root file of this subfile from active editor: ${file}`)
+                Logger.log(`Found root file of this subfile from active editor: ${file}`)
             } else {
-                this.extension.logger.addLogMessage(`Cannot find root file of this subfile from active editor: ${result[1]}`)
+                Logger.log(`Cannot find root file of this subfile from active editor: ${result[1]}`)
             }
             return file
         }

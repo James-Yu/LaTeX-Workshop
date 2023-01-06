@@ -3,6 +3,7 @@ import * as path from 'path'
 
 import type { Extension } from '../../main'
 import type { LogEntry } from './compilerlog'
+import { Logger } from '../logger'
 
 const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
@@ -51,7 +52,7 @@ export class LatexLogParser {
             rootFile = this.extension.manager.rootFile
         }
         if (rootFile === undefined) {
-            this.extension.logger.addLogMessage('How can you reach this point?')
+            Logger.log('How can you reach this point?')
             return
         }
 
@@ -67,7 +68,7 @@ export class LatexLogParser {
         if (state.currentResult.type !== '' && !state.currentResult.text.match(bibEmpty)) {
             this.buildLog.push(state.currentResult)
         }
-        this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
+        Logger.log(`LaTeX log parsed with ${this.buildLog.length} messages.`)
         this.extension.compilerLogParser.showCompilerDiagnostics(this.compilerDiagnostics, this.buildLog, 'LaTeX')
     }
 
@@ -78,7 +79,7 @@ export class LatexLogParser {
             excludeRegexp = (configuration.get('message.latexlog.exclude') as string[]).map(regexp => RegExp(regexp))
         } catch (e) {
             if (e instanceof Error) {
-                this.extension.logger.addLogMessage(`latex-workshop.message.latexlog.exclude is invalid: ${e.message}`)
+                Logger.log(`latex-workshop.message.latexlog.exclude is invalid: ${e.message}`)
             }
             return
         }

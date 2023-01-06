@@ -1,15 +1,8 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-
-import type { Extension } from '../main'
+import { Logger } from './logger'
 
 export class LwFileSystem {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     isLocalUri(uri: vscode.Uri): boolean {
         return uri.scheme === 'file'
     }
@@ -51,7 +44,7 @@ export class LwFileSystem {
             return ret
         } catch (err) {
             if (err instanceof Error) {
-                this.extension.logger.logError(err)
+                Logger.logError(err)
             }
             return undefined
         }

@@ -5,6 +5,7 @@ import { Extension } from '../../main'
 import * as eventbus from '../eventbus'
 import { Cacher } from '../cacher'
 import { canContext, isExcluded } from './cacherutils'
+import { Logger } from '../logger'
 
 export class Watcher {
     watcher: chokidar.FSWatcher
@@ -52,7 +53,7 @@ export class Watcher {
     }
 
     private onAdd(filePath: string) {
-        this.extension.logger.addLogMessage(`[Cacher][Watcher] Watched ${filePath}.`)
+        Logger.log(`[Cacher][Watcher] Watched ${filePath}.`)
         this.extension.eventBus.fire(eventbus.FileWatched, filePath)
     }
 
@@ -61,7 +62,7 @@ export class Watcher {
             void this.cacher.refreshContext(filePath)
         }
         void this.extension.builder.buildOnFileChanged(filePath)
-        this.extension.logger.addLogMessage(`[Cacher][Watcher] Changed ${filePath}.`)
+        Logger.log(`[Cacher][Watcher] Changed ${filePath}.`)
         this.extension.eventBus.fire(eventbus.FileChanged, filePath)
     }
 
@@ -70,11 +71,11 @@ export class Watcher {
         this.watched.delete(filePath)
         this.cacher.remove(filePath)
         if (filePath === this.extension.manager.rootFile) {
-            this.extension.logger.addLogMessage(`[Cacher][Watcher] Root deleted ${filePath}.`)
+            Logger.log(`[Cacher][Watcher] Root deleted ${filePath}.`)
             this.extension.manager.rootFile = undefined
             void this.extension.manager.findRoot()
         } else {
-            this.extension.logger.addLogMessage(`[Cacher][Watcher] Deleted ${filePath}.`)
+            Logger.log(`[Cacher][Watcher] Deleted ${filePath}.`)
         }
         this.extension.eventBus.fire(eventbus.FileRemoved, filePath)
     }
@@ -97,7 +98,7 @@ export class Watcher {
                     this.watcher.unwatch(filePath)
                     this.watched.delete(filePath)
                     this.cacher.remove(filePath)
-                    this.extension.logger.addLogMessage(`[Cacher][Watcher] Ignored ${filePath}.`)
+                    Logger.log(`[Cacher][Watcher] Ignored ${filePath}.`)
                     void this.extension.manager.findRoot()
                 })
             }

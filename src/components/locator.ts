@@ -9,6 +9,7 @@ import {replaceArgumentPlaceholders} from '../utils/utils'
 import {isSameRealPath} from '../utils/pathnormalize'
 
 import type {ClientRequest} from '../../types/latex-workshop-protocol-types'
+import { Logger } from './logger'
 
 export type SyncTeXRecordForward = {
     page: number,
@@ -28,7 +29,7 @@ export class Locator {
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.synctexjs = new SyncTexJs(extension)
+        this.synctexjs = new SyncTexJs()
     }
 
     private parseSyncTeXForward(result: string): SyncTeXRecordForward {
@@ -111,19 +112,19 @@ export class Locator {
         let filePath: string
         let character = 0
         if (!vscode.window.activeTextEditor) {
-            this.extension.logger.addLogMessage('[Synctexjs] active editor not found')
+            Logger.log('[Synctexjs] active editor not found')
             return
         }
 
         if (args === undefined) {
             filePath = vscode.window.activeTextEditor.document.uri.fsPath
             if (!this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-                this.extension.logger.addLogMessage(`${filePath} is not a valid LaTeX file.`)
+                Logger.log(`${filePath} is not a valid LaTeX file.`)
                 return
             }
             const position = vscode.window.activeTextEditor.selection.active
             if (!position) {
-                this.extension.logger.addLogMessage(`Cannot get cursor position: ${position}`)
+                Logger.log(`Cannot get cursor position: ${position}`)
                 return
             }
             line = position.line + 1
@@ -135,7 +136,7 @@ export class Locator {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const rootFile = this.extension.manager.rootFile
         if (rootFile === undefined) {
-            this.extension.logger.addLogMessage('Cannot find root file.')
+            Logger.log('Cannot find root file.')
             return
         }
         if (!pdfFile) {
@@ -157,9 +158,9 @@ export class Locator {
                 const record = this.synctexjs.syncTexJsForward(line, filePath, pdfFile)
                 this.extension.viewer.syncTeX(pdfFile, record)
             } catch (e) {
-                this.extension.logger.addLogMessage('[SyncTexJs] Forward SyncTeX failed.')
+                Logger.log('[SyncTexJs] Forward SyncTeX failed.')
                 if (e instanceof Error) {
-                    this.extension.logger.logError(e)
+                    Logger.logError(e)
                 }
             }
         } else {
@@ -175,11 +176,11 @@ export class Locator {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
         const args = ['view', '-i', `${line}:${col + 1}:${docker ? path.basename(filePath): filePath}`, '-o', docker ? path.basename(pdfFile): pdfFile]
-        this.extension.logger.addLogMessage(`Execute synctex with args ${JSON.stringify(args)}`)
+        Logger.log(`Execute synctex with args ${JSON.stringify(args)}`)
 
         let command = configuration.get('synctex.path') as string
         if (docker) {
-            this.extension.logger.addLogMessage('Use Docker to invoke the command.')
+            Logger.log('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
                 command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
             } else {
@@ -202,13 +203,13 @@ export class Locator {
         })
 
         proc.on('error', err => {
-            this.extension.logger.addLogMessage(`Cannot synctex: ${err.message}, ${stderr}`)
+            Logger.log(`Cannot synctex: ${err.message}, ${stderr}`)
         })
 
         return new Promise( (resolve) => {
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
-                    this.extension.logger.addLogMessage(`Cannot synctex, code: ${exitCode}, ${stderr}`)
+                    Logger.log(`Cannot synctex, code: ${exitCode}, ${stderr}`)
                 } else {
                     resolve(this.parseSyncTeXForward(stdout))
                 }
@@ -232,11 +233,11 @@ export class Locator {
 
         const docker = configuration.get('docker.enabled')
         const args = ['edit', '-o', `${page}:${x}:${y}:${docker ? path.basename(pdfPath): pdfPath}`]
-        this.extension.logger.addLogMessage(`Executing synctex with args ${JSON.stringify(args)}`)
+        Logger.log(`Executing synctex with args ${JSON.stringify(args)}`)
 
         let command = configuration.get('synctex.path') as string
         if (docker) {
-            this.extension.logger.addLogMessage('Use Docker to invoke the command.')
+            Logger.log('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
                 command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
             } else {
@@ -259,13 +260,13 @@ export class Locator {
         })
 
         proc.on('error', err => {
-            this.extension.logger.addLogMessage(`Cannot reverse synctex: ${err.message}, ${stderr}`)
+            Logger.log(`Cannot reverse synctex: ${err.message}, ${stderr}`)
         })
 
         return new Promise( (resolve) => {
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
-                    this.extension.logger.addLogMessage(`Cannot reverse synctex, code: ${exitCode}, ${stderr}`)
+                    Logger.log(`Cannot reverse synctex, code: ${exitCode}, ${stderr}`)
                 } else {
                     const record = this.parseSyncTeXBackward(stdout)
                     resolve(record)
@@ -290,9 +291,9 @@ export class Locator {
             try {
                 record = this.synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
             } catch (e) {
-                this.extension.logger.addLogMessage('[SyncTexJs] Backward SyncTeX failed.')
+                Logger.log('[SyncTexJs] Backward SyncTeX failed.')
                 if (e instanceof Error) {
-                    this.extension.logger.logError(e)
+                    Logger.logError(e)
                 }
                 return
             }
@@ -314,14 +315,14 @@ export class Locator {
                     break
                 }
             } catch(e) {
-                this.extension.logger.addLogMessage(`[SyncTexJs] isSameRealPath throws error: ${record.input} and ${ed}`)
+                Logger.log(`[SyncTexJs] isSameRealPath throws error: ${record.input} and ${ed}`)
             }
         }
 
         const filePath = path.resolve(record.input)
-        this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
+        Logger.log(`SyncTeX to file ${filePath}`)
         if (!fs.existsSync(filePath)) {
-            this.extension.logger.addLogMessage(`Not found: ${filePath}`)
+            Logger.log(`Not found: ${filePath}`)
             return
         }
         try {
@@ -342,7 +343,7 @@ export class Locator {
             this.animateToNotify(editor, pos)
         } catch(e: unknown) {
             if (e instanceof Error) {
-                this.extension.logger.logError(e)
+                Logger.logError(e)
             }
         }
     }
@@ -480,7 +481,7 @@ export class Locator {
         const command = configuration.get('view.pdf.external.synctex.command') as string
         let args = configuration.get('view.pdf.external.synctex.args') as string[]
         if (command === '') {
-            this.extension.logger.addLogMessage('Error: the external SyncTeX command is an empty string. Set view.pdf.external.synctex.command')
+            Logger.log('Error: the external SyncTeX command is an empty string. Set view.pdf.external.synctex.command')
             return
         }
         if (args) {
@@ -491,8 +492,8 @@ export class Locator {
                         .replace(/%TEX%/g, texFile)
             })
         }
-        this.extension.logger.addLogMessage(`Open external viewer for syncTeX from ${pdfFile}`)
-        this.extension.logger.logCommand('Execute external SyncTeX command', command, args)
+        Logger.log(`Open external viewer for syncTeX from ${pdfFile}`)
+        Logger.logCommand('Execute external SyncTeX command', command, args)
         const proc = cs.spawn(command, args)
         let stdout = ''
         proc.stdout.on('data', newStdout => {
@@ -503,8 +504,8 @@ export class Locator {
             stderr += newStderr
         })
         const cb = () => {
-            void this.extension.logger.addLogMessage(`The external SyncTeX command stdout: ${stdout}`)
-            void this.extension.logger.addLogMessage(`The external SyncTeX command stderr: ${stderr}`)
+            void Logger.log(`The external SyncTeX command stdout: ${stdout}`)
+            void Logger.log(`The external SyncTeX command stderr: ${stderr}`)
         }
         proc.on('error', cb)
         proc.on('exit', cb)

@@ -7,6 +7,7 @@ import type { ICompletionItem } from '../completion'
 import type { IProvider } from '../completion'
 import {CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint} from './completerutils'
+import { Logger } from '../../components/logger'
 
 type DataEnvsJsonType = typeof import('../../../data/environments.json')
 
@@ -284,8 +285,8 @@ export class Environment implements IProvider {
             if (isEnv(envs[key])) {
                 environments.push(envs[key])
             } else {
-                this.extension.logger.addLogMessage(`Cannot parse intellisense file for ${packageName}`)
-                this.extension.logger.addLogMessage(`Missing field in entry: "${key}": ${JSON.stringify(envs[key])}`)
+                Logger.log(`Cannot parse intellisense file for ${packageName}`)
+                Logger.log(`Missing field in entry: "${key}": ${JSON.stringify(envs[key])}`)
                 delete envs[key]
             }
         })

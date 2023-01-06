@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as chokidar from 'chokidar'
 
 import type {Extension} from '../../main'
+import { Logger } from '../logger'
 
 export class PdfWatcher {
     private readonly watchedPdfLocalPaths = new Set<string>()
@@ -80,12 +81,12 @@ export class PdfWatcher {
         if (this.isIgnored(file)) {
             return
         }
-        this.extension.logger.addLogMessage(`PDF file watcher - file changed: ${file}`)
+        Logger.log(`PDF file watcher - file changed: ${file}`)
         this.extension.viewer.refreshExistingViewer(undefined, file)
     }
 
     private onWatchedPdfDeleted(file: string) {
-        this.extension.logger.addLogMessage(`PDF file watcher - file deleted: ${file}`)
+        Logger.log(`PDF file watcher - file deleted: ${file}`)
         this.pdfWatcher.unwatch(file)
         this.watchedPdfLocalPaths.delete(file)
     }
@@ -95,7 +96,7 @@ export class PdfWatcher {
         if (isLocal) {
             const pdfFilePath = pdfFileUri.fsPath
             if (!this.watchedPdfLocalPaths.has(pdfFilePath)) {
-                this.extension.logger.addLogMessage(`Added to PDF file watcher: ${pdfFileUri.toString(true)}`)
+                Logger.log(`Added to PDF file watcher: ${pdfFileUri.toString(true)}`)
                 this.pdfWatcher.add(pdfFilePath)
                 this.watchedPdfLocalPaths.add(pdfFilePath)
             }
@@ -120,10 +121,10 @@ export class PdfWatcher {
     }
 
     logWatchedFiles() {
-        this.extension.logger.addLogMessage(`PdfWatcher.pdfWatcher.getWatched: ${JSON.stringify(this.pdfWatcher.getWatched())}`)
-        this.extension.logger.addLogMessage(`PdfWatcher.pdfsWatched: ${JSON.stringify(Array.from(this.watchedPdfLocalPaths))}`)
-        this.extension.logger.addLogMessage(`PdfWatcher.watchedPdfVirtualUris: ${JSON.stringify(Array.from(this.watchedPdfVirtualUris))}`)
-        this.extension.logger.addLogMessage(`PdfWatcher.ignoredPdfUris: ${JSON.stringify(Array.from(this.ignoredPdfUris))}`)
+        Logger.log(`PdfWatcher.pdfWatcher.getWatched: ${JSON.stringify(this.pdfWatcher.getWatched())}`)
+        Logger.log(`PdfWatcher.pdfsWatched: ${JSON.stringify(Array.from(this.watchedPdfLocalPaths))}`)
+        Logger.log(`PdfWatcher.watchedPdfVirtualUris: ${JSON.stringify(Array.from(this.watchedPdfVirtualUris))}`)
+        Logger.log(`PdfWatcher.ignoredPdfUris: ${JSON.stringify(Array.from(this.ignoredPdfUris))}`)
     }
 
 }

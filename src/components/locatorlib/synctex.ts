@@ -3,11 +3,11 @@ import * as iconv from 'iconv-lite'
 import * as path from 'path'
 import * as zlib from 'zlib'
 
-import type { Extension } from '../../main'
 import type { SyncTeXRecordForward, SyncTeXRecordBackward } from '../locator'
 import { PdfSyncObject, parseSyncTex, Block, SyncTexJsError } from '../../lib/synctexjs'
 import {iconvLiteSupportedEncodings} from '../../utils/convertfilename'
 import {isSameRealPath} from '../../utils/pathnormalize'
+import { Logger } from '../logger'
 
 
 class Rectangle {
@@ -73,12 +73,6 @@ class Rectangle {
 }
 
 export class SyncTexJs {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     parseSyncTexForPdf(pdfFile: string): PdfSyncObject {
         const filename = path.basename(pdfFile, path.extname(pdfFile))
         const dir = path.dirname(pdfFile)
@@ -90,9 +84,9 @@ export class SyncTexJs {
             return parseSyncTex(s)
         } catch (e: unknown) {
             if (fs.existsSync(synctexFile)) {
-                this.extension.logger.addLogMessage(`[SyncTexJs] parseSyncTex failed with: ${synctexFile}`)
+                Logger.log(`[SyncTexJs] parseSyncTex failed with: ${synctexFile}`)
                 if (e instanceof Error) {
-                    this.extension.logger.logError(e)
+                    Logger.logError(e)
                 }
             }
         }
@@ -104,15 +98,15 @@ export class SyncTexJs {
             return parseSyncTex(s)
         } catch (e: unknown) {
             if (fs.existsSync(synctexFileGz)) {
-                this.extension.logger.addLogMessage(`[SyncTexJs] parseSyncTex failed with: ${synctexFileGz}`)
+                Logger.log(`[SyncTexJs] parseSyncTex failed with: ${synctexFileGz}`)
                 if (e instanceof Error) {
-                    this.extension.logger.logError(e)
+                    Logger.logError(e)
                 }
             }
         }
 
         if (!fs.existsSync(synctexFile) && !fs.existsSync(synctexFileGz)) {
-            this.extension.logger.addLogMessage(`[SyncTexJs] .synctex and .synctex.gz file not found: ${JSON.stringify({synctexFile, synctexFileGz})}`)
+            Logger.log(`[SyncTexJs] .synctex and .synctex.gz file not found: ${JSON.stringify({synctexFile, synctexFileGz})}`)
         }
 
         throw new SyncTexJsError(`parseSyncTexForPdf failed with: ${pdfFile}`)
@@ -141,7 +135,7 @@ export class SyncTexJs {
     }
 
     syncTexJsForward(line: number, filePath: string, pdfFile: string): SyncTeXRecordForward {
-        this.extension.logger.addLogMessage(`[SyncTexJs] Execute syncTexJsForward: ${JSON.stringify({pdfFile, filePath, line})}`)
+        Logger.log(`[SyncTexJs] Execute syncTexJsForward: ${JSON.stringify({pdfFile, filePath, line})}`)
         const pdfSyncObject = this.parseSyncTexForPdf(pdfFile)
         const inputFilePath = this.findInputFilePathForward(filePath, pdfSyncObject)
         if (inputFilePath === undefined) {
@@ -185,7 +179,7 @@ export class SyncTexJs {
     }
 
     syncTexJsBackward(page: number, x: number, y: number, pdfPath: string): SyncTeXRecordBackward {
-        this.extension.logger.addLogMessage(`[SyncTexJs] Execute syncTexJsBackward: ${JSON.stringify({pdfPath, page, x, y})}`)
+        Logger.log(`[SyncTexJs] Execute syncTexJsBackward: ${JSON.stringify({pdfPath, page, x, y})}`)
         const pdfSyncObject = this.parseSyncTexForPdf(pdfPath)
         const y0 = y - pdfSyncObject.offset.y
         const x0 = x - pdfSyncObject.offset.x

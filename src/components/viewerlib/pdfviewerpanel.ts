@@ -6,6 +6,7 @@ import type {PanelRequest, PdfViewerState} from '../../../types/latex-workshop-p
 import {escapeHtml, sleep} from '../../utils/utils'
 import type {PdfViewerManagerService} from './pdfviewermanager'
 import {ViewerStatusChanged} from '../eventbus'
+import { Logger } from '../logger'
 
 
 export class PdfViewerPanel {
@@ -51,7 +52,7 @@ export class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
 
     async deserializeWebviewPanel(panel: vscode.WebviewPanel, argState: {state: PdfViewerState}): Promise<void> {
         await this.extension.server.serverStarted
-        this.extension.logger.addLogMessage(`Restoring the PDF viewer at the column ${panel.viewColumn} from the state: ${JSON.stringify(argState)}`)
+        Logger.log(`Restoring the PDF viewer at the column ${panel.viewColumn} from the state: ${JSON.stringify(argState)}`)
         const state = argState.state
         let pdfFileUri: vscode.Uri | undefined
         if (state.path) {
@@ -60,13 +61,13 @@ export class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
             pdfFileUri = vscode.Uri.parse(state.pdfFileUri, true)
         }
         if (!pdfFileUri) {
-            this.extension.logger.addLogMessage('Error of restoring PDF viewer: the path of PDF file is undefined.')
+            Logger.log('Error of restoring PDF viewer: the path of PDF file is undefined.')
             panel.webview.html = '<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>The path of PDF file is undefined.</html>'
             return
         }
         if (! await this.extension.lwfs.exists(pdfFileUri)) {
             const s = escapeHtml(pdfFileUri.toString())
-            this.extension.logger.addLogMessage(`Error of restoring PDF viewer: file not found ${pdfFileUri.toString(true)}.`)
+            Logger.log(`Error of restoring PDF viewer: file not found ${pdfFileUri.toString(true)}.`)
             panel.webview.html = `<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>File not found: ${s}</html>`
             return
         }
@@ -140,7 +141,7 @@ export class PdfViewerPanelService {
         const iframeSrcOrigin = `${url.scheme}://${url.authority}`
         const iframeSrcUrl = url.toString(true)
         await this.tweakForCodespaces(url)
-        this.extension.logger.addLogMessage(`The internal PDF viewer url: ${iframeSrcUrl}`)
+        Logger.log(`The internal PDF viewer url: ${iframeSrcUrl}`)
         const rebroadcast: boolean = this.getKeyboardEventConfig()
         return `
         <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; frame-src ${iframeSrcOrigin}; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>

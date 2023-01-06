@@ -4,6 +4,7 @@ import {stripCommentsAndVerbatim, isNewCommand, NewCommand} from '../../../utils
 import * as path from 'path'
 
 import type { Extension } from '../../../main'
+import { Logger } from '../../../components/logger'
 
 export class NewCommandFinder {
     private readonly extension: Extension
@@ -33,14 +34,14 @@ export class NewCommandFinder {
             }
             const rootDir = this.extension.manager.rootDir
             if (rootDir === undefined) {
-                this.extension.logger.addLogMessage(`Cannot identify the absolute path of new command file ${newCommandFile} without root file.`)
+                Logger.log(`Cannot identify the absolute path of new command file ${newCommandFile} without root file.`)
                 return ''
             }
             newCommandFileAbs = path.join(rootDir, newCommandFile)
         }
         commandsString = this.extension.lwfs.readFileSyncGracefully(newCommandFileAbs)
         if (commandsString === undefined) {
-            this.extension.logger.addLogMessage(`Cannot read file ${newCommandFileAbs}`)
+            Logger.log(`Cannot read file ${newCommandFileAbs}`)
             return ''
         }
         commandsString = commandsString.replace(/^\s*$/gm, '')
@@ -67,7 +68,7 @@ export class NewCommandFinder {
                 return ''
             }
             if (exceeded) {
-                this.extension.logger.addLogMessage('Timeout error when parsing preambles in findProjectNewCommand.')
+                Logger.log('Timeout error when parsing preambles in findProjectNewCommand.')
                 throw new Error('Timeout Error in findProjectNewCommand')
             }
             const cache = this.extension.cacher.get(tex)

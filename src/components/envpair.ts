@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as utils from '../utils/utils'
-import type { Extension } from '../main'
+import { Logger } from './logger'
 
 
 function regexpAllMatches(str: string, reg: RegExp) {
@@ -20,13 +20,11 @@ interface MatchEnv {
 }
 
 export class EnvPair {
-    private readonly extension: Extension
     private readonly beginLength = '\\begin'.length
     private readonly endLength = '\\end'.length
     private readonly delimiters = Object.create(null) as { [key: string]: {end: string, splitCharacter: string} }
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         this.delimiters['begin'] = {end: 'end', splitCharacter: '}'}
         this.delimiters['['] = {end: ']', splitCharacter: '['}
         this.delimiters['('] = {end: ')', splitCharacter: '('}
@@ -97,7 +95,7 @@ export class EnvPair {
                 line = line.slice(startCol, pos.character)
                 break
             default:
-                this.extension.logger.addLogMessage('Direction error in locateMatchingPair')
+                Logger.log('Direction error in locateMatchingPair')
                 return null
         }
         const begins = Object.keys(this.delimiters)
@@ -256,7 +254,7 @@ export class EnvPair {
                         editor.selection = new vscode.Selection(startingPos, startingPos)
                         break
                     default:
-                        this.extension.logger.addLogMessage('Error - while selecting environment name')
+                        Logger.log('Error - while selecting environment name')
                 }
             }
         })

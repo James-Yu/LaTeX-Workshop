@@ -80,8 +80,8 @@ function registerLatexWorkshopCommands(extension: Extension, context: vscode.Ext
         vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation()),
         vscode.commands.registerCommand('latex-workshop.addtexroot', () => extension.commander.addTexRoot()),
         vscode.commands.registerCommand('latex-workshop.wordcount', () => extension.commander.wordcount()),
-        vscode.commands.registerCommand('latex-workshop.log', () => extension.commander.log()),
-        vscode.commands.registerCommand('latex-workshop.compilerlog', () => extension.commander.log('compiler')),
+        vscode.commands.registerCommand('latex-workshop.log', () => extension.commander.showLog()),
+        vscode.commands.registerCommand('latex-workshop.compilerlog', () => extension.commander.showLog('compiler')),
         vscode.commands.registerCommand('latex-workshop.code-action', (d: vscode.TextDocument, r: vscode.Range, c: number, m: string) => extension.codeActions.runCodeAction(d, r, c, m)),
         vscode.commands.registerCommand('latex-workshop.goto-section', (filePath: string, lineNumber: number) => extension.commander.gotoSection(filePath, lineNumber)),
         vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => extension.commander.navigateToEnvPair()),
@@ -158,7 +158,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             return
         }
         if (extension.manager.hasTexId(e.languageId)) {
-            extension.logger.addLogMessage(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
+            Logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             extension.linter.lintRootFileIfEnabled()
             void extension.builder.buildOnSaveIfEnabled(e.fileName)
             extension.counter.countOnSaveIfEnabled(e.fileName)
@@ -206,13 +206,13 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
-            extension.logger.status.show()
+            Logger.status.show()
             if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
                 void vscode.commands.executeCommand('workbench.view.extension.latex-workshop-activitybar').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
             }
             isLaTeXActive = true
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
-            extension.logger.status.show()
+            Logger.status.show()
         }
         if (e && extension.lwfs.isVirtualUri(e.document.uri)){
             return
@@ -281,7 +281,7 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
     const registerTrigger = () => {
         const userTriggersLatex = configuration.get('intellisense.triggers.latex') as string[]
         const latexTriggers = ['\\', ','].concat(userTriggersLatex)
-        extension.logger.addLogMessage(`Trigger characters for intellisense of LaTeX documents: ${JSON.stringify(latexTriggers)}`)
+        Logger.log(`Trigger characters for intellisense of LaTeX documents: ${JSON.stringify(latexTriggers)}`)
 
         triggerDisposable = vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.completer, ...latexTriggers)
         context.subscriptions.push(triggerDisposable)
@@ -342,7 +342,6 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
 export class Extension {
     readonly extensionRoot: string
     readonly context: vscode.ExtensionContext
-    readonly logger: Logger
     readonly eventBus = new EventBus()
     readonly lwfs: LwFileSystem
     readonly commander: Commander
@@ -378,10 +377,10 @@ export class Extension {
         this.context = context
         // We must create an instance of Logger first to enable
         // adding log messages during initialization.
-        this.logger = new Logger()
+        Logger.initializeStatusBarItem()
         this.addLogFundamentals()
-        this.configuration = new Configuration(this)
-        this.lwfs = new LwFileSystem(this)
+        this.configuration = new Configuration()
+        this.lwfs = new LwFileSystem()
         this.commander = new Commander(this)
         this.cacher = new Cacher(this)
         this.manager = new Manager(this)
@@ -398,8 +397,8 @@ export class Extension {
         this.counter = new Counter(this)
         this.codeActions = new CodeActions(this)
         this.texMagician = new TeXMagician(this)
-        this.envPair = new EnvPair(this)
-        this.section = new Section(this)
+        this.envPair = new EnvPair()
+        this.section = new Section()
         this.latexCommanderTreeView = new LaTeXCommanderTreeView(this)
         this.structureViewer = new StructureTreeView(this)
         this.snippetView = new SnippetView(this)
@@ -408,7 +407,7 @@ export class Extension {
         this.mathPreview = new MathPreview(this)
         this.bibtexFormatter = new BibtexFormatter(this)
         this.mathPreviewPanel = new MathPreviewPanel(this)
-        this.logger.addLogMessage('LaTeX Workshop initialized.')
+        Logger.log('LaTeX Workshop initialized.')
     }
 
     async dispose() {
@@ -419,17 +418,17 @@ export class Extension {
     }
 
     private addLogFundamentals() {
-        this.logger.addLogMessage('Initializing LaTeX Workshop.')
-        this.logger.addLogMessage(`Extension root: ${this.extensionRoot}`)
-        this.logger.addLogMessage(`$PATH: ${process.env.PATH}`)
-        this.logger.addLogMessage(`$SHELL: ${process.env.SHELL}`)
-        this.logger.addLogMessage(`$LANG: ${process.env.LANG}`)
-        this.logger.addLogMessage(`$LC_ALL: ${process.env.LC_ALL}`)
-        this.logger.addLogMessage(`process.platform: ${process.platform}`)
-        this.logger.addLogMessage(`process.arch: ${process.arch}`)
-        this.logger.addLogMessage(`vscode.env.appName: ${vscode.env.appName}`)
-        this.logger.addLogMessage(`vscode.env.remoteName: ${vscode.env.remoteName}`)
-        this.logger.addLogMessage(`vscode.env.uiKind: ${vscode.env.uiKind}`)
+        Logger.log('Initializing LaTeX Workshop.')
+        Logger.log(`Extension root: ${this.extensionRoot}`)
+        Logger.log(`$PATH: ${process.env.PATH}`)
+        Logger.log(`$SHELL: ${process.env.SHELL}`)
+        Logger.log(`$LANG: ${process.env.LANG}`)
+        Logger.log(`$LC_ALL: ${process.env.LC_ALL}`)
+        Logger.log(`process.platform: ${process.platform}`)
+        Logger.log(`process.arch: ${process.arch}`)
+        Logger.log(`vscode.env.appName: ${vscode.env.appName}`)
+        Logger.log(`vscode.env.remoteName: ${vscode.env.remoteName}`)
+        Logger.log(`vscode.env.uiKind: ${vscode.env.uiKind}`)
     }
 
 }

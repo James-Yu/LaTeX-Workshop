@@ -12,12 +12,12 @@ import {NewCommandFinder} from './mathpreviewlib/newcommandfinder'
 import {TexMathEnv, TeXMathEnvFinder} from './mathpreviewlib/texmathenvfinder'
 import {HoverPreviewOnRefProvider} from './mathpreviewlib/hoverpreviewonref'
 import {MathPreviewUtils} from './mathpreviewlib/mathpreviewutils'
+import { Logger } from '../../components/logger'
 
 export type {TexMathEnv} from './mathpreviewlib/texmathenvfinder'
 
 
 export class MathPreview {
-    private readonly extension: Extension
     private color: string = '#000000'
     private readonly mj: MathJaxPool
     private readonly cursorRenderer: CursorRenderer
@@ -27,14 +27,13 @@ export class MathPreview {
     private readonly mputils: MathPreviewUtils
 
     constructor(extension: Extension) {
-        this.extension = extension
         this.mj = new MathJaxPool()
         vscode.workspace.onDidChangeConfiguration(() => this.getColor())
         this.cursorRenderer = new CursorRenderer(extension)
         this.mputils = new MathPreviewUtils()
         this.newCommandFinder = new NewCommandFinder(extension)
         this.texMathEnvFinder = new TeXMathEnvFinder()
-        this.hoverPreviewOnRefProvider = new HoverPreviewOnRefProvider(extension, this.mj, this.mputils)
+        this.hoverPreviewOnRefProvider = new HoverPreviewOnRefProvider(this.mj, this.mputils)
     }
 
     dispose() {
@@ -57,8 +56,8 @@ export class MathPreview {
             const md = utils.svgToDataUrl(xml)
             return new vscode.Hover(new vscode.MarkdownString(this.mputils.addDummyCodeBlock(`![equation](${md})`)), tex.range )
         } catch(e) {
-            this.extension.logger.logOnRejected(e)
-            this.extension.logger.addLogMessage(`Error when MathJax is rendering ${typesetArg}`)
+            Logger.logOnRejected(e)
+            Logger.log(`Error when MathJax is rendering ${typesetArg}`)
             throw e
         }
     }

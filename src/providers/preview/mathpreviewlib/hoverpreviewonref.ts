@@ -1,19 +1,17 @@
 import * as vscode from 'vscode'
 
-import type { Extension } from '../../../main'
 import * as utils from '../../../utils/svg'
 import type {MathJaxPool} from '../mathjaxpool'
 import type {ReferenceEntry} from '../../completer/reference'
 import type {TexMathEnv} from './texmathenvfinder'
 import type {MathPreviewUtils} from './mathpreviewutils'
+import { Logger } from '../../../components/logger'
 
 export class HoverPreviewOnRefProvider {
-    private readonly extension: Extension
     private readonly mj: MathJaxPool
     private readonly mputils: MathPreviewUtils
 
-    constructor(extension: Extension, mj: MathJaxPool, mputils: MathPreviewUtils) {
-        this.extension = extension
+    constructor(mj: MathJaxPool, mputils: MathPreviewUtils) {
         this.mj = mj
         this.mputils = mputils
     }
@@ -46,8 +44,8 @@ export class HoverPreviewOnRefProvider {
             const svg = utils.svgToDataUrl(xml)
             return svg
         } catch(e) {
-            this.extension.logger.logOnRejected(e)
-            this.extension.logger.addLogMessage(`Error when MathJax is rendering ${typesetArg}`)
+            Logger.logOnRejected(e)
+            Logger.log(`Error when MathJax is rendering ${typesetArg}`)
             throw e
         }
     }

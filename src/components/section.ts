@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 
-import type { Extension } from '../main'
 import { stripCommentsAndVerbatim } from '../utils/utils'
+import { Logger } from './logger'
 
 interface MatchSection {
     level: string,
@@ -9,13 +9,11 @@ interface MatchSection {
 }
 
 export class Section {
-    private readonly extension: Extension
     private readonly levels: string[] = ['part', 'chapter', 'section', 'subsection', 'subsubsection', 'paragraph', 'subparagraph']
     private readonly upperLevels = Object.create(null) as {[key: string]: string}
     private readonly lowerLevels = Object.create(null) as {[key: string]: string}
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         for (let i = 0; i < this.levels.length; i++) {
             const current = this.levels[i]
             const upper = this.levels[Math.max(i - 1, 0)]
@@ -31,7 +29,7 @@ export class Section {
      * @param change 'promote' or 'demote'
      */
     shiftSectioningLevel(change: 'promote' | 'demote') {
-        this.extension.logger.addLogMessage(`Calling shiftSectioningLevel with parameter: ${change}`)
+        Logger.log(`Calling shiftSectioningLevel with parameter: ${change}`)
         if (change !== 'promote' && change !== 'demote') {
             throw TypeError(
             `Invalid value of function parameter 'change' (=${change})`
@@ -161,7 +159,7 @@ export class Section {
     }
 
     selectSection() {
-        this.extension.logger.addLogMessage('Calling selectSection.')
+        Logger.log('Calling selectSection.')
 
         const editor = vscode.window.activeTextEditor
         if (editor === undefined) {
@@ -169,7 +167,7 @@ export class Section {
         }
         const beginLevel = this.searchLevelUp(this.levels, editor.selection.anchor, editor.document)
         if (!beginLevel) {
-            this.extension.logger.addLogMessage('Cannot find any section command above current line.')
+            Logger.log('Cannot find any section command above current line.')
             return
         }
         const levelIndex = this.levels.indexOf(beginLevel.level)

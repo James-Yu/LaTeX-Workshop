@@ -17,6 +17,7 @@ import { PathUtils } from './cacherlib/pathutils'
 import { Watcher } from './cacherlib/texwatcher'
 import { PdfWatcher } from './cacherlib/pdfwatcher'
 import { BibWatcher } from './cacherlib/bibwatcher'
+import { Logger } from './logger'
 
 export interface Context {
     /**
@@ -65,11 +66,11 @@ export class Cacher {
 
     add(filePath: string) {
         if (isExcluded(filePath)) {
-            this.extension.logger.addLogMessage(`[Cacher] Ignored ${filePath}.`)
+            Logger.log(`[Cacher] Ignored ${filePath}.`)
             return
         }
         if (!this.watcher.has(filePath)) {
-            this.extension.logger.addLogMessage(`[Cacher] Adding ${filePath}.`)
+            Logger.log(`[Cacher] Adding ${filePath}.`)
             this.watcher.add(filePath)
         }
     }
@@ -109,7 +110,7 @@ export class Cacher {
 
     async refreshContext(filePath: string, rootPath?: string) {
         if (isExcluded(filePath)) {
-            this.extension.logger.addLogMessage(`[Cacher] Ignored ${filePath}.`)
+            Logger.log(`[Cacher] Ignored ${filePath}.`)
             return
         }
         if (!canContext(filePath)) {
@@ -118,7 +119,7 @@ export class Cacher {
         const content = this.extension.lwfs.readFileSyncGracefully(filePath)
         this.contexts[filePath] = {content, elements: {}, children: [], bibfiles: []}
         if (content === undefined) {
-            this.extension.logger.addLogMessage(`[Cacher] Cannot read ${filePath}.`)
+            Logger.log(`[Cacher] Cannot read ${filePath}.`)
             return
         }
         const contentTrimmed = utils.stripCommentsAndVerbatim(content)
@@ -147,7 +148,7 @@ export class Cacher {
                 index: result.match.index,
                 file: result.path
             })
-            this.extension.logger.addLogMessage(`[Cacher] Input ${result.path} from ${filePath}.`)
+            Logger.log(`[Cacher] Input ${result.path} from ${filePath}.`)
 
             if (this.watcher.has(result.path)) {
                 continue
@@ -156,7 +157,7 @@ export class Cacher {
             void this.refreshContext(result.path, rootPath)
         }
 
-        this.extension.logger.addLogMessage(`[Cacher] Updated inputs of ${filePath}.`)
+        Logger.log(`[Cacher] Updated inputs of ${filePath}.`)
         this.extension.eventBus.fire(eventbus.FileParsed, filePath)
     }
 
@@ -176,14 +177,14 @@ export class Cacher {
             this.extension.completer.environment.update(filePath, nodes, lines)
             this.extension.completer.command.update(filePath, nodes)
         } else {
-            this.extension.logger.addLogMessage(`[Cacher] Cannot parse AST, use RegExp on ${filePath}.`)
+            Logger.log(`[Cacher] Cannot parse AST, use RegExp on ${filePath}.`)
             this.extension.completer.reference.update(filePath, undefined, undefined, contentTrimmed)
             this.extension.completer.glossary.update(filePath, undefined, contentTrimmed)
             this.extension.completer.environment.update(filePath, undefined, undefined, contentTrimmed)
             this.extension.completer.command.update(filePath, undefined, contentTrimmed)
         }
         this.extension.duplicateLabels.run(filePath)
-        this.extension.logger.addLogMessage(`[Cacher] Updated elements of ${filePath}.`)
+        Logger.log(`[Cacher] Updated elements of ${filePath}.`)
     }
 
     private async updateBibfiles(filePath: string, contentTrimmed: string) {
@@ -202,11 +203,11 @@ export class Cacher {
                     continue
                 }
                 this.contexts[filePath].bibfiles.push(bibPath)
-                this.extension.logger.addLogMessage(`[Cacher] Bib ${bibPath} from ${filePath}.`)
+                Logger.log(`[Cacher] Bib ${bibPath} from ${filePath}.`)
                 await this.bibWatcher.watchBibFile(bibPath)
             }
         }
-        this.extension.logger.addLogMessage(`[Cacher] Updated bibs of ${filePath}.`)
+        Logger.log(`[Cacher] Updated bibs of ${filePath}.`)
     }
 
     /**
@@ -221,7 +222,7 @@ export class Cacher {
      * @param texFile The path of a LaTeX file.
      */
     async loadFlsFile(texFile: string) {
-        this.extension.logger.addLogMessage('Parse fls file.')
+        Logger.log('Parse fls file.')
         const flsFile = this.pathUtils.getFlsFilePath(texFile)
         if (flsFile === undefined) {
             return
@@ -262,7 +263,7 @@ export class Cacher {
 
         for (const outputFile of ioFiles.output) {
             if (path.extname(outputFile) === '.aux' && fs.existsSync(outputFile)) {
-                this.extension.logger.addLogMessage(`[Cacher] Auxfile: ${outputFile}`)
+                Logger.log(`[Cacher] Auxfile: ${outputFile}`)
                 await this.parseAuxFile(fs.readFileSync(outputFile).toString(), path.dirname(outputFile).replace(outDir, rootDir))
             }
         }

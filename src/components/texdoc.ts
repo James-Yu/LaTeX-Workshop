@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as cs from 'cross-spawn'
 
 import type { Extension } from '../main'
+import { Logger } from './logger'
 
 export class TeXDoc {
     private readonly extension: Extension
@@ -15,7 +16,7 @@ export class TeXDoc {
         const texdocPath = configuration.get('texdoc.path') as string
         const texdocArgs = Array.from(configuration.get('texdoc.args') as string[])
         texdocArgs.push(pkg)
-        this.extension.logger.logCommand('Run texdoc command', texdocPath, texdocArgs)
+        Logger.logCommand('Run texdoc command', texdocPath, texdocArgs)
         const proc = cs.spawn(texdocPath, texdocArgs)
 
         let stdout = ''
@@ -29,25 +30,25 @@ export class TeXDoc {
         })
 
         proc.on('error', err => {
-            this.extension.logger.addLogMessage(`Cannot run texdoc: ${err.message}, ${stderr}`)
-            void this.extension.logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
+            Logger.log(`Cannot run texdoc: ${err.message}, ${stderr}`)
+            void Logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
         })
 
         proc.on('exit', exitCode => {
             if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Cannot find documentation for ${pkg}.`)
-                void this.extension.logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
+                Logger.log(`Cannot find documentation for ${pkg}.`)
+                void Logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
             } else {
                 const regex = new RegExp(`(no documentation found)|(Documentation for ${pkg} could not be found)`)
                 if (stdout.match(regex) || stderr.match(regex)) {
-                    this.extension.logger.addLogMessage(`Cannot find documentation for ${pkg}.`)
-                    void this.extension.logger.showErrorMessage(`Cannot find documentation for ${pkg}.`)
+                    Logger.log(`Cannot find documentation for ${pkg}.`)
+                    void Logger.showErrorMessage(`Cannot find documentation for ${pkg}.`)
                 } else {
-                    this.extension.logger.addLogMessage(`Opening documentation for ${pkg}.`)
+                    Logger.log(`Opening documentation for ${pkg}.`)
                 }
             }
-            this.extension.logger.addLogMessage(`texdoc stdout: ${stdout}`)
-            this.extension.logger.addLogMessage(`texdoc stderr: ${stderr}`)
+            Logger.log(`texdoc stdout: ${stdout}`)
+            Logger.log(`texdoc stderr: ${stderr}`)
         })
     }
 

@@ -6,6 +6,7 @@ import type { Extension } from '../../main'
 import type { ILinter } from '../linter'
 import { LinterUtil } from './linterutil'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
+import { Logger } from '../logger'
 
 export class LaCheck implements ILinter {
     readonly #linterName = 'LaCheck'
@@ -13,13 +14,13 @@ export class LaCheck implements ILinter {
     readonly #linterUtil: LinterUtil
 
     constructor(private readonly extension: Extension) {
-        this.#linterUtil = new LinterUtil(extension)
+        this.#linterUtil = new LinterUtil()
     }
 
     async lintRootFile() {
-        this.extension.logger.addLogMessage('Linter for root file started.')
+        Logger.log('Linter for root file started.')
         if (this.extension.manager.rootFile === undefined) {
-            this.extension.logger.addLogMessage('No root file found for linting.')
+            Logger.log('No root file found for linting.')
             return
         }
         const filePath = this.extension.manager.rootFile
@@ -33,7 +34,7 @@ export class LaCheck implements ILinter {
     }
 
     async lintFile(document: vscode.TextDocument) {
-        this.extension.logger.addLogMessage('Linter for active file started.')
+        Logger.log('Linter for active file started.')
         const filePath = document.fileName
         const content = document.getText()
 
@@ -99,7 +100,7 @@ export class LaCheck implements ILinter {
                 })
             }
         }
-        this.extension.logger.addLogMessage(`Linter log parsed with ${linterLog.length} messages.`)
+        Logger.log(`Linter log parsed with ${linterLog.length} messages.`)
         this.linterDiagnostics.clear()
         this.showLinterDiagnostics(linterLog)
     }

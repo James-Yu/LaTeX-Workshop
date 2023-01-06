@@ -17,6 +17,7 @@ import {Glossary} from './completer/glossary'
 import type {ReferenceDocType} from './completer/reference'
 import {escapeRegExp} from '../utils/utils'
 import {resolvePkgFile} from './completer/commandlib/commandfinder'
+import { Logger } from '../components/logger'
 
 export type PkgType = {includes: string[], cmds: {[key: string]: CmdType}, envs: {[key: string]: EnvType}, options: string[]}
 
@@ -67,7 +68,7 @@ export class Completer implements vscode.CompletionItemProvider {
         try {
             this.loadDefaultItems()
         } catch (err) {
-            this.extension.logger.addLogMessage(`Error reading data: ${err}.`)
+            Logger.log(`Error reading data: ${err}.`)
         }
     }
 
@@ -93,7 +94,7 @@ export class Completer implements vscode.CompletionItemProvider {
 
             this.packagesLoaded.push(packageName)
         } catch (e) {
-            this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
+            Logger.log(`Cannot parse intellisense file: ${filePath}`)
         }
     }
 
@@ -243,7 +244,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 break
             default:
                 // This shouldn't be possible, so mark as error case in log.
-                this.extension.logger.addLogMessage(`Error - trying to complete unknown type ${type}`)
+                Logger.log(`Error - trying to complete unknown type ${type}`)
                 return []
         }
         const result = line.match(reg)

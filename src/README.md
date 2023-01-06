@@ -8,7 +8,7 @@ Where LaTeX Workshop differs from other extensions of VS Code is in treating the
 
 ## Application Log
 
-When something goes wrong, we always add to log messages what went wrong with `Extension.logger.addLogMessage()`. It is much beneficial for debugging.
+When something goes wrong, we always add to log messages what went wrong with `Logger.log()`. It is much beneficial for debugging.
 
 ## VS Code filesystem and virtual workspaces
 

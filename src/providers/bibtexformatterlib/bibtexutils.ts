@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import {bibtexParser} from 'latex-utensils'
 
-import type { Extension } from '../../main'
+import { Logger } from '../../components/logger'
 
 export declare type BibtexEntry = bibtexParser.Entry | bibtexParser.StringEntry
 
@@ -26,8 +26,6 @@ function getBibtexFormatTab(tab: string): string | undefined {
 }
 
 export class BibtexFormatConfig {
-    private readonly extension: Extension
-    // private scope: vscode.WorkspaceFolder | undefined
     tab !: string
     left !: string
     right !: string
@@ -39,8 +37,7 @@ export class BibtexFormatConfig {
     fieldsOrder !: string[]
     firstEntries !: string[]
 
-    constructor(extension: Extension, scope: vscode.ConfigurationScope | undefined) {
-        this.extension = extension
+    constructor(scope: vscode.ConfigurationScope | undefined) {
         this.loadConfiguration(scope)
     }
 
@@ -49,8 +46,8 @@ export class BibtexFormatConfig {
         const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
         let tabs: string | undefined = getBibtexFormatTab(config.get('bibtex-format.tab') as string)
         if (tabs === undefined) {
-            this.extension.logger.addLogMessage(`Wrong value for bibtex-format.tab: ${config.get('bibtex-format.tab')}`)
-            this.extension.logger.addLogMessage('Setting bibtex-format.tab to \'2 spaces\'')
+            Logger.log(`Wrong value for bibtex-format.tab: ${config.get('bibtex-format.tab')}`)
+            Logger.log('Setting bibtex-format.tab to \'2 spaces\'')
             tabs = '  '
         }
         this.tab = tabs
@@ -63,7 +60,7 @@ export class BibtexFormatConfig {
         this.sortFields = config.get('bibtex-fields.sort.enabled') as boolean
         this.fieldsOrder = config.get('bibtex-fields.order') as string[]
         this.firstEntries = config.get('bibtex-entries.first') as string[]
-        this.extension.logger.addLogMessage(`Bibtex format config: ${this.stringify()}`)
+        Logger.log(`Bibtex format config: ${this.stringify()}`)
     }
 
     stringify(): string {
@@ -87,8 +84,8 @@ export class BibtexFormatConfig {
 export class BibtexUtils {
     readonly bibtexFormatConfig: BibtexFormatConfig
 
-    constructor(extension: Extension, scope: vscode.ConfigurationScope | undefined) {
-        this.bibtexFormatConfig = new BibtexFormatConfig(extension, scope)
+    constructor(scope: vscode.ConfigurationScope | undefined) {
+        this.bibtexFormatConfig = new BibtexFormatConfig(scope)
     }
 
     /**

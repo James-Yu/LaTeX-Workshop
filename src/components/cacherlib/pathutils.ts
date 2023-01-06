@@ -5,6 +5,7 @@ import * as fs from 'fs'
 
 import type { Extension } from '../../main'
 import * as utils from '../../utils/utils'
+import { Logger } from '../logger'
 
 export class PathUtils {
     private readonly extension: Extension
@@ -32,16 +33,16 @@ export class PathUtils {
         const baseName = path.parse(texFile).name
         const flsFile = path.resolve(rootDir, path.join(outDir, baseName + '.fls'))
         if (!fs.existsSync(flsFile)) {
-            this.extension.logger.addLogMessage(`Cannot find fls file: ${flsFile}`)
+            Logger.log(`Cannot find fls file: ${flsFile}`)
             return undefined
         }
-        this.extension.logger.addLogMessage(`Fls file found: ${flsFile}`)
+        Logger.log(`Fls file found: ${flsFile}`)
         return flsFile
     }
 
     private kpsewhichBibPath(bib: string): string | undefined {
         const kpsewhich = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
-        this.extension.logger.addLogMessage(`Calling ${kpsewhich} to resolve file: ${bib}`)
+        Logger.log(`Calling ${kpsewhich} to resolve file: ${bib}`)
         try {
             const kpsewhichReturn = cs.sync(kpsewhich, ['-format=.bib', bib])
             if (kpsewhichReturn.status === 0) {
@@ -49,12 +50,12 @@ export class PathUtils {
                 if (bibPath === '') {
                     return undefined
                 } else {
-                    this.extension.logger.addLogMessage(`Found .bib file using kpsewhich: ${bibPath}`)
+                    Logger.log(`Found .bib file using kpsewhich: ${bibPath}`)
                     return bibPath
                 }
             }
         } catch(e) {
-            this.extension.logger.addLogMessage(`Cannot run kpsewhich to resolve .bib file: ${bib}`)
+            Logger.log(`Cannot run kpsewhich to resolve .bib file: ${bib}`)
         }
         return undefined
     }
@@ -73,14 +74,14 @@ export class PathUtils {
         const bibPath = utils.resolveFile(searchDirs, bib, '.bib')
 
         if (!bibPath) {
-            this.extension.logger.addLogMessage(`Cannot find .bib file: ${bib}`)
+            Logger.log(`Cannot find .bib file: ${bib}`)
             if (configuration.get('kpsewhich.enabled')) {
                 return this.kpsewhichBibPath(bib)
             } else {
                 return undefined
             }
         }
-        this.extension.logger.addLogMessage(`Found .bib file: ${bibPath}`)
+        Logger.log(`Found .bib file: ${bibPath}`)
         return bibPath
     }
 
