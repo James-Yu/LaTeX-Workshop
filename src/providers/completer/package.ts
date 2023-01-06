@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
+import { latexParser } from 'latex-utensils'
 
 import type { Extension } from '../../main'
 import type { IProvider } from '../completion'
@@ -72,8 +73,8 @@ export class Package implements IProvider {
         (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.extra') as string[])
             .forEach(packageName => packages[packageName] = [])
 
-        this.extension.manager.getIncludedTeX().forEach(tex => {
-            const included = this.extension.manager.getCachedContent(tex)?.element.package
+        this.extension.cacher.getIncludedTeX().forEach(tex => {
+            const included = this.extension.cacher.get(tex)?.elements.package
             if (included === undefined) {
                 return
             }
@@ -94,5 +95,75 @@ export class Package implements IProvider {
         }
 
         return packages
+    }
+
+    /**
+     * Updates the cache for packages used in `file` with `nodes`. If `nodes` is
+     * `undefined`, `content` is parsed with regular expressions, and the result
+     * is used to update the cache.
+     *
+     * @param file The path of a LaTeX file.
+     * @param nodes AST of a LaTeX file.
+     * @param content The content of a LaTeX file.
+     */
+    updateUsepackage(file: string, nodes?: latexParser.Node[], content?: string) {
+        if (nodes !== undefined) {
+            this.updateUsepackageNodes(file, nodes)
+        } else if (content !== undefined) {
+            const pkgReg = /\\usepackage(\[[^[\]{}]*\])?{(.*)}/gs
+
+            while (true) {
+                const result = pkgReg.exec(content)
+                if (result === null) {
+                    break
+                }
+                const packages = result[2].split(',').map(packageName => packageName.trim())
+                const options = (result[1] || '[]').slice(1,-1).replaceAll(/\s*=\s*/g,'=').split(',').map(option => option.trim())
+                const optionsNoTrue = options.filter(option => option.includes('=true')).map(option => option.replace('=true', ''))
+                packages.forEach(packageName => this.pushUsepackage(file, packageName, [...options, ...optionsNoTrue]))
+            }
+        }
+    }
+
+    private updateUsepackageNodes(file: string, nodes: latexParser.Node[]) {
+        nodes.forEach(node => {
+            if ( latexParser.isCommand(node) && (node.name === 'usepackage' || node.name === 'documentclass') ) {
+                let options: string[] = []
+                node.args.forEach(arg => {
+                    if (latexParser.isOptionalArg(arg)) {
+                        options = arg.content.filter(latexParser.isTextString).filter(str => str.content !== ',').map(str => str.content)
+                        const optionsNoTrue = options.filter(option => option.includes('=true')).map(option => option.replace('=true', ''))
+                        options = [...options, ...optionsNoTrue]
+                        return
+                    }
+                    for (const c of arg.content) {
+                        if (!latexParser.isTextString(c)) {
+                            continue
+                        }
+                        c.content.split(',').forEach(packageName => this.pushUsepackage(file, packageName, options, node))
+                    }
+                })
+            } else {
+                if (latexParser.hasContentArray(node)) {
+                    this.updateUsepackageNodes(file, node.content)
+                }
+            }
+        })
+    }
+
+    private pushUsepackage(fileName: string, packageName: string, options: string[], node?: latexParser.Command) {
+        packageName = packageName.trim()
+        if (packageName === '') {
+            return
+        }
+        if (node?.name === 'documentclass') {
+            packageName = 'class-' + packageName
+        }
+        const cache = this.extension.cacher.get(fileName)
+        if (cache === undefined) {
+            return
+        }
+        cache.elements.package = cache.elements.package || {}
+        cache.elements.package[packageName] = options
     }
 }

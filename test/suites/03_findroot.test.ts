@@ -84,7 +84,7 @@ suite('Find root file test suite', () => {
         ])
         assert.ok(extension)
         await assertRoot({fixture, openName: 'alt.tex', rootName: 'main.tex', extension})
-        const includedTeX = extension.manager.getIncludedTeX()
+        const includedTeX = extension.cacher.getIncludedTeX()
         assert.ok(includedTeX)
         assert.ok(includedTeX.includes(path.resolve(fixture, 'main.tex')))
         assert.ok(includedTeX.includes(path.resolve(fixture, 'alt.tex')))

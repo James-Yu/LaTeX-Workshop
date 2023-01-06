@@ -62,7 +62,7 @@ export class NewCommandFinder {
         let commands: string[] = []
         let exceeded = false
         setTimeout( () => { exceeded = true }, 5000)
-        for (const tex of this.extension.manager.getIncludedTeX()) {
+        for (const tex of this.extension.cacher.getIncludedTeX()) {
             if (ctoken?.isCancellationRequested) {
                 return ''
             }
@@ -70,11 +70,11 @@ export class NewCommandFinder {
                 this.extension.logger.addLogMessage('Timeout error when parsing preambles in findProjectNewCommand.')
                 throw new Error('Timeout Error in findProjectNewCommand')
             }
-            const cache = this.extension.manager.getCachedContent(tex)
+            const cache = this.extension.cacher.get(tex)
             if (cache === undefined) {
                 continue
             }
-            const content = this.extension.manager.getDirtyContent(tex)
+            const content = this.extension.cacher.get(tex).content
             if (content === undefined) {
                 continue
             }

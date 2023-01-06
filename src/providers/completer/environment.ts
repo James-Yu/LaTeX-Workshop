@@ -129,8 +129,8 @@ export class Environment implements IProvider {
         }
 
         // Insert environments defined in tex
-        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedEnvs = this.extension.manager.getCachedContent(cachedFile)?.element.environment
+        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
+            const cachedEnvs = this.extension.cacher.get(cachedFile)?.elements.environment
             if (cachedEnvs !== undefined) {
                 cachedEnvs.forEach(env => {
                     if (! envList.includes(env.label)) {
@@ -195,16 +195,16 @@ export class Environment implements IProvider {
      */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
         // First, we must update the package list
-        this.extension.manager.updateUsepackage(file, nodes, content)
+        this.extension.completer.package.updateUsepackage(file, nodes, content)
 
-        const cache = this.extension.manager.getCachedContent(file)
+        const cache = this.extension.cacher.get(file)
         if (cache === undefined) {
             return
         }
         if (nodes !== undefined && lines !== undefined) {
-            cache.element.environment = this.getEnvFromNodeArray(nodes, lines)
+            cache.elements.environment = this.getEnvFromNodeArray(nodes, lines)
         } else if (content !== undefined) {
-            cache.element.environment = this.getEnvFromContent(content)
+            cache.elements.environment = this.getEnvFromContent(content)
         }
     }
 

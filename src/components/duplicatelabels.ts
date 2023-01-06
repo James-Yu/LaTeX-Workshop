@@ -5,30 +5,21 @@ import type {Extension} from '../main'
 
 
 export class DuplicateLabels {
-    private readonly extension: Extension
     private readonly duplicatedLabelsDiagnostics = vscode.languages.createDiagnosticCollection('Duplicate Labels')
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.extension.manager.onDidUpdateIntellisense((file: string) => {
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            if (configuration.get('check.duplicatedLabels.enabled')) {
-                this.run(file)
-            }
-        })
-    }
+    constructor(private readonly extension: Extension) {}
 
     /**
      * Compute the dictionary of labels holding their file and position
      */
     private computeDuplicates(file: string): string[] {
-        if (!this.extension.manager.getCachedContent(file)) {
+        if (!this.extension.cacher.get(file)) {
             this.extension.logger.addLogMessage(`Cannot check for duplicate labels in a file not in manager: ${file}.`)
             return []
         }
         const labelsCount = new Map<string, number>()
-        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.manager.getCachedContent(cachedFile)?.element.reference
+        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
+            const cachedRefs = this.extension.cacher.get(cachedFile)?.elements.reference
             if (cachedRefs === undefined) {
                 return
             }
@@ -54,6 +45,10 @@ export class DuplicateLabels {
     }
 
     run(file: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('check.duplicatedLabels.enabled')) {
+            return
+        }
         this.extension.logger.addLogMessage(`Checking for duplicate labels: ${file}.`)
         const duplicates = this.computeDuplicates(file)
         this.showDiagnostics(duplicates)
@@ -66,8 +61,8 @@ export class DuplicateLabels {
         }
         const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
 
-        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.manager.getCachedContent(cachedFile)?.element.reference
+        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
+            const cachedRefs = this.extension.cacher.get(cachedFile)?.elements.reference
             if (cachedRefs === undefined) {
                 return
             }

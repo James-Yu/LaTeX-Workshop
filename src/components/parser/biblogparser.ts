@@ -81,10 +81,10 @@ export class BibLogParser {
 
     private resolveAuxFile(filename: string, rootFile: string): string {
         filename = filename.replace(/\.aux$/, '.tex')
-        if (!this.extension.manager.getCachedContent(rootFile)) {
+        if (!this.extension.cacher.get(rootFile)) {
             return filename
         }
-        const texFiles = this.extension.manager.getIncludedTeX(rootFile)
+        const texFiles = this.extension.cacher.getIncludedTeX(rootFile)
         for (const tex of texFiles) {
             if (tex.endsWith(filename)) {
                 return tex
@@ -95,10 +95,10 @@ export class BibLogParser {
     }
 
     private resolveBibFile(filename: string, rootFile: string): string {
-        if (!this.extension.manager.getCachedContent(rootFile)) {
+        if (!this.extension.cacher.get(rootFile)) {
             return filename
         }
-        const bibFiles = this.extension.manager.getIncludedBib(rootFile)
+        const bibFiles = this.extension.cacher.getIncludedBib(rootFile)
         for (const bib of bibFiles) {
             if (bib.endsWith(filename)) {
                 return bib

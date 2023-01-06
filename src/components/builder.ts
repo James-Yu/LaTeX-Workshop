@@ -8,6 +8,12 @@ import type { Extension } from '../main'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { BuildDone } from './eventbus'
 
+const enum BuildEvents {
+    never = 'never',
+    onSave = 'onSave',
+    onFileChange = 'onFileChange'
+}
+
 export class Builder {
     private lastBuild: number = 0
     private prevLangId: string | undefined
@@ -67,6 +73,37 @@ export class Builder {
         }
     }
 
+    buildOnFileChanged(file: string, bibChanged: boolean = false) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
+        if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onFileChange) {
+            return
+        }
+        this.extension.logger.addLogMessage(`Auto build started detecting the change of a file: ${file}`)
+        return this.invokeBuild(file, bibChanged)
+    }
+
+    buildOnSaveIfEnabled(file: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
+        if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onSave) {
+            return
+        }
+        this.extension.logger.addLogMessage(`Auto build started on saving file: ${file}`)
+        return this.invokeBuild(file, false)
+    }
+
+    private invokeBuild(file: string, bibChanged: boolean ) {
+        if (!this.extension.builder.canAutoBuild()) {
+            this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled for `latex.autoBuild.interval`.')
+            return
+        }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
+        if (!bibChanged && this.extension.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
+            return this.extension.commander.build(true, this.extension.manager.localRootFile, this.extension.manager.rootFileLanguageId)
+        } else {
+            return this.extension.commander.build(true, this.extension.manager.rootFile, this.extension.manager.rootFileLanguageId)
+        }
+    }
+
     /**
      * Build LaTeX project using external command. This function creates a
      * {@link Tool} containing the external command info and adds it to the
@@ -89,7 +126,7 @@ export class Builder {
         this.lastBuild = Date.now()
 
         if (rootFile) {
-            this.extension.manager.ignorePdfFile(rootFile)
+            this.extension.cacher.ignorePdfFile(rootFile)
         }
 
         await vscode.workspace.saveAll()
@@ -125,7 +162,7 @@ export class Builder {
 
         // Stop watching the PDF file to avoid reloading the PDF viewer twice.
         // The builder will be responsible for refreshing the viewer.
-        this.extension.manager.ignorePdfFile(rootFile)
+        this.extension.cacher.ignorePdfFile(rootFile)
 
         await vscode.workspace.saveAll()
 
@@ -387,7 +424,7 @@ export class Builder {
         }
         this.extension.viewer.refreshExistingViewer(step.rootFile)
         this.extension.completer.reference.setNumbersFromAuxFile(step.rootFile)
-        await this.extension.manager.parseFlsFile(step.rootFile)
+        await this.extension.cacher.loadFlsFile(step.rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(step.rootFile))
         // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
         if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
@@ -624,7 +661,7 @@ export class Builder {
         }
         this.extension.logger.addLogMessage(`outDir: ${outDir}`)
         try {
-            this.extension.manager.getIncludedTeX(rootFile).forEach(file => {
+            this.extension.cacher.getIncludedTeX(rootFile).forEach(file => {
                 const relativePath = path.dirname(file.replace(rootDir, '.'))
                 const fullOutDir = path.resolve(outDir, relativePath)
                 // To avoid issues when fullOutDir is the root dir

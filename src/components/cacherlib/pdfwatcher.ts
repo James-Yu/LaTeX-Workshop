@@ -4,16 +4,26 @@ import * as chokidar from 'chokidar'
 import type {Extension} from '../../main'
 
 export class PdfWatcher {
-    private readonly extension: Extension
     private readonly watchedPdfLocalPaths = new Set<string>()
-    private readonly pdfWatcher: chokidar.FSWatcher
+    private pdfWatcher: chokidar.FSWatcher
     private readonly watchedPdfVirtualUris = new Set<string>()
     private readonly ignoredPdfUris = new Set<string>()
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.pdfWatcher = this.initiatePdfWatcher()
+    constructor(private readonly extension: Extension) {
+        this.pdfWatcher = chokidar.watch([], this.getWatcherOptions())
+        this.initializeWatcher()
         this.initiateVirtualUriWatcher()
+
+        this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+            if (e.affectsConfiguration('latex-workshop.latex.watch.usePolling') ||
+                e.affectsConfiguration('latex-workshop.latex.watch.interval') ||
+                e.affectsConfiguration('latex-workshop.latex.watch.pdf.delay')) {
+                void this.pdfWatcher.close()
+                this.pdfWatcher = chokidar.watch([], this.getWatcherOptions())
+                this.watchedPdfLocalPaths.forEach(filePath => this.pdfWatcher.add(filePath))
+                this.initializeWatcher()
+            }
+        }))
     }
 
     async dispose() {
@@ -24,28 +34,20 @@ export class PdfWatcher {
         return pdfFileUri.toString(true)
     }
 
-    private initiatePdfWatcher() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const usePolling = configuration.get('latex.watch.usePolling') as boolean
-        const interval = configuration.get('latex.watch.interval') as number
-        const pdfDelay = configuration.get('latex.watch.pdf.delay') as number
-        const pdfWatcherOptions = {
-            useFsEvents: false,
-            usePolling,
-            interval,
-            binaryInterval: Math.max(interval, 1000),
-            awaitWriteFinish: {stabilityThreshold: pdfDelay}
-        }
-        this.extension.logger.addLogMessage('Creating PDF file watcher.')
-        this.extension.logger.addLogMessage(`watcherOptions: ${JSON.stringify(pdfWatcherOptions)}`)
-        const pdfWatcher = chokidar.watch([], pdfWatcherOptions)
-        pdfWatcher.on('change', (file: string) => this.onWatchedPdfChanged(file))
-        pdfWatcher.on('unlink', (file: string) => this.onWatchedPdfDeleted(file))
-        return pdfWatcher
+    private initializeWatcher() {
+        this.pdfWatcher.on('change', (file: string) => this.onWatchedPdfChanged(file))
+        this.pdfWatcher.on('unlink', (file: string) => this.onWatchedPdfDeleted(file))
     }
 
-    updateWatcherOptions() {
-        this.extension.manager.updateWatcherOptions(this.pdfWatcher, true)
+    private getWatcherOptions() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        return {
+            useFsEvents: false,
+            usePolling: configuration.get('latex.watch.usePolling') as boolean,
+            interval: configuration.get('latex.watch.interval') as number,
+            binaryInterval: Math.max(configuration.get('latex.watch.interval') as number, 1000),
+            awaitWriteFinish: {stabilityThreshold: configuration.get('latex.watch.pdf.delay') as number}
+        }
     }
 
     private isWatchedVirtualUri(pdfFile: vscode.Uri): boolean {

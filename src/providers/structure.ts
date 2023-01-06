@@ -146,9 +146,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
         filesBuilt.add(file)
 
-        // `getDirtyContent` is used here. I did not check if this is
-        // appropriate.
-        const content = this.extension.manager.getDirtyContent(file)
+        const content = this.extension.cacher.get(file)?.content
         if (!content) {
             this.extension.logger.addLogMessage(`Error loading LaTeX during structuring: ${file}.`)
             return []
@@ -726,7 +724,7 @@ export class StructureTreeView {
             }
         })
 
-        this.extension.eventBus.onDidUpdateCachedContent(() => {
+        this.extension.eventBus.onDidFileParsed(() => {
             void this.computeTreeStructure()
         })
 

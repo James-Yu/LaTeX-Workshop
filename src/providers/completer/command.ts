@@ -169,8 +169,8 @@ export class Command implements IProvider {
         // Start working on commands in tex. To avoid over populating suggestions, we do not include
         // user defined commands, whose name matches a default command or one provided by a package
         const commandNameDuplicationDetector = new CommandNameDuplicationDetector(suggestions)
-        this.extension.manager.getIncludedTeX().forEach(tex => {
-            const cmds = this.extension.manager.getCachedContent(tex)?.element.command
+        this.extension.cacher.getIncludedTeX().forEach(tex => {
+            const cmds = this.extension.cacher.get(tex)?.elements.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
                     if (!commandNameDuplicationDetector.has(cmd)) {
@@ -211,21 +211,21 @@ export class Command implements IProvider {
      */
     update(file: string, nodes?: latexParser.Node[], content?: string) {
         // First, we must update the package list
-        this.extension.manager.updateUsepackage(file, nodes, content)
+        this.extension.completer.package.updateUsepackage(file, nodes, content)
         // Remove newcommand cmds, because they will be re-insert in the next step
         this.definedCmds.forEach((entry,cmd) => {
             if (entry.file === file) {
                 this.definedCmds.delete(cmd)
             }
         })
-        const cache = this.extension.manager.getCachedContent(file)
+        const cache = this.extension.cacher.get(file)
         if (cache === undefined) {
             return
         }
         if (nodes !== undefined) {
-            cache.element.command = this.commandFinder.getCmdFromNodeArray(file, nodes, new CommandNameDuplicationDetector())
+            cache.elements.command = this.commandFinder.getCmdFromNodeArray(file, nodes, new CommandNameDuplicationDetector())
         } else if (content !== undefined) {
-            cache.element.command = this.commandFinder.getCmdFromContent(file, content)
+            cache.elements.command = this.commandFinder.getCmdFromContent(file, content)
         }
     }
 

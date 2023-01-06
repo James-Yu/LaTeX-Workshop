@@ -8,12 +8,17 @@ export const RootFileSearched = 'ROOT_FILE_SEARCHED'
 export const FileParsed = 'FILE_PARSED'
 export const ViewerPageLoaded = 'VIEWER_PAGE_LOADED'
 export const ViewerStatusChanged = 'VIEWER_STATUS_CHANGED'
-export const CacheUpdated = 'CACHE_UPDATED'
+export const FileWatched = 'FILE_WATCHED'
+export const FileChanged = 'FILE_CHANGED'
+export const FileRemoved = 'FILE_REMOVED'
 
 type EventArgTypeMap = {
     [RootFileChanged]: string,
     [FileParsed]: string,
-    [ViewerStatusChanged]: PdfViewerState
+    [ViewerStatusChanged]: PdfViewerState,
+    [FileWatched]: string,
+    [FileChanged]: string,
+    [FileRemoved]: string
 }
 
 export type EventName = typeof BuildDone
@@ -22,7 +27,9 @@ export type EventName = typeof BuildDone
                     | typeof ViewerPageLoaded
                     | typeof FileParsed
                     | typeof ViewerStatusChanged
-                    | typeof CacheUpdated
+                    | typeof FileWatched
+                    | typeof FileChanged
+                    | typeof FileRemoved
 
 export class EventBus {
     private readonly eventEmitter = new EventEmitter()
@@ -45,8 +52,8 @@ export class EventBus {
         return this.registerListener(RootFileSearched, cb)
     }
 
-    onDidUpdateCachedContent(cb: () => void): Disposable {
-        return this.registerListener(CacheUpdated, cb)
+    onDidFileParsed(cb: () => void): Disposable {
+        return this.registerListener(FileParsed, cb)
     }
 
     onDidChangePdfViewerStatus(cb: (status: EventArgTypeMap[typeof ViewerStatusChanged]) => void): Disposable {

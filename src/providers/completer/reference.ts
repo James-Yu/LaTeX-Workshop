@@ -86,14 +86,14 @@ export class Reference implements IProvider {
      * @param content The content of a LaTeX file.
      */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
-        const cache = this.extension.manager.getCachedContent(file)
+        const cache = this.extension.cacher.get(file)
         if (cache === undefined) {
             return
         }
         if (nodes !== undefined && lines !== undefined) {
-            cache.element.reference = this.getRefFromNodeArray(nodes, lines)
+            cache.elements.reference = this.getRefFromNodeArray(nodes, lines)
         } else if (content !== undefined) {
-            cache.element.reference = this.getRefFromContent(content)
+            cache.elements.reference = this.getRefFromContent(content)
         }
     }
 
@@ -109,8 +109,8 @@ export class Reference implements IProvider {
         if (args) {
             range = computeFilteringRange(args.document, args.position)
         }
-        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.manager.getCachedContent(cachedFile)?.element.reference
+        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
+            const cachedRefs = this.extension.cacher.get(cachedFile)?.elements.reference
             if (cachedRefs === undefined) {
                 return
             }

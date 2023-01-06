@@ -111,7 +111,7 @@ export class Viewer {
         }
         const pdfFileUri = this.tex2pdf(sourceFile)
         this.createClientSet(pdfFileUri)
-        this.extension.manager.watchPdfFile(pdfFileUri)
+        this.extension.cacher.watchPdfFile(pdfFileUri)
         try {
             this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
             await vscode.env.openExternal(vscode.Uri.parse(url, true))

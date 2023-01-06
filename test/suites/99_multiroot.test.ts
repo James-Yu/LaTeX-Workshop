@@ -236,9 +236,9 @@ suite('Multi-root workspace test suite', () => {
         assert.ok(!itemsA[0].filterText.includes('hintFake'))
 
         const resultB = await openActive(extension, fixture, 'B/main.tex')
-        const cache = extension.manager.getCachedContent(path.resolve(fixture, 'B/main.tex'))
+        const cache = extension.cacher.get(path.resolve(fixture, 'B/main.tex'))
         if (cache) {
-            cache.bibs = [path.resolve(fixture, 'B/B.bib')]
+            cache.bibfiles = [path.resolve(fixture, 'B/B.bib')]
         } else {
             return
         }

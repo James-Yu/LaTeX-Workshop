@@ -179,8 +179,8 @@ export class Glossary implements IProvider {
         // Extract cached references
         const glossaryList: string[] = []
 
-        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedGlossaries = this.extension.manager.getCachedContent(cachedFile)?.element.glossary
+        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
+            const cachedGlossaries = this.extension.cacher.get(cachedFile)?.elements.glossary
             if (cachedGlossaries === undefined) {
                 return
             }
@@ -216,14 +216,14 @@ export class Glossary implements IProvider {
      * @param content The content of a LaTeX file.
      */
     update(file: string, nodes?: latexParser.Node[], content?: string) {
-        const cache = this.extension.manager.getCachedContent(file)
+        const cache = this.extension.cacher.get(file)
         if (cache === undefined) {
             return
         }
         if (nodes !== undefined) {
-            cache.element.glossary = this.getGlossaryFromNodeArray(nodes, file)
+            cache.elements.glossary = this.getGlossaryFromNodeArray(nodes, file)
         } else if (content !== undefined) {
-            cache.element.glossary = this.getGlossaryFromContent(content, file)
+            cache.elements.glossary = this.getGlossaryFromContent(content, file)
         }
     }
 
