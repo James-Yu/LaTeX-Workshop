@@ -4,19 +4,21 @@ import * as chokidar from 'chokidar'
 import type {Extension} from '../../main'
 
 export class BibWatcher {
-    private readonly extension: Extension
-    private readonly bibWatcher: chokidar.FSWatcher
+    private bibWatcher: chokidar.FSWatcher
     private readonly bibsWatched = new Set<string>()
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.bibWatcher = this.initiateBibwatcher()
+    constructor(private readonly extension: Extension) {
+        this.bibWatcher = chokidar.watch([], this.getWatcherOptions())
+        this.initializeWatcher()
 
         this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (e.affectsConfiguration('latex-workshop.latex.watch.usePolling') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.interval') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.delay')) {
-                this.updateWatcherOptions()
+                void this.bibWatcher.close()
+                this.bibWatcher = chokidar.watch([], this.getWatcherOptions())
+                this.bibsWatched.forEach(filePath => this.bibWatcher.add(filePath))
+                this.initializeWatcher()
             }
         }))
     }
@@ -25,21 +27,20 @@ export class BibWatcher {
         await this.bibWatcher.close()
     }
 
-    initiateBibwatcher() {
-        this.extension.logger.addLogMessage('Creating Bib file watcher.')
-        const bibWatcher = chokidar.watch([], {useFsEvents: false})
-        this.updateWatcherOptions()
-        bibWatcher.on('change', (file: string) => this.onWatchedBibChanged(file))
-        bibWatcher.on('unlink', (file: string) => this.onWatchedBibDeleted(file))
-        return bibWatcher
+    initializeWatcher() {
+        this.bibWatcher.on('change', (file: string) => this.onWatchedBibChanged(file))
+        this.bibWatcher.on('unlink', (file: string) => this.onWatchedBibDeleted(file))
     }
 
-    private updateWatcherOptions() {
+    private getWatcherOptions() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        this.bibWatcher.options.usePolling = configuration.get('latex.watch.usePolling') as boolean
-        this.bibWatcher.options.interval = configuration.get('latex.watch.interval') as number
-        this.bibWatcher.options.binaryInterval = Math.max(configuration.get('latex.watch.interval') as number, 1000)
-        this.bibWatcher.options.awaitWriteFinish = {stabilityThreshold: configuration.get('latex.watch.delay') as number}
+        return {
+            useFsEvents: false,
+            usePolling: configuration.get('latex.watch.usePolling') as boolean,
+            interval: configuration.get('latex.watch.interval') as number,
+            binaryInterval: Math.max(configuration.get('latex.watch.interval') as number, 1000),
+            awaitWriteFinish: {stabilityThreshold: configuration.get('latex.watch.delay') as number}
+        }
     }
 
     private async onWatchedBibChanged(file: string) {

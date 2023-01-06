@@ -7,29 +7,33 @@ import { Cacher } from '../cacher'
 import { canContext, isExcluded } from './cacherutils'
 
 export class Watcher {
-    readonly watcher: chokidar.FSWatcher
+    watcher: chokidar.FSWatcher
     readonly watched: Set<string> = new Set()
 
     constructor(
         private readonly extension: Extension,
         private readonly cacher: Cacher
     ) {
-        this.watcher = chokidar.watch([], {useFsEvents: false})
-        this.updateWatcherOptions()
-
-        this.watcher.on('add', (file: string) => this.onAdd(file))
-        this.watcher.on('change', (file: string) => this.onChange(file))
-        this.watcher.on('unlink', (file: string) => this.onUnlink(file))
-
+        this.watcher = chokidar.watch([], this.getWatcherOptions())
+        this.initializeWatcher()
         this.registerOptionReload()
     }
 
-    private updateWatcherOptions() {
+    private initializeWatcher() {
+        this.watcher.on('add', (file: string) => this.onAdd(file))
+        this.watcher.on('change', (file: string) => this.onChange(file))
+        this.watcher.on('unlink', (file: string) => this.onUnlink(file))
+    }
+
+    private getWatcherOptions() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        this.watcher.options.usePolling = configuration.get('latex.watch.usePolling') as boolean
-        this.watcher.options.interval = configuration.get('latex.watch.interval') as number
-        this.watcher.options.binaryInterval = Math.max(configuration.get('latex.watch.interval') as number, 1000)
-        this.watcher.options.awaitWriteFinish = {stabilityThreshold: configuration.get('latex.watch.delay') as number}
+        return {
+            useFsEvents: false,
+            usePolling: configuration.get('latex.watch.usePolling') as boolean,
+            interval: configuration.get('latex.watch.interval') as number,
+            binaryInterval: Math.max(configuration.get('latex.watch.interval') as number, 1000),
+            awaitWriteFinish: {stabilityThreshold: configuration.get('latex.watch.delay') as number}
+        }
     }
 
     add(filePath: string) {
@@ -44,10 +48,7 @@ export class Watcher {
     async reset() {
         await this.watcher.close()
         this.watched.clear()
-
-        this.watcher.on('add', (file: string) => this.onAdd(file))
-        this.watcher.on('change', (file: string) => this.onChange(file))
-        this.watcher.on('unlink', (file: string) => this.onUnlink(file))
+        this.initializeWatcher()
     }
 
     private onAdd(filePath: string) {
@@ -83,7 +84,10 @@ export class Watcher {
             if (e.affectsConfiguration('latex-workshop.latex.watch.usePolling') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.interval') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.delay')) {
-                    this.updateWatcherOptions()
+                    void this.watcher.close()
+                    this.watcher = chokidar.watch([], this.getWatcherOptions())
+                    this.watched.forEach(filePath => this.watcher.add(filePath))
+                    this.initializeWatcher()
             }
             if (e.affectsConfiguration('latex-workshop.latex.watch.files.ignore')) {
                 this.watched.forEach(filePath => {
