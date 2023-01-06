@@ -44,7 +44,7 @@ export class BibWatcher {
     private async onWatchedBibChanged(file: string) {
         this.extension.logger.addLogMessage(`Bib file watcher - file changed: ${file}`)
         await this.extension.completer.citation.parseBibFile(file)
-        await this.extension.manager.buildOnFileChanged(file, true)
+        await this.extension.builder.buildOnFileChanged(file, true)
     }
 
     private onWatchedBibDeleted(file: string) {
