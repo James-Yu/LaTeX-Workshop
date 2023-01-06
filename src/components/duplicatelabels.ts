@@ -5,18 +5,9 @@ import type {Extension} from '../main'
 
 
 export class DuplicateLabels {
-    private readonly extension: Extension
     private readonly duplicatedLabelsDiagnostics = vscode.languages.createDiagnosticCollection('Duplicate Labels')
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.extension.manager.onDidUpdateIntellisense((file: string) => {
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            if (configuration.get('check.duplicatedLabels.enabled')) {
-                this.run(file)
-            }
-        })
-    }
+    constructor(private readonly extension: Extension) {}
 
     /**
      * Compute the dictionary of labels holding their file and position
@@ -54,6 +45,10 @@ export class DuplicateLabels {
     }
 
     run(file: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('check.duplicatedLabels.enabled')) {
+            return
+        }
         this.extension.logger.addLogMessage(`Checking for duplicate labels: ${file}.`)
         const duplicates = this.computeDuplicates(file)
         this.showDiagnostics(duplicates)

@@ -167,7 +167,7 @@ export class Cacher {
             this.extension.completer.environment.update(filePath, undefined, undefined, contentTrimmed)
             this.extension.completer.command.update(filePath, undefined, contentTrimmed)
         }
-        this.extension.manager.intellisenseWatcher.emitUpdate(filePath)
+        this.extension.duplicateLabels.run(filePath)
         this.extension.logger.addLogMessage(`[Cacher] Updated elements of ${filePath}.`)
     }
 

@@ -4,13 +4,11 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as tmp from 'tmp'
 import * as utils from '../utils/utils'
-// import {InputFileRegExp} from '../utils/inputfilepath'
 
 import type {Extension} from '../main'
 import * as eventbus from './eventbus'
 
 import {FinderUtils} from './managerlib/finderutils'
-import {IntellisenseWatcher} from './managerlib/intellisensewatcher'
 
 type RootFileType = {
     type: 'filePath',
@@ -27,14 +25,12 @@ export class Manager {
     readonly tmpDir: string
 
     private readonly extension: Extension
-    readonly intellisenseWatcher: IntellisenseWatcher
     private readonly finderUtils: FinderUtils
     private readonly rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
     private readonly jlweaveExt: string[] = ['.jnw', '.jtexw']
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.intellisenseWatcher = new IntellisenseWatcher()
         this.finderUtils = new FinderUtils(extension)
         this.registerSetEnvVar()
 
@@ -366,25 +362,20 @@ export class Manager {
         return undefined
     }
 
-    onDidUpdateIntellisense(cb: (file: string) => void) {
-        return this.intellisenseWatcher.onDidUpdateIntellisense(cb)
-    }
-
     private registerSetEnvVar() {
-        this.setEnvVar()
-        const configName = 'latex-workshop.docker.image.latex'
+        const setEnvVar = () => {
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            const dockerImageName: string = configuration.get('docker.image.latex', '')
+            this.extension.logger.addLogMessage(`Set $LATEXWORKSHOP_DOCKER_LATEX: ${JSON.stringify(dockerImageName)}`)
+            process.env['LATEXWORKSHOP_DOCKER_LATEX'] = dockerImageName
+        }
+        setEnvVar()
+
         vscode.workspace.onDidChangeConfiguration((ev) => {
-            if (ev.affectsConfiguration(configName)) {
-                this.setEnvVar()
+            if (ev.affectsConfiguration('latex-workshop.docker.image.latex')) {
+                setEnvVar()
             }
         })
-    }
-
-    private setEnvVar() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const dockerImageName: string = configuration.get('docker.image.latex', '')
-        this.extension.logger.addLogMessage(`Set $LATEXWORKSHOP_DOCKER_LATEX: ${JSON.stringify(dockerImageName)}`)
-        process.env['LATEXWORKSHOP_DOCKER_LATEX'] = dockerImageName
     }
 
 }
