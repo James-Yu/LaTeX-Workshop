@@ -13,8 +13,8 @@ import { Extension } from '../main'
 import * as eventbus from './eventbus'
 import * as utils from '../utils/utils'
 import { InputFileRegExp } from '../utils/inputfilepath'
-import { canContext, isExcluded } from './cacherlib/cacherutils'
-import { PathUtils } from './managerlib/pathutils'
+import { canContext, isExcluded, parseFlsContent } from './cacherlib/cacherutils'
+import { PathUtils } from './cacherlib/pathutils'
 
 export interface Context {
     /**
@@ -140,8 +140,8 @@ export class Cacher {
         this.extension.eventBus.fire(eventbus.FileParsed, filePath)
     }
 
-    private async updateElements(file: string, content: string, contentTrimmed: string) {
-        this.extension.completer.citation.update(file, content)
+    private async updateElements(filePath: string, content: string, contentTrimmed: string) {
+        this.extension.completer.citation.update(filePath, content)
         const languageId: string | undefined = vscode.window.activeTextEditor?.document.languageId
         let latexAst: latexParser.AstRoot | latexParser.AstPreamble | undefined = undefined
         if (!languageId || languageId !== 'latex-expl3') {
@@ -151,20 +151,19 @@ export class Cacher {
         if (latexAst) {
             const nodes = latexAst.content
             const lines = content.split('\n')
-            this.extension.completer.reference.update(file, nodes, lines)
-            this.extension.completer.glossary.update(file, nodes)
-            this.extension.completer.environment.update(file, nodes, lines)
-            this.extension.completer.command.update(file, nodes)
+            this.extension.completer.reference.update(filePath, nodes, lines)
+            this.extension.completer.glossary.update(filePath, nodes)
+            this.extension.completer.environment.update(filePath, nodes, lines)
+            this.extension.completer.command.update(filePath, nodes)
         } else {
-            this.extension.logger.addLogMessage(`Cannot parse a TeX file: ${file}`)
-            this.extension.logger.addLogMessage('Fall back to regex-based completion.')
-            // Do the update with old style.
-            this.extension.completer.reference.update(file, undefined, undefined, contentTrimmed)
-            this.extension.completer.glossary.update(file, undefined, contentTrimmed)
-            this.extension.completer.environment.update(file, undefined, undefined, contentTrimmed)
-            this.extension.completer.command.update(file, undefined, contentTrimmed)
+            this.extension.logger.addLogMessage(`[Cacher] Cannot parse AST, use RegExp on ${filePath}.`)
+            this.extension.completer.reference.update(filePath, undefined, undefined, contentTrimmed)
+            this.extension.completer.glossary.update(filePath, undefined, contentTrimmed)
+            this.extension.completer.environment.update(filePath, undefined, undefined, contentTrimmed)
+            this.extension.completer.command.update(filePath, undefined, contentTrimmed)
         }
-        this.extension.manager.intellisenseWatcher.emitUpdate(file)
+        this.extension.manager.intellisenseWatcher.emitUpdate(filePath)
+        this.extension.logger.addLogMessage(`[Cacher] Updated elements of ${filePath}.`)
     }
 
     private async updateBibfiles(filePath: string, contentTrimmed: string) {
@@ -233,6 +232,98 @@ export class Cacher {
             cache.content = document.getText()
         }
         this.extension.eventBus.fire(eventbus.CacheUpdated)
+    }
+
+    /**
+     * Parses the content of a `.fls` file attached to the given `srcFile`.
+     * All `INPUT` files are considered as subfiles/non-tex files included in `srcFile`,
+     * and all `OUTPUT` files will be checked if they are `.aux` files.
+     * If so, the `.aux` files are parsed for any possible `.bib` files.
+     *
+     * This function is called after a successful build, when looking for the root file,
+     * and to compute the cachedContent tree.
+     *
+     * @param texFile The path of a LaTeX file.
+     */
+    async loadFlsFile(texFile: string) {
+        this.extension.logger.addLogMessage('Parse fls file.')
+        const flsFile = this.pathUtils.getFlsFilePath(texFile)
+        if (flsFile === undefined) {
+            return
+        }
+        const rootDir = path.dirname(texFile)
+        const outDir = this.extension.manager.getOutDir(texFile)
+        const ioFiles = parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
+
+        for (const inputFile of ioFiles.input) {
+            // Drop files that are also listed as OUTPUT or should be ignored
+            if (ioFiles.output.includes(inputFile) ||
+                isExcluded(inputFile) ||
+                !fs.existsSync(inputFile)) {
+                continue
+            }
+            if (inputFile === texFile || this.watched(inputFile)) {
+                // Drop the current rootFile often listed as INPUT
+                // Drop any file that is already watched as it is handled by
+                // onWatchedFileChange.
+                continue
+            }
+            if (path.extname(inputFile) === '.tex') {
+                // In rare cases, the cache was cleared
+                this.getDirtyContent(texFile)
+                // Parse tex files as imported subfiles.
+                this.getCachedContent(texFile).children.push({
+                    index: Number.MAX_VALUE,
+                    file: inputFile
+                })
+                this.add(inputFile)
+                await this.refreshContext(inputFile, texFile)
+            } else if (!this.watched(inputFile)) {
+                // Watch non-tex files.
+                this.add(inputFile)
+            }
+        }
+
+        for (const outputFile of ioFiles.output) {
+            if (path.extname(outputFile) === '.aux' && fs.existsSync(outputFile)) {
+                this.extension.logger.addLogMessage(`[Cacher] Auxfile: ${outputFile}`)
+                await this.parseAuxFile(fs.readFileSync(outputFile).toString(), path.dirname(outputFile).replace(outDir, rootDir))
+            }
+        }
+    }
+
+    private async parseAuxFile(content: string, srcDir: string) {
+        const regex = /^\\bibdata{(.*)}$/gm
+        while (true) {
+            const result = regex.exec(content)
+            if (!result) {
+                return
+            }
+            const bibs = (result[1] ? result[1] : result[2]).split(',').map((bib) => {
+                return bib.trim()
+            })
+            for (const bib of bibs) {
+                const bibPath = this.pathUtils.resolveBibPath(bib, srcDir)
+                if (bibPath === undefined) {
+                    continue
+                }
+                const rootFile = this.extension.manager.rootFile
+                if (rootFile && !this.getCachedContent(rootFile).bibfiles.includes(bibPath)) {
+                    this.getCachedContent(rootFile).bibfiles.push(bibPath)
+                }
+                await this.extension.manager.bibWatcher.watchBibFile(bibPath)
+            }
+        }
+    }
+
+    getTeXChildrenFromFls(texFile: string) {
+        const flsFile = this.pathUtils.getFlsFilePath(texFile)
+        if (flsFile === undefined) {
+            return []
+        }
+        const rootDir = path.dirname(texFile)
+        const ioFiles = parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
+        return ioFiles.input
     }
 
     /**

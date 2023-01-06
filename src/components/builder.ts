@@ -387,7 +387,7 @@ export class Builder {
         }
         this.extension.viewer.refreshExistingViewer(step.rootFile)
         this.extension.completer.reference.setNumbersFromAuxFile(step.rootFile)
-        await this.extension.manager.parseFlsFile(step.rootFile)
+        await this.extension.cacher.loadFlsFile(step.rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(step.rootFile))
         // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
         if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {

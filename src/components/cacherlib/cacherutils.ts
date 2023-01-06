@@ -21,3 +21,31 @@ export function isExcluded(filePath: string): boolean {
     }
     return micromatch.some(filePath, globsToIgnore, { format })
 }
+
+export function parseFlsContent(content: string, rootDir: string): {input: string[], output: string[]} {
+    const inputFiles: Set<string> = new Set()
+    const outputFiles: Set<string> = new Set()
+    const regex = /^(?:(INPUT)\s*(.*))|(?:(OUTPUT)\s*(.*))$/gm
+    // regex groups
+    // #1: an INPUT entry --> #2 input file path
+    // #3: an OUTPUT entry --> #4: output file path
+    while (true) {
+        const result = regex.exec(content)
+        if (!result) {
+            break
+        }
+        if (result[1]) {
+            const inputFilePath = path.resolve(rootDir, result[2])
+            if (inputFilePath) {
+                inputFiles.add(inputFilePath)
+            }
+        } else if (result[3]) {
+            const outputFilePath = path.resolve(rootDir, result[4])
+            if (outputFilePath) {
+                outputFiles.add(outputFilePath)
+            }
+        }
+    }
+
+    return {input: Array.from(inputFiles), output: Array.from(outputFiles)}
+}

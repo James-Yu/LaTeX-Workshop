@@ -145,7 +145,7 @@ suite('Intellisense test suite', () => {
     runTest({suiteName, fixtureName, testName: 'command intellisense with usepackage'}, async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_on_cmd_1.tex', dst: 'main.tex'}])
         let result = await openActive(extension, fixture, 'main.tex')
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         let items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -157,7 +157,7 @@ suite('Intellisense test suite', () => {
 
         await loadTestFile(fixture, [{src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}])
         result = await openActive(extension, fixture, 'main.tex')
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         items = getIntellisense(result.doc, new vscode.Position(2, 1), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -169,7 +169,7 @@ suite('Intellisense test suite', () => {
     runTest({suiteName, fixtureName, testName: 'command intellisense with usepackage and option'}, async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_option_on_cmd.tex', dst: 'main.tex'}])
         let result = await openActive(extension, fixture, 'main.tex')
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         let items = getIntellisense(result.doc, new vscode.Position(2, 1), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -181,7 +181,7 @@ suite('Intellisense test suite', () => {
 
         await loadTestFile(fixture, [{src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}])
         result = await openActive(extension, fixture, 'main.tex')
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         items = getIntellisense(result.doc, new vscode.Position(2, 1), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -197,7 +197,7 @@ suite('Intellisense test suite', () => {
             {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await openActive(extension, fixture, 'main.tex')
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         let items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -210,7 +210,7 @@ suite('Intellisense test suite', () => {
         assert.ok(snippet.value.includes('${1:'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', false)
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -262,7 +262,7 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('eq1'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', false)
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         items = getIntellisense(result.doc, new vscode.Position(8, 5), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -286,7 +286,7 @@ suite('Intellisense test suite', () => {
     runTest({suiteName, fixtureName, testName: 'environment intellisense with usepackage'}, async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_on_env_1.tex', dst: 'main.tex'}])
         let result = await openActive(extension, fixture, 'main.tex')
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         let items = getIntellisense(result.doc, new vscode.Position(3, 7), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -298,7 +298,7 @@ suite('Intellisense test suite', () => {
 
         await loadTestFile(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}])
         result = await openActive(extension, fixture, 'main.tex')
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         items = getIntellisense(result.doc, new vscode.Position(3, 7), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -310,7 +310,7 @@ suite('Intellisense test suite', () => {
     runTest({suiteName, fixtureName, testName: 'environment intellisense with usepackage and option'}, async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}])
         let result = await openActive(extension, fixture, 'main.tex')
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         let items = getIntellisense(result.doc, new vscode.Position(3, 7), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -322,7 +322,7 @@ suite('Intellisense test suite', () => {
 
         await loadTestFile(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}])
         result = await openActive(extension, fixture, 'main.tex')
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         items = getIntellisense(result.doc, new vscode.Position(3, 7), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -334,7 +334,7 @@ suite('Intellisense test suite', () => {
     runTest({suiteName, fixtureName, testName: 'environment as command intellisense with usepackage and option'}, async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}])
         let result = await openActive(extension, fixture, 'main.tex')
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         let items = getIntellisense(result.doc, new vscode.Position(3, 1), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -346,7 +346,7 @@ suite('Intellisense test suite', () => {
 
         await loadTestFile(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}])
         result = await openActive(extension, fixture, 'main.tex')
-        await extension.manager.updateCompleter(path.resolve(fixture, 'main.tex'), result.doc.getText())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         items = getIntellisense(result.doc, new vscode.Position(3, 1), extension)
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -494,7 +494,7 @@ suite('Intellisense test suite', () => {
             {src: 'intellisense_glossaryentries.tex', dst: 'sub/glossary.tex'}
         ])
         const result = await openActive(extension, fixture, 'main.tex')
-        await extension.manager.updateCompleter(path.resolve(fixture, 'sub/glossary.tex'), fs.readFileSync(path.resolve(fixture, 'sub/glossary.tex')).toString())
+        await extension.cacher.refreshContext(path.resolve(fixture, 'sub/glossary.tex'), fs.readFileSync(path.resolve(fixture, 'sub/glossary.tex')).toString())
 
         const items = getIntellisense(result.doc, new vscode.Position(5, 5), extension)
         assert.ok(items)

@@ -195,12 +195,10 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             }
             updateCompleter = setTimeout(async () => {
                 extension.cacher.updateCachedContent(e.document)
-                const content = e.document.getText()
                 const file = e.document.uri.fsPath
                 // await extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
                 await extension.cacher.refreshContext(file, extension.manager.rootFile)
-                await extension.manager.parseFlsFile(extension.manager.rootFile ? extension.manager.rootFile : file)
-                await extension.manager.updateCompleter(file, content)
+                await extension.cacher.loadFlsFile(extension.manager.rootFile ? extension.manager.rootFile : file)
             }, configuration.get('intellisense.update.delay', 1000))
         }
     }))
