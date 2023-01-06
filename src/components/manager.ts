@@ -16,12 +16,6 @@ import {BibWatcher} from './managerlib/bibwatcher'
 import {FinderUtils} from './managerlib/finderutils'
 import {IntellisenseWatcher} from './managerlib/intellisensewatcher'
 
-export const enum BuildEvents {
-    never = 'never',
-    onSave = 'onSave',
-    onFileChange = 'onFileChange'
-}
-
 type RootFileType = {
     type: 'filePath',
     filePath: string
@@ -416,37 +410,6 @@ export class Manager {
 
     watchPdfFile(pdfFileUri: vscode.Uri) {
         this.pdfWatcher.watchPdfFile(pdfFileUri)
-    }
-
-    private autoBuild(file: string, bibChanged: boolean ) {
-        if (!this.extension.builder.canAutoBuild()) {
-            this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled for `latex.autoBuild.interval`.')
-            return
-        }
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
-        if (!bibChanged && this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-            return this.extension.commander.build(true, this.localRootFile, this.rootFileLanguageId)
-        } else {
-            return this.extension.commander.build(true, this.rootFile, this.rootFileLanguageId)
-        }
-    }
-
-    buildOnFileChanged(file: string, bibChanged: boolean = false) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
-        if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onFileChange) {
-            return
-        }
-        this.extension.logger.addLogMessage(`Auto build started detecting the change of a file: ${file}`)
-        return this.autoBuild(file, bibChanged)
-    }
-
-    buildOnSaveIfEnabled(file: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
-        if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onSave) {
-            return
-        }
-        this.extension.logger.addLogMessage(`Auto build started on saving file: ${file}`)
-        return this.autoBuild(file, false)
     }
 
     /**

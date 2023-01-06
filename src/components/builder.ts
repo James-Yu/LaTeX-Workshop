@@ -8,6 +8,12 @@ import type { Extension } from '../main'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { BuildDone } from './eventbus'
 
+const enum BuildEvents {
+    never = 'never',
+    onSave = 'onSave',
+    onFileChange = 'onFileChange'
+}
+
 export class Builder {
     private lastBuild: number = 0
     private prevLangId: string | undefined
@@ -64,6 +70,37 @@ export class Builder {
             this.stepQueue.clear()
             this.process.kill()
             this.extension.logger.addLogMessage(`Kill the current process. PID: ${pid}`)
+        }
+    }
+
+    buildOnFileChanged(file: string, bibChanged: boolean = false) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
+        if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onFileChange) {
+            return
+        }
+        this.extension.logger.addLogMessage(`Auto build started detecting the change of a file: ${file}`)
+        return this.invokeBuild(file, bibChanged)
+    }
+
+    buildOnSaveIfEnabled(file: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
+        if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onSave) {
+            return
+        }
+        this.extension.logger.addLogMessage(`Auto build started on saving file: ${file}`)
+        return this.invokeBuild(file, false)
+    }
+
+    private invokeBuild(file: string, bibChanged: boolean ) {
+        if (!this.extension.builder.canAutoBuild()) {
+            this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled for `latex.autoBuild.interval`.')
+            return
+        }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
+        if (!bibChanged && this.extension.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
+            return this.extension.commander.build(true, this.extension.manager.localRootFile, this.extension.manager.rootFileLanguageId)
+        } else {
+            return this.extension.commander.build(true, this.extension.manager.rootFile, this.extension.manager.rootFileLanguageId)
         }
     }
 

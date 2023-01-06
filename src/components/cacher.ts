@@ -488,7 +488,7 @@ class Watcher {
         if (canContext(filePath)) {
             void this.cacher.refreshContext(filePath)
         }
-        void this.extension.manager.buildOnFileChanged(filePath)
+        void this.extension.builder.buildOnFileChanged(filePath)
         this.extension.logger.addLogMessage(`[Cacher][Watcher] Changed ${filePath}.`)
         this.extension.eventBus.fire(eventbus.FileChanged, filePath)
     }
