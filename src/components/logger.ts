@@ -3,6 +3,7 @@ import * as vscode from 'vscode'
 const LOG_PANEL = vscode.window.createOutputChannel('LaTeX Workshop')
 const COMPILER_PANEL = vscode.window.createOutputChannel('LaTeX Compiler')
 const STATUS_ITEM = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10000)
+const PLACEHOLDERS: {[placeholder: string]: string} = {}
 
 COMPILER_PANEL.append('Ready')
 
@@ -33,9 +34,25 @@ export function getLogger(...tags: string[]) {
 
 function logTagless(message: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    if (configuration.get('message.log.show')) {
-        LOG_PANEL.appendLine(`[${new Date().toLocaleTimeString('en-US', { hour12: false })}] ${message}`)
+    if (!configuration.get('message.log.show')) {
+        return
     }
+    const timestamp = new Date().toLocaleTimeString('en-US', { hour12: false })
+    vscode.workspace.workspaceFolders?.forEach(folder => {
+        if (folder.uri.fsPath in PLACEHOLDERS) {
+            return
+        }
+        const placeholder = `%WS${Object.keys(PLACEHOLDERS).length + 1}%`
+        PLACEHOLDERS[folder.uri.fsPath] = placeholder
+        LOG_PANEL.appendLine(`[${timestamp}][Logger] New log placeholder ${placeholder} registered for ${folder.uri.fsPath} .`)
+    })
+    LOG_PANEL.appendLine(`[${timestamp}]${applyPlaceholders(message)}`)
+}
+
+function applyPlaceholders(message: string) {
+    Object.keys(PLACEHOLDERS)
+        .forEach(placeholder => message = message.replaceAll(placeholder, PLACEHOLDERS[placeholder]))
+    return message
 }
 
 function logCommandTagless(message: string, command: string, args: string[] = []) {
