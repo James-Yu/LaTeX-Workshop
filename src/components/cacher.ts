@@ -132,6 +132,7 @@ export class Cacher {
         this.updateChildren(filePath, rootPath, contentTrimmed)
         await this.updateElements(filePath, content, contentTrimmed)
         await this.updateBibfiles(filePath, contentTrimmed)
+        logger.log(`Cached ${filePath} .`)
         this.extension.eventBus.fire(eventbus.FileParsed, filePath)
     }
 
@@ -271,8 +272,10 @@ export class Cacher {
             if (path.extname(outputFile) === '.aux' && fs.existsSync(outputFile)) {
                 logger.log(`Found .aux ${filePath} from .fls ${flsPath} , parsing.`)
                 await this.parseAuxFile(outputFile, path.dirname(outputFile).replace(outDir, rootDir))
+                logger.log(`Parsed .aux ${filePath} .`)
             }
         }
+        logger.log(`Parsed .fls ${flsPath} .`)
     }
 
     private async parseAuxFile(filePath: string, srcDir: string) {
