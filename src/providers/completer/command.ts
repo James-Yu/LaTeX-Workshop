@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
 import type { Extension } from '../../main'
-import type { IProvider, ICompletionItem } from '../completion'
+import type { IProvider, ICompletionItem, PkgType } from '../completion'
 import {CommandFinder, isTriggerSuggestNeeded} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint} from './completerutils'
 import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
@@ -15,8 +15,6 @@ import { getLogger } from '../../components/logger'
 const logger = getLogger('Intelli', 'Command')
 
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
-type DataCmdsJsonType = typeof import('../../../data/commands.json')
-type DataTeXJsonType = typeof import('../../../data/packages/tex.json')
 
 export type CmdType = {
     command?: string,
@@ -27,7 +25,6 @@ export type CmdType = {
     detail?: string,
     documentation?: string,
     package?: string,
-    label?: string,
     postAction?: string
 }
 
@@ -63,18 +60,17 @@ export class Command implements IProvider {
     }
 
     initialize(environment: Environment) {
-        const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
-        const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})
-        const cmds = JSON.parse(defaultCommands) as DataCmdsJsonType
-        const maths: { [key: string]: CmdType } = (JSON.parse(defaultLaTeXMathSymbols) as DataTeXJsonType).cmds
-        for (const key of Object.keys(maths)) {
-            if (key.match(/\{.*?\}/)) {
-                const ent = maths[key]
-                const newKey = key.replace(/\{.*?\}/, '')
-                delete maths[key]
-                maths[newKey] = ent
-            }
-        }
+        const cmds = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})) as {[key: string]: CmdType}
+        Object.keys(cmds).forEach(cmd => {
+            cmds[cmd].command = cmd
+            cmds[cmd].snippet = cmds[cmd].snippet || cmd
+        })
+        const maths = (JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})) as PkgType).cmds
+        Object.keys(maths).forEach(cmd => {
+            maths[cmd].command = cmd
+            maths[cmd].snippet = maths[cmd].snippet || cmd
+        })
+
         Object.assign(maths, cmds)
         const defaultEnvs = environment.getDefaultEnvs(EnvSnippetType.AsCommand)
 
@@ -237,7 +233,7 @@ export class Command implements IProvider {
         item.command = item.command || itemKey
         const backslash = item.command.startsWith(' ') ? '' : '\\'
         const suggestion = new CmdEnvSuggestion(
-            item.label || `${backslash}${item.command}`,
+            `${backslash}${item.command}`,
             item.package || 'latex',
             item.keyvals || [],
             item.keyvalindex === undefined ? -1 : item.keyvalindex,

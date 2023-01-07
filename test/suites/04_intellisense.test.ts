@@ -12,9 +12,9 @@ import { CmdType } from '../../src/providers/completer/command'
 import { PkgType } from '../../src/providers/completion'
 import { isTriggerSuggestNeeded } from '../../src/providers/completer/commandlib/commandfinder'
 
-function assertKeys(keys: string[], mendatory: string[], optional: string[] = [], message: string): void {
+function assertKeys(keys: string[], expected: string[] = [], message: string): void {
     assert.ok(
-        keys.every(k => mendatory.includes(k) || optional.includes(k)) && mendatory.every(k => keys.includes(k)),
+        keys.every(k => expected.includes(k)),
         message
     )
 }
@@ -62,8 +62,7 @@ suite('Intellisense test suite', () => {
         Object.keys(envs).forEach(name => {
             assertKeys(
                 Object.keys(envs[name]),
-                ['name'],
-                ['snippet', 'detail'],
+                ['name', 'snippet', 'detail'],
                 file + ': ' + JSON.stringify(envs[name])
             )
         })
@@ -76,8 +75,7 @@ suite('Intellisense test suite', () => {
         Object.keys(cmds).forEach(name => {
             assertKeys(
                 Object.keys(cmds[name]),
-                ['command'],
-                ['snippet', 'documentation', 'detail', 'postAction', 'label'],
+                ['command', 'snippet', 'documentation', 'detail', 'postAction'],
                 file + ': ' + JSON.stringify(cmds[name])
             )
         })
@@ -111,7 +109,6 @@ suite('Intellisense test suite', () => {
             Object.keys(pkg.cmds).forEach(name => {
                 assertKeys(
                     Object.keys(pkg.cmds[name]),
-                    [],
                     ['command', 'snippet', 'option', 'keyvals', 'keyvalindex', 'documentation', 'detail'],
                     file + ': ' + JSON.stringify(pkg.cmds[name])
                 )
@@ -119,7 +116,6 @@ suite('Intellisense test suite', () => {
             Object.keys(pkg.envs).forEach(name => {
                 assertKeys(
                     Object.keys(pkg.envs[name]),
-                    [],
                     ['name', 'snippet', 'detail', 'option', 'keyvals', 'keyvalindex'],
                     file + ': ' + JSON.stringify(pkg.envs[name])
                 )
