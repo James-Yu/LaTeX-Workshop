@@ -66,7 +66,7 @@ export class Commander {
                 logger.log('Snippet data loaded.')
             })
             .catch(err => {
-                this.extension.logger.addLogMessage(`Error reading data: ${err}.`)
+                logger.logError('Error reading snippet data', err)
             })
     }
 
