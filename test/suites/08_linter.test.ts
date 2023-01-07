@@ -59,8 +59,9 @@ suite('Linter test suite', () => {
         await openActive(extension, fixture, 'main.tex')
 
         assert.ok(extension)
+        assert.ok(extension.manager.rootFile)
         const linter = new LaCheck(extension)
-        await linter.lintRootFile()
+        await linter.lintRootFile(extension.manager.rootFile)
         assert.strictEqual(linter.linterDiagnostics.name, 'LaCheck')
     })
 

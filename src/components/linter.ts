@@ -1,11 +1,13 @@
 import * as vscode from 'vscode'
 
 import type { Extension } from '../main'
+import * as logger from './logger'
 import { ChkTeX } from './linterlib/chktex'
 import { LaCheck } from './linterlib/lacheck'
 export interface ILinter {
+    getName(): string,
     readonly linterDiagnostics: vscode.DiagnosticCollection,
-    lintRootFile(): void,
+    lintRootFile(rootPath: string): void,
     lintFile(document: vscode.TextDocument): void,
     parseLog(log: string, filePath?: string): void
 }
@@ -52,7 +54,14 @@ export class Linter {
 
     lintRootFileIfEnabled() {
         const linters = this.getLinters(this.extension.manager.getWorkspaceFolderRootDir())
-        linters.forEach(linter => linter.lintRootFile())
+        linters.forEach(linter => {
+            if (this.extension.manager.rootFile === undefined) {
+                logger.log(`[Linter][${linter.getName()}] No root file found.`)
+                return
+            }
+            logger.log(`[Linter][${linter.getName()}] Linting root ${this.extension.manager.rootFile} .`)
+            linter.lintRootFile(this.extension.manager.rootFile)
+        })
     }
 
     lintActiveFileIfEnabledAfterInterval(document: vscode.TextDocument) {
@@ -64,7 +73,10 @@ export class Linter {
             if (this.linterTimeout) {
                 clearTimeout(this.linterTimeout)
             }
-            this.linterTimeout = setTimeout(() => linters.forEach(linter => linter.lintFile(document)), interval)
+            this.linterTimeout = setTimeout(() => linters.forEach(linter => {
+                logger.log(`[Linter][${linter.getName()}] Linting ${document.fileName} .`)
+                linter.lintFile(document)
+            }), interval)
         }
     }
 }

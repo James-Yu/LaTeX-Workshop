@@ -5,7 +5,7 @@ import { latexParser,bibtexParser } from 'latex-utensils'
 import type { Extension } from '../main'
 import { resolveFile, stripText } from '../utils/utils'
 import { InputFileRegExp } from '../utils/inputfilepath'
-import { Logger } from '../components/logger'
+import * as logger from '../components/logger'
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
@@ -149,7 +149,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
         const content = this.extension.cacher.get(file)?.content
         if (!content) {
-            Logger.log(`Error loading LaTeX during structuring: ${file}.`)
+            logger.log(`Error loading LaTeX during structuring: ${file} .`)
             return []
         }
 
@@ -160,7 +160,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         const ast = await this.extension.pegParser.parseLatex(fastparse ? stripText(content) : content).catch((e) => {
             if (latexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
-                Logger.log(`Error parsing LaTeX during structuring: line ${line} in ${file}.`)
+                logger.log(`Error parsing LaTeX during structuring: line ${line} in ${file} .`)
             }
             return
         })
@@ -592,13 +592,13 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     async buildBibTeXModel(document: vscode.TextDocument): Promise<Section[]> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
         if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
-            Logger.log(`Bib file is too large, ignoring it: ${document.fileName}`)
+            logger.log(`Bib file is too large, ignoring it: ${document.fileName}`)
             return []
         }
         const ast = await this.extension.pegParser.parseBibtex(document.getText()).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
-                Logger.log(`Error parsing BibTeX: line ${line} in ${document.fileName}.`)
+                logger.log(`Error parsing BibTeX: line ${line} in ${document.fileName} .`)
             }
             return
         })
@@ -710,7 +710,7 @@ export class StructureTreeView {
         this._viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this._treeDataProvider, showCollapseAll: true })
         vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
            this._followCursor = ! this._followCursor
-           Logger.log(`Follow cursor is set to ${this._followCursor}.`)
+           logger.log(`Follow cursor is set to ${this._followCursor}.`)
         })
 
         vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {

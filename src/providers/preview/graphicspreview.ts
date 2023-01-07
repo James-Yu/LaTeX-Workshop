@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import type { Extension } from '../../main'
-import { Logger } from '../../components/logger'
+import * as logger from '../../components/logger'
 
 
 export class GraphicsPreview {
@@ -94,15 +94,12 @@ export class GraphicsPreview {
             newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
             dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
             if (dataUrl && dataUrl.length >= maxDataUrlLength) {
-                Logger.log(`Data URL still too large: ${pdfFilePath}`)
+                logger.log(`Data URL still too large: ${pdfFilePath}`)
                 return undefined
             }
             return dataUrl
         } catch (e: unknown) {
-            Logger.log(`Failed to renderGraphicsAsDataUrl: ${pdfFilePath}`)
-            if (e instanceof Error) {
-                Logger.logError(e)
-            }
+            logger.logError(`[Preview][Graphics] Failed rendering graphics as data url with ${pdfFilePath}`, e)
             return undefined
         }
     }

@@ -3,7 +3,7 @@ import * as path from 'path'
 
 import type { Extension } from '../../main'
 import * as utils from '../../utils/utils'
-import { Logger } from '../logger'
+import * as logger from '../logger'
 
 export class FinderUtils {
     private readonly extension: Extension
@@ -25,33 +25,31 @@ export class FinderUtils {
             let file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
             content = this.extension.lwfs.readFileSyncGracefully(file)
             if (content === undefined) {
-                const msg = `Not found root file specified in the magic comment: ${file}`
-                Logger.log(msg)
-                throw new Error(msg)
+                logger.log(`[Manager][Magic] Non-existent magic root ${file} .`)
+                return undefined
             }
             fileStack.push(file)
-            Logger.log(`Found root file by magic comment: ${file}`)
+            logger.log(`[Manager][Magic] Found magic root ${file} from active.`)
 
             result = content.match(regex)
             while (result) {
                 file = path.resolve(path.dirname(file), result[1])
                 if (fileStack.includes(file)) {
-                    Logger.log(`Looped root file by magic comment found: ${file}, stop here.`)
+                    logger.log(`[Manager][Magic] Found looped magic root ${file} .`)
                     return file
                 } else {
                     fileStack.push(file)
-                    Logger.log(`Recursively found root file by magic comment: ${file}`)
+                    logger.log(`[Manager][Magic] Found magic root ${file}`)
                 }
 
                 content = this.extension.lwfs.readFileSyncGracefully(file)
                 if (content === undefined) {
-                    const msg = `Not found root file specified in the magic comment: ${file}`
-                    Logger.log(msg)
-                    throw new Error(msg)
-
+                    logger.log(`[Manager][Magic] Non-existent magic root ${file} .`)
+                    return undefined
                 }
                 result = content.match(regex)
             }
+            logger.log(`[Manager][Magic] Finalized magic root ${file} .`)
             return file
         }
         return undefined
@@ -66,9 +64,7 @@ export class FinderUtils {
         if (result) {
             const file = utils.resolveFile([path.dirname(vscode.window.activeTextEditor.document.fileName)], result[1])
             if (file) {
-                Logger.log(`Found root file of this subfile from active editor: ${file}`)
-            } else {
-                Logger.log(`Cannot find root file of this subfile from active editor: ${result[1]}`)
+                logger.log(`[Manager][Subfile] Found subfile root ${file} from active.`)
             }
             return file
         }

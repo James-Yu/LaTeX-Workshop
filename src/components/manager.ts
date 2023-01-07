@@ -9,7 +9,7 @@ import type {Extension} from '../main'
 import * as eventbus from './eventbus'
 
 import {FinderUtils} from './managerlib/finderutils'
-import { Logger } from './logger'
+import * as logger from './logger'
 
 type RootFileType = {
     type: 'filePath',
@@ -97,7 +97,7 @@ export class Manager {
                 if (ret.uri.scheme === 'file') {
                     return ret.uri.fsPath
                 } else {
-                    Logger.log(`The file cannot be used as the root file: ${ret.uri.toString(true)}`)
+                    logger.log(`The file cannot be used as the root file: ${ret.uri.toString(true)}`)
                     return
                 }
             }
@@ -240,7 +240,7 @@ export class Manager {
      */
     async findRoot(): Promise<string | undefined> {
         const wsfolders = vscode.workspace.workspaceFolders?.map(e => e.uri.toString(true))
-        Logger.log(`Current workspace folders: ${JSON.stringify(wsfolders)}`)
+        logger.log(`Current workspace folders: ${JSON.stringify(wsfolders)}`)
         this.localRootFile = undefined
         const findMethods = [
             () => this.finderUtils.findRootFromMagic(),
@@ -254,11 +254,11 @@ export class Manager {
                 continue
             }
             if (this.rootFile !== rootFile) {
-                Logger.log(`Root file changed: from ${this.rootFile} to ${rootFile}`)
-                Logger.log('Start to find all dependencies.')
+                logger.log(`Root file changed: from ${this.rootFile} to ${rootFile}`)
+                logger.log('Start to find all dependencies.')
                 this.rootFile = rootFile
                 this.rootFileLanguageId = this.inferLanguageId(rootFile)
-                Logger.log(`Root file languageId: ${this.rootFileLanguageId}`)
+                logger.log(`Root file languageId: ${this.rootFileLanguageId}`)
                 // We also clean the completions from the old project
                 this.extension.completer.input.reset()
                 this.extension.duplicateLabels.reset()
@@ -272,7 +272,7 @@ export class Manager {
                 await this.extension.cacher.loadFlsFile(this.rootFile)
                 this.extension.eventBus.fire(eventbus.RootFileChanged, rootFile)
             } else {
-                Logger.log(`Keep using the same root file: ${this.rootFile}`)
+                logger.log(`Keep using the same root file: ${this.rootFile}`)
             }
             this.extension.eventBus.fire(eventbus.RootFileSearched)
             return rootFile
@@ -286,7 +286,7 @@ export class Manager {
             return undefined
         }
         if (this.extension.lwfs.isVirtualUri(vscode.window.activeTextEditor.document.uri)) {
-            Logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
+            logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
             return undefined
         }
         if (this.extension.cacher.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
@@ -300,7 +300,7 @@ export class Manager {
             return undefined
         }
         if (this.extension.lwfs.isVirtualUri(vscode.window.activeTextEditor.document.uri)) {
-            Logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
+            logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
             return undefined
         }
         const regex = /\\begin{document}/m
@@ -313,7 +313,7 @@ export class Manager {
                this.localRootFile = file
                return rootSubFile
             } else {
-                Logger.log(`Found root file from active editor: ${file}`)
+                logger.log(`Found root file from active editor: ${file}`)
                 return file
             }
         }
@@ -323,7 +323,7 @@ export class Manager {
     private async findRootInWorkspace(): Promise<string | undefined> {
         const regex = /\\begin{document}/m
         const currentWorkspaceDirUri = this.findWorkspace()
-        Logger.log(`Current workspaceRootDir: ${currentWorkspaceDirUri ? currentWorkspaceDirUri.toString(true) : ''}`)
+        logger.log(`Current workspaceRootDir: ${currentWorkspaceDirUri ? currentWorkspaceDirUri.toString(true) : ''}`)
 
         if (!currentWorkspaceDirUri) {
             return undefined
@@ -339,12 +339,12 @@ export class Manager {
             const candidates: string[] = []
             for (const file of files) {
                 if (this.extension.lwfs.isVirtualUri(file)) {
-                    Logger.log(`Skip the file: ${file.toString(true)}`)
+                    logger.log(`Skip the file: ${file.toString(true)}`)
                     continue
                 }
                 const flsChildren = this.extension.cacher.getTeXChildrenFromFls(file.fsPath)
                 if (vscode.window.activeTextEditor && flsChildren.includes(vscode.window.activeTextEditor.document.fileName)) {
-                    Logger.log(`Found root file from '.fls': ${file.fsPath}`)
+                    logger.log(`Found root file from '.fls': ${file.fsPath}`)
                     return file.fsPath
                 }
                 const content = utils.stripCommentsAndVerbatim(fs.readFileSync(file.fsPath).toString())
@@ -353,7 +353,7 @@ export class Manager {
                     // Can be a root
                     const children = await this.extension.cacher.getTeXChildren(file.fsPath, file.fsPath, [])
                     if (vscode.window.activeTextEditor && children.includes(vscode.window.activeTextEditor.document.fileName)) {
-                        Logger.log(`Found root file from parent: ${file.fsPath}`)
+                        logger.log(`Found root file from parent: ${file.fsPath}`)
                         return file.fsPath
                     }
                     // Not including the active file, yet can still be a root candidate
@@ -361,7 +361,7 @@ export class Manager {
                 }
             }
             if (candidates.length > 0) {
-                Logger.log(`Found files that might be root, choose the first one: ${candidates}`)
+                logger.log(`Found files that might be root, choose the first one: ${candidates}`)
                 return candidates[0]
             }
         } catch (e) {}
@@ -372,7 +372,7 @@ export class Manager {
         const setEnvVar = () => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const dockerImageName: string = configuration.get('docker.image.latex', '')
-            Logger.log(`Set $LATEXWORKSHOP_DOCKER_LATEX: ${JSON.stringify(dockerImageName)}`)
+            logger.log(`Set $LATEXWORKSHOP_DOCKER_LATEX: ${JSON.stringify(dockerImageName)}`)
             process.env['LATEXWORKSHOP_DOCKER_LATEX'] = dockerImageName
         }
         setEnvVar()

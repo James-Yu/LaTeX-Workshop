@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 
 import { stripCommentsAndVerbatim } from '../utils/utils'
-import { Logger } from './logger'
+import * as logger from './logger'
 
 interface MatchSection {
     level: string,
@@ -29,7 +29,7 @@ export class Section {
      * @param change 'promote' or 'demote'
      */
     shiftSectioningLevel(change: 'promote' | 'demote') {
-        Logger.log(`Calling shiftSectioningLevel with parameter: ${change}`)
+        logger.log(`Calling shiftSectioningLevel with parameter: ${change}`)
         if (change !== 'promote' && change !== 'demote') {
             throw TypeError(
             `Invalid value of function parameter 'change' (=${change})`
@@ -159,7 +159,7 @@ export class Section {
     }
 
     selectSection() {
-        Logger.log('Calling selectSection.')
+        logger.log('Calling selectSection.')
 
         const editor = vscode.window.activeTextEditor
         if (editor === undefined) {
@@ -167,7 +167,7 @@ export class Section {
         }
         const beginLevel = this.searchLevelUp(this.levels, editor.selection.anchor, editor.document)
         if (!beginLevel) {
-            Logger.log('Cannot find any section command above current line.')
+            logger.log('Cannot find any section command above current line.')
             return
         }
         const levelIndex = this.levels.indexOf(beginLevel.level)

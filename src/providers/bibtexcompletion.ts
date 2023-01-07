@@ -3,7 +3,7 @@ import * as fs from 'fs'
 
 import type { Extension } from '../main'
 import {BibtexFormatConfig} from './bibtexformatterlib/bibtexutils'
-import { Logger } from '../components/logger'
+import * as logger from '../components/logger'
 
 type DataBibtexJsonType = typeof import('../../data/bibtex-entries.json')
 type DataBibtexOptionalJsonType = typeof import('../../data/bibtex-optional-entries.json')
@@ -63,13 +63,13 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
                 entriesReplacements = configuration.get('intellisense.biblatexJSON.replace') as {[key: string]: string[]}
                 break
             default:
-                Logger.log(`Unknown citation backend: ${citationBackend}`)
+                logger.log(`Unknown citation backend: ${citationBackend}`)
                 return
         }
         try {
             this.loadDefaultItems(entriesFile, optEntriesFile, entriesReplacements)
         } catch (err) {
-            Logger.log(`Error reading data: ${err}.`)
+            logger.log(`Error reading data: ${err}.`)
         }
     }
 

@@ -6,7 +6,7 @@ import * as cs from 'cross-spawn'
 
 import type {Extension} from '../main'
 import {replaceArgumentPlaceholders} from '../utils/utils'
-import { Logger } from './logger'
+import * as logger from './logger'
 
 
 /**
@@ -45,7 +45,7 @@ export class Cleaner {
             }
             rootFile = this.extension.manager.rootFile
             if (!rootFile) {
-                Logger.log('Cannot determine the root file to be cleaned.')
+                logger.log('Cannot determine the root file to be cleaned.')
                 return
             }
         }
@@ -57,7 +57,7 @@ export class Cleaner {
             case 'cleanCommand':
                 return this.cleanCommand(rootFile)
             default:
-                Logger.log(`Unknown cleaning method: ${cleanMethod}`)
+                logger.log(`Unknown cleaning method: ${cleanMethod}`)
                 return
         }
     }
@@ -108,10 +108,10 @@ export class Cleaner {
         if (configuration.get('latex.clean.subfolder.enabled') as boolean) {
             globs = globs.map(globType => './**/' + globType)
         }
-        Logger.log(`Clean glob matched files: ${JSON.stringify({globs, outdir})}`)
+        logger.log(`Clean glob matched files: ${JSON.stringify({globs, outdir})}`)
 
         const { fileOrFolderGlobs, folderGlobsExplicit, folderGlobsWithGlobstar } = Cleaner.splitGlobs(globs)
-        Logger.log(`Ignore folder glob patterns with globstar: ${folderGlobsWithGlobstar}`)
+        logger.log(`Ignore folder glob patterns with globstar: ${folderGlobsWithGlobstar}`)
 
         const explicitFolders: string[] = globAll(folderGlobsExplicit, outdir)
         const explicitFoldersSet: Set<string> = new Set(explicitFolders)
@@ -123,17 +123,14 @@ export class Cleaner {
                 const stats: fs.Stats = fs.statSync(realPath)
                 if (stats.isFile()) {
                     await fs.promises.unlink(realPath)
-                    Logger.log(`Cleaning file: ${realPath}`)
+                    logger.log(`Cleaning file: ${realPath}`)
                 } else if (stats.isDirectory()) {
-                    Logger.log(`Not removing folder that is not explicitly specified: ${realPath}`)
+                    logger.log(`Not removing folder that is not explicitly specified: ${realPath}`)
                 } else {
-                    Logger.log(`Not removing non-file: ${realPath}`)
+                    logger.log(`Not removing non-file: ${realPath}`)
                 }
             } catch (err) {
-                Logger.log(`Error cleaning path: ${realPath}`)
-                if (err instanceof Error) {
-                    Logger.logError(err)
-                }
+                logger.logError(`[Cleaner] Failed cleaning path ${realPath}`, err)
             }
         }
 
@@ -142,15 +139,12 @@ export class Cleaner {
             try {
                 if (fs.readdirSync(folderRealPath).length === 0) {
                     await fs.promises.rmdir(folderRealPath)
-                    Logger.log(`Removing empty folder: ${folderRealPath}`)
+                    logger.log(`Removing empty folder: ${folderRealPath}`)
                 } else {
-                    Logger.log(`Not removing non-empty folder: ${folderRealPath}`)
+                    logger.log(`Not removing non-empty folder: ${folderRealPath}`)
                 }
             } catch (err) {
-                Logger.log(`Error cleaning folder: ${folderRealPath}`)
-                if (err instanceof Error) {
-                    Logger.logError(err)
-                }
+                logger.logError(`[Cleaner] Failed cleaning folder ${folderRealPath}`, err)
             }
         }
     }
@@ -165,7 +159,7 @@ export class Cleaner {
                 .replace(/%TEX%/g, rootFile)
             })
         }
-        Logger.logCommand('Clean temporary files command', command, args)
+        logger.logCommand('Clean temporary files command', command, args)
         return new Promise((resolve, _reject) => {
             const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile), detached: true})
             let stderr = ''
@@ -173,16 +167,13 @@ export class Cleaner {
                 stderr += newStderr
             })
             proc.on('error', err => {
-                Logger.log(`Cannot run ${command}: ${err.message}, ${stderr}`)
-                if (err instanceof Error) {
-                    Logger.logError(err)
-                }
+                logger.logError(`[Cleaner] Failed running cleaning command ${command} .`, err, stderr)
                 resolve()
             })
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
-                    Logger.log(`The clean command failed with exit code ${exitCode}`)
-                    Logger.log(`Clean command stderr: ${stderr}`)
+                    logger.log(`The clean command failed with exit code ${exitCode}`)
+                    logger.log(`Clean command stderr: ${stderr}`)
                 }
                 resolve()
             })

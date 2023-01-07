@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as utils from '../utils/utils'
-import { Logger } from './logger'
+import * as logger from './logger'
 
 
 function regexpAllMatches(str: string, reg: RegExp) {
@@ -95,7 +95,7 @@ export class EnvPair {
                 line = line.slice(startCol, pos.character)
                 break
             default:
-                Logger.log('Direction error in locateMatchingPair')
+                logger.log('Direction error in locateMatchingPair')
                 return null
         }
         const begins = Object.keys(this.delimiters)
@@ -254,7 +254,7 @@ export class EnvPair {
                         editor.selection = new vscode.Selection(startingPos, startingPos)
                         break
                     default:
-                        Logger.log('Error - while selecting environment name')
+                        logger.log('Error - while selecting environment name')
                 }
             }
         })

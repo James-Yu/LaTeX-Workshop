@@ -5,7 +5,7 @@ import {performance} from 'perf_hooks'
 import type { Extension } from '../main'
 import {BibtexUtils} from './bibtexformatterlib/bibtexutils'
 import type {BibtexEntry} from './bibtexformatterlib/bibtexutils'
-import { Logger } from '../components/logger'
+import * as logger from '../components/logger'
 
 export class BibtexFormatter {
 
@@ -21,17 +21,17 @@ export class BibtexFormatter {
 
     async bibtexFormat(sort: boolean, align: boolean) {
         if (!vscode.window.activeTextEditor) {
-            Logger.log('Exit formatting. The active textEditor is undefined.')
+            logger.log('Exit formatting. The active textEditor is undefined.')
             return
         }
         if (vscode.window.activeTextEditor.document.languageId !== 'bibtex') {
-            Logger.log('Exit formatting. The active textEditor is not of bibtex type.')
+            logger.log('Exit formatting. The active textEditor is not of bibtex type.')
             return
         }
         const doc = vscode.window.activeTextEditor.document
         const t0 = performance.now() // Measure performance
         this.duplicatesDiagnostics.clear()
-        Logger.log('Start bibtex formatting on user request.')
+        logger.log('Start bibtex formatting on user request.')
         const edits = await this.formatDocument(doc, sort, align)
         if (edits.length === 0) {
             return
@@ -45,9 +45,9 @@ export class BibtexFormatter {
             if (success) {
                 this.duplicatesDiagnostics.set(doc.uri, this.diags)
                 const t1 = performance.now()
-                Logger.log(`BibTeX action successful. Took ${t1 - t0} ms.`)
+                logger.log(`BibTeX action successful. Took ${t1 - t0} ms.`)
             } else {
-                void Logger.showErrorMessage('Something went wrong while processing the bibliography.')
+                void logger.showErrorMessage('Something went wrong while processing the bibliography.')
             }
         })
 
@@ -63,9 +63,9 @@ export class BibtexFormatter {
 
         const ast = await this.extension.pegParser.parseBibtex(document.getText(range)).catch((error) => {
             if (error instanceof(Error)) {
-                Logger.log('Bibtex parser failed.')
-                Logger.log(error.message)
-                void Logger.showErrorMessage('Bibtex parser failed with error: ' + error.message)
+                logger.log('Bibtex parser failed.')
+                logger.log(error.message)
+                void logger.showErrorMessage('Bibtex parser failed with error: ' + error.message)
             }
             return undefined
         })
@@ -135,7 +135,7 @@ export class BibtexFormatter {
                         ))
                     } else { // 'Comment Duplicates'
                         // Log duplicate entry since we aren't highlighting it
-                        Logger.log(
+                        logger.log(
                             `BibTeX-format: Duplicate entry "${entry.internalKey}" at line ${entryLocations[i].start.line + lineDelta + 1 + lineOffset}.`)
                         text = text.replace(/@/,'')
                     }
@@ -148,7 +148,7 @@ export class BibtexFormatter {
             // We need to figure out the line changes in order to highlight properly
             lineDelta += (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line) - (entryLocations[i].end.line - entryLocations[i].start.line)
         }
-        Logger.log('Formatted ' + document.fileName)
+        logger.log('Formatted ' + document.fileName)
         return edits
     }
 }
@@ -164,13 +164,13 @@ export class BibtexFormatterProvider implements vscode.DocumentFormattingEditPro
 
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
         const sort = vscode.workspace.getConfiguration('latex-workshop', document).get('bibtex-format.sort.enabled') as boolean
-        Logger.log('Start bibtex formatting on behalf of VSCode\'s formatter.')
+        logger.log('Start bibtex formatting on behalf of VSCode\'s formatter.')
         return this.formatter.formatDocument(document, sort, true)
     }
 
     public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
         const sort = vscode.workspace.getConfiguration('latex-workshop', document).get('bibtex-format.sort.enabled') as boolean
-        Logger.log('Start bibtex selection formatting on behalf of VSCode\'s formatter.')
+        logger.log('Start bibtex selection formatting on behalf of VSCode\'s formatter.')
         return this.formatter.formatDocument(document, sort, true, range)
     }
 

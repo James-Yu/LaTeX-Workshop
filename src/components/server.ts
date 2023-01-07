@@ -8,7 +8,7 @@ import * as vscode from 'vscode'
 import type {Extension} from '../main'
 import {PdfFilePathEncoder} from './serverlib/encodepath'
 import {EventEmitter} from 'events'
-import { Logger } from './logger'
+import * as logger from './logger'
 
 class WsServer extends ws.Server {
     private readonly validOrigin: string
@@ -26,8 +26,8 @@ class WsServer extends ws.Server {
     shouldHandle(req: http.IncomingMessage): boolean {
         const reqOrigin = req.headers['origin']
         if (reqOrigin !== undefined && reqOrigin !== this.validOrigin) {
-            Logger.log(`[Server] Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
-            Logger.log(`[Server] Valid origin: ${this.validOrigin}`)
+            logger.log(`[Server] Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
+            logger.log(`[Server] Valid origin: ${this.validOrigin}`)
             return false
         } else {
             return true
@@ -55,7 +55,7 @@ export class Server {
         this.pdfFilePathEncoder = new PdfFilePathEncoder(extension)
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
         this.initializeHttpServer()
-        Logger.log('[Server] Creating LaTeX Workshop http and websocket server.')
+        logger.log('[Server] Creating LaTeX Workshop http and websocket server.')
     }
 
     dispose() {
@@ -65,7 +65,7 @@ export class Server {
     get port(): number {
         const portNum = this.address?.port
         if (portNum === undefined) {
-            Logger.log('Server port number is undefined.')
+            logger.log('Server port number is undefined.')
             throw new Error('Server port number is undefined.')
         }
         return portNum
@@ -86,17 +86,17 @@ export class Server {
             const address = this.httpServer.address()
             if (address && typeof address !== 'string') {
                 this.address = address
-                Logger.log(`[Server] Server successfully started: ${JSON.stringify(address)}`)
+                logger.log(`[Server] Server successfully started: ${JSON.stringify(address)}`)
                 this.validOriginUri = await this.obtainValidOrigin(address.port)
-                Logger.log(`[Server] valdOrigin is ${this.validOrigin}`)
+                logger.log(`[Server] valdOrigin is ${this.validOrigin}`)
                 this.initializeWsServer()
                 this.eventEmitter.emit(ServerStartedEvent)
             } else {
-                Logger.log(`[Server] Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
+                logger.log(`[Server] Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
             }
         })
         this.httpServer.on('error', (err) => {
-            Logger.log(`[Server] Error creating LaTeX Workshop http server: ${JSON.stringify(err)}.`)
+            logger.log(`[Server] Error creating LaTeX Workshop http server: ${JSON.stringify(err)} .`)
         })
     }
 
@@ -110,7 +110,7 @@ export class Server {
         const wsServer = new WsServer(this.httpServer, this.validOrigin)
         wsServer.on('connection', (websocket) => {
             websocket.on('message', (msg: string) => this.extension.viewer.handler(websocket, msg))
-            websocket.on('error', (err) => Logger.log(`[Server] Error on WebSocket connection. ${JSON.stringify(err)}`))
+            websocket.on('error', (err) => logger.log(`[Server] Error on WebSocket connection. ${JSON.stringify(err)}`))
         })
     }
 
@@ -123,8 +123,8 @@ export class Server {
     private checkHttpOrigin(req: http.IncomingMessage, response: http.ServerResponse): boolean {
         const reqOrigin = req.headers['origin']
         if (reqOrigin !== undefined && reqOrigin !== this.validOrigin) {
-            Logger.log(`[Server] Origin in http request is invalid: ${JSON.stringify(req.headers)}`)
-            Logger.log(`[Server] Valid origin: ${this.validOrigin}`)
+            logger.log(`[Server] Origin in http request is invalid: ${JSON.stringify(req.headers)}`)
+            logger.log(`[Server] Valid origin: ${this.validOrigin}`)
             response.writeHead(403)
             response.end()
             return false
@@ -165,18 +165,15 @@ export class Server {
             const s = request.url.replace('/', '')
             const fileUri = this.pdfFilePathEncoder.decodePathWithPrefix(s)
             if (this.extension.viewer.getClientSet(fileUri) === undefined) {
-                Logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
+                logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
                 return
             }
             try {
                 const buf: Buffer = await this.extension.lwfs.readFileAsBuffer(fileUri)
                 this.sendOkResponse(response, buf, 'application/pdf')
-                Logger.log(`Preview PDF file: ${fileUri.toString(true)}`)
+                logger.log(`Preview PDF file: ${fileUri.toString(true)}`)
             } catch (e) {
-                Logger.log(`Error reading PDF file: ${fileUri.toString(true)}`)
-                if (e instanceof Error) {
-                    Logger.logError(e)
-                }
+                logger.logError(`[Server] Error reading PDF ${fileUri.toString(true)}`, e)
                 response.writeHead(404)
                 response.end()
             }

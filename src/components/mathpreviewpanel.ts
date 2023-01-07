@@ -3,7 +3,7 @@ import * as path from 'path'
 import type {TexMathEnv} from '../providers/preview/mathpreview'
 import {openWebviewPanel} from '../utils/webview'
 import type {Extension} from '../main'
-import { Logger } from './logger'
+import * as logger from './logger'
 
 
 type UpdateEvent = {
@@ -33,7 +33,7 @@ export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer
             localResourceRoots: [resourcesFolder(this.extension.extensionRoot)]
         }
         panel.webview.html = this.extension.mathPreviewPanel.getHtml(panel.webview)
-        Logger.log('Math preview panel: restored')
+        logger.log('Math preview panel: restored')
         return Promise.resolve()
     }
 
@@ -92,7 +92,7 @@ export class MathPreviewPanel {
         if (activeDocument) {
             await openWebviewPanel(panel, editorGroup, activeDocument)
         }
-        Logger.log('Math preview panel: opened')
+        logger.log('Math preview panel: opened')
     }
 
     initializePanel(panel: vscode.WebviewPanel) {
@@ -109,7 +109,7 @@ export class MathPreviewPanel {
             disposable.dispose()
             this.clearCache()
             this.panel = undefined
-            Logger.log('Math preview panel: disposed')
+            logger.log('Math preview panel: disposed')
         })
         panel.onDidChangeViewState((ev) => {
             if (ev.webviewPanel.visible) {
@@ -117,7 +117,7 @@ export class MathPreviewPanel {
             }
         })
         panel.webview.onDidReceiveMessage(() => {
-            Logger.log('Math preview panel: initialized')
+            logger.log('Math preview panel: initialized')
             void this.update()
         })
     }
@@ -126,7 +126,7 @@ export class MathPreviewPanel {
         this.panel?.dispose()
         this.panel = undefined
         this.clearCache()
-        Logger.log('Math preview panel: closed')
+        logger.log('Math preview panel: closed')
     }
 
     toggle() {

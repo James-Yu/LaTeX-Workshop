@@ -12,7 +12,7 @@ import {NewCommandFinder} from './mathpreviewlib/newcommandfinder'
 import {TexMathEnv, TeXMathEnvFinder} from './mathpreviewlib/texmathenvfinder'
 import {HoverPreviewOnRefProvider} from './mathpreviewlib/hoverpreviewonref'
 import {MathPreviewUtils} from './mathpreviewlib/mathpreviewutils'
-import { Logger } from '../../components/logger'
+import * as logger from '../../components/logger'
 
 export type {TexMathEnv} from './mathpreviewlib/texmathenvfinder'
 
@@ -56,8 +56,7 @@ export class MathPreview {
             const md = utils.svgToDataUrl(xml)
             return new vscode.Hover(new vscode.MarkdownString(this.mputils.addDummyCodeBlock(`![equation](${md})`)), tex.range )
         } catch(e) {
-            Logger.logOnRejected(e)
-            Logger.log(`Error when MathJax is rendering ${typesetArg}`)
+            logger.logError(`[Preview] Failed rendering MathJax ${typesetArg} .`, e)
             throw e
         }
     }

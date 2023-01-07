@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import { Logger } from './logger'
 
 export class LwFileSystem {
     isLocalUri(uri: vscode.Uri): boolean {
@@ -43,9 +42,6 @@ export class LwFileSystem {
             const ret = fs.readFileSync(filepath).toString()
             return ret
         } catch (err) {
-            if (err instanceof Error) {
-                Logger.logError(err)
-            }
             return undefined
         }
     }

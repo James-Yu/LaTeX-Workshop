@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import type { Extension } from '../../main'
-import { Logger } from '../logger'
+import * as logger from '../logger'
 import type { LogEntry } from './compilerlog'
 
 const multiLineWarning = /^Warning--(.+)\n--line (\d+) of file (.+)$/gm
@@ -24,7 +24,7 @@ export class BibLogParser {
             rootFile = this.extension.manager.rootFile
         }
         if (rootFile === undefined) {
-            Logger.log('How can you reach this point?')
+            logger.log('How can you reach this point?')
             return
         }
 
@@ -34,7 +34,7 @@ export class BibLogParser {
             excludeRegexp = (configuration.get('message.bibtexlog.exclude') as string[]).map(regexp => RegExp(regexp))
         } catch (e) {
             if (e instanceof Error) {
-                Logger.log(`latex-workshop.message.bibtexlog.exclude is invalid: ${e.message}`)
+                logger.log(`latex-workshop.message.bibtexlog.exclude is invalid: ${e.message}`)
             }
             return
         }
@@ -67,7 +67,7 @@ export class BibLogParser {
             this.pushLog('error', filename, result[1], 1, excludeRegexp)
         }
 
-        Logger.log(`BibTeX log parsed with ${this.buildLog.length} messages.`)
+        logger.log(`BibTeX log parsed with ${this.buildLog.length} messages.`)
         this.extension.compilerLogParser.showCompilerDiagnostics(this.compilerDiagnostics, this.buildLog, 'BibTeX')
     }
 
@@ -91,7 +91,7 @@ export class BibLogParser {
                 return tex
             }
         }
-        Logger.log(`Cannot resolve file while parsing BibTeX log: ${filename}`)
+        logger.log(`Cannot resolve file while parsing BibTeX log: ${filename}`)
         return filename
     }
 
@@ -105,7 +105,7 @@ export class BibLogParser {
                 return bib
             }
         }
-        Logger.log(`Cannot resolve file while parsing BibTeX log: ${filename}`)
+        logger.log(`Cannot resolve file while parsing BibTeX log: ${filename}`)
         return filename
     }
 
@@ -116,7 +116,7 @@ export class BibLogParser {
             const line = entry.position.line + 1
             return {file, line}
         } else {
-            Logger.log(`Cannot find key when parsing BibTeX log: ${key}`)
+            logger.log(`Cannot find key when parsing BibTeX log: ${key}`)
             return undefined
         }
     }
