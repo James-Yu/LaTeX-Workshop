@@ -99,7 +99,7 @@ suite('Intellisense test suite', () => {
         const defaultCommands = extension.completer.command.getDefaultCmds().map(e => e.label)
         assert.ok(defaultCommands.includes('\\begin'))
         assert.ok(defaultCommands.includes('\\left('))
-        assert.ok(defaultCommands.includes('\\section{title}'))
+        assert.ok(defaultCommands.includes('\\section{}'))
     })
 
     runTest({suiteName, fixtureName, testName: 'check package .json completion file'}, () => {
@@ -231,7 +231,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items.length > 0)
 
         let labels = items.map(item => item.label.toString())
-        assert.ok(!labels.includes('\\mathbb{text}'))
+        assert.ok(!labels.includes('\\mathbb{}'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.commandsJSON.replace', undefined)
         items = getIntellisense(result.doc, new vscode.Position(0, 1), extension)
@@ -239,7 +239,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items.length > 0)
 
         labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('\\mathbb{text}'))
+        assert.ok(labels.includes('\\mathbb{}'))
     })
 
     runTest({suiteName, fixtureName, testName: 'reference intellisense and config intellisense.label.keyval'}, async () => {
