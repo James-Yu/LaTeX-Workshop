@@ -2,6 +2,10 @@ import * as vscode from 'vscode'
 import type { Extension } from '../../main'
 import type { LogEntry } from './compilerlog'
 
+import { getLogger } from '../logger'
+
+const logger = getLogger('Parser', 'BibLog')
+
 const multiLineWarning = /^Warning--(.+)\n--line (\d+) of file (.+)$/gm
 const singleLineWarning = /^Warning--(.+) in ([^\s]+)\s*$/gm
 const multiLineError = /^(.*)---line (\d+) of file (.*)\n([^]+?)\nI'm skipping whatever remains of this entry$/gm
@@ -23,7 +27,7 @@ export class BibLogParser {
             rootFile = this.extension.manager.rootFile
         }
         if (rootFile === undefined) {
-            this.extension.logger.addLogMessage('How can you reach this point?')
+            logger.log('How can you reach this point?')
             return
         }
 
@@ -32,9 +36,7 @@ export class BibLogParser {
         try {
             excludeRegexp = (configuration.get('message.bibtexlog.exclude') as string[]).map(regexp => RegExp(regexp))
         } catch (e) {
-            if (e instanceof Error) {
-                this.extension.logger.addLogMessage(`latex-workshop.message.bibtexlog.exclude is invalid: ${e.message}`)
-            }
+            logger.logError('Invalid message.bibtexlog.exclude config.', e)
             return
         }
         this.buildLog = []
@@ -66,7 +68,7 @@ export class BibLogParser {
             this.pushLog('error', filename, result[1], 1, excludeRegexp)
         }
 
-        this.extension.logger.addLogMessage(`BibTeX log parsed with ${this.buildLog.length} messages.`)
+        logger.log(`Logged ${this.buildLog.length} messages.`)
         this.extension.compilerLogParser.showCompilerDiagnostics(this.compilerDiagnostics, this.buildLog, 'BibTeX')
     }
 
@@ -90,7 +92,7 @@ export class BibLogParser {
                 return tex
             }
         }
-        this.extension.logger.addLogMessage(`Cannot resolve file while parsing BibTeX log: ${filename}`)
+        logger.log(`Cannot resolve file ${filename} .`)
         return filename
     }
 
@@ -104,7 +106,7 @@ export class BibLogParser {
                 return bib
             }
         }
-        this.extension.logger.addLogMessage(`Cannot resolve file while parsing BibTeX log: ${filename}`)
+        logger.log(`Cannot resolve file ${filename} .`)
         return filename
     }
 
@@ -115,7 +117,7 @@ export class BibLogParser {
             const line = entry.position.line + 1
             return {file, line}
         } else {
-            this.extension.logger.addLogMessage(`Cannot find key when parsing BibTeX log: ${key}`)
+            logger.log(`Cannot find key ${key}`)
             return undefined
         }
     }

@@ -2,6 +2,9 @@ import * as vscode from 'vscode'
 import * as chokidar from 'chokidar'
 
 import type {Extension} from '../../main'
+import { getLogger } from '../logger'
+
+const logger = getLogger('Cacher', 'PDF')
 
 export class PdfWatcher {
     private readonly watchedPdfLocalPaths = new Set<string>()
@@ -30,8 +33,8 @@ export class PdfWatcher {
         await this.pdfWatcher.close()
     }
 
-    private toKey(pdfFileUri: vscode.Uri) {
-        return pdfFileUri.toString(true)
+    private toKey(fileUri: vscode.Uri) {
+        return fileUri.toString(true)
     }
 
     private initializeWatcher() {
@@ -50,9 +53,9 @@ export class PdfWatcher {
         }
     }
 
-    private isWatchedVirtualUri(pdfFile: vscode.Uri): boolean {
-        if (this.extension.lwfs.isVirtualUri(pdfFile)) {
-            const key = this.toKey(pdfFile)
+    private isWatchedVirtualUri(fileUri: vscode.Uri): boolean {
+        if (this.extension.lwfs.isVirtualUri(fileUri)) {
+            const key = this.toKey(fileUri)
             return this.watchedPdfVirtualUris.has(key)
         } else {
             return false
@@ -76,54 +79,55 @@ export class PdfWatcher {
         return virtualUriWatcher
     }
 
-    private onWatchedPdfChanged(file: string) {
-        if (this.isIgnored(file)) {
+    private onWatchedPdfChanged(filePath: string) {
+        if (this.isIgnored(filePath)) {
             return
         }
-        this.extension.logger.addLogMessage(`PDF file watcher - file changed: ${file}`)
-        this.extension.viewer.refreshExistingViewer(undefined, file)
+        this.extension.viewer.refreshExistingViewer(undefined, filePath)
+        logger.log(`Changed ${filePath} .`)
     }
 
-    private onWatchedPdfDeleted(file: string) {
-        this.extension.logger.addLogMessage(`PDF file watcher - file deleted: ${file}`)
-        this.pdfWatcher.unwatch(file)
-        this.watchedPdfLocalPaths.delete(file)
+    private onWatchedPdfDeleted(filePath: string) {
+        this.pdfWatcher.unwatch(filePath)
+        this.watchedPdfLocalPaths.delete(filePath)
+        logger.log(`Unlinked ${filePath} .`)
     }
 
-    watchPdfFile(pdfFileUri: vscode.Uri) {
-        const isLocal = this.extension.lwfs.isLocalUri(pdfFileUri)
+    watchPdfFile(fileUri: vscode.Uri) {
+        const isLocal = this.extension.lwfs.isLocalUri(fileUri)
         if (isLocal) {
-            const pdfFilePath = pdfFileUri.fsPath
+            const pdfFilePath = fileUri.fsPath
             if (!this.watchedPdfLocalPaths.has(pdfFilePath)) {
-                this.extension.logger.addLogMessage(`Added to PDF file watcher: ${pdfFileUri.toString(true)}`)
                 this.pdfWatcher.add(pdfFilePath)
                 this.watchedPdfLocalPaths.add(pdfFilePath)
+                logger.log(`Watched ${fileUri.toString(true)} .`)
             }
         } else {
-            this.watchedPdfVirtualUris.add(this.toKey(pdfFileUri))
+            this.watchedPdfVirtualUris.add(this.toKey(fileUri))
+            logger.log(`Watched ${this.toKey(fileUri)} .`)
         }
     }
 
-    private isIgnored(pdfFile: vscode.Uri | string): boolean {
+    private isIgnored(file: vscode.Uri | string): boolean {
         let pdfFileUri: vscode.Uri
-        if (typeof pdfFile === 'string') {
-            pdfFileUri = vscode.Uri.file(pdfFile)
+        if (typeof file === 'string') {
+            pdfFileUri = vscode.Uri.file(file)
         } else {
-            pdfFileUri = pdfFile
+            pdfFileUri = file
         }
         const key = this.toKey(pdfFileUri)
         return this.ignoredPdfUris.has(key)
     }
 
-    ignorePdfFile(pdfFileUri: vscode.Uri) {
-        this.ignoredPdfUris.add(this.toKey(pdfFileUri))
+    ignorePdfFile(fileUri: vscode.Uri) {
+        this.ignoredPdfUris.add(this.toKey(fileUri))
     }
 
     logWatchedFiles() {
-        this.extension.logger.addLogMessage(`PdfWatcher.pdfWatcher.getWatched: ${JSON.stringify(this.pdfWatcher.getWatched())}`)
-        this.extension.logger.addLogMessage(`PdfWatcher.pdfsWatched: ${JSON.stringify(Array.from(this.watchedPdfLocalPaths))}`)
-        this.extension.logger.addLogMessage(`PdfWatcher.watchedPdfVirtualUris: ${JSON.stringify(Array.from(this.watchedPdfVirtualUris))}`)
-        this.extension.logger.addLogMessage(`PdfWatcher.ignoredPdfUris: ${JSON.stringify(Array.from(this.ignoredPdfUris))}`)
+        logger.log(`${JSON.stringify(this.pdfWatcher.getWatched())}`)
+        logger.log(`${JSON.stringify(Array.from(this.watchedPdfLocalPaths))}`)
+        logger.log(`${JSON.stringify(Array.from(this.watchedPdfVirtualUris))}`)
+        logger.log(`${JSON.stringify(Array.from(this.ignoredPdfUris))}`)
     }
 
 }

@@ -3,6 +3,10 @@ import * as path from 'path'
 
 import type {Extension} from '../main'
 
+import { getLogger } from './logger'
+
+const logger = getLogger('DupLabel')
+
 
 export class DuplicateLabels {
     private readonly duplicatedLabelsDiagnostics = vscode.languages.createDiagnosticCollection('Duplicate Labels')
@@ -14,7 +18,7 @@ export class DuplicateLabels {
      */
     private computeDuplicates(file: string): string[] {
         if (!this.extension.cacher.get(file)) {
-            this.extension.logger.addLogMessage(`Cannot check for duplicate labels in a file not in manager: ${file}.`)
+            logger.log(`Cannot check for duplicate labels in a file not in manager: ${file} .`)
             return []
         }
         const labelsCount = new Map<string, number>()
@@ -49,7 +53,7 @@ export class DuplicateLabels {
         if (!configuration.get('check.duplicatedLabels.enabled')) {
             return
         }
-        this.extension.logger.addLogMessage(`Checking for duplicate labels: ${file}.`)
+        logger.log(`Checking for duplicate labels: ${file} .`)
         const duplicates = this.computeDuplicates(file)
         this.showDiagnostics(duplicates)
     }

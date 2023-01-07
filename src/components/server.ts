@@ -9,13 +9,15 @@ import type {Extension} from '../main'
 import {PdfFilePathEncoder} from './serverlib/encodepath'
 import {EventEmitter} from 'events'
 
+import { getLogger } from './logger'
+
+const logger = getLogger('Server')
+
 class WsServer extends ws.Server {
-    private readonly extension: Extension
     private readonly validOrigin: string
 
-    constructor(server: http.Server, extension: Extension, validOrigin: string) {
+    constructor(server: http.Server, validOrigin: string) {
         super({server})
-        this.extension = extension
         this.validOrigin = validOrigin
     }
 
@@ -27,8 +29,8 @@ class WsServer extends ws.Server {
     shouldHandle(req: http.IncomingMessage): boolean {
         const reqOrigin = req.headers['origin']
         if (reqOrigin !== undefined && reqOrigin !== this.validOrigin) {
-            this.extension.logger.addLogMessage(`[Server] Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
-            this.extension.logger.addLogMessage(`[Server] Valid origin: ${this.validOrigin}`)
+            logger.log(`Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
+            logger.log(`Valid origin: ${this.validOrigin}`)
             return false
         } else {
             return true
@@ -56,7 +58,7 @@ export class Server {
         this.pdfFilePathEncoder = new PdfFilePathEncoder(extension)
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
         this.initializeHttpServer()
-        this.extension.logger.addLogMessage('[Server] Creating LaTeX Workshop http and websocket server.')
+        logger.log('Creating LaTeX Workshop http and websocket server.')
     }
 
     dispose() {
@@ -66,7 +68,7 @@ export class Server {
     get port(): number {
         const portNum = this.address?.port
         if (portNum === undefined) {
-            this.extension.logger.addLogMessage('Server port number is undefined.')
+            logger.log('Server port number is undefined.')
             throw new Error('Server port number is undefined.')
         }
         return portNum
@@ -87,17 +89,17 @@ export class Server {
             const address = this.httpServer.address()
             if (address && typeof address !== 'string') {
                 this.address = address
-                this.extension.logger.addLogMessage(`[Server] Server successfully started: ${JSON.stringify(address)}`)
+                logger.log(`Server successfully started: ${JSON.stringify(address)}`)
                 this.validOriginUri = await this.obtainValidOrigin(address.port)
-                this.extension.logger.addLogMessage(`[Server] valdOrigin is ${this.validOrigin}`)
+                logger.log(`valdOrigin is ${this.validOrigin}`)
                 this.initializeWsServer()
                 this.eventEmitter.emit(ServerStartedEvent)
             } else {
-                this.extension.logger.addLogMessage(`[Server] Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
+                logger.log(`Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
             }
         })
         this.httpServer.on('error', (err) => {
-            this.extension.logger.addLogMessage(`[Server] Error creating LaTeX Workshop http server: ${JSON.stringify(err)}.`)
+            logger.log(`Error creating LaTeX Workshop http server: ${JSON.stringify(err)} .`)
         })
     }
 
@@ -108,10 +110,10 @@ export class Server {
     }
 
     private initializeWsServer() {
-        const wsServer = new WsServer(this.httpServer, this.extension, this.validOrigin)
+        const wsServer = new WsServer(this.httpServer, this.validOrigin)
         wsServer.on('connection', (websocket) => {
             websocket.on('message', (msg: string) => this.extension.viewer.handler(websocket, msg))
-            websocket.on('error', (err) => this.extension.logger.addLogMessage(`[Server] Error on WebSocket connection. ${JSON.stringify(err)}`))
+            websocket.on('error', (err) => logger.log(`Error on WebSocket connection. ${JSON.stringify(err)}`))
         })
     }
 
@@ -124,8 +126,8 @@ export class Server {
     private checkHttpOrigin(req: http.IncomingMessage, response: http.ServerResponse): boolean {
         const reqOrigin = req.headers['origin']
         if (reqOrigin !== undefined && reqOrigin !== this.validOrigin) {
-            this.extension.logger.addLogMessage(`[Server] Origin in http request is invalid: ${JSON.stringify(req.headers)}`)
-            this.extension.logger.addLogMessage(`[Server] Valid origin: ${this.validOrigin}`)
+            logger.log(`Origin in http request is invalid: ${JSON.stringify(req.headers)}`)
+            logger.log(`Valid origin: ${this.validOrigin}`)
             response.writeHead(403)
             response.end()
             return false
@@ -166,18 +168,15 @@ export class Server {
             const s = request.url.replace('/', '')
             const fileUri = this.pdfFilePathEncoder.decodePathWithPrefix(s)
             if (this.extension.viewer.getClientSet(fileUri) === undefined) {
-                this.extension.logger.addLogMessage(`Invalid PDF request: ${fileUri.toString(true)}`)
+                logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
                 return
             }
             try {
                 const buf: Buffer = await this.extension.lwfs.readFileAsBuffer(fileUri)
                 this.sendOkResponse(response, buf, 'application/pdf')
-                this.extension.logger.addLogMessage(`Preview PDF file: ${fileUri.toString(true)}`)
+                logger.log(`Preview PDF file: ${fileUri.toString(true)}`)
             } catch (e) {
-                this.extension.logger.addLogMessage(`Error reading PDF file: ${fileUri.toString(true)}`)
-                if (e instanceof Error) {
-                    this.extension.logger.logError(e)
-                }
+                logger.logError(`Error reading PDF ${fileUri.toString(true)}`, e)
                 response.writeHead(404)
                 response.end()
             }

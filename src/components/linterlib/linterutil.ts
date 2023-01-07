@@ -1,16 +1,15 @@
 import {ChildProcessWithoutNullStreams, spawn} from 'child_process'
 import {EOL} from 'os'
 
-import type { Extension } from '../../main'
+import { getLogger } from '../logger'
+
+const logger = getLogger('Linter')
 
 export class LinterUtil {
     readonly #currentProcesses = Object.create(null) as { [linterId: string]: ChildProcessWithoutNullStreams }
 
-    constructor(private readonly extension: Extension) {
-    }
-
     processWrapper(linterId: string, command: string, args: string[], options: {cwd: string}, stdin?: string): Promise<string> {
-        this.extension.logger.logCommand(`Linter for ${linterId} command`, command, args)
+        logger.logCommand(`Linter for ${linterId} command`, command, args)
         return new Promise((resolve, reject) => {
             if (this.#currentProcesses[linterId]) {
                 this.#currentProcesses[linterId].kill()
@@ -32,7 +31,7 @@ export class LinterUtil {
             })
 
             proc.on('error', err => {
-                this.extension.logger.addLogMessage(`Linter for ${linterId} failed to spawn command, encountering error: ${err.message}`)
+                logger.log(`Linter for ${linterId} failed to spawn command, encountering error: ${err.message}`)
                 return reject(err)
             })
 
@@ -44,11 +43,11 @@ export class LinterUtil {
                     } else {
                         msg = '\n' + stderr
                     }
-                    this.extension.logger.addLogMessage(`Linter for ${linterId} failed with exit code ${exitCode} and error:${msg}`)
+                    logger.log(`Linter for ${linterId} failed with exit code ${exitCode} and error:${msg}`)
                     return reject({ exitCode, stdout, stderr})
                 } else {
                     const [s, ms] = process.hrtime(startTime)
-                    this.extension.logger.addLogMessage(`Linter for ${linterId} successfully finished in ${s}s ${Math.round(ms / 1000000)}ms`)
+                    logger.log(`Linter for ${linterId} successfully finished in ${s}s ${Math.round(ms / 1000000)}ms`)
                     return resolve(stdout)
                 }
             })

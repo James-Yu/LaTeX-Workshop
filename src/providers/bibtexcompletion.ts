@@ -4,6 +4,10 @@ import * as fs from 'fs'
 import type { Extension } from '../main'
 import {BibtexFormatConfig} from './bibtexformatterlib/bibtexutils'
 
+import { getLogger } from '../components/logger'
+
+const logger = getLogger('Intelli', 'Bib')
+
 type DataBibtexJsonType = typeof import('../../data/bibtex-entries.json')
 type DataBibtexOptionalJsonType = typeof import('../../data/bibtex-optional-entries.json')
 
@@ -21,7 +25,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         } else {
             this.scope = vscode.workspace.workspaceFolders?.[0]
         }
-        this.bibtexFormatConfig = new BibtexFormatConfig(extension, this.scope)
+        this.bibtexFormatConfig = new BibtexFormatConfig(this.scope)
         this.initialize()
         vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (e.affectsConfiguration('latex-workshop.bibtex-format', this.scope) ||
@@ -62,13 +66,13 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
                 entriesReplacements = configuration.get('intellisense.biblatexJSON.replace') as {[key: string]: string[]}
                 break
             default:
-                this.extension.logger.addLogMessage(`Unknown citation backend: ${citationBackend}`)
+                logger.log(`Unknown citation backend: ${citationBackend}`)
                 return
         }
         try {
             this.loadDefaultItems(entriesFile, optEntriesFile, entriesReplacements)
         } catch (err) {
-            this.extension.logger.addLogMessage(`Error reading data: ${err}.`)
+            logger.log(`Error reading data: ${err}.`)
         }
     }
 

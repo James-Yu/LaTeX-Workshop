@@ -6,25 +6,25 @@ import type { Extension } from '../../main'
 import type { ILinter } from '../linter'
 import { LinterUtil } from './linterutil'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
+import { getLogger } from '../logger'
+
+const logger = getLogger('Linter', 'LaCheck')
 
 export class LaCheck implements ILinter {
-    readonly #linterName = 'LaCheck'
-    readonly linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(this.#linterName)
+    readonly linterName = 'LaCheck'
+    readonly linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(this.linterName)
     readonly #linterUtil: LinterUtil
 
     constructor(private readonly extension: Extension) {
-        this.#linterUtil = new LinterUtil(extension)
+        this.#linterUtil = new LinterUtil()
     }
 
-    async lintRootFile() {
-        this.extension.logger.addLogMessage('Linter for root file started.')
-        if (this.extension.manager.rootFile === undefined) {
-            this.extension.logger.addLogMessage('No root file found for linting.')
-            return
-        }
-        const filePath = this.extension.manager.rootFile
+    getName() {
+        return this.linterName
+    }
 
-        const stdout = await this.lacheckWrapper('root', vscode.Uri.file(filePath), filePath, undefined)
+    async lintRootFile(rootPath: string) {
+        const stdout = await this.lacheckWrapper('root', vscode.Uri.file(rootPath), rootPath, undefined)
         if (stdout === undefined) { // It's possible to have empty string as output
             return
         }
@@ -33,7 +33,6 @@ export class LaCheck implements ILinter {
     }
 
     async lintFile(document: vscode.TextDocument) {
-        this.extension.logger.addLogMessage('Linter for active file started.')
         const filePath = document.fileName
         const content = document.getText()
 
@@ -99,7 +98,7 @@ export class LaCheck implements ILinter {
                 })
             }
         }
-        this.extension.logger.addLogMessage(`Linter log parsed with ${linterLog.length} messages.`)
+        logger.log(`Logged ${linterLog.length} messages.`)
         this.linterDiagnostics.clear()
         this.showLinterDiagnostics(linterLog)
     }
@@ -112,7 +111,7 @@ export class LaCheck implements ILinter {
                 new vscode.Position(item.line - 1, 65535)
             )
             const diag = new vscode.Diagnostic(range, item.text, vscode.DiagnosticSeverity.Warning)
-            diag.source = this.#linterName
+            diag.source = this.linterName
             if (diagsCollection[item.file] === undefined) {
                 diagsCollection[item.file] = []
             }

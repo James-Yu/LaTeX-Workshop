@@ -7,6 +7,9 @@ import * as cs from 'cross-spawn'
 import type {Extension} from '../main'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 
+import { getLogger } from './logger'
+
+const logger = getLogger('Cleaner')
 
 /**
  * Removes the duplicate elements. Note that the order of the sequence will not be preserved.
@@ -44,7 +47,7 @@ export class Cleaner {
             }
             rootFile = this.extension.manager.rootFile
             if (!rootFile) {
-                this.extension.logger.addLogMessage('Cannot determine the root file to be cleaned.')
+                logger.log('Cannot determine the root file to be cleaned.')
                 return
             }
         }
@@ -56,7 +59,7 @@ export class Cleaner {
             case 'cleanCommand':
                 return this.cleanCommand(rootFile)
             default:
-                this.extension.logger.addLogMessage(`Unknown cleaning method: ${cleanMethod}`)
+                logger.log(`Unknown cleaning method ${cleanMethod} .`)
                 return
         }
     }
@@ -107,10 +110,10 @@ export class Cleaner {
         if (configuration.get('latex.clean.subfolder.enabled') as boolean) {
             globs = globs.map(globType => './**/' + globType)
         }
-        this.extension.logger.addLogMessage(`Clean glob matched files: ${JSON.stringify({globs, outdir})}`)
+        logger.log(`Clean glob matched files ${JSON.stringify({globs, outdir})} .`)
 
         const { fileOrFolderGlobs, folderGlobsExplicit, folderGlobsWithGlobstar } = Cleaner.splitGlobs(globs)
-        this.extension.logger.addLogMessage(`Ignore folder glob patterns with globstar: ${folderGlobsWithGlobstar}`)
+        logger.log(`Ignore folder glob patterns with globstar: ${folderGlobsWithGlobstar} .`)
 
         const explicitFolders: string[] = globAll(folderGlobsExplicit, outdir)
         const explicitFoldersSet: Set<string> = new Set(explicitFolders)
@@ -122,17 +125,14 @@ export class Cleaner {
                 const stats: fs.Stats = fs.statSync(realPath)
                 if (stats.isFile()) {
                     await fs.promises.unlink(realPath)
-                    this.extension.logger.addLogMessage(`Cleaning file: ${realPath}`)
+                    logger.log(`Cleaning file ${realPath} .`)
                 } else if (stats.isDirectory()) {
-                    this.extension.logger.addLogMessage(`Not removing folder that is not explicitly specified: ${realPath}`)
+                    logger.log(`Not removing folder that is not explicitly specified ${realPath} .`)
                 } else {
-                    this.extension.logger.addLogMessage(`Not removing non-file: ${realPath}`)
+                    logger.log(`Not removing non-file ${realPath} .`)
                 }
             } catch (err) {
-                this.extension.logger.addLogMessage(`Error cleaning path: ${realPath}`)
-                if (err instanceof Error) {
-                    this.extension.logger.logError(err)
-                }
+                logger.logError(`Failed cleaning path ${realPath} .`, err)
             }
         }
 
@@ -141,15 +141,12 @@ export class Cleaner {
             try {
                 if (fs.readdirSync(folderRealPath).length === 0) {
                     await fs.promises.rmdir(folderRealPath)
-                    this.extension.logger.addLogMessage(`Removing empty folder: ${folderRealPath}`)
+                    logger.log(`Removing empty folder: ${folderRealPath} .`)
                 } else {
-                    this.extension.logger.addLogMessage(`Not removing non-empty folder: ${folderRealPath}`)
+                    logger.log(`Not removing non-empty folder: ${folderRealPath} .`)
                 }
             } catch (err) {
-                this.extension.logger.addLogMessage(`Error cleaning folder: ${folderRealPath}`)
-                if (err instanceof Error) {
-                    this.extension.logger.logError(err)
-                }
+                logger.logError(`Failed cleaning folder ${folderRealPath} .`, err)
             }
         }
     }
@@ -164,7 +161,7 @@ export class Cleaner {
                 .replace(/%TEX%/g, rootFile)
             })
         }
-        this.extension.logger.logCommand('Clean temporary files command', command, args)
+        logger.logCommand('Clean temporary files command', command, args)
         return new Promise((resolve, _reject) => {
             const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile), detached: true})
             let stderr = ''
@@ -172,16 +169,12 @@ export class Cleaner {
                 stderr += newStderr
             })
             proc.on('error', err => {
-                this.extension.logger.addLogMessage(`Cannot run ${command}: ${err.message}, ${stderr}`)
-                if (err instanceof Error) {
-                    this.extension.logger.logError(err)
-                }
+                logger.logError(`Failed running cleaning command ${command} .`, err, stderr)
                 resolve()
             })
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
-                    this.extension.logger.addLogMessage(`The clean command failed with exit code ${exitCode}`)
-                    this.extension.logger.addLogMessage(`Clean command stderr: ${stderr}`)
+                    logger.logError('The clean command failed.', exitCode, stderr)
                 }
                 resolve()
             })

@@ -1,139 +1,181 @@
 import * as vscode from 'vscode'
 
-export class Logger {
-    private readonly logPanel: vscode.OutputChannel
-    private readonly compilerLogPanel: vscode.OutputChannel
-    readonly status: vscode.StatusBarItem
+const LOG_PANEL = vscode.window.createOutputChannel('LaTeX Workshop')
+const COMPILER_PANEL = vscode.window.createOutputChannel('LaTeX Compiler')
+const STATUS_ITEM = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10000)
+const PLACEHOLDERS: {[placeholder: string]: string} = {}
 
-    constructor() {
-        this.logPanel = vscode.window.createOutputChannel('LaTeX Workshop')
-        this.compilerLogPanel = vscode.window.createOutputChannel('LaTeX Compiler')
-        this.compilerLogPanel.append('Ready')
-        this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10000)
-        this.status.command = 'latex-workshop.actions'
-        this.status.show()
-        this.displayStatus('check', 'statusBar.foreground')
+COMPILER_PANEL.append('Ready')
+
+export function getLogger(...tags: string[]) {
+    const tagString = tags.map(tag => `[${tag}]`).join('')
+    return {
+        log(message: string) {
+            logTagless(`${tagString} ${message}`)
+        },
+        logCommand(message: string, command: string, args: string[] = []) {
+            logCommandTagless(`${tagString} ${message}`, command, args)
+        },
+        logError(message: string, error: unknown, stderr?: string) {
+            logErrorTagless(`${tagString} ${message}`, error, stderr)
+        },
+        logCompiler,
+        initializeStatusBarItem,
+        clearCompilerMessage,
+        showLog,
+        showCompilerLog,
+        showStatus,
+        refreshStatus,
+        showErrorMessage,
+        showErrorMessageWithCompilerLogButton,
+        showErrorMessageWithExtensionLogButton
     }
+}
 
-    addLogMessage(message: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('message.log.show')) {
-            this.logPanel.append(`[${new Date().toLocaleTimeString('en-US', { hour12: false })}] ${message}\n`)
-        }
+function logTagless(message: string) {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    if (!configuration.get('message.log.show')) {
+        return
     }
-
-    logCommand(message: string, command: string, args: string[] = []) {
-        this.addLogMessage(message + ': ' + command)
-        this.addLogMessage(message + ' args: ' + JSON.stringify(args))
-    }
-
-    addCompilerMessage(message: string) {
-        this.compilerLogPanel.append(message)
-    }
-
-    logError(e: Error) {
-        this.addLogMessage(e.message)
-        if (e.stack) {
-            this.addLogMessage(e.stack)
-        }
-    }
-
-    logOnRejected(e: unknown) {
-        if (e instanceof Error) {
-            this.logError(e)
-        } else {
-            this.addLogMessage(String(e))
-        }
-    }
-
-    clearCompilerMessage() {
-        this.compilerLogPanel.clear()
-    }
-
-    displayStatus(
-        icon: string,
-        color: string,
-        message: string | undefined = undefined,
-        severity: 'info' | 'warning' | 'error' = 'info',
-        build: string = ''
-    ) {
-        this.status.text = `$(${icon})${build}`
-        this.status.tooltip = message
-        this.status.color = new vscode.ThemeColor(color)
-        if (message === undefined) {
+    const timestamp = new Date().toLocaleTimeString('en-US', { hour12: false })
+    vscode.workspace.workspaceFolders?.forEach(folder => {
+        if (folder.uri.fsPath in PLACEHOLDERS) {
             return
         }
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        switch (severity) {
-            case 'info':
-                if (configuration.get('message.information.show')) {
-                    void vscode.window.showInformationMessage(message)
-                }
-                break
-            case 'warning':
-                if (configuration.get('message.warning.show')) {
-                    void vscode.window.showWarningMessage(message)
-                }
-                break
-            case 'error':
-            default:
-                if (configuration.get('message.error.show')) {
-                    void vscode.window.showErrorMessage(message)
-                }
-                break
-        }
-    }
+        const placeholder = `%WS${Object.keys(PLACEHOLDERS).length + 1}%`
+        PLACEHOLDERS[folder.uri.fsPath] = placeholder
+        LOG_PANEL.appendLine(`[${timestamp}][Logger] New log placeholder ${placeholder} registered for ${folder.uri.fsPath} .`)
+    })
+    LOG_PANEL.appendLine(`[${timestamp}]${applyPlaceholders(message)}`)
+}
 
-    showErrorMessage(message: string, ...args: string[]): Thenable<string | undefined> | undefined {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('message.error.show')) {
-            return vscode.window.showErrorMessage(message, ...args)
-        } else {
-            return undefined
-        }
-    }
+function applyPlaceholders(message: string) {
+    Object.keys(PLACEHOLDERS)
+        .forEach(placeholder => message = message.replaceAll(placeholder, PLACEHOLDERS[placeholder]))
+    return message
+}
 
-    showErrorMessageWithCompilerLogButton(message: string) {
-        const res = this.showErrorMessage(message, 'Open compiler log')
-        if (res) {
-            return res.then(option => {
-                switch (option) {
-                    case 'Open compiler log': {
-                        this.showCompilerLog()
-                        break
-                    }
-                    default: {
-                        break
-                    }
-                }
-            })
+function logCommandTagless(message: string, command: string, args: string[] = []) {
+    logTagless(`${message} The command is ${command}:${JSON.stringify(args)}.`)
+}
+
+function logErrorTagless(message: string, error: unknown, stderr?: string) {
+    if (error instanceof Error) {
+        logTagless(`${message} ${error.name}: ${error.message}`)
+        if (error.stack) {
+            logTagless(error.stack)
         }
+    } else if (error instanceof Number) {
+        logTagless(`${message} Exit code ${error}`)
+    } else {
+        logTagless(`${message} Context: ${String(error)}.`)
+    }
+    if (stderr) {
+        logTagless(`[STDERR] ${stderr}`)
+    }
+}
+
+function logCompiler(message: string) {
+    COMPILER_PANEL.append(message)
+}
+
+function initializeStatusBarItem() {
+    STATUS_ITEM.command = 'latex-workshop.actions'
+    STATUS_ITEM.show()
+    refreshStatus('check', 'statusBar.foreground')
+}
+
+function clearCompilerMessage() {
+    COMPILER_PANEL.clear()
+}
+
+function showLog() {
+    LOG_PANEL.show()
+}
+
+function showCompilerLog() {
+    COMPILER_PANEL.show()
+}
+
+function showStatus() {
+    STATUS_ITEM.show()
+}
+
+function refreshStatus(
+    icon: string,
+    color: string,
+    message: string | undefined = undefined,
+    severity: 'info' | 'warning' | 'error' = 'info',
+    build: string = ''
+) {
+    STATUS_ITEM.text = `$(${icon})${build}`
+    STATUS_ITEM.tooltip = message
+    STATUS_ITEM.color = new vscode.ThemeColor(color)
+    if (message === undefined) {
         return
     }
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    switch (severity) {
+        case 'info':
+            if (configuration.get('message.information.show')) {
+                void vscode.window.showInformationMessage(message)
+            }
+            break
+        case 'warning':
+            if (configuration.get('message.warning.show')) {
+                void vscode.window.showWarningMessage(message)
+            }
+            break
+        case 'error':
+        default:
+            if (configuration.get('message.error.show')) {
+                void vscode.window.showErrorMessage(message)
+            }
+            break
+    }
+}
 
-    showErrorMessageWithExtensionLogButton(message: string) {
-        const res = this.showErrorMessage(message, 'Open LaTeX Workshop log')
-        if (res) {
-            return res.then(option => {
-                switch (option) {
-                    case 'Open LaTeX Workshop log': {
-                        this.showLog()
-                        break
-                    }
-                    default: {
-                        break
-                    }
+function showErrorMessage(message: string, ...args: string[]): Thenable<string | undefined> | undefined {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    if (configuration.get('message.error.show')) {
+        return vscode.window.showErrorMessage(message, ...args)
+    } else {
+        return undefined
+    }
+}
+
+function showErrorMessageWithCompilerLogButton(message: string) {
+    const res = showErrorMessage(message, 'Open compiler log')
+    if (res) {
+        return res.then(option => {
+            switch (option) {
+                case 'Open compiler log': {
+                    showCompilerLog()
+                    break
                 }
-            })
-        }
-        return
+                default: {
+                    break
+                }
+            }
+        })
     }
+    return
+}
 
-    showLog() {
-        this.logPanel.show()
+function showErrorMessageWithExtensionLogButton(message: string) {
+    const res = showErrorMessage(message, 'Open LaTeX Workshop log')
+    if (res) {
+        return res.then(option => {
+            switch (option) {
+                case 'Open LaTeX Workshop log': {
+                    showLog()
+                    break
+                }
+                default: {
+                    break
+                }
+            }
+        })
     }
-
-    showCompilerLog() {
-        this.compilerLogPanel.show()
-    }
+    return
 }

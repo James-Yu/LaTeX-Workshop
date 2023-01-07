@@ -7,8 +7,11 @@ import type { Extension } from '../../main'
 import type { IProvider } from '../completion'
 import {stripCommentsAndVerbatim} from '../../utils/utils'
 
-const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
+import { getLogger } from '../../components/logger'
 
+const logger = getLogger('Intelli', 'Input')
+
+const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
 abstract class InputAbstract implements IProvider {
     protected readonly extension: Extension
@@ -154,7 +157,7 @@ export class Input extends InputAbstract {
     getBaseDir(currentFile: string, _importFromDir: string, command: string): string[] {
         let baseDir: string[] = []
         if (this.extension.manager.rootDir === undefined) {
-            this.extension.logger.addLogMessage(`No root dir can be found. The current root file should be undefined, is ${this.extension.manager.rootFile}. How did you get here?`)
+            logger.log(`No root dir can be found. The current root file should be undefined, is ${this.extension.manager.rootFile}. How did you get here?`)
             return []
         }
         // If there is no root, 'root relative' and 'both' should fall back to 'file relative'

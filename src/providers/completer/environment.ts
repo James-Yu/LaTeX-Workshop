@@ -8,6 +8,10 @@ import type { IProvider } from '../completion'
 import {CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint} from './completerutils'
 
+import { getLogger } from '../../components/logger'
+
+const logger = getLogger('Intelli', 'Environment')
+
 export type EnvType = {
     name: string, // Name of the environment, what comes inside \begin{...}
     snippet?: string, // To be inserted after \begin{..}
@@ -286,8 +290,8 @@ export class Environment implements IProvider {
             if (isEnv(envs[key])) {
                 environments.push(envs[key])
             } else {
-                this.extension.logger.addLogMessage(`Cannot parse intellisense file for ${packageName}`)
-                this.extension.logger.addLogMessage(`Missing field in entry: "${key}": ${JSON.stringify(envs[key])}`)
+                logger.log(`Cannot parse intellisense file for ${packageName}`)
+                logger.log(`Missing field in entry: "${key}": ${JSON.stringify(envs[key])}`)
                 delete envs[key]
             }
         })
@@ -305,7 +309,7 @@ export class Environment implements IProvider {
             vscode.CompletionItemKind.Module,
             item.option)
         suggestion.detail = `\\begin{${item.name}}${item.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}\n...\n\\end{${item.name}}`
-        suggestion.documentation = `Environment ${item.name}.`
+        suggestion.documentation = `Environment ${item.name} .`
         if (item.package) {
             suggestion.documentation += ` From package: ${item.package}.`
         }

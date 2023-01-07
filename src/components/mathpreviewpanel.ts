@@ -4,6 +4,9 @@ import type {TexMathEnv} from '../providers/preview/mathpreview'
 import {openWebviewPanel} from '../utils/webview'
 import type {Extension} from '../main'
 
+import { getLogger } from './logger'
+
+const logger = getLogger('Preview', 'Math')
 
 type UpdateEvent = {
     type: 'edit',
@@ -32,7 +35,7 @@ export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer
             localResourceRoots: [resourcesFolder(this.extension.extensionRoot)]
         }
         panel.webview.html = this.extension.mathPreviewPanel.getHtml(panel.webview)
-        this.extension.logger.addLogMessage('Math preview panel: restored')
+        logger.log('Math preview panel: restored')
         return Promise.resolve()
     }
 
@@ -91,7 +94,7 @@ export class MathPreviewPanel {
         if (activeDocument) {
             await openWebviewPanel(panel, editorGroup, activeDocument)
         }
-        this.extension.logger.addLogMessage('Math preview panel: opened')
+        logger.log('Math preview panel: opened')
     }
 
     initializePanel(panel: vscode.WebviewPanel) {
@@ -108,7 +111,7 @@ export class MathPreviewPanel {
             disposable.dispose()
             this.clearCache()
             this.panel = undefined
-            this.extension.logger.addLogMessage('Math preview panel: disposed')
+            logger.log('Math preview panel: disposed')
         })
         panel.onDidChangeViewState((ev) => {
             if (ev.webviewPanel.visible) {
@@ -116,7 +119,7 @@ export class MathPreviewPanel {
             }
         })
         panel.webview.onDidReceiveMessage(() => {
-            this.extension.logger.addLogMessage('Math preview panel: initialized')
+            logger.log('Math preview panel: initialized')
             void this.update()
         })
     }
@@ -125,7 +128,7 @@ export class MathPreviewPanel {
         this.panel?.dispose()
         this.panel = undefined
         this.clearCache()
-        this.extension.logger.addLogMessage('Math preview panel: closed')
+        logger.log('Math preview panel: closed')
     }
 
     toggle() {
