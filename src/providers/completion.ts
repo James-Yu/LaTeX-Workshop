@@ -65,7 +65,8 @@ export class Completer implements vscode.CompletionItemProvider {
         this.subImport = new SubImport(extension)
         this.glossary = new Glossary(extension)
         try {
-            this.loadDefaultItems()
+            const environment = this.environment.initialize()
+            this.command.initialize(environment)
         } catch (err) {
             this.extension.logger.addLogMessage(`Error reading data: ${err}.`)
         }
@@ -107,12 +108,6 @@ export class Completer implements vscode.CompletionItemProvider {
             packageData.envs[env].name = packageData.envs[env].name || env
             packageData.envs[env].snippet = packageData.envs[env].snippet || ''
         })
-    }
-
-    private loadDefaultItems() {
-        // Make sure to initialize environment first
-        const environment = this.environment.initialize()
-        this.command.initialize(environment)
     }
 
     provideCompletionItems(

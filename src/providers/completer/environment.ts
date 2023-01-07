@@ -8,8 +8,6 @@ import type { IProvider } from '../completion'
 import {CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint} from './completerutils'
 
-type DataEnvsJsonType = typeof import('../../../data/environments.json')
-
 export type EnvType = {
     name: string, // Name of the environment, what comes inside \begin{...}
     snippet?: string, // To be inserted after \begin{..}
@@ -41,15 +39,19 @@ export class Environment implements IProvider {
     }
 
     initialize() {
-        const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
-        const envs: { [key: string]: EnvType } = JSON.parse(defaultEnvs) as DataEnvsJsonType
+        const envs = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})) as {[key: string]: EnvType}
+        Object.keys(envs).forEach(key => {
+            envs[key].name = envs[key].name || key
+            envs[key].snippet = envs[key].snippet || ''
+            envs[key].detail = key
+        })
         this.defaultEnvsAsCommand = []
         this.defaultEnvsForBegin = []
         this.defaultEnvsAsName = []
         Object.keys(envs).forEach(key => {
-           this.defaultEnvsAsCommand.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsCommand))
-           this.defaultEnvsForBegin.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.ForBegin))
-           this.defaultEnvsAsName.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsName))
+            this.defaultEnvsAsCommand.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsCommand))
+            this.defaultEnvsForBegin.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.ForBegin))
+            this.defaultEnvsAsName.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsName))
         })
 
         return this

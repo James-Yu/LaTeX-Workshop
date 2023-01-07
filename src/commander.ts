@@ -62,7 +62,9 @@ export class Commander {
                 })
                 this.extension.logger.addLogMessage('Snippet data loaded.')
             })
-            .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
+            .catch(err => {
+                this.extension.logger.addLogMessage(`Error reading data: ${err}.`)
+            })
     }
 
     async build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
