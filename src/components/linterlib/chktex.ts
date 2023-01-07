@@ -150,7 +150,7 @@ export class ChkTeX implements ILinter {
             }
         }
         if (!filePath) {
-            logger.log(`No .chktexrc file is found to determine TabSize.`)
+            logger.log('No .chktexrc file is found to determine TabSize.')
             return
         }
         const rcFile = fs.readFileSync(filePath).toString()
