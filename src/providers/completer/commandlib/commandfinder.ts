@@ -1,8 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
-
-import type { Extension } from '../../../main'
+import * as lw from '../../../lw'
 import {CmdEnvSuggestion} from '../completerutils'
 import type { ICompletionItem } from '../../completion'
 
@@ -35,12 +34,7 @@ export function resolvePkgFile(name: string, dataDir: string): string | undefine
 }
 
 export class CommandFinder {
-    private readonly extension: Extension
     definedCmds = new Map<string, {file: string, location: vscode.Location}>()
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
 
     getCmdFromNodeArray(file: string, nodes: latexParser.Node[], commandNameDuplicationDetector: CommandNameDuplicationDetector): CmdEnvSuggestion[] {
         let cmds: CmdEnvSuggestion[] = []
@@ -271,15 +265,15 @@ export class CommandFinder {
      * @param cmdName the name of a command (without the leading '\')
      */
     private whichPackageProvidesCommand(cmdName: string): string {
-        if (this.extension.manager.rootFile !== undefined) {
-            for (const file of this.extension.cacher.getIncludedTeX()) {
-                const packages = this.extension.cacher.get(file)?.elements.package
+        if (lw.manager.rootFile !== undefined) {
+            for (const file of lw.cacher.getIncludedTeX()) {
+                const packages = lw.cacher.get(file)?.elements.package
                 if (packages === undefined) {
                     continue
                 }
                 for (const packageName of Object.keys(packages)) {
                     const commands: ICompletionItem[] = []
-                    this.extension.completer.command.provideCmdInPkg(packageName, packages[packageName], commands, new CommandSignatureDuplicationDetector())
+                    lw.completer.command.provideCmdInPkg(packageName, packages[packageName], commands, new CommandSignatureDuplicationDetector())
                     for (const cmd of commands) {
                         const label = cmd.label.slice(1)
                         if (label.startsWith(cmdName) &&

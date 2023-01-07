@@ -4,17 +4,9 @@ import * as fs from 'fs'
 import * as glob from 'glob'
 import * as os from 'os'
 import * as assert from 'assert'
-
-import { Extension, activate } from '../../src/main'
+import * as lw from '../../src/lw'
 import { BuildDone, FileParsed, FileWatched, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
 import type { EventName } from '../../src/components/eventbus'
-
-export async function getExtension() {
-    await vscode.commands.executeCommand('latex-workshop.activate')
-    const extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')?.exports.extension
-    assert.ok(extension)
-    return extension
-}
 
 type RunTestOption = {
     suiteName: string,
@@ -112,14 +104,14 @@ export async function loadTestFile(fixture: string, files: {src: string, dst: st
     await sleep(250)
 }
 
-export async function openActive(extension: Extension, fixture: string, fileName: string, skipSleep: boolean = false) {
+export async function openActive(fixture: string, fileName: string, skipSleep: boolean = false) {
     const texFilePath = vscode.Uri.file(path.join(fixture, fileName))
     const doc = await vscode.workspace.openTextDocument(texFilePath)
     await vscode.window.showTextDocument(doc)
     if (!skipSleep) {
         await sleep(250)
     }
-    const root = await extension.manager.findRoot()
+    const root = await lw.manager.findRoot()
     return {root, doc}
 }
 
@@ -127,16 +119,15 @@ type AssertBuildOption = {
     fixture: string,
     texName: string,
     pdfName: string,
-    extension: Extension,
     build?: () => unknown
 }
 
 export async function assertBuild(option: AssertBuildOption) {
-    await openActive(option.extension, option.fixture, option.texName, true)
+    await openActive(option.fixture, option.texName, true)
     if (option.build) {
         await option.build()
     } else {
-        await option.extension.commander.build()
+        await lw.commander.build()
     }
 
     const files = glob.sync('**/**.pdf', { cwd: option.fixture })
@@ -154,12 +145,12 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFi
     assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), '')
     await sleep(250)
 
-    let wait = waitFileWatched(option.extension, path.resolve(option.fixture, option.texName))
-    if (!mode?.includes('noAutoBuild') && option.texName.endsWith('.tex') && !option.extension.cacher.watched(path.resolve(option.fixture, option.texName))) {
+    let wait = waitFileWatched(path.resolve(option.fixture, option.texName))
+    if (!mode?.includes('noAutoBuild') && option.texName.endsWith('.tex') && !lw.cacher.watched(path.resolve(option.fixture, option.texName))) {
         await wait
     }
 
-    wait = waitBuild(option.extension)
+    wait = waitBuild()
     if (mode?.includes('onSave')) {
         await vscode.commands.executeCommand('workbench.action.files.save')
     } else {
@@ -177,9 +168,9 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFi
     }
 }
 
-async function waitEvent(extension: Extension, event: EventName, arg?: any) {
+async function waitEvent(event: EventName, arg?: any) {
     return new Promise<void>((resolve, _) => {
-        const disposable = extension.eventBus.on(event, (eventArg) => {
+        const disposable = lw.eventBus.on(event, (eventArg) => {
             if (arg && arg !== eventArg) {
                 return
             }
@@ -189,69 +180,67 @@ async function waitEvent(extension: Extension, event: EventName, arg?: any) {
     })
 }
 
-export async function waitBuild(extension: Extension) {
-    return waitEvent(extension, BuildDone)
+export async function waitBuild() {
+    return waitEvent(BuildDone)
 }
 
-export async function waitFileWatched(extension: Extension, filePath: string) {
-    return waitEvent(extension, FileWatched, filePath)
+export async function waitFileWatched(filePath: string) {
+    return waitEvent(FileWatched, filePath)
 }
 
 type AssertRootOption = {
     fixture: string,
     openName: string,
-    rootName: string,
-    extension: Extension
+    rootName: string
 }
 
 export async function assertRoot(option: AssertRootOption) {
     await vscode.commands.executeCommand('latex-workshop.activate')
-    const result = await openActive(option.extension, option.fixture, option.openName)
+    const result = await openActive(option.fixture, option.openName)
     assert.strictEqual(result.root, path.join(option.fixture, option.rootName))
 }
 
 type AssertViewerOption = {
     fixture: string,
     pdfName: string,
-    extension: Extension,
     action?: () => unknown
 }
 
 export async function assertViewer(option: AssertViewerOption) {
     await sleep(250)
-    const wait = waitViewer(option.extension)
+    const wait = waitViewer()
     void vscode.commands.executeCommand('latex-workshop.view')
     if (option.action) {
         await option.action()
     }
     await wait
-    const status = getViewerStatus(option.extension, path.resolve(option.fixture, option.pdfName))
+    const status = getViewerStatus(path.resolve(option.fixture, option.pdfName))
     assert.strictEqual(status.pdfFileUri, vscode.Uri.file(path.resolve(option.fixture, option.pdfName)).toString(true))
 }
 
-async function waitViewer(extension: Extension) {
+async function waitViewer() {
     return Promise.all([
-        waitEvent(extension, ViewerPageLoaded),
-        waitViewerChange(extension)
+        waitEvent(ViewerPageLoaded),
+        waitViewerChange()
     ])
 }
 
-async function waitViewerChange(extension: Extension) {
-    return waitEvent(extension, ViewerStatusChanged)
+async function waitViewerChange() {
+    return waitEvent(ViewerStatusChanged)
 }
 
-function getViewerStatus(extension: Extension, pdfFilePath: string) {
-    const status = extension.viewer.getViewerState(vscode.Uri.file(pdfFilePath))[0]
+function getViewerStatus(pdfFilePath: string) {
+    const status = lw.viewer.getViewerState(vscode.Uri.file(pdfFilePath))[0]
     assert.ok(status)
     return status
 }
 
-export async function waitFileParsed(extension: Extension, fileName: string) {
-    return waitEvent(extension, FileParsed, fileName)
+export async function waitFileParsed(fileName: string) {
+    return waitEvent(FileParsed, fileName)
 }
 
-export function getIntellisense(doc: vscode.TextDocument, pos: vscode.Position, extension: Extension, atSuggestion = false) {
-    const completer = atSuggestion ? extension.atSuggestionCompleter : extension.completer
+export function getIntellisense(doc: vscode.TextDocument, pos: vscode.Position, atSuggestion = false) {
+    const completer = atSuggestion ? lw.atSuggestionCompleter : lw.completer
     return completer?.provideCompletionItems(
         doc, pos, new vscode.CancellationTokenSource().token, {
             triggerKind: vscode.CompletionTriggerKind.Invoke,

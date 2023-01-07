@@ -2,26 +2,19 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
 import * as fs from 'fs'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import * as utils from '../../utils/utils'
 import { getLogger } from '../logger'
 
 const logger = getLogger('Cacher', 'Path')
 
 export class PathUtils {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     private get rootDir() {
-        return this.extension.manager.rootDir
+        return lw.manager.rootDir
     }
 
     private getOutDir(texFile: string) {
-        return this.extension.manager.getOutDir(texFile)
+        return lw.manager.getOutDir(texFile)
     }
 
     /**

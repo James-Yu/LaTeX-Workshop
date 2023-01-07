@@ -1,0 +1,105 @@
+import vscode from 'vscode'
+import path from 'path'
+import { Commander } from './commander'
+import { Builder } from './components/builder'
+import { Cacher } from './components/cacher'
+import { Cleaner } from './components/cleaner'
+import { LaTeXCommanderTreeView } from './components/commander'
+import { Configuration } from './components/configuration'
+import { Counter } from './components/counter'
+import { DuplicateLabels } from './components/duplicatelabels'
+import { EnvPair } from './components/envpair'
+import { EventBus } from './components/eventbus'
+import { Linter } from './components/linter'
+import { Locator } from './components/locator'
+import { LwFileSystem } from './components/lwfs'
+import { Manager } from './components/manager'
+import { MathPreviewPanel } from './components/mathpreviewpanel'
+import { CompilerLogParser } from './components/parser/compilerlog'
+import { UtensilsParser } from './components/parser/syntax'
+import { Section } from './components/section'
+import { Server } from './components/server'
+import { SnippetView } from './components/snippetview'
+import { TeXMagician } from './components/texmagician'
+import { Viewer } from './components/viewer'
+import { BibtexFormatter } from './providers/bibtexformatter'
+import { CodeActions } from './providers/codeactions'
+import { AtSuggestionCompleter, Completer } from './providers/completion'
+import { GraphicsPreview } from './providers/preview/graphicspreview'
+import { MathPreview } from './providers/preview/mathpreview'
+import { StructureTreeView } from './providers/structure'
+import { getLogger } from './components/logger'
+
+let disposables: { dispose(): any }[] = []
+let context: vscode.ExtensionContext
+
+export function registerDisposable(...items: { dispose(): Promise<void> }[]) {
+    if (context) {
+        context.subscriptions.push(...disposables, ...items)
+        disposables = []
+    } else {
+        disposables = [...disposables, ...items]
+    }
+}
+export const extensionRoot = path.resolve(`${__dirname}/../../`)
+export const eventBus = new EventBus()
+export const configuration = new Configuration()
+export const lwfs = new LwFileSystem()
+export const commander = new Commander()
+export const cacher = new Cacher()
+export const manager = new Manager()
+export const builder = new Builder()
+export const viewer = new Viewer()
+export const server = new Server()
+export const locator = new Locator()
+export const compilerLogParser = new CompilerLogParser()
+export const completer = new Completer()
+export const atSuggestionCompleter = new AtSuggestionCompleter()
+export const duplicateLabels = new DuplicateLabels()
+export const linter = new Linter()
+export const cleaner = new Cleaner()
+export const counter = new Counter()
+export const codeActions = new CodeActions()
+export const texMagician = new TeXMagician()
+export const envPair = new EnvPair()
+export const section = new Section()
+export const latexCommanderTreeView = new LaTeXCommanderTreeView()
+export const structureViewer = new StructureTreeView()
+export const snippetView = new SnippetView()
+export const pegParser = new UtensilsParser()
+export const graphicsPreview = new GraphicsPreview()
+export const mathPreview = new MathPreview()
+export const bibtexFormatter = new BibtexFormatter()
+export const mathPreviewPanel = new MathPreviewPanel()
+
+const logger = getLogger('Extension')
+
+export function init(extensionContext: vscode.ExtensionContext) {
+    context = extensionContext
+    registerDisposable()
+    addLogFundamentals()
+    logger.initializeStatusBarItem()
+    logger.log('LaTeX Workshop initialized.')
+    return {
+        async dispose() {
+            await cacher.dispose()
+            server.dispose()
+            await pegParser.dispose()
+            await mathPreview.dispose()
+        }
+    }
+}
+
+export function addLogFundamentals() {
+    logger.log('Initializing LaTeX Workshop.')
+    logger.log(`Extension root: ${extensionRoot}`)
+    logger.log(`$PATH: ${process.env.PATH}`)
+    logger.log(`$SHELL: ${process.env.SHELL}`)
+    logger.log(`$LANG: ${process.env.LANG}`)
+    logger.log(`$LC_ALL: ${process.env.LC_ALL}`)
+    logger.log(`process.platform: ${process.platform}`)
+    logger.log(`process.arch: ${process.arch}`)
+    logger.log(`vscode.env.appName: ${vscode.env.appName}`)
+    logger.log(`vscode.env.remoteName: ${vscode.env.remoteName}`)
+    logger.log(`vscode.env.uiKind: ${vscode.env.uiKind}`)
+}

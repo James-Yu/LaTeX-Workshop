@@ -3,8 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as cp from 'child_process'
 import * as cs from 'cross-spawn'
-
-import type { Extension } from '../main'
+import * as lw from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { BuildDone } from './eventbus'
 
@@ -32,7 +31,7 @@ export class Builder {
     private readonly MAGIC_PROGRAM_ARGS_SUFFIX = '_WITH_ARGS'
     private readonly MAX_PRINT_LINE = '10000'
 
-    constructor(private readonly extension: Extension) {
+    constructor() {
         // Check if pdflatex is available, and is MikTeX distro
         try {
             const pdflatexVersion = cp.execSync('pdflatex --version')
@@ -94,15 +93,15 @@ export class Builder {
     }
 
     private invokeBuild(file: string, bibChanged: boolean ) {
-        if (!this.extension.builder.canAutoBuild()) {
+        if (!lw.builder.canAutoBuild()) {
             logger.log('Autobuild temporarily disabled.')
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
-        if (!bibChanged && this.extension.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-            return this.extension.commander.build(true, this.extension.manager.localRootFile, this.extension.manager.rootFileLanguageId)
+        if (!bibChanged && lw.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
+            return lw.commander.build(true, lw.manager.localRootFile, lw.manager.rootFileLanguageId)
         } else {
-            return this.extension.commander.build(true, this.extension.manager.rootFile, this.extension.manager.rootFileLanguageId)
+            return lw.commander.build(true, lw.manager.rootFile, lw.manager.rootFileLanguageId)
         }
     }
 
@@ -128,7 +127,7 @@ export class Builder {
         this.lastBuild = Date.now()
 
         if (rootFile) {
-            this.extension.cacher.ignorePdfFile(rootFile)
+            lw.cacher.ignorePdfFile(rootFile)
         }
 
         await vscode.workspace.saveAll()
@@ -136,7 +135,7 @@ export class Builder {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
         const cwd = workspaceFolder?.uri.fsPath || pwd
         if (rootFile !== undefined) {
-            args = args.map(replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir))
+            args = args.map(replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir))
         }
         const tool: Tool = { name: command, command, args }
 
@@ -164,7 +163,7 @@ export class Builder {
 
         // Stop watching the PDF file to avoid reloading the PDF viewer twice.
         // The builder will be responsible for refreshing the viewer.
-        this.extension.cacher.ignorePdfFile(rootFile)
+        lw.cacher.ignorePdfFile(rootFile)
 
         await vscode.workspace.saveAll()
 
@@ -191,7 +190,7 @@ export class Builder {
      * @returns Whether auto build can be triggered now.
      */
     canAutoBuild() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.rootFile ? vscode.Uri.file(this.extension.manager.rootFile) : undefined)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.manager.rootFile ? vscode.Uri.file(lw.manager.rootFile) : undefined)
         if (Date.now() - this.lastBuild < (configuration.get('latex.autoBuild.interval', 1000) as number)) {
             return false
         }
@@ -272,8 +271,8 @@ export class Builder {
                 this.process = cs.spawn(step.command, args, {cwd: path.dirname(step.rootFile), env})
             }
         } else if (!step.isExternal) {
-            if (step.command === 'latexmk' && step.rootFile === this.extension.manager.localRootFile && this.extension.manager.rootDir) {
-                cwd = this.extension.manager.rootDir
+            if (step.command === 'latexmk' && step.rootFile === lw.manager.localRootFile && lw.manager.rootDir) {
+                cwd = lw.manager.rootDir
                 if (step.args && !step.args.includes('-cd')) {
                     step.args.push('-cd')
                 }
@@ -344,7 +343,7 @@ export class Builder {
             })
 
             this.process.on('exit', async (code, signal) => {
-                this.extension.compilerLogParser.parse(stdout, step.rootFile)
+                lw.compilerLogParser.parse(stdout, step.rootFile)
                 if (!step.isExternal && code === 0) {
                     logger.log(`Finished a step in recipe with PID ${this.process?.pid}.`)
                     this.process = undefined
@@ -354,7 +353,7 @@ export class Builder {
                     logger.log(`Successfully built document with PID ${this.process?.pid}.`)
                     logger.refreshStatus('check', 'statusBar.foreground', 'Build succeeded.')
                     if (step.rootFile === undefined) {
-                        this.extension.viewer.refreshExistingViewer()
+                        lw.viewer.refreshExistingViewer()
                     }
                     this.process = undefined
                     resolve(true)
@@ -375,12 +374,12 @@ export class Builder {
                     logger.log('Cleaning auxiliary files and retrying build after toolchain error.')
 
                     this.stepQueue.prepend(step)
-                    await this.extension.cleaner.clean(step.rootFile)
+                    await lw.cleaner.clean(step.rootFile)
                 } else if (!step.isExternal && signal !== 'SIGTERM') {
                     // Recipe, not terminated by user, is retry or should not retry
                     logger.refreshStatus('x', 'errorForeground')
                     if (['onFailed', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
-                        await this.extension.cleaner.clean(step.rootFile)
+                        await lw.cleaner.clean(step.rootFile)
                     }
                     void logger.showErrorMessageWithCompilerLogButton('Recipe terminated with error.')
                     this.stepQueue.clear()
@@ -417,23 +416,23 @@ export class Builder {
         }
         logger.log(`Successfully built ${step.rootFile} .`)
         logger.refreshStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
-        this.extension.eventBus.fire(BuildDone)
-        if (this.extension.compilerLogParser.isLaTeXmkSkipped) {
+        lw.eventBus.fire(BuildDone)
+        if (lw.compilerLogParser.isLaTeXmkSkipped) {
             return
         }
-        this.extension.viewer.refreshExistingViewer(step.rootFile)
-        this.extension.completer.reference.setNumbersFromAuxFile(step.rootFile)
-        await this.extension.cacher.loadFlsFile(step.rootFile)
+        lw.viewer.refreshExistingViewer(step.rootFile)
+        lw.completer.reference.setNumbersFromAuxFile(step.rootFile)
+        await lw.cacher.loadFlsFile(step.rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(step.rootFile))
         // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
         if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
-            const pdfFile = this.extension.manager.tex2pdf(step.rootFile)
+            const pdfFile = lw.manager.tex2pdf(step.rootFile)
             logger.log('SyncTex after build invoked.')
-            this.extension.locator.syncTeX(undefined, undefined, pdfFile)
+            lw.locator.syncTeX(undefined, undefined, pdfFile)
         }
         if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
             logger.log('Auto Clean invoked.')
-            await this.extension.cleaner.clean(step.rootFile)
+            await lw.cleaner.clean(step.rootFile)
         }
     }
 
@@ -497,9 +496,9 @@ export class Builder {
                     case 'latexmk':
                         logger.log('Use Docker to invoke the command.')
                         if (process.platform === 'win32') {
-                            tool.command = path.resolve(this.extension.extensionRoot, './scripts/latexmk.bat')
+                            tool.command = path.resolve(lw.extensionRoot, './scripts/latexmk.bat')
                         } else {
-                            tool.command = path.resolve(this.extension.extensionRoot, './scripts/latexmk')
+                            tool.command = path.resolve(lw.extensionRoot, './scripts/latexmk')
                             fs.chmodSync(tool.command, 0o755)
                         }
                         break
@@ -509,13 +508,13 @@ export class Builder {
                 }
             }
             if (tool.args) {
-                tool.args = tool.args.map(replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir))
+                tool.args = tool.args.map(replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir))
             }
             if (tool.env) {
                 Object.keys(tool.env).forEach( v => {
                     const e = tool.env && tool.env[v]
                     if (tool.env && e) {
-                        tool.env[v] = replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir)(e)
+                        tool.env[v] = replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(e)
                     }
                 })
             }
@@ -654,13 +653,13 @@ export class Builder {
      */
      private createOuputSubFolders(rootFile: string) {
         const rootDir = path.dirname(rootFile)
-        let outDir = this.extension.manager.getOutDir(rootFile)
+        let outDir = lw.manager.getOutDir(rootFile)
         if (!path.isAbsolute(outDir)) {
             outDir = path.resolve(rootDir, outDir)
         }
         logger.log(`outDir: ${outDir} .`)
         try {
-            this.extension.cacher.getIncludedTeX(rootFile).forEach(file => {
+            lw.cacher.getIncludedTeX(rootFile).forEach(file => {
                 const relativePath = path.dirname(file.replace(rootDir, '.'))
                 const fullOutDir = path.resolve(outDir, relativePath)
                 // To avoid issues when fullOutDir is the root dir

@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as workerpool from 'workerpool'
-import type {Proxy} from 'workerpool'
-import type {IMathJaxWorker} from './mathjaxpool_worker'
-import type {SupportedExtension} from 'mathjax-full'
+import type { Proxy } from 'workerpool'
+import type { IMathJaxWorker } from './mathjaxpool_worker'
+import type { SupportedExtension } from 'mathjax-full'
 
 const supportedExtensionList = [
     'amscd',

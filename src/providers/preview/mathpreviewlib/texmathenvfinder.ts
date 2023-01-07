@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-
 import * as utils from '../../../utils/utils'
 import { type ITextDocumentLike, TextDocumentLike } from './textdocumentlike'
 import type { ReferenceEntry } from '../../completer/reference'

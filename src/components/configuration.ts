@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { readFileSync } from 'fs'
-
 import { getLogger } from './logger'
 
 const logger = getLogger('Config')

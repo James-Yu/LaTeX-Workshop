@@ -1,4 +1,4 @@
-import {stripComments} from '../../../utils/utils'
+import { stripComments } from '../../../utils/utils'
 
 export class MathPreviewUtils {
     addDummyCodeBlock(md: string): string {

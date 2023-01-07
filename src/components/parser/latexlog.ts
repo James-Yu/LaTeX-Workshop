@@ -1,9 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import type { LogEntry } from './compilerlog'
-
 import { getLogger } from '../logger'
 
 const logger = getLogger('Parser', 'TexLog')
@@ -41,18 +39,13 @@ class ParserState {
 }
 
 export class LatexLogParser {
-    private readonly extension: Extension
     isLaTeXmkSkipped: boolean = false
     buildLog: LogEntry[] = []
     readonly compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
 
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     parse(log: string, rootFile?: string) {
         if (rootFile === undefined) {
-            rootFile = this.extension.manager.rootFile
+            rootFile = lw.manager.rootFile
         }
         if (rootFile === undefined) {
             logger.log('How can you reach this point?')
@@ -72,7 +65,7 @@ export class LatexLogParser {
             this.buildLog.push(state.currentResult)
         }
         logger.log(`Logged ${this.buildLog.length} messages.`)
-        this.extension.compilerLogParser.showCompilerDiagnostics(this.compilerDiagnostics, this.buildLog, 'LaTeX')
+        lw.compilerLogParser.showCompilerDiagnostics(this.compilerDiagnostics, this.buildLog, 'LaTeX')
     }
 
    private parseLine(line: string, state: ParserState, buildLog: LogEntry[]) {

@@ -1,4 +1,3 @@
-
 export function svgToDataUrl(xml: string): string {
     // We have to call encodeURIComponent and unescape because SVG can includes non-ASCII characters.
     // We have to encode them before converting them to base64.

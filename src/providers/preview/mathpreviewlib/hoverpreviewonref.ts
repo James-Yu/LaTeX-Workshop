@@ -1,11 +1,9 @@
 import * as vscode from 'vscode'
-
 import * as utils from '../../../utils/svg'
-import type {MathJaxPool} from '../mathjaxpool'
-import type {ReferenceEntry} from '../../completer/reference'
-import type {TexMathEnv} from './texmathenvfinder'
-import type {MathPreviewUtils} from './mathpreviewutils'
-
+import type { MathJaxPool } from '../mathjaxpool'
+import type { ReferenceEntry } from '../../completer/reference'
+import type { TexMathEnv } from './texmathenvfinder'
+import type { MathPreviewUtils } from './mathpreviewutils'
 import { getLogger } from '../../../components/logger'
 
 const logger = getLogger('Preview', 'Hover')

@@ -2,15 +2,13 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import { latexParser } from 'latex-utensils'
-
+import * as lw from '../lw'
+import * as eventbus from './eventbus'
+import * as utils from '../utils/utils'
 import type { CmdEnvSuggestion } from '../providers/completer/completerutils'
 import type { CiteSuggestion } from '../providers/completer/citation'
 import type { GlossarySuggestion } from '../providers/completer/glossary'
 import type { ICompletionItem } from '../providers/completion'
-
-import { Extension } from '../main'
-import * as eventbus from './eventbus'
-import * as utils from '../utils/utils'
 import { InputFileRegExp } from '../utils/inputfilepath'
 import { canContext, isExcluded, parseFlsContent } from './cacherlib/cacherutils'
 import { PathUtils } from './cacherlib/pathutils'
@@ -60,12 +58,10 @@ export interface Context {
 
 export class Cacher {
     private readonly contexts: {[filePath: string]: Context} = {}
-    private readonly watcher: Watcher = new Watcher(this.extension, this)
-    private readonly pdfWatcher: PdfWatcher = new PdfWatcher(this.extension)
-    private readonly bibWatcher: BibWatcher = new BibWatcher(this.extension)
-    private readonly pathUtils: PathUtils = new PathUtils(this.extension)
-
-    constructor(private readonly extension: Extension) {}
+    private readonly watcher: Watcher = new Watcher(this)
+    private readonly pdfWatcher: PdfWatcher = new PdfWatcher()
+    private readonly bibWatcher: BibWatcher = new BibWatcher()
+    private readonly pathUtils: PathUtils = new PathUtils()
 
     add(filePath: string) {
         if (isExcluded(filePath)) {
@@ -121,19 +117,19 @@ export class Cacher {
             return
         }
         logger.log(`Caching ${filePath} .`)
-        const content = this.extension.lwfs.readFileSyncGracefully(filePath)
+        const content = lw.lwfs.readFileSyncGracefully(filePath)
         this.contexts[filePath] = {content, elements: {}, children: [], bibfiles: []}
         if (content === undefined) {
             logger.log(`Cannot read ${filePath} .`)
             return
         }
         const contentTrimmed = utils.stripCommentsAndVerbatim(content)
-        rootPath = rootPath || this.extension.manager.rootFile
+        rootPath = rootPath || lw.manager.rootFile
         this.updateChildren(filePath, rootPath, contentTrimmed)
         await this.updateElements(filePath, content, contentTrimmed)
         await this.updateBibfiles(filePath, contentTrimmed)
         logger.log(`Cached ${filePath} .`)
-        this.extension.eventBus.fire(eventbus.FileParsed, filePath)
+        lw.eventBus.fire(eventbus.FileParsed, filePath)
     }
 
     private updateChildren(filePath: string, rootPath: string | undefined, contentTrimmed: string) {
@@ -164,32 +160,32 @@ export class Cacher {
         }
 
         logger.log(`Updated inputs of ${filePath} .`)
-        this.extension.eventBus.fire(eventbus.FileParsed, filePath)
+        lw.eventBus.fire(eventbus.FileParsed, filePath)
     }
 
     private async updateElements(filePath: string, content: string, contentTrimmed: string) {
-        this.extension.completer.citation.update(filePath, content)
+        lw.completer.citation.update(filePath, content)
         const languageId: string | undefined = vscode.window.activeTextEditor?.document.languageId
         let latexAst: latexParser.AstRoot | latexParser.AstPreamble | undefined = undefined
         if (!languageId || languageId !== 'latex-expl3') {
-            latexAst = await this.extension.pegParser.parseLatex(content)
+            latexAst = await lw.pegParser.parseLatex(content)
         }
 
         if (latexAst) {
             const nodes = latexAst.content
             const lines = content.split('\n')
-            this.extension.completer.reference.update(filePath, nodes, lines)
-            this.extension.completer.glossary.update(filePath, nodes)
-            this.extension.completer.environment.update(filePath, nodes, lines)
-            this.extension.completer.command.update(filePath, nodes)
+            lw.completer.reference.update(filePath, nodes, lines)
+            lw.completer.glossary.update(filePath, nodes)
+            lw.completer.environment.update(filePath, nodes, lines)
+            lw.completer.command.update(filePath, nodes)
         } else {
             logger.log(`Cannot parse AST, use RegExp on ${filePath} .`)
-            this.extension.completer.reference.update(filePath, undefined, undefined, contentTrimmed)
-            this.extension.completer.glossary.update(filePath, undefined, contentTrimmed)
-            this.extension.completer.environment.update(filePath, undefined, undefined, contentTrimmed)
-            this.extension.completer.command.update(filePath, undefined, contentTrimmed)
+            lw.completer.reference.update(filePath, undefined, undefined, contentTrimmed)
+            lw.completer.glossary.update(filePath, undefined, contentTrimmed)
+            lw.completer.environment.update(filePath, undefined, undefined, contentTrimmed)
+            lw.completer.command.update(filePath, undefined, contentTrimmed)
         }
-        this.extension.duplicateLabels.run(filePath)
+        lw.duplicateLabels.run(filePath)
         logger.log(`Updated elements of ${filePath} .`)
     }
 
@@ -234,7 +230,7 @@ export class Cacher {
         }
         logger.log(`Parsing .fls ${flsPath} .`)
         const rootDir = path.dirname(filePath)
-        const outDir = this.extension.manager.getOutDir(filePath)
+        const outDir = lw.manager.getOutDir(filePath)
         const ioFiles = parseFlsContent(fs.readFileSync(flsPath).toString(), rootDir)
 
         for (const inputFile of ioFiles.input) {
@@ -294,7 +290,7 @@ export class Cacher {
                 if (bibPath === undefined) {
                     continue
                 }
-                const rootFile = this.extension.manager.rootFile
+                const rootFile = lw.manager.rootFile
                 if (rootFile && !this.get(rootFile).bibfiles.includes(bibPath)) {
                     this.get(rootFile).bibfiles.push(bibPath)
                     logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
@@ -323,7 +319,7 @@ export class Cacher {
      */
     getIncludedBib(file?: string, includedBib: string[] = [], children: string[] = []): string[] {
         if (file === undefined) {
-            file = this.extension.manager.rootFile
+            file = lw.manager.rootFile
         }
         if (file === undefined) {
             return []
@@ -355,7 +351,7 @@ export class Cacher {
      */
     getIncludedTeX(file?: string, includedTeX: string[] = []): string[] {
         if (file === undefined) {
-            file = this.extension.manager.rootFile
+            file = lw.manager.rootFile
         }
         if (file === undefined) {
             return []
@@ -398,7 +394,7 @@ export class Cacher {
     }
 
     ignorePdfFile(rootFile: string) {
-        const pdfFilePath = this.extension.manager.tex2pdf(rootFile)
+        const pdfFilePath = lw.manager.tex2pdf(rootFile)
         const pdfFileUri = vscode.Uri.file(pdfFilePath)
         this.pdfWatcher.ignorePdfFile(pdfFileUri)
     }

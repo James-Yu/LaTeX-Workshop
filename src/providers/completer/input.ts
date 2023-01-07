@@ -2,10 +2,9 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import type { IProvider } from '../completion'
-import {stripCommentsAndVerbatim} from '../../utils/utils'
+import { stripCommentsAndVerbatim } from '../../utils/utils'
 
 import { getLogger } from '../../components/logger'
 
@@ -14,12 +13,7 @@ const logger = getLogger('Intelli', 'Input')
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
 abstract class InputAbstract implements IProvider {
-    protected readonly extension: Extension
     graphicsPath: string[] = []
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
 
     /**
      * Compute the base directory for file completion
@@ -145,23 +139,18 @@ abstract class InputAbstract implements IProvider {
 }
 
 export class Input extends InputAbstract {
-
-    constructor(extension: Extension) {
-        super(extension)
-    }
-
     provideDirOnly(_importFromDir: string): boolean {
         return false
     }
 
     getBaseDir(currentFile: string, _importFromDir: string, command: string): string[] {
         let baseDir: string[] = []
-        if (this.extension.manager.rootDir === undefined) {
-            logger.log(`No root dir can be found. The current root file should be undefined, is ${this.extension.manager.rootFile}. How did you get here?`)
+        if (lw.manager.rootDir === undefined) {
+            logger.log(`No root dir can be found. The current root file should be undefined, is ${lw.manager.rootFile}. How did you get here?`)
             return []
         }
         // If there is no root, 'root relative' and 'both' should fall back to 'file relative'
-        const rootDir = this.extension.manager.rootDir
+        const rootDir = lw.manager.rootDir
         if (['includegraphics', 'includesvg'].includes(command) && this.graphicsPath.length > 0) {
             baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))
         } else {
@@ -189,11 +178,6 @@ export class Input extends InputAbstract {
 }
 
 export class Import extends InputAbstract {
-
-    constructor(extension: Extension) {
-        super(extension)
-    }
-
     provideDirOnly(importFromDir: string): boolean {
         return (!importFromDir)
     }
@@ -209,11 +193,6 @@ export class Import extends InputAbstract {
 
 
 export class SubImport extends InputAbstract {
-
-    constructor(extension: Extension) {
-        super(extension)
-    }
-
     provideDirOnly(importFromDir: string): boolean {
         return (!importFromDir)
     }

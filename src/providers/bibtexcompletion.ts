@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-
-import type { Extension } from '../main'
+import * as lw from '../lw'
 import {BibtexFormatConfig} from './bibtexformatterlib/bibtexutils'
 
 import { getLogger } from '../components/logger'
@@ -12,14 +11,12 @@ type DataBibtexJsonType = typeof import('../../data/bibtex-entries.json')
 type DataBibtexOptionalJsonType = typeof import('../../data/bibtex-optional-entries.json')
 
 export class BibtexCompleter implements vscode.CompletionItemProvider {
-    private readonly extension: Extension
     private scope: vscode.ConfigurationScope | undefined = undefined
     private readonly entryItems: vscode.CompletionItem[] = []
     private readonly optFieldItems = Object.create(null) as { [key: string]: vscode.CompletionItem[] }
     private readonly bibtexFormatConfig: BibtexFormatConfig
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         if (vscode.window.activeTextEditor) {
             this.scope = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri)
         } else {
@@ -37,7 +34,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
                 }
         })
         vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
-            if (e && this.extension.manager.hasBibtexId(e.document.languageId)) {
+            if (e && lw.manager.hasBibtexId(e.document.languageId)) {
                 const wsFolder = vscode.workspace.getWorkspaceFolder(e.document.uri)
                 if (wsFolder !== this.scope) {
                     this.scope = wsFolder
@@ -56,13 +53,13 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         let entriesReplacements: {[key: string]: string[]} = {}
         switch (citationBackend) {
             case 'bibtex':
-                entriesFile = `${this.extension.extensionRoot}/data/bibtex-entries.json`
-                optEntriesFile = `${this.extension.extensionRoot}/data/bibtex-optional-entries.json`
+                entriesFile = `${lw.extensionRoot}/data/bibtex-entries.json`
+                optEntriesFile = `${lw.extensionRoot}/data/bibtex-optional-entries.json`
                 entriesReplacements = configuration.get('intellisense.bibtexJSON.replace') as {[key: string]: string[]}
                 break
             case 'biblatex':
-                entriesFile = `${this.extension.extensionRoot}/data/biblatex-entries.json`
-                optEntriesFile = `${this.extension.extensionRoot}/data/biblatex-optional-entries.json`
+                entriesFile = `${lw.extensionRoot}/data/biblatex-entries.json`
+                optEntriesFile = `${lw.extensionRoot}/data/biblatex-optional-entries.json`
                 entriesReplacements = configuration.get('intellisense.biblatexJSON.replace') as {[key: string]: string[]}
                 break
             default:

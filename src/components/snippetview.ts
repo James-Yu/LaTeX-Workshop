@@ -1,8 +1,7 @@
 import * as vscode from 'vscode'
 import {readFileSync} from 'fs'
 import * as path from 'path'
-
-import type {Extension} from '../main'
+import * as lw from '../lw'
 import {replaceWebviewPlaceholders} from '../utils/webview'
 
 
@@ -18,12 +17,10 @@ type RenderResult = {
 }
 
 export class SnippetView {
-    readonly extension: Extension
     readonly snippetViewProvider: SnippetViewProvider
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.snippetViewProvider = new SnippetViewProvider(extension)
+    constructor() {
+        this.snippetViewProvider = new SnippetViewProvider()
     }
 
     async renderPdf(pdfFileUri: vscode.Uri, opts: { height: number, width: number, pageNumber: number }): Promise<string | undefined> {
@@ -62,19 +59,17 @@ export class SnippetView {
 }
 
 class SnippetViewProvider implements vscode.WebviewViewProvider {
-    private readonly extension: Extension
     private view: vscode.WebviewView | undefined
     private lastActiveTextEditor: vscode.TextEditor | undefined
     private readonly cbSet = new Set<(e: SnippetViewResult) => void>()
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         const editor = vscode.window.activeTextEditor
-        if (editor && this.extension.manager.hasTexId(editor.document.languageId)) {
+        if (editor && lw.manager.hasTexId(editor.document.languageId)) {
             this.lastActiveTextEditor = editor
         }
         vscode.window.onDidChangeActiveTextEditor(textEditor => {
-            if (textEditor && this.extension.manager.hasTexId(textEditor.document.languageId)) {
+            if (textEditor && lw.manager.hasTexId(textEditor.document.languageId)) {
                 this.lastActiveTextEditor = textEditor
             }
         })
@@ -95,9 +90,9 @@ class SnippetViewProvider implements vscode.WebviewViewProvider {
             this.view = undefined
         })
 
-        const webviewSourcePath = path.join(this.extension.extensionRoot, 'resources', 'snippetview', 'snippetview.html')
+        const webviewSourcePath = path.join(lw.extensionRoot, 'resources', 'snippetview', 'snippetview.html')
         let webviewHtml = readFileSync(webviewSourcePath, { encoding: 'utf8' })
-        webviewHtml = replaceWebviewPlaceholders(webviewHtml, this.extension, this.view.webview)
+        webviewHtml = replaceWebviewPlaceholders(webviewHtml, this.view.webview)
         webviewView.webview.html = webviewHtml
 
         webviewView.webview.onDidReceiveMessage((e: SnippetViewResult) => {

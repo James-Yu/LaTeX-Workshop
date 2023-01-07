@@ -1,8 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import type { IProvider, ICompletionItem, PkgType } from '../completion'
 import {CommandFinder, isTriggerSuggestNeeded} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint} from './completerutils'
@@ -38,7 +37,6 @@ function isCmdWithSnippet(obj: any): obj is CmdType {
 }
 
 export class Command implements IProvider {
-    private readonly extension: Extension
     private readonly commandFinder: CommandFinder
     private readonly surroundCommand: SurroundCommand
 
@@ -46,26 +44,25 @@ export class Command implements IProvider {
     private readonly _defaultSymbols: CmdEnvSuggestion[] = []
     private readonly packageCmds = new Map<string, CmdEnvSuggestion[]>()
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.commandFinder = new CommandFinder(extension)
+    constructor() {
+        this.commandFinder = new CommandFinder()
         this.surroundCommand = new SurroundCommand()
 
-        this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+        lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (!e.affectsConfiguration('latex-workshop.intellisense.commandsJSON.replace')) {
                 return
             }
-            this.initialize(this.extension.completer.environment)
+            this.initialize(lw.completer.environment)
         }))
     }
 
     initialize(environment: Environment) {
-        const cmds = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})) as {[key: string]: CmdType}
+        const cmds = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/commands.json`, {encoding: 'utf8'})) as {[key: string]: CmdType}
         Object.keys(cmds).forEach(cmd => {
             cmds[cmd].command = cmd
             cmds[cmd].snippet = cmds[cmd].snippet || cmd
         })
-        const maths = (JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})) as PkgType).cmds
+        const maths = (JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})) as PkgType).cmds
         Object.keys(maths).forEach(cmd => {
             maths[cmd].command = cmd
             maths[cmd].snippet = maths[cmd].snippet || cmd
@@ -102,7 +99,7 @@ export class Command implements IProvider {
 
     get defaultSymbols() {
         if (this._defaultSymbols.length === 0) {
-            const symbols: { [key: string]: CmdType } = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString()) as DataUnimathSymbolsJsonType
+            const symbols: { [key: string]: CmdType } = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/unimathsymbols.json`).toString()) as DataUnimathSymbolsJsonType
             Object.keys(symbols).forEach(key => {
                 this._defaultSymbols.push(this.entryCmdToCompletion(key, symbols[key]))
             })
@@ -159,18 +156,18 @@ export class Command implements IProvider {
 
         // Insert commands from packages
         if ((configuration.get('intellisense.package.enabled'))) {
-            const packages = this.extension.completer.package.getPackagesIncluded(languageId)
+            const packages = lw.completer.package.getPackagesIncluded(languageId)
             Object.keys(packages).forEach(packageName => {
                 this.provideCmdInPkg(packageName, packages[packageName], suggestions, cmdDuplicationDetector)
-                this.extension.completer.environment.provideEnvsAsCommandInPkg(packageName, packages[packageName], suggestions, cmdDuplicationDetector)
+                lw.completer.environment.provideEnvsAsCommandInPkg(packageName, packages[packageName], suggestions, cmdDuplicationDetector)
             })
         }
 
         // Start working on commands in tex. To avoid over populating suggestions, we do not include
         // user defined commands, whose name matches a default command or one provided by a package
         const commandNameDuplicationDetector = new CommandNameDuplicationDetector(suggestions)
-        this.extension.cacher.getIncludedTeX().forEach(tex => {
-            const cmds = this.extension.cacher.get(tex)?.elements.command
+        lw.cacher.getIncludedTeX().forEach(tex => {
+            const cmds = lw.cacher.get(tex)?.elements.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
                     if (!commandNameDuplicationDetector.has(cmd)) {
@@ -211,14 +208,14 @@ export class Command implements IProvider {
      */
     update(file: string, nodes?: latexParser.Node[], content?: string) {
         // First, we must update the package list
-        this.extension.completer.package.updateUsepackage(file, nodes, content)
+        lw.completer.package.updateUsepackage(file, nodes, content)
         // Remove newcommand cmds, because they will be re-insert in the next step
         this.definedCmds.forEach((entry,cmd) => {
             if (entry.file === file) {
                 this.definedCmds.delete(cmd)
             }
         })
-        const cache = this.extension.cacher.get(file)
+        const cache = lw.cacher.get(file)
         if (cache === undefined) {
             return
         }
@@ -291,7 +288,7 @@ export class Command implements IProvider {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
-        this.extension.completer.loadPackageData(packageName)
+        lw.completer.loadPackageData(packageName)
 
         // No package command defined
         const pkgCmds = this.packageCmds.get(packageName)

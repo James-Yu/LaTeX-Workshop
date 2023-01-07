@@ -1,8 +1,7 @@
 import * as vscode from 'vscode'
 import {bibtexParser} from 'latex-utensils'
 import {performance} from 'perf_hooks'
-
-import type { Extension } from '../main'
+import * as lw from '../lw'
 import {BibtexUtils} from './bibtexformatterlib/bibtexutils'
 import type {BibtexEntry} from './bibtexformatterlib/bibtexutils'
 
@@ -11,13 +10,10 @@ import { getLogger } from '../components/logger'
 const logger = getLogger('Format', 'Bib')
 
 export class BibtexFormatter {
-
-    private readonly extension: Extension
     readonly duplicatesDiagnostics: vscode.DiagnosticCollection
     diags: vscode.Diagnostic[]
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         this.duplicatesDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
         this.diags = []
     }
@@ -64,7 +60,7 @@ export class BibtexFormatter {
         const lineOffset = range ? range.start.line : 0
         const columnOffset = range ? range.start.character : 0
 
-        const ast = await this.extension.pegParser.parseBibtex(document.getText(range)).catch((error) => {
+        const ast = await lw.pegParser.parseBibtex(document.getText(range)).catch((error) => {
             if (error instanceof(Error)) {
                 logger.log('Bibtex parser failed.')
                 logger.log(error.message)
@@ -158,11 +154,9 @@ export class BibtexFormatter {
 
 export class BibtexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
     private readonly formatter: BibtexFormatter
-    extension: Extension
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.formatter = new BibtexFormatter(extension)
+    constructor() {
+        this.formatter = new BibtexFormatter()
     }
 
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {

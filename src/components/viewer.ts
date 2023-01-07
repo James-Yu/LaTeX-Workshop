@@ -2,35 +2,30 @@ import * as vscode from 'vscode'
 import type ws from 'ws'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
-
-import type {Extension} from '../main'
-import type {SyncTeXRecordForward} from './locator'
-import {openWebviewPanel} from '../utils/webview'
-import {getCurrentThemeLightness} from '../utils/theme'
-
-import type {ClientRequest, PdfViewerParams, PdfViewerState} from '../../types/latex-workshop-protocol-types/index'
-
-import {Client} from './viewerlib/client'
-import {PdfViewerPanel, PdfViewerPanelSerializer, PdfViewerPanelService} from './viewerlib/pdfviewerpanel'
-import {PdfViewerManagerService} from './viewerlib/pdfviewermanager'
-import {ViewerPageLoaded} from './eventbus'
-export {PdfViewerHookProvider} from './viewerlib/pdfviewerhook'
-
+import * as lw from '../lw'
+import type { SyncTeXRecordForward } from './locator'
+import { openWebviewPanel } from '../utils/webview'
+import { getCurrentThemeLightness } from '../utils/theme'
+import type { ClientRequest, PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index'
+import { Client } from './viewerlib/client'
+import { PdfViewerPanel, PdfViewerPanelSerializer, PdfViewerPanelService } from './viewerlib/pdfviewerpanel'
+import { PdfViewerManagerService } from './viewerlib/pdfviewermanager'
+import { ViewerPageLoaded } from './eventbus'
 import { getLogger } from './logger'
 
 const logger = getLogger('Viewer')
 
+export { PdfViewerHookProvider } from './viewerlib/pdfviewerhook'
+
 export class Viewer {
-    private readonly extension: Extension
     readonly pdfViewerPanelSerializer: PdfViewerPanelSerializer
     private readonly panelService: PdfViewerPanelService
     private readonly managerService: PdfViewerManagerService
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.panelService = new PdfViewerPanelService(extension)
-        this.managerService = new PdfViewerManagerService(extension)
-        this.pdfViewerPanelSerializer = new PdfViewerPanelSerializer(extension, this.panelService, this.managerService)
+    constructor() {
+        this.panelService = new PdfViewerPanelService()
+        this.managerService = new PdfViewerManagerService()
+        this.pdfViewerPanelSerializer = new PdfViewerPanelSerializer(this.panelService, this.managerService)
     }
 
     private createClientSet(pdfFileUri: vscode.Uri): void {
@@ -60,7 +55,7 @@ export class Viewer {
     }
 
     private encodePathWithPrefix(pdfFileUri: vscode.Uri): string {
-        return this.extension.server.pdfFilePathEncoder.encodePathWithPrefix(pdfFileUri)
+        return lw.server.pdfFilePathEncoder.encodePathWithPrefix(pdfFileUri)
     }
 
     /**
@@ -93,12 +88,12 @@ export class Viewer {
 
     private async checkViewer(sourceFile: string, respectOutDir: boolean = true): Promise<string | undefined> {
         const pdfFile = this.tex2pdf(sourceFile, respectOutDir)
-        if (!await this.extension.lwfs.exists(pdfFile)) {
+        if (!await lw.lwfs.exists(pdfFile)) {
             logger.log(`Cannot find PDF file ${pdfFile}`)
             logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfFile}`, 'warning')
             return
         }
-        const url = `http://127.0.0.1:${this.extension.server.port}/viewer.html?file=${this.encodePathWithPrefix(pdfFile)}`
+        const url = `http://127.0.0.1:${lw.server.port}/viewer.html?file=${this.encodePathWithPrefix(pdfFile)}`
         return url
     }
 
@@ -114,7 +109,7 @@ export class Viewer {
         }
         const pdfFileUri = this.tex2pdf(sourceFile)
         this.createClientSet(pdfFileUri)
-        this.extension.cacher.watchPdfFile(pdfFileUri)
+        lw.cacher.watchPdfFile(pdfFileUri)
         try {
             logger.log(`Serving PDF file at ${url}`)
             await vscode.env.openExternal(vscode.Uri.parse(url, true))
@@ -129,7 +124,7 @@ export class Viewer {
     }
 
     private tex2pdf(sourceFile: string, respectOutDir?: boolean): vscode.Uri {
-        const pdfFilePath = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
+        const pdfFilePath = lw.manager.tex2pdf(sourceFile, respectOutDir)
         return vscode.Uri.file(pdfFilePath)
     }
 
@@ -174,7 +169,7 @@ export class Viewer {
      * @param sourceFile The path of a LaTeX file.
      */
     openExternal(sourceFile: string): void {
-        const pdfFile = this.extension.manager.tex2pdf(sourceFile)
+        const pdfFile = lw.manager.tex2pdf(sourceFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let command = configuration.get('view.pdf.external.viewer.command') as string
         let args = configuration.get('view.pdf.external.viewer.args') as string[]
@@ -244,18 +239,18 @@ export class Viewer {
                 break
             }
             case 'loaded': {
-                this.extension.eventBus.fire(ViewerPageLoaded)
+                lw.eventBus.fire(ViewerPageLoaded)
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (configuration.get('synctex.afterBuild.enabled') as boolean) {
                     logger.log('SyncTex after build invoked.')
                     const uri = vscode.Uri.parse(data.pdfFileUri, true)
-                    this.extension.locator.syncTeX(undefined, undefined, uri.fsPath)
+                    lw.locator.syncTeX(undefined, undefined, uri.fsPath)
                 }
                 break
             }
             case 'reverse_synctex': {
                 const uri = vscode.Uri.parse(data.pdfFileUri, true)
-                void this.extension.locator.locate(data, uri.fsPath)
+                void lw.locator.locate(data, uri.fsPath)
                 break
             }
             case 'external_link': {

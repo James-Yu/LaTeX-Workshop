@@ -1,23 +1,20 @@
 import * as vscode from 'vscode'
-
-import type { Extension } from '../main'
-import {Section, SectionNodeProvider} from './structure'
+import * as lw from '../lw'
+import { Section, SectionNodeProvider } from './structure'
 
 export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
-    private readonly extension: Extension
     private readonly sectionNodeProvider: SectionNodeProvider
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.sectionNodeProvider = new SectionNodeProvider(extension)
+    constructor() {
+        this.sectionNodeProvider = new SectionNodeProvider()
     }
 
     async provideWorkspaceSymbols(): Promise<vscode.SymbolInformation[]> {
-        if (this.extension.manager.rootFile === undefined) {
+        if (lw.manager.rootFile === undefined) {
             return []
         }
-        const rootFileUri = this.extension.manager.rootFileUri
-        if (rootFileUri && this.extension.lwfs.isVirtualUri(rootFileUri)) {
+        const rootFileUri = lw.manager.rootFileUri
+        if (rootFileUri && lw.lwfs.isVirtualUri(rootFileUri)) {
             return []
         }
         return this.sectionToSymbols(await this.sectionNodeProvider.buildLaTeXModel())

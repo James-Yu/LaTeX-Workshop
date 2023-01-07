@@ -1,19 +1,12 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import type { Extension } from '../../main'
-
+import * as lw from '../../lw'
 import { getLogger } from '../../components/logger'
 
 const logger = getLogger('Preview', 'Graphics')
 
 export class GraphicsPreview {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     async provideHover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
         const pat = /\\includegraphics\s*(?:\[(.*?)\])?\s*\{(.*?)\}/
         const range = document.getWordRangeAtPosition(position, pat)
@@ -68,7 +61,7 @@ export class GraphicsPreview {
                 let msg = '$(error) Failed to render.'
                 if (!vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath))) {
                     msg = '$(warning) Cannot render a PDF file not in workspaces.'
-                } else if (!this.extension.snippetView.snippetViewProvider.webviewView) {
+                } else if (!lw.snippetView.snippetViewProvider.webviewView) {
                     msg = '$(info) Please activate Snippet View to render the thumbnail of a PDF file.'
                 }
                 return new vscode.MarkdownString(msg, true)
@@ -82,19 +75,19 @@ export class GraphicsPreview {
             const maxDataUrlLength = 99980
             let scale = 1.5
             let newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-            let dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+            let dataUrl = await lw.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
             if (!dataUrl || dataUrl.length < maxDataUrlLength) {
                 return dataUrl
             }
             scale = 1
             newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-            dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+            dataUrl = await lw.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
             if (!dataUrl || dataUrl.length < maxDataUrlLength) {
                 return dataUrl
             }
             scale = Math.sqrt(maxDataUrlLength/dataUrl.length) / 1.2
             newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-            dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+            dataUrl = await lw.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
             if (dataUrl && dataUrl.length >= maxDataUrlLength) {
                 logger.log(`Data URL still too large: ${pdfFilePath}`)
                 return undefined
@@ -116,7 +109,7 @@ export class GraphicsPreview {
         }
 
         const activeDir = path.dirname(document.uri.fsPath)
-        for (const dirPath of this.extension.completer.input.graphicsPath) {
+        for (const dirPath of lw.completer.input.graphicsPath) {
             const filePath = path.resolve(activeDir, dirPath, relPath)
             if (fs.existsSync(filePath)) {
                 return filePath
@@ -128,7 +121,7 @@ export class GraphicsPreview {
             return fPath
         }
 
-        const rootDir = this.extension.manager.rootDir
+        const rootDir = lw.manager.rootDir
         if (rootDir === undefined) {
             return undefined
         }

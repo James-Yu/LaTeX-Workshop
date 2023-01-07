@@ -1,19 +1,11 @@
 import * as vscode from 'vscode'
 import * as cs from 'cross-spawn'
-
-import type { Extension } from '../main'
-
+import * as lw from '../lw'
 import { getLogger } from './logger'
 
 const logger = getLogger('TeXDoc')
 
 export class TeXDoc {
-    private readonly extension: Extension
-
-    constructor(e: Extension) {
-        this.extension = e
-    }
-
     private runTexdoc(pkg: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const texdocPath = configuration.get('texdoc.path') as string
@@ -70,8 +62,8 @@ export class TeXDoc {
 
     texdocUsepackages() {
         const names: Set<string> = new Set()
-        for (const tex of this.extension.cacher.getIncludedTeX()) {
-            const content = this.extension.cacher.get(tex)
+        for (const tex of lw.cacher.getIncludedTeX()) {
+            const content = lw.cacher.get(tex)
             const pkgs = content && content.elements.package
             if (!pkgs) {
                 continue

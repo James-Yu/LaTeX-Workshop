@@ -1,13 +1,6 @@
-import type {Extension} from '../../main'
 import * as vscode from 'vscode'
 
 export class PdfFilePathEncoder {
-    readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     /**
      * Prefix that server.ts uses to distiguish requests on pdf files from others.
      * We use '.' because it is not converted by encodeURIComponent and other functions.

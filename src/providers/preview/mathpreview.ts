@@ -1,18 +1,14 @@
 import * as vscode from 'vscode'
-
-import type { Extension } from '../../main'
-import {MathJaxPool} from './mathjaxpool'
+import { MathJaxPool } from './mathjaxpool'
 import * as utils from '../../utils/svg'
-import type {ReferenceEntry} from '../completer/reference'
-import {getCurrentThemeLightness} from '../../utils/theme'
-
-import {CursorRenderer} from './mathpreviewlib/cursorrenderer'
-import {type ITextDocumentLike, TextDocumentLike} from './mathpreviewlib/textdocumentlike'
-import {NewCommandFinder} from './mathpreviewlib/newcommandfinder'
-import {TexMathEnv, TeXMathEnvFinder} from './mathpreviewlib/texmathenvfinder'
-import {HoverPreviewOnRefProvider} from './mathpreviewlib/hoverpreviewonref'
-import {MathPreviewUtils} from './mathpreviewlib/mathpreviewutils'
-
+import type { ReferenceEntry } from '../completer/reference'
+import { getCurrentThemeLightness } from '../../utils/theme'
+import { CursorRenderer} from './mathpreviewlib/cursorrenderer'
+import { type ITextDocumentLike, TextDocumentLike } from './mathpreviewlib/textdocumentlike'
+import { NewCommandFinder } from './mathpreviewlib/newcommandfinder'
+import { TexMathEnv, TeXMathEnvFinder } from './mathpreviewlib/texmathenvfinder'
+import { HoverPreviewOnRefProvider } from './mathpreviewlib/hoverpreviewonref'
+import { MathPreviewUtils } from './mathpreviewlib/mathpreviewutils'
 import { getLogger } from '../../components/logger'
 
 const logger = getLogger('Preview', 'Math')
@@ -28,12 +24,12 @@ export class MathPreview {
     private readonly hoverPreviewOnRefProvider: HoverPreviewOnRefProvider
     private readonly mputils: MathPreviewUtils
 
-    constructor(extension: Extension) {
+    constructor() {
         this.mj = new MathJaxPool()
         vscode.workspace.onDidChangeConfiguration(() => this.getColor())
-        this.cursorRenderer = new CursorRenderer(extension)
+        this.cursorRenderer = new CursorRenderer()
         this.mputils = new MathPreviewUtils()
-        this.newCommandFinder = new NewCommandFinder(extension)
+        this.newCommandFinder = new NewCommandFinder()
         this.texMathEnvFinder = new TeXMathEnvFinder()
         this.hoverPreviewOnRefProvider = new HoverPreviewOnRefProvider(this.mj, this.mputils)
     }

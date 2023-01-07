@@ -1,23 +1,21 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-
-import type {Extension} from '../main'
-import {Citation} from './completer/citation'
-import {DocumentClass} from './completer/documentclass'
-import {Command} from './completer/command'
-import type {CmdType} from './completer/command'
-import {Environment} from './completer/environment'
-import type {EnvType} from './completer/environment'
+import * as lw from '../lw'
+import { Citation } from './completer/citation'
+import { DocumentClass } from './completer/documentclass'
+import { Command } from './completer/command'
+import type { CmdType } from './completer/command'
+import { Environment } from './completer/environment'
+import type { EnvType } from './completer/environment'
 import { Argument } from './completer/argument'
-import {AtSuggestion} from './completer/atsuggestion'
-import {Reference} from './completer/reference'
-import {Package} from './completer/package'
-import {Input, Import, SubImport} from './completer/input'
-import {Glossary} from './completer/glossary'
-import type {ReferenceDocType} from './completer/reference'
-import {escapeRegExp} from '../utils/utils'
-import {resolvePkgFile} from './completer/commandlib/commandfinder'
-
+import { AtSuggestion } from './completer/atsuggestion'
+import { Reference } from './completer/reference'
+import { Package } from './completer/package'
+import { Input, Import, SubImport } from './completer/input'
+import { Glossary } from './completer/glossary'
+import type {ReferenceDocType } from './completer/reference'
+import { escapeRegExp } from '../utils/utils'
+import { resolvePkgFile } from './completer/commandlib/commandfinder'
 import { getLogger } from '../components/logger'
 
 const logger = getLogger('Intelli')
@@ -40,7 +38,6 @@ export interface ICompletionItem extends vscode.CompletionItem {
 }
 
 export class Completer implements vscode.CompletionItemProvider {
-    private readonly extension: Extension
     readonly citation: Citation
     readonly command: Command
     readonly documentClass: DocumentClass
@@ -55,19 +52,18 @@ export class Completer implements vscode.CompletionItemProvider {
 
     private readonly packagesLoaded: string[] = []
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.citation = new Citation(extension)
-        this.environment = new Environment(extension) // Must be created before command
-        this.command = new Command(extension)
-        this.argument = new Argument(extension)
-        this.documentClass = new DocumentClass(extension)
-        this.reference = new Reference(extension)
-        this.package = new Package(extension)
-        this.input = new Input(extension)
-        this.import = new Import(extension)
-        this.subImport = new SubImport(extension)
-        this.glossary = new Glossary(extension)
+    constructor() {
+        this.citation = new Citation()
+        this.environment = new Environment() // Must be created before command
+        this.command = new Command()
+        this.argument = new Argument()
+        this.documentClass = new DocumentClass()
+        this.reference = new Reference()
+        this.package = new Package()
+        this.input = new Input()
+        this.import = new Import()
+        this.subImport = new SubImport()
+        this.glossary = new Glossary()
         try {
             const environment = this.environment.initialize()
             this.command.initialize(environment)
@@ -81,7 +77,7 @@ export class Completer implements vscode.CompletionItemProvider {
             return
         }
 
-        const filePath: string | undefined = resolvePkgFile(`${packageName}.json`, `${this.extension.extensionRoot}/data/packages/`)
+        const filePath: string | undefined = resolvePkgFile(`${packageName}.json`, `${lw.extensionRoot}/data/packages/`)
         if (filePath === undefined) {
             this.packagesLoaded.push(packageName)
             return
@@ -158,9 +154,9 @@ export class Completer implements vscode.CompletionItemProvider {
                 item.documentation = data.documentation
                 return item
             }
-            const tex = this.extension.mathPreview.findHoverOnRef(sug, data.key)
+            const tex = lw.mathPreview.findHoverOnRef(sug, data.key)
             if (tex) {
-                const svgDataUrl = await this.extension.mathPreview.renderSvgOnRef(tex, data, token)
+                const svgDataUrl = await lw.mathPreview.renderSvgOnRef(tex, data, token)
                 item.documentation = new vscode.MarkdownString(`![equation](${svgDataUrl})`)
                 return item
             } else {
@@ -176,7 +172,7 @@ export class Completer implements vscode.CompletionItemProvider {
             if (typeof filePath !== 'string') {
                 return item
             }
-            const md = await this.extension.graphicsPreview.renderGraphicsAsMarkdownString(filePath, { height: 190, width: 300 })
+            const md = await lw.graphicsPreview.renderGraphicsAsMarkdownString(filePath, { height: 190, width: 300 })
             if (md === undefined) {
                 return item
             }
@@ -258,16 +254,16 @@ export class AtSuggestionCompleter implements vscode.CompletionItemProvider {
     private atSuggestion: AtSuggestion
     private triggerCharacter: string
 
-    constructor(private readonly extension: Extension) {
+    constructor() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.triggerCharacter = configuration.get('intellisense.atSuggestion.trigger.latex') as string
-        this.atSuggestion = new AtSuggestion(this.extension, this.triggerCharacter)
+        this.atSuggestion = new AtSuggestion(this.triggerCharacter)
     }
 
     updateTrigger() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.triggerCharacter = configuration.get('intellisense.atSuggestion.trigger.latex') as string
-        this.atSuggestion = new AtSuggestion(this.extension, this.triggerCharacter)
+        this.atSuggestion = new AtSuggestion(this.triggerCharacter)
     }
 
     provideCompletionItems(

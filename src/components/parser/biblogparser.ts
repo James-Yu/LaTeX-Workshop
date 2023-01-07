@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import type { LogEntry } from './compilerlog'
 
 import { getLogger } from '../logger'
@@ -14,17 +14,12 @@ const multiLineCommandError = /^(.*)\n?---line (\d+) of file (.*)\n([^]+?)\nI'm 
 const errorAuxFile = /^(.*)---while reading file (.*)$/gm
 
 export class BibLogParser {
-    private readonly extension: Extension
     buildLog: LogEntry[] = []
     readonly compilerDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
 
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     parse(log: string, rootFile?: string) {
         if (rootFile === undefined) {
-            rootFile = this.extension.manager.rootFile
+            rootFile = lw.manager.rootFile
         }
         if (rootFile === undefined) {
             logger.log('How can you reach this point?')
@@ -69,7 +64,7 @@ export class BibLogParser {
         }
 
         logger.log(`Logged ${this.buildLog.length} messages.`)
-        this.extension.compilerLogParser.showCompilerDiagnostics(this.compilerDiagnostics, this.buildLog, 'BibTeX')
+        lw.compilerLogParser.showCompilerDiagnostics(this.compilerDiagnostics, this.buildLog, 'BibTeX')
     }
 
     private pushLog(type: string, file: string, message: string, line: number, excludeRegexp: RegExp[]) {
@@ -83,10 +78,10 @@ export class BibLogParser {
 
     private resolveAuxFile(filename: string, rootFile: string): string {
         filename = filename.replace(/\.aux$/, '.tex')
-        if (!this.extension.cacher.get(rootFile)) {
+        if (!lw.cacher.get(rootFile)) {
             return filename
         }
-        const texFiles = this.extension.cacher.getIncludedTeX(rootFile)
+        const texFiles = lw.cacher.getIncludedTeX(rootFile)
         for (const tex of texFiles) {
             if (tex.endsWith(filename)) {
                 return tex
@@ -97,10 +92,10 @@ export class BibLogParser {
     }
 
     private resolveBibFile(filename: string, rootFile: string): string {
-        if (!this.extension.cacher.get(rootFile)) {
+        if (!lw.cacher.get(rootFile)) {
             return filename
         }
-        const bibFiles = this.extension.cacher.getIncludedBib(rootFile)
+        const bibFiles = lw.cacher.getIncludedBib(rootFile)
         for (const bib of bibFiles) {
             if (bib.endsWith(filename)) {
                 return bib
@@ -111,7 +106,7 @@ export class BibLogParser {
     }
 
     private findKeyLocation(key: string): {file: string, line: number} | undefined {
-        const entry = this.extension.completer.citation.getEntry(key)
+        const entry = lw.completer.citation.getEntry(key)
         if (entry) {
             const file = entry.file
             const line = entry.position.line + 1

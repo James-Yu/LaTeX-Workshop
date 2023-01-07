@@ -3,8 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import glob from 'glob'
 import * as cs from 'cross-spawn'
-
-import type {Extension} from '../main'
+import * as lw from '../lw'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 
 import { getLogger } from './logger'
@@ -34,18 +33,13 @@ function globAll(globs: string[], cwd: string): string[] {
 }
 
 export class Cleaner {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
 
     async clean(rootFile?: string): Promise<void> {
         if (!rootFile) {
-            if (this.extension.manager.rootFile !== undefined) {
-                await this.extension.manager.findRoot()
+            if (lw.manager.rootFile !== undefined) {
+                await lw.manager.findRoot()
             }
-            rootFile = this.extension.manager.rootFile
+            rootFile = lw.manager.rootFile
             if (!rootFile) {
                 logger.log('Cannot determine the root file to be cleaned.')
                 return
@@ -106,7 +100,7 @@ export class Cleaner {
     private async cleanGlob(rootFile: string): Promise<void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         let globs = configuration.get('latex.clean.fileTypes') as string[]
-        const outdir = path.resolve(path.dirname(rootFile), this.extension.manager.getOutDir(rootFile))
+        const outdir = path.resolve(path.dirname(rootFile), lw.manager.getOutDir(rootFile))
         if (configuration.get('latex.clean.subfolder.enabled') as boolean) {
             globs = globs.map(globType => './**/' + globType)
         }
@@ -156,7 +150,7 @@ export class Cleaner {
         const command = configuration.get('latex.clean.command') as string
         let args = configuration.get('latex.clean.args') as string[]
         if (args) {
-            args = args.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir)(arg)
+            args = args.map(arg => { return replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(arg)
                 // cleaner.ts specific tokens
                 .replace(/%TEX%/g, rootFile)
             })

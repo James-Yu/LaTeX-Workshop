@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as utils from '../utils/utils'
-
 import { getLogger } from './logger'
 
 const logger = getLogger('EnvPair')

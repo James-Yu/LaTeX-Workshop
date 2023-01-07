@@ -1,7 +1,5 @@
 import * as vscode from 'vscode'
-
 import { stripCommentsAndVerbatim } from '../utils/utils'
-
 import { getLogger } from './logger'
 
 const logger = getLogger('Section')

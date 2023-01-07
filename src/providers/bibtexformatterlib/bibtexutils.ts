@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import {bibtexParser} from 'latex-utensils'
-
 import { getLogger } from '../../components/logger'
 
 const logger = getLogger('Format', 'Bib')

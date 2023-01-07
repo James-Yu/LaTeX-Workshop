@@ -2,20 +2,12 @@ import * as vscode from 'vscode'
 import {latexParser} from 'latex-utensils'
 import {stripCommentsAndVerbatim, isNewCommand, NewCommand} from '../../../utils/utils'
 import * as path from 'path'
-
-import type { Extension } from '../../../main'
-
+import * as lw from '../../../lw'
 import { getLogger } from '../../../components/logger'
 
 const logger = getLogger('Preview', 'Math')
 
 export class NewCommandFinder {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     private postProcessNewCommands(commands: string): string {
         return commands.replace(/\\providecommand/g, '\\newcommand')
                        .replace(/\\newcommand\*/g, '\\newcommand')
@@ -32,17 +24,17 @@ export class NewCommandFinder {
         if (path.isAbsolute(newCommandFile)) {
             newCommandFileAbs = newCommandFile
         } else {
-            if (this.extension.manager.rootFile === undefined) {
-                await this.extension.manager.findRoot()
+            if (lw.manager.rootFile === undefined) {
+                await lw.manager.findRoot()
             }
-            const rootDir = this.extension.manager.rootDir
+            const rootDir = lw.manager.rootDir
             if (rootDir === undefined) {
                 logger.log(`Cannot identify the absolute path of new command file ${newCommandFile} without root file.`)
                 return ''
             }
             newCommandFileAbs = path.join(rootDir, newCommandFile)
         }
-        commandsString = this.extension.lwfs.readFileSyncGracefully(newCommandFileAbs)
+        commandsString = lw.lwfs.readFileSyncGracefully(newCommandFileAbs)
         if (commandsString === undefined) {
             logger.log(`Cannot read file ${newCommandFileAbs}`)
             return ''
@@ -66,7 +58,7 @@ export class NewCommandFinder {
         let commands: string[] = []
         let exceeded = false
         setTimeout( () => { exceeded = true }, 5000)
-        for (const tex of this.extension.cacher.getIncludedTeX()) {
+        for (const tex of lw.cacher.getIncludedTeX()) {
             if (ctoken?.isCancellationRequested) {
                 return ''
             }
@@ -74,11 +66,11 @@ export class NewCommandFinder {
                 logger.log('Timeout error when parsing preambles in findProjectNewCommand.')
                 throw new Error('Timeout Error in findProjectNewCommand')
             }
-            const cache = this.extension.cacher.get(tex)
+            const cache = lw.cacher.get(tex)
             if (cache === undefined) {
                 continue
             }
-            const content = this.extension.cacher.get(tex).content
+            const content = lw.cacher.get(tex).content
             if (content === undefined) {
                 continue
             }
@@ -90,7 +82,7 @@ export class NewCommandFinder {
     async findNewCommand(content: string): Promise<string[]> {
         let commands: string[] = []
         try {
-            const ast = await this.extension.pegParser.parseLatexPreamble(content)
+            const ast = await lw.pegParser.parseLatexPreamble(content)
             for (const node of ast.content) {
                 if ((isNewCommand(node) || latexParser.isDefCommand(node)) && node.args.length > 0) {
                     node.name = node.name.replace(/\*$/, '') as NewCommand['name']

@@ -2,11 +2,10 @@ import * as fs from 'fs'
 import * as iconv from 'iconv-lite'
 import * as path from 'path'
 import * as zlib from 'zlib'
-
 import type { SyncTeXRecordForward, SyncTeXRecordBackward } from '../locator'
 import { PdfSyncObject, parseSyncTex, Block, SyncTexJsError } from '../../lib/synctexjs'
-import {iconvLiteSupportedEncodings} from '../../utils/convertfilename'
-import {isSameRealPath} from '../../utils/pathnormalize'
+import { iconvLiteSupportedEncodings } from '../../utils/convertfilename'
+import { isSameRealPath } from '../../utils/pathnormalize'
 
 import { getLogger } from '../logger'
 

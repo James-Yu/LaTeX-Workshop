@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as chokidar from 'chokidar'
-
-import type {Extension} from '../../main'
+import * as lw from '../../lw'
 import { getLogger } from '../logger'
 
 const logger = getLogger('Cacher', 'Bib')
@@ -10,11 +9,11 @@ export class BibWatcher {
     private bibWatcher: chokidar.FSWatcher
     private readonly bibsWatched = new Set<string>()
 
-    constructor(private readonly extension: Extension) {
+    constructor() {
         this.bibWatcher = chokidar.watch([], this.getWatcherOptions())
         this.initializeWatcher()
 
-        this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+        lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (e.affectsConfiguration('latex-workshop.latex.watch.usePolling') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.interval') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.delay')) {
@@ -47,15 +46,15 @@ export class BibWatcher {
     }
 
     private onWatchedBibChanged(filePath: string) {
-        void this.extension.completer.citation.parseBibFile(filePath)
-        void this.extension.builder.buildOnFileChanged(filePath, true)
+        void lw.completer.citation.parseBibFile(filePath)
+        void lw.builder.buildOnFileChanged(filePath, true)
         logger.log(`File changed ${filePath} .`)
     }
 
     private onWatchedBibDeleted(filePath: string) {
         this.bibWatcher.unwatch(filePath)
         this.bibsWatched.delete(filePath)
-        this.extension.completer.citation.removeEntriesInFile(filePath)
+        lw.completer.citation.removeEntriesInFile(filePath)
         logger.log(`File unlinked ${filePath} .`)
     }
 
@@ -64,7 +63,7 @@ export class BibWatcher {
             this.bibWatcher.add(filePath)
             this.bibsWatched.add(filePath)
             logger.log(`File watched ${filePath} .`)
-            await this.extension.completer.citation.parseBibFile(filePath)
+            await lw.completer.citation.parseBibFile(filePath)
         }
     }
 

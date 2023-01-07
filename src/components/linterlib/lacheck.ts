@@ -1,8 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import type { ILinter } from '../linter'
 import { LinterUtil } from './linterutil'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
@@ -15,7 +14,7 @@ export class LaCheck implements ILinter {
     readonly linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(this.linterName)
     readonly #linterUtil: LinterUtil
 
-    constructor(private readonly extension: Extension) {
+    constructor() {
         this.#linterUtil = new LinterUtil()
     }
 
@@ -65,7 +64,7 @@ export class LaCheck implements ILinter {
     parseLog(log: string, filePath?: string) {
         const linterLog: LaCheckLogEntry[] = []
         const lines = log.split('\n')
-        const baseDir = path.dirname(filePath || this.extension.manager.rootFile || '.')
+        const baseDir = path.dirname(filePath || lw.manager.rootFile || '.')
         for (let index = 0; index < lines.length; index++) {
             const logLine = lines[index]
             const re = /"(.*?)",\sline\s(\d+):\s(<-\s)?(.*)/g

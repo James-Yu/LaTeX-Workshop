@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-
-import type {Extension} from '../../main'
+import * as lw from '../../lw'
 import type {PanelRequest, PdfViewerState} from '../../../types/latex-workshop-protocol-types/index'
 import {escapeHtml, sleep} from '../../utils/utils'
 import type {PdfViewerManagerService} from './pdfviewermanager'
@@ -12,20 +11,18 @@ import { getLogger } from '../logger'
 const logger = getLogger('Viewer', 'Panel')
 
 export class PdfViewerPanel {
-    private readonly extension: Extension
     readonly webviewPanel: vscode.WebviewPanel
     readonly pdfFileUri: vscode.Uri
     #state: PdfViewerState | undefined
 
-    constructor(extension: Extension, pdfFileUri: vscode.Uri, panel: vscode.WebviewPanel) {
-        this.extension = extension
+    constructor(pdfFileUri: vscode.Uri, panel: vscode.WebviewPanel) {
         this.pdfFileUri = pdfFileUri
         this.webviewPanel = panel
         panel.webview.onDidReceiveMessage((msg: PanelRequest) => {
             switch(msg.type) {
                 case 'state': {
                     this.#state = msg.state
-                    this.extension.eventBus.fire(ViewerStatusChanged, msg.state)
+                    lw.eventBus.fire(ViewerStatusChanged, msg.state)
                     break
                 }
                 default: {
@@ -42,18 +39,16 @@ export class PdfViewerPanel {
 }
 
 export class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
-    private readonly extension: Extension
     private readonly panelService: PdfViewerPanelService
     private readonly managerService: PdfViewerManagerService
 
-    constructor(extension: Extension, panelService: PdfViewerPanelService, service: PdfViewerManagerService) {
-        this.extension = extension
+    constructor(panelService: PdfViewerPanelService, service: PdfViewerManagerService) {
         this.panelService = panelService
         this.managerService = service
     }
 
     async deserializeWebviewPanel(panel: vscode.WebviewPanel, argState: {state: PdfViewerState}): Promise<void> {
-        await this.extension.server.serverStarted
+        await lw.server.serverStarted
         logger.log(`Restoring at column ${panel.viewColumn} with state ${JSON.stringify(argState.state)}.`)
         const state = argState.state
         let pdfFileUri: vscode.Uri | undefined
@@ -67,29 +62,24 @@ export class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
             panel.webview.html = '<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>The path of PDF file is undefined.</html>'
             return
         }
-        if (! await this.extension.lwfs.exists(pdfFileUri)) {
+        if (! await lw.lwfs.exists(pdfFileUri)) {
             const s = escapeHtml(pdfFileUri.toString())
             logger.log(`Failed restoring viewer with non-existent PDF ${pdfFileUri.toString(true)} .`)
             panel.webview.html = `<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>File not found: ${s}</html>`
             return
         }
         panel.webview.html = await this.panelService.getPDFViewerContent(pdfFileUri)
-        const pdfPanel = new PdfViewerPanel(this.extension, pdfFileUri, panel)
+        const pdfPanel = new PdfViewerPanel(pdfFileUri, panel)
         this.managerService.initiatePdfViewerPanel(pdfPanel)
         return
     }
 }
 
 export class PdfViewerPanelService {
-    private readonly extension: Extension
     private alreadyOpened = false
 
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     private encodePathWithPrefix(pdfFileUri: vscode.Uri): string {
-        return this.extension.server.pdfFilePathEncoder.encodePathWithPrefix(pdfFileUri)
+        return lw.server.pdfFilePathEncoder.encodePathWithPrefix(pdfFileUri)
     }
 
     private async tweakForCodespaces(url: vscode.Uri) {
@@ -107,14 +97,14 @@ export class PdfViewerPanelService {
     }
 
     async createPdfViewerPanel(pdfFileUri: vscode.Uri, viewColumn: vscode.ViewColumn): Promise<PdfViewerPanel> {
-        await this.extension.server.serverStarted
+        await lw.server.serverStarted
         const htmlContent = await this.getPDFViewerContent(pdfFileUri)
         const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFileUri.path), viewColumn, {
             enableScripts: true,
             retainContextWhenHidden: true
         })
         panel.webview.html = htmlContent
-        const pdfPanel = new PdfViewerPanel(this.extension, pdfFileUri, panel)
+        const pdfPanel = new PdfViewerPanel(pdfFileUri, panel)
         return pdfPanel
     }
 
@@ -136,7 +126,7 @@ export class PdfViewerPanelService {
      * @param pdfFile The path of a PDF file to be opened.
      */
     async getPDFViewerContent(pdfFile: vscode.Uri): Promise<string> {
-        const serverPort = this.extension.server.port
+        const serverPort = lw.server.port
         // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
         const origUrl = `http://127.0.0.1:${serverPort}/viewer.html?file=${this.encodePathWithPrefix(pdfFile)}`
         const url = await vscode.env.asExternalUri(vscode.Uri.parse(origUrl, true))

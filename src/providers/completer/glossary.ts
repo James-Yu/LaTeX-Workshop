@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import {latexParser} from 'latex-utensils'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import type { ICompletionItem } from '../completion'
 import type { IProvider } from '../completion'
 
@@ -22,14 +21,9 @@ export interface GlossarySuggestion extends ICompletionItem {
 }
 
 export class Glossary implements IProvider {
-    private readonly extension: Extension
     // use object for deduplication
     private readonly glossaries = new Map<string, GlossarySuggestion>()
     private readonly acronyms = new Map<string, GlossarySuggestion>()
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
 
     provideFrom(result: RegExpMatchArray) {
         return this.provide(result)
@@ -179,8 +173,8 @@ export class Glossary implements IProvider {
         // Extract cached references
         const glossaryList: string[] = []
 
-        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedGlossaries = this.extension.cacher.get(cachedFile)?.elements.glossary
+        lw.cacher.getIncludedTeX().forEach(cachedFile => {
+            const cachedGlossaries = lw.cacher.get(cachedFile)?.elements.glossary
             if (cachedGlossaries === undefined) {
                 return
             }
@@ -216,7 +210,7 @@ export class Glossary implements IProvider {
      * @param content The content of a LaTeX file.
      */
     update(file: string, nodes?: latexParser.Node[], content?: string) {
-        const cache = this.extension.cacher.get(file)
+        const cache = lw.cacher.get(file)
         if (cache === undefined) {
             return
         }

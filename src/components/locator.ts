@@ -2,8 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
-
-import type { Extension } from '../main'
+import * as lw from '../lw'
 import {SyncTexJs} from './locatorlib/synctex'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 import {isSameRealPath} from '../utils/pathnormalize'
@@ -27,11 +26,9 @@ export type SyncTeXRecordBackward = {
 }
 
 export class Locator {
-    private readonly extension: Extension
     private readonly synctexjs: SyncTexJs
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         this.synctexjs = new SyncTexJs()
     }
 
@@ -121,7 +118,7 @@ export class Locator {
 
         if (args === undefined) {
             filePath = vscode.window.activeTextEditor.document.uri.fsPath
-            if (!this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            if (!lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
                 logger.log(`${filePath} is not valid LaTeX.`)
                 return
             }
@@ -137,13 +134,13 @@ export class Locator {
             filePath = args.filePath
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const rootFile = this.extension.manager.rootFile
+        const rootFile = lw.manager.rootFile
         if (rootFile === undefined) {
             logger.log('No root file found.')
             return
         }
         if (!pdfFile) {
-            pdfFile = this.extension.manager.tex2pdf(rootFile)
+            pdfFile = lw.manager.tex2pdf(rootFile)
         }
         if (vscode.window.activeTextEditor.document.lineCount === line &&
             vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {
@@ -160,14 +157,14 @@ export class Locator {
             try {
                 logger.log(`Forward from ${filePath} to ${pdfFile} on line ${line}.`)
                 const record = this.synctexjs.syncTexJsForward(line, filePath, pdfFile)
-                this.extension.viewer.syncTeX(pdfFile, record)
+                lw.viewer.syncTeX(pdfFile, record)
             } catch (e) {
                 logger.logError('Forward SyncTeX failed.', e)
             }
         } else {
             void this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
                 if (pdfFile) {
-                    this.extension.viewer.syncTeX(pdfFile, record)
+                    lw.viewer.syncTeX(pdfFile, record)
                 }
             })
         }
@@ -181,9 +178,9 @@ export class Locator {
         let command = configuration.get('synctex.path') as string
         if (docker) {
             if (process.platform === 'win32') {
-                command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
+                command = path.resolve(lw.extensionRoot, './scripts/synctex.bat')
             } else {
-                command = path.resolve(this.extension.extensionRoot, './scripts/synctex')
+                command = path.resolve(lw.extensionRoot, './scripts/synctex')
                 fs.chmodSync(command, 0o755)
             }
         }
@@ -239,9 +236,9 @@ export class Locator {
         if (docker) {
             logger.log('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
-                command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
+                command = path.resolve(lw.extensionRoot, './scripts/synctex.bat')
             } else {
-                command = path.resolve(this.extension.extensionRoot, './scripts/synctex')
+                command = path.resolve(lw.extensionRoot, './scripts/synctex')
                 fs.chmodSync(command, 0o755)
             }
         }
@@ -310,7 +307,7 @@ export class Locator {
         // kpathsea/SyncTeX follow symlinks.
         // see http://tex.stackexchange.com/questions/25578/why-is-synctex-in-tl-2011-so-fussy-about-filenames.
         // We compare the return of symlink with the files list in the texFileTree and try to pickup the correct one.
-        for (const ed of this.extension.cacher.allPaths) {
+        for (const ed of lw.cacher.allPaths) {
             try {
                 if (isSameRealPath(record.input, ed)) {
                     record.input = ed
@@ -486,7 +483,7 @@ export class Locator {
         }
         if (args) {
             args = args.map(arg => {
-                return replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir)(arg)
+                return replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(arg)
                         .replace(/%PDF%/g, pdfFile)
                         .replace(/%LINE%/g, line.toString())
                         .replace(/%TEX%/g, texFile)

@@ -1,18 +1,12 @@
-import { latexParser } from 'latex-utensils'
 import * as vscode from 'vscode'
-
-import type { Extension } from '../../../main'
+import { latexParser } from 'latex-utensils'
+import * as lw from '../../../lw'
 import { TexMathEnv } from './texmathenvfinder'
 import type { ITextDocumentLike } from './textdocumentlike'
 
 export class CursorRenderer {
-    private readonly extension: Extension
     private currentTeXString: string | undefined
     private currentAst: latexParser.LatexAst | undefined
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
 
     // Test whether cursor is in tex command strings
     // like \begin{...} \end{...} \xxxx{ \[ \] \( \) or \\
@@ -116,7 +110,7 @@ export class CursorRenderer {
         if (texMath.texString === this.currentTeXString && this.currentAst) {
             ast = this.currentAst
         } else {
-            ast = await this.extension.pegParser.parseLatex(texMath.texString, {enableMathCharacterLocation: true})
+            ast = await lw.pegParser.parseLatex(texMath.texString, {enableMathCharacterLocation: true})
             this.currentAst = ast
             this.currentTeXString = texMath.texString
         }

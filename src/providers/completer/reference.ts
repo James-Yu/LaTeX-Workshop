@@ -2,8 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import {latexParser} from 'latex-utensils'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import {stripEnvironments, isNewCommand, isNewEnvironment} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
 import type { IProvider, ICompletionItem } from '../completion'
@@ -33,15 +32,10 @@ export type ReferenceDocType = {
 }
 
 export class Reference implements IProvider {
-    private readonly extension: Extension
     // Here we use an object instead of an array for de-duplication
     private readonly suggestions = new Map<string, ReferenceEntry>()
     private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
     private readonly envsToSkip = ['tikzpicture']
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
 
     provideFrom(_result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         return this.provide(args)
@@ -86,7 +80,7 @@ export class Reference implements IProvider {
      * @param content The content of a LaTeX file.
      */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
-        const cache = this.extension.cacher.get(file)
+        const cache = lw.cacher.get(file)
         if (cache === undefined) {
             return
         }
@@ -109,8 +103,8 @@ export class Reference implements IProvider {
         if (args) {
             range = computeFilteringRange(args.document, args.position)
         }
-        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.cacher.get(cachedFile)?.elements.reference
+        lw.cacher.getIncludedTeX().forEach(cachedFile => {
+            const cachedRefs = lw.cacher.get(cachedFile)?.elements.reference
             if (cachedRefs === undefined) {
                 return
             }
@@ -238,7 +232,7 @@ export class Reference implements IProvider {
     }
 
     setNumbersFromAuxFile(rootFile: string) {
-        const outDir = this.extension.manager.getOutDir(rootFile)
+        const outDir = lw.manager.getOutDir(rootFile)
         const rootDir = path.dirname(rootFile)
         const auxFile = path.resolve(rootDir, path.join(outDir, path.basename(rootFile, '.tex') + '.aux'))
         this.suggestions.forEach((entry) => {

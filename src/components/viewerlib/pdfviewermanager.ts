@@ -1,19 +1,13 @@
 import * as vscode from 'vscode'
 import type ws from 'ws'
-
-import type {Extension} from '../../main'
+import * as lw from '../../lw'
 import type {Client} from './client'
 import type {PdfViewerPanel} from './pdfviewerpanel'
 
 
 export class PdfViewerManagerService {
-    private readonly extension: Extension
     private readonly webviewPanelMap = new Map<string, Set<PdfViewerPanel>>()
     readonly clientMap = new Map<string, Set<Client>>()
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
 
     private toKey(pdfFileUri: vscode.Uri): string {
         return pdfFileUri.toString(true).toLocaleUpperCase()
@@ -58,7 +52,7 @@ export class PdfViewerManagerService {
 
     initiatePdfViewerPanel(pdfPanel: PdfViewerPanel): PdfViewerPanel | undefined {
         const pdfFileUri = pdfPanel.pdfFileUri
-        this.extension.cacher.watchPdfFile(pdfFileUri)
+        lw.cacher.watchPdfFile(pdfFileUri)
         this.createClientSet(pdfFileUri)
         const panelSet = this.getPanelSet(pdfFileUri)
         if (!panelSet) {

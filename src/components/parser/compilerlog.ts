@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 import { LatexLogParser } from './latexlog'
 import { BibLogParser } from './biblogparser'
@@ -33,13 +32,11 @@ export interface LogEntry { type: string, file: string, text: string, line: numb
 export class CompilerLogParser {
     private readonly latexLogParser: LatexLogParser
     private readonly bibLogParser: BibLogParser
-    private readonly extension: Extension
     isLaTeXmkSkipped: boolean = false
 
-    constructor(extension: Extension) {
-        this.latexLogParser = new LatexLogParser(extension)
-        this.bibLogParser = new BibLogParser(extension)
-        this.extension = extension
+    constructor() {
+        this.latexLogParser = new LatexLogParser()
+        this.bibLogParser = new BibLogParser()
     }
 
     parse(log: string, rootFile?: string) {
@@ -120,7 +117,7 @@ export class CompilerLogParser {
         if (!item.errorPosText) {
             return undefined
         }
-        const content = this.extension.cacher.get(item.file).content
+        const content = lw.cacher.get(item.file).content
         if (!content) {
             return undefined
         }

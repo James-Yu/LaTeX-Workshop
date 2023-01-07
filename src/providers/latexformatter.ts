@@ -3,10 +3,8 @@ import * as cs from 'cross-spawn'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
-
-import type { Extension } from '../main'
+import * as lw from '../lw'
 import {replaceArgumentPlaceholders} from '../utils/utils'
-
 import { getLogger } from '../components/logger'
 
 const logger = getLogger('Format', 'TeX')
@@ -30,7 +28,6 @@ const linux: OperatingSystem = new OperatingSystem('linux', '.pl', 'which')
 const mac: OperatingSystem = new OperatingSystem('darwin', '.pl', 'which')
 
 export class LaTexFormatter {
-    private readonly extension: Extension
     private readonly machineOs: string
     private readonly currentOs?: OperatingSystem
     private formatter: string = ''
@@ -38,8 +35,7 @@ export class LaTexFormatter {
 
     #formatting: boolean = false
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         this.machineOs = os.platform()
         if (this.machineOs === windows.name) {
             this.currentOs = windows
@@ -85,9 +81,9 @@ export class LaTexFormatter {
         if (useDocker) {
             logger.log('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
-                this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent.bat')
+                this.formatter = path.resolve(lw.extensionRoot, './scripts/latexindent.bat')
             } else {
-                this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent')
+                this.formatter = path.resolve(lw.extensionRoot, './scripts/latexindent')
                 fs.chmodSync(this.formatter, 0o755)
             }
             return Promise.resolve(true)
@@ -179,8 +175,8 @@ export class LaTexFormatter {
             }
 
             // generate command line arguments
-            const rootFile = this.extension.manager.rootFile ? this.extension.manager.rootFile : document.fileName
-            const args = this.formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir)(arg)
+            const rootFile = lw.manager.rootFile ? lw.manager.rootFile : document.fileName
+            const args = this.formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(arg)
                 // latexformatter.ts specific tokens
                 .replace(/%TMPFILE%/g, useDocker ? path.basename(temporaryFile) : temporaryFile.split(path.sep).join('/'))
                 .replace(/%INDENT%/g, indent)
@@ -226,8 +222,8 @@ export class LaTexFormatter {
 export class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
     private readonly formatter: LaTexFormatter
 
-    constructor(extension: Extension) {
-        this.formatter = new LaTexFormatter(extension)
+    constructor() {
+        this.formatter = new LaTexFormatter()
     }
 
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {

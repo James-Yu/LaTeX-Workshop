@@ -1,6 +1,5 @@
-import {ChildProcessWithoutNullStreams, spawn} from 'child_process'
-import {EOL} from 'os'
-
+import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
+import { EOL } from 'os'
 import { getLogger } from '../logger'
 
 const logger = getLogger('Linter')

@@ -1,193 +1,59 @@
 import * as vscode from 'vscode'
-import * as path from 'path'
-import * as process from 'process'
-
-import {Commander} from './commander'
-import {LaTeXCommanderTreeView} from './components/commander'
-import {LwFileSystem} from './components/lwfs'
-import {Manager} from './components/manager'
-import {Builder} from './components/builder'
-import {Viewer, PdfViewerHookProvider} from './components/viewer'
-import {Server} from './components/server'
-import {Locator} from './components/locator'
-import {Linter} from './components/linter'
-import {Cleaner} from './components/cleaner'
-import {Counter} from './components/counter'
-import {TeXMagician} from './components/texmagician'
-import {EnvPair} from './components/envpair'
-import {Section} from './components/section'
-import {CompilerLogParser} from './components/parser/compilerlog'
-import {UtensilsParser as PEGParser} from './components/parser/syntax'
-import {Configuration} from './components/configuration'
-import {EventBus} from './components/eventbus'
-
-import {Completer, AtSuggestionCompleter} from './providers/completion'
-import {BibtexCompleter} from './providers/bibtexcompletion'
-import {CodeActions} from './providers/codeactions'
-import {DuplicateLabels} from './components/duplicatelabels'
-import {HoverProvider} from './providers/hover'
-import {GraphicsPreview} from './providers/preview/graphicspreview'
-import {MathPreview} from './providers/preview/mathpreview'
-import {MathPreviewPanel} from './components/mathpreviewpanel'
-import {DocSymbolProvider} from './providers/docsymbol'
-import {ProjectSymbolProvider} from './providers/projectsymbol'
-import {StructureTreeView} from './providers/structure'
-import {DefinitionProvider} from './providers/definition'
-import {LatexFormatterProvider} from './providers/latexformatter'
-import {FoldingProvider, WeaveFoldingProvider} from './providers/folding'
-import {SelectionRangeProvider} from './providers/selection'
-import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
-import {SnippetView} from './components/snippetview'
-import { Cacher } from './components/cacher'
-
+import * as lw from './lw'
+import { PdfViewerHookProvider } from './components/viewer'
+import { BibtexCompleter } from './providers/bibtexcompletion'
+import { HoverProvider } from './providers/hover'
+import { DocSymbolProvider } from './providers/docsymbol'
+import { ProjectSymbolProvider } from './providers/projectsymbol'
+import { DefinitionProvider } from './providers/definition'
+import { LatexFormatterProvider } from './providers/latexformatter'
+import { FoldingProvider, WeaveFoldingProvider } from './providers/folding'
+import { SelectionRangeProvider } from './providers/selection'
+import { BibtexFormatterProvider } from './providers/bibtexformatter'
 import { getLogger } from './components/logger'
 
-const logger = getLogger('Extension')
+const logger = getLogger('')
 
-
-function conflictExtensionCheck() {
-    function check(extensionID: string, name: string, suggestion: string) {
-        if (vscode.extensions.getExtension(extensionID) !== undefined) {
-            void vscode.window.showWarningMessage(`LaTeX Workshop is incompatible with extension "${name}". ${suggestion}`)
-        }
-    }
-    check('tomoki1207.pdf', 'vscode-pdf', 'Please consider disabling either extension.')
-}
-
-function selectDocumentsWithId(ids: string[]): vscode.DocumentSelector {
-   const selector = ids.map( (id) => {
-       return { scheme: 'file', language: id }
-   })
-   return selector
-}
-
-function registerLatexWorkshopCommands(extension: Extension, context: vscode.ExtensionContext) {
-
-    context.subscriptions.push(
-        vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => extension.commander.saveActive()),
-        vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build()),
-        vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => extension.commander.recipes(recipe)),
-        vscode.commands.registerCommand('latex-workshop.view', (mode: 'tab' | 'browser' | 'external' | vscode.Uri | undefined) => extension.commander.view(mode)),
-        vscode.commands.registerCommand('latex-workshop.refresh-viewer', () => extension.commander.refresh()),
-        vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.view('tab')),
-        vscode.commands.registerCommand('latex-workshop.viewInBrowser', () => extension.commander.view('browser')),
-        vscode.commands.registerCommand('latex-workshop.viewExternal', () => extension.commander.view('external')),
-        vscode.commands.registerCommand('latex-workshop.kill', () => extension.commander.kill()),
-        vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex()),
-        vscode.commands.registerCommand('latex-workshop.texdoc', (pkg: string | undefined) => extension.commander.texdoc(pkg)),
-        vscode.commands.registerCommand('latex-workshop.texdocUsepackages', () => extension.commander.texdocUsepackages()),
-        vscode.commands.registerCommand('latex-workshop.synctexto', (line: number, filePath: string) => extension.commander.synctexonref(line, filePath)),
-        vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean()),
-        vscode.commands.registerCommand('latex-workshop.actions', () => extension.commander.actions()),
-        vscode.commands.registerCommand('latex-workshop.activate', () => undefined),
-        vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation()),
-        vscode.commands.registerCommand('latex-workshop.addtexroot', () => extension.commander.addTexRoot()),
-        vscode.commands.registerCommand('latex-workshop.wordcount', () => extension.commander.wordcount()),
-        vscode.commands.registerCommand('latex-workshop.log', () => extension.commander.showLog()),
-        vscode.commands.registerCommand('latex-workshop.compilerlog', () => extension.commander.showLog('compiler')),
-        vscode.commands.registerCommand('latex-workshop.code-action', (d: vscode.TextDocument, r: vscode.Range, c: number, m: string) => extension.codeActions.runCodeAction(d, r, c, m)),
-        vscode.commands.registerCommand('latex-workshop.goto-section', (filePath: string, lineNumber: number) => extension.commander.gotoSection(filePath, lineNumber)),
-        vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => extension.commander.navigateToEnvPair()),
-        vscode.commands.registerCommand('latex-workshop.select-envcontent', () => extension.commander.selectEnvContent()),
-        vscode.commands.registerCommand('latex-workshop.select-envname', () => extension.commander.selectEnvName()),
-        vscode.commands.registerCommand('latex-workshop.multicursor-envname', () => extension.commander.multiCursorEnvName()),
-        vscode.commands.registerCommand('latex-workshop.toggle-equation-envname', () => extension.commander.toggleEquationEnv()),
-        vscode.commands.registerCommand('latex-workshop.close-env', () => extension.commander.closeEnv()),
-        vscode.commands.registerCommand('latex-workshop.wrap-env', () => extension.commander.insertSnippet('wrapEnv')),
-        vscode.commands.registerCommand('latex-workshop.onEnterKey', () => extension.commander.onEnterKey()),
-        vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => extension.commander.onEnterKey('alt')),
-        vscode.commands.registerCommand('latex-workshop.revealOutputDir', () => extension.commander.revealOutputDir()),
-        vscode.commands.registerCommand('latex-workshop-dev.parselog', () => extension.commander.devParseLog()),
-        vscode.commands.registerCommand('latex-workshop-dev.parsetex', () => extension.commander.devParseTeX()),
-        vscode.commands.registerCommand('latex-workshop-dev.parsebib', () => extension.commander.devParseBib()),
-
-        vscode.commands.registerCommand('latex-workshop.shortcut.item', () => extension.commander.insertSnippet('item')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.emph', () => extension.commander.toggleSelectedKeyword('emph')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.textbf', () => extension.commander.toggleSelectedKeyword('textbf')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.textit', () => extension.commander.toggleSelectedKeyword('textit')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.underline', () => extension.commander.toggleSelectedKeyword('underline')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.textrm', () => extension.commander.toggleSelectedKeyword('textrm')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.texttt', () => extension.commander.toggleSelectedKeyword('texttt')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.textsl', () => extension.commander.toggleSelectedKeyword('textsl')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.textsc', () => extension.commander.toggleSelectedKeyword('textsc')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.textnormal', () => extension.commander.toggleSelectedKeyword('textnormal')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.textsuperscript', () => extension.commander.toggleSelectedKeyword('textsuperscript')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.textsubscript', () => extension.commander.toggleSelectedKeyword('textsubscript')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.mathbf', () => extension.commander.toggleSelectedKeyword('mathbf')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.mathit', () => extension.commander.toggleSelectedKeyword('mathit')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.mathrm', () => extension.commander.toggleSelectedKeyword('mathrm')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.mathtt', () => extension.commander.toggleSelectedKeyword('mathtt')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.mathsf', () => extension.commander.toggleSelectedKeyword('mathsf')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.mathbb', () => extension.commander.toggleSelectedKeyword('mathbb')),
-        vscode.commands.registerCommand('latex-workshop.shortcut.mathcal', () => extension.commander.toggleSelectedKeyword('mathcal')),
-        vscode.commands.registerCommand('latex-workshop.surround', () => extension.completer.command.surround()),
-
-        vscode.commands.registerCommand('latex-workshop.promote-sectioning', () => extension.commander.shiftSectioningLevel('promote')),
-        vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => extension.commander.shiftSectioningLevel('demote')),
-        vscode.commands.registerCommand('latex-workshop.select-section', () => extension.commander.selectSection()),
-
-        vscode.commands.registerCommand('latex-workshop.bibsort', () => extension.bibtexFormatter.bibtexFormat(true, false)),
-        vscode.commands.registerCommand('latex-workshop.bibalign', () => extension.bibtexFormatter.bibtexFormat(false, true)),
-        vscode.commands.registerCommand('latex-workshop.bibalignsort', () => extension.bibtexFormatter.bibtexFormat(true, true)),
-
-        vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => extension.commander.openMathPreviewPanel()),
-        vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => extension.commander.closeMathPreviewPanel()),
-        vscode.commands.registerCommand('latex-workshop.toggleMathPreviewPanel', () => extension.commander.toggleMathPreviewPanel())
-    )
-
-}
-
-function generateLatexWorkshopApi(extension: Extension) {
-    return { extension }
-}
-
-let extensionToDispose: Extension | undefined
-
-// We should clean up file watchers and wokerpool pools.
-// - https://github.com/microsoft/vscode/issues/114688#issuecomment-768253918
-export function deactivate() {
-    return extensionToDispose?.dispose()
-}
-
-export function activate(context: vscode.ExtensionContext): ReturnType<typeof generateLatexWorkshopApi> {
-    const extension = new Extension(context)
-    extensionToDispose = extension
+export function activate(extensionContext: vscode.ExtensionContext) {
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
-    registerLatexWorkshopCommands(extension, context)
+    const lwDisposable = lw.init(extensionContext)
+    lw.registerDisposable(lwDisposable)
 
-    context.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
-        if (extension.lwfs.isVirtualUri(e.uri)){
+    registerLatexWorkshopCommands()
+
+    lw.registerDisposable(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
+        if (lw.lwfs.isVirtualUri(e.uri)){
             return
         }
-        if (extension.manager.hasTexId(e.languageId)) {
+        if (lw.manager.hasTexId(e.languageId)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
-            extension.linter.lintRootFileIfEnabled()
-            void extension.builder.buildOnSaveIfEnabled(e.fileName)
-            extension.counter.countOnSaveIfEnabled(e.fileName)
+            lw.linter.lintRootFileIfEnabled()
+            void lw.builder.buildOnSaveIfEnabled(e.fileName)
+            lw.counter.countOnSaveIfEnabled(e.fileName)
         }
     }))
 
     // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
-    context.subscriptions.push(vscode.workspace.onDidOpenTextDocument(async (e: vscode.TextDocument) => {
-        if (extension.lwfs.isVirtualUri(e.uri)){
+    lw.registerDisposable(vscode.workspace.onDidOpenTextDocument(async (e: vscode.TextDocument) => {
+        if (lw.lwfs.isVirtualUri(e.uri)){
             return
         }
-        if (extension.manager.hasTexId(e.languageId)) {
-            await extension.manager.findRoot()
+        if (lw.manager.hasTexId(e.languageId)) {
+            await lw.manager.findRoot()
         }
     }))
 
     let updateCompleter: NodeJS.Timeout
-    context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
-        if (extension.lwfs.isVirtualUri(e.document.uri)){
+    lw.registerDisposable(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
+        if (lw.lwfs.isVirtualUri(e.document.uri)){
             return
         }
-        if (!extension.manager.hasTexId(e.document.languageId)) {
+        if (!lw.manager.hasTexId(e.document.languageId)) {
             return
         }
-        extension.linter.lintActiveFileIfEnabledAfterInterval(e.document)
-        if (!extension.cacher.has(e.document.fileName)) {
+        lw.linter.lintActiveFileIfEnabledAfterInterval(e.document)
+        if (!lw.cacher.has(e.document.fileName)) {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -197,87 +63,159 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             }
             updateCompleter = setTimeout(async () => {
                 const file = e.document.uri.fsPath
-                // await extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
-                await extension.cacher.refreshContext(file, extension.manager.rootFile)
-                await extension.cacher.loadFlsFile(extension.manager.rootFile ? extension.manager.rootFile : file)
+                // await lw.manager.parseFileAndSubs(file, lw.manager.rootFile)
+                await lw.cacher.refreshContext(file, lw.manager.rootFile)
+                await lw.cacher.loadFlsFile(lw.manager.rootFile ? lw.manager.rootFile : file)
             }, configuration.get('intellisense.update.delay', 1000))
         }
     }))
 
     let isLaTeXActive = false
-    context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
+    lw.registerDisposable(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
-        if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
+        if (vscode.window.visibleTextEditors.filter(editor => lw.manager.hasTexId(editor.document.languageId)).length > 0) {
             logger.showStatus()
             if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
-                void vscode.commands.executeCommand('workbench.view.extension.latex-workshop-activitybar').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
+                void vscode.commands.executeCommand('workbench.view.lw.latex-workshop-activitybar').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
             }
             isLaTeXActive = true
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             logger.showStatus()
         }
-        if (e && extension.lwfs.isVirtualUri(e.document.uri)){
+        if (e && lw.lwfs.isVirtualUri(e.document.uri)){
             return
         }
-        if (e && extension.manager.hasTexId(e.document.languageId)) {
-            await extension.manager.findRoot()
-            extension.linter.lintRootFileIfEnabled()
-        } else if (!e || !extension.manager.hasBibtexId(e.document.languageId)) {
+        if (e && lw.manager.hasTexId(e.document.languageId)) {
+            await lw.manager.findRoot()
+            lw.linter.lintRootFileIfEnabled()
+        } else if (!e || !lw.manager.hasBibtexId(e.document.languageId)) {
             isLaTeXActive = false
         }
     }))
 
-    context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
-        if (extension.manager.hasTexId(e.textEditor.document.languageId) ||
+    lw.registerDisposable(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
+        if (lw.manager.hasTexId(e.textEditor.document.languageId) ||
             e.textEditor.document.languageId === 'bibtex') {
-            return extension.structureViewer.showCursorItem(e)
+            return lw.structureViewer.showCursorItem(e)
         }
         return
     }))
 
-    registerProviders(extension, context)
+    registerProviders()
 
-    void extension.manager.findRoot().then(() => extension.linter.lintRootFileIfEnabled())
-    conflictExtensionCheck()
-
-    return generateLatexWorkshopApi(extension)
+    void lw.manager.findRoot().then(() => lw.linter.lintRootFileIfEnabled())
+    conflictCheck()
 }
 
-function registerProviders(extension: Extension, context: vscode.ExtensionContext) {
+function registerLatexWorkshopCommands() {
+    lw.registerDisposable(
+        vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => lw.commander.saveActive()),
+        vscode.commands.registerCommand('latex-workshop.build', () => lw.commander.build()),
+        vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => lw.commander.recipes(recipe)),
+        vscode.commands.registerCommand('latex-workshop.view', (mode: 'tab' | 'browser' | 'external' | vscode.Uri | undefined) => lw.commander.view(mode)),
+        vscode.commands.registerCommand('latex-workshop.refresh-viewer', () => lw.commander.refresh()),
+        vscode.commands.registerCommand('latex-workshop.tab', () => lw.commander.view('tab')),
+        vscode.commands.registerCommand('latex-workshop.viewInBrowser', () => lw.commander.view('browser')),
+        vscode.commands.registerCommand('latex-workshop.viewExternal', () => lw.commander.view('external')),
+        vscode.commands.registerCommand('latex-workshop.kill', () => lw.commander.kill()),
+        vscode.commands.registerCommand('latex-workshop.synctex', () => lw.commander.synctex()),
+        vscode.commands.registerCommand('latex-workshop.texdoc', (pkg: string | undefined) => lw.commander.texdoc(pkg)),
+        vscode.commands.registerCommand('latex-workshop.texdocUsepackages', () => lw.commander.texdocUsepackages()),
+        vscode.commands.registerCommand('latex-workshop.synctexto', (line: number, filePath: string) => lw.commander.synctexonref(line, filePath)),
+        vscode.commands.registerCommand('latex-workshop.clean', () => lw.commander.clean()),
+        vscode.commands.registerCommand('latex-workshop.actions', () => lw.commander.actions()),
+        vscode.commands.registerCommand('latex-workshop.activate', () => undefined),
+        vscode.commands.registerCommand('latex-workshop.citation', () => lw.commander.citation()),
+        vscode.commands.registerCommand('latex-workshop.addtexroot', () => lw.commander.addTexRoot()),
+        vscode.commands.registerCommand('latex-workshop.wordcount', () => lw.commander.wordcount()),
+        vscode.commands.registerCommand('latex-workshop.log', () => lw.commander.showLog()),
+        vscode.commands.registerCommand('latex-workshop.compilerlog', () => lw.commander.showLog('compiler')),
+        vscode.commands.registerCommand('latex-workshop.code-action', (d: vscode.TextDocument, r: vscode.Range, c: number, m: string) => lw.codeActions.runCodeAction(d, r, c, m)),
+        vscode.commands.registerCommand('latex-workshop.goto-section', (filePath: string, lineNumber: number) => lw.commander.gotoSection(filePath, lineNumber)),
+        vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => lw.commander.navigateToEnvPair()),
+        vscode.commands.registerCommand('latex-workshop.select-envcontent', () => lw.commander.selectEnvContent()),
+        vscode.commands.registerCommand('latex-workshop.select-envname', () => lw.commander.selectEnvName()),
+        vscode.commands.registerCommand('latex-workshop.multicursor-envname', () => lw.commander.multiCursorEnvName()),
+        vscode.commands.registerCommand('latex-workshop.toggle-equation-envname', () => lw.commander.toggleEquationEnv()),
+        vscode.commands.registerCommand('latex-workshop.close-env', () => lw.commander.closeEnv()),
+        vscode.commands.registerCommand('latex-workshop.wrap-env', () => lw.commander.insertSnippet('wrapEnv')),
+        vscode.commands.registerCommand('latex-workshop.onEnterKey', () => lw.commander.onEnterKey()),
+        vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => lw.commander.onEnterKey('alt')),
+        vscode.commands.registerCommand('latex-workshop.revealOutputDir', () => lw.commander.revealOutputDir()),
+        vscode.commands.registerCommand('latex-workshop-dev.parselog', () => lw.commander.devParseLog()),
+        vscode.commands.registerCommand('latex-workshop-dev.parsetex', () => lw.commander.devParseTeX()),
+        vscode.commands.registerCommand('latex-workshop-dev.parsebib', () => lw.commander.devParseBib()),
+
+        vscode.commands.registerCommand('latex-workshop.shortcut.item', () => lw.commander.insertSnippet('item')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.emph', () => lw.commander.toggleSelectedKeyword('emph')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textbf', () => lw.commander.toggleSelectedKeyword('textbf')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textit', () => lw.commander.toggleSelectedKeyword('textit')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.underline', () => lw.commander.toggleSelectedKeyword('underline')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textrm', () => lw.commander.toggleSelectedKeyword('textrm')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.texttt', () => lw.commander.toggleSelectedKeyword('texttt')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textsl', () => lw.commander.toggleSelectedKeyword('textsl')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textsc', () => lw.commander.toggleSelectedKeyword('textsc')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textnormal', () => lw.commander.toggleSelectedKeyword('textnormal')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textsuperscript', () => lw.commander.toggleSelectedKeyword('textsuperscript')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textsubscript', () => lw.commander.toggleSelectedKeyword('textsubscript')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathbf', () => lw.commander.toggleSelectedKeyword('mathbf')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathit', () => lw.commander.toggleSelectedKeyword('mathit')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathrm', () => lw.commander.toggleSelectedKeyword('mathrm')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathtt', () => lw.commander.toggleSelectedKeyword('mathtt')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathsf', () => lw.commander.toggleSelectedKeyword('mathsf')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathbb', () => lw.commander.toggleSelectedKeyword('mathbb')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathcal', () => lw.commander.toggleSelectedKeyword('mathcal')),
+        vscode.commands.registerCommand('latex-workshop.surround', () => lw.completer.command.surround()),
+
+        vscode.commands.registerCommand('latex-workshop.promote-sectioning', () => lw.commander.shiftSectioningLevel('promote')),
+        vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => lw.commander.shiftSectioningLevel('demote')),
+        vscode.commands.registerCommand('latex-workshop.select-section', () => lw.commander.selectSection()),
+
+        vscode.commands.registerCommand('latex-workshop.bibsort', () => lw.bibtexFormatter.bibtexFormat(true, false)),
+        vscode.commands.registerCommand('latex-workshop.bibalign', () => lw.bibtexFormatter.bibtexFormat(false, true)),
+        vscode.commands.registerCommand('latex-workshop.bibalignsort', () => lw.bibtexFormatter.bibtexFormat(true, true)),
+
+        vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => lw.commander.openMathPreviewPanel()),
+        vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => lw.commander.closeMathPreviewPanel()),
+        vscode.commands.registerCommand('latex-workshop.toggleMathPreviewPanel', () => lw.commander.toggleMathPreviewPanel())
+    )
+}
+
+function registerProviders() {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
     const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave'])
     const weaveSelector = selectDocumentsWithId(['pweave', 'jlweave', 'rsweave'])
     const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'doctex'])
     const bibtexSelector = selectDocumentsWithId(['bibtex'])
-    const latexFormatter = new LatexFormatterProvider(extension)
-    const bibtexFormatter = new BibtexFormatterProvider(extension)
+    const latexFormatter = new LatexFormatterProvider()
+    const bibtexFormatter = new BibtexFormatterProvider()
 
-    context.subscriptions.push(
+    lw.registerDisposable(
         vscode.languages.registerDocumentFormattingEditProvider(latexSelector, latexFormatter),
         vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter),
         vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, latexFormatter),
         vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter)
     )
 
-    context.subscriptions.push(
-        vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', extension.viewer.pdfViewerPanelSerializer),
-        vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', new PdfViewerHookProvider(extension), {supportsMultipleEditorsPerDocument: true}),
-        vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', extension.mathPreviewPanel.mathPreviewPanelSerializer)
+    lw.registerDisposable(
+        vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', lw.viewer.pdfViewerPanelSerializer),
+        vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', new PdfViewerHookProvider(), {supportsMultipleEditorsPerDocument: true}),
+        vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', lw.mathPreviewPanel.mathPreviewPanelSerializer)
     )
 
-    context.subscriptions.push(
-        vscode.languages.registerHoverProvider(latexSelector, new HoverProvider(extension)),
-        vscode.languages.registerDefinitionProvider(latexSelector, new DefinitionProvider(extension)),
-        vscode.languages.registerDocumentSymbolProvider(latexSelector, new DocSymbolProvider(extension)),
-        vscode.languages.registerDocumentSymbolProvider(bibtexSelector, new DocSymbolProvider(extension)),
-        vscode.languages.registerWorkspaceSymbolProvider(new ProjectSymbolProvider(extension))
+    lw.registerDisposable(
+        vscode.languages.registerHoverProvider(latexSelector, new HoverProvider()),
+        vscode.languages.registerDefinitionProvider(latexSelector, new DefinitionProvider()),
+        vscode.languages.registerDocumentSymbolProvider(latexSelector, new DocSymbolProvider()),
+        vscode.languages.registerDocumentSymbolProvider(bibtexSelector, new DocSymbolProvider()),
+        vscode.languages.registerWorkspaceSymbolProvider(new ProjectSymbolProvider())
     )
 
-    context.subscriptions.push(
-        vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, extension.completer, '\\', '{'),
-        vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'bibtex'}, new BibtexCompleter(extension), '@')
+    lw.registerDisposable(
+        vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, lw.completer, '\\', '{'),
+        vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'bibtex'}, new BibtexCompleter(), '@')
     )
 
     let triggerDisposable: vscode.Disposable | undefined
@@ -286,11 +224,11 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
         const latexTriggers = ['\\', ','].concat(userTriggersLatex)
         logger.log(`Trigger characters for intellisense of LaTeX documents: ${JSON.stringify(latexTriggers)}`)
 
-        triggerDisposable = vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.completer, ...latexTriggers)
-        context.subscriptions.push(triggerDisposable)
+        triggerDisposable = vscode.languages.registerCompletionItemProvider(latexDoctexSelector, lw.completer, ...latexTriggers)
+        lw.registerDisposable(triggerDisposable)
     }
     registerTrigger()
-    context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+    lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
         if (e.affectsConfiguration('latex-workshop.intellisense.triggers.latex')) {
             if (triggerDisposable) {
                 triggerDisposable.dispose()
@@ -305,13 +243,13 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
     const registerAtSuggestion = () => {
         const atSuggestionLatexTrigger = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.atSuggestion.trigger.latex') as string
         if (atSuggestionLatexTrigger !== '') {
-            extension.atSuggestionCompleter.updateTrigger()
-            atSuggestionDisposable = vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.atSuggestionCompleter, atSuggestionLatexTrigger)
-            context.subscriptions.push(atSuggestionDisposable)
+            lw.atSuggestionCompleter.updateTrigger()
+            atSuggestionDisposable = vscode.languages.registerCompletionItemProvider(latexDoctexSelector, lw.atSuggestionCompleter, atSuggestionLatexTrigger)
+            lw.registerDisposable(atSuggestionDisposable)
         }
     }
     registerAtSuggestion()
-    context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+    lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
         if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestion.trigger.latex')) {
             if (atSuggestionDisposable) {
                 atSuggestionDisposable.dispose()
@@ -322,116 +260,38 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
         return
     }))
 
-    context.subscriptions.push(
-        vscode.languages.registerCodeActionsProvider(latexSelector, extension.codeActions),
-        vscode.languages.registerFoldingRangeProvider(latexSelector, new FoldingProvider(extension)),
-        vscode.languages.registerFoldingRangeProvider(weaveSelector, new WeaveFoldingProvider(extension))
+    lw.registerDisposable(
+        vscode.languages.registerCodeActionsProvider(latexSelector, lw.codeActions),
+        vscode.languages.registerFoldingRangeProvider(latexSelector, new FoldingProvider()),
+        vscode.languages.registerFoldingRangeProvider(weaveSelector, new WeaveFoldingProvider())
     )
 
     const selectionLatex = configuration.get('selection.smart.latex.enabled', true)
     if (selectionLatex) {
-        context.subscriptions.push(vscode.languages.registerSelectionRangeProvider({language: 'latex'}, new SelectionRangeProvider(extension)))
+        lw.registerDisposable(vscode.languages.registerSelectionRangeProvider({language: 'latex'}, new SelectionRangeProvider()))
     }
 
-    context.subscriptions.push(
+    lw.registerDisposable(
         vscode.window.registerWebviewViewProvider(
             'latex-workshop-snippet-view',
-            extension.snippetView.snippetViewProvider,
+            lw.snippetView.snippetViewProvider,
             {webviewOptions: {retainContextWhenHidden: true}}
         )
     )
 }
 
-export class Extension {
-    readonly extensionRoot: string
-    readonly context: vscode.ExtensionContext
-    readonly eventBus = new EventBus()
-    readonly lwfs: LwFileSystem
-    readonly commander: Commander
-    readonly configuration: Configuration
-    readonly cacher: Cacher
-    readonly manager: Manager
-    readonly builder: Builder
-    readonly viewer: Viewer
-    readonly server: Server
-    readonly locator: Locator
-    readonly compilerLogParser: CompilerLogParser
-    readonly pegParser: PEGParser
-    readonly completer: Completer
-    readonly atSuggestionCompleter: AtSuggestionCompleter
-    readonly linter: Linter
-    readonly cleaner: Cleaner
-    readonly counter: Counter
-    readonly codeActions: CodeActions
-    readonly texMagician: TeXMagician
-    readonly envPair: EnvPair
-    readonly section: Section
-    readonly latexCommanderTreeView: LaTeXCommanderTreeView
-    readonly structureViewer: StructureTreeView
-    readonly snippetView: SnippetView
-    readonly graphicsPreview: GraphicsPreview
-    readonly mathPreview: MathPreview
-    readonly bibtexFormatter: BibtexFormatter
-    readonly mathPreviewPanel: MathPreviewPanel
-    readonly duplicateLabels: DuplicateLabels
-
-    constructor(context: vscode.ExtensionContext) {
-        this.extensionRoot = path.resolve(`${__dirname}/../../`)
-        this.context = context
-        // We must create an instance of Logger first to enable
-        // adding log messages during initialization.
-        logger.initializeStatusBarItem()
-        this.addLogFundamentals()
-        this.configuration = new Configuration()
-        this.lwfs = new LwFileSystem()
-        this.commander = new Commander(this)
-        this.cacher = new Cacher(this)
-        this.manager = new Manager(this)
-        this.builder = new Builder(this)
-        this.viewer = new Viewer(this)
-        this.server = new Server(this)
-        this.locator = new Locator(this)
-        this.compilerLogParser = new CompilerLogParser(this)
-        this.completer = new Completer(this)
-        this.atSuggestionCompleter = new AtSuggestionCompleter(this)
-        this.duplicateLabels = new DuplicateLabels(this)
-        this.linter = new Linter(this)
-        this.cleaner = new Cleaner(this)
-        this.counter = new Counter(this)
-        this.codeActions = new CodeActions(this)
-        this.texMagician = new TeXMagician(this)
-        this.envPair = new EnvPair()
-        this.section = new Section()
-        this.latexCommanderTreeView = new LaTeXCommanderTreeView(this)
-        this.structureViewer = new StructureTreeView(this)
-        this.snippetView = new SnippetView(this)
-        this.pegParser = new PEGParser()
-        this.graphicsPreview = new GraphicsPreview(this)
-        this.mathPreview = new MathPreview(this)
-        this.bibtexFormatter = new BibtexFormatter(this)
-        this.mathPreviewPanel = new MathPreviewPanel(this)
-        logger.log('LaTeX Workshop initialized.')
+function conflictCheck() {
+    function check(ID: string, name: string, suggestion: string) {
+        if (vscode.extensions.getExtension(ID) !== undefined) {
+            void vscode.window.showWarningMessage(`LaTeX Workshop is incompatible with  "${name}". ${suggestion}`)
+        }
     }
+    check('tomoki1207.pdf', 'vscode-pdf', 'Please consider disabling either lw.')
+}
 
-    async dispose() {
-        await this.cacher.dispose()
-        this.server.dispose()
-        await this.pegParser.dispose()
-        await this.mathPreview.dispose()
-    }
-
-    private addLogFundamentals() {
-        logger.log('Initializing LaTeX Workshop.')
-        logger.log(`Extension root: ${this.extensionRoot}`)
-        logger.log(`$PATH: ${process.env.PATH}`)
-        logger.log(`$SHELL: ${process.env.SHELL}`)
-        logger.log(`$LANG: ${process.env.LANG}`)
-        logger.log(`$LC_ALL: ${process.env.LC_ALL}`)
-        logger.log(`process.platform: ${process.platform}`)
-        logger.log(`process.arch: ${process.arch}`)
-        logger.log(`vscode.env.appName: ${vscode.env.appName}`)
-        logger.log(`vscode.env.remoteName: ${vscode.env.remoteName}`)
-        logger.log(`vscode.env.uiKind: ${vscode.env.uiKind}`)
-    }
-
+function selectDocumentsWithId(ids: string[]): vscode.DocumentSelector {
+   const selector = ids.map( (id) => {
+       return { scheme: 'file', language: id }
+   })
+   return selector
 }

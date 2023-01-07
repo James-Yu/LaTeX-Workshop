@@ -1,13 +1,10 @@
 import * as vscode from 'vscode'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import type { IProvider } from '../completion'
 import { CmdEnvSuggestion, filterArgumentHint } from './completerutils'
 import { EnvSnippetType } from './environment'
 
 export class Argument implements IProvider {
-
-    constructor(private readonly extension: Extension) {}
 
     provideFrom(result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         if (result[1] === 'usepackage') {
@@ -17,7 +14,7 @@ export class Argument implements IProvider {
             return this.provideClassOptions(args)
         }
         const index = this.getArgumentIndex(result[2])
-        const packages = this.extension.completer.package.getPackagesIncluded(args.document.languageId)
+        const packages = lw.completer.package.getPackagesIncluded(args.document.languageId)
         let candidate: CmdEnvSuggestion | undefined
         let environment: string | undefined
         if (result[1] === 'begin') {
@@ -25,7 +22,7 @@ export class Argument implements IProvider {
         }
         for (const packageName of Object.keys(packages)) {
             if (environment) {
-                const environments = this.extension.completer.environment.getEnvFromPkg(packageName, EnvSnippetType.AsCommand) || []
+                const environments = lw.completer.environment.getEnvFromPkg(packageName, EnvSnippetType.AsCommand) || []
                 for (const env of environments) {
                     if (environment !== env.signature.name) {
                         continue
@@ -36,7 +33,7 @@ export class Argument implements IProvider {
                     candidate = env
                 }
             } else {
-                const commands = this.extension.completer.command.getPackageCmds(packageName)
+                const commands = lw.completer.command.getPackageCmds(packageName)
                 for (const command of commands) {
                     if (result[1] !== command.signature.name) {
                         continue
@@ -70,8 +67,8 @@ export class Argument implements IProvider {
         if (!match) {
             return []
         }
-        this.extension.completer.loadPackageData(match[1])
-        const suggestions = this.extension.completer.package.getPackageOptions(match[1])
+        lw.completer.loadPackageData(match[1])
+        const suggestions = lw.completer.package.getPackageOptions(match[1])
             .map(option => {
                 const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
                 item.insertText = new vscode.SnippetString(option)
@@ -91,8 +88,8 @@ export class Argument implements IProvider {
             return []
         }
         const isDefaultClass = ['article', 'report', 'book'].includes(match[1])
-        this.extension.completer.loadPackageData(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
-        const suggestions = this.extension.completer.package.getPackageOptions(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
+        lw.completer.loadPackageData(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
+        const suggestions = lw.completer.package.getPackageOptions(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
             .map(option => {
                 const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
                 item.insertText = new vscode.SnippetString(option)
