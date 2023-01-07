@@ -7,7 +7,9 @@ import type { Extension } from '../../main'
 import type { ILinter } from '../linter'
 import { LinterUtil } from './linterutil'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
-import * as logger from '../logger'
+import { getLogger } from '../logger'
+
+const logger = getLogger('Linter', 'ChkTeX')
 
 export class ChkTeX implements ILinter {
     readonly linterName = 'ChkTeX'
@@ -148,7 +150,7 @@ export class ChkTeX implements ILinter {
             }
         }
         if (!filePath) {
-            logger.log(`[Linter][${this.linterName}] No .chktexrc file is found to determine TabSize.`)
+            logger.log(`No .chktexrc file is found to determine TabSize.`)
             return
         }
         const rcFile = fs.readFileSync(filePath).toString()
@@ -156,10 +158,10 @@ export class ChkTeX implements ILinter {
         const match = reg.exec(rcFile)
         if (match) {
             const ret = Number(match[1])
-            logger.log(`[Linter][${this.linterName}] TabSize ${ret} defined in .chktexrc ${filePath} .`)
+            logger.log(`TabSize ${ret} defined in .chktexrc ${filePath} .`)
             return ret
         }
-        logger.log(`[Linter][${this.linterName}] No TabSize is found in .chktexrc ${filePath} .`)
+        logger.log(`No TabSize is found in .chktexrc ${filePath} .`)
         return
     }
 
@@ -187,7 +189,7 @@ export class ChkTeX implements ILinter {
             })
             match = re.exec(log)
         }
-        logger.log(`[Linter][${this.linterName}] Logged ${linterLog.length} messages.`)
+        logger.log(`Logged ${linterLog.length} messages.`)
         if (singleFileOriginalPath === undefined) {
             // A full lint of the project has taken place - clear all previous results.
             this.linterDiagnostics.clear()
@@ -206,7 +208,7 @@ export class ChkTeX implements ILinter {
         }
         const filePath = convertFilenameEncoding(filePathArg)
         if (!filePath){
-            logger.log(`[Linter][${this.linterName}] Column number not converted on non-existent ${filePathArg} .`)
+            logger.log(`Column number not converted on non-existent ${filePathArg} .`)
             return column
         }
         const lineString = fs.readFileSync(filePath).toString().split('\n')[line-1]
@@ -218,7 +220,7 @@ export class ChkTeX implements ILinter {
             tabSize = tabSizeArg
         }
         if (lineString === undefined) {
-            logger.log(`[Linter][${this.linterName}] Column number not converted by invalid line ${line} of ${filePathArg}.`)
+            logger.log(`Column number not converted by invalid line ${line} of ${filePathArg}.`)
             return column
         }
         return this.convertColumn(column, lineString, tabSize)

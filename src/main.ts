@@ -4,7 +4,6 @@ import * as process from 'process'
 
 import {Commander} from './commander'
 import {LaTeXCommanderTreeView} from './components/commander'
-import * as logger from './components/logger'
 import {LwFileSystem} from './components/lwfs'
 import {Manager} from './components/manager'
 import {Builder} from './components/builder'
@@ -40,6 +39,10 @@ import {SelectionRangeProvider} from './providers/selection'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import {SnippetView} from './components/snippetview'
 import { Cacher } from './components/cacher'
+
+import { getLogger } from './components/logger'
+
+const logger = getLogger('Extension')
 
 
 function conflictExtensionCheck() {

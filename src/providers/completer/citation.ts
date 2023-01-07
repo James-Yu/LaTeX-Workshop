@@ -7,8 +7,10 @@ import * as eventbus from '../../components/eventbus'
 import {trimMultiLineString} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
 import type { IProvider, ICompletionItem } from '../completion'
-import * as logger from '../../components/logger'
 
+import { getLogger } from '../../components/logger'
+
+const logger = getLogger('Intelli', 'Citation')
 
 class Fields extends Map<string, string> {
 
@@ -245,10 +247,10 @@ export class Citation implements IProvider {
      * @param fileName The path of `.bib` file.
      */
     async parseBibFile(fileName: string) {
-        logger.log(`[Intelli][Citation] Parsing .bib entries from ${fileName}`)
+        logger.log(`Parsing .bib entries from ${fileName}`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(fileName))
         if (fs.statSync(fileName).size >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
-            logger.log(`[Intelli][Citation] Bib file is too large, ignoring it: ${fileName}`)
+            logger.log(`Bib file is too large, ignoring it: ${fileName}`)
             this.bibEntries.delete(fileName)
             return
         }
@@ -257,7 +259,7 @@ export class Citation implements IProvider {
         const ast = await this.extension.pegParser.parseBibtex(bibtex).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
-                logger.log(`[Intelli][Citation] Error parsing BibTeX: line ${line} in ${fileName} .`)
+                logger.log(`Error parsing BibTeX: line ${line} in ${fileName} .`)
             }
             throw e
         })
@@ -283,12 +285,12 @@ export class Citation implements IProvider {
                 newEntry.push(item)
             })
         this.bibEntries.set(fileName, newEntry)
-        logger.log(`[Intelli][Citation] Parsed ${newEntry.length} bib entries from ${fileName} .`)
+        logger.log(`Parsed ${newEntry.length} bib entries from ${fileName} .`)
         this.extension.eventBus.fire(eventbus.FileParsed, fileName)
     }
 
     removeEntriesInFile(file: string) {
-        logger.log(`[Intelli][Citation] Remove parsed bib entries for ${file}`)
+        logger.log(`Remove parsed bib entries for ${file}`)
         this.bibEntries.delete(file)
     }
 

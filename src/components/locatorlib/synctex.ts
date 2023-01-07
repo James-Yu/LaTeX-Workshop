@@ -7,8 +7,10 @@ import type { SyncTeXRecordForward, SyncTeXRecordBackward } from '../locator'
 import { PdfSyncObject, parseSyncTex, Block, SyncTexJsError } from '../../lib/synctexjs'
 import {iconvLiteSupportedEncodings} from '../../utils/convertfilename'
 import {isSameRealPath} from '../../utils/pathnormalize'
-import * as logger from '../logger'
 
+import { getLogger } from '../logger'
+
+const logger = getLogger('SyncTeX')
 
 class Rectangle {
     readonly top: number
@@ -91,7 +93,7 @@ export class SyncTexJs {
             const s = fs.readFileSync(synctexFile, {encoding: 'binary'})
             return parseSyncTex(s)
         } catch (e: unknown) {
-            logger.logError(`[SyncTeX] Failed parsing .synctex ${synctexFile} , using .synctex.gz.`, e)
+            logger.logError(`Failed parsing .synctex ${synctexFile} , using .synctex.gz.`, e)
         }
 
         try {
@@ -100,7 +102,7 @@ export class SyncTexJs {
             const s = b.toString('binary')
             return parseSyncTex(s)
         } catch (e: unknown) {
-            logger.logError(`[SyncTeX] Failed parsing .synctex.gz ${synctexFileGz} .`, e)
+            logger.logError(`Failed parsing .synctex.gz ${synctexFileGz} .`, e)
         }
 
         throw new SyncTexJsError('SyncTeX failed.')

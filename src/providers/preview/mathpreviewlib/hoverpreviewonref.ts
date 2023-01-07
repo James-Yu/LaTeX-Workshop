@@ -5,7 +5,10 @@ import type {MathJaxPool} from '../mathjaxpool'
 import type {ReferenceEntry} from '../../completer/reference'
 import type {TexMathEnv} from './texmathenvfinder'
 import type {MathPreviewUtils} from './mathpreviewutils'
-import * as logger from '../../../components/logger'
+
+import { getLogger } from '../../../components/logger'
+
+const logger = getLogger('Preview', 'Hover')
 
 export class HoverPreviewOnRefProvider {
     private readonly mj: MathJaxPool
@@ -44,7 +47,7 @@ export class HoverPreviewOnRefProvider {
             const svg = utils.svgToDataUrl(xml)
             return svg
         } catch(e) {
-            logger.logError(`[Preview][Hover] Failed rendering MathJax ${typesetArg} .`, e)
+            logger.logError(`Failed rendering MathJax ${typesetArg} .`, e)
             throw e
         }
     }

@@ -2,7 +2,10 @@ import * as vscode from 'vscode'
 import * as cs from 'cross-spawn'
 
 import type { Extension } from '../main'
-import * as logger from './logger'
+
+import { getLogger } from './logger'
+
+const logger = getLogger('TeXDoc')
 
 export class TeXDoc {
     private readonly extension: Extension
@@ -30,7 +33,7 @@ export class TeXDoc {
         })
 
         proc.on('error', err => {
-            logger.log(`[TeXDoc] Cannot run texdoc: ${err.message}, ${stderr}`)
+            logger.log(`Cannot run texdoc: ${err.message}, ${stderr}`)
             void logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
         })
 
@@ -41,14 +44,14 @@ export class TeXDoc {
             } else {
                 const regex = new RegExp(`(no documentation found)|(Documentation for ${pkg} could not be found)`)
                 if (stdout.match(regex) || stderr.match(regex)) {
-                    logger.log(`[TeXDoc] Cannot find documentation for ${pkg}.`)
+                    logger.log(`Cannot find documentation for ${pkg}.`)
                     void logger.showErrorMessage(`Cannot find documentation for ${pkg}.`)
                 } else {
-                    logger.log(`[TeXDoc] Opening documentation for ${pkg}.`)
+                    logger.log(`Opening documentation for ${pkg}.`)
                 }
             }
-            logger.log(`[TeXDoc] texdoc stdout: ${stdout}`)
-            logger.log(`[TeXDoc] texdoc stderr: ${stderr}`)
+            logger.log(`texdoc stdout: ${stdout}`)
+            logger.log(`texdoc stderr: ${stderr}`)
         })
     }
 

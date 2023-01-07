@@ -4,7 +4,10 @@ import * as path from 'path'
 import * as cs from 'cross-spawn'
 
 import type {Extension} from '../main'
-import * as logger from './logger'
+
+import { getLogger } from './logger'
+
+const logger = getLogger('Counter')
 
 export class Counter {
     private readonly extension: Extension
@@ -81,10 +84,10 @@ export class Counter {
             return
         }
         if (this.disableCountAfterSave) {
-            logger.log('[Counter] Auto texcount is temporarily disabled during a second.')
+            logger.log('Auto texcount is temporarily disabled during a second.')
             return
         }
-        logger.log(`[Counter] Auto texcount started on saving file ${file} .`)
+        logger.log(`Auto texcount started on saving file ${file} .`)
         this.disableCountAfterSave = true
         setTimeout(() => this.disableCountAfterSave = false, this.autoRunInterval)
         void this.runTeXCount(file).then(() => {
@@ -102,7 +105,7 @@ export class Counter {
     runTeXCount(file: string, merge: boolean = true): Promise<boolean> {
         let command = this.commandPath
         if (this.useDocker) {
-            logger.log('[Counter] Use Docker to invoke the command.')
+            logger.log('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
                 command = path.resolve(this.extension.extensionRoot, './scripts/texcount.bat')
             } else {
@@ -115,7 +118,7 @@ export class Counter {
             args.push('-merge')
         }
         args.push(path.basename(file))
-        logger.logCommand('[Counter] Count words using command.', command, args)
+        logger.logCommand('Count words using command.', command, args)
         const proc = cs.spawn(command, args, {cwd: path.dirname(file)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
@@ -131,14 +134,14 @@ export class Counter {
         })
 
         proc.on('error', err => {
-            logger.logError('[Counter] Cannot count words.', err, stderr)
+            logger.logError('Cannot count words.', err, stderr)
             void logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
         })
 
         return new Promise( resolve => {
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
-                    logger.logError('[Counter] Cannot count words', exitCode, stderr)
+                    logger.logError('Cannot count words', exitCode, stderr)
                     void logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
                 } else {
                     const words = /Words in text: ([0-9]*)/g.exec(stdout)

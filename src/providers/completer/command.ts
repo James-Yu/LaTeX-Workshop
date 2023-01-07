@@ -9,7 +9,10 @@ import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filt
 import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
 import { Environment, EnvSnippetType } from './environment'
-import * as logger from '../../components/logger'
+
+import { getLogger } from '../../components/logger'
+
+const logger = getLogger('Intelli', 'Command')
 
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 type DataCmdsJsonType = typeof import('../../../data/commands.json')
@@ -277,8 +280,8 @@ export class Command implements IProvider {
             if (isCmdWithSnippet(cmds[key])) {
                 commands.push(this.entryCmdToCompletion(key, cmds[key]))
             } else {
-                logger.log(`[Intelli][Command] Cannot parse intellisense file for ${packageName}.`)
-                logger.log(`[Intelli][Command] Missing field in entry: "${key}": ${JSON.stringify(cmds[key])}.`)
+                logger.log(`Cannot parse intellisense file for ${packageName}.`)
+                logger.log(`Missing field in entry: "${key}": ${JSON.stringify(cmds[key])}.`)
             }
         })
         this.packageCmds.set(packageName, commands)

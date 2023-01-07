@@ -1,7 +1,9 @@
 import * as vscode from 'vscode'
 import * as utils from '../utils/utils'
-import * as logger from './logger'
 
+import { getLogger } from './logger'
+
+const logger = getLogger('EnvPair')
 
 function regexpAllMatches(str: string, reg: RegExp) {
     const res: RegExpExecArray[] = []
@@ -95,7 +97,7 @@ export class EnvPair {
                 line = line.slice(startCol, pos.character)
                 break
             default:
-                logger.log('[EnvPair] Direction error in locateMatchingPair')
+                logger.log('Direction error in locateMatchingPair')
                 return null
         }
         const begins = Object.keys(this.delimiters)
@@ -254,7 +256,7 @@ export class EnvPair {
                         editor.selection = new vscode.Selection(startingPos, startingPos)
                         break
                     default:
-                        logger.log('[EnvPair] Error while selecting environment name')
+                        logger.log('Error while selecting environment name')
                 }
             }
         })

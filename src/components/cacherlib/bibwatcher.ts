@@ -2,7 +2,9 @@ import * as vscode from 'vscode'
 import * as chokidar from 'chokidar'
 
 import type {Extension} from '../../main'
-import * as logger from '../logger'
+import { getLogger } from '../logger'
+
+const logger = getLogger('Cacher', 'Bib')
 
 export class BibWatcher {
     private bibWatcher: chokidar.FSWatcher
@@ -47,28 +49,28 @@ export class BibWatcher {
     private onWatchedBibChanged(filePath: string) {
         void this.extension.completer.citation.parseBibFile(filePath)
         void this.extension.builder.buildOnFileChanged(filePath, true)
-        logger.log(`[Cacher][Bib] Changed ${filePath} .`)
+        logger.log(`File changed ${filePath} .`)
     }
 
     private onWatchedBibDeleted(filePath: string) {
         this.bibWatcher.unwatch(filePath)
         this.bibsWatched.delete(filePath)
         this.extension.completer.citation.removeEntriesInFile(filePath)
-        logger.log(`[Cacher][PDF] Unlinked ${filePath} .`)
+        logger.log(`File unlinked ${filePath} .`)
     }
 
     async watchBibFile(filePath: string) {
         if (!this.bibsWatched.has(filePath)) {
             this.bibWatcher.add(filePath)
             this.bibsWatched.add(filePath)
-            logger.log(`[Cacher][PDF] Watched ${filePath} .`)
+            logger.log(`File watched ${filePath} .`)
             await this.extension.completer.citation.parseBibFile(filePath)
         }
     }
 
     logWatchedFiles() {
-        logger.log(`[Cacher][PDF][getWatched()] ${JSON.stringify(this.bibWatcher.getWatched())}`)
-        logger.log(`[Cacher][PDF][bibsWatched()] ${JSON.stringify(Array.from(this.bibsWatched))}`)
+        logger.log(`getWatched() => ${JSON.stringify(this.bibWatcher.getWatched())}`)
+        logger.log(`bibsWatched() => ${JSON.stringify(Array.from(this.bibsWatched))}`)
     }
 
 }

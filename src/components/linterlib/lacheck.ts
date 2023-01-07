@@ -6,7 +6,9 @@ import type { Extension } from '../../main'
 import type { ILinter } from '../linter'
 import { LinterUtil } from './linterutil'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
-import * as logger from '../logger'
+import { getLogger } from '../logger'
+
+const logger = getLogger('Linter', 'LaCheck')
 
 export class LaCheck implements ILinter {
     readonly linterName = 'LaCheck'
@@ -96,7 +98,7 @@ export class LaCheck implements ILinter {
                 })
             }
         }
-        logger.log(`[Linter][${this.linterName}] Logged ${linterLog.length} messages.`)
+        logger.log(`Logged ${linterLog.length} messages.`)
         this.linterDiagnostics.clear()
         this.showLinterDiagnostics(linterLog)
     }

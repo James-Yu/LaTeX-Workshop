@@ -5,7 +5,9 @@ import * as fs from 'fs'
 
 import type { Extension } from '../../main'
 import * as utils from '../../utils/utils'
-import * as logger from '../logger'
+import { getLogger } from '../logger'
+
+const logger = getLogger('Cacher', 'Path')
 
 export class PathUtils {
     private readonly extension: Extension
@@ -33,7 +35,7 @@ export class PathUtils {
         const baseName = path.parse(texFile).name
         const flsFile = path.resolve(rootDir, path.join(outDir, baseName + '.fls'))
         if (!fs.existsSync(flsFile)) {
-            logger.log(`[Cacher][Path] Non-existent .fls for ${texFile} .`)
+            logger.log(`Non-existent .fls for ${texFile} .`)
             return undefined
         }
         return flsFile
@@ -41,7 +43,7 @@ export class PathUtils {
 
     private kpsewhichBibPath(bib: string): string | undefined {
         const kpsewhich = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
-        logger.log(`[Cacher][Path] Calling ${kpsewhich} to resolve ${bib} .`)
+        logger.log(`Calling ${kpsewhich} to resolve ${bib} .`)
         try {
             const kpsewhichReturn = cs.sync(kpsewhich, ['-format=.bib', bib])
             if (kpsewhichReturn.status === 0) {
@@ -53,7 +55,7 @@ export class PathUtils {
                 }
             }
         } catch(e) {
-            logger.logError(`[Cacher][Path] Calling ${kpsewhich} on ${bib} failed.`, e)
+            logger.logError(`Calling ${kpsewhich} on ${bib} failed.`, e)
         }
         return undefined
     }
@@ -75,7 +77,7 @@ export class PathUtils {
             if (configuration.get('kpsewhich.enabled')) {
                 return this.kpsewhichBibPath(bib)
             } else {
-                logger.log(`[Cacher][Path] Cannot resolve ${bib} .`)
+                logger.log(`Cannot resolve ${bib} .`)
                 return undefined
             }
         }

@@ -5,7 +5,9 @@ import { Extension } from '../../main'
 import * as eventbus from '../eventbus'
 import { Cacher } from '../cacher'
 import { canContext, isExcluded } from './cacherutils'
-import * as logger from '../logger'
+import { getLogger } from '../logger'
+
+const logger = getLogger('Cacher', 'Watcher')
 
 export class Watcher {
     watcher: chokidar.FSWatcher
@@ -50,11 +52,11 @@ export class Watcher {
         await this.watcher.close()
         this.watched.clear()
         this.initializeWatcher()
-        logger.log('[Cacher][Watcher] Reset.')
+        logger.log('Reset.')
     }
 
     private onAdd(filePath: string) {
-        logger.log(`[Cacher][Watcher] Watched ${filePath} .`)
+        logger.log(`Watched ${filePath} .`)
         this.extension.eventBus.fire(eventbus.FileWatched, filePath)
     }
 
@@ -63,7 +65,7 @@ export class Watcher {
             void this.cacher.refreshContext(filePath)
         }
         void this.extension.builder.buildOnFileChanged(filePath)
-        logger.log(`[Cacher][Watcher] Changed ${filePath} .`)
+        logger.log(`Changed ${filePath} .`)
         this.extension.eventBus.fire(eventbus.FileChanged, filePath)
     }
 
@@ -72,11 +74,11 @@ export class Watcher {
         this.watched.delete(filePath)
         this.cacher.remove(filePath)
         if (filePath === this.extension.manager.rootFile) {
-            logger.log(`[Cacher][Watcher] Root unlinked ${filePath} .`)
+            logger.log(`Root unlinked ${filePath} .`)
             this.extension.manager.rootFile = undefined
             void this.extension.manager.findRoot()
         } else {
-            logger.log(`[Cacher][Watcher] Unlinked ${filePath} .`)
+            logger.log(`Unlinked ${filePath} .`)
         }
         this.extension.eventBus.fire(eventbus.FileRemoved, filePath)
     }
@@ -91,7 +93,7 @@ export class Watcher {
                     this.watcher = chokidar.watch([], options)
                     this.watched.forEach(filePath => this.watcher.add(filePath))
                     this.initializeWatcher()
-                    logger.log(`[Cacher][Watcher] Option ${JSON.stringify(options)}.`)
+                    logger.log(`Option ${JSON.stringify(options)}.`)
             }
             if (e.affectsConfiguration('latex-workshop.latex.watch.files.ignore')) {
                 this.watched.forEach(filePath => {
@@ -101,7 +103,7 @@ export class Watcher {
                     this.watcher.unwatch(filePath)
                     this.watched.delete(filePath)
                     this.cacher.remove(filePath)
-                    logger.log(`[Cacher][Watcher] Ignored ${filePath} .`)
+                    logger.log(`Ignored ${filePath} .`)
                     void this.extension.manager.findRoot()
                 })
             }

@@ -14,9 +14,11 @@ import {Client} from './viewerlib/client'
 import {PdfViewerPanel, PdfViewerPanelSerializer, PdfViewerPanelService} from './viewerlib/pdfviewerpanel'
 import {PdfViewerManagerService} from './viewerlib/pdfviewermanager'
 import {ViewerPageLoaded} from './eventbus'
-import * as logger from './logger'
 export {PdfViewerHookProvider} from './viewerlib/pdfviewerhook'
 
+import { getLogger } from './logger'
+
+const logger = getLogger('Viewer')
 
 export class Viewer {
     private readonly extension: Extension
@@ -68,7 +70,7 @@ export class Viewer {
      * refreshes all the PDF viewers.
      */
     refreshExistingViewer(sourceFile?: string, pdfFile?: string): void {
-        logger.log(`[Viewer] Call refreshExistingViewer: ${JSON.stringify({sourceFile})}`)
+        logger.log(`Call refreshExistingViewer: ${JSON.stringify({sourceFile})}`)
         const pdfUri = pdfFile ? vscode.Uri.file(pdfFile) : (sourceFile ? this.tex2pdf(sourceFile, true) : undefined)
         if (pdfUri === undefined) {
             this.clientMap.forEach(clientSet => {
@@ -80,10 +82,10 @@ export class Viewer {
         }
         const clientSet = this.getClientSet(pdfUri)
         if (!clientSet) {
-            logger.log(`[Viewer] Not found PDF viewers to refresh: ${pdfFile}`)
+            logger.log(`Not found PDF viewers to refresh: ${pdfFile}`)
             return
         }
-        logger.log(`[Viewer] Refresh PDF viewer: ${pdfFile}`)
+        logger.log(`Refresh PDF viewer: ${pdfFile}`)
         clientSet.forEach(client => {
             client.send({type: 'refresh'})
         })
@@ -92,7 +94,7 @@ export class Viewer {
     private async checkViewer(sourceFile: string, respectOutDir: boolean = true): Promise<string | undefined> {
         const pdfFile = this.tex2pdf(sourceFile, respectOutDir)
         if (!await this.extension.lwfs.exists(pdfFile)) {
-            logger.log(`[Viewer] Cannot find PDF file ${pdfFile}`)
+            logger.log(`Cannot find PDF file ${pdfFile}`)
             logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfFile}`, 'warning')
             return
         }
@@ -114,15 +116,15 @@ export class Viewer {
         this.createClientSet(pdfFileUri)
         this.extension.cacher.watchPdfFile(pdfFileUri)
         try {
-            logger.log(`[Viewer] Serving PDF file at ${url}`)
+            logger.log(`Serving PDF file at ${url}`)
             await vscode.env.openExternal(vscode.Uri.parse(url, true))
-            logger.log(`[Viewer] Open PDF viewer for ${pdfFileUri.toString(true)}`)
+            logger.log(`Open PDF viewer for ${pdfFileUri.toString(true)}`)
         } catch (e: unknown) {
             void vscode.window.showInputBox({
                 prompt: 'Unable to open browser. Please copy and visit this link.',
                 value: url
             })
-            logger.logError(`[Viewer] Failed opening PDF viewer for ${pdfFileUri.toString(true)}`, e)
+            logger.logError(`Failed opening PDF viewer for ${pdfFileUri.toString(true)}`, e)
         }
     }
 
@@ -157,7 +159,7 @@ export class Viewer {
         if (activeDocument) {
             await openWebviewPanel(panel.webviewPanel, tabEditorGroup, activeDocument, preserveFocus)
         }
-        logger.log(`[Viewer] Open PDF tab for ${pdfFileUri.toString(true)}`)
+        logger.log(`Open PDF tab for ${pdfFileUri.toString(true)}`)
     }
 
     private async createPdfViewerPanel(pdfFileUri: vscode.Uri, viewColumn: vscode.ViewColumn): Promise<PdfViewerPanel> {
@@ -197,7 +199,7 @@ export class Viewer {
         if (args) {
             args = args.map(arg => arg.replace('%PDF%', pdfFile))
         }
-        logger.log(`[Viewer] Open external viewer for ${pdfFile}`)
+        logger.log(`Open external viewer for ${pdfFile}`)
         logger.logCommand('Execute the external PDF viewer command', command, args)
         const proc = cs.spawn(command, args, {cwd: path.dirname(sourceFile), detached: true})
         let stdout = ''
@@ -209,8 +211,8 @@ export class Viewer {
             stderr += newStderr
         })
         const cb = () => {
-            void logger.log(`[Viewer] The external PDF viewer stdout: ${stdout}`)
-            void logger.log(`[Viewer] The external PDF viewer stderr: ${stderr}`)
+            void logger.log(`The external PDF viewer stdout: ${stdout}`)
+            void logger.log(`The external PDF viewer stderr: ${stderr}`)
         }
         proc.on('error', cb)
         proc.on('exit', cb)
@@ -225,7 +227,7 @@ export class Viewer {
     handler(websocket: ws, msg: string): void {
         const data = JSON.parse(msg) as ClientRequest
         if (data.type !== 'ping') {
-            logger.log(`[Viewer] Handle data type: ${data.type}`)
+            logger.log(`Handle data type: ${data.type}`)
         }
         switch (data.type) {
             case 'open': {
@@ -245,7 +247,7 @@ export class Viewer {
                 this.extension.eventBus.fire(ViewerPageLoaded)
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (configuration.get('synctex.afterBuild.enabled') as boolean) {
-                    logger.log('[Viewer] SyncTex after build invoked.')
+                    logger.log('SyncTex after build invoked.')
                     const uri = vscode.Uri.parse(data.pdfFileUri, true)
                     this.extension.locator.syncTeX(undefined, undefined, uri.fsPath)
                 }
@@ -273,7 +275,7 @@ export class Viewer {
                             }
                         },
                         reason => {
-                            logger.log(`[Viewer] Unknown error when opening URI. Error: ${JSON.stringify(reason)}, URI: ${data.url}`)
+                            logger.log(`Unknown error when opening URI. Error: ${JSON.stringify(reason)}, URI: ${data.url}`)
                         })
                 }
                 break
@@ -283,11 +285,11 @@ export class Viewer {
                 break
             }
             case 'add_log': {
-                logger.log(`[Viewer] ${data.message}`)
+                logger.log(`${data.message}`)
                 break
             }
             default: {
-                logger.log(`[Viewer] Unknown websocket message: ${msg}`)
+                logger.log(`Unknown websocket message: ${msg}`)
                 break
             }
         }
@@ -345,7 +347,7 @@ export class Viewer {
         const pdfFileUri = vscode.Uri.file(pdfFile)
         const clientSet = this.getClientSet(pdfFileUri)
         if (clientSet === undefined) {
-            logger.log(`[Viewer] PDF is not viewed: ${pdfFile}`)
+            logger.log(`PDF is not viewed: ${pdfFile}`)
             return
         }
         const needDelay = this.revealWebviewPanel(pdfFileUri)
@@ -353,7 +355,7 @@ export class Viewer {
             setTimeout(() => {
                 client.send({type: 'synctex', data: record})
             }, needDelay ? 200 : 0)
-            logger.log(`[Viewer] Try to synctex ${pdfFile}`)
+            logger.log(`Try to synctex ${pdfFile}`)
         }
     }
 

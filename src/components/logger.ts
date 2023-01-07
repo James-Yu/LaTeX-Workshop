@@ -6,60 +6,85 @@ const STATUS_ITEM = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.
 
 COMPILER_PANEL.append('Ready')
 
-export function initializeStatusBarItem() {
-    STATUS_ITEM.command = 'latex-workshop.actions'
-    STATUS_ITEM.show()
-    refreshStatus('check', 'statusBar.foreground')
+export function getLogger(...tags: string[]) {
+    const tagString = tags.map(tag => `[${tag}]`).join('')
+    return {
+        log(message: string) {
+            logTagless(`${tagString} ${message}`)
+        },
+        logCommand(message: string, command: string, args: string[] = []) {
+            logCommandTagless(`${tagString} ${message}`, command, args)
+        },
+        logError(message: string, error: unknown, stderr?: string) {
+            logErrorTagless(`${tagString} ${message}`, error, stderr)
+        },
+        logCompiler,
+        initializeStatusBarItem,
+        clearCompilerMessage,
+        showLog,
+        showCompilerLog,
+        showStatus,
+        refreshStatus,
+        showErrorMessage,
+        showErrorMessageWithCompilerLogButton,
+        showErrorMessageWithExtensionLogButton
+    }
 }
 
-export function log(message: string) {
+function logTagless(message: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (configuration.get('message.log.show')) {
         LOG_PANEL.appendLine(`[${new Date().toLocaleTimeString('en-US', { hour12: false })}] ${message}`)
     }
 }
 
-export function logCommand(message: string, command: string, args: string[] = []) {
-    log(`${message} The command is ${command}:${JSON.stringify(args)}.`)
+function logCommandTagless(message: string, command: string, args: string[] = []) {
+    logTagless(`${message} The command is ${command}:${JSON.stringify(args)}.`)
 }
 
-export function addCompilerMessage(message: string) {
+function logErrorTagless(message: string, error: unknown, stderr?: string) {
+    if (error instanceof Error) {
+        logTagless(`${message} ${error.name}: ${error.message}`)
+        if (error.stack) {
+            logTagless(error.stack)
+        }
+    } else if (error instanceof Number) {
+        logTagless(`${message} Exit code ${error}`)
+    } else {
+        logTagless(`${message} Context: ${String(error)}.`)
+    }
+    if (stderr) {
+        logTagless(`[STDERR] ${stderr}`)
+    }
+}
+
+function logCompiler(message: string) {
     COMPILER_PANEL.append(message)
 }
 
-export function logError(message: string, error: unknown, stderr?: string) {
-    if (error instanceof Error) {
-        log(`${message} ${error.name}: ${error.message}`)
-        if (error.stack) {
-            log(error.stack)
-        }
-    } else if (error instanceof Number) {
-        log(`${message} Exit code ${error}`)
-    } else {
-        log(`${message} Context: ${String(error)}.`)
-    }
-    if (stderr) {
-        log(`[STDERR] ${stderr}`)
-    }
+function initializeStatusBarItem() {
+    STATUS_ITEM.command = 'latex-workshop.actions'
+    STATUS_ITEM.show()
+    refreshStatus('check', 'statusBar.foreground')
 }
 
-export function clearCompilerMessage() {
+function clearCompilerMessage() {
     COMPILER_PANEL.clear()
 }
 
-export function showLog() {
+function showLog() {
     LOG_PANEL.show()
 }
 
-export function showCompilerLog() {
+function showCompilerLog() {
     COMPILER_PANEL.show()
 }
 
-export function showStatus() {
+function showStatus() {
     STATUS_ITEM.show()
 }
 
-export function refreshStatus(
+function refreshStatus(
     icon: string,
     color: string,
     message: string | undefined = undefined,
@@ -93,7 +118,7 @@ export function refreshStatus(
     }
 }
 
-export function showErrorMessage(message: string, ...args: string[]): Thenable<string | undefined> | undefined {
+function showErrorMessage(message: string, ...args: string[]): Thenable<string | undefined> | undefined {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (configuration.get('message.error.show')) {
         return vscode.window.showErrorMessage(message, ...args)
@@ -102,7 +127,7 @@ export function showErrorMessage(message: string, ...args: string[]): Thenable<s
     }
 }
 
-export function showErrorMessageWithCompilerLogButton(message: string) {
+function showErrorMessageWithCompilerLogButton(message: string) {
     const res = showErrorMessage(message, 'Open compiler log')
     if (res) {
         return res.then(option => {
@@ -120,7 +145,7 @@ export function showErrorMessageWithCompilerLogButton(message: string) {
     return
 }
 
-export function showErrorMessageWithExtensionLogButton(message: string) {
+function showErrorMessageWithExtensionLogButton(message: string) {
     const res = showErrorMessage(message, 'Open LaTeX Workshop log')
     if (res) {
         return res.then(option => {
