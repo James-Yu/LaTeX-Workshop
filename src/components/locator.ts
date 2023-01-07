@@ -207,7 +207,7 @@ export class Locator {
         return new Promise( (resolve) => {
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
-                    logger.logError(`[SyncTeX][${logTag}] Forward SyncTeX failed.`, {code: exitCode}, stderr)
+                    logger.logError(`[SyncTeX][${logTag}] Forward SyncTeX failed.`, exitCode, stderr)
                 } else {
                     resolve(this.parseSyncTeXForward(stdout))
                 }
@@ -234,7 +234,7 @@ export class Locator {
 
         let command = configuration.get('synctex.path') as string
         if (docker) {
-            logger.log('Use Docker to invoke the command.')
+            logger.log('[SyncTeX][Docker] Use Docker to invoke the command.')
             if (process.platform === 'win32') {
                 command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
             } else {
@@ -267,7 +267,7 @@ export class Locator {
         return new Promise( (resolve) => {
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
-                    logger.logError(`[SyncTeX][${logTag}] Backward SyncTeX failed.`, {code: exitCode}, stderr)
+                    logger.logError(`[SyncTeX][${logTag}] Backward SyncTeX failed.`, exitCode, stderr)
                 } else {
                     const record = this.parseSyncTeXBackward(stdout)
                     resolve(record)

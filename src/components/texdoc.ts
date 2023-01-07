@@ -30,25 +30,25 @@ export class TeXDoc {
         })
 
         proc.on('error', err => {
-            logger.log(`Cannot run texdoc: ${err.message}, ${stderr}`)
+            logger.log(`[TeXDoc] Cannot run texdoc: ${err.message}, ${stderr}`)
             void logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
         })
 
         proc.on('exit', exitCode => {
             if (exitCode !== 0) {
-                logger.log(`Cannot find documentation for ${pkg}.`)
+                logger.logError(`Cannot find documentation for ${pkg}.`, exitCode)
                 void logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
             } else {
                 const regex = new RegExp(`(no documentation found)|(Documentation for ${pkg} could not be found)`)
                 if (stdout.match(regex) || stderr.match(regex)) {
-                    logger.log(`Cannot find documentation for ${pkg}.`)
+                    logger.log(`[TeXDoc] Cannot find documentation for ${pkg}.`)
                     void logger.showErrorMessage(`Cannot find documentation for ${pkg}.`)
                 } else {
-                    logger.log(`Opening documentation for ${pkg}.`)
+                    logger.log(`[TeXDoc] Opening documentation for ${pkg}.`)
                 }
             }
-            logger.log(`texdoc stdout: ${stdout}`)
-            logger.log(`texdoc stderr: ${stderr}`)
+            logger.log(`[TeXDoc] texdoc stdout: ${stdout}`)
+            logger.log(`[TeXDoc] texdoc stderr: ${stderr}`)
         })
     }
 

@@ -35,10 +35,10 @@ export class Builder {
             const pdflatexVersion = cp.execSync('pdflatex --version')
             if (pdflatexVersion.toString().match(/MiKTeX/)) {
                 this.isMiktex = true
-                logger.log('pdflatex is provided by MiKTeX')
+                logger.log('[Builder] pdflatex is provided by MiKTeX.')
             }
         } catch (e) {
-            logger.log('Cannot run pdflatex to determine if we are using MiKTeX')
+            logger.log('[Builder] Cannot run pdflatex to determine if we are using MiKTeX.')
         }
     }
 
@@ -52,25 +52,23 @@ export class Builder {
      */
     kill() {
         if (this.process === undefined) {
-            logger.log('LaTeX build process to kill is not found.')
+            logger.log('[Builder] LaTeX build process to kill is not found.')
             return
         }
         const pid = this.process.pid
         try {
-            logger.log(`Kill child processes of the current process. PPID: ${pid}`)
+            logger.log(`[Builder] Kill child processes of the current process with PID ${pid}.`)
             if (process.platform === 'linux' || process.platform === 'darwin') {
                 cp.execSync(`pkill -P ${pid}`, { timeout: 1000 })
             } else if (process.platform === 'win32') {
                 cp.execSync(`taskkill /F /T /PID ${pid}`, { timeout: 1000 })
             }
         } catch (e) {
-            if (e instanceof Error) {
-                logger.log(`Error when killing child processes of the current process. ${e.message}`)
-            }
+            logger.logError('[Builder] Failed killing child processes of the current process.', e)
         } finally {
             this.stepQueue.clear()
             this.process.kill()
-            logger.log(`Kill the current process. PID: ${pid}`)
+            logger.log(`[Builder] Killed the current process with PID ${pid}`)
         }
     }
 
@@ -79,7 +77,7 @@ export class Builder {
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onFileChange) {
             return
         }
-        logger.log(`Auto build started detecting the change of a file: ${file}`)
+        logger.log(`[Builder] Auto build started detecting the change of a file: ${file} .`)
         return this.invokeBuild(file, bibChanged)
     }
 
@@ -88,13 +86,13 @@ export class Builder {
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onSave) {
             return
         }
-        logger.log(`Auto build started on saving file: ${file}`)
+        logger.log(`[Builder] Auto build started on saving file: ${file} .`)
         return this.invokeBuild(file, false)
     }
 
     private invokeBuild(file: string, bibChanged: boolean ) {
         if (!this.extension.builder.canAutoBuild()) {
-            logger.log('Auto Build Run is temporarily disabled for `latex.autoBuild.interval`.')
+            logger.log('[Builder] Autobuild temporarily disabled.')
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
@@ -157,7 +155,7 @@ export class Builder {
      * builder tries to determine on its own, in {@link createBuildTools}.
      */
     async build(rootFile: string, langId: string, recipeName?: string) {
-        logger.log(`Build root file ${rootFile}`)
+        logger.log(`[Builder] Build root file ${rootFile}`)
 
         this.lastBuild = Date.now()
 
@@ -172,7 +170,7 @@ export class Builder {
         const tools = this.createBuildTools(rootFile, langId, recipeName)
 
         if (tools === undefined) {
-            logger.log('Invalid toolchain.')
+            logger.log('[Builder] Invalid toolchain.')
             return
         }
         const timestamp = Date.now()
@@ -246,9 +244,9 @@ export class Builder {
             logger.clearCompilerMessage()
         }
         logger.refreshStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ' ' + this.stepQueue.getStepString(step))
-        logger.logCommand(`Recipe step ${step.index + 1}`, step.command, step.args)
-        logger.log(`Recipe step env: ${JSON.stringify(step.env)}`)
-        logger.log(`Recipe step root file: ${step.rootFile}`)
+        logger.logCommand(`[Builder] Recipe step ${step.index + 1}`, step.command, step.args)
+        logger.log(`[Builder] env: ${JSON.stringify(step.env)}`)
+        logger.log(`[Builder] root: ${step.rootFile}`)
 
         const env = Object.create(null) as ProcessEnv
         Object.keys(process.env).forEach(key => env[key] = process.env[key])
@@ -261,7 +259,7 @@ export class Builder {
         if (!step.isExternal &&
             (step.name.startsWith(this.TEX_MAGIC_PROGRAM_NAME) ||
              step.name.startsWith(this.BIB_MAGIC_PROGRAM_NAME))) {
-            logger.log(`cwd: ${path.dirname(step.rootFile)}`)
+            logger.log(`[Builder] cwd: ${path.dirname(step.rootFile)}`)
 
             const args = step.args
             if (args && !step.name.endsWith(this.MAGIC_PROGRAM_ARGS_SUFFIX)) {
@@ -279,14 +277,13 @@ export class Builder {
             } else {
                 cwd = path.dirname(step.rootFile)
             }
-            logger.log(`cwd: ${cwd}`)
+            logger.log(`[Builder] cwd: ${cwd}`)
             this.process = cs.spawn(step.command, step.args, {cwd, env})
         } else {
-            logger.logCommand('Build using external command', step.command, step.args)
-            logger.log(`cwd: ${step.cwd}`)
+            logger.log(`[Builder] cwd: ${step.cwd}`)
             this.process = cs.spawn(step.command, step.args, {cwd: step.cwd})
         }
-        logger.log(`LaTeX build process spawned. PID: ${this.process.pid}.`)
+        logger.log(`[Builder] LaTeX build process spawned with PID ${this.process.pid}.`)
         return env
     }
 
@@ -333,10 +330,9 @@ export class Builder {
                 return
             }
             this.process.on('error', err => {
-                logger.log(`LaTeX fatal error: ${err.message}, ${stderr}. PID: ${this.process?.pid}.`)
-                logger.log(`Does the executable exist? $PATH: ${env['PATH']}`)
-                logger.log(`Does the executable exist? $Path: ${env['Path']}`)
-                logger.log(`The environment variable $SHELL: ${process.env.SHELL}`)
+                logger.logError(`[Builder] LaTeX fatal error on PID ${this.process?.pid}.`, err)
+                logger.log(`[Builder] Does the executable exist? $PATH: ${env['PATH']}, $Path: ${env['Path']}, $SHELL: ${process.env.SHELL}`)
+                logger.log(`[STDERR] ${stderr}`)
                 logger.refreshStatus('x', 'errorForeground', undefined, 'error')
                 void logger.showErrorMessageWithExtensionLogButton(`Recipe terminated with fatal error: ${err.message}.`)
                 this.process = undefined
@@ -347,12 +343,12 @@ export class Builder {
             this.process.on('exit', async (code, signal) => {
                 this.extension.compilerLogParser.parse(stdout, step.rootFile)
                 if (!step.isExternal && code === 0) {
-                    logger.log(`A step in recipe finished. PID: ${this.process?.pid}.`)
+                    logger.log(`[Builder] Finished a step in recipe with PID ${this.process?.pid}.`)
                     this.process = undefined
                     resolve(true)
                     return
                 } else if (code === 0) {
-                    logger.log(`Successfully built. PID: ${this.process?.pid}`)
+                    logger.log(`[Builder] Successfully built document with PID ${this.process?.pid}.`)
                     logger.refreshStatus('check', 'statusBar.foreground', 'Build succeeded.')
                     if (step.rootFile === undefined) {
                         this.extension.viewer.refreshExistingViewer()
@@ -363,10 +359,9 @@ export class Builder {
                 }
 
                 if (!step.isExternal) {
-                    logger.log(`Recipe returns with error: ${code}/${signal}. PID: ${this.process?.pid}. message: ${stderr}.`)
-                    logger.log(`Does the executable exist? $PATH: ${env['PATH']}`)
-                    logger.log(`Does the executable exist? $Path: ${env['Path']}`)
-                    logger.log(`The environment variable $SHELL: ${process.env.SHELL}`)
+                    logger.log(`[Builder] Recipe returns with error code ${code}/${signal} on PID ${this.process?.pid}.`)
+                    logger.log(`[Builder] Does the executable exist? $PATH: ${env['PATH']}, $Path: ${env['Path']}, $SHELL: ${process.env.SHELL}`)
+                    logger.log(`[STDERR] ${stderr}`)
                 }
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? vscode.Uri.file(step.rootFile) : undefined)
@@ -374,7 +369,7 @@ export class Builder {
                     // Recipe, not terminated by user, is not retry and should retry
                     step.isRetry = true
                     logger.refreshStatus('x', 'errorForeground', 'Recipe terminated with error. Retry building the project.', 'warning')
-                    logger.log('Cleaning auxiliary files and retrying build after toolchain error.')
+                    logger.log('[Builder] Cleaning auxiliary files and retrying build after toolchain error.')
 
                     this.stepQueue.prepend(step)
                     await this.extension.cleaner.clean(step.rootFile)
@@ -388,7 +383,7 @@ export class Builder {
                     this.stepQueue.clear()
                 } else if (step.isExternal) {
                     // External command
-                    logger.log(`Build returns with error: ${code}/${signal}. PID: ${this.process?.pid}.`)
+                    logger.log(`[Builder] Build returns with error: ${code}/${signal} on PID ${this.process?.pid}.`)
                     logger.refreshStatus('x', 'errorForeground', undefined, 'warning')
                     void logger.showErrorMessageWithCompilerLogButton('Build terminated with error.')
                     this.stepQueue.clear()
@@ -417,7 +412,7 @@ export class Builder {
             // This only happens when the step is an external command.
             return
         }
-        logger.log(`Successfully built ${step.rootFile}.`)
+        logger.log(`[Builder] Successfully built ${step.rootFile} .`)
         logger.refreshStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
         this.extension.eventBus.fire(BuildDone)
         if (this.extension.compilerLogParser.isLaTeXmkSkipped) {
@@ -430,11 +425,11 @@ export class Builder {
         // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
         if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
             const pdfFile = this.extension.manager.tex2pdf(step.rootFile)
-            logger.log('SyncTex after build invoked.')
+            logger.log('[Builder] SyncTex after build invoked.')
             this.extension.locator.syncTeX(undefined, undefined, pdfFile)
         }
         if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
-            logger.log('Auto Clean invoked.')
+            logger.log('[Builder] Auto Clean invoked.')
             await this.extension.cleaner.clean(step.rootFile)
         }
     }
@@ -455,7 +450,7 @@ export class Builder {
             if (recipe === undefined) {
                 return undefined
             }
-            logger.log(`Preparing to run recipe: ${recipe.name}`)
+            logger.log(`[Builder] Preparing to run recipe: ${recipe.name}.`)
             this.prevRecipe = recipe
             this.prevLangId = langId
             const tools = configuration.get('latex.tools') as Tool[]
@@ -463,7 +458,7 @@ export class Builder {
                 if (typeof tool === 'string') {
                     const candidates = tools.filter(candidate => candidate.name === tool)
                     if (candidates.length < 1) {
-                        logger.log(`Skipping undefined tool: ${tool} in ${recipe.name}`)
+                        logger.log(`[Builder] Skipping undefined tool ${tool} in recipe ${recipe.name}.`)
                         void logger.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe.name}."`)
                     } else {
                         buildTools.push(candidates[0])
@@ -497,7 +492,7 @@ export class Builder {
             if (docker) {
                 switch (tool.command) {
                     case 'latexmk':
-                        logger.log('Use Docker to invoke the command.')
+                        logger.log('[Builder] Use Docker to invoke the command.')
                         if (process.platform === 'win32') {
                             tool.command = path.resolve(this.extension.extensionRoot, './scripts/latexmk.bat')
                         } else {
@@ -506,7 +501,7 @@ export class Builder {
                         }
                         break
                     default:
-                        logger.log(`Will not use Docker to invoke the command: ${tool.command}`)
+                        logger.log(`[Builder] Do not use Docker to invoke the command: ${tool.command}.`)
                         break
                 }
             }
@@ -546,8 +541,8 @@ export class Builder {
         const defaultRecipeName = configuration.get('latex.recipe.default') as string
 
         if (recipes.length < 1) {
-            logger.log('No recipes defined.')
-            void logger.showErrorMessage('No recipes defined.')
+            logger.log('[Builder] No recipes defined.')
+            void logger.showErrorMessage('[Builder] No recipes defined.')
             return undefined
         }
         if (this.prevLangId !== langId) {
@@ -561,8 +556,8 @@ export class Builder {
         if (recipeName) {
             const candidates = recipes.filter(candidate => candidate.name === recipeName)
             if (candidates.length < 1) {
-                logger.log(`Failed to resolve build recipe: ${recipeName}`)
-                void logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
+                logger.log(`[Builder] Failed to resolve build recipe: ${recipeName}.`)
+                void logger.showErrorMessage(`[Builder] Failed to resolve build recipe: ${recipeName}.`)
             }
             recipe = candidates[0]
         }
@@ -581,8 +576,8 @@ export class Builder {
                 candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('pnw|pweave'))
             }
              if (candidates.length < 1) {
-                 logger.log(`Failed to resolve build recipe: ${recipeName}`)
-                 void logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
+                 logger.log(`[Builder] Failed to resolve build recipe: ${recipeName}.`)
+                 void logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}.`)
              }
              recipe = candidates[0]
         }
@@ -624,11 +619,11 @@ export class Builder {
                 name: this.TEX_MAGIC_PROGRAM_NAME,
                 command: tex[1]
             }
-            logger.log(`Found TeX program by magic comment: ${texCommand.command}`)
+            logger.log(`[Builder] Found TeX program by magic comment: ${texCommand.command}.`)
             const res = content.match(regexTexOptions)
             if (res) {
                 texCommand.args = [res[1]]
-                logger.log(`Found TeX options by magic comment: ${texCommand.args}`)
+                logger.log(`[Builder] Found TeX options by magic comment: ${texCommand.args}.`)
             }
         }
 
@@ -637,11 +632,11 @@ export class Builder {
                 name: this.BIB_MAGIC_PROGRAM_NAME,
                 command: bib[1]
             }
-            logger.log(`Found BIB program by magic comment: ${bibCommand.command}`)
+            logger.log(`[Builder] Found BIB program by magic comment: ${bibCommand.command}.`)
             const res = content.match(regexBibOptions)
             if (res) {
                 bibCommand.args = [res[1]]
-                logger.log(`Found BIB options by magic comment: ${bibCommand.args}`)
+                logger.log(`[Builder] Found BIB options by magic comment: ${bibCommand.args}.`)
             }
         }
 
@@ -660,7 +655,7 @@ export class Builder {
         if (!path.isAbsolute(outDir)) {
             outDir = path.resolve(rootDir, outDir)
         }
-        logger.log(`outDir: ${outDir}`)
+        logger.log(`[Builder] outDir: ${outDir} .`)
         try {
             this.extension.cacher.getIncludedTeX(rootFile).forEach(file => {
                 const relativePath = path.dirname(file.replace(rootDir, '.'))
@@ -672,7 +667,7 @@ export class Builder {
                 }
             })
         } catch (e) {
-            logger.log('Unexpected Error: please see the console log of the Developer Tools of VS Code.')
+            logger.log('[Builder] Unexpected Error: please see the console log of the Developer Tools of VS Code.')
             logger.refreshStatus('x', 'errorForeground')
             throw(e)
         }

@@ -285,8 +285,8 @@ export class Environment implements IProvider {
             if (isEnv(envs[key])) {
                 environments.push(envs[key])
             } else {
-                logger.log(`Cannot parse intellisense file for ${packageName}`)
-                logger.log(`Missing field in entry: "${key}": ${JSON.stringify(envs[key])}`)
+                logger.log(`[Intelli][Environment] Cannot parse intellisense file for ${packageName}`)
+                logger.log(`[Intelli][Environment] Missing field in entry: "${key}": ${JSON.stringify(envs[key])}`)
                 delete envs[key]
             }
         })

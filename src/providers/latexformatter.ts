@@ -45,26 +45,26 @@ export class LaTexFormatter {
         } else if (this.machineOs === mac.name) {
             this.currentOs = mac
         } else {
-            logger.log('LaTexFormatter: Unsupported OS')
+            logger.log('[Format][TeX] LaTexFormatter: Unsupported OS')
         }
     }
 
     public async formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
         if (this.#formatting) {
-            logger.log('Formatting in progress. Aborted.')
+            logger.log('[Format][TeX] Formatting in progress. Aborted.')
         }
         this.#formatting = true
         const configuration = vscode.workspace.getConfiguration('latex-workshop', document.uri)
         const pathMeta = configuration.get('latexindent.path') as string
         this.formatterArgs = configuration.get('latexindent.args') as string[]
-        logger.log('Start formatting with latexindent.')
+        logger.log('[Format][TeX] Start formatting with latexindent.')
         try {
             if (pathMeta !== this.formatter) {
                 this.formatter = pathMeta
                 const latexindentPresent = await this.checkPath()
                 if (!latexindentPresent) {
-                    logger.log(`Can not find latexindent in PATH: ${this.formatter}`)
-                    logger.log(`PATH: ${process.env.PATH}`)
+                    logger.log(`[Format][TeX] Can not find latexindent in PATH: ${this.formatter}`)
+                    logger.log(`[Format][TeX] PATH: ${process.env.PATH}`)
                     void logger.showErrorMessage('Can not find latexindent in PATH.')
                     return []
                 }
@@ -80,7 +80,7 @@ export class LaTexFormatter {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useDocker = configuration.get('docker.enabled') as boolean
         if (useDocker) {
-            logger.log('Use Docker to invoke the command.')
+            logger.log('[Format][TeX] Use Docker to invoke the command.')
             if (process.platform === 'win32') {
                 this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent.bat')
             } else {
@@ -94,20 +94,20 @@ export class LaTexFormatter {
             if (fs.existsSync(this.formatter)) {
                 return Promise.resolve(true)
             } else {
-                logger.log(`The path of latexindent is absolute and not found: ${this.formatter}`)
+                logger.log(`[Format][TeX] The path of latexindent is absolute and not found: ${this.formatter}`)
                 return Promise.resolve(false)
             }
         }
 
         if (!this.currentOs) {
-            logger.log('The current platform is undefined.')
+            logger.log('[Format][TeX] The current platform is undefined.')
             return Promise.resolve(false)
         }
         const checker = this.currentOs.checker
         const fileExt = this.currentOs.fileExt
 
         return new Promise((resolve, _reject) => {
-            logger.log(`Checking latexindent: ${checker} ${this.formatter}`)
+            logger.log(`[Format][TeX] Checking latexindent: ${checker} ${this.formatter}`)
             const check1 = cs.spawn(checker, [this.formatter])
             let stdout1: string = ''
             let stderr1: string = ''
@@ -117,9 +117,9 @@ export class LaTexFormatter {
             check1.stderr.on('data', d => { stderr1 += d})
             check1.on('close', code1 => {
                 if (code1) {
-                    logger.log(`Error when checking latexindent: ${stderr1}`)
+                    logger.log(`[Format][TeX] Error when checking latexindent: ${stderr1}`)
                     this.formatter += fileExt
-                    logger.log(`Checking latexindent: ${checker} ${this.formatter}`)
+                    logger.log(`[Format][TeX] Checking latexindent: ${checker} ${this.formatter}`)
                     const check2 = cs.spawn(checker, [this.formatter])
                     let stdout2: string = ''
                     let stderr2: string = ''
@@ -130,14 +130,14 @@ export class LaTexFormatter {
                     check2.on('close', code2 => {
                         if (code2) {
                             resolve(false)
-                            logger.log(`Error when checking latexindent: ${stderr2}`)
+                            logger.log(`[Format][TeX] Error when checking latexindent: ${stderr2}`)
                         } else {
-                            logger.log(`Checking latexindent is ok: ${stdout2}`)
+                            logger.log(`[Format][TeX] Checking latexindent is ok: ${stdout2}`)
                             resolve(true)
                         }
                     })
                 } else {
-                    logger.log(`Checking latexindent is ok: ${stdout1}`)
+                    logger.log(`[Format][TeX] Checking latexindent is ok: ${stdout1}`)
                     resolve(true)
                 }
             })
@@ -150,7 +150,7 @@ export class LaTexFormatter {
             const useDocker = configuration.get('docker.enabled') as boolean
 
             if (!vscode.window.activeTextEditor) {
-                logger.log('Exit formatting. The active textEditor is undefined.')
+                logger.log('[Format][TeX] Exit formatting. The active textEditor is undefined.')
                 return
             }
             const options = vscode.window.activeTextEditor.options
@@ -184,7 +184,7 @@ export class LaTexFormatter {
             })
 
             logger.logCommand('Format with command', this.formatter, this.formatterArgs)
-            logger.log(`Format args: ${JSON.stringify(args)}`)
+            logger.log(`[Format][TeX] Format args: ${JSON.stringify(args)}`)
             const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: documentDirectory })
             // handle stdout/stderr
             const stdoutBuffer: string[] = []
@@ -194,22 +194,22 @@ export class LaTexFormatter {
             worker.on('error', err => {
                 removeTemporaryFiles()
                 void logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
-                logger.log(`Formatting failed: ${err.message}`)
-                logger.log(`stderr: ${stderrBuffer.join('')}`)
+                logger.log(`[Format][TeX] Formatting failed: ${err.message}`)
+                logger.log(`[Format][TeX] stderr: ${stderrBuffer.join('')}`)
                 resolve([])
             })
             worker.on('close', code => {
                 removeTemporaryFiles()
                 if (code !== 0) {
                     void logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
-                    logger.log(`Formatting failed with exit code ${code}`)
-                    logger.log(`stderr: ${stderrBuffer.join('')}`)
+                    logger.log(`[Format][TeX] Formatting failed with exit code ${code}`)
+                    logger.log(`[Format][TeX] stderr: ${stderrBuffer.join('')}`)
                     return resolve([])
                 }
                 const stdout = stdoutBuffer.join('')
                 if (stdout !== '') {
                     const edit = [vscode.TextEdit.replace(range ? range : fullRange(document), stdout)]
-                    logger.log('Formatted ' + document.fileName)
+                    logger.log('[Format][TeX] Formatted ' + document.fileName)
                     return resolve(edit)
                 }
 

@@ -277,8 +277,8 @@ export class Command implements IProvider {
             if (isCmdWithSnippet(cmds[key])) {
                 commands.push(this.entryCmdToCompletion(key, cmds[key]))
             } else {
-                logger.log(`Cannot parse intellisense file for ${packageName}.`)
-                logger.log(`Missing field in entry: "${key}": ${JSON.stringify(cmds[key])}.`)
+                logger.log(`[Intelli][Command] Cannot parse intellisense file for ${packageName}.`)
+                logger.log(`[Intelli][Command] Missing field in entry: "${key}": ${JSON.stringify(cmds[key])}.`)
             }
         })
         this.packageCmds.set(packageName, commands)

@@ -46,8 +46,8 @@ export class BibtexFormatConfig {
         const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
         let tabs: string | undefined = getBibtexFormatTab(config.get('bibtex-format.tab') as string)
         if (tabs === undefined) {
-            logger.log(`Wrong value for bibtex-format.tab: ${config.get('bibtex-format.tab')}`)
-            logger.log('Setting bibtex-format.tab to \'2 spaces\'')
+            logger.log(`[Format][Bib] Wrong value for bibtex-format.tab: ${config.get('bibtex-format.tab')}`)
+            logger.log('[Format][Bib]Setting bibtex-format.tab to \'2 spaces\'')
             tabs = '  '
         }
         this.tab = tabs
@@ -60,7 +60,7 @@ export class BibtexFormatConfig {
         this.sortFields = config.get('bibtex-fields.sort.enabled') as boolean
         this.fieldsOrder = config.get('bibtex-fields.order') as string[]
         this.firstEntries = config.get('bibtex-entries.first') as string[]
-        logger.log(`Bibtex format config: ${this.stringify()}`)
+        logger.log(`[Format][Bib] Bibtex format config: ${this.stringify()}`)
     }
 
     stringify(): string {

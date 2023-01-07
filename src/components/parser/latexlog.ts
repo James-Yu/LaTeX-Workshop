@@ -52,7 +52,7 @@ export class LatexLogParser {
             rootFile = this.extension.manager.rootFile
         }
         if (rootFile === undefined) {
-            logger.log('How can you reach this point?')
+            logger.log('[Parser][TeXLog] How can you reach this point?')
             return
         }
 
@@ -68,7 +68,7 @@ export class LatexLogParser {
         if (state.currentResult.type !== '' && !state.currentResult.text.match(bibEmpty)) {
             this.buildLog.push(state.currentResult)
         }
-        logger.log(`LaTeX log parsed with ${this.buildLog.length} messages.`)
+        logger.log(`[Parser][TeXLog] Logged ${this.buildLog.length} messages.`)
         this.extension.compilerLogParser.showCompilerDiagnostics(this.compilerDiagnostics, this.buildLog, 'LaTeX')
     }
 
@@ -78,9 +78,7 @@ export class LatexLogParser {
         try {
             excludeRegexp = (configuration.get('message.latexlog.exclude') as string[]).map(regexp => RegExp(regexp))
         } catch (e) {
-            if (e instanceof Error) {
-                logger.log(`latex-workshop.message.latexlog.exclude is invalid: ${e.message}`)
-            }
+            logger.logError('[Parser][BibLog] Invalid message.latexlog.exclude config.', e)
             return
         }
         // Compose the current file

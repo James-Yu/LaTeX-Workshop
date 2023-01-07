@@ -52,7 +52,7 @@ export class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
 
     async deserializeWebviewPanel(panel: vscode.WebviewPanel, argState: {state: PdfViewerState}): Promise<void> {
         await this.extension.server.serverStarted
-        logger.log(`Restoring the PDF viewer at the column ${panel.viewColumn} from the state: ${JSON.stringify(argState)}`)
+        logger.log(`[Viewer][Panel] Restoring at column ${panel.viewColumn} with state ${JSON.stringify(argState.state)}.`)
         const state = argState.state
         let pdfFileUri: vscode.Uri | undefined
         if (state.path) {
@@ -61,13 +61,13 @@ export class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
             pdfFileUri = vscode.Uri.parse(state.pdfFileUri, true)
         }
         if (!pdfFileUri) {
-            logger.log('Error of restoring PDF viewer: the path of PDF file is undefined.')
+            logger.log('[Viewer][Panel] Failed restoring viewer with undefined PDF path.')
             panel.webview.html = '<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>The path of PDF file is undefined.</html>'
             return
         }
         if (! await this.extension.lwfs.exists(pdfFileUri)) {
             const s = escapeHtml(pdfFileUri.toString())
-            logger.log(`Error of restoring PDF viewer: file not found ${pdfFileUri.toString(true)} .`)
+            logger.log(`[Viewer][Panel] Failed restoring viewer with non-existent PDF ${pdfFileUri.toString(true)} .`)
             panel.webview.html = `<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>File not found: ${s}</html>`
             return
         }
@@ -141,7 +141,7 @@ export class PdfViewerPanelService {
         const iframeSrcOrigin = `${url.scheme}://${url.authority}`
         const iframeSrcUrl = url.toString(true)
         await this.tweakForCodespaces(url)
-        logger.log(`The internal PDF viewer url: ${iframeSrcUrl}`)
+        logger.log(`[Viewer][Panel] Internal PDF viewer at ${iframeSrcUrl} .`)
         const rebroadcast: boolean = this.getKeyboardEventConfig()
         return `
         <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; frame-src ${iframeSrcOrigin}; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>

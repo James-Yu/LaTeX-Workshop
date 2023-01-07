@@ -33,11 +33,13 @@ export function logError(message: string, error: unknown, stderr?: string) {
         if (error.stack) {
             log(error.stack)
         }
+    } else if (error instanceof Number) {
+        log(`${message} Exit code ${error}`)
     } else {
         log(`${message} Context: ${String(error)}.`)
     }
     if (stderr) {
-        log(`STDERR: ${stderr}`)
+        log(`[STDERR] ${stderr}`)
     }
 }
 

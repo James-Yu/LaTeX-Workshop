@@ -95,7 +95,7 @@ export class EnvPair {
                 line = line.slice(startCol, pos.character)
                 break
             default:
-                logger.log('Direction error in locateMatchingPair')
+                logger.log('[EnvPair] Direction error in locateMatchingPair')
                 return null
         }
         const begins = Object.keys(this.delimiters)
@@ -254,7 +254,7 @@ export class EnvPair {
                         editor.selection = new vscode.Selection(startingPos, startingPos)
                         break
                     default:
-                        logger.log('Error - while selecting environment name')
+                        logger.log('[EnvPair] Error while selecting environment name')
                 }
             }
         })

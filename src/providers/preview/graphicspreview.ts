@@ -94,7 +94,7 @@ export class GraphicsPreview {
             newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
             dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
             if (dataUrl && dataUrl.length >= maxDataUrlLength) {
-                logger.log(`Data URL still too large: ${pdfFilePath}`)
+                logger.log(`[Preview][Graphics] Data URL still too large: ${pdfFilePath}`)
                 return undefined
             }
             return dataUrl

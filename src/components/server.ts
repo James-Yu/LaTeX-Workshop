@@ -65,7 +65,7 @@ export class Server {
     get port(): number {
         const portNum = this.address?.port
         if (portNum === undefined) {
-            logger.log('Server port number is undefined.')
+            logger.log('[Server] Server port number is undefined.')
             throw new Error('Server port number is undefined.')
         }
         return portNum
@@ -165,13 +165,13 @@ export class Server {
             const s = request.url.replace('/', '')
             const fileUri = this.pdfFilePathEncoder.decodePathWithPrefix(s)
             if (this.extension.viewer.getClientSet(fileUri) === undefined) {
-                logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
+                logger.log(`[Server] Invalid PDF request: ${fileUri.toString(true)}`)
                 return
             }
             try {
                 const buf: Buffer = await this.extension.lwfs.readFileAsBuffer(fileUri)
                 this.sendOkResponse(response, buf, 'application/pdf')
-                logger.log(`Preview PDF file: ${fileUri.toString(true)}`)
+                logger.log(`[Server] Preview PDF file: ${fileUri.toString(true)}`)
             } catch (e) {
                 logger.logError(`[Server] Error reading PDF ${fileUri.toString(true)}`, e)
                 response.writeHead(404)

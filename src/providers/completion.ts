@@ -68,7 +68,7 @@ export class Completer implements vscode.CompletionItemProvider {
         try {
             this.loadDefaultItems()
         } catch (err) {
-            logger.log(`Error reading data: ${err}.`)
+            logger.log(`[Intelli] Error reading data: ${err}.`)
         }
     }
 
@@ -94,7 +94,7 @@ export class Completer implements vscode.CompletionItemProvider {
 
             this.packagesLoaded.push(packageName)
         } catch (e) {
-            logger.log(`Cannot parse intellisense file: ${filePath}`)
+            logger.log(`[Intelli] Cannot parse intellisense file: ${filePath}`)
         }
     }
 
@@ -244,7 +244,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 break
             default:
                 // This shouldn't be possible, so mark as error case in log.
-                logger.log(`Error - trying to complete unknown type ${type}`)
+                logger.log(`[Intelli] Error - trying to complete unknown type ${type}`)
                 return []
         }
         const result = line.match(reg)

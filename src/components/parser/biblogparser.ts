@@ -24,7 +24,7 @@ export class BibLogParser {
             rootFile = this.extension.manager.rootFile
         }
         if (rootFile === undefined) {
-            logger.log('How can you reach this point?')
+            logger.log('[Parser][BibLog] How can you reach this point?')
             return
         }
 
@@ -33,9 +33,7 @@ export class BibLogParser {
         try {
             excludeRegexp = (configuration.get('message.bibtexlog.exclude') as string[]).map(regexp => RegExp(regexp))
         } catch (e) {
-            if (e instanceof Error) {
-                logger.log(`latex-workshop.message.bibtexlog.exclude is invalid: ${e.message}`)
-            }
+            logger.logError('[Parser][BibLog] Invalid message.bibtexlog.exclude config.', e)
             return
         }
         this.buildLog = []
@@ -67,7 +65,7 @@ export class BibLogParser {
             this.pushLog('error', filename, result[1], 1, excludeRegexp)
         }
 
-        logger.log(`BibTeX log parsed with ${this.buildLog.length} messages.`)
+        logger.log(`[Parser][BibLog] Logged ${this.buildLog.length} messages.`)
         this.extension.compilerLogParser.showCompilerDiagnostics(this.compilerDiagnostics, this.buildLog, 'BibTeX')
     }
 
@@ -91,7 +89,7 @@ export class BibLogParser {
                 return tex
             }
         }
-        logger.log(`Cannot resolve file while parsing BibTeX log: ${filename}`)
+        logger.log(`[Parser][BibLog] Cannot resolve file ${filename} .`)
         return filename
     }
 
@@ -105,7 +103,7 @@ export class BibLogParser {
                 return bib
             }
         }
-        logger.log(`Cannot resolve file while parsing BibTeX log: ${filename}`)
+        logger.log(`[Parser][BibLog] Cannot resolve file ${filename} .`)
         return filename
     }
 
@@ -116,7 +114,7 @@ export class BibLogParser {
             const line = entry.position.line + 1
             return {file, line}
         } else {
-            logger.log(`Cannot find key when parsing BibTeX log: ${key}`)
+            logger.log(`[Parser][BibLog] Cannot find key ${key}`)
             return undefined
         }
     }
