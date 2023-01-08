@@ -3,16 +3,7 @@
   "cmds": {
     "setbeamersize{}": {
       "snippet": "setbeamersize{${1:options}}",
-      "keyvals": [
-        "text margin left=",
-        "text margin right=",
-        "sidebar width left=",
-        "sidebar width right=",
-        "description width=",
-        "description width of=${1:text}",
-        "mini frame size=",
-        "mini frame offset="
-      ],
+      "keyvals": 0,
       "keyvalindex": 0
     },
     "insertpagenumber": {},
@@ -32,10 +23,7 @@
     },
     "footnote<>[]{}": {
       "snippet": "footnote<${3:overlay specification}>[${2:options}]{${1:text}}",
-      "keyvals": [
-        "${1:number}",
-        "frame"
-      ],
+      "keyvals": 1,
       "keyvalindex": 1
     }
   },
@@ -44,27 +32,13 @@
     "columns[]": {
       "name": "columns",
       "snippet": "[${1:options}]",
-      "keyvals": [
-        "b",
-        "c",
-        "onlytextwidth",
-        "t",
-        "T",
-        "totalwidth="
-      ],
+      "keyvals": 2,
       "keyvalindex": 0
     },
     "columns<>[]": {
       "name": "columns",
       "snippet": "<${2:overlay specification}>[${1:options}]",
-      "keyvals": [
-        "b",
-        "c",
-        "onlytextwidth",
-        "t",
-        "T",
-        "totalwidth="
-      ],
+      "keyvals": 2,
       "keyvalindex": 1
     },
     "column{}": {
@@ -80,5 +54,29 @@
       "snippet": "<${3:overlay specification}>[${2:placement}]{${1:column width}}"
     }
   },
-  "options": []
+  "options": [],
+  "keyvals": [
+    [
+      "text margin left=",
+      "text margin right=",
+      "sidebar width left=",
+      "sidebar width right=",
+      "description width=",
+      "description width of=${1:text}",
+      "mini frame size=",
+      "mini frame offset="
+    ],
+    [
+      "${1:number}",
+      "frame"
+    ],
+    [
+      "b",
+      "c",
+      "onlytextwidth",
+      "t",
+      "T",
+      "totalwidth="
+    ]
+  ]
 }

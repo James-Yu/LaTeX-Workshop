@@ -15,7 +15,7 @@ export type EnvType = {
     name: string, // Name of the environment, what comes inside \begin{...}
     snippet?: string, // To be inserted after \begin{..}
     option?: string,
-    keyvals?: string[],
+    keyvals?: string[] | number,
     keyvalindex?: number,
     package?: string, // The package providing the environment
     detail?: string
@@ -297,7 +297,7 @@ export class Environment implements IProvider {
         const suggestion = new CmdEnvSuggestion(
             item.name,
             item.package || 'latex',
-            item.keyvals || [],
+            item.keyvals && typeof(item.keyvals) !== 'number' ? item.keyvals : [],
             item.keyvalindex === undefined ? -1 : item.keyvalindex,
             splitSignatureString(itemKey),
             vscode.CompletionItemKind.Module,

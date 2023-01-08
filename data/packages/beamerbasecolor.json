@@ -3,22 +3,12 @@
   "cmds": {
     "setbeamercolor{}{}": {
       "snippet": "setbeamercolor{${1:beamer-color name}}{${2:options}}",
-      "keyvals": [
-        "fg=",
-        "bg=",
-        "parent={${1:parent beamer colors}}",
-        "use=${1:beamer color}"
-      ],
+      "keyvals": 0,
       "keyvalindex": 1
     },
     "setbeamercolor*{}{}": {
       "snippet": "setbeamercolor*{${1:beamer-color name}}{${2:options}}",
-      "keyvals": [
-        "fg=",
-        "bg=",
-        "parent={${1:parent beamer colors}}",
-        "use=${1:beamer color}"
-      ],
+      "keyvals": 0,
       "keyvalindex": 1
     },
     "ifbeamercolorempty{}{}{}": {
@@ -50,25 +40,34 @@
     "beamercolorbox[]{}": {
       "name": "beamercolorbox",
       "snippet": "[${2:options}]{${1:beamer color}}",
-      "keyvals": [
-        "wd=",
-        "dp=",
-        "ht=",
-        "left",
-        "right",
-        "center",
-        "leftskip=",
-        "rightskip=",
-        "sep=",
-        "colsep=",
-        "colsep*=",
-        "shadow",
-        "rounded",
-        "ignorebg",
-        "vmode"
-      ],
+      "keyvals": 1,
       "keyvalindex": 0
     }
   },
-  "options": []
+  "options": [],
+  "keyvals": [
+    [
+      "fg=",
+      "bg=",
+      "parent={${1:parent beamer colors}}",
+      "use=${1:beamer color}"
+    ],
+    [
+      "wd=",
+      "dp=",
+      "ht=",
+      "left",
+      "right",
+      "center",
+      "leftskip=",
+      "rightskip=",
+      "sep=",
+      "colsep=",
+      "colsep*=",
+      "shadow",
+      "rounded",
+      "ignorebg",
+      "vmode"
+    ]
+  ]
 }

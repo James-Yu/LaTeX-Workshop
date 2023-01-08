@@ -184,11 +184,7 @@
     },
     "pgfpathgrid[]{}{}": {
       "snippet": "pgfpathgrid[${3:options}]{${1:corner1}}{${2:corner2}}",
-      "keyvals": [
-        "stepx=",
-        "stepy=",
-        "step=${1:vector}"
-      ],
+      "keyvals": 0,
       "keyvalindex": 0
     },
     "pgfpathparabola{}{}": {
@@ -232,17 +228,7 @@
     },
     "pgftext[]{}": {
       "snippet": "pgftext[${2:options}]{${1:text}}",
-      "keyvals": [
-        "left",
-        "right",
-        "top",
-        "bottom",
-        "base",
-        "at=${1:point}",
-        "x=",
-        "y=",
-        "rotate=${1:degree}"
-      ],
+      "keyvals": 1,
       "keyvalindex": 0
     },
     "pgfresetboundingbox": {},
@@ -650,13 +636,7 @@
     },
     "pgfdeclareimage[]{}{}": {
       "snippet": "pgfdeclareimage[${3:options}]{${1:image name}}{${2:imagefile}}",
-      "keyvals": [
-        "height=",
-        "width=",
-        "page=${1:page number}",
-        "interpolate",
-        "mask=${1:mask name}"
-      ],
+      "keyvals": 2,
       "keyvalindex": 0
     },
     "pgfdeclareimage{}{}": {
@@ -664,9 +644,7 @@
     },
     "pgfdeclaremask[]{}{}": {
       "snippet": "pgfdeclaremask[${3:options}]{${1:mask name}}{${2:imagefile}}",
-      "keyvals": [
-        "matte=${1:color components}"
-      ],
+      "keyvals": 3,
       "keyvalindex": 0
     },
     "pgfdeclaremask{}{}": {
@@ -681,13 +659,7 @@
     "pgfalternateextension": {},
     "pgfimage[]{}": {
       "snippet": "pgfimage[${2:options}]{${1:imagefile}}",
-      "keyvals": [
-        "height=",
-        "width=",
-        "page=${1:page number}",
-        "interpolate",
-        "mask=${1:mask name}"
-      ],
+      "keyvals": 2,
       "keyvalindex": 0
     },
     "pgfimage{}": {
@@ -754,10 +726,7 @@
     "pgftransparencygroup": {},
     "pgftransparencygroup[]": {
       "snippet": "pgftransparencygroup[${1:options}]",
-      "keyvals": [
-        "knockout",
-        "isolated"
-      ],
+      "keyvals": 4,
       "keyvalindex": 0
     },
     "endpgftransparencygroup": {},
@@ -1984,15 +1953,7 @@
     },
     "pgfdata[]{}": {
       "snippet": "pgfdata[${2:options}]{${1:inline data}}",
-      "keyvals": [
-        "read from file=${1:file name}",
-        "inline",
-        "format=",
-        "every data",
-        "new set=${1:name}",
-        "store in set=${1:name}",
-        "use set=${1:name}"
-      ],
+      "keyvals": 5,
       "keyvalindex": 0
     },
     "pgfdeclaredataformat{}{}{}{}{}{}{}": {
@@ -2090,18 +2051,7 @@
     },
     "state{}[]{}": {
       "snippet": "state{${1:name}}[${2:options}]{${3:code}}",
-      "keyvals": [
-        "switch if less than=${1:dimen} to ${2:new state}",
-        "switch if input segment less than=${1:dimen} to ${2:new state}",
-        "width=",
-        "repeat state=${1:repetitions}",
-        "next state=${1:new state}",
-        "if input segment is closepath={${1:options}}",
-        "auto end on length=",
-        "auto corner on length=",
-        "persistent precomputation=${1:precode}",
-        "persistent postcomputation=${1:postcode}"
-      ],
+      "keyvals": 6,
       "keyvalindex": 1
     },
     "pgfifdecoration{}{}{}": {
@@ -2271,10 +2221,7 @@
     "pgfparserletter": {},
     "pgfparserset{}": {
       "snippet": "pgfparserset{${1:options}}",
-      "keyvals": [
-        "silent",
-        "status"
-      ],
+      "keyvals": 7,
       "keyvalindex": 0
     },
     "pgfplotstreamstart": {},
@@ -2292,18 +2239,7 @@
     "pgfplotstreamend": {},
     "pgfdeclareplothandler{}{}{}": {
       "snippet": "pgfdeclareplothandler{${1:macro}}{${2:args}}{${3:options}}",
-      "keyvals": [
-        "start=${1:code}",
-        "end=${1:code}",
-        "point=${1:code}",
-        "jump=${1:code}",
-        "special=${1:code}",
-        "point macro=${1:macro}",
-        "special macro=${1:macro}",
-        "start macro=${1:macro}",
-        "end macro=${1:macro}",
-        "jump macro=${1:macro}"
-      ],
+      "keyvals": 8,
       "keyvalindex": 2
     },
     "pgfsetlinetofirstplotpoint": {},
@@ -2489,10 +2425,7 @@
     "pgftransparencygroup[]": {
       "name": "pgftransparencygroup",
       "snippet": "[${1:options}]",
-      "keyvals": [
-        "knockout",
-        "isolated"
-      ],
+      "keyvals": 4,
       "keyvalindex": 0
     },
     "pgfdecoration{}": {
@@ -2504,5 +2437,74 @@
       "snippet": "{${1:name}}"
     }
   },
-  "options": []
+  "options": [],
+  "keyvals": [
+    [
+      "stepx=",
+      "stepy=",
+      "step=${1:vector}"
+    ],
+    [
+      "left",
+      "right",
+      "top",
+      "bottom",
+      "base",
+      "at=${1:point}",
+      "x=",
+      "y=",
+      "rotate=${1:degree}"
+    ],
+    [
+      "height=",
+      "width=",
+      "page=${1:page number}",
+      "interpolate",
+      "mask=${1:mask name}"
+    ],
+    [
+      "matte=${1:color components}"
+    ],
+    [
+      "knockout",
+      "isolated"
+    ],
+    [
+      "read from file=${1:file name}",
+      "inline",
+      "format=",
+      "every data",
+      "new set=${1:name}",
+      "store in set=${1:name}",
+      "use set=${1:name}"
+    ],
+    [
+      "switch if less than=${1:dimen} to ${2:new state}",
+      "switch if input segment less than=${1:dimen} to ${2:new state}",
+      "width=",
+      "repeat state=${1:repetitions}",
+      "next state=${1:new state}",
+      "if input segment is closepath={${1:options}}",
+      "auto end on length=",
+      "auto corner on length=",
+      "persistent precomputation=${1:precode}",
+      "persistent postcomputation=${1:postcode}"
+    ],
+    [
+      "silent",
+      "status"
+    ],
+    [
+      "start=${1:code}",
+      "end=${1:code}",
+      "point=${1:code}",
+      "jump=${1:code}",
+      "special=${1:code}",
+      "point macro=${1:macro}",
+      "special macro=${1:macro}",
+      "start macro=${1:macro}",
+      "end macro=${1:macro}",
+      "jump macro=${1:macro}"
+    ]
+  ]
 }

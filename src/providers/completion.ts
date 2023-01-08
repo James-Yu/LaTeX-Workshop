@@ -20,7 +20,7 @@ import { getLogger } from '../components/logger'
 
 const logger = getLogger('Intelli')
 
-export type PkgType = {includes: string[], cmds: {[key: string]: CmdType}, envs: {[key: string]: EnvType}, options: string[]}
+export type PkgType = {includes: string[], cmds: {[key: string]: CmdType}, envs: {[key: string]: EnvType}, options: string[], keyvals: string[][]}
 
 export interface IProvider {
 
@@ -102,11 +102,19 @@ export class Completer implements vscode.CompletionItemProvider {
         Object.keys(packageData.cmds).forEach(cmd => {
             packageData.cmds[cmd].command = cmd
             packageData.cmds[cmd].snippet = packageData.cmds[cmd].snippet || cmd
+            const keyvals = packageData.cmds[cmd].keyvals
+            if (typeof(keyvals) === 'number') {
+                packageData.cmds[cmd].keyvals = packageData.keyvals[keyvals]
+            }
         })
         Object.keys(packageData.envs).forEach(env => {
             packageData.envs[env].detail = env
             packageData.envs[env].name = packageData.envs[env].name || env
             packageData.envs[env].snippet = packageData.envs[env].snippet || ''
+            const keyvals = packageData.envs[env].keyvals
+            if (typeof(keyvals) === 'number') {
+                packageData.envs[env].keyvals = packageData.keyvals[keyvals]
+            }
         })
     }
 

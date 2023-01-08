@@ -19,7 +19,7 @@ export type CmdType = {
     command?: string,
     snippet?: string,
     option?: string,
-    keyvals?: string[],
+    keyvals?: string[] | number,
     keyvalindex?: number,
     detail?: string,
     documentation?: string,
@@ -227,7 +227,7 @@ export class Command implements IProvider {
         const suggestion = new CmdEnvSuggestion(
             `${backslash}${item.command}`,
             item.package || 'latex',
-            item.keyvals || [],
+            item.keyvals && typeof(item.keyvals) !== 'number' ? item.keyvals : [],
             item.keyvalindex === undefined ? -1 : item.keyvalindex,
             splitSignatureString(itemKey),
             vscode.CompletionItemKind.Function,

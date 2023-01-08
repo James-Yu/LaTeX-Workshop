@@ -5,7 +5,7 @@ from pathlib import Path
 from dataclasses import dataclass
 from typing import List, Dict, Union
 
-PKGS_IGNORE_KEYVALS = ['tcolorbox']
+PKGS_IGNORE_KEYVALS = []
 
 @dataclass
 class KeyVal:
@@ -16,7 +16,7 @@ class KeyVal:
 class Cmd:
     snippet: Union[str, None]
     option: Union[str, None]
-    keyvals: Union[List[KeyVal], None]
+    keyvals: Union[List[KeyVal], int, None]
     keyvalindex: Union[int, None]
     detail: Union[str, None]
     documentation: Union[str, None]
@@ -26,7 +26,7 @@ class Env:
     name: Union[str, None]
     snippet: Union[str, None]
     option: Union[str, None]
-    keyvals: Union[List[KeyVal], None]
+    keyvals: Union[List[str], None]
     keyvalindex: Union[int, None]
 
 @dataclass
@@ -35,6 +35,7 @@ class Pkg:
     cmds: Dict[str, Cmd]
     envs: Dict[str, Env]
     options: List[str]
+    keyvals: List[List[str]]
 
 def create_snippet(line: str) -> str:
     """
@@ -196,7 +197,7 @@ class CwlIntel:
             return ({}, {})
         with file_path.open(encoding='utf8') as f:
             lines = f.readlines()
-        pkg = Pkg(includes=[], cmds={}, envs={}, options=[])
+        pkg = Pkg(includes=[], cmds={}, envs={}, options=[], keyvals=[])
         if file_path.name == 'caption.cwl':
             lines = apply_caption_tweaks(lines)
         
@@ -317,5 +318,35 @@ class CwlIntel:
                                 pkg.cmds[pkgcmd].keyvalindex = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.cmds[pkgcmd].snippet[:haskeyvals.start()])))
                             pkg.cmds[pkgcmd].keyvals = pkg.cmds[pkgcmd].keyvals or []
                             pkg.cmds[pkgcmd].keyvals.append(match[1])
+        
+        for pkgcmd in pkg.cmds:
+            if pkg.cmds[pkgcmd].keyvals is None:
+                continue
+            keyvalset = set(pkg.cmds[pkgcmd].keyvals)
+            found = False
+            for idx, cand in enumerate(pkg.keyvals):
+                candset = set(cand)
+                if (keyvalset == candset):
+                    found = True
+                    pkg.cmds[pkgcmd].keyvals = idx
+                    break
+            if not found:
+                pkg.keyvals.append(pkg.cmds[pkgcmd].keyvals)
+                pkg.cmds[pkgcmd].keyvals = len(pkg.keyvals) - 1
+        
+        for pkgenv in pkg.envs:
+            if pkg.envs[pkgenv].keyvals is None:
+                continue
+            keyvalset = set(pkg.envs[pkgenv].keyvals)
+            found = False
+            for idx, cand in enumerate(pkg.keyvals):
+                candset = set(cand)
+                if (keyvalset == candset):
+                    found = True
+                    pkg.envs[pkgenv].keyvals = idx
+                    break
+            if not found:
+                pkg.keyvals.append(pkg.envs[pkgenv].keyvals)
+                pkg.envs[pkgenv].keyvals = len(pkg.keyvals) - 1
 
         return pkg
