@@ -107,7 +107,7 @@ export class NewCommandFinder {
                 if (result) {
                     let command = result[1]
                     if (result[2]) {
-                        command = command.replace(/\*/, '')
+                        command = command.replace('*', '')
                     }
                     commands.push(command)
                 }
