@@ -298,7 +298,7 @@ class CwlIntel:
                         for pkgenv in pkg.envs:
                             if (pkg.envs[pkgenv].name != env):
                                 continue
-                            haskeyvals = re.search(r':keys|:keyvals|:options', pkg.envs[pkgenv].snippet)
+                            haskeyvals = re.search(r':keys|:keyvals|:options|:library', pkg.envs[pkgenv].snippet)
                             if (haskeyvals is None):
                                 continue
                             if (pkg.envs[pkgenv].keyvalindex is None):
@@ -306,11 +306,11 @@ class CwlIntel:
                             pkg.envs[pkgenv].keyvals = pkg.envs[pkgenv].keyvals or []
                             pkg.envs[pkgenv].keyvals.append(match[1])
                     else:
-                        cmd = re.match(r'\\?([^{\[]*)', envcmd)[1]
+                        cmd = re.match(r'\\?([^{\[#]*)', envcmd)[1]
                         for pkgcmd in pkg.cmds:
                             if (re.sub(r'\[\]|\(\)|<>|{}', '', pkgcmd) != cmd):
                                 continue
-                            haskeyvals = re.search(r':keys|:keyvals|:options', pkg.cmds[pkgcmd].snippet or pkgcmd)
+                            haskeyvals = re.search(r':keys|:keyvals|:options|:library', pkg.cmds[pkgcmd].snippet or pkgcmd)
                             if (haskeyvals is None):
                                 continue
                             if (pkg.cmds[pkgcmd].keyvalindex is None):

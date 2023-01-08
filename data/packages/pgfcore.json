@@ -183,7 +183,13 @@
       "snippet": "pgfpathgrid{${1:corner1}}{${2:corner2}}"
     },
     "pgfpathgrid[]{}{}": {
-      "snippet": "pgfpathgrid[${3:options}]{${1:corner1}}{${2:corner2}}"
+      "snippet": "pgfpathgrid[${3:options}]{${1:corner1}}{${2:corner2}}",
+      "keyvals": [
+        "stepx=",
+        "stepy=",
+        "step=${1:vector}"
+      ],
+      "keyvalindex": 0
     },
     "pgfpathparabola{}{}": {
       "snippet": "pgfpathparabola{${1:bend vector}}{${2:end vector}}"
@@ -225,7 +231,19 @@
       "snippet": "pgftext{${1:text}}"
     },
     "pgftext[]{}": {
-      "snippet": "pgftext[${2:options}]{${1:text}}"
+      "snippet": "pgftext[${2:options}]{${1:text}}",
+      "keyvals": [
+        "left",
+        "right",
+        "top",
+        "bottom",
+        "base",
+        "at=${1:point}",
+        "x=",
+        "y=",
+        "rotate=${1:degree}"
+      ],
+      "keyvalindex": 0
     },
     "pgfresetboundingbox": {},
     "pgfpicture": {},
@@ -1965,7 +1983,17 @@
       "snippet": "pgfdata{${1:inline data}}"
     },
     "pgfdata[]{}": {
-      "snippet": "pgfdata[${2:options}]{${1:inline data}}"
+      "snippet": "pgfdata[${2:options}]{${1:inline data}}",
+      "keyvals": [
+        "read from file=${1:file name}",
+        "inline",
+        "format=",
+        "every data",
+        "new set=${1:name}",
+        "store in set=${1:name}",
+        "use set=${1:name}"
+      ],
+      "keyvalindex": 0
     },
     "pgfdeclaredataformat{}{}{}{}{}{}{}": {
       "snippet": "pgfdeclaredataformat{${1:name}}{${2:catcodecode}}{${3:startcode}}{${4:line args}}{${5:linecode}}{${6:emptylinecode}}{${7:endcode}}"
@@ -2061,7 +2089,20 @@
       "snippet": "state{${1:name}}{${2:code}}"
     },
     "state{}[]{}": {
-      "snippet": "state{${1:name}}[${2:options}]{${3:code}}"
+      "snippet": "state{${1:name}}[${2:options}]{${3:code}}",
+      "keyvals": [
+        "switch if less than=${1:dimen} to ${2:new state}",
+        "switch if input segment less than=${1:dimen} to ${2:new state}",
+        "width=",
+        "repeat state=${1:repetitions}",
+        "next state=${1:new state}",
+        "if input segment is closepath={${1:options}}",
+        "auto end on length=",
+        "auto corner on length=",
+        "persistent precomputation=${1:precode}",
+        "persistent postcomputation=${1:postcode}"
+      ],
+      "keyvalindex": 1
     },
     "pgfifdecoration{}{}{}": {
       "snippet": "pgfifdecoration{${1:name}}{${2:if code}}{${3:else code}}"
@@ -2229,7 +2270,12 @@
     "pgfparsertoken": {},
     "pgfparserletter": {},
     "pgfparserset{}": {
-      "snippet": "pgfparserset{${1:options}}"
+      "snippet": "pgfparserset{${1:options}}",
+      "keyvals": [
+        "silent",
+        "status"
+      ],
+      "keyvalindex": 0
     },
     "pgfplotstreamstart": {},
     "pgfplotstreampoint{}": {
@@ -2245,7 +2291,20 @@
     },
     "pgfplotstreamend": {},
     "pgfdeclareplothandler{}{}{}": {
-      "snippet": "pgfdeclareplothandler{${1:macro}}{${2:args}}{${3:options}}"
+      "snippet": "pgfdeclareplothandler{${1:macro}}{${2:args}}{${3:options}}",
+      "keyvals": [
+        "start=${1:code}",
+        "end=${1:code}",
+        "point=${1:code}",
+        "jump=${1:code}",
+        "special=${1:code}",
+        "point macro=${1:macro}",
+        "special macro=${1:macro}",
+        "start macro=${1:macro}",
+        "end macro=${1:macro}",
+        "jump macro=${1:macro}"
+      ],
+      "keyvalindex": 2
     },
     "pgfsetlinetofirstplotpoint": {},
     "pgfsetmovetofirstplotpoint": {},
