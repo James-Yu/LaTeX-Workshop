@@ -4,7 +4,7 @@ import * as fs from 'fs'
 import * as os from 'os'
 import * as lw from '../../lw'
 import type { ILinter } from '../linter'
-import { LinterUtil } from './linterutil'
+import { LinterUtils } from './linterutils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 import { getLogger } from '../logger'
 
@@ -13,11 +13,6 @@ const logger = getLogger('Linter', 'ChkTeX')
 export class ChkTeX implements ILinter {
     readonly linterName = 'ChkTeX'
     readonly linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(this.linterName)
-    readonly #linterUtil: LinterUtil
-
-    constructor() {
-        this.#linterUtil = new LinterUtil()
-    }
 
     getName() {
         return this.linterName
@@ -62,7 +57,7 @@ export class ChkTeX implements ILinter {
 
         let stdout: string
         try {
-            stdout = await this.#linterUtil.processWrapper(linterid, command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(filePath)}, content)
+            stdout = await LinterUtils.processWrapper(linterid, command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(filePath)}, content)
         } catch (err: any) {
             if ('stdout' in err) {
                 stdout = err.stdout as string

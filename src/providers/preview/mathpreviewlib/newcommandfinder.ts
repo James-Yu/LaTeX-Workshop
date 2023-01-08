@@ -4,18 +4,19 @@ import {stripCommentsAndVerbatim, isNewCommand, NewCommand} from '../../../utils
 import * as path from 'path'
 import * as lw from '../../../lw'
 import { getLogger } from '../../../components/logger'
+import { UtensilsParser } from '../../../components/parser/syntax'
 
 const logger = getLogger('Preview', 'Math')
 
 export class NewCommandFinder {
-    private postProcessNewCommands(commands: string): string {
+    private static postProcessNewCommands(commands: string): string {
         return commands.replace(/\\providecommand/g, '\\newcommand')
                        .replace(/\\newcommand\*/g, '\\newcommand')
                        .replace(/\\renewcommand\*/g, '\\renewcommand')
                        .replace(/\\DeclarePairedDelimiter{(\\[a-zA-Z]+)}{([^{}]*)}{([^{}]*)}/g, '\\newcommand{$1}[2][]{#1$2 #2 #1$3}')
     }
 
-    private async loadNewCommandFromConfigFile(newCommandFile: string) {
+    private static async loadNewCommandFromConfigFile(newCommandFile: string) {
         let commandsString: string | undefined = ''
         if (newCommandFile === '') {
             return commandsString
@@ -40,16 +41,16 @@ export class NewCommandFinder {
             return ''
         }
         commandsString = commandsString.replace(/^\s*$/gm, '')
-        commandsString = this.postProcessNewCommands(commandsString)
+        commandsString = NewCommandFinder.postProcessNewCommands(commandsString)
         return commandsString
     }
 
-    async findProjectNewCommand(ctoken?: vscode.CancellationToken): Promise<string> {
+    static async findProjectNewCommand(ctoken?: vscode.CancellationToken): Promise<string> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const newCommandFile = configuration.get('hover.preview.newcommand.newcommandFile') as string
         let commandsInConfigFile = ''
         if (newCommandFile !== '') {
-            commandsInConfigFile = await this.loadNewCommandFromConfigFile(newCommandFile)
+            commandsInConfigFile = await NewCommandFinder.loadNewCommandFromConfigFile(newCommandFile)
         }
 
         if (!configuration.get('hover.preview.newcommand.parseTeXFile.enabled')) {
@@ -74,15 +75,15 @@ export class NewCommandFinder {
             if (content === undefined) {
                 continue
             }
-            commands = commands.concat(await this.findNewCommand(content))
+            commands = commands.concat(await NewCommandFinder.findNewCommand(content))
         }
-        return commandsInConfigFile + '\n' + this.postProcessNewCommands(commands.join(''))
+        return commandsInConfigFile + '\n' + NewCommandFinder.postProcessNewCommands(commands.join(''))
     }
 
-    async findNewCommand(content: string): Promise<string[]> {
+    static async findNewCommand(content: string): Promise<string[]> {
         let commands: string[] = []
         try {
-            const ast = await lw.pegParser.parseLatexPreamble(content)
+            const ast = await UtensilsParser.parseLatexPreamble(content)
             for (const node of ast.content) {
                 if ((isNewCommand(node) || latexParser.isDefCommand(node)) && node.args.length > 0) {
                     node.name = node.name.replace(/\*$/, '') as NewCommand['name']
@@ -114,5 +115,4 @@ export class NewCommandFinder {
         }
         return commands
     }
-
 }

@@ -7,7 +7,7 @@ export class PdfFilePathEncoder {
      * See https://stackoverflow.com/questions/695438/safe-characters-for-friendly-url
      * See https://tools.ietf.org/html/rfc3986#section-2.3
      */
-    readonly pdfFilePrefix = 'pdf..'
+    static readonly pdfFilePrefix = 'pdf..'
 
     /**
      * We encode the path with base64url after calling encodeURIComponent.
@@ -16,27 +16,27 @@ export class PdfFilePathEncoder {
      * - https://en.wikipedia.org/wiki/Base64#URL_applications
      * - https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa#Unicode_strings
      */
-    private encodePath(url: string) {
+    private static encodePath(url: string) {
         const s = encodeURIComponent(url)
         const b64 = Buffer.from(s).toString('base64')
         const b64url = b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
         return b64url
     }
 
-    private decodePath(b64url: string) {
+    private static decodePath(b64url: string) {
         const tmp = b64url + '='.repeat((4 - b64url.length % 4) % 4)
         const b64 = tmp.replace(/-/g, '+').replace(/_/g, '/')
         const s = Buffer.from(b64, 'base64').toString()
         return decodeURIComponent(s)
     }
 
-    encodePathWithPrefix(pdfFilePath: vscode.Uri) {
-        return this.pdfFilePrefix + this.encodePath(pdfFilePath.toString(true))
+    static encodePathWithPrefix(pdfFilePath: vscode.Uri) {
+        return PdfFilePathEncoder.pdfFilePrefix + PdfFilePathEncoder.encodePath(pdfFilePath.toString(true))
     }
 
-    decodePathWithPrefix(b64urlWithPrefix: string): vscode.Uri {
-        const s = b64urlWithPrefix.replace(this.pdfFilePrefix, '')
-        const uriString = this.decodePath(s)
+    static decodePathWithPrefix(b64urlWithPrefix: string): vscode.Uri {
+        const s = b64urlWithPrefix.replace(PdfFilePathEncoder.pdfFilePrefix, '')
+        const uriString = PdfFilePathEncoder.decodePath(s)
         return vscode.Uri.parse(uriString, true)
     }
 }

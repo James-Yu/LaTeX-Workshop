@@ -2,13 +2,12 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as lw from '../../lw'
 import * as utils from '../../utils/utils'
-
 import { getLogger } from '../logger'
 
 const logger = getLogger('Manager', 'Finder')
 
 export class FinderUtils {
-    findRootFromMagic(): string | undefined {
+    static findRootFromMagic(): string | undefined {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
@@ -51,7 +50,7 @@ export class FinderUtils {
         return undefined
     }
 
-    findSubFiles(content: string): string | undefined {
+    static findSubFiles(content: string): string | undefined {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }

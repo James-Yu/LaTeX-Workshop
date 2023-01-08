@@ -6,11 +6,11 @@ import { resolveFile, stripText } from '../utils/utils'
 import { InputFileRegExp } from '../utils/inputfilepath'
 
 import { getLogger } from '../components/logger'
+import { UtensilsParser } from '../components/parser/syntax'
 
 const logger = getLogger('Structure')
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
-
     private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
     readonly onDidChangeTreeData: vscode.Event<Section | undefined>
     public root: string = ''
@@ -159,7 +159,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         const fastparse = configuration.get('view.outline.fastparse.enabled') as boolean
 
         // Use `latex-utensils` to generate the AST.
-        const ast = await lw.pegParser.parseLatex(fastparse ? stripText(content) : content).catch((e) => {
+        const ast = await UtensilsParser.parseLatex(fastparse ? stripText(content) : content).catch((e) => {
             if (latexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 logger.log(`Error parsing LaTeX during structuring: line ${line} in ${file} .`)
@@ -597,7 +597,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             logger.log(`Bib file is too large, ignoring it: ${document.fileName}`)
             return []
         }
-        const ast = await lw.pegParser.parseBibtex(document.getText()).catch((e) => {
+        const ast = await UtensilsParser.parseBibtex(document.getText()).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 logger.log(`Error parsing BibTeX: line ${line} in ${document.fileName} .`)

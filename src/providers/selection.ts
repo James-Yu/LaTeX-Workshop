@@ -1,6 +1,6 @@
 import {latexParser} from 'latex-utensils'
 import * as vscode from 'vscode'
-import * as lw from '../lw'
+import { UtensilsParser } from '../components/parser/syntax'
 
 interface ILuRange {
     start: ILuPos,
@@ -76,7 +76,7 @@ function toLatexUtensilPosition(pos: vscode.Position): LuPos {
 export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
     async provideSelectionRanges(document: vscode.TextDocument, positions: vscode.Position[]) {
         const content = document.getText()
-        const latexAst = await lw.pegParser.parseLatex(content, {enableMathCharacterLocation: true})
+        const latexAst = await UtensilsParser.parseLatex(content, {enableMathCharacterLocation: true})
         if (!latexAst) {
             return []
         }

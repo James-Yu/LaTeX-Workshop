@@ -1,5 +1,5 @@
 import * as vs from 'vscode'
-import * as lw from '../lw'
+import { TeXMathEnvFinder } from './preview/mathpreviewlib/texmathenvfinder'
 
 /**
  * Each number corresponds to the warning number of ChkTeX.
@@ -174,7 +174,7 @@ export class CodeActions implements vs.CodeActionProvider {
         if (text !== oldDelim) {
             if (oldDelim === '$$') {
                 const pat = /(?<!\\)\$\$/
-                const endPos = lw.mathPreview.texMathEnvFinder.findEndPair(document, pat, endRange.start)
+                const endPos = TeXMathEnvFinder.findEndPair(document, pat, endRange.start)
                 if (!endPos) {
                     return
                 }

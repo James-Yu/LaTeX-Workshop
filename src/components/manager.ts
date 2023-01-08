@@ -6,9 +6,7 @@ import * as tmp from 'tmp'
 import * as utils from '../utils/utils'
 import * as lw from '../lw'
 import * as eventbus from './eventbus'
-
-import {FinderUtils} from './managerlib/finderutils'
-
+import { FinderUtils } from './managerlib/finderutils'
 import { getLogger } from './logger'
 
 const logger = getLogger('Manager')
@@ -32,10 +30,7 @@ export class Manager {
     private _rootFile: RootFileType | undefined
     readonly tmpDir: string
 
-    private readonly finderUtils: FinderUtils
-
     constructor() {
-        this.finderUtils = new FinderUtils()
         this.registerSetEnvVar()
 
         // Create temp folder
@@ -243,7 +238,7 @@ export class Manager {
         logger.log(`Current workspace folders: ${JSON.stringify(wsfolders)}`)
         this.localRootFile = undefined
         const findMethods = [
-            () => this.finderUtils.findRootFromMagic(),
+            () => FinderUtils.findRootFromMagic(),
             () => this.findRootFromActive(),
             () => this.findRootFromCurrentRoot(),
             () => this.findRootInWorkspace()
@@ -307,7 +302,7 @@ export class Manager {
         const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
         const result = content.match(regex)
         if (result) {
-            const rootSubFile = this.finderUtils.findSubFiles(content)
+            const rootSubFile = FinderUtils.findSubFiles(content)
             const file = vscode.window.activeTextEditor.document.fileName
             if (rootSubFile) {
                this.localRootFile = file

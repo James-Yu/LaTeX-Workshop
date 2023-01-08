@@ -1,11 +1,10 @@
 import * as vscode from 'vscode'
-import {bibtexParser} from 'latex-utensils'
-import {performance} from 'perf_hooks'
-import * as lw from '../lw'
-import {BibtexUtils} from './bibtexformatterlib/bibtexutils'
-import type {BibtexEntry} from './bibtexformatterlib/bibtexutils'
-
+import { bibtexParser } from 'latex-utensils'
+import { performance } from 'perf_hooks'
+import { BibtexFormatConfig, BibtexUtils } from './bibtexformatterlib/bibtexutils'
+import type { BibtexEntry } from './bibtexformatterlib/bibtexutils'
 import { getLogger } from '../components/logger'
+import { UtensilsParser } from '../components/parser/syntax'
 
 const logger = getLogger('Format', 'Bib')
 
@@ -54,13 +53,13 @@ export class BibtexFormatter {
 
     public async formatDocument(document: vscode.TextDocument, sort: boolean, align: boolean, range?: vscode.Range): Promise<vscode.TextEdit[]> {
         // Get configuration
-        const bibtexUtils = new BibtexUtils(document.uri)
+        const formatConfig = new BibtexFormatConfig(document.uri)
         const config = vscode.workspace.getConfiguration('latex-workshop', document)
         const handleDuplicates = config.get('bibtex-format.handleDuplicates') as 'Ignore Duplicates' | 'Highlight Duplicates' | 'Comment Duplicates'
         const lineOffset = range ? range.start.line : 0
         const columnOffset = range ? range.start.character : 0
 
-        const ast = await lw.pegParser.parseBibtex(document.getText(range)).catch((error) => {
+        const ast = await UtensilsParser.parseBibtex(document.getText(range)).catch((error) => {
             if (error instanceof(Error)) {
                 logger.log('Bibtex parser failed.')
                 logger.log(error.message)
@@ -90,7 +89,7 @@ export class BibtexFormatter {
         let sortedEntryLocations: vscode.Range[] = []
         const duplicates = new Set<bibtexParser.Entry>()
         if (sort) {
-            entries.sort(bibtexUtils.bibtexSort(duplicates)).forEach(entry => {
+            entries.sort(BibtexUtils.bibtexSort(duplicates, formatConfig)).forEach(entry => {
                 sortedEntryLocations.push((new vscode.Range(
                     entry.location.start.line - 1,
                     entry.location.start.column - 1,
@@ -111,7 +110,7 @@ export class BibtexFormatter {
         for (let i = 0; i < entries.length; i++) {
             if (align && bibtexParser.isEntry(entries[i])) {
                 const entry: bibtexParser.Entry = entries[i] as bibtexParser.Entry
-                text = bibtexUtils.bibtexFormat(entry)
+                text = BibtexUtils.bibtexFormat(entry, formatConfig)
             } else {
                 text = document.getText(sortedEntryLocations[i])
             }

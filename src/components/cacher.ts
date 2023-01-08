@@ -10,13 +10,14 @@ import type { CiteSuggestion } from '../providers/completer/citation'
 import type { GlossarySuggestion } from '../providers/completer/glossary'
 import type { ICompletionItem } from '../providers/completion'
 import { InputFileRegExp } from '../utils/inputfilepath'
-import { canContext, isExcluded, parseFlsContent } from './cacherlib/cacherutils'
+import { CacherUtils } from './cacherlib/cacherutils'
 import { PathUtils } from './cacherlib/pathutils'
 import { Watcher } from './cacherlib/texwatcher'
 import { PdfWatcher } from './cacherlib/pdfwatcher'
 import { BibWatcher } from './cacherlib/bibwatcher'
 
 import { getLogger } from './logger'
+import { UtensilsParser } from './parser/syntax'
 
 const logger = getLogger('Cacher')
 
@@ -61,10 +62,9 @@ export class Cacher {
     private readonly watcher: Watcher = new Watcher(this)
     private readonly pdfWatcher: PdfWatcher = new PdfWatcher()
     private readonly bibWatcher: BibWatcher = new BibWatcher()
-    private readonly pathUtils: PathUtils = new PathUtils()
 
     add(filePath: string) {
-        if (isExcluded(filePath)) {
+        if (CacherUtils.isExcluded(filePath)) {
             logger.log(`Ignored ${filePath} .`)
             return
         }
@@ -109,11 +109,11 @@ export class Cacher {
     }
 
     async refreshContext(filePath: string, rootPath?: string) {
-        if (isExcluded(filePath)) {
+        if (CacherUtils.isExcluded(filePath)) {
             logger.log(`Ignored ${filePath} .`)
             return
         }
-        if (!canContext(filePath)) {
+        if (!CacherUtils.canContext(filePath)) {
             return
         }
         logger.log(`Caching ${filePath} .`)
@@ -168,7 +168,7 @@ export class Cacher {
         const languageId: string | undefined = vscode.window.activeTextEditor?.document.languageId
         let latexAst: latexParser.AstRoot | latexParser.AstPreamble | undefined = undefined
         if (!languageId || languageId !== 'latex-expl3') {
-            latexAst = await lw.pegParser.parseLatex(content)
+            latexAst = await UtensilsParser.parseLatex(content)
         }
 
         if (latexAst) {
@@ -200,7 +200,7 @@ export class Cacher {
             const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => bib.trim())
 
             for (const bib of bibs) {
-                const bibPath = this.pathUtils.resolveBibPath(bib, path.dirname(filePath))
+                const bibPath = PathUtils.resolveBibPath(bib, path.dirname(filePath))
                 if (bibPath === undefined) {
                     continue
                 }
@@ -224,19 +224,19 @@ export class Cacher {
      * @param filePath The path of a LaTeX file.
      */
     async loadFlsFile(filePath: string) {
-        const flsPath = this.pathUtils.getFlsFilePath(filePath)
+        const flsPath = PathUtils.getFlsFilePath(filePath)
         if (flsPath === undefined) {
             return
         }
         logger.log(`Parsing .fls ${flsPath} .`)
         const rootDir = path.dirname(filePath)
         const outDir = lw.manager.getOutDir(filePath)
-        const ioFiles = parseFlsContent(fs.readFileSync(flsPath).toString(), rootDir)
+        const ioFiles = CacherUtils.parseFlsContent(fs.readFileSync(flsPath).toString(), rootDir)
 
         for (const inputFile of ioFiles.input) {
             // Drop files that are also listed as OUTPUT or should be ignored
             if (ioFiles.output.includes(inputFile) ||
-                isExcluded(inputFile) ||
+                CacherUtils.isExcluded(inputFile) ||
                 !fs.existsSync(inputFile)) {
                 continue
             }
@@ -286,7 +286,7 @@ export class Cacher {
                 return bib.trim()
             })
             for (const bib of bibs) {
-                const bibPath = this.pathUtils.resolveBibPath(bib, srcDir)
+                const bibPath = PathUtils.resolveBibPath(bib, srcDir)
                 if (bibPath === undefined) {
                     continue
                 }
@@ -301,12 +301,12 @@ export class Cacher {
     }
 
     getTeXChildrenFromFls(texFile: string) {
-        const flsFile = this.pathUtils.getFlsFilePath(texFile)
+        const flsFile = PathUtils.getFlsFilePath(texFile)
         if (flsFile === undefined) {
             return []
         }
         const rootDir = path.dirname(texFile)
-        const ioFiles = parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
+        const ioFiles = CacherUtils.parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
         return ioFiles.input
     }
 

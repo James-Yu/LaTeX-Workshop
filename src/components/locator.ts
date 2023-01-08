@@ -3,12 +3,10 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
 import * as lw from '../lw'
-import {SyncTexJs} from './locatorlib/synctex'
-import {replaceArgumentPlaceholders} from '../utils/utils'
-import {isSameRealPath} from '../utils/pathnormalize'
-
+import { SyncTexJs } from './locatorlib/synctex'
+import { replaceArgumentPlaceholders } from '../utils/utils'
+import { isSameRealPath } from '../utils/pathnormalize'
 import type {ClientRequest} from '../../types/latex-workshop-protocol-types'
-
 import { getLogger } from './logger'
 
 const logger = getLogger('Locator')
@@ -26,12 +24,6 @@ export type SyncTeXRecordBackward = {
 }
 
 export class Locator {
-    private readonly synctexjs: SyncTexJs
-
-    constructor() {
-        this.synctexjs = new SyncTexJs()
-    }
-
     private parseSyncTeXForward(result: string): SyncTeXRecordForward {
         const record = Object.create(null) as { page?: number, x?: number, y?: number }
         let started = false
@@ -156,7 +148,7 @@ export class Locator {
         if (useSyncTexJs) {
             try {
                 logger.log(`Forward from ${filePath} to ${pdfFile} on line ${line}.`)
-                const record = this.synctexjs.syncTexJsForward(line, filePath, pdfFile)
+                const record = SyncTexJs.syncTexJsForward(line, filePath, pdfFile)
                 lw.viewer.syncTeX(pdfFile, record)
             } catch (e) {
                 logger.logError('Forward SyncTeX failed.', e)
@@ -291,7 +283,7 @@ export class Locator {
         if (useSyncTexJs) {
             try {
                 logger.log(`Backward from ${pdfPath} at x=${data.pos[0]}, y=${data.pos[1]} on page ${data.page}.`)
-                record = this.synctexjs.syncTexJsBackward(data.page, data.pos[0], data.pos[1], pdfPath)
+                record = SyncTexJs.syncTexJsBackward(data.page, data.pos[0], data.pos[1], pdfPath)
             } catch (e) {
                 logger.logError('Backward SyncTeX failed.', e)
                 return

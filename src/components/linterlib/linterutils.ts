@@ -1,21 +1,21 @@
-import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
-import { EOL } from 'os'
+import * as os from 'os'
+import { spawn, ChildProcessWithoutNullStreams } from 'child_process'
 import { getLogger } from '../logger'
 
 const logger = getLogger('Linter')
 
-export class LinterUtil {
-    readonly #currentProcesses = Object.create(null) as { [linterId: string]: ChildProcessWithoutNullStreams }
+export class LinterUtils {
+    private static readonly currentProcesses = Object.create(null) as { [linterId: string]: ChildProcessWithoutNullStreams }
 
-    processWrapper(linterId: string, command: string, args: string[], options: {cwd: string}, stdin?: string): Promise<string> {
+    static processWrapper(linterId: string, command: string, args: string[], options: {cwd: string}, stdin?: string): Promise<string> {
         logger.logCommand(`Linter for ${linterId} command`, command, args)
         return new Promise((resolve, reject) => {
-            if (this.#currentProcesses[linterId]) {
-                this.#currentProcesses[linterId].kill()
+            if (this.currentProcesses[linterId]) {
+                this.currentProcesses[linterId].kill()
             }
             const startTime = process.hrtime()
-            this.#currentProcesses[linterId] = spawn(command, args, options)
-            const proc = this.#currentProcesses[linterId]
+            this.currentProcesses[linterId] = spawn(command, args, options)
+            const proc = this.currentProcesses[linterId]
             proc.stdout.setEncoding('binary')
             proc.stderr.setEncoding('binary')
 
@@ -53,9 +53,9 @@ export class LinterUtil {
 
             if (stdin !== undefined) {
                 proc.stdin.write(stdin)
-                if (!stdin.endsWith(EOL)) {
+                if (!stdin.endsWith(os.EOL)) {
                     // Always ensure we end with EOL otherwise ChkTeX will report line numbers as off by 1.
-                    proc.stdin.write(EOL)
+                    proc.stdin.write(os.EOL)
                 }
                 proc.stdin.end()
             }

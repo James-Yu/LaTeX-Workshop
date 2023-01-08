@@ -12,6 +12,7 @@ import { PdfViewerPanel, PdfViewerPanelSerializer, PdfViewerPanelService } from 
 import { PdfViewerManagerService } from './viewerlib/pdfviewermanager'
 import { ViewerPageLoaded } from './eventbus'
 import { getLogger } from './logger'
+import { PdfFilePathEncoder } from './serverlib/encodepath'
 
 const logger = getLogger('Viewer')
 
@@ -19,17 +20,13 @@ export { PdfViewerHookProvider } from './viewerlib/pdfviewerhook'
 
 export class Viewer {
     readonly pdfViewerPanelSerializer: PdfViewerPanelSerializer
-    private readonly panelService: PdfViewerPanelService
-    private readonly managerService: PdfViewerManagerService
 
     constructor() {
-        this.panelService = new PdfViewerPanelService()
-        this.managerService = new PdfViewerManagerService()
-        this.pdfViewerPanelSerializer = new PdfViewerPanelSerializer(this.panelService, this.managerService)
+        this.pdfViewerPanelSerializer = new PdfViewerPanelSerializer()
     }
 
     private createClientSet(pdfFileUri: vscode.Uri): void {
-        this.managerService.createClientSet(pdfFileUri)
+        PdfViewerManagerService.createClientSet(pdfFileUri)
     }
 
     /**
@@ -39,23 +36,23 @@ export class Viewer {
      * @param pdfFileUri The path of a PDF file.
      */
     getClientSet(pdfFileUri: vscode.Uri): Set<Client> | undefined {
-        return this.managerService.getClientSet(pdfFileUri)
+        return PdfViewerManagerService.getClientSet(pdfFileUri)
     }
 
     private getPanelSet(pdfFileUri: vscode.Uri): Set<PdfViewerPanel> | undefined {
-        return this.managerService.getPanelSet(pdfFileUri)
+        return PdfViewerManagerService.getPanelSet(pdfFileUri)
     }
 
     private get clientMap(): Map<string, Set<Client>> {
-        return this.managerService.clientMap
+        return PdfViewerManagerService.clientMap
     }
 
     private initiatePdfViewerPanel(pdfPanel: PdfViewerPanel) {
-        return this.managerService.initiatePdfViewerPanel(pdfPanel)
+        return PdfViewerManagerService.initiatePdfViewerPanel(pdfPanel)
     }
 
     private encodePathWithPrefix(pdfFileUri: vscode.Uri): string {
-        return lw.server.pdfFilePathEncoder.encodePathWithPrefix(pdfFileUri)
+        return PdfFilePathEncoder.encodePathWithPrefix(pdfFileUri)
     }
 
     /**
@@ -158,7 +155,7 @@ export class Viewer {
     }
 
     private async createPdfViewerPanel(pdfFileUri: vscode.Uri, viewColumn: vscode.ViewColumn): Promise<PdfViewerPanel> {
-        const panel = await this.panelService.createPdfViewerPanel(pdfFileUri, viewColumn)
+        const panel = await PdfViewerPanelService.createPdfViewerPanel(pdfFileUri, viewColumn)
         this.initiatePdfViewerPanel(panel)
         return panel
     }
@@ -227,7 +224,7 @@ export class Viewer {
         switch (data.type) {
             case 'open': {
                 const pdfFileUri = vscode.Uri.parse(data.pdfFileUri, true)
-                const clientSet = this.managerService.getClientSet(pdfFileUri)
+                const clientSet = PdfViewerManagerService.getClientSet(pdfFileUri)
                 if (clientSet === undefined) {
                     break
                 }

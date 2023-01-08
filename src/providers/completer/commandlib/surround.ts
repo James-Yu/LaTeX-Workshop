@@ -2,8 +2,7 @@ import * as vscode from 'vscode'
 import type { ICompletionItem } from '../../completion'
 
 export class SurroundCommand {
-
-    surround(cmdItems: ICompletionItem[]) {
+    static surround(cmdItems: ICompletionItem[]) {
         if (!vscode.window.activeTextEditor) {
             return
         }

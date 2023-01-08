@@ -37,17 +37,12 @@ function isCmdWithSnippet(obj: any): obj is CmdType {
 }
 
 export class Command implements IProvider {
-    private readonly commandFinder: CommandFinder
-    private readonly surroundCommand: SurroundCommand
 
     private defaultCmds: CmdEnvSuggestion[] = []
     private readonly _defaultSymbols: CmdEnvSuggestion[] = []
     private readonly packageCmds = new Map<string, CmdEnvSuggestion[]>()
 
     constructor() {
-        this.commandFinder = new CommandFinder()
-        this.surroundCommand = new SurroundCommand()
-
         lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (!e.affectsConfiguration('latex-workshop.intellisense.commandsJSON.replace')) {
                 return
@@ -94,7 +89,7 @@ export class Command implements IProvider {
     }
 
     get definedCmds() {
-        return this.commandFinder.definedCmds
+        return CommandFinder.definedCmds
     }
 
     get defaultSymbols() {
@@ -195,7 +190,7 @@ export class Command implements IProvider {
         }
         const editor = vscode.window.activeTextEditor
         const cmdItems = this.provide(editor.document.languageId)
-        this.surroundCommand.surround(cmdItems)
+        SurroundCommand.surround(cmdItems)
     }
 
     /**
@@ -220,9 +215,9 @@ export class Command implements IProvider {
             return
         }
         if (nodes !== undefined) {
-            cache.elements.command = this.commandFinder.getCmdFromNodeArray(file, nodes, new CommandNameDuplicationDetector())
+            cache.elements.command = CommandFinder.getCmdFromNodeArray(file, nodes, new CommandNameDuplicationDetector())
         } else if (content !== undefined) {
-            cache.elements.command = this.commandFinder.getCmdFromContent(file, content)
+            cache.elements.command = CommandFinder.getCmdFromContent(file, content)
         }
     }
 

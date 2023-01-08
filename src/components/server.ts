@@ -42,7 +42,6 @@ const ServerStartedEvent = 'serverstarted'
 export class Server {
     private readonly httpServer: http.Server
     private address?: AddressInfo
-    readonly pdfFilePathEncoder: PdfFilePathEncoder
     private validOriginUri: vscode.Uri | undefined
     readonly serverStarted: Promise<void>
     private readonly eventEmitter = new EventEmitter()
@@ -51,7 +50,6 @@ export class Server {
         this.serverStarted = new Promise((resolve) => {
             this.eventEmitter.on(ServerStartedEvent, () => resolve() )
         })
-        this.pdfFilePathEncoder = new PdfFilePathEncoder()
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
         this.initializeHttpServer()
         logger.log('Creating LaTeX Workshop http and websocket server.')
@@ -160,9 +158,9 @@ export class Server {
         if (!isValidOrigin) {
             return
         }
-        if (request.url.includes(this.pdfFilePathEncoder.pdfFilePrefix) && !request.url.includes('viewer.html')) {
+        if (request.url.includes(PdfFilePathEncoder.pdfFilePrefix) && !request.url.includes('viewer.html')) {
             const s = request.url.replace('/', '')
-            const fileUri = this.pdfFilePathEncoder.decodePathWithPrefix(s)
+            const fileUri = PdfFilePathEncoder.decodePathWithPrefix(s)
             if (lw.viewer.getClientSet(fileUri) === undefined) {
                 logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
                 return

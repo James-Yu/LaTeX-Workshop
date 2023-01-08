@@ -3,7 +3,7 @@ import * as chokidar from 'chokidar'
 import * as lw from '../../lw'
 import * as eventbus from '../eventbus'
 import { Cacher } from '../cacher'
-import { canContext, isExcluded } from './cacherutils'
+import { CacherUtils } from './cacherutils'
 import { getLogger } from '../logger'
 
 const logger = getLogger('Cacher', 'Watcher')
@@ -57,7 +57,7 @@ export class Watcher {
     }
 
     private onChange(filePath: string) {
-        if (canContext(filePath)) {
+        if (CacherUtils.canContext(filePath)) {
             void this.cacher.refreshContext(filePath)
         }
         void lw.builder.buildOnFileChanged(filePath)
@@ -93,7 +93,7 @@ export class Watcher {
             }
             if (e.affectsConfiguration('latex-workshop.latex.watch.files.ignore')) {
                 this.watched.forEach(filePath => {
-                    if (!isExcluded(filePath)) {
+                    if (!CacherUtils.isExcluded(filePath)) {
                         return
                     }
                     this.watcher.unwatch(filePath)

@@ -31,24 +31,20 @@ const supportedExtensionList = [
 ]
 
 export class MathJaxPool {
-    private readonly pool: workerpool.WorkerPool
-    private readonly proxyPromise: workerpool.Promise<Proxy<IMathJaxWorker>>
+    private static readonly pool: workerpool.WorkerPool = workerpool.pool(
+        path.join(__dirname, 'mathjaxpool_worker.js'),
+        { minWorkers: 1, maxWorkers: 1, workerType: 'process' }
+    )
+    private static readonly proxyPromise: workerpool.Promise<Proxy<IMathJaxWorker>> = MathJaxPool.pool.proxy<IMathJaxWorker>()
 
-    constructor() {
-        this.pool = workerpool.pool(
-            path.join(__dirname, 'mathjaxpool_worker.js'),
-            { minWorkers: 1, maxWorkers: 1, workerType: 'process' }
-        )
-        this.proxyPromise = this.pool.proxy<IMathJaxWorker>()
-        void this.initializeExtensions()
+    static dispose() {
+        return {
+            dispose: async () => { await MathJaxPool.pool.terminate(true) }
+        }
     }
 
-    async dispose() {
-        await this.pool.terminate(true)
-    }
-
-    private initializeExtensions() {
-        void this.loadExtensions()
+    static initialize() {
+        void MathJaxPool.loadExtensions()
         vscode.workspace.onDidChangeConfiguration(async (ev) => {
             if (ev.affectsConfiguration('latex-workshop.hover.preview.mathjax.extensions')) {
                 return this.loadExtensions()
@@ -56,13 +52,13 @@ export class MathJaxPool {
         })
     }
 
-    async typeset(arg: string, opts: { scale: number, color: string }): Promise<string> {
+    static async typeset(arg: string, opts: { scale: number, color: string }): Promise<string> {
         const proxy = await this.proxyPromise
         const svgHtml = await proxy.typeset(arg, opts).timeout(3000)
         return svgHtml
     }
 
-    private async loadExtensions() {
+    private static async loadExtensions() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const extensions = configuration.get('hover.preview.mathjax.extensions', []) as SupportedExtension[]
         const extensionsToLoad = extensions.filter((ex) => supportedExtensionList.includes(ex))

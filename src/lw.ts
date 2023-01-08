@@ -1,6 +1,5 @@
 import vscode from 'vscode'
 import path from 'path'
-import { Commander } from './commander'
 import { Builder } from './components/builder'
 import { Cacher } from './components/cacher'
 import { Cleaner } from './components/cleaner'
@@ -15,7 +14,6 @@ import { Locator } from './components/locator'
 import { LwFileSystem } from './components/lwfs'
 import { Manager } from './components/manager'
 import { MathPreviewPanel } from './components/mathpreviewpanel'
-import { CompilerLogParser } from './components/parser/compilerlog'
 import { UtensilsParser } from './components/parser/syntax'
 import { Section } from './components/section'
 import { Server } from './components/server'
@@ -29,6 +27,8 @@ import { GraphicsPreview } from './providers/preview/graphicspreview'
 import { MathPreview } from './providers/preview/mathpreview'
 import { StructureTreeView } from './providers/structure'
 import { getLogger } from './components/logger'
+import { TeXDoc } from './components/texdoc'
+import { MathJaxPool } from './providers/preview/mathjaxpool'
 
 let disposables: { dispose(): any }[] = []
 let context: vscode.ExtensionContext
@@ -41,24 +41,26 @@ export function registerDisposable(...items: { dispose(): Promise<void> }[]) {
         disposables = [...disposables, ...items]
     }
 }
+
+export * as commander from './commander'
+
 export const extensionRoot = path.resolve(`${__dirname}/../../`)
 export const eventBus = new EventBus()
 export const configuration = new Configuration()
 export const lwfs = new LwFileSystem()
-export const commander = new Commander()
 export const cacher = new Cacher()
 export const manager = new Manager()
 export const builder = new Builder()
 export const viewer = new Viewer()
 export const server = new Server()
 export const locator = new Locator()
-export const compilerLogParser = new CompilerLogParser()
 export const completer = new Completer()
 export const atSuggestionCompleter = new AtSuggestionCompleter()
 export const duplicateLabels = new DuplicateLabels()
 export const linter = new Linter()
 export const cleaner = new Cleaner()
 export const counter = new Counter()
+export const texdoc = new TeXDoc()
 export const codeActions = new CodeActions()
 export const texMagician = new TeXMagician()
 export const envPair = new EnvPair()
@@ -66,7 +68,6 @@ export const section = new Section()
 export const latexCommanderTreeView = new LaTeXCommanderTreeView()
 export const structureViewer = new StructureTreeView()
 export const snippetView = new SnippetView()
-export const pegParser = new UtensilsParser()
 export const graphicsPreview = new GraphicsPreview()
 export const mathPreview = new MathPreview()
 export const bibtexFormatter = new BibtexFormatter()
@@ -84,8 +85,8 @@ export function init(extensionContext: vscode.ExtensionContext) {
         async dispose() {
             await cacher.dispose()
             server.dispose()
-            await pegParser.dispose()
-            await mathPreview.dispose()
+            UtensilsParser.dispose()
+            MathJaxPool.dispose()
         }
     }
 }

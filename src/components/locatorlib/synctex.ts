@@ -74,7 +74,7 @@ class Rectangle {
 }
 
 export class SyncTexJs {
-    parseSyncTexForPdf(pdfFile: string): PdfSyncObject {
+    static parseSyncTexForPdf(pdfFile: string): PdfSyncObject {
         const filename = path.basename(pdfFile, path.extname(pdfFile))
         const dir = path.dirname(pdfFile)
         const synctexFile = path.resolve(dir, filename + '.synctex')
@@ -107,7 +107,7 @@ export class SyncTexJs {
         throw new SyncTexJsError('SyncTeX failed.')
     }
 
-    private findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject): string | undefined {
+    private static findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject): string | undefined {
         for (const inputFilePath in pdfSyncObject.blockNumberLine) {
             try {
                 if (isSameRealPath(inputFilePath, filePath)) {
@@ -129,9 +129,9 @@ export class SyncTexJs {
         return undefined
     }
 
-    syncTexJsForward(line: number, filePath: string, pdfFile: string): SyncTeXRecordForward {
-        const pdfSyncObject = this.parseSyncTexForPdf(pdfFile)
-        const inputFilePath = this.findInputFilePathForward(filePath, pdfSyncObject)
+    static syncTexJsForward(line: number, filePath: string, pdfFile: string): SyncTeXRecordForward {
+        const pdfSyncObject = SyncTexJs.parseSyncTexForPdf(pdfFile)
+        const inputFilePath = SyncTexJs.findInputFilePathForward(filePath, pdfSyncObject)
         if (inputFilePath === undefined) {
             throw new SyncTexJsError('No relevant entries found.')
         }
@@ -141,15 +141,15 @@ export class SyncTexJs {
         const i = lineNums.findIndex( x => x >= line )
         if (i === 0 || lineNums[i] === line) {
             const l = lineNums[i]
-            const blocks = this.getBlocks(linePageBlocks, l)
+            const blocks = SyncTexJs.getBlocks(linePageBlocks, l)
             const c = Rectangle.coveringRectangle(blocks)
             return { page: blocks[0].page, x: c.left + pdfSyncObject.offset.x, y: c.bottom + pdfSyncObject.offset.y }
         }
         const line0 = lineNums[i - 1]
-        const blocks0 = this.getBlocks(linePageBlocks, line0)
+        const blocks0 = SyncTexJs.getBlocks(linePageBlocks, line0)
         const c0 = Rectangle.coveringRectangle(blocks0)
         const line1 = lineNums[i]
-        const blocks1 = this.getBlocks(linePageBlocks, line1)
+        const blocks1 = SyncTexJs.getBlocks(linePageBlocks, line1)
         const c1 = Rectangle.coveringRectangle(blocks1)
         let bottom: number
         if (c0.bottom < c1.bottom) {
@@ -160,7 +160,7 @@ export class SyncTexJs {
         return { page: blocks1[0].page, x: c1.left + pdfSyncObject.offset.x, y: bottom + pdfSyncObject.offset.y }
     }
 
-    private getBlocks(linePageBlocks: { [inputLineNum: number]: { [pageNum: number]: Block[] } }, lineNum: number ): Block[] {
+    private static getBlocks(linePageBlocks: { [inputLineNum: number]: { [pageNum: number]: Block[] } }, lineNum: number ): Block[] {
         const pageBlocks = linePageBlocks[lineNum]
         const pageNums = Object.keys(pageBlocks)
         if (pageNums.length === 0) {
@@ -170,8 +170,8 @@ export class SyncTexJs {
         return pageBlocks[Number(page)]
     }
 
-    syncTexJsBackward(page: number, x: number, y: number, pdfPath: string): SyncTeXRecordBackward {
-        const pdfSyncObject = this.parseSyncTexForPdf(pdfPath)
+    static syncTexJsBackward(page: number, x: number, y: number, pdfPath: string): SyncTeXRecordBackward {
+        const pdfSyncObject = SyncTexJs.parseSyncTexForPdf(pdfPath)
         const y0 = y - pdfSyncObject.offset.y
         const x0 = x - pdfSyncObject.offset.x
         const fileNames = Object.keys(pdfSyncObject.blockNumberLine)
@@ -220,10 +220,10 @@ export class SyncTexJs {
             throw new SyncTexJsError('Cannot find any line to jump to.')
         }
 
-        return { input: this.convInputFilePath(record.input), line: record.line, column: 0 }
+        return { input: SyncTexJs.convInputFilePath(record.input), line: record.line, column: 0 }
     }
 
-    private convInputFilePath(inputFilePath: string): string {
+    private static convInputFilePath(inputFilePath: string): string {
         if (fs.existsSync(inputFilePath)) {
             return inputFilePath
         }
