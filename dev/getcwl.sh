@@ -1,1 +1,1 @@
-svn export https://github.com/texstudio-org/texstudio/trunk/completion ./cwl
+svn export https://github.com/texstudio-org/texstudio/trunk/completion ./cwl --force
