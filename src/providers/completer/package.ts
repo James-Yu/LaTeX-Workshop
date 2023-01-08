@@ -1,8 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import { latexParser } from 'latex-utensils'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import type { IProvider } from '../completion'
 
 type DataPackagesJsonType = typeof import('../../../data/packagenames.json')
@@ -14,14 +13,9 @@ type PackageItemEntry = {
 }
 
 export class Package implements IProvider {
-    private readonly extension: Extension
     private readonly suggestions: vscode.CompletionItem[] = []
     private readonly packageDeps: {[packageName: string]: string[]} = {}
     private readonly packageOptions: {[packageName: string]: string[]} = {}
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
 
     initialize(defaultPackages: {[key: string]: PackageItemEntry}) {
         Object.keys(defaultPackages).forEach(key => {
@@ -39,7 +33,7 @@ export class Package implements IProvider {
 
     private provide(): vscode.CompletionItem[] {
         if (this.suggestions.length === 0) {
-            const pkgs: {[key: string]: PackageItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/packagenames.json`).toString()) as DataPackagesJsonType
+            const pkgs: {[key: string]: PackageItemEntry} = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/packagenames.json`).toString()) as DataPackagesJsonType
             this.initialize(pkgs)
         }
         return this.suggestions
@@ -73,8 +67,8 @@ export class Package implements IProvider {
         (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.extra') as string[])
             .forEach(packageName => packages[packageName] = [])
 
-        this.extension.cacher.getIncludedTeX().forEach(tex => {
-            const included = this.extension.cacher.get(tex)?.elements.package
+        lw.cacher.getIncludedTeX().forEach(tex => {
+            const included = lw.cacher.get(tex)?.elements.package
             if (included === undefined) {
                 return
             }
@@ -159,7 +153,7 @@ export class Package implements IProvider {
         if (node?.name === 'documentclass') {
             packageName = 'class-' + packageName
         }
-        const cache = this.extension.cacher.get(fileName)
+        const cache = lw.cacher.get(fileName)
         if (cache === undefined) {
             return
         }

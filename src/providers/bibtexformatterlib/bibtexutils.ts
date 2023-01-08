@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import {bibtexParser} from 'latex-utensils'
-
 import { getLogger } from '../../components/logger'
 
 const logger = getLogger('Format', 'Bib')
@@ -84,34 +83,28 @@ export class BibtexFormatConfig {
 }
 
 export class BibtexUtils {
-    readonly bibtexFormatConfig: BibtexFormatConfig
-
-    constructor(scope: vscode.ConfigurationScope | undefined) {
-        this.bibtexFormatConfig = new BibtexFormatConfig(scope)
-    }
-
     /**
      * Sorting function for bibtex entries
      * @param keys Array of sorting keys
      */
-    bibtexSort(duplicates: Set<bibtexParser.Entry>): (a: BibtexEntry, b: BibtexEntry) => number {
-        const keys = this.bibtexFormatConfig.sort
+    static bibtexSort(duplicates: Set<bibtexParser.Entry>, config: BibtexFormatConfig): (a: BibtexEntry, b: BibtexEntry) => number {
+        const keys = config.sort
         return (a, b) => {
             let r = 0
             for (const key of keys) {
                 // Select the appropriate sort function
                 switch (key) {
                     case 'key':
-                        r = this.bibtexSortByKey(a, b)
+                        r = BibtexUtils.bibtexSortByKey(a, b, config)
                         break
                     case 'year-desc':
-                        r = -this.bibtexSortByField('year', a, b)
+                        r = -BibtexUtils.bibtexSortByField('year', a, b, config)
                         break
                     case 'type':
-                        r = this.bibtexSortByType(a, b)
+                        r = BibtexUtils.bibtexSortByType(a, b, config)
                         break
                     default:
-                        r = this.bibtexSortByField(key, a, b)
+                        r = BibtexUtils.bibtexSortByField(key, a, b, config)
                 }
                 // Compare until different
                 if (r !== 0) {
@@ -130,7 +123,7 @@ export class BibtexUtils {
      * If one of the entries `a` or `b` is in `firstEntries` or `stickyEntries`, return an order.
      * Otherwise, return undefined
      */
-    private bibtexSortFirstEntries(firstEntries: string[], a: BibtexEntry, b: BibtexEntry): number | undefined {
+    private static bibtexSortFirstEntries(firstEntries: string[], a: BibtexEntry, b: BibtexEntry): number | undefined {
         const aFirst = firstEntries.includes(a.entryType)
         const bFirst = firstEntries.includes(b.entryType)
         if (aFirst && !bFirst) {
@@ -153,9 +146,8 @@ export class BibtexUtils {
      * Handles all sorting keys that are some bibtex field name
      * @param fieldName which field name to sort by
      */
-    private bibtexSortByField(fieldName: string, a: BibtexEntry, b: BibtexEntry): number {
-
-        const firstEntriesOrder = this.bibtexSortFirstEntries(this.bibtexFormatConfig.firstEntries, a, b)
+    private static bibtexSortByField(fieldName: string, a: BibtexEntry, b: BibtexEntry, config: BibtexFormatConfig): number {
+        const firstEntriesOrder = BibtexUtils.bibtexSortFirstEntries(config.firstEntries, a, b)
         if (firstEntriesOrder) {
             return firstEntriesOrder
         }
@@ -166,7 +158,7 @@ export class BibtexUtils {
         if (bibtexParser.isEntry(a)) {
             for(let i = 0; i < a.content.length; i++) {
                 if (a.content[i].name === fieldName) {
-                    fieldA = this.fieldToString(a.content[i].value, '')
+                    fieldA = BibtexUtils.fieldToString(a.content[i].value, '', config)
                     break
                 }
             }
@@ -174,7 +166,7 @@ export class BibtexUtils {
         if (bibtexParser.isEntry(b)) {
             for(let i = 0; i < b.content.length; i++) {
                 if (b.content[i].name === fieldName) {
-                    fieldB = this.fieldToString(b.content[i].value, '')
+                    fieldB = BibtexUtils.fieldToString(b.content[i].value, '', config)
                     break
                 }
             }
@@ -187,8 +179,8 @@ export class BibtexUtils {
         return fieldA.localeCompare(fieldB)
     }
 
-    private bibtexSortByKey(a: BibtexEntry, b: BibtexEntry): number {
-        const firstEntriesOrder = this.bibtexSortFirstEntries(this.bibtexFormatConfig.firstEntries, a, b)
+    private static bibtexSortByKey(a: BibtexEntry, b: BibtexEntry, config: BibtexFormatConfig): number {
+        const firstEntriesOrder = BibtexUtils.bibtexSortFirstEntries(config.firstEntries, a, b)
         let aKey: string | undefined = undefined
         let bKey: string | undefined = undefined
         if (bibtexParser.isEntry(a)) {
@@ -211,8 +203,8 @@ export class BibtexUtils {
         }
     }
 
-    private bibtexSortByType(a: BibtexEntry, b: BibtexEntry): number {
-        const firstEntriesOrder = this.bibtexSortFirstEntries(this.bibtexFormatConfig.firstEntries, a, b)
+    private static bibtexSortByType(a: BibtexEntry, b: BibtexEntry, config: BibtexFormatConfig): number {
+        const firstEntriesOrder = BibtexUtils.bibtexSortFirstEntries(config.firstEntries, a, b)
         if (firstEntriesOrder) {
             return firstEntriesOrder
         }
@@ -223,38 +215,38 @@ export class BibtexUtils {
      * Creates an aligned string from a bibtexParser.Entry
      * @param entry the bibtexParser.Entry
      */
-    bibtexFormat(entry: bibtexParser.Entry): string {
+    static bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConfig): string {
         let s = ''
 
         s += '@' + entry.entryType + '{' + (entry.internalKey ? entry.internalKey : '')
 
         // Find the longest field name in entry
         let maxFieldLength = 0
-        if (this.bibtexFormatConfig.alignOnEqual) {
+        if (config.alignOnEqual) {
             entry.content.forEach(field => {
                 maxFieldLength = Math.max(maxFieldLength, field.name.length)
             })
         }
 
         let fields: bibtexParser.Field[] = entry.content
-        if (this.bibtexFormatConfig.sortFields) {
-            fields = entry.content.sort(this.bibtexSortFields(this.bibtexFormatConfig.fieldsOrder))
+        if (config.sortFields) {
+            fields = entry.content.sort(BibtexUtils.bibtexSortFields(config.fieldsOrder))
         }
 
         fields.forEach(field => {
-            s += ',\n' + this.bibtexFormatConfig.tab + (this.bibtexFormatConfig.case === 'lowercase' ? field.name : field.name.toUpperCase())
-            let indent = this.bibtexFormatConfig.tab + ' '.repeat(field.name.length)
-            if (this.bibtexFormatConfig.alignOnEqual) {
+            s += ',\n' + config.tab + (config.case === 'lowercase' ? field.name : field.name.toUpperCase())
+            let indent = config.tab + ' '.repeat(field.name.length)
+            if (config.alignOnEqual) {
                 const adjustedLength = ' '.repeat(maxFieldLength - field.name.length)
                 s += adjustedLength
                 indent += adjustedLength
             }
             s += ' = '
-            indent += ' '.repeat(' = '.length + this.bibtexFormatConfig.left.length)
-            s += this.fieldToString(field.value, indent)
+            indent += ' '.repeat(' = '.length + config.left.length)
+            s += BibtexUtils.fieldToString(field.value, indent, config)
         })
 
-        if (this.bibtexFormatConfig.trailingComma) {
+        if (config.trailingComma) {
             s += ','
         }
 
@@ -268,9 +260,9 @@ export class BibtexUtils {
      * @param field the bibtexParser.FieldValue to parse
      * @param prefix what to add to every but the first line of a multiline field.
      */
-    fieldToString(field: bibtexParser.FieldValue, prefix: string): string {
-        const left = this.bibtexFormatConfig.left
-        const right = this.bibtexFormatConfig.right
+    static fieldToString(field: bibtexParser.FieldValue, prefix: string, config: BibtexFormatConfig): string {
+        const left = config.left
+        const right = config.right
         switch(field.kind) {
             case 'abbreviation':
             case 'number':
@@ -287,7 +279,7 @@ export class BibtexUtils {
                 }
             }
             case 'concat':
-                return field.content.map(value => this.fieldToString(value, prefix)).reduce((acc, cur) => {return acc + ' # ' + cur})
+                return field.content.map(value => BibtexUtils.fieldToString(value, prefix, config)).reduce((acc, cur) => {return acc + ' # ' + cur})
             default:
                 return ''
         }
@@ -297,7 +289,7 @@ export class BibtexUtils {
      * Sorting function for bibtex entries
      * @param keys Array of sorting keys
      */
-    bibtexSortFields(keys: string[]): (a: bibtexParser.Field, b: bibtexParser.Field) => number {
+    static bibtexSortFields(keys: string[]): (a: bibtexParser.Field, b: bibtexParser.Field) => number {
         return function (a, b) {
             const indexA = keys.indexOf(a.name)
             const indexB = keys.indexOf(b.name)

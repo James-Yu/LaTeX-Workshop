@@ -2,26 +2,19 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
 import * as fs from 'fs'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import * as utils from '../../utils/utils'
 import { getLogger } from '../logger'
 
 const logger = getLogger('Cacher', 'Path')
 
 export class PathUtils {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
+    private static get rootDir() {
+        return lw.manager.rootDir
     }
 
-    private get rootDir() {
-        return this.extension.manager.rootDir
-    }
-
-    private getOutDir(texFile: string) {
-        return this.extension.manager.getOutDir(texFile)
+    private static getOutDir(texFile: string) {
+        return lw.manager.getOutDir(texFile)
     }
 
     /**
@@ -29,9 +22,9 @@ export class PathUtils {
      * @param texFile The path of LaTeX file
      * @return The path of the .fls file or undefined
      */
-    getFlsFilePath(texFile: string): string | undefined {
+    static getFlsFilePath(texFile: string): string | undefined {
         const rootDir = path.dirname(texFile)
-        const outDir = this.getOutDir(texFile)
+        const outDir = PathUtils.getOutDir(texFile)
         const baseName = path.parse(texFile).name
         const flsFile = path.resolve(rootDir, path.join(outDir, baseName + '.fls'))
         if (!fs.existsSync(flsFile)) {
@@ -41,7 +34,7 @@ export class PathUtils {
         return flsFile
     }
 
-    private kpsewhichBibPath(bib: string): string | undefined {
+    private static kpsewhichBibPath(bib: string): string | undefined {
         const kpsewhich = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
         logger.log(`Calling ${kpsewhich} to resolve ${bib} .`)
         try {
@@ -60,14 +53,14 @@ export class PathUtils {
         return undefined
     }
 
-    resolveBibPath(bib: string, baseDir: string) {
+    static resolveBibPath(bib: string, baseDir: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const bibDirs = configuration.get('latex.bibDirs') as string[]
         let searchDirs: string[]
-        if (this.rootDir) {
+        if (PathUtils.rootDir) {
             // chapterbib requires to load the .bib file in every chapter using
             // the path relative to the rootDir
-            searchDirs = [this.rootDir, baseDir, ...bibDirs]
+            searchDirs = [PathUtils.rootDir, baseDir, ...bibDirs]
         } else {
             searchDirs = [baseDir, ...bibDirs]
         }
@@ -75,7 +68,7 @@ export class PathUtils {
 
         if (!bibPath) {
             if (configuration.get('kpsewhich.enabled')) {
-                return this.kpsewhichBibPath(bib)
+                return PathUtils.kpsewhichBibPath(bib)
             } else {
                 logger.log(`Cannot resolve ${bib} .`)
                 return undefined

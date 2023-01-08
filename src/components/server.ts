@@ -4,11 +4,9 @@ import ws from 'ws'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as vscode from 'vscode'
-
-import type {Extension} from '../main'
-import {PdfFilePathEncoder} from './serverlib/encodepath'
-import {EventEmitter} from 'events'
-
+import * as lw from '../lw'
+import { PdfFilePathEncoder } from './serverlib/encodepath'
+import { EventEmitter } from 'events'
 import { getLogger } from './logger'
 
 const logger = getLogger('Server')
@@ -42,20 +40,16 @@ class WsServer extends ws.Server {
 const ServerStartedEvent = 'serverstarted'
 
 export class Server {
-    private readonly extension: Extension
     private readonly httpServer: http.Server
     private address?: AddressInfo
-    readonly pdfFilePathEncoder: PdfFilePathEncoder
     private validOriginUri: vscode.Uri | undefined
     readonly serverStarted: Promise<void>
     private readonly eventEmitter = new EventEmitter()
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         this.serverStarted = new Promise((resolve) => {
             this.eventEmitter.on(ServerStartedEvent, () => resolve() )
         })
-        this.pdfFilePathEncoder = new PdfFilePathEncoder(extension)
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
         this.initializeHttpServer()
         logger.log('Creating LaTeX Workshop http and websocket server.')
@@ -112,7 +106,7 @@ export class Server {
     private initializeWsServer() {
         const wsServer = new WsServer(this.httpServer, this.validOrigin)
         wsServer.on('connection', (websocket) => {
-            websocket.on('message', (msg: string) => this.extension.viewer.handler(websocket, msg))
+            websocket.on('message', (msg: string) => lw.viewer.handler(websocket, msg))
             websocket.on('error', (err) => logger.log(`Error on WebSocket connection. ${JSON.stringify(err)}`))
         })
     }
@@ -164,15 +158,15 @@ export class Server {
         if (!isValidOrigin) {
             return
         }
-        if (request.url.includes(this.pdfFilePathEncoder.pdfFilePrefix) && !request.url.includes('viewer.html')) {
+        if (request.url.includes(PdfFilePathEncoder.pdfFilePrefix) && !request.url.includes('viewer.html')) {
             const s = request.url.replace('/', '')
-            const fileUri = this.pdfFilePathEncoder.decodePathWithPrefix(s)
-            if (this.extension.viewer.getClientSet(fileUri) === undefined) {
+            const fileUri = PdfFilePathEncoder.decodePathWithPrefix(s)
+            if (lw.viewer.getClientSet(fileUri) === undefined) {
                 logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
                 return
             }
             try {
-                const buf: Buffer = await this.extension.lwfs.readFileAsBuffer(fileUri)
+                const buf: Buffer = await lw.lwfs.readFileAsBuffer(fileUri)
                 this.sendOkResponse(response, buf, 'application/pdf')
                 logger.log(`Preview PDF file: ${fileUri.toString(true)}`)
             } catch (e) {
@@ -183,20 +177,20 @@ export class Server {
             return
         }
         if (request.url === '/config.json') {
-            const params = this.extension.viewer.viewerParams()
+            const params = lw.viewer.viewerParams()
             const content = JSON.stringify(params)
             this.sendOkResponse(response, Buffer.from(content), 'application/json')
             return
         }
         let root: string
         if (request.url.startsWith('/build/') || request.url.startsWith('/cmaps/') || request.url.startsWith('/standard_fonts/')) {
-            root = path.resolve(`${this.extension.extensionRoot}/node_modules/pdfjs-dist`)
+            root = path.resolve(`${lw.extensionRoot}/node_modules/pdfjs-dist`)
         } else if (request.url.startsWith('/out/viewer/') || request.url.startsWith('/viewer/')) {
             // For requests to /out/viewer/*.js and requests to /viewer/*.ts.
             // The latter is for debugging with sourcemap.
-            root = path.resolve(this.extension.extensionRoot)
+            root = path.resolve(lw.extensionRoot)
         } else {
-            root = path.resolve(`${this.extension.extensionRoot}/viewer`)
+            root = path.resolve(`${lw.extensionRoot}/viewer`)
         }
         //
         // Prevent directory traversal attack.

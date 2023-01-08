@@ -1,8 +1,6 @@
 import * as vscode from 'vscode'
 import type ws from 'ws'
-
 import type {ServerResponse} from '../../../types/latex-workshop-protocol-types/index'
-
 
 export class Client {
     readonly viewer: 'browser' | 'tab'

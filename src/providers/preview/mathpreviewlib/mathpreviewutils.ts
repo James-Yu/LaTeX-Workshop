@@ -1,14 +1,13 @@
-import {stripComments} from '../../../utils/utils'
+import { stripComments } from '../../../utils/utils'
 
 export class MathPreviewUtils {
-    addDummyCodeBlock(md: string): string {
+    static addDummyCodeBlock(md: string): string {
         // We need a dummy code block in hover to make the width of hover larger.
         const dummyCodeBlock = '```\n```'
         return dummyCodeBlock + '\n' + md + '\n' + dummyCodeBlock
     }
 
-
-    stripTeX(tex: string): string {
+    static stripTeX(tex: string): string {
         if (tex.startsWith('$$') && tex.endsWith('$$')) {
             tex = tex.slice(2, tex.length - 2)
         } else if (tex.startsWith('$') && tex.endsWith('$')) {
@@ -21,7 +20,7 @@ export class MathPreviewUtils {
         return tex
     }
 
-    mathjaxify(tex: string, envname: string, opt = { stripLabel: true }): string {
+    static mathjaxify(tex: string, envname: string, opt = { stripLabel: true }): string {
         // remove TeX comments
         let s = stripComments(tex)
         // remove \label{...}

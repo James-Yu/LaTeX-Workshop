@@ -1,12 +1,11 @@
-import type {Extension} from '../main'
 import * as vscode from 'vscode'
-
+import * as lw from '../lw'
 
 export class LaTeXCommanderTreeView {
     private readonly latexCommanderProvider: LaTeXCommanderProvider
 
-    constructor(extension: Extension) {
-        this.latexCommanderProvider = new LaTeXCommanderProvider(extension)
+    constructor() {
+        this.latexCommanderProvider = new LaTeXCommanderProvider()
         vscode.window.createTreeView(
             'latex-workshop-commands',
             {
@@ -21,16 +20,14 @@ export class LaTeXCommanderTreeView {
 }
 
 export class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXCommand> {
-    private readonly extension: Extension
     private readonly _onDidChangeTreeData: vscode.EventEmitter<LaTeXCommand | undefined> = new vscode.EventEmitter<LaTeXCommand | undefined>()
     readonly onDidChangeTreeData: vscode.Event<LaTeXCommand | undefined>
     private commands: LaTeXCommand[] = []
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
         vscode.workspace.onDidChangeConfiguration((ev: vscode.ConfigurationChangeEvent) => {
-            if (ev.affectsConfiguration('latex-workshop.latex.recipes', this.extension.manager.getWorkspaceFolderRootDir())) {
+            if (ev.affectsConfiguration('latex-workshop.latex.recipes', lw.manager.getWorkspaceFolderRootDir())) {
                 this.update()
             }
         })
@@ -53,7 +50,7 @@ export class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXComm
 
     private buildCommandTree(): LaTeXCommand[] {
         const commands: LaTeXCommand[] = []
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceFolderRootDir())
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.manager.getWorkspaceFolderRootDir())
 
         const buildCommand = new LaTeXCommand('Build LaTeX project', {command: 'latex-workshop.build'}, 'debug-start')
         const recipes = configuration.get('latex.recipes', []) as {name: string}[]

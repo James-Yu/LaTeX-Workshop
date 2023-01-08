@@ -3,10 +3,8 @@ import * as cs from 'cross-spawn'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
-
-import type { Extension } from '../main'
+import * as lw from '../lw'
 import {replaceArgumentPlaceholders} from '../utils/utils'
-
 import { getLogger } from '../components/logger'
 
 const logger = getLogger('Format', 'TeX')
@@ -29,89 +27,85 @@ const windows: OperatingSystem = new OperatingSystem('win32', '.exe', 'where')
 const linux: OperatingSystem = new OperatingSystem('linux', '.pl', 'which')
 const mac: OperatingSystem = new OperatingSystem('darwin', '.pl', 'which')
 
-export class LaTexFormatter {
-    private readonly extension: Extension
-    private readonly machineOs: string
-    private readonly currentOs?: OperatingSystem
-    private formatter: string = ''
-    private formatterArgs: string[] = []
+export class LaTeXFormatter {
+    private static currentOs?: OperatingSystem
+    private static formatter: string = ''
+    private static formatterArgs: string[] = []
+    private static formatting: boolean = false
 
-    #formatting: boolean = false
-
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.machineOs = os.platform()
-        if (this.machineOs === windows.name) {
-            this.currentOs = windows
-        } else if (this.machineOs === linux.name) {
-            this.currentOs = linux
-        } else if (this.machineOs === mac.name) {
-            this.currentOs = mac
+    static initialize() {
+        const machineOs = os.platform()
+        if (machineOs === windows.name) {
+            LaTeXFormatter.currentOs = windows
+        } else if (machineOs === linux.name) {
+            LaTeXFormatter.currentOs = linux
+        } else if (machineOs === mac.name) {
+            LaTeXFormatter.currentOs = mac
         } else {
             logger.log('LaTexFormatter: Unsupported OS')
         }
     }
 
-    public async formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
-        if (this.#formatting) {
+    static async formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
+        if (LaTeXFormatter.formatting) {
             logger.log('Formatting in progress. Aborted.')
         }
-        this.#formatting = true
+        LaTeXFormatter.formatting = true
         const configuration = vscode.workspace.getConfiguration('latex-workshop', document.uri)
         const pathMeta = configuration.get('latexindent.path') as string
-        this.formatterArgs = configuration.get('latexindent.args') as string[]
+        LaTeXFormatter.formatterArgs = configuration.get('latexindent.args') as string[]
         logger.log('Start formatting with latexindent.')
         try {
-            if (pathMeta !== this.formatter) {
-                this.formatter = pathMeta
-                const latexindentPresent = await this.checkPath()
+            if (pathMeta !== LaTeXFormatter.formatter) {
+                LaTeXFormatter.formatter = pathMeta
+                const latexindentPresent = await LaTeXFormatter.checkPath()
                 if (!latexindentPresent) {
-                    logger.log(`Can not find latexindent in PATH: ${this.formatter}`)
+                    logger.log(`Can not find latexindent in PATH: ${LaTeXFormatter.formatter}`)
                     logger.log(`PATH: ${process.env.PATH}`)
                     void logger.showErrorMessage('Can not find latexindent in PATH.')
                     return []
                 }
             }
-            const edit = await this.format(document, range)
+            const edit = await LaTeXFormatter.format(document, range)
             return edit
         } finally {
-            this.#formatting = false
+            LaTeXFormatter.formatting = false
         }
     }
 
-    private checkPath(): Thenable<boolean> {
+    private static checkPath(): Thenable<boolean> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useDocker = configuration.get('docker.enabled') as boolean
         if (useDocker) {
             logger.log('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
-                this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent.bat')
+                LaTeXFormatter.formatter = path.resolve(lw.extensionRoot, './scripts/latexindent.bat')
             } else {
-                this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent')
-                fs.chmodSync(this.formatter, 0o755)
+                LaTeXFormatter.formatter = path.resolve(lw.extensionRoot, './scripts/latexindent')
+                fs.chmodSync(LaTeXFormatter.formatter, 0o755)
             }
             return Promise.resolve(true)
         }
 
-        if (path.isAbsolute(this.formatter)) {
-            if (fs.existsSync(this.formatter)) {
+        if (path.isAbsolute(LaTeXFormatter.formatter)) {
+            if (fs.existsSync(LaTeXFormatter.formatter)) {
                 return Promise.resolve(true)
             } else {
-                logger.log(`The path of latexindent is absolute and not found: ${this.formatter}`)
+                logger.log(`The path of latexindent is absolute and not found: ${LaTeXFormatter.formatter}`)
                 return Promise.resolve(false)
             }
         }
 
-        if (!this.currentOs) {
+        if (!LaTeXFormatter.currentOs) {
             logger.log('The current platform is undefined.')
             return Promise.resolve(false)
         }
-        const checker = this.currentOs.checker
-        const fileExt = this.currentOs.fileExt
+        const checker = LaTeXFormatter.currentOs.checker
+        const fileExt = LaTeXFormatter.currentOs.fileExt
 
         return new Promise((resolve, _reject) => {
-            logger.log(`Checking latexindent: ${checker} ${this.formatter}`)
-            const check1 = cs.spawn(checker, [this.formatter])
+            logger.log(`Checking latexindent: ${checker} ${LaTeXFormatter.formatter}`)
+            const check1 = cs.spawn(checker, [LaTeXFormatter.formatter])
             let stdout1: string = ''
             let stderr1: string = ''
             check1.stdout.setEncoding('utf8')
@@ -121,9 +115,9 @@ export class LaTexFormatter {
             check1.on('close', code1 => {
                 if (code1) {
                     logger.log(`Error when checking latexindent: ${stderr1}`)
-                    this.formatter += fileExt
-                    logger.log(`Checking latexindent: ${checker} ${this.formatter}`)
-                    const check2 = cs.spawn(checker, [this.formatter])
+                    LaTeXFormatter.formatter += fileExt
+                    logger.log(`Checking latexindent: ${checker} ${LaTeXFormatter.formatter}`)
+                    const check2 = cs.spawn(checker, [LaTeXFormatter.formatter])
                     let stdout2: string = ''
                     let stderr2: string = ''
                     check2.stdout.setEncoding('utf8')
@@ -147,7 +141,7 @@ export class LaTexFormatter {
         })
     }
 
-    private format(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
+    private static format(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const useDocker = configuration.get('docker.enabled') as boolean
@@ -179,16 +173,16 @@ export class LaTexFormatter {
             }
 
             // generate command line arguments
-            const rootFile = this.extension.manager.rootFile ? this.extension.manager.rootFile : document.fileName
-            const args = this.formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir)(arg)
+            const rootFile = lw.manager.rootFile ? lw.manager.rootFile : document.fileName
+            const args = LaTeXFormatter.formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(arg)
                 // latexformatter.ts specific tokens
                 .replace(/%TMPFILE%/g, useDocker ? path.basename(temporaryFile) : temporaryFile.split(path.sep).join('/'))
                 .replace(/%INDENT%/g, indent)
             })
 
-            logger.logCommand('Format with command', this.formatter, this.formatterArgs)
+            logger.logCommand('Format with command', LaTeXFormatter.formatter, LaTeXFormatter.formatterArgs)
             logger.log(`Format args: ${JSON.stringify(args)}`)
-            const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: documentDirectory })
+            const worker = cs.spawn(LaTeXFormatter.formatter, args, { stdio: 'pipe', cwd: documentDirectory })
             // handle stdout/stderr
             const stdoutBuffer: string[] = []
             const stderrBuffer: string[] = []
@@ -219,23 +213,16 @@ export class LaTexFormatter {
                 return resolve([])
             })
         })
-
     }
 }
 
 export class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
-    private readonly formatter: LaTexFormatter
-
-    constructor(extension: Extension) {
-        this.formatter = new LaTexFormatter(extension)
-    }
-
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        return this.formatter.formatDocument(document)
+        return LaTeXFormatter.formatDocument(document)
     }
 
     public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        return this.formatter.formatDocument(document, range)
+        return LaTeXFormatter.formatDocument(document, range)
     }
 
 }

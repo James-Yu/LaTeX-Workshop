@@ -1,10 +1,9 @@
 import * as vscode from 'vscode'
 import * as chokidar from 'chokidar'
-
-import { Extension } from '../../main'
+import * as lw from '../../lw'
 import * as eventbus from '../eventbus'
 import { Cacher } from '../cacher'
-import { canContext, isExcluded } from './cacherutils'
+import { CacherUtils } from './cacherutils'
 import { getLogger } from '../logger'
 
 const logger = getLogger('Cacher', 'Watcher')
@@ -13,10 +12,7 @@ export class Watcher {
     watcher: chokidar.FSWatcher
     readonly watched: Set<string> = new Set()
 
-    constructor(
-        private readonly extension: Extension,
-        private readonly cacher: Cacher
-    ) {
+    constructor(private readonly cacher: Cacher) {
         this.watcher = chokidar.watch([], this.getWatcherOptions())
         this.initializeWatcher()
         this.registerOptionReload()
@@ -57,34 +53,34 @@ export class Watcher {
 
     private onAdd(filePath: string) {
         logger.log(`Watched ${filePath} .`)
-        this.extension.eventBus.fire(eventbus.FileWatched, filePath)
+        lw.eventBus.fire(eventbus.FileWatched, filePath)
     }
 
     private onChange(filePath: string) {
-        if (canContext(filePath)) {
+        if (CacherUtils.canContext(filePath)) {
             void this.cacher.refreshContext(filePath)
         }
-        void this.extension.builder.buildOnFileChanged(filePath)
+        void lw.builder.buildOnFileChanged(filePath)
         logger.log(`Changed ${filePath} .`)
-        this.extension.eventBus.fire(eventbus.FileChanged, filePath)
+        lw.eventBus.fire(eventbus.FileChanged, filePath)
     }
 
     private onUnlink(filePath: string) {
         this.watcher.unwatch(filePath)
         this.watched.delete(filePath)
         this.cacher.remove(filePath)
-        if (filePath === this.extension.manager.rootFile) {
+        if (filePath === lw.manager.rootFile) {
             logger.log(`Root unlinked ${filePath} .`)
-            this.extension.manager.rootFile = undefined
-            void this.extension.manager.findRoot()
+            lw.manager.rootFile = undefined
+            void lw.manager.findRoot()
         } else {
             logger.log(`Unlinked ${filePath} .`)
         }
-        this.extension.eventBus.fire(eventbus.FileRemoved, filePath)
+        lw.eventBus.fire(eventbus.FileRemoved, filePath)
     }
 
     private registerOptionReload() {
-        this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+        lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (e.affectsConfiguration('latex-workshop.latex.watch.usePolling') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.interval') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.delay')) {
@@ -97,14 +93,14 @@ export class Watcher {
             }
             if (e.affectsConfiguration('latex-workshop.latex.watch.files.ignore')) {
                 this.watched.forEach(filePath => {
-                    if (!isExcluded(filePath)) {
+                    if (!CacherUtils.isExcluded(filePath)) {
                         return
                     }
                     this.watcher.unwatch(filePath)
                     this.watched.delete(filePath)
                     this.cacher.remove(filePath)
                     logger.log(`Ignored ${filePath} .`)
-                    void this.extension.manager.findRoot()
+                    void lw.manager.findRoot()
                 })
             }
         }))

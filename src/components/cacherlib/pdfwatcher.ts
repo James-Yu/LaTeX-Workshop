@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as chokidar from 'chokidar'
-
-import type {Extension} from '../../main'
+import * as lw from '../../lw'
 import { getLogger } from '../logger'
 
 const logger = getLogger('Cacher', 'PDF')
@@ -12,12 +11,12 @@ export class PdfWatcher {
     private readonly watchedPdfVirtualUris = new Set<string>()
     private readonly ignoredPdfUris = new Set<string>()
 
-    constructor(private readonly extension: Extension) {
+    constructor() {
         this.pdfWatcher = chokidar.watch([], this.getWatcherOptions())
         this.initializeWatcher()
         this.initiateVirtualUriWatcher()
 
-        this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+        lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (e.affectsConfiguration('latex-workshop.latex.watch.usePolling') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.interval') ||
                 e.affectsConfiguration('latex-workshop.latex.watch.pdf.delay')) {
@@ -54,7 +53,7 @@ export class PdfWatcher {
     }
 
     private isWatchedVirtualUri(fileUri: vscode.Uri): boolean {
-        if (this.extension.lwfs.isVirtualUri(fileUri)) {
+        if (lw.lwfs.isVirtualUri(fileUri)) {
             const key = this.toKey(fileUri)
             return this.watchedPdfVirtualUris.has(key)
         } else {
@@ -69,7 +68,7 @@ export class PdfWatcher {
                 return
             }
             if (this.isWatchedVirtualUri(fileUri)) {
-                this.extension.viewer.refreshExistingViewer()
+                lw.viewer.refreshExistingViewer()
             }
         }
         // It is recommended to react to both change and create events.
@@ -83,7 +82,7 @@ export class PdfWatcher {
         if (this.isIgnored(filePath)) {
             return
         }
-        this.extension.viewer.refreshExistingViewer(undefined, filePath)
+        lw.viewer.refreshExistingViewer(undefined, filePath)
         logger.log(`Changed ${filePath} .`)
     }
 
@@ -94,7 +93,7 @@ export class PdfWatcher {
     }
 
     watchPdfFile(fileUri: vscode.Uri) {
-        const isLocal = this.extension.lwfs.isLocalUri(fileUri)
+        const isLocal = lw.lwfs.isLocalUri(fileUri)
         if (isLocal) {
             const pdfFilePath = fileUri.fsPath
             if (!this.watchedPdfLocalPaths.has(pdfFilePath)) {

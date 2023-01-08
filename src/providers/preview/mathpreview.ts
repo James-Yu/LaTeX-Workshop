@@ -1,62 +1,43 @@
 import * as vscode from 'vscode'
-
-import type { Extension } from '../../main'
-import {MathJaxPool} from './mathjaxpool'
+import { MathJaxPool } from './mathjaxpool'
 import * as utils from '../../utils/svg'
-import type {ReferenceEntry} from '../completer/reference'
-import {getCurrentThemeLightness} from '../../utils/theme'
-
-import {CursorRenderer} from './mathpreviewlib/cursorrenderer'
-import {type ITextDocumentLike, TextDocumentLike} from './mathpreviewlib/textdocumentlike'
-import {NewCommandFinder} from './mathpreviewlib/newcommandfinder'
-import {TexMathEnv, TeXMathEnvFinder} from './mathpreviewlib/texmathenvfinder'
-import {HoverPreviewOnRefProvider} from './mathpreviewlib/hoverpreviewonref'
-import {MathPreviewUtils} from './mathpreviewlib/mathpreviewutils'
-
+import type { ReferenceEntry } from '../completer/reference'
+import { getCurrentThemeLightness } from '../../utils/theme'
+import { CursorRenderer} from './mathpreviewlib/cursorrenderer'
+import { type ITextDocumentLike, TextDocumentLike } from './mathpreviewlib/textdocumentlike'
+import { NewCommandFinder } from './mathpreviewlib/newcommandfinder'
+import { TexMathEnv, TeXMathEnvFinder } from './mathpreviewlib/texmathenvfinder'
+import { HoverPreviewOnRefProvider } from './mathpreviewlib/hoverpreviewonref'
+import { MathPreviewUtils } from './mathpreviewlib/mathpreviewutils'
 import { getLogger } from '../../components/logger'
 
 const logger = getLogger('Preview', 'Math')
 
-export type {TexMathEnv} from './mathpreviewlib/texmathenvfinder'
+export type { TexMathEnv } from './mathpreviewlib/texmathenvfinder'
 
 export class MathPreview {
     private color: string = '#000000'
-    private readonly mj: MathJaxPool
-    private readonly cursorRenderer: CursorRenderer
-    private readonly newCommandFinder: NewCommandFinder
-    readonly texMathEnvFinder: TeXMathEnvFinder
-    private readonly hoverPreviewOnRefProvider: HoverPreviewOnRefProvider
-    private readonly mputils: MathPreviewUtils
 
-    constructor(extension: Extension) {
-        this.mj = new MathJaxPool()
+    constructor() {
         vscode.workspace.onDidChangeConfiguration(() => this.getColor())
-        this.cursorRenderer = new CursorRenderer(extension)
-        this.mputils = new MathPreviewUtils()
-        this.newCommandFinder = new NewCommandFinder(extension)
-        this.texMathEnvFinder = new TeXMathEnvFinder()
-        this.hoverPreviewOnRefProvider = new HoverPreviewOnRefProvider(this.mj, this.mputils)
-    }
-
-    dispose() {
-        return this.mj.dispose()
+        MathJaxPool.initialize()
     }
 
     findProjectNewCommand(ctoken: vscode.CancellationToken): Promise<string> {
-        return this.newCommandFinder.findProjectNewCommand(ctoken)
+        return NewCommandFinder.findProjectNewCommand(ctoken)
     }
 
     async provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv, newCommand: string): Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
-        let s = await this.cursorRenderer.renderCursor(document, tex, this.color)
-        s = this.mputils.mathjaxify(s, tex.envname)
-        const typesetArg = newCommand + this.mputils.stripTeX(s)
+        let s = await CursorRenderer.renderCursor(document, tex, this.color)
+        s = MathPreviewUtils.mathjaxify(s, tex.envname)
+        const typesetArg = newCommand + MathPreviewUtils.stripTeX(s)
         const typesetOpts = { scale, color: this.color }
         try {
-            const xml = await this.mj.typeset(typesetArg, typesetOpts)
+            const xml = await MathJaxPool.typeset(typesetArg, typesetOpts)
             const md = utils.svgToDataUrl(xml)
-            return new vscode.Hover(new vscode.MarkdownString(this.mputils.addDummyCodeBlock(`![equation](${md})`)), tex.range )
+            return new vscode.Hover(new vscode.MarkdownString(MathPreviewUtils.addDummyCodeBlock(`![equation](${md})`)), tex.range )
         } catch(e) {
             logger.logError(`Failed rendering MathJax ${typesetArg} .`, e)
             throw e
@@ -76,10 +57,10 @@ export class MathPreview {
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
         mdLink.isTrusted = true
         if (configuration.get('hover.ref.enabled') as boolean) {
-            const tex = this.texMathEnvFinder.findHoverOnRef(document, position, refData, token)
+            const tex = TeXMathEnvFinder.findHoverOnRef(document, position, refData, token)
             if (tex) {
                 const newCommands = await this.findProjectNewCommand(ctoken)
-                return this.hoverPreviewOnRefProvider.provideHoverPreviewOnRef(tex, newCommands, refData, this.color)
+                return HoverPreviewOnRefProvider.provideHoverPreviewOnRef(tex, newCommands, refData, this.color)
             }
         }
         const md = '```latex\n' + refData.documentation + '\n```\n'
@@ -101,11 +82,11 @@ export class MathPreview {
     }
 
     async generateSVG(tex: TexMathEnv, newCommandsArg?: string) {
-        const newCommands: string = newCommandsArg ?? await this.newCommandFinder.findProjectNewCommand()
+        const newCommands: string = newCommandsArg ?? await NewCommandFinder.findProjectNewCommand()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
-        const s = this.mputils.mathjaxify(tex.texString, tex.envname)
-        const xml = await this.mj.typeset(newCommands + this.mputils.stripTeX(s), {scale, color: this.color})
+        const s = MathPreviewUtils.mathjaxify(tex.texString, tex.envname)
+        const xml = await MathJaxPool.typeset(newCommands + MathPreviewUtils.stripTeX(s), {scale, color: this.color})
         return {svgDataUrl: utils.svgToDataUrl(xml), newCommands}
     }
 
@@ -119,11 +100,11 @@ export class MathPreview {
     }
 
     renderCursor(document: vscode.TextDocument, texMath: TexMathEnv): Promise<string> {
-        return this.cursorRenderer.renderCursor(document, texMath, this.color)
+        return CursorRenderer.renderCursor(document, texMath, this.color)
     }
 
     findHoverOnTex(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
-        return this.texMathEnvFinder.findHoverOnTex(document, position)
+        return TeXMathEnvFinder.findHoverOnTex(document, position)
     }
 
     findHoverOnRef(
@@ -132,16 +113,16 @@ export class MathPreview {
     ) {
         const document = TextDocumentLike.load(refData.file)
         const position = refData.position
-        return this.texMathEnvFinder.findHoverOnRef(document, position, refData, token)
+        return TeXMathEnvFinder.findHoverOnRef(document, position, refData, token)
     }
 
     async renderSvgOnRef(tex: TexMathEnv, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, ctoken: vscode.CancellationToken) {
         const newCommand = await this.findProjectNewCommand(ctoken)
-        return this.hoverPreviewOnRefProvider.renderSvgOnRef(tex, newCommand, refData, this.color)
+        return HoverPreviewOnRefProvider.renderSvgOnRef(tex, newCommand, refData, this.color)
     }
 
     findMathEnvIncludingPosition(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
-        return this.texMathEnvFinder.findMathEnvIncludingPosition(document, position)
+        return TeXMathEnvFinder.findMathEnvIncludingPosition(document, position)
     }
 
 }

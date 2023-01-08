@@ -1,20 +1,17 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import rimraf from 'rimraf'
-
-import { Extension } from '../../src/main'
-import { sleep, assertAutoBuild, assertBuild, getExtension, runTest, loadTestFile, waitFileWatched } from './utils'
+import * as lw from '../../src/lw'
+import { sleep, assertAutoBuild, assertBuild, runTest, loadTestFile, waitFileWatched } from './utils'
 
 suite('Auto-build test suite', () => {
 
-    let extension: Extension
     const suiteName = path.basename(__filename).replace('.test.js', '')
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
-    suiteSetup(async () => {
-        extension = await getExtension()
-        fixture = path.resolve(extension.extensionRoot, 'test/fixtures/testground')
+    suiteSetup(() => {
+        fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
     })
 
     setup(async () => {
@@ -25,7 +22,7 @@ suite('Auto-build test suite', () => {
 
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        extension.manager.rootFile = undefined
+        lw.manager.rootFile = undefined
 
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.interval', undefined)
@@ -43,7 +40,7 @@ suite('Auto-build test suite', () => {
 
     runTest({suiteName, fixtureName, testName: 'auto build'}, async () => {
         await loadTestFile(fixture, [{src: 'base.tex', dst: 'main.tex'}])
-        await assertAutoBuild({fixture, texName: 'main.tex', pdfName: 'main.pdf', extension})
+        await assertAutoBuild({fixture, texName: 'main.tex', pdfName: 'main.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onFileChange 1'}, async () => {
@@ -53,7 +50,7 @@ suite('Auto-build test suite', () => {
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ])
-        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf', extension})
+        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onFileChange 2'}, async () => {
@@ -63,7 +60,7 @@ suite('Auto-build test suite', () => {
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ])
-        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'sub/s.pdf', extension})
+        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'sub/s.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with import and onFileChange'}, async () => {
@@ -72,7 +69,7 @@ suite('Auto-build test suite', () => {
             {src: 'import_sub.tex', dst: 'sub/s.tex'},
             {src: 'plain.tex', dst: 'sub/subsub/sss/sss.tex'}
         ])
-        await assertAutoBuild({fixture, texName: 'sub/subsub/sss/sss.tex', pdfName: 'main.pdf', extension})
+        await assertAutoBuild({fixture, texName: 'sub/subsub/sss/sss.tex', pdfName: 'main.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with input and onFileChange'}, async () => {
@@ -80,7 +77,7 @@ suite('Auto-build test suite', () => {
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf', extension})
+        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build when editing bib'}, async () => {
@@ -88,8 +85,8 @@ suite('Auto-build test suite', () => {
             {src: 'bibtex_base.tex', dst: 'main.tex'},
             {src: 'plain.bib', dst: 'bib.bib'}
         ])
-        await assertBuild({fixture, texName: 'main.tex', pdfName: 'main.pdf', extension})
-        await assertAutoBuild({fixture, texName: 'bib.bib', pdfName: 'main.pdf', extension}, ['skipFirstBuild'])
+        await assertBuild({fixture, texName: 'main.tex', pdfName: 'main.pdf'})
+        await assertAutoBuild({fixture, texName: 'bib.bib', pdfName: 'main.pdf'}, ['skipFirstBuild'])
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with input whose path uses a macro'}, async () => {
@@ -97,10 +94,10 @@ suite('Auto-build test suite', () => {
             {src: 'input_macro.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        const wait = waitFileWatched(extension, path.resolve(fixture, 'sub/s.tex'))
-        await assertBuild({fixture, texName: 'main.tex', pdfName: 'main.pdf', extension})
+        const wait = waitFileWatched(path.resolve(fixture, 'sub/s.tex'))
+        await assertBuild({fixture, texName: 'main.tex', pdfName: 'main.pdf'})
         await wait
-        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf', extension}, ['skipFirstBuild'])
+        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf'}, ['skipFirstBuild'])
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build when main.tex not in root dir and editing a sub file'}, async () => {
@@ -108,8 +105,8 @@ suite('Auto-build test suite', () => {
             {src: 'input_parentsub.tex', dst: 'main/main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        await assertBuild({fixture, texName: 'main/main.tex', pdfName: 'main/main.pdf', extension})
-        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main/main.pdf', extension}, ['skipFirstBuild'])
+        await assertBuild({fixture, texName: 'main/main.tex', pdfName: 'main/main.pdf'})
+        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main/main.pdf'}, ['skipFirstBuild'])
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with input and outDir'}, async () => {
@@ -118,7 +115,7 @@ suite('Auto-build test suite', () => {
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'out/main.pdf', extension})
+        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'out/main.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with watch.files.ignore'}, async () => {
@@ -127,8 +124,8 @@ suite('Auto-build test suite', () => {
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        await assertBuild({fixture, texName: 'main.tex', pdfName: 'main.pdf', extension})
-        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf', extension}, ['skipFirstBuild', 'noAutoBuild'])
+        await assertBuild({fixture, texName: 'main.tex', pdfName: 'main.pdf'})
+        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf'}, ['skipFirstBuild', 'noAutoBuild'])
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onSave 1'}, async () => {
@@ -139,7 +136,7 @@ suite('Auto-build test suite', () => {
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ])
-        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf', extension}, ['onSave'])
+        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf'}, ['onSave'])
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onSave 2'}, async () => {
@@ -150,6 +147,6 @@ suite('Auto-build test suite', () => {
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ])
-        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'sub/s.pdf', extension}, ['onSave'])
+        await assertAutoBuild({fixture, texName: 'sub/s.tex', pdfName: 'sub/s.pdf'}, ['onSave'])
     })
 })

@@ -2,10 +2,9 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import type { ILinter } from '../linter'
-import { LinterUtil } from './linterutil'
+import { LinterUtils } from './linterutils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 import { getLogger } from '../logger'
 
@@ -14,11 +13,6 @@ const logger = getLogger('Linter', 'ChkTeX')
 export class ChkTeX implements ILinter {
     readonly linterName = 'ChkTeX'
     readonly linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(this.linterName)
-    readonly #linterUtil: LinterUtil
-
-    constructor(private readonly extension: Extension) {
-        this.#linterUtil = new LinterUtil()
-    }
 
     getName() {
         return this.linterName
@@ -63,7 +57,7 @@ export class ChkTeX implements ILinter {
 
         let stdout: string
         try {
-            stdout = await this.#linterUtil.processWrapper(linterid, command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(filePath)}, content)
+            stdout = await LinterUtils.processWrapper(linterid, command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(filePath)}, content)
         } catch (err: any) {
             if ('stdout' in err) {
                 stdout = err.stdout as string
@@ -78,7 +72,7 @@ export class ChkTeX implements ILinter {
     private get rcPath() {
         let rcPath: string
         // 0. root file folder
-        const root = this.extension.manager.rootFile
+        const root = lw.manager.rootFile
         if (root) {
             rcPath = path.resolve(path.dirname(root), './.chktexrc')
         } else {
@@ -173,8 +167,8 @@ export class ChkTeX implements ILinter {
             // This log may be for a single file in memory, in which case we override the
             // path with what is provided
             let filePath = singleFileOriginalPath ? singleFileOriginalPath : match[1]
-            if (!path.isAbsolute(filePath) && this.extension.manager.rootDir !== undefined) {
-                filePath = path.resolve(this.extension.manager.rootDir, filePath)
+            if (!path.isAbsolute(filePath) && lw.manager.rootDir !== undefined) {
+                filePath = path.resolve(lw.manager.rootDir, filePath)
             }
             const line = parseInt(match[2])
             const column = this.callConvertColumn(parseInt(match[3]), filePath, line, tabSizeArg)
@@ -202,7 +196,7 @@ export class ChkTeX implements ILinter {
     }
 
     private callConvertColumn(column: number, filePathArg: string, line: number, tabSizeArg?: number): number {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceFolderRootDir())
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.manager.getWorkspaceFolderRootDir())
         if (!configuration.get('linting.chktex.convertOutput.column.enabled', true)) {
             return column
         }

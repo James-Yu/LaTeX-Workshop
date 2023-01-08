@@ -1,21 +1,13 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import * as utils from '../../utils/utils'
-
 import { getLogger } from '../logger'
 
 const logger = getLogger('Manager', 'Finder')
 
 export class FinderUtils {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
-    findRootFromMagic(): string | undefined {
+    static findRootFromMagic(): string | undefined {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
@@ -26,7 +18,7 @@ export class FinderUtils {
         const fileStack: string[] = []
         if (result) {
             let file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
-            content = this.extension.lwfs.readFileSyncGracefully(file)
+            content = lw.lwfs.readFileSyncGracefully(file)
             if (content === undefined) {
                 logger.log(`Non-existent magic root ${file} .`)
                 return undefined
@@ -45,7 +37,7 @@ export class FinderUtils {
                     logger.log(`Found magic root ${file}`)
                 }
 
-                content = this.extension.lwfs.readFileSyncGracefully(file)
+                content = lw.lwfs.readFileSyncGracefully(file)
                 if (content === undefined) {
                     logger.log(`Non-existent magic root ${file} .`)
                     return undefined
@@ -58,7 +50,7 @@ export class FinderUtils {
         return undefined
     }
 
-    findSubFiles(content: string): string | undefined {
+    static findSubFiles(content: string): string | undefined {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }

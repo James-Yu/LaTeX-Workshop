@@ -2,20 +2,17 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import rimraf from 'rimraf'
 import * as assert from 'assert'
-
-import { Extension } from '../../src/main'
-import { sleep, runTest, assertBuild, assertAutoBuild, writeTestFile, loadTestFile, getIntellisense, assertRoot, getExtension, openActive } from './utils'
+import * as lw from '../../src/lw'
+import { sleep, runTest, assertBuild, assertAutoBuild, writeTestFile, loadTestFile, getIntellisense, assertRoot, openActive } from './utils'
 
 suite('Multi-root workspace test suite', () => {
 
-    let extension: Extension
     const suiteName = path.basename(__filename).replace('.test.js', '')
     let fixture = path.resolve(__dirname, '../../../test/fixtures/multiroot')
     const fixtureName = 'multiroot'
 
-    suiteSetup(async () => {
-        extension = await getExtension()
-        fixture = path.resolve(extension.extensionRoot, 'test/fixtures/multiroot')
+    suiteSetup(() => {
+        fixture = path.resolve(lw.extensionRoot, 'test/fixtures/multiroot')
     })
 
     setup(async () => {
@@ -25,7 +22,7 @@ suite('Multi-root workspace test suite', () => {
 
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        extension.manager.rootFile = undefined
+        lw.manager.rootFile = undefined
 
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', undefined)
@@ -57,7 +54,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'base.tex', dst: 'A/main.tex'},
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertBuild({fixture, texName: 'A/main.tex', pdfName: 'A/wsA.pdf', extension})
+        await assertBuild({fixture, texName: 'A/main.tex', pdfName: 'A/wsA.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'basic build B'}, async () => {
@@ -72,7 +69,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'base.tex', dst: 'B/main.tex'},
             {src: 'empty', dst: 'A/empty'}
         ])
-        await assertBuild({fixture, texName: 'B/main.tex', pdfName: 'B/wsB.pdf', extension})
+        await assertBuild({fixture, texName: 'B/main.tex', pdfName: 'B/wsB.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'basic build with outDir A'}, async () => {
@@ -81,7 +78,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'base.tex', dst: 'A/main.tex'},
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertBuild({fixture, texName: 'A/main.tex', pdfName: 'A/out/main.pdf', extension})
+        await assertBuild({fixture, texName: 'A/main.tex', pdfName: 'A/out/main.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'basic build with outDir B'}, async () => {
@@ -90,7 +87,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'base.tex', dst: 'B/main.tex'},
             {src: 'empty', dst: 'A/empty'}
         ])
-        await assertBuild({fixture, texName: 'B/main.tex', pdfName: 'B/out/main.pdf', extension})
+        await assertBuild({fixture, texName: 'B/main.tex', pdfName: 'B/out/main.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'build with forceRecipeUsage: true'}, async () => {
@@ -99,7 +96,7 @@ suite('Multi-root workspace test suite', () => {
         await loadTestFile(fixture, [
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertBuild({fixture, texName: 'A/main.tex', pdfName: 'A/main.pdf', extension})
+        await assertBuild({fixture, texName: 'A/main.tex', pdfName: 'A/main.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'detect root with search.rootFiles.include'}, async () => {
@@ -113,8 +110,7 @@ suite('Multi-root workspace test suite', () => {
         await loadTestFile(fixture, [
             {src: 'empty', dst: 'B/empty'}
         ])
-        assert.ok(extension)
-        await assertRoot({fixture, openName: 'A/sub/s.tex', rootName: 'A/alt/main.tex', extension})
+        await assertRoot({fixture, openName: 'A/sub/s.tex', rootName: 'A/alt/main.tex'})
     })
 
     runTest({suiteName, fixtureName, testName: 'detect root with search.rootFiles.exclude'}, async () => {
@@ -128,8 +124,7 @@ suite('Multi-root workspace test suite', () => {
         await loadTestFile(fixture, [
             {src: 'empty', dst: 'B/empty'}
         ])
-        assert.ok(extension)
-        await assertRoot({fixture, openName: 'A/sub/s.tex', rootName: 'A/alt/main.tex', extension})
+        await assertRoot({fixture, openName: 'A/sub/s.tex', rootName: 'A/alt/main.tex'})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto-detect subfile root and build A1'}, async () => {
@@ -140,7 +135,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'subfile_sub.tex', dst: 'A/sub/s.tex'},
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertBuild({fixture, texName: 'A/sub/s.tex', pdfName: 'A/sub/s.pdf', extension})
+        await assertBuild({fixture, texName: 'A/sub/s.tex', pdfName: 'A/sub/s.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto-detect subfile root and build A2'}, async () => {
@@ -151,7 +146,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'subfile_sub.tex', dst: 'A/sub/s.tex'},
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertBuild({fixture, texName: 'A/sub/s.tex', pdfName: 'A/main.pdf', extension})
+        await assertBuild({fixture, texName: 'A/sub/s.tex', pdfName: 'A/main.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto-detect subfile root and build B1'}, async () => {
@@ -162,7 +157,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'subfile_sub.tex', dst: 'B/sub/s.tex'},
             {src: 'empty', dst: 'A/empty'}
         ])
-        await assertBuild({fixture, texName: 'B/sub/s.tex', pdfName: 'B/sub/s.pdf', extension})
+        await assertBuild({fixture, texName: 'B/sub/s.tex', pdfName: 'B/sub/s.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto-detect subfile root and build B2'}, async () => {
@@ -173,7 +168,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'subfile_sub.tex', dst: 'B/sub/s.tex'},
             {src: 'empty', dst: 'A/empty'}
         ])
-        await assertBuild({fixture, texName: 'B/sub/s.tex', pdfName: 'B/main.pdf', extension})
+        await assertBuild({fixture, texName: 'B/sub/s.tex', pdfName: 'B/main.pdf'})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onSave 1'}, async () => {
@@ -185,7 +180,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'subfile_sub.tex', dst: 'A/sub/s.tex'},
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertAutoBuild({fixture, texName: 'A/sub/s.tex', pdfName: 'A/main.pdf', extension}, ['onSave'])
+        await assertAutoBuild({fixture, texName: 'A/sub/s.tex', pdfName: 'A/main.pdf'}, ['onSave'])
     })
 
     runTest({suiteName, fixtureName, testName: 'auto build with subfiles and onSave 2'}, async () => {
@@ -197,16 +192,15 @@ suite('Multi-root workspace test suite', () => {
             {src: 'subfile_sub.tex', dst: 'A/sub/s.tex'},
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertAutoBuild({fixture, texName: 'A/sub/s.tex', pdfName: 'A/sub/s.pdf', extension}, ['onSave'])
+        await assertAutoBuild({fixture, texName: 'A/sub/s.tex', pdfName: 'A/sub/s.pdf'}, ['onSave'])
     })
 
     runTest({suiteName, fixtureName, testName: 'switching rootFile'}, async () => {
         await loadTestFile(fixture, [{src: 'base.tex', dst: 'A/main.tex'},
                                {src: 'base.tex', dst: 'B/main.tex'}])
-        assert.ok(extension)
-        await assertRoot({fixture, openName: 'A/main.tex', rootName: 'A/main.tex', extension})
-        await assertRoot({fixture, openName: 'B/main.tex', rootName: 'B/main.tex', extension})
-        await assertRoot({fixture, openName: 'A/main.tex', rootName: 'A/main.tex', extension})
+        await assertRoot({fixture, openName: 'A/main.tex', rootName: 'A/main.tex'})
+        await assertRoot({fixture, openName: 'B/main.tex', rootName: 'B/main.tex'})
+        await assertRoot({fixture, openName: 'A/main.tex', rootName: 'A/main.tex'})
     })
 
     runTest({suiteName, fixtureName, testName: 'switching intellisense'}, async () => {
@@ -217,17 +211,17 @@ suite('Multi-root workspace test suite', () => {
             {src: 'base.bib', dst: 'A/A.bib'},
             {src: 'base.bib', dst: 'B/B.bib'}
         ])
-        await extension.completer.citation.parseBibFile(path.resolve(fixture, 'A/A.bib'))
-        await extension.completer.citation.parseBibFile(path.resolve(fixture, 'B/B.bib'))
+        await lw.completer.citation.parseBibFile(path.resolve(fixture, 'A/A.bib'))
+        await lw.completer.citation.parseBibFile(path.resolve(fixture, 'B/B.bib'))
 
-        const resultA = await openActive(extension, fixture, 'A/main.tex')
+        const resultA = await openActive(fixture, 'A/main.tex')
 
         const uri = vscode.window.activeTextEditor?.document.uri
         assert.ok(uri)
         const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri)
         await vscode.workspace.getConfiguration('latex-workshop', workspaceFolder).update('intellisense.citation.label', 'title', vscode.ConfigurationTarget.WorkspaceFolder)
 
-        const itemsA = getIntellisense(resultA.doc, new vscode.Position(2, 9), extension)
+        const itemsA = getIntellisense(resultA.doc, new vscode.Position(2, 9))
         assert.ok(itemsA)
         assert.strictEqual(itemsA.length, 3)
         assert.strictEqual(itemsA[0].label, 'A fake article')
@@ -235,15 +229,15 @@ suite('Multi-root workspace test suite', () => {
         assert.ok(itemsA[0].filterText.includes('Journal of CI tests'))
         assert.ok(!itemsA[0].filterText.includes('hintFake'))
 
-        const resultB = await openActive(extension, fixture, 'B/main.tex')
-        const cache = extension.cacher.get(path.resolve(fixture, 'B/main.tex'))
+        const resultB = await openActive(fixture, 'B/main.tex')
+        const cache = lw.cacher.get(path.resolve(fixture, 'B/main.tex'))
         if (cache) {
             cache.bibfiles = [path.resolve(fixture, 'B/B.bib')]
         } else {
             return
         }
 
-        const itemsB = getIntellisense(resultB.doc, new vscode.Position(2, 9), extension)
+        const itemsB = getIntellisense(resultB.doc, new vscode.Position(2, 9))
         assert.ok(itemsB)
         assert.strictEqual(itemsB.length, 3)
         assert.strictEqual(itemsB[0].label, 'art1')

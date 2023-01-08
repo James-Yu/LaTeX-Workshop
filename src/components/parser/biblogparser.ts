@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import type { LogEntry } from './compilerlog'
 
 import { getLogger } from '../logger'
@@ -14,21 +14,15 @@ const multiLineCommandError = /^(.*)\n?---line (\d+) of file (.*)\n([^]+?)\nI'm 
 const errorAuxFile = /^(.*)---while reading file (.*)$/gm
 
 export class BibLogParser {
-    private readonly extension: Extension
-    buildLog: LogEntry[] = []
-    readonly compilerDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
+    static buildLog: LogEntry[] = []
 
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
-    parse(log: string, rootFile?: string) {
+    static parse(log: string, rootFile?: string) {
         if (rootFile === undefined) {
-            rootFile = this.extension.manager.rootFile
+            rootFile = lw.manager.rootFile
         }
         if (rootFile === undefined) {
             logger.log('How can you reach this point?')
-            return
+            return []
         }
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -37,7 +31,7 @@ export class BibLogParser {
             excludeRegexp = (configuration.get('message.bibtexlog.exclude') as string[]).map(regexp => RegExp(regexp))
         } catch (e) {
             logger.logError('Invalid message.bibtexlog.exclude config.', e)
-            return
+            return []
         }
         this.buildLog = []
 
@@ -69,10 +63,10 @@ export class BibLogParser {
         }
 
         logger.log(`Logged ${this.buildLog.length} messages.`)
-        this.extension.compilerLogParser.showCompilerDiagnostics(this.compilerDiagnostics, this.buildLog, 'BibTeX')
+        return this.buildLog
     }
 
-    private pushLog(type: string, file: string, message: string, line: number, excludeRegexp: RegExp[]) {
+    private static pushLog(type: string, file: string, message: string, line: number, excludeRegexp: RegExp[]) {
         for (const regexp of excludeRegexp) {
             if (message.match(regexp)) {
                 return
@@ -81,12 +75,12 @@ export class BibLogParser {
         this.buildLog.push({ type, file, text: message, line})
     }
 
-    private resolveAuxFile(filename: string, rootFile: string): string {
+    private static resolveAuxFile(filename: string, rootFile: string): string {
         filename = filename.replace(/\.aux$/, '.tex')
-        if (!this.extension.cacher.get(rootFile)) {
+        if (!lw.cacher.get(rootFile)) {
             return filename
         }
-        const texFiles = this.extension.cacher.getIncludedTeX(rootFile)
+        const texFiles = lw.cacher.getIncludedTeX(rootFile)
         for (const tex of texFiles) {
             if (tex.endsWith(filename)) {
                 return tex
@@ -96,11 +90,11 @@ export class BibLogParser {
         return filename
     }
 
-    private resolveBibFile(filename: string, rootFile: string): string {
-        if (!this.extension.cacher.get(rootFile)) {
+    private static resolveBibFile(filename: string, rootFile: string): string {
+        if (!lw.cacher.get(rootFile)) {
             return filename
         }
-        const bibFiles = this.extension.cacher.getIncludedBib(rootFile)
+        const bibFiles = lw.cacher.getIncludedBib(rootFile)
         for (const bib of bibFiles) {
             if (bib.endsWith(filename)) {
                 return bib
@@ -110,8 +104,8 @@ export class BibLogParser {
         return filename
     }
 
-    private findKeyLocation(key: string): {file: string, line: number} | undefined {
-        const entry = this.extension.completer.citation.getEntry(key)
+    private static findKeyLocation(key: string): {file: string, line: number} | undefined {
+        const entry = lw.completer.citation.getEntry(key)
         if (entry) {
             const file = entry.file
             const line = entry.position.line + 1

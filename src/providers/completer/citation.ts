@@ -1,14 +1,13 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import * as eventbus from '../../components/eventbus'
 import {trimMultiLineString} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
 import type { IProvider, ICompletionItem } from '../completion'
-
 import { getLogger } from '../../components/logger'
+import { UtensilsParser } from '../../components/parser/syntax'
 
 const logger = getLogger('Intelli', 'Citation')
 
@@ -79,15 +78,10 @@ function readCitationFormat(configuration: vscode.WorkspaceConfiguration, exclud
 }
 
 export class Citation implements IProvider {
-    private readonly extension: Extension
     /**
      * Bib entries in each bib `file`.
      */
     private readonly bibEntries = new Map<string, CiteSuggestion[]>()
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
 
     provideFrom(_result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         return this.provide(args)
@@ -99,7 +93,7 @@ export class Citation implements IProvider {
         const label = configuration.get('intellisense.citation.label') as string
         const fields = readCitationFormat(configuration)
         const range: vscode.Range | undefined = computeFilteringRange(args.document, args.position)
-        return this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
+        return this.updateAll(this.getIncludedBibs(lw.manager.rootFile)).map(item => {
             // Compile the completion item label
             switch(label) {
                 case 'bibtex key':
@@ -129,7 +123,7 @@ export class Citation implements IProvider {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', args?.document.uri)
         const label = configuration.get('intellisense.citation.label') as string
         const fields = readCitationFormat(configuration, label)
-        void vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
+        void vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(lw.manager.rootFile)).map(item => {
             return {
                 label: item.fields.title ? trimMultiLineString(item.fields.title) : '',
                 description: item.key,
@@ -187,10 +181,10 @@ export class Citation implements IProvider {
             // Only happens when rootFile is undefined
             return Array.from(this.bibEntries.keys())
         }
-        if (!this.extension.cacher.get(file)) {
+        if (!lw.cacher.get(file)) {
             return []
         }
-        const cache = this.extension.cacher.get(file)
+        const cache = lw.cacher.get(file)
         if (cache === undefined) {
             return []
         }
@@ -224,8 +218,8 @@ export class Citation implements IProvider {
             }
         })
         // From caches
-        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedBibs = this.extension.cacher.get(cachedFile)?.elements.bibitem
+        lw.cacher.getIncludedTeX().forEach(cachedFile => {
+            const cachedBibs = lw.cacher.get(cachedFile)?.elements.bibitem
             if (cachedBibs === undefined) {
                 return
             }
@@ -256,7 +250,7 @@ export class Citation implements IProvider {
         }
         const newEntry: CiteSuggestion[] = []
         const bibtex = fs.readFileSync(fileName).toString()
-        const ast = await this.extension.pegParser.parseBibtex(bibtex).catch((e) => {
+        const ast = await UtensilsParser.parseBibtex(bibtex).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 logger.log(`Error parsing BibTeX: line ${line} in ${fileName} .`)
@@ -286,7 +280,7 @@ export class Citation implements IProvider {
             })
         this.bibEntries.set(fileName, newEntry)
         logger.log(`Parsed ${newEntry.length} bib entries from ${fileName} .`)
-        this.extension.eventBus.fire(eventbus.FileParsed, fileName)
+        lw.eventBus.fire(eventbus.FileParsed, fileName)
     }
 
     removeEntriesInFile(file: string) {
@@ -303,7 +297,7 @@ export class Citation implements IProvider {
      * @param content The content of a LaTeX file.
      */
     update(file: string, content: string) {
-        const cache = this.extension.cacher.get(file)
+        const cache = lw.cacher.get(file)
         if (cache !== undefined) {
             cache.elements.bibitem = this.parseContent(file, content)
         }

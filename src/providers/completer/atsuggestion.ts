@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import type {IProvider} from '../completion'
 import {escapeRegExp} from '../../utils/utils'
 
@@ -14,19 +13,17 @@ export interface AtSuggestionItemEntry {
 type DataAtSuggestionJsonType = typeof import('../../../data/at-suggestions.json')
 
 export class AtSuggestion implements IProvider {
-    private readonly extension: Extension
     private readonly triggerCharacter: string
     private readonly escapedTriggerCharacter: string
     private readonly suggestions: vscode.CompletionItem[] = []
 
-    constructor(extension: Extension, triggerCharacter: string) {
-        this.extension = extension
+    constructor(triggerCharacter: string) {
         this.triggerCharacter = triggerCharacter
         this.escapedTriggerCharacter = escapeRegExp(this.triggerCharacter)
 
-        const allSuggestions: {[key: string]: AtSuggestionItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/at-suggestions.json`).toString()) as DataAtSuggestionJsonType
+        const allSuggestions: {[key: string]: AtSuggestionItemEntry} = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/at-suggestions.json`).toString()) as DataAtSuggestionJsonType
         this.initialize(allSuggestions)
-        this.extension.context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+        lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestionJSON.replace')) {
                 this.initialize(allSuggestions)
             }

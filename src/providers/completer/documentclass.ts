@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import type { IProvider } from '../completion'
 
 type DataClassnamesJsonType = typeof import('../../../data/classnames.json')
@@ -13,12 +12,7 @@ type ClassItemEntry = {
 }
 
 export class DocumentClass implements IProvider {
-    private readonly extension: Extension
     private readonly suggestions: vscode.CompletionItem[] = []
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
 
     initialize(classes: {[key: string]: ClassItemEntry}) {
         Object.keys(classes).forEach(key => {
@@ -36,7 +30,7 @@ export class DocumentClass implements IProvider {
 
     private provide(): vscode.CompletionItem[] {
         if (this.suggestions.length === 0) {
-            const allClasses: {[key: string]: ClassItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/classnames.json`).toString()) as DataClassnamesJsonType
+            const allClasses: {[key: string]: ClassItemEntry} = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/classnames.json`).toString()) as DataClassnamesJsonType
             this.initialize(allClasses)
         }
         return this.suggestions

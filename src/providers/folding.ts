@@ -1,13 +1,9 @@
 import * as vscode from 'vscode'
 
-import type {Extension} from '../main'
-
 export class FoldingProvider implements vscode.FoldingRangeProvider {
-    extension: Extension
     private readonly sectionRegex: RegExp[] = []
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         const sections = vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sections') as string[]
         this.sectionRegex = sections.map(section => RegExp(`\\\\(?:${section})(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
     }
@@ -131,12 +127,6 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
 }
 
 export class WeaveFoldingProvider implements vscode.FoldingRangeProvider {
-    extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     public provideFoldingRanges(
         document: vscode.TextDocument,
         _context: vscode.FoldingContext,

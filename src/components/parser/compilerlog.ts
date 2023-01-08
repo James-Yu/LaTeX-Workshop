@@ -1,10 +1,9 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-
-import type { Extension } from '../../main'
+import * as lw from '../../lw'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
-import { LatexLogParser } from './latexlog'
 import { BibLogParser } from './biblogparser'
+import { LatexLogParser } from './latexlog'
 
 // Notice that 'Output written on filename.pdf' isn't output in draft mode.
 // https://github.com/James-Yu/LaTeX-Workshop/issues/2893#issuecomment-936312853
@@ -31,51 +30,48 @@ const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
 export interface LogEntry { type: string, file: string, text: string, line: number, errorPosText?: string }
 
 export class CompilerLogParser {
-    private readonly latexLogParser: LatexLogParser
-    private readonly bibLogParser: BibLogParser
-    private readonly extension: Extension
-    isLaTeXmkSkipped: boolean = false
+    private static readonly bibDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
+    private static readonly texDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
 
-    constructor(extension: Extension) {
-        this.latexLogParser = new LatexLogParser(extension)
-        this.bibLogParser = new BibLogParser(extension)
-        this.extension = extension
-    }
+    static isLaTeXmkSkipped: boolean = false
 
-    parse(log: string, rootFile?: string) {
-        this.isLaTeXmkSkipped = false
+    static parse(log: string, rootFile?: string) {
+        CompilerLogParser.isLaTeXmkSkipped = false
         // Canonicalize line-endings
         log = log.replace(/(\r\n)|\r/g, '\n')
 
         if (log.match(bibtexPattern)) {
+            let logs
             if (log.match(latexmkPattern)) {
-                this.bibLogParser.parse(this.trimLaTeXmkBibTeX(log), rootFile)
+                logs = BibLogParser.parse(CompilerLogParser.trimLaTeXmkBibTeX(log), rootFile)
             } else {
-                this.bibLogParser.parse(log, rootFile)
+                logs = BibLogParser.parse(log, rootFile)
             }
+            CompilerLogParser.showCompilerDiagnostics(CompilerLogParser.bibDiagnostics, logs, 'BibTeX')
         }
         if (log.match(latexmkPattern)) {
-            log = this.trimLaTeXmk(log)
+            log = CompilerLogParser.trimLaTeXmk(log)
         } else if (log.match(texifyPattern)) {
-            log = this.trimTexify(log)
+            log = CompilerLogParser.trimTexify(log)
         }
         if (log.match(latexPattern) || log.match(latexFatalPattern)) {
-            this.latexLogParser.parse(log, rootFile)
-        } else if (this.latexmkSkipped(log)) {
-            this.isLaTeXmkSkipped = true
+            const logs = LatexLogParser.parse(log, rootFile)
+            CompilerLogParser.showCompilerDiagnostics(CompilerLogParser.texDiagnostics, logs, 'LaTeX')
+        } else if (CompilerLogParser.latexmkSkipped(log)) {
+            CompilerLogParser.isLaTeXmkSkipped = true
         }
     }
 
-    private trimLaTeXmk(log: string): string {
-        return this.trimPattern(log, latexmkLogLatex, latexmkLog)
+    private static trimLaTeXmk(log: string): string {
+        return CompilerLogParser.trimPattern(log, latexmkLogLatex, latexmkLog)
     }
 
-    private trimLaTeXmkBibTeX(log: string): string {
-        return this.trimPattern(log, bibtexPattern, latexmkLogLatex)
+    private static trimLaTeXmkBibTeX(log: string): string {
+        return CompilerLogParser.trimPattern(log, bibtexPattern, latexmkLogLatex)
     }
 
-    private trimTexify(log: string): string {
-        return this.trimPattern(log, texifyLogLatex, texifyLog)
+    private static trimTexify(log: string): string {
+        return CompilerLogParser.trimPattern(log, texifyLogLatex, texifyLog)
     }
 
 
@@ -84,7 +80,7 @@ export class CompilerLogParser {
      * If `endPattern` is not found, the lines from the last occurrence of
      * `beginPattern` up to the end is returned.
      */
-    private trimPattern(log: string, beginPattern: RegExp, endPattern: RegExp): string {
+    private static trimPattern(log: string, beginPattern: RegExp, endPattern: RegExp): string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
@@ -107,20 +103,20 @@ export class CompilerLogParser {
     }
 
 
-    private latexmkSkipped(log: string): boolean {
+    private static latexmkSkipped(log: string): boolean {
         if (log.match(latexmkUpToDate) && !log.match(latexmkPattern)) {
-            this.showCompilerDiagnostics(this.latexLogParser.compilerDiagnostics, this.latexLogParser.buildLog, 'LaTeX')
-            this.showCompilerDiagnostics(this.bibLogParser.compilerDiagnostics, this.bibLogParser.buildLog, 'BibTeX')
+            CompilerLogParser.showCompilerDiagnostics(CompilerLogParser.texDiagnostics, LatexLogParser.buildLog, 'LaTeX')
+            CompilerLogParser.showCompilerDiagnostics(CompilerLogParser.bibDiagnostics, BibLogParser.buildLog, 'BibTeX')
             return true
         }
         return false
     }
 
-    private getErrorPosition(item: LogEntry): {start: number, end: number} | undefined {
+    private static getErrorPosition(item: LogEntry): {start: number, end: number} | undefined {
         if (!item.errorPosText) {
             return undefined
         }
-        const content = this.extension.cacher.get(item.file).content
+        const content = lw.cacher.get(item.file).content
         if (!content) {
             return undefined
         }
@@ -142,14 +138,14 @@ export class CompilerLogParser {
        return undefined
     }
 
-    showCompilerDiagnostics(compilerDiagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[], source: string) {
+    static showCompilerDiagnostics(compilerDiagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[], source: string) {
         compilerDiagnostics.clear()
         const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
         for (const item of buildLog) {
             let startChar = 0
             let endChar = 65535
             // Try to compute a more precise position
-            const preciseErrorPos = this.getErrorPosition(item)
+            const preciseErrorPos = CompilerLogParser.getErrorPosition(item)
             if (preciseErrorPos) {
                 startChar = preciseErrorPos.start
                 endChar = preciseErrorPos.end

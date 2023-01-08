@@ -1,17 +1,16 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { latexParser,bibtexParser } from 'latex-utensils'
-
-import type { Extension } from '../main'
+import * as lw from '../lw'
 import { resolveFile, stripText } from '../utils/utils'
 import { InputFileRegExp } from '../utils/inputfilepath'
 
 import { getLogger } from '../components/logger'
+import { UtensilsParser } from '../components/parser/syntax'
 
 const logger = getLogger('Structure')
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
-
     private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
     readonly onDidChangeTreeData: vscode.Event<Section | undefined>
     public root: string = ''
@@ -28,7 +27,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     // commands.
     private readonly LaTeXSectionDepths: {[cmd: string]: number} = {}
 
-    constructor(private readonly extension: Extension) {
+    constructor() {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
     }
 
@@ -52,7 +51,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
             this.ds = this.CachedBibTeXData
         }
-        else if (this.extension.manager.rootFile) {
+        else if (lw.manager.rootFile) {
             if (force) {
                 this.CachedLaTeXData = await this.buildLaTeXModel()
             }
@@ -99,7 +98,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      * @returns An array of {@link Section} to be shown in vscode view.
      */
     async buildLaTeXModel(file?: string, subFile = true): Promise<Section[]> {
-        file = file ? file : this.extension.manager.rootFile
+        file = file ? file : lw.manager.rootFile
         if (!file) {
             return []
         }
@@ -150,7 +149,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
         filesBuilt.add(file)
 
-        const content = this.extension.cacher.get(file)?.content
+        const content = lw.cacher.get(file)?.content
         if (!content) {
             logger.log(`Error loading LaTeX during structuring: ${file} .`)
             return []
@@ -160,7 +159,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         const fastparse = configuration.get('view.outline.fastparse.enabled') as boolean
 
         // Use `latex-utensils` to generate the AST.
-        const ast = await this.extension.pegParser.parseLatex(fastparse ? stripText(content) : content).catch((e) => {
+        const ast = await UtensilsParser.parseLatex(fastparse ? stripText(content) : content).catch((e) => {
             if (latexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 logger.log(`Error parsing LaTeX during structuring: line ${line} in ${file} .`)
@@ -172,7 +171,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
 
         // Get a list of rnw child chunks
-        const rnwChildren = subFile ? this.parseRnwChildCommand(content, file, this.extension.manager.rootFile || '') : []
+        const rnwChildren = subFile ? this.parseRnwChildCommand(content, file, lw.manager.rootFile || '') : []
         let rnwChild = rnwChildren.shift()
 
         // Parse each base-level node. If the node has contents, that function
@@ -320,7 +319,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             && cmdArgs.length > 0) {
             candidate = resolveFile(
                 [path.dirname(file),
-                 path.dirname(this.extension.manager.rootFile || ''),
+                 path.dirname(lw.manager.rootFile || ''),
                  ...texDirs],
                 cmdArgs[0])
         }
@@ -330,7 +329,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             candidate = resolveFile(
                 [cmdArgs[0],
                  path.join(
-                    path.dirname(this.extension.manager.rootFile || ''),
+                    path.dirname(lw.manager.rootFile || ''),
                     cmdArgs[0])],
                 cmdArgs[1])
         }
@@ -598,7 +597,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             logger.log(`Bib file is too large, ignoring it: ${document.fileName}`)
             return []
         }
-        const ast = await this.extension.pegParser.parseBibtex(document.getText()).catch((e) => {
+        const ast = await UtensilsParser.parseBibtex(document.getText()).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 logger.log(`Error parsing BibTeX: line ${line} in ${document.fileName} .`)
@@ -651,7 +650,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     }
 
     getChildren(element?: Section): vscode.ProviderResult<Section[]> {
-        if (this.extension.manager.rootFile === undefined) {
+        if (lw.manager.rootFile === undefined) {
             return []
         }
         // if the root doesn't exist, we need
@@ -664,7 +663,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     }
 
     getParent(element?: Section): Section | undefined {
-        if (this.extension.manager.rootFile === undefined || !element) {
+        if (lw.manager.rootFile === undefined || !element) {
             return undefined
         }
         return element.parent
@@ -701,15 +700,13 @@ export class Section extends vscode.TreeItem {
 }
 
 export class StructureTreeView {
-    private readonly extension: Extension
     private readonly _viewer: vscode.TreeView<Section | undefined>
     private readonly _treeDataProvider: SectionNodeProvider
     private _followCursor: boolean = true
 
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this._treeDataProvider = new SectionNodeProvider(extension)
+    constructor() {
+        this._treeDataProvider = new SectionNodeProvider()
         this._viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this._treeDataProvider, showCollapseAll: true })
         vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
            this._followCursor = ! this._followCursor
@@ -717,26 +714,26 @@ export class StructureTreeView {
         })
 
         vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
-            if (extension.manager.hasBibtexId(e.languageId)) {
-                void extension.structureViewer.computeTreeStructure()
+            if (lw.manager.hasBibtexId(e.languageId)) {
+                void lw.structureViewer.computeTreeStructure()
             }
         })
 
         vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
-            if (e && extension.manager.hasBibtexId(e.document.languageId)) {
-                void extension.structureViewer.refreshView()
+            if (e && lw.manager.hasBibtexId(e.document.languageId)) {
+                void lw.structureViewer.refreshView()
             }
         })
 
-        this.extension.eventBus.onDidFileParsed(() => {
+        lw.eventBus.onDidFileParsed(() => {
             void this.computeTreeStructure()
         })
 
-        this.extension.eventBus.onDidChangeRootFile(() => {
+        lw.eventBus.onDidChangeRootFile(() => {
             void this.computeTreeStructure()
         })
 
-        this.extension.eventBus.onDidEndFindRootFile(() => {
+        lw.eventBus.onDidEndFindRootFile(() => {
             void this.refreshView()
         })
     }

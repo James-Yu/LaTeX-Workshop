@@ -1,14 +1,7 @@
 import type * as vscode from 'vscode'
-
-import type {Extension} from '../../main'
+import * as lw from '../../lw'
 
 export class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvider {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     openCustomDocument(uri: vscode.Uri) {
         return {
             uri,
@@ -20,7 +13,7 @@ export class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvide
         webviewPanel.webview.html = 'LaTeX Workshop PDF Viewer is opening a PDF file...'
         setTimeout(() => {
             webviewPanel.dispose()
-            void this.extension.commander.pdf(document.uri)
+            void lw.commander.pdf(document.uri)
         }, 1000)
     }
 

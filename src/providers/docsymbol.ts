@@ -1,22 +1,19 @@
 import * as vscode from 'vscode'
-
-import type { Extension } from '../main'
-import {Section, SectionNodeProvider} from './structure'
+import * as lw from '../lw'
+import { Section, SectionNodeProvider } from './structure'
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
-    private readonly extension: Extension
     private readonly sectionNodeProvider: SectionNodeProvider
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.sectionNodeProvider = new SectionNodeProvider(extension)
+    constructor() {
+        this.sectionNodeProvider = new SectionNodeProvider()
     }
 
     async provideDocumentSymbols(document: vscode.TextDocument): Promise<vscode.DocumentSymbol[]> {
         if (document.languageId === 'bibtex') {
             return this.sectionNodeProvider.buildBibTeXModel(document).then((sections: Section[]) => this.sectionToSymbols(sections))
         }
-        if (this.extension.lwfs.isVirtualUri(document.uri)) {
+        if (lw.lwfs.isVirtualUri(document.uri)) {
             return []
         }
         return this.sectionToSymbols(await this.sectionNodeProvider.buildLaTeXModel(document.fileName, false))

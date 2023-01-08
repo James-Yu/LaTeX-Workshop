@@ -2,22 +2,19 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
 import rimraf from 'rimraf'
-
-import { Extension } from '../../src/main'
-import { sleep, getExtension, runTest, openActive, loadTestFile } from './utils'
+import * as lw from '../../src/lw'
+import { sleep, runTest, openActive, loadTestFile } from './utils'
 import { ChkTeX } from '../../src/components/linterlib/chktex'
 import { LaCheck } from '../../src/components/linterlib/lacheck'
 
 suite('Linter test suite', () => {
 
-    let extension: Extension
     const suiteName = path.basename(__filename).replace('.test.js', '')
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
-    suiteSetup(async () => {
-        extension = await getExtension()
-        fixture = path.resolve(extension.extensionRoot, 'test/fixtures/testground')
+    suiteSetup(() => {
+        fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
     })
 
     setup(async () => {
@@ -26,7 +23,7 @@ suite('Linter test suite', () => {
 
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        extension.manager.rootFile = undefined
+        lw.manager.rootFile = undefined
 
         if (path.basename(fixture) === 'testground') {
             rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
@@ -39,10 +36,8 @@ suite('Linter test suite', () => {
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
         ])
-        await openActive(extension, fixture, 'main.tex')
-
-        assert.ok(extension)
-        const linter = new ChkTeX(extension)
+        await openActive(fixture, 'main.tex')
+        const linter = new ChkTeX()
         const log = 'main.tex:5:18:1:Warning:24:Delete this space to maintain correct pagereferences.\nsub/s.tex:1:26:1:Warning:24:Delete this space to maintain correct pagereferences.\n'
         linter.parseLog(log)
         assert.strictEqual(linter.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'main.tex')))?.length, 1)
@@ -56,12 +51,10 @@ suite('Linter test suite', () => {
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
         ])
-        await openActive(extension, fixture, 'main.tex')
-
-        assert.ok(extension)
-        assert.ok(extension.manager.rootFile)
-        const linter = new LaCheck(extension)
-        await linter.lintRootFile(extension.manager.rootFile)
+        await openActive(fixture, 'main.tex')
+        assert.ok(lw.manager.rootFile)
+        const linter = new LaCheck()
+        await linter.lintRootFile(lw.manager.rootFile)
         assert.strictEqual(linter.linterDiagnostics.name, 'LaCheck')
     })
 
@@ -70,10 +63,8 @@ suite('Linter test suite', () => {
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
         ])
-        await openActive(extension, fixture, 'main.tex')
-
-        assert.ok(extension)
-        const linter = new LaCheck(extension)
+        await openActive(fixture, 'main.tex')
+        const linter = new LaCheck()
         const log = '"main.tex", line 7: double space at "~~"\n** sub/sub:\n"sub/s.tex", line 2: double space at "~~"\n'
         linter.parseLog(log)
         assert.strictEqual(linter.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'main.tex')))?.length, 1)

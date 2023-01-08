@@ -1,6 +1,5 @@
 import * as vs from 'vscode'
-
-import type { Extension } from '../main'
+import { TeXMathEnvFinder } from './preview/mathpreviewlib/texmathenvfinder'
 
 /**
  * Each number corresponds to the warning number of ChkTeX.
@@ -38,12 +37,6 @@ function isOpeningQuote(document: vs.TextDocument, range: vs.Range) {
 
 
 export class CodeActions implements vs.CodeActionProvider {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     // Leading underscore to avoid tslint complaint
     provideCodeActions(document: vs.TextDocument, _range: vs.Range, context: vs.CodeActionContext, _token: vs.CancellationToken): vs.Command[] {
         const actions: vs.Command[] = []
@@ -181,7 +174,7 @@ export class CodeActions implements vs.CodeActionProvider {
         if (text !== oldDelim) {
             if (oldDelim === '$$') {
                 const pat = /(?<!\\)\$\$/
-                const endPos = this.extension.mathPreview.texMathEnvFinder.findEndPair(document, pat, endRange.start)
+                const endPos = TeXMathEnvFinder.findEndPair(document, pat, endRange.start)
                 if (!endPos) {
                     return
                 }

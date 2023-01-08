@@ -1,29 +1,23 @@
 import * as vscode from 'vscode'
-import type {Extension} from '../main'
-import {tokenizer, onAPackage} from './tokenizer'
+import * as lw from '../lw'
+import { tokenizer, onAPackage } from './tokenizer'
 
 export class HoverProvider implements vscode.HoverProvider {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     public async provideHover(document: vscode.TextDocument, position: vscode.Position, ctoken: vscode.CancellationToken): Promise<vscode.Hover | undefined> {
-        this.extension.mathPreview.getColor()
+        lw.mathPreview.getColor()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const hov = configuration.get('hover.preview.enabled') as boolean
         const hovReference = configuration.get('hover.ref.enabled') as boolean
         const hovCitation = configuration.get('hover.citation.enabled') as boolean
         const hovCommand = configuration.get('hover.command.enabled') as boolean
         if (hov) {
-            const tex = this.extension.mathPreview.findHoverOnTex(document, position)
+            const tex = lw.mathPreview.findHoverOnTex(document, position)
             if (tex) {
-                const newCommands = await this.extension.mathPreview.findProjectNewCommand(ctoken)
-                const hover = await this.extension.mathPreview.provideHoverOnTex(document, tex, newCommands)
+                const newCommands = await lw.mathPreview.findProjectNewCommand(ctoken)
+                const hover = await lw.mathPreview.provideHoverOnTex(document, tex, newCommands)
                 return hover
             }
-            const graphicsHover = await this.extension.graphicsPreview.provideHover(document, position)
+            const graphicsHover = await lw.graphicsPreview.provideHover(document, position)
             if (graphicsHover) {
                 return graphicsHover
             }
@@ -48,12 +42,12 @@ export class HoverProvider implements vscode.HoverProvider {
             const ctanLink = new vscode.MarkdownString(`[${ctanUrl}](${ctanUrl})`)
             return new vscode.Hover([md, mdLink, ctanLink])
         }
-        const refData = this.extension.completer.reference.getRef(token)
+        const refData = lw.completer.reference.getRef(token)
         if (hovReference && refData) {
-            const hover = await this.extension.mathPreview.provideHoverOnRef(document, position, refData, token, ctoken)
+            const hover = await lw.mathPreview.provideHoverOnRef(document, position, refData, token, ctoken)
             return hover
         }
-        const cite = this.extension.completer.citation.getEntryWithDocumentation(token, document.uri)
+        const cite = lw.completer.citation.getEntryWithDocumentation(token, document.uri)
         if (hovCitation && cite) {
             const range = document.getWordRangeAtPosition(position, /\{.*?\}/)
             const md = cite.documentation || cite.detail
@@ -69,8 +63,8 @@ export class HoverProvider implements vscode.HoverProvider {
         const pkgs: string[] = []
         const tokenWithoutSlash = token.substring(1)
 
-        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedCmds = this.extension.cacher.get(cachedFile)?.elements.command
+        lw.cacher.getIncludedTeX().forEach(cachedFile => {
+            const cachedCmds = lw.cacher.get(cachedFile)?.elements.command
             if (cachedCmds === undefined) {
                 return
             }

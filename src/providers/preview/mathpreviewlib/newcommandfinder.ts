@@ -2,28 +2,21 @@ import * as vscode from 'vscode'
 import {latexParser} from 'latex-utensils'
 import {stripCommentsAndVerbatim, isNewCommand, NewCommand} from '../../../utils/utils'
 import * as path from 'path'
-
-import type { Extension } from '../../../main'
-
+import * as lw from '../../../lw'
 import { getLogger } from '../../../components/logger'
+import { UtensilsParser } from '../../../components/parser/syntax'
 
 const logger = getLogger('Preview', 'Math')
 
 export class NewCommandFinder {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
-    private postProcessNewCommands(commands: string): string {
+    private static postProcessNewCommands(commands: string): string {
         return commands.replace(/\\providecommand/g, '\\newcommand')
                        .replace(/\\newcommand\*/g, '\\newcommand')
                        .replace(/\\renewcommand\*/g, '\\renewcommand')
                        .replace(/\\DeclarePairedDelimiter{(\\[a-zA-Z]+)}{([^{}]*)}{([^{}]*)}/g, '\\newcommand{$1}[2][]{#1$2 #2 #1$3}')
     }
 
-    private async loadNewCommandFromConfigFile(newCommandFile: string) {
+    private static async loadNewCommandFromConfigFile(newCommandFile: string) {
         let commandsString: string | undefined = ''
         if (newCommandFile === '') {
             return commandsString
@@ -32,32 +25,32 @@ export class NewCommandFinder {
         if (path.isAbsolute(newCommandFile)) {
             newCommandFileAbs = newCommandFile
         } else {
-            if (this.extension.manager.rootFile === undefined) {
-                await this.extension.manager.findRoot()
+            if (lw.manager.rootFile === undefined) {
+                await lw.manager.findRoot()
             }
-            const rootDir = this.extension.manager.rootDir
+            const rootDir = lw.manager.rootDir
             if (rootDir === undefined) {
                 logger.log(`Cannot identify the absolute path of new command file ${newCommandFile} without root file.`)
                 return ''
             }
             newCommandFileAbs = path.join(rootDir, newCommandFile)
         }
-        commandsString = this.extension.lwfs.readFileSyncGracefully(newCommandFileAbs)
+        commandsString = lw.lwfs.readFileSyncGracefully(newCommandFileAbs)
         if (commandsString === undefined) {
             logger.log(`Cannot read file ${newCommandFileAbs}`)
             return ''
         }
         commandsString = commandsString.replace(/^\s*$/gm, '')
-        commandsString = this.postProcessNewCommands(commandsString)
+        commandsString = NewCommandFinder.postProcessNewCommands(commandsString)
         return commandsString
     }
 
-    async findProjectNewCommand(ctoken?: vscode.CancellationToken): Promise<string> {
+    static async findProjectNewCommand(ctoken?: vscode.CancellationToken): Promise<string> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const newCommandFile = configuration.get('hover.preview.newcommand.newcommandFile') as string
         let commandsInConfigFile = ''
         if (newCommandFile !== '') {
-            commandsInConfigFile = await this.loadNewCommandFromConfigFile(newCommandFile)
+            commandsInConfigFile = await NewCommandFinder.loadNewCommandFromConfigFile(newCommandFile)
         }
 
         if (!configuration.get('hover.preview.newcommand.parseTeXFile.enabled')) {
@@ -66,7 +59,7 @@ export class NewCommandFinder {
         let commands: string[] = []
         let exceeded = false
         setTimeout( () => { exceeded = true }, 5000)
-        for (const tex of this.extension.cacher.getIncludedTeX()) {
+        for (const tex of lw.cacher.getIncludedTeX()) {
             if (ctoken?.isCancellationRequested) {
                 return ''
             }
@@ -74,23 +67,23 @@ export class NewCommandFinder {
                 logger.log('Timeout error when parsing preambles in findProjectNewCommand.')
                 throw new Error('Timeout Error in findProjectNewCommand')
             }
-            const cache = this.extension.cacher.get(tex)
+            const cache = lw.cacher.get(tex)
             if (cache === undefined) {
                 continue
             }
-            const content = this.extension.cacher.get(tex).content
+            const content = lw.cacher.get(tex).content
             if (content === undefined) {
                 continue
             }
-            commands = commands.concat(await this.findNewCommand(content))
+            commands = commands.concat(await NewCommandFinder.findNewCommand(content))
         }
-        return commandsInConfigFile + '\n' + this.postProcessNewCommands(commands.join(''))
+        return commandsInConfigFile + '\n' + NewCommandFinder.postProcessNewCommands(commands.join(''))
     }
 
-    async findNewCommand(content: string): Promise<string[]> {
+    static async findNewCommand(content: string): Promise<string[]> {
         let commands: string[] = []
         try {
-            const ast = await this.extension.pegParser.parseLatexPreamble(content)
+            const ast = await UtensilsParser.parseLatexPreamble(content)
             for (const node of ast.content) {
                 if ((isNewCommand(node) || latexParser.isDefCommand(node)) && node.args.length > 0) {
                     node.name = node.name.replace(/\*$/, '') as NewCommand['name']
@@ -114,7 +107,7 @@ export class NewCommandFinder {
                 if (result) {
                     let command = result[1]
                     if (result[2]) {
-                        command = command.replace(/\*/, '')
+                        command = command.replace('*', '')
                     }
                     commands.push(command)
                 }
@@ -122,5 +115,4 @@ export class NewCommandFinder {
         }
         return commands
     }
-
 }

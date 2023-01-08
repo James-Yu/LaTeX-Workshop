@@ -1,18 +1,11 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-
-import type {Extension} from '../main'
+import * as lw from '../lw'
 import {tokenizer} from './tokenizer'
 import * as utils from '../utils/utils'
 
 export class DefinitionProvider implements vscode.DefinitionProvider {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     private onAFilename(document: vscode.TextDocument, position: vscode.Position, token: string): string|undefined {
         const line = document.lineAt(position.line).text
         const escapedToken = utils.escapeRegExp(token)
@@ -31,8 +24,8 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         let dirs: string[] = []
         if (line.match(regexInput)) {
             dirs = [path.dirname(vscode.window.activeTextEditor.document.fileName)]
-            if (this.extension.manager.rootDir !== undefined) {
-                dirs.push(this.extension.manager.rootDir)
+            if (lw.manager.rootDir !== undefined) {
+                dirs.push(lw.manager.rootDir)
             }
         }
 
@@ -48,7 +41,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
     }
 
     provideDefinition(document: vscode.TextDocument, position: vscode.Position): vscode.Location | undefined {
-        if (this.extension.lwfs.isVirtualUri(document.uri)) {
+        if (lw.lwfs.isVirtualUri(document.uri)) {
             return
         }
         const token = tokenizer(document, position)
@@ -57,21 +50,21 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         }
 
         if (token.startsWith('\\')) {
-            const command = this.extension.completer.command.definedCmds.get(token.slice(1))
+            const command = lw.completer.command.definedCmds.get(token.slice(1))
             if (command) {
                 return command.location
             }
             return undefined
         }
-        const ref = this.extension.completer.reference.getRef(token)
+        const ref = lw.completer.reference.getRef(token)
         if (ref) {
             return new vscode.Location(vscode.Uri.file(ref.file), ref.position)
         }
-        const cite = this.extension.completer.citation.getEntry(token)
+        const cite = lw.completer.citation.getEntry(token)
         if (cite) {
             return new vscode.Location(vscode.Uri.file(cite.file), cite.position)
         }
-        const glossary = this.extension.completer.glossary.getEntry(token)
+        const glossary = lw.completer.glossary.getEntry(token)
         if (glossary) {
             return new vscode.Location(vscode.Uri.file(glossary.file), glossary.position)
         }

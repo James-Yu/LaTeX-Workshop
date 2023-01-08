@@ -1,12 +1,11 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import {latexParser} from 'latex-utensils'
-
-import type { Extension } from '../../main'
+import { latexParser } from 'latex-utensils'
+import * as lw from '../../lw'
 import type { ICompletionItem } from '../completion'
 import type { IProvider } from '../completion'
-import {CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
-import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint} from './completerutils'
+import { CommandSignatureDuplicationDetector } from './commandlib/commandfinder'
+import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 
 import { getLogger } from '../../components/logger'
 
@@ -29,7 +28,6 @@ function isEnv(obj: any): obj is EnvType {
 export enum EnvSnippetType { AsName, AsCommand, ForBegin, }
 
 export class Environment implements IProvider {
-    private readonly extension: Extension
     private defaultEnvsAsName: CmdEnvSuggestion[] = []
     private defaultEnvsAsCommand: CmdEnvSuggestion[] = []
     private defaultEnvsForBegin: CmdEnvSuggestion[] = []
@@ -38,12 +36,8 @@ export class Environment implements IProvider {
     private readonly packageEnvsAsCommand = new Map<string, CmdEnvSuggestion[]>()
     private readonly packageEnvsForBegin= new Map<string, CmdEnvSuggestion[]>()
 
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     initialize() {
-        const envs = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})) as {[key: string]: EnvType}
+        const envs = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/environments.json`, {encoding: 'utf8'})) as {[key: string]: EnvType}
         Object.keys(envs).forEach(key => {
             envs[key].name = envs[key].name || key
             envs[key].snippet = envs[key].snippet || ''
@@ -120,7 +114,7 @@ export class Environment implements IProvider {
         // Insert package environments
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('intellisense.package.enabled')) {
-            const packages = this.extension.completer.package.getPackagesIncluded(args.document.languageId)
+            const packages = lw.completer.package.getPackagesIncluded(args.document.languageId)
             Object.keys(packages).forEach(packageName => {
                 this.getEnvFromPkg(packageName, snippetType).forEach(env => {
                     if (env.option && packages[packageName] && !packages[packageName].includes(env.option)) {
@@ -135,8 +129,8 @@ export class Environment implements IProvider {
         }
 
         // Insert environments defined in tex
-        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedEnvs = this.extension.cacher.get(cachedFile)?.elements.environment
+        lw.cacher.getIncludedTeX().forEach(cachedFile => {
+            const cachedEnvs = lw.cacher.get(cachedFile)?.elements.environment
             if (cachedEnvs !== undefined) {
                 cachedEnvs.forEach(env => {
                     if (! envList.includes(env.label)) {
@@ -201,9 +195,9 @@ export class Environment implements IProvider {
      */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
         // First, we must update the package list
-        this.extension.completer.package.updateUsepackage(file, nodes, content)
+        lw.completer.package.updateUsepackage(file, nodes, content)
 
-        const cache = this.extension.cacher.get(file)
+        const cache = lw.cacher.get(file)
         if (cache === undefined) {
             return
         }
@@ -246,7 +240,7 @@ export class Environment implements IProvider {
             return entry
         }
 
-        this.extension.completer.loadPackageData(pkg)
+        lw.completer.loadPackageData(pkg)
         // No package command defined
         const pkgEnvs = this.packageEnvs.get(pkg)
         if (!pkgEnvs || pkgEnvs.length === 0) {

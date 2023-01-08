@@ -2,15 +2,12 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
-
-import type {Extension} from '../main'
-
+import * as lw from '../lw'
 import { getLogger } from './logger'
 
 const logger = getLogger('Counter')
 
 export class Counter {
-    private readonly extension: Extension
     private useDocker: boolean = false
     private disableCountAfterSave: boolean = false
     private autoRunEnabled: boolean = false
@@ -21,8 +18,7 @@ export class Counter {
     private wordCount: string = ''
     private readonly status: vscode.StatusBarItem
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         // gotoLine status item has priority 100.5 and selectIndentation item has priority 100.4
         this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100.45)
         this.loadConfiguration(this.getWorkspace())
@@ -35,7 +31,7 @@ export class Counter {
         })
         this.updateStatusVisibility()
         vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
-            if (e && extension.manager.hasTexId(e.document.languageId)) {
+            if (e && lw.manager.hasTexId(e.document.languageId)) {
                 this.loadConfiguration(e.document.uri)
                 this.updateStatusVisibility()
             } else {
@@ -48,7 +44,7 @@ export class Counter {
         if (vscode.window.activeTextEditor) {
             return vscode.window.activeTextEditor.document.uri
         }
-        return this.extension.manager.getWorkspaceFolderRootDir()
+        return lw.manager.getWorkspaceFolderRootDir()
     }
 
     private loadConfiguration(scope: vscode.ConfigurationScope | undefined) {
@@ -107,9 +103,9 @@ export class Counter {
         if (this.useDocker) {
             logger.log('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
-                command = path.resolve(this.extension.extensionRoot, './scripts/texcount.bat')
+                command = path.resolve(lw.extensionRoot, './scripts/texcount.bat')
             } else {
-                command = path.resolve(this.extension.extensionRoot, './scripts/texcount')
+                command = path.resolve(lw.extensionRoot, './scripts/texcount')
                 fs.chmodSync(command, 0o755)
             }
         }

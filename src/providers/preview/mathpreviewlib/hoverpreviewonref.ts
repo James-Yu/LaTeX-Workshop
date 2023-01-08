@@ -1,49 +1,39 @@
 import * as vscode from 'vscode'
-
 import * as utils from '../../../utils/svg'
-import type {MathJaxPool} from '../mathjaxpool'
-import type {ReferenceEntry} from '../../completer/reference'
-import type {TexMathEnv} from './texmathenvfinder'
-import type {MathPreviewUtils} from './mathpreviewutils'
-
+import { MathJaxPool } from '../mathjaxpool'
+import type { ReferenceEntry } from '../../completer/reference'
+import type { TexMathEnv } from './texmathenvfinder'
+import { MathPreviewUtils } from './mathpreviewutils'
 import { getLogger } from '../../../components/logger'
 
 const logger = getLogger('Preview', 'Hover')
 
 export class HoverPreviewOnRefProvider {
-    private readonly mj: MathJaxPool
-    private readonly mputils: MathPreviewUtils
-
-    constructor(mj: MathJaxPool, mputils: MathPreviewUtils) {
-        this.mj = mj
-        this.mputils = mputils
-    }
-
-    async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refData: ReferenceEntry, color: string): Promise<vscode.Hover> {
-        const md = await this.renderSvgOnRef(tex, newCommand, refData, color)
+    static async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refData: ReferenceEntry, color: string): Promise<vscode.Hover> {
+        const md = await HoverPreviewOnRefProvider.renderSvgOnRef(tex, newCommand, refData, color)
         const line = refData.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
         mdLink.isTrusted = true
-        return new vscode.Hover( [this.mputils.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
+        return new vscode.Hover( [MathPreviewUtils.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
     }
 
-    async renderSvgOnRef(tex: TexMathEnv, newCommand: string, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, color: string) {
+    static async renderSvgOnRef(tex: TexMathEnv, newCommand: string, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, color: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
 
         let newTeXString: string
         if (refData.prevIndex !== undefined && configuration.get('hover.ref.number.enabled') as boolean) {
             const tag = refData.prevIndex.refNumber
-            const texString = this.replaceLabelWithTag(tex.texString, refData.label, tag)
-            newTeXString = this.mputils.mathjaxify(texString, tex.envname, {stripLabel: false})
+            const texString = HoverPreviewOnRefProvider.replaceLabelWithTag(tex.texString, refData.label, tag)
+            newTeXString = MathPreviewUtils.mathjaxify(texString, tex.envname, {stripLabel: false})
         } else {
-            newTeXString = this.mputils.mathjaxify(tex.texString, tex.envname)
+            newTeXString = MathPreviewUtils.mathjaxify(tex.texString, tex.envname)
         }
-        const typesetArg = newCommand + this.mputils.stripTeX(newTeXString)
+        const typesetArg = newCommand + MathPreviewUtils.stripTeX(newTeXString)
         const typesetOpts = { scale, color }
         try {
-            const xml = await this.mj.typeset(typesetArg, typesetOpts)
+            const xml = await MathJaxPool.typeset(typesetArg, typesetOpts)
             const svg = utils.svgToDataUrl(xml)
             return svg
         } catch(e) {
@@ -52,7 +42,7 @@ export class HoverPreviewOnRefProvider {
         }
     }
 
-    private replaceLabelWithTag(tex: string, refLabel?: string, tag?: string): string {
+    private static replaceLabelWithTag(tex: string, refLabel?: string, tag?: string): string {
         const texWithoutTag = tex.replace(/\\tag\{(\{[^{}]*?\}|.)*?\}/g, '')
         let newTex = texWithoutTag.replace(/\\label\{(.*?)\}/g, (_matchString, matchLabel, _offset, _s) => {
             if (refLabel) {
@@ -76,5 +66,4 @@ export class HoverPreviewOnRefProvider {
         newTex = newTex.replace(/\\end\{(\w+?)\}$/, '\\end{$1*}')
         return newTex
     }
-
 }

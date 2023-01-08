@@ -1,15 +1,8 @@
 import * as vscode from 'vscode'
-import { EOL } from 'os'
-import type { Extension } from '../main'
+import * as os from 'os'
 import * as path from 'path'
 
 export class TeXMagician {
-    extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     getFileName(file: string): string {
         const segments = file.replace(/\\/g, '/').match(/([^/]+$)/)
         if (segments) {
@@ -35,7 +28,7 @@ export class TeXMagician {
                 const edits = [(line0.match(/^\s*%\s*!TeX root/gmi)) ?
                     vscode.TextEdit.replace(new vscode.Range(0, 0, 0, line0.length), magicComment)
                 :
-                    vscode.TextEdit.insert(new vscode.Position(0, 0), magicComment + EOL)
+                    vscode.TextEdit.insert(new vscode.Position(0, 0), magicComment + os.EOL)
                 ]
                 // Insert the text
                 const uri = editor.document.uri

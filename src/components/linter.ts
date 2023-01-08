@@ -1,9 +1,7 @@
 import * as vscode from 'vscode'
-
-import type { Extension } from '../main'
+import * as lw from '../lw'
 import { ChkTeX } from './linterlib/chktex'
 import { LaCheck } from './linterlib/lacheck'
-
 import { getLogger } from './logger'
 
 const logger = getLogger('Linter')
@@ -20,11 +18,9 @@ export class Linter {
     readonly #linters: Map<string, ILinter> = new Map()
     private linterTimeout?: NodeJS.Timer
 
-    constructor(private readonly extension: Extension) {}
-
     private get chktex(): ILinter {
         const linterId = 'chktex'
-        const chktex = this.#linters.get(linterId) || new ChkTeX(this.extension)
+        const chktex = this.#linters.get(linterId) || new ChkTeX()
         if (!this.#linters.has(linterId)) {
             this.#linters.set(linterId, chktex)
         }
@@ -33,7 +29,7 @@ export class Linter {
 
     private get lacheck(): ILinter {
         const linterId = 'lacheck'
-        const lacheck = this.#linters.get(linterId) || new LaCheck(this.extension)
+        const lacheck = this.#linters.get(linterId) || new LaCheck()
         if (!this.#linters.has(linterId)) {
             this.#linters.set(linterId, lacheck)
         }
@@ -57,14 +53,14 @@ export class Linter {
     }
 
     lintRootFileIfEnabled() {
-        const linters = this.getLinters(this.extension.manager.getWorkspaceFolderRootDir())
+        const linters = this.getLinters(lw.manager.getWorkspaceFolderRootDir())
         linters.forEach(linter => {
-            if (this.extension.manager.rootFile === undefined) {
+            if (lw.manager.rootFile === undefined) {
                 logger.log(`No root file found for ${linter.getName()}.`)
                 return
             }
-            logger.log(`${linter.getName()} lints root ${this.extension.manager.rootFile} .`)
-            linter.lintRootFile(this.extension.manager.rootFile)
+            logger.log(`${linter.getName()} lints root ${lw.manager.rootFile} .`)
+            linter.lintRootFile(lw.manager.rootFile)
         })
     }
 

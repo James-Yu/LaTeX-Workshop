@@ -4,12 +4,9 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as tmp from 'tmp'
 import * as utils from '../utils/utils'
-
-import type {Extension} from '../main'
+import * as lw from '../lw'
 import * as eventbus from './eventbus'
-
-import {FinderUtils} from './managerlib/finderutils'
-
+import { FinderUtils } from './managerlib/finderutils'
 import { getLogger } from './logger'
 
 const logger = getLogger('Manager')
@@ -33,12 +30,7 @@ export class Manager {
     private _rootFile: RootFileType | undefined
     readonly tmpDir: string
 
-    private readonly extension: Extension
-    private readonly finderUtils: FinderUtils
-
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.finderUtils = new FinderUtils(extension)
+    constructor() {
         this.registerSetEnvVar()
 
         // Create temp folder
@@ -246,7 +238,7 @@ export class Manager {
         logger.log(`Current workspace folders: ${JSON.stringify(wsfolders)}`)
         this.localRootFile = undefined
         const findMethods = [
-            () => this.finderUtils.findRootFromMagic(),
+            () => FinderUtils.findRootFromMagic(),
             () => this.findRootFromActive(),
             () => this.findRootFromCurrentRoot(),
             () => this.findRootInWorkspace()
@@ -263,24 +255,24 @@ export class Manager {
                 this.rootFileLanguageId = this.inferLanguageId(rootFile)
                 logger.log(`Root file languageId: ${this.rootFileLanguageId}`)
                 // We also clean the completions from the old project
-                this.extension.completer.input.reset()
-                this.extension.duplicateLabels.reset()
-                await this.extension.cacher.resetWatcher()
-                this.extension.cacher.add(this.rootFile)
-                await this.extension.cacher.refreshContext(this.rootFile)
+                lw.completer.input.reset()
+                lw.duplicateLabels.reset()
+                await lw.cacher.resetWatcher()
+                lw.cacher.add(this.rootFile)
+                await lw.cacher.refreshContext(this.rootFile)
                 // await this.initiateFileWatcher()
                 // await this.parseFileAndSubs(this.rootFile, this.rootFile) // Finishing the parsing is required for subsequent refreshes.
                 // We need to parse the fls to discover file dependencies when defined by TeX macro
                 // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
-                await this.extension.cacher.loadFlsFile(this.rootFile)
-                this.extension.eventBus.fire(eventbus.RootFileChanged, rootFile)
+                await lw.cacher.loadFlsFile(this.rootFile)
+                lw.eventBus.fire(eventbus.RootFileChanged, rootFile)
             } else {
                 logger.log(`Keep using the same root file: ${this.rootFile}`)
             }
-            this.extension.eventBus.fire(eventbus.RootFileSearched)
+            lw.eventBus.fire(eventbus.RootFileSearched)
             return rootFile
         }
-        this.extension.eventBus.fire(eventbus.RootFileSearched)
+        lw.eventBus.fire(eventbus.RootFileSearched)
         return undefined
     }
 
@@ -288,11 +280,11 @@ export class Manager {
         if (!vscode.window.activeTextEditor || this.rootFile === undefined) {
             return undefined
         }
-        if (this.extension.lwfs.isVirtualUri(vscode.window.activeTextEditor.document.uri)) {
+        if (lw.lwfs.isVirtualUri(vscode.window.activeTextEditor.document.uri)) {
             logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
             return undefined
         }
-        if (this.extension.cacher.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
+        if (lw.cacher.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
             return this.rootFile
         }
         return undefined
@@ -302,7 +294,7 @@ export class Manager {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
-        if (this.extension.lwfs.isVirtualUri(vscode.window.activeTextEditor.document.uri)) {
+        if (lw.lwfs.isVirtualUri(vscode.window.activeTextEditor.document.uri)) {
             logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
             return undefined
         }
@@ -310,7 +302,7 @@ export class Manager {
         const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
         const result = content.match(regex)
         if (result) {
-            const rootSubFile = this.finderUtils.findSubFiles(content)
+            const rootSubFile = FinderUtils.findSubFiles(content)
             const file = vscode.window.activeTextEditor.document.fileName
             if (rootSubFile) {
                this.localRootFile = file
@@ -341,11 +333,11 @@ export class Manager {
             const files = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
             const candidates: string[] = []
             for (const file of files) {
-                if (this.extension.lwfs.isVirtualUri(file)) {
+                if (lw.lwfs.isVirtualUri(file)) {
                     logger.log(`Skip the file: ${file.toString(true)}`)
                     continue
                 }
-                const flsChildren = this.extension.cacher.getTeXChildrenFromFls(file.fsPath)
+                const flsChildren = lw.cacher.getTeXChildrenFromFls(file.fsPath)
                 if (vscode.window.activeTextEditor && flsChildren.includes(vscode.window.activeTextEditor.document.fileName)) {
                     logger.log(`Found root file from '.fls': ${file.fsPath}`)
                     return file.fsPath
@@ -354,7 +346,7 @@ export class Manager {
                 const result = content.match(regex)
                 if (result) {
                     // Can be a root
-                    const children = await this.extension.cacher.getTeXChildren(file.fsPath, file.fsPath, [])
+                    const children = await lw.cacher.getTeXChildren(file.fsPath, file.fsPath, [])
                     if (vscode.window.activeTextEditor && children.includes(vscode.window.activeTextEditor.document.fileName)) {
                         logger.log(`Found root file from parent: ${file.fsPath}`)
                         return file.fsPath

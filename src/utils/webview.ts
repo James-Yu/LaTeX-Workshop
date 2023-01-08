@@ -1,9 +1,8 @@
 import * as vscode from 'vscode'
+import * as lw from '../lw'
 
-import type { Extension } from '../main'
-
-export function replaceWebviewPlaceholders(content: string, extension: Extension, webview: vscode.Webview): string {
-    const extensionRootUri = vscode.Uri.file(extension.extensionRoot)
+export function replaceWebviewPlaceholders(content: string, webview: vscode.Webview): string {
+    const extensionRootUri = vscode.Uri.file(lw.extensionRoot)
     const resourcesFolderUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionRootUri, 'resources'))
     const resourcesFolderLink = resourcesFolderUri.toString()
     const pdfjsDistUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionRootUri, 'node_modules', 'pdfjs-dist'))

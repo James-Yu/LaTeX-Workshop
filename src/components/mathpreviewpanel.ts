@@ -2,8 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import type {TexMathEnv} from '../providers/preview/mathpreview'
 import {openWebviewPanel} from '../utils/webview'
-import type {Extension} from '../main'
-
+import * as lw from '../lw'
 import { getLogger } from './logger'
 
 const logger = getLogger('Preview', 'Math')
@@ -22,19 +21,13 @@ function resourcesFolder(extensionRoot: string) {
 }
 
 export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
-    private readonly extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
     deserializeWebviewPanel(panel: vscode.WebviewPanel) {
-        this.extension.mathPreviewPanel.initializePanel(panel)
+        lw.mathPreviewPanel.initializePanel(panel)
         panel.webview.options = {
             enableScripts: true,
-            localResourceRoots: [resourcesFolder(this.extension.extensionRoot)]
+            localResourceRoots: [resourcesFolder(lw.extensionRoot)]
         }
-        panel.webview.html = this.extension.mathPreviewPanel.getHtml(panel.webview)
+        panel.webview.html = lw.mathPreviewPanel.getHtml(panel.webview)
         logger.log('Math preview panel: restored')
         return Promise.resolve()
     }
@@ -42,7 +35,6 @@ export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer
 }
 
 export class MathPreviewPanel {
-    private readonly extension: Extension
     private panel?: vscode.WebviewPanel
     private prevEditTime = 0
     private prevDocumentUri?: string
@@ -51,9 +43,8 @@ export class MathPreviewPanel {
     readonly mathPreviewPanelSerializer: MathPreviewPanelSerializer
     private needCursor: boolean
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.mathPreviewPanelSerializer = new MathPreviewPanelSerializer(extension)
+    constructor() {
+        this.mathPreviewPanelSerializer = new MathPreviewPanelSerializer()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.needCursor = configuration.get('mathpreviewpanel.cursor.enabled', false)
         vscode.workspace.onDidChangeConfiguration((e) => {
@@ -65,7 +56,7 @@ export class MathPreviewPanel {
     }
 
     private get mathPreview() {
-        return this.extension.mathPreview
+        return lw.mathPreview
     }
 
     async open() {
@@ -83,7 +74,7 @@ export class MathPreviewPanel {
             { viewColumn: vscode.ViewColumn.Active, preserveFocus: true },
             {
                 enableScripts: true,
-                localResourceRoots: [resourcesFolder(this.extension.extensionRoot)],
+                localResourceRoots: [resourcesFolder(lw.extensionRoot)],
                 retainContextWhenHidden: true
             }
         )
@@ -100,10 +91,10 @@ export class MathPreviewPanel {
     initializePanel(panel: vscode.WebviewPanel) {
         const disposable = vscode.Disposable.from(
             vscode.workspace.onDidChangeTextDocument( (event) => {
-                void this.extension.mathPreviewPanel.update({type: 'edit', event})
+                void lw.mathPreviewPanel.update({type: 'edit', event})
             }),
             vscode.window.onDidChangeTextEditorSelection( (event) => {
-                void this.extension.mathPreviewPanel.update({type: 'selection', event})
+                void lw.mathPreviewPanel.update({type: 'selection', event})
             })
         )
         this.panel = panel
@@ -147,7 +138,7 @@ export class MathPreviewPanel {
     }
 
     getHtml(webview: vscode.Webview) {
-        const jsPath = vscode.Uri.file(path.join(this.extension.extensionRoot, './resources/mathpreviewpanel/mathpreview.js'))
+        const jsPath = vscode.Uri.file(path.join(lw.extensionRoot, './resources/mathpreviewpanel/mathpreview.js'))
         const jsPathSrc = webview.asWebviewUri(jsPath)
         return `<!DOCTYPE html>
         <html lang="en">
@@ -187,7 +178,7 @@ export class MathPreviewPanel {
         }
         const editor = vscode.window.activeTextEditor
         const document = editor?.document
-        if (!editor || !document?.languageId || !this.extension.manager.hasTexId(document.languageId)) {
+        if (!editor || !document?.languageId || !lw.manager.hasTexId(document.languageId)) {
             this.clearCache()
             return
         }

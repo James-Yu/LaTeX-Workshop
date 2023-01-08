@@ -2,20 +2,17 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import rimraf from 'rimraf'
 import * as assert from 'assert'
-
-import { Extension } from '../../src/main'
-import { sleep, assertRoot, getExtension, runTest, loadTestFile } from './utils'
+import * as lw from '../../src/lw'
+import { sleep, assertRoot, runTest, loadTestFile } from './utils'
 
 suite('Find root file test suite', () => {
 
-    let extension: Extension
     const suiteName = path.basename(__filename).replace('.test.js', '')
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
-    suiteSetup(async () => {
-        extension = await getExtension()
-        fixture = path.resolve(extension.extensionRoot, 'test/fixtures/testground')
+    suiteSetup(() => {
+        fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
     })
 
     setup(async () => {
@@ -24,7 +21,7 @@ suite('Find root file test suite', () => {
 
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        extension.manager.rootFile = undefined
+        lw.manager.rootFile = undefined
 
         if (path.basename(fixture) === 'testground') {
             rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
@@ -41,8 +38,7 @@ suite('Find root file test suite', () => {
             {src: 'input_parentsub.tex', dst: 'alt/main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        assert.ok(extension)
-        await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'alt/main.tex', extension})
+        await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'alt/main.tex'})
     })
 
     runTest({suiteName, fixtureName, testName: 'detect root with search.rootFiles.exclude'}, async () => {
@@ -53,8 +49,7 @@ suite('Find root file test suite', () => {
             {src: 'input_parentsub.tex', dst: 'alt/main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        assert.ok(extension)
-        await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'alt/main.tex', extension})
+        await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'alt/main.tex'})
     })
 
     runTest({suiteName, fixtureName, testName: 'auto-detect root with verbatim'}, async () => {
@@ -62,8 +57,7 @@ suite('Find root file test suite', () => {
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain_verbatim.tex', dst: 'sub/s.tex'}
         ])
-        assert.ok(extension)
-        await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'main.tex', extension})
+        await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'main.tex'})
     })
 
     runTest({suiteName, fixtureName, testName: 'import package'}, async () => {
@@ -72,8 +66,7 @@ suite('Find root file test suite', () => {
             {src: 'import_sub.tex', dst: 'sub/s.tex'},
             {src: 'plain.tex', dst: 'sub/subsub/sss/sss.tex'}
         ])
-        assert.ok(extension)
-        await assertRoot({fixture, openName: 'sub/subsub/sss/sss.tex', rootName: 'main.tex', extension})
+        await assertRoot({fixture, openName: 'sub/subsub/sss/sss.tex', rootName: 'main.tex'})
     })
 
     runTest({suiteName, fixtureName, testName: 'circular inclusion'}, async () => {
@@ -82,9 +75,8 @@ suite('Find root file test suite', () => {
             {src: 'include_sub.tex', dst: 'alt.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        assert.ok(extension)
-        await assertRoot({fixture, openName: 'alt.tex', rootName: 'main.tex', extension})
-        const includedTeX = extension.cacher.getIncludedTeX()
+        await assertRoot({fixture, openName: 'alt.tex', rootName: 'main.tex'})
+        const includedTeX = lw.cacher.getIncludedTeX()
         assert.ok(includedTeX)
         assert.ok(includedTeX.includes(path.resolve(fixture, 'main.tex')))
         assert.ok(includedTeX.includes(path.resolve(fixture, 'alt.tex')))

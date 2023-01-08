@@ -1,8 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-
-import type {Extension} from '../main'
-
+import * as lw from '../lw'
 import { getLogger } from './logger'
 
 const logger = getLogger('DupLabel')
@@ -11,19 +9,17 @@ const logger = getLogger('DupLabel')
 export class DuplicateLabels {
     private readonly duplicatedLabelsDiagnostics = vscode.languages.createDiagnosticCollection('Duplicate Labels')
 
-    constructor(private readonly extension: Extension) {}
-
     /**
      * Compute the dictionary of labels holding their file and position
      */
     private computeDuplicates(file: string): string[] {
-        if (!this.extension.cacher.get(file)) {
+        if (!lw.cacher.get(file)) {
             logger.log(`Cannot check for duplicate labels in a file not in manager: ${file} .`)
             return []
         }
         const labelsCount = new Map<string, number>()
-        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.cacher.get(cachedFile)?.elements.reference
+        lw.cacher.getIncludedTeX().forEach(cachedFile => {
+            const cachedRefs = lw.cacher.get(cachedFile)?.elements.reference
             if (cachedRefs === undefined) {
                 return
             }
@@ -65,8 +61,8 @@ export class DuplicateLabels {
         }
         const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
 
-        this.extension.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.cacher.get(cachedFile)?.elements.reference
+        lw.cacher.getIncludedTeX().forEach(cachedFile => {
+            const cachedRefs = lw.cacher.get(cachedFile)?.elements.reference
             if (cachedRefs === undefined) {
                 return
             }

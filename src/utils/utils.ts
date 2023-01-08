@@ -1,9 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
-
 import {latexParser} from 'latex-utensils'
-
 
 export function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms))
