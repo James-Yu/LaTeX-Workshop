@@ -532,21 +532,27 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
 
         // keyboard bindings
-        window.addEventListener('keydown', (evt) => {
+        window.addEventListener('keydown', (evt: KeyboardEvent) => {
             // F opens find bar, cause Ctrl-F is handled by vscode
-            const target = evt.target as HTMLElement
-            if(evt.keyCode === 70 && target.nodeName !== 'INPUT') { // ignore F typed in the search box
-                this.showToolbar(false)
-                PDFViewerApplication.findBar.open()
-                evt.preventDefault()
+            // const target = evt.target as HTMLElement
+            // if(evt.keyCode === 70 && target.nodeName !== 'INPUT') { // ignore F typed in the search box
+            //     this.showToolbar(false)
+            //     PDFViewerApplication.findBar.open()
+            //     evt.preventDefault()
+            // }
+            if (this.embedded && evt.key === 'c' && (evt.ctrlKey || evt.metaKey)) {
+                const selection = window.getSelection()
+                if (selection !== null && selection.toString().length > 0) {
+                    this.send({type: 'copy', content: selection.toString(), isMetaKey: evt.metaKey})
+                }
             }
 
             // Chrome's usual Alt-Left/Right (Command-Left/Right on OSX) for history
             // Back/Forward don't work in the embedded viewer, so we simulate them.
-            if (this.embedded && (evt.altKey || evt.metaKey)) {
-                if (evt.keyCode === 37) {
+            if (this.embedded && ((evt.altKey && !navigator.userAgent.includes('Mac OS')) || (evt.metaKey && navigator.userAgent.includes('Mac OS')))) {
+                if (evt.key === 'ArrowLeft') {
                     this.viewerHistory.back()
-                } else if(evt.keyCode === 39) {
+                } else if(evt.key === 'ArrowRight') {
                     this.viewerHistory.forward()
                 }
             }

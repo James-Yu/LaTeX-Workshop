@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import type ws from 'ws'
 import * as path from 'path'
+import * as os from 'os'
 import * as cs from 'cross-spawn'
 import * as lw from '../lw'
 import type { SyncTeXRecordForward } from './locator'
@@ -278,6 +279,14 @@ export class Viewer {
             }
             case 'add_log': {
                 logger.log(`${data.message}`)
+                break
+            }
+            case 'copy': {
+                console.log(data.content)
+                if ((data.isMetaKey && os.platform() === 'darwin') ||
+                    (!data.isMetaKey && os.platform() !== 'darwin')) {
+                    void vscode.env.clipboard.writeText(data.content as string)
+                }
                 break
             }
             default: {

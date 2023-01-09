@@ -65,6 +65,10 @@ export type ClientRequest = {
 } | {
     type: 'add_log',
     message: string
+} | {
+    type: 'copy',
+    content: string,
+    isMetaKey: boolean
 }
 
 export type PanelManagerResponse = {
