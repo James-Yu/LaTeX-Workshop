@@ -27,7 +27,7 @@ export class Argument implements IProvider {
                     if (environment !== env.signature.name) {
                         continue
                     }
-                    if (index !== env.keyvalIndex + 1) { // Start from one.
+                    if (index !== env.keyvalpos + 1) { // Start from one.
                         continue
                     }
                     candidate = env
@@ -38,7 +38,7 @@ export class Argument implements IProvider {
                     if (result[1] !== command.signature.name) {
                         continue
                     }
-                    if (index !== command.keyvalIndex) {
+                    if (index !== command.keyvalpos) {
                         continue
                     }
                     candidate = command

@@ -75,8 +75,8 @@ In this `json` object, the commands have the following structure:
 {
   snippet: string | undefined, // the snippet to insert, undefined if the same as item key.
   option: string | undefined, // the package option that enables this command
-  keyvals: number | undefined, // the possible optional keyvals of this command by its index in package.keyvals
-  keyvalindex: number | undefined, // the index of argument (mandatory and optional together) where the keyvals should be hinted
+  keyvalindex: number | undefined, // the possible optional keyvals of this command by its index in package.keyvals
+  keyvalpos: number | undefined, // the index of argument (mandatory and optional together) where the keyvals should be hinted
   detail: string | undefined,
   documentation: string | undefined
 }
@@ -91,8 +91,8 @@ The optional argument intellisense are typically defined as follows:
 ```json
 "mint[]{}{}": {
   "snippet": "mint[${3:keys}]{${1:language}}{${2:verbatimSymbol}}",
-  "keyvals": 0,
-  "keyvalindex": 0
+  "keyvalindex": 0,
+  "keyvalpos": 0
 }
 ```
 
@@ -102,8 +102,8 @@ The environments have the following structure:
   name: string | undefined, // the environment name, undefined if the same as item key.
   snippet: string | undefined, // the snippet to insert after \begin{env}, undefined if is an empty string
   option: string | undefined, // the package option that enables this environment
-  keyvals: number | undefined, // the possible optional keyvals of this environment by its index in package.keyvals
-  keyvalindex: number | undefined, // the index of argument (mandatory and optional together) where the keyvals should be hinted
+  keyvalindex: number | undefined, // the possible optional keyvals of this environment by its index in package.keyvals
+  keyvalpos: number | undefined, // the index of argument (mandatory and optional together) where the keyvals should be hinted
 }
 ```
 An example is:

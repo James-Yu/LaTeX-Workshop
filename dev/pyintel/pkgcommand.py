@@ -16,8 +16,8 @@ class KeyVal:
 class Cmd:
     snippet: Union[str, None]
     option: Union[str, None]
-    keyvals: Union[List[KeyVal], int, None]
     keyvalindex: Union[int, None]
+    keyvalpos: Union[int, None]
     detail: Union[str, None]
     documentation: Union[str, None]
 
@@ -26,12 +26,12 @@ class Env:
     name: Union[str, None]
     snippet: Union[str, None]
     option: Union[str, None]
-    keyvals: Union[List[str], None]
     keyvalindex: Union[int, None]
+    keyvalpos: Union[int, None]
 
 @dataclass
 class Pkg:
-    includes: List[str]
+    includes: Dict[str, List[str]]
     cmds: Dict[str, Cmd]
     envs: Dict[str, Env]
     options: List[str]
@@ -197,7 +197,7 @@ class CwlIntel:
             return ({}, {})
         with file_path.open(encoding='utf8') as f:
             lines = f.readlines()
-        pkg = Pkg(includes=[], cmds={}, envs={}, options=[], keyvals=[])
+        pkg = Pkg(includes={}, cmds={}, envs={}, options=[], keyvals=[])
         if file_path.name == 'caption.cwl':
             lines = apply_caption_tweaks(lines)
         
@@ -208,7 +208,10 @@ class CwlIntel:
             if len(line) == 0:                      # empty line
                 continue
             elif line.startswith('#include:'):      # '#include:keyval'
-                pkg.includes.append(line[9:])       # 'keyval'
+                if (line[9:] not in pkg.includes):  # 'keyval'
+                    pkg.includes[line[9:]] = []
+                if (cwl_option is not None):
+                    pkg.includes[line[9:]].append(cwl_option)
             elif line.startswith('#ifOption:'):     # '#ifOption:newfloat=true'
                 cwl_option = line[10:]              # 'newfloat=true'
             elif line.startswith('#endif'):         # '#endif'
@@ -245,8 +248,8 @@ class CwlIntel:
                     name=None if name == match[1] else match[1],
                     snippet=None if snippet == '' else snippet,
                     option=cwl_option,
-                    keyvals=None,
-                    keyvalindex=None)
+                    keyvalindex=None,
+                    keyvalpos=None)
             elif line.startswith('\\end{'):         # '\end{minted}'
                 continue
             elif line.startswith('\\'):             # '\inputminted[options%keyvals]{language}{file}#i'
@@ -276,8 +279,8 @@ class CwlIntel:
                 pkg.cmds[name] = Cmd(
                     snippet=None if name == snippet else snippet,
                     option=cwl_option,
-                    keyvals=None,
                     keyvalindex=None,
+                    keyvalpos=None,
                     detail=detail,
                     documentation=documentation)
             elif cwl_keyval == 'PACKAGE_OPTIONS':
@@ -302,10 +305,10 @@ class CwlIntel:
                             haskeyvals = re.search(r':keys|:keyvals|:options|:library', pkg.envs[pkgenv].snippet)
                             if (haskeyvals is None):
                                 continue
-                            if (pkg.envs[pkgenv].keyvalindex is None):
-                                pkg.envs[pkgenv].keyvalindex = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.envs[pkgenv].snippet[:haskeyvals.start()])))
-                            pkg.envs[pkgenv].keyvals = pkg.envs[pkgenv].keyvals or []
-                            pkg.envs[pkgenv].keyvals.append(match[1])
+                            if (pkg.envs[pkgenv].keyvalpos is None):
+                                pkg.envs[pkgenv].keyvalpos = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.envs[pkgenv].snippet[:haskeyvals.start()])))
+                            pkg.envs[pkgenv].keyvalindex = pkg.envs[pkgenv].keyvalindex or []
+                            pkg.envs[pkgenv].keyvalindex.append(match[1])
                     else:
                         cmd = re.match(r'\\?([^{\[#]*)', envcmd)[1]
                         for pkgcmd in pkg.cmds:
@@ -314,39 +317,39 @@ class CwlIntel:
                             haskeyvals = re.search(r':keys|:keyvals|:options|:library', pkg.cmds[pkgcmd].snippet or pkgcmd)
                             if (haskeyvals is None):
                                 continue
-                            if (pkg.cmds[pkgcmd].keyvalindex is None):
-                                pkg.cmds[pkgcmd].keyvalindex = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.cmds[pkgcmd].snippet[:haskeyvals.start()])))
-                            pkg.cmds[pkgcmd].keyvals = pkg.cmds[pkgcmd].keyvals or []
-                            pkg.cmds[pkgcmd].keyvals.append(match[1])
+                            if (pkg.cmds[pkgcmd].keyvalpos is None):
+                                pkg.cmds[pkgcmd].keyvalpos = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.cmds[pkgcmd].snippet[:haskeyvals.start()])))
+                            pkg.cmds[pkgcmd].keyvalindex = pkg.cmds[pkgcmd].keyvalindex or []
+                            pkg.cmds[pkgcmd].keyvalindex.append(match[1])
         
         for pkgcmd in pkg.cmds:
-            if pkg.cmds[pkgcmd].keyvals is None:
+            if pkg.cmds[pkgcmd].keyvalindex is None:
                 continue
-            keyvalset = set(pkg.cmds[pkgcmd].keyvals)
+            keyvalset = set(pkg.cmds[pkgcmd].keyvalindex)
             found = False
             for idx, cand in enumerate(pkg.keyvals):
                 candset = set(cand)
                 if (keyvalset == candset):
                     found = True
-                    pkg.cmds[pkgcmd].keyvals = idx
+                    pkg.cmds[pkgcmd].keyvalindex = idx
                     break
             if not found:
-                pkg.keyvals.append(pkg.cmds[pkgcmd].keyvals)
-                pkg.cmds[pkgcmd].keyvals = len(pkg.keyvals) - 1
+                pkg.keyvals.append(pkg.cmds[pkgcmd].keyvalindex)
+                pkg.cmds[pkgcmd].keyvalindex = len(pkg.keyvals) - 1
         
         for pkgenv in pkg.envs:
-            if pkg.envs[pkgenv].keyvals is None:
+            if pkg.envs[pkgenv].keyvalindex is None:
                 continue
-            keyvalset = set(pkg.envs[pkgenv].keyvals)
+            keyvalset = set(pkg.envs[pkgenv].keyvalindex)
             found = False
             for idx, cand in enumerate(pkg.keyvals):
                 candset = set(cand)
                 if (keyvalset == candset):
                     found = True
-                    pkg.envs[pkgenv].keyvals = idx
+                    pkg.envs[pkgenv].keyvalindex = idx
                     break
             if not found:
-                pkg.keyvals.append(pkg.envs[pkgenv].keyvals)
-                pkg.envs[pkgenv].keyvals = len(pkg.keyvals) - 1
+                pkg.keyvals.append(pkg.envs[pkgenv].keyvalindex)
+                pkg.envs[pkgenv].keyvalindex = len(pkg.keyvals) - 1
 
         return pkg

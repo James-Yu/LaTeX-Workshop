@@ -1,13 +1,17 @@
 {
-  "includes": [
-    "fontspec",
-    "fontspec",
-    "fontspec",
-    "fontspec",
-    "bidi",
-    "fontspec",
-    "bidi"
-  ],
+  "includes": {
+    "fontspec": [
+      "bidi=default",
+      "bidi=basic",
+      "bidi=basic-r",
+      "bidi=bidi-l",
+      "bidi=bidi-r"
+    ],
+    "bidi": [
+      "bidi=bidi-l",
+      "bidi=bidi-r"
+    ]
+  },
   "cmds": {
     "selectlanguage{}": {
       "snippet": "selectlanguage{${1:language}}"
@@ -17,8 +21,8 @@
     },
     "foreignlanguage[]{}{}": {
       "snippet": "foreignlanguage[${3:options}]{${1:language}}{${2:text}}",
-      "keyvals": 0,
-      "keyvalindex": 0
+      "keyvalindex": 0,
+      "keyvalpos": 0
     },
     "babeltags{}": {
       "snippet": "babeltags{${1:tag1=lang1,tag2=lang2,...}}"
@@ -28,8 +32,8 @@
     },
     "babelensure[]{}": {
       "snippet": "babelensure[${2:options}]{${1:language}}",
-      "keyvals": 1,
-      "keyvalindex": 0
+      "keyvalindex": 1,
+      "keyvalpos": 0
     },
     "shorthandon{}": {
       "snippet": "shorthandon{${1:characters}}"
@@ -88,8 +92,8 @@
     },
     "babelprovide[]{}": {
       "snippet": "babelprovide[${2:options}]{${1:language}}",
-      "keyvals": 2,
-      "keyvalindex": 0
+      "keyvalindex": 2,
+      "keyvalpos": 0
     },
     "localenumeral{}{}": {
       "snippet": "localenumeral{${1:style}}{${2:number}}"
@@ -102,8 +106,8 @@
     },
     "localedate[]{}{}{}": {
       "snippet": "localedate[${4:options}]{${1:year}}{${2:month}}{${3:day}}",
-      "keyvals": 3,
-      "keyvalindex": 0
+      "keyvalindex": 3,
+      "keyvalpos": 0
     },
     "babelcalendar{}{}{}{}": {
       "snippet": "babelcalendar{${1:calendar}}{${2:year-macro}}{${3:month-macro}}{${4:day-macro}}"
@@ -156,16 +160,16 @@
     },
     "babelposthyphenation[]{}{}{}": {
       "snippet": "babelposthyphenation[${4:options}]{${1:hypenrules-name}}{${2:lua-pattern}}{${3:replacement}}",
-      "keyvals": 4,
-      "keyvalindex": 0
+      "keyvalindex": 4,
+      "keyvalpos": 0
     },
     "babelprehyphenation{}{}{}": {
       "snippet": "babelprehyphenation{${1:locale-name}}{${2:lua-pattern}}{${3:replacement}}"
     },
     "babelprehyphenation[]{}{}{}": {
       "snippet": "babelprehyphenation[${4:options}]{${1:locale-name}}{${2:lua-pattern}}{${3:replacement}}",
-      "keyvals": 4,
-      "keyvalindex": 0
+      "keyvalindex": 4,
+      "keyvalpos": 0
     },
     "ensureascii{}": {
       "snippet": "ensureascii{${1:text}}"
@@ -217,8 +221,8 @@
     },
     "babeladjust{}": {
       "snippet": "babeladjust{${1:keyvals}}",
-      "keyvals": 5,
-      "keyvalindex": 0
+      "keyvalindex": 5,
+      "keyvalpos": 0
     },
     "fmtname": {},
     "glqq": {},
@@ -1225,14 +1229,14 @@
     "frenchsetup{}": {
       "snippet": "frenchsetup{${1:options}}",
       "option": "acadian",
-      "keyvals": 6,
-      "keyvalindex": 0
+      "keyvalindex": 6,
+      "keyvalpos": 0
     },
     "frenchbsetup{}": {
       "snippet": "frenchbsetup{${1:options}}",
       "option": "acadian",
-      "keyvals": 6,
-      "keyvalindex": 0
+      "keyvalindex": 6,
+      "keyvalpos": 0
     },
     "AddThinSpaceBeforeFootnotes": {
       "option": "acadian"
@@ -4345,8 +4349,8 @@
     "otherlanguage*[]{}": {
       "name": "otherlanguage*",
       "snippet": "[${2:options}]{${1:language}}",
-      "keyvals": 0,
-      "keyvalindex": 0
+      "keyvalindex": 0,
+      "keyvalpos": 0
     },
     "hyphenrules{}": {
       "name": "hyphenrules",

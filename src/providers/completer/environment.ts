@@ -15,8 +15,9 @@ export type EnvType = {
     name: string, // Name of the environment, what comes inside \begin{...}
     snippet?: string, // To be inserted after \begin{..}
     option?: string,
-    keyvals?: string[] | number,
+    keyvals?: string[],
     keyvalindex?: number,
+    keyvalpos?: number,
     package?: string, // The package providing the environment
     detail?: string
 }
@@ -298,7 +299,7 @@ export class Environment implements IProvider {
             item.name,
             item.package || 'latex',
             item.keyvals && typeof(item.keyvals) !== 'number' ? item.keyvals : [],
-            item.keyvalindex === undefined ? -1 : item.keyvalindex,
+            item.keyvalpos === undefined ? -1 : item.keyvalpos,
             splitSignatureString(itemKey),
             vscode.CompletionItemKind.Module,
             item.option)

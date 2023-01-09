@@ -14,7 +14,7 @@ type PackageItemEntry = {
 
 export class Package implements IProvider {
     private readonly suggestions: vscode.CompletionItem[] = []
-    private readonly packageDeps: {[packageName: string]: string[]} = {}
+    private readonly packageDeps: {[packageName: string]: {[key: string]: string[]}} = {}
     private readonly packageOptions: {[packageName: string]: string[]} = {}
 
     initialize(defaultPackages: {[key: string]: PackageItemEntry}) {
@@ -39,7 +39,7 @@ export class Package implements IProvider {
         return this.suggestions
     }
 
-    setPackageDeps(packageName: string, deps: string[]) {
+    setPackageDeps(packageName: string, deps: {[key: string]: string[]}) {
         this.packageDeps[packageName] = deps
     }
 
@@ -51,8 +51,8 @@ export class Package implements IProvider {
         return this.packageOptions[packageName] || []
     }
 
-    private getPackageDeps(packageName: string): string[] {
-        return this.packageDeps[packageName] || []
+    private getPackageDeps(packageName: string): {[key: string]: string[]} {
+        return this.packageDeps[packageName] || {}
     }
 
     getPackagesIncluded(languageId: string): {[packageName: string]: string[]} {
@@ -77,8 +77,11 @@ export class Package implements IProvider {
 
         while (true) {
             let newPackageInserted = false
-            Object.keys(packages).forEach(packageName => this.getPackageDeps(packageName).forEach(dependName => {
-                if (packages[dependName] === undefined) {
+            Object.keys(packages).forEach(packageName => Object.keys(this.getPackageDeps(packageName)).forEach(dependName => {
+                const dependOptions = this.getPackageDeps(packageName)[dependName]
+                const hasOption = dependOptions.length === 0
+                    || packages[packageName].filter(option => dependOptions.includes(option)).length > 0
+                if (packages[dependName] === undefined && hasOption) {
                     packages[dependName] = []
                     newPackageInserted = true
                 }

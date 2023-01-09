@@ -28,16 +28,16 @@ export class CmdEnvSuggestion extends vscode.CompletionItem implements ICompleti
     label: string
     package: string
     keyvals: string[]
-    keyvalIndex: number
+    keyvalpos: number
     signature: CmdSignature
     option?: string
 
-    constructor(label: string, pkg: string, keyvals: string[], keyvalIndex: number, signature: CmdSignature, kind: vscode.CompletionItemKind, option?: string) {
+    constructor(label: string, pkg: string, keyvals: string[], keyvalpos: number, signature: CmdSignature, kind: vscode.CompletionItemKind, option?: string) {
         super(label, kind)
         this.label = label
         this.package = pkg
         this.keyvals = keyvals
-        this.keyvalIndex = keyvalIndex
+        this.keyvalpos = keyvalpos
         this.signature = signature
         this.option = option
     }

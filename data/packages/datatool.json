@@ -1,13 +1,15 @@
 {
-  "includes": [
-    "xkeyval",
-    "ifthen",
-    "xfor",
-    "substr",
-    "etoolbox",
-    "datatool-base",
-    "datatool-pgfmath"
-  ],
+  "includes": {
+    "xkeyval": [],
+    "ifthen": [],
+    "xfor": [],
+    "substr": [],
+    "etoolbox": [],
+    "datatool-base": [],
+    "datatool-pgfmath": [
+      "math=pgfmath"
+    ]
+  },
   "cmds": {
     "DTLnewdb{}": {
       "snippet": "DTLnewdb{${1:db}}"
@@ -47,8 +49,8 @@
     },
     "DTLloaddb[]{}{}": {
       "snippet": "DTLloaddb[${3:options}]{${1:db}}{${2:filename}}",
-      "keyvals": 0,
-      "keyvalindex": 0
+      "keyvalindex": 0,
+      "keyvalpos": 0
     },
     "ifDTLnewdbonload": {},
     "DTLnewdbonloadfalse": {},
@@ -84,8 +86,8 @@
     },
     "DTLdisplaylongdb[]{}": {
       "snippet": "DTLdisplaylongdb[${2:options}]{${1:db}}",
-      "keyvals": 1,
-      "keyvalindex": 0
+      "keyvalindex": 1,
+      "keyvalpos": 0
     },
     "dtlstringalign": {},
     "dtlintalign": {},

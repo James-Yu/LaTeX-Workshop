@@ -1,31 +1,35 @@
 {
-  "includes": [
-    "iftex",
-    "keyval",
-    "kvsetkeys",
-    "kvdefinekeys",
-    "pdfescape",
-    "hycolor",
-    "letltxmacro",
-    "auxhook",
-    "kvoptions",
-    "intcalc",
-    "url",
-    "bitset",
-    "bigintcalc",
-    "atbegshi",
-    "atveryend",
-    "rerunfilecheck",
-    "nameref",
-    "backref",
-    "backref",
-    "backref",
-    "backref",
-    "backref",
-    "backref",
-    "color",
-    "color"
-  ],
+  "includes": {
+    "iftex": [],
+    "keyval": [],
+    "kvsetkeys": [],
+    "kvdefinekeys": [],
+    "pdfescape": [],
+    "hycolor": [],
+    "letltxmacro": [],
+    "auxhook": [],
+    "kvoptions": [],
+    "intcalc": [],
+    "url": [],
+    "bitset": [],
+    "bigintcalc": [],
+    "atbegshi": [],
+    "atveryend": [],
+    "rerunfilecheck": [],
+    "nameref": [],
+    "backref": [
+      "backref",
+      "backref=section",
+      "backref=slide",
+      "backref=page",
+      "pagebackref",
+      "pagebackref=true"
+    ],
+    "color": [
+      "colorlinks",
+      "colorlinks=true"
+    ]
+  },
   "cmds": {
     "HyperDestRename{}{}": {
       "snippet": "HyperDestRename{${1:destination}}{${2:newname}}",
@@ -37,13 +41,13 @@
     },
     "hypersetup{}": {
       "snippet": "hypersetup{${1:keyvals}}",
-      "keyvals": 0,
-      "keyvalindex": 0
+      "keyvalindex": 0,
+      "keyvalpos": 0
     },
     "href[]{}{}": {
       "snippet": "href[${3:options}]{${1:URL}}{${2:text}}",
-      "keyvals": 1,
-      "keyvalindex": 0
+      "keyvalindex": 1,
+      "keyvalpos": 0
     },
     "href{}{}": {
       "snippet": "href{${1:URL}}{${2:text}}"
@@ -341,8 +345,8 @@
     "Form[]": {
       "name": "Form",
       "snippet": "[${1:options}]",
-      "keyvals": 2,
-      "keyvalindex": 0
+      "keyvalindex": 2,
+      "keyvalpos": 0
     }
   },
   "options": [],
