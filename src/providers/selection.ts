@@ -202,32 +202,26 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
                 itemNodes = itemNodes.filter((node) => node.name === 'item')
                 newInnerContent = this.findInnerContentIncludingPos(lupos, innerContent, itemNodes, innerContentLuRange)
                 if (newInnerContent) {
-                    if (newInnerContent.startSep?.location) {
-                        const start = LuPos.from(newInnerContent.startSep.location.start)
-                        innerContent = newInnerContent.content
-                        innerContentLuRange = newInnerContent.contentLuRange
-                        const newContentRange = toVscodeRange({start, end:innerContentLuRange.end})
-                        curSelectionRange = new vscode.SelectionRange(newContentRange, curSelectionRange)
-                    }
                     innerContent = newInnerContent.content
                     innerContentLuRange = newInnerContent.contentLuRange
-                    const newContentRange = toVscodeRange(innerContentLuRange)
+                    let newContentRange = toVscodeRange(innerContentLuRange)
+                    if (newInnerContent.startSep?.location) {
+                        const start = LuPos.from(newInnerContent.startSep.location.start)
+                        newContentRange = toVscodeRange({start, end:innerContentLuRange.end})
+                    }
                     curSelectionRange = new vscode.SelectionRange(newContentRange, curSelectionRange)
                 }
             }
             const linebreaksNodes = innerContent.filter(latexParser.isLinebreak)
             newInnerContent = this.findInnerContentIncludingPos(lupos, innerContent, linebreaksNodes, innerContentLuRange)
             if (newInnerContent) {
-                if (newInnerContent.endSep?.location) {
-                    const end = LuPos.from(newInnerContent.endSep.location.end)
-                    innerContent = newInnerContent.content
-                    innerContentLuRange = newInnerContent.contentLuRange
-                    const newContentRange = toVscodeRange({start: innerContentLuRange.start, end})
-                    curSelectionRange = new vscode.SelectionRange(newContentRange, curSelectionRange)
-                }
                 innerContent = newInnerContent.content
                 innerContentLuRange = newInnerContent.contentLuRange
-                const newContentRange = toVscodeRange(innerContentLuRange)
+                let newContentRange = toVscodeRange(innerContentLuRange)
+                if (newInnerContent.endSep?.location) {
+                    const end = LuPos.from(newInnerContent.endSep.location.end)
+                    newContentRange = toVscodeRange({start: innerContentLuRange.start, end})
+                }
                 curSelectionRange = new vscode.SelectionRange(newContentRange, curSelectionRange)
             }
             const alignmentTabNodes = innerContent.filter(latexParser.isAlignmentTab)

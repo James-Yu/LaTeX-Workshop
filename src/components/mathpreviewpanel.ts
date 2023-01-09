@@ -191,7 +191,6 @@ export class MathPreviewPanel {
         if (!texMath) {
             this.clearCache()
             return this.panel.webview.postMessage({type: 'mathImage', src: '' })
-            return
         }
         let cachedCommands: string | undefined
         if ( position.line === this.prevCursorPosition?.line && documentUri === this.prevDocumentUri ) {
