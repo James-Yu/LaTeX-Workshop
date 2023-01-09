@@ -102,14 +102,14 @@ suite('Intellisense test suite', () => {
             Object.keys(pkg.cmds).forEach(name => {
                 assertKeys(
                     Object.keys(pkg.cmds[name]),
-                    ['command', 'snippet', 'option', 'keyvals', 'keyvalpos', 'documentation', 'detail'],
+                    ['command', 'snippet', 'option', 'keyvalindex', 'keyvalpos', 'documentation', 'detail'],
                     file + ': ' + JSON.stringify(pkg.cmds[name])
                 )
             })
             Object.keys(pkg.envs).forEach(name => {
                 assertKeys(
                     Object.keys(pkg.envs[name]),
-                    ['name', 'snippet', 'detail', 'option', 'keyvals', 'keyvalpos'],
+                    ['name', 'snippet', 'detail', 'option', 'keyvalindex', 'keyvalpos'],
                     file + ': ' + JSON.stringify(pkg.envs[name])
                 )
             })
