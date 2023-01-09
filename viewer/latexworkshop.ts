@@ -417,17 +417,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
             // Since WebSockets are disconnected when PC resumes from sleep,
             // we have to reconnect. https://github.com/James-Yu/LaTeX-Workshop/pull/1812
-            const reconnect = (tries: number) => () => {
-                console.log(`Try to reconnect to LaTeX Workshop: (${tries}/10).`)
-                try {
-                    this.connectionPort = createConnectionPort(this)
-                    this.connectionPort.onDidOpen(() => {
-                        document.title = this.documentTitle
-                        this.setupConnectionPort()
-                        console.log('Reconnected: WebSocket to LaTeX Workshop.')
-                    })
-                }
-                catch {
+            const reconnect = (tries: number = 1) => () => {
+                const retry = () => {
                     if (tries <= 10) {
                         tries++
                         setTimeout(reconnect(tries), 1000 * (tries + 2))
@@ -435,8 +426,24 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                         console.log('Cannot reconnect to LaTeX Workshop.')
                     }
                 }
+                const onOpen = () => {
+                    document.title = this.documentTitle
+                    try {
+                        this.setupConnectionPort()
+                        console.log('Reconnected: WebSocket to LaTeX Workshop.')
+                    } catch {
+                        retry()
+                    }
+                }
+                console.log(`Try to reconnect to LaTeX Workshop: (${tries}/10).`)
+                try {
+                    this.connectionPort = createConnectionPort(this)
+                    this.connectionPort.onDidOpen(onOpen)
+                } catch {
+                    retry()
+                }
             }
-            setTimeout(reconnect(1), 3000)
+            setTimeout(reconnect(), 3000)
         })
     }
 
