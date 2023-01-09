@@ -1,5 +1,17 @@
 # Change Log
 
+## [9.4.0] - 2023-01-08
+
+### Added
+- Base `beamer` and `tikz` intellisense.
+- (#3612) Intelli-package dependency obeys package options.
+- (#3628) More concise log messages.
+
+### Fixed
+- Refresh pdf viewers of only changed pdfs.
+- Embedded viewer follows vscode light/dark theme, browser viewer follows OS theme.
+- (#3630) Reconnect multiple times to viewer after OS sleep and wake up.
+
 ## [9.3.0] - 2023-01-05
 
 ### Added
