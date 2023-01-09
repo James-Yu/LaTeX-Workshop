@@ -80,12 +80,8 @@ export class SyncTexJs {
         const synctexFile = path.resolve(dir, filename + '.synctex')
         const synctexFileGz = synctexFile + '.gz'
 
-        if (!fs.existsSync(synctexFile)) {
-            throw new SyncTexJsError(`${synctexFile} not found.`)
-        }
-
-        if (!fs.existsSync(synctexFileGz)) {
-            throw new SyncTexJsError(`${synctexFileGz} not found.`)
+        if (!fs.existsSync(synctexFile) && !fs.existsSync(synctexFileGz)) {
+            throw new SyncTexJsError(`${synctexFile}, ${synctexFileGz} not found.`)
         }
 
         try {
