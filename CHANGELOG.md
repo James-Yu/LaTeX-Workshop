@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.4.1] - 2023-01-08
+
+### Fixed
+- Allow for parentheses in pkg/doc options for intellisense.
+
 ## [9.4.0] - 2023-01-08
 
 ### Added
