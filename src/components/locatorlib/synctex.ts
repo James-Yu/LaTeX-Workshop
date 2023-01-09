@@ -80,14 +80,6 @@ export class SyncTexJs {
         const synctexFile = path.resolve(dir, filename + '.synctex')
         const synctexFileGz = synctexFile + '.gz'
 
-        if (!fs.existsSync(synctexFile)) {
-            throw new SyncTexJsError(`${synctexFile} not found.`)
-        }
-
-        if (!fs.existsSync(synctexFileGz)) {
-            throw new SyncTexJsError(`${synctexFileGz} not found.`)
-        }
-
         try {
             const s = fs.readFileSync(synctexFile, {encoding: 'binary'})
             return parseSyncTex(s)
@@ -102,6 +94,10 @@ export class SyncTexJs {
             return parseSyncTex(s)
         } catch (e: unknown) {
             logger.logError(`Failed parsing .synctex.gz ${synctexFileGz} .`, e)
+        }
+        
+        if (!fs.existsSync(synctexFile) && !fs.existsSync(synctexFileGz)) {
+            throw new SyncTexJsError(`${synctexFile}, ${synctexFileGz} not found.`)
         }
 
         throw new SyncTexJsError('SyncTeX failed.')
