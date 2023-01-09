@@ -95,7 +95,7 @@ export class SyncTexJs {
         } catch (e: unknown) {
             logger.logError(`Failed parsing .synctex.gz ${synctexFileGz} .`, e)
         }
-        
+
         if (!fs.existsSync(synctexFile) && !fs.existsSync(synctexFileGz)) {
             throw new SyncTexJsError(`${synctexFile}, ${synctexFileGz} not found.`)
         }

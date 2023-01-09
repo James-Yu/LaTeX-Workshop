@@ -1,5 +1,15 @@
 # Change Log
 
+## [9.4.3] - 2023-01-08
+
+### Fixed
+- (#3631) Fix error in SyncTeX with only `.synctex.gz` file.
+
+## [9.4.2] - 2023-01-08
+
+### Fixed
+- Environment optional argument intellisense works again.
+
 ## [9.4.2] - 2023-01-08
 
 ### Fixed
