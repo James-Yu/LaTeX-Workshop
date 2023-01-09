@@ -62,7 +62,7 @@ export class Argument implements IProvider {
 
     private providePackageOptions(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         const line = args.document.lineAt(args.position.line).text
-        const regex = /\\usepackage.*?{(.*?)}/
+        const regex = /\\usepackage.*{(.*?)}/
         const match = line.match(regex)
         if (!match) {
             return []
@@ -82,7 +82,7 @@ export class Argument implements IProvider {
 
     private provideClassOptions(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         const line = args.document.lineAt(args.position.line).text
-        const regex = /\\documentclass.*?{(.*?)}/
+        const regex = /\\documentclass.*{(.*?)}/
         const match = line.match(regex)
         if (!match) {
             return []

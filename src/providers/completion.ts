@@ -249,6 +249,9 @@ export class Completer implements vscode.CompletionItemProvider {
                 logger.log(`Error - trying to complete unknown type ${type}`)
                 return []
         }
+        if (type === 'argument') {
+            line = line.replaceAll(/{[^[\]{}]*}/g, '').replaceAll(/\[[^[\]{}]*\]/g, '')
+        }
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
