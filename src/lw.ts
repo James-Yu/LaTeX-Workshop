@@ -20,7 +20,6 @@ import { Server } from './components/server'
 import { SnippetView } from './components/snippetview'
 import { TeXMagician } from './components/texmagician'
 import { Viewer } from './components/viewer'
-import { BibtexFormatter } from './providers/bibtexformatter'
 import { CodeActions } from './providers/codeactions'
 import { AtSuggestionCompleter, Completer } from './providers/completion'
 import { GraphicsPreview } from './providers/preview/graphicspreview'
@@ -70,7 +69,6 @@ export const structureViewer = new StructureTreeView()
 export const snippetView = new SnippetView()
 export const graphicsPreview = new GraphicsPreview()
 export const mathPreview = new MathPreview()
-export const bibtexFormatter = new BibtexFormatter()
 export const mathPreviewPanel = new MathPreviewPanel()
 
 const logger = getLogger('Extension')

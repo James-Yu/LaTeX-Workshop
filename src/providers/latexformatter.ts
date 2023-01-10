@@ -56,10 +56,11 @@ export class LaTeXFormatter {
         LaTeXFormatter.formatterArgs = configuration.get('latexindent.args') as string[]
         logger.log('Start formatting with latexindent.')
         try {
-            if (pathMeta !== LaTeXFormatter.formatter) {
+            if (LaTeXFormatter.formatter === '') {
                 LaTeXFormatter.formatter = pathMeta
                 const latexindentPresent = await LaTeXFormatter.checkPath()
                 if (!latexindentPresent) {
+                    LaTeXFormatter.formatter = ''
                     logger.log(`Can not find latexindent in PATH: ${LaTeXFormatter.formatter}`)
                     logger.log(`PATH: ${process.env.PATH}`)
                     void logger.showErrorMessage('Can not find latexindent in PATH.')
@@ -217,6 +218,10 @@ export class LaTeXFormatter {
 }
 
 export class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
+    constructor() {
+        LaTeXFormatter.initialize()
+    }
+
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
         return LaTeXFormatter.formatDocument(document)
     }
