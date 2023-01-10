@@ -57,7 +57,8 @@ export class Viewer {
             logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfFile}`, 'warning')
             return
         }
-        const url = `http://127.0.0.1:${lw.server.port}/viewer.html?file=${PdfFilePathEncoder.encodePathWithPrefix(pdfFile)}`
+        const baseUri = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.port}`, true))
+        const url = `${baseUri}/viewer.html?file=${PdfFilePathEncoder.encodePathWithPrefix(pdfFile)}`
         return url
     }
 
