@@ -67,8 +67,7 @@ export class LaTeXFormatter {
                 const latexindentPresent = await LaTeXFormatter.checkPath()
                 if (!latexindentPresent) {
                     LaTeXFormatter.formatter = ''
-                    logger.log(`Can not find latexindent in PATH: ${LaTeXFormatter.formatter}`)
-                    logger.log(`PATH: ${process.env.PATH}`)
+                    logger.log(`Can not find ${LaTeXFormatter.formatter} in PATH: ${process.env.PATH}`)
                     void logger.showErrorMessage('Can not find latexindent in PATH.')
                     return []
                 }
@@ -110,41 +109,33 @@ export class LaTeXFormatter {
         const checker = LaTeXFormatter.currentOs.checker
         const fileExt = LaTeXFormatter.currentOs.fileExt
 
-        return new Promise((resolve, _reject) => {
-            logger.log(`Checking latexindent: ${checker} ${LaTeXFormatter.formatter}`)
-            const check1 = cs.spawn(checker, [LaTeXFormatter.formatter])
-            let stdout1: string = ''
-            let stderr1: string = ''
-            check1.stdout.setEncoding('utf8')
-            check1.stderr.setEncoding('utf8')
-            check1.stdout.on('data', d => { stdout1 += d})
-            check1.stderr.on('data', d => { stderr1 += d})
-            check1.on('close', code1 => {
-                if (code1) {
-                    logger.log(`Error when checking latexindent: ${stderr1}`)
+        const checkFormatter = (resolve: (value: boolean) => void, isFirstTry: boolean = true) => {
+            const check = cs.spawn(checker, [LaTeXFormatter.formatter])
+            let stdout: string = ''
+            let stderr: string = ''
+            check.stdout.setEncoding('utf8')
+            check.stderr.setEncoding('utf8')
+            check.stdout.on('data', d => { stdout += d})
+            check.stderr.on('data', d => { stderr += d})
+            check.on('close', code => {
+                if (code && isFirstTry) {
+                    logger.log(`Error when checking latexindent: ${stderr}`)
                     LaTeXFormatter.formatter += fileExt
                     logger.log(`Checking latexindent: ${checker} ${LaTeXFormatter.formatter}`)
-                    const check2 = cs.spawn(checker, [LaTeXFormatter.formatter])
-                    let stdout2: string = ''
-                    let stderr2: string = ''
-                    check2.stdout.setEncoding('utf8')
-                    check2.stderr.setEncoding('utf8')
-                    check2.stdout.on('data', d => { stdout2 += d})
-                    check2.stderr.on('data', d => { stderr2 += d})
-                    check2.on('close', code2 => {
-                        if (code2) {
-                            resolve(false)
-                            logger.log(`Error when checking latexindent: ${stderr2}`)
-                        } else {
-                            logger.log(`Checking latexindent is ok: ${stdout2}`)
-                            resolve(true)
-                        }
-                    })
+                    checkFormatter(resolve, false)
+                } else if (code) {
+                    logger.log(`Error when checking latexindent: ${stderr}`)
+                    resolve(false)
                 } else {
-                    logger.log(`Checking latexindent is ok: ${stdout1}`)
+                    logger.log(`Checking latexindent is ok: ${stdout}`)
                     resolve(true)
                 }
             })
+        }
+
+        return new Promise((resolve, _) => {
+            logger.log(`Checking latexindent: ${checker} ${LaTeXFormatter.formatter}`)
+            checkFormatter(resolve)
         })
     }
 
@@ -180,7 +171,7 @@ export class LaTeXFormatter {
             }
 
             // generate command line arguments
-            const rootFile = lw.manager.rootFile ? lw.manager.rootFile : document.fileName
+            const rootFile = lw.manager.rootFile || document.fileName
             const args = LaTeXFormatter.formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(arg)
                 // latexformatter.ts specific tokens
                 .replace(/%TMPFILE%/g, useDocker ? path.basename(temporaryFile) : temporaryFile.split(path.sep).join('/'))
@@ -211,7 +202,7 @@ export class LaTeXFormatter {
                 }
                 const stdout = stdoutBuffer.join('')
                 if (stdout !== '') {
-                    const edit = [vscode.TextEdit.replace(range ? range : fullRange(document), stdout)]
+                    const edit = [vscode.TextEdit.replace(range || fullRange(document), stdout)]
                     logger.log('Formatted ' + document.fileName)
                     return resolve(edit)
                 }
