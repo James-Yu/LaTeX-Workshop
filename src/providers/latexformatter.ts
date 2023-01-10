@@ -44,6 +44,12 @@ export class LaTeXFormatter {
         } else {
             logger.log('LaTexFormatter: Unsupported OS')
         }
+
+        lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+            if (e.affectsConfiguration('latex-workshop.latexindent.path')) {
+                LaTeXFormatter.formatter = ''
+            }
+        }))
     }
 
     static async formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
@@ -181,8 +187,7 @@ export class LaTeXFormatter {
                 .replace(/%INDENT%/g, indent)
             })
 
-            logger.logCommand('Format with command', LaTeXFormatter.formatter, LaTeXFormatter.formatterArgs)
-            logger.log(`Format args: ${JSON.stringify(args)}`)
+            logger.logCommand('Formatting LaTeX.', LaTeXFormatter.formatter, args)
             const worker = cs.spawn(LaTeXFormatter.formatter, args, { stdio: 'pipe', cwd: documentDirectory })
             // handle stdout/stderr
             const stdoutBuffer: string[] = []
