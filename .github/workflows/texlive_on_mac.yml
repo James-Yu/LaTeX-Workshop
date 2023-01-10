@@ -1,6 +1,6 @@
 name: TeX Live on macOS
 env:
-  cache-version: v11
+  cache-version: v12
 on: [push]
 
 permissions:
@@ -38,17 +38,22 @@ jobs:
       run: |
         tlmgr install collection-latex
         tlmgr install import subfiles latexmk makeindex
-        tlmgr install chktex lacheck
+        tlmgr install chktex lacheck latexindent
+      if: steps.cache-texlive.outputs.cache-hit != 'true'
+    - name: Download latexindent binary
+      run: |
+        curl -s -O -L http://mirrors.ctan.org/support/latexindent/bin/macos/latexindent
+        [ -d /Users/runner/texlive/bin/x86_64-darwin/ ] && mv latexindent /Users/runner/texlive/bin/x86_64-darwin/latexindent-binary && chmod +x /Users/runner/texlive/bin/x86_64-darwin/latexindent-binary || [ -d /Users/runner/texlive/bin/universal-darwin/ ] && mv latexindent /Users/runner/texlive/bin/universal-darwin/latexindent-binary && chmod +x /Users/runner/texlive/bin/universal-darwin/latexindent-binary
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - uses: actions/setup-node@v3
       with:
         node-version: '16'
-    - run: latex -v
     - run: |
-        which perl
         perl -v
-    - run: perl -MCwd -e 'print $Cwd::VERSION."\n";'
-    - run: latexmk -v
+        perl -MCwd -e 'print $Cwd::VERSION."\n";'
+    - run: |
+        latex -v
+        latexmk -v
     - run: |
         npm ci
         npm run compile
