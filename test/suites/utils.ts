@@ -8,18 +8,13 @@ import * as lw from '../../src/lw'
 import { BuildDone, FileParsed, FileWatched, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
 import type { EventName } from '../../src/components/eventbus'
 
-type RunTestOption = {
-    suiteName: string,
-    fixtureName: string,
-    testName: string,
-    timeout?: number,
-    only?: boolean,
-    platforms?: NodeJS.Platform[]
-}
-
 let testCounter = 0
 
-export function runTest(option: RunTestOption, cb: () => unknown) {
+export function runTestOnly(suiteName: string, fixtureName: string, testName: string, cb: () => unknown, platforms?: NodeJS.Platform[], timeout?: number) {
+    return runTest(suiteName, fixtureName, testName, cb, platforms, timeout, true)
+}
+
+export function runTest(suiteName: string, fixtureName: string, testName: string, cb: () => unknown, platforms?: NodeJS.Platform[], timeout?: number, only?: boolean) {
     let fixture: string | undefined
     if (vscode.workspace.workspaceFile) {
         fixture = path.dirname(vscode.workspace.workspaceFile.fsPath)
@@ -30,28 +25,28 @@ export function runTest(option: RunTestOption, cb: () => unknown) {
     if (fixture === undefined) {
         return
     }
-    if (path.basename(fixture) !== option.fixtureName) {
+    if (path.basename(fixture) !== fixtureName) {
         return
     }
-    if (process.env['LATEXWORKSHOP_SUITE'] && !process.env['LATEXWORKSHOP_SUITE'].split(',').includes(option.suiteName)) {
+    if (process.env['LATEXWORKSHOP_SUITE'] && !process.env['LATEXWORKSHOP_SUITE'].split(',').includes(suiteName)) {
         return
     }
-    if (option.platforms && !option.platforms.includes(os.platform())) {
+    if (platforms && !platforms.includes(os.platform())) {
         return
     }
 
     testCounter++
-    const testFunction = (process.env['LATEXWORKSHOP_CLI'] || !option.only) ? test : test.only
+    const testFunction = (process.env['LATEXWORKSHOP_CLI'] || !only) ? test : test.only
     const counterString = testCounter.toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping: false})
 
-    testFunction(`[${counterString}] ${option.suiteName}: ${option.testName}`, async () => {
+    testFunction(`[${counterString}] ${suiteName}: ${testName}`, async () => {
         try {
             await cb()
         } catch (error) {
             await log(counterString)
             throw error
         }
-    }).timeout(option.timeout || 15000)
+    }).timeout(timeout || 15000)
 }
 
 export function sleep(ms: number) {
@@ -76,14 +71,9 @@ async function log(counter: string) {
     fs.writeFileSync(path.resolve(logFolder, `${counter}.compiler.log`), compilerMessage || '')
 }
 
-type WriteTestOption = {
-    fixture: string,
-    fileName: string
-}
-
-export function writeTestFile(option: WriteTestOption, ...contents: string[]) {
-    fs.mkdirSync(path.resolve(option.fixture, path.dirname(option.fileName)), {recursive: true})
-    fs.writeFileSync(path.resolve(option.fixture, option.fileName), contents.join('\n'))
+export function writeTestFile(fixture: string, fileName: string, ...contents: string[]) {
+    fs.mkdirSync(path.resolve(fixture, path.dirname(fileName)), {recursive: true})
+    fs.writeFileSync(path.resolve(fixture, fileName), contents.join('\n'))
 }
 
 export async function loadTestFile(fixture: string, files: {src: string, dst: string}[]) {
@@ -115,38 +105,31 @@ export async function openActive(fixture: string, fileName: string, skipSleep: b
     return {root, doc}
 }
 
-type AssertBuildOption = {
-    fixture: string,
-    texName: string,
-    pdfName: string,
-    build?: () => unknown
-}
-
-export async function assertBuild(option: AssertBuildOption) {
-    await openActive(option.fixture, option.texName, true)
-    if (option.build) {
-        await option.build()
+export async function assertBuild(fixture: string, texName: string, pdfName: string, build?: () => unknown) {
+    await openActive(fixture, texName, true)
+    if (build) {
+        await build()
     } else {
         await lw.commander.build()
     }
 
-    const files = glob.sync('**/**.pdf', { cwd: option.fixture })
-    const pdfPath = path.join(option.fixture, option.pdfName)
-    assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), option.pdfName === '' ? option.pdfName : pdfPath)
+    const files = glob.sync('**/**.pdf', { cwd: fixture })
+    const pdfPath = path.join(fixture, pdfName)
+    assert.strictEqual(files.map(file => path.resolve(fixture, file)).join(','), pdfName === '' ? pdfName : pdfPath)
 }
 
-export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFirstBuild' | 'noAutoBuild' | 'onSave')[]) {
+export async function assertAutoBuild(fixture: string, texName: string, pdfName: string, mode?: ('skipFirstBuild' | 'noAutoBuild' | 'onSave')[], build?: () => unknown) {
     if (!mode?.includes('skipFirstBuild')) {
-        await assertBuild(option)
+        await assertBuild(fixture, texName, pdfName, build)
     }
-    fs.rmSync(path.resolve(option.fixture, option.pdfName))
+    fs.rmSync(path.resolve(fixture, pdfName))
 
-    let files = glob.sync('**/**.pdf', { cwd: option.fixture })
-    assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), '')
+    let files = glob.sync('**/**.pdf', { cwd: fixture })
+    assert.strictEqual(files.map(file => path.resolve(fixture, file)).join(','), '')
     await sleep(250)
 
-    let wait = waitFileWatched(path.resolve(option.fixture, option.texName))
-    if (!mode?.includes('noAutoBuild') && option.texName.endsWith('.tex') && !lw.cacher.watched(path.resolve(option.fixture, option.texName))) {
+    let wait = waitEvent(FileWatched, path.resolve(fixture, texName))
+    if (!mode?.includes('noAutoBuild') && texName.endsWith('.tex') && !lw.cacher.watched(path.resolve(fixture, texName))) {
         await wait
     }
 
@@ -154,21 +137,21 @@ export async function assertAutoBuild(option: AssertBuildOption, mode?: ('skipFi
     if (mode?.includes('onSave')) {
         await vscode.commands.executeCommand('workbench.action.files.save')
     } else {
-        fs.appendFileSync(path.resolve(option.fixture, option.texName), ' % edit')
+        fs.appendFileSync(path.resolve(fixture, texName), ' % edit')
     }
 
     if (mode?.includes('noAutoBuild')) {
         await sleep(3000)
-        files = glob.sync('**/**.pdf', { cwd: option.fixture })
-        assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), '')
+        files = glob.sync('**/**.pdf', { cwd: fixture })
+        assert.strictEqual(files.map(file => path.resolve(fixture, file)).join(','), '')
     } else {
         await wait
-        files = glob.sync('**/**.pdf', { cwd: option.fixture })
-        assert.strictEqual(files.map(file => path.resolve(option.fixture, file)).join(','), path.resolve(option.fixture, option.pdfName))
+        files = glob.sync('**/**.pdf', { cwd: fixture })
+        assert.strictEqual(files.map(file => path.resolve(fixture, file)).join(','), path.resolve(fixture, pdfName))
     }
 }
 
-async function waitEvent(event: EventName, arg?: any) {
+export async function waitEvent(event: EventName, arg?: any) {
     return new Promise<void>((resolve, _) => {
         const disposable = lw.eventBus.on(event, (eventArg) => {
             if (arg && arg !== eventArg) {
@@ -184,55 +167,27 @@ export async function waitBuild() {
     return waitEvent(BuildDone)
 }
 
-export async function waitFileWatched(filePath: string) {
-    return waitEvent(FileWatched, filePath)
-}
-
-type AssertRootOption = {
-    fixture: string,
-    openName: string,
-    rootName: string
-}
-
-export async function assertRoot(option: AssertRootOption) {
+export async function assertRoot(fixture: string, openName: string, rootName: string) {
     await vscode.commands.executeCommand('latex-workshop.activate')
-    const result = await openActive(option.fixture, option.openName)
-    assert.strictEqual(result.root, path.join(option.fixture, option.rootName))
+    const result = await openActive(fixture, openName)
+    assert.strictEqual(result.root, path.join(fixture, rootName))
 }
 
-type AssertViewerOption = {
-    fixture: string,
-    pdfName: string,
-    action?: () => unknown
-}
-
-export async function assertViewer(option: AssertViewerOption) {
+export async function assertViewer(fixture: string, pdfName: string, action?: () => unknown) {
     await sleep(250)
-    const wait = waitViewer()
+    const wait = Promise.all([
+        waitEvent(ViewerPageLoaded),
+        waitEvent(ViewerStatusChanged)
+    ])
     void vscode.commands.executeCommand('latex-workshop.view')
-    if (option.action) {
-        await option.action()
+    if (action) {
+        await action()
     }
     await wait
-    const status = getViewerStatus(path.resolve(option.fixture, option.pdfName))
-    assert.strictEqual(status.pdfFileUri, vscode.Uri.file(path.resolve(option.fixture, option.pdfName)).toString(true))
-}
-
-async function waitViewer() {
-    return Promise.all([
-        waitEvent(ViewerPageLoaded),
-        waitViewerChange()
-    ])
-}
-
-async function waitViewerChange() {
-    return waitEvent(ViewerStatusChanged)
-}
-
-function getViewerStatus(pdfFilePath: string) {
+    const pdfFilePath = path.resolve(fixture, pdfName)
     const status = lw.viewer.getViewerState(vscode.Uri.file(pdfFilePath))[0]
     assert.ok(status)
-    return status
+    assert.strictEqual(status.pdfFileUri, vscode.Uri.file(path.resolve(fixture, pdfName)).toString(true))
 }
 
 export async function waitFileParsed(fileName: string) {

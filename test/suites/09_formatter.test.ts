@@ -33,13 +33,14 @@ suite('Formatter test suite', () => {
         }
     })
 
-    runTest({suiteName, fixtureName, testName: 'test latex formatter with dummy'}, async () => {
+    runTest(suiteName, fixtureName, 'test latex formatter with dummy', async () => {
         await loadTestFile(fixture, [
             {src: 'formatter/latex_base.tex', dst: 'main.tex'}
         ])
         await openActive(fixture, 'main.tex')
         const original = vscode.window.activeTextEditor?.document.getText()
         await vscode.commands.executeCommand('editor.action.formatDocument')
+        await sleep(1000)
         const formatted = vscode.window.activeTextEditor?.document.getText()
         assert.notStrictEqual(original, formatted)
     })

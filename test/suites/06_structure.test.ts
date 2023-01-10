@@ -46,7 +46,7 @@ suite('Document structure test suite', () => {
         }
     })
 
-    runTest({suiteName, fixtureName, testName: 'test structure'}, async () => {
+    runTest(suiteName, fixtureName, 'test structure', async () => {
         await loadTestFiles(fixture)
         await openActive(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
@@ -71,7 +71,7 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[5].children[5].label, 'Frame 3')
     })
 
-    runTest({suiteName, fixtureName, testName: 'test structure with nested floats'}, async () => {
+    runTest(suiteName, fixtureName, 'test structure with nested floats', async () => {
         await loadTestFile(fixture, [{src: 'structure_nested.tex', dst: 'main.tex'}])
         await openActive(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
@@ -83,7 +83,7 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[0].children[0].children.length, 1)
     })
 
-    runTest({suiteName, fixtureName, testName: 'test view.outline.numbers.enabled'}, async () => {
+    runTest(suiteName, fixtureName, 'test view.outline.numbers.enabled', async () => {
         await loadTestFiles(fixture)
         await openActive(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
@@ -94,7 +94,7 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[1].children[0].label, '2.0.1')
     })
 
-    runTest({suiteName, fixtureName, testName: 'test view.outline.sections'}, async () => {
+    runTest(suiteName, fixtureName, 'test view.outline.sections', async () => {
         await loadTestFiles(fixture)
         await openActive(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
@@ -106,7 +106,7 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[0].children[1].label, '1.1 1.1?')
     })
 
-    runTest({suiteName, fixtureName, testName: 'test view.outline.floats.enabled'}, async () => {
+    runTest(suiteName, fixtureName, 'test view.outline.floats.enabled', async () => {
         await loadTestFiles(fixture)
         await openActive(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
@@ -120,7 +120,7 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[5].children[2].label, 'Frame 3')
     })
 
-    runTest({suiteName, fixtureName, testName: 'test view.outline.floats.number.enabled'}, async () => {
+    runTest(suiteName, fixtureName, 'test view.outline.floats.number.enabled', async () => {
         await loadTestFiles(fixture)
         await openActive(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
@@ -137,7 +137,7 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[5].children[5].label, 'Frame')
     })
 
-    runTest({suiteName, fixtureName, testName: 'test view.outline.floats.caption.enabled'}, async () => {
+    runTest(suiteName, fixtureName, 'test view.outline.floats.caption.enabled', async () => {
         await loadTestFiles(fixture)
         await openActive(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
@@ -154,7 +154,7 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[5].children[5].label, 'Frame 3')
     })
 
-    runTest({suiteName, fixtureName, testName: 'test view.outline.fastparse.enabled'}, async () => {
+    runTest(suiteName, fixtureName, 'test view.outline.fastparse.enabled', async () => {
         await loadTestFiles(fixture)
         await openActive(fixture, 'main.tex')
         const structure = new SectionNodeProvider()

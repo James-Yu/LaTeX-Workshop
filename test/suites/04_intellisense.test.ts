@@ -50,7 +50,7 @@ suite('Intellisense test suite', () => {
         }
     })
 
-    runTest({suiteName, fixtureName, testName: 'check default environment .json completion file'}, () => {
+    runTest(suiteName, fixtureName, 'check default environment .json completion file', () => {
         const file = `${lw.extensionRoot}/data/environments.json`
         const envs = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: EnvType}
         assert.ok(Object.keys(envs).length > 0)
@@ -63,7 +63,7 @@ suite('Intellisense test suite', () => {
         })
     })
 
-    runTest({suiteName, fixtureName, testName: 'check default commands .json completion file'}, () => {
+    runTest(suiteName, fixtureName, 'check default commands .json completion file', () => {
         const file = `${lw.extensionRoot}/data/commands.json`
         const cmds = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: CmdType}
         assert.ok(Object.keys(cmds).length > 0)
@@ -76,7 +76,7 @@ suite('Intellisense test suite', () => {
         })
     })
 
-    runTest({suiteName, fixtureName, testName: 'test default envs'}, () => {
+    runTest(suiteName, fixtureName, 'test default envs', () => {
         let defaultEnvs = lw.completer.environment.getDefaultEnvs(EnvSnippetType.AsCommand).map(e => e.label)
         assert.ok(defaultEnvs.includes('document'))
         assert.ok(defaultEnvs.includes('align'))
@@ -88,14 +88,14 @@ suite('Intellisense test suite', () => {
         assert.ok(defaultEnvs.includes('align'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'test default cmds'}, () => {
+    runTest(suiteName, fixtureName, 'test default cmds', () => {
         const defaultCommands = lw.completer.command.getDefaultCmds().map(e => e.label)
         assert.ok(defaultCommands.includes('\\begin'))
         assert.ok(defaultCommands.includes('\\left('))
         assert.ok(defaultCommands.includes('\\section{}'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'check package .json completion file'}, () => {
+    runTest(suiteName, fixtureName, 'check package .json completion file', () => {
         const files = glob.sync('data/packages/*.json', {cwd: lw.extensionRoot})
         files.forEach(file => {
             const pkg = JSON.parse(fs.readFileSync(path.join(lw.extensionRoot, file), {encoding: 'utf8'})) as PkgType
@@ -116,11 +116,11 @@ suite('Intellisense test suite', () => {
         })
     })
 
-    runTest({suiteName, fixtureName, testName: 'test isTriggerSuggestNeeded'}, () => {
+    runTest(suiteName, fixtureName, 'test isTriggerSuggestNeeded', () => {
         assert.ok(!isTriggerSuggestNeeded('frac'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'command intellisense'}, async () => {
+    runTest(suiteName, fixtureName, 'command intellisense', async () => {
         await loadTestFile(fixture, [
             {src: 'intellisense_base.tex', dst: 'main.tex'},
             {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
@@ -131,7 +131,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items.length > 0)
     })
 
-    runTest({suiteName, fixtureName, testName: 'command intellisense with usepackage'}, async () => {
+    runTest(suiteName, fixtureName, 'command intellisense with usepackage', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_on_cmd_1.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
         await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
@@ -155,7 +155,7 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('\\lstinline'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'command intellisense with usepackage and option'}, async () => {
+    runTest(suiteName, fixtureName, 'command intellisense with usepackage and option', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_option_on_cmd.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
         await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
@@ -179,7 +179,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!labels.includes('\\lstformatfiles'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'command intellisense with config `intellisense.argumentHint.enabled`'}, async () => {
+    runTest(suiteName, fixtureName, 'command intellisense with config `intellisense.argumentHint.enabled`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', true)
         await loadTestFile(fixture, [
             {src: 'intellisense_base.tex', dst: 'main.tex'},
@@ -212,7 +212,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!snippet.value.includes('${1:'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'command intellisense with config `intellisense.commandsJSON.replace`'}, async () => {
+    runTest(suiteName, fixtureName, 'command intellisense with config `intellisense.commandsJSON.replace`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.commandsJSON.replace', {'mathbb{}': ''})
         await loadTestFile(fixture, [
             {src: 'intellisense_base.tex', dst: 'main.tex'},
@@ -235,7 +235,7 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('\\mathbb{}'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'reference intellisense and config intellisense.label.keyval'}, async () => {
+    runTest(suiteName, fixtureName, 'reference intellisense and config intellisense.label.keyval', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', true)
         await loadTestFile(fixture, [
             {src: 'intellisense_base.tex', dst: 'main.tex'},
@@ -261,7 +261,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!labels.includes('eq1'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'environment intellisense'}, async () => {
+    runTest(suiteName, fixtureName, 'environment intellisense', async () => {
         await loadTestFile(fixture, [
             {src: 'intellisense_base.tex', dst: 'main.tex'},
             {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
@@ -272,7 +272,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items.length > 0)
     })
 
-    runTest({suiteName, fixtureName, testName: 'environment intellisense with usepackage'}, async () => {
+    runTest(suiteName, fixtureName, 'environment intellisense with usepackage', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_on_env_1.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
         await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
@@ -296,7 +296,7 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('algorithm'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'environment intellisense with usepackage and option'}, async () => {
+    runTest(suiteName, fixtureName, 'environment intellisense with usepackage and option', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
         await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
@@ -320,7 +320,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!labels.includes('algorithm2e'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'environment as command intellisense with usepackage and option'}, async () => {
+    runTest(suiteName, fixtureName, 'environment as command intellisense with usepackage and option', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
         await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
@@ -344,7 +344,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!labels.includes('algorithm2e'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'argument intellisense'}, async () => {
+    runTest(suiteName, fixtureName, 'argument intellisense', async () => {
         await loadTestFile(fixture, [
             {src: 'intellisense_base.tex', dst: 'main.tex'},
             {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
@@ -375,7 +375,7 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('showlines'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'package and documentclass intellisense'}, async () => {
+    runTest(suiteName, fixtureName, 'package and documentclass intellisense', async () => {
         await loadTestFile(fixture, [
             {src: 'intellisense_base.tex', dst: 'main.tex'},
             {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
@@ -396,7 +396,7 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('IEEEtran'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'input/include/import/subimport intellisense'}, async () => {
+    runTest(suiteName, fixtureName, 'input/include/import/subimport intellisense', async () => {
         await loadTestFile(fixture, [
             {src: 'intellisense_base.tex', dst: 'main.tex'},
             {src: 'intellisense_sub.tex', dst: 'sub/s.tex'},
@@ -439,9 +439,9 @@ suite('Intellisense test suite', () => {
         assert.ok(!labels.includes('sub/'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'citation intellisense and configs intellisense.citation.*'}, async () => {
+    runTest(suiteName, fixtureName, 'citation intellisense and configs intellisense.citation.*', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
-        writeTestFile({fixture, fileName: 'main.tex'}, '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{main}', '\\end{document}')
+        writeTestFile(fixture, 'main.tex', '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{main}', '\\end{document}')
         await loadTestFile(fixture, [{src: 'base.bib', dst: 'main.bib'}])
         const result = await openActive(fixture, 'main.tex')
         const wait = waitFileParsed(path.resolve(fixture, 'main.bib'))
@@ -477,7 +477,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items[0].filterText.includes('hintFake'))
     })
 
-    runTest({suiteName, fixtureName, testName: 'glossary intellisense'}, async () => {
+    runTest(suiteName, fixtureName, 'glossary intellisense', async () => {
         await loadTestFile(fixture, [
             {src: 'intellisense_glossary.tex', dst: 'main.tex'},
             {src: 'intellisense_glossaryentries.tex', dst: 'sub/glossary.tex'}
@@ -497,7 +497,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items.find(item => item.label === 'abbr_x' && item.detail === 'A first abbreviation'))
     })
 
-    runTest({suiteName, fixtureName, testName: '@-snippet intellisense and configs intellisense.atSuggestion*'}, async () => {
+    runTest(suiteName, fixtureName, '@-snippet intellisense and configs intellisense.atSuggestion*', async () => {
         const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', replaces)
         await loadTestFile(fixture, [

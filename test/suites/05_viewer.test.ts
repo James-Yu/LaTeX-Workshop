@@ -2,7 +2,8 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
-import { sleep, assertBuild, assertViewer, runTest, waitBuild, loadTestFile } from './utils'
+import { sleep, assertBuild, assertViewer, runTest, loadTestFile, waitEvent } from './utils'
+import { BuildDone } from '../../src/components/eventbus'
 
 suite('PDF viewer test suite', () => {
 
@@ -35,80 +36,80 @@ suite('PDF viewer test suite', () => {
         }
     })
 
-    runTest({suiteName, fixtureName, testName: 'basic build and view'}, async () => {
+    runTest(suiteName, fixtureName, 'basic build and view', async () => {
         await loadTestFile(fixture, [{src: 'base.tex', dst: 'main.tex'}])
-        await assertBuild({fixture, texName: 'main.tex', pdfName: 'main.pdf'})
-        await assertViewer({fixture, pdfName: 'main.pdf'})
+        await assertBuild(fixture, 'main.tex', 'main.pdf')
+        await assertViewer(fixture, 'main.pdf')
     })
 
-    runTest({suiteName, fixtureName, testName: 'build main.tex and view it'}, async () => {
+    runTest(suiteName, fixtureName, 'build main.tex and view it', async () => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', false)
         await loadTestFile(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ])
-        await assertBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf'})
-        await assertViewer({fixture, pdfName: 'main.pdf'})
+        await assertBuild(fixture, 'sub/s.tex', 'main.pdf')
+        await assertViewer(fixture, 'main.pdf')
     })
 
-    runTest({suiteName, fixtureName, testName: 'build a subfile and view it'}, async () => {
+    runTest(suiteName, fixtureName, 'build a subfile and view it', async () => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', true)
         await loadTestFile(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ])
-        await assertBuild({fixture, texName: 'sub/s.tex', pdfName: 'sub/s.pdf'})
-        await assertViewer({fixture, pdfName: 'sub/s.pdf'})
+        await assertBuild(fixture, 'sub/s.tex', 'sub/s.pdf')
+        await assertViewer(fixture, 'sub/s.pdf')
     })
 
-    runTest({suiteName, fixtureName, testName: 'build main.tex with QuickPick and view it'}, async () => {
+    runTest(suiteName, fixtureName, 'build main.tex with QuickPick and view it', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
         await loadTestFile(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ])
-        await assertBuild({fixture, texName: 'sub/s.tex', pdfName: 'main.pdf', build: async () => {
-            const wait = waitBuild()
+        await assertBuild(fixture, 'sub/s.tex', 'main.pdf', async () => {
+            const wait = waitEvent(BuildDone)
             void vscode.commands.executeCommand('latex-workshop.build')
             await sleep(1000)
             await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
             await wait
-        }})
-        await assertViewer({fixture, pdfName: 'main.pdf', action: async () => {
+        })
+        await assertViewer(fixture, 'main.pdf', async () => {
             await sleep(1000)
             await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
-        }})
+        })
     })
 
-    runTest({suiteName, fixtureName, testName: 'build s.tex with QuickPick and view it'}, async () => {
+    runTest(suiteName, fixtureName, 'build s.tex with QuickPick and view it', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
         await loadTestFile(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ])
-        await assertBuild({fixture, texName: 'sub/s.tex', pdfName: 'sub/s.pdf', build: async () => {
-            const wait = waitBuild()
+        await assertBuild(fixture, 'sub/s.tex', 'sub/s.pdf', async () => {
+            const wait = waitEvent(BuildDone)
             void vscode.commands.executeCommand('latex-workshop.build')
             await sleep(1000)
             await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
             await sleep(500)
             await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
             await wait
-        }})
-        await assertViewer({fixture, pdfName: 'sub/s.pdf', action: async () => {
+        })
+        await assertViewer(fixture, 'sub/s.pdf', async () => {
             await sleep(1000)
             await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
             await sleep(500)
             await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
-        }})
+        })
     })
 
-    runTest({suiteName, fixtureName, testName: 'build with outDir and view it'}, async () => {
+    runTest(suiteName, fixtureName, 'build with outDir and view it', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
         await loadTestFile(fixture, [{src: 'base.tex', dst: 'main.tex'}])
-        await assertBuild({fixture, texName: 'main.tex', pdfName: 'out/main.pdf'})
-        await assertViewer({fixture, pdfName: 'out/main.pdf'})
+        await assertBuild(fixture, 'main.tex', 'out/main.pdf')
+        await assertViewer(fixture, 'out/main.pdf')
     })
 })

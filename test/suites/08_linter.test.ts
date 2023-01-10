@@ -31,7 +31,7 @@ suite('Linter test suite', () => {
         }
     })
 
-    runTest({suiteName, fixtureName, testName: 'test chktex log parser'}, async () => {
+    runTest(suiteName, fixtureName, 'test chktex log parser', async () => {
         await loadTestFile(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
@@ -46,7 +46,7 @@ suite('Linter test suite', () => {
         assert.match(linter.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'sub/s.tex')))?.[0].message || '', /Delete this space/)
     })
 
-    runTest({suiteName, fixtureName, testName: 'test lacheck'}, async () => {
+    runTest(suiteName, fixtureName, 'test lacheck', async () => {
         await loadTestFile(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
@@ -58,7 +58,7 @@ suite('Linter test suite', () => {
         assert.strictEqual(linter.linterDiagnostics.name, 'LaCheck')
     })
 
-    runTest({suiteName, fixtureName, testName: 'test lacheck log parser'}, async () => {
+    runTest(suiteName, fixtureName, 'test lacheck log parser', async () => {
         await loadTestFile(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}

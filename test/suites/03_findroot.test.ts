@@ -30,7 +30,7 @@ suite('Find root file test suite', () => {
     })
 
 
-    runTest({suiteName, fixtureName, testName: 'detect root with search.rootFiles.include'}, async () => {
+    runTest(suiteName, fixtureName, 'detect root with search.rootFiles.include', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', ['alt/*.tex'])
         await loadTestFile(fixture, [
@@ -38,10 +38,10 @@ suite('Find root file test suite', () => {
             {src: 'input_parentsub.tex', dst: 'alt/main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'alt/main.tex'})
+        await assertRoot(fixture, 'sub/s.tex', 'alt/main.tex')
     })
 
-    runTest({suiteName, fixtureName, testName: 'detect root with search.rootFiles.exclude'}, async () => {
+    runTest(suiteName, fixtureName, 'detect root with search.rootFiles.exclude', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', ['*.tex'])
         await loadTestFile(fixture, [
@@ -49,33 +49,33 @@ suite('Find root file test suite', () => {
             {src: 'input_parentsub.tex', dst: 'alt/main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'alt/main.tex'})
+        await assertRoot(fixture, 'sub/s.tex', 'alt/main.tex')
     })
 
-    runTest({suiteName, fixtureName, testName: 'auto-detect root with verbatim'}, async () => {
+    runTest(suiteName, fixtureName, 'auto-detect root with verbatim', async () => {
         await loadTestFile(fixture, [
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain_verbatim.tex', dst: 'sub/s.tex'}
         ])
-        await assertRoot({fixture, openName: 'sub/s.tex', rootName: 'main.tex'})
+        await assertRoot(fixture, 'sub/s.tex', 'main.tex')
     })
 
-    runTest({suiteName, fixtureName, testName: 'import package'}, async () => {
+    runTest(suiteName, fixtureName, 'import package', async () => {
         await loadTestFile(fixture, [
             {src: 'import_base.tex', dst: 'main.tex'},
             {src: 'import_sub.tex', dst: 'sub/s.tex'},
             {src: 'plain.tex', dst: 'sub/subsub/sss/sss.tex'}
         ])
-        await assertRoot({fixture, openName: 'sub/subsub/sss/sss.tex', rootName: 'main.tex'})
+        await assertRoot(fixture, 'sub/subsub/sss/sss.tex', 'main.tex')
     })
 
-    runTest({suiteName, fixtureName, testName: 'circular inclusion'}, async () => {
+    runTest(suiteName, fixtureName, 'circular inclusion', async () => {
         await loadTestFile(fixture, [
             {src: 'include_base.tex', dst: 'main.tex'},
             {src: 'include_sub.tex', dst: 'alt.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        await assertRoot({fixture, openName: 'alt.tex', rootName: 'main.tex'})
+        await assertRoot(fixture, 'alt.tex', 'main.tex')
         const includedTeX = lw.cacher.getIncludedTeX()
         assert.ok(includedTeX)
         assert.ok(includedTeX.includes(path.resolve(fixture, 'main.tex')))

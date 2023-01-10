@@ -32,7 +32,7 @@ suite('Math preview test suite', () => {
         }
     })
 
-    runTest({suiteName, fixtureName, testName: 'mathpreviewlib/cursorrenderer: test insertCursor'}, async () => {
+    runTest(suiteName, fixtureName, 'mathpreviewlib/cursorrenderer: test insertCursor', async () => {
         const docString = '$a+b$'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 2)
@@ -42,7 +42,7 @@ suite('Math preview test suite', () => {
         assert.strictEqual(result, '${~a|+b~}$')
     })
 
-    runTest({suiteName, fixtureName, testName: 'mathpreviewlib/cursorrenderer: test shouldNotWriteCursor'}, () => {
+    runTest(suiteName, fixtureName, 'mathpreviewlib/cursorrenderer: test shouldNotWriteCursor', () => {
         const docString = '$a+b$'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 0)
@@ -66,7 +66,7 @@ suite('Math preview test suite', () => {
 
     })
 
-    runTest({suiteName, fixtureName, testName: 'mathpreviewlib/cursorrenderer: test \\f|rac{1}{2}'}, async () => {
+    runTest(suiteName, fixtureName, 'mathpreviewlib/cursorrenderer: test \\f|rac{1}{2}', async () => {
         const docString = '$\\frac{1}{2}$'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 3)
@@ -76,7 +76,7 @@ suite('Math preview test suite', () => {
         assert.strictEqual(result, '$\\frac{1}{2}$')
     })
 
-    runTest({suiteName, fixtureName, testName: 'mathpreviewlib/cursorrenderer: test a^|b'}, async () => {
+    runTest(suiteName, fixtureName, 'mathpreviewlib/cursorrenderer: test a^|b', async () => {
         const docString = '$a^b$'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 3)
@@ -86,7 +86,7 @@ suite('Math preview test suite', () => {
         assert.strictEqual(result, '$a^{~|b~}$')
     })
 
-    runTest({suiteName, fixtureName, testName: 'mathpreviewlib/cursorrenderer: test $a^b| $'}, async () => {
+    runTest(suiteName, fixtureName, 'mathpreviewlib/cursorrenderer: test $a^b| $', async () => {
         const docString = '$a^b $'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 4)
@@ -96,7 +96,7 @@ suite('Math preview test suite', () => {
         assert.strictEqual(result, '${~a^b|~} $')
     })
 
-    runTest({suiteName, fixtureName, testName: 'mathpreviewlib/cursorrenderer: test $a^{b} $'}, async () => {
+    runTest(suiteName, fixtureName, 'mathpreviewlib/cursorrenderer: test $a^{b} $', async () => {
         const docString = '$a^{b} $'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 5)
@@ -106,7 +106,7 @@ suite('Math preview test suite', () => {
         assert.strictEqual(result, '$a^{~b|~} $')
     })
 
-    runTest({suiteName, fixtureName, testName: 'mathpreviewlib/cursorrenderer: test a_|b'}, async () => {
+    runTest(suiteName, fixtureName, 'mathpreviewlib/cursorrenderer: test a_|b', async () => {
         const docString = '$a_b$'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 3)
