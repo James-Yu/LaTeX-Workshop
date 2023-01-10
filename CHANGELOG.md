@@ -1,5 +1,12 @@
 # Change Log
 
+## [9.4.4] - 2023-01-10
+
+### Fixed
+- (#3633) Embedded PDF viewer can copy texts.
+- (#3634) `latexindent` cannot be directly called in the first invoke.
+- (#3638) Itemize and enumerate completion injects `\\n\\t`.
+
 ## [9.4.3] - 2023-01-08
 
 ### Fixed
