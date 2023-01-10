@@ -5,7 +5,7 @@ import * as glob from 'glob'
 import * as os from 'os'
 import * as assert from 'assert'
 import * as lw from '../../src/lw'
-import { BuildDone, FileParsed, FileWatched, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
+import { BuildDone, FileParsed, FileWatched, RootFileSearched, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
 import type { EventName } from '../../src/components/eventbus'
 
 let testCounter = 0
@@ -94,19 +94,21 @@ export async function loadTestFile(fixture: string, files: {src: string, dst: st
     await sleep(250)
 }
 
-export async function openActive(fixture: string, fileName: string, skipSleep: boolean = false) {
+export async function openActive(fixture: string, fileName: string) {
     const texFilePath = vscode.Uri.file(path.join(fixture, fileName))
+    let wait = waitEvent(FileParsed, path.resolve(fixture, fileName))
     const doc = await vscode.workspace.openTextDocument(texFilePath)
     await vscode.window.showTextDocument(doc)
-    if (!skipSleep) {
-        await sleep(250)
-    }
+    await lw.cacher.refreshContext(path.resolve(fixture, fileName))
+    await wait
+    wait = waitEvent(RootFileSearched)
     const root = await lw.manager.findRoot()
+    await wait
     return {root, doc}
 }
 
 export async function assertBuild(fixture: string, texName: string, pdfName: string, build?: () => unknown) {
-    await openActive(fixture, texName, true)
+    await openActive(fixture, texName)
     if (build) {
         await build()
     } else {
@@ -133,7 +135,7 @@ export async function assertAutoBuild(fixture: string, texName: string, pdfName:
         await wait
     }
 
-    wait = waitBuild()
+    wait = waitEvent(BuildDone)
     if (mode?.includes('onSave')) {
         await vscode.commands.executeCommand('workbench.action.files.save')
     } else {
@@ -163,10 +165,6 @@ export async function waitEvent(event: EventName, arg?: any) {
     })
 }
 
-export async function waitBuild() {
-    return waitEvent(BuildDone)
-}
-
 export async function assertRoot(fixture: string, openName: string, rootName: string) {
     await vscode.commands.executeCommand('latex-workshop.activate')
     const result = await openActive(fixture, openName)
@@ -188,10 +186,6 @@ export async function assertViewer(fixture: string, pdfName: string, action?: ()
     const status = lw.viewer.getViewerState(vscode.Uri.file(pdfFilePath))[0]
     assert.ok(status)
     assert.strictEqual(status.pdfFileUri, vscode.Uri.file(path.resolve(fixture, pdfName)).toString(true))
-}
-
-export async function waitFileParsed(fileName: string) {
-    return waitEvent(FileParsed, fileName)
 }
 
 export function getIntellisense(doc: vscode.TextDocument, pos: vscode.Position, atSuggestion = false) {

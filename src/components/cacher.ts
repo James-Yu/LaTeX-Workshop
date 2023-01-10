@@ -160,7 +160,6 @@ export class Cacher {
         }
 
         logger.log(`Updated inputs of ${filePath} .`)
-        lw.eventBus.fire(eventbus.FileParsed, filePath)
     }
 
     private async updateElements(filePath: string, content: string, contentTrimmed: string) {

@@ -5,11 +5,12 @@ import * as assert from 'assert'
 import rimraf from 'rimraf'
 import glob from 'glob'
 import * as lw from '../../src/lw'
-import { sleep, getIntellisense, runTest, openActive, writeTestFile, loadTestFile, waitFileParsed } from './utils'
+import { sleep, getIntellisense, runTest, openActive, writeTestFile, loadTestFile, waitEvent } from './utils'
 import { EnvSnippetType, EnvType } from '../../src/providers/completer/environment'
 import { CmdType } from '../../src/providers/completer/command'
 import { PkgType } from '../../src/providers/completion'
 import { isTriggerSuggestNeeded } from '../../src/providers/completer/commandlib/commandfinder'
+import { FileParsed } from '../../src/components/eventbus'
 
 function assertKeys(keys: string[], expected: string[] = [], message: string): void {
     assert.ok(
@@ -122,8 +123,8 @@ suite('Intellisense test suite', () => {
 
     runTest(suiteName, fixtureName, 'command intellisense', async () => {
         await loadTestFile(fixture, [
-            {src: 'intellisense_base.tex', dst: 'main.tex'},
-            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await openActive(fixture, 'main.tex')
         const items = getIntellisense(result.doc, new vscode.Position(0, 1))
@@ -134,7 +135,6 @@ suite('Intellisense test suite', () => {
     runTest(suiteName, fixtureName, 'command intellisense with usepackage', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_on_cmd_1.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         let items = getIntellisense(result.doc, new vscode.Position(0, 1))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -146,7 +146,6 @@ suite('Intellisense test suite', () => {
 
         await loadTestFile(fixture, [{src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}])
         result = await openActive(fixture, 'main.tex')
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         items = getIntellisense(result.doc, new vscode.Position(2, 1))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -158,7 +157,6 @@ suite('Intellisense test suite', () => {
     runTest(suiteName, fixtureName, 'command intellisense with usepackage and option', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_option_on_cmd.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         let items = getIntellisense(result.doc, new vscode.Position(2, 1))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -170,7 +168,6 @@ suite('Intellisense test suite', () => {
 
         await loadTestFile(fixture, [{src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}])
         result = await openActive(fixture, 'main.tex')
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         items = getIntellisense(result.doc, new vscode.Position(2, 1))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -182,11 +179,10 @@ suite('Intellisense test suite', () => {
     runTest(suiteName, fixtureName, 'command intellisense with config `intellisense.argumentHint.enabled`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', true)
         await loadTestFile(fixture, [
-            {src: 'intellisense_base.tex', dst: 'main.tex'},
-            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await openActive(fixture, 'main.tex')
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         let items = getIntellisense(result.doc, new vscode.Position(0, 1))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -199,7 +195,9 @@ suite('Intellisense test suite', () => {
         assert.ok(snippet.value.includes('${1:'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', false)
+        const wait = waitEvent(FileParsed, path.resolve(fixture, 'main.tex'))
         await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
+        await wait
         items = getIntellisense(result.doc, new vscode.Position(0, 1))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -215,8 +213,8 @@ suite('Intellisense test suite', () => {
     runTest(suiteName, fixtureName, 'command intellisense with config `intellisense.commandsJSON.replace`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.commandsJSON.replace', {'mathbb{}': ''})
         await loadTestFile(fixture, [
-            {src: 'intellisense_base.tex', dst: 'main.tex'},
-            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await openActive(fixture, 'main.tex')
         let items = getIntellisense(result.doc, new vscode.Position(0, 1))
@@ -238,8 +236,8 @@ suite('Intellisense test suite', () => {
     runTest(suiteName, fixtureName, 'reference intellisense and config intellisense.label.keyval', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', true)
         await loadTestFile(fixture, [
-            {src: 'intellisense_base.tex', dst: 'main.tex'},
-            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await openActive(fixture, 'main.tex')
         let items = getIntellisense(result.doc, new vscode.Position(8, 5))
@@ -251,7 +249,9 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('eq1'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', false)
+        const wait = waitEvent(FileParsed, path.resolve(fixture, 'main.tex'))
         await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
+        await wait
         items = getIntellisense(result.doc, new vscode.Position(8, 5))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -263,8 +263,8 @@ suite('Intellisense test suite', () => {
 
     runTest(suiteName, fixtureName, 'environment intellisense', async () => {
         await loadTestFile(fixture, [
-            {src: 'intellisense_base.tex', dst: 'main.tex'},
-            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await openActive(fixture, 'main.tex')
         const items = getIntellisense(result.doc, new vscode.Position(9, 7))
@@ -275,7 +275,6 @@ suite('Intellisense test suite', () => {
     runTest(suiteName, fixtureName, 'environment intellisense with usepackage', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_on_env_1.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         let items = getIntellisense(result.doc, new vscode.Position(3, 7))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -287,7 +286,6 @@ suite('Intellisense test suite', () => {
 
         await loadTestFile(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}])
         result = await openActive(fixture, 'main.tex')
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         items = getIntellisense(result.doc, new vscode.Position(3, 7))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -299,7 +297,6 @@ suite('Intellisense test suite', () => {
     runTest(suiteName, fixtureName, 'environment intellisense with usepackage and option', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         let items = getIntellisense(result.doc, new vscode.Position(3, 7))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -311,7 +308,6 @@ suite('Intellisense test suite', () => {
 
         await loadTestFile(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}])
         result = await openActive(fixture, 'main.tex')
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         items = getIntellisense(result.doc, new vscode.Position(3, 7))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -323,7 +319,6 @@ suite('Intellisense test suite', () => {
     runTest(suiteName, fixtureName, 'environment as command intellisense with usepackage and option', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         let items = getIntellisense(result.doc, new vscode.Position(3, 1))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -335,7 +330,6 @@ suite('Intellisense test suite', () => {
 
         await loadTestFile(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}])
         result = await openActive(fixture, 'main.tex')
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
         items = getIntellisense(result.doc, new vscode.Position(3, 1))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -346,8 +340,8 @@ suite('Intellisense test suite', () => {
 
     runTest(suiteName, fixtureName, 'argument intellisense', async () => {
         await loadTestFile(fixture, [
-            {src: 'intellisense_base.tex', dst: 'main.tex'},
-            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await openActive(fixture, 'main.tex')
         let items = getIntellisense(result.doc, new vscode.Position(0, 15))
@@ -375,10 +369,26 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('showlines'))
     })
 
+    runTest(suiteName, fixtureName, 'argument intellisense with braces', async () => {
+        await loadTestFile(fixture, [{src: 'intellisense/class_option_with_brace.tex', dst: 'main.tex'}])
+        const wait = waitEvent(FileParsed, path.resolve(fixture, 'main.tex'))
+        const result = await openActive(fixture, 'main.tex')
+        await wait
+        let items = getIntellisense(result.doc, new vscode.Position(0, 64))
+        assert.ok(items)
+        let labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('10pt'))
+
+        items = getIntellisense(result.doc, new vscode.Position(3, 32))
+        assert.ok(items)
+        labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('label='))
+    })
+
     runTest(suiteName, fixtureName, 'package and documentclass intellisense', async () => {
         await loadTestFile(fixture, [
-            {src: 'intellisense_base.tex', dst: 'main.tex'},
-            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await openActive(fixture, 'main.tex')
         let items = getIntellisense(result.doc, new vscode.Position(2, 21))
@@ -398,9 +408,9 @@ suite('Intellisense test suite', () => {
 
     runTest(suiteName, fixtureName, 'input/include/import/subimport intellisense', async () => {
         await loadTestFile(fixture, [
-            {src: 'intellisense_base.tex', dst: 'main.tex'},
-            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'},
-            {src: 'intellisense_sub.tex', dst: 'sub/plain.tex'}
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/plain.tex'}
         ])
         const result = await openActive(fixture, 'main.tex')
         let items = getIntellisense(result.doc, new vscode.Position(7, 7))
@@ -444,7 +454,7 @@ suite('Intellisense test suite', () => {
         writeTestFile(fixture, 'main.tex', '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{main}', '\\end{document}')
         await loadTestFile(fixture, [{src: 'base.bib', dst: 'main.bib'}])
         const result = await openActive(fixture, 'main.tex')
-        const wait = waitFileParsed(path.resolve(fixture, 'main.bib'))
+        const wait = waitEvent(FileParsed, path.resolve(fixture, 'main.bib'))
         await lw.completer.citation.parseBibFile(path.resolve(fixture, 'main.bib'))
         await wait
 
@@ -479,8 +489,8 @@ suite('Intellisense test suite', () => {
 
     runTest(suiteName, fixtureName, 'glossary intellisense', async () => {
         await loadTestFile(fixture, [
-            {src: 'intellisense_glossary.tex', dst: 'main.tex'},
-            {src: 'intellisense_glossaryentries.tex', dst: 'sub/glossary.tex'}
+            {src: 'intellisense/glossary.tex', dst: 'main.tex'},
+            {src: 'intellisense/glossaryentries.tex', dst: 'sub/glossary.tex'}
         ])
         const result = await openActive(fixture, 'main.tex')
         await lw.cacher.refreshContext(path.resolve(fixture, 'sub/glossary.tex'), fs.readFileSync(path.resolve(fixture, 'sub/glossary.tex')).toString())
@@ -501,8 +511,8 @@ suite('Intellisense test suite', () => {
         const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', replaces)
         await loadTestFile(fixture, [
-            {src: 'intellisense_base.tex', dst: 'main.tex'},
-            {src: 'intellisense_sub.tex', dst: 'sub/s.tex'}
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await openActive(fixture, 'main.tex')
         let items = getIntellisense(result.doc, new vscode.Position(5, 1), true)
