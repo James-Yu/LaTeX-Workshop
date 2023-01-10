@@ -12,57 +12,46 @@ export function replaceWebviewPlaceholders(content: string, webview: vscode.Webv
                   .replace(/%VSCODE_CSP%/g, webview.cspSource)
 }
 
-/**
- *
- * @param panel
- * @param tabEditorGroup
- * @param activeDocument The document we set the focus back to. We should get the document before calling createWebviewPanel.
- * @param preserveFocus
- */
-export async function openWebviewPanel(
-    panel: vscode.WebviewPanel,
-    tabEditorGroup: string,
-    activeDocument: vscode.TextDocument,
-    preserveFocus = true
-) {
-    // We need to turn the viewer into the active editor to move it to an other editor group
-    panel.reveal(undefined, false)
-    let focusAction: string | undefined
-    switch (tabEditorGroup) {
-        case 'left': {
-            await vscode.commands.executeCommand('workbench.action.moveEditorToLeftGroup')
-            focusAction = 'workbench.action.focusRightGroup'
-            break
-        }
-        case 'right': {
-            await vscode.commands.executeCommand('workbench.action.moveEditorToRightGroup')
-            focusAction = 'workbench.action.focusLeftGroup'
-            break
-        }
-        case 'above': {
-            await vscode.commands.executeCommand('workbench.action.moveEditorToAboveGroup')
-            focusAction = 'workbench.action.focusBelowGroup'
-            break
-        }
-        case 'below': {
-            await vscode.commands.executeCommand('workbench.action.moveEditorToBelowGroup')
-            focusAction = 'workbench.action.focusAboveGroup'
-            break
-        }
-        default: {
-            break
+function getMoveCommands(tabEditorGroup: string) {
+    if (tabEditorGroup === 'left') {
+        return {
+            moveAction: 'workbench.action.moveEditorToLeftGroup',
+            focusAction: 'workbench.action.focusRightGroup'
         }
     }
-    // Then, we set the focus back to the .tex file
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const delay = configuration.get('view.pdf.tab.openDelay', 1000)
-    setTimeout(async () => {
-        if (!preserveFocus) {
-            return
+    if (tabEditorGroup === 'right') {
+        return {
+            moveAction: 'workbench.action.moveEditorToRightGroup',
+            focusAction: 'workbench.action.focusLeftGroup'
         }
-        if (focusAction) {
-            await vscode.commands.executeCommand(focusAction)
+    }
+    if (tabEditorGroup === 'above') {
+        return {
+            moveAction: 'workbench.action.moveEditorToAboveGroup',
+            focusAction: 'workbench.action.focusBelowGroup'
         }
-        await vscode.window.showTextDocument(activeDocument, vscode.ViewColumn.Active)
-    }, delay)
+    }
+    if (tabEditorGroup === 'below') {
+        return {
+            moveAction: 'workbench.action.moveEditorToBelowGroup',
+            focusAction: 'workbench.action.focusAboveGroup'
+        }
+    }
+    return
+}
+
+export async function moveWebviewPanel(panel: vscode.WebviewPanel, tabEditorGroup: string) {
+    panel.reveal(undefined, false)
+    await moveActiveEditor(tabEditorGroup, true)
+}
+
+export async function moveActiveEditor(tabEditorGroup: string, refocus?: boolean) {
+    const actions = getMoveCommands(tabEditorGroup)
+    if (!actions) {
+        return
+    }
+    await vscode.commands.executeCommand(actions.moveAction)
+    if (refocus){
+        await vscode.commands.executeCommand(actions.focusAction)
+    }
 }

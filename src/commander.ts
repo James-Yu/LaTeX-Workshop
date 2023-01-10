@@ -131,14 +131,6 @@ export function kill() {
     lw.builder.kill()
 }
 
-export function pdf(uri: vscode.Uri | undefined) {
-    logger.log('PDF command invoked.')
-    if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
-        return
-    }
-    return lw.viewer.openPdfInTab(uri, 'current', false)
-}
-
 export function synctex() {
     logger.log('SYNCTEX command invoked.')
     if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {

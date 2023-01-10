@@ -10,11 +10,18 @@ export class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvide
     }
 
     resolveCustomEditor(document: vscode.CustomDocument, webviewPanel: vscode.WebviewPanel) {
-        webviewPanel.webview.html = 'LaTeX Workshop PDF Viewer is opening a PDF file...'
-        setTimeout(() => {
-            webviewPanel.dispose()
-            void lw.commander.pdf(document.uri)
-        }, 1000)
+        webviewPanel.webview.options = {
+            ...webviewPanel.webview.options,
+            enableScripts: true
+        }
+        if (document.uri === undefined || !document.uri.fsPath.toLocaleLowerCase().endsWith('.pdf')) {
+            return
+        }
+        if (webviewPanel) {
+            void lw.viewer.openPdfInPanel(document.uri, webviewPanel)
+        } else {
+            void lw.viewer.openPdfInTab(document.uri, 'current', false)
+        }
     }
 
 }

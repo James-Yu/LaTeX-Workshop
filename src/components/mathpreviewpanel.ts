@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import type {TexMathEnv} from '../providers/preview/mathpreview'
-import {openWebviewPanel} from '../utils/webview'
+import type { TexMathEnv } from '../providers/preview/mathpreview'
+import { moveWebviewPanel } from '../utils/webview'
 import * as lw from '../lw'
 import { getLogger } from './logger'
 
@@ -59,7 +59,7 @@ export class MathPreviewPanel {
         return lw.mathPreview
     }
 
-    async open() {
+    open() {
         const activeDocument = vscode.window.activeTextEditor?.document
         if (this.panel) {
             if (!this.panel.visible) {
@@ -83,7 +83,7 @@ export class MathPreviewPanel {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const editorGroup = configuration.get('mathpreviewpanel.editorGroup') as string
         if (activeDocument) {
-            await openWebviewPanel(panel, editorGroup, activeDocument)
+            void moveWebviewPanel(panel, editorGroup)
         }
         logger.log('Math preview panel: opened')
     }
@@ -126,7 +126,7 @@ export class MathPreviewPanel {
         if (this.panel) {
             this.close()
         } else {
-            void this.open()
+            this.open()
         }
     }
 

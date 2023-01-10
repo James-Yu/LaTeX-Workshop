@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as path from 'path'
 import * as lw from '../../lw'
 import type {PanelRequest, PdfViewerState} from '../../../types/latex-workshop-protocol-types/index'
 import {escapeHtml, sleep} from '../../utils/utils'
@@ -89,16 +88,10 @@ export class PdfViewerPanelService {
         this.alreadyOpened = true
     }
 
-    static async createPdfViewerPanel(pdfFileUri: vscode.Uri, viewColumn: vscode.ViewColumn): Promise<PdfViewerPanel> {
+    static async populatePdfViewerPanel(pdfFileUri: vscode.Uri, webviewPanel: vscode.WebviewPanel): Promise<PdfViewerPanel> {
         await lw.server.serverStarted
-        const htmlContent = await this.getPDFViewerContent(pdfFileUri)
-        const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFileUri.path), viewColumn, {
-            enableScripts: true,
-            retainContextWhenHidden: true
-        })
-        panel.webview.html = htmlContent
-        const pdfPanel = new PdfViewerPanel(pdfFileUri, panel)
-        return pdfPanel
+        webviewPanel.webview.html = await this.getPDFViewerContent(pdfFileUri)
+        return new PdfViewerPanel(pdfFileUri, webviewPanel)
     }
 
     private static getKeyboardEventConfig(): boolean {

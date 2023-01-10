@@ -8,6 +8,7 @@ import * as lw from '../lw'
 import { PdfFilePathEncoder } from './serverlib/encodepath'
 import { EventEmitter } from 'events'
 import { getLogger } from './logger'
+import { PdfViewerManagerService } from './viewerlib/pdfviewermanager'
 
 const logger = getLogger('Server')
 
@@ -161,7 +162,7 @@ export class Server {
         if (request.url.includes(PdfFilePathEncoder.pdfFilePrefix) && !request.url.includes('viewer.html')) {
             const s = request.url.replace('/', '')
             const fileUri = PdfFilePathEncoder.decodePathWithPrefix(s)
-            if (lw.viewer.getClientSet(fileUri) === undefined) {
+            if (PdfViewerManagerService.getClientSet(fileUri) === undefined) {
                 logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
                 return
             }
