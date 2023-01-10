@@ -453,9 +453,8 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
         writeTestFile(fixture, 'main.tex', '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{main}', '\\end{document}')
         await loadTestFile(fixture, [{src: 'base.bib', dst: 'main.bib'}])
-        const result = await openActive(fixture, 'main.tex')
         const wait = waitEvent(FileParsed, path.resolve(fixture, 'main.bib'))
-        await lw.completer.citation.parseBibFile(path.resolve(fixture, 'main.bib'))
+        const result = await openActive(fixture, 'main.tex', false)
         await wait
 
         let items = getIntellisense(result.doc, new vscode.Position(2, 9))
@@ -485,7 +484,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items[0].filterText)
         assert.ok(!items[0].filterText.includes('Journal of CI tests'))
         assert.ok(items[0].filterText.includes('hintFake'))
-    })
+    }, undefined, undefined, true)
 
     runTest(suiteName, fixtureName, 'glossary intellisense', async () => {
         await loadTestFile(fixture, [

@@ -94,13 +94,15 @@ export async function loadTestFile(fixture: string, files: {src: string, dst: st
     await sleep(250)
 }
 
-export async function openActive(fixture: string, fileName: string) {
+export async function openActive(fixture: string, fileName: string, doContext = true) {
     const texFilePath = vscode.Uri.file(path.join(fixture, fileName))
     let wait = waitEvent(FileParsed, path.resolve(fixture, fileName))
     const doc = await vscode.workspace.openTextDocument(texFilePath)
     await vscode.window.showTextDocument(doc)
-    await lw.cacher.refreshContext(path.resolve(fixture, fileName))
-    await wait
+    if (doContext) {
+        await lw.cacher.refreshContext(path.resolve(fixture, fileName))
+        await wait
+    }
     wait = waitEvent(RootFileSearched)
     const root = await lw.manager.findRoot()
     await wait
@@ -108,7 +110,7 @@ export async function openActive(fixture: string, fileName: string) {
 }
 
 export async function assertBuild(fixture: string, texName: string, pdfName: string, build?: () => unknown) {
-    await openActive(fixture, texName)
+    await openActive(fixture, texName, false)
     if (build) {
         await build()
     } else {
