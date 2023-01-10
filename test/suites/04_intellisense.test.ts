@@ -132,7 +132,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items.length > 0)
     })
 
-    runTest(suiteName, fixtureName, 'command intellisense with usepackage', async () => {
+    runTest(suiteName, fixtureName, 'command intellisense with cmds provided by \\usepackage', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_on_cmd_1.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
         let items = getIntellisense(result.doc, new vscode.Position(0, 1))
@@ -154,7 +154,7 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('\\lstinline'))
     })
 
-    runTest(suiteName, fixtureName, 'command intellisense with usepackage and option', async () => {
+    runTest(suiteName, fixtureName, 'command intellisense with cmds provided by \\usepackage and its argument', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_option_on_cmd.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
         let items = getIntellisense(result.doc, new vscode.Position(2, 1))
@@ -272,7 +272,7 @@ suite('Intellisense test suite', () => {
         assert.ok(items.length > 0)
     })
 
-    runTest(suiteName, fixtureName, 'environment intellisense with usepackage', async () => {
+    runTest(suiteName, fixtureName, 'environment intellisense with envs provided by \\usepackage', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_on_env_1.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
         let items = getIntellisense(result.doc, new vscode.Position(3, 7))
@@ -294,7 +294,7 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('algorithm'))
     })
 
-    runTest(suiteName, fixtureName, 'environment intellisense with usepackage and option', async () => {
+    runTest(suiteName, fixtureName, 'environment intellisense with envs provided by \\usepackage and its argument', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
         let items = getIntellisense(result.doc, new vscode.Position(3, 7))
@@ -316,7 +316,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!labels.includes('algorithm2e'))
     })
 
-    runTest(suiteName, fixtureName, 'environment as command intellisense with usepackage and option', async () => {
+    runTest(suiteName, fixtureName, 'environment intellisense in form of cmds with envs provided by \\usepackage and its argument', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}])
         let result = await openActive(fixture, 'main.tex')
         let items = getIntellisense(result.doc, new vscode.Position(3, 1))
@@ -338,7 +338,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!labels.includes('algorithm2e'))
     })
 
-    runTest(suiteName, fixtureName, 'argument intellisense', async () => {
+    runTest(suiteName, fixtureName, 'argument intellisense of \\documentclass, \\usepackage, commands, and environments', async () => {
         await loadTestFile(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
@@ -369,7 +369,7 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('showlines'))
     })
 
-    runTest(suiteName, fixtureName, 'argument intellisense with braces', async () => {
+    runTest(suiteName, fixtureName, 'argument intellisense with braces already in the argument', async () => {
         await loadTestFile(fixture, [{src: 'intellisense/class_option_with_brace.tex', dst: 'main.tex'}])
         const wait = waitEvent(FileParsed, path.resolve(fixture, 'main.tex'))
         const result = await openActive(fixture, 'main.tex')
@@ -385,7 +385,7 @@ suite('Intellisense test suite', () => {
         assert.ok(labels.includes('label='))
     })
 
-    runTest(suiteName, fixtureName, 'package and documentclass intellisense', async () => {
+    runTest(suiteName, fixtureName, 'package and class intellisense', async () => {
         await loadTestFile(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
