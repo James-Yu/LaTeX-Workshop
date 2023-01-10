@@ -177,7 +177,7 @@ export class Server {
             }
             return
         }
-        if (request.url === '/config.json') {
+        if (request.url.includes('config.json')) {
             const params = lw.viewer.viewerParams()
             const content = JSON.stringify(params)
             this.sendOkResponse(response, Buffer.from(content), 'application/json')
