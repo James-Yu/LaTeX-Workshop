@@ -17,7 +17,6 @@ suite('Formatter test suite', () => {
 
     setup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
-        await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.path', 'latexindent-binary')
     })
 
     teardown(async () => {

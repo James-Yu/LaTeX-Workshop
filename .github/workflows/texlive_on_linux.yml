@@ -43,8 +43,8 @@ jobs:
     - name: Download latexindent binary
       run: |
         curl -s -O -L http://mirrors.ctan.org/support/latexindent/bin/linux/latexindent
-        mv latexindent /tmp/texlive/bin/x86_64-linux/latexindent-binary
-        chmod +x /tmp/texlive/bin/x86_64-linux/latexindent-binary
+        mv -f latexindent /tmp/texlive/bin/x86_64-linux/latexindent
+        chmod +x /tmp/texlive/bin/x86_64-linux/latexindent
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - uses: actions/setup-node@v3
       with:
