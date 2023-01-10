@@ -54,7 +54,7 @@ export interface Context {
     /**
      * The array of the paths of `.bib` files referenced from the LaTeX file.
      */
-    bibfiles: string[]
+    bibfiles: Set<string>
 }
 
 export class Cacher {
@@ -118,7 +118,7 @@ export class Cacher {
         }
         logger.log(`Caching ${filePath} .`)
         const content = lw.lwfs.readFileSyncGracefully(filePath)
-        this.contexts[filePath] = {content, elements: {}, children: [], bibfiles: []}
+        this.contexts[filePath] = {content, elements: {}, children: [], bibfiles: new Set()}
         if (content === undefined) {
             logger.log(`Cannot read ${filePath} .`)
             return
@@ -203,7 +203,7 @@ export class Cacher {
                 if (bibPath === undefined) {
                     continue
                 }
-                this.contexts[filePath].bibfiles.push(bibPath)
+                this.contexts[filePath].bibfiles.add(bibPath)
                 logger.log(`Bib ${bibPath} from ${filePath} .`)
                 await this.bibWatcher.watchBibFile(bibPath)
             }
@@ -290,8 +290,8 @@ export class Cacher {
                     continue
                 }
                 const rootFile = lw.manager.rootFile
-                if (rootFile && !this.get(rootFile).bibfiles.includes(bibPath)) {
-                    this.get(rootFile).bibfiles.push(bibPath)
+                if (rootFile && !this.get(rootFile).bibfiles.has(bibPath)) {
+                    this.get(rootFile).bibfiles.add(bibPath)
                     logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
                 }
                 await this.bibWatcher.watchBibFile(bibPath)

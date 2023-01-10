@@ -188,7 +188,7 @@ export class Citation implements IProvider {
         if (cache === undefined) {
             return []
         }
-        let bibs = cache.bibfiles
+        let bibs = Array.from(cache.bibfiles)
         visitedTeX.push(file)
         for (const child of cache.children) {
             if (visitedTeX.includes(child.file)) {

@@ -232,7 +232,7 @@ suite('Multi-root workspace test suite', () => {
         const resultB = await openActive(fixture, 'B/main.tex')
         const cache = lw.cacher.get(path.resolve(fixture, 'B/main.tex'))
         if (cache) {
-            cache.bibfiles = [path.resolve(fixture, 'B/B.bib')]
+            cache.bibfiles = new Set([path.resolve(fixture, 'B/B.bib')])
         } else {
             return
         }
