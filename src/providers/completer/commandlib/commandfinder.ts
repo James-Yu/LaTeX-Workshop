@@ -177,7 +177,7 @@ export class CommandFinder {
     static getCmdFromContent(file: string, content: string): CmdEnvSuggestion[] {
         const cmdReg = /\\([a-zA-Z@_]+(?::[a-zA-Z]*)?\*?)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
         const cmds: CmdEnvSuggestion[] = []
-        const commandNameDuplicationDetector = new CommandNameDuplicationDetector()
+        const commandSignatureDuplicationDetector = new CommandSignatureDuplicationDetector()
         let explSyntaxOn: boolean = false
         while (true) {
             const result = cmdReg.exec(content)
@@ -199,15 +199,13 @@ export class CommandFinder {
                     result[1] = result[1].slice(0, len)
                 }
             }
-            if (commandNameDuplicationDetector.has(result[1])) {
-                continue
-            }
+            const args = CommandFinder.getArgsFromRegResult(result)
             const cmd = new CmdEnvSuggestion(
-                `\\${result[1]}`,
+                `\\${result[1]}${args}`,
                 CommandFinder.whichPackageProvidesCommand(result[1]),
                 [],
                 -1,
-                { name: result[1], args: CommandFinder.getArgsFromRegResult(result) },
+                { name: result[1], args },
                 vscode.CompletionItemKind.Function
             )
             cmd.documentation = '`' + result[1] + '`'
@@ -216,8 +214,10 @@ export class CommandFinder {
             if (isTriggerSuggestNeeded(result[1])) {
                 cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
             }
-            cmds.push(cmd)
-            commandNameDuplicationDetector.add(result[1])
+            if (!commandSignatureDuplicationDetector.has(cmd)) {
+                cmds.push(cmd)
+                commandSignatureDuplicationDetector.add(cmd)
+            }
         }
 
         const newCommandReg = /\\(?:(?:(?:re|provide)?(?:new)?command)|(?:DeclarePairedDelimiter(?:X|XPP)?)|DeclareMathOperator)\*?{?\\(\w+)}?(?:\[([1-9])\])?/g
@@ -225,9 +225,6 @@ export class CommandFinder {
             const result = newCommandReg.exec(content)
             if (result === null) {
                 break
-            }
-            if (commandNameDuplicationDetector.has(result[1])) {
-                continue
             }
 
             let tabStops = ''
@@ -240,12 +237,14 @@ export class CommandFinder {
                 }
             }
 
-            const cmd = new CmdEnvSuggestion(`\\${result[1]}`, 'user-defined', [], -1, {name: result[1], args}, vscode.CompletionItemKind.Function)
+            const cmd = new CmdEnvSuggestion(`\\${result[1]}${args}`, 'user-defined', [], -1, {name: result[1], args}, vscode.CompletionItemKind.Function)
             cmd.documentation = '`' + result[1] + '`'
             cmd.insertText = new vscode.SnippetString(result[1] + tabStops)
             cmd.filterText = result[1]
-            cmds.push(cmd)
-            commandNameDuplicationDetector.add(result[1])
+            if (!commandSignatureDuplicationDetector.has(cmd)) {
+                cmds.push(cmd)
+                commandSignatureDuplicationDetector.add(cmd)
+            }
 
             CommandFinder.definedCmds.set(result[1], {
                 file,
@@ -326,37 +325,3 @@ export class CommandSignatureDuplicationDetector {
         return this.cmdSignatureList.has(cmd.signatureAsString())
     }
 }
-
-export class CommandNameDuplicationDetector {
-    private readonly cmdSignatureList: Set<string> = new Set<string>()
-
-    constructor(suggestions: CmdEnvSuggestion[] = []) {
-        this.cmdSignatureList = new Set<string>(suggestions.map(s => s.name()))
-    }
-
-    add(cmd: CmdEnvSuggestion): void
-    add(cmdName: string): void
-    add(cmd: any): void {
-        if (cmd instanceof CmdEnvSuggestion) {
-            this.cmdSignatureList.add(cmd.name())
-        } else if (typeof(cmd) === 'string') {
-            this.cmdSignatureList.add(cmd)
-        } else {
-            throw new Error('Unaccepted argument type')
-        }
-    }
-
-    has(cmd: CmdEnvSuggestion): boolean
-    has(cmd: string): boolean
-    has(cmd: any): boolean {
-        if (cmd instanceof CmdEnvSuggestion) {
-            return this.cmdSignatureList.has(cmd.name())
-        } else if (typeof(cmd) === 'string') {
-            return this.cmdSignatureList.has(cmd)
-        } else {
-            throw new Error('Unaccepted argument type')
-        }
-    }
-}
-
-
