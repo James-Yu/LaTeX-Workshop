@@ -9,15 +9,15 @@ export class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvide
         }
     }
 
-    resolveCustomEditor(document: vscode.CustomDocument, webviewPanel: vscode.WebviewPanel) {
-        webviewPanel.webview.options = {
-            ...webviewPanel.webview.options,
-            enableScripts: true
-        }
+    resolveCustomEditor(document: vscode.CustomDocument, webviewPanel?: vscode.WebviewPanel) {
         if (document.uri === undefined || !document.uri.fsPath.toLocaleLowerCase().endsWith('.pdf')) {
             return
         }
         if (webviewPanel) {
+            webviewPanel.webview.options = {
+                ...webviewPanel.webview.options,
+                enableScripts: true
+            }
             void lw.viewer.openPdfInPanel(document.uri, webviewPanel)
         } else {
             void lw.viewer.openPdfInTab(document.uri, 'current', false)
