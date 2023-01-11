@@ -8,17 +8,11 @@ import {computeFilteringRange} from './completerutils'
 import type { IProvider, ICompletionItem } from '../completion'
 
 export interface ReferenceEntry extends ICompletionItem {
-    /**
-     *  The file that defines the ref.
-     */
+    // The file that defines the ref.
     file: string,
-    /**
-     * The position that defines the ref.
-     */
+    // The position that defines the ref.
     position: vscode.Position,
-    /**
-     *  Stores the ref number.
-     */
+    //  Stores the ref number.
     prevIndex?: {refNumber: string, pageNumber: string}
 }
 
@@ -97,13 +91,46 @@ export class Reference implements IProvider {
     }
 
     private updateAll(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        if (!lw.manager.rootFile) {
+            this.suggestions.clear()
+            return
+        }
+
+        const included: Set<string> = new Set([lw.manager.rootFile])
+        const prefixes: {[filePath: string]: string} = {}
+        while (true) {
+            const startSize = included.size
+            included.forEach(cachedFile => {
+                lw.cacher.getIncludedTeX(cachedFile).forEach(includedTeX => {
+                    if (includedTeX === cachedFile) {
+                        return
+                    }
+                    included.add(includedTeX)
+                    if (prefixes[includedTeX]) {
+                        delete prefixes[includedTeX]
+                    }
+                })
+                Object.keys(lw.cacher.get(cachedFile)?.external).forEach(external => {
+                    if (included.has(external)) {
+                        return
+                    }
+                    included.add(external)
+                    prefixes[external] = lw.cacher.get(cachedFile)?.external[external]
+                })
+            })
+            if (included.size === startSize) {
+                break
+            }
+        }
+
         // Extract cached references
         const refList: string[] = []
         let range: vscode.Range | undefined = undefined
         if (args) {
             range = computeFilteringRange(args.document, args.position)
         }
-        lw.cacher.getIncludedTeX().forEach(cachedFile => {
+
+        included.forEach(cachedFile => {
             const cachedRefs = lw.cacher.get(cachedFile)?.elements.reference
             if (cachedRefs === undefined) {
                 return
@@ -112,13 +139,15 @@ export class Reference implements IProvider {
                 if (ref.range === undefined) {
                     return
                 }
-                this.suggestions.set(ref.label, {...ref,
+                const label = (cachedFile in prefixes ? prefixes[cachedFile] : '') + ref.label
+                this.suggestions.set(label, {...ref,
+                    label,
                     file: cachedFile,
-                    position: ref.range instanceof vscode.Range ? ref.range.start : ref.range.inserting.start,
+                    position: 'inserting' in ref.range ? ref.range.inserting.start : ref.range.start,
                     range,
-                    prevIndex: this.prevIndexObj.get(ref.label)
+                    prevIndex: this.prevIndexObj.get(label)
                 })
-                refList.push(ref.label)
+                refList.push(label)
             })
         })
         // Remove references that have been deleted

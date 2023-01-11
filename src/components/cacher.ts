@@ -15,21 +15,16 @@ import { PathUtils } from './cacherlib/pathutils'
 import { Watcher } from './cacherlib/texwatcher'
 import { PdfWatcher } from './cacherlib/pdfwatcher'
 import { BibWatcher } from './cacherlib/bibwatcher'
-
 import { getLogger } from './logger'
 import { UtensilsParser } from './parser/syntax'
 
 const logger = getLogger('Cacher')
 
 export interface Context {
-    /**
-     * The dirty (under editing) content of the LaTeX file if opened in vscode,
-     * the content on disk otherwise.
-     */
+    // The dirty (under editing) content of the LaTeX file if opened in vscode,
+    // the content on disk otherwise.
     content: string | undefined,
-    /**
-     * Completion item and other items for the LaTeX file.
-     */
+    // Completion item and other items for the LaTeX file.
     elements: {
         reference?: ICompletionItem[],
         glossary?: GlossarySuggestion[],
@@ -38,23 +33,18 @@ export interface Context {
         command?: CmdEnvSuggestion[],
         package?: {[packageName: string]: string[]}
     },
-    /**
-     * The sub-files of the LaTeX file. They should be tex or plain files.
-     */
+    // The sub-files of the LaTeX file. They should be tex or plain files.
     children: {
-        /**
-         * The index of character sub-content is inserted
-         */
+        // The index of character sub-content is inserted
         index: number,
-        /**
-         * The path of the sub-file
-         */
+        // The path of the sub-file
         file: string
     }[],
-    /**
-     * The array of the paths of `.bib` files referenced from the LaTeX file.
-     */
-    bibfiles: Set<string>
+    // The array of the paths of `.bib` files referenced from the LaTeX file.
+    bibfiles: Set<string>,
+    // A dictionary of external documents provided by \externaldocument of `xr`
+    // package. The value is its prefix \externaldocument[prefix]{file}
+    external: {[filePath: string]: string}
 }
 
 export class Cacher {
@@ -118,7 +108,7 @@ export class Cacher {
         }
         logger.log(`Caching ${filePath} .`)
         const content = lw.lwfs.readFileSyncGracefully(filePath)
-        this.contexts[filePath] = {content, elements: {}, children: [], bibfiles: new Set()}
+        this.contexts[filePath] = {content, elements: {}, children: [], bibfiles: new Set(), external: {}}
         if (content === undefined) {
             logger.log(`Cannot read ${filePath} .`)
             return
@@ -134,7 +124,12 @@ export class Cacher {
 
     private updateChildren(filePath: string, rootPath: string | undefined, contentTrimmed: string) {
         rootPath = rootPath || filePath
+        this.updateChildrenInput(filePath, rootPath, contentTrimmed)
+        this.updateChildrenXr(filePath, rootPath, contentTrimmed)
+        logger.log(`Updated inputs of ${filePath} .`)
+    }
 
+    private updateChildrenInput(filePath: string, rootPath: string , contentTrimmed: string) {
         const inputFileRegExp = new InputFileRegExp()
         while (true) {
             const result = inputFileRegExp.exec(contentTrimmed, filePath, rootPath)
@@ -158,8 +153,31 @@ export class Cacher {
             this.add(result.path)
             void this.refreshContext(result.path, rootPath)
         }
+    }
 
-        logger.log(`Updated inputs of ${filePath} .`)
+    private updateChildrenXr(filePath: string, rootPath: string , contentTrimmed: string) {
+        const externalDocRegExp = /\\externaldocument(?:\[(.*?)\])?\{(.*?)\}/g
+        while (true) {
+            const result = externalDocRegExp.exec(contentTrimmed)
+            if (!result) {
+                break
+            }
+
+            const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
+            const externalPath = utils.resolveFile([path.dirname(filePath), path.dirname(rootPath), ...texDirs], result[2])
+            if (!externalPath || !fs.existsSync(externalPath) || path.relative(externalPath, rootPath) === '') {
+                continue
+            }
+
+            this.contexts[rootPath].external[externalPath] = result[1] || ''
+            logger.log(`External document ${externalPath} from ${filePath} .`)
+
+            if (this.watcher.has(externalPath)) {
+                continue
+            }
+            this.add(externalPath)
+            void this.refreshContext(externalPath, externalPath)
+        }
     }
 
     private async updateElements(filePath: string, content: string, contentTrimmed: string) {
