@@ -110,12 +110,16 @@ export class Reference implements IProvider {
                         delete prefixes[includedTeX]
                     }
                 })
-                Object.keys(lw.cacher.get(cachedFile)?.external).forEach(external => {
+                const cache = lw.cacher.get(cachedFile)
+                if (!cache) {
+                    return
+                }
+                Object.keys(cache.external).forEach(external => {
                     if (included.has(external)) {
                         return
                     }
                     included.add(external)
-                    prefixes[external] = lw.cacher.get(cachedFile)?.external[external]
+                    prefixes[external] = cache.external[external]
                 })
             })
             if (included.size === startSize) {
