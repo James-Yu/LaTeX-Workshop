@@ -64,7 +64,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             updateCompleter = setTimeout(async () => {
                 const file = e.document.uri.fsPath
                 // await lw.manager.parseFileAndSubs(file, lw.manager.rootFile)
-                await lw.cacher.refreshContext(file, lw.manager.rootFile)
+                await lw.cacher.refreshCache(file, lw.manager.rootFile)
                 await lw.cacher.loadFlsFile(lw.manager.rootFile ? lw.manager.rootFile : file)
             }, configuration.get('intellisense.update.delay', 1000))
         }

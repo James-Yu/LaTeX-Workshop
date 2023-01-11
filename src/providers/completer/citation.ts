@@ -181,9 +181,6 @@ export class Citation implements IProvider {
             // Only happens when rootFile is undefined
             return Array.from(this.bibEntries.keys())
         }
-        if (!lw.cacher.get(file)) {
-            return []
-        }
         const cache = lw.cacher.get(file)
         if (cache === undefined) {
             return []

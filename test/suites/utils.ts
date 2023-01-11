@@ -100,7 +100,7 @@ export async function openActive(fixture: string, fileName: string, doContext = 
     const doc = await vscode.workspace.openTextDocument(texFilePath)
     await vscode.window.showTextDocument(doc)
     if (doContext) {
-        await lw.cacher.refreshContext(path.resolve(fixture, fileName))
+        await lw.cacher.refreshCache(path.resolve(fixture, fileName))
         await wait
     }
     wait = waitEvent(RootFileSearched)

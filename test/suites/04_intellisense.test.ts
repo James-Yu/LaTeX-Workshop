@@ -196,7 +196,7 @@ suite('Intellisense test suite', () => {
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', false)
         const wait = waitEvent(FileParsed, path.resolve(fixture, 'main.tex'))
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
+        await lw.cacher.refreshCache(path.resolve(fixture, 'main.tex'))
         await wait
         items = getIntellisense(result.doc, new vscode.Position(0, 1))
         assert.ok(items)
@@ -250,7 +250,7 @@ suite('Intellisense test suite', () => {
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', false)
         const wait = waitEvent(FileParsed, path.resolve(fixture, 'main.tex'))
-        await lw.cacher.refreshContext(path.resolve(fixture, 'main.tex'))
+        await lw.cacher.refreshCache(path.resolve(fixture, 'main.tex'))
         await wait
         items = getIntellisense(result.doc, new vscode.Position(8, 5))
         assert.ok(items)
@@ -492,7 +492,7 @@ suite('Intellisense test suite', () => {
             {src: 'intellisense/glossaryentries.tex', dst: 'sub/glossary.tex'}
         ])
         const result = await openActive(fixture, 'main.tex')
-        await lw.cacher.refreshContext(path.resolve(fixture, 'sub/glossary.tex'), fs.readFileSync(path.resolve(fixture, 'sub/glossary.tex')).toString())
+        await lw.cacher.refreshCache(path.resolve(fixture, 'sub/glossary.tex'), fs.readFileSync(path.resolve(fixture, 'sub/glossary.tex')).toString())
 
         const items = getIntellisense(result.doc, new vscode.Position(5, 5))
         assert.ok(items)

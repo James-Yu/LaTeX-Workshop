@@ -116,7 +116,7 @@ export class CompilerLogParser {
         if (!item.errorPosText) {
             return undefined
         }
-        const content = lw.cacher.get(item.file).content
+        const content = lw.cacher.get(item.file)?.content
         if (!content) {
             return undefined
         }

@@ -259,7 +259,7 @@ export class Manager {
                 lw.duplicateLabels.reset()
                 await lw.cacher.resetWatcher()
                 lw.cacher.add(this.rootFile)
-                await lw.cacher.refreshContext(this.rootFile)
+                await lw.cacher.refreshCache(this.rootFile)
                 // await this.initiateFileWatcher()
                 // await this.parseFileAndSubs(this.rootFile, this.rootFile) // Finishing the parsing is required for subsequent refreshes.
                 // We need to parse the fls to discover file dependencies when defined by TeX macro
