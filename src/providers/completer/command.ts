@@ -1,11 +1,11 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import {latexParser} from 'latex-utensils'
+import { latexParser } from 'latex-utensils'
 import * as lw from '../../lw'
 import type { IProvider, ICompletionItem, PkgType } from '../completion'
-import {CommandFinder, isTriggerSuggestNeeded} from './commandlib/commandfinder'
-import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint} from './completerutils'
-import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
+import { CommandFinder, isTriggerSuggestNeeded } from './commandlib/commandfinder'
+import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
+import { CommandSignatureDuplicationDetector } from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
 import { Environment, EnvSnippetType } from './environment'
 
@@ -161,15 +161,15 @@ export class Command implements IProvider {
 
         // Start working on commands in tex. To avoid over populating suggestions, we do not include
         // user defined commands, whose name matches a default command or one provided by a package
-        const commandNameDuplicationDetector = new CommandNameDuplicationDetector(suggestions)
+        const commandSignatureDuplicationDetector = new CommandSignatureDuplicationDetector(suggestions)
         lw.cacher.getIncludedTeX().forEach(tex => {
             const cmds = lw.cacher.get(tex)?.elements.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!commandNameDuplicationDetector.has(cmd)) {
+                    if (!commandSignatureDuplicationDetector.has(cmd)) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        commandNameDuplicationDetector.add(cmd)
+                        commandSignatureDuplicationDetector.add(cmd)
                     }
                 })
             }
@@ -216,7 +216,7 @@ export class Command implements IProvider {
             return
         }
         if (nodes !== undefined) {
-            cache.elements.command = CommandFinder.getCmdFromNodeArray(file, nodes, new CommandNameDuplicationDetector())
+            cache.elements.command = CommandFinder.getCmdFromNodeArray(file, nodes, new CommandSignatureDuplicationDetector())
         } else if (content !== undefined) {
             cache.elements.command = CommandFinder.getCmdFromContent(file, content)
         }

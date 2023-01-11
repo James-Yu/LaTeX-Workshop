@@ -176,6 +176,23 @@ suite('Intellisense test suite', () => {
         assert.ok(!labels.includes('\\lstformatfiles'))
     })
 
+    runTest(suiteName, fixtureName, 'command intellisense with cmds defined by \\newcommand', async () => {
+        await loadTestFile(fixture, [{src: 'intellisense/newcommand.tex', dst: 'main.tex'}])
+        const result = await openActive(fixture, 'main.tex')
+        const items = getIntellisense(result.doc, new vscode.Position(0, 1))
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        const labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('\\WARNING'))
+        assert.ok(labels.includes('\\FIXME{}'))
+        assert.ok(labels.includes('\\FIXME[]{}'))
+        assert.ok(labels.includes('\\fix[]{}{}'))
+        assert.ok(labels.includes('\\fakecommand'))
+        assert.ok(labels.includes('\\fakecommand{}'))
+        assert.ok(labels.includes('\\fakecommand[]{}'))
+    }, undefined, undefined, true)
+
     runTest(suiteName, fixtureName, 'command intellisense with config `intellisense.argumentHint.enabled`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', true)
         await loadTestFile(fixture, [
