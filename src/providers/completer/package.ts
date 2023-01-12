@@ -115,7 +115,7 @@ export class Package implements IProvider {
                     break
                 }
                 const packages = result[2].split(',').map(packageName => packageName.trim())
-                const options = (result[1] || '[]').slice(1,-1).replaceAll(/\s*=\s*/g,'=').split(',').map(option => option.trim())
+                const options = (result[1] || '[]').slice(1,-1).replace(/\s*=\s*/g,'=').split(',').map(option => option.trim())
                 const optionsNoTrue = options.filter(option => option.includes('=true')).map(option => option.replace('=true', ''))
                 packages.forEach(packageName => this.pushUsepackage(file, packageName, [...options, ...optionsNoTrue]))
             }

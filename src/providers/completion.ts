@@ -250,7 +250,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 return []
         }
         if (type === 'argument') {
-            line = line.replaceAll(/(?<!\\begin){[^[\]{}]*}/g, '').replaceAll(/\[[^[\]{}]*\]/g, '')
+            line = line.replace(/(?<!\\begin){[^[\]{}]*}/g, '').replace(/\[[^[\]{}]*\]/g, '')
         }
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
