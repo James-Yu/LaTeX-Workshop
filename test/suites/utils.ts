@@ -43,9 +43,8 @@ export function run(suiteName: string, fixtureName: string, testName: string, cb
     testFunction(`[${counterString}] ${suiteName}: ${testName}`, async () => {
         try {
             await cb()
-        } catch (error) {
+        } finally {
             log(fixtureName, testName, counterString)
-            throw error
         }
     }).timeout(timeout || 15000)
 }
@@ -63,7 +62,10 @@ function log(fixtureName: string, testName: string, counter: string) {
         '\n\n' + new Array(80).fill('=').join('') + '\n\n' +
         cachedLog.CACHED_EXTLOG.join('\n') +
         '\n\n' + new Array(80).fill('=').join('') + '\n\n' +
-        cachedLog.CACHED_COMPILER.join('\n'))
+        cachedLog.CACHED_COMPILER.join('\n') +
+        '\n\n' + new Array(80).fill('=').join('') +
+        vscode.window.activeTextEditor?.document.uri.fsPath + '\n\n' +
+        vscode.window.activeTextEditor?.document.getText())
 }
 
 export function write(fixture: string, fileName: string, ...contents: string[]) {
