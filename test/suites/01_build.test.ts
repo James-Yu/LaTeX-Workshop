@@ -132,7 +132,7 @@ suite('Build TeX files test suite', () => {
         await test.assert.build(fixture, 'main.tex', 'main.pdf')
     })
 
-    test.only(suiteName, fixtureName, 'build a subfile when main.tex opened', async () => {
+    test.run(suiteName, fixtureName, 'build a subfile when main.tex opened', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
         await test.load(fixture, [
