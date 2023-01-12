@@ -35,6 +35,9 @@ suite('Formatter test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.handleDuplicates', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sort.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.align-equal.enabled', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-entries.first', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-fields.sort.enabled', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-fields.order', undefined)
 
         if (path.basename(fixture) === 'testground') {
             rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
@@ -165,7 +168,7 @@ suite('Formatter test suite', () => {
         assert.notStrictEqual(lines[5].trim().slice(-1), ',')
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex sort with `bibtex-format.sortby`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex sorter with `bibtex-format.sortby`', async () => {
         await test.load(fixture, [{src: 'formatter/bibtex_base.bib', dst: 'main.bib'}])
         await test.open(fixture, 'main.bib')
 
@@ -210,7 +213,7 @@ suite('Formatter test suite', () => {
         assert.ok(entries[2].includes('MR1241645'))
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.handleDuplicates`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex sorter with `bibtex-format.handleDuplicates`', async () => {
         await test.load(fixture, [{src: 'formatter/bibtex_dup.bib', dst: 'main.bib'}])
         await test.open(fixture, 'main.bib')
 
@@ -254,7 +257,7 @@ suite('Formatter test suite', () => {
         assert.ok(entries[0].includes('MR1241645'))
     })
 
-    test.only(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.align-equal.enabled`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.align-equal.enabled`', async () => {
         await test.load(fixture, [{src: 'formatter/bibtex_base.bib', dst: 'main.bib'}])
         await test.open(fixture, 'main.bib')
 
@@ -272,5 +275,50 @@ suite('Formatter test suite', () => {
         lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         assert.ok(allEqual(lines.filter(line => line.includes('=')).map(line => line.indexOf('='))))
+    })
+
+    test.run(suiteName, fixtureName, 'test bibtex sorter with `bibtex-entries.first`', async () => {
+        await test.load(fixture, [{src: 'formatter/bibtex_base.bib', dst: 'main.bib'}])
+        await test.open(fixture, 'main.bib')
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-entries.first', ['book'])
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sortby', ['key'])
+        await vscode.commands.executeCommand('latex-workshop.bibsort')
+        await test.sleep(1000)
+        const lines = vscode.window.activeTextEditor?.document.getText().split('\n')
+        assert.ok(lines)
+        const entries = lines.filter(line => line.includes('@'))
+        assert.ok(entries[2].includes('art1'))
+        assert.ok(entries[0].includes('lamport1994latex'))
+        assert.ok(entries[1].includes('MR1241645'))
+    })
+
+    test.run(suiteName, fixtureName, 'test bibtex aligner with `bibtex-fields.sort.enabled` and `bibtex-fields.order`', async () => {
+        await test.load(fixture, [{src: 'formatter/bibtex_base.bib', dst: 'main.bib'}])
+        await test.open(fixture, 'main.bib')
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-fields.sort.enabled', true)
+        await vscode.commands.executeCommand('latex-workshop.bibalign')
+        await test.sleep(1000)
+        let lines = vscode.window.activeTextEditor?.document.getText().split('\n')
+        assert.ok(lines)
+        let entries = lines.filter(line => line.includes('='))
+        assert.ok(entries[0].includes('author'))
+        assert.ok(entries[1].includes('description'))
+        assert.ok(entries[2].includes('journal'))
+        assert.ok(entries[3].includes('title'))
+        assert.ok(entries[4].includes('year'))
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-fields.order', ['title', 'author', 'year'])
+        await vscode.commands.executeCommand('latex-workshop.bibalign')
+        await test.sleep(1000)
+        lines = vscode.window.activeTextEditor?.document.getText().split('\n')
+        assert.ok(lines)
+        entries = lines.filter(line => line.includes('='))
+        assert.ok(entries[0].includes('title'))
+        assert.ok(entries[1].includes('author'))
+        assert.ok(entries[2].includes('year'))
+        assert.ok(entries[3].includes('description'))
+        assert.ok(entries[4].includes('journal'))
     })
 })
