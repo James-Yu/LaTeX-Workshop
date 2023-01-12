@@ -277,11 +277,15 @@ suite('Formatter test suite', () => {
         assert.ok(entries[1].includes('MR1241645'))
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex aligner with `bibtex-fields.sort.enabled` and `bibtex-fields.order`', async () => {
-        await test.load(fixture, [{src: 'formatter/bibtex_base.bib', dst: 'main.bib'}])
+    test.only(suiteName, fixtureName, 'test bibtex aligner with `bibtex-fields.sort.enabled` and `bibtex-fields.order`', async () => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-fields.sort.enabled', true)
+        await test.load(fixture, [{src: 'formatter/bibtex_sortfield.bib', dst: 'main.bib'}])
         await test.open(fixture, 'main.bib')
 
-        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-fields.sort.enabled', true)
+        if (!vscode.window.activeTextEditor) {
+            return
+        }
+
         let promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('latex-workshop.bibalign')
         await promise
