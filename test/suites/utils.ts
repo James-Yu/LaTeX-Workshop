@@ -63,7 +63,7 @@ function log(fixtureName: string, testName: string, counter: string) {
         cachedLog.CACHED_EXTLOG.join('\n') +
         '\n\n' + new Array(80).fill('=').join('') + '\n\n' +
         cachedLog.CACHED_COMPILER.join('\n') +
-        '\n\n' + new Array(80).fill('=').join('') +
+        '\n\n' + new Array(80).fill('=').join('') + '\n\n' +
         vscode.window.activeTextEditor?.document.uri.fsPath + '\n\n' +
         vscode.window.activeTextEditor?.document.getText())
 }
