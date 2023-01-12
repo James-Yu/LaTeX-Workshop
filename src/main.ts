@@ -11,6 +11,7 @@ import { FoldingProvider, WeaveFoldingProvider } from './providers/folding'
 import { SelectionRangeProvider } from './providers/selection'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import { getLogger } from './components/logger'
+import { DocumentChanged } from './components/eventbus'
 
 const logger = getLogger('')
 
@@ -46,6 +47,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
     let updateCompleter: NodeJS.Timeout
     lw.registerDisposable(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
+        lw.eventBus.fire(DocumentChanged)
         if (lw.lwfs.isVirtualUri(e.document.uri)){
             return
         }

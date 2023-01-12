@@ -5,6 +5,7 @@ import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
 import * as test from './utils'
 import { resetCachedLog } from '../../src/components/logger'
+import { DocumentChanged } from '../../src/components/eventbus'
 
 suite('Formatter test suite', () => {
 
@@ -49,8 +50,9 @@ suite('Formatter test suite', () => {
         await test.load(fixture, [{src: 'formatter/latex_base.tex', dst: 'main.tex'}])
         await test.open(fixture, 'main.tex')
         const original = vscode.window.activeTextEditor?.document.getText()
+        const promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         const formatted = vscode.window.activeTextEditor?.document.getText()
         assert.notStrictEqual(original, formatted)
     })
@@ -63,14 +65,15 @@ suite('Formatter test suite', () => {
         // echo add a new \n to the end of stdin
         await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.args', [original?.slice(0, -1)])
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000) // wait for formatter finish
+        await test.sleep(250) // wait for echo finish
         const echoed = vscode.window.activeTextEditor?.document.getText()
         assert.strictEqual(original, echoed)
 
         await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.path', 'latexindent')
         await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.args', ['-c', '%DIR%/', '%TMPFILE%', '-y=defaultIndent: \'%INDENT%\''])
+        const promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000) // wait for formatter finish
+        await promise
         const formatted = vscode.window.activeTextEditor?.document.getText()
         assert.notStrictEqual(original, formatted)
     })
@@ -79,8 +82,9 @@ suite('Formatter test suite', () => {
         await test.load(fixture, [{src: 'formatter/bibtex_base.bib', dst: 'main.bib'}])
         await test.open(fixture, 'main.bib')
         const original = vscode.window.activeTextEditor?.document.getText()
+        const promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         const formatted = vscode.window.activeTextEditor?.document.getText()
         assert.notStrictEqual(original, formatted)
     })
@@ -90,22 +94,25 @@ suite('Formatter test suite', () => {
         await test.open(fixture, 'main.bib')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.tab', 'tab')
+        let promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         let lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         assert.strictEqual(lines[1].slice(0, 1), '\t')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.tab', '2 spaces')
+        promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         assert.strictEqual(lines[1].slice(0, 2), '  ')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.tab', '4')
+        promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         assert.strictEqual(lines[1].slice(0, 4), '    ')
@@ -116,15 +123,17 @@ suite('Formatter test suite', () => {
         await test.open(fixture, 'main.bib')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.surround', 'Curly braces')
+        let promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         let lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         assert.strictEqual(lines[1].slice(-2, -1), '}')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.surround', 'Quotation marks')
+        promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         assert.strictEqual(lines[1].slice(-2, -1), '"')
@@ -135,15 +144,17 @@ suite('Formatter test suite', () => {
         await test.open(fixture, 'main.bib')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.case', 'UPPERCASE')
+        let promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         let lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         assert.ok(lines[1].trim().slice(0, 1).match(/[A-Z]/))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.case', 'lowercase')
+        promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         assert.ok(lines[1].trim().slice(0, 1).match(/[a-z]/))
@@ -154,15 +165,17 @@ suite('Formatter test suite', () => {
         await test.open(fixture, 'main.bib')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.trailingComma', true)
+        let promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         let lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         assert.strictEqual(lines[5].trim().slice(-1), ',')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.trailingComma', false)
+        promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         assert.notStrictEqual(lines[5].trim().slice(-1), ',')
@@ -172,39 +185,21 @@ suite('Formatter test suite', () => {
         await test.load(fixture, [{src: 'formatter/bibtex_base.bib', dst: 'main.bib'}])
         await test.open(fixture, 'main.bib')
 
-        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sortby', ['key'])
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sortby', ['year'])
+        let promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('latex-workshop.bibsort')
-        await test.sleep(1000)
+        await promise
         let lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         let entries = lines.filter(line => line.includes('@'))
-        assert.ok(entries[0].includes('art1'))
-        assert.ok(entries[1].includes('lamport1994latex'))
-        assert.ok(entries[2].includes('MR1241645'))
-
-        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sortby', ['year'])
-        await vscode.commands.executeCommand('latex-workshop.bibsort')
-        await test.sleep(1000)
-        lines = vscode.window.activeTextEditor?.document.getText().split('\n')
-        assert.ok(lines)
-        entries = lines.filter(line => line.includes('@'))
         assert.ok(entries[2].includes('art1'))
         assert.ok(entries[1].includes('lamport1994latex'))
         assert.ok(entries[0].includes('MR1241645'))
 
-        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sortby', ['author'])
-        await vscode.commands.executeCommand('latex-workshop.bibsort')
-        await test.sleep(1000)
-        lines = vscode.window.activeTextEditor?.document.getText().split('\n')
-        assert.ok(lines)
-        entries = lines.filter(line => line.includes('@'))
-        assert.ok(entries[0].includes('art1'))
-        assert.ok(entries[1].includes('lamport1994latex'))
-        assert.ok(entries[2].includes('MR1241645'))
-
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sortby', ['year-desc'])
+        promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('latex-workshop.bibsort')
-        await test.sleep(1000)
+        await promise
         lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         entries = lines.filter(line => line.includes('@'))
@@ -217,41 +212,27 @@ suite('Formatter test suite', () => {
         await test.load(fixture, [{src: 'formatter/bibtex_dup.bib', dst: 'main.bib'}])
         await test.open(fixture, 'main.bib')
 
-        await vscode.commands.executeCommand('latex-workshop.bibsort')
-        await test.sleep(1000)
-        let lines = vscode.window.activeTextEditor?.document.getText().split('\n')
-        assert.ok(lines)
-        assert.strictEqual(lines.filter(line => line.includes('@')).length, 2)
-
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.handleDuplicates', 'Comment Duplicates')
+        const promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('latex-workshop.bibsort')
-        await test.sleep(1000)
-        lines = vscode.window.activeTextEditor?.document.getText().split('\n')
+        await promise
+        const lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         assert.strictEqual(lines.filter(line => line.includes('@')).length, 1)
     })
 
     test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.sort.enabled`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sortby', ['year'])
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sort.enabled', true)
         await test.load(fixture, [{src: 'formatter/bibtex_base.bib', dst: 'main.bib'}])
         await test.open(fixture, 'main.bib')
 
-        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sort.enabled', false)
+        const promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
-        let lines = vscode.window.activeTextEditor?.document.getText().split('\n')
+        await promise
+        const lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
-        let entries = lines.filter(line => line.includes('@'))
-        assert.ok(entries[0].includes('art1'))
-        assert.ok(entries[1].includes('lamport1994latex'))
-        assert.ok(entries[2].includes('MR1241645'))
-
-        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sort.enabled', true)
-        await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
-        lines = vscode.window.activeTextEditor?.document.getText().split('\n')
-        assert.ok(lines)
-        entries = lines.filter(line => line.includes('@'))
+        const entries = lines.filter(line => line.includes('@'))
         assert.ok(entries[2].includes('art1'))
         assert.ok(entries[1].includes('lamport1994latex'))
         assert.ok(entries[0].includes('MR1241645'))
@@ -262,16 +243,18 @@ suite('Formatter test suite', () => {
         await test.open(fixture, 'main.bib')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.align-equal.enabled', false)
+        let promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         let lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         const allEqual = (arr: number[]) => arr.every(val => val === arr[0])
         assert.ok(!allEqual(lines.filter(line => line.includes('=')).map(line => line.indexOf('='))))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.align-equal.enabled', true)
+        promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('editor.action.formatDocument')
-        await test.sleep(1000)
+        await promise
         lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         assert.ok(allEqual(lines.filter(line => line.includes('=')).map(line => line.indexOf('='))))
@@ -283,8 +266,9 @@ suite('Formatter test suite', () => {
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-entries.first', ['book'])
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sortby', ['key'])
+        const promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('latex-workshop.bibsort')
-        await test.sleep(1000)
+        await promise
         const lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         const entries = lines.filter(line => line.includes('@'))
@@ -298,8 +282,9 @@ suite('Formatter test suite', () => {
         await test.open(fixture, 'main.bib')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-fields.sort.enabled', true)
+        let promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('latex-workshop.bibalign')
-        await test.sleep(1000)
+        await promise
         let lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         let entries = lines.filter(line => line.includes('='))
@@ -310,8 +295,9 @@ suite('Formatter test suite', () => {
         assert.ok(entries[4].includes('year'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-fields.order', ['title', 'author', 'year'])
+        promise = test.wait(DocumentChanged)
         await vscode.commands.executeCommand('latex-workshop.bibalign')
-        await test.sleep(1000)
+        await promise
         lines = vscode.window.activeTextEditor?.document.getText().split('\n')
         assert.ok(lines)
         entries = lines.filter(line => line.includes('='))

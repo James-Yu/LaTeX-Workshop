@@ -11,6 +11,7 @@ export const ViewerStatusChanged = 'VIEWER_STATUS_CHANGED'
 export const FileWatched = 'FILE_WATCHED'
 export const FileChanged = 'FILE_CHANGED'
 export const FileRemoved = 'FILE_REMOVED'
+export const DocumentChanged = 'DOCUMENT_CHANGED'
 
 type EventArgTypeMap = {
     [RootFileChanged]: string,
@@ -30,6 +31,7 @@ export type EventName = typeof BuildDone
                     | typeof FileWatched
                     | typeof FileChanged
                     | typeof FileRemoved
+                    | typeof DocumentChanged
 
 export class EventBus {
     private readonly eventEmitter = new EventEmitter()
