@@ -4,6 +4,7 @@ import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
 import * as test from './utils'
 import { FileWatched } from '../../src/components/eventbus'
+import { resetCachedLog } from '../../src/components/logger'
 
 suite('Auto-build test suite', () => {
 
@@ -19,6 +20,7 @@ suite('Auto-build test suite', () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.interval', 250)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onFileChange')
+        resetCachedLog()
     })
 
     teardown(async () => {

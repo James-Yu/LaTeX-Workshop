@@ -6,6 +6,17 @@ const STATUS_ITEM = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.
 const PLACEHOLDERS: {[placeholder: string]: string} = {}
 
 COMPILER_PANEL.append('Ready')
+let CACHED_EXTLOG: string[] = []
+let CACHED_COMPILER: string[] = []
+
+export function resetCachedLog() {
+    CACHED_EXTLOG = []
+    CACHED_COMPILER = []
+}
+
+export function getCachedLog() {
+    return {CACHED_EXTLOG, CACHED_COMPILER}
+}
 
 export function getLogger(...tags: string[]) {
     const tagString = tags.map(tag => `[${tag}]`).join('')
@@ -44,9 +55,13 @@ function logTagless(message: string) {
         }
         const placeholder = `%WS${Object.keys(PLACEHOLDERS).length + 1}%`
         PLACEHOLDERS[folder.uri.fsPath] = placeholder
-        LOG_PANEL.appendLine(`[${timestamp}][Logger] New log placeholder ${placeholder} registered for ${folder.uri.fsPath} .`)
+        const log = `[${timestamp}][Logger] New log placeholder ${placeholder} registered for ${folder.uri.fsPath} .`
+        LOG_PANEL.appendLine(log)
+        CACHED_EXTLOG.push(log)
     })
-    LOG_PANEL.appendLine(`[${timestamp}]${applyPlaceholders(message)}`)
+    const log = `[${timestamp}]${applyPlaceholders(message)}`
+    LOG_PANEL.appendLine(log)
+    CACHED_EXTLOG.push(log)
 }
 
 function applyPlaceholders(message: string) {
@@ -77,6 +92,7 @@ function logErrorTagless(message: string, error: unknown, stderr?: string) {
 
 function logCompiler(message: string) {
     COMPILER_PANEL.append(message)
+    CACHED_COMPILER.push(message)
 }
 
 function initializeStatusBarItem() {

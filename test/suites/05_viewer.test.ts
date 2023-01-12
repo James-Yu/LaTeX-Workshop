@@ -4,6 +4,7 @@ import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
 import * as test from './utils'
 import { BuildDone } from '../../src/components/eventbus'
+import { resetCachedLog } from '../../src/components/logger'
 
 suite('PDF viewer test suite', () => {
 
@@ -18,6 +19,7 @@ suite('PDF viewer test suite', () => {
     setup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
         await vscode.workspace.getConfiguration().update('latex-workshop.view.pdf.viewer', 'tab')
+        resetCachedLog()
     })
 
     teardown(async () => {

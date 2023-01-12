@@ -4,6 +4,7 @@ import * as assert from 'assert'
 import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
 import * as test from './utils'
+import { resetCachedLog } from '../../src/components/logger'
 
 suite('Formatter test suite', () => {
 
@@ -17,6 +18,7 @@ suite('Formatter test suite', () => {
 
     setup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
+        resetCachedLog()
     })
 
     teardown(async () => {

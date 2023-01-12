@@ -7,6 +7,7 @@ import { ok, strictEqual } from 'assert'
 import * as lw from '../../src/lw'
 import { BuildDone, FileParsed, FileWatched, RootFileSearched, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
 import type { EventName } from '../../src/components/eventbus'
+import { getCachedLog } from '../../src/components/logger'
 
 let testCounter = 0
 
@@ -43,7 +44,7 @@ export function run(suiteName: string, fixtureName: string, testName: string, cb
         try {
             await cb()
         } catch (error) {
-            await log(counterString)
+            log(fixtureName, testName, counterString)
             throw error
         }
     }).timeout(timeout || 15000)
@@ -53,22 +54,14 @@ export function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-async function log(counter: string) {
-    await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-    await sleep(500)
-    await vscode.commands.executeCommand('workbench.action.output.toggleOutput')
-    await sleep(500)
-    await vscode.commands.executeCommand('latex-workshop.log')
-    await sleep(500)
-    const extensionMessage = vscode.window.activeTextEditor?.document.getText()
-    await vscode.commands.executeCommand('latex-workshop.compilerlog')
-    await sleep(500)
-    const compilerMessage = vscode.window.activeTextEditor?.document.getText()
-
+function log(fixtureName: string, testName: string, counter: string) {
+    const cachedLog = getCachedLog()
     const logFolder = path.resolve(__dirname, '../../../test/log')
     fs.mkdirSync(logFolder, {recursive: true})
-    fs.writeFileSync(path.resolve(logFolder, `${counter}.extension.log`), extensionMessage || '')
-    fs.writeFileSync(path.resolve(logFolder, `${counter}.compiler.log`), compilerMessage || '')
+    fs.writeFileSync(path.resolve(logFolder, `${fixtureName}-${counter}.log`),
+        testName + '\n\n' + new Array(80).fill('=') + '\n\n' +
+        cachedLog.CACHED_EXTLOG + '\n\n' + new Array(80).fill('=') + '\n\n' +
+        cachedLog.CACHED_COMPILER)
 }
 
 export function write(fixture: string, fileName: string, ...contents: string[]) {

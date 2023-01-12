@@ -11,6 +11,7 @@ import { CmdType } from '../../src/providers/completer/command'
 import { PkgType } from '../../src/providers/completion'
 import { isTriggerSuggestNeeded } from '../../src/providers/completer/commandlib/commandfinder'
 import { FileParsed } from '../../src/components/eventbus'
+import { resetCachedLog } from '../../src/components/logger'
 
 function assertKeys(keys: string[], expected: string[] = [], message: string): void {
     assert.ok(
@@ -31,6 +32,7 @@ suite('Intellisense test suite', () => {
 
     setup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
+        resetCachedLog()
     })
 
     teardown(async () => {

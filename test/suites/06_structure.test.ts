@@ -5,6 +5,7 @@ import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
 import * as test from './utils'
 import { SectionNodeProvider } from '../../src/providers/structure'
+import { resetCachedLog } from '../../src/components/logger'
 
 async function loadTestFiles(fixture: string) {
     await test.load(fixture, [
@@ -27,6 +28,7 @@ suite('Document structure test suite', () => {
 
     setup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
+        resetCachedLog()
     })
 
     teardown(async () => {

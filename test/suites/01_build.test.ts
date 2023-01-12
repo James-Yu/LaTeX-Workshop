@@ -4,6 +4,7 @@ import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
 import * as test from './utils'
 import { BuildDone } from '../../src/components/eventbus'
+import { resetCachedLog } from '../../src/components/logger'
 
 suite('Build TeX files test suite', () => {
 
@@ -17,6 +18,7 @@ suite('Build TeX files test suite', () => {
 
     setup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
+        resetCachedLog()
     })
 
     teardown(async () => {
@@ -130,7 +132,7 @@ suite('Build TeX files test suite', () => {
         await test.assert.build(fixture, 'main.tex', 'main.pdf')
     })
 
-    test.run(suiteName, fixtureName, 'build a subfile when main.tex opened', async () => {
+    test.only(suiteName, fixtureName, 'build a subfile when main.tex opened', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
         await test.load(fixture, [

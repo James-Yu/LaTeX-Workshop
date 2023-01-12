@@ -4,6 +4,7 @@ import rimraf from 'rimraf'
 import * as assert from 'assert'
 import * as lw from '../../src/lw'
 import * as test from './utils'
+import { resetCachedLog } from '../../src/components/logger'
 
 suite('Multi-root workspace test suite', () => {
 
@@ -18,6 +19,7 @@ suite('Multi-root workspace test suite', () => {
     setup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.interval', 250)
+        resetCachedLog()
     })
 
     teardown(async () => {
