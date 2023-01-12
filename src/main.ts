@@ -172,9 +172,9 @@ function registerLatexWorkshopCommands() {
         vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => lw.commander.shiftSectioningLevel('demote')),
         vscode.commands.registerCommand('latex-workshop.select-section', () => lw.commander.selectSection()),
 
-        vscode.commands.registerCommand('latex-workshop.bibsort', () => BibtexFormatter.bibtexFormat(true, false)),
-        vscode.commands.registerCommand('latex-workshop.bibalign', () => BibtexFormatter.bibtexFormat(false, true)),
-        vscode.commands.registerCommand('latex-workshop.bibalignsort', () => BibtexFormatter.bibtexFormat(true, true)),
+        vscode.commands.registerCommand('latex-workshop.bibsort', () => BibtexFormatter.instance.bibtexFormat(true, false)),
+        vscode.commands.registerCommand('latex-workshop.bibalign', () => BibtexFormatter.instance.bibtexFormat(false, true)),
+        vscode.commands.registerCommand('latex-workshop.bibalignsort', () => BibtexFormatter.instance.bibtexFormat(true, true)),
 
         vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => lw.commander.openMathPreviewPanel()),
         vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => lw.commander.closeMathPreviewPanel()),
@@ -189,14 +189,12 @@ function registerProviders() {
     const weaveSelector = selectDocumentsWithId(['pweave', 'jlweave', 'rsweave'])
     const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'doctex'])
     const bibtexSelector = selectDocumentsWithId(['bibtex'])
-    const latexFormatter = new LatexFormatterProvider()
-    const bibtexFormatter = new BibtexFormatterProvider()
 
     lw.registerDisposable(
-        vscode.languages.registerDocumentFormattingEditProvider(latexSelector, latexFormatter),
-        vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter),
-        vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, latexFormatter),
-        vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter)
+        vscode.languages.registerDocumentFormattingEditProvider(latexSelector, LatexFormatterProvider.instance),
+        vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, BibtexFormatterProvider.instance),
+        vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, LatexFormatterProvider.instance),
+        vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, BibtexFormatterProvider.instance)
     )
 
     lw.registerDisposable(

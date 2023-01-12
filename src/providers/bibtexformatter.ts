@@ -9,15 +9,19 @@ import { UtensilsParser } from '../components/parser/syntax'
 const logger = getLogger('Format', 'Bib')
 
 export class BibtexFormatter {
-    private static duplicatesDiagnostics: vscode.DiagnosticCollection
-    private static diags: vscode.Diagnostic[]
+    private readonly duplicatesDiagnostics: vscode.DiagnosticCollection
+    private diags: vscode.Diagnostic[]
 
-    static initialize() {
-        BibtexFormatter.duplicatesDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
-        BibtexFormatter.diags = []
+    private static _instance?: BibtexFormatter
+    static get instance() {
+        return this._instance || (this._instance = new BibtexFormatter())
+    }
+    private constructor() {
+        this.duplicatesDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
+        this.diags = []
     }
 
-    static async bibtexFormat(sort: boolean, align: boolean) {
+    async bibtexFormat(sort: boolean, align: boolean) {
         if (!vscode.window.activeTextEditor) {
             logger.log('Exit formatting. The active textEditor is undefined.')
             return
@@ -28,9 +32,9 @@ export class BibtexFormatter {
         }
         const doc = vscode.window.activeTextEditor.document
         const t0 = performance.now() // Measure performance
-        BibtexFormatter.duplicatesDiagnostics.clear()
+        this.duplicatesDiagnostics.clear()
         logger.log('Start bibtex formatting on user request.')
-        const edits = await BibtexFormatter.formatDocument(doc, sort, align)
+        const edits = await this.formatDocument(doc, sort, align)
         if (edits.length === 0) {
             return
         }
@@ -41,7 +45,7 @@ export class BibtexFormatter {
 
         void vscode.workspace.applyEdit(edit).then(success => {
             if (success) {
-                BibtexFormatter.duplicatesDiagnostics.set(doc.uri, BibtexFormatter.diags)
+                this.duplicatesDiagnostics.set(doc.uri, this.diags)
                 const t1 = performance.now()
                 logger.log(`BibTeX action successful. Took ${t1 - t0} ms.`)
             } else {
@@ -51,7 +55,7 @@ export class BibtexFormatter {
 
     }
 
-    static async formatDocument(document: vscode.TextDocument, sort: boolean, align: boolean, range?: vscode.Range): Promise<vscode.TextEdit[]> {
+    async formatDocument(document: vscode.TextDocument, sort: boolean, align: boolean, range?: vscode.Range): Promise<vscode.TextEdit[]> {
         // Get configuration
         const formatConfig = new BibtexFormatConfig(document.uri)
         const config = vscode.workspace.getConfiguration('latex-workshop', document)
@@ -101,9 +105,9 @@ export class BibtexFormatter {
         }
 
         // Successively replace the text in the current location from the sorted location
-        BibtexFormatter.duplicatesDiagnostics.clear()
+        this.duplicatesDiagnostics.clear()
         const edits: vscode.TextEdit[] = []
-        BibtexFormatter.diags = []
+        this.diags = []
         let lineDelta = 0
         let text: string
         let isDuplicate: boolean
@@ -126,7 +130,7 @@ export class BibtexFormatter {
                             entryLocations[i].start.line + lineDelta + (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line) + lineOffset,
                             entryLocations[i].end.character
                         )
-                        BibtexFormatter.diags.push(new vscode.Diagnostic(
+                        this.diags.push(new vscode.Diagnostic(
                             highlightRange,
                             `Duplicate entry "${entry.internalKey}".`,
                             vscode.DiagnosticSeverity.Warning
@@ -152,20 +156,21 @@ export class BibtexFormatter {
 }
 
 export class BibtexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
-    constructor() {
-        BibtexFormatter.initialize()
+    private static _instance?: BibtexFormatterProvider
+    static get instance() {
+        return this._instance || (this._instance = new BibtexFormatterProvider())
     }
+    private constructor() {}
 
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
         const sort = vscode.workspace.getConfiguration('latex-workshop', document).get('bibtex-format.sort.enabled') as boolean
         logger.log('Start bibtex formatting on behalf of VSCode\'s formatter.')
-        return BibtexFormatter.formatDocument(document, sort, true)
+        return BibtexFormatter.instance.formatDocument(document, sort, true)
     }
 
     public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
         const sort = vscode.workspace.getConfiguration('latex-workshop', document).get('bibtex-format.sort.enabled') as boolean
         logger.log('Start bibtex selection formatting on behalf of VSCode\'s formatter.')
-        return BibtexFormatter.formatDocument(document, sort, true, range)
+        return BibtexFormatter.instance.formatDocument(document, sort, true, range)
     }
-
 }
