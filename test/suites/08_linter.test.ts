@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as assert from 'assert'
 import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
-import { sleep, runTest, openActive, loadTestFile } from './utils'
+import * as test from './utils'
 import { ChkTeX } from '../../src/components/linterlib/chktex'
 import { LaCheck } from '../../src/components/linterlib/lacheck'
 
@@ -27,16 +27,16 @@ suite('Linter test suite', () => {
 
         if (path.basename(fixture) === 'testground') {
             rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
-            await sleep(500) // Required for pooling
+            await test.sleep(500) // Required for pooling
         }
     })
 
-    runTest(suiteName, fixtureName, 'test chktex log parser', async () => {
-        await loadTestFile(fixture, [
+    test.run(suiteName, fixtureName, 'test chktex log parser', async () => {
+        await test.load(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
         ])
-        await openActive(fixture, 'main.tex')
+        await test.open(fixture, 'main.tex')
         const linter = new ChkTeX()
         const log = 'main.tex:5:18:1:Warning:24:Delete this space to maintain correct pagereferences.\nsub/s.tex:1:26:1:Warning:24:Delete this space to maintain correct pagereferences.\n'
         linter.parseLog(log)
@@ -46,24 +46,24 @@ suite('Linter test suite', () => {
         assert.match(linter.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'sub/s.tex')))?.[0].message || '', /Delete this space/)
     })
 
-    runTest(suiteName, fixtureName, 'test lacheck', async () => {
-        await loadTestFile(fixture, [
+    test.run(suiteName, fixtureName, 'test lacheck', async () => {
+        await test.load(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
         ])
-        await openActive(fixture, 'main.tex')
+        await test.open(fixture, 'main.tex')
         assert.ok(lw.manager.rootFile)
         const linter = new LaCheck()
         await linter.lintRootFile(lw.manager.rootFile)
         assert.strictEqual(linter.linterDiagnostics.name, 'LaCheck')
     })
 
-    runTest(suiteName, fixtureName, 'test lacheck log parser', async () => {
-        await loadTestFile(fixture, [
+    test.run(suiteName, fixtureName, 'test lacheck log parser', async () => {
+        await test.load(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
         ])
-        await openActive(fixture, 'main.tex')
+        await test.open(fixture, 'main.tex')
         const linter = new LaCheck()
         const log = '"main.tex", line 7: double space at "~~"\n** sub/sub:\n"sub/s.tex", line 2: double space at "~~"\n'
         linter.parseLog(log)

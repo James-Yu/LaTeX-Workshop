@@ -3,18 +3,18 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as glob from 'glob'
 import * as os from 'os'
-import * as assert from 'assert'
+import { ok, strictEqual } from 'assert'
 import * as lw from '../../src/lw'
 import { BuildDone, FileParsed, FileWatched, RootFileSearched, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
 import type { EventName } from '../../src/components/eventbus'
 
 let testCounter = 0
 
-export function runTestOnly(suiteName: string, fixtureName: string, testName: string, cb: () => unknown, platforms?: NodeJS.Platform[], timeout?: number) {
-    return runTest(suiteName, fixtureName, testName, cb, platforms, timeout, true)
+export function only(suiteName: string, fixtureName: string, testName: string, cb: () => unknown, platforms?: NodeJS.Platform[], timeout?: number) {
+    return run(suiteName, fixtureName, testName, cb, platforms, timeout, true)
 }
 
-export function runTest(suiteName: string, fixtureName: string, testName: string, cb: () => unknown, platforms?: NodeJS.Platform[], timeout?: number, only?: boolean) {
+export function run(suiteName: string, fixtureName: string, testName: string, cb: () => unknown, platforms?: NodeJS.Platform[], timeout?: number, runonly?: boolean) {
     let fixture: string | undefined
     if (vscode.workspace.workspaceFile) {
         fixture = path.dirname(vscode.workspace.workspaceFile.fsPath)
@@ -36,7 +36,7 @@ export function runTest(suiteName: string, fixtureName: string, testName: string
     }
 
     testCounter++
-    const testFunction = (process.env['LATEXWORKSHOP_CLI'] || !only) ? test : test.only
+    const testFunction = (process.env['LATEXWORKSHOP_CLI'] || !runonly) ? test : test.only
     const counterString = testCounter.toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping: false})
 
     testFunction(`[${counterString}] ${suiteName}: ${testName}`, async () => {
@@ -71,12 +71,12 @@ async function log(counter: string) {
     fs.writeFileSync(path.resolve(logFolder, `${counter}.compiler.log`), compilerMessage || '')
 }
 
-export function writeTestFile(fixture: string, fileName: string, ...contents: string[]) {
+export function write(fixture: string, fileName: string, ...contents: string[]) {
     fs.mkdirSync(path.resolve(fixture, path.dirname(fileName)), {recursive: true})
     fs.writeFileSync(path.resolve(fixture, fileName), contents.join('\n'))
 }
 
-export async function loadTestFile(fixture: string, files: {src: string, dst: string}[]) {
+export async function load(fixture: string, files: {src: string, dst: string}[]) {
     let unlinked = false
     for (const file of files) {
         if (fs.existsSync(path.resolve(fixture, file.dst))) {
@@ -94,68 +94,22 @@ export async function loadTestFile(fixture: string, files: {src: string, dst: st
     await sleep(250)
 }
 
-export async function openActive(fixture: string, fileName: string, doContext = true) {
+export async function open(fixture: string, fileName: string, doContext = true) {
     const texFilePath = vscode.Uri.file(path.join(fixture, fileName))
-    let wait = waitEvent(FileParsed, path.resolve(fixture, fileName))
+    let event = wait(FileParsed, path.resolve(fixture, fileName))
     const doc = await vscode.workspace.openTextDocument(texFilePath)
     await vscode.window.showTextDocument(doc)
     if (doContext) {
         await lw.cacher.refreshCache(path.resolve(fixture, fileName))
-        await wait
+        await event
     }
-    wait = waitEvent(RootFileSearched)
+    event = wait(RootFileSearched)
     const root = await lw.manager.findRoot()
-    await wait
+    await event
     return {root, doc}
 }
 
-export async function assertBuild(fixture: string, texName: string, pdfName: string, build?: () => unknown) {
-    await openActive(fixture, texName, false)
-    if (build) {
-        await build()
-    } else {
-        await lw.commander.build()
-    }
-
-    const files = glob.sync('**/**.pdf', { cwd: fixture })
-    const pdfPath = path.join(fixture, pdfName)
-    assert.strictEqual(files.map(file => path.resolve(fixture, file)).join(','), pdfName === '' ? pdfName : pdfPath)
-}
-
-export async function assertAutoBuild(fixture: string, texName: string, pdfName: string, mode?: ('skipFirstBuild' | 'noAutoBuild' | 'onSave')[], build?: () => unknown) {
-    if (!mode?.includes('skipFirstBuild')) {
-        await assertBuild(fixture, texName, pdfName, build)
-    }
-    fs.rmSync(path.resolve(fixture, pdfName))
-
-    let files = glob.sync('**/**.pdf', { cwd: fixture })
-    assert.strictEqual(files.map(file => path.resolve(fixture, file)).join(','), '')
-    await sleep(250)
-
-    let wait = waitEvent(FileWatched, path.resolve(fixture, texName))
-    if (!mode?.includes('noAutoBuild') && texName.endsWith('.tex') && !lw.cacher.watched(path.resolve(fixture, texName))) {
-        await wait
-    }
-
-    wait = waitEvent(BuildDone)
-    if (mode?.includes('onSave')) {
-        await vscode.commands.executeCommand('workbench.action.files.save')
-    } else {
-        fs.appendFileSync(path.resolve(fixture, texName), ' % edit')
-    }
-
-    if (mode?.includes('noAutoBuild')) {
-        await sleep(3000)
-        files = glob.sync('**/**.pdf', { cwd: fixture })
-        assert.strictEqual(files.map(file => path.resolve(fixture, file)).join(','), '')
-    } else {
-        await wait
-        files = glob.sync('**/**.pdf', { cwd: fixture })
-        assert.strictEqual(files.map(file => path.resolve(fixture, file)).join(','), path.resolve(fixture, pdfName))
-    }
-}
-
-export async function waitEvent(event: EventName, arg?: any) {
+export async function wait(event: EventName, arg?: any) {
     return new Promise<void>((resolve, _) => {
         const disposable = lw.eventBus.on(event, (eventArg) => {
             if (arg && arg !== eventArg) {
@@ -167,30 +121,7 @@ export async function waitEvent(event: EventName, arg?: any) {
     })
 }
 
-export async function assertRoot(fixture: string, openName: string, rootName: string) {
-    await vscode.commands.executeCommand('latex-workshop.activate')
-    const result = await openActive(fixture, openName)
-    assert.strictEqual(result.root, path.join(fixture, rootName))
-}
-
-export async function assertViewer(fixture: string, pdfName: string, action?: () => unknown) {
-    await sleep(250)
-    const wait = Promise.all([
-        waitEvent(ViewerPageLoaded),
-        waitEvent(ViewerStatusChanged)
-    ])
-    void vscode.commands.executeCommand('latex-workshop.view')
-    if (action) {
-        await action()
-    }
-    await wait
-    const pdfFilePath = path.resolve(fixture, pdfName)
-    const status = lw.viewer.getViewerState(vscode.Uri.file(pdfFilePath))[0]
-    assert.ok(status)
-    assert.strictEqual(status.pdfFileUri, vscode.Uri.file(path.resolve(fixture, pdfName)).toString(true))
-}
-
-export function getIntellisense(doc: vscode.TextDocument, pos: vscode.Position, atSuggestion = false) {
+export function suggest(doc: vscode.TextDocument, pos: vscode.Position, atSuggestion = false) {
     const completer = atSuggestion ? lw.atSuggestionCompleter : lw.completer
     return completer?.provideCompletionItems(
         doc, pos, new vscode.CancellationTokenSource().token, {
@@ -198,4 +129,80 @@ export function getIntellisense(doc: vscode.TextDocument, pos: vscode.Position, 
             triggerCharacter: undefined
         }
     )
+}
+
+export const assert = {
+    build: assertBuild,
+    auto: assertAutoBuild,
+    root: assertRoot,
+    viewer: assertViewer
+}
+
+async function assertBuild(fixture: string, texName: string, pdfName: string, build?: () => unknown) {
+    await open(fixture, texName, false)
+    if (build) {
+        await build()
+    } else {
+        await lw.commander.build()
+    }
+
+    const files = glob.sync('**/**.pdf', { cwd: fixture })
+    const pdfPath = path.join(fixture, pdfName)
+    strictEqual(files.map(file => path.resolve(fixture, file)).join(','), pdfName === '' ? pdfName : pdfPath)
+}
+
+async function assertAutoBuild(fixture: string, texName: string, pdfName: string, mode?: ('skipFirstBuild' | 'noAutoBuild' | 'onSave')[], build?: () => unknown) {
+    if (!mode?.includes('skipFirstBuild')) {
+        await assertBuild(fixture, texName, pdfName, build)
+    }
+    fs.rmSync(path.resolve(fixture, pdfName))
+
+    let files = glob.sync('**/**.pdf', { cwd: fixture })
+    strictEqual(files.map(file => path.resolve(fixture, file)).join(','), '')
+    await sleep(250)
+
+    let event = wait(FileWatched, path.resolve(fixture, texName))
+    if (!mode?.includes('noAutoBuild') && texName.endsWith('.tex') && !lw.cacher.watched(path.resolve(fixture, texName))) {
+        await event
+    }
+
+    event = wait(BuildDone)
+    if (mode?.includes('onSave')) {
+        await vscode.commands.executeCommand('workbench.action.files.save')
+    } else {
+        fs.appendFileSync(path.resolve(fixture, texName), ' % edit')
+    }
+
+    if (mode?.includes('noAutoBuild')) {
+        await sleep(3000)
+        files = glob.sync('**/**.pdf', { cwd: fixture })
+        strictEqual(files.map(file => path.resolve(fixture, file)).join(','), '')
+    } else {
+        await event
+        files = glob.sync('**/**.pdf', { cwd: fixture })
+        strictEqual(files.map(file => path.resolve(fixture, file)).join(','), path.resolve(fixture, pdfName))
+    }
+}
+
+async function assertRoot(fixture: string, openName: string, rootName: string) {
+    await vscode.commands.executeCommand('latex-workshop.activate')
+    const result = await open(fixture, openName)
+    strictEqual(result.root, path.join(fixture, rootName))
+}
+
+async function assertViewer(fixture: string, pdfName: string, action?: () => unknown) {
+    await sleep(250)
+    const promise = Promise.all([
+        wait(ViewerPageLoaded),
+        wait(ViewerStatusChanged)
+    ])
+    void vscode.commands.executeCommand('latex-workshop.view')
+    if (action) {
+        await action()
+    }
+    await promise
+    const pdfFilePath = path.resolve(fixture, pdfName)
+    const status = lw.viewer.getViewerState(vscode.Uri.file(pdfFilePath))[0]
+    ok(status)
+    strictEqual(status.pdfFileUri, vscode.Uri.file(path.resolve(fixture, pdfName)).toString(true))
 }
