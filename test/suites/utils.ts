@@ -59,9 +59,11 @@ function log(fixtureName: string, testName: string, counter: string) {
     const logFolder = path.resolve(__dirname, '../../../test/log')
     fs.mkdirSync(logFolder, {recursive: true})
     fs.writeFileSync(path.resolve(logFolder, `${fixtureName}-${counter}.log`),
-        testName + '\n\n' + new Array(80).fill('=') + '\n\n' +
-        cachedLog.CACHED_EXTLOG + '\n\n' + new Array(80).fill('=') + '\n\n' +
-        cachedLog.CACHED_COMPILER)
+        testName +
+        '\n\n' + new Array(80).fill('=').join('') + '\n\n' +
+        cachedLog.CACHED_EXTLOG.join('\n') +
+        '\n\n' + new Array(80).fill('=').join('') + '\n\n' +
+        cachedLog.CACHED_COMPILER.join('\n'))
 }
 
 export function write(fixture: string, fileName: string, ...contents: string[]) {
