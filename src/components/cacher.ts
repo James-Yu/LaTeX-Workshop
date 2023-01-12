@@ -129,6 +129,7 @@ export class Cacher {
         await this.updateElements(filePath, content, contentTrimmed)
         await this.updateBibfiles(filePath, contentTrimmed)
         logger.log(`Cached ${filePath} .`)
+        void lw.structureViewer.computeTreeStructure()
         lw.eventBus.fire(eventbus.FileParsed, filePath)
     }
 

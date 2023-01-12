@@ -724,18 +724,6 @@ export class StructureTreeView {
                 void lw.structureViewer.refreshView()
             }
         })
-
-        lw.eventBus.onDidFileParsed(() => {
-            void this.computeTreeStructure()
-        })
-
-        lw.eventBus.onDidChangeRootFile(() => {
-            void this.computeTreeStructure()
-        })
-
-        lw.eventBus.onDidEndFindRootFile(() => {
-            void this.refreshView()
-        })
     }
 
     /**
