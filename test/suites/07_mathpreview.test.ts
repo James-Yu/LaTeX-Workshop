@@ -7,7 +7,6 @@ import * as test from './utils'
 import { TextDocumentLike } from '../../src/providers/preview/mathpreviewlib/textdocumentlike'
 import { TeXMathEnvFinder } from '../../src/providers/preview/mathpreviewlib/texmathenvfinder'
 import { CursorRenderer } from '../../src/providers/preview/mathpreviewlib/cursorrenderer'
-import { resetCachedLog } from '../../src/components/logger'
 
 suite('Math preview test suite', () => {
 
@@ -21,7 +20,6 @@ suite('Math preview test suite', () => {
 
     setup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
-        resetCachedLog()
     })
 
     teardown(async () => {

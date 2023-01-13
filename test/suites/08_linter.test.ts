@@ -6,7 +6,6 @@ import * as lw from '../../src/lw'
 import * as test from './utils'
 import { ChkTeX } from '../../src/components/linterlib/chktex'
 import { LaCheck } from '../../src/components/linterlib/lacheck'
-import { resetCachedLog } from '../../src/components/logger'
 
 suite('Linter test suite', () => {
 
@@ -20,7 +19,6 @@ suite('Linter test suite', () => {
 
     setup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
-        resetCachedLog()
     })
 
     teardown(async () => {

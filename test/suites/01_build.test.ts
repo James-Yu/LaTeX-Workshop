@@ -4,7 +4,6 @@ import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
 import * as test from './utils'
 import { BuildDone } from '../../src/components/eventbus'
-import { resetCachedLog } from '../../src/components/logger'
 
 suite('Build TeX files test suite', () => {
 
@@ -18,7 +17,6 @@ suite('Build TeX files test suite', () => {
 
     setup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
-        resetCachedLog()
     })
 
     teardown(async () => {
