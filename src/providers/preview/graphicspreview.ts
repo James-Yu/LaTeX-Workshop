@@ -11,18 +11,18 @@ export class GraphicsPreview {
         const pat = /\\includegraphics\s*(?:\[(.*?)\])?\s*\{(.*?)\}/
         const range = document.getWordRangeAtPosition(position, pat)
         if (!range) {
-            return undefined
+            return
         }
         const cmdString = document.getText(range)
         const execArray = pat.exec(cmdString)
         const relPath = execArray && execArray[2]
         const includeGraphicsArgs = execArray && execArray[1]
         if (!execArray || !relPath) {
-            return undefined
+            return
         }
         const filePath = this.findFilePath(relPath, document)
         if (filePath === undefined) {
-            return undefined
+            return
         }
         let pageNumber = 1
         if (includeGraphicsArgs) {
@@ -35,7 +35,7 @@ export class GraphicsPreview {
         if (md !== undefined) {
             return new vscode.Hover(md, range)
         }
-        return undefined
+        return
     }
 
     async renderGraphicsAsMarkdownString(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<vscode.MarkdownString | undefined> {
@@ -90,12 +90,12 @@ export class GraphicsPreview {
             dataUrl = await lw.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
             if (dataUrl && dataUrl.length >= maxDataUrlLength) {
                 logger.log(`Data URL still too large: ${pdfFilePath}`)
-                return undefined
+                return
             }
             return dataUrl
         } catch (e: unknown) {
             logger.logError(`Failed rendering graphics as data url with ${pdfFilePath}`, e)
-            return undefined
+            return
         }
     }
 
@@ -104,7 +104,7 @@ export class GraphicsPreview {
             if (fs.existsSync(relPath)) {
                 return relPath
             } else {
-                return undefined
+                return
             }
         }
 
@@ -123,13 +123,13 @@ export class GraphicsPreview {
 
         const rootDir = lw.manager.rootDir
         if (rootDir === undefined) {
-            return undefined
+            return
         }
         const frPath = path.resolve(rootDir, relPath)
         if (fs.existsSync(frPath)) {
             return frPath
         }
-        return undefined
+        return
     }
 
 }

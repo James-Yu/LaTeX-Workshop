@@ -29,7 +29,7 @@ export class PathUtils {
         const flsFile = path.resolve(rootDir, path.join(outDir, baseName + '.fls'))
         if (!fs.existsSync(flsFile)) {
             logger.log(`Non-existent .fls for ${texFile} .`)
-            return undefined
+            return
         }
         return flsFile
     }
@@ -42,7 +42,7 @@ export class PathUtils {
             if (kpsewhichReturn.status === 0) {
                 const bibPath = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
                 if (bibPath === '') {
-                    return undefined
+                    return
                 } else {
                     return bibPath
                 }
@@ -50,7 +50,7 @@ export class PathUtils {
         } catch(e) {
             logger.logError(`Calling ${kpsewhich} on ${bib} failed.`, e)
         }
-        return undefined
+        return
     }
 
     static resolveBibPath(bib: string, baseDir: string) {
@@ -71,7 +71,7 @@ export class PathUtils {
                 return PathUtils.kpsewhichBibPath(bib)
             } else {
                 logger.log(`Cannot resolve ${bib} .`)
-                return undefined
+                return
             }
         }
         return bibPath

@@ -49,7 +49,7 @@ export class TeXMathEnvFinder {
                 }
             }
         }
-        return undefined
+        return
     }
 
     static findMathEnvIncludingPosition(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
@@ -100,7 +100,7 @@ export class TeXMathEnvFinder {
             }
             lineNum += 1
         }
-        return undefined
+        return
     }
 
     //  \begin{...}                \end{...}
@@ -125,7 +125,7 @@ export class TeXMathEnvFinder {
             lineNum -= 1
             i += 1
         }
-        return undefined
+        return
     }
 
     //  \begin{...}                \end{...}
@@ -139,7 +139,7 @@ export class TeXMathEnvFinder {
             const range = new vscode.Range(startPos, endPos)
             return {texString: document.getText(range), range, envname}
         }
-        return undefined
+        return
     }
 
     //  \[                \]
@@ -153,7 +153,7 @@ export class TeXMathEnvFinder {
             const range = new vscode.Range(startPos, endPos)
             return {texString: document.getText(range), range, envname}
         }
-        return undefined
+        return
     }
 
     private static findHoverOnInline(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
@@ -178,6 +178,6 @@ export class TeXMathEnvFinder {
             }
             m = s.match(regex)
         }
-        return undefined
+        return
     }
 }

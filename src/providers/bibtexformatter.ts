@@ -69,7 +69,7 @@ export class BibtexFormatter {
                 logger.log(error.message)
                 void logger.showErrorMessage('Bibtex parser failed with error: ' + error.message)
             }
-            return undefined
+            return
         })
         if (! ast) {
             return []

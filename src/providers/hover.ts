@@ -24,12 +24,12 @@ export class HoverProvider implements vscode.HoverProvider {
         }
         const token = tokenizer(document, position)
         if (!token) {
-            return undefined
+            return
         }
         // Test if we are on a command
         if (token.startsWith('\\')) {
             if (!hovCommand) {
-                return undefined
+                return
             }
             return this.provideHoverOnCommand(token)
         }
@@ -55,7 +55,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 return new vscode.Hover(md, range)
             }
         }
-        return undefined
+        return
     }
 
     private provideHoverOnCommand(token: string): vscode.Hover | undefined {
@@ -99,6 +99,6 @@ export class HoverProvider implements vscode.HoverProvider {
             mdLink.isTrusted = true
             return new vscode.Hover(mdLink)
         }
-        return undefined
+        return
     }
 }

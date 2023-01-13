@@ -172,7 +172,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         if (this.embedded) {
             return this.#restoredState.promise
         } else {
-            return undefined
+            return
         }
     }
 

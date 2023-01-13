@@ -154,9 +154,8 @@ function showErrorMessage(message: string, ...args: string[]): Thenable<string |
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (configuration.get('message.error.show')) {
         return vscode.window.showErrorMessage(message, ...args)
-    } else {
-        return undefined
     }
+    return
 }
 
 function showErrorMessageWithCompilerLogButton(message: string) {

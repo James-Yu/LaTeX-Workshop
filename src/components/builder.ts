@@ -447,7 +447,7 @@ export class Builder {
         } else {
             const recipe = this.findRecipe(rootFile, langId, recipeName)
             if (recipe === undefined) {
-                return undefined
+                return
             }
             logger.log(`Preparing to run recipe: ${recipe.name}.`)
             this.prevRecipe = recipe
@@ -468,7 +468,7 @@ export class Builder {
             })
         }
         if (buildTools.length < 1) {
-            return undefined
+            return
         }
 
         // Use JSON.parse and JSON.stringify for a deep copy.
@@ -534,7 +534,7 @@ export class Builder {
         if (recipes.length < 1) {
             logger.log('No recipes defined.')
             void logger.showErrorMessage('[Builder] No recipes defined.')
-            return undefined
+            return
         }
         if (this.prevLangId !== langId) {
             this.prevRecipe = undefined

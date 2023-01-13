@@ -114,11 +114,11 @@ export class CompilerLogParser {
 
     private static getErrorPosition(item: LogEntry): {start: number, end: number} | undefined {
         if (!item.errorPosText) {
-            return undefined
+            return
         }
         const content = lw.cacher.get(item.file)?.content
         if (!content) {
-            return undefined
+            return
         }
         // Try to find the errorPosText in the respective line of the document
         const lines = content.split('\n')
@@ -135,7 +135,7 @@ export class CompilerLogParser {
                 }
             }
         }
-       return undefined
+       return
     }
 
     static showCompilerDiagnostics(compilerDiagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[], source: string) {

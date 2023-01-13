@@ -35,7 +35,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (sections.length >0) {
             return sections[0].fileName
         }
-        return undefined
+        return
     }
 
     /**
@@ -664,7 +664,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     getParent(element?: Section): Section | undefined {
         if (lw.manager.rootFile === undefined || !element) {
-            return undefined
+            return
         }
         return element.parent
     }

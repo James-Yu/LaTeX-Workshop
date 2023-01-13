@@ -493,17 +493,15 @@ async function quickPickRootFile(rootFile: string, localRootFile: string, verb: 
         matchOnDescription: true
     }).then( selected => {
         if (!selected) {
-            return undefined
+            return
         }
         switch (selected.label) {
             case 'Default root file':
                 return rootFile
-                break
             case 'Subfiles package root file':
                 return localRootFile
-                break
             default:
-                return undefined
+                return
         }
     })
     return pickedRootFile

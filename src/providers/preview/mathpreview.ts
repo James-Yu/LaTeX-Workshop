@@ -78,7 +78,7 @@ export class MathPreview {
             const refMessage = `numbered ${refNum} at last compilation`
             return refMessage
         }
-        return undefined
+        return
     }
 
     async generateSVG(tex: TexMathEnv, newCommandsArg?: string) {

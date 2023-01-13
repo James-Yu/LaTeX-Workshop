@@ -73,7 +73,7 @@ export class TextDocumentLike implements ITextDocumentLike {
 
     getWordRangeAtPosition(position: vscode.Position, regex = /(-?\d.\d\w)|([^`~!@#%^&*()\-=+[{\]}|;:'",.<>/?\s]+)/g): vscode.Range | undefined {
         if (position.line > this.lineCount) {
-            return undefined
+            return
         }
         const line = this.#lines[position.line]
         for (let i = position.character; i >= 0; i--) {
@@ -83,7 +83,7 @@ export class TextDocumentLike implements ITextDocumentLike {
                 return new vscode.Range(position.line, i, position.line, i + m[0].length)
             }
         }
-        return undefined
+        return
     }
 
     lineAt(lineNum: number): TextLineLike

@@ -154,7 +154,7 @@ export class Manager {
         if (rootFileUri) {
             return vscode.workspace.getWorkspaceFolder(rootFileUri)
         }
-        return undefined
+        return
     }
 
     private inferLanguageId(filename: string): string | undefined {
@@ -170,7 +170,7 @@ export class Manager {
         } else if (ext === '.dtx') {
             return 'doctex'
         } else {
-            return undefined
+            return
         }
     }
 
@@ -211,7 +211,7 @@ export class Manager {
         const firstDir = vscode.workspace.workspaceFolders?.[0]
         // If no workspace is opened.
         if (!firstDir) {
-            return undefined
+            return
         }
         // If we don't have an active text editor, we can only make a guess.
         // Let's guess the first one.
@@ -273,12 +273,12 @@ export class Manager {
         }
         void lw.structureViewer.refreshView()
         lw.eventBus.fire(eventbus.RootFileSearched)
-        return undefined
+        return
     }
 
     private findRootFromMagic(): string | undefined {
         if (!vscode.window.activeTextEditor) {
-            return undefined
+            return
         }
         const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.(?:tex|[jrsRS]nw|[rR]tex|jtexw))$)/m
         let content: string | undefined = vscode.window.activeTextEditor.document.getText()
@@ -290,7 +290,7 @@ export class Manager {
             content = lw.lwfs.readFileSyncGracefully(file)
             if (content === undefined) {
                 logger.log(`Non-existent magic root ${file} .`)
-                return undefined
+                return
             }
             fileStack.push(file)
             logger.log(`Found magic root ${file} from active.`)
@@ -309,37 +309,37 @@ export class Manager {
                 content = lw.lwfs.readFileSyncGracefully(file)
                 if (content === undefined) {
                     logger.log(`Non-existent magic root ${file} .`)
-                    return undefined
+                    return
                 }
                 result = content.match(regex)
             }
             logger.log(`Finalized magic root ${file} .`)
             return file
         }
-        return undefined
+        return
     }
 
     private findRootFromCurrentRoot(): string | undefined {
         if (!vscode.window.activeTextEditor || this.rootFile === undefined) {
-            return undefined
+            return
         }
         if (lw.lwfs.isVirtualUri(vscode.window.activeTextEditor.document.uri)) {
             logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
-            return undefined
+            return
         }
         if (lw.cacher.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
             return this.rootFile
         }
-        return undefined
+        return
     }
 
     private findRootFromActive(): string | undefined {
         if (!vscode.window.activeTextEditor) {
-            return undefined
+            return
         }
         if (lw.lwfs.isVirtualUri(vscode.window.activeTextEditor.document.uri)) {
             logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
-            return undefined
+            return
         }
         const regex = /\\begin{document}/m
         const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
@@ -355,12 +355,12 @@ export class Manager {
                 return file
             }
         }
-        return undefined
+        return
     }
 
     private findSubFiles(content: string): string | undefined {
         if (!vscode.window.activeTextEditor) {
-            return undefined
+            return
         }
         const regex = /(?:\\documentclass\[(.*)\]{subfiles})/
         const result = content.match(regex)
@@ -371,7 +371,7 @@ export class Manager {
             }
             return file
         }
-        return undefined
+        return
     }
 
     private async findRootInWorkspace(): Promise<string | undefined> {
@@ -380,7 +380,7 @@ export class Manager {
         logger.log(`Current workspaceRootDir: ${currentWorkspaceDirUri ? currentWorkspaceDirUri.toString(true) : ''}`)
 
         if (!currentWorkspaceDirUri) {
-            return undefined
+            return
         }
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop', currentWorkspaceDirUri)
@@ -419,7 +419,7 @@ export class Manager {
                 return candidates[0]
             }
         } catch (e) {}
-        return undefined
+        return
     }
 
     private registerSetEnvVar() {

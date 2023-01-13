@@ -30,7 +30,7 @@ export function resolvePkgFile(packageName: string, dataDir: string): string | u
             return f
         }
     }
-    return undefined
+    return
 }
 
 export class CommandFinder {

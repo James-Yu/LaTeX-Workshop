@@ -84,7 +84,7 @@ export function computeFilteringRange(document: vscode.TextDocument, position: v
     if (startPos >= 0) {
         return new vscode.Range(position.line, startPos + 1, position.line, position.character)
     }
-    return undefined
+    return
 }
 
 export function filterArgumentHint(suggestions: vscode.CompletionItem[]) {

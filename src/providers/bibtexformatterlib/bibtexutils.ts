@@ -21,7 +21,7 @@ function getBibtexFormatTab(tab: string): string | undefined {
             const nSpaces = parseInt(res[1], 10)
             return ' '.repeat(nSpaces)
         } else {
-            return undefined
+            return
         }
     }
 }
