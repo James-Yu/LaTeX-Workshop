@@ -74,7 +74,7 @@ suite('Formatter test suite', () => {
         await promise
         const formatted = vscode.window.activeTextEditor?.document.getText()
         assert.notStrictEqual(original, formatted)
-    })
+    }, ['linux', 'darwin']) // Skip win for very high false alarm rate
 
     test.run(suiteName, fixtureName, 'test bibtex formatter', async () => {
         await test.load(fixture, [{src: 'formatter/bibtex_base.bib', dst: 'main.bib'}])

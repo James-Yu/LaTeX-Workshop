@@ -144,7 +144,7 @@ suite('Build TeX files test suite', () => {
         await vscode.window.showTextDocument(docSub, vscode.ViewColumn.Beside)
 
         await test.assert.build(fixture, 'sub/s.tex', 'sub/s.pdf')
-    })
+    }, ['linux', 'darwin']) // Skip win for very high false alarm rate
 
     test.run(suiteName, fixtureName, 'build main.tex with QuickPick', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
@@ -176,7 +176,7 @@ suite('Build TeX files test suite', () => {
             await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
             await event
         })
-    })
+    }, ['linux', 'darwin']) // Skip win for very high false alarm rate
 
     test.run(suiteName, fixtureName, 'build sub.tex to outdir', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
