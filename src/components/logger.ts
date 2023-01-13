@@ -65,8 +65,7 @@ function logTagless(message: string) {
 }
 
 function applyPlaceholders(message: string) {
-    Object.keys(PLACEHOLDERS)
-        .forEach(placeholder => message = message.replaceAll(placeholder, PLACEHOLDERS[placeholder]))
+    Object.entries(PLACEHOLDERS).forEach(([path, placeholder]) => message = message.replaceAll(path, placeholder))
     return message
 }
 

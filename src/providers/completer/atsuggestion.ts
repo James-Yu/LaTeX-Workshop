@@ -33,8 +33,7 @@ export class AtSuggestion implements IProvider {
     private initialize(suggestions: {[key: string]: AtSuggestionItemEntry}) {
         const suggestionReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.atSuggestionJSON.replace') as {[key: string]: string}
         this.suggestions.length = 0
-        Object.keys(suggestionReplacements).forEach(prefix => {
-            const body = suggestionReplacements[prefix]
+        Object.entries(suggestionReplacements).forEach(([prefix, body]) => {
             if (body === '') {
                 return
             }
@@ -45,8 +44,7 @@ export class AtSuggestion implements IProvider {
             this.suggestions.push(completionItem)
         })
 
-        Object.keys(suggestions).forEach(key => {
-            const item = suggestions[key]
+        Object.values(suggestions).forEach(item => {
             if (item.prefix in suggestionReplacements) {
                 return
             }

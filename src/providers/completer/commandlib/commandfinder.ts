@@ -11,20 +11,20 @@ export function isTriggerSuggestNeeded(name: string): boolean {
     return reg.test(name)
 }
 
-export function resolvePkgFile(name: string, dataDir: string): string | undefined {
+export function resolvePkgFile(packageName: string, dataDir: string): string | undefined {
     const dirs = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.dirs') as string[]
     dirs.push(dataDir)
     for (const dir of dirs) {
-        const f = `${dir}/${name}`
+        const f = `${dir}/${packageName}`
         if (fs.existsSync(f)) {
             return f
         }
     }
     // Many package with names like toppackage-config.sty are just wrappers around
     // the general package toppacke.sty and do not define commands on their own.
-    const indexDash = name.lastIndexOf('-')
+    const indexDash = packageName.lastIndexOf('-')
     if (indexDash > - 1) {
-        const generalPkg = name.substring(0, indexDash)
+        const generalPkg = packageName.substring(0, indexDash)
         const f = `${dataDir}/${generalPkg}.json`
         if (fs.existsSync(f)) {
             return f

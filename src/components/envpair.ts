@@ -100,9 +100,7 @@ export class EnvPair {
                 return null
         }
         const begins = Object.keys(this.delimiters)
-        const ends = Object.keys(this.delimiters).map((key) => {
-            return this.delimiters[key].end
-        })
+        const ends = Object.values(this.delimiters).map(value => value.end)
         while (true) {
             line = utils.stripCommentsAndVerbatim(line)
             let allMatches = regexpAllMatches(line, patRegexp)

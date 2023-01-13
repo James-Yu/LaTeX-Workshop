@@ -122,7 +122,7 @@ function registerLatexWorkshopCommands() {
         vscode.commands.registerCommand('latex-workshop.viewExternal', () => lw.commander.view('external')),
         vscode.commands.registerCommand('latex-workshop.kill', () => lw.commander.kill()),
         vscode.commands.registerCommand('latex-workshop.synctex', () => lw.commander.synctex()),
-        vscode.commands.registerCommand('latex-workshop.texdoc', (pkg: string | undefined) => lw.commander.texdoc(pkg)),
+        vscode.commands.registerCommand('latex-workshop.texdoc', (packageName: string | undefined) => lw.commander.texdoc(packageName)),
         vscode.commands.registerCommand('latex-workshop.texdocUsepackages', () => lw.commander.texdocUsepackages()),
         vscode.commands.registerCommand('latex-workshop.synctexto', (line: number, filePath: string) => lw.commander.synctexonref(line, filePath)),
         vscode.commands.registerCommand('latex-workshop.clean', () => lw.commander.clean()),

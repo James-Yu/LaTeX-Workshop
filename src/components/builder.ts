@@ -251,11 +251,8 @@ export class Builder {
         logger.log(`root: ${step.rootFile}`)
 
         const env = Object.create(null) as ProcessEnv
-        Object.keys(process.env).forEach(key => env[key] = process.env[key])
-        const toolEnv = step.env
-        if (toolEnv) {
-            Object.keys(toolEnv).forEach(key => env[key] = toolEnv[key])
-        }
+        Object.entries(process.env).forEach(([key, value]) => env[key] = value)
+        Object.entries(step.env ?? {}).forEach(([key, value]) => env[key] = value)
         env['max_print_line'] = this.MAX_PRINT_LINE
 
         if (!step.isExternal &&
@@ -507,21 +504,13 @@ export class Builder {
                         break
                 }
             }
-            if (tool.args) {
-                tool.args = tool.args.map(replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir))
-            }
-            if (tool.env) {
-                Object.keys(tool.env).forEach( v => {
-                    const e = tool.env && tool.env[v]
-                    if (tool.env && e) {
-                        tool.env[v] = replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(e)
-                    }
-                })
-            }
+            tool.args = tool.args?.map(replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir))
+            const env = tool.env ?? {}
+            Object.entries(env).forEach(([key, value]) => {
+                env[key] = value && replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(value)
+            })
             if (configuration.get('latex.option.maxPrintLine.enabled')) {
-                if (!tool.args) {
-                    tool.args = []
-                }
+                tool.args = tool.args ?? []
                 const isLuaLatex = tool.args.includes('-lualatex') ||
                                    tool.args.includes('-pdflua') ||
                                    tool.args.includes('-pdflualatex') ||

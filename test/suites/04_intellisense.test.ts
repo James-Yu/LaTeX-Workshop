@@ -55,11 +55,11 @@ suite('Intellisense test suite', () => {
         const file = `${lw.extensionRoot}/data/environments.json`
         const envs = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: EnvType}
         assert.ok(Object.keys(envs).length > 0)
-        Object.keys(envs).forEach(name => {
+        Object.values(envs).forEach(env => {
             assertKeys(
-                Object.keys(envs[name]),
+                Object.keys(env),
                 ['name', 'snippet', 'detail'],
-                file + ': ' + JSON.stringify(envs[name])
+                file + ': ' + JSON.stringify(env)
             )
         })
     })
@@ -68,11 +68,11 @@ suite('Intellisense test suite', () => {
         const file = `${lw.extensionRoot}/data/commands.json`
         const cmds = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: CmdType}
         assert.ok(Object.keys(cmds).length > 0)
-        Object.keys(cmds).forEach(name => {
+        Object.values(cmds).forEach(cmd => {
             assertKeys(
-                Object.keys(cmds[name]),
+                Object.keys(cmd),
                 ['command', 'snippet', 'documentation', 'detail', 'postAction'],
-                file + ': ' + JSON.stringify(cmds[name])
+                file + ': ' + JSON.stringify(cmd)
             )
         })
     })
@@ -100,18 +100,18 @@ suite('Intellisense test suite', () => {
         const files = glob.sync('data/packages/*.json', {cwd: lw.extensionRoot})
         files.forEach(file => {
             const pkg = JSON.parse(fs.readFileSync(path.join(lw.extensionRoot, file), {encoding: 'utf8'})) as PkgType
-            Object.keys(pkg.cmds).forEach(name => {
+            Object.values(pkg.cmds).forEach(cmd => {
                 assertKeys(
-                    Object.keys(pkg.cmds[name]),
+                    Object.keys(cmd),
                     ['command', 'snippet', 'option', 'keyvalindex', 'keyvalpos', 'documentation', 'detail'],
-                    file + ': ' + JSON.stringify(pkg.cmds[name])
+                    file + ': ' + JSON.stringify(cmd)
                 )
             })
-            Object.keys(pkg.envs).forEach(name => {
+            Object.values(pkg.envs).forEach(env => {
                 assertKeys(
-                    Object.keys(pkg.envs[name]),
+                    Object.keys(env),
                     ['name', 'snippet', 'detail', 'option', 'keyvalindex', 'keyvalpos'],
-                    file + ': ' + JSON.stringify(pkg.envs[name])
+                    file + ': ' + JSON.stringify(env)
                 )
             })
         })

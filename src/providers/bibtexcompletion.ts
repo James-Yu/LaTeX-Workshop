@@ -91,8 +91,8 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
             }
             entriesList.push(entry)
         })
-        Object.keys(optFields).forEach(entry => {
-            this.optFieldItems[entry] = this.fieldsToCompletion(entry, optFields[entry], this.bibtexFormatConfig, maxLengths)
+        Object.entries(optFields).forEach(([field, item]) => {
+            this.optFieldItems[field] = this.fieldsToCompletion(field, item, this.bibtexFormatConfig, maxLengths)
         })
     }
 

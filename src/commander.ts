@@ -448,8 +448,8 @@ export async function devParseBib() {
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 
-export function texdoc(pkg?: string) {
-    lw.texdoc.texdoc(pkg)
+export function texdoc(packageName?: string) {
+    lw.texdoc.texdoc(packageName)
 }
 
 export function texdocUsepackages() {

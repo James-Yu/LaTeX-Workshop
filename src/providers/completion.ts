@@ -99,22 +99,16 @@ export class Completer implements vscode.CompletionItemProvider {
     }
 
     private populatePackageData(packageData: PkgType) {
-        Object.keys(packageData.cmds).forEach(cmd => {
-            packageData.cmds[cmd].command = cmd
-            packageData.cmds[cmd].snippet = packageData.cmds[cmd].snippet || cmd
-            const keyvalindex = packageData.cmds[cmd].keyvalindex
-            if (keyvalindex !== undefined) {
-                packageData.cmds[cmd].keyvals = packageData.keyvals[keyvalindex]
-            }
+        Object.entries(packageData.cmds).forEach(([key, cmd]) => {
+            cmd.command = key
+            cmd.snippet = cmd.snippet || key
+            cmd.keyvals = packageData.keyvals[cmd.keyvalindex ?? -1]
         })
-        Object.keys(packageData.envs).forEach(env => {
-            packageData.envs[env].detail = env
-            packageData.envs[env].name = packageData.envs[env].name || env
-            packageData.envs[env].snippet = packageData.envs[env].snippet || ''
-            const keyvalindex = packageData.envs[env].keyvalindex
-            if (keyvalindex !== undefined) {
-                packageData.envs[env].keyvals = packageData.keyvals[keyvalindex]
-            }
+        Object.entries(packageData.envs).forEach(([key, env]) => {
+            env.detail = key
+            env.name = env.name || key
+            env.snippet = env.snippet || ''
+            env.keyvals = packageData.keyvals[env.keyvalindex ?? -1]
         })
     }
 

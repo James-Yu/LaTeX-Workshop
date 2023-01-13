@@ -34,9 +34,9 @@ export class HoverProvider implements vscode.HoverProvider {
             return this.provideHoverOnCommand(token)
         }
         if (onAPackage(document, position, token)) {
-            const pkg = encodeURIComponent(JSON.stringify(token))
+            const packageName = encodeURIComponent(JSON.stringify(token))
             const md = `Package **${token}** \n\n`
-            const mdLink = new vscode.MarkdownString(`[View documentation](command:latex-workshop.texdoc?${pkg})`)
+            const mdLink = new vscode.MarkdownString(`[View documentation](command:latex-workshop.texdoc?${packageName})`)
             mdLink.isTrusted = true
             const ctanUrl = `https://ctan.org/pkg/${token}`
             const ctanLink = new vscode.MarkdownString(`[${ctanUrl}](${ctanUrl})`)
@@ -60,7 +60,7 @@ export class HoverProvider implements vscode.HoverProvider {
 
     private provideHoverOnCommand(token: string): vscode.Hover | undefined {
         const signatures: string[] = []
-        const pkgs: string[] = []
+        const packageNames: string[] = []
         const tokenWithoutSlash = token.substring(1)
 
         lw.cacher.getIncludedTeX().forEach(cachedFile => {
@@ -76,8 +76,8 @@ export class HoverProvider implements vscode.HoverProvider {
                     }
                     const doc = cmd.documentation
                     const packageName = cmd.package
-                    if (packageName && packageName !== 'user-defined' && (!pkgs.includes(packageName))) {
-                        pkgs.push(packageName)
+                    if (packageName && packageName !== 'user-defined' && (!packageNames.includes(packageName))) {
+                        packageNames.push(packageName)
                     }
                     signatures.push(doc)
                 }
@@ -85,11 +85,11 @@ export class HoverProvider implements vscode.HoverProvider {
         })
 
         let pkgLink = ''
-        if (pkgs.length > 0) {
+        if (packageNames.length > 0) {
             pkgLink = '\n\nView documentation for package(s) '
-            pkgs.forEach(p => {
-                const pkg = encodeURIComponent(JSON.stringify(p))
-                pkgLink += `[${p}](command:latex-workshop.texdoc?${pkg}),`
+            packageNames.forEach(p => {
+                const packageName = encodeURIComponent(JSON.stringify(p))
+                pkgLink += `[${p}](command:latex-workshop.texdoc?${packageName}),`
             })
             pkgLink = pkgLink.substring(0, pkgLink.lastIndexOf(',')) + '.'
         }

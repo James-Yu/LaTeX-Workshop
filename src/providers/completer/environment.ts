@@ -39,18 +39,18 @@ export class Environment implements IProvider {
 
     initialize() {
         const envs = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/environments.json`, {encoding: 'utf8'})) as {[key: string]: EnvType}
-        Object.keys(envs).forEach(key => {
-            envs[key].name = envs[key].name || key
-            envs[key].snippet = envs[key].snippet || ''
-            envs[key].detail = key
+        Object.entries(envs).forEach(([key, env]) => {
+            env.name = env.name || key
+            env.snippet = env.snippet || ''
+            env.detail = key
         })
         this.defaultEnvsAsCommand = []
         this.defaultEnvsForBegin = []
         this.defaultEnvsAsName = []
-        Object.keys(envs).forEach(key => {
-            this.defaultEnvsAsCommand.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsCommand))
-            this.defaultEnvsForBegin.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.ForBegin))
-            this.defaultEnvsAsName.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsName))
+        Object.entries(envs).forEach(([key, env]) => {
+            this.defaultEnvsAsCommand.push(this.entryEnvToCompletion(key, env, EnvSnippetType.AsCommand))
+            this.defaultEnvsForBegin.push(this.entryEnvToCompletion(key, env, EnvSnippetType.ForBegin))
+            this.defaultEnvsAsName.push(this.entryEnvToCompletion(key, env, EnvSnippetType.AsName))
         })
 
         return this
@@ -116,9 +116,9 @@ export class Environment implements IProvider {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('intellisense.package.enabled')) {
             const packages = lw.completer.package.getPackagesIncluded(args.document.languageId)
-            Object.keys(packages).forEach(packageName => {
+            Object.entries(packages).forEach(([packageName, options]) => {
                 this.getEnvFromPkg(packageName, snippetType).forEach(env => {
-                    if (env.option && packages[packageName] && !packages[packageName].includes(env.option)) {
+                    if (env.option && options && !options.includes(env.option)) {
                         return
                     }
                     if (!envList.includes(env.label)) {
@@ -156,7 +156,7 @@ export class Environment implements IProvider {
      * Environments can be inserted using `\envname`.
      * This function is called by Command.provide to compute these commands for every package in use.
      */
-    provideEnvsAsCommandInPkg(pkg: string, options: string[], suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
+    provideEnvsAsCommandInPkg(packageName: string, options: string[], suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
 
@@ -165,7 +165,7 @@ export class Environment implements IProvider {
         }
 
         // Load environments from the package if not already done
-        const entry = this.getEnvFromPkg(pkg, EnvSnippetType.AsCommand)
+        const entry = this.getEnvFromPkg(packageName, EnvSnippetType.AsCommand)
         // No environment defined in package
         if (!entry || entry.length === 0) {
             return
@@ -234,16 +234,16 @@ export class Environment implements IProvider {
         return envs
     }
 
-    getEnvFromPkg(pkg: string, type: EnvSnippetType): CmdEnvSuggestion[] {
+    getEnvFromPkg(packageName: string, type: EnvSnippetType): CmdEnvSuggestion[] {
         const packageEnvs = this.getPackageEnvs(type)
-        const entry = packageEnvs.get(pkg)
+        const entry = packageEnvs.get(packageName)
         if (entry !== undefined) {
             return entry
         }
 
-        lw.completer.loadPackageData(pkg)
+        lw.completer.loadPackageData(packageName)
         // No package command defined
-        const pkgEnvs = this.packageEnvs.get(pkg)
+        const pkgEnvs = this.packageEnvs.get(packageName)
         if (!pkgEnvs || pkgEnvs.length === 0) {
             return []
         }
@@ -252,7 +252,7 @@ export class Environment implements IProvider {
         pkgEnvs.forEach(env => {
             newEntry.push(this.entryEnvToCompletion(env.name, env, type))
         })
-        packageEnvs.set(pkg, newEntry)
+        packageEnvs.set(packageName, newEntry)
         return newEntry
     }
 
@@ -280,13 +280,13 @@ export class Environment implements IProvider {
 
     setPackageEnvs(packageName: string, envs: {[key: string]: EnvType}) {
         const environments: EnvType[] = []
-        Object.keys(envs).forEach(key => {
-            envs[key].package = packageName
-            if (isEnv(envs[key])) {
-                environments.push(envs[key])
+        Object.entries(envs).forEach(([key, env]) => {
+            env.package = packageName
+            if (isEnv(env)) {
+                environments.push(env)
             } else {
                 logger.log(`Cannot parse intellisense file for ${packageName}`)
-                logger.log(`Missing field in entry: "${key}": ${JSON.stringify(envs[key])}`)
+                logger.log(`Missing field in entry: "${key}": ${JSON.stringify(env)}`)
                 delete envs[key]
             }
         })
