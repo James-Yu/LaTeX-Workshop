@@ -93,6 +93,7 @@ export type PdfViewerState = {
     scale?: string,
     scrollTop?: number,
     scrollLeft?: number,
+    sidebarView?: number,
     trim?: number,
     scrollMode?: number,
     spreadMode?: number,
