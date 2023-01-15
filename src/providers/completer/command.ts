@@ -45,7 +45,7 @@ export class Command implements IProvider {
 
     constructor() {
         lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            if (!e.affectsConfiguration('latex-workshop.intellisense.commandsJSON.replace')) {
+            if (!e.affectsConfiguration('latex-workshop.intellisense.command.user')) {
                 return
             }
             this.initialize(lw.completer.environment)
@@ -63,19 +63,21 @@ export class Command implements IProvider {
 
         const defaultEnvs = environment.getDefaultEnvs(EnvSnippetType.AsCommand)
 
-        const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.commandsJSON.replace') as {[key: string]: string}
+        const userCmds = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.command.user') as {[key: string]: string}
+        Object.entries(userCmds).forEach(([key, snippet]) => {
+            if (maths[key] && snippet !== '') {
+                maths[key].snippet = snippet
+            } else if (maths[key] && snippet === '') {
+                delete maths[key]
+            } else {
+                maths[key] = { snippet }
+            }
+        })
+
         this.defaultCmds = []
 
         // Initialize default commands and the ones in `tex.json`
-        Object.entries(maths).forEach(([key, cmd]) => {
-            const entry = JSON.parse(JSON.stringify(cmd)) as CmdType
-            if (snippetReplacements[key]) {
-                entry.snippet = snippetReplacements[key]
-            } else if (snippetReplacements[key] === '') {
-                return
-            }
-            this.defaultCmds.push(this.entryCmdToCompletion(key, entry))
-        })
+        Object.entries(maths).forEach(([key, cmd]) => this.defaultCmds.push(this.entryCmdToCompletion(key, cmd)))
 
         // Initialize default env begin-end pairs
         defaultEnvs.forEach(cmd => {
