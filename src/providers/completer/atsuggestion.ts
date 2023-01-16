@@ -24,7 +24,7 @@ export class AtSuggestion implements IProvider {
         const allSuggestions: {[key: string]: AtSuggestionItemEntry} = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/at-suggestions.json`).toString()) as DataAtSuggestionJsonType
         this.initialize(allSuggestions)
         lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestionJSON.replace')) {
+            if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestion.user')) {
                 this.initialize(allSuggestions)
             }
         }))

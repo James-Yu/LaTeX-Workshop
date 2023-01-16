@@ -38,7 +38,7 @@ suite('Intellisense test suite', () => {
         lw.manager.rootFile = undefined
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', undefined)
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.user', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.format', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', undefined)
@@ -541,7 +541,7 @@ suite('Intellisense test suite', () => {
 
     test.run(suiteName, fixtureName, '@-snippet intellisense and configs intellisense.atSuggestion*', async () => {
         const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', replaces)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.user', replaces)
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
