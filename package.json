@@ -1796,6 +1796,24 @@
           "default": 1000,
           "markdownDescription": "Defines the delay in milliseconds for the extension to update current active file content for intellisense after stopped typing. This config works only when `intellisense.update.aggressive.enabled` is enabled. Lower this value to let the extension know newly defined commands/references/environments more quickly, at the cost of more frequent content parsing: more computational burden."
         },
+        "latex-workshop.intellisense.atSuggestion.user": {
+          "scope": "resource",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {},
+          "markdownDescription": "Dictionary of `\"@prefix\": \"snippet command\"` to add to, replace, or remove the default suggestions in `data/at-suggestions.json`. The key of the dictionary is the triggering string, which **must** starts with `@` regardless of `#latex-workshop.intellisense.atSuggestion.trigger.latex#`. The value of the dictionary is the snippet to be inserted. If the key is identical to a default snippet defined in `data/at-suggestions.json`, the new value in the dictionary is used for suggestion. If the value is an empty string, the snippet is removed from suggestion. For example, `{ \"@.\": \"\\cdot\", \"@6\": \"\" }`."
+        },
+        "latex-workshop.intellisense.command.user": {
+          "scope": "resource",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {},
+          "markdownDescription": "Dictionary of `\"command name\": \"command snippet\"` to add to, replace, or remove the default ones in `data/commands.json`. The key of the dictionary is the command name with optional braces indicating the command arguments. The value of the dictionary is the snippet to be inserted. If the key is identical to a default command suggestion defined in `data/commands.json`, the new value in the dictionary is used for suggestion. If the value is an empty string, the command is removed from suggestion. Leading backslashes will be added to both the name and snippet by the extension, so don't include them in this config. For example, `{\"mycommand[]{}\": \"notsamecommand[${2:option}]{$TM_SELECTED_TEXT$1}\", \"parbox{}{}\": \"parbox{${2:width}}{$TM_SELECTED_TEXT$1}\", \"overline{}\": \"\"}` adds a new command with name `mycommand[]{} that inserts `\\notsamecommand[]{}`, replaces the default snippet of `\\parbox{}{}` to make it include current selected text, and removes `\\overline{}` from suggestion."
+        },
         "latex-workshop.intellisense.citation.type": {
           "scope": "window",
           "type": "string",
@@ -1866,7 +1884,8 @@
             "type": "string"
           },
           "default": {},
-          "markdownDescription": "Dictionary of `\"prefix\": \"snippet command\"` to replace the default suggestions in `data/at-suggestions.json` or to define a new suggestion. An empty action removes the snippet from the default list. E.g. `{ \"@.\": \"\\cdot\", \"@6\": \"\" }`. Note that in this setting, the prefix must start with `@`, no matter what the true trigger character defined by `#latex-workshop.intellisense.atSuggestion.trigger.latex#` is."
+          "deprecationMessage": "Deprecated: This config has been renamed to `intellisense.atSuggestion.user`.",
+          "markdownDeprecationMessage": "**Deprecated**: This config has been renamed to `#intellisense.atSuggestion.user#`."
         },
         "latex-workshop.intellisense.file.exclude": {
           "scope": "resource",
@@ -2251,7 +2270,8 @@
             "type": "string"
           },
           "default": {},
-          "markdownDescription": "Dictionary of `\"command name\": \"command action\"` to replace the default snippets in `data/commands.json`. Remove the leading `\\` of the command name. See `data/commands.json` for the list of command names. An empty action removes the snippet. E.g. `{ \"[\": \"[ ${1} \\\\]\", \"figure\": \"\" }`."
+          "deprecationMessage": "Deprecated: This config has been superceded by config `intellisense.command.user`, which provides more features.",
+          "markdownDeprecationMessage": "**Deprecated**: This config has been superceded by config `#intellisense.command.user#`, which provides more features."
         },
         "latex-workshop.texdoc.path": {
           "scope": "window",

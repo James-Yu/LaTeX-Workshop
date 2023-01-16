@@ -38,12 +38,12 @@ suite('Intellisense test suite', () => {
         lw.manager.rootFile = undefined
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', undefined)
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.user', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.format', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', undefined)
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.commandsJSON.replace', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', undefined)
 
         if (path.basename(fixture) === 'testground') {
             rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
@@ -227,8 +227,8 @@ suite('Intellisense test suite', () => {
         assert.ok(!snippet.value.includes('${1:'))
     })
 
-    test.run(suiteName, fixtureName, 'command intellisense with config `intellisense.commandsJSON.replace`', async () => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.commandsJSON.replace', {'mathbb{}': ''})
+    test.only(suiteName, fixtureName, 'command intellisense with config `intellisense.command.user`', async () => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', {'mycommand[]{}': 'notsamecommand[${2:option}]{$TM_SELECTED_TEXT$1}', 'parbox{}{}': 'defchanged', 'overline{}': ''})
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
@@ -239,15 +239,31 @@ suite('Intellisense test suite', () => {
         assert.ok(items.length > 0)
 
         let labels = items.map(item => item.label.toString())
-        assert.ok(!labels.includes('\\mathbb{}'))
+        assert.ok(labels.includes('\\mycommand[]{}'))
+        assert.ok(labels.includes('\\parbox{}{}'))
+        let parbox = items.filter(item => item.label === '\\parbox{}{}')[0].insertText
+        if (typeof parbox === 'string') {
+            assert.strictEqual(parbox, 'defchanged')
+        } else {
+            assert.strictEqual(parbox?.value, 'defchanged')
+        }
+        assert.ok(!labels.includes('\\overline{}'))
 
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.commandsJSON.replace', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', undefined)
         items = test.suggest(result.doc, new vscode.Position(0, 1))
         assert.ok(items)
         assert.ok(items.length > 0)
 
         labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('\\mathbb{}'))
+        assert.ok(!labels.includes('\\mycommand[]{}'))
+        assert.ok(labels.includes('\\parbox{}{}'))
+        parbox = items.filter(item => item.label === '\\parbox{}{}')[0].insertText
+        if (typeof parbox === 'string') {
+            assert.notStrictEqual(parbox, 'defchanged')
+        } else {
+            assert.notStrictEqual(parbox?.value, 'defchanged')
+        }
+        assert.ok(labels.includes('\\overline{}'))
     })
 
     test.run(suiteName, fixtureName, 'reference intellisense and config intellisense.label.keyval', async () => {
@@ -525,7 +541,7 @@ suite('Intellisense test suite', () => {
 
     test.run(suiteName, fixtureName, '@-snippet intellisense and configs intellisense.atSuggestion*', async () => {
         const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestionJSON.replace', replaces)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.user', replaces)
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}

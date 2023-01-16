@@ -24,16 +24,16 @@ export class AtSuggestion implements IProvider {
         const allSuggestions: {[key: string]: AtSuggestionItemEntry} = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/at-suggestions.json`).toString()) as DataAtSuggestionJsonType
         this.initialize(allSuggestions)
         lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestionJSON.replace')) {
+            if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestion.user')) {
                 this.initialize(allSuggestions)
             }
         }))
     }
 
     private initialize(suggestions: {[key: string]: AtSuggestionItemEntry}) {
-        const suggestionReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.atSuggestionJSON.replace') as {[key: string]: string}
+        const userSnippets = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.atSuggestion.user') as {[key: string]: string}
         this.suggestions.length = 0
-        Object.entries(suggestionReplacements).forEach(([prefix, body]) => {
+        Object.entries(userSnippets).forEach(([prefix, body]) => {
             if (body === '') {
                 return
             }
@@ -45,7 +45,7 @@ export class AtSuggestion implements IProvider {
         })
 
         Object.values(suggestions).forEach(item => {
-            if (item.prefix in suggestionReplacements) {
+            if (item.prefix in userSnippets) {
                 return
             }
             const completionItem = new vscode.CompletionItem(item.prefix.replace('@', this.triggerCharacter), vscode.CompletionItemKind.Function)
