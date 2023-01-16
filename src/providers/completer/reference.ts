@@ -97,8 +97,12 @@ export class Reference implements IProvider {
         }
 
         const included: Set<string> = new Set([lw.manager.rootFile])
+        // Included files may originate from \input or `xr`. If the latter, a
+        // prefix may be used to ref to the file. The following obj holds them.
         const prefixes: {[filePath: string]: string} = {}
         while (true) {
+            // The process adds newly included file recursively, only stops when
+            // all have been found, i.e., no new ones
             const startSize = included.size
             included.forEach(cachedFile => {
                 lw.cacher.getIncludedTeX(cachedFile).forEach(includedTeX => {
@@ -106,18 +110,23 @@ export class Reference implements IProvider {
                         return
                     }
                     included.add(includedTeX)
-                    if (prefixes[includedTeX]) {
-                        delete prefixes[includedTeX]
-                    }
+                    // If the file is indeed included by \input, but was
+                    // previously included by `xr`, the possible prefix is
+                    // removed as it can be directly referenced without.
+                    delete prefixes[includedTeX]
                 })
                 const cache = lw.cacher.get(cachedFile)
                 if (!cache) {
                     return
                 }
                 Object.keys(cache.external).forEach(external => {
+                    // Don't repeatedly add, no matter previously by \input or
+                    // `xr`
                     if (included.has(external)) {
                         return
                     }
+                    // If the file is included by `xr`, both file path and
+                    // prefix is recorded.
                     included.add(external)
                     prefixes[external] = cache.external[external]
                 })

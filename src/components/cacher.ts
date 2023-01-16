@@ -21,29 +21,34 @@ import { UtensilsParser } from './parser/syntax'
 const logger = getLogger('Cacher')
 
 export interface Context {
-    // The dirty (under editing) content of the LaTeX file if opened in vscode,
-    // the content on disk otherwise.
+    /** Cached content of file. Dirty if opened in vscode, disk otherwise */
     content: string | undefined,
-    // Completion item and other items for the LaTeX file.
+    /** Completion items */
     elements: {
+        /** \ref{} items */
         reference?: ICompletionItem[],
+        /** \gls items */
         glossary?: GlossarySuggestion[],
+        /** \begin{} items */
         environment?: CmdEnvSuggestion[],
+        /** \cite{} items from \bibitem definition */
         bibitem?: CiteSuggestion[],
+        /** command items */
         command?: CmdEnvSuggestion[],
+        /** \usepackage{}, a dictionary whose key is package name and value is the options */
         package?: {[packageName: string]: string[]}
     },
-    // The sub-files of the LaTeX file. They should be tex or plain files.
+    /** The sub-files of the LaTeX file. They should be tex or plain files */
     children: {
-        // The index of character sub-content is inserted
+        /** The index of character sub-content is inserted */
         index: number,
-        // The path of the sub-file
-        file: string
+        /** The path of the sub-file */
+        filePath: string
     }[],
-    // The array of the paths of `.bib` files referenced from the LaTeX file.
+    /** The array of the paths of `.bib` files referenced from the LaTeX file */
     bibfiles: Set<string>,
-    // A dictionary of external documents provided by \externaldocument of `xr`
-    // package. The value is its prefix \externaldocument[prefix]{file}
+    /** A dictionary of external documents provided by `\externaldocument` of
+     * `xr` package. The value is its prefix `\externaldocument[prefix]{*}` */
     external: {[filePath: string]: string}
 }
 
@@ -143,7 +148,7 @@ export class Cacher {
 
             this.contexts[rootPath].children.push({
                 index: result.match.index,
-                file: result.path
+                filePath: result.path
             })
             logger.log(`Input ${result.path} from ${filePath} .`)
 
@@ -166,11 +171,14 @@ export class Cacher {
             const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
             const externalPath = utils.resolveFile([path.dirname(filePath), path.dirname(rootPath), ...texDirs], result[2])
             if (!externalPath || !fs.existsSync(externalPath) || path.relative(externalPath, rootPath) === '') {
+                logger.log(`Failed resolving external ${result[2]} . Tried ${externalPath} ` +
+                    (externalPath && path.relative(externalPath, rootPath) === '' ? ', which is root.' : '.'))
                 continue
             }
 
             this.contexts[rootPath].external[externalPath] = result[1] || ''
-            logger.log(`External document ${externalPath} from ${filePath} .`)
+            logger.log(`External document ${externalPath} from ${filePath} .` +
+                (result[1] ? ` Prefix is ${result[1]}`: ''))
 
             if (this.watcher.has(externalPath)) {
                 continue
@@ -270,7 +278,7 @@ export class Cacher {
                 // Parse tex files as imported subfiles.
                 this.contexts[filePath].children.push({
                     index: Number.MAX_VALUE,
-                    file: inputFile
+                    filePath: inputFile
                 })
                 this.add(inputFile)
                 logger.log(`Found ${inputFile} from .fls ${flsPath} .`)
@@ -348,11 +356,11 @@ export class Cacher {
         const cache = this.get(file)
         includedBib.push(...cache.bibfiles)
         for (const child of cache.children) {
-            if (children.includes(child.file)) {
+            if (children.includes(child.filePath)) {
                 // Already parsed
                 continue
             }
-            this.getIncludedBib(child.file, includedBib)
+            this.getIncludedBib(child.filePath, includedBib)
         }
         // Make sure to return an array with unique entries
         return Array.from(new Set(includedBib))
@@ -378,11 +386,11 @@ export class Cacher {
         }
         includedTeX.push(file)
         for (const child of this.get(file).children) {
-            if (includedTeX.includes(child.file)) {
+            if (includedTeX.includes(child.filePath)) {
                 // Already included
                 continue
             }
-            this.getIncludedTeX(child.file, includedTeX)
+            this.getIncludedTeX(child.filePath, includedTeX)
         }
         return includedTeX
     }
@@ -400,12 +408,12 @@ export class Cacher {
         }
 
         this.get(file).children.forEach(async child => {
-            if (children.includes(child.file)) {
+            if (children.includes(child.filePath)) {
                 // Already included
                 return
             }
-            children.push(child.file)
-            await this.getTeXChildren(child.file, baseFile, children)
+            children.push(child.filePath)
+            await this.getTeXChildren(child.filePath, baseFile, children)
         })
         return children
     }
