@@ -14,7 +14,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         const regexDocumentclass = new RegExp(`\\\\(?:documentclass)(?:\\[[^[]]*\\])?\\{${escapedToken}\\}`)
 
         if (! vscode.window.activeTextEditor) {
-            return undefined
+            return
         }
 
         if (line.match(regexDocumentclass)) {
@@ -37,7 +37,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         if (dirs.length > 0) {
             return utils.resolveFile(dirs, token, '.tex')
         }
-        return undefined
+        return
     }
 
     provideDefinition(document: vscode.TextDocument, position: vscode.Position): vscode.Location | undefined {
@@ -54,7 +54,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
             if (command) {
                 return command.location
             }
-            return undefined
+            return
         }
         const ref = lw.completer.reference.getRef(token)
         if (ref) {

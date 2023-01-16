@@ -49,7 +49,7 @@ export class LaCheck implements ILinter {
             if ('stdout' in err) {
                 stdout = err.stdout as string
             } else {
-                return undefined
+                return
             }
         }
 

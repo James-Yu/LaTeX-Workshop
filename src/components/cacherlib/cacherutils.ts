@@ -5,7 +5,7 @@ import micromatch from 'micromatch'
 import { JLWEAVE_EXT, PWEAVE_EXT, RSWEAVE_EXT, TEX_EXT } from '../manager'
 
 export class CacherUtils {
-    static canContext(filePath: string) {
+    static canCache(filePath: string) {
         return [...TEX_EXT, ...RSWEAVE_EXT, ...JLWEAVE_EXT, ...PWEAVE_EXT].includes(path.extname(filePath))
             && !filePath.includes('expl3-code.tex')
     }

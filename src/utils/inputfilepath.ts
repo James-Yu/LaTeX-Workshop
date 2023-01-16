@@ -39,7 +39,7 @@ export class InputFileRegExp {
             const filePath = InputFileRegExp.parseInputFilePath(match, currentFile, rootFile)
             return filePath ? {path: filePath, match} : undefined
         }
-        return undefined
+        return
     }
 
     /**
@@ -62,7 +62,7 @@ export class InputFileRegExp {
             const filePath = InputFileRegExp.parseInputFilePath(match, currentFile, rootFile)
             return filePath ? {path: filePath, match} : undefined
         }
-        return undefined
+        return
     }
 
     /**
@@ -102,6 +102,6 @@ export class InputFileRegExp {
                 return resolveFile([path.dirname(currentFile), path.dirname(rootFile), ...texDirs], match.path)
             }
         }
-        return undefined
+        return
     }
 }

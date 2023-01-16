@@ -56,12 +56,8 @@ export function registerPageTrimmer() {
         for ( const opt of scaleSelect.options ) {
             opt.disabled = true
         }
-        if (currentUserSelectScale === undefined) {
-            currentUserSelectScale = PDFViewerApplication.pdfViewer._currentScale
-        }
-        if (originalUserSelectIndex === undefined) {
-            originalUserSelectIndex = scaleSelect.selectedIndex
-        }
+        currentUserSelectScale = currentUserSelectScale ?? PDFViewerApplication.pdfViewer._currentScale
+        originalUserSelectIndex = originalUserSelectIndex ?? scaleSelect.selectedIndex
         const opt = document.getElementById('trimOption') as HTMLOptionElement
         opt.value = (currentUserSelectScale * trimScale).toString()
         opt.selected = true

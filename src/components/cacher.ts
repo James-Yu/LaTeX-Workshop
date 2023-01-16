@@ -20,7 +20,7 @@ import { UtensilsParser } from './parser/syntax'
 
 const logger = getLogger('Cacher')
 
-export interface Context {
+export interface Cache {
     /** Cached content of file. Dirty if opened in vscode, disk otherwise */
     content: string | undefined,
     /** Completion items */
@@ -53,7 +53,7 @@ export interface Context {
 }
 
 export class Cacher {
-    private readonly contexts: {[filePath: string]: Context} = {}
+    private readonly caches: {[filePath: string]: Cache} = {}
     private readonly watcher: Watcher = new Watcher(this)
     private readonly pdfWatcher: PdfWatcher = new PdfWatcher()
     private readonly bibWatcher: BibWatcher = new BibWatcher()
@@ -70,23 +70,23 @@ export class Cacher {
     }
 
     remove(filePath: string) {
-        if (!(filePath in this.contexts)) {
+        if (!(filePath in this.caches)) {
             return
         }
-        delete this.contexts[filePath]
+        delete this.caches[filePath]
         logger.log(`Removed ${filePath} .`)
     }
 
     has(filePath: string) {
-        return Object.keys(this.contexts).includes(filePath)
+        return Object.keys(this.caches).includes(filePath)
     }
 
-    get(filePath: string): Context {
-        return this.contexts[filePath]
+    get(filePath: string): Cache | undefined {
+        return this.caches[filePath]
     }
 
     get allPaths() {
-        return Object.keys(this.contexts)
+        return Object.keys(this.caches)
     }
 
     watched(filePath: string) {
@@ -103,17 +103,17 @@ export class Cacher {
         await this.bibWatcher.dispose()
     }
 
-    async refreshContext(filePath: string, rootPath?: string) {
+    async refreshCache(filePath: string, rootPath?: string) {
         if (CacherUtils.isExcluded(filePath)) {
             logger.log(`Ignored ${filePath} .`)
             return
         }
-        if (!CacherUtils.canContext(filePath)) {
+        if (!CacherUtils.canCache(filePath)) {
             return
         }
         logger.log(`Caching ${filePath} .`)
         const content = lw.lwfs.readFileSyncGracefully(filePath)
-        this.contexts[filePath] = {content, elements: {}, children: [], bibfiles: new Set(), external: {}}
+        this.caches[filePath] = {content, elements: {}, children: [], bibfiles: new Set(), external: {}}
         if (content === undefined) {
             logger.log(`Cannot read ${filePath} .`)
             return
@@ -124,6 +124,7 @@ export class Cacher {
         await this.updateElements(filePath, content, contentTrimmed)
         await this.updateBibfiles(filePath, contentTrimmed)
         logger.log(`Cached ${filePath} .`)
+        void lw.structureViewer.computeTreeStructure()
         lw.eventBus.fire(eventbus.FileParsed, filePath)
     }
 
@@ -146,7 +147,7 @@ export class Cacher {
                 continue
             }
 
-            this.contexts[rootPath].children.push({
+            this.caches[rootPath].children.push({
                 index: result.match.index,
                 filePath: result.path
             })
@@ -156,7 +157,7 @@ export class Cacher {
                 continue
             }
             this.add(result.path)
-            void this.refreshContext(result.path, rootPath)
+            void this.refreshCache(result.path, rootPath)
         }
     }
 
@@ -176,7 +177,7 @@ export class Cacher {
                 continue
             }
 
-            this.contexts[rootPath].external[externalPath] = result[1] || ''
+            this.caches[rootPath].external[externalPath] = result[1] || ''
             logger.log(`External document ${externalPath} from ${filePath} .` +
                 (result[1] ? ` Prefix is ${result[1]}`: ''))
 
@@ -184,7 +185,7 @@ export class Cacher {
                 continue
             }
             this.add(externalPath)
-            void this.refreshContext(externalPath, externalPath)
+            void this.refreshCache(externalPath, externalPath)
         }
     }
 
@@ -229,7 +230,7 @@ export class Cacher {
                 if (bibPath === undefined) {
                     continue
                 }
-                this.contexts[filePath].bibfiles.add(bibPath)
+                this.caches[filePath].bibfiles.add(bibPath)
                 logger.log(`Bib ${bibPath} from ${filePath} .`)
                 await this.bibWatcher.watchBibFile(bibPath)
             }
@@ -273,16 +274,16 @@ export class Cacher {
             }
             if (path.extname(inputFile) === '.tex') {
                 if (!this.has(filePath)) {
-                    await this.refreshContext(filePath)
+                    await this.refreshCache(filePath)
                 }
                 // Parse tex files as imported subfiles.
-                this.contexts[filePath].children.push({
+                this.caches[filePath].children.push({
                     index: Number.MAX_VALUE,
                     filePath: inputFile
                 })
                 this.add(inputFile)
                 logger.log(`Found ${inputFile} from .fls ${flsPath} .`)
-                await this.refreshContext(inputFile, filePath)
+                await this.refreshCache(inputFile, filePath)
             } else if (!this.watched(inputFile)) {
                 // Watch non-tex files.
                 this.add(inputFile)
@@ -316,8 +317,8 @@ export class Cacher {
                     continue
                 }
                 const rootFile = lw.manager.rootFile
-                if (rootFile && !this.get(rootFile).bibfiles.has(bibPath)) {
-                    this.get(rootFile).bibfiles.add(bibPath)
+                if (rootFile && !this.get(rootFile)?.bibfiles.has(bibPath)) {
+                    this.get(rootFile)?.bibfiles.add(bibPath)
                     logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
                 }
                 await this.bibWatcher.watchBibFile(bibPath)
@@ -354,13 +355,15 @@ export class Cacher {
         }
         children.push(file)
         const cache = this.get(file)
-        includedBib.push(...cache.bibfiles)
-        for (const child of cache.children) {
-            if (children.includes(child.filePath)) {
-                // Already parsed
-                continue
+        if (cache) {
+            includedBib.push(...cache.bibfiles)
+            for (const child of cache.children) {
+                if (children.includes(child.filePath)) {
+                    // Already parsed
+                    continue
+                }
+                this.getIncludedBib(child.filePath, includedBib)
             }
-            this.getIncludedBib(child.filePath, includedBib)
         }
         // Make sure to return an array with unique entries
         return Array.from(new Set(includedBib))
@@ -385,12 +388,15 @@ export class Cacher {
             return []
         }
         includedTeX.push(file)
-        for (const child of this.get(file).children) {
-            if (includedTeX.includes(child.filePath)) {
-                // Already included
-                continue
+        const cache = this.get(file)
+        if (cache) {
+            for (const child of cache.children) {
+                if (includedTeX.includes(child.filePath)) {
+                    // Already included
+                    continue
+                }
+                this.getIncludedTeX(child.filePath, includedTeX)
             }
-            this.getIncludedTeX(child.filePath, includedTeX)
         }
         return includedTeX
     }
@@ -404,10 +410,10 @@ export class Cacher {
      */
     async getTeXChildren(file: string, baseFile: string, children: string[]) {
         if (!this.has(file)) {
-            await this.refreshContext(file, baseFile)
+            await this.refreshCache(file, baseFile)
         }
 
-        this.get(file).children.forEach(async child => {
+        this.get(file)?.children.forEach(async child => {
             if (children.includes(child.filePath)) {
                 // Already included
                 return

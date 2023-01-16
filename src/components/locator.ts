@@ -417,15 +417,11 @@ export class Locator {
             }
             // Only one match or one best match
             if (values.length >= 1) {
-                return parseInt(Object.keys(columnMatches).reduce((a, b) => {
-                    return columnMatches[a] > columnMatches[b] ? a : b
-                }))
+                return parseInt(Object.keys(columnMatches).reduce((a, b) => columnMatches[a] > columnMatches[b] ? a : b))
             }
             // No match in current iteration, return first best match from previous run or 0
             if (Object.keys(previousColumnMatches).length > 0) {
-                return parseInt(Object.keys(previousColumnMatches).reduce((a, b) => {
-                    return previousColumnMatches[a] > previousColumnMatches[b] ? a : b
-                }))
+                return parseInt(Object.keys(previousColumnMatches).reduce((a, b) => previousColumnMatches[a] > previousColumnMatches[b] ? a : b))
             } else {
                 return null
             }

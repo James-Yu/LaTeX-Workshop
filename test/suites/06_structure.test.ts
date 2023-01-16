@@ -3,11 +3,11 @@ import * as path from 'path'
 import * as assert from 'assert'
 import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
-import { sleep, runTest, openActive, loadTestFile } from './utils'
+import * as test from './utils'
 import { SectionNodeProvider } from '../../src/providers/structure'
 
 async function loadTestFiles(fixture: string) {
-    await loadTestFile(fixture, [
+    await test.load(fixture, [
         {src: 'structure_base.tex', dst: 'main.tex'},
         {src: 'structure_sub.tex', dst: 'sub/s.tex'},
         {src: 'structure_s2.tex', dst: 'sub/s2.tex'},
@@ -42,13 +42,13 @@ suite('Document structure test suite', () => {
 
         if (path.basename(fixture) === 'testground') {
             rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
-            await sleep(500) // Required for pooling
+            await test.sleep(500) // Required for pooling
         }
     })
 
-    runTest(suiteName, fixtureName, 'test structure', async () => {
+    test.run(suiteName, fixtureName, 'test structure', async () => {
         await loadTestFiles(fixture)
-        await openActive(fixture, 'main.tex')
+        await test.open(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
         await structure.update(true)
         const sections = structure.ds
@@ -71,9 +71,9 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[5].children[5].label, 'Frame 3')
     })
 
-    runTest(suiteName, fixtureName, 'test structure with nested floats', async () => {
-        await loadTestFile(fixture, [{src: 'structure_nested.tex', dst: 'main.tex'}])
-        await openActive(fixture, 'main.tex')
+    test.run(suiteName, fixtureName, 'test structure with nested floats', async () => {
+        await test.load(fixture, [{src: 'structure_nested.tex', dst: 'main.tex'}])
+        await test.open(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
         await structure.update(true)
         const sections = structure.ds
@@ -83,9 +83,9 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[0].children[0].children.length, 1)
     })
 
-    runTest(suiteName, fixtureName, 'test view.outline.numbers.enabled', async () => {
+    test.run(suiteName, fixtureName, 'test view.outline.numbers.enabled', async () => {
         await loadTestFiles(fixture)
-        await openActive(fixture, 'main.tex')
+        await test.open(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.enabled', false)
         await structure.update(true)
@@ -94,9 +94,9 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[1].children[0].label, '2.0.1')
     })
 
-    runTest(suiteName, fixtureName, 'test view.outline.sections', async () => {
+    test.run(suiteName, fixtureName, 'test view.outline.sections', async () => {
         await loadTestFiles(fixture)
-        await openActive(fixture, 'main.tex')
+        await test.open(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', ['section', 'altsection', 'subsubsection'])
         await structure.update(true)
@@ -106,9 +106,9 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[0].children[1].label, '1.1 1.1?')
     })
 
-    runTest(suiteName, fixtureName, 'test view.outline.floats.enabled', async () => {
+    test.run(suiteName, fixtureName, 'test view.outline.floats.enabled', async () => {
         await loadTestFiles(fixture)
-        await openActive(fixture, 'main.tex')
+        await test.open(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', false)
         await structure.update(true)
@@ -120,9 +120,9 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[5].children[2].label, 'Frame 3')
     })
 
-    runTest(suiteName, fixtureName, 'test view.outline.floats.number.enabled', async () => {
+    test.run(suiteName, fixtureName, 'test view.outline.floats.number.enabled', async () => {
         await loadTestFiles(fixture)
-        await openActive(fixture, 'main.tex')
+        await test.open(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.number.enabled', false)
         await structure.update(true)
@@ -137,9 +137,9 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[5].children[5].label, 'Frame')
     })
 
-    runTest(suiteName, fixtureName, 'test view.outline.floats.caption.enabled', async () => {
+    test.run(suiteName, fixtureName, 'test view.outline.floats.caption.enabled', async () => {
         await loadTestFiles(fixture)
-        await openActive(fixture, 'main.tex')
+        await test.open(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.caption.enabled', false)
         await structure.update(true)
@@ -154,9 +154,9 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[5].children[5].label, 'Frame 3')
     })
 
-    runTest(suiteName, fixtureName, 'test view.outline.fastparse.enabled', async () => {
+    test.run(suiteName, fixtureName, 'test view.outline.fastparse.enabled', async () => {
         await loadTestFiles(fixture)
-        await openActive(fixture, 'main.tex')
+        await test.open(fixture, 'main.tex')
         const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.fastparse.enabled', true)
         await structure.update(true)

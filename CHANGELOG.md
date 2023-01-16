@@ -1,5 +1,13 @@
 # Change Log
 
+## [9.4.5] - 2023-01-13
+
+### Fixed
+- New command finder now honors argument and optional one list.
+- Entries in `bibtex-entries.first` should also be sorted.
+- (#3585) A better description to `latex.watch.files.ignore` config.
+- (#3640) Resolve a package conflict with `isort` that may prevent command suggestion.
+
 ## [9.4.4] - 2023-01-10
 
 ### Fixed

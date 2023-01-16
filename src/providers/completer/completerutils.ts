@@ -32,10 +32,10 @@ export class CmdEnvSuggestion extends vscode.CompletionItem implements ICompleti
     signature: CmdSignature
     option?: string
 
-    constructor(label: string, pkg: string, keyvals: string[], keyvalpos: number, signature: CmdSignature, kind: vscode.CompletionItemKind, option?: string) {
+    constructor(label: string, packageName: string, keyvals: string[], keyvalpos: number, signature: CmdSignature, kind: vscode.CompletionItemKind, option?: string) {
         super(label, kind)
         this.label = label
-        this.package = pkg
+        this.package = packageName
         this.keyvals = keyvals
         this.keyvalpos = keyvalpos
         this.signature = signature
@@ -84,7 +84,7 @@ export function computeFilteringRange(document: vscode.TextDocument, position: v
     if (startPos >= 0) {
         return new vscode.Range(position.line, startPos + 1, position.line, position.character)
     }
-    return undefined
+    return
 }
 
 export function filterArgumentHint(suggestions: vscode.CompletionItem[]) {

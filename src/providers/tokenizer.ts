@@ -17,7 +17,7 @@ function commandTokenizer(document: vscode.TextDocument, position: vscode.Positi
     }
     const startResult = document.getText(new vscode.Range(new vscode.Position(position.line, 0), position)).match(startRegex)
     if (startResult === null || startResult.index === undefined || startResult.index < 0) {
-        return undefined
+        return
     }
     const firstBracket = document.getText(new vscode.Range(position, new vscode.Position(position.line, 65535))).match(/[{]/)
     if (firstBracket && firstBracket.index !== undefined && firstBracket.index > 0) {
@@ -30,7 +30,7 @@ function commandTokenizer(document: vscode.TextDocument, position: vscode.Positi
     if (wordRange) {
         return document.getText(wordRange.with(new vscode.Position(position.line, startResult.index))).trim()
     }
-    return undefined
+    return
 }
 
 /**
@@ -43,11 +43,11 @@ function commandTokenizer(document: vscode.TextDocument, position: vscode.Positi
 function argTokenizer(document: vscode.TextDocument, position: vscode.Position): string | undefined {
     const startResult = document.getText(new vscode.Range(new vscode.Position(position.line, 0), position)).match(/[{,[](?=[^{},[\]]*$)/)
     if (startResult === null || startResult.index === undefined || startResult.index < 0) {
-        return undefined
+        return
     }
     const endResult = document.getText(new vscode.Range(position, new vscode.Position(position.line, 65535))).match(/[}\],]/)
     if (endResult === null || endResult.index === undefined || endResult.index < 0) {
-        return undefined
+        return
     }
     return document.getText(new vscode.Range(
         new vscode.Position(position.line, startResult.index + 1),
@@ -76,7 +76,7 @@ export function tokenizer(document: vscode.TextDocument, position: vscode.Positi
     if (argToken) {
         return argToken
     }
-    return undefined
+    return
 }
 
 /**

@@ -112,7 +112,7 @@ export class BibLogParser {
             return {file, line}
         } else {
             logger.log(`Cannot find key ${key}`)
-            return undefined
+            return
         }
     }
 

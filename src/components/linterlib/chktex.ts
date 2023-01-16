@@ -62,7 +62,7 @@ export class ChkTeX implements ILinter {
             if ('stdout' in err) {
                 stdout = err.stdout as string
             } else {
-                return undefined
+                return
             }
         }
 
@@ -90,7 +90,7 @@ export class ChkTeX implements ILinter {
         if (fs.existsSync(rcPath)) {
             return rcPath
         }
-        return undefined
+        return
     }
 
     private globalRcPath(): string | undefined {

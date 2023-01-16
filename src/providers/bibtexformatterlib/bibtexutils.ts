@@ -21,7 +21,7 @@ function getBibtexFormatTab(tab: string): string | undefined {
             const nSpaces = parseInt(res[1], 10)
             return ' '.repeat(nSpaces)
         } else {
-            return undefined
+            return
         }
     }
 }
@@ -88,42 +88,48 @@ export class BibtexUtils {
      * @param keys Array of sorting keys
      */
     static bibtexSort(duplicates: Set<bibtexParser.Entry>, config: BibtexFormatConfig): (a: BibtexEntry, b: BibtexEntry) => number {
-        const keys = config.sort
-        return (a, b) => {
-            let r = 0
-            for (const key of keys) {
-                // Select the appropriate sort function
-                switch (key) {
-                    case 'key':
-                        r = BibtexUtils.bibtexSortByKey(a, b, config)
-                        break
-                    case 'year-desc':
-                        r = -BibtexUtils.bibtexSortByField('year', a, b, config)
-                        break
-                    case 'type':
-                        r = BibtexUtils.bibtexSortByType(a, b, config)
-                        break
-                    default:
-                        r = BibtexUtils.bibtexSortByField(key, a, b, config)
-                }
-                // Compare until different
-                if (r !== 0) {
-                    break
-                }
-            }
-            if (r === 0 && bibtexParser.isEntry(a)) {
-                // It seems that items earlier in the list appear as the variable b here, rather than a
-                duplicates.add(a)
-            }
-            return r
+        return (a, b) => this.bibtexSortSwitch(a, b, duplicates, config)
+    }
+
+    private static bibtexSortSwitch(a: BibtexEntry, b: BibtexEntry, duplicates: Set<bibtexParser.Entry>, config: BibtexFormatConfig): number {
+        const firstEntryCompare = BibtexUtils.bibtexSortFirstEntries(config.firstEntries, a, b)
+        if (firstEntryCompare !== 0) {
+            return firstEntryCompare
         }
+        const keys = config.sort
+        let r = 0
+        for (const key of keys) {
+            // Select the appropriate sort function
+            switch (key) {
+                case 'key':
+                    r = BibtexUtils.bibtexSortByKey(a, b)
+                    break
+                case 'year-desc':
+                    r = -BibtexUtils.bibtexSortByField('year', a, b, config)
+                    break
+                case 'type':
+                    r = BibtexUtils.bibtexSortByType(a, b)
+                    break
+                default:
+                    r = BibtexUtils.bibtexSortByField(key, a, b, config)
+            }
+            // Compare until different
+            if (r !== 0) {
+                break
+            }
+        }
+        if (r === 0 && bibtexParser.isEntry(a)) {
+            // It seems that items earlier in the list appear as the variable b here, rather than a
+            duplicates.add(a)
+        }
+        return r
     }
 
     /**
      * If one of the entries `a` or `b` is in `firstEntries` or `stickyEntries`, return an order.
      * Otherwise, return undefined
      */
-    private static bibtexSortFirstEntries(firstEntries: string[], a: BibtexEntry, b: BibtexEntry): number | undefined {
+    private static bibtexSortFirstEntries(firstEntries: string[], a: BibtexEntry, b: BibtexEntry): number {
         const aFirst = firstEntries.includes(a.entryType)
         const bFirst = firstEntries.includes(b.entryType)
         if (aFirst && !bFirst) {
@@ -133,13 +139,15 @@ export class BibtexUtils {
         } else if (aFirst && bFirst) {
             const aIndex = firstEntries.indexOf(a.entryType)
             const bIndex = firstEntries.indexOf(b.entryType)
-            if (aIndex <= bIndex) {
+            if (aIndex < bIndex) {
                 return -1
-            } else {
+            } else if (aIndex > bIndex) {
                 return 1
+            } else {
+                return 0
             }
         }
-        return undefined
+        return 0
     }
 
     /**
@@ -147,11 +155,6 @@ export class BibtexUtils {
      * @param fieldName which field name to sort by
      */
     private static bibtexSortByField(fieldName: string, a: BibtexEntry, b: BibtexEntry, config: BibtexFormatConfig): number {
-        const firstEntriesOrder = BibtexUtils.bibtexSortFirstEntries(config.firstEntries, a, b)
-        if (firstEntriesOrder) {
-            return firstEntriesOrder
-        }
-
         let fieldA: string = ''
         let fieldB: string = ''
 
@@ -179,8 +182,7 @@ export class BibtexUtils {
         return fieldA.localeCompare(fieldB)
     }
 
-    private static bibtexSortByKey(a: BibtexEntry, b: BibtexEntry, config: BibtexFormatConfig): number {
-        const firstEntriesOrder = BibtexUtils.bibtexSortFirstEntries(config.firstEntries, a, b)
+    private static bibtexSortByKey(a: BibtexEntry, b: BibtexEntry): number {
         let aKey: string | undefined = undefined
         let bKey: string | undefined = undefined
         if (bibtexParser.isEntry(a)) {
@@ -188,9 +190,6 @@ export class BibtexUtils {
         }
         if (bibtexParser.isEntry(b)) {
             bKey = b.internalKey
-        }
-        if (firstEntriesOrder) {
-            return firstEntriesOrder
         }
         if (!aKey && !bKey) {
             return 0
@@ -203,11 +202,7 @@ export class BibtexUtils {
         }
     }
 
-    private static bibtexSortByType(a: BibtexEntry, b: BibtexEntry, config: BibtexFormatConfig): number {
-        const firstEntriesOrder = BibtexUtils.bibtexSortFirstEntries(config.firstEntries, a, b)
-        if (firstEntriesOrder) {
-            return firstEntriesOrder
-        }
+    private static bibtexSortByType(a: BibtexEntry, b: BibtexEntry): number {
         return a.entryType.localeCompare(b.entryType)
     }
 

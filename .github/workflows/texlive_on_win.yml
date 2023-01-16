@@ -70,8 +70,8 @@ jobs:
         name: latex-workshop
         path: latex-workshop-*.vsix
     - name: Archive test logs
-      if: failure()
+      if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: test-error-log
+        name: test-log
         path: test/log/*.log

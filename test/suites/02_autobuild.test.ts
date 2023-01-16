@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
-import { sleep, assertAutoBuild, assertBuild, runTest, loadTestFile, waitEvent } from './utils'
+import * as test from './utils'
 import { FileWatched } from '../../src/components/eventbus'
 
 suite('Auto-build test suite', () => {
@@ -35,119 +35,119 @@ suite('Auto-build test suite', () => {
 
         if (path.basename(fixture) === 'testground') {
             rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
-            await sleep(500) // Required for pooling
+            await test.sleep(500) // Required for pooling
         }
     })
 
-    runTest(suiteName, fixtureName, 'auto build', async () => {
-        await loadTestFile(fixture, [{src: 'base.tex', dst: 'main.tex'}])
-        await assertAutoBuild(fixture, 'main.tex', 'main.pdf')
+    test.run(suiteName, fixtureName, 'auto build', async () => {
+        await test.load(fixture, [{src: 'base.tex', dst: 'main.tex'}])
+        await test.assert.auto(fixture, 'main.tex', 'main.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'auto build with subfiles and onFileChange 1', async () => {
+    test.run(suiteName, fixtureName, 'auto build with subfiles and onFileChange 1', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ])
-        await assertAutoBuild(fixture, 'sub/s.tex', 'main.pdf')
+        await test.assert.auto(fixture, 'sub/s.tex', 'main.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'auto build with subfiles and onFileChange 2', async () => {
+    test.run(suiteName, fixtureName, 'auto build with subfiles and onFileChange 2', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ])
-        await assertAutoBuild(fixture, 'sub/s.tex', 'sub/s.pdf')
+        await test.assert.auto(fixture, 'sub/s.tex', 'sub/s.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'auto build with import and onFileChange', async () => {
-        await loadTestFile(fixture, [
+    test.run(suiteName, fixtureName, 'auto build with import and onFileChange', async () => {
+        await test.load(fixture, [
             {src: 'import_base.tex', dst: 'main.tex'},
             {src: 'import_sub.tex', dst: 'sub/s.tex'},
             {src: 'plain.tex', dst: 'sub/subsub/sss/sss.tex'}
         ])
-        await assertAutoBuild(fixture, 'sub/subsub/sss/sss.tex', 'main.pdf')
+        await test.assert.auto(fixture, 'sub/subsub/sss/sss.tex', 'main.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'auto build with input and onFileChange', async () => {
-        await loadTestFile(fixture, [
+    test.run(suiteName, fixtureName, 'auto build with input and onFileChange', async () => {
+        await test.load(fixture, [
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        await assertAutoBuild(fixture, 'sub/s.tex', 'main.pdf')
+        await test.assert.auto(fixture, 'sub/s.tex', 'main.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'auto build when editing bib', async () => {
-        await loadTestFile(fixture, [
+    test.run(suiteName, fixtureName, 'auto build when editing bib', async () => {
+        await test.load(fixture, [
             {src: 'bibtex_base.tex', dst: 'main.tex'},
             {src: 'plain.bib', dst: 'bib.bib'}
         ])
-        await assertBuild(fixture, 'main.tex', 'main.pdf')
-        await assertAutoBuild(fixture, 'bib.bib', 'main.pdf', ['skipFirstBuild'])
+        await test.assert.build(fixture, 'main.tex', 'main.pdf')
+        await test.assert.auto(fixture, 'bib.bib', 'main.pdf', ['skipFirstBuild'])
     })
 
-    runTest(suiteName, fixtureName, 'auto build with input whose path uses a macro', async () => {
-        await loadTestFile(fixture, [
+    test.run(suiteName, fixtureName, 'auto build with input whose path uses a macro', async () => {
+        await test.load(fixture, [
             {src: 'input_macro.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        const wait = waitEvent(FileWatched, path.resolve(fixture, 'sub/s.tex'))
-        await assertBuild(fixture, 'main.tex', 'main.pdf')
-        await wait
-        await assertAutoBuild(fixture, 'sub/s.tex', 'main.pdf', ['skipFirstBuild'])
+        const event = test.wait(FileWatched, path.resolve(fixture, 'sub/s.tex'))
+        await test.assert.build(fixture, 'main.tex', 'main.pdf')
+        await event
+        await test.assert.auto(fixture, 'sub/s.tex', 'main.pdf', ['skipFirstBuild'])
     })
 
-    runTest(suiteName, fixtureName, 'auto build when main.tex not in root dir and editing a sub file', async () => {
-        await loadTestFile(fixture, [
+    test.run(suiteName, fixtureName, 'auto build when main.tex not in root dir and editing a sub file', async () => {
+        await test.load(fixture, [
             {src: 'input_parentsub.tex', dst: 'main/main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        await assertBuild(fixture, 'main/main.tex', 'main/main.pdf')
-        await assertAutoBuild(fixture, 'sub/s.tex', 'main/main.pdf', ['skipFirstBuild'])
+        await test.assert.build(fixture, 'main/main.tex', 'main/main.pdf')
+        await test.assert.auto(fixture, 'sub/s.tex', 'main/main.pdf', ['skipFirstBuild'])
     })
 
-    runTest(suiteName, fixtureName, 'auto build with input and outDir', async () => {
+    test.run(suiteName, fixtureName, 'auto build with input and outDir', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        await assertAutoBuild(fixture, 'sub/s.tex', 'out/main.pdf')
+        await test.assert.auto(fixture, 'sub/s.tex', 'out/main.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'auto build with watch.files.ignore', async () => {
+    test.run(suiteName, fixtureName, 'auto build with watch.files.ignore', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.files.ignore', ['**/s.tex'])
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        await assertBuild(fixture, 'main.tex', 'main.pdf')
-        await assertAutoBuild(fixture, 'sub/s.tex', 'main.pdf', ['skipFirstBuild', 'noAutoBuild'])
+        await test.assert.build(fixture, 'main.tex', 'main.pdf')
+        await test.assert.auto(fixture, 'sub/s.tex', 'main.pdf', ['skipFirstBuild', 'noAutoBuild'])
     })
 
-    runTest(suiteName, fixtureName, 'auto build with subfiles and onSave 1', async () => {
+    test.run(suiteName, fixtureName, 'auto build with subfiles and onSave 1', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ])
-        await assertAutoBuild(fixture, 'sub/s.tex', 'main.pdf', ['onSave'])
+        await test.assert.auto(fixture, 'sub/s.tex', 'main.pdf', ['onSave'])
     })
 
-    runTest(suiteName, fixtureName, 'auto build with subfiles and onSave 2', async () => {
+    test.run(suiteName, fixtureName, 'auto build with subfiles and onSave 2', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ])
-        await assertAutoBuild(fixture, 'sub/s.tex', 'sub/s.pdf', ['onSave'])
+        await test.assert.auto(fixture, 'sub/s.tex', 'sub/s.pdf', ['onSave'])
     })
 })

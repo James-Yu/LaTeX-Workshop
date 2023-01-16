@@ -152,6 +152,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             pdfFileUri: this.pdfFileUri,
             scale: PDFViewerApplication.pdfViewer.currentScaleValue,
             scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
+            sidebarView: PDFViewerApplication.pdfSidebar.visibleView,
             spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
             scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
             scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft,
@@ -172,7 +173,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         if (this.embedded) {
             return this.#restoredState.promise
         } else {
-            return undefined
+            return
         }
     }
 
@@ -233,6 +234,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         if (state.scrollLeft !== undefined) {
             (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = state.scrollLeft
         }
+        if (state.sidebarView !== undefined) {
+            PDFViewerApplication.pdfSidebar.switchView(state.sidebarView)
+        }
         if (state.synctexEnabled !== undefined) {
             this.setSynctex(state.synctexEnabled)
         }
@@ -259,6 +263,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 }
                 if (state.scrollTop !== undefined) {
                     (document.getElementById('viewerContainer') as HTMLElement).scrollTop = state.scrollTop
+                }
+                if (state.sidebarView !== undefined) {
+                    PDFViewerApplication.pdfSidebar.switchView(state.sidebarView)
                 }
                 this.sendCurrentStateToPanelManager()
             })
@@ -313,6 +320,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         const pack = {
             scale: PDFViewerApplication.pdfViewer.currentScaleValue,
             scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
+            sidebarView: PDFViewerApplication.pdfSidebar.visibleView,
             spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
             scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
             scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft
@@ -330,6 +338,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             document.title = this.documentTitle
         })
         this.onPagesInit(() => {
+            PDFViewerApplication.pdfSidebar.switchView(pack.sidebarView)
             PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale
             PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode
             PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode;

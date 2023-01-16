@@ -122,7 +122,7 @@ export class SyncTexJs {
                 } catch { }
             }
         }
-        return undefined
+        return
     }
 
     static syncTexJsForward(line: number, filePath: string, pdfFile: string): SyncTeXRecordForward {

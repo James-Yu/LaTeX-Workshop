@@ -18,8 +18,7 @@ export class Package implements IProvider {
     private readonly packageOptions: {[packageName: string]: string[]} = {}
 
     initialize(defaultPackages: {[key: string]: PackageItemEntry}) {
-        Object.keys(defaultPackages).forEach(key => {
-            const item = defaultPackages[key]
+        Object.values(defaultPackages).forEach(item => {
             const pack = new vscode.CompletionItem(item.command, vscode.CompletionItemKind.Module)
             pack.detail = item.detail
             pack.documentation = new vscode.MarkdownString(`[${item.documentation}](${item.documentation})`)
@@ -72,17 +71,17 @@ export class Package implements IProvider {
             if (included === undefined) {
                 return
             }
-            Object.keys(included).forEach(packageName => packages[packageName] = included[packageName])
+            Object.entries(included).forEach(([packageName, options]) => packages[packageName] = options)
         })
 
         while (true) {
             let newPackageInserted = false
-            Object.keys(packages).forEach(packageName => Object.keys(this.getPackageDeps(packageName)).forEach(dependName => {
-                const dependOptions = this.getPackageDeps(packageName)[dependName]
+            Object.entries(packages).forEach(([packageName, options]) => Object.keys(this.getPackageDeps(packageName)).forEach(includeName => {
+                const dependOptions = this.getPackageDeps(packageName)[includeName]
                 const hasOption = dependOptions.length === 0
-                    || packages[packageName].filter(option => dependOptions.includes(option)).length > 0
-                if (packages[dependName] === undefined && hasOption) {
-                    packages[dependName] = []
+                    || options.filter(option => dependOptions.includes(option)).length > 0
+                if (packages[includeName] === undefined && hasOption) {
+                    packages[includeName] = []
                     newPackageInserted = true
                 }
             }))
@@ -115,7 +114,7 @@ export class Package implements IProvider {
                     break
                 }
                 const packages = result[2].split(',').map(packageName => packageName.trim())
-                const options = (result[1] || '[]').slice(1,-1).replaceAll(/\s*=\s*/g,'=').split(',').map(option => option.trim())
+                const options = (result[1] || '[]').slice(1,-1).replace(/\s*=\s*/g,'=').split(',').map(option => option.trim())
                 const optionsNoTrue = options.filter(option => option.includes('=true')).map(option => option.replace('=true', ''))
                 packages.forEach(packageName => this.pushUsepackage(file, packageName, [...options, ...optionsNoTrue]))
             }

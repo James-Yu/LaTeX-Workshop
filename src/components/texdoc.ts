@@ -6,11 +6,11 @@ import { getLogger } from './logger'
 const logger = getLogger('TeXDoc')
 
 export class TeXDoc {
-    private runTexdoc(pkg: string) {
+    private runTexdoc(packageName: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const texdocPath = configuration.get('texdoc.path') as string
         const texdocArgs = Array.from(configuration.get('texdoc.args') as string[])
-        texdocArgs.push(pkg)
+        texdocArgs.push(packageName)
         logger.logCommand('Run texdoc command', texdocPath, texdocArgs)
         const proc = cs.spawn(texdocPath, texdocArgs)
 
@@ -31,15 +31,15 @@ export class TeXDoc {
 
         proc.on('exit', exitCode => {
             if (exitCode !== 0) {
-                logger.logError(`Cannot find documentation for ${pkg}.`, exitCode)
+                logger.logError(`Cannot find documentation for ${packageName}.`, exitCode)
                 void logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
             } else {
-                const regex = new RegExp(`(no documentation found)|(Documentation for ${pkg} could not be found)`)
+                const regex = new RegExp(`(no documentation found)|(Documentation for ${packageName} could not be found)`)
                 if (stdout.match(regex) || stderr.match(regex)) {
-                    logger.log(`Cannot find documentation for ${pkg}.`)
-                    void logger.showErrorMessage(`Cannot find documentation for ${pkg}.`)
+                    logger.log(`Cannot find documentation for ${packageName}.`)
+                    void logger.showErrorMessage(`Cannot find documentation for ${packageName}.`)
                 } else {
-                    logger.log(`Opening documentation for ${pkg}.`)
+                    logger.log(`Opening documentation for ${packageName}.`)
                 }
             }
             logger.log(`texdoc stdout: ${stdout}`)
@@ -47,9 +47,9 @@ export class TeXDoc {
         })
     }
 
-    texdoc(pkg?: string) {
-        if (pkg) {
-            this.runTexdoc(pkg)
+    texdoc(packageName?: string) {
+        if (packageName) {
+            this.runTexdoc(packageName)
             return
         }
         void vscode.window.showInputBox({value: '', prompt: 'Package name'}).then(selectedPkg => {
@@ -68,12 +68,10 @@ export class TeXDoc {
             if (!pkgs) {
                 continue
             }
-            Object.keys(pkgs).forEach(pkg => names.add(pkg))
+            Object.keys(pkgs).forEach(packageName => names.add(packageName))
         }
-        const packagenames = Array.from(new Set(names))
-        const items: vscode.QuickPickItem[] = packagenames.map( name => {
-            return { label: name }
-        })
+        const packageNames = Array.from(new Set(names))
+        const items: vscode.QuickPickItem[] = packageNames.map(packageName => ({ label: packageName }))
         void vscode.window.showQuickPick(items).then(selectedPkg => {
             if (!selectedPkg) {
                 return

@@ -32,5 +32,5 @@ export function convertFilenameEncoding(filePath: string): string | undefined {
 
         }
     }
-    return undefined
+    return
 }

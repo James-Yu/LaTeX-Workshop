@@ -67,11 +67,7 @@ export class NewCommandFinder {
                 logger.log('Timeout error when parsing preambles in findProjectNewCommand.')
                 throw new Error('Timeout Error in findProjectNewCommand')
             }
-            const cache = lw.cacher.get(tex)
-            if (cache === undefined) {
-                continue
-            }
-            const content = lw.cacher.get(tex).content
+            const content = lw.cacher.get(tex)?.content
             if (content === undefined) {
                 continue
             }

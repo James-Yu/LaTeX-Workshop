@@ -11,6 +11,7 @@ import { FoldingProvider, WeaveFoldingProvider } from './providers/folding'
 import { SelectionRangeProvider } from './providers/selection'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import { getLogger } from './components/logger'
+import { DocumentChanged } from './components/eventbus'
 
 const logger = getLogger('')
 
@@ -46,6 +47,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
     let updateCompleter: NodeJS.Timeout
     lw.registerDisposable(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
+        lw.eventBus.fire(DocumentChanged)
         if (lw.lwfs.isVirtualUri(e.document.uri)){
             return
         }
@@ -64,7 +66,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             updateCompleter = setTimeout(async () => {
                 const file = e.document.uri.fsPath
                 // await lw.manager.parseFileAndSubs(file, lw.manager.rootFile)
-                await lw.cacher.refreshContext(file, lw.manager.rootFile)
+                await lw.cacher.refreshCache(file, lw.manager.rootFile)
                 await lw.cacher.loadFlsFile(lw.manager.rootFile ? lw.manager.rootFile : file)
             }, configuration.get('intellisense.update.delay', 1000))
         }
@@ -120,7 +122,7 @@ function registerLatexWorkshopCommands() {
         vscode.commands.registerCommand('latex-workshop.viewExternal', () => lw.commander.view('external')),
         vscode.commands.registerCommand('latex-workshop.kill', () => lw.commander.kill()),
         vscode.commands.registerCommand('latex-workshop.synctex', () => lw.commander.synctex()),
-        vscode.commands.registerCommand('latex-workshop.texdoc', (pkg: string | undefined) => lw.commander.texdoc(pkg)),
+        vscode.commands.registerCommand('latex-workshop.texdoc', (packageName: string | undefined) => lw.commander.texdoc(packageName)),
         vscode.commands.registerCommand('latex-workshop.texdocUsepackages', () => lw.commander.texdocUsepackages()),
         vscode.commands.registerCommand('latex-workshop.synctexto', (line: number, filePath: string) => lw.commander.synctexonref(line, filePath)),
         vscode.commands.registerCommand('latex-workshop.clean', () => lw.commander.clean()),
@@ -172,9 +174,9 @@ function registerLatexWorkshopCommands() {
         vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => lw.commander.shiftSectioningLevel('demote')),
         vscode.commands.registerCommand('latex-workshop.select-section', () => lw.commander.selectSection()),
 
-        vscode.commands.registerCommand('latex-workshop.bibsort', () => BibtexFormatter.bibtexFormat(true, false)),
-        vscode.commands.registerCommand('latex-workshop.bibalign', () => BibtexFormatter.bibtexFormat(false, true)),
-        vscode.commands.registerCommand('latex-workshop.bibalignsort', () => BibtexFormatter.bibtexFormat(true, true)),
+        vscode.commands.registerCommand('latex-workshop.bibsort', () => BibtexFormatter.instance.bibtexFormat(true, false)),
+        vscode.commands.registerCommand('latex-workshop.bibalign', () => BibtexFormatter.instance.bibtexFormat(false, true)),
+        vscode.commands.registerCommand('latex-workshop.bibalignsort', () => BibtexFormatter.instance.bibtexFormat(true, true)),
 
         vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => lw.commander.openMathPreviewPanel()),
         vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => lw.commander.closeMathPreviewPanel()),
@@ -189,14 +191,12 @@ function registerProviders() {
     const weaveSelector = selectDocumentsWithId(['pweave', 'jlweave', 'rsweave'])
     const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'doctex'])
     const bibtexSelector = selectDocumentsWithId(['bibtex'])
-    const latexFormatter = new LatexFormatterProvider()
-    const bibtexFormatter = new BibtexFormatterProvider()
 
     lw.registerDisposable(
-        vscode.languages.registerDocumentFormattingEditProvider(latexSelector, latexFormatter),
-        vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter),
-        vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, latexFormatter),
-        vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter)
+        vscode.languages.registerDocumentFormattingEditProvider(latexSelector, LatexFormatterProvider.instance),
+        vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, BibtexFormatterProvider.instance),
+        vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, LatexFormatterProvider.instance),
+        vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, BibtexFormatterProvider.instance)
     )
 
     lw.registerDisposable(

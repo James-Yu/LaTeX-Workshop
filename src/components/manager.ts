@@ -6,7 +6,6 @@ import * as tmp from 'tmp'
 import * as utils from '../utils/utils'
 import * as lw from '../lw'
 import * as eventbus from './eventbus'
-import { FinderUtils } from './managerlib/finderutils'
 import { getLogger } from './logger'
 
 const logger = getLogger('Manager')
@@ -155,7 +154,7 @@ export class Manager {
         if (rootFileUri) {
             return vscode.workspace.getWorkspaceFolder(rootFileUri)
         }
-        return undefined
+        return
     }
 
     private inferLanguageId(filename: string): string | undefined {
@@ -171,7 +170,7 @@ export class Manager {
         } else if (ext === '.dtx') {
             return 'doctex'
         } else {
-            return undefined
+            return
         }
     }
 
@@ -212,7 +211,7 @@ export class Manager {
         const firstDir = vscode.workspace.workspaceFolders?.[0]
         // If no workspace is opened.
         if (!firstDir) {
-            return undefined
+            return
         }
         // If we don't have an active text editor, we can only make a guess.
         // Let's guess the first one.
@@ -238,7 +237,7 @@ export class Manager {
         logger.log(`Current workspace folders: ${JSON.stringify(wsfolders)}`)
         this.localRootFile = undefined
         const findMethods = [
-            () => FinderUtils.findRootFromMagic(),
+            () => this.findRootFromMagic(),
             () => this.findRootFromActive(),
             () => this.findRootFromCurrentRoot(),
             () => this.findRootInWorkspace()
@@ -259,50 +258,94 @@ export class Manager {
                 lw.duplicateLabels.reset()
                 await lw.cacher.resetWatcher()
                 lw.cacher.add(this.rootFile)
-                await lw.cacher.refreshContext(this.rootFile)
-                // await this.initiateFileWatcher()
-                // await this.parseFileAndSubs(this.rootFile, this.rootFile) // Finishing the parsing is required for subsequent refreshes.
+                await lw.cacher.refreshCache(this.rootFile)
                 // We need to parse the fls to discover file dependencies when defined by TeX macro
                 // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
                 await lw.cacher.loadFlsFile(this.rootFile)
+                void lw.structureViewer.computeTreeStructure()
                 lw.eventBus.fire(eventbus.RootFileChanged, rootFile)
             } else {
                 logger.log(`Keep using the same root file: ${this.rootFile}`)
+                void lw.structureViewer.refreshView()
             }
             lw.eventBus.fire(eventbus.RootFileSearched)
             return rootFile
         }
+        void lw.structureViewer.refreshView()
         lw.eventBus.fire(eventbus.RootFileSearched)
-        return undefined
+        return
+    }
+
+    private findRootFromMagic(): string | undefined {
+        if (!vscode.window.activeTextEditor) {
+            return
+        }
+        const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.(?:tex|[jrsRS]nw|[rR]tex|jtexw))$)/m
+        let content: string | undefined = vscode.window.activeTextEditor.document.getText()
+
+        let result = content.match(regex)
+        const fileStack: string[] = []
+        if (result) {
+            let file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
+            content = lw.lwfs.readFileSyncGracefully(file)
+            if (content === undefined) {
+                logger.log(`Non-existent magic root ${file} .`)
+                return
+            }
+            fileStack.push(file)
+            logger.log(`Found magic root ${file} from active.`)
+
+            result = content.match(regex)
+            while (result) {
+                file = path.resolve(path.dirname(file), result[1])
+                if (fileStack.includes(file)) {
+                    logger.log(`Found looped magic root ${file} .`)
+                    return file
+                } else {
+                    fileStack.push(file)
+                    logger.log(`Found magic root ${file}`)
+                }
+
+                content = lw.lwfs.readFileSyncGracefully(file)
+                if (content === undefined) {
+                    logger.log(`Non-existent magic root ${file} .`)
+                    return
+                }
+                result = content.match(regex)
+            }
+            logger.log(`Finalized magic root ${file} .`)
+            return file
+        }
+        return
     }
 
     private findRootFromCurrentRoot(): string | undefined {
         if (!vscode.window.activeTextEditor || this.rootFile === undefined) {
-            return undefined
+            return
         }
         if (lw.lwfs.isVirtualUri(vscode.window.activeTextEditor.document.uri)) {
             logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
-            return undefined
+            return
         }
         if (lw.cacher.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
             return this.rootFile
         }
-        return undefined
+        return
     }
 
     private findRootFromActive(): string | undefined {
         if (!vscode.window.activeTextEditor) {
-            return undefined
+            return
         }
         if (lw.lwfs.isVirtualUri(vscode.window.activeTextEditor.document.uri)) {
             logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
-            return undefined
+            return
         }
         const regex = /\\begin{document}/m
         const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
         const result = content.match(regex)
         if (result) {
-            const rootSubFile = FinderUtils.findSubFiles(content)
+            const rootSubFile = this.findSubFiles(content)
             const file = vscode.window.activeTextEditor.document.fileName
             if (rootSubFile) {
                this.localRootFile = file
@@ -312,7 +355,23 @@ export class Manager {
                 return file
             }
         }
-        return undefined
+        return
+    }
+
+    private findSubFiles(content: string): string | undefined {
+        if (!vscode.window.activeTextEditor) {
+            return
+        }
+        const regex = /(?:\\documentclass\[(.*)\]{subfiles})/
+        const result = content.match(regex)
+        if (result) {
+            const file = utils.resolveFile([path.dirname(vscode.window.activeTextEditor.document.fileName)], result[1])
+            if (file) {
+                logger.log(`Found subfile root ${file} from active.`)
+            }
+            return file
+        }
+        return
     }
 
     private async findRootInWorkspace(): Promise<string | undefined> {
@@ -321,7 +380,7 @@ export class Manager {
         logger.log(`Current workspaceRootDir: ${currentWorkspaceDirUri ? currentWorkspaceDirUri.toString(true) : ''}`)
 
         if (!currentWorkspaceDirUri) {
-            return undefined
+            return
         }
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop', currentWorkspaceDirUri)
@@ -360,7 +419,7 @@ export class Manager {
                 return candidates[0]
             }
         } catch (e) {}
-        return undefined
+        return
     }
 
     private registerSetEnvVar() {

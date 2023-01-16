@@ -15,8 +15,7 @@ export class DocumentClass implements IProvider {
     private readonly suggestions: vscode.CompletionItem[] = []
 
     initialize(classes: {[key: string]: ClassItemEntry}) {
-        Object.keys(classes).forEach(key => {
-            const item = classes[key]
+        Object.values(classes).forEach(item => {
             const cl = new vscode.CompletionItem(item.command, vscode.CompletionItemKind.Module)
             cl.detail = item.detail
             cl.documentation = new vscode.MarkdownString(`[${item.documentation}](${item.documentation})`)

@@ -78,7 +78,9 @@ export interface IPDFViewerApplication {
         }
     },
     pdfSidebar: {
-        isOpen: boolean
+        isOpen: boolean,
+        visibleView: number,
+        switchView(view: number): void
     },
     secondaryToolbar: {
         close: () => void,

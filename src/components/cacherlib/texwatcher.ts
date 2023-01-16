@@ -57,8 +57,8 @@ export class Watcher {
     }
 
     private onChange(filePath: string) {
-        if (CacherUtils.canContext(filePath)) {
-            void this.cacher.refreshContext(filePath)
+        if (CacherUtils.canCache(filePath)) {
+            void this.cacher.refreshCache(filePath)
         }
         void lw.builder.buildOnFileChanged(filePath)
         logger.log(`Changed ${filePath} .`)
