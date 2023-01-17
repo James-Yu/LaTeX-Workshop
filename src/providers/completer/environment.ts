@@ -12,13 +12,20 @@ import { getLogger } from '../../components/logger'
 const logger = getLogger('Intelli', 'Environment')
 
 export type EnvType = {
-    name: string, // Name of the environment, what comes inside \begin{...}
-    snippet?: string, // To be inserted after \begin{..}
+    /** Name of the environment, what comes inside \begin{...} */
+    name: string,
+    /** To be inserted after \begin{..} */
+    snippet?: string,
+    /** The option of package below that activates this env */
     option?: string,
+    /** Possible options of this env */
     keyvals?: string[],
+    /** The index of keyval list in package .json file. Should not be used */
     keyvalindex?: number,
+    /** The index of argument which have the keyvals */
     keyvalpos?: number,
-    package?: string, // The package providing the environment
+    /** The package providing the environment */
+    package?: string,
     detail?: string
 }
 

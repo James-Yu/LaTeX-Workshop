@@ -8,11 +8,11 @@ import {computeFilteringRange} from './completerutils'
 import type { IProvider, ICompletionItem } from '../completion'
 
 export interface ReferenceEntry extends ICompletionItem {
-    // The file that defines the ref.
+    /** The file that defines the ref. */
     file: string,
-    // The position that defines the ref.
+    /** The position that defines the ref. */
     position: vscode.Position,
-    //  Stores the ref number.
+    /**  Stores the ref number. */
     prevIndex?: {refNumber: string, pageNumber: string}
 }
 
