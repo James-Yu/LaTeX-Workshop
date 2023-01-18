@@ -113,7 +113,7 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
     if (viewer === 'browser') {
         return lw.viewer.openBrowser(pickedRootFile)
     } else if (viewer === 'tab') {
-        return lw.viewer.openTab(pickedRootFile, true, tabEditorGroup)
+        return lw.viewer.openTab(pickedRootFile, tabEditorGroup)
     } else if (viewer === 'external') {
         lw.viewer.openExternal(pickedRootFile)
         return

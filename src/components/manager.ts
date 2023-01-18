@@ -180,12 +180,8 @@ export class Manager {
      * @param texPath The path of a LaTeX file.
      * @param respectOutDir If `true`, the 'latex.outDir' config is respected.
      */
-    tex2pdf(texPath: string, respectOutDir: boolean = true) {
-        let outDir = './'
-        if (respectOutDir) {
-            outDir = this.getOutDir(texPath)
-        }
-        return path.resolve(path.dirname(texPath), outDir, path.basename(`${texPath.substring(0, texPath.lastIndexOf('.'))}.pdf`))
+    tex2pdf(texPath: string) {
+        return path.resolve(path.dirname(texPath), this.getOutDir(texPath), path.basename(`${texPath.substring(0, texPath.lastIndexOf('.'))}.pdf`))
     }
 
     /**

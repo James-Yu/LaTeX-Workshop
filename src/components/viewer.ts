@@ -30,7 +30,7 @@ export class Viewer {
      */
     refreshExistingViewer(sourceFile?: string, pdfFile?: string): void {
         logger.log(`Call refreshExistingViewer: ${JSON.stringify({sourceFile})}`)
-        const pdfUri = pdfFile ? vscode.Uri.file(pdfFile) : (sourceFile ? this.tex2pdf(sourceFile, true) : undefined)
+        const pdfUri = pdfFile ? vscode.Uri.file(pdfFile) : (sourceFile ? this.tex2pdf(sourceFile) : undefined)
         if (pdfUri === undefined) {
             PdfViewerManagerService.clientMap.forEach(clientSet => {
                 clientSet.forEach(client => {
@@ -50,8 +50,8 @@ export class Viewer {
         })
     }
 
-    private async checkViewer(sourceFile: string, respectOutDir: boolean = true): Promise<string | undefined> {
-        const pdfFile = this.tex2pdf(sourceFile, respectOutDir)
+    private async checkViewer(sourceFile: string): Promise<string | undefined> {
+        const pdfFile = this.tex2pdf(sourceFile)
         if (!await lw.lwfs.exists(pdfFile)) {
             logger.log(`Cannot find PDF file ${pdfFile}`)
             logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfFile}`, 'warning')
@@ -67,7 +67,7 @@ export class Viewer {
      * @param sourceFile The path of a LaTeX file.
      */
     async openBrowser(sourceFile: string): Promise<void> {
-        const url = await this.checkViewer(sourceFile, true)
+        const url = await this.checkViewer(sourceFile)
         if (!url) {
             return
         }
@@ -87,8 +87,8 @@ export class Viewer {
         }
     }
 
-    private tex2pdf(sourceFile: string, respectOutDir?: boolean): vscode.Uri {
-        const pdfFilePath = lw.manager.tex2pdf(sourceFile, respectOutDir)
+    private tex2pdf(sourceFile: string): vscode.Uri {
+        const pdfFilePath = lw.manager.tex2pdf(sourceFile)
         return vscode.Uri.file(pdfFilePath)
     }
 
@@ -96,16 +96,15 @@ export class Viewer {
      * Opens the PDF file of `sourceFile` in the internal PDF viewer.
      *
      * @param sourceFile The path of a LaTeX file.
-     * @param respectOutDir
      * @param tabEditorGroup
      * @param preserveFocus
      */
-    async openTab(sourceFile: string, respectOutDir: boolean, tabEditorGroup: string, preserveFocus = true): Promise<void> {
-        const url = await this.checkViewer(sourceFile, respectOutDir)
+    async openTab(sourceFile: string, tabEditorGroup: string, preserveFocus = true): Promise<void> {
+        const url = await this.checkViewer(sourceFile)
         if (!url) {
             return
         }
-        const pdfFileUri = this.tex2pdf(sourceFile, respectOutDir)
+        const pdfFileUri = this.tex2pdf(sourceFile)
         if (tabEditorGroup === 'right') {
             await vscode.commands.executeCommand('vscode.openWith', pdfFileUri, 'latex-workshop-pdf-hook', vscode.ViewColumn.Beside)
             if (preserveFocus) {
