@@ -16,15 +16,23 @@ const logger = getLogger('Intelli', 'Command')
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 
 export type CmdType = {
+    /** Name of the command without the leading \ and with argument signature */
     command?: string,
+    /** Snippet to be inserted after the leading \ */
     snippet?: string,
+    /** The option of package below that activates this cmd */
     option?: string,
+    /** Possible options of this env */
     keyvals?: string[],
+    /** The index of keyval list in package .json file. Should not be used */
     keyvalindex?: number,
+    /** The index of argument which have the keyvals */
     keyvalpos?: number,
     detail?: string,
     documentation?: string,
+    /** The package providing the environment */
     package?: string,
+    /** The action to be executed after inserting the snippet */
     postAction?: string
 }
 

@@ -36,7 +36,7 @@ export class InputFileRegExp {
                 matchedString: result[0],
                 index: result.index
             }
-            const filePath = this.parseInputFilePath(match, currentFile, rootFile)
+            const filePath = InputFileRegExp.parseInputFilePath(match, currentFile, rootFile)
             return filePath ? {path: filePath, match} : undefined
         }
         return
@@ -59,7 +59,7 @@ export class InputFileRegExp {
                 matchedString: result[0],
                 index: result.index
             }
-            const filePath = this.parseInputFilePath(match, currentFile, rootFile)
+            const filePath = InputFileRegExp.parseInputFilePath(match, currentFile, rootFile)
             return filePath ? {path: filePath, match} : undefined
         }
         return
@@ -85,7 +85,7 @@ export class InputFileRegExp {
      * @param currentFile is the name of file in which the match has been obtained
      * @param rootFile
      */
-    private parseInputFilePath(match: MatchPath, currentFile: string, rootFile: string): string | undefined {
+    static parseInputFilePath(match: MatchPath, currentFile: string, rootFile: string): string | undefined {
         const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
         /* match of this.childReg */
         if (match.type === MatchType.Child) {

@@ -188,11 +188,11 @@ export class Citation implements IProvider {
         let bibs = Array.from(cache.bibfiles)
         visitedTeX.push(file)
         for (const child of cache.children) {
-            if (visitedTeX.includes(child.file)) {
+            if (visitedTeX.includes(child.filePath)) {
                 // Already included
                 continue
             }
-            bibs = Array.from(new Set(bibs.concat(this.getIncludedBibs(child.file, visitedTeX))))
+            bibs = Array.from(new Set(bibs.concat(this.getIncludedBibs(child.filePath, visitedTeX))))
         }
         return bibs
     }

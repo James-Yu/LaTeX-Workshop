@@ -294,6 +294,40 @@ suite('Intellisense test suite', () => {
         assert.ok(!labels.includes('eq1'))
     })
 
+    test.run(suiteName, fixtureName, 'reference intellisense with `xr` package', async () => {
+        await test.load(fixture, [
+            {src: 'intellisense/xr_base.tex', dst: 'main.tex'},
+            {src: 'intellisense/xr_sub.tex', dst: 'sub.tex'},
+            {src: 'intellisense/xr_dup.tex', dst: 'dup.tex'}
+        ])
+        const result = await test.open(fixture, 'main.tex')
+        const items = test.suggest(result.doc, new vscode.Position(6, 5))
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        const labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('sec:1'))
+        assert.ok(labels.includes('sec:2'))
+        assert.ok(labels.includes('alt-sec:1'))
+    }, undefined, undefined, true)
+
+    test.run(suiteName, fixtureName, 'reference intellisense with `xr` package', async () => {
+        await test.load(fixture, [
+            {src: 'intellisense/xr_base.tex', dst: 'main.tex'},
+            {src: 'intellisense/xr_sub.tex', dst: 'sub.tex'},
+            {src: 'intellisense/xr_dup.tex', dst: 'dup.tex'}
+        ])
+        const result = await test.open(fixture, 'main.tex')
+        const items = test.suggest(result.doc, new vscode.Position(6, 5))
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        const labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('sec:1'))
+        assert.ok(labels.includes('sec:2'))
+        assert.ok(labels.includes('alt-sec:1'))
+    }, undefined, undefined, true)
+
     test.run(suiteName, fixtureName, 'environment intellisense', async () => {
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
