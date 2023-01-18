@@ -201,7 +201,7 @@ function registerProviders() {
 
     lw.registerDisposable(
         vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', lw.viewer.pdfViewerPanelSerializer),
-        vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', new PdfViewerHookProvider(), {supportsMultipleEditorsPerDocument: true}),
+        vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', new PdfViewerHookProvider(), {supportsMultipleEditorsPerDocument: true, webviewOptions: {retainContextWhenHidden: true}}),
         vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', lw.mathPreviewPanel.mathPreviewPanelSerializer)
     )
 

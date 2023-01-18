@@ -105,11 +105,7 @@ export class Viewer {
         if (!url) {
             return
         }
-        const pdfFile = this.tex2pdf(sourceFile, respectOutDir)
-        return this.openPdfInTab(pdfFile, tabEditorGroup, preserveFocus)
-    }
-
-    async openPdfInTab(pdfFileUri: vscode.Uri, tabEditorGroup: string, preserveFocus = true): Promise<void> {
+        const pdfFileUri = this.tex2pdf(sourceFile, respectOutDir)
         if (tabEditorGroup === 'right') {
             await vscode.commands.executeCommand('vscode.openWith', pdfFileUri, 'latex-workshop-pdf-hook', vscode.ViewColumn.Beside)
             if (preserveFocus) {
