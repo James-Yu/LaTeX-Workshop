@@ -41,7 +41,7 @@ export function run(suiteName: string, fixtureName: string, testName: string, cb
     }
 
     testCounter++
-    const testFunction = (process.env['LATEXWORKSHOP_CLI'] || !runonly) ? test : test.run
+    const testFunction = (process.env['LATEXWORKSHOP_CLI'] || !runonly) ? test : test.only
     const counterString = testCounter.toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping: false})
 
     testFunction(`[${counterString}] ${suiteName}: ${testName}`, async () => {
