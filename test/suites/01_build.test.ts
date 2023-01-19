@@ -186,7 +186,7 @@ suite('Build TeX files test suite', () => {
             {src: 'subfile_subsub.tex', dst: 'sub/s.tex'},
             {src: 'plain.tex', dst: 'sub/subsub/infile.tex'}
         ])
-        await test.assert.build(fixture, 'sub/s.tex', 'sub/out/s.pdf')
+        await test.assert.build(fixture, 'sub/s.tex', 'out/s.pdf')
     })
 
     test.run(suiteName, fixtureName, 'basic build with makeindex', async () => {
@@ -201,7 +201,7 @@ suite('Build TeX files test suite', () => {
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'makeindex_subfile.tex', dst: 'sub/s.tex'}
         ])
-        await test.assert.build(fixture, 'sub/s.tex', 'sub/out/s.pdf')
+        await test.assert.build(fixture, 'sub/s.tex', 'out/s.pdf')
     })
 
     test.run(suiteName, fixtureName, 'test q/.../ with spaces in outdir on Windows', async () => {

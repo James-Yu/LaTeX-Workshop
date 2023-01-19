@@ -237,10 +237,9 @@ export class Builder {
      * the io handling is performed in {@link monitorProcess}.
      *
      * @param step The {@link Step} to be executed.
-     * @param cwd The current working directory.
      * @returns The process environment passed to the spawned process.
      */
-    private spawnProcess(step: Step, cwd?: string): ProcessEnv {
+    private spawnProcess(step: Step): ProcessEnv {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? vscode.Uri.file(step.rootFile) : undefined)
         if (step.index === 0 || configuration.get('latex.build.clearLog.everyRecipeStep.enabled') as boolean) {
             logger.clearCompilerMessage()
@@ -268,13 +267,9 @@ export class Builder {
                 this.process = cs.spawn(step.command, args, {cwd: path.dirname(step.rootFile), env})
             }
         } else if (!step.isExternal) {
+            let cwd = path.dirname(step.rootFile)
             if (step.command === 'latexmk' && step.rootFile === lw.manager.localRootFile && lw.manager.rootDir) {
                 cwd = lw.manager.rootDir
-                if (step.args && !step.args.includes('-cd')) {
-                    step.args.push('-cd')
-                }
-            } else {
-                cwd = path.dirname(step.rootFile)
             }
             logger.log(`cwd: ${cwd}`)
             this.process = cs.spawn(step.command, step.args, {cwd, env})
