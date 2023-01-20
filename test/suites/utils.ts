@@ -17,8 +17,6 @@ export function only(suiteName: string, fixtureName: string, testName: string, c
 }
 
 export function run(suiteName: string, fixtureName: string, testName: string, cb: () => unknown, platforms?: NodeJS.Platform[], timeout?: number, runonly?: boolean) {
-    resetCachedLog()
-    logger.log(`${testName}`)
     let fixture: string | undefined
     if (vscode.workspace.workspaceFile) {
         fixture = path.dirname(vscode.workspace.workspaceFile.fsPath)
@@ -46,6 +44,8 @@ export function run(suiteName: string, fixtureName: string, testName: string, cb
 
     testFunction(`[${counterString}] ${suiteName}: ${testName}`, async () => {
         try {
+            resetCachedLog()
+            logger.log(`${testName}`)
             await cb()
         } finally {
             log(fixtureName, testName, counterString)

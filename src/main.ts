@@ -13,7 +13,7 @@ import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexform
 import { getLogger } from './components/logger'
 import { DocumentChanged } from './components/eventbus'
 
-const logger = getLogger('')
+const logger = getLogger('Extension')
 
 export function activate(extensionContext: vscode.ExtensionContext) {
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
