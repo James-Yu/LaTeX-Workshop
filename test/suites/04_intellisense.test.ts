@@ -41,6 +41,7 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.user', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.format', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.command', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', undefined)
@@ -292,6 +293,32 @@ suite('Intellisense test suite', () => {
         labels = items.map(item => item.label.toString())
         assert.ok(labels.includes('sec1'))
         assert.ok(!labels.includes('eq1'))
+    })
+
+    test.run(suiteName, fixtureName, 'reference intellisense and config intellisense.label.command', async () => {
+        await test.load(fixture, [
+            {src: 'intellisense/label.tex', dst: 'main.tex'}
+        ])
+        const result = await test.open(fixture, 'main.tex')
+        let items = test.suggest(result.doc, new vscode.Position(7, 5))
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        let labels = items.map(item => item.label.toString())
+        assert.ok(labels.includes('l1'))
+        assert.ok(labels.includes('e1'))
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.command', ['label'])
+        const event = test.wait(FileParsed, path.resolve(fixture, 'main.tex'))
+        await lw.cacher.refreshCache(path.resolve(fixture, 'main.tex'))
+        await event
+        items = test.suggest(result.doc, new vscode.Position(7, 5))
+        assert.ok(items)
+        assert.ok(items.length > 0)
+
+        labels = items.map(item => item.label.toString())
+        assert.ok(!labels.includes('l1'))
+        assert.ok(labels.includes('e1'))
     })
 
     test.run(suiteName, fixtureName, 'reference intellisense with `xr` package', async () => {

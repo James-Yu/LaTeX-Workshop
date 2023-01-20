@@ -188,7 +188,8 @@ export class Reference implements IProvider {
     // This function will return the reference defined by the node, or all references in `content`
     private getRefFromNode(node: latexParser.Node, lines: string[], nextNode?: latexParser.Node): ICompletionItem[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const useLabelKeyVal = configuration.get('intellisense.label.keyval')
+        const labelCmdNames = configuration.get('intellisense.label.command') as string[]
+        const useLabelKeyVal = configuration.get('intellisense.label.keyval') as boolean
         const refs: ICompletionItem[] = []
         let label = ''
         if (isNewCommand(node) || isNewEnvironment(node) || latexParser.isDefCommand(node)) {
@@ -198,10 +199,15 @@ export class Reference implements IProvider {
         if (latexParser.isEnvironment(node) && this.envsToSkip.includes(node.name)) {
             return refs
         }
-        if (latexParser.isLabelCommand(node) && node.name === 'label') {
+        if (latexParser.isLabelCommand(node) && labelCmdNames.includes(node.name)) {
             // \label{some-text}
             label = node.label
-        } else if (latexParser.isCommand(node) && node.name === 'label'
+        } else if (latexParser.isCommand(node) && labelCmdNames.includes(node.name)
+                    && node.args.length === 1
+                    && latexParser.isGroup(node.args[0])) {
+            // \linelabel{actual_label}
+            label = latexParser.stringify(node.args[0]).slice(1, -1)
+        } else if (latexParser.isCommand(node) && labelCmdNames.includes(node.name)
                     && node.args.length === 2
                     && latexParser.isOptionalArg(node.args[0])
                     && latexParser.isGroup(node.args[1])) {
