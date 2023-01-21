@@ -59,6 +59,7 @@ export class Cacher {
     private readonly watcher: Watcher = new Watcher(this)
     private readonly pdfWatcher: PdfWatcher = new PdfWatcher()
     private readonly bibWatcher: BibWatcher = new BibWatcher()
+    private caching = 0
 
     add(filePath: string) {
         if (CacherUtils.isExcluded(filePath)) {
@@ -114,27 +115,33 @@ export class Cacher {
             return
         }
         logger.log(`Caching ${filePath} .`)
+        this.caching++
         const content = lw.lwfs.readFileSyncGracefully(filePath)
         this.caches[filePath] = {content, elements: {}, children: [], bibfiles: new Set(), external: {}}
         if (content === undefined) {
             logger.log(`Cannot read ${filePath} .`)
             return
         }
-        await this.updateAST(filePath, content)
         const contentTrimmed = utils.stripCommentsAndVerbatim(content)
         rootPath = rootPath || lw.manager.rootFile
         this.updateChildren(filePath, rootPath, contentTrimmed)
+
+        await this.updateAST(filePath, content)
         this.updateElements(filePath, content, contentTrimmed)
-        await this.updateBibfiles(filePath, contentTrimmed)
+        this.updateBibfiles(filePath, contentTrimmed)
         logger.log(`Cached ${filePath} .`)
-        void lw.structureViewer.computeTreeStructure()
+        this.caching--
         lw.eventBus.fire(eventbus.FileParsed, filePath)
+
+        if (this.caching === 0) {
+            void lw.structureViewer.computeTreeStructure()
+        }
     }
 
     private async updateAST(filePath: string, content: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const fastparse = configuration.get('view.outline.fastparse.enabled') as boolean
-        const ast = await UtensilsParser.parseLatex(fastparse ? utils.stripText(content) : content).catch((e) => {
+        // const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        // const fastparse = configuration.get('view.outline.fastparse.enabled') as boolean
+        const ast = await UtensilsParser.parseLatex(/**fastparse ? utils.stripText(content) : */content).catch((e) => {
             if (latexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 logger.log(`Error parsing AST of ${filePath} at line ${line}.`)
@@ -229,7 +236,7 @@ export class Cacher {
         logger.log(`Updated elements of ${filePath} .`)
     }
 
-    private async updateBibfiles(filePath: string, contentTrimmed: string) {
+    private updateBibfiles(filePath: string, contentTrimmed: string) {
         const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(.+?)}|(?:\\putbib)\[(.+?)\]/g
         while (true) {
             const result = bibReg.exec(contentTrimmed)
@@ -246,7 +253,7 @@ export class Cacher {
                 }
                 this.caches[filePath].bibfiles.add(bibPath)
                 logger.log(`Bib ${bibPath} from ${filePath} .`)
-                await this.bibWatcher.watchBibFile(bibPath)
+                this.bibWatcher.watchBibFile(bibPath)
             }
         }
         logger.log(`Updated bibs of ${filePath} .`)
@@ -307,14 +314,14 @@ export class Cacher {
         for (const outputFile of ioFiles.output) {
             if (path.extname(outputFile) === '.aux' && fs.existsSync(outputFile)) {
                 logger.log(`Found .aux ${filePath} from .fls ${flsPath} , parsing.`)
-                await this.parseAuxFile(outputFile, path.dirname(outputFile).replace(outDir, rootDir))
+                this.parseAuxFile(outputFile, path.dirname(outputFile).replace(outDir, rootDir))
                 logger.log(`Parsed .aux ${filePath} .`)
             }
         }
         logger.log(`Parsed .fls ${flsPath} .`)
     }
 
-    private async parseAuxFile(filePath: string, srcDir: string) {
+    private parseAuxFile(filePath: string, srcDir: string) {
         const content = fs.readFileSync(filePath).toString()
         const regex = /^\\bibdata{(.*)}$/gm
         while (true) {
@@ -335,7 +342,7 @@ export class Cacher {
                     this.get(rootFile)?.bibfiles.add(bibPath)
                     logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
                 }
-                await this.bibWatcher.watchBibFile(bibPath)
+                this.bibWatcher.watchBibFile(bibPath)
             }
         }
     }

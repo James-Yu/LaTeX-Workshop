@@ -7,12 +7,13 @@ import * as test from './utils'
 import { SectionNodeProvider } from '../../src/providers/structure'
 
 async function loadTestFiles(fixture: string) {
-    await test.load(fixture, [
+    const files = await test.load(fixture, [
         {src: 'structure_base.tex', dst: 'main.tex'},
         {src: 'structure_sub.tex', dst: 'sub/s.tex'},
         {src: 'structure_s2.tex', dst: 'sub/s2.tex'},
         {src: 'structure_s3.tex', dst: 'sub/s3.tex'}
     ])
+    return files
 }
 
 suite('Document structure test suite', () => {
@@ -47,8 +48,9 @@ suite('Document structure test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'test structure', async () => {
-        await loadTestFiles(fixture)
+        const files = await loadTestFiles(fixture)
         await test.open(fixture, 'main.tex')
+        await files.cached
         const structure = new SectionNodeProvider()
         await structure.update(true)
         const sections = structure.ds
@@ -72,8 +74,9 @@ suite('Document structure test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'test structure with nested floats', async () => {
-        await test.load(fixture, [{src: 'structure_nested.tex', dst: 'main.tex'}])
+        const files = await test.load(fixture, [{src: 'structure_nested.tex', dst: 'main.tex'}])
         await test.open(fixture, 'main.tex')
+        await files.cached
         const structure = new SectionNodeProvider()
         await structure.update(true)
         const sections = structure.ds
@@ -84,8 +87,10 @@ suite('Document structure test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'test view.outline.numbers.enabled', async () => {
-        await loadTestFiles(fixture)
+        const files = await loadTestFiles(fixture)
         await test.open(fixture, 'main.tex')
+        await files.cached
+        await files.cached
         const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.enabled', false)
         await structure.update(true)
@@ -95,8 +100,10 @@ suite('Document structure test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'test view.outline.sections', async () => {
-        await loadTestFiles(fixture)
+        const files = await loadTestFiles(fixture)
         await test.open(fixture, 'main.tex')
+        await files.cached
+        await files.cached
         const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', ['section', 'altsection', 'subsubsection'])
         await structure.update(true)
@@ -107,8 +114,9 @@ suite('Document structure test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'test view.outline.floats.enabled', async () => {
-        await loadTestFiles(fixture)
+        const files = await loadTestFiles(fixture)
         await test.open(fixture, 'main.tex')
+        await files.cached
         const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', false)
         await structure.update(true)
@@ -121,8 +129,9 @@ suite('Document structure test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'test view.outline.floats.number.enabled', async () => {
-        await loadTestFiles(fixture)
+        const files = await loadTestFiles(fixture)
         await test.open(fixture, 'main.tex')
+        await files.cached
         const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.number.enabled', false)
         await structure.update(true)
@@ -138,8 +147,9 @@ suite('Document structure test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'test view.outline.floats.caption.enabled', async () => {
-        await loadTestFiles(fixture)
+        const files = await loadTestFiles(fixture)
         await test.open(fixture, 'main.tex')
+        await files.cached
         const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.caption.enabled', false)
         await structure.update(true)
@@ -155,8 +165,9 @@ suite('Document structure test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'test view.outline.fastparse.enabled', async () => {
-        await loadTestFiles(fixture)
+        const files = await loadTestFiles(fixture)
         await test.open(fixture, 'main.tex')
+        await files.cached
         const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.fastparse.enabled', true)
         await structure.update(true)

@@ -3,7 +3,6 @@ import * as path from 'path'
 import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
 import * as test from './utils'
-import { FileWatched } from '../../src/components/eventbus'
 
 suite('Auto-build test suite', () => {
 
@@ -91,13 +90,12 @@ suite('Auto-build test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'auto build with input whose path uses a macro', async () => {
-        await test.load(fixture, [
+        const files = await test.load(fixture, [
             {src: 'input_macro.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        const event = test.wait(FileWatched, path.resolve(fixture, 'sub/s.tex'))
         await test.assert.build(fixture, 'main.tex', 'main.pdf')
-        await event
+        await files.cached
         await test.assert.auto(fixture, 'sub/s.tex', 'main.pdf', ['skipFirstBuild'])
     })
 

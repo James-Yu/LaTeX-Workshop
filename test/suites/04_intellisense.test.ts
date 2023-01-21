@@ -196,11 +196,12 @@ suite('Intellisense test suite', () => {
 
     test.run(suiteName, fixtureName, 'command intellisense with config `intellisense.argumentHint.enabled`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', true)
-        await test.load(fixture, [
+        const files = await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await test.open(fixture, 'main.tex')
+        await files.cached
         let items = test.suggest(result.doc, new vscode.Position(0, 1))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -269,11 +270,12 @@ suite('Intellisense test suite', () => {
 
     test.run(suiteName, fixtureName, 'reference intellisense and config intellisense.label.keyval', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', true)
-        await test.load(fixture, [
+        const files = await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ])
         const result = await test.open(fixture, 'main.tex')
+        await files.cached
         let items = test.suggest(result.doc, new vscode.Position(8, 5))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -296,9 +298,7 @@ suite('Intellisense test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'reference intellisense and config intellisense.label.command', async () => {
-        await test.load(fixture, [
-            {src: 'intellisense/label.tex', dst: 'main.tex'}
-        ])
+        await test.load(fixture, [{src: 'intellisense/label.tex', dst: 'main.tex'}])
         const result = await test.open(fixture, 'main.tex')
         let items = test.suggest(result.doc, new vscode.Position(7, 5))
         assert.ok(items)
@@ -322,12 +322,13 @@ suite('Intellisense test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'reference intellisense with `xr` package', async () => {
-        await test.load(fixture, [
+        const files = await test.load(fixture, [
             {src: 'intellisense/xr_base.tex', dst: 'main.tex'},
             {src: 'intellisense/xr_sub.tex', dst: 'sub.tex'},
             {src: 'intellisense/xr_dup.tex', dst: 'dup.tex'}
         ])
         const result = await test.open(fixture, 'main.tex')
+        await files.cached
         const items = test.suggest(result.doc, new vscode.Position(6, 5))
         assert.ok(items)
         assert.ok(items.length > 0)
@@ -448,9 +449,7 @@ suite('Intellisense test suite', () => {
 
     test.run(suiteName, fixtureName, 'argument intellisense with braces already in the argument', async () => {
         await test.load(fixture, [{src: 'intellisense/class_option_with_brace.tex', dst: 'main.tex'}])
-        const event = test.wait(FileParsed, path.resolve(fixture, 'main.tex'))
         const result = await test.open(fixture, 'main.tex')
-        await event
         let items = test.suggest(result.doc, new vscode.Position(0, 64))
         assert.ok(items)
         let labels = items.map(item => item.label.toString())
@@ -529,10 +528,9 @@ suite('Intellisense test suite', () => {
     test.run(suiteName, fixtureName, 'citation intellisense and configs intellisense.citation.*', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
         test.write(fixture, 'main.tex', '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{main}', '\\end{document}')
-        await test.load(fixture, [{src: 'base.bib', dst: 'main.bib'}])
-        const event = test.wait(FileParsed, path.resolve(fixture, 'main.bib'))
+        const files = await test.load(fixture, [{src: 'base.bib', dst: 'main.bib'}])
         const result = await test.open(fixture, 'main.tex')
-        await event
+        await files.cached
 
         let items = test.suggest(result.doc, new vscode.Position(2, 9))
         assert.ok(items)

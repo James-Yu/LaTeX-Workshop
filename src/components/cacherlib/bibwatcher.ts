@@ -58,12 +58,12 @@ export class BibWatcher {
         logger.log(`File unlinked ${filePath} .`)
     }
 
-    async watchBibFile(filePath: string) {
+    watchBibFile(filePath: string) {
         if (!this.bibsWatched.has(filePath)) {
             this.bibWatcher.add(filePath)
             this.bibsWatched.add(filePath)
             logger.log(`File watched ${filePath} .`)
-            await lw.completer.citation.parseBibFile(filePath)
+            void lw.completer.citation.parseBibFile(filePath)
         }
     }
 

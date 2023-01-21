@@ -258,7 +258,6 @@ export class Manager {
                 // We need to parse the fls to discover file dependencies when defined by TeX macro
                 // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
                 await lw.cacher.loadFlsFile(this.rootFile)
-                void lw.structureViewer.computeTreeStructure()
                 lw.eventBus.fire(eventbus.RootFileChanged, rootFile)
             } else {
                 logger.log(`Keep using the same root file: ${this.rootFile}`)
