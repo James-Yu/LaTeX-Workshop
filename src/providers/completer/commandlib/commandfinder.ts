@@ -84,11 +84,14 @@ export class CommandFinder {
                 cmds.push(cmd)
                 commandSignatureDuplicationDetector.add(cmd)
             }
-            if (newCommandDeclarations.includes(node.name.replace(/\*$/, '')) &&
-                (node.args.length > 0 &&
-                 latexParser.isGroup(node.args[0]) && node.args[0].content.length > 0 &&
-                 latexParser.isCommand(node.args[0].content[0])) ||
-                (next && latexParser.isCommand(next) && next.args.length > 0)) {
+            if (newCommandDeclarations.includes(node.name.replace(/\*$/, ''))
+                && ((node.args.length > 0
+                        && latexParser.isGroup(node.args[0])
+                        && node.args[0].content.length > 0
+                        && latexParser.isCommand(node.args[0].content[0]))
+                    || (next
+                        && latexParser.isCommand(next)
+                        && next.args.length > 0))) {
                 const isInsideNewCommand = node.args.length > 0
                 const label = ((isInsideNewCommand ? node.args[0].content[0] : next) as latexParser.Command).name
                 let tabStops = ''
