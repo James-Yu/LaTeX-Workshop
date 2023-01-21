@@ -49,7 +49,9 @@ export interface Cache {
     bibfiles: Set<string>,
     /** A dictionary of external documents provided by `\externaldocument` of
      * `xr` package. The value is its prefix `\externaldocument[prefix]{*}` */
-    external: {[filePath: string]: string}
+    external: {[filePath: string]: string},
+    /** The AST of this file */
+    ast?: latexParser.LatexAst
 }
 
 export class Cacher {
@@ -118,14 +120,31 @@ export class Cacher {
             logger.log(`Cannot read ${filePath} .`)
             return
         }
+        await this.updateAST(filePath, content)
         const contentTrimmed = utils.stripCommentsAndVerbatim(content)
         rootPath = rootPath || lw.manager.rootFile
         this.updateChildren(filePath, rootPath, contentTrimmed)
-        await this.updateElements(filePath, content, contentTrimmed)
+        this.updateElements(filePath, content, contentTrimmed)
         await this.updateBibfiles(filePath, contentTrimmed)
         logger.log(`Cached ${filePath} .`)
         void lw.structureViewer.computeTreeStructure()
         lw.eventBus.fire(eventbus.FileParsed, filePath)
+    }
+
+    private async updateAST(filePath: string, content: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const fastparse = configuration.get('view.outline.fastparse.enabled') as boolean
+        const ast = await UtensilsParser.parseLatex(fastparse ? utils.stripText(content) : content).catch((e) => {
+            if (latexParser.isSyntaxError(e)) {
+                const line = e.location.start.line
+                logger.log(`Error parsing AST of ${filePath} at line ${line}.`)
+            }
+            return
+        })
+        const cache = this.get(filePath)
+        if (ast && cache) {
+            cache.ast = ast
+        }
     }
 
     private updateChildren(filePath: string, rootPath: string | undefined, contentTrimmed: string) {
@@ -189,23 +208,18 @@ export class Cacher {
         }
     }
 
-    private async updateElements(filePath: string, content: string, contentTrimmed: string) {
+    private updateElements(filePath: string, content: string, contentTrimmed: string) {
         lw.completer.citation.update(filePath, content)
-        const languageId: string | undefined = vscode.window.activeTextEditor?.document.languageId
-        let latexAst: latexParser.AstRoot | latexParser.AstPreamble | undefined = undefined
-        if (!languageId || languageId !== 'latex-expl3') {
-            latexAst = await UtensilsParser.parseLatex(content)
-        }
-
-        if (latexAst) {
-            const nodes = latexAst.content
+        const cache = this.get(filePath)
+        if (cache?.ast) {
+            const nodes = cache.ast.content
             const lines = content.split('\n')
             lw.completer.reference.update(filePath, nodes, lines)
             lw.completer.glossary.update(filePath, nodes)
             lw.completer.environment.update(filePath, nodes, lines)
             lw.completer.command.update(filePath, nodes)
         } else {
-            logger.log(`Cannot parse AST, use RegExp on ${filePath} .`)
+            logger.log(`Use RegExp to update elements of ${filePath} .`)
             lw.completer.reference.update(filePath, undefined, undefined, contentTrimmed)
             lw.completer.glossary.update(filePath, undefined, contentTrimmed)
             lw.completer.environment.update(filePath, undefined, undefined, contentTrimmed)

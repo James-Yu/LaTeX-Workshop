@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import { latexParser,bibtexParser } from 'latex-utensils'
 import * as lw from '../lw'
-import { resolveFile, stripText } from '../utils/utils'
+import { resolveFile } from '../utils/utils'
 import { InputFileRegExp } from '../utils/inputfilepath'
 
 import { getLogger } from '../components/logger'
@@ -155,18 +155,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return []
         }
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const fastparse = configuration.get('view.outline.fastparse.enabled') as boolean
-
-        // Use `latex-utensils` to generate the AST.
-        const ast = await UtensilsParser.parseLatex(fastparse ? stripText(content) : content).catch((e) => {
-            if (latexParser.isSyntaxError(e)) {
-                const line = e.location.start.line
-                logger.log(`Error parsing LaTeX during structuring: line ${line} in ${file} .`)
-            }
-            return
-        })
+        const ast = lw.cacher.get(file)?.ast
         if (!ast) {
+            logger.log(`Error loading AST during structuring: ${file} .`)
             return []
         }
 
