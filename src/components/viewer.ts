@@ -99,28 +99,26 @@ export class Viewer {
      * @param tabEditorGroup
      * @param preserveFocus
      */
-    async openTab(sourceFile: string, tabEditorGroup: string, preserveFocus = true): Promise<void> {
+    async openTab(sourceFile: string, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
         const url = await this.checkViewer(sourceFile)
         if (!url) {
             return
         }
-        const pdfFileUri = this.tex2pdf(sourceFile)
-        if (tabEditorGroup === 'right') {
-            await vscode.commands.executeCommand('vscode.openWith', pdfFileUri, 'latex-workshop-pdf-hook', vscode.ViewColumn.Beside)
-            if (preserveFocus) {
-                await vscode.commands.executeCommand('workbench.action.focusLeftGroup')
-            }
-        } else {
-            await vscode.commands.executeCommand('vscode.openWith', pdfFileUri, 'latex-workshop-pdf-hook', vscode.window.tabGroups.activeTabGroup.viewColumn)
-            await moveActiveEditor(tabEditorGroup, preserveFocus)
-        }
-        logger.log(`Open PDF tab for ${pdfFileUri.toString(true)}`)
+        const pdfUri = this.tex2pdf(sourceFile)
+        return this.openPdfInTab(pdfUri, tabEditorGroup, preserveFocus)
     }
 
-    async openPdfInPanel(pdfFileUri: vscode.Uri, webviewPanel: vscode.WebviewPanel) {
-        const panel = await PdfViewerPanelService.populatePdfViewerPanel(pdfFileUri, webviewPanel)
+    async openPdfInTab(pdfUri: vscode.Uri, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
+        const activeDocument = vscode.window.activeTextEditor?.document
+        const panel = await PdfViewerPanelService.createPdfViewerPanel(pdfUri, tabEditorGroup === 'current')
         PdfViewerManagerService.initiatePdfViewerPanel(panel)
-        logger.log(`Open PDF tab for ${pdfFileUri.toString(true)} in panel`)
+        if (!panel) {
+            return
+        }
+        if (tabEditorGroup !== 'current' && activeDocument) {
+            await moveActiveEditor(tabEditorGroup, preserveFocus)
+        }
+        logger.log(`Open PDF tab for ${pdfUri.toString(true)}`)
     }
 
     /**
