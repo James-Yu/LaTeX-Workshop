@@ -60,6 +60,7 @@ export class Cacher {
     private readonly pdfWatcher: PdfWatcher = new PdfWatcher()
     private readonly bibWatcher: BibWatcher = new BibWatcher()
     private caching = 0
+    private promises: {[filePath: string]: Promise<void>} = {}
 
     add(filePath: string) {
         if (CacherUtils.isExcluded(filePath)) {
@@ -86,6 +87,10 @@ export class Cacher {
 
     get(filePath: string): Cache | undefined {
         return this.caches[filePath]
+    }
+
+    promise(filePath: string): Promise<void> | undefined {
+        return this.promises[filePath]
     }
 
     get allPaths() {
@@ -126,16 +131,21 @@ export class Cacher {
         rootPath = rootPath || lw.manager.rootFile
         this.updateChildren(filePath, rootPath, contentTrimmed)
 
-        await this.updateAST(filePath, content)
-        this.updateElements(filePath, content, contentTrimmed)
-        this.updateBibfiles(filePath, contentTrimmed)
-        logger.log(`Cached ${filePath} .`)
-        this.caching--
-        lw.eventBus.fire(eventbus.FileParsed, filePath)
+        this.promises[filePath] = this.updateAST(filePath, content).then(() => {
+            this.updateElements(filePath, content, contentTrimmed)
+            this.updateBibfiles(filePath, contentTrimmed)
+        }).finally(() => {
+            logger.log(`Cached ${filePath} .`)
+            this.caching--
+            delete this.promises[filePath]
+            lw.eventBus.fire(eventbus.FileParsed, filePath)
 
-        if (this.caching === 0) {
-            void lw.structureViewer.computeTreeStructure()
-        }
+            if (this.caching === 0) {
+                void lw.structureViewer.computeTreeStructure()
+            }
+        })
+
+        return this.promises[filePath]
     }
 
     private async updateAST(filePath: string, content: string) {
