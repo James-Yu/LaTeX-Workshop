@@ -35,13 +35,41 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         }
     }))
 
+    /** The previous active TeX document path. If this changed, root need to be re-searched */
+    let prevTeXDocumentPath: string | undefined
     // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
     lw.registerDisposable(vscode.workspace.onDidOpenTextDocument(async (e: vscode.TextDocument) => {
         if (lw.lwfs.isVirtualUri(e.uri)){
             return
         }
-        if (lw.manager.hasTexId(e.languageId)) {
+        if (lw.manager.hasTexId(e.languageId) && e.fileName !== prevTeXDocumentPath) {
+            prevTeXDocumentPath = e.fileName
             await lw.manager.findRoot()
+        }
+    }))
+
+    let isLaTeXActive = false
+    lw.registerDisposable(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+
+        if (vscode.window.visibleTextEditors.filter(editor => lw.manager.hasTexId(editor.document.languageId)).length > 0) {
+            logger.showStatus()
+            if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
+                void vscode.commands.executeCommand('workbench.view.lw.latex-workshop-activitybar').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
+            }
+            isLaTeXActive = true
+        } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
+            logger.showStatus()
+        }
+        if (e && lw.lwfs.isVirtualUri(e.document.uri)){
+            return
+        }
+        if (e && lw.manager.hasTexId(e.document.languageId) && e.document.fileName !== prevTeXDocumentPath) {
+            prevTeXDocumentPath = e.document.fileName
+            await lw.manager.findRoot()
+            lw.linter.lintRootFileIfEnabled()
+        } else if (!e || !lw.manager.hasBibtexId(e.document.languageId)) {
+            isLaTeXActive = false
         }
     }))
 
@@ -72,30 +100,6 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         }
     }))
 
-    let isLaTeXActive = false
-    lw.registerDisposable(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-
-        if (vscode.window.visibleTextEditors.filter(editor => lw.manager.hasTexId(editor.document.languageId)).length > 0) {
-            logger.showStatus()
-            if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
-                void vscode.commands.executeCommand('workbench.view.lw.latex-workshop-activitybar').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
-            }
-            isLaTeXActive = true
-        } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
-            logger.showStatus()
-        }
-        if (e && lw.lwfs.isVirtualUri(e.document.uri)){
-            return
-        }
-        if (e && lw.manager.hasTexId(e.document.languageId)) {
-            await lw.manager.findRoot()
-            lw.linter.lintRootFileIfEnabled()
-        } else if (!e || !lw.manager.hasBibtexId(e.document.languageId)) {
-            isLaTeXActive = false
-        }
-    }))
-
     lw.registerDisposable(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
         if (lw.manager.hasTexId(e.textEditor.document.languageId) ||
             e.textEditor.document.languageId === 'bibtex') {
@@ -106,7 +110,12 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
     registerProviders()
 
-    void lw.manager.findRoot().then(() => lw.linter.lintRootFileIfEnabled())
+    void lw.manager.findRoot().then(() => {
+        lw.linter.lintRootFileIfEnabled()
+        if (lw.manager.hasTexId(vscode.window.activeTextEditor?.document.languageId ?? '')) {
+            prevTeXDocumentPath = vscode.window.activeTextEditor?.document.fileName
+        }
+    })
     conflictCheck()
 }
 
