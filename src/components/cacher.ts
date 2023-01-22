@@ -305,6 +305,7 @@ export class Cacher {
             }
             if (path.extname(inputFile) === '.tex') {
                 if (!this.has(filePath)) {
+                    logger.log(`Cache not finished on ${filePath} when parsing fls.`)
                     await this.refreshCache(filePath)
                 }
                 // Parse tex files as imported subfiles.
@@ -313,8 +314,8 @@ export class Cacher {
                     filePath: inputFile
                 })
                 this.add(inputFile)
-                logger.log(`Found ${inputFile} from .fls ${flsPath} .`)
-                await this.refreshCache(inputFile, filePath)
+                logger.log(`Found ${inputFile} from .fls ${flsPath} , caching.`)
+                void this.refreshCache(inputFile, filePath)
             } else if (!this.watched(inputFile)) {
                 // Watch non-tex files.
                 this.add(inputFile)
@@ -435,22 +436,23 @@ export class Cacher {
     /**
      * Return the list of files (recursively) included in `file`
      *
-     * @param file The file in which children are recursively computed
-     * @param baseFile The file currently considered as the rootFile
+     * @param filePath The file in which children are recursively computed
+     * @param basePath The file currently considered as the rootFile
      * @param children The list of already computed children
      */
-    async getTeXChildren(file: string, baseFile: string, children: string[]) {
-        if (!this.has(file)) {
-            await this.refreshCache(file, baseFile)
+    async getTeXChildren(filePath: string, basePath: string, children: string[]) {
+        if (!this.has(filePath)) {
+            logger.log(`Cache not finished on ${filePath} when getting its children.`)
+            await this.refreshCache(filePath, basePath)
         }
 
-        this.get(file)?.children.forEach(async child => {
+        this.get(filePath)?.children.forEach(async child => {
             if (children.includes(child.filePath)) {
                 // Already included
                 return
             }
             children.push(child.filePath)
-            await this.getTeXChildren(child.filePath, baseFile, children)
+            await this.getTeXChildren(child.filePath, basePath, children)
         })
         return children
     }
