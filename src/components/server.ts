@@ -69,6 +69,13 @@ export class Server {
         return portNum
     }
 
+    async getViewerUrl(pdfUri: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
+        // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
+        const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.port}`, true))
+        const url = origUrl.toString() + (origUrl.toString().endsWith('/') ? '' : '/' ) + `viewer.html?file=${PdfFilePathEncoder.encodePathWithPrefix(pdfUri)}`
+        return { url, uri: vscode.Uri.parse(url, true) }
+    }
+
     private get validOrigin(): string {
         if (this.validOriginUri) {
             return `${this.validOriginUri.scheme}://${this.validOriginUri.authority}`
@@ -177,7 +184,7 @@ export class Server {
             }
             return
         }
-        if (request.url.includes('config.json')) {
+        if (request.url.endsWith('/config.json')) {
             const params = lw.viewer.viewerParams()
             const content = JSON.stringify(params)
             this.sendOkResponse(response, Buffer.from(content), 'application/json')

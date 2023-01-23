@@ -6,7 +6,6 @@ import {PdfViewerManagerService} from './pdfviewermanager'
 import {ViewerStatusChanged} from '../eventbus'
 
 import { getLogger } from '../logger'
-import { PdfFilePathEncoder } from '../serverlib/encodepath'
 
 const logger = getLogger('Viewer', 'Panel')
 
@@ -70,10 +69,6 @@ export class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
 export class PdfViewerPanelService {
     private static alreadyOpened = false
 
-    private static encodePathWithPrefix(pdfFileUri: vscode.Uri): string {
-        return PdfFilePathEncoder.encodePathWithPrefix(pdfFileUri)
-    }
-
     private static async tweakForCodespaces(url: vscode.Uri) {
         if (this.alreadyOpened) {
             return
@@ -109,16 +104,13 @@ export class PdfViewerPanelService {
     /**
      * Returns the HTML content of the internal PDF viewer.
      *
-     * @param pdfFile The path of a PDF file to be opened.
+     * @param pdfUri The path of a PDF file to be opened.
      */
-    static async getPDFViewerContent(pdfFile: vscode.Uri): Promise<string> {
-        const serverPort = lw.server.port
-        // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
-        const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${serverPort}`, true))
-        const url = vscode.Uri.parse(`${origUrl}/viewer.html?file=${this.encodePathWithPrefix(pdfFile)}`,true)
-        const iframeSrcOrigin = `${url.scheme}://${url.authority}`
-        const iframeSrcUrl = url.toString(true)
-        await this.tweakForCodespaces(url)
+    static async getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
+        const uri = (await lw.server.getViewerUrl(pdfUri)).uri
+        const iframeSrcOrigin = `${uri.scheme}://${uri.authority}`
+        const iframeSrcUrl = uri.toString(true)
+        await this.tweakForCodespaces(uri)
         logger.log(`Internal PDF viewer at ${iframeSrcUrl} .`)
         const rebroadcast: boolean = this.getKeyboardEventConfig()
         return `
