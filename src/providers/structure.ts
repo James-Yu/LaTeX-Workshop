@@ -150,13 +150,13 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         filesBuilt.add(file)
 
         let waited = 0
-        while (!lw.cacher.promise(file) && !lw.cacher.get(file)?.content) {
+        while (!lw.cacher.promise(file) && !lw.cacher.has(file)) {
             // Just open vscode, has not cached, wait for a bit?
             await new Promise(resolve => setTimeout(resolve, 100))
             waited++
-            if (waited > 10) {
-                // Waited for five seconds before starting cache. Really?
-                logger.log(`Error loading Cache during structuring: ${file} .`)
+            if (waited >= 20) {
+                // Waited for two seconds before starting cache. Really?
+                logger.log(`Error loading cache during structuring: ${file} .`)
                 return []
             }
         }
