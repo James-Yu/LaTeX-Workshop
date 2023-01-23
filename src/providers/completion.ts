@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
+import * as path from 'path'
 import * as lw from '../lw'
 import { Citation } from './completer/citation'
 import { DocumentClass } from './completer/documentclass'
@@ -15,7 +16,6 @@ import { Input, Import, SubImport } from './completer/input'
 import { Glossary } from './completer/glossary'
 import type { ReferenceDocType } from './completer/reference'
 import { escapeRegExp } from '../utils/utils'
-import { resolvePkgFile } from './completer/commandlib/commandfinder'
 import { getLogger } from '../components/logger'
 
 const logger = getLogger('Intelli')
@@ -77,7 +77,7 @@ export class Completer implements vscode.CompletionItemProvider {
             return
         }
 
-        const filePath: string | undefined = resolvePkgFile(`${packageName}.json`, `${lw.extensionRoot}/data/packages/`)
+        const filePath: string | undefined = this.resolvePackageFile(packageName)
         if (filePath === undefined) {
             this.packagesLoaded.push(packageName)
             return
@@ -96,6 +96,29 @@ export class Completer implements vscode.CompletionItemProvider {
         } catch (e) {
             logger.log(`Cannot parse intellisense file: ${filePath}`)
         }
+    }
+
+    private resolvePackageFile(packageName: string): string | undefined {
+        const defaultDir = `${lw.extensionRoot}/data/packages/`
+        const dirs = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.dirs') as string[]
+        dirs.push(defaultDir)
+        for (const dir of dirs) {
+            const filePath = path.resolve(dir, `${packageName}.json`)
+            if (fs.existsSync(filePath)) {
+                return filePath
+            }
+        }
+        // Many package with names like toppackage-config.sty are just wrappers around
+        // the general package toppacke.sty and do not define commands on their own.
+        const indexDash = packageName.lastIndexOf('-')
+        if (indexDash > - 1) {
+            const generalPkg = packageName.substring(0, indexDash)
+            const filePath = path.resolve(defaultDir, `${generalPkg}.json`)
+            if (fs.existsSync(filePath)) {
+                return filePath
+            }
+        }
+        return
     }
 
     private populatePackageData(packageData: PkgType) {

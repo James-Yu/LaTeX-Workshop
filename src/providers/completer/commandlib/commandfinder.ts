@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 import * as lw from '../../../lw'
 import {CmdEnvSuggestion} from '../completerutils'
@@ -9,28 +8,6 @@ import type { ICompletionItem } from '../../completion'
 export function isTriggerSuggestNeeded(name: string): boolean {
     const reg = /^(?:[a-z]*(cite|ref|input)[a-z]*|begin|bibitem|(sub)?(import|includefrom|inputfrom)|gls(?:pl|text|first|plural|firstplural|name|symbol|desc|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)/i
     return reg.test(name)
-}
-
-export function resolvePkgFile(packageName: string, dataDir: string): string | undefined {
-    const dirs = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.dirs') as string[]
-    dirs.push(dataDir)
-    for (const dir of dirs) {
-        const f = `${dir}/${packageName}`
-        if (fs.existsSync(f)) {
-            return f
-        }
-    }
-    // Many package with names like toppackage-config.sty are just wrappers around
-    // the general package toppacke.sty and do not define commands on their own.
-    const indexDash = packageName.lastIndexOf('-')
-    if (indexDash > - 1) {
-        const generalPkg = packageName.substring(0, indexDash)
-        const f = `${dataDir}/${generalPkg}.json`
-        if (fs.existsSync(f)) {
-            return f
-        }
-    }
-    return
 }
 
 export class CommandFinder {
