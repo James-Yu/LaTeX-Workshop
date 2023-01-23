@@ -12,7 +12,6 @@ import { PdfViewerPanelSerializer, PdfViewerPanelService } from './viewerlib/pdf
 import { PdfViewerManagerService } from './viewerlib/pdfviewermanager'
 import { ViewerPageLoaded } from './eventbus'
 import { getLogger } from './logger'
-import { PdfFilePathEncoder } from './serverlib/encodepath'
 import { moveActiveEditor } from '../utils/webview'
 
 const logger = getLogger('Viewer')
@@ -51,14 +50,13 @@ export class Viewer {
     }
 
     private async checkViewer(sourceFile: string): Promise<string | undefined> {
-        const pdfFile = this.tex2pdf(sourceFile)
-        if (!await lw.lwfs.exists(pdfFile)) {
-            logger.log(`Cannot find PDF file ${pdfFile}`)
-            logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfFile}`, 'warning')
+        const pdfUri = this.tex2pdf(sourceFile)
+        if (!await lw.lwfs.exists(pdfUri)) {
+            logger.log(`Cannot find PDF file ${pdfUri}`)
+            logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfUri}`, 'warning')
             return
         }
-        const url = `http://127.0.0.1:${lw.server.port}/viewer.html?file=${PdfFilePathEncoder.encodePathWithPrefix(pdfFile)}`
-        return url
+        return (await lw.server.getViewerUrl(pdfUri)).url
     }
 
     /**

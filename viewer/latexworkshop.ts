@@ -164,7 +164,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     private async fetchParams(): Promise<PdfViewerParams> {
-        const response = await fetch('/config.json')
+        const response = await fetch('config.json')
         const params = await response.json() as PdfViewerParams
         return params
     }
@@ -182,7 +182,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     private async setupAppOptions() {
-        const workerPort = new Worker('/build/pdf.worker.js')
+        const workerPort = new Worker('build/pdf.worker.js')
         const params = await this.fetchParams()
         document.addEventListener('webviewerloaded', () => {
             const color = this.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark : params.color.light
@@ -194,7 +194,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 sidebarViewOnLoad: 0,
                 standardFontDataUrl: '/standard_fonts/',
                 workerPort,
-                workerSrc: '/build/pdf.worker.js',
+                workerSrc: 'build/pdf.worker.js',
                 forcePageColors: true,
                 ...color
             }
@@ -724,4 +724,4 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 const extension = new LateXWorkshopPdfViewer()
 await extension.waitSetupAppOptionsFinished()
 // @ts-expect-error
-await import('/viewer.js')
+await import('../../viewer/viewer.js')
