@@ -1,9 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
-import * as lw from '../../../lw'
 import {CmdEnvSuggestion} from '../completerutils'
-import type { ICompletionItem } from '../../completion'
 
 
 export function isTriggerSuggestNeeded(name: string): boolean {
@@ -36,105 +34,103 @@ export function resolvePkgFile(packageName: string, dataDir: string): string | u
 export class CommandFinder {
     static definedCmds = new Map<string, {file: string, location: vscode.Location}>()
 
-    static getCmdFromNodeArray(file: string, nodes: latexParser.Node[], commandSignatureDuplicationDetector: CommandSignatureDuplicationDetector): CmdEnvSuggestion[] {
+    static getCmdFromNodeArray(file: string, nodes: latexParser.Node[], cmdInPkg: CmdEnvSuggestion[], commandSignatureDuplicationDetector: CommandSignatureDuplicationDetector): CmdEnvSuggestion[] {
         let cmds: CmdEnvSuggestion[] = []
         nodes.forEach((node, index) => {
             const prev = nodes[index - 1]
             const next = nodes[index + 1]
-            cmds = cmds.concat(CommandFinder.getCmdFromNode(file, node, commandSignatureDuplicationDetector, latexParser.isCommand(prev) ? prev : undefined, latexParser.isCommand(next) ? next : undefined))
+            cmds = cmds.concat(CommandFinder.getCmdFromNode(file, node, cmdInPkg, commandSignatureDuplicationDetector, latexParser.isCommand(prev) ? prev : undefined, latexParser.isCommand(next) ? next : undefined))
         })
         return cmds
     }
 
-    private static getCmdFromNode(file: string, node: latexParser.Node, commandSignatureDuplicationDetector: CommandSignatureDuplicationDetector, prev?: latexParser.Command, next?: latexParser.Command): CmdEnvSuggestion[] {
+    private static getCmdFromNode(file: string, node: latexParser.Node, cmdInPkg: CmdEnvSuggestion[], commandSignatureDuplicationDetector: CommandSignatureDuplicationDetector, prev?: latexParser.Command, next?: latexParser.Command): CmdEnvSuggestion[] {
         const cmds: CmdEnvSuggestion[] = []
         const newCommandDeclarations = ['newcommand', 'renewcommand', 'providecommand', 'DeclareMathOperator', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP']
         if (latexParser.isDefCommand(node)) {
             const name = node.token.slice(1)
             const args = CommandFinder.getArgsFromNode(node)
             const cmd = new CmdEnvSuggestion(`\\${name}${args}`, '', [], -1, {name, args}, vscode.CompletionItemKind.Function)
-            cmd.documentation = '`' + name + '`'
-            cmd.insertText = new vscode.SnippetString(name + CommandFinder.getTabStopsFromNode(node))
-            cmd.filterText = name
-            if (isTriggerSuggestNeeded(name)) {
-                cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
-            }
             if (!commandSignatureDuplicationDetector.has(cmd)) {
+                cmd.documentation = '`' + name + '`'
+                cmd.insertText = new vscode.SnippetString(name + CommandFinder.getTabStopsFromNode(node))
+                cmd.filterText = name
+                if (isTriggerSuggestNeeded(name)) {
+                    cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
+                }
                 cmds.push(cmd)
                 commandSignatureDuplicationDetector.add(cmd)
             }
-        } else if (latexParser.isCommand(node)) {
-            if (latexParser.isCommand(prev) && newCommandDeclarations.includes(prev.name) && prev.args.length === 0) {
+        } else if (latexParser.isCommand(node) && latexParser.isCommand(prev) && newCommandDeclarations.includes(prev.name.replace(/\*$/, '')) && prev.args.length === 0) {
+            // We have gone to the WARNING part of \newcommand\WARNING{\textcolor{red}{WARNING}}, already parsed
+            return cmds
+        } else if (latexParser.isCommand(node) && newCommandDeclarations.includes(node.name.replace(/\*$/, ''))) {
+            // \newcommand{\fix}[3][]{\chdeleted{#2}\chadded[comment={#1}]{#3}}
+            const inside = node.args.length > 0
+                && latexParser.isGroup(node.args[0])
+                && node.args[0].content.length > 0
+                && latexParser.isCommand(node.args[0].content[0])
+            // \newcommand\WARNING{\textcolor{red}{WARNING}}
+            const beside = next
+                && latexParser.isCommand(next)
+                && next.args.length > 0
+            if (!inside && !beside) {
                 return cmds
             }
-            const args = CommandFinder.getArgsFromNode(node)
-            const cmd = new CmdEnvSuggestion(`\\${node.name}${args}`,
-                CommandFinder.whichPackageProvidesCommand(node.name),
-                [],
-                -1,
-                { name: node.name, args },
-                vscode.CompletionItemKind.Function
-            )
-            cmd.documentation = '`' + node.name + '`'
-            cmd.insertText = new vscode.SnippetString(node.name + CommandFinder.getTabStopsFromNode(node))
-            if (isTriggerSuggestNeeded(node.name)) {
-                cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
-            }
-            if (!commandSignatureDuplicationDetector.has(cmd) && !newCommandDeclarations.includes(node.name)) {
-                cmds.push(cmd)
-                commandSignatureDuplicationDetector.add(cmd)
-            }
-            if (newCommandDeclarations.includes(node.name.replace(/\*$/, ''))
-                && ((node.args.length > 0
-                        && latexParser.isGroup(node.args[0])
-                        && node.args[0].content.length > 0
-                        && latexParser.isCommand(node.args[0].content[0]))
-                    || (next
-                        && latexParser.isCommand(next)
-                        && next.args.length > 0))) {
-                const isInsideNewCommand = node.args.length > 0
-                const label = ((isInsideNewCommand ? node.args[0].content[0] : next) as latexParser.Command).name
-                let tabStops = ''
-                let newargs = ''
-                const argsNode = isInsideNewCommand ? node.args : next?.args || []
-                const argNumNode = isInsideNewCommand ? argsNode[1] : argsNode[0]
-                if (latexParser.isOptionalArg(argNumNode)) {
-                    const numArgs = parseInt((argNumNode.content[0] as latexParser.TextString).content)
-                    let index = 1
-                    for (let i = (isInsideNewCommand ? 2 : 1); i <= argsNode.length - 1; ++i) {
-                        if (!latexParser.isOptionalArg(argsNode[i])) {
-                            break
-                        }
-                        tabStops += '[${' + index + '}]'
-                        newargs += '[]'
-                        index++
+            const label = ((inside ? node.args[0].content[0] : next) as latexParser.Command).name
+            let tabStops = ''
+            let newargs = ''
+            const argsNode = inside ? node.args : next?.args || []
+            const argNumNode = inside ? argsNode[1] : argsNode[0]
+            if (latexParser.isOptionalArg(argNumNode)) {
+                const numArgs = parseInt((argNumNode.content[0] as latexParser.TextString).content)
+                let index = 1
+                for (let i = (inside ? 2 : 1); i <= argsNode.length - 1; ++i) {
+                    if (!latexParser.isOptionalArg(argsNode[i])) {
+                        break
                     }
-                    for (; index <= numArgs; ++index) {
-                        tabStops += '{${' + index + '}}'
-                        newargs += '{}'
-                    }
+                    tabStops += '[${' + index + '}]'
+                    newargs += '[]'
+                    index++
                 }
-                const newcmd = new CmdEnvSuggestion(`\\${label}${newargs}`, 'user-defined', [], -1, {name: label, args: newargs}, vscode.CompletionItemKind.Function)
+                for (; index <= numArgs; ++index) {
+                    tabStops += '{${' + index + '}}'
+                    newargs += '{}'
+                }
+            }
+            const newcmd = new CmdEnvSuggestion(`\\${label}${newargs}`, 'user-defined', [], -1, {name: label, args: newargs}, vscode.CompletionItemKind.Function)
+            if (!commandSignatureDuplicationDetector.has(newcmd)) {
                 newcmd.documentation = '`' + label + '`'
                 newcmd.insertText = new vscode.SnippetString(label + tabStops)
                 newcmd.filterText = label
                 if (isTriggerSuggestNeeded(label)) {
                     newcmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
-                if (!commandSignatureDuplicationDetector.has(newcmd)) {
-                    cmds.push(newcmd)
-                    CommandFinder.definedCmds.set(cmd.signatureAsString(), {
-                        file,
-                        location: new vscode.Location(
-                            vscode.Uri.file(file),
-                            new vscode.Position(node.location.start.line - 1, node.location.start.column))
-                    })
-                    commandSignatureDuplicationDetector.add(newcmd)
+                cmds.push(newcmd)
+                CommandFinder.definedCmds.set(newcmd.signatureAsString(), {
+                    file,
+                    location: new vscode.Location(
+                        vscode.Uri.file(file),
+                        new vscode.Position(node.location.start.line - 1, node.location.start.column))
+                })
+                commandSignatureDuplicationDetector.add(newcmd)
+            }
+        } else if (latexParser.isCommand(node)) {
+            const args = CommandFinder.getArgsFromNode(node)
+            const cmd = new CmdEnvSuggestion(`\\${node.name}${args}`, '', [], -1, {name: node.name, args}, vscode.CompletionItemKind.Function)
+            if (!commandSignatureDuplicationDetector.has(cmd) && !newCommandDeclarations.includes(node.name)) {
+                cmd.package = CommandFinder.whichPackageProvidesCommand(node.name, args, cmdInPkg)
+                cmd.documentation = '`' + node.name + '`'
+                cmd.insertText = new vscode.SnippetString(node.name + CommandFinder.getTabStopsFromNode(node))
+                if (isTriggerSuggestNeeded(node.name)) {
+                    cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
+                cmds.push(cmd)
+                commandSignatureDuplicationDetector.add(cmd)
             }
         }
         if (latexParser.hasContentArray(node)) {
-            return cmds.concat(CommandFinder.getCmdFromNodeArray(file, node.content, commandSignatureDuplicationDetector))
+            return cmds.concat(CommandFinder.getCmdFromNodeArray(file, node.content, cmdInPkg, commandSignatureDuplicationDetector))
         }
         return cmds
     }
@@ -177,7 +173,7 @@ export class CommandFinder {
     }
 
 
-    static getCmdFromContent(file: string, content: string): CmdEnvSuggestion[] {
+    static getCmdFromContent(file: string, content: string, cmdInPkg: CmdEnvSuggestion[]): CmdEnvSuggestion[] {
         const cmdReg = /\\([a-zA-Z@_]+(?::[a-zA-Z]*)?\*?)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
         const cmds: CmdEnvSuggestion[] = []
         const commandSignatureDuplicationDetector = new CommandSignatureDuplicationDetector()
@@ -205,7 +201,7 @@ export class CommandFinder {
             const args = CommandFinder.getArgsFromRegResult(result)
             const cmd = new CmdEnvSuggestion(
                 `\\${result[1]}${args}`,
-                CommandFinder.whichPackageProvidesCommand(result[1]),
+                CommandFinder.whichPackageProvidesCommand(result[1], args, cmdInPkg),
                 [],
                 -1,
                 { name: result[1], args },
@@ -283,31 +279,10 @@ export class CommandFinder {
      * Return the name of the package providing cmdName among all the packages
      * included in the rootFile. If no package matches, return ''
      *
-     * @param cmdName the name of a command (without the leading '\')
+     * @param cmdName the name of a command (without the leading '\\')
      */
-    private static whichPackageProvidesCommand(cmdName: string): string {
-        if (lw.manager.rootFile !== undefined) {
-            for (const file of lw.cacher.getIncludedTeX()) {
-                const packages = lw.cacher.get(file)?.elements.package
-                if (packages === undefined) {
-                    continue
-                }
-                for (const packageName of Object.keys(packages)) {
-                    const commands: ICompletionItem[] = []
-                    lw.completer.command.provideCmdInPkg(packageName, packages[packageName], commands, new CommandSignatureDuplicationDetector())
-                    for (const cmd of commands) {
-                        const label = cmd.label.slice(1)
-                        if (label.startsWith(cmdName) &&
-                            ((label.length === cmdName.length) ||
-                            (label.charAt(cmdName.length) === '[') ||
-                            (label.charAt(cmdName.length) === '{'))) {
-                            return packageName
-                        }
-                    }
-                }
-            }
-        }
-        return ''
+    private static whichPackageProvidesCommand(cmdName: string, args: string, cmdInPkg: CmdEnvSuggestion[]): string {
+        return cmdInPkg.find(cmd => cmd.signatureAsString() === cmdName + args)?.package ?? ''
     }
 
 }
