@@ -11,6 +11,7 @@ export const ViewerStatusChanged = 'VIEWER_STATUS_CHANGED'
 export const FileWatched = 'FILE_WATCHED'
 export const FileChanged = 'FILE_CHANGED'
 export const FileRemoved = 'FILE_REMOVED'
+export const DocumentChanged = 'DOCUMENT_CHANGED'
 
 type EventArgTypeMap = {
     [RootFileChanged]: string,
@@ -30,6 +31,7 @@ export type EventName = typeof BuildDone
                     | typeof FileWatched
                     | typeof FileChanged
                     | typeof FileRemoved
+                    | typeof DocumentChanged
 
 export class EventBus {
     private readonly eventEmitter = new EventEmitter()
@@ -44,41 +46,41 @@ export class EventBus {
         this.eventEmitter.emit(eventName, arg)
     }
 
-    onDidChangeRootFile(cb: (rootFile: EventArgTypeMap[typeof RootFileChanged]) => void): Disposable {
-        return this.registerListener(RootFileChanged, cb)
-    }
+    // onDidChangeRootFile(cb: (rootFile: EventArgTypeMap[typeof RootFileChanged]) => void): Disposable {
+    //     return this.registerListener(RootFileChanged, cb)
+    // }
 
-    onDidEndFindRootFile(cb: () => void): Disposable {
-        return this.registerListener(RootFileSearched, cb)
-    }
+    // onDidEndFindRootFile(cb: () => void): Disposable {
+    //     return this.registerListener(RootFileSearched, cb)
+    // }
 
-    onDidFileParsed(cb: () => void): Disposable {
-        return this.registerListener(FileParsed, cb)
-    }
+    // onDidFileParsed(cb: () => void): Disposable {
+    //     return this.registerListener(FileParsed, cb)
+    // }
 
-    onDidChangePdfViewerStatus(cb: (status: EventArgTypeMap[typeof ViewerStatusChanged]) => void): Disposable {
-        return this.registerListener(ViewerStatusChanged, cb)
-    }
+    // onDidChangePdfViewerStatus(cb: (status: EventArgTypeMap[typeof ViewerStatusChanged]) => void): Disposable {
+    //     return this.registerListener(ViewerStatusChanged, cb)
+    // }
 
-    private registerListener<T extends keyof EventArgTypeMap>(
-        eventName: T,
-        cb: (arg: EventArgTypeMap[T]) => void
-    ): Disposable
-    private registerListener<T extends EventName>(
-        eventName: T,
-        cb: () => void
-    ): Disposable
-    private registerListener<T extends EventName>(
-        eventName: T,
-        cb: (arg?: any) => void
-    ): Disposable
-     {
-        this.eventEmitter.on(eventName, cb)
-        const disposable = {
-            dispose: () => { this.eventEmitter.removeListener(eventName, cb) }
-        }
-        return disposable
-    }
+    // private registerListener<T extends keyof EventArgTypeMap>(
+    //     eventName: T,
+    //     cb: (arg: EventArgTypeMap[T]) => void
+    // ): Disposable
+    // private registerListener<T extends EventName>(
+    //     eventName: T,
+    //     cb: () => void
+    // ): Disposable
+    // private registerListener<T extends EventName>(
+    //     eventName: T,
+    //     cb: (arg?: any) => void
+    // ): Disposable
+    //  {
+    //     this.eventEmitter.on(eventName, cb)
+    //     const disposable = {
+    //         dispose: () => { this.eventEmitter.removeListener(eventName, cb) }
+    //     }
+    //     return disposable
+    // }
 
     on(eventName: EventName, cb: (arg?: any) => void): Disposable {
         this.eventEmitter.on(eventName, cb)

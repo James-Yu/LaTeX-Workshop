@@ -29,7 +29,7 @@ export class Viewer {
      */
     refreshExistingViewer(sourceFile?: string, pdfFile?: string): void {
         logger.log(`Call refreshExistingViewer: ${JSON.stringify({sourceFile})}`)
-        const pdfUri = pdfFile ? vscode.Uri.file(pdfFile) : (sourceFile ? this.tex2pdf(sourceFile, true) : undefined)
+        const pdfUri = pdfFile ? vscode.Uri.file(pdfFile) : (sourceFile ? this.tex2pdf(sourceFile) : undefined)
         if (pdfUri === undefined) {
             PdfViewerManagerService.clientMap.forEach(clientSet => {
                 clientSet.forEach(client => {
@@ -49,10 +49,10 @@ export class Viewer {
         })
     }
 
-    private async checkViewer(sourceFile: string, respectOutDir: boolean = true): Promise<string | undefined> {
-        const pdfUri = this.tex2pdf(sourceFile, respectOutDir)
+    private async checkViewer(sourceFile: string): Promise<string | undefined> {
+        const pdfUri = this.tex2pdf(sourceFile)
         if (!await lw.lwfs.exists(pdfUri)) {
-            logger.log(`Cannot find PDF file ${pdfUri.fsPath} .`)
+            logger.log(`Cannot find PDF file ${pdfUri}`)
             logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfUri}`, 'warning')
             return
         }
@@ -65,7 +65,7 @@ export class Viewer {
      * @param sourceFile The path of a LaTeX file.
      */
     async openBrowser(sourceFile: string): Promise<void> {
-        const url = await this.checkViewer(sourceFile, true)
+        const url = await this.checkViewer(sourceFile)
         if (!url) {
             return
         }
@@ -85,8 +85,8 @@ export class Viewer {
         }
     }
 
-    private tex2pdf(sourceFile: string, respectOutDir?: boolean): vscode.Uri {
-        const pdfFilePath = lw.manager.tex2pdf(sourceFile, respectOutDir)
+    private tex2pdf(sourceFile: string): vscode.Uri {
+        const pdfFilePath = lw.manager.tex2pdf(sourceFile)
         return vscode.Uri.file(pdfFilePath)
     }
 
@@ -94,36 +94,29 @@ export class Viewer {
      * Opens the PDF file of `sourceFile` in the internal PDF viewer.
      *
      * @param sourceFile The path of a LaTeX file.
-     * @param respectOutDir
      * @param tabEditorGroup
      * @param preserveFocus
      */
-    async openTab(sourceFile: string, respectOutDir: boolean, tabEditorGroup: string, preserveFocus = true): Promise<void> {
-        const url = await this.checkViewer(sourceFile, respectOutDir)
+    async openTab(sourceFile: string, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
+        const url = await this.checkViewer(sourceFile)
         if (!url) {
             return
         }
-        const pdfFile = this.tex2pdf(sourceFile, respectOutDir)
-        return this.openPdfInTab(pdfFile, tabEditorGroup, preserveFocus)
+        const pdfUri = this.tex2pdf(sourceFile)
+        return this.openPdfInTab(pdfUri, tabEditorGroup, preserveFocus)
     }
 
-    async openPdfInTab(pdfFileUri: vscode.Uri, tabEditorGroup: string, preserveFocus = true): Promise<void> {
-        if (tabEditorGroup === 'right') {
-            await vscode.commands.executeCommand('vscode.openWith', pdfFileUri, 'latex-workshop-pdf-hook', vscode.ViewColumn.Beside)
-            if (preserveFocus) {
-                await vscode.commands.executeCommand('workbench.action.focusLeftGroup')
-            }
-        } else {
-            await vscode.commands.executeCommand('vscode.openWith', pdfFileUri, 'latex-workshop-pdf-hook', vscode.window.tabGroups.activeTabGroup.viewColumn)
+    async openPdfInTab(pdfUri: vscode.Uri, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
+        const activeDocument = vscode.window.activeTextEditor?.document
+        const panel = await PdfViewerPanelService.createPdfViewerPanel(pdfUri, tabEditorGroup === 'current')
+        PdfViewerManagerService.initiatePdfViewerPanel(panel)
+        if (!panel) {
+            return
+        }
+        if (tabEditorGroup !== 'current' && activeDocument) {
             await moveActiveEditor(tabEditorGroup, preserveFocus)
         }
-        logger.log(`Open PDF tab for ${pdfFileUri.toString(true)}`)
-    }
-
-    async openPdfInPanel(pdfFileUri: vscode.Uri, webviewPanel: vscode.WebviewPanel) {
-        const panel = await PdfViewerPanelService.populatePdfViewerPanel(pdfFileUri, webviewPanel)
-        PdfViewerManagerService.initiatePdfViewerPanel(panel)
-        logger.log(`Open PDF tab for ${pdfFileUri.toString(true)} in panel`)
+        logger.log(`Open PDF tab for ${pdfUri.toString(true)}`)
     }
 
     /**

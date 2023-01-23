@@ -45,13 +45,13 @@ export async function moveWebviewPanel(panel: vscode.WebviewPanel, tabEditorGrou
     await moveActiveEditor(tabEditorGroup, true)
 }
 
-export async function moveActiveEditor(tabEditorGroup: string, refocus?: boolean) {
+export async function moveActiveEditor(tabEditorGroup: string, preserveFocus: boolean) {
     const actions = getMoveCommands(tabEditorGroup)
     if (!actions) {
         return
     }
     await vscode.commands.executeCommand(actions.moveAction)
-    if (refocus){
+    if (preserveFocus){
         await vscode.commands.executeCommand(actions.focusAction)
     }
 }

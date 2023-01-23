@@ -132,7 +132,7 @@ export class Section {
                 return {level: res[1], pos: new vscode.Position(i, 0)}
             }
         }
-        return undefined
+        return
     }
 
 

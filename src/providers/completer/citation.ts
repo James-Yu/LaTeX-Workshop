@@ -181,9 +181,6 @@ export class Citation implements IProvider {
             // Only happens when rootFile is undefined
             return Array.from(this.bibEntries.keys())
         }
-        if (!lw.cacher.get(file)) {
-            return []
-        }
         const cache = lw.cacher.get(file)
         if (cache === undefined) {
             return []
@@ -191,11 +188,11 @@ export class Citation implements IProvider {
         let bibs = Array.from(cache.bibfiles)
         visitedTeX.push(file)
         for (const child of cache.children) {
-            if (visitedTeX.includes(child.file)) {
+            if (visitedTeX.includes(child.filePath)) {
                 // Already included
                 continue
             }
-            bibs = Array.from(new Set(bibs.concat(this.getIncludedBibs(child.file, visitedTeX))))
+            bibs = Array.from(new Set(bibs.concat(this.getIncludedBibs(child.filePath, visitedTeX))))
         }
         return bibs
     }
@@ -280,6 +277,7 @@ export class Citation implements IProvider {
             })
         this.bibEntries.set(fileName, newEntry)
         logger.log(`Parsed ${newEntry.length} bib entries from ${fileName} .`)
+        void lw.structureViewer.computeTreeStructure()
         lw.eventBus.fire(eventbus.FileParsed, fileName)
     }
 

@@ -237,10 +237,9 @@ export class Builder {
      * the io handling is performed in {@link monitorProcess}.
      *
      * @param step The {@link Step} to be executed.
-     * @param cwd The current working directory.
      * @returns The process environment passed to the spawned process.
      */
-    private spawnProcess(step: Step, cwd?: string): ProcessEnv {
+    private spawnProcess(step: Step): ProcessEnv {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? vscode.Uri.file(step.rootFile) : undefined)
         if (step.index === 0 || configuration.get('latex.build.clearLog.everyRecipeStep.enabled') as boolean) {
             logger.clearCompilerMessage()
@@ -251,11 +250,8 @@ export class Builder {
         logger.log(`root: ${step.rootFile}`)
 
         const env = Object.create(null) as ProcessEnv
-        Object.keys(process.env).forEach(key => env[key] = process.env[key])
-        const toolEnv = step.env
-        if (toolEnv) {
-            Object.keys(toolEnv).forEach(key => env[key] = toolEnv[key])
-        }
+        Object.entries(process.env).forEach(([key, value]) => env[key] = value)
+        Object.entries(step.env ?? {}).forEach(([key, value]) => env[key] = value)
         env['max_print_line'] = this.MAX_PRINT_LINE
 
         if (!step.isExternal &&
@@ -271,13 +267,9 @@ export class Builder {
                 this.process = cs.spawn(step.command, args, {cwd: path.dirname(step.rootFile), env})
             }
         } else if (!step.isExternal) {
+            let cwd = path.dirname(step.rootFile)
             if (step.command === 'latexmk' && step.rootFile === lw.manager.localRootFile && lw.manager.rootDir) {
                 cwd = lw.manager.rootDir
-                if (step.args && !step.args.includes('-cd')) {
-                    step.args.push('-cd')
-                }
-            } else {
-                cwd = path.dirname(step.rootFile)
             }
             logger.log(`cwd: ${cwd}`)
             this.process = cs.spawn(step.command, step.args, {cwd, env})
@@ -450,7 +442,7 @@ export class Builder {
         } else {
             const recipe = this.findRecipe(rootFile, langId, recipeName)
             if (recipe === undefined) {
-                return undefined
+                return
             }
             logger.log(`Preparing to run recipe: ${recipe.name}.`)
             this.prevRecipe = recipe
@@ -471,7 +463,7 @@ export class Builder {
             })
         }
         if (buildTools.length < 1) {
-            return undefined
+            return
         }
 
         // Use JSON.parse and JSON.stringify for a deep copy.
@@ -507,21 +499,13 @@ export class Builder {
                         break
                 }
             }
-            if (tool.args) {
-                tool.args = tool.args.map(replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir))
-            }
-            if (tool.env) {
-                Object.keys(tool.env).forEach( v => {
-                    const e = tool.env && tool.env[v]
-                    if (tool.env && e) {
-                        tool.env[v] = replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(e)
-                    }
-                })
-            }
+            tool.args = tool.args?.map(replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir))
+            const env = tool.env ?? {}
+            Object.entries(env).forEach(([key, value]) => {
+                env[key] = value && replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(value)
+            })
             if (configuration.get('latex.option.maxPrintLine.enabled')) {
-                if (!tool.args) {
-                    tool.args = []
-                }
+                tool.args = tool.args ?? []
                 const isLuaLatex = tool.args.includes('-lualatex') ||
                                    tool.args.includes('-pdflua') ||
                                    tool.args.includes('-pdflualatex') ||
@@ -545,7 +529,7 @@ export class Builder {
         if (recipes.length < 1) {
             logger.log('No recipes defined.')
             void logger.showErrorMessage('[Builder] No recipes defined.')
-            return undefined
+            return
         }
         if (this.prevLangId !== langId) {
             this.prevRecipe = undefined

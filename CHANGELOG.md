@@ -1,5 +1,26 @@
 # Change Log
 
+## [9.5.0] - 2023-01-23
+
+### Added
+- (#3641）Support cross-ref from `xr` package.
+- (#3650) New config `intellisense.command.user` to add/change/delete default commands.
+  - Rename `intellisense.atSuggestionJSON.replace` to `intellisense.atSuggestion.user`.
+- (#3658) Add config `intellisense.label.command` to enable label definitions other than `\label{}`.
+
+### Fixed
+- No repeat find root calls on active editor change
+- (#3654) Don't enforce `-cd` on `latexmk` and `subfiles`.
+- (#3657) A condition bug on `newcommand` detection.
+
+## [9.4.5] - 2023-01-13
+
+### Fixed
+- New command finder now honors argument and optional one list.
+- Entries in `bibtex-entries.first` should also be sorted.
+- (#3585) A better description to `latex.watch.files.ignore` config.
+- (#3640) Resolve a package conflict with `isort` that may prevent command suggestion.
+
 ## [9.4.4] - 2023-01-10
 
 ### Fixed

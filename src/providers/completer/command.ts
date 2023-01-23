@@ -1,11 +1,11 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import {latexParser} from 'latex-utensils'
+import { latexParser } from 'latex-utensils'
 import * as lw from '../../lw'
 import type { IProvider, ICompletionItem, PkgType } from '../completion'
-import {CommandFinder, isTriggerSuggestNeeded} from './commandlib/commandfinder'
-import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint} from './completerutils'
-import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
+import { CommandFinder, isTriggerSuggestNeeded } from './commandlib/commandfinder'
+import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
+import { CommandSignatureDuplicationDetector } from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
 import { Environment, EnvSnippetType } from './environment'
 
@@ -16,15 +16,23 @@ const logger = getLogger('Intelli', 'Command')
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 
 export type CmdType = {
+    /** Name of the command without the leading \ and with argument signature */
     command?: string,
+    /** Snippet to be inserted after the leading \ */
     snippet?: string,
+    /** The option of package below that activates this cmd */
     option?: string,
+    /** Possible options of this env */
     keyvals?: string[],
+    /** The index of keyval list in package .json file. Should not be used */
     keyvalindex?: number,
+    /** The index of argument which have the keyvals */
     keyvalpos?: number,
     detail?: string,
     documentation?: string,
+    /** The package providing the environment */
     package?: string,
+    /** The action to be executed after inserting the snippet */
     postAction?: string
 }
 
@@ -45,7 +53,7 @@ export class Command implements IProvider {
 
     constructor() {
         lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            if (!e.affectsConfiguration('latex-workshop.intellisense.commandsJSON.replace')) {
+            if (!e.affectsConfiguration('latex-workshop.intellisense.command.user')) {
                 return
             }
             this.initialize(lw.completer.environment)
@@ -54,34 +62,30 @@ export class Command implements IProvider {
 
     initialize(environment: Environment) {
         const cmds = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/commands.json`, {encoding: 'utf8'})) as {[key: string]: CmdType}
-        Object.keys(cmds).forEach(cmd => {
-            cmds[cmd].command = cmd
-            cmds[cmd].snippet = cmds[cmd].snippet || cmd
-        })
         const maths = (JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})) as PkgType).cmds
-        Object.keys(maths).forEach(cmd => {
-            maths[cmd].command = cmd
-            maths[cmd].snippet = maths[cmd].snippet || cmd
+        Object.assign(maths, cmds)
+        Object.entries(maths).forEach(([key, cmd]) => {
+            cmd.command = key
+            cmd.snippet = cmd.snippet || key
         })
 
-        Object.assign(maths, cmds)
         const defaultEnvs = environment.getDefaultEnvs(EnvSnippetType.AsCommand)
 
-        const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.commandsJSON.replace') as {[key: string]: string}
+        const userCmds = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.command.user') as {[key: string]: string}
+        Object.entries(userCmds).forEach(([key, snippet]) => {
+            if (maths[key] && snippet !== '') {
+                maths[key].snippet = snippet
+            } else if (maths[key] && snippet === '') {
+                delete maths[key]
+            } else {
+                maths[key] = { snippet }
+            }
+        })
+
         this.defaultCmds = []
 
         // Initialize default commands and the ones in `tex.json`
-        Object.keys(maths).forEach(key => {
-            const entry = JSON.parse(JSON.stringify(maths[key])) as CmdType
-            if (key in snippetReplacements) {
-                const action = snippetReplacements[key]
-                if (action === '') {
-                    return
-                }
-                entry.snippet = action
-            }
-            this.defaultCmds.push(this.entryCmdToCompletion(key, entry))
-        })
+        Object.entries(maths).forEach(([key, cmd]) => this.defaultCmds.push(this.entryCmdToCompletion(key, cmd)))
 
         // Initialize default env begin-end pairs
         defaultEnvs.forEach(cmd => {
@@ -94,12 +98,11 @@ export class Command implements IProvider {
     }
 
     get defaultSymbols() {
-        if (this._defaultSymbols.length === 0) {
-            const symbols: { [key: string]: CmdType } = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/unimathsymbols.json`).toString()) as DataUnimathSymbolsJsonType
-            Object.keys(symbols).forEach(key => {
-                this._defaultSymbols.push(this.entryCmdToCompletion(key, symbols[key]))
-            })
+        if (this._defaultSymbols.length > 0) {
+            return this._defaultSymbols
         }
+        const symbols: { [key: string]: CmdType } = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/unimathsymbols.json`).toString()) as DataUnimathSymbolsJsonType
+        Object.entries(symbols).forEach(([key, symbol]) => this._defaultSymbols.push(this.entryCmdToCompletion(key, symbol)))
         return this._defaultSymbols
     }
 
@@ -153,23 +156,23 @@ export class Command implements IProvider {
         // Insert commands from packages
         if ((configuration.get('intellisense.package.enabled'))) {
             const packages = lw.completer.package.getPackagesIncluded(languageId)
-            Object.keys(packages).forEach(packageName => {
-                this.provideCmdInPkg(packageName, packages[packageName], suggestions, cmdDuplicationDetector)
-                lw.completer.environment.provideEnvsAsCommandInPkg(packageName, packages[packageName], suggestions, cmdDuplicationDetector)
+            Object.entries(packages).forEach(([packageName, options]) => {
+                this.provideCmdInPkg(packageName, options, suggestions, cmdDuplicationDetector)
+                lw.completer.environment.provideEnvsAsCommandInPkg(packageName, options, suggestions, cmdDuplicationDetector)
             })
         }
 
         // Start working on commands in tex. To avoid over populating suggestions, we do not include
         // user defined commands, whose name matches a default command or one provided by a package
-        const commandNameDuplicationDetector = new CommandNameDuplicationDetector(suggestions)
+        const commandSignatureDuplicationDetector = new CommandSignatureDuplicationDetector(suggestions)
         lw.cacher.getIncludedTeX().forEach(tex => {
             const cmds = lw.cacher.get(tex)?.elements.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!commandNameDuplicationDetector.has(cmd)) {
+                    if (!commandSignatureDuplicationDetector.has(cmd)) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        commandNameDuplicationDetector.add(cmd)
+                        commandSignatureDuplicationDetector.add(cmd)
                     }
                 })
             }
@@ -216,7 +219,7 @@ export class Command implements IProvider {
             return
         }
         if (nodes !== undefined) {
-            cache.elements.command = CommandFinder.getCmdFromNodeArray(file, nodes, new CommandNameDuplicationDetector())
+            cache.elements.command = CommandFinder.getCmdFromNodeArray(file, nodes, new CommandSignatureDuplicationDetector())
         } else if (content !== undefined) {
             cache.elements.command = CommandFinder.getCmdFromContent(file, content)
         }
@@ -264,13 +267,13 @@ export class Command implements IProvider {
 
     setPackageCmds(packageName: string, cmds: {[key: string]: CmdType}) {
         const commands: CmdEnvSuggestion[] = []
-        Object.keys(cmds).forEach(key => {
-            cmds[key].package = packageName
-            if (isCmdWithSnippet(cmds[key])) {
-                commands.push(this.entryCmdToCompletion(key, cmds[key]))
+        Object.entries(cmds).forEach(([key, cmd]) => {
+            cmd.package = packageName
+            if (isCmdWithSnippet(cmd)) {
+                commands.push(this.entryCmdToCompletion(key, cmd))
             } else {
                 logger.log(`Cannot parse intellisense file for ${packageName}.`)
-                logger.log(`Missing field in entry: "${key}": ${JSON.stringify(cmds[key])}.`)
+                logger.log(`Missing field in entry: "${key}": ${JSON.stringify(cmd)}.`)
             }
         })
         this.packageCmds.set(packageName, commands)

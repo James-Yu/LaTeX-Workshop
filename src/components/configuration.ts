@@ -58,9 +58,9 @@ export class Configuration {
 
     private checkDeprecatedConfiguration() {
         const packageDef = JSON.parse(readFileSync(path.resolve(__dirname, '../../../package.json')).toString()) as {contributes: {configuration: {properties: {[config: string]: {default: any, deprecationMessage?: string}}}}}
-        const configs = Object.keys(packageDef.contributes.configuration.properties)
-        const deprecatedConfigs = configs.filter(config => packageDef.contributes.configuration.properties[config].deprecationMessage)
-                                         .map(config => config.split('.').slice(1).join('.'))
+        const deprecatedConfigs = Object.entries(packageDef.contributes.configuration.properties)
+            .filter(([_, value]) => value.deprecationMessage)
+            .map(([config, _]) => config.split('.').slice(1).join('.'))
         const workspaceFolders = vscode.workspace.workspaceFolders || [undefined]
         for (const workspace of workspaceFolders) {
             const configuration = vscode.workspace.getConfiguration('latex-workshop', workspace)

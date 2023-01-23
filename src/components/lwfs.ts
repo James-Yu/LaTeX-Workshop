@@ -42,7 +42,7 @@ export class LwFileSystem {
             const ret = fs.readFileSync(filepath).toString()
             return ret
         } catch (err) {
-            return undefined
+            return
         }
     }
 

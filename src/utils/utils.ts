@@ -169,7 +169,7 @@ export function getSurroundingCommandRange(command: string, position: vscode.Pos
             return {range: new vscode.Range(start, end), arg}
         }
     }
-    return undefined
+    return
 }
 
 
@@ -191,7 +191,7 @@ export function getNthArgument(text: string, nth: number): CommandArgument | und
         index += offset
         const start = text.indexOf('{')
         if (start === -1) {
-            return undefined
+            return
         }
         text = text.slice(start)
         index += start
@@ -225,7 +225,7 @@ export function resolveFile(dirs: string[], inputFile: string, suffix: string = 
             return inputFilePath
         }
     }
-    return undefined
+    return
 }
 
 /**

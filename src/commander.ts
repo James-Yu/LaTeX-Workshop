@@ -113,7 +113,7 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
     if (viewer === 'browser') {
         return lw.viewer.openBrowser(pickedRootFile)
     } else if (viewer === 'tab') {
-        return lw.viewer.openTab(pickedRootFile, true, tabEditorGroup)
+        return lw.viewer.openTab(pickedRootFile, tabEditorGroup, true)
     } else if (viewer === 'external') {
         lw.viewer.openExternal(pickedRootFile)
         return
@@ -448,8 +448,8 @@ export async function devParseBib() {
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 
-export function texdoc(pkg?: string) {
-    lw.texdoc.texdoc(pkg)
+export function texdoc(packageName?: string) {
+    lw.texdoc.texdoc(packageName)
 }
 
 export function texdocUsepackages() {
@@ -493,17 +493,15 @@ async function quickPickRootFile(rootFile: string, localRootFile: string, verb: 
         matchOnDescription: true
     }).then( selected => {
         if (!selected) {
-            return undefined
+            return
         }
         switch (selected.label) {
             case 'Default root file':
                 return rootFile
-                break
             case 'Subfiles package root file':
                 return localRootFile
-                break
             default:
-                return undefined
+                return
         }
     })
     return pickedRootFile

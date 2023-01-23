@@ -39,7 +39,7 @@ export class ViewerHistory {
 
     private lastIndex() {
         if (this.history.length === 0) {
-            return undefined
+            return
         } else {
             return this.history.length - 1
         }

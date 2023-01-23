@@ -3,7 +3,7 @@ import * as path from 'path'
 import rimraf from 'rimraf'
 import * as assert from 'assert'
 import * as lw from '../../src/lw'
-import { sleep, runTest, assertBuild, assertAutoBuild, writeTestFile, loadTestFile, getIntellisense, assertRoot, openActive } from './utils'
+import * as test from './utils'
 
 suite('Multi-root workspace test suite', () => {
 
@@ -38,11 +38,11 @@ suite('Multi-root workspace test suite', () => {
 
         if (path.basename(fixture) === 'multiroot') {
             rimraf(fixture + '/{A,B}/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
-            await sleep(500) // Required for pooling
+            await test.sleep(500) // Required for pooling
         }
     })
 
-    runTest(suiteName, fixtureName, 'basic build A', async () => {
+    test.run(suiteName, fixtureName, 'basic build A', async () => {
         const tools = [
             {name: 'latexmk', command: 'latexmk', args: ['-synctex=1', '-interaction=nonstopmode', '-file-line-error', '-pdf', '-outdir=%OUTDIR%', '-jobname=wsA', '%DOC%'], env: {}},
             {name: 'fake', command: 'touch', args: ['%DIR%/fake.pdf']}
@@ -50,14 +50,14 @@ suite('Multi-root workspace test suite', () => {
         const recipes = [{name: 'latexmk', tools: ['latexmk']}]
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', tools)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', recipes)
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'A/main.tex'},
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertBuild(fixture, 'A/main.tex', 'A/wsA.pdf')
+        await test.assert.build(fixture, 'A/main.tex', 'A/wsA.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'basic build B', async () => {
+    test.run(suiteName, fixtureName, 'basic build B', async () => {
         const tools = [
             {name: 'latexmk', command: 'latexmk', args: ['-synctex=1', '-interaction=nonstopmode', '-file-line-error', '-pdf', '-outdir=%OUTDIR%', '-jobname=wsB', '%DOC%'], env: {}},
             {name: 'fake', command: 'touch', args: ['%DIR%/fake.pdf']}
@@ -65,163 +65,163 @@ suite('Multi-root workspace test suite', () => {
         const recipes = [{name: 'latexmk', tools: ['latexmk']}]
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', tools)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', recipes)
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'B/main.tex'},
             {src: 'empty', dst: 'A/empty'}
         ])
-        await assertBuild(fixture, 'B/main.tex', 'B/wsB.pdf')
+        await test.assert.build(fixture, 'B/main.tex', 'B/wsB.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'basic build with outDir A', async () => {
+    test.run(suiteName, fixtureName, 'basic build with outDir A', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'A/main.tex'},
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertBuild(fixture, 'A/main.tex', 'A/out/main.pdf')
+        await test.assert.build(fixture, 'A/main.tex', 'A/out/main.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'basic build with outDir B', async () => {
+    test.run(suiteName, fixtureName, 'basic build with outDir B', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'B/main.tex'},
             {src: 'empty', dst: 'A/empty'}
         ])
-        await assertBuild(fixture, 'B/main.tex', 'B/out/main.pdf')
+        await test.assert.build(fixture, 'B/main.tex', 'B/out/main.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'build with forceRecipeUsage: true', async () => {
+    test.run(suiteName, fixtureName, 'build with forceRecipeUsage: true', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', true)
-        await loadTestFile(fixture, [{src: 'magic_invalid.tex', dst: 'A/main.tex'}])
-        await loadTestFile(fixture, [
+        await test.load(fixture, [{src: 'magic_invalid.tex', dst: 'A/main.tex'}])
+        await test.load(fixture, [
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertBuild(fixture, 'A/main.tex', 'A/main.pdf')
+        await test.assert.build(fixture, 'A/main.tex', 'A/main.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'detect root with search.rootFiles.include', async () => {
+    test.run(suiteName, fixtureName, 'detect root with search.rootFiles.include', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', ['alt/*.tex'])
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'A/main.tex'},
             {src: 'input_parentsub.tex', dst: 'A/alt/main.tex'},
             {src: 'plain.tex', dst: 'A/sub/s.tex'}
         ])
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertRoot(fixture, 'A/sub/s.tex', 'A/alt/main.tex')
+        await test.assert.root(fixture, 'A/sub/s.tex', 'A/alt/main.tex')
     })
 
-    runTest(suiteName, fixtureName, 'detect root with search.rootFiles.exclude', async () => {
+    test.run(suiteName, fixtureName, 'detect root with search.rootFiles.exclude', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', ['*.tex'])
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'A/main.tex'},
             {src: 'input_parentsub.tex', dst: 'A/alt/main.tex'},
             {src: 'plain.tex', dst: 'A/sub/s.tex'}
         ])
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertRoot(fixture, 'A/sub/s.tex', 'A/alt/main.tex')
+        await test.assert.root(fixture, 'A/sub/s.tex', 'A/alt/main.tex')
     })
 
-    runTest(suiteName, fixtureName, 'auto-detect subfile root and build A1', async () => {
+    test.run(suiteName, fixtureName, 'auto-detect subfile root and build A1', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'A/main.tex'},
             {src: 'subfile_sub.tex', dst: 'A/sub/s.tex'},
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertBuild(fixture, 'A/sub/s.tex', 'A/sub/s.pdf')
+        await test.assert.build(fixture, 'A/sub/s.tex', 'A/sub/s.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'auto-detect subfile root and build A2', async () => {
+    test.run(suiteName, fixtureName, 'auto-detect subfile root and build A2', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'A/main.tex'},
             {src: 'subfile_sub.tex', dst: 'A/sub/s.tex'},
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertBuild(fixture, 'A/sub/s.tex', 'A/main.pdf')
+        await test.assert.build(fixture, 'A/sub/s.tex', 'A/main.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'auto-detect subfile root and build B1', async () => {
+    test.run(suiteName, fixtureName, 'auto-detect subfile root and build B1', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'B/main.tex'},
             {src: 'subfile_sub.tex', dst: 'B/sub/s.tex'},
             {src: 'empty', dst: 'A/empty'}
         ])
-        await assertBuild(fixture, 'B/sub/s.tex', 'B/sub/s.pdf')
+        await test.assert.build(fixture, 'B/sub/s.tex', 'B/sub/s.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'auto-detect subfile root and build B2', async () => {
+    test.run(suiteName, fixtureName, 'auto-detect subfile root and build B2', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'B/main.tex'},
             {src: 'subfile_sub.tex', dst: 'B/sub/s.tex'},
             {src: 'empty', dst: 'A/empty'}
         ])
-        await assertBuild(fixture, 'B/sub/s.tex', 'B/main.pdf')
+        await test.assert.build(fixture, 'B/sub/s.tex', 'B/main.pdf')
     })
 
-    runTest(suiteName, fixtureName, 'auto build with subfiles and onSave 1', async () => {
+    test.run(suiteName, fixtureName, 'auto build with subfiles and onSave 1', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'A/main.tex'},
             {src: 'subfile_sub.tex', dst: 'A/sub/s.tex'},
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertAutoBuild(fixture, 'A/sub/s.tex', 'A/main.pdf', ['onSave'])
+        await test.assert.auto(fixture, 'A/sub/s.tex', 'A/main.pdf', ['onSave'])
     })
 
-    runTest(suiteName, fixtureName, 'auto build with subfiles and onSave 2', async () => {
+    test.run(suiteName, fixtureName, 'auto build with subfiles and onSave 2', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
-        await loadTestFile(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'A/main.tex'},
             {src: 'subfile_sub.tex', dst: 'A/sub/s.tex'},
             {src: 'empty', dst: 'B/empty'}
         ])
-        await assertAutoBuild(fixture, 'A/sub/s.tex', 'A/sub/s.pdf', ['onSave'])
+        await test.assert.auto(fixture, 'A/sub/s.tex', 'A/sub/s.pdf', ['onSave'])
     })
 
-    runTest(suiteName, fixtureName, 'switching rootFile', async () => {
-        await loadTestFile(fixture, [{src: 'base.tex', dst: 'A/main.tex'},
+    test.run(suiteName, fixtureName, 'switching rootFile', async () => {
+        await test.load(fixture, [{src: 'base.tex', dst: 'A/main.tex'},
                                {src: 'base.tex', dst: 'B/main.tex'}])
-        await assertRoot(fixture, 'A/main.tex', 'A/main.tex')
-        await assertRoot(fixture, 'B/main.tex', 'B/main.tex')
-        await assertRoot(fixture, 'A/main.tex', 'A/main.tex')
+        await test.assert.root(fixture, 'A/main.tex', 'A/main.tex')
+        await test.assert.root(fixture, 'B/main.tex', 'B/main.tex')
+        await test.assert.root(fixture, 'A/main.tex', 'A/main.tex')
     })
 
-    runTest(suiteName, fixtureName, 'switching intellisense', async () => {
+    test.run(suiteName, fixtureName, 'switching intellisense', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
-        writeTestFile(fixture, 'A/main.tex', '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{A.bib}', '\\end{document}')
-        writeTestFile(fixture, 'B/main.tex', '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{B.bib}', '\\end{document}')
-        await loadTestFile(fixture, [
+        test.write(fixture, 'A/main.tex', '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{A.bib}', '\\end{document}')
+        test.write(fixture, 'B/main.tex', '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{B.bib}', '\\end{document}')
+        await test.load(fixture, [
             {src: 'base.bib', dst: 'A/A.bib'},
             {src: 'base.bib', dst: 'B/B.bib'}
         ])
         await lw.completer.citation.parseBibFile(path.resolve(fixture, 'A/A.bib'))
         await lw.completer.citation.parseBibFile(path.resolve(fixture, 'B/B.bib'))
 
-        const resultA = await openActive(fixture, 'A/main.tex')
+        const resultA = await test.open(fixture, 'A/main.tex')
 
         const uri = vscode.window.activeTextEditor?.document.uri
         assert.ok(uri)
         const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri)
         await vscode.workspace.getConfiguration('latex-workshop', workspaceFolder).update('intellisense.citation.label', 'title', vscode.ConfigurationTarget.WorkspaceFolder)
 
-        const itemsA = getIntellisense(resultA.doc, new vscode.Position(2, 9))
+        const itemsA = test.suggest(resultA.doc, new vscode.Position(2, 9))
         assert.ok(itemsA)
         assert.strictEqual(itemsA.length, 3)
         assert.strictEqual(itemsA[0].label, 'A fake article')
@@ -229,7 +229,7 @@ suite('Multi-root workspace test suite', () => {
         assert.ok(itemsA[0].filterText.includes('Journal of CI tests'))
         assert.ok(!itemsA[0].filterText.includes('hintFake'))
 
-        const resultB = await openActive(fixture, 'B/main.tex')
+        const resultB = await test.open(fixture, 'B/main.tex')
         const cache = lw.cacher.get(path.resolve(fixture, 'B/main.tex'))
         if (cache) {
             cache.bibfiles = new Set([path.resolve(fixture, 'B/B.bib')])
@@ -237,7 +237,7 @@ suite('Multi-root workspace test suite', () => {
             return
         }
 
-        const itemsB = getIntellisense(resultB.doc, new vscode.Position(2, 9))
+        const itemsB = test.suggest(resultB.doc, new vscode.Position(2, 9))
         assert.ok(itemsB)
         assert.strictEqual(itemsB.length, 3)
         assert.strictEqual(itemsB[0].label, 'art1')
