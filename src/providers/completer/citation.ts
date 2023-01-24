@@ -5,7 +5,7 @@ import * as lw from '../../lw'
 import * as eventbus from '../../components/eventbus'
 import {trimMultiLineString} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
-import type { IProvider, ICompletionItem } from '../completion'
+import type { IProvider, ICompletionItem, IProviderArgs } from '../completion'
 import { getLogger } from '../../components/logger'
 import { UtensilsParser } from '../../components/parser/syntax'
 
@@ -83,16 +83,16 @@ export class Citation implements IProvider {
      */
     private readonly bibEntries = new Map<string, CiteSuggestion[]>()
 
-    provideFrom(_result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        return this.provide(args)
+    provideFrom(_result: RegExpMatchArray, args: IProviderArgs) {
+        return this.provide(args.uri, args.line, args.position)
     }
 
-    private provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): ICompletionItem[] {
+    private provide(uri: vscode.Uri, line: string, position: vscode.Position): ICompletionItem[] {
         // Compile the suggestion array to vscode completion array
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', args.document.uri)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', uri)
         const label = configuration.get('intellisense.citation.label') as string
         const fields = readCitationFormat(configuration)
-        const range: vscode.Range | undefined = computeFilteringRange(args.document, args.position)
+        const range: vscode.Range | undefined = computeFilteringRange(line, position)
         return this.updateAll(this.getIncludedBibs(lw.manager.rootFile)).map(item => {
             // Compile the completion item label
             switch(label) {

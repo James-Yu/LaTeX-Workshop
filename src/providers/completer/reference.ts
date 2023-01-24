@@ -5,7 +5,7 @@ import {latexParser} from 'latex-utensils'
 import * as lw from '../../lw'
 import {stripEnvironments, isNewCommand, isNewEnvironment} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
-import type { IProvider, ICompletionItem } from '../completion'
+import type { IProvider, ICompletionItem, IProviderArgs } from '../completion'
 
 export interface ReferenceEntry extends ICompletionItem {
     /** The file that defines the ref. */
@@ -31,13 +31,13 @@ export class Reference implements IProvider {
     private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
     private readonly envsToSkip = ['tikzpicture']
 
-    provideFrom(_result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        return this.provide(args)
+    provideFrom(_result: RegExpMatchArray, args: IProviderArgs) {
+        return this.provide(args.line, args.position)
     }
 
-    private provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+    private provide(line: string, position: vscode.Position): vscode.CompletionItem[] {
         // Compile the suggestion object to array
-        this.updateAll(args)
+        this.updateAll(line, position)
         let keys = [...this.suggestions.keys(), ...this.prevIndexObj.keys()]
         keys = Array.from(new Set(keys))
         const items: vscode.CompletionItem[] = []
@@ -90,7 +90,7 @@ export class Reference implements IProvider {
         return this.suggestions.get(token)
     }
 
-    private updateAll(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+    private updateAll(line?: string, position?: vscode.Position) {
         if (!lw.manager.rootFile) {
             this.suggestions.clear()
             return
@@ -139,8 +139,8 @@ export class Reference implements IProvider {
         // Extract cached references
         const refList: string[] = []
         let range: vscode.Range | undefined = undefined
-        if (args) {
-            range = computeFilteringRange(args.document, args.position)
+        if (line && position) {
+            range = computeFilteringRange(line, position)
         }
 
         included.forEach(cachedFile => {

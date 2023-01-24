@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
 import * as lw from '../../lw'
-import type { IProvider } from '../completion'
+import type { IProvider, IProviderArgs } from '../completion'
 import { stripCommentsAndVerbatim } from '../../utils/utils'
 
 import { getLogger } from '../../components/logger'
@@ -39,8 +39,8 @@ abstract class InputAbstract implements IProvider {
      * @param files The list of files to filter
      * @param baseDir The base directory to resolve paths from
      */
-    private filterIgnoredFiles(document: vscode.TextDocument, files: string[], baseDir: string): string[] {
-        const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(vscode.workspace.getConfiguration('latex-workshop', document.uri).get('intellisense.file.exclude') || [] ).concat(ignoreFiles)
+    private filterIgnoredFiles(uri: vscode.Uri, files: string[], baseDir: string): string[] {
+        const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(vscode.workspace.getConfiguration('latex-workshop', uri).get('intellisense.file.exclude') || [] ).concat(ignoreFiles)
         return files.filter(file => {
             const filePath = path.resolve(baseDir, file)
             return !micromatch.isMatch(filePath, excludeGlob, {basename: true})
@@ -73,10 +73,10 @@ abstract class InputAbstract implements IProvider {
         this.graphicsPath = []
     }
 
-    provideFrom(result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+    provideFrom(result: RegExpMatchArray, args: IProviderArgs) {
         const command = result[1]
         const payload = [...result.slice(2).reverse()]
-        return this.provide(args.document, args.position, command, payload)
+        return this.provide(args.uri, args.line, args.position, command, payload)
     }
 
     /**
@@ -86,11 +86,11 @@ abstract class InputAbstract implements IProvider {
      *      payload[0]: The already typed path
      *      payload[1]: The path from which completion is triggered, may be empty
      */
-    private provide(document: vscode.TextDocument, position: vscode.Position, command: string, payload: string[]): vscode.CompletionItem[] {
-        const currentFile = document.fileName
+    private provide(uri: vscode.Uri, line: string, position: vscode.Position, command: string, payload: string[]): vscode.CompletionItem[] {
+        const currentFile = uri.fsPath
         const typedFolder = payload[0]
         const importFromDir = payload[1]
-        const startPos = Math.max(document.lineAt(position).text.lastIndexOf('{', position.character), document.lineAt(position).text.lastIndexOf('/', position.character))
+        const startPos = Math.max(line.lastIndexOf('{', position.character), line.lastIndexOf('/', position.character))
         const range: vscode.Range | undefined = startPos >= 0 ? new vscode.Range(position.line, startPos + 1, position.line, position.character) : undefined
         const baseDir: string[] = this.getBaseDir(currentFile, importFromDir, command)
         const provideDirOnly: boolean = this.provideDirOnly(importFromDir)
@@ -106,7 +106,7 @@ abstract class InputAbstract implements IProvider {
             }
             try {
                 let files = fs.readdirSync(dir)
-                files = this.filterIgnoredFiles(document, files, dir)
+                files = this.filterIgnoredFiles(uri, files, dir)
 
                 files.forEach(file => {
                     const filePath = path.resolve(dir, file)

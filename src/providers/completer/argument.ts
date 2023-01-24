@@ -1,20 +1,20 @@
 import * as vscode from 'vscode'
 import * as lw from '../../lw'
-import type { IProvider } from '../completion'
+import type { IProvider, IProviderArgs } from '../completion'
 import { CmdEnvSuggestion, filterArgumentHint } from './completerutils'
 import { EnvSnippetType } from './environment'
 
 export class Argument implements IProvider {
 
-    provideFrom(result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+    provideFrom(result: RegExpMatchArray, args: IProviderArgs) {
         if (result[1] === 'usepackage') {
-            return this.providePackageOptions(args)
+            return this.providePackageOptions(args.line)
         }
         if (result[1] === 'documentclass') {
-            return this.provideClassOptions(args)
+            return this.provideClassOptions(args.line)
         }
         const index = this.getArgumentIndex(result[2])
-        const packages = lw.completer.package.getPackagesIncluded(args.document.languageId)
+        const packages = lw.completer.package.getPackagesIncluded(args.langId)
         let candidate: CmdEnvSuggestion | undefined
         let environment: string | undefined
         if (result[1] === 'begin') {
@@ -60,8 +60,7 @@ export class Argument implements IProvider {
         return suggestions
     }
 
-    private providePackageOptions(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
-        const line = args.document.lineAt(args.position.line).text
+    private providePackageOptions(line: string): vscode.CompletionItem[] {
         const regex = /\\usepackage.*{(.*?)}/
         const match = line.match(regex)
         if (!match) {
@@ -80,8 +79,7 @@ export class Argument implements IProvider {
         return suggestions
     }
 
-    private provideClassOptions(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
-        const line = args.document.lineAt(args.position.line).text
+    private provideClassOptions(line: string): vscode.CompletionItem[] {
         const regex = /\\documentclass.*{(.*?)}/
         const match = line.match(regex)
         if (!match) {

@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import { latexParser } from 'latex-utensils'
 import * as lw from '../../lw'
-import type { IProvider, ICompletionItem, PkgType } from '../completion'
+import type { IProvider, ICompletionItem, PkgType, IProviderArgs } from '../completion'
 import { CommandFinder, isTriggerSuggestNeeded } from './commandlib/commandfinder'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 import { CommandSignatureDuplicationDetector } from './commandlib/commandfinder'
@@ -105,8 +105,8 @@ export class Command implements IProvider {
         return this.defaultCmds
     }
 
-    provideFrom(result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        const suggestions = this.provide(args.document.languageId, args.document, args.position)
+    provideFrom(result: RegExpMatchArray, args: IProviderArgs) {
+        const suggestions = this.provide(args.langId, args.line, args.position)
         // Commands ending with (, { or [ are not filtered properly by vscode intellisense. So we do it by hand.
         if (result[0].match(/[({[]$/)) {
             const exactSuggestion = suggestions.filter(entry => entry.label === result[0])
@@ -118,12 +118,12 @@ export class Command implements IProvider {
        return filterNonLetterSuggestions(suggestions, result[1], args.position)
     }
 
-    private provide(languageId: string, document?: vscode.TextDocument, position?: vscode.Position): ICompletionItem[] {
+    private provide(langId: string, line?: string, position?: vscode.Position): ICompletionItem[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         let range: vscode.Range | undefined = undefined
-        if (document && position) {
-            const startPos = document.lineAt(position).text.lastIndexOf('\\', position.character - 1)
+        if (line && position) {
+            const startPos = line.lastIndexOf('\\', position.character - 1)
             if (startPos >= 0) {
                 range = new vscode.Range(position.line, startPos + 1, position.line, position.character)
             }
@@ -150,7 +150,7 @@ export class Command implements IProvider {
 
         // Insert commands from packages
         if ((configuration.get('intellisense.package.enabled'))) {
-            const packages = lw.completer.package.getPackagesIncluded(languageId)
+            const packages = lw.completer.package.getPackagesIncluded(langId)
             Object.entries(packages).forEach(([packageName, options]) => {
                 this.provideCmdInPkg(packageName, options, suggestions, cmdDuplicationDetector)
                 lw.completer.environment.provideEnvsAsCommandInPkg(packageName, options, suggestions, cmdDuplicationDetector)

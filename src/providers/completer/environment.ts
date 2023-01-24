@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import { latexParser } from 'latex-utensils'
 import * as lw from '../../lw'
-import type { ICompletionItem } from '../completion'
+import type { ICompletionItem, IProviderArgs } from '../completion'
 import type { IProvider } from '../completion'
 import { CommandSignatureDuplicationDetector } from './commandlib/commandfinder'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
@@ -96,22 +96,18 @@ export class Environment implements IProvider {
         }
     }
 
-    provideFrom(
-        result: RegExpMatchArray,
-        args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}
-    ) {
-        const payload = {document: args.document, position: args.position}
-        const suggestions = this.provide(payload)
+    provideFrom(result: RegExpMatchArray, args: IProviderArgs) {
+        const suggestions = this.provide(args.langId, args.line, args.position)
         // Commands starting with a non letter character are not filtered properly because of wordPattern definition.
        return filterNonLetterSuggestions(suggestions, result[1], args.position)
     }
 
-    private provide(args: {document: vscode.TextDocument, position: vscode.Position}): ICompletionItem[] {
+    private provide(langId: string, line: string, position: vscode.Position): ICompletionItem[] {
         if (vscode.window.activeTextEditor === undefined) {
             return []
         }
         let snippetType: EnvSnippetType = EnvSnippetType.ForBegin
-        if (vscode.window.activeTextEditor.selections.length > 1 || args.document.lineAt(args.position.line).text.slice(args.position.character).match(/[a-zA-Z*]*}/)) {
+        if (vscode.window.activeTextEditor.selections.length > 1 || line.slice(position.character).match(/[a-zA-Z*]*}/)) {
             snippetType = EnvSnippetType.AsName
         }
 
@@ -122,7 +118,7 @@ export class Environment implements IProvider {
         // Insert package environments
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('intellisense.package.enabled')) {
-            const packages = lw.completer.package.getPackagesIncluded(args.document.languageId)
+            const packages = lw.completer.package.getPackagesIncluded(langId)
             Object.entries(packages).forEach(([packageName, options]) => {
                 this.getEnvFromPkg(packageName, snippetType).forEach(env => {
                     if (env.option && options && !options.includes(env.option)) {

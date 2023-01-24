@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as lw from '../../lw'
-import type {IProvider} from '../completion'
+import type {IProvider, IProviderArgs} from '../completion'
 import {escapeRegExp} from '../../utils/utils'
 
 interface AtSuggestionItemEntry {
@@ -56,8 +56,8 @@ export class AtSuggestion implements IProvider {
         })
     }
 
-    provideFrom(result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        const suggestions = this.provide(args.document, args.position)
+    provideFrom(result: RegExpMatchArray, args: IProviderArgs) {
+        const suggestions = this.provide(args.line, args.position)
         // Manually filter suggestions when there are several consecutive trigger characters
         const reg = new RegExp(this.escapedTriggerCharacter + '{2,}$')
         if (result[0].match(reg)) {
@@ -72,9 +72,9 @@ export class AtSuggestion implements IProvider {
         return suggestions
     }
 
-    private provide(document: vscode.TextDocument, position: vscode.Position): vscode.CompletionItem[] {
+    private provide(line: string, position: vscode.Position): vscode.CompletionItem[] {
         let range: vscode.Range | undefined = undefined
-        const startPos = document.lineAt(position).text.lastIndexOf(this.triggerCharacter, position.character - 1)
+        const startPos = line.lastIndexOf(this.triggerCharacter, position.character - 1)
         if (startPos >= 0) {
             range = new vscode.Range(position.line, startPos, position.line, position.character)
         }

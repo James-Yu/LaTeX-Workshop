@@ -22,14 +22,20 @@ const logger = getLogger('Intelli')
 
 export type PkgType = {includes: {[key: string]: string[]}, cmds: {[key: string]: CmdType}, envs: {[key: string]: EnvType}, options: string[], keyvals: string[][]}
 
-export interface IProvider {
+export type IProviderArgs = {
+    uri: vscode.Uri,
+    langId: string,
+    line: string,
+    position: vscode.Position
+}
 
+export interface IProvider {
     /**
      * Returns the array of completion items. Should be called only from `Completer.completion`.
      */
     provideFrom(
         result: RegExpMatchArray,
-        args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}
+        args: IProviderArgs
     ): vscode.CompletionItem[]
 }
 
@@ -272,7 +278,12 @@ export class Completer implements vscode.CompletionItemProvider {
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            suggestions = provider.provideFrom(result, args)
+            suggestions = provider.provideFrom(result, {
+                uri: args.document.uri,
+                langId: args.document.languageId,
+                line: args.document.lineAt(args.position).text,
+                position: args.position
+            })
         }
         return suggestions
     }
@@ -310,7 +321,12 @@ export class AtSuggestionCompleter implements vscode.CompletionItemProvider {
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            suggestions = this.atSuggestion.provideFrom(result, args)
+            suggestions = this.atSuggestion.provideFrom(result, {
+                uri: args.document.uri,
+                langId: args.document.languageId,
+                line: args.document.lineAt(args.position).text,
+                position: args.position
+            })
         }
         return suggestions
     }
