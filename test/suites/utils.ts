@@ -5,7 +5,7 @@ import * as glob from 'glob'
 import * as os from 'os'
 import { ok, strictEqual } from 'assert'
 import * as lw from '../../src/lw'
-import { BuildDone, FileParsed, FileWatched, RootFileSearched, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
+import { BuildDone, FileParsed, FileWatched, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
 import type { EventName } from '../../src/components/eventbus'
 import { getCachedLog, getLogger, resetCachedLog } from '../../src/components/logger'
 
@@ -103,19 +103,15 @@ export async function load(fixture: string, files: {src: string, dst: string}[])
 export async function open(fixture: string, fileName: string, doCache = true) {
     logger.log(`Opening fixture file ${fileName} .`)
     const texFilePath = vscode.Uri.file(path.join(fixture, fileName))
-    let event = wait(FileParsed, path.resolve(fixture, fileName))
     logger.log('Try to open a text document.')
     const doc = await vscode.workspace.openTextDocument(texFilePath)
     await vscode.window.showTextDocument(doc)
+    logger.log('Searching for root file.')
+    const root = await lw.manager.findRoot()
     if (doCache) {
         logger.log(`Caching ${fileName} .`)
         await lw.cacher.refreshCache(path.resolve(fixture, fileName))
-        await event
     }
-    logger.log('Searching for root file.')
-    event = wait(RootFileSearched)
-    const root = await lw.manager.findRoot()
-    await event
     return {root, doc}
 }
 
