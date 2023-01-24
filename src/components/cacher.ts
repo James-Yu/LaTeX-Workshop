@@ -20,7 +20,7 @@ import { UtensilsParser } from './parser/syntax'
 
 const logger = getLogger('Cacher')
 
-export interface Cache {
+interface Cache {
     /** Cached content of file. Dirty if opened in vscode, disk otherwise */
     content: string | undefined,
     /** Completion items */

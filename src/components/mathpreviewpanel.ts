@@ -20,7 +20,7 @@ function resourcesFolder(extensionRoot: string) {
     return vscode.Uri.file(folder)
 }
 
-export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
+class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
     deserializeWebviewPanel(panel: vscode.WebviewPanel) {
         lw.mathPreviewPanel.initializePanel(panel)
         panel.webview.options = {

@@ -4,7 +4,7 @@ import * as lw from '../../lw'
 import type {IProvider} from '../completion'
 import {escapeRegExp} from '../../utils/utils'
 
-export interface AtSuggestionItemEntry {
+interface AtSuggestionItemEntry {
     prefix: string,
     body: string,
     description: string

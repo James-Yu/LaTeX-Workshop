@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import type { ICompletionItem } from '../completion'
 
-export interface CmdSignature {
+interface CmdSignature {
     /** name without leading `\` */
     readonly name: string,
     /** {} for mandatory args and [] for optional args */

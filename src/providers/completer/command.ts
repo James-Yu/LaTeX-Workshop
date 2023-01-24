@@ -36,11 +36,6 @@ export type CmdType = {
     postAction?: string
 }
 
-export interface CmdSignature {
-    readonly name: string, // name without leading `\`
-    readonly args: string // {} for mandatory args and [] for optional args
-}
-
 function isCmdWithSnippet(obj: any): obj is CmdType {
     return (typeof obj.command === 'string') && (typeof obj.snippet === 'string')
 }

@@ -11,7 +11,7 @@ const logger = getLogger('Format', 'TeX')
 
 const fullRange = (doc: vscode.TextDocument) => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
 
-export class OperatingSystem {
+class OperatingSystem {
     public name: string
     public fileExt: string
     public checker: string

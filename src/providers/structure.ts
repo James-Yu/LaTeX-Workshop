@@ -674,7 +674,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     }
 }
 
-export enum SectionKind {
+enum SectionKind {
     Env = 0,
     Label = 1,
     Section = 2,

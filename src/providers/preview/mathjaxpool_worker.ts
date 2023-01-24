@@ -30,12 +30,12 @@ function createHtmlConverter(extensions: SupportedExtension[]) {
 
 let html = createHtmlConverter(baseExtensions)
 
-export function loadExtensions(extensions: SupportedExtension[]) {
+function loadExtensions(extensions: SupportedExtension[]) {
     const extensionsToLoad = baseExtensions.concat(extensions)
     html = createHtmlConverter(extensionsToLoad)
 }
 
-export function typeset(arg: string, opts: { scale: number, color: string }): string {
+function typeset(arg: string, opts: { scale: number, color: string }): string {
     const convertOption: ConvertOption = {
         display: true,
         em: 18,

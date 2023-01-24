@@ -19,7 +19,7 @@ export class LaTeXCommanderTreeView {
     }
 }
 
-export class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXCommand> {
+class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXCommand> {
     private readonly _onDidChangeTreeData: vscode.EventEmitter<LaTeXCommand | undefined> = new vscode.EventEmitter<LaTeXCommand | undefined>()
     readonly onDidChangeTreeData: vscode.Event<LaTeXCommand | undefined>
     private commands: LaTeXCommand[] = []
