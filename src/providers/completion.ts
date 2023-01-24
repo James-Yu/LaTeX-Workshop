@@ -143,24 +143,30 @@ export class Completer implements vscode.CompletionItemProvider {
 
     provideCompletionItems(
         document: vscode.TextDocument,
-        position: vscode.Position,
-        token: vscode.CancellationToken,
-        context: vscode.CompletionContext
+        position: vscode.Position
     ): vscode.CompletionItem[] | undefined {
         const currentLine = document.lineAt(position.line).text
         if (position.character > 1 && currentLine[position.character - 1] === '\\' && currentLine[position.character - 2] === '\\') {
             return
         }
-        const line = document.lineAt(position.line).text.substring(0, position.character)
+        return this.provide({
+            uri: document.uri,
+            langId: document.languageId,
+            line: document.lineAt(position).text,
+            position
+        })
+    }
+
+    provide(args: IProviderArgs): vscode.CompletionItem[] | undefined {
         // Note that the order of the following array affects the result.
         // 'command' must be at the last because it matches any commands.
         for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'argument', 'command']) {
-            const suggestions = this.completion(type, line, {document, position, token, context})
+            const suggestions = this.completion(type, args)
             if (suggestions.length > 0) {
                 if (type === 'citation') {
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
                     if (configuration.get('intellisense.citation.type') as string === 'browser') {
-                        setTimeout(() => this.citation.browser({document, position, token, context}), 10)
+                        setTimeout(() => this.citation.browser(args), 10)
                         return
                     }
                 }
@@ -215,7 +221,7 @@ export class Completer implements vscode.CompletionItemProvider {
         }
     }
 
-    private completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+    completion(type: string, args: IProviderArgs): vscode.CompletionItem[] {
         let reg: RegExp | undefined
         let provider: IProvider | undefined
         switch (type) {
@@ -232,11 +238,11 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.environment
                 break
             case 'command':
-                reg = args.document.languageId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)$/ : /\\(\+?[a-zA-Z]*|(?:left|[Bb]ig{1,2}l)?[({[]?)$/
+                reg = args.langId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)$/ : /\\(\+?[a-zA-Z]*|(?:left|[Bb]ig{1,2}l)?[({[]?)$/
                 provider = this.command
                 break
             case 'argument':
-                reg = args.document.languageId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)((?:\[.*?\]|{.*?})*)[[{][^[\]{}]*$/ : /\\(\+?[a-zA-Z]*)((?:\[.*?\]|{.*?})*)[[{][^[\]{}]*$/
+                reg = args.langId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)((?:\[.*?\]|{.*?})*)[[{][^[\]{}]*$/ : /\\(\+?[a-zA-Z]*)((?:\[.*?\]|{.*?})*)[[{][^[\]{}]*$/
                 provider = this.argument
                 break
             case 'package':
@@ -272,18 +278,14 @@ export class Completer implements vscode.CompletionItemProvider {
                 logger.log(`Error - trying to complete unknown type ${type}`)
                 return []
         }
+        let lineToPos = args.line.substring(0, args.position.character)
         if (type === 'argument') {
-            line = line.replace(/(?<!\\begin){[^[\]{}]*}/g, '').replace(/\[[^[\]{}]*\]/g, '')
+            lineToPos = lineToPos.replace(/(?<!\\begin){[^[\]{}]*}/g, '').replace(/\[[^[\]{}]*\]/g, '')
         }
-        const result = line.match(reg)
+        const result = lineToPos.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            suggestions = provider.provideFrom(result, {
-                uri: args.document.uri,
-                langId: args.document.languageId,
-                line: args.document.lineAt(args.position).text,
-                position: args.position
-            })
+            suggestions = provider.provideFrom(result, args)
         }
         return suggestions
     }
@@ -307,26 +309,23 @@ export class AtSuggestionCompleter implements vscode.CompletionItemProvider {
 
     provideCompletionItems(
         document: vscode.TextDocument,
-        position: vscode.Position,
-        token: vscode.CancellationToken,
-        context: vscode.CompletionContext
+        position: vscode.Position
     ): vscode.CompletionItem[] | undefined {
-        const line = document.lineAt(position.line).text.substring(0, position.character)
-        return this.completion(line, {document, position, token, context})
+        return this.provide({
+            uri: document.uri,
+            langId: document.languageId,
+            line: document.lineAt(position).text,
+            position
+        })
     }
 
-    private completion(line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+    provide(args: IProviderArgs): vscode.CompletionItem[] {
         const escapedTriggerCharacter = escapeRegExp(this.triggerCharacter)
         const reg = new RegExp(escapedTriggerCharacter + '[^\\\\s]*$')
-        const result = line.match(reg)
+        const result = args.line.substring(0, args.position.character).match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            suggestions = this.atSuggestion.provideFrom(result, {
-                uri: args.document.uri,
-                langId: args.document.languageId,
-                line: args.document.lineAt(args.position).text,
-                position: args.position
-            })
+            suggestions = this.atSuggestion.provideFrom(result, args)
         }
         return suggestions
     }

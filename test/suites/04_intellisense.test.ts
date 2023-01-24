@@ -19,6 +19,31 @@ function assertKeys(keys: string[], expected: string[] = [], message: string): v
     )
 }
 
+async function getSuggestions(fixture: string, files: {src: string, dst: string}[], row: number, col: number, isAtSuggestion = false): Promise<{items: vscode.CompletionItem[], labels: string[]}> {
+    files.forEach(file => {
+        fs.mkdirSync(path.resolve(fixture, path.dirname(file.dst)), {recursive: true})
+        fs.copyFileSync(path.resolve(fixture, '../armory', file.src), path.resolve(fixture, file.dst))
+    })
+    let promises: Promise<void>[] = files.filter(file => file.dst.endsWith('.bib')).map(file => test.wait(FileParsed, path.resolve(fixture, file.dst)))
+    lw.manager.rootFile = path.resolve(fixture, files[0].dst)
+    promises = [...promises, ...files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cacher.refreshCache(path.resolve(fixture, file.dst), lw.manager.rootFile))]
+    await Promise.all(promises)
+    return getSuggestionsAt(lw.manager.rootFile, row, col, isAtSuggestion)
+}
+
+function getSuggestionsAt(openPath: string, row: number, col: number, isAtSuggestion = false): {items: vscode.CompletionItem[], labels: string[]} {
+    const lines = lw.cacher.get(openPath)?.content?.split('\n')
+    assert.ok(lines)
+    const items = (isAtSuggestion ? lw.atSuggestionCompleter : lw.completer).provide({
+        uri: vscode.Uri.file(openPath),
+        langId: 'latex',
+        line: lines[row],
+        position: new vscode.Position(row, col)
+    })
+    assert.ok(items)
+    return {items, labels: items.map(item => item.label.toString())}
+}
+
 suite('Intellisense test suite', () => {
 
     const suiteName = path.basename(__filename).replace('.test.js', '')
@@ -34,8 +59,11 @@ suite('Intellisense test suite', () => {
     })
 
     teardown(async () => {
-        await vscode.commands.executeCommand('workbench.action.closeAllEditors')
         lw.manager.rootFile = undefined
+        lw.completer.input.reset()
+        lw.duplicateLabels.reset()
+        lw.cacher.allPaths.forEach(filePath => lw.cacher.remove(filePath))
+        await lw.cacher.resetWatcher()
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.user', undefined)
@@ -45,7 +73,9 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', undefined)
+    })
 
+    suiteTeardown(async () => {
         if (path.basename(fixture) === 'testground') {
             rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
             await test.sleep(500) // Required for pooling
@@ -123,107 +153,59 @@ suite('Intellisense test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'command intellisense', async () => {
-        await test.load(fixture, [
+        const suggestions = await getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
-        ])
-        const result = await test.open(fixture, 'main.tex')
-        const items = test.suggest(result.doc, new vscode.Position(0, 1))
-        assert.ok(items)
-        assert.ok(items.length > 0)
+        ], 0, 1)
+        assert.ok(suggestions.items.length > 0)
     })
 
     test.run(suiteName, fixtureName, 'command intellisense with cmds provided by \\usepackage', async () => {
-        await test.load(fixture, [{src: 'intellisense/package_on_cmd_1.tex', dst: 'main.tex'}])
-        let result = await test.open(fixture, 'main.tex')
-        let items = test.suggest(result.doc, new vscode.Position(0, 1))
-        assert.ok(items)
-        assert.ok(items.length > 0)
+        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_cmd_1.tex', dst: 'main.tex'}], 0, 1)
+        assert.ok(!suggestions.labels.includes('\\lstinline'))
 
-        let labels = items.map(item => item.label.toString())
-        assert.ok(!labels.includes('\\lstinline'))
-
-        await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-
-        await test.load(fixture, [{src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}])
-        result = await test.open(fixture, 'main.tex')
-        items = test.suggest(result.doc, new vscode.Position(2, 1))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('\\lstinline'))
+        suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}], 0, 1)
+        assert.ok(suggestions.labels.includes('\\lstinline'))
     })
 
     test.run(suiteName, fixtureName, 'command intellisense with cmds provided by \\usepackage and its argument', async () => {
-        await test.load(fixture, [{src: 'intellisense/package_option_on_cmd.tex', dst: 'main.tex'}])
-        let result = await test.open(fixture, 'main.tex')
-        let items = test.suggest(result.doc, new vscode.Position(2, 1))
-        assert.ok(items)
-        assert.ok(items.length > 0)
+        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_option_on_cmd.tex', dst: 'main.tex'}], 0, 1)
+        assert.ok(suggestions.labels.includes('\\lstformatfiles'))
 
-        let labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('\\lstformatfiles'))
-
-        await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-
-        await test.load(fixture, [{src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}])
-        result = await test.open(fixture, 'main.tex')
-        items = test.suggest(result.doc, new vscode.Position(2, 1))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        labels = items.map(item => item.label.toString())
-        assert.ok(!labels.includes('\\lstformatfiles'))
+        suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}], 0, 1)
+        assert.ok(!suggestions.labels.includes('\\lstformatfiles'))
     })
 
     test.run(suiteName, fixtureName, 'command intellisense with cmds defined by \\newcommand', async () => {
-        await test.load(fixture, [{src: 'intellisense/newcommand.tex', dst: 'main.tex'}])
-        const result = await test.open(fixture, 'main.tex')
-        const items = test.suggest(result.doc, new vscode.Position(0, 1))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        const labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('\\WARNING'))
-        assert.ok(labels.includes('\\FIXME{}'))
-        assert.ok(labels.includes('\\FIXME[]{}'))
-        assert.ok(labels.includes('\\fix[]{}{}'))
-        assert.ok(labels.includes('\\fakecommand'))
-        assert.ok(labels.includes('\\fakecommand{}'))
-        assert.ok(labels.includes('\\fakecommand[]{}'))
+        const suggestions = await getSuggestions(fixture, [{src: 'intellisense/newcommand.tex', dst: 'main.tex'}], 0, 1)
+        assert.ok(suggestions.labels.includes('\\WARNING'))
+        assert.ok(suggestions.labels.includes('\\FIXME{}'))
+        assert.ok(suggestions.labels.includes('\\FIXME[]{}'))
+        assert.ok(suggestions.labels.includes('\\fix[]{}{}'))
+        assert.ok(suggestions.labels.includes('\\fakecommand'))
+        assert.ok(suggestions.labels.includes('\\fakecommand{}'))
+        assert.ok(suggestions.labels.includes('\\fakecommand[]{}'))
     })
 
     test.run(suiteName, fixtureName, 'command intellisense with config `intellisense.argumentHint.enabled`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', true)
-        const files = await test.load(fixture, [
+        let suggestions = await getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
-        ])
-        const result = await test.open(fixture, 'main.tex')
-        await files.cached
-        let items = test.suggest(result.doc, new vscode.Position(0, 1))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        let labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('\\includefrom{}{}'))
-        let snippet = items.filter(item => item.label === '\\includefrom{}{}')[0].insertText
+        ], 0, 1)
+        assert.ok(suggestions.labels.includes('\\includefrom{}{}'))
+        let snippet = suggestions.items.filter(item => item.label === '\\includefrom{}{}')[0].insertText
         assert.ok(snippet)
         assert.ok(typeof snippet !== 'string')
         assert.ok(snippet.value.includes('${1:'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', false)
-        const event = test.wait(FileParsed, path.resolve(fixture, 'main.tex'))
-        await lw.cacher.refreshCache(path.resolve(fixture, 'main.tex'))
-        await event
-        items = test.suggest(result.doc, new vscode.Position(0, 1))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('\\includefrom{}{}'))
-        snippet = items.filter(item => item.label === '\\includefrom{}{}')[0].insertText
+        suggestions = await getSuggestions(fixture, [
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
+        ], 0, 1)
+        assert.ok(suggestions.labels.includes('\\includefrom{}{}'))
+        snippet = suggestions.items.filter(item => item.label === '\\includefrom{}{}')[0].insertText
         assert.ok(snippet)
         assert.ok(typeof snippet !== 'string')
         assert.ok(!snippet.value.includes('${1:'))
@@ -231,380 +213,239 @@ suite('Intellisense test suite', () => {
 
     test.run(suiteName, fixtureName, 'command intellisense with config `intellisense.command.user`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', {'mycommand[]{}': 'notsamecommand[${2:option}]{$TM_SELECTED_TEXT$1}', 'parbox{}{}': 'defchanged', 'overline{}': ''})
-        await test.load(fixture, [
+        let suggestions = await getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
-        ])
-        const result = await test.open(fixture, 'main.tex')
-        let items = test.suggest(result.doc, new vscode.Position(0, 1))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        let labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('\\mycommand[]{}'))
-        assert.ok(labels.includes('\\parbox{}{}'))
-        let parbox = items.filter(item => item.label === '\\parbox{}{}')[0].insertText
+        ], 0, 1)
+        assert.ok(suggestions.labels.includes('\\mycommand[]{}'))
+        assert.ok(suggestions.labels.includes('\\parbox{}{}'))
+        let parbox = suggestions.items.filter(item => item.label === '\\parbox{}{}')[0].insertText
         if (typeof parbox === 'string') {
             assert.strictEqual(parbox, 'defchanged')
         } else {
             assert.strictEqual(parbox?.value, 'defchanged')
         }
-        assert.ok(!labels.includes('\\overline{}'))
+        assert.ok(!suggestions.labels.includes('\\overline{}'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', undefined)
-        items = test.suggest(result.doc, new vscode.Position(0, 1))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        labels = items.map(item => item.label.toString())
-        assert.ok(!labels.includes('\\mycommand[]{}'))
-        assert.ok(labels.includes('\\parbox{}{}'))
-        parbox = items.filter(item => item.label === '\\parbox{}{}')[0].insertText
+        suggestions = await getSuggestions(fixture, [
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
+        ], 0, 1)
+        assert.ok(!suggestions.labels.includes('\\mycommand[]{}'))
+        assert.ok(suggestions.labels.includes('\\parbox{}{}'))
+        parbox = suggestions.items.filter(item => item.label === '\\parbox{}{}')[0].insertText
         if (typeof parbox === 'string') {
             assert.notStrictEqual(parbox, 'defchanged')
         } else {
             assert.notStrictEqual(parbox?.value, 'defchanged')
         }
-        assert.ok(labels.includes('\\overline{}'))
+        assert.ok(suggestions.labels.includes('\\overline{}'))
     })
 
     test.run(suiteName, fixtureName, 'reference intellisense and config intellisense.label.keyval', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', true)
-        const files = await test.load(fixture, [
+        let suggestions = await getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
-        ])
-        const result = await test.open(fixture, 'main.tex')
-        await files.cached
-        let items = test.suggest(result.doc, new vscode.Position(8, 5))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        let labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('sec1'))
-        assert.ok(labels.includes('eq1'))
+        ], 8, 5)
+        assert.ok(suggestions.labels.includes('sec1'))
+        assert.ok(suggestions.labels.includes('eq1'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', false)
-        const event = test.wait(FileParsed, path.resolve(fixture, 'main.tex'))
-        await lw.cacher.refreshCache(path.resolve(fixture, 'main.tex'))
-        await event
-        items = test.suggest(result.doc, new vscode.Position(8, 5))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('sec1'))
-        assert.ok(!labels.includes('eq1'))
+        suggestions = await getSuggestions(fixture, [
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
+        ], 8, 5)
+        assert.ok(suggestions.labels.includes('sec1'))
+        assert.ok(!suggestions.labels.includes('eq1'))
     })
 
     test.run(suiteName, fixtureName, 'reference intellisense and config intellisense.label.command', async () => {
-        await test.load(fixture, [{src: 'intellisense/label.tex', dst: 'main.tex'}])
-        const result = await test.open(fixture, 'main.tex')
-        let items = test.suggest(result.doc, new vscode.Position(7, 5))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        let labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('l1'))
-        assert.ok(labels.includes('e1'))
+        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/label.tex', dst: 'main.tex'}], 7, 5)
+        assert.ok(suggestions.labels.includes('l1'))
+        assert.ok(suggestions.labels.includes('e1'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.command', ['label'])
-        const event = test.wait(FileParsed, path.resolve(fixture, 'main.tex'))
-        await lw.cacher.refreshCache(path.resolve(fixture, 'main.tex'))
-        await event
-        items = test.suggest(result.doc, new vscode.Position(7, 5))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        labels = items.map(item => item.label.toString())
-        assert.ok(!labels.includes('l1'))
-        assert.ok(labels.includes('e1'))
+        suggestions = await getSuggestions(fixture, [{src: 'intellisense/label.tex', dst: 'main.tex'}], 7, 5)
+        assert.ok(!suggestions.labels.includes('l1'))
+        assert.ok(suggestions.labels.includes('e1'))
     })
 
     test.run(suiteName, fixtureName, 'reference intellisense with `xr` package', async () => {
-        const files = await test.load(fixture, [
+        const suggestions = await getSuggestions(fixture, [
             {src: 'intellisense/xr_base.tex', dst: 'main.tex'},
             {src: 'intellisense/xr_sub.tex', dst: 'sub.tex'},
             {src: 'intellisense/xr_dup.tex', dst: 'dup.tex'}
-        ])
-        const result = await test.open(fixture, 'main.tex')
-        await files.cached
-        const items = test.suggest(result.doc, new vscode.Position(6, 5))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        const labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('sec:1'))
-        assert.ok(labels.includes('sec:2'))
-        assert.ok(labels.includes('alt-sec:1'))
+        ], 6, 5)
+        assert.ok(suggestions.labels.includes('sec:1'))
+        assert.ok(suggestions.labels.includes('sec:2'))
+        assert.ok(suggestions.labels.includes('alt-sec:1'))
     })
 
     test.run(suiteName, fixtureName, 'environment intellisense', async () => {
-        await test.load(fixture, [
+        const suggestions = await getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
-        ])
-        const result = await test.open(fixture, 'main.tex')
-        const items = test.suggest(result.doc, new vscode.Position(9, 7))
-        assert.ok(items)
-        assert.ok(items.length > 0)
+        ], 9, 7)
+        assert.ok(suggestions.items.length > 0)
     })
 
     test.run(suiteName, fixtureName, 'environment intellisense with envs provided by \\usepackage', async () => {
-        await test.load(fixture, [{src: 'intellisense/package_on_env_1.tex', dst: 'main.tex'}])
-        let result = await test.open(fixture, 'main.tex')
-        let items = test.suggest(result.doc, new vscode.Position(3, 7))
-        assert.ok(items)
-        assert.ok(items.length > 0)
+        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_env_1.tex', dst: 'main.tex'}], 3, 7)
+        assert.ok(!suggestions.labels.includes('algorithm'))
 
-        let labels = items.map(item => item.label.toString())
-        assert.ok(!labels.includes('algorithm'))
-
-        await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-
-        await test.load(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}])
-        result = await test.open(fixture, 'main.tex')
-        items = test.suggest(result.doc, new vscode.Position(3, 7))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('algorithm'))
+        suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}], 3, 7)
+        assert.ok(suggestions.labels.includes('algorithm'))
     })
 
     test.run(suiteName, fixtureName, 'environment intellisense with envs provided by \\usepackage and its argument', async () => {
-        await test.load(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}])
-        let result = await test.open(fixture, 'main.tex')
-        let items = test.suggest(result.doc, new vscode.Position(3, 7))
-        assert.ok(items)
-        assert.ok(items.length > 0)
+        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}], 3, 7)
+        assert.ok(suggestions.labels.includes('algorithm2e'))
 
-        let labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('algorithm2e'))
-
-        await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-
-        await test.load(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}])
-        result = await test.open(fixture, 'main.tex')
-        items = test.suggest(result.doc, new vscode.Position(3, 7))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        labels = items.map(item => item.label.toString())
-        assert.ok(!labels.includes('algorithm2e'))
+        suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}], 3, 7)
+        assert.ok(!suggestions.labels.includes('algorithm2e'))
     })
 
     test.run(suiteName, fixtureName, 'environment intellisense in form of cmds with envs provided by \\usepackage and its argument', async () => {
-        await test.load(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}])
-        let result = await test.open(fixture, 'main.tex')
-        let items = test.suggest(result.doc, new vscode.Position(3, 1))
-        assert.ok(items)
-        assert.ok(items.length > 0)
+        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}], 3, 1)
+        assert.ok(suggestions.labels.includes('algorithm2e'))
 
-        let labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('algorithm2e'))
-
-        await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-
-        await test.load(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}])
-        result = await test.open(fixture, 'main.tex')
-        items = test.suggest(result.doc, new vscode.Position(3, 1))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-
-        labels = items.map(item => item.label.toString())
-        assert.ok(!labels.includes('algorithm2e'))
+        suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}], 3, 1)
+        assert.ok(!suggestions.labels.includes('algorithm2e'))
     })
 
     test.run(suiteName, fixtureName, 'argument intellisense of \\documentclass, \\usepackage, commands, and environments', async () => {
-        await test.load(fixture, [
+        let suggestions = await getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
-        ])
-        const result = await test.open(fixture, 'main.tex')
-        let items = test.suggest(result.doc, new vscode.Position(0, 15))
-        assert.ok(items)
-        let labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('a4paper'))
-        assert.ok(labels.includes('10pt'))
+        ], 0, 15)
+        assert.ok(suggestions.labels.includes('a4paper'))
+        assert.ok(suggestions.labels.includes('10pt'))
 
-        items = test.suggest(result.doc, new vscode.Position(2, 12))
-        assert.ok(items)
-        labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('savemem'))
-        assert.ok(labels.includes('noaspects'))
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 2, 12)
+        assert.ok(suggestions.labels.includes('savemem'))
+        assert.ok(suggestions.labels.includes('noaspects'))
 
-        items = test.suggest(result.doc, new vscode.Position(13, 11))
-        assert.ok(items)
-        labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('print'))
-        assert.ok(labels.includes('showlines'))
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 13, 11)
+        assert.ok(suggestions.labels.includes('print'))
+        assert.ok(suggestions.labels.includes('showlines'))
 
-        items = test.suggest(result.doc, new vscode.Position(14, 19))
-        assert.ok(items)
-        labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('print'))
-        assert.ok(labels.includes('showlines'))
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 14, 19)
+        assert.ok(suggestions.labels.includes('print'))
+        assert.ok(suggestions.labels.includes('showlines'))
     })
 
     test.run(suiteName, fixtureName, 'argument intellisense with braces already in the argument', async () => {
-        await test.load(fixture, [{src: 'intellisense/class_option_with_brace.tex', dst: 'main.tex'}])
-        const result = await test.open(fixture, 'main.tex')
-        let items = test.suggest(result.doc, new vscode.Position(0, 64))
-        assert.ok(items)
-        let labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('10pt'))
+        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/class_option_with_brace.tex', dst: 'main.tex'}], 0, 64)
+        assert.ok(suggestions.labels.includes('10pt'))
 
-        items = test.suggest(result.doc, new vscode.Position(3, 32))
-        assert.ok(items)
-        labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('label='))
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 3, 32)
+        assert.ok(suggestions.labels.includes('label='))
     })
 
     test.run(suiteName, fixtureName, 'package and class intellisense', async () => {
-        await test.load(fixture, [
+        let suggestions = await getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
-        ])
-        const result = await test.open(fixture, 'main.tex')
-        let items = test.suggest(result.doc, new vscode.Position(2, 21))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-        let labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('amsmath'))
-        assert.ok(labels.includes('listings'))
+        ], 2, 21)
+        assert.ok(suggestions.labels.includes('amsmath'))
+        assert.ok(suggestions.labels.includes('listings'))
 
-        items = test.suggest(result.doc, new vscode.Position(0, 21))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-        labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('article'))
-        assert.ok(labels.includes('IEEEtran'))
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 0, 21)
+        assert.ok(suggestions.labels.includes('article'))
+        assert.ok(suggestions.labels.includes('IEEEtran'))
     })
 
     test.run(suiteName, fixtureName, 'input/include/import/subimport intellisense', async () => {
-        await test.load(fixture, [
+        let suggestions = await getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/plain.tex'}
-        ])
-        const result = await test.open(fixture, 'main.tex')
-        let items = test.suggest(result.doc, new vscode.Position(7, 7))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-        let labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('main.tex'))
-        assert.ok(labels.includes('sub/'))
+        ], 7, 7)
+        assert.ok(suggestions.labels.includes('main.tex'))
+        assert.ok(suggestions.labels.includes('sub/'))
 
-        items = test.suggest(result.doc, new vscode.Position(16, 13))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-        labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('main.tex'))
-        assert.ok(labels.includes('sub/'))
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 16, 13)
+        assert.ok(suggestions.labels.includes('main.tex'))
+        assert.ok(suggestions.labels.includes('sub/'))
 
-        items = test.suggest(result.doc, new vscode.Position(17, 8))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-        labels = items.map(item => item.label.toString())
-        assert.ok(!labels.includes('main.tex'))
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 17, 8)
+        assert.ok(!suggestions.labels.includes('main.tex'))
 
-        items = test.suggest(result.doc, new vscode.Position(18, 11))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-        labels = items.map(item => item.label.toString())
-        assert.ok(!labels.includes('main.tex'))
-        assert.ok(labels.includes('sub/'))
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 18, 11)
+        assert.ok(!suggestions.labels.includes('main.tex'))
+        assert.ok(suggestions.labels.includes('sub/'))
 
-        items = test.suggest(result.doc, new vscode.Position(18, 17))
-        assert.ok(items)
-        assert.ok(items.length > 0)
-        labels = items.map(item => item.label.toString())
-        assert.ok(labels.includes('s.tex'))
-        assert.ok(labels.includes('plain.tex'))
-        assert.ok(!labels.includes('sub/'))
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 18, 17)
+        assert.ok(suggestions.labels.includes('s.tex'))
+        assert.ok(suggestions.labels.includes('plain.tex'))
+        assert.ok(!suggestions.labels.includes('sub/'))
     })
 
     test.run(suiteName, fixtureName, 'citation intellisense and configs intellisense.citation.*', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
-        test.write(fixture, 'main.tex', '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{main}', '\\end{document}')
-        const files = await test.load(fixture, [{src: 'base.bib', dst: 'main.bib'}])
-        const result = await test.open(fixture, 'main.tex')
-        await files.cached
-
-        let items = test.suggest(result.doc, new vscode.Position(2, 9))
-        assert.ok(items)
-        assert.strictEqual(items.length, 3)
-        assert.strictEqual(items[0].label, 'art1')
-        assert.ok(items[0].filterText)
-        assert.ok(items[0].filterText.includes('Journal of CI tests'))
-        assert.ok(!items[0].filterText.includes('hintFake'))
+        let suggestions = await getSuggestions(fixture, [
+            {src: 'intellisense/citation.tex', dst: 'main.tex'},
+            {src: 'base.bib', dst: 'main.bib'}
+        ], 2, 9)
+        assert.strictEqual(suggestions.items.length, 3)
+        assert.strictEqual(suggestions.items[0].label, 'art1')
+        assert.ok(suggestions.items[0].filterText)
+        assert.ok(suggestions.items[0].filterText.includes('Journal of CI tests'))
+        assert.ok(!suggestions.items[0].filterText.includes('hintFake'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'title')
-        items = test.suggest(result.doc, new vscode.Position(2, 9))
-        assert.ok(items)
-        assert.strictEqual(items.length, 3)
-        assert.strictEqual(items[0].label, 'A fake article')
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 2, 9)
+        assert.strictEqual(suggestions.items.length, 3)
+        assert.strictEqual(suggestions.items[0].label, 'A fake article')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'authors')
-        items = test.suggest(result.doc, new vscode.Position(2, 9))
-        assert.ok(items)
-        assert.strictEqual(items.length, 3)
-        assert.strictEqual(items[0].label, 'Davis, J. and Jones, M.')
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 2, 9)
+        assert.strictEqual(suggestions.items.length, 3)
+        assert.strictEqual(suggestions.items[0].label, 'Davis, J. and Jones, M.')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.format', ['title', 'year', 'description', 'nonexisting'])
-        items = test.suggest(result.doc, new vscode.Position(2, 9))
-        assert.ok(items)
-        assert.strictEqual(items.length, 3)
-        assert.ok(items[0].filterText)
-        assert.ok(!items[0].filterText.includes('Journal of CI tests'))
-        assert.ok(items[0].filterText.includes('hintFake'))
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 2, 9)
+        assert.strictEqual(suggestions.items.length, 3)
+        assert.ok(suggestions.items[0].filterText)
+        assert.ok(!suggestions.items[0].filterText.includes('Journal of CI tests'))
+        assert.ok(suggestions.items[0].filterText.includes('hintFake'))
     })
 
     test.run(suiteName, fixtureName, 'glossary intellisense', async () => {
-        await test.load(fixture, [
+        const suggestions = await getSuggestions(fixture, [
             {src: 'intellisense/glossary.tex', dst: 'main.tex'},
             {src: 'intellisense/glossaryentries.tex', dst: 'sub/glossary.tex'}
-        ])
-        const result = await test.open(fixture, 'main.tex')
-        await lw.cacher.refreshCache(path.resolve(fixture, 'sub/glossary.tex'), fs.readFileSync(path.resolve(fixture, 'sub/glossary.tex')).toString())
-
-        const items = test.suggest(result.doc, new vscode.Position(5, 5))
-        assert.ok(items)
-        assert.strictEqual(items.length, 7)
-        assert.ok(items.find(item => item.label === 'rf' && item.detail === 'radio-frequency'))
-        assert.ok(items.find(item => item.label === 'te' && item.detail === 'Transverse Magnetic'))
-        assert.ok(items.find(item => item.label === 'E_P' && item.detail === 'Elastic $\\varepsilon$ toto'))
-        assert.ok(items.find(item => item.label === 'lw' && item.detail === 'What this extension is $\\mathbb{A}$'))
-        assert.ok(items.find(item => item.label === 'vs_code' && item.detail === 'Editor'))
-        assert.ok(items.find(item => item.label === 'abbr_y' && item.detail === 'A second abbreviation'))
-        assert.ok(items.find(item => item.label === 'abbr_x' && item.detail === 'A first abbreviation'))
+        ], 5, 5)
+        assert.strictEqual(suggestions.items.length, 7)
+        assert.ok(suggestions.items.find(item => item.label === 'rf' && item.detail === 'radio-frequency'))
+        assert.ok(suggestions.items.find(item => item.label === 'te' && item.detail === 'Transverse Magnetic'))
+        assert.ok(suggestions.items.find(item => item.label === 'E_P' && item.detail === 'Elastic $\\varepsilon$ toto'))
+        assert.ok(suggestions.items.find(item => item.label === 'lw' && item.detail === 'What this extension is $\\mathbb{A}$'))
+        assert.ok(suggestions.items.find(item => item.label === 'vs_code' && item.detail === 'Editor'))
+        assert.ok(suggestions.items.find(item => item.label === 'abbr_y' && item.detail === 'A second abbreviation'))
+        assert.ok(suggestions.items.find(item => item.label === 'abbr_x' && item.detail === 'A first abbreviation'))
     })
 
     test.run(suiteName, fixtureName, '@-snippet intellisense and configs intellisense.atSuggestion*', async () => {
         const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.user', replaces)
-        await test.load(fixture, [
+        let suggestions = await getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
-        ])
-        const result = await test.open(fixture, 'main.tex')
-        let items = test.suggest(result.doc, new vscode.Position(5, 1), true)
-        assert.ok(items)
-        assert.ok(items.length > 0)
-        assert.ok(items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
-        assert.ok(undefined === items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
-        assert.ok(items.find(item => item.label === '@M' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
-        assert.ok(undefined === items.find(item => item.label === '@8'))
+        ], 5, 1, true)
+        assert.ok(suggestions.items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
+        assert.ok(undefined === suggestions.items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
+        assert.ok(suggestions.items.find(item => item.label === '@M' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
+        assert.ok(undefined === suggestions.items.find(item => item.label === '@8'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', '#')
-        items = test.suggest(result.doc, new vscode.Position(6, 1), true)
-        assert.ok(items)
-        assert.ok(items.length > 0)
-        assert.ok(items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
-        assert.ok(items.find(item => item.label === '#ve' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\varepsilon'))
-        assert.ok(undefined === items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
-        assert.ok(undefined === items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
-        assert.ok(undefined === items.find(item => item.label === '#8'))
+        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 6, 1, true)
+        assert.ok(suggestions.items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
+        assert.ok(suggestions.items.find(item => item.label === '#ve' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\varepsilon'))
+        assert.ok(undefined === suggestions.items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
+        assert.ok(undefined === suggestions.items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
+        assert.ok(undefined === suggestions.items.find(item => item.label === '#8'))
     })
 })

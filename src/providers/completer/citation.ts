@@ -119,8 +119,8 @@ export class Citation implements IProvider {
         })
     }
 
-    browser(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', args?.document.uri)
+    browser(args?: IProviderArgs) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', args?.uri)
         const label = configuration.get('intellisense.citation.label') as string
         const fields = readCitationFormat(configuration, label)
         void vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(lw.manager.rootFile)).map(item => {

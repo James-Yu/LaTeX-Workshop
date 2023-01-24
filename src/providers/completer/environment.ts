@@ -103,11 +103,8 @@ export class Environment implements IProvider {
     }
 
     private provide(langId: string, line: string, position: vscode.Position): ICompletionItem[] {
-        if (vscode.window.activeTextEditor === undefined) {
-            return []
-        }
         let snippetType: EnvSnippetType = EnvSnippetType.ForBegin
-        if (vscode.window.activeTextEditor.selections.length > 1 || line.slice(position.character).match(/[a-zA-Z*]*}/)) {
+        if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.selections.length > 1 || line.slice(position.character).match(/[a-zA-Z*]*}/)) {
             snippetType = EnvSnippetType.AsName
         }
 

@@ -130,12 +130,12 @@ export async function wait(event: EventName, arg?: any) {
 export function suggest(doc: vscode.TextDocument, pos: vscode.Position, atSuggestion = false) {
     logger.log('Getting suggestion.')
     const completer = atSuggestion ? lw.atSuggestionCompleter : lw.completer
-    return completer?.provideCompletionItems(
-        doc, pos, new vscode.CancellationTokenSource().token, {
-            triggerKind: vscode.CompletionTriggerKind.Invoke,
-            triggerCharacter: undefined
-        }
-    )
+    return completer.provide({
+        uri: doc.uri,
+        langId: 'latex',
+        line: doc.lineAt(pos.line).text,
+        position: pos
+    })
 }
 
 export const assert = {
