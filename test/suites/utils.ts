@@ -170,7 +170,7 @@ async function assertBuild(fixture: string, texName: string, pdfName: string, bu
 
     const files = glob.sync('**/**.pdf', { cwd: fixture })
     const pdfPath = path.join(fixture, pdfName)
-    logger.log(`PDF produced: ${files ? files.join(' , ') : 'nothing'} .`)
+    logger.log(`PDF produced: ${files.join(' , ') || 'nothing'} .`)
     strictEqual(files.map(file => path.resolve(fixture, file)).join(','), pdfName === '' ? pdfName : pdfPath)
 }
 
@@ -205,12 +205,12 @@ async function assertAutoBuild(fixture: string, texName: string, pdfName: string
     if (mode?.includes('noAutoBuild')) {
         await sleep(3000)
         files = glob.sync('**/**.pdf', { cwd: fixture })
-        logger.log(`PDF produced: ${files ? files.join(' , ') : 'nothing'} .`)
+        logger.log(`PDF produced: ${files.join(' , ') || 'nothing'} .`)
         strictEqual(files.map(file => path.resolve(fixture, file)).join(','), '')
     } else {
         await event
         files = glob.sync('**/**.pdf', { cwd: fixture })
-        logger.log(`PDF produced: ${files ? files.join(' , ') : 'nothing'} .`)
+        logger.log(`PDF produced: ${files.join(' , ') || 'nothing'} .`)
         strictEqual(files.map(file => path.resolve(fixture, file)).join(','), path.resolve(fixture, pdfName))
     }
 }
