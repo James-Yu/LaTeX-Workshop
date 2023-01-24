@@ -10,38 +10,12 @@ import { EnvSnippetType, EnvType } from '../../src/providers/completer/environme
 import { CmdType } from '../../src/providers/completer/command'
 import { PkgType } from '../../src/providers/completion'
 import { isTriggerSuggestNeeded } from '../../src/providers/completer/commandlib/commandfinder'
-import { FileParsed } from '../../src/components/eventbus'
 
 function assertKeys(keys: string[], expected: string[] = [], message: string): void {
     assert.ok(
         keys.every(k => expected.includes(k)),
         message
     )
-}
-
-async function getSuggestions(fixture: string, files: {src: string, dst: string}[], row: number, col: number, isAtSuggestion = false): Promise<{items: vscode.CompletionItem[], labels: string[]}> {
-    files.forEach(file => {
-        fs.mkdirSync(path.resolve(fixture, path.dirname(file.dst)), {recursive: true})
-        fs.copyFileSync(path.resolve(fixture, '../armory', file.src), path.resolve(fixture, file.dst))
-    })
-    let promises: Promise<void>[] = files.filter(file => file.dst.endsWith('.bib')).map(file => test.wait(FileParsed, path.resolve(fixture, file.dst)))
-    lw.manager.rootFile = path.resolve(fixture, files[0].dst)
-    promises = [...promises, ...files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cacher.refreshCache(path.resolve(fixture, file.dst), lw.manager.rootFile))]
-    await Promise.all(promises)
-    return getSuggestionsAt(lw.manager.rootFile, row, col, isAtSuggestion)
-}
-
-function getSuggestionsAt(openPath: string, row: number, col: number, isAtSuggestion = false): {items: vscode.CompletionItem[], labels: string[]} {
-    const lines = lw.cacher.get(openPath)?.content?.split('\n')
-    assert.ok(lines)
-    const items = (isAtSuggestion ? lw.atSuggestionCompleter : lw.completer).provide({
-        uri: vscode.Uri.file(openPath),
-        langId: 'latex',
-        line: lines[row],
-        position: new vscode.Position(row, col)
-    })
-    assert.ok(items)
-    return {items, labels: items.map(item => item.label.toString())}
 }
 
 suite('Intellisense test suite', () => {
@@ -153,7 +127,7 @@ suite('Intellisense test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'command intellisense', async () => {
-        const suggestions = await getSuggestions(fixture, [
+        const suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ], 0, 1)
@@ -161,23 +135,23 @@ suite('Intellisense test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'command intellisense with cmds provided by \\usepackage', async () => {
-        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_cmd_1.tex', dst: 'main.tex'}], 0, 1)
+        let suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/package_on_cmd_1.tex', dst: 'main.tex'}], 0, 1)
         assert.ok(!suggestions.labels.includes('\\lstinline'))
 
-        suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}], 0, 1)
+        suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}], 0, 1)
         assert.ok(suggestions.labels.includes('\\lstinline'))
     })
 
     test.run(suiteName, fixtureName, 'command intellisense with cmds provided by \\usepackage and its argument', async () => {
-        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_option_on_cmd.tex', dst: 'main.tex'}], 0, 1)
+        let suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/package_option_on_cmd.tex', dst: 'main.tex'}], 0, 1)
         assert.ok(suggestions.labels.includes('\\lstformatfiles'))
 
-        suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}], 0, 1)
+        suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}], 0, 1)
         assert.ok(!suggestions.labels.includes('\\lstformatfiles'))
     })
 
     test.run(suiteName, fixtureName, 'command intellisense with cmds defined by \\newcommand', async () => {
-        const suggestions = await getSuggestions(fixture, [{src: 'intellisense/newcommand.tex', dst: 'main.tex'}], 0, 1)
+        const suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/newcommand.tex', dst: 'main.tex'}], 0, 1)
         assert.ok(suggestions.labels.includes('\\WARNING'))
         assert.ok(suggestions.labels.includes('\\FIXME{}'))
         assert.ok(suggestions.labels.includes('\\FIXME[]{}'))
@@ -189,7 +163,7 @@ suite('Intellisense test suite', () => {
 
     test.run(suiteName, fixtureName, 'command intellisense with config `intellisense.argumentHint.enabled`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', true)
-        let suggestions = await getSuggestions(fixture, [
+        let suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ], 0, 1)
@@ -200,7 +174,7 @@ suite('Intellisense test suite', () => {
         assert.ok(snippet.value.includes('${1:'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', false)
-        suggestions = await getSuggestions(fixture, [
+        suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ], 0, 1)
@@ -213,7 +187,7 @@ suite('Intellisense test suite', () => {
 
     test.run(suiteName, fixtureName, 'command intellisense with config `intellisense.command.user`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', {'mycommand[]{}': 'notsamecommand[${2:option}]{$TM_SELECTED_TEXT$1}', 'parbox{}{}': 'defchanged', 'overline{}': ''})
-        let suggestions = await getSuggestions(fixture, [
+        let suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ], 0, 1)
@@ -228,7 +202,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!suggestions.labels.includes('\\overline{}'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', undefined)
-        suggestions = await getSuggestions(fixture, [
+        suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ], 0, 1)
@@ -245,7 +219,7 @@ suite('Intellisense test suite', () => {
 
     test.run(suiteName, fixtureName, 'reference intellisense and config intellisense.label.keyval', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', true)
-        let suggestions = await getSuggestions(fixture, [
+        let suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ], 8, 5)
@@ -253,7 +227,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('eq1'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', false)
-        suggestions = await getSuggestions(fixture, [
+        suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ], 8, 5)
@@ -262,18 +236,18 @@ suite('Intellisense test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'reference intellisense and config intellisense.label.command', async () => {
-        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/label.tex', dst: 'main.tex'}], 7, 5)
+        let suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/label.tex', dst: 'main.tex'}], 7, 5)
         assert.ok(suggestions.labels.includes('l1'))
         assert.ok(suggestions.labels.includes('e1'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.command', ['label'])
-        suggestions = await getSuggestions(fixture, [{src: 'intellisense/label.tex', dst: 'main.tex'}], 7, 5)
+        suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/label.tex', dst: 'main.tex'}], 7, 5)
         assert.ok(!suggestions.labels.includes('l1'))
         assert.ok(suggestions.labels.includes('e1'))
     })
 
     test.run(suiteName, fixtureName, 'reference intellisense with `xr` package', async () => {
-        const suggestions = await getSuggestions(fixture, [
+        const suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/xr_base.tex', dst: 'main.tex'},
             {src: 'intellisense/xr_sub.tex', dst: 'sub.tex'},
             {src: 'intellisense/xr_dup.tex', dst: 'dup.tex'}
@@ -284,7 +258,7 @@ suite('Intellisense test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'environment intellisense', async () => {
-        const suggestions = await getSuggestions(fixture, [
+        const suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ], 9, 7)
@@ -292,73 +266,73 @@ suite('Intellisense test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'environment intellisense with envs provided by \\usepackage', async () => {
-        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_env_1.tex', dst: 'main.tex'}], 3, 7)
+        let suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/package_on_env_1.tex', dst: 'main.tex'}], 3, 7)
         assert.ok(!suggestions.labels.includes('algorithm'))
 
-        suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}], 3, 7)
+        suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}], 3, 7)
         assert.ok(suggestions.labels.includes('algorithm'))
     })
 
     test.run(suiteName, fixtureName, 'environment intellisense with envs provided by \\usepackage and its argument', async () => {
-        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}], 3, 7)
+        let suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}], 3, 7)
         assert.ok(suggestions.labels.includes('algorithm2e'))
 
-        suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}], 3, 7)
+        suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}], 3, 7)
         assert.ok(!suggestions.labels.includes('algorithm2e'))
     })
 
     test.run(suiteName, fixtureName, 'environment intellisense in form of cmds with envs provided by \\usepackage and its argument', async () => {
-        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}], 3, 1)
+        let suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}], 3, 1)
         assert.ok(suggestions.labels.includes('algorithm2e'))
 
-        suggestions = await getSuggestions(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}], 3, 1)
+        suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/package_on_env_2.tex', dst: 'main.tex'}], 3, 1)
         assert.ok(!suggestions.labels.includes('algorithm2e'))
     })
 
     test.run(suiteName, fixtureName, 'argument intellisense of \\documentclass, \\usepackage, commands, and environments', async () => {
-        let suggestions = await getSuggestions(fixture, [
+        let suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ], 0, 15)
         assert.ok(suggestions.labels.includes('a4paper'))
         assert.ok(suggestions.labels.includes('10pt'))
 
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 2, 12)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 2, 12)
         assert.ok(suggestions.labels.includes('savemem'))
         assert.ok(suggestions.labels.includes('noaspects'))
 
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 13, 11)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 13, 11)
         assert.ok(suggestions.labels.includes('print'))
         assert.ok(suggestions.labels.includes('showlines'))
 
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 14, 19)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 14, 19)
         assert.ok(suggestions.labels.includes('print'))
         assert.ok(suggestions.labels.includes('showlines'))
     })
 
     test.run(suiteName, fixtureName, 'argument intellisense with braces already in the argument', async () => {
-        let suggestions = await getSuggestions(fixture, [{src: 'intellisense/class_option_with_brace.tex', dst: 'main.tex'}], 0, 64)
+        let suggestions = await test.getSuggestions(fixture, [{src: 'intellisense/class_option_with_brace.tex', dst: 'main.tex'}], 0, 64)
         assert.ok(suggestions.labels.includes('10pt'))
 
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 3, 32)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 3, 32)
         assert.ok(suggestions.labels.includes('label='))
     })
 
     test.run(suiteName, fixtureName, 'package and class intellisense', async () => {
-        let suggestions = await getSuggestions(fixture, [
+        let suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ], 2, 21)
         assert.ok(suggestions.labels.includes('amsmath'))
         assert.ok(suggestions.labels.includes('listings'))
 
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 0, 21)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 0, 21)
         assert.ok(suggestions.labels.includes('article'))
         assert.ok(suggestions.labels.includes('IEEEtran'))
     })
 
     test.run(suiteName, fixtureName, 'input/include/import/subimport intellisense', async () => {
-        let suggestions = await getSuggestions(fixture, [
+        let suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/plain.tex'}
@@ -366,26 +340,26 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('main.tex'))
         assert.ok(suggestions.labels.includes('sub/'))
 
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 16, 13)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 16, 13)
         assert.ok(suggestions.labels.includes('main.tex'))
         assert.ok(suggestions.labels.includes('sub/'))
 
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 17, 8)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 17, 8)
         assert.ok(!suggestions.labels.includes('main.tex'))
 
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 18, 11)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 18, 11)
         assert.ok(!suggestions.labels.includes('main.tex'))
         assert.ok(suggestions.labels.includes('sub/'))
 
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 18, 17)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 18, 17)
         assert.ok(suggestions.labels.includes('s.tex'))
         assert.ok(suggestions.labels.includes('plain.tex'))
         assert.ok(!suggestions.labels.includes('sub/'))
     })
 
-    test.run(suiteName, fixtureName, 'citation intellisense and configs intellisense.citation.*', async () => {
+    test.only(suiteName, fixtureName, 'citation intellisense and configs intellisense.citation.*', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
-        let suggestions = await getSuggestions(fixture, [
+        let suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/citation.tex', dst: 'main.tex'},
             {src: 'base.bib', dst: 'main.bib'}
         ], 2, 9)
@@ -396,17 +370,17 @@ suite('Intellisense test suite', () => {
         assert.ok(!suggestions.items[0].filterText.includes('hintFake'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'title')
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 2, 9)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 2, 9)
         assert.strictEqual(suggestions.items.length, 3)
         assert.strictEqual(suggestions.items[0].label, 'A fake article')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'authors')
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 2, 9)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 2, 9)
         assert.strictEqual(suggestions.items.length, 3)
         assert.strictEqual(suggestions.items[0].label, 'Davis, J. and Jones, M.')
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.format', ['title', 'year', 'description', 'nonexisting'])
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 2, 9)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 2, 9)
         assert.strictEqual(suggestions.items.length, 3)
         assert.ok(suggestions.items[0].filterText)
         assert.ok(!suggestions.items[0].filterText.includes('Journal of CI tests'))
@@ -414,7 +388,7 @@ suite('Intellisense test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'glossary intellisense', async () => {
-        const suggestions = await getSuggestions(fixture, [
+        const suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/glossary.tex', dst: 'main.tex'},
             {src: 'intellisense/glossaryentries.tex', dst: 'sub/glossary.tex'}
         ], 5, 5)
@@ -431,7 +405,7 @@ suite('Intellisense test suite', () => {
     test.run(suiteName, fixtureName, '@-snippet intellisense and configs intellisense.atSuggestion*', async () => {
         const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.user', replaces)
-        let suggestions = await getSuggestions(fixture, [
+        let suggestions = await test.getSuggestions(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ], 5, 1, true)
@@ -441,7 +415,7 @@ suite('Intellisense test suite', () => {
         assert.ok(undefined === suggestions.items.find(item => item.label === '@8'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', '#')
-        suggestions = getSuggestionsAt(path.resolve(fixture, 'main.tex'), 6, 1, true)
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'main.tex'), 6, 1, true)
         assert.ok(suggestions.items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\sum'))
         assert.ok(suggestions.items.find(item => item.label === '#ve' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\varepsilon'))
         assert.ok(undefined === suggestions.items.find(item => item.label === '@+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))

@@ -205,41 +205,26 @@ suite('Multi-root workspace test suite', () => {
 
     test.run(suiteName, fixtureName, 'switching intellisense', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
-        test.write(fixture, 'A/main.tex', '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{A.bib}', '\\end{document}')
-        test.write(fixture, 'B/main.tex', '\\documentclass{article}', '\\begin{document}', 'abc\\cite{}', '\\bibliography{B.bib}', '\\end{document}')
-        await test.load(fixture, [
-            {src: 'base.bib', dst: 'A/A.bib'},
-            {src: 'base.bib', dst: 'B/B.bib'}
-        ])
-        await lw.completer.citation.parseBibFile(path.resolve(fixture, 'A/A.bib'))
-        await lw.completer.citation.parseBibFile(path.resolve(fixture, 'B/B.bib'))
+        await test.getSuggestions(fixture, [
+            {src: 'intellisense/citation.tex', dst: 'A/main.tex'},
+            {src: 'base.bib', dst: 'A/main.bib'}
+        ], 2, 9)
+        await test.getSuggestions(fixture, [
+            {src: 'intellisense/citation.tex', dst: 'B/main.tex'},
+            {src: 'base.bib', dst: 'B/main.bib'}
+        ], 2, 9)
+        const workspaceA = vscode.workspace.getWorkspaceFolder(vscode.Uri.file(path.resolve(fixture, 'A/main.tex')))
+        await vscode.workspace.getConfiguration('latex-workshop', workspaceA).update('intellisense.citation.label', 'title', vscode.ConfigurationTarget.WorkspaceFolder)
 
-        const resultA = await test.open(fixture, 'A/main.tex')
+        let suggestions = test.getSuggestionsAt(path.resolve(fixture, 'A/main.tex'), 2, 9)
+        assert.strictEqual(suggestions.items.length, 3)
+        assert.strictEqual(suggestions.items[0].label, 'A fake article')
+        assert.ok(suggestions.items[0].filterText)
+        assert.ok(suggestions.items[0].filterText.includes('Journal of CI tests'))
+        assert.ok(!suggestions.items[0].filterText.includes('hintFake'))
 
-        const uri = vscode.window.activeTextEditor?.document.uri
-        assert.ok(uri)
-        const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri)
-        await vscode.workspace.getConfiguration('latex-workshop', workspaceFolder).update('intellisense.citation.label', 'title', vscode.ConfigurationTarget.WorkspaceFolder)
-
-        const itemsA = test.suggest(resultA.doc, new vscode.Position(2, 9))
-        assert.ok(itemsA)
-        assert.strictEqual(itemsA.length, 3)
-        assert.strictEqual(itemsA[0].label, 'A fake article')
-        assert.ok(itemsA[0].filterText)
-        assert.ok(itemsA[0].filterText.includes('Journal of CI tests'))
-        assert.ok(!itemsA[0].filterText.includes('hintFake'))
-
-        const resultB = await test.open(fixture, 'B/main.tex')
-        const cache = lw.cacher.get(path.resolve(fixture, 'B/main.tex'))
-        if (cache) {
-            cache.bibfiles = new Set([path.resolve(fixture, 'B/B.bib')])
-        } else {
-            return
-        }
-
-        const itemsB = test.suggest(resultB.doc, new vscode.Position(2, 9))
-        assert.ok(itemsB)
-        assert.strictEqual(itemsB.length, 3)
-        assert.strictEqual(itemsB[0].label, 'art1')
+        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'B/main.tex'), 2, 9)
+        assert.strictEqual(suggestions.items.length, 3)
+        assert.strictEqual(suggestions.items[0].label, 'art1')
     })
 })

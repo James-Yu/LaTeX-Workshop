@@ -98,6 +98,7 @@ export class Citation implements IProvider {
             switch(label) {
                 case 'bibtex key':
                 default:
+                    item.label = item.key
                     break
                 case 'title':
                     if (item.fields.title) {

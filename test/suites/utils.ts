@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as glob from 'glob'
 import * as os from 'os'
-import { ok, strictEqual } from 'assert'
+import {ok, strictEqual} from 'assert'
 import * as lw from '../../src/lw'
 import { BuildDone, FileParsed, FileWatched, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
 import type { EventName } from '../../src/components/eventbus'
@@ -127,15 +127,29 @@ export async function wait(event: EventName, arg?: any) {
     })
 }
 
-export function suggest(doc: vscode.TextDocument, pos: vscode.Position, atSuggestion = false) {
-    logger.log('Getting suggestion.')
-    const completer = atSuggestion ? lw.atSuggestionCompleter : lw.completer
-    return completer.provide({
-        uri: doc.uri,
-        langId: 'latex',
-        line: doc.lineAt(pos.line).text,
-        position: pos
+export async function getSuggestions(fixture: string, files: {src: string, dst: string}[], row: number, col: number, isAtSuggestion = false): Promise<{items: vscode.CompletionItem[], labels: string[]}> {
+    files.forEach(file => {
+        fs.mkdirSync(path.resolve(fixture, path.dirname(file.dst)), {recursive: true})
+        fs.copyFileSync(path.resolve(fixture, '../armory', file.src), path.resolve(fixture, file.dst))
     })
+    lw.manager.rootFile = path.resolve(fixture, files[0].dst)
+    const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cacher.refreshCache(path.resolve(fixture, file.dst), lw.manager.rootFile))
+    const bibPromise = files.filter(file => file.dst.endsWith('.bib')).map(file => lw.completer.citation.parseBibFile(path.resolve(fixture, file.dst)))
+    await Promise.all([...texPromise, ...bibPromise])
+    return getSuggestionsAt(lw.manager.rootFile, row, col, isAtSuggestion)
+}
+
+export function getSuggestionsAt(openPath: string, row: number, col: number, isAtSuggestion = false): {items: vscode.CompletionItem[], labels: string[]} {
+    const lines = lw.cacher.get(openPath)?.content?.split('\n')
+    ok(lines)
+    const items = (isAtSuggestion ? lw.atSuggestionCompleter : lw.completer).provide({
+        uri: vscode.Uri.file(openPath),
+        langId: 'latex',
+        line: lines[row],
+        position: new vscode.Position(row, col)
+    })
+    ok(items)
+    return {items, labels: items.map(item => item.label.toString())}
 }
 
 export const assert = {
