@@ -97,6 +97,7 @@ export async function load(fixture: string, files: {src: string, dst: string}[])
         fs.copyFileSync(path.resolve(fixture, '../armory', file.src), path.resolve(fixture, file.dst))
     }
     await sleep(250)
+    return {cached: Promise.all(files.map(file => wait(FileParsed, path.resolve(fixture, file.dst))))}
 }
 
 export async function open(fixture: string, fileName: string, doCache = true) {

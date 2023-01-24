@@ -91,11 +91,11 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             if (updateCompleter) {
                 clearTimeout(updateCompleter)
             }
-            updateCompleter = setTimeout(async () => {
+            updateCompleter = setTimeout(() => {
                 const file = e.document.uri.fsPath
-                // await lw.manager.parseFileAndSubs(file, lw.manager.rootFile)
-                await lw.cacher.refreshCache(file, lw.manager.rootFile)
-                await lw.cacher.loadFlsFile(lw.manager.rootFile ? lw.manager.rootFile : file)
+                void lw.cacher.refreshCache(file, lw.manager.rootFile).then(async () => {
+                    await lw.cacher.loadFlsFile(lw.manager.rootFile || file)
+                })
             }, configuration.get('intellisense.update.delay', 1000))
         }
     }))

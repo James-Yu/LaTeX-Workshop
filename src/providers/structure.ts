@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import { latexParser,bibtexParser } from 'latex-utensils'
 import * as lw from '../lw'
-import { resolveFile, stripText } from '../utils/utils'
+import { resolveFile } from '../utils/utils'
 import { InputFileRegExp } from '../utils/inputfilepath'
 
 import { getLogger } from '../components/logger'
@@ -149,24 +149,28 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
         filesBuilt.add(file)
 
+        let waited = 0
+        while (!lw.cacher.promise(file) && !lw.cacher.has(file)) {
+            // Just open vscode, has not cached, wait for a bit?
+            await new Promise(resolve => setTimeout(resolve, 100))
+            waited++
+            if (waited >= 20) {
+                // Waited for two seconds before starting cache. Really?
+                logger.log(`Error loading cache during structuring: ${file} .`)
+                return []
+            }
+        }
+        await lw.cacher.promise(file)
+
         const content = lw.cacher.get(file)?.content
         if (!content) {
-            logger.log(`Error loading LaTeX during structuring: ${file} .`)
+            logger.log(`Error loading content during structuring: ${file} .`)
             return []
         }
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const fastparse = configuration.get('view.outline.fastparse.enabled') as boolean
-
-        // Use `latex-utensils` to generate the AST.
-        const ast = await UtensilsParser.parseLatex(fastparse ? stripText(content) : content).catch((e) => {
-            if (latexParser.isSyntaxError(e)) {
-                const line = e.location.start.line
-                logger.log(`Error parsing LaTeX during structuring: line ${line} in ${file} .`)
-            }
-            return
-        })
+        const ast = lw.cacher.get(file)?.ast
         if (!ast) {
+            logger.log(`Error loading AST during structuring: ${file} .`)
             return []
         }
 

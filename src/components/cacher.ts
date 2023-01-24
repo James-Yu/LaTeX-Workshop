@@ -49,7 +49,9 @@ export interface Cache {
     bibfiles: Set<string>,
     /** A dictionary of external documents provided by `\externaldocument` of
      * `xr` package. The value is its prefix `\externaldocument[prefix]{*}` */
-    external: {[filePath: string]: string}
+    external: {[filePath: string]: string},
+    /** The AST of this file */
+    ast?: latexParser.LatexAst
 }
 
 export class Cacher {
@@ -57,6 +59,8 @@ export class Cacher {
     private readonly watcher: Watcher = new Watcher(this)
     private readonly pdfWatcher: PdfWatcher = new PdfWatcher()
     private readonly bibWatcher: BibWatcher = new BibWatcher()
+    private caching = 0
+    private promises: {[filePath: string]: Promise<void>} = {}
 
     add(filePath: string) {
         if (CacherUtils.isExcluded(filePath)) {
@@ -83,6 +87,10 @@ export class Cacher {
 
     get(filePath: string): Cache | undefined {
         return this.caches[filePath]
+    }
+
+    promise(filePath: string): Promise<void> | undefined {
+        return this.promises[filePath]
     }
 
     get allPaths() {
@@ -112,6 +120,7 @@ export class Cacher {
             return
         }
         logger.log(`Caching ${filePath} .`)
+        this.caching++
         const content = lw.lwfs.readFileSyncGracefully(filePath)
         this.caches[filePath] = {content, elements: {}, children: [], bibfiles: new Set(), external: {}}
         if (content === undefined) {
@@ -121,11 +130,38 @@ export class Cacher {
         const contentTrimmed = utils.stripCommentsAndVerbatim(content)
         rootPath = rootPath || lw.manager.rootFile
         this.updateChildren(filePath, rootPath, contentTrimmed)
-        await this.updateElements(filePath, content, contentTrimmed)
-        await this.updateBibfiles(filePath, contentTrimmed)
-        logger.log(`Cached ${filePath} .`)
-        void lw.structureViewer.computeTreeStructure()
-        lw.eventBus.fire(eventbus.FileParsed, filePath)
+
+        this.promises[filePath] = this.updateAST(filePath, content).then(() => {
+            this.updateElements(filePath, content, contentTrimmed)
+            this.updateBibfiles(filePath, contentTrimmed)
+        }).finally(() => {
+            logger.log(`Cached ${filePath} .`)
+            this.caching--
+            delete this.promises[filePath]
+            lw.eventBus.fire(eventbus.FileParsed, filePath)
+
+            if (this.caching === 0) {
+                void lw.structureViewer.computeTreeStructure()
+            }
+        })
+
+        return this.promises[filePath]
+    }
+
+    private async updateAST(filePath: string, content: string) {
+        // const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        // const fastparse = configuration.get('view.outline.fastparse.enabled') as boolean
+        const ast = await UtensilsParser.parseLatex(/**fastparse ? utils.stripText(content) : */content).catch((e) => {
+            if (latexParser.isSyntaxError(e)) {
+                const line = e.location.start.line
+                logger.log(`Error parsing AST of ${filePath} at line ${line}.`)
+            }
+            return
+        })
+        const cache = this.get(filePath)
+        if (ast && cache) {
+            cache.ast = ast
+        }
     }
 
     private updateChildren(filePath: string, rootPath: string | undefined, contentTrimmed: string) {
@@ -189,23 +225,18 @@ export class Cacher {
         }
     }
 
-    private async updateElements(filePath: string, content: string, contentTrimmed: string) {
+    private updateElements(filePath: string, content: string, contentTrimmed: string) {
         lw.completer.citation.update(filePath, content)
-        const languageId: string | undefined = vscode.window.activeTextEditor?.document.languageId
-        let latexAst: latexParser.AstRoot | latexParser.AstPreamble | undefined = undefined
-        if (!languageId || languageId !== 'latex-expl3') {
-            latexAst = await UtensilsParser.parseLatex(content)
-        }
-
-        if (latexAst) {
-            const nodes = latexAst.content
+        const cache = this.get(filePath)
+        if (cache?.ast) {
+            const nodes = cache.ast.content
             const lines = content.split('\n')
             lw.completer.reference.update(filePath, nodes, lines)
             lw.completer.glossary.update(filePath, nodes)
             lw.completer.environment.update(filePath, nodes, lines)
             lw.completer.command.update(filePath, nodes)
         } else {
-            logger.log(`Cannot parse AST, use RegExp on ${filePath} .`)
+            logger.log(`Use RegExp to update elements of ${filePath} .`)
             lw.completer.reference.update(filePath, undefined, undefined, contentTrimmed)
             lw.completer.glossary.update(filePath, undefined, contentTrimmed)
             lw.completer.environment.update(filePath, undefined, undefined, contentTrimmed)
@@ -215,7 +246,7 @@ export class Cacher {
         logger.log(`Updated elements of ${filePath} .`)
     }
 
-    private async updateBibfiles(filePath: string, contentTrimmed: string) {
+    private updateBibfiles(filePath: string, contentTrimmed: string) {
         const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(.+?)}|(?:\\putbib)\[(.+?)\]/g
         while (true) {
             const result = bibReg.exec(contentTrimmed)
@@ -232,7 +263,7 @@ export class Cacher {
                 }
                 this.caches[filePath].bibfiles.add(bibPath)
                 logger.log(`Bib ${bibPath} from ${filePath} .`)
-                await this.bibWatcher.watchBibFile(bibPath)
+                this.bibWatcher.watchBibFile(bibPath)
             }
         }
         logger.log(`Updated bibs of ${filePath} .`)
@@ -274,6 +305,7 @@ export class Cacher {
             }
             if (path.extname(inputFile) === '.tex') {
                 if (!this.has(filePath)) {
+                    logger.log(`Cache not finished on ${filePath} when parsing fls.`)
                     await this.refreshCache(filePath)
                 }
                 // Parse tex files as imported subfiles.
@@ -282,8 +314,8 @@ export class Cacher {
                     filePath: inputFile
                 })
                 this.add(inputFile)
-                logger.log(`Found ${inputFile} from .fls ${flsPath} .`)
-                await this.refreshCache(inputFile, filePath)
+                logger.log(`Found ${inputFile} from .fls ${flsPath} , caching.`)
+                void this.refreshCache(inputFile, filePath)
             } else if (!this.watched(inputFile)) {
                 // Watch non-tex files.
                 this.add(inputFile)
@@ -293,14 +325,14 @@ export class Cacher {
         for (const outputFile of ioFiles.output) {
             if (path.extname(outputFile) === '.aux' && fs.existsSync(outputFile)) {
                 logger.log(`Found .aux ${filePath} from .fls ${flsPath} , parsing.`)
-                await this.parseAuxFile(outputFile, path.dirname(outputFile).replace(outDir, rootDir))
+                this.parseAuxFile(outputFile, path.dirname(outputFile).replace(outDir, rootDir))
                 logger.log(`Parsed .aux ${filePath} .`)
             }
         }
         logger.log(`Parsed .fls ${flsPath} .`)
     }
 
-    private async parseAuxFile(filePath: string, srcDir: string) {
+    private parseAuxFile(filePath: string, srcDir: string) {
         const content = fs.readFileSync(filePath).toString()
         const regex = /^\\bibdata{(.*)}$/gm
         while (true) {
@@ -321,7 +353,7 @@ export class Cacher {
                     this.get(rootFile)?.bibfiles.add(bibPath)
                     logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
                 }
-                await this.bibWatcher.watchBibFile(bibPath)
+                this.bibWatcher.watchBibFile(bibPath)
             }
         }
     }
@@ -404,22 +436,23 @@ export class Cacher {
     /**
      * Return the list of files (recursively) included in `file`
      *
-     * @param file The file in which children are recursively computed
-     * @param baseFile The file currently considered as the rootFile
+     * @param filePath The file in which children are recursively computed
+     * @param basePath The file currently considered as the rootFile
      * @param children The list of already computed children
      */
-    async getTeXChildren(file: string, baseFile: string, children: string[]) {
-        if (!this.has(file)) {
-            await this.refreshCache(file, baseFile)
+    async getTeXChildren(filePath: string, basePath: string, children: string[]) {
+        if (!this.has(filePath)) {
+            logger.log(`Cache not finished on ${filePath} when getting its children.`)
+            await this.refreshCache(filePath, basePath)
         }
 
-        this.get(file)?.children.forEach(async child => {
+        this.get(filePath)?.children.forEach(async child => {
             if (children.includes(child.filePath)) {
                 // Already included
                 return
             }
             children.push(child.filePath)
-            await this.getTeXChildren(child.filePath, baseFile, children)
+            await this.getTeXChildren(child.filePath, basePath, children)
         })
         return children
     }

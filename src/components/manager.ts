@@ -249,17 +249,18 @@ export class Manager {
                 this.rootFile = rootFile
                 this.rootFileLanguageId = this.inferLanguageId(rootFile)
                 logger.log(`Root file languageId: ${this.rootFileLanguageId}`)
+                lw.eventBus.fire(eventbus.RootFileChanged, rootFile)
+
                 // We also clean the completions from the old project
                 lw.completer.input.reset()
                 lw.duplicateLabels.reset()
                 await lw.cacher.resetWatcher()
-                lw.cacher.add(this.rootFile)
-                await lw.cacher.refreshCache(this.rootFile)
-                // We need to parse the fls to discover file dependencies when defined by TeX macro
-                // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
-                await lw.cacher.loadFlsFile(this.rootFile)
-                void lw.structureViewer.computeTreeStructure()
-                lw.eventBus.fire(eventbus.RootFileChanged, rootFile)
+                lw.cacher.add(rootFile)
+                void lw.cacher.refreshCache(rootFile).then(async () => {
+                    // We need to parse the fls to discover file dependencies when defined by TeX macro
+                    // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
+                    await lw.cacher.loadFlsFile(rootFile)
+                })
             } else {
                 logger.log(`Keep using the same root file: ${this.rootFile}`)
                 void lw.structureViewer.refreshView()

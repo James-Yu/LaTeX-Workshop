@@ -218,10 +218,15 @@ export class Command implements IProvider {
         if (cache === undefined) {
             return
         }
+        const cmdInPkg: CmdEnvSuggestion[] = []
+        const packages = lw.completer.package.getPackagesIncluded('latex-expl3')
+        Object.entries(packages).forEach(([packageName, options]) => {
+            this.provideCmdInPkg(packageName, options, cmdInPkg, new CommandSignatureDuplicationDetector())
+        })
         if (nodes !== undefined) {
-            cache.elements.command = CommandFinder.getCmdFromNodeArray(file, nodes, new CommandSignatureDuplicationDetector())
+            cache.elements.command = CommandFinder.getCmdFromNodeArray(file, nodes, cmdInPkg, new CommandSignatureDuplicationDetector())
         } else if (content !== undefined) {
-            cache.elements.command = CommandFinder.getCmdFromContent(file, content)
+            cache.elements.command = CommandFinder.getCmdFromContent(file, content, cmdInPkg)
         }
     }
 
