@@ -127,23 +127,30 @@ export async function wait(event: EventName, arg?: any) {
     })
 }
 
-export async function getSuggestions(fixture: string, files: {src: string, dst: string}[], row: number, col: number, isAtSuggestion = false): Promise<{items: vscode.CompletionItem[], labels: string[]}> {
+export async function loadAndCache(fixture: string, files: {src: string, dst: string}[], root: number = 0) {
     files.forEach(file => {
         fs.mkdirSync(path.resolve(fixture, path.dirname(file.dst)), {recursive: true})
         fs.copyFileSync(path.resolve(fixture, '../armory', file.src), path.resolve(fixture, file.dst))
     })
-    lw.manager.rootFile = path.resolve(fixture, files[0].dst)
+    if (root > -1) {
+        lw.manager.rootFile = path.resolve(fixture, files[root].dst)
+    }
     const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cacher.refreshCache(path.resolve(fixture, file.dst), lw.manager.rootFile))
     const bibPromise = files.filter(file => file.dst.endsWith('.bib')).map(file => lw.completer.citation.parseBibFile(path.resolve(fixture, file.dst)))
     await Promise.all([...texPromise, ...bibPromise])
-    return getSuggestionsAt(lw.manager.rootFile, row, col, isAtSuggestion)
 }
 
-export function getSuggestionsAt(openPath: string, row: number, col: number, isAtSuggestion = false): {items: vscode.CompletionItem[], labels: string[]} {
-    const lines = lw.cacher.get(openPath)?.content?.split('\n')
+export async function getSuggestions(fixture: string, files: {src: string, dst: string}[], row: number, col: number, isAtSuggestion = false): Promise<{items: vscode.CompletionItem[], labels: string[]}> {
+    await loadAndCache(fixture, files, 0)
+    return suggest(row, col, isAtSuggestion)
+}
+
+export function suggest(row: number, col: number, isAtSuggestion = false, openFile?: string): {items: vscode.CompletionItem[], labels: string[]} {
+    ok(lw.manager.rootFile)
+    const lines = lw.cacher.get(openFile ?? lw.manager.rootFile)?.content?.split('\n')
     ok(lines)
     const items = (isAtSuggestion ? lw.atSuggestionCompleter : lw.completer).provide({
-        uri: vscode.Uri.file(openPath),
+        uri: vscode.Uri.file(openFile ?? lw.manager.rootFile),
         langId: 'latex',
         line: lines[row],
         position: new vscode.Position(row, col)

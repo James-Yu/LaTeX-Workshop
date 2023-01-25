@@ -205,25 +205,25 @@ suite('Multi-root workspace test suite', () => {
 
     test.run(suiteName, fixtureName, 'switching intellisense', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
-        await test.getSuggestions(fixture, [
+        await test.loadAndCache(fixture, [
             {src: 'intellisense/citation.tex', dst: 'A/main.tex'},
             {src: 'base.bib', dst: 'A/main.bib'}
-        ], 2, 9)
-        await test.getSuggestions(fixture, [
+        ])
+        await test.loadAndCache(fixture, [
             {src: 'intellisense/citation.tex', dst: 'B/main.tex'},
             {src: 'base.bib', dst: 'B/main.bib'}
-        ], 2, 9)
+        ])
         const workspaceA = vscode.workspace.getWorkspaceFolder(vscode.Uri.file(path.resolve(fixture, 'A/main.tex')))
         await vscode.workspace.getConfiguration('latex-workshop', workspaceA).update('intellisense.citation.label', 'title', vscode.ConfigurationTarget.WorkspaceFolder)
 
-        let suggestions = test.getSuggestionsAt(path.resolve(fixture, 'A/main.tex'), 2, 9)
+        let suggestions = test.suggest(2, 9, false, path.resolve(fixture, 'A/main.tex'))
         assert.strictEqual(suggestions.items.length, 3)
         assert.strictEqual(suggestions.items[0].label, 'A fake article')
         assert.ok(suggestions.items[0].filterText)
         assert.ok(suggestions.items[0].filterText.includes('Journal of CI tests'))
         assert.ok(!suggestions.items[0].filterText.includes('hintFake'))
 
-        suggestions = test.getSuggestionsAt(path.resolve(fixture, 'B/main.tex'), 2, 9)
+        suggestions = test.suggest(2, 9, false, path.resolve(fixture, 'B/main.tex'))
         assert.strictEqual(suggestions.items.length, 3)
         assert.strictEqual(suggestions.items[0].label, 'art1')
     })
