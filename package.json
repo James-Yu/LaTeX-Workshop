@@ -832,8 +832,7 @@
             {
               "name": "Compile Rnw files",
               "tools": [
-                "rnw2tex",
-                "latexmk"
+                "rnw2tex"
               ]
             },
             {
@@ -965,7 +964,7 @@
               "command": "Rscript",
               "args": [
                 "-e",
-                "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
+                "setwd('%OUTDIR%'); knitr::opts_knit$set(concordance=TRUE); patchDVI::knitPDF('%DOC_EXT%')"
               ],
               "env": {}
             },
