@@ -60,7 +60,7 @@ export function sleep(ms: number) {
 export async function reset(fixture: string) {
     await vscode.commands.executeCommand('workbench.action.closeAllEditors')
     await Promise.all(lw.cacher.allPromises)
-    glob.sync('**/**.tex', { cwd: fixture }).forEach(file => fs.unlinkSync(path.resolve(fixture, file)))
+    glob.sync('**/{**.tex,**.pdf}', { cwd: fixture }).forEach(file => fs.unlinkSync(path.resolve(fixture, file)))
     lw.manager.rootFile = undefined
     lw.manager.localRootFile = undefined
     lw.completer.input.reset()

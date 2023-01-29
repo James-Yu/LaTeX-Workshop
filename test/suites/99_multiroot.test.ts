@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
+import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
 import * as test from './utils'
 
@@ -21,6 +22,11 @@ suite('Multi-root workspace test suite', () => {
 
     teardown(async () => {
         await test.reset(fixture)
+
+        if (path.basename(fixture) === 'testground') {
+            rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
+            await test.sleep(500) // Required for pooling
+        }
 
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', undefined)
