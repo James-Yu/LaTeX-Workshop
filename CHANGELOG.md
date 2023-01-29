@@ -1,5 +1,20 @@
 # Change Log
 
+## [9.6.0] - 2023-01-29
+
+### Added
+- Support PDF viewer in code server.
+
+### Fixed
+- (#3662) Use `path.resolve` to find pkg json file
+
+### Internal
+- Reduce complexity of command finder.
+  - `whichPackageProvidesCommand` is simplified by using a universal cmd suggestion array.
+  - `commandSignatureDuplicationDetector` check is advanced.
+- Expand cacher to cache AST of files, notable reducing the parsing times.
+- Update grammar files to `jlelong/vscode-latex-basics@16ac438`.
+
 ## [9.5.0] - 2023-01-23
 
 ### Added
