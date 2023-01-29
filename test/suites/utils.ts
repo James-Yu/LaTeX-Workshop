@@ -31,7 +31,7 @@ export function run(suiteName: string, fixtureName: string, testName: string, cb
     if (path.basename(fixture) !== fixtureName) {
         return
     }
-    if (process.env['LATEXWORKSHOP_SUITE'] && !process.env['LATEXWORKSHOP_SUITE'].split(',').includes(suiteName)) {
+    if (process.env['LATEXWORKSHOP_SUITE'] && !process.env['LATEXWORKSHOP_SUITE'].split(',').find(suite => suiteName.includes(suite))) {
         return
     }
     if (platforms && !platforms.includes(os.platform())) {
@@ -55,6 +55,18 @@ export function run(suiteName: string, fixtureName: string, testName: string, cb
 
 export function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+export async function reset(fixture: string) {
+    await vscode.commands.executeCommand('workbench.action.closeAllEditors')
+    await Promise.all(lw.cacher.allPromises)
+    glob.sync('**/**.tex', { cwd: fixture }).forEach(file => fs.unlinkSync(path.resolve(fixture, file)))
+    lw.manager.rootFile = undefined
+    lw.manager.localRootFile = undefined
+    lw.completer.input.reset()
+    lw.duplicateLabels.reset()
+    lw.cacher.allPaths.forEach(filePath => lw.cacher.remove(filePath))
+    await lw.cacher.resetWatcher()
 }
 
 function log(fixtureName: string, testName: string, counter: string) {
@@ -127,28 +139,42 @@ export async function wait(event: EventName, arg?: any) {
     })
 }
 
-export async function loadAndCache(fixture: string, files: {src: string, dst: string}[], root: number = 0) {
+export async function loadAndCache(fixture: string, files: {src: string, dst: string}[], config: {root?: number, local?: number, skipCache?: boolean} = {}) {
+    config.root = config.root ?? 0
+    config.local = config.root ?? -1
+    config.skipCache = config.skipCache ?? false
     files.forEach(file => {
         fs.mkdirSync(path.resolve(fixture, path.dirname(file.dst)), {recursive: true})
         fs.copyFileSync(path.resolve(fixture, '../armory', file.src), path.resolve(fixture, file.dst))
     })
-    if (root > -1) {
-        lw.manager.rootFile = path.resolve(fixture, files[root].dst)
+    if (config.root > -1) {
+        lw.manager.rootFile = path.resolve(fixture, files[config.root].dst)
+    }
+    if (config.local > -1) {
+        lw.manager.localRootFile = path.resolve(fixture, files[config.local].dst)
+    }
+    if (config.skipCache) {
+        return
     }
     const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cacher.refreshCache(path.resolve(fixture, file.dst), lw.manager.rootFile))
     const bibPromise = files.filter(file => file.dst.endsWith('.bib')).map(file => lw.completer.citation.parseBibFile(path.resolve(fixture, file.dst)))
     await Promise.all([...texPromise, ...bibPromise])
 }
 
-export async function getSuggestions(fixture: string, files: {src: string, dst: string}[], row: number, col: number, isAtSuggestion = false): Promise<{items: vscode.CompletionItem[], labels: string[]}> {
-    await loadAndCache(fixture, files, 0)
-    return suggest(row, col, isAtSuggestion)
+export async function openAndRoot(fixture: string, openFile: string) {
+    logger.log(`Open ${openFile} .`)
+    const doc = await vscode.workspace.openTextDocument(path.join(fixture, openFile))
+    await vscode.window.showTextDocument(doc)
+    logger.log('Search for root file.')
+    await lw.manager.findRoot()
+    return {root: lw.manager.rootFile, local: lw.manager.localRootFile}
 }
 
 export function suggest(row: number, col: number, isAtSuggestion = false, openFile?: string): {items: vscode.CompletionItem[], labels: string[]} {
     ok(lw.manager.rootFile)
     const lines = lw.cacher.get(openFile ?? lw.manager.rootFile)?.content?.split('\n')
     ok(lines)
+    logger.log('Get suggestion.')
     const items = (isAtSuggestion ? lw.atSuggestionCompleter : lw.completer).provide({
         uri: vscode.Uri.file(openFile ?? lw.manager.rootFile),
         langId: 'latex',
@@ -162,7 +188,6 @@ export function suggest(row: number, col: number, isAtSuggestion = false, openFi
 export const assert = {
     build: assertBuild,
     auto: assertAutoBuild,
-    root: assertRoot,
     viewer: assertViewer
 }
 
@@ -220,13 +245,6 @@ async function assertAutoBuild(fixture: string, texName: string, pdfName: string
         logger.log(`PDF produced: ${files.join(' , ') || 'nothing'} .`)
         strictEqual(files.map(file => path.resolve(fixture, file)).join(','), path.resolve(fixture, pdfName))
     }
-}
-
-async function assertRoot(fixture: string, openName: string, rootName: string) {
-    await vscode.commands.executeCommand('latex-workshop.activate')
-    const result = await open(fixture, openName)
-    logger.log('Asserting current root.')
-    strictEqual(result.root, path.join(fixture, rootName))
 }
 
 async function assertViewer(fixture: string, pdfName: string, action?: () => unknown) {

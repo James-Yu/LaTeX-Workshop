@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import rimraf from 'rimraf'
 import * as assert from 'assert'
 import * as lw from '../../src/lw'
 import * as test from './utils'
@@ -21,8 +20,7 @@ suite('Multi-root workspace test suite', () => {
     })
 
     teardown(async () => {
-        await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        lw.manager.rootFile = undefined
+        await test.reset(fixture)
 
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', undefined)
@@ -35,11 +33,49 @@ suite('Multi-root workspace test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.interval', undefined)
+    })
 
-        if (path.basename(fixture) === 'multiroot') {
-            rimraf(fixture + '/{A,B}/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
-            await test.sleep(500) // Required for pooling
-        }
+    test.run(suiteName, fixtureName, 'detect root with search.rootFiles.include', async () => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', ['alt/*.tex'])
+        await test.loadAndCache(fixture, [
+            {src: 'subfile_base.tex', dst: 'A/main.tex'},
+            {src: 'input_parentsub.tex', dst: 'A/alt/main.tex'},
+            {src: 'plain.tex', dst: 'A/sub/s.tex'}
+        ], {root: -1, skipCache: true})
+        await test.loadAndCache(fixture, [
+            {src: 'empty', dst: 'B/empty'}
+        ], {root: -1, skipCache: true})
+        const roots = await test.openAndRoot(fixture, 'A/sub/s.tex')
+        assert.strictEqual(roots.root, path.join(fixture, 'A/alt/main.tex'))
+    })
+
+    test.run(suiteName, fixtureName, 'detect root with search.rootFiles.exclude', async () => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', ['*.tex'])
+        await test.loadAndCache(fixture, [
+            {src: 'subfile_base.tex', dst: 'A/main.tex'},
+            {src: 'input_parentsub.tex', dst: 'A/alt/main.tex'},
+            {src: 'plain.tex', dst: 'A/sub/s.tex'}
+        ], {root: -1, skipCache: true})
+        await test.loadAndCache(fixture, [
+            {src: 'empty', dst: 'B/empty'}
+        ], {root: -1, skipCache: true})
+        const roots = await test.openAndRoot(fixture, 'A/sub/s.tex')
+        assert.strictEqual(roots.root, path.join(fixture, 'A/alt/main.tex'))
+    })
+
+    test.run(suiteName, fixtureName, 'switching rootFile', async () => {
+        await test.loadAndCache(fixture, [
+            {src: 'base.tex', dst: 'A/main.tex'},
+            {src: 'base.tex', dst: 'B/main.tex'}
+        ], {root: -1, skipCache: true})
+        let roots = await test.openAndRoot(fixture, 'A/main.tex')
+        assert.strictEqual(roots.root, path.join(fixture, 'A/main.tex'))
+        roots = await test.openAndRoot(fixture, 'B/main.tex')
+        assert.strictEqual(roots.root, path.join(fixture, 'B/main.tex'))
+        roots = await test.openAndRoot(fixture, 'A/main.tex')
+        assert.strictEqual(roots.root, path.join(fixture, 'A/main.tex'))
     })
 
     test.run(suiteName, fixtureName, 'basic build A', async () => {
@@ -97,34 +133,6 @@ suite('Multi-root workspace test suite', () => {
             {src: 'empty', dst: 'B/empty'}
         ])
         await test.assert.build(fixture, 'A/main.tex', 'A/main.pdf')
-    })
-
-    test.run(suiteName, fixtureName, 'detect root with search.rootFiles.include', async () => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', ['alt/*.tex'])
-        await test.load(fixture, [
-            {src: 'subfile_base.tex', dst: 'A/main.tex'},
-            {src: 'input_parentsub.tex', dst: 'A/alt/main.tex'},
-            {src: 'plain.tex', dst: 'A/sub/s.tex'}
-        ])
-        await test.load(fixture, [
-            {src: 'empty', dst: 'B/empty'}
-        ])
-        await test.assert.root(fixture, 'A/sub/s.tex', 'A/alt/main.tex')
-    })
-
-    test.run(suiteName, fixtureName, 'detect root with search.rootFiles.exclude', async () => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', ['*.tex'])
-        await test.load(fixture, [
-            {src: 'subfile_base.tex', dst: 'A/main.tex'},
-            {src: 'input_parentsub.tex', dst: 'A/alt/main.tex'},
-            {src: 'plain.tex', dst: 'A/sub/s.tex'}
-        ])
-        await test.load(fixture, [
-            {src: 'empty', dst: 'B/empty'}
-        ])
-        await test.assert.root(fixture, 'A/sub/s.tex', 'A/alt/main.tex')
     })
 
     test.run(suiteName, fixtureName, 'auto-detect subfile root and build A1', async () => {
@@ -193,14 +201,6 @@ suite('Multi-root workspace test suite', () => {
             {src: 'empty', dst: 'B/empty'}
         ])
         await test.assert.auto(fixture, 'A/sub/s.tex', 'A/sub/s.pdf', ['onSave'])
-    })
-
-    test.run(suiteName, fixtureName, 'switching rootFile', async () => {
-        await test.load(fixture, [{src: 'base.tex', dst: 'A/main.tex'},
-                               {src: 'base.tex', dst: 'B/main.tex'}])
-        await test.assert.root(fixture, 'A/main.tex', 'A/main.tex')
-        await test.assert.root(fixture, 'B/main.tex', 'B/main.tex')
-        await test.assert.root(fixture, 'A/main.tex', 'A/main.tex')
     })
 
     test.run(suiteName, fixtureName, 'switching intellisense', async () => {

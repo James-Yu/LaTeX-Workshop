@@ -93,6 +93,10 @@ export class Cacher {
         return this.promises[filePath]
     }
 
+    get allPromises() {
+        return Object.values(this.promises)
+    }
+
     get allPaths() {
         return Object.keys(this.caches)
     }

@@ -33,11 +33,7 @@ suite('Intellisense test suite', () => {
     })
 
     teardown(async () => {
-        lw.manager.rootFile = undefined
-        lw.completer.input.reset()
-        lw.duplicateLabels.reset()
-        lw.cacher.allPaths.forEach(filePath => lw.cacher.remove(filePath))
-        await lw.cacher.resetWatcher()
+        await test.reset(fixture)
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.user', undefined)
