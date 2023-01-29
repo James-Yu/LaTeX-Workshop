@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as assert from 'assert'
-import rimraf from 'rimraf'
 import glob from 'glob'
 import * as lw from '../../src/lw'
 import * as test from './utils'
@@ -24,12 +23,9 @@ suite('Intellisense test suite', () => {
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
-    suiteSetup(() => {
-        fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
-    })
-
-    setup(async () => {
+    suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
+        fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
     })
 
     teardown(async () => {
@@ -43,13 +39,6 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', undefined)
-    })
-
-    suiteTeardown(async () => {
-        if (path.basename(fixture) === 'testground') {
-            rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
-            await test.sleep(500) // Required for pooling
-        }
     })
 
     test.run(suiteName, fixtureName, 'check default environment .json completion file', () => {

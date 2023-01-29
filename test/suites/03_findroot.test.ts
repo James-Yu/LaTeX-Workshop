@@ -10,12 +10,9 @@ suite('Find root file test suite', () => {
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
-    suiteSetup(() => {
-        fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
-    })
-
-    setup(async () => {
+    suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
+        fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
     })
 
     teardown(async () => {

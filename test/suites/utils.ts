@@ -60,13 +60,13 @@ export function sleep(ms: number) {
 export async function reset(fixture: string) {
     await vscode.commands.executeCommand('workbench.action.closeAllEditors')
     await Promise.all(lw.cacher.allPromises)
-    glob.sync('**/{**.tex,**.pdf}', { cwd: fixture }).forEach(file => fs.unlinkSync(path.resolve(fixture, file)))
     lw.manager.rootFile = undefined
     lw.manager.localRootFile = undefined
     lw.completer.input.reset()
     lw.duplicateLabels.reset()
     lw.cacher.allPaths.forEach(filePath => lw.cacher.remove(filePath))
     await lw.cacher.resetWatcher()
+    glob.sync('**/{**.tex,**.pdf}', { cwd: fixture }).forEach(file => fs.unlinkSync(path.resolve(fixture, file)))
 }
 
 function log(fixtureName: string, testName: string, counter: string) {
@@ -144,18 +144,23 @@ export async function loadAndCache(fixture: string, files: {src: string, dst: st
     config.local = config.root ?? -1
     config.skipCache = config.skipCache ?? false
     files.forEach(file => {
+        logger.log(`Copy ${path.resolve(fixture, file.dst)} .`)
         fs.mkdirSync(path.resolve(fixture, path.dirname(file.dst)), {recursive: true})
         fs.copyFileSync(path.resolve(fixture, '../armory', file.src), path.resolve(fixture, file.dst))
     })
     if (config.root > -1) {
+        logger.log(`Set root to ${path.resolve(fixture, files[config.root].dst)} .`)
         lw.manager.rootFile = path.resolve(fixture, files[config.root].dst)
+        lw.manager.rootFileLanguageId = 'latex'
     }
     if (config.local > -1) {
+        logger.log(`Set local root to ${path.resolve(fixture, files[config.local].dst)} .`)
         lw.manager.localRootFile = path.resolve(fixture, files[config.local].dst)
     }
     if (config.skipCache) {
         return
     }
+    logger.log('Cache tex and bib.')
     const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cacher.refreshCache(path.resolve(fixture, file.dst), lw.manager.rootFile))
     const bibPromise = files.filter(file => file.dst.endsWith('.bib')).map(file => lw.completer.citation.parseBibFile(path.resolve(fixture, file.dst)))
     await Promise.all([...texPromise, ...bibPromise])
@@ -168,6 +173,14 @@ export async function openAndRoot(fixture: string, openFile: string) {
     logger.log('Search for root file.')
     await lw.manager.findRoot()
     return {root: lw.manager.rootFile, local: lw.manager.localRootFile}
+}
+
+export async function openAndBuild(fixture: string, openFile: string, action?: () => Promise<void>) {
+    logger.log(`Open ${openFile} .`)
+    const doc = await vscode.workspace.openTextDocument(path.join(fixture, openFile))
+    await vscode.window.showTextDocument(doc)
+    logger.log('Initiate a build.')
+    await (action ?? lw.commander.build)()
 }
 
 export function suggest(row: number, col: number, isAtSuggestion = false, openFile?: string): {items: vscode.CompletionItem[], labels: string[]} {
