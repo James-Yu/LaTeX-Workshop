@@ -283,7 +283,7 @@ export async function actions() {
  * Insert the snippet with name name.
  * @param name  the name of a snippet contained in latex.json
  */
-export async function insertSnippet(name: 'wrapEnv' | 'item') {
+export async function insertSnippet(name: 'wrapEnv' | 'item' | 'frac') {
     const editor = vscode.window.activeTextEditor
     if (!editor) {
         return
@@ -294,6 +294,9 @@ export async function insertSnippet(name: 'wrapEnv' | 'item') {
             return
         case 'item':
             await editor.insertSnippet(new vscode.SnippetString('\n\\item '))
+            return
+        case 'frac':
+            await editor.insertSnippet(new vscode.SnippetString('\\frac{${TM_SELECTED_TEXT}}{$1}$0'))
             return
         default:
             return

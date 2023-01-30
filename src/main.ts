@@ -159,6 +159,7 @@ function registerLatexWorkshopCommands() {
         vscode.commands.registerCommand('latex-workshop-dev.parsebib', () => lw.commander.devParseBib()),
 
         vscode.commands.registerCommand('latex-workshop.shortcut.item', () => lw.commander.insertSnippet('item')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.frac', () => lw.commander.insertSnippet('frac')),
         vscode.commands.registerCommand('latex-workshop.shortcut.emph', () => lw.commander.toggleSelectedKeyword('emph')),
         vscode.commands.registerCommand('latex-workshop.shortcut.textbf', () => lw.commander.toggleSelectedKeyword('textbf')),
         vscode.commands.registerCommand('latex-workshop.shortcut.textit', () => lw.commander.toggleSelectedKeyword('textit')),
