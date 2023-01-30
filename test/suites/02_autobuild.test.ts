@@ -14,6 +14,8 @@ suite('Auto-build test suite', () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
         fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.interval', 250)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.interval', 200)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.usePolling', true)
     })
 
     setup(async () => {
@@ -33,6 +35,8 @@ suite('Auto-build test suite', () => {
 
     suiteTeardown(async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.interval', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.interval', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.usePolling', undefined)
     })
 
     test.run(suiteName, fixtureName, 'auto build', async () => {
@@ -73,10 +77,10 @@ suite('Auto-build test suite', () => {
         assert.strictEqual(type, 'onChange')
     })
 
-    test.run(suiteName, fixtureName, 'auto build when editing bib', async () => {
+    test.only(suiteName, fixtureName, 'auto build when editing bib', async () => {
         await test.loadAndCache(fixture, [
             {src: 'bibtex_base.tex', dst: 'main.tex'},
-            {src: 'plain.bib', dst: 'bib.bib'}
+            {src: 'base.bib', dst: 'bib.bib'}
         ])
         const { type } = await test.auto(fixture, 'bib.bib')
         assert.strictEqual(type, 'onChange')

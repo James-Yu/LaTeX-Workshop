@@ -40,7 +40,7 @@ export class BibWatcher {
             useFsEvents: false,
             usePolling: configuration.get('latex.watch.usePolling') as boolean,
             interval: configuration.get('latex.watch.interval') as number,
-            binaryInterval: Math.max(configuration.get('latex.watch.interval') as number, 1000),
+            binaryInterval: Math.min(configuration.get('latex.watch.interval') as number, 1000),
             awaitWriteFinish: {stabilityThreshold: configuration.get('latex.watch.delay') as number}
         }
     }

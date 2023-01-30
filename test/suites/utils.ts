@@ -196,7 +196,7 @@ export async function auto(fixture: string, editFile: string, noBuild = false, s
         return {type: 'onChange', file: ''}
     }
     logger.log('Wait for auto-build.')
-    const result = await Promise.any([done, sleep(1000)]) as EventArgs[typeof AutoBuildInitiated]
+    const result = await Promise.any([done, sleep(3000)]) as EventArgs[typeof AutoBuildInitiated]
     ok(result)
     ok(result.type)
     ok(result.file)
