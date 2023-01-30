@@ -5,7 +5,7 @@ import * as glob from 'glob'
 import * as os from 'os'
 import {ok, strictEqual} from 'assert'
 import * as lw from '../../src/lw'
-import { AutoBuildInitiated, EventArgs, FileParsed, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
+import { AutoBuildInitiated, DocumentChanged, EventArgs, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
 import type { EventName } from '../../src/components/eventbus'
 import { getCachedLog, getLogger, resetCachedLog } from '../../src/components/logger'
 
@@ -85,57 +85,32 @@ function log(fixtureName: string, testName: string, counter: string) {
         vscode.window.activeTextEditor?.document.getText())
 }
 
-export async function load(fixture: string, files: {src: string, dst: string}[]) {
-    let unlinked = false
-    for (const file of files) {
-        if (fs.existsSync(path.resolve(fixture, file.dst))) {
-            logger.log(`Unlinking previous fixture file ${file.dst} .`)
-            fs.unlinkSync(path.resolve(fixture, file.dst))
-            unlinked = true
-        }
-    }
-    if (unlinked) {
-        await sleep(500)
-    }
-    for (const file of files) {
-        logger.log(`Loading fixture file ${file.src} to ${file.dst} .`)
-        fs.mkdirSync(path.resolve(fixture, path.dirname(file.dst)), {recursive: true})
-        fs.copyFileSync(path.resolve(fixture, '../armory', file.src), path.resolve(fixture, file.dst))
-    }
-    await sleep(250)
-    return {cached: Promise.all(files.map(file => wait(FileParsed, path.resolve(fixture, file.dst))))}
-}
-
-export async function open(fixture: string, fileName: string, doCache = true) {
-    logger.log(`Opening fixture file ${fileName} .`)
-    const texFilePath = vscode.Uri.file(path.join(fixture, fileName))
-    logger.log('Try to open a text document.')
-    const doc = await vscode.workspace.openTextDocument(texFilePath)
-    await vscode.window.showTextDocument(doc)
-    logger.log('Searching for root file.')
-    const root = await lw.manager.findRoot()
-    if (doCache) {
-        logger.log(`Caching ${fileName} .`)
-        await lw.cacher.refreshCache(path.resolve(fixture, fileName))
-    }
-    return {root, doc}
-}
-
-export async function wait<T extends keyof EventArgs>(event: T | EventName, arg?: EventArgs[T]) {
-    return new Promise<EventArgs[T] | undefined>((resolve, _) => {
-        const disposable = lw.eventBus.on(event, (eventArg: EventArgs[T] | undefined) => {
-            if (arg && (JSON.stringify(arg) !== JSON.stringify(eventArg))) {
-                return
+export async function wait<T extends keyof EventArgs>(event: T | EventName | ((lines: string[]) => boolean), arg?: EventArgs[T]) {
+    if (event instanceof Function) {
+        while (true) {
+            const lines = vscode.window.activeTextEditor?.document.getText().split('\n')
+            if (lines && event(lines)) {
+                return lines
             }
-            resolve(eventArg)
-            disposable?.dispose()
+            await sleep(100)
+        }
+    } else {
+        return new Promise<EventArgs[T] | undefined>((resolve, _) => {
+            const disposable = lw.eventBus.on(event, (eventArg: EventArgs[T] | undefined) => {
+                if (arg && (JSON.stringify(arg) !== JSON.stringify(eventArg))) {
+                    return
+                }
+                disposable?.dispose()
+                resolve(eventArg)
+            })
         })
-    })
+    }
 }
 
-export async function loadAndCache(fixture: string, files: {src: string, dst: string}[], config: {root?: number, local?: number, skipCache?: boolean} = {}) {
+export async function load(fixture: string, files: {src: string, dst: string}[], config: {root?: number, local?: number, open?: number, skipCache?: boolean} = {}) {
     config.root = config.root ?? 0
     config.local = config.root ?? -1
+    config.open = config.open ?? -1
     config.skipCache = config.skipCache ?? false
     files.forEach(file => {
         logger.log(`Copy ${path.resolve(fixture, file.dst)} .`)
@@ -151,14 +126,18 @@ export async function loadAndCache(fixture: string, files: {src: string, dst: st
         logger.log(`Set local root to ${path.resolve(fixture, files[config.local].dst)} .`)
         lw.manager.localRootFile = path.resolve(fixture, files[config.local].dst)
     }
-    if (config.skipCache) {
-        return
+    if (!config.skipCache) {
+        logger.log('Cache tex and bib.')
+        files.filter(file => file.dst.endsWith('.tex')).forEach(file => lw.cacher.add(path.resolve(fixture, file.dst)))
+        const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cacher.refreshCache(path.resolve(fixture, file.dst), lw.manager.rootFile))
+        const bibPromise = files.filter(file => file.dst.endsWith('.bib')).map(file => lw.completer.citation.parseBibFile(path.resolve(fixture, file.dst)))
+        await Promise.all([...texPromise, ...bibPromise])
     }
-    logger.log('Cache tex and bib.')
-    files.filter(file => file.dst.endsWith('.tex')).forEach(file => lw.cacher.add(path.resolve(fixture, file.dst)))
-    const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cacher.refreshCache(path.resolve(fixture, file.dst), lw.manager.rootFile))
-    const bibPromise = files.filter(file => file.dst.endsWith('.bib')).map(file => lw.completer.citation.parseBibFile(path.resolve(fixture, file.dst)))
-    await Promise.all([...texPromise, ...bibPromise])
+    if (config.open > -1) {
+        logger.log(`Open ${path.resolve(fixture, files[config.open].dst)} .`)
+        const doc = await vscode.workspace.openTextDocument(path.resolve(fixture, files[config.open].dst))
+        await vscode.window.showTextDocument(doc)
+    }
 }
 
 export async function find(fixture: string, openFile: string) {
@@ -234,4 +213,13 @@ export async function view(fixture: string, pdfName: string, postAction?: () => 
     const status = lw.viewer.getViewerState(vscode.Uri.file(pdfFilePath))[0]
     ok(status)
     strictEqual(status.pdfFileUri, vscode.Uri.file(path.resolve(fixture, pdfName)).toString(true))
+}
+
+export async function format() {
+    const promise = wait(DocumentChanged)
+    await vscode.commands.executeCommand('editor.action.formatDocument')
+    await promise
+    const formatted = vscode.window.activeTextEditor?.document.getText()
+    ok(formatted)
+    return formatted
 }

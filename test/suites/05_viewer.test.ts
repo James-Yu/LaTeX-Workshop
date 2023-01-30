@@ -26,7 +26,7 @@ suite('PDF viewer test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'basic build and view', async () => {
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
 
@@ -37,7 +37,7 @@ suite('PDF viewer test suite', () => {
     test.run(suiteName, fixtureName, 'build main.tex and view it', async () => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', false)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
@@ -49,7 +49,7 @@ suite('PDF viewer test suite', () => {
     test.run(suiteName, fixtureName, 'build a subfile and view it', async () => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', true)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
@@ -60,7 +60,7 @@ suite('PDF viewer test suite', () => {
 
     test.run(suiteName, fixtureName, 'build main.tex with QuickPick and view it', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
@@ -80,7 +80,7 @@ suite('PDF viewer test suite', () => {
 
     test.run(suiteName, fixtureName, 'build s.tex with QuickPick and view it', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
@@ -104,7 +104,7 @@ suite('PDF viewer test suite', () => {
 
     test.run(suiteName, fixtureName, 'build with outDir and view it', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
 

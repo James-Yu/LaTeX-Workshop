@@ -40,7 +40,7 @@ suite('Auto-build test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'auto build', async () => {
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ])
         const { type } = await test.auto(fixture, 'main.tex')
@@ -50,7 +50,7 @@ suite('Auto-build test suite', () => {
     test.run(suiteName, fixtureName, 'auto build with subfiles and onFileChange', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1})
@@ -59,7 +59,7 @@ suite('Auto-build test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'auto build with import and onFileChange', async () => {
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'import_base.tex', dst: 'main.tex'},
             {src: 'import_sub.tex', dst: 'sub/s.tex'},
             {src: 'plain.tex', dst: 'sub/subsub/sss/sss.tex'}
@@ -69,7 +69,7 @@ suite('Auto-build test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'auto build with input and onFileChange', async () => {
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
@@ -77,8 +77,8 @@ suite('Auto-build test suite', () => {
         assert.strictEqual(type, 'onChange')
     })
 
-    test.only(suiteName, fixtureName, 'auto build when editing bib', async () => {
-        await test.loadAndCache(fixture, [
+    test.run(suiteName, fixtureName, 'auto build when editing bib', async () => {
+        await test.load(fixture, [
             {src: 'bibtex_base.tex', dst: 'main.tex'},
             {src: 'base.bib', dst: 'bib.bib'}
         ])
@@ -87,7 +87,7 @@ suite('Auto-build test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'auto build with input whose path uses a macro', async () => {
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'input_macro.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
@@ -97,7 +97,7 @@ suite('Auto-build test suite', () => {
 
     test.run(suiteName, fixtureName, 'auto build with watch.files.ignore', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.files.ignore', ['**/s.tex'])
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
@@ -109,7 +109,7 @@ suite('Auto-build test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1})

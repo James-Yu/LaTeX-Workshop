@@ -31,7 +31,7 @@ suite('Build TeX files test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'basic build', async () => {
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await test.build(fixture, 'main.tex')
@@ -41,7 +41,7 @@ suite('Build TeX files test suite', () => {
     test.run(suiteName, fixtureName, 'same placeholders multiple times', async () => {
         const tools = [{name: 'latexmk', command: 'latexmk', args: ['-synctex=1', '-interaction=nonstopmode', '-file-line-error', '-pdf', '%DOC%', '%DOC%', '%DOC%']}]
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', tools)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await test.build(fixture, 'main.tex')
@@ -51,7 +51,7 @@ suite('Build TeX files test suite', () => {
     test.run(suiteName, fixtureName, 'auto-detect subfile root and build 1', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
@@ -62,7 +62,7 @@ suite('Build TeX files test suite', () => {
     test.run(suiteName, fixtureName, 'auto-detect subfile root and build 2', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
@@ -72,7 +72,7 @@ suite('Build TeX files test suite', () => {
 
     test.run(suiteName, fixtureName, 'build with outDir', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await test.build(fixture, 'main.tex')
@@ -80,7 +80,7 @@ suite('Build TeX files test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'basic build with spaces in names', async () => {
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'main space/main.tex'}
         ], {skipCache: true})
         await test.build(fixture, 'main space/main.tex')
@@ -89,7 +89,7 @@ suite('Build TeX files test suite', () => {
 
     test.run(suiteName, fixtureName, 'basic build with spaces in outdir', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', '%DIR%/out space')
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await test.build(fixture, 'main.tex')
@@ -99,7 +99,7 @@ suite('Build TeX files test suite', () => {
     test.run(suiteName, fixtureName, 'build with magic comment', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', [])
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'magic_program.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await test.build(fixture, 'main.tex')
@@ -109,7 +109,7 @@ suite('Build TeX files test suite', () => {
     test.run(suiteName, fixtureName, 'build with !TEX program and !TEX options', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', [])
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'magic_option.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await test.build(fixture, 'main.tex')
@@ -118,7 +118,7 @@ suite('Build TeX files test suite', () => {
 
     test.run(suiteName, fixtureName, 'build with invalid !TEX program', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'magic_invalid.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await test.build(fixture, 'main.tex')
@@ -127,7 +127,7 @@ suite('Build TeX files test suite', () => {
 
     test.run(suiteName, fixtureName, 'build with forceRecipeUsage: true', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', true)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'magic_invalid.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await test.build(fixture, 'main.tex')
@@ -137,7 +137,7 @@ suite('Build TeX files test suite', () => {
     test.run(suiteName, fixtureName, 'build a subfile with main.tex opened', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
@@ -153,7 +153,7 @@ suite('Build TeX files test suite', () => {
 
     test.run(suiteName, fixtureName, 'build main.tex with QuickPick', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
@@ -170,7 +170,7 @@ suite('Build TeX files test suite', () => {
 
     test.run(suiteName, fixtureName, 'build s.tex with QuickPick', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
@@ -189,7 +189,7 @@ suite('Build TeX files test suite', () => {
     test.run(suiteName, fixtureName, 'build sub.tex to outdir', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_subsub.tex', dst: 'sub/s.tex'},
             {src: 'plain.tex', dst: 'sub/subsub/infile.tex'}
@@ -200,7 +200,7 @@ suite('Build TeX files test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'basic build with makeindex', async () => {
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'makeindex_base.tex', dst: 'main.tex'}
         ], {skipCache: true})
 
@@ -211,7 +211,7 @@ suite('Build TeX files test suite', () => {
     test.run(suiteName, fixtureName, 'build sub.tex to outdir with makeindex', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'makeindex_subfile.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
@@ -224,7 +224,7 @@ suite('Build TeX files test suite', () => {
         const tools = [{ name: 'latexmk', command: 'latexmk', args: ['-e', '$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/', '-outdir=%OUTDIR%', '-pdf', '%DOC%'], env: {} }]
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', tools)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', '%DIR%/out space')
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
 
@@ -242,7 +242,7 @@ suite('Build TeX files test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', tools)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', recipes)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', '%DIR%/out space')
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
 

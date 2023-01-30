@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
-import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
 import * as test from './utils'
 import { TextDocumentLike } from '../../src/providers/preview/mathpreviewlib/textdocumentlike'
@@ -14,22 +13,13 @@ suite('Math preview test suite', () => {
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
-    suiteSetup(() => {
+    suiteSetup(async () => {
+        await vscode.commands.executeCommand('latex-workshop.activate')
         fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
     })
 
-    setup(async () => {
-        await vscode.commands.executeCommand('latex-workshop.activate')
-    })
-
     teardown(async () => {
-        await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        lw.manager.rootFile = undefined
-
-        if (path.basename(fixture) === 'testground') {
-            rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
-            await test.sleep(500) // Required for pooling
-        }
+        await test.reset(fixture)
     })
 
     test.run(suiteName, fixtureName, 'mathpreviewlib/cursorrenderer: test insertCursor', async () => {

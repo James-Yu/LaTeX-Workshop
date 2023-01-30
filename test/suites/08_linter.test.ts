@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
-import rimraf from 'rimraf'
 import * as lw from '../../src/lw'
 import * as test from './utils'
 import { ChkTeX } from '../../src/components/linterlib/chktex'
@@ -13,30 +12,30 @@ suite('Linter test suite', () => {
     let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
-    suiteSetup(() => {
+    suiteSetup(async () => {
+        await vscode.commands.executeCommand('latex-workshop.activate')
         fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
     })
 
-    setup(async () => {
-        await vscode.commands.executeCommand('latex-workshop.activate')
+    teardown(async () => {
+        await test.reset(fixture)
     })
 
-    teardown(async () => {
-        await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-        lw.manager.rootFile = undefined
-
-        if (path.basename(fixture) === 'testground') {
-            rimraf(fixture + '/{*,.vscode/*}', (e) => {if (e) {console.error(e)}})
-            await test.sleep(500) // Required for pooling
-        }
+    test.run(suiteName, fixtureName, 'test chktex', async () => {
+        await test.load(fixture, [
+            {src: 'linter_base.tex', dst: 'main.tex'},
+            {src: 'linter_sub.tex', dst: 'sub/s.tex'}
+        ], {skipCache: true})
+        const linter = new ChkTeX()
+        await linter.lintRootFile(lw.manager.rootFile ?? '')
+        assert.strictEqual(linter.linterDiagnostics.name, 'ChkTeX')
     })
 
     test.run(suiteName, fixtureName, 'test chktex log parser', async () => {
         await test.load(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
-        ])
-        await test.open(fixture, 'main.tex')
+        ], {skipCache: true})
         const linter = new ChkTeX()
         const log = 'main.tex:5:18:1:Warning:24:Delete this space to maintain correct pagereferences.\nsub/s.tex:1:26:1:Warning:24:Delete this space to maintain correct pagereferences.\n'
         linter.parseLog(log)
@@ -50,11 +49,9 @@ suite('Linter test suite', () => {
         await test.load(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
-        ])
-        await test.open(fixture, 'main.tex')
-        assert.ok(lw.manager.rootFile)
+        ], {skipCache: true})
         const linter = new LaCheck()
-        await linter.lintRootFile(lw.manager.rootFile)
+        await linter.lintRootFile(lw.manager.rootFile ?? '')
         assert.strictEqual(linter.linterDiagnostics.name, 'LaCheck')
     })
 
@@ -62,8 +59,7 @@ suite('Linter test suite', () => {
         await test.load(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
-        ])
-        await test.open(fixture, 'main.tex')
+        ], {skipCache: true})
         const linter = new LaCheck()
         const log = '"main.tex", line 7: double space at "~~"\n** sub/sub:\n"sub/s.tex", line 2: double space at "~~"\n'
         linter.parseLog(log)

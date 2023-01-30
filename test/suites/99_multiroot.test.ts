@@ -53,12 +53,12 @@ suite('Multi-root workspace test suite', () => {
     test.run(suiteName, fixtureName, 'detect root with search.rootFiles.include', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', ['alt/*.tex'])
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'A/main.tex'},
             {src: 'input_parentsub.tex', dst: 'A/alt/main.tex'},
             {src: 'plain.tex', dst: 'A/sub/s.tex'}
         ], {root: -1, skipCache: true})
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'empty', dst: 'B/empty'}
         ], {root: -1, skipCache: true})
         const roots = await test.find(fixture, 'A/sub/s.tex')
@@ -68,12 +68,12 @@ suite('Multi-root workspace test suite', () => {
     test.run(suiteName, fixtureName, 'detect root with search.rootFiles.exclude', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', ['*.tex'])
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'A/main.tex'},
             {src: 'input_parentsub.tex', dst: 'A/alt/main.tex'},
             {src: 'plain.tex', dst: 'A/sub/s.tex'}
         ], {root: -1, skipCache: true})
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'empty', dst: 'B/empty'}
         ], {root: -1, skipCache: true})
         const roots = await test.find(fixture, 'A/sub/s.tex')
@@ -81,7 +81,7 @@ suite('Multi-root workspace test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'switching rootFile', async () => {
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'A/main.tex'},
             {src: 'base.tex', dst: 'B/main.tex'}
         ], {root: -1, skipCache: true})
@@ -103,7 +103,7 @@ suite('Multi-root workspace test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', recipes)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipe.default', 'fake')
         await vscode.workspace.getConfiguration('latex-workshop', vscode.workspace.workspaceFolders?.[0]).update('latex.recipe.default', 'latexmk')
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'A/main.tex'},
             {src: 'empty', dst: 'B/empty'}
         ], {skipCache: true})
@@ -122,7 +122,7 @@ suite('Multi-root workspace test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipe.default', 'fake')
         await vscode.workspace.getConfiguration('latex-workshop', vscode.workspace.workspaceFolders?.[0]).update('latex.recipes', recipes)
         await vscode.workspace.getConfiguration('latex-workshop', vscode.workspace.workspaceFolders?.[0]).update('latex.recipe.default', 'lastUsed')
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'A/main.tex'},
             {src: 'empty', dst: 'B/empty'}
         ], {skipCache: true})
@@ -132,7 +132,7 @@ suite('Multi-root workspace test suite', () => {
 
     test.run(suiteName, fixtureName, 'basic build with outDir', async () => {
         await vscode.workspace.getConfiguration('latex-workshop', vscode.workspace.workspaceFolders?.[0]).update('latex.outDir', './out')
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'A/main.tex'},
             {src: 'empty', dst: 'B/empty'}
         ], {skipCache: true})
@@ -143,10 +143,10 @@ suite('Multi-root workspace test suite', () => {
     test.run(suiteName, fixtureName, 'build with forceRecipeUsage: true', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
         await vscode.workspace.getConfiguration('latex-workshop', vscode.workspace.workspaceFolders?.[0]).update('latex.build.forceRecipeUsage', true)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'magic_invalid.tex', dst: 'A/main.tex'}
         ], {skipCache: true})
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'empty', dst: 'B/empty'}
         ], {skipCache: true})
         await test.build(fixture, 'A/main.tex')
@@ -157,7 +157,7 @@ suite('Multi-root workspace test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'A/main.tex'},
             {src: 'subfile_sub.tex', dst: 'A/sub/s.tex'},
             {src: 'empty', dst: 'B/empty'}
@@ -169,11 +169,11 @@ suite('Multi-root workspace test suite', () => {
     test.run(suiteName, fixtureName, 'switching intellisense', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
         await vscode.workspace.getConfiguration('latex-workshop', vscode.workspace.workspaceFolders?.[0]).update('intellisense.citation.label', 'title')
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'intellisense/citation.tex', dst: 'A/main.tex'},
             {src: 'base.bib', dst: 'A/main.bib'}
         ])
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'intellisense/citation.tex', dst: 'B/main.tex'},
             {src: 'base.bib', dst: 'B/main.bib'}
         ])
@@ -191,13 +191,13 @@ suite('Multi-root workspace test suite', () => {
     })
 
     test.run(suiteName, fixtureName, 'switching structure', async () => {
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'structure_base.tex', dst: 'A/main.tex'},
             {src: 'structure_sub.tex', dst: 'A/sub/s.tex'},
             {src: 'structure_s2.tex', dst: 'A/sub/s2.tex'},
             {src: 'structure_s3.tex', dst: 'A/sub/s3.tex'}
         ], {root: -1})
-        await test.loadAndCache(fixture, [
+        await test.load(fixture, [
             {src: 'base.tex', dst: 'B/main.tex'}
         ], {root: -1})
 
