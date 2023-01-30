@@ -66,7 +66,17 @@ export async function reset(fixture: string) {
     lw.duplicateLabels.reset()
     lw.cacher.allPaths.forEach(filePath => lw.cacher.remove(filePath))
     await lw.cacher.resetWatcher()
-    glob.sync('**/{**.tex,**.pdf,**.bib}', { cwd: fixture }).forEach(file => fs.unlinkSync(path.resolve(fixture, file)))
+    for (const file in glob.sync('**/{**.tex,**.pdf,**.bib}', { cwd: fixture })) {
+        let tries = 0
+        while (tries < 10) {
+            try {
+                fs.unlinkSync(path.resolve(fixture, file))
+            } catch {
+                tries++
+                await sleep(100)
+            }
+        }
+    }
 }
 
 function log(fixtureName: string, testName: string, counter: string) {
