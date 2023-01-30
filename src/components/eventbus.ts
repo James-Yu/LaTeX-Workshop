@@ -3,6 +3,7 @@ import type {PdfViewerState} from '../../types/latex-workshop-protocol-types/ind
 import type {Disposable} from 'vscode'
 
 export const BuildDone = 'BUILD_DONE'
+export const AutoBuildInitiated = 'AUTO_BUILD_INITIATED'
 export const RootFileChanged = 'ROOT_FILE_CHANGED'
 export const RootFileSearched = 'ROOT_FILE_SEARCHED'
 export const FileParsed = 'FILE_PARSED'
@@ -12,8 +13,10 @@ export const FileWatched = 'FILE_WATCHED'
 export const FileChanged = 'FILE_CHANGED'
 export const FileRemoved = 'FILE_REMOVED'
 export const DocumentChanged = 'DOCUMENT_CHANGED'
+export const StructureUpdated = 'STRUCTURE_UPDATED'
 
-type EventArgTypeMap = {
+export type EventArgs = {
+    [AutoBuildInitiated]: {type: 'onChange' | 'onSave', file: string},
     [RootFileChanged]: string,
     [FileParsed]: string,
     [ViewerStatusChanged]: PdfViewerState,
@@ -23,6 +26,7 @@ type EventArgTypeMap = {
 }
 
 export type EventName = typeof BuildDone
+                    | typeof AutoBuildInitiated
                     | typeof RootFileChanged
                     | typeof RootFileSearched
                     | typeof ViewerPageLoaded
@@ -32,6 +36,7 @@ export type EventName = typeof BuildDone
                     | typeof FileChanged
                     | typeof FileRemoved
                     | typeof DocumentChanged
+                    | typeof StructureUpdated
 
 export class EventBus {
     private readonly eventEmitter = new EventEmitter()
@@ -40,7 +45,7 @@ export class EventBus {
         this.eventEmitter.removeAllListeners()
     }
 
-    fire<T extends keyof EventArgTypeMap>(eventName: T, arg: EventArgTypeMap[T]): void
+    fire<T extends keyof EventArgs>(eventName: T, arg: EventArgs[T]): void
     fire(eventName: EventName): void
     fire(eventName: EventName, arg?: any): void {
         this.eventEmitter.emit(eventName, arg)

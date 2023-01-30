@@ -7,6 +7,7 @@ import { InputFileRegExp } from '../utils/inputfilepath'
 
 import { getLogger } from '../components/logger'
 import { UtensilsParser } from '../components/parser/syntax'
+import { StructureUpdated } from '../components/eventbus'
 
 const logger = getLogger('Structure')
 
@@ -50,14 +51,17 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 this.CachedBibTeXData = await this.buildBibTeXModel(document)
             }
             this.ds = this.CachedBibTeXData
+            logger.log(`Structure updated with ${this.ds.length} entries for ${document.uri.fsPath} .`)
         }
         else if (lw.manager.rootFile) {
             if (force) {
                 this.CachedLaTeXData = await this.buildLaTeXModel()
             }
             this.ds = this.CachedLaTeXData
+            logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.ds.length} root sections for ${lw.manager.rootFile} .`)
         } else {
             this.ds = []
+            logger.log('Structure cleared on undefined root.')
         }
         return this.ds
     }
@@ -65,6 +69,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     async update(force: boolean) {
         this.ds = await this.build(force)
         this._onDidChangeTreeData.fire(undefined)
+        lw.eventBus.fire(StructureUpdated)
     }
 
     private refreshLaTeXModelConfig() {

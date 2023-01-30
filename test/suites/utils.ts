@@ -5,18 +5,18 @@ import * as glob from 'glob'
 import * as os from 'os'
 import {ok, strictEqual} from 'assert'
 import * as lw from '../../src/lw'
-import { BuildDone, FileParsed, FileWatched, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
+import { AutoBuildInitiated, EventArgs, FileParsed, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
 import type { EventName } from '../../src/components/eventbus'
 import { getCachedLog, getLogger, resetCachedLog } from '../../src/components/logger'
 
 let testCounter = 0
 const logger = getLogger('Test')
 
-export function only(suiteName: string, fixtureName: string, testName: string, cb: () => unknown, platforms?: NodeJS.Platform[], timeout?: number) {
-    return run(suiteName, fixtureName, testName, cb, platforms, timeout, true)
+export function only(suiteName: string, fixtureName: string, testName: string, cb: () => unknown, platforms?: NodeJS.Platform[]) {
+    return run(suiteName, fixtureName, testName, cb, platforms, true)
 }
 
-export function run(suiteName: string, fixtureName: string, testName: string, cb: () => unknown, platforms?: NodeJS.Platform[], timeout?: number, runonly?: boolean) {
+export function run(suiteName: string, fixtureName: string, testName: string, cb: () => unknown, platforms?: NodeJS.Platform[], runonly?: boolean) {
     let fixture: string | undefined
     if (vscode.workspace.workspaceFile) {
         fixture = path.dirname(vscode.workspace.workspaceFile.fsPath)
@@ -50,7 +50,7 @@ export function run(suiteName: string, fixtureName: string, testName: string, cb
         } finally {
             log(fixtureName, testName, counterString)
         }
-    }).timeout(timeout || 15000)
+    })
 }
 
 export function sleep(ms: number) {
@@ -66,7 +66,7 @@ export async function reset(fixture: string) {
     lw.duplicateLabels.reset()
     lw.cacher.allPaths.forEach(filePath => lw.cacher.remove(filePath))
     await lw.cacher.resetWatcher()
-    glob.sync('**/{**.tex,**.pdf}', { cwd: fixture }).forEach(file => fs.unlinkSync(path.resolve(fixture, file)))
+    glob.sync('**/{**.tex,**.pdf,**.bib}', { cwd: fixture }).forEach(file => fs.unlinkSync(path.resolve(fixture, file)))
 }
 
 function log(fixtureName: string, testName: string, counter: string) {
@@ -127,13 +127,13 @@ export async function open(fixture: string, fileName: string, doCache = true) {
     return {root, doc}
 }
 
-export async function wait(event: EventName, arg?: any) {
-    return new Promise<void>((resolve, _) => {
-        const disposable = lw.eventBus.on(event, (eventArg) => {
-            if (arg && arg !== eventArg) {
+export async function wait<T extends keyof EventArgs>(event: T | EventName, arg?: EventArgs[T]) {
+    return new Promise<EventArgs[T] | undefined>((resolve, _) => {
+        const disposable = lw.eventBus.on(event, (eventArg: EventArgs[T] | undefined) => {
+            if (arg && (JSON.stringify(arg) !== JSON.stringify(eventArg))) {
                 return
             }
-            resolve()
+            resolve(eventArg)
             disposable?.dispose()
         })
     })
@@ -161,6 +161,7 @@ export async function loadAndCache(fixture: string, files: {src: string, dst: st
         return
     }
     logger.log('Cache tex and bib.')
+    files.filter(file => file.dst.endsWith('.tex')).forEach(file => lw.cacher.add(path.resolve(fixture, file.dst)))
     const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cacher.refreshCache(path.resolve(fixture, file.dst), lw.manager.rootFile))
     const bibPromise = files.filter(file => file.dst.endsWith('.bib')).map(file => lw.completer.citation.parseBibFile(path.resolve(fixture, file.dst)))
     await Promise.all([...texPromise, ...bibPromise])
@@ -183,6 +184,30 @@ export async function openAndBuild(fixture: string, openFile: string, action?: (
     await (action ?? lw.commander.build)()
 }
 
+export async function editAndAuto(fixture: string, editFile: string, noBuild = false, save = false): Promise<{type: 'onChange' | 'onSave', file: string}> {
+    const done = wait(AutoBuildInitiated)
+    if (save) {
+        logger.log(`Save ${editFile}.`)
+        const doc = await vscode.workspace.openTextDocument(path.join(fixture, editFile))
+        await vscode.window.showTextDocument(doc)
+        await sleep(500) // wait for document refresh to prevent saving to dirty doc
+        await vscode.commands.executeCommand('workbench.action.files.save')
+    } else {
+        logger.log(`Edit ${editFile} .`)
+        fs.appendFileSync(path.resolve(fixture, editFile), ' % edit')
+    }
+    if (noBuild) {
+        await sleep(500)
+        strictEqual(getCachedLog().CACHED_EXTLOG.filter(line => line.includes('[Builder]')).length, 0)
+        return {type: 'onChange', file: ''}
+    }
+    logger.log('Wait for auto-build.')
+    const result = await done
+    ok(result?.type)
+    ok(result?.file)
+    return result
+}
+
 export function suggest(row: number, col: number, isAtSuggestion = false, openFile?: string): {items: vscode.CompletionItem[], labels: string[]} {
     ok(lw.manager.rootFile)
     const lines = lw.cacher.get(openFile ?? lw.manager.rootFile)?.content?.split('\n')
@@ -200,7 +225,6 @@ export function suggest(row: number, col: number, isAtSuggestion = false, openFi
 
 export const assert = {
     build: assertBuild,
-    auto: assertAutoBuild,
     viewer: assertViewer
 }
 
@@ -217,47 +241,6 @@ async function assertBuild(fixture: string, texName: string, pdfName: string, bu
     const pdfPath = path.join(fixture, pdfName)
     logger.log(`PDF produced: ${files.join(' , ') || 'nothing'} .`)
     strictEqual(files.map(file => path.resolve(fixture, file)).join(','), pdfName === '' ? pdfName : pdfPath)
-}
-
-async function assertAutoBuild(fixture: string, texName: string, pdfName: string, mode?: ('skipFirstBuild' | 'noAutoBuild' | 'onSave')[], build?: () => unknown) {
-    logger.log(`Auto-building fixture file ${texName} .`)
-    if (!mode?.includes('skipFirstBuild')) {
-        await assertBuild(fixture, texName, pdfName, build)
-    }
-    fs.rmSync(path.resolve(fixture, pdfName))
-
-    let files = glob.sync('**/**.pdf', { cwd: fixture })
-    strictEqual(files.map(file => path.resolve(fixture, file)).join(','), '')
-    logger.log('First manual build PDF has been unlinked.')
-    await sleep(250)
-
-    let event = wait(FileWatched, path.resolve(fixture, texName))
-    if (!mode?.includes('noAutoBuild') && texName.endsWith('.tex') && !lw.cacher.watched(path.resolve(fixture, texName))) {
-        logger.log(`Waiting for watching ${texName} .`)
-        await event
-    }
-
-    event = wait(BuildDone)
-    if (mode?.includes('onSave')) {
-        logger.log('Saving.')
-        await vscode.commands.executeCommand('workbench.action.files.save')
-    } else {
-        logger.log('Editing.')
-        fs.appendFileSync(path.resolve(fixture, texName), ' % edit')
-    }
-
-    logger.log('Waiting.')
-    if (mode?.includes('noAutoBuild')) {
-        await sleep(3000)
-        files = glob.sync('**/**.pdf', { cwd: fixture })
-        logger.log(`PDF produced: ${files.join(' , ') || 'nothing'} .`)
-        strictEqual(files.map(file => path.resolve(fixture, file)).join(','), '')
-    } else {
-        await event
-        files = glob.sync('**/**.pdf', { cwd: fixture })
-        logger.log(`PDF produced: ${files.join(' , ') || 'nothing'} .`)
-        strictEqual(files.map(file => path.resolve(fixture, file)).join(','), path.resolve(fixture, pdfName))
-    }
 }
 
 async function assertViewer(fixture: string, pdfName: string, action?: () => unknown) {

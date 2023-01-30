@@ -5,7 +5,7 @@ import * as cp from 'child_process'
 import * as cs from 'cross-spawn'
 import * as lw from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
-import { BuildDone } from './eventbus'
+import { AutoBuildInitiated, BuildDone } from './eventbus'
 import { getLogger } from './logger'
 import { CompilerLogParser } from './parser/compilerlog'
 
@@ -80,6 +80,7 @@ export class Builder {
             return
         }
         logger.log(`Auto build started detecting the change of a file: ${file} .`)
+        lw.eventBus.fire(AutoBuildInitiated, {type: 'onChange', file})
         return this.invokeBuild(file, bibChanged)
     }
 
@@ -89,6 +90,7 @@ export class Builder {
             return
         }
         logger.log(`Auto build started on saving file: ${file} .`)
+        lw.eventBus.fire(AutoBuildInitiated, {type: 'onSave', file})
         return this.invokeBuild(file, false)
     }
 
