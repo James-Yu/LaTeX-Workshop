@@ -27,7 +27,7 @@ suite('Find root file test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {root: -1, skipCache: true})
-        const roots = await test.openAndRoot(fixture, 'main.tex')
+        const roots = await test.find(fixture, 'main.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
     })
 
@@ -36,7 +36,7 @@ suite('Find root file test suite', () => {
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {root: -1, skipCache: true})
-        const roots = await test.openAndRoot(fixture, 'main.tex')
+        const roots = await test.find(fixture, 'main.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
     })
 
@@ -46,7 +46,7 @@ suite('Find root file test suite', () => {
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {root: -1, skipCache: true})
-        const roots = await test.openAndRoot(fixture, 'sub/s.tex')
+        const roots = await test.find(fixture, 'sub/s.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
         assert.strictEqual(roots.local, path.join(fixture, 'sub/s.tex'))
     })
@@ -57,7 +57,7 @@ suite('Find root file test suite', () => {
             {src: 'input_base.tex', dst: 'alt.tex'},
             {src: 'magic_root.tex', dst: 'sub/s.tex'}
         ], {root: -1, skipCache: true})
-        const roots = await test.openAndRoot(fixture, 'sub/s.tex')
+        const roots = await test.find(fixture, 'sub/s.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
     })
 
@@ -69,7 +69,7 @@ suite('Find root file test suite', () => {
             {src: 'input_parentsub.tex', dst: 'alt/main.tex'},
             {src: 'plain.tex', dst: 'sub/plain.tex'}
         ], {root: -1, skipCache: true})
-        const roots = await test.openAndRoot(fixture, 'sub/plain.tex')
+        const roots = await test.find(fixture, 'sub/plain.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'alt/main.tex'))
     })
 
@@ -81,7 +81,7 @@ suite('Find root file test suite', () => {
             {src: 'input_parentsub.tex', dst: 'alt/main.tex'},
             {src: 'plain.tex', dst: 'sub/plain.tex'}
         ], {root: -1, skipCache: true})
-        const roots = await test.openAndRoot(fixture, 'sub/plain.tex')
+        const roots = await test.find(fixture, 'sub/plain.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'alt/main.tex'))
     })
 
@@ -90,7 +90,7 @@ suite('Find root file test suite', () => {
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain_verbatim.tex', dst: 'sub/s.tex'}
         ], {root: -1, skipCache: true})
-        const roots = await test.openAndRoot(fixture, 'sub/s.tex')
+        const roots = await test.find(fixture, 'sub/s.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
     })
 
@@ -100,7 +100,7 @@ suite('Find root file test suite', () => {
             {src: 'import_sub.tex', dst: 'sub/s.tex'},
             {src: 'plain.tex', dst: 'sub/subsub/sss/sss.tex'}
         ], {root: -1, skipCache: true})
-        const roots = await test.openAndRoot(fixture, 'sub/subsub/sss/sss.tex')
+        const roots = await test.find(fixture, 'sub/subsub/sss/sss.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
     })
 
@@ -110,7 +110,7 @@ suite('Find root file test suite', () => {
             {src: 'include_sub.tex', dst: 'alt.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ], {root: -1, skipCache: true})
-        const roots = await test.openAndRoot(fixture, 'alt.tex')
+        const roots = await test.find(fixture, 'alt.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
         const includedTeX = lw.cacher.getIncludedTeX()
         assert.ok(includedTeX)

@@ -85,12 +85,6 @@ function log(fixtureName: string, testName: string, counter: string) {
         vscode.window.activeTextEditor?.document.getText())
 }
 
-export function write(fixture: string, fileName: string, ...contents: string[]) {
-    logger.log(`Writing fixture file: ${fileName} .`)
-    fs.mkdirSync(path.resolve(fixture, path.dirname(fileName)), {recursive: true})
-    fs.writeFileSync(path.resolve(fixture, fileName), contents.join('\n'))
-}
-
 export async function load(fixture: string, files: {src: string, dst: string}[]) {
     let unlinked = false
     for (const file of files) {
@@ -167,7 +161,7 @@ export async function loadAndCache(fixture: string, files: {src: string, dst: st
     await Promise.all([...texPromise, ...bibPromise])
 }
 
-export async function openAndRoot(fixture: string, openFile: string) {
+export async function find(fixture: string, openFile: string) {
     logger.log(`Open ${openFile} .`)
     const doc = await vscode.workspace.openTextDocument(path.join(fixture, openFile))
     await vscode.window.showTextDocument(doc)
@@ -176,7 +170,7 @@ export async function openAndRoot(fixture: string, openFile: string) {
     return {root: lw.manager.rootFile, local: lw.manager.localRootFile}
 }
 
-export async function openAndBuild(fixture: string, openFile: string, action?: () => Promise<void>) {
+export async function build(fixture: string, openFile: string, action?: () => Promise<void>) {
     logger.log(`Open ${openFile} .`)
     const doc = await vscode.workspace.openTextDocument(path.join(fixture, openFile))
     await vscode.window.showTextDocument(doc)
@@ -184,7 +178,7 @@ export async function openAndBuild(fixture: string, openFile: string, action?: (
     await (action ?? lw.commander.build)()
 }
 
-export async function editAndAuto(fixture: string, editFile: string, noBuild = false, save = false): Promise<{type: 'onChange' | 'onSave', file: string}> {
+export async function auto(fixture: string, editFile: string, noBuild = false, save = false): Promise<{type: 'onChange' | 'onSave', file: string}> {
     const done = wait(AutoBuildInitiated)
     if (save) {
         logger.log(`Save ${editFile}.`)
@@ -202,9 +196,10 @@ export async function editAndAuto(fixture: string, editFile: string, noBuild = f
         return {type: 'onChange', file: ''}
     }
     logger.log('Wait for auto-build.')
-    const result = await done
-    ok(result?.type)
-    ok(result?.file)
+    const result = await Promise.any([done, sleep(1000)]) as EventArgs[typeof AutoBuildInitiated]
+    ok(result)
+    ok(result.type)
+    ok(result.file)
     return result
 }
 
@@ -223,36 +218,16 @@ export function suggest(row: number, col: number, isAtSuggestion = false, openFi
     return {items, labels: items.map(item => item.label.toString())}
 }
 
-export const assert = {
-    build: assertBuild,
-    viewer: assertViewer
-}
-
-async function assertBuild(fixture: string, texName: string, pdfName: string, build?: () => unknown) {
-    await open(fixture, texName, false)
-    logger.log(`Building fixture file ${texName} .`)
-    if (build) {
-        await build()
-    } else {
-        await lw.commander.build()
-    }
-
-    const files = glob.sync('**/**.pdf', { cwd: fixture })
-    const pdfPath = path.join(fixture, pdfName)
-    logger.log(`PDF produced: ${files.join(' , ') || 'nothing'} .`)
-    strictEqual(files.map(file => path.resolve(fixture, file)).join(','), pdfName === '' ? pdfName : pdfPath)
-}
-
-async function assertViewer(fixture: string, pdfName: string, action?: () => unknown) {
+export async function view(fixture: string, pdfName: string, postAction?: () => unknown) {
     logger.log(`Asserting viewer for ${pdfName} .`)
     await sleep(250)
     const promise = Promise.all([
         wait(ViewerPageLoaded),
         wait(ViewerStatusChanged)
     ])
-    void vscode.commands.executeCommand('latex-workshop.view')
-    if (action) {
-        await action()
+    void lw.commander.view()
+    if (postAction) {
+        await postAction()
     }
     await promise
     const pdfFilePath = path.resolve(fixture, pdfName)

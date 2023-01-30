@@ -34,7 +34,7 @@ suite('Build TeX files test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'main.tex')
+        await test.build(fixture, 'main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
@@ -44,7 +44,7 @@ suite('Build TeX files test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'main.tex')
+        await test.build(fixture, 'main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
@@ -55,7 +55,7 @@ suite('Build TeX files test suite', () => {
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
-        await test.openAndBuild(fixture, 'sub/s.tex')
+        await test.build(fixture, 'sub/s.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'sub/s.pdf')))
     })
 
@@ -66,7 +66,7 @@ suite('Build TeX files test suite', () => {
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
-        await test.openAndBuild(fixture, 'sub/s.tex')
+        await test.build(fixture, 'sub/s.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
@@ -75,7 +75,7 @@ suite('Build TeX files test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'main.tex')
+        await test.build(fixture, 'main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'out/main.pdf')))
     })
 
@@ -83,7 +83,7 @@ suite('Build TeX files test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'base.tex', dst: 'main space/main.tex'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'main space/main.tex')
+        await test.build(fixture, 'main space/main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'main space/main.pdf')))
     })
 
@@ -92,7 +92,7 @@ suite('Build TeX files test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'main.tex')
+        await test.build(fixture, 'main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'out space/main.pdf')))
     })
 
@@ -102,7 +102,7 @@ suite('Build TeX files test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'magic_program.tex', dst: 'main.tex'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'main.tex')
+        await test.build(fixture, 'main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
@@ -112,7 +112,7 @@ suite('Build TeX files test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'magic_option.tex', dst: 'main.tex'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'main.tex')
+        await test.build(fixture, 'main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'out/main.pdf')))
     })
 
@@ -121,7 +121,7 @@ suite('Build TeX files test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'magic_invalid.tex', dst: 'main.tex'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'main.tex')
+        await test.build(fixture, 'main.tex')
         assert.ok(!fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
@@ -130,7 +130,7 @@ suite('Build TeX files test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'magic_invalid.tex', dst: 'main.tex'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'main.tex')
+        await test.build(fixture, 'main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
@@ -147,7 +147,7 @@ suite('Build TeX files test suite', () => {
         const docSub = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'sub/s.tex')))
         await vscode.window.showTextDocument(docSub, vscode.ViewColumn.Beside)
 
-        await test.openAndBuild(fixture, 'sub/s.tex')
+        await test.build(fixture, 'sub/s.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'sub/s.pdf')))
     })
 
@@ -158,7 +158,7 @@ suite('Build TeX files test suite', () => {
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
 
-        await test.openAndBuild(fixture, 'sub/s.tex', async () => {
+        await test.build(fixture, 'sub/s.tex', async () => {
             const event = test.wait(BuildDone)
             void lw.commander.build()
             await test.sleep(500)
@@ -174,7 +174,7 @@ suite('Build TeX files test suite', () => {
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
-        await test.openAndBuild(fixture, 'sub/s.tex', async () => {
+        await test.build(fixture, 'sub/s.tex', async () => {
             const event = test.wait(BuildDone)
             void lw.commander.build()
             await test.sleep(500)
@@ -195,7 +195,7 @@ suite('Build TeX files test suite', () => {
             {src: 'plain.tex', dst: 'sub/subsub/infile.tex'}
         ], {local: 1, skipCache: true})
 
-        await test.openAndBuild(fixture, 'sub/s.tex')
+        await test.build(fixture, 'sub/s.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'out/s.pdf')))
     })
 
@@ -204,7 +204,7 @@ suite('Build TeX files test suite', () => {
             {src: 'makeindex_base.tex', dst: 'main.tex'}
         ], {skipCache: true})
 
-        await test.openAndBuild(fixture, 'main.tex')
+        await test.build(fixture, 'main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
@@ -216,7 +216,7 @@ suite('Build TeX files test suite', () => {
             {src: 'makeindex_subfile.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
 
-        await test.openAndBuild(fixture, 'sub/s.tex')
+        await test.build(fixture, 'sub/s.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'out/s.pdf')))
     })
 
@@ -228,7 +228,7 @@ suite('Build TeX files test suite', () => {
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
 
-        await test.openAndBuild(fixture, 'main.tex')
+        await test.build(fixture, 'main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'out space/main.pdf')))
     }, ['win32'])
 
@@ -246,7 +246,7 @@ suite('Build TeX files test suite', () => {
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
 
-        await test.openAndBuild(fixture, 'main.tex')
+        await test.build(fixture, 'main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'out space/copy.pdf')))
     }, ['win32'])
 

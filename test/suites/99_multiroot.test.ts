@@ -61,7 +61,7 @@ suite('Multi-root workspace test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'empty', dst: 'B/empty'}
         ], {root: -1, skipCache: true})
-        const roots = await test.openAndRoot(fixture, 'A/sub/s.tex')
+        const roots = await test.find(fixture, 'A/sub/s.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'A/alt/main.tex'))
     })
 
@@ -76,7 +76,7 @@ suite('Multi-root workspace test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'empty', dst: 'B/empty'}
         ], {root: -1, skipCache: true})
-        const roots = await test.openAndRoot(fixture, 'A/sub/s.tex')
+        const roots = await test.find(fixture, 'A/sub/s.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'A/alt/main.tex'))
     })
 
@@ -85,11 +85,11 @@ suite('Multi-root workspace test suite', () => {
             {src: 'base.tex', dst: 'A/main.tex'},
             {src: 'base.tex', dst: 'B/main.tex'}
         ], {root: -1, skipCache: true})
-        let roots = await test.openAndRoot(fixture, 'A/main.tex')
+        let roots = await test.find(fixture, 'A/main.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'A/main.tex'))
-        roots = await test.openAndRoot(fixture, 'B/main.tex')
+        roots = await test.find(fixture, 'B/main.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'B/main.tex'))
-        roots = await test.openAndRoot(fixture, 'A/main.tex')
+        roots = await test.find(fixture, 'A/main.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'A/main.tex'))
     })
 
@@ -107,7 +107,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'base.tex', dst: 'A/main.tex'},
             {src: 'empty', dst: 'B/empty'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'A/main.tex')
+        await test.build(fixture, 'A/main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'A/wsA.pdf')))
     })
 
@@ -126,7 +126,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'base.tex', dst: 'A/main.tex'},
             {src: 'empty', dst: 'B/empty'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'A/main.tex')
+        await test.build(fixture, 'A/main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'A/wsA.pdf')))
     })
 
@@ -136,7 +136,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'base.tex', dst: 'A/main.tex'},
             {src: 'empty', dst: 'B/empty'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'A/main.tex')
+        await test.build(fixture, 'A/main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'A/out/main.pdf')))
     })
 
@@ -149,7 +149,7 @@ suite('Multi-root workspace test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'empty', dst: 'B/empty'}
         ], {skipCache: true})
-        await test.openAndBuild(fixture, 'A/main.tex')
+        await test.build(fixture, 'A/main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'A/main.pdf')))
     })
 
@@ -162,7 +162,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'subfile_sub.tex', dst: 'A/sub/s.tex'},
             {src: 'empty', dst: 'B/empty'}
         ], {local: 1})
-        const { type } = await test.editAndAuto(fixture, 'A/sub/s.tex', false, true)
+        const { type } = await test.auto(fixture, 'A/sub/s.tex', false, true)
         assert.strictEqual(type, 'onSave')
     })
 

@@ -39,7 +39,7 @@ suite('Auto-build test suite', () => {
         await test.loadAndCache(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ])
-        const { type } = await test.editAndAuto(fixture, 'main.tex')
+        const { type } = await test.auto(fixture, 'main.tex')
         assert.strictEqual(type, 'onChange')
     })
 
@@ -50,7 +50,7 @@ suite('Auto-build test suite', () => {
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1})
-        const { type } = await test.editAndAuto(fixture, 'sub/s.tex')
+        const { type } = await test.auto(fixture, 'sub/s.tex')
         assert.strictEqual(type, 'onChange')
     })
 
@@ -60,7 +60,7 @@ suite('Auto-build test suite', () => {
             {src: 'import_sub.tex', dst: 'sub/s.tex'},
             {src: 'plain.tex', dst: 'sub/subsub/sss/sss.tex'}
         ], {local: 1})
-        const { type } = await test.editAndAuto(fixture, 'sub/subsub/sss/sss.tex')
+        const { type } = await test.auto(fixture, 'sub/subsub/sss/sss.tex')
         assert.strictEqual(type, 'onChange')
     })
 
@@ -69,7 +69,7 @@ suite('Auto-build test suite', () => {
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        const { type } = await test.editAndAuto(fixture, 'sub/s.tex')
+        const { type } = await test.auto(fixture, 'sub/s.tex')
         assert.strictEqual(type, 'onChange')
     })
 
@@ -78,7 +78,7 @@ suite('Auto-build test suite', () => {
             {src: 'bibtex_base.tex', dst: 'main.tex'},
             {src: 'plain.bib', dst: 'bib.bib'}
         ])
-        const { type } = await test.editAndAuto(fixture, 'bib.bib')
+        const { type } = await test.auto(fixture, 'bib.bib')
         assert.strictEqual(type, 'onChange')
     })
 
@@ -87,7 +87,7 @@ suite('Auto-build test suite', () => {
             {src: 'input_macro.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        const { type } = await test.editAndAuto(fixture, 'sub/s.tex')
+        const { type } = await test.auto(fixture, 'sub/s.tex')
         assert.strictEqual(type, 'onChange')
     })
 
@@ -97,7 +97,7 @@ suite('Auto-build test suite', () => {
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
-        const { type } = await test.editAndAuto(fixture, 'sub/s.tex', true)
+        const { type } = await test.auto(fixture, 'sub/s.tex', true)
         assert.strictEqual(type, 'onChange')
     })
 
@@ -109,7 +109,7 @@ suite('Auto-build test suite', () => {
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1})
-        const { type } = await test.editAndAuto(fixture, 'sub/s.tex', false, true)
+        const { type } = await test.auto(fixture, 'sub/s.tex', false, true)
         assert.strictEqual(type, 'onSave')
     })
 })
