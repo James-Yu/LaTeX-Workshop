@@ -71,6 +71,7 @@ export async function reset(fixture: string) {
         while (tries < 10) {
             try {
                 fs.unlinkSync(path.resolve(fixture, file))
+                break
             } catch {
                 tries++
                 await sleep(100)
