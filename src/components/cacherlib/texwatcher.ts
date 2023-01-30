@@ -45,8 +45,9 @@ export class Watcher {
     }
 
     async reset() {
-        await this.watcher.close()
+        await this.watcher.removeAllListeners().close()
         this.watched.clear()
+        this.initializeWatcher()
         logger.log('Reset.')
     }
 

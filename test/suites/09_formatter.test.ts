@@ -14,6 +14,9 @@ suite('Formatter test suite', () => {
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
         fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
+    })
+
+    setup(async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sort.enabled', true)
     })
 
@@ -26,16 +29,13 @@ suite('Formatter test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.surround', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.case', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.trailingComma', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sort.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sortby', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.handleDuplicates', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.align-equal.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-entries.first', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-fields.sort.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-fields.order', undefined)
-    })
-
-    suiteTeardown(async () => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sort.enabled', undefined)
     })
 
     test.run(suiteName, fixtureName, 'test latex formatter', async () => {
