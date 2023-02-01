@@ -1,0 +1,106 @@
+name: Bug Report
+description: Create a bug report to help us resolve problems
+body:
+- type: markdown
+  attributes:
+    value: |
+      Please [search for existing issues](https://github.com/James-Yu/LaTeX-Workshop/issues) before creating a new one.
+
+- type: checkboxes
+  attributes:
+    label: Pre-check
+    options:
+      - label: The issue remains after disabling all other extensions and restarting Visual Studio Code.
+      - label: The [FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ) cannot address the issue.
+      - label: If the issue is related to compiling a document, it can be successfully compiled in OS terminal.
+
+- type: input
+  attributes:
+    label: Extension Version
+    description: Please insert the version of LaTeX Workshop installed. You can get the version number from the `Extensions` pane in Visual Studio Code. Please do not write `latest` instead of exact numbers.
+    placeholder: XX.YY.ZZ
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: Operating System and Version
+    description: Please insert the version of your operating system, e.g, Windows 11 / Ubuntu 22.10 / MacOS 13.
+    placeholder: OS Version
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: Visual Studio Code Version
+    description: Please insert the version of Visual Studio Code. Please do not write `latest` instead of exact numbers.
+    placeholder: XX.YY.ZZ
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: LaTeX Distribution Version
+    description: Please insert the version of your LaTeX distribution, e.g, TeXLive 2023 / MiKTeX 22.3.
+    placeholder: LaTeX Distribution Version
+  validations:
+    required: true
+
+- type: checkboxes
+  attributes:
+    label: Extension Environment
+    options:
+      - label: I am using VSCodium.
+      - label: I am using the Snap or Flatpack version of Visual Studio Code.
+      - label: I am using LaTeX Workshop with Visual Studio Code Remote Containers.
+      - label: I am using LaTeX Workshop with Visual Studio Code Remote SSH.
+      - label: I am using LaTeX Workshop with Visual Studio Code Remote WSL.
+
+- type: textarea
+  attributes:
+    label: The Issue
+    description: Please briefly describe the issue you come across.
+    placeholder: If you want to include screenshots, paste them into the text area or follow up with a separate comment. 
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Reproduction Steps
+    description: Please list out the steps to reproduce your bug.
+    placeholder: Your steps go here. Include relevant environmental variables or any other configuration.
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Expected Behavior
+    description: What were you expecting to see? Include any relevant examples or documentation links.
+    placeholder: If you want to include screenshots, paste them into the text area or follow up with a separate comment. 
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Actual Behavior
+    description: What happened instead?
+    placeholder: If you want to include screenshots, paste them into the text area or follow up with a separate comment. 
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: LaTeX Workshop Output
+    description: Please paste the whole log messages here, not parts of ones. The log should start with `New log placeholder %WS1% registered`.
+    placeholder: "[HH:MM:SS][Logger] New log placeholder %WS1% registered for ..."
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Developer Tools Console
+    description: Please paste the whole log messages here, not parts of ones. This console logs can be very important in many cases. To access the log, click `Help` -> `Toggle Developer Tools` -> `Console`.
+
+- type: textarea
+  attributes:
+    label: Anything Else?
