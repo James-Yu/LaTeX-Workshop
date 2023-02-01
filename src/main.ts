@@ -295,7 +295,7 @@ function conflictCheck() {
             void vscode.window.showWarningMessage(`LaTeX Workshop is incompatible with  "${name}". ${suggestion}`)
         }
     }
-    check('tomoki1207.pdf', 'vscode-pdf', 'Please consider disabling either lw.')
+    check('tomoki1207.pdf', 'vscode-pdf', 'We competes when opening a PDF file from the sidebar. Please consider disabling either extension.')
 }
 
 function selectDocumentsWithId(ids: string[]): vscode.DocumentSelector {
