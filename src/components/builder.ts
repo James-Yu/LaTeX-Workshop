@@ -5,7 +5,7 @@ import * as cp from 'child_process'
 import * as cs from 'cross-spawn'
 import * as lw from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
-import { AutoBuildInitiated, BuildDone } from './eventbus'
+import { AutoBuildInitiated, AutoCleaned, BuildDone } from './eventbus'
 import { getLogger } from './logger'
 import { CompilerLogParser } from './parser/compilerlog'
 
@@ -369,11 +369,13 @@ export class Builder {
 
                     this.stepQueue.prepend(step)
                     await lw.cleaner.clean(step.rootFile)
+                    lw.eventBus.fire(AutoCleaned)
                 } else if (!step.isExternal && signal !== 'SIGTERM') {
                     // Recipe, not terminated by user, is retry or should not retry
                     logger.refreshStatus('x', 'errorForeground')
                     if (['onFailed', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
                         await lw.cleaner.clean(step.rootFile)
+                        lw.eventBus.fire(AutoCleaned)
                     }
                     void logger.showErrorMessageWithCompilerLogButton('Recipe terminated with error.')
                     this.stepQueue.clear()
@@ -427,6 +429,7 @@ export class Builder {
         if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
             logger.log('Auto Clean invoked.')
             await lw.cleaner.clean(step.rootFile)
+            lw.eventBus.fire(AutoCleaned)
         }
     }
 
