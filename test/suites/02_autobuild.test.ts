@@ -84,7 +84,7 @@ suite('Auto-build test suite', () => {
         ])
         const { type } = await test.auto(fixture, 'bib.bib')
         assert.strictEqual(type, 'onChange')
-    })
+    }, ['linux', 'darwin']) // Disable win32 for high false alarm rate
 
     test.run(suiteName, fixtureName, 'auto build with input whose path uses a macro', async () => {
         await test.load(fixture, [

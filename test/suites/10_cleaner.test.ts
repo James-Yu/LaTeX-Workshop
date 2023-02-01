@@ -91,6 +91,7 @@ suite('Cleaner test suite', () => {
 
     test.run(suiteName, fixtureName, 'clean with `latex.autoClean.run` on `never` and failed build', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', ['*.aux','*.fls', '*.pdf'])
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.cleanAndRetry.enabled', false)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoClean.run', 'never')
         await test.load(fixture, [
             {src: 'invalid_cmd.tex', dst: 'main.tex'}
@@ -117,6 +118,7 @@ suite('Cleaner test suite', () => {
 
     test.run(suiteName, fixtureName, 'clean with `latex.autoClean.run` on `onFailed`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', ['*.aux','*.fls', '*.pdf'])
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.cleanAndRetry.enabled', false)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoClean.run', 'onFailed')
         await test.load(fixture, [
             {src: 'invalid_cmd.tex', dst: 'main.tex'}
@@ -139,6 +141,7 @@ suite('Cleaner test suite', () => {
 
     test.run(suiteName, fixtureName, 'clean with `latex.autoClean.run` on `onBuilt`', async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', ['*.aux','*.fls', '*.pdf'])
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.cleanAndRetry.enabled', false)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoClean.run', 'onBuilt')
         await test.load(fixture, [
             {src: 'invalid_cmd.tex', dst: 'main.tex'}
