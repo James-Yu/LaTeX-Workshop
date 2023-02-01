@@ -171,3 +171,31 @@ html[dir='rtl'] .findbar {
     display: none;
   }
 }
+
+#viewerContainer::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+    border-style: none;
+}
+
+#viewerContainer::-webkit-scrollbar:hover, 
+#viewerContainer:focus::-webkit-scrollbar {
+    background-color: rgb(225, 225, 225);
+}
+
+#viewerContainer:hover::-webkit-scrollbar-thumb, 
+#viewerContainer:focus::-webkit-scrollbar-thumb {
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 6px;
+    background-clip: content-box;
+    background-color: rgba(170, 170, 170);
+}
+
+#viewerContainer::-webkit-scrollbar-thumb:hover {
+    background-clip: border-box;
+}
+
+#viewerContainer::-webkit-scrollbar-thumb:active {
+    background-color: rgba(120, 120, 120);
+}
