@@ -31,6 +31,7 @@ with open(args.web + '/viewer.js', 'rt') as fin:
                     .replace('''console.warn('#' + key + ' is undefined.');''', '''// console.warn('#' + key + ' is undefined.');''')
                     .replace('''(!event.shiftKey || window.chrome || window.opera)) {''', '''(!event.shiftKey || window.chrome || window.opera)) {\n    if (window.parent !== window) {\n      return;\n    }''')
                     .replace('''console.error(`webviewerloaded: ''', '''// console.error(`webviewerloaded: ''')
+                    .replace('''console.log(`PDF ${pdfDocument.''', '''// console.log(`PDF ${pdfDocument.''')
             )
 
 os.system(f'git diff --no-index {args.web}/viewer.html {args.viewer}/viewer.html > {args.viewer}/../dev/viewer/viewer.html.diff')
