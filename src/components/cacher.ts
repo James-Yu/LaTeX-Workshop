@@ -13,7 +13,6 @@ import { InputFileRegExp } from '../utils/inputfilepath'
 import { CacherUtils } from './cacherlib/cacherutils'
 import { PathUtils } from './cacherlib/pathutils'
 import { Watcher } from './cacherlib/watcher'
-import { PdfWatcher } from './cacherlib/pdfwatcher'
 import { getLogger } from './logger'
 import { UtensilsParser } from './parser/syntax'
 
@@ -55,19 +54,19 @@ interface Cache {
 
 export class Cacher {
     private readonly caches: {[filePath: string]: Cache} = {}
-    readonly tex: Watcher = new Watcher()
-    private readonly pdfWatcher: PdfWatcher = new PdfWatcher()
+    readonly src: Watcher = new Watcher()
+    readonly pdf: Watcher = new Watcher('.pdf')
     readonly bib: Watcher = new Watcher('.bib')
     private caching = 0
     private promises: {[filePath: string]: Promise<void>} = {}
 
     constructor() {
-        this.tex.onChange((filePath: string) => {
+        this.src.onChange((filePath: string) => {
             if (CacherUtils.canCache(filePath)) {
                 void this.refreshCache(filePath)
             }
         })
-        this.tex.onDelete((filePath: string) => {
+        this.src.onDelete((filePath: string) => {
             if (filePath in this.caches) {
                 delete this.caches[filePath]
                 logger.log(`Removed ${filePath} .`)
@@ -80,9 +79,9 @@ export class Cacher {
             logger.log(`Ignored ${filePath} .`)
             return
         }
-        if (!this.tex.has(filePath)) {
+        if (!this.src.has(filePath)) {
             logger.log(`Adding ${filePath} .`)
-            this.tex.add(filePath)
+            this.src.add(filePath)
         }
     }
 
@@ -106,14 +105,10 @@ export class Cacher {
         return Object.keys(this.caches)
     }
 
-    watched(filePath: string) {
-        return this.tex.has(filePath)
-    }
-
-    async reset() {
-        this.tex.reset()
+    reset() {
+        this.src.reset()
         this.bib.reset()
-        await this.pdfWatcher.dispose()
+        this.pdf.reset()
         Object.keys(this.caches).forEach(filePath => delete this.caches[filePath])
     }
 
@@ -195,7 +190,7 @@ export class Cacher {
             })
             logger.log(`Input ${result.path} from ${filePath} .`)
 
-            if (this.tex.has(result.path)) {
+            if (this.src.has(result.path)) {
                 continue
             }
             this.add(result.path)
@@ -223,7 +218,7 @@ export class Cacher {
             logger.log(`External document ${externalPath} from ${filePath} .` +
                 (result[1] ? ` Prefix is ${result[1]}`: ''))
 
-            if (this.tex.has(externalPath)) {
+            if (this.src.has(externalPath)) {
                 continue
             }
             this.add(externalPath)
@@ -305,7 +300,7 @@ export class Cacher {
                 !fs.existsSync(inputFile)) {
                 continue
             }
-            if (inputFile === filePath || this.watched(inputFile)) {
+            if (inputFile === filePath || this.src.has(inputFile)) {
                 // Drop the current rootFile often listed as INPUT
                 // Drop any file that is already watched as it is handled by
                 // onWatchedFileChange.
@@ -324,7 +319,7 @@ export class Cacher {
                 this.add(inputFile)
                 logger.log(`Found ${inputFile} from .fls ${flsPath} , caching.`)
                 void this.refreshCache(inputFile, filePath)
-            } else if (!this.watched(inputFile)) {
+            } else if (!this.src.has(inputFile)) {
                 // Watch non-tex files.
                 this.add(inputFile)
             }
@@ -465,15 +460,5 @@ export class Cacher {
             await this.getTeXChildren(child.filePath, basePath, children)
         })
         return children
-    }
-
-    ignorePdfFile(rootFile: string) {
-        const pdfFilePath = lw.manager.tex2pdf(rootFile)
-        const pdfFileUri = vscode.Uri.file(pdfFilePath)
-        this.pdfWatcher.ignorePdfFile(pdfFileUri)
-    }
-
-    watchPdfFile(pdfFileUri: vscode.Uri) {
-        this.pdfWatcher.watchPdfFile(pdfFileUri)
     }
 }

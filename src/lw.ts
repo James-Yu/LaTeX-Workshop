@@ -80,8 +80,8 @@ export function init(extensionContext: vscode.ExtensionContext) {
     logger.initializeStatusBarItem()
     logger.log('LaTeX Workshop initialized.')
     return {
-        async dispose() {
-            await cacher.reset()
+        dispose() {
+            cacher.reset()
             server.dispose()
             UtensilsParser.dispose()
             MathJaxPool.dispose()

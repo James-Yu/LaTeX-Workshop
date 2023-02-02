@@ -52,7 +52,7 @@ export class PdfViewerManagerService {
 
     static initiatePdfViewerPanel(pdfPanel: PdfViewerPanel): PdfViewerPanel | undefined {
         const pdfFileUri = pdfPanel.pdfFileUri
-        lw.cacher.watchPdfFile(pdfFileUri)
+        lw.cacher.pdf.add(pdfFileUri.fsPath)
         PdfViewerManagerService.createClientSet(pdfFileUri)
         const panelSet = PdfViewerManagerService.getPanelSet(pdfFileUri)
         if (!panelSet) {

@@ -21,6 +21,10 @@ export { PdfViewerHookProvider } from './viewerlib/pdfviewerhook'
 export class Viewer {
     readonly pdfViewerPanelSerializer: PdfViewerPanelSerializer = new PdfViewerPanelSerializer()
 
+    constructor() {
+        lw.cacher.pdf.onChange(filePath => this.refreshExistingViewer(undefined, filePath))
+    }
+
     /**
      * Refreshes PDF viewers of `sourceFile`.
      *
@@ -71,7 +75,7 @@ export class Viewer {
         }
         const pdfFileUri = this.tex2pdf(sourceFile)
         PdfViewerManagerService.createClientSet(pdfFileUri)
-        lw.cacher.watchPdfFile(pdfFileUri)
+        lw.cacher.pdf.add(pdfFileUri.fsPath)
         try {
             logger.log(`Serving PDF file at ${url}`)
             await vscode.env.openExternal(vscode.Uri.parse(url, true))

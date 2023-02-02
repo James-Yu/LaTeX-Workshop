@@ -32,8 +32,8 @@ export class Builder {
     private readonly MAX_PRINT_LINE = '10000'
 
     constructor() {
-        lw.cacher.tex.onChange((filePath) => this.buildOnFileChanged(filePath))
-        lw.cacher.bib.onChange((filePath) => this.buildOnFileChanged(filePath, true))
+        lw.cacher.src.onChange(filePath => this.buildOnFileChanged(filePath))
+        lw.cacher.bib.onChange(filePath => this.buildOnFileChanged(filePath, true))
         // Check if pdflatex is available, and is MikTeX distro
         try {
             const pdflatexVersion = cp.execSync('pdflatex --version')
@@ -130,10 +130,6 @@ export class Builder {
 
         this.lastBuild = Date.now()
 
-        if (rootFile) {
-            lw.cacher.ignorePdfFile(rootFile)
-        }
-
         await vscode.workspace.saveAll()
 
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
@@ -145,7 +141,7 @@ export class Builder {
 
         this.stepQueue.add(tool, rootFile, 'External', Date.now(), true, cwd)
 
-        await this.buildLoop()
+        await this.buildLoop(rootFile)
     }
 
     /**
@@ -165,10 +161,6 @@ export class Builder {
 
         this.lastBuild = Date.now()
 
-        // Stop watching the PDF file to avoid reloading the PDF viewer twice.
-        // The builder will be responsible for refreshing the viewer.
-        lw.cacher.ignorePdfFile(rootFile)
-
         await vscode.workspace.saveAll()
 
         this.createOuputSubFolders(rootFile)
@@ -182,7 +174,7 @@ export class Builder {
         const timestamp = Date.now()
         tools.forEach(tool => this.stepQueue.add(tool, rootFile, recipeName || 'Build', timestamp))
 
-        await this.buildLoop()
+        await this.buildLoop(rootFile)
     }
 
     /**
@@ -213,9 +205,14 @@ export class Builder {
      * this process, the {@link Tool}s in {@link BuildToolQueue} can be
      * dynamically added or removed, handled by {@link BuildToolQueue}.
      */
-    private async buildLoop() {
+    private async buildLoop(rootFile?: string) {
         if (this.building) {
             return
+        }
+        // Stop watching the PDF file to avoid reloading the PDF viewer twice.
+        // The builder will be responsible for refreshing the viewer.
+        if (rootFile) {
+            lw.cacher.pdf.remove(lw.manager.tex2pdf(rootFile))
         }
         this.building = true
         while (true) {
@@ -230,6 +227,9 @@ export class Builder {
             }
         }
         this.building = false
+        if (rootFile) {
+            lw.cacher.pdf.add(lw.manager.tex2pdf(rootFile))
+        }
     }
 
     /**
@@ -348,9 +348,6 @@ export class Builder {
                 } else if (code === 0) {
                     logger.log(`Successfully built document with PID ${this.process?.pid}.`)
                     logger.refreshStatus('check', 'statusBar.foreground', 'Build succeeded.')
-                    if (step.rootFile === undefined) {
-                        lw.viewer.refreshExistingViewer()
-                    }
                     this.process = undefined
                     resolve(true)
                     return
@@ -410,6 +407,7 @@ export class Builder {
     private async afterSuccessfulBuilt(step: Step) {
         if (step.rootFile === undefined) {
             // This only happens when the step is an external command.
+            lw.viewer.refreshExistingViewer()
             return
         }
         logger.log(`Successfully built ${step.rootFile} .`)
