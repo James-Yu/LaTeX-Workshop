@@ -64,8 +64,7 @@ export async function reset(fixture: string) {
     lw.manager.localRootFile = undefined
     lw.completer.input.reset()
     lw.duplicateLabels.reset()
-    lw.cacher.allPaths.forEach(filePath => lw.cacher.remove(filePath))
-    await lw.cacher.resetWatcher()
+    await lw.cacher.reset()
     glob.sync('**/{**.tex,**.pdf,**.bib}', { cwd: fixture }).forEach(file => { try {fs.unlinkSync(path.resolve(fixture, file))} catch {} })
 }
 
@@ -171,7 +170,7 @@ export async function auto(fixture: string, editFile: string, noBuild = false, s
     }
     if (noBuild) {
         await sleep(500)
-        strictEqual(getCachedLog().CACHED_EXTLOG.filter(line => line.includes('[Builder]')).length, 0)
+        strictEqual(getCachedLog().CACHED_EXTLOG.filter(line => line.includes('[Builder]')).filter(line => line.includes(editFile)).length, 0)
         return {type: 'onChange', file: ''}
     }
     logger.log('Wait for auto-build.')

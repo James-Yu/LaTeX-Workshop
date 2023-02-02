@@ -12,9 +12,8 @@ import type { ICompletionItem } from '../providers/completion'
 import { InputFileRegExp } from '../utils/inputfilepath'
 import { CacherUtils } from './cacherlib/cacherutils'
 import { PathUtils } from './cacherlib/pathutils'
-import { Watcher } from './cacherlib/texwatcher'
+import { Watcher } from './cacherlib/watcher'
 import { PdfWatcher } from './cacherlib/pdfwatcher'
-import { BibWatcher } from './cacherlib/bibwatcher'
 import { getLogger } from './logger'
 import { UtensilsParser } from './parser/syntax'
 
@@ -56,29 +55,35 @@ interface Cache {
 
 export class Cacher {
     private readonly caches: {[filePath: string]: Cache} = {}
-    private readonly watcher: Watcher = new Watcher(this)
+    readonly tex: Watcher = new Watcher()
     private readonly pdfWatcher: PdfWatcher = new PdfWatcher()
-    private readonly bibWatcher: BibWatcher = new BibWatcher()
+    readonly bib: Watcher = new Watcher('.bib')
     private caching = 0
     private promises: {[filePath: string]: Promise<void>} = {}
+
+    constructor() {
+        this.tex.onChange((filePath: string) => {
+            if (CacherUtils.canCache(filePath)) {
+                void this.refreshCache(filePath)
+            }
+        })
+        this.tex.onDelete((filePath: string) => {
+            if (filePath in this.caches) {
+                delete this.caches[filePath]
+                logger.log(`Removed ${filePath} .`)
+            }
+        })
+    }
 
     add(filePath: string) {
         if (CacherUtils.isExcluded(filePath)) {
             logger.log(`Ignored ${filePath} .`)
             return
         }
-        if (!this.watcher.has(filePath)) {
+        if (!this.tex.has(filePath)) {
             logger.log(`Adding ${filePath} .`)
-            this.watcher.add(filePath)
+            this.tex.add(filePath)
         }
-    }
-
-    remove(filePath: string) {
-        if (!(filePath in this.caches)) {
-            return
-        }
-        delete this.caches[filePath]
-        logger.log(`Removed ${filePath} .`)
     }
 
     has(filePath: string) {
@@ -102,17 +107,14 @@ export class Cacher {
     }
 
     watched(filePath: string) {
-        return this.watcher.has(filePath)
+        return this.tex.has(filePath)
     }
 
-    async resetWatcher() {
-        await this.watcher.reset()
-    }
-
-    async dispose() {
-        await this.watcher.watcher.close()
+    async reset() {
+        this.tex.reset()
+        this.bib.reset()
         await this.pdfWatcher.dispose()
-        await this.bibWatcher.dispose()
+        Object.keys(this.caches).forEach(filePath => delete this.caches[filePath])
     }
 
     async refreshCache(filePath: string, rootPath?: string) {
@@ -193,7 +195,7 @@ export class Cacher {
             })
             logger.log(`Input ${result.path} from ${filePath} .`)
 
-            if (this.watcher.has(result.path)) {
+            if (this.tex.has(result.path)) {
                 continue
             }
             this.add(result.path)
@@ -221,7 +223,7 @@ export class Cacher {
             logger.log(`External document ${externalPath} from ${filePath} .` +
                 (result[1] ? ` Prefix is ${result[1]}`: ''))
 
-            if (this.watcher.has(externalPath)) {
+            if (this.tex.has(externalPath)) {
                 continue
             }
             this.add(externalPath)
@@ -267,7 +269,9 @@ export class Cacher {
                 }
                 this.caches[filePath].bibfiles.add(bibPath)
                 logger.log(`Bib ${bibPath} from ${filePath} .`)
-                this.bibWatcher.watchBibFile(bibPath)
+                if (!this.bib.has(bibPath)) {
+                    this.bib.add(bibPath)
+                }
             }
         }
         logger.log(`Updated bibs of ${filePath} .`)
@@ -357,7 +361,9 @@ export class Cacher {
                     this.get(rootFile)?.bibfiles.add(bibPath)
                     logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
                 }
-                this.bibWatcher.watchBibFile(bibPath)
+                if (!this.bib.has(bibPath)) {
+                    this.bib.add(bibPath)
+                }
             }
         }
     }

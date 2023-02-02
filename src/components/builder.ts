@@ -32,6 +32,8 @@ export class Builder {
     private readonly MAX_PRINT_LINE = '10000'
 
     constructor() {
+        lw.cacher.tex.onChange((filePath) => this.buildOnFileChanged(filePath))
+        lw.cacher.bib.onChange((filePath) => this.buildOnFileChanged(filePath, true))
         // Check if pdflatex is available, and is MikTeX distro
         try {
             const pdflatexVersion = cp.execSync('pdflatex --version')

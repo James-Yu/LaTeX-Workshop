@@ -81,7 +81,7 @@ export function init(extensionContext: vscode.ExtensionContext) {
     logger.log('LaTeX Workshop initialized.')
     return {
         async dispose() {
-            await cacher.dispose()
+            await cacher.reset()
             server.dispose()
             UtensilsParser.dispose()
             MathJaxPool.dispose()
