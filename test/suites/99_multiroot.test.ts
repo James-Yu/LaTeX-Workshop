@@ -43,7 +43,11 @@ suite('Multi-root workspace test suite', () => {
             'intellisense.citation.label',
             'latex.autoBuild.run'
         ]
-        configs.forEach(config => items.forEach(async item => { await config.update(item, undefined) }))
+        for (const config of configs) {
+            for (const item of items) {
+                await config.update(item, undefined)
+            }
+        }
     })
 
     suiteTeardown(async () => {
@@ -109,7 +113,7 @@ suite('Multi-root workspace test suite', () => {
         ], {skipCache: true})
         await test.build(fixture, 'A/main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'A/wsA.pdf')))
-    }, ['linux', 'darwin']) // Problematic on win32.
+    })
 
     test.run(suiteName, fixtureName, 'basic build with unavailable lastUsed', async () => {
         const tools = [
