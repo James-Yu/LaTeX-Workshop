@@ -28,11 +28,19 @@ export class Watcher {
 
     private createWatcher(globPattern: vscode.GlobPattern): vscode.FileSystemWatcher {
         const watcher = vscode.workspace.createFileSystemWatcher(globPattern)
+        watcher.onDidCreate((uri: vscode.Uri) => {
+            if (!this.watchers[path.dirname(uri.fsPath)]?.files.has(path.basename(uri.fsPath))){
+                return
+            }
+            logger.log(`"create" emitted on ${uri.fsPath} .`)
+            this.onChangeHandlers.forEach(handler => handler(uri.fsPath))
+            lw.eventBus.fire(eventbus.FileChanged, uri.fsPath)
+        })
         watcher.onDidChange((uri: vscode.Uri) => {
             if (!this.watchers[path.dirname(uri.fsPath)]?.files.has(path.basename(uri.fsPath))){
                 return
             }
-            logger.log(`Changed ${uri.fsPath} .`)
+            logger.log(`"change" emitted on ${uri.fsPath} .`)
             this.onChangeHandlers.forEach(handler => handler(uri.fsPath))
             lw.eventBus.fire(eventbus.FileChanged, uri.fsPath)
         })
@@ -42,7 +50,7 @@ export class Watcher {
             if (!this.watchers[folder]?.files.has(fileName)){
                 return
             }
-            logger.log(`Deleted ${uri.fsPath} .`)
+            logger.log(`"delete" emitted on ${uri.fsPath} .`)
             this.onDeleteHandlers.forEach(handler => handler(uri.fsPath))
             this.watchers[folder].files.delete(fileName)
             if (this.watchers[folder].files.size === 0) {
