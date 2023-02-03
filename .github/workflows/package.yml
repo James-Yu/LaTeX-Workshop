@@ -1,0 +1,25 @@
+name: LaTeX Workshop Extension Package
+env:
+  cache-version: v12
+on: [push]
+
+permissions:
+  contents: read
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+    - run: |
+        npm ci
+        npm run release
+    - name: Archive extension package
+      uses: actions/upload-artifact@v3
+      with:
+        name: latex-workshop
+        path: latex-workshop-*.vsix
