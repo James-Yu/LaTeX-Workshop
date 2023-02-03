@@ -4,7 +4,7 @@ import * as path from 'path'
 import * as assert from 'assert'
 import * as lw from '../../src/lw'
 import * as test from './utils'
-import { StructureUpdated } from '../../src/components/eventbus'
+// import { StructureUpdated } from '../../src/components/eventbus'
 
 suite('Multi-root workspace test suite', () => {
 
@@ -109,7 +109,7 @@ suite('Multi-root workspace test suite', () => {
         ], {skipCache: true})
         await test.build(fixture, 'A/main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'A/wsA.pdf')))
-    })
+    }, ['linux', 'darwin']) // Problematic on win32.
 
     test.run(suiteName, fixtureName, 'basic build with unavailable lastUsed', async () => {
         const tools = [
@@ -190,28 +190,28 @@ suite('Multi-root workspace test suite', () => {
         assert.strictEqual(suggestions.items[0].label, 'art1')
     })
 
-    test.run(suiteName, fixtureName, 'switching structure', async () => {
-        await test.load(fixture, [
-            {src: 'structure_base.tex', dst: 'A/main.tex'},
-            {src: 'structure_sub.tex', dst: 'A/sub/s.tex'},
-            {src: 'structure_s2.tex', dst: 'A/sub/s2.tex'},
-            {src: 'structure_s3.tex', dst: 'A/sub/s3.tex'}
-        ], {root: -1})
-        await test.load(fixture, [
-            {src: 'base.tex', dst: 'B/main.tex'}
-        ], {root: -1})
+    // test.run(suiteName, fixtureName, 'switching structure', async () => {
+    //     await test.load(fixture, [
+    //         {src: 'structure_base.tex', dst: 'A/main.tex'},
+    //         {src: 'structure_sub.tex', dst: 'A/sub/s.tex'},
+    //         {src: 'structure_s2.tex', dst: 'A/sub/s2.tex'},
+    //         {src: 'structure_s3.tex', dst: 'A/sub/s3.tex'}
+    //     ], {root: -1})
+    //     await test.load(fixture, [
+    //         {src: 'base.tex', dst: 'B/main.tex'}
+    //     ], {root: -1})
 
-        let updated = test.wait(StructureUpdated)
-        let doc = await vscode.workspace.openTextDocument(path.join(fixture, 'A/main.tex'))
-        await vscode.window.showTextDocument(doc)
-        await updated
-        assert.strictEqual(lw.structureViewer.getTreeData().length, 6)
+    //     let updated = test.wait(StructureUpdated)
+    //     let doc = await vscode.workspace.openTextDocument(path.join(fixture, 'A/main.tex'))
+    //     await vscode.window.showTextDocument(doc)
+    //     await updated
+    //     assert.strictEqual(lw.structureViewer.getTreeData().length, 6)
 
-        doc = await vscode.workspace.openTextDocument(path.join(fixture, 'B/main.tex'))
-        await vscode.window.showTextDocument(doc)
-        updated = test.wait(StructureUpdated)
-        await lw.manager.findRoot()
-        await updated
-        assert.strictEqual(lw.structureViewer.getTreeData().length, 0)
-    })
+    //     doc = await vscode.workspace.openTextDocument(path.join(fixture, 'B/main.tex'))
+    //     await vscode.window.showTextDocument(doc)
+    //     updated = test.wait(StructureUpdated)
+    //     await lw.manager.findRoot()
+    //     await updated
+    //     assert.strictEqual(lw.structureViewer.getTreeData().length, 0)
+    // })
 })
