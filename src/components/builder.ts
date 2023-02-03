@@ -467,6 +467,7 @@ export class Builder {
                     buildTools.push(tool)
                 }
             })
+            logger.log(`Prepared ${buildTools.length} tools.`)
         }
         if (buildTools.length < 1) {
             return

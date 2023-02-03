@@ -28,18 +28,14 @@ export class Watcher {
 
     private createWatcher(globPattern: vscode.GlobPattern): vscode.FileSystemWatcher {
         const watcher = vscode.workspace.createFileSystemWatcher(globPattern)
-        const onChange = (uri: vscode.Uri) => {
+        watcher.onDidChange((uri: vscode.Uri) => {
             if (!this.watchers[path.dirname(uri.fsPath)]?.files.has(path.basename(uri.fsPath))){
                 return
             }
             logger.log(`Changed ${uri.fsPath} .`)
             this.onChangeHandlers.forEach(handler => handler(uri.fsPath))
             lw.eventBus.fire(eventbus.FileChanged, uri.fsPath)
-        }
-        // It is recommended to react to both change and create events.
-        // See https://github.com/microsoft/vscode/issues/136460#issuecomment-982605100
-        watcher.onDidCreate(onChange)
-        watcher.onDidChange(onChange)
+        })
         watcher.onDidDelete((uri: vscode.Uri) => {
             const fileName = path.basename(uri.fsPath)
             const folder = path.dirname(uri.fsPath)

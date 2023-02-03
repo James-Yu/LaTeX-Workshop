@@ -207,9 +207,10 @@ suite('Multi-root workspace test suite', () => {
         await updated
         assert.strictEqual(lw.structureViewer.getTreeData().length, 6)
 
-        updated = test.wait(StructureUpdated)
         doc = await vscode.workspace.openTextDocument(path.join(fixture, 'B/main.tex'))
         await vscode.window.showTextDocument(doc)
+        updated = test.wait(StructureUpdated)
+        await lw.manager.findRoot()
         await updated
         assert.strictEqual(lw.structureViewer.getTreeData().length, 0)
     })
