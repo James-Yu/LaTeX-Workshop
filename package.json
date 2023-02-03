@@ -1149,30 +1149,6 @@
           "default": false,
           "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `false`, the `build` and `view` commands  ask the user's choice first. When `true`, the subfile is used when `#latex-workshop.latex.rootFile.useSubFile#` is also `true`, otherwise the rootFile is used."
         },
-        "latex-workshop.latex.watch.usePolling": {
-          "scope": "window",
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "When set to true, polling is used to watch changes on files. When TeX files are placed on network drives or OneDrive, this option should be turned on. Setting this option to true might lead to high CPU utilization."
-        },
-        "latex-workshop.latex.watch.interval": {
-          "scope": "window",
-          "type": "number",
-          "default": 300,
-          "markdownDescription": "Interval of polling, in milliseconds."
-        },
-        "latex-workshop.latex.watch.delay": {
-          "scope": "window",
-          "type": "number",
-          "default": 250,
-          "markdownDescription": "Delay before starting builds, in milliseconds."
-        },
-        "latex-workshop.latex.watch.pdf.delay": {
-          "scope": "window",
-          "type": "number",
-          "default": 250,
-          "markdownDescription": "Delay before reloading a PDF file after last change, in milliseconds."
-        },
         "latex-workshop.latex.watch.files.ignore": {
           "scope": "window",
           "type": "array",
@@ -1232,7 +1208,7 @@
           "scope": "resource",
           "type": "integer",
           "default": 1000,
-          "markdownDescription": "The minimal time interval in milliseconds for an auto build to trigger after the previous (manual and auto) build. This value is recommended to be greater than ~500 and also `#latex-workshop.latex.watch.interval#` if `#latex-workshop.latex.watch.usePolling#` is `true`."
+          "markdownDescription": "The minimal time interval in milliseconds for an auto build to trigger after the previous (manual and auto) build. This value is recommended to be greater than ~500."
         },
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
           "scope": "resource",
@@ -1369,7 +1345,8 @@
           "scope": "window",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Use fast LaTeX parsing algorithm to build outline/structure. This is done by inheritly removing texts and comments before building AST. Enabling this will not tamper the document, but may result in incomplete outline/structure."
+          "deprecationMessage": "Deprecated: This config has been renamed to `intellisense.fastparse.enabled`.",
+          "markdownDeprecationMessage": "**Deprecated**: This config has been renamed to `#intellisense.fastparse.enabled#`."
         },
         "latex-workshop.view.outline.floats.enabled": {
           "scope": "window",
@@ -1783,6 +1760,12 @@
           "type": "number",
           "default": 1000,
           "markdownDescription": "The minimal time interval between two consecutive runs of `texcount` in milliseconds when `#latex-workshop.texcount.run#` is set to `onSave`."
+        },
+        "latex-workshop.intellisense.fastparse.enabled": {
+          "scope": "window",
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Use fast LaTeX parsing algorithm to build outline/structure. This is done by inheritly removing texts and comments before building AST. Enabling this will not tamper the document, but may result in incomplete outline/structure."
         },
         "latex-workshop.intellisense.update.aggressive.enabled": {
           "scope": "window",
@@ -2528,7 +2511,6 @@
     "watch-viewer": "tsc -watch -p viewer/tsconfig.json"
   },
   "dependencies": {
-    "chokidar": "3.5.3",
     "cross-spawn": "7.0.3",
     "glob": "8.0.3",
     "iconv-lite": "0.6.3",

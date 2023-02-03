@@ -31,6 +31,12 @@ export class Manager {
 
     constructor() {
         this.registerSetEnvVar()
+        lw.cacher.src.onDelete(filePath => {
+            if (filePath === this.rootFile) {
+                this.rootFile = undefined
+                void this.findRoot()
+            }
+        })
 
         // Create temp folder
         try {
@@ -254,7 +260,7 @@ export class Manager {
                 // We also clean the completions from the old project
                 lw.completer.input.reset()
                 lw.duplicateLabels.reset()
-                await lw.cacher.resetWatcher()
+                lw.cacher.src.reset()
                 lw.cacher.add(rootFile)
                 void lw.cacher.refreshCache(rootFile).then(async () => {
                     // We need to parse the fls to discover file dependencies when defined by TeX macro

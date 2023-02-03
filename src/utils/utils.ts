@@ -26,18 +26,19 @@ export function escapeRegExp(str: string) {
  */
 export function stripText(raw: string): string {
     const text = stripComments(raw)
-    const lines = text.split('\n').length
     // We first create an array of empty strings, each of which corresponds to
     // one line in the original document.
-    const result = Array(lines).fill('')
-    // The folloing regex defines a LaTeX command.
-    const cmdReg = /(\\(?:[^a-zA-Z@]|[a-zA-Z@]+[*=']?)\s*)/gm
+    const result = Array(text.split('\n').length).fill('')
+    // The following regex defines a LaTeX command.
+    // We also consider a special case of verbatim "label={something}"
+    const cmdReg = /(\\(?:[^a-zA-Z@]|[a-zA-Z@]+[*=']?)\s*)|(label={[^{}]+})/gm
     let match
     while ((match = cmdReg.exec(text)) !== null) {
         // Stores the complete command, including arguments.
         let matchedText = match[0]
+        // match[1]: command, null on "label={something}"
         // There is an (optional) argument after the command. They can be many.
-        while (text[cmdReg.lastIndex] === '{' || text[cmdReg.lastIndex] === '[') {
+        while (['{', '['].includes(text[cmdReg.lastIndex])) {
             const isCurly = text[cmdReg.lastIndex] === '{'
             const balanceStr = getLongestBalancedString(text.substring(cmdReg.lastIndex), isCurly ? undefined : 'square')
             matchedText += isCurly ? `{${balanceStr}}` : `[${balanceStr}]`

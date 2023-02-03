@@ -12,9 +12,7 @@ import type { ICompletionItem } from '../providers/completion'
 import { InputFileRegExp } from '../utils/inputfilepath'
 import { CacherUtils } from './cacherlib/cacherutils'
 import { PathUtils } from './cacherlib/pathutils'
-import { Watcher } from './cacherlib/texwatcher'
-import { PdfWatcher } from './cacherlib/pdfwatcher'
-import { BibWatcher } from './cacherlib/bibwatcher'
+import { Watcher } from './cacherlib/watcher'
 import { getLogger } from './logger'
 import { UtensilsParser } from './parser/syntax'
 
@@ -56,29 +54,35 @@ interface Cache {
 
 export class Cacher {
     private readonly caches: {[filePath: string]: Cache} = {}
-    private readonly watcher: Watcher = new Watcher(this)
-    private readonly pdfWatcher: PdfWatcher = new PdfWatcher()
-    private readonly bibWatcher: BibWatcher = new BibWatcher()
+    readonly src: Watcher = new Watcher()
+    readonly pdf: Watcher = new Watcher('.pdf')
+    readonly bib: Watcher = new Watcher('.bib')
     private caching = 0
     private promises: {[filePath: string]: Promise<void>} = {}
+
+    constructor() {
+        this.src.onChange((filePath: string) => {
+            if (CacherUtils.canCache(filePath)) {
+                void this.refreshCache(filePath)
+            }
+        })
+        this.src.onDelete((filePath: string) => {
+            if (filePath in this.caches) {
+                delete this.caches[filePath]
+                logger.log(`Removed ${filePath} .`)
+            }
+        })
+    }
 
     add(filePath: string) {
         if (CacherUtils.isExcluded(filePath)) {
             logger.log(`Ignored ${filePath} .`)
             return
         }
-        if (!this.watcher.has(filePath)) {
+        if (!this.src.has(filePath)) {
             logger.log(`Adding ${filePath} .`)
-            this.watcher.add(filePath)
+            this.src.add(filePath)
         }
-    }
-
-    remove(filePath: string) {
-        if (!(filePath in this.caches)) {
-            return
-        }
-        delete this.caches[filePath]
-        logger.log(`Removed ${filePath} .`)
     }
 
     has(filePath: string) {
@@ -101,18 +105,11 @@ export class Cacher {
         return Object.keys(this.caches)
     }
 
-    watched(filePath: string) {
-        return this.watcher.has(filePath)
-    }
-
-    async resetWatcher() {
-        await this.watcher.reset()
-    }
-
-    async dispose() {
-        await this.watcher.watcher.close()
-        await this.pdfWatcher.dispose()
-        await this.bibWatcher.dispose()
+    reset() {
+        this.src.reset()
+        this.bib.reset()
+        this.pdf.reset()
+        Object.keys(this.caches).forEach(filePath => delete this.caches[filePath])
     }
 
     async refreshCache(filePath: string, rootPath?: string) {
@@ -153,9 +150,9 @@ export class Cacher {
     }
 
     private async updateAST(filePath: string, content: string) {
-        // const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        // const fastparse = configuration.get('view.outline.fastparse.enabled') as boolean
-        const ast = await UtensilsParser.parseLatex(/**fastparse ? utils.stripText(content) : */content).catch((e) => {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
+        const ast = await UtensilsParser.parseLatex(fastparse ? utils.stripText(content) : content).catch((e) => {
             if (latexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 logger.log(`Error parsing AST of ${filePath} at line ${line}.`)
@@ -193,7 +190,7 @@ export class Cacher {
             })
             logger.log(`Input ${result.path} from ${filePath} .`)
 
-            if (this.watcher.has(result.path)) {
+            if (this.src.has(result.path)) {
                 continue
             }
             this.add(result.path)
@@ -221,7 +218,7 @@ export class Cacher {
             logger.log(`External document ${externalPath} from ${filePath} .` +
                 (result[1] ? ` Prefix is ${result[1]}`: ''))
 
-            if (this.watcher.has(externalPath)) {
+            if (this.src.has(externalPath)) {
                 continue
             }
             this.add(externalPath)
@@ -267,7 +264,9 @@ export class Cacher {
                 }
                 this.caches[filePath].bibfiles.add(bibPath)
                 logger.log(`Bib ${bibPath} from ${filePath} .`)
-                this.bibWatcher.watchBibFile(bibPath)
+                if (!this.bib.has(bibPath)) {
+                    this.bib.add(bibPath)
+                }
             }
         }
         logger.log(`Updated bibs of ${filePath} .`)
@@ -301,7 +300,7 @@ export class Cacher {
                 !fs.existsSync(inputFile)) {
                 continue
             }
-            if (inputFile === filePath || this.watched(inputFile)) {
+            if (inputFile === filePath || this.src.has(inputFile)) {
                 // Drop the current rootFile often listed as INPUT
                 // Drop any file that is already watched as it is handled by
                 // onWatchedFileChange.
@@ -320,7 +319,7 @@ export class Cacher {
                 this.add(inputFile)
                 logger.log(`Found ${inputFile} from .fls ${flsPath} , caching.`)
                 void this.refreshCache(inputFile, filePath)
-            } else if (!this.watched(inputFile)) {
+            } else if (!this.src.has(inputFile)) {
                 // Watch non-tex files.
                 this.add(inputFile)
             }
@@ -357,7 +356,9 @@ export class Cacher {
                     this.get(rootFile)?.bibfiles.add(bibPath)
                     logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
                 }
-                this.bibWatcher.watchBibFile(bibPath)
+                if (!this.bib.has(bibPath)) {
+                    this.bib.add(bibPath)
+                }
             }
         }
     }
@@ -459,15 +460,5 @@ export class Cacher {
             await this.getTeXChildren(child.filePath, basePath, children)
         })
         return children
-    }
-
-    ignorePdfFile(rootFile: string) {
-        const pdfFilePath = lw.manager.tex2pdf(rootFile)
-        const pdfFileUri = vscode.Uri.file(pdfFilePath)
-        this.pdfWatcher.ignorePdfFile(pdfFileUri)
-    }
-
-    watchPdfFile(pdfFileUri: vscode.Uri) {
-        this.pdfWatcher.watchPdfFile(pdfFileUri)
     }
 }
