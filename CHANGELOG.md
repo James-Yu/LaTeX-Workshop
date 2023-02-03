@@ -1,5 +1,18 @@
 # Change Log
 
+## [9.6.1] - 2023-02-03
+
+### Fixed
+- Remove unnecessary PDF viewer dropdown menu elements.
+- Reenabled fast parse on document contents for intellisense and outline.
+  - Now fast parse can properly handle `label={eq1}`-like syntax.
+- (#3682) Visually activate hand tool in viewer.
+- (#3683) Explain on the conflict with extension `vscode-pdf`.
+
+### Internal
+- Change to use `vscode.FileSystemWatcher` to watch project files intead of `chokidar`.
+  - The current version of `chokidar` possibly fails to emit events on `git pull`.
+
 ## [9.6.0] - 2023-01-29
 
 ### Added
