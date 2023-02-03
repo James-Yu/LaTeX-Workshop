@@ -150,9 +150,9 @@ export class Cacher {
     }
 
     private async updateAST(filePath: string, content: string) {
-        // const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        // const fastparse = configuration.get('view.outline.fastparse.enabled') as boolean
-        const ast = await UtensilsParser.parseLatex(/**fastparse ? utils.stripText(content) : */content).catch((e) => {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
+        const ast = await UtensilsParser.parseLatex(fastparse ? utils.stripText(content) : content).catch((e) => {
             if (latexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 logger.log(`Error parsing AST of ${filePath} at line ${line}.`)
