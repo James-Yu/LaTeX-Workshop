@@ -22,7 +22,11 @@ export class Viewer {
     readonly pdfViewerPanelSerializer: PdfViewerPanelSerializer = new PdfViewerPanelSerializer()
 
     constructor() {
-        lw.cacher.pdf.onChange(filePath => this.refreshExistingViewer(undefined, filePath))
+        lw.cacher.pdf.onChange(pdfPath => {
+            if (lw.builder.canViewerRefresh(pdfPath)) {
+                this.refreshExistingViewer(undefined, pdfPath)
+            }
+        })
     }
 
     /**

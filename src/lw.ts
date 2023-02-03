@@ -32,7 +32,7 @@ import { MathJaxPool } from './providers/preview/mathjaxpool'
 let disposables: { dispose(): any }[] = []
 let context: vscode.ExtensionContext
 
-export function registerDisposable(...items: { dispose(): Promise<void> }[]) {
+export function registerDisposable(...items: vscode.Disposable[]) {
     if (context) {
         context.subscriptions.push(...disposables, ...items)
         disposables = []
@@ -80,7 +80,7 @@ export function init(extensionContext: vscode.ExtensionContext) {
     logger.initializeStatusBarItem()
     logger.log('LaTeX Workshop initialized.')
     return {
-        dispose() {
+        dispose: () => {
             cacher.reset()
             server.dispose()
             UtensilsParser.dispose()

@@ -14,8 +14,6 @@ suite('Auto-build test suite', () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
         fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.interval', 250)
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.interval', 200)
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.usePolling', true)
     })
 
     setup(async () => {
@@ -35,8 +33,6 @@ suite('Auto-build test suite', () => {
 
     suiteTeardown(async () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.interval', undefined)
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.interval', undefined)
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.usePolling', undefined)
     })
 
     test.run(suiteName, fixtureName, 'auto build', async () => {

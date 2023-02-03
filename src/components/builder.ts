@@ -22,6 +22,7 @@ export class Builder {
     private prevLangId: string | undefined
     private prevRecipe: Recipe | undefined
     private building: boolean = false
+    private targetPDFPath: string = ''
     private process: cp.ChildProcessWithoutNullStreams | undefined
 
     private readonly isMiktex: boolean = false
@@ -198,6 +199,10 @@ export class Builder {
         await vscode.window.activeTextEditor?.document.save()
     }
 
+    canViewerRefresh(pdfPath: string) {
+        return path.relative(pdfPath, this.targetPDFPath) !== ''
+    }
+
     /**
      * This function returns if there is another {@link buildLoop} function/loop
      * running. If not, this function iterates through the
@@ -211,10 +216,8 @@ export class Builder {
         }
         // Stop watching the PDF file to avoid reloading the PDF viewer twice.
         // The builder will be responsible for refreshing the viewer.
-        if (rootFile) {
-            lw.cacher.pdf.remove(lw.manager.tex2pdf(rootFile))
-        }
         this.building = true
+        this.targetPDFPath = rootFile ? lw.manager.tex2pdf(rootFile) : ''
         while (true) {
             const step = this.stepQueue.getStep()
             if (step === undefined) {
@@ -227,9 +230,7 @@ export class Builder {
             }
         }
         this.building = false
-        if (rootFile) {
-            lw.cacher.pdf.add(lw.manager.tex2pdf(rootFile))
-        }
+        this.targetPDFPath = ''
     }
 
     /**
