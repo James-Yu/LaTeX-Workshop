@@ -1,19 +1,16 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
-import * as lw from '../../src/lw'
 import * as test from './utils'
 import { readFileSync } from 'fs'
 
 suite('Formatter test suite', () => {
 
     const suiteName = path.basename(__filename).replace('.test.js', '')
-    let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
-        fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
     })
 
     setup(async () => {
@@ -21,7 +18,7 @@ suite('Formatter test suite', () => {
     })
 
     teardown(async () => {
-        await test.reset(fixture)
+        await test.reset()
 
         await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.path', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.args', undefined)
@@ -38,7 +35,7 @@ suite('Formatter test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-fields.order', undefined)
     })
 
-    test.run(suiteName, fixtureName, 'test latex formatter', async () => {
+    test.run(suiteName, fixtureName, 'test latex formatter', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'formatter/latex_base.tex', dst: 'main.tex'}
         ], {open: 0, skipCache: true})
@@ -47,7 +44,7 @@ suite('Formatter test suite', () => {
         assert.notStrictEqual(original, formatted)
     })
 
-    test.run(suiteName, fixtureName, 'change latexindent.path on the fly', async () => {
+    test.run(suiteName, fixtureName, 'change latexindent.path on the fly', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.path', 'echo')
         await test.load(fixture, [
             {src: 'formatter/latex_base.tex', dst: 'main.tex'}
@@ -66,7 +63,7 @@ suite('Formatter test suite', () => {
         assert.notStrictEqual(original, formatted)
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex formatter', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex formatter', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'formatter/bibtex_base.bib', dst: 'main.bib'}
         ], {open: 0, skipCache: true})
@@ -75,7 +72,7 @@ suite('Formatter test suite', () => {
         assert.notStrictEqual(original, formatted)
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.tab`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.tab`', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'formatter/bibtex_base.bib', dst: 'main.bib'}
         ], {open: 0, skipCache: true})
@@ -93,7 +90,7 @@ suite('Formatter test suite', () => {
         assert.strictEqual(lines[1].slice(0, 4), '    ')
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.surround`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.surround`', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'formatter/bibtex_base.bib', dst: 'main.bib'}
         ], {open: 0, skipCache: true})
@@ -107,7 +104,7 @@ suite('Formatter test suite', () => {
         assert.strictEqual(lines[1].slice(-2, -1), '"')
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.case`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.case`', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'formatter/bibtex_base.bib', dst: 'main.bib'}
         ], {open: 0, skipCache: true})
@@ -121,7 +118,7 @@ suite('Formatter test suite', () => {
         assert.ok(lines[1].trim().slice(0, 1).match(/[a-z]/))
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.trailingComma`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.trailingComma`', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'formatter/bibtex_base.bib', dst: 'main.bib'}
         ], {open: 0, skipCache: true})
@@ -135,7 +132,7 @@ suite('Formatter test suite', () => {
         assert.notStrictEqual(lines[5].trim().slice(-1), ',')
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex sorter with `bibtex-format.sortby`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex sorter with `bibtex-format.sortby`', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'formatter/bibtex_base.bib', dst: 'main.bib'}
         ], {open: 0, skipCache: true})
@@ -155,7 +152,7 @@ suite('Formatter test suite', () => {
         assert.ok(entries[2].includes('MR1241645'))
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex sorter with `bibtex-format.handleDuplicates`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex sorter with `bibtex-format.handleDuplicates`', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'formatter/bibtex_dup.bib', dst: 'main.bib'}
         ], {open: 0, skipCache: true})
@@ -165,12 +162,12 @@ suite('Formatter test suite', () => {
         assert.strictEqual(lines.filter(line => line.includes('@')).length, 1)
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.sort.enabled`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.sort.enabled`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sortby', ['year'])
         await test.load(fixture, [
             {src: 'formatter/bibtex_base.bib', dst: 'main.bib'}
         ], {open: 0, skipCache: true})
-        await test.wait(lines => lines.filter(line => line.includes('@')).length === 3)
+
         const lines = (await test.format()).split('\n')
         const entries = lines.filter(line => line.includes('@'))
         assert.ok(entries[2].includes('art1'))
@@ -178,7 +175,7 @@ suite('Formatter test suite', () => {
         assert.ok(entries[0].includes('MR1241645'))
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.align-equal.enabled`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex formatter with `bibtex-format.align-equal.enabled`', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'formatter/bibtex_base.bib', dst: 'main.bib'}
         ], {open: 0, skipCache: true})
@@ -193,7 +190,7 @@ suite('Formatter test suite', () => {
         assert.ok(allEqual(lines.filter(line => line.includes('=')).map(line => line.indexOf('='))))
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex sorter with `bibtex-entries.first`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex sorter with `bibtex-entries.first`', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'formatter/bibtex_base.bib', dst: 'main.bib'}
         ], {open: 0, skipCache: true})
@@ -207,12 +204,11 @@ suite('Formatter test suite', () => {
         assert.ok(entries[1].includes('MR1241645'))
     })
 
-    test.run(suiteName, fixtureName, 'test bibtex aligner with `bibtex-fields.sort.enabled` and `bibtex-fields.order`', async () => {
+    test.run(suiteName, fixtureName, 'test bibtex aligner with `bibtex-fields.sort.enabled` and `bibtex-fields.order`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-fields.sort.enabled', true)
         await test.load(fixture, [
             {src: 'formatter/bibtex_sortfield.bib', dst: 'main.bib'}
         ], {open: 0, skipCache: true})
-        await test.wait(lines => lines.filter(line => line.includes('@')).length === 1)
 
         let lines = (await test.format()).split('\n')
         let entries = lines.filter(line => line.includes('='))

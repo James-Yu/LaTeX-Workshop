@@ -20,16 +20,14 @@ function assertKeys(keys: string[], expected: string[] = [], message: string): v
 suite('Intellisense test suite', () => {
 
     const suiteName = path.basename(__filename).replace('.test.js', '')
-    let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
-        fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
     })
 
     teardown(async () => {
-        await test.reset(fixture)
+        await test.reset()
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.trigger.latex', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.user', undefined)
@@ -111,7 +109,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!isTriggerSuggestNeeded('frac'))
     })
 
-    test.run(suiteName, fixtureName, 'command intellisense', async () => {
+    test.run(suiteName, fixtureName, 'command intellisense', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
@@ -120,7 +118,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.items.length > 0)
     })
 
-    test.run(suiteName, fixtureName, 'command intellisense with cmds provided by \\usepackage', async () => {
+    test.run(suiteName, fixtureName, 'command intellisense with cmds provided by \\usepackage', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/package_on_cmd_1.tex', dst: 'main.tex'}
         ])
@@ -135,7 +133,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('\\lstinline'))
     })
 
-    test.run(suiteName, fixtureName, 'command intellisense with cmds provided by \\usepackage and its argument', async () => {
+    test.run(suiteName, fixtureName, 'command intellisense with cmds provided by \\usepackage and its argument', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/package_option_on_cmd.tex', dst: 'main.tex'}
         ])
@@ -149,7 +147,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!suggestions.labels.includes('\\lstformatfiles'))
     })
 
-    test.run(suiteName, fixtureName, 'command intellisense with cmds defined by \\newcommand', async () => {
+    test.run(suiteName, fixtureName, 'command intellisense with cmds defined by \\newcommand', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/newcommand.tex', dst: 'main.tex'}
         ])
@@ -163,7 +161,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('\\fakecommand[]{}'))
     })
 
-    test.run(suiteName, fixtureName, 'command intellisense with config `intellisense.argumentHint.enabled`', async () => {
+    test.run(suiteName, fixtureName, 'command intellisense with config `intellisense.argumentHint.enabled`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', true)
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
@@ -189,7 +187,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!snippet.value.includes('${1:'))
     })
 
-    test.run(suiteName, fixtureName, 'command intellisense with config `intellisense.command.user`', async () => {
+    test.run(suiteName, fixtureName, 'command intellisense with config `intellisense.command.user`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', {'mycommand[]{}': 'notsamecommand[${2:option}]{$TM_SELECTED_TEXT$1}', 'parbox{}{}': 'defchanged', 'overline{}': ''})
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
@@ -223,7 +221,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('\\overline{}'))
     })
 
-    test.run(suiteName, fixtureName, 'reference intellisense and config intellisense.label.keyval', async () => {
+    test.run(suiteName, fixtureName, 'reference intellisense and config intellisense.label.keyval', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', true)
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
@@ -243,7 +241,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!suggestions.labels.includes('eq1'))
     })
 
-    test.run(suiteName, fixtureName, 'reference intellisense and config intellisense.label.command', async () => {
+    test.run(suiteName, fixtureName, 'reference intellisense and config intellisense.label.command', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/label.tex', dst: 'main.tex'}
         ])
@@ -260,7 +258,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('e1'))
     })
 
-    test.run(suiteName, fixtureName, 'reference intellisense with `xr` package', async () => {
+    test.run(suiteName, fixtureName, 'reference intellisense with `xr` package', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/xr_base.tex', dst: 'main.tex'},
             {src: 'intellisense/xr_sub.tex', dst: 'sub.tex'},
@@ -272,7 +270,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('alt-sec:1'))
     })
 
-    test.run(suiteName, fixtureName, 'environment intellisense', async () => {
+    test.run(suiteName, fixtureName, 'environment intellisense', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
@@ -281,7 +279,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.items.length > 0)
     })
 
-    test.run(suiteName, fixtureName, 'environment intellisense with envs provided by \\usepackage', async () => {
+    test.run(suiteName, fixtureName, 'environment intellisense with envs provided by \\usepackage', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/package_on_env_1.tex', dst: 'main.tex'}
         ])
@@ -295,7 +293,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('algorithm'))
     })
 
-    test.run(suiteName, fixtureName, 'environment intellisense with envs provided by \\usepackage and its argument', async () => {
+    test.run(suiteName, fixtureName, 'environment intellisense with envs provided by \\usepackage and its argument', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}
         ])
@@ -309,7 +307,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!suggestions.labels.includes('algorithm2e'))
     })
 
-    test.run(suiteName, fixtureName, 'environment intellisense in form of cmds with envs provided by \\usepackage and its argument', async () => {
+    test.run(suiteName, fixtureName, 'environment intellisense in form of cmds with envs provided by \\usepackage and its argument', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/package_option_on_env.tex', dst: 'main.tex'}
         ])
@@ -323,7 +321,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!suggestions.labels.includes('algorithm2e'))
     })
 
-    test.run(suiteName, fixtureName, 'argument intellisense of \\documentclass, \\usepackage, commands, and environments', async () => {
+    test.run(suiteName, fixtureName, 'argument intellisense of \\documentclass, \\usepackage, commands, and environments', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
@@ -345,7 +343,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('showlines'))
     })
 
-    test.run(suiteName, fixtureName, 'argument intellisense with braces already in the argument', async () => {
+    test.run(suiteName, fixtureName, 'argument intellisense with braces already in the argument', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/class_option_with_brace.tex', dst: 'main.tex'}
         ])
@@ -356,7 +354,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('label='))
     })
 
-    test.run(suiteName, fixtureName, 'package and class intellisense', async () => {
+    test.run(suiteName, fixtureName, 'package and class intellisense', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
@@ -370,7 +368,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('IEEEtran'))
     })
 
-    test.run(suiteName, fixtureName, 'input/include/import/subimport intellisense', async () => {
+    test.run(suiteName, fixtureName, 'input/include/import/subimport intellisense', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'},
@@ -397,7 +395,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!suggestions.labels.includes('sub/'))
     })
 
-    test.run(suiteName, fixtureName, 'citation intellisense and configs intellisense.citation.*', async () => {
+    test.run(suiteName, fixtureName, 'citation intellisense and configs intellisense.citation.*', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
         await test.load(fixture, [
             {src: 'intellisense/citation.tex', dst: 'main.tex'},
@@ -428,7 +426,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.items[0].filterText.includes('hintFake'))
     })
 
-    test.run(suiteName, fixtureName, 'glossary intellisense', async () => {
+    test.run(suiteName, fixtureName, 'glossary intellisense', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/glossary.tex', dst: 'main.tex'},
             {src: 'intellisense/glossaryentries.tex', dst: 'sub/glossary.tex'}
@@ -444,7 +442,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.items.find(item => item.label === 'abbr_x' && item.detail === 'A first abbreviation'))
     })
 
-    test.run(suiteName, fixtureName, '@-snippet intellisense and configs intellisense.atSuggestion*', async () => {
+    test.run(suiteName, fixtureName, '@-snippet intellisense and configs intellisense.atSuggestion*', async (fixture: string) => {
         const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.user', replaces)
         await test.load(fixture, [

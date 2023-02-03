@@ -15,7 +15,8 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: '16'
-    - run: |
+    - name: Create extension package
+      run: |
         npm ci
         npm run release
     - name: Archive extension package

@@ -9,16 +9,14 @@ import { AutoCleaned } from '../../src/components/eventbus'
 suite('Cleaner test suite', () => {
 
     const suiteName = path.basename(__filename).replace('.test.js', '')
-    let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
-        fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
     })
 
     teardown(async () => {
-        await test.reset(fixture)
+        await test.reset()
 
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.subfolder.enabled', undefined)
@@ -29,7 +27,7 @@ suite('Cleaner test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.cleanAndRetry.enabled', undefined)
     })
 
-    test.run(suiteName, fixtureName, 'basic clean', async () => {
+    test.run(suiteName, fixtureName, 'basic clean', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'empty', dst: 'main.aux'},
             {src: 'empty', dst: 'main.fls'}
@@ -39,7 +37,7 @@ suite('Cleaner test suite', () => {
         assert.ok(!fs.existsSync(path.resolve(fixture, 'main.fls')))
     })
 
-    test.run(suiteName, fixtureName, 'glob clean with `latex-workshop.latex.clean.fileTypes`', async () => {
+    test.run(suiteName, fixtureName, 'glob clean with `latex-workshop.latex.clean.fileTypes`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', ['*.aux'])
         await test.load(fixture, [
             {src: 'empty', dst: 'main.aux'},
@@ -50,7 +48,7 @@ suite('Cleaner test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.fls')))
     })
 
-    test.run(suiteName, fixtureName, 'glob clean with `latex.clean.subfolder.enabled`', async () => {
+    test.run(suiteName, fixtureName, 'glob clean with `latex.clean.subfolder.enabled`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.subfolder.enabled', false)
         await test.load(fixture, [
             {src: 'empty', dst: 'out/main.aux'}
@@ -63,7 +61,7 @@ suite('Cleaner test suite', () => {
         assert.ok(!fs.existsSync(path.resolve(fixture, 'out/main.aux')))
     })
 
-    test.run(suiteName, fixtureName, 'latexmk clean', async () => {
+    test.run(suiteName, fixtureName, 'latexmk clean', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', [])
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.method', 'cleanCommand')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.command', 'latexmk')
@@ -76,7 +74,7 @@ suite('Cleaner test suite', () => {
         assert.ok(!fs.existsSync(path.resolve(fixture, 'main.aux')))
     })
 
-    test.run(suiteName, fixtureName, 'latexmk clean with auxdir', async () => {
+    test.run(suiteName, fixtureName, 'latexmk clean with auxdir', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', [])
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.method', 'cleanCommand')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.command', 'latexmk')
@@ -89,7 +87,7 @@ suite('Cleaner test suite', () => {
         assert.ok(!fs.existsSync(path.resolve(fixture, 'aux_files/main.aux')))
     })
 
-    test.run(suiteName, fixtureName, 'clean with `latex.autoClean.run` on `never` and failed build', async () => {
+    test.run(suiteName, fixtureName, 'clean with `latex.autoClean.run` on `never` and failed build', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', ['*.aux','*.fls', '*.pdf'])
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.cleanAndRetry.enabled', false)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoClean.run', 'never')
@@ -103,7 +101,7 @@ suite('Cleaner test suite', () => {
         assert.ok(!result)
     })
 
-    test.run(suiteName, fixtureName, 'clean with `latex.autoClean.run` on `never` and passed build', async () => {
+    test.run(suiteName, fixtureName, 'clean with `latex.autoClean.run` on `never` and passed build', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', ['*.aux','*.fls', '*.pdf'])
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoClean.run', 'never')
         await test.load(fixture, [
@@ -116,7 +114,7 @@ suite('Cleaner test suite', () => {
         assert.ok(!result)
     })
 
-    test.run(suiteName, fixtureName, 'clean with `latex.autoClean.run` on `onFailed`', async () => {
+    test.run(suiteName, fixtureName, 'clean with `latex.autoClean.run` on `onFailed`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', ['*.aux','*.fls', '*.pdf'])
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.cleanAndRetry.enabled', false)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoClean.run', 'onFailed')
@@ -139,7 +137,7 @@ suite('Cleaner test suite', () => {
         assert.ok(!result)
     })
 
-    test.run(suiteName, fixtureName, 'clean with `latex.autoClean.run` on `onBuilt`', async () => {
+    test.run(suiteName, fixtureName, 'clean with `latex.autoClean.run` on `onBuilt`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', ['*.aux','*.fls', '*.pdf'])
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.cleanAndRetry.enabled', false)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoClean.run', 'onBuilt')
@@ -162,7 +160,7 @@ suite('Cleaner test suite', () => {
         assert.ok(result)
     })
 
-    test.run(suiteName, fixtureName, 'clean and retry on failed build', async () => {
+    test.run(suiteName, fixtureName, 'clean and retry on failed build', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', ['*.aux','*.fls', '*.pdf'])
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.cleanAndRetry.enabled', false)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)

@@ -18,8 +18,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     // our data source is a set multi-rooted set of trees
     public ds: Section[] = []
-    private CachedLaTeXData: Section[] = []
-    private CachedBibTeXData: Section[] = []
+    private cachedTeXSec: Section[] | undefined = undefined
+    private cachedBibSec: Section[] | undefined = undefined
 
     // The LaTeX commands to be extracted.
     private LaTeXCommands: {cmds: string[], envs: string[], secs: string[]} = {cmds: [], envs: [], secs: []}
@@ -47,17 +47,19 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     async build(force: boolean): Promise<Section[]> {
         const document = vscode.window.activeTextEditor?.document
         if (document?.languageId === 'bibtex') {
-            if (force || this.getCachedDataRootFileName(this.CachedBibTeXData) !== document.fileName) {
-                this.CachedBibTeXData = await this.buildBibTeXModel(document)
+            if (force || !this.cachedBibSec || this.getCachedDataRootFileName(this.cachedBibSec) !== document.fileName) {
+                this.cachedBibSec = undefined
+                this.cachedBibSec = await this.buildBibTeXModel(document)
             }
-            this.ds = this.CachedBibTeXData
+            this.ds = this.cachedBibSec
             logger.log(`Structure updated with ${this.ds.length} entries for ${document.uri.fsPath} .`)
         }
         else if (lw.manager.rootFile) {
-            if (force) {
-                this.CachedLaTeXData = await this.buildLaTeXModel()
+            if (force || !this.cachedTeXSec) {
+                this.cachedTeXSec = undefined
+                this.cachedTeXSec = await this.buildLaTeXModel()
             }
-            this.ds = this.CachedLaTeXData
+            this.ds = this.cachedTeXSec
             logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.ds.length} root sections for ${lw.manager.rootFile} .`)
         } else {
             this.ds = []

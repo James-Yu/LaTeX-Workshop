@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
-import * as lw from '../../src/lw'
 import * as test from './utils'
 import { TextDocumentLike } from '../../src/providers/preview/mathpreviewlib/textdocumentlike'
 import { TeXMathEnvFinder } from '../../src/providers/preview/mathpreviewlib/texmathenvfinder'
@@ -10,16 +9,14 @@ import { CursorRenderer } from '../../src/providers/preview/mathpreviewlib/curso
 suite('Math preview test suite', () => {
 
     const suiteName = path.basename(__filename).replace('.test.js', '')
-    let fixture = path.resolve(__dirname, '../../../test/fixtures/testground')
     const fixtureName = 'testground'
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
-        fixture = path.resolve(lw.extensionRoot, 'test/fixtures/testground')
     })
 
     teardown(async () => {
-        await test.reset(fixture)
+        await test.reset()
     })
 
     test.run(suiteName, fixtureName, 'mathpreviewlib/cursorrenderer: test insertCursor', async () => {
