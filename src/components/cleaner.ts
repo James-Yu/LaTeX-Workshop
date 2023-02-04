@@ -157,7 +157,8 @@ export class Cleaner {
         }
         logger.logCommand('Clean temporary files command', command, args)
         return new Promise((resolve, _reject) => {
-            const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile), detached: true})
+            // issue #3679 #3687: spawning with `detached: true` causes latexmk from MiKTeX to fail on Windows when "install on-the-fly" is enabled
+            const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile)})
             let stderr = ''
             proc.stderr.on('data', newStderr => {
                 stderr += newStderr
