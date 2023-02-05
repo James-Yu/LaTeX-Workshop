@@ -230,7 +230,7 @@ export class Builder {
             }
         }
         this.building = false
-        this.targetPDFPath = ''
+        setTimeout(() => this.targetPDFPath = '', 1000)
     }
 
     /**
