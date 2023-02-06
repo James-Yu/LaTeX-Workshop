@@ -149,6 +149,9 @@ export class Locator {
             try {
                 logger.log(`Forward from ${filePath} to ${pdfFile} on line ${line}.`)
                 const record = SyncTexJs.syncTexJsForward(line, filePath, pdfFile)
+                if (!record) {
+                    return
+                }
                 lw.viewer.syncTeX(pdfFile, record)
             } catch (e) {
                 logger.logError('Forward SyncTeX failed.', e)
@@ -283,7 +286,11 @@ export class Locator {
         if (useSyncTexJs) {
             try {
                 logger.log(`Backward from ${pdfPath} at x=${data.pos[0]}, y=${data.pos[1]} on page ${data.page}.`)
-                record = SyncTexJs.syncTexJsBackward(data.page, data.pos[0], data.pos[1], pdfPath)
+                const temp = SyncTexJs.syncTexJsBackward(data.page, data.pos[0], data.pos[1], pdfPath)
+                if (!temp) {
+                    return
+                }
+                record = temp
             } catch (e) {
                 logger.logError('Backward SyncTeX failed.', e)
                 return

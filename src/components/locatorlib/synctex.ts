@@ -3,7 +3,7 @@ import * as iconv from 'iconv-lite'
 import * as path from 'path'
 import * as zlib from 'zlib'
 import type { SyncTeXRecordForward, SyncTeXRecordBackward } from '../locator'
-import { PdfSyncObject, parseSyncTex, Block, SyncTexJsError } from '../../lib/synctexjs'
+import { PdfSyncObject, parseSyncTex, Block } from '../../lib/synctexjs'
 import { iconvLiteSupportedEncodings } from '../../utils/convertfilename'
 import { isSameRealPath } from '../../utils/pathnormalize'
 
@@ -74,33 +74,33 @@ class Rectangle {
 }
 
 export class SyncTexJs {
-    static parseSyncTexForPdf(pdfFile: string): PdfSyncObject {
+    static parseSyncTexForPdf(pdfFile: string): PdfSyncObject | undefined {
         const filename = path.basename(pdfFile, path.extname(pdfFile))
         const dir = path.dirname(pdfFile)
         const synctexFile = path.resolve(dir, filename + '.synctex')
         const synctexFileGz = synctexFile + '.gz'
 
-        try {
-            const s = fs.readFileSync(synctexFile, {encoding: 'binary'})
-            return parseSyncTex(s)
-        } catch (e: unknown) {
-            logger.logError(`Failed parsing .synctex ${synctexFile} , using .synctex.gz.`, e)
+        if (fs.existsSync(synctexFile)) {
+            try {
+                logger.log(`Parsing .synctex ${synctexFile} .`)
+                const s = fs.readFileSync(synctexFile, {encoding: 'binary'})
+                return parseSyncTex(s)
+            } catch (e: unknown) {
+                logger.logError(`Failed parsing .synctex ${synctexFile}:`, e)
+            }
+        } else if (fs.existsSync(synctexFileGz)) {
+            try {
+                logger.log(`Parsing .synctex.gz ${synctexFileGz} .`)
+                const data = fs.readFileSync(synctexFileGz)
+                const b = zlib.gunzipSync(data)
+                const s = b.toString('binary')
+                return parseSyncTex(s)
+            } catch (e: unknown) {
+                logger.logError(`Failed parsing .synctex.gz ${synctexFileGz}:`, e)
+            }
         }
-
-        try {
-            const data = fs.readFileSync(synctexFileGz)
-            const b = zlib.gunzipSync(data)
-            const s = b.toString('binary')
-            return parseSyncTex(s)
-        } catch (e: unknown) {
-            logger.logError(`Failed parsing .synctex.gz ${synctexFileGz} .`, e)
-        }
-
-        if (!fs.existsSync(synctexFile) && !fs.existsSync(synctexFileGz)) {
-            throw new SyncTexJsError(`${synctexFile}, ${synctexFileGz} not found.`)
-        }
-
-        throw new SyncTexJsError('SyncTeX failed.')
+        logger.log(`${synctexFile}, ${synctexFileGz} not found.`)
+        return undefined
     }
 
     private static findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject): string | undefined {
@@ -125,11 +125,15 @@ export class SyncTexJs {
         return
     }
 
-    static syncTexJsForward(line: number, filePath: string, pdfFile: string): SyncTeXRecordForward {
+    static syncTexJsForward(line: number, filePath: string, pdfFile: string): SyncTeXRecordForward | undefined {
         const pdfSyncObject = SyncTexJs.parseSyncTexForPdf(pdfFile)
+        if (!pdfSyncObject) {
+            return undefined
+        }
         const inputFilePath = SyncTexJs.findInputFilePathForward(filePath, pdfSyncObject)
         if (inputFilePath === undefined) {
-            throw new SyncTexJsError('No relevant entries found.')
+            logger.log('No relevant entries found.')
+            return undefined
         }
 
         const linePageBlocks = pdfSyncObject.blockNumberLine[inputFilePath]
@@ -160,20 +164,25 @@ export class SyncTexJs {
         const pageBlocks = linePageBlocks[lineNum]
         const pageNums = Object.keys(pageBlocks)
         if (pageNums.length === 0) {
-            throw new SyncTexJsError('No page number found.')
+            logger.log('No page number found.')
+            return []
         }
         const page = pageNums[0]
         return pageBlocks[Number(page)]
     }
 
-    static syncTexJsBackward(page: number, x: number, y: number, pdfPath: string): SyncTeXRecordBackward {
+    static syncTexJsBackward(page: number, x: number, y: number, pdfPath: string): SyncTeXRecordBackward | undefined {
         const pdfSyncObject = SyncTexJs.parseSyncTexForPdf(pdfPath)
+        if (!pdfSyncObject) {
+            return undefined
+        }
         const y0 = y - pdfSyncObject.offset.y
         const x0 = x - pdfSyncObject.offset.x
         const fileNames = Object.keys(pdfSyncObject.blockNumberLine)
 
         if (fileNames.length === 0) {
-            throw new SyncTexJsError('No relevant entries found.')
+            logger.log('No relevant entries found.')
+            return undefined
         }
 
         const record = {
@@ -213,13 +222,15 @@ export class SyncTexJs {
         }
 
         if (record.input === '') {
-            throw new SyncTexJsError('Cannot find any line to jump to.')
+            logger.log('Cannot find any line to jump to.')
+            return undefined
         }
 
-        return { input: SyncTexJs.convInputFilePath(record.input), line: record.line, column: 0 }
+        const input = SyncTexJs.convInputFilePath(record.input)
+        return input ? { input, line: record.line, column: 0 } : undefined
     }
 
-    private static convInputFilePath(inputFilePath: string): string {
+    private static convInputFilePath(inputFilePath: string): string | undefined {
         if (fs.existsSync(inputFilePath)) {
             return inputFilePath
         }
@@ -232,6 +243,7 @@ export class SyncTexJs {
             } catch {}
         }
 
-        throw new SyncTexJsError(`Non-existent file to jump to ${inputFilePath} .`)
+        logger.log(`Non-existent file to jump to ${inputFilePath} .`)
+        return undefined
     }
 }

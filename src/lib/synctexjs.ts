@@ -83,16 +83,7 @@ export type PdfSyncObject = {
   numberPages: number;
 }
 
-export class SyncTexJsError extends Error {
-  public name = 'SyncTexJsError'
-
-  toString() {
-    return this.name + ': ' + this.message
-  }
-
-}
-
-export function parseSyncTex(pdfsyncBody: string) : PdfSyncObject {
+export function parseSyncTex(pdfsyncBody: string) : PdfSyncObject | undefined {
   const unit = 65781.76
   let numberPages = 0
   let currentPage: Page | undefined
@@ -154,7 +145,7 @@ export function parseSyncTex(pdfsyncBody: string) : PdfSyncObject {
         pdfsyncObject.offset.y = parseInt(match[2]) / unit
       } else {
         // Never occur. match[1] is equal to 'X' or 'Y'.
-        throw new SyncTexJsError('never occur.')
+        return undefined
       }
       continue
     }
