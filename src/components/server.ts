@@ -41,7 +41,8 @@ class WsServer extends ws.Server {
 const ServerStartedEvent = 'serverstarted'
 
 export class Server {
-    private readonly httpServer: http.Server
+    private httpServer: http.Server
+    private wsServer?: WsServer
     private address?: AddressInfo
     private validOriginUri: vscode.Uri | undefined
     readonly serverStarted: Promise<void>
@@ -51,8 +52,7 @@ export class Server {
         this.serverStarted = new Promise((resolve) => {
             this.eventEmitter.on(ServerStartedEvent, () => resolve() )
         })
-        this.httpServer = http.createServer((request, response) => this.handler(request, response))
-        this.initializeHttpServer()
+        this.httpServer = this.initializeHttpServer()
         logger.log('Creating LaTeX Workshop http and websocket server.')
     }
 
@@ -84,36 +84,45 @@ export class Server {
         }
     }
 
-    private initializeHttpServer() {
+    initializeHttpServer(hostname?: string): http.Server {
+        if (hostname) { // We must have created one.
+            this.httpServer.close()
+        }
+        const httpServer = http.createServer((request, response) => this.handler(request, response))
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewerPort = configuration.get('viewer.pdf.internal.port') as number
-        this.httpServer.listen(viewerPort, '127.0.0.1', undefined, async () => {
+        httpServer.listen(viewerPort, hostname ?? '127.0.0.1', undefined, async () => {
             const address = this.httpServer.address()
             if (address && typeof address !== 'string') {
                 this.address = address
                 logger.log(`Server successfully started: ${JSON.stringify(address)}`)
-                this.validOriginUri = await this.obtainValidOrigin(address.port)
+                this.validOriginUri = await this.obtainValidOrigin(address.port, hostname ?? '127.0.0.1')
                 logger.log(`valdOrigin is ${this.validOrigin}`)
-                this.initializeWsServer()
+                this.initializeWsServer(httpServer, this.validOrigin)
                 this.eventEmitter.emit(ServerStartedEvent)
             } else {
                 logger.log(`Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
             }
         })
-        this.httpServer.on('error', (err) => {
+        httpServer.on('error', (err) => {
             logger.log(`Error creating LaTeX Workshop http server: ${JSON.stringify(err)} .`)
         })
+        this.httpServer = httpServer
+        return httpServer
     }
 
-    private async obtainValidOrigin(serverPort: number): Promise<vscode.Uri> {
-        const origUrl = `http://127.0.0.1:${serverPort}/`
+    private async obtainValidOrigin(serverPort: number, hostname: string): Promise<vscode.Uri> {
+        const origUrl = `http://${hostname}:${serverPort}/`
         const uri = await vscode.env.asExternalUri(vscode.Uri.parse(origUrl, true))
         return uri
     }
 
-    private initializeWsServer() {
-        const wsServer = new WsServer(this.httpServer, this.validOrigin)
-        wsServer.on('connection', (websocket) => {
+    private initializeWsServer(httpServer: http.Server, validOrigin: string) {
+        if (this.wsServer) {
+            this.wsServer.close()
+        }
+        this.wsServer = new WsServer(httpServer, validOrigin)
+        this.wsServer.on('connection', (websocket) => {
             websocket.on('message', (msg: string) => lw.viewer.handler(websocket, msg))
             websocket.on('error', (err) => logger.log(`Error on WebSocket connection. ${JSON.stringify(err)}`))
         })
