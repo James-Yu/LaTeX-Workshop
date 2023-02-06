@@ -23,7 +23,7 @@ export class Viewer {
 
     constructor() {
         lw.cacher.pdf.onChange(pdfPath => {
-            if (lw.builder.canViewerRefresh(pdfPath)) {
+            if (lw.builder.isOutputPDF(pdfPath)) {
                 this.refreshExistingViewer(undefined, pdfPath)
             }
         })

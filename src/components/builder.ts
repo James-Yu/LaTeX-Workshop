@@ -22,7 +22,7 @@ export class Builder {
     private prevLangId: string | undefined
     private prevRecipe: Recipe | undefined
     private building: boolean = false
-    private targetPDFPath: string = ''
+    private outputPDFPath: string = ''
     private process: cp.ChildProcessWithoutNullStreams | undefined
 
     private readonly isMiktex: boolean = false
@@ -142,7 +142,9 @@ export class Builder {
 
         this.stepQueue.add(tool, rootFile, 'External', Date.now(), true, cwd)
 
-        await this.buildLoop(rootFile)
+        this.outputPDFPath = rootFile ? lw.manager.tex2pdf(rootFile) : ''
+
+        await this.buildLoop()
     }
 
     /**
@@ -175,7 +177,9 @@ export class Builder {
         const timestamp = Date.now()
         tools.forEach(tool => this.stepQueue.add(tool, rootFile, recipeName || 'Build', timestamp))
 
-        await this.buildLoop(rootFile)
+        this.outputPDFPath = lw.manager.tex2pdf(rootFile)
+
+        await this.buildLoop()
     }
 
     /**
@@ -199,8 +203,8 @@ export class Builder {
         await vscode.window.activeTextEditor?.document.save()
     }
 
-    canViewerRefresh(pdfPath: string) {
-        return path.relative(pdfPath, this.targetPDFPath) !== ''
+    isOutputPDF(pdfPath: string) {
+        return path.relative(pdfPath, this.outputPDFPath) !== ''
     }
 
     /**
@@ -210,14 +214,13 @@ export class Builder {
      * this process, the {@link Tool}s in {@link BuildToolQueue} can be
      * dynamically added or removed, handled by {@link BuildToolQueue}.
      */
-    private async buildLoop(rootFile?: string) {
+    private async buildLoop() {
         if (this.building) {
             return
         }
         // Stop watching the PDF file to avoid reloading the PDF viewer twice.
         // The builder will be responsible for refreshing the viewer.
         this.building = true
-        this.targetPDFPath = rootFile ? lw.manager.tex2pdf(rootFile) : ''
         while (true) {
             const step = this.stepQueue.getStep()
             if (step === undefined) {
@@ -230,7 +233,6 @@ export class Builder {
             }
         }
         this.building = false
-        setTimeout(() => this.targetPDFPath = '', 1000)
     }
 
     /**
