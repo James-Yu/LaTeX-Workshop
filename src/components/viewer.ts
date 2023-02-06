@@ -36,7 +36,7 @@ export class Viewer {
      * refreshes all the PDF viewers.
      */
     refreshExistingViewer(sourceFile?: string, pdfFile?: string): void {
-        logger.log(`Call refreshExistingViewer: ${JSON.stringify({sourceFile})}`)
+        logger.log(`Call refreshExistingViewer: ${JSON.stringify(sourceFile ?? pdfFile)} .`)
         const pdfUri = pdfFile ? vscode.Uri.file(pdfFile) : (sourceFile ? this.tex2pdf(sourceFile) : undefined)
         if (pdfUri === undefined) {
             PdfViewerManagerService.clientMap.forEach(clientSet => {
