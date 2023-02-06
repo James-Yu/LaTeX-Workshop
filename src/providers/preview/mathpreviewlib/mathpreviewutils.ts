@@ -7,7 +7,8 @@ export class MathPreviewUtils {
         return dummyCodeBlock + '\n' + md + '\n' + dummyCodeBlock
     }
 
-    static stripTeX(tex: string): string {
+    static stripTeX(tex: string, newCommand: string): string {
+        // First remove math env declaration
         if (tex.startsWith('$$') && tex.endsWith('$$')) {
             tex = tex.slice(2, tex.length - 2)
         } else if (tex.startsWith('$') && tex.endsWith('$')) {
@@ -17,6 +18,10 @@ export class MathPreviewUtils {
         } else if (tex.startsWith('\\[') && tex.endsWith('\\]')) {
             tex = tex.slice(2, tex.length - 2)
         }
+        // Then remove the star variant of new commands
+        [...newCommand.matchAll(/\\newcommand\{(.*?)\}/g)].forEach(match => {
+            tex = tex.replaceAll(match[1] + '*', match[1])
+        })
         return tex
     }
 

@@ -30,7 +30,7 @@ export class HoverPreviewOnRefProvider {
         } else {
             newTeXString = MathPreviewUtils.mathjaxify(tex.texString, tex.envname)
         }
-        const typesetArg = newCommand + MathPreviewUtils.stripTeX(newTeXString)
+        const typesetArg = newCommand + MathPreviewUtils.stripTeX(newTeXString, newCommand)
         const typesetOpts = { scale, color }
         try {
             const xml = await MathJaxPool.typeset(typesetArg, typesetOpts)

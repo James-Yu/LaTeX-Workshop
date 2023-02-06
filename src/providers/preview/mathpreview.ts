@@ -32,7 +32,7 @@ export class MathPreview {
         const scale = configuration.get('hover.preview.scale') as number
         let s = await CursorRenderer.renderCursor(document, tex, this.color)
         s = MathPreviewUtils.mathjaxify(s, tex.envname)
-        const typesetArg = newCommand + MathPreviewUtils.stripTeX(s)
+        const typesetArg = newCommand + MathPreviewUtils.stripTeX(s, newCommand)
         const typesetOpts = { scale, color: this.color }
         try {
             const xml = await MathJaxPool.typeset(typesetArg, typesetOpts)
@@ -86,7 +86,7 @@ export class MathPreview {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
         const s = MathPreviewUtils.mathjaxify(tex.texString, tex.envname)
-        const xml = await MathJaxPool.typeset(newCommands + MathPreviewUtils.stripTeX(s), {scale, color: this.color})
+        const xml = await MathJaxPool.typeset(newCommands + MathPreviewUtils.stripTeX(s, newCommands), {scale, color: this.color})
         return {svgDataUrl: utils.svgToDataUrl(xml), newCommands}
     }
 
