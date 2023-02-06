@@ -274,6 +274,31 @@ export function closeEnv() {
     return lw.envPair.closeEnv()
 }
 
+export async function changeHostName() {
+    logger.log('CHANGEHOSTNAME command invoked.')
+    const proceed = (await vscode.window.showInputBox({
+        prompt: 'Changing LaTeX Workshop server hostname can expose your computer to the public and is under severe security risk. CORS is also disabled. Do you want to continue?',
+        placeHolder: 'Type CONFIRM then [Enter] to continue. Press [ESC] to keep you safe.'
+    }))?.toLowerCase() === 'confirm'
+    if (!proceed) {
+        return
+    }
+    const hostname = await vscode.window.showInputBox({
+        prompt: 'Please input the new hostname that LaTeX Workshop server will listen to. This change will be reset on closing VSCode.',
+        placeHolder: '127.0.0.1'
+    })
+    if (!hostname) {
+        return
+    }
+    lw.server.initializeHttpServer(hostname)
+}
+
+export function resetHostName() {
+    logger.log('RESETHOSTNAME command invoked.')
+    lw.server.initializeHttpServer('127.0.0.1')
+    void vscode.window.showInformationMessage('LaTeX Workshop server listening to 127.0.0.1 with CORS. You are safe now.')
+}
+
 export async function actions() {
     logger.log('ACTIONS command invoked.')
     return vscode.commands.executeCommand('workbench.view.extension.latex-workshop-activitybar').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))

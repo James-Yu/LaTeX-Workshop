@@ -26,6 +26,9 @@ class WsServer extends ws.Server {
     // - https://github.com/websockets/ws/blob/master/doc/ws.md#servershouldhandlerequest
     //
     shouldHandle(req: http.IncomingMessage): boolean {
+        if (!this.validOrigin.includes('127.0.0.1')) {
+            return true
+        }
         const reqOrigin = req.headers['origin']
         if (reqOrigin !== undefined && reqOrigin !== this.validOrigin) {
             logger.log(`Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
@@ -95,7 +98,10 @@ export class Server {
             const address = this.httpServer.address()
             if (address && typeof address !== 'string') {
                 this.address = address
-                logger.log(`Server successfully started: ${JSON.stringify(address)}`)
+                logger.log(`Server successfully started: ${JSON.stringify(address)} .`)
+                if (hostname) {
+                    logger.log(`BE AWARE: YOU ARE PUBLIC TO ${hostname} !`)
+                }
                 this.validOriginUri = await this.obtainValidOrigin(address.port, hostname ?? '127.0.0.1')
                 logger.log(`valdOrigin is ${this.validOrigin}`)
                 this.initializeWsServer(httpServer, this.validOrigin)
@@ -135,6 +141,9 @@ export class Server {
     // - https://fetch.spec.whatwg.org/#http-responses
     //
     private checkHttpOrigin(req: http.IncomingMessage, response: http.ServerResponse): boolean {
+        if (!this.validOrigin.includes('127.0.0.1')) {
+            return true
+        }
         const reqOrigin = req.headers['origin']
         if (reqOrigin !== undefined && reqOrigin !== this.validOrigin) {
             logger.log(`Origin in http request is invalid: ${JSON.stringify(req.headers)}`)
