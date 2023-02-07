@@ -18,10 +18,18 @@ type RootFileType = {
     uri: vscode.Uri
 }
 
-export const TEX_EXT: string[] = ['.tex', '.bib']
-export const RSWEAVE_EXT: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
-export const JLWEAVE_EXT: string[] = ['.jnw', '.jtexw']
-export const PWEAVE_EXT: string[] = ['.pnw', '.ptexw']
+// https://tex.stackexchange.com/questions/7770/file-extensions-related-to-latex-etc
+const TEX_EXT: string[] = ['.tex', '.bib']
+const TEX_NOCACHE_EXT: string[] = ['.cls', '.sty', '.bst', '.bbx', '.cbx', '.def', '.cfg']
+const RSWEAVE_EXT: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
+const JLWEAVE_EXT: string[] = ['.jnw', '.jtexw']
+const PWEAVE_EXT: string[] = ['.pnw', '.ptexw']
+export function isTeX(extname: string) {
+    return [...TEX_EXT, ...RSWEAVE_EXT, ...JLWEAVE_EXT, ...PWEAVE_EXT].includes(extname)
+}
+export function isBinary(extname: string) {
+    return ![...TEX_EXT, ...TEX_NOCACHE_EXT, ...RSWEAVE_EXT, ...JLWEAVE_EXT, ...PWEAVE_EXT].includes(extname)
+}
 
 export class Manager {
     private _localRootFile: string | undefined

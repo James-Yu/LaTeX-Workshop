@@ -2,12 +2,11 @@ import vscode from 'vscode'
 import path from 'path'
 import os from 'os'
 import micromatch from 'micromatch'
-import { JLWEAVE_EXT, PWEAVE_EXT, RSWEAVE_EXT, TEX_EXT } from '../manager'
+import { isTeX } from '../manager'
 
 export class CacherUtils {
     static canCache(filePath: string) {
-        return [...TEX_EXT, ...RSWEAVE_EXT, ...JLWEAVE_EXT, ...PWEAVE_EXT].includes(path.extname(filePath))
-            && !filePath.includes('expl3-code.tex')
+        return isTeX(path.extname(filePath)) && !filePath.includes('expl3-code.tex')
     }
 
     static isExcluded(filePath: string): boolean {
