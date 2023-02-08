@@ -1,8 +1,8 @@
-diff --git a/../pdfjs-3.1.81-dist/web/viewer.js b/../viewer/viewer.js
-index 7cc55739..ddd7e29d 100644
---- a/../pdfjs-3.1.81-dist/web/viewer.js
+diff --git a/../pdfjs-3.3.122-dist/web/viewer.js b/../viewer/viewer.js
+index 48da3c07..75988215 100644
+--- a/../pdfjs-3.3.122-dist/web/viewer.js
 +++ b/../viewer/viewer.js
-@@ -1764,7 +1764,7 @@ const PDFViewerApplication = {
+@@ -1823,7 +1823,7 @@ const PDFViewerApplication = {
          title = url;
        }
      }
@@ -11,7 +11,16 @@ index 7cc55739..ddd7e29d 100644
    },
    setTitle(title = this._title) {
      this._title = title;
-@@ -4710,7 +4710,7 @@ const FindState = {
+@@ -2302,7 +2302,7 @@ const PDFViewerApplication = {
+     this.metadata = metadata;
+     this._contentDispositionFilename ??= contentDispositionFilename;
+     this._contentLength ??= contentLength;
+-    console.log(`PDF ${pdfDocument.fingerprints[0]} [${info.PDFFormatVersion} ` + `${(info.Producer || "-").trim()} / ${(info.Creator || "-").trim()}] ` + `(PDF.js: ${_pdfjsLib.version || "?"} [${_pdfjsLib.build || "?"}])`);
++    // console.log(`PDF ${pdfDocument.fingerprints[0]} [${info.PDFFormatVersion} ` + `${(info.Producer || "-").trim()} / ${(info.Creator || "-").trim()}] ` + `(PDF.js: ${_pdfjsLib.version || "?"} [${_pdfjsLib.build || "?"}])`);
+     let pdfTitle = info.Title;
+     const metadataTitle = metadata?.get("dc:title");
+     if (metadataTitle) {
+@@ -4896,7 +4896,7 @@ const FindState = {
  };
  exports.FindState = FindState;
  const FIND_TIMEOUT = 250;
@@ -20,7 +29,7 @@ index 7cc55739..ddd7e29d 100644
  const MATCH_SCROLL_OFFSET_LEFT = -400;
  const CHARACTERS_TO_NORMALIZE = {
    "\u2010": "-",
-@@ -7247,7 +7247,7 @@ class PDFSidebar {
+@@ -7429,7 +7429,7 @@ class PDFSidebar {
        this.#dispatchEvent();
        return;
      }
@@ -29,7 +38,7 @@ index 7cc55739..ddd7e29d 100644
      if (!this.isInitialEventDispatched) {
        this.#dispatchEvent();
      }
-@@ -8227,7 +8227,7 @@ class PDFViewer {
+@@ -8407,7 +8407,7 @@ class PDFViewer {
      this.downloadManager = options.downloadManager || null;
      this.findController = options.findController || null;
      this._scriptingManager = options.scriptingManager || null;
@@ -38,7 +47,7 @@ index 7cc55739..ddd7e29d 100644
      this.textLayerMode = options.textLayerMode ?? _ui_utils.TextLayerMode.ENABLE;
      this.#annotationMode = options.annotationMode ?? _pdfjsLib.AnnotationMode.ENABLE_FORMS;
      this.#annotationEditorMode = options.annotationEditorMode ?? _pdfjsLib.AnnotationEditorType.NONE;
-@@ -12010,10 +12010,10 @@ class ViewHistory {
+@@ -12291,10 +12291,10 @@ class ViewHistory {
    }
    async _writeToStorage() {
      const databaseStr = JSON.stringify(this.database);
@@ -51,7 +60,7 @@ index 7cc55739..ddd7e29d 100644
    }
    async set(name, val) {
      await this._initializedPromise;
-@@ -12064,10 +12064,10 @@ const GenericCom = {};
+@@ -12345,10 +12345,10 @@ const GenericCom = {};
  exports.GenericCom = GenericCom;
  class GenericPreferences extends _preferences.BasePreferences {
    async _writeToStorage(prefObj) {
@@ -64,7 +73,7 @@ index 7cc55739..ddd7e29d 100644
    }
  }
  class GenericExternalServices extends _app.DefaultExternalServices {
-@@ -12886,7 +12886,7 @@ document.webL10n = function (window, document, undefined) {
+@@ -13168,7 +13168,7 @@ document.webL10n = function (window, document, undefined) {
    function getL10nData(key, args, fallback) {
      var data = gL10nData[key];
      if (!data) {
@@ -73,7 +82,7 @@ index 7cc55739..ddd7e29d 100644
        if (!fallback) {
          return null;
        }
-@@ -13317,6 +13317,9 @@ function renderProgress(index, total, l10n) {
+@@ -13599,6 +13599,9 @@ function renderProgress(index, total, l10n) {
  }
  window.addEventListener("keydown", function (event) {
    if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
@@ -83,7 +92,7 @@ index 7cc55739..ddd7e29d 100644
      window.print();
      event.preventDefault();
      event.stopImmediatePropagation();
-@@ -13593,7 +13596,7 @@ function webViewerLoad() {
+@@ -13875,7 +13878,7 @@ function webViewerLoad() {
    try {
      parent.document.dispatchEvent(event);
    } catch (ex) {

@@ -13,6 +13,18 @@
  * limitations under the License.
  */
 
+:root {
+  --highlight-bg-color: rgba(180, 0, 170, 1);
+  --highlight-selected-bg-color: rgba(0, 100, 0, 1);
+}
+
+@media screen and (forced-colors: active) {
+  :root {
+    --highlight-bg-color: Highlight;
+    --highlight-selected-bg-color: ButtonText;
+  }
+}
+
 .textLayer {
   position: absolute;
   text-align: initial;
@@ -27,6 +39,8 @@
      -moz-text-size-adjust: none;
           text-size-adjust: none;
   forced-color-adjust: none;
+  transform-origin: 0 0;
+  z-index: 2;
 }
 
 .textLayer span,
@@ -48,7 +62,7 @@
 .textLayer .highlight {
   margin: -1px;
   padding: 1px;
-  background-color: rgba(180, 0, 170, 1);
+  background-color: var(--highlight-bg-color);
   border-radius: 4px;
 }
 
@@ -69,7 +83,7 @@
 }
 
 .textLayer .highlight.selected {
-  background-color: rgba(0, 100, 0, 1);
+  background-color: var(--highlight-selected-bg-color);
 }
 
 .textLayer ::-moz-selection {
@@ -118,7 +132,7 @@
   --input-hover-border-color: black;
 }
 
-@media (forced-colors: active) {
+@media screen and (forced-colors: active) {
   :root {
     --input-focus-border-color: CanvasText;
     --input-unfocused-border-color: ActiveText;
@@ -140,6 +154,7 @@
   left: 0;
   pointer-events: none;
   transform-origin: 0 0;
+  z-index: 3;
 }
 
 .annotationLayer section {
@@ -418,7 +433,7 @@
   --xfa-focus-outline: auto;
 }
 
-@media (forced-colors: active) {
+@media screen and (forced-colors: active) {
   :root {
     --xfa-focus-outline: 2px solid CanvasText;
   }
@@ -765,7 +780,14 @@
   --editorInk-editing-cursor: url(images/cursor-editorInk.svg) 0 16, pointer;
 }
 
-@media (forced-colors: active) {
+@media (-webkit-min-device-pixel-ratio: 1.1), (min-resolution: 1.1dppx) {
+  :root {
+    --editorFreeText-editing-cursor: url(images/cursor-editorFreeText.svg) 0 16,
+      text;
+  }
+}
+
+@media screen and (forced-colors: active) {
   :root {
     --focus-outline: solid 3px ButtonText;
     --hover-outline: dashed 3px ButtonText;
@@ -790,7 +812,7 @@
   font-size: calc(100px * var(--scale-factor));
   transform-origin: 0 0;
   cursor: auto;
-  z-index: 20000;
+  z-index: 4;
 }
 
 .annotationEditorLayer.freeTextEditing {
@@ -899,9 +921,8 @@
   --pdfViewer-padding-bottom: 0;
   --page-margin: 1px auto -8px;
   --page-border: 9px solid transparent;
-  --page-border-image: url(images/shadow.png) 9 9 repeat;
   --spreadHorizontalWrapped-margin-LR: -3.5px;
-  --scale-factor: 1;
+  --loading-icon-delay: 400ms;
 }
 
 @media screen and (forced-colors: active) {
@@ -909,7 +930,6 @@
     --pdfViewer-padding-bottom: 9px;
     --page-margin: 8px auto -1px;
     --page-border: 1px solid CanvasText;
-    --page-border-image: none;
     --spreadHorizontalWrapped-margin-LR: 3.5px;
   }
 }
@@ -925,11 +945,18 @@
 }
 
 .pdfViewer {
+  /* Define this variable here and not in :root to avoid to reflow all the UI
+     when scaling (see #15929). */
+  --scale-factor: 1;
+
   padding-bottom: var(--pdfViewer-padding-bottom);
 }
 
 .pdfViewer .canvasWrapper {
   overflow: hidden;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 .pdfViewer .page {
@@ -940,8 +967,6 @@
   position: relative;
   overflow: visible;
   border: var(--page-border);
-  -o-border-image: var(--page-border-image);
-     border-image: var(--page-border-image);
   background-clip: content-box;
   background-color: rgba(255, 255, 255, 1);
 }
@@ -1019,6 +1044,11 @@
   display: none;
 }
 
+.pdfViewer .page canvas[zooming] {
+  width: 100%;
+  height: 100%;
+}
+
 .pdfViewer .page .loadingIcon {
   position: absolute;
   display: block;
@@ -1027,9 +1057,16 @@
   right: 0;
   bottom: 0;
   background: url("images/loading-icon.gif") center no-repeat;
+  visibility: visible;
+  /* Using a delay with background-image doesn't work,
+     consequently we use the visibility. */
+  transition-property: visibility;
+  transition-delay: var(--loading-icon-delay);
+  z-index: 5;
 }
 .pdfViewer .page .loadingIcon.notVisible {
-  background: none;
+  transition-property: none;
+  visibility: hidden;
 }
 
 .pdfViewer.enablePermissions .textLayer span {
@@ -1063,21 +1100,19 @@
   --doorhanger-icon-opacity: 0.9;
 
   --main-color: rgba(12, 12, 13, 1);
-  --body-bg-color: rgba(237, 237, 240, 1);
-  --progressBar-percent: 0%;
-  --progressBar-end-offset: 0;
+  --body-bg-color: rgba(212, 212, 215, 1);
   --progressBar-color: rgba(10, 132, 255, 1);
-  --progressBar-indeterminate-bg-color: rgba(221, 221, 222, 1);
-  --progressBar-indeterminate-blend-color: rgba(116, 177, 239, 1);
+  --progressBar-bg-color: rgba(221, 221, 222, 1);
+  --progressBar-blend-color: rgba(116, 177, 239, 1);
   --scrollbar-color: auto;
   --scrollbar-bg-color: auto;
   --toolbar-icon-bg-color: rgba(0, 0, 0, 1);
   --toolbar-icon-hover-bg-color: rgba(0, 0, 0, 1);
 
-  --sidebar-narrow-bg-color: rgba(237, 237, 240, 0.9);
+  --sidebar-narrow-bg-color: rgba(212, 212, 215, 0.9);
   --sidebar-toolbar-bg-color: rgba(245, 246, 247, 1);
   --toolbar-bg-color: rgba(249, 249, 250, 1);
-  --toolbar-border-color: rgba(204, 204, 204, 1);
+  --toolbar-border-color: rgba(184, 184, 184, 1);
   --toolbar-box-shadow: 0 1px 0 var(--toolbar-border-color);
   --toolbar-border-bottom: none;
   --toolbarSidebar-box-shadow: inset calc(-1px * var(--dir-factor)) 0 0
@@ -1158,8 +1193,8 @@
     --main-color: rgba(249, 249, 250, 1);
     --body-bg-color: rgba(42, 42, 46, 1);
     --progressBar-color: rgba(0, 96, 223, 1);
-    --progressBar-indeterminate-bg-color: rgba(40, 40, 43, 1);
-    --progressBar-indeterminate-blend-color: rgba(20, 68, 133, 1);
+    --progressBar-bg-color: rgba(40, 40, 43, 1);
+    --progressBar-blend-color: rgba(20, 68, 133, 1);
     --scrollbar-color: rgba(121, 121, 123, 1);
     --scrollbar-bg-color: rgba(35, 35, 39, 1);
     --toolbar-icon-bg-color: rgba(255, 255, 255, 1);
@@ -1376,7 +1411,6 @@ body {
   overflow: auto;
   position: absolute;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
   box-shadow: inset calc(-1px * var(--dir-factor)) 0 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -1508,10 +1542,15 @@ body {
 }
 
 #loadingBar {
+  /* Define these variables here, and not in :root, to avoid reflowing the
+     entire viewer when updating progress (see issue 15958). */
+  --progressBar-percent: 0%;
+  --progressBar-end-offset: 0;
+
   position: absolute;
   inset-inline: 0 var(--progressBar-end-offset);
   height: 4px;
-  background-color: var(--body-bg-color);
+  background-color: var(--progressBar-bg-color);
   border-bottom: 1px solid var(--toolbar-border-color);
   transition-property: inset-inline-start;
   transition-duration: var(--sidebar-transition-duration);
@@ -1554,7 +1593,7 @@ body {
 
 #loadingBar.indeterminate .progress {
   transform: none;
-  background-color: var(--progressBar-indeterminate-bg-color);
+  background-color: var(--progressBar-bg-color);
   transition: none;
 }
 
@@ -1566,12 +1605,12 @@ body {
   width: calc(100% + 150px);
   background: repeating-linear-gradient(
     135deg,
-    var(--progressBar-indeterminate-blend-color) 0,
-    var(--progressBar-indeterminate-bg-color) 5px,
-    var(--progressBar-indeterminate-bg-color) 45px,
+    var(--progressBar-blend-color) 0,
+    var(--progressBar-bg-color) 5px,
+    var(--progressBar-bg-color) 45px,
     var(--progressBar-color) 55px,
     var(--progressBar-color) 95px,
-    var(--progressBar-indeterminate-blend-color) 100px
+    var(--progressBar-blend-color) 100px
   );
   animation: progressIndeterminate 1s linear infinite;
 }
@@ -2532,11 +2571,18 @@ a.secondaryToolbarButton[href="#"] {
   -moz-appearance: textfield; /* hides the spinner in moz */
   text-align: right;
   width: 40px;
+  background-size: 0 0;
+  transition-property: none;
 }
 #pageNumber.visiblePageIsLoading {
   background-image: var(--loading-icon);
   background-repeat: no-repeat;
   background-position: 3px;
+  background-size: 16px 16px;
+  /* Using a delay with background-image doesn't work,
+     consequently we use background-size. */
+  transition-property: background-size;
+  transition-delay: var(--loading-icon-delay);
 }
 #pageNumber::-webkit-inner-spin-button {
   -webkit-appearance: none;
