@@ -250,7 +250,8 @@ export class Environment implements IProvider {
 
         const newEntry: CmdEnvSuggestion[] = []
         pkgEnvs.forEach(env => {
-            newEntry.push(this.entryEnvToCompletion(env.name, env, type))
+            // \array{} : detail=array{}, name=array.
+            newEntry.push(this.entryEnvToCompletion(env.detail || env.name, env, type))
         })
         packageEnvs.set(packageName, newEntry)
         return newEntry
