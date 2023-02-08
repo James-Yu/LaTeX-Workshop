@@ -1,5 +1,15 @@
 # Change Log
 
+## [9.6.2] - 2023-02-08
+
+### Fixed
+- (#3679) remove `detached: true` when spawning `clean` command.
+- (#3694) Add file polling for binaries (e.g. PDF).
+  - Resume the use of `latex-workshop.latex.watch.pdf.delay` config to control binary polling.
+- (#3700) Support file path suggestion for `\subfileinclude`.
+- (#3701) Partial support to `\DeclarePairedDelimiter` environments with `*` in math preview.
+- (#3705) Support `multline` environment in math preview.
+
 ## [9.6.1] - 2023-02-03
 
 ### Fixed
