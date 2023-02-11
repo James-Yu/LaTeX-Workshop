@@ -154,6 +154,8 @@ function registerLatexWorkshopCommands() {
         vscode.commands.registerCommand('latex-workshop.onEnterKey', () => lw.commander.onEnterKey()),
         vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => lw.commander.onEnterKey('alt')),
         vscode.commands.registerCommand('latex-workshop.revealOutputDir', () => lw.commander.revealOutputDir()),
+        vscode.commands.registerCommand('latex-workshop.changeHostName', () => lw.commander.changeHostName()),
+        vscode.commands.registerCommand('latex-workshop.resetHostName', () => lw.commander.resetHostName()),
         vscode.commands.registerCommand('latex-workshop-dev.parselog', () => lw.commander.devParseLog()),
         vscode.commands.registerCommand('latex-workshop-dev.parsetex', () => lw.commander.devParseTeX()),
         vscode.commands.registerCommand('latex-workshop-dev.parsebib', () => lw.commander.devParseBib()),
