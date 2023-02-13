@@ -17,7 +17,7 @@ export class SurroundCommand {
             }
             const command = (typeof item.insertText !== 'string') ? item.insertText.value : item.insertText
             if (command.match(/(.*)(\${\d.*?})/)) {
-                const commandStr = command.replace('\\\\', '\\').replace(/\${TM_SELECTED_TEXT:?(.*?)}/g, '$1')
+                const commandStr = command.replace('\\\\', '\\').replace(/:\${TM_SELECTED_TEXT:?(.*?)}/g, '$1')
                 candidate.push({
                     command: commandStr,
                     detail: '\\' + commandStr.replace(/[\n\t]/g, '').replace(/\$\{(\d+)\}/g, '$$$1'),
