@@ -198,15 +198,17 @@ function registerLatexWorkshopCommands() {
 function registerProviders() {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
+    // According to cmhughes/latexindent.pl, it aims to beautify .tex, .sty and .cls files.
+    const latexindentSelector = selectDocumentsWithId(['tex', 'latex', 'latex-expl3'])
     const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave'])
     const weaveSelector = selectDocumentsWithId(['pweave', 'jlweave', 'rsweave'])
     const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'doctex'])
     const bibtexSelector = selectDocumentsWithId(['bibtex'])
 
     lw.registerDisposable(
-        vscode.languages.registerDocumentFormattingEditProvider(latexSelector, LatexFormatterProvider.instance),
+        vscode.languages.registerDocumentFormattingEditProvider(latexindentSelector, LatexFormatterProvider.instance),
         vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, BibtexFormatterProvider.instance),
-        vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, LatexFormatterProvider.instance),
+        vscode.languages.registerDocumentRangeFormattingEditProvider(latexindentSelector, LatexFormatterProvider.instance),
         vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, BibtexFormatterProvider.instance)
     )
 
