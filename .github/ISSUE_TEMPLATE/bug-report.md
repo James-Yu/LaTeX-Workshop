@@ -10,16 +10,16 @@ about: Create a bug report to help us resolve problems
 - [ ] The issue has not been reported in this repository.
 - [ ] The issue remains after disabling all other extensions and restarting Visual Studio Code.
 - [ ] The [FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ) cannot address the issue.
-- [ ] If the issue is related to compiling a document, it can be successfully compiled in OS terminal.
+- [ ] The issue is not related to compiling a document, or the document can be successfully compiled in the OS terminal but not in Visual Studio Code with this extension.
 
 ## Environment*
 > Please write exact version numbers instead of descriptors such as `latest`.
-- OS: [e.g. Windows 10]
-- VS Code version: [e.g. 1.41.0]
-- Extension version: [e.g. 8.5.0]
-- TeX distribution version: [e.g. TeX Live 2019/MiKTeX 2.9.7250]
+- Operating System: [e.g. Windows 10]
+- Visual Studio Code Version: [e.g. 1.41.0]
+- LaTeX Workshop Version: [e.g. 8.5.0]
+- TeX Distribution Version: [e.g. TeX Live 2019 / MiKTeX 2.9.7250]
 
-> Please list the environment and version number if you are using VSCodium, Snap or Flatpack versions of VS Code, and/or VS Code Remote Containers/SSH/WSL.
+> Please list the environment and version number if you are using VSCodium, Snap or Flatpack versions of Visual Studio Code, and/or Visual Studio Code Remote Containers/SSH/WSL.
 - I am using XXX whose version is YY.ZZ
 
 ## The Issue*
