@@ -278,7 +278,7 @@ class CwlIntel:
                     name = name.strip()
                 # The name field can only contain letters, `{`, `}`, `[`, `]` and `*`.
                 # https://github.com/James-Yu/LaTeX-Workshop/issues/3264#issuecomment-1138733921
-                if re.match(r'[^A-Za-z\[\]\{\}\<\>\*\s]', name) is not None or '(' in name or ')' in name or '\\' in name or '%' in name:
+                if re.search(r'[^A-Za-z\[\]\{\}\<\>\*\s]', name) is not None or '(' in name or ')' in name or '\\' in name or '%' in name:
                     continue
                 if name in self.commands:
                     continue
