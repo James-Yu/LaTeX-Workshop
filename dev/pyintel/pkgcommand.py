@@ -259,6 +259,9 @@ class CwlIntel:
             elif line.startswith('\\end{'):         # '\end{minted}'
                 continue
             elif line.startswith('\\'):             # '\inputminted[options%keyvals]{language}{file}#i'
+                if ((re.match(r'\\left[^a-zA-Z]', line) is not None and '\\right' not in line) or
+                    (re.match(r'\\right[^a-zA-Z]', line))): # Special cases in latex-document
+                    continue
                 match = re.match(r'\\([^[\{\n]*?)((?:\{|\[)[^#\n]*)?(#.*)?$', line)
                 if match is None:
                     continue
