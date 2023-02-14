@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import List
 from pyintel import CwlIntel
 
-FILES_TO_IGNORE = ['diagxy.cwl', 'calculator.cwl', 'calculus.cwl']
+FILES_TO_IGNORE = ['diagxy.cwl', 'calculator.cwl', 'calculus.cwl', 'expl3.cwl']
 FILES_TO_REMOVE_SPACES_IN = ['chemformula.cwl', 'context-document.cwl', 'class-beamer.cwl', 'csquotes.cwl', 'datatool.cwl', 'newclude.cwl', 'pgfplots.cwl', 'tabu.cwl', 'tikz.cwl']
 
 CWD = Path(__file__).expanduser().resolve().parent
