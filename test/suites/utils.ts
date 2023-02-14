@@ -139,15 +139,18 @@ export async function load(fixture: string, files: {src: string, dst: string, ws
     if (config.open > -1) {
         wsFixture = getWsFixture(fixture, files[config.open].ws)
         logger.log(`Open ${path.resolve(wsFixture, files[config.open].dst)} .`)
-        const doc = await vscode.workspace.openTextDocument(path.resolve(wsFixture, files[config.open].dst))
-        await vscode.window.showTextDocument(doc)
+        await open(path.resolve(wsFixture, files[config.open].dst))
     }
+}
+
+export async function open(filePath: string) {
+    const doc = await vscode.workspace.openTextDocument(filePath)
+    await vscode.window.showTextDocument(doc)
 }
 
 export async function find(fixture: string, openFile: string, ws?: string) {
     logger.log(`Open ${openFile} .`)
-    const doc = await vscode.workspace.openTextDocument(path.resolve(getWsFixture(fixture, ws), openFile))
-    await vscode.window.showTextDocument(doc)
+    await open(path.resolve(getWsFixture(fixture, ws), openFile))
     logger.log('Search for root file.')
     await lw.manager.findRoot()
     return {root: lw.manager.rootFile, local: lw.manager.localRootFile}
@@ -155,8 +158,7 @@ export async function find(fixture: string, openFile: string, ws?: string) {
 
 export async function build(fixture: string, openFile: string, ws?: string, action?: () => Promise<void>) {
     logger.log(`Open ${openFile} .`)
-    const doc = await vscode.workspace.openTextDocument(path.resolve(getWsFixture(fixture, ws), openFile))
-    await vscode.window.showTextDocument(doc)
+    await open(path.resolve(getWsFixture(fixture, ws), openFile))
     logger.log('Initiate a build.')
     await (action ?? lw.commander.build)()
 }
@@ -165,8 +167,7 @@ export async function auto(fixture: string, editFile: string, noBuild = false, s
     const done = wait(AutoBuildInitiated)
     if (save) {
         logger.log(`Save ${editFile}.`)
-        const doc = await vscode.workspace.openTextDocument(path.resolve(getWsFixture(fixture, ws), editFile))
-        await vscode.window.showTextDocument(doc)
+        await open(path.resolve(getWsFixture(fixture, ws), editFile))
         await sleep(250) // wait for document refresh to prevent saving to dirty doc
         await vscode.commands.executeCommand('workbench.action.files.save')
     } else {
