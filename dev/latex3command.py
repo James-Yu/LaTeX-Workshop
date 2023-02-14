@@ -98,8 +98,6 @@ if __name__ == "__main__":
     expl3.cmds['ExplSyntaxBlock'] = {
         'command': 'ExplSyntaxBlock',
         'option': '',
-        'keyvals': [],
-        'keyvalpos': -1,
         'detail': '',
         'snippet': 'ExplSyntaxOn\n\t$0\n\\ExplSyntaxOff',
         'documentation': 'Insert a \\ExplSyntax block'

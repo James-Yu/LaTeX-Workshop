@@ -1,5 +1,22 @@
 # Change Log
 
+## [9.7.0] - 2023-02-14
+
+### Added
+- Update grammar files.
+- (#3699) Add a pair of new commands to change hostname of the PDF viewer.
+  - `latex-workshop.changeHostName` and `latex-workshop.resetHostName`.
+
+### Changed
+- LaTeX Workshop now requires VSCode 1.74.0+.
+
+### Fixed
+- Properly provide pair commands from `tex.cwl` and `latex-document.cwl`.
+- (#3715) latexindent can format `.cls` and `.sty` files.
+- (#3716) Command surrounding may have one more brace if a text placeholder is present.
+- (#3718) Remove redundant `left`/`right` commands.
+- (#3719) Properly provide `expl3` suggestions.
+
 ## [9.6.2] - 2023-02-08
 
 ### Fixed
