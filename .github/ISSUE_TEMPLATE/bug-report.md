@@ -1,106 +1,56 @@
 ---
 name: Bug Report
-about: Create a report to help us improve
-labels: 
-
+about: Create a bug report to help us resolve problems
 ---
 
+> Please fill the following fields with a star (*) and provide as much related information as possible.
 
-## Preliminary questions [Required]
+## Pre-checks*
+> Please change the following `[ ]` to `[x]` for confirmation.
+- [ ] The issue has not been reported in this repository.
+- [ ] The issue remains after disabling all other extensions and restarting Visual Studio Code.
+- [ ] The [FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ) cannot address the issue.
+- [ ] If the issue is related to compiling a document, it can be successfully compiled in OS terminal.
 
-### Disable all the other extensions except for LaTeX Workshop, restart VS Code, and check that you still see this issue. [Required]
+## Environment*
+> Please write exact version numbers instead of descriptors such as `latest`.
+- OS: [e.g. Windows 10]
+- VS Code version: [e.g. 1.41.0]
+- Extension version: [e.g. 8.5.0]
+- TeX distribution version: [e.g. TeX Live 2019/MiKTeX 2.9.7250]
 
-You still see this issue?: Yes/No
+> Please list the environment and version number if you are using VSCodium, Snap or Flatpack versions of VS Code, and/or VS Code Remote Containers/SSH/WSL.
+- I am using XXX whose version is YY.ZZ
 
-### Make sure to visit the [wiki FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ) before filling an issue.
+## The Issue*
+> Please briefly describe the issue you come across.
+- 
+- 
 
-You visited the wiki?: Yes/No
+### Reproduction Steps
+> Please list out the steps to reproduce your bug. Include relevant environmental variables or any other configuration.
+1. 
+2. 
+3. 
 
-### If your issue is with compiling a document (not having to do with finding the root file of a project), check first that you can compile manually.
+### Expected Behavior
+> What were you expecting to see? Include any relevant examples or documentation links.
+- 
+- 
 
-You can compile a TeX document manually?: Yes/No
-
-
-
-
-## Describe the bug [Required]
-
-A clear and concise description of what the bug is.
-
-### To Reproduce
-
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. See error
-
-### Expected behavior
-
-A clear and concise description of what you expected to happen.
-
-
-
-
-## Logs [Required]
-
-Please paste the whole log messages here, not parts of ones. The log should start with `Initializing LaTeX Workshop`. It is very important to identify problems.
-
-### LaTeX Workshop Output [Required]
-
+## Logs
+### LaTeX Workshop Output*
+> Please paste the whole log messages below, not parts of ones. The log should start with `New log placeholder %WS1% registered`.
 ```
-To access the log, click the 'TeX' icon on the Activity Bar on the left side, select 'View Log Messages', then select 'View LaTeX Workshop extension log'.
-
-[Paste the log here]
+[Paste the log here. Do not remove the surrounding backquotes (`).]
 ```
 
-### Developer Tools Console [Required]
-
+### Developer Tools Console
+> Please paste the whole log messages below, not parts of ones. This console logs can sometimes be very important in many cases. To access the log, click `Help` -> `Toggle Developer Tools` -> `Console`.
 ```
-To access the log, click 'help' -> 'Toggle Developer Tools' -> 'Console'. Paste anything suspicious.
-
-[Paste the log here]
+[Paste the log here. Do not remove the surrounding backquotes (`).]
 ```
 
-
-
-## Screenshots
-
-If applicable, add screenshots to help explain your problem.
-
-
-
-
-## Desktop [Required]
-
-Please write exact version numbers. Please don't write `latest` instead of exact numbers.
-
- - OS: [e.g. Windows 10]
- - VS Code version: [e.g. 1.41.0]
- - Extension version: [e.g. 8.5.0]
- - TeX distribution version: [e.g. TeX Live 2019/MiKTeX 2.9.7250]
-
-
-
-
-## Additional questions
-
-### Are you using VSCodium?
-
-Yes/No
-
-### Are you using the Snap or Flatpack versions of VS Code?
-
-Yes/No
-
-### Are you using LaTeX Workshop with VS Code Remote?
-
-Yes/No
-
-If the answer is Yes, please write which one you are using. Write the versions of the remote extension.
-
-- Remote Containers/Remote SSH/Remote WSL
-- Remote Extension Version: [e.g. 0.48.0]
-
-### Additional context
-
-Add any other context about the problem here.
+## Anything Else?
+> Add any other context about the problem below.
+- 
