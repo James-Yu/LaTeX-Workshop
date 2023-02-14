@@ -42,15 +42,21 @@ def create_snippet(line: str) -> str:
     Create a placeholder for every argument [], {}
     """
     snippet = line
-    curly_index = line.find('{')
-    square_index = line.find('[')
     p = PlaceHolder()
-    if square_index < curly_index:
-        # If all the optional args are before {}, we number the {} first
-        snippet = re.sub(r'(\{)([^\{\$]*)(\})', p.sub, snippet)
-        snippet = re.sub(r'(\[)([^\[\$]*)(\])', p.sub, snippet)
+    if ('%<..%>' in snippet or '%|' in snippet): # \left%<..%>\right#mM or \Bigg(%|\Bigg)#mM
+        p.usePlaceHolders = False
+        snippet = re.sub(r'()(%<\.\.%>)()', p.sub, snippet).replace('%<..%>', '')
+        snippet = re.sub(r'()(%\|)()', p.sub, snippet).replace('%|', '')
+        p.usePlaceHolders = True
     else:
-        snippet = re.sub(r'(\{|\[)([^\{\[\$]*)(\}|\])', p.sub, snippet)
+        curly_index = line.find('{')
+        square_index = line.find('[')
+        if square_index < curly_index:
+            # If all the optional args are before {}, we number the {} first
+            snippet = re.sub(r'(\{)([^\{\$]*)(\})', p.sub, snippet)
+            snippet = re.sub(r'(\[)([^\[\$]*)(\])', p.sub, snippet)
+        else:
+            snippet = re.sub(r'(\{|\[)([^\{\[\$]*)(\}|\])', p.sub, snippet)
     snippet = re.sub(r'(?<![\{\s:\[])(\<)([a-zA-Z\s]*)(\>)', p.sub, snippet)
     snippet = re.sub(r'(\()([^\{\}\[\]\(\)]*)(\))', p.sub, snippet)
     p.setKeepDelimiters(False)
@@ -276,6 +282,12 @@ class CwlIntel:
                 snippet = create_snippet(match[1] + (match[2] if len(match.groups()) >= 2 and match[2] else ''))
                 detail = self.unimath_dict[name]['detail'] if self.unimath_dict.get(name) else None
                 documentation = self.unimath_dict[name]['documentation'] if self.unimath_dict.get(name) else None
+
+                if (('left' in name.lower() and 'right' not in name.lower() and 'right' in line.lower()) or
+                    (name.lower().count('big') == 1 and line.lower().count('big') == 2)):
+                    if (name[-1] in [')', ']', '}']):
+                        name = name[:-1]
+
                 pkg.cmds[name] = Cmd(
                     snippet=None if name == snippet else snippet,
                     option=cwl_option,
