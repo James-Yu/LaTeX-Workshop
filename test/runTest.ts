@@ -9,7 +9,7 @@ async function runTestSuites(fixture: 'testground' | 'multiroot') {
         const extensionTestsPath = path.resolve(__dirname, './suites/index')
 
         await runTests({
-            version: '1.71.0',
+            version: '1.74.0',
             extensionDevelopmentPath,
             extensionTestsPath,
             launchArgs: [
