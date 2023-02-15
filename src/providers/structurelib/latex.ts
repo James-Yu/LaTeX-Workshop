@@ -2,11 +2,13 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import { latexParser } from 'latex-utensils'
 import * as lw from '../../lw'
+import * as utils from '../../utils/utils'
 import { Section, SectionKind } from './section'
 import { resolveFile } from '../../utils/utils'
 import { InputFileRegExp } from '../../utils/inputfilepath'
 
 import { getLogger } from '../../components/logger'
+import { UtensilsParser } from '../../components/parser/syntax'
 
 const logger = getLogger('Structure', 'LaTeX')
 
@@ -32,9 +34,12 @@ export class LaTeXStructure {
      * @param subFile Whether subfiles should be included in the structure.
      * Default is `true`. If true, all input/subfile/subimport-like commands
      * will be parsed.
+     * @param dirty Whether disk or dirty content should be used. Default is
+     * `false`. When `subFile` is `true`, `dirty` should always be `false`.
      * @returns An array of {@link Section} to be shown in vscode view.
      */
-    static async buildLaTeXModel(file?: string, subFile = true): Promise<Section[]> {
+    static async buildLaTeXModel(file?: string, subFile = true, dirty: boolean = false): Promise<Section[]> {
+        dirty = dirty && !subFile
         file = file ? file : lw.manager.rootFile
         if (!file) {
             return []
@@ -46,7 +51,7 @@ export class LaTeXStructure {
         const filesBuilt = new Set<string>()
 
         // Step 1: Create a flat array of sections.
-        const flatNodes = await LaTeXStructure.buildLaTeXSectionFromFile(file, subFile, filesBuilt)
+        const flatNodes = await LaTeXStructure.buildLaTeXSectionFromFile(file, subFile, filesBuilt, dirty)
 
         // Normalize section depth. It's possible that there is no `chapter` in
         // a document. In such a case, `section` is the lowest level with a
@@ -78,7 +83,7 @@ export class LaTeXStructure {
      * @param filesBuilt The files that have already been parsed.
      * @returns A flat array of {@link Section} of this file.
      */
-    private static async buildLaTeXSectionFromFile(file: string, subFile: boolean, filesBuilt: Set<string>): Promise<Section[]> {
+    private static async buildLaTeXSectionFromFile(file: string, subFile: boolean, filesBuilt: Set<string>, dirty: boolean = false): Promise<Section[]> {
         // Skip if the file has already been parsed. This is to avoid indefinite
         // loop under the case that A imports B and B imports back A.
         if (filesBuilt.has(file)) {
@@ -86,26 +91,44 @@ export class LaTeXStructure {
         }
         filesBuilt.add(file)
 
-        let waited = 0
-        while (!lw.cacher.promise(file) && !lw.cacher.has(file)) {
-            // Just open vscode, has not cached, wait for a bit?
-            await new Promise(resolve => setTimeout(resolve, 100))
-            waited++
-            if (waited >= 20) {
-                // Waited for two seconds before starting cache. Really?
-                logger.log(`Error loading cache during structuring: ${file} .`)
-                return []
+        let content: string | undefined
+        let ast: latexParser.LatexAst | undefined
+        if (dirty) {
+            content = vscode.window.activeTextEditor?.document.getText()
+            if (content) {
+                const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
+                ast = await UtensilsParser.parseLatex(fastparse ? utils.stripText(content) : content).catch((e) => {
+                    if (latexParser.isSyntaxError(e)) {
+                        const line = e.location.start.line
+                        logger.log(`Error parsing dirty AST of active editor at line ${line}. Fallback to cache.`)
+                    }
+                    return undefined
+                })
             }
         }
-        await lw.cacher.promise(file)
 
-        const content = lw.cacher.get(file)?.content
+        if (!dirty || !content || !ast){
+            let waited = 0
+            while (!lw.cacher.promise(file) && !lw.cacher.has(file)) {
+                // Just open vscode, has not cached, wait for a bit?
+                await new Promise(resolve => setTimeout(resolve, 100))
+                waited++
+                if (waited >= 20) {
+                    // Waited for two seconds before starting cache. Really?
+                    logger.log(`Error loading cache during structuring: ${file} .`)
+                    return []
+                }
+            }
+            await lw.cacher.promise(file)
+
+            content = lw.cacher.get(file)?.content
+            ast = lw.cacher.get(file)?.ast
+        }
         if (!content) {
             logger.log(`Error loading content during structuring: ${file} .`)
             return []
         }
-
-        const ast = lw.cacher.get(file)?.ast
         if (!ast) {
             logger.log(`Error loading AST during structuring: ${file} .`)
             return []
@@ -122,7 +145,7 @@ export class LaTeXStructure {
             while (rnwChild && node.location && rnwChild.line <= node.location.start.line) {
                 sections = [
                     ...sections,
-                    ...await LaTeXStructure.buildLaTeXSectionFromFile(rnwChild.subFile, subFile, filesBuilt)
+                    ...await LaTeXStructure.buildLaTeXSectionFromFile(rnwChild.subFile, subFile, filesBuilt, dirty)
                 ]
                 rnwChild = rnwChildren.shift()
             }

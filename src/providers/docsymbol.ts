@@ -13,7 +13,8 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         if (lw.lwfs.isVirtualUri(document.uri)) {
             return []
         }
-        return this.sectionToSymbols(await LaTeXStructure.buildLaTeXModel(document.fileName, false))
+        const sections = await LaTeXStructure.buildLaTeXModel(document.fileName, false, true)
+        return this.sectionToSymbols(sections)
     }
 
     private sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {

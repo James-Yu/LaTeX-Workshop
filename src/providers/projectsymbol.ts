@@ -13,7 +13,8 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
         if (rootFileUri && lw.lwfs.isVirtualUri(rootFileUri)) {
             return []
         }
-        return this.sectionToSymbols(await LaTeXStructure.buildLaTeXModel())
+        const sections = await LaTeXStructure.buildLaTeXModel()
+        return this.sectionToSymbols(sections)
     }
 
     private sectionToSymbols(sections: Section[], containerName: string = 'Document'): vscode.SymbolInformation[] {
