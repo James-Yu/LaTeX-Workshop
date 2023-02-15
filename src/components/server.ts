@@ -94,7 +94,8 @@ export class Server {
         const httpServer = http.createServer((request, response) => this.handler(request, response))
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewerPort = configuration.get('viewer.pdf.internal.port') as number
-        httpServer.listen(viewerPort, hostname ?? '127.0.0.1', undefined, async () => {
+        const defaultHostname = configuration.get('viewer.pdf.internal.hostname') as string
+        httpServer.listen(viewerPort, hostname ?? defaultHostname, undefined, async () => {
             const address = this.httpServer.address()
             if (address && typeof address !== 'string') {
                 this.address = address
@@ -102,7 +103,7 @@ export class Server {
                 if (hostname) {
                     logger.log(`BE AWARE: YOU ARE PUBLIC TO ${hostname} !`)
                 }
-                this.validOriginUri = await this.obtainValidOrigin(address.port, hostname ?? '127.0.0.1')
+                this.validOriginUri = await this.obtainValidOrigin(address.port, hostname ?? defaultHostname)
                 logger.log(`valdOrigin is ${this.validOrigin}`)
                 this.initializeWsServer(httpServer, this.validOrigin)
                 this.eventEmitter.emit(ServerStartedEvent)
