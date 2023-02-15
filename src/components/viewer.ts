@@ -27,6 +27,34 @@ export class Viewer {
                 this.refreshExistingViewer(undefined, pdfPath)
             }
         })
+        lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+            if (e.affectsConfiguration('latex-workshop.view.pdf.invertMode.enabled') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.invert') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.invertMode.brightness') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.invertMode.grayscale') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.invertMode.hueRotate') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.invertMode.sepia') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.color.light.pageColorsForeground') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.color.light.pageColorsBackground') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.color.light.backgroundColor') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.color.light.pageBorderColor') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.color.dark.pageColorsForeground') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.color.dark.pageColorsBackground') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.color.dark.backgroundColor') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.color.dark.pageBorderColor') ||
+                e.affectsConfiguration('latex-workshop.view.pdf.internal.synctex.keybinding')) {
+                this.reloadExistingViewer()
+            }
+            return
+        }))
+    }
+
+    reloadExistingViewer(): void {
+        PdfViewerManagerService.clientMap.forEach(clientSet => {
+            clientSet.forEach(client => {
+                client.send({type: 'reload'})
+            })
+        })
     }
 
     /**

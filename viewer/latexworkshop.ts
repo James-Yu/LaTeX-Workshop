@@ -312,6 +312,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, 1000)
     }
 
+    private reload() {
+        location.reload()
+    }
+
     private refreshPDFViewer() {
         if (!this.autoReloadEnabled) {
             this.addLogMessage('Auto reload temporarily disabled.')
@@ -420,6 +424,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 }
                 case 'refresh': {
                     this.refreshPDFViewer()
+                    break
+                }
+                case 'reload': {
+                    this.reload()
                     break
                 }
                 default: {

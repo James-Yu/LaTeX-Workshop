@@ -7,6 +7,8 @@ export type ServerResponse = {
         x: number,
         y: number
     }
+} | {
+    type: 'reload'
 }
 
 export type PdfViewerParams = {
