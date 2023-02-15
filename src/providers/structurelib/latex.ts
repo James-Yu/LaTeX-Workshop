@@ -213,7 +213,7 @@ export class LaTeXStructure {
                 // Check if this command is a subfile one
                 sections = [
                     ...sections,
-                    ...await LaTeXStructure.parseLaTeXSubFileCommand(node, file, subFile, filesBuilt)
+                    ...await LaTeXStructure.parseLaTeXSubFileCommand(node, file, filesBuilt)
                 ]
             }
         } else if (latexParser.isLabelCommand(node) && LaTeXStructure.LaTeXCommands.cmds.includes(node.name)) {
@@ -264,7 +264,7 @@ export class LaTeXStructure {
      * @returns A flat array of {@link Section} of this sub-file, or an empty
      * array if the command is not a sub-file-like.
      */
-    private static async parseLaTeXSubFileCommand(node: latexParser.Command, file: string, subFile: boolean, filesBuilt: Set<string>): Promise<Section[]> {
+    private static async parseLaTeXSubFileCommand(node: latexParser.Command, file: string, filesBuilt: Set<string>): Promise<Section[]> {
         const cmdArgs: string[] = []
         node.args.forEach((arg) => {
             if (latexParser.isOptionalArg(arg)) {
@@ -305,7 +305,7 @@ export class LaTeXStructure {
                 path.join(cmdArgs[0], cmdArgs[1]))
         }
 
-        return candidate ? LaTeXStructure.buildLaTeXSectionFromFile(candidate, subFile, filesBuilt) : []
+        return candidate ? LaTeXStructure.buildLaTeXSectionFromFile(candidate, true, filesBuilt) : []
     }
 
     /**
