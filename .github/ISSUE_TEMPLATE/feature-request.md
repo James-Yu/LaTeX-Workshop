@@ -3,20 +3,20 @@ name: Feature Request
 about: Suggest a feature to improve the extension
 ---
 
-> Please fill the following fields with a star (*) and provide as much related information as possible.
+> _Please fill the following fields with a star (*) and provide as much related information as possible._
 
 ## Pre-checks*
-> Please change the following `[ ]` to `[x]` for confirmation.
+> _Please change the following `[ ]` to `[x]` for confirmation._
 - [ ] The feature request has not been suggested in this repository.
 
 ## The Missed*
-> Is your feature request related to a problem? Please provide a clear and concise description of what the problem is.
+> _Is your feature request related to a problem? Please provide a clear and concise description of what the problem is._
 - 
 
 ## The Solution*
-> Please provide a solution you would like to have.
+> _Please provide a solution you would like to have._
 - 
 
 ## Anything Else?
-> Add any other context about the feature request below.
+> _Add any other context about the feature request below._
 - 
