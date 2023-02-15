@@ -86,6 +86,26 @@
       "keyvalindex": 2,
       "keyvalpos": 1
     },
+    "newtcolorbox{}[]{}": {
+      "snippet": "newtcolorbox{${1:envname}}[${2:args}]{${3:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "newtcolorbox{}[][]{}": {
+      "snippet": "newtcolorbox{${1:envname}}[${2:args}][${3:default}]{${4:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 3
+    },
+    "newtcolorbox[]{}{}": {
+      "snippet": "newtcolorbox[${3:init options}]{${1:envname}}{${2:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "newtcolorbox[]{}[]{}": {
+      "snippet": "newtcolorbox[${3:init options}]{${1:envname}}[${4:args}]{${2:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 3
+    },
     "newtcolorbox[]{}[][]{}": {
       "snippet": "newtcolorbox[${3:init options}]{${1:envname}}[${4:args}][${5:default}]{${2:options}}",
       "keyvalindex": 2,
@@ -95,6 +115,26 @@
       "snippet": "renewtcolorbox{${1:envname}}{${2:options}}",
       "keyvalindex": 2,
       "keyvalpos": 1
+    },
+    "renewtcolorbox{}[]{}": {
+      "snippet": "renewtcolorbox{${1:envname}}[${2:args}]{${3:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "renewtcolorbox{}[][]{}": {
+      "snippet": "renewtcolorbox{${1:envname}}[${2:args}][${3:default}]{${4:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 3
+    },
+    "renewtcolorbox[]{}{}": {
+      "snippet": "renewtcolorbox[${3:init options}]{${1:envname}}{${2:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "renewtcolorbox[]{}[]{}": {
+      "snippet": "renewtcolorbox[${3:init options}]{${1:envname}}[${4:args}]{${2:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 3
     },
     "renewtcolorbox[]{}[][]{}": {
       "snippet": "renewtcolorbox[${3:init options}]{${1:envname}}[${4:args}][${5:default}]{${2:options}}",
@@ -186,6 +226,26 @@
       "keyvalindex": 1,
       "keyvalpos": 1
     },
+    "newtcbox{}[]{}": {
+      "snippet": "newtcbox{${1:cmd}}[${2:args}]{${3:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "newtcbox{}[][]{}": {
+      "snippet": "newtcbox{${1:cmd}}[${2:args}][${3:default}]{${4:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 3
+    },
+    "newtcbox[]{}{}": {
+      "snippet": "newtcbox[${3:init options}]{${1:cmd}}{${2:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "newtcbox[]{}[]{}": {
+      "snippet": "newtcbox[${3:init options}]{${1:cmd}}[${4:args}]{${2:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 3
+    },
     "newtcbox[]{}[][]{}": {
       "snippet": "newtcbox[${3:init options}]{${1:cmd}}[${4:args}][${5:default}]{${2:options}}",
       "keyvalindex": 1,
@@ -195,6 +255,26 @@
       "snippet": "renewtcbox{${1:cmd}}{${2:options}}",
       "keyvalindex": 1,
       "keyvalpos": 1
+    },
+    "renewtcbox{}[]{}": {
+      "snippet": "renewtcbox{${1:cmd}}[${2:args}]{${3:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "renewtcbox{}[][]{}": {
+      "snippet": "renewtcbox{${1:cmd}}[${2:args}][${3:default}]{${4:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 3
+    },
+    "renewtcbox[]{}{}": {
+      "snippet": "renewtcbox[${3:init options}]{${1:cmd}}{${2:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "renewtcbox[]{}[]{}": {
+      "snippet": "renewtcbox[${3:init options}]{${1:cmd}}[${4:args}]{${2:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 3
     },
     "renewtcbox[]{}[][]{}": {
       "snippet": "renewtcbox[${3:init options}]{${1:cmd}}[${4:args}][${5:default}]{${2:options}}",
@@ -443,8 +523,12 @@
       "fonttitle=${1:text}",
       "halign=",
       "halign upper=",
+      "halign code={${1:code}}",
+      "halign upper code={${1:code}}",
       "halign lower=",
+      "halign lower code={${1:code}}",
       "halign title=",
+      "halign title code={${1:code}}",
       "flushleft upper",
       "center upper",
       "flushright upper",
@@ -532,7 +616,9 @@
       "use height from group",
       "use height from group=${1:id}",
       "before title={${1:code}}",
+      "before title*={${1:code}}",
       "after title={${1:code}}",
+      "after title*={${1:code}}",
       "before upper={${1:code}}",
       "before upper*={${1:code}}",
       "after upper={${1:code}}",
@@ -655,16 +741,16 @@
       "tempfile=${1:file name}",
       "phantom={${1:code}}",
       "nophantom",
+      "label is label",
+      "label is zlabel",
       "label=",
       "phantomlabel=",
-      "label type=${1:type}",
-      "no label type",
       "step=${1:counter}",
       "step and label={${1:counter}}{${2:marker}}",
-      "list entry=${1:text}",
-      "list text=${1:text}",
-      "add to list={${1:list}}{${2:type}}",
+      "label type=${1:type}",
+      "no label type",
       "nameref=${1:text}",
+      "short title=${1:text}",
       "hypertarget=${1:marker}",
       "bookmark=${1:text}",
       "bookmark*={${1:options}}{${2:text}}",
@@ -700,6 +786,9 @@
       "nirvana",
       "blend before title=",
       "blend before title code={${1:code}}",
+      "list entry=${1:text}",
+      "list text=${1:text}",
+      "add to list={${1:list}}{${2:type}}",
       "sidebyside",
       "sidebyside align=",
       "sidebyside gap=",
@@ -710,6 +799,7 @@
       "sidebyside adapt=",
       "sidebyside switch",
       "verbatim ignore percent",
+      "verbatim ignore indention at end",
       "record=${1:content}",
       "no recording",
       "skin=${1:name}",
@@ -775,8 +865,12 @@
       "fonttitle=${1:text}",
       "halign=",
       "halign upper=",
+      "halign code={${1:code}}",
+      "halign upper code={${1:code}}",
       "halign lower=",
+      "halign lower code={${1:code}}",
       "halign title=",
+      "halign title code={${1:code}}",
       "flushleft upper",
       "center upper",
       "flushright upper",
@@ -864,7 +958,9 @@
       "use height from group",
       "use height from group=${1:id}",
       "before title={${1:code}}",
+      "before title*={${1:code}}",
       "after title={${1:code}}",
+      "after title*={${1:code}}",
       "before upper={${1:code}}",
       "before upper*={${1:code}}",
       "after upper={${1:code}}",
@@ -987,16 +1083,16 @@
       "tempfile=${1:file name}",
       "phantom={${1:code}}",
       "nophantom",
+      "label is label",
+      "label is zlabel",
       "label=",
       "phantomlabel=",
-      "label type=${1:type}",
-      "no label type",
       "step=${1:counter}",
       "step and label={${1:counter}}{${2:marker}}",
-      "list entry=${1:text}",
-      "list text=${1:text}",
-      "add to list={${1:list}}{${2:type}}",
+      "label type=${1:type}",
+      "no label type",
       "nameref=${1:text}",
+      "short title=${1:text}",
       "hypertarget=${1:marker}",
       "bookmark=${1:text}",
       "bookmark*={${1:options}}{${2:text}}",
@@ -1032,6 +1128,9 @@
       "nirvana",
       "blend before title=",
       "blend before title code={${1:code}}",
+      "list entry=${1:text}",
+      "list text=${1:text}",
+      "add to list={${1:list}}{${2:type}}",
       "sidebyside",
       "sidebyside align=",
       "sidebyside gap=",
@@ -1042,6 +1141,7 @@
       "sidebyside adapt=",
       "sidebyside switch",
       "verbatim ignore percent",
+      "verbatim ignore indention at end",
       "record=${1:content}",
       "no recording",
       "skin=${1:name}",

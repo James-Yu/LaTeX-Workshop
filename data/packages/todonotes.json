@@ -21,22 +21,30 @@
     },
     "setuptodonotes{}": {
       "snippet": "setuptodonotes{${1:options}}",
-      "keyvalindex": 0,
+      "keyvalindex": 1,
       "keyvalpos": 0
+    },
+    "todostyle{}{}": {
+      "snippet": "todostyle{${1:name}}{${2:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
     },
     "missingfigure{}": {
       "snippet": "missingfigure{${1:text}}"
     },
     "missingfigure[]{}": {
       "snippet": "missingfigure[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
+      "keyvalindex": 2,
       "keyvalpos": 0
     },
     "listoftodos": {},
     "listoftodos[]": {
       "snippet": "listoftodos[${1:name}]"
     },
-    "todototoc": {}
+    "todototoc": {},
+    "todoformat{}": {
+      "snippet": "todoformat{${1:arg}}"
+    }
   },
   "envs": {},
   "options": [
@@ -63,6 +71,7 @@
     "tickmarkheight=",
     "textwidth=",
     "textsize=${1:fontsize csname}",
+    "format=${1:csname}",
     "prependcaption={${1:text}}",
     "loadshadowlibrary",
     "shadow",
@@ -80,6 +89,7 @@
       "shadow",
       "noshadow",
       "tickmarkheight=",
+      "format=${1:csname}",
       "line",
       "noline",
       "inline",
@@ -94,12 +104,45 @@
       "author=${1:author}",
       "inlinewidth=",
       "inlinepar",
-      "noinlinepar"
+      "noinlinepar",
+      "%todonotesstyle"
+    ],
+    [
+      "disable",
+      "color=",
+      "backgroundcolor=",
+      "textcolor=",
+      "linecolor=",
+      "bordercolor=",
+      "shadow",
+      "noshadow",
+      "tickmarkheight=",
+      "format=${1:csname}",
+      "line",
+      "noline",
+      "inline",
+      "noinline",
+      "size=${1:fontsize command}",
+      "list",
+      "nolist",
+      "caption={${1:text}}",
+      "prepend",
+      "noprepend",
+      "fancyline",
+      "author=${1:author}",
+      "inlinewidth=",
+      "inlinepar",
+      "noinlinepar",
+      "figwidth=",
+      "figheight=",
+      "figcolor=",
+      "%todonotesstyle"
     ],
     [
       "figwidth=",
       "figheight=",
-      "figcolor="
+      "figcolor=",
+      "%todonotesstyle"
     ]
   ]
 }
