@@ -1,13 +1,9 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
-import { Section, SectionNodeProvider } from './structure'
+import { LaTeXStructure } from './structurelib/latex'
+import { Section } from './structurelib/section'
 
 export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
-    private readonly sectionNodeProvider: SectionNodeProvider
-
-    constructor() {
-        this.sectionNodeProvider = new SectionNodeProvider()
-    }
 
     async provideWorkspaceSymbols(): Promise<vscode.SymbolInformation[]> {
         if (lw.manager.rootFile === undefined) {
@@ -17,7 +13,7 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
         if (rootFileUri && lw.lwfs.isVirtualUri(rootFileUri)) {
             return []
         }
-        return this.sectionToSymbols(await this.sectionNodeProvider.buildLaTeXModel())
+        return this.sectionToSymbols(await LaTeXStructure.buildLaTeXModel())
     }
 
     private sectionToSymbols(sections: Section[], containerName: string = 'Document'): vscode.SymbolInformation[] {

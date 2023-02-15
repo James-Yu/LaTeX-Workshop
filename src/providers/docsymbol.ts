@@ -1,22 +1,19 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
-import { Section, SectionNodeProvider } from './structure'
+import { Section } from './structurelib/section'
+import { BibTeXStructure } from './structurelib/bibtex'
+import { LaTeXStructure } from './structurelib/latex'
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
-    private readonly sectionNodeProvider: SectionNodeProvider
-
-    constructor() {
-        this.sectionNodeProvider = new SectionNodeProvider()
-    }
 
     async provideDocumentSymbols(document: vscode.TextDocument): Promise<vscode.DocumentSymbol[]> {
         if (document.languageId === 'bibtex') {
-            return this.sectionNodeProvider.buildBibTeXModel(document).then((sections: Section[]) => this.sectionToSymbols(sections))
+            return BibTeXStructure.buildBibTeXModel(document).then((sections: Section[]) => this.sectionToSymbols(sections))
         }
         if (lw.lwfs.isVirtualUri(document.uri)) {
             return []
         }
-        return this.sectionToSymbols(await this.sectionNodeProvider.buildLaTeXModel(document.fileName, false))
+        return this.sectionToSymbols(await LaTeXStructure.buildLaTeXModel(document.fileName, false))
     }
 
     private sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {
