@@ -168,7 +168,7 @@ export class LaTeXStructure {
      *
      * @returns A flat array of {@link Section} of this node.
      */
-    private static async parseLaTeXNode(node: latexParser.Node, file: string, subFile: boolean, filesBuilt: Set<string>): Promise<Section[]> {
+    protected static async parseLaTeXNode(node: latexParser.Node, file: string, subFile: boolean, filesBuilt: Set<string>): Promise<Section[]> {
         let sections: Section[] = []
         if (latexParser.isCommand(node)) {
             if (LaTeXStructure.LaTeXCommands.secs.includes(node.name.replace(/\*$/, ''))) {
@@ -332,9 +332,13 @@ export class LaTeXStructure {
             // \begin{frame}(whitespace){Title}
             const nodeArg = node.args.find(latexParser.isGroup)
             caption = nodeArg ? LaTeXStructure.captionify(nodeArg) : caption
-        } else if (node.name.replace(/\*$/, '') === 'figure' || node.name.replace(/\*$/, '') === 'table') {
+        } else if (['figure', 'table'].includes(node.name.replace(/\*$/, ''))) {
             // \begin{figure} \caption{Figure Title}
             captionNode = node.content.filter(latexParser.isCommand).find(subNode => subNode.name.replace(/\*$/, '') === 'caption')
+        } else if (['macro', 'environment'].includes(node.name.replace(/\*$/, ''))) {
+            // DocTeX: \begin{macro}{<macro>}
+            const nodeArg = node.args.find(latexParser.isGroup)
+            caption = nodeArg ? LaTeXStructure.captionify(nodeArg) : caption
         }
         // \frametitle can override title set in \begin{frame}{<title>}
         // \frametitle{Frame Title} or \caption{Figure Title}
@@ -363,7 +367,7 @@ export class LaTeXStructure {
         return caption.slice(1, caption.length - 1) // {Title} -> Title
     }
 
-    private static buildFloatNumber(flatNodes: Section[], subFile: boolean) {
+    protected static buildFloatNumber(flatNodes: Section[], subFile: boolean) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!configuration.get('view.outline.floats.number.enabled' || ! subFile)) {
             return
@@ -377,6 +381,10 @@ export class LaTeXStructure {
             if (section.kind !== SectionKind.Env) {
                 return
             }
+            if (section.label.toLowerCase().startsWith('macro') || section.label.toLowerCase().startsWith('environment')) {
+                // DocTeX
+                return
+            }
             const labelSegments = section.label.split(':')
             counter[labelSegments[0]] = counter[labelSegments[0]] ? counter[labelSegments[0]] + 1 : 1
             labelSegments[0] = `${labelSegments[0]} ${counter[labelSegments[0]]}`
@@ -384,7 +392,7 @@ export class LaTeXStructure {
         })
     }
 
-    private static normalizeDepths(flatNodes: Section[]) {
+    protected static normalizeDepths(flatNodes: Section[]) {
         let lowest = 65535
         flatNodes.filter(node => node.depth > -1).forEach(section => {
             lowest = lowest < section.depth ? lowest : section.depth
@@ -398,7 +406,7 @@ export class LaTeXStructure {
      * Build the number of sections. Also put all non-sections into their
      * leading section. This is to make the subsequent logic clearer.
      */
-    private static buildSectionNumber(flatNodes: Section[], subFile: boolean) {
+    protected static buildSectionNumber(flatNodes: Section[], subFile: boolean) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const sectionNumber = subFile && configuration.get('view.outline.numbers.enabled') as boolean
         // All non-section nodes before the first section
@@ -439,7 +447,7 @@ export class LaTeXStructure {
         return {preambleFloats, flatSections}
     }
 
-    private static buildNestedFloats(preambleFloats: Section[], flatSections: Section[]) {
+    protected static buildNestedFloats(preambleFloats: Section[], flatSections: Section[]) {
         const findChild = (parentNode: Section, childNode: Section): boolean => {
             if (childNode.lineNumber >= parentNode.lineNumber && childNode.toLine <= parentNode.toLine) {
                 let added = false
@@ -488,7 +496,7 @@ export class LaTeXStructure {
      * and prepended to section captions.
      * @returns The final sections to be shown with hierarchy.
      */
-    private static buildNestedSections(flatSections: Section[]): Section[] {
+    protected static buildNestedSections(flatSections: Section[]): Section[] {
         const sections: Section[] = []
 
         flatSections.forEach(section => {
@@ -520,7 +528,7 @@ export class LaTeXStructure {
         return sections
     }
 
-    private static buildLaTeXSectionToLine(structure: Section[], lastLine: number) {
+    protected static buildLaTeXSectionToLine(structure: Section[], lastLine: number) {
         const sections = structure.filter(section => section.depth >= 0)
         sections.forEach(section => {
             const sameFileSections = sections.filter(candidate =>
@@ -555,10 +563,10 @@ export class LaTeXStructure {
         return children
     }
 
-    private static refreshLaTeXModelConfig() {
+    protected static refreshLaTeXModelConfig(defaultFloats = ['frame']) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const cmds = configuration.get('view.outline.commands') as string[]
-        const envs = configuration.get('view.outline.floats.enabled') as boolean ? ['figure', 'frame', 'table'] : ['frame']
+        const envs = configuration.get('view.outline.floats.enabled') as boolean ? ['figure', 'table', ...defaultFloats] : defaultFloats
 
         const hierarchy = (configuration.get('view.outline.sections') as string[])
         hierarchy.forEach((sec, index) => {

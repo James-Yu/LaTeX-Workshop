@@ -223,6 +223,7 @@ function registerProviders() {
         vscode.languages.registerDefinitionProvider(latexSelector, new DefinitionProvider()),
         vscode.languages.registerDocumentSymbolProvider(latexSelector, new DocSymbolProvider()),
         vscode.languages.registerDocumentSymbolProvider(bibtexSelector, new DocSymbolProvider()),
+        vscode.languages.registerDocumentSymbolProvider(selectDocumentsWithId(['doctex']), new DocSymbolProvider()),
         vscode.languages.registerWorkspaceSymbolProvider(new ProjectSymbolProvider())
     )
 

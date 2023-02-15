@@ -5,7 +5,7 @@ import { UtensilsParser } from '../../components/parser/syntax'
 
 import { getLogger } from '../../components/logger'
 
-const logger = getLogger('Structure', 'LaTeX')
+const logger = getLogger('Structure', 'BibTeX')
 
 export class BibTeXStructure {
     static async buildBibTeXModel(document: vscode.TextDocument): Promise<Section[]> {

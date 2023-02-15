@@ -3,12 +3,15 @@ import * as lw from '../lw'
 import { Section } from './structurelib/section'
 import { BibTeXStructure } from './structurelib/bibtex'
 import { LaTeXStructure } from './structurelib/latex'
+import { DocTeXStructure } from './structurelib/doctex'
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
 
     async provideDocumentSymbols(document: vscode.TextDocument): Promise<vscode.DocumentSymbol[]> {
         if (document.languageId === 'bibtex') {
             return BibTeXStructure.buildBibTeXModel(document).then((sections: Section[]) => this.sectionToSymbols(sections))
+        } else if (document.languageId === 'doctex') {
+            return DocTeXStructure.buildDocTeXModel(document).then((sections: Section[]) => this.sectionToSymbols(sections))
         }
         if (lw.lwfs.isVirtualUri(document.uri)) {
             return []
