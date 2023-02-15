@@ -7,19 +7,19 @@ import { ChkTeX } from '../../src/components/linterlib/chktex'
 import { LaCheck } from '../../src/components/linterlib/lacheck'
 
 suite('Linter test suite', () => {
-
-    const suiteName = path.basename(__filename).replace('.test.js', '')
-    const fixtureName = 'testground'
+    test.suite.name = path.basename(__filename).replace('.test.js', '')
+    test.suite.fixture = 'testground'
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'never')
     })
 
     teardown(async () => {
         await test.reset()
     })
 
-    test.run(suiteName, fixtureName, 'test chktex', async (fixture: string) => {
+    test.run('test chktex', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
@@ -29,7 +29,7 @@ suite('Linter test suite', () => {
         assert.strictEqual(linter.linterDiagnostics.name, 'ChkTeX')
     })
 
-    test.run(suiteName, fixtureName, 'test chktex log parser', async (fixture: string) => {
+    test.run('test chktex log parser', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
@@ -43,7 +43,7 @@ suite('Linter test suite', () => {
         assert.match(linter.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'sub/s.tex')))?.[0].message || '', /Delete this space/)
     })
 
-    test.run(suiteName, fixtureName, 'test lacheck', async (fixture: string) => {
+    test.run('test lacheck', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
@@ -53,7 +53,7 @@ suite('Linter test suite', () => {
         assert.strictEqual(linter.linterDiagnostics.name, 'LaCheck')
     })
 
-    test.run(suiteName, fixtureName, 'test lacheck log parser', async (fixture: string) => {
+    test.run('test lacheck log parser', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}

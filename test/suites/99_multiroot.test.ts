@@ -11,9 +11,8 @@ function resolve(fixture: string, fileName: string, ws: string) {
 }
 
 suite('Multi-root workspace test suite', () => {
-
-    const suiteName = path.basename(__filename).replace('.test.js', '')
-    const fixtureName = 'multiroot'
+    test.suite.name = path.basename(__filename).replace('.test.js', '')
+    test.suite.fixture = 'multiroot'
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
@@ -56,7 +55,7 @@ suite('Multi-root workspace test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.interval', undefined)
     })
 
-    test.run(suiteName, fixtureName, 'detect root with search.rootFiles.include', async (fixture: string) => {
+    test.run('detect root with search.rootFiles.include', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', ['**/alt/*.tex'])
         await test.load(fixture, [
@@ -69,7 +68,7 @@ suite('Multi-root workspace test suite', () => {
         assert.strictEqual(roots.root, resolve(fixture, 'alt/main.tex', 'A'))
     })
 
-    test.run(suiteName, fixtureName, 'detect root with search.rootFiles.exclude', async (fixture: string) => {
+    test.run('detect root with search.rootFiles.exclude', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', ['*/*.tex'])
         await test.load(fixture, [
@@ -82,7 +81,7 @@ suite('Multi-root workspace test suite', () => {
         assert.strictEqual(roots.root, resolve(fixture, 'alt/main.tex', 'A'))
     })
 
-    test.run(suiteName, fixtureName, 'switching rootFile', async (fixture: string) => {
+    test.run('switching rootFile', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex', ws: 'A'},
             {src: 'base.tex', dst: 'main.tex', ws: 'B'}
@@ -95,7 +94,7 @@ suite('Multi-root workspace test suite', () => {
         assert.strictEqual(roots.root, resolve(fixture, 'main.tex', 'A'))
     })
 
-    test.run(suiteName, fixtureName, 'basic build with default recipe name', async (fixture: string) => {
+    test.run('basic build with default recipe name', async (fixture: string) => {
         const tools = [
             {name: 'latexmk', command: 'latexmk', args: ['-synctex=1', '-interaction=nonstopmode', '-file-line-error', '-pdf', '-outdir=%OUTDIR%', '-jobname=wsA', '%DOC%'], env: {}},
             {name: 'fake', command: 'touch', args: ['%DIR%/fake.pdf']}
@@ -113,7 +112,7 @@ suite('Multi-root workspace test suite', () => {
         assert.ok(fs.existsSync(resolve(fixture, 'wsA.pdf', 'A')))
     })
 
-    test.run(suiteName, fixtureName, 'basic build with unavailable lastUsed', async (fixture: string) => {
+    test.run('basic build with unavailable lastUsed', async (fixture: string) => {
         const tools = [
             {name: 'latexmk', command: 'latexmk', args: ['-synctex=1', '-interaction=nonstopmode', '-file-line-error', '-pdf', '-outdir=%OUTDIR%', '-jobname=wsA', '%DOC%'], env: {}},
             {name: 'fake', command: 'touch', args: ['%DIR%/fake.pdf']}
@@ -132,7 +131,7 @@ suite('Multi-root workspace test suite', () => {
         assert.ok(fs.existsSync(resolve(fixture, 'wsA.pdf', 'A')))
     })
 
-    test.run(suiteName, fixtureName, 'basic build with outDir', async (fixture: string) => {
+    test.run('basic build with outDir', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop', vscode.workspace.workspaceFolders?.[0]).update('latex.outDir', './out')
         await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex', ws: 'A'},
@@ -142,7 +141,7 @@ suite('Multi-root workspace test suite', () => {
         assert.ok(fs.existsSync(resolve(fixture, 'out/main.pdf', 'A')))
     })
 
-    test.run(suiteName, fixtureName, 'build with forceRecipeUsage: true', async (fixture: string) => {
+    test.run('build with forceRecipeUsage: true', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
         await vscode.workspace.getConfiguration('latex-workshop', vscode.workspace.workspaceFolders?.[0]).update('latex.build.forceRecipeUsage', true)
         await test.load(fixture, [
@@ -153,7 +152,7 @@ suite('Multi-root workspace test suite', () => {
         assert.ok(fs.existsSync(resolve(fixture, 'main.pdf', 'A')))
     })
 
-    test.run(suiteName, fixtureName, 'auto build with subfiles and onSave', async (fixture: string) => {
+    test.run('auto build with subfiles and onSave', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
@@ -166,7 +165,7 @@ suite('Multi-root workspace test suite', () => {
         assert.strictEqual(type, 'onSave')
     })
 
-    test.run(suiteName, fixtureName, 'switching intellisense', async (fixture: string) => {
+    test.run('switching intellisense', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', 'bibtex key')
         await vscode.workspace.getConfiguration('latex-workshop', vscode.workspace.workspaceFolders?.[0]).update('intellisense.citation.label', 'title')
         await test.load(fixture, [
@@ -188,7 +187,7 @@ suite('Multi-root workspace test suite', () => {
         assert.strictEqual(suggestions.items[0].label, 'art1')
     })
 
-    test.run(suiteName, fixtureName, 'switching structure', async (fixture: string) => {
+    test.run('switching structure', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'structure_base.tex', dst: 'main.tex', ws: 'A'},
             {src: 'structure_sub.tex', dst: 'sub/s.tex', ws: 'A'},

@@ -28,20 +28,26 @@ function testLabel() {
     return testIndex.toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping: false})
 }
 
-export function only(suiteName: string, fixtureName: string, testName: string, cb: (fixturePath: string) => unknown, platforms?: NodeJS.Platform[]) {
-    return run(suiteName, fixtureName, testName, cb, platforms, true)
+const suite = {
+    name: '',
+    fixture: ''
+}
+export { suite }
+
+export function only(testName: string, cb: (fixturePath: string) => unknown, platforms?: NodeJS.Platform[]) {
+    return run(testName, cb, platforms, true)
 }
 
-export function run(suiteName: string, fixtureName: string, testName: string, cb: (fixturePath: string) => unknown, platforms?: NodeJS.Platform[], runonly?: boolean) {
+export function run(testName: string, cb: (fixturePath: string) => unknown, platforms?: NodeJS.Platform[], runonly?: boolean) {
     const fixture = getFixture()
 
     if (fixture === undefined) {
         return
     }
-    if (path.basename(fixture) !== fixtureName) {
+    if (path.basename(fixture) !== suite.fixture) {
         return
     }
-    if (process.env['LATEXWORKSHOP_SUITE'] && !process.env['LATEXWORKSHOP_SUITE'].split(',').find(suite => suiteName.includes(suite))) {
+    if (process.env['LATEXWORKSHOP_SUITE'] && !process.env['LATEXWORKSHOP_SUITE'].split(',').find(candidate => suite.name.includes(candidate))) {
         return
     }
     if (platforms && !platforms.includes(os.platform())) {
@@ -52,13 +58,13 @@ export function run(suiteName: string, fixtureName: string, testName: string, cb
     const testFunction = (process.env['LATEXWORKSHOP_CLI'] || !runonly) ? test : test.only
 
     const label = testLabel()
-    testFunction(`[${label}] ${suiteName}: ${testName}`, async () => {
+    testFunction(`[${label}] ${suite.name}: ${testName}`, async () => {
         try {
             resetCachedLog()
             logger.log(`${testName}`)
             await cb(path.resolve(fixture ?? '', label))
         } finally {
-            log(fixtureName, testName, label)
+            log(path.basename(fixture), testName, label)
         }
     })
 }

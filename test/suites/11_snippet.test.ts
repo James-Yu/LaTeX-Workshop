@@ -7,19 +7,19 @@ import { ICompletionItem } from '../../src/providers/completion'
 import { DocumentChanged } from '../../src/components/eventbus'
 
 suite('Snippet test suite', () => {
-
-    const suiteName = path.basename(__filename).replace('.test.js', '')
-    const fixtureName = 'testground'
+    test.suite.name = path.basename(__filename).replace('.test.js', '')
+    test.suite.fixture = 'testground'
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'never')
     })
 
     teardown(async () => {
         await test.reset()
     })
 
-    test.run(suiteName, fixtureName, '#3716 Too many braces', async (fixture: string) => {
+    test.run('#3716 Too many braces', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true, open: 0})

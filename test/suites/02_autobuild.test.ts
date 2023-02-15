@@ -4,9 +4,8 @@ import * as test from './utils'
 import assert from 'assert'
 
 suite('Auto-build test suite', () => {
-
-    const suiteName = path.basename(__filename).replace('.test.js', '')
-    const fixtureName = 'testground'
+    test.suite.name = path.basename(__filename).replace('.test.js', '')
+    test.suite.fixture = 'testground'
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
@@ -32,7 +31,7 @@ suite('Auto-build test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.interval', undefined)
     })
 
-    test.run(suiteName, fixtureName, 'auto build', async (fixture: string) => {
+    test.run('auto build', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ])
@@ -40,7 +39,7 @@ suite('Auto-build test suite', () => {
         assert.strictEqual(type, 'onChange')
     })
 
-    test.run(suiteName, fixtureName, 'auto build with subfiles and onFileChange', async (fixture: string) => {
+    test.run('auto build with subfiles and onFileChange', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
         await test.load(fixture, [
@@ -51,7 +50,7 @@ suite('Auto-build test suite', () => {
         assert.strictEqual(type, 'onChange')
     })
 
-    test.run(suiteName, fixtureName, 'auto build with import and onFileChange', async (fixture: string) => {
+    test.run('auto build with import and onFileChange', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'import_base.tex', dst: 'main.tex'},
             {src: 'import_sub.tex', dst: 'sub/s.tex'},
@@ -61,7 +60,7 @@ suite('Auto-build test suite', () => {
         assert.strictEqual(type, 'onChange')
     })
 
-    test.run(suiteName, fixtureName, 'auto build with input and onFileChange', async (fixture: string) => {
+    test.run('auto build with input and onFileChange', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
@@ -70,7 +69,7 @@ suite('Auto-build test suite', () => {
         assert.strictEqual(type, 'onChange')
     })
 
-    test.run(suiteName, fixtureName, 'auto build when editing bib', async (fixture: string) => {
+    test.run('auto build when editing bib', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'bibtex_base.tex', dst: 'main.tex'},
             {src: 'base.bib', dst: 'bib.bib'}
@@ -79,7 +78,7 @@ suite('Auto-build test suite', () => {
         assert.strictEqual(type, 'onChange')
     })
 
-    test.run(suiteName, fixtureName, 'auto build with input whose path uses a macro', async (fixture: string) => {
+    test.run('auto build with input whose path uses a macro', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'input_macro.tex', dst: 'main.tex'},
             {src: 'plain.tex', dst: 'sub/s.tex'}
@@ -88,7 +87,7 @@ suite('Auto-build test suite', () => {
         assert.strictEqual(type, 'onChange')
     })
 
-    test.run(suiteName, fixtureName, 'auto build with watch.files.ignore', async (fixture: string) => {
+    test.run('auto build with watch.files.ignore', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.watch.files.ignore', ['**/s.tex'])
         await test.load(fixture, [
             {src: 'input_base.tex', dst: 'main.tex'},
@@ -98,7 +97,7 @@ suite('Auto-build test suite', () => {
         assert.strictEqual(type, 'onChange')
     })
 
-    test.run(suiteName, fixtureName, 'auto build with subfiles and onSave', async (fixture: string) => {
+    test.run('auto build with subfiles and onSave', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'onSave')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)

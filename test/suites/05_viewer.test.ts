@@ -5,12 +5,12 @@ import * as test from './utils'
 import { BuildDone } from '../../src/components/eventbus'
 
 suite('PDF viewer test suite', () => {
-
-    const suiteName = path.basename(__filename).replace('.test.js', '')
-    const fixtureName = 'testground'
+    test.suite.name = path.basename(__filename).replace('.test.js', '')
+    test.suite.fixture = 'testground'
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'never')
     })
 
     teardown(async () => {
@@ -23,7 +23,7 @@ suite('PDF viewer test suite', () => {
         await vscode.workspace.getConfiguration().update('latex-workshop.synctex.afterBuild.enabled', undefined)
     })
 
-    test.run(suiteName, fixtureName, 'basic build and view', async (fixture: string) => {
+    test.run('basic build and view', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
@@ -32,7 +32,7 @@ suite('PDF viewer test suite', () => {
         await test.view(fixture, 'main.pdf')
     })
 
-    test.run(suiteName, fixtureName, 'build main.tex and view it', async (fixture: string) => {
+    test.run('build main.tex and view it', async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', false)
         await test.load(fixture, [
@@ -44,7 +44,7 @@ suite('PDF viewer test suite', () => {
         await test.view(fixture, 'main.pdf')
     })
 
-    test.run(suiteName, fixtureName, 'build a subfile and view it', async (fixture: string) => {
+    test.run('build a subfile and view it', async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', true)
         await test.load(fixture, [
@@ -56,7 +56,7 @@ suite('PDF viewer test suite', () => {
         await test.view(fixture, 'sub/s.pdf')
     })
 
-    test.run(suiteName, fixtureName, 'build main.tex with QuickPick and view it', async (fixture: string) => {
+    test.run('build main.tex with QuickPick and view it', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
         await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
@@ -76,7 +76,7 @@ suite('PDF viewer test suite', () => {
         })
     })
 
-    test.run(suiteName, fixtureName, 'build s.tex with QuickPick and view it', async (fixture: string) => {
+    test.run('build s.tex with QuickPick and view it', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
         await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
@@ -100,7 +100,7 @@ suite('PDF viewer test suite', () => {
         })
     })
 
-    test.run(suiteName, fixtureName, 'build with outDir and view it', async (fixture: string) => {
+    test.run('build with outDir and view it', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
         await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}

@@ -7,12 +7,12 @@ import * as test from './utils'
 import { BuildDone } from '../../src/components/eventbus'
 
 suite('Build TeX files test suite', () => {
-
-    const suiteName = path.basename(__filename).replace('.test.js', '')
-    const fixtureName = 'testground'
+    test.suite.name = path.basename(__filename).replace('.test.js', '')
+    test.suite.fixture = 'testground'
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'never')
     })
 
     teardown(async () => {
@@ -28,7 +28,7 @@ suite('Build TeX files test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', undefined)
     })
 
-    test.run(suiteName, fixtureName, 'basic build', async (fixture: string) => {
+    test.run('basic build', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
@@ -36,7 +36,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'same placeholders multiple times', async (fixture: string) => {
+    test.run('same placeholders multiple times', async (fixture: string) => {
         const tools = [{name: 'latexmk', command: 'latexmk', args: ['-synctex=1', '-interaction=nonstopmode', '-file-line-error', '-pdf', '%DOC%', '%DOC%', '%DOC%']}]
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', tools)
         await test.load(fixture, [
@@ -46,7 +46,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'auto-detect subfile root and build 1', async (fixture: string) => {
+    test.run('auto-detect subfile root and build 1', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
         await test.load(fixture, [
@@ -57,7 +57,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'sub/s.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'auto-detect subfile root and build 2', async (fixture: string) => {
+    test.run('auto-detect subfile root and build 2', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', false)
         await test.load(fixture, [
@@ -68,7 +68,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'build with outDir', async (fixture: string) => {
+    test.run('build with outDir', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
         await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
@@ -77,7 +77,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'out/main.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'basic build with spaces in names', async (fixture: string) => {
+    test.run('basic build with spaces in names', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'base.tex', dst: 'main space/main.tex'}
         ], {skipCache: true})
@@ -85,7 +85,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'main space/main.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'basic build with spaces in outdir', async (fixture: string) => {
+    test.run('basic build with spaces in outdir', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', '%DIR%/out space')
         await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
@@ -94,7 +94,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'out space/main.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'build with magic comment', async (fixture: string) => {
+    test.run('build with magic comment', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', [])
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
         await test.load(fixture, [
@@ -104,7 +104,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'build with !TEX program and !TEX options', async (fixture: string) => {
+    test.run('build with !TEX program and !TEX options', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', [])
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
         await test.load(fixture, [
@@ -114,7 +114,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'out/main.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'build with invalid !TEX program', async (fixture: string) => {
+    test.run('build with invalid !TEX program', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
         await test.load(fixture, [
             {src: 'magic_invalid.tex', dst: 'main.tex'}
@@ -123,7 +123,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(!fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'build with forceRecipeUsage: true', async (fixture: string) => {
+    test.run('build with forceRecipeUsage: true', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', true)
         await test.load(fixture, [
             {src: 'magic_invalid.tex', dst: 'main.tex'}
@@ -132,7 +132,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'build a subfile with main.tex opened', async (fixture: string) => {
+    test.run('build a subfile with main.tex opened', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', true)
         await test.load(fixture, [
@@ -149,7 +149,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'sub/s.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'build main.tex with QuickPick', async (fixture: string) => {
+    test.run('build main.tex with QuickPick', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
         await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
@@ -166,7 +166,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'build s.tex with QuickPick', async (fixture: string) => {
+    test.run('build s.tex with QuickPick', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', false)
         await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
@@ -184,7 +184,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'sub/s.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'build sub.tex to outdir', async (fixture: string) => {
+    test.run('build sub.tex to outdir', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
         await test.load(fixture, [
@@ -197,7 +197,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'out/s.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'basic build with makeindex', async (fixture: string) => {
+    test.run('basic build with makeindex', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'makeindex_base.tex', dst: 'main.tex'}
         ], {skipCache: true})
@@ -206,7 +206,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'build sub.tex to outdir with makeindex', async (fixture: string) => {
+    test.run('build sub.tex to outdir with makeindex', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', './out')
         await test.load(fixture, [
@@ -218,7 +218,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'out/s.pdf')))
     })
 
-    test.run(suiteName, fixtureName, 'test q/.../ with spaces in outdir on Windows', async (fixture: string) => {
+    test.run('test q/.../ with spaces in outdir on Windows', async (fixture: string) => {
         const tools = [{ name: 'latexmk', command: 'latexmk', args: ['-e', '$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/', '-outdir=%OUTDIR%', '-pdf', '%DOC%'], env: {} }]
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', tools)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', '%DIR%/out space')
@@ -230,7 +230,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'out space/main.pdf')))
     }, ['win32'])
 
-    test.run(suiteName, fixtureName, 'test q/.../ with copy and remove on Windows', async (fixture: string) => {
+    test.run('test q/.../ with copy and remove on Windows', async (fixture: string) => {
         const tools = [
             { name: 'latexmk', command: 'latexmk', args: ['-e', '$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/', '-outdir=%OUTDIR%', '-pdf', '%DOC%'], env: {} },
             {name: 'copyPDF', command: 'copy', args: ['%OUTDIR_W32%\\%DOCFILE%.pdf', '%OUTDIR_W32%\\copy.pdf'], env: {}},

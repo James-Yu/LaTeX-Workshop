@@ -5,12 +5,12 @@ import * as lw from '../../src/lw'
 import * as test from './utils'
 
 suite('Find root file test suite', () => {
-
-    const suiteName = path.basename(__filename).replace('.test.js', '')
-    const fixtureName = 'testground'
+    test.suite.name = path.basename(__filename).replace('.test.js', '')
+    test.suite.fixture = 'testground'
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'never')
     })
 
     teardown(async () => {
@@ -21,7 +21,7 @@ suite('Find root file test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', undefined)
     })
 
-    test.run(suiteName, fixtureName, 'basic root', async (fixture: string) => {
+    test.run('basic root', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {root: -1, skipCache: true})
@@ -29,7 +29,7 @@ suite('Find root file test suite', () => {
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
     })
 
-    test.run(suiteName, fixtureName, 'root with subfile', async (fixture: string) => {
+    test.run('root with subfile', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
@@ -38,7 +38,7 @@ suite('Find root file test suite', () => {
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
     })
 
-    test.run(suiteName, fixtureName, 'subfile root with subfile opened', async (fixture: string) => {
+    test.run('subfile root with subfile opened', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await test.load(fixture, [
             {src: 'subfile_base.tex', dst: 'main.tex'},
@@ -49,7 +49,7 @@ suite('Find root file test suite', () => {
         assert.strictEqual(roots.local, path.join(fixture, 'sub/s.tex'))
     })
 
-    test.run(suiteName, fixtureName, 'detect root with !TEX root', async (fixture: string) => {
+    test.run('detect root with !TEX root', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'input_base.tex', dst: 'alt.tex'},
@@ -59,7 +59,7 @@ suite('Find root file test suite', () => {
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
     })
 
-    test.run(suiteName, fixtureName, 'detect root with search.rootFiles.include', async (fixture: string) => {
+    test.run('detect root with search.rootFiles.include', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', ['**/alt/*.tex'])
         await test.load(fixture, [
@@ -71,7 +71,7 @@ suite('Find root file test suite', () => {
         assert.strictEqual(roots.root, path.join(fixture, 'alt/main.tex'))
     })
 
-    test.run(suiteName, fixtureName, 'detect root with search.rootFiles.exclude', async (fixture: string) => {
+    test.run('detect root with search.rootFiles.exclude', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.exclude', ['*/*.tex'])
         await test.load(fixture, [
@@ -83,7 +83,7 @@ suite('Find root file test suite', () => {
         assert.strictEqual(roots.root, path.join(fixture, 'alt/main.tex'))
     })
 
-    test.run(suiteName, fixtureName, 'auto-detect root with verbatim', async (fixture: string) => {
+    test.run('auto-detect root with verbatim', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'input_base.tex', dst: 'main.tex'},
             {src: 'plain_verbatim.tex', dst: 'sub/s.tex'}
@@ -92,7 +92,7 @@ suite('Find root file test suite', () => {
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
     })
 
-    test.run(suiteName, fixtureName, 'import package', async (fixture: string) => {
+    test.run('import package', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'import_base.tex', dst: 'main.tex'},
             {src: 'import_sub.tex', dst: 'sub/s.tex'},
@@ -102,7 +102,7 @@ suite('Find root file test suite', () => {
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
     })
 
-    test.run(suiteName, fixtureName, 'circular inclusion', async (fixture: string) => {
+    test.run('circular inclusion', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'include_base.tex', dst: 'main.tex'},
             {src: 'include_sub.tex', dst: 'alt.tex'},
