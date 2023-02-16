@@ -4,6 +4,7 @@ import { Section } from './structurelib/section'
 import { StructureUpdated } from '../components/eventbus'
 import { LaTeXStructure } from './structurelib/latex'
 import { BibTeXStructure } from './structurelib/bibtex'
+import { DocTeXStructure } from './structurelib/doctex'
 
 import { getLogger } from '../components/logger'
 
@@ -18,6 +19,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     public ds: Section[] = []
     private cachedTeXSec: Section[] | undefined = undefined
     private cachedBibSec: Section[] | undefined = undefined
+    private cachedDocTeXSec: Section[] | undefined = undefined
 
     constructor() {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
@@ -37,15 +39,21 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      */
     async build(force: boolean): Promise<Section[]> {
         const document = vscode.window.activeTextEditor?.document
-        if (document?.languageId === 'bibtex') {
+        if (document?.languageId === 'doctex') {
+            if (force || !this.cachedDocTeXSec || this.getCachedDataRootFileName(this.cachedDocTeXSec) !== document.fileName) {
+                this.cachedDocTeXSec = undefined
+                this.cachedDocTeXSec = await DocTeXStructure.buildDocTeXModel(document)
+            }
+            this.ds = this.cachedDocTeXSec
+            logger.log(`Structure updated with ${this.ds.length} entries for ${document.uri.fsPath} .`)
+        } else if (document?.languageId === 'bibtex') {
             if (force || !this.cachedBibSec || this.getCachedDataRootFileName(this.cachedBibSec) !== document.fileName) {
                 this.cachedBibSec = undefined
                 this.cachedBibSec = await BibTeXStructure.buildBibTeXModel(document)
             }
             this.ds = this.cachedBibSec
             logger.log(`Structure updated with ${this.ds.length} entries for ${document.uri.fsPath} .`)
-        }
-        else if (lw.manager.rootFile) {
+        } else if (lw.manager.rootFile) {
             if (force || !this.cachedTeXSec) {
                 this.cachedTeXSec = undefined
                 this.cachedTeXSec = await LaTeXStructure.buildLaTeXModel()
@@ -117,13 +125,16 @@ export class StructureTreeView {
         })
 
         vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
-            if (lw.manager.hasBibtexId(e.languageId)) {
+            if (lw.manager.hasBibtexId(e.languageId) || lw.manager.hasDoctexId(e.languageId)) {
                 void lw.structureViewer.computeTreeStructure()
             }
         })
 
         vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
-            if (e && lw.manager.hasBibtexId(e.document.languageId)) {
+            if (!e) {
+                return
+            }
+            if (lw.manager.hasBibtexId(e.document.languageId) || lw.manager.hasDoctexId(e.document.languageId)) {
                 void lw.structureViewer.refreshView()
             }
         })
