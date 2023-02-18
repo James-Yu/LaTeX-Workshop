@@ -216,6 +216,14 @@ export class Manager {
         return id === 'bibtex'
     }
 
+    /**
+     * Returns `true` if the language of `id` is doctex
+     *
+     * @param id The language identifier
+     */
+    hasDoctexId(id: string) {
+            return id === 'doctex'
+    }
 
     private findWorkspace(): vscode.Uri | undefined {
         const firstDir = vscode.workspace.workspaceFolders?.[0]

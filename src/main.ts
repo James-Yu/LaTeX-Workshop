@@ -102,7 +102,8 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
     lw.registerDisposable(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
         if (lw.manager.hasTexId(e.textEditor.document.languageId) ||
-            e.textEditor.document.languageId === 'bibtex') {
+            lw.manager.hasBibtexId(e.textEditor.document.languageId) ||
+            lw.manager.hasDoctexId(e.textEditor.document.languageId)) {
             return lw.structureViewer.showCursorItem(e)
         }
         return
