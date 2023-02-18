@@ -429,7 +429,7 @@ export class Builder {
             logger.log('SyncTex after build invoked.')
             lw.locator.syncTeX(undefined, undefined, pdfFile)
         }
-        if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
+        if (['onSucceeded', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
             logger.log('Auto Clean invoked.')
             await lw.cleaner.clean(step.rootFile)
             lw.eventBus.fire(AutoCleaned)
