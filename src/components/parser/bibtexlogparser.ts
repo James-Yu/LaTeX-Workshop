@@ -4,7 +4,7 @@ import type { LogEntry } from './compilerlog'
 
 import { getLogger } from '../logger'
 
-const logger = getLogger('Parser', 'BibLog')
+const logger = getLogger('Parser', 'BibtexLog')
 
 const multiLineWarning = /^Warning--(.+)\n--line (\d+) of file (.+)$/gm
 const singleLineWarning = /^Warning--(.+) in ([^\s]+)\s*$/gm
@@ -13,7 +13,7 @@ const badCrossReference = /^(A bad cross reference---entry ".+?"\nrefers to entr
 const multiLineCommandError = /^(.*)\n?---line (\d+) of file (.*)\n([^]+?)\nI'm skipping whatever remains of this command$/gm
 const errorAuxFile = /^(.*)---while reading file (.*)$/gm
 
-export class BibLogParser {
+export class BibtexLogParser {
     static buildLog: LogEntry[] = []
 
     static parse(log: string, rootFile?: string) {
