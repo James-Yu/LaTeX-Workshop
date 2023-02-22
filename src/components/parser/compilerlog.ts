@@ -2,7 +2,8 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as lw from '../../lw'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
-import { BibLogParser } from './biblogparser'
+import { BibtexLogParser } from './bibtexlogparser'
+import { BiberLogParser } from './biberlogparser'
 import { LatexLogParser } from './latexlog'
 
 // Notice that 'Output written on filename.pdf' isn't output in draft mode.
@@ -20,6 +21,7 @@ const texifyLog = /^running\s((pdf|lua|xe)?latex|miktex-bibtex)/
 const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
 
 const bibtexPattern = /^This is BibTeX, Version.*$/m
+const biberPattern = /^INFO - This is Biber .*$/m
 
 const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'typesetting': vscode.DiagnosticSeverity.Information,
@@ -31,6 +33,7 @@ export interface LogEntry { type: string, file: string, text: string, line: numb
 
 export class CompilerLogParser {
     private static readonly bibDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
+    private static readonly biberDiagnostics = vscode.languages.createDiagnosticCollection('Biber')
     private static readonly texDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
 
     static isLaTeXmkSkipped: boolean = false
@@ -43,11 +46,19 @@ export class CompilerLogParser {
         if (log.match(bibtexPattern)) {
             let logs
             if (log.match(latexmkPattern)) {
-                logs = BibLogParser.parse(CompilerLogParser.trimLaTeXmkBibTeX(log), rootFile)
+                logs = BibtexLogParser.parse(CompilerLogParser.trimLaTeXmkBibTeX(log), rootFile)
             } else {
-                logs = BibLogParser.parse(log, rootFile)
+                logs = BibtexLogParser.parse(log, rootFile)
             }
             CompilerLogParser.showCompilerDiagnostics(CompilerLogParser.bibDiagnostics, logs, 'BibTeX')
+        } else if (log.match(biberPattern)) {
+            let logs
+            if (log.match(latexmkPattern)) {
+                logs = BiberLogParser.parse(CompilerLogParser.trimLaTeXmkBiber(log), rootFile)
+            } else {
+                logs = BiberLogParser.parse(log, rootFile)
+            }
+            CompilerLogParser.showCompilerDiagnostics(CompilerLogParser.biberDiagnostics, logs, 'Biber')
         }
         if (log.match(latexmkPattern)) {
             log = CompilerLogParser.trimLaTeXmk(log)
@@ -68,6 +79,10 @@ export class CompilerLogParser {
 
     private static trimLaTeXmkBibTeX(log: string): string {
         return CompilerLogParser.trimPattern(log, bibtexPattern, latexmkLogLatex)
+    }
+
+    private static trimLaTeXmkBiber(log: string): string {
+        return CompilerLogParser.trimPattern(log, biberPattern, latexmkLogLatex)
     }
 
     private static trimTexify(log: string): string {
@@ -106,7 +121,8 @@ export class CompilerLogParser {
     private static latexmkSkipped(log: string): boolean {
         if (log.match(latexmkUpToDate) && !log.match(latexmkPattern)) {
             CompilerLogParser.showCompilerDiagnostics(CompilerLogParser.texDiagnostics, LatexLogParser.buildLog, 'LaTeX')
-            CompilerLogParser.showCompilerDiagnostics(CompilerLogParser.bibDiagnostics, BibLogParser.buildLog, 'BibTeX')
+            CompilerLogParser.showCompilerDiagnostics(CompilerLogParser.bibDiagnostics, BibtexLogParser.buildLog, 'BibTeX')
+            CompilerLogParser.showCompilerDiagnostics(CompilerLogParser.biberDiagnostics, BiberLogParser.buildLog, 'Biber')
             return true
         }
         return false
