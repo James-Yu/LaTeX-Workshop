@@ -433,8 +433,11 @@ export class Manager {
                     candidates.push(file.fsPath)
                 }
             }
-            if (candidates.length > 0) {
-                logger.log(`Found files that might be root, choose the first one: ${candidates}`)
+            if (this.rootFile && candidates.includes(this.rootFile)) {
+                logger.log(`Found files that might be root including the current root: ${candidates} .`)
+                return this.rootFile
+            } else if (candidates.length > 0) {
+                logger.log(`Found files that might be root, choose the first one: ${candidates} .`)
                 return candidates[0]
             }
         } catch (e) {}
