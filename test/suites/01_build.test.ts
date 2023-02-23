@@ -123,6 +123,38 @@ suite('Build TeX files test suite', () => {
         assert.ok(!fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
+    test.only('build with !LW recipe', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', true)
+        const tools = [
+            { name: 'touch', command: 'touch', args: ['fail.txt'], env: {} },
+            { name: 'latexmk', command: 'latexmk', args: [ '-synctex=1', '-interaction=nonstopmode', '-file-line-error', '-pdf', '-outdir=%OUTDIR%', '%DOC%' ], env: {} }
+        ]
+        const recipes = [{name: 'touch', tools: ['touch']}, {name: 'latexmk', tools: ['latexmk']}]
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', tools)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', recipes)
+        await test.load(fixture, [
+            {src: 'magic_recipe.tex', dst: 'main.tex'}
+        ], {skipCache: true})
+        await test.build(fixture, 'main.tex')
+        assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
+    })
+
+    test.only('build with invalid !LW recipe', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', true)
+        const tools = [
+            { name: 'touch', command: 'touch', args: ['success.txt'], env: {} },
+            { name: 'latexmk', command: 'latexmk', args: [ '-synctex=1', '-interaction=nonstopmode', '-file-line-error', '-pdf', '-outdir=%OUTDIR%', '%DOC%' ], env: {} }
+        ]
+        const recipes = [{name: 'touch', tools: ['touch']}, {name: 'latexmk_', tools: ['latexmk']}]
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', tools)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', recipes)
+        await test.load(fixture, [
+            {src: 'magic_recipe.tex', dst: 'main.tex'}
+        ], {skipCache: true})
+        await test.build(fixture, 'main.tex')
+        assert.ok(!fs.existsSync(path.resolve(fixture, 'main.pdf')))
+    })
+
     test.run('build with forceRecipeUsage: true', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', true)
         await test.load(fixture, [
