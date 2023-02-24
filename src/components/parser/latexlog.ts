@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as lw from '../../lw'
-import type { LogEntry } from './compilerlog'
+import type { ILogParser, LogEntry } from './compilerlog'
 import { getLogger } from '../logger'
 
 const logger = getLogger('Parser', 'TexLog')
@@ -38,10 +38,16 @@ class ParserState {
     }
 }
 
-export class LatexLogParser {
-    static buildLog: LogEntry[] = []
+class LatexLogParser implements ILogParser {
+    buildLog: LogEntry[] = []
 
-    static parse(log: string, rootFile?: string) {
+    static #instance?: LatexLogParser
+    static get instance() {
+        return this.#instance || (this.#instance = new this())
+    }
+    private constructor() {}
+
+    parse(log: string, rootFile?: string) {
         if (rootFile === undefined) {
             rootFile = lw.manager.rootFile
         }
@@ -66,7 +72,7 @@ export class LatexLogParser {
         return this.buildLog
     }
 
-   private static parseLine(line: string, state: ParserState, buildLog: LogEntry[]) {
+   private parseLine(line: string, state: ParserState, buildLog: LogEntry[]) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let excludeRegexp: RegExp[]
         try {
@@ -201,7 +207,7 @@ export class LatexLogParser {
         }
     }
 
-    private static parseLaTeXFileStack(line: string, fileStack: string[], nested: number): number {
+    private parseLaTeXFileStack(line: string, fileStack: string[], nested: number): number {
         const result = line.match(/(\(|\))/)
         if (result && result.index !== undefined && result.index > -1) {
             line = line.substring(result.index + 1)
@@ -227,3 +233,5 @@ export class LatexLogParser {
         return nested
     }
 }
+
+export const latexLogParser = LatexLogParser.instance

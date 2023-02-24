@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as lw from '../../lw'
-import type { LogEntry } from './compilerlog'
+import type { ILogParser, LogEntry } from './compilerlog'
 
 import { getLogger } from '../logger'
 
@@ -28,10 +28,16 @@ class ParserState {
     }
 }
 
-export class BiberLogParser {
-    static buildLog: LogEntry[] = []
+class BiberLogParser implements ILogParser {
+    buildLog: LogEntry[] = []
 
-    static parse(log: string, rootFile?: string) {
+    static #instance?: BiberLogParser
+    static get instance() {
+        return this.#instance || (this.#instance = new this())
+    }
+    private constructor() {}
+
+    parse(log: string, rootFile?: string) {
         if (rootFile === undefined) {
             rootFile = lw.manager.rootFile
         }
@@ -60,7 +66,7 @@ export class BiberLogParser {
         return this.buildLog
     }
 
-    private static parseLine(line: string, parserState: ParserState, excludeRegexp: RegExp[]) {
+    private parseLine(line: string, parserState: ParserState, excludeRegexp: RegExp[]) {
         let result: RegExpMatchArray | null = null
 
         result = line.match(bibFileInfo)
@@ -94,7 +100,7 @@ export class BiberLogParser {
         }
     }
 
-    private static pushLog(type: string, file: string, message: string, line: number, excludeRegexp: RegExp[]) {
+    private pushLog(type: string, file: string, message: string, line: number, excludeRegexp: RegExp[]) {
         for (const regexp of excludeRegexp) {
             if (message.match(regexp)) {
                 return
@@ -103,7 +109,7 @@ export class BiberLogParser {
         this.buildLog.push({ type, file, text: message, line})
     }
 
-    private static resolveBibFile(filename: string, rootFile: string): string {
+    private resolveBibFile(filename: string, rootFile: string): string {
         if (!lw.cacher.get(rootFile)) {
             return filename
         }
@@ -117,7 +123,7 @@ export class BiberLogParser {
         return filename
     }
 
-    private static findKeyLocation(key: string): {file: string, line: number} | undefined {
+    private findKeyLocation(key: string): {file: string, line: number} | undefined {
         const entry = lw.completer.citation.getEntry(key)
         if (entry) {
             const file = entry.file
@@ -130,4 +136,6 @@ export class BiberLogParser {
     }
 
 }
+
+export const biberLogParser = BiberLogParser.instance
 

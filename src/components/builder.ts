@@ -7,7 +7,7 @@ import * as lw from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { AutoBuildInitiated, AutoCleaned, BuildDone } from './eventbus'
 import { getLogger } from './logger'
-import { CompilerLogParser } from './parser/compilerlog'
+import { compilerLogParser } from './parser/compilerlog'
 
 const logger = getLogger('Builder')
 
@@ -342,7 +342,7 @@ export class Builder {
             })
 
             this.process.on('exit', async (code, signal) => {
-                CompilerLogParser.parse(stdout, step.rootFile)
+                compilerLogParser.parse(stdout, step.rootFile)
                 if (!step.isExternal && code === 0) {
                     logger.log(`Finished a step in recipe with PID ${this.process?.pid}.`)
                     this.process = undefined
@@ -416,7 +416,7 @@ export class Builder {
         logger.log(`Successfully built ${step.rootFile} .`)
         logger.refreshStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
         lw.eventBus.fire(BuildDone)
-        if (CompilerLogParser.isLaTeXmkSkipped) {
+        if (compilerLogParser.isLaTeXmkSkipped) {
             return
         }
         lw.viewer.refreshExistingViewer(step.rootFile)

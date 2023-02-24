@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as lw from '../../lw'
-import type { LogEntry } from './compilerlog'
+import type { ILogParser, LogEntry } from './compilerlog'
 
 import { getLogger } from '../logger'
 
@@ -13,10 +13,16 @@ const badCrossReference = /^(A bad cross reference---entry ".+?"\nrefers to entr
 const multiLineCommandError = /^(.*)\n?---line (\d+) of file (.*)\n([^]+?)\nI'm skipping whatever remains of this command$/gm
 const errorAuxFile = /^(.*)---while reading file (.*)$/gm
 
-export class BibtexLogParser {
-    static buildLog: LogEntry[] = []
+class BibtexLogParser implements ILogParser {
+    buildLog: LogEntry[] = []
 
-    static parse(log: string, rootFile?: string) {
+    static #instance?: BibtexLogParser
+    static get instance() {
+        return this.#instance || (this.#instance = new this())
+    }
+    private constructor() {}
+
+    parse(log: string, rootFile?: string) {
         if (rootFile === undefined) {
             rootFile = lw.manager.rootFile
         }
@@ -66,7 +72,7 @@ export class BibtexLogParser {
         return this.buildLog
     }
 
-    private static pushLog(type: string, file: string, message: string, line: number, excludeRegexp: RegExp[]) {
+    private pushLog(type: string, file: string, message: string, line: number, excludeRegexp: RegExp[]) {
         for (const regexp of excludeRegexp) {
             if (message.match(regexp)) {
                 return
@@ -75,7 +81,7 @@ export class BibtexLogParser {
         this.buildLog.push({ type, file, text: message, line})
     }
 
-    private static resolveAuxFile(filename: string, rootFile: string): string {
+    private resolveAuxFile(filename: string, rootFile: string): string {
         filename = filename.replace(/\.aux$/, '.tex')
         if (!lw.cacher.get(rootFile)) {
             return filename
@@ -90,7 +96,7 @@ export class BibtexLogParser {
         return filename
     }
 
-    private static resolveBibFile(filename: string, rootFile: string): string {
+    private resolveBibFile(filename: string, rootFile: string): string {
         if (!lw.cacher.get(rootFile)) {
             return filename
         }
@@ -104,7 +110,7 @@ export class BibtexLogParser {
         return filename
     }
 
-    private static findKeyLocation(key: string): {file: string, line: number} | undefined {
+    private findKeyLocation(key: string): {file: string, line: number} | undefined {
         const entry = lw.completer.citation.getEntry(key)
         if (entry) {
             const file = entry.file
@@ -117,4 +123,6 @@ export class BibtexLogParser {
     }
 
 }
+
+export const bibtexLogParser = BibtexLogParser.instance
 

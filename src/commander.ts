@@ -4,7 +4,7 @@ import * as lw from './lw'
 import { getSurroundingCommandRange } from './utils/utils'
 import { getLogger } from './components/logger'
 import { UtensilsParser } from './components/parser/syntax'
-import { CompilerLogParser } from './components/parser/compilerlog'
+import { compilerLogParser } from './components/parser/compilerlog'
 
 const logger = getLogger('Commander')
 
@@ -454,7 +454,7 @@ export function devParseLog() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    CompilerLogParser.parse(vscode.window.activeTextEditor.document.getText())
+    compilerLogParser.parse(vscode.window.activeTextEditor.document.getText())
 }
 
 export async function devParseTeX() {
