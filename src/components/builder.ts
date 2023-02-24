@@ -611,7 +611,7 @@ export class Builder {
         const regexRecipe = /^(?:%\s*!\s*LW\srecipe\s*=\s*(.*)$)/m
         let content = ''
         for (const line of fs.readFileSync(rootFile).toString().split('\n')) {
-            if (line.match(/^%\s*!/) || line.trim().length === 0) {
+            if (line.startsWith('%') || line.trim().length === 0) {
                 content += line + '\n'
             } else {
                 break
