@@ -123,7 +123,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(!fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
-    test.only('build with !LW recipe', async (fixture: string) => {
+    test.run('build with !LW recipe', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', true)
         const tools = [
             { name: 'touch', command: 'touch', args: ['fail.txt'], env: {} },
@@ -139,7 +139,7 @@ suite('Build TeX files test suite', () => {
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
-    test.only('build with invalid !LW recipe', async (fixture: string) => {
+    test.run('build with invalid !LW recipe', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', true)
         const tools = [
             { name: 'touch', command: 'touch', args: ['success.txt'], env: {} },

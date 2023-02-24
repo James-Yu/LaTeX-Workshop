@@ -532,7 +532,7 @@ export class Builder {
     }
 
     /**
-     * @param recipeName This recipe name may from user selection of RECIPE
+     * @param recipeName This recipe name may come from user selection of RECIPE
      * command, or from the %! LW recipe magic command.
      */
     private findRecipe(rootFile: string, langId: string, recipeName?: string): Recipe | undefined {
@@ -609,7 +609,14 @@ export class Builder {
         const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m
         const regexBibOptions = /^(?:%\s*!\s*BIB\s(?:TS-)?options\s*=\s*(.*)$)/m
         const regexRecipe = /^(?:%\s*!\s*LW\srecipe\s*=\s*(.*)$)/m
-        const content = fs.readFileSync(rootFile).toString()
+        let content = ''
+        for (const line of fs.readFileSync(rootFile).toString().split('\n')) {
+            if (line.match(/^%\s*!/) || line.trim().length === 0) {
+                content += line + '\n'
+            } else {
+                break
+            }
+        }
 
         const tex = content.match(regexTex)
         let texCommand: Tool | undefined = undefined
