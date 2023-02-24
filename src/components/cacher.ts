@@ -308,17 +308,22 @@ export class Cacher {
             }
             if (path.extname(inputFile) === '.tex') {
                 if (!this.has(filePath)) {
-                    logger.log(`Cache not finished on ${filePath} when parsing fls.`)
+                    logger.log(`Cache not finished on ${filePath} when parsing fls, try re-cache.`)
                     await this.refreshCache(filePath)
                 }
-                // Parse tex files as imported subfiles.
-                this.caches[filePath].children.push({
-                    index: Number.MAX_VALUE,
-                    filePath: inputFile
-                })
-                this.add(inputFile)
-                logger.log(`Found ${inputFile} from .fls ${flsPath} , caching.`)
-                void this.refreshCache(inputFile, filePath)
+                // It might be possible that `filePath` is excluded from caching.
+                if (this.has(filePath)) {
+                    // Parse tex files as imported subfiles.
+                    this.caches[filePath].children.push({
+                        index: Number.MAX_VALUE,
+                        filePath: inputFile
+                    })
+                    this.add(inputFile)
+                    logger.log(`Found ${inputFile} from .fls ${flsPath} , caching.`)
+                    void this.refreshCache(inputFile, filePath)
+                } else {
+                    logger.log(`Cache not finished on ${filePath} when parsing fls.`)
+                }
             } else if (!this.src.has(inputFile)) {
                 // Watch non-tex files.
                 this.add(inputFile)
