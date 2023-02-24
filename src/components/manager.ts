@@ -10,6 +10,8 @@ import { getLogger } from './logger'
 
 const logger = getLogger('Manager')
 
+const ROOT_INDICATOR = /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/m
+
 type RootFileType = {
     type: 'filePath',
     filePath: string
@@ -360,9 +362,8 @@ export class Manager {
             logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
             return
         }
-        const regex = /\\begin{document}/m
         const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
-        const result = content.match(regex)
+        const result = content.match(ROOT_INDICATOR)
         if (result) {
             const rootSubFile = this.findSubFiles(content)
             const file = vscode.window.activeTextEditor.document.fileName
@@ -394,7 +395,6 @@ export class Manager {
     }
 
     private async findRootInWorkspace(): Promise<string | undefined> {
-        const regex = /\\begin{document}/m
         const currentWorkspaceDirUri = this.findWorkspace()
         logger.log(`Current workspaceRootDir: ${currentWorkspaceDirUri ? currentWorkspaceDirUri.toString(true) : ''}`)
 
@@ -421,7 +421,7 @@ export class Manager {
                     return file.fsPath
                 }
                 const content = utils.stripCommentsAndVerbatim(fs.readFileSync(file.fsPath).toString())
-                const result = content.match(regex)
+                const result = content.match(ROOT_INDICATOR)
                 if (result) {
                     // Can be a root
                     const children = await lw.cacher.getTeXChildren(file.fsPath, file.fsPath, [])
