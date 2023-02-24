@@ -7,47 +7,28 @@ import { getLogger } from './logger'
 const logger = getLogger('Linter')
 
 export interface ILinter {
-    getName(): string,
     readonly linterDiagnostics: vscode.DiagnosticCollection,
+    getName(): string,
     lintRootFile(rootPath: string): void,
     lintFile(document: vscode.TextDocument): void,
     parseLog(log: string, filePath?: string): void
 }
 
 export class Linter {
-    readonly #linters: Map<string, ILinter> = new Map()
     private linterTimeout?: NodeJS.Timer
-
-    private get chktex(): ILinter {
-        const linterId = 'chktex'
-        const chktex = this.#linters.get(linterId) || new ChkTeX()
-        if (!this.#linters.has(linterId)) {
-            this.#linters.set(linterId, chktex)
-        }
-        return chktex
-    }
-
-    private get lacheck(): ILinter {
-        const linterId = 'lacheck'
-        const lacheck = this.#linters.get(linterId) || new LaCheck()
-        if (!this.#linters.has(linterId)) {
-            this.#linters.set(linterId, lacheck)
-        }
-        return lacheck
-    }
 
     private getLinters(scope?: vscode.ConfigurationScope): ILinter[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', scope)
         const linters: ILinter[] = []
         if (configuration.get('linting.chktex.enabled')) {
-            linters.push(this.chktex)
+            linters.push(ChkTeX.instance)
         } else {
-            this.chktex.linterDiagnostics.clear()
+            ChkTeX.instance.linterDiagnostics.clear()
         }
         if (configuration.get('linting.lacheck.enabled')) {
-            linters.push(this.lacheck)
+            linters.push(LaCheck.instance)
         } else {
-            this.lacheck.linterDiagnostics.clear()
+            LaCheck.instance.linterDiagnostics.clear()
         }
         return linters
     }

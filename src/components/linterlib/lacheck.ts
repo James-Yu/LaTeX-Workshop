@@ -1,9 +1,10 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
+import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
 import * as lw from '../../lw'
 import type { ILinter } from '../linter'
-import { LinterUtils } from './linterutils'
+import { processWrapper } from './linterutils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 import { getLogger } from '../logger'
 
@@ -12,6 +13,13 @@ const logger = getLogger('Linter', 'LaCheck')
 export class LaCheck implements ILinter {
     readonly linterName = 'LaCheck'
     readonly linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(this.linterName)
+    private process?: ChildProcessWithoutNullStreams
+
+    static #instance?: LaCheck
+    static get instance() {
+        return this.#instance || (this.#instance = new this())
+    }
+    private constructor() {}
 
     getName() {
         return this.linterName
@@ -44,7 +52,10 @@ export class LaCheck implements ILinter {
 
         let stdout: string
         try {
-            stdout = await LinterUtils.processWrapper(linterid, command, [filePath], {cwd: path.dirname(filePath)}, content)
+            this.process?.kill()
+            logger.logCommand(`Linter for ${this.linterName} command`, command, [ filePath ])
+            this.process = spawn(command, [ filePath ], { cwd: path.dirname(filePath) })
+            stdout = await processWrapper(linterid, this.process, content)
         } catch (err: any) {
             if ('stdout' in err) {
                 stdout = err.stdout as string

@@ -415,7 +415,7 @@ export class Manager {
                     logger.log(`Skip the file: ${file.toString(true)}`)
                     continue
                 }
-                const flsChildren = lw.cacher.getTeXChildrenFromFls(file.fsPath)
+                const flsChildren = lw.cacher.getFlsChildren(file.fsPath)
                 if (vscode.window.activeTextEditor && flsChildren.includes(vscode.window.activeTextEditor.document.fileName)) {
                     logger.log(`Found root file from '.fls': ${file.fsPath}`)
                     return file.fsPath

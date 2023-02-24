@@ -10,8 +10,8 @@ import type { CiteSuggestion } from '../providers/completer/citation'
 import type { GlossarySuggestion } from '../providers/completer/glossary'
 import type { ICompletionItem } from '../providers/completion'
 import { InputFileRegExp } from '../utils/inputfilepath'
-import { CacherUtils } from './cacherlib/cacherutils'
-import { PathUtils } from './cacherlib/pathutils'
+import * as CacherUtils from './cacherlib/cacherutils'
+import * as PathUtils from './cacherlib/pathutils'
 import { Watcher } from './cacherlib/watcher'
 import { getLogger } from './logger'
 import { UtensilsParser } from './parser/syntax'
@@ -368,16 +368,6 @@ export class Cacher {
         }
     }
 
-    getTeXChildrenFromFls(texFile: string) {
-        const flsFile = PathUtils.getFlsFilePath(texFile)
-        if (flsFile === undefined) {
-            return []
-        }
-        const rootDir = path.dirname(texFile)
-        const ioFiles = CacherUtils.parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
-        return ioFiles.input
-    }
-
     /**
      * Return a string array which holds all imported bib files
      * from the given tex `file`. If `file` is `undefined`, traces from the
@@ -465,5 +455,15 @@ export class Cacher {
             await this.getTeXChildren(child.filePath, basePath, children)
         })
         return children
+    }
+
+    getFlsChildren(texFile: string) {
+        const flsFile = PathUtils.getFlsFilePath(texFile)
+        if (flsFile === undefined) {
+            return []
+        }
+        const rootDir = path.dirname(texFile)
+        const ioFiles = CacherUtils.parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
+        return ioFiles.input
     }
 }
