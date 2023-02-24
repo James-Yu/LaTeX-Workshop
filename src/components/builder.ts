@@ -157,7 +157,9 @@ export class Builder {
      * @param langId The language ID of the root file. This argument is used to
      * determine whether the previous recipe can be applied to this root file.
      * @param recipeName The name of recipe to be used. If `undefined`, the
-     * builder tries to determine on its own, in {@link createBuildTools}.
+     * builder tries to determine on its own, in {@link createBuildTools}. This
+     * parameter is given only when RECIPE command is invoked. For all other
+     * cases, it should be `undefined`.
      */
     async build(rootFile: string, langId: string, recipeName?: string) {
         logger.log(`Build root file ${rootFile}`)
@@ -443,12 +445,12 @@ export class Builder {
         let buildTools: Tool[] = []
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
-        const [magicTex, magicBib] = this.findMagicPrograms(rootFile)
+        const magic = this.findMagicComments(rootFile)
 
-        if (recipeName === undefined && magicTex && !configuration.get('latex.build.forceRecipeUsage')) {
-            buildTools = this.createBuildMagic(rootFile, magicTex, magicBib)
+        if (recipeName === undefined && magic.tex && !configuration.get('latex.build.forceRecipeUsage')) {
+            buildTools = this.createBuildMagic(rootFile, magic.tex, magic.bib)
         } else {
-            const recipe = this.findRecipe(rootFile, langId, recipeName)
+            const recipe = this.findRecipe(rootFile, langId, recipeName || magic.recipe)
             if (recipe === undefined) {
                 return
             }
@@ -529,6 +531,10 @@ export class Builder {
         return buildTools
     }
 
+    /**
+     * @param recipeName This recipe name may come from user selection of RECIPE
+     * command, or from the %! LW recipe magic command.
+     */
     private findRecipe(rootFile: string, langId: string, recipeName?: string): Recipe | undefined {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
 
@@ -597,18 +603,23 @@ export class Builder {
         }
     }
 
-    private findMagicPrograms(rootFile: string): [Tool | undefined, Tool | undefined] {
+    private findMagicComments(rootFile: string): {tex?: Tool, bib?: Tool, recipe?: string} {
         const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m
         const regexBibOptions = /^(?:%\s*!\s*BIB\s(?:TS-)?options\s*=\s*(.*)$)/m
-        const content = fs.readFileSync(rootFile).toString()
+        const regexRecipe = /^(?:%\s*!\s*LW\srecipe\s*=\s*(.*)$)/m
+        let content = ''
+        for (const line of fs.readFileSync(rootFile).toString().split('\n')) {
+            if (line.startsWith('%') || line.trim().length === 0) {
+                content += line + '\n'
+            } else {
+                break
+            }
+        }
 
         const tex = content.match(regexTex)
-        const bib = content.match(regexBib)
         let texCommand: Tool | undefined = undefined
-        let bibCommand: Tool | undefined = undefined
-
         if (tex) {
             texCommand = {
                 name: this.TEX_MAGIC_PROGRAM_NAME,
@@ -622,6 +633,8 @@ export class Builder {
             }
         }
 
+        const bib = content.match(regexBib)
+        let bibCommand: Tool | undefined = undefined
         if (bib) {
             bibCommand = {
                 name: this.BIB_MAGIC_PROGRAM_NAME,
@@ -635,7 +648,12 @@ export class Builder {
             }
         }
 
-        return [texCommand, bibCommand]
+        const recipe = content.match(regexRecipe)
+        if (recipe && recipe[1]) {
+            logger.log(`Found LW recipe '${recipe[1]}' by magic comment: ${recipe}.`)
+        }
+
+        return {tex: texCommand, bib: bibCommand, recipe: recipe?.[1]}
     }
 
     /**
