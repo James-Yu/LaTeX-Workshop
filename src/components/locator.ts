@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
 import * as lw from '../lw'
-import { SyncTexJs } from './locatorlib/synctex'
+import * as SyncTeX from './locatorlib/synctex'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { isSameRealPath } from '../utils/pathnormalize'
 import type {ClientRequest} from '../../types/latex-workshop-protocol-types'
@@ -148,7 +148,7 @@ export class Locator {
         if (useSyncTexJs) {
             try {
                 logger.log(`Forward from ${filePath} to ${pdfFile} on line ${line}.`)
-                const record = SyncTexJs.syncTexJsForward(line, filePath, pdfFile)
+                const record = SyncTeX.syncTexJsForward(line, filePath, pdfFile)
                 if (!record) {
                     return
                 }
@@ -286,7 +286,7 @@ export class Locator {
         if (useSyncTexJs) {
             try {
                 logger.log(`Backward from ${pdfPath} at x=${data.pos[0]}, y=${data.pos[1]} on page ${data.page}.`)
-                const temp = SyncTexJs.syncTexJsBackward(data.page, data.pos[0], data.pos[1], pdfPath)
+                const temp = SyncTeX.syncTexJsBackward(data.page, data.pos[0], data.pos[1], pdfPath)
                 if (!temp) {
                     return
                 }

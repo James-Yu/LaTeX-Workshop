@@ -4,22 +4,27 @@ import * as lw from '../../lw'
 import type {Client} from './client'
 import type {PdfViewerPanel} from './pdfviewerpanel'
 
+class PdfViewerManager {
+    private readonly webviewPanelMap = new Map<string, Set<PdfViewerPanel>>()
+    readonly clientMap = new Map<string, Set<Client>>()
 
-export class PdfViewerManagerService {
-    private static readonly webviewPanelMap = new Map<string, Set<PdfViewerPanel>>()
-    static readonly clientMap = new Map<string, Set<Client>>()
+    static #instance?: PdfViewerManager
+    static get instance() {
+        return this.#instance || (this.#instance = new this())
+    }
+    private constructor() {}
 
-    private static toKey(pdfFileUri: vscode.Uri): string {
+    private toKey(pdfFileUri: vscode.Uri): string {
         return pdfFileUri.toString(true).toLocaleUpperCase()
     }
 
-    static createClientSet(pdfFileUri: vscode.Uri): void {
-        const key = PdfViewerManagerService.toKey(pdfFileUri)
-        if (!PdfViewerManagerService.clientMap.has(key)) {
-            PdfViewerManagerService.clientMap.set(key, new Set())
+    createClientSet(pdfFileUri: vscode.Uri): void {
+        const key = this.toKey(pdfFileUri)
+        if (!this.clientMap.has(key)) {
+            this.clientMap.set(key, new Set())
         }
-        if (!PdfViewerManagerService.webviewPanelMap.has(key)) {
-            PdfViewerManagerService.webviewPanelMap.set(key, new Set())
+        if (!this.webviewPanelMap.has(key)) {
+            this.webviewPanelMap.set(key, new Set())
         }
     }
 
@@ -29,16 +34,16 @@ export class PdfViewerManagerService {
      *
      * @param pdfFileUri The path of a PDF file.
      */
-    static getClientSet(pdfFileUri: vscode.Uri): Set<Client> | undefined {
-        return PdfViewerManagerService.clientMap.get(PdfViewerManagerService.toKey(pdfFileUri))
+    getClientSet(pdfFileUri: vscode.Uri): Set<Client> | undefined {
+        return this.clientMap.get(this.toKey(pdfFileUri))
     }
 
-    static getPanelSet(pdfFileUri: vscode.Uri): Set<PdfViewerPanel> | undefined {
-        return PdfViewerManagerService.webviewPanelMap.get(PdfViewerManagerService.toKey(pdfFileUri))
+    getPanelSet(pdfFileUri: vscode.Uri): Set<PdfViewerPanel> | undefined {
+        return this.webviewPanelMap.get(this.toKey(pdfFileUri))
     }
 
-    static findClient(pdfFileUri: vscode.Uri, websocket: ws): Client | undefined {
-        const clientSet = PdfViewerManagerService.getClientSet(pdfFileUri)
+    findClient(pdfFileUri: vscode.Uri, websocket: ws): Client | undefined {
+        const clientSet = this.getClientSet(pdfFileUri)
         if (clientSet === undefined) {
             return
         }
@@ -50,11 +55,11 @@ export class PdfViewerManagerService {
         return
     }
 
-    static initiatePdfViewerPanel(pdfPanel: PdfViewerPanel): PdfViewerPanel | undefined {
+    initiatePdfViewerPanel(pdfPanel: PdfViewerPanel): PdfViewerPanel | undefined {
         const pdfFileUri = pdfPanel.pdfFileUri
         lw.cacher.pdf.add(pdfFileUri.fsPath)
-        PdfViewerManagerService.createClientSet(pdfFileUri)
-        const panelSet = PdfViewerManagerService.getPanelSet(pdfFileUri)
+        this.createClientSet(pdfFileUri)
+        const panelSet = this.getPanelSet(pdfFileUri)
         if (!panelSet) {
             return
         }
@@ -65,3 +70,5 @@ export class PdfViewerManagerService {
         return pdfPanel
     }
 }
+
+export const viewerManager = PdfViewerManager.instance

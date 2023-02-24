@@ -217,7 +217,7 @@ class LaTeXFormatter {
     }
 }
 
-export class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
+class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
     private static _instance?: LatexFormatterProvider
     static get instance() {
         return this._instance || (this._instance = new LatexFormatterProvider())
@@ -233,3 +233,5 @@ export class LatexFormatterProvider implements vscode.DocumentFormattingEditProv
     }
 
 }
+
+export const latexFormatterProvider = LatexFormatterProvider.instance

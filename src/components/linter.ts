@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
-import { ChkTeX } from './linterlib/chktex'
-import { LaCheck } from './linterlib/lacheck'
+import { chkTeX } from './linterlib/chktex'
+import { laCheck } from './linterlib/lacheck'
 import { getLogger } from './logger'
 
 const logger = getLogger('Linter')
@@ -21,14 +21,14 @@ export class Linter {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', scope)
         const linters: ILinter[] = []
         if (configuration.get('linting.chktex.enabled')) {
-            linters.push(ChkTeX.instance)
+            linters.push(chkTeX)
         } else {
-            ChkTeX.instance.linterDiagnostics.clear()
+            chkTeX.linterDiagnostics.clear()
         }
         if (configuration.get('linting.lacheck.enabled')) {
-            linters.push(LaCheck.instance)
+            linters.push(laCheck)
         } else {
-            LaCheck.instance.linterDiagnostics.clear()
+            laCheck.linterDiagnostics.clear()
         }
         return linters
     }

@@ -10,7 +10,7 @@ import { getLogger } from '../logger'
 
 const logger = getLogger('Linter', 'LaCheck')
 
-export class LaCheck implements ILinter {
+class LaCheck implements ILinter {
     readonly linterName = 'LaCheck'
     readonly linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(this.linterName)
     private process?: ChildProcessWithoutNullStreams
@@ -140,6 +140,8 @@ export class LaCheck implements ILinter {
         }
     }
 }
+
+export const laCheck = LaCheck.instance
 
 interface LaCheckLogEntry {
     file: string,

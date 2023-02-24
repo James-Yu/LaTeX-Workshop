@@ -5,10 +5,10 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as vscode from 'vscode'
 import * as lw from '../lw'
-import { PdfFilePathEncoder } from './serverlib/encodepath'
+import * as PdfFilePathEncoder from './serverlib/encodepath'
 import { EventEmitter } from 'events'
 import { getLogger } from './logger'
-import { PdfViewerManagerService } from './viewerlib/pdfviewermanager'
+import { viewerManager } from './viewerlib/pdfviewermanager'
 
 const logger = getLogger('Server')
 
@@ -184,10 +184,10 @@ export class Server {
         if (!isValidOrigin) {
             return
         }
-        if (request.url.includes(PdfFilePathEncoder.pdfFilePrefix) && !request.url.includes('viewer.html')) {
+        if (PdfFilePathEncoder.hasPrefix(request.url) && !request.url.includes('viewer.html')) {
             const s = request.url.replace('/', '')
             const fileUri = PdfFilePathEncoder.decodePathWithPrefix(s)
-            if (PdfViewerManagerService.getClientSet(fileUri) === undefined) {
+            if (viewerManager.getClientSet(fileUri) === undefined) {
                 logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
                 return
             }

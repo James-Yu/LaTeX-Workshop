@@ -8,7 +8,7 @@ import { UtensilsParser } from '../components/parser/syntax'
 
 const logger = getLogger('Format', 'Bib')
 
-export class BibtexFormatter {
+class BibtexFormatter {
     private readonly duplicatesDiagnostics: vscode.DiagnosticCollection
     private diags: vscode.Diagnostic[]
 
@@ -155,7 +155,9 @@ export class BibtexFormatter {
     }
 }
 
-export class BibtexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
+export const bibtexFormatter = BibtexFormatter.instance
+
+class BibtexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
     private static _instance?: BibtexFormatterProvider
     static get instance() {
         return this._instance || (this._instance = new BibtexFormatterProvider())
@@ -174,3 +176,5 @@ export class BibtexFormatterProvider implements vscode.DocumentFormattingEditPro
         return BibtexFormatter.instance.formatDocument(document, sort, true, range)
     }
 }
+
+export const bibtexFormatterProvider = BibtexFormatterProvider.instance

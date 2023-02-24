@@ -8,8 +8,8 @@ import type { SyncTeXRecordForward } from './locator'
 import { getCurrentThemeLightness } from '../utils/theme'
 import type { ClientRequest, PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index'
 import { Client } from './viewerlib/client'
-import { PdfViewerPanelSerializer, PdfViewerPanelService } from './viewerlib/pdfviewerpanel'
-import { PdfViewerManagerService } from './viewerlib/pdfviewermanager'
+import { createPdfViewerPanel } from './viewerlib/pdfviewerpanel'
+import { viewerManager } from './viewerlib/pdfviewermanager'
 import { ViewerPageLoaded } from './eventbus'
 import { getLogger } from './logger'
 import { moveActiveEditor } from '../utils/webview'
@@ -19,8 +19,6 @@ const logger = getLogger('Viewer')
 export { PdfViewerHookProvider } from './viewerlib/pdfviewerhook'
 
 export class Viewer {
-    readonly pdfViewerPanelSerializer: PdfViewerPanelSerializer = new PdfViewerPanelSerializer()
-
     constructor() {
         lw.cacher.pdf.onChange(pdfPath => {
             if (lw.builder.isOutputPDF(pdfPath)) {
@@ -50,7 +48,7 @@ export class Viewer {
     }
 
     reloadExistingViewer(): void {
-        PdfViewerManagerService.clientMap.forEach(clientSet => {
+        viewerManager.clientMap.forEach(clientSet => {
             clientSet.forEach(client => {
                 client.send({type: 'reload'})
             })
@@ -67,14 +65,14 @@ export class Viewer {
         logger.log(`Call refreshExistingViewer: ${JSON.stringify(sourceFile ?? pdfFile)} .`)
         const pdfUri = pdfFile ? vscode.Uri.file(pdfFile) : (sourceFile ? this.tex2pdf(sourceFile) : undefined)
         if (pdfUri === undefined) {
-            PdfViewerManagerService.clientMap.forEach(clientSet => {
+            viewerManager.clientMap.forEach(clientSet => {
                 clientSet.forEach(client => {
                     client.send({type: 'refresh'})
                 })
             })
             return
         }
-        const clientSet = PdfViewerManagerService.getClientSet(pdfUri)
+        const clientSet = viewerManager.getClientSet(pdfUri)
         if (!clientSet) {
             logger.log(`Not found PDF viewers to refresh: ${pdfFile}`)
             return
@@ -106,7 +104,7 @@ export class Viewer {
             return
         }
         const pdfFileUri = this.tex2pdf(sourceFile)
-        PdfViewerManagerService.createClientSet(pdfFileUri)
+        viewerManager.createClientSet(pdfFileUri)
         lw.cacher.pdf.add(pdfFileUri.fsPath)
         try {
             logger.log(`Serving PDF file at ${url}`)
@@ -144,8 +142,8 @@ export class Viewer {
 
     async openPdfInTab(pdfUri: vscode.Uri, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
         const activeDocument = vscode.window.activeTextEditor?.document
-        const panel = await PdfViewerPanelService.createPdfViewerPanel(pdfUri, tabEditorGroup === 'current')
-        PdfViewerManagerService.initiatePdfViewerPanel(panel)
+        const panel = await createPdfViewerPanel(pdfUri, tabEditorGroup === 'current')
+        viewerManager.initiatePdfViewerPanel(panel)
         if (!panel) {
             return
         }
@@ -219,7 +217,7 @@ export class Viewer {
         switch (data.type) {
             case 'open': {
                 const pdfFileUri = vscode.Uri.parse(data.pdfFileUri, true)
-                const clientSet = PdfViewerManagerService.getClientSet(pdfFileUri)
+                const clientSet = viewerManager.getClientSet(pdfFileUri)
                 if (clientSet === undefined) {
                     break
                 }
@@ -339,7 +337,7 @@ export class Viewer {
      */
     syncTeX(pdfFile: string, record: SyncTeXRecordForward): void {
         const pdfFileUri = vscode.Uri.file(pdfFile)
-        const clientSet = PdfViewerManagerService.getClientSet(pdfFileUri)
+        const clientSet = viewerManager.getClientSet(pdfFileUri)
         if (clientSet === undefined) {
             logger.log(`PDF is not viewed: ${pdfFile}`)
             return
@@ -361,7 +359,7 @@ export class Viewer {
      * @returns Returns `true` if `WebviewPanel.reveal` called.
      */
     private revealWebviewPanel(pdfFileUri: vscode.Uri): true | undefined {
-        const panelSet = PdfViewerManagerService.getPanelSet(pdfFileUri)
+        const panelSet = viewerManager.getPanelSet(pdfFileUri)
         if (!panelSet) {
             return
         }
@@ -391,7 +389,7 @@ export class Viewer {
      * @param pdfFileUri The path of a PDF file.
      */
     getViewerState(pdfFileUri: vscode.Uri): (PdfViewerState | undefined)[] {
-        const panelSet = PdfViewerManagerService.getPanelSet(pdfFileUri)
+        const panelSet = viewerManager.getPanelSet(pdfFileUri)
         if (!panelSet) {
             return []
         }

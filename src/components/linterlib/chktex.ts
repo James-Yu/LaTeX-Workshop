@@ -11,7 +11,7 @@ import { getLogger } from '../logger'
 
 const logger = getLogger('Linter', 'ChkTeX')
 
-export class ChkTeX implements ILinter {
+class ChkTeX implements ILinter {
     readonly linterName = 'ChkTeX'
     readonly linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(this.linterName)
     private process?: ChildProcessWithoutNullStreams
@@ -288,6 +288,8 @@ export class ChkTeX implements ILinter {
         }
     }
 }
+
+export const chkTeX = ChkTeX.instance
 
 interface ChkTeXLogEntry {
     file: string,

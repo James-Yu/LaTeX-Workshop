@@ -20,7 +20,7 @@ function resourcesFolder(extensionRoot: string) {
     return vscode.Uri.file(folder)
 }
 
-class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
+export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
     deserializeWebviewPanel(panel: vscode.WebviewPanel) {
         lw.mathPreviewPanel.initializePanel(panel)
         panel.webview.options = {
@@ -40,11 +40,9 @@ export class MathPreviewPanel {
     private prevDocumentUri?: string
     private prevCursorPosition?: vscode.Position
     private prevNewCommands?: string
-    readonly mathPreviewPanelSerializer: MathPreviewPanelSerializer
     private needCursor: boolean
 
     constructor() {
-        this.mathPreviewPanelSerializer = new MathPreviewPanelSerializer()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.needCursor = configuration.get('mathpreviewpanel.cursor.enabled', false)
         vscode.workspace.onDidChangeConfiguration((e) => {
