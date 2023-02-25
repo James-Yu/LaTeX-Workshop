@@ -16,7 +16,8 @@ import { moveActiveEditor } from '../utils/webview'
 
 const logger = getLogger('Viewer')
 
-export { PdfViewerHookProvider } from './viewerlib/pdfviewerhook'
+export { pdfViewerHookProvider } from './viewerlib/pdfviewerhook'
+export { pdfViewerPanelSerializer } from './viewerlib/pdfviewerpanel'
 
 export class Viewer {
     constructor() {

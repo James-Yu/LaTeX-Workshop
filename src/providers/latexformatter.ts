@@ -33,9 +33,9 @@ class LaTeXFormatter {
     private formatterArgs: string[] = []
     private formatting: boolean = false
 
-    private static _instance?: LaTeXFormatter
+    static #instance?: LaTeXFormatter
     static get instance() {
-        return this._instance || (this._instance = new LaTeXFormatter())
+        return this.#instance || (this.#instance = new LaTeXFormatter())
     }
     private constructor() {
         const machineOs = os.platform()
@@ -218,9 +218,9 @@ class LaTeXFormatter {
 }
 
 class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
-    private static _instance?: LatexFormatterProvider
+    static #instance?: LatexFormatterProvider
     static get instance() {
-        return this._instance || (this._instance = new LatexFormatterProvider())
+        return this.#instance || (this.#instance = new LatexFormatterProvider())
     }
     private constructor() {}
 

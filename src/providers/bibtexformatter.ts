@@ -12,9 +12,9 @@ class BibtexFormatter {
     private readonly duplicatesDiagnostics: vscode.DiagnosticCollection
     private diags: vscode.Diagnostic[]
 
-    private static _instance?: BibtexFormatter
+    static #instance?: BibtexFormatter
     static get instance() {
-        return this._instance || (this._instance = new BibtexFormatter())
+        return this.#instance || (this.#instance = new BibtexFormatter())
     }
     private constructor() {
         this.duplicatesDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
@@ -158,9 +158,9 @@ class BibtexFormatter {
 export const bibtexFormatter = BibtexFormatter.instance
 
 class BibtexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
-    private static _instance?: BibtexFormatterProvider
+    static #instance?: BibtexFormatterProvider
     static get instance() {
-        return this._instance || (this._instance = new BibtexFormatterProvider())
+        return this.#instance || (this.#instance = new BibtexFormatterProvider())
     }
     private constructor() {}
 

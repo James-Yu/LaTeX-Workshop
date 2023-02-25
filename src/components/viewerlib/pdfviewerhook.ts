@@ -1,7 +1,13 @@
 import type * as vscode from 'vscode'
 import * as lw from '../../lw'
 
-export class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvider {
+class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvider {
+    static #instance?: PdfViewerHookProvider
+    static get instance() {
+        return this.#instance || (this.#instance = new this())
+    }
+    private constructor() {}
+
     openCustomDocument(uri: vscode.Uri) {
         return {
             uri,
@@ -16,5 +22,6 @@ export class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvide
         }
         void lw.viewer.openPdfInTab(document.uri, 'current', false)
     }
-
 }
+
+export const pdfViewerHookProvider = PdfViewerHookProvider.instance

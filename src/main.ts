@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as lw from './lw'
-import { PdfViewerHookProvider } from './components/viewer'
-import { PdfViewerPanelSerializer } from './components/viewerlib/pdfviewerpanel'
+import { pdfViewerHookProvider, pdfViewerPanelSerializer } from './components/viewer'
 import { MathPreviewPanelSerializer } from './components/mathpreviewpanel'
 import { BibtexCompleter } from './providers/bibtexcompletion'
 import { HoverProvider } from './providers/hover'
@@ -216,8 +215,8 @@ function registerProviders() {
     )
 
     lw.registerDisposable(
-        vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', new PdfViewerPanelSerializer()),
-        vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', new PdfViewerHookProvider(), {supportsMultipleEditorsPerDocument: true, webviewOptions: {retainContextWhenHidden: true}}),
+        vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', pdfViewerPanelSerializer),
+        vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', pdfViewerHookProvider, {supportsMultipleEditorsPerDocument: true, webviewOptions: {retainContextWhenHidden: true}}),
         vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', new MathPreviewPanelSerializer())
     )
 
