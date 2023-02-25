@@ -4,7 +4,7 @@ import {stripCommentsAndVerbatim, isNewCommand, NewCommand} from '../../../utils
 import * as path from 'path'
 import * as lw from '../../../lw'
 import { getLogger } from '../../../components/logger'
-import { UtensilsParser } from '../../../components/parser/syntax'
+import { syntaxParser } from '../../../components/parser/syntax'
 
 const logger = getLogger('Preview', 'Math')
 
@@ -79,7 +79,7 @@ export class NewCommandFinder {
     static async findNewCommand(content: string): Promise<string[]> {
         let commands: string[] = []
         try {
-            const ast = await UtensilsParser.parseLatexPreamble(content)
+            const ast = await syntaxParser.parseLatexPreamble(content)
             for (const node of ast.content) {
                 if ((isNewCommand(node) || latexParser.isDefCommand(node)) && node.args.length > 0) {
                     node.name = node.name.replace(/\*$/, '') as NewCommand['name']

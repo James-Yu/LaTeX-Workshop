@@ -4,16 +4,22 @@ import * as workerpool from 'workerpool'
 import type {Proxy} from 'workerpool'
 import type {ISyntaxWorker} from './syntax_worker'
 
-export class UtensilsParser {
-    private static readonly pool: workerpool.WorkerPool = workerpool.pool(
+class SyntaxParser {
+    static #instance?: SyntaxParser
+    static get instance() {
+        return this.#instance || (this.#instance = new this())
+    }
+    private constructor() {}
+
+    private readonly pool: workerpool.WorkerPool = workerpool.pool(
         path.join(__dirname, 'syntax_worker.js'),
         { minWorkers: 1, maxWorkers: 1, workerType: 'process' }
     )
-    private static readonly proxy: workerpool.Promise<Proxy<ISyntaxWorker>> = this.pool.proxy<ISyntaxWorker>()
+    private readonly proxy: workerpool.Promise<Proxy<ISyntaxWorker>> = this.pool.proxy<ISyntaxWorker>()
 
-    static dispose() {
+    dispose() {
         return {
-            dispose: async () => { await UtensilsParser.pool.terminate(true) }
+            dispose: async () => { await this.pool.terminate(true) }
         }
     }
 
@@ -24,16 +30,17 @@ export class UtensilsParser {
      * @param options
      * @return undefined if parsing fails
      */
-    static async parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst | undefined> {
-        return (await UtensilsParser.proxy).parseLatex(s, options).timeout(3000).catch(() => undefined)
+    async parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst | undefined> {
+        return (await this.proxy).parseLatex(s, options).timeout(3000).catch(() => undefined)
     }
 
-    static async parseLatexPreamble(s: string): Promise<latexParser.AstPreamble> {
-        return (await UtensilsParser.proxy).parseLatexPreamble(s).timeout(500)
+    async parseLatexPreamble(s: string): Promise<latexParser.AstPreamble> {
+        return (await this.proxy).parseLatexPreamble(s).timeout(500)
     }
 
-    static async parseBibtex(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst> {
-        return (await UtensilsParser.proxy).parseBibtex(s, options).timeout(30000).catch(() => {return { content: [] }})
+    async parseBibtex(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst> {
+        return (await this.proxy).parseBibtex(s, options).timeout(30000).catch(() => {return { content: [] }})
     }
-
 }
+
+export const syntaxParser = SyntaxParser.instance

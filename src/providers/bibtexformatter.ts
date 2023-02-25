@@ -4,7 +4,7 @@ import { performance } from 'perf_hooks'
 import { BibtexFormatConfig, BibtexUtils } from './bibtexformatterlib/bibtexutils'
 import type { BibtexEntry } from './bibtexformatterlib/bibtexutils'
 import { getLogger } from '../components/logger'
-import { UtensilsParser } from '../components/parser/syntax'
+import { syntaxParser } from '../components/parser/syntax'
 
 const logger = getLogger('Format', 'Bib')
 
@@ -63,7 +63,7 @@ class BibtexFormatter {
         const lineOffset = range ? range.start.line : 0
         const columnOffset = range ? range.start.character : 0
 
-        const ast = await UtensilsParser.parseBibtex(document.getText(range)).catch((error) => {
+        const ast = await syntaxParser.parseBibtex(document.getText(range)).catch((error) => {
             if (error instanceof(Error)) {
                 logger.log('Bibtex parser failed.')
                 logger.log(error.message)

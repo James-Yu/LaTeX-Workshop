@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as lw from './lw'
 import { getSurroundingCommandRange } from './utils/utils'
 import { getLogger } from './components/logger'
-import { UtensilsParser } from './components/parser/syntax'
+import { syntaxParser } from './components/parser/syntax'
 import { compilerLogParser } from './components/parser/compilerlog'
 
 const logger = getLogger('Commander')
@@ -461,7 +461,7 @@ export async function devParseTeX() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = await UtensilsParser.parseLatex(vscode.window.activeTextEditor.document.getText())
+    const ast = await syntaxParser.parseLatex(vscode.window.activeTextEditor.document.getText())
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 
@@ -469,7 +469,7 @@ export async function devParseBib() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = await UtensilsParser.parseBibtex(vscode.window.activeTextEditor.document.getText())
+    const ast = await syntaxParser.parseBibtex(vscode.window.activeTextEditor.document.getText())
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 

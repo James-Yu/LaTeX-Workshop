@@ -8,7 +8,7 @@ import { resolveFile } from '../../utils/utils'
 import { InputFileRegExp } from '../../utils/inputfilepath'
 
 import { getLogger } from '../../components/logger'
-import { UtensilsParser } from '../../components/parser/syntax'
+import { syntaxParser } from '../../components/parser/syntax'
 
 const logger = getLogger('Structure', 'LaTeX')
 
@@ -98,7 +98,7 @@ export class LaTeXStructure {
             if (content) {
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
-                ast = await UtensilsParser.parseLatex(fastparse ? utils.stripText(content) : content).catch((e) => {
+                ast = await syntaxParser.parseLatex(fastparse ? utils.stripText(content) : content).catch((e) => {
                     if (latexParser.isSyntaxError(e)) {
                         const line = e.location.start.line
                         logger.log(`Error parsing dirty AST of active editor at line ${line}. Fallback to cache.`)

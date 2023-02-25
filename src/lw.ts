@@ -14,7 +14,7 @@ import { Locator } from './components/locator'
 import { LwFileSystem } from './components/lwfs'
 import { Manager } from './components/manager'
 import { MathPreviewPanel } from './components/mathpreviewpanel'
-import { UtensilsParser } from './components/parser/syntax'
+import { syntaxParser } from './components/parser/syntax'
 import { Section } from './components/section'
 import { Server } from './components/server'
 import { SnippetView } from './components/snippetview'
@@ -83,7 +83,7 @@ export function init(extensionContext: vscode.ExtensionContext) {
         dispose: () => {
             cacher.reset()
             server.dispose()
-            UtensilsParser.dispose()
+            syntaxParser.dispose()
             MathJaxPool.dispose()
         }
     }

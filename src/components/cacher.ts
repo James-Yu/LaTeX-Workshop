@@ -14,7 +14,7 @@ import * as CacherUtils from './cacherlib/cacherutils'
 import * as PathUtils from './cacherlib/pathutils'
 import { Watcher } from './cacherlib/watcher'
 import { getLogger } from './logger'
-import { UtensilsParser } from './parser/syntax'
+import { syntaxParser } from './parser/syntax'
 
 const logger = getLogger('Cacher')
 
@@ -152,7 +152,7 @@ export class Cacher {
     private async updateAST(filePath: string, content: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
-        const ast = await UtensilsParser.parseLatex(fastparse ? utils.stripText(content) : content).catch((e) => {
+        const ast = await syntaxParser.parseLatex(fastparse ? utils.stripText(content) : content).catch((e) => {
             if (latexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 logger.log(`Error parsing AST of ${filePath} at line ${line}.`)

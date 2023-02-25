@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import { bibtexParser } from 'latex-utensils'
 import { Section, SectionKind } from './section'
-import { UtensilsParser } from '../../components/parser/syntax'
+import { syntaxParser } from '../../components/parser/syntax'
 
 import { getLogger } from '../../components/logger'
 
@@ -14,7 +14,7 @@ export class BibTeXStructure {
             logger.log(`Bib file is too large, ignoring it: ${document.fileName}`)
             return []
         }
-        const ast = await UtensilsParser.parseBibtex(document.getText()).catch((e) => {
+        const ast = await syntaxParser.parseBibtex(document.getText()).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 logger.log(`Error parsing BibTeX: line ${line} in ${document.fileName} .`)
