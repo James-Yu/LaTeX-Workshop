@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import type ws from 'ws'
 import * as lw from '../../lw'
 import type {Client} from './client'
 import type {PdfViewerPanel} from './pdfviewerpanel'
@@ -7,12 +6,6 @@ import type {PdfViewerPanel} from './pdfviewerpanel'
 class PdfViewerManager {
     private readonly webviewPanelMap = new Map<string, Set<PdfViewerPanel>>()
     readonly clientMap = new Map<string, Set<Client>>()
-
-    static #instance?: PdfViewerManager
-    static get instance() {
-        return this.#instance || (this.#instance = new this())
-    }
-    private constructor() {}
 
     private toKey(pdfFileUri: vscode.Uri): string {
         return pdfFileUri.toString(true).toLocaleUpperCase()
@@ -42,18 +35,18 @@ class PdfViewerManager {
         return this.webviewPanelMap.get(this.toKey(pdfFileUri))
     }
 
-    findClient(pdfFileUri: vscode.Uri, websocket: ws): Client | undefined {
-        const clientSet = this.getClientSet(pdfFileUri)
-        if (clientSet === undefined) {
-            return
-        }
-        for (const client of clientSet) {
-            if (client.websocket === websocket) {
-                return client
-            }
-        }
-        return
-    }
+    // findClient(pdfFileUri: vscode.Uri, websocket: ws): Client | undefined {
+    //     const clientSet = this.getClientSet(pdfFileUri)
+    //     if (clientSet === undefined) {
+    //         return
+    //     }
+    //     for (const client of clientSet) {
+    //         if (client.websocket === websocket) {
+    //             return client
+    //         }
+    //     }
+    //     return
+    // }
 
     initiatePdfViewerPanel(pdfPanel: PdfViewerPanel): PdfViewerPanel | undefined {
         const pdfFileUri = pdfPanel.pdfFileUri
@@ -71,4 +64,4 @@ class PdfViewerManager {
     }
 }
 
-export const viewerManager = PdfViewerManager.instance
+export const viewerManager = new PdfViewerManager()

@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as lw from '../../lw'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
-import { bibtexLogParser } from './bibtexlogparser'
-import { biberLogParser } from './biberlogparser'
-import { latexLogParser } from './latexlog'
+import * as bibtexLogParser from './bibtexlogparser'
+import * as biberLogParser from './biberlogparser'
+import * as latexLogParser from './latexlog'
 
 // Notice that 'Output written on filename.pdf' isn't output in draft mode.
 // https://github.com/James-Yu/LaTeX-Workshop/issues/2893#issuecomment-936312853
@@ -31,165 +31,156 @@ const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
 
 export type LogEntry = { type: string, file: string, text: string, line: number, errorPosText?: string }
 
-export interface ILogParser {
-    buildLog: LogEntry[],
-    parse(log: string, rootFile?: string): LogEntry[]
+const bibDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
+const biberDiagnostics = vscode.languages.createDiagnosticCollection('Biber')
+const texDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
+
+/**
+ * @param log The log message to parse.
+ * @param rootFile The current root file.
+ * @returns whether the current compilation is indeed a skipped one in latexmk.
+ */
+export function parse(log: string, rootFile?: string): boolean {
+    let isLaTeXmkSkipped = false
+    // Canonicalize line-endings
+    log = log.replace(/(\r\n)|\r/g, '\n')
+
+    if (log.match(bibtexPattern)) {
+        const logs = bibtexLogParser.parse(log.match(latexmkPattern) ? trimLaTeXmkBibTeX(log) : log, rootFile)
+        showCompilerDiagnostics(bibDiagnostics, logs, 'BibTeX')
+    } else if (log.match(biberPattern)) {
+        const logs = biberLogParser.parse(log.match(latexmkPattern) ? trimLaTeXmkBiber(log) : log, rootFile)
+        showCompilerDiagnostics(biberDiagnostics, logs, 'Biber')
+    }
+
+    if (log.match(latexmkPattern)) {
+        log = trimLaTeXmk(log)
+    } else if (log.match(texifyPattern)) {
+        log = trimTexify(log)
+    }
+    if (log.match(latexPattern) || log.match(latexFatalPattern)) {
+        const logs = latexLogParser.parse(log, rootFile)
+        showCompilerDiagnostics(texDiagnostics, logs, 'LaTeX')
+    } else if (latexmkSkipped(log)) {
+        isLaTeXmkSkipped = true
+    }
+
+    return isLaTeXmkSkipped
 }
 
-class CompilerLogParser {
-    private readonly bibDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
-    private readonly biberDiagnostics = vscode.languages.createDiagnosticCollection('Biber')
-    private readonly texDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
-    isLaTeXmkSkipped: boolean = false
+function trimLaTeXmk(log: string): string {
+    return trimPattern(log, latexmkLogLatex, latexmkLog)
+}
 
-    static #instance?: CompilerLogParser
-    static get instance() {
-        return this.#instance || (this.#instance = new this())
-    }
-    private constructor() {}
+function trimLaTeXmkBibTeX(log: string): string {
+    return trimPattern(log, bibtexPattern, latexmkLogLatex)
+}
 
-    parse(log: string, rootFile?: string) {
-        this.isLaTeXmkSkipped = false
-        // Canonicalize line-endings
-        log = log.replace(/(\r\n)|\r/g, '\n')
+function trimLaTeXmkBiber(log: string): string {
+    return trimPattern(log, biberPattern, latexmkLogLatex)
+}
 
-        if (log.match(bibtexPattern)) {
-            const logs = bibtexLogParser.parse(log.match(latexmkPattern) ? this.trimLaTeXmkBibTeX(log) : log, rootFile)
-            this.showCompilerDiagnostics(this.bibDiagnostics, logs, 'BibTeX')
-        } else if (log.match(biberPattern)) {
-            const logs = biberLogParser.parse(log.match(latexmkPattern) ? this.trimLaTeXmkBiber(log) : log, rootFile)
-            this.showCompilerDiagnostics(this.biberDiagnostics, logs, 'Biber')
+function trimTexify(log: string): string {
+    return trimPattern(log, texifyLogLatex, texifyLog)
+}
+
+
+/**
+ * Return the lines between the last occurrences of `beginPattern` and `endPattern`.
+ * If `endPattern` is not found, the lines from the last occurrence of
+ * `beginPattern` up to the end is returned.
+ */
+function trimPattern(log: string, beginPattern: RegExp, endPattern: RegExp): string {
+    const lines = log.split('\n')
+    let startLine = -1
+    let finalLine = -1
+    for (let index = 0; index < lines.length; index++) {
+        const line = lines[index]
+        let result = line.match(beginPattern)
+        if (result) {
+            startLine = index
         }
-
-        if (log.match(latexmkPattern)) {
-            log = this.trimLaTeXmk(log)
-        } else if (log.match(texifyPattern)) {
-            log = this.trimTexify(log)
-        }
-        if (log.match(latexPattern) || log.match(latexFatalPattern)) {
-            const logs = latexLogParser.parse(log, rootFile)
-            this.showCompilerDiagnostics(this.texDiagnostics, logs, 'LaTeX')
-        } else if (this.latexmkSkipped(log)) {
-            this.isLaTeXmkSkipped = true
-        }
-    }
-
-    private trimLaTeXmk(log: string): string {
-        return this.trimPattern(log, latexmkLogLatex, latexmkLog)
-    }
-
-    private trimLaTeXmkBibTeX(log: string): string {
-        return this.trimPattern(log, bibtexPattern, latexmkLogLatex)
-    }
-
-    private trimLaTeXmkBiber(log: string): string {
-        return this.trimPattern(log, biberPattern, latexmkLogLatex)
-    }
-
-    private trimTexify(log: string): string {
-        return this.trimPattern(log, texifyLogLatex, texifyLog)
-    }
-
-
-    /**
-     * Return the lines between the last occurrences of `beginPattern` and `endPattern`.
-     * If `endPattern` is not found, the lines from the last occurrence of
-     * `beginPattern` up to the end is returned.
-     */
-    private trimPattern(log: string, beginPattern: RegExp, endPattern: RegExp): string {
-        const lines = log.split('\n')
-        let startLine = -1
-        let finalLine = -1
-        for (let index = 0; index < lines.length; index++) {
-            const line = lines[index]
-            let result = line.match(beginPattern)
-            if (result) {
-                startLine = index
-            }
-            result = line.match(endPattern)
-            if (result) {
-                finalLine = index
-            }
-        }
-        if (finalLine <= startLine) {
-            return lines.slice(startLine).join('\n')
-        } else {
-            return lines.slice(startLine, finalLine).join('\n')
+        result = line.match(endPattern)
+        if (result) {
+            finalLine = index
         }
     }
-
-
-    private latexmkSkipped(log: string): boolean {
-        if (log.match(latexmkUpToDate) && !log.match(latexmkPattern)) {
-            this.showCompilerDiagnostics(this.texDiagnostics, latexLogParser.buildLog, 'LaTeX')
-            this.showCompilerDiagnostics(this.bibDiagnostics, bibtexLogParser.buildLog, 'BibTeX')
-            this.showCompilerDiagnostics(this.biberDiagnostics, biberLogParser.buildLog, 'Biber')
-            return true
-        }
-        return false
-    }
-
-    private getErrorPosition(item: LogEntry): {start: number, end: number} | undefined {
-        if (!item.errorPosText) {
-            return
-        }
-        const content = lw.cacher.get(item.file)?.content
-        if (!content) {
-            return
-        }
-        // Try to find the errorPosText in the respective line of the document
-        const lines = content.split('\n')
-        if (lines.length >= item.line) {
-            const line = lines[item.line-1]
-            let pos = line.indexOf(item.errorPosText)
-            if (pos >= 0) {
-                pos += item.errorPosText.length
-                // Find the length of the last word in the error.
-                // This is the length of the error-range
-                const len = item.errorPosText.length - item.errorPosText.lastIndexOf(' ') - 1
-                if (len > 0) {
-                    return {start: pos - len, end: pos}
-                }
-            }
-        }
-       return
-    }
-
-    showCompilerDiagnostics(compilerDiagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[], source: string) {
-        compilerDiagnostics.clear()
-        const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
-        for (const item of buildLog) {
-            let startChar = 0
-            let endChar = 65535
-            // Try to compute a more precise position
-            const preciseErrorPos = this.getErrorPosition(item)
-            if (preciseErrorPos) {
-                startChar = preciseErrorPos.start
-                endChar = preciseErrorPos.end
-            }
-
-            const range = new vscode.Range(new vscode.Position(item.line - 1, startChar), new vscode.Position(item.line - 1, endChar))
-            const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
-            diag.source = source
-            if (diagsCollection[item.file] === undefined) {
-                diagsCollection[item.file] = []
-            }
-            diagsCollection[item.file].push(diag)
-        }
-
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const convEnc = configuration.get('message.convertFilenameEncoding') as boolean
-        for (const file in diagsCollection) {
-            let file1 = file
-            if (!fs.existsSync(file1) && convEnc) {
-                const f = convertFilenameEncoding(file1)
-                if (f !== undefined) {
-                    file1 = f
-                }
-            }
-            compilerDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
-        }
+    if (finalLine <= startLine) {
+        return lines.slice(startLine).join('\n')
+    } else {
+        return lines.slice(startLine, finalLine).join('\n')
     }
 }
 
-export const compilerLogParser = CompilerLogParser.instance
+
+function latexmkSkipped(log: string): boolean {
+    if (log.match(latexmkUpToDate) && !log.match(latexmkPattern)) {
+        showCompilerDiagnostics(texDiagnostics, latexLogParser.buildLog, 'LaTeX')
+        showCompilerDiagnostics(bibDiagnostics, bibtexLogParser.buildLog, 'BibTeX')
+        showCompilerDiagnostics(biberDiagnostics, biberLogParser.buildLog, 'Biber')
+        return true
+    }
+    return false
+}
+
+function getErrorPosition(item: LogEntry): {start: number, end: number} | undefined {
+    if (!item.errorPosText) {
+        return
+    }
+    const content = lw.cacher.get(item.file)?.content
+    if (!content) {
+        return
+    }
+    // Try to find the errorPosText in the respective line of the document
+    const lines = content.split('\n')
+    if (lines.length >= item.line) {
+        const line = lines[item.line-1]
+        let pos = line.indexOf(item.errorPosText)
+        if (pos >= 0) {
+            pos += item.errorPosText.length
+            // Find the length of the last word in the error.
+            // This is the length of the error-range
+            const len = item.errorPosText.length - item.errorPosText.lastIndexOf(' ') - 1
+            if (len > 0) {
+                return {start: pos - len, end: pos}
+            }
+        }
+    }
+    return
+}
+
+function showCompilerDiagnostics(compilerDiagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[], source: string) {
+    compilerDiagnostics.clear()
+    const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
+    for (const item of buildLog) {
+        let startChar = 0
+        let endChar = 65535
+        // Try to compute a more precise position
+        const preciseErrorPos = getErrorPosition(item)
+        if (preciseErrorPos) {
+            startChar = preciseErrorPos.start
+            endChar = preciseErrorPos.end
+        }
+
+        const range = new vscode.Range(new vscode.Position(item.line - 1, startChar), new vscode.Position(item.line - 1, endChar))
+        const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
+        diag.source = source
+        if (diagsCollection[item.file] === undefined) {
+            diagsCollection[item.file] = []
+        }
+        diagsCollection[item.file].push(diag)
+    }
+
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const convEnc = configuration.get('message.convertFilenameEncoding') as boolean
+    for (const file in diagsCollection) {
+        let file1 = file
+        if (!fs.existsSync(file1) && convEnc) {
+            const f = convertFilenameEncoding(file1)
+            if (f !== undefined) {
+                file1 = f
+            }
+        }
+        compilerDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
+    }
+}

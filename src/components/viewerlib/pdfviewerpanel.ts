@@ -39,11 +39,6 @@ export class PdfViewerPanel {
 }
 
 class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
-    static #instance?: PdfViewerPanelSerializer
-    static get instance() {
-        return this.#instance || (this.#instance = new this())
-    }
-    private constructor() {}
 
     async deserializeWebviewPanel(panel: vscode.WebviewPanel, argState: {state: PdfViewerState}): Promise<void> {
         await lw.server.serverStarted
@@ -73,7 +68,7 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
     }
 }
 
-export const pdfViewerPanelSerializer = PdfViewerPanelSerializer.instance
+export const pdfViewerPanelSerializer = new PdfViewerPanelSerializer()
 
 let codespacesPatched = false
 async function patchCodespaces(url: vscode.Uri) {

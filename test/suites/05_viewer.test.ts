@@ -11,13 +11,13 @@ suite('PDF viewer test suite', () => {
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'never')
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'tab')
     })
 
     teardown(async () => {
         await test.reset()
 
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.outDir', undefined)
-        await vscode.workspace.getConfiguration().update('latex-workshop.view.pdf.viewer', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', undefined)
         await vscode.workspace.getConfiguration().update('latex-workshop.synctex.afterBuild.enabled', undefined)

@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as lw from '../lw'
-import {BibtexFormatConfig} from './bibtexformatterlib/bibtexutils'
+import { getBibtexFormatConfig, type BibtexFormatConfig } from './bibtexformatterlib/bibtexutils'
 
 import { getLogger } from '../components/logger'
 
@@ -14,7 +14,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
     private scope: vscode.ConfigurationScope | undefined = undefined
     private readonly entryItems: vscode.CompletionItem[] = []
     private readonly optFieldItems = Object.create(null) as { [key: string]: vscode.CompletionItem[] }
-    private readonly bibtexFormatConfig: BibtexFormatConfig
+    private bibtexFormatConfig: BibtexFormatConfig
 
     constructor() {
         if (vscode.window.activeTextEditor) {
@@ -22,14 +22,14 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         } else {
             this.scope = vscode.workspace.workspaceFolders?.[0]
         }
-        this.bibtexFormatConfig = new BibtexFormatConfig(this.scope)
+        this.bibtexFormatConfig = getBibtexFormatConfig(this.scope)
         this.initialize()
         vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (e.affectsConfiguration('latex-workshop.bibtex-format', this.scope) ||
                 e.affectsConfiguration('latex-workshop.bibtex-entries', this.scope) ||
                 e.affectsConfiguration('latex-workshop.bibtex-fields', this.scope) ||
                 e.affectsConfiguration('latex-workshop.intellisense', this.scope)) {
-                    this.bibtexFormatConfig.loadConfiguration(this.scope)
+                    this.bibtexFormatConfig = getBibtexFormatConfig(this.scope)
                     this.initialize()
                 }
         })
@@ -38,7 +38,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
                 const wsFolder = vscode.workspace.getWorkspaceFolder(e.document.uri)
                 if (wsFolder !== this.scope) {
                     this.scope = wsFolder
-                    this.bibtexFormatConfig.loadConfiguration(this.scope)
+                    this.bibtexFormatConfig = getBibtexFormatConfig(this.scope)
                     this.initialize()
                 }
             }

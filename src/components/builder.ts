@@ -7,7 +7,7 @@ import * as lw from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { AutoBuildInitiated, AutoCleaned, BuildDone } from './eventbus'
 import { getLogger } from './logger'
-import { compilerLogParser } from './parser/compilerlog'
+import * as logParser from './parser/compilerlog'
 
 const logger = getLogger('Builder')
 
@@ -344,7 +344,11 @@ export class Builder {
             })
 
             this.process.on('exit', async (code, signal) => {
-                compilerLogParser.parse(stdout, step.rootFile)
+                const isSkipped = logParser.parse(stdout, step.rootFile)
+                if (!step.isExternal) {
+                    step.isSkipped = isSkipped
+                }
+
                 if (!step.isExternal && code === 0) {
                     logger.log(`Finished a step in recipe with PID ${this.process?.pid}.`)
                     this.process = undefined
@@ -418,7 +422,7 @@ export class Builder {
         logger.log(`Successfully built ${step.rootFile} .`)
         logger.refreshStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
         lw.eventBus.fire(BuildDone)
-        if (compilerLogParser.isLaTeXmkSkipped) {
+        if (!step.isExternal && step.isSkipped) {
             return
         }
         lw.viewer.refreshExistingViewer(step.rootFile)
@@ -726,6 +730,7 @@ class BuildToolQueue {
             step.timestamp = timestamp
             step.isRetry = false
             step.isExternal = false
+            step.isSkipped = false
         } else {
             step = tool as ExternalStep
             step.recipeName = 'External'
@@ -803,7 +808,8 @@ interface RecipeStep extends Tool {
     timestamp: number,
     index: number,
     isExternal: false,
-    isRetry: boolean
+    isRetry: boolean,
+    isSkipped: boolean
 }
 
 interface ExternalStep extends Tool {

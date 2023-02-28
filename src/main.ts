@@ -10,7 +10,7 @@ import { DefinitionProvider } from './providers/definition'
 import { latexFormatterProvider } from './providers/latexformatter'
 import { FoldingProvider, WeaveFoldingProvider } from './providers/folding'
 import { SelectionRangeProvider } from './providers/selection'
-import { bibtexFormatter, bibtexFormatterProvider } from './providers/bibtexformatter'
+import { bibtexFormat, bibtexFormatterProvider } from './providers/bibtexformatter'
 import { getLogger } from './components/logger'
 import { DocumentChanged } from './components/eventbus'
 
@@ -187,9 +187,9 @@ function registerLatexWorkshopCommands() {
         vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => lw.commander.shiftSectioningLevel('demote')),
         vscode.commands.registerCommand('latex-workshop.select-section', () => lw.commander.selectSection()),
 
-        vscode.commands.registerCommand('latex-workshop.bibsort', () => bibtexFormatter.bibtexFormat(true, false)),
-        vscode.commands.registerCommand('latex-workshop.bibalign', () => bibtexFormatter.bibtexFormat(false, true)),
-        vscode.commands.registerCommand('latex-workshop.bibalignsort', () => bibtexFormatter.bibtexFormat(true, true)),
+        vscode.commands.registerCommand('latex-workshop.bibsort', () => bibtexFormat(true, false)),
+        vscode.commands.registerCommand('latex-workshop.bibalign', () => bibtexFormat(false, true)),
+        vscode.commands.registerCommand('latex-workshop.bibalignsort', () => bibtexFormat(true, true)),
 
         vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => lw.commander.openMathPreviewPanel()),
         vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => lw.commander.closeMathPreviewPanel()),

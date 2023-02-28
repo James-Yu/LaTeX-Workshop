@@ -6,7 +6,7 @@ import { getLogger } from './logger'
 
 const logger = getLogger('Linter')
 
-export interface ILinter {
+interface ILinter {
     readonly linterDiagnostics: vscode.DiagnosticCollection,
     getName(): string,
     lintRootFile(rootPath: string): void,
