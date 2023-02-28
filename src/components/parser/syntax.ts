@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as workerpool from 'workerpool'
 import type {Proxy} from 'workerpool'
 import type {ISyntaxWorker} from './syntax_worker'
+import { stripComments } from '../../utils/utils'
 
 class SyntaxParser {
     static #instance?: SyntaxParser
@@ -39,7 +40,7 @@ class SyntaxParser {
     }
 
     async parseBibtex(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst> {
-        return (await this.proxy).parseBibtex(s, options).timeout(30000).catch(() => {return { content: [] }})
+        return (await this.proxy).parseBibtex(stripComments(s), options).timeout(30000).catch(() => {return { content: [] }})
     }
 }
 
