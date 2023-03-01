@@ -31,7 +31,7 @@ export function stripText(raw: string): string {
     const result = Array(text.split('\n').length).fill('')
     // The following regex defines a LaTeX command.
     // We also consider a special case of verbatim "label={something}"
-    const cmdReg = /(\\(?:[^a-zA-Z@]|[a-zA-Z@]+[*=']?)\s*)|(label={[^{}]+})/gm
+    const cmdReg = /(\\(?:[^a-zA-Z@]|[a-zA-Z@]+[*=']?))|(label={[^{}]+})/gm
     let match
     while ((match = cmdReg.exec(text)) !== null) {
         // Stores the complete command, including arguments.
