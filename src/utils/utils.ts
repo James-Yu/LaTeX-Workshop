@@ -41,7 +41,7 @@ export function stripText(raw: string): string {
         while (['{', '['].includes(text[cmdReg.lastIndex])) {
             const isCurly = text[cmdReg.lastIndex] === '{'
             const balanceStr = getLongestBalancedString(text.substring(cmdReg.lastIndex), isCurly ? undefined : 'square')
-            if (!balanceStr) { // \in[1, 2]
+            if (balanceStr === undefined) { // \in[1, 2]
                 break
             }
             matchedText += isCurly ? `{${balanceStr}}` : `[${balanceStr}]`
@@ -171,7 +171,7 @@ export function getSurroundingCommandRange(command: string, position: vscode.Pos
         const matchPos = match.index
         const openingBracePos = matchPos + command.length + 1
         const arg = getLongestBalancedString(line.slice(openingBracePos))
-        if (arg && position.character >= openingBracePos && position.character <= openingBracePos + arg.length + 1) {
+        if (arg !== undefined && position.character >= openingBracePos && position.character <= openingBracePos + arg.length + 1) {
             const start = new vscode.Position(position.line, matchPos)
             const end = new vscode.Position(position.line, openingBracePos + arg.length + 1)
             return {range: new vscode.Range(start, end), arg}
