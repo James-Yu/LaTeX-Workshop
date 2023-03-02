@@ -41,6 +41,9 @@ export function stripText(raw: string): string {
         while (['{', '['].includes(text[cmdReg.lastIndex])) {
             const isCurly = text[cmdReg.lastIndex] === '{'
             const balanceStr = getLongestBalancedString(text.substring(cmdReg.lastIndex), isCurly ? undefined : 'square')
+            if (balanceStr === undefined) { // \in[1, 2]
+                break
+            }
             matchedText += isCurly ? `{${balanceStr}}` : `[${balanceStr}]`
             cmdReg.lastIndex += balanceStr.length + 2
             // It's possible to have spaces between arguments. If so, skip them.
@@ -117,7 +120,7 @@ export function trimMultiLineString(text: string): string {
  *
  * @param s A string to be searched.
  */
-export function getLongestBalancedString(s: string, bracket: 'curly' | 'square'='curly'): string {
+function getLongestBalancedString(s: string, bracket: 'curly' | 'square'='curly'): string | undefined {
     const openner = bracket === 'curly' ? '{' : '['
     const closer = bracket === 'curly' ? '}' : ']'
     let nested = s[0] === openner ? 0 : 1
@@ -140,7 +143,11 @@ export function getLongestBalancedString(s: string, bracket: 'curly' | 'square'=
             break
         }
     }
-    return s.substring(s[0] === openner ? 1 : 0, i)
+    if (nested === 0) {
+        return s.substring(s[0] === openner ? 1 : 0, i)
+    } else {
+        return undefined
+    }
 }
 
 /**
@@ -164,7 +171,7 @@ export function getSurroundingCommandRange(command: string, position: vscode.Pos
         const matchPos = match.index
         const openingBracePos = matchPos + command.length + 1
         const arg = getLongestBalancedString(line.slice(openingBracePos))
-        if (position.character >= openingBracePos && position.character <= openingBracePos + arg.length + 1) {
+        if (arg !== undefined && position.character >= openingBracePos && position.character <= openingBracePos + arg.length + 1) {
             const start = new vscode.Position(position.line, matchPos)
             const end = new vscode.Position(position.line, openingBracePos + arg.length + 1)
             return {range: new vscode.Range(start, end), arg}
@@ -174,33 +181,33 @@ export function getSurroundingCommandRange(command: string, position: vscode.Pos
 }
 
 
-export type CommandArgument = {
-    arg: string, // The argument we are looking for
-    index: number // the starting position of the argument
-}
+// export type CommandArgument = {
+//     arg: string, // The argument we are looking for
+//     index: number // the starting position of the argument
+// }
 
 /**
  * @param text a string starting with a command call
  * @param nth the index of the argument to return
  */
-export function getNthArgument(text: string, nth: number): CommandArgument | undefined {
-    let arg: string = ''
-    let index: number = 0 // start of the nth argument
-    let offset: number = 0 // current offset of the new text to consider
-    for (let i=0; i<nth; i++) {
-        text = text.slice(offset)
-        index += offset
-        const start = text.indexOf('{')
-        if (start === -1) {
-            return
-        }
-        text = text.slice(start)
-        index += start
-        arg = getLongestBalancedString(text)
-        offset = arg.length + 2 // 2 counts '{' and '}'
-    }
-    return {arg, index}
-}
+// export function getNthArgument(text: string, nth: number): CommandArgument | undefined {
+//     let arg: string = ''
+//     let index: number = 0 // start of the nth argument
+//     let offset: number = 0 // current offset of the new text to consider
+//     for (let i=0; i<nth; i++) {
+//         text = text.slice(offset)
+//         index += offset
+//         const start = text.indexOf('{')
+//         if (start === -1) {
+//             return
+//         }
+//         text = text.slice(start)
+//         index += start
+//         arg = getLongestBalancedString(text)
+//         offset = arg.length + 2 // 2 counts '{' and '}'
+//     }
+//     return {arg, index}
+// }
 
 /**
  * Resolve a relative file path to an absolute path using the prefixes `dirs`.
@@ -291,7 +298,7 @@ export function isNewCommand(node: latexParser.Node | undefined): node is NewCom
     return false
 }
 
-export type NewEnvironment = {
+type NewEnvironment = {
     kind: 'command',
     name: 'renewenvironment|newenvironment|renewenvironment*|newenvironment*',
     args: (latexParser.OptionalArg | latexParser.Group)[],
