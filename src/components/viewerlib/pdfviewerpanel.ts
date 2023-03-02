@@ -117,7 +117,7 @@ function getKeyboardEventConfig(): boolean {
  *
  * @param pdfUri The path of a PDF file to be opened.
  */
-export async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
+async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
     const uri = (await lw.server.getViewerUrl(pdfUri)).uri
     const iframeSrcOrigin = `${uri.scheme}://${uri.authority}`
     const iframeSrcUrl = uri.toString(true)

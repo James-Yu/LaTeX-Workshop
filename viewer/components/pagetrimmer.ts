@@ -38,39 +38,25 @@ export function registerPageTrimmer() {
                     scaleSelect.selectedIndex = originalUserSelectIndex
                 }
             }
-            scaleSelect.dispatchEvent(ev)
             currentUserSelectScale = undefined
             originalUserSelectIndex = undefined
-            const viewer = document.getElementById('viewer') as HTMLElement
-            for ( const page of viewer.getElementsByClassName('page') ) {
-                for ( const layer of page.getElementsByClassName('annotationLayer') ) {
-                    for ( const secionOfAnnotation of layer.getElementsByTagName('section') ) {
-                        if (secionOfAnnotation.dataset.originalLeft !== undefined) {
-                            secionOfAnnotation.style.left = secionOfAnnotation.dataset.originalLeft
-                        }
-                    }
-                }
+            scaleSelect.dispatchEvent(ev)
+        } else {
+            for ( const opt of scaleSelect.options ) {
+                opt.disabled = true
             }
-            return
+            currentUserSelectScale = currentUserSelectScale ?? PDFViewerApplication.pdfViewer._currentScale
+            originalUserSelectIndex = originalUserSelectIndex ?? scaleSelect.selectedIndex
+            const opt = document.getElementById('trimOption') as HTMLOptionElement
+            opt.value = (currentUserSelectScale * trimScale).toString()
+            opt.selected = true
+            scaleSelect.dispatchEvent(ev)
         }
-        for ( const opt of scaleSelect.options ) {
-            opt.disabled = true
-        }
-        currentUserSelectScale = currentUserSelectScale ?? PDFViewerApplication.pdfViewer._currentScale
-        originalUserSelectIndex = originalUserSelectIndex ?? scaleSelect.selectedIndex
-        const opt = document.getElementById('trimOption') as HTMLOptionElement
-        opt.value = (currentUserSelectScale * trimScale).toString()
-        opt.selected = true
-        scaleSelect.dispatchEvent(ev)
     })
 }
 
 function trimPage(page: HTMLElement) {
     const trimScale = getTrimScale()
-    const layers = [
-        page.getElementsByClassName('textLayer')[0] as HTMLElement,
-        page.getElementsByClassName('annotationLayer')[0] as HTMLElement
-    ]
     const canvasWrapper = page.getElementsByClassName('canvasWrapper')[0] as HTMLElement
     const canvas = page.getElementsByTagName('canvas')[0]
     if ( !canvasWrapper || !canvas ) {
@@ -81,45 +67,26 @@ function trimPage(page: HTMLElement) {
     }
     const w = canvas.style.width
     const m = w.match(/(\d+)/)
-    if (m) {
-        // add -4px to ensure that no horizontal scroll bar appears.
-        const widthNum = Math.floor(Number(m[1])/trimScale) - 4
-        const width = widthNum + 'px'
-        page.style.width = width
-        canvasWrapper.style.width = width
-        const offsetX = - Number(m[1]) * (1 - 1/trimScale) / 2
-        canvas.style.left = offsetX + 'px'
-        canvas.style.position = 'relative'
-        canvas.setAttribute('data-is-trimmed', 'trimmed')
-        for (const layer of layers) {
-            if ( layer && layer.dataset.isTrimmed !== 'trimmed' ) {
-                layer.style.width = widthNum - offsetX + 'px'
-                layer.style.left = offsetX + 'px'
-                layer.setAttribute('data-is-trimmed', 'trimmed')
-            }
-        }
-        const annoSections = page.getElementsByTagName('section')
-        for ( const section of annoSections ) {
-            let originalLeft = section.style.left
-            if (section.dataset.originalLeft === undefined) {
-                section.setAttribute('data-original-left', section.style.left)
-            } else {
-                originalLeft = section.dataset.originalLeft
-            }
-            const mat = originalLeft.match(/([\d.]+)/)
-            if (mat) {
-                section.style.left = Number(mat[1]) - (1 - 1 / trimScale) / 2 * 100 + '%'
-            }
-        }
+    if (!m) {
+        return
     }
+    // add -4px to ensure that no horizontal scroll bar appears.
+    const rawWidth = Number(m[1])
+    const width = Math.floor(rawWidth / trimScale) // - 4
+    page.style.width = width + 'px'
+    const layers = [
+        page.getElementsByClassName('textLayer')[0] as HTMLElement,
+        page.getElementsByClassName('annotationLayer')[0] as HTMLElement,
+        canvas
+    ]
+    const offsetX = (rawWidth - width) / 2
+    layers.forEach(layer => {
+        layer.style.left = `-${offsetX}px`
+    })
 }
 
 function setObserverToTrim() {
     const observer = new MutationObserver(records => {
-        const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
-        if (trimSelect.selectedIndex <= 0) {
-            return
-        }
         records.forEach(record => {
             const page = record.target as HTMLElement
             trimPage(page)
