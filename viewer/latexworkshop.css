@@ -161,3 +161,9 @@ html[dir='rtl'] .findbar {
     display: none;
   }
 }
+
+.textLayer,
+.annotationLayer,
+.pdfViewer .page canvas {
+    left: calc((var(--scale-factor) * var(--unit-width)) * (1 / var(--trim-factor) - 1) / 2) !important;
+}

@@ -15,139 +15,80 @@ function getTrimScale() {
 }
 
 export function registerPageTrimmer() {
-    (document.getElementById('trimSelect') as HTMLElement).addEventListener('change', () => {
-        const trimScale = getTrimScale()
-        const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
-        const scaleSelect = document.getElementById('scaleSelect') as HTMLSelectElement
-        const ev = new Event('change')
-        if (trimSelect.selectedIndex <= 0) {
-            for ( const opt of scaleSelect.options ) {
-                opt.disabled = false
-            }
-            (document.getElementById('trimOption') as HTMLOptionElement).disabled = true;
-            (document.getElementById('trimOption') as HTMLOptionElement).hidden = true
-            if (originalUserSelectIndex !== undefined) {
-                /**
-                 * If the original scale is custom, selectedIndex === 4,
-                 * we use page-width, selectedIndex === 3.
-                 * There is no way to set the custom scale.
-                 */
-                if (originalUserSelectIndex === 4) {
-                    scaleSelect.selectedIndex = 3
-                } else {
-                    scaleSelect.selectedIndex = originalUserSelectIndex
-                }
-            }
-            currentUserSelectScale = undefined
-            originalUserSelectIndex = undefined
-            scaleSelect.dispatchEvent(ev)
-        } else {
-            for ( const opt of scaleSelect.options ) {
-                opt.disabled = true
-            }
-            currentUserSelectScale = currentUserSelectScale ?? PDFViewerApplication.pdfViewer._currentScale
-            originalUserSelectIndex = originalUserSelectIndex ?? scaleSelect.selectedIndex
-            const opt = document.getElementById('trimOption') as HTMLOptionElement
-            opt.value = (currentUserSelectScale * trimScale).toString()
-            opt.selected = true
-            scaleSelect.dispatchEvent(ev)
-        }
-    })
+    (document.getElementById('trimSelect') as HTMLElement).addEventListener('change', trimPages)
 }
 
-function trimPage(page: HTMLElement) {
+function trimPages() {
     const trimScale = getTrimScale()
-    const canvasWrapper = page.getElementsByClassName('canvasWrapper')[0] as HTMLElement
-    const canvas = page.getElementsByTagName('canvas')[0]
-    if ( !canvasWrapper || !canvas ) {
-        if (page.style.width !== '250px') {
-            page.style.width = '250px'
-        }
-        return
-    }
-    const w = canvas.style.width
-    const m = w.match(/(\d+)/)
-    if (!m) {
-        return
-    }
-    // add -4px to ensure that no horizontal scroll bar appears.
-    const rawWidth = Number(m[1])
-    const width = Math.floor(rawWidth / trimScale) // - 4
-    page.style.width = width + 'px'
-    const layers = [
-        page.getElementsByClassName('textLayer')[0] as HTMLElement,
-        page.getElementsByClassName('annotationLayer')[0] as HTMLElement,
-        canvas
-    ]
-    const offsetX = (rawWidth - width) / 2
-    layers.forEach(layer => {
-        layer.style.left = `-${offsetX}px`
-    })
-}
-
-function setObserverToTrim() {
-    const observer = new MutationObserver(records => {
-        records.forEach(record => {
-            const page = record.target as HTMLElement
-            trimPage(page)
-        })
-    })
     const viewer = document.getElementById('viewer') as HTMLElement
-    for( const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement> ){
-        if (page.dataset.isObserved !== 'observed') {
-            observer.observe(page, {attributes: true, childList: true, attributeFilter: ['style']})
-            page.setAttribute('data-is-observed', 'observed')
+    const prevTrim = Number(viewer.style.getPropertyValue('--trim-factor'))
+    const prevScale = Number(viewer.style.getPropertyValue('--scale-factor'))
+    viewer.style.setProperty('--scale-factor', `${prevScale / prevTrim * trimScale}`)
+    viewer.style.setProperty('--trim-factor', `${trimScale}`)
+    resizeDOM(viewer)
+
+    const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
+    const scaleSelect = document.getElementById('scaleSelect') as HTMLSelectElement
+    if (trimSelect.selectedIndex <= 0) {
+        for ( const opt of scaleSelect.options ) {
+            opt.disabled = false
         }
+        (document.getElementById('trimOption') as HTMLOptionElement).disabled = true;
+        (document.getElementById('trimOption') as HTMLOptionElement).hidden = true
+        if (originalUserSelectIndex !== undefined) {
+            /**
+             * If the original scale is custom, selectedIndex === 4,
+             * we use page-width, selectedIndex === 3.
+             * There is no way to set the custom scale.
+             */
+            if (originalUserSelectIndex === 4) {
+                scaleSelect.selectedIndex = 3
+            } else {
+                scaleSelect.selectedIndex = originalUserSelectIndex
+            }
+        }
+        currentUserSelectScale = undefined
+        originalUserSelectIndex = undefined
+    } else {
+        for ( const opt of scaleSelect.options ) {
+            opt.disabled = true
+        }
+        currentUserSelectScale = currentUserSelectScale ?? PDFViewerApplication.pdfViewer._currentScale
+        originalUserSelectIndex = originalUserSelectIndex ?? scaleSelect.selectedIndex
+        const opt = document.getElementById('trimOption') as HTMLOptionElement
+        opt.value = (currentUserSelectScale * trimScale).toString()
+        opt.selected = true
     }
 }
 
-// We need to recaluculate scale and left offset for trim mode on each resize event.
-window.addEventListener('resize', () =>{
-    const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
-    const ind = trimSelect.selectedIndex
-    if (!trimSelect || ind <= 0) {
-        return
+window.addEventListener('resize', initCSS)
+
+function initCSS() {
+    const viewer = document.getElementById('viewer') as HTMLElement
+    resizeDOM(viewer)
+}
+
+function resizeDOM(viewer: HTMLElement) {
+    for (const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement>){
+        page.style.setProperty('--unit-width', (page.style.width.match(/[0-9]+/) || ['0'])[0] + 'px')
+        page.style.width = page.style.width.includes('--trim-factor') ? page.style.width : page.style.width.slice(0, -1) + ' / var(--trim-factor))'
+
+        const canvas = page.getElementsByTagName('canvas')[0]
+        const text = page.getElementsByClassName('textLayer')[0] as HTMLElement | undefined
+        if (canvas && text) {
+            canvas.style.height = text.style.height
+            canvas.style.width = text.style.width
+        }
     }
-    trimSelect.selectedIndex = 0
-    const e = new Event('change')
-    trimSelect.dispatchEvent(e)
-    trimSelect.selectedIndex = ind
-    trimSelect.dispatchEvent(e)
-})
+}
 
 export class PageTrimmer {
-    private readonly lwApp: ILatexWorkshopPdfViewer
-
     constructor(lwApp: ILatexWorkshopPdfViewer) {
-        this.lwApp = lwApp
-        // Set observers after a pdf file is loaded in the first time.
-        this.lwApp.onPagesLoaded(setObserverToTrim, {once: true})
-        // Skip the first loading
-        this.lwApp.onPagesInit(() => {
-            // Set observers each time a pdf file is refresed.
-            this.lwApp.onPagesInit(setObserverToTrim)
-        }, {once: true})
-
-        this.lwApp.onPagesLoaded(() => {
-            // const container = document.getElementById('trimSelectContainer') as HTMLElement
-            const select = document.getElementById('trimSelect') as HTMLSelectElement
-
-            // tweak UI https://github.com/James-Yu/LaTeX-Workshop/pull/979
-            // container.setAttribute('style', 'display: inherit;')
-            // if (container.clientWidth > 0) {
-            //     select.setAttribute('style', 'min-width: inherit;')
-            //     const width = select.clientWidth + 8
-            //     select.setAttribute('style', 'min-width: ' + (width + 22) + 'px;')
-            //     container.setAttribute('style', 'min-width: ' + width + 'px; ' + 'max-width: ' + width + 'px;')
-            // }
-
-            if (select.selectedIndex <= 0) {
-                return
-            }
+        lwApp.onPagesLoaded(() => {
             const viewer = document.getElementById('viewer') as HTMLElement
-            for( const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement> ){
-                trimPage(page)
-            }
+            viewer.style.setProperty('--trim-factor', '1')
+            initCSS()
+            trimPages()
         })
     }
 }
