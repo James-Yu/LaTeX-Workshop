@@ -1,7 +1,7 @@
 import {IConnectionPort, createConnectionPort} from './components/connection.js'
 import {editHTML} from './components/htmleditor.js'
 import {SyncTex} from './components/synctex.js'
-import {PageTrimmer, registerPageTrimmer} from './components/pagetrimmer.js'
+import {getTrimScale, registerPageTrimmer} from './components/pagetrimmer.js'
 import * as utils from './components/utils.js'
 import {ExternalPromise} from './components/externalpromise.js'
 import {ViewerHistory} from './components/viewerhistory.js'
@@ -16,7 +16,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly documentTitle: string = ''
     readonly embedded = window.parent !== window
     readonly encodedPdfFilePath: string
-    readonly pageTrimmer: PageTrimmer
     readonly pdfFileUri: string
     readonly synctex: SyncTex
     readonly viewerHistory: ViewerHistory
@@ -56,7 +55,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.viewerHistory = new ViewerHistory(this)
         this.connectionPort = createConnectionPort(this)
         this.synctex = new SyncTex(this)
-        this.pageTrimmer = new PageTrimmer(this)
 
         this.setupConnectionPort()
 
@@ -76,7 +74,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.startSendingState()
         void this.startReceivingPanelManagerResponse()
 
-        registerPageTrimmer()
+        registerPageTrimmer(this)
 
         this.pdfPagesLoaded = new Promise((resolve) => {
             this.onPagesLoaded(() => resolve(), {once: true})
@@ -285,10 +283,15 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         const page = document.getElementsByClassName('page')[position.page - 1] as HTMLElement
         const maxScrollX = window.innerWidth * 0.9
         const minScrollX = window.innerWidth * 0.1
-        let scrollX = page.offsetLeft + pos[0]
+        let scrollX = page.offsetLeft
+
+        const canvas = page.getElementsByTagName('canvas')[0]
+        scrollX += pos[0] * canvas.offsetWidth / page.offsetWidth + canvas.offsetLeft
+
         scrollX = Math.min(scrollX, maxScrollX)
         scrollX = Math.max(scrollX, minScrollX)
-        const scrollY = page.offsetTop + page.offsetHeight - pos[1]
+        const scrollY = page.offsetTop + page.offsetHeight - pos[1] * getTrimScale()
+        console.log(scrollX, scrollY, pos[1])
 
         // set positions before and after SyncTeX to viewerHistory
         this.viewerHistory.set(container.scrollTop)

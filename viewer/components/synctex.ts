@@ -1,4 +1,5 @@
 import type {ILatexWorkshopPdfViewer, IPDFViewerApplication} from './interface.js'
+import { getTrimScale } from './pagetrimmer.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 
@@ -32,11 +33,10 @@ export class SyncTex {
         let left = e.pageX - pageDom.offsetLeft + viewerContainer.scrollLeft
         const top = e.pageY - pageDom.offsetTop + viewerContainer.scrollTop
         if (trimSelect.selectedIndex > 0) {
-            const m = canvasDom.style.left.match(/-(.*)px/)
-            const offsetLeft = m ? Number(m[1]) : 0
-            left += offsetLeft
+            left = (left - canvasDom.offsetLeft) / getTrimScale()
         }
-        const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvasDom.offsetHeight - top)
+        const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, (pageDom.offsetHeight - top) / getTrimScale())
+        console.log(top, pos)
         this.lwApp.send({type: 'reverse_synctex', pdfFileUri: this.lwApp.pdfFileUri, pos, page, textBeforeSelection, textAfterSelection})
     }
 
