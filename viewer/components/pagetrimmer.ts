@@ -32,8 +32,8 @@ function setTrimScale() {
     const trimScale = calcTrimScale()
     const viewer = document.getElementById('viewer') as HTMLElement
     viewer.style.setProperty('--trim-factor', `${trimScale}`)
-    const realScale = trimScale * Number(viewer.style.getPropertyValue('--scale-factor'))
-    PDFViewerApplication.pdfViewer.refresh(false, realScale.toString())
+    const realScale = trimScale * Number(viewer.style.getPropertyValue('--scale-factor')) * 2
+    PDFViewerApplication.pdfViewer.refresh(false, { scale: realScale.toString() })
 }
 
 function resizeDOM() {
