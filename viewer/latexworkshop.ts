@@ -291,7 +291,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         scrollX = Math.min(scrollX, maxScrollX)
         scrollX = Math.max(scrollX, minScrollX)
         const scrollY = page.offsetTop + page.offsetHeight - pos[1] * getTrimScale()
-        console.log(scrollX, scrollY, pos[1])
 
         // set positions before and after SyncTeX to viewerHistory
         this.viewerHistory.set(container.scrollTop)

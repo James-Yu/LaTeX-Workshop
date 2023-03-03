@@ -36,7 +36,6 @@ export class SyncTex {
             left = (left - canvasDom.offsetLeft) / getTrimScale()
         }
         const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, (pageDom.offsetHeight - top) / getTrimScale())
-        console.log(top, pos)
         this.lwApp.send({type: 'reverse_synctex', pdfFileUri: this.lwApp.pdfFileUri, pos, page, textBeforeSelection, textAfterSelection})
     }
 

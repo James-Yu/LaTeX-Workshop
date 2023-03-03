@@ -41,6 +41,7 @@ function resizeDOM() {
     for (const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement>){
         page.style.setProperty('--unit-width', (page.style.width.match(/[0-9]+/) || ['0'])[0] + 'px')
         page.style.setProperty('--unit-height', (page.style.height.match(/[0-9]+/) || ['0'])[0] + 'px')
+        page.style.width = page.style.width.replace('px)', 'px - 1px )')
         // calc(var(--scale-factor) * 792px)
         page.style.height = page.style.height.replace('px)', 'px * var(--trim-factor))')
     }
