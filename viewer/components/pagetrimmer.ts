@@ -60,9 +60,12 @@ function repositionDOM() {
         if (parseFloat(anno.style.left) <= 50) {
             continue
         }
-        for (const popup of anno.getElementsByClassName('popupWrapper') as HTMLCollectionOf<HTMLElement>) {
-            popup.style.right = '100%'
-            popup.style.left = ''
+        for (const popupWrapper of anno.getElementsByClassName('popupWrapper') as HTMLCollectionOf<HTMLElement>) {
+            popupWrapper.style.right = '100%'
+            popupWrapper.style.left = ''
+        }
+        for (const popup of anno.getElementsByClassName('popup') as HTMLCollectionOf<HTMLElement>) {
+            popup.style.right = '0px'
         }
     }
 }
