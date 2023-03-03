@@ -67,7 +67,8 @@ export interface IPDFViewerApplication {
         }[],
         currentScaleValue: string,
         scrollMode: number,
-        spreadMode: number
+        spreadMode: number,
+        refresh(noUpdate?: boolean, updateArgs?: any): void
     },
     pdfCursorTools: {
         handTool: {
