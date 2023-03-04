@@ -574,12 +574,21 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
             // Chrome's usual Alt-Left/Right (Command-Left/Right on OSX) for history
             // Back/Forward don't work in the embedded viewer, so we simulate them.
-            if (this.embedded && ((evt.altKey && !navigator.userAgent.includes('Mac OS')) || (evt.metaKey && navigator.userAgent.includes('Mac OS')))) {
+            if (this.embedded && (
+                (evt.altKey && !navigator.userAgent.includes('Mac OS')) ||
+                (evt.metaKey && navigator.userAgent.includes('Mac OS'))
+            )) {
                 if (evt.key === 'ArrowLeft') {
                     this.viewerHistory.back()
                 } else if(evt.key === 'ArrowRight') {
                     this.viewerHistory.forward()
                 }
+            }
+            if (evt.key === 'Backspace' && (evt.target as HTMLElement).nodeName !== 'INPUT') {
+                this.viewerHistory.back()
+            }
+            if (evt.key === 'Backspace' && evt.shiftKey && (evt.target as HTMLElement).nodeName !== 'INPUT') {
+                this.viewerHistory.forward()
             }
         });
 
