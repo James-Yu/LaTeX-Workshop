@@ -479,11 +479,21 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             clearInterval(this.hideToolbarInterval)
         }
         const d = document.getElementsByClassName('toolbar')[0]
-        d.className = d.className.replace(' hide', '') + (animate ? '' : ' notransition')
+        if (animate) {
+            d.classList.remove('notransition')
+        } else {
+            d.classList.add('notransition')
+        }
+        d.classList.remove('hide')
 
         this.hideToolbarInterval = setInterval(() => {
             if(!PDFViewerApplication.findBar.opened && !PDFViewerApplication.pdfSidebar.isOpen && !PDFViewerApplication.secondaryToolbar.isOpen) {
-                d.className = d.className.replace(' notransition', '') + ' hide'
+                if (animate) {
+                    d.classList.remove('notransition')
+                } else {
+                    d.classList.add('notransition')
+                }
+                d.classList.add('hide')
                 clearInterval(this.hideToolbarInterval)
             }
         }, 3000)

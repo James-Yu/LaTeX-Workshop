@@ -14,6 +14,7 @@ with open(args.web + '/viewer.html', 'rt') as fin:
                     .replace('''<link rel="stylesheet" href="viewer.css">''', '''<link rel="stylesheet" href="viewer.css">\n    <link rel="stylesheet" href="latexworkshop.css">''')
                     .replace('''<script src="../build/pdf.js"></script>''', '''<script src="build/pdf.js" defer></script>''')
                     .replace('''<script src="viewer.js"></script>''', '''<script src="out/viewer/latexworkshop.js" type="module"></script>''')
+                    .replace('''<div class="toolbar">''', '''<div class="toolbar hide notransition">''')
             )
 
 with open(args.web + '/viewer.js', 'rt') as fin:

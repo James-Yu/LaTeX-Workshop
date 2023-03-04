@@ -1,6 +1,6 @@
 export function editHTML() {
-    document.getElementById('sidebarResizer')?.classList.add('hidden')
-    document.getElementsByClassName('toolbar')[0]?.classList.add('hide')
+    // document.getElementById('sidebarResizer')?.classList.add('hidden')
+    document.getElementsByClassName('toolbar')[0]?.classList.remove('notransition')
     document.getElementById('firstPage')?.previousElementSibling?.classList.add('visibleLargeView')
 
     const template = document.createElement('template')
@@ -34,13 +34,16 @@ export function editHTML() {
         }
     }
 
+    document.getElementById('pageActualOption')?.remove()
+    console.log(document.getElementById('scaleSelect')?.offsetWidth)
+
     template.innerHTML =
 `<span id="trimSelectContainer" class="dropdownToolbarButton">
 <select id="trimSelect" title="Trim" tabindex="23" >
-  <option title="" value="0.0" selected="selected" >No page trimming</option>
-  <option title="" value="0.05" >Trim 5% at margin</option>
-  <option title="" value="0.10" >Trim 10% at margin</option>
-  <option title="" value="0.15" >Trim 15% at margin</option>
+  <option title="" value="0.0" selected="selected" >No Trim</option>
+  <option title="" value="0.05" >Trim 5%</option>
+  <option title="" value="0.10" >Trim 10%</option>
+  <option title="" value="0.15" >Trim 15%</option>
 </select>
 </span>`
     anchor = document.getElementById('scaleSelectContainer')
