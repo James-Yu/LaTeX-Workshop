@@ -34,14 +34,6 @@ export function editHTML() {
         }
     }
 
-    template.innerHTML = '<option id="trimOption" title="" disabled="disabled" hidden="true"> Trimming </option>'
-    anchor = document.getElementById('scaleSelect')
-    if (anchor) {
-        for (const node of template.content.childNodes) {
-            anchor.appendChild(node)
-        }
-    }
-
     template.innerHTML =
 `<span id="trimSelectContainer" class="dropdownToolbarButton">
 <select id="trimSelect" title="Trim" tabindex="23" >
