@@ -21,10 +21,10 @@ export function editHTML() {
 
     template.innerHTML =
 `<!-- History back button, useful in the embedded viewer -->
-<button class="toolbarButton findPrevious" title="Back" id="historyBack">
+<button class="toolbarButton findPrevious" title="Back (←)" id="historyBack">
   <span>Back</span>
 </button>
-<button class="toolbarButton findNext" title="Forward" id="historyForward">
+<button class="toolbarButton findNext" title="Forward (⇧←)" id="historyForward">
   <span>Forward</span>
 </button>`
     anchor = document.getElementById('sidebarToggle')?.nextElementSibling
