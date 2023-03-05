@@ -29,6 +29,11 @@ export interface ILatexWorkshopPdfViewer {
      */
     onPagesLoaded(cb: () => unknown, option?: {once: boolean}): IDisposable,
 
+    /**
+     * `cb` is called after the a PDF document is rendered.
+     */
+    onPageRendered(cb: () => unknown, option?: {once: boolean}): IDisposable,
+
     send(message: ClientRequest): void
 }
 
@@ -36,6 +41,7 @@ export type PdfjsEventName
     = 'documentloaded'
     | 'pagesinit'
     | 'pagesloaded'
+    | 'pagerendered'
     | 'scroll'
     | 'scalechanged'
     | 'zoomin'

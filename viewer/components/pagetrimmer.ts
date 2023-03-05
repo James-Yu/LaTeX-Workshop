@@ -13,8 +13,17 @@ export function registerPageTrimmer(lwApp: ILatexWorkshopPdfViewer) {
         repositionDOM()
         setTrimScale()
     })
-    window.addEventListener('resize', () => {
-        refreshCanvas()
+    let prevScale = 0
+    lwApp.onPageRendered(() => {
+        const trimScale = calcTrimScale()
+        const viewer = document.getElementById('viewer') as HTMLElement
+        const realScale = trimScale * Number(viewer.style.getPropertyValue('--scale-factor'))
+        console.log(prevScale, realScale)
+        if (realScale === prevScale) {
+            return
+        }
+        prevScale = realScale
+        refreshCanvas(realScale, viewer)
     })
     const trimSelect = document.getElementById('trimSelect') as HTMLElement
     trimSelect.addEventListener('change', setTrimScale)
