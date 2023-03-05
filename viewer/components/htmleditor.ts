@@ -1,6 +1,6 @@
 export function editHTML() {
     // document.getElementById('sidebarResizer')?.classList.add('hidden')
-    document.getElementsByClassName('toolbar')[0]?.classList.remove('notransition')
+    // document.getElementsByClassName('toolbar')[0]?.classList.remove('notransition')
     document.getElementById('firstPage')?.previousElementSibling?.classList.add('visibleLargeView')
 
     const template = document.createElement('template')

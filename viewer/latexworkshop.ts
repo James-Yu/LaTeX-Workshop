@@ -50,6 +50,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         document.title = this.documentTitle
         this.pdfFileUri = pack.pdfFileUri
 
+        this.showToolbar(true)
         editHTML()
 
         this.viewerHistory = new ViewerHistory(this)
