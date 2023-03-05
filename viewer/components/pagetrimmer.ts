@@ -16,6 +16,9 @@ export function registerPageTrimmer(lwApp: ILatexWorkshopPdfViewer) {
     let prevScale = 0
     lwApp.onPageRendered(() => {
         const trimScale = calcTrimScale()
+        if (trimScale === 1.0) {
+            return
+        }
         const viewer = document.getElementById('viewer') as HTMLElement
         const realScale = trimScale * Number(viewer.style.getPropertyValue('--scale-factor'))
         console.log(prevScale, realScale)
