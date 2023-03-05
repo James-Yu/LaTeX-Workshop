@@ -209,5 +209,5 @@ suite('Multi-root workspace test suite', () => {
         await lw.manager.findRoot()
         await updated
         assert.strictEqual(lw.structureViewer.getTreeData().length, 0)
-    })
+    }, ['linux'])
 })
