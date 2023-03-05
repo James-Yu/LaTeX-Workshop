@@ -35,7 +35,6 @@ export function editHTML() {
     }
 
     document.getElementById('pageActualOption')?.remove()
-    console.log(document.getElementById('scaleSelect')?.offsetWidth)
 
     template.innerHTML =
 `<span id="trimSelectContainer" class="dropdownToolbarButton">
