@@ -34,6 +34,11 @@ export interface ILatexWorkshopPdfViewer {
      */
     onPageRendered(cb: () => unknown, option?: {once: boolean}): IDisposable,
 
+    /**
+     * `cb` is called after the view is (re-)rendered.
+     */
+    onViewUpdated(cb: (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => unknown, option?: {once: boolean}): IDisposable,
+
     send(message: ClientRequest): void
 }
 
@@ -50,11 +55,12 @@ export type PdfjsEventName
     | 'scrollmodechanged'
     | 'spreadmodechanged'
     | 'pagenumberchanged'
+    | 'updateviewarea'
 
 export interface IPDFViewerApplication {
     eventBus: {
-        on: (eventName: PdfjsEventName, listener: () => void) => void,
-        off: (eventName: PdfjsEventName, listener: () => void) => void,
+        on: (eventName: PdfjsEventName, listener: (payload: any) => void) => void,
+        off: (eventName: PdfjsEventName, listener: (payload: any) => void) => void,
         dispatch: (eventName: string) => void
     },
     findBar: {
@@ -63,19 +69,7 @@ export interface IPDFViewerApplication {
     },
     initializedPromise: Promise<void>,
     isViewerEmbedded: boolean,
-    pdfViewer: {
-        _currentScale: number,
-        _pages: {
-            viewport: {
-                convertToViewportPoint(x: number, y: number): [number, number]
-            },
-            getPagePoint(x: number, y: number): [number, number]
-        }[],
-        currentScaleValue: string,
-        scrollMode: number,
-        spreadMode: number,
-        refresh(noUpdate?: boolean, updateArgs?: any): void
-    },
+    pdfViewer: IPDFViewer,
     pdfCursorTools: {
         handTool: {
             activate(): void,
@@ -92,6 +86,31 @@ export interface IPDFViewerApplication {
         isOpen: boolean
     },
     open(filePath: string): Promise<void>
+}
+
+export interface IPDFViewer {
+    _currentScale: number,
+    _pages: {
+        viewport: {
+            convertToViewportPoint(x: number, y: number): [number, number]
+        },
+        getPagePoint(x: number, y: number): [number, number]
+    }[],
+    _location: IPDFViewerLocation,
+    currentScaleValue: string,
+    scrollMode: number,
+    spreadMode: number,
+    refresh(noUpdate?: boolean, updateArgs?: any): void,
+    update({scale = 0, rotation = null, optionalContentConfigPromise = null, drawingDelay = -1}): void
+}
+
+export interface IPDFViewerLocation {
+    pageNumber: number,
+    scale: number | string,
+    top: number,
+    left: number,
+    rotation: number,
+    pdfOpenParams: string
 }
 
 export interface IPDFViewerApplicationOptions {

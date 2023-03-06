@@ -27,6 +27,9 @@ export function registerPageTrimmer(lwApp: ILatexWorkshopPdfViewer) {
         prevScale = realScale
         refreshCanvas(realScale, viewer)
     })
+    lwApp.onViewUpdated(payload => {
+        console.log(payload)
+    })
     const trimSelect = document.getElementById('trimSelect') as HTMLElement
     trimSelect.addEventListener('change', setTrimScale)
     const scaleSelect = document.getElementById('scaleSelect') as HTMLSelectElement

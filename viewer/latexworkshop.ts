@@ -6,7 +6,7 @@ import * as utils from './components/utils.js'
 import {ExternalPromise} from './components/externalpromise.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
-import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
+import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions, IPDFViewer, IPDFViewerLocation } from './components/interface.js'
 import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState} from '../types/latex-workshop-protocol-types/index'
 
 declare const PDFViewerApplication: IPDFViewerApplication
@@ -150,6 +150,20 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             eventBus.on(pageRenderedEvent, cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off(pageRenderedEvent, cb0) }
+    }
+
+    onViewUpdated(cb: (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => unknown, option?: {once: boolean}): IDisposable {
+        const updateViewAreaEvent = 'updateviewarea'
+        const cb0 = (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => {
+            cb(payload)
+            if (option?.once) {
+                PDFViewerApplication.eventBus.off(updateViewAreaEvent, cb0)
+            }
+        }
+        void this.getEventBus().then(eventBus => {
+            eventBus.on(updateViewAreaEvent, cb0)
+        })
+        return { dispose: () => PDFViewerApplication.eventBus.off(updateViewAreaEvent, cb0) }
     }
 
     send(message: ClientRequest) {
