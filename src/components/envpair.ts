@@ -1,6 +1,9 @@
 import * as vscode from 'vscode'
+import * as lw from '../lw'
 import * as utils from '../utils/utils'
 import { getLogger } from './logger'
+import { UtensilsParser } from './parser/syntax'
+import { latexParser } from 'latex-utensils'
 
 const logger = getLogger('EnvPair')
 
@@ -14,13 +17,254 @@ function regexpAllMatches(str: string, reg: RegExp) {
     return res
 }
 
+enum SearchDirection { DOWNWARDS, UPWARDS }
+enum PairType { ENVIRONMENT, DISPLAYMATH, INLINEMATH, COMMAND}
+
+interface LaTeXCommandsPair {
+    type: PairType,
+    start: RegExp,
+    end: RegExp
+}
+
+interface PairElement {
+    pairType: PairType,
+    direction: SearchDirection,
+    matching: RegExp,
+    pos: vscode.Position,
+    length: number,
+    envName?: string
+}
+
 interface MatchEnv {
     name: string,
     type: string, // 'begin', 'end', '[', ']', '(', ')'
     pos: vscode.Position
 }
 
+class CommandPair {
+    public children: CommandPair[] = []
+    public parent: CommandPair | undefined = undefined // The parent of top-level pairs must be undefined
+
+    constructor(
+        public type: PairType,
+        public start: string,
+        public startPosition: vscode.Position,
+        public end?: string,
+        public endPosition?: vscode.Position,
+        ) {}
+
+}
+
 export class EnvPair {
+    private static readonly delimiters: LaTeXCommandsPair[] = [
+        {type: PairType.ENVIRONMENT, start: /\\begin\{([\w\d]+\*?)\}/, end: /\\end\{([\w\d]+\*?)/},
+        {type: PairType.INLINEMATH, start: /\\\(/, end: /\\\)/},
+        {type: PairType.DISPLAYMATH, start: /\\\[/, end: /\\\]/},
+        {type: PairType.COMMAND, start: /\\if\w*/, end: /\\fi/},
+        {type: PairType.COMMAND, start: /\\if\w*/, end: /\\else/},
+        {type: PairType.COMMAND, start: /\\else/, end: /\\fi/}
+    ]
+
+    constructor() {}
+
+    private static tryDelimiter(delimiter: LaTeXCommandsPair, direction: SearchDirection, line: string, pos: vscode.Position, startingIndex: number): PairElement | null {
+        const begin = direction === SearchDirection.DOWNWARDS ? delimiter.start : delimiter.end
+        const end = direction === SearchDirection.DOWNWARDS ? delimiter.end : delimiter.start
+
+        const result = line.match(begin)
+        if (result) {
+            const matchLength = result[0].length
+            if (startingIndex + matchLength >= pos.character) {
+                return {
+                    pairType: delimiter.type,
+                    direction: SearchDirection.DOWNWARDS,
+                    matching: end,
+                    length: matchLength,
+                    pos: new vscode.Position(pos.line, startingIndex)
+                }
+            }
+        }
+        return null
+    }
+
+    private static tokenizeLine(document: vscode.TextDocument, pos: vscode.Position): PairElement[] {
+        const line = utils.stripCommentsAndVerbatim(document.lineAt(pos).text)
+        const ind = pos.character
+        const results: PairElement[] = []
+        if (ind > line.length) {
+            return results
+        }
+        const lineUpToInd = line.slice(0, ind + 1)
+        const startInd = lineUpToInd.lastIndexOf('\\')
+        const lineFromLastBackslash = line.slice(startInd)
+
+        for(const delimiter of EnvPair.delimiters) {
+            const result = EnvPair.tryDelimiter(delimiter, SearchDirection.DOWNWARDS, lineFromLastBackslash, pos, startInd)
+            if (result) {
+                results.push(result)
+            }
+        }
+
+        for(const delimiter of EnvPair.delimiters) {
+            const result = EnvPair.tryDelimiter(delimiter, SearchDirection.UPWARDS, lineFromLastBackslash, pos, startInd)
+            if (result) {
+                results.push(result)
+            }
+        }
+        return results
+    }
+
+    private static async buildCommandPairTree(doc: vscode.TextDocument): Promise<CommandPair[]> {
+        let ast: latexParser.LatexAst | undefined = await UtensilsParser.parseLatex(doc.getText()).catch((e) => {
+            if (latexParser.isSyntaxError(e)) {
+                const line = e.location.start.line
+                logger.log(`Error parsing dirty AST of active editor at line ${line}. Fallback to cache.`)
+            }
+            return undefined
+        })
+
+        if (!ast) {
+            await lw.cacher.promise(doc.fileName)
+            ast = lw.cacher.get(doc.fileName)?.ast
+        }
+
+        if (!ast) {
+            logger.log(`Error loading AST during structuring: ${doc.fileName} .`)
+            return []
+        }
+
+        const commandPairs: CommandPair[] = []
+        let parentPair: CommandPair | undefined = undefined
+        for (const node of ast.content) {
+            parentPair = this.buildCommandPairTreeFromNode(node, parentPair, commandPairs)
+        }
+        return commandPairs
+    }
+
+    private static buildCommandPairTreeFromNode(node: latexParser.Node, parentCommandPair: CommandPair | undefined, commandPairs: CommandPair[]): CommandPair | undefined {
+        if (latexParser.isEnvironment(node) || latexParser.isMathEnv(node) || latexParser.isMathEnvAligned(node)) {
+            const name = node.name
+            let currentCommandPair: CommandPair | undefined
+            // If we encounter `\begin{document}`, clear commandPairs
+            if (name === 'document') {
+                commandPairs.length = 0
+                currentCommandPair = undefined
+                parentCommandPair = undefined
+            } else {
+                const beginName = `\\begin{${name}}`
+                const endName = `\\end{${name}}`
+                const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
+                const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1 + endName.length)
+                currentCommandPair = new CommandPair(PairType.ENVIRONMENT, beginName, beginPos, endName, endPos)
+                if (parentCommandPair) {
+                    currentCommandPair.parent = parentCommandPair
+                    parentCommandPair.children.push(currentCommandPair)
+                } else {
+                    commandPairs.push(currentCommandPair)
+                }
+                parentCommandPair = currentCommandPair
+            }
+            for (const subnode of node.content) {
+                parentCommandPair = EnvPair.buildCommandPairTreeFromNode(subnode, parentCommandPair, commandPairs)
+            }
+            parentCommandPair = currentCommandPair?.parent
+        } else if (latexParser.isDisplayMath(node)) {
+            const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
+            const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1 + 2) // 2 = '\\]'.length
+            const currentCommandPair = new CommandPair(PairType.DISPLAYMATH, '\\[', beginPos, '\\]', endPos)
+            commandPairs.push(currentCommandPair)
+        } else if (latexParser.isInlienMath(node)) {
+            const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
+            const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1 + 2)  // 2 = '\\)'.length
+            const currentCommandPair = new CommandPair(PairType.INLINEMATH, '\\(', beginPos, '\\)', endPos)
+            commandPairs.push(currentCommandPair)
+        } else if (latexParser.isCommand(node)) {
+            const name = '\\' + node.name
+            for (const pair of EnvPair.delimiters) {
+                if (pair.type === PairType.COMMAND && name.match(pair.end) && parentCommandPair && parentCommandPair.start.match(pair.start)) {
+                    parentCommandPair.end = name
+                    parentCommandPair.endPosition = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1 + parentCommandPair.end.length)
+                    parentCommandPair = parentCommandPair.parent
+                    // Do not return after finding an 'end' token as it can also be the start of an other pair.
+                }
+            }
+            for (const pair of EnvPair.delimiters) {
+                if (pair.type === PairType.COMMAND && name.match(pair.start)) {
+                    const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
+                    const currentCommandPair = new CommandPair(PairType.COMMAND, name, beginPos)
+                    if (parentCommandPair) {
+                        currentCommandPair.parent = parentCommandPair
+                        parentCommandPair.children.push(currentCommandPair)
+                    } else {
+                        parentCommandPair = currentCommandPair
+                        commandPairs.push(currentCommandPair)
+                    }
+                    return currentCommandPair
+                }
+            }
+        }
+        return parentCommandPair
+    }
+
+
+    /**
+     * Search upwards or downwards for a begin or end environment captured by `pattern`.
+     * The environment can also be \[...\] or \(...\)
+     *
+     * @param pattern A regex that matches begin or end environments. Note that the regex
+     * must capture the delimiters
+     * @param dir +1 to search downwards, -1 to search upwards
+     * @param pos starting position (e.g. cursor position)
+     * @param doc the document in which the search is performed
+     * @param splitSubstring where to split the string if dir = 1 (default at end of `\begin{...}`)
+     */
+    static async locateSurroundingPair(pos: vscode.Position, doc: vscode.TextDocument): Promise<CommandPair[]> {
+        const commandPairTree = await EnvPair.buildCommandPairTree(doc)
+        const matchedCommandPairs = this.walkThruCommandPairTree(pos, commandPairTree)
+        return matchedCommandPairs
+    }
+
+    static walkThruCommandPairTree(pos: vscode.Position, commandPairTree: CommandPair[]): CommandPair[] {
+        const matchedCommandPairs: CommandPair[] = []
+        for (const commandPair of commandPairTree) {
+            if (commandPair.startPosition.isBeforeOrEqual(pos)) {
+                if (commandPair.endPosition && commandPair.endPosition.isAfter(pos)) {
+                    matchedCommandPairs.push(commandPair)
+                    if (commandPair.children) {
+                        matchedCommandPairs.push(...EnvPair.walkThruCommandPairTree(pos, commandPair.children))
+                    }
+                }
+            }
+        }
+        return matchedCommandPairs
+    }
+
+    gotoPair() {
+        const editor = vscode.window.activeTextEditor
+        if (!editor || editor.document.languageId !== 'latex') {
+            return
+        }
+        const curPos = editor.selection.active
+        const document = editor.document
+
+        void EnvPair.locateSurroundingPair(curPos, document)
+    }
+
+    envNameAction(action: 'selection'|'cursor'|'equationToggle') {
+
+    }
+
+    selectEnv() {
+
+    }
+
+    closeEnv() {
+
+    }
+
+}
+
+export class OldEnvPair {
     private readonly beginLength = '\\begin'.length
     private readonly endLength = '\\end'.length
     private readonly delimiters = Object.create(null) as { [key: string]: {end: string, splitCharacter: string} }
