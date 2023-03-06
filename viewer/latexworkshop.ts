@@ -50,7 +50,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         document.title = this.documentTitle
         this.pdfFileUri = pack.pdfFileUri
 
-        this.showToolbar(true)
+        this.showToolbar(true, 1000)
         editHTML()
 
         this.viewerHistory = new ViewerHistory(this)
@@ -489,7 +489,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         })
     }
 
-    private showToolbar(animate: boolean) {
+    private showToolbar(animate: boolean, delay: number = 1000) {
         if (this.hideToolbarInterval) {
             clearInterval(this.hideToolbarInterval)
         }
@@ -511,7 +511,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 d.classList.add('hide')
                 clearInterval(this.hideToolbarInterval)
             }
-        }, 3000)
+        }, delay)
     }
 
     // Since the width of the selector of scaling depends on each locale,
