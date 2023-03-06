@@ -1,4 +1,4 @@
-import type { ILatexWorkshopPdfViewer, IPDFViewerApplication } from './interface.js'
+import type { ILatexWorkshopPdfViewer, IPDFViewer, IPDFViewerApplication, IPDFViewerLocation } from './interface.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 
@@ -8,16 +8,21 @@ export function getTrimScale() {
 }
 
 export function registerPageTrimmer(lwApp: ILatexWorkshopPdfViewer) {
-    lwApp.onPagesLoaded(() => {
+    lwApp.onEvent('pagesloaded', () => {
         resizeDOM()
         repositionDOM()
+    })
+    lwApp.onEvent('updateviewarea', (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => {
+        const pageNumber = payload.location.pageNumber
+        const canvas = document.getElementsByClassName('canvasWrapper')[pageNumber - 1] as HTMLElement
+        const text = document.getElementsByClassName('textLayer')[pageNumber - 1] as HTMLElement
+        canvas.style.width = text.offsetWidth + 'px'
+        canvas.style.height = text.offsetHeight + 'px'
     })
     lwApp.onEvent('spreadmodechanged', setTrimScale)
     const trimSelect = document.getElementById('trimSelect') as HTMLElement
     trimSelect.addEventListener('change', setTrimScale)
-    window.addEventListener('resize', () => {
-        setTrimScale()
-    })
+    window.addEventListener('resize', setTrimScale)
 }
 
 function calcTrimScale() {
@@ -44,7 +49,6 @@ function setTrimScale() {
         }
     }
     select.dispatchEvent(new Event('change'))
-    PDFViewerApplication.pdfViewer.refresh(false, { scale: select.value})
 }
 
 function calcScale(index: number) {
@@ -63,7 +67,7 @@ function calcScale(index: number) {
         [hPadding, vPadding] = [vPadding, hPadding]
     }
     const container = document.getElementById('viewerContainer') as HTMLElement
-    const pageWidthScale = (container.clientWidth - hPadding - pdf._pageWidthScaleFactor * 2) / currentPage.width * currentPage.scale / pdf._pageWidthScaleFactor
+    const pageWidthScale = (container.clientWidth - hPadding - (pdf._pageWidthScaleFactor - 1) * 18 - 2) / currentPage.width * currentPage.scale / pdf._pageWidthScaleFactor
     const pageHeightScale = (container.clientHeight - vPadding) / currentPage.height * currentPage.scale
     const horizontalScale = currentPage.width <= currentPage.height ? pageWidthScale : Math.min(pageHeightScale, pageWidthScale)
     switch (index) {
@@ -89,7 +93,7 @@ function resizeDOM() {
     css.insertRule(`
         .textLayer,
         .annotationLayer,
-        .pdfViewer .page canvas {
+        .canvasWrapper {
             left: calc(var(--scale-factor) * var(--unit-width) * (1 / var(--trim-factor) - 1) / 2) !important;
         }`, css.cssRules.length)
 }

@@ -6,7 +6,7 @@ import * as utils from './components/utils.js'
 import {ExternalPromise} from './components/externalpromise.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
-import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions, IPDFViewer, IPDFViewerLocation } from './components/interface.js'
+import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions } from './components/interface.js'
 import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState} from '../types/latex-workshop-protocol-types/index'
 
 declare const PDFViewerApplication: IPDFViewerApplication
@@ -41,7 +41,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         // When the promise is resolved, the initialization
         // of LateXWorkshopPdfViewer and PDF.js is completed.
         this.pdfViewerStarted = new Promise((resolve) => {
-            this.onDidStartPdfViewer(() => resolve())
+            this.onEvent('documentloaded', () => resolve())
         })
 
         const pack = this.decodeQuery()
@@ -59,11 +59,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
         this.setupConnectionPort()
 
-        this.onDidStartPdfViewer(() => {
-            return this.applyParamsOnStart()
-        })
+        this.onEvent('documentloaded', () => { return this.applyParamsOnStart() })
 
-        this.onPagesLoaded(() => {
+        this.onEvent('pagesloaded', () => {
             this.send({type:'loaded', pdfFileUri: this.pdfFileUri})
         }, {once: true})
 
@@ -78,11 +76,11 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         registerPageTrimmer(this)
 
         this.pdfPagesLoaded = new Promise((resolve) => {
-            this.onPagesLoaded(() => resolve(), {once: true})
+            this.onEvent('pagesloaded', () => resolve(), {once: true})
         })
-        this.onPagesInit(() => {
+        this.onEvent('pagesinit', () => {
             this.pdfPagesLoaded = new Promise((resolve) => {
-                this.onPagesLoaded(() => resolve(), {once: true})
+                this.onEvent('pagesloaded', () => resolve(), {once: true})
             })
         })
         void this.setupAppOptions()
@@ -98,77 +96,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return PDFViewerApplication.eventBus
     }
 
-    onDidStartPdfViewer(cb: () => unknown): IDisposable {
-        const documentLoadedEvent = 'documentloaded'
-        const cb0 = () => {
-            cb()
-            PDFViewerApplication.eventBus.off(documentLoadedEvent, cb0)
-        }
-        void this.getEventBus().then(eventBus => {
-            eventBus.on(documentLoadedEvent, cb0)
-        })
-        return { dispose: () => PDFViewerApplication.eventBus.off(documentLoadedEvent, cb0) }
-    }
-
-    onPagesInit(cb: () => unknown, option?: {once: boolean}): IDisposable {
-        const pagesInitEvent = 'pagesinit'
-        const cb0 = () => {
-            cb()
-            if (option?.once) {
-                PDFViewerApplication.eventBus.off(pagesInitEvent, cb0)
-            }
-        }
-        void this.getEventBus().then(eventBus => {
-            eventBus.on(pagesInitEvent, cb0)
-        })
-        return { dispose: () => PDFViewerApplication.eventBus.off(pagesInitEvent, cb0) }
-    }
-
-    onPagesLoaded(cb: () => unknown, option?: {once: boolean}): IDisposable {
-        const pagesLoadedEvent = 'pagesloaded'
-        const cb0 = () => {
-            cb()
-            if (option?.once) {
-                PDFViewerApplication.eventBus.off(pagesLoadedEvent, cb0)
-            }
-        }
-        void this.getEventBus().then(eventBus => {
-            eventBus.on(pagesLoadedEvent, cb0)
-        })
-        return { dispose: () => PDFViewerApplication.eventBus.off(pagesLoadedEvent, cb0) }
-    }
-
-    onPageRendered(cb: () => unknown, option?: {once: boolean}): IDisposable {
-        const pageRenderedEvent = 'pagerendered'
-        const cb0 = () => {
-            cb()
-            if (option?.once) {
-                PDFViewerApplication.eventBus.off(pageRenderedEvent, cb0)
-            }
-        }
-        void this.getEventBus().then(eventBus => {
-            eventBus.on(pageRenderedEvent, cb0)
-        })
-        return { dispose: () => PDFViewerApplication.eventBus.off(pageRenderedEvent, cb0) }
-    }
-
-    onViewUpdated(cb: (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => unknown, option?: {once: boolean}): IDisposable {
-        const updateViewAreaEvent = 'updateviewarea'
-        const cb0 = (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => {
+    onEvent(eventName: 'documentloaded' | 'pagesinit' | 'pagesloaded' | 'pagerendered' | 'updateviewarea' | 'spreadmodechanged', cb: (payload?: any) => unknown, option?: {once: boolean}): IDisposable {
+        const cb0 = (payload?: any) => {
             cb(payload)
-            if (option?.once) {
-                PDFViewerApplication.eventBus.off(updateViewAreaEvent, cb0)
-            }
-        }
-        void this.getEventBus().then(eventBus => {
-            eventBus.on(updateViewAreaEvent, cb0)
-        })
-        return { dispose: () => PDFViewerApplication.eventBus.off(updateViewAreaEvent, cb0) }
-    }
-
-    onEvent(eventName: string, cb: () => unknown, option?: {once: boolean}): IDisposable {
-        const cb0 = (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => {
-            cb()
             if (option?.once) {
                 PDFViewerApplication.eventBus.off(eventName, cb0)
             }
@@ -385,7 +315,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             // reset the document title to the original value to avoid duplication
             document.title = this.documentTitle
         })
-        this.onPagesInit(() => {
+        this.onEvent('pagesinit', () => {
             PDFViewerApplication.pdfSidebar.switchView(pack.sidebarView)
             PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale
             PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode
@@ -395,11 +325,11 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, {once: true})
         // The height of each page can change after a `pagesinit` event.
         // We have to set scrollTop on a `pagesloaded` event for that case.
-        this.onPagesLoaded(() => {
+        this.onEvent('pagesloaded', () => {
             (document.getElementById('viewerContainer') as HTMLElement).scrollTop = pack.scrollTop;
             (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
         }, {once: true})
-        this.onPagesLoaded(() => {
+        this.onEvent('pagesloaded', () => {
             this.send({type:'loaded', pdfFileUri: this.pdfFileUri})
         }, {once: true})
     }

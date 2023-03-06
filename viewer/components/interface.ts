@@ -14,32 +14,7 @@ export interface ILatexWorkshopPdfViewer {
     readonly synctex: SyncTex,
     readonly viewerHistory: ViewerHistory,
 
-    /**
-     * `cb` is called after the viewer started.
-     */
-    onDidStartPdfViewer(cb: () => unknown): IDisposable,
-
-    /**
-     * `cb` is called after a PDF document is loaded and reloaded.
-     */
-    onPagesInit(cb: () => unknown, option?: {once: boolean}): IDisposable,
-
-    /**
-     * `cb` is called after the a PDF document is rendered.
-     */
-    onPagesLoaded(cb: () => unknown, option?: {once: boolean}): IDisposable,
-
-    /**
-     * `cb` is called after the a PDF document is rendered.
-     */
-    onPageRendered(cb: () => unknown, option?: {once: boolean}): IDisposable,
-
-    /**
-     * `cb` is called after the view is (re-)rendered.
-     */
-    onViewUpdated(cb: (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => unknown, option?: {once: boolean}): IDisposable,
-
-    onEvent(eventName: string, cb: () => unknown, option?: {once: boolean}): IDisposable,
+    onEvent(eventName: string, cb: (payload?: any) => unknown, option?: {once: boolean}): IDisposable,
 
     send(message: ClientRequest): void
 }
