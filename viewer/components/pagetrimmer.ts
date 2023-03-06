@@ -11,29 +11,13 @@ export function registerPageTrimmer(lwApp: ILatexWorkshopPdfViewer) {
     lwApp.onPagesLoaded(() => {
         resizeDOM()
         repositionDOM()
-        setTrimScale()
     })
-    let prevScale = 0
-    lwApp.onPageRendered(() => {
-        const trimScale = calcTrimScale()
-        if (trimScale === 1.0) {
-            return
-        }
-        const viewer = document.getElementById('viewer') as HTMLElement
-        const realScale = trimScale * Number(viewer.style.getPropertyValue('--scale-factor'))
-        if (realScale === prevScale) {
-            return
-        }
-        prevScale = realScale
-        refreshCanvas(realScale, viewer)
-    })
-    lwApp.onViewUpdated(payload => {
-        console.log(payload)
-    })
+    lwApp.onEvent('spreadmodechanged', setTrimScale)
     const trimSelect = document.getElementById('trimSelect') as HTMLElement
     trimSelect.addEventListener('change', setTrimScale)
-    const scaleSelect = document.getElementById('scaleSelect') as HTMLSelectElement
-    scaleSelect.addEventListener('change', setTrimScale)
+    window.addEventListener('resize', () => {
+        setTrimScale()
+    })
 }
 
 function calcTrimScale() {
@@ -46,17 +30,52 @@ function calcTrimScale() {
 }
 
 function setTrimScale() {
-    const trimScale = calcTrimScale()
     const viewer = document.getElementById('viewer') as HTMLElement
-    viewer.style.setProperty('--trim-factor', `${trimScale}`)
-    refreshCanvas(trimScale, viewer)
+    const prevTrimScale = parseFloat(viewer.style.getPropertyValue('--trim-factor')) || 1.0
+    const trimScale = calcTrimScale()
+    viewer.style.setProperty('--trim-factor', trimScale.toString())
+    const select = document.getElementById('scaleSelect') as HTMLSelectElement
+    for (let index = 0; index < select.length; ++index) {
+        const option = select.options[index]
+        if (index < 4) {
+            option.value = (calcScale(index) * trimScale).toString()
+        } else {
+            option.value = ((Number(option.value)) / prevTrimScale * trimScale).toString()
+        }
+    }
+    select.dispatchEvent(new Event('change'))
+    PDFViewerApplication.pdfViewer.refresh(false, { scale: select.value})
 }
 
-function refreshCanvas(trimScale?: number, viewer?: HTMLElement) {
-    trimScale = trimScale ?? calcTrimScale()
-    viewer = viewer ?? document.getElementById('viewer') as HTMLElement
-    const realScale = trimScale * Number(viewer.style.getPropertyValue('--scale-factor'))
-    PDFViewerApplication.pdfViewer.refresh(false, { scale: realScale.toString() })
+function calcScale(index: number) {
+    const pdf = PDFViewerApplication.pdfViewer
+    const currentPage = pdf._pages[pdf._currentPageNumber - 1]
+    let hPadding = 40
+    let vPadding = 5
+    if (pdf.isInPresentationMode) {
+        hPadding = vPadding = 4
+        if (pdf._spreadMode !== 0) { // Not NONE
+            hPadding *= 2
+        }
+    } else if (pdf.removePageBorders) {
+        hPadding = vPadding = 0
+    } else if (pdf._scrollMode === 1) { // Horizontal scroll
+        [hPadding, vPadding] = [vPadding, hPadding]
+    }
+    const container = document.getElementById('viewerContainer') as HTMLElement
+    const pageWidthScale = (container.clientWidth - hPadding - pdf._pageWidthScaleFactor * 2) / currentPage.width * currentPage.scale / pdf._pageWidthScaleFactor
+    const pageHeightScale = (container.clientHeight - vPadding) / currentPage.height * currentPage.scale
+    const horizontalScale = currentPage.width <= currentPage.height ? pageWidthScale : Math.min(pageHeightScale, pageWidthScale)
+    switch (index) {
+        case 2: // Width
+            return pageWidthScale
+        case 1: // Fit
+            return Math.min(pageWidthScale, pageHeightScale)
+        case 0: // Auto
+            return Math.min(1.3, horizontalScale)
+        default:
+            return 1.0
+    }
 }
 
 function resizeDOM() {
@@ -64,18 +83,14 @@ function resizeDOM() {
     for (const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement>){
         page.style.setProperty('--unit-width', (page.style.width.match(/[0-9]+/) || ['0'])[0] + 'px')
         page.style.setProperty('--unit-height', (page.style.height.match(/[0-9]+/) || ['0'])[0] + 'px')
-        page.style.width = page.style.width.replace('px)', 'px - 2px )')
-        // calc(var(--scale-factor) * 792px)
-        page.style.height = page.style.height.replace('px)', 'px * var(--trim-factor))')
+        page.style.width = page.style.width.replace('px)', 'px / var(--trim-factor) - 2px )')
     }
     const css = document.styleSheets[document.styleSheets.length - 1]
     css.insertRule(`
         .textLayer,
         .annotationLayer,
         .pdfViewer .page canvas {
-            width: calc(var(--scale-factor) * var(--trim-factor) * var(--unit-width)) !important;
-            height: calc(var(--scale-factor) * var(--trim-factor) * var(--unit-height)) !important;
-            left: calc(var(--scale-factor) * var(--unit-width) * (1 - var(--trim-factor)) / 2) !important;
+            left: calc(var(--scale-factor) * var(--unit-width) * (1 / var(--trim-factor) - 1) / 2) !important;
         }`, css.cssRules.length)
 }
 

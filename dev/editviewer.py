@@ -32,6 +32,9 @@ with open(args.web + '/viewer.js', 'rt') as fin:
                     .replace('''(!event.shiftKey || window.chrome || window.opera)) {''', '''(!event.shiftKey || window.chrome || window.opera)) {\n    if (window.parent !== window) {\n      return;\n    }''')
                     .replace('''console.error(`webviewerloaded: ''', '''// console.error(`webviewerloaded: ''')
                     .replace('''console.log(`PDF ${pdfDocument.''', '''// console.log(`PDF ${pdfDocument.''')
+                    .replace('''items.customScaleOption.selected = true;''', '''// items.customScaleOption.selected = true;''')
+                    .replace('''option.selected = false;''', '''// option.selected = false;''')
+                    .replace('''option.selected = true;''', '''// option.selected = true;''')
             )
 
 os.system(f'git diff --no-index {args.web}/viewer.html {args.viewer}/viewer.html > {args.viewer}/../dev/viewer/viewer.html.diff')

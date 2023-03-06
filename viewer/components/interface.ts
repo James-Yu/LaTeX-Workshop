@@ -39,23 +39,25 @@ export interface ILatexWorkshopPdfViewer {
      */
     onViewUpdated(cb: (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => unknown, option?: {once: boolean}): IDisposable,
 
+    onEvent(eventName: string, cb: () => unknown, option?: {once: boolean}): IDisposable,
+
     send(message: ClientRequest): void
 }
 
-export type PdfjsEventName
-    = 'documentloaded'
-    | 'pagesinit'
-    | 'pagesloaded'
-    | 'pagerendered'
-    | 'scroll'
-    | 'scalechanged'
-    | 'zoomin'
-    | 'zoomout'
-    | 'zoomreset'
-    | 'scrollmodechanged'
-    | 'spreadmodechanged'
-    | 'pagenumberchanged'
-    | 'updateviewarea'
+export type PdfjsEventName = string
+    // = 'documentloaded'
+    // | 'pagesinit'
+    // | 'pagesloaded'
+    // | 'pagerendered'
+    // | 'scroll'
+    // | 'scalechanged'
+    // | 'zoomin'
+    // | 'zoomout'
+    // | 'zoomreset'
+    // | 'scrollmodechanged'
+    // | 'spreadmodechanged'
+    // | 'pagenumberchanged'
+    // | 'updateviewarea'
 
 export interface IPDFViewerApplication {
     eventBus: {
@@ -90,7 +92,14 @@ export interface IPDFViewerApplication {
 
 export interface IPDFViewer {
     _currentScale: number,
+    _currentPageNumber: number,
+    _scrollMode: number,
+    _spreadMode: number,
+    _pageWidthScaleFactor: 1 | 2,
     _pages: {
+        width: number,
+        height: number,
+        scale: number,
         viewport: {
             convertToViewportPoint(x: number, y: number): [number, number]
         },
@@ -98,8 +107,10 @@ export interface IPDFViewer {
     }[],
     _location: IPDFViewerLocation,
     currentScaleValue: string,
+    isInPresentationMode: boolean,
     scrollMode: number,
     spreadMode: number,
+    removePageBorders: boolean,
     refresh(noUpdate?: boolean, updateArgs?: any): void,
     update({scale = 0, rotation = null, optionalContentConfigPromise = null, drawingDelay = -1}): void
 }

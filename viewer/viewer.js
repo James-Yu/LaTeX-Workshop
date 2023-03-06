@@ -12197,15 +12197,15 @@ class Toolbar {
       let predefinedValueFound = false;
       for (const option of items.scaleSelect.options) {
         if (option.value !== pageScaleValue) {
-          option.selected = false;
+          // option.selected = false;
           continue;
         }
-        option.selected = true;
+        // option.selected = true;
         predefinedValueFound = true;
       }
       if (!predefinedValueFound) {
         items.customScaleOption.textContent = msg;
-        items.customScaleOption.selected = true;
+        // items.customScaleOption.selected = true;
       }
     });
   }

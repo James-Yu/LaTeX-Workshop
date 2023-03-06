@@ -166,6 +166,19 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return { dispose: () => PDFViewerApplication.eventBus.off(updateViewAreaEvent, cb0) }
     }
 
+    onEvent(eventName: string, cb: () => unknown, option?: {once: boolean}): IDisposable {
+        const cb0 = (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => {
+            cb()
+            if (option?.once) {
+                PDFViewerApplication.eventBus.off(eventName, cb0)
+            }
+        }
+        void this.getEventBus().then(eventBus => {
+            eventBus.on(eventName, cb0)
+        })
+        return { dispose: () => PDFViewerApplication.eventBus.off(eventName, cb0) }
+    }
+
     send(message: ClientRequest) {
         void this.connectionPort.send(message)
     }
