@@ -1,18 +1,18 @@
-import {IConnectionPort, createConnectionPort} from './components/connection.js'
-import {editHTML} from './components/htmleditor.js'
-import {SyncTex} from './components/synctex.js'
-import {getTrimScale, registerPageTrimmer} from './components/pagetrimmer.js'
+import { IConnectionPort, createConnectionPort } from './components/connection.js'
+import { editHTML} from './components/htmleditor.js'
+import { SyncTex} from './components/synctex.js'
+import { getTrimScale, registerPageTrimmer } from './components/pagetrimmer.js'
 import * as utils from './components/utils.js'
-import {ExternalPromise} from './components/externalpromise.js'
-import {ViewerHistory} from './components/viewerhistory.js'
+import { ExternalPromise} from './components/externalpromise.js'
+import { ViewerHistory} from './components/viewerhistory.js'
 
-import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions } from './components/interface.js'
-import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState} from '../types/latex-workshop-protocol-types/index'
+import type { PdfjsEventName, IDisposable, IPDFViewerApplication, IPDFViewerApplicationOptions } from './components/interface.js'
+import type { ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState } from '../types/latex-workshop-protocol-types/index'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
 
-class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
+export class PDFViewer {
     readonly documentTitle: string = ''
     readonly embedded = window.parent !== window
     readonly encodedPdfFilePath: string
@@ -96,7 +96,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return PDFViewerApplication.eventBus
     }
 
-    onEvent(eventName: 'documentloaded' | 'pagesinit' | 'pagesloaded' | 'pagerendered' | 'updateviewarea' | 'spreadmodechanged', cb: (payload?: any) => unknown, option?: {once: boolean}): IDisposable {
+    onEvent(eventName: PdfjsEventName, cb: (payload?: any) => unknown, option?: {once: boolean}): IDisposable {
         const cb0 = (payload?: any) => {
             cb(payload)
             if (option?.once) {
@@ -721,7 +721,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
 }
 
-const extension = new LateXWorkshopPdfViewer()
+const extension = new PDFViewer()
 await extension.waitSetupAppOptionsFinished()
 // @ts-expect-error
 await import('../../viewer/viewer.js')

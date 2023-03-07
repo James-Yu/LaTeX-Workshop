@@ -1,14 +1,12 @@
-import type {ILatexWorkshopPdfViewer} from './interface.js'
+import type { PDFViewer } from '../latexworkshop'
 
 export class ViewerHistory {
     private history: { scroll: number, temporary: boolean}[]
     private currentIndex: number | undefined
-    private readonly lwApp: ILatexWorkshopPdfViewer
 
-    constructor(lwApp: ILatexWorkshopPdfViewer) {
+    constructor(private readonly lwViewer: PDFViewer) {
         this.history = []
         this.currentIndex = undefined
-        this.lwApp = lwApp
         this.registerKeybinding()
     }
 
@@ -16,8 +14,8 @@ export class ViewerHistory {
         const setHistory = () => {
             const container = document.getElementById('viewerContainer') as HTMLElement
             // set positions before and after clicking to viewerHistory
-            this.lwApp.viewerHistory.set(container.scrollTop)
-            setTimeout(() => {this.lwApp.viewerHistory.set(container.scrollTop)}, 500)
+            this.lwViewer.viewerHistory.set(container.scrollTop)
+            setTimeout(() => {this.lwViewer.viewerHistory.set(container.scrollTop)}, 500)
         };
 
         (document.getElementById('viewerContainer') as HTMLElement).addEventListener('click', setHistory);
@@ -25,11 +23,11 @@ export class ViewerHistory {
 
         // back button (mostly useful for the embedded viewer)
         (document.getElementById('historyBack') as HTMLElement).addEventListener('click', () => {
-            this.lwApp.viewerHistory.back()
+            this.lwViewer.viewerHistory.back()
         });
 
         (document.getElementById('historyForward') as HTMLElement).addEventListener('click', () => {
-            this.lwApp.viewerHistory.forward()
+            this.lwViewer.viewerHistory.forward()
         })
     }
 

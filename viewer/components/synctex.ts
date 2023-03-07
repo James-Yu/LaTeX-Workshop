@@ -1,17 +1,16 @@
-import type {ILatexWorkshopPdfViewer, IPDFViewerApplication} from './interface.js'
+import type { PDFViewer } from '../latexworkshop'
+import type { IPDFViewerApplication } from './interface.js'
 import { getTrimScale } from './pagetrimmer.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 
 export class SyncTex {
-    private readonly lwApp: ILatexWorkshopPdfViewer
     reverseSynctexKeybinding: string = 'ctrl-click'
 
-    constructor(lwApp: ILatexWorkshopPdfViewer) {
-        this.lwApp = lwApp
+    constructor(private readonly lwViewer: PDFViewer) {
         // Since DOM of each page is recreated when a PDF document is reloaded,
         // we must register listeners every time.
-        this.lwApp.onEvent('pagesinit', () => {
+        this.lwViewer.onEvent('pagesinit', () => {
             this.registerListenerOnEachPage()
         })
     }
@@ -36,7 +35,7 @@ export class SyncTex {
             left = (left - canvasDom.offsetLeft) / getTrimScale()
         }
         const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, (pageDom.offsetHeight - top) / getTrimScale())
-        this.lwApp.send({type: 'reverse_synctex', pdfFileUri: this.lwApp.pdfFileUri, pos, page, textBeforeSelection, textAfterSelection})
+        this.lwViewer.send({type: 'reverse_synctex', pdfFileUri: this.lwViewer.pdfFileUri, pos, page, textBeforeSelection, textAfterSelection})
     }
 
     registerListenerOnEachPage() {

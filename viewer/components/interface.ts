@@ -1,38 +1,22 @@
-import type {ClientRequest} from '../../types/latex-workshop-protocol-types/index'
-import type {SyncTex} from './synctex.js'
-import type {ViewerHistory} from './viewerhistory.js'
-
 export interface IDisposable {
     dispose(): unknown
 }
 
-export interface ILatexWorkshopPdfViewer {
-    readonly documentTitle: string,
-    readonly embedded: boolean,
-    readonly encodedPdfFilePath: string,
-    readonly pdfFileUri: string,
-    readonly synctex: SyncTex,
-    readonly viewerHistory: ViewerHistory,
-
-    onEvent(eventName: string, cb: (payload?: any) => unknown, option?: {once: boolean}): IDisposable,
-
-    send(message: ClientRequest): void
-}
-
-export type PdfjsEventName = string
-    // = 'documentloaded'
-    // | 'pagesinit'
-    // | 'pagesloaded'
-    // | 'pagerendered'
-    // | 'scroll'
-    // | 'scalechanged'
-    // | 'zoomin'
-    // | 'zoomout'
-    // | 'zoomreset'
-    // | 'scrollmodechanged'
-    // | 'spreadmodechanged'
-    // | 'pagenumberchanged'
-    // | 'updateviewarea'
+export type PdfjsEventName
+    = 'documentloaded'
+    | 'pagesinit'
+    | 'pagesloaded'
+    | 'pagerendered'
+    | 'updateviewarea'
+    | 'spreadmodechanged'
+    | 'scroll'
+    | 'scalechanged'
+    | 'zoomin'
+    | 'zoomout'
+    | 'zoomreset'
+    | 'scrollmodechanged'
+    | 'spreadmodechanged'
+    | 'pagenumberchanged'
 
 export interface IPDFViewerApplication {
     eventBus: {

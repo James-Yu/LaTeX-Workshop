@@ -1,4 +1,5 @@
-import type { ILatexWorkshopPdfViewer, IPDFViewer, IPDFViewerApplication, IPDFViewerLocation } from './interface.js'
+import type { PDFViewer } from '../latexworkshop'
+import type { IPDFViewer, IPDFViewerApplication, IPDFViewerLocation } from './interface.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 
@@ -7,19 +8,19 @@ export function getTrimScale() {
     return Number(viewer.style.getPropertyValue('--trim-factor'))
 }
 
-export function registerPageTrimmer(lwApp: ILatexWorkshopPdfViewer) {
-    lwApp.onEvent('pagesloaded', () => {
+export function registerPageTrimmer(lwViewer: PDFViewer) {
+    lwViewer.onEvent('pagesloaded', () => {
         resizeDOM()
         repositionDOM()
     })
-    lwApp.onEvent('updateviewarea', (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => {
+    lwViewer.onEvent('updateviewarea', (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => {
         const pageNumber = payload.location.pageNumber
         const canvas = document.getElementsByClassName('canvasWrapper')[pageNumber - 1] as HTMLElement
         const text = document.getElementsByClassName('textLayer')[pageNumber - 1] as HTMLElement
         canvas.style.width = text.offsetWidth + 'px'
         canvas.style.height = text.offsetHeight + 'px'
     })
-    lwApp.onEvent('spreadmodechanged', setTrimScale)
+    lwViewer.onEvent('spreadmodechanged', setTrimScale)
     const trimSelect = document.getElementById('trimSelect') as HTMLElement
     trimSelect.addEventListener('change', setTrimScale)
     window.addEventListener('resize', setTrimScale)
@@ -67,8 +68,8 @@ function calcScale(index: number) {
         [hPadding, vPadding] = [vPadding, hPadding]
     }
     const container = document.getElementById('viewerContainer') as HTMLElement
-    const pageWidthScale = (container.clientWidth - hPadding - (pdf._pageWidthScaleFactor - 1) * 18 - 2) / currentPage.width * currentPage.scale / pdf._pageWidthScaleFactor
-    const pageHeightScale = (container.clientHeight - vPadding) / currentPage.height * currentPage.scale
+    const pageWidthScale = (container.clientWidth - hPadding - (pdf._pageWidthScaleFactor - 1) * 22 - 2) / currentPage.width * currentPage.scale / pdf._pageWidthScaleFactor
+    const pageHeightScale = (container.clientHeight - vPadding) / currentPage.height * currentPage.scale / getTrimScale()
     const horizontalScale = currentPage.width <= currentPage.height ? pageWidthScale : Math.min(pageHeightScale, pageWidthScale)
     switch (index) {
         case 2: // Width

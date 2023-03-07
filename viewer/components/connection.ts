@@ -1,5 +1,5 @@
-import type {ClientRequest} from '../../types/latex-workshop-protocol-types/index'
-import type {ILatexWorkshopPdfViewer} from './interface.js'
+import type { ClientRequest } from '../../types/latex-workshop-protocol-types/index'
+import type { PDFViewer } from '../latexworkshop'
 
 export interface IConnectionPort {
     send(message: ClientRequest): void | Promise<void>,
@@ -8,16 +8,16 @@ export interface IConnectionPort {
     onDidOpen(cb: () => unknown): void
 }
 
-export function createConnectionPort(lwApp: ILatexWorkshopPdfViewer): IConnectionPort {
-    return new WebSocketPort(lwApp)
+export function createConnectionPort(lwViewer: PDFViewer): IConnectionPort {
+    return new WebSocketPort(lwViewer)
 }
 
 export class WebSocketPort implements IConnectionPort {
-    readonly lwApp: ILatexWorkshopPdfViewer
+    readonly lwApp: PDFViewer
     readonly server: string
     private readonly socket: Promise<WebSocket>
 
-    constructor(lwApp: ILatexWorkshopPdfViewer) {
+    constructor(lwApp: PDFViewer) {
         this.lwApp = lwApp
         const scheme = 'https:' === window.location.protocol ? 'wss' : 'ws'
         const path = window.location.pathname.substring(0, window.location.pathname.indexOf('viewer.html'))
