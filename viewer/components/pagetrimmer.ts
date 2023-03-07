@@ -15,8 +15,11 @@ export function registerPageTrimmer(lwViewer: PDFViewer) {
     })
     lwViewer.onEvent('updateviewarea', (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => {
         const pageNumber = payload.location.pageNumber
-        const canvas = document.getElementsByClassName('canvasWrapper')[pageNumber - 1] as HTMLElement
-        const text = document.getElementsByClassName('textLayer')[pageNumber - 1] as HTMLElement
+        const canvas = document.getElementsByClassName('canvasWrapper')[pageNumber - 1] as HTMLElement | undefined
+        const text = document.getElementsByClassName('textLayer')[pageNumber - 1] as HTMLElement | undefined
+        if (!canvas || !text) {
+            return
+        }
         canvas.style.width = text.offsetWidth + 'px'
         canvas.style.height = text.offsetHeight + 'px'
     })

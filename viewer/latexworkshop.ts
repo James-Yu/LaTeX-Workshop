@@ -1,10 +1,10 @@
 import { IConnectionPort, createConnectionPort } from './components/connection.js'
-import { editHTML} from './components/htmleditor.js'
-import { SyncTex} from './components/synctex.js'
+import { editHTML } from './components/htmleditor.js'
+import { SyncTex } from './components/synctex.js'
 import { getTrimScale, registerPageTrimmer } from './components/pagetrimmer.js'
 import * as utils from './components/utils.js'
-import { ExternalPromise} from './components/externalpromise.js'
-import { ViewerHistory} from './components/viewerhistory.js'
+import { ExternalPromise } from './components/externalpromise.js'
+import { ViewerHistory } from './components/viewerhistory.js'
 
 import type { PdfjsEventName, IDisposable, IPDFViewerApplication, IPDFViewerApplicationOptions } from './components/interface.js'
 import type { ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState } from '../types/latex-workshop-protocol-types/index'
@@ -96,11 +96,16 @@ export class PDFViewer {
         return PDFViewerApplication.eventBus
     }
 
-    onEvent(eventName: PdfjsEventName, cb: (payload?: any) => unknown, option?: {once: boolean}): IDisposable {
+    onEvent(eventName: PdfjsEventName, cb: (payload?: any) => unknown, option?: {once?: boolean, delay?: number}): IDisposable {
+        let timeout: number = 0
         const cb0 = (payload?: any) => {
             cb(payload)
             if (option?.once) {
                 PDFViewerApplication.eventBus.off(eventName, cb0)
+            }
+            if (option?.delay) {
+                clearTimeout(timeout)
+                timeout = setTimeout(() => PDFViewerApplication.eventBus.off(eventName, cb0), option.delay)
             }
         }
         void this.getEventBus().then(eventBus => {
@@ -213,33 +218,15 @@ export class PDFViewer {
         if (state.autoReloadEnabled !== undefined) {
             this.setAutoReload(state.autoReloadEnabled)
         }
-        if (state.trim !== undefined) {
-            const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
-            const ev = new Event('change')
             // We have to wait for currentScaleValue set above to be effected
             // especially for cases of non-number scales.
             // https://github.com/James-Yu/LaTeX-Workshop/issues/1870
-            void this.pdfPagesLoaded.then(() => {
-                if (state.trim === undefined) {
-                    return
-                }
-                trimSelect.selectedIndex = state.trim
-                trimSelect.dispatchEvent(ev)
-                // By setting the scale, the callbacks of trimming pages are invoked.
-                // However, given "auto" and other non-number scales, the scale will be
-                // unnecessarily recalculated, which we must avoid.
-                if (state.scale !== undefined && /\d/.exec(state.scale)) {
-                    PDFViewerApplication.pdfViewer.currentScaleValue = state.scale
-                }
-                if (state.scrollTop !== undefined) {
-                    (document.getElementById('viewerContainer') as HTMLElement).scrollTop = state.scrollTop
-                }
-                if (state.sidebarView !== undefined) {
-                    PDFViewerApplication.pdfSidebar.switchView(state.sidebarView)
-                }
-                this.sendCurrentStateToPanelManager()
-            })
-        }
+        void this.pdfPagesLoaded.then(() => {
+            if (state.sidebarView !== undefined) {
+                PDFViewerApplication.pdfSidebar.switchView(state.sidebarView)
+            }
+            this.sendCurrentStateToPanelManager()
+        })
         this.sendCurrentStateToPanelManager()
     }
 
@@ -297,6 +284,7 @@ export class PDFViewer {
         }
         const pack = {
             scale: PDFViewerApplication.pdfViewer.currentScaleValue,
+            trim: (document.getElementById('trimSelect') as HTMLSelectElement).selectedIndex,
             scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
             sidebarView: PDFViewerApplication.pdfSidebar.visibleView,
             spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
@@ -311,7 +299,9 @@ export class PDFViewer {
         // https://github.com/James-Yu/LaTeX-Workshop/issues/1871
         PDFViewerApplicationOptions.set('spreadModeOnLoad', pack.spreadMode)
 
-        void PDFViewerApplication.open(`${utils.pdfFilePrefix}${this.encodedPdfFilePath}`).then(() => {
+        void PDFViewerApplication.open({
+            url: `${utils.pdfFilePrefix}${this.encodedPdfFilePath}`
+        }).then(() => {
             // reset the document title to the original value to avoid duplication
             document.title = this.documentTitle
         })
@@ -319,18 +309,19 @@ export class PDFViewer {
             PDFViewerApplication.pdfSidebar.switchView(pack.sidebarView)
             PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale
             PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode
-            PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode;
-            (document.getElementById('viewerContainer') as HTMLElement).scrollTop = pack.scrollTop;
-            (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
+            PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode
         }, {once: true})
         // The height of each page can change after a `pagesinit` event.
         // We have to set scrollTop on a `pagesloaded` event for that case.
         this.onEvent('pagesloaded', () => {
-            (document.getElementById('viewerContainer') as HTMLElement).scrollTop = pack.scrollTop;
-            (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
-        }, {once: true})
-        this.onEvent('pagesloaded', () => {
             this.send({type:'loaded', pdfFileUri: this.pdfFileUri})
+            setTimeout(() => {
+                const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
+                trimSelect.selectedIndex = pack.trim
+                trimSelect.dispatchEvent(new Event('change'))
+                ;(document.getElementById('viewerContainer') as HTMLElement).scrollTop = pack.scrollTop
+                ;(document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
+            }, 0)
         }, {once: true})
     }
 
