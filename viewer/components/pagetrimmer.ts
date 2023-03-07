@@ -11,7 +11,6 @@ export function getTrimScale() {
 export function registerPageTrimmer(lwViewer: PDFViewer) {
     lwViewer.onEvent('pagesloaded', () => {
         resizeDOM()
-        repositionDOM()
     })
     lwViewer.onEvent('updateviewarea', (payload: { source: IPDFViewer, location: IPDFViewerLocation }) => {
         const pageNumber = payload.location.pageNumber
@@ -22,6 +21,7 @@ export function registerPageTrimmer(lwViewer: PDFViewer) {
         }
         canvas.style.width = text.offsetWidth + 'px'
         canvas.style.height = text.offsetHeight + 'px'
+        repositionDOM()
     })
     lwViewer.onEvent('spreadmodechanged', setTrimScale)
     const trimSelect = document.getElementById('trimSelect') as HTMLElement
