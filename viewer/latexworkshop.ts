@@ -86,6 +86,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 this.onPagesLoaded(() => resolve(), {once: true})
             })
         })
+        this.onViewUpdated(() => this.repositionDOM())
         void this.setupAppOptions()
     }
 
@@ -97,6 +98,21 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         await this.webViewerLoaded
         await PDFViewerApplication.initializedPromise
         return PDFViewerApplication.eventBus
+    }
+
+    private repositionDOM() {
+        for (const anno of document.getElementsByClassName('textAnnotation') as HTMLCollectionOf<HTMLElement>) {
+            if (parseFloat(anno.style.left) <= 50) {
+                continue
+            }
+            for (const popupWrapper of anno.getElementsByClassName('popupWrapper') as HTMLCollectionOf<HTMLElement>) {
+                popupWrapper.style.right = '100%'
+                popupWrapper.style.left = ''
+            }
+            for (const popup of anno.getElementsByClassName('popup') as HTMLCollectionOf<HTMLElement>) {
+                popup.style.right = '0px'
+            }
+        }
     }
 
     onDidStartPdfViewer(cb: () => unknown): IDisposable {
@@ -137,6 +153,20 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             eventBus.on(pagesLoadedEvent, cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off(pagesLoadedEvent, cb0) }
+    }
+
+    onViewUpdated(cb: () => unknown, option?: {once: boolean}): IDisposable {
+        const viewUpdatedEvent = 'updateviewarea'
+        const cb0 = () => {
+            cb()
+            if (option?.once) {
+                PDFViewerApplication.eventBus.off(viewUpdatedEvent, cb0)
+            }
+        }
+        void this.getEventBus().then(eventBus => {
+            eventBus.on(viewUpdatedEvent, cb0)
+        })
+        return { dispose: () => PDFViewerApplication.eventBus.off(viewUpdatedEvent, cb0) }
     }
 
     send(message: ClientRequest) {

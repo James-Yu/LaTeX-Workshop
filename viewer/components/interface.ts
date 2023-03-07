@@ -38,6 +38,7 @@ export type PdfjsEventName
     = 'documentloaded'
     | 'pagesinit'
     | 'pagesloaded'
+    | 'updateviewarea'
     | 'scroll'
     | 'scalechanged'
     | 'zoomin'
