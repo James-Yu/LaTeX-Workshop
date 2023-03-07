@@ -67,10 +67,7 @@ export function registerPageTrimmer() {
 
 function trimPage(page: HTMLElement) {
     const trimScale = getTrimScale()
-    const layers = [
-        page.getElementsByClassName('textLayer')[0] as HTMLElement,
-        page.getElementsByClassName('annotationLayer')[0] as HTMLElement
-    ]
+    const textLayer = page.getElementsByClassName('textLayer')[0] as HTMLElement
     const canvasWrapper = page.getElementsByClassName('canvasWrapper')[0] as HTMLElement
     const canvas = page.getElementsByTagName('canvas')[0]
     if ( !canvasWrapper || !canvas ) {
@@ -91,24 +88,22 @@ function trimPage(page: HTMLElement) {
         canvas.style.left = offsetX + 'px'
         canvas.style.position = 'relative'
         canvas.setAttribute('data-is-trimmed', 'trimmed')
-        for (const layer of layers) {
-            if ( layer && layer.dataset.isTrimmed !== 'trimmed' ) {
-                layer.style.width = widthNum - offsetX + 'px'
-                layer.style.left = offsetX + 'px'
-                layer.setAttribute('data-is-trimmed', 'trimmed')
-            }
+        if ( textLayer && textLayer.dataset.isTrimmed !== 'trimmed' ) {
+            textLayer.style.width = widthNum - offsetX + 'px'
+            textLayer.style.left = offsetX + 'px'
+            textLayer.setAttribute('data-is-trimmed', 'trimmed')
         }
-        const annoSections = page.getElementsByTagName('section')
-        for ( const section of annoSections ) {
-            let originalLeft = section.style.left
-            if (section.dataset.originalLeft === undefined) {
-                section.setAttribute('data-original-left', section.style.left)
+        const secionOfAnnotationArray = page.getElementsByTagName('section')
+        for ( const secionOfAnnotation of secionOfAnnotationArray ) {
+            let originalLeft = secionOfAnnotation.style.left
+            if (secionOfAnnotation.dataset.originalLeft === undefined) {
+                secionOfAnnotation.setAttribute('data-original-left', secionOfAnnotation.style.left)
             } else {
-                originalLeft = section.dataset.originalLeft
+                originalLeft = secionOfAnnotation.dataset.originalLeft
             }
             const mat = originalLeft.match(/([\d.]+)/)
             if (mat) {
-                section.style.left = Number(mat[1]) - (1 - 1 / trimScale) / 2 * 100 + '%'
+                secionOfAnnotation.style.left = Number(mat[1]) - (1 - 1 / trimScale) / 2 * 100 + '%'
             }
         }
     }
