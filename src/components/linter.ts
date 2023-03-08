@@ -6,11 +6,11 @@ import { getLogger } from './logger'
 
 const logger = getLogger('Linter')
 
-interface ILinter {
+export interface ILinter {
     readonly linterDiagnostics: vscode.DiagnosticCollection,
     getName(): string,
-    lintRootFile(rootPath: string): void,
-    lintFile(document: vscode.TextDocument): void,
+    lintRootFile(rootPath: string): Promise<void>,
+    lintFile(document: vscode.TextDocument): Promise<void>,
     parseLog(log: string, filePath?: string): void
 }
 
@@ -41,7 +41,7 @@ export class Linter {
                 return
             }
             logger.log(`${linter.getName()} lints root ${lw.manager.rootFile} .`)
-            linter.lintRootFile(lw.manager.rootFile)
+            void linter.lintRootFile(lw.manager.rootFile)
         })
     }
 
@@ -56,7 +56,7 @@ export class Linter {
             }
             this.linterTimeout = setTimeout(() => linters.forEach(linter => {
                 logger.log(`${linter.getName()} lints ${document.fileName} .`)
-                linter.lintFile(document)
+                void linter.lintFile(document)
             }), interval)
         }
     }

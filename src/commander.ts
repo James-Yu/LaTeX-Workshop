@@ -3,8 +3,7 @@ import * as path from 'path'
 import * as lw from './lw'
 import { getSurroundingCommandRange } from './utils/utils'
 import { getLogger } from './components/logger'
-import { syntaxParser } from './components/parser/syntax'
-import * as logParser from './components/parser/compilerlog'
+import { parser } from './components/parser'
 
 const logger = getLogger('Commander')
 
@@ -454,14 +453,14 @@ export function devParseLog() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    logParser.parse(vscode.window.activeTextEditor.document.getText())
+    parser.parseLog(vscode.window.activeTextEditor.document.getText())
 }
 
 export async function devParseTeX() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = await syntaxParser.parseLatex(vscode.window.activeTextEditor.document.getText())
+    const ast = await parser.parseLatex(vscode.window.activeTextEditor.document.getText())
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 
@@ -469,7 +468,7 @@ export async function devParseBib() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = await syntaxParser.parseBibtex(vscode.window.activeTextEditor.document.getText())
+    const ast = await parser.parseBibtex(vscode.window.activeTextEditor.document.getText())
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 

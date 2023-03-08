@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
 import * as lw from '../../lw'
+import type { ILinter } from '../linter'
 import { processWrapper } from './linterutils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 import { getLogger } from '../logger'
@@ -132,7 +133,7 @@ function showLinterDiagnostics(linterLog: LaCheckLogEntry[]) {
     }
 }
 
-export const laCheck = {
+export const laCheck: ILinter = {
     linterDiagnostics,
     getName,
     lintFile,

@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as lw from '../../lw'
-import type { LogEntry } from './compilerlog'
+import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserutils'
 import { getLogger } from '../logger'
 
 const logger = getLogger('Parser', 'TexLog')
@@ -22,6 +22,19 @@ const biberWarn = /^Biber warning:.*WARN - I didn't find a database entry for '(
 // The regular expression is set up to include the 3 dots as an optional element, such that the capture group $2
 // always contains actual text that appears in the line.
 const messageLine = /^l\.\d+\s(\.\.\.)?(.*)$/
+
+const texDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
+
+const buildLog: LogEntry[] = []
+
+export const latexLogParser: IParser = {
+    showLog,
+    parse
+}
+
+function showLog() {
+    showCompilerDiagnostics(texDiagnostics, buildLog)
+}
 
 type ParserState = {
     searchEmptyLine: boolean,
@@ -45,9 +58,7 @@ function initParserState(rootFile: string): ParserState {
     }
 }
 
-export const buildLog: LogEntry[] = []
-
-export function parse(log: string, rootFile?: string) {
+function parse(log: string, rootFile?: string) {
     if (rootFile === undefined) {
         rootFile = lw.manager.rootFile
     }

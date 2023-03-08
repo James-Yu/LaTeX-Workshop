@@ -3,7 +3,7 @@ import { bibtexParser } from 'latex-utensils'
 import { performance } from 'perf_hooks'
 import * as BibtexUtils from './bibtexformatterlib/bibtexutils'
 import { getLogger } from '../components/logger'
-import { syntaxParser } from '../components/parser/syntax'
+import { parser } from '../components/parser'
 
 const logger = getLogger('Format', 'Bib')
 
@@ -52,7 +52,7 @@ async function formatDocument(document: vscode.TextDocument, sort: boolean, alig
     const lineOffset = range ? range.start.line : 0
     const columnOffset = range ? range.start.character : 0
 
-    const ast = await syntaxParser.parseBibtex(document.getText(range)).catch((error) => {
+    const ast = await parser.parseBibtex(document.getText(range)).catch((error) => {
         if (error instanceof(Error)) {
             logger.log('Bibtex parser failed.')
             logger.log(error.message)

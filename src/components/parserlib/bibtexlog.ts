@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as lw from '../../lw'
-import type { LogEntry } from './compilerlog'
+import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserutils'
 
 import { getLogger } from '../logger'
 
@@ -13,9 +13,20 @@ const badCrossReference = /^(A bad cross reference---entry ".+?"\nrefers to entr
 const multiLineCommandError = /^(.*)\n?---line (\d+) of file (.*)\n([^]+?)\nI'm skipping whatever remains of this command$/gm
 const errorAuxFile = /^(.*)---while reading file (.*)$/gm
 
-export const buildLog: LogEntry[] = []
+const bibDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
 
-export function parse(log: string, rootFile?: string) {
+const buildLog: LogEntry[] = []
+
+export const bibtexLogParser: IParser = {
+    showLog,
+    parse
+}
+
+function showLog() {
+    showCompilerDiagnostics(bibDiagnostics, buildLog)
+}
+
+function parse(log: string, rootFile?: string) {
     if (rootFile === undefined) {
         rootFile = lw.manager.rootFile
     }

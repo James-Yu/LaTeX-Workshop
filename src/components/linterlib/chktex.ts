@@ -4,6 +4,7 @@ import * as fs from 'fs'
 import * as os from 'os'
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
 import * as lw from '../../lw'
+import type { ILinter } from '../linter'
 import { processWrapper } from './linterutils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 import { getLogger } from '../logger'
@@ -297,7 +298,7 @@ const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'error': vscode.DiagnosticSeverity.Error,
 }
 
-export const chkTeX = {
+export const chkTeX: ILinter = {
     linterDiagnostics,
     getName,
     lintFile,

@@ -7,7 +7,7 @@ import * as lw from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { AutoBuildInitiated, AutoCleaned, BuildDone } from './eventbus'
 import { getLogger } from './logger'
-import * as logParser from './parser/compilerlog'
+import { parser } from './parser'
 
 const logger = getLogger('Builder')
 
@@ -344,7 +344,7 @@ export class Builder {
             })
 
             this.process.on('exit', async (code, signal) => {
-                const isSkipped = logParser.parse(stdout, step.rootFile)
+                const isSkipped = parser.parseLog(stdout, step.rootFile)
                 if (!step.isExternal) {
                     step.isSkipped = isSkipped
                 }

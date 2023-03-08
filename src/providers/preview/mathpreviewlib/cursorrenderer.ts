@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import { latexParser } from 'latex-utensils'
 import { TexMathEnv } from './texmathenvfinder'
 import type { ITextDocumentLike } from './textdocumentlike'
-import { syntaxParser } from '../../../components/parser/syntax'
+import { parser } from '../../../components/parser'
 
 export class CursorRenderer {
     private static currentTeXString: string | undefined
@@ -110,7 +110,7 @@ export class CursorRenderer {
         if (texMath.texString === CursorRenderer.currentTeXString && CursorRenderer.currentAst) {
             ast = CursorRenderer.currentAst
         } else {
-            ast = await syntaxParser.parseLatex(texMath.texString, {enableMathCharacterLocation: true})
+            ast = await parser.parseLatex(texMath.texString, {enableMathCharacterLocation: true})
             CursorRenderer.currentAst = ast
             CursorRenderer.currentTeXString = texMath.texString
         }

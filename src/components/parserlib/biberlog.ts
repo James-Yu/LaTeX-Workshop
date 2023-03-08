@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as lw from '../../lw'
-import type { LogEntry } from './compilerlog'
+import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserutils'
 
 import { getLogger } from '../logger'
 
@@ -11,9 +11,20 @@ const lineError = /^ERROR - BibTeX subsystem.*, line (\d+), (.*)$/
 const missingEntryWarning = /^WARN - (I didn't find a database entry for '.*'.*)$/
 const lineWarning = /^WARN - (.* entry '(.*)' .*)$/
 
-export const buildLog: LogEntry[] = []
+const biberDiagnostics = vscode.languages.createDiagnosticCollection('Biber')
 
-export function parse(log: string, rootFile?: string) {
+const buildLog: LogEntry[] = []
+
+export const biberLogParser: IParser = {
+    showLog,
+    parse
+}
+
+function showLog() {
+    showCompilerDiagnostics(biberDiagnostics, buildLog)
+}
+
+function parse(log: string, rootFile?: string) {
     if (rootFile === undefined) {
         rootFile = lw.manager.rootFile
     }

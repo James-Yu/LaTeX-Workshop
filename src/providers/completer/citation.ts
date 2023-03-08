@@ -7,7 +7,7 @@ import {trimMultiLineString} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../completion'
 import { getLogger } from '../../components/logger'
-import { syntaxParser } from '../../components/parser/syntax'
+import { parser } from '../../components/parser'
 
 const logger = getLogger('Intelli', 'Citation')
 
@@ -254,7 +254,7 @@ export class Citation implements IProvider {
         }
         const newEntry: CiteSuggestion[] = []
         const bibtex = fs.readFileSync(fileName).toString()
-        const ast = await syntaxParser.parseBibtex(bibtex).catch((e) => {
+        const ast = await parser.parseBibtex(bibtex).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 logger.log(`Error parsing BibTeX: line ${line} in ${fileName} .`)
