@@ -56,14 +56,19 @@ export class Package implements IProvider {
 
     getPackagesIncluded(languageId: string): {[packageName: string]: string[]} {
         const packages: {[packageName: string]: string[]} = {}
-        if (['latex', 'latex-expl3'].includes(languageId)) {
-            packages['latex-document'] = []
-        }
-        if (languageId === 'latex-expl3') {
-            packages['expl3'] = []
+        const config = vscode.workspace.getConfiguration('latex-workshop')
+        const excluded = config.get('intellisense.package.exclude') as string[]
+        if (!excluded.includes('lw-default')) {
+            if (['latex', 'latex-expl3'].includes(languageId)) {
+                packages['latex-document'] = []
+            }
+            if (languageId === 'latex-expl3') {
+                packages['expl3'] = []
+            }
         }
 
-        (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.extra') as string[])
+        (config.get('intellisense.package.extra') as string[])
+            .filter(packageName => !excluded.includes(packageName))
             .forEach(packageName => packages[packageName] = [])
 
         lw.cacher.getIncludedTeX().forEach(tex => {
@@ -71,20 +76,25 @@ export class Package implements IProvider {
             if (included === undefined) {
                 return
             }
-            Object.entries(included).forEach(([packageName, options]) => packages[packageName] = options)
+            Object.entries(included)
+                .filter(([packageName, ]) => !excluded.includes(packageName))
+                .forEach(([packageName, options]) => packages[packageName] = options)
         })
 
         while (true) {
             let newPackageInserted = false
-            Object.entries(packages).forEach(([packageName, options]) => Object.keys(this.getPackageDeps(packageName)).forEach(includeName => {
-                const dependOptions = this.getPackageDeps(packageName)[includeName]
-                const hasOption = dependOptions.length === 0
-                    || options.filter(option => dependOptions.includes(option)).length > 0
-                if (packages[includeName] === undefined && hasOption) {
-                    packages[includeName] = []
-                    newPackageInserted = true
+            Object.entries(packages).forEach(([packageName, options]) => Object.keys(this.getPackageDeps(packageName))
+                .filter(includeName => !excluded.includes(includeName))
+                .forEach(includeName => {
+                    const dependOptions = this.getPackageDeps(packageName)[includeName]
+                    const hasOption = dependOptions.length === 0
+                        || options.filter(option => dependOptions.includes(option)).length > 0
+                    if (packages[includeName] === undefined && hasOption) {
+                        packages[includeName] = []
+                        newPackageInserted = true
+                    }
                 }
-            }))
+            ))
             if (!newPackageInserted) {
                 break
             }

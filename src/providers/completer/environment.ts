@@ -44,8 +44,18 @@ export class Environment implements IProvider {
     private readonly packageEnvsAsCommand = new Map<string, CmdEnvSuggestion[]>()
     private readonly packageEnvsForBegin= new Map<string, CmdEnvSuggestion[]>()
 
+    constructor() {
+        lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+            if (!e.affectsConfiguration('latex-workshop.intellisense.package.exclude')) {
+                return
+            }
+            this.initialize()
+        }))
+    }
+
     initialize() {
-        const envs = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/environments.json`, {encoding: 'utf8'})) as {[key: string]: EnvType}
+        const loadDefault = (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.exclude') as string[]).includes('lw-default')
+        const envs = loadDefault ? JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/environments.json`, {encoding: 'utf8'})) as {[key: string]: EnvType}: {}
         Object.entries(envs).forEach(([key, env]) => {
             env.name = env.name || key
             env.snippet = env.snippet || ''

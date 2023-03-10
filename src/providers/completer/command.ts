@@ -48,7 +48,8 @@ export class Command implements IProvider {
 
     constructor() {
         lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            if (!e.affectsConfiguration('latex-workshop.intellisense.command.user')) {
+            if (!e.affectsConfiguration('latex-workshop.intellisense.command.user') ||
+                !e.affectsConfiguration('latex-workshop.intellisense.package.exclude')) {
                 return
             }
             this.initialize(lw.completer.environment)
@@ -56,8 +57,9 @@ export class Command implements IProvider {
     }
 
     initialize(environment: Environment) {
-        const cmds = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/commands.json`, {encoding: 'utf8'})) as {[key: string]: CmdType}
-        const maths = (JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})) as PkgType).cmds
+        const loadDefault = (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.exclude') as string[]).includes('lw-default')
+        const cmds = loadDefault ? JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/commands.json`, {encoding: 'utf8'})) as {[key: string]: CmdType} : {}
+        const maths = loadDefault ? (JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})) as PkgType).cmds: {}
         Object.assign(maths, cmds)
         Object.entries(maths).forEach(([key, cmd]) => {
             cmd.command = key
