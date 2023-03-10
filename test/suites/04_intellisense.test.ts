@@ -37,6 +37,7 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', undefined)
     })
 
     test.run('check default environment .json completion file', () => {
@@ -319,6 +320,30 @@ suite('Intellisense test suite', () => {
         ])
         suggestions = test.suggest(3, 1)
         assert.ok(!suggestions.labels.includes('algorithm2e'))
+    })
+
+    test.only('intellisense with config `intellisense.package.exclude`', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', ['lw-default', 'import', 'listings'])
+        await test.load(fixture, [
+            {src: 'intellisense/base.tex', dst: 'main.tex'},
+            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
+        ])
+        let suggestions = test.suggest(0, 1)
+        assert.ok(!suggestions.labels.includes('\\date{}'))
+        assert.ok(!suggestions.labels.includes('\\lstinline'))
+        assert.ok(!suggestions.labels.includes('\\lstinline'))
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', ['lw-default'])
+        suggestions = test.suggest(0, 1)
+        assert.ok(!suggestions.labels.includes('\\date{}'))
+        assert.ok(suggestions.labels.includes('\\lstinline'))
+        assert.ok(suggestions.labels.includes('\\lstinline'))
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', ['import', 'listings'])
+        suggestions = test.suggest(0, 1)
+        assert.ok(suggestions.labels.includes('\\date{}'))
+        assert.ok(!suggestions.labels.includes('\\lstinline'))
+        assert.ok(!suggestions.labels.includes('\\lstinline'))
     })
 
     test.run('argument intellisense of \\documentclass, \\usepackage, commands, and environments', async (fixture: string) => {
