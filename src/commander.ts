@@ -234,12 +234,12 @@ export function navigateToEnvPair() {
     lw.envPair.gotoPair()
 }
 
-export function selectEnvContent() {
+export function selectEnvContent(mode: 'content' | 'whole') {
     logger.log('SelectEnv command invoked.')
     if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    lw.envPair.selectEnv()
+    lw.envPair.selectEnvContent(mode)
 }
 
 export function selectEnvName() {

@@ -154,7 +154,7 @@ export class EnvPair {
                 const beginName = `\\begin{${name}}`
                 const endName = `\\end{${name}}`
                 const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
-                const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1 + endName.length)
+                const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1)
                 currentCommandPair = new CommandPair(PairType.ENVIRONMENT, beginName, beginPos, endName, endPos)
                 if (parentCommandPair) {
                     currentCommandPair.parent = parentCommandPair
@@ -254,8 +254,35 @@ export class EnvPair {
 
     }
 
-    selectEnv() {
+    selectEnvContent(mode: 'content' | 'whole') {
+        const editor = vscode.window.activeTextEditor
+        if (!editor || editor.document.languageId !== 'latex') {
+            return
+        }
+        const startingPos = editor.selection.active
+        const document = editor.document
 
+        void EnvPair.locateSurroundingPair(startingPos, document).then((matchedCommandPairs: CommandPair[]) => {
+            for (const pair of matchedCommandPairs.reverse()) {
+                if (pair.endPosition && pair.end) {
+                    let startEnvPos: vscode.Position
+                    let endEnvPos: vscode.Position
+                    if (mode === 'content') {
+                        startEnvPos = pair.startPosition.translate(0, pair.start.length + 1)
+                        endEnvPos = pair.endPosition.translate(0, -pair.end.length)
+                    } else if (mode === 'whole') {
+                        startEnvPos = pair.startPosition
+                        endEnvPos = pair.endPosition
+                    } else {
+                        return
+                    }
+                    editor.selections = [new vscode.Selection(startEnvPos, endEnvPos)]
+                    if (editor.selections[0].contains(startingPos)) {
+                        return
+                    }
+                }
+            }
+        })
     }
 
     closeEnv() {
