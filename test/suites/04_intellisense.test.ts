@@ -188,7 +188,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!snippet.value.includes('${1:'))
     })
 
-    test.run('command intellisense with config `intellisense.command.user`', async (fixture: string) => {
+    test.only('command intellisense with config `intellisense.command.user`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', {'mycommand[]{}': 'notsamecommand[${2:option}]{$TM_SELECTED_TEXT$1}', 'parbox{}{}': 'defchanged', 'overline{}': ''})
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
@@ -322,7 +322,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!suggestions.labels.includes('algorithm2e'))
     })
 
-    test.only('intellisense with config `intellisense.package.exclude`', async (fixture: string) => {
+    test.run('intellisense with config `intellisense.package.exclude`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', ['lw-default', 'import', 'listings'])
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},

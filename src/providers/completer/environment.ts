@@ -54,8 +54,8 @@ export class Environment implements IProvider {
     }
 
     initialize() {
-        const loadDefault = (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.exclude') as string[]).includes('lw-default')
-        const envs = loadDefault ? JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/environments.json`, {encoding: 'utf8'})) as {[key: string]: EnvType}: {}
+        const excludeDefault = (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.exclude') as string[]).includes('lw-default')
+        const envs = excludeDefault ? {} : JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/environments.json`, {encoding: 'utf8'})) as {[key: string]: EnvType}
         Object.entries(envs).forEach(([key, env]) => {
             env.name = env.name || key
             env.snippet = env.snippet || ''
