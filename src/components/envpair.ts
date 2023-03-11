@@ -245,7 +245,7 @@ export class EnvPair {
         return matchedCommandPairs
     }
 
-    gotoPair() {
+    async gotoPair() {
         const editor = vscode.window.activeTextEditor
         if (!editor || editor.document.languageId !== 'latex') {
             return
@@ -253,7 +253,23 @@ export class EnvPair {
         const curPos = editor.selection.active
         const document = editor.document
 
-        void EnvPair.locateSurroundingPair(curPos, document)
+        const pairs = (await EnvPair.locateSurroundingPair(curPos, document))
+        for (const pair of pairs) {
+            if (!pair.endPosition || !pair.end) {
+                continue
+            }
+            const endStartPosition = pair.endPosition.translate(0, -pair.end.length)
+            const startRange = new vscode.Range(pair.startPosition, pair.startPosition.translate(0, pair.start.length))
+            if (startRange.contains(curPos)) {
+                editor.selection = new vscode.Selection(endStartPosition, endStartPosition)
+                return
+            }
+            const endRange = new vscode.Range(endStartPosition, pair.endPosition)
+            if (endRange.contains(curPos)) {
+                editor.selection = new vscode.Selection(pair.startPosition, pair.startPosition)
+                return
+            }
+        }
     }
 
     /**

@@ -231,7 +231,7 @@ export function navigateToEnvPair() {
     if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    lw.envPair.gotoPair()
+    void lw.envPair.gotoPair()
 }
 
 export function selectEnvContent(mode: 'content' | 'whole') {
