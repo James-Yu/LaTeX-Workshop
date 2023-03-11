@@ -46,7 +46,7 @@ export class EnvPair {
 
     constructor() {}
 
-    private static async buildCommandPairTree(doc: vscode.TextDocument): Promise<CommandPair[]> {
+    static async buildCommandPairTree(doc: vscode.TextDocument): Promise<CommandPair[]> {
         let ast: latexParser.LatexAst | undefined = await UtensilsParser.parseLatex(doc.getText()).catch((e) => {
             if (latexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
