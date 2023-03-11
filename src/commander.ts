@@ -271,7 +271,7 @@ export function closeEnv() {
     if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    return lw.envPair.closeEnv()
+    void lw.envPair.closeEnv()
 }
 
 export async function changeHostName() {
