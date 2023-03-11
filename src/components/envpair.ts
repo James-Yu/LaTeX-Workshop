@@ -367,7 +367,6 @@ export class EnvPair {
         } else {
             return editor.edit(editBuilder => { editBuilder.insert(cursorPos, endEnv) })
         }
-        return
     }
 
 }
