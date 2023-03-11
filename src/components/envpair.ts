@@ -257,7 +257,7 @@ export class EnvPair {
     }
 
     /**
-     * Select or add a multicursor to an environment name if called with
+     * Select or add a multi-cursor to an environment name if called with
      * `action = 'selection'` or `action = 'cursor'` respectively.
      *
      * Toggles between `\[...\]` and `\begin{$text}...\end{$text}`
@@ -267,7 +267,7 @@ export class EnvPair {
      *
      * @param action  can be
      *      - 'selection': the environment name is selected both in the begin and end part
-     *      - 'cursor': a multicursor is added at the beginning of the environment name is selected both in the begin and end part
+     *      - 'cursor': a multi-cursor is added at the beginning of the environment name is selected both in the begin and end part
      *      - 'equationToggle': toggles between `\[...\]` and `\begin{}...\end{}`
      */
     async envNameAction(action: 'selection'|'cursor'|'equationToggle') {
@@ -278,46 +278,43 @@ export class EnvPair {
         let startingPos = editor.selection.active
         const document = editor.document
 
-        const matchedCommandPairs = (await EnvPair.locateSurroundingPair(startingPos, document)).filter((pair: CommandPair) => {
-            return pair.end && pair.endPosition
+        // Only keep display math and environments
+        const matchedPairs = (await EnvPair.locateSurroundingPair(startingPos, document)).filter((pair: CommandPair) => {
+            return pair.end && pair.endPosition && [PairType.DISPLAYMATH, PairType.ENVIRONMENT].includes(pair.type)
         })
-        if (matchedCommandPairs.length === 0) {
-            logger.log('No matched command pair found in envNameAction')
-            return
-        }
-        const matchedCommandPair = matchedCommandPairs[matchedCommandPairs.length - 1]
-        if (!matchedCommandPair.end || !matchedCommandPair.endPosition) {
+        const matchedPair = matchedPairs.at(-1)
+        if (!matchedPair?.end || !matchedPair?.endPosition) {
             logger.log('No matched command pair found in envNameAction')
             return
         }
 
-        const beginEnvStartPos = matchedCommandPair.startPosition.translate(0, '\\begin{'.length)
-        let endEnvStartPos = matchedCommandPair.endPosition.translate(0, -matchedCommandPair.end.length + '\\end{'.length)
+        const beginEnvStartPos = matchedPair.startPosition.translate(0, '\\begin{'.length)
+        let endEnvStartPos = matchedPair.endPosition.translate(0, -matchedPair.end.length + '\\end{'.length)
 
         const edit = new vscode.WorkspaceEdit()
         let envNameLength: number
-        if (matchedCommandPair.type === PairType.DISPLAYMATH) {
+        if (matchedPair.type === PairType.DISPLAYMATH) {
             const eqText = action === 'cursor' ? '' : 'equation*'
-            const beginRange = new vscode.Range(matchedCommandPair.startPosition, matchedCommandPair.startPosition.translate(0, 2)) // 2 = '\\['.length
-            const endRange = new vscode.Range(matchedCommandPair.endPosition.translate(0, -2), matchedCommandPair.endPosition) // 2 = '\\]'.length
+            const beginRange = new vscode.Range(matchedPair.startPosition, matchedPair.startPosition.translate(0, 2)) // 2 = '\\['.length
+            const endRange = new vscode.Range(matchedPair.endPosition.translate(0, -2), matchedPair.endPosition) // 2 = '\\]'.length
             envNameLength = eqText.length
             edit.replace(document.uri, endRange, `\\end{${eqText}}`)
             edit.replace(document.uri, beginRange, `\\begin{${eqText}}`)
             const diff = 'begin{}'.length + envNameLength - '['.length
-            if (startingPos.line === matchedCommandPair.startPosition.line) {
+            if (startingPos.line === matchedPair.startPosition.line) {
                 startingPos = startingPos.translate(0, diff)
             }
-            if (matchedCommandPair.startPosition.line === matchedCommandPair.endPosition.line) {
+            if (matchedPair.startPosition.line === matchedPair.endPosition.line) {
                 endEnvStartPos = endEnvStartPos.translate(0, diff)
             }
-        } else if (matchedCommandPair.type === PairType.ENVIRONMENT) {
+        } else if (matchedPair.type === PairType.ENVIRONMENT) {
             if (action === 'equationToggle') {
-                const beginRange = new vscode.Range(matchedCommandPair.startPosition, matchedCommandPair.startPosition.translate(0, matchedCommandPair.start.length))
-                const endRange = new vscode.Range(matchedCommandPair.endPosition.translate(0, -matchedCommandPair.end.length), matchedCommandPair.endPosition)
+                const beginRange = new vscode.Range(matchedPair.startPosition, matchedPair.startPosition.translate(0, matchedPair.start.length))
+                const endRange = new vscode.Range(matchedPair.endPosition.translate(0, -matchedPair.end.length), matchedPair.endPosition)
                 edit.replace(document.uri, endRange, ']')
                 edit.replace(document.uri, beginRange, '[')
-                if (startingPos.line === matchedCommandPair.startPosition.line) {
-                    const diff = Math.max('['.length - matchedCommandPair.start.length, -startingPos.character)
+                if (startingPos.line === matchedPair.startPosition.line) {
+                    const diff = Math.max('['.length - matchedPair.start.length, -startingPos.character)
                     startingPos = startingPos.translate(0, diff)
                 }
             }
