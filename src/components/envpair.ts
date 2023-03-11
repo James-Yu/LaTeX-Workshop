@@ -189,7 +189,7 @@ export class EnvPair {
             for (const pair of EnvPair.delimiters) {
                 if (pair.type === PairType.COMMAND && name.match(pair.end) && parentCommandPair && parentCommandPair.start.match(pair.start)) {
                     parentCommandPair.end = name
-                    parentCommandPair.endPosition = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
+                    parentCommandPair.endPosition = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1)
                     parentCommandPair = parentCommandPair.parent
                     // Do not return after finding an 'end' token as it can also be the start of an other pair.
                 }
