@@ -42,14 +42,20 @@ interface MatchEnv {
 }
 
 class CommandPair {
+    /** The list of contained pairs */
     public children: CommandPair[] = []
-    public parent: CommandPair | undefined = undefined // The parent of top-level pairs must be undefined
+    /** The parent of top-level pairs must be undefined */
+    public parent: CommandPair | undefined = undefined
 
     constructor(
         public type: PairType,
+        /** The opening string. It contains the leading slash */
         public start: string,
+        /** The starting position of `start` */
         public startPosition: vscode.Position,
+        /** The closing string. It contains the leading slash */
         public end?: string,
+        /** The ending position of `end` */
         public endPosition?: vscode.Position,
         ) {}
 
@@ -170,12 +176,12 @@ export class EnvPair {
             parentCommandPair = currentCommandPair?.parent
         } else if (latexParser.isDisplayMath(node)) {
             const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
-            const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1 + 2) // 2 = '\\]'.length
+            const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1)
             const currentCommandPair = new CommandPair(PairType.DISPLAYMATH, '\\[', beginPos, '\\]', endPos)
             commandPairs.push(currentCommandPair)
         } else if (latexParser.isInlienMath(node)) {
             const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
-            const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1 + 2)  // 2 = '\\)'.length
+            const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1)
             const currentCommandPair = new CommandPair(PairType.INLINEMATH, '\\(', beginPos, '\\)', endPos)
             commandPairs.push(currentCommandPair)
         } else if (latexParser.isCommand(node)) {
@@ -183,7 +189,7 @@ export class EnvPair {
             for (const pair of EnvPair.delimiters) {
                 if (pair.type === PairType.COMMAND && name.match(pair.end) && parentCommandPair && parentCommandPair.start.match(pair.start)) {
                     parentCommandPair.end = name
-                    parentCommandPair.endPosition = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1 + parentCommandPair.end.length)
+                    parentCommandPair.endPosition = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
                     parentCommandPair = parentCommandPair.parent
                     // Do not return after finding an 'end' token as it can also be the start of an other pair.
                 }
@@ -250,9 +256,99 @@ export class EnvPair {
         void EnvPair.locateSurroundingPair(curPos, document)
     }
 
-    envNameAction(action: 'selection'|'cursor'|'equationToggle') {
+    /**
+     * Select or add a multicursor to an environment name if called with
+     * `action = 'selection'` or `action = 'cursor'` respectively.
+     *
+     * Toggles between `\[...\]` and `\begin{$text}...\end{$text}`
+     * where `$text` is `''` if `action = cursor` and `'equation*'` otherwise
+     *
+     * Only toggles if `action = equationToggle` (i.e. does not move selection)
+     *
+     * @param action  can be
+     *      - 'selection': the environment name is selected both in the begin and end part
+     *      - 'cursor': a multicursor is added at the beginning of the environment name is selected both in the begin and end part
+     *      - 'equationToggle': toggles between `\[...\]` and `\begin{}...\end{}`
+     */
+    async envNameAction(action: 'selection'|'cursor'|'equationToggle') {
+        const editor = vscode.window.activeTextEditor
+        if (!editor || editor.document.languageId !== 'latex') {
+            return
+        }
+        let startingPos = editor.selection.active
+        const document = editor.document
 
+        const matchedCommandPairs = (await EnvPair.locateSurroundingPair(startingPos, document)).filter((pair: CommandPair) => {
+            return pair.end && pair.endPosition
+        })
+        if (matchedCommandPairs.length === 0) {
+            logger.log('No matched command pair found in envNameAction')
+            return
+        }
+        const matchedCommandPair = matchedCommandPairs[matchedCommandPairs.length - 1]
+        if (!matchedCommandPair.end || !matchedCommandPair.endPosition) {
+            logger.log('No matched command pair found in envNameAction')
+            return
+        }
+
+        const beginEnvStartPos = matchedCommandPair.startPosition.translate(0, '\\begin{'.length)
+        let endEnvStartPos = matchedCommandPair.endPosition.translate(0, -matchedCommandPair.end.length + '\\end{'.length)
+
+        const edit = new vscode.WorkspaceEdit()
+        let envNameLength: number
+        if (matchedCommandPair.type === PairType.DISPLAYMATH) {
+            const eqText = action === 'cursor' ? '' : 'equation*'
+            const beginRange = new vscode.Range(matchedCommandPair.startPosition, matchedCommandPair.startPosition.translate(0, 2)) // 2 = '\\['.length
+            const endRange = new vscode.Range(matchedCommandPair.endPosition.translate(0, -2), matchedCommandPair.endPosition) // 2 = '\\]'.length
+            envNameLength = eqText.length
+            edit.replace(document.uri, endRange, `\\end{${eqText}}`)
+            edit.replace(document.uri, beginRange, `\\begin{${eqText}}`)
+            const diff = 'begin{}'.length + envNameLength - '['.length
+            if (startingPos.line === matchedCommandPair.startPosition.line) {
+                startingPos = startingPos.translate(0, diff)
+            }
+            if (matchedCommandPair.startPosition.line === matchedCommandPair.endPosition.line) {
+                endEnvStartPos = endEnvStartPos.translate(0, diff)
+            }
+        } else if (matchedCommandPair.type === PairType.ENVIRONMENT) {
+            if (action === 'equationToggle') {
+                const beginRange = new vscode.Range(matchedCommandPair.startPosition, matchedCommandPair.startPosition.translate(0, matchedCommandPair.start.length))
+                const endRange = new vscode.Range(matchedCommandPair.endPosition.translate(0, -matchedCommandPair.end.length), matchedCommandPair.endPosition)
+                edit.replace(document.uri, endRange, ']')
+                edit.replace(document.uri, beginRange, '[')
+                if (startingPos.line === matchedCommandPair.startPosition.line) {
+                    const diff = Math.max('['.length - matchedCommandPair.start.length, -startingPos.character)
+                    startingPos = startingPos.translate(0, diff)
+                }
+            }
+        } else {
+            // Bad match
+            return
+        }
+
+        void vscode.workspace.applyEdit(edit).then(success => {
+            if (success || edit.size === 0) {
+                switch (action) {
+                    case 'cursor':
+                        editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStartPos), new vscode.Selection(endEnvStartPos, endEnvStartPos)]
+                        break
+                    case 'selection': {
+                        const beginEnvStopPos = beginEnvStartPos.translate(0, envNameLength)
+                        const endEnvStopPos = endEnvStartPos.translate(0, envNameLength)
+                        editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStopPos), new vscode.Selection(endEnvStartPos, endEnvStopPos)]
+                        break
+                    }
+                    case 'equationToggle':
+                        editor.selection = new vscode.Selection(startingPos, startingPos)
+                        break
+                    default:
+                        logger.log('Error while selecting environment name')
+                }
+            }
+        })
+        // editor.revealRange(new vscode.Range(beginEnvStartPos, endEnvStartPos))
     }
+
 
     selectEnvContent(mode: 'content' | 'whole') {
         const editor = vscode.window.activeTextEditor
