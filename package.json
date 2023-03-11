@@ -1974,6 +1974,15 @@
           "default": [],
           "markdownDescription": "List of extra packages to always add to the auto-completion mechanism. When `#latex-workshop.intellisense.package.enabled#` is set to `true`, the commands and environments defined in these extra packages will be added to the intellisense suggestions."
         },
+        "latex-workshop.intellisense.package.exclude": {
+          "scope": "window",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "markdownDescription": "List of packages to exclude from the auto-completion mechanism. When `#latex-workshop.intellisense.package.enabled#` is set to `true`, the commands and environments defined in these packages will not be added to the intellisense suggestions. This setting has a higher priority over `#latex-workshop.intellisense.package.extra#`. You may include the string \"lw-default\" in the list to remove all default commands and environments."
+        },
         "latex-workshop.intellisense.package.env.enabled": {
           "scope": "window",
           "type": "boolean",
