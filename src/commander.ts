@@ -239,7 +239,7 @@ export function selectEnvContent(mode: 'content' | 'whole') {
     if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    lw.envPair.selectEnvContent(mode)
+    void lw.envPair.selectEnvContent(mode)
 }
 
 export function selectEnvName() {
@@ -247,7 +247,7 @@ export function selectEnvName() {
     if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    lw.envPair.envNameAction('selection')
+    void lw.envPair.envNameAction('selection')
 }
 
 export function multiCursorEnvName() {
@@ -255,7 +255,7 @@ export function multiCursorEnvName() {
     if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    lw.envPair.envNameAction('cursor')
+    void lw.envPair.envNameAction('cursor')
 }
 
 export function toggleEquationEnv() {
@@ -263,7 +263,7 @@ export function toggleEquationEnv() {
     if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    lw.envPair.envNameAction('equationToggle')
+    void lw.envPair.envNameAction('equationToggle')
 }
 
 export function closeEnv() {
