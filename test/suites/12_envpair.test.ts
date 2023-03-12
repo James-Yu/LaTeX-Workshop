@@ -155,4 +155,18 @@ suite('EnvPair test suite', () => {
         assert.strictEqual(activeTextEditor.selections.length, 1)
         assert.deepStrictEqual(activeTextEditor.selection, new vscode.Selection(startEnvContentPos, endEnvContentPos))
     })
+
+    test.run('Close env', async (fixture: string) => {
+        await loadTestFiles(fixture)
+        const activeTextEditor = vscode.window.activeTextEditor
+        assert.ok(activeTextEditor)
+        const curPos = new vscode.Position(28, 0)
+        activeTextEditor.selection = new vscode.Selection(curPos, curPos)
+        const envPair = new EnvPair()
+        await envPair.closeEnv()
+        await test.sleep(250)
+        const endString = '\\end{poo}'
+        const text = activeTextEditor.document.getText(new vscode.Range(curPos, curPos.translate(0, endString.length)))
+        assert.strictEqual(text, endString)
+    })
 })
