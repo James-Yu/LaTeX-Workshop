@@ -46,7 +46,7 @@ export class EnvPair {
 
     constructor() {}
 
-    static async buildCommandPairTree(doc: vscode.TextDocument): Promise<CommandPair[]> {
+    async buildCommandPairTree(doc: vscode.TextDocument): Promise<CommandPair[]> {
         let ast: latexParser.LatexAst | undefined = await UtensilsParser.parseLatex(doc.getText()).catch((e) => {
             if (latexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
@@ -73,7 +73,7 @@ export class EnvPair {
         return commandPairs
     }
 
-    private static buildCommandPairTreeFromNode(node: latexParser.Node, parentCommandPair: CommandPair | undefined, commandPairs: CommandPair[]): CommandPair | undefined {
+    private buildCommandPairTreeFromNode(node: latexParser.Node, parentCommandPair: CommandPair | undefined, commandPairs: CommandPair[]): CommandPair | undefined {
         if (latexParser.isEnvironment(node) || latexParser.isMathEnv(node) || latexParser.isMathEnvAligned(node)) {
             const name = node.name
             let currentCommandPair: CommandPair | undefined
@@ -97,7 +97,7 @@ export class EnvPair {
                 parentCommandPair = currentCommandPair
             }
             for (const subnode of node.content) {
-                parentCommandPair = EnvPair.buildCommandPairTreeFromNode(subnode, parentCommandPair, commandPairs)
+                parentCommandPair = this.buildCommandPairTreeFromNode(subnode, parentCommandPair, commandPairs)
             }
             parentCommandPair = currentCommandPair?.parent
         } else if (latexParser.isDisplayMath(node)) {
@@ -165,20 +165,20 @@ export class EnvPair {
      * @param doc the document in which the search is performed
      * @param splitSubstring where to split the string if dir = 1 (default at end of `\begin{...}`)
      */
-    static async locateSurroundingPair(pos: vscode.Position, doc: vscode.TextDocument): Promise<CommandPair[]> {
-        const commandPairTree = await EnvPair.buildCommandPairTree(doc)
+    async locateSurroundingPair(pos: vscode.Position, doc: vscode.TextDocument): Promise<CommandPair[]> {
+        const commandPairTree = await this.buildCommandPairTree(doc)
         const matchedCommandPairs = this.walkThruCommandPairTree(pos, commandPairTree)
         return matchedCommandPairs
     }
 
-    static walkThruCommandPairTree(pos: vscode.Position, commandPairTree: CommandPair[]): CommandPair[] {
+    walkThruCommandPairTree(pos: vscode.Position, commandPairTree: CommandPair[]): CommandPair[] {
         const matchedCommandPairs: CommandPair[] = []
         for (const commandPair of commandPairTree) {
             if (commandPair.startPosition.isBeforeOrEqual(pos)) {
                 if (!commandPair.endPosition || commandPair.endPosition.isAfter(pos)) {
                     matchedCommandPairs.push(commandPair)
                     if (commandPair.children) {
-                        matchedCommandPairs.push(...EnvPair.walkThruCommandPairTree(pos, commandPair.children))
+                        matchedCommandPairs.push(...this.walkThruCommandPairTree(pos, commandPair.children))
                     }
                 }
             }
@@ -194,7 +194,7 @@ export class EnvPair {
         const curPos = editor.selection.active
         const document = editor.document
 
-        const pairs = (await EnvPair.locateSurroundingPair(curPos, document))
+        const pairs = (await this.locateSurroundingPair(curPos, document))
         for (const pair of pairs) {
             if (!pair.endPosition || !pair.end) {
                 continue
@@ -236,7 +236,7 @@ export class EnvPair {
         const document = editor.document
 
         // Only keep display math and environments
-        const matchedPairs = (await EnvPair.locateSurroundingPair(startingPos, document)).filter((pair: CommandPair) => {
+        const matchedPairs = (await this.locateSurroundingPair(startingPos, document)).filter((pair: CommandPair) => {
             return pair.end && pair.endPosition && [PairType.DISPLAYMATH, PairType.ENVIRONMENT].includes(pair.type)
         })
         const matchedPair = matchedPairs.at(-1)
@@ -300,7 +300,6 @@ export class EnvPair {
                 }
             }
         })
-        // editor.revealRange(new vscode.Range(beginEnvStartPos, endEnvStartPos))
     }
 
 
@@ -312,7 +311,7 @@ export class EnvPair {
         const startingPos = editor.selection.active
         const document = editor.document
 
-        const matchedCommandPairs = await EnvPair.locateSurroundingPair(startingPos, document)
+        const matchedCommandPairs = await this.locateSurroundingPair(startingPos, document)
         for (const pair of matchedCommandPairs.reverse()) {
             if (pair.endPosition && pair.end) {
                 let startEnvPos: vscode.Position
@@ -342,7 +341,7 @@ export class EnvPair {
         const cursorPos = editor.selection.active
         const document = editor.document
 
-        const matchedPairs = (await EnvPair.locateSurroundingPair(cursorPos, document)).filter((pair: CommandPair) => { return !pair.endPosition})
+        const matchedPairs = (await this.locateSurroundingPair(cursorPos, document)).filter((pair: CommandPair) => { return !pair.endPosition})
 
         const matchedPair = matchedPairs.at(-1)
         if (!matchedPair) {

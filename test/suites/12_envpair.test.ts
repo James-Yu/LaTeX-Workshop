@@ -26,7 +26,8 @@ suite('EnvPair test suite', () => {
         await loadTestFiles(fixture)
         const activeTextEditor = vscode.window.activeTextEditor
         assert.ok(activeTextEditor)
-        const pairTree = await EnvPair.buildCommandPairTree(activeTextEditor.document)
+        const envPair = new EnvPair()
+        const pairTree = await envPair.buildCommandPairTree(activeTextEditor.document)
         assert.strictEqual(pairTree.length, 6)
         assert.strictEqual(pairTree[0].children.length, 0)
         assert.strictEqual(pairTree[0].start, '\\iftest')
