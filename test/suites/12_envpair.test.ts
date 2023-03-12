@@ -169,4 +169,27 @@ suite('EnvPair test suite', () => {
         const text = activeTextEditor.document.getText(new vscode.Range(curPos, curPos.translate(0, endString.length)))
         assert.strictEqual(text, endString)
     })
+
+    test.run('Go to pair', async (fixture: string) => {
+        await loadTestFiles(fixture)
+        const activeTextEditor = vscode.window.activeTextEditor
+        assert.ok(activeTextEditor)
+        const envPair = new EnvPair()
+        const pair1 = new vscode.Position(18, 6)
+        const altPair1 = new vscode.Position(16, 4)
+        activeTextEditor.selection = new vscode.Selection(pair1, pair1)
+        await envPair.gotoPair()
+        await test.sleep(250)
+        assert.strictEqual(activeTextEditor.selections.length, 1)
+        assert.deepStrictEqual(activeTextEditor.selection, new vscode.Selection(altPair1, altPair1))
+
+        const pair2 = new vscode.Position(15, 4)
+        const altPair2 = new vscode.Position(19, 2)
+        activeTextEditor.selection = new vscode.Selection(pair2, pair2)
+        await envPair.gotoPair()
+        await test.sleep(250)
+        assert.strictEqual(activeTextEditor.selections.length, 1)
+        assert.deepStrictEqual(activeTextEditor.selection, new vscode.Selection(altPair2, altPair2))
+    })
+
 })
