@@ -274,6 +274,8 @@ export class EnvPair {
                     const diff = Math.max('['.length - matchedPair.start.length, -startingPos.character)
                     startingPos = startingPos.translate(0, diff)
                 }
+            } else {
+                envNameLength = matchedPair.start.length - '\\begin{}'.length
             }
         } else {
             // Bad match
