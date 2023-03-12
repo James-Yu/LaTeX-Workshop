@@ -122,4 +122,37 @@ suite('EnvPair test suite', () => {
         const text = activeTextEditor.document.getText(new vscode.Range(new vscode.Position(9, 0), new vscode.Position(11, 2)))
         assert.strictEqual(text, '\\[\n  1 + 2\n\\]')
     })
+
+    test.run('Select env content', async (fixture: string) => {
+        await loadTestFiles(fixture)
+        const activeTextEditor = vscode.window.activeTextEditor
+        assert.ok(activeTextEditor)
+        const curPos = new vscode.Position(15, 5)
+        const startEnvContentPos = new vscode.Position(14, 14)
+        const endEnvContentPos = new vscode.Position(20, 0)
+        activeTextEditor.selection = new vscode.Selection(curPos, curPos)
+        const envPair = new EnvPair()
+        await envPair.selectEnvContent('content')
+        await test.sleep(250)
+        assert.strictEqual(activeTextEditor.selections.length, 1)
+        assert.deepStrictEqual(activeTextEditor.selection, new vscode.Selection(startEnvContentPos, endEnvContentPos))
+    })
+
+    test.run('Select env', async (fixture: string) => {
+        await loadTestFiles(fixture)
+        const activeTextEditor = vscode.window.activeTextEditor
+        assert.ok(activeTextEditor)
+        const curPos = new vscode.Position(17, 6)
+        const startEnvContentPos = new vscode.Position(15, 2)
+        const endEnvContentPos = new vscode.Position(19, 13)
+        activeTextEditor.selection = new vscode.Selection(curPos, curPos)
+        const envPair = new EnvPair()
+        // Double call expands selection to outer env
+        await envPair.selectEnvContent('whole')
+        await test.sleep(250)
+        await envPair.selectEnvContent('whole')
+        await test.sleep(250)
+        assert.strictEqual(activeTextEditor.selections.length, 1)
+        assert.deepStrictEqual(activeTextEditor.selection, new vscode.Selection(startEnvContentPos, endEnvContentPos))
+    })
 })
