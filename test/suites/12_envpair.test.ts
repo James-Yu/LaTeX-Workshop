@@ -96,4 +96,30 @@ suite('EnvPair test suite', () => {
         assert.deepStrictEqual(activeTextEditor.selections[0], new vscode.Selection(startNamePos, startNamePos))
         assert.deepStrictEqual(activeTextEditor.selections[1], new vscode.Selection(endNamePos, endNamePos))
     })
+
+    test.run('Toggle equation - \\[ \\]', async (fixture: string) => {
+        await loadTestFiles(fixture)
+        const activeTextEditor = vscode.window.activeTextEditor
+        assert.ok(activeTextEditor)
+        const curPos = new vscode.Position(7, 3)
+        activeTextEditor.selection = new vscode.Selection(curPos, curPos)
+        const envPair = new EnvPair()
+        await envPair.envNameAction('equationToggle')
+        await test.sleep(250)
+        const line = activeTextEditor.document.lineAt(7).text
+        assert.strictEqual(line, '\\begin{equation*} 1 + 2 \\end{equation*}')
+    })
+
+    test.run('Toggle \\[ \\] - equation', async (fixture: string) => {
+        await loadTestFiles(fixture)
+        const activeTextEditor = vscode.window.activeTextEditor
+        assert.ok(activeTextEditor)
+        const curPos = new vscode.Position(10, 4)
+        activeTextEditor.selection = new vscode.Selection(curPos, curPos)
+        const envPair = new EnvPair()
+        await envPair.envNameAction('equationToggle')
+        await test.sleep(250)
+        const text = activeTextEditor.document.getText(new vscode.Range(new vscode.Position(9, 0), new vscode.Position(11, 2)))
+        assert.strictEqual(text, '\\[\n  1 + 2\n\\]')
+    })
 })

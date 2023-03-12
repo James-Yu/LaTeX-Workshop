@@ -268,8 +268,8 @@ export class EnvPair {
             if (action === 'equationToggle') {
                 const beginRange = new vscode.Range(matchedPair.startPosition, matchedPair.startPosition.translate(0, matchedPair.start.length))
                 const endRange = new vscode.Range(matchedPair.endPosition.translate(0, -matchedPair.end.length), matchedPair.endPosition)
-                edit.replace(document.uri, endRange, ']')
-                edit.replace(document.uri, beginRange, '[')
+                edit.replace(document.uri, endRange, '\\]')
+                edit.replace(document.uri, beginRange, '\\[')
                 if (startingPos.line === matchedPair.startPosition.line) {
                     const diff = Math.max('['.length - matchedPair.start.length, -startingPos.character)
                     startingPos = startingPos.translate(0, diff)
