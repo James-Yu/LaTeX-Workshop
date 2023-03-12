@@ -22,7 +22,7 @@ suite('EnvPair test suite', () => {
         await test.reset()
     })
 
-    test.run('test structure', async (fixture: string) => {
+    test.run('test env_pair AST', async (fixture: string) => {
         await loadTestFiles(fixture)
         const activeTextEditor = vscode.window.activeTextEditor
         assert.ok(activeTextEditor)
@@ -65,4 +65,19 @@ suite('EnvPair test suite', () => {
         assert.deepStrictEqual(pairTree[5].children[1].endPosition, new vscode.Position(27, 3))
     })
 
+    test.run('test select env name', async (fixture: string) => {
+        await loadTestFiles(fixture)
+        const activeTextEditor = vscode.window.activeTextEditor
+        assert.ok(activeTextEditor)
+        const curPos = new vscode.Position(18, 6)
+        const startNamePos = new vscode.Position(15, 9)
+        const endNamePos = new vscode.Position(19, 7)
+        activeTextEditor.selection = new vscode.Selection(curPos, curPos)
+        const envPair = new EnvPair()
+        await envPair.envNameAction('selection')
+        await test.sleep(250)
+        assert.strictEqual(activeTextEditor.selections.length, 2)
+        assert.deepStrictEqual(activeTextEditor.selections[0], new vscode.Selection(startNamePos, startNamePos))
+        assert.deepStrictEqual(activeTextEditor.selections[1], new vscode.Selection(endNamePos, endNamePos))
+    })
 })
