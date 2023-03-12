@@ -121,9 +121,9 @@ export class EnvPair {
                     currentCommandPair.parent = parentCommandPair
                     parentCommandPair.children.push(currentCommandPair)
                 } else {
-                    parentCommandPair = currentCommandPair
                     commandPairs.push(currentCommandPair)
                 }
+                // currentCommandPair becomes the new parent
                 return currentCommandPair
             }
             const name = '\\' + node.name
@@ -143,9 +143,9 @@ export class EnvPair {
                         currentCommandPair.parent = parentCommandPair
                         parentCommandPair.children.push(currentCommandPair)
                     } else {
-                        parentCommandPair = currentCommandPair
                         commandPairs.push(currentCommandPair)
                     }
+                    // currentCommandPair becomes the new parent
                     return currentCommandPair
                 }
             }
