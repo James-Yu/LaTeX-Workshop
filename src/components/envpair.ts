@@ -201,7 +201,7 @@ export class EnvPair {
     }
 
     /**
-     * Return all the pair at the same depth as the pair containing `pos`
+     * Return all the pairs at the same depth as the pair containing `pos`
      *
      * @param pos current cursor position
      * @param doc current document
