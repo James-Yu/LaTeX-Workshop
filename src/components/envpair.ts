@@ -30,7 +30,26 @@ class CommandPair {
         public end?: string,
         /** The ending position of `end` */
         public endPosition?: vscode.Position,
-        ) {}
+    ) {}
+
+    /**
+     * Does the start statement contain `pos`
+     */
+    startContains(pos: vscode.Position): boolean {
+        const startRange = new vscode.Range(this.startPosition, this.startPosition.translate(0, this.start.length))
+        return startRange.contains(pos)
+    }
+
+    /**
+     * Does the end statement contain `pos`
+     */
+    endContains(pos: vscode.Position): boolean {
+        if (this.end && this.endPosition) {
+            const endRange = new vscode.Range(this.endPosition, this.endPosition.translate(0, -this.end.length))
+            return endRange.contains(pos)
+        }
+        return false
+    }
 
 }
 
@@ -155,37 +174,80 @@ export class EnvPair {
 
 
     /**
-     * Search upwards or downwards for a begin or end environment captured by `pattern`.
-     * The environment can also be \[...\] or \(...\)
+     * Find all pairs surrounding the current position
      *
-     * @param pattern A regex that matches begin or end environments. Note that the regex
-     * must capture the delimiters
-     * @param dir +1 to search downwards, -1 to search upwards
      * @param pos starting position (e.g. cursor position)
      * @param doc the document in which the search is performed
-     * @param splitSubstring where to split the string if dir = 1 (default at end of `\begin{...}`)
      */
     async locateSurroundingPair(pos: vscode.Position, doc: vscode.TextDocument): Promise<CommandPair[]> {
         const commandPairTree = await this.buildCommandPairTree(doc)
-        const matchedCommandPairs = this.walkThruCommandPairTree(pos, commandPairTree)
+        const matchedCommandPairs = this.walkThruForSurroundingPairs(pos, commandPairTree)
         return matchedCommandPairs
     }
 
-    walkThruCommandPairTree(pos: vscode.Position, commandPairTree: CommandPair[]): CommandPair[] {
-        const matchedCommandPairs: CommandPair[] = []
+    walkThruForSurroundingPairs(pos: vscode.Position, commandPairTree: CommandPair[]): CommandPair[] {
+        const surroundingPairs: CommandPair[] = []
         for (const commandPair of commandPairTree) {
             if (commandPair.startPosition.isBeforeOrEqual(pos)) {
                 if (!commandPair.endPosition || commandPair.endPosition.isAfter(pos)) {
-                    matchedCommandPairs.push(commandPair)
+                    surroundingPairs.push(commandPair)
                     if (commandPair.children) {
-                        matchedCommandPairs.push(...this.walkThruCommandPairTree(pos, commandPair.children))
+                        surroundingPairs.push(...this.walkThruForSurroundingPairs(pos, commandPair.children))
                     }
                 }
             }
         }
-        return matchedCommandPairs
+        return surroundingPairs
     }
 
+    /**
+     * Return all the pair at the same depth as the pair containing `pos`
+     *
+     * @param pos current cursor position
+     * @param doc current document
+     * @returns CommandPair[]
+     */
+    async locatePairsAtDepth(pos: vscode.Position, doc: vscode.TextDocument): Promise<CommandPair[]> {
+        const commandPairTree = await this.buildCommandPairTree(doc)
+        const overlappingPairs = this.walkThruForPairsNextToPosition(pos, commandPairTree)
+        return overlappingPairs
+    }
+
+    walkThruForPairsNextToPosition(pos: vscode.Position, commandPairTree: CommandPair[]): CommandPair[] {
+        const pairsAtPosition: CommandPair[] = []
+        if (commandPairTree.some((pair: CommandPair) => pair.startContains(pos) || pair.endContains(pos))) {
+            return commandPairTree
+        }
+
+        for (const commandPair of commandPairTree) {
+            if (commandPair.startPosition.isBefore(pos)) {
+                if (!commandPair.endPosition || commandPair.endPosition.isAfter(pos)) {
+                    if (commandPair.children) {
+                        pairsAtPosition.push(...this.walkThruForPairsNextToPosition(pos, commandPair.children))
+                    }
+                }
+            }
+        }
+        return pairsAtPosition
+    }
+
+    /**
+     * If we are on a starting statement, go to the matching end statement
+     * If we are on end statement, go to the opening statement of the first pair making a contiguous chain of pairs up to the curent position.
+     *
+     * Consider the following LaTeX content
+     *
+     *  \ifpoo
+     *      ....
+     *  \else
+     *      ...
+     *  \fi
+     *
+     * Calling this function yields the following move
+     *  \ifpoo -> \else
+     *  \else -> \fi
+     *  \fi -> \ifpoo
+     */
     async gotoPair() {
         const editor = vscode.window.activeTextEditor
         if (!editor || editor.document.languageId !== 'latex') {
@@ -194,20 +256,32 @@ export class EnvPair {
         const curPos = editor.selection.active
         const document = editor.document
 
-        const pairs = (await this.locateSurroundingPair(curPos, document))
+        const pairs = (await this.locatePairsAtDepth(curPos, document))
+        // First, test if we are an opening statement.
         for (const pair of pairs) {
-            if (!pair.endPosition || !pair.end) {
-                continue
-            }
-            const endStartPosition = pair.endPosition.translate(0, -pair.end.length)
-            const startRange = new vscode.Range(pair.startPosition, pair.startPosition.translate(0, pair.start.length))
-            if (startRange.contains(curPos)) {
+            if (pair.startContains(curPos) && pair.endPosition && pair.end) {
+                const endStartPosition = pair.endPosition.translate(0, -pair.end.length)
                 editor.selection = new vscode.Selection(endStartPosition, endStartPosition)
                 return
             }
-            const endRange = new vscode.Range(endStartPosition, pair.endPosition)
-            if (endRange.contains(curPos)) {
+        }
+
+        // Second, if we are not on an opening statement, test if we are on a closing one.
+        for (const [index, pair] of pairs.entries()) {
+            if (pair.endContains(curPos)) {
                 editor.selection = new vscode.Selection(pair.startPosition, pair.startPosition)
+                const contiguousPairs = [pair]
+                let currentPos: vscode.Position = pair.startPosition
+                for (const previsousPair of pairs.slice(undefined, index).reverse()) {
+                    if (previsousPair.endContains(currentPos)) {
+                        currentPos = previsousPair.startPosition
+                        contiguousPairs.push(previsousPair)
+                    } else {
+                        break
+                    }
+                }
+                const firstPair = contiguousPairs.pop() as CommandPair
+                editor.selection = new vscode.Selection(firstPair.startPosition, firstPair.startPosition )
                 return
             }
         }
