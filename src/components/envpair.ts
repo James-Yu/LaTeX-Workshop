@@ -272,10 +272,11 @@ export class EnvPair {
                 editor.selection = new vscode.Selection(pair.startPosition, pair.startPosition)
                 const contiguousPairs = [pair]
                 let currentPos: vscode.Position = pair.startPosition
-                for (const previsousPair of pairs.slice(undefined, index).reverse()) {
-                    if (previsousPair.endContains(currentPos)) {
-                        currentPos = previsousPair.startPosition
-                        contiguousPairs.push(previsousPair)
+                // Locate the chain of contiguous pairs up to here
+                for (const previousPair of pairs.slice(undefined, index).reverse()) {
+                    if (previousPair.endContains(currentPos)) {
+                        currentPos = previousPair.startPosition
+                        contiguousPairs.push(previousPair)
                     } else {
                         break
                     }
