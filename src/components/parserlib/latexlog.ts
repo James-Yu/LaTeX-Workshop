@@ -109,7 +109,7 @@ function parseLine(line: string, state: ParserState) {
             const packageExtraLineResult = line.match(latexPackageWarningExtraLines)
             if (packageExtraLineResult) {
                 state.currentResult.text += '\n(' + packageExtraLineResult[1] + ')\t' + packageExtraLineResult[2] + (packageExtraLineResult[4] ? '.' : '')
-                state.currentResult.line = parseInt(packageExtraLineResult[3], 10)
+                state.currentResult.line = packageExtraLineResult[3] ? parseInt(packageExtraLineResult[3], 10) : 1
             } else if (state.insideError) {
                 const match = messageLine.exec(line)
                 if (match && match.length >= 2) {
@@ -175,7 +175,7 @@ function parseLine(line: string, state: ParserState) {
         state.currentResult = {
             type: 'warning',
             file: filename,
-            line: parseInt(result[4], 10),
+            line: result[4] ? parseInt(result[4], 10) : 1,
             text: result[3] + result[5]
         }
         state.searchEmptyLine = true
