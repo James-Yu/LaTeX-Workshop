@@ -1806,7 +1806,7 @@
           "markdownDescription": "Defines the delay in milliseconds for the extension to update current active file content for intellisense after stopped typing. This config works only when `intellisense.update.aggressive.enabled` is enabled. Lower this value to let the extension know newly defined commands/references/environments more quickly, at the cost of more frequent content parsing: more computational burden."
         },
         "latex-workshop.intellisense.atSuggestion.user": {
-          "scope": "resource",
+          "scope": "window",
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -1815,7 +1815,7 @@
           "markdownDescription": "Dictionary of `\"@prefix\": \"snippet command\"` to add to, replace, or remove the default suggestions in `data/at-suggestions.json`. The key of the dictionary is the triggering string, which **must** starts with `@` regardless of `#latex-workshop.intellisense.atSuggestion.trigger.latex#`. The value of the dictionary is the snippet to be inserted. If the key is identical to a default snippet defined in `data/at-suggestions.json`, the new value in the dictionary is used for suggestion. If the value is an empty string, the snippet is removed from suggestion. For example, `{ \"@.\": \"\\cdot\", \"@6\": \"\" }`."
         },
         "latex-workshop.intellisense.command.user": {
-          "scope": "resource",
+          "scope": "window",
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -2309,8 +2309,8 @@
             "type": "string"
           },
           "default": {},
-          "deprecationMessage": "Deprecated: This config has been superceded by config `intellisense.command.user`, which provides more features.",
-          "markdownDeprecationMessage": "**Deprecated**: This config has been superceded by config `#intellisense.command.user#`, which provides more features."
+          "deprecationMessage": "Deprecated: This config has been superseded by config `intellisense.command.user`, which provides more features.",
+          "markdownDeprecationMessage": "**Deprecated**: This config has been superseded by config `#intellisense.command.user#`, which provides more features."
         },
         "latex-workshop.texdoc.path": {
           "scope": "window",

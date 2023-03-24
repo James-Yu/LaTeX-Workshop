@@ -45,7 +45,7 @@ export class Cleaner {
                 return
             }
         }
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         const cleanMethod = configuration.get('latex.clean.method') as string
         switch (cleanMethod) {
             case 'glob':
