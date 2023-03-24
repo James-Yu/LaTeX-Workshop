@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
 import { getLogger } from './logger'
-import { UtensilsParser } from './parser/syntax'
+import { parser } from './parser'
 import { latexParser } from 'latex-utensils'
 
 const logger = getLogger('EnvPair')
@@ -66,7 +66,7 @@ export class EnvPair {
     constructor() {}
 
     async buildCommandPairTree(doc: vscode.TextDocument): Promise<CommandPair[]> {
-        let ast: latexParser.LatexAst | undefined = await UtensilsParser.parseLatex(doc.getText()).catch((e) => {
+        let ast: latexParser.LatexAst | undefined = await parser.parseLatex(doc.getText()).catch((e) => {
             if (latexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 logger.log(`Error parsing dirty AST of active editor at line ${line}. Fallback to cache.`)
