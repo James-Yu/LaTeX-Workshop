@@ -80,7 +80,7 @@ export class Argument implements IProvider {
     }
 
     private provideClassOptions(line: string): vscode.CompletionItem[] {
-        const regex = /\\documentclass.*{(.*?)}/
+        const regex = /\\documentclass.*{(.*?)}/s
         const match = line.match(regex)
         if (!match) {
             return []

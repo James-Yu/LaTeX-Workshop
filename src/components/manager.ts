@@ -393,7 +393,7 @@ export class Manager {
         if (!vscode.window.activeTextEditor) {
             return
         }
-        const regex = /(?:\\documentclass\[(.*)\]{subfiles})/
+        const regex = /(?:\\documentclass\[(.*)\]{subfiles})/s
         const result = content.match(regex)
         if (result) {
             const file = utils.resolveFile([path.dirname(vscode.window.activeTextEditor.document.fileName)], result[1])
