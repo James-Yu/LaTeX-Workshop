@@ -17,7 +17,7 @@ jobs:
     - name: Set up PATH
       run: |
         echo "C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin" >> $GITHUB_PATH
-        echo "D:\texlive\bin\win32" >> $GITHUB_PATH
+        echo "D:\texlive\bin\windows" >> $GITHUB_PATH
       shell: bash
     - name: Cache TeX Live
       id: cache-texlive
@@ -47,7 +47,7 @@ jobs:
     - name: Download latexindent binary
       run: |
         curl -s -O -L http://mirrors.ctan.org/support/latexindent/bin/windows/latexindent.exe
-        mv -Force "latexindent.exe" "D:\texlive\bin\win32\latexindent-binary.exe"
+        mv -Force "latexindent.exe" "D:\texlive\bin\windows\latexindent-binary.exe"
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - uses: actions/setup-node@v3
       with:
