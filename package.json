@@ -1063,6 +1063,12 @@
           "default": "%DIR%",
           "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located. Both relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash. The LaTeX toolchain should output files to this path. For a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
         },
+        "latex-workshop.latex.jobname": {
+          "scope": "resource",
+          "type": "string",
+          "default": "",
+          "markdownDescription": "The jobname argument of the compiling tool, which is used by the extension to find project files (e.g., PDF and SyncTeX files). This config should be set identical to the value provided to the `-jobname=` argument, and should not have placeholders. Leave the config empty to ignore jobname and keep the default behavior."
+        },
         "latex-workshop.latex.texDirs": {
           "scope": "window",
           "type": "array",

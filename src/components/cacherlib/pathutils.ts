@@ -16,7 +16,7 @@ const logger = getLogger('Cacher', 'Path')
 export function getFlsFilePath(texFile: string): string | undefined {
     const rootDir = path.dirname(texFile)
     const outDir = lw.manager.getOutDir(texFile)
-    const baseName = path.parse(texFile).name
+    const baseName = path.parse(lw.manager.jobname(texFile)).name
     const flsFile = path.resolve(rootDir, path.join(outDir, baseName + '.fls'))
     if (!fs.existsSync(flsFile)) {
         logger.log(`Non-existent .fls for ${texFile} .`)
