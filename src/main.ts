@@ -210,9 +210,9 @@ function registerProviders() {
 
     lw.registerDisposable(
         vscode.languages.registerDocumentFormattingEditProvider(latexindentSelector, latexFormatterProvider),
-        vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatterProvider),
+        vscode.languages.registerDocumentFormattingEditProvider(bibtexSelector, bibtexFormatterProvider),
         vscode.languages.registerDocumentRangeFormattingEditProvider(latexindentSelector, latexFormatterProvider),
-        vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatterProvider)
+        vscode.languages.registerDocumentRangeFormattingEditProvider(bibtexSelector, bibtexFormatterProvider)
     )
 
     lw.registerDisposable(
@@ -232,7 +232,7 @@ function registerProviders() {
 
     lw.registerDisposable(
         vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, lw.completer, '\\', '{'),
-        vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'bibtex'}, new BibtexCompleter(), '@')
+        vscode.languages.registerCompletionItemProvider(bibtexSelector, new BibtexCompleter(), '@')
     )
 
     let triggerDisposable: vscode.Disposable | undefined
