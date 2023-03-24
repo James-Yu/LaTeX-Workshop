@@ -191,16 +191,24 @@ export class Manager {
     }
 
     /**
+     * Returns the jobname. If empty, return the name of the input `texPath`.
+     *
+     * @param texPath The path of a LaTeX file.
+     */
+    jobname(texPath: string) {
+        const config = vscode.workspace.getConfiguration('latex-workshop')
+        const jobname = config.get('latex.jobname') as string
+        const texname = path.parse(texPath).name
+        return jobname || texname
+    }
+
+    /**
      * Returns the path of a PDF file with respect to `texPath`.
      *
      * @param texPath The path of a LaTeX file.
-     * @param respectOutDir If `true`, the 'latex.outDir' config is respected.
      */
     tex2pdf(texPath: string) {
-        const config = vscode.workspace.getConfiguration('latex-workshop')
-        const jobname = config.get('latex.jobname') as string
-        const texname = texPath.substring(0, texPath.lastIndexOf('.'))
-        return path.resolve(path.dirname(texPath), this.getOutDir(texPath), path.basename(`${jobname || texname}.pdf`))
+        return path.resolve(path.dirname(texPath), this.getOutDir(texPath), path.basename(`${this.jobname(texPath)}.pdf`))
     }
 
     /**
