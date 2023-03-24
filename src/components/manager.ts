@@ -197,7 +197,10 @@ export class Manager {
      * @param respectOutDir If `true`, the 'latex.outDir' config is respected.
      */
     tex2pdf(texPath: string) {
-        return path.resolve(path.dirname(texPath), this.getOutDir(texPath), path.basename(`${texPath.substring(0, texPath.lastIndexOf('.'))}.pdf`))
+        const config = vscode.workspace.getConfiguration('latex-workshop')
+        const jobname = config.get('latex.jobname') as string
+        const texname = texPath.substring(0, texPath.lastIndexOf('.'))
+        return path.resolve(path.dirname(texPath), this.getOutDir(texPath), path.basename(`${jobname || texname}.pdf`))
     }
 
     /**
