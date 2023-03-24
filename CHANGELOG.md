@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.8.1] - 2023-03-24
+
+### Fixed
+- (#3787) Root finding fails when optional arguments of `\documentclass` have new lines.
+
 ## [9.8.0] - 2023-03-24
 
 ### Added
