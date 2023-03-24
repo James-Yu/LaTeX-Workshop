@@ -196,7 +196,7 @@ export class Manager {
      * @param texPath The path of a LaTeX file.
      */
     jobname(texPath: string) {
-        const config = vscode.workspace.getConfiguration('latex-workshop')
+        const config = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath))
         const jobname = config.get('latex.jobname') as string
         const texname = path.parse(texPath).name
         return jobname || texname
