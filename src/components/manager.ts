@@ -10,7 +10,7 @@ import { getLogger } from './logger'
 
 const logger = getLogger('Manager')
 
-const ROOT_INDICATOR = /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/m
+const ROOT_INDICATOR = /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
 
 type RootFileType = {
     type: 'filePath',
