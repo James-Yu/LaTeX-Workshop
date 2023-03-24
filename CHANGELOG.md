@@ -1,5 +1,28 @@
 # Change Log
 
+## [9.8.0] - 2023-03-24
+
+### Added
+- (#711) Outline for .dtx file.
+  - Implements basic .dtx outline with macro and environment document parsing. Guards are not parsed yet.
+- (#3722) All viewer configs are now responsive to changes without reloading.
+- (#3728) Auto clean can be triggered on success.
+- (#3741) Add a `!LW recipe` magic comment to set recipe.
+- (#3767) Add a new config `intellisense.package.exclude` to exclude package intellisense.
+- (#3786) Add a new config `latex-workshop.latex.jobname` to define jobname.
+
+### Changed
+- (#3731) Use backspace and shift+bk to navigate the viewer.
+- (#3735) Current root is prioritized on root-finding if there are multiple candidates.
+- (#3743) Use `\documentclass[]{}` to detect root.
+- (#3770) Refactor EnvPair module and use the `latexParser` to build an AST `CommandPair` of all the pairs in the current file.
+
+### Fixed
+- (#3747) Strip `%` comments from bibtex for parsing.
+- (#3749) Viewer pages do not overflow.
+- (#3751) Fast parse don't include `\s*[{` as args
+- (#3778) Associate log warnings with no line number to line 1.
+
 ## [9.7.0] - 2023-02-14
 
 ### Added
