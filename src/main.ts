@@ -38,17 +38,6 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
     /** The previous active TeX document path. If this changed, root need to be re-searched */
     let prevTeXDocumentPath: string | undefined
-    // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
-    lw.registerDisposable(vscode.workspace.onDidOpenTextDocument(async (e: vscode.TextDocument) => {
-        if (lw.lwfs.isVirtualUri(e.uri)){
-            return
-        }
-        if (lw.manager.hasTexId(e.languageId) && e.fileName !== prevTeXDocumentPath) {
-            prevTeXDocumentPath = e.fileName
-            await lw.manager.findRoot()
-        }
-    }))
-
     let isLaTeXActive = false
     lw.registerDisposable(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
