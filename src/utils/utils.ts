@@ -66,7 +66,7 @@ export function stripText(raw: string): string {
  * Note the number lines of the output matches the input
  */
 export function stripComments(text: string): string {
-    const reg = /(^|[^\\]|(?:(?<!\\)(?:\\\\)+))%.*$/gm
+    const reg = /(^|[^\\]|(?:(?<!\\)(?:\\\\)+))%(?![2-9A-F][0-9A-F]).*$/gm
     return text.replace(reg, '$1')
 }
 
