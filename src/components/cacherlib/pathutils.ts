@@ -47,9 +47,12 @@ function kpsewhichBibPath(bib: string): string | undefined {
 export function resolveBibPath(bib: string, baseDir: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const bibDirs = configuration.get('latex.bibDirs') as string[]
+    let searchDirs: string[] = [baseDir, ...bibDirs]
     // chapterbib requires to load the .bib file in every chapter using
     // the path relative to the rootDir
-    const searchDirs = [...(lw.manager.rootDir ?? []), baseDir, ...bibDirs]
+    if (lw.manager.rootDir) {
+        searchDirs = [lw.manager.rootDir, ...searchDirs]
+    }
     const bibPath = utils.resolveFile(searchDirs, bib, '.bib')
 
     if (!bibPath) {
