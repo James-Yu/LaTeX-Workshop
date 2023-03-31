@@ -122,11 +122,11 @@ export class Section {
      * @param doc the text document
      */
     private searchLevelUp(levels: string[], pos: vscode.Position, doc: vscode.TextDocument): MatchSection | undefined {
-        const range = new vscode.Range(new vscode.Position(0, 0), pos.translate(-1, 0))
+        const range = new vscode.Range(new vscode.Position(0, 0), pos.with(undefined, doc.lineAt(pos.line).range.end.character))
         const content = stripCommentsAndVerbatim(doc.getText(range)).split('\n')
         const pattern = '\\\\(' + levels.join('|') + ')\\*?(?:\\[.+?\\])?\\{.*?\\}'
         const regex = new RegExp(pattern)
-        for (let i = pos.line - 1; i >= 0; i -= 1) {
+        for (let i = pos.line; i >= 0; i -= 1) {
             const res = content[i].match(regex)
             if (res) {
                 return {level: res[1], pos: new vscode.Position(i, 0)}
