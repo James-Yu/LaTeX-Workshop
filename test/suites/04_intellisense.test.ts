@@ -188,7 +188,7 @@ suite('Intellisense test suite', () => {
         assert.ok(!snippet.value.includes('${1:'))
     })
 
-    test.only('command intellisense with config `intellisense.command.user`', async (fixture: string) => {
+    test.run('command intellisense with config `intellisense.command.user`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', {'mycommand[]{}': 'notsamecommand[${2:option}]{$TM_SELECTED_TEXT$1}', 'parbox{}{}': 'defchanged', 'overline{}': ''})
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
@@ -418,6 +418,11 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('s.tex'))
         assert.ok(suggestions.labels.includes('plain.tex'))
         assert.ok(!suggestions.labels.includes('sub/'))
+
+        suggestions = test.suggest(19, 9)
+        const item = suggestions.items.find(suggestion => suggestion.label === 'main.tex')
+        assert.ok(item)
+        assert.strictEqual(item.insertText, 'main')
     })
 
     test.run('citation intellisense and configs intellisense.citation.*', async (fixture: string) => {
