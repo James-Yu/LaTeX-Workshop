@@ -129,7 +129,7 @@ abstract class InputAbstract implements IProvider {
                         }
                         item.range = range
                         item.detail = dir
-                        if (['include'].includes(command)) {
+                        if (['include', 'includeonly', 'excludeonly'].includes(command)) {
                             item.insertText = path.parse(file).name
                         }
                         suggestions.push(item)
