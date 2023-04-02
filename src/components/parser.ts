@@ -28,7 +28,7 @@ function dispose() {
  * @return undefined if parsing fails
  */
 async function parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst | undefined> {
-    return (await proxy).parseLatex(s, options).timeout(3000).catch(() => undefined)
+    return (await proxy).parseLatex(s, options).timeout(3000)//.catch(() => undefined)
 }
 
 async function parseLatexPreamble(s: string): Promise<latexParser.AstPreamble> {
