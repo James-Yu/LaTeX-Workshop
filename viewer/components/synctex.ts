@@ -7,10 +7,13 @@ export class SyncTex {
     reverseSynctexKeybinding: string = 'ctrl-click'
 
     constructor(lwApp: ILatexWorkshopPdfViewer) {
+        console.log('SyncTex constructor')
         this.lwApp = lwApp
+        console.log('lwApp',this.lwApp)
         // Since DOM of each page is recreated when a PDF document is reloaded,
         // we must register listeners every time.
         this.lwApp.onPagesInit(() => {
+            console.log('this.lwApp.onPagesInit')
             this.registerListenerOnEachPage()
         })
     }
@@ -41,6 +44,7 @@ export class SyncTex {
     }
 
     registerListenerOnEachPage() {
+        console.log('registerListenerOnEachPage')
         const keybinding = this.reverseSynctexKeybinding
         const viewerDom = document.getElementById('viewer') as HTMLElement
         for (const pageDom of viewerDom.childNodes as NodeListOf<HTMLElement>) {
@@ -48,6 +52,7 @@ export class SyncTex {
             const viewerContainer = document.getElementById('viewerContainer') as HTMLElement
             switch (keybinding) {
                 case 'ctrl-click': {
+                    console.log('ctrl-click')
                     pageDom.onclick = (e) => {
                         if (!(e.ctrlKey || e.metaKey)) {
                             return
@@ -57,12 +62,14 @@ export class SyncTex {
                     break
                 }
                 case 'double-click': {
+                    console.log('double-click')
                     pageDom.ondblclick = (e) => {
                         this.callSynctex(e, page, pageDom, viewerContainer)
                     }
                     break
                 }
                 default: {
+                    console.error('Unknown keybinding')
                     console.log(`Unknown keybinding ${keybinding} (view.pdf.internal.synctex.keybinding)`)
                     break
                 }
