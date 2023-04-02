@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as lw from './lw'
-import { getSurroundingCommandRange } from './utils/utils'
+import { getSurroundingCommandRange, stripText } from './utils/utils'
 import { getLogger } from './components/logger'
 import { parser } from './components/parser'
 
@@ -470,6 +470,14 @@ export async function devParseBib() {
     }
     const ast = await parser.parseBibtex(vscode.window.activeTextEditor.document.getText())
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
+}
+
+export async function devStripText() {
+    if (vscode.window.activeTextEditor === undefined) {
+        return
+    }
+    const content = stripText(vscode.window.activeTextEditor.document.getText())
+    return vscode.workspace.openTextDocument({content}).then(doc => vscode.window.showTextDocument(doc))
 }
 
 export function texdoc(packageName?: string) {
