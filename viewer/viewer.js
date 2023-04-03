@@ -13870,7 +13870,6 @@ function getViewerConfiguration() {
   };
 }
 function webViewerLoad() {
-  console.log('webViewerLoad called')
   const config = getViewerConfiguration();
   const event = new CustomEvent("webviewerloaded", {
     bubbles: true,
