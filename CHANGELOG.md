@@ -1,5 +1,12 @@
 # Change Log
 
+## [9.8.2] - 2023-03-29
+
+### Fixed
+- (#3790) Resolving `bib` files according to `rootDir`.
+- (#3791) Do not consider `%` in url encoding as comment.
+- (#3794) No need to call `findRoot` on did open text document.
+
 ## [9.8.1] - 2023-03-24
 
 ### Fixed

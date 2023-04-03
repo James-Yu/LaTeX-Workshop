@@ -1,13 +1,8 @@
 import * as vscode from 'vscode'
 import * as utils from '../../utils/utils'
-import { latexParser } from 'latex-utensils'
 import { Section } from './section'
 import { parser } from '../../components/parser'
-
-import { getLogger } from '../../components/logger'
 import { LaTeXStructure } from './latex'
-
-const logger = getLogger('Structure', 'DocTeX')
 
 export class DocTeXStructure extends LaTeXStructure {
     static async buildDocTeXModel(document: vscode.TextDocument): Promise<Section[]> {
@@ -52,15 +47,8 @@ export class DocTeXStructure extends LaTeXStructure {
     static async getToC(document: vscode.TextDocument, content: string, docContent: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
-        const ast = await parser.parseLatex(fastparse ? utils.stripText(docContent) : content).catch((e) => {
-            if (latexParser.isSyntaxError(e)) {
-                const line = e.location.start.line
-                logger.log(`Error parsing dirty AST of active editor at line ${line}. Fallback to cache.`)
-            }
-            return undefined
-        })
-
-        if (!ast) {
+        const ast = await parser.parseLatex(fastparse ? utils.stripText(docContent) : content)
+        if (ast === undefined) {
             return []
         }
 

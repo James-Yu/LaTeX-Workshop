@@ -91,6 +91,7 @@ export class LaTeXStructure {
         }
         filesBuilt.add(file)
 
+        logger.log(`Building LaTeX structure from ${file} .`)
         let content: string | undefined
         let ast: latexParser.LatexAst | undefined
         if (dirty) {
@@ -98,13 +99,7 @@ export class LaTeXStructure {
             if (content) {
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
-                ast = await parser.parseLatex(fastparse ? utils.stripText(content) : content).catch((e) => {
-                    if (latexParser.isSyntaxError(e)) {
-                        const line = e.location.start.line
-                        logger.log(`Error parsing dirty AST of active editor at line ${line}. Fallback to cache.`)
-                    }
-                    return undefined
-                })
+                ast = await parser.parseLatex(fastparse ? utils.stripText(content) : content)
             }
         }
 

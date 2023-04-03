@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icons/icon.png",
-  "version": "9.8.1",
+  "version": "9.8.2",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -431,6 +431,11 @@
       {
         "command": "latex-workshop-dev.parsebib",
         "title": "Parse current file as BibTeX AST",
+        "category": "LaTeX Workshop DevTools"
+      },
+      {
+        "command": "latex-workshop-dev.striptext",
+        "title": "Strip text and comments from LaTeX.",
         "category": "LaTeX Workshop DevTools"
       },
       {
@@ -1371,8 +1376,8 @@
           "scope": "window",
           "type": "boolean",
           "default": true,
-          "deprecationMessage": "Deprecated: This config has been renamed to `intellisense.fastparse.enabled`.",
-          "markdownDeprecationMessage": "**Deprecated**: This config has been renamed to `#intellisense.fastparse.enabled#`."
+          "deprecationMessage": "Deprecated: This config has been renamed to `latex-workshop.intellisense.fastparse.enabled`.",
+          "markdownDeprecationMessage": "**Deprecated**: This config has been renamed to `#latex-workshop.intellisense.fastparse.enabled#`."
         },
         "latex-workshop.view.outline.floats.enabled": {
           "scope": "window",
@@ -1791,7 +1796,7 @@
           "scope": "window",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Use fast LaTeX parsing algorithm to build outline/structure. This is done by inheritly removing texts and comments before building AST. Enabling this will not tamper the document, but may result in incomplete outline/structure."
+          "markdownDescription": "Use fast LaTeX parsing algorithm to build outline/structure. This is done by inherently removing texts and comments before building AST. Enabling this will not tamper the document, but may result in incomplete outline/structure."
         },
         "latex-workshop.intellisense.update.aggressive.enabled": {
           "scope": "window",
@@ -1893,8 +1898,8 @@
             "type": "string"
           },
           "default": {},
-          "deprecationMessage": "Deprecated: This config has been renamed to `intellisense.atSuggestion.user`.",
-          "markdownDeprecationMessage": "**Deprecated**: This config has been renamed to `#intellisense.atSuggestion.user#`."
+          "deprecationMessage": "Deprecated: This config has been renamed to `latex-workshop.intellisense.atSuggestion.user`.",
+          "markdownDeprecationMessage": "**Deprecated**: This config has been renamed to `#latex-workshop.intellisense.atSuggestion.user#`."
         },
         "latex-workshop.intellisense.file.exclude": {
           "scope": "resource",
@@ -2309,8 +2314,8 @@
             "type": "string"
           },
           "default": {},
-          "deprecationMessage": "Deprecated: This config has been superseded by config `intellisense.command.user`, which provides more features.",
-          "markdownDeprecationMessage": "**Deprecated**: This config has been superseded by config `#intellisense.command.user#`, which provides more features."
+          "deprecationMessage": "Deprecated: This config has been superseded by config `latex-workshop.intellisense.command.user`, which provides more features.",
+          "markdownDeprecationMessage": "**Deprecated**: This config has been superseded by config `#latex-workshop.intellisense.command.user#`, which provides more features."
         },
         "latex-workshop.texdoc.path": {
           "scope": "window",

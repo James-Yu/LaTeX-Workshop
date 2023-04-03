@@ -254,14 +254,8 @@ export class Citation implements IProvider {
         }
         const newEntry: CiteSuggestion[] = []
         const bibtex = fs.readFileSync(fileName).toString()
-        const ast = await parser.parseBibtex(bibtex).catch((e) => {
-            if (bibtexParser.isSyntaxError(e)) {
-                const line = e.location.start.line
-                logger.log(`Error parsing BibTeX: line ${line} in ${fileName} .`)
-            }
-            throw e
-        })
-        ast.content
+        const ast = await parser.parseBibtex(bibtex)
+        ast?.content
             .filter(bibtexParser.isEntry)
             .forEach((entry: bibtexParser.Entry) => {
                 if (entry.internalKey === undefined) {

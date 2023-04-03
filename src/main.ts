@@ -38,17 +38,6 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
     /** The previous active TeX document path. If this changed, root need to be re-searched */
     let prevTeXDocumentPath: string | undefined
-    // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
-    lw.registerDisposable(vscode.workspace.onDidOpenTextDocument(async (e: vscode.TextDocument) => {
-        if (lw.lwfs.isVirtualUri(e.uri)){
-            return
-        }
-        if (lw.manager.hasTexId(e.languageId) && e.fileName !== prevTeXDocumentPath) {
-            prevTeXDocumentPath = e.fileName
-            await lw.manager.findRoot()
-        }
-    }))
-
     let isLaTeXActive = false
     lw.registerDisposable(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -162,6 +151,7 @@ function registerLatexWorkshopCommands() {
         vscode.commands.registerCommand('latex-workshop-dev.parselog', () => lw.commander.devParseLog()),
         vscode.commands.registerCommand('latex-workshop-dev.parsetex', () => lw.commander.devParseTeX()),
         vscode.commands.registerCommand('latex-workshop-dev.parsebib', () => lw.commander.devParseBib()),
+        vscode.commands.registerCommand('latex-workshop-dev.striptext', () => lw.commander.devStripText()),
 
         vscode.commands.registerCommand('latex-workshop.shortcut.item', () => lw.commander.insertSnippet('item')),
         vscode.commands.registerCommand('latex-workshop.shortcut.emph', () => lw.commander.toggleSelectedKeyword('emph')),
@@ -210,9 +200,9 @@ function registerProviders() {
 
     lw.registerDisposable(
         vscode.languages.registerDocumentFormattingEditProvider(latexindentSelector, latexFormatterProvider),
-        vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatterProvider),
+        vscode.languages.registerDocumentFormattingEditProvider(bibtexSelector, bibtexFormatterProvider),
         vscode.languages.registerDocumentRangeFormattingEditProvider(latexindentSelector, latexFormatterProvider),
-        vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatterProvider)
+        vscode.languages.registerDocumentRangeFormattingEditProvider(bibtexSelector, bibtexFormatterProvider)
     )
 
     lw.registerDisposable(
@@ -232,7 +222,7 @@ function registerProviders() {
 
     lw.registerDisposable(
         vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, lw.completer, '\\', '{'),
-        vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'bibtex'}, new BibtexCompleter(), '@')
+        vscode.languages.registerCompletionItemProvider(bibtexSelector, new BibtexCompleter(), '@')
     )
 
     let triggerDisposable: vscode.Disposable | undefined

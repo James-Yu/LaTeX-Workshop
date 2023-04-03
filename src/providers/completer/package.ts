@@ -116,7 +116,7 @@ export class Package implements IProvider {
         if (nodes !== undefined) {
             this.updateUsepackageNodes(file, nodes)
         } else if (content !== undefined) {
-            const pkgReg = /\\usepackage(\[[^[\]{}]*\])?{(.*)}/gs
+            const pkgReg = /\\usepackage(\[[^[\]{}]*\])?{(.*?)}/gs
 
             while (true) {
                 const result = pkgReg.exec(content)

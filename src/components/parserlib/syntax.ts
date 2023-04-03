@@ -5,8 +5,8 @@ function parseLatex(s: string, options?: latexParser.ParserOptions): latexParser
     return latexParser.parse(s, options)
 }
 
-function parseLatexPreamble(s: string): latexParser.AstPreamble {
-    return latexParser.parsePreamble(s)
+function parseLatexPreamble(s: string, options?: { timeout: number }): latexParser.AstPreamble {
+    return latexParser.parsePreamble(s, options)
 }
 
 function parseBibtex(s: string, options?: bibtexParser.ParserOptions): bibtexParser.BibtexAst {
