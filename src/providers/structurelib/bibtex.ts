@@ -14,14 +14,7 @@ export class BibTeXStructure {
             logger.log(`Bib file is too large, ignoring it: ${document.fileName}`)
             return []
         }
-        const ast = await parser.parseBibtex(document.getText()).catch((e) => {
-            if (bibtexParser.isSyntaxError(e)) {
-                const line = e.location.start.line
-                logger.log(`Error parsing BibTeX: line ${line} in ${document.fileName} .`)
-            }
-            return
-        })
-
+        const ast = await parser.parseBibtex(document.getText())
         const ds: Section[] = []
         ast?.content.filter(bibtexParser.isEntry)
             .forEach(entry => {

@@ -77,7 +77,7 @@ function toLatexUtensilPosition(pos: vscode.Position): LuPos {
 export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
     async provideSelectionRanges(document: vscode.TextDocument, positions: vscode.Position[]) {
         const content = document.getText()
-        const latexAst = lw.cacher.get(document.fileName)?.ast || await parser.parseLatex(content, {enableMathCharacterLocation: true})
+        const latexAst = lw.cacher.get(document.fileName)?.ast || await parser.parseLatex(content, { enableMathCharacterLocation: true })
         if (!latexAst) {
             return []
         }

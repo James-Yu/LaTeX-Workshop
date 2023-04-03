@@ -110,7 +110,7 @@ export class CursorRenderer {
         if (texMath.texString === CursorRenderer.currentTeXString && CursorRenderer.currentAst) {
             ast = CursorRenderer.currentAst
         } else {
-            ast = await parser.parseLatex(texMath.texString, {enableMathCharacterLocation: true})
+            ast = await parser.parseLatex(texMath.texString, { enableMathCharacterLocation: true })
             CursorRenderer.currentAst = ast
             CursorRenderer.currentTeXString = texMath.texString
         }

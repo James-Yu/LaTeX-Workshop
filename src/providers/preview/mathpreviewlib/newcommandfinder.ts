@@ -78,9 +78,9 @@ export class NewCommandFinder {
 
     static async findNewCommand(content: string): Promise<string[]> {
         let commands: string[] = []
-        try {
-            const ast = await parser.parseLatexPreamble(content)
-            for (const node of ast.content) {
+        const ast = await parser.parseLatexPreamble(content)
+        if (ast !== undefined) {
+            ast.content.forEach(node => {
                 if ((isNewCommand(node) || latexParser.isDefCommand(node)) && node.args.length > 0) {
                     node.name = node.name.replace(/\*$/, '') as NewCommand['name']
                     const s = latexParser.stringify(node)
@@ -92,8 +92,8 @@ export class NewCommandFinder {
                     const s = `\\newcommand${name}[2][]{#1${leftDelim} #2 #1${rightDelim}}`
                     commands.push(s)
                 }
-            }
-        } catch (e) {
+            })
+        } else {
             commands = []
             const regex = /(\\(?:(?:(?:(?:re)?new|provide)command|DeclareMathOperator)(\*)?{\\[a-zA-Z]+}(?:\[[^[\]{}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*})|\\DeclarePairedDelimiter{\\[a-zA-Z]+}{[^{}]*}{[^{}]*})/gm
             const noCommentContent = stripCommentsAndVerbatim(content)

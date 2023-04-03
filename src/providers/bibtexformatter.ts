@@ -52,15 +52,8 @@ async function formatDocument(document: vscode.TextDocument, sort: boolean, alig
     const lineOffset = range ? range.start.line : 0
     const columnOffset = range ? range.start.character : 0
 
-    const ast = await parser.parseBibtex(document.getText(range)).catch((error) => {
-        if (error instanceof(Error)) {
-            logger.log('Bibtex parser failed.')
-            logger.log(error.message)
-            void logger.showErrorMessage('Bibtex parser failed with error: ' + error.message)
-        }
-        return
-    })
-    if (! ast) {
+    const ast = await parser.parseBibtex(document.getText(range))
+    if (ast === undefined) {
         return []
     }
     // Create an array of entries and of their starting locations

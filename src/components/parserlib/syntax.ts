@@ -5,7 +5,7 @@ function parseLatex(s: string, options?: latexParser.ParserOptions): latexParser
     return latexParser.parse(s, options)
 }
 
-function parseLatexPreamble(s: string): latexParser.AstPreamble {
+function parseLatexPreamble(s: string, options?: { timeout: number }): latexParser.AstPreamble {
     return latexParser.parsePreamble(s)
 }
 

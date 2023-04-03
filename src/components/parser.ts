@@ -7,6 +7,9 @@ import { bibtexLogParser } from './parserlib/bibtexlog'
 import { biberLogParser } from './parserlib/biberlog'
 import { latexLogParser } from './parserlib/latexlog'
 import { stripComments } from '../utils/utils'
+import { getLogger } from './logger'
+
+const logger = getLogger('Parser')
 
 const pool: workerpool.WorkerPool = workerpool.pool(
     path.join(__dirname, './parserlib/syntax.js'),
@@ -28,15 +31,27 @@ function dispose() {
  * @return undefined if parsing fails
  */
 async function parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst | undefined> {
-    return (await proxy).parseLatex(s, options).timeout(3000).catch(() => undefined)
+    return (await proxy).parseLatex(s, Object.assign(options || {}, { timeout: 3000 }))
+        .catch(err => {
+            logger.logUtensilsError('Error in parsing LaTeX AST', err)
+            return undefined
+        })
 }
 
-async function parseLatexPreamble(s: string): Promise<latexParser.AstPreamble> {
-    return (await proxy).parseLatexPreamble(s).timeout(500)
+async function parseLatexPreamble(s: string): Promise<latexParser.AstPreamble | undefined> {
+    return (await proxy).parseLatexPreamble(s, { timeout: 500 })
+        .catch(err => {
+            logger.logUtensilsError('Error in parsing LaTeX Preamble AST', err)
+            return undefined
+        })
 }
 
-async function parseBibtex(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst> {
-    return (await proxy).parseBibtex(stripComments(s), options).timeout(30000).catch(() => {return { content: [] }})
+async function parseBibtex(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst | undefined> {
+    return (await proxy).parseBibtex(stripComments(s), Object.assign(options || {}, { timeout: 30000 }))
+        .catch(err => {
+            logger.logUtensilsError('Error in parsing BibTeX AST', err)
+            return undefined
+        })
 }
 
 // Notice that 'Output written on filename.pdf' isn't output in draft mode.

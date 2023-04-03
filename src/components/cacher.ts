@@ -152,13 +152,7 @@ export class Cacher {
     private async updateAST(filePath: string, content: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
-        const ast = await parser.parseLatex(fastparse ? utils.stripText(content) : content).catch((e) => {
-            if (latexParser.isSyntaxError(e)) {
-                const line = e.location.start.line
-                logger.log(`Error parsing AST of ${filePath} at line ${line}.`)
-            }
-            return
-        })
+        const ast = await parser.parseLatex(fastparse ? utils.stripText(content) : content)
         const cache = this.get(filePath)
         if (ast && cache) {
             cache.ast = ast

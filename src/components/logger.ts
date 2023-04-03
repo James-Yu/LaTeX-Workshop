@@ -25,10 +25,13 @@ export function getLogger(...tags: string[]) {
             logTagless(`${tagString} ${message}`)
         },
         logCommand(message: string, command: string, args: string[] = []) {
-            logCommandTagless(`${tagString} ${message}`, command, args)
+            logCommand(`${tagString} ${message}`, command, args)
         },
         logError(message: string, error: unknown, stderr?: string) {
-            logErrorTagless(`${tagString} ${message}`, error, stderr)
+            logError(`${tagString} ${message}`, error, stderr)
+        },
+        logUtensilsError(message: string, error: Error) {
+            logUtensilsError(`${tagString} ${message}`, error)
         },
         logCompiler,
         initializeStatusBarItem,
@@ -69,11 +72,19 @@ function applyPlaceholders(message: string) {
     return message
 }
 
-function logCommandTagless(message: string, command: string, args: string[] = []) {
+function logCommand(message: string, command: string, args: string[] = []) {
     logTagless(`${message} The command is ${command}:${JSON.stringify(args)}.`)
 }
 
-function logErrorTagless(message: string, error: unknown, stderr?: string) {
+function logUtensilsError(message: string, error: Error) {
+    let msg = `${message}: ${error.message}`
+    if ('location' in error) {
+        msg += ` Location context: ${JSON.stringify(error.location)} .`
+    }
+    logTagless(msg)
+}
+
+function logError(message: string, error: unknown, stderr?: string) {
     if (error instanceof Error) {
         logTagless(`${message} ${error.name}: ${error.message}`)
         if (error.stack) {

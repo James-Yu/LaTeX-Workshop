@@ -66,13 +66,7 @@ export class EnvPair {
     constructor() {}
 
     async buildCommandPairTree(doc: vscode.TextDocument): Promise<CommandPair[]> {
-        let ast: latexParser.LatexAst | undefined = await parser.parseLatex(doc.getText()).catch((e) => {
-            if (latexParser.isSyntaxError(e)) {
-                const line = e.location.start.line
-                logger.log(`Error parsing dirty AST of active editor at line ${line}. Fallback to cache.`)
-            }
-            return undefined
-        })
+        let ast: latexParser.LatexAst | undefined = await parser.parseLatex(doc.getText())
 
         if (!ast) {
             await lw.cacher.promise(doc.fileName)
