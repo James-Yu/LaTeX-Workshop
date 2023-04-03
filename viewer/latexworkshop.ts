@@ -39,11 +39,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly #restoredState = new ExternalPromise<PdfViewerState | undefined>()
 
     constructor() {
-        console.log('latexworkshop.ts constructor')
         // When the promise is resolved, the initialization
         // of LateXWorkshopPdfViewer and PDF.js is completed.
         this.pdfViewerStarted = new Promise((resolve) => {
-            console.log('pdfViewerStarted')
             this.onDidStartPdfViewer(() => resolve())
         })
 
@@ -236,9 +234,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     private async applyParamsOnStart() {
-        console.log('applyParamsOnStart')
         const params = await this.fetchParams()
-        console.log('params',params)
         this.applyNonStatefulParams(params)
         const restoredState = await this.restoredState
         if (restoredState) {
@@ -402,7 +398,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     private applyNonStatefulParams(params: PdfViewerParams) {
-        console.log('applyNonStatefulParams')
         if (params.hand) {
             PDFViewerApplication.pdfCursorTools.handTool.activate();
             (document.querySelector('#cursorHandTool') as HTMLElement).classList.add('toggled');
@@ -438,7 +433,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
 
         if (params.keybindings) {
-            console.log('params.keybindings',params.keybindings)
             this.synctex.reverseSynctexKeybinding = params.keybindings['synctex']
             this.synctex.registerListenerOnEachPage()
         }
