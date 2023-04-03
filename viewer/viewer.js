@@ -13870,11 +13870,16 @@ function getViewerConfiguration() {
   };
 }
 function webViewerLoad() {
+  console.log('webViewerLoad called')
   const config = getViewerConfiguration();
-  const event = document.createEvent("CustomEvent");
-  event.initCustomEvent("webviewerloaded", true, true, {
-    source: window
+  const event = new CustomEvent("webviewerloaded", {
+    bubbles: true,
+    cancelable: true,
+    detail: {
+      source: window
+    }
   });
+  document.dispatchEvent(event);
   try {
     parent.document.dispatchEvent(event);
   } catch (ex) {
