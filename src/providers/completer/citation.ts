@@ -254,6 +254,7 @@ export class Citation implements IProvider {
         }
         const newEntry: CiteSuggestion[] = []
         const bibtex = fs.readFileSync(fileName).toString()
+        logger.log(`Parse BibTeX AST from ${fileName} .`)
         const ast = await parser.parseBibtex(bibtex)
         ast?.content
             .filter(bibtexParser.isEntry)

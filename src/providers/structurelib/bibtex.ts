@@ -14,9 +14,14 @@ export class BibTeXStructure {
             logger.log(`Bib file is too large, ignoring it: ${document.fileName}`)
             return []
         }
+        logger.log('Parse active BibTeX document for AST.')
         const ast = await parser.parseBibtex(document.getText())
+        if (ast === undefined) {
+            return []
+        }
+        logger.log(`Parsed ${ast.content.length} AST items.`)
         const ds: Section[] = []
-        ast?.content.filter(bibtexParser.isEntry)
+        ast.content.filter(bibtexParser.isEntry)
             .forEach(entry => {
                 const bibitem = new Section(
                     SectionKind.BibItem,
