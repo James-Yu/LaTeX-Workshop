@@ -99,6 +99,7 @@ export class LaTeXStructure {
             if (content) {
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
+                logger.log('Parse active document LaTeX AST ' + fastparse ? 'with fast-parse.' : '.')
                 ast = await parser.parseLatex(fastparse ? utils.stripText(content) : content)
             }
         }

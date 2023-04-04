@@ -3,6 +3,9 @@ import * as utils from '../../utils/utils'
 import { Section } from './section'
 import { parser } from '../../components/parser'
 import { LaTeXStructure } from './latex'
+import { getLogger } from '../../components/logger'
+
+const logger = getLogger('Structure', 'DocTeX')
 
 export class DocTeXStructure extends LaTeXStructure {
     static async buildDocTeXModel(document: vscode.TextDocument): Promise<Section[]> {
@@ -47,8 +50,10 @@ export class DocTeXStructure extends LaTeXStructure {
     static async getToC(document: vscode.TextDocument, content: string, docContent: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
+        logger.log('Parse LaTeX AST ' + fastparse ? 'with fast-parse: ' : ': ' + document.fileName + ' .')
         const ast = await parser.parseLatex(fastparse ? utils.stripText(docContent) : content)
         if (ast === undefined) {
+            logger.log('Failed parsing LaTeX AST.')
             return []
         }
 

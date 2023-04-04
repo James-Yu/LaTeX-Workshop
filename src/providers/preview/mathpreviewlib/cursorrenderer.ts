@@ -3,6 +3,9 @@ import { latexParser } from 'latex-utensils'
 import { TexMathEnv } from './texmathenvfinder'
 import type { ITextDocumentLike } from './textdocumentlike'
 import { parser } from '../../../components/parser'
+import { getLogger } from '../../../components/logger'
+
+const logger = getLogger('Preview', 'Math', 'Cursor')
 
 export class CursorRenderer {
     private static currentTeXString: string | undefined
@@ -108,13 +111,16 @@ export class CursorRenderer {
     static async findNodeAt(texMath: TexMathEnv, cursorPos: vscode.Position) {
         let ast: latexParser.LatexAst | undefined
         if (texMath.texString === CursorRenderer.currentTeXString && CursorRenderer.currentAst) {
+            logger.log(`Use previous AST of ${texMath.texString} .`)
             ast = CursorRenderer.currentAst
         } else {
+            logger.log(`Parse LaTeX AST from ${texMath.texString} .`)
             ast = await parser.parseLatex(texMath.texString, { enableMathCharacterLocation: true })
             CursorRenderer.currentAst = ast
             CursorRenderer.currentTeXString = texMath.texString
         }
         if (!ast) {
+            logger.log('Failed parsing LaTeX AST.')
             return
         }
         const cursorPosInSnippet = CursorRenderer.cursorPosInSnippet(texMath, cursorPos)

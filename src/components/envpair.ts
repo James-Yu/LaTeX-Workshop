@@ -66,18 +66,21 @@ export class EnvPair {
     constructor() {}
 
     async buildCommandPairTree(doc: vscode.TextDocument): Promise<CommandPair[]> {
+        logger.log(`Parse LaTeX AST : ${doc.fileName} .`)
         let ast: latexParser.LatexAst | undefined = await parser.parseLatex(doc.getText())
 
         if (!ast) {
+            logger.log('Failed to parse LaTeX AST, fallback to cached AST.')
             await lw.cacher.promise(doc.fileName)
             ast = lw.cacher.get(doc.fileName)?.ast
         }
 
         if (!ast) {
-            logger.log(`Error loading AST during structuring: ${doc.fileName} .`)
+            logger.log(`Failed to load AST for ${doc.fileName} .`)
             return []
         }
 
+        logger.log(`Parsed ${ast.content.length} AST items.`)
         const commandPairs: CommandPair[] = []
         let parentPair: CommandPair | undefined = undefined
         for (const node of ast.content) {

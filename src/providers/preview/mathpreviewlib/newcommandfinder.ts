@@ -78,8 +78,10 @@ export class NewCommandFinder {
 
     static async findNewCommand(content: string): Promise<string[]> {
         let commands: string[] = []
+        logger.log('Parse LaTeX preamble AST.')
         const ast = await parser.parseLatexPreamble(content)
         if (ast !== undefined) {
+            logger.log(`Parsed ${ast.content.length} AST items.`)
             ast.content.forEach(node => {
                 if ((isNewCommand(node) || latexParser.isDefCommand(node)) && node.args.length > 0) {
                     node.name = node.name.replace(/\*$/, '') as NewCommand['name']
@@ -94,6 +96,7 @@ export class NewCommandFinder {
                 }
             })
         } else {
+            logger.log('Failed parsing preamble AST, fallback to regex.')
             commands = []
             const regex = /(\\(?:(?:(?:(?:re)?new|provide)command|DeclareMathOperator)(\*)?{\\[a-zA-Z]+}(?:\[[^[\]{}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*})|\\DeclarePairedDelimiter{\\[a-zA-Z]+}{[^{}]*}{[^{}]*})/gm
             const noCommentContent = stripCommentsAndVerbatim(content)
