@@ -50,7 +50,7 @@ export class DocTeXStructure extends LaTeXStructure {
     static async getToC(document: vscode.TextDocument, content: string, docContent: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
-        logger.log('Parse LaTeX AST ' + fastparse ? 'with fast-parse: ' : ': ' + document.fileName + ' .')
+        logger.log('Parse LaTeX AST ' + (fastparse ? 'with fast-parse: ' : ': ') + document.fileName + ' .')
         const ast = await parser.parseLatex(fastparse ? utils.stripText(docContent) : content)
         if (ast === undefined) {
             logger.log('Failed parsing LaTeX AST.')
