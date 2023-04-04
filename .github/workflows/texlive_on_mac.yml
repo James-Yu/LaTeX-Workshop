@@ -1,7 +1,11 @@
 name: TeX Live on macOS
 env:
   cache-version: v12
-on: [push]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 permissions:
   contents: read
