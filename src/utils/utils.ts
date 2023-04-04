@@ -137,6 +137,12 @@ function getLongestBalancedString(s: string, bracket: 'curly' | 'square'='curly'
                 // skip an escaped character
                 i++
                 break
+            case ')':
+                // [1, 2)
+                if (openner === '[') {
+                    nested--
+                }
+                break
             default:
         }
         if (nested === 0) {
