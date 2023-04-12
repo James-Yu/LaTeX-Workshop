@@ -31,9 +31,10 @@ export async function buildBibTeX(document: vscode.TextDocument): Promise<Sectio
                 entry.location.end.line - 1,
                 document.fileName)
             entry.content.forEach(field => {
+                const content = parser.fieldValueToString(field.value)
                 const fielditem = new Section(
                     SectionKind.BibField,
-                    `${field.name}: ${field.value.content}`,
+                    `${field.name}: ${content}`,
                     vscode.TreeItemCollapsibleState.None,
                     1,
                     field.location.start.line -1,

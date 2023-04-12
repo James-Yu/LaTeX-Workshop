@@ -159,10 +159,23 @@ function latexmkSkipped(log: string): boolean {
     return false
 }
 
+/**
+ * Convert a bibtexParser.FieldValue to a string
+ * @param field the bibtexParser.FieldValue to parse
+ */
+function fieldValueToString(field: bibtexParser.FieldValue): string {
+    if (field.kind === 'concat') {
+        return field.content.map(value => fieldValueToString(value)).reduce((acc, cur) => {return acc + ' # ' + cur})
+    } else {
+        return field.content
+    }
+}
+
 export const parser = {
     parseLatex,
     parseLatexPreamble,
     parseBibtex,
     parseLog,
-    dispose
+    dispose,
+    fieldValueToString
 }
