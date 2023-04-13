@@ -52,10 +52,12 @@ async function formatDocument(document: vscode.TextDocument, sort: boolean, alig
     const lineOffset = range ? range.start.line : 0
     const columnOffset = range ? range.start.character : 0
 
+    logger.log('Parse active BibTeX document for AST.')
     const ast = await parser.parseBibtex(document.getText(range))
     if (ast === undefined) {
         return []
     }
+    logger.log(`Parsed ${ast.content.length} AST items.`)
     // Create an array of entries and of their starting locations
     const entries: BibtexUtils.BibtexEntry[] = []
     const entryLocations: vscode.Range[] = []

@@ -247,7 +247,7 @@ function fieldToString(field: bibtexParser.FieldValue, prefix: string, config: B
             if (prefix !== '') {
                 const lines = field.content.split(/\r\n|\r|\n/g)
                 for (let i = 1; i < lines.length; i++) {
-                    lines[i] = prefix + lines[i].trimLeft()
+                    lines[i] = prefix + lines[i].trimStart()
                 }
                 return left + lines.join('\n') + right
             } else {

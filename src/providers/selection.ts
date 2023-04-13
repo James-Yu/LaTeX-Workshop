@@ -2,6 +2,9 @@ import * as vscode from 'vscode'
 import { latexParser } from 'latex-utensils'
 import * as lw from '../lw'
 import { parser } from '../components/parser'
+import { getLogger } from '../components/logger'
+
+const logger = getLogger('Selection')
 
 interface ILuRange {
     start: ILuPos,
@@ -77,8 +80,10 @@ function toLatexUtensilPosition(pos: vscode.Position): LuPos {
 export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
     async provideSelectionRanges(document: vscode.TextDocument, positions: vscode.Position[]) {
         const content = document.getText()
+        logger.log(`Parse LaTeX AST : ${document.fileName} .`)
         const latexAst = lw.cacher.get(document.fileName)?.ast || await parser.parseLatex(content, { enableMathCharacterLocation: true })
         if (!latexAst) {
+            logger.log(`Failed to parse AST for ${document.fileName} .`)
             return []
         }
         const ret: vscode.SelectionRange[] = []

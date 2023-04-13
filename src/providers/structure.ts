@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as lw from '../lw'
 import { Section } from './structurelib/section'
 import { StructureUpdated } from '../components/eventbus'
-import { LaTeXStructure } from './structurelib/latex'
-import { BibTeXStructure } from './structurelib/bibtex'
-import { DocTeXStructure } from './structurelib/doctex'
+import { buildLaTeX } from './structurelib/latex'
+import { buildBibTeX } from './structurelib/bibtex'
+import { buildDocTeX } from './structurelib/doctex'
 
 import { getLogger } from '../components/logger'
 
@@ -42,21 +42,21 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (document?.languageId === 'doctex') {
             if (force || !this.cachedDocTeXSec || this.getCachedDataRootFileName(this.cachedDocTeXSec) !== document.fileName) {
                 this.cachedDocTeXSec = undefined
-                this.cachedDocTeXSec = await DocTeXStructure.buildDocTeXModel(document)
+                this.cachedDocTeXSec = await buildDocTeX(document)
             }
             this.ds = this.cachedDocTeXSec
             logger.log(`Structure updated with ${this.ds.length} entries for ${document.uri.fsPath} .`)
         } else if (document?.languageId === 'bibtex') {
             if (force || !this.cachedBibSec || this.getCachedDataRootFileName(this.cachedBibSec) !== document.fileName) {
                 this.cachedBibSec = undefined
-                this.cachedBibSec = await BibTeXStructure.buildBibTeXModel(document)
+                this.cachedBibSec = await buildBibTeX(document)
             }
             this.ds = this.cachedBibSec
             logger.log(`Structure updated with ${this.ds.length} entries for ${document.uri.fsPath} .`)
         } else if (lw.manager.rootFile) {
             if (force || !this.cachedTeXSec) {
                 this.cachedTeXSec = undefined
-                this.cachedTeXSec = await LaTeXStructure.buildLaTeXModel()
+                this.cachedTeXSec = await buildLaTeX()
             }
             this.ds = this.cachedTeXSec
             logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.ds.length} root sections for ${lw.manager.rootFile} .`)

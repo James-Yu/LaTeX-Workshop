@@ -152,10 +152,13 @@ export class Cacher {
     private async updateAST(filePath: string, content: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
+        logger.log('Parse LaTeX AST ' + (fastparse ? 'with fast-parse: ' : ': ') + filePath + ' .')
         const ast = await parser.parseLatex(fastparse ? utils.stripText(content) : content)
         const cache = this.get(filePath)
         if (ast && cache) {
             cache.ast = ast
+        } else {
+            logger.log(ast === undefined ? 'Failed parsing LaTeX AST.' : `Cannot get cache for ${filePath} .`)
         }
     }
 
