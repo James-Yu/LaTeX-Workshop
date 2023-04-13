@@ -25,8 +25,9 @@ with open(args.web + '/viewer.js', 'rt') as fin:
             if webViewerLoaded:
                 fout.write(
                         line.replace('''const event = document.createEvent("CustomEvent");''','''const event = new CustomEvent("webviewerloaded", {''')
-                            .replace('''event.initCustomEvent("webviewerloaded", true, true, {''','''bubbles: true, cancelable: true, detail: {source: window}});''')
-                            .replace('''source: window''','''document.dispatchEvent(event);''')
+                            .replace('''event.initCustomEvent("webviewerloaded", true, true, {''','''bubbles: true,cancelable: true,detail: {''')
+                            .replace('''source: window''','''source: window}''')
+                            .replace('''  try {''','''  document.dispatchEvent(event);\ntry {''')
                             .replace('''console.error(`webviewerloaded: ''', '''// console.error(`webviewerloaded: ''')
                 )
             else:
