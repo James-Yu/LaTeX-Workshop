@@ -20,7 +20,7 @@ with open(args.web + '/viewer.html', 'rt') as fin:
 with open(args.web + '/viewer.js', 'rt') as fin:
     with open(args.viewer + '/viewer.js', 'wt') as fout:
         for line in fin:
-            if str(line) == "function webViewerLoad() {\n":
+            if line == "function webViewerLoad() {\n":
                 webViewerLoaded=True
             if webViewerLoaded:
                 fout.write(
