@@ -28,7 +28,7 @@ suite('EnvPair test suite', () => {
         assert.ok(activeTextEditor)
         const envPair = new EnvPair()
         const pairTree = await envPair.buildCommandPairTree(activeTextEditor.document)
-        assert.strictEqual(pairTree.length, 6)
+        assert.strictEqual(pairTree.length, 7)
         assert.strictEqual(pairTree[0].children.length, 0)
         assert.strictEqual(pairTree[0].start, '\\iftest')
         assert.strictEqual(pairTree[0].end, '\\fi')
@@ -137,6 +137,37 @@ suite('EnvPair test suite', () => {
         assert.strictEqual(activeTextEditor.selections.length, 1)
         assert.deepStrictEqual(activeTextEditor.selection, new vscode.Selection(startEnvContentPos, endEnvContentPos))
     })
+
+    test.run('Select \\(...\\) content', async (fixture: string) => {
+        await loadTestFiles(fixture)
+        const activeTextEditor = vscode.window.activeTextEditor
+        assert.ok(activeTextEditor)
+        const curPos = new vscode.Position(6, 4)
+        const startEnvContentPos = new vscode.Position(6, 2)
+        const endEnvContentPos = new vscode.Position(6, 9)
+        activeTextEditor.selection = new vscode.Selection(curPos, curPos)
+        const envPair = new EnvPair()
+        await envPair.selectEnvContent('content')
+        await test.sleep(250)
+        assert.strictEqual(activeTextEditor.selections.length, 1)
+        assert.deepStrictEqual(activeTextEditor.selection, new vscode.Selection(startEnvContentPos, endEnvContentPos))
+    })
+
+    test.run('Select $...$ content', async (fixture: string) => {
+        await loadTestFiles(fixture)
+        const activeTextEditor = vscode.window.activeTextEditor
+        assert.ok(activeTextEditor)
+        const curPos = new vscode.Position(29, 6)
+        const startEnvContentPos = new vscode.Position(29, 4)
+        const endEnvContentPos = new vscode.Position(29, 11)
+        activeTextEditor.selection = new vscode.Selection(curPos, curPos)
+        const envPair = new EnvPair()
+        await envPair.selectEnvContent('content')
+        await test.sleep(250)
+        assert.strictEqual(activeTextEditor.selections.length, 1)
+        assert.deepStrictEqual(activeTextEditor.selection, new vscode.Selection(startEnvContentPos, endEnvContentPos))
+    })
+
 
     test.run('Select env', async (fixture: string) => {
         await loadTestFiles(fixture)
