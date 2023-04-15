@@ -57,7 +57,9 @@ export class EnvPair {
     private static readonly delimiters: LaTeXCommandsPair[] = [
         {type: PairType.ENVIRONMENT, start: /\\begin\{([\w\d]+\*?)\}/, end: /\\end\{([\w\d]+\*?)/},
         {type: PairType.INLINEMATH, start: /\\\(/, end: /\\\)/},
+        {type: PairType.INLINEMATH, start: /\$/, end: /\$/},
         {type: PairType.DISPLAYMATH, start: /\\\[/, end: /\\\]/},
+        {type: PairType.DISPLAYMATH, start: /\$\$/, end: /\$\$/},
         {type: PairType.COMMAND, start: /\\if\w*/, end: /\\fi/},
         {type: PairType.COMMAND, start: /\\if\w*/, end: /\\else/},
         {type: PairType.COMMAND, start: /\\else/, end: /\\fi/}
@@ -84,12 +86,12 @@ export class EnvPair {
         const commandPairs: CommandPair[] = []
         let parentPair: CommandPair | undefined = undefined
         for (const node of ast.content) {
-            parentPair = this.buildCommandPairTreeFromNode(node, parentPair, commandPairs)
+            parentPair = this.buildCommandPairTreeFromNode(doc, node, parentPair, commandPairs)
         }
         return commandPairs
     }
 
-    private buildCommandPairTreeFromNode(node: latexParser.Node, parentCommandPair: CommandPair | undefined, commandPairs: CommandPair[]): CommandPair | undefined {
+    private buildCommandPairTreeFromNode(doc: vscode.TextDocument, node: latexParser.Node, parentCommandPair: CommandPair | undefined, commandPairs: CommandPair[]): CommandPair | undefined {
         if (latexParser.isEnvironment(node) || latexParser.isMathEnv(node) || latexParser.isMathEnvAligned(node)) {
             const name = node.name
             let currentCommandPair: CommandPair | undefined
@@ -113,19 +115,29 @@ export class EnvPair {
                 parentCommandPair = currentCommandPair
             }
             for (const subnode of node.content) {
-                parentCommandPair = this.buildCommandPairTreeFromNode(subnode, parentCommandPair, commandPairs)
+                parentCommandPair = this.buildCommandPairTreeFromNode(doc, subnode, parentCommandPair, commandPairs)
             }
             parentCommandPair = currentCommandPair?.parent
         } else if (latexParser.isDisplayMath(node)) {
             const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
             const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1)
-            const currentCommandPair = new CommandPair(PairType.DISPLAYMATH, '\\[', beginPos, '\\]', endPos)
-            commandPairs.push(currentCommandPair)
+            if (doc.getText(new vscode.Range(beginPos, beginPos.translate(0, 2))) === '$$') {
+                const currentCommandPair = new CommandPair(PairType.DISPLAYMATH, '$$', beginPos, '$$', endPos)
+                commandPairs.push(currentCommandPair)
+            } else {
+                const currentCommandPair = new CommandPair(PairType.DISPLAYMATH, '\\[', beginPos, '\\]', endPos)
+                commandPairs.push(currentCommandPair)
+            }
         } else if (latexParser.isInlienMath(node)) {
             const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
             const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1)
-            const currentCommandPair = new CommandPair(PairType.INLINEMATH, '\\(', beginPos, '\\)', endPos)
-            commandPairs.push(currentCommandPair)
+            if (doc.getText(new vscode.Range(beginPos, beginPos.translate(0, 1))) === '$') {
+                const currentCommandPair = new CommandPair(PairType.INLINEMATH, '$', beginPos, '$', endPos)
+                commandPairs.push(currentCommandPair)
+            } else {
+                const currentCommandPair = new CommandPair(PairType.INLINEMATH, '\\(', beginPos, '\\)', endPos)
+                commandPairs.push(currentCommandPair)
+            }
         } else if (latexParser.isCommand(node)) {
             if (node.name === 'begin' && node.args.length > 0 && latexParser.isGroup(node.args[0])) {
                 // This is an unbalanced environment
@@ -391,7 +403,7 @@ export class EnvPair {
                 let startEnvPos: vscode.Position
                 let endEnvPos: vscode.Position
                 if (mode === 'content') {
-                    startEnvPos = pair.startPosition.translate(0, pair.start.length + 1)
+                    startEnvPos = pair.startPosition.translate(0, pair.start.length)
                     endEnvPos = pair.endPosition.translate(0, -pair.end.length)
                 } else if (mode === 'whole') {
                     startEnvPos = pair.startPosition
