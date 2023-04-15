@@ -256,7 +256,16 @@ export class Citation implements IProvider {
         const bibtex = fs.readFileSync(fileName).toString()
         logger.log(`Parse BibTeX AST from ${fileName} .`)
         const ast = await parser.parseBibtex(bibtex)
-        ast?.content
+        if (ast === undefined) {
+            logger.log(`Parsed 0 bib entries from ${fileName}.`)
+            lw.eventBus.fire(eventbus.FileParsed, fileName)
+            return
+        }
+        const abbreviations: {[key: string]: string} = {}
+        ast.content.filter(bibtexParser.isStringEntry).forEach((entry: bibtexParser.StringEntry) => {
+            abbreviations[entry.abbreviation] = entry.value.content
+        })
+        ast.content
             .filter(bibtexParser.isEntry)
             .forEach((entry: bibtexParser.Entry) => {
                 if (entry.internalKey === undefined) {
@@ -271,8 +280,7 @@ export class Citation implements IProvider {
                     fields: new Fields()
                 }
                 entry.content.forEach(field => {
-                    const value = Array.isArray(field.value.content) ?
-                        field.value.content.join(' ') : this.deParenthesis(field.value.content)
+                    const value = this.deParenthesis(this.expandField(abbreviations, field.value))
                     item.fields.set(field.name, value)
                 })
                 newEntry.push(item)
@@ -281,6 +289,20 @@ export class Citation implements IProvider {
         logger.log(`Parsed ${newEntry.length} bib entries from ${fileName} .`)
         void lw.structureViewer.computeTreeStructure()
         lw.eventBus.fire(eventbus.FileParsed, fileName)
+    }
+
+    private expandField(abbreviations: {[key: string]: string}, value: bibtexParser.FieldValue): string {
+        if (value.kind === 'concat') {
+            const args = value.content as bibtexParser.FieldValue[]
+            return args.map(arg => this.expandField(abbreviations, arg)).join(' ')
+        }
+        if (bibtexParser.isAbbreviationValue(value)) {
+            if (value.content in abbreviations) {
+                return abbreviations[value.content]
+            }
+            return ''
+        }
+        return value.content
     }
 
     removeEntriesInFile(file: string) {
