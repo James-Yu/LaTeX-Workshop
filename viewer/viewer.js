@@ -753,7 +753,7 @@ const defaultOptions = {
     kind: OptionKind.WORKER
   },
   workerSrc: {
-    value: "../build/pdf.worker.js",
+    value: "./build/pdf.worker.js",
     kind: OptionKind.WORKER
   }
 };
@@ -3670,7 +3670,7 @@ let pdfjsLib;
 if (typeof window !== "undefined" && window["pdfjs-dist/build/pdf"]) {
   pdfjsLib = window["pdfjs-dist/build/pdf"];
 } else {
-  pdfjsLib = require("../build/pdf.js");
+  pdfjsLib = require("./build/pdf.js");
 }
 module.exports = pdfjsLib;
 
@@ -13876,7 +13876,8 @@ function webViewerLoad() {
     source: window
   });
   try {
-    parent.document.dispatchEvent(event);
+    parent.document.dispatchEvent(event); 
+    document.dispatchEvent(event);
   } catch (ex) {
     // console.error(`webviewerloaded: ${ex}`);
     document.dispatchEvent(event);
