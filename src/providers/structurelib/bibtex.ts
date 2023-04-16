@@ -7,6 +7,18 @@ import { getLogger } from '../../components/logger'
 
 const logger = getLogger('Structure', 'BibTeX')
 
+/**
+* Convert a bibtexParser.FieldValue to a string
+* @param field the bibtexParser.FieldValue to parse
+*/
+function fieldValueToString(field: bibtexParser.FieldValue): string {
+   if (field.kind === 'concat') {
+       return field.content.map(value => fieldValueToString(value)).reduce((acc, cur) => {return acc + ' # ' + cur})
+   } else {
+       return field.content
+   }
+}
+
 export async function buildBibTeX(document: vscode.TextDocument): Promise<Section[]> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
     if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
@@ -31,7 +43,7 @@ export async function buildBibTeX(document: vscode.TextDocument): Promise<Sectio
                 entry.location.end.line - 1,
                 document.fileName)
             entry.content.forEach(field => {
-                const content = parser.fieldValueToString(field.value)
+                const content = fieldValueToString(field.value)
                 const fielditem = new Section(
                     SectionKind.BibField,
                     `${field.name}: ${content}`,
