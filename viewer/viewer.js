@@ -753,7 +753,7 @@ const defaultOptions = {
     kind: OptionKind.WORKER
   },
   workerSrc: {
-      value: "./build/pdf.worker.js",
+    value: "./build/pdf.worker.js",
     kind: OptionKind.WORKER
   }
 };
@@ -13876,7 +13876,8 @@ function webViewerLoad() {
     source: window
   });
   try {
-    parent.document.dispatchEvent(event);
+    parent.document.dispatchEvent(event); 
+    document.dispatchEvent(event);
   } catch (ex) {
     // console.error(`webviewerloaded: ${ex}`);
     document.dispatchEvent(event);
