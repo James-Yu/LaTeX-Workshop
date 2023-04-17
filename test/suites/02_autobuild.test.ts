@@ -108,4 +108,13 @@ suite('Auto-build test suite', () => {
         const { type } = await test.auto(fixture, 'sub/s.tex', false, true)
         assert.strictEqual(type, 'onSave')
     })
+
+    test.run('auto build with markdownInput', async (fixture: string) => {
+        await test.load(fixture, [
+            {src: 'build/markdown_base.tex', dst: 'main.tex'},
+            {src: 'build/markdown_sub.md', dst: 'sub.md'}
+        ])
+        const { type } = await test.auto(fixture, 'sub.md')
+        assert.strictEqual(type, 'onChange')
+    })
 })

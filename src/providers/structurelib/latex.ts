@@ -275,8 +275,7 @@ async function parseLaTeXSubFileCommand(node: latexParser.Command, config: LaTeX
 
     let candidate: string | undefined
     // \input{sub.tex}
-    if (['input', 'InputIfFileExists', 'include', 'SweaveInput',
-            'subfile', 'loadglsentries'].includes(node.name.replace(/\*$/, ''))
+    if (['input', 'InputIfFileExists', 'include', 'SweaveInput', 'subfile', 'loadglsentries', 'markdownInput'].includes(node.name.replace(/\*$/, ''))
         && cmdArgs.length > 0) {
         candidate = resolveFile(
             [path.dirname(file),
