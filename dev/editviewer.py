@@ -32,7 +32,10 @@ with open(args.web + '/viewer.js', 'rt') as fin:
                     .replace('''(!event.shiftKey || window.chrome || window.opera)) {''', '''(!event.shiftKey || window.chrome || window.opera)) {\n    if (window.parent !== window) {\n      return;\n    }''')
                     .replace('''console.error(`webviewerloaded: ''', '''// console.error(`webviewerloaded: ''')
                     .replace('''console.log(`PDF ${pdfDocument.''', '''// console.log(`PDF ${pdfDocument.''')
-            )
+                    .replace('''pdfjsLib = require("../build/pdf.js");''','''pdfjsLib = require("./build/pdf.js");''')
+                    .replace('''value: "../build/pdf.worker.js",''', '''value: "./build/pdf.worker.js",''')
+                    .replace('''parent.document.dispatchEvent(event);''', '''parent.document.dispatchEvent(event); \n    document.dispatchEvent(event);''')
+                )
 
 os.system(f'git diff --no-index {args.web}/viewer.html {args.viewer}/viewer.html > {args.viewer}/../dev/viewer/viewer.html.diff')
 os.system(f'git diff --no-index {args.web}/viewer.js {args.viewer}/viewer.js > {args.viewer}/../dev/viewer/viewer.js.diff')
