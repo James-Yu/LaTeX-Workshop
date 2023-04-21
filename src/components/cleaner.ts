@@ -47,9 +47,28 @@ export class Cleaner {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         const cleanMethod = configuration.get('latex.clean.method') as string
+
+        const active = vscode.window.activeTextEditor
+        const rootFileName = lw.manager.rootFile ? lw.manager.jobname(rootFile) : undefined
+        const activeFileName = (active && lw.manager.hasTexId(active.document.languageId)) ?
+            path.parse(active.document.fileName).name : rootFileName
         switch (cleanMethod) {
             case 'glob':
                 return this.cleanGlob(rootFile)
+            case 'globActive':
+                if (activeFileName) {
+                    return this.cleanGlob(rootFile, activeFileName)
+                } else {
+                    logger.log('Active document is not a LaTeX file and no root file is defined. Cleaning terminated.')
+                    return
+                }
+            case 'globRoot':
+                if (rootFileName) {
+                    return this.cleanGlob(rootFile, rootFileName)
+                } else {
+                    logger.log('No root file or jobname is defined. Cleaning terminated.')
+                    return
+                }
             case 'cleanCommand':
                 await configuration.update('latex.clean.method', 'command')
                 void vscode.window.showInformationMessage('The cleaning method `cleanCommand` has been renamed to `command`. Your config is auto-updated.')
@@ -101,7 +120,7 @@ export class Cleaner {
      * only remove folders that are empty and the folder glob pattern is added
      * intentionally by the user. Otherwise, the folders will be ignored.
      */
-    private async cleanGlob(rootFile: string): Promise<void> {
+    private async cleanGlob(rootFile: string, fileName?: string): Promise<void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         let globs = configuration.get('latex.clean.fileTypes') as string[]
         const outdir = path.resolve(path.dirname(rootFile), lw.manager.getOutDir(rootFile))
@@ -115,10 +134,9 @@ export class Cleaner {
 
         const explicitFolders: string[] = globAll(folderGlobsExplicit, outdir)
         const explicitFoldersSet: Set<string> = new Set(explicitFolders)
-        const jobName = (configuration.get('latex-workshop.latex.clean.jobname') as boolean && lw.manager.rootFile) ? lw.manager.jobname(lw.manager.rootFile) : undefined
         const filesOrFolders: string[] = globAll(fileOrFolderGlobs, outdir)
             .filter(file => !explicitFoldersSet.has(file))
-            .filter(file => jobName ? path.parse(file).name === jobName : true)
+            .filter(file => fileName ? path.parse(file).name === fileName : true)
 
         // Remove files first
         for (const realPath of filesOrFolders) {

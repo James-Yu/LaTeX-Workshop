@@ -1308,12 +1308,6 @@
           ],
           "markdownDescription": "Files to clean when `#latex-workshop.latex.clean.method#` is set to `glob`.. This property must be an array of strings. File globs such as `*.removeme`, `something?.aux` can be used. Users can also specify glob patterns like `emptyfolder*/` to remove empty folders. Non-empty folders will be ignored. The folder globs must end with a slash and the last path component must not contain the globstar `**`, otherwise the folders will not be removed. The following globs patterns are correct `['abc/', 'abc*/', '**/abc*/', 'abc/**/def/']` but these are not ['**', '**/', 'abc/**', 'abc/**/', 'abc/def**/', 'abc/d**ef/']`."
         },
-        "latex-workshop.latex.clean.jobname": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Defines whether the globed files by `#latex-workshop.latex.clean.fileTypes#` should have the same file name as the current job name to be cleaned."
-        },
         "latex-workshop.latex.clean.command": {
           "scope": "resource",
           "type": "string",
@@ -1338,10 +1332,14 @@
           "default": "glob",
           "enum": [
             "glob",
+            "globActive",
+            "globRoot",
             "command"
           ],
           "markdownEnumDescriptions": [
             "Clean all the files located in `#latex-workshop.latex.outDir#` and matching the glob patterns listed in `#latex-workshop.latex.clean.fileTypes#`.",
+            "Clean all the files located in `#latex-workshop.latex.outDir#` and matching the glob patterns listed in `#latex-workshop.latex.clean.fileTypes#`. The cleaned file will have the same as the current active LaTeX file. If the active one is not LaTeX, this config falls back to `globRoot`.",
+            "Clean all the files located in `#latex-workshop.latex.outDir#` and matching the glob patterns listed in `#latex-workshop.latex.clean.fileTypes#`. The cleaned file will have the same as the jobname or root file. If the root file is not defined, the cleaner will do nothing.",
             "Run `#latex-workshop.latex.clean.command#` to clean temporary files."
           ],
           "markdownDescription": "Define how temporary files will be cleaned."
