@@ -49,7 +49,7 @@ export class Cleaner {
         const cleanMethod = configuration.get('latex.clean.method') as string
 
         const active = vscode.window.activeTextEditor
-        const rootFileName = rootFile ? lw.manager.jobname(rootFile) : undefined
+        const rootFileName = lw.manager.jobname(rootFile)
         const activeFileName = (active && lw.manager.hasTexId(active.document.languageId)) ?
             path.parse(active.document.fileName).name : rootFileName
         switch (cleanMethod) {
@@ -63,12 +63,7 @@ export class Cleaner {
                     return
                 }
             case 'globRoot':
-                if (rootFileName) {
-                    return this.cleanGlob(rootFile, rootFileName)
-                } else {
-                    logger.log('No root file or jobname is defined. Cleaning terminated.')
-                    return
-                }
+                return this.cleanGlob(rootFile, rootFileName)
             case 'cleanCommand':
                 await configuration.update('latex.clean.method', 'command')
                 void vscode.window.showInformationMessage('The cleaning method `cleanCommand` has been renamed to `command`. Your config is auto-updated.')
