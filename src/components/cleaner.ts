@@ -111,7 +111,10 @@ export class Cleaner {
 
         const explicitFolders: string[] = globAll(folderGlobsExplicit, outdir)
         const explicitFoldersSet: Set<string> = new Set(explicitFolders)
-        const filesOrFolders: string[] = globAll(fileOrFolderGlobs, outdir).filter(file => !explicitFoldersSet.has(file))
+        const jobName = (configuration.get('latex-workshop.latex.clean.jobname') as boolean && lw.manager.rootFile) ? lw.manager.jobname(lw.manager.rootFile) : undefined
+        const filesOrFolders: string[] = globAll(fileOrFolderGlobs, outdir)
+            .filter(file => !explicitFoldersSet.has(file))
+            .filter(file => jobName ? path.parse(file).name === jobName : true)
 
         // Remove files first
         for (const realPath of filesOrFolders) {
