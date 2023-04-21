@@ -63,7 +63,7 @@ suite('Cleaner test suite', () => {
 
     test.run('latexmk clean', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', [])
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.method', 'cleanCommand')
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.method', 'command')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.command', 'latexmk')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.args', ['-c', '%TEX%'])
         await test.load(fixture, [
@@ -76,7 +76,7 @@ suite('Cleaner test suite', () => {
 
     test.run('latexmk clean with auxdir', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', [])
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.method', 'cleanCommand')
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.method', 'command')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.command', 'latexmk')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.args', ['-c', '-auxdir=%OUTDIR%/aux_files', '%TEX%'])
         await test.load(fixture, [
@@ -179,5 +179,38 @@ suite('Cleaner test suite', () => {
         await test.build(fixture, 'main.tex')
         result = await Promise.any([cleaned, test.sleep(1000)])
         assert.ok(result)
+    })
+
+    test.only('glob clean on active file', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.method', 'globActive')
+        await test.load(fixture, [
+            {src: 'empty', dst: 'main.tex'},
+            {src: 'empty', dst: 'main.aux'},
+            {src: 'empty', dst: 'main.fls'},
+            {src: 'empty', dst: 'alt.aux'},
+            {src: 'empty', dst: 'alt.fls'}
+        ], {root: -1, skipCache: true})
+        await test.find(fixture, 'main.tex')
+        await lw.cleaner.clean(path.resolve(fixture, 'main.tex'))
+        assert.ok(!fs.existsSync(path.resolve(fixture, 'main.aux')))
+        assert.ok(!fs.existsSync(path.resolve(fixture, 'main.fls')))
+        assert.ok(fs.existsSync(path.resolve(fixture, 'alt.aux')))
+        assert.ok(fs.existsSync(path.resolve(fixture, 'alt.fls')))
+    })
+
+    test.only('glob clean on root file', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.method', 'globRoot')
+        await test.load(fixture, [
+            {src: 'base.tex', dst: 'main.tex'},
+            {src: 'empty', dst: 'main.aux'},
+            {src: 'empty', dst: 'main.fls'},
+            {src: 'empty', dst: 'alt.aux'},
+            {src: 'empty', dst: 'alt.fls'}
+        ], {skipCache: true})
+        await lw.cleaner.clean(path.resolve(fixture, 'main.tex'))
+        assert.ok(!fs.existsSync(path.resolve(fixture, 'main.aux')))
+        assert.ok(!fs.existsSync(path.resolve(fixture, 'main.fls')))
+        assert.ok(fs.existsSync(path.resolve(fixture, 'alt.aux')))
+        assert.ok(fs.existsSync(path.resolve(fixture, 'alt.fls')))
     })
 })

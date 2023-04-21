@@ -49,7 +49,7 @@ export class Cleaner {
         const cleanMethod = configuration.get('latex.clean.method') as string
 
         const active = vscode.window.activeTextEditor
-        const rootFileName = lw.manager.rootFile ? lw.manager.jobname(rootFile) : undefined
+        const rootFileName = rootFile ? lw.manager.jobname(rootFile) : undefined
         const activeFileName = (active && lw.manager.hasTexId(active.document.languageId)) ?
             path.parse(active.document.fileName).name : rootFileName
         switch (cleanMethod) {

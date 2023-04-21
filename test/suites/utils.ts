@@ -149,7 +149,7 @@ export async function load(fixture: string, files: {src: string, dst: string, ws
     }
 }
 
-export async function open(filePath: string) {
+async function open(filePath: string) {
     const doc = await vscode.workspace.openTextDocument(filePath)
     await vscode.window.showTextDocument(doc)
 }
