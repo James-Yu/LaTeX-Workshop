@@ -51,6 +51,10 @@ export class Cleaner {
             case 'glob':
                 return this.cleanGlob(rootFile)
             case 'cleanCommand':
+                await configuration.update('latex.clean.method', 'command')
+                void vscode.window.showInformationMessage('The cleaning method `cleanCommand` has been renamed to `command`. Your config is auto-updated.')
+                return this.cleanCommand(rootFile)
+            case 'command':
                 return this.cleanCommand(rootFile)
             default:
                 logger.log(`Unknown cleaning method ${cleanMethod} .`)

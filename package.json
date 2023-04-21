@@ -1306,13 +1306,13 @@
             "*.nav",
             "*.vrb"
           ],
-          "markdownDescription": "Files to clean. This property must be an array of strings. File globs such as `*.removeme`, `something?.aux` can be used. Users can also specify glob patterns like `emptyfolder*/` to remove empty folders. Non-empty folders will be ignored. The folder globs must end with a slash and the last path component must not contain the globstar `**`, otherwise the folders will not be removed. The following globs patterns are correct `['abc/', 'abc*/', '**/abc*/', 'abc/**/def/']` but these are not ['**', '**/', 'abc/**', 'abc/**/', 'abc/def**/', 'abc/d**ef/']`."
+          "markdownDescription": "Files to clean when `#latex-workshop.latex.clean.method#` is set to `glob`.. This property must be an array of strings. File globs such as `*.removeme`, `something?.aux` can be used. Users can also specify glob patterns like `emptyfolder*/` to remove empty folders. Non-empty folders will be ignored. The folder globs must end with a slash and the last path component must not contain the globstar `**`, otherwise the folders will not be removed. The following globs patterns are correct `['abc/', 'abc*/', '**/abc*/', 'abc/**/def/']` but these are not ['**', '**/', 'abc/**', 'abc/**/', 'abc/def**/', 'abc/d**ef/']`."
         },
         "latex-workshop.latex.clean.command": {
           "scope": "resource",
           "type": "string",
           "default": "latexmk",
-          "markdownDescription": "The command to be used to remove temporary files when `#latex-workshop.latex.clean.method#` is set to `cleanMethod`."
+          "markdownDescription": "The command to be used to remove temporary files when `#latex-workshop.latex.clean.method#` is set to `command`."
         },
         "latex-workshop.latex.clean.args": {
           "scope": "resource",
@@ -1332,13 +1332,13 @@
           "default": "glob",
           "enum": [
             "glob",
-            "cleanCommand"
+            "command"
           ],
           "markdownEnumDescriptions": [
             "Clean all the files located in `#latex-workshop.latex.outDir#` and matching the glob patterns listed in `#latex-workshop.latex.clean.fileTypes#`.",
             "Run `#latex-workshop.latex.clean.command#` to clean temporary files."
           ],
-          "markdownDescription": "Define the method used by the `clean` command to remove temporary files."
+          "markdownDescription": "Define how temporary files will be cleaned."
         },
         "latex-workshop.latex.option.maxPrintLine.enabled": {
           "scope": "resource",
