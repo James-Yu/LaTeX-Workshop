@@ -30,22 +30,26 @@ suite('Cleaner test suite', () => {
     test.run('basic clean', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'empty', dst: 'main.aux'},
-            {src: 'empty', dst: 'main.fls'}
+            {src: 'empty', dst: 'main.fls'},
+            {src: 'empty', dst: 'sub.aux'}
         ], {root: -1, skipCache: true})
         await lw.cleaner.clean(path.resolve(fixture, 'main.tex'))
         assert.ok(!fs.existsSync(path.resolve(fixture, 'main.aux')))
         assert.ok(!fs.existsSync(path.resolve(fixture, 'main.fls')))
+        assert.ok(fs.existsSync(path.resolve(fixture, 'sub.aux')))
     })
 
     test.run('glob clean with `latex-workshop.latex.clean.fileTypes`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', ['*.aux'])
         await test.load(fixture, [
             {src: 'empty', dst: 'main.aux'},
-            {src: 'empty', dst: 'main.fls'}
+            {src: 'empty', dst: 'main.fls'},
+            {src: 'empty', dst: 'sub.aux'}
         ], {root: -1, skipCache: true})
         await lw.cleaner.clean(path.resolve(fixture, 'main.tex'))
         assert.ok(!fs.existsSync(path.resolve(fixture, 'main.aux')))
         assert.ok(fs.existsSync(path.resolve(fixture, 'main.fls')))
+        assert.ok(!fs.existsSync(path.resolve(fixture, 'sub.aux')))
     })
 
     test.run('glob clean with `latex.clean.subfolder.enabled`', async (fixture: string) => {
