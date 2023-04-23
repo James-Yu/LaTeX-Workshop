@@ -1151,6 +1151,16 @@
           "default": false,
           "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `false`, the `build` and `view` commands  ask the user's choice first. When `true`, the subfile is used when `#latex-workshop.latex.rootFile.useSubFile#` is also `true`, otherwise the rootFile is used."
         },
+        "latex-workshop.latex.rootFile.indicator": {
+            "scope": "resource",
+            "type": "string",
+            "default": "\\documentclass",
+            "enum": [
+                "\\documentclass",
+                "\\begin{document}"
+            ],
+            "markdownDescription": "Determine the root file based on the specific indicator. If `\\documentclass`, the root file is the file containing `\\documentclass`. If `\\begin{document}`, the root file is the file containing `\\begin{document}`."
+        },
         "latex-workshop.latex.watch.usePolling": {
           "scope": "window",
           "type": "boolean",

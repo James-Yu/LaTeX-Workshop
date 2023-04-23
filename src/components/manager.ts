@@ -10,8 +10,6 @@ import { getLogger } from './logger'
 
 const logger = getLogger('Manager')
 
-const ROOT_INDICATOR = /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
-
 type RootFileType = {
     type: 'filePath',
     filePath: string
@@ -85,6 +83,27 @@ export class Manager {
         const outDir = configuration.get('latex.outDir') as string
         const out = utils.replaceArgumentPlaceholders(texPath, this.tmpDir)(outDir)
         return path.normalize(out).split(path.sep).join('/')
+    }
+
+    /**
+     * @returns the indicator if the root file
+     */
+    getRootIndictor() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const indicator = configuration.get('latex.rootFile.indicator')
+        let ROOT_INDICATOR = null
+        switch (indicator) {
+            case '\\documentclass':
+                ROOT_INDICATOR = /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
+                break
+            case '\\begin{document}':
+                ROOT_INDICATOR = /\\begin{document}/m
+                break
+            default:
+                ROOT_INDICATOR = /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
+                break
+        }
+        return ROOT_INDICATOR
     }
 
     /**
@@ -374,7 +393,7 @@ export class Manager {
             return
         }
         const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
-        const result = content.match(ROOT_INDICATOR)
+        const result = content.match(this.getRootIndictor())
         if (result) {
             const rootSubFile = this.findSubFiles(content)
             const file = vscode.window.activeTextEditor.document.fileName
@@ -432,7 +451,7 @@ export class Manager {
                     return file.fsPath
                 }
                 const content = utils.stripCommentsAndVerbatim(fs.readFileSync(file.fsPath).toString())
-                const result = content.match(ROOT_INDICATOR)
+                const result = content.match(this.getRootIndictor())
                 if (result) {
                     // Can be a root
                     const children = await lw.cacher.getTeXChildren(file.fsPath, file.fsPath, [])
