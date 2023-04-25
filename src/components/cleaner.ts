@@ -4,7 +4,7 @@ import * as fs from 'fs'
 import glob from 'glob'
 import * as cs from 'cross-spawn'
 import * as lw from '../lw'
-import {replaceArgumentPlaceholders} from '../utils/utils'
+import { replaceArgumentPlaceholders } from '../utils/utils'
 
 import { getLogger } from './logger'
 
@@ -103,11 +103,10 @@ export class Cleaner {
      */
     private async cleanGlob(rootFile: string): Promise<void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
-        let globs = configuration.get('latex.clean.fileTypes') as string[]
+        const globPrefix = (configuration.get('latex.clean.subfolder.enabled') as boolean) ? './**/' : ''
+        const globs = (configuration.get('latex.clean.fileTypes') as string[])
+            .map(globType => globPrefix + replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(globType))
         const outdir = path.resolve(path.dirname(rootFile), lw.manager.getOutDir(rootFile))
-        if (configuration.get('latex.clean.subfolder.enabled') as boolean) {
-            globs = globs.map(globType => './**/' + globType)
-        }
         logger.log(`Clean glob matched files ${JSON.stringify({globs, outdir})} .`)
 
         const { fileOrFolderGlobs, folderGlobsExplicit, folderGlobsWithGlobstar } = Cleaner.splitGlobs(globs)
@@ -152,13 +151,11 @@ export class Cleaner {
     private cleanCommand(rootFile: string): Promise<void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         const command = configuration.get('latex.clean.command') as string
-        let args = configuration.get('latex.clean.args') as string[]
-        if (args) {
-            args = args.map(arg => { return replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(arg)
+        const args = (configuration.get('latex.clean.args') as string[])
+            .map(arg => { return replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(arg)
                 // cleaner.ts specific tokens
                 .replace(/%TEX%/g, rootFile)
             })
-        }
         logger.logCommand('Clean temporary files command', command, args)
         return new Promise((resolve, _reject) => {
             // issue #3679 #3687: spawning with `detached: true` causes latexmk from MiKTeX to fail on Windows when "install on-the-fly" is enabled
