@@ -48,7 +48,7 @@ export class Manager {
 
         // Create temp folder
         try {
-            this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
+            this.tmpDir = tmp.dirSync({ unsafeCleanup: true }).name.split(path.sep).join('/')
         } catch (error) {
             void vscode.window.showErrorMessage('Error during making tmpdir to build TeX files. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.')
             console.log(`TEMP, TMP, and TMPDIR: ${JSON.stringify([process.env.TEMP, process.env.TMP, process.env.TMPDIR])}`)
@@ -86,24 +86,21 @@ export class Manager {
     }
 
     /**
-     * @returns the indicator if the root file
+     * Get the indicator type of the root file from the configuration.
+     * @returns The indicator of the root file.
      */
     getRootIndictor() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const indicator = configuration.get('latex.rootFile.indicator')
-        let ROOT_INDICATOR = null
         switch (indicator) {
-            case '\\documentclass':
-                ROOT_INDICATOR = /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
-                break
+            case '\\documentclass[]{}':
+                return /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
             case '\\begin{document}':
-                ROOT_INDICATOR = /\\begin{document}/m
-                break
+                return /\\begin{document}/m
             default:
-                ROOT_INDICATOR = /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
-                break
+                logger.logError('Unknown rootFile.indicator', indicator)
+                return /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
         }
-        return ROOT_INDICATOR
     }
 
     /**
@@ -254,7 +251,7 @@ export class Manager {
      * @param id The language identifier
      */
     hasDoctexId(id: string) {
-            return id === 'doctex'
+        return id === 'doctex'
     }
 
     private findWorkspace(): vscode.Uri | undefined {
@@ -398,8 +395,8 @@ export class Manager {
             const rootSubFile = this.findSubFiles(content)
             const file = vscode.window.activeTextEditor.document.fileName
             if (rootSubFile) {
-               this.localRootFile = file
-               return rootSubFile
+                this.localRootFile = file
+                return rootSubFile
             } else {
                 logger.log(`Found root file from active editor: ${file}`)
                 return file
@@ -470,7 +467,7 @@ export class Manager {
                 logger.log(`Found files that might be root, choose the first one: ${candidates} .`)
                 return candidates[0]
             }
-        } catch (e) {}
+        } catch (e) { }
         return
     }
 
