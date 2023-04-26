@@ -48,7 +48,7 @@ export class Manager {
 
         // Create temp folder
         try {
-            this.tmpDir = tmp.dirSync({ unsafeCleanup: true }).name.split(path.sep).join('/')
+            this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
         } catch (error) {
             void vscode.window.showErrorMessage('Error during making tmpdir to build TeX files. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.')
             console.log(`TEMP, TMP, and TMPDIR: ${JSON.stringify([process.env.TEMP, process.env.TMP, process.env.TMPDIR])}`)
@@ -466,7 +466,7 @@ export class Manager {
                 logger.log(`Found files that might be root, choose the first one: ${candidates} .`)
                 return candidates[0]
             }
-        } catch (e) { }
+        } catch (e) {}
         return
     }
 
