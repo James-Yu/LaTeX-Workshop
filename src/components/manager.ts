@@ -86,10 +86,9 @@ export class Manager {
     }
 
     /**
-     * Get the indicator type of the root file from the configuration.
-     * @returns The indicator of the root file.
+     * The indicator of the root file.
      */
-    getRootIndictor() {
+    get rootIndictor() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const indicator = configuration.get('latex.rootFile.indicator')
         switch (indicator) {
@@ -390,7 +389,7 @@ export class Manager {
             return
         }
         const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
-        const result = content.match(this.getRootIndictor())
+        const result = content.match(this.rootIndictor)
         if (result) {
             const rootSubFile = this.findSubFiles(content)
             const file = vscode.window.activeTextEditor.document.fileName
@@ -448,7 +447,7 @@ export class Manager {
                     return file.fsPath
                 }
                 const content = utils.stripCommentsAndVerbatim(fs.readFileSync(file.fsPath).toString())
-                const result = content.match(this.getRootIndictor())
+                const result = content.match(this.rootIndictor)
                 if (result) {
                     // Can be a root
                     const children = await lw.cacher.getTeXChildren(file.fsPath, file.fsPath, [])
