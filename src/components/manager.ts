@@ -95,7 +95,7 @@ export class Manager {
             case '\\documentclass[]{}':
                 return /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
             case '\\begin{document}':
-                return /\\begin{document}/m
+                return /\\begin\s*{document}/m
             default:
                 logger.logError('Unknown rootFile.indicator', indicator)
                 return /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
