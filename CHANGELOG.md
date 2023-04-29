@@ -1,5 +1,23 @@
 # Change Log
 
+## [9.9.0] - 2023-04-29
+
+### Added
+- (#3855) `latex.clean.fileTypes` support placeholders.
+
+### Fixed
+- (#3811) `\include` suggestion does not have file extension.
+- (#3812) Fix computation of the section above current position.
+- (#3813) Lazy load `usepackage` regex.
+- (#3815) Detect more warnings of LaTeX log.
+- (#3817) Let `)` may also close `[` when stripping text.
+- (#3820) Swap symbols of `epsilon` and `varepsilon`.
+- (#3827) Consider `\markdownInput` as input.
+- (#3832) Change caption in BTA to top, add a BTB snippet.
+- (#3841) `code-server` not loading PDFs from built-in PDF viewer.
+- (#3842) Fix environment navigation and content selection for `$...$` and `$$...$$`.
+- (#3844) Add port conflict warning to `internal.port` config.
+
 ## [9.8.2] - 2023-03-29
 
 ### Fixed
