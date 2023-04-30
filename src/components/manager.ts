@@ -10,8 +10,6 @@ import { getLogger } from './logger'
 
 const logger = getLogger('Manager')
 
-const ROOT_INDICATOR = /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
-
 type RootFileType = {
     type: 'filePath',
     filePath: string
@@ -85,6 +83,23 @@ export class Manager {
         const outDir = configuration.get('latex.outDir') as string
         const out = utils.replaceArgumentPlaceholders(texPath, this.tmpDir)(outDir)
         return path.normalize(out).split(path.sep).join('/')
+    }
+
+    /**
+     * The indicator of the root file.
+     */
+    get rootIndictor() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const indicator = configuration.get('latex.rootFile.indicator')
+        switch (indicator) {
+            case '\\documentclass[]{}':
+                return /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
+            case '\\begin{document}':
+                return /\\begin\s*{document}/m
+            default:
+                logger.logError('Unknown rootFile.indicator', indicator)
+                return /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
+        }
     }
 
     /**
@@ -235,7 +250,7 @@ export class Manager {
      * @param id The language identifier
      */
     hasDoctexId(id: string) {
-            return id === 'doctex'
+        return id === 'doctex'
     }
 
     private findWorkspace(): vscode.Uri | undefined {
@@ -374,13 +389,13 @@ export class Manager {
             return
         }
         const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
-        const result = content.match(ROOT_INDICATOR)
+        const result = content.match(this.rootIndictor)
         if (result) {
             const rootSubFile = this.findSubFiles(content)
             const file = vscode.window.activeTextEditor.document.fileName
             if (rootSubFile) {
-               this.localRootFile = file
-               return rootSubFile
+                this.localRootFile = file
+                return rootSubFile
             } else {
                 logger.log(`Found root file from active editor: ${file}`)
                 return file
@@ -432,7 +447,7 @@ export class Manager {
                     return file.fsPath
                 }
                 const content = utils.stripCommentsAndVerbatim(fs.readFileSync(file.fsPath).toString())
-                const result = content.match(ROOT_INDICATOR)
+                const result = content.match(this.rootIndictor)
                 if (result) {
                     // Can be a root
                     const children = await lw.cacher.getTeXChildren(file.fsPath, file.fsPath, [])
