@@ -121,39 +121,34 @@ export function trimMultiLineString(text: string): string {
  * @param s A string to be searched.
  */
 function getLongestBalancedString(s: string, bracket: 'curly' | 'square'='curly'): string | undefined {
-    const openner = bracket === 'curly' ? '{' : '['
-    const closer = bracket === 'curly' ? '}' : ']'
-    let nested = s[0] === openner ? 0 : 1
-    let i = 0
-    for (i = 0; i < s.length; i++) {
-        switch (s[i]) {
-            case openner:
-                nested++
-                break
-            case closer:
-                nested--
-                break
-            case '\\':
-                // skip an escaped character
-                i++
-                break
-            case ')':
-                // [1, 2)
-                if (openner === '[') {
-                    nested--
-                }
-                break
-            default:
+    const bracketStack: ('{' | '[' | '(')[] = []
+
+    const opener = bracket === 'curly' ? '{' : '['
+    if (s[0] !== opener) {
+        bracketStack.push(opener)
+    }
+
+    for (let i = 0; i < s.length; ++i) {
+        const char = s[i]
+        if (char === '{' || char === '[' || char === '(') {
+            bracketStack.push(char)
+        } else if (char === '}' || char === ']') {
+            const openPos = bracketStack.lastIndexOf(char === '}' ? '{' : '[')
+            if (openPos > -1) {
+                bracketStack.splice(openPos, 1)
+            }
+        } else if (char === ')') {
+            const lastBracket = bracketStack[bracketStack.length - 1]
+            if (lastBracket === '(' || lastBracket === '[') {
+                bracketStack.pop()
+            }
         }
-        if (nested === 0) {
-            break
+
+        if (bracketStack.lastIndexOf(opener) < 0) {
+            return s.substring(s[0] === opener ? 1 : 0, i)
         }
     }
-    if (nested === 0) {
-        return s.substring(s[0] === openner ? 1 : 0, i)
-    } else {
-        return undefined
-    }
+    return undefined
 }
 
 /**
