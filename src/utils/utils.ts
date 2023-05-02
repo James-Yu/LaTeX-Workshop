@@ -132,8 +132,13 @@ function getLongestBalancedString(s: string, bracket: 'curly' | 'square'='curly'
         const char = s[i]
         if (char === '{' || char === '[' || char === '(') {
             bracketStack.push(char)
-        } else if (char === '}' || char === ']') {
-            const openPos = bracketStack.lastIndexOf(char === '}' ? '{' : '[')
+        } else if (char === '}') {
+            const openPos = bracketStack.lastIndexOf('{')
+            if (openPos > -1) {
+                bracketStack.splice(openPos, 1)
+            }
+        } else if (char === ']') {
+            const openPos = bracketStack.lastIndexOf('[')
             if (openPos > -1) {
                 bracketStack.splice(openPos, 1)
             }
