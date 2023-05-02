@@ -159,6 +159,7 @@ function latexmkSkipped(log: string): boolean {
     return false
 }
 
+
 export const parser = {
     parseLatex,
     parseLatexPreamble,
