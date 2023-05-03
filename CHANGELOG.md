@@ -1,5 +1,15 @@
 # Change Log
 
+## [9.10.0] - 2023-05-03
+
+### Added
+- (#3838) Properly stringify BibTeX fields containing `#`.
+- (#3856) Add a configuration item `latex.rootFile.indicator` to choose the root file indicator.
+
+### Fixed
+- (#3867) Use bracket stack to `getLongestBalancedString`.
+  - This can help the extension to better parse LaTeX AST.
+
 ## [9.9.0] - 2023-04-29
 
 ### Added
