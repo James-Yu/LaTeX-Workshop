@@ -83,8 +83,11 @@ export class NewCommandFinder {
         if (ast !== undefined) {
             logger.log(`Parsed ${ast.content.length} AST items.`)
             ast.content.forEach(node => {
-                if ((isNewCommand(node) || latexParser.isDefCommand(node)) && node.args.length > 0) {
+                if (isNewCommand(node) && node.args.length > 0) {
                     node.name = node.name.replace(/\*$/, '') as NewCommand['name']
+                    const s = latexParser.stringify(node)
+                    commands.push(s)
+                } else if (latexParser.isDefCommand(node)) {
                     const s = latexParser.stringify(node)
                     commands.push(s)
                 } else if (latexParser.isCommand(node) && node.name === 'DeclarePairedDelimiter' && node.args.length === 3) {
