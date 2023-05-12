@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
-import { Section } from './structurelib/section'
 import { StructureUpdated } from '../components/eventbus'
 import { buildLaTeX } from './structurelib/latex'
 import { buildBibTeX } from './structurelib/bibtex'
@@ -10,26 +9,52 @@ import { getLogger } from '../components/logger'
 
 const logger = getLogger('Structure')
 
-export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
-    private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
-    readonly onDidChangeTreeData: vscode.Event<Section | undefined>
-    public root: string = ''
+export enum TeXElementType { Environment, Command, Section, SectionAst, BibItem, BibField }
 
-    // our data source is a set multi-rooted set of trees
-    public ds: Section[] = []
-    private cachedTeXSec: Section[] | undefined = undefined
-    private cachedBibSec: Section[] | undefined = undefined
-    private cachedDocTeXSec: Section[] | undefined = undefined
+export type TeXElement = {
+    readonly type: TeXElementType,
+    readonly name: string,
+    label: string,
+    readonly index: number,
+    readonly lineFr: number,
+    lineTo: number,
+    readonly filePath: string,
+    readonly children: TeXElement[],
+    parent?: TeXElement
+}
+
+export class StructureView implements vscode.TreeDataProvider<TeXElement> {
+    private readonly structureChanged: vscode.EventEmitter<TeXElement | undefined | null> = new vscode.EventEmitter<TeXElement | undefined | null>()
+    readonly onDidChangeTreeData: vscode.Event<TeXElement | undefined | null>
+
+    public structure: TeXElement[] = []
+    private cachedTeX: TeXElement[] | undefined = undefined
+    private cachedBib: TeXElement[] | undefined = undefined
+    private cachedDTX: TeXElement[] | undefined = undefined
+
+    private readonly viewer: vscode.TreeView<TeXElement | undefined>
+    private followCursor: boolean = true
 
     constructor() {
-        this.onDidChangeTreeData = this._onDidChangeTreeData.event
-    }
+        this.onDidChangeTreeData = this.structureChanged.event
+        this.viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this, showCollapseAll: true })
 
-    private getCachedDataRootFileName(sections: Section[]): string | undefined {
-        if (sections.length >0) {
-            return sections[0].fileName
-        }
-        return
+        vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
+           this.followCursor = ! this.followCursor
+           logger.log(`Follow cursor is set to ${this.followCursor}.`)
+        })
+
+        vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
+            if (lw.manager.hasBibtexId(e.languageId) || lw.manager.hasDoctexId(e.languageId)) {
+                void this.reconstruct()
+            }
+        })
+
+        vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
+            if (e && (lw.manager.hasBibtexId(e.document.languageId) || lw.manager.hasDoctexId(e.document.languageId))) {
+                void this.refresh()
+            }
+        })
     }
 
     /**
@@ -37,155 +62,105 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      *
      * @param force If `false` and some cached data exists for the corresponding file, use it. If `true`, always recompute the structure from disk
      */
-    async build(force: boolean): Promise<Section[]> {
+    async build(force: boolean): Promise<TeXElement[]> {
         const document = vscode.window.activeTextEditor?.document
         if (document?.languageId === 'doctex') {
-            if (force || !this.cachedDocTeXSec || this.getCachedDataRootFileName(this.cachedDocTeXSec) !== document.fileName) {
-                this.cachedDocTeXSec = undefined
-                this.cachedDocTeXSec = await buildDocTeX(document)
+            if (force || !this.cachedDTX || this.getCachedDataRootFileName(this.cachedDTX) !== document.fileName) {
+                this.cachedDTX = undefined
+                this.cachedDTX = await buildDocTeX(document)
             }
-            this.ds = this.cachedDocTeXSec
-            logger.log(`Structure updated with ${this.ds.length} entries for ${document.uri.fsPath} .`)
+            this.structure = this.cachedDTX
+            logger.log(`Structure updated with ${this.structure.length} entries for ${document.uri.fsPath} .`)
         } else if (document?.languageId === 'bibtex') {
-            if (force || !this.cachedBibSec || this.getCachedDataRootFileName(this.cachedBibSec) !== document.fileName) {
-                this.cachedBibSec = undefined
-                this.cachedBibSec = await buildBibTeX(document)
+            if (force || !this.cachedBib || this.getCachedDataRootFileName(this.cachedBib) !== document.fileName) {
+                this.cachedBib = undefined
+                this.cachedBib = await buildBibTeX(document)
             }
-            this.ds = this.cachedBibSec
-            logger.log(`Structure updated with ${this.ds.length} entries for ${document.uri.fsPath} .`)
+            this.structure = this.cachedBib
+            logger.log(`Structure updated with ${this.structure.length} entries for ${document.uri.fsPath} .`)
         } else if (lw.manager.rootFile) {
-            if (force || !this.cachedTeXSec) {
-                this.cachedTeXSec = undefined
-                this.cachedTeXSec = await buildLaTeX()
+            if (force || !this.cachedTeX) {
+                this.cachedTeX = undefined
+                this.cachedTeX = await buildLaTeX()
             }
-            this.ds = this.cachedTeXSec
-            logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.ds.length} root sections for ${lw.manager.rootFile} .`)
+            this.structure = this.cachedTeX
+            logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} root sections for ${lw.manager.rootFile} .`)
         } else {
-            this.ds = []
+            this.structure = []
             logger.log('Structure cleared on undefined root.')
         }
-        return this.ds
+        return this.structure
     }
 
-    async update(force: boolean) {
-        this.ds = await this.build(force)
-        this._onDidChangeTreeData.fire(undefined)
+    async reconstruct() {
+        await this.update(true)
+        return this.structure
+    }
+
+    async refresh() {
+        await this.update(false)
+        return this.structure
+    }
+
+    private async update(force: boolean) {
+        this.structure = await this.build(force)
+        this.structureChanged.fire(undefined)
         lw.eventBus.fire(StructureUpdated)
     }
 
-    getTreeItem(element: Section): vscode.TreeItem {
-
-        const hasChildren = element.children.length > 0
-        const treeItem: vscode.TreeItem = new vscode.TreeItem(element.label, hasChildren ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.None)
-
-        treeItem.command = {
-            command: 'latex-workshop.goto-section',
-            title: '',
-            arguments: [element.fileName, element.lineNumber]
-        }
-
-        treeItem.tooltip = `Line ${element.lineNumber + 1} at ${element.fileName}`
-
-        return treeItem
+    private getCachedDataRootFileName(sections: TeXElement[]): string | undefined {
+        return sections[0]?.filePath
     }
 
-    getChildren(element?: Section): vscode.ProviderResult<Section[]> {
-        if (lw.manager.rootFile === undefined) {
-            return []
-        }
-        // if the root doesn't exist, we need
-        // to explicitly build the model from disk
-        if (!element) {
-            return this.build(false)
-        }
-
-        return element.children
-    }
-
-    getParent(element?: Section): Section | undefined {
-        if (lw.manager.rootFile === undefined || !element) {
-            return
-        }
-        return element.parent
-    }
-}
-
-export class StructureTreeView {
-    private readonly _viewer: vscode.TreeView<Section | undefined>
-    private readonly _treeDataProvider: SectionNodeProvider
-    private _followCursor: boolean = true
-
-
-    constructor() {
-        this._treeDataProvider = new SectionNodeProvider()
-        this._viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this._treeDataProvider, showCollapseAll: true })
-        vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
-           this._followCursor = ! this._followCursor
-           logger.log(`Follow cursor is set to ${this._followCursor}.`)
-        })
-
-        vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
-            if (lw.manager.hasBibtexId(e.languageId) || lw.manager.hasDoctexId(e.languageId)) {
-                void lw.structureViewer.computeTreeStructure()
-            }
-        })
-
-        vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
-            if (!e) {
-                return
-            }
-            if (lw.manager.hasBibtexId(e.document.languageId) || lw.manager.hasDoctexId(e.document.languageId)) {
-                void lw.structureViewer.refreshView()
-            }
-        })
-    }
-
-    /**
-     * Recompute the whole structure from file and update the view
-     */
-    async computeTreeStructure() {
-        await this._treeDataProvider.update(true)
-    }
-
-    /**
-     * Refresh the view using cache
-     */
-    async refreshView() {
-        await this._treeDataProvider.update(false)
-    }
-
-    getTreeData(): Section[] {
-        return this._treeDataProvider.ds
-    }
-
-    private traverseSectionTree(sections: Section[], fileName: string, lineNumber: number): Section | undefined {
-        let match: Section | undefined = undefined
+    private traverseSectionTree(sections: TeXElement[], filePath: string, lineNo: number): TeXElement | undefined {
         for (const node of sections) {
-            if ((node.fileName === fileName &&
-                 node.lineNumber <= lineNumber && node.toLine >= lineNumber) ||
-                (node.fileName !== fileName && node.subfiles.includes(fileName))) {
-                match = node
+            if ((node.filePath === filePath &&
+                 node.lineFr <= lineNo && node.lineTo >= lineNo) ||
+                (node.filePath !== filePath && node.children.map(child => child.filePath).includes(filePath))) {
                 // Look for a more precise surrounding section
-                const res = this.traverseSectionTree(node.children, fileName, lineNumber)
-                if (res) {
-                    match = res
-                }
+                return this.traverseSectionTree(node.children, filePath, lineNo) ?? node
             }
         }
-        return match
-
+        return undefined
     }
 
     showCursorItem(e: vscode.TextEditorSelectionChangeEvent) {
-        if (!this._followCursor || !this._viewer.visible) {
+        if (!this.followCursor || !this.viewer.visible) {
             return
         }
         const line = e.selections[0].active.line
         const f = e.textEditor.document.fileName
-        const currentNode = this.traverseSectionTree(this._treeDataProvider.ds, f, line)
-        if (currentNode) {
-            return this._viewer.reveal(currentNode, {select: true})
+        const currentNode = this.traverseSectionTree(this.structure, f, line)
+        return currentNode ? this.viewer.reveal(currentNode, {select: true}) : undefined
+    }
+
+    getTreeItem(element: TeXElement): vscode.TreeItem {
+        const treeItem: vscode.TreeItem = new vscode.TreeItem(
+            element.label,
+            element.children.length > 0 ? vscode.TreeItemCollapsibleState.Expanded :
+                                          vscode.TreeItemCollapsibleState.None)
+
+        treeItem.command = {
+            command: 'latex-workshop.goto-section',
+            title: '',
+            arguments: [element.filePath, element.filePath]
         }
-        return
+        treeItem.tooltip = `Line ${element.lineFr + 1} at ${element.filePath}`
+
+        return treeItem
+    }
+
+    getChildren(element?: TeXElement): vscode.ProviderResult<TeXElement[]> {
+        if (lw.manager.rootFile === undefined) {
+            return []
+        }
+        return element?.children ?? this.refresh()
+    }
+
+    getParent(element?: TeXElement): TeXElement | undefined {
+        if (lw.manager.rootFile === undefined || !element) {
+            return
+        }
+        return element.parent
     }
 }

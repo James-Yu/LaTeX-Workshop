@@ -1,13 +1,13 @@
 import * as vscode from 'vscode'
 import * as utils from '../../utils/utils'
-import { Section } from './section'
+import { TeXElement } from '../structure'
 import { parser } from '../../components/parser'
 import { outline } from './latex'
 import { getLogger } from '../../components/logger'
 
 const logger = getLogger('Structure', 'DocTeX')
 
-export async function buildDocTeX(document: vscode.TextDocument): Promise<Section[]> {
+export async function buildDocTeX(document: vscode.TextDocument): Promise<TeXElement[]> {
     const content = document.getText()
     if (!content) {
         return []
@@ -59,7 +59,7 @@ async function getToC(document: vscode.TextDocument, content: string, docContent
     const config = outline.refreshLaTeXModelConfig(['macro', 'environment'])
     // Parse each base-level node. If the node has contents, that function
     // will be called recursively.
-    let flatNodes: Section[] = []
+    let flatNodes: TeXElement[] = []
     for (const node of ast.content) {
         flatNodes = [
             ...flatNodes,
@@ -67,13 +67,12 @@ async function getToC(document: vscode.TextDocument, content: string, docContent
         ]
     }
 
-    outline.normalizeDepths(flatNodes)
     outline.buildFloatNumber(flatNodes, false)
-    const {preambleFloats, flatSections} = outline.buildSectionNumber(flatNodes, false)
+    const {preambleFloats, flatSections} = outline.buildSectionNumber(config, flatNodes, false)
     const preamble = outline.buildNestedFloats(preambleFloats, flatSections)
-    const sections = outline.buildNestedSections(flatSections)
+    const sections = outline.buildNestedSections(config, flatSections)
     const structure = [...preamble, ...sections]
-    outline.buildLaTeXSectionToLine(structure, Number.MAX_SAFE_INTEGER)
+    outline.buildLaTeXSectionToLine(config, structure, Number.MAX_SAFE_INTEGER)
 
     return sections
 }

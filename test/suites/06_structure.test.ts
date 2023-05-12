@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
+import * as lw from '../../src/lw'
 import * as test from './utils'
-import { SectionNodeProvider } from '../../src/providers/structure'
 
 async function loadTestFiles(fixture: string) {
     await test.load(fixture, [
@@ -34,15 +34,13 @@ suite('Document structure test suite', () => {
 
     test.run('test structure', async (fixture: string) => {
         await loadTestFiles(fixture)
-        const structure = new SectionNodeProvider()
-        await structure.update(true)
-        const sections = structure.ds
+        const sections = await lw.structureViewer.reconstruct()
         assert.ok(sections)
         assert.strictEqual(sections.length, 6)
         assert.strictEqual(sections[0].children.length, 3)
         assert.strictEqual(sections[0].children[1].children.length, 2)
         assert.strictEqual(sections[0].children[1].children[0].label, '#label: sec11')
-        assert.strictEqual(sections[0].children[1].children[0].lineNumber, 5)
+        assert.strictEqual(sections[0].children[1].children[0].lineFr, 5)
         assert.strictEqual(sections[1].children.length, 1)
         assert.strictEqual(sections[1].children[0].label, '2.0.1 2.0.1')
         assert.strictEqual(sections[3].label, '4 4 A long title split over two lines')
@@ -60,9 +58,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure_nested.tex', dst: 'main.tex'}
         ], {open: 0})
-        const structure = new SectionNodeProvider()
-        await structure.update(true)
-        const sections = structure.ds
+        const sections = await lw.structureViewer.reconstruct()
         assert.ok(sections)
         assert.strictEqual(sections.length, 3)
         assert.strictEqual(sections[0].children.length, 1)
@@ -71,20 +67,16 @@ suite('Document structure test suite', () => {
 
     test.run('test view.outline.numbers.enabled', async (fixture: string) => {
         await loadTestFiles(fixture)
-        const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.enabled', false)
-        await structure.update(true)
-        const sections = structure.ds
+        const sections = await lw.structureViewer.reconstruct()
         assert.ok(sections)
         assert.strictEqual(sections[1].children[0].label, '2.0.1')
     })
 
     test.run('test view.outline.sections', async (fixture: string) => {
         await loadTestFiles(fixture)
-        const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', ['section', 'altsection', 'subsubsection'])
-        await structure.update(true)
-        const sections = structure.ds
+        const sections = await lw.structureViewer.reconstruct()
         assert.ok(sections)
         assert.strictEqual(sections[0].children.length, 2)
         assert.strictEqual(sections[0].children[1].label, '1.1 1.1?')
@@ -92,10 +84,8 @@ suite('Document structure test suite', () => {
 
     test.run('test view.outline.floats.enabled', async (fixture: string) => {
         await loadTestFiles(fixture)
-        const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', false)
-        await structure.update(true)
-        const sections = structure.ds
+        const sections = await lw.structureViewer.reconstruct()
         assert.ok(sections)
         assert.strictEqual(sections[5].children.length, 3)
         assert.strictEqual(sections[5].children[0].label, 'Frame 1: Frame Title 1')
@@ -105,10 +95,8 @@ suite('Document structure test suite', () => {
 
     test.run('test view.outline.floats.number.enabled', async (fixture: string) => {
         await loadTestFiles(fixture)
-        const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.number.enabled', false)
-        await structure.update(true)
-        const sections = structure.ds
+        const sections = await lw.structureViewer.reconstruct()
         assert.ok(sections)
         assert.strictEqual(sections[5].children.length, 6)
         assert.strictEqual(sections[5].children[0].label, 'Figure')
@@ -121,10 +109,8 @@ suite('Document structure test suite', () => {
 
     test.run('test view.outline.floats.caption.enabled', async (fixture: string) => {
         await loadTestFiles(fixture)
-        const structure = new SectionNodeProvider()
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.caption.enabled', false)
-        await structure.update(true)
-        const sections = structure.ds
+        const sections = await lw.structureViewer.reconstruct()
         assert.ok(sections)
         assert.strictEqual(sections[5].children.length, 6)
         assert.strictEqual(sections[5].children[0].label, 'Figure 1')

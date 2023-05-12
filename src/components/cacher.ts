@@ -142,7 +142,7 @@ export class Cacher {
             lw.eventBus.fire(eventbus.FileParsed, filePath)
 
             if (this.caching === 0) {
-                void lw.structureViewer.computeTreeStructure()
+                void lw.structureViewer.reconstruct()
             }
         })
 

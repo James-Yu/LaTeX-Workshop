@@ -313,12 +313,12 @@ export class Manager {
                 })
             } else {
                 logger.log(`Keep using the same root file: ${this.rootFile}`)
-                void lw.structureViewer.refreshView()
+                void lw.structureViewer.refresh()
             }
             lw.eventBus.fire(eventbus.RootFileSearched)
             return rootFile
         }
-        void lw.structureViewer.refreshView()
+        void lw.structureViewer.refresh()
         lw.eventBus.fire(eventbus.RootFileSearched)
         return
     }

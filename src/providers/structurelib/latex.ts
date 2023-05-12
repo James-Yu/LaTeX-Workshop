@@ -3,7 +3,7 @@ import * as path from 'path'
 import { latexParser } from 'latex-utensils'
 import * as lw from '../../lw'
 import * as utils from '../../utils/utils'
-import { Section, SectionKind } from './section'
+import { TeXElement, TeXElementType } from '../structure'
 import { resolveFile } from '../../utils/utils'
 import { InputFileRegExp } from '../../utils/inputfilepath'
 
@@ -36,9 +36,9 @@ interface LaTeXConfig {
  * will be parsed.
  * @param dirty Whether disk or dirty content should be used. Default is
  * `false`. When `subFile` is `true`, `dirty` should always be `false`.
- * @returns An array of {@link Section} to be shown in vscode view.
+ * @returns An array of {@link TeXElement} to be shown in vscode view.
  */
-export async function buildLaTeX(file?: string, subFile = true, dirty: boolean = false): Promise<Section[]> {
+export async function buildLaTeX(file?: string, subFile = true, dirty: boolean = false): Promise<TeXElement[]> {
     dirty = dirty && !subFile
     file = file ? file : lw.manager.rootFile
     if (!file) {
@@ -53,22 +53,17 @@ export async function buildLaTeX(file?: string, subFile = true, dirty: boolean =
     // Step 1: Create a flat array of sections.
     const flatNodes = await buildLaTeXSectionFromFile(config, file, subFile, filesBuilt, dirty)
 
-    // Normalize section depth. It's possible that there is no `chapter` in
-    // a document. In such a case, `section` is the lowest level with a
-    // depth 1. However, later logic is 0-based. So.
-    normalizeDepths(flatNodes)
-
     buildFloatNumber(flatNodes, subFile)
 
-    const {preambleFloats, flatSections} = buildSectionNumber(flatNodes, subFile)
+    const {preambleFloats, flatSections} = buildSectionNumber(config, flatNodes, subFile)
 
     // Step 2: Create the hierarchy of these sections.
     const preamble = buildNestedFloats(preambleFloats, flatSections)
-    const sections = buildNestedSections(flatSections)
+    const sections = buildNestedSections(config, flatSections)
     const structure = [...preamble, ...sections]
 
     // Step 3: Determine the toLine of all sections.
-    buildLaTeXSectionToLine(structure, Number.MAX_SAFE_INTEGER)
+    buildLaTeXSectionToLine(config, structure, Number.MAX_SAFE_INTEGER)
 
     return structure
 }
@@ -82,9 +77,9 @@ export async function buildLaTeX(file?: string, subFile = true, dirty: boolean =
  * @param file The LaTeX file whose AST is to be parsed.
  * @param subFile Whether the subfile-like commands should be considered.
  * @param filesBuilt The files that have already been parsed.
- * @returns A flat array of {@link Section} of this file.
+ * @returns A flat array of {@link TeXElement} of this file.
  */
-async function buildLaTeXSectionFromFile(config: LaTeXConfig, file: string, subFile: boolean, filesBuilt: Set<string>, dirty: boolean = false): Promise<Section[]> {
+async function buildLaTeXSectionFromFile(config: LaTeXConfig, file: string, subFile: boolean, filesBuilt: Set<string>, dirty: boolean = false): Promise<TeXElement[]> {
     // Skip if the file has already been parsed. This is to avoid indefinite
     // loop under the case that A imports B and B imports back A.
     if (filesBuilt.has(file)) {
@@ -137,7 +132,7 @@ async function buildLaTeXSectionFromFile(config: LaTeXConfig, file: string, subF
 
     // Parse each base-level node. If the node has contents, that function
     // will be called recursively.
-    let sections: Section[] = []
+    let sections: TeXElement[] = []
     for (const node of ast.content) {
         while (rnwChild && node.location && rnwChild.line <= node.location.start.line) {
             sections = [
@@ -163,10 +158,10 @@ async function buildLaTeXSectionFromFile(config: LaTeXConfig, file: string, subF
  *
  * All other parameters are identical to {@link buildLaTeXSectionFromFile}.
  *
- * @returns A flat array of {@link Section} of this node.
+ * @returns A flat array of {@link TeXElement} of this node.
  */
-async function parseLaTeXNode(node: latexParser.Node, config: LaTeXConfig, file: string, subFile: boolean, filesBuilt: Set<string>): Promise<Section[]> {
-    let sections: Section[] = []
+async function parseLaTeXNode(node: latexParser.Node, config: LaTeXConfig, filePath: string, subFile: boolean, filesBuilt: Set<string>): Promise<TeXElement[]> {
+    let sections: TeXElement[] = []
     if (latexParser.isCommand(node)) {
         if (config.LaTeXCommands.secs.includes(node.name.replace(/\*$/, ''))) {
             // \section{Title}
@@ -174,15 +169,15 @@ async function parseLaTeXNode(node: latexParser.Node, config: LaTeXConfig, file:
                 // Avoid \section alone
                 const captionArg = node.args.find(latexParser.isGroup)
                 if (captionArg) {
-                    sections.push(new Section(
-                        node.name.endsWith('*') ? SectionKind.NoNumberSection : SectionKind.Section,
-                        captionify(captionArg),
-                        vscode.TreeItemCollapsibleState.Expanded,
-                        config.LaTeXSectionDepths[node.name.replace(/\*$/, '')],
-                        node.location.start.line - 1,
-                        node.location.end.line - 1,
-                        file
-                    ))
+                    sections.push({
+                        type: node.name.endsWith('*') ? TeXElementType.SectionAst : TeXElementType.Section,
+                        name: node.name.replace(/\*$/, ''),
+                        label: captionify(captionArg),
+                        index: 0,
+                        lineFr: node.location.start.line - 1,
+                        lineTo: node.location.end.line - 1,
+                        filePath, children: []
+                    })
                 }
             }
         } else if (config.LaTeXCommands.cmds.includes(node.name.replace(/\*$/, ''))) {
@@ -197,52 +192,52 @@ async function parseLaTeXNode(node: latexParser.Node, config: LaTeXConfig, file:
                 caption = latexParser.stringify(captionArg)
                 caption = caption.slice(1, caption.length - 1)
             }
-            sections.push(new Section(
-                SectionKind.Label,
-                `#${node.name}: ${caption}`,
-                vscode.TreeItemCollapsibleState.Expanded,
-                -1,
-                node.location.start.line - 1,
-                node.location.end.line - 1,
-                file
-            ))
+            sections.push({
+                type: TeXElementType.Command,
+                name: node.name.replace(/\*$/, ''),
+                label: `#${node.name}: ${caption}`,
+                index: 0,
+                lineFr: node.location.start.line - 1,
+                lineTo: node.location.end.line - 1,
+                filePath, children: []
+            })
         } else if (subFile) {
             // Check if this command is a subfile one
             sections = [
                 ...sections,
-                ...await parseLaTeXSubFileCommand(node, config, file, filesBuilt)
+                ...await parseLaTeXSubFileCommand(node, config, filePath, filesBuilt)
             ]
         }
     } else if (latexParser.isLabelCommand(node) && config.LaTeXCommands.cmds.includes(node.name)) {
         // \label{this:is_a-label}
-        sections.push(new Section(
-            SectionKind.Label,
-            `#${node.name}: ${node.label}`, // -> #this:is_a-label
-            vscode.TreeItemCollapsibleState.Expanded,
-            -1,
-            node.location.start.line - 1,
-            node.location.end.line - 1,
-            file
-        ))
+        sections.push({
+            type: TeXElementType.Command,
+            name: node.name.replace(/\*$/, ''),
+            label: `#${node.name}: ${node.label}`, // -> #this:is_a-label
+            index: 0,
+            lineFr: node.location.start.line - 1,
+            lineTo: node.location.end.line - 1,
+            filePath, children: []
+        })
     } else if (latexParser.isEnvironment(node) && config.LaTeXCommands.envs.includes(node.name.replace(/\*$/, ''))) {
         // \begin{figure}...\end{figure}
         const caption = findEnvCaption(node)
-        sections.push(new Section(
-            SectionKind.Env,
+        sections.push({
+            type: TeXElementType.Environment,
+            name: node.name.replace(/\*$/, ''),
             // -> Figure: Caption of figure
-            node.name.charAt(0).toUpperCase() + node.name.slice(1) + (caption ? `: ${caption}` : ''),
-            vscode.TreeItemCollapsibleState.Expanded,
-            -1,
-            node.location.start.line - 1,
-            node.location.end.line - 1,
-            file
-        ))
+            label: node.name.charAt(0).toUpperCase() + node.name.slice(1) + (caption ? `: ${caption}` : ''),
+            index: 0,
+            lineFr: node.location.start.line - 1,
+            lineTo: node.location.end.line - 1,
+            filePath, children: []
+        })
     }
     if (latexParser.hasContentArray(node)) {
         for (const subNode of node.content) {
             sections = [
                 ...sections,
-                ...await parseLaTeXNode(subNode, config, file, subFile, filesBuilt)
+                ...await parseLaTeXNode(subNode, config, filePath, subFile, filesBuilt)
             ]
         }
     }
@@ -258,10 +253,10 @@ async function parseLaTeXNode(node: latexParser.Node, config: LaTeXConfig, file:
  *
  * All other parameters are identical to {@link buildLaTeXSectionFromFile}.
  *
- * @returns A flat array of {@link Section} of this sub-file, or an empty
+ * @returns A flat array of {@link TeXElement} of this sub-file, or an empty
  * array if the command is not a sub-file-like.
  */
-async function parseLaTeXSubFileCommand(node: latexParser.Command, config: LaTeXConfig, file: string, filesBuilt: Set<string>): Promise<Section[]> {
+async function parseLaTeXSubFileCommand(node: latexParser.Command, config: LaTeXConfig, file: string, filesBuilt: Set<string>): Promise<TeXElement[]> {
     const cmdArgs: string[] = []
     node.args.forEach((arg) => {
         if (latexParser.isOptionalArg(arg)) {
@@ -363,7 +358,7 @@ function captionify(argNode: latexParser.Group | latexParser.OptionalArg): strin
     return caption.slice(1, caption.length - 1) // {Title} -> Title
 }
 
-function buildFloatNumber(flatNodes: Section[], subFile: boolean) {
+function buildFloatNumber(flatNodes: TeXElement[], subFile: boolean) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (!configuration.get('view.outline.floats.number.enabled' || ! subFile)) {
         return
@@ -374,7 +369,7 @@ function buildFloatNumber(flatNodes: Section[], subFile: boolean) {
     const counter: {[key: string]: number} = {}
 
     flatNodes.forEach(section => {
-        if (section.kind !== SectionKind.Env) {
+        if (section.type !== TeXElementType.Environment) {
             return
         }
         if (section.label.toLowerCase().startsWith('macro') || section.label.toLowerCase().startsWith('environment')) {
@@ -388,34 +383,28 @@ function buildFloatNumber(flatNodes: Section[], subFile: boolean) {
     })
 }
 
-function normalizeDepths(flatNodes: Section[]) {
-    let lowest = 65535
-    flatNodes.filter(node => node.depth > -1).forEach(section => {
-        lowest = lowest < section.depth ? lowest : section.depth
-    })
-    flatNodes.filter(node => node.depth > -1).forEach(section => {
-        section.depth -= lowest
-    })
-}
-
 /**
  * Build the number of sections. Also put all non-sections into their
  * leading section. This is to make the subsequent logic clearer.
  */
-function buildSectionNumber(flatNodes: Section[], subFile: boolean) {
+function buildSectionNumber(config: LaTeXConfig, flatNodes: TeXElement[], subFile: boolean) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const sectionNumber = subFile && configuration.get('view.outline.numbers.enabled') as boolean
     // All non-section nodes before the first section
-    const preambleFloats: Section[] = []
+    const preambleFloats: TeXElement[] = []
     // Only holds section-like Sections
-    const flatSections: Section[] = []
+    const flatSections: TeXElement[] = []
+
+    const lowest = Math.min(...flatNodes
+        .filter(node => config.LaTeXSectionDepths[node.name] !== undefined)
+        .map(node => config.LaTeXSectionDepths[node.name]))
 
     // This counter is used to calculate the section numbers. The array
     // holds the current numbering. When developing the numbers, just +1 to
     // the appropriate item and retrieve the sub-array.
     let counter: number[] = []
     flatNodes.forEach(node => {
-        if (node.depth === -1) {
+        if (config.LaTeXSectionDepths[node.name] === undefined) {
             // non-section node
             if (flatSections.length === 0) {
                 // no section appeared yet
@@ -424,8 +413,8 @@ function buildSectionNumber(flatNodes: Section[], subFile: boolean) {
                 flatSections[flatSections.length - 1].children.push(node)
             }
         } else {
-            if (sectionNumber && node.kind === SectionKind.Section) {
-                const depth = node.depth
+            if (sectionNumber && node.type === TeXElementType.Section) {
+                const depth = config.LaTeXSectionDepths[node.name] - lowest
                 if (depth + 1 > counter.length) {
                     counter = [...counter, ...new Array(depth + 1 - counter.length).fill(0) as number[]]
                 } else {
@@ -433,7 +422,7 @@ function buildSectionNumber(flatNodes: Section[], subFile: boolean) {
                 }
                 counter[counter.length - 1] += 1
                 node.label = `${counter.join('.')} ${node.label}`
-            } else if (sectionNumber && node.kind === SectionKind.NoNumberSection) {
+            } else if (sectionNumber && node.type === TeXElementType.SectionAst) {
                 node.label = `* ${node.label}`
             }
             flatSections.push(node)
@@ -443,9 +432,9 @@ function buildSectionNumber(flatNodes: Section[], subFile: boolean) {
     return {preambleFloats, flatSections}
 }
 
-function buildNestedFloats(preambleFloats: Section[], flatSections: Section[]) {
-    const findChild = (parentNode: Section, childNode: Section): boolean => {
-        if (childNode.lineNumber >= parentNode.lineNumber && childNode.toLine <= parentNode.toLine) {
+function buildNestedFloats(preambleFloats: TeXElement[], flatSections: TeXElement[]) {
+    const findChild = (parentNode: TeXElement, childNode: TeXElement): boolean => {
+        if (childNode.lineFr >= parentNode.lineFr && childNode.lineTo <= parentNode.lineTo) {
             let added = false
             for (let index = 0; index < parentNode.children.length; index++) {
                 const parentCandidate = parentNode.children[index]
@@ -480,11 +469,11 @@ function buildNestedFloats(preambleFloats: Section[], flatSections: Section[]) {
 }
 
 /**
- * This function builds the hierarchy of a flat {@link Section} array
+ * This function builds the hierarchy of a flat {@link TeXElement} array
  * according to the input hierarchy data. This is a two-step process. The
- * first step puts all non-section {@link Section}s into their leading
- * section {@link Section}. The section numbers are also optionally added in
- * this step. Then in the second step, the section {@link Section}s are
+ * first step puts all non-section {@link TeXElement}s into their leading
+ * section {@link TeXElement}. The section numbers are also optionally added in
+ * this step. Then in the second step, the section {@link TeXElement}s are
  * iterated to build the hierarchy.
  *
  * @param flatStructure The flat sections whose hierarchy is to be built.
@@ -492,11 +481,15 @@ function buildNestedFloats(preambleFloats: Section[], flatSections: Section[]) {
  * and prepended to section captions.
  * @returns The final sections to be shown with hierarchy.
  */
-function buildNestedSections(flatSections: Section[]): Section[] {
-    const sections: Section[] = []
+function buildNestedSections(config: LaTeXConfig, flatSections: TeXElement[]): TeXElement[] {
+    const sections: TeXElement[] = []
+
+    const lowest = Math.min(...flatSections
+        .filter(node => config.LaTeXSectionDepths[node.name] !== undefined)
+        .map(node => config.LaTeXSectionDepths[node.name]))
 
     flatSections.forEach(section => {
-        if (section.depth === 0) {
+        if (config.LaTeXSectionDepths[section.name] === lowest) {
             // base level section
             sections.push(section)
         } else if (sections.length === 0) {
@@ -506,8 +499,8 @@ function buildNestedSections(flatSections: Section[]): Section[] {
             // Starting from the last base-level section, find out the
             // proper level.
             let currentSection = sections[sections.length - 1]
-            while (currentSection.depth < section.depth - 1) {
-                const children = currentSection.children.filter(candidate => candidate.depth > -1)
+            while (config.LaTeXSectionDepths[currentSection.name] < config.LaTeXSectionDepths[section.name] - 1) {
+                const children = currentSection.children.filter(candidate => config.LaTeXSectionDepths[candidate.name] !== undefined)
                 if (children.length > 0) {
                     // If there is a section child
                     currentSection = children[children.length - 1]
@@ -524,23 +517,23 @@ function buildNestedSections(flatSections: Section[]): Section[] {
     return sections
 }
 
-function buildLaTeXSectionToLine(structure: Section[], lastLine: number) {
-    const sections = structure.filter(section => section.depth >= 0)
+function buildLaTeXSectionToLine(config: LaTeXConfig, structure: TeXElement[], lastLine: number) {
+    const sections = structure.filter(section => config.LaTeXSectionDepths[section.name] !== undefined)
     sections.forEach(section => {
         const sameFileSections = sections.filter(candidate =>
-            (candidate.fileName === section.fileName) &&
-            (candidate.lineNumber >= section.lineNumber) &&
+            (candidate.filePath === section.filePath) &&
+            (candidate.lineFr >= section.lineFr) &&
             (candidate !== section))
-        if (sameFileSections.length > 0 && sameFileSections[0].lineNumber === section.lineNumber) {
+        if (sameFileSections.length > 0 && sameFileSections[0].lineFr === section.lineFr) {
             // On the same line, e.g., \section{one}\section{two}
             return
         } else if (sameFileSections.length > 0) {
-            section.toLine = sameFileSections[0].lineNumber - 1
+            section.lineTo = sameFileSections[0].lineFr - 1
         } else {
-            section.toLine = lastLine
+            section.lineTo = lastLine
         }
         if (section.children.length > 0) {
-            buildLaTeXSectionToLine(section.children, section.toLine)
+            buildLaTeXSectionToLine(config, section.children, section.lineTo)
         }
     })
 }
@@ -584,7 +577,6 @@ function refreshLaTeXModelConfig(defaultFloats = ['frame']): LaTeXConfig {
 export const outline = {
     refreshLaTeXModelConfig,
     parseLaTeXNode,
-    normalizeDepths,
     buildFloatNumber,
     buildSectionNumber,
     buildNestedFloats,

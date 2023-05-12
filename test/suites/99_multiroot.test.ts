@@ -184,28 +184,4 @@ suite('Multi-root workspace test suite', () => {
         assert.strictEqual(suggestions.items.length, 3)
         assert.strictEqual(suggestions.items[0].label, 'art1')
     })
-
-    // test.run('switching structure', async (fixture: string) => {
-    //     await test.load(fixture, [
-    //         {src: 'structure_base.tex', dst: 'main.tex', ws: 'A'},
-    //         {src: 'structure_sub.tex', dst: 'sub/s.tex', ws: 'A'},
-    //         {src: 'structure_s2.tex', dst: 'sub/s2.tex', ws: 'A'},
-    //         {src: 'structure_s3.tex', dst: 'sub/s3.tex', ws: 'A'},
-    //         {src: 'base.tex', dst: 'main.tex', ws: 'B'}
-    //     ], {root: -1, skipCache: true})
-
-    //     let doc = await vscode.workspace.openTextDocument(resolve(fixture, 'main.tex', 'A'))
-    //     await vscode.window.showTextDocument(doc)
-    //     let updated = test.wait(StructureUpdated)
-    //     await lw.manager.findRoot()
-    //     await updated
-    //     assert.strictEqual(lw.structureViewer.getTreeData().length, 6)
-
-    //     doc = await vscode.workspace.openTextDocument(resolve(fixture, 'main.tex', 'B'))
-    //     await vscode.window.showTextDocument(doc)
-    //     updated = test.wait(StructureUpdated)
-    //     await lw.manager.findRoot()
-    //     await updated
-    //     assert.strictEqual(lw.structureViewer.getTreeData().length, 0)
-    // }, ['linux'])
 })

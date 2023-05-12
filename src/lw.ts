@@ -24,7 +24,7 @@ import { CodeActions } from './providers/codeactions'
 import { AtSuggestionCompleter, Completer } from './providers/completion'
 import { GraphicsPreview } from './providers/preview/graphicspreview'
 import { MathPreview } from './providers/preview/mathpreview'
-import { StructureTreeView } from './providers/structure'
+import { StructureView } from './providers/structure'
 import { getLogger } from './components/logger'
 import { TeXDoc } from './components/texdoc'
 import { MathJaxPool } from './providers/preview/mathjaxpool'
@@ -65,7 +65,7 @@ export const texMagician = new TeXMagician()
 export const envPair = new EnvPair()
 export const section = new Section()
 export const latexCommanderTreeView = new LaTeXCommanderTreeView()
-export const structureViewer = new StructureTreeView()
+export const structureViewer = new StructureView()
 export const snippetView = new SnippetView()
 export const graphicsPreview = new GraphicsPreview()
 export const mathPreview = new MathPreview()

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import { bibtexParser } from 'latex-utensils'
-import { Section, SectionKind } from './section'
+import { TeXElement, TeXElementType } from '../structure'
 import { parser } from '../../components/parser'
 
 import { getLogger } from '../../components/logger'
@@ -19,7 +19,7 @@ function fieldValueToString(field: bibtexParser.FieldValue): string {
    }
 }
 
-export async function buildBibTeX(document: vscode.TextDocument): Promise<Section[]> {
+export async function buildBibTeX(document: vscode.TextDocument): Promise<TeXElement[]> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
     if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
         logger.log(`Bib file is too large, ignoring it: ${document.fileName}`)
@@ -31,27 +31,31 @@ export async function buildBibTeX(document: vscode.TextDocument): Promise<Sectio
         return []
     }
     logger.log(`Parsed ${ast.content.length} AST items.`)
-    const ds: Section[] = []
+    const ds: TeXElement[] = []
     ast.content.filter(bibtexParser.isEntry)
         .forEach(entry => {
-            const bibitem = new Section(
-                SectionKind.BibItem,
-                `${entry.entryType}: ${entry.internalKey}`,
-                vscode.TreeItemCollapsibleState.Collapsed,
-                0,
-                entry.location.start.line - 1, // ast line numbers start at 1
-                entry.location.end.line - 1,
-                document.fileName)
+            const bibitem: TeXElement = {
+                type: TeXElementType.BibItem,
+                name: entry.entryType,
+                label: `${entry.entryType}: ${entry.internalKey}`,
+                index: 0,
+                lineFr: entry.location.start.line - 1, // ast line numbers start at 1
+                lineTo: entry.location.end.line - 1,
+                filePath: document.fileName,
+                children: []
+            }
             entry.content.forEach(field => {
                 const content = fieldValueToString(field.value)
-                const fielditem = new Section(
-                    SectionKind.BibField,
-                    `${field.name}: ${content}`,
-                    vscode.TreeItemCollapsibleState.None,
-                    1,
-                    field.location.start.line -1,
-                    field.location.end.line- 1,
-                    document.fileName)
+                const fielditem: TeXElement = {
+                    type: TeXElementType.BibField,
+                    name: field.name,
+                    label: `${field.name}: ${content}`,
+                    index: 0,
+                    lineFr: field.location.start.line - 1,
+                    lineTo: field.location.end.line - 1,
+                    filePath: document.fileName,
+                    children: []
+                }
                 fielditem.parent = bibitem
                 bibitem.children.push(fielditem)
             })
