@@ -139,10 +139,11 @@ async function parseNode(
         filePath: string,
         config: StructureConfig,
         structs: FileStructureCache) {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const attributes = {
         index: node.position?.start.offset ?? 0,
-        lineFr: node.position?.start.line ?? 1,
-        lineTo: node.position?.end.line ?? 1,
+        lineFr: (node.position?.start.line ?? 1) - 1,
+        lineTo: (node.position?.end.line ?? 1) - 1,
         filePath, children: []
     }
     let element: TeXElement | undefined
@@ -167,16 +168,16 @@ async function parseNode(
         element = {
             type: TeXElementType.Environment,
             name: node.env,
-            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (caption ? `: ${caption}` : ''),
+            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (configuration.get('view.outline.floats.caption.enabled') as boolean && caption ? `: ${caption}` : ''),
             ...attributes
         }
-    } else if ((node.type === 'environment') && (node.env === 'figure' || node.env === 'table')) {
+    } else if ((node.type === 'environment') && (node.env === 'figure' && config.macros.envs.includes('figure') || node.env === 'table' && config.macros.envs.includes('table'))) {
         const captionMacro: Ast.Macro | undefined = node.content.find(sub => sub.type === 'macro' && sub.content === 'caption') as Ast.Macro | undefined
         const caption = argContentToStr(captionMacro?.args?.[1]?.content ?? [])
         element = {
             type: TeXElementType.Environment,
             name: node.env,
-            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (caption ? `: ${caption}` : ''),
+            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (configuration.get('view.outline.floats.caption.enabled') as boolean && caption ? `: ${caption}` : ''),
             ...attributes
         }
     } else if ((node.type === 'environment') && (node.env === 'macro' || node.env === 'environment')) {
@@ -185,7 +186,7 @@ async function parseNode(
         element = {
             type: TeXElementType.Environment,
             name: node.env,
-            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (caption ? `: ${caption}` : ''),
+            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (configuration.get('view.outline.floats.caption.enabled') as boolean && caption ? `: ${caption}` : ''),
             ...attributes
         }
     } else if ((node.type === 'environment' || node.type === 'mathenv') && config.macros.envs.includes(node.env)) {
@@ -241,8 +242,8 @@ async function parseNode(
             name: 'RnwChild',
             label: rnw.subFile,
             index: (node.position?.start.offset ?? 1) - 1,
-            lineFr: node.position?.start.line ?? 1,
-            lineTo: node.position?.end.line ?? 1,
+            lineFr: (node.position?.start.line ?? 1) - 1,
+            lineTo: (node.position?.end.line ?? 1) - 1,
             filePath, children: []
         })
         await constructFile(rnw.subFile, config, structs)
@@ -300,7 +301,9 @@ function nestSection(struct: TeXElement[], config: StructureConfig): TeXElement[
     const stack: TeXElement[] = []
     const elements: TeXElement[] = []
     for (const element of struct) {
-        if (stack.length === 0) {
+        if (element.type !== TeXElementType.Section && element.type !== TeXElementType.SubFile) {
+            elements.push(element)
+        } else if (stack.length === 0) {
             stack.push(element)
             elements.push(element)
         } else if (config.secIndex[element.name] <= config.secIndex[stack[0].name]) {
@@ -309,11 +312,13 @@ function nestSection(struct: TeXElement[], config: StructureConfig): TeXElement[
             elements.push(element)
         } else if (config.secIndex[element.name] > config.secIndex[stack[stack.length - 1].name]) {
             stack[stack.length - 1].children.push(element)
+            stack.push(element)
         } else {
             while(config.secIndex[element.name] <= config.secIndex[stack[stack.length - 1].name]) {
                 stack.pop()
             }
             stack[stack.length - 1].children.push(element)
+            stack.push(element)
         }
     }
     return elements
@@ -324,7 +329,7 @@ function addFloatNumber(struct: TeXElement[], counter: {[env: string]: number} =
         if (element.type === TeXElementType.Environment && element.name !== 'macro' && element.name !== 'environment') {
             counter[element.name] = (counter[element.name] ?? 0) + 1
             const parts = element.label.split(':')
-            parts[0] += counter[element.name].toString()
+            parts[0] += ` ${counter[element.name].toString()}`
             element.label = parts.join(':')
         }
         if (element.children.length > 0) {
@@ -344,10 +349,12 @@ function addSectionNumber(struct: TeXElement[], config: StructureConfig, tag?: s
         if (config.secIndex[element.name] === undefined) {
             continue
         }
-        counter[config.secIndex[element.name]] = (counter[config.secIndex[element.name]] ?? 0) + 1
+        if (element.type === TeXElementType.Section) {
+            counter[config.secIndex[element.name]] = (counter[config.secIndex[element.name]] ?? 0) + 1
+        }
         const sectionNumber = tag +
             '0.'.repeat(config.secIndex[element.name] - lowest) +
-            counter[config.secIndex[element.name]].toString()
+            (element.type === TeXElementType.Section ? counter[config.secIndex[element.name]].toString() : '*')
         element.label = `${sectionNumber} ${element.label}`
         if (element.children.length > 0) {
             addSectionNumber(element.children, config, sectionNumber + '.', config.secIndex[element.name] + 1)

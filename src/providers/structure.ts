@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
 import { StructureUpdated } from '../components/eventbus'
-import { buildLaTeX } from './structurelib/latex'
+import { construct as constructLaTeX} from './structurelib/latex'
 import { buildBibTeX } from './structurelib/bibtex'
 import { buildDocTeX } from './structurelib/doctex'
 
@@ -81,7 +81,7 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         } else if (lw.manager.rootFile) {
             if (force || !this.cachedTeX) {
                 this.cachedTeX = undefined
-                this.cachedTeX = await buildLaTeX()
+                this.cachedTeX = await constructLaTeX()
             }
             this.structure = this.cachedTeX
             logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} root sections for ${lw.manager.rootFile} .`)

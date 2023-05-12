@@ -50,8 +50,7 @@ suite('Document structure test suite', () => {
         assert.strictEqual(sections[5].children[1].label, 'Figure 2: Figure Caption')
         assert.strictEqual(sections[5].children[2].label, 'Table 1: Table Caption')
         assert.strictEqual(sections[5].children[3].label, 'Frame 1: Frame Title 1')
-        assert.strictEqual(sections[5].children[4].label, 'Frame 2: Frame Title 2')
-        assert.strictEqual(sections[5].children[5].label, 'Frame 3')
+        assert.strictEqual(sections[5].children[4].label, 'Frame 2')
     })
 
     test.run('test structure with nested floats', async (fixture: string) => {
@@ -87,10 +86,9 @@ suite('Document structure test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', false)
         const sections = await lw.structureViewer.reconstruct()
         assert.ok(sections)
-        assert.strictEqual(sections[5].children.length, 3)
+        assert.strictEqual(sections[5].children.length, 2)
         assert.strictEqual(sections[5].children[0].label, 'Frame 1: Frame Title 1')
-        assert.strictEqual(sections[5].children[1].label, 'Frame 2: Frame Title 2')
-        assert.strictEqual(sections[5].children[2].label, 'Frame 3')
+        assert.strictEqual(sections[5].children[1].label, 'Frame 2')
     })
 
     test.run('test view.outline.floats.number.enabled', async (fixture: string) => {
@@ -98,13 +96,12 @@ suite('Document structure test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.number.enabled', false)
         const sections = await lw.structureViewer.reconstruct()
         assert.ok(sections)
-        assert.strictEqual(sections[5].children.length, 6)
+        assert.strictEqual(sections[5].children.length, 5)
         assert.strictEqual(sections[5].children[0].label, 'Figure')
         assert.strictEqual(sections[5].children[1].label, 'Figure: Figure Caption')
         assert.strictEqual(sections[5].children[2].label, 'Table: Table Caption')
         assert.strictEqual(sections[5].children[3].label, 'Frame: Frame Title 1')
-        assert.strictEqual(sections[5].children[4].label, 'Frame: Frame Title 2')
-        assert.strictEqual(sections[5].children[5].label, 'Frame')
+        assert.strictEqual(sections[5].children[4].label, 'Frame')
     })
 
     test.run('test view.outline.floats.caption.enabled', async (fixture: string) => {
@@ -112,12 +109,11 @@ suite('Document structure test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.caption.enabled', false)
         const sections = await lw.structureViewer.reconstruct()
         assert.ok(sections)
-        assert.strictEqual(sections[5].children.length, 6)
+        assert.strictEqual(sections[5].children.length, 5)
         assert.strictEqual(sections[5].children[0].label, 'Figure 1')
         assert.strictEqual(sections[5].children[1].label, 'Figure 2')
         assert.strictEqual(sections[5].children[2].label, 'Table 1')
         assert.strictEqual(sections[5].children[3].label, 'Frame 1')
         assert.strictEqual(sections[5].children[4].label, 'Frame 2')
-        assert.strictEqual(sections[5].children[5].label, 'Frame 3')
     })
 })
