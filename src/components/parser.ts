@@ -5,6 +5,7 @@ import type { Proxy } from 'workerpool'
 import type { FrozenProcessor } from 'unified'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import type { ISyntaxWorker } from './parserlib/syntax'
+import { macros, environments } from './parserlib/defs'
 import { bibtexLogParser } from './parserlib/bibtexlog'
 import { biberLogParser } from './parserlib/biberlog'
 import { latexLogParser } from './parserlib/latexlog'
@@ -171,7 +172,7 @@ async function unifiedParse(content: string) {
     if (unifiedParser === undefined) {
         const unified = (await unifiedModule).unified
         const unifiedLatexFromString = (await unifiedParseModule).unifiedLatexFromString
-        unifiedParser = unified().use([unifiedLatexFromString]).freeze()
+        unifiedParser = unified().use(unifiedLatexFromString, { macros, environments, flags: { autodetectExpl3AndAtLetter: true } }).freeze()
     }
     return unifiedParser.parse(content) as Ast.Root
 }

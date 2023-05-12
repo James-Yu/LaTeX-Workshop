@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { latexParser } from 'latex-utensils'
+import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
 import * as utils from '../../utils/utils'
 import { TeXElement, TeXElementType } from '../structure'
@@ -12,14 +13,287 @@ import { parser } from '../../components/parser'
 
 const logger = getLogger('Structure', 'LaTeX')
 
-interface LaTeXConfig {
+type StructureConfig = {
     // The LaTeX commands to be extracted.
     LaTeXCommands: {cmds: string[], envs: string[], secs: string[]},
     // The correspondance of section types and depths. Start from zero is
     // the top-most section (e.g., chapter). -1 is reserved for non-section
     // commands.
-    readonly LaTeXSectionDepths: {[cmd: string]: number}
+    readonly LaTeXSectionDepths: {[cmd: string]: number},
+    readonly texDirs: string[]
 }
+type FileStructureCache = {
+    [filePath: string]: TeXElement[]
+}
+
+
+export async function construct(): Promise<TeXElement[]> {
+    if (lw.manager.rootFile === undefined) {
+        return []
+    }
+    const config = refreshLaTeXModelConfig()
+    const structs: FileStructureCache = {}
+    await constructFile(lw.manager.rootFile, config, structs)
+    const struct = nestNonSection(insertSubFile(structs))
+    console.log(struct)
+    return structs[lw.manager.rootFile]
+}
+
+(globalThis as any).construct = construct
+
+async function constructFile(filePath: string, config: StructureConfig, structs: FileStructureCache): Promise<void> {
+    if (structs[filePath]) {
+        return
+    }
+    const openEditor: vscode.TextDocument | undefined = vscode.workspace.textDocuments.filter(document => document.fileName === path.normalize(filePath))?.[0]
+    let content: string | undefined
+    let ast: Ast.Root | undefined
+    if (openEditor?.isDirty) {
+        content = openEditor.getText()
+        ast = await parser.unifiedParse(content)
+    } else {
+        let waited = 0
+        while (!lw.cacher.promise(filePath) && !lw.cacher.has(filePath)) {
+            // Just open vscode, has not cached, wait for a bit?
+            await new Promise(resolve => setTimeout(resolve, 100))
+            waited++
+            if (waited >= 20) {
+                // Waited for two seconds before starting cache. Really?
+                logger.log(`Error loading cache during structuring: ${filePath} .`)
+                return
+            }
+        }
+        await lw.cacher.promise(filePath)
+        content = lw.cacher.get(filePath)?.content
+        ast = lw.cacher.get(filePath)?.ast
+    }
+    if (!content || !ast) {
+        logger.log(`Error loading ${content ? 'AST' : 'content'} during structuring: ${filePath} .`)
+        return
+    }
+    // Get a list of rnw child chunks
+    const rnwSub = parseRnwChildCommand(content, filePath, lw.manager.rootFile || '')
+
+    // Parse each base-level node. If the node has contents, that function
+    // will be called recursively.
+    const rootElement = { children: [] }
+    for (const node of ast.content) {
+        await parseNode(node, rnwSub, rootElement, filePath, config, structs)
+    }
+
+    structs[filePath] = rootElement.children
+}
+
+function macroToStr(macro: Ast.Macro): string {
+    if (macro.content === 'texorpdfstring') {
+        return (macro.args?.[1].content[0] as Ast.String | undefined)?.content || ''
+    }
+    return `\\${macro.content}` + (macro.args?.map(arg => `${arg.openMark}${argContentToStr(arg.content)}${arg.closeMark}`).join('') ?? '')
+}
+
+function envirToStr(envir: Ast.Environment | Ast.VerbatimEnvironment): string {
+    return `\\environment{${envir.env}}`
+}
+
+function argContentToStr(argContent: Ast.Node[]): string {
+    return argContent.map(node => {
+        // Verb
+        switch (node.type) {
+            case 'string':
+                return node.content
+            case 'whitespace':
+            case 'parbreak':
+            case 'comment':
+                return ' '
+            case 'macro':
+                return macroToStr(node)
+            case 'environment':
+            case 'verbatim':
+            case 'mathenv':
+                return envirToStr(node)
+            case 'inlinemath':
+                return `$${argContentToStr(node.content)}$`
+            case 'displaymath':
+                return `\\[${argContentToStr(node.content)}\\]`
+            case 'group':
+                return argContentToStr(node.content)
+            case 'verb':
+                return node.content
+            default:
+                return ''
+        }
+    }).join('')
+}
+
+async function parseNode(
+        node: Ast.Node,
+        rnwSub: ReturnType<typeof parseRnwChildCommand>,
+        root: { children: TeXElement[] },
+        filePath: string,
+        config: StructureConfig,
+        structs: FileStructureCache) {
+    const attributes = {
+        index: node.position?.start.offset ?? 0,
+        lineFr: node.position?.start.line ?? 1,
+        lineTo: node.position?.end.line ?? 1,
+        filePath, children: []
+    }
+    let element: TeXElement | undefined
+    if (node.type === 'macro' && config.LaTeXCommands.secs.includes(node.content)) {
+        element = {
+            type: node.args?.[0]?.content[0] ? TeXElementType.SectionAst : TeXElementType.Section,
+            name: node.content,
+            label: argContentToStr(node.args?.[3]?.content ?? []),
+            ...attributes
+        }
+    } else if (node.type === 'macro' && config.LaTeXCommands.cmds.includes(node.content)) {
+        const argStr = argContentToStr(node.args?.[2]?.content ?? [])
+        element = {
+            type: TeXElementType.Command,
+            name: node.content,
+            label: `#${node.content}` + (argStr ? `: ${argStr}` : ''),
+            ...attributes
+        }
+    } else if ((node.type === 'environment') && node.env === 'frame') {
+        const frameTitleMacro: Ast.Macro | undefined = node.content.find(sub => sub.type === 'macro' && sub.content === 'frametitle') as Ast.Macro | undefined
+        const caption = argContentToStr(node.args?.[3]?.content ?? []) || argContentToStr(frameTitleMacro?.args?.[2]?.content ?? [])
+        element = {
+            type: TeXElementType.Environment,
+            name: node.env,
+            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (caption ? `: ${caption}` : ''),
+            ...attributes
+        }
+    } else if ((node.type === 'environment') && (node.env === 'figure' || node.env === 'table')) {
+        const captionMacro: Ast.Macro | undefined = node.content.find(sub => sub.type === 'macro' && sub.content === 'caption') as Ast.Macro | undefined
+        const caption = argContentToStr(captionMacro?.args?.[1]?.content ?? [])
+        element = {
+            type: TeXElementType.Environment,
+            name: node.env,
+            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (caption ? `: ${caption}` : ''),
+            ...attributes
+        }
+    } else if ((node.type === 'environment') && (node.env === 'macro' || node.env === 'environment')) {
+        // DocTeX: \begin{macro}{<macro>}
+        const caption = (node.content[0] as Ast.Group | undefined)?.content[0] as Ast.String | undefined
+        element = {
+            type: TeXElementType.Environment,
+            name: node.env,
+            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (caption ? `: ${caption}` : ''),
+            ...attributes
+        }
+    } else if ((node.type === 'environment' || node.type === 'mathenv') && node.env === 'frame') {
+        const frameTitleMacro: Ast.Macro | undefined = node.content.find(sub => sub.type === 'macro' && sub.content === 'frametitle') as Ast.Macro | undefined
+        const caption = argContentToStr(node.args?.[3]?.content ?? []) || argContentToStr(frameTitleMacro?.args?.[2]?.content ?? [])
+        element = {
+            type: TeXElementType.Environment,
+            name: node.env,
+            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (caption ? `: ${caption}` : ''),
+            ...attributes
+        }
+    } else if (node.type === 'macro' && ['input', 'InputIfFileExists', 'include', 'SweaveInput', 'subfile', 'loadglsentries', 'markdownInput'].includes(node.content)) {
+        const arg0 = argContentToStr(node.args?.[0]?.content ?? [])
+        const subFile = resolveFile([ path.dirname(filePath), path.dirname(lw.manager.rootFile || ''), ...config.texDirs ], arg0)
+        if (subFile) {
+            element = {
+                type: TeXElementType.SubFile,
+                name: node.content,
+                label: subFile,
+                ...attributes
+            }
+            await constructFile(subFile, config, structs)
+        }
+    } else if (node.type === 'macro' && ['import', 'inputfrom', 'includefrom'].includes(node.content)) {
+        const arg0 = argContentToStr(node.args?.[0]?.content ?? [])
+        const arg1 = argContentToStr(node.args?.[1]?.content ?? [])
+        const subFile = resolveFile([ arg0, path.join(path.dirname(lw.manager.rootFile || ''), arg0 )], arg1)
+        if (subFile) {
+            element = {
+                type: TeXElementType.SubFile,
+                name: node.content,
+                label: subFile,
+                ...attributes
+            }
+            await constructFile(subFile, config, structs)
+        }
+    } else if (node.type === 'macro' && ['subimport', 'subinputfrom', 'subincludefrom'].includes(node.content)) {
+        const arg0 = argContentToStr(node.args?.[0]?.content ?? [])
+        const arg1 = argContentToStr(node.args?.[1]?.content ?? [])
+        const subFile = resolveFile([ path.dirname(filePath) ], path.join(arg0, arg1))
+        if (subFile) {
+            element = {
+                type: TeXElementType.SubFile,
+                name: node.content,
+                label: subFile,
+                ...attributes
+            }
+            await constructFile(subFile, config, structs)
+        }
+    }
+    if (rnwSub.length > 0 && rnwSub[rnwSub.length - 1].line >= attributes.lineFr) {
+        const rnw = rnwSub.pop() as { subFile: string, line: number }
+        root.children.push({
+            type: TeXElementType.SubFile,
+            name: 'RnwChild',
+            label: rnw.subFile,
+            index: (node.position?.start.offset ?? 1) - 1,
+            lineFr: node.position?.start.line ?? 1,
+            lineTo: node.position?.end.line ?? 1,
+            filePath, children: []
+        })
+        await constructFile(rnw.subFile, config, structs)
+    }
+    if (element !== undefined) {
+        root.children.push(element)
+        root = element
+    }
+    if ('content' in node && typeof node.content !== 'string') {
+        for (const sub of node.content) {
+            await parseNode(sub, rnwSub, root, filePath, config, structs)
+        }
+    }
+}
+
+function insertSubFile(structs: FileStructureCache, struct?: TeXElement[]): TeXElement[] {
+    if (lw.manager.rootFile === undefined) {
+        return []
+    }
+    struct = struct ?? structs[lw.manager.rootFile]
+    let elements: TeXElement[] = []
+    for (const element of struct) {
+        if (element.type === TeXElementType.SubFile && structs[element.label]) {
+            elements = [...elements, ...insertSubFile(structs, structs[element.label])]
+            continue
+        }
+        if (element.children.length > 0) {
+            element.children = insertSubFile(structs, element.children)
+        }
+        elements.push(element)
+    }
+    return elements
+}
+
+function nestNonSection(struct: TeXElement[]): TeXElement[] {
+    const elements: TeXElement[] = []
+    let currentSection: TeXElement | undefined
+    for (const element of struct) {
+        if (element.type === TeXElementType.Section || element.type === TeXElementType.SectionAst) {
+            elements.push(element)
+            currentSection = element
+        } else if (currentSection === undefined) {
+            elements.push(element)
+        } else {
+            currentSection.children.push(element)
+        }
+        if (element.children.length > 0) {
+            element.children = nestNonSection(element.children)
+        }
+    }
+    return elements
+}
+
+/**
+ * OLD STRUCTURING AS OF MAY 12, 2023
+ */
 
 /**
  * This function parses the AST tree of a LaTeX document to build its
@@ -72,14 +346,14 @@ export async function buildLaTeX(file?: string, subFile = true, dirty: boolean =
  * This function, different from {@link buildLaTeX}, focus on building the
  * structure of one particular file. Thus, recursive call is made upon subfiles.
  *
- * @param config The {@link LaTeXConfig} that defines how outline should be
+ * @param config The {@link StructureConfig} that defines how outline should be
  * structured
  * @param file The LaTeX file whose AST is to be parsed.
  * @param subFile Whether the subfile-like commands should be considered.
  * @param filesBuilt The files that have already been parsed.
  * @returns A flat array of {@link TeXElement} of this file.
  */
-async function buildLaTeXSectionFromFile(config: LaTeXConfig, file: string, subFile: boolean, filesBuilt: Set<string>, dirty: boolean = false): Promise<TeXElement[]> {
+async function buildLaTeXSectionFromFile(config: StructureConfig, file: string, subFile: boolean, filesBuilt: Set<string>, dirty: boolean = false): Promise<TeXElement[]> {
     // Skip if the file has already been parsed. This is to avoid indefinite
     // loop under the case that A imports B and B imports back A.
     if (filesBuilt.has(file)) {
@@ -160,7 +434,7 @@ async function buildLaTeXSectionFromFile(config: LaTeXConfig, file: string, subF
  *
  * @returns A flat array of {@link TeXElement} of this node.
  */
-async function parseLaTeXNode(node: latexParser.Node, config: LaTeXConfig, filePath: string, subFile: boolean, filesBuilt: Set<string>): Promise<TeXElement[]> {
+async function parseLaTeXNode(node: latexParser.Node, config: StructureConfig, filePath: string, subFile: boolean, filesBuilt: Set<string>): Promise<TeXElement[]> {
     let sections: TeXElement[] = []
     if (latexParser.isCommand(node)) {
         if (config.LaTeXCommands.secs.includes(node.name.replace(/\*$/, ''))) {
@@ -256,7 +530,7 @@ async function parseLaTeXNode(node: latexParser.Node, config: LaTeXConfig, fileP
  * @returns A flat array of {@link TeXElement} of this sub-file, or an empty
  * array if the command is not a sub-file-like.
  */
-async function parseLaTeXSubFileCommand(node: latexParser.Command, config: LaTeXConfig, file: string, filesBuilt: Set<string>): Promise<TeXElement[]> {
+async function parseLaTeXSubFileCommand(node: latexParser.Command, config: StructureConfig, file: string, filesBuilt: Set<string>): Promise<TeXElement[]> {
     const cmdArgs: string[] = []
     node.args.forEach((arg) => {
         if (latexParser.isOptionalArg(arg)) {
@@ -387,7 +661,7 @@ function buildFloatNumber(flatNodes: TeXElement[], subFile: boolean) {
  * Build the number of sections. Also put all non-sections into their
  * leading section. This is to make the subsequent logic clearer.
  */
-function buildSectionNumber(config: LaTeXConfig, flatNodes: TeXElement[], subFile: boolean) {
+function buildSectionNumber(config: StructureConfig, flatNodes: TeXElement[], subFile: boolean) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const sectionNumber = subFile && configuration.get('view.outline.numbers.enabled') as boolean
     // All non-section nodes before the first section
@@ -481,7 +755,7 @@ function buildNestedFloats(preambleFloats: TeXElement[], flatSections: TeXElemen
  * and prepended to section captions.
  * @returns The final sections to be shown with hierarchy.
  */
-function buildNestedSections(config: LaTeXConfig, flatSections: TeXElement[]): TeXElement[] {
+function buildNestedSections(config: StructureConfig, flatSections: TeXElement[]): TeXElement[] {
     const sections: TeXElement[] = []
 
     const lowest = Math.min(...flatSections
@@ -517,7 +791,7 @@ function buildNestedSections(config: LaTeXConfig, flatSections: TeXElement[]): T
     return sections
 }
 
-function buildLaTeXSectionToLine(config: LaTeXConfig, structure: TeXElement[], lastLine: number) {
+function buildLaTeXSectionToLine(config: StructureConfig, structure: TeXElement[], lastLine: number) {
     const sections = structure.filter(section => config.LaTeXSectionDepths[section.name] !== undefined)
     sections.forEach(section => {
         const sameFileSections = sections.filter(candidate =>
@@ -552,14 +826,17 @@ function parseRnwChildCommand(content: string, file: string, rootFile: string): 
     return children
 }
 
-function refreshLaTeXModelConfig(defaultFloats = ['frame']): LaTeXConfig {
+function refreshLaTeXModelConfig(defaultFloats = ['frame']): StructureConfig {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const cmds = configuration.get('view.outline.commands') as string[]
     const envs = configuration.get('view.outline.floats.enabled') as boolean ? ['figure', 'table', ...defaultFloats] : defaultFloats
 
-    const structConfig: LaTeXConfig = {
+    const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
+
+    const structConfig: StructureConfig = {
         LaTeXCommands: {cmds: [], envs: [], secs: []},
-        LaTeXSectionDepths: {}
+        LaTeXSectionDepths: {},
+        texDirs
     }
 
     const hierarchy = (configuration.get('view.outline.sections') as string[])

@@ -9,7 +9,7 @@ import { getLogger } from '../components/logger'
 
 const logger = getLogger('Structure')
 
-export enum TeXElementType { Environment, Command, Section, SectionAst, BibItem, BibField }
+export enum TeXElementType { Environment, Command, Section, SectionAst, SubFile, BibItem, BibField }
 
 export type TeXElement = {
     readonly type: TeXElementType,
@@ -19,7 +19,7 @@ export type TeXElement = {
     readonly lineFr: number,
     lineTo: number,
     readonly filePath: string,
-    readonly children: TeXElement[],
+    children: TeXElement[],
     parent?: TeXElement
 }
 
