@@ -115,7 +115,7 @@ async function buildLaTeXSectionFromFile(config: LaTeXConfig, file: string, subF
         await lw.cacher.promise(file)
 
         content = lw.cacher.get(file)?.content
-        ast = lw.cacher.get(file)?.ast
+        ast = lw.cacher.get(file)?.luAst
     }
     if (!content) {
         logger.log(`Error loading content during structuring: ${file} .`)

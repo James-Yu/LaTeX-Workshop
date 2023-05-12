@@ -1152,14 +1152,14 @@
           "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `false`, the `build` and `view` commands  ask the user's choice first. When `true`, the subfile is used when `#latex-workshop.latex.rootFile.useSubFile#` is also `true`, otherwise the rootFile is used."
         },
         "latex-workshop.latex.rootFile.indicator": {
-            "scope": "resource",
-            "type": "string",
-            "default": "\\documentclass[]{}",
-            "enum": [
-                "\\documentclass[]{}",
-                "\\begin{document}"
-            ],
-            "markdownDescription": "Determine if the root file is detected based on the presence of \\documentclass[]{} or \\begin{document}."
+          "scope": "resource",
+          "type": "string",
+          "default": "\\documentclass[]{}",
+          "enum": [
+            "\\documentclass[]{}",
+            "\\begin{document}"
+          ],
+          "markdownDescription": "Determine if the root file is detected based on the presence of \\documentclass[]{} or \\begin{document}."
         },
         "latex-workshop.latex.watch.usePolling": {
           "scope": "window",
@@ -2570,6 +2570,7 @@
     "watch-viewer": "tsc -watch -p viewer/tsconfig.json"
   },
   "dependencies": {
+    "@unified-latex/unified-latex": "^1.3.2",
     "cross-spawn": "7.0.3",
     "glob": "8.0.3",
     "iconv-lite": "0.6.3",
