@@ -15,11 +15,10 @@ const logger = getLogger('Structure', 'LaTeX')
 
 type StructureConfig = {
     // The LaTeX commands to be extracted.
-    LaTeXCommands: {cmds: string[], envs: string[], secs: string[]},
+    macros: {cmds: string[], envs: string[], secs: string[]},
     // The correspondance of section types and depths. Start from zero is
-    // the top-most section (e.g., chapter). -1 is reserved for non-section
-    // commands.
-    readonly LaTeXSectionDepths: {[cmd: string]: number},
+    // the top-most section (e.g., chapter).
+    readonly secIndex: {[cmd: string]: number},
     readonly texDirs: string[]
 }
 type FileStructureCache = {
@@ -34,9 +33,17 @@ export async function construct(): Promise<TeXElement[]> {
     const config = refreshLaTeXModelConfig()
     const structs: FileStructureCache = {}
     await constructFile(lw.manager.rootFile, config, structs)
-    const struct = nestNonSection(insertSubFile(structs))
-    console.log(struct)
-    return structs[lw.manager.rootFile]
+    let struct = insertSubFile(structs)
+    struct = nestNonSection(struct)
+    struct = nestSection(struct, config)
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    if (configuration.get('view.outline.floats.number.enabled') as boolean) {
+        struct = addFloatNumber(struct)
+    }
+    if (configuration.get('view.outline.numbers.enabled') as boolean) {
+        struct = addSectionNumber(struct, config)
+    }
+    return struct
 }
 
 (globalThis as any).construct = construct
@@ -91,8 +98,8 @@ function macroToStr(macro: Ast.Macro): string {
     return `\\${macro.content}` + (macro.args?.map(arg => `${arg.openMark}${argContentToStr(arg.content)}${arg.closeMark}`).join('') ?? '')
 }
 
-function envirToStr(envir: Ast.Environment | Ast.VerbatimEnvironment): string {
-    return `\\environment{${envir.env}}`
+function envToStr(env: Ast.Environment | Ast.VerbatimEnvironment): string {
+    return `\\environment{${env.env}}`
 }
 
 function argContentToStr(argContent: Ast.Node[]): string {
@@ -110,7 +117,7 @@ function argContentToStr(argContent: Ast.Node[]): string {
             case 'environment':
             case 'verbatim':
             case 'mathenv':
-                return envirToStr(node)
+                return envToStr(node)
             case 'inlinemath':
                 return `$${argContentToStr(node.content)}$`
             case 'displaymath':
@@ -139,14 +146,14 @@ async function parseNode(
         filePath, children: []
     }
     let element: TeXElement | undefined
-    if (node.type === 'macro' && config.LaTeXCommands.secs.includes(node.content)) {
+    if (node.type === 'macro' && config.macros.secs.includes(node.content)) {
         element = {
             type: node.args?.[0]?.content[0] ? TeXElementType.SectionAst : TeXElementType.Section,
             name: node.content,
             label: argContentToStr(node.args?.[3]?.content ?? []),
             ...attributes
         }
-    } else if (node.type === 'macro' && config.LaTeXCommands.cmds.includes(node.content)) {
+    } else if (node.type === 'macro' && config.macros.cmds.includes(node.content)) {
         const argStr = argContentToStr(node.args?.[2]?.content ?? [])
         element = {
             type: TeXElementType.Command,
@@ -181,13 +188,11 @@ async function parseNode(
             label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (caption ? `: ${caption}` : ''),
             ...attributes
         }
-    } else if ((node.type === 'environment' || node.type === 'mathenv') && node.env === 'frame') {
-        const frameTitleMacro: Ast.Macro | undefined = node.content.find(sub => sub.type === 'macro' && sub.content === 'frametitle') as Ast.Macro | undefined
-        const caption = argContentToStr(node.args?.[3]?.content ?? []) || argContentToStr(frameTitleMacro?.args?.[2]?.content ?? [])
+    } else if ((node.type === 'environment' || node.type === 'mathenv') && config.macros.envs.includes(node.env)) {
         element = {
             type: TeXElementType.Environment,
             name: node.env,
-            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (caption ? `: ${caption}` : ''),
+            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}`,
             ...attributes
         }
     } else if (node.type === 'macro' && ['input', 'InputIfFileExists', 'include', 'SweaveInput', 'subfile', 'loadglsentries', 'markdownInput'].includes(node.content)) {
@@ -289,6 +294,66 @@ function nestNonSection(struct: TeXElement[]): TeXElement[] {
         }
     }
     return elements
+}
+
+function nestSection(struct: TeXElement[], config: StructureConfig): TeXElement[] {
+    const stack: TeXElement[] = []
+    const elements: TeXElement[] = []
+    for (const element of struct) {
+        if (stack.length === 0) {
+            stack.push(element)
+            elements.push(element)
+        } else if (config.secIndex[element.name] <= config.secIndex[stack[0].name]) {
+            stack.length = 0
+            stack.push(element)
+            elements.push(element)
+        } else if (config.secIndex[element.name] > config.secIndex[stack[stack.length - 1].name]) {
+            stack[stack.length - 1].children.push(element)
+        } else {
+            while(config.secIndex[element.name] <= config.secIndex[stack[stack.length - 1].name]) {
+                stack.pop()
+            }
+            stack[stack.length - 1].children.push(element)
+        }
+    }
+    return elements
+}
+
+function addFloatNumber(struct: TeXElement[], counter: {[env: string]: number} = {}): TeXElement[] {
+    for (const element of struct) {
+        if (element.type === TeXElementType.Environment && element.name !== 'macro' && element.name !== 'environment') {
+            counter[element.name] = (counter[element.name] ?? 0) + 1
+            const parts = element.label.split(':')
+            parts[0] += counter[element.name].toString()
+            element.label = parts.join(':')
+        }
+        if (element.children.length > 0) {
+            addFloatNumber(element.children, counter)
+        }
+    }
+    return struct
+}
+
+function addSectionNumber(struct: TeXElement[], config: StructureConfig, tag?: string, lowest?: number): TeXElement[] {
+    tag = tag ?? ''
+    lowest = lowest ?? Math.min(...struct
+        .filter(element => config.secIndex[element.name] !== undefined)
+        .map(element => config.secIndex[element.name]))
+    const counter: {[level: number]: number} = {}
+    for (const element of struct) {
+        if (config.secIndex[element.name] === undefined) {
+            continue
+        }
+        counter[config.secIndex[element.name]] = (counter[config.secIndex[element.name]] ?? 0) + 1
+        const sectionNumber = tag +
+            '0.'.repeat(config.secIndex[element.name] - lowest) +
+            counter[config.secIndex[element.name]].toString()
+        element.label = `${sectionNumber} ${element.label}`
+        if (element.children.length > 0) {
+            addSectionNumber(element.children, config, sectionNumber + '.', config.secIndex[element.name] + 1)
+        }
+    }
+    return struct
 }
 
 /**
@@ -437,7 +502,7 @@ async function buildLaTeXSectionFromFile(config: StructureConfig, file: string, 
 async function parseLaTeXNode(node: latexParser.Node, config: StructureConfig, filePath: string, subFile: boolean, filesBuilt: Set<string>): Promise<TeXElement[]> {
     let sections: TeXElement[] = []
     if (latexParser.isCommand(node)) {
-        if (config.LaTeXCommands.secs.includes(node.name.replace(/\*$/, ''))) {
+        if (config.macros.secs.includes(node.name.replace(/\*$/, ''))) {
             // \section{Title}
             if (node.args.length > 0) {
                 // Avoid \section alone
@@ -454,7 +519,7 @@ async function parseLaTeXNode(node: latexParser.Node, config: StructureConfig, f
                     })
                 }
             }
-        } else if (config.LaTeXCommands.cmds.includes(node.name.replace(/\*$/, ''))) {
+        } else if (config.macros.cmds.includes(node.name.replace(/\*$/, ''))) {
             // \notlabel{Show}{ShowAlso}
             // const caption = node.args.map(arg => {
                 // const argContent = latexParser.stringify(arg)
@@ -482,7 +547,7 @@ async function parseLaTeXNode(node: latexParser.Node, config: StructureConfig, f
                 ...await parseLaTeXSubFileCommand(node, config, filePath, filesBuilt)
             ]
         }
-    } else if (latexParser.isLabelCommand(node) && config.LaTeXCommands.cmds.includes(node.name)) {
+    } else if (latexParser.isLabelCommand(node) && config.macros.cmds.includes(node.name)) {
         // \label{this:is_a-label}
         sections.push({
             type: TeXElementType.Command,
@@ -493,7 +558,7 @@ async function parseLaTeXNode(node: latexParser.Node, config: StructureConfig, f
             lineTo: node.location.end.line - 1,
             filePath, children: []
         })
-    } else if (latexParser.isEnvironment(node) && config.LaTeXCommands.envs.includes(node.name.replace(/\*$/, ''))) {
+    } else if (latexParser.isEnvironment(node) && config.macros.envs.includes(node.name.replace(/\*$/, ''))) {
         // \begin{figure}...\end{figure}
         const caption = findEnvCaption(node)
         sections.push({
@@ -670,15 +735,15 @@ function buildSectionNumber(config: StructureConfig, flatNodes: TeXElement[], su
     const flatSections: TeXElement[] = []
 
     const lowest = Math.min(...flatNodes
-        .filter(node => config.LaTeXSectionDepths[node.name] !== undefined)
-        .map(node => config.LaTeXSectionDepths[node.name]))
+        .filter(node => config.secIndex[node.name] !== undefined)
+        .map(node => config.secIndex[node.name]))
 
     // This counter is used to calculate the section numbers. The array
     // holds the current numbering. When developing the numbers, just +1 to
     // the appropriate item and retrieve the sub-array.
     let counter: number[] = []
     flatNodes.forEach(node => {
-        if (config.LaTeXSectionDepths[node.name] === undefined) {
+        if (config.secIndex[node.name] === undefined) {
             // non-section node
             if (flatSections.length === 0) {
                 // no section appeared yet
@@ -688,7 +753,7 @@ function buildSectionNumber(config: StructureConfig, flatNodes: TeXElement[], su
             }
         } else {
             if (sectionNumber && node.type === TeXElementType.Section) {
-                const depth = config.LaTeXSectionDepths[node.name] - lowest
+                const depth = config.secIndex[node.name] - lowest
                 if (depth + 1 > counter.length) {
                     counter = [...counter, ...new Array(depth + 1 - counter.length).fill(0) as number[]]
                 } else {
@@ -759,11 +824,11 @@ function buildNestedSections(config: StructureConfig, flatSections: TeXElement[]
     const sections: TeXElement[] = []
 
     const lowest = Math.min(...flatSections
-        .filter(node => config.LaTeXSectionDepths[node.name] !== undefined)
-        .map(node => config.LaTeXSectionDepths[node.name]))
+        .filter(node => config.secIndex[node.name] !== undefined)
+        .map(node => config.secIndex[node.name]))
 
     flatSections.forEach(section => {
-        if (config.LaTeXSectionDepths[section.name] === lowest) {
+        if (config.secIndex[section.name] === lowest) {
             // base level section
             sections.push(section)
         } else if (sections.length === 0) {
@@ -773,8 +838,8 @@ function buildNestedSections(config: StructureConfig, flatSections: TeXElement[]
             // Starting from the last base-level section, find out the
             // proper level.
             let currentSection = sections[sections.length - 1]
-            while (config.LaTeXSectionDepths[currentSection.name] < config.LaTeXSectionDepths[section.name] - 1) {
-                const children = currentSection.children.filter(candidate => config.LaTeXSectionDepths[candidate.name] !== undefined)
+            while (config.secIndex[currentSection.name] < config.secIndex[section.name] - 1) {
+                const children = currentSection.children.filter(candidate => config.secIndex[candidate.name] !== undefined)
                 if (children.length > 0) {
                     // If there is a section child
                     currentSection = children[children.length - 1]
@@ -792,7 +857,7 @@ function buildNestedSections(config: StructureConfig, flatSections: TeXElement[]
 }
 
 function buildLaTeXSectionToLine(config: StructureConfig, structure: TeXElement[], lastLine: number) {
-    const sections = structure.filter(section => config.LaTeXSectionDepths[section.name] !== undefined)
+    const sections = structure.filter(section => config.secIndex[section.name] !== undefined)
     sections.forEach(section => {
         const sameFileSections = sections.filter(candidate =>
             (candidate.filePath === section.filePath) &&
@@ -834,19 +899,19 @@ function refreshLaTeXModelConfig(defaultFloats = ['frame']): StructureConfig {
     const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
 
     const structConfig: StructureConfig = {
-        LaTeXCommands: {cmds: [], envs: [], secs: []},
-        LaTeXSectionDepths: {},
+        macros: {cmds: [], envs: [], secs: []},
+        secIndex: {},
         texDirs
     }
 
     const hierarchy = (configuration.get('view.outline.sections') as string[])
     hierarchy.forEach((sec, index) => {
         sec.split('|').forEach(cmd => {
-            structConfig.LaTeXSectionDepths[cmd] = index
+            structConfig.secIndex[cmd] = index
         })
     })
 
-    structConfig.LaTeXCommands = {cmds, envs, secs: hierarchy.map(sec => sec.split('|')).flat()}
+    structConfig.macros = {cmds, envs, secs: hierarchy.map(sec => sec.split('|')).flat()}
 
     return structConfig
 }
