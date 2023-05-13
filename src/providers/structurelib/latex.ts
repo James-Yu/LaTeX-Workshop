@@ -141,7 +141,6 @@ async function parseNode(
         structs: FileStructureCache) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const attributes = {
-        index: node.position?.start.offset ?? 0,
         lineFr: (node.position?.start.line ?? 1) - 1,
         lineTo: (node.position?.end.line ?? 1) - 1,
         filePath, children: []
@@ -253,9 +252,8 @@ async function parseNode(
                 type: TeXElementType.SubFile,
                 name: 'RnwChild',
                 label: config.subFile ? rnw.subFile : rnw.path,
-                index: (node.position?.start.offset ?? 1) - 1,
-                lineFr: (node.position?.start.line ?? 1) - 1,
-                lineTo: (node.position?.end.line ?? 1) - 1,
+                lineFr: attributes.lineFr,
+                lineTo: attributes.lineTo,
                 filePath, children: []
             })
             if (config.subFile) {

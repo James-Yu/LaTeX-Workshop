@@ -16,7 +16,6 @@ export type TeXElement = {
     readonly type: TeXElementType,
     readonly name: string,
     label: string,
-    readonly index: number,
     readonly lineFr: number,
     lineTo: number,
     readonly filePath: string,
