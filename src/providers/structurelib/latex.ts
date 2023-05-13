@@ -153,11 +153,11 @@ async function parseNode(
         element = {
             type: node.args?.[0]?.content[0] ? TeXElementType.SectionAst : TeXElementType.Section,
             name: node.content,
-            label: argContentToStr(node.args?.[2]?.content ?? []),
+            label: argContentToStr(((node.args?.[1]?.content?.length ?? 0) > 0 ? node.args?.[1]?.content : node.args?.[2]?.content) || []),
             ...attributes
         }
     } else if (node.type === 'macro' && config.macros.cmds.includes(node.content)) {
-        const argStr = argContentToStr(node.args?.[1]?.content ?? [])
+        const argStr = argContentToStr(node.args?.[1]?.content || [])
         element = {
             type: TeXElementType.Command,
             name: node.content,
@@ -166,16 +166,21 @@ async function parseNode(
         }
     } else if ((node.type === 'environment') && node.env === 'frame') {
         const frameTitleMacro: Ast.Macro | undefined = node.content.find(sub => sub.type === 'macro' && sub.content === 'frametitle') as Ast.Macro | undefined
-        const caption = argContentToStr(node.args?.[3]?.content ?? []) || argContentToStr(frameTitleMacro?.args?.[2]?.content ?? [])
+        const caption = argContentToStr(node.args?.[3]?.content || []) || argContentToStr(frameTitleMacro?.args?.[2]?.content || [])
         element = {
             type: TeXElementType.Environment,
             name: node.env,
             label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (configuration.get('view.outline.floats.caption.enabled') as boolean && caption ? `: ${caption}` : ''),
             ...attributes
         }
-    } else if ((node.type === 'environment') && (node.env === 'figure' && config.macros.envs.includes('figure') || node.env === 'table' && config.macros.envs.includes('table'))) {
+    } else if ((node.type === 'environment') && (
+                (node.env === 'figure' || node.env === 'figure*') && config.macros.envs.includes('figure') ||
+                (node.env === 'table' || node.env === 'table*') && config.macros.envs.includes('table'))) {
         const captionMacro: Ast.Macro | undefined = node.content.find(sub => sub.type === 'macro' && sub.content === 'caption') as Ast.Macro | undefined
-        const caption = argContentToStr(captionMacro?.args?.[1]?.content ?? [])
+        const caption = argContentToStr(captionMacro?.args?.[1]?.content || [])
+        if (node.env.endsWith('*')) {
+            node.env = node.env.slice(0, -1)
+        }
         element = {
             type: TeXElementType.Environment,
             name: node.env,
@@ -199,7 +204,7 @@ async function parseNode(
             ...attributes
         }
     } else if (node.type === 'macro' && ['input', 'InputIfFileExists', 'include', 'SweaveInput', 'subfile', 'loadglsentries', 'markdownInput'].includes(node.content)) {
-        const arg0 = argContentToStr(node.args?.[0]?.content ?? [])
+        const arg0 = argContentToStr(node.args?.[0]?.content || [])
         const subFile = resolveFile([ path.dirname(filePath), path.dirname(lw.manager.rootFile || ''), ...config.texDirs ], arg0)
         if (subFile) {
             element = {
@@ -213,8 +218,8 @@ async function parseNode(
             }
         }
     } else if (node.type === 'macro' && ['import', 'inputfrom', 'includefrom'].includes(node.content)) {
-        const arg0 = argContentToStr(node.args?.[0]?.content ?? [])
-        const arg1 = argContentToStr(node.args?.[1]?.content ?? [])
+        const arg0 = argContentToStr(node.args?.[0]?.content || [])
+        const arg1 = argContentToStr(node.args?.[1]?.content || [])
         const subFile = resolveFile([ arg0, path.join(path.dirname(lw.manager.rootFile || ''), arg0 )], arg1)
         if (subFile) {
             element = {
@@ -228,8 +233,8 @@ async function parseNode(
             }
         }
     } else if (node.type === 'macro' && ['subimport', 'subinputfrom', 'subincludefrom'].includes(node.content)) {
-        const arg0 = argContentToStr(node.args?.[0]?.content ?? [])
-        const arg1 = argContentToStr(node.args?.[1]?.content ?? [])
+        const arg0 = argContentToStr(node.args?.[0]?.content || [])
+        const arg1 = argContentToStr(node.args?.[1]?.content || [])
         const subFile = resolveFile([ path.dirname(filePath) ], path.join(arg0, arg1))
         if (subFile) {
             element = {
@@ -313,7 +318,7 @@ function nestSection(struct: TeXElement[], config: StructureConfig): TeXElement[
     const stack: TeXElement[] = []
     const elements: TeXElement[] = []
     for (const element of struct) {
-        if (element.type !== TeXElementType.Section && element.type !== TeXElementType.SubFile) {
+        if (element.type !== TeXElementType.Section && element.type !== TeXElementType.SectionAst && element.type !== TeXElementType.SubFile) {
             elements.push(element)
         } else if (stack.length === 0) {
             stack.push(element)
@@ -364,11 +369,10 @@ function addSectionNumber(struct: TeXElement[], config: StructureConfig, tag?: s
         if (element.type === TeXElementType.Section) {
             counter[config.secIndex[element.name]] = (counter[config.secIndex[element.name]] ?? 0) + 1
         }
-        const sectionNumber =
-            element.type === TeXElementType.Section ? tag +
+        const sectionNumber = tag +
             '0.'.repeat(config.secIndex[element.name] - lowest) +
-            counter[config.secIndex[element.name]].toString() : '*'
-        element.label = `${sectionNumber} ${element.label}`
+            counter[config.secIndex[element.name]].toString()
+        element.label = `${element.type === TeXElementType.Section ? sectionNumber : '*'} ${element.label}`
         if (element.children.length > 0) {
             addSectionNumber(element.children, config, sectionNumber + '.', config.secIndex[element.name] + 1)
         }
