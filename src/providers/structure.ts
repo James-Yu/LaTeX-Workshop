@@ -3,7 +3,7 @@ import * as lw from '../lw'
 import { StructureUpdated } from '../components/eventbus'
 import { construct as constructLaTeX } from './structurelib/latex'
 import { buildBibTeX } from './structurelib/bibtex'
-import { buildDocTeX } from './structurelib/doctex'
+import { construct as constructDocTeX } from './structurelib/doctex'
 
 import { getLogger } from '../components/logger'
 import { parser } from '../components/parser'
@@ -76,7 +76,7 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         if (document?.languageId === 'doctex') {
             if (force || !this.cachedDTX || this.getCachedDataRootFileName(this.cachedDTX) !== document.fileName) {
                 this.cachedDTX = undefined
-                this.cachedDTX = await buildDocTeX(document)
+                this.cachedDTX = await constructDocTeX(document)
             }
             this.structure = this.cachedDTX
             logger.log(`Structure updated with ${this.structure.length} entries for ${document.uri.fsPath} .`)
