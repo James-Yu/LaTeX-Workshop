@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
-import { buildLaTeX } from './structurelib/latex'
+import { construct } from './structurelib/latex'
 import { TeXElement } from './structure'
 
 export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
@@ -13,7 +13,7 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
         if (rootFileUri && lw.lwfs.isVirtualUri(rootFileUri)) {
             return []
         }
-        const sections = await buildLaTeX()
+        const sections = await construct()
         return this.sectionToSymbols(sections)
     }
 

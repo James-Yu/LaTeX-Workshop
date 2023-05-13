@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as lw from '../lw'
 import { TeXElement } from './structure'
 import { buildBibTeX } from './structurelib/bibtex'
-import { buildLaTeX } from './structurelib/latex'
+import { construct as constructLaTeX } from './structurelib/latex'
 import { buildDocTeX } from './structurelib/doctex'
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
@@ -16,7 +16,7 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         if (lw.lwfs.isVirtualUri(document.uri)) {
             return []
         }
-        const sections = await buildLaTeX(document.fileName, false, true)
+        const sections = await constructLaTeX(document.fileName, false)
         return this.sectionToSymbols(sections)
     }
 

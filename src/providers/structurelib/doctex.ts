@@ -56,7 +56,7 @@ async function getToC(document: vscode.TextDocument, content: string, docContent
         return []
     }
 
-    const config = outline.refreshLaTeXModelConfig(['macro', 'environment'])
+    const config = outline.refreshLaTeXModelConfig(false, ['macro', 'environment'])
     // Parse each base-level node. If the node has contents, that function
     // will be called recursively.
     let flatNodes: TeXElement[] = []

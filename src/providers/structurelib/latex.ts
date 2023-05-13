@@ -19,21 +19,24 @@ type StructureConfig = {
     // The correspondance of section types and depths. Start from zero is
     // the top-most section (e.g., chapter).
     readonly secIndex: {[cmd: string]: number},
-    readonly texDirs: string[]
+    readonly texDirs: string[],
+    subFile: boolean
 }
 type FileStructureCache = {
     [filePath: string]: TeXElement[]
 }
 
 
-export async function construct(): Promise<TeXElement[]> {
-    if (lw.manager.rootFile === undefined) {
+export async function construct(filePath: string | undefined = undefined, subFile: boolean = true): Promise<TeXElement[]> {
+    filePath = filePath ?? lw.manager.rootFile
+    if (filePath === undefined) {
         return []
     }
-    const config = refreshLaTeXModelConfig()
+
+    const config = refreshLaTeXModelConfig(subFile)
     const structs: FileStructureCache = {}
-    await constructFile(lw.manager.rootFile, config, structs)
-    let struct = insertSubFile(structs)
+    await constructFile(filePath, config, structs)
+    let struct = subFile ? insertSubFile(structs) : structs[filePath]
     struct = nestNonSection(struct)
     struct = nestSection(struct, config)
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -66,8 +69,9 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
             waited++
             if (waited >= 20) {
                 // Waited for two seconds before starting cache. Really?
-                logger.log(`Error loading cache during structuring: ${filePath} .`)
-                return
+                logger.log(`Error loading cache during structuring: ${filePath} . Forcing.`)
+                await lw.cacher.refreshCache(filePath)
+                break
             }
         }
         await lw.cacher.promise(filePath)
@@ -203,10 +207,12 @@ async function parseNode(
             element = {
                 type: TeXElementType.SubFile,
                 name: node.content,
-                label: subFile,
+                label: config.subFile ? subFile : arg0,
                 ...attributes
             }
-            await constructFile(subFile, config, structs)
+            if (config.subFile) {
+                await constructFile(subFile, config, structs)
+            }
         }
     } else if (node.type === 'macro' && ['import', 'inputfrom', 'includefrom'].includes(node.content)) {
         const arg0 = argContentToStr(node.args?.[0]?.content ?? [])
@@ -216,10 +222,12 @@ async function parseNode(
             element = {
                 type: TeXElementType.SubFile,
                 name: node.content,
-                label: subFile,
+                label: config.subFile ? subFile : arg1,
                 ...attributes
             }
-            await constructFile(subFile, config, structs)
+            if (config.subFile) {
+                await constructFile(subFile, config, structs)
+            }
         }
     } else if (node.type === 'macro' && ['subimport', 'subinputfrom', 'subincludefrom'].includes(node.content)) {
         const arg0 = argContentToStr(node.args?.[0]?.content ?? [])
@@ -229,24 +237,30 @@ async function parseNode(
             element = {
                 type: TeXElementType.SubFile,
                 name: node.content,
-                label: subFile,
+                label: config.subFile ? subFile : arg1,
                 ...attributes
             }
-            await constructFile(subFile, config, structs)
+            if (config.subFile) {
+                await constructFile(subFile, config, structs)
+            }
         }
     }
     if (rnwSub.length > 0 && rnwSub[rnwSub.length - 1].line >= attributes.lineFr) {
-        const rnw = rnwSub.pop() as { subFile: string, line: number }
-        root.children.push({
-            type: TeXElementType.SubFile,
-            name: 'RnwChild',
-            label: rnw.subFile,
-            index: (node.position?.start.offset ?? 1) - 1,
-            lineFr: (node.position?.start.line ?? 1) - 1,
-            lineTo: (node.position?.end.line ?? 1) - 1,
-            filePath, children: []
-        })
-        await constructFile(rnw.subFile, config, structs)
+        const rnw = rnwSub.pop()
+        if (rnw !== undefined) {
+            root.children.push({
+                type: TeXElementType.SubFile,
+                name: 'RnwChild',
+                label: config.subFile ? rnw.subFile : rnw.path,
+                index: (node.position?.start.offset ?? 1) - 1,
+                lineFr: (node.position?.start.line ?? 1) - 1,
+                lineTo: (node.position?.end.line ?? 1) - 1,
+                filePath, children: []
+            })
+            if (config.subFile) {
+                await constructFile(rnw.subFile, config, structs)
+            }
+        }
     }
     if (element !== undefined) {
         root.children.push(element)
@@ -885,8 +899,8 @@ function buildLaTeXSectionToLine(config: StructureConfig, structure: TeXElement[
     })
 }
 
-function parseRnwChildCommand(content: string, file: string, rootFile: string): {subFile: string, line: number}[] {
-    const children: {subFile: string, line: number}[] = []
+function parseRnwChildCommand(content: string, file: string, rootFile: string): {subFile: string, path: string, line: number}[] {
+    const children: {subFile: string, path: string, line: number}[] = []
     const childRegExp = new InputFileRegExp()
     while(true) {
         const result = childRegExp.execChild(content, file, rootFile)
@@ -894,22 +908,22 @@ function parseRnwChildCommand(content: string, file: string, rootFile: string): 
             break
         }
         const line = (content.slice(0, result.match.index).match(/\n/g) || []).length
-        children.push({subFile: result.path, line})
+        children.push({subFile: result.path, path: result.match.path, line})
     }
     return children
 }
 
-function refreshLaTeXModelConfig(defaultFloats = ['frame']): StructureConfig {
+function refreshLaTeXModelConfig(subFile: boolean = true, defaultFloats = ['frame']): StructureConfig {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const cmds = configuration.get('view.outline.commands') as string[]
     const envs = configuration.get('view.outline.floats.enabled') as boolean ? ['figure', 'table', ...defaultFloats] : defaultFloats
-
     const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
 
     const structConfig: StructureConfig = {
-        macros: {cmds: [], envs: [], secs: []},
+        macros: {cmds, envs, secs: []},
         secIndex: {},
-        texDirs
+        texDirs,
+        subFile
     }
 
     const hierarchy = (configuration.get('view.outline.sections') as string[])
@@ -919,7 +933,7 @@ function refreshLaTeXModelConfig(defaultFloats = ['frame']): StructureConfig {
         })
     })
 
-    structConfig.macros = {cmds, envs, secs: hierarchy.map(sec => sec.split('|')).flat()}
+    structConfig.macros.secs = hierarchy.map(sec => sec.split('|')).flat()
 
     return structConfig
 }

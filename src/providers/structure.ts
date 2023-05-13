@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
 import { StructureUpdated } from '../components/eventbus'
-import { construct as constructLaTeX} from './structurelib/latex'
+import { construct as constructLaTeX } from './structurelib/latex'
 import { buildBibTeX } from './structurelib/bibtex'
 import { buildDocTeX } from './structurelib/doctex'
 
