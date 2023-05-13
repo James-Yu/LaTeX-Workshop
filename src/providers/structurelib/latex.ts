@@ -151,11 +151,11 @@ async function parseNode(
         element = {
             type: node.args?.[0]?.content[0] ? TeXElementType.SectionAst : TeXElementType.Section,
             name: node.content,
-            label: argContentToStr(node.args?.[3]?.content ?? []),
+            label: argContentToStr(node.args?.[2]?.content ?? []),
             ...attributes
         }
     } else if (node.type === 'macro' && config.macros.cmds.includes(node.content)) {
-        const argStr = argContentToStr(node.args?.[2]?.content ?? [])
+        const argStr = argContentToStr(node.args?.[1]?.content ?? [])
         element = {
             type: TeXElementType.Command,
             name: node.content,
@@ -352,9 +352,10 @@ function addSectionNumber(struct: TeXElement[], config: StructureConfig, tag?: s
         if (element.type === TeXElementType.Section) {
             counter[config.secIndex[element.name]] = (counter[config.secIndex[element.name]] ?? 0) + 1
         }
-        const sectionNumber = tag +
+        const sectionNumber =
+            element.type === TeXElementType.Section ? tag +
             '0.'.repeat(config.secIndex[element.name] - lowest) +
-            (element.type === TeXElementType.Section ? counter[config.secIndex[element.name]].toString() : '*')
+            counter[config.secIndex[element.name]].toString() : '*'
         element.label = `${sectionNumber} ${element.label}`
         if (element.children.length > 0) {
             addSectionNumber(element.children, config, sectionNumber + '.', config.secIndex[element.name] + 1)

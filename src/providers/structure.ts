@@ -6,6 +6,7 @@ import { buildBibTeX } from './structurelib/bibtex'
 import { buildDocTeX } from './structurelib/doctex'
 
 import { getLogger } from '../components/logger'
+import { parser } from '../components/parser'
 
 const logger = getLogger('Structure')
 
@@ -53,6 +54,14 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
             if (e && (lw.manager.hasBibtexId(e.document.languageId) || lw.manager.hasDoctexId(e.document.languageId))) {
                 void this.refresh()
+            }
+        })
+
+        vscode.workspace.onDidChangeConfiguration(async (ev: vscode.ConfigurationChangeEvent) => {
+            if (ev.affectsConfiguration('latex-workshop.view.outline.sections') ||
+                ev.affectsConfiguration('latex-workshop.view.outline.commands')) {
+                await parser.resetUnifiedParser()
+                lw.cacher.allPaths.forEach(filePath => lw.cacher.refreshCache(filePath))
             }
         })
     }

@@ -5,7 +5,7 @@ import type { Proxy } from 'workerpool'
 import type { FrozenProcessor } from 'unified'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import type { ISyntaxWorker } from './parserlib/syntax'
-import { macros, environments } from './parserlib/defs'
+import { getEnvDefs, getMacroDefs } from './parserlib/defs'
 import { bibtexLogParser } from './parserlib/bibtexlog'
 import { biberLogParser } from './parserlib/biberlog'
 import { latexLogParser } from './parserlib/latexlog'
@@ -168,13 +168,20 @@ const unifiedModule = eval('import(\'unified\')') as Promise<typeof import('unif
 // eslint-disable-next-line no-eval
 const unifiedParseModule = eval('import(\'@unified-latex/unified-latex-util-parse\')') as Promise<typeof import('@unified-latex/unified-latex-util-parse')>
 let unifiedParser: FrozenProcessor | undefined = undefined
-async function unifiedParse(content: string) {
-    if (unifiedParser === undefined) {
-        const unified = (await unifiedModule).unified
-        const unifiedLatexFromString = (await unifiedParseModule).unifiedLatexFromString
-        unifiedParser = unified().use(unifiedLatexFromString, { macros, environments, flags: { autodetectExpl3AndAtLetter: true } }).freeze()
-    }
-    return unifiedParser.parse(content) as Ast.Root
+async function unifiedParse(content: string): Promise<Ast.Root> {
+    return (unifiedParser ?? await resetUnifiedParser())?.parse(content) as Ast.Root
+}
+
+async function resetUnifiedParser() {
+    const unified = (await unifiedModule).unified
+    const unifiedLatexFromString = (await unifiedParseModule).unifiedLatexFromString
+    unifiedParser = unified()
+        .use(unifiedLatexFromString,
+             { macros: getMacroDefs(),
+               environments: getEnvDefs(),
+               flags: { autodetectExpl3AndAtLetter: true } })
+        .freeze()
+    return unifiedParser
 }
 
 export const parser = {
@@ -183,5 +190,6 @@ export const parser = {
     parseBibtex,
     parseLog,
     dispose,
-    unifiedParse
+    unifiedParse,
+    resetUnifiedParser
 }
