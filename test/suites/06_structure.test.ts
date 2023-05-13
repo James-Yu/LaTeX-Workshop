@@ -42,10 +42,10 @@ suite('Document structure test suite', () => {
     })
 
     test.run('section without numbering via `view.outline.numbers.enabled`', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.enabled', false)
         await test.load(fixture, [
             {src: 'structure/sections.tex', dst: 'main.tex'}
         ])
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.numbers.enabled', false)
         const structure = await lw.structureViewer.reconstruct()
         assert.strictEqual(structure[0].label, 'Section 1')
         assert.strictEqual(structure[1].label, 'Section 2')
@@ -100,22 +100,20 @@ suite('Document structure test suite', () => {
     })
 
     test.run('custom sections via `view.outline.sections`', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', ['customsection', 'subsubsection'])
         await test.load(fixture, [
             {src: 'structure/section_custom.tex', dst: 'main.tex'}
         ])
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', [
-            'customsection', 'subsubsection'])
         const structure = await lw.structureViewer.reconstruct()
         assert.strictEqual(structure[0].label, '1 Section 1')
         assert.strictEqual(structure[0].children[0].label, '1.1 Section 1.1')
     })
 
     test.run('custom section hierarchy via `view.outline.sections`', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', ['section', 'subsection|subsubsection'])
         await test.load(fixture, [
             {src: 'structure/section_nest.tex', dst: 'main.tex'}
         ])
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.sections', [
-            'section', 'subsection|subsubsection'])
         const structure = await lw.structureViewer.reconstruct()
         assert.strictEqual(structure[0].label, '1 Section 1')
         assert.strictEqual(structure[0].children[0].label, '1.1 Section 1.1')
@@ -132,10 +130,10 @@ suite('Document structure test suite', () => {
     })
 
     test.run('custom commands via `view.outline.commands`', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.commands', ['note'])
         await test.load(fixture, [
             {src: 'structure/commands.tex', dst: 'main.tex'}
         ])
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.commands', ['note'])
         const structure = await lw.structureViewer.reconstruct()
         assert.strictEqual(structure[0].children[0].label, '#note: A note')
     })
@@ -149,10 +147,10 @@ suite('Document structure test suite', () => {
     })
 
     test.run('float without numbering via `view.outline.floats.number.enabled`', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.number.enabled', false)
         await test.load(fixture, [
             {src: 'structure/frames.tex', dst: 'main.tex'}
         ])
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.number.enabled', false)
         const structure = await lw.structureViewer.reconstruct()
         assert.strictEqual(structure[0].label, 'Frame')
     })
@@ -170,10 +168,10 @@ suite('Document structure test suite', () => {
     })
 
     test.run('frames without title via `view.outline.floats.caption.enabled`', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.caption.enabled', false)
         await test.load(fixture, [
             {src: 'structure/frame_title.tex', dst: 'main.tex'}
         ])
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.caption.enabled', false)
         const structure = await lw.structureViewer.reconstruct()
         assert.strictEqual(structure[0].label, 'Frame 1')
     })
@@ -198,19 +196,19 @@ suite('Document structure test suite', () => {
     })
 
     test.run('disable floats via `view.outline.floats.enabled`', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', false)
         await test.load(fixture, [
             {src: 'structure/floats.tex', dst: 'main.tex'}
         ])
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.enabled', false)
         const structure = await lw.structureViewer.reconstruct()
         assert.strictEqual(structure[0].label, 'Frame 1')
     })
 
     test.run('floats without title via `view.outline.floats.caption.enabled`', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.caption.enabled', false)
         await test.load(fixture, [
             {src: 'structure/floats.tex', dst: 'main.tex'}
         ])
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.outline.floats.caption.enabled', false)
         const structure = await lw.structureViewer.reconstruct()
         assert.strictEqual(structure[0].label, 'Table 1')
     })

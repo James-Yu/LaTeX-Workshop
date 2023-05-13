@@ -280,7 +280,7 @@ function insertSubFile(structs: FileStructureCache, struct?: TeXElement[]): TeXE
     if (lw.manager.rootFile === undefined) {
         return []
     }
-    struct = struct ?? structs[lw.manager.rootFile]
+    struct = struct ?? structs[lw.manager.rootFile] ?? []
     let elements: TeXElement[] = []
     for (const element of struct) {
         if (element.type === TeXElementType.SubFile && structs[element.label]) {

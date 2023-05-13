@@ -160,6 +160,7 @@ export class Cacher {
         const cache = this.get(filePath)
         if (cache) {
             cache.ast = await parser.unifiedParse(content)
+            logger.log(`Parsed LaTeX AST: ${filePath} .`)
         }
         if (ast && cache) {
             cache.luAst = ast
