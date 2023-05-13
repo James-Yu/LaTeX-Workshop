@@ -2,8 +2,6 @@ import type { latexParser, bibtexParser } from 'latex-utensils'
 import * as path from 'path'
 import * as workerpool from 'workerpool'
 import type { Proxy } from 'workerpool'
-import type { FrozenProcessor } from 'unified'
-import type * as Ast from '@unified-latex/unified-latex-types'
 import type { ISyntaxWorker } from './parserlib/syntax'
 import { getEnvDefs, getMacroDefs } from './parserlib/defs'
 import { bibtexLogParser } from './parserlib/bibtexlog'
@@ -162,14 +160,27 @@ function latexmkSkipped(log: string): boolean {
     return false
 }
 
+
+import type { FrozenProcessor } from 'unified'
+import type * as Ast from '@unified-latex/unified-latex-types'
+
 // https://stackoverflow.com/questions/70545129/compile-a-package-that-depends-on-esm-only-library-into-a-commonjs-package
 // eslint-disable-next-line no-eval
 const unifiedModule = eval('import(\'unified\')') as Promise<typeof import('unified')>
 // eslint-disable-next-line no-eval
 const unifiedParseModule = eval('import(\'@unified-latex/unified-latex-util-parse\')') as Promise<typeof import('@unified-latex/unified-latex-util-parse')>
+// eslint-disable-next-line no-eval
+const unifiedArgsModule = eval('import(\'@unified-latex/unified-latex-util-arguments\')') as Promise<typeof import('@unified-latex/unified-latex-util-arguments')>
 let unifiedParser: FrozenProcessor | undefined = undefined
 async function unifiedParse(content: string): Promise<Ast.Root> {
     return (unifiedParser ?? await resetUnifiedParser())?.parse(content) as Ast.Root
+}
+
+async function unifiedArgsParse(ast?: Ast.Root): Promise<Ast.Root | undefined> {
+    if (ast !== undefined) {
+        (await unifiedArgsModule).attachMacroArgs(ast, getMacroDefs())
+    }
+    return ast
 }
 
 async function resetUnifiedParser() {
@@ -191,5 +202,6 @@ export const parser = {
     parseLog,
     dispose,
     unifiedParse,
+    unifiedArgsParse,
     resetUnifiedParser
 }

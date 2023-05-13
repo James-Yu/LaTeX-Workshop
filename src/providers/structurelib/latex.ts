@@ -47,8 +47,6 @@ export async function construct(filePath: string | undefined = undefined, subFil
     return struct
 }
 
-(globalThis as any).construct = construct
-
 async function constructFile(filePath: string, config: StructureConfig, structs: FileStructureCache): Promise<void> {
     if (structs[filePath]) {
         return
