@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
-import { TeXElement } from './structure'
+import { TeXElement, TeXElementType } from './structure'
 import { buildBibTeX } from './structurelib/bibtex'
-import { buildLaTeX } from './structurelib/latex'
-import { buildDocTeX } from './structurelib/doctex'
+import { construct as constructLaTeX } from './structurelib/latex'
+import { construct } from './structurelib/doctex'
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
 
@@ -11,13 +11,35 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         if (document.languageId === 'bibtex') {
             return buildBibTeX(document).then((sections: TeXElement[]) => this.sectionToSymbols(sections))
         } else if (document.languageId === 'doctex') {
-            return buildDocTeX(document).then((sections: TeXElement[]) => this.sectionToSymbols(sections))
+            return construct(document).then((sections: TeXElement[]) => this.sectionToSymbols(sections))
         }
         if (lw.lwfs.isVirtualUri(document.uri)) {
             return []
         }
-        const sections = await buildLaTeX(document.fileName, false, true)
+        const sections = await constructLaTeX(document.fileName, false)
         return this.sectionToSymbols(sections)
+    }
+
+    private sectionToKind(section: TeXElement): vscode.SymbolKind {
+        if (section.type === TeXElementType.Section || section.type === TeXElementType.SectionAst) {
+            return vscode.SymbolKind.Module
+        }
+        if (section.type === TeXElementType.Environment) {
+            return vscode.SymbolKind.Class
+        }
+        if (section.type === TeXElementType.Command) {
+            return vscode.SymbolKind.Method
+        }
+        if (section.type === TeXElementType.SubFile) {
+            return vscode.SymbolKind.Interface
+        }
+        if (section.type === TeXElementType.BibItem) {
+            return vscode.SymbolKind.Package
+        }
+        if (section.type === TeXElementType.BibField) {
+            return vscode.SymbolKind.Property
+        }
+        return vscode.SymbolKind.Constant
     }
 
     private sectionToSymbols(sections: TeXElement[]): vscode.DocumentSymbol[] {
@@ -27,7 +49,7 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
             const range = new vscode.Range(section.lineFr, 0, section.lineTo, 65535)
             const symbol = new vscode.DocumentSymbol(
                 section.label || 'empty', '',
-                vscode.SymbolKind.Module,
+                this.sectionToKind(section),
                 range, range)
             symbols.push(symbol)
             if (section.children.length > 0) {
