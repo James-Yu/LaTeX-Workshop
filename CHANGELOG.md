@@ -1,5 +1,15 @@
 # Change Log
 
+## [9.11.0] - 2023-05-24
+
+### Added
+- (#3879) Use `unified-latex` to parse structure.
+  - This is a start of the transition to `unified-latex`-based AST parsing.
+- (#3883) Add a `singleton` mode to pdf tab viewing.
+
+### Fixed
+- (#3872) Fix `latexlog` parsing.
+
 ## [9.10.0] - 2023-05-03
 
 ### Added
