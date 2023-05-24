@@ -142,6 +142,16 @@ export class Viewer {
     }
 
     async openPdfInTab(pdfUri: vscode.Uri, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const singleton = configuration.get<'tab' | 'browser' | 'singleton' | 'external'>('view.pdf.viewer', 'tab') === 'singleton'
+        if (singleton) {
+            const panels = viewerManager.getPanelSet(pdfUri)
+            if (panels && panels.size > 0) {
+                panels.forEach(panel => panel.webviewPanel.reveal(undefined, true))
+                logger.log(`Reveal the existing PDF tab for ${pdfUri.toString(true)}`)
+                return
+            }
+        }
         const activeDocument = vscode.window.activeTextEditor?.document
         const panel = await createPdfViewerPanel(pdfUri, tabEditorGroup === 'current')
         viewerManager.initiatePdfViewerPanel(panel)
@@ -343,7 +353,7 @@ export class Viewer {
             logger.log(`PDF is not viewed: ${pdfFile}`)
             return
         }
-        const needDelay = this.revealWebviewPanel(pdfFileUri)
+        const needDelay = this.showInvisibleWebviewPanel(pdfFileUri)
         for (const client of clientSet) {
             setTimeout(() => {
                 client.send({type: 'synctex', data: record})
@@ -359,29 +369,28 @@ export class Viewer {
      * @param pdfFileUri The path of a PDF file.
      * @returns Returns `true` if `WebviewPanel.reveal` called.
      */
-    private revealWebviewPanel(pdfFileUri: vscode.Uri): true | undefined {
+    private showInvisibleWebviewPanel(pdfFileUri: vscode.Uri): boolean {
         const panelSet = viewerManager.getPanelSet(pdfFileUri)
         if (!panelSet) {
-            return
-        }
-        for (const panel of panelSet) {
-            const isSyntexOn = !panel.state || panel.state.synctexEnabled
-            if (panel.webviewPanel.visible && isSyntexOn) {
-                return
-            }
+            return false
         }
         const activeViewColumn = vscode.window.activeTextEditor?.viewColumn
         for (const panel of panelSet) {
+            const isSyntexOn = !panel.state || panel.state.synctexEnabled
+            if (panel.webviewPanel.viewColumn !== activeViewColumn
+                && !panel.webviewPanel.visible
+                && isSyntexOn) {
+                panel.webviewPanel.reveal(undefined, true)
+                return true
+            }
+            if (panel.webviewPanel.visible && isSyntexOn) {
+                return false
+            }
             if (panel.webviewPanel.viewColumn !== activeViewColumn) {
-                const isSyntexOn = !panel.state || panel.state.synctexEnabled
-                if (!panel.webviewPanel.visible && isSyntexOn) {
-                    panel.webviewPanel.reveal(undefined, true)
-                    return true
-                }
-                return
+                return false
             }
         }
-        return
+        return false
     }
 
     /**

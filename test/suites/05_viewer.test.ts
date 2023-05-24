@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
+import * as assert from 'assert'
 import * as lw from '../../src/lw'
 import * as test from './utils'
 import { BuildDone } from '../../src/components/eventbus'
@@ -30,6 +31,25 @@ suite('PDF viewer test suite', () => {
 
         await test.build(fixture, 'main.tex')
         await test.view(fixture, 'main.pdf')
+    })
+
+    test.run('view in singleton tab', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'singleton')
+        await test.load(fixture, [
+            {src: 'base.tex', dst: 'main.tex'}
+        ], {skipCache: true})
+
+        await test.build(fixture, 'main.tex')
+        await test.view(fixture, 'main.pdf')
+        await test.sleep(250)
+        await lw.commander.view()
+        let statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
+        assert.strictEqual(statuses.length, 1)
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'tab')
+        await lw.commander.view()
+        await test.sleep(250)
+        statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
+        assert.strictEqual(statuses.length, 2)
     })
 
     test.run('build main.tex and view it', async (fixture: string) => {
