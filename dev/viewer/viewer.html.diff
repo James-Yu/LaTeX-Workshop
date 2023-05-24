@@ -1,6 +1,6 @@
-diff --git a/../pdfjs-3.3.122-dist/web/viewer.html b/../viewer/viewer.html
-index 36d9a9f7..4a8df5ae 100644
---- a/../pdfjs-3.3.122-dist/web/viewer.html
+diff --git a/../web/viewer.html b/../viewer/viewer.html
+index e3dcf043..de51ba76 100644
+--- a/../web/viewer.html
 +++ b/../viewer/viewer.html
 @@ -25,15 +25,17 @@ See https://github.com/adobe-type-tools/cmap-resources
      <meta charset="utf-8">
@@ -9,16 +9,16 @@ index 36d9a9f7..4a8df5ae 100644
 +    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; connect-src 'self' ws://127.0.0.1:*; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;">
      <title>PDF.js viewer</title>
  
-     <link rel="stylesheet" href="viewer.css">
-+    <link rel="stylesheet" href="latexworkshop.css">
- 
  <!-- This snippet is used in production (included from viewer.html) -->
  <link rel="resource" type="application/l10n" href="locale/locale.properties">
 -<script src="../build/pdf.js"></script>
 +<script src="build/pdf.js" defer></script>
  
+     <link rel="stylesheet" href="viewer.css">
++    <link rel="stylesheet" href="latexworkshop.css">
+ 
 -  <script src="viewer.js"></script>
 +  <script src="out/viewer/latexworkshop.js" type="module"></script>
- 
    </head>
  
+   <body tabindex="1">

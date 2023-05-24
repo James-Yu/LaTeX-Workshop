@@ -45,10 +45,10 @@ export function editHTML() {
     template.innerHTML =
 `<span id="trimSelectContainer" class="dropdownToolbarButton">
 <select id="trimSelect" title="Trim" tabindex="23" >
-  <option title="" value="0.0" selected="selected" >No page trimming</option>
-  <option title="" value="0.05" >Trim 5% at margin</option>
-  <option title="" value="0.10" >Trim 10% at margin</option>
-  <option title="" value="0.15" >Trim 15% at margin</option>
+  <option title="" value="0.0" selected="selected" >No trim</option>
+  <option title="" value="0.05" >Trim 5%</option>
+  <option title="" value="0.10" >Trim 10%</option>
+  <option title="" value="0.15" >Trim 15%</option>
 </select>
 </span>`
     anchor = document.getElementById('scaleSelectContainer')
