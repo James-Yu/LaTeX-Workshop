@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.11.2] - 2023-05-26
+
+### Fixed
+- Repackaged #3892 to make the fix effective.
+
 ## [9.11.1] - 2023-05-25
 
 ### Fixed
