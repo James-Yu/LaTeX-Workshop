@@ -1,5 +1,11 @@
 # Change Log
 
+## [9.11.1] - 2023-05-25
+
+### Fixed
+- (#3892) Reverted #3879
+  - Unfortunately, vscode does not support ESM, which is how `unified` works.
+
 ## [9.11.0] - 2023-05-24
 
 ### Added
