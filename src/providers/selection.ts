@@ -81,7 +81,7 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
     async provideSelectionRanges(document: vscode.TextDocument, positions: vscode.Position[]) {
         const content = document.getText()
         logger.log(`Parse LaTeX AST : ${document.fileName} .`)
-        const latexAst = lw.cacher.get(document.fileName)?.luAst || await parser.parseLatex(content, { enableMathCharacterLocation: true })
+        const latexAst = lw.cacher.get(document.fileName)?.ast || await parser.parseLatex(content, { enableMathCharacterLocation: true })
         if (!latexAst) {
             logger.log(`Failed to parse AST for ${document.fileName} .`)
             return []

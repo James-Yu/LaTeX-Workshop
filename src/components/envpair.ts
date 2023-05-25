@@ -74,7 +74,7 @@ export class EnvPair {
         if (!ast) {
             logger.log('Failed to parse LaTeX AST, fallback to cached AST.')
             await lw.cacher.promise(doc.fileName)
-            ast = lw.cacher.get(doc.fileName)?.luAst
+            ast = lw.cacher.get(doc.fileName)?.ast
         }
 
         if (!ast) {
