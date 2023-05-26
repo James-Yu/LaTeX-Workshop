@@ -230,7 +230,8 @@ suite('Intellisense test suite', () => {
         ])
         let suggestions = test.suggest(8, 5)
         assert.ok(suggestions.labels.includes('sec1'))
-        assert.ok(suggestions.labels.includes('eq1'))
+        assert.ok(suggestions.labels.includes('frame'))
+        assert.ok(!suggestions.labels.includes('trap'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', false)
         await test.load(fixture, [

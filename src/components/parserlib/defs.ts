@@ -15,6 +15,8 @@ const MACROS: MacroInfoRecord = {
     subimport: { signature: 'm m' },
     subinputfrom: { signature: 'm m' },
     subincludefrom: { signature: 'm m' },
+    // \label{some-label}
+    linelabel: { signature: 'o m'}
 }
 
 const ENVS: EnvInfoRecord = {}

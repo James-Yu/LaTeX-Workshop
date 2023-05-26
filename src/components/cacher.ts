@@ -233,16 +233,17 @@ export class Cacher {
     private updateElements(filePath: string, content: string, contentTrimmed: string) {
         lw.completer.citation.update(filePath, content)
         const cache = this.get(filePath)
+        if (cache) {
+            cache.elements.reference = lw.completer.reference.update(content, cache?.ast)
+        }
         if (cache?.luAst) {
             const nodes = cache.luAst.content
             const lines = content.split('\n')
-            lw.completer.reference.update(filePath, nodes, lines)
             lw.completer.glossary.update(filePath, nodes)
             lw.completer.environment.update(filePath, nodes, lines)
             lw.completer.command.update(filePath, nodes)
         } else {
             logger.log(`Use RegExp to update elements of ${filePath} .`)
-            lw.completer.reference.update(filePath, undefined, undefined, contentTrimmed)
             lw.completer.glossary.update(filePath, undefined, contentTrimmed)
             lw.completer.environment.update(filePath, undefined, undefined, contentTrimmed)
             lw.completer.command.update(filePath, undefined, contentTrimmed)

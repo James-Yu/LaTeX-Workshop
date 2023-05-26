@@ -8,6 +8,7 @@ import { InputFileRegExp } from '../../utils/inputfilepath'
 
 import { getLogger } from '../../components/logger'
 import { parser } from '../../components/parser'
+import { argContentToStr } from '../../utils/parser'
 
 const logger = getLogger('Structure', 'LaTeX')
 
@@ -89,47 +90,6 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
     }
 
     structs[filePath] = rootElement.children
-}
-
-function macroToStr(macro: Ast.Macro): string {
-    if (macro.content === 'texorpdfstring') {
-        return (macro.args?.[1].content[0] as Ast.String | undefined)?.content || ''
-    }
-    return `\\${macro.content}` + (macro.args?.map(arg => `${arg.openMark}${argContentToStr(arg.content)}${arg.closeMark}`).join('') ?? '')
-}
-
-function envToStr(env: Ast.Environment | Ast.VerbatimEnvironment): string {
-    return `\\environment{${env.env}}`
-}
-
-function argContentToStr(argContent: Ast.Node[]): string {
-    return argContent.map(node => {
-        // Verb
-        switch (node.type) {
-            case 'string':
-                return node.content
-            case 'whitespace':
-            case 'parbreak':
-            case 'comment':
-                return ' '
-            case 'macro':
-                return macroToStr(node)
-            case 'environment':
-            case 'verbatim':
-            case 'mathenv':
-                return envToStr(node)
-            case 'inlinemath':
-                return `$${argContentToStr(node.content)}$`
-            case 'displaymath':
-                return `\\[${argContentToStr(node.content)}\\]`
-            case 'group':
-                return argContentToStr(node.content)
-            case 'verb':
-                return node.content
-            default:
-                return ''
-        }
-    }).join('')
 }
 
 async function parseNode(
