@@ -68,7 +68,9 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         if (lw.lwfs.isVirtualUri(e.document.uri)){
             return
         }
-        if (!lw.manager.hasTexId(e.document.languageId)) {
+        if (!lw.manager.hasTexId(e.document.languageId) &&
+            !lw.manager.hasBibtexId(e.document.languageId) &&
+            !lw.manager.hasDoctexId(e.document.languageId)) {
             return
         }
         lw.eventBus.fire(DocumentChanged)
