@@ -65,13 +65,13 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
     let updateCompleter: NodeJS.Timeout
     lw.registerDisposable(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
-        lw.eventBus.fire(DocumentChanged)
         if (lw.lwfs.isVirtualUri(e.document.uri)){
             return
         }
         if (!lw.manager.hasTexId(e.document.languageId)) {
             return
         }
+        lw.eventBus.fire(DocumentChanged)
         lw.linter.lintActiveFileIfEnabledAfterInterval(e.document)
         if (!lw.cacher.has(e.document.fileName)) {
             return

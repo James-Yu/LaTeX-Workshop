@@ -93,19 +93,19 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
     }
 
     async reconstruct() {
-        await this.update(true)
-        return this.structure
-    }
-
-    async refresh() {
-        await this.update(false)
-        return this.structure
-    }
-
-    private async update(force: boolean) {
-        this.structure = await this.build(force)
+        this.structure = await this.build(true)
         this.structureChanged.fire(undefined)
         lw.eventBus.fire(StructureUpdated)
+        return this.structure
+    }
+
+    async refresh(fireChangedEvent: boolean = true) {
+        this.structure = await this.build(false)
+        if (fireChangedEvent) {
+            this.structureChanged.fire(undefined)
+            lw.eventBus.fire(StructureUpdated)
+        }
+        return this.structure
     }
 
     private getCachedDataRootFileName(sections: TeXElement[]): string | undefined {
@@ -154,7 +154,7 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         if (lw.manager.rootFile === undefined) {
             return []
         }
-        return element?.children ?? this.refresh()
+        return element?.children ?? this.refresh(false)
     }
 
     getParent(element?: TeXElement): TeXElement | undefined {
