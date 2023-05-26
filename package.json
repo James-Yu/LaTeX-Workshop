@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icons/icon.png",
-  "version": "9.10.0",
+  "version": "9.11.2",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -1152,14 +1152,14 @@
           "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `false`, the `build` and `view` commands  ask the user's choice first. When `true`, the subfile is used when `#latex-workshop.latex.rootFile.useSubFile#` is also `true`, otherwise the rootFile is used."
         },
         "latex-workshop.latex.rootFile.indicator": {
-          "scope": "resource",
-          "type": "string",
-          "default": "\\documentclass[]{}",
-          "enum": [
-            "\\documentclass[]{}",
-            "\\begin{document}"
-          ],
-          "markdownDescription": "Determine if the root file is detected based on the presence of \\documentclass[]{} or \\begin{document}."
+            "scope": "resource",
+            "type": "string",
+            "default": "\\documentclass[]{}",
+            "enum": [
+                "\\documentclass[]{}",
+                "\\begin{document}"
+            ],
+            "markdownDescription": "Determine if the root file is detected based on the presence of \\documentclass[]{} or \\begin{document}."
         },
         "latex-workshop.latex.watch.usePolling": {
           "scope": "window",
@@ -1426,12 +1426,14 @@
           "enum": [
             "browser",
             "tab",
+            "singleton",
             "external"
           ],
           "markdownDescription": "The default PDF viewer.",
           "enumDescriptions": [
             "Open PDF with the default web browser.",
             "Open PDF with the built-in tab viewer.",
+            "Open PDF with the built-in tab viewer, reveal existing one if possible.",
             "[Experimental] Open PDF with the external viewer set in \"View > Pdf > External: command\"."
           ]
         },
@@ -2576,7 +2578,7 @@
     "latex-utensils": "4.6.0",
     "mathjax-full": "3.2.2",
     "micromatch": "4.0.5",
-    "pdfjs-dist": "3.3.122",
+    "pdfjs-dist": "3.6.172",
     "tmp": "0.2.1",
     "workerpool": "6.3.1",
     "ws": "8.11.0"

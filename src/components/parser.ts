@@ -3,7 +3,6 @@ import * as path from 'path'
 import * as workerpool from 'workerpool'
 import type { Proxy } from 'workerpool'
 import type { ISyntaxWorker } from './parserlib/syntax'
-import { getEnvDefs, getMacroDefs } from './parserlib/defs'
 import { bibtexLogParser } from './parserlib/bibtexlog'
 import { biberLogParser } from './parserlib/biberlog'
 import { latexLogParser } from './parserlib/latexlog'
@@ -160,7 +159,7 @@ function latexmkSkipped(log: string): boolean {
     return false
 }
 
-
+import { getMacroDefs, getEnvDefs } from './parserlib/defs'
 import type * as Ast from '@unified-latex/unified-latex-types'
 // @ts-expect-error This import will originates from 'out/src/' to .cjs in 'src/'
 import * as unifiedLaTeXParse from '../../../src/lib/unified-latex-util-parse.cjs'
@@ -205,8 +204,8 @@ export const parser = {
     parseLatexPreamble,
     parseBibtex,
     parseLog,
-    dispose,
     unifiedParse,
     unifiedArgsParse,
-    resetUnifiedParser
+    resetUnifiedParser,
+    dispose
 }

@@ -2,6 +2,10 @@ import {EventEmitter} from 'events'
 import type {PdfViewerState} from '../../types/latex-workshop-protocol-types/index'
 import type {Disposable} from 'vscode'
 
+import { getLogger } from '../components/logger'
+
+const logger = getLogger('Event')
+
 export const BuildDone = 'BUILD_DONE'
 export const AutoBuildInitiated = 'AUTO_BUILD_INITIATED'
 export const RootFileChanged = 'ROOT_FILE_CHANGED'
@@ -50,6 +54,7 @@ export class EventBus {
     fire<T extends keyof EventArgs>(eventName: T, arg: EventArgs[T]): void
     fire(eventName: EventName): void
     fire(eventName: EventName, arg?: any): void {
+        logger.log(eventName + (arg ? `: ${JSON.stringify(arg)}` : ''))
         this.eventEmitter.emit(eventName, arg)
     }
 

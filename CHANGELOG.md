@@ -1,5 +1,26 @@
 # Change Log
 
+## [9.11.2] - 2023-05-26
+
+### Fixed
+- Repackaged #3892 to make the fix effective.
+
+## [9.11.1] - 2023-05-25
+
+### Fixed
+- (#3892) Reverted #3879
+  - Unfortunately, vscode does not support ESM, which is how `unified` works.
+
+## [9.11.0] - 2023-05-24
+
+### Added
+- (#3879) Use `unified-latex` to parse structure.
+  - This is a start of the transition to `unified-latex`-based AST parsing.
+- (#3883) Add a `singleton` mode to pdf tab viewing.
+
+### Fixed
+- (#3872) Fix `latexlog` parsing.
+
 ## [9.10.0] - 2023-05-03
 
 ### Added
