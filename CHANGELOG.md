@@ -5,6 +5,9 @@
 ### Added
 - (#3895) Revival of #3879 in `v9.11.0`, use `unified-latex` to parse structure.
 
+### Fixed
+- Repeatedly refreshing structure view when the view is active.
+
 ## [9.11.2] - 2023-05-26
 
 ### Fixed
