@@ -94,6 +94,19 @@ export class Viewer {
         return (await lw.server.getViewerUrl(pdfUri)).url
     }
 
+    async open(pdfFile: string, mode?: string): Promise<void> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
+        const viewer = mode ?? configuration.get<'tab' | 'browser' | 'singleton' | 'external'>('view.pdf.viewer', 'tab')
+        if (viewer === 'browser') {
+            return lw.viewer.openBrowser(lw.manager.tex2pdf(pdfFile))
+        } else if (viewer === 'tab' || viewer === 'singleton') {
+            return lw.viewer.openTab(lw.manager.tex2pdf(pdfFile), tabEditorGroup, true)
+        } else if (viewer === 'external') {
+            return lw.viewer.openExternal(lw.manager.tex2pdf(pdfFile))
+        }
+    }
+
     /**
      * Opens the PDF file in the browser.
      *
@@ -340,11 +353,16 @@ export class Viewer {
      * @param pdfFile The path of a PDF file.
      * @param record The position to be revealed.
      */
-    syncTeX(pdfFile: string, record: SyncTeXRecordForward): void {
+    async syncTeX(pdfFile: string, record: SyncTeXRecordForward): Promise<void> {
         const pdfFileUri = vscode.Uri.file(pdfFile)
-        const clientSet = viewerManager.getClientSet(pdfFileUri)
+        let clientSet = viewerManager.getClientSet(pdfFileUri)
         if (clientSet === undefined) {
-            logger.log(`PDF is not viewed: ${pdfFile}`)
+            logger.log(`PDF is not opened: ${pdfFile} , try opening.`)
+            await this.open(pdfFile)
+            clientSet = viewerManager.getClientSet(pdfFileUri)
+        }
+        if (clientSet === undefined) {
+            logger.log(`PDF cannot be opened: ${pdfFile} .`)
             return
         }
         const needDelay = this.showInvisibleWebviewPanel(pdfFileUri)

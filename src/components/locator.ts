@@ -152,14 +152,14 @@ export class Locator {
                 if (!record) {
                     return
                 }
-                lw.viewer.syncTeX(pdfFile, record)
+                void lw.viewer.syncTeX(pdfFile, record)
             } catch (e) {
                 logger.logError('Forward SyncTeX failed.', e)
             }
         } else {
             void this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
                 if (pdfFile) {
-                    lw.viewer.syncTeX(pdfFile, record)
+                    void lw.viewer.syncTeX(pdfFile, record)
                 }
             })
         }

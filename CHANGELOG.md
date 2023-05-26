@@ -1,5 +1,10 @@
 # Change Log
 
+## Pending
+
+### Added
+- (#3890) Open PDF viewer on forward SyncTeX if not already opened.
+
 ## [9.11.3] - 2023-05-26
 
 ### Added
