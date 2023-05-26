@@ -159,11 +159,53 @@ function latexmkSkipped(log: string): boolean {
     return false
 }
 
+import { getMacroDefs, getEnvDefs } from './parserlib/defs'
+import type * as Ast from '@unified-latex/unified-latex-types'
+// @ts-expect-error This import will originates from 'out/src/' to .cjs in 'src/'
+import * as unifiedLaTeXParse from '../../../src/lib/unified-latex-util-parse.cjs'
+// @ts-expect-error This import will originates from 'out/src/' to .cjs in 'src/'
+import * as unifiedLaTeXArgs from '../../../src/lib/unified-latex-util-arguments.cjs'
+
+type UnifiedParser = { parse: (content: string) => Ast.Root }
+let unifiedParser: UnifiedParser
+
+function unifiedParse(content: string): Ast.Root {
+    return (unifiedParser ?? resetUnifiedParser()).parse(content)
+}
+
+function unifiedArgsParse(ast?: Ast.Root): Ast.Root | undefined {
+    if (ast !== undefined) {
+        (unifiedLaTeXArgs.attachMacroArgs as (tree: Ast.Ast, macros: Ast.MacroInfoRecord) => void)(ast, getMacroDefs())
+    }
+    return ast
+}
+
+type UnifiedParserOption = {
+    mode?: 'math' | 'regular',
+    macros?: Ast.MacroInfoRecord,
+    environments?: Ast.EnvInfoRecord,
+    flags?: {
+        atLetter?: boolean,
+        expl3?: boolean,
+        autodetectExpl3AndAtLetter?: boolean
+    }
+}
+
+function resetUnifiedParser(): UnifiedParser {
+    unifiedParser = (unifiedLaTeXParse.getParser as (options: UnifiedParserOption) => UnifiedParser)(
+        { macros: getMacroDefs(),
+          environments: getEnvDefs(),
+          flags: { autodetectExpl3AndAtLetter: true } })
+    return unifiedParser
+}
 
 export const parser = {
     parseLatex,
     parseLatexPreamble,
     parseBibtex,
     parseLog,
+    unifiedParse,
+    unifiedArgsParse,
+    resetUnifiedParser,
     dispose
 }

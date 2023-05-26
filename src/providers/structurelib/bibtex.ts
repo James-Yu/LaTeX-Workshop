@@ -38,7 +38,6 @@ export async function buildBibTeX(document: vscode.TextDocument): Promise<TeXEle
                 type: TeXElementType.BibItem,
                 name: entry.entryType,
                 label: `${entry.entryType}: ${entry.internalKey}`,
-                index: 0,
                 lineFr: entry.location.start.line - 1, // ast line numbers start at 1
                 lineTo: entry.location.end.line - 1,
                 filePath: document.fileName,
@@ -50,7 +49,6 @@ export async function buildBibTeX(document: vscode.TextDocument): Promise<TeXEle
                     type: TeXElementType.BibField,
                     name: field.name,
                     label: `${field.name}: ${content}`,
-                    index: 0,
                     lineFr: field.location.start.line - 1,
                     lineTo: field.location.end.line - 1,
                     filePath: document.fileName,

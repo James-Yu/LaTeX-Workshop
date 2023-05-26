@@ -1,25 +1,25 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
 import { StructureUpdated } from '../components/eventbus'
-import { buildLaTeX } from './structurelib/latex'
+import { construct as constructLaTeX } from './structurelib/latex'
 import { buildBibTeX } from './structurelib/bibtex'
-import { buildDocTeX } from './structurelib/doctex'
+import { construct as constructDocTeX } from './structurelib/doctex'
 
 import { getLogger } from '../components/logger'
+import { parser } from '../components/parser'
 
 const logger = getLogger('Structure')
 
-export enum TeXElementType { Environment, Command, Section, SectionAst, BibItem, BibField }
+export enum TeXElementType { Environment, Command, Section, SectionAst, SubFile, BibItem, BibField }
 
 export type TeXElement = {
     readonly type: TeXElementType,
     readonly name: string,
     label: string,
-    readonly index: number,
     readonly lineFr: number,
     lineTo: number,
     readonly filePath: string,
-    readonly children: TeXElement[],
+    children: TeXElement[],
     parent?: TeXElement
 }
 
@@ -55,6 +55,14 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
                 void this.refresh()
             }
         })
+
+        vscode.workspace.onDidChangeConfiguration((ev: vscode.ConfigurationChangeEvent) => {
+            if (ev.affectsConfiguration('latex-workshop.view.outline.sections') ||
+                ev.affectsConfiguration('latex-workshop.view.outline.commands')) {
+                parser.resetUnifiedParser()
+                lw.cacher.allPaths.forEach(filePath => parser.unifiedArgsParse(lw.cacher.get(filePath)?.ast))
+            }
+        })
     }
 
     /**
@@ -67,7 +75,7 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         if (document?.languageId === 'doctex') {
             if (force || !this.cachedDTX || this.getCachedDataRootFileName(this.cachedDTX) !== document.fileName) {
                 this.cachedDTX = undefined
-                this.cachedDTX = await buildDocTeX(document)
+                this.cachedDTX = await constructDocTeX(document)
             }
             this.structure = this.cachedDTX
             logger.log(`Structure updated with ${this.structure.length} entries for ${document.uri.fsPath} .`)
@@ -81,7 +89,7 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         } else if (lw.manager.rootFile) {
             if (force || !this.cachedTeX) {
                 this.cachedTeX = undefined
-                this.cachedTeX = await buildLaTeX()
+                this.cachedTeX = await constructLaTeX()
             }
             this.structure = this.cachedTeX
             logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} root sections for ${lw.manager.rootFile} .`)
