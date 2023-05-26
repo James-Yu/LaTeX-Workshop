@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.11.3] - 2023-05-26
+
+### Added
+- (#3895) Revival of #3879 in `v9.11.0`, use `unified-latex` to parse structure.
+
 ## [9.11.2] - 2023-05-26
 
 ### Fixed
