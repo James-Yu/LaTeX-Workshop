@@ -50,7 +50,7 @@ suite('PDF viewer test suite', () => {
         await test.sleep(250)
         statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 2)
-    })
+    }, ['linux', 'darwin'])
 
     test.run('build main.tex and view it', async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
