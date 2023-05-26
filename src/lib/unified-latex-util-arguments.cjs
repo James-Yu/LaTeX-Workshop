@@ -1,8 +1,13 @@
 "use strict";
+var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
@@ -15,7 +20,476 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// ../../node_modules/trie-prefix-tree/dist/config.js
+var require_config = __commonJS({
+  "../../node_modules/trie-prefix-tree/dist/config.js"(exports, module2) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    exports.default = {
+      END_WORD: "$",
+      END_WORD_REPLACER: "9a219a89-91cd-42e2-abd5-eb113af08ca8",
+      PERMS_MIN_LEN: 2
+    };
+    module2.exports = exports["default"];
+  }
+});
+
+// ../../node_modules/trie-prefix-tree/dist/append.js
+var require_append = __commonJS({
+  "../../node_modules/trie-prefix-tree/dist/append.js"(exports, module2) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    exports.default = append;
+    var _config = require_config();
+    var _config2 = _interopRequireDefault(_config);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function append(trie, letter, index, array) {
+      var isEndWordLetter = letter === _config2.default.END_WORD;
+      var isLastLetter = index === array.length - 1;
+      if (isEndWordLetter && !isLastLetter) {
+        trie[_config2.default.END_WORD] = 1;
+        trie[_config2.default.END_WORD_REPLACER] = {};
+        trie = trie[_config2.default.END_WORD_REPLACER];
+      } else {
+        trie[letter] = trie[letter] || {};
+        trie = trie[letter];
+      }
+      if (isLastLetter) {
+        trie[_config2.default.END_WORD] = 1;
+      }
+      return trie;
+    }
+    module2.exports = exports["default"];
+  }
+});
+
+// ../../node_modules/trie-prefix-tree/dist/create.js
+var require_create = __commonJS({
+  "../../node_modules/trie-prefix-tree/dist/create.js"(exports, module2) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
+      return typeof obj;
+    } : function(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+    exports.default = create;
+    var _append = require_append();
+    var _append2 = _interopRequireDefault(_append);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function create(input) {
+      if (!Array.isArray(input)) {
+        throw "Expected parameter Array, received " + (typeof input === "undefined" ? "undefined" : _typeof(input));
+      }
+      var trie = input.reduce(function(accumulator, item) {
+        item.toLowerCase().split("").reduce(_append2.default, accumulator);
+        return accumulator;
+      }, {});
+      return trie;
+    }
+    module2.exports = exports["default"];
+  }
+});
+
+// ../../node_modules/trie-prefix-tree/dist/utils.js
+var require_utils = __commonJS({
+  "../../node_modules/trie-prefix-tree/dist/utils.js"(exports, module2) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    exports.default = {
+      objectCopy: function objectCopy(obj) {
+        if (typeof obj === "undefined") {
+          return {};
+        }
+        return JSON.parse(JSON.stringify(obj));
+      },
+      stringify: function stringify(obj) {
+        var spacer = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 2;
+        if (typeof obj === "undefined") {
+          return "";
+        }
+        return JSON.stringify(obj, null, spacer);
+      }
+    };
+    module2.exports = exports["default"];
+  }
+});
+
+// ../../node_modules/trie-prefix-tree/dist/checkPrefix.js
+var require_checkPrefix = __commonJS({
+  "../../node_modules/trie-prefix-tree/dist/checkPrefix.js"(exports, module2) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    exports.default = checkPrefix;
+    var _utils = require_utils();
+    var _utils2 = _interopRequireDefault(_utils);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function checkPrefix(prefixNode, prefix) {
+      var input = prefix.toLowerCase().split("");
+      var prefixFound = input.every(function(letter, index) {
+        if (!prefixNode[letter]) {
+          return false;
+        }
+        return prefixNode = prefixNode[letter];
+      });
+      return {
+        prefixFound,
+        prefixNode
+      };
+    }
+    module2.exports = exports["default"];
+  }
+});
+
+// ../../node_modules/trie-prefix-tree/dist/recursePrefix.js
+var require_recursePrefix = __commonJS({
+  "../../node_modules/trie-prefix-tree/dist/recursePrefix.js"(exports, module2) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    exports.default = recursePrefix;
+    var _config = require_config();
+    var _config2 = _interopRequireDefault(_config);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    var pushInOrder = function pushInOrder2(word, prefixes) {
+      var i = 0;
+      while (i < prefixes.length) {
+        if (word < prefixes[i]) {
+          break;
+        }
+        i += 1;
+      }
+      prefixes.splice(i, 0, word);
+      return prefixes;
+    };
+    function recursePrefix(node, prefix, sorted) {
+      var prefixes = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : [];
+      var word = prefix;
+      for (var branch in node) {
+        var currentLetter = branch;
+        if (branch === _config2.default.END_WORD && typeof node[branch] === "number") {
+          if (sorted) {
+            pushInOrder(word, prefixes);
+          } else {
+            prefixes.push(word);
+          }
+          word = "";
+        } else if (branch === _config2.default.END_WORD_REPLACER) {
+          currentLetter = _config2.default.END_WORD;
+        }
+        recursePrefix(node[branch], prefix + currentLetter, sorted, prefixes);
+      }
+      return prefixes;
+    }
+    module2.exports = exports["default"];
+  }
+});
+
+// ../../node_modules/trie-prefix-tree/dist/recurseRandomWord.js
+var require_recurseRandomWord = __commonJS({
+  "../../node_modules/trie-prefix-tree/dist/recurseRandomWord.js"(exports, module2) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    exports.default = recurseRandomWord;
+    var _config = require_config();
+    var _config2 = _interopRequireDefault(_config);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function recurseRandomWord(node, prefix) {
+      var word = prefix;
+      var branches = Object.keys(node);
+      var branch = branches[Math.floor(Math.random() * branches.length)];
+      if (branch === _config2.default.END_WORD) {
+        return word;
+      }
+      return recurseRandomWord(node[branch], prefix + branch);
+    }
+    module2.exports = exports["default"];
+  }
+});
+
+// ../../node_modules/trie-prefix-tree/dist/permutations.js
+var require_permutations = __commonJS({
+  "../../node_modules/trie-prefix-tree/dist/permutations.js"(exports, module2) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
+      return typeof obj;
+    } : function(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+    exports.default = permutations;
+    var _config = require_config();
+    var _config2 = _interopRequireDefault(_config);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function permutations(letters, trie) {
+      var opts = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {
+        type: "anagram"
+      };
+      if (typeof letters !== "string") {
+        throw "Permutations expects string letters, received " + (typeof letters === "undefined" ? "undefined" : _typeof(letters));
+      }
+      var words = [];
+      var permute = function permute2(word, node) {
+        var prefix = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : "";
+        var wordIsEmpty = word.length === 0;
+        var wordFound = words.indexOf(prefix) !== -1;
+        var endWordFound = node[_config2.default.END_WORD] === 1;
+        if (wordIsEmpty && endWordFound && !wordFound) {
+          words.push(prefix);
+        }
+        for (var i = 0, len = word.length; i < len; i++) {
+          var letter = word[i];
+          if (opts.type === "sub-anagram") {
+            if (endWordFound && !(words.indexOf(prefix) !== -1)) {
+              words.push(prefix);
+            }
+          }
+          if (node[letter]) {
+            var remaining = word.substring(0, i) + word.substring(i + 1, len);
+            permute2(remaining, node[letter], prefix + letter, words);
+          }
+        }
+        return words.sort();
+      };
+      return permute(letters, trie);
+    }
+    module2.exports = exports["default"];
+  }
+});
+
+// ../../node_modules/trie-prefix-tree/dist/index.js
+var require_dist = __commonJS({
+  "../../node_modules/trie-prefix-tree/dist/index.js"(exports, module2) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
+      return typeof obj;
+    } : function(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+    exports.default = function(input) {
+      if (!Array.isArray(input)) {
+        throw "Expected parameter Array, received " + (typeof input === "undefined" ? "undefined" : _typeof(input));
+      }
+      var trie = (0, _create2.default)([].concat(_toConsumableArray(input)));
+      return {
+        /**
+         * Get the generated raw trie object
+        */
+        tree: function tree() {
+          return trie;
+        },
+        /**
+         * Get a string representation of the trie
+        */
+        dump: function dump() {
+          var spacer = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0;
+          return _utils2.default.stringify(trie, spacer);
+        },
+        /**
+         * Add a new word to the trie
+         */
+        addWord: function addWord(word) {
+          if (typeof word !== "string" || word === "") {
+            throw "Expected parameter string, received " + (typeof word === "undefined" ? "undefined" : _typeof(word));
+          }
+          var reducer = function reducer2() {
+            return _append2.default.apply(void 0, arguments);
+          };
+          var input2 = word.toLowerCase().split("");
+          input2.reduce(reducer, trie);
+          return this;
+        },
+        /**
+         * Remove an existing word from the trie
+         */
+        removeWord: function removeWord(word) {
+          if (typeof word !== "string" || word === "") {
+            throw "Expected parameter string, received " + (typeof word === "undefined" ? "undefined" : _typeof(word));
+          }
+          var _checkPrefix = (0, _checkPrefix6.default)(trie, word), prefixFound = _checkPrefix.prefixFound, prefixNode = _checkPrefix.prefixNode;
+          if (prefixFound) {
+            delete prefixNode[_config2.default.END_WORD];
+          }
+          return this;
+        },
+        /**
+         * Check a prefix is valid
+         * @returns Boolean
+        */
+        isPrefix: function isPrefix(prefix) {
+          if (typeof prefix !== "string") {
+            throw "Expected string prefix, received " + (typeof prefix === "undefined" ? "undefined" : _typeof(prefix));
+          }
+          var _checkPrefix2 = (0, _checkPrefix6.default)(trie, prefix), prefixFound = _checkPrefix2.prefixFound;
+          return prefixFound;
+        },
+        /**
+        * Get a list of all words in the trie with the given prefix
+        * @returns Array
+        */
+        getPrefix: function getPrefix(strPrefix) {
+          var sorted = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
+          if (typeof strPrefix !== "string") {
+            throw "Expected string prefix, received " + (typeof strPrefix === "undefined" ? "undefined" : _typeof(strPrefix));
+          }
+          if (typeof sorted !== "boolean") {
+            throw "Expected sort parameter as boolean, received " + (typeof sorted === "undefined" ? "undefined" : _typeof(sorted));
+          }
+          if (!this.isPrefix(strPrefix)) {
+            return [];
+          }
+          var prefixNode = strPrefix.length ? (0, _checkPrefix6.default)(trie, strPrefix).prefixNode : trie;
+          return (0, _recursePrefix2.default)(prefixNode, strPrefix, sorted);
+        },
+        /**
+        * Get a random word in the trie with the given prefix
+        * @returns Array
+        */
+        getRandomWordWithPrefix: function getRandomWordWithPrefix(strPrefix) {
+          if (typeof strPrefix !== "string") {
+            throw "Expected string prefix, received " + (typeof strPrefix === "undefined" ? "undefined" : _typeof(strPrefix));
+          }
+          if (!this.isPrefix(strPrefix)) {
+            return "";
+          }
+          var _checkPrefix3 = (0, _checkPrefix6.default)(trie, strPrefix), prefixNode = _checkPrefix3.prefixNode;
+          return (0, _recurseRandomWord2.default)(prefixNode, strPrefix);
+        },
+        /**
+        * Count the number of words with the given prefixSearch
+        * @returns Number
+        */
+        countPrefix: function countPrefix(strPrefix) {
+          var prefixes = this.getPrefix(strPrefix);
+          return prefixes.length;
+        },
+        /**
+        * Get all words in the trie
+        * @returns Array
+        */
+        getWords: function getWords() {
+          var sorted = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : true;
+          return this.getPrefix("", sorted);
+        },
+        /**
+        * Check the existence of a word in the trie
+        * @returns Boolean
+        */
+        hasWord: function hasWord(word) {
+          if (typeof word !== "string") {
+            throw "Expected string word, received " + (typeof word === "undefined" ? "undefined" : _typeof(word));
+          }
+          var _checkPrefix4 = (0, _checkPrefix6.default)(trie, word), prefixFound = _checkPrefix4.prefixFound, prefixNode = _checkPrefix4.prefixNode;
+          if (prefixFound) {
+            return prefixNode[_config2.default.END_WORD] === 1;
+          }
+          return false;
+        },
+        /**
+        * Get a list of valid anagrams that can be made from the given letters
+        * @returns Array
+        */
+        getAnagrams: function getAnagrams(letters) {
+          if (typeof letters !== "string") {
+            throw "Anagrams expected string letters, received " + (typeof letters === "undefined" ? "undefined" : _typeof(letters));
+          }
+          if (letters.length < PERMS_MIN_LEN) {
+            throw "getAnagrams expects at least " + PERMS_MIN_LEN + " letters";
+          }
+          return (0, _permutations2.default)(letters, trie, {
+            type: "anagram"
+          });
+        },
+        /**
+        * Get a list of all sub-anagrams that can be made from the given letters
+        * @returns Array
+        */
+        getSubAnagrams: function getSubAnagrams(letters) {
+          if (typeof letters !== "string") {
+            throw "Expected string letters, received " + (typeof letters === "undefined" ? "undefined" : _typeof(letters));
+          }
+          if (letters.length < PERMS_MIN_LEN) {
+            throw "getSubAnagrams expects at least " + PERMS_MIN_LEN + " letters";
+          }
+          return (0, _permutations2.default)(letters, trie, {
+            type: "sub-anagram"
+          });
+        }
+      };
+    };
+    var _create = require_create();
+    var _create2 = _interopRequireDefault(_create);
+    var _append = require_append();
+    var _append2 = _interopRequireDefault(_append);
+    var _checkPrefix5 = require_checkPrefix();
+    var _checkPrefix6 = _interopRequireDefault(_checkPrefix5);
+    var _recursePrefix = require_recursePrefix();
+    var _recursePrefix2 = _interopRequireDefault(_recursePrefix);
+    var _recurseRandomWord = require_recurseRandomWord();
+    var _recurseRandomWord2 = _interopRequireDefault(_recurseRandomWord);
+    var _utils = require_utils();
+    var _utils2 = _interopRequireDefault(_utils);
+    var _config = require_config();
+    var _config2 = _interopRequireDefault(_config);
+    var _permutations = require_permutations();
+    var _permutations2 = _interopRequireDefault(_permutations);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _toConsumableArray(arr) {
+      if (Array.isArray(arr)) {
+        for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+          arr2[i] = arr[i];
+        }
+        return arr2;
+      } else {
+        return Array.from(arr);
+      }
+    }
+    var PERMS_MIN_LEN = _config2.default.PERMS_MIN_LEN;
+    module2.exports = exports["default"];
+  }
+});
 
 // index.ts
 var unified_latex_util_arguments_exports = {};
@@ -30,7 +504,7 @@ __export(unified_latex_util_arguments_exports, {
 });
 module.exports = __toCommonJS(unified_latex_util_arguments_exports);
 
-// ../unified-latex-util-argspec/dist/index.js
+// ../unified-latex-util-print-raw/dist/index.js
 var linebreak = Symbol("linebreak");
 var ESCAPE = "\\";
 function _printRaw(node) {
@@ -117,26 +591,28 @@ function printRaw(node, options) {
   }
   return printedTokens.map((x) => x === linebreak ? "\n" : x).join("");
 }
+
+// ../unified-latex-util-match/dist/index.js
 function createMacroMatcher(macros) {
   const macrosHash = Array.isArray(macros) ? macros.length > 0 ? typeof macros[0] === "string" ? Object.fromEntries(
-    macros.map((macro22) => {
-      if (typeof macro22 !== "string") {
+    macros.map((macro2) => {
+      if (typeof macro2 !== "string") {
         throw new Error("Wrong branch of map function");
       }
-      return [macro22, {}];
+      return [macro2, {}];
     })
   ) : Object.fromEntries(
-    macros.map((macro22) => {
-      if (typeof macro22 === "string") {
+    macros.map((macro2) => {
+      if (typeof macro2 === "string") {
         throw new Error("Wrong branch of map function");
       }
-      if (macro22.escapeToken != null) {
+      if (macro2.escapeToken != null) {
         return [
-          macro22.content,
-          { escapeToken: macro22.escapeToken }
+          macro2.content,
+          { escapeToken: macro2.escapeToken }
         ];
       }
-      return [macro22.content, {}];
+      return [macro2.content, {}];
     })
   ) : {} : macros;
   return function matchAgainstMacros(node) {
@@ -268,6 +744,8 @@ var {
   string,
   whitespace
 } = match;
+
+// ../unified-latex-util-pegjs/dist/index.js
 var latex_default = (
   // Generated by Peggy 2.0.1.
   //
@@ -694,9 +1172,9 @@ var latex_default = (
       var peg$f53 = function(p) {
         return createNode("string", { content: p });
       };
-      var peg$f54 = function(leading_sp, comment22) {
+      var peg$f54 = function(leading_sp, comment2) {
         return createNode("comment", {
-          ...comment22,
+          ...comment2,
           sameline: false,
           leadingWhitespace: leading_sp.length > 0
         });
@@ -12413,11 +12891,11 @@ var systeme_environment_default = (
       var peg$f4 = function(op, a) {
         return { type: "item", op, variable: null, content: a };
       };
-      var peg$f5 = function(line, sep, comment22) {
-        return { ...line, sep: [].concat(sep), trailingComment: comment22 };
+      var peg$f5 = function(line, sep, comment2) {
+        return { ...line, sep: [].concat(sep), trailingComment: comment2 };
       };
-      var peg$f6 = function(line, comment22) {
-        return { ...line, trailingComment: comment22 };
+      var peg$f6 = function(line, comment2) {
+        return { ...line, trailingComment: comment2 };
       };
       var peg$f7 = function(eq, ann) {
         return {
@@ -14588,8 +15066,8 @@ var tikz_default = (
       var peg$f1 = function(ops) {
         return { type: "path_spec", content: ops };
       };
-      var peg$f2 = function(c1, op, comment22) {
-        return { op, comment: comment22 };
+      var peg$f2 = function(c1, op, comment2) {
+        return { op, comment: comment2 };
       };
       var peg$f3 = function(c1, ops, c2, body) {
         const comments = [c1, ...ops.map((x) => x.comment), c2].filter(
@@ -16474,6 +16952,8 @@ var tikz_default = (
   }()
 );
 var ArgSpecPegParser = xparse_argspec_default;
+
+// ../unified-latex-util-argspec/dist/index.js
 var parseCache = {};
 function parse(str = "") {
   parseCache[str] = parseCache[str] || ArgSpecPegParser.parse(str);
@@ -16537,1037 +17017,8 @@ function s(value) {
   return value;
 }
 
-// ../unified-latex-util-match/dist/index.js
-var linebreak2 = Symbol("linebreak");
-var ESCAPE2 = "\\";
-function _printRaw2(node) {
-  if (typeof node === "string") {
-    return [node];
-  }
-  if (Array.isArray(node)) {
-    return [].concat(
-      ...node.map((n) => _printRaw2(n))
-    );
-  }
-  let argsString, escape;
-  switch (node.type) {
-    case "root":
-      return _printRaw2(node.content);
-    case "argument":
-      return [node.openMark, ..._printRaw2(node.content), node.closeMark];
-    case "comment":
-      var suffix = node.suffixParbreak ? "" : linebreak2;
-      var leadingWhitespace = "";
-      if (node.sameline && node.leadingWhitespace) {
-        leadingWhitespace = " ";
-      }
-      if (node.sameline) {
-        return [
-          leadingWhitespace,
-          "%",
-          ..._printRaw2(node.content),
-          suffix
-        ];
-      }
-      return [linebreak2, "%", ..._printRaw2(node.content), suffix];
-    case "environment":
-    case "mathenv":
-    case "verbatim":
-      var env = _printRaw2(node.env);
-      var envStart = [ESCAPE2 + "begin{", ...env, "}"];
-      var envEnd = [ESCAPE2 + "end{", ...env, "}"];
-      argsString = node.args == null ? [] : _printRaw2(node.args);
-      return [
-        ...envStart,
-        ...argsString,
-        ..._printRaw2(node.content),
-        ...envEnd
-      ];
-    case "displaymath":
-      return [ESCAPE2 + "[", ..._printRaw2(node.content), ESCAPE2 + "]"];
-    case "group":
-      return ["{", ..._printRaw2(node.content), "}"];
-    case "inlinemath":
-      return ["$", ..._printRaw2(node.content), "$"];
-    case "macro":
-      argsString = node.args == null ? [] : _printRaw2(node.args);
-      escape = node.escapeToken == null ? ESCAPE2 : node.escapeToken;
-      return [escape, ..._printRaw2(node.content), ...argsString];
-    case "parbreak":
-      return [linebreak2, linebreak2];
-    case "string":
-      return [node.content];
-    case "verb":
-      return [
-        ESCAPE2,
-        node.env,
-        node.escape,
-        ..._printRaw2(node.content),
-        node.escape
-      ];
-    case "whitespace":
-      return [" "];
-    default:
-      console.warn(
-        "Cannot find render for node ",
-        node,
-        `(of type ${typeof node})`
-      );
-      return ["" + node];
-  }
-}
-function printRaw2(node, options) {
-  const asArray = options != null ? options.asArray : false;
-  const printedTokens = _printRaw2(node);
-  if (asArray) {
-    return printedTokens;
-  }
-  return printedTokens.map((x) => x === linebreak2 ? "\n" : x).join("");
-}
-function createMacroMatcher2(macros) {
-  const macrosHash = Array.isArray(macros) ? macros.length > 0 ? typeof macros[0] === "string" ? Object.fromEntries(
-    macros.map((macro22) => {
-      if (typeof macro22 !== "string") {
-        throw new Error("Wrong branch of map function");
-      }
-      return [macro22, {}];
-    })
-  ) : Object.fromEntries(
-    macros.map((macro22) => {
-      if (typeof macro22 === "string") {
-        throw new Error("Wrong branch of map function");
-      }
-      if (macro22.escapeToken != null) {
-        return [
-          macro22.content,
-          { escapeToken: macro22.escapeToken }
-        ];
-      }
-      return [macro22.content, {}];
-    })
-  ) : {} : macros;
-  return function matchAgainstMacros(node) {
-    if (node == null || node.type !== "macro") {
-      return false;
-    }
-    const spec = macrosHash[node.content];
-    if (!spec) {
-      return false;
-    }
-    if (typeof spec === "object" && "escapeToken" in spec) {
-      return spec.escapeToken == null || spec.escapeToken === node.escapeToken;
-    }
-    return true;
-  };
-}
-function createEnvironmentMatcher2(macros) {
-  const environmentsHash = Array.isArray(macros) ? Object.fromEntries(
-    macros.map((str) => {
-      return [str, {}];
-    })
-  ) : macros;
-  return function matchAgainstEnvironments(node) {
-    if (!match2.anyEnvironment(node)) {
-      return false;
-    }
-    const envName = printRaw2(node.env);
-    const spec = environmentsHash[envName];
-    if (!spec) {
-      return false;
-    }
-    return true;
-  };
-}
-var match2 = {
-  macro(node, macroName) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "macro" && (macroName == null || node.content === macroName);
-  },
-  anyMacro(node) {
-    return match2.macro(node);
-  },
-  environment(node, envName) {
-    if (node == null) {
-      return false;
-    }
-    return (node.type === "environment" || node.type === "mathenv") && (envName == null || printRaw2(node.env) === envName);
-  },
-  anyEnvironment(node) {
-    return match2.environment(node);
-  },
-  comment(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "comment";
-  },
-  parbreak(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "parbreak";
-  },
-  whitespace(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "whitespace";
-  },
-  /**
-   * Matches whitespace or a comment with leading whitespace.
-   */
-  whitespaceLike(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "whitespace" || node.type === "whitespace" && node.leadingWhitespace === true;
-  },
-  string(node, value) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "string" && (value == null || node.content === value);
-  },
-  anyString(node) {
-    return match2.string(node);
-  },
-  group(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "group";
-  },
-  argument(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "argument";
-  },
-  blankArgument(node) {
-    if (!match2.argument(node)) {
-      return false;
-    }
-    return node.openMark === "" && node.closeMark === "" && node.content.length === 0;
-  },
-  math(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "displaymath" || node.type === "inlinemath";
-  },
-  createMacroMatcher: createMacroMatcher2,
-  createEnvironmentMatcher: createEnvironmentMatcher2
-};
-var {
-  anyEnvironment: anyEnvironment2,
-  anyMacro: anyMacro2,
-  anyString: anyString2,
-  argument: argument2,
-  blankArgument: blankArgument2,
-  comment: comment2,
-  environment: environment2,
-  group: group2,
-  macro: macro2,
-  math: math2,
-  parbreak: parbreak2,
-  string: string2,
-  whitespace: whitespace2
-} = match2;
-
 // ../unified-latex-util-scan/dist/index.js
-var __create = Object.create;
-var __defProp2 = Object.defineProperty;
-var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames2 = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames2(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
-var __copyProps2 = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames2(from))
-      if (!__hasOwnProp2.call(to, key) && key !== except)
-        __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps2(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-var require_config = __commonJS({
-  "../../node_modules/trie-prefix-tree/dist/config.js"(exports, module2) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-      value: true
-    });
-    exports.default = {
-      END_WORD: "$",
-      END_WORD_REPLACER: "9a219a89-91cd-42e2-abd5-eb113af08ca8",
-      PERMS_MIN_LEN: 2
-    };
-    module2.exports = exports["default"];
-  }
-});
-var require_append = __commonJS({
-  "../../node_modules/trie-prefix-tree/dist/append.js"(exports, module2) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-      value: true
-    });
-    exports.default = append;
-    var _config = require_config();
-    var _config2 = _interopRequireDefault(_config);
-    function _interopRequireDefault(obj) {
-      return obj && obj.__esModule ? obj : { default: obj };
-    }
-    function append(trie, letter, index, array) {
-      var isEndWordLetter = letter === _config2.default.END_WORD;
-      var isLastLetter = index === array.length - 1;
-      if (isEndWordLetter && !isLastLetter) {
-        trie[_config2.default.END_WORD] = 1;
-        trie[_config2.default.END_WORD_REPLACER] = {};
-        trie = trie[_config2.default.END_WORD_REPLACER];
-      } else {
-        trie[letter] = trie[letter] || {};
-        trie = trie[letter];
-      }
-      if (isLastLetter) {
-        trie[_config2.default.END_WORD] = 1;
-      }
-      return trie;
-    }
-    module2.exports = exports["default"];
-  }
-});
-var require_create = __commonJS({
-  "../../node_modules/trie-prefix-tree/dist/create.js"(exports, module2) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-      value: true
-    });
-    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
-      return typeof obj;
-    } : function(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-    exports.default = create;
-    var _append = require_append();
-    var _append2 = _interopRequireDefault(_append);
-    function _interopRequireDefault(obj) {
-      return obj && obj.__esModule ? obj : { default: obj };
-    }
-    function create(input) {
-      if (!Array.isArray(input)) {
-        throw "Expected parameter Array, received " + (typeof input === "undefined" ? "undefined" : _typeof(input));
-      }
-      var trie = input.reduce(function(accumulator, item) {
-        item.toLowerCase().split("").reduce(_append2.default, accumulator);
-        return accumulator;
-      }, {});
-      return trie;
-    }
-    module2.exports = exports["default"];
-  }
-});
-var require_utils = __commonJS({
-  "../../node_modules/trie-prefix-tree/dist/utils.js"(exports, module2) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-      value: true
-    });
-    exports.default = {
-      objectCopy: function objectCopy(obj) {
-        if (typeof obj === "undefined") {
-          return {};
-        }
-        return JSON.parse(JSON.stringify(obj));
-      },
-      stringify: function stringify(obj) {
-        var spacer = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 2;
-        if (typeof obj === "undefined") {
-          return "";
-        }
-        return JSON.stringify(obj, null, spacer);
-      }
-    };
-    module2.exports = exports["default"];
-  }
-});
-var require_checkPrefix = __commonJS({
-  "../../node_modules/trie-prefix-tree/dist/checkPrefix.js"(exports, module2) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-      value: true
-    });
-    exports.default = checkPrefix;
-    var _utils = require_utils();
-    var _utils2 = _interopRequireDefault(_utils);
-    function _interopRequireDefault(obj) {
-      return obj && obj.__esModule ? obj : { default: obj };
-    }
-    function checkPrefix(prefixNode, prefix) {
-      var input = prefix.toLowerCase().split("");
-      var prefixFound = input.every(function(letter, index) {
-        if (!prefixNode[letter]) {
-          return false;
-        }
-        return prefixNode = prefixNode[letter];
-      });
-      return {
-        prefixFound,
-        prefixNode
-      };
-    }
-    module2.exports = exports["default"];
-  }
-});
-var require_recursePrefix = __commonJS({
-  "../../node_modules/trie-prefix-tree/dist/recursePrefix.js"(exports, module2) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-      value: true
-    });
-    exports.default = recursePrefix;
-    var _config = require_config();
-    var _config2 = _interopRequireDefault(_config);
-    function _interopRequireDefault(obj) {
-      return obj && obj.__esModule ? obj : { default: obj };
-    }
-    var pushInOrder = function pushInOrder2(word, prefixes) {
-      var i = 0;
-      while (i < prefixes.length) {
-        if (word < prefixes[i]) {
-          break;
-        }
-        i += 1;
-      }
-      prefixes.splice(i, 0, word);
-      return prefixes;
-    };
-    function recursePrefix(node, prefix, sorted) {
-      var prefixes = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : [];
-      var word = prefix;
-      for (var branch in node) {
-        var currentLetter = branch;
-        if (branch === _config2.default.END_WORD && typeof node[branch] === "number") {
-          if (sorted) {
-            pushInOrder(word, prefixes);
-          } else {
-            prefixes.push(word);
-          }
-          word = "";
-        } else if (branch === _config2.default.END_WORD_REPLACER) {
-          currentLetter = _config2.default.END_WORD;
-        }
-        recursePrefix(node[branch], prefix + currentLetter, sorted, prefixes);
-      }
-      return prefixes;
-    }
-    module2.exports = exports["default"];
-  }
-});
-var require_recurseRandomWord = __commonJS({
-  "../../node_modules/trie-prefix-tree/dist/recurseRandomWord.js"(exports, module2) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-      value: true
-    });
-    exports.default = recurseRandomWord;
-    var _config = require_config();
-    var _config2 = _interopRequireDefault(_config);
-    function _interopRequireDefault(obj) {
-      return obj && obj.__esModule ? obj : { default: obj };
-    }
-    function recurseRandomWord(node, prefix) {
-      var word = prefix;
-      var branches = Object.keys(node);
-      var branch = branches[Math.floor(Math.random() * branches.length)];
-      if (branch === _config2.default.END_WORD) {
-        return word;
-      }
-      return recurseRandomWord(node[branch], prefix + branch);
-    }
-    module2.exports = exports["default"];
-  }
-});
-var require_permutations = __commonJS({
-  "../../node_modules/trie-prefix-tree/dist/permutations.js"(exports, module2) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-      value: true
-    });
-    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
-      return typeof obj;
-    } : function(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-    exports.default = permutations;
-    var _config = require_config();
-    var _config2 = _interopRequireDefault(_config);
-    function _interopRequireDefault(obj) {
-      return obj && obj.__esModule ? obj : { default: obj };
-    }
-    function permutations(letters, trie) {
-      var opts = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {
-        type: "anagram"
-      };
-      if (typeof letters !== "string") {
-        throw "Permutations expects string letters, received " + (typeof letters === "undefined" ? "undefined" : _typeof(letters));
-      }
-      var words = [];
-      var permute = function permute2(word, node) {
-        var prefix = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : "";
-        var wordIsEmpty = word.length === 0;
-        var wordFound = words.indexOf(prefix) !== -1;
-        var endWordFound = node[_config2.default.END_WORD] === 1;
-        if (wordIsEmpty && endWordFound && !wordFound) {
-          words.push(prefix);
-        }
-        for (var i = 0, len = word.length; i < len; i++) {
-          var letter = word[i];
-          if (opts.type === "sub-anagram") {
-            if (endWordFound && !(words.indexOf(prefix) !== -1)) {
-              words.push(prefix);
-            }
-          }
-          if (node[letter]) {
-            var remaining = word.substring(0, i) + word.substring(i + 1, len);
-            permute2(remaining, node[letter], prefix + letter, words);
-          }
-        }
-        return words.sort();
-      };
-      return permute(letters, trie);
-    }
-    module2.exports = exports["default"];
-  }
-});
-var require_dist = __commonJS({
-  "../../node_modules/trie-prefix-tree/dist/index.js"(exports, module2) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-      value: true
-    });
-    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
-      return typeof obj;
-    } : function(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-    exports.default = function(input) {
-      if (!Array.isArray(input)) {
-        throw "Expected parameter Array, received " + (typeof input === "undefined" ? "undefined" : _typeof(input));
-      }
-      var trie = (0, _create2.default)([].concat(_toConsumableArray(input)));
-      return {
-        /**
-         * Get the generated raw trie object
-        */
-        tree: function tree() {
-          return trie;
-        },
-        /**
-         * Get a string representation of the trie
-        */
-        dump: function dump() {
-          var spacer = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0;
-          return _utils2.default.stringify(trie, spacer);
-        },
-        /**
-         * Add a new word to the trie
-         */
-        addWord: function addWord(word) {
-          if (typeof word !== "string" || word === "") {
-            throw "Expected parameter string, received " + (typeof word === "undefined" ? "undefined" : _typeof(word));
-          }
-          var reducer = function reducer2() {
-            return _append2.default.apply(void 0, arguments);
-          };
-          var input2 = word.toLowerCase().split("");
-          input2.reduce(reducer, trie);
-          return this;
-        },
-        /**
-         * Remove an existing word from the trie
-         */
-        removeWord: function removeWord(word) {
-          if (typeof word !== "string" || word === "") {
-            throw "Expected parameter string, received " + (typeof word === "undefined" ? "undefined" : _typeof(word));
-          }
-          var _checkPrefix = (0, _checkPrefix6.default)(trie, word), prefixFound = _checkPrefix.prefixFound, prefixNode = _checkPrefix.prefixNode;
-          if (prefixFound) {
-            delete prefixNode[_config2.default.END_WORD];
-          }
-          return this;
-        },
-        /**
-         * Check a prefix is valid
-         * @returns Boolean
-        */
-        isPrefix: function isPrefix(prefix) {
-          if (typeof prefix !== "string") {
-            throw "Expected string prefix, received " + (typeof prefix === "undefined" ? "undefined" : _typeof(prefix));
-          }
-          var _checkPrefix2 = (0, _checkPrefix6.default)(trie, prefix), prefixFound = _checkPrefix2.prefixFound;
-          return prefixFound;
-        },
-        /**
-        * Get a list of all words in the trie with the given prefix
-        * @returns Array
-        */
-        getPrefix: function getPrefix(strPrefix) {
-          var sorted = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
-          if (typeof strPrefix !== "string") {
-            throw "Expected string prefix, received " + (typeof strPrefix === "undefined" ? "undefined" : _typeof(strPrefix));
-          }
-          if (typeof sorted !== "boolean") {
-            throw "Expected sort parameter as boolean, received " + (typeof sorted === "undefined" ? "undefined" : _typeof(sorted));
-          }
-          if (!this.isPrefix(strPrefix)) {
-            return [];
-          }
-          var prefixNode = strPrefix.length ? (0, _checkPrefix6.default)(trie, strPrefix).prefixNode : trie;
-          return (0, _recursePrefix2.default)(prefixNode, strPrefix, sorted);
-        },
-        /**
-        * Get a random word in the trie with the given prefix
-        * @returns Array
-        */
-        getRandomWordWithPrefix: function getRandomWordWithPrefix(strPrefix) {
-          if (typeof strPrefix !== "string") {
-            throw "Expected string prefix, received " + (typeof strPrefix === "undefined" ? "undefined" : _typeof(strPrefix));
-          }
-          if (!this.isPrefix(strPrefix)) {
-            return "";
-          }
-          var _checkPrefix3 = (0, _checkPrefix6.default)(trie, strPrefix), prefixNode = _checkPrefix3.prefixNode;
-          return (0, _recurseRandomWord2.default)(prefixNode, strPrefix);
-        },
-        /**
-        * Count the number of words with the given prefixSearch
-        * @returns Number
-        */
-        countPrefix: function countPrefix(strPrefix) {
-          var prefixes = this.getPrefix(strPrefix);
-          return prefixes.length;
-        },
-        /**
-        * Get all words in the trie
-        * @returns Array
-        */
-        getWords: function getWords() {
-          var sorted = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : true;
-          return this.getPrefix("", sorted);
-        },
-        /**
-        * Check the existence of a word in the trie
-        * @returns Boolean
-        */
-        hasWord: function hasWord(word) {
-          if (typeof word !== "string") {
-            throw "Expected string word, received " + (typeof word === "undefined" ? "undefined" : _typeof(word));
-          }
-          var _checkPrefix4 = (0, _checkPrefix6.default)(trie, word), prefixFound = _checkPrefix4.prefixFound, prefixNode = _checkPrefix4.prefixNode;
-          if (prefixFound) {
-            return prefixNode[_config2.default.END_WORD] === 1;
-          }
-          return false;
-        },
-        /**
-        * Get a list of valid anagrams that can be made from the given letters
-        * @returns Array
-        */
-        getAnagrams: function getAnagrams(letters) {
-          if (typeof letters !== "string") {
-            throw "Anagrams expected string letters, received " + (typeof letters === "undefined" ? "undefined" : _typeof(letters));
-          }
-          if (letters.length < PERMS_MIN_LEN) {
-            throw "getAnagrams expects at least " + PERMS_MIN_LEN + " letters";
-          }
-          return (0, _permutations2.default)(letters, trie, {
-            type: "anagram"
-          });
-        },
-        /**
-        * Get a list of all sub-anagrams that can be made from the given letters
-        * @returns Array
-        */
-        getSubAnagrams: function getSubAnagrams(letters) {
-          if (typeof letters !== "string") {
-            throw "Expected string letters, received " + (typeof letters === "undefined" ? "undefined" : _typeof(letters));
-          }
-          if (letters.length < PERMS_MIN_LEN) {
-            throw "getSubAnagrams expects at least " + PERMS_MIN_LEN + " letters";
-          }
-          return (0, _permutations2.default)(letters, trie, {
-            type: "sub-anagram"
-          });
-        }
-      };
-    };
-    var _create = require_create();
-    var _create2 = _interopRequireDefault(_create);
-    var _append = require_append();
-    var _append2 = _interopRequireDefault(_append);
-    var _checkPrefix5 = require_checkPrefix();
-    var _checkPrefix6 = _interopRequireDefault(_checkPrefix5);
-    var _recursePrefix = require_recursePrefix();
-    var _recursePrefix2 = _interopRequireDefault(_recursePrefix);
-    var _recurseRandomWord = require_recurseRandomWord();
-    var _recurseRandomWord2 = _interopRequireDefault(_recurseRandomWord);
-    var _utils = require_utils();
-    var _utils2 = _interopRequireDefault(_utils);
-    var _config = require_config();
-    var _config2 = _interopRequireDefault(_config);
-    var _permutations = require_permutations();
-    var _permutations2 = _interopRequireDefault(_permutations);
-    function _interopRequireDefault(obj) {
-      return obj && obj.__esModule ? obj : { default: obj };
-    }
-    function _toConsumableArray(arr) {
-      if (Array.isArray(arr)) {
-        for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
-          arr2[i] = arr[i];
-        }
-        return arr2;
-      } else {
-        return Array.from(arr);
-      }
-    }
-    var PERMS_MIN_LEN = _config2.default.PERMS_MIN_LEN;
-    module2.exports = exports["default"];
-  }
-});
-var linebreak3 = Symbol("linebreak");
-var ESCAPE3 = "\\";
-function _printRaw3(node) {
-  if (typeof node === "string") {
-    return [node];
-  }
-  if (Array.isArray(node)) {
-    return [].concat(
-      ...node.map((n) => _printRaw3(n))
-    );
-  }
-  let argsString, escape;
-  switch (node.type) {
-    case "root":
-      return _printRaw3(node.content);
-    case "argument":
-      return [node.openMark, ..._printRaw3(node.content), node.closeMark];
-    case "comment":
-      var suffix = node.suffixParbreak ? "" : linebreak3;
-      var leadingWhitespace = "";
-      if (node.sameline && node.leadingWhitespace) {
-        leadingWhitespace = " ";
-      }
-      if (node.sameline) {
-        return [
-          leadingWhitespace,
-          "%",
-          ..._printRaw3(node.content),
-          suffix
-        ];
-      }
-      return [linebreak3, "%", ..._printRaw3(node.content), suffix];
-    case "environment":
-    case "mathenv":
-    case "verbatim":
-      var env = _printRaw3(node.env);
-      var envStart = [ESCAPE3 + "begin{", ...env, "}"];
-      var envEnd = [ESCAPE3 + "end{", ...env, "}"];
-      argsString = node.args == null ? [] : _printRaw3(node.args);
-      return [
-        ...envStart,
-        ...argsString,
-        ..._printRaw3(node.content),
-        ...envEnd
-      ];
-    case "displaymath":
-      return [ESCAPE3 + "[", ..._printRaw3(node.content), ESCAPE3 + "]"];
-    case "group":
-      return ["{", ..._printRaw3(node.content), "}"];
-    case "inlinemath":
-      return ["$", ..._printRaw3(node.content), "$"];
-    case "macro":
-      argsString = node.args == null ? [] : _printRaw3(node.args);
-      escape = node.escapeToken == null ? ESCAPE3 : node.escapeToken;
-      return [escape, ..._printRaw3(node.content), ...argsString];
-    case "parbreak":
-      return [linebreak3, linebreak3];
-    case "string":
-      return [node.content];
-    case "verb":
-      return [
-        ESCAPE3,
-        node.env,
-        node.escape,
-        ..._printRaw3(node.content),
-        node.escape
-      ];
-    case "whitespace":
-      return [" "];
-    default:
-      console.warn(
-        "Cannot find render for node ",
-        node,
-        `(of type ${typeof node})`
-      );
-      return ["" + node];
-  }
-}
-function printRaw3(node, options) {
-  const asArray = options != null ? options.asArray : false;
-  const printedTokens = _printRaw3(node);
-  if (asArray) {
-    return printedTokens;
-  }
-  return printedTokens.map((x) => x === linebreak3 ? "\n" : x).join("");
-}
-function createMacroMatcher3(macros) {
-  const macrosHash = Array.isArray(macros) ? macros.length > 0 ? typeof macros[0] === "string" ? Object.fromEntries(
-    macros.map((macro22) => {
-      if (typeof macro22 !== "string") {
-        throw new Error("Wrong branch of map function");
-      }
-      return [macro22, {}];
-    })
-  ) : Object.fromEntries(
-    macros.map((macro22) => {
-      if (typeof macro22 === "string") {
-        throw new Error("Wrong branch of map function");
-      }
-      if (macro22.escapeToken != null) {
-        return [
-          macro22.content,
-          { escapeToken: macro22.escapeToken }
-        ];
-      }
-      return [macro22.content, {}];
-    })
-  ) : {} : macros;
-  return function matchAgainstMacros(node) {
-    if (node == null || node.type !== "macro") {
-      return false;
-    }
-    const spec = macrosHash[node.content];
-    if (!spec) {
-      return false;
-    }
-    if (typeof spec === "object" && "escapeToken" in spec) {
-      return spec.escapeToken == null || spec.escapeToken === node.escapeToken;
-    }
-    return true;
-  };
-}
-function createEnvironmentMatcher3(macros) {
-  const environmentsHash = Array.isArray(macros) ? Object.fromEntries(
-    macros.map((str) => {
-      return [str, {}];
-    })
-  ) : macros;
-  return function matchAgainstEnvironments(node) {
-    if (!match3.anyEnvironment(node)) {
-      return false;
-    }
-    const envName = printRaw3(node.env);
-    const spec = environmentsHash[envName];
-    if (!spec) {
-      return false;
-    }
-    return true;
-  };
-}
-var match3 = {
-  macro(node, macroName) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "macro" && (macroName == null || node.content === macroName);
-  },
-  anyMacro(node) {
-    return match3.macro(node);
-  },
-  environment(node, envName) {
-    if (node == null) {
-      return false;
-    }
-    return (node.type === "environment" || node.type === "mathenv") && (envName == null || printRaw3(node.env) === envName);
-  },
-  anyEnvironment(node) {
-    return match3.environment(node);
-  },
-  comment(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "comment";
-  },
-  parbreak(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "parbreak";
-  },
-  whitespace(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "whitespace";
-  },
-  /**
-   * Matches whitespace or a comment with leading whitespace.
-   */
-  whitespaceLike(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "whitespace" || node.type === "whitespace" && node.leadingWhitespace === true;
-  },
-  string(node, value) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "string" && (value == null || node.content === value);
-  },
-  anyString(node) {
-    return match3.string(node);
-  },
-  group(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "group";
-  },
-  argument(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "argument";
-  },
-  blankArgument(node) {
-    if (!match3.argument(node)) {
-      return false;
-    }
-    return node.openMark === "" && node.closeMark === "" && node.content.length === 0;
-  },
-  math(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "displaymath" || node.type === "inlinemath";
-  },
-  createMacroMatcher: createMacroMatcher3,
-  createEnvironmentMatcher: createEnvironmentMatcher3
-};
-var {
-  anyEnvironment: anyEnvironment3,
-  anyMacro: anyMacro3,
-  anyString: anyString3,
-  argument: argument3,
-  blankArgument: blankArgument3,
-  comment: comment3,
-  environment: environment3,
-  group: group3,
-  macro: macro3,
-  math: math3,
-  parbreak: parbreak3,
-  string: string3,
-  whitespace: whitespace3
-} = match3;
-var linebreak22 = Symbol("linebreak");
-var ESCAPE22 = "\\";
-function _printRaw22(node) {
-  if (typeof node === "string") {
-    return [node];
-  }
-  if (Array.isArray(node)) {
-    return [].concat(
-      ...node.map((n) => _printRaw22(n))
-    );
-  }
-  let argsString, escape;
-  switch (node.type) {
-    case "root":
-      return _printRaw22(node.content);
-    case "argument":
-      return [node.openMark, ..._printRaw22(node.content), node.closeMark];
-    case "comment":
-      var suffix = node.suffixParbreak ? "" : linebreak22;
-      var leadingWhitespace = "";
-      if (node.sameline && node.leadingWhitespace) {
-        leadingWhitespace = " ";
-      }
-      if (node.sameline) {
-        return [
-          leadingWhitespace,
-          "%",
-          ..._printRaw22(node.content),
-          suffix
-        ];
-      }
-      return [linebreak22, "%", ..._printRaw22(node.content), suffix];
-    case "environment":
-    case "mathenv":
-    case "verbatim":
-      var env = _printRaw22(node.env);
-      var envStart = [ESCAPE22 + "begin{", ...env, "}"];
-      var envEnd = [ESCAPE22 + "end{", ...env, "}"];
-      argsString = node.args == null ? [] : _printRaw22(node.args);
-      return [
-        ...envStart,
-        ...argsString,
-        ..._printRaw22(node.content),
-        ...envEnd
-      ];
-    case "displaymath":
-      return [ESCAPE22 + "[", ..._printRaw22(node.content), ESCAPE22 + "]"];
-    case "group":
-      return ["{", ..._printRaw22(node.content), "}"];
-    case "inlinemath":
-      return ["$", ..._printRaw22(node.content), "$"];
-    case "macro":
-      argsString = node.args == null ? [] : _printRaw22(node.args);
-      escape = node.escapeToken == null ? ESCAPE22 : node.escapeToken;
-      return [escape, ..._printRaw22(node.content), ...argsString];
-    case "parbreak":
-      return [linebreak22, linebreak22];
-    case "string":
-      return [node.content];
-    case "verb":
-      return [
-        ESCAPE22,
-        node.env,
-        node.escape,
-        ..._printRaw22(node.content),
-        node.escape
-      ];
-    case "whitespace":
-      return [" "];
-    default:
-      console.warn(
-        "Cannot find render for node ",
-        node,
-        `(of type ${typeof node})`
-      );
-      return ["" + node];
-  }
-}
-function printRaw22(node, options) {
-  const asArray = options != null ? options.asArray : false;
-  const printedTokens = _printRaw22(node);
-  if (asArray) {
-    return printedTokens;
-  }
-  return printedTokens.map((x) => x === linebreak22 ? "\n" : x).join("");
-}
+var import_trie_prefix_tree = __toESM(require_dist(), 1);
 function scan(nodes, token, options) {
   const { startIndex, onlySkipWhitespaceAndComments, allowSubstringMatches } = options || {};
   if (typeof token === "string") {
@@ -17594,7 +17045,7 @@ function scan(nodes, token, options) {
           break;
         case "environment":
         case "mathenv":
-          if (printRaw22(node.env) === printRaw22(token.env)) {
+          if (printRaw(node.env) === printRaw(token.env)) {
             return i;
           }
           break;
@@ -17608,14 +17059,12 @@ function scan(nodes, token, options) {
           break;
       }
     }
-    if (onlySkipWhitespaceAndComments && !match3.whitespace(node) && !match3.comment(node)) {
+    if (onlySkipWhitespaceAndComments && !match.whitespace(node) && !match.comment(node)) {
       return null;
     }
   }
   return null;
 }
-var import_trie_prefix_tree = __toESM(require_dist(), 1);
-var export_Trie = import_trie_prefix_tree.default;
 
 // libs/gobble-single-argument.ts
 function gobbleSingleArgument(nodes, argSpec, startPos = 0) {
@@ -17626,12 +17075,12 @@ function gobbleSingleArgument(nodes, argSpec, startPos = 0) {
       )}"`
     );
   }
-  let argument6 = null;
+  let argument2 = null;
   let currPos = startPos;
   const gobbleWhitespace = argSpec.noLeadingWhitespace ? () => {
   } : () => {
     while (currPos < nodes.length) {
-      if (!match2.whitespace(nodes[currPos])) {
+      if (!match.whitespace(nodes[currPos])) {
         break;
       }
       currPos++;
@@ -17644,7 +17093,7 @@ function gobbleSingleArgument(nodes, argSpec, startPos = 0) {
     let openMarkPos = null;
     if (openMark) {
       openMarkPos = nodes.findIndex(
-        (node, i) => i >= currPos && match2.string(node, openMark)
+        (node, i) => i >= currPos && match.string(node, openMark)
       );
       if (openMarkPos < currPos) {
         openMarkPos = null;
@@ -17653,7 +17102,7 @@ function gobbleSingleArgument(nodes, argSpec, startPos = 0) {
     let closeMarkPos = null;
     if (openMarkPos != null) {
       closeMarkPos = nodes.findIndex(
-        (node, i) => i >= openMarkPos + 1 && match2.string(node, closeMark)
+        (node, i) => i >= openMarkPos + 1 && match.string(node, closeMark)
       );
       if (closeMarkPos < openMarkPos + 1) {
         closeMarkPos = null;
@@ -17663,17 +17112,17 @@ function gobbleSingleArgument(nodes, argSpec, startPos = 0) {
   }
   gobbleWhitespace();
   const currNode = nodes[currPos];
-  if (currNode == null || match2.comment(currNode) || match2.parbreak(currNode)) {
-    return { argument: argument6, nodesRemoved: 0 };
+  if (currNode == null || match.comment(currNode) || match.parbreak(currNode)) {
+    return { argument: argument2, nodesRemoved: 0 };
   }
   switch (argSpec.type) {
     case "mandatory":
       if (acceptGroup) {
         let content = [currNode];
-        if (match2.group(currNode)) {
+        if (match.group(currNode)) {
           content = currNode.content;
         }
-        argument6 = arg(content, {
+        argument2 = arg(content, {
           openMark,
           closeMark
         });
@@ -17681,18 +17130,18 @@ function gobbleSingleArgument(nodes, argSpec, startPos = 0) {
         break;
       }
     case "optional":
-      if (acceptGroup && match2.group(currNode)) {
-        argument6 = arg(currNode.content, {
+      if (acceptGroup && match.group(currNode)) {
+        argument2 = arg(currNode.content, {
           openMark,
           closeMark
         });
         currPos++;
         break;
       }
-      if (match2.string(currNode, openMark)) {
+      if (match.string(currNode, openMark)) {
         const [openMarkPos, closeMarkPos] = findBracePositions();
         if (openMarkPos != null && closeMarkPos != null) {
-          argument6 = arg(nodes.slice(openMarkPos + 1, closeMarkPos), {
+          argument2 = arg(nodes.slice(openMarkPos + 1, closeMarkPos), {
             openMark,
             closeMark
           });
@@ -17703,11 +17152,11 @@ function gobbleSingleArgument(nodes, argSpec, startPos = 0) {
       break;
     case "optionalStar":
     case "optionalToken":
-      if (match2.string(
+      if (match.string(
         currNode,
         argSpec.type === "optionalStar" ? "*" : argSpec.token
       )) {
-        argument6 = arg([currNode], { openMark: "", closeMark: "" });
+        argument2 = arg([currNode], { openMark: "", closeMark: "" });
         currPos++;
         break;
       }
@@ -17734,7 +17183,7 @@ function gobbleSingleArgument(nodes, argSpec, startPos = 0) {
       if (matchPos == null) {
         break;
       }
-      argument6 = arg(nodes.slice(startPos, matchPos), {
+      argument2 = arg(nodes.slice(startPos, matchPos), {
         openMark: "",
         closeMark: rawToken
       });
@@ -17749,12 +17198,12 @@ function gobbleSingleArgument(nodes, argSpec, startPos = 0) {
         `Don't know how to find an argument of argspec type "${argSpec.type}"`
       );
   }
-  const nodesRemoved = argument6 ? currPos - startPos : 0;
+  const nodesRemoved = argument2 ? currPos - startPos : 0;
   nodes.splice(startPos, nodesRemoved);
-  return { argument: argument6, nodesRemoved };
+  return { argument: argument2, nodesRemoved };
 }
 function partialStringMatch(node, token) {
-  return match2.anyString(node) && match2.anyString(token) && node.content.length > token.content.length;
+  return match.anyString(node) && match.anyString(token) && node.content.length > token.content.length;
 }
 
 // libs/gobble-arguments.ts
@@ -17768,13 +17217,13 @@ function gobbleArguments(nodes, argSpec, startPos = 0) {
   const args = [];
   let nodesRemoved = 0;
   for (const spec of argSpec) {
-    const { argument: argument6, nodesRemoved: removed } = gobbleSingleArgument(
+    const { argument: argument2, nodesRemoved: removed } = gobbleSingleArgument(
       nodes,
       spec,
       startPos
     );
-    if (argument6) {
-      args.push(argument6);
+    if (argument2) {
+      args.push(argument2);
       nodesRemoved += removed;
     } else {
       args.push(arg([], { openMark: "", closeMark: "" }));
@@ -17783,512 +17232,27 @@ function gobbleArguments(nodes, argSpec, startPos = 0) {
   return { args, nodesRemoved };
 }
 
-// ../unified-latex-util-render-info/dist/index.js
-var linebreak4 = Symbol("linebreak");
-var ESCAPE4 = "\\";
-function _printRaw4(node) {
-  if (typeof node === "string") {
-    return [node];
-  }
-  if (Array.isArray(node)) {
-    return [].concat(
-      ...node.map((n) => _printRaw4(n))
-    );
-  }
-  let argsString, escape;
-  switch (node.type) {
-    case "root":
-      return _printRaw4(node.content);
-    case "argument":
-      return [node.openMark, ..._printRaw4(node.content), node.closeMark];
-    case "comment":
-      var suffix = node.suffixParbreak ? "" : linebreak4;
-      var leadingWhitespace = "";
-      if (node.sameline && node.leadingWhitespace) {
-        leadingWhitespace = " ";
-      }
-      if (node.sameline) {
-        return [
-          leadingWhitespace,
-          "%",
-          ..._printRaw4(node.content),
-          suffix
-        ];
-      }
-      return [linebreak4, "%", ..._printRaw4(node.content), suffix];
-    case "environment":
-    case "mathenv":
-    case "verbatim":
-      var env = _printRaw4(node.env);
-      var envStart = [ESCAPE4 + "begin{", ...env, "}"];
-      var envEnd = [ESCAPE4 + "end{", ...env, "}"];
-      argsString = node.args == null ? [] : _printRaw4(node.args);
-      return [
-        ...envStart,
-        ...argsString,
-        ..._printRaw4(node.content),
-        ...envEnd
-      ];
-    case "displaymath":
-      return [ESCAPE4 + "[", ..._printRaw4(node.content), ESCAPE4 + "]"];
-    case "group":
-      return ["{", ..._printRaw4(node.content), "}"];
-    case "inlinemath":
-      return ["$", ..._printRaw4(node.content), "$"];
-    case "macro":
-      argsString = node.args == null ? [] : _printRaw4(node.args);
-      escape = node.escapeToken == null ? ESCAPE4 : node.escapeToken;
-      return [escape, ..._printRaw4(node.content), ...argsString];
-    case "parbreak":
-      return [linebreak4, linebreak4];
-    case "string":
-      return [node.content];
-    case "verb":
-      return [
-        ESCAPE4,
-        node.env,
-        node.escape,
-        ..._printRaw4(node.content),
-        node.escape
-      ];
-    case "whitespace":
-      return [" "];
-    default:
-      console.warn(
-        "Cannot find render for node ",
-        node,
-        `(of type ${typeof node})`
-      );
-      return ["" + node];
-  }
-}
-function printRaw4(node, options) {
-  const asArray = options != null ? options.asArray : false;
-  const printedTokens = _printRaw4(node);
-  if (asArray) {
-    return printedTokens;
-  }
-  return printedTokens.map((x) => x === linebreak4 ? "\n" : x).join("");
-}
-function createMacroMatcher4(macros) {
-  const macrosHash = Array.isArray(macros) ? macros.length > 0 ? typeof macros[0] === "string" ? Object.fromEntries(
-    macros.map((macro22) => {
-      if (typeof macro22 !== "string") {
-        throw new Error("Wrong branch of map function");
-      }
-      return [macro22, {}];
-    })
-  ) : Object.fromEntries(
-    macros.map((macro22) => {
-      if (typeof macro22 === "string") {
-        throw new Error("Wrong branch of map function");
-      }
-      if (macro22.escapeToken != null) {
-        return [
-          macro22.content,
-          { escapeToken: macro22.escapeToken }
-        ];
-      }
-      return [macro22.content, {}];
-    })
-  ) : {} : macros;
-  return function matchAgainstMacros(node) {
-    if (node == null || node.type !== "macro") {
-      return false;
-    }
-    const spec = macrosHash[node.content];
-    if (!spec) {
-      return false;
-    }
-    if (typeof spec === "object" && "escapeToken" in spec) {
-      return spec.escapeToken == null || spec.escapeToken === node.escapeToken;
-    }
-    return true;
-  };
-}
-function createEnvironmentMatcher4(macros) {
-  const environmentsHash = Array.isArray(macros) ? Object.fromEntries(
-    macros.map((str) => {
-      return [str, {}];
-    })
-  ) : macros;
-  return function matchAgainstEnvironments(node) {
-    if (!match4.anyEnvironment(node)) {
-      return false;
-    }
-    const envName = printRaw4(node.env);
-    const spec = environmentsHash[envName];
-    if (!spec) {
-      return false;
-    }
-    return true;
-  };
-}
-var match4 = {
-  macro(node, macroName) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "macro" && (macroName == null || node.content === macroName);
-  },
-  anyMacro(node) {
-    return match4.macro(node);
-  },
-  environment(node, envName) {
-    if (node == null) {
-      return false;
-    }
-    return (node.type === "environment" || node.type === "mathenv") && (envName == null || printRaw4(node.env) === envName);
-  },
-  anyEnvironment(node) {
-    return match4.environment(node);
-  },
-  comment(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "comment";
-  },
-  parbreak(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "parbreak";
-  },
-  whitespace(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "whitespace";
-  },
-  /**
-   * Matches whitespace or a comment with leading whitespace.
-   */
-  whitespaceLike(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "whitespace" || node.type === "whitespace" && node.leadingWhitespace === true;
-  },
-  string(node, value) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "string" && (value == null || node.content === value);
-  },
-  anyString(node) {
-    return match4.string(node);
-  },
-  group(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "group";
-  },
-  argument(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "argument";
-  },
-  blankArgument(node) {
-    if (!match4.argument(node)) {
-      return false;
-    }
-    return node.openMark === "" && node.closeMark === "" && node.content.length === 0;
-  },
-  math(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "displaymath" || node.type === "inlinemath";
-  },
-  createMacroMatcher: createMacroMatcher4,
-  createEnvironmentMatcher: createEnvironmentMatcher4
-};
-var {
-  anyEnvironment: anyEnvironment4,
-  anyMacro: anyMacro4,
-  anyString: anyString4,
-  argument: argument4,
-  blankArgument: blankArgument4,
-  comment: comment4,
-  environment: environment4,
-  group: group4,
-  macro: macro4,
-  math: math4,
-  parbreak: parbreak4,
-  string: string4,
-  whitespace: whitespace4
-} = match4;
-var CONTINUE = Symbol("continue");
-var SKIP = Symbol("skip");
-var EXIT = Symbol("exit");
-function updateRenderInfo(node, renderInfo) {
-  if (renderInfo != null) {
-    node._renderInfo = { ...node._renderInfo || {}, ...renderInfo };
-  }
-  return node;
-}
-
 // ../unified-latex-util-visit/dist/index.js
-var linebreak5 = Symbol("linebreak");
-var ESCAPE5 = "\\";
-function _printRaw5(node) {
-  if (typeof node === "string") {
-    return [node];
-  }
-  if (Array.isArray(node)) {
-    return [].concat(
-      ...node.map((n) => _printRaw5(n))
-    );
-  }
-  let argsString, escape;
-  switch (node.type) {
-    case "root":
-      return _printRaw5(node.content);
-    case "argument":
-      return [node.openMark, ..._printRaw5(node.content), node.closeMark];
-    case "comment":
-      var suffix = node.suffixParbreak ? "" : linebreak5;
-      var leadingWhitespace = "";
-      if (node.sameline && node.leadingWhitespace) {
-        leadingWhitespace = " ";
-      }
-      if (node.sameline) {
-        return [
-          leadingWhitespace,
-          "%",
-          ..._printRaw5(node.content),
-          suffix
-        ];
-      }
-      return [linebreak5, "%", ..._printRaw5(node.content), suffix];
-    case "environment":
-    case "mathenv":
-    case "verbatim":
-      var env = _printRaw5(node.env);
-      var envStart = [ESCAPE5 + "begin{", ...env, "}"];
-      var envEnd = [ESCAPE5 + "end{", ...env, "}"];
-      argsString = node.args == null ? [] : _printRaw5(node.args);
-      return [
-        ...envStart,
-        ...argsString,
-        ..._printRaw5(node.content),
-        ...envEnd
-      ];
-    case "displaymath":
-      return [ESCAPE5 + "[", ..._printRaw5(node.content), ESCAPE5 + "]"];
-    case "group":
-      return ["{", ..._printRaw5(node.content), "}"];
-    case "inlinemath":
-      return ["$", ..._printRaw5(node.content), "$"];
-    case "macro":
-      argsString = node.args == null ? [] : _printRaw5(node.args);
-      escape = node.escapeToken == null ? ESCAPE5 : node.escapeToken;
-      return [escape, ..._printRaw5(node.content), ...argsString];
-    case "parbreak":
-      return [linebreak5, linebreak5];
-    case "string":
-      return [node.content];
-    case "verb":
-      return [
-        ESCAPE5,
-        node.env,
-        node.escape,
-        ..._printRaw5(node.content),
-        node.escape
-      ];
-    case "whitespace":
-      return [" "];
-    default:
-      console.warn(
-        "Cannot find render for node ",
-        node,
-        `(of type ${typeof node})`
-      );
-      return ["" + node];
-  }
-}
-function printRaw5(node, options) {
-  const asArray = options != null ? options.asArray : false;
-  const printedTokens = _printRaw5(node);
-  if (asArray) {
-    return printedTokens;
-  }
-  return printedTokens.map((x) => x === linebreak5 ? "\n" : x).join("");
-}
-function createMacroMatcher5(macros) {
-  const macrosHash = Array.isArray(macros) ? macros.length > 0 ? typeof macros[0] === "string" ? Object.fromEntries(
-    macros.map((macro22) => {
-      if (typeof macro22 !== "string") {
-        throw new Error("Wrong branch of map function");
-      }
-      return [macro22, {}];
-    })
-  ) : Object.fromEntries(
-    macros.map((macro22) => {
-      if (typeof macro22 === "string") {
-        throw new Error("Wrong branch of map function");
-      }
-      if (macro22.escapeToken != null) {
-        return [
-          macro22.content,
-          { escapeToken: macro22.escapeToken }
-        ];
-      }
-      return [macro22.content, {}];
-    })
-  ) : {} : macros;
-  return function matchAgainstMacros(node) {
-    if (node == null || node.type !== "macro") {
-      return false;
-    }
-    const spec = macrosHash[node.content];
-    if (!spec) {
-      return false;
-    }
-    if (typeof spec === "object" && "escapeToken" in spec) {
-      return spec.escapeToken == null || spec.escapeToken === node.escapeToken;
-    }
-    return true;
-  };
-}
-function createEnvironmentMatcher5(macros) {
-  const environmentsHash = Array.isArray(macros) ? Object.fromEntries(
-    macros.map((str) => {
-      return [str, {}];
-    })
-  ) : macros;
-  return function matchAgainstEnvironments(node) {
-    if (!match5.anyEnvironment(node)) {
-      return false;
-    }
-    const envName = printRaw5(node.env);
-    const spec = environmentsHash[envName];
-    if (!spec) {
-      return false;
-    }
-    return true;
-  };
-}
-var match5 = {
-  macro(node, macroName) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "macro" && (macroName == null || node.content === macroName);
-  },
-  anyMacro(node) {
-    return match5.macro(node);
-  },
-  environment(node, envName) {
-    if (node == null) {
-      return false;
-    }
-    return (node.type === "environment" || node.type === "mathenv") && (envName == null || printRaw5(node.env) === envName);
-  },
-  anyEnvironment(node) {
-    return match5.environment(node);
-  },
-  comment(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "comment";
-  },
-  parbreak(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "parbreak";
-  },
-  whitespace(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "whitespace";
-  },
-  /**
-   * Matches whitespace or a comment with leading whitespace.
-   */
-  whitespaceLike(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "whitespace" || node.type === "whitespace" && node.leadingWhitespace === true;
-  },
-  string(node, value) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "string" && (value == null || node.content === value);
-  },
-  anyString(node) {
-    return match5.string(node);
-  },
-  group(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "group";
-  },
-  argument(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "argument";
-  },
-  blankArgument(node) {
-    if (!match5.argument(node)) {
-      return false;
-    }
-    return node.openMark === "" && node.closeMark === "" && node.content.length === 0;
-  },
-  math(node) {
-    if (node == null) {
-      return false;
-    }
-    return node.type === "displaymath" || node.type === "inlinemath";
-  },
-  createMacroMatcher: createMacroMatcher5,
-  createEnvironmentMatcher: createEnvironmentMatcher5
-};
-var {
-  anyEnvironment: anyEnvironment5,
-  anyMacro: anyMacro5,
-  anyString: anyString5,
-  argument: argument5,
-  blankArgument: blankArgument5,
-  comment: comment5,
-  environment: environment5,
-  group: group5,
-  macro: macro5,
-  math: math5,
-  parbreak: parbreak5,
-  string: string5,
-  whitespace: whitespace5
-} = match5;
 function listMathChildren(node) {
   const NULL_RETURN = { enter: [], leave: [] };
   if (Array.isArray(node)) {
     return NULL_RETURN;
   }
-  if (match5.math(node)) {
+  if (match.math(node)) {
     return { enter: ["content"], leave: [] };
   }
   const renderInfo = node._renderInfo || {};
   if (renderInfo.inMathMode == null) {
     return NULL_RETURN;
   }
-  if (match5.macro(node)) {
+  if (match.macro(node)) {
     if (renderInfo.inMathMode === true) {
       return { enter: ["args"], leave: [] };
     } else if (renderInfo.inMathMode === false) {
       return { enter: [], leave: ["args"] };
     }
   }
-  if (match5.environment(node)) {
+  if (match.environment(node)) {
     if (renderInfo.inMathMode === true) {
       return { enter: ["content"], leave: [] };
     } else {
@@ -18297,9 +17261,9 @@ function listMathChildren(node) {
   }
   return NULL_RETURN;
 }
-var CONTINUE2 = Symbol("continue");
-var SKIP2 = Symbol("skip");
-var EXIT2 = Symbol("exit");
+var CONTINUE = Symbol("continue");
+var SKIP = Symbol("skip");
+var EXIT = Symbol("exit");
 var DEFAULT_CONTEXT = {
   inMathMode: false,
   hasMathModeAncestor: false
@@ -18335,11 +17299,11 @@ function visit(tree, visitor, options) {
         context,
         containingArray
       })
-    ) : [CONTINUE2];
-    if (result[0] === EXIT2) {
+    ) : [CONTINUE];
+    if (result[0] === EXIT) {
       return result;
     }
-    if (result[0] === SKIP2) {
+    if (result[0] === SKIP) {
       return leave && nodePassesTest ? toResult(
         leave(node, {
           key,
@@ -18360,7 +17324,7 @@ function visit(tree, visitor, options) {
           context,
           containingArray: node
         });
-        if (result2[0] === EXIT2) {
+        if (result2[0] === EXIT) {
           return result2;
         }
         if (typeof result2[1] === "number") {
@@ -18403,7 +17367,7 @@ function visit(tree, visitor, options) {
           context: newContext,
           containingArray: void 0
         });
-        if (result2[0] === EXIT2) {
+        if (result2[0] === EXIT) {
           return result2;
         }
       }
@@ -18421,21 +17385,29 @@ function visit(tree, visitor, options) {
 }
 function toResult(value) {
   if (value == null) {
-    return [CONTINUE2];
+    return [CONTINUE];
   }
   if (Array.isArray(value)) {
     return value;
   }
   if (typeof value === "number") {
-    return [CONTINUE2, value];
+    return [CONTINUE, value];
   }
   return [value];
+}
+
+// ../unified-latex-util-render-info/dist/index.js
+function updateRenderInfo(node, renderInfo) {
+  if (renderInfo != null) {
+    node._renderInfo = { ...node._renderInfo || {}, ...renderInfo };
+  }
+  return node;
 }
 
 // libs/attach-arguments.ts
 function attachMacroArgsInArray(nodes, macros) {
   let currIndex;
-  const isRelevantMacro = match2.createMacroMatcher(macros);
+  const isRelevantMacro = match.createMacroMatcher(macros);
   function gobbleUntilMacro() {
     while (currIndex >= 0 && !isRelevantMacro(nodes[currIndex])) {
       currIndex--;
@@ -18448,22 +17420,22 @@ function attachMacroArgsInArray(nodes, macros) {
       return;
     }
     const macroIndex = currIndex;
-    const macro6 = nodes[macroIndex];
-    const macroName = macro6.content;
+    const macro2 = nodes[macroIndex];
+    const macroName = macro2.content;
     const macroInfo = macros[macroName];
-    updateRenderInfo(macro6, macroInfo.renderInfo);
+    updateRenderInfo(macro2, macroInfo.renderInfo);
     const signatureOrParser = macroInfo.argumentParser || macroInfo.signature;
     if (signatureOrParser == null) {
       currIndex--;
       continue;
     }
-    if (macro6.args != null) {
+    if (macro2.args != null) {
       currIndex = macroIndex - 1;
       continue;
     }
     currIndex++;
     const { args } = gobbleArguments(nodes, signatureOrParser, currIndex);
-    macro6.args = args;
+    macro2.args = args;
     currIndex = macroIndex - 1;
   }
 }
