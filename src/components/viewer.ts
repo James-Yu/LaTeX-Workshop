@@ -23,7 +23,7 @@ export class Viewer {
     constructor() {
         lw.cacher.pdf.onChange(pdfPath => {
             if (lw.builder.isOutputPDF(pdfPath)) {
-                this.refreshExistingViewer(undefined, pdfPath)
+                this.refreshExistingViewer(pdfPath)
             }
         })
         lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
@@ -57,14 +57,14 @@ export class Viewer {
     }
 
     /**
-     * Refreshes PDF viewers of `sourceFile`.
+     * Refreshes PDF viewers of `pdfFile`.
      *
-     * @param sourceFile The path of a LaTeX file. If `sourceFile` is `undefined`,
+     * @param pdfFile The path of a PDF file. If `pdfFile` is `undefined`,
      * refreshes all the PDF viewers.
      */
-    refreshExistingViewer(sourceFile?: string, pdfFile?: string): void {
-        logger.log(`Call refreshExistingViewer: ${JSON.stringify(sourceFile ?? pdfFile)} .`)
-        const pdfUri = pdfFile ? vscode.Uri.file(pdfFile) : (sourceFile ? this.tex2pdf(sourceFile) : undefined)
+    refreshExistingViewer(pdfFile?: string): void {
+        logger.log(`Call refreshExistingViewer: ${JSON.stringify(pdfFile)} .`)
+        const pdfUri = pdfFile ? vscode.Uri.file(pdfFile) : undefined
         if (pdfUri === undefined) {
             viewerManager.clientMap.forEach(clientSet => {
                 clientSet.forEach(client => {
@@ -84,8 +84,8 @@ export class Viewer {
         })
     }
 
-    private async checkViewer(sourceFile: string): Promise<string | undefined> {
-        const pdfUri = this.tex2pdf(sourceFile)
+    private async checkViewer(pdfFile: string): Promise<string | undefined> {
+        const pdfUri = vscode.Uri.file(pdfFile)
         if (!await lw.lwfs.exists(pdfUri)) {
             logger.log(`Cannot find PDF file ${pdfUri}`)
             logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfUri}`, 'warning')
@@ -95,16 +95,16 @@ export class Viewer {
     }
 
     /**
-     * Opens the PDF file of `sourceFile` in the browser.
+     * Opens the PDF file in the browser.
      *
-     * @param sourceFile The path of a LaTeX file.
+     * @param pdfFile The path of a PDF file.
      */
-    async openBrowser(sourceFile: string): Promise<void> {
-        const url = await this.checkViewer(sourceFile)
+    async openBrowser(pdfFile: string): Promise<void> {
+        const url = await this.checkViewer(pdfFile)
         if (!url) {
             return
         }
-        const pdfFileUri = this.tex2pdf(sourceFile)
+        const pdfFileUri = vscode.Uri.file(pdfFile)
         viewerManager.createClientSet(pdfFileUri)
         lw.cacher.pdf.add(pdfFileUri.fsPath)
         try {
@@ -120,24 +120,19 @@ export class Viewer {
         }
     }
 
-    private tex2pdf(sourceFile: string): vscode.Uri {
-        const pdfFilePath = lw.manager.tex2pdf(sourceFile)
-        return vscode.Uri.file(pdfFilePath)
-    }
-
     /**
-     * Opens the PDF file of `sourceFile` in the internal PDF viewer.
+     * Opens the PDF file in the internal PDF viewer.
      *
-     * @param sourceFile The path of a LaTeX file.
+     * @param pdfFile The path of a PDF file.
      * @param tabEditorGroup
      * @param preserveFocus
      */
-    async openTab(sourceFile: string, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
-        const url = await this.checkViewer(sourceFile)
+    async openTab(pdfFile: string, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
+        const url = await this.checkViewer(pdfFile)
         if (!url) {
             return
         }
-        const pdfUri = this.tex2pdf(sourceFile)
+        const pdfUri = vscode.Uri.file(pdfFile)
         return this.openPdfInTab(pdfUri, tabEditorGroup, preserveFocus)
     }
 
@@ -165,12 +160,11 @@ export class Viewer {
     }
 
     /**
-     * Opens the PDF file of `sourceFile` in the external PDF viewer.
+     * Opens the PDF file of in the external PDF viewer.
      *
-     * @param sourceFile The path of a LaTeX file.
+     * @param pdfFile The path of a PDF file.
      */
-    openExternal(sourceFile: string): void {
-        const pdfFile = lw.manager.tex2pdf(sourceFile)
+    openExternal(pdfFile: string): void {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let command = configuration.get('view.pdf.external.viewer.command') as string
         let args = configuration.get('view.pdf.external.viewer.args') as string[]
@@ -197,7 +191,7 @@ export class Viewer {
         }
         logger.log(`Open external viewer for ${pdfFile}`)
         logger.logCommand('Execute the external PDF viewer command', command, args)
-        const proc = cs.spawn(command, args, {cwd: path.dirname(sourceFile), detached: true})
+        const proc = cs.spawn(command, args, {cwd: path.dirname(pdfFile), detached: true})
         let stdout = ''
         proc.stdout.on('data', newStdout => {
             stdout += newStdout
@@ -405,5 +399,4 @@ export class Viewer {
         }
         return Array.from(panelSet).map( e => e.state )
     }
-
 }

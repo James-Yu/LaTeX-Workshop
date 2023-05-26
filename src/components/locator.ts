@@ -6,7 +6,7 @@ import * as lw from '../lw'
 import * as SyncTeX from './locatorlib/synctex'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { isSameRealPath } from '../utils/pathnormalize'
-import type {ClientRequest} from '../../types/latex-workshop-protocol-types'
+import type { ClientRequest } from '../../types/latex-workshop-protocol-types'
 import { getLogger } from './logger'
 
 const logger = getLogger('Locator')

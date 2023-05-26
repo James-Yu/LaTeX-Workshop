@@ -110,11 +110,11 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
     const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
     const viewer = typeof mode === 'string' ? mode : configuration.get<'tab' | 'browser' | 'singleton' | 'external'>('view.pdf.viewer', 'tab')
     if (viewer === 'browser') {
-        return lw.viewer.openBrowser(pickedRootFile)
+        return lw.viewer.openBrowser(lw.manager.tex2pdf(pickedRootFile))
     } else if (viewer === 'tab' || viewer === 'singleton') {
-        return lw.viewer.openTab(pickedRootFile, tabEditorGroup, true)
+        return lw.viewer.openTab(lw.manager.tex2pdf(pickedRootFile), tabEditorGroup, true)
     } else if (viewer === 'external') {
-        lw.viewer.openExternal(pickedRootFile)
+        lw.viewer.openExternal(lw.manager.tex2pdf(pickedRootFile))
         return
     }
     return

@@ -425,7 +425,7 @@ export class Builder {
         if (!step.isExternal && step.isSkipped) {
             return
         }
-        lw.viewer.refreshExistingViewer(step.rootFile)
+        lw.viewer.refreshExistingViewer(lw.manager.tex2pdf(step.rootFile))
         lw.completer.reference.setNumbersFromAuxFile(step.rootFile)
         await lw.cacher.loadFlsFile(step.rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(step.rootFile))
