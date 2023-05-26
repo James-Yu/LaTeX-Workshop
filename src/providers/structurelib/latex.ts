@@ -56,7 +56,7 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
     let ast: Ast.Root | undefined
     if (openEditor?.isDirty) {
         content = openEditor.getText()
-        ast = await parser.unifiedParse(content)
+        ast = parser.unifiedParse(content)
     } else {
         let waited = 0
         while (!lw.cacher.promise(filePath) && !lw.cacher.has(filePath)) {

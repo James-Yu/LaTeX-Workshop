@@ -159,7 +159,7 @@ export class Cacher {
         const ast = await parser.parseLatex(fastparse ? utils.stripText(content) : content)
         const cache = this.get(filePath)
         if (cache) {
-            cache.ast = await parser.unifiedParse(content)
+            cache.ast = parser.unifiedParse(content)
             logger.log(`Parsed LaTeX AST: ${filePath} .`)
         }
         if (ast && cache) {

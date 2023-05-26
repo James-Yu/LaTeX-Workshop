@@ -161,37 +161,42 @@ function latexmkSkipped(log: string): boolean {
 }
 
 
-import type { FrozenProcessor } from 'unified'
 import type * as Ast from '@unified-latex/unified-latex-types'
+// @ts-expect-error This import will originates from 'out/src/' to .cjs in 'src/'
+import * as unifiedLaTeXParse from '../../../src/lib/unified-latex-util-parse.cjs'
+// @ts-expect-error This import will originates from 'out/src/' to .cjs in 'src/'
+import * as unifiedLaTeXArgs from '../../../src/lib/unified-latex-util-arguments.cjs'
 
-// https://stackoverflow.com/questions/70545129/compile-a-package-that-depends-on-esm-only-library-into-a-commonjs-package
-// eslint-disable-next-line no-eval
-const unifiedModule = eval('import(\'unified\')') as Promise<typeof import('unified')>
-// eslint-disable-next-line no-eval
-const unifiedParseModule = eval('import(\'@unified-latex/unified-latex-util-parse\')') as Promise<typeof import('@unified-latex/unified-latex-util-parse')>
-// eslint-disable-next-line no-eval
-const unifiedArgsModule = eval('import(\'@unified-latex/unified-latex-util-arguments\')') as Promise<typeof import('@unified-latex/unified-latex-util-arguments')>
-let unifiedParser: FrozenProcessor | undefined = undefined
-async function unifiedParse(content: string): Promise<Ast.Root> {
-    return (unifiedParser ?? await resetUnifiedParser())?.parse(content) as Ast.Root
+type UnifiedParser = { parse: (content: string) => Ast.Root }
+let unifiedParser: UnifiedParser
+
+function unifiedParse(content: string): Ast.Root {
+    return (unifiedParser ?? resetUnifiedParser()).parse(content)
 }
 
-async function unifiedArgsParse(ast?: Ast.Root): Promise<Ast.Root | undefined> {
+function unifiedArgsParse(ast?: Ast.Root): Ast.Root | undefined {
     if (ast !== undefined) {
-        (await unifiedArgsModule).attachMacroArgs(ast, getMacroDefs())
+        (unifiedLaTeXArgs.attachMacroArgs as (tree: Ast.Ast, macros: Ast.MacroInfoRecord) => void)(ast, getMacroDefs())
     }
     return ast
 }
 
-async function resetUnifiedParser() {
-    const unified = (await unifiedModule).unified
-    const unifiedLatexFromString = (await unifiedParseModule).unifiedLatexFromString
-    unifiedParser = unified()
-        .use(unifiedLatexFromString,
-             { macros: getMacroDefs(),
-               environments: getEnvDefs(),
-               flags: { autodetectExpl3AndAtLetter: true } })
-        .freeze()
+type UnifiedParserOption = {
+    mode?: 'math' | 'regular',
+    macros?: Ast.MacroInfoRecord,
+    environments?: Ast.EnvInfoRecord,
+    flags?: {
+        atLetter?: boolean,
+        expl3?: boolean,
+        autodetectExpl3AndAtLetter?: boolean
+    }
+}
+
+function resetUnifiedParser(): UnifiedParser {
+    unifiedParser = (unifiedLaTeXParse.getParser as (options: UnifiedParserOption) => UnifiedParser)(
+        { macros: getMacroDefs(),
+          environments: getEnvDefs(),
+          flags: { autodetectExpl3AndAtLetter: true } })
     return unifiedParser
 }
 

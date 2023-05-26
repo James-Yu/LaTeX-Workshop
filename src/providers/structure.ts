@@ -56,10 +56,10 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
             }
         })
 
-        vscode.workspace.onDidChangeConfiguration(async (ev: vscode.ConfigurationChangeEvent) => {
+        vscode.workspace.onDidChangeConfiguration((ev: vscode.ConfigurationChangeEvent) => {
             if (ev.affectsConfiguration('latex-workshop.view.outline.sections') ||
                 ev.affectsConfiguration('latex-workshop.view.outline.commands')) {
-                await parser.resetUnifiedParser()
+                parser.resetUnifiedParser()
                 lw.cacher.allPaths.forEach(filePath => parser.unifiedArgsParse(lw.cacher.get(filePath)?.ast))
             }
         })
