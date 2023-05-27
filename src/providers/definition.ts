@@ -66,7 +66,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         }
         const glossary = lw.completer.glossary.getEntry(token)
         if (glossary) {
-            return new vscode.Location(vscode.Uri.file(glossary.file), glossary.position)
+            return new vscode.Location(vscode.Uri.file(glossary.filePath), glossary.position)
         }
         if (vscode.window.activeTextEditor && token.includes('.')) {
             // We skip graphics files

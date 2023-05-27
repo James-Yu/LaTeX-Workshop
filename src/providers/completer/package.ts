@@ -4,6 +4,7 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
 import type { IProvider } from '../completion'
 import { argContentToStr } from '../../utils/parser'
+import { Cache } from '../../components/cacher'
 
 type DataPackagesJsonType = typeof import('../../../data/packagenames.json')
 
@@ -104,11 +105,11 @@ export class Package implements IProvider {
         return packages
     }
 
-    update(content: string, ast?: Ast.Node): {[pkgName: string]: string[]} {
-        if (ast !== undefined) {
-            return this.parseAst(ast)
+    parse(cache: Cache) {
+        if (cache.ast !== undefined) {
+            cache.elements.package = this.parseAst(cache.ast)
         } else {
-            return this.parseContent(content)
+            cache.elements.package = this.parseContent(cache.content)
         }
     }
 

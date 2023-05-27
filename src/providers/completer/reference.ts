@@ -3,10 +3,11 @@ import * as fs from 'fs'
 import * as path from 'path'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
-import { stripEnvironments } from '../../utils/utils'
+import { getLongestBalancedString, stripEnvironments } from '../../utils/utils'
 import { computeFilteringRange } from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../completion'
 import { argContentToStr } from '../../utils/parser'
+import { Cache } from '../../components/cacher'
 
 export interface ReferenceEntry extends ICompletionItem {
     /** The file that defines the ref. */
@@ -150,12 +151,11 @@ export class Reference implements IProvider {
         })
     }
 
-    update(content: string, ast?: Ast.Root): ICompletionItem[] | undefined {
-        const lines = content.split('\n')
-        if (ast !== undefined) {
-            return this.parseAst(ast, lines)
+    parse(cache: Cache) {
+        if (cache.ast !== undefined) {
+            cache.elements.reference = this.parseAst(cache.ast, cache.content.split('\n'))
         } else {
-            return this.parseContent(content)
+            cache.elements.reference = this.parseContent(cache.content)
         }
     }
 
@@ -177,13 +177,16 @@ export class Reference implements IProvider {
             label = argContentToStr(node.args?.[1]?.content || [])
         } else if (node.type === 'environment' && ['frame'].includes(node.env)) {
             label = argContentToStr(node.args?.[1]?.content || [])
-                .split(',')
-                .map(arg => arg.trim())
-                .find(arg => arg.startsWith('label='))
-                ?.slice(6)
-                ?? ''
-            if (label.charAt(0) === '{' && label.charAt(label.length - 1) === '}') {
-                label = label.slice(1, label.length - 1)
+            const index = label.indexOf('label=')
+            if (index >= 0) {
+                label = label.slice(index + 6)
+                if (label.charAt(0) === '{') {
+                    label = getLongestBalancedString(label) ?? ''
+                } else {
+                    label = label.split(',')[0] ?? ''
+                }
+            } else {
+                label = ''
             }
         }
 
@@ -268,5 +271,4 @@ export class Reference implements IProvider {
             }
         }
     }
-
 }

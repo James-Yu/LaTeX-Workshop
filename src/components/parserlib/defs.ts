@@ -16,7 +16,16 @@ const MACROS: MacroInfoRecord = {
     subinputfrom: { signature: 'm m' },
     subincludefrom: { signature: 'm m' },
     // \label{some-label}
-    linelabel: { signature: 'o m'}
+    linelabel: { signature: 'o m'},
+    // \newglossaryentry{vscode}{name=VSCode, description=Editor}
+    newglossaryentry: { signature: 'm m'},
+    provideglossaryentry: { signature: 'm m'},
+    // \newacronym[optional parameters]{lw}{LW}{LaTeX Workshop}
+    longnewglossaryentry: { signature: 'o m m m'},
+    longprovideglossaryentry: { signature: 'o m m m'},
+    newacronym: { signature: 'o m m m'},
+    newabbreviation: { signature: 'o m m m'},
+    newabbr: { signature: 'o m m m'},
 }
 
 const ENVS: EnvInfoRecord = {}

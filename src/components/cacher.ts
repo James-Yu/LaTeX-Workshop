@@ -19,9 +19,13 @@ import { parser } from './parser'
 
 const logger = getLogger('Cacher')
 
-interface Cache {
+export interface Cache {
+    /** The raw file path of this Cache. */
+    filePath: string,
     /** Cached content of file. Dirty if opened in vscode, disk otherwise */
-    content: string | undefined,
+    content: string,
+    /** Cached trimmed content of `content`. */
+    contentTrimmed: string,
     /** Completion items */
     elements: {
         /** \ref{} items */
@@ -125,19 +129,26 @@ export class Cacher {
         }
         logger.log(`Caching ${filePath} .`)
         this.caching++
-        const content = lw.lwfs.readFileSyncGracefully(filePath)
-        this.caches[filePath] = {content, elements: {}, children: [], bibfiles: new Set(), external: {}}
+        const content = lw.lwfs.readFileSyncGracefully(filePath) ?? ''
+        const cache: Cache = {
+            filePath,
+            content,
+            contentTrimmed: utils.stripCommentsAndVerbatim(content),
+            elements: {},
+            children: [],
+            bibfiles: new Set(),
+            external: {}}
+        this.caches[filePath] = cache
         if (content === undefined) {
             logger.log(`Cannot read ${filePath} .`)
             return
         }
-        const contentTrimmed = utils.stripCommentsAndVerbatim(content)
         rootPath = rootPath || lw.manager.rootFile
-        this.updateChildren(filePath, rootPath, contentTrimmed)
+        this.updateChildren(filePath, rootPath, cache.contentTrimmed)
 
         this.promises[filePath] = this.updateAST(filePath, content).then(() => {
-            this.updateElements(filePath, content, contentTrimmed)
-            this.updateBibfiles(filePath, contentTrimmed)
+            this.updateElements(cache, filePath)
+            this.updateBibfiles(filePath, cache.contentTrimmed)
         }).finally(() => {
             logger.log(`Cached ${filePath} .`)
             this.caching--
@@ -230,25 +241,21 @@ export class Cacher {
         }
     }
 
-    private updateElements(filePath: string, content: string, contentTrimmed: string) {
-        lw.completer.citation.update(filePath, content)
-        const cache = this.get(filePath)
-        if (cache) {
-            // Package parsing must be before command and environment.
-            cache.elements.package = lw.completer.package.update(content, cache.ast)
-            cache.elements.reference = lw.completer.reference.update(content, cache.ast)
-        }
+    private updateElements(cache: Cache, filePath: string) {
+        lw.completer.citation.update(filePath, cache.content)
+        // Package parsing must be before command and environment.
+        lw.completer.package.parse(cache)
+        lw.completer.reference.parse(cache)
+        lw.completer.glossary.parse(cache)
         if (cache?.luAst) {
             const nodes = cache.luAst.content
-            const lines = content.split('\n')
-            lw.completer.glossary.update(filePath, nodes)
+            const lines = cache.content.split('\n')
             lw.completer.environment.update(filePath, nodes, lines)
             lw.completer.command.update(filePath, nodes)
         } else {
             logger.log(`Use RegExp to update elements of ${filePath} .`)
-            lw.completer.glossary.update(filePath, undefined, contentTrimmed)
-            lw.completer.environment.update(filePath, undefined, undefined, contentTrimmed)
-            lw.completer.command.update(filePath, undefined, contentTrimmed)
+            lw.completer.environment.update(filePath, undefined, undefined, cache.contentTrimmed)
+            lw.completer.command.update(filePath, undefined, cache.contentTrimmed)
         }
         lw.duplicateLabels.run(filePath)
         logger.log(`Updated elements of ${filePath} .`)

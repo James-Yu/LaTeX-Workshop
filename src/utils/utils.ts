@@ -120,7 +120,7 @@ export function trimMultiLineString(text: string): string {
  *
  * @param s A string to be searched.
  */
-function getLongestBalancedString(s: string, bracket: 'curly' | 'square'='curly'): string | undefined {
+export function getLongestBalancedString(s: string, bracket: 'curly' | 'square'='curly'): string | undefined {
     const bracketStack: ('{' | '[' | '(')[] = []
 
     const opener = bracket === 'curly' ? '{' : '['
