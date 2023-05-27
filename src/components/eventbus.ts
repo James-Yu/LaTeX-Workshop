@@ -54,7 +54,9 @@ export class EventBus {
     fire<T extends keyof EventArgs>(eventName: T, arg: EventArgs[T]): void
     fire(eventName: EventName): void
     fire(eventName: EventName, arg?: any): void {
-        logger.log(eventName + (arg ? `: ${JSON.stringify(arg)}` : ''))
+        if (eventName !== 'DOCUMENT_CHANGED') {
+            logger.log(eventName + (arg ? `: ${JSON.stringify(arg)}` : ''))
+        }
         this.eventEmitter.emit(eventName, arg)
     }
 
