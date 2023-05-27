@@ -1,8 +1,9 @@
 # Change Log
 
-## Pending
+## [9.11.4] - 2023-05-27
 
-### Added
+### Fixed
+- `DOCUMENT_CHANGED` internal event of the extension is not logged.
 - (#3890) Open PDF viewer on forward SyncTeX if not already opened.
 
 ## [9.11.3] - 2023-05-26
