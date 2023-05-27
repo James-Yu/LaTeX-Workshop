@@ -176,7 +176,12 @@ export class Reference implements IProvider {
         if (node.type === 'macro' && labelMacros.includes(node.content)) {
             label = argContentToStr(node.args?.[1]?.content || [])
         } else if (node.type === 'environment' && ['frame'].includes(node.env)) {
-            label = argContentToStr(node.args?.[1]?.content || []).split(',').map(arg => arg.trim()).find(arg => arg.startsWith('label='))?.slice(6) ?? ''
+            label = argContentToStr(node.args?.[1]?.content || [])
+                .split(',')
+                .map(arg => arg.trim())
+                .find(arg => arg.startsWith('label='))
+                ?.slice(6)
+                ?? ''
             if (label.charAt(0) === '{' && label.charAt(label.length - 1) === '}') {
                 label = label.slice(1, label.length - 1)
             }

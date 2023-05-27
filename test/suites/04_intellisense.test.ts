@@ -34,7 +34,6 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.format', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.command', undefined)
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', undefined)
@@ -222,25 +221,15 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('\\overline{}'))
     })
 
-    test.run('reference intellisense and config intellisense.label.keyval', async (fixture: string) => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', true)
+    test.run('reference intellisense', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ])
-        let suggestions = test.suggest(8, 5)
+        const suggestions = test.suggest(8, 5)
         assert.ok(suggestions.labels.includes('sec1'))
         assert.ok(suggestions.labels.includes('frame'))
         assert.ok(!suggestions.labels.includes('trap'))
-
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', false)
-        await test.load(fixture, [
-            {src: 'intellisense/base.tex', dst: 'main.tex'},
-            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
-        ])
-        suggestions = test.suggest(8, 5)
-        assert.ok(suggestions.labels.includes('sec1'))
-        assert.ok(!suggestions.labels.includes('eq1'))
     })
 
     test.run('reference intellisense and config intellisense.label.command', async (fixture: string) => {

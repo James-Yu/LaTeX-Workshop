@@ -234,7 +234,9 @@ export class Cacher {
         lw.completer.citation.update(filePath, content)
         const cache = this.get(filePath)
         if (cache) {
-            cache.elements.reference = lw.completer.reference.update(content, cache?.ast)
+            // Package parsing must be before command and environment.
+            cache.elements.package = lw.completer.package.update(content, cache.ast)
+            cache.elements.reference = lw.completer.reference.update(content, cache.ast)
         }
         if (cache?.luAst) {
             const nodes = cache.luAst.content

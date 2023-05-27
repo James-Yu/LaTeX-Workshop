@@ -1,8 +1,9 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import { latexParser } from 'latex-utensils'
+import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
 import type { IProvider } from '../completion'
+import { argContentToStr } from '../../utils/parser'
 
 type DataPackagesJsonType = typeof import('../../../data/packagenames.json')
 
@@ -103,73 +104,62 @@ export class Package implements IProvider {
         return packages
     }
 
-    /**
-     * Updates the cache for packages used in `file` with `nodes`. If `nodes` is
-     * `undefined`, `content` is parsed with regular expressions, and the result
-     * is used to update the cache.
-     *
-     * @param file The path of a LaTeX file.
-     * @param nodes AST of a LaTeX file.
-     * @param content The content of a LaTeX file.
-     */
-    updateUsepackage(file: string, nodes?: latexParser.Node[], content?: string) {
-        if (nodes !== undefined) {
-            this.updateUsepackageNodes(file, nodes)
-        } else if (content !== undefined) {
-            const pkgReg = /\\usepackage(\[[^[\]{}]*\])?{(.*?)}/gs
-
-            while (true) {
-                const result = pkgReg.exec(content)
-                if (result === null) {
-                    break
-                }
-                const packages = result[2].split(',').map(packageName => packageName.trim())
-                const options = (result[1] || '[]').slice(1,-1).replace(/\s*=\s*/g,'=').split(',').map(option => option.trim())
-                const optionsNoTrue = options.filter(option => option.includes('=true')).map(option => option.replace('=true', ''))
-                packages.forEach(packageName => this.pushUsepackage(file, packageName, [...options, ...optionsNoTrue]))
-            }
+    update(content: string, ast?: Ast.Node): {[pkgName: string]: string[]} {
+        if (ast !== undefined) {
+            return this.parseAst(ast)
+        } else {
+            return this.parseContent(content)
         }
     }
 
-    private updateUsepackageNodes(file: string, nodes: latexParser.Node[]) {
-        nodes.forEach(node => {
-            if ( latexParser.isCommand(node) && (node.name === 'usepackage' || node.name === 'documentclass') ) {
-                let options: string[] = []
-                node.args.forEach(arg => {
-                    if (latexParser.isOptionalArg(arg)) {
-                        options = arg.content.filter(latexParser.isTextString).filter(str => str.content !== ',').map(str => str.content)
-                        const optionsNoTrue = options.filter(option => option.includes('=true')).map(option => option.replace('=true', ''))
-                        options = [...options, ...optionsNoTrue]
-                        return
-                    }
-                    for (const c of arg.content) {
-                        if (!latexParser.isTextString(c)) {
-                            continue
-                        }
-                        c.content.split(',').forEach(packageName => this.pushUsepackage(file, packageName, options, node))
-                    }
-                })
-            } else {
-                if (latexParser.hasContentArray(node)) {
-                    this.updateUsepackageNodes(file, node.content)
-                }
+    private parseAst(node: Ast.Node): {[pkgName: string]: string[]} {
+        const packages = {}
+        if (node.type === 'macro' && ['usepackage', 'documentclass'].includes(node.content)) {
+            const options: string[] = argContentToStr(node.args?.[0]?.content || [])
+                .split(',')
+                .map(arg => arg.trim())
+            const optionsNoTrue = options
+                .filter(option => option.includes('=true'))
+                .map(option => option.replace('=true', ''))
+
+            argContentToStr(node.args?.[1]?.content || [])
+                .split(',')
+                .map(packageName => this.toPackageObj(packageName.trim(), [...options, ...optionsNoTrue], node))
+                .forEach(packageObj => Object.assign(packages, packageObj))
+        } else if ('content' in node && typeof node.content !== 'string') {
+            for (const subNode of node.content) {
+                Object.assign(packages, this.parseAst(subNode))
             }
-        })
+        }
+        return packages
     }
 
-    private pushUsepackage(fileName: string, packageName: string, options: string[], node?: latexParser.Command) {
+    private parseContent(content: string): {[pkgName: string]: string[]} {
+        const packages = {}
+        const pkgReg = /\\usepackage(\[[^[\]{}]*\])?{(.*?)}/gs
+        while (true) {
+            const result = pkgReg.exec(content)
+            if (result === null) {
+                break
+            }
+            const packageNames = result[2].split(',').map(packageName => packageName.trim())
+            const options = (result[1] || '[]').slice(1,-1).replace(/\s*=\s*/g,'=').split(',').map(option => option.trim())
+            const optionsNoTrue = options.filter(option => option.includes('=true')).map(option => option.replace('=true', ''))
+            packageNames
+                .map(packageName => this.toPackageObj(packageName, [...options, ...optionsNoTrue]))
+                .forEach(packageObj => Object.assign(packages, packageObj))
+        }
+        return packages
+    }
+
+    private toPackageObj(packageName: string, options: string[], node?: Ast.Node): {[pkgName: string]: string[]} {
         packageName = packageName.trim()
         if (packageName === '') {
-            return
+            return {}
         }
-        if (node?.name === 'documentclass') {
+        if (node?.type === 'macro' && node.content === 'documentclass') {
             packageName = 'class-' + packageName
         }
-        const cache = lw.cacher.get(fileName)
-        if (cache === undefined) {
-            return
-        }
-        cache.elements.package = cache.elements.package || {}
-        cache.elements.package[packageName] = options
+        return { packageName: options }
     }
 }

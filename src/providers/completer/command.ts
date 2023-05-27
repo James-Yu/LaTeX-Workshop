@@ -203,8 +203,6 @@ export class Command implements IProvider {
      * @param content The content of a LaTeX file.
      */
     update(file: string, nodes?: latexParser.Node[], content?: string) {
-        // First, we must update the package list
-        lw.completer.package.updateUsepackage(file, nodes, content)
         // Remove newcommand cmds, because they will be re-insert in the next step
         this.definedCmds.forEach((entry,cmd) => {
             if (entry.file === file) {
