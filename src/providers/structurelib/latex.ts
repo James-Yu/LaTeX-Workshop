@@ -342,7 +342,7 @@ function addFloatNumber(struct: TeXElement[], counter: {[env: string]: number} =
         if (element.type === TeXElementType.Environment && element.name !== 'macro' && element.name !== 'environment') {
             counter[element.name] = (counter[element.name] ?? 0) + 1
             const parts = element.label.split(':')
-            parts[0] += ` ${counter[element.name].toString()}`
+            parts[0] += ` ${(counter[element.name] ?? 0).toString()}`
             element.label = parts.join(':')
         }
         if (element.children.length > 0) {
@@ -367,7 +367,7 @@ function addSectionNumber(struct: TeXElement[], config: StructureConfig, tag?: s
         }
         const sectionNumber = tag +
             '0.'.repeat(config.secIndex[element.name] - lowest) +
-            counter[config.secIndex[element.name]].toString()
+            (counter[config.secIndex[element.name]] ?? 0).toString()
         element.label = `${element.type === TeXElementType.Section ? sectionNumber : '*'} ${element.label}`
         if (element.children.length > 0) {
             addSectionNumber(element.children, config, sectionNumber + '.', config.secIndex[element.name] + 1)
