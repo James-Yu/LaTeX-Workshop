@@ -356,12 +356,12 @@ export class Viewer {
     async syncTeX(pdfFile: string, record: SyncTeXRecordForward): Promise<void> {
         const pdfFileUri = vscode.Uri.file(pdfFile)
         let clientSet = viewerManager.getClientSet(pdfFileUri)
-        if (clientSet === undefined) {
+        if (clientSet === undefined || clientSet.size === 0) {
             logger.log(`PDF is not opened: ${pdfFile} , try opening.`)
             await this.open(pdfFile)
             clientSet = viewerManager.getClientSet(pdfFileUri)
         }
-        if (clientSet === undefined) {
+        if (clientSet === undefined || clientSet.size === 0) {
             logger.log(`PDF cannot be opened: ${pdfFile} .`)
             return
         }
