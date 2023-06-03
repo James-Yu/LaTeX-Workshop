@@ -1198,16 +1198,32 @@
 					"name": "punctuation.definition.function.latex"
 				},
 				"3": {
-					"name": "punctuation.definition.arguments.begin.latex"
+					"patterns": [
+						{
+							"include": "#optional-arg"
+						}
+					]
 				},
 				"4": {
-					"name": "markup.underline.link.latex"
+					"name": "punctuation.definition.arguments.begin.latex"
 				},
 				"5": {
+					"name": "markup.underline.link.latex"
+				},
+				"6": {
+					"name": "punctuation.definition.arguments.end.latex"
+				},
+				"7": {
+					"name": "punctuation.definition.arguments.begin.latex"
+				},
+				"8": {
+					"name": "entity.name.hyperlink.latex"
+				},
+				"9": {
 					"name": "punctuation.definition.arguments.end.latex"
 				}
 			},
-			"match": "(?:\\s*)((\\\\)(?:url|href))(\\{)([^}]*)(\\})",
+			"match": "(?:\\s*)((\\\\)(?:url|href|hyperref|hyperimage))(\\[[^\\[]*?\\])?(\\{)([^}]*)(\\})(?:\\{[^}]*\\}){2}?(?:(\\{)([^}]*)(\\}))?",
 			"name": "meta.function.link.url.latex"
 		},
 		{
@@ -2046,6 +2062,30 @@
 					"include": "$base"
 				}
 			]
+		},
+		{
+			"name": "string.quoted.double.latex",
+			"match": "(?<!\\\\)(\\`\\`)(?:.*?(?<!\\\\))(\\'\\'|\\\")",
+			"captures": {
+				"1": {
+					"name": "punctuation.definition.string.begin.latex"
+				},
+				"2": {
+					"name": "punctuation.definition.string.end.latex"
+				}
+			}
+		},
+		{
+			"name": "string.quoted.single.latex",
+			"match": "(?<!\\\\)(\\`)(?:.*?(?<!\\\\))(\\')",
+			"captures": {
+				"1": {
+					"name": "punctuation.definition.string.begin.latex"
+				},
+				"2": {
+					"name": "punctuation.definition.string.end.latex"
+				}
+			}
 		},
 		{
 			"begin": "\\$\\$",

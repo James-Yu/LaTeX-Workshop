@@ -20,7 +20,7 @@
 			]
 		},
 		{
-			"begin": "((@)(?i:string))\\s*(\\{)\\s*([a-zA-Z]*)",
+			"begin": "((@)(?i:string))\\s*(\\{)\\s*([a-zA-Z0-9\\!\\$\\&\\*\\+\\-\\.\\/\\:\\;\\<\\>\\?\\[\\]\\^\\_\\`\\|]+)",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.other.string-constant.bibtex"
@@ -49,7 +49,7 @@
 			]
 		},
 		{
-			"begin": "((@)(?i:string))\\s*(\\()\\s*([a-zA-Z]*)",
+			"begin": "((@)(?i:string))\\s*(\\()\\s*([a-zA-Z0-9\\!\\$\\&\\*\\+\\-\\.\\/\\:\\;\\<\\>\\?\\[\\]\\^\\_\\`\\|]+)",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.other.string-constant.bibtex"
@@ -124,13 +124,13 @@
 							"include": "#percentage_comment"
 						},
 						{
-							"include": "#string_var"
+							"include": "#integer"
 						},
 						{
 							"include": "#string_content"
 						},
 						{
-							"include": "#integer"
+							"include": "#string_var"
 						}
 					]
 				}
@@ -183,13 +183,13 @@
 							"include": "#percentage_comment"
 						},
 						{
-							"include": "#string_var"
+							"include": "#integer"
 						},
 						{
 							"include": "#string_content"
 						},
 						{
-							"include": "#integer"
+							"include": "#string_var"
 						}
 					]
 				}
@@ -203,8 +203,12 @@
 	],
 	"repository": {
 		"integer": {
-			"match": "\\d+",
-			"name": "constant.numeric.bibtex"
+			"match": "\\s*(\\d+)\\s*",
+			"captures": {
+				"1": {
+					"name": "constant.numeric.bibtex"
+				}
+			}
 		},
 		"nested_braces": {
 			"begin": "(?<!\\\\)\\{",
@@ -226,7 +230,7 @@
 			]
 		},
 		"string_var": {
-			"match": "(#)?\\s*([a-zA-Z]+)\\s*(#)?",
+			"match": "(#)?\\s*([a-zA-Z0-9\\!\\$\\&\\*\\+\\-\\.\\/\\:\\;\\<\\>\\?\\[\\]\\^\\_\\`\\|]+)\\s*(#)?",
 			"captures": {
 				"1": {
 					"name": "keyword.operator.bibtex"
@@ -334,7 +338,7 @@
 					"end": "(?!\\G)",
 					"patterns": [
 						{
-							"begin": "%",
+							"begin": "(?<!\\\\)%",
 							"beginCaptures": {
 								"0": {
 									"name": "punctuation.definition.comment.bibtex"
