@@ -134,12 +134,12 @@ export class Cacher {
         }
         const contentTrimmed = utils.stripCommentsAndVerbatim(content)
         rootPath = rootPath || lw.manager.rootFile
+        this.updateChildren(filePath, rootPath, contentTrimmed)
 
         this.promises[filePath] = this.updateAST(filePath, content).then(() => {
             this.updateElements(filePath, content, contentTrimmed)
             this.updateBibfiles(filePath, contentTrimmed)
         }).finally(() => {
-            this.updateChildren(filePath, rootPath, contentTrimmed)
             logger.log(`Cached ${filePath} .`)
             this.caching--
             delete this.promises[filePath]
