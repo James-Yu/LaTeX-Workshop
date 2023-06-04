@@ -34,7 +34,9 @@ export async function construct(filePath: string | undefined = undefined, subFil
     const config = refreshLaTeXModelConfig(subFile)
     const structs: FileStructureCache = {}
     await constructFile(filePath, config, structs)
-    let struct = subFile ? insertSubFile(structs) : structs[filePath]
+    // In rare cases, the following struct may be undefined. Typically in tests
+    // where roots are changed rapidly.
+    let struct = subFile ? insertSubFile(structs) : structs[filePath] ?? []
     struct = nestNonSection(struct)
     struct = nestSection(struct, config)
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
