@@ -13,7 +13,7 @@ const logger = getLogger('Parser')
 
 const pool: workerpool.WorkerPool = workerpool.pool(
     path.join(__dirname, './parserlib/syntax.js'),
-    { minWorkers: 1, maxWorkers: 1, workerType: 'process' }
+    { minWorkers: 1, maxWorkers: 100, workerType: 'process' }
 )
 const proxy: workerpool.Promise<Proxy<ISyntaxWorker>> = pool.proxy<ISyntaxWorker>()
 

@@ -16,6 +16,7 @@ import * as PathUtils from './cacherlib/pathutils'
 import { Watcher } from './cacherlib/watcher'
 import { getLogger } from './logger'
 import { parser } from './parser'
+import { performance } from 'perf_hooks'
 
 const logger = getLogger('Cacher')
 
@@ -133,12 +134,12 @@ export class Cacher {
         }
         const contentTrimmed = utils.stripCommentsAndVerbatim(content)
         rootPath = rootPath || lw.manager.rootFile
-        this.updateChildren(filePath, rootPath, contentTrimmed)
 
         this.promises[filePath] = this.updateAST(filePath, content).then(() => {
             this.updateElements(filePath, content, contentTrimmed)
             this.updateBibfiles(filePath, contentTrimmed)
         }).finally(() => {
+            this.updateChildren(filePath, rootPath, contentTrimmed)
             logger.log(`Cached ${filePath} .`)
             this.caching--
             delete this.promises[filePath]
@@ -156,11 +157,17 @@ export class Cacher {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
         logger.log('Parse LaTeX AST ' + (fastparse ? 'with fast-parse: ' : ': ') + filePath + ' .')
-        const ast = await parser.parseLatex(fastparse ? utils.stripText(content) : content)
+
+        let start = performance.now()
+        const strippedText = utils.stripText(content)
+        const ast = await parser.parseLatex(fastparse ? strippedText : content)
+        logger.log(`Parsed LaTeX AST with LU in ${(performance.now() - start).toFixed(2)} ms: ${filePath} .`)
+
         const cache = this.get(filePath)
         if (cache) {
+            start = performance.now()
             cache.ast = parser.unifiedParse(content)
-            logger.log(`Parsed LaTeX AST: ${filePath} .`)
+            logger.log(`Parsed LaTeX AST in ${(performance.now() - start).toFixed(2)} ms: ${filePath} .`)
         }
         if (ast && cache) {
             cache.luAst = ast

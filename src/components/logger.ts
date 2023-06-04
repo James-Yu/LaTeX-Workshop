@@ -51,7 +51,8 @@ function logTagless(message: string) {
     if (!configuration.get('message.log.show')) {
         return
     }
-    const timestamp = new Date().toLocaleTimeString('en-US', { hour12: false })
+    const date = new Date()
+    const timestamp = `${date.toLocaleTimeString('en-US', { hour12: false })}.${date.getMilliseconds()}`
     vscode.workspace.workspaceFolders?.forEach(folder => {
         if (folder.uri.fsPath in PLACEHOLDERS) {
             return
