@@ -247,14 +247,12 @@ export class Cacher {
         lw.completer.package.parse(cache)
         lw.completer.reference.parse(cache)
         lw.completer.glossary.parse(cache)
+        lw.completer.environment.parse(cache)
         if (cache?.luAst) {
             const nodes = cache.luAst.content
-            const lines = cache.content.split('\n')
-            lw.completer.environment.update(filePath, nodes, lines)
             lw.completer.command.update(filePath, nodes)
         } else {
             logger.log(`Use RegExp to update elements of ${filePath} .`)
-            lw.completer.environment.update(filePath, undefined, undefined, cache.contentTrimmed)
             lw.completer.command.update(filePath, undefined, cache.contentTrimmed)
         }
         lw.duplicateLabels.run(filePath)

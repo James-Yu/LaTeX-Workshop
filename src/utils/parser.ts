@@ -11,7 +11,7 @@ function envToStr(env: Ast.Environment | Ast.VerbatimEnvironment): string {
     return `\\environment{${env.env}}`
 }
 
-export function argContentToStr(argContent: Ast.Node[]): string {
+export function argContentToStr(argContent: Ast.Node[], preserveCurlyBrace: boolean = false): string {
     return argContent.map(node => {
         // Verb
         switch (node.type) {
@@ -32,7 +32,7 @@ export function argContentToStr(argContent: Ast.Node[]): string {
             case 'displaymath':
                 return `\\[${argContentToStr(node.content)}\\]`
             case 'group':
-                return argContentToStr(node.content)
+                return preserveCurlyBrace ? `{${argContentToStr(node.content)}}` : argContentToStr(node.content)
             case 'verb':
                 return node.content
             default:

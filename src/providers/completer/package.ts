@@ -161,6 +161,8 @@ export class Package implements IProvider {
         if (node?.type === 'macro' && node.content === 'documentclass') {
             packageName = 'class-' + packageName
         }
-        return { packageName: options }
+        const pkgObj: {[pkgName: string]: string[]} = {}
+        pkgObj[packageName] = options
+        return pkgObj
     }
 }

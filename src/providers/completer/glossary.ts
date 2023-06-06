@@ -99,7 +99,7 @@ export class Glossary implements IProvider {
 
         if (node.type === 'macro' && ['newglossaryentry', 'provideglossaryentry'].includes(node.content)) {
             type = GlossaryType.glossary
-            let description = argContentToStr(node.args?.[1]?.content || [])
+            let description = argContentToStr(node.args?.[1]?.content || [], true)
             const index = description.indexOf('description=')
             if (index >= 0) {
                 description = description.slice(index + 12)
@@ -126,7 +126,7 @@ export class Glossary implements IProvider {
                 description: argContentToStr(node.args?.[3]?.content || []),
             }
         }
-        if (type && entry.label && entry.description && node.position !== undefined) {
+        if (type !== undefined && entry.label && entry.description && node.position !== undefined) {
             glos.push({
                 type,
                 filePath,

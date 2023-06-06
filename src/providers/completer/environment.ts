@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import { latexParser } from 'latex-utensils'
+import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
 import type { ICompletionItem, IProviderArgs } from '../completion'
 import type { IProvider } from '../completion'
@@ -8,6 +8,7 @@ import { CommandSignatureDuplicationDetector } from './commandlib/commandfinder'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 
 import { getLogger } from '../../components/logger'
+import { Cache } from '../../components/cacher'
 
 const logger = getLogger('Intelli', 'Environment')
 
@@ -196,47 +197,50 @@ export class Environment implements IProvider {
         })
     }
 
-    /**
-     * Updates the Manager cache for environments used in `file` with `nodes`.
-     * If `nodes` is `undefined`, `content` is parsed with regular expressions,
-     * and the result is used to update the cache.
-     * @param file The path of a LaTeX file.
-     * @param nodes AST of a LaTeX file.
-     * @param content The content of a LaTeX file.
-     */
-    update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
-        const cache = lw.cacher.get(file)
-        if (cache === undefined) {
-            return
-        }
-        if (nodes !== undefined && lines !== undefined) {
-            cache.elements.environment = this.getEnvFromNodeArray(nodes, lines)
-        } else if (content !== undefined) {
-            cache.elements.environment = this.getEnvFromContent(content)
+    parse(cache: Cache) {
+        if (cache.ast !== undefined) {
+            cache.elements.environment = this.parseAst(cache.ast)
+        } else {
+            cache.elements.environment = this.parseContent(cache.contentTrimmed)
         }
     }
 
-    // This function will return all environments in a node array, including sub-nodes
-    private getEnvFromNodeArray(nodes: latexParser.Node[], lines: string[]): CmdEnvSuggestion[] {
+    private parseAst(node: Ast.Node): CmdEnvSuggestion[] {
         let envs: CmdEnvSuggestion[] = []
-        for (let index = 0; index < nodes.length; ++index) {
-            envs = envs.concat(this.getEnvFromNode(nodes[index], lines))
+        if (node.type === 'environment' || node.type === 'mathenv') {
+            const env = new CmdEnvSuggestion(`${node.env}`, '', [], -1, { name: node.env, args: '' }, vscode.CompletionItemKind.Module)
+            env.documentation = '`' + node.env + '`'
+            env.filterText = node.env
+            envs.push(env)
         }
+
+        if ('content' in node && typeof node.content !== 'string') {
+            for (const subNode of node.content) {
+                envs = [...envs, ...this.parseAst(subNode)]
+            }
+        }
+
         return envs
     }
 
-    private getEnvFromNode(node: latexParser.Node, lines: string[]): CmdEnvSuggestion[] {
-        let envs: CmdEnvSuggestion[] = []
-        // Here we only check `isEnvironment` which excludes `align*` and `verbatim`.
-        // Nonetheless, they have already been included in `defaultEnvs`.
-        if (latexParser.isEnvironment(node)) {
-            const env = new CmdEnvSuggestion(`${node.name}`, '', [], -1, { name: node.name, args: '' }, vscode.CompletionItemKind.Module)
-            env.documentation = '`' + node.name + '`'
-            env.filterText = node.name
+    private parseContent(content: string): CmdEnvSuggestion[] {
+        const envReg = /\\begin\s?{([^{}]*)}/g
+        const envs: CmdEnvSuggestion[] = []
+        const envList: string[] = []
+        while (true) {
+            const result = envReg.exec(content)
+            if (result === null) {
+                break
+            }
+            if (envList.includes(result[1])) {
+                continue
+            }
+            const env = new CmdEnvSuggestion(`${result[1]}`, '', [], -1, { name: result[1], args: '' }, vscode.CompletionItemKind.Module)
+            env.documentation = '`' + result[1] + '`'
+            env.filterText = result[1]
+
             envs.push(env)
-        }
-        if (latexParser.hasContentArray(node)) {
-            envs = envs.concat(this.getEnvFromNodeArray(node.content, lines))
+            envList.push(result[1])
         }
         return envs
     }
@@ -262,28 +266,6 @@ export class Environment implements IProvider {
         })
         packageEnvs.set(packageName, newEntry)
         return newEntry
-    }
-
-    private getEnvFromContent(content: string): CmdEnvSuggestion[] {
-        const envReg = /\\begin\s?{([^{}]*)}/g
-        const envs: CmdEnvSuggestion[] = []
-        const envList: string[] = []
-        while (true) {
-            const result = envReg.exec(content)
-            if (result === null) {
-                break
-            }
-            if (envList.includes(result[1])) {
-                continue
-            }
-            const env = new CmdEnvSuggestion(`${result[1]}`, '', [], -1, { name: result[1], args: '' }, vscode.CompletionItemKind.Module)
-            env.documentation = '`' + result[1] + '`'
-            env.filterText = result[1]
-
-            envs.push(env)
-            envList.push(result[1])
-        }
-        return envs
     }
 
     setPackageEnvs(packageName: string, envs: {[key: string]: EnvType}) {
