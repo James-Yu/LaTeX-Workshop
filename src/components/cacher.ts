@@ -386,22 +386,20 @@ export class Cacher {
      *
      * @param file The path of a LaTeX file
      */
-    getIncludedBib(file?: string, includedBib: string[] = [], children: string[] = []): string[] {
-        if (file === undefined) {
-            file = lw.manager.rootFile
-        }
+    getIncludedBib(file?: string, includedBib: string[] = []): string[] {
+        file = file ?? lw.manager.rootFile
         if (file === undefined) {
             return []
         }
         if (!this.has(file)) {
             return []
         }
-        children.push(file)
+        const checkedTeX = [ file ]
         const cache = this.get(file)
         if (cache) {
             includedBib.push(...cache.bibfiles)
             for (const child of cache.children) {
-                if (children.includes(child.filePath)) {
+                if (checkedTeX.includes(child.filePath)) {
                     // Already parsed
                     continue
                 }
@@ -420,17 +418,18 @@ export class Cacher {
      *
      * @param file The path of a LaTeX file
      */
-    getIncludedTeX(file?: string, includedTeX: string[] = []): string[] {
-        if (file === undefined) {
-            file = lw.manager.rootFile
-        }
+    getIncludedTeX(file?: string, includedTeX: string[] = [], cachedOnly: boolean = true): string[] {
+        file = file ?? lw.manager.rootFile
         if (file === undefined) {
             return []
         }
-        if (!this.has(file)) {
+        if (cachedOnly && !this.has(file)) {
             return []
         }
         includedTeX.push(file)
+        if (!this.has(file)) {
+            return []
+        }
         const cache = this.get(file)
         if (cache) {
             for (const child of cache.children) {
@@ -438,7 +437,7 @@ export class Cacher {
                     // Already included
                     continue
                 }
-                this.getIncludedTeX(child.filePath, includedTeX)
+                this.getIncludedTeX(child.filePath, includedTeX, cachedOnly)
             }
         }
         return includedTeX
