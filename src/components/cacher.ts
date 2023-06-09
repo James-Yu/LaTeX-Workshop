@@ -136,7 +136,7 @@ export class Cacher {
         rootPath = rootPath || lw.manager.rootFile
         this.updateChildren(filePath, rootPath, contentTrimmed)
 
-        this.promises[filePath] = this.updateAST(filePath, content).then(() => {
+        this.promises[filePath] = this.updateAST(filePath, this.sanitize(content)).then(() => {
             this.updateElements(filePath, content, contentTrimmed)
             this.updateBibfiles(filePath, contentTrimmed)
         }).finally(() => {
@@ -151,6 +151,11 @@ export class Cacher {
         })
 
         return this.promises[filePath]
+    }
+
+    private sanitize(content: string): string {
+        return content
+            .replace(/(?<!\\)\$/g, '|') // #3922
     }
 
     private async updateAST(filePath: string, content: string) {
