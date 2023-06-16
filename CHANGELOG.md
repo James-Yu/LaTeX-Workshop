@@ -1,8 +1,22 @@
 # Change Log
 
-## Pending
+## [9.11.5] - 2023-06-13
 
-### Added
+### Fixed
+- (#3875,#3914) `onSave` triggers on included bibs and non-TeX children.
+- (#3897) Outline and structure won't work if the first section is starred.
+- (#3898) When the parameter "latex-workshop.latex.outDir" is defined, the feature from #3890 doesn't work.
+- (#3899) When manually close the "View LaTex PDF file", the command "SyncTex from cursor" doesn't open the PDF anymore.
+- (#3902) Trimming dropdown menu in PDF viewer sometime overflows.
+- (#3905) The structure on the left does not jump on click.
+- (#3907) Increase the concurrent LU parser number.
+- (#3912) Wrong number of steps in the recipe steps counter.
+- (#3922) Trouble with LaTeX parsing related to listings and math mode.
+
+## [9.11.4] - 2023-05-27
+
+### Fixed
+- `DOCUMENT_CHANGED` internal event of the extension is not logged.
 - (#3890) Open PDF viewer on forward SyncTeX if not already opened.
 
 ## [9.11.3] - 2023-05-26

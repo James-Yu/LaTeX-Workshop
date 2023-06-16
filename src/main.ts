@@ -28,7 +28,9 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         if (lw.lwfs.isVirtualUri(e.uri)){
             return
         }
-        if (lw.manager.hasTexId(e.languageId)) {
+        if (lw.manager.hasTexId(e.languageId) ||
+            lw.cacher.getIncludedTeX(lw.manager.rootFile, [], false).includes(e.fileName) ||
+            lw.cacher.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             lw.linter.lintRootFileIfEnabled()
             void lw.builder.buildOnSaveIfEnabled(e.fileName)

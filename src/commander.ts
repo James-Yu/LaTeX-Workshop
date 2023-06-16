@@ -106,7 +106,7 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
     if (!pickedRootFile) {
         return
     }
-    return lw.viewer.open(pickedRootFile, typeof mode === 'string' ? mode : undefined)
+    return lw.viewer.open(lw.manager.tex2pdf(pickedRootFile), typeof mode === 'string' ? mode : undefined)
 }
 
 export function refresh() {

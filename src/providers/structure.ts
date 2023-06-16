@@ -152,7 +152,7 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         treeItem.command = {
             command: 'latex-workshop.goto-section',
             title: '',
-            arguments: [element.filePath, element.filePath]
+            arguments: [element.filePath, element.lineFr]
         }
         treeItem.tooltip = `Line ${element.lineFr + 1} at ${element.filePath}`
 

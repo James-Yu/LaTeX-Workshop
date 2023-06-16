@@ -15,6 +15,7 @@ import * as PathUtils from './cacherlib/pathutils'
 import { Watcher } from './cacherlib/watcher'
 import { getLogger } from './logger'
 import { parser } from './parser'
+import { performance } from 'perf_hooks'
 
 const logger = getLogger('Cacher')
 
@@ -178,12 +179,12 @@ export class Cacher {
 
     private async updateAST(filePath: string, content: string): Promise<void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const fastparse = configuration.get('intellisense.fastparse.enabled') as boolean
-        logger.log('Parse LaTeX AST ' + (fastparse ? 'with fast-parse: ' : ': ') + filePath + ' .')
+        logger.log(`Parse LaTeX AST: ${filePath} .`)
+        const start = performance.now()
         return new Promise((resolve, _) => {
             setTimeout(() => {
                 this.caches[filePath].ast = parser.unifiedParse(content)
-                logger.log(`Parsed LaTeX AST: ${filePath} .`)
+                logger.log(`Parsed LaTeX AST in ${(performance.now() - start).toFixed(2)} ms: ${filePath} .`)
                 resolve()
             }, 0)
         })
@@ -390,22 +391,20 @@ export class Cacher {
      *
      * @param file The path of a LaTeX file
      */
-    getIncludedBib(file?: string, includedBib: string[] = [], children: string[] = []): string[] {
-        if (file === undefined) {
-            file = lw.manager.rootFile
-        }
+    getIncludedBib(file?: string, includedBib: string[] = []): string[] {
+        file = file ?? lw.manager.rootFile
         if (file === undefined) {
             return []
         }
         if (!this.has(file)) {
             return []
         }
-        children.push(file)
+        const checkedTeX = [ file ]
         const cache = this.get(file)
         if (cache) {
             includedBib.push(...cache.bibfiles)
             for (const child of cache.children) {
-                if (children.includes(child.filePath)) {
+                if (checkedTeX.includes(child.filePath)) {
                     // Already parsed
                     continue
                 }
@@ -424,17 +423,18 @@ export class Cacher {
      *
      * @param file The path of a LaTeX file
      */
-    getIncludedTeX(file?: string, includedTeX: string[] = []): string[] {
-        if (file === undefined) {
-            file = lw.manager.rootFile
-        }
+    getIncludedTeX(file?: string, includedTeX: string[] = [], cachedOnly: boolean = true): string[] {
+        file = file ?? lw.manager.rootFile
         if (file === undefined) {
             return []
         }
-        if (!this.has(file)) {
+        if (cachedOnly && !this.has(file)) {
             return []
         }
         includedTeX.push(file)
+        if (!this.has(file)) {
+            return []
+        }
         const cache = this.get(file)
         if (cache) {
             for (const child of cache.children) {
@@ -442,7 +442,7 @@ export class Cacher {
                     // Already included
                     continue
                 }
-                this.getIncludedTeX(child.filePath, includedTeX)
+                this.getIncludedTeX(child.filePath, includedTeX, cachedOnly)
             }
         }
         return includedTeX

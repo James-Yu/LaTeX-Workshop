@@ -99,11 +99,11 @@ export class Viewer {
         const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
         const viewer = mode ?? configuration.get<'tab' | 'browser' | 'singleton' | 'external'>('view.pdf.viewer', 'tab')
         if (viewer === 'browser') {
-            return lw.viewer.openBrowser(lw.manager.tex2pdf(pdfFile))
+            return lw.viewer.openBrowser(pdfFile)
         } else if (viewer === 'tab' || viewer === 'singleton') {
-            return lw.viewer.openTab(lw.manager.tex2pdf(pdfFile), tabEditorGroup, true)
+            return lw.viewer.openTab(pdfFile, tabEditorGroup, true)
         } else if (viewer === 'external') {
-            return lw.viewer.openExternal(lw.manager.tex2pdf(pdfFile))
+            return lw.viewer.openExternal(pdfFile)
         }
     }
 
@@ -356,12 +356,12 @@ export class Viewer {
     async syncTeX(pdfFile: string, record: SyncTeXRecordForward): Promise<void> {
         const pdfFileUri = vscode.Uri.file(pdfFile)
         let clientSet = viewerManager.getClientSet(pdfFileUri)
-        if (clientSet === undefined) {
+        if (clientSet === undefined || clientSet.size === 0) {
             logger.log(`PDF is not opened: ${pdfFile} , try opening.`)
             await this.open(pdfFile)
             clientSet = viewerManager.getClientSet(pdfFileUri)
         }
-        if (clientSet === undefined) {
+        if (clientSet === undefined || clientSet.size === 0) {
             logger.log(`PDF cannot be opened: ${pdfFile} .`)
             return
         }
