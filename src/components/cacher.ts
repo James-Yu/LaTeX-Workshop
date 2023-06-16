@@ -153,10 +153,6 @@ export class Cacher {
             bibfiles: new Set(),
             external: {}}
         this.caches[filePath] = cache
-        if (content === undefined) {
-            logger.log(`Cannot read ${filePath} .`)
-            return
-        }
         rootPath = rootPath || lw.manager.rootFile
         this.updateChildren(filePath, rootPath, cache.contentTrimmed)
 
@@ -178,7 +174,6 @@ export class Cacher {
     }
 
     private async updateAST(filePath: string, content: string): Promise<void> {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         logger.log(`Parse LaTeX AST: ${filePath} .`)
         const start = performance.now()
         return new Promise((resolve, _) => {

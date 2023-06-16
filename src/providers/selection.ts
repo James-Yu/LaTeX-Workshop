@@ -32,7 +32,7 @@ function findNode(position: vscode.Position, node: Ast.Node, stack: Ast.Node[] =
     return stack
 }
 
-function nodeStackToSelectionRange(stack: Ast.Node[]): vscode.SelectionRange | undefined {
+function nodeStackToSelectionRange(stack: Ast.Node[]): vscode.SelectionRange {
     const last = stack[stack.length - 1]
     const parent: Ast.Node | undefined = stack[stack.length - 2]
     return new vscode.SelectionRange(
@@ -56,9 +56,7 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
         positions.forEach(position => {
             const nodeStack = findNode(position, ast)
             const selectionRange = nodeStackToSelectionRange(nodeStack)
-            if (selectionRange) {
-                ret.push(selectionRange)
-            }
+            ret.push(selectionRange)
         })
         return ret
     }
