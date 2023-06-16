@@ -1,245 +1,65 @@
 import * as vscode from 'vscode'
-import { latexParser } from 'latex-utensils'
+import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../lw'
-import { parser } from '../components/parser'
 import { getLogger } from '../components/logger'
 
 const logger = getLogger('Selection')
 
-interface ILuRange {
-    start: ILuPos,
-    end: ILuPos
+function findNode(position: vscode.Position, node: Ast.Node, stack: Ast.Node[] = [ node ]): Ast.Node[] {
+    if ('content' in node && typeof node.content !== 'string') {
+        for (const child of node.content) {
+            if (child.position === undefined) {
+                continue
+            }
+            if (child.position.start.line > position.line + 1 ||
+                child.position.end.line < position.line + 1) {
+                continue
+            }
+            if (child.position.start.line === position.line + 1 &&
+                child.position.start.column > position.character + 1) {
+                continue
+            }
+            if (child.position.end.line === position.line + 1 &&
+                child.position.end.column < position.character + 1) {
+                continue
+            }
+            stack.push(child)
+            findNode(position, child, stack)
+            break
+        }
+    }
+
+    return stack
 }
 
-class LuRange implements ILuRange {
-    readonly start: LuPos
-    readonly end: LuPos
-
-    constructor(arg: {start: ILuPos, end: ILuPos}) {
-        this.start = LuPos.from(arg.start)
-        this.end = LuPos.from(arg.end)
-    }
-
-    contains(pos: ILuPos): boolean {
-        return this.start.isBeforeOrEqual(pos) && this.end.isAfterOrEqual(pos)
-    }
-}
-
-interface ILuPos {
-    readonly line: number,
-    readonly column: number
-}
-
-interface IContent {
-    content: latexParser.Node[],
-    contentLuRange: LuRange,
-    startSep: latexParser.Node | undefined,
-    endSep: latexParser.Node | undefined
-}
-
-class LuPos implements ILuPos {
-
-    static from(loc: ILuPos) {
-        return new LuPos(loc.line, loc.column)
-    }
-
-    constructor(
-        readonly line: number,
-        readonly column: number
-    ) {}
-
-    isAfter(other: ILuPos): boolean {
-        return this.line > other.line || ( this.line === other.line && this.column > other.column )
-    }
-
-    isAfterOrEqual(other: ILuPos): boolean {
-        return this.line > other.line || ( this.line === other.line && this.column >= other.column )
-    }
-
-    isBefore(other: ILuPos): boolean {
-        return this.line < other.line || ( this.line === other.line && this.column < other.column )
-    }
-
-    isBeforeOrEqual(other: ILuPos): boolean {
-        return this.line < other.line || ( this.line === other.line && this.column <= other.column )
-    }
-
-}
-
-function toVscodeRange(loc: ILuRange): vscode.Range {
-    return new vscode.Range(
-        loc.start.line - 1, loc.start.column - 1,
-        loc.end.line - 1, loc.end.column - 1
-    )
-}
-
-function toLatexUtensilPosition(pos: vscode.Position): LuPos {
-    return new LuPos(pos.line + 1, pos.character + 1)
+function nodeStackToSelectionRange(stack: Ast.Node[]): vscode.SelectionRange | undefined {
+    const last = stack[stack.length - 1]
+    const parent: Ast.Node | undefined = stack[stack.length - 2]
+    return new vscode.SelectionRange(
+        new vscode.Range(
+            (last.position?.start.line || 1) - 1, (last.position?.start.column || 1) - 1,
+            (last.position?.end.line || 1) - 1, (last.position?.end.column || 1) - 1
+        ), parent ? nodeStackToSelectionRange(stack.slice(0, -1)) : undefined)
 }
 
 export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
     async provideSelectionRanges(document: vscode.TextDocument, positions: vscode.Position[]) {
-        const content = document.getText()
-        logger.log(`Parse LaTeX AST : ${document.fileName} .`)
-        const latexAst = lw.cacher.get(document.fileName)?.luAst || await parser.parseLatex(content, { enableMathCharacterLocation: true })
-        if (!latexAst) {
-            logger.log(`Failed to parse AST for ${document.fileName} .`)
+        await lw.cacher.wait(document.fileName)
+        const content = lw.cacher.get(document.fileName)?.content
+        const ast = lw.cacher.get(document.fileName)?.ast
+        if (!content || !ast) {
+            logger.log(`Error loading ${content ? 'AST' : 'content'} during structuring: ${document.fileName} .`)
             return []
         }
+
         const ret: vscode.SelectionRange[] = []
-        positions.forEach(pos => {
-            const lupos = toLatexUtensilPosition(pos)
-            const result = latexParser.findNodeAt(
-                latexAst.content,
-                lupos
-            )
-            const selectionRange = this.resultToSelectionRange(lupos, result)
+        positions.forEach(position => {
+            const nodeStack = findNode(position, ast)
+            const selectionRange = nodeStackToSelectionRange(nodeStack)
             if (selectionRange) {
                 ret.push(selectionRange)
             }
         })
         return ret
     }
-
-    private getInnerContentLuRange(node: latexParser.Node): LuRange | undefined {
-        if (latexParser.isEnvironment(node) || latexParser.isMathEnv(node) || latexParser.isMathEnvAligned(node)) {
-            return new LuRange({
-                start: {
-                    line: node.location.start.line,
-                    column: node.location.start.column + '\\begin{}'.length + node.name.length
-                },
-                end: {
-                    line: node.location.end.line,
-                    column: node.location.end.column - '\\end{}'.length - node.name.length
-                }
-            })
-        } else if (latexParser.isGroup(node) || latexParser.isInlienMath(node)) {
-            return new LuRange({
-                start: {
-                    line: node.location.start.line,
-                    column: node.location.start.column + 1
-                },
-                end: {
-                    line: node.location.end.line,
-                    column: node.location.end.column - 1
-                }
-            })
-        } else if (latexParser.isLabelCommand(node)) {
-            return new LuRange({
-                start: {
-                    line: node.location.start.line,
-                    column: node.location.start.column + '\\{'.length + node.name.length
-                },
-                end: {
-                    line: node.location.end.line,
-                    column: node.location.end.column - '}'.length
-                }
-            })
-        } else if (latexParser.isMathDelimiters(node)) {
-            return new LuRange({
-                start: {
-                    line: node.location.start.line,
-                    column: node.location.start.column + node.left.length + node.lcommand.length
-                },
-                end: {
-                    line: node.location.end.line,
-                    column: node.location.end.column - node.right.length - node.rcommand.length
-                }
-            })
-        }
-        return
-    }
-
-    private findInnerContentIncludingPos(
-        lupos: LuPos,
-        content: latexParser.Node[],
-        sepNodes: latexParser.Node[],
-        innerContentRange: LuRange | undefined
-    ): IContent | undefined {
-        const startSep = Array.from(sepNodes).reverse().find((node) => node.location && lupos.isAfterOrEqual(node.location.end))
-        const endSep = sepNodes.find((node) => node.location && lupos.isBeforeOrEqual(node.location.start))
-        const startSepPos = startSep?.location ? LuPos.from(startSep.location.end) : innerContentRange?.start
-        const endSepPos = endSep?.location ? LuPos.from(endSep.location.start) : innerContentRange?.end
-        if (!startSepPos || !endSepPos) {
-            return
-        }
-        const innerContent = content.filter((node) => {
-            return node.location && startSepPos.isBeforeOrEqual(node.location.start) && endSepPos.isAfterOrEqual(node.location.end)
-        })
-        return {
-            content: innerContent,
-            contentLuRange: new LuRange({
-                start: startSepPos,
-                end: endSepPos
-            }),
-            startSep,
-            endSep
-        }
-    }
-
-    private resultToSelectionRange(
-        lupos: LuPos,
-        findNodeAtResult: ReturnType<typeof latexParser.findNodeAt>
-    ): vscode.SelectionRange | undefined {
-        if (!findNodeAtResult) {
-            return
-        }
-        const curNode = findNodeAtResult.node
-        const parentNode = findNodeAtResult.parent
-        const parentSelectionRange = parentNode ? this.resultToSelectionRange(lupos, parentNode) : undefined
-        if (!curNode.location) {
-            return parentSelectionRange
-        }
-        const curRange = toVscodeRange(curNode.location)
-        let curSelectionRange = new vscode.SelectionRange(curRange, parentSelectionRange)
-        let innerContentLuRange = this.getInnerContentLuRange(curNode)
-        if (innerContentLuRange) {
-            if (!innerContentLuRange.contains(lupos)) {
-                return curSelectionRange
-            }
-            const newCurRange = toVscodeRange(innerContentLuRange)
-            curSelectionRange = new vscode.SelectionRange(newCurRange, curSelectionRange)
-        }
-        if (latexParser.hasContentArray(curNode)) {
-            let innerContent = curNode.content
-            let newInnerContent: IContent | undefined
-            if (latexParser.isEnvironment(curNode) && (curNode.name === 'itemize' || curNode.name === 'enumerate')) {
-                let itemNodes = curNode.content.filter(latexParser.isCommand)
-                itemNodes = itemNodes.filter((node) => node.name === 'item')
-                newInnerContent = this.findInnerContentIncludingPos(lupos, innerContent, itemNodes, innerContentLuRange)
-                if (newInnerContent) {
-                    innerContent = newInnerContent.content
-                    innerContentLuRange = newInnerContent.contentLuRange
-                    let newContentRange = toVscodeRange(innerContentLuRange)
-                    if (newInnerContent.startSep?.location) {
-                        const start = LuPos.from(newInnerContent.startSep.location.start)
-                        newContentRange = toVscodeRange({start, end:innerContentLuRange.end})
-                    }
-                    curSelectionRange = new vscode.SelectionRange(newContentRange, curSelectionRange)
-                }
-            }
-            const linebreaksNodes = innerContent.filter(latexParser.isLinebreak)
-            newInnerContent = this.findInnerContentIncludingPos(lupos, innerContent, linebreaksNodes, innerContentLuRange)
-            if (newInnerContent) {
-                innerContent = newInnerContent.content
-                innerContentLuRange = newInnerContent.contentLuRange
-                let newContentRange = toVscodeRange(innerContentLuRange)
-                if (newInnerContent.endSep?.location) {
-                    const end = LuPos.from(newInnerContent.endSep.location.end)
-                    newContentRange = toVscodeRange({start: innerContentLuRange.start, end})
-                }
-                curSelectionRange = new vscode.SelectionRange(newContentRange, curSelectionRange)
-            }
-            const alignmentTabNodes = innerContent.filter(latexParser.isAlignmentTab)
-            newInnerContent = this.findInnerContentIncludingPos(lupos, innerContent, alignmentTabNodes, innerContentLuRange)
-            if (newInnerContent) {
-                // curContent = newContent.innerContent
-                innerContentLuRange = newInnerContent.contentLuRange
-                const newContentRange = toVscodeRange(innerContentLuRange)
-                curSelectionRange = new vscode.SelectionRange(newContentRange, curSelectionRange)
-            }
-        }
-        return curSelectionRange
-    }
-
 }

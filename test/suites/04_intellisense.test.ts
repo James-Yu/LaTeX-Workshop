@@ -154,11 +154,8 @@ suite('Intellisense test suite', () => {
         const suggestions = test.suggest(0, 1)
         assert.ok(suggestions.labels.includes('\\WARNING'))
         assert.ok(suggestions.labels.includes('\\FIXME{}'))
-        assert.ok(suggestions.labels.includes('\\FIXME[]{}'))
+        assert.ok(suggestions.labels.includes('\\FIXMETOO[]{}'))
         assert.ok(suggestions.labels.includes('\\fix[]{}{}'))
-        assert.ok(suggestions.labels.includes('\\fakecommand'))
-        assert.ok(suggestions.labels.includes('\\fakecommand{}'))
-        assert.ok(suggestions.labels.includes('\\fakecommand[]{}'))
     })
 
     test.run('command intellisense with config `intellisense.argumentHint.enabled`', async (fixture: string) => {

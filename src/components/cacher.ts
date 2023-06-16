@@ -104,6 +104,22 @@ export class Cacher {
         return this.promises[filePath]
     }
 
+    async wait(filePath: string, seconds = 2) {
+        let waited = 0
+        while (!this.promise(filePath) && !this.has(filePath)) {
+            // Just open vscode, has not cached, wait for a bit?
+            await new Promise(resolve => setTimeout(resolve, 100))
+            waited++
+            if (waited >= seconds * 10) {
+                // Waited for two seconds before starting cache. Really?
+                logger.log(`Error loading cache: ${filePath} . Forcing.`)
+                await this.refreshCache(filePath)
+                break
+            }
+        }
+        return this.promise(filePath)
+    }
+
     get allPromises() {
         return Object.values(this.promises)
     }

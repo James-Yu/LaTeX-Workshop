@@ -59,19 +59,7 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
         content = openEditor.getText()
         ast = parser.unifiedParse(content)
     } else {
-        let waited = 0
-        while (!lw.cacher.promise(filePath) && !lw.cacher.has(filePath)) {
-            // Just open vscode, has not cached, wait for a bit?
-            await new Promise(resolve => setTimeout(resolve, 100))
-            waited++
-            if (waited >= 20) {
-                // Waited for two seconds before starting cache. Really?
-                logger.log(`Error loading cache during structuring: ${filePath} . Forcing.`)
-                await lw.cacher.refreshCache(filePath)
-                break
-            }
-        }
-        await lw.cacher.promise(filePath)
+        await lw.cacher.wait(filePath)
         content = lw.cacher.get(filePath)?.content
         ast = lw.cacher.get(filePath)?.ast
     }

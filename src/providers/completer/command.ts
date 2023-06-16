@@ -204,14 +204,14 @@ export class Command implements IProvider {
         let cmds: CmdEnvSuggestion[] = []
         if (node.type === 'macro' &&
             ['renewcommand', 'newcommand', 'providecommand', 'DeclareMathOperator'].includes(node.content) &&
-            node.args?.[1]?.content?.[0].type === 'macro') {
+            node.args?.[2]?.content?.[0]?.type === 'macro') {
             // \newcommand{\fix}[3][]{\chdeleted{#2}\chadded[comment={#1}]{#3}}
             // \newcommand\WARNING{\textcolor{red}{WARNING}}
-            const name = node.args[1].content[0].content
+            const name = node.args[2].content[0].content
             let args = ''
-            if (node.args?.[2].content?.[0].type === 'string' &&
-                parseInt(node.args?.[2].content?.[0].content) > 0) {
-                args = (node.args?.[3].openMark === '[' ? '[]' : '{}') + '{}'.repeat(parseInt(node.args?.[2].content?.[0].content) - 1)
+            if (node.args?.[3].content?.[0]?.type === 'string' &&
+                parseInt(node.args?.[3].content?.[0].content) > 0) {
+                args = (node.args?.[4].openMark === '[' ? '[]' : '{}') + '{}'.repeat(parseInt(node.args?.[3].content?.[0].content) - 1)
             }
             if (!defined.has(`${name}${args}`)) {
                 const cmd = new CmdEnvSuggestion(`\\${name}${args}`, 'user-defined', [], -1, {name, args}, vscode.CompletionItemKind.Function)
