@@ -78,18 +78,21 @@ export class EnvPair {
 
         const commandPairs: CommandPair[] = []
         let parentPair: CommandPair | undefined = undefined
-        for (const node of ast.content) {
-            parentPair = this.buildCommandPairTreeFromNode(document, node, parentPair, commandPairs)
+        for (let index = 0; index < ast.content.length; index++) {
+            const node = ast.content[index]
+            const next = index === ast.content.length - 1 ? undefined : ast.content[index + 1]
+            parentPair = this.buildCommandPairTreeFromNode(document, node, next, parentPair, commandPairs)
         }
         return commandPairs
     }
 
-    private buildCommandPairTreeFromNode(doc: vscode.TextDocument, node: Ast.Node, parentCommandPair: CommandPair | undefined, commandPairs: CommandPair[]): CommandPair | undefined {
+    private buildCommandPairTreeFromNode(doc: vscode.TextDocument, node: Ast.Node, next: Ast.Node | undefined, parentCommandPair: CommandPair | undefined, commandPairs: CommandPair[]): CommandPair | undefined {
         if (node.position === undefined) {
             return parentCommandPair
         }
         if (node.type === 'environment' || node.type === 'mathenv') {
-            const name = node.env
+            // The following is necessary as node.env may be Ast.String, bug in upstream (16.06.23)
+            const name = argContentToStr([node.env as unknown as Ast.Node]) || node.env
             let currentCommandPair: CommandPair | undefined
             // If we encounter `\begin{document}`, clear commandPairs
             if (name === 'document') {
@@ -110,8 +113,10 @@ export class EnvPair {
                 }
                 parentCommandPair = currentCommandPair
             }
-            for (const subnode of node.content) {
-                parentCommandPair = this.buildCommandPairTreeFromNode(doc, subnode, parentCommandPair, commandPairs)
+            for (let index = 0; index < node.content.length; index++) {
+                const subnode = node.content[index]
+                const subnext = index === node.content.length - 1 ? undefined : node.content[index + 1]
+                parentCommandPair = this.buildCommandPairTreeFromNode(doc, subnode, subnext, parentCommandPair, commandPairs)
             }
             parentCommandPair = currentCommandPair?.parent
         } else if (node.type === 'displaymath') {
@@ -135,10 +140,10 @@ export class EnvPair {
                 commandPairs.push(currentCommandPair)
             }
         } else if (node.type === 'macro') {
-            if (node.content === 'begin' && node.args?.length && node.args[0].content[0]?.type === 'group') {
+            if (node.content === 'begin' && next?.type === 'group' && next.content[0]?.type === 'string') {
                 // This is an unbalanced environment
                 const beginPos = new vscode.Position(node.position.start.line - 1, node.position.start.column - 1)
-                const envName = argContentToStr(node.args[0].content)
+                const envName = next.content[0].content
                 const name = `\\begin{${envName}}`
                 const currentCommandPair = new CommandPair(PairType.ENVIRONMENT, name, beginPos)
                 if (parentCommandPair) {
