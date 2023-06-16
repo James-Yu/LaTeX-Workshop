@@ -4,7 +4,6 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
 import type { ICompletionItem, IProviderArgs } from '../completion'
 import type { IProvider } from '../completion'
-import { CommandSignatureDuplicationDetector } from './commandlib/commandfinder'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 
 import { getLogger } from '../../components/logger'
@@ -167,7 +166,8 @@ export class Environment implements IProvider {
      * Environments can be inserted using `\envname`.
      * This function is called by Command.provide to compute these commands for every package in use.
      */
-    provideEnvsAsCommandInPkg(packageName: string, options: string[], suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
+    provideEnvsAsCommandInPkg(packageName: string, options: string[], suggestions: vscode.CompletionItem[], defined?: Set<string>) {
+        defined = defined ?? new Set<string>()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
 
@@ -183,18 +183,18 @@ export class Environment implements IProvider {
         }
 
         // Insert env snippets
-        entry.forEach(env => {
+        for (const env of entry) {
             if (!useOptionalArgsEntries && env.hasOptionalArgs()) {
                 return
             }
-            if (!cmdDuplicationDetector.has(env)) {
+            if (!defined.has(env.signatureAsString())) {
                 if (env.option && options && !options.includes(env.option)) {
                     return
                 }
                 suggestions.push(env)
-                cmdDuplicationDetector.add(env)
+                defined.add(env.signatureAsString())
             }
-        })
+        }
     }
 
     parse(cache: Cache) {

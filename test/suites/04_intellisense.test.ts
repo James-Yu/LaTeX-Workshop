@@ -8,7 +8,7 @@ import * as test from './utils'
 import { EnvSnippetType, EnvType } from '../../src/providers/completer/environment'
 import { CmdType } from '../../src/providers/completer/command'
 import { PkgType } from '../../src/providers/completion'
-import { isTriggerSuggestNeeded } from '../../src/providers/completer/commandlib/commandfinder'
+import { isTriggerSuggestNeeded } from '../../src/providers/completer/command'
 
 function assertKeys(keys: string[], expected: string[] = [], message: string): void {
     assert.ok(
@@ -78,7 +78,7 @@ suite('Intellisense test suite', () => {
     })
 
     test.run('test default cmds', () => {
-        const defaultCommands = lw.completer.command.getDefaultCmds().map(e => e.label)
+        const defaultCommands = lw.completer.command.defaultCmds.map(e => e.label)
         assert.ok(defaultCommands.includes('\\begin'))
         assert.ok(defaultCommands.includes('\\left('))
         assert.ok(defaultCommands.includes('\\section{}'))

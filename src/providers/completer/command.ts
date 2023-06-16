@@ -1,15 +1,14 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import { latexParser } from 'latex-utensils'
+import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
 import type { IProvider, ICompletionItem, PkgType, IProviderArgs } from '../completion'
-import { CommandFinder, isTriggerSuggestNeeded } from './commandlib/commandfinder'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
-import { CommandSignatureDuplicationDetector } from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
 import { Environment, EnvSnippetType } from './environment'
 
 import { getLogger } from '../../components/logger'
+import { Cache } from '../../components/cacher'
 
 const logger = getLogger('Intelli', 'Command')
 
@@ -36,17 +35,26 @@ export type CmdType = {
     postAction?: string
 }
 
+export function isTriggerSuggestNeeded(name: string): boolean {
+    const reg = /^(?:[a-z]*(cite|ref|input)[a-z]*|begin|bibitem|(sub)?(import|includefrom|inputfrom)|gls(?:pl|text|first|plural|firstplural|name|symbol|desc|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)/i
+    return reg.test(name)
+}
+
 function isCmdWithSnippet(obj: any): obj is CmdType {
     return (typeof obj.command === 'string') && (typeof obj.snippet === 'string')
 }
 
 export class Command implements IProvider {
 
-    private defaultCmds: CmdEnvSuggestion[] = []
-    private readonly _defaultSymbols: CmdEnvSuggestion[] = []
+    definedCmds = new Map<string, {filePath: string, location: vscode.Location}>()
+    defaultCmds: CmdEnvSuggestion[] = []
+    private readonly defaultSymbols: CmdEnvSuggestion[] = []
     private readonly packageCmds = new Map<string, CmdEnvSuggestion[]>()
 
     constructor() {
+        const symbols: { [key: string]: CmdType } = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/unimathsymbols.json`).toString()) as DataUnimathSymbolsJsonType
+        Object.entries(symbols).forEach(([key, symbol]) => this.defaultSymbols.push(this.entryCmdToCompletion(key, symbol)))
+
         lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (!e.affectsConfiguration('latex-workshop.intellisense.command.user') &&
                 !e.affectsConfiguration('latex-workshop.intellisense.package.exclude')) {
@@ -90,23 +98,6 @@ export class Command implements IProvider {
         })
     }
 
-    get definedCmds() {
-        return CommandFinder.definedCmds
-    }
-
-    get defaultSymbols() {
-        if (this._defaultSymbols.length > 0) {
-            return this._defaultSymbols
-        }
-        const symbols: { [key: string]: CmdType } = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/unimathsymbols.json`).toString()) as DataUnimathSymbolsJsonType
-        Object.entries(symbols).forEach(([key, symbol]) => this._defaultSymbols.push(this.entryCmdToCompletion(key, symbol)))
-        return this._defaultSymbols
-    }
-
-    getDefaultCmds(): CmdEnvSuggestion[] {
-        return this.defaultCmds
-    }
-
     provideFrom(result: RegExpMatchArray, args: IProviderArgs) {
         const suggestions = this.provide(args.langId, args.line, args.position)
         // Commands ending with (, { or [ are not filtered properly by vscode intellisense. So we do it by hand.
@@ -131,7 +122,7 @@ export class Command implements IProvider {
             }
         }
         const suggestions: CmdEnvSuggestion[] = []
-        const cmdDuplicationDetector = new CommandSignatureDuplicationDetector()
+        let defined = new Set<string>()
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
             if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
@@ -139,14 +130,14 @@ export class Command implements IProvider {
             }
             cmd.range = range
             suggestions.push(cmd)
-            cmdDuplicationDetector.add(cmd)
+            defined.add(cmd.signatureAsString())
         })
 
         // Insert unimathsymbols
         if (configuration.get('intellisense.unimathsymbols.enabled')) {
             this.defaultSymbols.forEach(symbol => {
                 suggestions.push(symbol)
-                cmdDuplicationDetector.add(symbol)
+                defined.add(symbol.signatureAsString())
             })
         }
 
@@ -154,22 +145,22 @@ export class Command implements IProvider {
         if ((configuration.get('intellisense.package.enabled'))) {
             const packages = lw.completer.package.getPackagesIncluded(langId)
             Object.entries(packages).forEach(([packageName, options]) => {
-                this.provideCmdInPkg(packageName, options, suggestions, cmdDuplicationDetector)
-                lw.completer.environment.provideEnvsAsCommandInPkg(packageName, options, suggestions, cmdDuplicationDetector)
+                this.provideCmdInPkg(packageName, options, suggestions)
+                lw.completer.environment.provideEnvsAsCommandInPkg(packageName, options, suggestions, defined)
             })
         }
 
         // Start working on commands in tex. To avoid over populating suggestions, we do not include
         // user defined commands, whose name matches a default command or one provided by a package
-        const commandSignatureDuplicationDetector = new CommandSignatureDuplicationDetector(suggestions)
+        defined = new Set<string>(suggestions.map(s => s.signatureAsString()))
         lw.cacher.getIncludedTeX().forEach(tex => {
             const cmds = lw.cacher.get(tex)?.elements.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!commandSignatureDuplicationDetector.has(cmd)) {
+                    if (!defined.has(cmd.signatureAsString())) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        commandSignatureDuplicationDetector.add(cmd)
+                        defined.add(cmd.signatureAsString())
                     }
                 })
             }
@@ -194,35 +185,161 @@ export class Command implements IProvider {
         SurroundCommand.surround(cmdItems)
     }
 
-    /**
-     * Updates the Manager cache for commands used in `file` with `nodes`.
-     * If `nodes` is `undefined`, `content` is parsed with regular expressions,
-     * and the result is used to update the cache.
-     * @param file The path of a LaTeX file.
-     * @param nodes AST of a LaTeX file.
-     * @param content The content of a LaTeX file.
-     */
-    update(file: string, nodes?: latexParser.Node[], content?: string) {
+    parse(cache: Cache) {
         // Remove newcommand cmds, because they will be re-insert in the next step
         this.definedCmds.forEach((entry,cmd) => {
-            if (entry.file === file) {
+            if (entry.filePath === cache.filePath) {
                 this.definedCmds.delete(cmd)
             }
         })
-        const cache = lw.cacher.get(file)
-        if (cache === undefined) {
-            return
+        if (cache.ast !== undefined) {
+            cache.elements.command = this.parseAst(cache.ast, cache.filePath)
+        } else {
+            cache.elements.command = this.parseContent(cache.content, cache.filePath)
         }
+    }
+
+    private parseAst(node: Ast.Node, filePath: string, defined?: Set<string>): CmdEnvSuggestion[] {
+        defined = defined ?? new Set<string>()
+        let cmds: CmdEnvSuggestion[] = []
+        if (node.type === 'macro' &&
+            ['renewcommand', 'newcommand', 'providecommand', 'DeclareMathOperator'].includes(node.content) &&
+            node.args?.[1]?.content?.[0].type === 'macro') {
+            // \newcommand{\fix}[3][]{\chdeleted{#2}\chadded[comment={#1}]{#3}}
+            // \newcommand\WARNING{\textcolor{red}{WARNING}}
+            const name = node.args[1].content[0].content
+            let args = ''
+            if (node.args?.[2].content?.[0].type === 'string' &&
+                parseInt(node.args?.[2].content?.[0].content) > 0) {
+                args = (node.args?.[3].openMark === '[' ? '[]' : '{}') + '{}'.repeat(parseInt(node.args?.[2].content?.[0].content) - 1)
+            }
+            if (!defined.has(`${name}${args}`)) {
+                const cmd = new CmdEnvSuggestion(`\\${name}${args}`, 'user-defined', [], -1, {name, args}, vscode.CompletionItemKind.Function)
+                cmd.documentation = '`' + name + '`'
+                let argTabs = args
+                let index = 0
+                while (argTabs.includes('[]')) {
+                    argTabs = argTabs.replace('[]', '[${' + index + '}]')
+                    index++
+                }
+                while (argTabs.includes('{}')) {
+                    argTabs = argTabs.replace('{}', '{${' + index + '}}')
+                    index++
+                }
+                cmd.insertText = new vscode.SnippetString(name + argTabs)
+                cmd.filterText = name
+                if (isTriggerSuggestNeeded(name)) {
+                    cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
+                }
+                cmds.push(cmd)
+                this.definedCmds.set(cmd.signatureAsString(), {
+                    filePath,
+                    location: new vscode.Location(
+                        vscode.Uri.file(filePath),
+                        new vscode.Position(
+                            (node.position?.start.line ?? 1) - 1,
+                            (node.position?.start.column ?? 1) - 1))
+                })
+                defined.add(cmd.signatureAsString())
+            }
+        }
+
+        if ('content' in node && typeof node.content !== 'string') {
+            for (const subNode of node.content) {
+                cmds = [...cmds, ...this.parseAst(subNode, filePath, defined)]
+            }
+        }
+
+        return cmds
+    }
+
+    private parseContent(content: string, filePath: string): CmdEnvSuggestion[] {
         const cmdInPkg: CmdEnvSuggestion[] = []
         const packages = lw.completer.package.getPackagesIncluded('latex-expl3')
         Object.entries(packages).forEach(([packageName, options]) => {
-            this.provideCmdInPkg(packageName, options, cmdInPkg, new CommandSignatureDuplicationDetector())
+            this.provideCmdInPkg(packageName, options, cmdInPkg)
         })
-        if (nodes !== undefined) {
-            cache.elements.command = CommandFinder.getCmdFromNodeArray(file, nodes, cmdInPkg, new CommandSignatureDuplicationDetector())
-        } else if (content !== undefined) {
-            cache.elements.command = CommandFinder.getCmdFromContent(file, content, cmdInPkg)
+        const cmdReg = /\\([a-zA-Z@_]+(?::[a-zA-Z]*)?\*?)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
+        const cmds: CmdEnvSuggestion[] = []
+        const defined = new Set<string>()
+        let explSyntaxOn: boolean = false
+        while (true) {
+            const result = cmdReg.exec(content)
+            if (result === null) {
+                break
+            }
+            if (result[1] === 'ExplSyntaxOn') {
+                explSyntaxOn = true
+                continue
+            } else if (result[1] === 'ExplSyntaxOff') {
+                explSyntaxOn = false
+                continue
+            }
+
+
+            if (!explSyntaxOn) {
+                const len = result[1].search(/[_:]/)
+                if (len > -1) {
+                    result[1] = result[1].slice(0, len)
+                }
+            }
+            const args = '{}'.repeat(result.length - 1)
+            const cmd = new CmdEnvSuggestion(
+                `\\${result[1]}${args}`,
+                cmdInPkg.find(candidate => candidate.signatureAsString() === result[1] + args)?.package ?? '',
+                [],
+                -1,
+                { name: result[1], args },
+                vscode.CompletionItemKind.Function
+            )
+            cmd.documentation = '`' + result[1] + '`'
+            cmd.insertText = new vscode.SnippetString(
+                result[1] + (result[2] ? '{${1}}' : '') + (result[3] ? '{${2}}' : '') + (result[4] ? '{${3}}' : ''))
+            cmd.filterText = result[1]
+            if (isTriggerSuggestNeeded(result[1])) {
+                cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
+            }
+            if (!defined.has(cmd.signatureAsString())) {
+                cmds.push(cmd)
+                defined.add(cmd.signatureAsString())
+            }
         }
+
+        const newCommandReg = /\\(?:(?:(?:re|provide)?(?:new)?command)|(?:DeclarePairedDelimiter(?:X|XPP)?)|DeclareMathOperator)\*?{?\\(\w+)}?(?:\[([1-9])\])?/g
+        while (true) {
+            const result = newCommandReg.exec(content)
+            if (result === null) {
+                break
+            }
+
+            let tabStops = ''
+            let args = ''
+            if (result[2]) {
+                const numArgs = parseInt(result[2])
+                for (let i = 1; i <= numArgs; ++i) {
+                    tabStops += '{${' + i + '}}'
+                    args += '{}'
+                }
+            }
+
+            const cmd = new CmdEnvSuggestion(`\\${result[1]}${args}`, 'user-defined', [], -1, {name: result[1], args}, vscode.CompletionItemKind.Function)
+            cmd.documentation = '`' + result[1] + '`'
+            cmd.insertText = new vscode.SnippetString(result[1] + tabStops)
+            cmd.filterText = result[1]
+            if (!defined.has(cmd.signatureAsString())) {
+                cmds.push(cmd)
+                defined.add(cmd.signatureAsString())
+            }
+
+            this.definedCmds.set(result[1], {
+                filePath,
+                location: new vscode.Location(
+                    vscode.Uri.file(filePath),
+                    new vscode.Position(content.substring(0, result.index).split('\n').length - 1, 0))
+            })
+        }
+
+        return cmds
     }
 
     private entryCmdToCompletion(itemKey: string, item: CmdType): CmdEnvSuggestion {
@@ -283,7 +400,8 @@ export class Command implements IProvider {
         return this.packageCmds.get(packageName) || []
     }
 
-    provideCmdInPkg(packageName: string, options: string[], suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
+    private provideCmdInPkg(packageName: string, options: string[], suggestions: vscode.CompletionItem[]) {
+        const defined = new Set<string>()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
@@ -300,12 +418,12 @@ export class Command implements IProvider {
             if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
                 return
             }
-            if (!cmdDuplicationDetector.has(cmd)) {
+            if (!defined.has(cmd.signatureAsString())) {
                 if (cmd.option && options && !options.includes(cmd.option)) {
                     return
                 }
                 suggestions.push(cmd)
-                cmdDuplicationDetector.add(cmd)
+                defined.add(cmd.signatureAsString())
             }
         })
     }
