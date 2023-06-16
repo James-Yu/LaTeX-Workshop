@@ -493,6 +493,12 @@ export function toggleMathPreviewPanel() {
     lw.mathPreviewPanel.toggle()
 }
 
+export function togglePdfInvertFilter() {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const invert = configuration.get('view.pdf.invert') as boolean
+    configuration.update('view.pdf.invert', invert ? 0 : 1)
+}
+
 async function quickPickRootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
     const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean

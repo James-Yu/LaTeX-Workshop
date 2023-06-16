@@ -188,7 +188,9 @@ function registerLatexWorkshopCommands() {
 
         vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => lw.commander.openMathPreviewPanel()),
         vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => lw.commander.closeMathPreviewPanel()),
-        vscode.commands.registerCommand('latex-workshop.toggleMathPreviewPanel', () => lw.commander.toggleMathPreviewPanel())
+        vscode.commands.registerCommand('latex-workshop.toggleMathPreviewPanel', () => lw.commander.toggleMathPreviewPanel()),
+
+        vscode.commands.registerCommand('latex-workshop.togglePdfInvertFilter', () => lw.commander.togglePdfInvertFilter()),
     )
 }
 
