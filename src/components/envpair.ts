@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
 import { getLogger } from './logger'
-import { parser } from './parser'
-import { latexParser } from 'latex-utensils'
+import type * as Ast from '@unified-latex/unified-latex-types'
+import { argContentToStr } from '../utils/parser'
 
 const logger = getLogger('EnvPair')
 
@@ -67,33 +67,29 @@ export class EnvPair {
 
     constructor() {}
 
-    async buildCommandPairTree(doc: vscode.TextDocument): Promise<CommandPair[]> {
-        logger.log(`Parse LaTeX AST : ${doc.fileName} .`)
-        let ast: latexParser.LatexAst | undefined = await parser.parseLatex(doc.getText())
-
-        if (!ast) {
-            logger.log('Failed to parse LaTeX AST, fallback to cached AST.')
-            await lw.cacher.promise(doc.fileName)
-            ast = lw.cacher.get(doc.fileName)?.luAst
-        }
-
-        if (!ast) {
-            logger.log(`Failed to load AST for ${doc.fileName} .`)
+    async buildCommandPairTree(document: vscode.TextDocument): Promise<CommandPair[]> {
+        await lw.cacher.wait(document.fileName)
+        const content = lw.cacher.get(document.fileName)?.content
+        const ast = lw.cacher.get(document.fileName)?.ast
+        if (!content || !ast) {
+            logger.log(`Error loading ${content ? 'AST' : 'content'} during structuring: ${document.fileName} .`)
             return []
         }
 
-        logger.log(`Parsed ${ast.content.length} AST items.`)
         const commandPairs: CommandPair[] = []
         let parentPair: CommandPair | undefined = undefined
         for (const node of ast.content) {
-            parentPair = this.buildCommandPairTreeFromNode(doc, node, parentPair, commandPairs)
+            parentPair = this.buildCommandPairTreeFromNode(document, node, parentPair, commandPairs)
         }
         return commandPairs
     }
 
-    private buildCommandPairTreeFromNode(doc: vscode.TextDocument, node: latexParser.Node, parentCommandPair: CommandPair | undefined, commandPairs: CommandPair[]): CommandPair | undefined {
-        if (latexParser.isEnvironment(node) || latexParser.isMathEnv(node) || latexParser.isMathEnvAligned(node)) {
-            const name = node.name
+    private buildCommandPairTreeFromNode(doc: vscode.TextDocument, node: Ast.Node, parentCommandPair: CommandPair | undefined, commandPairs: CommandPair[]): CommandPair | undefined {
+        if (node.position === undefined) {
+            return parentCommandPair
+        }
+        if (node.type === 'environment' || node.type === 'mathenv') {
+            const name = node.env
             let currentCommandPair: CommandPair | undefined
             // If we encounter `\begin{document}`, clear commandPairs
             if (name === 'document') {
@@ -103,8 +99,8 @@ export class EnvPair {
             } else {
                 const beginName = `\\begin{${name}}`
                 const endName = `\\end{${name}}`
-                const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
-                const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1)
+                const beginPos = new vscode.Position(node.position.start.line - 1, node.position.start.column - 1)
+                const endPos = new vscode.Position(node.position.end.line - 1, node.position.end.column - 1)
                 currentCommandPair = new CommandPair(PairType.ENVIRONMENT, beginName, beginPos, endName, endPos)
                 if (parentCommandPair) {
                     currentCommandPair.parent = parentCommandPair
@@ -118,9 +114,9 @@ export class EnvPair {
                 parentCommandPair = this.buildCommandPairTreeFromNode(doc, subnode, parentCommandPair, commandPairs)
             }
             parentCommandPair = currentCommandPair?.parent
-        } else if (latexParser.isDisplayMath(node)) {
-            const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
-            const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1)
+        } else if (node.type === 'displaymath') {
+            const beginPos = new vscode.Position(node.position.start.line - 1, node.position.start.column - 1)
+            const endPos = new vscode.Position(node.position.end.line - 1, node.position.end.column - 1)
             if (doc.getText(new vscode.Range(beginPos, beginPos.translate(0, 2))) === '$$') {
                 const currentCommandPair = new CommandPair(PairType.DISPLAYMATH, '$$', beginPos, '$$', endPos)
                 commandPairs.push(currentCommandPair)
@@ -128,9 +124,9 @@ export class EnvPair {
                 const currentCommandPair = new CommandPair(PairType.DISPLAYMATH, '\\[', beginPos, '\\]', endPos)
                 commandPairs.push(currentCommandPair)
             }
-        } else if (latexParser.isInlienMath(node)) {
-            const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
-            const endPos = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1)
+        } else if (node.type === 'inlinemath') {
+            const beginPos = new vscode.Position(node.position.start.line - 1, node.position.start.column - 1)
+            const endPos = new vscode.Position(node.position.end.line - 1, node.position.end.column - 1)
             if (doc.getText(new vscode.Range(beginPos, beginPos.translate(0, 1))) === '$') {
                 const currentCommandPair = new CommandPair(PairType.INLINEMATH, '$', beginPos, '$', endPos)
                 commandPairs.push(currentCommandPair)
@@ -138,11 +134,11 @@ export class EnvPair {
                 const currentCommandPair = new CommandPair(PairType.INLINEMATH, '\\(', beginPos, '\\)', endPos)
                 commandPairs.push(currentCommandPair)
             }
-        } else if (latexParser.isCommand(node)) {
-            if (node.name === 'begin' && node.args.length > 0 && latexParser.isGroup(node.args[0])) {
+        } else if (node.type === 'macro') {
+            if (node.content === 'begin' && node.args?.length && node.args[0].content[0]?.type === 'group') {
                 // This is an unbalanced environment
-                const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
-                const envName = latexParser.stringify(node.args[0]).slice(1, -1)
+                const beginPos = new vscode.Position(node.position.start.line - 1, node.position.start.column - 1)
+                const envName = argContentToStr(node.args[0].content)
                 const name = `\\begin{${envName}}`
                 const currentCommandPair = new CommandPair(PairType.ENVIRONMENT, name, beginPos)
                 if (parentCommandPair) {
@@ -154,18 +150,18 @@ export class EnvPair {
                 // currentCommandPair becomes the new parent
                 return currentCommandPair
             }
-            const name = '\\' + node.name
+            const name = '\\' + node.content
             for (const pair of EnvPair.delimiters) {
                 if (pair.type === PairType.COMMAND && name.match(pair.end) && parentCommandPair && parentCommandPair.start.match(pair.start)) {
                     parentCommandPair.end = name
-                    parentCommandPair.endPosition = new vscode.Position(node.location.end.line - 1, node.location.end.column - 1)
+                    parentCommandPair.endPosition = new vscode.Position(node.position.end.line - 1, node.position.end.column - 1)
                     parentCommandPair = parentCommandPair.parent
                     // Do not return after finding an 'end' token as it can also be the start of an other pair.
                 }
             }
             for (const pair of EnvPair.delimiters) {
                 if (pair.type === PairType.COMMAND && name.match(pair.start)) {
-                    const beginPos = new vscode.Position(node.location.start.line - 1, node.location.start.column - 1)
+                    const beginPos = new vscode.Position(node.position.start.line - 1, node.position.start.column - 1)
                     const currentCommandPair = new CommandPair(PairType.COMMAND, name, beginPos)
                     if (parentCommandPair) {
                         currentCommandPair.parent = parentCommandPair
