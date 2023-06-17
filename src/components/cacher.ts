@@ -154,11 +154,11 @@ export class Cacher {
             external: {}}
         this.caches[filePath] = cache
         rootPath = rootPath || lw.manager.rootFile
-        this.updateChildren(filePath, rootPath, cache.contentTrimmed)
+        this.updateChildren(cache, rootPath)
 
-        this.promises[filePath] = this.updateAST(filePath, content).then(() => {
-            this.updateElements(cache, filePath)
-            this.updateBibfiles(filePath, cache.contentTrimmed)
+        this.promises[filePath] = this.updateAST(cache).then(() => {
+            this.updateElements(cache)
+            this.updateBibfiles(cache)
         }).finally(() => {
             logger.log(`Cached ${filePath} .`)
             this.caching--
@@ -173,29 +173,29 @@ export class Cacher {
         return this.promises[filePath]
     }
 
-    private async updateAST(filePath: string, content: string): Promise<void> {
-        logger.log(`Parse LaTeX AST: ${filePath} .`)
+    private async updateAST(cache: Cache): Promise<void> {
+        logger.log(`Parse LaTeX AST: ${cache.filePath} .`)
         const start = performance.now()
         return new Promise((resolve, _) => {
             setTimeout(() => {
-                this.caches[filePath].ast = parser.unifiedParse(content)
-                logger.log(`Parsed LaTeX AST in ${(performance.now() - start).toFixed(2)} ms: ${filePath} .`)
+                cache.ast = parser.unifiedParse(cache.content)
+                logger.log(`Parsed LaTeX AST in ${(performance.now() - start).toFixed(2)} ms: ${cache.filePath} .`)
                 resolve()
             }, 0)
         })
     }
 
-    private updateChildren(filePath: string, rootPath: string | undefined, contentTrimmed: string) {
-        rootPath = rootPath || filePath
-        this.updateChildrenInput(filePath, rootPath, contentTrimmed)
-        this.updateChildrenXr(filePath, rootPath, contentTrimmed)
-        logger.log(`Updated inputs of ${filePath} .`)
+    private updateChildren(cache: Cache, rootPath: string | undefined) {
+        rootPath = rootPath || cache.filePath
+        this.updateChildrenInput(cache, rootPath)
+        this.updateChildrenXr(cache, rootPath)
+        logger.log(`Updated inputs of ${cache.filePath} .`)
     }
 
-    private updateChildrenInput(filePath: string, rootPath: string , contentTrimmed: string) {
+    private updateChildrenInput(cache: Cache, rootPath: string) {
         const inputFileRegExp = new InputFileRegExp()
         while (true) {
-            const result = inputFileRegExp.exec(contentTrimmed, filePath, rootPath)
+            const result = inputFileRegExp.exec(cache.contentTrimmed, cache.filePath, rootPath)
             if (!result) {
                 break
             }
@@ -208,7 +208,7 @@ export class Cacher {
                 index: result.match.index,
                 filePath: result.path
             })
-            logger.log(`Input ${result.path} from ${filePath} .`)
+            logger.log(`Input ${result.path} from ${cache.filePath} .`)
 
             if (this.src.has(result.path)) {
                 continue
@@ -218,16 +218,16 @@ export class Cacher {
         }
     }
 
-    private updateChildrenXr(filePath: string, rootPath: string , contentTrimmed: string) {
+    private updateChildrenXr(cache: Cache, rootPath: string) {
         const externalDocRegExp = /\\externaldocument(?:\[(.*?)\])?\{(.*?)\}/g
         while (true) {
-            const result = externalDocRegExp.exec(contentTrimmed)
+            const result = externalDocRegExp.exec(cache.contentTrimmed)
             if (!result) {
                 break
             }
 
             const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
-            const externalPath = utils.resolveFile([path.dirname(filePath), path.dirname(rootPath), ...texDirs], result[2])
+            const externalPath = utils.resolveFile([path.dirname(cache.filePath), path.dirname(rootPath), ...texDirs], result[2])
             if (!externalPath || !fs.existsSync(externalPath) || path.relative(externalPath, rootPath) === '') {
                 logger.log(`Failed resolving external ${result[2]} . Tried ${externalPath} ` +
                     (externalPath && path.relative(externalPath, rootPath) === '' ? ', which is root.' : '.'))
@@ -235,7 +235,7 @@ export class Cacher {
             }
 
             this.caches[rootPath].external[externalPath] = result[1] || ''
-            logger.log(`External document ${externalPath} from ${filePath} .` +
+            logger.log(`External document ${externalPath} from ${cache.filePath} .` +
                 (result[1] ? ` Prefix is ${result[1]}`: ''))
 
             if (this.src.has(externalPath)) {
@@ -246,22 +246,22 @@ export class Cacher {
         }
     }
 
-    private updateElements(cache: Cache, filePath: string) {
-        lw.completer.citation.update(filePath, cache.content)
+    private updateElements(cache: Cache) {
+        lw.completer.citation.update(cache.filePath, cache.content)
         // Package parsing must be before command and environment.
         lw.completer.package.parse(cache)
         lw.completer.reference.parse(cache)
         lw.completer.glossary.parse(cache)
         lw.completer.environment.parse(cache)
         lw.completer.command.parse(cache)
-        lw.duplicateLabels.run(filePath)
-        logger.log(`Updated elements of ${filePath} .`)
+        lw.duplicateLabels.run(cache.filePath)
+        logger.log(`Updated elements of ${cache.filePath} .`)
     }
 
-    private updateBibfiles(filePath: string, contentTrimmed: string) {
+    private updateBibfiles(cache: Cache) {
         const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(.+?)}|(?:\\putbib)\[(.+?)\]/g
         while (true) {
-            const result = bibReg.exec(contentTrimmed)
+            const result = bibReg.exec(cache.contentTrimmed)
             if (!result) {
                 break
             }
@@ -269,18 +269,18 @@ export class Cacher {
             const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => bib.trim())
 
             for (const bib of bibs) {
-                const bibPath = PathUtils.resolveBibPath(bib, path.dirname(filePath))
+                const bibPath = PathUtils.resolveBibPath(bib, path.dirname(cache.filePath))
                 if (bibPath === undefined) {
                     continue
                 }
-                this.caches[filePath].bibfiles.add(bibPath)
-                logger.log(`Bib ${bibPath} from ${filePath} .`)
+                cache.bibfiles.add(bibPath)
+                logger.log(`Bib ${bibPath} from ${cache.filePath} .`)
                 if (!this.bib.has(bibPath)) {
                     this.bib.add(bibPath)
                 }
             }
         }
-        logger.log(`Updated bibs of ${filePath} .`)
+        logger.log(`Updated bibs of ${cache.filePath} .`)
     }
 
     /**
