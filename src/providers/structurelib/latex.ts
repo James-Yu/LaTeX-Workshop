@@ -51,7 +51,7 @@ export async function construct(filePath: string | undefined = undefined, subFil
 }
 
 async function constructFile(filePath: string, config: StructureConfig, structs: FileStructureCache): Promise<void> {
-    if (structs[filePath]) {
+    if (structs[filePath] !== undefined) {
         return
     }
     const openEditor: vscode.TextDocument | undefined = vscode.workspace.textDocuments.filter(document => document.fileName === path.normalize(filePath))?.[0]
@@ -75,11 +75,11 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
     // Parse each base-level node. If the node has contents, that function
     // will be called recursively.
     const rootElement = { children: [] }
+    structs[filePath] = rootElement.children
+
     for (const node of ast.content) {
         await parseNode(node, rnwSub, rootElement, filePath, config, structs)
     }
-
-    structs[filePath] = rootElement.children
 }
 
 async function parseNode(
@@ -222,15 +222,18 @@ async function parseNode(
     }
 }
 
-function insertSubFile(structs: FileStructureCache, struct?: TeXElement[]): TeXElement[] {
+function insertSubFile(structs: FileStructureCache, struct?: TeXElement[], traversed?: string[]): TeXElement[] {
     if (lw.manager.rootFile === undefined) {
         return []
     }
     struct = struct ?? structs[lw.manager.rootFile] ?? []
+    traversed = traversed ?? [lw.manager.rootFile]
     let elements: TeXElement[] = []
     for (const element of struct) {
-        if (element.type === TeXElementType.SubFile && structs[element.label]) {
-            elements = [...elements, ...insertSubFile(structs, structs[element.label])]
+        if (element.type === TeXElementType.SubFile
+            && structs[element.label]
+            && !traversed.includes(element.label)) {
+            elements = [...elements, ...insertSubFile(structs, structs[element.label], [...traversed, element.label])]
             continue
         }
         if (element.children.length > 0) {

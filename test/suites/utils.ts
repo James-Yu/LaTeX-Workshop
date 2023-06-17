@@ -75,6 +75,7 @@ export function sleep(ms: number) {
 
 export async function reset() {
     await vscode.commands.executeCommand('workbench.action.closeAllEditors')
+    await Promise.all(lw.cacher.allPromises)
     lw.manager.rootFile = undefined
     lw.manager.localRootFile = undefined
     lw.completer.input.reset()
