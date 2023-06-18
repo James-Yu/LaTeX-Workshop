@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
 import { tokenizer, onAPackage } from './tokenizer'
+import { findProjectNewCommand } from './preview/mathpreviewlib/newcommandfinder'
 
 export class HoverProvider implements vscode.HoverProvider {
     public async provideHover(document: vscode.TextDocument, position: vscode.Position, ctoken: vscode.CancellationToken): Promise<vscode.Hover | undefined> {
@@ -13,7 +14,7 @@ export class HoverProvider implements vscode.HoverProvider {
         if (hov) {
             const tex = lw.mathPreview.findHoverOnTex(document, position)
             if (tex) {
-                const newCommands = await lw.mathPreview.findProjectNewCommand(ctoken)
+                const newCommands = await findProjectNewCommand(ctoken)
                 const hover = await lw.mathPreview.provideHoverOnTex(document, tex, newCommands)
                 return hover
             }
