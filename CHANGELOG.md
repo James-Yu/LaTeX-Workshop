@@ -1,5 +1,11 @@
 # Change Log
 
+## [9.12.0] - 2023-06-19
+
+### Added
+- (#3934) Now the content parsing and caching system is based on `unified-latex`.
+  - We expect to encounter many issues and bugs. Please feel free to create ones at https://github.com/James-Yu/LaTeX-Workshop/issues after searching.
+
 ## [9.11.5] - 2023-06-13
 
 ### Fixed
