@@ -176,8 +176,13 @@ export class Cacher {
     private async updateAST(cache: Cache): Promise<void> {
         logger.log(`Parse LaTeX AST: ${cache.filePath} .`)
         const start = performance.now()
-        cache.ast = await parser.unifiedParse(cache.content)
-        logger.log(`Parsed LaTeX AST in ${(performance.now() - start).toFixed(2)} ms: ${cache.filePath} .`)
+        return new Promise((resolve, _) => {
+            setTimeout(() => {
+                cache.ast = parser.unifiedParse(cache.content)
+                logger.log(`Parsed LaTeX AST in ${(performance.now() - start).toFixed(2)} ms: ${cache.filePath} .`)
+                resolve()
+            }, 0)
+        })
     }
 
     private updateChildren(cache: Cache, rootPath: string | undefined) {

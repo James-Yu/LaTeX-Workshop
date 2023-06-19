@@ -2,15 +2,12 @@ import type { latexParser, bibtexParser } from 'latex-utensils'
 import * as path from 'path'
 import * as workerpool from 'workerpool'
 import type { Proxy } from 'workerpool'
-import type * as Ast from '@unified-latex/unified-latex-types'
 import type { ISyntaxWorker } from './parserlib/syntax'
-import { UnifiedWorker } from './parserlib/unified'
 import { bibtexLogParser } from './parserlib/bibtexlog'
 import { biberLogParser } from './parserlib/biberlog'
 import { latexLogParser } from './parserlib/latexlog'
 import { stripComments } from '../utils/utils'
 import { getLogger } from './logger'
-import { getEnvDefs, getMacroDefs } from './parserlib/defs'
 
 const logger = getLogger('Parser')
 
@@ -22,10 +19,7 @@ const proxy: workerpool.Promise<Proxy<ISyntaxWorker>> = pool.proxy<ISyntaxWorker
 
 function dispose() {
     return {
-        dispose: async () => {
-            await pool.terminate(true)
-            await unifiedPool.terminate(true)
-        }
+        dispose: async () => { await pool.terminate(true) }
     }
 }
 
@@ -58,22 +52,6 @@ async function parseBibtex(s: string, options?: bibtexParser.ParserOptions): Pro
             logger.logUtensilsError('Error in parsing BibTeX AST', err)
             return undefined
         })
-}
-
-const unifiedPool: workerpool.WorkerPool = workerpool.pool(
-    path.join(__dirname, './parserlib/unified.js'),
-    { workerType: 'thread' }
-)
-const unifiedProxy: workerpool.Promise<Proxy<UnifiedWorker>> = unifiedPool.proxy<UnifiedWorker>()
-
-async function unifiedParse(content: string) {
-    return (await unifiedProxy).parse(content, getMacroDefs(), getEnvDefs())
-}
-async function unifiedArgs(ast: Ast.Root) {
-    return (await unifiedProxy).attachArgs(ast, getMacroDefs())
-}
-async function unifiedReset() {
-    return (await unifiedProxy).reset(getMacroDefs(), getEnvDefs())
 }
 
 // Notice that 'Output written on filename.pdf' isn't output in draft mode.
@@ -181,13 +159,53 @@ function latexmkSkipped(log: string): boolean {
     return false
 }
 
+import { getMacroDefs, getEnvDefs } from './parserlib/defs'
+import type * as Ast from '@unified-latex/unified-latex-types'
+// @ts-expect-error This import will originates from 'out/src/' to .cjs in 'src/'
+import * as unifiedLaTeXParse from '../../../src/lib/unified-latex-util-parse.cjs'
+// @ts-expect-error This import will originates from 'out/src/' to .cjs in 'src/'
+import * as unifiedLaTeXArgs from '../../../src/lib/unified-latex-util-arguments.cjs'
+
+type UnifiedParser = { parse: (content: string) => Ast.Root }
+let unifiedParser: UnifiedParser
+
+function unifiedParse(content: string): Ast.Root {
+    return (unifiedParser ?? resetUnifiedParser()).parse(content)
+}
+
+function unifiedArgsParse(ast?: Ast.Root): Ast.Root | undefined {
+    if (ast !== undefined) {
+        (unifiedLaTeXArgs.attachMacroArgs as (tree: Ast.Ast, macros: Ast.MacroInfoRecord) => void)(ast, getMacroDefs())
+    }
+    return ast
+}
+
+type UnifiedParserOption = {
+    mode?: 'math' | 'regular',
+    macros?: Ast.MacroInfoRecord,
+    environments?: Ast.EnvInfoRecord,
+    flags?: {
+        atLetter?: boolean,
+        expl3?: boolean,
+        autodetectExpl3AndAtLetter?: boolean
+    }
+}
+
+function resetUnifiedParser(): UnifiedParser {
+    unifiedParser = (unifiedLaTeXParse.getParser as (options: UnifiedParserOption) => UnifiedParser)(
+        { macros: getMacroDefs(),
+          environments: getEnvDefs(),
+          flags: { autodetectExpl3AndAtLetter: true } })
+    return unifiedParser
+}
+
 export const parser = {
     parseLatex,
     parseLatexPreamble,
     parseBibtex,
     parseLog,
     unifiedParse,
-    unifiedArgs,
-    unifiedReset,
+    unifiedArgsParse,
+    resetUnifiedParser,
     dispose
 }
