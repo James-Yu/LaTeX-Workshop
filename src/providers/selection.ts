@@ -5,27 +5,46 @@ import { getLogger } from '../components/logger'
 
 const logger = getLogger('Selection')
 
-function findNode(position: vscode.Position, node: Ast.Node, stack: Ast.Node[] = [ node ]): Ast.Node[] {
+function inNode(position: vscode.Position, node: Ast.Node) {
+    if (node.position === undefined) {
+        return false
+    }
+    if (node.position.start.line > position.line + 1 ||
+        node.position.end.line < position.line + 1) {
+        return false
+    }
+    if (node.position.start.line === position.line + 1 &&
+        node.position.start.column > position.character + 1) {
+        return false
+    }
+    if (node.position.end.line === position.line + 1 &&
+        node.position.end.column < position.character + 1) {
+        return false
+    }
+    return true
+}
+
+export function findNode(position: vscode.Position, node: Ast.Node, stack: Ast.Node[] = [ node ]): Ast.Node[] {
     if ('content' in node && typeof node.content !== 'string') {
         for (const child of node.content) {
-            if (child.position === undefined) {
-                continue
-            }
-            if (child.position.start.line > position.line + 1 ||
-                child.position.end.line < position.line + 1) {
-                continue
-            }
-            if (child.position.start.line === position.line + 1 &&
-                child.position.start.column > position.character + 1) {
-                continue
-            }
-            if (child.position.end.line === position.line + 1 &&
-                child.position.end.column < position.character + 1) {
+            if (!inNode(position, child)) {
                 continue
             }
             stack.push(child)
             findNode(position, child, stack)
             break
+        }
+    }
+    if ('args' in node && node.args !== undefined) {
+        for (const arg of node.args) {
+            for (const child of arg.content) {
+                if (!inNode(position, child)) {
+                    continue
+                }
+                stack.push(child)
+                findNode(position, child, stack)
+                break
+            }
         }
     }
 

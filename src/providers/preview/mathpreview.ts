@@ -3,7 +3,7 @@ import { MathJaxPool } from './mathjaxpool'
 import * as utils from '../../utils/svg'
 import type { ReferenceEntry } from '../completer/reference'
 import { getCurrentThemeLightness } from '../../utils/theme'
-import { CursorRenderer} from './mathpreviewlib/cursorrenderer'
+import { renderCursor } from './mathpreviewlib/cursorrenderer'
 import { type ITextDocumentLike, TextDocumentLike } from './mathpreviewlib/textdocumentlike'
 import { findProjectNewCommand } from './mathpreviewlib/newcommandfinder'
 import { TexMathEnv, TeXMathEnvFinder } from './mathpreviewlib/texmathenvfinder'
@@ -26,7 +26,7 @@ export class MathPreview {
     async provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv, newCommand: string): Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
-        let s = await CursorRenderer.renderCursor(document, tex, this.color)
+        let s = await renderCursor(document, tex, this.color)
         s = MathPreviewUtils.mathjaxify(s, tex.envname)
         const typesetArg = newCommand + MathPreviewUtils.stripTeX(s, newCommand)
         const typesetOpts = { scale, color: this.color }
@@ -95,8 +95,8 @@ export class MathPreview {
         }
     }
 
-    renderCursor(document: vscode.TextDocument, texMath: TexMathEnv): Promise<string> {
-        return CursorRenderer.renderCursor(document, texMath, this.color)
+    renderCursor(document: vscode.TextDocument, texMath: TexMathEnv): string {
+        return renderCursor(document, texMath, this.color)
     }
 
     findHoverOnTex(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
