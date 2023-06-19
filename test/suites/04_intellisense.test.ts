@@ -8,7 +8,7 @@ import * as test from './utils'
 import { EnvSnippetType, EnvType } from '../../src/providers/completer/environment'
 import { CmdType } from '../../src/providers/completer/command'
 import { PkgType } from '../../src/providers/completion'
-import { isTriggerSuggestNeeded } from '../../src/providers/completer/commandlib/commandfinder'
+import { isTriggerSuggestNeeded } from '../../src/providers/completer/command'
 
 function assertKeys(keys: string[], expected: string[] = [], message: string): void {
     assert.ok(
@@ -34,7 +34,6 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.label', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.citation.format', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.command', undefined)
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', undefined)
@@ -79,7 +78,7 @@ suite('Intellisense test suite', () => {
     })
 
     test.run('test default cmds', () => {
-        const defaultCommands = lw.completer.command.getDefaultCmds().map(e => e.label)
+        const defaultCommands = lw.completer.command.defaultCmds.map(e => e.label)
         assert.ok(defaultCommands.includes('\\begin'))
         assert.ok(defaultCommands.includes('\\left('))
         assert.ok(defaultCommands.includes('\\section{}'))
@@ -155,11 +154,8 @@ suite('Intellisense test suite', () => {
         const suggestions = test.suggest(0, 1)
         assert.ok(suggestions.labels.includes('\\WARNING'))
         assert.ok(suggestions.labels.includes('\\FIXME{}'))
-        assert.ok(suggestions.labels.includes('\\FIXME[]{}'))
+        assert.ok(suggestions.labels.includes('\\FIXMETOO[]{}'))
         assert.ok(suggestions.labels.includes('\\fix[]{}{}'))
-        assert.ok(suggestions.labels.includes('\\fakecommand'))
-        assert.ok(suggestions.labels.includes('\\fakecommand{}'))
-        assert.ok(suggestions.labels.includes('\\fakecommand[]{}'))
     })
 
     test.run('command intellisense with config `intellisense.argumentHint.enabled`', async (fixture: string) => {
@@ -222,24 +218,15 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('\\overline{}'))
     })
 
-    test.run('reference intellisense and config intellisense.label.keyval', async (fixture: string) => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', true)
+    test.run('reference intellisense', async (fixture: string) => {
         await test.load(fixture, [
             {src: 'intellisense/base.tex', dst: 'main.tex'},
             {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
         ])
-        let suggestions = test.suggest(8, 5)
+        const suggestions = test.suggest(8, 5)
         assert.ok(suggestions.labels.includes('sec1'))
-        assert.ok(suggestions.labels.includes('eq1'))
-
-        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.label.keyval', false)
-        await test.load(fixture, [
-            {src: 'intellisense/base.tex', dst: 'main.tex'},
-            {src: 'intellisense/sub.tex', dst: 'sub/s.tex'}
-        ])
-        suggestions = test.suggest(8, 5)
-        assert.ok(suggestions.labels.includes('sec1'))
-        assert.ok(!suggestions.labels.includes('eq1'))
+        assert.ok(suggestions.labels.includes('frame'))
+        assert.ok(!suggestions.labels.includes('trap'))
     })
 
     test.run('reference intellisense and config intellisense.label.command', async (fixture: string) => {

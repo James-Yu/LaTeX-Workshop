@@ -157,7 +157,7 @@ export class Completer implements vscode.CompletionItemProvider {
         })
     }
 
-    provide(args: IProviderArgs): vscode.CompletionItem[] | undefined {
+    provide(args: IProviderArgs): vscode.CompletionItem[] {
         // Note that the order of the following array affects the result.
         // 'command' must be at the last because it matches any commands.
         for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'argument', 'command']) {
@@ -167,13 +167,13 @@ export class Completer implements vscode.CompletionItemProvider {
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
                     if (configuration.get('intellisense.citation.type') as string === 'browser') {
                         setTimeout(() => this.citation.browser(args), 10)
-                        return
+                        return []
                     }
                 }
                 return suggestions
             }
         }
-        return
+        return []
     }
 
     async resolveCompletionItem(item: vscode.CompletionItem, token: vscode.CancellationToken): Promise<vscode.CompletionItem> {

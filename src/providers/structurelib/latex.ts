@@ -8,6 +8,7 @@ import { InputFileRegExp } from '../../utils/inputfilepath'
 
 import { getLogger } from '../../components/logger'
 import { parser } from '../../components/parser'
+import { argContentToStr } from '../../utils/parser'
 
 const logger = getLogger('Structure', 'LaTeX')
 
@@ -50,7 +51,7 @@ export async function construct(filePath: string | undefined = undefined, subFil
 }
 
 async function constructFile(filePath: string, config: StructureConfig, structs: FileStructureCache): Promise<void> {
-    if (structs[filePath]) {
+    if (structs[filePath] !== undefined) {
         return
     }
     const openEditor: vscode.TextDocument | undefined = vscode.workspace.textDocuments.filter(document => document.fileName === path.normalize(filePath))?.[0]
@@ -60,19 +61,7 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
         content = openEditor.getText()
         ast = parser.unifiedParse(content)
     } else {
-        let waited = 0
-        while (!lw.cacher.promise(filePath) && !lw.cacher.has(filePath)) {
-            // Just open vscode, has not cached, wait for a bit?
-            await new Promise(resolve => setTimeout(resolve, 100))
-            waited++
-            if (waited >= 20) {
-                // Waited for two seconds before starting cache. Really?
-                logger.log(`Error loading cache during structuring: ${filePath} . Forcing.`)
-                await lw.cacher.refreshCache(filePath)
-                break
-            }
-        }
-        await lw.cacher.promise(filePath)
+        await lw.cacher.wait(filePath)
         content = lw.cacher.get(filePath)?.content
         ast = lw.cacher.get(filePath)?.ast
     }
@@ -86,52 +75,11 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
     // Parse each base-level node. If the node has contents, that function
     // will be called recursively.
     const rootElement = { children: [] }
+    structs[filePath] = rootElement.children
+
     for (const node of ast.content) {
         await parseNode(node, rnwSub, rootElement, filePath, config, structs)
     }
-
-    structs[filePath] = rootElement.children
-}
-
-function macroToStr(macro: Ast.Macro): string {
-    if (macro.content === 'texorpdfstring') {
-        return (macro.args?.[1].content[0] as Ast.String | undefined)?.content || ''
-    }
-    return `\\${macro.content}` + (macro.args?.map(arg => `${arg.openMark}${argContentToStr(arg.content)}${arg.closeMark}`).join('') ?? '')
-}
-
-function envToStr(env: Ast.Environment | Ast.VerbatimEnvironment): string {
-    return `\\environment{${env.env}}`
-}
-
-function argContentToStr(argContent: Ast.Node[]): string {
-    return argContent.map(node => {
-        // Verb
-        switch (node.type) {
-            case 'string':
-                return node.content
-            case 'whitespace':
-            case 'parbreak':
-            case 'comment':
-                return ' '
-            case 'macro':
-                return macroToStr(node)
-            case 'environment':
-            case 'verbatim':
-            case 'mathenv':
-                return envToStr(node)
-            case 'inlinemath':
-                return `$${argContentToStr(node.content)}$`
-            case 'displaymath':
-                return `\\[${argContentToStr(node.content)}\\]`
-            case 'group':
-                return argContentToStr(node.content)
-            case 'verb':
-                return node.content
-            default:
-                return ''
-        }
-    }).join('')
 }
 
 async function parseNode(
@@ -274,15 +222,18 @@ async function parseNode(
     }
 }
 
-function insertSubFile(structs: FileStructureCache, struct?: TeXElement[]): TeXElement[] {
+function insertSubFile(structs: FileStructureCache, struct?: TeXElement[], traversed?: string[]): TeXElement[] {
     if (lw.manager.rootFile === undefined) {
         return []
     }
     struct = struct ?? structs[lw.manager.rootFile] ?? []
+    traversed = traversed ?? [lw.manager.rootFile]
     let elements: TeXElement[] = []
     for (const element of struct) {
-        if (element.type === TeXElementType.SubFile && structs[element.label]) {
-            elements = [...elements, ...insertSubFile(structs, structs[element.label])]
+        if (element.type === TeXElementType.SubFile
+            && structs[element.label]
+            && !traversed.includes(element.label)) {
+            elements = [...elements, ...insertSubFile(structs, structs[element.label], [...traversed, element.label])]
             continue
         }
         if (element.children.length > 0) {

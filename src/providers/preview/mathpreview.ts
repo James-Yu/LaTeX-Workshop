@@ -5,7 +5,7 @@ import type { ReferenceEntry } from '../completer/reference'
 import { getCurrentThemeLightness } from '../../utils/theme'
 import { CursorRenderer} from './mathpreviewlib/cursorrenderer'
 import { type ITextDocumentLike, TextDocumentLike } from './mathpreviewlib/textdocumentlike'
-import { NewCommandFinder } from './mathpreviewlib/newcommandfinder'
+import { findProjectNewCommand } from './mathpreviewlib/newcommandfinder'
 import { TexMathEnv, TeXMathEnvFinder } from './mathpreviewlib/texmathenvfinder'
 import { HoverPreviewOnRefProvider } from './mathpreviewlib/hoverpreviewonref'
 import { MathPreviewUtils } from './mathpreviewlib/mathpreviewutils'
@@ -21,10 +21,6 @@ export class MathPreview {
     constructor() {
         vscode.workspace.onDidChangeConfiguration(() => this.getColor())
         MathJaxPool.initialize()
-    }
-
-    findProjectNewCommand(ctoken: vscode.CancellationToken): Promise<string> {
-        return NewCommandFinder.findProjectNewCommand(ctoken)
     }
 
     async provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv, newCommand: string): Promise<vscode.Hover> {
@@ -59,7 +55,7 @@ export class MathPreview {
         if (configuration.get('hover.ref.enabled') as boolean) {
             const tex = TeXMathEnvFinder.findHoverOnRef(document, position, refData, token)
             if (tex) {
-                const newCommands = await this.findProjectNewCommand(ctoken)
+                const newCommands = await findProjectNewCommand(ctoken)
                 return HoverPreviewOnRefProvider.provideHoverPreviewOnRef(tex, newCommands, refData, this.color)
             }
         }
@@ -82,7 +78,7 @@ export class MathPreview {
     }
 
     async generateSVG(tex: TexMathEnv, newCommandsArg?: string) {
-        const newCommands: string = newCommandsArg ?? await NewCommandFinder.findProjectNewCommand()
+        const newCommands: string = newCommandsArg ?? await findProjectNewCommand()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
         const s = MathPreviewUtils.mathjaxify(tex.texString, tex.envname)
@@ -117,7 +113,7 @@ export class MathPreview {
     }
 
     async renderSvgOnRef(tex: TexMathEnv, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, ctoken: vscode.CancellationToken) {
-        const newCommand = await this.findProjectNewCommand(ctoken)
+        const newCommand = await findProjectNewCommand(ctoken)
         return HoverPreviewOnRefProvider.renderSvgOnRef(tex, newCommand, refData, this.color)
     }
 

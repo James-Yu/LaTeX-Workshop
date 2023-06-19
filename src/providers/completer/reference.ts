@@ -1,11 +1,13 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import {latexParser} from 'latex-utensils'
+import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
-import {stripEnvironments, isNewCommand, isNewEnvironment} from '../../utils/utils'
-import {computeFilteringRange} from './completerutils'
+import { getLongestBalancedString, stripEnvironments } from '../../utils/utils'
+import { computeFilteringRange } from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../completion'
+import { argContentToStr } from '../../utils/parser'
+import { Cache } from '../../components/cacher'
 
 export interface ReferenceEntry extends ICompletionItem {
     /** The file that defines the ref. */
@@ -29,7 +31,6 @@ export class Reference implements IProvider {
     // Here we use an object instead of an array for de-duplication
     private readonly suggestions = new Map<string, ReferenceEntry>()
     private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
-    private readonly envsToSkip = ['tikzpicture']
 
     provideFrom(_result: RegExpMatchArray, args: IProviderArgs) {
         return this.provide(args.line, args.position)
@@ -62,27 +63,6 @@ export class Reference implements IProvider {
             }
         }
         return items
-    }
-
-    /**
-     * Updates the Manager cache for references defined in `file` with `nodes`.
-     * If `nodes` is `undefined`, `content` is parsed with regular expressions,
-     * and the result is used to update the cache.
-     * @param file The path of a LaTeX file.
-     * @param nodes AST of a LaTeX file.
-     * @param lines The lines of the content. They are used to generate the documentation of completion items.
-     * @param content The content of a LaTeX file.
-     */
-    update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
-        const cache = lw.cacher.get(file)
-        if (cache === undefined) {
-            return
-        }
-        if (nodes !== undefined && lines !== undefined) {
-            cache.elements.reference = this.getRefFromNodeArray(nodes, lines)
-        } else if (content !== undefined) {
-            cache.elements.reference = this.getRefFromContent(content)
-        }
     }
 
     getRef(token: string): ReferenceEntry | undefined {
@@ -171,88 +151,71 @@ export class Reference implements IProvider {
         })
     }
 
-    // This function will return all references in a node array, including sub-nodes
-    private getRefFromNodeArray(nodes: latexParser.Node[], lines: string[]): ICompletionItem[] {
-        let refs: ICompletionItem[] = []
-        for (let index = 0; index < nodes.length; ++index) {
-            if (index < nodes.length - 1) {
-                // Also pass the next node to handle cases like `label={some-text}`
-                refs = refs.concat(this.getRefFromNode(nodes[index], lines, nodes[index+1]))
-            } else {
-                refs = refs.concat(this.getRefFromNode(nodes[index], lines))
-            }
+    parse(cache: Cache) {
+        if (cache.ast !== undefined) {
+            cache.elements.reference = this.parseAst(cache.ast, cache.content.split('\n'))
+        } else {
+            cache.elements.reference = this.parseContent(cache.content)
         }
-        return refs
     }
 
-    // This function will return the reference defined by the node, or all references in `content`
-    private getRefFromNode(node: latexParser.Node, lines: string[], nextNode?: latexParser.Node): ICompletionItem[] {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const labelCmdNames = configuration.get('intellisense.label.command') as string[]
-        const useLabelKeyVal = configuration.get('intellisense.label.keyval') as boolean
-        const refs: ICompletionItem[] = []
-        let label = ''
-        if (isNewCommand(node) || isNewEnvironment(node) || latexParser.isDefCommand(node)) {
+    private parseAst(node: Ast.Node, lines: string[]): ICompletionItem[] {
+        let refs: ICompletionItem[] = []
+        if (node.type === 'macro' &&
+            ['renewcommand', 'newcommand', 'providecommand', 'DeclareMathOperator', 'renewenvironment', 'newenvironment'].includes(node.content)) {
             // Do not scan labels inside \newcommand, \newenvironment & co
-            return refs
+            return []
         }
-        if (latexParser.isEnvironment(node) && this.envsToSkip.includes(node.name)) {
-            return refs
+        if (node.type === 'environment' && ['tikzpicture'].includes(node.env)) {
+            return []
         }
-        if (latexParser.isLabelCommand(node) && labelCmdNames.includes(node.name)) {
-            // \label{some-text}
-            label = node.label
-        } else if (latexParser.isCommand(node) && labelCmdNames.includes(node.name)
-                    && node.args.length === 1
-                    && latexParser.isGroup(node.args[0])) {
-            // \linelabel{actual_label}
-            label = latexParser.stringify(node.args[0]).slice(1, -1)
-        } else if (latexParser.isCommand(node) && labelCmdNames.includes(node.name)
-                    && node.args.length === 2
-                    && latexParser.isOptionalArg(node.args[0])
-                    && latexParser.isGroup(node.args[1])) {
-            // \label[opt_arg]{actual_label}
-            label = latexParser.stringify(node.args[1]).slice(1, -1)
-        } else if (latexParser.isTextString(node) && node.content === 'label='
-                    && useLabelKeyVal && nextNode !== undefined) {
-            // label={some-text}
-            label = latexParser.stringify(nextNode).slice(1, -1)
+
+        let label = ''
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const labelMacros = configuration.get('intellisense.label.command') as string[]
+        if (node.type === 'macro' && labelMacros.includes(node.content)) {
+            label = argContentToStr(node.args?.[1]?.content || [])
+        } else if (node.type === 'environment' && ['frame'].includes(node.env)) {
+            label = argContentToStr(node.args?.[1]?.content || [])
+            const index = label.indexOf('label=')
+            if (index >= 0) {
+                label = label.slice(index + 6)
+                if (label.charAt(0) === '{') {
+                    label = getLongestBalancedString(label) ?? ''
+                } else {
+                    label = label.split(',')[0] ?? ''
+                }
+            } else {
+                label = ''
+            }
         }
-        if (label !== '' &&
-            (latexParser.isLabelCommand(node)
-             || latexParser.isCommand(node)
-             || latexParser.isTextString(node))) {
+
+        if (label !== '' && node.position !== undefined) {
             refs.push({
                 label,
                 kind: vscode.CompletionItemKind.Reference,
                 // One row before, four rows after
-                documentation: lines.slice(node.location.start.line - 2, node.location.end.line + 4).join('\n'),
+                documentation: lines.slice(node.position.start.line - 2, node.position.end.line + 4).join('\n'),
                 // Here we abuse the definition of range to store the location of the reference definition
-                range: new vscode.Range(node.location.start.line - 1, node.location.start.column,
-                                        node.location.end.line - 1, node.location.end.column)
+                range: new vscode.Range(node.position.start.line - 1, node.position.start.column - 1,
+                                        node.position.end.line - 1, node.position.end.column - 1)
             })
-            return refs
         }
-        if (latexParser.hasContentArray(node)) {
-            return this.getRefFromNodeArray(node.content, lines)
-        }
-        if (latexParser.hasArgsArray(node)) {
-            return this.getRefFromNodeArray(node.args, lines)
-        }
-        if (latexParser.isLstlisting(node)) {
-            const arg = (node as latexParser.Lstlisting).arg
-            if (arg) {
-                return this.getRefFromNode(arg, lines)
+
+        if ('content' in node && typeof node.content !== 'string') {
+            for (const subNode of node.content) {
+                refs = [...refs, ...this.parseAst(subNode, lines)]
             }
         }
+
         return refs
     }
 
-    private getRefFromContent(content: string): ICompletionItem[] {
+    private parseContent(content: string): ICompletionItem[] {
         const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^#\\}]*)}/gm
         const refs: ICompletionItem[] = []
         const refList: string[] = []
-        content = stripEnvironments(content, this.envsToSkip)
+        content = stripEnvironments(content, [''])
         while (true) {
             const result = refReg.exec(content)
             if (result === null) {
@@ -308,5 +271,4 @@ export class Reference implements IProvider {
             }
         }
     }
-
 }
