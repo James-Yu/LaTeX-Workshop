@@ -67,7 +67,6 @@ const unifiedPool: workerpool.WorkerPool = workerpool.pool(
 const unifiedProxy: workerpool.Promise<Proxy<UnifiedWorker>> = unifiedPool.proxy<UnifiedWorker>()
 
 async function unifiedParse(content: string) {
-    console.log(await unifiedProxy)
     return (await unifiedProxy).parse(content, getMacroDefs(), getEnvDefs())
 }
 async function unifiedArgs(ast: Ast.Root) {
