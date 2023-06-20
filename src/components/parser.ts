@@ -108,7 +108,7 @@ function latexmkSkipped(log: string): boolean {
     return false
 }
 
-import { getMacroDefs, getEnvDefs } from './parserlib/defs'
+import { getMacroDefs, getEnvDefs } from './parserlib/unified-defs'
 import type * as Ast from '@unified-latex/unified-latex-types'
 // @ts-expect-error This import will originates from 'out/src/' to .cjs in 'src/'
 import * as unifiedLaTeXParse from '../../../src/lib/unified-latex-util-parse.cjs'
