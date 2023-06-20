@@ -1,58 +1,7 @@
-import type { latexParser, bibtexParser } from 'latex-utensils'
-import * as path from 'path'
-import * as workerpool from 'workerpool'
-import type { Proxy } from 'workerpool'
-import type { ISyntaxWorker } from './parserlib/syntax'
+import { bibtexParser } from 'latex-utensils'
 import { bibtexLogParser } from './parserlib/bibtexlog'
 import { biberLogParser } from './parserlib/biberlog'
 import { latexLogParser } from './parserlib/latexlog'
-import { stripComments } from '../utils/utils'
-import { getLogger } from './logger'
-
-const logger = getLogger('Parser')
-
-const pool: workerpool.WorkerPool = workerpool.pool(
-    path.join(__dirname, './parserlib/syntax.js'),
-    { minWorkers: 1, maxWorkers: 100, workerType: 'process' }
-)
-const proxy: workerpool.Promise<Proxy<ISyntaxWorker>> = pool.proxy<ISyntaxWorker>()
-
-function dispose() {
-    return {
-        dispose: async () => { await pool.terminate(true) }
-    }
-}
-
-/**
- * Parse a LaTeX file.
- *
- * @param s The content of a LaTeX file to be parsed.
- * @param options
- * @return undefined if parsing fails
- */
-async function parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst | undefined> {
-    return (await proxy).parseLatex(s, Object.assign(options || {}, { timeout: 3000 }))
-        .catch(err => {
-            logger.logUtensilsError('Error in parsing LaTeX AST', err)
-            return undefined
-        })
-}
-
-async function parseLatexPreamble(s: string): Promise<latexParser.AstPreamble | undefined> {
-    return (await proxy).parseLatexPreamble(s, { timeout: 500 })
-        .catch(err => {
-            logger.logUtensilsError('Error in parsing LaTeX Preamble AST', err)
-            return undefined
-        })
-}
-
-async function parseBibtex(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst | undefined> {
-    return (await proxy).parseBibtex(stripComments(s), Object.assign(options || {}, { timeout: 30000 }))
-        .catch(err => {
-            logger.logUtensilsError('Error in parsing BibTeX AST', err)
-            return undefined
-        })
-}
 
 // Notice that 'Output written on filename.pdf' isn't output in draft mode.
 // https://github.com/James-Yu/LaTeX-Workshop/issues/2893#issuecomment-936312853
@@ -199,13 +148,14 @@ function resetUnifiedParser(): UnifiedParser {
     return unifiedParser
 }
 
+function parseBibtex(s: string, options?: bibtexParser.ParserOptions): bibtexParser.BibtexAst | undefined {
+    return bibtexParser.parse(s, options)
+}
+
 export const parser = {
-    parseLatex,
-    parseLatexPreamble,
     parseBibtex,
     parseLog,
     unifiedParse,
     unifiedArgsParse,
-    resetUnifiedParser,
-    dispose
+    resetUnifiedParser
 }
