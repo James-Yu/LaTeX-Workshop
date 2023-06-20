@@ -154,7 +154,7 @@ export class Citation implements IProvider {
                     const commaStart = content.lastIndexOf(',') + 1
                     start = editor.document.positionAt(curlyStart > commaStart ? curlyStart : commaStart)
                 }
-                void editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.start), selected.description || ''))
+                void editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.end), selected.description || ''))
                            .then(() => editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end))
             }
         })
