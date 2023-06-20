@@ -18,16 +18,6 @@ See [#2669](https://github.com/James-Yu/LaTeX-Workshop/pull/2669).
 
 See [#3193](https://github.com/James-Yu/LaTeX-Workshop/pull/3193).
 
-## workerpool
-
-To avoid blocking the main loop of the extension host process, we execute some heavy tasks in child processes with [workerpool](https://github.com/josdejong/workerpool).
-
-See:
-
-- https://github.com/James-Yu/LaTeX-Workshop/tree/master/src/components/parser
-- https://github.com/James-Yu/LaTeX-Workshop/tree/master/src/providers/preview
-
-
 ## Architecture
 
 ```mermaid
