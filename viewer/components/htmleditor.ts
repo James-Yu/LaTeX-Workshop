@@ -9,7 +9,7 @@ export function editHTML() {
     <input id="synctexOff" type="checkbox"><span>Stop SyncTeX</span>
 </button>
 <button id="autoReloadOffButton" class="secondaryToolbarButton" title="Disable auto reload" tabindex="71">
-    <input id="autoReloadOff" type="checkbox"><span>Auto Reload</span>
+    <input id="autoReloadOff" type="checkbox"><span>Disable Auto Reload</span>
 </button>
 <div class="horizontalToolbarSeparator"></div>`
     let anchor: HTMLElement | Element | null | undefined = document.getElementById('documentProperties')
