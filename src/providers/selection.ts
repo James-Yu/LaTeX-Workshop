@@ -24,9 +24,12 @@ function inNode(position: vscode.Position, node: Ast.Node) {
     return true
 }
 
-export function findNode(position: vscode.Position, node: Ast.Node, stack: Ast.Node[] = [ node ]): Ast.Node[] {
-    if ('content' in node && typeof node.content !== 'string') {
-        for (const child of node.content) {
+function findArg(position: vscode.Position, node: Ast.Node, stack: Ast.Node[]) {
+    if (!('args' in node) || node.args === undefined) {
+        return
+    }
+    for (const arg of node.args) {
+        for (const child of arg.content) {
             if (!inNode(position, child)) {
                 continue
             }
@@ -35,18 +38,21 @@ export function findNode(position: vscode.Position, node: Ast.Node, stack: Ast.N
             break
         }
     }
-    if ('args' in node && node.args !== undefined) {
-        for (const arg of node.args) {
-            for (const child of arg.content) {
-                if (!inNode(position, child)) {
-                    continue
-                }
+}
+
+export function findNode(position: vscode.Position, node: Ast.Node, stack: Ast.Node[] = [ node ]): Ast.Node[] {
+    if ('content' in node && typeof node.content !== 'string') {
+        for (const child of node.content) {
+            if (inNode(position, child)) {
                 stack.push(child)
                 findNode(position, child, stack)
                 break
+            } else {
+                findArg(position, child, stack)
             }
         }
     }
+    findArg(position, node, stack)
 
     return stack
 }

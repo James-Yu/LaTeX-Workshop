@@ -35,10 +35,8 @@ function findCursorPosInSnippet(texMath: TexMathEnv, cursorPos: vscode.Position)
 }
 
 function insertCursor(texMath: TexMathEnv, cursorPos: vscode.Position, cursor: string): string {
-    const cursorPosInSnippet = findCursorPosInSnippet(texMath, cursorPos)
-    const texLines = texMath.texString.split('\n')
     const findResult = findNodeAt(texMath, cursorPos)
-    if (findResult === undefined) {
+    if (findResult === undefined || cache.ast === undefined) {
         return texMath.texString
     }
     if (findResult.find(node => node.type === 'macro' && node.content === 'text')) {
@@ -48,28 +46,8 @@ function insertCursor(texMath: TexMathEnv, cursorPos: vscode.Position, cursor: s
     if (cursorNode?.type === 'macro') {
         return texMath.texString
     }
-    if (!cursorNode || !cursorNode.position) {
-        const { line, character } = findCursorPosInSnippet(texMath, cursorPos)
-        const curLine = texLines[line]
-        texLines[line] = curLine.substring(0, character) + cursor + curLine.substring(character, curLine.length)
-        return texLines.join('\n')
-    }
-    const cursorNodeContentRangeInSnippet = new vscode.Range(
-        new vscode.Position(cursorNode.position.start.line - 1, cursorNode.position.start.column - 1),
-        new vscode.Position(cursorNode.position.end.line - 1, cursorNode.position.end.column - 1)
-    )
-    const nodeStart = cursorNodeContentRangeInSnippet.start
-    const nodeEnd = cursorNodeContentRangeInSnippet.end
-    const line = cursorPosInSnippet.line
-    const curLine = texLines[line]
-    texLines[line] =
-    curLine.substring(0, nodeStart.character)
-    + (curLine[nodeStart.character - 1] === '{' ? '~' : '{~')
-    + curLine.substring(nodeStart.character, cursorPosInSnippet.character)
-    + cursor
-    + curLine.substring(cursorPosInSnippet.character, nodeEnd.character)
-    + (curLine[nodeEnd.character] === '}' ? '~' : '~}')
-    + curLine.substring(nodeEnd.character, curLine.length)
+    const texLines = texMath.texString.split('\n')
+    texLines[cursorPos.line] = texLines[cursorPos.line].slice(0, cursorPos.character) + cursor + texLines[cursorPos.line].slice(cursorPos.character)
     return texLines.join('\n')
 }
 

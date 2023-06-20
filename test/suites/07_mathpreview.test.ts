@@ -26,7 +26,7 @@ suite('Math preview test suite', () => {
         const texMath = TeXMathEnvFinder.findMathEnvIncludingPosition(doc, cursorPos)
         assert.ok(texMath)
         const result = texMath && testTools.insertCursor(texMath, cursorPos, '|')
-        assert.strictEqual(result, '${~a|~}+b$')
+        assert.strictEqual(result, '$a|+b$')
     })
 
     test.run('mathpreviewlib/cursorrenderer: test shouldNotWriteCursor', () => {
@@ -70,36 +70,6 @@ suite('Math preview test suite', () => {
         const texMath = TeXMathEnvFinder.findMathEnvIncludingPosition(doc, cursorPos)
         assert.ok(texMath)
         const result = texMath && testTools.insertCursor(texMath, cursorPos, '|')
-        assert.strictEqual(result, '$a^{~|b~}$')
-    })
-
-    test.run('mathpreviewlib/cursorrenderer: test $a^b| $', () => {
-        const docString = '$a^b $'
-        const doc = new TextDocumentLike(docString)
-        const cursorPos = new vscode.Position(0, 4)
-        const texMath = TeXMathEnvFinder.findMathEnvIncludingPosition(doc, cursorPos)
-        assert.ok(texMath)
-        const result = texMath && testTools.insertCursor(texMath, cursorPos, '|')
-        assert.strictEqual(result, '${~a^b|~} $')
-    })
-
-    test.run('mathpreviewlib/cursorrenderer: test $a^{b} $', () => {
-        const docString = '$a^{b} $'
-        const doc = new TextDocumentLike(docString)
-        const cursorPos = new vscode.Position(0, 5)
-        const texMath = TeXMathEnvFinder.findMathEnvIncludingPosition(doc, cursorPos)
-        assert.ok(texMath)
-        const result = texMath && testTools.insertCursor(texMath, cursorPos, '|')
-        assert.strictEqual(result, '$a^{~b|~} $')
-    })
-
-    test.run('mathpreviewlib/cursorrenderer: test a_|b', () => {
-        const docString = '$a_b$'
-        const doc = new TextDocumentLike(docString)
-        const cursorPos = new vscode.Position(0, 3)
-        const texMath = TeXMathEnvFinder.findMathEnvIncludingPosition(doc, cursorPos)
-        assert.ok(texMath)
-        const result = texMath && testTools.insertCursor(texMath, cursorPos, '|')
-        assert.strictEqual(result, '$a_{~|b~}$')
+        assert.strictEqual(result, '$a^|b$')
     })
 })
