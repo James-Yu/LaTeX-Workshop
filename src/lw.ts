@@ -26,6 +26,7 @@ import { MathPreview } from './providers/preview/mathpreview'
 import { StructureView } from './providers/structure'
 import { getLogger } from './components/logger'
 import { TeXDoc } from './components/texdoc'
+import { MathJaxPool } from './providers/preview/mathjaxpool'
 
 let disposables: { dispose(): any }[] = []
 let context: vscode.ExtensionContext
@@ -81,6 +82,7 @@ export function init(extensionContext: vscode.ExtensionContext) {
         dispose: () => {
             cacher.reset()
             server.dispose()
+            MathJaxPool.dispose()
         }
     }
 }
