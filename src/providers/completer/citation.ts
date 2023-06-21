@@ -255,7 +255,7 @@ export class Citation implements IProvider {
         const newEntry: CiteSuggestion[] = []
         const bibtex = fs.readFileSync(fileName).toString()
         logger.log(`Parse BibTeX AST from ${fileName} .`)
-        const ast = await parser.parseBibtex(bibtex)
+        const ast = await parser.parseBibTeX(bibtex)
         if (ast === undefined) {
             logger.log(`Parsed 0 bib entries from ${fileName}.`)
             lw.eventBus.fire(eventbus.FileParsed, fileName)

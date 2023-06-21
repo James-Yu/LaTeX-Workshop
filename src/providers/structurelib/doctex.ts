@@ -46,7 +46,7 @@ function getDoc(content: string) {
 }
 
 async function getToC(document: vscode.TextDocument, docContent: string) {
-    const ast = parser.unifiedParse(docContent)
+    const ast = await parser.parseLaTeX(docContent)
     if (ast === undefined) {
         logger.log('Failed parsing LaTeX AST.')
         return []

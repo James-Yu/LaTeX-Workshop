@@ -34,8 +34,8 @@ function findCursorPosInSnippet(texMath: TexMathEnv, cursorPos: vscode.Position)
     return new vscode.Position(line, character)
 }
 
-function insertCursor(texMath: TexMathEnv, cursorPos: vscode.Position, cursor: string): string {
-    const findResult = findNodeAt(texMath, cursorPos)
+async function insertCursor(texMath: TexMathEnv, cursorPos: vscode.Position, cursor: string): Promise<string> {
+    const findResult = await findNodeAt(texMath, cursorPos)
     if (findResult === undefined || cache.ast === undefined) {
         return texMath.texString
     }
@@ -51,14 +51,14 @@ function insertCursor(texMath: TexMathEnv, cursorPos: vscode.Position, cursor: s
     return texLines.join('\n')
 }
 
-function findNodeAt(texMath: TexMathEnv, cursorPos: vscode.Position) {
+async function findNodeAt(texMath: TexMathEnv, cursorPos: vscode.Position) {
     let ast: Ast.Root | undefined
     if (texMath.texString === cache.texString && cache.ast) {
         logger.log(`Use previous AST of ${texMath.texString} .`)
         ast = cache.ast
     } else {
         logger.log(`Parse LaTeX AST from ${texMath.texString} .`)
-        ast = parser.unifiedParse(texMath.texString)
+        ast = await parser.parseLaTeX(texMath.texString)
         cache.ast = ast
         cache.texString = texMath.texString
     }
@@ -71,7 +71,7 @@ function findNodeAt(texMath: TexMathEnv, cursorPos: vscode.Position) {
     return result
 }
 
-export function renderCursor(document: ITextDocumentLike, texMath: TexMathEnv, thisColor: string): string {
+export async function renderCursor(document: ITextDocumentLike, texMath: TexMathEnv, thisColor: string): Promise<string> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const cursorEnabled = configuration.get('hover.preview.cursor.enabled') as boolean
     if (!cursorEnabled) {

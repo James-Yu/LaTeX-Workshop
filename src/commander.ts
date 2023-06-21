@@ -449,7 +449,7 @@ export async function devParseTeX() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = parser.unifiedParse(vscode.window.activeTextEditor.document.getText())
+    const ast = parser.parseLaTeX(vscode.window.activeTextEditor.document.getText())
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 
@@ -457,7 +457,7 @@ export async function devParseBib() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = await parser.parseBibtex(vscode.window.activeTextEditor.document.getText())
+    const ast = await parser.parseBibTeX(vscode.window.activeTextEditor.document.getText())
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 

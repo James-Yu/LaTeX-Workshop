@@ -195,7 +195,7 @@ export class MathPreviewPanel {
             cachedCommands = this.prevNewCommands
         }
         if (this.needCursor) {
-            this.renderCursor(document, texMath)
+            await this.renderCursor(document, texMath)
         }
         const result = await this.mathPreview.generateSVG(texMath, cachedCommands).catch(() => undefined)
         if (!result) {
@@ -220,8 +220,8 @@ export class MathPreviewPanel {
         return
     }
 
-    renderCursor(document: vscode.TextDocument, tex: TexMathEnv) {
-        const s = this.mathPreview.renderCursor(document, tex)
+    async renderCursor(document: vscode.TextDocument, tex: TexMathEnv) {
+        const s = await this.mathPreview.renderCursor(document, tex)
         tex.texString = s
     }
 

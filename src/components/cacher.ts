@@ -63,6 +63,8 @@ export class Cacher {
     readonly pdf: Watcher = new Watcher('.pdf')
     readonly bib: Watcher = new Watcher('.bib')
     private caching = 0
+    private readonly cachingQueue: Cache[] = []
+    private cachingQueueRunning: boolean = false
     private promises: {[filePath: string]: Promise<void>} = {}
 
     constructor() {
@@ -156,9 +158,8 @@ export class Cacher {
         rootPath = rootPath || lw.manager.rootFile
         this.updateChildren(cache, rootPath)
 
-        this.promises[filePath] = this.updateAST(cache).then(() => {
-            this.updateElements(cache)
-            this.updateBibfiles(cache)
+        this.promises[filePath] = this.updateAST(cache).then(async () => {
+            await this.updateElements(cache)
         }).finally(() => {
             logger.log(`Cached ${filePath} .`)
             this.caching--
@@ -175,14 +176,8 @@ export class Cacher {
 
     private async updateAST(cache: Cache): Promise<void> {
         logger.log(`Parse LaTeX AST: ${cache.filePath} .`)
-        const start = performance.now()
-        return new Promise((resolve, _) => {
-            setTimeout(() => {
-                cache.ast = parser.unifiedParse(cache.content)
-                logger.log(`Parsed LaTeX AST in ${(performance.now() - start).toFixed(2)} ms: ${cache.filePath} .`)
-                resolve()
-            }, 0)
-        })
+        cache.ast = await parser.parseLaTeX(cache.content)
+        logger.log(`Parsed LaTeX AST: ${cache.filePath} .`)
     }
 
     private updateChildren(cache: Cache, rootPath: string | undefined) {
@@ -246,16 +241,30 @@ export class Cacher {
         }
     }
 
-    private updateElements(cache: Cache) {
-        lw.completer.citation.update(cache.filePath, cache.content)
-        // Package parsing must be before command and environment.
-        lw.completer.package.parse(cache)
-        lw.completer.reference.parse(cache)
-        lw.completer.glossary.parse(cache)
-        lw.completer.environment.parse(cache)
-        lw.completer.command.parse(cache)
-        lw.duplicateLabels.run(cache.filePath)
-        logger.log(`Updated elements of ${cache.filePath} .`)
+    private async updateElements(newCache: Cache) {
+        this.cachingQueue.push(newCache)
+        if (this.cachingQueueRunning) {
+            return
+        }
+        this.cachingQueueRunning = true
+        while (this.cachingQueue.length > 0) {
+            const cache = this.cachingQueue[0]
+            const start = performance.now()
+            lw.completer.citation.update(cache.filePath, cache.content)
+            // Package parsing must be before command and environment.
+            lw.completer.package.parse(cache)
+            lw.completer.reference.parse(cache)
+            lw.completer.glossary.parse(cache)
+            lw.completer.environment.parse(cache)
+            lw.completer.command.parse(cache)
+            lw.duplicateLabels.run(cache.filePath)
+            this.updateBibfiles(cache)
+            logger.log(`Updated elements in ${(performance.now() - start).toFixed(2)} ms: ${cache.filePath} .`)
+            // Wait for other vscode actions to take place, otherwise will block
+            await utils.sleep(50)
+            this.cachingQueue.splice(0, 1)
+        }
+        this.cachingQueueRunning = false
     }
 
     private updateBibfiles(cache: Cache) {

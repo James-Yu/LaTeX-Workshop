@@ -14,6 +14,7 @@ import { Locator } from './components/locator'
 import { LwFileSystem } from './components/lwfs'
 import { Manager } from './components/manager'
 import { MathPreviewPanel } from './components/mathpreviewpanel'
+import { parser } from './components/parser'
 import { Section } from './components/section'
 import { Server } from './components/server'
 import { SnippetView } from './components/snippetview'
@@ -76,12 +77,14 @@ export function init(extensionContext: vscode.ExtensionContext) {
     context = extensionContext
     registerDisposable()
     addLogFundamentals()
+    void parser.reset()
     logger.initializeStatusBarItem()
     logger.log('LaTeX Workshop initialized.')
     return {
-        dispose: () => {
+        dispose: async () => {
             cacher.reset()
             server.dispose()
+            await parser.dispose()
             MathJaxPool.dispose()
         }
     }

@@ -95,7 +95,7 @@ export class MathPreview {
         }
     }
 
-    renderCursor(document: vscode.TextDocument, texMath: TexMathEnv): string {
+    renderCursor(document: vscode.TextDocument, texMath: TexMathEnv): Promise<string> {
         return renderCursor(document, texMath, this.color)
     }
 
