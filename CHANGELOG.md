@@ -1,5 +1,14 @@
 # Change Log
 
+## [9.12.1] - 2023-06-21
+
+### Changed
+- Update grammar files to https://github.com/jlelong/vscode-latex-basics/releases/tag/v1.5.3
+
+### Fixed
+- None blocking cache parsing.
+- (#3941) Wrong replace range of browser citation.
+
 ## [9.12.0] - 2023-06-19
 
 ### Added
