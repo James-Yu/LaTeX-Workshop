@@ -93,7 +93,7 @@ export class Cacher {
     }
 
     has(filePath: string) {
-        return Object.keys(this.caches).includes(filePath)
+        return this.caches[filePath] !== undefined
     }
 
     get(filePath: string): Cache | undefined {
@@ -259,9 +259,10 @@ export class Cacher {
             lw.completer.command.parse(cache)
             lw.duplicateLabels.run(cache.filePath)
             this.updateBibfiles(cache)
-            logger.log(`Updated elements in ${(performance.now() - start).toFixed(2)} ms: ${cache.filePath} .`)
+            const elapsed = performance.now() - start
+            logger.log(`Updated elements in ${elapsed.toFixed(2)} ms: ${cache.filePath} .`)
             // Wait for other vscode actions to take place, otherwise will block
-            await utils.sleep(50)
+            await utils.sleep(Math.max(25, 50-elapsed))
             this.cachingQueue.splice(0, 1)
         }
         this.cachingQueueRunning = false

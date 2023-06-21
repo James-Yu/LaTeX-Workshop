@@ -49,7 +49,6 @@ export class DuplicateLabels {
         if (!configuration.get('check.duplicatedLabels.enabled')) {
             return
         }
-        logger.log(`Checking for duplicate labels: ${file} .`)
         const duplicates = this.computeDuplicates(file)
         this.showDiagnostics(duplicates)
     }

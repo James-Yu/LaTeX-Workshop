@@ -28,9 +28,20 @@ export type ReferenceDocType = {
 }
 
 export class Reference implements IProvider {
+    private labelMacros: string[] = []
     // Here we use an object instead of an array for de-duplication
     private readonly suggestions = new Map<string, ReferenceEntry>()
     private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
+
+    constructor() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        this.labelMacros = configuration.get('intellisense.label.command') as string[]
+        vscode.workspace.onDidChangeConfiguration((ev: vscode.ConfigurationChangeEvent) => {
+            if (ev.affectsConfiguration('latex-workshop.intellisense.label.command')) {
+                this.labelMacros = configuration.get('intellisense.label.command') as string[]
+            }
+        })
+    }
 
     provideFrom(_result: RegExpMatchArray, args: IProviderArgs) {
         return this.provide(args.line, args.position)
@@ -171,9 +182,7 @@ export class Reference implements IProvider {
         }
 
         let label = ''
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const labelMacros = configuration.get('intellisense.label.command') as string[]
-        if (node.type === 'macro' && labelMacros.includes(node.content)) {
+        if (node.type === 'macro' && this.labelMacros.includes(node.content)) {
             label = argContentToStr(node.args?.[1]?.content || [])
         } else if (node.type === 'environment' && ['frame'].includes(node.env)) {
             label = argContentToStr(node.args?.[1]?.content || [])
