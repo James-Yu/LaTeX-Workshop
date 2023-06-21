@@ -2064,28 +2064,34 @@
 			]
 		},
 		{
-			"name": "string.quoted.double.latex",
-			"match": "(?<!\\\\)(\\`\\`)(?:.*?(?<!\\\\))(\\'\\'|\\\")",
-			"captures": {
+			"begin": "(?<!\\\\)(\\`\\`)",
+			"beginCaptures": {
 				"1": {
 					"name": "punctuation.definition.string.begin.latex"
-				},
-				"2": {
+				}
+			},
+			"end": "(?<!\\\\)(\\'\\'|\")",
+			"endCaptures": {
+				"1": {
 					"name": "punctuation.definition.string.end.latex"
 				}
-			}
+			},
+			"name": "string.quoted.double.latex"
 		},
 		{
-			"name": "string.quoted.single.latex",
-			"match": "(?<!\\\\)(\\`)(?:.*?(?<!\\\\))(\\')",
-			"captures": {
+			"begin": "(?<!\\\\|\\`)(\\`)",
+			"beginCaptures": {
 				"1": {
 					"name": "punctuation.definition.string.begin.latex"
-				},
-				"2": {
+				}
+			},
+			"end": "(?<!\\\\)(\\')",
+			"endCaptures": {
+				"1": {
 					"name": "punctuation.definition.string.end.latex"
 				}
-			}
+			},
+			"name": "string.quoted.single.latex"
 		},
 		{
 			"begin": "\\$\\$",
