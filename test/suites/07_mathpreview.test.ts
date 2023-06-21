@@ -19,13 +19,13 @@ suite('Math preview test suite', () => {
         await test.reset()
     })
 
-    test.run('mathpreviewlib/cursorrenderer: test insertCursor', () => {
+    test.run('mathpreviewlib/cursorrenderer: test insertCursor', async () => {
         const docString = '$a+b$'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 2)
         const texMath = TeXMathEnvFinder.findMathEnvIncludingPosition(doc, cursorPos)
         assert.ok(texMath)
-        const result = texMath && testTools.insertCursor(texMath, cursorPos, '|')
+        const result = texMath && await testTools.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$a|+b$')
     })
 
@@ -53,23 +53,23 @@ suite('Math preview test suite', () => {
 
     })
 
-    test.run('mathpreviewlib/cursorrenderer: test \\f|rac{1}{2}', () => {
+    test.run('mathpreviewlib/cursorrenderer: test \\f|rac{1}{2}', async () => {
         const docString = '$\\frac{1}{2}$'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 3)
         const texMath = TeXMathEnvFinder.findMathEnvIncludingPosition(doc, cursorPos)
         assert.ok(texMath)
-        const result = texMath && testTools.insertCursor(texMath, cursorPos, '|')
+        const result = texMath && await testTools.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$\\frac{1}{2}$')
     })
 
-    test.run('mathpreviewlib/cursorrenderer: test a^|b', () => {
+    test.run('mathpreviewlib/cursorrenderer: test a^|b', async () => {
         const docString = '$a^b$'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 3)
         const texMath = TeXMathEnvFinder.findMathEnvIncludingPosition(doc, cursorPos)
         assert.ok(texMath)
-        const result = texMath && testTools.insertCursor(texMath, cursorPos, '|')
+        const result = texMath && await testTools.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$a^|b$')
     })
 })
