@@ -28,20 +28,9 @@ export type ReferenceDocType = {
 }
 
 export class Reference implements IProvider {
-    private labelMacros: string[] = []
     // Here we use an object instead of an array for de-duplication
     private readonly suggestions = new Map<string, ReferenceEntry>()
     private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
-
-    constructor() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        this.labelMacros = configuration.get('intellisense.label.command') as string[]
-        vscode.workspace.onDidChangeConfiguration((ev: vscode.ConfigurationChangeEvent) => {
-            if (ev.affectsConfiguration('latex-workshop.intellisense.label.command')) {
-                this.labelMacros = configuration.get('intellisense.label.command') as string[]
-            }
-        })
-    }
 
     provideFrom(_result: RegExpMatchArray, args: IProviderArgs) {
         return this.provide(args.line, args.position)
@@ -164,13 +153,15 @@ export class Reference implements IProvider {
 
     parse(cache: Cache) {
         if (cache.ast !== undefined) {
-            cache.elements.reference = this.parseAst(cache.ast, cache.content.split('\n'))
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            const labelMacros = configuration.get('intellisense.label.command') as string[]
+            cache.elements.reference = this.parseAst(cache.ast, cache.content.split('\n'), labelMacros)
         } else {
             cache.elements.reference = this.parseContent(cache.content)
         }
     }
 
-    private parseAst(node: Ast.Node, lines: string[]): ICompletionItem[] {
+    private parseAst(node: Ast.Node, lines: string[], labelMacros: string[]): ICompletionItem[] {
         let refs: ICompletionItem[] = []
         if (node.type === 'macro' &&
             ['renewcommand', 'newcommand', 'providecommand', 'DeclareMathOperator', 'renewenvironment', 'newenvironment'].includes(node.content)) {
@@ -182,7 +173,7 @@ export class Reference implements IProvider {
         }
 
         let label = ''
-        if (node.type === 'macro' && this.labelMacros.includes(node.content)) {
+        if (node.type === 'macro' && labelMacros.includes(node.content)) {
             label = argContentToStr(node.args?.[1]?.content || [])
         } else if (node.type === 'environment' && ['frame'].includes(node.env)) {
             label = argContentToStr(node.args?.[1]?.content || [])
@@ -213,7 +204,7 @@ export class Reference implements IProvider {
 
         if ('content' in node && typeof node.content !== 'string') {
             for (const subNode of node.content) {
-                refs = [...refs, ...this.parseAst(subNode, lines)]
+                refs = [...refs, ...this.parseAst(subNode, lines, labelMacros)]
             }
         }
 

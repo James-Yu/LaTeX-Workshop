@@ -63,8 +63,6 @@ export class Cacher {
     readonly pdf: Watcher = new Watcher('.pdf')
     readonly bib: Watcher = new Watcher('.bib')
     private caching = 0
-    private readonly cachingQueue: Cache[] = []
-    private cachingQueueRunning: boolean = false
     private promises: {[filePath: string]: Promise<void>} = {}
 
     constructor() {
@@ -158,10 +156,9 @@ export class Cacher {
         rootPath = rootPath || lw.manager.rootFile
         this.updateChildren(cache, rootPath)
 
-        this.promises[filePath] = this.updateAST(cache).then(async () => {
-            await this.updateElements(cache)
+        this.promises[filePath] = this.updateAST(cache).then(() => {
+            this.updateElements(cache)
         }).finally(() => {
-            logger.log(`Cached ${filePath} .`)
             this.caching--
             delete this.promises[filePath]
             lw.eventBus.fire(eventbus.FileParsed, filePath)
@@ -241,31 +238,19 @@ export class Cacher {
         }
     }
 
-    private async updateElements(newCache: Cache) {
-        this.cachingQueue.push(newCache)
-        if (this.cachingQueueRunning) {
-            return
-        }
-        this.cachingQueueRunning = true
-        while (this.cachingQueue.length > 0) {
-            const cache = this.cachingQueue[0]
-            const start = performance.now()
-            lw.completer.citation.update(cache.filePath, cache.content)
-            // Package parsing must be before command and environment.
-            lw.completer.package.parse(cache)
-            lw.completer.reference.parse(cache)
-            lw.completer.glossary.parse(cache)
-            lw.completer.environment.parse(cache)
-            lw.completer.command.parse(cache)
-            lw.duplicateLabels.run(cache.filePath)
-            this.updateBibfiles(cache)
-            const elapsed = performance.now() - start
-            logger.log(`Updated elements in ${elapsed.toFixed(2)} ms: ${cache.filePath} .`)
-            // Wait for other vscode actions to take place, otherwise will block
-            await utils.sleep(Math.max(25, 50-elapsed))
-            this.cachingQueue.splice(0, 1)
-        }
-        this.cachingQueueRunning = false
+    private updateElements(cache: Cache) {
+        const start = performance.now()
+        lw.completer.citation.update(cache.filePath, cache.content)
+        // Package parsing must be before command and environment.
+        lw.completer.package.parse(cache)
+        lw.completer.reference.parse(cache)
+        lw.completer.glossary.parse(cache)
+        lw.completer.environment.parse(cache)
+        lw.completer.command.parse(cache)
+        lw.duplicateLabels.run(cache.filePath)
+        this.updateBibfiles(cache)
+        const elapsed = performance.now() - start
+        logger.log(`Updated elements in ${elapsed.toFixed(2)} ms: ${cache.filePath} .`)
     }
 
     private updateBibfiles(cache: Cache) {
@@ -290,7 +275,6 @@ export class Cacher {
                 }
             }
         }
-        logger.log(`Updated bibs of ${cache.filePath} .`)
     }
 
     /**
