@@ -267,7 +267,7 @@ function nestSection(struct: TeXElement[], config: StructureConfig): TeXElement[
     const stack: TeXElement[] = []
     const elements: TeXElement[] = []
     for (const element of struct) {
-        if (element.type !== TeXElementType.Section && element.type !== TeXElementType.SectionAst && element.type !== TeXElementType.SubFile) {
+        if (element.type !== TeXElementType.Section && element.type !== TeXElementType.SectionAst) {
             elements.push(element)
         } else if (stack.length === 0) {
             stack.push(element)
