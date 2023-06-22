@@ -1,5 +1,11 @@
 # Change Log
 
+## [9.12.2] - 2023-06-22
+
+### Fixed
+- Very fast cache element parsing.
+- Input files do not nest in outline.
+
 ## [9.12.1] - 2023-06-21
 
 ### Changed
