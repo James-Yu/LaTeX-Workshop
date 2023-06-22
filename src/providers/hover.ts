@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as lw from '../lw'
 import { tokenizer, onAPackage } from './tokenizer'
 import { findProjectNewCommand } from './preview/mathpreviewlib/newcommandfinder'
+import { CmdEnvSuggestion } from './completer/completerutils'
 
 export class HoverProvider implements vscode.HoverProvider {
     public async provideHover(document: vscode.TextDocument, position: vscode.Position, ctoken: vscode.CancellationToken): Promise<vscode.Hover | undefined> {
@@ -64,25 +65,35 @@ export class HoverProvider implements vscode.HoverProvider {
         const packageNames: string[] = []
         const tokenWithoutSlash = token.substring(1)
 
-        lw.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedCmds = lw.cacher.get(cachedFile)?.elements.command
-            if (cachedCmds === undefined) {
-                return
-            }
-            cachedCmds.forEach(cmd => {
-                const cmdName = cmd.name()
-                if (cmdName.startsWith(tokenWithoutSlash) && (cmdName.length === tokenWithoutSlash.length)) {
-                    if (typeof cmd.documentation !== 'string') {
-                        return
-                    }
-                    const doc = cmd.documentation
-                    const packageName = cmd.package
-                    if (packageName && packageName !== 'user-defined' && (!packageNames.includes(packageName))) {
-                        packageNames.push(packageName)
-                    }
-                    signatures.push(doc)
-                }
+        const packageCmds: CmdEnvSuggestion[] = []
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if ((configuration.get('intellisense.package.enabled'))) {
+            const packages = lw.completer.package.getPackagesIncluded('latex-expl3')
+            Object.entries(packages).forEach(([packageName, options]) => {
+                lw.completer.command.provideCmdInPkg(packageName, options, packageCmds)
+                lw.completer.environment.provideEnvsAsCommandInPkg(packageName, options, packageCmds)
             })
+        }
+
+        const checkCmd = (cmd: CmdEnvSuggestion) => {
+            const cmdName = cmd.name()
+            if (cmdName.startsWith(tokenWithoutSlash) && (cmdName.length === tokenWithoutSlash.length)) {
+                if (typeof cmd.documentation !== 'string') {
+                    return
+                }
+                const doc = cmd.documentation
+                const packageName = cmd.package
+                if (packageName && packageName !== 'user-defined' && (!packageNames.includes(packageName))) {
+                    packageNames.push(packageName)
+                }
+                signatures.push(doc)
+            }
+        }
+
+        packageCmds.forEach(checkCmd)
+
+        lw.cacher.getIncludedTeX().forEach(cachedFile => {
+            lw.cacher.get(cachedFile)?.elements.command?.forEach(checkCmd)
         })
 
         let pkgLink = ''

@@ -166,7 +166,7 @@ export class Environment implements IProvider {
      * Environments can be inserted using `\envname`.
      * This function is called by Command.provide to compute these commands for every package in use.
      */
-    provideEnvsAsCommandInPkg(packageName: string, options: string[], suggestions: vscode.CompletionItem[], defined?: Set<string>) {
+    provideEnvsAsCommandInPkg(packageName: string, options: string[], suggestions: CmdEnvSuggestion[], defined?: Set<string>) {
         defined = defined ?? new Set<string>()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')

@@ -19,7 +19,7 @@ function commandTokenizer(document: vscode.TextDocument, position: vscode.Positi
     if (startResult === null || startResult.index === undefined || startResult.index < 0) {
         return
     }
-    const firstBracket = document.getText(new vscode.Range(position, new vscode.Position(position.line, 65535))).match(/[{]/)
+    const firstBracket = document.getText(new vscode.Range(position, new vscode.Position(position.line, 65535))).match(/[[{]/)
     if (firstBracket && firstBracket.index !== undefined && firstBracket.index > 0) {
         return document.getText(new vscode.Range(
                 new vscode.Position(position.line, startResult.index),
