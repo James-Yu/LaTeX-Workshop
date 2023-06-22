@@ -264,14 +264,13 @@ export class Cacher {
             const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => bib.trim())
 
             for (const bib of bibs) {
-                const bibPath = PathUtils.resolveBibPath(bib, path.dirname(cache.filePath))
-                if (bibPath === undefined) {
-                    continue
-                }
-                cache.bibfiles.add(bibPath)
-                logger.log(`Bib ${bibPath} from ${cache.filePath} .`)
-                if (!this.bib.has(bibPath)) {
-                    this.bib.add(bibPath)
+                const bibPaths = PathUtils.resolveBibPath(bib, path.dirname(cache.filePath))
+                for (const bibPath of bibPaths) {
+                    cache.bibfiles.add(bibPath)
+                    logger.log(`Bib ${bibPath} from ${cache.filePath} .`)
+                    if (!this.bib.has(bibPath)) {
+                        this.bib.add(bibPath)
+                    }
                 }
             }
         }
@@ -357,17 +356,15 @@ export class Cacher {
                 return bib.trim()
             })
             for (const bib of bibs) {
-                const bibPath = PathUtils.resolveBibPath(bib, srcDir)
-                if (bibPath === undefined) {
-                    continue
-                }
-                const rootFile = lw.manager.rootFile
-                if (rootFile && !this.get(rootFile)?.bibfiles.has(bibPath)) {
-                    this.get(rootFile)?.bibfiles.add(bibPath)
-                    logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
-                }
-                if (!this.bib.has(bibPath)) {
-                    this.bib.add(bibPath)
+                const bibPaths = PathUtils.resolveBibPath(bib, srcDir)
+                for (const bibPath of bibPaths) {
+                    if (lw.manager.rootFile && !this.get(lw.manager.rootFile)?.bibfiles.has(bibPath)) {
+                        this.get(lw.manager.rootFile)?.bibfiles.add(bibPath)
+                        logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
+                    }
+                    if (!this.bib.has(bibPath)) {
+                        this.bib.add(bibPath)
+                    }
                 }
             }
         }

@@ -44,7 +44,7 @@ function kpsewhichBibPath(bib: string): string | undefined {
     return
 }
 
-export function resolveBibPath(bib: string, baseDir: string) {
+export function resolveBibPath(bib: string, baseDir: string): string[] {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const bibDirs = configuration.get('latex.bibDirs') as string[]
     let searchDirs: string[] = [baseDir, ...bibDirs]
@@ -53,15 +53,16 @@ export function resolveBibPath(bib: string, baseDir: string) {
     if (lw.manager.rootDir) {
         searchDirs = [lw.manager.rootDir, ...searchDirs]
     }
-    const bibPath = utils.resolveFile(searchDirs, bib, '.bib')
+    const bibPath = bib.includes('*') ? utils.resolveFileGlob(searchDirs, bib, '.bib') : utils.resolveFile(searchDirs, bib, '.bib')
 
-    if (!bibPath) {
+    if (bibPath === undefined || bibPath.length === 0) {
         if (configuration.get('kpsewhich.enabled')) {
-            return kpsewhichBibPath(bib)
+            const kpsePath = kpsewhichBibPath(bib)
+            return kpsePath ? [ kpsePath ] : []
         } else {
-            logger.log(`Cannot resolve ${bib} .`)
-            return
+            logger.log(`Cannot resolve bib path: ${bib} .`)
+            return []
         }
     }
-    return bibPath
+    return [ bibPath ].flat()
 }

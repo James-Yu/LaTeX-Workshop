@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
+import { glob } from 'glob'
 
 export function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -239,6 +240,23 @@ export function resolveFile(dirs: string[], inputFile: string, suffix: string = 
         }
     }
     return
+}
+
+export function resolveFileGlob(dirs: string[], inputGlob: string, suffix: string = '.tex'): string[] {
+    if (inputGlob.startsWith('/')) {
+        dirs.unshift('')
+    }
+    for (const d of dirs) {
+        let inputFileGlob = path.resolve(d, inputGlob)
+        if (path.extname(inputFileGlob) === '') {
+            inputFileGlob += suffix
+        }
+        const paths = glob.sync(inputFileGlob)
+        if (paths.length > 0) {
+            return paths
+        }
+    }
+    return []
 }
 
 /**
