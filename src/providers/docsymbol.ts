@@ -22,24 +22,24 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
 
     private sectionToKind(section: TeXElement): vscode.SymbolKind {
         if (section.type === TeXElementType.Section || section.type === TeXElementType.SectionAst) {
-            return vscode.SymbolKind.Module
+            return vscode.SymbolKind.Struct
         }
         if (section.type === TeXElementType.Environment) {
-            return vscode.SymbolKind.Class
-        }
-        if (section.type === TeXElementType.Command) {
-            return vscode.SymbolKind.Method
-        }
-        if (section.type === TeXElementType.SubFile) {
-            return vscode.SymbolKind.Interface
-        }
-        if (section.type === TeXElementType.BibItem) {
             return vscode.SymbolKind.Package
         }
-        if (section.type === TeXElementType.BibField) {
-            return vscode.SymbolKind.Property
+        if (section.type === TeXElementType.Command) {
+            return vscode.SymbolKind.Number
         }
-        return vscode.SymbolKind.Constant
+        if (section.type === TeXElementType.SubFile) {
+            return vscode.SymbolKind.File
+        }
+        if (section.type === TeXElementType.BibItem) {
+            return vscode.SymbolKind.Class
+        }
+        if (section.type === TeXElementType.BibField) {
+            return vscode.SymbolKind.Constant
+        }
+        return vscode.SymbolKind.String
     }
 
     private sectionToSymbols(sections: TeXElement[]): vscode.DocumentSymbol[] {
