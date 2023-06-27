@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
-import * as lw from '../lw'
 import { getLogger } from './logger'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { argContentToStr } from '../utils/parser'
+import { parser } from './parser'
 
 const logger = getLogger('EnvPair')
 
@@ -68,11 +68,9 @@ export class EnvPair {
     constructor() {}
 
     async buildCommandPairTree(document: vscode.TextDocument): Promise<CommandPair[]> {
-        await lw.cacher.wait(document.fileName)
-        const content = lw.cacher.get(document.fileName)?.content
-        const ast = lw.cacher.get(document.fileName)?.ast
-        if (!content || !ast) {
-            logger.log(`Error loading ${content ? 'AST' : 'content'} during structuring: ${document.fileName} .`)
+        const ast = await parser.parseLaTeX(document.getText())
+        if (!ast) {
+            logger.log('Error parsing current document as AST.')
             return []
         }
 
