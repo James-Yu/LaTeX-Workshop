@@ -203,13 +203,14 @@ export class Command implements IProvider {
         defined = defined ?? new Set<string>()
         let cmds: CmdEnvSuggestion[] = []
         if (node.type === 'macro' &&
-            ['renewcommand', 'newcommand', 'providecommand', 'DeclareMathOperator'].includes(node.content) &&
+            ['renewcommand', 'newcommand', 'providecommand', 'DeclareMathOperator', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.content) &&
             node.args?.[2]?.content?.[0]?.type === 'macro') {
             // \newcommand{\fix}[3][]{\chdeleted{#2}\chadded[comment={#1}]{#3}}
             // \newcommand\WARNING{\textcolor{red}{WARNING}}
             const name = node.args[2].content[0].content
             let args = ''
-            if (node.args?.[3].content?.[0]?.type === 'string' &&
+            if (['renewcommand', 'newcommand', 'providecommand'].includes(node.content) &&
+                node.args?.[3].content?.[0]?.type === 'string' &&
                 parseInt(node.args?.[3].content?.[0].content) > 0) {
                 args = (node.args?.[4].openMark === '[' ? '[]' : '{}') + '{}'.repeat(parseInt(node.args?.[3].content?.[0].content) - 1)
             }
