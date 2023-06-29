@@ -100,7 +100,11 @@ async function parseNode(
         filePath, children: []
     }
     let element: TeXElement | undefined
-    if (node.type === 'macro' && config.macros.secs.includes(node.content)) {
+    if (node.type === 'macro' && config.macros.secs.includes(node.content) && node.args?.[2].openMark === '{') {
+        // To use a macro as an outline item, the macro must have an explicit
+        // mandatory argument e.g. \section{} instead of \section. This is to
+        // ignore cases like \titleformat{\section} when \titleformat is not
+        // globbing arguments in unified-latex.
         element = {
             type: node.args?.[0]?.content[0] ? TeXElementType.SectionAst : TeXElementType.Section,
             name: node.content,
