@@ -19,7 +19,9 @@ type StructureConfig = {
     // the top-most section (e.g., chapter).
     readonly secIndex: {[cmd: string]: number},
     readonly texDirs: string[],
-    subFile: boolean
+    subFile: boolean,
+    // view.outline.floats.caption.enabled
+    caption: boolean
 }
 type FileStructureCache = {
     [filePath: string]: TeXElement[]
@@ -78,6 +80,9 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
     structs[filePath] = rootElement.children
 
     for (const node of ast.content) {
+        if (['string', 'parbreak', 'whitespace'].includes(node.type)) {
+            continue
+        }
         await parseNode(node, rnwSub, rootElement, filePath, config, structs)
     }
 }
@@ -89,7 +94,6 @@ async function parseNode(
         filePath: string,
         config: StructureConfig,
         structs: FileStructureCache) {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const attributes = {
         lineFr: (node.position?.start.line ?? 1) - 1,
         lineTo: (node.position?.end.line ?? 1) - 1,
@@ -117,7 +121,7 @@ async function parseNode(
         element = {
             type: TeXElementType.Environment,
             name: node.env,
-            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (configuration.get('view.outline.floats.caption.enabled') as boolean && caption ? `: ${caption}` : ''),
+            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (config.caption && caption ? `: ${caption}` : ''),
             ...attributes
         }
     } else if ((node.type === 'environment') && (
@@ -131,7 +135,7 @@ async function parseNode(
         element = {
             type: TeXElementType.Environment,
             name: node.env,
-            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (configuration.get('view.outline.floats.caption.enabled') as boolean && caption ? `: ${caption}` : ''),
+            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (config.caption && caption ? `: ${caption}` : ''),
             ...attributes
         }
     } else if ((node.type === 'environment') && (node.env === 'macro' || node.env === 'environment')) {
@@ -140,7 +144,7 @@ async function parseNode(
         element = {
             type: TeXElementType.Environment,
             name: node.env,
-            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (configuration.get('view.outline.floats.caption.enabled') as boolean && caption ? `: ${caption}` : ''),
+            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (config.caption && caption ? `: ${caption}` : ''),
             ...attributes
         }
     } else if ((node.type === 'environment' || node.type === 'mathenv') && config.macros.envs.includes(node.env)) {
@@ -217,6 +221,9 @@ async function parseNode(
     }
     if ('content' in node && typeof node.content !== 'string') {
         for (const sub of node.content) {
+            if (['string', 'parbreak', 'whitespace'].includes(sub.type)) {
+                continue
+            }
             await parseNode(sub, rnwSub, root, filePath, config, structs)
         }
     }
@@ -329,10 +336,6 @@ function addSectionNumber(struct: TeXElement[], config: StructureConfig, tag?: s
     return struct
 }
 
-/**
- * OLD STRUCTURING AS OF MAY 12, 2023
- */
-
 function parseRnwChildCommand(content: string, file: string, rootFile: string): {subFile: string, path: string, line: number}[] {
     const children: {subFile: string, path: string, line: number}[] = []
     const childRegExp = new InputFileRegExp()
@@ -349,18 +352,20 @@ function parseRnwChildCommand(content: string, file: string, rootFile: string): 
 
 function refreshLaTeXModelConfig(subFile: boolean = true, defaultFloats = ['frame']): StructureConfig {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const cmds = configuration.get('view.outline.commands') as string[]
-    const envs = configuration.get('view.outline.floats.enabled') as boolean ? ['figure', 'table', ...defaultFloats] : defaultFloats
-    const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
 
     const structConfig: StructureConfig = {
-        macros: {cmds, envs, secs: []},
+        macros: {
+            cmds: configuration.get('view.outline.commands') as string[],
+            envs: configuration.get('view.outline.floats.enabled') as boolean ? ['figure', 'table', ...defaultFloats] : defaultFloats,
+            secs: []
+        },
         secIndex: {},
-        texDirs,
-        subFile
+        texDirs: configuration.get('latex.texDirs') as string[],
+        subFile,
+        caption: configuration.get('view.outline.floats.caption.enabled') as boolean
     }
 
-    const hierarchy = (configuration.get('view.outline.sections') as string[])
+    const hierarchy = configuration.get('view.outline.sections') as string[]
     hierarchy.forEach((sec, index) => {
         sec.split('|').forEach(cmd => {
             structConfig.secIndex[cmd] = index
