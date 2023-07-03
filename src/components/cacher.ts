@@ -196,7 +196,7 @@ export class Cacher {
                 continue
             }
 
-            this.caches[rootPath].children.push({
+            cache.children.push({
                 index: result.match.index,
                 filePath: result.path
             })
