@@ -1330,7 +1330,7 @@
 			]
 		},
 		{
-			"begin": "(\\s*\\\\begin\\{(tabular[xy*]?|xltabular|longtable|(?:long)?tabu|(?:long|tall)?tblr|NiceTabular[X*]?)\\}(\\s*\\n)?)",
+			"begin": "(\\s*\\\\begin\\{(tabular[xy*]?|xltabular|longtable|(?:long)?tabu|(?:long|tall)?tblr|NiceTabular[X*]?|booktabs)\\}(\\s*\\n)?)",
 			"captures": {
 				"1": {
 					"patterns": [
@@ -2077,21 +2077,6 @@
 				}
 			},
 			"name": "string.quoted.double.latex"
-		},
-		{
-			"begin": "(?<!\\\\|\\`)(\\`)",
-			"beginCaptures": {
-				"1": {
-					"name": "punctuation.definition.string.begin.latex"
-				}
-			},
-			"end": "(?<!\\\\)(\\')",
-			"endCaptures": {
-				"1": {
-					"name": "punctuation.definition.string.end.latex"
-				}
-			},
-			"name": "string.quoted.single.latex"
 		},
 		{
 			"begin": "\\$\\$",
