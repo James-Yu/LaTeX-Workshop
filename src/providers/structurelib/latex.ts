@@ -7,7 +7,6 @@ import { resolveFile } from '../../utils/utils'
 import { InputFileRegExp } from '../../utils/inputfilepath'
 
 import { getLogger } from '../../components/logger'
-import { parser } from '../../components/parser'
 import { argContentToStr } from '../../utils/parser'
 
 const logger = getLogger('Structure', 'LaTeX')
@@ -56,17 +55,9 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
     if (structs[filePath] !== undefined) {
         return
     }
-    const openEditor: vscode.TextDocument | undefined = vscode.workspace.textDocuments.filter(document => document.fileName === path.normalize(filePath))?.[0]
-    let content: string | undefined
-    let ast: Ast.Root | undefined
-    if (openEditor?.isDirty) {
-        content = openEditor.getText()
-        ast = await parser.parseLaTeX(content)
-    } else {
-        await lw.cacher.wait(filePath)
-        content = lw.cacher.get(filePath)?.content
-        ast = lw.cacher.get(filePath)?.ast
-    }
+    await lw.cacher.wait(filePath)
+    const content = lw.cacher.get(filePath)?.content
+    const ast = lw.cacher.get(filePath)?.ast
     if (!content || !ast) {
         logger.log(`Error loading ${content ? 'AST' : 'content'} during structuring: ${filePath} .`)
         return

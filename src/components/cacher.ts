@@ -143,7 +143,8 @@ export class Cacher {
         }
         logger.log(`Caching ${filePath} .`)
         this.caching++
-        const content = lw.lwfs.readFileSyncGracefully(filePath) ?? ''
+        const openEditor: vscode.TextDocument | undefined = vscode.workspace.textDocuments.filter(document => document.fileName === path.normalize(filePath))?.[0]
+        const content = openEditor?.isDirty ? openEditor.getText() : (lw.lwfs.readFileSyncGracefully(filePath) ?? '')
         const cache: Cache = {
             filePath,
             content,
