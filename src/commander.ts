@@ -449,7 +449,7 @@ export async function devParseTeX() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = parser.parseLaTeX(vscode.window.activeTextEditor.document.getText())
+    const ast = await parser.parseLaTeX(vscode.window.activeTextEditor.document.getText())
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 
