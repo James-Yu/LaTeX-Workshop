@@ -85,9 +85,8 @@ async function patchCodespaces(url: vscode.Uri) {
     codespacesPatched = true
 }
 
+// Create a new vscode.WebviewPanel and in it a PdfViewerPanel
 export async function createPdfViewerPanel(pdfUri: vscode.Uri, preserveFocus: boolean): Promise<PdfViewerPanel> {
-    await lw.server.serverStarted
-    const htmlContent = await getPDFViewerContent(pdfUri)
     const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfUri.path), {
         viewColumn: vscode.ViewColumn.Active,
         preserveFocus
@@ -95,6 +94,14 @@ export async function createPdfViewerPanel(pdfUri: vscode.Uri, preserveFocus: bo
         enableScripts: true,
         retainContextWhenHidden: true
     })
+    const pdfPanel = await populatePdfViewerPanel(pdfUri, panel)
+    return pdfPanel
+}
+
+// Create a PdfViewerPanel inside an existing vscode.WebviewPanel
+export async function populatePdfViewerPanel(pdfUri: vscode.Uri, panel: vscode.WebviewPanel): Promise<PdfViewerPanel>{
+    await lw.server.serverStarted
+    const htmlContent = await getPDFViewerContent(pdfUri)
     panel.webview.html = htmlContent
     const pdfPanel = new PdfViewerPanel(pdfUri, panel)
     return pdfPanel
