@@ -99,6 +99,7 @@ export class Viewer {
     async open(pdfFile: string, mode?: ViewerMode): Promise<void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
+        mode = mode ?? configuration.get<ViewerMode>('view.pdf.viewer', 'tab')
         if (mode === 'browser') {
             return lw.viewer.openBrowser(pdfFile)
         } else if (mode === 'customEditor') {
