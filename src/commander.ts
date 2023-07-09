@@ -80,7 +80,7 @@ export function recipes(recipe?: string) {
     })
 }
 
-export async function view(mode?: ViewerMode | 'internal' | vscode.Uri) {
+export async function view(mode?: ViewerMode) {
     if (mode) {
         logger.log(`VIEW command invoked with mode: ${mode}.`)
     } else {
