@@ -16,7 +16,6 @@ class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvider {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewerLocation = configuration.get<ViewerLocation>('view.pdf.viewer', 'tab')
         if(viewerLocation === 'customEditor'){
-            // todo
             webviewPanel.webview.options = {
                 ...webviewPanel.webview.options,
                 enableScripts: true
