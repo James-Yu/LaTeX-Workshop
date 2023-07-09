@@ -121,7 +121,7 @@ function registerLatexWorkshopCommands() {
         vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => lw.commander.recipes(recipe)),
         vscode.commands.registerCommand('latex-workshop.view', (mode: 'tab' | 'browser' | 'external' | vscode.Uri | undefined) => lw.commander.view(mode)),
         vscode.commands.registerCommand('latex-workshop.refresh-viewer', () => lw.commander.refresh()),
-        vscode.commands.registerCommand('latex-workshop.tab', () => lw.commander.view('tab')),
+        vscode.commands.registerCommand('latex-workshop.tab', () => lw.commander.view('internal')),
         vscode.commands.registerCommand('latex-workshop.viewInBrowser', () => lw.commander.view('browser')),
         vscode.commands.registerCommand('latex-workshop.viewExternal', () => lw.commander.view('external')),
         vscode.commands.registerCommand('latex-workshop.kill', () => lw.commander.kill()),

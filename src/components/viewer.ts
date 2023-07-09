@@ -16,7 +16,7 @@ import { moveActiveEditor } from '../utils/webview'
 
 const logger = getLogger('Viewer')
 
-export type ViewerLocation = 'tab' | 'browser' | 'singleton' | 'external' | 'customEditor'
+export type ViewerMode = 'tab' | 'browser' | 'singleton' | 'external' | 'customEditor'
 
 export { pdfViewerHookProvider } from './viewerlib/pdfviewerhook'
 export { pdfViewerPanelSerializer } from './viewerlib/pdfviewerpanel'
@@ -96,22 +96,18 @@ export class Viewer {
         return (await lw.server.getViewerUrl(pdfUri)).url
     }
 
-    async open(pdfFile: string, mode?: string): Promise<void> {
+    async open(pdfFile: string, mode: ViewerMode | 'internal' = 'internal'): Promise<void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
-        const viewerLocation = configuration.get<ViewerLocation>('view.pdf.viewer', 'tab')
-        if(mode === 'tab' && (viewerLocation === 'customEditor' || viewerLocation === 'singleton')) {
-            mode = viewerLocation
-        }
-        const viewer = mode ?? viewerLocation
-        if (viewer === 'browser') {
+        const configuredViewerMode = configuration.get<ViewerMode>('view.pdf.viewer', 'tab')
+        if (mode === 'browser') {
             return lw.viewer.openBrowser(pdfFile)
-        } else if (viewer === 'tab' || viewer === 'singleton') {
-            return lw.viewer.openTab(pdfFile, tabEditorGroup, true)
-        } else if (viewer === 'external') {
-            return lw.viewer.openExternal(pdfFile)
-        } else if (viewer === 'customEditor') {
+        } else if (mode === 'internal' && configuredViewerMode === 'customEditor') {
             return lw.viewer.openCustomEditor(pdfFile)
+        } else if (mode === 'internal' || mode === 'tab' || mode === 'singleton') {
+            return lw.viewer.openTab(pdfFile, tabEditorGroup, true)
+        } else if (mode === 'external') {
+            return lw.viewer.openExternal(pdfFile)
         }
     }
 
@@ -163,8 +159,19 @@ export class Viewer {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const viewColumnName = configuration.get<keyof typeof vscode.ViewColumn>('view.pdf.tab.viewColumn', 'Active')
-        const viewColumn = vscode.ViewColumn[viewColumnName]
+        const editorGroup = configuration.get('view.pdf.tab.editorGroup')
+        // Roughly translate editorGroup to vscode.ViewColumn
+        let viewColumn: vscode.ViewColumn
+        if (editorGroup === 'current') {
+            viewColumn = vscode.ViewColumn.Active
+        } else if (editorGroup === 'right') {
+            viewColumn = vscode.ViewColumn.Two
+        } else if (editorGroup === 'left') {
+            viewColumn = vscode.ViewColumn.One
+        } else {
+            // Other locations are not supported by the editor open API -> use right panel as default
+            viewColumn = vscode.ViewColumn.Two
+        }
         const pdfUri = vscode.Uri.file(pdfFile)
         const showOptions: vscode.TextDocumentShowOptions = {
             viewColumn,
@@ -175,7 +182,7 @@ export class Viewer {
 
     async openPdfInTab(pdfUri: vscode.Uri, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const singleton = configuration.get<ViewerLocation>('view.pdf.viewer', 'tab') === 'singleton'
+        const singleton = configuration.get<ViewerMode>('view.pdf.viewer', 'tab') === 'singleton'
         if (singleton) {
             const panels = viewerManager.getPanelSet(pdfUri)
             if (panels && panels.size > 0) {

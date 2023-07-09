@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as lw from '../../lw'
-import { ViewerLocation } from '../viewer'
+import { ViewerMode } from '../viewer'
 import { viewerManager } from './pdfviewermanager'
 import { populatePdfViewerPanel } from './pdfviewerpanel'
 
@@ -14,15 +14,15 @@ class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvider {
 
     async resolveCustomEditor(document: vscode.CustomDocument, webviewPanel: vscode.WebviewPanel) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const viewerLocation = configuration.get<ViewerLocation>('view.pdf.viewer', 'tab')
-        if(viewerLocation === 'customEditor'){
+        const viewerLocation = configuration.get<ViewerMode>('view.pdf.viewer', 'tab')
+        if (viewerLocation === 'customEditor') {
             webviewPanel.webview.options = {
                 ...webviewPanel.webview.options,
                 enableScripts: true
             }
             const pdfPanel = await populatePdfViewerPanel(document.uri, webviewPanel)
             void viewerManager.initiatePdfViewerPanel(pdfPanel)
-        } else{
+        } else {
             webviewPanel.onDidChangeViewState(e => { e.webviewPanel.dispose() })
             if (document.uri === undefined || !document.uri.fsPath.toLocaleLowerCase().endsWith('.pdf')) {
                 return

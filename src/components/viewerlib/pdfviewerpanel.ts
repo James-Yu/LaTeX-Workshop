@@ -94,8 +94,7 @@ export async function createPdfViewerPanel(pdfUri: vscode.Uri, preserveFocus: bo
         enableScripts: true,
         retainContextWhenHidden: true
     })
-    const pdfPanel = await populatePdfViewerPanel(pdfUri, panel)
-    return pdfPanel
+    return populatePdfViewerPanel(pdfUri, panel)
 }
 
 // Create a PdfViewerPanel inside an existing vscode.WebviewPanel
