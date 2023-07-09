@@ -96,17 +96,20 @@ export class Viewer {
         return (await lw.server.getViewerUrl(pdfUri)).url
     }
 
-    async open(pdfFile: string, mode?: ViewerMode): Promise<void> {
+    async open(pdfFile: string, mode?: 'tab' | 'browser' | 'external'): Promise<void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
-        mode = mode ?? configuration.get<ViewerMode>('view.pdf.viewer', 'tab')
-        if (mode === 'browser') {
+        let viewerMode: ViewerMode = mode ?? configuration.get<ViewerMode>('view.pdf.viewer', 'tab')
+        if (mode === 'tab' && configuration.get<ViewerMode>('view.pdf.viewer', 'tab') === 'customEditor') {
+            viewerMode = 'customEditor'
+        }
+        if (viewerMode === 'browser') {
             return lw.viewer.openBrowser(pdfFile)
-        } else if (mode === 'customEditor') {
+        } else if (viewerMode === 'customEditor') {
             return lw.viewer.openCustomEditor(pdfFile)
-        } else if (mode === 'tab' || mode === 'singleton') {
+        } else if (viewerMode === 'tab' || viewerMode === 'singleton') {
             return lw.viewer.openTab(pdfFile, tabEditorGroup, true)
-        } else if (mode === 'external') {
+        } else if (viewerMode === 'external') {
             return lw.viewer.openExternal(pdfFile)
         }
     }

@@ -4,7 +4,6 @@ import * as lw from './lw'
 import { getSurroundingCommandRange, stripText } from './utils/utils'
 import { getLogger } from './components/logger'
 import { parser } from './components/parser'
-import { ViewerMode } from './components/viewer'
 
 const logger = getLogger('Commander')
 
@@ -80,7 +79,7 @@ export function recipes(recipe?: string) {
     })
 }
 
-export async function view(mode?: ViewerMode | vscode.Uri) {
+export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
     if (mode) {
         logger.log(`VIEW command invoked with mode: ${mode}.`)
     } else {
