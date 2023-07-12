@@ -52,6 +52,30 @@ suite('PDF viewer test suite', () => {
         assert.strictEqual(statuses.length, 2)
     }, ['linux', 'darwin'])
 
+    test.run('view in custom editor tab', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'customEditor')
+        await test.load(fixture, [
+            {src: 'base.tex', dst: 'main.tex'}
+        ], {skipCache: true})
+
+        await test.build(fixture, 'main.tex')
+        await test.view(fixture, 'main.pdf')
+        await test.sleep(250)
+        await lw.commander.view()
+        let statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
+        assert.strictEqual(statuses.length, 1) // Make sure a custom editor was opened
+        await test.sleep(250)
+        await lw.commander.view()
+        await test.sleep(250)
+        statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
+        assert.strictEqual(statuses.length, 1) // Make sure the custom editor got reused
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'tab')
+        await lw.commander.view()
+        await test.sleep(250)
+        statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
+        assert.strictEqual(statuses.length, 2) // Make sure a non-customEditor viewer was opened
+    }, ['linux', 'darwin'])
+
     test.run('build main.tex and view it', async (fixture: string) => {
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.doNotPrompt', true)
         await vscode.workspace.getConfiguration().update('latex-workshop.latex.rootFile.useSubFile', false)
