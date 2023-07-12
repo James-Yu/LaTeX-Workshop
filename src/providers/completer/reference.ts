@@ -202,7 +202,14 @@ export class Reference implements IProvider {
             })
         }
 
-        if ('content' in node && typeof node.content !== 'string') {
+
+        if (node.type === 'macro' && node.args) {
+            for (const arg of node.args) {
+                for (const subNode of arg.content) {
+                    refs = [...refs, ...this.parseAst(subNode, lines, labelMacros)]
+                }
+            }
+        } else if ('content' in node && typeof node.content !== 'string') {
             for (const subNode of node.content) {
                 refs = [...refs, ...this.parseAst(subNode, lines, labelMacros)]
             }
