@@ -44,6 +44,25 @@ function kpsewhichBibPath(bib: string): string | undefined {
     return
 }
 
+export function kpsewhichClsPath(cls: string): string | undefined {
+    const kpsewhich = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
+    logger.log(`Calling ${kpsewhich} to resolve ${cls} .`)
+    try {
+        const kpsewhichReturn = cs.sync(kpsewhich, [`${cls}.cls`])
+        if (kpsewhichReturn.status === 0) {
+            const clsPath = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
+            if (clsPath === '') {
+                return
+            } else {
+                return clsPath
+            }
+        }
+    } catch(e) {
+        logger.logError(`Calling ${kpsewhich} on ${cls} failed.`, e)
+    }
+    return
+}
+
 export function resolveBibPath(bib: string, baseDir: string): string[] {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const bibDirs = configuration.get('latex.bibDirs') as string[]

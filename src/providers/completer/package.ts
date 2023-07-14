@@ -5,6 +5,7 @@ import * as lw from '../../lw'
 import type { IProvider } from '../completion'
 import { argContentToStr } from '../../utils/parser'
 import { Cache } from '../../components/cacher'
+import { kpsewhichClsPath } from '../../components/cacherlib/pathutils'
 
 type DataPackagesJsonType = typeof import('../../../data/packagenames.json')
 
@@ -137,7 +138,7 @@ export class Package implements IProvider {
 
     private parseContent(content: string): {[pkgName: string]: string[]} {
         const packages = {}
-        const pkgReg = /\\usepackage(\[[^[\]{}]*\])?{(.*?)}/gs
+        const pkgReg = /\\(?:usepackage|RequirePackage)(\[[^[\]{}]*\])?{(.*?)}/gs
         while (true) {
             const result = pkgReg.exec(content)
             if (result === null) {
@@ -158,10 +159,14 @@ export class Package implements IProvider {
         if (packageName === '') {
             return {}
         }
+        let pkgObj: {[pkgName: string]: string[]} = {}
         if (node?.type === 'macro' && node.content === 'documentclass') {
+            const clsPath = kpsewhichClsPath(packageName)
+            if (clsPath && fs.existsSync(clsPath)) {
+                pkgObj = this.parseContent(fs.readFileSync(clsPath).toString())
+            }
             packageName = 'class-' + packageName
         }
-        const pkgObj: {[pkgName: string]: string[]} = {}
         pkgObj[packageName] = options
         return pkgObj
     }
