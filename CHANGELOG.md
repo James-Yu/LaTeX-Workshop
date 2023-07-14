@@ -1,5 +1,18 @@
 # Change Log
 
+## [9.13.0] - 2023-07-14
+
+### Added
+- (#3961) Add a "custom editor" viewer mode.
+- (#3965) Use `kpsewhich` to find package imports defined in `.cls`.
+
+### Changed
+- Enable `kpsewhich` by default.
+
+### Fixed
+- (#3960) Support `\DeclarePairedDelimiterX(PP)` and `\DeclareRobustCommand`.
+- (#3963) Arguments in AST can have labels, envs, and glossaries.
+
 ## [9.12.3] - 2023-07-07
 
 ### Fixed
