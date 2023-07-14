@@ -25,42 +25,21 @@ export function getFlsFilePath(texFile: string): string | undefined {
     return flsFile
 }
 
-function kpsewhichBibPath(bib: string): string | undefined {
-    const kpsewhich = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
-    logger.log(`Calling ${kpsewhich} to resolve ${bib} .`)
-    try {
-        const kpsewhichReturn = cs.sync(kpsewhich, ['-format=.bib', bib])
-        if (kpsewhichReturn.status === 0) {
-            const bibPath = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
-            if (bibPath === '') {
-                return
-            } else {
-                return bibPath
-            }
-        }
-    } catch(e) {
-        logger.logError(`Calling ${kpsewhich} on ${bib} failed.`, e)
-    }
-    return
-}
+export function kpsewhich(args: string[]): string | undefined {
+    const command = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
+    logger.log(`Calling ${command} to resolve ${args.join(' ')} .`)
 
-export function kpsewhichClsPath(cls: string): string | undefined {
-    const kpsewhich = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
-    logger.log(`Calling ${kpsewhich} to resolve ${cls} .`)
     try {
-        const kpsewhichReturn = cs.sync(kpsewhich, [`${cls}.cls`])
+        const kpsewhichReturn = cs.sync(command, args)
         if (kpsewhichReturn.status === 0) {
-            const clsPath = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
-            if (clsPath === '') {
-                return
-            } else {
-                return clsPath
-            }
+            const output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
+            return output !== '' ? output : undefined
         }
-    } catch(e) {
-        logger.logError(`Calling ${kpsewhich} on ${cls} failed.`, e)
+    } catch (e) {
+        logger.logError(`Calling ${command} on ${args.join(' ')} failed.`, e)
     }
-    return
+
+    return undefined
 }
 
 export function resolveBibPath(bib: string, baseDir: string): string[] {
@@ -76,7 +55,7 @@ export function resolveBibPath(bib: string, baseDir: string): string[] {
 
     if (bibPath === undefined || bibPath.length === 0) {
         if (configuration.get('kpsewhich.enabled')) {
-            const kpsePath = kpsewhichBibPath(bib)
+            const kpsePath = kpsewhich(['-format=.bib', bib])
             return kpsePath ? [ kpsePath ] : []
         } else {
             logger.log(`Cannot resolve bib path: ${bib} .`)
