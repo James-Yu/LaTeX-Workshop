@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icons/icon.png",
-  "version": "9.12.2",
+  "version": "9.12.3",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -1420,14 +1420,16 @@
             "browser",
             "tab",
             "singleton",
-            "external"
+            "external",
+            "customEditor"
           ],
           "markdownDescription": "The default PDF viewer.",
           "enumDescriptions": [
             "Open PDF with the default web browser.",
             "Open PDF with the built-in tab viewer.",
             "Open PDF with the built-in tab viewer, reveal existing one if possible.",
-            "[Experimental] Open PDF with the external viewer set in \"View > Pdf > External: command\"."
+            "[Experimental] Open PDF with the external viewer set in \"View > Pdf > External: command\".",
+            "[Experimental] Open PDF with the built-in tab viewer, using the vscode custom editor API."
           ]
         },
         "latex-workshop.view.pdf.tab.editorGroup": {
@@ -1454,7 +1456,8 @@
           "scope": "window",
           "type": "number",
           "default": 1000,
-          "markdownDescription": "Defines the delay in milliseconds to wait for a tab opening. Please increase the value if you encounter a focus issue after opening a tab."
+          "deprecationMessage": "Deprecated: This config has no use and has been removed.",
+          "markdownDeprecationMessage": "**Deprecated**: This config has no use and has been removed."
         },
         "latex-workshop.view.pdf.ref.viewer": {
           "type": "string",

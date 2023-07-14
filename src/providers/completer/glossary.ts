@@ -137,10 +137,17 @@ export class Glossary implements IProvider {
             })
         }
 
-        if ('content' in node && typeof node.content !== 'string') {
-            for (const subNode of node.content) {
+        const parseContent = (content: Ast.Node[]) => {
+            for (const subNode of content) {
                 glos = [...glos, ...this.parseAst(subNode, filePath)]
             }
+        }
+        if (node.type === 'macro' && node.args) {
+            for (const arg of node.args) {
+                parseContent(arg.content)
+            }
+        } else if ('content' in node && typeof node.content !== 'string') {
+            parseContent(node.content)
         }
 
         return glos

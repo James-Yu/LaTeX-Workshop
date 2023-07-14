@@ -202,46 +202,70 @@ export class Command implements IProvider {
     private parseAst(node: Ast.Node, filePath: string, defined?: Set<string>): CmdEnvSuggestion[] {
         defined = defined ?? new Set<string>()
         let cmds: CmdEnvSuggestion[] = []
+        let found = false
+        let name = ''
+        let args = ''
         if (node.type === 'macro' &&
-            ['renewcommand', 'newcommand', 'providecommand', 'DeclareMathOperator'].includes(node.content) &&
+            ['renewcommand', 'newcommand', 'providecommand'].includes(node.content) &&
             node.args?.[2]?.content?.[0]?.type === 'macro') {
             // \newcommand{\fix}[3][]{\chdeleted{#2}\chadded[comment={#1}]{#3}}
             // \newcommand\WARNING{\textcolor{red}{WARNING}}
-            const name = node.args[2].content[0].content
-            let args = ''
+            found = true
+            name = node.args[2].content[0].content
             if (node.args?.[3].content?.[0]?.type === 'string' &&
                 parseInt(node.args?.[3].content?.[0].content) > 0) {
                 args = (node.args?.[4].openMark === '[' ? '[]' : '{}') + '{}'.repeat(parseInt(node.args?.[3].content?.[0].content) - 1)
             }
-            if (!defined.has(`${name}${args}`)) {
-                const cmd = new CmdEnvSuggestion(`\\${name}${args}`, 'user-defined', [], -1, {name, args}, vscode.CompletionItemKind.Function)
-                cmd.documentation = '`' + name + '`'
-                let argTabs = args
-                let index = 0
-                while (argTabs.includes('[]')) {
-                    argTabs = argTabs.replace('[]', '[${' + index + '}]')
-                    index++
-                }
-                while (argTabs.includes('{}')) {
-                    argTabs = argTabs.replace('{}', '{${' + index + '}}')
-                    index++
-                }
-                cmd.insertText = new vscode.SnippetString(name + argTabs)
-                cmd.filterText = name
-                if (isTriggerSuggestNeeded(name)) {
-                    cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
-                }
-                cmds.push(cmd)
-                this.definedCmds.set(cmd.signatureAsString(), {
-                    filePath,
-                    location: new vscode.Location(
-                        vscode.Uri.file(filePath),
-                        new vscode.Position(
-                            (node.position?.start.line ?? 1) - 1,
-                            (node.position?.start.column ?? 1) - 1))
-                })
-                defined.add(cmd.signatureAsString())
+        } else if (node.type === 'macro' &&
+            ['DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.content) &&
+            node.args?.[0]?.content?.[0]?.type === 'macro') {
+            // \DeclarePairedDelimiterX\braketzw[2]{\langle}{\rangle}{#1\,\delimsize\vert\,\mathopen{}#2}
+            found = true
+            name = node.args[0].content[0].content
+            if (['DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.content) &&
+                node.args?.[1].content?.[0]?.type === 'string' &&
+                parseInt(node.args?.[1].content?.[0].content) > 0) {
+                args = (node.args?.[2].openMark === '[' ? '[]' : '{}') + '{}'.repeat(parseInt(node.args?.[1].content?.[0].content) - 1)
             }
+        } else if (node.type === 'macro' &&
+            ['DeclareMathOperator', 'DeclareRobustCommand'].includes(node.content) &&
+            node.args?.[1]?.content?.[0]?.type === 'macro') {
+            found = true
+            name = node.args[1].content[0].content
+            if (node.args?.[2].content?.[0]?.type === 'string' &&
+                parseInt(node.args?.[2].content?.[0].content) > 0) {
+                args = (node.args?.[3].openMark === '[' ? '[]' : '{}') + '{}'.repeat(parseInt(node.args?.[2].content?.[0].content) - 1)
+            }
+        }
+
+        if (found && !defined.has(`${name}${args}`)) {
+            const cmd = new CmdEnvSuggestion(`\\${name}${args}`, 'user-defined', [], -1, {name, args}, vscode.CompletionItemKind.Function)
+            cmd.documentation = '`' + name + '`'
+            let argTabs = args
+            let index = 0
+            while (argTabs.includes('[]')) {
+                argTabs = argTabs.replace('[]', '[${' + index + '}]')
+                index++
+            }
+            while (argTabs.includes('{}')) {
+                argTabs = argTabs.replace('{}', '{${' + index + '}}')
+                index++
+            }
+            cmd.insertText = new vscode.SnippetString(name + argTabs)
+            cmd.filterText = name
+            if (isTriggerSuggestNeeded(name)) {
+                cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
+            }
+            cmds.push(cmd)
+            this.definedCmds.set(cmd.signatureAsString(), {
+                filePath,
+                location: new vscode.Location(
+                    vscode.Uri.file(filePath),
+                    new vscode.Position(
+                        (node.position?.start.line ?? 1) - 1,
+                        (node.position?.start.column ?? 1) - 1))
+            })
+            defined.add(cmd.signatureAsString())
         }
 
         if ('content' in node && typeof node.content !== 'string') {

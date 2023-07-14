@@ -26,6 +26,11 @@ const MACROS: MacroInfoRecord = {
     newacronym: { signature: 'o m m m'},
     newabbreviation: { signature: 'o m m m'},
     newabbr: { signature: 'o m m m'},
+    DeclareRobustCommand: { signature: 's +m o +o +m'},
+    DeclareMathOperator: { signature: 's m m'},
+    DeclarePairedDelimiter: { signature: 'm m m'},
+    DeclarePairedDelimiterX: { signature: 'm o m m m'},
+    DeclarePairedDelimiterXPP: { signature: 'm o m m m m m'},
 }
 
 const ENVS: EnvInfoRecord = {}

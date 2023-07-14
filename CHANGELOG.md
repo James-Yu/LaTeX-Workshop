@@ -1,5 +1,17 @@
 # Change Log
 
+## [9.12.3] - 2023-07-07
+
+### Fixed
+- Even faster structuring on projects with a large number of sub-files.
+- (#3573) Cache.content can be dirty.
+- (#3937) Support globs when updating bib paths.
+- (#3943) Hover hint considers package and optional arguments.
+- (#3946) Env pair should use dirty content AST.
+- (#3947) Macros must have a mandatory argument in order to appear in outline.
+- (#3948) Re-implement `mathtools` and `amsopn` new command support.
+- (#3950) Child tex wrongly all registered to root.
+
 ## [9.12.2] - 2023-06-22
 
 ### Fixed
