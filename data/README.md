@@ -19,12 +19,7 @@ The file [`bibtex-entries.json`](]bibtex-entries.json) lists for every bibtex en
 
 ## Files inside `packages/`
 
-JSON files in this directory and in the subdirectories are generated from the [cwl files by the LaTeXing project](https://github.com/LaTeXing/LaTeX-cwl) by the [`pkgcommand.py`](../dev/pkgcommand.py) script.
-
-For every package/class, two files are generated
-
-- a `_cmd.json` file listing all the commands defined by the package/class;
-- a `_env.json` file listing all the environments defined by the package/class in the form.
+JSON files in this directory and in the subdirectories are generated from the [cwl files by the TeXStudio project](https://github.com/texstudio-org/texstudio/tree/master/completion) by the [`getcwl.sh`](../dev/getcwl.sh) and [`pkgcommand.py`](../dev/pkgcommand.py) scripts.
 
 Completion files for classes are all prefixed by `class-`.
 
