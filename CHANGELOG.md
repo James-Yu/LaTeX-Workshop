@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.13.1] - 2023-07-17
+
+### Fixed
+- (#3967) `kpsewhich` should be called from the current root or workspace folder.
+
 ## [9.13.0] - 2023-07-14
 
 ### Added
