@@ -30,7 +30,7 @@ export function kpsewhich(args: string[]): string | undefined {
     logger.log(`Calling ${command} to resolve ${args.join(' ')} .`)
 
     try {
-        const kpsewhichReturn = cs.sync(command, args)
+        const kpsewhichReturn = cs.sync(command, args, {cwd: lw.manager.rootDir || vscode.workspace.workspaceFolders?.[0].uri.path})
         if (kpsewhichReturn.status === 0) {
             const output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
             return output !== '' ? output : undefined
