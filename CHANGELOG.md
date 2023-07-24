@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.13.3] - 2023-07-24
+
+### Fixed
+- Use `tab` as the default viewer fallback.
+
 ## [9.13.2] - 2023-07-24
 
 ### Fixed
