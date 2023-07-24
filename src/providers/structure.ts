@@ -45,13 +45,20 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         })
 
         vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
-            if (lw.manager.hasBibtexId(e.languageId) || lw.manager.hasDoctexId(e.languageId)) {
+            // We don't check LaTeX ID as the reconstruct is handled by the Cacher.
+            // We don't check BibTeX ID as the reconstruct is handled by the citation completer.
+            if (lw.manager.hasDoctexId(e.languageId)) {
                 void this.reconstruct()
             }
         })
 
         vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
-            if (e && (lw.manager.hasBibtexId(e.document.languageId) || lw.manager.hasDoctexId(e.document.languageId))) {
+            if (!e) {
+                return
+            }
+            if (lw.manager.hasTexId(e.document.languageId)
+                || lw.manager.hasBibtexId(e.document.languageId)
+                || lw.manager.hasDoctexId(e.document.languageId)) {
                 void this.refresh()
             }
         })
@@ -82,23 +89,23 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
             if (force || !this.cachedDTX || this.getCachedDataRootFileName(this.cachedDTX) !== document.fileName) {
                 this.cachedDTX = undefined
                 this.cachedDTX = await constructDocTeX(document)
+                logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} entries for ${document.uri.fsPath} .`)
             }
             this.structure = this.cachedDTX
-            logger.log(`Structure updated with ${this.structure.length} entries for ${document.uri.fsPath} .`)
         } else if (document?.languageId === 'bibtex') {
             if (force || !this.cachedBib || this.getCachedDataRootFileName(this.cachedBib) !== document.fileName) {
                 this.cachedBib = undefined
                 this.cachedBib = await buildBibTeX(document)
+                logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} entries for ${document.uri.fsPath} .`)
             }
             this.structure = this.cachedBib
-            logger.log(`Structure updated with ${this.structure.length} entries for ${document.uri.fsPath} .`)
         } else if (lw.manager.rootFile) {
             if (force || !this.cachedTeX) {
                 this.cachedTeX = undefined
                 this.cachedTeX = await constructLaTeX()
+                logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} root sections for ${lw.manager.rootFile} .`)
             }
             this.structure = this.cachedTeX
-            logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} root sections for ${lw.manager.rootFile} .`)
         } else {
             this.structure = []
             logger.log('Structure cleared on undefined root.')
