@@ -45,7 +45,7 @@ suite('PDF viewer test suite', () => {
         await lw.commander.view()
         let statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 1)
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'tab')
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'legacy')
         await lw.commander.view()
         await test.sleep(250)
         statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
@@ -53,7 +53,7 @@ suite('PDF viewer test suite', () => {
     }, ['linux', 'darwin'])
 
     test.run('view in custom editor tab', async (fixture: string) => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'customEditor')
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'tab')
         await test.load(fixture, [
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
@@ -69,7 +69,7 @@ suite('PDF viewer test suite', () => {
         await test.sleep(250)
         statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 1) // Make sure the custom editor got reused
-        await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'tab')
+        await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'legacy')
         await lw.commander.view()
         await test.sleep(250)
         statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))

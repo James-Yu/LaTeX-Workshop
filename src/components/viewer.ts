@@ -16,7 +16,7 @@ import { moveActiveEditor } from '../utils/webview'
 
 const logger = getLogger('Viewer')
 
-export type ViewerMode = 'tab' | 'browser' | 'singleton' | 'external' | 'customEditor'
+export type ViewerMode = 'browser' | 'tab' | 'external' | 'legacy' | 'singleton'
 
 export { pdfViewerHookProvider } from './viewerlib/pdfviewerhook'
 export { pdfViewerPanelSerializer } from './viewerlib/pdfviewerpanel'
@@ -100,14 +100,14 @@ export class Viewer {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
         let viewerMode: ViewerMode = mode ?? configuration.get<ViewerMode>('view.pdf.viewer', 'tab')
-        if (mode === 'tab' && configuration.get<ViewerMode>('view.pdf.viewer', 'tab') === 'customEditor') {
-            viewerMode = 'customEditor'
+        if (mode === 'tab' && configuration.get<ViewerMode>('view.pdf.viewer', 'tab') === 'legacy') {
+            viewerMode = 'legacy'
         }
         if (viewerMode === 'browser') {
             return lw.viewer.openBrowser(pdfFile)
-        } else if (viewerMode === 'customEditor') {
+        } else if (viewerMode === 'tab') {
             return lw.viewer.openCustomEditor(pdfFile)
-        } else if (viewerMode === 'tab' || viewerMode === 'singleton') {
+        } else if (viewerMode === 'legacy' || viewerMode === 'singleton') {
             return lw.viewer.openTab(pdfFile, tabEditorGroup, true)
         } else if (viewerMode === 'external') {
             return lw.viewer.openExternal(pdfFile)
