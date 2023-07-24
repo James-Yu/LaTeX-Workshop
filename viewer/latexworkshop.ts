@@ -367,7 +367,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         // https://github.com/James-Yu/LaTeX-Workshop/issues/1871
         PDFViewerApplicationOptions.set('spreadModeOnLoad', pack.spreadMode)
 
-        void PDFViewerApplication.open(`${utils.pdfFilePrefix}${this.encodedPdfFilePath}`).then(() => {
+        void PDFViewerApplication.open({
+            url: `${utils.pdfFilePrefix}${this.encodedPdfFilePath}`
+        }).then(() => {
             // reset the document title to the original value to avoid duplication
             document.title = this.documentTitle
         })
@@ -399,13 +401,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
     private applyNonStatefulParams(params: PdfViewerParams) {
         if (params.hand) {
-            PDFViewerApplication.pdfCursorTools.handTool.activate();
+            PDFViewerApplication.pdfCursorTools._handTool.activate();
             (document.querySelector('#cursorHandTool') as HTMLElement).classList.add('toggled');
             (document.querySelector('#cursorHandTool') as HTMLElement).setAttribute('aria-checked', 'true');
             (document.querySelector('#cursorSelectTool') as HTMLElement).classList.remove('toggled');
             (document.querySelector('#cursorSelectTool') as HTMLElement).setAttribute('aria-checked', 'false')
         } else {
-            PDFViewerApplication.pdfCursorTools.handTool.deactivate();
+            PDFViewerApplication.pdfCursorTools._handTool.deactivate();
             (document.querySelector('#cursorHandTool') as HTMLElement).classList.remove('toggled');
             (document.querySelector('#cursorHandTool') as HTMLElement).setAttribute('aria-checked', 'false');
             (document.querySelector('#cursorSelectTool') as HTMLElement).classList.add('toggled');

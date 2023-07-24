@@ -73,7 +73,7 @@ export interface IPDFViewerApplication {
         spreadMode: number
     },
     pdfCursorTools: {
-        handTool: {
+        _handTool: {
             activate(): void,
             deactivate(): void
         }
@@ -87,7 +87,7 @@ export interface IPDFViewerApplication {
         close: () => void,
         isOpen: boolean
     },
-    open(filePath: string): Promise<void>
+    open(args: {url: string}): Promise<void>
 }
 
 export interface IPDFViewerApplicationOptions {
