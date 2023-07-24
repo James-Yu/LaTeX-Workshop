@@ -1,5 +1,14 @@
 # Change Log
 
+## [9.13.2] - 2023-07-24
+
+### Fixed
+- Update to PDF.js v3.8.162.
+- Default viewer with `customEditor`.
+  - The original mode is renamed to `legacy`.
+- (#3973) Tweak structure refresh conditions.
+
+
 ## [9.13.1] - 2023-07-17
 
 ### Fixed
