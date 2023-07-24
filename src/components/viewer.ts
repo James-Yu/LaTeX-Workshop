@@ -111,6 +111,8 @@ export class Viewer {
             return lw.viewer.openTab(pdfFile, tabEditorGroup, true)
         } else if (viewerMode === 'external') {
             return lw.viewer.openExternal(pdfFile)
+        } else {
+            return lw.viewer.openCustomEditor(pdfFile)
         }
     }
 
