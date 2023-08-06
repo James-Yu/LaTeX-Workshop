@@ -1,5 +1,11 @@
 # Change Log
 
+## [9.13.4] - 2023-08-06
+
+### Fixed
+- (#3978) Correctly parse `\providecommand` commands.
+- (#3978) Fix the tab sequence of arguments of new commands.
+
 ## [9.13.3] - 2023-07-24
 
 ### Fixed
