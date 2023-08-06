@@ -206,7 +206,7 @@ export class Command implements IProvider {
         let name = ''
         let args = ''
         if (node.type === 'macro' &&
-            ['renewcommand', 'newcommand', 'providecommand'].includes(node.content) &&
+            ['renewcommand', 'newcommand'].includes(node.content) &&
             node.args?.[2]?.content?.[0]?.type === 'macro') {
             // \newcommand{\fix}[3][]{\chdeleted{#2}\chadded[comment={#1}]{#3}}
             // \newcommand\WARNING{\textcolor{red}{WARNING}}
@@ -228,7 +228,7 @@ export class Command implements IProvider {
                 args = (node.args?.[2].openMark === '[' ? '[]' : '{}') + '{}'.repeat(parseInt(node.args?.[1].content?.[0].content) - 1)
             }
         } else if (node.type === 'macro' &&
-            ['DeclareMathOperator', 'DeclareRobustCommand'].includes(node.content) &&
+            ['providecommand', 'DeclareMathOperator', 'DeclareRobustCommand'].includes(node.content) &&
             node.args?.[1]?.content?.[0]?.type === 'macro') {
             found = true
             name = node.args[1].content[0].content
@@ -244,11 +244,11 @@ export class Command implements IProvider {
             let argTabs = args
             let index = 0
             while (argTabs.includes('[]')) {
-                argTabs = argTabs.replace('[]', '[${' + index + '}]')
+                argTabs = argTabs.replace('[]', '[${' + (index + 1) + '}]')
                 index++
             }
             while (argTabs.includes('{}')) {
-                argTabs = argTabs.replace('{}', '{${' + index + '}}')
+                argTabs = argTabs.replace('{}', '{${' + (index + 1) + '}}')
                 index++
             }
             cmd.insertText = new vscode.SnippetString(name + argTabs)
