@@ -255,7 +255,7 @@ export class Cacher {
     }
 
     private updateBibfiles(cache: Cache) {
-        const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(.+?)}|(?:\\putbib)\[(.+?)\]/g
+        const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){([\s\S]+?)}|(?:\\putbib)\[(.+?)\]/gm
         while (true) {
             const result = bibReg.exec(cache.contentTrimmed)
             if (!result) {
