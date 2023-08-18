@@ -13,13 +13,6 @@
 			"name": "comment.line.at-sign.bibtex"
 		},
 		{
-			"patterns": [
-				{
-					"include": "#percentage_comment"
-				}
-			]
-		},
-		{
 			"begin": "((@)(?i:string))\\s*(\\{)\\s*([a-zA-Z0-9\\!\\$\\&\\*\\+\\-\\.\\/\\:\\;\\<\\>\\?\\[\\]\\^\\_\\`\\|]+)",
 			"beginCaptures": {
 				"1": {
@@ -102,9 +95,6 @@
 			"name": "meta.entry.braces.bibtex",
 			"patterns": [
 				{
-					"include": "#percentage_comment"
-				},
-				{
 					"include": "#url_field"
 				},
 				{
@@ -120,9 +110,6 @@
 					"end": "(?=[,}])",
 					"name": "meta.key-assignment.bibtex",
 					"patterns": [
-						{
-							"include": "#percentage_comment"
-						},
 						{
 							"include": "#integer"
 						},
@@ -161,9 +148,6 @@
 			"name": "meta.entry.parenthesis.bibtex",
 			"patterns": [
 				{
-					"include": "#percentage_comment"
-				},
-				{
 					"include": "#url_field"
 				},
 				{
@@ -179,9 +163,6 @@
 					"end": "(?=[,)])",
 					"name": "meta.key-assignment.bibtex",
 					"patterns": [
-						{
-							"include": "#percentage_comment"
-						},
 						{
 							"include": "#integer"
 						},
@@ -263,9 +244,6 @@
 							"include": "#url_cmd"
 						},
 						{
-							"include": "#percentage_comment"
-						},
-						{
 							"match": "@",
 							"name": "invalid.illegal.at-sign.bibtex"
 						},
@@ -290,9 +268,6 @@
 					"patterns": [
 						{
 							"include": "#url_cmd"
-						},
-						{
-							"include": "#percentage_comment"
 						},
 						{
 							"match": "@",
@@ -321,31 +296,6 @@
 					"patterns": [
 						{
 							"include": "#url_cmd"
-						}
-					]
-				}
-			]
-		},
-		"percentage_comment": {
-			"patterns": [
-				{
-					"begin": "(^[ \\t]+)?(?=%)",
-					"beginCaptures": {
-						"1": {
-							"name": "punctuation.whitespace.comment.leading.bibtex"
-						}
-					},
-					"end": "(?!\\G)",
-					"patterns": [
-						{
-							"begin": "(?<!\\\\)%",
-							"beginCaptures": {
-								"0": {
-									"name": "punctuation.definition.comment.bibtex"
-								}
-							},
-							"end": "$\\n?",
-							"name": "comment.line.percentage.bibtex"
 						}
 					]
 				}
