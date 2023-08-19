@@ -41,6 +41,7 @@ export async function construct(filePath: string | undefined = undefined, subFil
     let struct = subFile ? insertSubFile(structs) : structs[filePath] ?? []
     struct = nestNonSection(struct)
     struct = nestSection(struct, config)
+    fixSectionToLine(struct, config, Number.MAX_SAFE_INTEGER)
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (subFile && configuration.get('view.outline.floats.number.enabled') as boolean) {
         struct = addFloatNumber(struct)
@@ -290,6 +291,27 @@ function nestSection(struct: TeXElement[], config: StructureConfig): TeXElement[
         }
     }
     return elements
+}
+
+function fixSectionToLine(structure: TeXElement[], config: StructureConfig, lastLine: number) {
+    const sections = structure.filter(section => config.secIndex[section.name] !== undefined)
+    sections.forEach(section => {
+        const sameFileSections = sections.filter(candidate =>
+            (candidate.filePath === section.filePath) &&
+            (candidate.lineFr >= section.lineFr) &&
+            (candidate !== section))
+        if (sameFileSections.length > 0 && sameFileSections[0].lineFr === section.lineFr) {
+            // On the same line, e.g., \section{one}\section{two}
+            return
+        } else if (sameFileSections.length > 0) {
+            section.lineTo = sameFileSections[0].lineFr - 1
+        } else {
+            section.lineTo = lastLine
+        }
+        if (section.children.length > 0) {
+            fixSectionToLine(section.children, config, section.lineTo)
+        }
+    })
 }
 
 function addFloatNumber(struct: TeXElement[], counter: {[env: string]: number} = {}): TeXElement[] {
