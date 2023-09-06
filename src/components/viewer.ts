@@ -167,15 +167,19 @@ export class Viewer {
         const editorGroup = configuration.get('view.pdf.tab.editorGroup')
         // Roughly translate editorGroup to vscode.ViewColumn
         let viewColumn: vscode.ViewColumn
+        let focusAction: string = ''
         if (editorGroup === 'current') {
             viewColumn = vscode.ViewColumn.Active
         } else if (editorGroup === 'right') {
             viewColumn = vscode.ViewColumn.Two
+            focusAction = 'workbench.action.focusLeftGroup'
         } else if (editorGroup === 'left') {
             viewColumn = vscode.ViewColumn.One
+            focusAction = 'workbench.action.focusRightGroup'
         } else {
             // Other locations are not supported by the editor open API -> use right panel as default
             viewColumn = vscode.ViewColumn.Two
+            focusAction = 'workbench.action.focusLeftGroup'
         }
         const pdfUri = vscode.Uri.file(pdfFile)
         const showOptions: vscode.TextDocumentShowOptions = {
@@ -183,6 +187,9 @@ export class Viewer {
             preserveFocus: true
         }
         await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
+        if (focusAction !== '') {
+            await vscode.commands.executeCommand(focusAction)
+        }
     }
 
     async openPdfInTab(pdfUri: vscode.Uri, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
