@@ -1,5 +1,18 @@
 # Change Log
 
+## [9.14.0] - 2023-09-19
+
+### Added
+- (#3981) Add a new `synctex.indicator.enabled` config item to control the visibility of the SyncTeX indicator in PDF.
+- (#3999) Display missing character warning in the Problems pane.
+- (#4017) Show appendix numbering in structure.
+
+### Fixed
+- (#3982) Make `\bibliography` accept a multiline argument.
+- (#3983) Compute section ranges correctly once nested.
+- (#3984) Fix newlines and indentations for BTA and BTB snippets.
+- (#4003) Regain focus after creating viewer tab.
+
 ## [9.13.4] - 2023-08-06
 
 ### Fixed
