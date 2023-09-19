@@ -19,7 +19,6 @@ async function runTestSuites(fixture: 'testground' | 'multiroot') {
                 '--disable-gpu'
             ],
             extensionTestsEnv: {
-                LATEXWORKSHOP_CI: '1',
                 LATEXWORKSHOP_CLI: '1'
             }
         })

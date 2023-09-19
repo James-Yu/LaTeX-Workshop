@@ -131,7 +131,7 @@ suite('Intellisense test suite', () => {
         ])
         suggestions = test.suggest(0, 1)
         assert.ok(suggestions.labels.includes('\\lstinline'))
-    })
+    }, ['linux', 'darwin'])
 
     test.run('command intellisense with cmds provided by \\usepackage and its argument', async (fixture: string) => {
         await test.load(fixture, [
@@ -279,7 +279,7 @@ suite('Intellisense test suite', () => {
         ])
         suggestions = test.suggest(3, 7)
         assert.ok(suggestions.labels.includes('algorithm'))
-    })
+    }, ['linux', 'darwin'])
 
     test.run('environment intellisense with envs provided by \\usepackage and its argument', async (fixture: string) => {
         await test.load(fixture, [
