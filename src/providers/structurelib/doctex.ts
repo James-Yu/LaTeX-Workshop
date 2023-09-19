@@ -55,8 +55,11 @@ async function getToC(document: vscode.TextDocument, docContent: string) {
     const config = outline.refreshLaTeXModelConfig(false, ['macro', 'environment'])
 
     const root: { children: TeXElement[] } = { children: [] }
+    let inAppendix = false
     for (const node of ast.content) {
-        await outline.parseNode(node, [], root, document.fileName, config, {})
+        if (await outline.parseNode(node, [], root, document.fileName, config, {}, inAppendix)) {
+            inAppendix = true
+        }
     }
     let struct = root.children
     struct = outline.nestNonSection(struct)
