@@ -12,6 +12,7 @@ const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line 
 const latexBoxOutput = /^((?:Over|Under)full \\[vh]box \([^)]*\)) has occurred while \\output is active(?: \[(\d+)\])?/
 const latexWarn = /^((?:(?:Class|Package|Module) \S*)|LaTeX(?: \S*)?|LaTeX3) (Warning|Info):\s+(.*?)(?: on(?: input)? line (\d+))?(\.|\?|)$/
 const latexPackageWarningExtraLines = /^\((.*)\)\s+(.*?)(?: +on input line (\d+))?(\.)?$/
+const latexMissChar = /^\s*(Missing character:.*?!)/
 const bibEmpty = /^Empty `thebibliography' environment/
 const biberWarn = /^Biber warning:.*WARN - I didn't find a database entry for '([^']+)'/
 
@@ -165,6 +166,20 @@ function parseLine(line: string, state: ParserState) {
         }
         state.searchEmptyLine = false
         parseLine(line.substring(result[0].length), state)
+        return
+    }
+    result = line.match(latexMissChar)
+    if (result) {
+        if (state.currentResult.type !== '') {
+            buildLog.push(state.currentResult)
+        }
+        state.currentResult = {
+            type: 'warning',
+            file: filename,
+            line: 1,
+            text: result[1]
+        }
+        state.searchEmptyLine = false
         return
     }
     result = line.match(latexWarn)
