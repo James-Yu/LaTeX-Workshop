@@ -71,11 +71,15 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
     const rootElement = { children: [] }
     structs[filePath] = rootElement.children
 
+    let inAppendix = false
     for (const node of ast.content) {
         if (['string', 'parbreak', 'whitespace'].includes(node.type)) {
             continue
         }
-        await parseNode(node, rnwSub, rootElement, filePath, config, structs)
+        // Appendix is a one-way journey. Once in it, always in it.
+        if (await parseNode(node, rnwSub, rootElement, filePath, config, structs, inAppendix)) {
+            inAppendix = true
+        }
     }
 }
 
@@ -85,7 +89,8 @@ async function parseNode(
         root: { children: TeXElement[] },
         filePath: string,
         config: StructureConfig,
-        structs: FileStructureCache) {
+        structs: FileStructureCache,
+        inAppendix: boolean): Promise<boolean> {
     const attributes = {
         lineFr: (node.position?.start.line ?? 1) - 1,
         lineTo: (node.position?.end.line ?? 1) - 1,
@@ -101,6 +106,7 @@ async function parseNode(
             type: node.args?.[0]?.content[0] ? TeXElementType.SectionAst : TeXElementType.Section,
             name: node.content,
             label: argContentToStr(((node.args?.[1]?.content?.length ?? 0) > 0 ? node.args?.[1]?.content : node.args?.[2]?.content) || []),
+            appendix: inAppendix,
             ...attributes
         }
     } else if (node.type === 'macro' && config.macros.cmds.includes(node.content)) {
@@ -111,6 +117,8 @@ async function parseNode(
             label: `#${node.content}` + (argStr ? `: ${argStr}` : ''),
             ...attributes
         }
+    } else if (node.type === 'macro' && node.content === 'appendix') {
+        inAppendix = true
     } else if ((node.type === 'environment') && node.env === 'frame') {
         const frameTitleMacro: Ast.Macro | undefined = node.content.find(sub => sub.type === 'macro' && sub.content === 'frametitle') as Ast.Macro | undefined
         const caption = argContentToStr(node.args?.[3]?.content || []) || argContentToStr(frameTitleMacro?.args?.[2]?.content || [])
@@ -220,9 +228,11 @@ async function parseNode(
             if (['string', 'parbreak', 'whitespace'].includes(sub.type)) {
                 continue
             }
-            await parseNode(sub, rnwSub, root, filePath, config, structs)
+            inAppendix = await parseNode(sub, rnwSub, root, filePath, config, structs, inAppendix)
         }
     }
+
+    return inAppendix
 }
 
 function insertSubFile(structs: FileStructureCache, struct?: TeXElement[], traversed?: string[]): TeXElement[] {
@@ -334,8 +344,13 @@ function addSectionNumber(struct: TeXElement[], config: StructureConfig, tag?: s
     lowest = lowest ?? Math.min(...struct
         .filter(element => config.secIndex[element.name] !== undefined)
         .map(element => config.secIndex[element.name]))
-    const counter: {[level: number]: number} = {}
+    let counter: {[level: number]: number} = {}
+    let inAppendix = false
     for (const element of struct) {
+        if (element.appendix && !inAppendix) {
+            inAppendix = true
+            counter = {}
+        }
         if (config.secIndex[element.name] === undefined) {
             continue
         }
@@ -345,7 +360,7 @@ function addSectionNumber(struct: TeXElement[], config: StructureConfig, tag?: s
         const sectionNumber = tag +
             '0.'.repeat(config.secIndex[element.name] - lowest) +
             (counter[config.secIndex[element.name]] ?? 0).toString()
-        element.label = `${element.type === TeXElementType.Section ? sectionNumber : '*'} ${element.label}`
+        element.label = `${inAppendix ? 'A.' : ''}${element.type === TeXElementType.Section ? sectionNumber : '*'} ${element.label}`
         if (element.children.length > 0) {
             addSectionNumber(element.children, config, sectionNumber + '.', config.secIndex[element.name] + 1)
         }

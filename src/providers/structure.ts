@@ -20,7 +20,8 @@ export type TeXElement = {
     lineTo: number,
     readonly filePath: string,
     children: TeXElement[],
-    parent?: TeXElement
+    parent?: TeXElement,
+    appendix?: boolean
 }
 
 export class StructureView implements vscode.TreeDataProvider<TeXElement> {
