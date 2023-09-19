@@ -5,7 +5,8 @@ export type ServerResponse = {
     data: {
         page: number,
         x: number,
-        y: number
+        y: number,
+        indicator: boolean
     }
 } | {
     type: 'reload'

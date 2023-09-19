@@ -411,7 +411,8 @@ export class Viewer {
         const needDelay = this.showInvisibleWebviewPanel(pdfFileUri)
         for (const client of clientSet) {
             setTimeout(() => {
-                client.send({type: 'synctex', data: record})
+                const indicator = vscode.workspace.getConfiguration('latex-workshop').get('synctex.indicator.enabled') as boolean
+                client.send({type: 'synctex', data: {...record, indicator}})
             }, needDelay ? 200 : 0)
             logger.log(`Try to synctex ${pdfFile}`)
         }

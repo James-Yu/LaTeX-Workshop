@@ -156,7 +156,7 @@ export function syncTexJsForward(line: number, filePath: string, pdfFile: string
         const l = lineNums[i]
         const blocks = getBlocks(linePageBlocks, l)
         const c = toRect(blocks)
-        return { page: blocks[0].page, x: c.left + pdfSyncObject.offset.x, y: c.bottom + pdfSyncObject.offset.y }
+        return { page: blocks[0].page, x: c.left + pdfSyncObject.offset.x, y: c.bottom + pdfSyncObject.offset.y, indicator: true }
     }
     const line0 = lineNums[i - 1]
     const blocks0 = getBlocks(linePageBlocks, line0)
@@ -170,7 +170,7 @@ export function syncTexJsForward(line: number, filePath: string, pdfFile: string
     } else {
         bottom = c1.bottom
     }
-    return { page: blocks1[0].page, x: c1.left + pdfSyncObject.offset.x, y: bottom + pdfSyncObject.offset.y }
+    return { page: blocks1[0].page, x: c1.left + pdfSyncObject.offset.x, y: bottom + pdfSyncObject.offset.y, indicator: true }
 }
 
 export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: string): SyncTeXRecordBackward | undefined {

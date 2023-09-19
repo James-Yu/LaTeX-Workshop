@@ -14,7 +14,8 @@ const logger = getLogger('Locator')
 export type SyncTeXRecordForward = {
     page: number,
     x: number,
-    y: number
+    y: number,
+    indicator: boolean
 }
 
 export type SyncTeXRecordBackward = {
@@ -50,7 +51,7 @@ export class Locator {
             record[key] = Number(value)
         }
         if (record.page !== undefined && record.x !== undefined && record.y !== undefined) {
-            return { page: record.page, x: record.x, y: record.y, }
+            return { page: record.page, x: record.x, y: record.y, indicator: true }
         } else {
             throw(new Error('parse error when parsing the result of synctex forward.'))
         }

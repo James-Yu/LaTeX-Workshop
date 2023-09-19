@@ -303,7 +303,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.sendCurrentStateToPanelManager()
     }
 
-    private forwardSynctex(position: { page: number, x: number, y: number }) {
+    private forwardSynctex(position: { page: number, x: number, y: number, indicator: boolean }) {
         if (!this.synctexEnabled) {
             this.addLogMessage('SyncTeX temporarily disabled.')
             return
@@ -331,6 +331,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
         this.viewerHistory.set(container.scrollTop)
 
+        if (!position.indicator) {
+            return
+        }
         const indicator = document.getElementById('synctex-indicator') as HTMLElement
         indicator.className = 'show'
         indicator.style.left = `${scrollX}px`
