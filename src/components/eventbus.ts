@@ -54,7 +54,7 @@ export class EventBus {
     fire<T extends keyof EventArgs>(eventName: T, arg: EventArgs[T]): void
     fire(eventName: EventName): void
     fire(eventName: EventName, arg?: any): void {
-        if (eventName !== 'DOCUMENT_CHANGED') {
+        if ([DocumentChanged, ViewerStatusChanged].includes(eventName)) {
             logger.log(eventName + (arg ? `: ${JSON.stringify(arg)}` : ''))
         }
         this.eventEmitter.emit(eventName, arg)
