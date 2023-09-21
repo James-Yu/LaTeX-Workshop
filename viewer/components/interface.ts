@@ -73,10 +73,7 @@ export interface IPDFViewerApplication {
         spreadMode: number
     },
     pdfCursorTools: {
-        _handTool: {
-            activate(): void,
-            deactivate(): void
-        }
+        switchTool(tool: 0 | 1): void
     },
     pdfSidebar: {
         isOpen: boolean,

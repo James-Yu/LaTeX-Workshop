@@ -403,19 +403,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     private applyNonStatefulParams(params: PdfViewerParams) {
-        if (params.hand) {
-            PDFViewerApplication.pdfCursorTools._handTool.activate();
-            (document.querySelector('#cursorHandTool') as HTMLElement).classList.add('toggled');
-            (document.querySelector('#cursorHandTool') as HTMLElement).setAttribute('aria-checked', 'true');
-            (document.querySelector('#cursorSelectTool') as HTMLElement).classList.remove('toggled');
-            (document.querySelector('#cursorSelectTool') as HTMLElement).setAttribute('aria-checked', 'false')
-        } else {
-            PDFViewerApplication.pdfCursorTools._handTool.deactivate();
-            (document.querySelector('#cursorHandTool') as HTMLElement).classList.remove('toggled');
-            (document.querySelector('#cursorHandTool') as HTMLElement).setAttribute('aria-checked', 'false');
-            (document.querySelector('#cursorSelectTool') as HTMLElement).classList.add('toggled');
-            (document.querySelector('#cursorSelectTool') as HTMLElement).setAttribute('aria-checked', 'true')
-        }
+        PDFViewerApplication.pdfCursorTools.switchTool(params.hand ? 1 : 0)
         if (params.invertMode.enabled) {
             const { brightness, grayscale, hueRotate, invert, sepia } = params.invertMode
             const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`
