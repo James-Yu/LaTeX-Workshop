@@ -77,6 +77,54 @@ function readCitationFormat(configuration: vscode.WorkspaceConfiguration, exclud
     return fields
 }
 
+export const bibTools = {
+    expandField,
+    deParenthesis,
+    parseAbbrevations
+}
+
+function expandField(abbreviations: {[key: string]: string}, value: bibtexParser.FieldValue): string {
+    if (value.kind === 'concat') {
+        const args = value.content as bibtexParser.FieldValue[]
+        return args.map(arg => expandField(abbreviations, arg)).join(' ')
+    }
+    if (bibtexParser.isAbbreviationValue(value)) {
+        if (value.content in abbreviations) {
+            return abbreviations[value.content]
+        }
+        return ''
+    }
+    return value.content
+}
+
+function deParenthesis(str: string): string {
+    // Remove wrapping { }
+    // Extract the content of \url{}
+    return str.replace(/\\url{([^\\{}]+)}/g, '$1').replace(/{+([^\\{}]+)}+/g, '$1')
+}
+
+function parseAbbrevations(ast: bibtexParser.BibtexAst) {
+    const abbreviations: {[key: string]: string} = {}
+    ast.content.filter(bibtexParser.isStringEntry).forEach((entry: bibtexParser.StringEntry) => {
+        // @string{string1 = "Proceedings of the "}
+        // @string{string2 = string1 # "Foo"}
+        if (typeof entry.value.content === 'string') {
+            abbreviations[entry.abbreviation] = entry.value.content
+        } else {
+            abbreviations[entry.abbreviation] =
+                (entry.value.content as (bibtexParser.AbbreviationValue | bibtexParser.TextStringValue)[]).map(subEntry => {
+                    if (bibtexParser.isAbbreviationValue(subEntry)) {
+                        return abbreviations[subEntry.content] ?? `undefined @string "${subEntry.content}"`
+                    } else {
+                        return subEntry.content
+                    }
+                }).join('')
+        }
+    })
+
+    return abbreviations
+}
+
 export class Citation implements IProvider {
     /**
      * Bib entries in each bib `file`.
@@ -261,23 +309,7 @@ export class Citation implements IProvider {
             lw.eventBus.fire(eventbus.FileParsed, fileName)
             return
         }
-        const abbreviations: {[key: string]: string} = {}
-        ast.content.filter(bibtexParser.isStringEntry).forEach((entry: bibtexParser.StringEntry) => {
-            // @string{string1 = "Proceedings of the "}
-            // @string{string2 = string1 # "Foo"}
-            if (typeof entry.value.content === 'string') {
-                abbreviations[entry.abbreviation] = entry.value.content
-            } else {
-                abbreviations[entry.abbreviation] =
-                    (entry.value.content as (bibtexParser.AbbreviationValue | bibtexParser.TextStringValue)[]).map(subEntry => {
-                        if (bibtexParser.isAbbreviationValue(subEntry)) {
-                            return abbreviations[subEntry.content] ?? `undefined @string "${subEntry.content}"`
-                        } else {
-                            return subEntry.content
-                        }
-                    }).join('')
-            }
-        })
+        const abbreviations = parseAbbrevations(ast)
         ast.content
             .filter(bibtexParser.isEntry)
             .forEach((entry: bibtexParser.Entry) => {
@@ -293,7 +325,7 @@ export class Citation implements IProvider {
                     fields: new Fields()
                 }
                 entry.content.forEach(field => {
-                    const value = this.deParenthesis(this.expandField(abbreviations, field.value))
+                    const value = deParenthesis(expandField(abbreviations, field.value))
                     item.fields.set(field.name, value)
                 })
                 newEntry.push(item)
@@ -302,20 +334,6 @@ export class Citation implements IProvider {
         logger.log(`Parsed ${newEntry.length} bib entries from ${fileName} .`)
         void lw.structureViewer.reconstruct()
         lw.eventBus.fire(eventbus.FileParsed, fileName)
-    }
-
-    private expandField(abbreviations: {[key: string]: string}, value: bibtexParser.FieldValue): string {
-        if (value.kind === 'concat') {
-            const args = value.content as bibtexParser.FieldValue[]
-            return args.map(arg => this.expandField(abbreviations, arg)).join(' ')
-        }
-        if (bibtexParser.isAbbreviationValue(value)) {
-            if (value.content in abbreviations) {
-                return abbreviations[value.content]
-            }
-            return ''
-        }
-        return value.content
     }
 
     removeEntriesInFile(file: string) {
@@ -359,11 +377,5 @@ export class Citation implements IProvider {
             })
         }
         return items
-    }
-
-    private deParenthesis(str: string): string {
-        // Remove wrapping { }
-        // Extract the content of \url{}
-        return str.replace(/\\url{([^\\{}]+)}/g, '$1').replace(/{+([^\\{}]+)}+/g, '$1')
     }
 }

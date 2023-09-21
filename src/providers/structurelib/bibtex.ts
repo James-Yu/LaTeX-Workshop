@@ -4,6 +4,7 @@ import { TeXElement, TeXElementType } from '../structure'
 import { parser } from '../../components/parser'
 
 import { getLogger } from '../../components/logger'
+import { bibTools } from '../completer/citation'
 
 const logger = getLogger('Structure', 'BibTeX')
 
@@ -11,12 +12,14 @@ const logger = getLogger('Structure', 'BibTeX')
 * Convert a bibtexParser.FieldValue to a string
 * @param field the bibtexParser.FieldValue to parse
 */
-function fieldValueToString(field: bibtexParser.FieldValue): string {
-   if (field.kind === 'concat') {
-       return field.content.map(value => fieldValueToString(value)).reduce((acc, cur) => {return acc + ' # ' + cur})
-   } else {
-       return field.content
-   }
+function fieldValueToString(field: bibtexParser.FieldValue, abbreviations: {[abbr: string]: string}): string {
+    if (field.kind === 'concat') {
+        return field.content.map(value => fieldValueToString(value, abbreviations)).reduce((acc, cur) => {return acc + ' # ' + cur})
+    } else if (field.kind === 'abbreviation') {
+        return abbreviations[field.content] ?? `undefined @string "${field.content}"`
+    } else {
+        return field.content
+    }
 }
 
 export async function buildBibTeX(document: vscode.TextDocument): Promise<TeXElement[]> {
@@ -31,6 +34,7 @@ export async function buildBibTeX(document: vscode.TextDocument): Promise<TeXEle
         return []
     }
     logger.log(`Parsed ${ast.content.length} AST items.`)
+    const abbreviations = bibTools.parseAbbrevations(ast)
     const ds: TeXElement[] = []
     ast.content.filter(bibtexParser.isEntry)
         .forEach(entry => {
@@ -44,7 +48,7 @@ export async function buildBibTeX(document: vscode.TextDocument): Promise<TeXEle
                 children: []
             }
             entry.content.forEach(field => {
-                const content = fieldValueToString(field.value)
+                const content = fieldValueToString(field.value, abbreviations)
                 const fielditem: TeXElement = {
                     type: TeXElementType.BibField,
                     name: field.name,
