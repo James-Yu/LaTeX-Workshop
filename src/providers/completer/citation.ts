@@ -263,7 +263,20 @@ export class Citation implements IProvider {
         }
         const abbreviations: {[key: string]: string} = {}
         ast.content.filter(bibtexParser.isStringEntry).forEach((entry: bibtexParser.StringEntry) => {
-            abbreviations[entry.abbreviation] = entry.value.content
+            // @string{string1 = "Proceedings of the "}
+            // @string{string2 = string1 # "Foo"}
+            if (typeof entry.value.content === 'string') {
+                abbreviations[entry.abbreviation] = entry.value.content
+            } else {
+                abbreviations[entry.abbreviation] =
+                    (entry.value.content as (bibtexParser.AbbreviationValue | bibtexParser.TextStringValue)[]).map(subEntry => {
+                        if (bibtexParser.isAbbreviationValue(subEntry)) {
+                            return abbreviations[subEntry.content] ?? `undefined @string "${subEntry.content}"`
+                        } else {
+                            return subEntry.content
+                        }
+                    }).join('')
+            }
         })
         ast.content
             .filter(bibtexParser.isEntry)
