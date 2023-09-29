@@ -321,7 +321,7 @@
       "snippet": "addtocategory{${1:category}}{${2:bibid}}"
     },
     "defbibenvironment{}{}{}{}": {
-      "snippet": "defbibenvironment{${1:envname}}{${2:begincode}}{${3:endcode}}{${4:itemcode}}"
+      "snippet": "defbibenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}{${4:itemcode}}"
     },
     "defbibheading{}{}": {
       "snippet": "defbibheading{${1:name}}{${2:code}}"
@@ -2533,6 +2533,12 @@
     "scope{}": {
       "snippet": "scope{${1:code}}"
     },
+    "DeclareExtradateContext{}": {
+      "snippet": "DeclareExtradateContext{${1:specification}}"
+    },
+    "DeclareExtradateContext[]{}": {
+      "snippet": "DeclareExtradateContext[${2:entrytype list}]{${1:specification}}"
+    },
     "DeclareLabeltitle{}": {
       "snippet": "DeclareLabeltitle{${1:specification}}"
     },
@@ -3587,6 +3593,9 @@
     "AtBeginRefsection{}": {
       "snippet": "AtBeginRefsection{${1:code}}"
     },
+    "AtNextRefsection{}": {
+      "snippet": "AtNextRefsection{${1:code}}"
+    },
     "AtBeginBibliography{}": {
       "snippet": "AtBeginBibliography{${1:code}}"
     },
@@ -4146,25 +4155,25 @@
       "option": "style=apa"
     },
     "maxprtauth": {
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "apanum{}": {
-      "snippet": "apanum{${1:num}}",
-      "option": "style=apa"
+      "snippet": "apanum{${1:arg}}",
+      "option": "style=apa6"
     },
     "mkdaterangeapalong{}": {
-      "snippet": "mkdaterangeapalong{${1:datetype}}",
-      "option": "style=apa"
+      "snippet": "mkdaterangeapalong{${1:arg}}",
+      "option": "style=apa6"
     },
     "mkdaterangeapalongextra{}": {
-      "snippet": "mkdaterangeapalongextra{${1:datetype}}",
-      "option": "style=apa"
+      "snippet": "mkdaterangeapalongextra{${1:arg}}",
+      "option": "style=apa6"
     },
     "begrelateddelimcommenton": {
       "option": "style=apa"
     },
     "begrelateddelimreviewof": {
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "begrelateddelimreprintfrom": {
       "option": "style=apa"
@@ -4173,46 +4182,46 @@
       "option": "style=apa"
     },
     "apashortdash": {
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "citeresetapa": {
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "fullcitebib[][]{}": {
       "snippet": "fullcitebib[${2:prenote}][${3:postnote}]{${1:bibid}}",
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "fullcitebib[]{}": {
       "snippet": "fullcitebib[${2:postnote}]{${1:bibid}}",
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "fullcitebib{}": {
       "snippet": "fullcitebib{${1:bibid}}",
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "nptextcite[][]{}": {
       "snippet": "nptextcite[${2:prenote}][${3:postnote}]{${1:bibid}}",
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "nptextcite[]{}": {
       "snippet": "nptextcite[${2:postnote}]{${1:bibid}}",
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "nptextcite{}": {
       "snippet": "nptextcite{${1:bibid}}",
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "nptextcites{}{}": {
       "snippet": "nptextcites{${1:bibid}}{${2:bibid}}",
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "nptextcites[]{}[]{}": {
       "snippet": "nptextcites[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}",
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "nptextcites[][]{}[][]{}": {
       "snippet": "nptextcites[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}",
-      "option": "style=apa"
+      "option": "style=apa6"
     },
     "arthistoryversion": {
       "option": "style=arthistory-bonn"
@@ -4895,7 +4904,11 @@
       "option": "style=thuthesis-numeric"
     },
     "defdoublelangentry{}{}": {
-      "snippet": "defdoublelangentry{${1:match}}{${2:fieldvalue}}",
+      "snippet": "defdoublelangentry{${1:entrykey1}}{${2:entrykey2}}",
+      "option": "style=thuthesis-numeric"
+    },
+    "addEntryField{}{}{}": {
+      "snippet": "addEntryField{${1:entrykeys}}{${2:field}}{${3:fieldvalue}}",
       "option": "style=thuthesis-numeric"
     },
     "entrykeya": {
@@ -5061,6 +5074,12 @@
     "setaligngbnumeric": {
       "option": "style=thuthesis-author-year"
     },
+    "pubdatadelim": {
+      "option": "style=thuthesis-numeric"
+    },
+    "locnopubdelim": {
+      "option": "style=chinese-erj"
+    },
     "compextradelim": {
       "option": "style=thuthesis-author-year"
     },
@@ -5122,20 +5141,24 @@
     "thenumberwithoutzero": {
       "option": "style=chinese-erj"
     },
-    "erjpunctmarkcite": {
+    "gbpunctmarkcite": {
       "option": "style=chinese-erj"
     },
-    "erjpunctsemicoloncite": {
+    "gbpunctsemicoloncite": {
       "option": "style=chinese-erj"
     },
-    "erjpunctparenlcite": {
+    "gbpunctparenlcite": {
       "option": "style=chinese-erj"
     },
-    "erjpunctparenrcite": {
+    "gbpunctparenrcite": {
       "option": "style=chinese-erj"
     },
-    "execerjpunctencite": {
+    "exegbpunctencite": {
       "option": "style=chinese-erj"
+    },
+    "commentator{}": {
+      "snippet": "commentator{${1:bibid}}",
+      "option": "style=german-legal-book"
     },
     "mkpagegrouped{}": {
       "snippet": "mkpagegrouped{${1:text}}",
@@ -5807,6 +5830,10 @@
     "cacasetitlepunct": {
       "option": "style=oxnum"
     },
+    "DeclareAbbrEndChars{}": {
+      "snippet": "DeclareAbbrEndChars{${1:characters}}",
+      "option": "style=oxnum"
+    },
     "ifabbrev{}{}{}": {
       "snippet": "ifabbrev{${1:field}}{${2:true}}{${3:false}}",
       "option": "style=oxnum"
@@ -5915,6 +5942,12 @@
       "snippet": "plauthorhl{${1:text}}",
       "option": "bibstyle=publist"
     },
+    "bplopenoa": {
+      "option": "style=publist"
+    },
+    "bplcloseoa": {
+      "option": "style=publist"
+    },
     "plextrainfosep": {
       "option": "style=publist"
     },
@@ -5973,22 +6006,32 @@
     },
     "ExecuteDepPublistOptions{}": {
       "snippet": "ExecuteDepPublistOptions{${1:arg}}",
-      "option": "style=publist"
+      "option": "bibstyle=publist"
     },
     "thebplitems": {
-      "option": "style=publist"
+      "option": "bibstyle=publist"
     },
     "thebplsecitems": {
-      "option": "style=publist"
+      "option": "bibstyle=publist"
     },
     "thebplbgitems": {
-      "option": "style=publist"
+      "option": "bibstyle=publist"
     },
     "theplnumgroup": {
-      "option": "style=publist"
+      "option": "bibstyle=publist"
     },
     "resetplnumgroup": {
-      "option": "style=publist"
+      "option": "bibstyle=publist"
+    },
+    "GetTotalCount": {
+      "option": "bibstyle=publist"
+    },
+    "GetSectionCount": {
+      "option": "bibstyle=publist"
+    },
+    "GetSectionCount[]": {
+      "snippet": "GetSectionCount[${1:section number}]",
+      "option": "bibstyle=publist"
     },
     "citeitem[][]{}": {
       "snippet": "citeitem[${2:prenote}][${3:postnote}]{${1:bibid}}",
@@ -6638,6 +6681,7 @@
     "yearinparens",
     "nametracker",
     "apamaxprtauth=${1:number}",
+    "apamaxprtauth=${1:number}",
     "width=",
     "publisher",
     "jstor",
@@ -7240,7 +7284,7 @@
     "gblabelref",
     "gbcitecomp",
     "gbcitelabel=",
-    "erjpunctcn",
+    "gbpunctcn",
     "gbmedium",
     "gbannote",
     "gbfieldtype",
@@ -7264,10 +7308,11 @@
     "gbbiblabel=",
     "gbnamefmt=",
     "gbalign=",
-    "erjcitepunctcn",
+    "gbcitepunctcn",
     "gblabelref",
     "gbcitelabel=",
     "edsuper",
+    "switchprefix",
     "dashed=",
     "articlein",
     "citexref",
@@ -7527,6 +7572,7 @@
     "plauthornameprefix=${1:von-part}",
     "plauthorhandling=",
     "nameorder=",
+    "fixyear",
     "hlyear",
     "marginyear",
     "plsorting=${1:sorting scheme}",
@@ -7670,6 +7716,7 @@
     "nolos",
     "nopages",
     "reflist",
+    "sentencecase",
     "short",
     "shortafter",
     "shortfirst",

@@ -4,12 +4,6 @@
     "ActivateGenericHook{}": {
       "snippet": "ActivateGenericHook{${1:hook}}"
     },
-    "AddEverypageHook{}": {
-      "snippet": "AddEverypageHook{${1:code}}"
-    },
-    "AddThispageHook{}": {
-      "snippet": "AddThispageHook{${1:code}}"
-    },
     "AddToHook{}{}": {
       "snippet": "AddToHook{${1:hook}}{${2:code}}"
     },
@@ -18,6 +12,15 @@
     },
     "AddToHookNext{}{}": {
       "snippet": "AddToHookNext{${1:hook}}{${2:code}}"
+    },
+    "AddToHookNextWithArguments{}{}": {
+      "snippet": "AddToHookNextWithArguments{${1:hook}}{${2:code}}"
+    },
+    "AddToHookWithArguments{}{}": {
+      "snippet": "AddToHookWithArguments{${1:hook}}{${2:code}}"
+    },
+    "AddToHookWithArguments{}[]{}": {
+      "snippet": "AddToHookWithArguments{${1:hook}}[${2:label}]{${3:code}}"
     },
     "AddToNoCaseChangeList{}": {
       "snippet": "AddToNoCaseChangeList{${1:command}}"
@@ -28,7 +31,6 @@
     "AfterEndEnvironment{}{}": {
       "snippet": "AfterEndEnvironment{${1:environment}}{${2:code}}"
     },
-    "ArgumentSpecification": {},
     "AtBeginDocument{}": {
       "snippet": "AtBeginDocument{${1:code}}"
     },
@@ -43,31 +45,6 @@
     },
     "AtBeginEnvironment{}{}": {
       "snippet": "AtBeginEnvironment{${1:environment}}{${2:code}}"
-    },
-    "AtBeginShipout{}": {
-      "snippet": "AtBeginShipout{${1:code}}"
-    },
-    "AtBeginShipoutAddToBox{}": {
-      "snippet": "AtBeginShipoutAddToBox{${1:code}}"
-    },
-    "AtBeginShipoutAddToBoxForeground{}": {
-      "snippet": "AtBeginShipoutAddToBoxForeground{${1:code}}"
-    },
-    "AtBeginShipoutBox": {},
-    "AtBeginShipoutDiscard": {},
-    "AtBeginShipoutFirst{}": {
-      "snippet": "AtBeginShipoutFirst{${1:code}}"
-    },
-    "AtBeginShipoutInit": {},
-    "AtBeginShipoutNext{}": {
-      "snippet": "AtBeginShipoutNext{${1:code}}"
-    },
-    "AtBeginShipoutOriginalShipout": {},
-    "AtBeginShipoutUpperLeft{}": {
-      "snippet": "AtBeginShipoutUpperLeft{${1:code}}"
-    },
-    "AtBeginShipoutUpperLeftForeground{}": {
-      "snippet": "AtBeginShipoutUpperLeftForeground{${1:code}}"
     },
     "AtEndDocument{}": {
       "snippet": "AtEndDocument{${1:code}}"
@@ -90,17 +67,14 @@
     "AtEndOfPackage{}": {
       "snippet": "AtEndOfPackage{${1:code}}"
     },
-    "AtNextShipout{}": {
-      "snippet": "AtNextShipout{${1:code}}"
+    "BCPdata{}": {
+      "snippet": "BCPdata{${1:keywords}}"
     },
     "BeforeBeginEnvironment[]{}{}": {
       "snippet": "BeforeBeginEnvironment[${3:label}]{${1:environment}}{${2:code}}"
     },
     "BeforeBeginEnvironment{}{}": {
       "snippet": "BeforeBeginEnvironment{${1:environment}}{${2:code}}"
-    },
-    "BeforeClearDocument{}": {
-      "snippet": "BeforeClearDocument{${1:code}}"
     },
     "BooleanFalse": {},
     "BooleanTrue": {},
@@ -167,7 +141,7 @@
       "snippet": "DeclareCaseChangeEquivalent{${1:cmd}}{${2:replacement text}}"
     },
     "DeclareCommandCopy{}{}": {
-      "snippet": "DeclareCommandCopy{${1:cmd}}{${2:def}}"
+      "snippet": "DeclareCommandCopy{${1:cmd}}{${2:copied cmd}}"
     },
     "DeclareCurrentRelease{}{}": {
       "snippet": "DeclareCurrentRelease{${1:name}}{${2:date}}"
@@ -186,6 +160,9 @@
     },
     "DeclareEncodingSubset{}{}{}": {
       "snippet": "DeclareEncodingSubset{${1:encoding}}{${2:family}}{${3:subset number}}"
+    },
+    "DeclareEnvironmentCopy{}{}": {
+      "snippet": "DeclareEnvironmentCopy{${1:envname}}{${2:copied envname}}"
     },
     "DeclareErrorFont{}{}{}{}{}": {
       "snippet": "DeclareErrorFont{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}"
@@ -234,6 +211,12 @@
     },
     "DeclareKeys[]{}": {
       "snippet": "DeclareKeys[${2:family}]{${1:declarations}}"
+    },
+    "DeclareLowercaseMapping{}{}": {
+      "snippet": "DeclareLowercaseMapping{${1:codepoint}}{${2:output}}"
+    },
+    "DeclareLowercaseMapping[]{}{}": {
+      "snippet": "DeclareLowercaseMapping[${3:locale}]{${1:codepoint}}{${2:output}}"
     },
     "DeclareMathAccent{}{}{}{}": {
       "snippet": "DeclareMathAccent{${1:cmd}}{${2:type}}{${3:sym-font}}{${4:slot}}"
@@ -334,6 +317,12 @@
     "DeclareTextSymbolDefault{}{}": {
       "snippet": "DeclareTextSymbolDefault{${1:cmd}}{${2:encoding}}"
     },
+    "DeclareTitlecaseMapping{}{}": {
+      "snippet": "DeclareTitlecaseMapping{${1:codepoint}}{${2:output}}"
+    },
+    "DeclareTitlecaseMapping[]{}{}": {
+      "snippet": "DeclareTitlecaseMapping[${3:locale}]{${1:codepoint}}{${2:output}}"
+    },
     "DeclareUnicodeCharacter{}{}": {
       "snippet": "DeclareUnicodeCharacter{${1:hexadecimal}}{${2:definition}}"
     },
@@ -342,6 +331,12 @@
     },
     "DeclareUnknownKeyHandler[]{}": {
       "snippet": "DeclareUnknownKeyHandler[${2:family}]{${1:code}}"
+    },
+    "DeclareUppercaseMapping{}{}": {
+      "snippet": "DeclareUppercaseMapping{${1:codepoint}}{${2:output}}"
+    },
+    "DeclareUppercaseMapping[]{}{}": {
+      "snippet": "DeclareUppercaseMapping[${3:locale}]{${1:codepoint}}{${2:output}}"
     },
     "DisableGenericHook{}": {
       "snippet": "DisableGenericHook{${1:hook}}"
@@ -352,9 +347,6 @@
     "DiscardShipoutBox": {},
     "EndIncludeInRelease": {},
     "EndModuleRelease": {},
-    "EveryShipout{}": {
-      "snippet": "EveryShipout{${1:code}}"
-    },
     "ExecuteOptions{}": {
       "snippet": "ExecuteOptions{${1:optionlist}}"
     },
@@ -378,12 +370,6 @@
     "GenericWarning{}{}": {
       "snippet": "GenericWarning{${1:continuation}}{${2:message}}"
     },
-    "GetDocumentCommandArgSpec{}": {
-      "snippet": "GetDocumentCommandArgSpec{${1:cmd}}"
-    },
-    "GetDocumentEnvironmentArgSpec{}": {
-      "snippet": "GetDocumentEnvironmentArgSpec{${1:envname}}"
-    },
     "IfBlankF{}{}": {
       "snippet": "IfBlankF{${1:arg}}{${2:false code}}"
     },
@@ -394,25 +380,28 @@
       "snippet": "IfBlankTF{${1:arg}}{${2:true code}}{${3:false code}}"
     },
     "IfBooleanF{}{}": {
-      "snippet": "IfBooleanF{${1:arg}}{${2:falseCode}}"
+      "snippet": "IfBooleanF{${1:arg}}{${2:false code}}"
     },
     "IfBooleanT{}{}": {
-      "snippet": "IfBooleanT{${1:arg}}{${2:trueCode}}"
+      "snippet": "IfBooleanT{${1:arg}}{${2:true code}}"
     },
     "IfBooleanTF{}{}{}": {
-      "snippet": "IfBooleanTF{${1:arg}}{${2:trueCode}}{${3:falseCode}}"
+      "snippet": "IfBooleanTF{${1:arg}}{${2:true code}}{${3:false code}}"
     },
     "IfClassAtLeastTF{}{}{}{}": {
       "snippet": "IfClassAtLeastTF{${1:class}}{${2:date}}{${3:true code}}{${4:false code}}"
     },
     "IfClassLoadedTF{}{}{}": {
-      "snippet": "IfClassLoadedTF{${1:class}}{${2:true}}{${3:false}}"
+      "snippet": "IfClassLoadedTF{${1:class}}{${2:true code}}{${3:false code}}"
     },
     "IfClassLoadedWithOptionsTF{}{}{}{}": {
-      "snippet": "IfClassLoadedWithOptionsTF{${1:class}}{${2:options}}{${3:true}}{${4:false}}"
+      "snippet": "IfClassLoadedWithOptionsTF{${1:class}}{${2:options}}{${3:true code}}{${4:false code}}"
+    },
+    "IfFileAtLeastTF{}{}{}{}": {
+      "snippet": "IfFileAtLeastTF{${1:file}}{${2:date}}{${3:true code}}{${4:false code}}"
     },
     "IfFileExists{}{}{}": {
-      "snippet": "IfFileExists{${1:file}}{${2:then}}{${3:else}}"
+      "snippet": "IfFileExists{${1:file}}{${2:true code}}{${3:false code}}"
     },
     "IfFontSeriesContextTF{}{}{}": {
       "snippet": "IfFontSeriesContextTF{${1:face}}{${2:true code}}{${3:false code}}"
@@ -442,13 +431,13 @@
       "snippet": "IfPackageAtLeastTF{${1:package}}{${2:date}}{${3:true code}}{${4:false code}}"
     },
     "IfPackageLoadedTF{}{}{}": {
-      "snippet": "IfPackageLoadedTF{${1:package}}{${2:true}}{${3:false}}"
+      "snippet": "IfPackageLoadedTF{${1:package}}{${2:true code}}{${3:false code}}"
     },
     "IfPackageLoadedWithOptionsTF{}{}{}{}": {
-      "snippet": "IfPackageLoadedWithOptionsTF{${1:package}}{${2:options}}{${3:true}}{${4:false}}"
+      "snippet": "IfPackageLoadedWithOptionsTF{${1:package}}{${2:options}}{${3:true code}}{${4:false code}}"
     },
     "IfPDFManagementActiveTF{}{}": {
-      "snippet": "IfPDFManagementActiveTF{${1:true}}{${2:false}}"
+      "snippet": "IfPDFManagementActiveTF{${1:true code}}{${2:false code}}"
     },
     "IfTargetDateBefore{}{}{}": {
       "snippet": "IfTargetDateBefore{${1:date}}{${2:before code}}{${3:after code}}"
@@ -467,7 +456,7 @@
     },
     "IndentBox": {},
     "InputIfFileExists{}{}{}": {
-      "snippet": "InputIfFileExists{${1:file}}{${2:then}}{${3:else}}"
+      "snippet": "InputIfFileExists{${1:file}}{${2:true code}}{${3:false code}}"
     },
     "InsertMark{}{}": {
       "snippet": "InsertMark{${1:class}}{${2:text}}"
@@ -479,6 +468,7 @@
     "LastMark[]{}": {
       "snippet": "LastMark[${2:region}]{${1:class}}"
     },
+    "LaTeXReleaseInfo": {},
     "LoadClass[]{}": {
       "snippet": "LoadClass[${2:optionlist}]{${1:class}}"
     },
@@ -514,7 +504,7 @@
       "snippet": "NeedsTeXFormat{${1:format}}[${2:release}]"
     },
     "NewCommandCopy{}{}": {
-      "snippet": "NewCommandCopy{${1:cmd}}{${2:def}}"
+      "snippet": "NewCommandCopy{${1:cmd}}{${2:copied cmd}}"
     },
     "NewDocumentCommand{}{}{}": {
       "snippet": "NewDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
@@ -522,11 +512,17 @@
     "NewDocumentEnvironment{}{}{}{}": {
       "snippet": "NewDocumentEnvironment{${1:envname}}{${2:xargs}}{${3:begdef}}{${4:enddef}}"
     },
+    "NewEnvironmentCopy{}{}": {
+      "snippet": "NewEnvironmentCopy{${1:envname}}{${2:copied envname}}"
+    },
     "NewExpandableDocumentCommand{}{}{}": {
       "snippet": "NewExpandableDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
     },
     "NewHook{}": {
       "snippet": "NewHook{${1:hook}}"
+    },
+    "NewHookWithArguments{}{}": {
+      "snippet": "NewHookWithArguments{${1:hook}}{${2:number}}"
     },
     "NewMarkClass{}": {
       "snippet": "NewMarkClass{${1:class}}"
@@ -534,11 +530,17 @@
     "NewMirroredHookPair{}{}": {
       "snippet": "NewMirroredHookPair{${1:hook1}}{${2:hook2}}"
     },
+    "NewMirroredHookPairWithArguments{}{}{}": {
+      "snippet": "NewMirroredHookPairWithArguments{${1:hook1}}{${2:hook2}}{${3:number}}"
+    },
     "NewModuleRelease{}{}": {
       "snippet": "NewModuleRelease{${1:date}}{${2:name}}"
     },
     "NewReversedHook{}": {
       "snippet": "NewReversedHook{${1:hook}}"
+    },
+    "NewReversedHookWithArguments{}{}": {
+      "snippet": "NewReversedHookWithArguments{${1:hook}}{${2:number}}"
     },
     "OmitIndent": {},
     "OptionNotUsed": {},
@@ -641,13 +643,16 @@
       "snippet": "RemoveFromHook{${1:hook}}[${2:label}]"
     },
     "RenewCommandCopy{}{}": {
-      "snippet": "RenewCommandCopy{${1:cmd}}{${2:def}}"
+      "snippet": "RenewCommandCopy{${1:cmd}}{${2:copied cmd}}"
     },
     "RenewDocumentCommand{}{}{}": {
       "snippet": "RenewDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
     },
     "RenewDocumentEnvironment{}{}{}{}": {
       "snippet": "RenewDocumentEnvironment{${1:envname}}{${2:xargs}}{${3:begdef}}{${4:enddef}}"
+    },
+    "RenewEnvironmentCopy{}{}": {
+      "snippet": "RenewEnvironmentCopy{${1:envname}}{${2:copied envname}}"
     },
     "RenewExpandableDocumentCommand{}{}{}": {
       "snippet": "RenewExpandableDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
@@ -693,11 +698,8 @@
     "ShowCommand{}": {
       "snippet": "ShowCommand{${1:cmd}}"
     },
-    "ShowDocumentCommandArgSpec{}": {
-      "snippet": "ShowDocumentCommandArgSpec{${1:cmd}}"
-    },
-    "ShowDocumentEnvironmentArgSpec{}": {
-      "snippet": "ShowDocumentEnvironmentArgSpec{${1:envname}}"
+    "ShowEnvironment{}": {
+      "snippet": "ShowEnvironment{${1:envname}}"
     },
     "ShowFloat{}": {
       "snippet": "ShowFloat{${1:identifier}}"
@@ -781,9 +783,8 @@
     "settowidth{}{}": {
       "snippet": "settowidth{${1:\\gnat}}{${2:text}}"
     },
-    "addto": {},
     "addtocontents{}{}": {
-      "snippet": "addtocontents{${1:file}}{${2:text}}"
+      "snippet": "addtocontents{${1:ext}}{${2:text}}"
     },
     "addtocounter{}{}": {
       "snippet": "addtocounter{${1:counter}}{${2:value}}"
@@ -791,7 +792,6 @@
     "addtolength{}{}": {
       "snippet": "addtolength{${1:\\gnat}}{${2:length}}"
     },
-    "addtoversion": {},
     "addvspace{}": {
       "snippet": "addvspace{${1:length}}"
     },
@@ -875,13 +875,11 @@
     "belowcaptionskip": {},
     "binoppenalty": {},
     "bottomfraction": {},
-    "bottomnumber": {},
     "dblfigrule": {},
     "dblfloatpagefraction": {},
     "dblfloatsep": {},
     "dbltextfloatsep": {},
     "dbltopfraction": {},
-    "dbltopnumber": {},
     "defaultscriptratio": {},
     "defaultscriptscriptratio": {},
     "doublerulesep": {},
@@ -918,10 +916,8 @@
     "topfigrule": {},
     "topfraction": {},
     "topmargin": {},
-    "topnumber": {},
     "topsep": {},
     "totalheight": {},
-    "totalnumber": {},
     "textfloatsep": {},
     "textfraction": {},
     "abovecaptionskip": {},
@@ -1020,6 +1016,9 @@
     "pdfincludechars": {},
     "pdfinclusioncopyfonts": {},
     "pdfinclusionerrorlevel": {},
+    "pdfinfo{}": {
+      "snippet": "pdfinfo{${1:info}}"
+    },
     "pdfinfoomitdate": {},
     "pdfinsertht": {},
     "pdfinterwordspaceoff": {},
@@ -1103,6 +1102,7 @@
     "pdfsnaprefpoint": {},
     "pdfsnapy": {},
     "pdfsnapycomp": {},
+    "pdfspacefont": {},
     "pdfstartlink": {},
     "pdfstartthread": {},
     "pdfstrcmp{}{}": {
@@ -1224,10 +1224,6 @@
     "tmspace{}{}{}": {
       "snippet": "tmspace{${1:arg1}}{${2:arg2}}{${3:arg3}}"
     },
-    "tracefloats": {},
-    "tracefloatsoff": {},
-    "tracefloatvals": {},
-    "tracingfonts": {},
     "tracingnone": {},
     "ttdefault": {},
     "ttsubstdefault": {},

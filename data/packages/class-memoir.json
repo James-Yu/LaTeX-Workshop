@@ -5,16 +5,17 @@
     "dcolumn": [],
     "delarray": [],
     "tabularx": [],
+    "booktabs": [],
     "textcase": [],
-    "etoolbox": []
+    "etoolbox": [],
+    "xpatch": [],
+    "nameref": []
   },
   "cmds": {
     "abnormalparskip{}": {
       "snippet": "abnormalparskip{${1:length}}"
     },
-    "abovecaptionskip": {},
     "abovecolumnspenalty": {},
-    "aboverulesep": {},
     "abscolnamefont": {},
     "abscoltextfont": {},
     "abslabeldelim{}": {
@@ -28,21 +29,29 @@
     "abstitleskip": {},
     "abstractcol": {},
     "abstractintoc": {},
-    "abstractname": {},
     "abstractnamefont": {},
     "abstractnum": {},
     "abstractrunin": {},
     "abstracttextfont": {},
     "addappheadtotoc": {},
     "added{}": {
-      "snippet": "added{${1:arg}}"
+      "snippet": "added{${1:change-id}}"
     },
-    "addlinespace": {},
     "addperiod{}": {
-      "snippet": "addperiod{${1:arg}}"
+      "snippet": "addperiod{${1:text}}"
     },
-    "addtodef": {},
-    "addtoiargdef": {},
+    "addtodef{}{}{}": {
+      "snippet": "addtodef{${1:cmd}}{${2:prepend}}{${3:append}}"
+    },
+    "addtodef*{}{}{}": {
+      "snippet": "addtodef*{${1:cmd}}{${2:prepend}}{${3:append}}"
+    },
+    "addtoiargdef{}{}{}": {
+      "snippet": "addtoiargdef{${1:cmd}}{${2:prepend}}{${3:append}}"
+    },
+    "addtoiargdef*{}{}{}": {
+      "snippet": "addtoiargdef*{${1:cmd}}{${2:prepend}}{${3:append}}"
+    },
     "addtonotes{}": {
       "snippet": "addtonotes{${1:text}}"
     },
@@ -75,7 +84,6 @@
     },
     "alsoname": {},
     "amname": {},
-    "and": {},
     "andnext": {},
     "anyptfilebase": {},
     "anyptsize": {},
@@ -85,9 +93,8 @@
     "appendixrefname": {},
     "appendixtocname": {},
     "Aref{}": {
-      "snippet": "Aref{${1:label}}"
+      "snippet": "Aref{${1:key}}"
     },
-    "arraybackslash": {},
     "arraytostring{}{}": {
       "snippet": "arraytostring{${1:array name}}{${2:result}}"
     },
@@ -124,7 +131,6 @@
       "snippet": "autorows[${5:width}]{${1:preamble}}{${2:numOfCols}}{${3:style}}{${4:entries}}"
     },
     "backmatter": {},
-    "baselinestretch": {},
     "beforebookskip": {},
     "beforechapskip": {},
     "beforeepigraphskip": {},
@@ -137,8 +143,6 @@
     "beforesubsecskip": {},
     "beforesubsubsecskip": {},
     "begintheglossaryhook": {},
-    "belowcaptionskip": {},
-    "belowrulesep": {},
     "bibintoc": {},
     "bibitemsep": {},
     "biblistextra": {},
@@ -194,7 +198,6 @@
     },
     "bookrefname": {},
     "booktitlefont": {},
-    "bottomrule": {},
     "bottomsectionpenalty": {},
     "bottomsectionskip": {},
     "boxedverbatiminput{}": {
@@ -218,8 +221,6 @@
     "bvnumbersinside": {},
     "bvnumbersoutside": {},
     "bvnumlength": {},
-    "bvperpagefalse": {},
-    "bvperpagetrue": {},
     "bvrightsidehook": {},
     "bvsides": {},
     "bvtopandtail": {},
@@ -228,12 +229,10 @@
       "snippet": "bvtopofpage{${1:text}}"
     },
     "bvtoprulehook": {},
-    "cal": {},
     "calccentering{}": {
       "snippet": "calccentering{${1:length}}"
     },
     "cancelthanksrule": {},
-    "caption": {},
     "captiondelim{}": {
       "snippet": "captiondelim{${1:delim}}"
     },
@@ -288,10 +287,10 @@
     },
     "cftbookfont": {},
     "cftbookformatpnum{}": {
-      "snippet": "cftbookformatpnum{${1:arg}}"
+      "snippet": "cftbookformatpnum{${1:number}}"
     },
     "cftbookformatpnumhook{}": {
-      "snippet": "cftbookformatpnumhook{${1:arg}}"
+      "snippet": "cftbookformatpnumhook{${1:number}}"
     },
     "cftbookindent": {},
     "cftbookleader": {},
@@ -309,10 +308,10 @@
     },
     "cftchapterfont": {},
     "cftchapterformatpnum{}": {
-      "snippet": "cftchapterformatpnum{${1:arg}}"
+      "snippet": "cftchapterformatpnum{${1:number}}"
     },
     "cftchapterformatpnumhook{}": {
-      "snippet": "cftchapterformatpnumhook{${1:arg}}"
+      "snippet": "cftchapterformatpnumhook{${1:number}}"
     },
     "cftchapterindent": {},
     "cftchapterleader": {},
@@ -336,7 +335,9 @@
     "cftfigureformatpnum{}": {
       "snippet": "cftfigureformatpnum{${1:number}}"
     },
-    "cftfigureformatpnumhook": {},
+    "cftfigureformatpnumhook{}": {
+      "snippet": "cftfigureformatpnumhook{${1:number}}"
+    },
     "cftfigureindent": {},
     "cftfigureleader": {},
     "cftfigurename": {},
@@ -373,7 +374,9 @@
     "cftparagraphformatpnum{}": {
       "snippet": "cftparagraphformatpnum{${1:number}}"
     },
-    "cftparagraphformatpnumhook": {},
+    "cftparagraphformatpnumhook{}": {
+      "snippet": "cftparagraphformatpnumhook{${1:number}}"
+    },
     "cftparagraphindent": {},
     "cftparagraphleader": {},
     "cftparagraphname": {},
@@ -414,7 +417,9 @@
     "cftsectionformatpnum{}": {
       "snippet": "cftsectionformatpnum{${1:number}}"
     },
-    "cftsectionformatpnumhook": {},
+    "cftsectionformatpnumhook{}": {
+      "snippet": "cftsectionformatpnumhook{${1:number}}"
+    },
     "cftsectionindent": {},
     "cftsectionleader": {},
     "cftsectionname": {},
@@ -435,7 +440,9 @@
     "cftsubparagraphformatpnum{}": {
       "snippet": "cftsubparagraphformatpnum{${1:number}}"
     },
-    "cftsubparagraphformatpnumhook": {},
+    "cftsubparagraphformatpnumhook{}": {
+      "snippet": "cftsubparagraphformatpnumhook{${1:number}}"
+    },
     "cftsubparagraphindent": {},
     "cftsubparagraphleader": {},
     "cftsubparagraphname": {},
@@ -453,7 +460,9 @@
     "cftsubsectionformatpnum{}": {
       "snippet": "cftsubsectionformatpnum{${1:number}}"
     },
-    "cftsubsectionformatpnumhook": {},
+    "cftsubsectionformatpnumhook{}": {
+      "snippet": "cftsubsectionformatpnumhook{${1:number}}"
+    },
     "cftsubsectionindent": {},
     "cftsubsectionleader": {},
     "cftsubsectionname": {},
@@ -471,7 +480,9 @@
     "cftsubsubsectionformatpnum{}": {
       "snippet": "cftsubsubsectionformatpnum{${1:number}}"
     },
-    "cftsubsubsectionformatpnumhook": {},
+    "cftsubsubsectionformatpnumhook{}": {
+      "snippet": "cftsubsubsectionformatpnumhook{${1:number}}"
+    },
     "cftsubsubsectionindent": {},
     "cftsubsubsectionleader": {},
     "cftsubsubsectionname": {},
@@ -489,7 +500,9 @@
     "cfttableformatpnum{}": {
       "snippet": "cfttableformatpnum{${1:number}}"
     },
-    "cfttableformatpnumhook": {},
+    "cfttableformatpnumhook{}": {
+      "snippet": "cfttableformatpnumhook{${1:number}}"
+    },
     "cfttableindent": {},
     "cfttableleader": {},
     "cfttablename": {},
@@ -542,7 +555,6 @@
       "snippet": "chapter[${2:toc-title}][${3:head-title}]{${1:title}}"
     },
     "chapterheadstart": {},
-    "chaptermark": {},
     "chaptername": {},
     "chapternamenum": {},
     "chapternumberline{}": {
@@ -581,7 +593,6 @@
     "checkthelayout[]": {
       "snippet": "checkthelayout[${1:algorithm}]"
     },
-    "cite": {},
     "citeindexfile": {},
     "clearforchapter": {},
     "clearmark{}": {
@@ -612,10 +623,6 @@
     "cmdprint{}": {
       "snippet": "cmdprint{${1:cmd}}"
     },
-    "cmidrule": {},
-    "cmidrulekern": {},
-    "cmidrulewidth": {},
-    "cmrsideswitch": {},
     "colorchapnum": {},
     "colorchaptitle": {},
     "commentsoff{}": {
@@ -624,18 +631,38 @@
     "commentson{}": {
       "snippet": "commentson{${1:name}}"
     },
-    "contcaption": {},
-    "contentsname": {},
+    "contcaption{}": {
+      "snippet": "contcaption{${1:text}}"
+    },
     "continuousmarks": {},
     "continuousnotenums": {},
-    "contsubbottom": {},
-    "contsubcaption": {},
-    "contsubtop": {},
+    "contsubbottom{}": {
+      "snippet": "contsubbottom{${1:text}}"
+    },
+    "contsubbottom[]{}": {
+      "snippet": "contsubbottom[${2:short text}]{${1:text}}"
+    },
+    "contsubbottom[][]{}": {
+      "snippet": "contsubbottom[${2:short text}][${3:subtitle}]{${1:text}}"
+    },
+    "contsubcaption{}": {
+      "snippet": "contsubcaption{${1:text}}"
+    },
+    "contsubcaption[]{}": {
+      "snippet": "contsubcaption[${2:short text}]{${1:text}}"
+    },
+    "contsubtop{}": {
+      "snippet": "contsubtop{${1:text}}"
+    },
+    "contsubtop[]{}": {
+      "snippet": "contsubtop[${2:short text}]{${1:text}}"
+    },
+    "contsubtop[][]{}": {
+      "snippet": "contsubtop[${2:short text}][${3:subtitle}]{${1:text}}"
+    },
     "copypagestyle{}{}": {
       "snippet": "copypagestyle{${1:copy}}{${2:original}}"
     },
-    "counterwithin": {},
-    "counterwithout": {},
     "cplabel": {},
     "createmark{}{}{}{}{}": {
       "snippet": "createmark{${1:sec}}{${2:marks}}{${3:show}}{${4:prefix}}{${5:postfix}}"
@@ -648,23 +675,18 @@
     },
     "crtok": {},
     "cs{}": {
-      "snippet": "cs{${1:name}}"
+      "snippet": "cs{${1:csname}}"
     },
     "ctableftskip": {},
     "ctabrightskip": {},
     "ctabsetlines": {},
-    "currenttitle": {},
-    "defaultaddspace": {},
     "defaultlists": {},
     "defaultsecnum": {},
     "deleted{}": {
-      "snippet": "deleted{${1:arg}}"
+      "snippet": "deleted{${1:change-id}}"
     },
     "DeleteShortVerb{}": {
       "snippet": "DeleteShortVerb{${1:\\character}}"
-    },
-    "descriptionlabel{}": {
-      "snippet": "descriptionlabel{${1:label}}"
     },
     "DisemulatePackage{}": {
       "snippet": "DisemulatePackage{${1:package}}"
@@ -672,15 +694,11 @@
     "doccoltocetc": {},
     "DoubleSpacing": {},
     "DoubleSpacing*": {},
-    "downbracefill": {},
     "dropchapter{}": {
       "snippet": "dropchapter{${1:length}}"
     },
     "droptitle": {},
     "easypagecheck": {},
-    "eminnershape{}": {
-      "snippet": "eminnershape{${1:shape}}"
-    },
     "emptythanks": {},
     "EmulatedPackage{}": {
       "snippet": "EmulatedPackage{${1:package}}"
@@ -735,7 +753,6 @@
     "extrafeetinshook": {},
     "extrafeetminihook": {},
     "extrafeetreinshook": {},
-    "extratabsurround": {},
     "fancybreak{}": {
       "snippet": "fancybreak{${1:text}}"
     },
@@ -749,12 +766,10 @@
     "feetatbottom": {},
     "feetbelowfloat": {},
     "feetbelowragged": {},
-    "figurename": {},
     "figurerefname": {},
     "firmlist": {},
     "firmlists": {},
     "FirstFrameCommand": {},
-    "firsthline": {},
     "fixdvipslayout": {},
     "fixheaderwidths": {},
     "fixpdflayout": {},
@@ -783,14 +798,9 @@
       "snippet": "footmarkstyle{${1:style}}"
     },
     "footmarkwidth": {},
-    "footnote": {},
-    "footnoterule": {},
     "footnotesatfoot": {},
     "footnotesinmargin": {},
     "footparindent": {},
-    "footref{}": {
-      "snippet": "footref{${1:key}}"
-    },
     "footruleheight": {},
     "footruleskip": {},
     "footscript": {},
@@ -801,7 +811,6 @@
     },
     "foremargin": {},
     "FrameCommand": {},
-    "framed": {},
     "FrameHeightAdjust": {},
     "framepichead": {},
     "framepichook": {},
@@ -812,13 +821,9 @@
     "fref{}": {
       "snippet": "fref{${1:key}}"
     },
-    "frenchspacing": {},
     "frontmatter": {},
     "frontmatter*": {},
     "Ftrimpicbl": {},
-    "futurenonspacelet{}": {
-      "snippet": "futurenonspacelet{${1:arg}}"
-    },
     "getarrayelement{}{}{}": {
       "snippet": "getarrayelement{${1:array name}}{${2:index}}{${3:result}}"
     },
@@ -852,15 +857,12 @@
     },
     "hangsecnum": {},
     "hangsubcaption": {},
-    "hbadness": {},
     "headdrop": {},
     "headnameref": {},
     "headstyles{}": {
       "snippet": "headstyles{${1:name}}"
     },
     "headwidth": {},
-    "heavyrulewidth": {},
-    "hfuzz": {},
     "hideindexmarks": {},
     "hmpunct": {},
     "HUGE": {},
@@ -871,10 +873,6 @@
       "snippet": "hyperpage{${1:arg}}"
     },
     "hyperspindexpage": {},
-    "i": {
-      "detail": "𝑖",
-      "documentation": "MATHEMATICAL ITALIC SMALL I"
-    },
     "idtextinnotes{}": {
       "snippet": "idtextinnotes{${1:id}}"
     },
@@ -897,6 +895,8 @@
     "bvcountlinestrue": {},
     "bvcountlinesfalse": {},
     "ifbvperpage": {},
+    "bvperpagetrue": {},
+    "bvperpagefalse": {},
     "ifchangemarks": {},
     "changemarkstrue": {},
     "changemarksfalse": {},
@@ -985,6 +985,8 @@
     "reportnoidxfiletrue": {},
     "reportnoidxfilefalse": {},
     "ifreversesidepar": {},
+    "reversesidepartrue": {},
+    "reversesideparfalse": {},
     "ifsamename": {},
     "samenametrue": {},
     "samenamefalse": {},
@@ -1016,6 +1018,8 @@
       "snippet": "IfStreamOpen{${1:stream}}{${2:true}}{${3:false}}"
     },
     "ifstrictpagecheck": {},
+    "strictpagechecktrue": {},
+    "strictpagecheckfalse": {},
     "ignorenoidxfile": {},
     "iiirdstring": {},
     "iindstring": {},
@@ -1030,9 +1034,7 @@
     "indexintoc": {},
     "indexmark": {},
     "indexmarkstyle": {},
-    "indexname": {},
     "indexrule": {},
-    "indexspace": {},
     "insertchapterspace": {},
     "iscntrmod{}{}": {
       "snippet": "iscntrmod{${1:counter}}{${2:number}}"
@@ -1045,11 +1047,9 @@
     "itemsepii": {},
     "itemsepiii": {},
     "justlastraggedleft": {},
-    "KeepFromToc": {},
     "keepthetitle": {},
     "killtitle": {},
     "LastFrameCommand": {},
-    "lasthline": {},
     "lastlineparrule": {},
     "lastlinerulefill": {},
     "lcminusname": {},
@@ -1057,7 +1057,6 @@
     "leavespergathering{}": {
       "snippet": "leavespergathering{${1:number}}"
     },
-    "leftbar": {},
     "leftcenterright": {},
     "leftspringright{}{}{}{}": {
       "snippet": "leftspringright{${1:lfrac}}{${2:rfrac}}{${3:ltext}}{${4:rtext}}"
@@ -1068,7 +1067,6 @@
     "letcountercounter{}{}": {
       "snippet": "letcountercounter{${1:counter1}}{${2:counter2}}"
     },
-    "lightrulewidth": {},
     "linemodnum": {},
     "linenottooshort": {},
     "linenottooshort[]": {
@@ -1081,8 +1079,6 @@
       "snippet": "linenumberfrequency{${1:integer}}"
     },
     "linespercol": {},
-    "listfigurename": {},
-    "listtablename": {},
     "lofheadstart": {},
     "lofmark": {},
     "loosesubcaptions": {},
@@ -1094,14 +1090,10 @@
     "Ltrimpictl": {},
     "Ltrimpictr": {},
     "lxvchars": {},
-    "m": {
-      "detail": "𝑚",
-      "documentation": "MATHEMATICAL ITALIC SMALL M"
-    },
     "mainmatter": {},
     "mainmatter*": {},
     "makechapterstyle{}{}": {
-      "snippet": "makechapterstyle{${1:name}}{${2:style}}"
+      "snippet": "makechapterstyle{${1:name}}{${2:code}}"
     },
     "makeevenfoot{}{}{}{}": {
       "snippet": "makeevenfoot{${1:pagestyle}}{${2:left}}{${3:center}}{${4:right}}"
@@ -1123,7 +1115,7 @@
       "snippet": "makeheadfootruleprefix{${1:pagestyle}}{${2:for headrule}}{${3:for footrule}}"
     },
     "makeheadfootstrut{}{}{}": {
-      "snippet": "makeheadfootstrut{${1:pagestyle}}{${2:arg2}}{${3:arg3}}"
+      "snippet": "makeheadfootstrut{${1:pagestyle}}{${2:head strut}}{${3:foot strut}}"
     },
     "makeheadfootvposition{}{}{}": {
       "snippet": "makeheadfootvposition{${1:pagestyle}}{${2:arg2}}{${3:arg3}}"
@@ -1140,7 +1132,6 @@
     "makeindex[]": {
       "snippet": "makeindex[${1:file}]"
     },
-    "makelabel": {},
     "makememglossaryhook": {},
     "makememindexhook": {},
     "makeoddfoot{}{}{}{}": {
@@ -1151,7 +1142,7 @@
     },
     "makepagenote": {},
     "makepagestyle{}": {
-      "snippet": "makepagestyle{${1:pagestyle name}}"
+      "snippet": "makepagestyle{${1:name}}"
     },
     "makepsmarks{}{}": {
       "snippet": "makepsmarks{${1:pagestyle}}{${2:code}}"
@@ -1175,12 +1166,6 @@
       "snippet": "makesidefootmark{${1:text}}"
     },
     "makesidefootmarkhook": {},
-    "MakeTextLowercase{}": {
-      "snippet": "MakeTextLowercase{${1:text}}"
-    },
-    "MakeTextUppercase{}": {
-      "snippet": "MakeTextUppercase{${1:text}}"
-    },
     "makethanksmark": {},
     "makethanksmarkhook": {},
     "maketitlehooka": {},
@@ -1194,8 +1179,6 @@
     "marginparmargin{}": {
       "snippet": "marginparmargin{${1:placement}}"
     },
-    "markboth": {},
-    "markright": {},
     "maxsecnumdepth{}": {
       "snippet": "maxsecnumdepth{${1:secname}}"
     },
@@ -1204,10 +1187,6 @@
     },
     "medievalpage{}": {
       "snippet": "medievalpage{${1:spine}}"
-    },
-    "medspace": {
-      "detail": " ",
-      "documentation": "MEDIUM MATHEMATICAL SPACE, four-eighteenths of an em"
     },
     "memappchapinfo{}{}{}{}": {
       "snippet": "memappchapinfo{${1:chapter}}{${2:for toc}}{${3:for head}}{${4:title}}"
@@ -1391,15 +1370,9 @@
     "MidFrameCommand": {},
     "midpartskip": {},
     "midPoemTitleskip": {},
-    "midrule": {},
-    "midrule[]": {
-      "snippet": "midrule[${1:width}]"
-    },
     "midsloppy": {},
     "miniscule": {},
     "minusname": {},
-    "mit": {},
-    "morecmidrules": {},
     "movetoevenpage": {},
     "movetoevenpage[]": {
       "snippet": "movetoevenpage[${1:text}]"
@@ -1417,8 +1390,6 @@
     "namedsubappendices": {},
     "namenumberand": {},
     "namenumbercomma": {},
-    "namerefoff": {},
-    "namerefon": {},
     "nametest{}{}": {
       "snippet": "nametest{${1:string1}}{${2:string2}}"
     },
@@ -1434,9 +1405,8 @@
     "newarray{}{}{}": {
       "snippet": "newarray{${1:array name}}{${2:low}}{${3:high}}"
     },
-    "newblock": {},
     "newcomment{}": {
-      "snippet": "newcomment{${1:name}}"
+      "snippet": "newcomment{${1:envname}}"
     },
     "newfixedcaption{}{}": {
       "snippet": "newfixedcaption{${1:cmd}}{${2:float}}"
@@ -1492,7 +1462,6 @@
     "newsubfloat{}": {
       "snippet": "newsubfloat{${1:float}}"
     },
-    "nexttoken": {},
     "nNamec": {},
     "nNamei": {},
     "nNameii": {},
@@ -1528,9 +1497,6 @@
     "nobibintoc": {},
     "nobookblankpage": {},
     "nobvbox": {},
-    "NoCaseChange{}": {
-      "snippet": "NoCaseChange{${1:text}}"
-    },
     "nochangemarks": {},
     "noDisplayskipStretch": {},
     "noglossaryintoc": {},
@@ -1581,9 +1547,6 @@
     "nthNamexx": {},
     "nthNamexxx": {},
     "nthstring": {},
-    "numberline{}": {
-      "snippet": "numberline{${1:number}}"
-    },
     "numberlinebox{}{}": {
       "snippet": "numberlinebox{${1:length}}{${2:code}}"
     },
@@ -1689,6 +1652,9 @@
     "pagenotesubheadstarred{}{}{}": {
       "snippet": "pagenotesubheadstarred{${1:chapapp}}{${2:number}}{${3:title}}"
     },
+    "pagenumbering*{}": {
+      "snippet": "pagenumbering*{${1:numstyle}}"
+    },
     "pageold": {},
     "pagepostvo": {},
     "pagepottvo": {},
@@ -1717,9 +1683,8 @@
     "parsepii": {},
     "partblankpage": {},
     "partmark{}": {
-      "snippet": "partmark{${1:title}}"
+      "snippet": "partmark{${1:code}}"
     },
-    "partname": {},
     "partnamefont": {},
     "partnamenum": {},
     "partnumberline{}": {
@@ -1794,7 +1759,7 @@
     "poemtitlefont": {},
     "PoemTitleheadstart": {},
     "poemtitlemark{}": {
-      "snippet": "poemtitlemark{${1:arg}}"
+      "snippet": "poemtitlemark{${1:for head}}"
     },
     "PoemTitlenumfont": {},
     "poemtitlepstyle": {},
@@ -1814,9 +1779,6 @@
     "postchapterprecis": {},
     "postdate{}": {
       "snippet": "postdate{${1:text}}"
-    },
-    "postitle{}": {
-      "snippet": "postitle{${1:text}}"
     },
     "postnoteinnotes": {},
     "postnotetext": {},
@@ -1903,7 +1865,6 @@
     "printtoctitle{}": {
       "snippet": "printtoctitle{${1:title}}"
     },
-    "protect": {},
     "providecounter{}": {
       "snippet": "providecounter{${1:counter}}"
     },
@@ -1931,7 +1892,6 @@
     "provideloglike{}{}": {
       "snippet": "provideloglike{${1:cmd}}{${2:string}}"
     },
-    "qbeziermax": {},
     "qitem{}{}": {
       "snippet": "qitem{${1:text}}{${2:source}}"
     },
@@ -1981,8 +1941,8 @@
     "renewleadpage*{}{}": {
       "snippet": "renewleadpage*{${1:cmd}}{${2:title}}"
     },
-    "renewleadpage{}{}{}": {
-      "snippet": "renewleadpage{${1:pagestyle}}{${2:cmd}}{${3:title}}"
+    "renewleadpage[]{}{}": {
+      "snippet": "renewleadpage[${3:pagestyle}]{${1:cmd}}{${2:title}}"
     },
     "renewleadpage{}{}": {
       "snippet": "renewleadpage{${1:cmd}}{${2:title}}"
@@ -1995,26 +1955,21 @@
     "RequireAtEndPackage{}{}": {
       "snippet": "RequireAtEndPackage{${1:package}}{${2:code}}"
     },
-    "RequireXeTeX": {},
     "resetbvlinenumber": {},
     "restoreapp": {},
     "restorefromonecol": {},
     "restorepagenumber": {},
     "restoretrivseps": {},
-    "reversesideparfalse": {},
-    "reversesidepartrue": {},
     "russianpar": {},
     "savepagenumber": {},
     "savetrivseps": {},
     "saythanks": {},
-    "sc": {},
     "secheadstyle": {},
     "sechook": {},
     "secindent": {},
     "section[][]{}": {
       "snippet": "section[${2:toc-title}][${3:head-title}]{${1:title}}"
     },
-    "sectionmark": {},
     "sectionname": {},
     "sectionrefname": {},
     "see{}{}": {
@@ -2117,7 +2072,7 @@
       "snippet": "setlxvchars[${1:fontspec}]"
     },
     "setmarginfloatcaptionadjustment{}{}": {
-      "snippet": "setmarginfloatcaptionadjustment{${1:arg1}}{${2:arg2}}"
+      "snippet": "setmarginfloatcaptionadjustment{${1:float}}{${2:code}}"
     },
     "setmarginnotes{}{}{}": {
       "snippet": "setmarginnotes{${1:separation}}{${2:width}}{${3:psuh}}"
@@ -2173,7 +2128,7 @@
       "snippet": "setpnumwidth{${1:length}}"
     },
     "setrectanglesize{}{}{}": {
-      "snippet": "setrectanglesize{${1:H}}{${2:W}}{${3:r}}"
+      "snippet": "setrectanglesize{${1:height}}{${2:width}}{${3:ratio}}"
     },
     "setrmarg{}": {
       "snippet": "setrmarg{${1:length}}"
@@ -2286,18 +2241,14 @@
     "setxlvchars[]": {
       "snippet": "setxlvchars[${1:fontspec}]"
     },
-    "shaded": {},
     "shortsubcaption": {},
-    "showcols": {},
     "showheadfootlocoff": {},
     "showheadfootlocon": {},
     "showindexmarks": {},
     "showtextblocklocoff": {},
     "showtextblocklocon": {},
-    "showtextblockoff": {},
     "showtrimsoff": {},
     "showtrimson": {},
-    "sidcapwidth": {},
     "sidebar{}": {
       "snippet": "sidebar{${1:text}}"
     },
@@ -2371,7 +2322,6 @@
       "snippet": "slashfracstyle{${1:fraction}}"
     },
     "sloppybottom": {},
-    "snugshade": {},
     "sourceatright{}": {
       "snippet": "sourceatright{${1:text}}"
     },
@@ -2379,12 +2329,8 @@
       "snippet": "sourceatright[${2:length}]{${1:text}}"
     },
     "sourceflush": {},
-    "specialindex": {},
     "specialindex{}{}{}": {
       "snippet": "specialindex{${1:file}}{${2:counter}}{${3:stuff}}"
-    },
-    "specialrule{}{}{}": {
-      "snippet": "specialrule{${1:width}}{${2:abovespace}}{${3:belowspace}}"
     },
     "spinemargin": {},
     "Sref{}": {
@@ -2417,7 +2363,6 @@
     "stockdemyvo": {},
     "stockexecutive": {},
     "stockfoolscapvo": {},
-    "stockheight": {},
     "stockimperialvo": {},
     "stocklargecrownvo": {},
     "stocklargepostvo": {},
@@ -2437,15 +2382,25 @@
     "stocksmallroyalvo": {},
     "stockstatement": {},
     "stocksuperroyalvo": {},
-    "stockwidth": {},
     "strictpagecheck": {},
-    "strictpagecheckfalse": {},
-    "strictpagechecktrue": {},
     "stringtoarray{}{}": {
       "snippet": "stringtoarray{${1:array name}}{${2:string}}"
     },
-    "subbottom": {},
-    "subcaption": {},
+    "subbottom{}": {
+      "snippet": "subbottom{${1:text}}"
+    },
+    "subbottom[]{}": {
+      "snippet": "subbottom[${2:short text}]{${1:text}}"
+    },
+    "subbottom[][]{}": {
+      "snippet": "subbottom[${2:short text}][${3:subtitle}]{${1:text}}"
+    },
+    "subcaption{}": {
+      "snippet": "subcaption{${1:text}}"
+    },
+    "subcaption[]{}": {
+      "snippet": "subcaption[${2:short text}]{${1:text}}"
+    },
     "subcaptionfont{}": {
       "snippet": "subcaptionfont{${1:font}}"
     },
@@ -2453,7 +2408,7 @@
       "snippet": "subcaptionlabelfont{${1:font}}"
     },
     "subcaptionref{}": {
-      "snippet": "subcaptionref{${1:label}}"
+      "snippet": "subcaptionref{${1:key}}"
     },
     "subcaptionsize{}": {
       "snippet": "subcaptionsize{${1:size}}"
@@ -2468,7 +2423,6 @@
     "subfloatcaptopadj": {},
     "subfloatlabelskip": {},
     "subfloattopskip": {},
-    "subitem": {},
     "subparagraph[][]{}": {
       "snippet": "subparagraph[${2:toc-title}][${3:head-title}]{${1:title}}"
     },
@@ -2481,14 +2435,21 @@
     "subsection[][]{}": {
       "snippet": "subsection[${2:toc-title}][${3:head-title}]{${1:title}}"
     },
-    "subsubitem": {},
     "subsubsecheadstyle": {},
     "subsubsechook": {},
     "subsubsecindent": {},
     "subsubsection[][]{}": {
       "snippet": "subsubsection[${2:toc-title}][${3:head-title}]{${1:title}}"
     },
-    "subtop": {},
+    "subtop{}": {
+      "snippet": "subtop{${1:text}}"
+    },
+    "subtop[]{}": {
+      "snippet": "subtop[${2:short text}]{${1:text}}"
+    },
+    "subtop[][]{}": {
+      "snippet": "subtop[${2:short text}][${3:subtitle}]{${1:text}}"
+    },
     "symboldef{}{}": {
       "snippet": "symboldef{${1:symbol}}{${2:meaning}}"
     },
@@ -2496,15 +2457,12 @@
       "snippet": "symbollabel{${1:arg}}"
     },
     "symbolthanksmark": {},
-    "tablename": {},
     "tablerefname": {},
     "tabsoff": {},
     "tabson": {},
     "tabson[]": {
       "snippet": "tabson[${1:number}]"
     },
-    "tabularnewline": {},
-    "tabularxcolumn": {},
     "tamark": {},
     "teennumbername{}": {
       "snippet": "teennumbername{${1:arg}}"
@@ -2521,8 +2479,6 @@
     },
     "tensunitsep": {},
     "textflush": {},
-    "thanks": {},
-    "thanksfootextra": {},
     "thanksfootmark": {},
     "thanksgap{}": {
       "snippet": "thanksgap{${1:gap}}"
@@ -2561,26 +2517,15 @@
     "thememfvsline": {},
     "thepagenote": {},
     "thepagenoteshadow": {},
-    "theparagraph": {},
-    "thepart": {},
     "thepoem": {},
     "thepoemline": {},
-    "thesection": {},
     "thesheetsequence": {},
     "thesidefootnote": {},
     "thesidempfn": {},
     "thestoredpagenumber": {},
-    "thesubparagraph": {},
-    "thesubsection": {},
-    "thesubsubsection": {},
     "thetitle": {},
-    "theTitleReference{}{}": {
-      "snippet": "theTitleReference{${1:number}}{${2:text}}"
-    },
     "theverse": {},
     "thevslineno": {},
-    "thicklines": {},
-    "thinlines": {},
     "threecolumnfootnotes": {},
     "threecolumnfootstyle{}": {
       "snippet": "threecolumnfootstyle{${1:series}}"
@@ -2590,7 +2535,10 @@
     "tightlists": {},
     "tightsubcaptions": {},
     "titleref{}": {
-      "snippet": "titleref{${1:label}}"
+      "snippet": "titleref{${1:key}}"
+    },
+    "titleref*{}": {
+      "snippet": "titleref*{${1:key}}"
     },
     "titlingpageend": {},
     "tmarkbl": {},
@@ -2609,11 +2557,9 @@
     "tocskip{}": {
       "snippet": "tocskip{${1:skip}}"
     },
-    "toprule": {},
     "topsepi": {},
     "topsepii": {},
     "topsepiii": {},
-    "tracingtabularx": {},
     "traditionalparskip": {},
     "tref{}": {
       "snippet": "tref{${1:key}}"
@@ -2627,7 +2573,6 @@
     "trimNone": {},
     "trimtop": {},
     "trimXmarks": {},
-    "tt": {},
     "twocolglossary": {},
     "twocolindex": {},
     "twocoltocetc": {},
@@ -2652,7 +2597,6 @@
     "uppercaseheads": {},
     "uppermargin": {},
     "usethanksrule": {},
-    "verb": {},
     "verbatimbreakchar": {},
     "verbatimindent": {},
     "verbatiminput{}": {
@@ -2682,14 +2626,9 @@
     "vleftskip": {},
     "vlvnumfont": {},
     "vrightskip": {},
-    "width": {},
     "wrappingoff": {},
     "wrappingon": {},
     "wrapright": {},
-    "x": {
-      "detail": "𝑥",
-      "documentation": "MATHEMATICAL ITALIC SMALL X"
-    },
     "xindyindex": {},
     "xlvchars": {},
     "zerotrivseps": {}
@@ -2699,7 +2638,10 @@
       "name": "adjustwidth*",
       "snippet": "{${1:left}}{${2:right}}"
     },
-    "adjustwidth": {},
+    "adjustwidth{}{}": {
+      "name": "adjustwidth",
+      "snippet": "{${1:left}}{${2:right}}"
+    },
     "altverse": {},
     "appendices": {},
     "bibitemlist": {},
@@ -2735,20 +2677,42 @@
     "patverse": {},
     "qframe": {},
     "qshade": {},
-    "quotation": {},
-    "quote": {},
     "shaded": {},
+    "sidecaption{}": {
+      "name": "sidecaption",
+      "snippet": "{${1:title}}"
+    },
+    "sidecaption{}[]": {
+      "name": "sidecaption",
+      "snippet": "{${1:title}}[${2:label}]"
+    },
+    "sidecaption[]{}": {
+      "name": "sidecaption",
+      "snippet": "[${2:fortoc}]{${1:title}}"
+    },
     "sidecaption[]{}[]": {
       "name": "sidecaption",
       "snippet": "[${2:fortoc}]{${1:title}}[${3:label}]"
+    },
+    "sidecontcaption{}": {
+      "name": "sidecontcaption",
+      "snippet": "{${1:title}}"
     },
     "sidecontcaption{}[]": {
       "name": "sidecontcaption",
       "snippet": "{${1:title}}[${2:label}]"
     },
+    "sidelegend{}": {
+      "name": "sidelegend",
+      "snippet": "{${1:title}}"
+    },
     "sidelegend{}[]": {
       "name": "sidelegend",
       "snippet": "{${1:title}}[${2:label}]"
+    },
+    "sidenamedlegend{}": {
+      "name": "sidenamedlegend",
+      "snippet": "{${1:title}}"
     },
     "sidenamedlegend{}[]": {
       "name": "sidenamedlegend",
@@ -2764,14 +2728,12 @@
     "subfloat": {},
     "symbols": {},
     "theglossary": {},
-    "theindex": {},
     "titlingpage*": {},
     "titlingpage": {},
     "verbatimoutput{}": {
       "name": "verbatimoutput",
       "snippet": "{${1:file}}"
     },
-    "verse": {},
     "vminipage": {},
     "vplace": {},
     "writeverbatim{}": {

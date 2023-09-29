@@ -65,9 +65,6 @@
     "ifbabelshorthand{}{}{}": {
       "snippet": "ifbabelshorthand{${1:character}}{${2:true}}{${3:false}}"
     },
-    "aliasshorthand{}{}": {
-      "snippet": "aliasshorthand{${1:original}}{${2:alias}}"
-    },
     "textormath{}{}": {
       "snippet": "textormath{${1:text code}}{${2:math code}}"
     },
@@ -89,6 +86,12 @@
     },
     "setlocalecaption{}{}{}": {
       "snippet": "setlocalecaption{${1:language}}{${2:caption_name}}{${3:string}}"
+    },
+    "BabelUppercaseMapping{}{}{}": {
+      "snippet": "BabelUppercaseMapping{${1:locale-name}}{${2:codepoint}}{${3:output}}"
+    },
+    "BabelLowercaseMapping{}{}{}": {
+      "snippet": "BabelLowercaseMapping{${1:locale-name}}{${2:codepoint}}{${3:output}}"
     },
     "babelprovide[]{}": {
       "snippet": "babelprovide[${2:options}]{${1:language}}",
@@ -177,6 +180,9 @@
     "disablelocaletransform{}": {
       "snippet": "disablelocaletransform{${1:transform}}"
     },
+    "localeprehyphenation{}": {
+      "snippet": "localeprehyphenation{${1:string}}"
+    },
     "ensureascii{}": {
       "snippet": "ensureascii{${1:text}}"
     },
@@ -197,6 +203,7 @@
     "babelsublr{}": {
       "snippet": "babelsublr{${1:text}}"
     },
+    "localerestoredirs": {},
     "BabelPatchSection{}": {
       "snippet": "BabelPatchSection{${1:section-name}}"
     },
@@ -267,6 +274,9 @@
     },
     "adddialect": {},
     "addlanguage": {},
+    "addto{}{}": {
+      "snippet": "addto{${1:cmd}}{${2:code}}"
+    },
     "AfterBabelCommands{}": {
       "snippet": "AfterBabelCommands{${1:code}}"
     },
@@ -315,9 +325,6 @@
     "BabelText{}": {
       "snippet": "BabelText{${1:arg}}"
     },
-    "BCPdata{}": {
-      "snippet": "BCPdata{${1:arg}}"
-    },
     "EndBabelCommands": {},
     "IfBabelLayout{}{}{}": {
       "snippet": "IfBabelLayout{${1:layout}}{${2:true}}{${3:false}}"
@@ -337,12 +344,6 @@
     },
     "ProvidesLanguage{}[]": {
       "snippet": "ProvidesLanguage{${1:language}}[${2:release info}]"
-    },
-    "SetCase[]{}{}": {
-      "snippet": "SetCase[${3:map-list}]{${1:to-upper-code}}{${2:to-lower-code}}"
-    },
-    "SetCase{}{}": {
-      "snippet": "SetCase{${1:toupper-code}}{${2:tolower-code}}"
     },
     "SetHyphenMap{}": {
       "snippet": "SetHyphenMap{${1:to-lower-macros}}"
@@ -1907,6 +1908,10 @@
       "snippet": "ensuregreek{${1:text}}",
       "option": "greek.ancient"
     },
+    "lgrfont{}": {
+      "snippet": "lgrfont{${1:text}}",
+      "option": "greek"
+    },
     "textgreek{}": {
       "snippet": "textgreek{${1:text}}",
       "option": "greek.ancient"
@@ -1919,8 +1924,29 @@
       "snippet": "Greeknumeral{${1:number}}",
       "option": "greek.ancient"
     },
+    "greeknumeralsix": {
+      "option": "greek"
+    },
+    "greeknumeralSix": {
+      "option": "greek"
+    },
+    "greeknumeralninety": {
+      "option": "greek"
+    },
+    "greeknumeralNinety": {
+      "option": "greek"
+    },
     "greekfontencoding": {
       "option": "greek.ancient"
+    },
+    "BabelGreekRestoreFontEncoding": {
+      "option": "greek"
+    },
+    "BabelGreekPreviousFontEncoding": {
+      "option": "greek"
+    },
+    "EnsureStandardFontEncoding": {
+      "option": "greek"
     },
     "textol{}": {
       "snippet": "textol{${1:text}}",
@@ -2222,6 +2248,30 @@
       "option": "greek.ancient"
     },
     "textampersand": {
+      "option": "greek.ancient"
+    },
+    "textvarbeta": {
+      "option": "greek.ancient"
+    },
+    "textvarkappa": {
+      "option": "greek.ancient"
+    },
+    "textvarTheta": {
+      "option": "greek.ancient"
+    },
+    "textvartheta": {
+      "option": "greek.ancient"
+    },
+    "textvarpi": {
+      "option": "greek.ancient"
+    },
+    "textvarrho": {
+      "option": "greek.ancient"
+    },
+    "textvarepsilon": {
+      "option": "greek.ancient"
+    },
+    "textvarphi": {
       "option": "greek.ancient"
     },
     "accdialytika{}": {
@@ -4399,6 +4449,7 @@
   },
   "options": [
     "${1:language}",
+    "modifiers.${1:language}=${2:modifiers}",
     "KeepShorthandsActive",
     "activeacute",
     "activegrave",
@@ -4412,7 +4463,6 @@
     "showlanguages",
     "nocase",
     "silent",
-    "strings=",
     "hyphenmap=",
     "bidi=",
     "layout=",
@@ -4472,7 +4522,8 @@
       "maparabic",
       "mapdigits",
       "calendar=${1:calendar}",
-      "calendar=${1:calendar}.${2:variant}"
+      "calendar=${1:calendar}.${2:variant}",
+      "casing="
     ],
     [
       "calendar=${1:calendar}",
@@ -4488,6 +4539,7 @@
       "bidi.mapdigits=",
       "bidi.mirroring=",
       "bidi.text=",
+      "bidi.math=",
       "linebreak.sea=",
       "linebreak.cjk=",
       "justify.arabic=",
