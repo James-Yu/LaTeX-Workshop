@@ -1,5 +1,13 @@
 # Change Log
 
+## [9.14.1] - 2023-10-03
+
+### Fixed
+- Updates: cwl, unified, pdfjs.
+- (#3962, #4022) Fix frozen hand tool if set in config.
+- (#4021) Parse nested @string in bibtex.
+- (#4023) Enable keybinds on doctex.
+
 ## [9.14.0] - 2023-09-19
 
 ### Added
