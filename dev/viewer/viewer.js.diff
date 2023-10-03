@@ -1,5 +1,5 @@
 diff --git a/../web/viewer.js b/../viewer/viewer.js
-index 5cdd7d2b..fbbf8403 100644
+index 2043b5a4..eadaa52e 100644
 --- a/../web/viewer.js
 +++ b/../viewer/viewer.js
 @@ -43,10 +43,10 @@ const GenericCom = {};
@@ -15,7 +15,7 @@ index 5cdd7d2b..fbbf8403 100644
    }
  }
  class GenericExternalServices extends _app.DefaultExternalServices {
-@@ -686,7 +686,7 @@ const PDFViewerApplication = {
+@@ -683,7 +683,7 @@ const PDFViewerApplication = {
          title = url;
        }
      }
@@ -24,7 +24,7 @@ index 5cdd7d2b..fbbf8403 100644
    },
    setTitle(title = this._title) {
      this._title = title;
-@@ -1160,7 +1160,7 @@ const PDFViewerApplication = {
+@@ -1152,7 +1152,7 @@ const PDFViewerApplication = {
      this.metadata = metadata;
      this._contentDispositionFilename ??= contentDispositionFilename;
      this._contentLength ??= contentLength;
@@ -33,16 +33,7 @@ index 5cdd7d2b..fbbf8403 100644
      let pdfTitle = info.Title;
      const metadataTitle = metadata?.get("dc:title");
      if (metadataTitle) {
-@@ -2984,7 +2984,7 @@ let pdfjsLib;
- if (typeof window !== "undefined" && window["pdfjs-dist/build/pdf"]) {
-   pdfjsLib = window["pdfjs-dist/build/pdf"];
- } else {
--  pdfjsLib = require("../build/pdf.js");
-+  pdfjsLib = require("./build/pdf.js");
- }
- module.exports = pdfjsLib;
- 
-@@ -3197,7 +3197,7 @@ const defaultOptions = {
+@@ -3184,7 +3184,7 @@ const defaultOptions = {
      kind: OptionKind.WORKER
    },
    workerSrc: {
@@ -51,7 +42,7 @@ index 5cdd7d2b..fbbf8403 100644
      kind: OptionKind.WORKER
    }
  };
-@@ -4904,7 +4904,7 @@ const FindState = {
+@@ -5155,7 +5155,7 @@ const FindState = {
  };
  exports.FindState = FindState;
  const FIND_TIMEOUT = 250;
@@ -60,7 +51,7 @@ index 5cdd7d2b..fbbf8403 100644
  const MATCH_SCROLL_OFFSET_LEFT = -400;
  const CHARACTERS_TO_NORMALIZE = {
    "\u2010": "-",
-@@ -7483,7 +7483,7 @@ class PDFSidebar {
+@@ -7755,7 +7755,7 @@ class PDFSidebar {
        this.#dispatchEvent();
        return;
      }
@@ -69,16 +60,16 @@ index 5cdd7d2b..fbbf8403 100644
      if (!this.isInitialEventDispatched) {
        this.#dispatchEvent();
      }
-@@ -8381,7 +8381,7 @@ class PDFViewer {
+@@ -8655,7 +8655,7 @@ class PDFViewer {
      this.#annotationEditorMode = options.annotationEditorMode ?? _pdfjsLib.AnnotationEditorType.NONE;
      this.imageResourcesPath = options.imageResourcesPath || "";
      this.enablePrintAutoRotate = options.enablePrintAutoRotate || false;
 -    this.removePageBorders = options.removePageBorders || false;
 +    this.removePageBorders = options.removePageBorders || true;
-     this.useOnlyCssZoom = options.useOnlyCssZoom || false;
-     this.isOffscreenCanvasSupported = options.isOffscreenCanvasSupported ?? true;
-     this.maxCanvasPixels = options.maxCanvasPixels;
-@@ -12204,10 +12204,10 @@ class ViewHistory {
+     if (options.useOnlyCssZoom) {
+       console.error("useOnlyCssZoom was removed, please use `maxCanvasPixels = 0` instead.");
+       options.maxCanvasPixels = 0;
+@@ -12516,10 +12516,10 @@ class ViewHistory {
    }
    async _writeToStorage() {
      const databaseStr = JSON.stringify(this.database);
@@ -91,7 +82,7 @@ index 5cdd7d2b..fbbf8403 100644
    }
    async set(name, val) {
      await this._initializedPromise;
-@@ -13055,7 +13055,7 @@ document.webL10n = function (window, document) {
+@@ -13365,7 +13365,7 @@ document.webL10n = function (window, document) {
    function getL10nData(key, args, fallback) {
      var data = gL10nData[key];
      if (!data) {
@@ -100,7 +91,7 @@ index 5cdd7d2b..fbbf8403 100644
        if (!fallback) {
          return null;
        }
-@@ -13491,6 +13491,9 @@ function renderProgress(index, total, l10n) {
+@@ -13801,6 +13801,9 @@ function renderProgress(index, total, l10n) {
  }
  window.addEventListener("keydown", function (event) {
    if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
@@ -110,7 +101,7 @@ index 5cdd7d2b..fbbf8403 100644
      window.print();
      event.preventDefault();
      event.stopImmediatePropagation();
-@@ -13758,9 +13761,10 @@ function webViewerLoad() {
+@@ -14079,9 +14082,10 @@ function webViewerLoad() {
      }
    });
    try {

@@ -6,8 +6,8 @@ parser.add_argument('-w', '--web', help=f'Path to pdf.js distributed web/ folder
 parser.add_argument('-v', '--viewer', help=f'Path to extension viewer/ folder, end without `/`', type=str)
 args = parser.parse_args()
 
-with open(args.web + '/viewer.html', 'rt') as fin:
-    with open(args.viewer + '/viewer.html', 'wt') as fout:
+with open(args.web + '/viewer.html', 'rt', encoding='utf-8') as fin:
+    with open(args.viewer + '/viewer.html', 'wt', encoding='utf-8') as fout:
         for line in fin:
             fout.write(
                 line.replace('''<title>PDF.js viewer</title>''', '''<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; connect-src 'self' ws://127.0.0.1:*; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;">\n    <title>PDF.js viewer</title>''')
@@ -16,8 +16,8 @@ with open(args.web + '/viewer.html', 'rt') as fin:
                     .replace('''<script src="viewer.js"></script>''', '''<script src="out/viewer/latexworkshop.js" type="module"></script>''')
             )
 
-with open(args.web + '/viewer.js', 'rt') as fin:
-    with open(args.viewer + '/viewer.js', 'wt') as fout:
+with open(args.web + '/viewer.js', 'rt', encoding='utf-8') as fin:
+    with open(args.viewer + '/viewer.js', 'wt', encoding='utf-8') as fout:
         for line in fin:
             fout.write(
                 line.replace('''this.setTitle(title);''', '''// this.setTitle(title);''')
@@ -32,7 +32,7 @@ with open(args.web + '/viewer.js', 'rt') as fin:
                     .replace('''(!event.shiftKey || window.chrome || window.opera)) {''', '''(!event.shiftKey || window.chrome || window.opera)) {\n    if (window.parent !== window) {\n      return;\n    }''')
                     .replace('''console.error(`webviewerloaded: ''', '''// console.error(`webviewerloaded: ''')
                     .replace('''console.log(`PDF ${pdfDocument.''', '''// console.log(`PDF ${pdfDocument.''')
-                    .replace('''pdfjsLib = require("../build/pdf.js");''','''pdfjsLib = require("./build/pdf.js");''')
+                    # .replace('''pdfjsLib = require("../build/pdf.js");''','''pdfjsLib = require("./build/pdf.js");''')
                     .replace('''value: "../build/pdf.worker.js",''', '''value: "./build/pdf.worker.js",''')
                     .replace('''parent.document.dispatchEvent(event);''', '''parent.document.dispatchEvent(event); \n    document.dispatchEvent(event);''')
                 )

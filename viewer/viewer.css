@@ -84,12 +84,12 @@
 
 .textLayer ::-moz-selection {
   background: blue;
-  background: AccentColor;
+  background: AccentColor; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
 .textLayer ::selection {
   background: blue;
-  background: AccentColor;
+  background: AccentColor; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
 /* Avoids https://github.com/mozilla/pdf.js/issues/13840 in Chrome */
@@ -225,11 +225,19 @@
 }
 
 .annotationLayer
-  :is(.linkAnnotation, .buttonWidgetAnnotation.pushButton)
+  :is(.linkAnnotation, .buttonWidgetAnnotation.pushButton):not(.hasBorder)
   > a:hover {
   opacity: 0.2;
-  background: rgba(255, 255, 0, 1);
+  background-color: rgba(255, 255, 0, 1);
   box-shadow: 0 2px 10px rgba(255, 255, 0, 1);
+}
+
+.annotationLayer .linkAnnotation.hasBorder:hover {
+  background-color: rgba(255, 255, 0, 0.2);
+}
+
+.annotationLayer .hasBorder {
+  background-size: 100% 100%;
 }
 
 .annotationLayer .textAnnotation img {
@@ -438,20 +446,7 @@
   font-size: calc(9px * var(--scale-factor));
 }
 
-.annotationLayer .highlightAnnotation,
-.annotationLayer .underlineAnnotation,
-.annotationLayer .squigglyAnnotation,
-.annotationLayer .strikeoutAnnotation,
-.annotationLayer .freeTextAnnotation,
-.annotationLayer .lineAnnotation svg line,
-.annotationLayer .squareAnnotation svg rect,
-.annotationLayer .circleAnnotation svg ellipse,
-.annotationLayer .polylineAnnotation svg polyline,
-.annotationLayer .polygonAnnotation svg polygon,
-.annotationLayer .caretAnnotation,
-.annotationLayer .inkAnnotation svg polyline,
-.annotationLayer .stampAnnotation,
-.annotationLayer .fileAttachmentAnnotation {
+.annotationLayer .popupTriggerArea {
   cursor: pointer;
 }
 
@@ -478,6 +473,16 @@
 .annotationLayer .annotationTextContent span {
   width: 100%;
   display: inline-block;
+}
+
+.annotationLayer svg.quadrilateralsContainer {
+  contain: strict;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 
@@ -799,14 +804,48 @@
   }
 }
 
+/* Ignored in GECKOVIEW builds: */
 
 :root {
-  --focus-outline: solid 2px blue;
-  --hover-outline: dashed 2px blue;
+  --outline-width: 2px;
+  --outline-color: #0060df;
+  --outline-around-width: 1px;
+  --outline-around-color: #f0f0f4;
+  --hover-outline-around-color: var(--outline-around-color);
+  --focus-outline: solid var(--outline-width) var(--outline-color);
+  --unfocus-outline: solid var(--outline-width) transparent;
+  --focus-outline-around: solid var(--outline-around-width)
+    var(--outline-around-color);
+  --hover-outline-color: #8f8f9d;
+  --hover-outline: solid var(--outline-width) var(--hover-outline-color);
+  --hover-outline-around: solid var(--outline-around-width)
+    var(--hover-outline-around-color);
   --freetext-line-height: 1.35;
   --freetext-padding: 2px;
+  --resizer-bg-color: var(--outline-color);
+  --resizer-size: 6px;
+  --resizer-shift: calc(
+    0px - (var(--outline-width) + var(--resizer-size)) / 2 -
+      var(--outline-around-width)
+  );
   --editorFreeText-editing-cursor: text;
   --editorInk-editing-cursor: url(images/cursor-editorInk.svg) 0 16, pointer;
+
+  --alt-text-opacity: 0.8;
+  --alt-text-add-image: url(images/altText_add.svg);
+  --alt-text-done-image: url(images/altText_done.svg);
+  --alt-text-bg-color: rgba(43, 42, 51, var(--alt-text-opacity));
+  --alt-text-fg-color: #fbfbfe;
+  --alt-text-border-color: var(--alt-text-bg-color);
+  --alt-text-hover-bg-color: rgba(82, 82, 94, var(--alt-text-opacity));
+  --alt-text-hover-fg-color: var(--alt-text-fg-color);
+  --alt-text-hover-border-color: var(--alt-text-hover-bg-color);
+  --alt-text-active-bg-color: rgba(91, 91, 102, var(--alt-text-opacity));
+  --alt-text-active-fg-color: var(--alt-text-fg-color);
+  --alt-text-active-border-color: var(--alt-text-hover-bg-color);
+  --alt-text-focus-outline-color: #0060df;
+  --alt-text-focus-border-color: #f0f0f4;
+  --alt-text-shadow: 0 2px 6px 0 rgba(28, 27, 34, 0.5);
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.1), (min-resolution: 1.1dppx) {
@@ -818,8 +857,25 @@
 
 @media screen and (forced-colors: active) {
   :root {
-    --focus-outline: solid 3px ButtonText;
-    --hover-outline: dashed 3px ButtonText;
+    --outline-color: CanvasText;
+    --outline-around-color: ButtonFace;
+    --resizer-bg-color: ButtonText;
+    --hover-outline-color: Highlight;
+    --hover-outline-around-color: SelectedItemText;
+
+    --alt-text-bg-color: Canvas;
+    --alt-text-fg-color: ButtonText;
+    --alt-text-border-color: ButtonText;
+    --alt-text-hover-bg-color: Canvas;
+    --alt-text-hover-fg-color: SelectedItem;
+    --alt-text-hover-border-color: SelectedItem;
+    --alt-text-active-bg-color: ButtonFace;
+    --alt-text-active-fg-color: SelectedItem;
+    --alt-text-active-border-color: ButtonText;
+    --alt-text-focus-outline-color: CanvasText;
+    --alt-text-focus-border-color: ButtonText;
+    --alt-text-shadow: none;
+    --alt-text-opacity: 1;
   }
 }
 
@@ -836,12 +892,20 @@
 .annotationEditorLayer {
   background: transparent;
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   font-size: calc(100px * var(--scale-factor));
   transform-origin: 0 0;
   cursor: auto;
   z-index: 4;
+}
+
+.annotationEditorLayer.waiting {
+  content: "";
+  cursor: wait;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .annotationEditorLayer.freeTextEditing {
@@ -852,47 +916,88 @@
   cursor: var(--editorInk-editing-cursor);
 }
 
-.annotationEditorLayer :is(.freeTextEditor, .inkEditor)[draggable="true"] {
-  cursor: move;
-}
-
-.annotationEditorLayer .selectedEditor {
-  outline: var(--focus-outline);
-  resize: none;
-}
-
-.annotationEditorLayer .freeTextEditor {
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) {
   position: absolute;
   background: transparent;
-  border-radius: 3px;
-  padding: calc(var(--freetext-padding) * var(--scale-factor));
-  resize: none;
-  width: auto;
-  height: auto;
   z-index: 1;
   transform-origin: 0 0;
-  touch-action: none;
   cursor: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border: var(--unfocus-outline);
+}
+
+.annotationEditorLayer .draggable.selectedEditor:is(.freeTextEditor, .inkEditor, .stampEditor) {
+    cursor: move;
+  }
+
+.annotationEditorLayer .selectedEditor:is(.freeTextEditor, .inkEditor, .stampEditor) {
+    border: var(--focus-outline);
+    outline: var(--focus-outline-around);
+  }
+
+.annotationEditorLayer .selectedEditor:is(.freeTextEditor, .inkEditor, .stampEditor)::before {
+      /*
+        This is a workaround for the lack of support for stripes(...) (see
+        https://drafts.csswg.org/css-images-4/#stripes).
+        The outline should be composed of 1px white, 2px blue and 1px white.
+        This could be achieved in different ways:
+          - using a linear-gradient;
+          - using a box-shadow;
+          - using an outline on the selected element and an outline+border on
+            the ::before pseudo-element.
+        All these options lead to incorrect rendering likely due to rounding
+        issues.
+        That said it doesn't mean that the current is ideal, but it's the best
+        we could come up with for the moment.
+        One drawback of this approach is that we use a border on the selected
+        element which means that we must take care of it when positioning the
+        div in js (see AnnotationEditor._borderLineWidth in editor.js).
+      */
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: var(--focus-outline-around);
+      pointer-events: none;
+    }
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor):hover:not(.selectedEditor) {
+    border: var(--hover-outline);
+    outline: var(--hover-outline-around);
+  }
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor):hover:not(.selectedEditor)::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: var(--focus-outline-around);
+    }
+
+.annotationEditorLayer .freeTextEditor {
+  padding: calc(var(--freetext-padding) * var(--scale-factor));
+  width: auto;
+  height: auto;
+  touch-action: none;
 }
 
 .annotationEditorLayer .freeTextEditor .internal {
   background: transparent;
   border: none;
-  top: 0;
-  left: 0;
+  inset: 0;
   overflow: visible;
   white-space: nowrap;
-  resize: none;
   font: 10px sans-serif;
   line-height: var(--freetext-line-height);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .annotationEditorLayer .freeTextEditor .overlay {
   position: absolute;
   display: none;
   background: transparent;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
 }
@@ -908,46 +1013,809 @@
 
 .annotationEditorLayer .freeTextEditor .internal:focus {
   outline: none;
-}
-
-.annotationEditorLayer .inkEditor.disabled {
-  resize: none;
-}
-
-.annotationEditorLayer .inkEditor.disabled.selectedEditor {
-  resize: horizontal;
-}
-
-.annotationEditorLayer
-  :is(.freeTextEditor, .inkEditor):hover:not(.selectedEditor) {
-  outline: var(--hover-outline);
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+          user-select: auto;
 }
 
 .annotationEditorLayer .inkEditor {
-  position: absolute;
-  background: transparent;
-  border-radius: 3px;
-  overflow: auto;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  transform-origin: 0 0;
-  cursor: auto;
 }
 
 .annotationEditorLayer .inkEditor.editing {
-  resize: none;
   cursor: inherit;
 }
 
 .annotationEditorLayer .inkEditor .inkEditorCanvas {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   touch-action: none;
 }
+
+.annotationEditorLayer .stampEditor {
+  width: auto;
+  height: auto;
+}
+
+.annotationEditorLayer .stampEditor canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) > .resizers {
+      position: absolute;
+      inset: 0;
+    }
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) > .resizers.hidden {
+        display: none;
+      }
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) > .resizers > .resizer {
+        width: var(--resizer-size);
+        height: var(--resizer-size);
+        background: content-box var(--resizer-bg-color);
+        border: var(--focus-outline-around);
+        border-radius: 2px;
+        position: absolute;
+      }
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) > .resizers > .resizer.topLeft {
+          top: var(--resizer-shift);
+          left: var(--resizer-shift);
+        }
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) > .resizers > .resizer.topMiddle {
+          top: var(--resizer-shift);
+          left: calc(50% + var(--resizer-shift));
+        }
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) > .resizers > .resizer.topRight {
+          top: var(--resizer-shift);
+          right: var(--resizer-shift);
+        }
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) > .resizers > .resizer.middleRight {
+          top: calc(50% + var(--resizer-shift));
+          right: var(--resizer-shift);
+        }
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) > .resizers > .resizer.bottomRight {
+          bottom: var(--resizer-shift);
+          right: var(--resizer-shift);
+        }
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) > .resizers > .resizer.bottomMiddle {
+          bottom: var(--resizer-shift);
+          left: calc(50% + var(--resizer-shift));
+        }
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) > .resizers > .resizer.bottomLeft {
+          bottom: var(--resizer-shift);
+          left: var(--resizer-shift);
+        }
+
+.annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor) > .resizers > .resizer.middleLeft {
+          top: calc(50% + var(--resizer-shift));
+          left: var(--resizer-shift);
+        }
+
+.annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.topLeft,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.topLeft,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.topLeft,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.topLeft,
+      .annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.bottomRight,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.bottomRight,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.bottomRight,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.bottomRight {
+        cursor: nwse-resize;
+      }
+
+.annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.topMiddle,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.topMiddle,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.topMiddle,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.topMiddle,
+      .annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.bottomMiddle,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.bottomMiddle,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.bottomMiddle,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.bottomMiddle {
+        cursor: ns-resize;
+      }
+
+.annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.topRight,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.topRight,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.topRight,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.topRight,
+      .annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.bottomLeft,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.bottomLeft,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.bottomLeft,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.bottomLeft {
+        cursor: nesw-resize;
+      }
+
+.annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.middleRight,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.middleRight,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.middleRight,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.middleRight,
+      .annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.middleLeft,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.middleLeft,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.middleLeft,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.middleLeft {
+        cursor: ew-resize;
+      }
+
+.annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.topLeft,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.topLeft,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.topLeft,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.topLeft,
+      .annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.bottomRight,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.bottomRight,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.bottomRight,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.bottomRight {
+        cursor: nesw-resize;
+      }
+
+.annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.topMiddle,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.topMiddle,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.topMiddle,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.topMiddle,
+      .annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.bottomMiddle,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.bottomMiddle,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.bottomMiddle,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.bottomMiddle {
+        cursor: ew-resize;
+      }
+
+.annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.topRight,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.topRight,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.topRight,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.topRight,
+      .annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.bottomLeft,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.bottomLeft,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.bottomLeft,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.bottomLeft {
+        cursor: nwse-resize;
+      }
+
+.annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.middleRight,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.middleRight,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.middleRight,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.middleRight,
+      .annotationEditorLayer[data-main-rotation="0"]
+    :is([data-editor-rotation="90"], [data-editor-rotation="270"]) > .resizers > .resizer.middleLeft,
+      .annotationEditorLayer[data-main-rotation="90"]
+    :is([data-editor-rotation="0"], [data-editor-rotation="180"]) > .resizers > .resizer.middleLeft,
+      .annotationEditorLayer[data-main-rotation="180"]
+    :is([data-editor-rotation="270"], [data-editor-rotation="90"]) > .resizers > .resizer.middleLeft,
+      .annotationEditorLayer[data-main-rotation="270"]
+    :is([data-editor-rotation="180"], [data-editor-rotation="0"]) > .resizers > .resizer.middleLeft {
+        cursor: ns-resize;
+      }
+
+.annotationEditorLayer
+    :is(
+      [data-main-rotation="0"] [data-editor-rotation="90"],
+      [data-main-rotation="90"] [data-editor-rotation="0"],
+      [data-main-rotation="180"] [data-editor-rotation="270"],
+      [data-main-rotation="270"] [data-editor-rotation="180"]
+    ) .altText {
+      rotate: 270deg;
+    }
+
+[dir="ltr"] .annotationEditorLayer
+    :is(
+      [data-main-rotation="0"] [data-editor-rotation="90"],
+      [data-main-rotation="90"] [data-editor-rotation="0"],
+      [data-main-rotation="180"] [data-editor-rotation="270"],
+      [data-main-rotation="270"] [data-editor-rotation="180"]
+    ) .altText {
+        inset-inline-start: calc(100% - 8px);
+      }
+
+[dir="ltr"] .annotationEditorLayer
+    :is(
+      [data-main-rotation="0"] [data-editor-rotation="90"],
+      [data-main-rotation="90"] [data-editor-rotation="0"],
+      [data-main-rotation="180"] [data-editor-rotation="270"],
+      [data-main-rotation="270"] [data-editor-rotation="180"]
+    ) .altText.small {
+          inset-inline-start: calc(100% + 8px);
+          inset-block-start: 100%;
+        }
+
+[dir="rtl"] .annotationEditorLayer
+    :is(
+      [data-main-rotation="0"] [data-editor-rotation="90"],
+      [data-main-rotation="90"] [data-editor-rotation="0"],
+      [data-main-rotation="180"] [data-editor-rotation="270"],
+      [data-main-rotation="270"] [data-editor-rotation="180"]
+    ) .altText {
+        inset-block-end: calc(100% - 8px);
+      }
+
+[dir="rtl"] .annotationEditorLayer
+    :is(
+      [data-main-rotation="0"] [data-editor-rotation="90"],
+      [data-main-rotation="90"] [data-editor-rotation="0"],
+      [data-main-rotation="180"] [data-editor-rotation="270"],
+      [data-main-rotation="270"] [data-editor-rotation="180"]
+    ) .altText.small {
+          inset-inline-start: -8px;
+          inset-block-start: 0;
+        }
+
+.annotationEditorLayer
+    :is(
+      [data-main-rotation="0"] [data-editor-rotation="180"],
+      [data-main-rotation="90"] [data-editor-rotation="90"],
+      [data-main-rotation="180"] [data-editor-rotation="0"],
+      [data-main-rotation="270"] [data-editor-rotation="270"]
+    ) .altText {
+      rotate: 180deg;
+
+      inset-block-end: calc(100% - 8px);
+      inset-inline-start: calc(100% - 8px);
+    }
+
+.annotationEditorLayer
+    :is(
+      [data-main-rotation="0"] [data-editor-rotation="180"],
+      [data-main-rotation="90"] [data-editor-rotation="90"],
+      [data-main-rotation="180"] [data-editor-rotation="0"],
+      [data-main-rotation="270"] [data-editor-rotation="270"]
+    ) .altText.small {
+        inset-inline-start: 100%;
+        inset-block-start: -8px;
+      }
+
+.annotationEditorLayer
+    :is(
+      [data-main-rotation="0"] [data-editor-rotation="270"],
+      [data-main-rotation="90"] [data-editor-rotation="180"],
+      [data-main-rotation="180"] [data-editor-rotation="90"],
+      [data-main-rotation="270"] [data-editor-rotation="0"]
+    ) .altText {
+      rotate: 90deg;
+    }
+
+[dir="ltr"] .annotationEditorLayer
+    :is(
+      [data-main-rotation="0"] [data-editor-rotation="270"],
+      [data-main-rotation="90"] [data-editor-rotation="180"],
+      [data-main-rotation="180"] [data-editor-rotation="90"],
+      [data-main-rotation="270"] [data-editor-rotation="0"]
+    ) .altText {
+        inset-block-end: calc(100% - 8px);
+      }
+
+[dir="ltr"] .annotationEditorLayer
+    :is(
+      [data-main-rotation="0"] [data-editor-rotation="270"],
+      [data-main-rotation="90"] [data-editor-rotation="180"],
+      [data-main-rotation="180"] [data-editor-rotation="90"],
+      [data-main-rotation="270"] [data-editor-rotation="0"]
+    ) .altText.small {
+          inset-inline-start: -8px;
+          inset-block-start: 0;
+        }
+
+[dir="rtl"] .annotationEditorLayer
+    :is(
+      [data-main-rotation="0"] [data-editor-rotation="270"],
+      [data-main-rotation="90"] [data-editor-rotation="180"],
+      [data-main-rotation="180"] [data-editor-rotation="90"],
+      [data-main-rotation="270"] [data-editor-rotation="0"]
+    ) .altText {
+        inset-inline-start: calc(100% - 8px);
+      }
+
+[dir="rtl"] .annotationEditorLayer
+    :is(
+      [data-main-rotation="0"] [data-editor-rotation="270"],
+      [data-main-rotation="90"] [data-editor-rotation="180"],
+      [data-main-rotation="180"] [data-editor-rotation="90"],
+      [data-main-rotation="270"] [data-editor-rotation="0"]
+    ) .altText.small {
+          inset-inline-start: calc(100% + 8px);
+          inset-block-start: 100%;
+        }
+
+.altText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 4px;
+  width: auto;
+  height: 24px;
+  min-width: 88px;
+  z-index: 1;
+  pointer-events: all;
+
+  color: var(--alt-text-fg-color);
+  font: menu;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--alt-text-border-color);
+  background-color: var(--alt-text-bg-color);
+  box-shadow: var(--alt-text-shadow);
+
+  position: absolute;
+  inset-block-end: 8px;
+  inset-inline-start: 8px;
+}
+
+[dir="ltr"] .altText {
+    transform-origin: 0 100%;
+  }
+
+[dir="rtl"] .altText {
+    transform-origin: 100% 100%;
+  }
+
+.altText.small {
+
+    inset-block-end: unset;
+    inset-inline-start: 0;
+    inset-block-start: calc(100% + 8px);
+  }
+
+[dir="ltr"] .altText.small {
+      transform-origin: 0 0;
+    }
+
+[dir="rtl"] .altText.small {
+      transform-origin: 100% 0;
+    }
+
+.altText:hover {
+    background-color: var(--alt-text-hover-bg-color);
+    border-color: var(--alt-text-hover-border-color);
+    color: var(--alt-text-hover-fg-color);
+    cursor: pointer;
+  }
+
+.altText:hover::before {
+      background-color: var(--alt-text-hover-fg-color);
+    }
+
+.altText:active {
+    background-color: var(--alt-text-active-bg-color);
+    border-color: var(--alt-text-active-border-color);
+    color: var(--alt-text-active-fg-color);
+  }
+
+.altText:active::before {
+      background-color: var(--alt-text-active-fg-color);
+    }
+
+.altText:focus-visible {
+    outline: 2px solid var(--alt-text-focus-outline-color);
+    border-color: var(--alt-text-focus-border-color);
+  }
+
+.altText::before {
+    content: "";
+    -webkit-mask-image: var(--alt-text-add-image);
+            mask-image: var(--alt-text-add-image);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+            mask-position: center;
+    display: inline-block;
+    width: 12px;
+    height: 13px;
+    background-color: var(--alt-text-fg-color);
+    margin-inline-end: 4px;
+  }
+
+.altText.done::before {
+    -webkit-mask-image: var(--alt-text-done-image);
+            mask-image: var(--alt-text-done-image);
+  }
+
+.altText .tooltip {
+    display: none;
+  }
+
+.altText .tooltip.show {
+      --alt-text-tooltip-bg: #f0f0f4;
+      --alt-text-tooltip-fg: #15141a;
+      --alt-text-tooltip-border: #8f8f9d;
+      --alt-text-tooltip-shadow: 0px 2px 6px 0px rgba(58, 57, 68, 0.2);
+
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: calc(100% + 2px);
+      inset-inline-start: 0;
+      padding-block: 2px 3px;
+      padding-inline: 3px;
+      max-width: 300px;
+      width: -moz-max-content;
+      width: max-content;
+      height: auto;
+      font-size: 12px;
+
+      border: 0.5px solid var(--alt-text-tooltip-border);
+      background: var(--alt-text-tooltip-bg);
+      box-shadow: var(--alt-text-tooltip-shadow);
+      color: var(--alt-text-tooltip-fg);
+
+      pointer-events: none;
+    }
+
+@media (prefers-color-scheme: dark) {
+
+.altText .tooltip.show {
+        --alt-text-tooltip-bg: #1c1b22;
+        --alt-text-tooltip-fg: #fbfbfe;
+        --alt-text-tooltip-shadow: 0px 2px 6px 0px #15141a;
+    }
+      }
+
+@media screen and (forced-colors: active) {
+
+.altText .tooltip.show {
+        --alt-text-tooltip-bg: Canvas;
+        --alt-text-tooltip-fg: CanvasText;
+        --alt-text-tooltip-border: CanvasText;
+        --alt-text-tooltip-shadow: none;
+    }
+      }
+
+#altTextDialog {
+  --dialog-bg-color: white;
+  --dialog-border-color: white;
+  --dialog-shadow: 0 2px 14px 0 rgba(58, 57, 68, 0.2);
+  --text-primary-color: #15141a;
+  --text-secondary-color: #5b5b66;
+  --hover-filter: brightness(0.9);
+  --focus-ring-color: #0060df;
+  --focus-ring-outline: 2px solid var(--focus-ring-color);
+
+  --textarea-border-color: #8f8f9d;
+  --textarea-bg-color: white;
+  --textarea-fg-color: var(--text-secondary-color);
+
+  --radio-bg-color: #f0f0f4;
+  --radio-checked-bg-color: #fbfbfe;
+  --radio-border-color: #8f8f9d;
+  --radio-checked-border-color: #0060df;
+
+  --button-cancel-bg-color: #f0f0f4;
+  --button-cancel-fg-color: var(--text-primary-color);
+  --button-cancel-border-color: var(--button-cancel-bg-color);
+  --button-cancel-hover-bg-color: var(--button-cancel-bg-color);
+  --button-cancel-hover-fg-color: var(--button-cancel-fg-color);
+  --button-cancel-hover-border-color: var(--button-cancel-hover-bg-color);
+
+  --button-save-bg-color: #0060df;
+  --button-save-fg-color: #fbfbfe;
+  --button-save-hover-bg-color: var(--button-save-bg-color);
+  --button-save-hover-fg-color: var(--button-save-fg-color);
+  --button-save-hover-border-color: var(--button-save-hover-bg-color);
+  --button-save-disabled-bg-color: var(--button-save-bg-color);
+  --button-save-disabled-fg-color: var(--button-save-fg-color);
+  --button-save-disabled-opacity: 0.4;
+
+  font: message-box;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 150%;
+  border-radius: 4px;
+  padding: 12px 16px;
+  border: 1px solid var(--dialog-border-color);
+  background: var(--dialog-bg-color);
+  color: var(--text-primary-color);
+  box-shadow: var(--dialog-shadow);
+}
+
+@media (prefers-color-scheme: dark) {
+
+#altTextDialog {
+    --dialog-bg-color: #1c1b22;
+    --dialog-border-color: #1c1b22;
+    --dialog-shadow: 0 2px 14px 0 #15141a;
+    --text-primary-color: #fbfbfe;
+    --text-secondary-color: #cfcfd8;
+    --focus-ring-color: #00ddff;
+    --hover-filter: brightness(1.4);
+
+    --textarea-bg-color: #42414d;
+
+    --radio-bg-color: #2b2a33;
+    --radio-checked-bg-color: #15141a;
+    --radio-checked-border-color: #00ddff;
+
+    --button-cancel-bg-color: #2b2a33;
+    --button-save-bg-color: #00ddff;
+    --button-save-fg-color: #15141a;
+}
+  }
+
+@media screen and (forced-colors: active) {
+
+#altTextDialog {
+    --dialog-bg-color: Canvas;
+    --dialog-border-color: CanvasText;
+    --dialog-shadow: none;
+    --text-primary-color: CanvasText;
+    --text-secondary-color: CanvasText;
+    --hover-filter: none;
+    --focus-ring-color: ButtonBorder;
+
+    --textarea-border-color: ButtonBorder;
+    --textarea-bg-color: Field;
+    --textarea-fg-color: ButtonText;
+
+    --radio-bg-color: ButtonFace;
+    --radio-checked-bg-color: ButtonFace;
+    --radio-border-color: ButtonText;
+    --radio-checked-border-color: ButtonText;
+
+    --button-cancel-bg-color: ButtonFace;
+    --button-cancel-fg-color: ButtonText;
+    --button-cancel-border-color: ButtonText;
+    --button-cancel-hover-bg-color: AccentColor;
+    --button-cancel-hover-fg-color: AccentColorText;
+
+    --button-save-bg-color: ButtonText;
+    --button-save-fg-color: ButtonFace;
+    --button-save-hover-bg-color: AccentColor;
+    --button-save-hover-fg-color: AccentColorText;
+    --button-save-disabled-bg-color: GrayText;
+    --button-save-disabled-fg-color: Canvas;
+    --button-save-disabled-opacity: 1;
+}
+  }
+
+#altTextDialog::backdrop {
+    /* This is needed to avoid to darken the image the user want to describe. */
+    -webkit-mask: url(#alttext-manager-mask);
+            mask: url(#alttext-manager-mask);
+  }
+
+#altTextDialog.positioned {
+    margin: 0;
+  }
+
+#altTextDialog #altTextContainer {
+    width: 300px;
+    height: -moz-fit-content;
+    height: fit-content;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+#altTextDialog #altTextContainer *:focus-visible {
+      outline: var(--focus-ring-outline);
+      outline-offset: 2px;
+    }
+
+#altTextDialog #altTextContainer .radio {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+#altTextDialog #altTextContainer .radio .radioButton {
+        display: flex;
+        gap: 8px;
+        align-self: stretch;
+        align-items: center;
+      }
+
+#altTextDialog #altTextContainer .radio .radioButton input {
+          -webkit-appearance: none;
+             -moz-appearance: none;
+                  appearance: none;
+          box-sizing: border-box;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background-color: var(--radio-bg-color);
+          border: 1px solid var(--radio-border-color);
+        }
+
+#altTextDialog #altTextContainer .radio .radioButton input:hover {
+            filter: var(--hover-filter);
+          }
+
+#altTextDialog #altTextContainer .radio .radioButton input:checked {
+            background-color: var(--radio-checked-bg-color);
+            border: 4px solid var(--radio-checked-border-color);
+          }
+
+#altTextDialog #altTextContainer .radio .radioLabel {
+        display: flex;
+        padding-inline-start: 24px;
+        align-items: flex-start;
+        gap: 10px;
+        align-self: stretch;
+      }
+
+#altTextDialog #altTextContainer .radio .radioLabel span {
+          flex: 1 0 0;
+          font-size: 11px;
+          color: var(--text-secondary-color);
+        }
+
+#altTextDialog #altTextContainer #overallDescription {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      align-self: stretch;
+    }
+
+#altTextDialog #altTextContainer #overallDescription span {
+        align-self: stretch;
+      }
+
+#altTextDialog #altTextContainer #overallDescription .title {
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 590;
+      }
+
+#altTextDialog #altTextContainer #addDescription {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+    }
+
+#altTextDialog #altTextContainer #addDescription .descriptionArea {
+        flex: 1;
+        padding-inline: 24px 10px;
+      }
+
+#altTextDialog #altTextContainer #addDescription .descriptionArea textarea {
+          font: inherit;
+          width: 100%;
+          min-height: 75px;
+          padding: 8px;
+          resize: none;
+          margin: 0;
+          box-sizing: border-box;
+          border-radius: 4px;
+          border: 1px solid var(--textarea-border-color);
+          background: var(--textarea-bg-color);
+          color: var(--textarea-fg-color);
+        }
+
+#altTextDialog #altTextContainer #addDescription .descriptionArea textarea:focus {
+            outline-offset: 0;
+            border-color: transparent;
+          }
+
+#altTextDialog #altTextContainer #addDescription .descriptionArea textarea:disabled {
+            pointer-events: none;
+            opacity: 0.4;
+          }
+
+#altTextDialog #altTextContainer #buttons {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 8px;
+      align-self: stretch;
+    }
+
+#altTextDialog #altTextContainer #buttons button {
+        border-radius: 4px;
+        border: 1px solid;
+        font: menu;
+        font-weight: 600;
+        padding: 4px 16px;
+        width: auto;
+        height: 32px;
+      }
+
+#altTextDialog #altTextContainer #buttons button:hover {
+          cursor: pointer;
+          filter: var(--hover-filter);
+        }
+
+#altTextDialog #altTextContainer #buttons button#altTextCancel {
+          color: var(--button-cancel-fg-color);
+          background-color: var(--button-cancel-bg-color);
+          border-color: var(--button-cancel-border-color);
+        }
+
+#altTextDialog #altTextContainer #buttons button#altTextCancel:hover {
+            color: var(--button-cancel-hover-fg-color);
+            background-color: var(--button-cancel-hover-bg-color);
+            border-color: var(--button-cancel-hover-border-color);
+          }
+
+#altTextDialog #altTextContainer #buttons button#altTextSave {
+          color: var(--button-save-hover-fg-color);
+          background-color: var(--button-save-hover-bg-color);
+          border-color: var(--button-save-hover-border-color);
+          opacity: 1;
+        }
+
+#altTextDialog #altTextContainer #buttons button#altTextSave:hover {
+            color: var(--button-save-hover-fg-color);
+            background-color: var(--button-save-hover-bg-color);
+            border-color: var(--button-save-hover-border-color);
+          }
+
+#altTextDialog #altTextContainer #buttons button#altTextSave:disabled {
+            color: var(--button-save-disabled-fg-color);
+            background-color: var(--button-save-disabled-bg-color);
+            opacity: var(--button-save-disabled-opacity);
+            pointer-events: none;
+          }
 
 :root {
   --viewer-container-height: 0;
@@ -1017,6 +1885,12 @@
   position: relative;
   width: 0;
   height: var(--viewer-container-height);
+}
+
+.pdfViewer.noUserSelect {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .pdfViewer.removePageBorders .page {
@@ -1149,6 +2023,7 @@
   --toggled-btn-color: rgba(0, 0, 0, 1);
   --toggled-btn-bg-color: rgba(0, 0, 0, 0.3);
   --toggled-hover-active-btn-color: rgba(0, 0, 0, 0.4);
+  --toggled-hover-btn-outline: none;
   --dropdown-btn-bg-color: rgba(215, 215, 219, 1);
   --dropdown-btn-border: none;
   --separator-color: rgba(0, 0, 0, 0.3);
@@ -1176,6 +2051,7 @@
   --treeitem-collapsed-icon: url(images/treeitem-collapsed.svg);
   --toolbarButton-editorFreeText-icon: url(images/toolbarButton-editorFreeText.svg);
   --toolbarButton-editorInk-icon: url(images/toolbarButton-editorInk.svg);
+  --toolbarButton-editorStamp-icon: url(images/toolbarButton-editorStamp.svg);
   --toolbarButton-menuArrow-icon: url(images/toolbarButton-menuArrow.svg);
   --toolbarButton-sidebarToggle-icon: url(images/toolbarButton-sidebarToggle.svg);
   --toolbarButton-secondaryToolbarToggle-icon: url(images/toolbarButton-secondaryToolbarToggle.svg);
@@ -1210,6 +2086,7 @@
   --secondaryToolbarButton-spreadOdd-icon: url(images/secondaryToolbarButton-spreadOdd.svg);
   --secondaryToolbarButton-spreadEven-icon: url(images/secondaryToolbarButton-spreadEven.svg);
   --secondaryToolbarButton-documentProperties-icon: url(images/secondaryToolbarButton-documentProperties.svg);
+  --editorParams-stampAddImage-icon: url(images/toolbarButton-zoomIn.svg);
 }
 
 [dir="rtl"]:root {
@@ -1272,6 +2149,8 @@
     --toolbar-icon-opacity: 1;
     --toolbar-icon-bg-color: ButtonText;
     --toolbar-icon-hover-bg-color: ButtonFace;
+    --toggled-hover-active-btn-color: ButtonText;
+    --toggled-hover-btn-outline: 2px solid ButtonBorder;
     --toolbar-border-color: CanvasText;
     --toolbar-border-bottom: 1px solid var(--toolbar-border-color);
     --toolbar-box-shadow: none;
@@ -1379,8 +2258,7 @@ body {
   z-index: 100;
   font: message-box;
   border-top: 1px solid rgba(51, 51, 51, 1);
-  -webkit-border-end: var(--doorhanger-border-color-whcm);
-          border-inline-end: var(--doorhanger-border-color-whcm);
+  border-inline-end: var(--doorhanger-border-color-whcm);
   transition-property: inset-inline-start;
   transition-duration: var(--sidebar-transition-duration);
   transition-timing-function: var(--sidebar-transition-timing-function);
@@ -1572,8 +2450,7 @@ body {
   height: 32px;
 }
 .findbar > div#findbarInputContainer {
-  -webkit-margin-end: 4px;
-          margin-inline-end: 4px;
+  margin-inline-end: 4px;
 }
 .findbar.wrapContainers > div,
 .findbar.wrapContainers > div#findbarMessageContainer > * {
@@ -1644,8 +2521,7 @@ body {
 }
 
 .editorParamsToolbarContainer .editorParamsLabel {
-  -webkit-padding-end: 10px;
-          padding-inline-end: 10px;
+  padding-inline-end: 10px;
   flex: none;
   color: var(--main-color);
 }
@@ -1684,20 +2560,31 @@ body {
   margin-bottom: -4px;
 }
 
-#editorInkParamsToolbar {
+#editorStampParamsToolbar {
   inset-inline-end: 40px;
   background-color: var(--toolbar-bg-color);
 }
 
-#editorFreeTextParamsToolbar {
+#editorInkParamsToolbar {
   inset-inline-end: 68px;
   background-color: var(--toolbar-bg-color);
+}
+
+#editorFreeTextParamsToolbar {
+  inset-inline-end: 96px;
+  background-color: var(--toolbar-bg-color);
+}
+
+#editorStampAddImage::before {
+  -webkit-mask-image: var(--editorParams-stampAddImage-icon);
+          mask-image: var(--editorParams-stampAddImage-icon);
 }
 
 .doorHanger,
 .doorHangerRight {
   border-radius: 2px;
-  box-shadow: 0 1px 5px var(--doorhanger-border-color),
+  box-shadow:
+    0 1px 5px var(--doorhanger-border-color),
     0 0 0 1px var(--doorhanger-border-color);
   border: var(--doorhanger-border-color-whcm);
 }
@@ -1714,14 +2601,12 @@ body {
 }
 .doorHanger::after {
   inset-inline-start: 10px;
-  -webkit-margin-start: -8px;
-          margin-inline-start: -8px;
+  margin-inline-start: -8px;
   border-bottom-color: var(--toolbar-bg-color);
 }
 .doorHangerRight::after {
   inset-inline-end: 10px;
-  -webkit-margin-end: -8px;
-          margin-inline-end: -8px;
+  margin-inline-end: -8px;
   border-bottom-color: var(--doorhanger-bg-color);
 }
 :is(.doorHanger, .doorHangerRight)::before {
@@ -1730,13 +2615,11 @@ body {
 }
 .doorHanger::before {
   inset-inline-start: 10px;
-  -webkit-margin-start: -9px;
-          margin-inline-start: -9px;
+  margin-inline-start: -9px;
 }
 .doorHangerRight::before {
   inset-inline-end: 10px;
-  -webkit-margin-end: -9px;
-          margin-inline-end: -9px;
+  margin-inline-end: -9px;
 }
 
 #findResultsCount {
@@ -1781,16 +2664,13 @@ body {
 }
 
 #toolbarViewerLeft {
-  -webkit-padding-start: 1px;
-          padding-inline-start: 1px;
+  padding-inline-start: 1px;
 }
 #toolbarViewerRight {
-  -webkit-padding-end: 1px;
-          padding-inline-end: 1px;
+  padding-inline-end: 1px;
 }
 #toolbarSidebarRight {
-  -webkit-padding-end: 2px;
-          padding-inline-end: 2px;
+  padding-inline-end: 2px;
 }
 
 .splitToolbarButton {
@@ -1839,8 +2719,7 @@ body {
   margin: 0;
 }
 #toolbarSidebar .splitToolbarButton > .toolbarButton {
-  -webkit-margin-end: 2px;
-          margin-inline-end: 2px;
+  margin-inline-end: 2px;
 }
 
 .splitToolbarButtonSeparator {
@@ -1884,6 +2763,11 @@ body {
   color: var(--toggled-btn-color);
 }
 
+:is(.toolbarButton, .secondaryToolbarButton).toggled:hover,
+.splitToolbarButton.toggled > .toolbarButton.toggled:hover {
+  outline: var(--toggled-hover-btn-outline) !important;
+}
+
 :is(.toolbarButton, .secondaryToolbarButton).toggled::before {
   background-color: var(--toggled-btn-color);
 }
@@ -1921,8 +2805,7 @@ body {
   color: var(--main-color);
   margin: 0;
   padding: 1px 0 2px;
-  -webkit-padding-start: 6px;
-          padding-inline-start: 6px;
+  padding-inline-start: 6px;
   border: none;
   background-color: var(--dropdown-btn-bg-color);
 }
@@ -2034,6 +2917,11 @@ body {
           mask-image: var(--toolbarButton-editorInk-icon);
 }
 
+#editorStamp::before {
+  -webkit-mask-image: var(--toolbarButton-editorStamp-icon);
+          mask-image: var(--toolbarButton-editorStamp-icon);
+}
+
 #print::before,
 #secondaryPrint::before {
   -webkit-mask-image: var(--toolbarButton-print-icon);
@@ -2113,8 +3001,7 @@ a:is(.toolbarButton, .secondaryToolbarButton)[href="#"] {
   position: relative;
   margin: 0;
   padding: 0 0 1px;
-  -webkit-padding-start: 36px;
-          padding-inline-start: 36px;
+  padding-inline-start: 36px;
   height: auto;
   min-height: 26px;
   width: auto;
@@ -2126,8 +3013,7 @@ a:is(.toolbarButton, .secondaryToolbarButton)[href="#"] {
   display: inline-block;
 }
 .secondaryToolbarButton > span {
-  -webkit-padding-end: 4px;
-          padding-inline-end: 4px;
+  padding-inline-end: 4px;
 }
 
 #firstPage::before {
@@ -2234,8 +3120,7 @@ a:is(.toolbarButton, .secondaryToolbarButton)[href="#"] {
   position: absolute !important;
   left: 0;
   margin: 10px 0 3px;
-  -webkit-margin-start: 7px;
-          margin-inline-start: 7px;
+  margin-inline-start: 7px;
 }
 
 #pageNumber {
@@ -2279,8 +3164,7 @@ a:is(.toolbarButton, .secondaryToolbarButton)[href="#"] {
 }
 
 #numPages.toolbarLabel {
-  -webkit-padding-start: 3px;
-          padding-inline-start: 3px;
+  padding-inline-start: 3px;
 }
 
 #thumbnailView,
@@ -2353,8 +3237,7 @@ a:focus > .thumbnail > .thumbnailImage,
 
 .treeWithDeepNesting > .treeItem,
 .treeItem > .treeItems {
-  -webkit-margin-start: 20px;
-          margin-inline-start: 20px;
+  margin-inline-start: 20px;
 }
 
 .treeItem > a {
@@ -2365,8 +3248,7 @@ a:focus > .thumbnail > .thumbnailImage,
   height: auto;
   margin-bottom: 1px;
   padding: 2px 0 5px;
-  -webkit-padding-start: 4px;
-          padding-inline-start: 4px;
+  padding-inline-start: 4px;
   border-radius: 2px;
   color: var(--treeitem-color);
   font-size: 13px;
@@ -2382,8 +3264,7 @@ a:focus > .thumbnail > .thumbnailImage,
   cursor: pointer;
 }
 #layersView .treeItem > a > label {
-  -webkit-padding-start: 4px;
-          padding-inline-start: 4px;
+  padding-inline-start: 4px;
 }
 #layersView .treeItem > a > label > input {
   float: var(--inline-start);
@@ -2517,6 +3398,8 @@ dialog :link {
 .grab-to-pan-grab:active,
 .grab-to-pan-grabbing {
   cursor: grabbing !important;
+}
+.grab-to-pan-grabbing {
   position: fixed;
   background: rgba(0, 0, 0, 0);
   display: block;
