@@ -303,7 +303,7 @@ export class Manager {
 
                 // We also clean the completions from the old project
                 lw.completer.input.reset()
-                lw.duplicateLabels.reset()
+                lw.dupLabelDetector.reset()
                 lw.cacher.src.reset()
                 lw.cacher.add(rootFile)
                 void lw.cacher.refreshCache(rootFile).then(async () => {

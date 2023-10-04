@@ -8,6 +8,7 @@ import {computeFilteringRange} from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../completion'
 import { getLogger } from '../../components/logger'
 import { parser } from '../../components/parser'
+import { Cache } from '../../components/cacher'
 
 const logger = getLogger('Intelli', 'Citation')
 
@@ -342,18 +343,12 @@ export class Citation implements IProvider {
     }
 
     /**
-     * Updates the Manager cache for bibitems defined in `file`.
-     * `content` is parsed with regular expressions,
-     * and the result is used to update the cache.
-     *
-     * @param file The path of a LaTeX file.
-     * @param content The content of a LaTeX file.
+     * Updates the Manager cache for bibitems with Cache.
+     * Cache `content` is parsed with regular expressions,
+     * and the result is used to update the cache bibitem element.
      */
-    update(file: string, content: string) {
-        const cache = lw.cacher.get(file)
-        if (cache !== undefined) {
-            cache.elements.bibitem = this.parseContent(file, content)
-        }
+    parse(cache: Cache) {
+        cache.elements.bibitem = this.parseContent(cache.filePath, cache.content)
     }
 
     private parseContent(file: string, content: string): CiteSuggestion[] {

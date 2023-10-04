@@ -6,7 +6,7 @@ import { Cleaner } from './components/cleaner'
 import { LaTeXCommanderTreeView } from './components/commander'
 import { Configuration } from './components/configuration'
 import { Counter } from './components/counter'
-import { DuplicateLabels } from './components/duplicatelabels'
+export { dupLabelDetector } from './components/duplabeldetector'
 import { EnvPair } from './components/envpair'
 import { EventBus } from './components/eventbus'
 import { Linter } from './components/linter'
@@ -55,7 +55,6 @@ export const server = new Server()
 export const locator = new Locator()
 export const completer = new Completer()
 export const atSuggestionCompleter = new AtSuggestionCompleter()
-export const duplicateLabels = new DuplicateLabels()
 export const linter = new Linter()
 export const cleaner = new Cleaner()
 export const counter = new Counter()
