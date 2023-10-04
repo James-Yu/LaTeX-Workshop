@@ -160,6 +160,7 @@ export class Cacher {
         this.promises[filePath] = this.updateAST(cache).then(() => {
             this.updateElements(cache)
         }).finally(() => {
+            lw.dupLabelDetector.run()
             this.caching--
             delete this.promises[filePath]
             lw.eventBus.fire(eventbus.FileParsed, filePath)
@@ -241,7 +242,7 @@ export class Cacher {
 
     private updateElements(cache: Cache) {
         const start = performance.now()
-        lw.completer.citation.update(cache.filePath, cache.content)
+        lw.completer.citation.parse(cache)
         // Package parsing must be before command and environment.
         lw.completer.package.parse(cache)
         lw.completer.reference.parse(cache)
@@ -249,7 +250,6 @@ export class Cacher {
         lw.completer.environment.parse(cache)
         lw.completer.command.parse(cache)
         lw.completer.input.parseGraphicsPath(cache)
-        lw.duplicateLabels.run(cache.filePath)
         this.updateBibfiles(cache)
         const elapsed = performance.now() - start
         logger.log(`Updated elements in ${elapsed.toFixed(2)} ms: ${cache.filePath} .`)

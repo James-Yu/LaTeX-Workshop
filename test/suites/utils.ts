@@ -79,7 +79,7 @@ export async function reset() {
     lw.manager.rootFile = undefined
     lw.manager.localRootFile = undefined
     lw.completer.input.reset()
-    lw.duplicateLabels.reset()
+    lw.dupLabelDetector.reset()
     lw.cacher.reset()
     glob.sync('**/{**.tex,**.pdf,**.bib}', { cwd: getFixture() }).forEach(file => { try {fs.unlinkSync(path.resolve(getFixture(), file))} catch {} })
 }
