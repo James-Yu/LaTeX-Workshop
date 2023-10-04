@@ -249,6 +249,7 @@ export class Cacher {
         lw.completer.glossary.parse(cache)
         lw.completer.environment.parse(cache)
         lw.completer.command.parse(cache)
+        lw.completer.input.parseGraphicsPath(cache)
         this.updateBibfiles(cache)
         const elapsed = performance.now() - start
         logger.log(`Updated elements in ${elapsed.toFixed(2)} ms: ${cache.filePath} .`)

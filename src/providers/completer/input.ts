@@ -4,16 +4,16 @@ import * as path from 'path'
 import * as micromatch from 'micromatch'
 import * as lw from '../../lw'
 import type { IProvider, IProviderArgs } from '../completion'
-import { stripCommentsAndVerbatim } from '../../utils/utils'
 
 import { getLogger } from '../../components/logger'
+import { Cache } from '../../components/cacher'
 
 const logger = getLogger('Intelli', 'Input')
 
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
 abstract class InputAbstract implements IProvider {
-    graphicsPath: string[] = []
+    graphicsPath: Set<string> = new Set()
 
     /**
      * Compute the base directory for file completion
@@ -49,28 +49,21 @@ abstract class InputAbstract implements IProvider {
 
     /**
      * Set the graphics path
-     *
-     * @param content the content to be parsed for graphicspath
      */
-    setGraphicsPath(content: string) {
+    parseGraphicsPath(cache: Cache) {
         const regex = /\\graphicspath{[\s\n]*((?:{[^{}]*}[\s\n]*)*)}/g
-        const noVerbContent = stripCommentsAndVerbatim(content)
         let result: string[] | null
-        do {
-            result = regex.exec(noVerbContent)
-            if (result) {
-                for (const dir of result[1].split(/\{|\}/).filter(s => s.replace(/^\s*$/, ''))) {
-                    if (this.graphicsPath.includes(dir)) {
-                        continue
-                    }
-                    this.graphicsPath.push(dir)
-                }
+        while (true) {
+            result = regex.exec(cache.contentTrimmed)
+            if (result === null) {
+                break
             }
-        } while (result)
+            result[1].split(/\{|\}/).filter(s => s.replace(/^\s*$/, '')).forEach(dir => this.graphicsPath.add(dir))
+        }
     }
 
     reset() {
-        this.graphicsPath = []
+        this.graphicsPath.clear()
     }
 
     provideFrom(result: RegExpMatchArray, args: IProviderArgs) {
@@ -154,8 +147,8 @@ export class Input extends InputAbstract {
         }
         // If there is no root, 'root relative' and 'both' should fall back to 'file relative'
         const rootDir = lw.manager.rootDir
-        if (['includegraphics', 'includesvg'].includes(command) && this.graphicsPath.length > 0) {
-            baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))
+        if (['includegraphics', 'includesvg'].includes(command) && this.graphicsPath.size > 0) {
+            baseDir = Array.from(this.graphicsPath).map(dir => path.join(rootDir, dir))
         } else {
             const baseConfig = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(currentFile)).get('intellisense.file.base')
             const baseDirCurrentFile = path.dirname(currentFile)
