@@ -248,6 +248,7 @@ export class Cacher {
         lw.completer.glossary.parse(cache)
         lw.completer.environment.parse(cache)
         lw.completer.command.parse(cache)
+        lw.completer.input.setGraphicsPath(cache.content)
         lw.duplicateLabels.run(cache.filePath)
         this.updateBibfiles(cache)
         const elapsed = performance.now() - start
