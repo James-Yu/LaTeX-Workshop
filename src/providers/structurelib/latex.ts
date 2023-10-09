@@ -357,10 +357,15 @@ function addSectionNumber(struct: TeXElement[], config: StructureConfig, tag?: s
         if (element.type === TeXElementType.Section) {
             counter[config.secIndex[element.name]] = (counter[config.secIndex[element.name]] ?? 0) + 1
         }
-        const sectionNumber = tag +
+        let sectionNumber = tag +
             '0.'.repeat(config.secIndex[element.name] - lowest) +
             (counter[config.secIndex[element.name]] ?? 0).toString()
-        element.label = `${inAppendix ? 'A.' : ''}${element.type === TeXElementType.Section ? sectionNumber : '*'} ${element.label}`
+        if (inAppendix) {
+            const segments = sectionNumber.split('.')
+            segments[0] = String.fromCharCode(parseInt(sectionNumber.split('.')[0]) + 64)
+            sectionNumber = segments.join('.')
+        }
+        element.label = `${element.type === TeXElementType.Section ? sectionNumber : '*'} ${element.label}`
         if (element.children.length > 0) {
             addSectionNumber(element.children, config, sectionNumber + '.', config.secIndex[element.name] + 1)
         }
