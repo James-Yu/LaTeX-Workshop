@@ -53,7 +53,7 @@ jobs:
         curl -s -O -L http://mirrors.ctan.org/support/latexindent/bin/windows/latexindent.exe
         mv -Force "latexindent.exe" "D:\texlive\bin\windows\latexindent-binary.exe"
       if: steps.cache-texlive.outputs.cache-hit != 'true'
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
         node-version: '16'
     - run: |
