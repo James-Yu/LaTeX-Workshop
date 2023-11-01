@@ -223,6 +223,7 @@ export class Builder {
         // Stop watching the PDF file to avoid reloading the PDF viewer twice.
         // The builder will be responsible for refreshing the viewer.
         this.building = true
+        let skipped = true
         while (true) {
             const step = this.stepQueue.getStep()
             if (step === undefined) {
@@ -230,8 +231,9 @@ export class Builder {
             }
             const env = this.spawnProcess(step)
             const success = await this.monitorProcess(step, env)
+            skipped = skipped && !(step.isExternal || !step.isSkipped)
             if (success && this.stepQueue.isLastStep(step)) {
-                await this.afterSuccessfulBuilt(step)
+                await this.afterSuccessfulBuilt(step, skipped)
             }
         }
         this.building = false
@@ -411,33 +413,35 @@ export class Builder {
      * Primarily concerning PDF refreshing and file cleaning. The execution is
      * covered in {@link buildLoop}.
      *
-     * @param step The last {@link Step} in the recipe.
+     * @param lastStep The last {@link Step} in the recipe.
+     * @param skipped Whether the **whole** building process is skipped by
+     * latexmk.
      */
-    private async afterSuccessfulBuilt(step: Step) {
-        if (step.rootFile === undefined) {
+    private async afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
+        if (lastStep.rootFile === undefined) {
             // This only happens when the step is an external command.
             lw.viewer.refreshExistingViewer()
             return
         }
-        logger.log(`Successfully built ${step.rootFile} .`)
+        logger.log(`Successfully built ${lastStep.rootFile} .`)
         logger.refreshStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
         lw.eventBus.fire(BuildDone)
-        if (!step.isExternal && step.isSkipped) {
+        if (!lastStep.isExternal && skipped) {
             return
         }
-        lw.viewer.refreshExistingViewer(lw.manager.tex2pdf(step.rootFile))
-        lw.completer.reference.setNumbersFromAuxFile(step.rootFile)
-        await lw.cacher.loadFlsFile(step.rootFile)
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(step.rootFile))
+        lw.viewer.refreshExistingViewer(lw.manager.tex2pdf(lastStep.rootFile))
+        lw.completer.reference.setNumbersFromAuxFile(lastStep.rootFile)
+        await lw.cacher.loadFlsFile(lastStep.rootFile)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(lastStep.rootFile))
         // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
         if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
-            const pdfFile = lw.manager.tex2pdf(step.rootFile)
+            const pdfFile = lw.manager.tex2pdf(lastStep.rootFile)
             logger.log('SyncTex after build invoked.')
             lw.locator.syncTeX(undefined, undefined, pdfFile)
         }
         if (['onSucceeded', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
             logger.log('Auto Clean invoked.')
-            await lw.cleaner.clean(step.rootFile)
+            await lw.cleaner.clean(lastStep.rootFile)
             lw.eventBus.fire(AutoCleaned)
         }
     }
