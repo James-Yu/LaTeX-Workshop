@@ -677,21 +677,26 @@ export class Builder {
             outDir = path.resolve(rootDir, outDir)
         }
         logger.log(`outDir: ${outDir} .`)
-        try {
-            lw.cacher.getIncludedTeX(rootFile).forEach(file => {
-                const relativePath = path.dirname(file.replace(rootDir, '.'))
-                const fullOutDir = path.resolve(outDir, relativePath)
-                // To avoid issues when fullOutDir is the root dir
-                // Using fs.mkdir() on the root directory even with recursion will result in an error
+        lw.cacher.getIncludedTeX(rootFile).forEach(file => {
+            const relativePath = path.dirname(file.replace(rootDir, '.'))
+            const fullOutDir = path.resolve(outDir, relativePath)
+            // To avoid issues when fullOutDir is the root dir
+            // Using fs.mkdir() on the root directory even with recursion will result in an error
+            try {
                 if (! (fs.existsSync(fullOutDir) && fs.statSync(fullOutDir).isDirectory())) {
                     fs.mkdirSync(fullOutDir, { recursive: true })
                 }
-            })
-        } catch (e) {
-            logger.log('Unexpected Error: please see the console log of the Developer Tools of VS Code.')
-            logger.refreshStatus('x', 'errorForeground')
-            throw(e)
-        }
+            } catch (e) {
+                if (e instanceof Error) {
+                    // #4048
+                    logger.log(`Unexpected Error: ${e.name}: ${e.message} .`)
+                } else {
+                    logger.log('Unexpected Error: please see the console log of the Developer Tools of VS Code.')
+                    logger.refreshStatus('x', 'errorForeground')
+                    throw(e)
+                }
+            }
+        })
     }
 }
 
