@@ -207,16 +207,11 @@ export class Environment implements IProvider {
 
     private parseAst(node: Ast.Node): CmdEnvSuggestion[] {
         let envs: CmdEnvSuggestion[] = []
-        if (node.type === 'environment') {
-            const env = new CmdEnvSuggestion(`${node.env}`, '', [], -1, { name: node.env, args: '' }, vscode.CompletionItemKind.Module)
-            env.documentation = '`' + node.env + '`'
-            env.filterText = node.env
-            envs.push(env)
-        } else if (node.type === 'mathenv') {
-            const nodeEnv = node.env as unknown as {content: string}
-            const env = new CmdEnvSuggestion(`${nodeEnv.content}`, '', [], -1, { name: nodeEnv.content, args: '' }, vscode.CompletionItemKind.Module)
-            env.documentation = '`' + nodeEnv.content + '`'
-            env.filterText = nodeEnv.content
+        if (node.type === 'environment' || node.type === 'mathenv') {
+            const content = (typeof node.env === 'string') ? node.env : (node.env as unknown as {content: string}).content
+            const env = new CmdEnvSuggestion(`${content}`, '', [], -1, { name: content, args: '' }, vscode.CompletionItemKind.Module)
+            env.documentation = '`' + content + '`'
+            env.filterText = content
             envs.push(env)
         }
 
