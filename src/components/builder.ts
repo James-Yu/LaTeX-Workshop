@@ -168,7 +168,7 @@ export class Builder {
 
         await vscode.workspace.saveAll()
 
-        this.createOuputSubFolders(rootFile)
+        this.createOutputSubFolders(rootFile)
 
         const tools = this.createBuildTools(rootFile, langId, recipeName)
 
@@ -670,7 +670,7 @@ export class Builder {
      * latex command). If the output directory does not exist, the latex
      * commands simply fail.
      */
-     private createOuputSubFolders(rootFile: string) {
+     private createOutputSubFolders(rootFile: string) {
         const rootDir = path.dirname(rootFile)
         let outDir = lw.manager.getOutDir(rootFile)
         if (!path.isAbsolute(outDir)) {
