@@ -170,8 +170,25 @@ export class Viewer {
             viewColumn: vscode.ViewColumn.Active,
             preserveFocus: true
         }
-        await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
-        await moveActiveEditor(editorGroup, true)
+        if (editorGroup === 'left') {
+            const currentColumn = vscode.window.activeTextEditor?.viewColumn
+            if (currentColumn && currentColumn > 1) {
+                showOptions.viewColumn = currentColumn - 1
+                await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
+            } else {
+                await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
+                if (currentColumn === vscode.ViewColumn.One) {
+                    await moveActiveEditor('left', true)
+                }
+            }
+        } else if (editorGroup === 'right') {
+            const currentColumn = vscode.window.activeTextEditor?.viewColumn
+            showOptions.viewColumn = (currentColumn ?? 0) + 1
+            await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
+        } else {
+            await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
+            await moveActiveEditor(editorGroup, true)
+        }
         logger.log(`Open PDF tab for ${pdfUri.toString(true)}`)
     }
 
