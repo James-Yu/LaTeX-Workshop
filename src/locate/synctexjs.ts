@@ -29,80 +29,80 @@ https://durieux.me/synctex-js/
 */
 
 export type Block = {
-  type: string;
-  parent: Block | Page;
-  fileNumber: number;
-  file: InputFile;
-  line: number;
-  left: number;
-  bottom: number;
-  width: number | undefined;
-  height: number;
-  depth?: number;
-  blocks?: Block[];
-  elements?: Block[];
-  page: number;
+  type: string,
+  parent: Block | Page,
+  fileNumber: number,
+  file: InputFile,
+  line: number,
+  left: number,
+  bottom: number,
+  width: number | undefined,
+  height: number,
+  depth?: number,
+  blocks?: Block[],
+  elements?: Block[],
+  page: number
 }
 
-function isBlock(b: Block | Page) : b is Block {
+function isBlock(b: Block | Page): b is Block {
   return (b as Block).parent !== undefined
 }
 
 type InputFile = {
-  path: string;
+  path: string
 }
 
-type InputFiles = { [fileNumber: string]: InputFile; }
+type InputFiles = { [fileNumber: string]: InputFile }
 
 type Page = {
-  page: number;
-  blocks: Block[];
-  type: string;
+  page: number,
+  blocks: Block[],
+  type: string
 }
 
-type Pages = { [pageNum: string]: Page; }
+type Pages = { [pageNum: string]: Page }
 
 type BlockNumberLine = {
   [inputFileFullPath: string]: {
     [inputLineNum: number]: {
-      [pageNum: number]: Block[];
-    };
-  };
+      [pageNum: number]: Block[]
+    }
+  }
 }
 
 export type PdfSyncObject = {
   offset: {
-      x: number;
-      y: number;
-  };
-  version: string;
-  files: InputFiles;
-  pages: Pages;
-  blockNumberLine: BlockNumberLine;
-  hBlocks: Block[];
-  numberPages: number;
+      x: number,
+      y: number
+  },
+  version: string,
+  files: InputFiles,
+  pages: Pages,
+  blockNumberLine: BlockNumberLine,
+  hBlocks: Block[],
+  numberPages: number
 }
 
-export function parseSyncTex(pdfsyncBody: string) : PdfSyncObject | undefined {
+export function parseSyncTex(pdfsyncBody: string): PdfSyncObject | undefined {
   const unit = 65781.76
   let numberPages = 0
   let currentPage: Page | undefined
   let currentElement: Block | Page | undefined
 
-  const blockNumberLine: BlockNumberLine  = Object.create(null)
+  const blockNumberLine = Object.create(null) as BlockNumberLine
   const hBlocks: Block[] = []
 
-  const files: InputFiles = Object.create(null)
-  const pages: Pages = Object.create(null)
+  const files = Object.create(null) as InputFiles
+  const pages = Object.create(null) as Pages
   const pdfsyncObject: PdfSyncObject = {
     offset: {
       x: 0,
       y: 0
     },
     version: '',
-    files: Object.create(null),
-    pages: Object.create(null),
-    blockNumberLine: Object.create(null),
+    files: Object.create(null) as InputFiles,
+    pages: Object.create(null) as Pages,
+    blockNumberLine: Object.create(null) as BlockNumberLine,
     hBlocks: [],
     numberPages: 0
   }
@@ -279,10 +279,10 @@ export function parseSyncTex(pdfsyncBody: string) : PdfSyncObject | undefined {
         continue
       }
       if (blockNumberLine[elem.file.path] === undefined) {
-        blockNumberLine[elem.file.path] = Object.create(null)
+        blockNumberLine[elem.file.path] = Object.create(null) as { [inputLineNum: number]: { [pageNum: number]: Block[] } }
       }
       if (blockNumberLine[elem.file.path][lineNumber] === undefined) {
-        blockNumberLine[elem.file.path][lineNumber] = Object.create(null)
+        blockNumberLine[elem.file.path][lineNumber] = Object.create(null) as { [pageNum: number]: Block[] }
       }
       if (blockNumberLine[elem.file.path][lineNumber][elem.page] === undefined) {
         blockNumberLine[elem.file.path][lineNumber][elem.page] = []

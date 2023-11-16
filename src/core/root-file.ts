@@ -5,8 +5,8 @@ import * as fs from 'fs'
 import * as tmp from 'tmp'
 import * as utils from '../utils/utils'
 import * as lw from '../lw'
-import * as eventbus from './eventbus'
-import { getLogger } from './logger'
+import * as eventbus from './event-bus'
+import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('Manager')
 

@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as lw from '../../lw'
-import * as eventbus from '../eventbus'
-import { getLogger } from '../logger'
-import { isBinary } from '../manager'
+import * as eventbus from '../event-bus'
+import { getLogger } from '../../utils/logging/logger'
+import { isBinary } from '../root-file'
 
 const logger = getLogger('Cacher', 'Watcher')
 

@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as utils from '../utils/utils'
+import * as utils from './utils'
 
 /**
  * If a string on `position` is like `\command`, `\command{` or `\command[`,

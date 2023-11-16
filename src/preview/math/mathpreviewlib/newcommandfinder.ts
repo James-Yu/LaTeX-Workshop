@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as lw from '../../../lw'
 import { stripCommentsAndVerbatim } from '../../../utils/utils'
-import { getLogger } from '../../../components/logger'
+import { getLogger } from '../../../utils/logging/logger'
 
 const logger = getLogger('Preview', 'Math')
 

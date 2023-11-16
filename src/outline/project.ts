@@ -1,12 +1,12 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
-import { StructureUpdated } from '../components/eventbus'
+import { StructureUpdated } from '../core/event-bus'
 import { construct as constructLaTeX } from './structurelib/latex'
 import { buildBibTeX } from './structurelib/bibtex'
 import { construct as constructDocTeX } from './structurelib/doctex'
 
-import { getLogger } from '../components/logger'
-import { parser } from '../components/parser'
+import { getLogger } from '../utils/logging/logger'
+import { parser } from '../parse/parser'
 
 const logger = getLogger('Structure')
 

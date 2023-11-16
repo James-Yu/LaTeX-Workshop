@@ -2,8 +2,8 @@ import * as vscode from 'vscode'
 import { bibtexParser } from 'latex-utensils'
 import { performance } from 'perf_hooks'
 import * as BibtexUtils from './bibtexformatterlib/bibtexutils'
-import { getLogger } from '../components/logger'
-import { parser } from '../components/parser'
+import { getLogger } from '../utils/logging/logger'
+import { parser } from '../parse/parser'
 
 const logger = getLogger('Format', 'Bib')
 

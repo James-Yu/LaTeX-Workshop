@@ -1,6 +1,6 @@
 import * as os from 'os'
 import type { ChildProcessWithoutNullStreams } from 'child_process'
-import { getLogger } from '../logger'
+import { getLogger } from '../../utils/logging/logger'
 
 const logger = getLogger('Linter')
 

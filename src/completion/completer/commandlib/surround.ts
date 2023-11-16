@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import type { ICompletionItem } from '../../completion'
+import type { ICompletionItem } from '../../latex'
 
 export class SurroundCommand {
     static surround(cmdItems: ICompletionItem[]) {

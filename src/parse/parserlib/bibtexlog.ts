@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as lw from '../../lw'
 import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserutils'
 
-import { getLogger } from '../logger'
+import { getLogger } from '../../utils/logging/logger'
 
 const logger = getLogger('Parser', 'BibTeXLog')
 

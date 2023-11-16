@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
-import { construct } from './structurelib/latex'
-import { TeXElement } from './structure'
+import { construct } from '../outline/structurelib/latex'
+import { TeXElement } from '../outline/project'
 
 export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
 

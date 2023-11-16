@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
-import { getLogger } from './logger'
+import { getLogger } from '../utils/logging/logger'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { argContentToStr } from '../utils/parser'
-import { parser } from './parser'
+import { parser } from '../parse/parser'
 
 const logger = getLogger('EnvPair')
 

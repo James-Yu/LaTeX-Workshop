@@ -5,9 +5,9 @@ import * as cp from 'child_process'
 import * as cs from 'cross-spawn'
 import * as lw from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
-import { AutoBuildInitiated, AutoCleaned, BuildDone } from './eventbus'
-import { getLogger } from './logger'
-import { parser } from './parser'
+import { AutoBuildInitiated, AutoCleaned, BuildDone } from '../core/event-bus'
+import { getLogger } from '../utils/logging/logger'
+import { parser } from '../parse/parser'
 
 const logger = getLogger('Builder')
 

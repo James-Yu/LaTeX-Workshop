@@ -1,10 +1,10 @@
 import * as vscode from 'vscode'
 import { bibtexParser } from 'latex-utensils'
-import { TeXElement, TeXElementType } from '../structure'
-import { parser } from '../../components/parser'
+import { TeXElement, TeXElementType } from '../project'
+import { parser } from '../../parse/parser'
 
-import { getLogger } from '../../components/logger'
-import { bibTools } from '../completer/citation'
+import { getLogger } from '../../utils/logging/logger'
+import { bibTools } from '../../completion/completer/citation'
 
 const logger = getLogger('Structure', 'BibTeX')
 

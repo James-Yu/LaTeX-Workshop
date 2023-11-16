@@ -3,10 +3,10 @@ import * as path from 'path'
 import * as fs from 'fs'
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
 import * as lw from '../../lw'
-import type { ILinter } from '../linter'
+import type { ILinter } from '../latex-linter'
 import { processWrapper } from './linterutils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
-import { getLogger } from '../logger'
+import { getLogger } from '../../utils/logging/logger'
 
 const logger = getLogger('Linter', 'LaCheck')
 

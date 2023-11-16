@@ -2,10 +2,10 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
-import type { IProvider } from '../completion'
+import type { IProvider } from '../latex'
 import { argContentToStr } from '../../utils/parser'
-import { Cache } from '../../components/cacher'
-import { kpsewhich } from '../../components/cacherlib/pathutils'
+import { Cache } from '../../core/cache'
+import { kpsewhich } from '../../core/cacherlib/pathutils'
 
 type DataPackagesJsonType = typeof import('../../../data/packagenames.json')
 

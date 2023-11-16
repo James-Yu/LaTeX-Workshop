@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as lw from '../../lw'
-import type {IProvider, IProviderArgs} from '../completion'
+import type {IProvider, IProviderArgs} from '../latex'
 import {escapeRegExp} from '../../utils/utils'
 
 interface AtSuggestionItemEntry {

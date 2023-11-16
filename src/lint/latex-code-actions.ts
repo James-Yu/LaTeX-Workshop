@@ -1,5 +1,5 @@
 import * as vs from 'vscode'
-import { TeXMathEnvFinder } from './preview/mathpreviewlib/texmathenvfinder'
+import { TeXMathEnvFinder } from '../preview/math/mathpreviewlib/texmathenvfinder'
 
 /**
  * Each number corresponds to the warning number of ChkTeX.

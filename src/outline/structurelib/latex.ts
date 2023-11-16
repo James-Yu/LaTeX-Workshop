@@ -2,11 +2,11 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
-import { TeXElement, TeXElementType } from '../structure'
+import { TeXElement, TeXElementType } from '../project'
 import { resolveFile } from '../../utils/utils'
 import { InputFileRegExp } from '../../utils/inputfilepath'
 
-import { getLogger } from '../../components/logger'
+import { getLogger } from '../../utils/logging/logger'
 import { argContentToStr } from '../../utils/parser'
 
 const logger = getLogger('Structure', 'LaTeX')

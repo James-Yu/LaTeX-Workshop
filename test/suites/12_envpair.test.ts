@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
 import * as test from './utils'
-import { EnvPair } from '../../src/components/envpair'
+import { EnvPair } from '../../src/locate/environment'
 
 async function loadTestFiles(fixture: string) {
     await test.load(fixture, [

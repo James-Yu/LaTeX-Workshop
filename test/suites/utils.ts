@@ -5,9 +5,9 @@ import { glob } from 'glob'
 import * as os from 'os'
 import {ok, strictEqual} from 'assert'
 import * as lw from '../../src/lw'
-import { AutoBuildInitiated, DocumentChanged, EventArgs, ViewerPageLoaded, ViewerStatusChanged } from '../../src/components/eventbus'
-import type { EventName } from '../../src/components/eventbus'
-import { getCachedLog, getLogger, resetCachedLog } from '../../src/components/logger'
+import { AutoBuildInitiated, DocumentChanged, EventArgs, ViewerPageLoaded, ViewerStatusChanged } from '../../src/core/event-bus'
+import type { EventName } from '../../src/core/event-bus'
+import { getCachedLog, getLogger, resetCachedLog } from '../../src/utils/logging/logger'
 
 let testIndex = 0
 const logger = getLogger('Test')

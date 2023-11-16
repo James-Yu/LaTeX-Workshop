@@ -2,13 +2,13 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
-import type { IProvider, ICompletionItem, PkgType, IProviderArgs } from '../completion'
+import type { IProvider, ICompletionItem, PkgType, IProviderArgs } from '../latex'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 import {SurroundCommand} from './commandlib/surround'
 import { Environment, EnvSnippetType } from './environment'
 
-import { getLogger } from '../../components/logger'
-import { Cache } from '../../components/cacher'
+import { getLogger } from '../../utils/logging/logger'
+import { Cache } from '../../core/cache'
 
 const logger = getLogger('Intelli', 'Command')
 

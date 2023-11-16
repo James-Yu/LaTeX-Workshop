@@ -6,7 +6,7 @@ import * as cs from 'cross-spawn'
 import * as lw from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 
-import { getLogger } from './logger'
+import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('Cleaner')
 

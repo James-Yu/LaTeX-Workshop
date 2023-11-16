@@ -2,7 +2,7 @@ import {EventEmitter} from 'events'
 import type {PdfViewerState} from '../../types/latex-workshop-protocol-types/index'
 import type {Disposable} from 'vscode'
 
-import { getLogger } from '../components/logger'
+import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('Event')
 

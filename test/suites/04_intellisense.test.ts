@@ -5,10 +5,10 @@ import * as assert from 'assert'
 import { glob } from 'glob'
 import * as lw from '../../src/lw'
 import * as test from './utils'
-import { EnvSnippetType, EnvType } from '../../src/providers/completer/environment'
-import { CmdType } from '../../src/providers/completer/command'
-import { PkgType } from '../../src/providers/completion'
-import { isTriggerSuggestNeeded } from '../../src/providers/completer/command'
+import { EnvSnippetType, EnvType } from '../../src/completion/completer/environment'
+import { CmdType } from '../../src/completion/completer/command'
+import { PkgType } from '../../src/completion/latex'
+import { isTriggerSuggestNeeded } from '../../src/completion/completer/command'
 
 function assertKeys(keys: string[], expected: string[] = [], message: string): void {
     assert.ok(

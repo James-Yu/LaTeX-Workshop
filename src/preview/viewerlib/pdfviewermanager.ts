@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as lw from '../../lw'
-import type {Client} from './client'
-import type {PdfViewerPanel} from './pdfviewerpanel'
+import type { Client } from './client'
+import type { PdfViewerPanel } from './pdfviewerpanel'
 
 class PdfViewerManager {
     private readonly webviewPanelMap = new Map<string, Set<PdfViewerPanel>>()

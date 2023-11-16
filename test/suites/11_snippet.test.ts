@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
 import * as test from './utils'
-import { SurroundCommand } from '../../src/providers/completer/commandlib/surround'
-import { ICompletionItem } from '../../src/providers/completion'
-import { DocumentChanged } from '../../src/components/eventbus'
+import { SurroundCommand } from '../../src/completion/completer/commandlib/surround'
+import { ICompletionItem } from '../../src/completion/latex'
+import { DocumentChanged } from '../../src/core/event-bus'
 
 suite('Snippet test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')

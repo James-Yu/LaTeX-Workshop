@@ -4,7 +4,7 @@ import * as path from 'path'
 import * as assert from 'assert'
 import * as lw from '../../src/lw'
 import * as test from './utils'
-import { BuildDone } from '../../src/components/eventbus'
+import { BuildDone } from '../../src/core/event-bus'
 
 suite('Build TeX files test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')

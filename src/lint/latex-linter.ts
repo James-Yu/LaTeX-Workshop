@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as lw from '../lw'
 import { chkTeX } from './linterlib/chktex'
 import { laCheck } from './linterlib/lacheck'
-import { getLogger } from './logger'
+import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('Linter')
 

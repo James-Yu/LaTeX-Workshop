@@ -16,7 +16,7 @@ import { Input, Import, SubImport } from './completer/input'
 import { Glossary } from './completer/glossary'
 import type { ReferenceDocType } from './completer/reference'
 import { escapeRegExp } from '../utils/utils'
-import { getLogger } from '../components/logger'
+import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('Intelli')
 

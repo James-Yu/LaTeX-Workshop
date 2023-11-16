@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../lw'
-import { getLogger } from '../components/logger'
+import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('Selection')
 

@@ -4,7 +4,7 @@ import * as cs from 'cross-spawn'
 import * as fs from 'fs'
 import * as lw from '../../lw'
 import * as utils from '../../utils/utils'
-import { getLogger } from '../logger'
+import { getLogger } from '../../utils/logging/logger'
 
 const logger = getLogger('Cacher', 'Path')
 

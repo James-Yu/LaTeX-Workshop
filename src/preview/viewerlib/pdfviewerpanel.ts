@@ -1,12 +1,12 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as lw from '../../lw'
-import type {PanelRequest, PdfViewerState} from '../../../types/latex-workshop-protocol-types/index'
+import type { PanelRequest, PdfViewerState } from '../../../types/latex-workshop-protocol-types/index'
 import { escapeHtml, sleep } from '../../utils/utils'
 import { viewerManager } from './pdfviewermanager'
-import { ViewerStatusChanged } from '../eventbus'
+import { ViewerStatusChanged } from '../../core/event-bus'
 
-import { getLogger } from '../logger'
+import { getLogger } from '../../utils/logging/logger'
 
 const logger = getLogger('Viewer', 'Panel')
 

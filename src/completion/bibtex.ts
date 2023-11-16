@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as lw from '../lw'
-import { getBibtexFormatConfig, type BibtexFormatConfig } from './bibtexformatterlib/bibtexutils'
+import { getBibtexFormatConfig, type BibtexFormatConfig } from '../lint/bibtexformatterlib/bibtexutils'
 
-import { getLogger } from '../components/logger'
+import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('Intelli', 'Bib')
 

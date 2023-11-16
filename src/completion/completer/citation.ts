@@ -2,13 +2,13 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
 import * as lw from '../../lw'
-import * as eventbus from '../../components/eventbus'
+import * as eventbus from '../../core/event-bus'
 import {trimMultiLineString} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
-import type { IProvider, ICompletionItem, IProviderArgs } from '../completion'
-import { getLogger } from '../../components/logger'
-import { parser } from '../../components/parser'
-import { Cache } from '../../components/cacher'
+import type { IProvider, ICompletionItem, IProviderArgs } from '../latex'
+import { getLogger } from '../../utils/logging/logger'
+import { parser } from '../../parse/parser'
+import { Cache } from '../../core/cache'
 
 const logger = getLogger('Intelli', 'Citation')
 
@@ -277,7 +277,8 @@ export class Citation implements IProvider {
                 return
             }
             suggestions = suggestions.concat(cachedBibs.map(bib => {
-                return {...bib,
+                return {
+                    ...bib,
                     key: bib.label,
                     detail: bib.detail ? bib.detail : '',
                     file: cachedFile,

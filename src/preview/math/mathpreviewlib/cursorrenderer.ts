@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { TexMathEnv } from './texmathenvfinder'
 import type { ITextDocumentLike } from './textdocumentlike'
-import { parser } from '../../../components/parser'
-import { getLogger } from '../../../components/logger'
-import { findNode } from '../../selection'
+import { parser } from '../../../parse/parser'
+import { getLogger } from '../../../utils/logging/logger'
+import { findNode } from '../../../language/selection'
 
 const logger = getLogger('Preview', 'Math', 'Cursor')
 

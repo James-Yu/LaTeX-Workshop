@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as lw from '../lw'
-import {tokenizer} from './tokenizer'
+import { tokenizer } from '../utils/tokenizer'
 import * as utils from '../utils/utils'
 
 export class DefinitionProvider implements vscode.DefinitionProvider {

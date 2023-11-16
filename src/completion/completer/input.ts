@@ -3,10 +3,10 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
 import * as lw from '../../lw'
-import type { IProvider, IProviderArgs } from '../completion'
+import type { IProvider, IProviderArgs } from '../latex'
 
-import { getLogger } from '../../components/logger'
-import { Cache } from '../../components/cacher'
+import { getLogger } from '../../utils/logging/logger'
+import type { Cache } from '../../core/cache'
 
 const logger = getLogger('Intelli', 'Input')
 

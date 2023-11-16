@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
-import { TeXElement } from '../structure'
-import { parser } from '../../components/parser'
+import { TeXElement } from '../project'
+import { parser } from '../../parse/parser'
 import { outline } from './latex'
-import { getLogger } from '../../components/logger'
+import { getLogger } from '../../utils/logging/logger'
 
 const logger = getLogger('Structure', 'DocTeX')
 

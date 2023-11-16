@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
 import * as test from './utils'
-import { TextDocumentLike } from '../../src/providers/preview/mathpreviewlib/textdocumentlike'
-import { TeXMathEnvFinder } from '../../src/providers/preview/mathpreviewlib/texmathenvfinder'
-import { testTools } from '../../src/providers/preview/mathpreviewlib/cursorrenderer'
+import { TextDocumentLike } from '../../src/preview/math/mathpreviewlib/textdocumentlike'
+import { TeXMathEnvFinder } from '../../src/preview/math/mathpreviewlib/texmathenvfinder'
+import { testTools } from '../../src/preview/math/mathpreviewlib/cursorrenderer'
 
 suite('Math preview test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')

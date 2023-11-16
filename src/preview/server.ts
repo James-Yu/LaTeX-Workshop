@@ -7,7 +7,7 @@ import * as vscode from 'vscode'
 import * as lw from '../lw'
 import * as PdfFilePathEncoder from './serverlib/encodepath'
 import { EventEmitter } from 'events'
-import { getLogger } from './logger'
+import { getLogger } from '../utils/logging/logger'
 import { viewerManager } from './viewerlib/pdfviewermanager'
 
 const logger = getLogger('Server')

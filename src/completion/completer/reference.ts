@@ -5,9 +5,9 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
 import { getLongestBalancedString, stripEnvironments } from '../../utils/utils'
 import { computeFilteringRange } from './completerutils'
-import type { IProvider, ICompletionItem, IProviderArgs } from '../completion'
+import type { IProvider, ICompletionItem, IProviderArgs } from '../latex'
 import { argContentToStr } from '../../utils/parser'
-import { Cache } from '../../components/cacher'
+import { Cache } from '../../core/cache'
 
 export interface ReferenceEntry extends ICompletionItem {
     /** The file that defines the ref. */

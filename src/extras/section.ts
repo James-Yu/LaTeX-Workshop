@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import { stripCommentsAndVerbatim } from '../utils/utils'
-import { getLogger } from './logger'
+import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('Section')
 

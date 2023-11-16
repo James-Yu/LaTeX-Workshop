@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as cs from 'cross-spawn'
 import * as lw from '../lw'
-import { getLogger } from './logger'
+import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('TeXDoc')
 

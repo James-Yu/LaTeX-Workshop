@@ -5,7 +5,7 @@ import * as fs from 'fs'
 import * as os from 'os'
 import * as lw from '../lw'
 import {replaceArgumentPlaceholders} from '../utils/utils'
-import { getLogger } from '../components/logger'
+import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('Format', 'TeX')
 

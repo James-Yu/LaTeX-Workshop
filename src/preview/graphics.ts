@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as lw from '../../lw'
-import { getLogger } from '../../components/logger'
+import * as lw from '../lw'
+import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('Preview', 'Graphics')
 

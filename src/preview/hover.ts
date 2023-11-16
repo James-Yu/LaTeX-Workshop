@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import * as lw from '../lw'
-import { tokenizer, onAPackage } from './tokenizer'
-import { findProjectNewCommand } from './preview/mathpreviewlib/newcommandfinder'
-import { CmdEnvSuggestion } from './completer/completerutils'
+import { tokenizer, onAPackage } from '../utils/tokenizer'
+import { findProjectNewCommand } from '../preview/math/mathpreviewlib/newcommandfinder'
+import { CmdEnvSuggestion } from '../completion/completer/completerutils'
 
 export class HoverProvider implements vscode.HoverProvider {
     public async provideHover(document: vscode.TextDocument, position: vscode.Position, ctoken: vscode.CancellationToken): Promise<vscode.Hover | undefined> {
