@@ -24,7 +24,7 @@ export class Configuration {
     private readonly defaultConf: Configs
 
     constructor() {
-        this.defaultConf = (JSON.parse(readFileSync(path.resolve(__dirname, '../../../package.json')).toString()) as PackageJSON).contributes.configuration.properties
+        this.defaultConf = (JSON.parse(readFileSync(path.resolve(__dirname, '../../../../package.json')).toString()) as PackageJSON).contributes.configuration.properties
         this.logConfiguration()
         this.checkDeprecatedConfiguration()
         vscode.workspace.onDidChangeConfiguration((ev) => {
