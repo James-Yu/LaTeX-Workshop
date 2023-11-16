@@ -1,5 +1,16 @@
 # Change Log
 
+## [9.15.0] - 2023-11-16
+
+### Added
+- (#3966) Add option to include filename in status bar.
+
+### Fixed
+- Update to PDF.js v4.0.189.
+- (#4048) Gracefully fail `mkdirSync` during compile.
+- (#4052) Viewer refresh checks all steps instead of the last one.
+- (#4054) Custom editor follows `tab.editorGroup`.
+
 ## [9.14.1] - 2023-10-03
 
 ### Fixed
