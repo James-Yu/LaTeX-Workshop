@@ -22,10 +22,10 @@ window.addEventListener('message', async (event) => {
 
 // https://github.com/microsoft/vscode/issues/87282#issuecomment-919464403
 async function createPdfWorker() {
-    const result = await fetch(pdfjsDistUri + '/build/pdf.worker.js');
+    const result = await fetch(pdfjsDistUri + '/build/pdf.worker.mjs');
     const blob = await result.blob();
     const blobUrl = URL.createObjectURL(blob);
-    pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(blobUrl);
+    pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(blobUrl, { type: 'module' });
 }
 
 async function renderPdfFile(url, opts) {

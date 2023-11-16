@@ -12,30 +12,31 @@ with open(args.web + '/viewer.html', 'rt', encoding='utf-8') as fin:
             fout.write(
                 line.replace('''<title>PDF.js viewer</title>''', '''<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; connect-src 'self' ws://127.0.0.1:*; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;">\n    <title>PDF.js viewer</title>''')
                     .replace('''<link rel="stylesheet" href="viewer.css">''', '''<link rel="stylesheet" href="viewer.css">\n    <link rel="stylesheet" href="latexworkshop.css">''')
-                    .replace('''<script src="../build/pdf.js"></script>''', '''<script src="build/pdf.js" defer></script>''')
-                    .replace('''<script src="viewer.js"></script>''', '''<script src="out/viewer/latexworkshop.js" type="module"></script>''')
+                    .replace('''<script src="../build/pdf.mjs" type="module"></script>''', '''<script src="build/pdf.mjs" type="module"></script>''')
+                    .replace('''<script src="viewer.mjs" type="module"></script>''', '''<script src="out/viewer/latexworkshop.js" type="module"></script>''')
             )
 
-with open(args.web + '/viewer.js', 'rt', encoding='utf-8') as fin:
-    with open(args.viewer + '/viewer.js', 'wt', encoding='utf-8') as fout:
+with open(args.web + '/viewer.mjs', 'rt', encoding='utf-8') as fin:
+    with open(args.viewer + '/viewer.mjs', 'wt', encoding='utf-8') as fout:
         for line in fin:
             fout.write(
-                line.replace('''this.setTitle(title);''', '''// this.setTitle(title);''')
-                    .replace('''const MATCH_SCROLL_OFFSET_TOP = -50;''', '''const MATCH_SCROLL_OFFSET_TOP = -100;''')
+                line.replace('''const MATCH_SCROLL_OFFSET_TOP = -50;''', '''const MATCH_SCROLL_OFFSET_TOP = -100;''')
                     .replace('''this.switchView(view, true);''', '''this.switchView(view, false);''')
+                    .replace('''console.warn(`[fluent] Missing translations in ${locale}: ${ids}`);''', '''// console.warn(`[fluent] Missing translations in ${locale}: ${ids}`);''')
                     .replace('''this.removePageBorders = options.removePageBorders || false;''', '''this.removePageBorders = options.removePageBorders || true;''')
                     .replace('''localStorage.setItem("pdfjs.history", databaseStr);''', '''// localStorage.setItem("pdfjs.history", databaseStr);''')
                     .replace('''return localStorage.getItem("pdfjs.history");''', '''return // localStorage.getItem("pdfjs.history");''')
+                    .replace('''this.setTitle(title);''', '''// this.setTitle(title);''')
                     .replace('''localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));''', '''// localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));''')
-                    .replace('''return JSON.parse(localStorage.getItem("pdfjs.preferences"));''', '''return // JSON.parse(localStorage.getItem("pdfjs.preferences"));''')
-                    .replace('''console.warn('#' + key + ' is undefined.');''', '''// console.warn('#' + key + ' is undefined.');''')
+                    .replace('''prefs: JSON.parse(localStorage.getItem("pdfjs.preferences"))''', '''prefs: undefined // JSON.parse(localStorage.getItem("pdfjs.preferences"))''')
                     .replace('''(!event.shiftKey || window.chrome || window.opera)) {''', '''(!event.shiftKey || window.chrome || window.opera)) {\n    if (window.parent !== window) {\n      return;\n    }''')
                     .replace('''console.error(`webviewerloaded: ''', '''// console.error(`webviewerloaded: ''')
+                    .replace('''//# sourceMappingURL=viewer.mjs.map''', '''''')
                     .replace('''console.log(`PDF ${pdfDocument.''', '''// console.log(`PDF ${pdfDocument.''')
-                    # .replace('''pdfjsLib = require("../build/pdf.js");''','''pdfjsLib = require("./build/pdf.js");''')
-                    .replace('''value: "../build/pdf.worker.js",''', '''value: "./build/pdf.worker.js",''')
+                    .replace('''value: "../build/pdf.worker.mjs",''', '''value: "./build/pdf.worker.mjs",''')
+                    .replace('''value: "../build/pdf.sandbox.mjs",''', '''value: "./build/pdf.sandbox.mjs",''')
                     .replace('''parent.document.dispatchEvent(event);''', '''parent.document.dispatchEvent(event); \n    document.dispatchEvent(event);''')
                 )
 
 os.system(f'git diff --no-index {args.web}/viewer.html {args.viewer}/viewer.html > {args.viewer}/../dev/viewer/viewer.html.diff')
-os.system(f'git diff --no-index {args.web}/viewer.js {args.viewer}/viewer.js > {args.viewer}/../dev/viewer/viewer.js.diff')
+os.system(f'git diff --no-index {args.web}/viewer.mjs {args.viewer}/viewer.mjs > {args.viewer}/../dev/viewer/viewer.mjs.diff')

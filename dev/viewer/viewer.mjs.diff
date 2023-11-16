@@ -1,0 +1,132 @@
+diff --git a/../web/viewer.mjs b/viewer/viewer.mjs
+index 1326dc12..038d4c53 100644
+--- a/../web/viewer.mjs
++++ b/viewer/viewer.mjs
+@@ -795,7 +795,7 @@ const defaultOptions = {
+     kind: OptionKind.WORKER
+   },
+   workerSrc: {
+-    value: "../build/pdf.worker.mjs",
++    value: "./build/pdf.worker.mjs",
+     kind: OptionKind.WORKER
+   }
+ };
+@@ -813,7 +813,7 @@ const defaultOptions = {
+     kind: OptionKind.VIEWER
+   };
+   defaultOptions.sandboxBundleSrc = {
+-    value: "../build/pdf.sandbox.mjs",
++    value: "./build/pdf.sandbox.mjs",
+     kind: OptionKind.VIEWER
+   };
+ }
+@@ -2539,7 +2539,7 @@ const FindState = {
+   PENDING: 3
+ };
+ const FIND_TIMEOUT = 250;
+-const MATCH_SCROLL_OFFSET_TOP = -50;
++const MATCH_SCROLL_OFFSET_TOP = -100;
+ const MATCH_SCROLL_OFFSET_LEFT = -400;
+ const CHARACTERS_TO_NORMALIZE = {
+   "\u2010": "-",
+@@ -5136,7 +5136,7 @@ class PDFSidebar {
+       this.#dispatchEvent();
+       return;
+     }
+-    this.switchView(view, true);
++    this.switchView(view, false);
+     if (!this.isInitialEventDispatched) {
+       this.#dispatchEvent();
+     }
+@@ -6948,7 +6948,7 @@ class Localization {
+       if (typeof console !== "undefined") {
+         const locale = bundle.locales[0];
+         const ids = Array.from(missingIds).join(", ");
+-        console.warn(`[fluent] Missing translations in ${locale}: ${ids}`);
++        // console.warn(`[fluent] Missing translations in ${locale}: ${ids}`);
+       }
+     }
+     if (!hasAtLeastOneBundle && typeof console !== "undefined") {
+@@ -9089,7 +9089,7 @@ class PDFViewer {
+     this.#annotationEditorMode = options.annotationEditorMode ?? AnnotationEditorType.NONE;
+     this.imageResourcesPath = options.imageResourcesPath || "";
+     this.enablePrintAutoRotate = options.enablePrintAutoRotate || false;
+-    this.removePageBorders = options.removePageBorders || false;
++    this.removePageBorders = options.removePageBorders || true;
+     this.isOffscreenCanvasSupported = options.isOffscreenCanvasSupported ?? true;
+     this.maxCanvasPixels = options.maxCanvasPixels;
+     this.l10n = options.l10n || NullL10n;
+@@ -11034,10 +11034,10 @@ class ViewHistory {
+   }
+   async _writeToStorage() {
+     const databaseStr = JSON.stringify(this.database);
+-    localStorage.setItem("pdfjs.history", databaseStr);
++    // localStorage.setItem("pdfjs.history", databaseStr);
+   }
+   async _readFromStorage() {
+-    return localStorage.getItem("pdfjs.history");
++    return // localStorage.getItem("pdfjs.history");
+   }
+   async set(name, val) {
+     await this._initializedPromise;
+@@ -11597,7 +11597,7 @@ const PDFViewerApplication = {
+         title = url;
+       }
+     }
+-    this.setTitle(title);
++    // this.setTitle(title);
+   },
+   setTitle(title = this._title) {
+     this._title = title;
+@@ -12049,7 +12049,7 @@ const PDFViewerApplication = {
+     this.metadata = metadata;
+     this._contentDispositionFilename ??= contentDispositionFilename;
+     this._contentLength ??= contentLength;
+-    console.log(`PDF ${pdfDocument.fingerprints[0]} [${info.PDFFormatVersion} ` + `${(info.Producer || "-").trim()} / ${(info.Creator || "-").trim()}] ` + `(PDF.js: ${version || "?"} [${build || "?"}])`);
++    // console.log(`PDF ${pdfDocument.fingerprints[0]} [${info.PDFFormatVersion} ` + `${(info.Producer || "-").trim()} / ${(info.Creator || "-").trim()}] ` + `(PDF.js: ${version || "?"} [${build || "?"}])`);
+     let pdfTitle = info.Title;
+     const metadataTitle = metadata?.get("dc:title");
+     if (metadataTitle) {
+@@ -13630,11 +13630,11 @@ class GenericScripting {
+ const GenericCom = {};
+ class GenericPreferences extends BasePreferences {
+   async _writeToStorage(prefObj) {
+-    localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));
++    // localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));
+   }
+   async _readFromStorage(prefObj) {
+     return {
+-      prefs: JSON.parse(localStorage.getItem("pdfjs.preferences"))
++      prefs: undefined // JSON.parse(localStorage.getItem("pdfjs.preferences"))
+     };
+   }
+ }
+@@ -13884,6 +13884,9 @@ function renderProgress(index, total) {
+ }
+ window.addEventListener("keydown", function (event) {
+   if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
++    if (window.parent !== window) {
++      return;
++    }
+     window.print();
+     event.preventDefault();
+     event.stopImmediatePropagation();
+@@ -14077,9 +14080,10 @@ function webViewerLoad() {
+     }
+   });
+   try {
+-    parent.document.dispatchEvent(event);
++    parent.document.dispatchEvent(event); 
++    document.dispatchEvent(event);
+   } catch (ex) {
+-    console.error(`webviewerloaded: ${ex}`);
++    // console.error(`webviewerloaded: ${ex}`);
+     document.dispatchEvent(event);
+   }
+   PDFViewerApplication.run(config);
+@@ -14096,4 +14100,3 @@ var __webpack_exports__PDFViewerApplicationConstants = __webpack_exports__.PDFVi
+ var __webpack_exports__PDFViewerApplicationOptions = __webpack_exports__.PDFViewerApplicationOptions;
+ export { __webpack_exports__PDFViewerApplication as PDFViewerApplication, __webpack_exports__PDFViewerApplicationConstants as PDFViewerApplicationConstants, __webpack_exports__PDFViewerApplicationOptions as PDFViewerApplicationOptions };
+ 
+-//# sourceMappingURL=viewer.mjs.map
+\ No newline at end of file
