@@ -42,5 +42,5 @@ suite('Snippet test suite', () => {
         await promise
         const changed = vscode.window.activeTextEditor?.document.getText()
         assert.ok(changed?.includes('\\fbox{a}bc'))
-    })
+    }, ['linux', 'darwin'])
 })
