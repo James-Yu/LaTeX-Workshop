@@ -771,5 +771,3 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
 const extension = new LateXWorkshopPdfViewer()
 await extension.waitSetupAppOptionsFinished()
-// @ts-expect-error
-await import('../../viewer/viewer.mjs')
