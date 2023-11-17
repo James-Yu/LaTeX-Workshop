@@ -1,6 +1,6 @@
 import vscode from 'vscode'
 import path from 'path'
-import { Builder } from './compile/compile'
+import { Builder } from './compile/build'
 import { Cacher } from './core/cache'
 import { Cleaner } from './extras/cleaner'
 import { LaTeXCommanderTreeView } from './extras/activity-bar'
