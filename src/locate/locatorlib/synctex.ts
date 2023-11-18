@@ -6,10 +6,9 @@ import type { SyncTeXRecordForward, SyncTeXRecordBackward } from '../synctex'
 import { PdfSyncObject, parseSyncTex, Block } from '../synctexjs'
 import { iconvLiteSupportedEncodings } from '../../utils/convertfilename'
 import { isSameRealPath } from '../../utils/pathnormalize'
+import { extension } from '../../extension'
 
-import { getLogger } from '../../utils/logging/logger'
-
-const logger = getLogger('SyncTeX')
+const logger = extension.log('SyncTeX')
 
 class Rectangle {
     readonly top: number

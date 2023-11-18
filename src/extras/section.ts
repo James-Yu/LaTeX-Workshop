@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import { stripCommentsAndVerbatim } from '../utils/utils'
-import { getLogger } from '../utils/logging/logger'
+import { extension } from '../extension'
 
-const logger = getLogger('Section')
+const logger = extension.log('Section')
 
 interface MatchSection {
     level: string,

@@ -4,9 +4,9 @@ import * as cs from 'cross-spawn'
 import * as fs from 'fs'
 import * as lw from '../../lw'
 import * as utils from '../../utils/utils'
-import { getLogger } from '../../utils/logging/logger'
+import { extension } from '../../extension'
 
-const logger = getLogger('Cacher', 'Path')
+const logger = extension.log('Cacher', 'Path')
 
 /**
  * Search for a `.fls` file associated to a tex file

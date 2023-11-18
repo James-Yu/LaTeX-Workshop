@@ -5,11 +5,10 @@ import { construct as constructLaTeX } from './structurelib/latex'
 import { buildBibTeX } from './structurelib/bibtex'
 import { construct as constructDocTeX } from './structurelib/doctex'
 
-import { getLogger } from '../utils/logging/logger'
 import { parser } from '../parse/parser'
 import { extension } from '../extension'
 
-const logger = getLogger('Structure')
+const logger = extension.log('Structure')
 
 export enum TeXElementType { Environment, Command, Section, SectionAst, SubFile, BibItem, BibField }
 

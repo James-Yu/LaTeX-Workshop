@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as lw from '../lw'
 import { chkTeX } from './linterlib/chktex'
 import { laCheck } from './linterlib/lacheck'
-import { getLogger } from '../utils/logging/logger'
+import { extension } from '../extension'
 
-const logger = getLogger('Linter')
+const logger = extension.log('Linter')
 
 export interface ILinter {
     readonly linterDiagnostics: vscode.DiagnosticCollection,

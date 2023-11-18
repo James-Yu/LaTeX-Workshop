@@ -4,28 +4,23 @@ import * as cs from 'cross-spawn'
 import * as lw from '../lw'
 import { AutoBuildInitiated, AutoCleaned, BuildDone } from '../core/event-bus'
 import { rootFile as pickRootFile } from '../utils/quick-pick'
-import { getLogger } from '../utils/logging/logger'
 import { parser } from '../parse/parser'
 import { BIB_MAGIC_PROGRAM_NAME, MAGIC_PROGRAM_ARGS_SUFFIX, MAX_PRINT_LINE, TEX_MAGIC_PROGRAM_NAME, build as buildRecipe } from './recipe'
 import { build as buildExternal } from './external'
 import { queue } from './queue'
 
 import { extension } from '../extension'
-import type { Watcher } from '../core/watcher'
 import type { ProcessEnv, Step } from '.'
 
-const logger = getLogger('Build')
+const logger = extension.log('Build')
 
 export {
-    initialize,
     autoBuild,
     build,
 }
 
-function initialize(src: Watcher, bib: Watcher) {
-    src.onChange(filePath => autoBuild(filePath, 'onFileChange'))
-    bib.onChange(filePath => autoBuild(filePath, 'onFileChange', true))
-}
+extension.watcher.src.onChange(filePath => autoBuild(filePath, 'onFileChange'))
+extension.watcher.bib.onChange(filePath => autoBuild(filePath, 'onFileChange', true))
 
 function autoBuild(file: string, type: 'onFileChange' | 'onSave',  bibChanged: boolean = false) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))

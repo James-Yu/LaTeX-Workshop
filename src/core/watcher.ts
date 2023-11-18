@@ -3,10 +3,10 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as lw from '../lw'
 import * as eventbus from './event-bus'
-import { getLogger } from '../utils/logging/logger'
 import { isBinary } from './root-file'
+import { extension } from '../extension'
 
-const logger = getLogger('Cacher', 'Watcher')
+const logger = extension.log('Cacher', 'Watcher')
 
 export class Watcher {
     private readonly watchers: {[folder: string]: {watcher: vscode.FileSystemWatcher, files: Set<string>}} = {}

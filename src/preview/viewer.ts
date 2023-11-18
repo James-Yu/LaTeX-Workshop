@@ -11,11 +11,10 @@ import { Client } from './viewerlib/client'
 import { createPdfViewerPanel } from './viewerlib/pdfviewerpanel'
 import { viewerManager } from './viewerlib/pdfviewermanager'
 import { ViewerPageLoaded } from '../core/event-bus'
-import { getLogger } from '../utils/logging/logger'
 import { moveActiveEditor } from '../utils/webview'
 import { extension } from '../extension'
 
-const logger = getLogger('Viewer')
+const logger = extension.log('Viewer')
 
 export type ViewerMode = 'browser' | 'tab' | 'external' | 'legacy' | 'singleton'
 

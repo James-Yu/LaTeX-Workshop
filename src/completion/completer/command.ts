@@ -7,11 +7,10 @@ import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, fil
 import {SurroundCommand} from './commandlib/surround'
 import { Environment, EnvSnippetType } from './environment'
 
-import { getLogger } from '../../utils/logging/logger'
 import type { FileCache } from '../../types'
 import { extension } from '../../extension'
 
-const logger = getLogger('Intelli', 'Command')
+const logger = extension.log('Intelli', 'Command')
 
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 

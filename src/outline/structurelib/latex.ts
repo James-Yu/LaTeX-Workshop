@@ -6,11 +6,10 @@ import { TeXElement, TeXElementType } from '../project'
 import { resolveFile } from '../../utils/utils'
 import { InputFileRegExp } from '../../utils/inputfilepath'
 
-import { getLogger } from '../../utils/logging/logger'
 import { argContentToStr } from '../../utils/parser'
 import { extension } from '../../extension'
 
-const logger = getLogger('Structure', 'LaTeX')
+const logger = extension.log('Structure', 'LaTeX')
 
 type StructureConfig = {
     // The LaTeX commands to be extracted.

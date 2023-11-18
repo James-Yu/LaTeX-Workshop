@@ -3,10 +3,10 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 import { TexMathEnv } from './texmathenvfinder'
 import type { ITextDocumentLike } from './textdocumentlike'
 import { parser } from '../../../parse/parser'
-import { getLogger } from '../../../utils/logging/logger'
 import { findNode } from '../../../language/selection'
+import { extension } from '../../../extension'
 
-const logger = getLogger('Preview', 'Math', 'Cursor')
+const logger = extension.log('Preview', 'Math', 'Cursor')
 
 const cache: {
     texString?: string,

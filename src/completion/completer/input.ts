@@ -5,10 +5,10 @@ import * as micromatch from 'micromatch'
 import * as lw from '../../lw'
 import type { IProvider, IProviderArgs } from '../latex'
 
-import { getLogger } from '../../utils/logging/logger'
 import { type FileCache } from '../../types'
+import { extension } from '../../extension'
 
-const logger = getLogger('Intelli', 'Input')
+const logger = extension.log('Intelli', 'Input')
 
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 

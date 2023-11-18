@@ -1,9 +1,8 @@
 import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import { getLogger } from '../utils/logging/logger'
 import { extension } from '../extension'
 
-const logger = getLogger('Selection')
+const logger = extension.log('Selection')
 
 function inNode(position: vscode.Position, node: Ast.Node) {
     if (node.position === undefined) {

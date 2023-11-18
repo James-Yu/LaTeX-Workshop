@@ -9,9 +9,9 @@ import { findProjectNewCommand } from './mathpreviewlib/newcommandfinder'
 import { TexMathEnv, TeXMathEnvFinder } from './mathpreviewlib/texmathenvfinder'
 import { HoverPreviewOnRefProvider } from './mathpreviewlib/hoverpreviewonref'
 import { MathPreviewUtils } from './mathpreviewlib/mathpreviewutils'
-import { getLogger } from '../../utils/logging/logger'
+import { extension } from '../../extension'
 
-const logger = getLogger('Preview', 'Math')
+const logger = extension.log('Preview', 'Math')
 
 export type { TexMathEnv } from './mathpreviewlib/texmathenvfinder'
 

@@ -2,11 +2,10 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as lw from './lw'
 import { getSurroundingCommandRange, stripText } from './utils/utils'
-import { getLogger } from './utils/logging/logger'
 import { parser } from './parse/parser'
 import { extension } from './extension'
 
-const logger = getLogger('Commander')
+const logger = extension.log('Commander')
 
 export async function build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
     logger.log('BUILD command invoked.')

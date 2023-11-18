@@ -2,10 +2,9 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as lw from '../lw'
 import { getBibtexFormatConfig, type BibtexFormatConfig } from '../lint/bibtexformatterlib/bibtexutils'
+import { extension } from '../extension'
 
-import { getLogger } from '../utils/logging/logger'
-
-const logger = getLogger('Intelli', 'Bib')
+const logger = extension.log('Intelli', 'Bib')
 
 type DataBibtexJsonType = typeof import('../../data/bibtex-entries.json')
 type DataBibtexOptionalJsonType = typeof import('../../data/bibtex-optional-entries.json')

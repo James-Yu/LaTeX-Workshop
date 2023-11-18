@@ -4,9 +4,9 @@ import { MathJaxPool } from '../mathjaxpool'
 import type { ReferenceEntry } from '../../../completion/completer/reference'
 import type { TexMathEnv } from './texmathenvfinder'
 import { MathPreviewUtils } from './mathpreviewutils'
-import { getLogger } from '../../../utils/logging/logger'
+import { extension } from '../../../extension'
 
-const logger = getLogger('Preview', 'Hover')
+const logger = extension.log('Preview', 'Hover')
 
 export class HoverPreviewOnRefProvider {
     static async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refData: ReferenceEntry, color: string): Promise<vscode.Hover> {

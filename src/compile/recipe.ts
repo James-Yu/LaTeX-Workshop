@@ -3,13 +3,12 @@ import path from 'path'
 import fs from 'fs'
 import * as cp from 'child_process'
 import * as lw from '../lw'
-import { getLogger } from '../utils/logging/logger'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { queue } from './queue'
 import type { Recipe, Tool } from '.'
 import { extension } from '../extension'
 
-const logger = getLogger('Build', 'Recipe')
+const logger = extension.log('Build', 'Recipe')
 
 export const TEX_MAGIC_PROGRAM_NAME = 'TEX_MAGIC_PROGRAM_NAME'
 export const BIB_MAGIC_PROGRAM_NAME = 'BIB_MAGIC_PROGRAM_NAME'

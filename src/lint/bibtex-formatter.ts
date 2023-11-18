@@ -2,10 +2,10 @@ import * as vscode from 'vscode'
 import { bibtexParser } from 'latex-utensils'
 import { performance } from 'perf_hooks'
 import * as BibtexUtils from './bibtexformatterlib/bibtexutils'
-import { getLogger } from '../utils/logging/logger'
 import { parser } from '../parse/parser'
+import { extension } from '../extension'
 
-const logger = getLogger('Format', 'Bib')
+const logger = extension.log('Format', 'Bib')
 
 const duplicatesDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection('BibTeX')
 const diags: vscode.Diagnostic[] = []

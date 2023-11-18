@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { readFileSync } from 'fs'
-import { getLogger } from './logger'
+import { extension } from '../../extension'
 
-const logger = getLogger('Config')
+const logger = extension.log('Config')
 
 type Configs = {
     [config: string]: {

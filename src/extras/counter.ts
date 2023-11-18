@@ -3,9 +3,9 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
 import * as lw from '../lw'
-import { getLogger } from '../utils/logging/logger'
+import { extension } from '../extension'
 
-const logger = getLogger('Counter')
+const logger = extension.log('Counter')
 
 export class Counter {
     private useDocker: boolean = false

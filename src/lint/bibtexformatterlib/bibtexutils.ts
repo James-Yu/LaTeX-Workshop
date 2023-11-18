@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
-import {bibtexParser} from 'latex-utensils'
-import { getLogger } from '../../utils/logging/logger'
+import { bibtexParser } from 'latex-utensils'
+import { extension } from '../../extension'
 
-const logger = getLogger('Format', 'Bib')
+const logger = extension.log('Format', 'Bib')
 
 export declare type BibtexEntry = bibtexParser.Entry | bibtexParser.StringEntry
 

@@ -7,10 +7,10 @@ import * as vscode from 'vscode'
 import * as lw from '../lw'
 import * as PdfFilePathEncoder from './serverlib/encodepath'
 import { EventEmitter } from 'events'
-import { getLogger } from '../utils/logging/logger'
 import { viewerManager } from './viewerlib/pdfviewermanager'
+import { extension } from '../extension'
 
-const logger = getLogger('Server')
+const logger = extension.log('Server')
 
 class WsServer extends ws.Server {
     private readonly validOrigin: string

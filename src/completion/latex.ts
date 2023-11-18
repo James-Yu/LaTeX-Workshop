@@ -16,9 +16,9 @@ import { Input, Import, SubImport } from './completer/input'
 import { Glossary } from './completer/glossary'
 import type { ReferenceDocType } from './completer/reference'
 import { escapeRegExp } from '../utils/utils'
-import { getLogger } from '../utils/logging/logger'
+import { extension } from '../extension'
 
-const logger = getLogger('Intelli')
+const logger = extension.log('Intelli')
 
 export type PkgType = {includes: {[key: string]: string[]}, cmds: {[key: string]: CmdType}, envs: {[key: string]: EnvType}, options: string[], keyvals: string[][]}
 

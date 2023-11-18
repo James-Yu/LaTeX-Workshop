@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import { TeXElement } from '../project'
 import { parser } from '../../parse/parser'
 import { outline } from './latex'
-import { getLogger } from '../../utils/logging/logger'
+import { extension } from '../../extension'
 
-const logger = getLogger('Structure', 'DocTeX')
+const logger = extension.log('Structure', 'DocTeX')
 
 export async function construct(document: vscode.TextDocument): Promise<TeXElement[]> {
     const content = document.getText()

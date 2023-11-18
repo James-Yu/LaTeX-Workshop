@@ -2,11 +2,10 @@ import * as vscode from 'vscode'
 import { bibtexParser } from 'latex-utensils'
 import { TeXElement, TeXElementType } from '../project'
 import { parser } from '../../parse/parser'
-
-import { getLogger } from '../../utils/logging/logger'
 import { bibTools } from '../../completion/completer/citation'
+import { extension } from '../../extension'
 
-const logger = getLogger('Structure', 'BibTeX')
+const logger = extension.log('Structure', 'BibTeX')
 
 /**
 * Convert a bibtexParser.FieldValue to a string

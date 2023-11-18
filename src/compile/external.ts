@@ -1,13 +1,12 @@
 import vscode from 'vscode'
 import * as lw from '../lw'
 import type { Tool } from '.'
-import { getLogger } from '../utils/logging/logger'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { queue } from './queue'
 
 import { extension } from '../extension'
 
-const logger = getLogger('Build', 'External')
+const logger = extension.log('Build', 'External')
 
 /**
  * Build LaTeX project using external command. This function creates a

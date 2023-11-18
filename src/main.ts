@@ -1,4 +1,11 @@
 import * as vscode from 'vscode'
+
+import { extension } from './extension'
+extension.log = require('./utils/logging/logger').getLogger
+extension.watcher = require('./core/watcher').watcher
+extension.cache = require('./core/cache').cache
+extension.compile = require('./compile').compile
+
 import { Viewer, pdfViewerHookProvider, pdfViewerPanelSerializer } from './preview/viewer'
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
 import { BibtexCompleter } from './completion/bibtex'
@@ -10,27 +17,12 @@ import { latexFormatterProvider } from './lint/latex-formatter'
 import { FoldingProvider, WeaveFoldingProvider } from './language/folding'
 import { SelectionRangeProvider } from './language/selection'
 import { bibtexFormat, bibtexFormatterProvider } from './lint/bibtex-formatter'
-import { getLogger } from './utils/logging/logger'
 import { DocumentChanged } from './core/event-bus'
-
-import { extension } from './extension'
-import { watcher } from './core/watcher'
-import { cache } from './core/cache'
-import { compile } from './compile'
-extension.watcher = watcher
-extension.cache = cache
-extension.compile = compile
-
 import * as lw from './lw'
 
-const logger = getLogger('Extension')
+const logger = extension.log('Extension')
 
 function initialize() {
-    extension.watcher = watcher
-    extension.cache = cache
-    extension.compile = compile
-
-    cache.initialize(watcher.src)
     lw.manager.initialize()
     lw.completer.citation.initialize()
 
@@ -100,7 +92,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         }
         lw.eventBus.fire(DocumentChanged)
         lw.linter.lintActiveFileIfEnabledAfterInterval(e.document)
-        cache.refreshCacheAggressive(e.document.fileName)
+        extension.cache.refreshCacheAggressive(e.document.fileName)
     }))
 
     lw.registerDisposable(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {

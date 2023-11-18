@@ -3,11 +3,10 @@ import * as fs from 'fs'
 import * as lw from '../lw'
 import * as CacherUtils from './cacherlib/cacherutils'
 import * as PathUtils from './cacherlib/pathutils'
-import { getLogger } from '../utils/logging/logger'
 
 import { extension } from '../extension'
 
-const logger = getLogger('Project')
+const logger = extension.log('Project')
 
 export {
     getIncludedBib,

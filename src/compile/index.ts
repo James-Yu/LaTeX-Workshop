@@ -1,9 +1,8 @@
 import type { ChildProcessWithoutNullStreams } from 'child_process'
-import { initialize, build, autoBuild } from './build'
+import { build, autoBuild } from './build'
 import { terminate } from './terminate'
 
 export const compile = {
-    initialize,
     build,
     autoBuild,
     terminate,

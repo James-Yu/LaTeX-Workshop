@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as lw from '../../lw'
 import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserutils'
-import { getLogger } from '../../utils/logging/logger'
+import { extension } from '../../extension'
 
-const logger = getLogger('Parser', 'TexLog')
+const logger = extension.log('Parser', 'TexLog')
 
 const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/

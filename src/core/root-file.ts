@@ -6,11 +6,10 @@ import * as tmp from 'tmp'
 import * as utils from '../utils/utils'
 import * as lw from '../lw'
 import * as eventbus from './event-bus'
-import { getLogger } from '../utils/logging/logger'
 
 import { extension } from '../extension'
 
-const logger = getLogger('Manager')
+const logger = extension.log('Manager')
 
 type RootFileType = {
     type: 'filePath',

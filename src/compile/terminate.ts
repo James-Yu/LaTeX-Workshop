@@ -1,9 +1,8 @@
 import * as cp from 'child_process'
-import { getLogger } from '../utils/logging/logger'
 import { queue } from './queue'
 import { extension } from '../extension'
 
-const logger = getLogger('Build', 'Recipe')
+const logger = extension.log('Build', 'Recipe')
 
 /**
  * Terminate current process of LaTeX building. OS-specific (pkill for linux

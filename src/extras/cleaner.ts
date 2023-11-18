@@ -5,10 +5,9 @@ import { glob } from 'glob'
 import * as cs from 'cross-spawn'
 import * as lw from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
+import { extension } from '../extension'
 
-import { getLogger } from '../utils/logging/logger'
-
-const logger = getLogger('Cleaner')
+const logger = extension.log('Cleaner')
 
 /**
  * Removes the duplicate elements. Note that the order of the sequence will not be preserved.

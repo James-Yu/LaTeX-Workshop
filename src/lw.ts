@@ -23,7 +23,6 @@ import { AtSuggestionCompleter, Completer } from './completion/latex'
 import { GraphicsPreview } from './preview/graphics'
 import { MathPreview } from './preview/math/mathpreview'
 import { StructureView } from './outline/project'
-import { getLogger } from './utils/logging/logger'
 import { TeXDoc } from './extras/texdoc'
 import { MathJaxPool } from './preview/math/mathjaxpool'
 import { extension } from './extension'
@@ -71,7 +70,7 @@ export const graphicsPreview = new GraphicsPreview()
 export const mathPreview = new MathPreview()
 export const mathPreviewPanel = new MathPreviewPanel()
 
-const logger = getLogger('Extension')
+const logger = extension.log('Extension')
 
 export function init(extensionContext: vscode.ExtensionContext) {
     context = extensionContext

@@ -5,11 +5,10 @@ import * as lw from '../../lw'
 import type { ICompletionItem, IProvider, IProviderArgs } from '../latex'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 
-import { getLogger } from '../../utils/logging/logger'
 import type { FileCache } from '../../types'
 import { extension } from '../../extension'
 
-const logger = getLogger('Intelli', 'Environment')
+const logger = extension.log('Intelli', 'Environment')
 
 export type EnvType = {
     /** Name of the environment, what comes inside \begin{...} */

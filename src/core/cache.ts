@@ -7,22 +7,19 @@ import * as CacherUtils from './cacherlib/cacherutils'
 import * as PathUtils from './cacherlib/pathutils'
 import * as utils from '../utils/utils'
 import { InputFileRegExp } from '../utils/inputfilepath'
-import { getLogger } from '../utils/logging/logger'
 import { parser } from '../parse/parser'
 import { performance } from 'perf_hooks'
 
 import { extension } from '../extension'
 import type { FileCache } from '../types'
-import type { Watcher } from './watcher'
 import { getIncludedTeX, getIncludedBib, getTeXChildren, getFlsChildren } from './project'
 
-const logger = getLogger('Cacher')
+const logger = extension.log('Cacher')
 
 const caches: {[filePath: string]: FileCache | undefined} = {}
 const promises: {[filePath: string]: Promise<void> | undefined} = {}
 
 export const cache = {
-    initialize,
     add,
     get,
     paths,
@@ -38,23 +35,17 @@ export const cache = {
     loadFlsFile
 }
 
-export const testUtils = {
-    caches
-}
-
-function initialize(watcher: Watcher) {
-    watcher.onChange((filePath: string) => {
-        if (CacherUtils.canCache(filePath)) {
-            void refreshCache(filePath)
-        }
-    })
-    watcher.onDelete((filePath: string) => {
-        if (filePath in caches) {
-            delete caches[filePath]
-            logger.log(`Removed ${filePath} .`)
-        }
-    })
-}
+extension.watcher.src.onChange((filePath: string) => {
+    if (CacherUtils.canCache(filePath)) {
+        void refreshCache(filePath)
+    }
+})
+extension.watcher.src.onDelete((filePath: string) => {
+    if (filePath in caches) {
+        delete caches[filePath]
+        logger.log(`Removed ${filePath} .`)
+    }
+})
 
 function add(filePath: string) {
     if (CacherUtils.isExcluded(filePath)) {

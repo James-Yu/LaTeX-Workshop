@@ -7,11 +7,10 @@ import * as eventbus from '../../core/event-bus'
 import { trimMultiLineString } from '../../utils/utils'
 import { computeFilteringRange } from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../latex'
-import { getLogger } from '../../utils/logging/logger'
 import { parser } from '../../parse/parser'
 import { extension } from '../../extension'
 
-const logger = getLogger('Intelli', 'Citation')
+const logger = extension.log('Intelli', 'Citation')
 
 class Fields extends Map<string, string> {
 
