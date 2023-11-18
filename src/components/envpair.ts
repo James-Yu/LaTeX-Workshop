@@ -176,6 +176,16 @@ export class EnvPair {
                     return currentCommandPair
                 }
             }
+            // #4063
+            if (node.content === 'item' && node.args) {
+                for (let argIndex = 0; argIndex < node.args.length; argIndex++) {
+                    for (let index = 0; index < node.args[argIndex].content.length; index++) {
+                        const subnode = node.args[argIndex].content[index]
+                        const subnext = index === node.args[argIndex].content.length - 1 ? undefined : node.args[argIndex].content[index + 1]
+                        parentCommandPair = this.buildCommandPairTreeFromNode(doc, subnode, subnext, parentCommandPair, commandPairs)
+                    }
+                }
+            }
         }
         return parentCommandPair
     }
