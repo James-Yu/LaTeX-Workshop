@@ -21,7 +21,7 @@ export const StructureUpdated = 'STRUCTURE_UPDATED'
 export const AutoCleaned = 'AUTO_CLEANED'
 
 export type EventArgs = {
-    [AutoBuildInitiated]: {type: 'onChange' | 'onSave', file: string},
+    [AutoBuildInitiated]: {type: 'onFileChange' | 'onSave', file: string},
     [RootFileChanged]: string,
     [FileParsed]: string,
     [ViewerStatusChanged]: PdfViewerState,

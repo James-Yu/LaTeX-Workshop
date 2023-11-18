@@ -7,7 +7,8 @@ import { getLongestBalancedString, stripEnvironments } from '../../utils/utils'
 import { computeFilteringRange } from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../latex'
 import { argContentToStr } from '../../utils/parser'
-import { Cache } from '../../core/cache'
+import type { FileCache } from '../../types'
+import { extension } from '../../extension'
 
 export interface ReferenceEntry extends ICompletionItem {
     /** The file that defines the ref. */
@@ -84,9 +85,9 @@ export class Reference implements IProvider {
             // The process adds newly included file recursively, only stops when
             // all have been found, i.e., no new ones
             const startSize = included.size
-            included.forEach(cachedFile => {
-                lw.cacher.getIncludedTeX(cachedFile).forEach(includedTeX => {
-                    if (includedTeX === cachedFile) {
+            included.forEach(filePath => {
+                extension.cache.getIncludedTeX(filePath).forEach(includedTeX => {
+                    if (includedTeX === filePath) {
                         return
                     }
                     included.add(includedTeX)
@@ -95,11 +96,11 @@ export class Reference implements IProvider {
                     // removed as it can be directly referenced without.
                     delete prefixes[includedTeX]
                 })
-                const cache = lw.cacher.get(cachedFile)
-                if (!cache) {
+                const fileCache = extension.cache.get(filePath)
+                if (!fileCache) {
                     return
                 }
-                Object.keys(cache.external).forEach(external => {
+                Object.keys(fileCache.external).forEach(external => {
                     // Don't repeatedly add, no matter previously by \input or
                     // `xr`
                     if (included.has(external)) {
@@ -108,7 +109,7 @@ export class Reference implements IProvider {
                     // If the file is included by `xr`, both file path and
                     // prefix is recorded.
                     included.add(external)
-                    prefixes[external] = cache.external[external]
+                    prefixes[external] = fileCache.external[external]
                 })
             })
             if (included.size === startSize) {
@@ -123,8 +124,8 @@ export class Reference implements IProvider {
             range = computeFilteringRange(line, position)
         }
 
-        included.forEach(cachedFile => {
-            const cachedRefs = lw.cacher.get(cachedFile)?.elements.reference
+        included.forEach(filePath => {
+            const cachedRefs = extension.cache.get(filePath)?.elements.reference
             if (cachedRefs === undefined) {
                 return
             }
@@ -132,10 +133,10 @@ export class Reference implements IProvider {
                 if (ref.range === undefined) {
                     return
                 }
-                const label = (cachedFile in prefixes ? prefixes[cachedFile] : '') + ref.label
+                const label = (filePath in prefixes ? prefixes[filePath] : '') + ref.label
                 this.suggestions.set(label, {...ref,
                     label,
-                    file: cachedFile,
+                    file: filePath,
                     position: 'inserting' in ref.range ? ref.range.inserting.start : ref.range.start,
                     range,
                     prevIndex: this.prevIndexObj.get(label)
@@ -151,7 +152,7 @@ export class Reference implements IProvider {
         })
     }
 
-    parse(cache: Cache) {
+    parse(cache: FileCache) {
         if (cache.ast !== undefined) {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const labelMacros = configuration.get('intellisense.label.command') as string[]

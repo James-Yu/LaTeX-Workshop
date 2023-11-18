@@ -7,6 +7,7 @@ import { construct as constructDocTeX } from './structurelib/doctex'
 
 import { getLogger } from '../utils/logging/logger'
 import { parser } from '../parse/parser'
+import { extension } from '../extension'
 
 const logger = getLogger('Structure')
 
@@ -68,8 +69,8 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
             if (ev.affectsConfiguration('latex-workshop.view.outline.sections') ||
                 ev.affectsConfiguration('latex-workshop.view.outline.commands')) {
                 await parser.reset()
-                lw.cacher.allPaths.forEach(async filePath => {
-                    const ast = lw.cacher.get(filePath)?.ast
+                extension.cache.paths().forEach(async filePath => {
+                    const ast = extension.cache.get(filePath)?.ast
                     if (ast) {
                         await parser.parseArgs(ast)
                     }

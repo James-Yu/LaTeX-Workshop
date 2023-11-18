@@ -8,6 +8,7 @@ import { replaceArgumentPlaceholders } from '../utils/utils'
 import { isSameRealPath } from '../utils/pathnormalize'
 import type { ClientRequest } from '../../types/latex-workshop-protocol-types'
 import { getLogger } from '../utils/logging/logger'
+import { extension } from '../extension'
 
 const logger = getLogger('Locator')
 
@@ -307,14 +308,14 @@ export class Locator {
         // kpathsea/SyncTeX follow symlinks.
         // see http://tex.stackexchange.com/questions/25578/why-is-synctex-in-tl-2011-so-fussy-about-filenames.
         // We compare the return of symlink with the files list in the texFileTree and try to pickup the correct one.
-        for (const ed of lw.cacher.allPaths) {
+        for (const filePath of extension.cache.paths()) {
             try {
-                if (isSameRealPath(record.input, ed)) {
-                    record.input = ed
+                if (isSameRealPath(record.input, filePath)) {
+                    record.input = filePath
                     break
                 }
             } catch(e) {
-                logger.logError(`Backward SyncTeX failed on isSameRealPath() with ${record.input} and ${ed} .`, e)
+                logger.logError(`Backward SyncTeX failed on isSameRealPath() with ${record.input} and ${filePath} .`, e)
             }
         }
 

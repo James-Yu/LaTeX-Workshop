@@ -4,8 +4,9 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
 import type { IProvider } from '../latex'
 import { argContentToStr } from '../../utils/parser'
-import { Cache } from '../../core/cache'
 import { kpsewhich } from '../../core/cacherlib/pathutils'
+import type { FileCache } from '../../types'
+import { extension } from '../../extension'
 
 type DataPackagesJsonType = typeof import('../../../data/packagenames.json')
 
@@ -74,12 +75,12 @@ export class Package implements IProvider {
             .filter(packageName => !excluded.includes(packageName))
             .forEach(packageName => packages[packageName] = [])
 
-        lw.cacher.getIncludedTeX().forEach(tex => {
-            const included = lw.cacher.get(tex)?.elements.package
-            if (included === undefined) {
+        extension.cache.getIncludedTeX().forEach(filePath => {
+            const pkgCache = extension.cache.get(filePath)?.elements.package
+            if (pkgCache === undefined) {
                 return
             }
-            Object.entries(included)
+            Object.entries(pkgCache)
                 .filter(([packageName, ]) => !excluded.includes(packageName))
                 .forEach(([packageName, options]) => packages[packageName] = options)
         })
@@ -106,7 +107,7 @@ export class Package implements IProvider {
         return packages
     }
 
-    parse(cache: Cache) {
+    parse(cache: FileCache) {
         if (cache.ast !== undefined) {
             cache.elements.package = this.parseAst(cache.ast)
         } else {

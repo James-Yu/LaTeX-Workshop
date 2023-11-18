@@ -3,6 +3,7 @@ import * as lw from '../../lw'
 import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserutils'
 
 import { getLogger } from '../../utils/logging/logger'
+import { extension } from '../../extension'
 
 const logger = getLogger('Parser', 'BiberLog')
 
@@ -97,10 +98,7 @@ function pushLog(type: string, file: string, message: string, line: number, excl
 }
 
 function resolveBibFile(filename: string, rootFile: string): string {
-    if (!lw.cacher.get(rootFile)) {
-        return filename
-    }
-    const bibFiles = lw.cacher.getIncludedBib(rootFile)
+    const bibFiles = extension.cache.getIncludedBib(rootFile)
     for (const bib of bibFiles) {
         if (bib.endsWith(filename)) {
             return bib

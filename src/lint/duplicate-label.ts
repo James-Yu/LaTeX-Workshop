@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as lw from '../lw'
+import { extension } from '../extension'
 
 const duplicatedLabelsDiagnostics = vscode.languages.createDiagnosticCollection('Duplicate Labels')
 
@@ -14,12 +14,12 @@ export const dupLabelDetector = {
  */
 function computeDuplicates(): string[] {
     const labelsCount = new Map<string, number>()
-    lw.cacher.getIncludedTeX().forEach(cachedFile => {
-        const cachedRefs = lw.cacher.get(cachedFile)?.elements.reference
-        if (cachedRefs === undefined) {
+    extension.cache.getIncludedTeX().forEach(filePath => {
+        const refCache = extension.cache.get(filePath)?.elements.reference
+        if (refCache === undefined) {
             return
         }
-        cachedRefs.forEach(ref => {
+        refCache.forEach(ref => {
             if (ref.range === undefined) {
                 return
             }
@@ -56,23 +56,23 @@ function showDiagnostics(duplicates: string[]) {
     }
     const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
 
-    lw.cacher.getIncludedTeX().forEach(cachedFile => {
-        const cachedRefs = lw.cacher.get(cachedFile)?.elements.reference
-        if (cachedRefs === undefined) {
+    extension.cache.getIncludedTeX().forEach(filePath => {
+        const refCache = extension.cache.get(filePath)?.elements.reference
+        if (refCache === undefined) {
             return
         }
-        cachedRefs.forEach(ref => {
+        refCache.forEach(ref => {
             if (ref.range === undefined) {
                 return
             }
             if (duplicates.includes(ref.label)) {
-                if (! (cachedFile in diagsCollection)) {
-                    diagsCollection[cachedFile] = []
+                if (! (filePath in diagsCollection)) {
+                    diagsCollection[filePath] = []
                 }
                 const range = ref.range instanceof vscode.Range ? ref.range : ref.range.inserting
                 const diag = new vscode.Diagnostic(range, `Duplicate label ${ref.label}`, vscode.DiagnosticSeverity.Warning)
                 diag.source = 'DuplicateLabels'
-                diagsCollection[cachedFile].push(diag)
+                diagsCollection[filePath].push(diag)
             }
         })
     })

@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as cs from 'cross-spawn'
-import * as lw from '../lw'
 import { getLogger } from '../utils/logging/logger'
+import { extension } from '../extension'
 
 const logger = getLogger('TeXDoc')
 
@@ -62,9 +62,9 @@ export class TeXDoc {
 
     texdocUsepackages() {
         const names: Set<string> = new Set()
-        for (const tex of lw.cacher.getIncludedTeX()) {
-            const content = lw.cacher.get(tex)
-            const pkgs = content && content.elements.package
+        for (const filePath of extension.cache.getIncludedTeX()) {
+            const fileCache = extension.cache.get(filePath)
+            const pkgs = fileCache && fileCache.elements.package
             if (!pkgs) {
                 continue
             }

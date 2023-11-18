@@ -3,6 +3,7 @@ import * as lw from '../lw'
 import { tokenizer, onAPackage } from '../utils/tokenizer'
 import { findProjectNewCommand } from '../preview/math/mathpreviewlib/newcommandfinder'
 import { CmdEnvSuggestion } from '../completion/completer/completerutils'
+import { extension } from '../extension'
 
 export class HoverProvider implements vscode.HoverProvider {
     public async provideHover(document: vscode.TextDocument, position: vscode.Position, ctoken: vscode.CancellationToken): Promise<vscode.Hover | undefined> {
@@ -92,8 +93,8 @@ export class HoverProvider implements vscode.HoverProvider {
 
         packageCmds.forEach(checkCmd)
 
-        lw.cacher.getIncludedTeX().forEach(cachedFile => {
-            lw.cacher.get(cachedFile)?.elements.command?.forEach(checkCmd)
+        extension.cache.getIncludedTeX().forEach(filePath => {
+            extension.cache.get(filePath)?.elements.command?.forEach(checkCmd)
         })
 
         let pkgLink = ''

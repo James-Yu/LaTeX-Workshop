@@ -1,14 +1,15 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import {bibtexParser} from 'latex-utensils'
+import { bibtexParser } from 'latex-utensils'
 import * as lw from '../../lw'
+import type { FileCache } from '../../types'
 import * as eventbus from '../../core/event-bus'
-import {trimMultiLineString} from '../../utils/utils'
-import {computeFilteringRange} from './completerutils'
+import { trimMultiLineString } from '../../utils/utils'
+import { computeFilteringRange } from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../latex'
 import { getLogger } from '../../utils/logging/logger'
 import { parser } from '../../parse/parser'
-import { Cache } from '../../core/cache'
+import { extension } from '../../extension'
 
 const logger = getLogger('Intelli', 'Citation')
 
@@ -132,10 +133,12 @@ export class Citation implements IProvider {
      */
     private readonly bibEntries = new Map<string, CiteSuggestion[]>()
 
-    constructor() {
-        lw.cacher.bib.onCreate(filePath => this.parseBibFile(filePath))
-        lw.cacher.bib.onChange(filePath => this.parseBibFile(filePath))
-        lw.cacher.bib.onDelete(filePath => this.removeEntriesInFile(filePath))
+    constructor() {}
+
+    initialize() {
+        extension.watcher.bib.onCreate(filePath => this.parseBibFile(filePath))
+        extension.watcher.bib.onChange(filePath => this.parseBibFile(filePath))
+        extension.watcher.bib.onDelete(filePath => this.removeEntriesInFile(filePath))
     }
 
     provideFrom(_result: RegExpMatchArray, args: IProviderArgs) {
@@ -229,21 +232,21 @@ export class Citation implements IProvider {
     /**
      * Returns the array of the paths of `.bib` files referenced from `file`.
      *
-     * @param file The path of a LaTeX file. If `undefined`, the keys of `bibEntries` are used.
+     * @param filePath The path of a LaTeX file. If `undefined`, the keys of `bibEntries` are used.
      * @param visitedTeX Internal use only.
      */
-    private getIncludedBibs(file?: string, visitedTeX: string[] = []): string[] {
-        if (file === undefined) {
+    private getIncludedBibs(filePath?: string, visitedTeX: string[] = []): string[] {
+        if (filePath === undefined) {
             // Only happens when rootFile is undefined
             return Array.from(this.bibEntries.keys())
         }
-        const cache = lw.cacher.get(file)
-        if (cache === undefined) {
+        const fileCache = extension.cache.get(filePath)
+        if (fileCache === undefined) {
             return []
         }
-        let bibs = Array.from(cache.bibfiles)
-        visitedTeX.push(file)
-        for (const child of cache.children) {
+        let bibs = Array.from(fileCache.bibfiles)
+        visitedTeX.push(filePath)
+        for (const child of fileCache.children) {
             if (visitedTeX.includes(child.filePath)) {
                 // Already included
                 continue
@@ -271,17 +274,17 @@ export class Citation implements IProvider {
             }
         })
         // From caches
-        lw.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedBibs = lw.cacher.get(cachedFile)?.elements.bibitem
-            if (cachedBibs === undefined) {
+        extension.cache.getIncludedTeX().forEach(filePath => {
+            const bibCache = extension.cache.get(filePath)?.elements.bibitem
+            if (bibCache === undefined) {
                 return
             }
-            suggestions = suggestions.concat(cachedBibs.map(bib => {
+            suggestions = suggestions.concat(bibCache.map(bib => {
                 return {
                     ...bib,
                     key: bib.label,
                     detail: bib.detail ? bib.detail : '',
-                    file: cachedFile,
+                    file: filePath,
                     fields: new Fields()
                 }
             }))
@@ -348,7 +351,7 @@ export class Citation implements IProvider {
      * Cache `content` is parsed with regular expressions,
      * and the result is used to update the cache bibitem element.
      */
-    parse(cache: Cache) {
+    parse(cache: FileCache) {
         cache.elements.bibitem = this.parseContent(cache.filePath, cache.content)
     }
 

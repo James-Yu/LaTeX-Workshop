@@ -36,7 +36,7 @@ suite('Auto-build test suite', () => {
             {src: 'base.tex', dst: 'main.tex'}
         ])
         const { type } = await test.auto(fixture, 'main.tex')
-        assert.strictEqual(type, 'onChange')
+        assert.strictEqual(type, 'onFileChange')
     })
 
     test.run('auto build with subfiles and onFileChange', async (fixture: string) => {
@@ -47,7 +47,7 @@ suite('Auto-build test suite', () => {
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1})
         const { type } = await test.auto(fixture, 'sub/s.tex')
-        assert.strictEqual(type, 'onChange')
+        assert.strictEqual(type, 'onFileChange')
     })
 
     test.run('auto build with import and onFileChange', async (fixture: string) => {
@@ -57,7 +57,7 @@ suite('Auto-build test suite', () => {
             {src: 'plain.tex', dst: 'sub/subsub/sss/sss.tex'}
         ], {local: 1})
         const { type } = await test.auto(fixture, 'sub/subsub/sss/sss.tex')
-        assert.strictEqual(type, 'onChange')
+        assert.strictEqual(type, 'onFileChange')
     })
 
     test.run('auto build with input and onFileChange', async (fixture: string) => {
@@ -66,7 +66,7 @@ suite('Auto-build test suite', () => {
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
         const { type } = await test.auto(fixture, 'sub/s.tex')
-        assert.strictEqual(type, 'onChange')
+        assert.strictEqual(type, 'onFileChange')
     })
 
     test.run('auto build when editing bib', async (fixture: string) => {
@@ -75,7 +75,7 @@ suite('Auto-build test suite', () => {
             {src: 'base.bib', dst: 'bib.bib'}
         ])
         const { type } = await test.auto(fixture, 'bib.bib')
-        assert.strictEqual(type, 'onChange')
+        assert.strictEqual(type, 'onFileChange')
     })
 
     test.run('auto build with input whose path uses a macro', async (fixture: string) => {
@@ -84,7 +84,7 @@ suite('Auto-build test suite', () => {
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
         const { type } = await test.auto(fixture, 'sub/s.tex')
-        assert.strictEqual(type, 'onChange')
+        assert.strictEqual(type, 'onFileChange')
     })
 
     test.run('auto build with watch.files.ignore', async (fixture: string) => {
@@ -94,7 +94,7 @@ suite('Auto-build test suite', () => {
             {src: 'plain.tex', dst: 'sub/s.tex'}
         ])
         const { type } = await test.auto(fixture, 'sub/s.tex', true)
-        assert.strictEqual(type, 'onChange')
+        assert.strictEqual(type, 'onFileChange')
     })
 
     test.run('auto build with subfiles and onSave', async (fixture: string) => {
@@ -115,6 +115,6 @@ suite('Auto-build test suite', () => {
             {src: 'build/markdown_sub.md', dst: 'sub.md'}
         ])
         const { type } = await test.auto(fixture, 'sub.md')
-        assert.strictEqual(type, 'onChange')
+        assert.strictEqual(type, 'onFileChange')
     })
 })

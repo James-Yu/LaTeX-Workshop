@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import * as lw from '../lw'
 import { getLogger } from '../utils/logging/logger'
+import { extension } from '../extension'
 
 const logger = getLogger('Selection')
 
@@ -69,9 +69,9 @@ function nodeStackToSelectionRange(stack: Ast.Node[]): vscode.SelectionRange {
 
 export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
     async provideSelectionRanges(document: vscode.TextDocument, positions: vscode.Position[]) {
-        await lw.cacher.wait(document.fileName)
-        const content = lw.cacher.get(document.fileName)?.content
-        const ast = lw.cacher.get(document.fileName)?.ast
+        await extension.cache.wait(document.fileName)
+        const content = extension.cache.get(document.fileName)?.content
+        const ast = extension.cache.get(document.fileName)?.ast
         if (!content || !ast) {
             logger.log(`Error loading ${content ? 'AST' : 'content'} during structuring: ${document.fileName} .`)
             return []

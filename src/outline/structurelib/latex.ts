@@ -8,6 +8,7 @@ import { InputFileRegExp } from '../../utils/inputfilepath'
 
 import { getLogger } from '../../utils/logging/logger'
 import { argContentToStr } from '../../utils/parser'
+import { extension } from '../../extension'
 
 const logger = getLogger('Structure', 'LaTeX')
 
@@ -56,9 +57,9 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
     if (structs[filePath] !== undefined) {
         return
     }
-    await lw.cacher.wait(filePath)
-    const content = lw.cacher.get(filePath)?.content
-    const ast = lw.cacher.get(filePath)?.ast
+    await extension.cache.wait(filePath)
+    const content = extension.cache.get(filePath)?.content
+    const ast = extension.cache.get(filePath)?.ast
     if (!content || !ast) {
         logger.log(`Error loading ${content ? 'AST' : 'content'} during structuring: ${filePath} .`)
         return

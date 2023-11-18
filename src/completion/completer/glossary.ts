@@ -1,10 +1,10 @@
 import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import * as lw from '../../lw'
 import type { ICompletionItem, IProvider } from '../latex'
-import { Cache } from '../../core/cache'
 import { argContentToStr } from '../../utils/parser'
 import { getLongestBalancedString } from '../../utils/utils'
+import type { FileCache } from '../../types'
+import { extension } from '../../extension'
 
 enum GlossaryType {
     glossary,
@@ -55,18 +55,18 @@ export class Glossary implements IProvider {
         // Extract cached references
         const glossaryList: string[] = []
 
-        lw.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedGlossaries = lw.cacher.get(cachedFile)?.elements.glossary
-            if (cachedGlossaries === undefined) {
+        extension.cache.getIncludedTeX().forEach(filePath => {
+            const glsCache = extension.cache.get(filePath)?.elements.glossary
+            if (glsCache === undefined) {
                 return
             }
-            cachedGlossaries.forEach(ref => {
-                if (ref.type === GlossaryType.glossary) {
-                    this.glossaries.set(ref.label, ref)
+            glsCache.forEach(gls => {
+                if (gls.type === GlossaryType.glossary) {
+                    this.glossaries.set(gls.label, gls)
                 } else {
-                    this.acronyms.set(ref.label, ref)
+                    this.acronyms.set(gls.label, gls)
                 }
-                glossaryList.push(ref.label)
+                glossaryList.push(gls.label)
             })
         })
 
@@ -83,7 +83,7 @@ export class Glossary implements IProvider {
         })
     }
 
-    parse(cache: Cache) {
+    parse(cache: FileCache) {
         if (cache.ast !== undefined) {
             cache.elements.glossary = this.parseAst(cache.ast, cache.filePath)
         } else {

@@ -13,6 +13,7 @@ import { viewerManager } from './viewerlib/pdfviewermanager'
 import { ViewerPageLoaded } from '../core/event-bus'
 import { getLogger } from '../utils/logging/logger'
 import { moveActiveEditor } from '../utils/webview'
+import { extension } from '../extension'
 
 const logger = getLogger('Viewer')
 
@@ -23,11 +24,6 @@ export { pdfViewerPanelSerializer } from './viewerlib/pdfviewerpanel'
 
 export class Viewer {
     constructor() {
-        lw.cacher.pdf.onChange(pdfPath => {
-            if (lw.builder.isOutputPDF(pdfPath)) {
-                this.refreshExistingViewer(pdfPath)
-            }
-        })
         lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (e.affectsConfiguration('latex-workshop.view.pdf.invertMode.enabled') ||
                 e.affectsConfiguration('latex-workshop.view.pdf.invert') ||
@@ -48,6 +44,14 @@ export class Viewer {
             }
             return
         }))
+    }
+
+    initialize() {
+        extension.watcher.pdf.onChange(pdfPath => {
+            if (path.relative(pdfPath, lw.manager.compiledRootFile ? lw.manager.tex2pdf(lw.manager.compiledRootFile) : '') !== '') {
+                this.refreshExistingViewer(pdfPath)
+            }
+        })
     }
 
     reloadExistingViewer(): void {
@@ -128,7 +132,7 @@ export class Viewer {
         }
         const pdfFileUri = vscode.Uri.file(pdfFile)
         viewerManager.createClientSet(pdfFileUri)
-        lw.cacher.pdf.add(pdfFileUri.fsPath)
+        extension.watcher.pdf.add(pdfFileUri.fsPath)
         try {
             logger.log(`Serving PDF file at ${url}`)
             await vscode.env.openExternal(vscode.Uri.parse(url, true))

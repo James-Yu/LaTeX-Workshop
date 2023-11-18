@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
-import * as lw from '../../src/lw'
 import * as test from './utils'
+import { extension } from '../../src/extension'
 
 suite('Find root file test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
@@ -110,7 +110,7 @@ suite('Find root file test suite', () => {
         ], {root: -1, skipCache: true})
         const roots = await test.find(fixture, 'alt.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
-        const includedTeX = lw.cacher.getIncludedTeX()
+        const includedTeX = extension.cache.getIncludedTeX()
         assert.ok(includedTeX)
         assert.ok(includedTeX.includes(path.resolve(fixture, 'main.tex')))
         assert.ok(includedTeX.includes(path.resolve(fixture, 'alt.tex')))

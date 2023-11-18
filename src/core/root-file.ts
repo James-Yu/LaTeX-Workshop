@@ -8,6 +8,8 @@ import * as lw from '../lw'
 import * as eventbus from './event-bus'
 import { getLogger } from '../utils/logging/logger'
 
+import { extension } from '../extension'
+
 const logger = getLogger('Manager')
 
 type RootFileType = {
@@ -36,15 +38,10 @@ export class Manager {
     private _rootFileLanguageId: string | undefined
     private _rootFile: RootFileType | undefined
     readonly tmpDir: string
+    compiledRootFile?: string
 
     constructor() {
         this.registerSetEnvVar()
-        lw.cacher.src.onDelete(filePath => {
-            if (filePath === this.rootFile) {
-                this.rootFile = undefined
-                void this.findRoot()
-            }
-        })
 
         // Create temp folder
         try {
@@ -60,6 +57,15 @@ export class Manager {
             }
             throw error
         }
+    }
+
+    initialize() {
+        extension.watcher.src.onDelete(filePath => {
+            if (filePath === this.rootFile) {
+                this.rootFile = undefined
+                void this.findRoot()
+            }
+        })
     }
 
     /**
@@ -304,12 +310,12 @@ export class Manager {
                 // We also clean the completions from the old project
                 lw.completer.input.reset()
                 lw.dupLabelDetector.reset()
-                lw.cacher.src.reset()
-                lw.cacher.add(rootFile)
-                void lw.cacher.refreshCache(rootFile).then(async () => {
+                extension.cache.reset()
+                extension.cache.add(rootFile)
+                void extension.cache.refreshCache(rootFile).then(async () => {
                     // We need to parse the fls to discover file dependencies when defined by TeX macro
                     // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
-                    await lw.cacher.loadFlsFile(rootFile)
+                    await extension.cache.loadFlsFile(rootFile)
                 })
             } else {
                 logger.log(`Keep using the same root file: ${this.rootFile}`)
@@ -374,7 +380,7 @@ export class Manager {
             logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
             return
         }
-        if (lw.cacher.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
+        if (extension.cache.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
             return this.rootFile
         }
         return
@@ -441,7 +447,7 @@ export class Manager {
                     logger.log(`Skip the file: ${file.toString(true)}`)
                     continue
                 }
-                const flsChildren = lw.cacher.getFlsChildren(file.fsPath)
+                const flsChildren = extension.cache.getFlsChildren(file.fsPath)
                 if (vscode.window.activeTextEditor && flsChildren.includes(vscode.window.activeTextEditor.document.fileName)) {
                     logger.log(`Found root file from '.fls': ${file.fsPath}`)
                     return file.fsPath
@@ -450,7 +456,7 @@ export class Manager {
                 const result = content.match(this.rootIndictor)
                 if (result) {
                     // Can be a root
-                    const children = await lw.cacher.getTeXChildren(file.fsPath, file.fsPath, [])
+                    const children = await extension.cache.getTeXChildren(file.fsPath, file.fsPath, [])
                     if (vscode.window.activeTextEditor && children.includes(vscode.window.activeTextEditor.document.fileName)) {
                         logger.log(`Found root file from parent: ${file.fsPath}`)
                         return file.fsPath

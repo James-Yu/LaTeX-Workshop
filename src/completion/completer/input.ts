@@ -6,7 +6,7 @@ import * as lw from '../../lw'
 import type { IProvider, IProviderArgs } from '../latex'
 
 import { getLogger } from '../../utils/logging/logger'
-import type { Cache } from '../../core/cache'
+import { type FileCache } from '../../types'
 
 const logger = getLogger('Intelli', 'Input')
 
@@ -50,7 +50,7 @@ abstract class InputAbstract implements IProvider {
     /**
      * Set the graphics path
      */
-    parseGraphicsPath(cache: Cache) {
+    parseGraphicsPath(cache: FileCache) {
         const regex = /\\graphicspath{[\s\n]*((?:{[^{}]*}[\s\n]*)*)}/g
         let result: string[] | null
         while (true) {

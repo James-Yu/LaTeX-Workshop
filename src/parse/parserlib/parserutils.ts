@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import * as lw from '../../lw'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
+import { extension } from '../../extension'
 
 export interface IParser {
     showLog(): void,
@@ -14,8 +14,8 @@ function getErrorPosition(item: LogEntry): {start: number, end: number} | undefi
     if (!item.errorPosText) {
         return
     }
-    const content = lw.cacher.get(item.file)?.content
-    if (!content) {
+    const content = extension.cache.get(item.file)?.content
+    if (content === undefined) {
         return
     }
     // Try to find the errorPosText in the respective line of the document

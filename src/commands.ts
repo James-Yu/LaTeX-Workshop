@@ -1,47 +1,16 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as lw from '../lw'
-import { getSurroundingCommandRange, stripText } from '../utils/utils'
-import { getLogger } from '../utils/logging/logger'
-import { parser } from '../parse/parser'
+import * as lw from './lw'
+import { getSurroundingCommandRange, stripText } from './utils/utils'
+import { getLogger } from './utils/logging/logger'
+import { parser } from './parse/parser'
+import { extension } from './extension'
 
 const logger = getLogger('Commander')
 
 export async function build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
     logger.log('BUILD command invoked.')
-    if (!vscode.window.activeTextEditor) {
-        logger.log('Cannot start to build because the active editor is undefined.')
-        return
-    }
-    logger.log(`The document of the active editor: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
-    logger.log(`The languageId of the document: ${vscode.window.activeTextEditor.document.languageId}`)
-    const workspace = rootFile ? vscode.Uri.file(rootFile) : vscode.window.activeTextEditor.document.uri
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', workspace)
-    const externalBuildCommand = configuration.get('latex.external.build.command') as string
-    const externalBuildArgs = configuration.get('latex.external.build.args') as string[]
-    if (rootFile === undefined && lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-        rootFile = await lw.manager.findRoot()
-        languageId = lw.manager.rootFileLanguageId
-    }
-    if (externalBuildCommand) {
-        const pwd = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
-        await lw.builder.buildExternal(externalBuildCommand, externalBuildArgs, pwd, rootFile)
-        return
-    }
-    if (rootFile === undefined || languageId === undefined) {
-        logger.log('Cannot find LaTeX root file. See https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#the-root-file')
-        return
-    }
-    let pickedRootFile: string | undefined = rootFile
-    if (!skipSelection && lw.manager.localRootFile) {
-        // We are using the subfile package
-        pickedRootFile = await quickPickRootFile(rootFile, lw.manager.localRootFile, 'build')
-        if (! pickedRootFile) {
-            return
-        }
-    }
-    logger.log(`Building root file: ${pickedRootFile}`)
-    await lw.builder.build(pickedRootFile, languageId, recipe)
+    await extension.compile.build(skipSelection, rootFile, languageId, recipe)
 }
 
 export async function revealOutputDir() {
@@ -114,9 +83,9 @@ export function refresh() {
     lw.viewer.refreshExistingViewer()
 }
 
-export function kill() {
-    logger.log('KILL command invoked.')
-    lw.builder.kill()
+export function terminate() {
+    logger.log('TERMINATE command invoked.')
+    extension.compile.terminate()
 }
 
 export function synctex() {
@@ -478,7 +447,8 @@ export function texdocUsepackages() {
 }
 
 export async function saveActive() {
-    await lw.builder.saveActive()
+    extension.compile.lastBuildTime = Date.now()
+    await vscode.window.activeTextEditor?.document.save()
 }
 
 export function openMathPreviewPanel() {

@@ -3,6 +3,7 @@ import * as lw from '../../lw'
 import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserutils'
 
 import { getLogger } from '../../utils/logging/logger'
+import { extension } from '../../extension'
 
 const logger = getLogger('Parser', 'BibTeXLog')
 
@@ -87,13 +88,9 @@ function pushLog(type: string, file: string, message: string, line: number, excl
 
 function resolveAuxFile(filename: string, rootFile: string): string {
     filename = filename.replace(/\.aux$/, '.tex')
-    if (!lw.cacher.get(rootFile)) {
-        return filename
-    }
-    const texFiles = lw.cacher.getIncludedTeX(rootFile)
-    for (const tex of texFiles) {
-        if (tex.endsWith(filename)) {
-            return tex
+    for (const filePath of extension.cache.getIncludedTeX(rootFile)) {
+        if (filePath.endsWith(filename)) {
+            return filePath
         }
     }
     logger.log(`Cannot resolve file ${filename} .`)
@@ -101,10 +98,7 @@ function resolveAuxFile(filename: string, rootFile: string): string {
 }
 
 function resolveBibFile(filename: string, rootFile: string): string {
-    if (!lw.cacher.get(rootFile)) {
-        return filename
-    }
-    const bibFiles = lw.cacher.getIncludedBib(rootFile)
+    const bibFiles = extension.cache.getIncludedBib(rootFile)
     for (const bib of bibFiles) {
         if (bib.endsWith(filename)) {
             return bib

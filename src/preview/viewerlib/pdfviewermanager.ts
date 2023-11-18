@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
-import * as lw from '../../lw'
 import type { Client } from './client'
 import type { PdfViewerPanel } from './pdfviewerpanel'
+import { extension } from '../../extension'
 
 class PdfViewerManager {
     private readonly webviewPanelMap = new Map<string, Set<PdfViewerPanel>>()
@@ -50,7 +50,7 @@ class PdfViewerManager {
 
     initiatePdfViewerPanel(pdfPanel: PdfViewerPanel): PdfViewerPanel | undefined {
         const pdfFileUri = pdfPanel.pdfFileUri
-        lw.cacher.pdf.add(pdfFileUri.fsPath)
+        extension.watcher.pdf.add(pdfFileUri.fsPath)
         this.createClientSet(pdfFileUri)
         const panelSet = this.getPanelSet(pdfFileUri)
         if (!panelSet) {

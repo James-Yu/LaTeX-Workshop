@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
-import * as lw from './lw'
-import { pdfViewerHookProvider, pdfViewerPanelSerializer } from './preview/viewer'
+import { Viewer, pdfViewerHookProvider, pdfViewerPanelSerializer } from './preview/viewer'
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
 import { BibtexCompleter } from './completion/bibtex'
 import { HoverProvider } from './preview/hover'
@@ -14,10 +13,35 @@ import { bibtexFormat, bibtexFormatterProvider } from './lint/bibtex-formatter'
 import { getLogger } from './utils/logging/logger'
 import { DocumentChanged } from './core/event-bus'
 
+import { extension } from './extension'
+import { watcher } from './core/watcher'
+import { cache } from './core/cache'
+import { compile } from './compile'
+extension.watcher = watcher
+extension.cache = cache
+extension.compile = compile
+
+import * as lw from './lw'
+
 const logger = getLogger('Extension')
+
+function initialize() {
+    extension.watcher = watcher
+    extension.cache = cache
+    extension.compile = compile
+
+    cache.initialize(watcher.src)
+    lw.manager.initialize()
+    lw.completer.citation.initialize()
+
+    lw.setViewer(new Viewer())
+    lw.viewer.initialize()
+}
 
 export function activate(extensionContext: vscode.ExtensionContext) {
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
+
+    initialize()
 
     const lwDisposable = lw.init(extensionContext)
     lw.registerDisposable(lwDisposable)
@@ -29,11 +53,11 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             return
         }
         if (lw.manager.hasTexId(e.languageId) ||
-            lw.cacher.getIncludedTeX(lw.manager.rootFile, [], false).includes(e.fileName) ||
-            lw.cacher.getIncludedBib().includes(e.fileName)) {
+            extension.cache.getIncludedTeX(lw.manager.rootFile, [], false).includes(e.fileName) ||
+            extension.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             lw.linter.lintRootFileIfEnabled()
-            void lw.builder.buildOnSaveIfEnabled(e.fileName)
+            void extension.compile.autoBuild(e.fileName, 'onSave')
             lw.counter.countOnSaveIfEnabled(e.fileName)
         }
     }))
@@ -65,7 +89,6 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         }
     }))
 
-    let updateCompleter: NodeJS.Timeout
     lw.registerDisposable(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (lw.lwfs.isVirtualUri(e.document.uri)){
             return
@@ -77,21 +100,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         }
         lw.eventBus.fire(DocumentChanged)
         lw.linter.lintActiveFileIfEnabledAfterInterval(e.document)
-        if (!lw.cacher.has(e.document.fileName)) {
-            return
-        }
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('intellisense.update.aggressive.enabled')) {
-            if (updateCompleter) {
-                clearTimeout(updateCompleter)
-            }
-            updateCompleter = setTimeout(() => {
-                const file = e.document.uri.fsPath
-                void lw.cacher.refreshCache(file, lw.manager.rootFile).then(async () => {
-                    await lw.cacher.loadFlsFile(lw.manager.rootFile || file)
-                })
-            }, configuration.get('intellisense.update.delay', 1000))
-        }
+        cache.refreshCacheAggressive(e.document.fileName)
     }))
 
     lw.registerDisposable(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
@@ -124,7 +133,7 @@ function registerLatexWorkshopCommands() {
         vscode.commands.registerCommand('latex-workshop.tab', () => lw.commander.view('tab')),
         vscode.commands.registerCommand('latex-workshop.viewInBrowser', () => lw.commander.view('browser')),
         vscode.commands.registerCommand('latex-workshop.viewExternal', () => lw.commander.view('external')),
-        vscode.commands.registerCommand('latex-workshop.kill', () => lw.commander.kill()),
+        vscode.commands.registerCommand('latex-workshop.terminate', () => lw.commander.terminate()),
         vscode.commands.registerCommand('latex-workshop.synctex', () => lw.commander.synctex()),
         vscode.commands.registerCommand('latex-workshop.texdoc', (packageName: string | undefined) => lw.commander.texdoc(packageName)),
         vscode.commands.registerCommand('latex-workshop.texdocUsepackages', () => lw.commander.texdocUsepackages()),

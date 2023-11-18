@@ -6,7 +6,8 @@ import type { ICompletionItem, IProvider, IProviderArgs } from '../latex'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 
 import { getLogger } from '../../utils/logging/logger'
-import { Cache } from '../../core/cache'
+import type { FileCache } from '../../types'
+import { extension } from '../../extension'
 
 const logger = getLogger('Intelli', 'Environment')
 
@@ -139,10 +140,10 @@ export class Environment implements IProvider {
         }
 
         // Insert environments defined in tex
-        lw.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedEnvs = lw.cacher.get(cachedFile)?.elements.environment
-            if (cachedEnvs !== undefined) {
-                cachedEnvs.forEach(env => {
+        extension.cache.getIncludedTeX().forEach(filePath => {
+            const envCache = extension.cache.get(filePath)?.elements.environment
+            if (envCache !== undefined) {
+                envCache.forEach(env => {
                     if (! envList.includes(env.label)) {
                         if (snippetType === EnvSnippetType.ForBegin) {
                             env.insertText = new vscode.SnippetString(`${env.label}}\n\t$0\n\\end{${env.label}}`)
@@ -196,7 +197,7 @@ export class Environment implements IProvider {
         }
     }
 
-    parse(cache: Cache) {
+    parse(cache: FileCache) {
         if (cache.ast !== undefined) {
             cache.elements.environment = this.parseAst(cache.ast)
         } else {

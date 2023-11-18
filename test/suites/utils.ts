@@ -8,6 +8,7 @@ import * as lw from '../../src/lw'
 import { AutoBuildInitiated, DocumentChanged, EventArgs, ViewerPageLoaded, ViewerStatusChanged } from '../../src/core/event-bus'
 import type { EventName } from '../../src/core/event-bus'
 import { getCachedLog, getLogger, resetCachedLog } from '../../src/utils/logging/logger'
+import { extension } from '../../src/extension'
 
 let testIndex = 0
 const logger = getLogger('Test')
@@ -75,12 +76,12 @@ export function sleep(ms: number) {
 
 export async function reset() {
     await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-    await Promise.all(lw.cacher.allPromises)
+    await Promise.all(Object.values(extension.cache.promises).filter(promise => promise))
     lw.manager.rootFile = undefined
     lw.manager.localRootFile = undefined
     lw.completer.input.reset()
     lw.dupLabelDetector.reset()
-    lw.cacher.reset()
+    extension.cache.reset()
     glob.sync('**/{**.tex,**.pdf,**.bib}', { cwd: getFixture() }).forEach(file => { try {fs.unlinkSync(path.resolve(getFixture(), file))} catch {} })
 }
 
@@ -137,8 +138,8 @@ export async function load(fixture: string, files: {src: string, dst: string, ws
     }
     if (!config.skipCache) {
         logger.log('Cache tex and bib.')
-        files.filter(file => file.dst.endsWith('.tex')).forEach(file => lw.cacher.add(path.resolve(getWsFixture(fixture, file.ws), file.dst)))
-        const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cacher.refreshCache(path.resolve(getWsFixture(fixture, file.ws), file.dst), lw.manager.rootFile))
+        files.filter(file => file.dst.endsWith('.tex')).forEach(file => extension.cache.add(path.resolve(getWsFixture(fixture, file.ws), file.dst)))
+        const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => extension.cache.refreshCache(path.resolve(getWsFixture(fixture, file.ws), file.dst), lw.manager.rootFile))
         const bibPromise = files.filter(file => file.dst.endsWith('.bib')).map(file => lw.completer.citation.parseBibFile(path.resolve(getWsFixture(fixture, file.ws), file.dst)))
         await Promise.all([...texPromise, ...bibPromise])
     }
@@ -169,7 +170,7 @@ export async function build(fixture: string, openFile: string, ws?: string, acti
     await (action ?? lw.commander.build)()
 }
 
-export async function auto(fixture: string, editFile: string, noBuild = false, save = false, ws?: string): Promise<{type: 'onChange' | 'onSave', file: string}> {
+export async function auto(fixture: string, editFile: string, noBuild = false, save = false, ws?: string): Promise<{type: 'onFileChange' | 'onSave', file: string}> {
     const done = wait(AutoBuildInitiated)
     if (save) {
         logger.log(`Save ${editFile}.`)
@@ -183,7 +184,7 @@ export async function auto(fixture: string, editFile: string, noBuild = false, s
     if (noBuild) {
         await sleep(500)
         strictEqual(getCachedLog().CACHED_EXTLOG.filter(line => line.includes('[Builder]')).filter(line => line.includes(editFile)).length, 0)
-        return {type: 'onChange', file: ''}
+        return {type: 'onFileChange', file: ''}
     }
     logger.log('Wait for auto-build.')
     const result = await Promise.any([done, sleep(3000)]) as EventArgs[typeof AutoBuildInitiated]
@@ -195,7 +196,7 @@ export async function auto(fixture: string, editFile: string, noBuild = false, s
 
 export function suggest(row: number, col: number, isAtSuggestion = false, openFile?: string): {items: vscode.CompletionItem[], labels: string[]} {
     ok(lw.manager.rootFile)
-    const lines = lw.cacher.get(openFile ?? lw.manager.rootFile)?.content?.split('\n')
+    const lines = extension.cache.get(openFile ?? lw.manager.rootFile)?.content?.split('\n')
     ok(lines)
     logger.log('Get suggestion.')
     const items = (isAtSuggestion ? lw.atSuggestionCompleter : lw.completer).provide({

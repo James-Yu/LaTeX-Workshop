@@ -1,7 +1,5 @@
 import vscode from 'vscode'
 import path from 'path'
-import { Builder } from './compile/build'
-import { Cacher } from './core/cache'
 import { Cleaner } from './extras/cleaner'
 import { LaTeXCommanderTreeView } from './extras/activity-bar'
 import { Configuration } from './utils/logging/log-config'
@@ -28,6 +26,7 @@ import { StructureView } from './outline/project'
 import { getLogger } from './utils/logging/logger'
 import { TeXDoc } from './extras/texdoc'
 import { MathJaxPool } from './preview/math/mathjaxpool'
+import { extension } from './extension'
 
 let disposables: { dispose(): any }[] = []
 let context: vscode.ExtensionContext
@@ -41,16 +40,18 @@ export function registerDisposable(...items: vscode.Disposable[]) {
     }
 }
 
-export * as commander from './core/commands'
+export * as commander from './commands'
+
+export function setViewer(v: Viewer) {
+    viewer = v
+}
 
 export const extensionRoot = path.resolve(`${__dirname}/../../`)
 export const eventBus = new EventBus()
 export const configuration = new Configuration()
 export const lwfs = new LwFileSystem()
-export const cacher = new Cacher()
 export const manager = new Manager()
-export const builder = new Builder()
-export const viewer = new Viewer()
+export let viewer: Viewer
 export const server = new Server()
 export const locator = new Locator()
 export const completer = new Completer()
@@ -81,7 +82,7 @@ export function init(extensionContext: vscode.ExtensionContext) {
     logger.log('LaTeX Workshop initialized.')
     return {
         dispose: async () => {
-            cacher.reset()
+            extension.cache.reset()
             server.dispose()
             await parser.dispose()
             MathJaxPool.dispose()
