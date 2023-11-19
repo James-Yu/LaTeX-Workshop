@@ -4,6 +4,7 @@ import * as path from 'path'
 import * as lw from '../lw'
 import { tokenizer } from '../utils/tokenizer'
 import * as utils from '../utils/utils'
+import { extension } from '../extension'
 
 export class DefinitionProvider implements vscode.DefinitionProvider {
     private onAFilename(document: vscode.TextDocument, position: vscode.Position, token: string): string|undefined {
@@ -24,8 +25,8 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         let dirs: string[] = []
         if (line.match(regexInput)) {
             dirs = [path.dirname(vscode.window.activeTextEditor.document.fileName)]
-            if (lw.manager.rootDir !== undefined) {
-                dirs.push(lw.manager.rootDir)
+            if (extension.root.dir.path !== undefined) {
+                dirs.push(extension.root.dir.path)
             }
         }
 
@@ -41,7 +42,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
     }
 
     provideDefinition(document: vscode.TextDocument, position: vscode.Position): vscode.Location | undefined {
-        if (lw.lwfs.isVirtualUri(document.uri)) {
+        if (document.uri.scheme !== 'file') {
             return
         }
         const token = tokenizer(document, position)

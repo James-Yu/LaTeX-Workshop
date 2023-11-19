@@ -4,9 +4,9 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 import * as lw from '../../lw'
 import type { IProvider } from '../latex'
 import { argContentToStr } from '../../utils/parser'
-import { kpsewhich } from '../../core/cacherlib/pathutils'
-import type { FileCache } from '../../types'
+
 import { extension } from '../../extension'
+import type { FileCache } from '../../types'
 
 type DataPackagesJsonType = typeof import('../../../data/packagenames.json')
 
@@ -162,7 +162,7 @@ export class Package implements IProvider {
         }
         let pkgObj: {[pkgName: string]: string[]} = {}
         if (node?.type === 'macro' && node.content === 'documentclass') {
-            const clsPath = kpsewhich([`${packageName}.cls`])
+            const clsPath = extension.file.kpsewhich([`${packageName}.cls`])
             if (vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.enabled') as boolean &&
                 clsPath && fs.existsSync(clsPath)) {
                 pkgObj = this.parseContent(fs.readFileSync(clsPath).toString())

@@ -1,7 +1,6 @@
 import vscode from 'vscode'
 import path from 'path'
 import { Cleaner } from './extras/cleaner'
-import { LaTeXCommanderTreeView } from './extras/activity-bar'
 import { Configuration } from './utils/logging/log-config'
 import { Counter } from './extras/counter'
 export { dupLabelDetector } from './lint/duplicate-label'
@@ -9,13 +8,10 @@ import { EnvPair } from './locate/environment'
 import { EventBus } from './core/event-bus'
 import { Linter } from './lint/latex-linter'
 import { Locator } from './locate/synctex'
-import { LwFileSystem } from './core/file-system'
-import { Manager } from './core/root-file'
 import { MathPreviewPanel } from './extras/math-preview-panel'
 import { parser } from './parse/parser'
 import { Section } from './extras/section'
 import { Server } from './preview/server'
-import { SnippetView } from './extras/snippet-view'
 import { TeXMagician } from './extras/texroot'
 import { Viewer } from './preview/viewer'
 import { CodeActions } from './lint/latex-code-actions'
@@ -48,8 +44,6 @@ export function setViewer(v: Viewer) {
 export const extensionRoot = path.resolve(`${__dirname}/../../`)
 export const eventBus = new EventBus()
 export const configuration = new Configuration()
-export const lwfs = new LwFileSystem()
-export const manager = new Manager()
 export let viewer: Viewer
 export const server = new Server()
 export const locator = new Locator()
@@ -63,9 +57,7 @@ export const codeActions = new CodeActions()
 export const texMagician = new TeXMagician()
 export const envPair = new EnvPair()
 export const section = new Section()
-export const latexCommanderTreeView = new LaTeXCommanderTreeView()
 export const structureViewer = new StructureView()
-export const snippetView = new SnippetView()
 export const graphicsPreview = new GraphicsPreview()
 export const mathPreview = new MathPreview()
 export const mathPreviewPanel = new MathPreviewPanel()

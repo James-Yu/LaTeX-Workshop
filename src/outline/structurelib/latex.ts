@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import * as lw from '../../lw'
 import { TeXElement, TeXElementType } from '../project'
 import { resolveFile } from '../../utils/utils'
 import { InputFileRegExp } from '../../utils/inputfilepath'
@@ -28,7 +27,7 @@ type FileStructureCache = {
 
 
 export async function construct(filePath: string | undefined = undefined, subFile: boolean = true): Promise<TeXElement[]> {
-    filePath = filePath ?? lw.manager.rootFile
+    filePath = filePath ?? extension.root.file.path
     if (filePath === undefined) {
         return []
     }
@@ -64,7 +63,7 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
         return
     }
     // Get a list of rnw child chunks
-    const rnwSub = parseRnwChildCommand(content, filePath, lw.manager.rootFile || '')
+    const rnwSub = parseRnwChildCommand(content, filePath, extension.root.file.path || '')
 
     // Parse each base-level node. If the node has contents, that function
     // will be called recursively.
@@ -160,7 +159,7 @@ async function parseNode(
         }
     } else if (node.type === 'macro' && ['input', 'InputIfFileExists', 'include', 'SweaveInput', 'subfile', 'loadglsentries', 'markdownInput'].includes(node.content)) {
         const arg0 = argContentToStr(node.args?.[0]?.content || [])
-        const subFile = resolveFile([ path.dirname(filePath), path.dirname(lw.manager.rootFile || ''), ...config.texDirs ], arg0)
+        const subFile = resolveFile([ path.dirname(filePath), path.dirname(extension.root.file.path || ''), ...config.texDirs ], arg0)
         if (subFile) {
             element = {
                 type: TeXElementType.SubFile,
@@ -175,7 +174,7 @@ async function parseNode(
     } else if (node.type === 'macro' && ['import', 'inputfrom', 'includefrom'].includes(node.content)) {
         const arg0 = argContentToStr(node.args?.[0]?.content || [])
         const arg1 = argContentToStr(node.args?.[1]?.content || [])
-        const subFile = resolveFile([ arg0, path.join(path.dirname(lw.manager.rootFile || ''), arg0 )], arg1)
+        const subFile = resolveFile([ arg0, path.join(path.dirname(extension.root.file.path || ''), arg0 )], arg1)
         if (subFile) {
             element = {
                 type: TeXElementType.SubFile,
@@ -236,11 +235,11 @@ async function parseNode(
 }
 
 function insertSubFile(structs: FileStructureCache, struct?: TeXElement[], traversed?: string[]): TeXElement[] {
-    if (lw.manager.rootFile === undefined) {
+    if (extension.root.file.path === undefined) {
         return []
     }
-    struct = struct ?? structs[lw.manager.rootFile] ?? []
-    traversed = traversed ?? [lw.manager.rootFile]
+    struct = struct ?? structs[extension.root.file.path] ?? []
+    traversed = traversed ?? [extension.root.file.path]
     let elements: TeXElement[] = []
     for (const element of struct) {
         if (element.type === TeXElementType.SubFile

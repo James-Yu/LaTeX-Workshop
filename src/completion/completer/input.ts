@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
-import * as lw from '../../lw'
 import type { IProvider, IProviderArgs } from '../latex'
 
 import { type FileCache } from '../../types'
@@ -141,12 +140,12 @@ export class Input extends InputAbstract {
 
     getBaseDir(currentFile: string, _importFromDir: string, command: string): string[] {
         let baseDir: string[] = []
-        if (lw.manager.rootDir === undefined) {
-            logger.log(`No root dir can be found. The current root file should be undefined, is ${lw.manager.rootFile}. How did you get here?`)
+        if (extension.root.dir.path === undefined) {
+            logger.log(`No root dir can be found. The current root file should be undefined, is ${extension.root.file.path}. How did you get here?`)
             return []
         }
         // If there is no root, 'root relative' and 'both' should fall back to 'file relative'
-        const rootDir = lw.manager.rootDir
+        const rootDir = extension.root.dir.path
         if (['includegraphics', 'includesvg'].includes(command) && this.graphicsPath.size > 0) {
             baseDir = Array.from(this.graphicsPath).map(dir => path.join(rootDir, dir))
         } else {

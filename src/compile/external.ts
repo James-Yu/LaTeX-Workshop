@@ -1,10 +1,9 @@
 import vscode from 'vscode'
-import * as lw from '../lw'
-import type { Tool } from '.'
 import { replaceArgumentPlaceholders } from '../utils/utils'
-import { queue } from './queue'
 
 import { extension } from '../extension'
+import type { Tool } from '.'
+import { queue } from './queue'
 
 const logger = extension.log('Build', 'External')
 
@@ -32,7 +31,7 @@ export async function build(command: string, args: string[], pwd: string, buildL
     const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
     const cwd = workspaceFolder?.uri.fsPath || pwd
     if (rootFile !== undefined) {
-        args = args.map(replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir))
+        args = args.map(replaceArgumentPlaceholders(rootFile, extension.file.tmpDirPath))
     }
     const tool: Tool = { name: command, command, args }
 

@@ -1,16 +1,12 @@
 import * as vscode from 'vscode'
-import * as lw from '../lw'
 import { construct } from '../outline/structurelib/latex'
 import { TeXElement } from '../outline/project'
+import { extension } from '../extension'
 
 export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
 
     async provideWorkspaceSymbols(): Promise<vscode.SymbolInformation[]> {
-        if (lw.manager.rootFile === undefined) {
-            return []
-        }
-        const rootFileUri = lw.manager.rootFileUri
-        if (rootFileUri && lw.lwfs.isVirtualUri(rootFileUri)) {
+        if (extension.root.file.path === undefined) {
             return []
         }
         const sections = await construct()

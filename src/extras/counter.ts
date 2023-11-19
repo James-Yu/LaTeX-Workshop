@@ -31,7 +31,7 @@ export class Counter {
         })
         this.updateStatusVisibility()
         vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
-            if (e && lw.manager.hasTexId(e.document.languageId)) {
+            if (e && extension.file.hasTexLangId(e.document.languageId)) {
                 this.loadConfiguration(e.document.uri)
                 this.updateStatusVisibility()
             } else {
@@ -44,7 +44,7 @@ export class Counter {
         if (vscode.window.activeTextEditor) {
             return vscode.window.activeTextEditor.document.uri
         }
-        return lw.manager.getWorkspaceFolderRootDir()
+        return extension.root.getWorkspace()
     }
 
     private loadConfiguration(scope: vscode.ConfigurationScope | undefined) {

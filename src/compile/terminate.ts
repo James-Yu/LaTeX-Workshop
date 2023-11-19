@@ -1,6 +1,6 @@
 import * as cp from 'child_process'
-import { queue } from './queue'
 import { extension } from '../extension'
+import { queue } from './queue'
 
 const logger = extension.log('Build', 'Recipe')
 

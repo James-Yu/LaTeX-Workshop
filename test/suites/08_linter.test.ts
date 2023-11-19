@@ -1,10 +1,10 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
-import * as lw from '../../src/lw'
 import * as test from './utils'
 import { chkTeX } from '../../src/lint/linterlib/chktex'
 import { laCheck } from '../../src/lint/linterlib/lacheck'
+import { extension } from '../../src/extension'
 
 suite('Linter test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
@@ -24,7 +24,7 @@ suite('Linter test suite', () => {
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
         ], {skipCache: true})
-        await chkTeX.lintRootFile(lw.manager.rootFile ?? '')
+        await chkTeX.lintRootFile(extension.root.file.path ?? '')
         assert.strictEqual(chkTeX.linterDiagnostics.name, 'ChkTeX')
     })
 
@@ -46,7 +46,7 @@ suite('Linter test suite', () => {
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
         ], {skipCache: true})
-        await laCheck.lintRootFile(lw.manager.rootFile ?? '')
+        await laCheck.lintRootFile(extension.root.file.path ?? '')
         assert.strictEqual(laCheck.linterDiagnostics.name, 'LaCheck')
     })
 

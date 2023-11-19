@@ -33,7 +33,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
                 }
         })
         vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
-            if (e && lw.manager.hasBibtexId(e.document.languageId)) {
+            if (e && extension.file.hasBibLangId(e.document.languageId)) {
                 const wsFolder = vscode.workspace.getWorkspaceFolder(e.document.uri)
                 if (wsFolder !== this.scope) {
                     this.scope = wsFolder

@@ -111,7 +111,7 @@ export class Locator {
 
         if (args === undefined) {
             filePath = vscode.window.activeTextEditor.document.uri.fsPath
-            if (!lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            if (!extension.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
                 logger.log(`${filePath} is not valid LaTeX.`)
                 return
             }
@@ -127,13 +127,13 @@ export class Locator {
             filePath = args.filePath
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const rootFile = lw.manager.rootFile
+        const rootFile = extension.root.file.path
         if (rootFile === undefined) {
             logger.log('No root file found.')
             return
         }
         if (!pdfFile) {
-            pdfFile = lw.manager.tex2pdf(rootFile)
+            pdfFile = extension.file.getPdfPath(rootFile)
         }
         if (vscode.window.activeTextEditor.document.lineCount === line &&
             vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {
@@ -479,7 +479,7 @@ export class Locator {
         }
         if (args) {
             args = args.map(arg => {
-                return replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(arg)
+                return replaceArgumentPlaceholders(rootFile, extension.file.tmpDirPath)(arg)
                         .replace(/%PDF%/g, pdfFile)
                         .replace(/%LINE%/g, line.toString())
                         .replace(/%TEX%/g, texFile)

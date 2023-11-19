@@ -3,7 +3,6 @@ import * as path from 'path'
 import * as fs from 'fs'
 import { glob } from 'glob'
 import * as cs from 'cross-spawn'
-import * as lw from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { extension } from '../extension'
 
@@ -35,10 +34,10 @@ export class Cleaner {
 
     async clean(rootFile?: string): Promise<void> {
         if (!rootFile) {
-            if (lw.manager.rootFile !== undefined) {
-                await lw.manager.findRoot()
+            if (extension.root.file.path !== undefined) {
+                await extension.root.find()
             }
-            rootFile = lw.manager.rootFile
+            rootFile = extension.root.file.path
             if (!rootFile) {
                 logger.log('Cannot determine the root file to be cleaned.')
                 return
@@ -104,8 +103,8 @@ export class Cleaner {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         const globPrefix = (configuration.get('latex.clean.subfolder.enabled') as boolean) ? './**/' : ''
         const globs = (configuration.get('latex.clean.fileTypes') as string[])
-            .map(globType => globPrefix + replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(globType))
-        const outdir = path.resolve(path.dirname(rootFile), lw.manager.getOutDir(rootFile))
+            .map(globType => globPrefix + replaceArgumentPlaceholders(rootFile, extension.file.tmpDirPath)(globType))
+        const outdir = path.resolve(path.dirname(rootFile), extension.file.getOutDir(rootFile))
         logger.log(`Clean glob matched files ${JSON.stringify({globs, outdir})} .`)
 
         const { fileOrFolderGlobs, folderGlobsExplicit, folderGlobsWithGlobstar } = Cleaner.splitGlobs(globs)
@@ -151,7 +150,7 @@ export class Cleaner {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         const command = configuration.get('latex.clean.command') as string
         const args = (configuration.get('latex.clean.args') as string[])
-            .map(arg => { return replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(arg)
+            .map(arg => { return replaceArgumentPlaceholders(rootFile, extension.file.tmpDirPath)(arg)
                 // cleaner.ts specific tokens
                 .replace(/%TEX%/g, rootFile)
             })

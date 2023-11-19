@@ -9,6 +9,7 @@ export const compile = {
     compiling: false,
     lastBuildTime: 0,
     compiledPDFPath: '',
+    compiledRootFile: '' as string | undefined,
     process: undefined as ChildProcessWithoutNullStreams | undefined
 }
 

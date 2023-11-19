@@ -1,10 +1,22 @@
 import * as vscode from 'vscode'
 
 import { extension } from './extension'
-extension.log = require('./utils/logging/logger').getLogger
-extension.watcher = require('./core/watcher').watcher
-extension.cache = require('./core/cache').cache
-extension.compile = require('./compile').compile
+import { getLogger } from './utils/logging/logger'
+extension.log = getLogger
+import { watcher } from './core/watcher'
+extension.watcher = watcher
+import { file } from './core/file'
+extension.file = file
+import { cache } from './core/cache'
+extension.cache = cache
+import { root } from './core/root'
+extension.root = root
+import { compile } from './compile'
+extension.compile = compile
+import { view as snippet } from './extras/snippet-view'
+extension.views.snippet = snippet
+
+import { LaTeXCommanderProvider } from './extras/activity-bar'
 
 import { Viewer, pdfViewerHookProvider, pdfViewerPanelSerializer } from './preview/viewer'
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
@@ -23,11 +35,23 @@ import * as lw from './lw'
 const logger = extension.log('Extension')
 
 function initialize() {
-    lw.manager.initialize()
     lw.completer.citation.initialize()
 
     lw.setViewer(new Viewer())
     lw.viewer.initialize()
+
+    lw.registerDisposable(
+        vscode.window.createTreeView('latex-workshop-commands', {
+            treeDataProvider: new LaTeXCommanderProvider(),
+            showCollapseAll: true
+        })
+    )
+
+    lw.registerDisposable(
+        vscode.window.registerWebviewViewProvider('latex-workshop-snippet-view', extension.views.snippet.provider, {
+            webviewOptions: { retainContextWhenHidden: true }
+        })
+    )
 }
 
 export function activate(extensionContext: vscode.ExtensionContext) {
@@ -41,11 +65,11 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     registerLatexWorkshopCommands()
 
     lw.registerDisposable(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
-        if (lw.lwfs.isVirtualUri(e.uri)){
+        if (e.uri.scheme !== 'file'){
             return
         }
-        if (lw.manager.hasTexId(e.languageId) ||
-            extension.cache.getIncludedTeX(lw.manager.rootFile, [], false).includes(e.fileName) ||
+        if (extension.file.hasTexLangId(e.languageId) ||
+            extension.cache.getIncludedTeX(extension.root.file.path, [], false).includes(e.fileName) ||
             extension.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             lw.linter.lintRootFileIfEnabled()
@@ -60,7 +84,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     lw.registerDisposable(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
-        if (vscode.window.visibleTextEditors.filter(editor => lw.manager.hasTexId(editor.document.languageId)).length > 0) {
+        if (vscode.window.visibleTextEditors.filter(editor => extension.file.hasTexLangId(editor.document.languageId)).length > 0) {
             logger.showStatus()
             if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
                 void vscode.commands.executeCommand('workbench.view.lw.latex-workshop-activitybar').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
@@ -69,25 +93,25 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             logger.showStatus()
         }
-        if (e && lw.lwfs.isVirtualUri(e.document.uri)){
+        if (e && e.document.uri.scheme !== 'file'){
             return
         }
-        if (e && lw.manager.hasTexId(e.document.languageId) && e.document.fileName !== prevTeXDocumentPath) {
+        if (e && extension.file.hasTexLangId(e.document.languageId) && e.document.fileName !== prevTeXDocumentPath) {
             prevTeXDocumentPath = e.document.fileName
-            await lw.manager.findRoot()
+            await extension.root.find()
             lw.linter.lintRootFileIfEnabled()
-        } else if (!e || !lw.manager.hasBibtexId(e.document.languageId)) {
+        } else if (!e || !extension.file.hasBibLangId(e.document.languageId)) {
             isLaTeXActive = false
         }
     }))
 
     lw.registerDisposable(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
-        if (lw.lwfs.isVirtualUri(e.document.uri)){
+        if (e.document.uri.scheme !== 'file'){
             return
         }
-        if (!lw.manager.hasTexId(e.document.languageId) &&
-            !lw.manager.hasBibtexId(e.document.languageId) &&
-            !lw.manager.hasDoctexId(e.document.languageId)) {
+        if (!extension.file.hasTexLangId(e.document.languageId) &&
+            !extension.file.hasBibLangId(e.document.languageId) &&
+            !extension.file.hasDtxLangId(e.document.languageId)) {
             return
         }
         lw.eventBus.fire(DocumentChanged)
@@ -96,9 +120,9 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     lw.registerDisposable(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
-        if (lw.manager.hasTexId(e.textEditor.document.languageId) ||
-            lw.manager.hasBibtexId(e.textEditor.document.languageId) ||
-            lw.manager.hasDoctexId(e.textEditor.document.languageId)) {
+        if (extension.file.hasTexLangId(e.textEditor.document.languageId) ||
+            extension.file.hasBibLangId(e.textEditor.document.languageId) ||
+            extension.file.hasDtxLangId(e.textEditor.document.languageId)) {
             return lw.structureViewer.showCursorItem(e)
         }
         return
@@ -106,12 +130,27 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
     registerProviders()
 
-    void lw.manager.findRoot().then(() => {
+    void extension.root.find().then(() => {
         lw.linter.lintRootFileIfEnabled()
-        if (lw.manager.hasTexId(vscode.window.activeTextEditor?.document.languageId ?? '')) {
+        if (extension.file.hasTexLangId(vscode.window.activeTextEditor?.document.languageId ?? '')) {
             prevTeXDocumentPath = vscode.window.activeTextEditor?.document.fileName
         }
     })
+
+    const setEnvVar = () => {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const dockerImageName: string = configuration.get('docker.image.latex', '')
+        logger.log(`Set $LATEXWORKSHOP_DOCKER_LATEX: ${JSON.stringify(dockerImageName)}`)
+        process.env['LATEXWORKSHOP_DOCKER_LATEX'] = dockerImageName
+    }
+    setEnvVar()
+
+    vscode.workspace.onDidChangeConfiguration((ev) => {
+        if (ev.affectsConfiguration('latex-workshop.docker.image.latex')) {
+            setEnvVar()
+        }
+    })
+
     conflictCheck()
 }
 
@@ -282,14 +321,6 @@ function registerProviders() {
     if (selectionLatex) {
         lw.registerDisposable(vscode.languages.registerSelectionRangeProvider({language: 'latex'}, new SelectionRangeProvider()))
     }
-
-    lw.registerDisposable(
-        vscode.window.registerWebviewViewProvider(
-            'latex-workshop-snippet-view',
-            lw.snippetView.snippetViewProvider,
-            {webviewOptions: {retainContextWhenHidden: true}}
-        )
-    )
 }
 
 function conflictCheck() {

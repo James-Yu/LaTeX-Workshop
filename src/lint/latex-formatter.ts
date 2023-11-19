@@ -141,8 +141,8 @@ function format(document: vscode.TextDocument, range?: vscode.Range): Thenable<v
         }
 
         // generate command line arguments
-        const rootFile = lw.manager.rootFile || document.fileName
-        const args = formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(arg)
+        const rootFile = extension.root.file.path || document.fileName
+        const args = formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, extension.file.tmpDirPath)(arg)
             // ts specific tokens
             .replace(/%TMPFILE%/g, useDocker ? path.basename(temporaryFile) : temporaryFile.split(path.sep).join('/'))
             .replace(/%INDENT%/g, indent)

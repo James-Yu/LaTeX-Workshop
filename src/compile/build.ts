@@ -5,12 +5,12 @@ import * as lw from '../lw'
 import { AutoBuildInitiated, AutoCleaned, BuildDone } from '../core/event-bus'
 import { rootFile as pickRootFile } from '../utils/quick-pick'
 import { parser } from '../parse/parser'
-import { BIB_MAGIC_PROGRAM_NAME, MAGIC_PROGRAM_ARGS_SUFFIX, MAX_PRINT_LINE, TEX_MAGIC_PROGRAM_NAME, build as buildRecipe } from './recipe'
+
+import { constants, extension } from '../extension'
+import type { ProcessEnv, Step } from '.'
+import { build as buildRecipe } from './recipe'
 import { build as buildExternal } from './external'
 import { queue } from './queue'
-
-import { extension } from '../extension'
-import type { ProcessEnv, Step } from '.'
 
 const logger = extension.log('Build')
 
@@ -33,10 +33,10 @@ function autoBuild(file: string, type: 'onFileChange' | 'onSave',  bibChanged: b
         logger.log('Autobuild temporarily disabled.')
         return
     }
-    if (!bibChanged && lw.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-        return build(true, lw.manager.localRootFile, lw.manager.rootFileLanguageId)
+    if (!bibChanged && extension.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
+        return build(true, extension.root.subfiles.path, extension.root.file.langId)
     } else {
-        return build(true, lw.manager.rootFile, lw.manager.rootFileLanguageId)
+        return build(true, extension.root.file.path, extension.root.file.langId)
     }
 }
 
@@ -47,7 +47,7 @@ function autoBuild(file: string, type: 'onFileChange' | 'onSave',  bibChanged: b
  * triggered by the `saveAll()` in another previous building process.
  */
 function canAutoBuild(): boolean {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.manager.rootFile ? vscode.Uri.file(lw.manager.rootFile) : undefined)
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', extension.root.file.path ? vscode.Uri.file(extension.root.file.path) : undefined)
     if (Date.now() - extension.compile.lastBuildTime < (configuration.get('latex.autoBuild.interval', 1000) as number)) {
         return false
     }
@@ -65,9 +65,9 @@ async function build(skipSelection: boolean = false, rootFile: string | undefine
     const configuration = vscode.workspace.getConfiguration('latex-workshop', workspace)
     const externalBuildCommand = configuration.get('latex.external.build.command') as string
     const externalBuildArgs = configuration.get('latex.external.build.args') as string[]
-    if (rootFile === undefined && lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-        rootFile = await lw.manager.findRoot()
-        languageId = lw.manager.rootFileLanguageId
+    if (rootFile === undefined && extension.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
+        rootFile = await extension.root.find()
+        languageId = extension.root.file.langId
     }
     if (externalBuildCommand) {
         const pwd = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
@@ -79,9 +79,9 @@ async function build(skipSelection: boolean = false, rootFile: string | undefine
         return
     }
     let pickedRootFile: string | undefined = rootFile
-    if (!skipSelection && lw.manager.localRootFile) {
+    if (!skipSelection && extension.root.subfiles.path) {
         // We are using the subfile package
-        pickedRootFile = await pickRootFile(rootFile, lw.manager.localRootFile, 'build')
+        pickedRootFile = await pickRootFile(rootFile, extension.root.subfiles.path, 'build')
         if (! pickedRootFile) {
             return
         }
@@ -112,7 +112,7 @@ async function buildLoop() {
         if (step === undefined) {
             break
         }
-        lw.manager.compiledRootFile = step.rootFile
+        extension.compile.compiledRootFile = step.rootFile
         const env = spawnProcess(step)
         const success = await monitorProcess(step, env)
         skipped = skipped && !(step.isExternal || !step.isSkipped)
@@ -146,15 +146,15 @@ function spawnProcess(step: Step): ProcessEnv {
     const env = Object.create(null) as ProcessEnv
     Object.entries(process.env).forEach(([key, value]) => env[key] = value)
     Object.entries(step.env ?? {}).forEach(([key, value]) => env[key] = value)
-    env['max_print_line'] = MAX_PRINT_LINE
+    env['max_print_line'] = constants.MAX_PRINT_LINE
 
     if (!step.isExternal &&
-        (step.name.startsWith(TEX_MAGIC_PROGRAM_NAME) ||
-            step.name.startsWith(BIB_MAGIC_PROGRAM_NAME))) {
+        (step.name.startsWith(constants.TEX_MAGIC_PROGRAM_NAME) ||
+            step.name.startsWith(constants.BIB_MAGIC_PROGRAM_NAME))) {
         logger.log(`cwd: ${path.dirname(step.rootFile)}`)
 
         const args = step.args
-        if (args && !step.name.endsWith(MAGIC_PROGRAM_ARGS_SUFFIX)) {
+        if (args && !step.name.endsWith(constants.MAGIC_PROGRAM_ARGS_SUFFIX)) {
             // All optional arguments are given as a unique string (% !TeX options) if any, so we use {shell: true}
             extension.compile.process = cs.spawn(`${step.command} ${args[0]}`, [], {cwd: path.dirname(step.rootFile), env, shell: true})
         } else {
@@ -162,8 +162,8 @@ function spawnProcess(step: Step): ProcessEnv {
         }
     } else if (!step.isExternal) {
         let cwd = path.dirname(step.rootFile)
-        if (step.command === 'latexmk' && step.rootFile === lw.manager.localRootFile && lw.manager.rootDir) {
-            cwd = lw.manager.rootDir
+        if (step.command === 'latexmk' && step.rootFile === extension.root.subfiles.path && extension.root.dir.path) {
+            cwd = extension.root.dir.path
         }
         logger.log(`cwd: ${cwd}`)
         extension.compile.process = cs.spawn(step.command, step.args, {cwd, env})
@@ -312,13 +312,13 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     if (!lastStep.isExternal && skipped) {
         return
     }
-    lw.viewer.refreshExistingViewer(lw.manager.tex2pdf(lastStep.rootFile))
+    lw.viewer.refreshExistingViewer(extension.file.getPdfPath(lastStep.rootFile))
     lw.completer.reference.setNumbersFromAuxFile(lastStep.rootFile)
     extension.cache.loadFlsFile(lastStep.rootFile ?? '')
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(lastStep.rootFile))
     // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
     if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
-        const pdfFile = lw.manager.tex2pdf(lastStep.rootFile)
+        const pdfFile = extension.file.getPdfPath(lastStep.rootFile)
         logger.log('SyncTex after build invoked.')
         lw.locator.syncTeX(undefined, undefined, pdfFile)
     }

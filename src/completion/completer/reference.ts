@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import * as lw from '../../lw'
 import { getLongestBalancedString, stripEnvironments } from '../../utils/utils'
 import { computeFilteringRange } from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../latex'
@@ -72,12 +71,12 @@ export class Reference implements IProvider {
     }
 
     private updateAll(line?: string, position?: vscode.Position) {
-        if (!lw.manager.rootFile) {
+        if (!extension.root.file.path) {
             this.suggestions.clear()
             return
         }
 
-        const included: Set<string> = new Set([lw.manager.rootFile])
+        const included: Set<string> = new Set([extension.root.file.path])
         // Included files may originate from \input or `xr`. If the latter, a
         // prefix may be used to ref to the file. The following obj holds them.
         const prefixes: {[filePath: string]: string} = {}
@@ -251,7 +250,7 @@ export class Reference implements IProvider {
     }
 
     setNumbersFromAuxFile(rootFile: string) {
-        const outDir = lw.manager.getOutDir(rootFile)
+        const outDir = extension.file.getOutDir(rootFile)
         const rootDir = path.dirname(rootFile)
         const auxFile = path.resolve(rootDir, path.join(outDir, path.basename(rootFile, '.tex') + '.aux'))
         this.suggestions.forEach((entry) => {

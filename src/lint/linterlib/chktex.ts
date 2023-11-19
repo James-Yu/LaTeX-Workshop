@@ -3,7 +3,6 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
-import * as lw from '../../lw'
 import type { ILinter } from '../latex-linter'
 import { processWrapper } from './linterutils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
@@ -76,7 +75,7 @@ async function chktexWrapper(linterid: string, configScope: vscode.Configuration
 function getRcPath() {
     let rcPath: string
     // 0. root file folder
-    const root = lw.manager.rootFile
+    const root = extension.root.file.path
     if (root) {
         rcPath = path.resolve(path.dirname(root), './.chktexrc')
     } else {
@@ -172,8 +171,8 @@ function parseLog(log: string, singleFileOriginalPath?: string, tabSizeArg?: num
         // This log may be for a single file in memory, in which case we override the
         // path with what is provided
         let filePath = singleFileOriginalPath ? singleFileOriginalPath : match[1]
-        if (!path.isAbsolute(filePath) && lw.manager.rootDir !== undefined) {
-            filePath = path.resolve(lw.manager.rootDir, filePath)
+        if (!path.isAbsolute(filePath) && extension.root.dir.path !== undefined) {
+            filePath = path.resolve(extension.root.dir.path, filePath)
         }
         const line = parseInt(match[2])
         const column = callConvertColumn(parseInt(match[3]), filePath, line, tabSizeArg)
@@ -201,7 +200,7 @@ function parseLog(log: string, singleFileOriginalPath?: string, tabSizeArg?: num
 }
 
 function callConvertColumn(column: number, filePathArg: string, line: number, tabSizeArg?: number): number {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.manager.getWorkspaceFolderRootDir())
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', extension.root.getWorkspace())
     if (!configuration.get('linting.chktex.convertOutput.column.enabled', true)) {
         return column
     }

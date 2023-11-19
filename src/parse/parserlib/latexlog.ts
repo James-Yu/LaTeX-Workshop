@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as lw from '../../lw'
 import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserutils'
 import { extension } from '../../extension'
 
@@ -61,7 +60,7 @@ function initParserState(rootFile: string): ParserState {
 
 function parse(log: string, rootFile?: string) {
     if (rootFile === undefined) {
-        rootFile = lw.manager.rootFile
+        rootFile = extension.root.file.path
     }
     if (rootFile === undefined) {
         logger.log('How can you reach this point?')

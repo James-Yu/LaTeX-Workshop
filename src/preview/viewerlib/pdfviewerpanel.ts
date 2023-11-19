@@ -43,25 +43,25 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
         await lw.server.serverStarted
         logger.log(`Restoring at column ${panel.viewColumn} with state ${JSON.stringify(argState.state)}.`)
         const state = argState.state
-        let pdfFileUri: vscode.Uri | undefined
+        let pdfUri: vscode.Uri | undefined
         if (state.path) {
-            pdfFileUri = vscode.Uri.file(state.path)
+            pdfUri = vscode.Uri.file(state.path)
         } else if (state.pdfFileUri) {
-            pdfFileUri = vscode.Uri.parse(state.pdfFileUri, true)
+            pdfUri = vscode.Uri.parse(state.pdfFileUri, true)
         }
-        if (!pdfFileUri) {
+        if (!pdfUri) {
             logger.log('Failed restoring viewer with undefined PDF path.')
             panel.webview.html = '<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>The path of PDF file is undefined.</html>'
             return
         }
-        if (! await lw.lwfs.exists(pdfFileUri)) {
-            const s = escapeHtml(pdfFileUri.toString())
-            logger.log(`Failed restoring viewer with non-existent PDF ${pdfFileUri.toString(true)} .`)
+        if (! await extension.file.exists(pdfUri)) {
+            const s = escapeHtml(pdfUri.toString())
+            logger.log(`Failed restoring viewer with non-existent PDF ${pdfUri.toString(true)} .`)
             panel.webview.html = `<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>File not found: ${s}</html>`
             return
         }
-        panel.webview.html = await getPDFViewerContent(pdfFileUri)
-        const pdfPanel = new PdfViewerPanel(pdfFileUri, panel)
+        panel.webview.html = await getPDFViewerContent(pdfUri)
+        const pdfPanel = new PdfViewerPanel(pdfUri, panel)
         viewerManager.initiatePdfViewerPanel(pdfPanel)
         return
     }

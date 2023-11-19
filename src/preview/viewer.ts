@@ -47,7 +47,7 @@ export class Viewer {
 
     initialize() {
         extension.watcher.pdf.onChange(pdfPath => {
-            if (path.relative(pdfPath, lw.manager.compiledRootFile ? lw.manager.tex2pdf(lw.manager.compiledRootFile) : '') !== '') {
+            if (path.relative(pdfPath, extension.compile.compiledRootFile ? extension.file.getPdfPath(extension.compile.compiledRootFile) : '') !== '') {
                 this.refreshExistingViewer(pdfPath)
             }
         })
@@ -89,9 +89,9 @@ export class Viewer {
         })
     }
 
-    private async checkViewer(pdfFile: string): Promise<string | undefined> {
-        const pdfUri = vscode.Uri.file(pdfFile)
-        if (!await lw.lwfs.exists(pdfUri)) {
+    private async checkViewer(pdfPath: string): Promise<string | undefined> {
+        const pdfUri = vscode.Uri.file(pdfPath)
+        if (!await extension.file.exists(pdfUri)) {
             logger.log(`Cannot find PDF file ${pdfUri}`)
             logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfUri}`, 'warning')
             return

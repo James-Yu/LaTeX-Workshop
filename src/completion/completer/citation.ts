@@ -150,7 +150,7 @@ export class Citation implements IProvider {
         const label = configuration.get('intellisense.citation.label') as string
         const fields = readCitationFormat(configuration)
         const range: vscode.Range | undefined = computeFilteringRange(line, position)
-        return this.updateAll(this.getIncludedBibs(lw.manager.rootFile)).map(item => {
+        return this.updateAll(this.getIncludedBibs(extension.root.file.path)).map(item => {
             // Compile the completion item label
             switch(label) {
                 case 'bibtex key':
@@ -181,7 +181,7 @@ export class Citation implements IProvider {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', args?.uri)
         const label = configuration.get('intellisense.citation.label') as string
         const fields = readCitationFormat(configuration, label)
-        void vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(lw.manager.rootFile)).map(item => {
+        void vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(extension.root.file.path)).map(item => {
             return {
                 label: item.fields.title ? trimMultiLineString(item.fields.title) : '',
                 description: item.key,

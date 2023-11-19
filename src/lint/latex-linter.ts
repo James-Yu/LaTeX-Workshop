@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as lw from '../lw'
 import { chkTeX } from './linterlib/chktex'
 import { laCheck } from './linterlib/lacheck'
 import { extension } from '../extension'
@@ -34,14 +33,14 @@ export class Linter {
     }
 
     lintRootFileIfEnabled() {
-        const linters = this.getLinters(lw.manager.getWorkspaceFolderRootDir())
+        const linters = this.getLinters(extension.root.getWorkspace())
         linters.forEach(linter => {
-            if (lw.manager.rootFile === undefined) {
+            if (extension.root.file.path === undefined) {
                 logger.log(`No root file found for ${linter.getName()}.`)
                 return
             }
-            logger.log(`${linter.getName()} lints root ${lw.manager.rootFile} .`)
-            void linter.lintRootFile(lw.manager.rootFile)
+            logger.log(`${linter.getName()} lints root ${extension.root.file.path} .`)
+            void linter.lintRootFile(extension.root.file.path)
         })
     }
 

@@ -61,7 +61,7 @@ export class GraphicsPreview {
                 let msg = '$(error) Failed to render.'
                 if (!vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath))) {
                     msg = '$(warning) Cannot render a PDF file not in workspaces.'
-                } else if (!lw.snippetView.snippetViewProvider.webviewView) {
+                } else if (!extension.views.snippet.provider.webviewView) {
                     msg = '$(info) Please activate Snippet View to render the thumbnail of a PDF file.'
                 }
                 return new vscode.MarkdownString(msg, true)
@@ -75,19 +75,19 @@ export class GraphicsPreview {
             const maxDataUrlLength = 99980
             let scale = 1.5
             let newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-            let dataUrl = await lw.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+            let dataUrl = await extension.views.snippet.render(vscode.Uri.file(pdfFilePath), newOpts)
             if (!dataUrl || dataUrl.length < maxDataUrlLength) {
                 return dataUrl
             }
             scale = 1
             newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-            dataUrl = await lw.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+            dataUrl = await extension.views.snippet.render(vscode.Uri.file(pdfFilePath), newOpts)
             if (!dataUrl || dataUrl.length < maxDataUrlLength) {
                 return dataUrl
             }
             scale = Math.sqrt(maxDataUrlLength/dataUrl.length) / 1.2
             newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-            dataUrl = await lw.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+            dataUrl = await extension.views.snippet.render(vscode.Uri.file(pdfFilePath), newOpts)
             if (dataUrl && dataUrl.length >= maxDataUrlLength) {
                 logger.log(`Data URL still too large: ${pdfFilePath}`)
                 return
@@ -121,7 +121,7 @@ export class GraphicsPreview {
             return fPath
         }
 
-        const rootDir = lw.manager.rootDir
+        const rootDir = extension.root.dir.path
         if (rootDir === undefined) {
             return
         }

@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
-import * as lw from '../../lw'
 import type { ILinter } from '../latex-linter'
 import { processWrapper } from './linterutils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
@@ -63,7 +62,7 @@ async function lacheckWrapper(linterid: string, configScope: vscode.Configuratio
 function parseLog(log: string, filePath?: string) {
     const linterLog: LaCheckLogEntry[] = []
     const lines = log.split('\n')
-    const baseDir = path.dirname(filePath || lw.manager.rootFile || '.')
+    const baseDir = path.dirname(filePath || extension.root.file.path || '.')
     for (let index = 0; index < lines.length; index++) {
         const logLine = lines[index]
         const re = /"(.*?)",\sline\s(\d+):\s(<-\s)?(.*)/g

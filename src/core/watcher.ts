@@ -3,7 +3,6 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as lw from '../lw'
 import * as eventbus from './event-bus'
-import { isBinary } from './root-file'
 import { extension } from '../extension'
 
 const logger = extension.log('Cacher', 'Watcher')
@@ -56,7 +55,7 @@ export class Watcher {
         if (!this.watchers[path.dirname(uri.fsPath)]?.files.has(path.basename(uri.fsPath))) {
             return
         }
-        if (!isBinary(path.extname(uri.fsPath))) {
+        if (!extension.file.hasBinaryExt(path.extname(uri.fsPath))) {
             logger.log(`"${event}" emitted on ${uri.fsPath} .`)
             this.onChangeHandlers.forEach(handler => handler(uri.fsPath))
             lw.eventBus.fire(eventbus.FileChanged, uri.fsPath)

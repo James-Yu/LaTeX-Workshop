@@ -48,7 +48,7 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
             // We don't check LaTeX ID as the reconstruct is handled by the Cacher.
             // We don't check BibTeX ID as the reconstruct is handled by the citation completer.
-            if (lw.manager.hasDoctexId(e.languageId)) {
+            if (extension.file.hasDtxLangId(e.languageId)) {
                 void this.reconstruct()
             }
         })
@@ -57,9 +57,9 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
             if (!e) {
                 return
             }
-            if (lw.manager.hasTexId(e.document.languageId)
-                || lw.manager.hasBibtexId(e.document.languageId)
-                || lw.manager.hasDoctexId(e.document.languageId)) {
+            if (extension.file.hasTexLangId(e.document.languageId)
+                || extension.file.hasBibLangId(e.document.languageId)
+                || extension.file.hasDtxLangId(e.document.languageId)) {
                 void this.refresh()
             }
         })
@@ -100,11 +100,11 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
                 logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} entries for ${document.uri.fsPath} .`)
             }
             this.structure = this.cachedBib
-        } else if (lw.manager.rootFile) {
+        } else if (extension.root.file.path) {
             if (force || !this.cachedTeX) {
                 this.cachedTeX = undefined
                 this.cachedTeX = await constructLaTeX()
-                logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} root sections for ${lw.manager.rootFile} .`)
+                logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} root sections for ${extension.root.file.path} .`)
             }
             this.structure = this.cachedTeX
         } else {
@@ -173,14 +173,14 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
     }
 
     getChildren(element?: TeXElement): vscode.ProviderResult<TeXElement[]> {
-        if (lw.manager.rootFile === undefined) {
+        if (extension.root.file.path === undefined) {
             return []
         }
         return element?.children ?? this.refresh(false)
     }
 
     getParent(element?: TeXElement): TeXElement | undefined {
-        if (lw.manager.rootFile === undefined || !element) {
+        if (extension.root.file.path === undefined || !element) {
             return
         }
         return element.parent

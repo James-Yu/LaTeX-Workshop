@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as lw from '../../../lw'
 import { stripCommentsAndVerbatim } from '../../../utils/utils'
 import { extension } from '../../../extension'
 
@@ -48,17 +47,17 @@ async function loadNewCommandFromConfigFile(newCommandFile: string) {
     if (path.isAbsolute(newCommandFile)) {
         newCommandFileAbs = newCommandFile
     } else {
-        if (lw.manager.rootFile === undefined) {
-            await lw.manager.findRoot()
+        if (extension.root.file.path === undefined) {
+            await extension.root.find()
         }
-        const rootDir = lw.manager.rootDir
+        const rootDir = extension.root.dir.path
         if (rootDir === undefined) {
             logger.log(`Cannot identify the absolute path of new command file ${newCommandFile} without root file.`)
             return ''
         }
         newCommandFileAbs = path.join(rootDir, newCommandFile)
     }
-    commandsString = lw.lwfs.readFileSyncGracefully(newCommandFileAbs)
+    commandsString = extension.file.read(newCommandFileAbs)
     if (commandsString === undefined) {
         logger.log(`Cannot read file ${newCommandFileAbs}`)
         return ''

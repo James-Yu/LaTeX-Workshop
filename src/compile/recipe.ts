@@ -4,16 +4,12 @@ import fs from 'fs'
 import * as cp from 'child_process'
 import * as lw from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
-import { queue } from './queue'
+
+import { constants, extension } from '../extension'
 import type { Recipe, Tool } from '.'
-import { extension } from '../extension'
+import { queue } from './queue'
 
 const logger = extension.log('Build', 'Recipe')
-
-export const TEX_MAGIC_PROGRAM_NAME = 'TEX_MAGIC_PROGRAM_NAME'
-export const BIB_MAGIC_PROGRAM_NAME = 'BIB_MAGIC_PROGRAM_NAME'
-export const MAGIC_PROGRAM_ARGS_SUFFIX = '_WITH_ARGS'
-export const MAX_PRINT_LINE = '10000'
 
 let prevRecipe: Recipe | undefined = undefined
 let prevLangId = ''
@@ -61,7 +57,7 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
  */
 function createOutputSubFolders(rootFile: string) {
     const rootDir = path.dirname(rootFile)
-    let outDir = lw.manager.getOutDir(rootFile)
+    let outDir = extension.file.getOutDir(rootFile)
     if (!path.isAbsolute(outDir)) {
         outDir = path.resolve(rootDir, outDir)
     }
@@ -154,7 +150,7 @@ function findMagicComments(rootFile: string): {tex?: Tool, bib?: Tool, recipe?: 
     let texCommand: Tool | undefined = undefined
     if (tex) {
         texCommand = {
-            name: TEX_MAGIC_PROGRAM_NAME,
+            name: constants.TEX_MAGIC_PROGRAM_NAME,
             command: tex[1]
         }
         logger.log(`Found TeX program by magic comment: ${texCommand.command}.`)
@@ -169,7 +165,7 @@ function findMagicComments(rootFile: string): {tex?: Tool, bib?: Tool, recipe?: 
     let bibCommand: Tool | undefined = undefined
     if (bib) {
         bibCommand = {
-            name: BIB_MAGIC_PROGRAM_NAME,
+            name: constants.BIB_MAGIC_PROGRAM_NAME,
             command: bib[1]
         }
         logger.log(`Found BIB program by magic comment: ${bibCommand.command}.`)
@@ -193,12 +189,12 @@ function createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): To
 
     if (!magicTex.args) {
         magicTex.args = configuration.get('latex.magic.args') as string[]
-        magicTex.name = TEX_MAGIC_PROGRAM_NAME + MAGIC_PROGRAM_ARGS_SUFFIX
+        magicTex.name = constants.TEX_MAGIC_PROGRAM_NAME + constants.MAGIC_PROGRAM_ARGS_SUFFIX
     }
     if (magicBib) {
         if (!magicBib.args) {
             magicBib.args = configuration.get('latex.magic.bib.args') as string[]
-            magicBib.name = BIB_MAGIC_PROGRAM_NAME + MAGIC_PROGRAM_ARGS_SUFFIX
+            magicBib.name = constants.BIB_MAGIC_PROGRAM_NAME + constants.MAGIC_PROGRAM_ARGS_SUFFIX
         }
         return [magicTex, magicBib, magicTex, magicTex]
     } else {
@@ -246,17 +242,17 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
     if (recipe === undefined) {
         let candidates: Recipe[] = recipes
         if (langId === 'rsweave') {
-                candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('rnw|rsweave'))
+            candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('rnw|rsweave'))
         } else if (langId === 'jlweave') {
-                candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('jnw|jlweave|weave.jl'))
+            candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('jnw|jlweave|weave.jl'))
         } else if (langId === 'pweave') {
             candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('pnw|pweave'))
         }
-            if (candidates.length < 1) {
-                logger.log(`Failed to resolve build recipe: ${recipeName}.`)
-                void logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}.`)
-            }
-            recipe = candidates[0]
+        if (candidates.length < 1) {
+            logger.log(`Failed to resolve build recipe: ${recipeName}.`)
+            void logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}.`)
+        }
+        recipe = candidates[0]
     }
     return recipe
 }
@@ -286,10 +282,10 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
                     break
             }
         }
-        tool.args = tool.args?.map(replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir))
+        tool.args = tool.args?.map(replaceArgumentPlaceholders(rootFile, extension.file.tmpDirPath))
         const env = tool.env ?? {}
         Object.entries(env).forEach(([key, value]) => {
-            env[key] = value && replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(value)
+            env[key] = value && replaceArgumentPlaceholders(rootFile, extension.file.tmpDirPath)(value)
         })
         if (configuration.get('latex.option.maxPrintLine.enabled')) {
             tool.args = tool.args ?? []
@@ -300,7 +296,7 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
                                 tool.args.includes('--pdflua') ||
                                 tool.args.includes('--pdflualatex')
             if (isMikTeX() && ((tool.command === 'latexmk' && !isLuaLatex) || tool.command === 'pdflatex')) {
-                tool.args.unshift('--max-print-line=' + MAX_PRINT_LINE)
+                tool.args.unshift('--max-print-line=' + constants.MAX_PRINT_LINE)
             }
         }
     })
