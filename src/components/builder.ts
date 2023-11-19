@@ -572,7 +572,11 @@ export class Builder {
         }
         // Find default recipe of last used
         if (recipe === undefined && defaultRecipeName === 'lastUsed') {
-            recipe = this.prevRecipe
+            const candidates = recipes.filter(candidate => candidate.name === this.prevRecipe?.name)
+            if (candidates.length < 1) {
+                logger.log(`Failed to resolve previous build recipe: ${recipeName}.`)
+            }
+            recipe = candidates[0]
         }
         // If still not found, fallback to 'first'
         if (recipe === undefined) {
