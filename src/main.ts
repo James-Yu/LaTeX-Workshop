@@ -30,11 +30,12 @@ import { FoldingProvider, WeaveFoldingProvider } from './language/folding'
 import { SelectionRangeProvider } from './language/selection'
 import { bibtexFormat, bibtexFormatterProvider } from './lint/bibtex-formatter'
 import { DocumentChanged } from './core/event-bus'
-import * as lw from './lw'
-
 const logger = extension.log('Extension')
+let lw: any
 
 function initialize() {
+    lw = require('./lw')
+    
     lw.completer.citation.initialize()
 
     lw.setViewer(new Viewer())

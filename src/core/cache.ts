@@ -3,15 +3,14 @@ import * as fs from 'fs'
 import * as path from 'path'
 import os from 'os'
 import micromatch from 'micromatch'
-import * as lw from '../lw'
-import * as eventbus from './event-bus'
-import * as utils from '../utils/utils'
-import { InputFileRegExp } from '../utils/inputfilepath'
-import { parser } from '../parse/parser'
 import { performance } from 'perf_hooks'
 
 import { extension } from '../extension'
 import type { FileCache } from '../types'
+import * as utils from '../utils/utils'
+import * as eventbus from './event-bus'
+import { InputFileRegExp } from '../utils/inputfilepath'
+// TODO: there is a require('parser') import { parser } from '../parse/parser'
 
 const logger = extension.log('Cacher')
 
@@ -131,13 +130,13 @@ async function refreshCache(filePath: string, rootPath?: string) {
     promises[filePath] = updateAST(cache).then(() => {
         updateElements(cache)
     }).finally(() => {
-        lw.dupLabelDetector.run()
+        require('../lw').dupLabelDetector.run()
         cachingFilesCount--
         delete promises[filePath]
-        lw.eventBus.fire(eventbus.FileParsed, filePath)
+        require('../lw').eventBus.fire(eventbus.FileParsed, filePath)
 
         if (cachingFilesCount === 0) {
-            void lw.structureViewer.reconstruct()
+            void require('../lw').structureViewer.reconstruct()
         }
     })
 
@@ -164,7 +163,7 @@ function refreshCacheAggressive(filePath: string) {
 
 async function updateAST(cache: FileCache): Promise<void> {
     logger.log(`Parse LaTeX AST: ${cache.filePath} .`)
-    cache.ast = await parser.parseLaTeX(cache.content)
+    cache.ast = await require('../parse/parser').parser.parseLaTeX(cache.content)
     logger.log(`Parsed LaTeX AST: ${cache.filePath} .`)
 }
 
@@ -233,14 +232,14 @@ function updateChildrenXr(cache: FileCache, rootPath: string) {
 
 function updateElements(cache: FileCache) {
     const start = performance.now()
-    lw.completer.citation.parse(cache)
+    require('../lw').completer.citation.parse(cache)
     // Package parsing must be before command and environment.
-    lw.completer.package.parse(cache)
-    lw.completer.reference.parse(cache)
-    lw.completer.glossary.parse(cache)
-    lw.completer.environment.parse(cache)
-    lw.completer.command.parse(cache)
-    lw.completer.input.parseGraphicsPath(cache)
+    require('../lw').completer.package.parse(cache)
+    require('../lw').completer.reference.parse(cache)
+    require('../lw').completer.glossary.parse(cache)
+    require('../lw').completer.environment.parse(cache)
+    require('../lw').completer.command.parse(cache)
+    require('../lw').completer.input.parseGraphicsPath(cache)
     updateBibfiles(cache)
     const elapsed = performance.now() - start
     logger.log(`Updated elements in ${elapsed.toFixed(2)} ms: ${cache.filePath} .`)

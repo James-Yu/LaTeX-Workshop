@@ -1,9 +1,8 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as lw from '../lw'
-import * as eventbus from './event-bus'
 import { extension } from '../extension'
+import * as eventbus from './event-bus'
 
 const logger = extension.log('Cacher', 'Watcher')
 
@@ -46,7 +45,7 @@ export class Watcher {
                 delete this.watchers[folder]
                 logger.log(`Unwatched folder ${folder} .`)
             }
-            lw.eventBus.fire(eventbus.FileRemoved, uri.fsPath)
+            require('../lw').eventBus.fire(eventbus.FileRemoved, uri.fsPath)
         })
         return watcher
     }
@@ -58,7 +57,7 @@ export class Watcher {
         if (!extension.file.hasBinaryExt(path.extname(uri.fsPath))) {
             logger.log(`"${event}" emitted on ${uri.fsPath} .`)
             this.onChangeHandlers.forEach(handler => handler(uri.fsPath))
-            lw.eventBus.fire(eventbus.FileChanged, uri.fsPath)
+            require('../lw').eventBus.fire(eventbus.FileChanged, uri.fsPath)
             return
         }
         // Another event has initiated a polling on the file, just ignore this
@@ -91,7 +90,7 @@ export class Watcher {
             clearInterval(pollingInterval)
             delete this.polling[uri.fsPath]
             this.onChangeHandlers.forEach(handler => handler(uri.fsPath))
-            lw.eventBus.fire(eventbus.FileChanged, uri.fsPath)
+            require('../lw').eventBus.fire(eventbus.FileChanged, uri.fsPath)
         }, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number)
     }
 
@@ -110,7 +109,7 @@ export class Watcher {
             this.onCreateHandlers.forEach(handler => handler(filePath))
             logger.log(`Watched ${filePath} .`)
         }
-        lw.eventBus.fire(eventbus.FileWatched, filePath)
+        require('../lw').eventBus.fire(eventbus.FileWatched, filePath)
     }
 
     remove(filePath: string) {

@@ -1,11 +1,10 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
-import * as utils from '../utils/utils'
-import * as lw from '../lw'
-import * as eventbus from './event-bus'
 
 import { extension } from '../extension'
+import * as utils from '../utils/utils'
+import * as eventbus from './event-bus'
 
 const logger = extension.log('Root')
 
@@ -54,17 +53,17 @@ async function find(): Promise<undefined> {
         }
         if (rootFilePath === root.file.path) {
             logger.log(`Keep using the same root file: ${root.file.path}`)
-            void lw.structureViewer.refresh()
+            void require('../lw').structureViewer.refresh()
         } else {
             root.file.path = rootFilePath
             root.file.langId = extension.file.getLangId(rootFilePath)
             root.dir.path = path.dirname(rootFilePath)
             logger.log(`Root file changed: from ${root.file.path} to ${rootFilePath}, langID ${root.file.langId} . Refresh dependencies`)
-            lw.eventBus.fire(eventbus.RootFileChanged, rootFilePath)
+            require('../lw').eventBus.fire(eventbus.RootFileChanged, rootFilePath)
 
             // We also clean the completions from the old project
-            lw.completer.input.reset()
-            lw.dupLabelDetector.reset()
+            require('../lw').completer.input.reset()
+            require('../lw').dupLabelDetector.reset()
             extension.cache.reset()
             extension.cache.add(rootFilePath)
             void extension.cache.refreshCache(rootFilePath).then(async () => {
@@ -73,12 +72,12 @@ async function find(): Promise<undefined> {
                 await extension.cache.loadFlsFile(rootFilePath)
             })
         }
-        lw.eventBus.fire(eventbus.RootFileSearched)
+        require('../lw').eventBus.fire(eventbus.RootFileSearched)
         return
     }
     logger.log(`No root file found.`)
-    void lw.structureViewer.refresh()
-    lw.eventBus.fire(eventbus.RootFileSearched)
+    void require('../lw').structureViewer.refresh()
+    require('../lw').eventBus.fire(eventbus.RootFileSearched)
     return
 }
 
