@@ -14,6 +14,7 @@ export function run(): Promise<void> {
     return new Promise((resolve, reject) => {
         try {
             glob.sync('**/**.test.js', { cwd: __dirname })
+                .sort()
                 .forEach(f => mocha.addFile(path.resolve(__dirname, f)))
             // Run the mocha test
             mocha.run(failures => {
