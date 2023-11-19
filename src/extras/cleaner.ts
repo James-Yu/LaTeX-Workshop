@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import { glob } from 'glob'
 import * as cs from 'cross-spawn'
-import * as lw from '../lw'
+import { lw } from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 
 import { getLogger } from '../utils/logging/logger'

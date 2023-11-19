@@ -3,7 +3,7 @@ import type ws from 'ws'
 import * as path from 'path'
 import * as os from 'os'
 import * as cs from 'cross-spawn'
-import * as lw from '../lw'
+import { lw, registerDisposable } from '../lw'
 import type { SyncTeXRecordForward } from '../locate/synctex'
 import { getCurrentThemeLightness } from '../utils/theme'
 import type { ClientRequest, PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index'
@@ -28,7 +28,7 @@ export class Viewer {
                 this.refreshExistingViewer(pdfPath)
             }
         })
-        lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+        registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (e.affectsConfiguration('latex-workshop.view.pdf.invertMode.enabled') ||
                 e.affectsConfiguration('latex-workshop.view.pdf.invert') ||
                 e.affectsConfiguration('latex-workshop.view.pdf.invertMode.brightness') ||

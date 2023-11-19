@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { TeXElement } from '../project'
+import { TeXElement } from './types'
 import { parser } from '../../parse/parser'
 import { outline } from './latex'
 import { getLogger } from '../../utils/logging/logger'

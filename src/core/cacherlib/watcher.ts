@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as lw from '../../lw'
+import { lw } from '../../lw'
 import * as eventbus from '../event-bus'
 import { getLogger } from '../../utils/logging/logger'
 import { isBinary } from '../root-file'

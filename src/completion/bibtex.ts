@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import * as lw from '../lw'
+import { lw } from '../lw'
 import { getBibtexFormatConfig, type BibtexFormatConfig } from '../lint/bibtexformatterlib/bibtexutils'
 
 import { getLogger } from '../utils/logging/logger'

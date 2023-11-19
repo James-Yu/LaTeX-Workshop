@@ -3,7 +3,7 @@ import * as cs from 'cross-spawn'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
-import * as lw from '../lw'
+import { lw, registerDisposable } from '../lw'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 import { getLogger } from '../utils/logging/logger'
 
@@ -195,7 +195,7 @@ class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, v
             logger.log('LaTexFormatter: Unsupported OS')
         }
 
-        lw.registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+        registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
             if (e.affectsConfiguration('latex-workshop.latexindent.path')) {
                 formatter = ''
             }

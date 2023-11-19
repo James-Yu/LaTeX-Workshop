@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as lw from '../lw'
+import { lw } from '../lw'
 import { chkTeX } from './linterlib/chktex'
 import { laCheck } from './linterlib/lacheck'
 import { getLogger } from '../utils/logging/logger'

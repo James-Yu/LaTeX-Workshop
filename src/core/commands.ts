@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as lw from '../lw'
+import { lw } from '../lw'
 import { getSurroundingCommandRange, stripText } from '../utils/utils'
 import { getLogger } from '../utils/logging/logger'
 import { parser } from '../parse/parser'

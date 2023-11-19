@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
-import * as lw from '../../lw'
-import { ViewerMode } from '../viewer'
+import { lw } from '../../lw'
+import type { ViewerMode } from '../viewer'
 import { viewerManager } from './pdfviewermanager'
 import { populatePdfViewerPanel } from './pdfviewerpanel'
 

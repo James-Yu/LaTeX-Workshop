@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
-import * as lw from '../../lw'
+import { lw } from '../../lw'
 import type { IProvider, IProviderArgs } from '../latex'
 
 import { getLogger } from '../../utils/logging/logger'

@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as cp from 'child_process'
 import * as cs from 'cross-spawn'
-import * as lw from '../lw'
+import { lw } from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { AutoBuildInitiated, AutoCleaned, BuildDone } from '../core/event-bus'
 import { getLogger } from '../utils/logging/logger'
@@ -104,9 +104,9 @@ export class Builder {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (!bibChanged && lw.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-            return lw.commander.build(true, lw.manager.localRootFile, lw.manager.rootFileLanguageId)
+            return lw.commands.build(true, lw.manager.localRootFile, lw.manager.rootFileLanguageId)
         } else {
-            return lw.commander.build(true, lw.manager.rootFile, lw.manager.rootFileLanguageId)
+            return lw.commands.build(true, lw.manager.rootFile, lw.manager.rootFileLanguageId)
         }
     }
 

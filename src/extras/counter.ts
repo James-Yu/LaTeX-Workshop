@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
-import * as lw from '../lw'
+import { lw } from '../lw'
 import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('Counter')

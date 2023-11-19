@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as lw from '../lw'
+import { lw } from '../lw'
 import { tokenizer, onAPackage } from '../utils/tokenizer'
 import { findProjectNewCommand } from '../preview/math/mathpreviewlib/newcommandfinder'
 import { CmdEnvSuggestion } from '../completion/completer/completerutils'

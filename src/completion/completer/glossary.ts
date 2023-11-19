@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import * as lw from '../../lw'
+import { lw } from '../../lw'
 import type { ICompletionItem, IProvider } from '../latex'
 import { Cache } from '../../core/cache'
 import { argContentToStr } from '../../utils/parser'

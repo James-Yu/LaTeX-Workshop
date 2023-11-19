@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import * as lw from '../../lw'
+import { lw } from '../../lw'
 import type { IProvider } from '../latex'
 import { argContentToStr } from '../../utils/parser'
 import { Cache } from '../../core/cache'

@@ -1,104 +1,70 @@
-import vscode from 'vscode'
-import path from 'path'
-import { Builder } from './compile/build'
-import { Cacher } from './core/cache'
-import { Cleaner } from './extras/cleaner'
-import { LaTeXCommanderTreeView } from './extras/activity-bar'
-import { Configuration } from './utils/logging/log-config'
-import { Counter } from './extras/counter'
-export { dupLabelDetector } from './lint/duplicate-label'
-import { EnvPair } from './locate/environment'
-import { EventBus } from './core/event-bus'
-import { Linter } from './lint/latex-linter'
-import { Locator } from './locate/synctex'
-import { LwFileSystem } from './core/file-system'
-import { Manager } from './core/root-file'
-import { MathPreviewPanel } from './extras/math-preview-panel'
-import { parser } from './parse/parser'
-import { Section } from './extras/section'
-import { Server } from './preview/server'
-import { SnippetView } from './extras/snippet-view'
-import { TeXMagician } from './extras/texroot'
-import { Viewer } from './preview/viewer'
-import { CodeActions } from './lint/latex-code-actions'
-import { AtSuggestionCompleter, Completer } from './completion/latex'
-import { GraphicsPreview } from './preview/graphics'
-import { MathPreview } from './preview/math/mathpreview'
-import { StructureView } from './outline/project'
-import { getLogger } from './utils/logging/logger'
-import { TeXDoc } from './extras/texdoc'
-import { MathJaxPool } from './preview/math/mathjaxpool'
+import * as vscode from 'vscode'
+import type { Builder } from './compile/build'
+import type { Cacher } from './core/cache'
+import type { Cleaner } from './extras/cleaner'
+import type { LaTeXCommanderTreeView } from './extras/activity-bar'
+import type { Configuration } from './utils/logging/log-config'
+import type { Counter } from './extras/counter'
+import type { EnvPair } from './locate/environment'
+import type { EventBus } from './core/event-bus'
+import type { Linter } from './lint/latex-linter'
+import type { Locator } from './locate/synctex'
+import type { LwFileSystem } from './core/file-system'
+import type { Manager } from './core/root-file'
+import type { MathPreviewPanel } from './extras/math-preview-panel'
+import type { Section } from './extras/section'
+import type { dupLabelDetector } from './lint/duplicate-label'
+import type { Server } from './preview/server'
+import type { SnippetView } from './extras/snippet-view'
+import type { TeXMagician } from './extras/texroot'
+import type { Viewer } from './preview/viewer'
+import type { CodeActions } from './lint/latex-code-actions'
+import type { AtSuggestionCompleter, Completer } from './completion/latex'
+import type { GraphicsPreview } from './preview/graphics'
+import type { MathPreview } from './preview/math/mathpreview'
+import type { StructureView } from './outline/project'
+import type { TeXDoc } from './extras/texdoc'
+import type * as commands from './core/commands'
+
+export const lw = {
+    extensionContext: Object.create(null) as vscode.ExtensionContext,
+    extensionRoot: '',
+    eventBus: Object.create(null) as EventBus,
+    configuration: Object.create(null) as Configuration,
+    lwfs: Object.create(null) as LwFileSystem,
+    cacher: Object.create(null) as Cacher,
+    manager: Object.create(null) as Manager,
+    builder: Object.create(null) as Builder,
+    viewer: Object.create(null) as Viewer,
+    server: Object.create(null) as Server,
+    locator: Object.create(null) as Locator,
+    completer: Object.create(null) as Completer,
+    atSuggestionCompleter: Object.create(null) as AtSuggestionCompleter,
+    linter: Object.create(null) as Linter,
+    cleaner: Object.create(null) as Cleaner,
+    counter: Object.create(null) as Counter,
+    texdoc: Object.create(null) as TeXDoc,
+    codeActions: Object.create(null) as CodeActions,
+    texMagician: Object.create(null) as TeXMagician,
+    envPair: Object.create(null) as EnvPair,
+    section: Object.create(null) as Section,
+    dupLabelDetector: Object.create(null) as typeof dupLabelDetector,
+    latexCommanderTreeView: Object.create(null) as LaTeXCommanderTreeView,
+    structureViewer: Object.create(null) as StructureView,
+    snippetView: Object.create(null) as SnippetView,
+    graphicsPreview: Object.create(null) as GraphicsPreview,
+    mathPreview: Object.create(null) as MathPreview,
+    mathPreviewPanel: Object.create(null) as MathPreviewPanel,
+    commands: Object.create(null) as typeof commands
+}
 
 let disposables: { dispose(): any }[] = []
-let context: vscode.ExtensionContext
 
 export function registerDisposable(...items: vscode.Disposable[]) {
-    if (context) {
-        context.subscriptions.push(...disposables, ...items)
+    if (lw.extensionContext.subscriptions) {
+        lw.extensionContext.subscriptions.push(...disposables, ...items)
         disposables = []
     } else {
         disposables = [...disposables, ...items]
     }
-}
-
-export * as commander from './core/commands'
-
-export const extensionRoot = path.resolve(`${__dirname}/../../`)
-export const eventBus = new EventBus()
-export const configuration = new Configuration()
-export const lwfs = new LwFileSystem()
-export const cacher = new Cacher()
-export const manager = new Manager()
-export const builder = new Builder()
-export const viewer = new Viewer()
-export const server = new Server()
-export const locator = new Locator()
-export const completer = new Completer()
-export const atSuggestionCompleter = new AtSuggestionCompleter()
-export const linter = new Linter()
-export const cleaner = new Cleaner()
-export const counter = new Counter()
-export const texdoc = new TeXDoc()
-export const codeActions = new CodeActions()
-export const texMagician = new TeXMagician()
-export const envPair = new EnvPair()
-export const section = new Section()
-export const latexCommanderTreeView = new LaTeXCommanderTreeView()
-export const structureViewer = new StructureView()
-export const snippetView = new SnippetView()
-export const graphicsPreview = new GraphicsPreview()
-export const mathPreview = new MathPreview()
-export const mathPreviewPanel = new MathPreviewPanel()
-
-const logger = getLogger('Extension')
-
-export function init(extensionContext: vscode.ExtensionContext) {
-    context = extensionContext
-    registerDisposable()
-    addLogFundamentals()
-    void parser.reset()
-    logger.initializeStatusBarItem()
-    logger.log('LaTeX Workshop initialized.')
-    return {
-        dispose: async () => {
-            cacher.reset()
-            server.dispose()
-            await parser.dispose()
-            MathJaxPool.dispose()
-        }
-    }
-}
-
-export function addLogFundamentals() {
-    logger.log('Initializing LaTeX Workshop.')
-    logger.log(`Extension root: ${extensionRoot}`)
-    logger.log(`$PATH: ${process.env.PATH}`)
-    logger.log(`$SHELL: ${process.env.SHELL}`)
-    logger.log(`$LANG: ${process.env.LANG}`)
-    logger.log(`$LC_ALL: ${process.env.LC_ALL}`)
-    logger.log(`process.platform: ${process.platform}`)
-    logger.log(`process.arch: ${process.arch}`)
-    logger.log(`vscode.env.appName: ${vscode.env.appName}`)
-    logger.log(`vscode.env.remoteName: ${vscode.env.remoteName}`)
-    logger.log(`vscode.env.uiKind: ${vscode.env.uiKind}`)
 }

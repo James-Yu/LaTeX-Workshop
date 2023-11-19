@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as lw from '../../lw'
+import { lw } from '../../lw'
 import type { IProvider, IProviderArgs } from '../latex'
 import { CmdEnvSuggestion, filterArgumentHint } from './completerutils'
 import { EnvSnippetType } from './environment'

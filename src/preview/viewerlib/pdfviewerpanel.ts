@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as lw from '../../lw'
+import { lw } from '../../lw'
 import type { PanelRequest, PdfViewerState } from '../../../types/latex-workshop-protocol-types/index'
 import { escapeHtml, sleep } from '../../utils/utils'
 import { viewerManager } from './pdfviewermanager'

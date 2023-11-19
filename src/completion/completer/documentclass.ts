@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import * as lw from '../../lw'
+import { lw } from '../../lw'
 import type { IProvider } from '../latex'
 
 type DataClassnamesJsonType = typeof import('../../../data/classnames.json')

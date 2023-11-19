@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as lw from '../lw'
+import { lw } from '../lw'
 
 export class LaTeXCommanderTreeView {
     private readonly latexCommanderProvider: LaTeXCommanderProvider

@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as lw from '../lw'
+import { lw } from '../lw'
 
 export function replaceWebviewPlaceholders(content: string, webview: vscode.Webview): string {
     const extensionRootUri = vscode.Uri.file(lw.extensionRoot)

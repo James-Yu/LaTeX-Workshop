@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import type { TexMathEnv } from '../preview/math/mathpreview'
 import { moveWebviewPanel } from '../utils/webview'
-import * as lw from '../lw'
+import { lw } from '../lw'
 import { getLogger } from '../utils/logging/logger'
 
 const logger = getLogger('Preview', 'Math')

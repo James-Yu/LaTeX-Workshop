@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import * as lw from '../../lw'
-import { TeXElement, TeXElementType } from '../project'
+import { lw } from '../../lw'
+import { TeXElement, TeXElementType } from './types'
 import { resolveFile } from '../../utils/utils'
 import { InputFileRegExp } from '../../utils/inputfilepath'
 

@@ -1,28 +1,15 @@
 import * as vscode from 'vscode'
-import * as lw from '../lw'
+import { lw } from '../lw'
 import { StructureUpdated } from '../core/event-bus'
 import { construct as constructLaTeX } from './structurelib/latex'
 import { buildBibTeX } from './structurelib/bibtex'
 import { construct as constructDocTeX } from './structurelib/doctex'
 
+import type { TeXElement } from './structurelib/types'
 import { getLogger } from '../utils/logging/logger'
 import { parser } from '../parse/parser'
 
 const logger = getLogger('Structure')
-
-export enum TeXElementType { Environment, Command, Section, SectionAst, SubFile, BibItem, BibField }
-
-export type TeXElement = {
-    readonly type: TeXElementType,
-    readonly name: string,
-    label: string,
-    readonly lineFr: number,
-    lineTo: number,
-    readonly filePath: string,
-    children: TeXElement[],
-    parent?: TeXElement,
-    appendix?: boolean
-}
 
 export class StructureView implements vscode.TreeDataProvider<TeXElement> {
     private readonly structureChanged: vscode.EventEmitter<TeXElement | undefined | null> = new vscode.EventEmitter<TeXElement | undefined | null>()

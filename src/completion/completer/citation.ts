@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
-import * as lw from '../../lw'
+import { lw } from '../../lw'
 import * as eventbus from '../../core/event-bus'
 import {trimMultiLineString} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'

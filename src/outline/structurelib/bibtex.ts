@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import { bibtexParser } from 'latex-utensils'
-import { TeXElement, TeXElementType } from '../project'
+import { TeXElement, TeXElementType } from './types'
 import { parser } from '../../parse/parser'
 
 import { getLogger } from '../../utils/logging/logger'

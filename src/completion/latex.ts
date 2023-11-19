@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as lw from '../lw'
+import { lw } from '../lw'
 import { Citation } from './completer/citation'
 import { DocumentClass } from './completer/documentclass'
 import { Command } from './completer/command'

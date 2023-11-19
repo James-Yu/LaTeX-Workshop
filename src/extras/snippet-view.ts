@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import {readFileSync} from 'fs'
 import * as path from 'path'
-import * as lw from '../lw'
+import { lw } from '../lw'
 import {replaceWebviewPlaceholders} from '../utils/webview'
 
 

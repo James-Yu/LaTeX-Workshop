@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as assert from 'assert'
-import * as lw from '../../src/lw'
+import { lw } from '../../src/lw'
 import * as test from './utils'
 import { AutoCleaned } from '../../src/core/event-bus'
 
