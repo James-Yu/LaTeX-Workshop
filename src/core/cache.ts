@@ -189,7 +189,7 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<void |
         bibfiles: new Set(),
         external: {}}
     caches.set(filePath, cache)
-    rootPath = rootPath || lw.manager.rootFile
+    rootPath = rootPath || lw.root.file.path
     updateChildren(cache, rootPath)
 
     promises.set(
@@ -233,8 +233,8 @@ function refreshCacheAggressive(filePath: string) {
             clearTimeout(updateCompleter)
         }
         updateCompleter = setTimeout(async () => {
-            await refreshCache(filePath, lw.manager.rootFile)
-            await loadFlsFile(lw.manager.rootFile || filePath)
+            await refreshCache(filePath, lw.root.file.path)
+            await loadFlsFile(lw.root.file.path || filePath)
         }, configuration.get('intellisense.update.delay', 1000))
     }
 }
@@ -543,8 +543,8 @@ function parseAuxFile(filePath: string, srcDir: string) {
         for (const bib of bibs) {
             const bibPaths = lw.file.getBibPath(bib, srcDir)
             for (const bibPath of bibPaths) {
-                if (lw.manager.rootFile && !get(lw.manager.rootFile)?.bibfiles.has(bibPath)) {
-                    get(lw.manager.rootFile)?.bibfiles.add(bibPath)
+                if (lw.root.file.path && !get(lw.root.file.path)?.bibfiles.has(bibPath)) {
+                    get(lw.root.file.path)?.bibfiles.add(bibPath)
                     logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
                 }
                 if (!lw.watcher.bib.has(bibPath)) {
@@ -571,7 +571,7 @@ function parseAuxFile(filePath: string, srcDir: string) {
  * @returns {string[]} - An array of included bibliography files.
  */
 function getIncludedBib(filePath?: string, includedBib: string[] = []): string[] {
-    filePath = filePath ?? lw.manager.rootFile
+    filePath = filePath ?? lw.root.file.path
     if (filePath === undefined) {
         return []
     }
@@ -610,7 +610,7 @@ function getIncludedBib(filePath?: string, includedBib: string[] = []): string[]
  * @returns {string[]} - An array of included LaTeX files.
  */
 function getIncludedTeX(filePath?: string, includedTeX: string[] = [], cachedOnly: boolean = true): string[] {
-    filePath = filePath ?? lw.manager.rootFile
+    filePath = filePath ?? lw.root.file.path
     if (filePath === undefined) {
         return []
     }

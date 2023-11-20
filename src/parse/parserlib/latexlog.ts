@@ -61,7 +61,7 @@ function initParserState(rootFile: string): ParserState {
 
 function parse(log: string, rootFile?: string) {
     if (rootFile === undefined) {
-        rootFile = lw.manager.rootFile
+        rootFile = lw.root.file.path
     }
     if (rootFile === undefined) {
         logger.log('How can you reach this point?')

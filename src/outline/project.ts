@@ -87,11 +87,11 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
                 logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} entries for ${document.uri.fsPath} .`)
             }
             this.structure = this.cachedBib
-        } else if (lw.manager.rootFile) {
+        } else if (lw.root.file.path) {
             if (force || !this.cachedTeX) {
                 this.cachedTeX = undefined
                 this.cachedTeX = await constructLaTeX()
-                logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} root sections for ${lw.manager.rootFile} .`)
+                logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} root sections for ${lw.root.file.path} .`)
             }
             this.structure = this.cachedTeX
         } else {
@@ -160,14 +160,14 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
     }
 
     getChildren(element?: TeXElement): vscode.ProviderResult<TeXElement[]> {
-        if (lw.manager.rootFile === undefined) {
+        if (lw.root.file.path === undefined) {
             return []
         }
         return element?.children ?? this.refresh(false)
     }
 
     getParent(element?: TeXElement): TeXElement | undefined {
-        if (lw.manager.rootFile === undefined || !element) {
+        if (lw.root.file.path === undefined || !element) {
             return
         }
         return element.parent

@@ -48,10 +48,10 @@ async function loadNewCommandFromConfigFile(newCommandFile: string) {
     if (path.isAbsolute(newCommandFile)) {
         newCommandFileAbs = newCommandFile
     } else {
-        if (lw.manager.rootFile === undefined) {
-            await lw.manager.findRoot()
+        if (lw.root.file.path === undefined) {
+            await lw.root.find()
         }
-        const rootDir = lw.manager.rootDir
+        const rootDir = lw.root.dir.path
         if (rootDir === undefined) {
             logger.log(`Cannot identify the absolute path of new command file ${newCommandFile} without root file.`)
             return ''

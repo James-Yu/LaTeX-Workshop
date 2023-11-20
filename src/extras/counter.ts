@@ -44,7 +44,7 @@ export class Counter {
         if (vscode.window.activeTextEditor) {
             return vscode.window.activeTextEditor.document.uri
         }
-        return lw.manager.getWorkspaceFolderRootDir()
+        return lw.root.getWorkspace()
     }
 
     private loadConfiguration(scope: vscode.ConfigurationScope | undefined) {

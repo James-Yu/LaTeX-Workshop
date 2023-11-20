@@ -3,6 +3,7 @@ import type { getLogger } from './utils/logging/logger'
 import type { file } from './core/file'
 import type { watcher } from './core/watcher'
 import type { cache } from './core/cache'
+import type { root } from './core/root'
 
 import type { Builder } from './compile/build'
 import type { Cleaner } from './extras/cleaner'
@@ -14,7 +15,6 @@ import type { EventBus } from './core/event-bus'
 import type { Linter } from './lint/latex-linter'
 import type { Locator } from './locate/synctex'
 import type { LwFileSystem } from './core/file-system'
-import type { Manager } from './core/root-file'
 import type { MathPreviewPanel } from './extras/math-preview-panel'
 import type { Section } from './extras/section'
 import type { dupLabelDetector } from './lint/duplicate-label'
@@ -38,10 +38,10 @@ export const lw = {
     file: {} as typeof file,
     watcher: {} as typeof watcher,
     cache: {} as typeof cache,
+    root: {} as typeof root,
     eventBus: Object.create(null) as EventBus,
     configuration: Object.create(null) as Configuration,
     lwfs: Object.create(null) as LwFileSystem,
-    manager: Object.create(null) as Manager,
     builder: Object.create(null) as Builder,
     viewer: Object.create(null) as Viewer,
     server: Object.create(null) as Server,

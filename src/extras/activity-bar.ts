@@ -27,7 +27,7 @@ class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXCommand> {
     constructor() {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
         vscode.workspace.onDidChangeConfiguration((ev: vscode.ConfigurationChangeEvent) => {
-            if (ev.affectsConfiguration('latex-workshop.latex.recipes', lw.manager.getWorkspaceFolderRootDir())) {
+            if (ev.affectsConfiguration('latex-workshop.latex.recipes', lw.root.getWorkspace())) {
                 this.update()
             }
         })
@@ -50,7 +50,7 @@ class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXCommand> {
 
     private buildCommandTree(): LaTeXCommand[] {
         const commands: LaTeXCommand[] = []
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.manager.getWorkspaceFolderRootDir())
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
 
         const buildCommand = new LaTeXCommand('Build LaTeX project', {command: 'latex-workshop.build'}, 'debug-start')
         const recipes = configuration.get('latex.recipes', []) as {name: string}[]

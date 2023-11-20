@@ -121,7 +121,7 @@ export class GraphicsPreview {
             return fPath
         }
 
-        const rootDir = lw.manager.rootDir
+        const rootDir = lw.root.dir.path
         if (rootDir === undefined) {
             return
         }

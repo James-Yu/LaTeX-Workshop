@@ -131,7 +131,7 @@ function hasDtxLangId(langId: string): boolean {
  * @returns {string} - The output directory path.
  */
 function getOutDir(texPath?: string): string {
-    texPath = texPath ?? lw.manager.rootFile
+    texPath = texPath ?? lw.root.file.path
     // rootFile is also undefined
     if (texPath === undefined) {
         return './'
@@ -215,7 +215,7 @@ function kpsewhich(args: string[]): string | undefined {
     logger.log(`Calling ${command} to resolve ${args.join(' ')} .`)
 
     try {
-        const kpsewhichReturn = cs.sync(command, args, {cwd: lw.manager.rootDir || vscode.workspace.workspaceFolders?.[0].uri.path})
+        const kpsewhichReturn = cs.sync(command, args, {cwd: lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path})
         if (kpsewhichReturn.status === 0) {
             const output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
             return output !== '' ? output : undefined
@@ -251,8 +251,8 @@ function getBibPath(bib: string, baseDir: string): string[] {
     let searchDirs: string[] = [baseDir, ...bibDirs]
     // chapterbib requires to load the .bib file in every chapter using
     // the path relative to the rootDir
-    if (lw.manager.rootDir) {
-        searchDirs = [lw.manager.rootDir, ...searchDirs]
+    if (lw.root.dir.path) {
+        searchDirs = [lw.root.dir.path, ...searchDirs]
     }
     const bibPath = bib.includes('*') ? utils.resolveFileGlob(searchDirs, bib, '.bib') : utils.resolveFile(searchDirs, bib, '.bib')
 

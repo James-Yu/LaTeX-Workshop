@@ -103,10 +103,10 @@ export class Builder {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
-        if (!bibChanged && lw.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-            return lw.commands.build(true, lw.manager.localRootFile, lw.manager.rootFileLanguageId)
+        if (!bibChanged && lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
+            return lw.commands.build(true, lw.root.subfiles.path, lw.root.file.langId)
         } else {
-            return lw.commands.build(true, lw.manager.rootFile, lw.manager.rootFileLanguageId)
+            return lw.commands.build(true, lw.root.file.path, lw.root.file.langId)
         }
     }
 
@@ -136,7 +136,7 @@ export class Builder {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
         const cwd = workspaceFolder?.uri.fsPath || pwd
         if (rootFile !== undefined) {
-            args = args.map(replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir))
+            args = args.map(replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath))
         }
         const tool: Tool = { name: command, command, args }
 
@@ -193,7 +193,7 @@ export class Builder {
      * @returns Whether auto build can be triggered now.
      */
     canAutoBuild() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.manager.rootFile ? vscode.Uri.file(lw.manager.rootFile) : undefined)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.file.path ? vscode.Uri.file(lw.root.file.path) : undefined)
         if (Date.now() - this.lastBuild < (configuration.get('latex.autoBuild.interval', 1000) as number)) {
             return false
         }
@@ -279,8 +279,8 @@ export class Builder {
             }
         } else if (!step.isExternal) {
             let cwd = path.dirname(step.rootFile)
-            if (step.command === 'latexmk' && step.rootFile === lw.manager.localRootFile && lw.manager.rootDir) {
-                cwd = lw.manager.rootDir
+            if (step.command === 'latexmk' && step.rootFile === lw.root.subfiles.path && lw.root.dir.path) {
+                cwd = lw.root.dir.path
             }
             logger.log(`cwd: ${cwd}`)
             this.process = cs.spawn(step.command, step.args, {cwd, env})
@@ -518,10 +518,10 @@ export class Builder {
                         break
                 }
             }
-            tool.args = tool.args?.map(replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir))
+            tool.args = tool.args?.map(replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath))
             const env = tool.env ?? {}
             Object.entries(env).forEach(([key, value]) => {
-                env[key] = value && replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(value)
+                env[key] = value && replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(value)
             })
             if (configuration.get('latex.option.maxPrintLine.enabled')) {
                 tool.args = tool.args ?? []

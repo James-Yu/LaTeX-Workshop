@@ -24,8 +24,8 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         let dirs: string[] = []
         if (line.match(regexInput)) {
             dirs = [path.dirname(vscode.window.activeTextEditor.document.fileName)]
-            if (lw.manager.rootDir !== undefined) {
-                dirs.push(lw.manager.rootDir)
+            if (lw.root.dir.path !== undefined) {
+                dirs.push(lw.root.dir.path)
             }
         }
 

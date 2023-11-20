@@ -127,7 +127,7 @@ export class Locator {
             filePath = args.filePath
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const rootFile = lw.manager.rootFile
+        const rootFile = lw.root.file.path
         if (rootFile === undefined) {
             logger.log('No root file found.')
             return
@@ -479,7 +479,7 @@ export class Locator {
         }
         if (args) {
             args = args.map(arg => {
-                return replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(arg)
+                return replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(arg)
                         .replace(/%PDF%/g, pdfFile)
                         .replace(/%LINE%/g, line.toString())
                         .replace(/%TEX%/g, texFile)

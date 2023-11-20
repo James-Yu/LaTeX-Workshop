@@ -6,11 +6,7 @@ import { TeXElement } from '../outline/structurelib/types'
 export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
 
     async provideWorkspaceSymbols(): Promise<vscode.SymbolInformation[]> {
-        if (lw.manager.rootFile === undefined) {
-            return []
-        }
-        const rootFileUri = lw.manager.rootFileUri
-        if (rootFileUri && lw.lwfs.isVirtualUri(rootFileUri)) {
+        if (lw.root.file.path === undefined) {
             return []
         }
         const sections = await construct()

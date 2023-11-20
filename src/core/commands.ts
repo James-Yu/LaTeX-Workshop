@@ -20,8 +20,9 @@ export async function build(skipSelection: boolean = false, rootFile: string | u
     const externalBuildCommand = configuration.get('latex.external.build.command') as string
     const externalBuildArgs = configuration.get('latex.external.build.args') as string[]
     if (rootFile === undefined && lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
-        rootFile = await lw.manager.findRoot()
-        languageId = lw.manager.rootFileLanguageId
+        await lw.root.find()
+        rootFile = lw.root.file.path
+        languageId = lw.root.file.langId
     }
     if (externalBuildCommand) {
         const pwd = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
@@ -33,9 +34,9 @@ export async function build(skipSelection: boolean = false, rootFile: string | u
         return
     }
     let pickedRootFile: string | undefined = rootFile
-    if (!skipSelection && lw.manager.localRootFile) {
+    if (!skipSelection && lw.root.subfiles.path) {
         // We are using the subfile package
-        pickedRootFile = await quickPickRootFile(rootFile, lw.manager.localRootFile, 'build')
+        pickedRootFile = await quickPickRootFile(rootFile, lw.root.subfiles.path, 'build')
         if (! pickedRootFile) {
             return
         }
@@ -48,7 +49,7 @@ export async function revealOutputDir() {
     let outDir = lw.file.getOutDir()
     if (!path.isAbsolute(outDir)) {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
-        const rootDir = lw.manager.rootDir || workspaceFolder?.uri.fsPath
+        const rootDir = lw.root.dir.path || workspaceFolder?.uri.fsPath
         if (rootDir === undefined) {
             logger.log(`Cannot reveal ${vscode.Uri.file(outDir)}: no root dir can be identified.`)
             return
@@ -61,7 +62,7 @@ export async function revealOutputDir() {
 
 export function recipes(recipe?: string) {
     logger.log('RECIPES command invoked.')
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.manager.getWorkspaceFolderRootDir())
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
     const candidates = configuration.get('latex.recipes') as {name: string}[]
     if (!candidates) {
         return
@@ -93,15 +94,16 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
         logger.log('Active document is not a TeX file.')
         return
     }
-    const rootFile = await lw.manager.findRoot()
+    await lw.root.find()
+    const rootFile = lw.root.file.path
     if (rootFile === undefined) {
         logger.log('Cannot find LaTeX root PDF to view.')
         return
     }
     let pickedRootFile: string | undefined = rootFile
-    if (lw.manager.localRootFile) {
+    if (lw.root.subfiles.path) {
         // We are using the subfile package
-        pickedRootFile = await quickPickRootFile(rootFile, lw.manager.localRootFile, 'view')
+        pickedRootFile = await quickPickRootFile(rootFile, lw.root.subfiles.path, 'view')
     }
     if (!pickedRootFile) {
         return
@@ -125,12 +127,12 @@ export function synctex() {
         logger.log('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
         return
     }
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.manager.getWorkspaceFolderRootDir())
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
     let pdfFile: string | undefined = undefined
-    if (lw.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-        pdfFile = lw.file.getPdfPath(lw.manager.localRootFile)
-    } else if (lw.manager.rootFile !== undefined) {
-        pdfFile = lw.file.getPdfPath(lw.manager.rootFile)
+    if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
+        pdfFile = lw.file.getPdfPath(lw.root.subfiles.path)
+    } else if (lw.root.file.path !== undefined) {
+        pdfFile = lw.file.getPdfPath(lw.root.file.path)
     }
     lw.locator.syncTeX(undefined, undefined, pdfFile)
 }
@@ -146,15 +148,16 @@ export function synctexonref(line: number, filePath: string) {
 
 export async function clean(): Promise<void> {
     logger.log('CLEAN command invoked.')
-    const rootFile = await lw.manager.findRoot()
+    await lw.root.find()
+    const rootFile = lw.root.file.path
     if (rootFile === undefined) {
         logger.log('Cannot find LaTeX root file to clean.')
         return
     }
     let pickedRootFile: string | undefined = rootFile
-    if (lw.manager.localRootFile) {
+    if (lw.root.subfiles.path) {
         // We are using the subfile package
-        pickedRootFile = await quickPickRootFile(rootFile, lw.manager.localRootFile, 'clean')
+        pickedRootFile = await quickPickRootFile(rootFile, lw.root.subfiles.path, 'clean')
         if (! pickedRootFile) {
             return
         }
@@ -178,9 +181,9 @@ export function citation() {
 export function wordcount() {
     logger.log('WORDCOUNT command invoked.')
     if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId) ||
-        lw.manager.rootFile === vscode.window.activeTextEditor.document.fileName) {
-        if (lw.manager.rootFile) {
-            lw.counter.count(lw.manager.rootFile)
+        lw.root.file.path === vscode.window.activeTextEditor.document.fileName) {
+        if (lw.root.file.path) {
+            lw.counter.count(lw.root.file.path)
         } else {
             logger.log('WORDCOUNT: No rootFile defined.')
         }

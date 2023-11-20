@@ -24,7 +24,7 @@ suite('Linter test suite', () => {
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
         ], {skipCache: true})
-        await chkTeX.lintRootFile(lw.manager.rootFile ?? '')
+        await chkTeX.lintRootFile(lw.root.file.path ?? '')
         assert.strictEqual(chkTeX.linterDiagnostics.name, 'ChkTeX')
     })
 
@@ -46,7 +46,7 @@ suite('Linter test suite', () => {
             {src: 'linter_base.tex', dst: 'main.tex'},
             {src: 'linter_sub.tex', dst: 'sub/s.tex'}
         ], {skipCache: true})
-        await laCheck.lintRootFile(lw.manager.rootFile ?? '')
+        await laCheck.lintRootFile(lw.root.file.path ?? '')
         assert.strictEqual(laCheck.linterDiagnostics.name, 'LaCheck')
     })
 

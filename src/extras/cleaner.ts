@@ -36,10 +36,10 @@ export class Cleaner {
 
     async clean(rootFile?: string): Promise<void> {
         if (!rootFile) {
-            if (lw.manager.rootFile !== undefined) {
-                await lw.manager.findRoot()
+            if (lw.root.file.path !== undefined) {
+                await lw.root.find()
             }
-            rootFile = lw.manager.rootFile
+            rootFile = lw.root.file.path
             if (!rootFile) {
                 logger.log('Cannot determine the root file to be cleaned.')
                 return
@@ -105,7 +105,7 @@ export class Cleaner {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         const globPrefix = (configuration.get('latex.clean.subfolder.enabled') as boolean) ? './**/' : ''
         const globs = (configuration.get('latex.clean.fileTypes') as string[])
-            .map(globType => globPrefix + replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(globType))
+            .map(globType => globPrefix + replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(globType))
         const outdir = path.resolve(path.dirname(rootFile), lw.file.getOutDir(rootFile))
         logger.log(`Clean glob matched files ${JSON.stringify({globs, outdir})} .`)
 
@@ -152,7 +152,7 @@ export class Cleaner {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         const command = configuration.get('latex.clean.command') as string
         const args = (configuration.get('latex.clean.args') as string[])
-            .map(arg => { return replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(arg)
+            .map(arg => { return replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(arg)
                 // cleaner.ts specific tokens
                 .replace(/%TEX%/g, rootFile)
             })

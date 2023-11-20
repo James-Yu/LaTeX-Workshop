@@ -71,12 +71,12 @@ export class Reference implements IProvider {
     }
 
     private updateAll(line?: string, position?: vscode.Position) {
-        if (!lw.manager.rootFile) {
+        if (!lw.root.file.path) {
             this.suggestions.clear()
             return
         }
 
-        const included: Set<string> = new Set([lw.manager.rootFile])
+        const included: Set<string> = new Set([lw.root.file.path])
         // Included files may originate from \input or `xr`. If the latter, a
         // prefix may be used to ref to the file. The following obj holds them.
         const prefixes: {[filePath: string]: string} = {}

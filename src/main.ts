@@ -10,6 +10,8 @@ import { watcher } from './core/watcher'
 lw.watcher = watcher
 import { cache } from './core/cache'
 lw.cache = cache
+import { root } from './core/root'
+lw.root = root
 
 import { pdfViewerHookProvider, pdfViewerPanelSerializer } from './preview/viewer'
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
@@ -35,7 +37,6 @@ import { EventBus } from './core/event-bus'
 import { Linter } from './lint/latex-linter'
 import { Locator } from './locate/synctex'
 import { LwFileSystem } from './core/file-system'
-import { Manager } from './core/root-file'
 import { MathPreviewPanel } from './extras/math-preview-panel'
 import { Section } from './extras/section'
 import { Server } from './preview/server'
@@ -60,7 +61,6 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     lw.eventBus = new EventBus()
     lw.configuration = new Configuration()
     lw.lwfs = new LwFileSystem()
-    lw.manager = new Manager()
     lw.builder = new Builder()
     lw.viewer = new Viewer()
     lw.server = new Server()
@@ -130,7 +130,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             return
         }
         if (lw.file.hasTexLangId(e.languageId) ||
-            lw.cache.getIncludedTeX(lw.manager.rootFile, [], false).includes(e.fileName) ||
+            lw.cache.getIncludedTeX(lw.root.file.path, [], false).includes(e.fileName) ||
             lw.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             lw.linter.lintRootFileIfEnabled()
@@ -159,7 +159,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         }
         if (e && lw.file.hasTexLangId(e.document.languageId) && e.document.fileName !== prevTeXDocumentPath) {
             prevTeXDocumentPath = e.document.fileName
-            await lw.manager.findRoot()
+            await lw.root.find()
             lw.linter.lintRootFileIfEnabled()
         } else if (!e || !lw.file.hasBibLangId(e.document.languageId)) {
             isLaTeXActive = false
@@ -191,7 +191,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
     registerProviders(extensionContext)
 
-    void lw.manager.findRoot().then(() => {
+    void lw.root.find().then(() => {
         lw.linter.lintRootFileIfEnabled()
         if (lw.file.hasTexLangId(vscode.window.activeTextEditor?.document.languageId ?? '')) {
             prevTeXDocumentPath = vscode.window.activeTextEditor?.document.fileName

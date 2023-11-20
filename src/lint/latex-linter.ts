@@ -34,14 +34,14 @@ export class Linter {
     }
 
     lintRootFileIfEnabled() {
-        const linters = this.getLinters(lw.manager.getWorkspaceFolderRootDir())
+        const linters = this.getLinters(lw.root.getWorkspace())
         linters.forEach(linter => {
-            if (lw.manager.rootFile === undefined) {
+            if (lw.root.file.path === undefined) {
                 logger.log(`No root file found for ${linter.getName()}.`)
                 return
             }
-            logger.log(`${linter.getName()} lints root ${lw.manager.rootFile} .`)
-            void linter.lintRootFile(lw.manager.rootFile)
+            logger.log(`${linter.getName()} lints root ${lw.root.file.path} .`)
+            void linter.lintRootFile(lw.root.file.path)
         })
     }
 

@@ -63,7 +63,7 @@ async function lacheckWrapper(linterid: string, configScope: vscode.Configuratio
 function parseLog(log: string, filePath?: string) {
     const linterLog: LaCheckLogEntry[] = []
     const lines = log.split('\n')
-    const baseDir = path.dirname(filePath || lw.manager.rootFile || '.')
+    const baseDir = path.dirname(filePath || lw.root.file.path || '.')
     for (let index = 0; index < lines.length; index++) {
         const logLine = lines[index]
         const re = /"(.*?)",\sline\s(\d+):\s(<-\s)?(.*)/g

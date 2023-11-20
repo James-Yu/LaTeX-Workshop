@@ -76,8 +76,8 @@ export function sleep(ms: number) {
 export async function reset() {
     await vscode.commands.executeCommand('workbench.action.closeAllEditors')
     await Promise.all(Object.values(lw.cache.promises))
-    lw.manager.rootFile = undefined
-    lw.manager.localRootFile = undefined
+    lw.root.file.path = undefined
+    lw.root.subfiles.path = undefined
     lw.completer.input.reset()
     lw.dupLabelDetector.reset()
     lw.cache.reset()
@@ -127,18 +127,20 @@ export async function load(fixture: string, files: {src: string, dst: string, ws
     if (config.root > -1) {
         wsFixture = getWsFixture(fixture, files[config.root].ws)
         logger.log(`Set root to ${path.resolve(wsFixture, files[config.root].dst)} .`)
-        lw.manager.rootFile = path.resolve(wsFixture, files[config.root].dst)
-        lw.manager.rootFileLanguageId = 'latex'
+        lw.root.file.path = path.resolve(wsFixture, files[config.root].dst)
+        lw.root.file.langId = 'latex'
+        lw.root.dir.path = path.dirname(lw.root.file.path)
     }
     if (config.local > -1) {
         wsFixture = getWsFixture(fixture, files[config.local].ws)
         logger.log(`Set local root to ${path.resolve(wsFixture, files[config.local].dst)} .`)
-        lw.manager.localRootFile = path.resolve(wsFixture, files[config.local].dst)
+        lw.root.subfiles.path = path.resolve(wsFixture, files[config.local].dst)
+        lw.root.subfiles.langId = 'latex'
     }
     if (!config.skipCache) {
         logger.log('Cache tex and bib.')
         files.filter(file => file.dst.endsWith('.tex')).forEach(file => lw.cache.add(path.resolve(getWsFixture(fixture, file.ws), file.dst)))
-        const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cache.refreshCache(path.resolve(getWsFixture(fixture, file.ws), file.dst), lw.manager.rootFile))
+        const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cache.refreshCache(path.resolve(getWsFixture(fixture, file.ws), file.dst), lw.root.file.path))
         const bibPromise = files.filter(file => file.dst.endsWith('.bib')).map(file => lw.completer.citation.parseBibFile(path.resolve(getWsFixture(fixture, file.ws), file.dst)))
         await Promise.all([...texPromise, ...bibPromise])
     }
@@ -158,8 +160,8 @@ export async function find(fixture: string, openFile: string, ws?: string) {
     logger.log(`Open ${openFile} .`)
     await open(path.resolve(getWsFixture(fixture, ws), openFile))
     logger.log('Search for root file.')
-    await lw.manager.findRoot()
-    return {root: lw.manager.rootFile, local: lw.manager.localRootFile}
+    await lw.root.find()
+    return {root: lw.root.file.path, local: lw.root.subfiles.path}
 }
 
 export async function build(fixture: string, openFile: string, ws?: string, action?: () => Promise<void>) {
@@ -194,12 +196,12 @@ export async function auto(fixture: string, editFile: string, noBuild = false, s
 }
 
 export function suggest(row: number, col: number, isAtSuggestion = false, openFile?: string): {items: vscode.CompletionItem[], labels: string[]} {
-    ok(lw.manager.rootFile)
-    const lines = lw.cache.get(openFile ?? lw.manager.rootFile)?.content?.split('\n')
+    ok(lw.root.file.path)
+    const lines = lw.cache.get(openFile ?? lw.root.file.path)?.content?.split('\n')
     ok(lines)
     logger.log('Get suggestion.')
     const items = (isAtSuggestion ? lw.atSuggestionCompleter : lw.completer).provide({
-        uri: vscode.Uri.file(openFile ?? lw.manager.rootFile),
+        uri: vscode.Uri.file(openFile ?? lw.root.file.path),
         langId: 'latex',
         line: lines[row],
         position: new vscode.Position(row, col)
