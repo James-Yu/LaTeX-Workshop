@@ -14,8 +14,8 @@ export const dupLabelDetector = {
  */
 function computeDuplicates(): string[] {
     const labelsCount = new Map<string, number>()
-    lw.cacher.getIncludedTeX().forEach(cachedFile => {
-        const cachedRefs = lw.cacher.get(cachedFile)?.elements.reference
+    lw.cache.getIncludedTeX().forEach(cachedFile => {
+        const cachedRefs = lw.cache.get(cachedFile)?.elements.reference
         if (cachedRefs === undefined) {
             return
         }
@@ -56,8 +56,8 @@ function showDiagnostics(duplicates: string[]) {
     }
     const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
 
-    lw.cacher.getIncludedTeX().forEach(cachedFile => {
-        const cachedRefs = lw.cacher.get(cachedFile)?.elements.reference
+    lw.cache.getIncludedTeX().forEach(cachedFile => {
+        const cachedRefs = lw.cache.get(cachedFile)?.elements.reference
         if (cachedRefs === undefined) {
             return
         }

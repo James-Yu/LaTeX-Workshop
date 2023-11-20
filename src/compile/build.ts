@@ -431,7 +431,7 @@ export class Builder {
         }
         lw.viewer.refreshExistingViewer(lw.file.getPdfPath(lastStep.rootFile))
         lw.completer.reference.setNumbersFromAuxFile(lastStep.rootFile)
-        await lw.cacher.loadFlsFile(lastStep.rootFile)
+        await lw.cache.loadFlsFile(lastStep.rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(lastStep.rootFile))
         // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
         if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
@@ -681,7 +681,7 @@ export class Builder {
             outDir = path.resolve(rootDir, outDir)
         }
         logger.log(`outDir: ${outDir} .`)
-        lw.cacher.getIncludedTeX(rootFile).forEach(file => {
+        lw.cache.getIncludedTeX(rootFile).forEach(file => {
             const relativePath = path.dirname(file.replace(rootDir, '.'))
             const fullOutDir = path.resolve(outDir, relativePath)
             // To avoid issues when fullOutDir is the root dir

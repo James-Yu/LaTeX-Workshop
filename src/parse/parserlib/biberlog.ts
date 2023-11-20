@@ -97,10 +97,10 @@ function pushLog(type: string, file: string, message: string, line: number, excl
 }
 
 function resolveBibFile(filename: string, rootFile: string): string {
-    if (!lw.cacher.get(rootFile)) {
+    if (!lw.cache.get(rootFile)) {
         return filename
     }
-    const bibFiles = lw.cacher.getIncludedBib(rootFile)
+    const bibFiles = lw.cache.getIncludedBib(rootFile)
     for (const bib of bibFiles) {
         if (bib.endsWith(filename)) {
             return bib

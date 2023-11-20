@@ -2,11 +2,11 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw, registerDisposable } from '../../lw'
+import type { FileCache } from '../../types'
 import type { ICompletionItem, IProvider, IProviderArgs } from '../latex'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 
 import { getLogger } from '../../utils/logging/logger'
-import { Cache } from '../../core/cache'
 
 const logger = getLogger('Intelli', 'Environment')
 
@@ -139,8 +139,8 @@ export class Environment implements IProvider {
         }
 
         // Insert environments defined in tex
-        lw.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedEnvs = lw.cacher.get(cachedFile)?.elements.environment
+        lw.cache.getIncludedTeX().forEach(cachedFile => {
+            const cachedEnvs = lw.cache.get(cachedFile)?.elements.environment
             if (cachedEnvs !== undefined) {
                 cachedEnvs.forEach(env => {
                     if (! envList.includes(env.label)) {
@@ -196,7 +196,7 @@ export class Environment implements IProvider {
         }
     }
 
-    parse(cache: Cache) {
+    parse(cache: FileCache) {
         if (cache.ast !== undefined) {
             cache.elements.environment = this.parseAst(cache.ast)
         } else {

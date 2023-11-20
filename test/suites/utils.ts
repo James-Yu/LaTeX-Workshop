@@ -75,12 +75,12 @@ export function sleep(ms: number) {
 
 export async function reset() {
     await vscode.commands.executeCommand('workbench.action.closeAllEditors')
-    await Promise.all(lw.cacher.allPromises)
+    await Promise.all(Object.values(lw.cache.promises))
     lw.manager.rootFile = undefined
     lw.manager.localRootFile = undefined
     lw.completer.input.reset()
     lw.dupLabelDetector.reset()
-    lw.cacher.reset()
+    lw.cache.reset()
     glob.sync('**/{**.tex,**.pdf,**.bib}', { cwd: getFixture() }).forEach(file => { try {fs.unlinkSync(path.resolve(getFixture(), file))} catch {} })
 }
 
@@ -137,8 +137,8 @@ export async function load(fixture: string, files: {src: string, dst: string, ws
     }
     if (!config.skipCache) {
         logger.log('Cache tex and bib.')
-        files.filter(file => file.dst.endsWith('.tex')).forEach(file => lw.cacher.add(path.resolve(getWsFixture(fixture, file.ws), file.dst)))
-        const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cacher.refreshCache(path.resolve(getWsFixture(fixture, file.ws), file.dst), lw.manager.rootFile))
+        files.filter(file => file.dst.endsWith('.tex')).forEach(file => lw.cache.add(path.resolve(getWsFixture(fixture, file.ws), file.dst)))
+        const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cache.refreshCache(path.resolve(getWsFixture(fixture, file.ws), file.dst), lw.manager.rootFile))
         const bibPromise = files.filter(file => file.dst.endsWith('.bib')).map(file => lw.completer.citation.parseBibFile(path.resolve(getWsFixture(fixture, file.ws), file.dst)))
         await Promise.all([...texPromise, ...bibPromise])
     }
@@ -195,7 +195,7 @@ export async function auto(fixture: string, editFile: string, noBuild = false, s
 
 export function suggest(row: number, col: number, isAtSuggestion = false, openFile?: string): {items: vscode.CompletionItem[], labels: string[]} {
     ok(lw.manager.rootFile)
-    const lines = lw.cacher.get(openFile ?? lw.manager.rootFile)?.content?.split('\n')
+    const lines = lw.cache.get(openFile ?? lw.manager.rootFile)?.content?.split('\n')
     ok(lines)
     logger.log('Get suggestion.')
     const items = (isAtSuggestion ? lw.atSuggestionCompleter : lw.completer).provide({

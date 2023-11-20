@@ -14,7 +14,7 @@ function getErrorPosition(item: LogEntry): {start: number, end: number} | undefi
     if (!item.errorPosText) {
         return
     }
-    const content = lw.cacher.get(item.file)?.content
+    const content = lw.cache.get(item.file)?.content
     if (!content) {
         return
     }

@@ -8,7 +8,7 @@ export function run(): Promise<void> {
         ui: 'tdd',
         color: true,
         timeout: process.env['LATEXWORKSHOP_CLI'] ? 10000 : 8000,
-        retries: process.env['LATEXWORKSHOP_CLI'] ? 5 : 0
+        retries: process.env['LATEXWORKSHOP_CLI'] ? 8 : 2
     })
 
     return new Promise((resolve, reject) => {

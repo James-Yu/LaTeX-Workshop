@@ -56,9 +56,9 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
     if (structs[filePath] !== undefined) {
         return
     }
-    await lw.cacher.wait(filePath)
-    const content = lw.cacher.get(filePath)?.content
-    const ast = lw.cacher.get(filePath)?.ast
+    await lw.cache.wait(filePath)
+    const content = lw.cache.get(filePath)?.content
+    const ast = lw.cache.get(filePath)?.ast
     if (!content || !ast) {
         logger.log(`Error loading ${content ? 'AST' : 'content'} during structuring: ${filePath} .`)
         return

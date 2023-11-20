@@ -2,13 +2,14 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw, registerDisposable } from '../../lw'
+import { FileCache } from '../../types'
+
 import type { IProvider, ICompletionItem, PkgType, IProviderArgs } from '../latex'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 import {SurroundCommand} from './commandlib/surround'
 import { Environment, EnvSnippetType } from './environment'
 
 import { getLogger } from '../../utils/logging/logger'
-import { Cache } from '../../core/cache'
 
 const logger = getLogger('Intelli', 'Command')
 
@@ -153,8 +154,8 @@ export class Command implements IProvider {
         // Start working on commands in tex. To avoid over populating suggestions, we do not include
         // user defined commands, whose name matches a default command or one provided by a package
         defined = new Set<string>(suggestions.map(s => s.signatureAsString()))
-        lw.cacher.getIncludedTeX().forEach(tex => {
-            const cmds = lw.cacher.get(tex)?.elements.command
+        lw.cache.getIncludedTeX().forEach(tex => {
+            const cmds = lw.cache.get(tex)?.elements.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
                     if (!defined.has(cmd.signatureAsString())) {
@@ -185,7 +186,7 @@ export class Command implements IProvider {
         SurroundCommand.surround(cmdItems)
     }
 
-    parse(cache: Cache) {
+    parse(cache: FileCache) {
         // Remove newcommand cmds, because they will be re-insert in the next step
         this.definedCmds.forEach((entry,cmd) => {
             if (entry.filePath === cache.filePath) {

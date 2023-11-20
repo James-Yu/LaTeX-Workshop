@@ -3,12 +3,10 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
 import { lw } from '../../lw'
+import type { FileCache } from '../../types'
 import type { IProvider, IProviderArgs } from '../latex'
 
-import { getLogger } from '../../utils/logging/logger'
-import type { Cache } from '../../core/cache'
-
-const logger = getLogger('Intelli', 'Input')
+const logger = lw.log('Intelli', 'Input')
 
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
@@ -50,7 +48,7 @@ abstract class InputAbstract implements IProvider {
     /**
      * Set the graphics path
      */
-    parseGraphicsPath(cache: Cache) {
+    parseGraphicsPath(cache: FileCache) {
         const regex = /\\graphicspath{[\s\n]*((?:{[^{}]*}[\s\n]*)*)}/g
         let result: string[] | null
         while (true) {

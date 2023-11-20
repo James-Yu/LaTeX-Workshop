@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
+import type { FileCache } from '../../types'
 import type { ICompletionItem, IProvider } from '../latex'
-import { Cache } from '../../core/cache'
 import { argContentToStr } from '../../utils/parser'
 import { getLongestBalancedString } from '../../utils/utils'
 
@@ -55,8 +55,8 @@ export class Glossary implements IProvider {
         // Extract cached references
         const glossaryList: string[] = []
 
-        lw.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedGlossaries = lw.cacher.get(cachedFile)?.elements.glossary
+        lw.cache.getIncludedTeX().forEach(cachedFile => {
+            const cachedGlossaries = lw.cache.get(cachedFile)?.elements.glossary
             if (cachedGlossaries === undefined) {
                 return
             }
@@ -83,7 +83,7 @@ export class Glossary implements IProvider {
         })
     }
 
-    parse(cache: Cache) {
+    parse(cache: FileCache) {
         if (cache.ast !== undefined) {
             cache.elements.glossary = this.parseAst(cache.ast, cache.filePath)
         } else {

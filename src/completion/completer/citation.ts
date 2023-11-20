@@ -1,14 +1,15 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import {bibtexParser} from 'latex-utensils'
+import { bibtexParser } from 'latex-utensils'
 import { lw } from '../../lw'
+import type { FileCache } from '../../types'
+
 import * as eventbus from '../../core/event-bus'
 import {trimMultiLineString} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../latex'
 import { getLogger } from '../../utils/logging/logger'
 import { parser } from '../../parse/parser'
-import { Cache } from '../../core/cache'
 
 const logger = getLogger('Intelli', 'Citation')
 
@@ -237,7 +238,7 @@ export class Citation implements IProvider {
             // Only happens when rootFile is undefined
             return Array.from(this.bibEntries.keys())
         }
-        const cache = lw.cacher.get(file)
+        const cache = lw.cache.get(file)
         if (cache === undefined) {
             return []
         }
@@ -271,8 +272,8 @@ export class Citation implements IProvider {
             }
         })
         // From caches
-        lw.cacher.getIncludedTeX().forEach(cachedFile => {
-            const cachedBibs = lw.cacher.get(cachedFile)?.elements.bibitem
+        lw.cache.getIncludedTeX().forEach(cachedFile => {
+            const cachedBibs = lw.cache.get(cachedFile)?.elements.bibitem
             if (cachedBibs === undefined) {
                 return
             }
@@ -348,7 +349,7 @@ export class Citation implements IProvider {
      * Cache `content` is parsed with regular expressions,
      * and the result is used to update the cache bibitem element.
      */
-    parse(cache: Cache) {
+    parse(cache: FileCache) {
         cache.elements.bibitem = this.parseContent(cache.filePath, cache.content)
     }
 

@@ -87,10 +87,10 @@ function pushLog(type: string, file: string, message: string, line: number, excl
 
 function resolveAuxFile(filename: string, rootFile: string): string {
     filename = filename.replace(/\.aux$/, '.tex')
-    if (!lw.cacher.get(rootFile)) {
+    if (!lw.cache.get(rootFile)) {
         return filename
     }
-    const texFiles = lw.cacher.getIncludedTeX(rootFile)
+    const texFiles = lw.cache.getIncludedTeX(rootFile)
     for (const tex of texFiles) {
         if (tex.endsWith(filename)) {
             return tex
@@ -101,10 +101,10 @@ function resolveAuxFile(filename: string, rootFile: string): string {
 }
 
 function resolveBibFile(filename: string, rootFile: string): string {
-    if (!lw.cacher.get(rootFile)) {
+    if (!lw.cache.get(rootFile)) {
         return filename
     }
-    const bibFiles = lw.cacher.getIncludedBib(rootFile)
+    const bibFiles = lw.cache.getIncludedBib(rootFile)
     for (const bib of bibFiles) {
         if (bib.endsWith(filename)) {
             return bib

@@ -3,11 +3,11 @@ import * as fs from 'fs'
 import * as path from 'path'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
+import type { FileCache } from '../../types'
 import { getLongestBalancedString, stripEnvironments } from '../../utils/utils'
 import { computeFilteringRange } from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../latex'
 import { argContentToStr } from '../../utils/parser'
-import { Cache } from '../../core/cache'
 
 export interface ReferenceEntry extends ICompletionItem {
     /** The file that defines the ref. */
@@ -85,7 +85,7 @@ export class Reference implements IProvider {
             // all have been found, i.e., no new ones
             const startSize = included.size
             included.forEach(cachedFile => {
-                lw.cacher.getIncludedTeX(cachedFile).forEach(includedTeX => {
+                lw.cache.getIncludedTeX(cachedFile).forEach(includedTeX => {
                     if (includedTeX === cachedFile) {
                         return
                     }
@@ -95,7 +95,7 @@ export class Reference implements IProvider {
                     // removed as it can be directly referenced without.
                     delete prefixes[includedTeX]
                 })
-                const cache = lw.cacher.get(cachedFile)
+                const cache = lw.cache.get(cachedFile)
                 if (!cache) {
                     return
                 }
@@ -124,7 +124,7 @@ export class Reference implements IProvider {
         }
 
         included.forEach(cachedFile => {
-            const cachedRefs = lw.cacher.get(cachedFile)?.elements.reference
+            const cachedRefs = lw.cache.get(cachedFile)?.elements.reference
             if (cachedRefs === undefined) {
                 return
             }
@@ -151,7 +151,7 @@ export class Reference implements IProvider {
         })
     }
 
-    parse(cache: Cache) {
+    parse(cache: FileCache) {
         if (cache.ast !== undefined) {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const labelMacros = configuration.get('intellisense.label.command') as string[]

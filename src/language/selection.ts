@@ -69,9 +69,9 @@ function nodeStackToSelectionRange(stack: Ast.Node[]): vscode.SelectionRange {
 
 export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
     async provideSelectionRanges(document: vscode.TextDocument, positions: vscode.Position[]) {
-        await lw.cacher.wait(document.fileName)
-        const content = lw.cacher.get(document.fileName)?.content
-        const ast = lw.cacher.get(document.fileName)?.ast
+        await lw.cache.wait(document.fileName)
+        const content = lw.cache.get(document.fileName)?.content
+        const ast = lw.cache.get(document.fileName)?.ast
         if (!content || !ast) {
             logger.log(`Error loading ${content ? 'AST' : 'content'} during structuring: ${document.fileName} .`)
             return []

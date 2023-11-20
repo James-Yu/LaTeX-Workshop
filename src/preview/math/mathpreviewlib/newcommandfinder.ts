@@ -18,12 +18,12 @@ export async function findProjectNewCommand(ctoken?: vscode.CancellationToken): 
         return commandsInConfigFile
     }
     let commands: string[] = []
-    for (const tex of lw.cacher.getIncludedTeX()) {
+    for (const tex of lw.cache.getIncludedTeX()) {
         if (ctoken?.isCancellationRequested) {
             return ''
         }
-        await lw.cacher.wait(tex)
-        const content = lw.cacher.get(tex)?.content
+        await lw.cache.wait(tex)
+        const content = lw.cache.get(tex)?.content
         if (content === undefined) {
             continue
         }

@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import type { getLogger } from './utils/logging/logger'
 import type { file } from './core/file'
 import type { watcher } from './core/watcher'
+import type { cache } from './core/cache'
 
 import type { Builder } from './compile/build'
-import type { Cacher } from './core/cache'
 import type { Cleaner } from './extras/cleaner'
 import type { LaTeXCommanderTreeView } from './extras/activity-bar'
 import type { Configuration } from './utils/logging/log-config'
@@ -37,10 +37,10 @@ export const lw = {
     log: {} as typeof getLogger,
     file: {} as typeof file,
     watcher: {} as typeof watcher,
+    cache: {} as typeof cache,
     eventBus: Object.create(null) as EventBus,
     configuration: Object.create(null) as Configuration,
     lwfs: Object.create(null) as LwFileSystem,
-    cacher: Object.create(null) as Cacher,
     manager: Object.create(null) as Manager,
     builder: Object.create(null) as Builder,
     viewer: Object.create(null) as Viewer,

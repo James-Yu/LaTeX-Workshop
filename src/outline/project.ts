@@ -55,8 +55,8 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
             if (ev.affectsConfiguration('latex-workshop.view.outline.sections') ||
                 ev.affectsConfiguration('latex-workshop.view.outline.commands')) {
                 await parser.reset()
-                lw.cacher.allPaths.forEach(async filePath => {
-                    const ast = lw.cacher.get(filePath)?.ast
+                lw.cache.paths().forEach(async filePath => {
+                    const ast = lw.cache.get(filePath)?.ast
                     if (ast) {
                         await parser.parseArgs(ast)
                     }

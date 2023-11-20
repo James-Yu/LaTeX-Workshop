@@ -8,6 +8,8 @@ import { file } from './core/file'
 lw.file = file
 import { watcher } from './core/watcher'
 lw.watcher = watcher
+import { cache } from './core/cache'
+lw.cache = cache
 
 import { pdfViewerHookProvider, pdfViewerPanelSerializer } from './preview/viewer'
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
@@ -23,7 +25,6 @@ import { bibtexFormat, bibtexFormatterProvider } from './lint/bibtex-formatter'
 import { DocumentChanged } from './core/event-bus'
 
 import { Builder } from './compile/build'
-import { Cacher } from './core/cache'
 import { Cleaner } from './extras/cleaner'
 import { LaTeXCommanderTreeView } from './extras/activity-bar'
 import { Configuration } from './utils/logging/log-config'
@@ -59,7 +60,6 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     lw.eventBus = new EventBus()
     lw.configuration = new Configuration()
     lw.lwfs = new LwFileSystem()
-    lw.cacher = new Cacher()
     lw.manager = new Manager()
     lw.builder = new Builder()
     lw.viewer = new Viewer()
@@ -101,7 +101,7 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     logger.log('LaTeX Workshop initialized.')
     return {
         dispose: async () => {
-            lw.cacher.reset()
+            lw.cache.reset()
             lw.server.dispose()
             await parser.dispose()
             MathJaxPool.dispose()
@@ -116,7 +116,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
     extensionContext.subscriptions.push({
         dispose: async () => {
-            lw.cacher.reset()
+            lw.cache.reset()
             lw.server.dispose()
             await parser.dispose()
             MathJaxPool.dispose()
@@ -130,8 +130,8 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             return
         }
         if (lw.file.hasTexLangId(e.languageId) ||
-            lw.cacher.getIncludedTeX(lw.manager.rootFile, [], false).includes(e.fileName) ||
-            lw.cacher.getIncludedBib().includes(e.fileName)) {
+            lw.cache.getIncludedTeX(lw.manager.rootFile, [], false).includes(e.fileName) ||
+            lw.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             lw.linter.lintRootFileIfEnabled()
             void lw.builder.buildOnSaveIfEnabled(e.fileName)
@@ -166,7 +166,6 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         }
     }))
 
-    let updateCompleter: NodeJS.Timeout
     extensionContext.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (lw.lwfs.isVirtualUri(e.document.uri)){
             return
@@ -178,21 +177,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         }
         lw.eventBus.fire(DocumentChanged)
         lw.linter.lintActiveFileIfEnabledAfterInterval(e.document)
-        if (!lw.cacher.has(e.document.fileName)) {
-            return
-        }
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('intellisense.update.aggressive.enabled')) {
-            if (updateCompleter) {
-                clearTimeout(updateCompleter)
-            }
-            updateCompleter = setTimeout(() => {
-                const file = e.document.uri.fsPath
-                void lw.cacher.refreshCache(file, lw.manager.rootFile).then(async () => {
-                    await lw.cacher.loadFlsFile(lw.manager.rootFile || file)
-                })
-            }, configuration.get('intellisense.update.delay', 1000))
-        }
+        lw.cache.refreshCacheAggressive(e.document.fileName)
     }))
 
     extensionContext.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {

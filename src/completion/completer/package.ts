@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
+import { FileCache } from '../../types'
 import type { IProvider } from '../latex'
 import { argContentToStr } from '../../utils/parser'
-import { Cache } from '../../core/cache'
 
 type DataPackagesJsonType = typeof import('../../../data/packagenames.json')
 
@@ -73,8 +73,8 @@ export class Package implements IProvider {
             .filter(packageName => !excluded.includes(packageName))
             .forEach(packageName => packages[packageName] = [])
 
-        lw.cacher.getIncludedTeX().forEach(tex => {
-            const included = lw.cacher.get(tex)?.elements.package
+        lw.cache.getIncludedTeX().forEach(tex => {
+            const included = lw.cache.get(tex)?.elements.package
             if (included === undefined) {
                 return
             }
@@ -105,7 +105,7 @@ export class Package implements IProvider {
         return packages
     }
 
-    parse(cache: Cache) {
+    parse(cache: FileCache) {
         if (cache.ast !== undefined) {
             cache.elements.package = this.parseAst(cache.ast)
         } else {

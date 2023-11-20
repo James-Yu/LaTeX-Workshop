@@ -92,8 +92,8 @@ export class HoverProvider implements vscode.HoverProvider {
 
         packageCmds.forEach(checkCmd)
 
-        lw.cacher.getIncludedTeX().forEach(cachedFile => {
-            lw.cacher.get(cachedFile)?.elements.command?.forEach(checkCmd)
+        lw.cache.getIncludedTeX().forEach(cachedFile => {
+            lw.cache.get(cachedFile)?.elements.command?.forEach(checkCmd)
         })
 
         let pkgLink = ''

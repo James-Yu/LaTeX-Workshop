@@ -110,7 +110,7 @@ suite('Find root file test suite', () => {
         ], {root: -1, skipCache: true})
         const roots = await test.find(fixture, 'alt.tex')
         assert.strictEqual(roots.root, path.join(fixture, 'main.tex'))
-        const includedTeX = lw.cacher.getIncludedTeX()
+        const includedTeX = lw.cache.getIncludedTeX()
         assert.ok(includedTeX)
         assert.ok(includedTeX.includes(path.resolve(fixture, 'main.tex')))
         assert.ok(includedTeX.includes(path.resolve(fixture, 'alt.tex')))
