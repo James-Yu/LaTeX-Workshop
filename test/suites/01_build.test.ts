@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as assert from 'assert'
-import * as lw from '../../src/lw'
+import { lw } from '../../src/lw'
 import * as test from './utils'
-import { BuildDone } from '../../src/components/eventbus'
+import { BuildDone } from '../../src/core/event-bus'
 
 suite('Build TeX files test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
@@ -190,7 +190,7 @@ suite('Build TeX files test suite', () => {
 
         await test.build(fixture, 'sub/s.tex', undefined, async () => {
             const event = test.wait(BuildDone)
-            void lw.commander.build()
+            void lw.commands.build()
             await test.sleep(500)
             await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
             await event
@@ -206,7 +206,7 @@ suite('Build TeX files test suite', () => {
         ], {local: 1, skipCache: true})
         await test.build(fixture, 'sub/s.tex', undefined, async () => {
             const event = test.wait(BuildDone)
-            void lw.commander.build()
+            void lw.commands.build()
             await test.sleep(500)
             await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
             await test.sleep(250)

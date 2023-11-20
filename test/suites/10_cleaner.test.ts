@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as assert from 'assert'
-import * as lw from '../../src/lw'
+import { lw } from '../../src/lw'
 import * as test from './utils'
-import { AutoCleaned } from '../../src/components/eventbus'
+import { AutoCleaned } from '../../src/core/event-bus'
 
 suite('Cleaner test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')

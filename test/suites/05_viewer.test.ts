@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
-import * as lw from '../../src/lw'
+import { lw } from '../../src/lw'
 import * as test from './utils'
-import { BuildDone } from '../../src/components/eventbus'
+import { BuildDone } from '../../src/core/event-bus'
 
 suite('PDF viewer test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
@@ -42,11 +42,11 @@ suite('PDF viewer test suite', () => {
         await test.build(fixture, 'main.tex')
         await test.view(fixture, 'main.pdf')
         await test.sleep(250)
-        await lw.commander.view()
+        await lw.commands.view()
         let statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 1)
         await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'legacy')
-        await lw.commander.view()
+        await lw.commands.view()
         await test.sleep(250)
         statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 2)
@@ -61,16 +61,16 @@ suite('PDF viewer test suite', () => {
         await test.build(fixture, 'main.tex')
         await test.view(fixture, 'main.pdf')
         await test.sleep(250)
-        await lw.commander.view()
+        await lw.commands.view()
         let statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 1) // Make sure a custom editor was opened
         await test.sleep(250)
-        await lw.commander.view()
+        await lw.commands.view()
         await test.sleep(250)
         statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 1) // Make sure the custom editor got reused
         await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'legacy')
-        await lw.commander.view()
+        await lw.commands.view()
         await test.sleep(250)
         statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 2) // Make sure a non-customEditor viewer was opened
@@ -109,7 +109,7 @@ suite('PDF viewer test suite', () => {
 
         await test.build(fixture, 'sub/s.tex', undefined, async () => {
             const event = test.wait(BuildDone)
-            void lw.commander.build()
+            void lw.commands.build()
             await test.sleep(500)
             await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
             await event
@@ -129,7 +129,7 @@ suite('PDF viewer test suite', () => {
 
         await test.build(fixture, 'sub/s.tex', undefined, async () => {
             const event = test.wait(BuildDone)
-            void lw.commander.build()
+            void lw.commands.build()
             await test.sleep(500)
             await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
             await test.sleep(250)
