@@ -50,7 +50,7 @@ class PdfViewerManager {
 
     initiatePdfViewerPanel(pdfPanel: PdfViewerPanel): PdfViewerPanel | undefined {
         const pdfFileUri = pdfPanel.pdfFileUri
-        lw.cacher.pdf.add(pdfFileUri.fsPath)
+        lw.watcher.pdf.add(pdfFileUri.fsPath)
         this.createClientSet(pdfFileUri)
         const panelSet = this.getPanelSet(pdfFileUri)
         if (!panelSet) {

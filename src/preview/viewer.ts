@@ -23,7 +23,7 @@ export { pdfViewerPanelSerializer } from './viewerlib/pdfviewerpanel'
 
 export class Viewer {
     constructor() {
-        lw.cacher.pdf.onChange(pdfPath => {
+        lw.watcher.pdf.onChange(pdfPath => {
             if (lw.builder.isOutputPDF(pdfPath)) {
                 this.refreshExistingViewer(pdfPath)
             }
@@ -128,7 +128,7 @@ export class Viewer {
         }
         const pdfFileUri = vscode.Uri.file(pdfFile)
         viewerManager.createClientSet(pdfFileUri)
-        lw.cacher.pdf.add(pdfFileUri.fsPath)
+        lw.watcher.pdf.add(pdfFileUri.fsPath)
         try {
             logger.log(`Serving PDF file at ${url}`)
             await vscode.env.openExternal(vscode.Uri.parse(url, true))

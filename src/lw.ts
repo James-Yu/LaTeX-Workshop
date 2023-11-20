@@ -1,4 +1,6 @@
 import * as vscode from 'vscode'
+import type { watcher } from './core/watcher'
+
 import type { Builder } from './compile/build'
 import type { Cacher } from './core/cache'
 import type { Cleaner } from './extras/cleaner'
@@ -29,6 +31,7 @@ import type * as commands from './core/commands'
 export const lw = {
     extensionContext: Object.create(null) as vscode.ExtensionContext,
     extensionRoot: '',
+    watcher: {} as typeof watcher,
     eventBus: Object.create(null) as EventBus,
     configuration: Object.create(null) as Configuration,
     lwfs: Object.create(null) as LwFileSystem,

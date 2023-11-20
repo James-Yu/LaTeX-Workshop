@@ -12,7 +12,6 @@ import type { ICompletionItem } from '../completion/latex'
 import { InputFileRegExp } from '../utils/inputfilepath'
 import * as CacherUtils from './cacherlib/cacherutils'
 import * as PathUtils from './cacherlib/pathutils'
-import { Watcher } from './cacherlib/watcher'
 import { getLogger } from '../utils/logging/logger'
 import { parser } from '../parse/parser'
 import { performance } from 'perf_hooks'
@@ -59,19 +58,16 @@ export interface Cache {
 
 export class Cacher {
     private readonly caches: {[filePath: string]: Cache} = {}
-    readonly src: Watcher = new Watcher()
-    readonly pdf: Watcher = new Watcher('.pdf')
-    readonly bib: Watcher = new Watcher('.bib')
     private caching = 0
     private promises: {[filePath: string]: Promise<void>} = {}
 
     constructor() {
-        this.src.onChange((filePath: string) => {
+        lw.watcher.src.onChange((filePath: string) => {
             if (CacherUtils.canCache(filePath)) {
                 void this.refreshCache(filePath)
             }
         })
-        this.src.onDelete((filePath: string) => {
+        lw.watcher.src.onDelete((filePath: string) => {
             if (filePath in this.caches) {
                 delete this.caches[filePath]
                 logger.log(`Removed ${filePath} .`)
@@ -84,9 +80,9 @@ export class Cacher {
             logger.log(`Ignored ${filePath} .`)
             return
         }
-        if (!this.src.has(filePath)) {
+        if (!lw.watcher.src.has(filePath)) {
             logger.log(`Adding ${filePath} .`)
-            this.src.add(filePath)
+            lw.watcher.src.add(filePath)
         }
     }
 
@@ -127,9 +123,9 @@ export class Cacher {
     }
 
     reset() {
-        this.src.reset()
-        this.bib.reset()
-        this.pdf.reset()
+        lw.watcher.src.reset()
+        lw.watcher.bib.reset()
+        lw.watcher.pdf.reset()
         Object.keys(this.caches).forEach(filePath => delete this.caches[filePath])
     }
 
@@ -204,7 +200,7 @@ export class Cacher {
             })
             logger.log(`Input ${result.path} from ${cache.filePath} .`)
 
-            if (this.src.has(result.path)) {
+            if (lw.watcher.src.has(result.path)) {
                 continue
             }
             this.add(result.path)
@@ -232,7 +228,7 @@ export class Cacher {
             logger.log(`External document ${externalPath} from ${cache.filePath} .` +
                 (result[1] ? ` Prefix is ${result[1]}`: ''))
 
-            if (this.src.has(externalPath)) {
+            if (lw.watcher.src.has(externalPath)) {
                 continue
             }
             this.add(externalPath)
@@ -270,8 +266,8 @@ export class Cacher {
                 for (const bibPath of bibPaths) {
                     cache.bibfiles.add(bibPath)
                     logger.log(`Bib ${bibPath} from ${cache.filePath} .`)
-                    if (!this.bib.has(bibPath)) {
-                        this.bib.add(bibPath)
+                    if (!lw.watcher.bib.has(bibPath)) {
+                        lw.watcher.bib.add(bibPath)
                     }
                 }
             }
@@ -306,7 +302,7 @@ export class Cacher {
                 !fs.existsSync(inputFile)) {
                 continue
             }
-            if (inputFile === filePath || this.src.has(inputFile)) {
+            if (inputFile === filePath || lw.watcher.src.has(inputFile)) {
                 // Drop the current rootFile often listed as INPUT
                 // Drop any file that is already watched as it is handled by
                 // onWatchedFileChange.
@@ -330,7 +326,7 @@ export class Cacher {
                 } else {
                     logger.log(`Cache not finished on ${filePath} when parsing fls.`)
                 }
-            } else if (!this.src.has(inputFile)) {
+            } else if (!lw.watcher.src.has(inputFile)) {
                 // Watch non-tex files.
                 this.add(inputFile)
             }
@@ -364,8 +360,8 @@ export class Cacher {
                         this.get(lw.manager.rootFile)?.bibfiles.add(bibPath)
                         logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
                     }
-                    if (!this.bib.has(bibPath)) {
-                        this.bib.add(bibPath)
+                    if (!lw.watcher.bib.has(bibPath)) {
+                        lw.watcher.bib.add(bibPath)
                     }
                 }
             }

@@ -1,6 +1,10 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { lw, registerDisposable } from './lw'
+
+import { watcher } from './core/watcher'
+lw.watcher = watcher
+
 import { pdfViewerHookProvider, pdfViewerPanelSerializer } from './preview/viewer'
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
 import { BibtexCompleter } from './completion/bibtex'

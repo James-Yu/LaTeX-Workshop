@@ -1,21 +1,21 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import { lw } from '../../lw'
-import * as eventbus from '../event-bus'
-import { getLogger } from '../../utils/logging/logger'
-import { isBinary } from '../root-file'
+import { lw } from '../lw'
+import * as eventbus from './event-bus'
+import { getLogger } from '../utils/logging/logger'
+import { isBinary } from './root-file'
 
 const logger = getLogger('Cacher', 'Watcher')
 
-export class Watcher {
+class Watcher {
     private readonly watchers: {[folder: string]: {watcher: vscode.FileSystemWatcher, files: Set<string>}} = {}
     private readonly onCreateHandlers: Set<(filePath: string) => void> = new Set()
     private readonly onChangeHandlers: Set<(filePath: string) => void> = new Set()
     private readonly onDeleteHandlers: Set<(filePath: string) => void> = new Set()
     private readonly polling: {[filePath: string]: {time: number, size: number}} = {}
 
-    constructor(private readonly fileExt: string = '.*') {}
+    constructor(private readonly fileExt: '.*' | '.bib' | '.pdf' = '.*') {}
 
     onCreate(handler: (filePath: string) => void) {
         this.onCreateHandlers.add(handler)
@@ -129,4 +129,10 @@ export class Watcher {
         })
         logger.log('Reset.')
     }
+}
+
+export const watcher = {
+    src: new Watcher(),
+    pdf: new Watcher('.pdf'),
+    bib: new Watcher('.bib')
 }

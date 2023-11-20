@@ -133,9 +133,9 @@ export class Citation implements IProvider {
     private readonly bibEntries = new Map<string, CiteSuggestion[]>()
 
     constructor() {
-        lw.cacher.bib.onCreate(filePath => this.parseBibFile(filePath))
-        lw.cacher.bib.onChange(filePath => this.parseBibFile(filePath))
-        lw.cacher.bib.onDelete(filePath => this.removeEntriesInFile(filePath))
+        lw.watcher.bib.onCreate(filePath => this.parseBibFile(filePath))
+        lw.watcher.bib.onChange(filePath => this.parseBibFile(filePath))
+        lw.watcher.bib.onDelete(filePath => this.removeEntriesInFile(filePath))
     }
 
     provideFrom(_result: RegExpMatchArray, args: IProviderArgs) {
