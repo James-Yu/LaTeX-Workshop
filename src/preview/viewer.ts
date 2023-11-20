@@ -88,7 +88,7 @@ export class Viewer {
 
     private async checkViewer(pdfFile: string): Promise<string | undefined> {
         const pdfUri = vscode.Uri.file(pdfFile)
-        if (!await lw.lwfs.exists(pdfUri)) {
+        if (!await lw.file.exists(pdfUri)) {
             logger.log(`Cannot find PDF file ${pdfUri}`)
             logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfUri}`, 'warning')
             return

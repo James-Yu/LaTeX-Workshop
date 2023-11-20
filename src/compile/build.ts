@@ -142,7 +142,7 @@ export class Builder {
 
         this.stepQueue.add(tool, rootFile, 'External', Date.now(), true, cwd)
 
-        this.outputPDFPath = rootFile ? lw.manager.tex2pdf(rootFile) : ''
+        this.outputPDFPath = rootFile ? lw.file.getPdfPath(rootFile) : ''
 
         await this.buildLoop()
     }
@@ -179,7 +179,7 @@ export class Builder {
         const timestamp = Date.now()
         tools.forEach(tool => this.stepQueue.add(tool, rootFile, recipeName || 'Build', timestamp))
 
-        this.outputPDFPath = lw.manager.tex2pdf(rootFile)
+        this.outputPDFPath = lw.file.getPdfPath(rootFile)
 
         await this.buildLoop()
     }
@@ -429,13 +429,13 @@ export class Builder {
         if (!lastStep.isExternal && skipped) {
             return
         }
-        lw.viewer.refreshExistingViewer(lw.manager.tex2pdf(lastStep.rootFile))
+        lw.viewer.refreshExistingViewer(lw.file.getPdfPath(lastStep.rootFile))
         lw.completer.reference.setNumbersFromAuxFile(lastStep.rootFile)
         await lw.cacher.loadFlsFile(lastStep.rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(lastStep.rootFile))
         // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
         if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
-            const pdfFile = lw.manager.tex2pdf(lastStep.rootFile)
+            const pdfFile = lw.file.getPdfPath(lastStep.rootFile)
             logger.log('SyncTex after build invoked.')
             lw.locator.syncTeX(undefined, undefined, pdfFile)
         }
@@ -676,7 +676,7 @@ export class Builder {
      */
      private createOutputSubFolders(rootFile: string) {
         const rootDir = path.dirname(rootFile)
-        let outDir = lw.manager.getOutDir(rootFile)
+        let outDir = lw.file.getOutDir(rootFile)
         if (!path.isAbsolute(outDir)) {
             outDir = path.resolve(rootDir, outDir)
         }

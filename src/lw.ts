@@ -1,4 +1,6 @@
 import * as vscode from 'vscode'
+import type { getLogger } from './utils/logging/logger'
+import type { file } from './core/file'
 import type { watcher } from './core/watcher'
 
 import type { Builder } from './compile/build'
@@ -31,6 +33,9 @@ import type * as commands from './core/commands'
 export const lw = {
     extensionContext: Object.create(null) as vscode.ExtensionContext,
     extensionRoot: '',
+    constant: {} as typeof constant,
+    log: {} as typeof getLogger,
+    file: {} as typeof file,
     watcher: {} as typeof watcher,
     eventBus: Object.create(null) as EventBus,
     configuration: Object.create(null) as Configuration,
@@ -60,6 +65,15 @@ export const lw = {
     mathPreviewPanel: Object.create(null) as MathPreviewPanel,
     commands: Object.create(null) as typeof commands
 }
+
+const constant = {
+    TEX_EXT: ['.tex', '.bib'],
+    TEX_NOCACHE_EXT: ['.cls', '.sty', '.bst', '.bbx', '.cbx', '.def', '.cfg'],
+    RSWEAVE_EXT: ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw'],
+    JLWEAVE_EXT: ['.jnw', '.jtexw'],
+    PWEAVE_EXT: ['.pnw', '.ptexw'],
+}
+lw.constant = constant
 
 let disposables: { dispose(): any }[] = []
 

@@ -111,7 +111,7 @@ export class Locator {
 
         if (args === undefined) {
             filePath = vscode.window.activeTextEditor.document.uri.fsPath
-            if (!lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            if (!lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
                 logger.log(`${filePath} is not valid LaTeX.`)
                 return
             }
@@ -133,7 +133,7 @@ export class Locator {
             return
         }
         if (!pdfFile) {
-            pdfFile = lw.manager.tex2pdf(rootFile)
+            pdfFile = lw.file.getPdfPath(rootFile)
         }
         if (vscode.window.activeTextEditor.document.lineCount === line &&
             vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {

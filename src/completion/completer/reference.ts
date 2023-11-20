@@ -250,7 +250,7 @@ export class Reference implements IProvider {
     }
 
     setNumbersFromAuxFile(rootFile: string) {
-        const outDir = lw.manager.getOutDir(rootFile)
+        const outDir = lw.file.getOutDir(rootFile)
         const rootDir = path.dirname(rootFile)
         const auxFile = path.resolve(rootDir, path.join(outDir, path.basename(rootFile, '.tex') + '.aux'))
         this.suggestions.forEach((entry) => {

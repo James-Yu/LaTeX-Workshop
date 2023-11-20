@@ -2,10 +2,10 @@ import vscode from 'vscode'
 import path from 'path'
 import os from 'os'
 import micromatch from 'micromatch'
-import { isTeX } from '../root-file'
+import { lw } from '../../lw'
 
 export function canCache(filePath: string) {
-    return isTeX(path.extname(filePath)) && !filePath.includes('expl3-code.tex')
+    return lw.file.hasTeXExt(path.extname(filePath)) && !filePath.includes('expl3-code.tex')
 }
 
 export function isExcluded(filePath: string): boolean {

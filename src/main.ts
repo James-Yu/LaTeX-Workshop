@@ -2,6 +2,10 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import { lw, registerDisposable } from './lw'
 
+import { getLogger } from './utils/logging/logger'
+lw.log = getLogger
+import { file } from './core/file'
+lw.file = file
 import { watcher } from './core/watcher'
 lw.watcher = watcher
 
@@ -16,10 +20,7 @@ import { latexFormatterProvider } from './lint/latex-formatter'
 import { FoldingProvider, WeaveFoldingProvider } from './language/folding'
 import { SelectionRangeProvider } from './language/selection'
 import { bibtexFormat, bibtexFormatterProvider } from './lint/bibtex-formatter'
-import { getLogger } from './utils/logging/logger'
 import { DocumentChanged } from './core/event-bus'
-
-const logger = getLogger('Extension')
 
 import { Builder } from './compile/build'
 import { Cacher } from './core/cache'
@@ -49,6 +50,8 @@ import { TeXDoc } from './extras/texdoc'
 import { parser } from './parse/parser'
 import { MathJaxPool } from './preview/math/mathjaxpool'
 import * as commander from './core/commands'
+
+const logger = lw.log('Extension')
 
 function initialize(extensionContext: vscode.ExtensionContext) {
     lw.extensionContext = extensionContext
@@ -126,7 +129,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         if (lw.lwfs.isVirtualUri(e.uri)){
             return
         }
-        if (lw.manager.hasTexId(e.languageId) ||
+        if (lw.file.hasTexLangId(e.languageId) ||
             lw.cacher.getIncludedTeX(lw.manager.rootFile, [], false).includes(e.fileName) ||
             lw.cacher.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
@@ -142,7 +145,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     extensionContext.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
-        if (vscode.window.visibleTextEditors.filter(editor => lw.manager.hasTexId(editor.document.languageId)).length > 0) {
+        if (vscode.window.visibleTextEditors.filter(editor => lw.file.hasTexLangId(editor.document.languageId)).length > 0) {
             logger.showStatus()
             if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
                 void vscode.commands.executeCommand('workbench.view.lw.latex-workshop-activitybar').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
@@ -154,11 +157,11 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         if (e && lw.lwfs.isVirtualUri(e.document.uri)){
             return
         }
-        if (e && lw.manager.hasTexId(e.document.languageId) && e.document.fileName !== prevTeXDocumentPath) {
+        if (e && lw.file.hasTexLangId(e.document.languageId) && e.document.fileName !== prevTeXDocumentPath) {
             prevTeXDocumentPath = e.document.fileName
             await lw.manager.findRoot()
             lw.linter.lintRootFileIfEnabled()
-        } else if (!e || !lw.manager.hasBibtexId(e.document.languageId)) {
+        } else if (!e || !lw.file.hasBibLangId(e.document.languageId)) {
             isLaTeXActive = false
         }
     }))
@@ -168,9 +171,9 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         if (lw.lwfs.isVirtualUri(e.document.uri)){
             return
         }
-        if (!lw.manager.hasTexId(e.document.languageId) &&
-            !lw.manager.hasBibtexId(e.document.languageId) &&
-            !lw.manager.hasDoctexId(e.document.languageId)) {
+        if (!lw.file.hasTexLangId(e.document.languageId) &&
+            !lw.file.hasBibLangId(e.document.languageId) &&
+            !lw.file.hasDtxLangId(e.document.languageId)) {
             return
         }
         lw.eventBus.fire(DocumentChanged)
@@ -193,9 +196,9 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     extensionContext.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
-        if (lw.manager.hasTexId(e.textEditor.document.languageId) ||
-            lw.manager.hasBibtexId(e.textEditor.document.languageId) ||
-            lw.manager.hasDoctexId(e.textEditor.document.languageId)) {
+        if (lw.file.hasTexLangId(e.textEditor.document.languageId) ||
+            lw.file.hasBibLangId(e.textEditor.document.languageId) ||
+            lw.file.hasDtxLangId(e.textEditor.document.languageId)) {
             return lw.structureViewer.showCursorItem(e)
         }
         return
@@ -205,7 +208,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
     void lw.manager.findRoot().then(() => {
         lw.linter.lintRootFileIfEnabled()
-        if (lw.manager.hasTexId(vscode.window.activeTextEditor?.document.languageId ?? '')) {
+        if (lw.file.hasTexLangId(vscode.window.activeTextEditor?.document.languageId ?? '')) {
             prevTeXDocumentPath = vscode.window.activeTextEditor?.document.fileName
         }
     })

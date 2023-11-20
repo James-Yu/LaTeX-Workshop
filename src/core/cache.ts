@@ -11,7 +11,6 @@ import type { GlossarySuggestion } from '../completion/completer/glossary'
 import type { ICompletionItem } from '../completion/latex'
 import { InputFileRegExp } from '../utils/inputfilepath'
 import * as CacherUtils from './cacherlib/cacherutils'
-import * as PathUtils from './cacherlib/pathutils'
 import { getLogger } from '../utils/logging/logger'
 import { parser } from '../parse/parser'
 import { performance } from 'perf_hooks'
@@ -140,7 +139,7 @@ export class Cacher {
         logger.log(`Caching ${filePath} .`)
         this.caching++
         const openEditor: vscode.TextDocument | undefined = vscode.workspace.textDocuments.filter(document => document.fileName === path.normalize(filePath))?.[0]
-        const content = openEditor?.isDirty ? openEditor.getText() : (lw.lwfs.readFileSyncGracefully(filePath) ?? '')
+        const content = openEditor?.isDirty ? openEditor.getText() : (lw.file.read(filePath) ?? '')
         const cache: Cache = {
             filePath,
             content,
@@ -262,7 +261,7 @@ export class Cacher {
             const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => bib.trim())
 
             for (const bib of bibs) {
-                const bibPaths = PathUtils.resolveBibPath(bib, path.dirname(cache.filePath))
+                const bibPaths = lw.file.getBibPath(bib, path.dirname(cache.filePath))
                 for (const bibPath of bibPaths) {
                     cache.bibfiles.add(bibPath)
                     logger.log(`Bib ${bibPath} from ${cache.filePath} .`)
@@ -286,13 +285,13 @@ export class Cacher {
      * @param filePath The path of a LaTeX file.
      */
     async loadFlsFile(filePath: string) {
-        const flsPath = PathUtils.getFlsFilePath(filePath)
+        const flsPath = lw.file.getFlsPath(filePath)
         if (flsPath === undefined) {
             return
         }
         logger.log(`Parsing .fls ${flsPath} .`)
         const rootDir = path.dirname(filePath)
-        const outDir = lw.manager.getOutDir(filePath)
+        const outDir = lw.file.getOutDir(filePath)
         const ioFiles = CacherUtils.parseFlsContent(fs.readFileSync(flsPath).toString(), rootDir)
 
         for (const inputFile of ioFiles.input) {
@@ -354,7 +353,7 @@ export class Cacher {
                 return bib.trim()
             })
             for (const bib of bibs) {
-                const bibPaths = PathUtils.resolveBibPath(bib, srcDir)
+                const bibPaths = lw.file.getBibPath(bib, srcDir)
                 for (const bibPath of bibPaths) {
                     if (lw.manager.rootFile && !this.get(lw.manager.rootFile)?.bibfiles.has(bibPath)) {
                         this.get(lw.manager.rootFile)?.bibfiles.add(bibPath)
@@ -457,7 +456,7 @@ export class Cacher {
     }
 
     getFlsChildren(texFile: string) {
-        const flsFile = PathUtils.getFlsFilePath(texFile)
+        const flsFile = lw.file.getFlsPath(texFile)
         if (flsFile === undefined) {
             return []
         }

@@ -58,7 +58,7 @@ async function loadNewCommandFromConfigFile(newCommandFile: string) {
         }
         newCommandFileAbs = path.join(rootDir, newCommandFile)
     }
-    commandsString = lw.lwfs.readFileSyncGracefully(newCommandFileAbs)
+    commandsString = lw.file.read(newCommandFileAbs)
     if (commandsString === undefined) {
         logger.log(`Cannot read file ${newCommandFileAbs}`)
         return ''

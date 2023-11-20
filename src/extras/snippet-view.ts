@@ -65,11 +65,11 @@ class SnippetViewProvider implements vscode.WebviewViewProvider {
 
     constructor() {
         const editor = vscode.window.activeTextEditor
-        if (editor && lw.manager.hasTexId(editor.document.languageId)) {
+        if (editor && lw.file.hasTexLangId(editor.document.languageId)) {
             this.lastActiveTextEditor = editor
         }
         vscode.window.onDidChangeActiveTextEditor(textEditor => {
-            if (textEditor && lw.manager.hasTexId(textEditor.document.languageId)) {
+            if (textEditor && lw.file.hasTexLangId(textEditor.document.languageId)) {
                 this.lastActiveTextEditor = textEditor
             }
         })

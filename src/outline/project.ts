@@ -35,7 +35,7 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
             // We don't check LaTeX ID as the reconstruct is handled by the Cacher.
             // We don't check BibTeX ID as the reconstruct is handled by the citation completer.
-            if (lw.manager.hasDoctexId(e.languageId)) {
+            if (lw.file.hasDtxLangId(e.languageId)) {
                 void this.reconstruct()
             }
         })
@@ -44,9 +44,9 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
             if (!e) {
                 return
             }
-            if (lw.manager.hasTexId(e.document.languageId)
-                || lw.manager.hasBibtexId(e.document.languageId)
-                || lw.manager.hasDoctexId(e.document.languageId)) {
+            if (lw.file.hasTexLangId(e.document.languageId)
+                || lw.file.hasBibLangId(e.document.languageId)
+                || lw.file.hasDtxLangId(e.document.languageId)) {
                 void this.refresh()
             }
         })

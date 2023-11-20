@@ -5,7 +5,6 @@ import { lw } from '../../lw'
 import type { IProvider } from '../latex'
 import { argContentToStr } from '../../utils/parser'
 import { Cache } from '../../core/cache'
-import { kpsewhich } from '../../core/cacherlib/pathutils'
 
 type DataPackagesJsonType = typeof import('../../../data/packagenames.json')
 
@@ -161,7 +160,7 @@ export class Package implements IProvider {
         }
         let pkgObj: {[pkgName: string]: string[]} = {}
         if (node?.type === 'macro' && node.content === 'documentclass') {
-            const clsPath = kpsewhich([`${packageName}.cls`])
+            const clsPath = lw.file.kpsewhich([`${packageName}.cls`])
             if (vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.enabled') as boolean &&
                 clsPath && fs.existsSync(clsPath)) {
                 pkgObj = this.parseContent(fs.readFileSync(clsPath).toString())

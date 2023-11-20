@@ -19,7 +19,7 @@ export async function build(skipSelection: boolean = false, rootFile: string | u
     const configuration = vscode.workspace.getConfiguration('latex-workshop', workspace)
     const externalBuildCommand = configuration.get('latex.external.build.command') as string
     const externalBuildArgs = configuration.get('latex.external.build.args') as string[]
-    if (rootFile === undefined && lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+    if (rootFile === undefined && lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         rootFile = await lw.manager.findRoot()
         languageId = lw.manager.rootFileLanguageId
     }
@@ -45,7 +45,7 @@ export async function build(skipSelection: boolean = false, rootFile: string | u
 }
 
 export async function revealOutputDir() {
-    let outDir = lw.manager.getOutDir()
+    let outDir = lw.file.getOutDir()
     if (!path.isAbsolute(outDir)) {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
         const rootDir = lw.manager.rootDir || workspaceFolder?.uri.fsPath
@@ -89,7 +89,7 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
         logger.log('Cannot find active TextEditor.')
         return
     }
-    if (!lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         logger.log('Active document is not a TeX file.')
         return
     }
@@ -106,7 +106,7 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
     if (!pickedRootFile) {
         return
     }
-    return lw.viewer.open(lw.manager.tex2pdf(pickedRootFile), typeof mode === 'string' ? mode : undefined)
+    return lw.viewer.open(lw.file.getPdfPath(pickedRootFile), typeof mode === 'string' ? mode : undefined)
 }
 
 export function refresh() {
@@ -121,23 +121,23 @@ export function kill() {
 
 export function synctex() {
     logger.log('SYNCTEX command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         logger.log('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
         return
     }
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.manager.getWorkspaceFolderRootDir())
     let pdfFile: string | undefined = undefined
     if (lw.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-        pdfFile = lw.manager.tex2pdf(lw.manager.localRootFile)
+        pdfFile = lw.file.getPdfPath(lw.manager.localRootFile)
     } else if (lw.manager.rootFile !== undefined) {
-        pdfFile = lw.manager.tex2pdf(lw.manager.rootFile)
+        pdfFile = lw.file.getPdfPath(lw.manager.rootFile)
     }
     lw.locator.syncTeX(undefined, undefined, pdfFile)
 }
 
 export function synctexonref(line: number, filePath: string) {
     logger.log('SYNCTEX command invoked on a reference.')
-    if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         logger.log('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
         return
     }
@@ -164,7 +164,7 @@ export async function clean(): Promise<void> {
 
 export function addTexRoot() {
     logger.log('ADDTEXROOT command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     lw.texMagician.addTexRoot()
@@ -177,7 +177,7 @@ export function citation() {
 
 export function wordcount() {
     logger.log('WORDCOUNT command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId) ||
+    if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId) ||
         lw.manager.rootFile === vscode.window.activeTextEditor.document.fileName) {
         if (lw.manager.rootFile) {
             lw.counter.count(lw.manager.rootFile)
@@ -216,7 +216,7 @@ export function gotoSection(filePath: string, lineNumber: number) {
 
 export function navigateToEnvPair() {
     logger.log('JumpToEnvPair command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     void lw.envPair.gotoPair()
@@ -224,7 +224,7 @@ export function navigateToEnvPair() {
 
 export function selectEnvContent(mode: 'content' | 'whole') {
     logger.log('SelectEnv command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     void lw.envPair.selectEnvContent(mode)
@@ -232,7 +232,7 @@ export function selectEnvContent(mode: 'content' | 'whole') {
 
 export function selectEnvName() {
     logger.log('SelectEnvName command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     void lw.envPair.envNameAction('selection')
@@ -240,7 +240,7 @@ export function selectEnvName() {
 
 export function multiCursorEnvName() {
     logger.log('MutliCursorEnvName command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     void lw.envPair.envNameAction('cursor')
@@ -248,7 +248,7 @@ export function multiCursorEnvName() {
 
 export function toggleEquationEnv() {
     logger.log('toggleEquationEnv command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     void lw.envPair.envNameAction('equationToggle')
@@ -256,7 +256,7 @@ export function toggleEquationEnv() {
 
 export function closeEnv() {
     logger.log('CloseEnv command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     void lw.envPair.closeEnv()

@@ -106,7 +106,7 @@ export class Cleaner {
         const globPrefix = (configuration.get('latex.clean.subfolder.enabled') as boolean) ? './**/' : ''
         const globs = (configuration.get('latex.clean.fileTypes') as string[])
             .map(globType => globPrefix + replaceArgumentPlaceholders(rootFile, lw.manager.tmpDir)(globType))
-        const outdir = path.resolve(path.dirname(rootFile), lw.manager.getOutDir(rootFile))
+        const outdir = path.resolve(path.dirname(rootFile), lw.file.getOutDir(rootFile))
         logger.log(`Clean glob matched files ${JSON.stringify({globs, outdir})} .`)
 
         const { fileOrFolderGlobs, folderGlobsExplicit, folderGlobsWithGlobstar } = Cleaner.splitGlobs(globs)

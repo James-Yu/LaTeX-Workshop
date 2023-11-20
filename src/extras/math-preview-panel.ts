@@ -176,7 +176,7 @@ export class MathPreviewPanel {
         }
         const editor = vscode.window.activeTextEditor
         const document = editor?.document
-        if (!editor || !document?.languageId || !lw.manager.hasTexId(document.languageId)) {
+        if (!editor || !document?.languageId || !lw.file.hasTexLangId(document.languageId)) {
             this.clearCache()
             return
         }

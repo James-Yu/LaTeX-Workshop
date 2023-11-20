@@ -18,19 +18,6 @@ type RootFileType = {
     uri: vscode.Uri
 }
 
-// https://tex.stackexchange.com/questions/7770/file-extensions-related-to-latex-etc
-const TEX_EXT: string[] = ['.tex', '.bib']
-const TEX_NOCACHE_EXT: string[] = ['.cls', '.sty', '.bst', '.bbx', '.cbx', '.def', '.cfg']
-const RSWEAVE_EXT: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
-const JLWEAVE_EXT: string[] = ['.jnw', '.jtexw']
-const PWEAVE_EXT: string[] = ['.pnw', '.ptexw']
-export function isTeX(extname: string) {
-    return [...TEX_EXT, ...RSWEAVE_EXT, ...JLWEAVE_EXT, ...PWEAVE_EXT].includes(extname)
-}
-export function isBinary(extname: string) {
-    return ![...TEX_EXT, ...TEX_NOCACHE_EXT, ...RSWEAVE_EXT, ...JLWEAVE_EXT, ...PWEAVE_EXT].includes(extname)
-}
-
 export class Manager {
     private _localRootFile: string | undefined
     private _rootFileLanguageId: string | undefined
@@ -60,29 +47,6 @@ export class Manager {
             }
             throw error
         }
-    }
-
-    /**
-     * Returns the output directory developed according to the input tex path
-     * and 'latex.outDir' config. If `texPath` is `undefined`, the default root
-     * file is used. If there is not root file, returns './'.
-     * The returned path always uses `/` even on Windows.
-     *
-     * @param texPath The path of a LaTeX file.
-     */
-    getOutDir(texPath?: string) {
-        if (texPath === undefined) {
-            texPath = this.rootFile
-        }
-        // rootFile is also undefined
-        if (texPath === undefined) {
-            return './'
-        }
-
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath))
-        const outDir = configuration.get('latex.outDir') as string
-        const out = utils.replaceArgumentPlaceholders(texPath, this.tmpDir)(outDir)
-        return path.normalize(out).split(path.sep).join('/')
     }
 
     /**
@@ -188,71 +152,6 @@ export class Manager {
         return
     }
 
-    private inferLanguageId(filename: string): string | undefined {
-        const ext = path.extname(filename).toLocaleLowerCase()
-        if (ext === '.tex') {
-            return 'latex'
-        } else if (PWEAVE_EXT.includes(ext)) {
-            return 'pweave'
-        } else if (JLWEAVE_EXT.includes(ext)) {
-            return 'jlweave'
-        } else if (RSWEAVE_EXT.includes(ext)) {
-            return 'rsweave'
-        } else if (ext === '.dtx') {
-            return 'doctex'
-        } else {
-            return
-        }
-    }
-
-    /**
-     * Returns the jobname. If empty, return the name of the input `texPath`.
-     *
-     * @param texPath The path of a LaTeX file.
-     */
-    jobname(texPath: string) {
-        const config = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath))
-        const jobname = config.get('latex.jobname') as string
-        const texname = path.parse(texPath).name
-        return jobname || texname
-    }
-
-    /**
-     * Returns the path of a PDF file with respect to `texPath`.
-     *
-     * @param texPath The path of a LaTeX file.
-     */
-    tex2pdf(texPath: string) {
-        return path.resolve(path.dirname(texPath), this.getOutDir(texPath), path.basename(`${this.jobname(texPath)}.pdf`))
-    }
-
-    /**
-     * Returns `true` if the language of `id` is one of supported languages.
-     *
-     * @param id The language identifier
-     */
-    hasTexId(id: string) {
-        return ['tex', 'latex', 'latex-expl3', 'doctex', 'pweave', 'jlweave', 'rsweave'].includes(id)
-    }
-
-    /**
-     * Returns `true` if the language of `id` is bibtex
-     *
-     * @param id The language identifier
-     */
-    hasBibtexId(id: string) {
-        return id === 'bibtex'
-    }
-
-    /**
-     * Returns `true` if the language of `id` is doctex
-     *
-     * @param id The language identifier
-     */
-    hasDoctexId(id: string) {
-        return id === 'doctex'
-    }
-
     private findWorkspace(): vscode.Uri | undefined {
         const firstDir = vscode.workspace.workspaceFolders?.[0]
         // If no workspace is opened.
@@ -297,7 +196,7 @@ export class Manager {
                 logger.log(`Root file changed: from ${this.rootFile} to ${rootFile}`)
                 logger.log('Start to find all dependencies.')
                 this.rootFile = rootFile
-                this.rootFileLanguageId = this.inferLanguageId(rootFile)
+                this.rootFileLanguageId = lw.file.getLangId(rootFile)
                 logger.log(`Root file languageId: ${this.rootFileLanguageId}`)
                 lw.eventBus.fire(eventbus.RootFileChanged, rootFile)
 
@@ -334,7 +233,7 @@ export class Manager {
         const fileStack: string[] = []
         if (result) {
             let file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
-            content = lw.lwfs.readFileSyncGracefully(file)
+            content = lw.file.read(file)
             if (content === undefined) {
                 logger.log(`Non-existent magic root ${file} .`)
                 return
@@ -353,7 +252,7 @@ export class Manager {
                     logger.log(`Found magic root ${file}`)
                 }
 
-                content = lw.lwfs.readFileSyncGracefully(file)
+                content = lw.file.read(file)
                 if (content === undefined) {
                     logger.log(`Non-existent magic root ${file} .`)
                     return
