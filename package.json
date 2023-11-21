@@ -2560,6 +2560,7 @@
   "scripts": {
     "clean": "rimraf out/ .eslintcache",
     "compile": "tsc -p tsconfig.json && tsc -p viewer/tsconfig.json",
+    "coverage": "c8 --check-coverage npm run test --src out/src/",
     "lint": "eslint --cache --ext .ts,.js .",
     "lint:fix": "eslint --fix --cache --ext .ts,.js .",
     "release": "npm run clean && npm run lint && npm run compile && vsce package",
@@ -2596,6 +2597,7 @@
     "@unified-latex/unified-latex-types": "1.4.2",
     "@vscode/test-electron": "2.3.6",
     "@vscode/vsce": "2.22.0",
+    "c8": "^8.0.1",
     "eslint": "8.53.0",
     "mocha": "10.2.0",
     "rimraf": "5.0.5",
