@@ -4,8 +4,8 @@ import type { file } from './core/file'
 import type { watcher } from './core/watcher'
 import type { cache } from './core/cache'
 import type { root } from './core/root'
+import type { compile } from './compile'
 
-import type { Builder } from './compile/build'
 import type { Cleaner } from './extras/cleaner'
 import type { LaTeXCommanderTreeView } from './extras/activity-bar'
 import type { Configuration } from './utils/logging/log-config'
@@ -39,10 +39,10 @@ export const lw = {
     watcher: {} as typeof watcher,
     cache: {} as typeof cache,
     root: {} as typeof root,
+    compile: {} as typeof compile,
     eventBus: Object.create(null) as EventBus,
     configuration: Object.create(null) as Configuration,
     lwfs: Object.create(null) as LwFileSystem,
-    builder: Object.create(null) as Builder,
     viewer: Object.create(null) as Viewer,
     server: Object.create(null) as Server,
     locator: Object.create(null) as Locator,
@@ -72,6 +72,10 @@ const constant = {
     RSWEAVE_EXT: ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw'],
     JLWEAVE_EXT: ['.jnw', '.jtexw'],
     PWEAVE_EXT: ['.pnw', '.ptexw'],
+    TEX_MAGIC_PROGRAM_NAME: 'TEX_MAGIC_PROGRAM_NAME',
+    BIB_MAGIC_PROGRAM_NAME: 'BIB_MAGIC_PROGRAM_NAME',
+    MAGIC_PROGRAM_ARGS_SUFFIX: '_WITH_ARGS',
+    MAX_PRINT_LINE: '10000'
 }
 lw.constant = constant
 

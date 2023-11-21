@@ -12,6 +12,8 @@ import { cache } from './core/cache'
 lw.cache = cache
 import { root } from './core/root'
 lw.root = root
+import { compile } from './compile'
+lw.compile = compile
 
 import { pdfViewerHookProvider, pdfViewerPanelSerializer } from './preview/viewer'
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
@@ -26,7 +28,6 @@ import { SelectionRangeProvider } from './language/selection'
 import { bibtexFormat, bibtexFormatterProvider } from './lint/bibtex-formatter'
 import { DocumentChanged } from './core/event-bus'
 
-import { Builder } from './compile/build'
 import { Cleaner } from './extras/cleaner'
 import { LaTeXCommanderTreeView } from './extras/activity-bar'
 import { Configuration } from './utils/logging/log-config'
@@ -61,7 +62,6 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     lw.eventBus = new EventBus()
     lw.configuration = new Configuration()
     lw.lwfs = new LwFileSystem()
-    lw.builder = new Builder()
     lw.viewer = new Viewer()
     lw.server = new Server()
     lw.locator = new Locator()
@@ -134,7 +134,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             lw.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             lw.linter.lintRootFileIfEnabled()
-            void lw.builder.buildOnSaveIfEnabled(e.fileName)
+            void lw.compile.autoBuild(e.fileName, 'onSave')
             lw.counter.countOnSaveIfEnabled(e.fileName)
         }
     }))

@@ -24,7 +24,7 @@ export { pdfViewerPanelSerializer } from './viewerlib/pdfviewerpanel'
 export class Viewer {
     constructor() {
         lw.watcher.pdf.onChange(pdfPath => {
-            if (lw.builder.isOutputPDF(pdfPath)) {
+            if (path.relative(lw.compile.compiledPDFPath, pdfPath) !== '') {
                 this.refreshExistingViewer(pdfPath)
             }
         })

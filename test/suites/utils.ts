@@ -171,7 +171,7 @@ export async function build(fixture: string, openFile: string, ws?: string, acti
     await (action ?? lw.commands.build)()
 }
 
-export async function auto(fixture: string, editFile: string, noBuild = false, save = false, ws?: string): Promise<{type: 'onChange' | 'onSave', file: string}> {
+export async function auto(fixture: string, editFile: string, noBuild = false, save = false, ws?: string): Promise<{type: 'onFileChange' | 'onSave', file: string}> {
     const done = wait(AutoBuildInitiated)
     if (save) {
         logger.log(`Save ${editFile}.`)
@@ -185,7 +185,7 @@ export async function auto(fixture: string, editFile: string, noBuild = false, s
     if (noBuild) {
         await sleep(500)
         strictEqual(getCachedLog().CACHED_EXTLOG.filter(line => line.includes('[Builder]')).filter(line => line.includes(editFile)).length, 0)
-        return {type: 'onChange', file: ''}
+        return {type: 'onFileChange', file: ''}
     }
     logger.log('Wait for auto-build.')
     const result = await Promise.any([done, sleep(3000)]) as EventArgs[typeof AutoBuildInitiated]
