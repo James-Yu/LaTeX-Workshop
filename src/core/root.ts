@@ -75,7 +75,7 @@ async function find(): Promise<undefined> {
         lw.eventBus.fire(eventbus.RootFileSearched)
         return
     }
-    logger.log(`No root file found.`)
+    logger.log('No root file found.')
     void lw.structureViewer.refresh()
     lw.eventBus.fire(eventbus.RootFileSearched)
     return

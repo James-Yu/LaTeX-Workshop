@@ -30,6 +30,7 @@ import type { StructureView } from './outline/project'
 import type { TeXDoc } from './extras/texdoc'
 import type * as commands from './core/commands'
 
+/* eslint-disable */
 export const lw = {
     extensionContext: Object.create(null) as vscode.ExtensionContext,
     extensionRoot: '',
@@ -65,6 +66,7 @@ export const lw = {
     mathPreviewPanel: Object.create(null) as MathPreviewPanel,
     commands: Object.create(null) as typeof commands
 }
+/* eslint-enable */
 
 const constant = {
     TEX_EXT: ['.tex', '.bib'],

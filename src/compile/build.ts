@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
 import { AutoBuildInitiated, AutoCleaned, BuildDone } from '../core/event-bus'
-import { rootFile as pickRootFile } from '../utils/quick-pick'
+import { pickRootPath } from '../utils/quick-pick'
 import { parser } from '../parse/parser'
 
 import { lw } from '../lw'
@@ -32,7 +32,7 @@ lw.watcher.bib.onChange(filePath => autoBuild(filePath, 'onFileChange', true))
  * @param {boolean} bibChanged - Indicates whether the bibliography file has
  * changed.
  */
-function autoBuild(file: string, type: 'onFileChange' | 'onSave',  bibChanged: boolean = false) {
+function autoBuild(file: string, type: 'onFileChange' | 'onSave', bibChanged: boolean = false) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
     if (configuration.get('latex.autoBuild.run') as string !== type) {
         return
@@ -84,10 +84,10 @@ function canAutoBuild(): boolean {
  * build.
  */
 async function build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
-    const activeEditor = vscode.window.activeTextEditor;
+    const activeEditor = vscode.window.activeTextEditor
     if (!activeEditor) {
         logger.log('Cannot start to build because the active editor is undefined.')
-        return;
+        return
     }
 
     logger.log(`The document of the active editor: ${activeEditor.document.uri.toString(true)}`)
@@ -115,7 +115,7 @@ async function build(skipSelection: boolean = false, rootFile: string | undefine
     let pickedRootFile: string | undefined = rootFile
     if (!skipSelection && lw.root.subfiles.path) {
         // We are using the subfile package
-        pickedRootFile = await pickRootFile(rootFile, lw.root.subfiles.path, 'build')
+        pickedRootFile = await pickRootPath(rootFile, lw.root.subfiles.path, 'compile')
         if (! pickedRootFile) {
             return
         }
@@ -192,7 +192,7 @@ function spawnProcess(step: Step): ProcessEnv {
     logger.log(`env: ${JSON.stringify(step.env)}`)
     logger.log(`root: ${step.rootFile}`)
 
-    const env = { ...process.env, ...step.env } as ProcessEnv
+    const env: ProcessEnv = { ...process.env, ...step.env }
     env['max_print_line'] = lw.constant.MAX_PRINT_LINE
 
     if (!step.isExternal &&
@@ -261,7 +261,7 @@ async function monitorProcess(step: Step, env: ProcessEnv): Promise<boolean> {
             resolve(false)
         })
 
-        lw.compile.process.on('exit', async (code, signal) => {
+        lw.compile.process.on('exit', (code, signal) => {
             const isSkipped = parser.parseLog(stdout, step.rootFile)
             if (!step.isExternal) {
                 step.isSkipped = isSkipped
@@ -322,23 +322,23 @@ function handleProcessError(env: ProcessEnv, stderr: string, err: Error) {
  */
 function handleExitCodeError(step: Step, env: ProcessEnv, stderr: string, code: number | null, signal: NodeJS.Signals | null) {
     if (!step.isExternal) {
-        logger.log(`Recipe returns with error code ${code}/${signal} on PID ${lw.compile.process?.pid}.`);
-        logger.log(`Does the executable exist? $PATH: ${env['PATH']}, $Path: ${env['Path']}, $SHELL: ${process.env.SHELL}`);
-        logger.log(`${stderr}`);
+        logger.log(`Recipe returns with error code ${code}/${signal} on PID ${lw.compile.process?.pid}.`)
+        logger.log(`Does the executable exist? $PATH: ${env['PATH']}, $Path: ${env['Path']}, $SHELL: ${process.env.SHELL}`)
+        logger.log(`${stderr}`)
     }
 
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? vscode.Uri.file(step.rootFile) : undefined);
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? vscode.Uri.file(step.rootFile) : undefined)
     if (!step.isExternal && signal !== 'SIGTERM' && !step.isRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
-        handleRetryError(step);
+        handleRetryError(step)
     } else if (!step.isExternal && signal !== 'SIGTERM') {
-        handleNoRetryError(configuration, step);
+        handleNoRetryError(configuration, step)
     } else if (step.isExternal) {
-        handleExternalCommandError();
+        handleExternalCommandError()
     } else {
-        handleUserTermination();
+        handleUserTermination()
     }
 
-    lw.compile.process = undefined;
+    lw.compile.process = undefined
 }
 
 /**
@@ -348,13 +348,12 @@ function handleExitCodeError(step: Step, env: ProcessEnv, stderr: string, code: 
  * @param {RecipeStep} step - The Step representing the tool process.
  */
 function handleRetryError(step: RecipeStep) {
-    step.isRetry = true;
-    logger.refreshStatus('x', 'errorForeground', 'Recipe terminated with error. Retry building the project.', 'warning');
-    logger.log('Cleaning auxiliary files and retrying build after toolchain error.');
+    step.isRetry = true
+    logger.refreshStatus('x', 'errorForeground', 'Recipe terminated with error. Retry building the project.', 'warning')
+    logger.log('Cleaning auxiliary files and retrying build after toolchain error.')
 
-    queue.prepend(step);
-    lw.cleaner.clean(step.rootFile);
-    lw.eventBus.fire(AutoCleaned);
+    queue.prepend(step)
+    void lw.cleaner.clean(step.rootFile).then(() => lw.eventBus.fire(AutoCleaned))
 }
 
 /**
@@ -366,14 +365,13 @@ function handleRetryError(step: RecipeStep) {
  * the LaTeX project.
  * @param {RecipeStep} step - The Step representing the tool process.
  */
-async function handleNoRetryError(configuration: vscode.WorkspaceConfiguration, step: RecipeStep) {
-    logger.refreshStatus('x', 'errorForeground');
+function handleNoRetryError(configuration: vscode.WorkspaceConfiguration, step: RecipeStep) {
+    logger.refreshStatus('x', 'errorForeground')
     if (['onFailed', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
-        lw.cleaner.clean(step.rootFile);
-        lw.eventBus.fire(AutoCleaned);
+        void lw.cleaner.clean(step.rootFile).then(() => lw.eventBus.fire(AutoCleaned))
     }
-    void logger.showErrorMessageWithCompilerLogButton('Recipe terminated with error.');
-    queue.clear();
+    void logger.showErrorMessageWithCompilerLogButton('Recipe terminated with error.')
+    queue.clear()
 }
 
 /**
@@ -381,10 +379,10 @@ async function handleNoRetryError(configuration: vscode.WorkspaceConfiguration, 
  * shows an error message to the user and clears the BuildToolQueue.
  */
 function handleExternalCommandError() {
-    logger.log(`Build returns with error on PID ${lw.compile.process?.pid}.`);
-    logger.refreshStatus('x', 'errorForeground', undefined, 'warning');
-    void logger.showErrorMessageWithCompilerLogButton('Build terminated with error.');
-    queue.clear();
+    logger.log(`Build returns with error on PID ${lw.compile.process?.pid}.`)
+    logger.refreshStatus('x', 'errorForeground', undefined, 'warning')
+    void logger.showErrorMessageWithCompilerLogButton('Build terminated with error.')
+    queue.clear()
 }
 
 /**
@@ -392,8 +390,8 @@ function handleExternalCommandError() {
  * the status and clears the BuildToolQueue.
  */
 function handleUserTermination() {
-    logger.refreshStatus('x', 'errorForeground');
-    queue.clear();
+    logger.refreshStatus('x', 'errorForeground')
+    queue.clear()
 }
 
 /**
@@ -419,7 +417,7 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     }
     lw.viewer.refreshExistingViewer(lw.file.getPdfPath(lastStep.rootFile))
     lw.completer.reference.setNumbersFromAuxFile(lastStep.rootFile)
-    lw.cache.loadFlsFile(lastStep.rootFile ?? '')
+    await lw.cache.loadFlsFile(lastStep.rootFile ?? '')
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(lastStep.rootFile))
     // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
     if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {

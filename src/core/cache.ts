@@ -116,10 +116,10 @@ function paths(): string[] {
  *
  * @param {string} filePath - The file path to wait for.
  * @param {number} seconds - The maximum wait time in seconds.
- * @returns {Promise<void | undefined>} - A promise resolving when the file is
+ * @returns {Promise<Promise<void> | undefined>} - A promise resolving when the file is
  * cached, or undefined if an error occurs.
  */
-async function wait(filePath: string, seconds: number = 2): Promise<void | undefined> {
+async function wait(filePath: string, seconds: number = 2): Promise<Promise<void> | undefined> {
     let waited = 0
     while (promises.get(filePath) === undefined && get(filePath) === undefined) {
         // Just open vscode, has not cached, wait for a bit?
@@ -164,10 +164,10 @@ let cachingFilesCount = 0
  *
  * @param {string} filePath - The file path to refresh the cache for.
  * @param {string} rootPath - The root path for resolving relative paths.
- * @returns {Promise<void | undefined>} - A promise resolving when the cache is
+ * @returns {Promise<Promise<void> | undefined>} - A promise resolving when the cache is
  * refreshed, or undefined if the file is excluded or cannot be cached.
  */
-async function refreshCache(filePath: string, rootPath?: string): Promise<void | undefined> {
+async function refreshCache(filePath: string, rootPath?: string): Promise<Promise<void> | undefined> {
     if (isExcluded(filePath)) {
         logger.log(`Ignored ${filePath} .`)
         return
@@ -180,7 +180,7 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<void |
     const openEditor: vscode.TextDocument | undefined = vscode.workspace.textDocuments.find(
         document => document.fileName === path.normalize(filePath))
     const content = openEditor?.isDirty ? openEditor.getText() : (lw.file.read(filePath) ?? '')
-    const cache: FileCache = {
+    const fileCache: FileCache = {
         filePath,
         content,
         contentTrimmed: utils.stripCommentsAndVerbatim(content),
@@ -188,14 +188,14 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<void |
         children: [],
         bibfiles: new Set(),
         external: {}}
-    caches.set(filePath, cache)
+    caches.set(filePath, fileCache)
     rootPath = rootPath || lw.root.file.path
-    updateChildren(cache, rootPath)
+    updateChildren(fileCache, rootPath)
 
     promises.set(
         filePath,
-        updateAST(cache).then(() => {
-            updateElements(cache)
+        updateAST(fileCache).then(() => {
+            updateElements(fileCache)
         }).finally(() => {
             lw.dupLabelDetector.run()
             cachingFilesCount--
@@ -242,26 +242,26 @@ function refreshCacheAggressive(filePath: string) {
 /**
  * Updates the Abstract Syntax Tree (AST) for a given file cache using parser.
  *
- * @param {FileCache} cache - The file cache to update the AST for.
+ * @param {FileCache} fileCache - The file cache to update the AST for.
  */
-async function updateAST(cache: FileCache) {
-    logger.log(`Parse LaTeX AST: ${cache.filePath} .`)
-    cache.ast = await parser.parseLaTeX(cache.content)
-    logger.log(`Parsed LaTeX AST: ${cache.filePath} .`)
+async function updateAST(fileCache: FileCache) {
+    logger.log(`Parse LaTeX AST: ${fileCache.filePath} .`)
+    fileCache.ast = await parser.parseLaTeX(fileCache.content)
+    logger.log(`Parsed LaTeX AST: ${fileCache.filePath} .`)
 }
 
 /**
  * Updates the children of a file cache based on input files and external
  * documents.
  *
- * @param {FileCache} cache - The file cache to update the children for.
+ * @param {FileCache} fileCache - The file cache to update the children for.
  * @param {string} rootPath - The root path for resolving relative paths.
  */
-function updateChildren(cache: FileCache, rootPath: string | undefined) {
-    rootPath = rootPath || cache.filePath
-    updateChildrenInput(cache, rootPath)
-    updateChildrenXr(cache, rootPath)
-    logger.log(`Updated inputs of ${cache.filePath} .`)
+function updateChildren(fileCache: FileCache, rootPath: string | undefined) {
+    rootPath = rootPath || fileCache.filePath
+    updateChildrenInput(fileCache, rootPath)
+    updateChildrenXr(fileCache, rootPath)
+    logger.log(`Updated inputs of ${fileCache.filePath} .`)
 }
 
 /**
@@ -273,13 +273,13 @@ function updateChildren(cache: FileCache, rootPath: string | undefined) {
  * the children array, and if the file is not already being watched, it adds it
  * to the watcher and triggers a refresh of its cache.
  *
- * @param {FileCache} cache - The file cache to update the input children for.
+ * @param {FileCache} fileCache - The file cache to update the input children for.
  * @param {string} rootPath - The root path for resolving relative paths.
  */
-function updateChildrenInput(cache: FileCache, rootPath: string) {
+function updateChildrenInput(fileCache: FileCache, rootPath: string) {
     const inputFileRegExp = new InputFileRegExp()
     while (true) {
-        const result = inputFileRegExp.exec(cache.contentTrimmed, cache.filePath, rootPath)
+        const result = inputFileRegExp.exec(fileCache.contentTrimmed, fileCache.filePath, rootPath)
         if (!result) {
             break
         }
@@ -288,11 +288,11 @@ function updateChildrenInput(cache: FileCache, rootPath: string) {
             continue
         }
 
-        cache.children.push({
+        fileCache.children.push({
             index: result.match.index,
             filePath: result.path
         })
-        logger.log(`Input ${result.path} from ${cache.filePath} .`)
+        logger.log(`Input ${result.path} from ${fileCache.filePath} .`)
 
         if (lw.watcher.src.has(result.path)) {
             continue
@@ -312,20 +312,20 @@ function updateChildrenInput(cache: FileCache, rootPath: string) {
  * document is not already being watched, it adds it to the watcher and triggers
  * a refresh of its cache.
  *
- * @param {FileCache} cache - The file cache to update the external document
+ * @param {FileCache} fileCache - The file cache to update the external document
  * children for.
  * @param {string} rootPath - The root path for resolving relative paths.
  */
-function updateChildrenXr(cache: FileCache, rootPath: string) {
+function updateChildrenXr(fileCache: FileCache, rootPath: string) {
     const externalDocRegExp = /\\externaldocument(?:\[(.*?)\])?\{(.*?)\}/g
     while (true) {
-        const result = externalDocRegExp.exec(cache.contentTrimmed)
+        const result = externalDocRegExp.exec(fileCache.contentTrimmed)
         if (!result) {
             break
         }
 
         const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
-        const externalPath = utils.resolveFile([path.dirname(cache.filePath), path.dirname(rootPath), ...texDirs], result[2])
+        const externalPath = utils.resolveFile([path.dirname(fileCache.filePath), path.dirname(rootPath), ...texDirs], result[2])
         if (!externalPath || !fs.existsSync(externalPath) || path.relative(externalPath, rootPath) === '') {
             logger.log(`Failed resolving external ${result[2]} . Tried ${externalPath} ` +
                 (externalPath && path.relative(externalPath, rootPath) === '' ? ', which is root.' : '.'))
@@ -335,7 +335,7 @@ function updateChildrenXr(cache: FileCache, rootPath: string) {
         const rootCache = get(rootPath)
         if (rootCache !== undefined) {
             rootCache.external[externalPath] = result[1] || ''
-            logger.log(`External document ${externalPath} from ${cache.filePath} .` + (result[1] ? ` Prefix is ${result[1]}`: ''))
+            logger.log(`External document ${externalPath} from ${fileCache.filePath} .` + (result[1] ? ` Prefix is ${result[1]}`: ''))
         }
 
         if (lw.watcher.src.has(externalPath)) {
@@ -356,21 +356,21 @@ function updateChildrenXr(cache: FileCache, rootPath: string) {
  * the bibliography files referenced in the file content and logs the time taken
  * to complete the update.
  *
- * @param {FileCache} cache - The file cache to update the elements for.
+ * @param {FileCache} fileCache - The file cache to update the elements for.
  */
-function updateElements(cache: FileCache) {
+function updateElements(fileCache: FileCache) {
     const start = performance.now()
-    lw.completer.citation.parse(cache)
+    lw.completer.citation.parse(fileCache)
     // Package parsing must be before command and environment.
-    lw.completer.package.parse(cache)
-    lw.completer.reference.parse(cache)
-    lw.completer.glossary.parse(cache)
-    lw.completer.environment.parse(cache)
-    lw.completer.command.parse(cache)
-    lw.completer.input.parseGraphicsPath(cache)
-    updateBibfiles(cache)
+    lw.completer.package.parse(fileCache)
+    lw.completer.reference.parse(fileCache)
+    lw.completer.glossary.parse(fileCache)
+    lw.completer.environment.parse(fileCache)
+    lw.completer.command.parse(fileCache)
+    lw.completer.input.parseGraphicsPath(fileCache)
+    updateBibfiles(fileCache)
     const elapsed = performance.now() - start
-    logger.log(`Updated elements in ${elapsed.toFixed(2)} ms: ${cache.filePath} .`)
+    logger.log(`Updated elements in ${elapsed.toFixed(2)} ms: ${fileCache.filePath} .`)
 }
 
 /**
@@ -383,13 +383,13 @@ function updateElements(cache: FileCache) {
  * If a bibliography file is not already being watched, it adds it to the
  * bibliography watcher.
  *
- * @param {FileCache} cache - The file cache to update the bibliography files
+ * @param {FileCache} fileCache - The file cache to update the bibliography files
  * for.
  */
-function updateBibfiles(cache: FileCache) {
+function updateBibfiles(fileCache: FileCache) {
     const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){([\s\S]+?)}|(?:\\putbib)\[(.+?)\]/gm
     while (true) {
-        const result = bibReg.exec(cache.contentTrimmed)
+        const result = bibReg.exec(fileCache.contentTrimmed)
         if (!result) {
             break
         }
@@ -397,10 +397,10 @@ function updateBibfiles(cache: FileCache) {
         const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => bib.trim())
 
         for (const bib of bibs) {
-            const bibPaths = lw.file.getBibPath(bib, path.dirname(cache.filePath))
+            const bibPaths = lw.file.getBibPath(bib, path.dirname(fileCache.filePath))
             for (const bibPath of bibPaths) {
-                cache.bibfiles.add(bibPath)
-                logger.log(`Bib ${bibPath} from ${cache.filePath} .`)
+                fileCache.bibfiles.add(bibPath)
+                logger.log(`Bib ${bibPath} from ${fileCache.filePath} .`)
                 if (!lw.watcher.bib.has(bibPath)) {
                     lw.watcher.bib.add(bibPath)
                 }
@@ -450,10 +450,10 @@ async function loadFlsFile(filePath: string) {
                 await refreshCache(filePath)
             }
             // It might be possible that `filePath` is excluded from caching.
-            const cache = get(filePath)
-            if (cache !== undefined) {
+            const fileCache = get(filePath)
+            if (fileCache !== undefined) {
                 // Parse tex files as imported subfiles.
-                cache.children.push({
+                fileCache.children.push({
                     index: Number.MAX_VALUE,
                     filePath: inputFile
                 })

@@ -46,7 +46,7 @@ export type StepQueue = {
     /**
      * The {@link Step}s in the current recipe.
      */
-    steps: Step[]
+    steps: Step[],
     /**
      * The {@link Step}s in the next recipe to be executed after the current
      * ones.
@@ -59,33 +59,33 @@ export type ProcessEnv = {
 }
 
 export type Tool = {
-    name: string
-    command: string
-    args?: string[]
+    name: string,
+    command: string,
+    args?: string[],
     env?: ProcessEnv
 }
 
 export type Recipe = {
-    name: string
+    name: string,
     tools: (string | Tool)[]
 }
 
 export type RecipeStep = Tool & {
-    rootFile: string
-    recipeName: string
-    timestamp: number
-    index: number
-    isExternal: false
-    isRetry: boolean
+    rootFile: string,
+    recipeName: string,
+    timestamp: number,
+    index: number,
+    isExternal: false,
+    isRetry: boolean,
     isSkipped: boolean
 }
 
 export type ExternalStep = Tool & {
-    rootFile?: string
-    recipeName: 'External'
-    timestamp: number
-    index: number
-    isExternal: true
+    rootFile?: string,
+    recipeName: 'External',
+    timestamp: number,
+    index: number,
+    isExternal: true,
     cwd: string
 }
 

@@ -52,8 +52,8 @@ function createTmpDir(): string {
 function handleTmpDirError(error: Error) {
     if (/['"]/.exec(os.tmpdir())) {
         const msg = `The path of tmpdir cannot include single quotes and double quotes: ${os.tmpdir()}`
-        void vscode.window.showErrorMessage(msg);
-        console.log(msg);
+        void vscode.window.showErrorMessage(msg)
+        console.log(msg)
     } else {
         void vscode.window.showErrorMessage(`Error during making tmpdir to build TeX files: ${error.message}. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.`)
         console.log(`TEMP, TMP, and TMPDIR: ${JSON.stringify([process.env.TEMP, process.env.TMP, process.env.TMPDIR])}`)

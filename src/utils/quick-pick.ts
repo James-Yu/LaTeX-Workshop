@@ -1,21 +1,21 @@
 import * as vscode from 'vscode'
 
-export async function rootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+export async function pickRootPath(rootPath: string, subRootPath: string, verb: string): Promise<string | undefined> {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootPath))
     const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
     if (doNotPrompt) {
         if (configuration.get('latex.rootFile.useSubFile')) {
-            return localRootFile
+            return subRootPath
         } else {
-            return rootFile
+            return rootPath
         }
     }
     const pickedRootFile = await vscode.window.showQuickPick([{
         label: 'Default root file',
-        description: `Path: ${rootFile}`
+        description: `Path: ${rootPath}`
     }, {
         label: 'Subfiles package root file',
-        description: `Path: ${localRootFile}`
+        description: `Path: ${subRootPath}`
     }], {
         placeHolder: `Subfiles package detected. Which file to ${verb}?`,
         matchOnDescription: true
@@ -25,9 +25,9 @@ export async function rootFile(rootFile: string, localRootFile: string, verb: st
         }
         switch (selected.label) {
             case 'Default root file':
-                return rootFile
+                return rootPath
             case 'Subfiles package root file':
-                return localRootFile
+                return subRootPath
             default:
                 return
         }
