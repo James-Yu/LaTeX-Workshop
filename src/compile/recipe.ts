@@ -14,45 +14,54 @@ let prevRecipe: Recipe | undefined = undefined
 let prevLangId = ''
 
 /**
- * Build LaTeX project using the recipe system. This function creates
- * {@link Tool}s containing the tool info and adds them to the queue. After
- * that, this function tries to initiate a {@link buildLoop} if there is no
- * one running.
+ * Build LaTeX project using the recipe system. Creates Tools containing the
+ * tool info and adds them to the queue. Initiates a buildLoop if there is no
+ * running one.
  *
- * @param rootFile Path to the root LaTeX file.
- * @param langId The language ID of the root file. This argument is used to
- * determine whether the previous recipe can be applied to this root file.
- * @param recipeName The name of recipe to be used. If `undefined`, the
- * builder tries to determine on its own, in {@link createBuildTools}. This
- * parameter is given only when RECIPE command is invoked. For all other
- * cases, it should be `undefined`.
+ * @param {string} rootFile - Path to the root LaTeX file.
+ * @param {string} langId - The language ID of the root file. Used to determine
+ * whether the previous recipe can be applied.
+ * @param {Function} buildLoop - A function that represents the build loop.
+ * @param {string} [recipeName] - Optional. The name of the recipe to be used.
+ * If undefined, the builder tries to determine on its own.
  */
 export async function build(rootFile: string, langId: string, buildLoop: () => Promise<void>, recipeName?: string) {
     logger.log(`Build root file ${rootFile}`)
 
+    // Save all open files in the workspace
     await vscode.workspace.saveAll()
 
-    createOutputSubFolders(rootFile)
-
+    // Create build tools based on the recipe system
     const tools = createBuildTools(rootFile, langId, recipeName)
 
+    // Create output subdirectories for included files
+    if (tools?.map(tool => tool.command).includes('latexmk') && rootFile === lw.root.subfiles.path && lw.root.file.path) {
+        createOutputSubFolders(lw.root.file.path)
+    } else {
+        createOutputSubFolders(rootFile)
+    }
+
+    // Check for invalid toolchain
     if (tools === undefined) {
         logger.log('Invalid toolchain.')
-
+        // Set compiling status to false
         lw.compile.compiling = false
         return
     }
+
+    // Add tools to the queue with timestamp
     const timestamp = Date.now()
     tools.forEach(tool => queue.add(tool, rootFile, recipeName || 'Build', timestamp))
 
+    // Execute the build loop
     await buildLoop()
 }
 
 /**
- * Create sub directories of output directory This was supposed to create
- * the outputDir as latexmk does not take care of it (neither does any of
- * latex command). If the output directory does not exist, the latex
- * commands simply fail.
+ * Create subdirectories of the output directory. This is necessary as some
+ * LaTeX commands do not create the output directory themselves.
+ *
+ * @param {string} rootFile - Path to the root LaTeX file.
  */
 function createOutputSubFolders(rootFile: string) {
     const rootDir = path.dirname(rootFile)
@@ -83,8 +92,15 @@ function createOutputSubFolders(rootFile: string) {
     })
 }
 
+
 /**
  * Given an optional recipe, create the corresponding {@link Tool}s.
+ *
+ * @param {string} rootFile - Path to the root LaTeX file.
+ * @param {string} langId - The language ID of the root file.
+ * @param {string} [recipeName] - Optional. The name of the recipe to be used.
+ * @returns {Tool[] | undefined} - An array of Tool objects representing the
+ * build tools.
  */
 function createBuildTools(rootFile: string, langId: string, recipeName?: string): Tool[] | undefined {
     let buildTools: Tool[] = []
@@ -130,6 +146,14 @@ function createBuildTools(rootFile: string, langId: string, recipeName?: string)
     return buildTools
 }
 
+/**
+ * Find magic comments in the root file, including TeX and BibTeX programs, and
+ * the LW recipe name.
+ *
+ * @param {string} rootFile - Path to the root LaTeX file.
+ * @returns {{tex?: Tool, bib?: Tool, recipe?: string}} - An object containing
+ * the TeX and BibTeX tools and the LW recipe name.
+ */
 function findMagicComments(rootFile: string): {tex?: Tool, bib?: Tool, recipe?: string} {
     const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
     const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
@@ -183,6 +207,16 @@ function findMagicComments(rootFile: string): {tex?: Tool, bib?: Tool, recipe?: 
     return {tex: texCommand, bib: bibCommand, recipe: recipe?.[1]}
 }
 
+/**
+ * Create build tools based on magic comments in the root file.
+ *
+ * @param {string} rootFile - Path to the root LaTeX file.
+ * @param {Tool} magicTex - Tool object representing the TeX command from magic
+ * comments.
+ * @param {Tool} [magicBib] - Optional. Tool object representing the BibTeX
+ * command from magic comments.
+ * @returns {Tool[]} - An array of Tool objects representing the build tools.
+ */
 function createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): Tool[] {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
 
@@ -203,8 +237,13 @@ function createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): To
 
 
 /**
- * @param recipeName This recipe name may come from user selection of RECIPE
- * command, or from the %! LW recipe magic command.
+ * Find a recipe based on the provided recipe name, language ID, and root file.
+ *
+ * @param {string} rootFile - Path to the root LaTeX file.
+ * @param {string} langId - The language ID of the root file.
+ * @param {string} [recipeName] - Optional. The name of the recipe to be used.
+ * @returns {Recipe | undefined} - The Recipe object corresponding to the
+ * provided parameters.
  */
 function findRecipe(rootFile: string, langId: string, recipeName?: string): Recipe | undefined {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
@@ -257,8 +296,11 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
 }
 
 /**
- * Expand the bare {@link Tool} with docker and argument placeholder
- * strings.
+ * Expand the bare {@link Tool} with Docker and argument placeholder strings.
+ *
+ * @param {string} rootFile - Path to the root LaTeX file.
+ * @param {Tool[]} buildTools - An array of Tool objects to be populated.
+ * @returns {Tool[]} - An array of Tool objects with expanded values.
  */
 function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
@@ -304,8 +346,10 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
 
 let _isMikTeX: boolean
 /**
- * Whether latex toolchain compilers are provided by MikTeX. This function uses
- * a cache variable `_isMikTeX`.
+ * Check whether the LaTeX toolchain compilers are provided by MikTeX.
+ *
+ * @returns {boolean} - True if the LaTeX toolchain is provided by MikTeX;
+ * otherwise, false.
  */
 function isMikTeX(): boolean {
     if (_isMikTeX === undefined) {

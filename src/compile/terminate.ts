@@ -5,12 +5,12 @@ import { queue } from './queue'
 const logger = lw.log('Build', 'Recipe')
 
 /**
- * Terminate current process of LaTeX building. OS-specific (pkill for linux
- * and macos, taskkill for win) kill command is first called with process
- * pid. No matter whether it succeeded, `kill()` of `child_process` is later
- * called to "double kill". Also, all subsequent tools in queue are cleared,
- * including ones in the current recipe and (if available) those from the
- * cached recipe to be executed.
+ * Terminate the current process of LaTeX building. This OS-specific function
+ * uses a kill command (pkill for Linux and macOS, taskkill for Windows) with
+ * the process PID. Regardless of success, `kill()` from the `child_process`
+ * module is later called for a "double kill." Subsequent tools in the queue,
+ * including those from the current recipe and (if available) those from the
+ * cached recipe to be executed, are cleared.
  */
 export function terminate() {
     if (lw.compile.process === undefined) {
@@ -21,14 +21,19 @@ export function terminate() {
     try {
         logger.log(`Kill child processes of the current process with PID ${pid}.`)
         if (process.platform === 'linux' || process.platform === 'darwin') {
+            // Use pkill to kill child processes
             cp.execSync(`pkill -P ${pid}`, { timeout: 1000 })
         } else if (process.platform === 'win32') {
+            // Use taskkill on Windows to forcefully terminate child processes
             cp.execSync(`taskkill /F /T /PID ${pid}`, { timeout: 1000 })
         }
     } catch (e) {
         logger.logError('Failed killing child processes of the current process.', e)
     } finally {
+        // Clear all subsequent tools in the queue
         queue.clear()
+
+        // Perform a "double kill" using kill() from child_process
         lw.compile.process.kill()
         logger.log(`Killed the current process with PID ${pid}`)
     }
