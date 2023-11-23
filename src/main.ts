@@ -4,6 +4,8 @@ import { lw, registerDisposable } from './lw'
 
 import { getLogger } from './utils/logging/logger'
 lw.log = getLogger
+import { event } from './core/event'
+lw.event = event
 import { file } from './core/file'
 lw.file = file
 import { watcher } from './core/watcher'
@@ -26,7 +28,6 @@ import { latexFormatterProvider } from './lint/latex-formatter'
 import { FoldingProvider, WeaveFoldingProvider } from './language/folding'
 import { SelectionRangeProvider } from './language/selection'
 import { bibtexFormat, bibtexFormatterProvider } from './lint/bibtex-formatter'
-import { DocumentChanged } from './core/event-bus'
 
 import { Cleaner } from './extras/cleaner'
 import { LaTeXCommanderTreeView } from './extras/activity-bar'
@@ -34,7 +35,6 @@ import { Configuration } from './utils/logging/log-config'
 import { Counter } from './extras/counter'
 import { dupLabelDetector } from './lint/duplicate-label'
 import { EnvPair } from './locate/environment'
-import { EventBus } from './core/event-bus'
 import { Linter } from './lint/latex-linter'
 import { Locator } from './locate/synctex'
 import { LwFileSystem } from './core/file-system'
@@ -59,7 +59,6 @@ const logger = lw.log('Extension')
 function initialize(extensionContext: vscode.ExtensionContext) {
     lw.extensionContext = extensionContext
     lw.extensionRoot = path.resolve(`${__dirname}/../../`)
-    lw.eventBus = new EventBus()
     lw.configuration = new Configuration()
     lw.lwfs = new LwFileSystem()
     lw.viewer = new Viewer()
@@ -175,7 +174,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             !lw.file.hasDtxLangId(e.document.languageId)) {
             return
         }
-        lw.eventBus.fire(DocumentChanged)
+        lw.event.fire(lw.event.DocumentChanged)
         lw.linter.lintActiveFileIfEnabledAfterInterval(e.document)
         lw.cache.refreshCacheAggressive(e.document.fileName)
     }))

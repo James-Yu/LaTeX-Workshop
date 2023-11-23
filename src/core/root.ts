@@ -4,7 +4,6 @@ import * as fs from 'fs'
 
 import { lw } from '../lw'
 import * as utils from '../utils/utils'
-import * as eventbus from './event-bus'
 
 const logger = lw.log('Root')
 
@@ -59,7 +58,7 @@ async function find(): Promise<undefined> {
             root.file.langId = lw.file.getLangId(rootFilePath)
             root.dir.path = path.dirname(rootFilePath)
             logger.log(`Root file changed: from ${root.file.path} to ${rootFilePath}, langID ${root.file.langId} . Refresh dependencies`)
-            lw.eventBus.fire(eventbus.RootFileChanged, rootFilePath)
+            lw.event.fire(lw.event.RootFileChanged, rootFilePath)
 
             // We also clean the completions from the old project
             lw.completer.input.reset()
@@ -72,12 +71,12 @@ async function find(): Promise<undefined> {
                 await lw.cache.loadFlsFile(rootFilePath)
             })
         }
-        lw.eventBus.fire(eventbus.RootFileSearched)
+        lw.event.fire(lw.event.RootFileSearched)
         return
     }
     logger.log('No root file found.')
     void lw.structureViewer.refresh()
-    lw.eventBus.fire(eventbus.RootFileSearched)
+    lw.event.fire(lw.event.RootFileSearched)
     return
 }
 

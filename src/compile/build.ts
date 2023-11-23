@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
-import { AutoBuildInitiated, AutoCleaned, BuildDone } from '../core/event-bus'
 import { pickRootPath } from '../utils/quick-pick'
 import { parser } from '../parse/parser'
 
@@ -38,7 +37,7 @@ function autoBuild(file: string, type: 'onFileChange' | 'onSave', bibChanged: bo
         return
     }
     logger.log('Auto build started' + (type === 'onFileChange' ? 'detecting the change of a file' : 'on saving file') + `: ${file} .`)
-    lw.eventBus.fire(AutoBuildInitiated, {type, file})
+    lw.event.fire(lw.event.AutoBuildInitiated, {type, file})
     if (!canAutoBuild()) {
         logger.log('Autobuild temporarily disabled.')
         return
@@ -353,7 +352,7 @@ function handleRetryError(step: RecipeStep) {
     logger.log('Cleaning auxiliary files and retrying build after toolchain error.')
 
     queue.prepend(step)
-    void lw.cleaner.clean(step.rootFile).then(() => lw.eventBus.fire(AutoCleaned))
+    void lw.cleaner.clean(step.rootFile).then(() => lw.event.fire(lw.event.AutoCleaned))
 }
 
 /**
@@ -368,7 +367,7 @@ function handleRetryError(step: RecipeStep) {
 function handleNoRetryError(configuration: vscode.WorkspaceConfiguration, step: RecipeStep) {
     logger.refreshStatus('x', 'errorForeground')
     if (['onFailed', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
-        void lw.cleaner.clean(step.rootFile).then(() => lw.eventBus.fire(AutoCleaned))
+        void lw.cleaner.clean(step.rootFile).then(() => lw.event.fire(lw.event.AutoCleaned))
     }
     void logger.showErrorMessageWithCompilerLogButton('Recipe terminated with error.')
     queue.clear()
@@ -411,7 +410,7 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     }
     logger.log(`Successfully built ${lastStep.rootFile} .`)
     logger.refreshStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
-    lw.eventBus.fire(BuildDone)
+    lw.event.fire(lw.event.BuildDone)
     if (!lastStep.isExternal && skipped) {
         return
     }
@@ -428,6 +427,6 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     if (['onSucceeded', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
         logger.log('Auto Clean invoked.')
         await lw.cleaner.clean(lastStep.rootFile)
-        lw.eventBus.fire(AutoCleaned)
+        lw.event.fire(lw.event.AutoCleaned)
     }
 }

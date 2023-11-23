@@ -4,7 +4,6 @@ import { bibtexParser } from 'latex-utensils'
 import { lw } from '../../lw'
 import type { FileCache } from '../../types'
 
-import * as eventbus from '../../core/event-bus'
 import {trimMultiLineString} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../latex'
@@ -309,7 +308,7 @@ export class Citation implements IProvider {
         const ast = await parser.parseBibTeX(bibtex)
         if (ast === undefined) {
             logger.log(`Parsed 0 bib entries from ${fileName}.`)
-            lw.eventBus.fire(eventbus.FileParsed, fileName)
+            lw.event.fire(lw.event.FileParsed, fileName)
             return
         }
         const abbreviations = parseAbbrevations(ast)
@@ -336,7 +335,7 @@ export class Citation implements IProvider {
         this.bibEntries.set(fileName, newEntry)
         logger.log(`Parsed ${newEntry.length} bib entries from ${fileName} .`)
         void lw.structureViewer.reconstruct()
-        lw.eventBus.fire(eventbus.FileParsed, fileName)
+        lw.event.fire(lw.event.FileParsed, fileName)
     }
 
     removeEntriesInFile(file: string) {

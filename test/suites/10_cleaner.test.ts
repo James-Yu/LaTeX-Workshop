@@ -4,7 +4,6 @@ import * as path from 'path'
 import * as assert from 'assert'
 import { lw } from '../../src/lw'
 import * as test from './utils'
-import { AutoCleaned } from '../../src/core/event-bus'
 
 suite('Cleaner test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
@@ -102,7 +101,7 @@ suite('Cleaner test suite', () => {
             {src: 'invalid_cmd.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await lw.cleaner.clean() // Clean up previous remainders to ensure next build to fail
-        const cleaned = test.wait(AutoCleaned).then(() => true)
+        const cleaned = test.wait(lw.event.AutoCleaned).then(() => true)
         await test.build(fixture, 'main.tex')
         const result = await Promise.any([cleaned, test.sleep(1000)])
         assert.ok(!result)
@@ -114,7 +113,7 @@ suite('Cleaner test suite', () => {
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await lw.cleaner.clean()
-        const cleaned = test.wait(AutoCleaned).then(() => true)
+        const cleaned = test.wait(lw.event.AutoCleaned).then(() => true)
         await test.build(fixture, 'main.tex')
         const result = await Promise.any([cleaned, test.sleep(1000)])
         assert.ok(!result)
@@ -129,7 +128,7 @@ suite('Cleaner test suite', () => {
             {src: 'invalid_cmd.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await lw.cleaner.clean() // Clean up previous remainders to ensure next build to fail
-        let cleaned = test.wait(AutoCleaned).then(() => true)
+        let cleaned = test.wait(lw.event.AutoCleaned).then(() => true)
         await test.build(fixture, 'main.tex')
         let result = await Promise.any([cleaned, test.sleep(1000)])
         assert.ok(result)
@@ -138,7 +137,7 @@ suite('Cleaner test suite', () => {
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await lw.cleaner.clean() // Clean up previous remainders to ensure next build to fail
-        cleaned = test.wait(AutoCleaned).then(() => true)
+        cleaned = test.wait(lw.event.AutoCleaned).then(() => true)
         await test.build(fixture, 'main.tex')
         result = await Promise.any([cleaned, test.sleep(1000)])
         assert.ok(!result)
@@ -153,7 +152,7 @@ suite('Cleaner test suite', () => {
             {src: 'invalid_cmd.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await lw.cleaner.clean() // Clean up previous remainders to ensure next build to fail
-        let cleaned = test.wait(AutoCleaned).then(() => true)
+        let cleaned = test.wait(lw.event.AutoCleaned).then(() => true)
         await test.build(fixture, 'main.tex')
         let result = await Promise.any([cleaned, test.sleep(1000)])
         assert.ok(result)
@@ -162,7 +161,7 @@ suite('Cleaner test suite', () => {
             {src: 'base.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await lw.cleaner.clean()
-        cleaned = test.wait(AutoCleaned).then(() => true)
+        cleaned = test.wait(lw.event.AutoCleaned).then(() => true)
         await test.build(fixture, 'main.tex')
         result = await Promise.any([cleaned, test.sleep(1000)])
         assert.ok(result)
@@ -177,14 +176,14 @@ suite('Cleaner test suite', () => {
             {src: 'invalid_cmd.tex', dst: 'main.tex'}
         ], {skipCache: true})
         await lw.cleaner.clean() // Clean up previous remainders to ensure next build to fail
-        let cleaned = test.wait(AutoCleaned).then(() => true)
+        let cleaned = test.wait(lw.event.AutoCleaned).then(() => true)
         await test.build(fixture, 'main.tex')
         let result = await Promise.any([cleaned, test.sleep(1000)])
         assert.ok(!result)
 
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.cleanAndRetry.enabled', true)
         await lw.cleaner.clean()
-        cleaned = test.wait(AutoCleaned).then(() => true)
+        cleaned = test.wait(lw.event.AutoCleaned).then(() => true)
         await test.build(fixture, 'main.tex')
         result = await Promise.any([cleaned, test.sleep(1000)])
         assert.ok(result)

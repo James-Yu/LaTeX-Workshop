@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
 import * as test from './utils'
+import { lw } from '../../src/lw'
 import { SurroundCommand } from '../../src/completion/completer/commandlib/surround'
 import { ICompletionItem } from '../../src/completion/latex'
-import { DocumentChanged } from '../../src/core/event-bus'
 
 suite('Snippet test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
@@ -35,7 +35,7 @@ suite('Snippet test suite', () => {
             kind: 2
         }]
         SurroundCommand.surround(items)
-        const promise = test.wait(DocumentChanged)
+        const promise = test.wait(lw.event.DocumentChanged)
         await test.sleep(500)
         await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
         await vscode.commands.executeCommand('editor.action.formatDocument')

@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import { lw } from '../lw'
-import { StructureUpdated } from '../core/event-bus'
 import { construct as constructLaTeX } from './structurelib/latex'
 import { buildBibTeX } from './structurelib/bibtex'
 import { construct as constructDocTeX } from './structurelib/doctex'
@@ -104,7 +103,7 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
     async reconstruct() {
         this.structure = await this.build(true)
         this.structureChanged.fire(undefined)
-        lw.eventBus.fire(StructureUpdated)
+        lw.event.fire(lw.event.StructureUpdated)
         return this.structure
     }
 
@@ -112,7 +111,7 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         this.structure = await this.build(false)
         if (fireChangedEvent) {
             this.structureChanged.fire(undefined)
-            lw.eventBus.fire(StructureUpdated)
+            lw.event.fire(lw.event.StructureUpdated)
         }
         return this.structure
     }

@@ -4,7 +4,6 @@ import { lw } from '../../lw'
 import type { PanelRequest, PdfViewerState } from '../../../types/latex-workshop-protocol-types/index'
 import { escapeHtml, sleep } from '../../utils/utils'
 import { viewerManager } from './pdfviewermanager'
-import { ViewerStatusChanged } from '../../core/event-bus'
 
 import { getLogger } from '../../utils/logging/logger'
 
@@ -22,7 +21,7 @@ export class PdfViewerPanel {
             switch(msg.type) {
                 case 'state': {
                     this.viewerState = msg.state
-                    lw.eventBus.fire(ViewerStatusChanged, msg.state)
+                    lw.event.fire(lw.event.ViewerStatusChanged, msg.state)
                     break
                 }
                 default: {

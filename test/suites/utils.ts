@@ -5,8 +5,7 @@ import { glob } from 'glob'
 import * as os from 'os'
 import {ok, strictEqual} from 'assert'
 import { lw } from '../../src/lw'
-import { AutoBuildInitiated, DocumentChanged, EventArgs, ViewerPageLoaded, ViewerStatusChanged } from '../../src/core/event-bus'
-import type { EventName } from '../../src/core/event-bus'
+import type { EventArgs, Events } from '../../src/core/event'
 import { getCachedLog, getLogger, resetCachedLog } from '../../src/utils/logging/logger'
 
 let testIndex = 0
@@ -100,9 +99,9 @@ function log(fixtureName: string, testName: string, counter: string) {
         vscode.window.activeTextEditor?.document.getText())
 }
 
-export async function wait<T extends keyof EventArgs>(event: T | EventName, arg?: EventArgs[T]) {
+export async function wait<T extends keyof EventArgs>(event: T | Events, arg?: EventArgs[T]) {
     return new Promise<EventArgs[T] | undefined>((resolve, _) => {
-        const disposable = lw.eventBus.on(event, (eventArg: EventArgs[T] | undefined) => {
+        const disposable = lw.event.on(event, (eventArg: EventArgs[T] | undefined) => {
             if (arg && (JSON.stringify(arg) !== JSON.stringify(eventArg))) {
                 return
             }
@@ -172,7 +171,7 @@ export async function build(fixture: string, openFile: string, ws?: string, acti
 }
 
 export async function auto(fixture: string, editFile: string, noBuild = false, save = false, ws?: string): Promise<{type: 'onFileChange' | 'onSave', file: string}> {
-    const done = wait(AutoBuildInitiated)
+    const done = wait(lw.event.AutoBuildInitiated)
     if (save) {
         logger.log(`Save ${editFile}.`)
         await open(path.resolve(getWsFixture(fixture, ws), editFile))
@@ -188,7 +187,7 @@ export async function auto(fixture: string, editFile: string, noBuild = false, s
         return {type: 'onFileChange', file: ''}
     }
     logger.log('Wait for auto-build.')
-    const result = await Promise.any([done, sleep(3000)]) as EventArgs[typeof AutoBuildInitiated]
+    const result = await Promise.any([done, sleep(3000)]) as EventArgs[Events.AutoBuildInitiated]
     ok(result)
     ok(result.type)
     ok(result.file)
@@ -214,8 +213,8 @@ export async function view(fixture: string, pdfName: string, postAction?: () => 
     logger.log(`Asserting viewer for ${pdfName} .`)
     await sleep(250)
     const promise = Promise.all([
-        wait(ViewerPageLoaded),
-        wait(ViewerStatusChanged)
+        wait(lw.event.ViewerPageLoaded),
+        wait(lw.event.ViewerStatusChanged)
     ])
     void lw.commands.view()
     if (postAction) {
@@ -229,7 +228,7 @@ export async function view(fixture: string, pdfName: string, postAction?: () => 
 }
 
 export async function format() {
-    const promise = wait(DocumentChanged)
+    const promise = wait(lw.event.DocumentChanged)
     await vscode.commands.executeCommand('editor.action.formatDocument')
     await promise
     const formatted = vscode.window.activeTextEditor?.document.getText()

@@ -10,7 +10,6 @@ import type { ClientRequest, PdfViewerParams, PdfViewerState } from '../../types
 import { Client } from './viewerlib/client'
 import { createPdfViewerPanel } from './viewerlib/pdfviewerpanel'
 import { viewerManager } from './viewerlib/pdfviewermanager'
-import { ViewerPageLoaded } from '../core/event-bus'
 import { getLogger } from '../utils/logging/logger'
 import { moveActiveEditor } from '../utils/webview'
 
@@ -290,7 +289,7 @@ export class Viewer {
                 break
             }
             case 'loaded': {
-                lw.eventBus.fire(ViewerPageLoaded)
+                lw.event.fire(lw.event.ViewerPageLoaded)
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (configuration.get('synctex.afterBuild.enabled') as boolean) {
                     logger.log('SyncTex after build invoked.')

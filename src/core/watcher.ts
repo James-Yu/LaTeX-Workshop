@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import { lw } from '../lw'
-import * as eventbus from './event-bus'
 
 const logger = lw.log('Cacher', 'Watcher')
 
@@ -113,7 +112,7 @@ class Watcher {
         const filePath = uri.fsPath
         logger.log(`"${event}" emitted on ${filePath}.`)
         this.onChangeHandlers.forEach(handler => handler(filePath))
-        lw.eventBus.fire(eventbus.FileChanged, filePath)
+        lw.event.fire(lw.event.FileChanged, filePath)
     }
 
     /**
@@ -174,7 +173,7 @@ class Watcher {
             clearInterval(interval)
             delete this.polling[filePath]
             this.onChangeHandlers.forEach(handler => handler(filePath))
-            lw.eventBus.fire(eventbus.FileChanged, filePath)
+            lw.event.fire(lw.event.FileChanged, filePath)
         }
     }
 
@@ -201,7 +200,7 @@ class Watcher {
             this.disposeWatcher(folder)
         }
 
-        lw.eventBus.fire(eventbus.FileRemoved, filePath)
+        lw.event.fire(lw.event.FileRemoved, filePath)
     }
 
     /**
@@ -242,7 +241,7 @@ class Watcher {
             this.onCreateHandlers.forEach(handler => handler(filePath))
             logger.log(`Watched ${filePath} .`)
         }
-        lw.eventBus.fire(eventbus.FileWatched, filePath)
+        lw.event.fire(lw.event.FileWatched, filePath)
     }
 
     /**

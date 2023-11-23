@@ -3,7 +3,6 @@ import * as path from 'path'
 import * as assert from 'assert'
 import { lw } from '../../src/lw'
 import * as test from './utils'
-import { BuildDone } from '../../src/core/event-bus'
 
 suite('PDF viewer test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
@@ -108,7 +107,7 @@ suite('PDF viewer test suite', () => {
         ], {local: 1, skipCache: true})
 
         await test.build(fixture, 'sub/s.tex', undefined, async () => {
-            const event = test.wait(BuildDone)
+            const event = test.wait(lw.event.BuildDone)
             void lw.commands.build()
             await test.sleep(500)
             await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
@@ -128,7 +127,7 @@ suite('PDF viewer test suite', () => {
         ], {local: 1, skipCache: true})
 
         await test.build(fixture, 'sub/s.tex', undefined, async () => {
-            const event = test.wait(BuildDone)
+            const event = test.wait(lw.event.BuildDone)
             void lw.commands.build()
             await test.sleep(500)
             await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')

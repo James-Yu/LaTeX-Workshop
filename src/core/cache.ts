@@ -9,7 +9,6 @@ import { lw } from '../lw'
 import type { FileCache } from '../types'
 
 import * as utils from '../utils/utils'
-import * as eventbus from './event-bus'
 import { InputFileRegExp } from '../utils/inputfilepath'
 import { parser } from '../parse/parser'
 
@@ -200,7 +199,7 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<Promis
             lw.dupLabelDetector.run()
             cachingFilesCount--
             promises.delete(filePath)
-            lw.eventBus.fire(eventbus.FileParsed, filePath)
+            lw.event.fire(lw.event.FileParsed, filePath)
 
             if (cachingFilesCount === 0) {
                 void lw.structureViewer.reconstruct()

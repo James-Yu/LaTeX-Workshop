@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import type { getLogger } from './utils/logging/logger'
+import type { event } from './core/event'
 import type { file } from './core/file'
 import type { watcher } from './core/watcher'
 import type { cache } from './core/cache'
@@ -11,7 +12,6 @@ import type { LaTeXCommanderTreeView } from './extras/activity-bar'
 import type { Configuration } from './utils/logging/log-config'
 import type { Counter } from './extras/counter'
 import type { EnvPair } from './locate/environment'
-import type { EventBus } from './core/event-bus'
 import type { Linter } from './lint/latex-linter'
 import type { Locator } from './locate/synctex'
 import type { LwFileSystem } from './core/file-system'
@@ -36,12 +36,12 @@ export const lw = {
     extensionRoot: '',
     constant: {} as typeof constant,
     log: {} as typeof getLogger,
+    event: {} as typeof event,
     file: {} as typeof file,
     watcher: {} as typeof watcher,
     cache: {} as typeof cache,
     root: {} as typeof root,
     compile: {} as typeof compile,
-    eventBus: Object.create(null) as EventBus,
     configuration: Object.create(null) as Configuration,
     lwfs: Object.create(null) as LwFileSystem,
     viewer: Object.create(null) as Viewer,
