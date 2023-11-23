@@ -175,7 +175,7 @@ export class Reference implements IProvider {
         let label = ''
         if (node.type === 'macro' && labelMacros.includes(node.content)) {
             label = argContentToStr(node.args?.[1]?.content || [])
-        } else if (node.type === 'environment' && ['frame'].includes(node.env)) {
+        } else if (node.type === 'environment') {
             label = argContentToStr(node.args?.[1]?.content || [])
             const index = label.indexOf('label=')
             if (index >= 0) {
