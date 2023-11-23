@@ -265,15 +265,14 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
         recipeName = defaultRecipeName
     }
     if (recipeName) {
-        const candidates = recipes.filter(candidate => candidate.name === recipeName)
-        if (candidates.length < 1) {
+        recipe = recipes.find(candidate => candidate.name === recipeName)
+        if (recipe) {
             logger.log(`Failed to resolve build recipe: ${recipeName}.`)
             void logger.showErrorMessage(`[Builder] Failed to resolve build recipe: ${recipeName}.`)
         }
-        recipe = candidates[0]
     }
     // Find default recipe of last used
-    if (recipe === undefined && defaultRecipeName === 'lastUsed') {
+    if (recipe === undefined && defaultRecipeName === 'lastUsed' && recipes.find(candidate => candidate.name === prevRecipe?.name)) {
         recipe = prevRecipe
     }
     // If still not found, fallback to 'first'
