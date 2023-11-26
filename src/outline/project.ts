@@ -5,10 +5,10 @@ import { buildBibTeX } from './structurelib/bibtex'
 import { construct as constructDocTeX } from './structurelib/doctex'
 
 import type { TeXElement } from './structurelib/types'
-import { getLogger } from '../utils/logging/logger'
+
 import { parser } from '../parse/parser'
 
-const logger = getLogger('Structure')
+const logger = lw.log('Structure')
 
 export class StructureView implements vscode.TreeDataProvider<TeXElement> {
     private readonly structureChanged: vscode.EventEmitter<TeXElement | undefined | null> = new vscode.EventEmitter<TeXElement | undefined | null>()

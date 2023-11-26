@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import { lw } from '../lw'
-import { getLogger } from '../utils/logging/logger'
 
-const logger = getLogger('Preview', 'Graphics')
+
+const logger = lw.log('Preview', 'Graphics')
 
 export class GraphicsPreview {
     async provideHover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {

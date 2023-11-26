@@ -2,9 +2,8 @@ import * as vscode from 'vscode'
 import { lw } from '../../lw'
 import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserutils'
 
-import { getLogger } from '../../utils/logging/logger'
 
-const logger = getLogger('Parser', 'BiberLog')
+const logger = lw.log('Parser', 'BiberLog')
 
 const bibFileInfo = /^INFO - Found BibTeX data source '(.*)'$/
 const lineError = /^ERROR - BibTeX subsystem.*, line (\d+), (.*)$/

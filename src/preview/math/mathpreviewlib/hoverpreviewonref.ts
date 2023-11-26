@@ -1,12 +1,12 @@
 import * as vscode from 'vscode'
+import { lw } from '../../../lw'
 import * as utils from '../../../utils/svg'
 import { MathJaxPool } from '../mathjaxpool'
 import type { ReferenceEntry } from '../../../completion/completer/reference'
 import type { TexMathEnv } from './texmathenvfinder'
 import { MathPreviewUtils } from './mathpreviewutils'
-import { getLogger } from '../../../utils/logging/logger'
 
-const logger = getLogger('Preview', 'Hover')
+const logger = lw.log('Preview', 'Hover')
 
 export class HoverPreviewOnRefProvider {
     static async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refData: ReferenceEntry, color: string): Promise<vscode.Hover> {

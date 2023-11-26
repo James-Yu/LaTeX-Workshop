@@ -3,9 +3,9 @@ import * as path from 'path'
 import type { TexMathEnv } from '../preview/math/mathpreview'
 import { moveWebviewPanel } from '../utils/webview'
 import { lw } from '../lw'
-import { getLogger } from '../utils/logging/logger'
 
-const logger = getLogger('Preview', 'Math')
+
+const logger = lw.log('Preview', 'Math')
 
 type UpdateEvent = {
     type: 'edit',

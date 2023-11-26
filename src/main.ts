@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { lw, registerDisposable } from './lw'
-
-import { getLogger } from './utils/logging/logger'
-lw.log = getLogger
+lw.extensionRoot = path.resolve(`${__dirname}/../../`)
+import { log } from './utils/logger'
+lw.log = log.getLogger
 import { event } from './core/event'
 lw.event = event
 import { file } from './core/file'
@@ -31,7 +31,6 @@ import { bibtexFormat, bibtexFormatterProvider } from './lint/bibtex-formatter'
 
 import { Cleaner } from './extras/cleaner'
 import { LaTeXCommanderTreeView } from './extras/activity-bar'
-import { Configuration } from './utils/logging/log-config'
 import { Counter } from './extras/counter'
 import { dupLabelDetector } from './lint/duplicate-label'
 import { EnvPair } from './locate/environment'
@@ -58,8 +57,6 @@ const logger = lw.log('Extension')
 
 function initialize(extensionContext: vscode.ExtensionContext) {
     lw.extensionContext = extensionContext
-    lw.extensionRoot = path.resolve(`${__dirname}/../../`)
-    lw.configuration = new Configuration()
     lw.lwfs = new LwFileSystem()
     lw.viewer = new Viewer()
     lw.server = new Server()
@@ -85,7 +82,8 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     registerDisposable()
 
     void parser.reset()
-    logger.initializeStatusBarItem()
+    log.initStatusBarItem()
+
     logger.log('Initializing LaTeX Workshop.')
     logger.log(`Extension root: ${lw.extensionRoot}`)
     logger.log(`$PATH: ${process.env.PATH}`)
@@ -97,6 +95,8 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     logger.log(`vscode.env.appName: ${vscode.env.appName}`)
     logger.log(`vscode.env.remoteName: ${vscode.env.remoteName}`)
     logger.log(`vscode.env.uiKind: ${vscode.env.uiKind}`)
+    log.logConfig()
+    log.logDeprecatedConfig()
     logger.log('LaTeX Workshop initialized.')
     return {
         dispose: async () => {
@@ -123,6 +123,10 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     })
 
     registerLatexWorkshopCommands(extensionContext)
+
+    extensionContext.subscriptions.push(vscode.workspace.onDidChangeConfiguration((ev) => {
+        log.logConfigChange(ev)
+    }))
 
     extensionContext.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
         if (lw.lwfs.isVirtualUri(e.uri)){

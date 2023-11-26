@@ -2,9 +2,8 @@ import * as vscode from 'vscode'
 import { lw } from '../../lw'
 import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserutils'
 
-import { getLogger } from '../../utils/logging/logger'
 
-const logger = getLogger('Parser', 'BibTeXLog')
+const logger = lw.log('Parser', 'BibTeXLog')
 
 const multiLineWarning = /^Warning--(.+)\n--line (\d+) of file (.+)$/gm
 const singleLineWarning = /^Warning--(.+) in ([^\s]+)\s*$/gm

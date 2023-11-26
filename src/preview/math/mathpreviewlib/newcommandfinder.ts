@@ -2,9 +2,8 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import { lw } from '../../../lw'
 import { stripCommentsAndVerbatim } from '../../../utils/utils'
-import { getLogger } from '../../../utils/logging/logger'
 
-const logger = getLogger('Preview', 'Math')
+const logger = lw.log('Preview', 'Math')
 
 export async function findProjectNewCommand(ctoken?: vscode.CancellationToken): Promise<string> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')

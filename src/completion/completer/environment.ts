@@ -6,9 +6,8 @@ import type { FileCache } from '../../types'
 import type { ICompletionItem, IProvider, IProviderArgs } from '../latex'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 
-import { getLogger } from '../../utils/logging/logger'
 
-const logger = getLogger('Intelli', 'Environment')
+const logger = lw.log('Intelli', 'Environment')
 
 export type EnvType = {
     /** Name of the environment, what comes inside \begin{...} */

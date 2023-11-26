@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import { lw } from '../../lw'
 import { MathJaxPool } from './mathjaxpool'
 import * as utils from '../../utils/svg'
 import type { ReferenceEntry } from '../../completion/completer/reference'
@@ -9,9 +10,9 @@ import { findProjectNewCommand } from './mathpreviewlib/newcommandfinder'
 import { TexMathEnv, TeXMathEnvFinder } from './mathpreviewlib/texmathenvfinder'
 import { HoverPreviewOnRefProvider } from './mathpreviewlib/hoverpreviewonref'
 import { MathPreviewUtils } from './mathpreviewlib/mathpreviewutils'
-import { getLogger } from '../../utils/logging/logger'
 
-const logger = getLogger('Preview', 'Math')
+
+const logger = lw.log('Preview', 'Math')
 
 export type { TexMathEnv } from './mathpreviewlib/texmathenvfinder'
 

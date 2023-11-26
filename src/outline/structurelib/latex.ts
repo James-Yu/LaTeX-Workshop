@@ -6,10 +6,10 @@ import { TeXElement, TeXElementType } from './types'
 import { resolveFile } from '../../utils/utils'
 import { InputFileRegExp } from '../../utils/inputfilepath'
 
-import { getLogger } from '../../utils/logging/logger'
+
 import { argContentToStr } from '../../utils/parser'
 
-const logger = getLogger('Structure', 'LaTeX')
+const logger = lw.log('Structure', 'LaTeX')
 
 type StructureConfig = {
     // The LaTeX commands to be extracted.

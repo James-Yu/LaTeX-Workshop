@@ -1,12 +1,12 @@
 import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
+import { lw } from '../../../lw'
 import { TexMathEnv } from './texmathenvfinder'
 import type { ITextDocumentLike } from './textdocumentlike'
 import { parser } from '../../../parse/parser'
-import { getLogger } from '../../../utils/logging/logger'
 import { findNode } from '../../../language/selection'
 
-const logger = getLogger('Preview', 'Math', 'Cursor')
+const logger = lw.log('Preview', 'Math', 'Cursor')
 
 const cache: {
     texString?: string,

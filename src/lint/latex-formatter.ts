@@ -5,9 +5,9 @@ import * as fs from 'fs'
 import * as os from 'os'
 import { lw, registerDisposable } from '../lw'
 import {replaceArgumentPlaceholders} from '../utils/utils'
-import { getLogger } from '../utils/logging/logger'
 
-const logger = getLogger('Format', 'TeX')
+
+const logger = lw.log('Format', 'TeX')
 
 const fullRange = (doc: vscode.TextDocument) => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
 

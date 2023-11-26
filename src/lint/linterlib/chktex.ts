@@ -7,9 +7,9 @@ import { lw } from '../../lw'
 import type { ILinter } from '../latex-linter'
 import { processWrapper } from './linterutils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
-import { getLogger } from '../../utils/logging/logger'
 
-const logger = getLogger('Linter', 'ChkTeX')
+
+const logger = lw.log('Linter', 'ChkTeX')
 
 const linterName = 'ChkTeX'
 const linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(linterName)

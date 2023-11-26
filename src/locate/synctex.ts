@@ -7,9 +7,9 @@ import * as SyncTeX from './locatorlib/synctex'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { isSameRealPath } from '../utils/pathnormalize'
 import type { ClientRequest } from '../../types/latex-workshop-protocol-types'
-import { getLogger } from '../utils/logging/logger'
 
-const logger = getLogger('Locator')
+
+const logger = lw.log('Locator')
 
 export type SyncTeXRecordForward = {
     page: number,

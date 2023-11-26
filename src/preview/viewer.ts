@@ -10,10 +10,10 @@ import type { ClientRequest, PdfViewerParams, PdfViewerState } from '../../types
 import { Client } from './viewerlib/client'
 import { createPdfViewerPanel } from './viewerlib/pdfviewerpanel'
 import { viewerManager } from './viewerlib/pdfviewermanager'
-import { getLogger } from '../utils/logging/logger'
+
 import { moveActiveEditor } from '../utils/webview'
 
-const logger = getLogger('Viewer')
+const logger = lw.log('Viewer')
 
 export type ViewerMode = 'browser' | 'tab' | 'external' | 'legacy' | 'singleton'
 

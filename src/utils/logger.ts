@@ -1,4 +1,6 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
+import * as path from 'path'
 
 const LOG_PANEL = vscode.window.createOutputChannel('LaTeX Workshop')
 const COMPILER_PANEL = vscode.window.createOutputChannel('LaTeX Compiler')
@@ -9,16 +11,26 @@ COMPILER_PANEL.append('Ready')
 let CACHED_EXTLOG: string[] = []
 let CACHED_COMPILER: string[] = []
 
-export function resetCachedLog() {
+export const log = {
+    getLogger,
+    getCachedLog,
+    resetCachedLog,
+    initStatusBarItem,
+    logConfig,
+    logConfigChange,
+    logDeprecatedConfig
+}
+
+function resetCachedLog() {
     CACHED_EXTLOG = []
     CACHED_COMPILER = []
 }
 
-export function getCachedLog() {
+function getCachedLog() {
     return {CACHED_EXTLOG, CACHED_COMPILER}
 }
 
-export function getLogger(...tags: string[]) {
+function getLogger(...tags: string[]) {
     const tagString = tags.map(tag => `[${tag}]`).join('')
     return {
         log(message: string) {
@@ -34,7 +46,6 @@ export function getLogger(...tags: string[]) {
             logUtensilsError(`${tagString} ${message}`, error)
         },
         logCompiler,
-        initializeStatusBarItem,
         clearCompilerMessage,
         showLog,
         showCompilerLog,
@@ -59,17 +70,17 @@ function logTagless(message: string) {
         }
         const placeholder = `%WS${Object.keys(PLACEHOLDERS).length + 1}%`
         PLACEHOLDERS[folder.uri.fsPath] = placeholder
-        const log = `[${timestamp}][Logger] New log placeholder ${placeholder} registered for ${folder.uri.fsPath} .`
-        LOG_PANEL.appendLine(log)
-        CACHED_EXTLOG.push(log)
+        const logMsg = `[${timestamp}][Logger] New log placeholder ${placeholder} registered for ${folder.uri.fsPath} .`
+        LOG_PANEL.appendLine(logMsg)
+        CACHED_EXTLOG.push(logMsg)
     })
-    const log = `[${timestamp}]${applyPlaceholders(message)}`
-    LOG_PANEL.appendLine(log)
-    CACHED_EXTLOG.push(log)
+    const logMsg = `[${timestamp}]${applyPlaceholders(message)}`
+    LOG_PANEL.appendLine(logMsg)
+    CACHED_EXTLOG.push(logMsg)
 }
 
 function applyPlaceholders(message: string) {
-    Object.entries(PLACEHOLDERS).forEach(([path, placeholder]) => message = message.replaceAll(path, placeholder))
+    Object.entries(PLACEHOLDERS).forEach(([realPath, placeholder]) => message = message.replaceAll(realPath, placeholder))
     return message
 }
 
@@ -106,7 +117,7 @@ function logCompiler(message: string) {
     CACHED_COMPILER.push(message)
 }
 
-function initializeStatusBarItem() {
+function initStatusBarItem() {
     STATUS_ITEM.command = 'latex-workshop.actions'
     STATUS_ITEM.show()
     refreshStatus('check', 'statusBar.foreground')
@@ -204,4 +215,73 @@ function showErrorMessageWithExtensionLogButton(message: string) {
         })
     }
     return
+}
+
+
+type Configs = {
+    [config: string]: {
+        default: any,
+        deprecationMessage?: string
+    }
+}
+
+type PackageJSON = {
+    contributes: {
+        configuration: {
+            properties: Configs
+        }
+    }
+}
+
+const defaultConf: Configs = (JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../../../package.json')).toString()) as PackageJSON).contributes.configuration.properties
+
+const relatedConf = [
+    'editor.acceptSuggestionOnEnter',
+]
+
+function logConfig() {
+    const logConfigs = [...Object.keys(defaultConf), ...relatedConf]
+    const workspaceFolders = vscode.workspace.workspaceFolders || [undefined]
+    for (const workspace of workspaceFolders) {
+        const configuration = vscode.workspace.getConfiguration(undefined, workspace)
+        logConfigs.forEach(config => {
+            const defaultValue = configuration.inspect(config)?.defaultValue
+            const configValue = configuration.get(config)
+            if (JSON.stringify(defaultValue) !== JSON.stringify(configValue)) {
+                logTagless(`${config}: ${JSON.stringify(configValue)} .`)
+            }
+        })
+    }
+}
+
+function logDeprecatedConfig() {
+    const deprecatedConfigs = Object.entries(defaultConf)
+        .filter(([_, value]) => value.deprecationMessage)
+        .map(([config, _]) => config.split('.').slice(1).join('.'))
+    const workspaceFolders = vscode.workspace.workspaceFolders || [undefined]
+    for (const workspace of workspaceFolders) {
+        const configuration = vscode.workspace.getConfiguration(undefined, workspace)
+        deprecatedConfigs.forEach(config => {
+            const defaultValue = configuration.inspect(config)?.defaultValue
+            const configValue = configuration.get(config)
+            if (JSON.stringify(defaultValue) !== JSON.stringify(configValue)) {
+                logTagless(`Deprecated config ${config} with default value ${JSON.stringify(defaultValue)} is set to ${JSON.stringify(configValue)} at ${workspace?.uri.toString(true)} .`)
+                void vscode.window.showWarningMessage(`Config "${config}" is deprecated. ${defaultConf[config].deprecationMessage}`)
+            }
+        })
+    }
+}
+
+function logConfigChange(ev: vscode.ConfigurationChangeEvent) {
+    const logConfigs = [...Object.keys(defaultConf), ...relatedConf]
+    const workspaceFolders = vscode.workspace.workspaceFolders || [undefined]
+    for (const workspace of workspaceFolders) {
+        logConfigs.forEach(config => {
+            if (ev.affectsConfiguration(config, workspace)) {
+                const configuration = vscode.workspace.getConfiguration(undefined, workspace)
+                const value = configuration.get(config)
+                logTagless(`Configuration changed to { ${config}: ${JSON.stringify(value)} } at ${workspace?.uri.toString(true)} .`)
+            }
+        })
+    }
 }

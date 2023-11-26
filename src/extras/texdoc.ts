@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import * as cs from 'cross-spawn'
 import { lw } from '../lw'
-import { getLogger } from '../utils/logging/logger'
 
-const logger = getLogger('TeXDoc')
+
+const logger = lw.log('TeXDoc')
 
 export class TeXDoc {
     private runTexdoc(packageName: string) {

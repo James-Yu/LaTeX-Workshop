@@ -1,10 +1,11 @@
 import * as vscode from 'vscode'
+import { lw } from '../../lw'
 import { TeXElement } from './types'
 import { parser } from '../../parse/parser'
 import { outline } from './latex'
-import { getLogger } from '../../utils/logging/logger'
 
-const logger = getLogger('Structure', 'DocTeX')
+
+const logger = lw.log('Structure', 'DocTeX')
 
 export async function construct(document: vscode.TextDocument): Promise<TeXElement[]> {
     const content = document.getText()

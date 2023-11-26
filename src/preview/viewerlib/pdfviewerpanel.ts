@@ -5,9 +5,8 @@ import type { PanelRequest, PdfViewerState } from '../../../types/latex-workshop
 import { escapeHtml, sleep } from '../../utils/utils'
 import { viewerManager } from './pdfviewermanager'
 
-import { getLogger } from '../../utils/logging/logger'
 
-const logger = getLogger('Viewer', 'Panel')
+const logger = lw.log('Viewer', 'Panel')
 
 export class PdfViewerPanel {
     readonly webviewPanel: vscode.WebviewPanel

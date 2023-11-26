@@ -7,10 +7,10 @@ import type { FileCache } from '../../types'
 import {trimMultiLineString} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../latex'
-import { getLogger } from '../../utils/logging/logger'
+
 import { parser } from '../../parse/parser'
 
-const logger = getLogger('Intelli', 'Citation')
+const logger = lw.log('Intelli', 'Citation')
 
 class Fields extends Map<string, string> {
 

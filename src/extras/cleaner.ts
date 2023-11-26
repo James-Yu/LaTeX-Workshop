@@ -6,9 +6,8 @@ import * as cs from 'cross-spawn'
 import { lw } from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 
-import { getLogger } from '../utils/logging/logger'
 
-const logger = getLogger('Cleaner')
+const logger = lw.log('Cleaner')
 
 /**
  * Removes the duplicate elements. Note that the order of the sequence will not be preserved.

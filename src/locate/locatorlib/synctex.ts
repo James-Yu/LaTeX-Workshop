@@ -2,14 +2,13 @@ import * as fs from 'fs'
 import * as iconv from 'iconv-lite'
 import * as path from 'path'
 import * as zlib from 'zlib'
+import { lw } from '../../lw'
 import type { SyncTeXRecordForward, SyncTeXRecordBackward } from '../synctex'
 import { PdfSyncObject, parseSyncTex, Block } from '../synctexjs'
 import { iconvLiteSupportedEncodings } from '../../utils/convertfilename'
 import { isSameRealPath } from '../../utils/pathnormalize'
 
-import { getLogger } from '../../utils/logging/logger'
-
-const logger = getLogger('SyncTeX')
+const logger = lw.log('SyncTeX')
 
 class Rectangle {
     readonly top: number

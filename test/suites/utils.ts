@@ -5,11 +5,11 @@ import { glob } from 'glob'
 import * as os from 'os'
 import {ok, strictEqual} from 'assert'
 import { lw } from '../../src/lw'
+import { log as logModule } from '../../src/utils/logger'
 import type { EventArgs, Events } from '../../src/core/event'
-import { getCachedLog, getLogger, resetCachedLog } from '../../src/utils/logging/logger'
 
 let testIndex = 0
-const logger = getLogger('Test')
+const logger = lw.log('Test')
 
 function getFixture() {
     if (vscode.workspace.workspaceFile) {
@@ -59,7 +59,7 @@ export function run(testName: string, cb: (fixturePath: string) => unknown, plat
     const label = testLabel()
     testFunction(`[${label}] ${suite.name}: ${testName}`, async () => {
         try {
-            resetCachedLog()
+            logModule.resetCachedLog()
             logger.log(`${testName}`)
             await cb(path.resolve(fixture ?? '', label))
         } finally {
@@ -85,7 +85,7 @@ export async function reset() {
 
 function log(fixtureName: string, testName: string, counter: string) {
     logger.log('Recording cached log messages.')
-    const cachedLog = getCachedLog()
+    const cachedLog = logModule.getCachedLog()
     const logFolder = path.resolve(__dirname, '../../../test/log')
     fs.mkdirSync(logFolder, {recursive: true})
     fs.writeFileSync(path.resolve(logFolder, `${fixtureName}-${counter}.log`),
@@ -183,7 +183,7 @@ export async function auto(fixture: string, editFile: string, noBuild = false, s
     }
     if (noBuild) {
         await sleep(500)
-        strictEqual(getCachedLog().CACHED_EXTLOG.filter(line => line.includes('[Builder]')).filter(line => line.includes(editFile)).length, 0)
+        strictEqual(logModule.getCachedLog().CACHED_EXTLOG.filter(line => line.includes('[Builder]')).filter(line => line.includes(editFile)).length, 0)
         return {type: 'onFileChange', file: ''}
     }
     logger.log('Wait for auto-build.')

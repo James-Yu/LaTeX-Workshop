@@ -1,10 +1,11 @@
 import * as vscode from 'vscode'
-import { getLogger } from '../utils/logging/logger'
+
 import type * as Ast from '@unified-latex/unified-latex-types'
+import { lw } from '../lw'
 import { argContentToStr } from '../utils/parser'
 import { parser } from '../parse/parser'
 
-const logger = getLogger('EnvPair')
+const logger = lw.log('EnvPair')
 
 enum PairType { ENVIRONMENT, DISPLAYMATH, INLINEMATH, COMMAND}
 

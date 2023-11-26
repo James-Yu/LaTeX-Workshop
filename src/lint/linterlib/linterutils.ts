@@ -1,8 +1,8 @@
 import * as os from 'os'
 import type { ChildProcessWithoutNullStreams } from 'child_process'
-import { getLogger } from '../../utils/logging/logger'
+import { lw } from '../../lw'
 
-const logger = getLogger('Linter')
+const logger = lw.log('Linter')
 
 export function processWrapper(linterId: string, proc: ChildProcessWithoutNullStreams, stdin?: string): Promise<string> {
     return new Promise((resolve, reject) => {
