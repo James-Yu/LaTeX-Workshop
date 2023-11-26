@@ -3,7 +3,7 @@ import type ws from 'ws'
 import * as path from 'path'
 import * as os from 'os'
 import * as cs from 'cross-spawn'
-import { lw, registerDisposable } from '../lw'
+import { lw } from '../lw'
 import type { SyncTeXRecordForward } from '../locate/synctex'
 import { getCurrentThemeLightness } from '../utils/theme'
 import type { ClientRequest, PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index'
@@ -27,26 +27,9 @@ export class Viewer {
                 this.refreshExistingViewer(pdfPath)
             }
         })
-        registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            if (e.affectsConfiguration('latex-workshop.view.pdf.invertMode.enabled') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.invert') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.invertMode.brightness') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.invertMode.grayscale') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.invertMode.hueRotate') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.invertMode.sepia') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.color.light.pageColorsForeground') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.color.light.pageColorsBackground') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.color.light.backgroundColor') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.color.light.pageBorderColor') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.color.dark.pageColorsForeground') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.color.dark.pageColorsBackground') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.color.dark.backgroundColor') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.color.dark.pageBorderColor') ||
-                e.affectsConfiguration('latex-workshop.view.pdf.internal.synctex.keybinding')) {
-                this.reloadExistingViewer()
-            }
-            return
-        }))
+        lw.onConfigChange(['view.pdf.invert', 'view.pdf.invertMode', 'view.pdf.color', 'view.pdf.internal'], () => {
+            this.reloadExistingViewer()
+        })
     }
 
     reloadExistingViewer(): void {

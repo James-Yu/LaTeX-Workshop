@@ -43,13 +43,9 @@ export class MathPreviewPanel {
     private needCursor: boolean
 
     constructor() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        this.needCursor = configuration.get('mathpreviewpanel.cursor.enabled', false)
-        vscode.workspace.onDidChangeConfiguration((e) => {
-            if (e.affectsConfiguration('latex-workshop.mathpreviewpanel.cursor.enabled')) {
-                const conf = vscode.workspace.getConfiguration('latex-workshop')
-                this.needCursor = conf.get('mathpreviewpanel.cursor.enabled', false)
-            }
+        this.needCursor = vscode.workspace.getConfiguration('latex-workshop').get('mathpreviewpanel.cursor.enabled', false)
+        lw.onConfigChange('mathpreviewpanel.cursor.enabled', () => {
+            this.needCursor = vscode.workspace.getConfiguration('latex-workshop').get('mathpreviewpanel.cursor.enabled', false)
         })
     }
 

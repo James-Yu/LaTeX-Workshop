@@ -22,14 +22,11 @@ export class Counter {
         // gotoLine status item has priority 100.5 and selectIndentation item has priority 100.4
         this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100.45)
         this.loadConfiguration(this.getWorkspace())
-        vscode.workspace.onDidChangeConfiguration(e => {
-            if (e.affectsConfiguration('latex-workshop.texcount', this.getWorkspace()) || e.affectsConfiguration('latex-workshop.docker.enabled')) {
-                this.loadConfiguration(this.getWorkspace())
-                this.updateStatusVisibility()
-
-            }
-        })
         this.updateStatusVisibility()
+        lw.onConfigChange(['texcount', 'docker.enabled'], () => {
+            this.loadConfiguration(this.getWorkspace())
+            this.updateStatusVisibility()
+        })
         vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
             if (e && lw.file.hasTexLangId(e.document.languageId)) {
                 this.loadConfiguration(e.document.uri)

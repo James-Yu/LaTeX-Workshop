@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import { lw, registerDisposable } from '../../lw'
+import { lw } from '../../lw'
 import type { FileCache } from '../../types'
 import type { ICompletionItem, IProvider, IProviderArgs } from '../latex'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
@@ -42,12 +42,7 @@ export class Environment implements IProvider {
     private readonly packageEnvsForBegin= new Map<string, CmdEnvSuggestion[]>()
 
     constructor() {
-        registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            if (!e.affectsConfiguration('latex-workshop.intellisense.package.exclude')) {
-                return
-            }
-            this.initialize()
-        }))
+        lw.onConfigChange('intellisense.package.exclude', () => this.initialize())
     }
 
     initialize() {

@@ -23,15 +23,10 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         }
         this.bibtexFormatConfig = getBibtexFormatConfig(this.scope)
         this.initialize()
-        vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            if (e.affectsConfiguration('latex-workshop.bibtex-format', this.scope) ||
-                e.affectsConfiguration('latex-workshop.bibtex-entries', this.scope) ||
-                e.affectsConfiguration('latex-workshop.bibtex-fields', this.scope) ||
-                e.affectsConfiguration('latex-workshop.intellisense', this.scope)) {
-                    this.bibtexFormatConfig = getBibtexFormatConfig(this.scope)
-                    this.initialize()
-                }
-        })
+        lw.onConfigChange(['bibtex-format', 'bibtex-entries', 'bibtex-fields', 'intellisense'], () => {
+            this.bibtexFormatConfig = getBibtexFormatConfig(this.scope)
+            this.initialize()
+        }, this.scope)
         vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
             if (e && lw.file.hasBibLangId(e.document.languageId)) {
                 const wsFolder = vscode.workspace.getWorkspaceFolder(e.document.uri)

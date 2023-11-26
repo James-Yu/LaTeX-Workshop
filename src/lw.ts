@@ -31,7 +31,6 @@ import type * as commands from './core/commands'
 
 /* eslint-disable */
 export const lw = {
-    extensionContext: Object.create(null) as vscode.ExtensionContext,
     extensionRoot: '',
     constant: {} as typeof constant,
     log: {} as typeof log.getLogger,
@@ -62,7 +61,8 @@ export const lw = {
     graphicsPreview: Object.create(null) as GraphicsPreview,
     mathPreview: Object.create(null) as MathPreview,
     mathPreviewPanel: Object.create(null) as MathPreviewPanel,
-    commands: Object.create(null) as typeof commands
+    commands: Object.create(null) as typeof commands,
+    onConfigChange
 }
 /* eslint-enable */
 
@@ -79,13 +79,41 @@ const constant = {
 }
 lw.constant = constant
 
-let disposables: { dispose(): any }[] = []
-
-export function registerDisposable(...items: vscode.Disposable[]) {
-    if (lw.extensionContext.subscriptions) {
-        lw.extensionContext.subscriptions.push(...disposables, ...items)
-        disposables = []
+let disposables: vscode.Disposable[] | undefined = undefined
+const tempDisposables: vscode.Disposable[] = []
+/**
+ * Handle configuration changes and invoke the specified callback function when
+ * relevant configurations are updated.
+ *
+ * @param {string[]} [configs] - Optional. An array of configuration keys to
+ * monitor for changes.
+ * @param {Function} [callback] - Optional. The callback function to be executed
+ * when relevant configurations change.
+ * @param {vscode.ConfigurationScope} [scope] - Optional. The configuration
+ * scope to consider when checking for changes.
+ * @param {vscode.Disposable[]} [extensionDisposables] - Optional. An array of
+ *   disposables associated with the extension. If provided, the function sets
+ *   the global disposables array to extensionDisposables and adds
+ *   tempDisposables to it. If not provided, the function creates a disposable
+ *   to listen for configuration changes and adds it to tempDisposables.
+ */
+function onConfigChange(configs?: string | string[], callback?: () => void, scope?: vscode.ConfigurationScope, extensionDisposables?: vscode.Disposable[]) {
+    if (extensionDisposables) {
+        disposables = extensionDisposables
+        disposables.push(...tempDisposables)
+        tempDisposables.length = 0
+        return
+    }
+    const disposable = vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+        if (configs && callback &&
+            [ configs ].flat().some(config => e.affectsConfiguration(`latex-workshop.${config}`, scope))) {
+            callback()
+        }
+    })
+    if (disposables === undefined) {
+        tempDisposables.push(disposable)
     } else {
-        disposables = [...disposables, ...items]
+        disposables.push(...tempDisposables, disposable)
+        tempDisposables.length = 0
     }
 }

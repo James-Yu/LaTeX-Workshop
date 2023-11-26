@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import { lw, registerDisposable } from '../../lw'
+import { lw } from '../../lw'
 import type {IProvider, IProviderArgs} from '../latex'
 import {escapeRegExp} from '../../utils/utils'
 
@@ -23,11 +23,9 @@ export class AtSuggestion implements IProvider {
 
         const allSuggestions: {[key: string]: AtSuggestionItemEntry} = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/at-suggestions.json`).toString()) as DataAtSuggestionJsonType
         this.initialize(allSuggestions)
-        registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestion.user')) {
-                this.initialize(allSuggestions)
-            }
-        }))
+        lw.onConfigChange('intellisense.atSuggestion.user', () => {
+            this.initialize(allSuggestions)
+        })
     }
 
     private initialize(suggestions: {[key: string]: AtSuggestionItemEntry}) {

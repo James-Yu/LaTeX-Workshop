@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import { lw, registerDisposable } from '../../lw'
+import { lw } from '../../lw'
 import { FileCache } from '../../types'
 
 import type { IProvider, ICompletionItem, PkgType, IProviderArgs } from '../latex'
@@ -55,13 +55,9 @@ export class Command implements IProvider {
         const symbols: { [key: string]: CmdType } = JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/unimathsymbols.json`).toString()) as DataUnimathSymbolsJsonType
         Object.entries(symbols).forEach(([key, symbol]) => this.defaultSymbols.push(this.entryCmdToCompletion(key, symbol)))
 
-        registerDisposable(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            if (!e.affectsConfiguration('latex-workshop.intellisense.command.user') &&
-                !e.affectsConfiguration('latex-workshop.intellisense.package.exclude')) {
-                return
-            }
+        lw.onConfigChange(['intellisense.command.user', 'intellisense.package.exclude'], () => {
             this.initialize(lw.completer.environment)
-        }))
+        })
     }
 
     initialize(environment: Environment) {

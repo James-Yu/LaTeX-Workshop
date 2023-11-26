@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import { lw, registerDisposable } from './lw'
+import { lw } from './lw'
 lw.extensionRoot = path.resolve(`${__dirname}/../../`)
 import { log } from './utils/logger'
 lw.log = log.getLogger
@@ -56,7 +56,7 @@ import * as commander from './core/commands'
 const logger = lw.log('Extension')
 
 function initialize(extensionContext: vscode.ExtensionContext) {
-    lw.extensionContext = extensionContext
+    lw.onConfigChange(undefined, undefined, undefined, extensionContext.subscriptions)
     lw.lwfs = new LwFileSystem()
     lw.viewer = new Viewer()
     lw.server = new Server()
@@ -79,7 +79,6 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     lw.mathPreview = new MathPreview()
     lw.mathPreviewPanel = new MathPreviewPanel()
     lw.commands = commander
-    registerDisposable()
 
     void parser.reset()
     log.initStatusBarItem()
@@ -328,16 +327,13 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
         extensionContext.subscriptions.push(triggerDisposable)
     }
     registerTrigger()
-    extensionContext.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-        if (e.affectsConfiguration('latex-workshop.intellisense.triggers.latex')) {
-            if (triggerDisposable) {
-                triggerDisposable.dispose()
-                triggerDisposable = undefined
-            }
-            registerTrigger()
+    lw.onConfigChange('intellisense.triggers.latex', () => {
+        if (triggerDisposable) {
+            triggerDisposable.dispose()
+            triggerDisposable = undefined
         }
-        return
-    }))
+        registerTrigger()
+    })
 
     let atSuggestionDisposable: vscode.Disposable | undefined
     const registerAtSuggestion = () => {
@@ -349,16 +345,13 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
         }
     }
     registerAtSuggestion()
-    extensionContext.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-        if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestion.trigger.latex')) {
-            if (atSuggestionDisposable) {
-                atSuggestionDisposable.dispose()
-                atSuggestionDisposable = undefined
-            }
-            registerAtSuggestion()
+    lw.onConfigChange('intellisense.atSuggestion.trigger.latex', () => {
+        if (atSuggestionDisposable) {
+            atSuggestionDisposable.dispose()
+            atSuggestionDisposable = undefined
         }
-        return
-    }))
+        registerAtSuggestion()
+    })
 
     extensionContext.subscriptions.push(
         vscode.languages.registerCodeActionsProvider(latexSelector, lw.codeActions),
