@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
+import { lw } from '../lw'
 
 const LOG_PANEL = vscode.window.createOutputChannel('LaTeX Workshop')
 const COMPILER_PANEL = vscode.window.createOutputChannel('LaTeX Compiler')
@@ -233,14 +234,20 @@ type PackageJSON = {
     }
 }
 
-const defaultConf: Configs = (JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../../../package.json')).toString()) as PackageJSON).contributes.configuration.properties
-
 const relatedConf = [
     'editor.acceptSuggestionOnEnter',
 ]
 
+let defaultConfig: Configs | undefined = undefined
+function getDefaultConfig() {
+    if (defaultConfig === undefined) {
+        defaultConfig = (JSON.parse(fs.readFileSync(path.resolve(lw.extensionRoot, 'package.json')).toString()) as PackageJSON).contributes.configuration.properties
+    }
+    return defaultConfig
+}
+
 function logConfig() {
-    const logConfigs = [...Object.keys(defaultConf), ...relatedConf]
+    const logConfigs = [...Object.keys(getDefaultConfig()), ...relatedConf]
     const workspaceFolders = vscode.workspace.workspaceFolders || [undefined]
     for (const workspace of workspaceFolders) {
         const configuration = vscode.workspace.getConfiguration(undefined, workspace)
@@ -255,7 +262,7 @@ function logConfig() {
 }
 
 function logDeprecatedConfig() {
-    const deprecatedConfigs = Object.entries(defaultConf)
+    const deprecatedConfigs = Object.entries(getDefaultConfig())
         .filter(([_, value]) => value.deprecationMessage)
         .map(([config, _]) => config.split('.').slice(1).join('.'))
     const workspaceFolders = vscode.workspace.workspaceFolders || [undefined]
@@ -266,14 +273,14 @@ function logDeprecatedConfig() {
             const configValue = configuration.get(config)
             if (JSON.stringify(defaultValue) !== JSON.stringify(configValue)) {
                 logTagless(`Deprecated config ${config} with default value ${JSON.stringify(defaultValue)} is set to ${JSON.stringify(configValue)} at ${workspace?.uri.toString(true)} .`)
-                void vscode.window.showWarningMessage(`Config "${config}" is deprecated. ${defaultConf[config].deprecationMessage}`)
+                void vscode.window.showWarningMessage(`Config "${config}" is deprecated. ${getDefaultConfig()[config].deprecationMessage}`)
             }
         })
     }
 }
 
 function logConfigChange(ev: vscode.ConfigurationChangeEvent) {
-    const logConfigs = [...Object.keys(defaultConf), ...relatedConf]
+    const logConfigs = [...Object.keys(getDefaultConfig()), ...relatedConf]
     const workspaceFolders = vscode.workspace.workspaceFolders || [undefined]
     for (const workspace of workspaceFolders) {
         logConfigs.forEach(config => {

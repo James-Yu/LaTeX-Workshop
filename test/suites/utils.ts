@@ -3,13 +3,13 @@ import * as path from 'path'
 import * as fs from 'fs'
 import { glob } from 'glob'
 import * as os from 'os'
-import {ok, strictEqual} from 'assert'
+import { ok, strictEqual } from 'assert'
 import { lw } from '../../src/lw'
 import { log as logModule } from '../../src/utils/logger'
 import type { EventArgs, Events } from '../../src/core/event'
 
 let testIndex = 0
-const logger = lw.log('Test')
+const logger = logModule.getLogger('Test')
 
 function getFixture() {
     if (vscode.workspace.workspaceFile) {
