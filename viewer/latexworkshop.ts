@@ -349,18 +349,32 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         location.reload()
     }
 
+    private prevPack: {
+        scale: string,
+        scrollMode: number,
+        sidebarView: number,
+        spreadMode: number,
+        scrollTop: number,
+        scrollLeft: number
+    } | undefined
     private refreshPDFViewer() {
         if (!this.autoReloadEnabled) {
             this.addLogMessage('Auto reload temporarily disabled.')
             return
         }
-        const pack = {
+        let pack = {
             scale: PDFViewerApplication.pdfViewer.currentScaleValue,
             scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
             sidebarView: PDFViewerApplication.pdfSidebar.visibleView,
             spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
             scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
             scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft
+        }
+        // Fail-safe. For unknown reasons, the pack may have null values #4076
+        if (pack.scale === null && this.prevPack) {
+            pack = this.prevPack
+        } else {
+            this.prevPack = pack
         }
 
         // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
