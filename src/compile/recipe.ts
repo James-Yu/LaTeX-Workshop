@@ -266,7 +266,7 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
     }
     if (recipeName) {
         recipe = recipes.find(candidate => candidate.name === recipeName)
-        if (recipe) {
+        if (recipe === undefined) {
             logger.log(`Failed to resolve build recipe: ${recipeName}.`)
             void logger.showErrorMessage(`[Builder] Failed to resolve build recipe: ${recipeName}.`)
         }
