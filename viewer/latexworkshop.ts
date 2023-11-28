@@ -362,27 +362,25 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             this.addLogMessage('Auto reload temporarily disabled.')
             return
         }
-        let pack = {
-            scale: PDFViewerApplication.pdfViewer.currentScaleValue,
-            scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
-            sidebarView: PDFViewerApplication.pdfSidebar.visibleView,
-            spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
-            scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
-            scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft
-        }
         // Fail-safe. For unknown reasons, the pack may have null values #4076
-        if (pack.scale === null && this.prevPack) {
-            pack = this.prevPack
-        } else {
-            this.prevPack = pack
+        const pack = {
+            scale: PDFViewerApplication.pdfViewer.currentScaleValue ?? this.prevPack?.scale,
+            scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? this.prevPack?.scrollMode,
+            sidebarView: PDFViewerApplication.pdfSidebar.visibleView ?? this.prevPack?.sidebarView,
+            spreadMode: PDFViewerApplication.pdfViewer.spreadMode ?? this.prevPack?.spreadMode,
+            scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop ?? this.prevPack?.scrollTop,
+            scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft ?? this.prevPack?.scrollLeft
         }
+        this.prevPack = pack
 
         // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
         // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
         PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false)
         // Override the spread mode specified in PDF documents with the current one.
         // https://github.com/James-Yu/LaTeX-Workshop/issues/1871
-        PDFViewerApplicationOptions.set('spreadModeOnLoad', pack.spreadMode)
+        if (pack.spreadMode) {
+            PDFViewerApplicationOptions.set('spreadModeOnLoad', pack.spreadMode)
+        }
 
         void PDFViewerApplication.open({
             url: `${utils.pdfFilePrefix}${this.encodedPdfFilePath}`
@@ -391,18 +389,26 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             document.title = this.documentTitle
         })
         this.onPagesInit(() => {
-            PDFViewerApplication.pdfSidebar.switchView(pack.sidebarView)
-            PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale
-            PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode
-            PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode;
-            (document.getElementById('viewerContainer') as HTMLElement).scrollTop = pack.scrollTop;
-            (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
+            if (pack.sidebarView) {
+                PDFViewerApplication.pdfSidebar.switchView(pack.sidebarView)
+            }
+            PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale ?? PDFViewerApplication.pdfViewer.currentScaleValue
+            PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode ?? PDFViewerApplication.pdfViewer.scrollMode
+            PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode ?? PDFViewerApplication.pdfViewer.spreadMode
+            const viewerContainer: HTMLElement | null = document.getElementById('viewerContainer')
+            if (viewerContainer) {
+                viewerContainer.scrollTop = pack.scrollTop ?? viewerContainer.scrollTop ?? 0
+                viewerContainer.scrollLeft = pack.scrollLeft ?? viewerContainer.scrollLeft ?? 0
+            }
         }, {once: true})
         // The height of each page can change after a `pagesinit` event.
         // We have to set scrollTop on a `pagesloaded` event for that case.
         this.onPagesLoaded(() => {
-            (document.getElementById('viewerContainer') as HTMLElement).scrollTop = pack.scrollTop;
-            (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
+            const viewerContainer: HTMLElement | null = document.getElementById('viewerContainer')
+            if (viewerContainer) {
+                viewerContainer.scrollTop = pack.scrollTop ?? viewerContainer.scrollTop ?? 0
+                viewerContainer.scrollLeft = pack.scrollLeft ?? viewerContainer.scrollLeft ?? 0
+            }
         }, {once: true})
         this.onPagesLoaded(() => {
             this.send({type:'loaded', pdfFileUri: this.pdfFileUri})
@@ -422,12 +428,12 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             const { brightness, grayscale, hueRotate, invert, sepia } = params.invertMode
             const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`
             if (this.isPrefersColorSchemeDark(params.codeColorTheme)) {
-                (document.querySelector('#viewerContainer') as HTMLHtmlElement).style.filter = filter;
-                (document.querySelector('#thumbnailView') as HTMLHtmlElement).style.filter = filter;
-                (document.querySelector('#sidebarContent') as HTMLHtmlElement).style.background = 'var(--body-bg-color)'
+                (document.querySelector('#viewerContainer') as HTMLHtmlElement).style.filter = filter
+                ;(document.querySelector('#thumbnailView') as HTMLHtmlElement).style.filter = filter
+                ;(document.querySelector('#sidebarContent') as HTMLHtmlElement).style.background = 'var(--body-bg-color)'
             } else {
-                (document.querySelector('html') as HTMLHtmlElement).style.filter = filter;
-                (document.querySelector('html') as HTMLHtmlElement).style.background = 'white'
+                (document.querySelector('html') as HTMLHtmlElement).style.filter = filter
+                ;(document.querySelector('html') as HTMLHtmlElement).style.background = 'white'
             }
         }
         const css = document.styleSheets[document.styleSheets.length - 1]
@@ -627,9 +633,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             if (evt.key === 'Backspace' && evt.shiftKey && (evt.target as HTMLElement).nodeName !== 'INPUT') {
                 this.viewerHistory.forward()
             }
-        });
+        })
 
-        (document.getElementById('outerContainer') as HTMLElement).onmousemove = (e) => {
+        ;(document.getElementById('outerContainer') as HTMLElement).onmousemove = (e) => {
             if (e.clientY <= 64) {
                 this.showToolbar(true)
             }
