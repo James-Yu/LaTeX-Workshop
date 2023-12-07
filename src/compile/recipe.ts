@@ -53,6 +53,7 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
     const timestamp = Date.now()
     tools.forEach(tool => queue.add(tool, rootFile, recipeName || 'Build', timestamp))
 
+    lw.compile.compiledPDFPath = lw.file.getPdfPath(rootFile)
     // Execute the build loop
     await buildLoop()
 }

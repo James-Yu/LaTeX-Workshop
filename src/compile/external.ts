@@ -44,6 +44,7 @@ export async function build(command: string, args: string[], pwd: string, buildL
     // Add the build tool to the queue for execution
     queue.add(tool, rootFile, 'External', Date.now(), true, cwd)
 
+    lw.compile.compiledPDFPath = rootFile ? lw.file.getPdfPath(rootFile) : ''
     // Execute the build loop
     await buildLoop()
 }
