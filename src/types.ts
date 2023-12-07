@@ -90,3 +90,5 @@ export type ExternalStep = Tool & {
 }
 
 export type Step = RecipeStep | ExternalStep
+
+export type ViewerMode = 'browser' | 'tab' | 'external' | 'legacy' | 'singleton'

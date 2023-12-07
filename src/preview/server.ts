@@ -8,8 +8,6 @@ import { lw } from '../lw'
 import * as PdfFilePathEncoder from './serverlib/encodepath'
 import { EventEmitter } from 'events'
 
-import { viewerManager } from './viewerlib/pdfviewermanager'
-
 const logger = lw.log('Server')
 
 class WsServer extends ws.Server {
@@ -187,7 +185,7 @@ export class Server {
         if (PdfFilePathEncoder.hasPrefix(request.url) && !request.url.includes('viewer.html')) {
             const s = request.url.replace('/', '')
             const fileUri = PdfFilePathEncoder.decodePathWithPrefix(s)
-            if (viewerManager.getClientSet(fileUri) === undefined) {
+            if (!lw.viewer.isViewing(fileUri)) {
                 logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
                 return
             }
@@ -203,7 +201,7 @@ export class Server {
             return
         }
         if (request.url.endsWith('/config.json')) {
-            const params = lw.viewer.viewerParams()
+            const params = lw.viewer.getParams()
             const content = JSON.stringify(params)
             this.sendOkResponse(response, Buffer.from(content), 'application/json')
             return

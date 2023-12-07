@@ -75,12 +75,12 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
     if (!pickedRootFile) {
         return
     }
-    return lw.viewer.open(lw.file.getPdfPath(pickedRootFile), typeof mode === 'string' ? mode : undefined)
+    return lw.viewer.view(lw.file.getPdfPath(pickedRootFile), typeof mode === 'string' ? mode : undefined)
 }
 
 export function refresh() {
     logger.log('REFRESH command invoked.')
-    lw.viewer.refreshExistingViewer()
+    lw.viewer.refresh()
 }
 
 export function kill() {

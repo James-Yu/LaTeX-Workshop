@@ -1,20 +1,24 @@
 import * as vscode from 'vscode'
-import * as path from 'path'
 import { lw } from '../../lw'
+import * as manager from './pdfviewermanager'
 import type { PanelRequest, PdfViewerState } from '../../../types/latex-workshop-protocol-types/index'
 import { escapeHtml, sleep } from '../../utils/utils'
-import { viewerManager } from './pdfviewermanager'
-
 
 const logger = lw.log('Viewer', 'Panel')
 
-export class PdfViewerPanel {
+export {
+    type PdfViewerPanel,
+    serializer,
+    populate
+}
+
+class PdfViewerPanel {
     readonly webviewPanel: vscode.WebviewPanel
-    readonly pdfFileUri: vscode.Uri
+    readonly pdfUri: vscode.Uri
     private viewerState: PdfViewerState | undefined
 
     constructor(pdfFileUri: vscode.Uri, panel: vscode.WebviewPanel) {
-        this.pdfFileUri = pdfFileUri
+        this.pdfUri = pdfFileUri
         this.webviewPanel = panel
         panel.webview.onDidReceiveMessage((msg: PanelRequest) => {
             switch(msg.type) {
@@ -37,7 +41,6 @@ export class PdfViewerPanel {
 }
 
 class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
-
     async deserializeWebviewPanel(panel: vscode.WebviewPanel, argState: {state: PdfViewerState}): Promise<void> {
         await lw.server.serverStarted
         logger.log(`Restoring at column ${panel.viewColumn} with state ${JSON.stringify(argState.state)}.`)
@@ -61,12 +64,12 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
         }
         panel.webview.html = await getPDFViewerContent(pdfFileUri)
         const pdfPanel = new PdfViewerPanel(pdfFileUri, panel)
-        viewerManager.initiatePdfViewerPanel(pdfPanel)
+        manager.insert(pdfPanel)
         return
     }
 }
 
-export const pdfViewerPanelSerializer = new PdfViewerPanelSerializer()
+const serializer = new PdfViewerPanelSerializer()
 
 let codespacesPatched = false
 async function patchCodespaces(url: vscode.Uri) {
@@ -83,20 +86,8 @@ async function patchCodespaces(url: vscode.Uri) {
     codespacesPatched = true
 }
 
-// Create a new vscode.WebviewPanel and in it a PdfViewerPanel
-export async function createPdfViewerPanel(pdfUri: vscode.Uri, preserveFocus: boolean): Promise<PdfViewerPanel> {
-    const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfUri.path), {
-        viewColumn: vscode.ViewColumn.Active,
-        preserveFocus
-    }, {
-        enableScripts: true,
-        retainContextWhenHidden: true
-    })
-    return populatePdfViewerPanel(pdfUri, panel)
-}
-
 // Create a PdfViewerPanel inside an existing vscode.WebviewPanel
-export async function populatePdfViewerPanel(pdfUri: vscode.Uri, panel: vscode.WebviewPanel): Promise<PdfViewerPanel>{
+async function populate(pdfUri: vscode.Uri, panel: vscode.WebviewPanel): Promise<PdfViewerPanel>{
     await lw.server.serverStarted
     const htmlContent = await getPDFViewerContent(pdfUri)
     panel.webview.html = htmlContent

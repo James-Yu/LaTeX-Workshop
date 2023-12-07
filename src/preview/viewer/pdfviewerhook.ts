@@ -1,8 +1,12 @@
 import * as vscode from 'vscode'
 import { lw } from '../../lw'
-import type { ViewerMode } from '../viewer'
-import { viewerManager } from './pdfviewermanager'
-import { populatePdfViewerPanel } from './pdfviewerpanel'
+import type { ViewerMode } from '../../types'
+import { insert } from './pdfviewermanager'
+import { populate } from './pdfviewerpanel'
+
+export {
+    hook
+}
 
 class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvider {
     openCustomDocument(uri: vscode.Uri) {
@@ -20,16 +24,16 @@ class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvider {
                 ...webviewPanel.webview.options,
                 enableScripts: true
             }
-            const pdfPanel = await populatePdfViewerPanel(document.uri, webviewPanel)
-            void viewerManager.initiatePdfViewerPanel(pdfPanel)
+            const pdfPanel = await populate(document.uri, webviewPanel)
+            void insert(pdfPanel)
         } else {
             webviewPanel.onDidChangeViewState(e => { e.webviewPanel.dispose() })
             if (document.uri === undefined || !document.uri.fsPath.toLocaleLowerCase().endsWith('.pdf')) {
                 return
             }
-            void lw.viewer.openPdfInTab(document.uri, 'current', false)
+            void lw.viewer.viewInWebviewPanel(document.uri, 'current', false)
         }
     }
 }
 
-export const pdfViewerHookProvider = new PdfViewerHookProvider()
+const hook = new PdfViewerHookProvider()

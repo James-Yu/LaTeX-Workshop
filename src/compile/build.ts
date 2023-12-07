@@ -405,7 +405,7 @@ function handleUserTermination() {
 async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     if (lastStep.rootFile === undefined) {
         // This only happens when the step is an external command.
-        lw.viewer.refreshExistingViewer()
+        lw.viewer.refresh()
         return
     }
     logger.log(`Successfully built ${lastStep.rootFile} .`)
@@ -414,7 +414,7 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     if (!lastStep.isExternal && skipped) {
         return
     }
-    lw.viewer.refreshExistingViewer(lw.file.getPdfPath(lastStep.rootFile))
+    lw.viewer.refresh(lw.file.getPdfPath(lastStep.rootFile))
     lw.completer.reference.setNumbersFromAuxFile(lastStep.rootFile)
     await lw.cache.loadFlsFile(lastStep.rootFile ?? '')
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(lastStep.rootFile))

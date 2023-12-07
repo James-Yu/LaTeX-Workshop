@@ -16,8 +16,9 @@ import { root } from './core/root'
 lw.root = root
 import { compile } from './compile'
 lw.compile = compile
+import { viewer } from './preview'
+lw.viewer = viewer
 
-import { pdfViewerHookProvider, pdfViewerPanelSerializer } from './preview/viewer'
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
 import { BibtexCompleter } from './completion/bibtex'
 import { HoverProvider } from './preview/hover'
@@ -42,7 +43,6 @@ import { Section } from './extras/section'
 import { Server } from './preview/server'
 import { SnippetView } from './extras/snippet-view'
 import { TeXMagician } from './extras/texroot'
-import { Viewer } from './preview/viewer'
 import { CodeActions } from './lint/latex-code-actions'
 import { AtSuggestionCompleter, Completer } from './completion/latex'
 import { GraphicsPreview } from './preview/graphics'
@@ -58,7 +58,6 @@ const logger = lw.log('Extension')
 function initialize(extensionContext: vscode.ExtensionContext) {
     lw.onConfigChange(undefined, undefined, undefined, extensionContext.subscriptions)
     lw.lwfs = new LwFileSystem()
-    lw.viewer = new Viewer()
     lw.server = new Server()
     lw.locator = new Locator()
     lw.completer = new Completer()
@@ -298,8 +297,8 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     )
 
     extensionContext.subscriptions.push(
-        vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', pdfViewerPanelSerializer),
-        vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', pdfViewerHookProvider, {supportsMultipleEditorsPerDocument: true, webviewOptions: {retainContextWhenHidden: true}}),
+        vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', lw.viewer.serializer),
+        vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', lw.viewer.hook, {supportsMultipleEditorsPerDocument: true, webviewOptions: {retainContextWhenHidden: true}}),
         vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', new MathPreviewPanelSerializer())
     )
 

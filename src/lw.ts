@@ -6,6 +6,7 @@ import type { watcher } from './core/watcher'
 import type { cache } from './core/cache'
 import type { root } from './core/root'
 import type { compile } from './compile'
+import type { viewer } from './preview'
 
 import type { Cleaner } from './extras/cleaner'
 import type { LaTeXCommanderTreeView } from './extras/activity-bar'
@@ -20,7 +21,6 @@ import type { dupLabelDetector } from './lint/duplicate-label'
 import type { Server } from './preview/server'
 import type { SnippetView } from './extras/snippet-view'
 import type { TeXMagician } from './extras/texroot'
-import type { Viewer } from './preview/viewer'
 import type { CodeActions } from './lint/latex-code-actions'
 import type { AtSuggestionCompleter, Completer } from './completion/latex'
 import type { GraphicsPreview } from './preview/graphics'
@@ -41,7 +41,7 @@ export const lw = {
     root: {} as typeof root,
     compile: {} as typeof compile,
     lwfs: Object.create(null) as LwFileSystem,
-    viewer: Object.create(null) as Viewer,
+    viewer: {} as typeof viewer,
     server: Object.create(null) as Server,
     locator: Object.create(null) as Locator,
     completer: Object.create(null) as Completer,
