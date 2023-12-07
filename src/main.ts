@@ -16,7 +16,8 @@ import { root } from './core/root'
 lw.root = root
 import { compile } from './compile'
 lw.compile = compile
-import { viewer } from './preview'
+import { server, viewer } from './preview'
+lw.server = server
 lw.viewer = viewer
 
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
@@ -40,7 +41,6 @@ import { Locator } from './locate/synctex'
 import { LwFileSystem } from './core/file-system'
 import { MathPreviewPanel } from './extras/math-preview-panel'
 import { Section } from './extras/section'
-import { Server } from './preview/server'
 import { SnippetView } from './extras/snippet-view'
 import { TeXMagician } from './extras/texroot'
 import { CodeActions } from './lint/latex-code-actions'
@@ -56,9 +56,8 @@ import * as commander from './core/commands'
 const logger = lw.log('Extension')
 
 function initialize(extensionContext: vscode.ExtensionContext) {
-    lw.onConfigChange(undefined, undefined, undefined, extensionContext.subscriptions)
+    lw.onDispose(undefined, extensionContext.subscriptions)
     lw.lwfs = new LwFileSystem()
-    lw.server = new Server()
     lw.locator = new Locator()
     lw.completer = new Completer()
     lw.atSuggestionCompleter = new AtSuggestionCompleter()
@@ -98,8 +97,6 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     logger.log('LaTeX Workshop initialized.')
     return {
         dispose: async () => {
-            lw.cache.reset()
-            lw.server.dispose()
             await parser.dispose()
             MathJaxPool.dispose()
         }
@@ -109,16 +106,7 @@ function initialize(extensionContext: vscode.ExtensionContext) {
 export function activate(extensionContext: vscode.ExtensionContext) {
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
-    initialize(extensionContext)
-
-    extensionContext.subscriptions.push({
-        dispose: async () => {
-            lw.cache.reset()
-            lw.server.dispose()
-            await parser.dispose()
-            MathJaxPool.dispose()
-        }
-    })
+    extensionContext.subscriptions.push(initialize(extensionContext))
 
     registerLatexWorkshopCommands(extensionContext)
 

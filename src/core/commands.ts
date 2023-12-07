@@ -248,12 +248,12 @@ export async function changeHostName() {
     if (!hostname) {
         return
     }
-    lw.server.initializeHttpServer(hostname)
+    lw.server.initialize(hostname)
 }
 
 export function resetHostName() {
     logger.log('RESETHOSTNAME command invoked.')
-    lw.server.initializeHttpServer('127.0.0.1')
+    lw.server.initialize('127.0.0.1')
     void vscode.window.showInformationMessage('LaTeX Workshop server listening to 127.0.0.1 with CORS. You are safe now.')
 }
 

@@ -42,7 +42,7 @@ class PdfViewerPanel {
 
 class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
     async deserializeWebviewPanel(panel: vscode.WebviewPanel, argState: {state: PdfViewerState}): Promise<void> {
-        await lw.server.serverStarted
+        // await lw.server.initialized
         logger.log(`Restoring at column ${panel.viewColumn} with state ${JSON.stringify(argState.state)}.`)
         const state = argState.state
         let pdfFileUri: vscode.Uri | undefined
@@ -88,7 +88,7 @@ async function patchCodespaces(url: vscode.Uri) {
 
 // Create a PdfViewerPanel inside an existing vscode.WebviewPanel
 async function populate(pdfUri: vscode.Uri, panel: vscode.WebviewPanel): Promise<PdfViewerPanel>{
-    await lw.server.serverStarted
+    // await lw.server.initialized
     const htmlContent = await getPDFViewerContent(pdfUri)
     panel.webview.html = htmlContent
     const pdfPanel = new PdfViewerPanel(pdfUri, panel)
@@ -113,7 +113,7 @@ function getKeyboardEventConfig(): boolean {
  * @param pdfUri The path of a PDF file to be opened.
  */
 async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
-    const uri = (await lw.server.getViewerUrl(pdfUri)).uri
+    const uri = (await lw.server.getUrl(pdfUri)).uri
     const iframeSrcOrigin = `${uri.scheme}://${uri.authority}`
     const iframeSrcUrl = uri.toString(true)
     await patchCodespaces(uri)

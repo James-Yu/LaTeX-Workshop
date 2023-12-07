@@ -80,7 +80,7 @@ async function getUrl(pdfFile: string): Promise<string | undefined> {
         logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfUri}`, 'warning')
         return
     }
-    return (await lw.server.getViewerUrl(pdfUri)).url
+    return (await lw.server.getUrl(pdfUri)).url
 }
 
 async function view(pdfFile: string, mode?: 'tab' | 'browser' | 'external'): Promise<void> {

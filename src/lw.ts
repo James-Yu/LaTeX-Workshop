@@ -6,7 +6,7 @@ import type { watcher } from './core/watcher'
 import type { cache } from './core/cache'
 import type { root } from './core/root'
 import type { compile } from './compile'
-import type { viewer } from './preview'
+import type { server, viewer } from './preview'
 
 import type { Cleaner } from './extras/cleaner'
 import type { LaTeXCommanderTreeView } from './extras/activity-bar'
@@ -18,7 +18,6 @@ import type { LwFileSystem } from './core/file-system'
 import type { MathPreviewPanel } from './extras/math-preview-panel'
 import type { Section } from './extras/section'
 import type { dupLabelDetector } from './lint/duplicate-label'
-import type { Server } from './preview/server'
 import type { SnippetView } from './extras/snippet-view'
 import type { TeXMagician } from './extras/texroot'
 import type { CodeActions } from './lint/latex-code-actions'
@@ -42,7 +41,7 @@ export const lw = {
     compile: {} as typeof compile,
     lwfs: Object.create(null) as LwFileSystem,
     viewer: {} as typeof viewer,
-    server: Object.create(null) as Server,
+    server: {} as typeof server,
     locator: Object.create(null) as Locator,
     completer: Object.create(null) as Completer,
     atSuggestionCompleter: Object.create(null) as AtSuggestionCompleter,
@@ -62,7 +61,8 @@ export const lw = {
     mathPreview: Object.create(null) as MathPreview,
     mathPreviewPanel: Object.create(null) as MathPreviewPanel,
     commands: Object.create(null) as typeof commands,
-    onConfigChange
+    onConfigChange,
+    onDispose
 }
 /* eslint-enable */
 
@@ -91,25 +91,39 @@ const tempDisposables: vscode.Disposable[] = []
  * when relevant configurations change.
  * @param {vscode.ConfigurationScope} [scope] - Optional. The configuration
  * scope to consider when checking for changes.
- * @param {vscode.Disposable[]} [extensionDisposables] - Optional. An array of
- *   disposables associated with the extension. If provided, the function sets
- *   the global disposables array to extensionDisposables and adds
- *   tempDisposables to it. If not provided, the function creates a disposable
- *   to listen for configuration changes and adds it to tempDisposables.
  */
-function onConfigChange(configs?: string | string[], callback?: () => void, scope?: vscode.ConfigurationScope, extensionDisposables?: vscode.Disposable[]) {
-    if (extensionDisposables) {
-        disposables = extensionDisposables
-        disposables.push(...tempDisposables)
-        tempDisposables.length = 0
-        return
-    }
+function onConfigChange(configs?: string | string[], callback?: () => void, scope?: vscode.ConfigurationScope) {
     const disposable = vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
         if (configs && callback &&
             [ configs ].flat().some(config => e.affectsConfiguration(`latex-workshop.${config}`, scope))) {
             callback()
         }
     })
+    if (disposables === undefined) {
+        tempDisposables.push(disposable)
+    } else {
+        disposables.push(...tempDisposables, disposable)
+        tempDisposables.length = 0
+    }
+}
+
+/**
+ * @param {vscode.Disposable[]} [extensionDisposables] - Optional. An array of
+ *   disposables associated with the extension. If provided, the function sets
+ *   the global disposables array to extensionDisposables and adds
+ *   tempDisposables to it. If not provided, the function creates a disposable
+ *   to listen for configuration changes and adds it to tempDisposables.
+ */
+function onDispose(disposable?: vscode.Disposable, extensionDisposables?: vscode.Disposable[]) {
+    if (extensionDisposables && disposable === undefined) {
+        disposables = extensionDisposables
+        disposables.push(...tempDisposables)
+        tempDisposables.length = 0
+        return
+    }
+    if (disposable === undefined) {
+        return
+    }
     if (disposables === undefined) {
         tempDisposables.push(disposable)
     } else {
