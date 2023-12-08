@@ -75,7 +75,15 @@ const constant = {
     TEX_MAGIC_PROGRAM_NAME: 'TEX_MAGIC_PROGRAM_NAME',
     BIB_MAGIC_PROGRAM_NAME: 'BIB_MAGIC_PROGRAM_NAME',
     MAGIC_PROGRAM_ARGS_SUFFIX: '_WITH_ARGS',
-    MAX_PRINT_LINE: '10000'
+    MAX_PRINT_LINE: '10000',
+    /**
+     * Prefix that server.ts uses to distiguish requests on pdf files from
+     * others. We use '.' because it is not converted by encodeURIComponent and
+     * other functions.
+     * See https://stackoverflow.com/questions/695438/safe-characters-for-friendly-url
+     * See https://tools.ietf.org/html/rfc3986#section-2.3
+     */
+    PDF_PREFIX: 'pdf..'
 }
 lw.constant = constant
 

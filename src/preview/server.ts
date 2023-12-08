@@ -1,11 +1,10 @@
+import * as vscode from 'vscode'
 import * as http from 'http'
 import type { AddressInfo } from 'net'
 import ws from 'ws'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as vscode from 'vscode'
 import { lw } from '../lw'
-import * as PdfFilePathEncoder from './serverlib/encodepath'
 
 const logger = lw.log('Server')
 
@@ -75,7 +74,7 @@ function getPort(): number {
 async function getUrl(pdfUri: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
     // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
     const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.getPort()}`, true))
-    const url = origUrl.toString() + (origUrl.toString().endsWith('/') ? '' : '/' ) + `viewer.html?file=${PdfFilePathEncoder.encodePathWithPrefix(pdfUri)}`
+    const url = origUrl.toString() + (origUrl.toString().endsWith('/') ? '' : '/' ) + `viewer.html?file=${encodePathWithPrefix(pdfUri)}`
     return { url, uri: vscode.Uri.parse(url, true) }
 }
 
@@ -186,9 +185,9 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
     if (!isValidOrigin) {
         return
     }
-    if (PdfFilePathEncoder.hasPrefix(request.url) && !request.url.includes('viewer.html')) {
+    if (hasPrefix(request.url) && !request.url.includes('viewer.html')) {
         const s = request.url.replace('/', '')
-        const fileUri = PdfFilePathEncoder.decodePathWithPrefix(s)
+        const fileUri = decodePathWithPrefix(s)
         if (!lw.viewer.isViewing(fileUri)) {
             logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
             return
@@ -282,4 +281,39 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
             sendOkResponse(response, content, contentType)
         }
     })
+}
+
+/**
+ * We encode the path with base64url after calling encodeURIComponent.
+ * The reason not using base64url directly is that we are not sure that
+ * encodeURIComponent, unescape, and btoa trick is valid on node.js.
+ * - https://en.wikipedia.org/wiki/Base64#URL_applications
+ * - https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa#Unicode_strings
+ */
+function encodePath(url: string) {
+    const s = encodeURIComponent(url)
+    const b64 = Buffer.from(s).toString('base64')
+    const b64url = b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
+    return b64url
+}
+
+function decodePath(b64url: string) {
+    const tmp = b64url + '='.repeat((4 - b64url.length % 4) % 4)
+    const b64 = tmp.replace(/-/g, '+').replace(/_/g, '/')
+    const s = Buffer.from(b64, 'base64').toString()
+    return decodeURIComponent(s)
+}
+
+function hasPrefix(url: string) {
+    return url.includes(lw.constant.PDF_PREFIX)
+}
+
+function encodePathWithPrefix(pdfFilePath: vscode.Uri) {
+    return lw.constant.PDF_PREFIX + encodePath(pdfFilePath.toString(true))
+}
+
+function decodePathWithPrefix(b64urlWithPrefix: string): vscode.Uri {
+    const s = b64urlWithPrefix.replace(lw.constant.PDF_PREFIX, '')
+    const uriString = decodePath(s)
+    return vscode.Uri.parse(uriString, true)
 }
