@@ -392,22 +392,38 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             if (pack.sidebarView) {
                 PDFViewerApplication.pdfSidebar.switchView(pack.sidebarView)
             }
-            PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale ?? PDFViewerApplication.pdfViewer.currentScaleValue
-            PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode ?? PDFViewerApplication.pdfViewer.scrollMode
-            PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode ?? PDFViewerApplication.pdfViewer.spreadMode
+            if (typeof pack.scale === 'number' && PDFViewerApplication.pdfViewer.currentScaleValue !== pack.scale) {
+                PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale
+            }
+            if (typeof pack.scrollMode === 'number' && PDFViewerApplication.pdfViewer.scrollMode !== pack.scrollMode) {
+                PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode
+            }
+            if (typeof pack.spreadMode === 'number' && PDFViewerApplication.pdfViewer.spreadMode !== pack.spreadMode) {
+                PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode
+            }
             const viewerContainer: HTMLElement | null = document.getElementById('viewerContainer')
-            if (viewerContainer) {
-                viewerContainer.scrollTop = pack.scrollTop ?? viewerContainer.scrollTop ?? 0
-                viewerContainer.scrollLeft = pack.scrollLeft ?? viewerContainer.scrollLeft ?? 0
+            if (viewerContainer === null) {
+                return
+            }
+            if (typeof pack.scrollTop === 'number' && viewerContainer.scrollTop !== pack.scrollTop) {
+                viewerContainer.scrollTop = pack.scrollTop
+            }
+            if (typeof pack.scrollLeft === 'number' && viewerContainer.scrollLeft !== pack.scrollLeft) {
+                viewerContainer.scrollLeft = pack.scrollLeft
             }
         }, {once: true})
         // The height of each page can change after a `pagesinit` event.
         // We have to set scrollTop on a `pagesloaded` event for that case.
         this.onPagesLoaded(() => {
             const viewerContainer: HTMLElement | null = document.getElementById('viewerContainer')
-            if (viewerContainer) {
-                viewerContainer.scrollTop = pack.scrollTop ?? viewerContainer.scrollTop ?? 0
-                viewerContainer.scrollLeft = pack.scrollLeft ?? viewerContainer.scrollLeft ?? 0
+            if (viewerContainer === null) {
+                return
+            }
+            if (typeof pack.scrollTop === 'number' && viewerContainer.scrollTop !== pack.scrollTop) {
+                viewerContainer.scrollTop = pack.scrollTop
+            }
+            if (typeof pack.scrollLeft === 'number' && viewerContainer.scrollLeft !== pack.scrollLeft) {
+                viewerContainer.scrollLeft = pack.scrollLeft
             }
         }, {once: true})
         this.onPagesLoaded(() => {
