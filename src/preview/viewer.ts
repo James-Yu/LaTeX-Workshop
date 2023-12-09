@@ -162,16 +162,20 @@ async function viewInCustomEditor(pdfFile: string): Promise<void> {
         if (currentColumn && currentColumn > 1) {
             showOptions.viewColumn = currentColumn - 1
             await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
+            await vscode.commands.executeCommand('workbench.action.focusRightGroup')
         } else {
             await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
             if (currentColumn === vscode.ViewColumn.One) {
                 await moveActiveEditor('left', true)
+            } else {
+                await vscode.commands.executeCommand('workbench.action.focusRightGroup')
             }
         }
     } else if (editorGroup === 'right') {
         const currentColumn = vscode.window.activeTextEditor?.viewColumn
         showOptions.viewColumn = (currentColumn ?? 0) + 1
         await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
+        await vscode.commands.executeCommand('workbench.action.focusLeftGroup')
     } else {
         await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
         await moveActiveEditor(editorGroup, true)
