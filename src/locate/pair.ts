@@ -66,6 +66,21 @@ class CommandPair {
     }
 }
 
+/**
+ * Builds a tree structure of LaTeX commands and environments in the given
+ * document.
+ *
+ * Parses the LaTeX content in the document and constructs a tree structure of
+ * CommandPair objects, representing the commands and environments in the
+ * document. The tree is built by iterating through the abstract syntax tree
+ * (AST) of the LaTeX content.
+ *
+ * @param document - The vscode.TextDocument object representing the LaTeX
+ * document.
+ * @returns Promise<CommandPair[]> - A Promise resolving to an array of
+ * CommandPair objects representing the commands and environments in the
+ * document.
+ */
 async function build(document: vscode.TextDocument): Promise<CommandPair[]> {
     const ast = await parser.parseLaTeX(document.getText())
     if (!ast) {
@@ -83,6 +98,21 @@ async function build(document: vscode.TextDocument): Promise<CommandPair[]> {
     return commandPairs
 }
 
+/**
+ * Builds a CommandPair object tree from a given AST node.
+ *
+ * Recursively constructs a CommandPair tree from the provided AST node. It
+ * identifies different types of LaTeX elements (environments, display math,
+ * inline math, commands) and creates CommandPair objects accordingly.
+ *
+ * @param doc - The vscode.TextDocument object representing the LaTeX document.
+ * @param node - The AST node to process.
+ * @param next - The next AST node after the current one.
+ * @param parentCommandPair - The parent CommandPair for the current node.
+ * @param commandPairs - An array to store the generated CommandPair objects.
+ * @returns CommandPair | undefined - The parent CommandPair for the next
+ * iteration.
+ */
 function buildCommandPairTreeFromNode(doc: vscode.TextDocument, node: Ast.Node, next: Ast.Node | undefined, parentCommandPair: CommandPair | undefined, commandPairs: CommandPair[]): CommandPair | undefined {
     if (node.position === undefined) {
         return parentCommandPair
@@ -191,10 +221,16 @@ function buildCommandPairTreeFromNode(doc: vscode.TextDocument, node: Ast.Node, 
 
 
 /**
- * Find all pairs surrounding the current position
+ * Locates all pairs surrounding the given position in the document.
  *
- * @param pos starting position (e.g. cursor position)
- * @param doc the document in which the search is performed
+ * Builds the command pair tree for the document and then walks through it to
+ * find all command pairs that contain the specified position. Returns an array
+ * of CommandPair objects.
+ *
+ * @param pos - The starting position (e.g., cursor position).
+ * @param doc - The document in which the search is performed.
+ * @returns Promise<CommandPair[]> - A Promise resolving to an array of
+ * CommandPair objects surrounding the specified position.
  */
 async function locateSurroundingPair(pos: vscode.Position, doc: vscode.TextDocument): Promise<CommandPair[]> {
     const commandPairTree = await build(doc)
@@ -202,6 +238,20 @@ async function locateSurroundingPair(pos: vscode.Position, doc: vscode.TextDocum
     return matchedCommandPairs
 }
 
+/**
+ * Walks through the command pair tree to find all pairs surrounding the current
+ * position.
+ *
+ * Recursively walks through the command pair tree to find all CommandPair
+ * objects that contain the specified position. Returns an array of CommandPair
+ * objects.
+ *
+ * @param pos - The current cursor position.
+ * @param commandPairTree - The array of CommandPair objects representing the
+ * entire tree.
+ * @returns CommandPair[] - An array of CommandPair objects surrounding the
+ * specified position.
+ */
 function walkThruForSurroundingPairs(pos: vscode.Position, commandPairTree: CommandPair[]): CommandPair[] {
     const surroundingPairs: CommandPair[] = []
     for (const commandPair of commandPairTree) {
@@ -218,11 +268,18 @@ function walkThruForSurroundingPairs(pos: vscode.Position, commandPairTree: Comm
 }
 
 /**
- * Return all the pairs at the same depth as the pair containing `pos`
+ * Walks through the command pair tree to find all pairs at the same depth as
+ * the pair containing the specified position.
  *
- * @param pos current cursor position
- * @param doc current document
- * @returns CommandPair[]
+ * Builds the command pair tree for the document and then walks through it to
+ * find all command pairs that share the same depth as the pair containing the
+ * specified position. Returns an array of CommandPair objects.
+ *
+ * @param pos - The current cursor position.
+ * @param doc - The current document.
+ * @returns Promise<CommandPair[]> - A Promise resolving to an array of
+ * CommandPair objects at the same depth as the pair containing the specified
+ * position.
  */
 async function locatePairsAtDepth(pos: vscode.Position, doc: vscode.TextDocument): Promise<CommandPair[]> {
     const commandPairTree = await build(doc)
@@ -230,6 +287,20 @@ async function locatePairsAtDepth(pos: vscode.Position, doc: vscode.TextDocument
     return overlappingPairs
 }
 
+/**
+ * Walks through the command pair tree to find all pairs at the same depth as
+ * the pair containing the specified position.
+ *
+ * Recursively walks through the command pair tree to find all CommandPair
+ * objects at the same depth as the pair containing the specified position.
+ * Returns an array of CommandPair objects.
+ *
+ * @param pos - The current cursor position.
+ * @param commandPairTree - The array of CommandPair objects representing the
+ * entire tree.
+ * @returns CommandPair[] - An array of CommandPair objects at the same depth as
+ * the specified position.
+ */
 function walkThruForPairsNextToPosition(pos: vscode.Position, commandPairTree: CommandPair[]): CommandPair[] {
     const pairsAtPosition: CommandPair[] = []
     if (commandPairTree.some((macroPair: CommandPair) => macroPair.startContains(pos) || macroPair.endContains(pos))) {
@@ -249,8 +320,13 @@ function walkThruForPairsNextToPosition(pos: vscode.Position, commandPairTree: C
 }
 
 /**
- * If we are on a starting statement, go to the matching end statement
- * If we are on end statement, go to the opening statement of the first pair making a contiguous chain of pairs up to the curent position.
+ *  Navigates to the matching end statement or the opening statement of the
+ * first pair in a contiguous chain.
+ *
+ * If the cursor is on an opening statement, it moves to the matching end
+ * statement. If the cursor is on an end statement, it moves to the opening
+ * statement of the first pair making a contiguous chain of pairs up to the
+ * current position.
  *
  * Consider the following LaTeX content
  *
@@ -260,9 +336,7 @@ function walkThruForPairsNextToPosition(pos: vscode.Position, commandPairTree: C
  *      ...
  *  \fi
  *
- * Calling this function yields the following move
- *  \ifpoo -> \else
- *  \else -> \fi
+ * Calling this function yields the following move \ifpoo -> \else \else -> \fi
  *  \fi -> \ifpoo
  */
 async function goto() {
@@ -306,18 +380,16 @@ async function goto() {
 }
 
 /**
- * Select or add a multi-cursor to an environment name if called with
- * `action = 'selection'` or `action = 'cursor'` respectively.
+ * Selects or adds a multi-cursor to an environment name.
  *
- * Toggles between `\[...\]` and `\begin{$text}...\end{$text}`
- * where `$text` is `''` if `action = cursor` and `'equation*'` otherwise
- *
- * Only toggles if `action = equationToggle` (i.e. does not move selection)
- *
- * @param action  can be
- *      - 'selection': the environment name is selected both in the begin and end part
- *      - 'cursor': a multi-cursor is added at the beginning of the environment name is selected both in the begin and end part
- *      - 'equationToggle': toggles between `\[...\]` and `\begin{}...\end{}`
+ * Toggles between `\[...\]` and `\begin{$text}...\end{$text}`, where `$text` is
+ * `''` if `action = cursor` and `'equation*'` otherwise.
+ * - If `action = 'selection'`, the environment name is selected in both the
+ *   begin and end parts.
+ * - If `action = 'cursor'`, a multi-cursor is added at the beginning of the
+ *   environment name in both the begin and end parts.
+ * - If `action = 'equationToggle'`, it toggles between `\[...\]` and
+ *   `\begin{}...\end{}` without moving the selection.
  */
 async function name(action: 'selection'|'cursor'|'equationToggle') {
     const editor = vscode.window.activeTextEditor
@@ -396,7 +468,14 @@ async function name(action: 'selection'|'cursor'|'equationToggle') {
     })
 }
 
-
+/**
+ * Selects the content or the whole of the current environment.
+ *
+ * Depending on the `mode` parameter, selects either the content or the whole
+ * current environment.
+ * - If `mode = 'content'`, selects the content of the environment.
+ * - If `mode = 'whole'`, selects the whole environment.
+ */
 async function select(mode: 'content' | 'whole') {
     const editor = vscode.window.activeTextEditor
     if (!editor || editor.document.languageId !== 'latex') {
@@ -427,6 +506,14 @@ async function select(mode: 'content' | 'whole') {
     }
 }
 
+/**
+ * Closes the current environment by inserting the corresponding end statement.
+ *
+ * Inserts the corresponding end statement at the cursor position. If both the
+ * `\begin` and the current position are preceded by whitespace only in their
+ * respective lines, it mimics the exact kind of indentation of `\begin` when
+ * inserting `\end`.
+ */
 async function close() {
     const editor = vscode.window.activeTextEditor
     if (!editor || editor.document.languageId !== 'latex') {

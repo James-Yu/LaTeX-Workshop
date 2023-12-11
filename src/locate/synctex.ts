@@ -17,6 +17,18 @@ export const synctex = {
     toTeX
 }
 
+/**
+ * Parse the result of SyncTeX forward to PDF.
+ *
+ * This function takes the result of SyncTeX forward to PDF as a string and
+ * parses it to extract page number, x-coordinate, y-coordinate, and whether the
+ * red indicator should be shown in the viewer.
+ *
+ * @param result - The result string of SyncTeX forward to PDF.
+ * @returns A SyncTeXRecordToPDF object containing page number, x-coordinate,
+ * y-coordinate, and an indicator.
+ * @throws Error if there is a parsing error.
+ */
 function parseToPDF(result: string): SyncTeXRecordToPDF {
     const record = Object.create(null) as { page?: number, x?: number, y?: number }
     let started = false
@@ -49,6 +61,17 @@ function parseToPDF(result: string): SyncTeXRecordToPDF {
     }
 }
 
+/**
+ * Parse the result of SyncTeX backward to TeX.
+ *
+ * This function takes the result of SyncTeX backward to TeX as a string and
+ * parses it to extract input file, line number, and column number.
+ *
+ * @param result - The result string of SyncTeX backward to TeX.
+ * @returns A SyncTeXRecordToTeX object containing input file, line number, and
+ * column number.
+ * @throws Error if there is a parsing error.
+ */
 function parseToTeX(result: string): SyncTeXRecordToTeX {
     const record = Object.create(null) as { input?: string, line?: number, column?: number }
     let started = false
@@ -86,11 +109,19 @@ function parseToTeX(result: string): SyncTeXRecordToTeX {
 }
 
 /**
- * Execute forward SyncTeX with respect to `args`.
+ * Execute forward SyncTeX with respect to the provided arguments.
  *
- * @param args The arguments of forward SyncTeX. If `undefined`, the document and the cursor position of `activeTextEditor` are used.
- * @param forcedViewer Indicates a PDF viewer with which SyncTeX is executed.
- * @param pdfFile The path of a PDF File compiled from the `filePath` of `args`. If `undefined`, it is automatically detected.
+ * This function performs a forward SyncTeX operation based on the provided
+ * arguments. If arguments are not provided, it uses the active text editor's
+ * document and cursor position. The forward SyncTeX can be executed with a
+ * specific PDF viewer, and the PDF file can be specified.
+ *
+ * @param args - The arguments of forward SyncTeX. If undefined, the document
+ * and cursor position of activeTextEditor are used.
+ * @param forcedViewer - Indicates a PDF viewer with which SyncTeX is executed
+ * ('auto', 'tabOrBrowser', or 'external').
+ * @param pdfFile - The path of a PDF File compiled from the filePath of args.
+ * If undefined, it is automatically detected.
  */
 function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | 'tabOrBrowser' | 'external' = 'auto', pdfFile?: string) {
     let line: number
@@ -158,6 +189,19 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
     }
 }
 
+/**
+ * Call SyncTeX to PDF for a specific line and character position.
+ *
+ * This function calls the SyncTeX binary to retrieve PDF information for a
+ * given line and character position in a TeX file. It returns a promise
+ * resolving to a SyncTeXRecordToPDF object.
+ *
+ * @param line - The line number in the TeX file.
+ * @param col - The character position (column) in the line.
+ * @param filePath - The path of the TeX file.
+ * @param pdfFile - The path of the PDF file.
+ * @returns A promise resolving to a SyncTeXRecordToPDF object.
+ */
 function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string): Thenable<SyncTeXRecordToPDF> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const docker = configuration.get('docker.enabled')
@@ -203,6 +247,17 @@ function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: 
     })
 }
 
+/**
+ * Execute forward SyncTeX based on the provided arguments and viewer
+ * preference.
+ *
+ * This function is a wrapper for `toPDF`, specifically designed to be called
+ * from reference commands. It adjusts the line number and invokes `toPDF` with
+ * the specified viewer preference.
+ *
+ * @param args - The arguments of forward SyncTeX, including line number and
+ * file path.
+ */
 function toPDFFromRef(args: {line: number, filePath: string}) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const viewer = configuration.get('view.pdf.ref.viewer') as 'auto' | 'tabOrBrowser' | 'external'
@@ -214,6 +269,19 @@ function toPDFFromRef(args: {line: number, filePath: string}) {
     }
 }
 
+/**
+ * Call SyncTeX to TeX for a specific page and coordinates.
+ *
+ * This function calls the SyncTeX binary to retrieve TeX information for a
+ * given page and coordinates in a PDF. It returns a promise resolving to a
+ * SyncTeXRecordToTeX object.
+ *
+ * @param page - The page number in the PDF.
+ * @param x - The x-coordinate on the page.
+ * @param y - The y-coordinate on the page.
+ * @param pdfPath - The path of the PDF file.
+ * @returns A promise resolving to a SyncTeXRecordToTeX object.
+ */
 function callSyncTeXToTeX(page: number, x: number, y: number, pdfPath: string): Thenable<SyncTeXRecordToTeX> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
@@ -265,10 +333,15 @@ function callSyncTeXToTeX(page: number, x: number, y: number, pdfPath: string): 
 }
 
 /**
- * Execute backward SyncTeX.
+ * Execute backward SyncTeX to locate TeX source.
  *
- * @param data The page number and the position on the page of a PDF file.
- * @param pdfPath The path of a PDF file as the input of backward SyncTeX.
+ * This function performs a backward SyncTeX operation to locate the TeX source
+ * corresponding to a position in a PDF file. It opens the TeX source file and
+ * scrolls to the specified position.
+ *
+ * @param data - ClientRequest data containing the type ('reverse_synctex') and
+ * position information.
+ * @param pdfPath - The path of the PDF file.
  */
 async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfPath: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -337,6 +410,15 @@ async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pd
     }
 }
 
+/**
+ * Find the first tab containing the specified document.
+ *
+ * This function searches for the first tab containing the specified document
+ * URI. If the document is not found in active tabs, it returns undefined.
+ *
+ * @param doc - The TextDocument for which to find the tab.
+ * @returns The first tab containing the document or undefined if not found.
+ */
 function findTab(doc: vscode.TextDocument): vscode.Tab | undefined {
     let notActive: vscode.Tab[] = []
     const docUriString = doc.uri.toString()
@@ -358,6 +440,14 @@ function findTab(doc: vscode.TextDocument): vscode.Tab | undefined {
     return notActive[0] || undefined
 }
 
+/**
+ * Get the view column of the first visible text editor.
+ *
+ * This function returns the view column of the first visible text editor if
+ * any. If no visible text editors are found, it returns undefined.
+ *
+ * @returns The view column of the first visible text editor or undefined.
+ */
 function getViewColumnOfVisibleTextEditor(): vscode.ViewColumn | undefined {
     const viewColumnArray = vscode.window.visibleTextEditors
                             .map((editor) => editor.viewColumn)
@@ -366,6 +456,18 @@ function getViewColumnOfVisibleTextEditor(): vscode.ViewColumn | undefined {
     return viewColumnArray[0]
 }
 
+/**
+ * Get the row and column based on surrounding text.
+ *
+ * This function calculates the row and column based on the surrounding text in
+ * the specified document, considering the text before and after the selection.
+ *
+ * @param doc - The TextDocument in which to search for the position.
+ * @param row - The initial row for the search.
+ * @param textBeforeSelectionFull - The full text before the selection.
+ * @param textAfterSelectionFull - The full text after the selection.
+ * @returns An array containing the row and column.
+ */
 function getRowAndColumn(doc: vscode.TextDocument, row: number, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
     let tempCol = getColumnBySurroundingText(doc.lineAt(row).text, textBeforeSelectionFull, textAfterSelectionFull)
     if (tempCol !== null) {
@@ -389,6 +491,17 @@ function getRowAndColumn(doc: vscode.TextDocument, row: number, textBeforeSelect
     return [row, 0]
 }
 
+/**
+ * Get the column based on surrounding text.
+ *
+ * This function calculates the column based on the surrounding text in the
+ * specified line, considering the text before and after the selection.
+ *
+ * @param line - The line of text in which to search for the column.
+ * @param textBeforeSelectionFull - The full text before the selection.
+ * @param textAfterSelectionFull - The full text after the selection.
+ * @returns The calculated column.
+ */
 function getColumnBySurroundingText(line: string, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
     let previousColumnMatches = Object.create(null) as { [k: string]: number }
 
@@ -430,6 +543,16 @@ function getColumnBySurroundingText(line: string, textBeforeSelectionFull: strin
     return null
 }
 
+/**
+ * Find all indexes of a substring in a source string.
+ *
+ * This function returns an array containing all indexes of the specified
+ * substring in the source string.
+ *
+ * @param source - The source string in which to find the indexes.
+ * @param find - The substring to search for.
+ * @returns An array of indexes.
+ */
 function indexes(source: string, find: string) {
     const result: number[] = []
     for (let i = 0; i < source.length; ++i) {
@@ -440,6 +563,16 @@ function indexes(source: string, find: string) {
     return result
 }
 
+/**
+ * Animate to notify the user about a specific position.
+ *
+ * This function animates to notify the user about a specific position by
+ * highlighting the line. It creates a temporary decoration with a border around
+ * the line and disposes it after 500 milliseconds.
+ *
+ * @param editor - The TextEditor in which to animate.
+ * @param position - The Position to animate.
+ */
 function animateToNotify(editor: vscode.TextEditor, position: vscode.Position) {
     const decoConfig = {
         borderWidth: '1px',
@@ -457,6 +590,16 @@ function animateToNotify(editor: vscode.TextEditor, position: vscode.Position) {
     setTimeout(() => { deco.dispose() }, 500)
 }
 
+/**
+ * Execute external SyncTeX with a specified PDF viewer.
+ *
+ * This function executes an external SyncTeX operation using a specified PDF
+ * viewer. It constructs the command and arguments based on user configuration.
+ *
+ * @param line - The line number in the PDF.
+ * @param pdfFile - The path of the PDF file.
+ * @param rootFile - The path of the root TeX file.
+ */
 function syncTeXExternal(line: number, pdfFile: string, rootFile: string) {
     if (!vscode.window.activeTextEditor) {
         return

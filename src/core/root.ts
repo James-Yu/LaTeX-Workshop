@@ -32,8 +32,13 @@ lw.watcher.src.onDelete(filePath => {
 })
 
 /**
- * Finds the root file with respect to the current workspace and returns it.
- * The found root is also set to `rootFile`.
+ * Finds the LaTeX project's root file.
+ *
+ * This function employs multiple strategies to find the root file for the LaTeX
+ * project. It first checks for a magic comment in the active editor, then looks
+ * for the root file based on the active editor's content and the entire
+ * workspace according to configuration settings. The identified root file
+ * triggers relevant events, and dependencies are refreshed accordingly.
  */
 async function find(): Promise<undefined> {
     const wsfolders = vscode.workspace.workspaceFolders?.map(e => e.uri.toString(true))
@@ -80,7 +85,16 @@ async function find(): Promise<undefined> {
     return
 }
 
-function getIndicator() {
+/**
+ * Gets the indicator regex based on the LaTeX configuration.
+ *
+ * This function retrieves the indicator regex based on the LaTeX configuration.
+ * The indicator is used to identify the root file in the content of the active
+ * editor.
+ *
+ * @returns {RegExp} The indicator regex.
+ */
+function getIndicator(): RegExp {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const indicator = configuration.get('latex.rootFile.indicator')
     switch (indicator) {
@@ -94,6 +108,20 @@ function getIndicator() {
     }
 }
 
+/**
+ * Gets the workspace URI for a given file path or the active editor's
+ * workspace.
+ *
+ * This function determines the workspace URI for a given file path or the
+ * active editor's workspace. If no workspace is opened, it returns undefined.
+ * If provided with a file path, it checks its workspace. If the active text
+ * editor is not available, it makes an educated guess based on the first
+ * workspace.
+ *
+ * @param {string} [filePath] - The file path for which to get the workspace
+ * URI.
+ * @returns {vscode.Uri | undefined} The workspace URI.
+ */
 function getWorkspace(filePath?: string): vscode.Uri | undefined {
     const firstWorkspace = vscode.workspace.workspaceFolders?.[0]
     // If no workspace is opened.
@@ -113,6 +141,15 @@ function getWorkspace(filePath?: string): vscode.Uri | undefined {
     return (vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri) ?? firstWorkspace).uri
 }
 
+/**
+ * Finds the root file based on a magic comment in the active editor.
+ *
+ * This function looks for a magic comment in the content of the active editor
+ * to determine the root file. It follows the chain of magic comments until a
+ * loop is detected or the root file is found.
+ *
+ * @returns {string | undefined} The root file path, or undefined if not found.
+ */
 function findFromMagic(): string | undefined {
     if (!vscode.window.activeTextEditor) {
         return
@@ -156,6 +193,14 @@ function findFromMagic(): string | undefined {
     return
 }
 
+/**
+ * Finds the root file based on the active editor's file.
+ *
+ * This function verifies if the active editor's file is already in the cache of
+ * included TeX files. If so, the current root file remains to be the root.
+ *
+ * @returns {string | undefined} The root file path, or undefined if not found.
+ */
 function findFromRoot(): string | undefined {
     if (!vscode.window.activeTextEditor || root.file.path === undefined) {
         return
@@ -170,6 +215,15 @@ function findFromRoot(): string | undefined {
     return
 }
 
+/**
+ * Finds the root file based on the active editor's content.
+ *
+ * This function identifies the root file by searching for an indicator RegExp
+ * in the content of the active editor. It also handles the case where the root
+ * file is a subfile, triggering relevant events.
+ *
+ * @returns {string | undefined} The root file path, or undefined if not found.
+ */
 function findFromActive(): string | undefined {
     if (!vscode.window.activeTextEditor) {
         return
@@ -195,6 +249,16 @@ function findFromActive(): string | undefined {
     return
 }
 
+/**
+ * Finds the root file for subfiles in the active editor's content.
+ *
+ * This function identifies the root file for subfiles in the content of the
+ * active editor by searching for a specific pattern.
+ *
+ * @param {string} content - The content of the active editor.
+ * @returns {string | undefined} The root file path for subfiles, or undefined
+ * if not found.
+ */
 function findSubfiles(content: string): string | undefined {
     if (!vscode.window.activeTextEditor) {
         return
@@ -211,6 +275,17 @@ function findSubfiles(content: string): string | undefined {
     return
 }
 
+/**
+ * Finds the root file in the entire workspace based on configuration settings.
+ *
+ * This function scans the entire workspace based on configuration settings to
+ * find potential root files. It considers patterns for inclusion and exclusion
+ * and validates candidates based on TeX file indicators. The identified root
+ * file triggers relevant events, and dependencies are refreshed accordingly.
+ *
+ * @returns {Promise<string | undefined>} A promise that resolves to the root
+ * file path, or undefined if not found.
+ */
 async function findInWorkspace(): Promise<string | undefined> {
     const workspace = getWorkspace()
     logger.log(`Current workspaceRootDir: ${workspace ? workspace.toString(true) : ''} .`)
