@@ -37,7 +37,6 @@ import { Cleaner } from './extras/cleaner'
 import { LaTeXCommanderTreeView } from './extras/activity-bar'
 import { Counter } from './extras/counter'
 import { dupLabelDetector } from './lint/duplicate-label'
-import { EnvPair } from './locate/environment'
 import { Linter } from './lint/latex-linter'
 import { LwFileSystem } from './core/file-system'
 import { MathPreviewPanel } from './extras/math-preview-panel'
@@ -67,7 +66,6 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     lw.texdoc = new TeXDoc()
     lw.codeActions = new CodeActions()
     lw.texMagician = new TeXMagician()
-    lw.envPair = new EnvPair()
     lw.section = new Section()
     lw.dupLabelDetector = dupLabelDetector
     lw.latexCommanderTreeView = new LaTeXCommanderTreeView()

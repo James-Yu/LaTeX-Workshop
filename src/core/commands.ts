@@ -189,7 +189,7 @@ export function navigateToEnvPair() {
     if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    void lw.envPair.gotoPair()
+    void lw.locate.pair.goto()
 }
 
 export function selectEnvContent(mode: 'content' | 'whole') {
@@ -197,7 +197,7 @@ export function selectEnvContent(mode: 'content' | 'whole') {
     if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    void lw.envPair.selectEnvContent(mode)
+    void lw.locate.pair.select(mode)
 }
 
 export function selectEnvName() {
@@ -205,7 +205,7 @@ export function selectEnvName() {
     if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    void lw.envPair.envNameAction('selection')
+    void lw.locate.pair.name('selection')
 }
 
 export function multiCursorEnvName() {
@@ -213,7 +213,7 @@ export function multiCursorEnvName() {
     if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    void lw.envPair.envNameAction('cursor')
+    void lw.locate.pair.name('cursor')
 }
 
 export function toggleEquationEnv() {
@@ -221,7 +221,7 @@ export function toggleEquationEnv() {
     if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    void lw.envPair.envNameAction('equationToggle')
+    void lw.locate.pair.name('equationToggle')
 }
 
 export function closeEnv() {
@@ -229,7 +229,7 @@ export function closeEnv() {
     if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    void lw.envPair.closeEnv()
+    void lw.locate.pair.close()
 }
 
 export async function changeHostName() {

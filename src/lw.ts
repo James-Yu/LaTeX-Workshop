@@ -12,7 +12,6 @@ import type { locate } from './locate'
 import type { Cleaner } from './extras/cleaner'
 import type { LaTeXCommanderTreeView } from './extras/activity-bar'
 import type { Counter } from './extras/counter'
-import type { EnvPair } from './locate/environment'
 import type { Linter } from './lint/latex-linter'
 import type { LwFileSystem } from './core/file-system'
 import type { MathPreviewPanel } from './extras/math-preview-panel'
@@ -51,7 +50,6 @@ export const lw = {
     texdoc: Object.create(null) as TeXDoc,
     codeActions: Object.create(null) as CodeActions,
     texMagician: Object.create(null) as TeXMagician,
-    envPair: Object.create(null) as EnvPair,
     section: Object.create(null) as Section,
     dupLabelDetector: Object.create(null) as typeof dupLabelDetector,
     latexCommanderTreeView: Object.create(null) as LaTeXCommanderTreeView,
