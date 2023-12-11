@@ -7,13 +7,13 @@ import type { cache } from './core/cache'
 import type { root } from './core/root'
 import type { compile } from './compile'
 import type { server, viewer } from './preview'
+import type { locate } from './locate'
 
 import type { Cleaner } from './extras/cleaner'
 import type { LaTeXCommanderTreeView } from './extras/activity-bar'
 import type { Counter } from './extras/counter'
 import type { EnvPair } from './locate/environment'
 import type { Linter } from './lint/latex-linter'
-import type { Locator } from './locate/synctex'
 import type { LwFileSystem } from './core/file-system'
 import type { MathPreviewPanel } from './extras/math-preview-panel'
 import type { Section } from './extras/section'
@@ -42,7 +42,7 @@ export const lw = {
     lwfs: Object.create(null) as LwFileSystem,
     viewer: {} as typeof viewer,
     server: {} as typeof server,
-    locator: Object.create(null) as Locator,
+    locate: {} as typeof locate,
     completer: Object.create(null) as Completer,
     atSuggestionCompleter: Object.create(null) as AtSuggestionCompleter,
     linter: Object.create(null) as Linter,

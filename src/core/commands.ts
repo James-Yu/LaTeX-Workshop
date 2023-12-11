@@ -101,7 +101,7 @@ export function synctex() {
     } else if (lw.root.file.path !== undefined) {
         pdfFile = lw.file.getPdfPath(lw.root.file.path)
     }
-    lw.locator.syncTeX(undefined, undefined, pdfFile)
+    lw.locate.synctex.toPDF(undefined, undefined, pdfFile)
 }
 
 export function synctexonref(line: number, filePath: string) {
@@ -110,7 +110,7 @@ export function synctexonref(line: number, filePath: string) {
         logger.log('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
         return
     }
-    lw.locator.syncTeXOnRef({line, filePath})
+    lw.locate.synctex.toPDFFromRef({line, filePath})
 }
 
 export async function clean(): Promise<void> {

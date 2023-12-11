@@ -92,3 +92,16 @@ export type ExternalStep = Tool & {
 export type Step = RecipeStep | ExternalStep
 
 export type ViewerMode = 'browser' | 'tab' | 'external' | 'legacy' | 'singleton'
+
+export type SyncTeXRecordToPDF = {
+    page: number,
+    x: number,
+    y: number,
+    indicator: boolean
+}
+
+export type SyncTeXRecordToTeX = {
+    input: string,
+    line: number,
+    column: number
+}

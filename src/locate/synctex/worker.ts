@@ -3,12 +3,17 @@ import * as iconv from 'iconv-lite'
 import * as path from 'path'
 import * as zlib from 'zlib'
 import { lw } from '../../lw'
-import type { SyncTeXRecordForward, SyncTeXRecordBackward } from '../synctex'
-import { PdfSyncObject, parseSyncTex, Block } from '../synctexjs'
+import type { SyncTeXRecordToPDF, SyncTeXRecordToTeX } from '../../types'
+import { PdfSyncObject, parseSyncTex, Block } from './synctexjs'
 import { iconvLiteSupportedEncodings } from '../../utils/convertfilename'
 import { isSameRealPath } from '../../utils/pathnormalize'
 
 const logger = lw.log('SyncTeX')
+
+export {
+    syncTeXToPDF,
+    syncTeXToTeX
+}
 
 class Rectangle {
     readonly top: number
@@ -137,7 +142,7 @@ function findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject
     return
 }
 
-export function syncTexJsForward(line: number, filePath: string, pdfFile: string): SyncTeXRecordForward | undefined {
+function syncTeXToPDF(line: number, filePath: string, pdfFile: string): SyncTeXRecordToPDF | undefined {
     const pdfSyncObject = parseSyncTexForPdf(pdfFile)
     if (!pdfSyncObject) {
         return undefined
@@ -172,7 +177,7 @@ export function syncTexJsForward(line: number, filePath: string, pdfFile: string
     return { page: blocks1[0].page, x: c1.left + pdfSyncObject.offset.x, y: bottom + pdfSyncObject.offset.y, indicator: true }
 }
 
-export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: string): SyncTeXRecordBackward | undefined {
+function syncTeXToTeX(page: number, x: number, y: number, pdfPath: string): SyncTeXRecordToTeX | undefined {
     const pdfSyncObject = parseSyncTexForPdf(pdfPath)
     if (!pdfSyncObject) {
         return undefined

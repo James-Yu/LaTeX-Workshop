@@ -4,10 +4,9 @@ import * as path from 'path'
 import * as os from 'os'
 import * as cs from 'cross-spawn'
 import { lw } from '../lw'
-import type { ViewerMode } from '../types'
+import type { SyncTeXRecordToPDF, ViewerMode } from '../types'
 import * as manager from './viewer/pdfviewermanager'
 import { populate } from './viewer/pdfviewerpanel'
-import type { SyncTeXRecordForward } from '../locate/synctex'
 
 import { getCurrentThemeLightness } from '../utils/theme'
 import type { ClientRequest, PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index'
@@ -293,13 +292,13 @@ function handler(websocket: ws, msg: string): void {
             if (configuration.get('synctex.afterBuild.enabled') as boolean) {
                 logger.log('SyncTex after build invoked.')
                 const uri = vscode.Uri.parse(data.pdfFileUri, true)
-                lw.locator.syncTeX(undefined, undefined, uri.fsPath)
+                lw.locate.synctex.toPDF(undefined, undefined, uri.fsPath)
             }
             break
         }
         case 'reverse_synctex': {
             const uri = vscode.Uri.parse(data.pdfFileUri, true)
-            void lw.locator.locate(data, uri.fsPath)
+            void lw.locate.synctex.toTeX(data, uri.fsPath)
             break
         }
         case 'external_link': {
@@ -394,7 +393,7 @@ function getParams(): PdfViewerParams {
  * @param pdfFile The path of a PDF file.
  * @param record The position to be revealed.
  */
-async function locate(pdfFile: string, record: SyncTeXRecordForward): Promise<void> {
+async function locate(pdfFile: string, record: SyncTeXRecordToPDF): Promise<void> {
     const pdfUri = vscode.Uri.file(pdfFile)
     let clientSet = manager.getClients(pdfUri)
     if (clientSet === undefined || clientSet.size === 0) {

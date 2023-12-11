@@ -422,7 +422,7 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
         const pdfFile = lw.file.getPdfPath(lastStep.rootFile)
         logger.log('SyncTex after build invoked.')
-        lw.locator.syncTeX(undefined, undefined, pdfFile)
+        lw.locate.synctex.toPDF(undefined, undefined, pdfFile)
     }
     if (['onSucceeded', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
         logger.log('Auto Clean invoked.')

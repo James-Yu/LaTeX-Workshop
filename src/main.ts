@@ -19,6 +19,8 @@ lw.compile = compile
 import { server, viewer } from './preview'
 lw.server = server
 lw.viewer = viewer
+import { locate } from './locate'
+lw.locate = locate
 
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
 import { BibtexCompleter } from './completion/bibtex'
@@ -37,7 +39,6 @@ import { Counter } from './extras/counter'
 import { dupLabelDetector } from './lint/duplicate-label'
 import { EnvPair } from './locate/environment'
 import { Linter } from './lint/latex-linter'
-import { Locator } from './locate/synctex'
 import { LwFileSystem } from './core/file-system'
 import { MathPreviewPanel } from './extras/math-preview-panel'
 import { Section } from './extras/section'
@@ -58,7 +59,6 @@ const logger = lw.log('Extension')
 function initialize(extensionContext: vscode.ExtensionContext) {
     lw.onDispose(undefined, extensionContext.subscriptions)
     lw.lwfs = new LwFileSystem()
-    lw.locator = new Locator()
     lw.completer = new Completer()
     lw.atSuggestionCompleter = new AtSuggestionCompleter()
     lw.linter = new Linter()
