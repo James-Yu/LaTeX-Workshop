@@ -42,13 +42,13 @@ async function refresh(fireChangedEvent: boolean = true) {
 }
 
 function reveal(e: vscode.TextEditorSelectionChangeEvent) {
-    if (!outline.follow || !state.viewer.visible) {
+    if (!outline.follow || !state.view.visible) {
         return
     }
     const line = e.selections[0].active.line
     const f = e.textEditor.document.fileName
     const currentNode = traverseSectionTree(state.structure, f, line)
-    return currentNode ? state.viewer.reveal(currentNode, {select: true}) : undefined
+    return currentNode ? state.view.reveal(currentNode, {select: true}) : undefined
 }
 
 /**
@@ -143,6 +143,6 @@ const state = {
     cachedTeX: undefined as TeXElement[] | undefined,
     cachedBib: undefined as TeXElement[] | undefined,
     cachedDTX: undefined as TeXElement[] | undefined,
-    viewer: vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider, showCollapseAll: true }),
+    view: vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider, showCollapseAll: true }),
     treeDataProvider
 }

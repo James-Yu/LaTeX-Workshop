@@ -28,8 +28,9 @@ import { lint } from './lint'
 lw.lint = lint
 import { outline } from './outline'
 lw.outline = outline
+import { extra } from './extras'
+lw.extra = extra
 
-import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
 import { BibtexCompleter } from './completion/bibtex'
 import { DocSymbolProvider } from './language/symbol-document'
 import { ProjectSymbolProvider } from './language/symbol-project'
@@ -37,15 +38,7 @@ import { DefinitionProvider } from './language/definition'
 import { FoldingProvider, WeaveFoldingProvider } from './language/folding'
 import { SelectionRangeProvider } from './language/selection'
 
-import { Cleaner } from './extras/cleaner'
-import { LaTeXCommanderTreeView } from './extras/activity-bar'
-import { Counter } from './extras/counter'
-import { MathPreviewPanel } from './extras/math-preview-panel'
-import { Section } from './extras/section'
-import { SnippetView } from './extras/snippet-view'
-import { TeXMagician } from './extras/texroot'
 import { AtSuggestionCompleter, Completer } from './completion/latex'
-import { TeXDoc } from './extras/texdoc'
 import { parser } from './parse/parser'
 import * as commander from './core/commands'
 
@@ -55,14 +48,6 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     lw.onDispose(undefined, extensionContext.subscriptions)
     lw.completer = new Completer()
     lw.atSuggestionCompleter = new AtSuggestionCompleter()
-    lw.cleaner = new Cleaner()
-    lw.counter = new Counter()
-    lw.texdoc = new TeXDoc()
-    lw.texMagician = new TeXMagician()
-    lw.section = new Section()
-    lw.latexCommanderTreeView = new LaTeXCommanderTreeView()
-    lw.snippetView = new SnippetView()
-    lw.mathPreviewPanel = new MathPreviewPanel()
     lw.commands = commander
 
     void parser.reset()
@@ -105,7 +90,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             lw.lint.latex.root()
             void lw.compile.autoBuild(e.fileName, 'onSave')
-            lw.counter.countOnSaveIfEnabled(e.fileName)
+            lw.extra.count(e.fileName)
         }
         // We don't check LaTeX ID as the reconstruct is handled by the Cacher.
         // We don't check BibTeX ID as the reconstruct is handled by the citation completer.
@@ -280,7 +265,7 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     extensionContext.subscriptions.push(
         vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', lw.viewer.serializer),
         vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', lw.viewer.hook, {supportsMultipleEditorsPerDocument: true, webviewOptions: {retainContextWhenHidden: true}}),
-        vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', new MathPreviewPanelSerializer())
+        vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', lw.extra.mathpreview.serializer)
     )
 
     extensionContext.subscriptions.push(
@@ -347,8 +332,8 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     extensionContext.subscriptions.push(
         vscode.window.registerWebviewViewProvider(
             'latex-workshop-snippet-view',
-            lw.snippetView.snippetViewProvider,
-            {webviewOptions: {retainContextWhenHidden: true}}
+            lw.extra.snippet.provider,
+            { webviewOptions: { retainContextWhenHidden: true } }
         )
     )
 }

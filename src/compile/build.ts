@@ -350,7 +350,7 @@ function handleRetryError(step: RecipeStep) {
     logger.log('Cleaning auxiliary files and retrying build after toolchain error.')
 
     queue.prepend(step)
-    void lw.cleaner.clean(step.rootFile).then(() => lw.event.fire(lw.event.AutoCleaned))
+    void lw.extra.clean(step.rootFile).then(() => lw.event.fire(lw.event.AutoCleaned))
 }
 
 /**
@@ -365,7 +365,7 @@ function handleRetryError(step: RecipeStep) {
 function handleNoRetryError(configuration: vscode.WorkspaceConfiguration, step: RecipeStep) {
     logger.refreshStatus('x', 'errorForeground')
     if (['onFailed', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
-        void lw.cleaner.clean(step.rootFile).then(() => lw.event.fire(lw.event.AutoCleaned))
+        void lw.extra.clean(step.rootFile).then(() => lw.event.fire(lw.event.AutoCleaned))
     }
     void logger.showErrorMessageWithCompilerLogButton('Recipe terminated with error.')
     queue.clear()
@@ -424,7 +424,7 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     }
     if (['onSucceeded', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
         logger.log('Auto Clean invoked.')
-        await lw.cleaner.clean(lastStep.rootFile)
+        await lw.extra.clean(lastStep.rootFile)
         lw.event.fire(lw.event.AutoCleaned)
     }
 }

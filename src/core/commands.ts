@@ -127,7 +127,7 @@ export async function clean(): Promise<void> {
             return
         }
     }
-    return lw.cleaner.clean(pickedRootFile)
+    return lw.extra.clean(pickedRootFile)
 }
 
 export function addTexRoot() {
@@ -135,7 +135,7 @@ export function addTexRoot() {
     if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
-    lw.texMagician.addTexRoot()
+    lw.extra.texroot()
 }
 
 export function citation() {
@@ -148,12 +148,12 @@ export function wordcount() {
     if (!vscode.window.activeTextEditor || !lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId) ||
         lw.root.file.path === vscode.window.activeTextEditor.document.fileName) {
         if (lw.root.file.path) {
-            lw.counter.count(lw.root.file.path)
+            lw.extra.count(lw.root.file.path, true, true)
         } else {
             logger.log('WORDCOUNT: No rootFile defined.')
         }
     } else {
-        lw.counter.count(vscode.window.activeTextEditor.document.fileName, false)
+        lw.extra.count(vscode.window.activeTextEditor.document.fileName, false, true)
     }
 }
 
@@ -399,11 +399,11 @@ export async function toggleSelectedKeyword(keyword: string) {
  * @param change
  */
 export function shiftSectioningLevel(change: 'promote' | 'demote') {
-    lw.section.shiftSectioningLevel(change)
+    lw.extra.section(change)
 }
 
 export function selectSection() {
-    lw.section.selectSection()
+    lw.extra.section('select')
 }
 
 export function devParseLog() {
@@ -438,11 +438,11 @@ export async function devStripText() {
 }
 
 export function texdoc(packageName?: string) {
-    lw.texdoc.texdoc(packageName)
+    lw.extra.texdoc(packageName)
 }
 
 export function texdocUsepackages() {
-    lw.texdoc.texdocUsepackages()
+    lw.extra.texdoc(undefined, true)
 }
 
 export async function saveActive() {
@@ -451,15 +451,15 @@ export async function saveActive() {
 }
 
 export function openMathPreviewPanel() {
-    return lw.mathPreviewPanel.open()
+    lw.extra.mathpreview.toggle('open')
 }
 
 export function closeMathPreviewPanel() {
-    lw.mathPreviewPanel.close()
+    lw.extra.mathpreview.toggle('close')
 }
 
 export function toggleMathPreviewPanel() {
-    lw.mathPreviewPanel.toggle()
+    lw.extra.mathpreview.toggle()
 }
 
 async function quickPickRootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {

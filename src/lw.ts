@@ -11,16 +11,9 @@ import type { locate } from './locate'
 import type { lint } from './lint'
 import type { outline } from './outline'
 import type { parse } from './parse'
+import type { extra } from './extras'
 
-import type { Cleaner } from './extras/cleaner'
-import type { LaTeXCommanderTreeView } from './extras/activity-bar'
-import type { Counter } from './extras/counter'
-import type { MathPreviewPanel } from './extras/math-preview-panel'
-import type { Section } from './extras/section'
-import type { SnippetView } from './extras/snippet-view'
-import type { TeXMagician } from './extras/texroot'
 import type { AtSuggestionCompleter, Completer } from './completion/latex'
-import type { TeXDoc } from './extras/texdoc'
 import type * as commands from './core/commands'
 
 /* eslint-disable */
@@ -43,14 +36,7 @@ export const lw = {
     atSuggestionCompleter: Object.create(null) as AtSuggestionCompleter,
     lint: {} as typeof lint,
     outline: {} as typeof outline,
-    cleaner: Object.create(null) as Cleaner,
-    counter: Object.create(null) as Counter,
-    texdoc: Object.create(null) as TeXDoc,
-    texMagician: Object.create(null) as TeXMagician,
-    section: Object.create(null) as Section,
-    latexCommanderTreeView: Object.create(null) as LaTeXCommanderTreeView,
-    snippetView: Object.create(null) as SnippetView,
-    mathPreviewPanel: Object.create(null) as MathPreviewPanel,
+    extra: {} as typeof extra,
     commands: Object.create(null) as typeof commands,
     onConfigChange,
     onDispose

@@ -64,8 +64,8 @@ async function asMD(filePath: string, opts: { height: number, width: number, pag
             let msg = '$(error) Failed to render.'
             if (!vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath))) {
                 msg = '$(warning) Cannot render a PDF file not in workspaces.'
-            } else if (!lw.snippetView.snippetViewProvider.webviewView) {
-                msg = '$(info) Please activate Snippet View to render the thumbnail of a PDF file.'
+            } else if (!lw.extra.snippet.state.view) {
+                msg = '$(info) Please activate LaTeX Workshop sidebar item to render the thumbnail of a PDF file.'
             }
             return new vscode.MarkdownString(msg, true)
         }
@@ -78,19 +78,19 @@ async function renderPdfFileAsDataUrl(pdfFilePath: string, opts: { height: numbe
         const maxDataUrlLength = 99980
         let scale = 1.5
         let newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-        let dataUrl = await lw.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+        let dataUrl = await lw.extra.snippet.render(vscode.Uri.file(pdfFilePath), newOpts)
         if (!dataUrl || dataUrl.length < maxDataUrlLength) {
             return dataUrl
         }
         scale = 1
         newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-        dataUrl = await lw.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+        dataUrl = await lw.extra.snippet.render(vscode.Uri.file(pdfFilePath), newOpts)
         if (!dataUrl || dataUrl.length < maxDataUrlLength) {
             return dataUrl
         }
         scale = Math.sqrt(maxDataUrlLength/dataUrl.length) / 1.2
         newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-        dataUrl = await lw.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+        dataUrl = await lw.extra.snippet.render(vscode.Uri.file(pdfFilePath), newOpts)
         if (dataUrl && dataUrl.length >= maxDataUrlLength) {
             logger.log(`Data URL still too large: ${pdfFilePath}`)
             return
