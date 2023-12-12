@@ -16,6 +16,7 @@ import { root } from './core/root'
 lw.root = root
 import { parse } from './parse'
 lw.parse = parse
+void lw.parse.reset()
 import { compile } from './compile'
 lw.compile = compile
 import { preview, server, viewer } from './preview'
@@ -30,6 +31,10 @@ import { outline } from './outline'
 lw.outline = outline
 import { extra } from './extras'
 lw.extra = extra
+import * as commander from './core/commands'
+lw.commands = commander
+
+log.initStatusBarItem()
 
 import { BibtexCompleter } from './completion/bibtex'
 import { DocSymbolProvider } from './language/symbol-document'
@@ -39,19 +44,12 @@ import { FoldingProvider, WeaveFoldingProvider } from './language/folding'
 import { SelectionRangeProvider } from './language/selection'
 
 import { AtSuggestionCompleter, Completer } from './completion/latex'
-import { parser } from './parse/parser'
-import * as commander from './core/commands'
 
 const logger = lw.log('Extension')
 
-function initialize(extensionContext: vscode.ExtensionContext) {
-    lw.onDispose(undefined, extensionContext.subscriptions)
+function initialize() {
     lw.completer = new Completer()
     lw.atSuggestionCompleter = new AtSuggestionCompleter()
-    lw.commands = commander
-
-    void parser.reset()
-    log.initStatusBarItem()
 
     logger.log('Initializing LaTeX Workshop.')
     logger.log(`Extension root: ${lw.extensionRoot}`)
@@ -72,7 +70,9 @@ function initialize(extensionContext: vscode.ExtensionContext) {
 export function activate(extensionContext: vscode.ExtensionContext) {
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
-    initialize(extensionContext)
+    initialize()
+
+    lw.onDispose(undefined, extensionContext.subscriptions)
 
     registerLatexWorkshopCommands(extensionContext)
 
