@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../../lw'
-import { TexMathEnv } from './texmathenvfinder'
+import type { TeXMathEnv } from '../../../types'
 import type { ITextDocumentLike } from './textdocumentlike'
 import { findNode } from '../../../language/selection'
 
@@ -27,13 +27,13 @@ function isCursorInTeXCommand(document: ITextDocumentLike): boolean {
     return false
 }
 
-function findCursorPosInSnippet(texMath: TexMathEnv, cursorPos: vscode.Position): vscode.Position {
+function findCursorPosInSnippet(texMath: TeXMathEnv, cursorPos: vscode.Position): vscode.Position {
     const line = cursorPos.line - texMath.range.start.line
     const character = line === 0 ? cursorPos.character - texMath.range.start.character : cursorPos.character
     return new vscode.Position(line, character)
 }
 
-async function insertCursor(texMath: TexMathEnv, cursorPos: vscode.Position, cursor: string): Promise<string> {
+async function insertCursor(texMath: TeXMathEnv, cursorPos: vscode.Position, cursor: string): Promise<string> {
     const findResult = await findNodeAt(texMath, cursorPos)
     if (findResult === undefined || cache.ast === undefined) {
         return texMath.texString
@@ -50,7 +50,7 @@ async function insertCursor(texMath: TexMathEnv, cursorPos: vscode.Position, cur
     return texLines.join('\n')
 }
 
-async function findNodeAt(texMath: TexMathEnv, cursorPos: vscode.Position) {
+async function findNodeAt(texMath: TeXMathEnv, cursorPos: vscode.Position) {
     let ast: Ast.Root | undefined
     if (texMath.texString === cache.texString && cache.ast) {
         logger.log(`Use previous AST of ${texMath.texString} .`)
@@ -70,7 +70,7 @@ async function findNodeAt(texMath: TexMathEnv, cursorPos: vscode.Position) {
     return result
 }
 
-export async function renderCursor(document: ITextDocumentLike, texMath: TexMathEnv, thisColor: string): Promise<string> {
+export async function renderCursor(document: ITextDocumentLike, texMath: TeXMathEnv, thisColor: string): Promise<string> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const cursorEnabled = configuration.get('hover.preview.cursor.enabled') as boolean
     if (!cursorEnabled) {

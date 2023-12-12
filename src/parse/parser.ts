@@ -2,6 +2,7 @@ import * as path from 'path'
 import * as workerpool from 'workerpool'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import type { bibtexParser } from 'latex-utensils'
+import { lw } from '../lw'
 import type { Worker } from './parser/unified'
 import { getEnvDefs, getMacroDefs } from './parser/unified-defs'
 import { bibtexLogParser } from './parser/bibtexlog'
@@ -13,8 +14,7 @@ export const parser = {
     log,
     tex,
     args,
-    reset,
-    dispose
+    reset
 }
 
 const pool = workerpool.pool(
@@ -23,9 +23,7 @@ const pool = workerpool.pool(
 )
 const proxy = pool.proxy<Worker>()
 
-async function dispose() {
-    await pool.terminate(true)
-}
+lw.onDispose({ dispose: async () => { await pool.terminate(true) } })
 
 async function tex(content: string): Promise<Ast.Root> {
     return (await proxy).parseLaTeX(content)

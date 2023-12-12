@@ -1,15 +1,14 @@
 import * as vscode from 'vscode'
 import { lw } from '../../../lw'
+import type { TeXMathEnv } from '../../../types'
 import * as utils from '../../../utils/svg'
-import { MathJaxPool } from '../mathjaxpool'
 import type { ReferenceEntry } from '../../../completion/completer/reference'
-import type { TexMathEnv } from './texmathenvfinder'
 import { MathPreviewUtils } from './mathpreviewutils'
 
 const logger = lw.log('Preview', 'Hover')
 
 export class HoverPreviewOnRefProvider {
-    static async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refData: ReferenceEntry, color: string): Promise<vscode.Hover> {
+    static async provideHoverPreviewOnRef(tex: TeXMathEnv, newCommand: string, refData: ReferenceEntry, color: string): Promise<vscode.Hover> {
         const md = await HoverPreviewOnRefProvider.renderSvgOnRef(tex, newCommand, refData, color)
         const line = refData.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
@@ -18,7 +17,7 @@ export class HoverPreviewOnRefProvider {
         return new vscode.Hover( [MathPreviewUtils.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
     }
 
-    static async renderSvgOnRef(tex: TexMathEnv, newCommand: string, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, color: string) {
+    static async renderSvgOnRef(tex: TeXMathEnv, newCommand: string, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, color: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
 
@@ -33,7 +32,7 @@ export class HoverPreviewOnRefProvider {
         const typesetArg = newCommand + MathPreviewUtils.stripTeX(newTeXString, newCommand)
         const typesetOpts = { scale, color }
         try {
-            const xml = await MathJaxPool.typeset(typesetArg, typesetOpts)
+            const xml = await lw.preview.math.typeset(typesetArg, typesetOpts)
             const svg = utils.svgToDataUrl(xml)
             return svg
         } catch(e) {

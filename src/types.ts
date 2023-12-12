@@ -128,3 +128,5 @@ export type TeXElement = {
     parent?: TeXElement,
     appendix?: boolean
 }
+
+export type TeXMathEnv = { texString: string, range: vscode.Range, envname: string }

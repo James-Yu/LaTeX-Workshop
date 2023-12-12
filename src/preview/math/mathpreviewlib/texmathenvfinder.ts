@@ -1,9 +1,8 @@
 import * as vscode from 'vscode'
+import type { TeXMathEnv } from '../../../types'
 import * as utils from '../../../utils/utils'
 import { type ITextDocumentLike, TextDocumentLike } from './textdocumentlike'
 import type { ReferenceEntry } from '../../../completion/completer/reference'
-
-export type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 
 const ENV_NAMES = [
     'align', 'align\\*', 'alignat', 'alignat\\*', 'aligned', 'alignedat', 'array', 'Bmatrix', 'bmatrix', 'cases', 'CD', 'eqnarray', 'eqnarray\\*', 'equation', 'equation\\*', 'flalign', 'flalign\\*', 'gather', 'gather\\*', 'gathered', 'matrix', 'multline', 'multline\\*', 'pmatrix', 'smallmatrix', 'split', 'subarray', 'Vmatrix', 'vmatrix'
@@ -13,7 +12,7 @@ const MATH_ENV_NAMES = [
 ]
 
 export class TeXMathEnvFinder {
-    static findHoverOnTex(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
+    static findHoverOnTex(document: ITextDocumentLike, position: vscode.Position): TeXMathEnv | undefined {
         const envBeginPat = new RegExp(`\\\\begin\\{(${ENV_NAMES.join('|')})\\}`)
         let r = document.getWordRangeAtPosition(position, envBeginPat)
         if (r) {
@@ -34,7 +33,7 @@ export class TeXMathEnvFinder {
         position: vscode.Position,
         refData: Pick<ReferenceEntry, 'file' | 'position'>,
         token: string,
-    ): TexMathEnv | undefined {
+    ): TeXMathEnv | undefined {
         const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.preview.maxLines') as number
         const docOfRef = TextDocumentLike.load(refData.file)
         const envBeginPatMathMode = new RegExp(`\\\\begin\\{(${MATH_ENV_NAMES.join('|')})\\}`)
@@ -59,7 +58,7 @@ export class TeXMathEnvFinder {
         return
     }
 
-    static findMathEnvIncludingPosition(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
+    static findMathEnvIncludingPosition(document: ITextDocumentLike, position: vscode.Position): TeXMathEnv | undefined {
         const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.preview.maxLines') as number
         const envNamePatMathMode = new RegExp(`(${MATH_ENV_NAMES.join('|')})`)
         const envBeginPatMathMode = new RegExp(`\\\\\\[|\\\\\\(|\\\\begin\\{(${MATH_ENV_NAMES.join('|')})\\}`)
@@ -139,7 +138,7 @@ export class TeXMathEnvFinder {
     //  \begin{...}                \end{...}
     //  ^
     //  startPos
-    private static findHoverOnEnv(document: ITextDocumentLike, envname: string, startPos: vscode.Position): TexMathEnv | undefined {
+    private static findHoverOnEnv(document: ITextDocumentLike, envname: string, startPos: vscode.Position): TeXMathEnv | undefined {
         const pattern = new RegExp('\\\\end\\{' + utils.escapeRegExp(envname) + '\\}')
         const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length + '\\begin{}'.length)
         const endPos = TeXMathEnvFinder.findEndPair(document, pattern, startPos1)
@@ -153,7 +152,7 @@ export class TeXMathEnvFinder {
     //  \[                \]
     //  ^
     //  startPos
-    private static findHoverOnParen(document: ITextDocumentLike, envname: string, startPos: vscode.Position): TexMathEnv | undefined {
+    private static findHoverOnParen(document: ITextDocumentLike, envname: string, startPos: vscode.Position): TeXMathEnv | undefined {
         const pattern = envname === '\\[' ? /\\\]/ : envname === '\\(' ? /\\\)/ : /\$\$/
         const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length)
         const endPos = TeXMathEnvFinder.findEndPair(document, pattern, startPos1)
@@ -164,7 +163,7 @@ export class TeXMathEnvFinder {
         return
     }
 
-    private static findHoverOnInline(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
+    private static findHoverOnInline(document: ITextDocumentLike, position: vscode.Position): TeXMathEnv | undefined {
         const currentLine = document.lineAt(position.line).text
         const regex = /(?<!\$|\\)\$(?!\$)(?:\\.|[^\\])+?\$|\\\(.+?\\\)/
         let s = currentLine

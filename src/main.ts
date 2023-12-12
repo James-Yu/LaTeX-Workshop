@@ -18,9 +18,10 @@ import { parse } from './parse'
 lw.parse = parse
 import { compile } from './compile'
 lw.compile = compile
-import { server, viewer } from './preview'
+import { preview, server, viewer } from './preview'
 lw.server = server
 lw.viewer = viewer
+lw.preview = preview
 import { locate } from './locate'
 lw.locate = locate
 import { lint } from './lint'
@@ -30,7 +31,6 @@ lw.outline = outline
 
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
 import { BibtexCompleter } from './completion/bibtex'
-import { HoverProvider } from './preview/hover'
 import { DocSymbolProvider } from './language/symbol-document'
 import { ProjectSymbolProvider } from './language/symbol-project'
 import { DefinitionProvider } from './language/definition'
@@ -45,11 +45,8 @@ import { Section } from './extras/section'
 import { SnippetView } from './extras/snippet-view'
 import { TeXMagician } from './extras/texroot'
 import { AtSuggestionCompleter, Completer } from './completion/latex'
-import { GraphicsPreview } from './preview/graphics'
-import { MathPreview } from './preview/math/mathpreview'
 import { TeXDoc } from './extras/texdoc'
 import { parser } from './parse/parser'
-import { MathJaxPool } from './preview/math/mathjaxpool'
 import * as commander from './core/commands'
 
 const logger = lw.log('Extension')
@@ -65,8 +62,6 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     lw.section = new Section()
     lw.latexCommanderTreeView = new LaTeXCommanderTreeView()
     lw.snippetView = new SnippetView()
-    lw.graphicsPreview = new GraphicsPreview()
-    lw.mathPreview = new MathPreview()
     lw.mathPreviewPanel = new MathPreviewPanel()
     lw.commands = commander
 
@@ -87,18 +82,12 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     log.logConfig()
     log.logDeprecatedConfig()
     logger.log('LaTeX Workshop initialized.')
-    return {
-        dispose: async () => {
-            await parser.dispose()
-            MathJaxPool.dispose()
-        }
-    }
 }
 
 export function activate(extensionContext: vscode.ExtensionContext) {
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
-    extensionContext.subscriptions.push(initialize(extensionContext))
+    initialize(extensionContext)
 
     registerLatexWorkshopCommands(extensionContext)
 
@@ -295,7 +284,7 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     )
 
     extensionContext.subscriptions.push(
-        vscode.languages.registerHoverProvider(latexSelector, new HoverProvider()),
+        vscode.languages.registerHoverProvider(latexSelector, lw.preview.provider),
         vscode.languages.registerDefinitionProvider(latexSelector, new DefinitionProvider()),
         vscode.languages.registerDocumentSymbolProvider(latexSelector, new DocSymbolProvider()),
         vscode.languages.registerDocumentSymbolProvider(bibtexSelector, new DocSymbolProvider()),

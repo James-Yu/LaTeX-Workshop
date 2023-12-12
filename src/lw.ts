@@ -6,7 +6,7 @@ import type { watcher } from './core/watcher'
 import type { cache } from './core/cache'
 import type { root } from './core/root'
 import type { compile } from './compile'
-import type { server, viewer } from './preview'
+import type { preview, server, viewer } from './preview'
 import type { locate } from './locate'
 import type { lint } from './lint'
 import type { outline } from './outline'
@@ -20,8 +20,6 @@ import type { Section } from './extras/section'
 import type { SnippetView } from './extras/snippet-view'
 import type { TeXMagician } from './extras/texroot'
 import type { AtSuggestionCompleter, Completer } from './completion/latex'
-import type { GraphicsPreview } from './preview/graphics'
-import type { MathPreview } from './preview/math/mathpreview'
 import type { TeXDoc } from './extras/texdoc'
 import type * as commands from './core/commands'
 
@@ -39,6 +37,7 @@ export const lw = {
     compile: {} as typeof compile,
     viewer: {} as typeof viewer,
     server: {} as typeof server,
+    preview: {} as typeof preview,
     locate: {} as typeof locate,
     completer: Object.create(null) as Completer,
     atSuggestionCompleter: Object.create(null) as AtSuggestionCompleter,
@@ -51,8 +50,6 @@ export const lw = {
     section: Object.create(null) as Section,
     latexCommanderTreeView: Object.create(null) as LaTeXCommanderTreeView,
     snippetView: Object.create(null) as SnippetView,
-    graphicsPreview: Object.create(null) as GraphicsPreview,
-    mathPreview: Object.create(null) as MathPreview,
     mathPreviewPanel: Object.create(null) as MathPreviewPanel,
     commands: Object.create(null) as typeof commands,
     onConfigChange,
@@ -77,7 +74,13 @@ const constant = {
      * See https://stackoverflow.com/questions/695438/safe-characters-for-friendly-url
      * See https://tools.ietf.org/html/rfc3986#section-2.3
      */
-    PDF_PREFIX: 'pdf..'
+    PDF_PREFIX: 'pdf..',
+    MATHJAX_EXT: [
+        'amscd', 'bbox', 'boldsymbol', 'braket', 'bussproofs', 'cancel',
+        'cases', 'centernot', 'colortbl', 'empheq', 'enclose', 'extpfeil',
+        'gensymb', 'html', 'mathtools', 'mhchem', 'physics', 'textcomp',
+        'textmacros', 'unicode', 'upgreek', 'verb'
+    ]
 }
 lw.constant = constant
 
@@ -87,8 +90,9 @@ const tempDisposables: vscode.Disposable[] = []
  * Handle configuration changes and invoke the specified callback function when
  * relevant configurations are updated.
  *
- * @param {string[]} [configs] - Optional. An array of configuration keys to
- * monitor for changes.
+ * @param {string | string[]} [configs] - Optional. A string or an array of
+ * configuration keys to monitor for changes. The leading `latex-workshop.`
+ * should be omitted. A '*' can also be passed here for wildcard.
  * @param {Function} [callback] - Optional. The callback function to be executed
  * when relevant configurations change.
  * @param {vscode.ConfigurationScope} [scope] - Optional. The configuration
@@ -97,7 +101,8 @@ const tempDisposables: vscode.Disposable[] = []
 function onConfigChange(configs?: string | string[], callback?: () => void, scope?: vscode.ConfigurationScope) {
     const disposable = vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
         if (configs && callback &&
-            [ configs ].flat().some(config => e.affectsConfiguration(`latex-workshop.${config}`, scope))) {
+            ([ configs ].flat().some(config => e.affectsConfiguration(`latex-workshop.${config}`, scope))
+             || configs === '*')) {
             callback()
         }
     })

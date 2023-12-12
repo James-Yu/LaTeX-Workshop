@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import type { TexMathEnv } from '../preview/math/mathpreview'
+import type { TeXMathEnv } from '../types'
 import { moveWebviewPanel } from '../utils/webview'
 import { lw } from '../lw'
 
@@ -49,10 +49,6 @@ export class MathPreviewPanel {
         })
     }
 
-    private get mathPreview() {
-        return lw.mathPreview
-    }
-
     open() {
         const activeDocument = vscode.window.activeTextEditor?.document
         if (this.panel) {
@@ -61,7 +57,7 @@ export class MathPreviewPanel {
             }
             return
         }
-        this.mathPreview.getColor()
+        lw.preview.math.getColor()
         const panel = vscode.window.createWebviewPanel(
             'latex-workshop-mathpreview',
             'Math Preview',
@@ -193,7 +189,7 @@ export class MathPreviewPanel {
         if (this.needCursor) {
             await this.renderCursor(document, texMath)
         }
-        const result = await this.mathPreview.generateSVG(texMath, cachedCommands).catch(() => undefined)
+        const result = await lw.preview.math.generateSVG(texMath, cachedCommands).catch(() => undefined)
         if (!result) {
             return
         }
@@ -204,7 +200,7 @@ export class MathPreviewPanel {
     }
 
     private getTexMath(document: vscode.TextDocument, position: vscode.Position) {
-        const texMath = this.mathPreview.findMathEnvIncludingPosition(document, position)
+        const texMath = lw.preview.math.findMath(document, position)
         if (texMath) {
             if (texMath.envname !== '$') {
                 return texMath
@@ -216,8 +212,8 @@ export class MathPreviewPanel {
         return
     }
 
-    async renderCursor(document: vscode.TextDocument, tex: TexMathEnv) {
-        const s = await this.mathPreview.renderCursor(document, tex)
+    async renderCursor(document: vscode.TextDocument, tex: TeXMathEnv) {
+        const s = await lw.preview.math.renderCursor(document, tex)
         tex.texString = s
     }
 

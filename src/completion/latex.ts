@@ -191,9 +191,9 @@ export class Completer implements vscode.CompletionItemProvider {
                 item.documentation = data.documentation
                 return item
             }
-            const tex = lw.mathPreview.findHoverOnRef(sug, data.key)
+            const tex = lw.preview.math.findRef(sug, data.key)
             if (tex) {
-                const svgDataUrl = await lw.mathPreview.renderSvgOnRef(tex, data, token)
+                const svgDataUrl = await lw.preview.math.renderSvgOnRef(tex, data, token)
                 item.documentation = new vscode.MarkdownString(`![equation](${svgDataUrl})`)
                 return item
             } else {
@@ -209,7 +209,7 @@ export class Completer implements vscode.CompletionItemProvider {
             if (typeof filePath !== 'string') {
                 return item
             }
-            const md = await lw.graphicsPreview.renderGraphicsAsMarkdownString(filePath, { height: 190, width: 300 })
+            const md = await lw.preview.asMD(filePath, { height: 190, width: 300 })
             if (md === undefined) {
                 return item
             }
