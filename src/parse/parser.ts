@@ -2,17 +2,17 @@ import * as path from 'path'
 import * as workerpool from 'workerpool'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import type { bibtexParser } from 'latex-utensils'
-import type { Worker } from './parserlib/unified'
-import { getEnvDefs, getMacroDefs } from './parserlib/unified-defs'
-import { bibtexLogParser } from './parserlib/bibtexlog'
-import { biberLogParser } from './parserlib/biberlog'
-import { latexLogParser } from './parserlib/latexlog'
+import type { Worker } from './parser/unified'
+import { getEnvDefs, getMacroDefs } from './parser/unified-defs'
+import { bibtexLogParser } from './parser/bibtexlog'
+import { biberLogParser } from './parser/biberlog'
+import { latexLogParser } from './parser/latexlog'
 
 export const parser = {
-    parseBibTeX,
-    parseLog,
-    parseLaTeX,
-    parseArgs,
+    bib,
+    log,
+    tex,
+    args,
     reset,
     dispose
 }
@@ -27,11 +27,11 @@ async function dispose() {
     await pool.terminate(true)
 }
 
-async function parseLaTeX(content: string): Promise<Ast.Root> {
+async function tex(content: string): Promise<Ast.Root> {
     return (await proxy).parseLaTeX(content)
 }
 
-async function parseArgs(ast: Ast.Root): Promise<void> {
+async function args(ast: Ast.Root): Promise<void> {
     return (await proxy).parseArgs(ast, getMacroDefs())
 }
 
@@ -39,7 +39,7 @@ async function reset() {
     return (await proxy).reset(getMacroDefs(), getEnvDefs())
 }
 
-async function parseBibTeX(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst> {
+async function bib(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst> {
     return (await proxy).parseBibTeX(s, options)
 }
 
@@ -62,52 +62,52 @@ const bibtexPattern = /^This is BibTeX, Version.*$/m
 const biberPattern = /^INFO - This is Biber .*$/m
 
 /**
- * @param log The log message to parse.
+ * @param msg The log message to parse.
  * @param rootFile The current root file.
  * @returns whether the current compilation is indeed a skipped one in latexmk.
  */
-function parseLog(log: string, rootFile?: string): boolean {
+function log(msg: string, rootFile?: string): boolean {
     let isLaTeXmkSkipped = false
     // Canonicalize line-endings
-    log = log.replace(/(\r\n)|\r/g, '\n')
+    msg = msg.replace(/(\r\n)|\r/g, '\n')
 
-    if (log.match(bibtexPattern)) {
-        bibtexLogParser.parse(log.match(latexmkPattern) ? trimLaTeXmkBibTeX(log) : log, rootFile)
+    if (msg.match(bibtexPattern)) {
+        bibtexLogParser.parse(msg.match(latexmkPattern) ? trimLaTeXmkBibTeX(msg) : msg, rootFile)
         bibtexLogParser.showLog()
-    } else if (log.match(biberPattern)) {
-        biberLogParser.parse(log.match(latexmkPattern) ? trimLaTeXmkBiber(log) : log, rootFile)
+    } else if (msg.match(biberPattern)) {
+        biberLogParser.parse(msg.match(latexmkPattern) ? trimLaTeXmkBiber(msg) : msg, rootFile)
         biberLogParser.showLog()
     }
 
-    if (log.match(latexmkPattern)) {
-        log = trimLaTeXmk(log)
-    } else if (log.match(texifyPattern)) {
-        log = trimTexify(log)
+    if (msg.match(latexmkPattern)) {
+        msg = trimLaTeXmk(msg)
+    } else if (msg.match(texifyPattern)) {
+        msg = trimTexify(msg)
     }
-    if (log.match(latexPattern) || log.match(latexFatalPattern)) {
-        latexLogParser.parse(log, rootFile)
+    if (msg.match(latexPattern) || msg.match(latexFatalPattern)) {
+        latexLogParser.parse(msg, rootFile)
         latexLogParser.showLog()
-    } else if (latexmkSkipped(log)) {
+    } else if (latexmkSkipped(msg)) {
         isLaTeXmkSkipped = true
     }
 
     return isLaTeXmkSkipped
 }
 
-function trimLaTeXmk(log: string): string {
-    return trimPattern(log, latexmkLogLatex, latexmkLog)
+function trimLaTeXmk(msg: string): string {
+    return trimPattern(msg, latexmkLogLatex, latexmkLog)
 }
 
-function trimLaTeXmkBibTeX(log: string): string {
-    return trimPattern(log, bibtexPattern, latexmkLogLatex)
+function trimLaTeXmkBibTeX(msg: string): string {
+    return trimPattern(msg, bibtexPattern, latexmkLogLatex)
 }
 
-function trimLaTeXmkBiber(log: string): string {
-    return trimPattern(log, biberPattern, latexmkLogLatex)
+function trimLaTeXmkBiber(msg: string): string {
+    return trimPattern(msg, biberPattern, latexmkLogLatex)
 }
 
-function trimTexify(log: string): string {
-    return trimPattern(log, texifyLogLatex, texifyLog)
+function trimTexify(msg: string): string {
+    return trimPattern(msg, texifyLogLatex, texifyLog)
 }
 
 
@@ -116,8 +116,8 @@ function trimTexify(log: string): string {
  * If `endPattern` is not found, the lines from the last occurrence of
  * `beginPattern` up to the end is returned.
  */
-function trimPattern(log: string, beginPattern: RegExp, endPattern: RegExp): string {
-    const lines = log.split('\n')
+function trimPattern(msg: string, beginPattern: RegExp, endPattern: RegExp): string {
+    const lines = msg.split('\n')
     let startLine = -1
     let finalLine = -1
     for (let index = 0; index < lines.length; index++) {
@@ -139,8 +139,8 @@ function trimPattern(log: string, beginPattern: RegExp, endPattern: RegExp): str
 }
 
 
-function latexmkSkipped(log: string): boolean {
-    if (log.match(latexmkUpToDate) && !log.match(latexmkPattern)) {
+function latexmkSkipped(msg: string): boolean {
+    if (msg.match(latexmkUpToDate) && !msg.match(latexmkPattern)) {
         latexLogParser.showLog()
         bibtexLogParser.showLog()
         biberLogParser.showLog()

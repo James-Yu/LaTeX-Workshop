@@ -5,8 +5,6 @@ import { lw } from '../lw'
 import { bibtexFormat, bibtexSort, getBibtexFormatConfig } from './bibtex-formatter/utils'
 import type { BibtexEntry } from './bibtex-formatter/utils'
 
-import { parser } from '../parse/parser'
-
 const logger = lw.log('Format', 'Bib')
 
 export {
@@ -60,7 +58,7 @@ async function formatDocument(document: vscode.TextDocument, sort: boolean, alig
     const columnOffset = range ? range.start.character : 0
 
     logger.log('Parse active BibTeX document for AST.')
-    const ast = await parser.parseBibTeX(document.getText(range))
+    const ast = await lw.parse.bib(document.getText(range))
     if (ast === undefined) {
         return []
     }

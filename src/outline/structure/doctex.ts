@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import { lw } from '../../lw'
 import type { TeXElement } from '../../types'
-import { parser } from '../../parse/parser'
 import { outline } from './latex'
 
 
@@ -47,7 +46,7 @@ function getDoc(content: string) {
 }
 
 async function getToC(document: vscode.TextDocument, docContent: string) {
-    const ast = await parser.parseLaTeX(docContent)
+    const ast = await lw.parse.tex(docContent)
     if (ast === undefined) {
         logger.log('Failed parsing LaTeX AST.')
         return []

@@ -10,6 +10,7 @@ import type { server, viewer } from './preview'
 import type { locate } from './locate'
 import type { lint } from './lint'
 import type { outline } from './outline'
+import type { parse } from './parse'
 
 import type { Cleaner } from './extras/cleaner'
 import type { LaTeXCommanderTreeView } from './extras/activity-bar'
@@ -34,6 +35,7 @@ export const lw = {
     watcher: {} as typeof watcher,
     cache: {} as typeof cache,
     root: {} as typeof root,
+    parse: {} as typeof parse,
     compile: {} as typeof compile,
     viewer: {} as typeof viewer,
     server: {} as typeof server,

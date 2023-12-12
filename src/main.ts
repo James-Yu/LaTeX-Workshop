@@ -14,6 +14,8 @@ import { cache } from './core/cache'
 lw.cache = cache
 import { root } from './core/root'
 lw.root = root
+import { parse } from './parse'
+lw.parse = parse
 import { compile } from './compile'
 lw.compile = compile
 import { server, viewer } from './preview'

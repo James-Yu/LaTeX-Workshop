@@ -8,8 +8,6 @@ import {trimMultiLineString} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
 import type { IProvider, ICompletionItem, IProviderArgs } from '../latex'
 
-import { parser } from '../../parse/parser'
-
 const logger = lw.log('Intelli', 'Citation')
 
 class Fields extends Map<string, string> {
@@ -305,7 +303,7 @@ export class Citation implements IProvider {
         const newEntry: CiteSuggestion[] = []
         const bibtex = fs.readFileSync(fileName).toString()
         logger.log(`Parse BibTeX AST from ${fileName} .`)
-        const ast = await parser.parseBibTeX(bibtex)
+        const ast = await lw.parse.bib(bibtex)
         if (ast === undefined) {
             logger.log(`Parsed 0 bib entries from ${fileName}.`)
             lw.event.fire(lw.event.FileParsed, fileName)

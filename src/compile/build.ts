@@ -2,8 +2,6 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
 import { pickRootPath } from '../utils/quick-pick'
-import { parser } from '../parse/parser'
-
 import { lw } from '../lw'
 import type { ProcessEnv, RecipeStep, Step } from '../types'
 import { build as buildRecipe } from './recipe'
@@ -261,7 +259,7 @@ async function monitorProcess(step: Step, env: ProcessEnv): Promise<boolean> {
         })
 
         lw.compile.process.on('exit', (code, signal) => {
-            const isSkipped = parser.parseLog(stdout, step.rootFile)
+            const isSkipped = lw.parse.log(stdout, step.rootFile)
             if (!step.isExternal) {
                 step.isSkipped = isSkipped
             }

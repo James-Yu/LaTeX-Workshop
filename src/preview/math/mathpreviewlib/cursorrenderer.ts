@@ -3,7 +3,6 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../../lw'
 import { TexMathEnv } from './texmathenvfinder'
 import type { ITextDocumentLike } from './textdocumentlike'
-import { parser } from '../../../parse/parser'
 import { findNode } from '../../../language/selection'
 
 const logger = lw.log('Preview', 'Math', 'Cursor')
@@ -58,7 +57,7 @@ async function findNodeAt(texMath: TexMathEnv, cursorPos: vscode.Position) {
         ast = cache.ast
     } else {
         logger.log(`Parse LaTeX AST from ${texMath.texString} .`)
-        ast = await parser.parseLaTeX(texMath.texString)
+        ast = await lw.parse.tex(texMath.texString)
         cache.ast = ast
         cache.texString = texMath.texString
     }

@@ -10,7 +10,6 @@ import type { FileCache } from '../types'
 
 import * as utils from '../utils/utils'
 import { InputFileRegExp } from '../utils/inputfilepath'
-import { parser } from '../parse/parser'
 
 const logger = lw.log('Cacher')
 
@@ -248,7 +247,7 @@ function refreshCacheAggressive(filePath: string) {
  */
 async function updateAST(fileCache: FileCache) {
     logger.log(`Parse LaTeX AST: ${fileCache.filePath} .`)
-    fileCache.ast = await parser.parseLaTeX(fileCache.content)
+    fileCache.ast = await lw.parse.tex(fileCache.content)
     logger.log(`Parsed LaTeX AST: ${fileCache.filePath} .`)
 }
 

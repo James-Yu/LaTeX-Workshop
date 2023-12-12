@@ -3,7 +3,6 @@ import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../lw'
 import { argContentToStr } from '../utils/parser'
-import { parser } from '../parse/parser'
 
 const logger = lw.log('EnvPair')
 
@@ -82,7 +81,7 @@ class CommandPair {
  * document.
  */
 async function build(document: vscode.TextDocument): Promise<CommandPair[]> {
-    const ast = await parser.parseLaTeX(document.getText())
+    const ast = await lw.parse.tex(document.getText())
     if (!ast) {
         logger.log('Error parsing current document as AST.')
         return []

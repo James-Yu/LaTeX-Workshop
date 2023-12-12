@@ -4,7 +4,6 @@ import type { TeXElement } from '../types'
 import { construct as constructLaTeX } from './structure/latex'
 import { buildBibTeX } from './structure/bibtex'
 import { construct as constructDocTeX } from './structure/doctex'
-import { parser } from '../parse/parser'
 
 const logger = lw.log('Structure')
 
@@ -16,11 +15,11 @@ export const outline = {
 }
 
 lw.onConfigChange(['view.outline.sections', 'view.outline.commands'], async () => {
-    await parser.reset()
+    await lw.parse.reset()
     lw.cache.paths().forEach(async filePath => {
         const ast = lw.cache.get(filePath)?.ast
         if (ast) {
-            await parser.parseArgs(ast)
+            await lw.parse.args(ast)
         }
     })
     void reconstruct()

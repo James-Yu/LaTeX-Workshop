@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import { bibtexParser } from 'latex-utensils'
 import { lw } from '../../lw'
 import { type TeXElement, TeXElementType } from '../../types'
-import { parser } from '../../parse/parser'
 
 import { bibTools } from '../../completion/completer/citation'
 
@@ -29,7 +28,7 @@ export async function buildBibTeX(document: vscode.TextDocument): Promise<TeXEle
         return []
     }
     logger.log('Parse active BibTeX document for AST.')
-    const ast = await parser.parseBibTeX(document.getText())
+    const ast = await lw.parse.bib(document.getText())
     if (ast === undefined) {
         return []
     }

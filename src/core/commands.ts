@@ -3,8 +3,6 @@ import * as path from 'path'
 import { lw } from '../lw'
 import { getSurroundingCommandRange, stripText } from '../utils/utils'
 
-import { parser } from '../parse/parser'
-
 const logger = lw.log('Commander')
 
 export async function build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
@@ -412,14 +410,14 @@ export function devParseLog() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    parser.parseLog(vscode.window.activeTextEditor.document.getText())
+    lw.parse.log(vscode.window.activeTextEditor.document.getText())
 }
 
 export async function devParseTeX() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = await parser.parseLaTeX(vscode.window.activeTextEditor.document.getText())
+    const ast = await lw.parse.tex(vscode.window.activeTextEditor.document.getText())
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 
@@ -427,7 +425,7 @@ export async function devParseBib() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = await parser.parseBibTeX(vscode.window.activeTextEditor.document.getText())
+    const ast = await lw.parse.bib(vscode.window.activeTextEditor.document.getText())
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 
