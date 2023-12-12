@@ -57,7 +57,7 @@ async function find(): Promise<undefined> {
         }
         if (rootFilePath === root.file.path) {
             logger.log(`Keep using the same root file: ${root.file.path}`)
-            void lw.structureViewer.refresh()
+            void lw.outline.refresh()
         } else {
             root.file.path = rootFilePath
             root.file.langId = lw.file.getLangId(rootFilePath)
@@ -80,7 +80,7 @@ async function find(): Promise<undefined> {
         return
     }
     logger.log('No root file found.')
-    void lw.structureViewer.refresh()
+    void lw.outline.refresh()
     lw.event.fire(lw.event.RootFileSearched)
     return
 }

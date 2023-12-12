@@ -205,7 +205,7 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<Promis
             lw.event.fire(lw.event.FileParsed, filePath)
 
             if (cachingFilesCount === 0) {
-                void lw.structureViewer.reconstruct()
+                void lw.outline.reconstruct()
             }
         })
     )

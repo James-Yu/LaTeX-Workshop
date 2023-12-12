@@ -23,6 +23,8 @@ import { locate } from './locate'
 lw.locate = locate
 import { lint } from './lint'
 lw.lint = lint
+import { outline } from './outline'
+lw.outline = outline
 
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
 import { BibtexCompleter } from './completion/bibtex'
@@ -43,7 +45,6 @@ import { TeXMagician } from './extras/texroot'
 import { AtSuggestionCompleter, Completer } from './completion/latex'
 import { GraphicsPreview } from './preview/graphics'
 import { MathPreview } from './preview/math/mathpreview'
-import { StructureView } from './outline/project'
 import { TeXDoc } from './extras/texdoc'
 import { parser } from './parse/parser'
 import { MathJaxPool } from './preview/math/mathjaxpool'
@@ -61,7 +62,6 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     lw.texMagician = new TeXMagician()
     lw.section = new Section()
     lw.latexCommanderTreeView = new LaTeXCommanderTreeView()
-    lw.structureViewer = new StructureView()
     lw.snippetView = new SnippetView()
     lw.graphicsPreview = new GraphicsPreview()
     lw.mathPreview = new MathPreview()
@@ -116,6 +116,11 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             void lw.compile.autoBuild(e.fileName, 'onSave')
             lw.counter.countOnSaveIfEnabled(e.fileName)
         }
+        // We don't check LaTeX ID as the reconstruct is handled by the Cacher.
+        // We don't check BibTeX ID as the reconstruct is handled by the citation completer.
+        if (lw.file.hasDtxLangId(e.languageId)) {
+            void lw.outline.reconstruct()
+        }
     }))
 
     /** The previous active TeX document path. If this changed, root need to be re-searched */
@@ -143,6 +148,12 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         } else if (!e || !lw.file.hasBibLangId(e.document.languageId)) {
             isLaTeXActive = false
         }
+        if (e && (
+            lw.file.hasTexLangId(e.document.languageId)
+            || lw.file.hasBibLangId(e.document.languageId)
+            || lw.file.hasDtxLangId(e.document.languageId))) {
+            void lw.outline.refresh()
+        }
     }))
 
     extensionContext.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
@@ -163,7 +174,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         if (lw.file.hasTexLangId(e.textEditor.document.languageId) ||
             lw.file.hasBibLangId(e.textEditor.document.languageId) ||
             lw.file.hasDtxLangId(e.textEditor.document.languageId)) {
-            return lw.structureViewer.showCursorItem(e)
+            return lw.outline.reveal(e)
         }
         return
     }))
@@ -204,6 +215,7 @@ function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext
         vscode.commands.registerCommand('latex-workshop.compilerlog', () => lw.commands.showLog('compiler')),
         vscode.commands.registerCommand('latex-workshop.code-action', (d: vscode.TextDocument, r: vscode.Range, c: number, m: string) => lw.lint.latex.action(d, r, c, m)),
         vscode.commands.registerCommand('latex-workshop.goto-section', (filePath: string, lineNumber: number) => lw.commands.gotoSection(filePath, lineNumber)),
+        vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => { lw.outline.follow = !lw.outline.follow }),
         vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => lw.commands.navigateToEnvPair()),
         vscode.commands.registerCommand('latex-workshop.select-envcontent', () => lw.commands.selectEnvContent('content')),
         vscode.commands.registerCommand('latex-workshop.select-env', () => lw.commands.selectEnvContent('whole')),

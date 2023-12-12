@@ -334,7 +334,7 @@ export class Citation implements IProvider {
             })
         this.bibEntries.set(fileName, newEntry)
         logger.log(`Parsed ${newEntry.length} bib entries from ${fileName} .`)
-        void lw.structureViewer.reconstruct()
+        void lw.outline.reconstruct()
         lw.event.fire(lw.event.FileParsed, fileName)
     }
 

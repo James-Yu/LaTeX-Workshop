@@ -1,146 +1,111 @@
 import * as vscode from 'vscode'
 import { lw } from '../lw'
-import { construct as constructLaTeX } from './structurelib/latex'
-import { buildBibTeX } from './structurelib/bibtex'
-import { construct as constructDocTeX } from './structurelib/doctex'
-
-import type { TeXElement } from './structurelib/types'
-
+import type { TeXElement } from '../types'
+import { construct as constructLaTeX } from './structure/latex'
+import { buildBibTeX } from './structure/bibtex'
+import { construct as constructDocTeX } from './structure/doctex'
 import { parser } from '../parse/parser'
 
 const logger = lw.log('Structure')
 
-export class StructureView implements vscode.TreeDataProvider<TeXElement> {
-    private readonly structureChanged: vscode.EventEmitter<TeXElement | undefined | null> = new vscode.EventEmitter<TeXElement | undefined | null>()
-    readonly onDidChangeTreeData: vscode.Event<TeXElement | undefined | null>
+export const outline = {
+    reconstruct,
+    refresh,
+    reveal,
+    follow: true
+}
 
-    public structure: TeXElement[] = []
-    private cachedTeX: TeXElement[] | undefined = undefined
-    private cachedBib: TeXElement[] | undefined = undefined
-    private cachedDTX: TeXElement[] | undefined = undefined
-
-    private readonly viewer: vscode.TreeView<TeXElement | undefined>
-    private followCursor: boolean = true
-
-    constructor() {
-        this.onDidChangeTreeData = this.structureChanged.event
-        this.viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this, showCollapseAll: true })
-
-        vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
-           this.followCursor = ! this.followCursor
-           logger.log(`Follow cursor is set to ${this.followCursor}.`)
-        })
-
-        vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
-            // We don't check LaTeX ID as the reconstruct is handled by the Cacher.
-            // We don't check BibTeX ID as the reconstruct is handled by the citation completer.
-            if (lw.file.hasDtxLangId(e.languageId)) {
-                void this.reconstruct()
-            }
-        })
-
-        vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
-            if (!e) {
-                return
-            }
-            if (lw.file.hasTexLangId(e.document.languageId)
-                || lw.file.hasBibLangId(e.document.languageId)
-                || lw.file.hasDtxLangId(e.document.languageId)) {
-                void this.refresh()
-            }
-        })
-
-        vscode.workspace.onDidChangeConfiguration(async (ev: vscode.ConfigurationChangeEvent) => {
-            if (ev.affectsConfiguration('latex-workshop.view.outline.sections') ||
-                ev.affectsConfiguration('latex-workshop.view.outline.commands')) {
-                await parser.reset()
-                lw.cache.paths().forEach(async filePath => {
-                    const ast = lw.cache.get(filePath)?.ast
-                    if (ast) {
-                        await parser.parseArgs(ast)
-                    }
-                })
-                void this.reconstruct()
-            }
-        })
-    }
-
-    /**
-     * Return the latex or bibtex structure
-     *
-     * @param force If `false` and some cached data exists for the corresponding file, use it. If `true`, always recompute the structure from disk
-     */
-    async build(force: boolean): Promise<TeXElement[]> {
-        const document = vscode.window.activeTextEditor?.document
-        if (document?.languageId === 'doctex') {
-            if (force || !this.cachedDTX || this.getCachedDataRootFileName(this.cachedDTX) !== document.fileName) {
-                this.cachedDTX = undefined
-                this.cachedDTX = await constructDocTeX(document)
-                logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} entries for ${document.uri.fsPath} .`)
-            }
-            this.structure = this.cachedDTX
-        } else if (document?.languageId === 'bibtex') {
-            if (force || !this.cachedBib || this.getCachedDataRootFileName(this.cachedBib) !== document.fileName) {
-                this.cachedBib = undefined
-                this.cachedBib = await buildBibTeX(document)
-                logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} entries for ${document.uri.fsPath} .`)
-            }
-            this.structure = this.cachedBib
-        } else if (lw.root.file.path) {
-            if (force || !this.cachedTeX) {
-                this.cachedTeX = undefined
-                this.cachedTeX = await constructLaTeX()
-                logger.log(`Structure ${force ? 'force ' : ''}updated with ${this.structure.length} root sections for ${lw.root.file.path} .`)
-            }
-            this.structure = this.cachedTeX
-        } else {
-            this.structure = []
-            logger.log('Structure cleared on undefined root.')
+lw.onConfigChange(['view.outline.sections', 'view.outline.commands'], async () => {
+    await parser.reset()
+    lw.cache.paths().forEach(async filePath => {
+        const ast = lw.cache.get(filePath)?.ast
+        if (ast) {
+            await parser.parseArgs(ast)
         }
-        return this.structure
-    }
+    })
+    void reconstruct()
+})
 
-    async reconstruct() {
-        this.structure = await this.build(true)
-        this.structureChanged.fire(undefined)
+async function reconstruct() {
+    state.structure = await build(true)
+    state.treeDataProvider.structureChanged.fire(undefined)
+    lw.event.fire(lw.event.StructureUpdated)
+    return state.structure
+}
+
+async function refresh(fireChangedEvent: boolean = true) {
+    state.structure = await build(false)
+    if (fireChangedEvent) {
+        state.treeDataProvider.structureChanged.fire(undefined)
         lw.event.fire(lw.event.StructureUpdated)
-        return this.structure
     }
+    return state.structure
+}
 
-    async refresh(fireChangedEvent: boolean = true) {
-        this.structure = await this.build(false)
-        if (fireChangedEvent) {
-            this.structureChanged.fire(undefined)
-            lw.event.fire(lw.event.StructureUpdated)
+function reveal(e: vscode.TextEditorSelectionChangeEvent) {
+    if (!outline.follow || !state.viewer.visible) {
+        return
+    }
+    const line = e.selections[0].active.line
+    const f = e.textEditor.document.fileName
+    const currentNode = traverseSectionTree(state.structure, f, line)
+    return currentNode ? state.viewer.reveal(currentNode, {select: true}) : undefined
+}
+
+/**
+ * Return the latex or bibtex structure
+ *
+ * @param force If `false` and some cached data exists for the corresponding file, use it. If `true`, always recompute the structure from disk
+ */
+async function build(force: boolean): Promise<TeXElement[]> {
+    const document = vscode.window.activeTextEditor?.document
+    if (document?.languageId === 'doctex') {
+        if (force || !state.cachedDTX || getCachedDataRootFileName(state.cachedDTX) !== document.fileName) {
+            state.cachedDTX = undefined
+            state.cachedDTX = await constructDocTeX(document)
+            logger.log(`Structure ${force ? 'force ' : ''}updated with ${state.structure.length} entries for ${document.uri.fsPath} .`)
         }
-        return this.structure
-    }
-
-    private getCachedDataRootFileName(sections: TeXElement[]): string | undefined {
-        return sections[0]?.filePath
-    }
-
-    private traverseSectionTree(sections: TeXElement[], filePath: string, lineNo: number): TeXElement | undefined {
-        for (const node of sections) {
-            if ((node.filePath === filePath &&
-                 node.lineFr <= lineNo && node.lineTo >= lineNo) ||
-                (node.filePath !== filePath && node.children.map(child => child.filePath).includes(filePath))) {
-                // Look for a more precise surrounding section
-                return this.traverseSectionTree(node.children, filePath, lineNo) ?? node
-            }
+        state.structure = state.cachedDTX
+    } else if (document?.languageId === 'bibtex') {
+        if (force || !state.cachedBib || getCachedDataRootFileName(state.cachedBib) !== document.fileName) {
+            state.cachedBib = undefined
+            state.cachedBib = await buildBibTeX(document)
+            logger.log(`Structure ${force ? 'force ' : ''}updated with ${state.structure.length} entries for ${document.uri.fsPath} .`)
         }
-        return undefined
-    }
-
-    showCursorItem(e: vscode.TextEditorSelectionChangeEvent) {
-        if (!this.followCursor || !this.viewer.visible) {
-            return
+        state.structure = state.cachedBib
+    } else if (lw.root.file.path) {
+        if (force || !state.cachedTeX) {
+            state.cachedTeX = undefined
+            state.cachedTeX = await constructLaTeX()
+            logger.log(`Structure ${force ? 'force ' : ''}updated with ${state.structure.length} root sections for ${lw.root.file.path} .`)
         }
-        const line = e.selections[0].active.line
-        const f = e.textEditor.document.fileName
-        const currentNode = this.traverseSectionTree(this.structure, f, line)
-        return currentNode ? this.viewer.reveal(currentNode, {select: true}) : undefined
+        state.structure = state.cachedTeX
+    } else {
+        state.structure = []
+        logger.log('Structure cleared on undefined root.')
     }
+    return state.structure
+}
+
+function getCachedDataRootFileName(sections: TeXElement[]): string | undefined {
+    return sections[0]?.filePath
+}
+
+function traverseSectionTree(sections: TeXElement[], filePath: string, lineNo: number): TeXElement | undefined {
+    for (const node of sections) {
+        if ((node.filePath === filePath &&
+                node.lineFr <= lineNo && node.lineTo >= lineNo) ||
+            (node.filePath !== filePath && node.children.map(child => child.filePath).includes(filePath))) {
+            // Look for a more precise surrounding section
+            return traverseSectionTree(node.children, filePath, lineNo) ?? node
+        }
+    }
+    return undefined
+}
+
+class StructureProvider implements vscode.TreeDataProvider<TeXElement> {
+    readonly structureChanged: vscode.EventEmitter<TeXElement | undefined | null> = new vscode.EventEmitter<TeXElement | undefined | null>()
+    readonly onDidChangeTreeData: vscode.Event<TeXElement | undefined | null> = this.structureChanged.event
 
     getTreeItem(element: TeXElement): vscode.TreeItem {
         const treeItem: vscode.TreeItem = new vscode.TreeItem(
@@ -162,7 +127,7 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         if (lw.root.file.path === undefined) {
             return []
         }
-        return element?.children ?? this.refresh(false)
+        return element?.children ?? refresh(false)
     }
 
     getParent(element?: TeXElement): TeXElement | undefined {
@@ -171,4 +136,14 @@ export class StructureView implements vscode.TreeDataProvider<TeXElement> {
         }
         return element.parent
     }
+}
+
+const treeDataProvider = new StructureProvider()
+const state = {
+    structure: [] as TeXElement[],
+    cachedTeX: undefined as TeXElement[] | undefined,
+    cachedBib: undefined as TeXElement[] | undefined,
+    cachedDTX: undefined as TeXElement[] | undefined,
+    viewer: vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider, showCollapseAll: true }),
+    treeDataProvider
 }

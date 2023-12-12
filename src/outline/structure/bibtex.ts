@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import { bibtexParser } from 'latex-utensils'
 import { lw } from '../../lw'
-import { TeXElement, TeXElementType } from './types'
+import { type TeXElement, TeXElementType } from '../../types'
 import { parser } from '../../parse/parser'
 
 import { bibTools } from '../../completion/completer/citation'

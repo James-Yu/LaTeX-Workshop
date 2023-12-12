@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
-import { TeXElement, TeXElementType } from '../outline/structurelib/types'
-import { buildBibTeX } from '../outline/structurelib/bibtex'
-import { construct as constructLaTeX } from '../outline/structurelib/latex'
-import { construct } from '../outline/structurelib/doctex'
+import { type TeXElement, TeXElementType } from '../types'
+import { buildBibTeX } from '../outline/structure/bibtex'
+import { construct as constructLaTeX } from '../outline/structure/latex'
+import { construct } from '../outline/structure/doctex'
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
 

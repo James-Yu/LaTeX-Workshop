@@ -37,7 +37,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/sections.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure.length, 2)
     })
 
@@ -46,7 +46,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/sections.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, 'Section 1')
         assert.strictEqual(structure[1].label, 'Section 2')
     })
@@ -55,7 +55,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/section_nest.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure.length, 1)
         assert.strictEqual(structure[0].children[0].label, '1.1 Section 1.1')
         assert.strictEqual(structure[0].children[0].children[0].label, '1.1.1 Section 1.1.1')
@@ -65,7 +65,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/section_nest_gap.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].children[0].label, '1.0.1 Section 1.0.1')
     })
 
@@ -73,7 +73,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/section_before_root_level.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure.length, 3)
     })
 
@@ -81,7 +81,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/section_asterisk.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, '1 Section 1')
         assert.strictEqual(structure[1].label, '* Section *')
         assert.strictEqual(structure[1].children[0].label, '1.1 Section 1.1')
@@ -92,7 +92,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/section_title.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, '1 Title with line break')
         assert.strictEqual(structure[1].label, '2 Title with pdf switch')
         assert.strictEqual(structure[2].label, '3 Title with \\textit{macros}')
@@ -104,7 +104,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/section_custom.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, '1 Section 1')
         assert.strictEqual(structure[0].children[0].label, '1.1 Section 1.1')
     })
@@ -114,7 +114,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/section_nest.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, '1 Section 1')
         assert.strictEqual(structure[0].children[0].label, '1.1 Section 1.1')
         assert.strictEqual(structure[0].children[1].label, '1.2 Section 1.1.1')
@@ -124,7 +124,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/labels.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].children[0].label, '#label: sec-1')
         assert.strictEqual(structure[0].children[1].children[0].label, '#label: sec-11')
     })
@@ -134,7 +134,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/commands.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].children[0].label, '#note: A note')
     })
 
@@ -142,7 +142,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/frames.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, 'Frame 1')
     })
 
@@ -151,7 +151,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/frames.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, 'Frame')
     })
 
@@ -159,7 +159,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/frame_title.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, 'Frame 1: Frame 1')
         assert.strictEqual(structure[1].label, 'Frame 2: Frame 2')
         assert.strictEqual(structure[2].label, 'Frame 3: Frame 3')
@@ -172,7 +172,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/frame_title.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, 'Frame 1')
     })
 
@@ -180,7 +180,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/floats.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, 'Table 1: Table 1')
         assert.strictEqual(structure[1].label, 'Figure 1')
         assert.strictEqual(structure[2].label, 'Figure 2')
@@ -190,7 +190,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/float_nest.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, 'Table 1: Table 1')
         assert.strictEqual(structure[0].children[0].label, 'Figure 1')
     })
@@ -200,7 +200,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/floats.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, 'Frame 1')
     })
 
@@ -209,7 +209,7 @@ suite('Document structure test suite', () => {
         await test.load(fixture, [
             {src: 'structure/floats.tex', dst: 'main.tex'}
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, 'Table 1')
     })
 
@@ -220,7 +220,7 @@ suite('Document structure test suite', () => {
             {src: 'structure/subfiles_s2.tex', dst: 'sub/s2.tex'},
             {src: 'structure/subfiles_s3.tex', dst: 'sub/s3.tex'},
         ])
-        const structure = await lw.structureViewer.reconstruct()
+        const structure = await lw.outline.reconstruct()
         assert.strictEqual(structure[0].label, '1 Section 1')
         assert.strictEqual(structure[0].children[0].label, '1.1 Section 1.1')
         assert.strictEqual(structure[0].children[0].children[0].label, '1.1.1 Section 1.1.1')

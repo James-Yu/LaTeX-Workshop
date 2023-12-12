@@ -1,0 +1,1 @@
+export { outline } from './structure'

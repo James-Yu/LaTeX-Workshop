@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import { lw } from '../../lw'
-import { TeXElement } from './types'
+import type { TeXElement } from '../../types'
 import { parser } from '../../parse/parser'
 import { outline } from './latex'
 

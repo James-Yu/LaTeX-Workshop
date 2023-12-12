@@ -9,6 +9,7 @@ import type { compile } from './compile'
 import type { server, viewer } from './preview'
 import type { locate } from './locate'
 import type { lint } from './lint'
+import type { outline } from './outline'
 
 import type { Cleaner } from './extras/cleaner'
 import type { LaTeXCommanderTreeView } from './extras/activity-bar'
@@ -20,7 +21,6 @@ import type { TeXMagician } from './extras/texroot'
 import type { AtSuggestionCompleter, Completer } from './completion/latex'
 import type { GraphicsPreview } from './preview/graphics'
 import type { MathPreview } from './preview/math/mathpreview'
-import type { StructureView } from './outline/project'
 import type { TeXDoc } from './extras/texdoc'
 import type * as commands from './core/commands'
 
@@ -41,13 +41,13 @@ export const lw = {
     completer: Object.create(null) as Completer,
     atSuggestionCompleter: Object.create(null) as AtSuggestionCompleter,
     lint: {} as typeof lint,
+    outline: {} as typeof outline,
     cleaner: Object.create(null) as Cleaner,
     counter: Object.create(null) as Counter,
     texdoc: Object.create(null) as TeXDoc,
     texMagician: Object.create(null) as TeXMagician,
     section: Object.create(null) as Section,
     latexCommanderTreeView: Object.create(null) as LaTeXCommanderTreeView,
-    structureViewer: Object.create(null) as StructureView,
     snippetView: Object.create(null) as SnippetView,
     graphicsPreview: Object.create(null) as GraphicsPreview,
     mathPreview: Object.create(null) as MathPreview,
