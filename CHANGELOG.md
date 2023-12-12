@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.15.5] - 2023-12-12
+
+### Fixed
+- (#4090) Add the missing docker envvar setter.
+
 ## [9.15.4] - 2023-12-12
 
 ### Fixed
