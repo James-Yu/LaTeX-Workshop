@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.15.4] - 2023-12-12
+
+### Fixed
+- (#4089) Fix cmap files location in pdfjs-dist.
+
 ## [9.15.3] - 2023-12-12
 
 ### Changed
