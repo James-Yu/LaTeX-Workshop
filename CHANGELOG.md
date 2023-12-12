@@ -1,5 +1,19 @@
 # Change Log
 
+## [9.15.1] - 2023-12-12
+
+### Changed
+- Engineering changes.
+- Hold PDF refresh only when building
+
+### Fixed
+- Fix a !LW recipe not found fallback issue.
+- (#4063) Parse \item args for env pairs.
+- (#4068) Respect `latexmk`+`subfile` when creating output subfolders.
+- (#4069) Scan for `label={...}` as the second argument of an environment.
+- (#4076) Fail-safe for setting PDF viewer state.
+- (#4087) Regain editor focus after view in tab.
+
 ## [9.15.0] - 2023-11-16
 
 ### Added
