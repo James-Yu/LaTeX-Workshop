@@ -10,6 +10,7 @@ import { convertFilenameEncoding } from '../../utils/convertfilename'
 
 const logger = lw.log('Linter', 'ChkTeX')
 
+const getName = () => 'ChkTeX'
 export const chkTeX: LaTeXLinter = {
     linterDiagnostics: vscode.languages.createDiagnosticCollection(getName()),
     getName,
@@ -18,12 +19,7 @@ export const chkTeX: LaTeXLinter = {
     parseLog
 }
 
-const linterName = 'ChkTeX'
 let linterProcess: ChildProcessWithoutNullStreams | undefined
-
-function getName() {
-    return linterName
-}
 
 async function lintRootFile(rootPath: string) {
     const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', rootPath]
@@ -65,7 +61,7 @@ async function chktexWrapper(linterid: string, configScope: vscode.Configuration
     let stdout: string
     try {
         linterProcess?.kill()
-        logger.logCommand(`Linter for ${linterName} command`, command, args.concat(requiredArgs).filter(arg => arg !== ''))
+        logger.logCommand(`Linter for ${getName()} command`, command, args.concat(requiredArgs).filter(arg => arg !== ''))
         linterProcess = spawn(command, args.concat(requiredArgs).filter(arg => arg !== ''), { cwd: path.dirname(filePath) })
         stdout = await processWrapper(linterid, linterProcess, content)
     } catch (err: any) {
@@ -264,7 +260,7 @@ function showLinterDiagnostics(linterLog: ChkTeXLogEntry[]) {
         )
         const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
         diag.code = item.code
-        diag.source = linterName
+        diag.source = getName()
         if (diagsCollection[item.file] === undefined) {
             diagsCollection[item.file] = []
         }

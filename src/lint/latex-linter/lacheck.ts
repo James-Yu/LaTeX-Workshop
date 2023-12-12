@@ -9,6 +9,7 @@ import { convertFilenameEncoding } from '../../utils/convertfilename'
 
 const logger = lw.log('Linter', 'LaCheck')
 
+const getName = () => 'LaCheck'
 export const laCheck: LaTeXLinter = {
     linterDiagnostics: vscode.languages.createDiagnosticCollection(getName()),
     getName,
@@ -17,12 +18,7 @@ export const laCheck: LaTeXLinter = {
     parseLog
 }
 
-const linterName = 'LaCheck'
 let linterProcess: ChildProcessWithoutNullStreams | undefined
-
-function getName() {
-    return linterName
-}
 
 async function lintRootFile(rootPath: string) {
     const stdout = await lacheckWrapper('root', vscode.Uri.file(rootPath), rootPath, undefined)
@@ -52,7 +48,7 @@ async function lacheckWrapper(linterid: string, configScope: vscode.Configuratio
     let stdout: string
     try {
         linterProcess?.kill()
-        logger.logCommand(`Linter for ${linterName} command`, command, [ filePath ])
+        logger.logCommand(`Linter for ${getName()} command`, command, [ filePath ])
         linterProcess = spawn(command, [ filePath ], { cwd: path.dirname(filePath) })
         stdout = await processWrapper(linterid, linterProcess, content)
     } catch (err: any) {
@@ -115,7 +111,7 @@ function showLinterDiagnostics(linterLog: LaCheckLogEntry[]) {
             new vscode.Position(item.line - 1, 65535)
         )
         const diag = new vscode.Diagnostic(range, item.text, vscode.DiagnosticSeverity.Warning)
-        diag.source = linterName
+        diag.source = getName()
         if (diagsCollection[item.file] === undefined) {
             diagsCollection[item.file] = []
         }
