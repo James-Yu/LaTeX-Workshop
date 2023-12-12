@@ -1,8 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import { lw } from '../lw'
-import { getBibtexFormatConfig, type BibtexFormatConfig } from '../lint/bibtexformatterlib/bibtexutils'
-
+import { getBibtexFormatConfig } from '../lint/bibtex-formatter/utils'
 
 const logger = lw.log('Intelli', 'Bib')
 
@@ -13,7 +12,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
     private scope: vscode.ConfigurationScope | undefined = undefined
     private readonly entryItems: vscode.CompletionItem[] = []
     private readonly optFieldItems = Object.create(null) as { [key: string]: vscode.CompletionItem[] }
-    private bibtexFormatConfig: BibtexFormatConfig
+    private bibtexFormatConfig: ReturnType<typeof getBibtexFormatConfig>
 
     constructor() {
         if (vscode.window.activeTextEditor) {
@@ -107,7 +106,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         return maxLengths
     }
 
-    private entryToCompletion(itemName: string, itemFields: string[], config: BibtexFormatConfig, maxLengths: {[key: string]: number}): vscode.CompletionItem {
+    private entryToCompletion(itemName: string, itemFields: string[], config: ReturnType<typeof getBibtexFormatConfig>, maxLengths: {[key: string]: number}): vscode.CompletionItem {
         const suggestion: vscode.CompletionItem = new vscode.CompletionItem(itemName, vscode.CompletionItemKind.Snippet)
         suggestion.detail = itemName
         suggestion.documentation = `Add a @${itemName} entry`
@@ -127,7 +126,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         return suggestion
     }
 
-    private fieldsToCompletion(itemName: string, fields: string[], config: BibtexFormatConfig, maxLengths: {[key: string]: number}): vscode.CompletionItem[] {
+    private fieldsToCompletion(itemName: string, fields: string[], config: ReturnType<typeof getBibtexFormatConfig>, maxLengths: {[key: string]: number}): vscode.CompletionItem[] {
         const suggestions: vscode.CompletionItem[] = []
         fields.forEach(field => {
             const suggestion: vscode.CompletionItem = new vscode.CompletionItem(field, vscode.CompletionItemKind.Snippet)
