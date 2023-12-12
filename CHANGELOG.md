@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.15.3] - 2023-12-12
+
+### Changed
+- Try esbuild @unified-latex packages to reduce `.vsix` size.
+
 ## [9.15.2] - 2023-12-12
 
 ### Fixed
