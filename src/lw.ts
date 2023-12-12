@@ -13,7 +13,6 @@ import type { Cleaner } from './extras/cleaner'
 import type { LaTeXCommanderTreeView } from './extras/activity-bar'
 import type { Counter } from './extras/counter'
 import type { Linter } from './lint/latex-linter'
-import type { LwFileSystem } from './core/file-system'
 import type { MathPreviewPanel } from './extras/math-preview-panel'
 import type { Section } from './extras/section'
 import type { dupLabelDetector } from './lint/duplicate-label'
@@ -38,7 +37,6 @@ export const lw = {
     cache: {} as typeof cache,
     root: {} as typeof root,
     compile: {} as typeof compile,
-    lwfs: Object.create(null) as LwFileSystem,
     viewer: {} as typeof viewer,
     server: {} as typeof server,
     locate: {} as typeof locate,

@@ -193,7 +193,7 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
             return
         }
         try {
-            const buf: Buffer = await lw.lwfs.readFileAsBuffer(fileUri)
+            const buf: Buffer = Buffer.from(await vscode.workspace.fs.readFile(fileUri))
             sendOkResponse(response, buf, 'application/pdf')
             logger.log(`Preview PDF file: ${fileUri.toString(true)}`)
         } catch (e) {

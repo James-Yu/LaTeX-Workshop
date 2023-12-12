@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import { lw } from '../lw'
 import { TeXElement, TeXElementType } from '../outline/structurelib/types'
 import { buildBibTeX } from '../outline/structurelib/bibtex'
 import { construct as constructLaTeX } from '../outline/structurelib/latex'
@@ -13,7 +12,7 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         } else if (document.languageId === 'doctex') {
             return construct(document).then((sections: TeXElement[]) => this.sectionToSymbols(sections))
         }
-        if (lw.lwfs.isVirtualUri(document.uri)) {
+        if (document.uri.scheme !== 'file') {
             return []
         }
         const sections = await constructLaTeX(document.fileName, false)

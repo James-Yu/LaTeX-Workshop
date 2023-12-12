@@ -38,7 +38,6 @@ import { LaTeXCommanderTreeView } from './extras/activity-bar'
 import { Counter } from './extras/counter'
 import { dupLabelDetector } from './lint/duplicate-label'
 import { Linter } from './lint/latex-linter'
-import { LwFileSystem } from './core/file-system'
 import { MathPreviewPanel } from './extras/math-preview-panel'
 import { Section } from './extras/section'
 import { SnippetView } from './extras/snippet-view'
@@ -57,7 +56,6 @@ const logger = lw.log('Extension')
 
 function initialize(extensionContext: vscode.ExtensionContext) {
     lw.onDispose(undefined, extensionContext.subscriptions)
-    lw.lwfs = new LwFileSystem()
     lw.completer = new Completer()
     lw.atSuggestionCompleter = new AtSuggestionCompleter()
     lw.linter = new Linter()
@@ -113,7 +111,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     extensionContext.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
-        if (lw.lwfs.isVirtualUri(e.uri)){
+        if (e.uri.scheme !== 'file'){
             return
         }
         if (lw.file.hasTexLangId(e.languageId) ||
@@ -141,7 +139,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             logger.showStatus()
         }
-        if (e && lw.lwfs.isVirtualUri(e.document.uri)){
+        if (e && e.document.uri.scheme !== 'file'){
             return
         }
         if (e && lw.file.hasTexLangId(e.document.languageId) && e.document.fileName !== prevTeXDocumentPath) {
@@ -154,7 +152,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     extensionContext.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
-        if (lw.lwfs.isVirtualUri(e.document.uri)){
+        if (e.document.uri.scheme !== 'file'){
             return
         }
         if (!lw.file.hasTexLangId(e.document.languageId) &&

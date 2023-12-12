@@ -41,7 +41,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
     }
 
     provideDefinition(document: vscode.TextDocument, position: vscode.Position): vscode.Location | undefined {
-        if (lw.lwfs.isVirtualUri(document.uri)) {
+        if (document.uri.scheme !== 'file') {
             return
         }
         const token = tokenizer(document, position)
