@@ -255,7 +255,7 @@ function logConfig() {
             const defaultValue = configuration.inspect(config)?.defaultValue
             const configValue = configuration.get(config)
             if (JSON.stringify(defaultValue) !== JSON.stringify(configValue)) {
-                logTagless(`${config}: ${JSON.stringify(configValue)} .`)
+                logTagless(`[Config] ${config}: ${JSON.stringify(configValue)} .`)
             }
         })
     }
@@ -272,7 +272,7 @@ function logDeprecatedConfig() {
             const defaultValue = configuration.inspect(config)?.defaultValue
             const configValue = configuration.get(config)
             if (JSON.stringify(defaultValue) !== JSON.stringify(configValue)) {
-                logTagless(`Deprecated config ${config} with default value ${JSON.stringify(defaultValue)} is set to ${JSON.stringify(configValue)} at ${workspace?.uri.toString(true)} .`)
+                logTagless(`[Config] Deprecated config ${config} with default value ${JSON.stringify(defaultValue)} is set to ${JSON.stringify(configValue)} at ${workspace?.uri.toString(true)} .`)
                 void vscode.window.showWarningMessage(`Config "${config}" is deprecated. ${getDefaultConfig()[config].deprecationMessage}`)
             }
         })
@@ -287,7 +287,7 @@ function logConfigChange(ev: vscode.ConfigurationChangeEvent) {
             if (ev.affectsConfiguration(config, workspace)) {
                 const configuration = vscode.workspace.getConfiguration(undefined, workspace)
                 const value = configuration.get(config)
-                logTagless(`Configuration changed to { ${config}: ${JSON.stringify(value)} } at ${workspace?.uri.toString(true)} .`)
+                logTagless(`[Config] Configuration changed to { ${config}: ${JSON.stringify(value)} } at ${workspace?.uri.toString(true)} .`)
             }
         })
     }

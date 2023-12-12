@@ -13,6 +13,14 @@ const logger = lw.log('Build', 'Recipe')
 let prevRecipe: Recipe | undefined = undefined
 let prevLangId = ''
 
+setDockerImage()
+lw.onConfigChange('docker.image.latex', setDockerImage)
+function setDockerImage() {
+    const dockerImageName: string = vscode.workspace.getConfiguration('latex-workshop').get('docker.image.latex', '')
+    logger.log(`Set $LATEXWORKSHOP_DOCKER_LATEX: ${JSON.stringify(dockerImageName)}`)
+    process.env['LATEXWORKSHOP_DOCKER_LATEX'] = dockerImageName
+}
+
 /**
  * Build LaTeX project using the recipe system. Creates Tools containing the
  * tool info and adds them to the queue. Initiates a buildLoop if there is no
