@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.15.2] - 2023-12-12
+
+### Fixed
+- Excessively large `.vsix` package.
+
 ## [9.15.1] - 2023-12-12
 
 ### Changed
