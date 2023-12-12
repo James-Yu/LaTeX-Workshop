@@ -18,7 +18,7 @@ export const parser = {
 }
 
 const pool = workerpool.pool(
-    path.join(__dirname, 'parserlib', 'unified.js'),
+    path.join(__dirname, 'parser', 'unified.js'),
     { minWorkers: 1, maxWorkers: 1, workerType: 'thread' }
 )
 const proxy = pool.proxy<Worker>()
