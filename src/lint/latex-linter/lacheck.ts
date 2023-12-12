@@ -3,15 +3,21 @@ import * as path from 'path'
 import * as fs from 'fs'
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
 import { lw } from '../../lw'
-import type { ILinter } from '../latex-linter'
-import { processWrapper } from './linterutils'
+import type { LaTeXLinter } from '../../types'
+import { processWrapper } from './utils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
-
 
 const logger = lw.log('Linter', 'LaCheck')
 
+export const laCheck: LaTeXLinter = {
+    linterDiagnostics: vscode.languages.createDiagnosticCollection(getName()),
+    getName,
+    lintFile,
+    lintRootFile,
+    parseLog
+}
+
 const linterName = 'LaCheck'
-const linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(linterName)
 let linterProcess: ChildProcessWithoutNullStreams | undefined
 
 function getName() {
@@ -97,7 +103,7 @@ function parseLog(log: string, filePath?: string) {
         }
     }
     logger.log(`Logged ${linterLog.length} messages.`)
-    linterDiagnostics.clear()
+    laCheck.linterDiagnostics.clear()
     showLinterDiagnostics(linterLog)
 }
 
@@ -128,17 +134,9 @@ function showLinterDiagnostics(linterLog: LaCheckLogEntry[]) {
                     file1 = f
                 }
             }
-            linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
+            laCheck.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
         }
     }
-}
-
-export const laCheck: ILinter = {
-    linterDiagnostics,
-    getName,
-    lintFile,
-    lintRootFile,
-    parseLog
 }
 
 interface LaCheckLogEntry {

@@ -21,6 +21,8 @@ lw.server = server
 lw.viewer = viewer
 import { locate } from './locate'
 lw.locate = locate
+import { lint } from './lint'
+lw.lint = lint
 
 import { MathPreviewPanelSerializer } from './extras/math-preview-panel'
 import { BibtexCompleter } from './completion/bibtex'
@@ -28,21 +30,16 @@ import { HoverProvider } from './preview/hover'
 import { DocSymbolProvider } from './language/symbol-document'
 import { ProjectSymbolProvider } from './language/symbol-project'
 import { DefinitionProvider } from './language/definition'
-import { latexFormatterProvider } from './lint/latex-formatter'
 import { FoldingProvider, WeaveFoldingProvider } from './language/folding'
 import { SelectionRangeProvider } from './language/selection'
-import { bibtexFormat, bibtexFormatterProvider } from './lint/bibtex-formatter'
 
 import { Cleaner } from './extras/cleaner'
 import { LaTeXCommanderTreeView } from './extras/activity-bar'
 import { Counter } from './extras/counter'
-import { dupLabelDetector } from './lint/duplicate-label'
-import { Linter } from './lint/latex-linter'
 import { MathPreviewPanel } from './extras/math-preview-panel'
 import { Section } from './extras/section'
 import { SnippetView } from './extras/snippet-view'
 import { TeXMagician } from './extras/texroot'
-import { CodeActions } from './lint/latex-code-actions'
 import { AtSuggestionCompleter, Completer } from './completion/latex'
 import { GraphicsPreview } from './preview/graphics'
 import { MathPreview } from './preview/math/mathpreview'
@@ -58,14 +55,11 @@ function initialize(extensionContext: vscode.ExtensionContext) {
     lw.onDispose(undefined, extensionContext.subscriptions)
     lw.completer = new Completer()
     lw.atSuggestionCompleter = new AtSuggestionCompleter()
-    lw.linter = new Linter()
     lw.cleaner = new Cleaner()
     lw.counter = new Counter()
     lw.texdoc = new TeXDoc()
-    lw.codeActions = new CodeActions()
     lw.texMagician = new TeXMagician()
     lw.section = new Section()
-    lw.dupLabelDetector = dupLabelDetector
     lw.latexCommanderTreeView = new LaTeXCommanderTreeView()
     lw.structureViewer = new StructureView()
     lw.snippetView = new SnippetView()
@@ -118,7 +112,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             lw.cache.getIncludedTeX(lw.root.file.path, [], false).includes(e.fileName) ||
             lw.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
-            lw.linter.lintRootFileIfEnabled()
+            lw.lint.latex.root()
             void lw.compile.autoBuild(e.fileName, 'onSave')
             lw.counter.countOnSaveIfEnabled(e.fileName)
         }
@@ -145,7 +139,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         if (e && lw.file.hasTexLangId(e.document.languageId) && e.document.fileName !== prevTeXDocumentPath) {
             prevTeXDocumentPath = e.document.fileName
             await lw.root.find()
-            lw.linter.lintRootFileIfEnabled()
+            lw.lint.latex.root()
         } else if (!e || !lw.file.hasBibLangId(e.document.languageId)) {
             isLaTeXActive = false
         }
@@ -161,7 +155,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             return
         }
         lw.event.fire(lw.event.DocumentChanged)
-        lw.linter.lintActiveFileIfEnabledAfterInterval(e.document)
+        lw.lint.latex.on(e.document)
         lw.cache.refreshCacheAggressive(e.document.fileName)
     }))
 
@@ -177,7 +171,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     registerProviders(extensionContext)
 
     void lw.root.find().then(() => {
-        lw.linter.lintRootFileIfEnabled()
+        lw.lint.latex.root()
         if (lw.file.hasTexLangId(vscode.window.activeTextEditor?.document.languageId ?? '')) {
             prevTeXDocumentPath = vscode.window.activeTextEditor?.document.fileName
         }
@@ -208,7 +202,7 @@ function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext
         vscode.commands.registerCommand('latex-workshop.wordcount', () => lw.commands.wordcount()),
         vscode.commands.registerCommand('latex-workshop.log', () => lw.commands.showLog()),
         vscode.commands.registerCommand('latex-workshop.compilerlog', () => lw.commands.showLog('compiler')),
-        vscode.commands.registerCommand('latex-workshop.code-action', (d: vscode.TextDocument, r: vscode.Range, c: number, m: string) => lw.codeActions.runCodeAction(d, r, c, m)),
+        vscode.commands.registerCommand('latex-workshop.code-action', (d: vscode.TextDocument, r: vscode.Range, c: number, m: string) => lw.lint.latex.action(d, r, c, m)),
         vscode.commands.registerCommand('latex-workshop.goto-section', (filePath: string, lineNumber: number) => lw.commands.gotoSection(filePath, lineNumber)),
         vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => lw.commands.navigateToEnvPair()),
         vscode.commands.registerCommand('latex-workshop.select-envcontent', () => lw.commands.selectEnvContent('content')),
@@ -253,9 +247,9 @@ function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext
         vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => lw.commands.shiftSectioningLevel('demote')),
         vscode.commands.registerCommand('latex-workshop.select-section', () => lw.commands.selectSection()),
 
-        vscode.commands.registerCommand('latex-workshop.bibsort', () => bibtexFormat(true, false)),
-        vscode.commands.registerCommand('latex-workshop.bibalign', () => bibtexFormat(false, true)),
-        vscode.commands.registerCommand('latex-workshop.bibalignsort', () => bibtexFormat(true, true)),
+        vscode.commands.registerCommand('latex-workshop.bibsort', () => lw.lint.bibtex.format(true, false)),
+        vscode.commands.registerCommand('latex-workshop.bibalign', () => lw.lint.bibtex.format(false, true)),
+        vscode.commands.registerCommand('latex-workshop.bibalignsort', () => lw.lint.bibtex.format(true, true)),
 
         vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => lw.commands.openMathPreviewPanel()),
         vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => lw.commands.closeMathPreviewPanel()),
@@ -274,10 +268,10 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     const bibtexSelector = selectDocumentsWithId(['bibtex'])
 
     extensionContext.subscriptions.push(
-        vscode.languages.registerDocumentFormattingEditProvider(latexindentSelector, latexFormatterProvider),
-        vscode.languages.registerDocumentFormattingEditProvider(bibtexSelector, bibtexFormatterProvider),
-        vscode.languages.registerDocumentRangeFormattingEditProvider(latexindentSelector, latexFormatterProvider),
-        vscode.languages.registerDocumentRangeFormattingEditProvider(bibtexSelector, bibtexFormatterProvider)
+        vscode.languages.registerDocumentFormattingEditProvider(latexindentSelector, lw.lint.latex.formatter),
+        vscode.languages.registerDocumentFormattingEditProvider(bibtexSelector, lw.lint.bibtex.formatter),
+        vscode.languages.registerDocumentRangeFormattingEditProvider(latexindentSelector, lw.lint.latex.formatter),
+        vscode.languages.registerDocumentRangeFormattingEditProvider(bibtexSelector, lw.lint.bibtex.formatter)
     )
 
     extensionContext.subscriptions.push(
@@ -337,7 +331,7 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     })
 
     extensionContext.subscriptions.push(
-        vscode.languages.registerCodeActionsProvider(latexSelector, lw.codeActions),
+        vscode.languages.registerCodeActionsProvider(latexSelector, lw.lint.latex.actionprovider),
         vscode.languages.registerFoldingRangeProvider(latexSelector, new FoldingProvider()),
         vscode.languages.registerFoldingRangeProvider(weaveSelector, new WeaveFoldingProvider())
     )

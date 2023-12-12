@@ -27,7 +27,7 @@ function getBibtexFormatTab(tab: string): string | undefined {
     }
 }
 
-export type BibtexFormatConfig = {
+type BibtexFormatConfig = {
     tab: string,
     left: string,
     right: string,

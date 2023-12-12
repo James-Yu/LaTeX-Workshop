@@ -3,8 +3,8 @@ import * as path from 'path'
 import * as assert from 'assert'
 import { lw } from '../../src/lw'
 import * as test from './utils'
-import { chkTeX } from '../../src/lint/linterlib/chktex'
-import { laCheck } from '../../src/lint/linterlib/lacheck'
+import { chkTeX } from '../../src/lint/latex-linter/chktex'
+import { laCheck } from '../../src/lint/latex-linter/lacheck'
 
 suite('Linter test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')

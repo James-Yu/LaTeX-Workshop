@@ -2,16 +2,22 @@ import * as vscode from 'vscode'
 import { bibtexParser } from 'latex-utensils'
 import { performance } from 'perf_hooks'
 import { lw } from '../lw'
-import * as BibtexUtils from './bibtexformatterlib/bibtexutils'
+import { bibtexFormat, bibtexSort, getBibtexFormatConfig } from './bibtex-formatter/utils'
+import type { BibtexEntry } from './bibtex-formatter/utils'
 
 import { parser } from '../parse/parser'
 
 const logger = lw.log('Format', 'Bib')
 
+export {
+    format,
+    formattingProvider as formatter
+}
+
 const duplicatesDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection('BibTeX')
 const diags: vscode.Diagnostic[] = []
 
-export async function bibtexFormat(sort: boolean, align: boolean) {
+async function format(sort: boolean, align: boolean) {
     if (!vscode.window.activeTextEditor) {
         logger.log('Exit formatting. The active textEditor is undefined.')
         return
@@ -47,7 +53,7 @@ export async function bibtexFormat(sort: boolean, align: boolean) {
 
 async function formatDocument(document: vscode.TextDocument, sort: boolean, align: boolean, range?: vscode.Range): Promise<vscode.TextEdit[]> {
     // Get configuration
-    const formatConfig = BibtexUtils.getBibtexFormatConfig(document.uri)
+    const formatConfig = getBibtexFormatConfig(document.uri)
     const config = vscode.workspace.getConfiguration('latex-workshop', document)
     const handleDuplicates = config.get('bibtex-format.handleDuplicates') as 'Ignore Duplicates' | 'Highlight Duplicates' | 'Comment Duplicates'
     const lineOffset = range ? range.start.line : 0
@@ -60,7 +66,7 @@ async function formatDocument(document: vscode.TextDocument, sort: boolean, alig
     }
     logger.log(`Parsed ${ast.content.length} AST items.`)
     // Create an array of entries and of their starting locations
-    const entries: BibtexUtils.BibtexEntry[] = []
+    const entries: BibtexEntry[] = []
     const entryLocations: vscode.Range[] = []
     ast.content.forEach(item => {
         if (bibtexParser.isEntry(item) || bibtexParser.isStringEntry(item)) {
@@ -78,7 +84,7 @@ async function formatDocument(document: vscode.TextDocument, sort: boolean, alig
     let sortedEntryLocations: vscode.Range[] = []
     const duplicates = new Set<bibtexParser.Entry>()
     if (sort) {
-        entries.sort(BibtexUtils.bibtexSort(duplicates, formatConfig)).forEach(entry => {
+        entries.sort(bibtexSort(duplicates, formatConfig)).forEach(entry => {
             sortedEntryLocations.push((new vscode.Range(
                 entry.location.start.line - 1,
                 entry.location.start.column - 1,
@@ -99,7 +105,7 @@ async function formatDocument(document: vscode.TextDocument, sort: boolean, alig
     for (let i = 0; i < entries.length; i++) {
         if (align && bibtexParser.isEntry(entries[i])) {
             const entry: bibtexParser.Entry = entries[i] as bibtexParser.Entry
-            text = BibtexUtils.bibtexFormat(entry, formatConfig)
+            text = bibtexFormat(entry, formatConfig)
         } else {
             text = document.getText(sortedEntryLocations[i])
         }
@@ -139,7 +145,7 @@ async function formatDocument(document: vscode.TextDocument, sort: boolean, alig
     return edits
 }
 
-class BibtexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
+class FormattingProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
         const sort = vscode.workspace.getConfiguration('latex-workshop', document).get('bibtex-format.sort.enabled') as boolean
         logger.log('Start bibtex formatting on behalf of VSCode\'s formatter.')
@@ -153,4 +159,4 @@ class BibtexFormatterProvider implements vscode.DocumentFormattingEditProvider, 
     }
 }
 
-export const bibtexFormatterProvider = new BibtexFormatterProvider()
+const formattingProvider = new FormattingProvider()

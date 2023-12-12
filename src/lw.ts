@@ -8,17 +8,15 @@ import type { root } from './core/root'
 import type { compile } from './compile'
 import type { server, viewer } from './preview'
 import type { locate } from './locate'
+import type { lint } from './lint'
 
 import type { Cleaner } from './extras/cleaner'
 import type { LaTeXCommanderTreeView } from './extras/activity-bar'
 import type { Counter } from './extras/counter'
-import type { Linter } from './lint/latex-linter'
 import type { MathPreviewPanel } from './extras/math-preview-panel'
 import type { Section } from './extras/section'
-import type { dupLabelDetector } from './lint/duplicate-label'
 import type { SnippetView } from './extras/snippet-view'
 import type { TeXMagician } from './extras/texroot'
-import type { CodeActions } from './lint/latex-code-actions'
 import type { AtSuggestionCompleter, Completer } from './completion/latex'
 import type { GraphicsPreview } from './preview/graphics'
 import type { MathPreview } from './preview/math/mathpreview'
@@ -42,14 +40,12 @@ export const lw = {
     locate: {} as typeof locate,
     completer: Object.create(null) as Completer,
     atSuggestionCompleter: Object.create(null) as AtSuggestionCompleter,
-    linter: Object.create(null) as Linter,
+    lint: {} as typeof lint,
     cleaner: Object.create(null) as Cleaner,
     counter: Object.create(null) as Counter,
     texdoc: Object.create(null) as TeXDoc,
-    codeActions: Object.create(null) as CodeActions,
     texMagician: Object.create(null) as TeXMagician,
     section: Object.create(null) as Section,
-    dupLabelDetector: Object.create(null) as typeof dupLabelDetector,
     latexCommanderTreeView: Object.create(null) as LaTeXCommanderTreeView,
     structureViewer: Object.create(null) as StructureView,
     snippetView: Object.create(null) as SnippetView,

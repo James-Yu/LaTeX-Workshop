@@ -67,7 +67,7 @@ async function find(): Promise<undefined> {
 
             // We also clean the completions from the old project
             lw.completer.input.reset()
-            lw.dupLabelDetector.reset()
+            lw.lint.label.reset()
             lw.cache.reset()
             lw.cache.add(rootFilePath)
             void lw.cache.refreshCache(rootFilePath).then(async () => {

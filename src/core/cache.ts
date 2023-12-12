@@ -199,7 +199,7 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<Promis
         updateAST(fileCache).then(() => {
             updateElements(fileCache)
         }).finally(() => {
-            lw.dupLabelDetector.run()
+            lw.lint.label.check()
             cachingFilesCount--
             promises.delete(filePath)
             lw.event.fire(lw.event.FileParsed, filePath)

@@ -5,7 +5,7 @@ import { lw } from '../lw'
 const duplicatedLabelsDiagnostics = vscode.languages.createDiagnosticCollection('Duplicate Labels')
 
 export const dupLabelDetector = {
-    run,
+    check,
     reset
 }
 
@@ -40,7 +40,7 @@ function computeDuplicates(): string[] {
     return duplicates
 }
 
-function run() {
+function check() {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (!configuration.get('check.duplicatedLabels.enabled')) {
         return

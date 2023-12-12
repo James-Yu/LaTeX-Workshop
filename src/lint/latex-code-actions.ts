@@ -1,5 +1,10 @@
-import * as vs from 'vscode'
+import * as vscode from 'vscode'
 import { TeXMathEnvFinder } from '../preview/math/mathpreviewlib/texmathenvfinder'
+
+export {
+    provider,
+    action
+}
 
 /**
  * Each number corresponds to the warning number of ChkTeX.
@@ -27,19 +32,18 @@ const CODE_TO_ACTION_STRING: {[key: number]: string} = {
     46: 'Use \\( ... \\) instead of $ ... $'
 }
 
-function characterBeforeRange(document: vs.TextDocument, range: vs.Range) {
+function characterBeforeRange(document: vscode.TextDocument, range: vscode.Range) {
     return document.getText(range.with(range.start.translate(0, -1)))[0]
 }
 
-function isOpeningQuote(document: vs.TextDocument, range: vs.Range) {
+function isOpeningQuote(document: vscode.TextDocument, range: vscode.Range) {
     return range.start.character === 0 || characterBeforeRange(document, range) === ' '
 }
 
-
-export class CodeActions implements vs.CodeActionProvider {
+class CodeActionProvider implements vscode.CodeActionProvider {
     // Leading underscore to avoid tslint complaint
-    provideCodeActions(document: vs.TextDocument, _range: vs.Range, context: vs.CodeActionContext, _token: vs.CancellationToken): vs.Command[] {
-        const actions: vs.Command[] = []
+    provideCodeActions(document: vscode.TextDocument, _range: vscode.Range, context: vscode.CodeActionContext, _token: vscode.CancellationToken): vscode.Command[] {
+        const actions: vscode.Command[] = []
         context.diagnostics.filter(d => d.source === 'ChkTeX').forEach(d => {
             let code = typeof d.code === 'object' ? d.code.value : d.code
             if (!code) {
@@ -60,134 +64,135 @@ export class CodeActions implements vs.CodeActionProvider {
 
         return actions
     }
+}
 
-    runCodeAction(document: vs.TextDocument, range: vs.Range, code: number, message: string) {
-        let fixString: string | undefined
-        let regexResult: RegExpExecArray | null
-        switch (code) {
-            case 24:
-            case 26:
-            case 39:
-            case 42:
-                // In all these cases remove all proceeding whitespace.
-                void this.replaceWhitespaceOnLineBefore(document, range.end, '')
-                break
-            case 4:
-            case 5:
-            case 28:
-                // In all these cases just clear what ChkTeX highlighted.
-                void this.replaceRangeWithString(document, range, '')
-                break
-            case 1:
-                void this.replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '{}')
-                break
-            case 2:
-                void this.replaceWhitespaceOnLineBefore(document, range.end, '~')
-                break
-            case 6:
-                void this.replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '\\/')
-                break
-            case 11:
-                // add a space after so we don't accidentally join with the following word.
-                regexResult = /\\[cl]?dots/.exec(message)
-                if (!regexResult) {
-                    break
-                }
-                fixString = regexResult[0] + ' '
-                void this.replaceRangeWithString(document, range, fixString)
-                break
-            case 12:
-                void this.replaceRangeWithString(document, range, '\\ ')
-                break
-            case 13:
-                void this.replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '\\@')
-                break
-            case 18:
-                if (isOpeningQuote(document, range)) {
-                    void this.replaceRangeWithRepeatedString(document, range, '``')
-                } else {
-                    void this.replaceRangeWithRepeatedString(document, range, "''")
-                }
-                break
-            case 32:
-                void this.replaceRangeWithRepeatedString(document, range, '`')
-                break
-            case 33:
-                void this.replaceRangeWithRepeatedString(document, range, "'")
-                break
-            case 34:
-                if (isOpeningQuote(document, range)) {
-                    void this.replaceRangeWithRepeatedString(document, range, '`')
-                } else {
-                    void this.replaceRangeWithRepeatedString(document, range, "'")
-                }
-                break
-            case 35:
-                regexResult = /`(.+)'/.exec(message)
-                if (!regexResult) {
-                    break
-                }
-                fixString = regexResult[1]
-                void this.replaceRangeWithString(document, range, fixString)
-                break
-            case 45:
-                void this.replaceMathDelimitersInRange(document, range, '$$', '\\[', '\\]')
-                break
-            case 46:
-                void this.replaceMathDelimitersInRange(document, range, '$', '\\(', '\\)')
-                break
-            default:
-                break
-        }
-    }
+const provider = new CodeActionProvider()
 
-    private replaceWhitespaceOnLineBefore(document: vs.TextDocument, position: vs.Position, replaceWith: string) {
-        const beforePosRange = new vs.Range(new vs.Position(position.line, 0), position)
-        const text = document.getText(beforePosRange)
-        const regexResult = /\s*$/.exec(text)
-        if (!regexResult) {
-            return vs.workspace.applyEdit(new vs.WorkspaceEdit())
-        }
-        const charactersToRemove = regexResult[0].length
-        const wsRange = new vs.Range(new vs.Position(position.line, position.character - charactersToRemove), position)
-        const edit = new vs.WorkspaceEdit()
-        edit.replace(document.uri, wsRange, replaceWith)
-        return vs.workspace.applyEdit(edit)
-    }
-
-    private replaceRangeWithString(document: vs.TextDocument, range: vs.Range, replacementString: string) {
-        const edit = new vs.WorkspaceEdit()
-        edit.replace(document.uri, range, replacementString)
-        return vs.workspace.applyEdit(edit)
-    }
-
-    private replaceRangeWithRepeatedString(document: vs.TextDocument, range: vs.Range, replacementString: string) {
-        return this.replaceRangeWithString(document, range, replacementString.repeat(range.end.character - range.start.character))
-    }
-
-    private replaceMathDelimitersInRange(document: vs.TextDocument, range: vs.Range, oldDelim: '$' | '$$', startDelim: string, endDelim: string) {
-        const oldDelimLength = oldDelim.length
-        let endRange = range.with(range.end.translate(0, - oldDelimLength), range.end)
-        const text = document.getText(endRange)
-        // Check if the end position really contains the end delimiter.
-        // This is not the case when the opening and closing delimiters are on different lines
-        if (text !== oldDelim) {
-            if (oldDelim === '$$') {
-                const pat = /(?<!\\)\$\$/
-                const endPos = TeXMathEnvFinder.findEndPair(document, pat, endRange.start)
-                if (!endPos) {
-                    return
-                }
-                endRange = new vs.Range(endPos.translate(0, - oldDelimLength), endPos)
+function action(document: vscode.TextDocument, range: vscode.Range, code: number, message: string) {
+    let fixString: string | undefined
+    let regexResult: RegExpExecArray | null
+    switch (code) {
+        case 24:
+        case 26:
+        case 39:
+        case 42:
+            // In all these cases remove all proceeding whitespace.
+            void replaceWhitespaceOnLineBefore(document, range.end, '')
+            break
+        case 4:
+        case 5:
+        case 28:
+            // In all these cases just clear what ChkTeX highlighted.
+            void replaceRangeWithString(document, range, '')
+            break
+        case 1:
+            void replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '{}')
+            break
+        case 2:
+            void replaceWhitespaceOnLineBefore(document, range.end, '~')
+            break
+        case 6:
+            void replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '\\/')
+            break
+        case 11:
+            // add a space after so we don't accidentally join with the following word.
+            regexResult = /\\[cl]?dots/.exec(message)
+            if (!regexResult) {
+                break
+            }
+            fixString = regexResult[0] + ' '
+            void replaceRangeWithString(document, range, fixString)
+            break
+        case 12:
+            void replaceRangeWithString(document, range, '\\ ')
+            break
+        case 13:
+            void replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '\\@')
+            break
+        case 18:
+            if (isOpeningQuote(document, range)) {
+                void replaceRangeWithRepeatedString(document, range, '``')
             } else {
+                void replaceRangeWithRepeatedString(document, range, "''")
+            }
+            break
+        case 32:
+            void replaceRangeWithRepeatedString(document, range, '`')
+            break
+        case 33:
+            void replaceRangeWithRepeatedString(document, range, "'")
+            break
+        case 34:
+            if (isOpeningQuote(document, range)) {
+                void replaceRangeWithRepeatedString(document, range, '`')
+            } else {
+                void replaceRangeWithRepeatedString(document, range, "'")
+            }
+            break
+        case 35:
+            regexResult = /`(.+)'/.exec(message)
+            if (!regexResult) {
+                break
+            }
+            fixString = regexResult[1]
+            void replaceRangeWithString(document, range, fixString)
+            break
+        case 45:
+            void replaceMathDelimitersInRange(document, range, '$$', '\\[', '\\]')
+            break
+        case 46:
+            void replaceMathDelimitersInRange(document, range, '$', '\\(', '\\)')
+            break
+        default:
+            break
+    }
+}
+
+function replaceWhitespaceOnLineBefore(document: vscode.TextDocument, position: vscode.Position, replaceWith: string) {
+    const beforePosRange = new vscode.Range(new vscode.Position(position.line, 0), position)
+    const text = document.getText(beforePosRange)
+    const regexResult = /\s*$/.exec(text)
+    if (!regexResult) {
+        return vscode.workspace.applyEdit(new vscode.WorkspaceEdit())
+    }
+    const charactersToRemove = regexResult[0].length
+    const wsRange = new vscode.Range(new vscode.Position(position.line, position.character - charactersToRemove), position)
+    const edit = new vscode.WorkspaceEdit()
+    edit.replace(document.uri, wsRange, replaceWith)
+    return vscode.workspace.applyEdit(edit)
+}
+
+function replaceRangeWithString(document: vscode.TextDocument, range: vscode.Range, replacementString: string) {
+    const edit = new vscode.WorkspaceEdit()
+    edit.replace(document.uri, range, replacementString)
+    return vscode.workspace.applyEdit(edit)
+}
+
+function replaceRangeWithRepeatedString(document: vscode.TextDocument, range: vscode.Range, replacementString: string) {
+    return replaceRangeWithString(document, range, replacementString.repeat(range.end.character - range.start.character))
+}
+
+function replaceMathDelimitersInRange(document: vscode.TextDocument, range: vscode.Range, oldDelim: '$' | '$$', startDelim: string, endDelim: string) {
+    const oldDelimLength = oldDelim.length
+    let endRange = range.with(range.end.translate(0, - oldDelimLength), range.end)
+    const text = document.getText(endRange)
+    // Check if the end position really contains the end delimiter.
+    // This is not the case when the opening and closing delimiters are on different lines
+    if (text !== oldDelim) {
+        if (oldDelim === '$$') {
+            const pat = /(?<!\\)\$\$/
+            const endPos = TeXMathEnvFinder.findEndPair(document, pat, endRange.start)
+            if (!endPos) {
                 return
             }
+            endRange = new vscode.Range(endPos.translate(0, - oldDelimLength), endPos)
+        } else {
+            return
         }
-        const edit = new vs.WorkspaceEdit()
-        edit.replace(document.uri, endRange, endDelim)
-        const startRange = range.with(range.start, range.start.translate(0, oldDelimLength))
-        edit.replace(document.uri, startRange, startDelim)
-        return vs.workspace.applyEdit(edit)
     }
-
+    const edit = new vscode.WorkspaceEdit()
+    edit.replace(document.uri, endRange, endDelim)
+    const startRange = range.with(range.start, range.start.translate(0, oldDelimLength))
+    edit.replace(document.uri, startRange, startDelim)
+    return vscode.workspace.applyEdit(edit)
 }

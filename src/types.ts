@@ -1,10 +1,11 @@
+import type * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import type { CmdEnvSuggestion } from './completion/completer/completerutils'
 import type { CiteSuggestion } from './completion/completer/citation'
 import type { GlossarySuggestion } from './completion/completer/glossary'
 import type { ICompletionItem } from './completion/latex'
 
-export interface FileCache {
+export type FileCache = {
     /** The raw file path of this Cache. */
     filePath: string,
     /** Cached content of file. Dirty if opened in vscode, disk otherwise */
@@ -104,4 +105,12 @@ export type SyncTeXRecordToTeX = {
     input: string,
     line: number,
     column: number
+}
+
+export interface LaTeXLinter {
+    readonly linterDiagnostics: vscode.DiagnosticCollection,
+    getName(): string,
+    lintRootFile(rootPath: string): Promise<void>,
+    lintFile(document: vscode.TextDocument): Promise<void>,
+    parseLog(log: string, filePath?: string): void
 }

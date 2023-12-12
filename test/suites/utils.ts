@@ -78,7 +78,7 @@ export async function reset() {
     lw.root.file.path = undefined
     lw.root.subfiles.path = undefined
     lw.completer.input.reset()
-    lw.dupLabelDetector.reset()
+    lw.lint.label.reset()
     lw.cache.reset()
     glob.sync('**/{**.tex,**.pdf,**.bib}', { cwd: getFixture() }).forEach(file => { try {fs.unlinkSync(path.resolve(getFixture(), file))} catch {} })
 }

@@ -4,10 +4,13 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
 import { lw } from '../lw'
-import {replaceArgumentPlaceholders} from '../utils/utils'
-
+import { replaceArgumentPlaceholders } from '../utils/utils'
 
 const logger = lw.log('Format', 'TeX')
+
+export {
+    formattingProvider as formatter
+}
 
 const fullRange = (doc: vscode.TextDocument) => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
 
@@ -182,7 +185,7 @@ function format(document: vscode.TextDocument, range?: vscode.Range): Thenable<v
     })
 }
 
-class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
+class FormattingProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
     constructor() {
         const machineOs = os.platform()
         const oss: OperatingSystem[] = [
@@ -207,4 +210,4 @@ class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, v
 
 }
 
-export const latexFormatterProvider = new LatexFormatterProvider()
+const formattingProvider = new FormattingProvider()

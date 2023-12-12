@@ -4,15 +4,21 @@ import * as fs from 'fs'
 import * as os from 'os'
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
 import { lw } from '../../lw'
-import type { ILinter } from '../latex-linter'
-import { processWrapper } from './linterutils'
+import type { LaTeXLinter } from '../../types'
+import { processWrapper } from './utils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
-
 
 const logger = lw.log('Linter', 'ChkTeX')
 
+export const chkTeX: LaTeXLinter = {
+    linterDiagnostics: vscode.languages.createDiagnosticCollection(getName()),
+    getName,
+    lintFile,
+    lintRootFile,
+    parseLog
+}
+
 const linterName = 'ChkTeX'
-const linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(linterName)
 let linterProcess: ChildProcessWithoutNullStreams | undefined
 
 function getName() {
@@ -191,11 +197,11 @@ function parseLog(log: string, singleFileOriginalPath?: string, tabSizeArg?: num
     logger.log(`Logged ${linterLog.length} messages.`)
     if (singleFileOriginalPath === undefined) {
         // A full lint of the project has taken place - clear all previous results.
-        linterDiagnostics.clear()
+        chkTeX.linterDiagnostics.clear()
     } else if (linterLog.length === 0) {
         // We are linting a single file and the new log is empty for it -
         // clean existing records.
-        linterDiagnostics.set(vscode.Uri.file(singleFileOriginalPath), [])
+        chkTeX.linterDiagnostics.set(vscode.Uri.file(singleFileOriginalPath), [])
     }
     showLinterDiagnostics(linterLog)
 }
@@ -277,7 +283,7 @@ function showLinterDiagnostics(linterLog: ChkTeXLogEntry[]) {
                     file1 = f
                 }
             }
-            linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
+            chkTeX.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
         }
     }
 }
@@ -296,12 +302,4 @@ const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'typesetting': vscode.DiagnosticSeverity.Information,
     'warning': vscode.DiagnosticSeverity.Warning,
     'error': vscode.DiagnosticSeverity.Error,
-}
-
-export const chkTeX: ILinter = {
-    linterDiagnostics,
-    getName,
-    lintFile,
-    lintRootFile,
-    parseLog
 }
