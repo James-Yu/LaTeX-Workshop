@@ -87,7 +87,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             })
         })
         this.onViewUpdated(() => this.repositionDOM())
-        void this.setupAppOptions()
+        this.setupAppOptions()
     }
 
     // For the details of the initialization of PDF.js,
@@ -211,24 +211,25 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return this.setupAppOptionsPromise.promise
     }
 
-    private async setupAppOptions() {
+    private setupAppOptions() {
         const workerPort = new Worker('build/pdf.worker.mjs', { type: 'module' })
-        const params = await this.fetchParams()
-        document.addEventListener('webviewerloaded', () => {
-            const color = this.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark : params.color.light
+        document.addEventListener('webviewerloaded', async () => {
             const options = {
                 annotationEditorMode: -1,
                 disablePreferences: true,
                 enableScripting: false,
-                cMapUrl: '/cmaps/',
+                cMapUrl: '../cmaps/',
                 sidebarViewOnLoad: 0,
-                standardFontDataUrl: '/standard_fonts/',
+                standardFontDataUrl: '../standard_fonts/',
                 workerPort,
-                workerSrc: 'build/pdf.worker.mjs',
-                forcePageColors: true,
-                ...color
+                workerSrc: './build/pdf.worker.mjs',
+                forcePageColors: true
             }
             PDFViewerApplicationOptions.setAll(options)
+            const params = await this.fetchParams()
+            const color = this.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark : params.color.light
+
+            PDFViewerApplicationOptions.setAll(color)
         })
         this.setupAppOptionsPromise.resolve()
     }
@@ -559,24 +560,17 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         if (!styleSheet) {
             return
         }
-        const scaleSelectContainer = document.getElementById('scaleSelectContainer') as HTMLElement
-        const scaleWidth = utils.elementWidth(scaleSelectContainer)
-        const numPages = document.getElementById('numPages') as HTMLElement
-        const numPagesWidth = utils.elementWidth(numPages)
-        const printerButtonWidth = this.embedded ? 0 : 34
-        const smallViewMaxWidth = 380 + numPagesWidth + scaleWidth + printerButtonWidth
-        const smallViewRule = `@media all and (max-width: ${smallViewMaxWidth}px) { .hiddenSmallView, .hiddenSmallView * { display: none; } }`
-        styleSheet.insertRule(smallViewRule)
-        const buttonSpacerMaxWidth = 340 + numPagesWidth + scaleWidth + printerButtonWidth
-        const buttonSpacerRule = `@media all and (max-width: ${buttonSpacerMaxWidth}px) { .toolbarButtonSpacer { width: 0; } }`
-        styleSheet.insertRule(buttonSpacerRule)
-        const scaleMaxWidth = 300 + numPagesWidth + scaleWidth + printerButtonWidth
-        const scaleRule = `@media all and (max-width: ${scaleMaxWidth}px) { #scaleSelectContainer { display: none; } }`
+        const buttonW = utils.elementWidth(document.getElementById('toolbarViewerLeft') as HTMLElement, false) +
+                        utils.elementWidth(document.getElementById('secondaryToolbarToggle') as HTMLElement, false) +
+                        utils.elementWidth(document.getElementById('zoomOut')?.parentElement as HTMLElement, false) -
+                        utils.elementWidth(document.getElementById('previous')?.parentElement as HTMLElement, false)
+
+        const scaleW = utils.elementWidth(document.getElementById('scaleSelectContainer') as HTMLElement)
+        const trimW = utils.elementWidth(document.getElementById('trimSelectContainer') as HTMLElement)
+
+        const scaleRule = `@media all and (max-width: ${buttonW + scaleW}px) { #scaleSelectContainer { display: none; } }`
         styleSheet.insertRule(scaleRule)
-        const trimSelectContainer = document.getElementById('trimSelectContainer') as HTMLElement
-        const trimWidth = utils.elementWidth(trimSelectContainer)
-        const trimMaxWidth = 300 + numPagesWidth + scaleWidth + trimWidth + printerButtonWidth
-        const trimRule = `@media all and (max-width: ${trimMaxWidth}px) { #trimSelectContainer { display: none; } }`
+        const trimRule = `@media all and (max-width: ${buttonW + scaleW + trimW}px) { #trimSelectContainer { display: none; } }`
         styleSheet.insertRule(trimRule)
     }
 

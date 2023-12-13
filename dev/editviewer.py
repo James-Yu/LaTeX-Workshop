@@ -34,11 +34,7 @@ with open(args.web + '/viewer.mjs', 'rt', encoding='utf-8') as fin:
                     .replace('''console.error(`webviewerloaded: ''', '''// console.error(`webviewerloaded: ''')
                     .replace('''//# sourceMappingURL=viewer.mjs.map''', '''''')
                     .replace('''console.log(`PDF ${pdfDocument.''', '''// console.log(`PDF ${pdfDocument.''')
-                    .replace('''value: "../build/pdf.worker.mjs",''', '''value: "./build/pdf.worker.mjs",''')
-                    .replace('''value: "../build/pdf.sandbox.mjs",''', '''value: "./build/pdf.sandbox.mjs",''')
-                    .replace('''value: "../web/cmaps/",''', '''value: "../cmaps/",''')
-                    .replace('''value: "../web/standard_fonts/",''', '''value: "../standard_fonts/",''')
-                    .replace('''parent.document.dispatchEvent(event);''', '''parent.document.dispatchEvent(event); \n    document.dispatchEvent(event);''')
+                    # .replace('''parent.document.dispatchEvent(event);''', '''parent.document.dispatchEvent(event); \n    document.dispatchEvent(event);''')
                 )
 
 os.system(f'git diff --no-index {args.web}/viewer.html {args.viewer}/viewer.html > {args.viewer}/../dev/viewer/viewer.html.diff')

@@ -70,6 +70,9 @@ export function isPdfjsShortcut(e: Pick<KeyboardEvent, 'altKey' | 'ctrlKey' | 'm
 }
 
 export function elementWidth(element: HTMLElement, forceDisplay = true): number {
+    if (!forceDisplay && window.getComputedStyle(element).display === 'none') {
+        return 0
+    }
     const originalDisplay = element.style.display
     if (forceDisplay) {
         element.style.display = 'block'
