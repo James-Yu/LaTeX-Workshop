@@ -140,7 +140,7 @@ export function addTexRoot() {
 
 export function citation() {
     logger.log('CITATION command invoked.')
-    lw.completer.citation.browser()
+    lw.completion.citation.browser()
 }
 
 export function wordcount() {

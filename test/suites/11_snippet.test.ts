@@ -3,8 +3,8 @@ import * as path from 'path'
 import * as assert from 'assert'
 import * as test from './utils'
 import { lw } from '../../src/lw'
+import type { CompletionItem } from '../../src/types'
 import { SurroundCommand } from '../../src/completion/completer/commandlib/surround'
-import { ICompletionItem } from '../../src/completion/latex'
 
 suite('Snippet test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
@@ -26,7 +26,7 @@ suite('Snippet test suite', () => {
         const active = vscode.window.activeTextEditor
         assert.ok(active)
         active.selection = new vscode.Selection(new vscode.Position(2, 0), new vscode.Position(2, 1))
-        const items: ICompletionItem[] = [{
+        const items: CompletionItem[] = [{
             label: '\\fbox{}',
             detail: '\\fbox{${1:${TM_SELECTED_TEXT:text}}}',
             documentation: 'Command \\fbox{}.',

@@ -361,13 +361,13 @@ function updateChildrenXr(fileCache: FileCache, rootPath: string) {
  */
 function updateElements(fileCache: FileCache) {
     const start = performance.now()
-    lw.completer.citation.parse(fileCache)
+    lw.completion.citation.parse(fileCache)
     // Package parsing must be before command and environment.
     lw.completer.package.parse(fileCache)
     lw.completer.reference.parse(fileCache)
     lw.completer.glossary.parse(fileCache)
-    lw.completer.environment.parse(fileCache)
-    lw.completer.command.parse(fileCache)
+    lw.completion.environment.parse(fileCache)
+    lw.completion.macro.parse(fileCache)
     lw.completer.input.parseGraphicsPath(fileCache)
     updateBibfiles(fileCache)
     const elapsed = performance.now() - start

@@ -114,7 +114,7 @@ function resolveBibFile(filename: string, rootFile: string): string {
 }
 
 function findKeyLocation(key: string): {file: string, line: number} | undefined {
-    const entry = lw.completer.citation.getEntry(key)
+    const entry = lw.completion.citation.getItem(key)
     if (entry) {
         const file = entry.file
         const line = entry.position.line + 1

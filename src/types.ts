@@ -1,9 +1,7 @@
 import type * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import type { CmdEnvSuggestion } from './completion/completer/completerutils'
-import type { CiteSuggestion } from './completion/completer/citation'
 import type { GlossarySuggestion } from './completion/completer/glossary'
-import type { ICompletionItem } from './completion/latex'
 
 export type FileCache = {
     /** The raw file path of this Cache. */
@@ -15,13 +13,13 @@ export type FileCache = {
     /** Completion items */
     elements: {
         /** \ref{} items */
-        reference?: ICompletionItem[],
+        reference?: CompletionItem[],
         /** \gls items */
         glossary?: GlossarySuggestion[],
         /** \begin{} items */
         environment?: CmdEnvSuggestion[],
         /** \cite{} items from \bibitem definition */
-        bibitem?: CiteSuggestion[],
+        bibitem?: CitationItem[],
         /** command items */
         command?: CmdEnvSuggestion[],
         /** \usepackage{}, a dictionary whose key is package name and value is the options */
@@ -129,4 +127,88 @@ export type TeXElement = {
     appendix?: boolean
 }
 
-export type TeXMathEnv = { texString: string, range: vscode.Range, envname: string }
+export type TeXMathEnv = {
+    texString: string,
+    range: vscode.Range,
+    envname: string
+}
+
+export type Package = {
+    includes: {[key: string]: string[]},
+    macros: {[key: string]: Macro},
+    envs: {[key: string]: Environment},
+    options: string[],
+    keyvals: string[][]
+}
+
+export type CompletionArgs = {
+    uri: vscode.Uri,
+    langId: string,
+    line: string,
+    position: vscode.Position
+}
+
+export interface CompletionProvider {
+    from(result: RegExpMatchArray, args: CompletionArgs): vscode.CompletionItem[]
+}
+
+export interface CompletionItem extends vscode.CompletionItem {
+    label: string
+}
+
+export interface CitationField extends Map<string, string> {
+    author?: string,
+    journal?: string,
+    journaltitle?: string,
+    title?: string,
+    publisher?: string,
+    join(selectedFields: string[], prefixWithKeys: boolean, joinString?: string): string
+}
+
+export interface CitationItem extends CompletionItem {
+    key: string,
+    fields: CitationField,
+    file: string,
+    position: vscode.Position
+}
+
+export enum EnvSnippetType { AsName, AsCommand, ForBegin }
+
+export type Environment = {
+    /** Name of the environment, what comes inside \begin{...} */
+    name: string,
+    /** To be inserted after \begin{..} */
+    snippet?: string,
+    /** The option of package below that activates this env */
+    option?: string,
+    /** Possible options of this env */
+    keyvals?: string[],
+    /** The index of keyval list in package .json file. Should not be used */
+    keyvalindex?: number,
+    /** The index of argument which have the keyvals */
+    keyvalpos?: number,
+    /** The package providing the environment */
+    package?: string,
+    detail?: string
+}
+
+export type Macro = {
+    /** Name of the macro without the leading \ and with argument signature */
+    macro?: string,
+    /** Snippet to be inserted after the leading \ */
+    snippet?: string,
+    /** The option of package below that activates this cmd */
+    option?: string,
+    /** Possible options of this env */
+    keyvals?: string[],
+    /** The index of keyval list in package .json file. Should not be used */
+    keyvalindex?: number,
+    /** The index of argument which have the keyvals */
+    keyvalpos?: number,
+    detail?: string,
+    documentation?: string,
+    /** The package providing the environment */
+    package?: string,
+    /** The action to be executed after inserting the snippet */
+    postAction?: string
+}

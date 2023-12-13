@@ -25,6 +25,8 @@ lw.viewer = viewer
 lw.preview = preview
 import { locate } from './locate'
 lw.locate = locate
+import { completion } from './completion'
+lw.completion = completion
 import { lint } from './lint'
 lw.lint = lint
 import { outline } from './outline'
@@ -228,7 +230,7 @@ function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext
         vscode.commands.registerCommand('latex-workshop.shortcut.mathsf', () => lw.commands.toggleSelectedKeyword('mathsf')),
         vscode.commands.registerCommand('latex-workshop.shortcut.mathbb', () => lw.commands.toggleSelectedKeyword('mathbb')),
         vscode.commands.registerCommand('latex-workshop.shortcut.mathcal', () => lw.commands.toggleSelectedKeyword('mathcal')),
-        vscode.commands.registerCommand('latex-workshop.surround', () => lw.completer.command.surround()),
+        vscode.commands.registerCommand('latex-workshop.surround', () => lw.completion.macro.surround()),
 
         vscode.commands.registerCommand('latex-workshop.promote-sectioning', () => lw.commands.shiftSectioningLevel('promote')),
         vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => lw.commands.shiftSectioningLevel('demote')),

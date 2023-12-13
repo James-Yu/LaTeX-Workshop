@@ -3,14 +3,13 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
 import { lw } from '../../lw'
-import type { FileCache } from '../../types'
-import type { IProvider, IProviderArgs } from '../latex'
+import type { CompletionProvider, CompletionArgs, FileCache } from '../../types'
 
 const logger = lw.log('Intelli', 'Input')
 
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
-abstract class InputAbstract implements IProvider {
+abstract class InputAbstract implements CompletionProvider {
     graphicsPath: Set<string> = new Set()
 
     /**
@@ -64,7 +63,7 @@ abstract class InputAbstract implements IProvider {
         this.graphicsPath.clear()
     }
 
-    provideFrom(result: RegExpMatchArray, args: IProviderArgs) {
+    from(result: RegExpMatchArray, args: CompletionArgs) {
         const command = result[1]
         const payload = [...result.slice(2).reverse()]
         return this.provide(args.uri, args.line, args.position, command, payload)

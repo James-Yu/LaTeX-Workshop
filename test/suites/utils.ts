@@ -140,7 +140,7 @@ export async function load(fixture: string, files: {src: string, dst: string, ws
         logger.log('Cache tex and bib.')
         files.filter(file => file.dst.endsWith('.tex')).forEach(file => lw.cache.add(path.resolve(getWsFixture(fixture, file.ws), file.dst)))
         const texPromise = files.filter(file => file.dst.endsWith('.tex')).map(file => lw.cache.refreshCache(path.resolve(getWsFixture(fixture, file.ws), file.dst), lw.root.file.path))
-        const bibPromise = files.filter(file => file.dst.endsWith('.bib')).map(file => lw.completer.citation.parseBibFile(path.resolve(getWsFixture(fixture, file.ws), file.dst)))
+        const bibPromise = files.filter(file => file.dst.endsWith('.bib')).map(file => lw.completion.citation.parseBibFile(path.resolve(getWsFixture(fixture, file.ws), file.dst)))
         await Promise.all([...texPromise, ...bibPromise])
     }
     if (config.open > -1) {

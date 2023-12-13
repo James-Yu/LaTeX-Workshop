@@ -2,8 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
-import { FileCache } from '../../types'
-import type { IProvider } from '../latex'
+import type { CompletionProvider, FileCache } from '../../types'
 import { argContentToStr } from '../../utils/parser'
 
 type DataPackagesJsonType = typeof import('../../../data/packagenames.json')
@@ -14,7 +13,7 @@ type PackageItemEntry = {
     documentation: string
 }
 
-export class Package implements IProvider {
+export class Package implements CompletionProvider {
     private readonly suggestions: vscode.CompletionItem[] = []
     private readonly packageDeps: {[packageName: string]: {[key: string]: string[]}} = {}
     private readonly packageOptions: {[packageName: string]: string[]} = {}
@@ -28,7 +27,7 @@ export class Package implements IProvider {
         })
     }
 
-    provideFrom() {
+    from() {
         return this.provide()
     }
 

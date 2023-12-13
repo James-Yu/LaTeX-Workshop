@@ -2,55 +2,26 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import { lw } from '../lw'
-import { Citation } from './completer/citation'
+import { CompletionArgs, CompletionProvider, Package } from '../types'
+import { citation, provider as citationProvider } from './completer/citation'
 import { DocumentClass } from './completer/documentclass'
-import { Command } from './completer/command'
-import type { CmdType } from './completer/command'
-import { Environment } from './completer/environment'
-import type { EnvType } from './completer/environment'
-import { Argument } from './completer/argument'
+import { environment, provider as environmentProvider } from './completer/environment'
+import { macro, provider as macroProvider } from './completer/macro'
+import { provider as argumentProvider } from './completer/argument'
 import { AtSuggestion } from './completer/atsuggestion'
 import { Reference } from './completer/reference'
-import { Package } from './completer/package'
+import { Package as PackageCompletion } from './completer/package'
 import { Input, Import, SubImport } from './completer/input'
 import { Glossary } from './completer/glossary'
 import type { ReferenceDocType } from './completer/reference'
 import { escapeRegExp } from '../utils/utils'
 
-
 const logger = lw.log('Intelli')
 
-export type PkgType = {includes: {[key: string]: string[]}, cmds: {[key: string]: CmdType}, envs: {[key: string]: EnvType}, options: string[], keyvals: string[][]}
-
-export type IProviderArgs = {
-    uri: vscode.Uri,
-    langId: string,
-    line: string,
-    position: vscode.Position
-}
-
-export interface IProvider {
-    /**
-     * Returns the array of completion items. Should be called only from `Completer.completion`.
-     */
-    provideFrom(
-        result: RegExpMatchArray,
-        args: IProviderArgs
-    ): vscode.CompletionItem[]
-}
-
-export interface ICompletionItem extends vscode.CompletionItem {
-    label: string
-}
-
 export class Completer implements vscode.CompletionItemProvider {
-    readonly citation: Citation
-    readonly command: Command
     readonly documentClass: DocumentClass
-    readonly environment: Environment
-    readonly argument: Argument
     readonly reference: Reference
-    readonly package: Package
+    readonly package: PackageCompletion
     readonly input: Input
     readonly import: Import
     readonly subImport: SubImport
@@ -59,23 +30,13 @@ export class Completer implements vscode.CompletionItemProvider {
     private readonly packagesLoaded: string[] = []
 
     constructor() {
-        this.citation = new Citation()
-        this.environment = new Environment() // Must be created before command
-        this.command = new Command()
-        this.argument = new Argument()
         this.documentClass = new DocumentClass()
         this.reference = new Reference()
-        this.package = new Package()
+        this.package = new PackageCompletion()
         this.input = new Input()
         this.import = new Import()
         this.subImport = new SubImport()
         this.glossary = new Glossary()
-        try {
-            const environment = this.environment.initialize()
-            this.command.initialize(environment)
-        } catch (err) {
-            logger.log(`Error reading data: ${err}.`)
-        }
     }
 
     loadPackageData(packageName: string) {
@@ -90,12 +51,12 @@ export class Completer implements vscode.CompletionItemProvider {
         }
 
         try {
-            const packageData = JSON.parse(fs.readFileSync(filePath).toString()) as PkgType
+            const packageData = JSON.parse(fs.readFileSync(filePath).toString()) as Package
             this.populatePackageData(packageData)
 
             this.package.setPackageDeps(packageName, packageData.includes)
-            this.command.setPackageCmds(packageName, packageData.cmds)
-            this.environment.setPackageEnvs(packageName, packageData.envs)
+            macro.setPackageCmds(packageName, packageData.macros)
+            environment.setPackageEnvs(packageName, packageData.envs)
             this.package.setPackageOptions(packageName, packageData.options)
 
             this.packagesLoaded.push(packageName)
@@ -127,9 +88,9 @@ export class Completer implements vscode.CompletionItemProvider {
         return
     }
 
-    private populatePackageData(packageData: PkgType) {
-        Object.entries(packageData.cmds).forEach(([key, cmd]) => {
-            cmd.command = key
+    private populatePackageData(packageData: Package) {
+        Object.entries(packageData.macros).forEach(([key, cmd]) => {
+            cmd.macro = key
             cmd.snippet = cmd.snippet || key
             cmd.keyvals = packageData.keyvals[cmd.keyvalindex ?? -1]
         })
@@ -157,7 +118,7 @@ export class Completer implements vscode.CompletionItemProvider {
         })
     }
 
-    provide(args: IProviderArgs): vscode.CompletionItem[] {
+    provide(args: CompletionArgs): vscode.CompletionItem[] {
         // Note that the order of the following array affects the result.
         // 'command' must be at the last because it matches any commands.
         for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'argument', 'command']) {
@@ -166,7 +127,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 if (type === 'citation') {
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
                     if (configuration.get('intellisense.citation.type') as string === 'browser') {
-                        setTimeout(() => this.citation.browser(args), 10)
+                        setTimeout(() => citation.browser(args), 10)
                         return []
                     }
                 }
@@ -221,13 +182,13 @@ export class Completer implements vscode.CompletionItemProvider {
         }
     }
 
-    completion(type: string, args: IProviderArgs): vscode.CompletionItem[] {
+    completion(type: string, args: CompletionArgs): vscode.CompletionItem[] {
         let reg: RegExp | undefined
-        let provider: IProvider | undefined
+        let provider: CompletionProvider | undefined
         switch (type) {
             case 'citation':
                 reg = /(?:\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:\([^[)]*\)){0,2}(?:<[^<>]*>|\[[^[\]]*\]|{[^{}]*})*{([^}]*)$)|(?:\\bibentry{([^}]*)$)/
-                provider = this.citation
+                provider = citationProvider
                 break
             case 'reference':
                 reg = /(?:\\hyperref\[([^\]]*)(?!\])$)|(?:(?:\\(?!hyper)[a-zA-Z]*ref[a-zA-Z]*\*?(?:\[[^[\]]*\])?){([^}]*)$)|(?:\\[Cc][a-z]*refrange\*?{[^{}]*}{([^}]*)$)/
@@ -235,15 +196,15 @@ export class Completer implements vscode.CompletionItemProvider {
                 break
             case 'environment':
                 reg = /(?:\\begin|\\end){([^}]*)$/
-                provider = this.environment
+                provider = environmentProvider
                 break
             case 'command':
                 reg = args.langId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)$/ : /\\(\+?[a-zA-Z]*|(?:left|[Bb]ig{1,2}l)?[({[]?)$/
-                provider = this.command
+                provider = macroProvider
                 break
             case 'argument':
                 reg = args.langId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)((?:\[.*?\]|{.*?})*)[[{][^[\]{}]*$/ : /\\(\+?[a-zA-Z]*)((?:\[.*?\]|{.*?})*)[[{][^[\]{}]*$/
-                provider = this.argument
+                provider = argumentProvider
                 break
             case 'package':
                 reg = /(?:\\usepackage(?:\[[^[\]]*\])*){([^}]*)$/
@@ -285,7 +246,7 @@ export class Completer implements vscode.CompletionItemProvider {
         const result = lineToPos.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            suggestions = provider.provideFrom(result, args)
+            suggestions = provider.from(result, args)
         }
         return suggestions
     }
@@ -319,13 +280,13 @@ export class AtSuggestionCompleter implements vscode.CompletionItemProvider {
         })
     }
 
-    provide(args: IProviderArgs): vscode.CompletionItem[] {
+    provide(args: CompletionArgs): vscode.CompletionItem[] {
         const escapedTriggerCharacter = escapeRegExp(this.triggerCharacter)
         const reg = new RegExp(escapedTriggerCharacter + '[^\\\\s]*$')
         const result = args.line.substring(0, args.position.character).match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            suggestions = this.atSuggestion.provideFrom(result, args)
+            suggestions = this.atSuggestion.from(result, args)
         }
         return suggestions
     }

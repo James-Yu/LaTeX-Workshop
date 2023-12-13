@@ -1,8 +1,7 @@
 import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
-import type { FileCache } from '../../types'
-import type { ICompletionItem, IProvider } from '../latex'
+import type { CompletionItem, CompletionProvider, FileCache } from '../../types'
 import { argContentToStr } from '../../utils/parser'
 import { getLongestBalancedString } from '../../utils/utils'
 
@@ -16,18 +15,18 @@ interface GlossaryEntry {
     description: string | undefined
 }
 
-export interface GlossarySuggestion extends ICompletionItem {
+export interface GlossarySuggestion extends CompletionItem {
     type: GlossaryType,
     filePath: string,
     position: vscode.Position
 }
 
-export class Glossary implements IProvider {
+export class Glossary implements CompletionProvider {
     // use object for deduplication
     private readonly glossaries = new Map<string, GlossarySuggestion>()
     private readonly acronyms = new Map<string, GlossarySuggestion>()
 
-    provideFrom(result: RegExpMatchArray) {
+    from(result: RegExpMatchArray) {
         return this.provide(result)
     }
 

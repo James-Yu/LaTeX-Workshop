@@ -3,13 +3,12 @@ import * as fs from 'fs'
 import * as path from 'path'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
-import type { FileCache } from '../../types'
+import type { CompletionArgs, CompletionItem, CompletionProvider, FileCache } from '../../types'
 import { getLongestBalancedString, stripEnvironments } from '../../utils/utils'
 import { computeFilteringRange } from './completerutils'
-import type { IProvider, ICompletionItem, IProviderArgs } from '../latex'
 import { argContentToStr } from '../../utils/parser'
 
-export interface ReferenceEntry extends ICompletionItem {
+export interface ReferenceEntry extends CompletionItem {
     /** The file that defines the ref. */
     file: string,
     /** The position that defines the ref. */
@@ -27,12 +26,12 @@ export type ReferenceDocType = {
     prevIndex: ReferenceEntry['prevIndex']
 }
 
-export class Reference implements IProvider {
+export class Reference implements CompletionProvider {
     // Here we use an object instead of an array for de-duplication
     private readonly suggestions = new Map<string, ReferenceEntry>()
     private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
 
-    provideFrom(_result: RegExpMatchArray, args: IProviderArgs) {
+    from(_result: RegExpMatchArray, args: CompletionArgs) {
         return this.provide(args.line, args.position)
     }
 
@@ -161,8 +160,8 @@ export class Reference implements IProvider {
         }
     }
 
-    private parseAst(node: Ast.Node, lines: string[], labelMacros: string[]): ICompletionItem[] {
-        let refs: ICompletionItem[] = []
+    private parseAst(node: Ast.Node, lines: string[], labelMacros: string[]): CompletionItem[] {
+        let refs: CompletionItem[] = []
         if (node.type === 'macro' &&
             ['renewcommand', 'newcommand', 'providecommand', 'DeclareMathOperator', 'renewenvironment', 'newenvironment'].includes(node.content)) {
             // Do not scan labels inside \newcommand, \newenvironment & co
@@ -218,9 +217,9 @@ export class Reference implements IProvider {
         return refs
     }
 
-    private parseContent(content: string): ICompletionItem[] {
+    private parseContent(content: string): CompletionItem[] {
         const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^#\\}]*)}/gm
-        const refs: ICompletionItem[] = []
+        const refs: CompletionItem[] = []
         const refList: string[] = []
         content = stripEnvironments(content, [''])
         while (true) {

@@ -8,6 +8,7 @@ import type { root } from './core/root'
 import type { compile } from './compile'
 import type { preview, server, viewer } from './preview'
 import type { locate } from './locate'
+import type { completion } from './completion'
 import type { lint } from './lint'
 import type { outline } from './outline'
 import type { parse } from './parse'
@@ -32,6 +33,7 @@ export const lw = {
     server: {} as typeof server,
     preview: {} as typeof preview,
     locate: {} as typeof locate,
+    completion: {} as typeof completion,
     completer: Object.create(null) as Completer,
     atSuggestionCompleter: Object.create(null) as AtSuggestionCompleter,
     lint: {} as typeof lint,

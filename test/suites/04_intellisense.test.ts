@@ -5,10 +5,8 @@ import * as assert from 'assert'
 import { glob } from 'glob'
 import { lw } from '../../src/lw'
 import * as test from './utils'
-import { EnvSnippetType, EnvType } from '../../src/completion/completer/environment'
-import { CmdType } from '../../src/completion/completer/command'
-import { PkgType } from '../../src/completion/latex'
-import { isTriggerSuggestNeeded } from '../../src/completion/completer/command'
+import { EnvSnippetType, Environment, Macro, Package } from '../../src/types'
+import { isTriggerSuggestNeeded } from '../../src/completion/completer/macro'
 
 function assertKeys(keys: string[], expected: string[] = [], message: string): void {
     assert.ok(
@@ -41,7 +39,7 @@ suite('Intellisense test suite', () => {
 
     test.run('check default environment .json completion file', () => {
         const file = `${lw.extensionRoot}/data/environments.json`
-        const envs = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: EnvType}
+        const envs = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: Environment}
         assert.ok(Object.keys(envs).length > 0)
         Object.values(envs).forEach(env => {
             assertKeys(
@@ -54,7 +52,7 @@ suite('Intellisense test suite', () => {
 
     test.run('check default commands .json completion file', () => {
         const file = `${lw.extensionRoot}/data/commands.json`
-        const cmds = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: CmdType}
+        const cmds = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: Macro}
         assert.ok(Object.keys(cmds).length > 0)
         Object.values(cmds).forEach(cmd => {
             assertKeys(
@@ -66,19 +64,19 @@ suite('Intellisense test suite', () => {
     })
 
     test.run('test default envs', () => {
-        let defaultEnvs = lw.completer.environment.getDefaultEnvs(EnvSnippetType.AsCommand).map(e => e.label)
+        let defaultEnvs = lw.completion.environment.getDefaultEnvs(EnvSnippetType.AsCommand).map(e => e.label)
         assert.ok(defaultEnvs.includes('document'))
         assert.ok(defaultEnvs.includes('align'))
-        defaultEnvs = lw.completer.environment.getDefaultEnvs(EnvSnippetType.AsName).map(e => e.label)
+        defaultEnvs = lw.completion.environment.getDefaultEnvs(EnvSnippetType.AsName).map(e => e.label)
         assert.ok(defaultEnvs.includes('document'))
         assert.ok(defaultEnvs.includes('align'))
-        defaultEnvs = lw.completer.environment.getDefaultEnvs(EnvSnippetType.ForBegin).map(e => e.label)
+        defaultEnvs = lw.completion.environment.getDefaultEnvs(EnvSnippetType.ForBegin).map(e => e.label)
         assert.ok(defaultEnvs.includes('document'))
         assert.ok(defaultEnvs.includes('align'))
     })
 
     test.run('test default cmds', () => {
-        const defaultCommands = lw.completer.command.defaultCmds.map(e => e.label)
+        const defaultCommands = lw.completion.macro.getData().defaultCmds.map(e => e.label)
         assert.ok(defaultCommands.includes('\\begin'))
         assert.ok(defaultCommands.includes('\\left('))
         assert.ok(defaultCommands.includes('\\section{}'))
@@ -87,8 +85,8 @@ suite('Intellisense test suite', () => {
     test.run('check package .json completion file', () => {
         const files = glob.sync('data/packages/*.json', {cwd: lw.extensionRoot})
         files.forEach(file => {
-            const pkg = JSON.parse(fs.readFileSync(path.join(lw.extensionRoot, file), {encoding: 'utf8'})) as PkgType
-            Object.values(pkg.cmds).forEach(cmd => {
+            const pkg = JSON.parse(fs.readFileSync(path.join(lw.extensionRoot, file), {encoding: 'utf8'})) as Package
+            Object.values(pkg.macros).forEach(cmd => {
                 assertKeys(
                     Object.keys(cmd),
                     ['command', 'snippet', 'option', 'keyvalindex', 'keyvalpos', 'documentation', 'detail'],

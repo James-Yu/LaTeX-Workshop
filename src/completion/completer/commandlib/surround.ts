@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
-import type { ICompletionItem } from '../../latex'
+import type { CompletionItem } from '../../../types'
 
 export class SurroundCommand {
-    static surround(cmdItems: ICompletionItem[]) {
+    static surround(cmdItems: CompletionItem[]) {
         if (!vscode.window.activeTextEditor) {
             return
         }

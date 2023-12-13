@@ -50,7 +50,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         }
 
         if (token.startsWith('\\')) {
-            const command = lw.completer.command.definedCmds.get(token.slice(1))
+            const command = lw.completion.macro.getData().definedCmds.get(token.slice(1))
             if (command) {
                 return command.location
             }
@@ -60,7 +60,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         if (ref) {
             return new vscode.Location(vscode.Uri.file(ref.file), ref.position)
         }
-        const cite = lw.completer.citation.getEntry(token)
+        const cite = lw.completion.citation.getItem(token)
         if (cite) {
             return new vscode.Location(vscode.Uri.file(cite.file), cite.position)
         }

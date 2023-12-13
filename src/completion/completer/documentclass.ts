@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import { lw } from '../../lw'
-import type { IProvider } from '../latex'
+import type { CompletionProvider } from '../../types'
 
 type DataClassnamesJsonType = typeof import('../../../data/classnames.json')
 
@@ -11,7 +11,7 @@ type ClassItemEntry = {
     documentation: string
 }
 
-export class DocumentClass implements IProvider {
+export class DocumentClass implements CompletionProvider {
     private readonly suggestions: vscode.CompletionItem[] = []
 
     initialize(classes: {[key: string]: ClassItemEntry}) {
@@ -23,7 +23,7 @@ export class DocumentClass implements IProvider {
         })
     }
 
-    provideFrom() {
+    from() {
         return this.provide()
     }
 

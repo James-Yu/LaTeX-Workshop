@@ -53,7 +53,7 @@ class HoverProvider implements vscode.HoverProvider {
             const hover = await lw.preview.math.onRef(document, position, refData, token, ctoken)
             return hover
         }
-        const cite = lw.completer.citation.getEntryWithDocumentation(token, document.uri)
+        const cite = lw.completion.citation.getItem(token, document.uri)
         if (hovCitation && cite) {
             const range = document.getWordRangeAtPosition(position, /\{.*?\}/)
             const md = cite.documentation || cite.detail
@@ -74,8 +74,8 @@ class HoverProvider implements vscode.HoverProvider {
         if ((configuration.get('intellisense.package.enabled'))) {
             const packages = lw.completer.package.getPackagesIncluded('latex-expl3')
             Object.entries(packages).forEach(([packageName, options]) => {
-                lw.completer.command.provideCmdInPkg(packageName, options, packageCmds)
-                lw.completer.environment.provideEnvsAsCommandInPkg(packageName, options, packageCmds)
+                lw.completion.macro.provideCmdInPkg(packageName, options, packageCmds)
+                lw.completion.environment.provideEnvsAsCommandInPkg(packageName, options, packageCmds)
             })
         }
 

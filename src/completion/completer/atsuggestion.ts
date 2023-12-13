@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import { lw } from '../../lw'
-import type {IProvider, IProviderArgs} from '../latex'
+import type { CompletionProvider, CompletionArgs } from '../../types'
 import {escapeRegExp} from '../../utils/utils'
 
 interface AtSuggestionItemEntry {
@@ -12,7 +12,7 @@ interface AtSuggestionItemEntry {
 
 type DataAtSuggestionJsonType = typeof import('../../../data/at-suggestions.json')
 
-export class AtSuggestion implements IProvider {
+export class AtSuggestion implements CompletionProvider {
     private readonly triggerCharacter: string
     private readonly escapedTriggerCharacter: string
     private readonly suggestions: vscode.CompletionItem[] = []
@@ -54,7 +54,7 @@ export class AtSuggestion implements IProvider {
         })
     }
 
-    provideFrom(result: RegExpMatchArray, args: IProviderArgs) {
+    from(result: RegExpMatchArray, args: CompletionArgs) {
         const suggestions = this.provide(args.line, args.position)
         // Manually filter suggestions when there are several consecutive trigger characters
         const reg = new RegExp(this.escapedTriggerCharacter + '{2,}$')
