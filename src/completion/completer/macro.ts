@@ -73,7 +73,7 @@ export function isTriggerSuggestNeeded(name: string): boolean {
 }
 
 function isCmdWithSnippet(obj: any): obj is Macro {
-    return (typeof obj.command === 'string') && (typeof obj.snippet === 'string')
+    return (typeof obj.macro === 'string') && (typeof obj.snippet === 'string')
 }
 
 function from(result: RegExpMatchArray, args: CompletionArgs) {
