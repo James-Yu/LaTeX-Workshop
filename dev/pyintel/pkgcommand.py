@@ -32,7 +32,7 @@ class Env:
 @dataclass
 class Pkg:
     includes: Dict[str, List[str]]
-    cmds: Dict[str, Cmd]
+    macros: Dict[str, Cmd]
     envs: Dict[str, Env]
     options: List[str]
     keyvals: List[List[str]]
@@ -170,19 +170,19 @@ class CwlIntel:
         with self.unimathsymbols.open(encoding='utf8') as f:
             lines = f.readlines()
         for line in lines:
-            cmds: List[str] = []
+            macros: List[str] = []
             if line[0] == '#':
                 continue
             line = line.strip()
             arry = line.split('^')
-            cmds.append(re.sub(r'^\\', '', arry[2]))
-            cmds.append(re.sub(r'^\\', '', arry[3]))
+            macros.append(re.sub(r'^\\', '', arry[2]))
+            macros.append(re.sub(r'^\\', '', arry[3]))
             for m in re.finditer(r'= \\(\w+)[ ,]', arry[-1]):
-                cmds.append(m.group(1))
+                macros.append(m.group(1))
             doc = re.sub(r'\s*[=#xt]\s*\\\w+(\{.*?\})?\s*(\(.*?\))?\s*,', '', arry[-1])
             doc = re.sub(r'\s*[=#xt]\s*\S+\s*,', '', doc)
             doc = doc.strip()
-            for c in cmds:
+            for c in macros:
                 if c == '' or re.search('{', c):
                     continue
                 self.unimath_dict[c] = {'detail': arry[1], 'documentation': doc}
@@ -203,7 +203,7 @@ class CwlIntel:
             return ({}, {})
         with file_path.open(encoding='utf8') as f:
             lines = f.readlines()
-        pkg = Pkg(includes={}, cmds={}, envs={}, options=[], keyvals=[])
+        pkg = Pkg(includes={}, macros={}, envs={}, options=[], keyvals=[])
         if file_path.name == 'caption.cwl':
             lines = apply_caption_tweaks(lines)
         
@@ -291,7 +291,7 @@ class CwlIntel:
                     if (name[-1] in [')', ']', '}']):
                         name = name[:-1]
 
-                pkg.cmds[name] = Cmd(
+                pkg.macros[name] = Cmd(
                     snippet=None if name == snippet else snippet,
                     option=cwl_option,
                     keyvalindex=None,
@@ -326,31 +326,31 @@ class CwlIntel:
                             pkg.envs[pkgenv].keyvalindex.append(match[1])
                     else:
                         cmd = re.match(r'\\?([^{\[#]*)', envcmd)[1]
-                        for pkgcmd in pkg.cmds:
+                        for pkgcmd in pkg.macros:
                             if (re.sub(r'\[\]|\(\)|<>|{}', '', pkgcmd) != cmd):
                                 continue
-                            haskeyvals = re.search(r':keys|:keyvals|:options|:library', pkg.cmds[pkgcmd].snippet or pkgcmd)
+                            haskeyvals = re.search(r':keys|:keyvals|:options|:library', pkg.macros[pkgcmd].snippet or pkgcmd)
                             if (haskeyvals is None):
                                 continue
-                            if (pkg.cmds[pkgcmd].keyvalpos is None):
-                                pkg.cmds[pkgcmd].keyvalpos = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.cmds[pkgcmd].snippet[:haskeyvals.start()])))
-                            pkg.cmds[pkgcmd].keyvalindex = pkg.cmds[pkgcmd].keyvalindex or []
-                            pkg.cmds[pkgcmd].keyvalindex.append(match[1])
+                            if (pkg.macros[pkgcmd].keyvalpos is None):
+                                pkg.macros[pkgcmd].keyvalpos = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.macros[pkgcmd].snippet[:haskeyvals.start()])))
+                            pkg.macros[pkgcmd].keyvalindex = pkg.macros[pkgcmd].keyvalindex or []
+                            pkg.macros[pkgcmd].keyvalindex.append(match[1])
         
-        for pkgcmd in pkg.cmds:
-            if pkg.cmds[pkgcmd].keyvalindex is None:
+        for pkgcmd in pkg.macros:
+            if pkg.macros[pkgcmd].keyvalindex is None:
                 continue
-            keyvalset = set(pkg.cmds[pkgcmd].keyvalindex)
+            keyvalset = set(pkg.macros[pkgcmd].keyvalindex)
             found = False
             for idx, cand in enumerate(pkg.keyvals):
                 candset = set(cand)
                 if (keyvalset == candset):
                     found = True
-                    pkg.cmds[pkgcmd].keyvalindex = idx
+                    pkg.macros[pkgcmd].keyvalindex = idx
                     break
             if not found:
-                pkg.keyvals.append(pkg.cmds[pkgcmd].keyvalindex)
-                pkg.cmds[pkgcmd].keyvalindex = len(pkg.keyvals) - 1
+                pkg.keyvals.append(pkg.macros[pkgcmd].keyvalindex)
+                pkg.macros[pkgcmd].keyvalindex = len(pkg.keyvals) - 1
         
         for pkgenv in pkg.envs:
             if pkg.envs[pkgenv].keyvalindex is None:

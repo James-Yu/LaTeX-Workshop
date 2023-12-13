@@ -12,7 +12,7 @@
       "bidi=bidi-r"
     ]
   },
-  "cmds": {
+  "macros": {
     "selectlanguage{}": {
       "snippet": "selectlanguage{${1:language}}"
     },
@@ -183,9 +183,27 @@
     "localeprehyphenation{}": {
       "snippet": "localeprehyphenation{${1:string}}"
     },
+    "babelcharclass{}{}{}": {
+      "snippet": "babelcharclass{${1:locale}}{${2:name}}{${3:char-list}}"
+    },
+    "babelinterchar{}{}{}{}": {
+      "snippet": "babelinterchar{${1:locale}}{${2:class-first}}{${3:class-second}}{${4:code}}"
+    },
+    "babelinterchar[]{}{}{}{}": {
+      "snippet": "babelinterchar[${5:options}]{${1:locale}}{${2:class-first}}{${3:class-second}}{${4:code}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "enablelocaleinterchar{}": {
+      "snippet": "enablelocaleinterchar{${1:label}}"
+    },
+    "disablelocaleinterchar{}": {
+      "snippet": "disablelocaleinterchar{${1:label}}"
+    },
     "ensureascii{}": {
       "snippet": "ensureascii{${1:text}}"
     },
+    "asciiencoding": {},
     "localfootnote{}": {
       "snippet": "localfootnote{${1:text}}",
       "option": "layout=footnotes"
@@ -234,7 +252,7 @@
     },
     "babeladjust{}": {
       "snippet": "babeladjust{${1:keyvals}}",
-      "keyvalindex": 5,
+      "keyvalindex": 6,
       "keyvalpos": 0
     },
     "fmtname": {},
@@ -1236,13 +1254,13 @@
     "frenchsetup{}": {
       "snippet": "frenchsetup{${1:options}}",
       "option": "acadian",
-      "keyvalindex": 6,
+      "keyvalindex": 7,
       "keyvalpos": 0
     },
     "frenchbsetup{}": {
       "snippet": "frenchbsetup{${1:options}}",
       "option": "acadian",
-      "keyvalindex": 6,
+      "keyvalindex": 7,
       "keyvalpos": 0
     },
     "AddThinSpaceBeforeFootnotes": {
@@ -4534,6 +4552,9 @@
       "label=",
       "fonts=${1:tag1 tag2 ...}",
       "attribute=${1:attribute}"
+    ],
+    [
+      "label=${1:label}"
     ],
     [
       "bidi.mapdigits=",

@@ -1,14 +1,14 @@
 {
   "includes": {},
-  "cmds": {
+  "macros": {
     "ActivateGenericHook{}": {
       "snippet": "ActivateGenericHook{${1:hook}}"
     },
-    "AddToHook{}{}": {
-      "snippet": "AddToHook{${1:hook}}{${2:code}}"
-    },
     "AddToHook{}[]{}": {
       "snippet": "AddToHook{${1:hook}}[${2:label}]{${3:code}}"
+    },
+    "AddToHook{}{}": {
+      "snippet": "AddToHook{${1:hook}}{${2:code}}"
     },
     "AddToHookNext{}{}": {
       "snippet": "AddToHookNext{${1:hook}}{${2:code}}"
@@ -16,11 +16,11 @@
     "AddToHookNextWithArguments{}{}": {
       "snippet": "AddToHookNextWithArguments{${1:hook}}{${2:code}}"
     },
-    "AddToHookWithArguments{}{}": {
-      "snippet": "AddToHookWithArguments{${1:hook}}{${2:code}}"
-    },
     "AddToHookWithArguments{}[]{}": {
       "snippet": "AddToHookWithArguments{${1:hook}}[${2:label}]{${3:code}}"
+    },
+    "AddToHookWithArguments{}{}": {
+      "snippet": "AddToHookWithArguments{${1:hook}}{${2:code}}"
     },
     "AddToNoCaseChangeList{}": {
       "snippet": "AddToNoCaseChangeList{${1:command}}"
@@ -31,11 +31,14 @@
     "AfterEndEnvironment{}{}": {
       "snippet": "AfterEndEnvironment{${1:environment}}{${2:code}}"
     },
-    "AtBeginDocument{}": {
-      "snippet": "AtBeginDocument{${1:code}}"
+    "AssignSocketPlug{}{}": {
+      "snippet": "AssignSocketPlug{${1:socket}}{${2:socket plug}}"
     },
     "AtBeginDocument[]{}": {
       "snippet": "AtBeginDocument[${2:label}]{${1:code}}"
+    },
+    "AtBeginDocument{}": {
+      "snippet": "AtBeginDocument{${1:code}}"
     },
     "AtBeginDvi{}": {
       "snippet": "AtBeginDvi{${1:code}}"
@@ -46,11 +49,11 @@
     "AtBeginEnvironment{}{}": {
       "snippet": "AtBeginEnvironment{${1:environment}}{${2:code}}"
     },
-    "AtEndDocument{}": {
-      "snippet": "AtEndDocument{${1:code}}"
-    },
     "AtEndDocument[]{}": {
       "snippet": "AtEndDocument[${2:label}]{${1:code}}"
+    },
+    "AtEndDocument{}": {
+      "snippet": "AtEndDocument{${1:code}}"
     },
     "AtEndDvi{}": {
       "snippet": "AtEndDvi{${1:code}}"
@@ -137,6 +140,8 @@
     "DebugMarksOn": {},
     "DebugShipoutsOff": {},
     "DebugShipoutsOn": {},
+    "DebugSocketsOff": {},
+    "DebugSocketsOn": {},
     "DeclareCaseChangeEquivalent{}{}": {
       "snippet": "DeclareCaseChangeEquivalent{${1:cmd}}{${2:replacement text}}"
     },
@@ -168,7 +173,7 @@
       "snippet": "DeclareErrorFont{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}"
     },
     "DeclareExpandableDocumentCommand{}{}{}": {
-      "snippet": "DeclareExpandableDocumentCommand{${1:cmd}}{${2:args}}{${3:def}}"
+      "snippet": "DeclareExpandableDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
     },
     "DeclareFixedFont{}{}{}{}{}{}": {
       "snippet": "DeclareFixedFont{${1:cmd}}{${2:encoding}}{${3:family}}{${4:series}}{${5:shape}}{${6:size}}"
@@ -206,17 +211,17 @@
     "DeclareHookRule{}{}{}{}": {
       "snippet": "DeclareHookRule{${1:hook}}{${2:label1}}{${3:relation}}{${4:label2}}"
     },
-    "DeclareKeys{}": {
-      "snippet": "DeclareKeys{${1:declarations}}"
-    },
     "DeclareKeys[]{}": {
       "snippet": "DeclareKeys[${2:family}]{${1:declarations}}"
     },
-    "DeclareLowercaseMapping{}{}": {
-      "snippet": "DeclareLowercaseMapping{${1:codepoint}}{${2:output}}"
+    "DeclareKeys{}": {
+      "snippet": "DeclareKeys{${1:declarations}}"
     },
     "DeclareLowercaseMapping[]{}{}": {
       "snippet": "DeclareLowercaseMapping[${3:locale}]{${1:codepoint}}{${2:output}}"
+    },
+    "DeclareLowercaseMapping{}{}": {
+      "snippet": "DeclareLowercaseMapping{${1:codepoint}}{${2:output}}"
     },
     "DeclareMathAccent{}{}{}{}": {
       "snippet": "DeclareMathAccent{${1:cmd}}{${2:type}}{${3:sym-font}}{${4:slot}}"
@@ -317,26 +322,26 @@
     "DeclareTextSymbolDefault{}{}": {
       "snippet": "DeclareTextSymbolDefault{${1:cmd}}{${2:encoding}}"
     },
-    "DeclareTitlecaseMapping{}{}": {
-      "snippet": "DeclareTitlecaseMapping{${1:codepoint}}{${2:output}}"
-    },
     "DeclareTitlecaseMapping[]{}{}": {
       "snippet": "DeclareTitlecaseMapping[${3:locale}]{${1:codepoint}}{${2:output}}"
+    },
+    "DeclareTitlecaseMapping{}{}": {
+      "snippet": "DeclareTitlecaseMapping{${1:codepoint}}{${2:output}}"
     },
     "DeclareUnicodeCharacter{}{}": {
       "snippet": "DeclareUnicodeCharacter{${1:hexadecimal}}{${2:definition}}"
     },
-    "DeclareUnknownKeyHandler{}": {
-      "snippet": "DeclareUnknownKeyHandler{${1:code}}"
-    },
     "DeclareUnknownKeyHandler[]{}": {
       "snippet": "DeclareUnknownKeyHandler[${2:family}]{${1:code}}"
     },
-    "DeclareUppercaseMapping{}{}": {
-      "snippet": "DeclareUppercaseMapping{${1:codepoint}}{${2:output}}"
+    "DeclareUnknownKeyHandler{}": {
+      "snippet": "DeclareUnknownKeyHandler{${1:code}}"
     },
     "DeclareUppercaseMapping[]{}{}": {
       "snippet": "DeclareUppercaseMapping[${3:locale}]{${1:codepoint}}{${2:output}}"
+    },
+    "DeclareUppercaseMapping{}{}": {
+      "snippet": "DeclareUppercaseMapping{${1:codepoint}}{${2:output}}"
     },
     "DisableGenericHook{}": {
       "snippet": "DisableGenericHook{${1:hook}}"
@@ -355,11 +360,11 @@
     },
     "ExplSyntaxOff": {},
     "ExplSyntaxOn": {},
-    "FirstMark{}": {
-      "snippet": "FirstMark{${1:class}}"
-    },
     "FirstMark[]{}": {
       "snippet": "FirstMark[${2:region}]{${1:class}}"
+    },
+    "FirstMark{}": {
+      "snippet": "FirstMark{${1:class}}"
     },
     "GenericError{}{}{}{}": {
       "snippet": "GenericError{${1:continuation}}{${2:message}}{${3:help location}}{${4:help info}}"
@@ -397,6 +402,9 @@
     "IfClassLoadedWithOptionsTF{}{}{}{}": {
       "snippet": "IfClassLoadedWithOptionsTF{${1:class}}{${2:options}}{${3:true code}}{${4:false code}}"
     },
+    "IfExplAtLeastTF{}{}{}": {
+      "snippet": "IfExplAtLeastTF{${1:date}}{${2:true code}}{${3:false code}}"
+    },
     "IfFileAtLeastTF{}{}{}{}": {
       "snippet": "IfFileAtLeastTF{${1:file}}{${2:date}}{${3:true code}}{${4:false code}}"
     },
@@ -412,11 +420,14 @@
     "IfHookEmptyTF{}{}{}": {
       "snippet": "IfHookEmptyTF{${1:hook}}{${2:true code}}{${3:false code}}"
     },
-    "IfMarksEqualTF{}{}{}{}{}": {
-      "snippet": "IfMarksEqualTF{${1:class}}{${2:pos1}}{${3:pos2}}{${4:true code}}{${5:false code}}"
+    "IfLabelExistTF{}{}{}": {
+      "snippet": "IfLabelExistTF{${1:label}}{${2:true code}}{${3:false code}}"
     },
     "IfMarksEqualTF[]{}{}{}{}{}": {
       "snippet": "IfMarksEqualTF[${6:region}]{${1:class}}{${2:pos1}}{${3:pos2}}{${4:true code}}{${5:false code}}"
+    },
+    "IfMarksEqualTF{}{}{}{}{}": {
+      "snippet": "IfMarksEqualTF{${1:class}}{${2:pos1}}{${3:pos2}}{${4:true code}}{${5:false code}}"
     },
     "IfNoValueF{}{}": {
       "snippet": "IfNoValueF{${1:arg}}{${2:ValueCode}}"
@@ -438,6 +449,12 @@
     },
     "IfPDFManagementActiveTF{}{}": {
       "snippet": "IfPDFManagementActiveTF{${1:true code}}{${2:false code}}"
+    },
+    "IfPropertyExistTF{}{}{}": {
+      "snippet": "IfPropertyExistTF{${1:property}}{${2:true code}}{${3:false code}}"
+    },
+    "IfPropertyRecordedTF{}{}{}{}": {
+      "snippet": "IfPropertyRecordedTF{${1:label}}{${2:property}}{${3:true code}}{${4:false code}}"
     },
     "IfTargetDateBefore{}{}{}": {
       "snippet": "IfTargetDateBefore{${1:date}}{${2:before code}}{${3:after code}}"
@@ -462,13 +479,15 @@
       "snippet": "InsertMark{${1:class}}{${2:text}}"
     },
     "LastDeclaredEncoding": {},
-    "LastMark{}": {
-      "snippet": "LastMark{${1:class}}"
-    },
     "LastMark[]{}": {
       "snippet": "LastMark[${2:region}]{${1:class}}"
     },
+    "LastMark{}": {
+      "snippet": "LastMark{${1:class}}"
+    },
     "LaTeXReleaseInfo": {},
+    "LinkTargetOff": {},
+    "LinkTargetOn": {},
     "LoadClass[]{}": {
       "snippet": "LoadClass[${2:optionlist}]{${1:class}}"
     },
@@ -492,6 +511,18 @@
     },
     "LogHook{}": {
       "snippet": "LogHook{${1:hook}}"
+    },
+    "LogSocket{}": {
+      "snippet": "LogSocket{${1:socket}}"
+    },
+    "MakeLinkTarget*{}": {
+      "snippet": "MakeLinkTarget*{${1:target name}}"
+    },
+    "MakeLinkTarget[]{}": {
+      "snippet": "MakeLinkTarget[${2:prefix}]{${1:counter}}"
+    },
+    "MakeLinkTarget{}": {
+      "snippet": "MakeLinkTarget{${1:counter}}"
     },
     "MakeRobust{}": {
       "snippet": "MakeRobust{${1:cmd}}"
@@ -536,11 +567,23 @@
     "NewModuleRelease{}{}": {
       "snippet": "NewModuleRelease{${1:date}}{${2:name}}"
     },
+    "NewProperty{}{}{}{}": {
+      "snippet": "NewProperty{${1:property}}{${2:setpoint}}{${3:default}}{${4:code}}"
+    },
     "NewReversedHook{}": {
       "snippet": "NewReversedHook{${1:hook}}"
     },
     "NewReversedHookWithArguments{}{}": {
       "snippet": "NewReversedHookWithArguments{${1:hook}}{${2:number}}"
+    },
+    "NewSocket{}{}": {
+      "snippet": "NewSocket{${1:socket}}{${2:number of inputs}}"
+    },
+    "NewSocketPlug{}{}{}": {
+      "snippet": "NewSocketPlug{${1:socket}}{${2:socket plug}}{${3:code}}"
+    },
+    "NextLinkTarget{}": {
+      "snippet": "NextLinkTarget{${1:target name}}"
     },
     "OmitIndent": {},
     "OptionNotUsed": {},
@@ -636,6 +679,18 @@
     "RawParEnd": {},
     "RawShipout": {},
     "ReadonlyShipoutCounter": {},
+    "RecordProperties{}{}": {
+      "snippet": "RecordProperties{${1:label}}{${2:properties}}"
+    },
+    "RefProperty[]{}{}": {
+      "snippet": "RefProperty[${3:local default}]{${1:label}}{${2:property}}"
+    },
+    "RefProperty{}{}": {
+      "snippet": "RefProperty{${1:label}}{${2:property}}"
+    },
+    "RefUndefinedWarn{}{}": {
+      "snippet": "RefUndefinedWarn{${1:label}}{${2:property}}"
+    },
     "RemoveFromHook{}": {
       "snippet": "RemoveFromHook{${1:hook}}"
     },
@@ -679,14 +734,17 @@
     "SetDefaultHookLabel{}": {
       "snippet": "SetDefaultHookLabel{${1:default label}}"
     },
-    "SetKeys{}": {
-      "snippet": "SetKeys{${1:keyvals}}"
-    },
     "SetKeys[]{}": {
       "snippet": "SetKeys[${2:family}]{${1:keyvals}}"
     },
+    "SetKeys{}": {
+      "snippet": "SetKeys{${1:keyvals}}"
+    },
     "SetMathAlphabet{}{}{}{}{}{}": {
       "snippet": "SetMathAlphabet{${1:math-alph}}{${2:version}}{${3:encoding}}{${4:family}}{${5:series}}{${6:shape}}"
+    },
+    "SetProperty{}{}{}{}": {
+      "snippet": "SetProperty{${1:property}}{${2:setpoint}}{${3:default}}{${4:code}}"
     },
     "SetSymbolFont{}{}{}{}{}{}": {
       "snippet": "SetSymbolFont{${1:sym-font}}{${2:version}}{${3:encoding}}{${4:family}}{${5:series}}{${6:shape}}"
@@ -707,6 +765,9 @@
     "ShowHook{}": {
       "snippet": "ShowHook{${1:hook}}"
     },
+    "ShowSocket{}": {
+      "snippet": "ShowSocket{${1:socket}}"
+    },
     "SplitArgument{}{}": {
       "snippet": "SplitArgument{${1:number}}{${2:tokens}}"
     },
@@ -716,11 +777,11 @@
     "TextSymbolUnavailable{}": {
       "snippet": "TextSymbolUnavailable{${1:arg}}"
     },
-    "TopMark{}": {
-      "snippet": "TopMark{${1:class}}"
-    },
     "TopMark[]{}": {
       "snippet": "TopMark[${2:region}]{${1:class}}"
+    },
+    "TopMark{}": {
+      "snippet": "TopMark{${1:class}}"
     },
     "TrimSpaces": {},
     "UndeclareTextCommand{}{}": {
@@ -737,6 +798,9 @@
       "snippet": "UseOneTimeHook{${1:hook}}"
     },
     "UseRawInputEncoding": {},
+    "UseSocket{}": {
+      "snippet": "UseSocket{${1:socket}}"
+    },
     "UseTextAccent{}{}{}": {
       "snippet": "UseTextAccent{${1:encoding}}{${2:cmd}}{${3:text}}"
     },
@@ -1181,8 +1245,12 @@
     "ltmetaversion": {},
     "ltparadate": {},
     "ltparaversion": {},
+    "ltpropertiesdate": {},
+    "ltpropertiesversion": {},
     "ltshipoutdate": {},
     "ltshipoutversion": {},
+    "ltsocketsdate": {},
+    "ltsocketsversion": {},
     "mathalpha": {},
     "mathgroup": {},
     "mathhexbox": {},
