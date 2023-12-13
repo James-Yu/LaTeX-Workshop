@@ -1,5 +1,13 @@
 # Change Log
 
+## [9.15.6] - 2023-12-13
+
+### Changed
+- Update to PDF.js v4.0.269.
+
+### Fixed
+- (#4092) PDF reload at file change.
+
 ## [9.15.5] - 2023-12-12
 
 ### Fixed
