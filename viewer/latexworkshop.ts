@@ -248,6 +248,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
     private async restorePdfViewerState(state: PdfViewerState) {
         await this.pdfViewerStarted
+
         // By setting the scale, scaling will be invoked if necessary.
         // The scale can be a non-number one.
         if (state.scale !== undefined) {
@@ -393,7 +394,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             if (pack.sidebarView) {
                 PDFViewerApplication.pdfSidebar.switchView(pack.sidebarView)
             }
-            if (typeof pack.scale === 'number' && PDFViewerApplication.pdfViewer.currentScaleValue !== pack.scale) {
+            if (['number', 'string'].includes(typeof pack.scale) && PDFViewerApplication.pdfViewer.currentScaleValue !== pack.scale) {
                 PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale
             }
             if (typeof pack.scrollMode === 'number' && PDFViewerApplication.pdfViewer.scrollMode !== pack.scrollMode) {
