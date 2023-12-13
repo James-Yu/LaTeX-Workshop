@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.15.7] - 2023-12-13
+
+### Fixed
+- (#4093) PDF viewer restores scale value after reload.
+
 ## [9.15.6] - 2023-12-13
 
 ### Changed
