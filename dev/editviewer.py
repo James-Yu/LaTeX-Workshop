@@ -13,7 +13,7 @@ with open(args.web + '/viewer.html', 'rt', encoding='utf-8') as fin:
                 line.replace('''<title>PDF.js viewer</title>''', '''<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; connect-src 'self' ws://127.0.0.1:*; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;">\n    <title>PDF.js viewer</title>''')
                     .replace('''<link rel="stylesheet" href="viewer.css">''', '''<link rel="stylesheet" href="viewer.css">\n    <link rel="stylesheet" href="latexworkshop.css">''')
                     .replace('''<script src="../build/pdf.mjs" type="module"></script>''', '''<script src="build/pdf.mjs" type="module"></script>''')
-                    .replace('''<script src="viewer.mjs" type="module"></script>''', '''<script src="out/viewer/latexworkshop.js" type="module"></script>\n  <script src="viewer/viewer.mjs" type="module"></script>''')
+                    .replace('''<script src="viewer.mjs" type="module"></script>''', '''<script src="out/viewer/latexworkshop.js" type="module"></script>''')
                     .replace('''<div class="toolbarButtonSpacer"></div>''', '''<!-- <div class="toolbarButtonSpacer"></div> -->''')
             )
 
