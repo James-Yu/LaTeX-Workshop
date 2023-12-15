@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.15.8] - 2023-12-15
+
+### Fixed
+- (#4096) Color options in pdf editor not working since v9.15.1.
+
 ## [9.15.7] - 2023-12-13
 
 ### Fixed
