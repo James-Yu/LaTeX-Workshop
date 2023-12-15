@@ -87,7 +87,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             })
         })
         this.onViewUpdated(() => this.repositionDOM())
-        this.setupAppOptions()
+        void this.setupAppOptions()
     }
 
     // For the details of the initialization of PDF.js,
@@ -211,9 +211,11 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return this.setupAppOptionsPromise.promise
     }
 
-    private setupAppOptions() {
+    private async setupAppOptions() {
         const workerPort = new Worker('build/pdf.worker.mjs', { type: 'module' })
-        document.addEventListener('webviewerloaded', async () => {
+        const params = await this.fetchParams()
+        document.addEventListener('webviewerloaded', () => {
+            const color = this.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark : params.color.light
             const options = {
                 annotationEditorMode: -1,
                 disablePreferences: true,
@@ -223,13 +225,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 standardFontDataUrl: '../standard_fonts/',
                 workerPort,
                 workerSrc: './build/pdf.worker.mjs',
-                forcePageColors: true
+                forcePageColors: true,
+                ...color
             }
             PDFViewerApplicationOptions.setAll(options)
-            const params = await this.fetchParams()
-            const color = this.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark : params.color.light
-
-            PDFViewerApplicationOptions.setAll(color)
         })
         this.setupAppOptionsPromise.resolve()
     }
