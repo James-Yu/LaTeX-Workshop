@@ -45,7 +45,14 @@ const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
 export function showCompilerDiagnostics(diagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[]) {
     diagnostics.clear()
     const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const convertFilenameRegexp = new RegExp(configuration.get('message.filenameConverter.matcher') as string)
+    const convertFilenameReplacer = configuration.get('message.filenameConverter.replacer') as string
     for (const item of buildLog) {
+        const srcFile = item.file.replace(convertFilenameRegexp, convertFilenameReplacer)
+        if (fs.existsSync(srcFile)) {
+            item.file = srcFile
+        }
         let startChar = 0
         let endChar = 65535
         // Try to compute a more precise position
@@ -64,7 +71,6 @@ export function showCompilerDiagnostics(diagnostics: vscode.DiagnosticCollection
         diagsCollection[item.file].push(diag)
     }
 
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const convEnc = configuration.get('message.convertFilenameEncoding') as boolean
     for (const file in diagsCollection) {
         let file1 = file
