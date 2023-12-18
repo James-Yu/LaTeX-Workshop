@@ -4,6 +4,8 @@ import { lw } from './lw'
 lw.extensionRoot = path.resolve(`${__dirname}/../../`)
 import { log } from './utils/logger'
 lw.log = log.getLogger
+const logger = lw.log('Extension')
+logger.log('Initializing LaTeX Workshop.')
 import { event } from './core/event'
 lw.event = event
 import { file } from './core/file'
@@ -38,22 +40,15 @@ lw.commands = commander
 
 log.initStatusBarItem()
 
-import { BibtexCompleter } from './completion/bibtex'
 import { DocSymbolProvider } from './language/symbol-document'
 import { ProjectSymbolProvider } from './language/symbol-project'
 import { DefinitionProvider } from './language/definition'
 import { FoldingProvider, WeaveFoldingProvider } from './language/folding'
 import { SelectionRangeProvider } from './language/selection'
 
-import { AtSuggestionCompleter, Completer } from './completion/latex'
+export function activate(extensionContext: vscode.ExtensionContext) {
+    void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
-const logger = lw.log('Extension')
-
-function initialize() {
-    lw.completer = new Completer()
-    lw.atSuggestionCompleter = new AtSuggestionCompleter()
-
-    logger.log('Initializing LaTeX Workshop.')
     logger.log(`Extension root: ${lw.extensionRoot}`)
     logger.log(`$PATH: ${process.env.PATH}`)
     logger.log(`$SHELL: ${process.env.SHELL}`)
@@ -66,13 +61,6 @@ function initialize() {
     logger.log(`vscode.env.uiKind: ${vscode.env.uiKind}`)
     log.logConfig()
     log.logDeprecatedConfig()
-    logger.log('LaTeX Workshop initialized.')
-}
-
-export function activate(extensionContext: vscode.ExtensionContext) {
-    void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
-
-    initialize()
 
     lw.onDispose(undefined, extensionContext.subscriptions)
 
@@ -166,6 +154,8 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         }
     })
     conflictCheck()
+
+    logger.log('LaTeX Workshop initialized.')
 }
 
 function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext) {
@@ -279,8 +269,8 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     )
 
     extensionContext.subscriptions.push(
-        vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, lw.completer, '\\', '{'),
-        vscode.languages.registerCompletionItemProvider(bibtexSelector, new BibtexCompleter(), '@')
+        vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, lw.completion.provider, '\\', '{'),
+        vscode.languages.registerCompletionItemProvider(bibtexSelector, lw.completion.bibProvider, '@')
     )
 
     let triggerDisposable: vscode.Disposable | undefined
@@ -289,7 +279,7 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
         const latexTriggers = ['\\', ','].concat(userTriggersLatex)
         logger.log(`Trigger characters for intellisense of LaTeX documents: ${JSON.stringify(latexTriggers)}`)
 
-        triggerDisposable = vscode.languages.registerCompletionItemProvider(latexDoctexSelector, lw.completer, ...latexTriggers)
+        triggerDisposable = vscode.languages.registerCompletionItemProvider(latexDoctexSelector, lw.completion.provider, ...latexTriggers)
         extensionContext.subscriptions.push(triggerDisposable)
     }
     registerTrigger()
@@ -305,8 +295,8 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     const registerAtSuggestion = () => {
         const atSuggestionLatexTrigger = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.atSuggestion.trigger.latex') as string
         if (atSuggestionLatexTrigger !== '') {
-            lw.atSuggestionCompleter.updateTrigger()
-            atSuggestionDisposable = vscode.languages.registerCompletionItemProvider(latexDoctexSelector, lw.atSuggestionCompleter, atSuggestionLatexTrigger)
+            lw.completion.atProvider.updateTrigger()
+            atSuggestionDisposable = vscode.languages.registerCompletionItemProvider(latexDoctexSelector, lw.completion.atProvider, atSuggestionLatexTrigger)
             extensionContext.subscriptions.push(atSuggestionDisposable)
         }
     }

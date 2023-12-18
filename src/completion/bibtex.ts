@@ -8,7 +8,7 @@ const logger = lw.log('Intelli', 'Bib')
 type DataBibtexJsonType = typeof import('../../data/bibtex-entries.json')
 type DataBibtexOptionalJsonType = typeof import('../../data/bibtex-optional-entries.json')
 
-export class BibtexCompleter implements vscode.CompletionItemProvider {
+export class BibProvider implements vscode.CompletionItemProvider {
     private scope: vscode.ConfigurationScope | undefined = undefined
     private readonly entryItems: vscode.CompletionItem[] = []
     private readonly optFieldItems = Object.create(null) as { [key: string]: vscode.CompletionItem[] }

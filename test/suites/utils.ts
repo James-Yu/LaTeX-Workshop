@@ -77,7 +77,7 @@ export async function reset() {
     await Promise.all(Object.values(lw.cache.promises))
     lw.root.file.path = undefined
     lw.root.subfiles.path = undefined
-    lw.completer.input.reset()
+    lw.completion.input.reset()
     lw.lint.label.reset()
     lw.cache.reset()
     glob.sync('**/{**.tex,**.pdf,**.bib}', { cwd: getFixture() }).forEach(file => { try {fs.unlinkSync(path.resolve(getFixture(), file))} catch {} })
@@ -199,7 +199,7 @@ export function suggest(row: number, col: number, isAtSuggestion = false, openFi
     const lines = lw.cache.get(openFile ?? lw.root.file.path)?.content?.split('\n')
     ok(lines)
     logger.log('Get suggestion.')
-    const items = (isAtSuggestion ? lw.atSuggestionCompleter : lw.completer).provide({
+    const items = (isAtSuggestion ? lw.completion.atProvider : lw.completion.provider).provide({
         uri: vscode.Uri.file(openFile ?? lw.root.file.path),
         langId: 'latex',
         line: lines[row],

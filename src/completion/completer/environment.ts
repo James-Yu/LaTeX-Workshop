@@ -106,7 +106,7 @@ function provide(langId: string, line: string, position: vscode.Position): Compl
     // Insert package environments
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (configuration.get('intellisense.package.enabled')) {
-        const packages = lw.completer.package.getPackagesIncluded(langId)
+        const packages = lw.completion.usepackage.getAll(langId)
         Object.entries(packages).forEach(([packageName, options]) => {
             getEnvFromPkg(packageName, snippetType).forEach(env => {
                 if (env.option && options && !options.includes(env.option)) {
@@ -241,7 +241,7 @@ function getEnvFromPkg(packageName: string, type: EnvSnippetType): CmdEnvSuggest
         return entry
     }
 
-    lw.completer.loadPackageData(packageName)
+    lw.completion.usepackage.load(packageName)
     // No package command defined
     const pkgEnvs = data.packageEnvs.get(packageName)
     if (!pkgEnvs || pkgEnvs.length === 0) {

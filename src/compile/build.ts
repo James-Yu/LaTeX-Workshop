@@ -413,7 +413,7 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
         return
     }
     lw.viewer.refresh(lw.file.getPdfPath(lastStep.rootFile))
-    lw.completer.reference.setNumbersFromAuxFile(lastStep.rootFile)
+    lw.completion.reference.setNumbersFromAuxFile(lastStep.rootFile)
     await lw.cache.loadFlsFile(lastStep.rootFile ?? '')
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(lastStep.rootFile))
     // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.

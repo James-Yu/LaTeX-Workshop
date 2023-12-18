@@ -48,7 +48,7 @@ class HoverProvider implements vscode.HoverProvider {
             const ctanLink = new vscode.MarkdownString(`[${ctanUrl}](${ctanUrl})`)
             return new vscode.Hover([md, mdLink, ctanLink])
         }
-        const refData = lw.completer.reference.getRef(token)
+        const refData = lw.completion.reference.getItem(token)
         if (hovReference && refData) {
             const hover = await lw.preview.math.onRef(document, position, refData, token, ctoken)
             return hover
@@ -72,7 +72,7 @@ class HoverProvider implements vscode.HoverProvider {
         const packageCmds: CmdEnvSuggestion[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if ((configuration.get('intellisense.package.enabled'))) {
-            const packages = lw.completer.package.getPackagesIncluded('latex-expl3')
+            const packages = lw.completion.usepackage.getAll('latex-expl3')
             Object.entries(packages).forEach(([packageName, options]) => {
                 lw.completion.macro.provideCmdInPkg(packageName, options, packageCmds)
                 lw.completion.environment.provideEnvsAsCommandInPkg(packageName, options, packageCmds)

@@ -1,8 +1,7 @@
 import * as vscode from 'vscode'
-import type { TeXMathEnv } from '../../../types'
+import type { ReferenceEntry, TeXMathEnv } from '../../../types'
 import * as utils from '../../../utils/utils'
 import { type ITextDocumentLike, TextDocumentLike } from './textdocumentlike'
-import type { ReferenceEntry } from '../../../completion/completer/reference'
 
 const ENV_NAMES = [
     'align', 'align\\*', 'alignat', 'alignat\\*', 'aligned', 'alignedat', 'array', 'Bmatrix', 'bmatrix', 'cases', 'CD', 'eqnarray', 'eqnarray\\*', 'equation', 'equation\\*', 'flalign', 'flalign\\*', 'gather', 'gather\\*', 'gathered', 'matrix', 'multline', 'multline\\*', 'pmatrix', 'smallmatrix', 'split', 'subarray', 'Vmatrix', 'vmatrix'

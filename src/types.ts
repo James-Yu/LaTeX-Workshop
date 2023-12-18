@@ -1,7 +1,6 @@
 import type * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import type { CmdEnvSuggestion } from './completion/completer/completerutils'
-import type { GlossarySuggestion } from './completion/completer/glossary'
 
 export type FileCache = {
     /** The raw file path of this Cache. */
@@ -15,7 +14,7 @@ export type FileCache = {
         /** \ref{} items */
         reference?: CompletionItem[],
         /** \gls items */
-        glossary?: GlossarySuggestion[],
+        glossary?: GlossaryItem[],
         /** \begin{} items */
         environment?: CmdEnvSuggestion[],
         /** \cite{} items from \bibitem definition */
@@ -211,4 +210,33 @@ export type Macro = {
     package?: string,
     /** The action to be executed after inserting the snippet */
     postAction?: string
+}
+
+export interface ReferenceEntry extends CompletionItem {
+    /** The file that defines the ref. */
+    file: string,
+    /** The position that defines the ref. */
+    position: vscode.Position,
+    /**  Stores the ref number. */
+    prevIndex?: {refNumber: string, pageNumber: string}
+}
+
+export type ReferenceDocType = {
+    documentation: ReferenceEntry['documentation'],
+    file: ReferenceEntry['file'],
+    position: {line: number, character: number},
+    key: string,
+    label: ReferenceEntry['label'],
+    prevIndex: ReferenceEntry['prevIndex']
+}
+
+export enum GlossaryType {
+    glossary,
+    acronym
+}
+
+export interface GlossaryItem extends CompletionItem {
+    type: GlossaryType,
+    filePath: string,
+    position: vscode.Position
 }

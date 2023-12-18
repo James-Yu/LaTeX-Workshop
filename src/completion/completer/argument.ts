@@ -14,7 +14,7 @@ function from(result: RegExpMatchArray, args: CompletionArgs) {
         return provideClassOptions(args.line)
     }
     const index = getArgumentIndex(result[2])
-    const packages = lw.completer.package.getPackagesIncluded(args.langId)
+    const packages = lw.completion.usepackage.getAll(args.langId)
     let candidate: CmdEnvSuggestion | undefined
     let environment: string | undefined
     if (result[1] === 'begin') {
@@ -66,8 +66,8 @@ function providePackageOptions(line: string): vscode.CompletionItem[] {
     if (!match) {
         return []
     }
-    lw.completer.loadPackageData(match[1])
-    const suggestions = lw.completer.package.getPackageOptions(match[1])
+    lw.completion.usepackage.load(match[1])
+    const suggestions = lw.completion.usepackage.getOpts(match[1])
         .map(option => {
             const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
             item.insertText = new vscode.SnippetString(option)
@@ -86,8 +86,8 @@ function provideClassOptions(line: string): vscode.CompletionItem[] {
         return []
     }
     const isDefaultClass = ['article', 'report', 'book'].includes(match[1])
-    lw.completer.loadPackageData(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
-    const suggestions = lw.completer.package.getPackageOptions(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
+    lw.completion.usepackage.load(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
+    const suggestions = lw.completion.usepackage.getOpts(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
         .map(option => {
             const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
             item.insertText = new vscode.SnippetString(option)

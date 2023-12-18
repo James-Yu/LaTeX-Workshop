@@ -363,12 +363,12 @@ function updateElements(fileCache: FileCache) {
     const start = performance.now()
     lw.completion.citation.parse(fileCache)
     // Package parsing must be before command and environment.
-    lw.completer.package.parse(fileCache)
-    lw.completer.reference.parse(fileCache)
-    lw.completer.glossary.parse(fileCache)
+    lw.completion.usepackage.parse(fileCache)
+    lw.completion.reference.parse(fileCache)
+    lw.completion.glossary.parse(fileCache)
     lw.completion.environment.parse(fileCache)
     lw.completion.macro.parse(fileCache)
-    lw.completer.input.parseGraphicsPath(fileCache)
+    lw.completion.input.parseGraphicsPath(fileCache)
     updateBibfiles(fileCache)
     const elapsed = performance.now() - start
     logger.log(`Updated elements in ${elapsed.toFixed(2)} ms: ${fileCache.filePath} .`)

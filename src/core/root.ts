@@ -66,7 +66,7 @@ async function find(): Promise<undefined> {
             lw.event.fire(lw.event.RootFileChanged, rootFilePath)
 
             // We also clean the completions from the old project
-            lw.completer.input.reset()
+            lw.completion.input.reset()
             lw.lint.label.reset()
             lw.cache.reset()
             lw.cache.add(rootFilePath)

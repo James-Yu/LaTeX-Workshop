@@ -56,7 +56,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
             }
             return
         }
-        const ref = lw.completer.reference.getRef(token)
+        const ref = lw.completion.reference.getItem(token)
         if (ref) {
             return new vscode.Location(vscode.Uri.file(ref.file), ref.position)
         }
@@ -64,7 +64,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         if (cite) {
             return new vscode.Location(vscode.Uri.file(cite.file), cite.position)
         }
-        const glossary = lw.completer.glossary.getEntry(token)
+        const glossary = lw.completion.glossary.getItem(token)
         if (glossary) {
             return new vscode.Location(vscode.Uri.file(glossary.filePath), glossary.position)
         }

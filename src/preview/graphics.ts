@@ -112,7 +112,7 @@ function findFilePath(relPath: string, document: vscode.TextDocument): string | 
     }
 
     const activeDir = path.dirname(document.uri.fsPath)
-    for (const dirPath of lw.completer.input.graphicsPath) {
+    for (const dirPath of lw.completion.input.graphicsPath) {
         const filePath = path.resolve(activeDir, dirPath, relPath)
         if (fs.existsSync(filePath)) {
             return filePath

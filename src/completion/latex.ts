@@ -1,107 +1,22 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
-import * as path from 'path'
 import { lw } from '../lw'
-import { CompletionArgs, CompletionProvider, Package } from '../types'
+import type { CompletionArgs, CompletionProvider, ReferenceDocType } from '../types'
 import { citation, provider as citationProvider } from './completer/citation'
-import { DocumentClass } from './completer/documentclass'
-import { environment, provider as environmentProvider } from './completer/environment'
-import { macro, provider as macroProvider } from './completer/macro'
+import { provider as environmentProvider } from './completer/environment'
+import { provider as macroProvider } from './completer/macro'
 import { provider as argumentProvider } from './completer/argument'
-import { AtSuggestion } from './completer/atsuggestion'
-import { Reference } from './completer/reference'
-import { Package as PackageCompletion } from './completer/package'
-import { Input, Import, SubImport } from './completer/input'
-import { Glossary } from './completer/glossary'
-import type { ReferenceDocType } from './completer/reference'
+import { provider as classProvider } from './completer/class'
+import { provider as referenceProvider } from './completer/reference'
+import { provider as packageProvider } from './completer/package'
+import { inputProvider, importProvider, subimportProvider } from './completer/input'
+import { provider as glossaryProvider } from './completer/glossary'
+import { atSuggestion, provider as atProvider } from './completer/atsuggestion'
+
 import { escapeRegExp } from '../utils/utils'
 
 const logger = lw.log('Intelli')
 
-export class Completer implements vscode.CompletionItemProvider {
-    readonly documentClass: DocumentClass
-    readonly reference: Reference
-    readonly package: PackageCompletion
-    readonly input: Input
-    readonly import: Import
-    readonly subImport: SubImport
-    readonly glossary: Glossary
-
-    private readonly packagesLoaded: string[] = []
-
-    constructor() {
-        this.documentClass = new DocumentClass()
-        this.reference = new Reference()
-        this.package = new PackageCompletion()
-        this.input = new Input()
-        this.import = new Import()
-        this.subImport = new SubImport()
-        this.glossary = new Glossary()
-    }
-
-    loadPackageData(packageName: string) {
-        if (this.packagesLoaded.includes(packageName)) {
-            return
-        }
-
-        const filePath: string | undefined = this.resolvePackageFile(packageName)
-        if (filePath === undefined) {
-            this.packagesLoaded.push(packageName)
-            return
-        }
-
-        try {
-            const packageData = JSON.parse(fs.readFileSync(filePath).toString()) as Package
-            this.populatePackageData(packageData)
-
-            this.package.setPackageDeps(packageName, packageData.includes)
-            macro.setPackageCmds(packageName, packageData.macros)
-            environment.setPackageEnvs(packageName, packageData.envs)
-            this.package.setPackageOptions(packageName, packageData.options)
-
-            this.packagesLoaded.push(packageName)
-        } catch (e) {
-            logger.log(`Cannot parse intellisense file: ${filePath}`)
-        }
-    }
-
-    private resolvePackageFile(packageName: string): string | undefined {
-        const defaultDir = `${lw.extensionRoot}/data/packages/`
-        const dirs = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.dirs') as string[]
-        dirs.push(defaultDir)
-        for (const dir of dirs) {
-            const filePath = path.resolve(dir, `${packageName}.json`)
-            if (fs.existsSync(filePath)) {
-                return filePath
-            }
-        }
-        // Many package with names like toppackage-config.sty are just wrappers around
-        // the general package toppacke.sty and do not define commands on their own.
-        const indexDash = packageName.lastIndexOf('-')
-        if (indexDash > - 1) {
-            const generalPkg = packageName.substring(0, indexDash)
-            const filePath = path.resolve(defaultDir, `${generalPkg}.json`)
-            if (fs.existsSync(filePath)) {
-                return filePath
-            }
-        }
-        return
-    }
-
-    private populatePackageData(packageData: Package) {
-        Object.entries(packageData.macros).forEach(([key, cmd]) => {
-            cmd.macro = key
-            cmd.snippet = cmd.snippet || key
-            cmd.keyvals = packageData.keyvals[cmd.keyvalindex ?? -1]
-        })
-        Object.entries(packageData.envs).forEach(([key, env]) => {
-            env.detail = key
-            env.name = env.name || key
-            env.snippet = env.snippet || ''
-            env.keyvals = packageData.keyvals[env.keyvalindex ?? -1]
-        })
-    }
-
+export class Provider implements vscode.CompletionItemProvider {
     provideCompletionItems(
         document: vscode.TextDocument,
         position: vscode.Position
@@ -192,7 +107,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 break
             case 'reference':
                 reg = /(?:\\hyperref\[([^\]]*)(?!\])$)|(?:(?:\\(?!hyper)[a-zA-Z]*ref[a-zA-Z]*\*?(?:\[[^[\]]*\])?){([^}]*)$)|(?:\\[Cc][a-z]*refrange\*?{[^{}]*}{([^}]*)$)/
-                provider = this.reference
+                provider = referenceProvider
                 break
             case 'environment':
                 reg = /(?:\\begin|\\end){([^}]*)$/
@@ -208,31 +123,31 @@ export class Completer implements vscode.CompletionItemProvider {
                 break
             case 'package':
                 reg = /(?:\\usepackage(?:\[[^[\]]*\])*){([^}]*)$/
-                provider = this.package
+                provider = packageProvider
                 break
             case 'documentclass':
                 reg = /(?:\\documentclass(?:\[[^[\]]*\])*){([^}]*)$/
-                provider = this.documentClass
+                provider = classProvider
                 break
             case 'input':
                 reg = /\\(input|include|subfile|subfileinclude|includegraphics|includesvg|lstinputlisting|verbatiminput|loadglsentries|markdownInput)\*?(?:\[[^[\]]*\])*{([^}]*)$/
-                provider = this.input
+                provider = inputProvider
                 break
             case 'includeonly':
                 reg = /\\(includeonly|excludeonly){(?:{[^}]*},)*(?:[^,]*,)*{?([^},]*)$/
-                provider = this.input
+                provider = inputProvider
                 break
             case 'import':
                 reg = /\\(import|includefrom|inputfrom)\*?(?:{([^}]*)})?{([^}]*)$/
-                provider = this.import
+                provider = importProvider
                 break
             case 'subimport':
                 reg = /\\(sub(?:import|includefrom|inputfrom))\*?(?:{([^}]*)})?{([^}]*)$/
-                provider = this.subImport
+                provider = subimportProvider
                 break
             case 'glossary':
                 reg = /\\(gls(?:pl|text|first|fmt(?:text|short|long)|plural|firstplural|name|symbol|desc|disp|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)(?:\[[^[\]]*\])?{([^}]*)$/i
-                provider = this.glossary
+                provider = glossaryProvider
                 break
             default:
                 // This shouldn't be possible, so mark as error case in log.
@@ -252,20 +167,18 @@ export class Completer implements vscode.CompletionItemProvider {
     }
 }
 
-export class AtSuggestionCompleter implements vscode.CompletionItemProvider {
-    private atSuggestion: AtSuggestion
-    private triggerCharacter: string
+export class AtProvider implements vscode.CompletionItemProvider {
+    private reg: RegExp = new RegExp('@[^\\\\s]*$')
 
     constructor() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        this.triggerCharacter = configuration.get('intellisense.atSuggestion.trigger.latex') as string
-        this.atSuggestion = new AtSuggestion(this.triggerCharacter)
+        this.updateTrigger()
     }
 
     updateTrigger() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        this.triggerCharacter = configuration.get('intellisense.atSuggestion.trigger.latex') as string
-        this.atSuggestion = new AtSuggestion(this.triggerCharacter)
+        const triggerCharacter = configuration.get('intellisense.atSuggestion.trigger.latex') as string
+        atSuggestion.initialize(triggerCharacter)
+        this.reg = new RegExp(escapeRegExp(triggerCharacter) + '[^\\\\s]*$')
     }
 
     provideCompletionItems(
@@ -281,12 +194,10 @@ export class AtSuggestionCompleter implements vscode.CompletionItemProvider {
     }
 
     provide(args: CompletionArgs): vscode.CompletionItem[] {
-        const escapedTriggerCharacter = escapeRegExp(this.triggerCharacter)
-        const reg = new RegExp(escapedTriggerCharacter + '[^\\\\s]*$')
-        const result = args.line.substring(0, args.position.character).match(reg)
+        const result = args.line.substring(0, args.position.character).match(this.reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            suggestions = this.atSuggestion.from(result, args)
+            suggestions = atProvider.from(result, args)
         }
         return suggestions
     }

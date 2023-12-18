@@ -9,7 +9,7 @@ import { environment } from './environment'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 import { SurroundCommand } from './commandlib/surround'
 
-const logger = lw.log('Intelli', 'Command')
+const logger = lw.log('Intelli', 'Macro')
 
 export const provider: CompletionProvider = { from }
 export const macro = {
@@ -121,7 +121,7 @@ function provide(langId: string, line?: string, position?: vscode.Position): Com
 
     // Insert commands from packages
     if ((configuration.get('intellisense.package.enabled'))) {
-        const packages = lw.completer.package.getPackagesIncluded(langId)
+        const packages = lw.completion.usepackage.getAll(langId)
         Object.entries(packages).forEach(([packageName, options]) => {
             provideCmdInPkg(packageName, options, suggestions)
             environment.provideEnvsAsCommandInPkg(packageName, options, suggestions, defined)
@@ -257,7 +257,7 @@ function parseAst(node: Ast.Node, filePath: string, defined?: Set<string>): CmdE
 
 function parseContent(content: string, filePath: string): CmdEnvSuggestion[] {
     const cmdInPkg: CmdEnvSuggestion[] = []
-    const packages = lw.completer.package.getPackagesIncluded('latex-expl3')
+    const packages = lw.completion.usepackage.getAll('latex-expl3')
     Object.entries(packages).forEach(([packageName, options]) => {
         provideCmdInPkg(packageName, options, cmdInPkg)
     })
@@ -407,7 +407,7 @@ function provideCmdInPkg(packageName: string, options: string[], suggestions: Cm
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
     // Load command in pkg
-    lw.completer.loadPackageData(packageName)
+    lw.completion.usepackage.load(packageName)
 
     // No package command defined
     const pkgCmds = data.packageCmds.get(packageName)

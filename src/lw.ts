@@ -14,7 +14,6 @@ import type { outline } from './outline'
 import type { parse } from './parse'
 import type { extra } from './extras'
 
-import type { AtSuggestionCompleter, Completer } from './completion/latex'
 import type * as commands from './core/commands'
 
 /* eslint-disable */
@@ -34,8 +33,6 @@ export const lw = {
     preview: {} as typeof preview,
     locate: {} as typeof locate,
     completion: {} as typeof completion,
-    completer: Object.create(null) as Completer,
-    atSuggestionCompleter: Object.create(null) as AtSuggestionCompleter,
     lint: {} as typeof lint,
     outline: {} as typeof outline,
     extra: {} as typeof extra,

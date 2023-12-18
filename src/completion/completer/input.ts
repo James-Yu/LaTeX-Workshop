@@ -10,7 +10,6 @@ const logger = lw.log('Intelli', 'Input')
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
 abstract class InputAbstract implements CompletionProvider {
-    graphicsPath: Set<string> = new Set()
 
     /**
      * Compute the base directory for file completion
@@ -42,25 +41,6 @@ abstract class InputAbstract implements CompletionProvider {
             const filePath = path.resolve(baseDir, file)
             return !micromatch.isMatch(filePath, excludeGlob, {basename: true})
         })
-    }
-
-    /**
-     * Set the graphics path
-     */
-    parseGraphicsPath(cache: FileCache) {
-        const regex = /\\graphicspath{[\s\n]*((?:{[^{}]*}[\s\n]*)*)}/g
-        let result: string[] | null
-        while (true) {
-            result = regex.exec(cache.contentTrimmed)
-            if (result === null) {
-                break
-            }
-            result[1].split(/\{|\}/).filter(s => s.replace(/^\s*$/, '')).forEach(dir => this.graphicsPath.add(dir))
-        }
-    }
-
-    reset() {
-        this.graphicsPath.clear()
     }
 
     from(result: RegExpMatchArray, args: CompletionArgs) {
@@ -131,7 +111,28 @@ abstract class InputAbstract implements CompletionProvider {
     }
 }
 
-export class Input extends InputAbstract {
+class Input extends InputAbstract {
+    graphicsPath: Set<string> = new Set()
+
+    /**
+     * Set the graphics path
+     */
+    parseGraphicsPath(cache: FileCache) {
+        const regex = /\\graphicspath{[\s\n]*((?:{[^{}]*}[\s\n]*)*)}/g
+        let result: string[] | null
+        while (true) {
+            result = regex.exec(cache.contentTrimmed)
+            if (result === null) {
+                break
+            }
+            result[1].split(/\{|\}/).filter(s => s.replace(/^\s*$/, '')).forEach(dir => this.graphicsPath.add(dir))
+        }
+    }
+
+    reset() {
+        this.graphicsPath.clear()
+    }
+
     provideDirOnly(_importFromDir: string): boolean {
         return false
     }
@@ -170,7 +171,7 @@ export class Input extends InputAbstract {
     }
 }
 
-export class Import extends InputAbstract {
+class Import extends InputAbstract {
     provideDirOnly(importFromDir: string): boolean {
         return (!importFromDir)
     }
@@ -185,7 +186,7 @@ export class Import extends InputAbstract {
 }
 
 
-export class SubImport extends InputAbstract {
+class SubImport extends InputAbstract {
     provideDirOnly(importFromDir: string): boolean {
         return (!importFromDir)
     }
@@ -199,3 +200,11 @@ export class SubImport extends InputAbstract {
         }
     }
 }
+
+export const input = new Input()
+export const inputProvider: CompletionProvider = input
+
+const importMacro = new Import()
+const subimportMacro = new SubImport()
+export const importProvider: CompletionProvider = importMacro
+export const subimportProvider: CompletionProvider = subimportMacro

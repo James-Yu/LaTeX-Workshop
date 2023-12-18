@@ -1,8 +1,7 @@
 import * as vscode from 'vscode'
 import { lw } from '../../../lw'
-import type { TeXMathEnv } from '../../../types'
+import type { ReferenceEntry, TeXMathEnv } from '../../../types'
 import * as utils from '../../../utils/svg'
-import type { ReferenceEntry } from '../../../completion/completer/reference'
 import { MathPreviewUtils } from './mathpreviewutils'
 
 const logger = lw.log('Preview', 'Hover')
