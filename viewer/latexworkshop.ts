@@ -340,10 +340,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         indicator.style.left = `${scrollX}px`
         indicator.style.top = `${scrollY}px`
         setTimeout(() => indicator.className = 'hide', 10)
-        setTimeout(() => {
-            indicator.style.left = ''
-            indicator.style.top = ''
-        }, 1000)
+        // setTimeout(() => {
+        //     indicator.style.left = ''
+        //     indicator.style.top = ''
+        // }, 1000)
     }
 
     private reload() {
