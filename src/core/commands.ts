@@ -166,20 +166,19 @@ export function showLog(compiler?: string) {
     }
 }
 
-export function gotoSection(filePath: string, lineNumber: number) {
+export async function gotoSection(filePath: string, lineNumber: number) {
     logger.log(`GOTOSECTION command invoked. Target ${filePath}, line ${lineNumber}`)
-    const activeEditor = vscode.window.activeTextEditor
 
-    void vscode.workspace.openTextDocument(filePath).then((doc) => {
-        void vscode.window.showTextDocument(doc).then(() => {
-            // input lineNumber is one-based, while editor position is zero-based.
-            void vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
-            if (activeEditor) {
-                activeEditor.selection = new vscode.Selection(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, 0))
-            }
-        })
-    })
-
+    const doc = await vscode.workspace.openTextDocument(filePath)
+    await vscode.window.showTextDocument(doc)
+    // input lineNumber is one-based, while editor position is zero-based.
+    await vscode.commands.executeCommand('revealLine', { lineNumber, at: 'center' })
+    if (vscode.window.activeTextEditor) {
+        vscode.window.activeTextEditor.selection = new vscode.Selection(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, 0))
+        if (vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sync.viewer') as boolean) {
+            lw.locate.synctex.toPDF({ line: lineNumber, filePath: doc.fileName })
+        }
+    }
 }
 
 export function navigateToEnvPair() {

@@ -464,11 +464,6 @@
         "category": "LaTeX Workshop"
       },
       {
-        "command": "latex-workshop.structure-toggle-follow-cursor",
-        "title": "Toggle follow cursor",
-        "category": "LaTeX Workshop"
-      },
-      {
         "command": "latex-workshop.bibsort",
         "title": "Sort BibTeX file",
         "category": "LaTeX Workshop"
@@ -1387,6 +1382,18 @@
             "label"
           ],
           "markdownDescription": "The names of the commands to be shown in the outline/structure views. The commands must be called in the form `\\commandname{arg}`."
+        },
+        "latex-workshop.view.outline.follow.editor": {
+          "scope": "window",
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Whether scrolling the editor will also reveal corresponding structure items."
+        },
+        "latex-workshop.view.outline.sync.viewer": {
+          "scope": "window",
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Whether clicking on structure items will also call synctex to scroll the PDF viewer to the corresponding location."
         },
         "latex-workshop.view.outline.floats.enabled": {
           "scope": "window",
@@ -2503,12 +2510,6 @@
           "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !virtualWorkspace",
           "command": "latex-workshop.build",
           "group": "navigation@1"
-        }
-      ],
-      "view/title": [
-        {
-          "when": "view == latex-workshop-structure",
-          "command": "latex-workshop.structure-toggle-follow-cursor"
         }
       ]
     },

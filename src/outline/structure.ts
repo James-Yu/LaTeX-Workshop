@@ -10,8 +10,7 @@ const logger = lw.log('Structure')
 export const outline = {
     reconstruct,
     refresh,
-    reveal,
-    follow: true
+    reveal
 }
 
 lw.onConfigChange(['view.outline.sections', 'view.outline.commands'], async () => {
@@ -42,7 +41,7 @@ async function refresh(fireChangedEvent: boolean = true) {
 }
 
 function reveal(e: vscode.TextEditorSelectionChangeEvent) {
-    if (!outline.follow || !state.view.visible) {
+    if (!(vscode.workspace.getConfiguration('latex-workshop').get('view.outline.follow.editor') as boolean) || !state.view.visible) {
         return
     }
     const line = e.selections[0].active.line
