@@ -29,6 +29,8 @@ import { locate } from './locate'
 lw.locate = locate
 import { completion } from './completion'
 lw.completion = completion
+import { language } from './language'
+lw.language = language
 import { lint } from './lint'
 lw.lint = lint
 import { outline } from './outline'
