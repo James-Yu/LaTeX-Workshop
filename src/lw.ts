@@ -9,6 +9,7 @@ import type { compile } from './compile'
 import type { preview, server, viewer } from './preview'
 import type { locate } from './locate'
 import type { completion } from './completion'
+import type { language } from './language'
 import type { lint } from './lint'
 import type { outline } from './outline'
 import type { parse } from './parse'
@@ -33,6 +34,7 @@ export const lw = {
     preview: {} as typeof preview,
     locate: {} as typeof locate,
     completion: {} as typeof completion,
+    language: {} as typeof language,
     lint: {} as typeof lint,
     outline: {} as typeof outline,
     extra: {} as typeof extra,

@@ -40,12 +40,6 @@ lw.commands = commander
 
 log.initStatusBarItem()
 
-import { DocSymbolProvider } from './language/symbol-document'
-import { ProjectSymbolProvider } from './language/symbol-project'
-import { DefinitionProvider } from './language/definition'
-import { FoldingProvider, WeaveFoldingProvider } from './language/folding'
-import { SelectionRangeProvider } from './language/selection'
-
 export function activate(extensionContext: vscode.ExtensionContext) {
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
@@ -261,11 +255,11 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
 
     extensionContext.subscriptions.push(
         vscode.languages.registerHoverProvider(latexSelector, lw.preview.provider),
-        vscode.languages.registerDefinitionProvider(latexSelector, new DefinitionProvider()),
-        vscode.languages.registerDocumentSymbolProvider(latexSelector, new DocSymbolProvider()),
-        vscode.languages.registerDocumentSymbolProvider(bibtexSelector, new DocSymbolProvider()),
-        vscode.languages.registerDocumentSymbolProvider(selectDocumentsWithId(['doctex']), new DocSymbolProvider()),
-        vscode.languages.registerWorkspaceSymbolProvider(new ProjectSymbolProvider())
+        vscode.languages.registerDefinitionProvider(latexSelector, lw.language.definition),
+        vscode.languages.registerDocumentSymbolProvider(latexSelector, lw.language.docSymbol),
+        vscode.languages.registerDocumentSymbolProvider(bibtexSelector, lw.language.docSymbol),
+        vscode.languages.registerDocumentSymbolProvider(selectDocumentsWithId(['doctex']), lw.language.docSymbol),
+        vscode.languages.registerWorkspaceSymbolProvider(lw.language.projectSymbol)
     )
 
     extensionContext.subscriptions.push(
@@ -311,13 +305,13 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
 
     extensionContext.subscriptions.push(
         vscode.languages.registerCodeActionsProvider(latexSelector, lw.lint.latex.actionprovider),
-        vscode.languages.registerFoldingRangeProvider(latexSelector, new FoldingProvider()),
-        vscode.languages.registerFoldingRangeProvider(weaveSelector, new WeaveFoldingProvider())
+        vscode.languages.registerFoldingRangeProvider(latexSelector, lw.language.folding),
+        vscode.languages.registerFoldingRangeProvider(weaveSelector, lw.language.weaveFolding)
     )
 
     const selectionLatex = configuration.get('selection.smart.latex.enabled', true)
     if (selectionLatex) {
-        extensionContext.subscriptions.push(vscode.languages.registerSelectionRangeProvider({language: 'latex'}, new SelectionRangeProvider()))
+        extensionContext.subscriptions.push(vscode.languages.registerSelectionRangeProvider({language: 'latex'}, lw.language.selectionRage))
     }
 
     extensionContext.subscriptions.push(
