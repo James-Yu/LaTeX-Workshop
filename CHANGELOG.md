@@ -1,5 +1,16 @@
 # Change Log
 
+## [9.16.0] - 2023-2-19
+
+### Added
+- Tweak the PDF synctex indicator appearance, less intrusive.
+- A new config `view.outline.follow.editor` to control whether scrolling the editor will also reveal corresponding structure items.
+- (#4098) SyncTeX after clicking structure item.
+  - This behavior is controlled by a new config `view.outline.sync.viewer`.
+
+### Fixed
+- (#4045) Use AST to parse new commands for preview.
+
 ## [9.15.8] - 2023-12-15
 
 ### Fixed
