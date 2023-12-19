@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import { lw } from '../lw'
+import { findNewCommand } from './math/mathpreviewlib/newcommandfinder'
 import { tokenizer, onAPackage } from '../utils/tokenizer'
-import { findProjectNewCommand } from '../preview/math/mathpreviewlib/newcommandfinder'
 import { CmdEnvSuggestion } from '../completion/completer/completerutils'
 
 export {
@@ -19,7 +19,7 @@ class HoverProvider implements vscode.HoverProvider {
         if (hov) {
             const tex = lw.preview.math.findTeX(document, position)
             if (tex) {
-                const newCommands = await findProjectNewCommand(ctoken)
+                const newCommands = await findNewCommand(ctoken)
                 const hover = await lw.preview.math.onTeX(document, tex, newCommands)
                 return hover
             }

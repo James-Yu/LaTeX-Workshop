@@ -9,7 +9,7 @@ import * as utils from '../utils/svg'
 import { getCurrentThemeLightness } from '../utils/theme'
 import { renderCursor as renderCursorWorker } from './math/mathpreviewlib/cursorrenderer'
 import { type ITextDocumentLike, TextDocumentLike } from './math/mathpreviewlib/textdocumentlike'
-import { findProjectNewCommand } from './math/mathpreviewlib/newcommandfinder'
+import { findNewCommand } from './math/mathpreviewlib/newcommandfinder'
 import { TeXMathEnvFinder } from './math/mathpreviewlib/texmathenvfinder'
 import { HoverPreviewOnRefProvider } from './math/mathpreviewlib/hoverpreviewonref'
 import { MathPreviewUtils } from './math/mathpreviewlib/mathpreviewutils'
@@ -80,7 +80,7 @@ async function onRef(
     if (configuration.get('hover.ref.enabled') as boolean) {
         const tex = TeXMathEnvFinder.findHoverOnRef(document, position, refData, token)
         if (tex) {
-            const newCommands = await findProjectNewCommand(ctoken)
+            const newCommands = await findNewCommand(ctoken)
             return HoverPreviewOnRefProvider.provideHoverPreviewOnRef(tex, newCommands, refData, color)
         }
     }
@@ -103,7 +103,7 @@ function refNumberMessage(refData: Pick<ReferenceEntry, 'prevIndex'>): string | 
 }
 
 async function generateSVG(tex: TeXMathEnv, newCommandsArg?: string) {
-    const newCommands: string = newCommandsArg ?? await findProjectNewCommand()
+    const newCommands: string = newCommandsArg ?? await findNewCommand()
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const scale = configuration.get('hover.preview.scale') as number
     const s = MathPreviewUtils.mathjaxify(tex.texString, tex.envname)
@@ -142,7 +142,7 @@ function findRef(
 }
 
 async function renderSvgOnRef(tex: TeXMathEnv, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, ctoken: vscode.CancellationToken) {
-    const newCommand = await findProjectNewCommand(ctoken)
+    const newCommand = await findNewCommand(ctoken)
     return HoverPreviewOnRefProvider.renderSvgOnRef(tex, newCommand, refData, color)
 }
 
