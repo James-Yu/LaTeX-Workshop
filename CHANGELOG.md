@@ -1,6 +1,11 @@
 # Change Log
 
-## [9.16.0] - 2023-2-19
+## [9.16.1] - 2023-12-21
+
+### Fixed
+- (#4103) Fix wrong boundary calculation when macros are the last argument in new command definitions.
+
+## [9.16.0] - 2023-12-19
 
 ### Added
 - Tweak the PDF synctex indicator appearance, less intrusive.
