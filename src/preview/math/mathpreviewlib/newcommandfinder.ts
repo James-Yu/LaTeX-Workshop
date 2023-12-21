@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import type * as Ast from '@unified-latex/unified-latex-types'
+import * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../../lw'
 
 const logger = lw.log('Preview', 'Math')
@@ -55,8 +55,15 @@ function parseAst(content: string, node: Ast.Node): string[] {
         // \newcommand{\fix}[3][]{\chdeleted{#2}\chadded[comment={#1}]{#3}}
         // \newcommand\WARNING{\textcolor{red}{WARNING}}
         const start = node.position?.start.offset ?? 0
-        const lastArg = args[args.length - 1]
-        const end = lastArg.content[lastArg.content.length - 1].position?.end.offset ?? -1
+        let lastArg = args[args.length - 1]
+        let lastContent = lastArg.content[lastArg.content.length - 1]
+        let closeBraceOffset = 0
+        while (lastContent.type === 'macro' && lastContent.args && lastContent.args.length > 0) {
+            closeBraceOffset += lastArg.closeMark.length
+            lastArg = lastContent.args[lastContent.args.length - 1]
+            lastContent = lastArg.content[lastArg.content.length - 1]
+        }
+        const end = (lastArg.content[lastArg.content.length - 1].position?.end.offset ?? -1 - closeBraceOffset) + closeBraceOffset
         macros.push(content.slice(start, end + 1))
     }
 
