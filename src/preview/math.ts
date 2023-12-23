@@ -60,8 +60,13 @@ async function onTeX(document: vscode.TextDocument, tex: TeXMathEnv, newCommand:
         const md = utils.svgToDataUrl(xml)
         return new vscode.Hover(new vscode.MarkdownString(MathPreviewUtils.addDummyCodeBlock(`![equation](${md})`)), tex.range )
     } catch(e) {
-        logger.logError(`Failed rendering MathJax ${typesetArg} .`, e)
-        throw e
+        if (newCommand !== '') {
+            logger.log(`Failed rendering MathJax ${typesetArg} . Try removing new command definitions.`)
+            return await onTeX(document, tex, '')
+        } else {
+            logger.logError(`Failed rendering MathJax ${typesetArg} .`, e)
+            throw e
+        }
     }
 }
 
