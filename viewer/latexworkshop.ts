@@ -379,7 +379,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false)
         // Override the spread mode specified in PDF documents with the current one.
         // https://github.com/James-Yu/LaTeX-Workshop/issues/1871
-        if (pack.spreadMode) {
+        if (typeof pack.spreadMode === 'number') {
             PDFViewerApplicationOptions.set('spreadModeOnLoad', pack.spreadMode)
         }
 
