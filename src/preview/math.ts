@@ -53,6 +53,7 @@ async function onTeX(document: vscode.TextDocument, tex: TeXMathEnv, newCommand:
     const scale = configuration.get('hover.preview.scale') as number
     let s = await renderCursor(document, tex)
     s = MathPreviewUtils.mathjaxify(s, tex.envname)
+    newCommand = replaceNewCommand(newCommand)
     const typesetArg = newCommand + MathPreviewUtils.stripTeX(s, newCommand)
     const typesetOpts = { scale, color }
     try {
@@ -153,4 +154,10 @@ async function renderSvgOnRef(tex: TeXMathEnv, refData: Pick<ReferenceEntry, 'la
 
 function findMath(document: ITextDocumentLike, position: vscode.Position): TeXMathEnv | undefined {
     return TeXMathEnvFinder.findMathEnvIncludingPosition(document, position)
+}
+
+function replaceNewCommand(newCommand: string): string {
+    const replacedNewCommand = newCommand.replace(/\\providecommand\{(.*?)\}/g, '\\newcommand{$1}')
+    console.log(replacedNewCommand)
+    return replacedNewCommand
 }
