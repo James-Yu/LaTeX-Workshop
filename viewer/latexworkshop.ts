@@ -644,13 +644,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 this.viewerHistory.forward()
             }
 
-            // Configure keys `j`, `k` for scrolling like up/down arrows
-            if (this.embedded && !evt.altKey && !evt.ctrlKey && !evt.shiftKey && !evt.metaKey) {
+            // Configure keys `j, k, H, L` for scrolling like arrow keys
+            if (this.embedded && !evt.altKey && !evt.ctrlKey && !evt.metaKey) {
                 if (evt.key === 'j') {
                     evt.stopImmediatePropagation()
                     const container = document.getElementById('viewerContainer') as HTMLElement
                     if (evt.repeat) {
-                        container.scrollBy({top: 25, behavior: 'auto'})
+                        container.scrollBy({top: 20, behavior: 'instant'})
                     } else {
                         container.scrollBy({top: 40, behavior: 'smooth'})
                     }
@@ -658,9 +658,25 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     evt.stopImmediatePropagation()
                     const container = document.getElementById('viewerContainer') as HTMLElement
                     if (evt.repeat) {
-                        container.scrollBy({top: -25, behavior: 'auto'})
+                        container.scrollBy({top: -20, behavior: 'instant'})
                     } else {
                         container.scrollBy({top: -40, behavior: 'smooth'})
+                    }
+                } else if (evt.key === 'H') {
+                    evt.stopImmediatePropagation()
+                    const container = document.getElementById('viewerContainer') as HTMLElement
+                    if (evt.repeat) {
+                        container.scrollBy({left: -20, behavior: 'instant'})
+                    } else {
+                        container.scrollBy({left: -40, behavior: 'smooth'})
+                    }
+                } else if (evt.key === 'L') {
+                    evt.stopImmediatePropagation()
+                    const container = document.getElementById('viewerContainer') as HTMLElement
+                    if (evt.repeat) {
+                        container.scrollBy({left: 20, behavior: 'instant'})
+                    } else {
+                        container.scrollBy({left: 40, behavior: 'smooth'})
                     }
                 }
             }
