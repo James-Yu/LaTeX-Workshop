@@ -643,6 +643,19 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             if (evt.key === 'Backspace' && evt.shiftKey && (evt.target as HTMLElement).nodeName !== 'INPUT') {
                 this.viewerHistory.forward()
             }
+
+            // Configure keys `j`, `k` for scrolling like up/down arrows
+            if (this.embedded && !evt.altKey && !evt.ctrlKey && !evt.shiftKey && !evt.metaKey) {
+                if (evt.key === 'j') {
+                    evt.stopImmediatePropagation()
+                    const container = document.getElementById('viewerContainer') as HTMLElement
+                    container.scrollBy({top: 40, behavior: 'auto'})
+                } else if (evt.key === 'k') {
+                    evt.stopImmediatePropagation()
+                    const container = document.getElementById('viewerContainer') as HTMLElement
+                    container.scrollBy({top: -40, behavior: 'auto'})
+                }
+            }
         })
 
         ;(document.getElementById('outerContainer') as HTMLElement).onmousemove = (e) => {
