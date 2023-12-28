@@ -649,11 +649,19 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 if (evt.key === 'j') {
                     evt.stopImmediatePropagation()
                     const container = document.getElementById('viewerContainer') as HTMLElement
-                    container.scrollBy({top: 40, behavior: 'auto'})
+                    if (evt.repeat) {
+                        container.scrollBy({top: 25, behavior: 'auto'})
+                    } else {
+                        container.scrollBy({top: 40, behavior: 'smooth'})
+                    }
                 } else if (evt.key === 'k') {
                     evt.stopImmediatePropagation()
                     const container = document.getElementById('viewerContainer') as HTMLElement
-                    container.scrollBy({top: -40, behavior: 'auto'})
+                    if (evt.repeat) {
+                        container.scrollBy({top: -25, behavior: 'auto'})
+                    } else {
+                        container.scrollBy({top: -40, behavior: 'smooth'})
+                    }
                 }
             }
         })
