@@ -157,7 +157,7 @@ function findMath(document: ITextDocumentLike, position: vscode.Position): TeXMa
 }
 
 function replaceNewCommand(newCommand: string): string {
-    const replacedNewCommand = newCommand.replace(/\\providecommand\{(.*?)\}/g, '\\newcommand{$1}')
+    const replacedNewCommand = newCommand.replaceAll(/\\providecommand\{(.*?)\}/g, '\\newcommand{$1}')
     console.log(replacedNewCommand)
     return replacedNewCommand
 }
