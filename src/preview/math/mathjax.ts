@@ -18,6 +18,7 @@ RegisterHTMLHandler(adaptor)
 const baseExtensions: SupportedExtension[] = ['ams', 'base', 'boldsymbol', 'color', 'configmacros', 'mathtools', 'newcommand', 'noerrors', 'noundefined']
 
 function createHtmlConverter(extensions: SupportedExtension[]) {
+    // https://github.com/mathjax/MathJax/issues/1219
     const macrosOption: MacrosOption = {
         bm: ['\\boldsymbol{#1}', 1],
     }
