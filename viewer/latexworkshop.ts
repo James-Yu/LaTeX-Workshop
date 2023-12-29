@@ -644,7 +644,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 this.viewerHistory.forward()
             }
 
-            // Configure keys `j, k, H, L` for scrolling like arrow keys
+            // Configure VIM-like shortcut keys
             if (this.embedded && !evt.altKey && !evt.ctrlKey && !evt.metaKey) {
                 if (evt.key === 'j') {
                     evt.stopImmediatePropagation()
@@ -661,6 +661,22 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                         container.scrollBy({top: -20, behavior: 'instant'})
                     } else {
                         container.scrollBy({top: -40, behavior: 'smooth'})
+                    }
+                } else if (evt.key === 'J') {
+                    evt.stopImmediatePropagation()
+                    const container = document.getElementById('viewerContainer') as HTMLElement
+                    if (evt.repeat) {
+                        container.scrollBy({top: container.offsetHeight/5, behavior: 'instant'})
+                    } else {
+                        container.scrollBy({top: container.offsetHeight, behavior: 'smooth'})
+                    }
+                } else if (evt.key === 'K') {
+                    evt.stopImmediatePropagation()
+                    const container = document.getElementById('viewerContainer') as HTMLElement
+                    if (evt.repeat) {
+                        container.scrollBy({top: -container.offsetHeight/5, behavior: 'instant'})
+                    } else {
+                        container.scrollBy({top: -container.offsetHeight, behavior: 'smooth'})
                     }
                 } else if (evt.key === 'H') {
                     evt.stopImmediatePropagation()
