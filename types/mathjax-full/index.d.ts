@@ -41,6 +41,10 @@ export type SupportedExtension =
     'upgreek' |
     'verb'
 
+export type MacrosOption = {
+    [name: string]: object;
+}
+
 export type TexOption = {
     packages?: readonly SupportedExtension[],
     inlineMath?: readonly [string, string][],
@@ -56,6 +60,7 @@ export type TexOption = {
     maxMacros?: number,
     maxBuffer?: number,
     baseURL?: string,
+    macros?: MacrosOption,
     formatError?: (jax: TeX<LiteElement, LiteText, LiteDocument>, message: TexError) => unknown
 }
 
