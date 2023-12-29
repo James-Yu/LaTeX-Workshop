@@ -64,7 +64,7 @@ function parseAst(content: string, node: Ast.Node): string[] {
             lastContent = lastArg.content[lastArg.content.length - 1]
         }
         const end = (lastArg.content[lastArg.content.length - 1].position?.end.offset ?? -1 - closeBraceOffset) + closeBraceOffset
-        macros.push(content.slice(start, end + 1))
+        macros.push(content.slice(start, end + 1).replaceAll(/\\providecommand([^a-zA-Z])/g, '\\newcommand$1'))
     }
 
     if ('content' in node && typeof node.content !== 'string') {
