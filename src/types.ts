@@ -22,7 +22,11 @@ export type FileCache = {
         /** command items */
         command?: CmdEnvSuggestion[],
         /** \usepackage{}, a dictionary whose key is package name and value is the options */
-        package?: {[packageName: string]: string[]}
+        package?: {[packageName: string]: string[]},
+        /** _{} */
+        subscripts?: CompletionItem[],
+        /** ^{} */
+        superscripts?: CompletionItem[]
     },
     /** The sub-files of the LaTeX file. They should be tex or plain files */
     children: {

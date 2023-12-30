@@ -368,6 +368,7 @@ function updateElements(fileCache: FileCache) {
     lw.completion.glossary.parse(fileCache)
     lw.completion.environment.parse(fileCache)
     lw.completion.macro.parse(fileCache)
+    lw.completion.subsuperscript.parse(fileCache)
     lw.completion.input.parseGraphicsPath(fileCache)
     updateBibfiles(fileCache)
     const elapsed = performance.now() - start
