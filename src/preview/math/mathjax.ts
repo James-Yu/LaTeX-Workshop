@@ -1,5 +1,5 @@
 import * as workerpool from 'workerpool'
-import type {ConvertOption, SupportedExtension, SvgOption, TexOption} from 'mathjax-full'
+import type {ConvertOption, MacrosOption, SupportedExtension, SvgOption, TexOption} from 'mathjax-full'
 import { mathjax } from 'mathjax-full/js/mathjax.js'
 import { TeX } from 'mathjax-full/js/input/tex.js'
 import { SVG } from 'mathjax-full/js/output/svg.js'
@@ -15,11 +15,16 @@ import 'mathjax-full/js/input/tex/AllPackages.js'
 const adaptor = liteAdaptor()
 RegisterHTMLHandler(adaptor)
 
-const baseExtensions: SupportedExtension[] = ['ams', 'base', 'color', 'newcommand', 'noerrors', 'noundefined']
+const baseExtensions: SupportedExtension[] = ['ams', 'base', 'boldsymbol', 'color', 'configmacros', 'mathtools', 'newcommand', 'noerrors', 'noundefined']
 
 function createHtmlConverter(extensions: SupportedExtension[]) {
+    // https://github.com/mathjax/MathJax/issues/1219
+    const macrosOption: MacrosOption = {
+        bm: ['\\boldsymbol{#1}', 1],
+    }
     const baseTexOption: TexOption = {
         packages: extensions,
+        macros: macrosOption,
         formatError: (_jax, error) => { throw new Error(error.message) }
     }
     const texInput = new TeX<LiteElement, LiteText, LiteDocument>(baseTexOption)

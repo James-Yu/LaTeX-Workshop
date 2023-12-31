@@ -4,6 +4,7 @@ import type { CompletionArgs, CompletionProvider, ReferenceDocType } from '../ty
 import { citation, provider as citationProvider } from './completer/citation'
 import { provider as environmentProvider } from './completer/environment'
 import { provider as macroProvider } from './completer/macro'
+import { provider as subsuperProvider } from './completer/subsuperscript'
 import { provider as argumentProvider } from './completer/argument'
 import { provider as classProvider } from './completer/class'
 import { provider as referenceProvider } from './completer/reference'
@@ -36,7 +37,7 @@ export class Provider implements vscode.CompletionItemProvider {
     provide(args: CompletionArgs): vscode.CompletionItem[] {
         // Note that the order of the following array affects the result.
         // 'command' must be at the last because it matches any commands.
-        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'argument', 'command']) {
+        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'argument', 'command', 'subsuper']) {
             const suggestions = this.completion(type, args)
             if (suggestions.length > 0) {
                 if (type === 'citation') {
@@ -148,6 +149,10 @@ export class Provider implements vscode.CompletionItemProvider {
             case 'glossary':
                 reg = /\\(gls(?:pl|text|first|fmt(?:text|short|long)|plural|firstplural|name|symbol|desc|disp|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)(?:\[[^[\]]*\])?{([^}]*)$/i
                 provider = glossaryProvider
+                break
+            case 'subsuper':
+                reg = /(?:\^|_){([^}]*)$/
+                provider = subsuperProvider
                 break
             default:
                 // This shouldn't be possible, so mark as error case in log.
