@@ -9,7 +9,7 @@ import * as utils from '../utils/svg'
 import { getCurrentThemeLightness } from '../utils/theme'
 import { renderCursor as renderCursorWorker } from './math/mathpreviewlib/cursorrenderer'
 import { type ITextDocumentLike, TextDocumentLike } from './math/mathpreviewlib/textdocumentlike'
-import { findNewCommand } from './math/mathpreviewlib/newcommandfinder'
+import { findMacros } from './math/mathpreviewlib/newcommandfinder'
 import { TeXMathEnvFinder } from './math/mathpreviewlib/texmathenvfinder'
 import { HoverPreviewOnRefProvider } from './math/mathpreviewlib/hoverpreviewonref'
 import { MathPreviewUtils } from './math/mathpreviewlib/mathpreviewutils'
@@ -48,20 +48,20 @@ async function initialize() {
 
 let color = '#000000'
 
-async function onTeX(document: vscode.TextDocument, tex: TeXMathEnv, newCommand: string): Promise<vscode.Hover> {
+async function onTeX(document: vscode.TextDocument, tex: TeXMathEnv, macros: string): Promise<vscode.Hover> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const scale = configuration.get('hover.preview.scale') as number
     let s = await renderCursor(document, tex)
     s = MathPreviewUtils.mathjaxify(s, tex.envname)
-    const typesetArg = newCommand + MathPreviewUtils.stripTeX(s, newCommand)
+    const typesetArg = macros + MathPreviewUtils.stripTeX(s, macros)
     const typesetOpts = { scale, color }
     try {
         const xml = await typeset(typesetArg, typesetOpts)
         const md = utils.svgToDataUrl(xml)
         return new vscode.Hover(new vscode.MarkdownString(MathPreviewUtils.addDummyCodeBlock(`![equation](${md})`)), tex.range )
     } catch(e) {
-        if (newCommand !== '') {
-            logger.log(`Failed rendering MathJax ${typesetArg} . Try removing new command definitions.`)
+        if (macros !== '') {
+            logger.log(`Failed rendering MathJax ${typesetArg} . Try removing macro definitions.`)
             return await onTeX(document, tex, '')
         } else {
             logger.logError(`Failed rendering MathJax ${typesetArg} .`, e)
@@ -85,8 +85,7 @@ async function onRef(
     if (configuration.get('hover.ref.enabled') as boolean) {
         const tex = TeXMathEnvFinder.findHoverOnRef(document, position, refData, token)
         if (tex) {
-            const newCommands = await findNewCommand(ctoken)
-            return HoverPreviewOnRefProvider.provideHoverPreviewOnRef(tex, newCommands, refData, color)
+            return HoverPreviewOnRefProvider.provideHoverPreviewOnRef(tex, await findMacros(ctoken), refData, color)
         }
     }
     const md = '```latex\n' + refData.documentation + '\n```\n'
@@ -107,13 +106,13 @@ function refNumberMessage(refData: Pick<ReferenceEntry, 'prevIndex'>): string | 
     return
 }
 
-async function generateSVG(tex: TeXMathEnv, newCommandsArg?: string) {
-    const newCommands: string = newCommandsArg ?? await findNewCommand()
+async function generateSVG(tex: TeXMathEnv, macros?: string) {
+    macros = macros ?? await findMacros()
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const scale = configuration.get('hover.preview.scale') as number
     const s = MathPreviewUtils.mathjaxify(tex.texString, tex.envname)
-    const xml = await typeset(newCommands + MathPreviewUtils.stripTeX(s, newCommands), {scale, color})
-    return { svgDataUrl: utils.svgToDataUrl(xml), newCommands }
+    const xml = await typeset(macros + MathPreviewUtils.stripTeX(s, macros), {scale, color})
+    return { svgDataUrl: utils.svgToDataUrl(xml), macros }
 }
 
 function getColor() {
@@ -147,8 +146,7 @@ function findRef(
 }
 
 async function renderSvgOnRef(tex: TeXMathEnv, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, ctoken: vscode.CancellationToken) {
-    const newCommand = await findNewCommand(ctoken)
-    return HoverPreviewOnRefProvider.renderSvgOnRef(tex, newCommand, refData, color)
+    return HoverPreviewOnRefProvider.renderSvgOnRef(tex, await findMacros(ctoken), refData, color)
 }
 
 function findMath(document: ITextDocumentLike, position: vscode.Position): TeXMathEnv | undefined {

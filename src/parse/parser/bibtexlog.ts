@@ -9,7 +9,7 @@ const multiLineWarning = /^Warning--(.+)\n--line (\d+) of file (.+)$/gm
 const singleLineWarning = /^Warning--(.+) in ([^\s]+)\s*$/gm
 const multiLineError = /^(.*)---line (\d+) of file (.*)\n([^]+?)\nI'm skipping whatever remains of this entry$/gm
 const badCrossReference = /^(A bad cross reference---entry ".+?"\nrefers to entry.+?, which doesn't exist)$/gm
-const multiLineCommandError = /^(.*)\n?---line (\d+) of file (.*)\n([^]+?)\nI'm skipping whatever remains of this command$/gm
+const multiLineMacroError = /^(.*)\n?---line (\d+) of file (.*)\n([^]+?)\nI'm skipping whatever remains of this command$/gm
 const errorAuxFile = /^(.*)---while reading file (.*)$/gm
 
 const bibDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
@@ -59,7 +59,7 @@ function parse(log: string, rootFile?: string) {
         const filename = resolveBibFile(result[3], rootFile)
         pushLog('error', filename, result[1], parseInt(result[2], 10), excludeRegexp)
     }
-    while ((result = multiLineCommandError.exec(log))) {
+    while ((result = multiLineMacroError.exec(log))) {
         const filename = resolveBibFile(result[3], rootFile)
         pushLog('error', filename, result[1], parseInt(result[2], 10), excludeRegexp)
     }

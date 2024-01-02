@@ -12,7 +12,7 @@ import { argContentToStr } from '../../utils/parser'
 const logger = lw.log('Structure', 'LaTeX')
 
 type StructureConfig = {
-    // The LaTeX commands to be extracted.
+    // The LaTeX macros to be extracted.
     macros: {cmds: string[], envs: string[], secs: string[]},
     // The correspondance of section types and depths. Start from zero is
     // the top-most section (e.g., chapter).
@@ -64,7 +64,7 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
         return
     }
     // Get a list of rnw child chunks
-    const rnwSub = parseRnwChildCommand(content, filePath, lw.root.file.path || '')
+    const rnwSub = parseRnwChildMacro(content, filePath, lw.root.file.path || '')
 
     // Parse each base-level node. If the node has contents, that function
     // will be called recursively.
@@ -85,7 +85,7 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
 
 async function parseNode(
         node: Ast.Node,
-        rnwSub: ReturnType<typeof parseRnwChildCommand>,
+        rnwSub: ReturnType<typeof parseRnwChildMacro>,
         root: { children: TeXElement[] },
         filePath: string,
         config: StructureConfig,
@@ -112,7 +112,7 @@ async function parseNode(
     } else if (node.type === 'macro' && config.macros.cmds.includes(node.content)) {
         const argStr = argContentToStr(node.args?.[1]?.content || [])
         element = {
-            type: TeXElementType.Command,
+            type: TeXElementType.Macro,
             name: node.content,
             label: `#${node.content}` + (argStr ? `: ${argStr}` : ''),
             ...attributes
@@ -373,7 +373,7 @@ function addSectionNumber(struct: TeXElement[], config: StructureConfig, tag?: s
     return struct
 }
 
-function parseRnwChildCommand(content: string, file: string, rootFile: string): {subFile: string, path: string, line: number}[] {
+function parseRnwChildMacro(content: string, file: string, rootFile: string): {subFile: string, path: string, line: number}[] {
     const children: {subFile: string, path: string, line: number}[] = []
     const childRegExp = new InputFileRegExp()
     while(true) {

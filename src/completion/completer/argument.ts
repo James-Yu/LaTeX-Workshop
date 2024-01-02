@@ -22,7 +22,7 @@ function from(result: RegExpMatchArray, args: CompletionArgs) {
     }
     for (const packageName of Object.keys(packages)) {
         if (environment) {
-            const environments = lw.completion.environment.getEnvFromPkg(packageName, EnvSnippetType.AsCommand) || []
+            const environments = lw.completion.environment.getEnvFromPkg(packageName, EnvSnippetType.AsMacro) || []
             for (const env of environments) {
                 if (environment !== env.signature.name) {
                     continue
@@ -33,15 +33,15 @@ function from(result: RegExpMatchArray, args: CompletionArgs) {
                 candidate = env
             }
         } else {
-            const commands = lw.completion.macro.getPackageCmds(packageName)
-            for (const command of commands) {
-                if (result[1] !== command.signature.name) {
+            const macros = lw.completion.macro.getPackageCmds(packageName)
+            for (const macro of macros) {
+                if (result[1] !== macro.signature.name) {
                     continue
                 }
-                if (index !== command.keyvalpos) {
+                if (index !== macro.keyvalpos) {
                     continue
                 }
-                candidate = command
+                candidate = macro
                 break
             }
         }

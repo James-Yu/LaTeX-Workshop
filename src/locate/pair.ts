@@ -14,7 +14,7 @@ export const pair = {
     build
 }
 
-enum PairType { ENVIRONMENT, DISPLAYMATH, INLINEMATH, COMMAND}
+enum PairType { ENVIRONMENT, DISPLAYMATH, INLINEMATH, MACRO}
 
 const delimiters = [
     {type: PairType.ENVIRONMENT, start: /\\begin\{([\w\d]+\*?)\}/, end: /\\end\{([\w\d]+\*?)/},
@@ -22,16 +22,16 @@ const delimiters = [
     {type: PairType.INLINEMATH, start: /\$/, end: /\$/},
     {type: PairType.DISPLAYMATH, start: /\\\[/, end: /\\\]/},
     {type: PairType.DISPLAYMATH, start: /\$\$/, end: /\$\$/},
-    {type: PairType.COMMAND, start: /\\if\w*/, end: /\\fi/},
-    {type: PairType.COMMAND, start: /\\if\w*/, end: /\\else/},
-    {type: PairType.COMMAND, start: /\\else/, end: /\\fi/}
+    {type: PairType.MACRO, start: /\\if\w*/, end: /\\fi/},
+    {type: PairType.MACRO, start: /\\if\w*/, end: /\\else/},
+    {type: PairType.MACRO, start: /\\else/, end: /\\fi/}
 ]
 
-class CommandPair {
+class MacroPair {
     /** The list of contained pairs */
-    public children: CommandPair[] = []
+    public children: MacroPair[] = []
     /** The parent of top-level pairs must be undefined */
-    public parent: CommandPair | undefined = undefined
+    public parent: MacroPair | undefined = undefined
 
     constructor(
         public type: PairType,
@@ -66,104 +66,104 @@ class CommandPair {
 }
 
 /**
- * Builds a tree structure of LaTeX commands and environments in the given
+ * Builds a tree structure of LaTeX macros and environments in the given
  * document.
  *
  * Parses the LaTeX content in the document and constructs a tree structure of
- * CommandPair objects, representing the commands and environments in the
+ * MacroPair objects, representing the macros and environments in the
  * document. The tree is built by iterating through the abstract syntax tree
  * (AST) of the LaTeX content.
  *
  * @param document - The vscode.TextDocument object representing the LaTeX
  * document.
- * @returns Promise<CommandPair[]> - A Promise resolving to an array of
- * CommandPair objects representing the commands and environments in the
+ * @returns Promise<MacroPair[]> - A Promise resolving to an array of
+ * MacroPair objects representing the macros and environments in the
  * document.
  */
-async function build(document: vscode.TextDocument): Promise<CommandPair[]> {
+async function build(document: vscode.TextDocument): Promise<MacroPair[]> {
     const ast = await lw.parse.tex(document.getText())
     if (!ast) {
         logger.log('Error parsing current document as AST.')
         return []
     }
 
-    const commandPairs: CommandPair[] = []
-    let parentPair: CommandPair | undefined = undefined
+    const macroPairs: MacroPair[] = []
+    let parentPair: MacroPair | undefined = undefined
     for (let index = 0; index < ast.content.length; index++) {
         const node = ast.content[index]
         const next = index === ast.content.length - 1 ? undefined : ast.content[index + 1]
-        parentPair = buildCommandPairTreeFromNode(document, node, next, parentPair, commandPairs)
+        parentPair = buildMacroPairTreeFromNode(document, node, next, parentPair, macroPairs)
     }
-    return commandPairs
+    return macroPairs
 }
 
 /**
- * Builds a CommandPair object tree from a given AST node.
+ * Builds a MacroPair object tree from a given AST node.
  *
- * Recursively constructs a CommandPair tree from the provided AST node. It
+ * Recursively constructs a MacroPair tree from the provided AST node. It
  * identifies different types of LaTeX elements (environments, display math,
- * inline math, commands) and creates CommandPair objects accordingly.
+ * inline math, macros) and creates MacroPair objects accordingly.
  *
  * @param doc - The vscode.TextDocument object representing the LaTeX document.
  * @param node - The AST node to process.
  * @param next - The next AST node after the current one.
- * @param parentCommandPair - The parent CommandPair for the current node.
- * @param commandPairs - An array to store the generated CommandPair objects.
- * @returns CommandPair | undefined - The parent CommandPair for the next
+ * @param parentMacroPair - The parent MacroPair for the current node.
+ * @param macros - An array to store the generated MacroPair objects.
+ * @returns MacroPair | undefined - The parent MacroPair for the next
  * iteration.
  */
-function buildCommandPairTreeFromNode(doc: vscode.TextDocument, node: Ast.Node, next: Ast.Node | undefined, parentCommandPair: CommandPair | undefined, commandPairs: CommandPair[]): CommandPair | undefined {
+function buildMacroPairTreeFromNode(doc: vscode.TextDocument, node: Ast.Node, next: Ast.Node | undefined, parentMacroPair: MacroPair | undefined, macros: MacroPair[]): MacroPair | undefined {
     if (node.position === undefined) {
-        return parentCommandPair
+        return parentMacroPair
     }
     if (node.type === 'environment' || node.type === 'mathenv') {
         // The following is necessary as node.env may be Ast.String, bug in upstream (16.06.23)
         const envName = argContentToStr([node.env as unknown as Ast.Node]) || node.env
-        let currentCommandPair: CommandPair | undefined
-        // If we encounter `\begin{document}`, clear commandPairs
+        let currentMacroPair: MacroPair | undefined
+        // If we encounter `\begin{document}`, clear macro pairs
         if (envName === 'document') {
-            commandPairs.length = 0
-            currentCommandPair = undefined
-            parentCommandPair = undefined
+            macros.length = 0
+            currentMacroPair = undefined
+            parentMacroPair = undefined
         } else {
             const beginName = `\\begin{${envName}}`
             const endName = `\\end{${envName}}`
             const beginPos = new vscode.Position(node.position.start.line - 1, node.position.start.column - 1)
             const endPos = new vscode.Position(node.position.end.line - 1, node.position.end.column - 1)
-            currentCommandPair = new CommandPair(PairType.ENVIRONMENT, beginName, beginPos, endName, endPos)
-            if (parentCommandPair) {
-                currentCommandPair.parent = parentCommandPair
-                parentCommandPair.children.push(currentCommandPair)
+            currentMacroPair = new MacroPair(PairType.ENVIRONMENT, beginName, beginPos, endName, endPos)
+            if (parentMacroPair) {
+                currentMacroPair.parent = parentMacroPair
+                parentMacroPair.children.push(currentMacroPair)
             } else {
-                commandPairs.push(currentCommandPair)
+                macros.push(currentMacroPair)
             }
-            parentCommandPair = currentCommandPair
+            parentMacroPair = currentMacroPair
         }
         for (let index = 0; index < node.content.length; index++) {
             const subnode = node.content[index]
             const subnext = index === node.content.length - 1 ? undefined : node.content[index + 1]
-            parentCommandPair = buildCommandPairTreeFromNode(doc, subnode, subnext, parentCommandPair, commandPairs)
+            parentMacroPair = buildMacroPairTreeFromNode(doc, subnode, subnext, parentMacroPair, macros)
         }
-        parentCommandPair = currentCommandPair?.parent
+        parentMacroPair = currentMacroPair?.parent
     } else if (node.type === 'displaymath') {
         const beginPos = new vscode.Position(node.position.start.line - 1, node.position.start.column - 1)
         const endPos = new vscode.Position(node.position.end.line - 1, node.position.end.column - 1)
         if (doc.getText(new vscode.Range(beginPos, beginPos.translate(0, 2))) === '$$') {
-            const currentCommandPair = new CommandPair(PairType.DISPLAYMATH, '$$', beginPos, '$$', endPos)
-            commandPairs.push(currentCommandPair)
+            const currentMacroPair = new MacroPair(PairType.DISPLAYMATH, '$$', beginPos, '$$', endPos)
+            macros.push(currentMacroPair)
         } else {
-            const currentCommandPair = new CommandPair(PairType.DISPLAYMATH, '\\[', beginPos, '\\]', endPos)
-            commandPairs.push(currentCommandPair)
+            const currentMacroPair = new MacroPair(PairType.DISPLAYMATH, '\\[', beginPos, '\\]', endPos)
+            macros.push(currentMacroPair)
         }
     } else if (node.type === 'inlinemath') {
         const beginPos = new vscode.Position(node.position.start.line - 1, node.position.start.column - 1)
         const endPos = new vscode.Position(node.position.end.line - 1, node.position.end.column - 1)
         if (doc.getText(new vscode.Range(beginPos, beginPos.translate(0, 1))) === '$') {
-            const currentCommandPair = new CommandPair(PairType.INLINEMATH, '$', beginPos, '$', endPos)
-            commandPairs.push(currentCommandPair)
+            const currentMacroPair = new MacroPair(PairType.INLINEMATH, '$', beginPos, '$', endPos)
+            macros.push(currentMacroPair)
         } else {
-            const currentCommandPair = new CommandPair(PairType.INLINEMATH, '\\(', beginPos, '\\)', endPos)
-            commandPairs.push(currentCommandPair)
+            const currentMacroPair = new MacroPair(PairType.INLINEMATH, '\\(', beginPos, '\\)', endPos)
+            macros.push(currentMacroPair)
         }
     } else if (node.type === 'macro') {
         if (node.content === 'begin' && next?.type === 'group' && next.content[0]?.type === 'string') {
@@ -171,37 +171,37 @@ function buildCommandPairTreeFromNode(doc: vscode.TextDocument, node: Ast.Node, 
             const beginPos = new vscode.Position(node.position.start.line - 1, node.position.start.column - 1)
             const envName = next.content[0].content
             const envTeX = `\\begin{${envName}}`
-            const currentCommandPair = new CommandPair(PairType.ENVIRONMENT, envTeX, beginPos)
-            if (parentCommandPair) {
-                currentCommandPair.parent = parentCommandPair
-                parentCommandPair.children.push(currentCommandPair)
+            const currentMacroPair = new MacroPair(PairType.ENVIRONMENT, envTeX, beginPos)
+            if (parentMacroPair) {
+                currentMacroPair.parent = parentMacroPair
+                parentMacroPair.children.push(currentMacroPair)
             } else {
-                commandPairs.push(currentCommandPair)
+                macros.push(currentMacroPair)
             }
-            // currentCommandPair becomes the new parent
-            return currentCommandPair
+            // currentMacroPair becomes the new parent
+            return currentMacroPair
         }
         const macroName = '\\' + node.content
         for (const macroPair of delimiters) {
-            if (macroPair.type === PairType.COMMAND && macroName.match(macroPair.end) && parentCommandPair && parentCommandPair.start.match(macroPair.start)) {
-                parentCommandPair.end = macroName
-                parentCommandPair.endPosition = new vscode.Position(node.position.end.line - 1, node.position.end.column - 1)
-                parentCommandPair = parentCommandPair.parent
+            if (macroPair.type === PairType.MACRO && macroName.match(macroPair.end) && parentMacroPair && parentMacroPair.start.match(macroPair.start)) {
+                parentMacroPair.end = macroName
+                parentMacroPair.endPosition = new vscode.Position(node.position.end.line - 1, node.position.end.column - 1)
+                parentMacroPair = parentMacroPair.parent
                 // Do not return after finding an 'end' token as it can also be the start of an other pair.
             }
         }
         for (const macroPair of delimiters) {
-            if (macroPair.type === PairType.COMMAND && macroName.match(macroPair.start)) {
+            if (macroPair.type === PairType.MACRO && macroName.match(macroPair.start)) {
                 const beginPos = new vscode.Position(node.position.start.line - 1, node.position.start.column - 1)
-                const currentCommandPair = new CommandPair(PairType.COMMAND, macroName, beginPos)
-                if (parentCommandPair) {
-                    currentCommandPair.parent = parentCommandPair
-                    parentCommandPair.children.push(currentCommandPair)
+                const currentMacroPair = new MacroPair(PairType.MACRO, macroName, beginPos)
+                if (parentMacroPair) {
+                    currentMacroPair.parent = parentMacroPair
+                    parentMacroPair.children.push(currentMacroPair)
                 } else {
-                    commandPairs.push(currentCommandPair)
+                    macros.push(currentMacroPair)
                 }
-                // currentCommandPair becomes the new parent
-                return currentCommandPair
+                // currentMacroPair becomes the new parent
+                return currentMacroPair
             }
         }
         // #4063
@@ -210,55 +210,53 @@ function buildCommandPairTreeFromNode(doc: vscode.TextDocument, node: Ast.Node, 
                 for (let index = 0; index < node.args[argIndex].content.length; index++) {
                     const subnode = node.args[argIndex].content[index]
                     const subnext = index === node.args[argIndex].content.length - 1 ? undefined : node.args[argIndex].content[index + 1]
-                    parentCommandPair = buildCommandPairTreeFromNode(doc, subnode, subnext, parentCommandPair, commandPairs)
+                    parentMacroPair = buildMacroPairTreeFromNode(doc, subnode, subnext, parentMacroPair, macros)
                 }
             }
         }
     }
-    return parentCommandPair
+    return parentMacroPair
 }
 
 
 /**
  * Locates all pairs surrounding the given position in the document.
  *
- * Builds the command pair tree for the document and then walks through it to
- * find all command pairs that contain the specified position. Returns an array
- * of CommandPair objects.
+ * Builds the macro pair tree for the document and then walks through it to
+ * find all macro pairs that contain the specified position. Returns an array
+ * of MacroPair objects.
  *
  * @param pos - The starting position (e.g., cursor position).
  * @param doc - The document in which the search is performed.
- * @returns Promise<CommandPair[]> - A Promise resolving to an array of
- * CommandPair objects surrounding the specified position.
+ * @returns Promise<MacroPair[]> - A Promise resolving to an array of
+ * MacroPair objects surrounding the specified position.
  */
-async function locateSurroundingPair(pos: vscode.Position, doc: vscode.TextDocument): Promise<CommandPair[]> {
-    const commandPairTree = await build(doc)
-    const matchedCommandPairs = walkThruForSurroundingPairs(pos, commandPairTree)
-    return matchedCommandPairs
+async function locateSurroundingPair(pos: vscode.Position, doc: vscode.TextDocument): Promise<MacroPair[]> {
+    return walkThruForSurroundingPairs(pos, await build(doc))
 }
 
 /**
- * Walks through the command pair tree to find all pairs surrounding the current
+ * Walks through the macro pair tree to find all pairs surrounding the current
  * position.
  *
- * Recursively walks through the command pair tree to find all CommandPair
- * objects that contain the specified position. Returns an array of CommandPair
+ * Recursively walks through the macro pair tree to find all MacroPair
+ * objects that contain the specified position. Returns an array of MacroPair
  * objects.
  *
  * @param pos - The current cursor position.
- * @param commandPairTree - The array of CommandPair objects representing the
+ * @param macroPairTree - The array of MacroPair objects representing the
  * entire tree.
- * @returns CommandPair[] - An array of CommandPair objects surrounding the
+ * @returns MacroPair[] - An array of MacroPair objects surrounding the
  * specified position.
  */
-function walkThruForSurroundingPairs(pos: vscode.Position, commandPairTree: CommandPair[]): CommandPair[] {
-    const surroundingPairs: CommandPair[] = []
-    for (const commandPair of commandPairTree) {
-        if (commandPair.startPosition.isBeforeOrEqual(pos)) {
-            if (!commandPair.endPosition || commandPair.endPosition.isAfter(pos)) {
-                surroundingPairs.push(commandPair)
-                if (commandPair.children) {
-                    surroundingPairs.push(...walkThruForSurroundingPairs(pos, commandPair.children))
+function walkThruForSurroundingPairs(pos: vscode.Position, macroPairTree: MacroPair[]): MacroPair[] {
+    const surroundingPairs: MacroPair[] = []
+    for (const macroPair of macroPairTree) {
+        if (macroPair.startPosition.isBeforeOrEqual(pos)) {
+            if (!macroPair.endPosition || macroPair.endPosition.isAfter(pos)) {
+                surroundingPairs.push(macroPair)
+                if (macroPair.children) {
+                    surroundingPairs.push(...walkThruForSurroundingPairs(pos, macroPair.children))
                 }
             }
         }
@@ -267,50 +265,48 @@ function walkThruForSurroundingPairs(pos: vscode.Position, commandPairTree: Comm
 }
 
 /**
- * Walks through the command pair tree to find all pairs at the same depth as
+ * Walks through the macro pair tree to find all pairs at the same depth as
  * the pair containing the specified position.
  *
- * Builds the command pair tree for the document and then walks through it to
- * find all command pairs that share the same depth as the pair containing the
- * specified position. Returns an array of CommandPair objects.
+ * Builds the macro pair tree for the document and then walks through it to
+ * find all macro pairs that share the same depth as the pair containing the
+ * specified position. Returns an array of MacroPair objects.
  *
  * @param pos - The current cursor position.
  * @param doc - The current document.
- * @returns Promise<CommandPair[]> - A Promise resolving to an array of
- * CommandPair objects at the same depth as the pair containing the specified
+ * @returns Promise<MacroPair[]> - A Promise resolving to an array of
+ * MacroPair objects at the same depth as the pair containing the specified
  * position.
  */
-async function locatePairsAtDepth(pos: vscode.Position, doc: vscode.TextDocument): Promise<CommandPair[]> {
-    const commandPairTree = await build(doc)
-    const overlappingPairs = walkThruForPairsNextToPosition(pos, commandPairTree)
-    return overlappingPairs
+async function locatePairsAtDepth(pos: vscode.Position, doc: vscode.TextDocument): Promise<MacroPair[]> {
+    return walkThruForPairsNextToPosition(pos, await build(doc))
 }
 
 /**
- * Walks through the command pair tree to find all pairs at the same depth as
+ * Walks through the macro pair tree to find all pairs at the same depth as
  * the pair containing the specified position.
  *
- * Recursively walks through the command pair tree to find all CommandPair
+ * Recursively walks through the macro pair tree to find all MacroPair
  * objects at the same depth as the pair containing the specified position.
- * Returns an array of CommandPair objects.
+ * Returns an array of MacroPair objects.
  *
  * @param pos - The current cursor position.
- * @param commandPairTree - The array of CommandPair objects representing the
+ * @param macroPairTree - The array of MacroPair objects representing the
  * entire tree.
- * @returns CommandPair[] - An array of CommandPair objects at the same depth as
+ * @returns MacroPair[] - An array of MacroPair objects at the same depth as
  * the specified position.
  */
-function walkThruForPairsNextToPosition(pos: vscode.Position, commandPairTree: CommandPair[]): CommandPair[] {
-    const pairsAtPosition: CommandPair[] = []
-    if (commandPairTree.some((macroPair: CommandPair) => macroPair.startContains(pos) || macroPair.endContains(pos))) {
-        return commandPairTree
+function walkThruForPairsNextToPosition(pos: vscode.Position, macroPairTree: MacroPair[]): MacroPair[] {
+    const pairsAtPosition: MacroPair[] = []
+    if (macroPairTree.some((macroPair: MacroPair) => macroPair.startContains(pos) || macroPair.endContains(pos))) {
+        return macroPairTree
     }
 
-    for (const commandPair of commandPairTree) {
-        if (commandPair.startPosition.isBefore(pos)) {
-            if (!commandPair.endPosition || commandPair.endPosition.isAfter(pos)) {
-                if (commandPair.children) {
-                    pairsAtPosition.push(...walkThruForPairsNextToPosition(pos, commandPair.children))
+    for (const macroPair of macroPairTree) {
+        if (macroPair.startPosition.isBefore(pos)) {
+            if (!macroPair.endPosition || macroPair.endPosition.isAfter(pos)) {
+                if (macroPair.children) {
+                    pairsAtPosition.push(...walkThruForPairsNextToPosition(pos, macroPair.children))
                 }
             }
         }
@@ -371,7 +367,7 @@ async function goto() {
                     break
                 }
             }
-            const firstPair = contiguousPairs.pop() as CommandPair
+            const firstPair = contiguousPairs.pop() as MacroPair
             editor.selection = new vscode.Selection(firstPair.startPosition, firstPair.startPosition )
             return
         }
@@ -399,12 +395,12 @@ async function name(action: 'selection'|'cursor'|'equationToggle') {
     const document = editor.document
 
     // Only keep display math and environments
-    const matchedPairs = (await locateSurroundingPair(startingPos, document)).filter((macroPair: CommandPair) => {
+    const matchedPairs = (await locateSurroundingPair(startingPos, document)).filter((macroPair: MacroPair) => {
         return macroPair.end && macroPair.endPosition && [PairType.DISPLAYMATH, PairType.ENVIRONMENT].includes(macroPair.type)
     })
     const matchedPair = matchedPairs.at(-1)
     if (!matchedPair?.end || !matchedPair?.endPosition) {
-        logger.log('No matched command pair found in envNameAction')
+        logger.log('No matched macro pair found in envNameAction')
         return
     }
 
@@ -521,11 +517,11 @@ async function close() {
     const cursorPos = editor.selection.active
     const document = editor.document
 
-    const matchedPairs = (await locateSurroundingPair(cursorPos, document)).filter((macroPair: CommandPair) => { return !macroPair.endPosition})
+    const matchedPairs = (await locateSurroundingPair(cursorPos, document)).filter((macroPair: MacroPair) => { return !macroPair.endPosition})
 
     const matchedPair = matchedPairs.at(-1)
     if (!matchedPair) {
-        logger.log('No matched command pair found in envNameAction')
+        logger.log('No matched macro pair found in envNameAction')
         return
     }
 

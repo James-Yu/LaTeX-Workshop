@@ -14,16 +14,16 @@ export const environment = {
     getDefaultEnvs,
     setPackageEnvs,
     getEnvFromPkg,
-    provideEnvsAsCommandInPkg
+    provideEnvsAsMacroInPkg
 }
 
 const data = {
     defaultEnvsAsName: [] as CmdEnvSuggestion[],
-    defaultEnvsAsCommand: [] as CmdEnvSuggestion[],
+    defaultEnvsAsMacro: [] as CmdEnvSuggestion[],
     defaultEnvsForBegin: [] as CmdEnvSuggestion[],
     packageEnvs: new Map<string, Environment[]>(),
     packageEnvsAsName: new Map<string, CmdEnvSuggestion[]>(),
-    packageEnvsAsCommand: new Map<string, CmdEnvSuggestion[]>(),
+    packageEnvsAsMacro: new Map<string, CmdEnvSuggestion[]>(),
     packageEnvsForBegin: new Map<string, CmdEnvSuggestion[]>()
 }
 
@@ -37,11 +37,11 @@ function initialize() {
         env.snippet = env.snippet || ''
         env.detail = key
     })
-    data.defaultEnvsAsCommand = []
+    data.defaultEnvsAsMacro = []
     data.defaultEnvsForBegin = []
     data.defaultEnvsAsName = []
     Object.entries(envs).forEach(([key, env]) => {
-        data.defaultEnvsAsCommand.push(entryEnvToCompletion(key, env, EnvSnippetType.AsCommand))
+        data.defaultEnvsAsMacro.push(entryEnvToCompletion(key, env, EnvSnippetType.AsMacro))
         data.defaultEnvsForBegin.push(entryEnvToCompletion(key, env, EnvSnippetType.ForBegin))
         data.defaultEnvsAsName.push(entryEnvToCompletion(key, env, EnvSnippetType.AsName))
     })
@@ -55,16 +55,16 @@ function isEnv(obj: any): obj is Environment {
 
 
 /**
- * This function is called by Command.initialize with type=EnvSnippetType.AsCommand
- * to build a `\envname` command for every default environment.
+ * This function is called by Macro.initialize with type=EnvSnippetType.AsMacro
+ * to build a `\envname` macro for every default environment.
  */
 function getDefaultEnvs(type: EnvSnippetType): CmdEnvSuggestion[] {
     switch (type) {
         case EnvSnippetType.AsName:
             return data.defaultEnvsAsName
             break
-        case EnvSnippetType.AsCommand:
-            return data.defaultEnvsAsCommand
+        case EnvSnippetType.AsMacro:
+            return data.defaultEnvsAsMacro
             break
         case EnvSnippetType.ForBegin:
             return data.defaultEnvsForBegin
@@ -78,8 +78,8 @@ function getPackageEnvs(type?: EnvSnippetType): Map<string, CmdEnvSuggestion[]> 
     switch (type) {
         case EnvSnippetType.AsName:
             return data.packageEnvsAsName
-        case EnvSnippetType.AsCommand:
-            return data.packageEnvsAsCommand
+        case EnvSnippetType.AsMacro:
+            return data.packageEnvsAsMacro
         case EnvSnippetType.ForBegin:
             return data.packageEnvsForBegin
         default:
@@ -89,7 +89,7 @@ function getPackageEnvs(type?: EnvSnippetType): Map<string, CmdEnvSuggestion[]> 
 
 function from(result: RegExpMatchArray, args: CompletionArgs) {
     const suggestions = provide(args.langId, args.line, args.position)
-    // Commands starting with a non letter character are not filtered properly because of wordPattern definition.
+    // Macros starting with a non letter character are not filtered properly because of wordPattern definition.
     return filterNonLetterSuggestions(suggestions, result[1], args.position)
 }
 
@@ -145,9 +145,9 @@ function provide(langId: string, line: string, position: vscode.Position): Compl
 
 /**
  * Environments can be inserted using `\envname`.
- * This function is called by Command.provide to compute these commands for every package in use.
+ * This function is called by Macro.provide to compute these macros for every package in use.
  */
-function provideEnvsAsCommandInPkg(packageName: string, options: string[], suggestions: CmdEnvSuggestion[], defined?: Set<string>) {
+function provideEnvsAsMacroInPkg(packageName: string, options: string[], suggestions: CmdEnvSuggestion[], defined?: Set<string>) {
     defined = defined ?? new Set<string>()
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
@@ -157,7 +157,7 @@ function provideEnvsAsCommandInPkg(packageName: string, options: string[], sugge
     }
 
     // Load environments from the package if not already done
-    const entry = getEnvFromPkg(packageName, EnvSnippetType.AsCommand)
+    const entry = getEnvFromPkg(packageName, EnvSnippetType.AsMacro)
     // No environment defined in package
     if (!entry || entry.length === 0) {
         return
@@ -242,7 +242,7 @@ function getEnvFromPkg(packageName: string, type: EnvSnippetType): CmdEnvSuggest
     }
 
     lw.completion.usepackage.load(packageName)
-    // No package command defined
+    // No package macro defined
     const pkgEnvs = data.packageEnvs.get(packageName)
     if (!pkgEnvs || pkgEnvs.length === 0) {
         return []
@@ -295,7 +295,7 @@ function entryEnvToCompletion(itemKey: string, item: Environment, type: EnvSnipp
     if (type === EnvSnippetType.AsName) {
         return suggestion
     } else {
-        if (type === EnvSnippetType.AsCommand) {
+        if (type === EnvSnippetType.AsMacro) {
             suggestion.kind = vscode.CompletionItemKind.Snippet
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')

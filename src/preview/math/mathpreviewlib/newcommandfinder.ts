@@ -5,15 +5,15 @@ import { lw } from '../../../lw'
 
 const logger = lw.log('Preview', 'Math')
 
-export async function findNewCommand(ctoken?: vscode.CancellationToken): Promise<string> {
-    let newcommand = ''
+export async function findMacros(ctoken?: vscode.CancellationToken): Promise<string> {
+    let macros = ''
     const filepaths = []
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const newcommandPath = await resolveNewCommandFile(configuration.get('hover.preview.newcommand.newcommandFile') as string)
-    if (newcommandPath !== undefined) {
-        filepaths.push(newcommandPath)
-        if (lw.cache.get(newcommandPath) === undefined) {
-            lw.cache.add(newcommandPath)
+    const macroDefPath = await resolveMacroDefFile(configuration.get('hover.preview.newcommand.newcommandFile') as string)
+    if (macroDefPath !== undefined) {
+        filepaths.push(macroDefPath)
+        if (lw.cache.get(macroDefPath) === undefined) {
+            lw.cache.add(macroDefPath)
         }
     }
     if (configuration.get('hover.preview.newcommand.parseTeXFile.enabled') as boolean) {
@@ -29,11 +29,11 @@ export async function findNewCommand(ctoken?: vscode.CancellationToken): Promise
         if (content === undefined || ast === undefined) {
             logger.log(`Cannot parse the AST of ${filepath} .`)
         } else {
-            newcommand += parseAst(content, ast).join('\n') + '\n'
+            macros += parseAst(content, ast).join('\n') + '\n'
         }
     }
 
-    return newcommand
+    return macros
 }
 
 function parseAst(content: string, node: Ast.Node): string[] {
@@ -75,7 +75,7 @@ function parseAst(content: string, node: Ast.Node): string[] {
     return macros
 }
 
-async function resolveNewCommandFile(filepath: string): Promise<string | undefined> {
+async function resolveMacroDefFile(filepath: string): Promise<string | undefined> {
     if (filepath === '') {
         return undefined
     }
@@ -88,7 +88,7 @@ async function resolveNewCommandFile(filepath: string): Promise<string | undefin
         }
         const rootDir = lw.root.dir.path
         if (rootDir === undefined) {
-            logger.log(`Cannot identify the absolute path of new command file ${filepath} without root file.`)
+            logger.log(`Cannot identify the absolute path of macro definition file ${filepath} without root file.`)
             return undefined
         }
         filepathAbs = path.join(rootDir, filepath)

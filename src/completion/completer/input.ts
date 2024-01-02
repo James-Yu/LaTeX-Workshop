@@ -15,15 +15,15 @@ abstract class InputAbstract implements CompletionProvider {
      * Compute the base directory for file completion
      *
      * @param currentFile current file path
-     * @param importFromDir `From` argument of the import command
-     * @param command The command which triggered the completion
+     * @param importFromDir `From` argument of the import macro
+     * @param macro The macro which triggered the completion
      */
-    abstract getBaseDir(currentFile: string, importFromDir: string, command: string): string[]
+    abstract getBaseDir(currentFile: string, importFromDir: string, macro: string): string[]
 
     /**
      * Do we only list directories?
      *
-     * @param importFromDir `From` argument of the import command
+     * @param importFromDir `From` argument of the import macro
      */
     abstract provideDirOnly(importFromDir: string): boolean
 
@@ -44,9 +44,9 @@ abstract class InputAbstract implements CompletionProvider {
     }
 
     from(result: RegExpMatchArray, args: CompletionArgs) {
-        const command = result[1]
+        const macro = result[1]
         const payload = [...result.slice(2).reverse()]
-        return this.provide(args.uri, args.line, args.position, command, payload)
+        return this.provide(args.uri, args.line, args.position, macro, payload)
     }
 
     /**
@@ -56,13 +56,13 @@ abstract class InputAbstract implements CompletionProvider {
      *      payload[0]: The already typed path
      *      payload[1]: The path from which completion is triggered, may be empty
      */
-    private provide(uri: vscode.Uri, line: string, position: vscode.Position, command: string, payload: string[]): vscode.CompletionItem[] {
+    private provide(uri: vscode.Uri, line: string, position: vscode.Position, macro: string, payload: string[]): vscode.CompletionItem[] {
         const currentFile = uri.fsPath
         const typedFolder = payload[0]
         const importFromDir = payload[1]
         const startPos = Math.max(line.lastIndexOf('{', position.character), line.lastIndexOf('/', position.character))
         const range: vscode.Range | undefined = startPos >= 0 ? new vscode.Range(position.line, startPos + 1, position.line, position.character) : undefined
-        const baseDir: string[] = this.getBaseDir(currentFile, importFromDir, command)
+        const baseDir: string[] = this.getBaseDir(currentFile, importFromDir, macro)
         const provideDirOnly: boolean = this.provideDirOnly(importFromDir)
 
         const suggestions: vscode.CompletionItem[] = []
@@ -94,12 +94,12 @@ abstract class InputAbstract implements CompletionProvider {
                     } else if (! provideDirOnly) {
                         const item = new vscode.CompletionItem(file, vscode.CompletionItemKind.File)
                         const preview = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.includegraphics.preview.enabled') as boolean
-                        if (preview && ['includegraphics', 'includesvg'].includes(command)) {
+                        if (preview && ['includegraphics', 'includesvg'].includes(macro)) {
                             item.documentation = filePath
                         }
                         item.range = range
                         item.detail = dir
-                        if (['include', 'includeonly', 'excludeonly'].includes(command)) {
+                        if (['include', 'includeonly', 'excludeonly'].includes(macro)) {
                             item.insertText = path.parse(file).name
                         }
                         suggestions.push(item)
@@ -137,7 +137,7 @@ class Input extends InputAbstract {
         return false
     }
 
-    getBaseDir(currentFile: string, _importFromDir: string, command: string): string[] {
+    getBaseDir(currentFile: string, _importFromDir: string, macro: string): string[] {
         let baseDir: string[] = []
         if (lw.root.dir.path === undefined) {
             logger.log(`No root dir can be found. The current root file should be undefined, is ${lw.root.file.path}. How did you get here?`)
@@ -145,7 +145,7 @@ class Input extends InputAbstract {
         }
         // If there is no root, 'root relative' and 'both' should fall back to 'file relative'
         const rootDir = lw.root.dir.path
-        if (['includegraphics', 'includesvg'].includes(command) && this.graphicsPath.size > 0) {
+        if (['includegraphics', 'includesvg'].includes(macro) && this.graphicsPath.size > 0) {
             baseDir = Array.from(this.graphicsPath).map(dir => path.join(rootDir, dir))
         } else {
             const baseConfig = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(currentFile)).get('intellisense.file.base')
@@ -176,7 +176,7 @@ class Import extends InputAbstract {
         return (!importFromDir)
     }
 
-    getBaseDir(_currentFile: string, importFromDir: string, _command: string): string[] {
+    getBaseDir(_currentFile: string, importFromDir: string, _macro: string): string[] {
         if (importFromDir) {
             return [importFromDir]
         } else {
@@ -192,7 +192,7 @@ class SubImport extends InputAbstract {
     }
 
 
-    getBaseDir(currentFile: string, importFromDir: string, _command: string): string[] {
+    getBaseDir(currentFile: string, importFromDir: string, _macro: string): string[] {
         if (importFromDir) {
             return [path.join(path.dirname(currentFile), importFromDir)]
         } else {

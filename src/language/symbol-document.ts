@@ -26,7 +26,7 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         if (section.type === TeXElementType.Environment) {
             return vscode.SymbolKind.Package
         }
-        if (section.type === TeXElementType.Command) {
+        if (section.type === TeXElementType.Macro) {
             return vscode.SymbolKind.Number
         }
         if (section.type === TeXElementType.SubFile) {

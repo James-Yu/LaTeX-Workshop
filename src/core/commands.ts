@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { lw } from '../lw'
-import { getSurroundingCommandRange, stripText } from '../utils/utils'
+import { getSurroundingMacroRange, stripText } from '../utils/utils'
 
 const logger = lw.log('Commander')
 
@@ -359,7 +359,7 @@ export async function toggleSelectedKeyword(keyword: string) {
     for (const selection of editor.selections) {
         // If the selection is empty, determine if a snippet should be inserted or the cursor is inside \keyword{...}
         if (selection.isEmpty) {
-            const surroundingCommandRange = getSurroundingCommandRange(keyword, selection.anchor, editor.document)
+            const surroundingCommandRange = getSurroundingMacroRange(keyword, selection.anchor, editor.document)
             if (surroundingCommandRange) {
                 editActions.push({range: surroundingCommandRange.range, text: surroundingCommandRange.arg})
             } else {

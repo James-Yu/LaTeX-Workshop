@@ -123,7 +123,7 @@ function shiftSection(change: 'promote' | 'demote') {
 }
 
 /**
- * Find the first sectioning command above the current position
+ * Find the first sectioning macro above the current position
  *
  * @param pos the current position in the document
  * @param doc the text document
@@ -144,10 +144,10 @@ function searchLevelUp(pos: vscode.Position, doc: vscode.TextDocument): MatchSec
 
 
 /**
- * Find the first sectioning command below the current position.
+ * Find the first sectioning macro below the current position.
  * Stop at \appendix or \end{document}
  *
- * @param levels the list of sectioning commands
+ * @param levels the list of sectioning macros
  * @param pos the current position in the document
  * @param doc the text document
  */
@@ -175,7 +175,7 @@ function selectSection() {
     }
     const beginLevel = searchLevelUp(editor.selection.anchor, editor.document)
     if (!beginLevel) {
-        logger.log('Cannot find any section command above current line.')
+        logger.log('Cannot find any section macro above current line.')
         return
     }
     const levelIndex = levels.indexOf(beginLevel.level)

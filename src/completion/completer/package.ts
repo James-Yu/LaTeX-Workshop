@@ -69,7 +69,7 @@ function resolvePackageFile(packageName: string): string | undefined {
         }
     }
     // Many package with names like toppackage-config.sty are just wrappers around
-    // the general package toppacke.sty and do not define commands on their own.
+    // the general package toppacke.sty and do not define macros on their own.
     const indexDash = packageName.lastIndexOf('-')
     if (indexDash > - 1) {
         const generalPkg = packageName.substring(0, indexDash)

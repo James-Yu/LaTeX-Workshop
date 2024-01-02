@@ -64,7 +64,7 @@ suite('Intellisense test suite', () => {
     })
 
     test.run('test default envs', () => {
-        let defaultEnvs = lw.completion.environment.getDefaultEnvs(EnvSnippetType.AsCommand).map(e => e.label)
+        let defaultEnvs = lw.completion.environment.getDefaultEnvs(EnvSnippetType.AsMacro).map(e => e.label)
         assert.ok(defaultEnvs.includes('document'))
         assert.ok(defaultEnvs.includes('align'))
         defaultEnvs = lw.completion.environment.getDefaultEnvs(EnvSnippetType.AsName).map(e => e.label)

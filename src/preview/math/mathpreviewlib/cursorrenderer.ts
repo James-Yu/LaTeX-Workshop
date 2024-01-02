@@ -12,9 +12,9 @@ const cache: {
     ast?: Ast.Root
 } = {}
 
-// Test whether cursor is in tex command strings
+// Test whether cursor is in tex macro strings
 // like \begin{...} \end{...} \xxxx{ \[ \] \( \) or \\
-function isCursorInTeXCommand(document: ITextDocumentLike): boolean {
+function isCursorInTeXMacro(document: ITextDocumentLike): boolean {
     const editor = vscode.window.activeTextEditor
     if (!editor) {
         return false
@@ -84,7 +84,7 @@ export async function renderCursor(document: ITextDocumentLike, texMath: TeXMath
     if (!isCursorInsideTexMath(texMathRange, cursorPos)) {
         return texMath.texString
     }
-    if (isCursorInTeXCommand(document)) {
+    if (isCursorInTeXMacro(document)) {
         return texMath.texString
     }
     const symbol = configuration.get('hover.preview.cursor.symbol') as string

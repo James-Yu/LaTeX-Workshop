@@ -43,7 +43,7 @@ const state = {
     prevEditTime: 0,
     prevDocumentUri: undefined as string | undefined,
     prevCursorPosition: undefined as vscode.Position | undefined,
-    prevNewCommands: undefined as string | undefined,
+    prevMacros: undefined as string | undefined,
 }
 
 function open() {
@@ -127,7 +127,7 @@ function clearCache() {
     state.prevEditTime = 0
     state.prevDocumentUri = undefined
     state.prevCursorPosition = undefined
-    state.prevNewCommands = undefined
+    state.prevMacros = undefined
 }
 
 function getHtml(webview: vscode.Webview) {
@@ -185,19 +185,19 @@ async function update(ev?: UpdateEvent) {
         clearCache()
         return state.panel.webview.postMessage({type: 'mathImage', src: '' })
     }
-    let cachedCommands: string | undefined
+    let cachedMacros: string | undefined
     if ( position.line === state.prevCursorPosition?.line && documentUri === state.prevDocumentUri ) {
-        cachedCommands = state.prevNewCommands
+        cachedMacros = state.prevMacros
     }
     if (vscode.workspace.getConfiguration('latex-workshop').get('mathpreviewpanel.cursor.enabled', false)) {
         await renderCursor(document, texMath)
     }
-    const result = await lw.preview.math.generateSVG(texMath, cachedCommands).catch(() => undefined)
+    const result = await lw.preview.math.generateSVG(texMath, cachedMacros).catch(() => undefined)
     if (!result) {
         return
     }
     state.prevDocumentUri = documentUri
-    state.prevNewCommands = result.newCommands
+    state.prevMacros = result.macros
     state.prevCursorPosition = position
     return state.panel.webview.postMessage({type: 'mathImage', src: result.svgDataUrl })
 }

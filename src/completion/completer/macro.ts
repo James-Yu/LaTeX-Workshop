@@ -7,7 +7,6 @@ import type { CompletionArgs, CompletionItem, CompletionProvider, FileCache, Mac
 import { environment } from './environment'
 
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
-import { SurroundCommand } from './commandlib/surround'
 
 const logger = lw.log('Intelli', 'Macro')
 
@@ -43,7 +42,7 @@ function initialize() {
         cmd.snippet = cmd.snippet || key
     })
 
-    const defaultEnvs = environment.getDefaultEnvs(EnvSnippetType.AsCommand)
+    const defaultEnvs = environment.getDefaultEnvs(EnvSnippetType.AsMacro)
 
     const userCmds = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.command.user') as {[key: string]: string}
     Object.entries(userCmds).forEach(([key, snippet]) => {
@@ -58,7 +57,7 @@ function initialize() {
 
     data.defaultCmds = []
 
-    // Initialize default commands and the ones in `tex.json`
+    // Initialize default macros and the ones in `tex.json`
     Object.entries(maths).forEach(([key, cmd]) => data.defaultCmds.push(entryCmdToCompletion(key, cmd)))
 
     // Initialize default env begin-end pairs
@@ -78,14 +77,14 @@ function isCmdWithSnippet(obj: any): obj is Macro {
 
 function from(result: RegExpMatchArray, args: CompletionArgs) {
     const suggestions = provide(args.langId, args.line, args.position)
-    // Commands ending with (, { or [ are not filtered properly by vscode intellisense. So we do it by hand.
+    // Macros ending with (, { or [ are not filtered properly by vscode intellisense. So we do it by hand.
     if (result[0].match(/[({[]$/)) {
         const exactSuggestion = suggestions.filter(entry => entry.label === result[0])
         if (exactSuggestion.length > 0) {
             return exactSuggestion
         }
     }
-    // Commands starting with a non letter character are not filtered properly because of wordPattern definition.
+    // Macros starting with a non letter character are not filtered properly because of wordPattern definition.
     return filterNonLetterSuggestions(suggestions, result[1], args.position)
 }
 
@@ -101,7 +100,7 @@ function provide(langId: string, line?: string, position?: vscode.Position): Com
     }
     const suggestions: CmdEnvSuggestion[] = []
     let defined = new Set<string>()
-    // Insert default commands
+    // Insert default macros
     data.defaultCmds.forEach(cmd => {
         if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
             return
@@ -119,20 +118,20 @@ function provide(langId: string, line?: string, position?: vscode.Position): Com
         })
     }
 
-    // Insert commands from packages
+    // Insert macros from packages
     if ((configuration.get('intellisense.package.enabled'))) {
         const packages = lw.completion.usepackage.getAll(langId)
         Object.entries(packages).forEach(([packageName, options]) => {
             provideCmdInPkg(packageName, options, suggestions)
-            environment.provideEnvsAsCommandInPkg(packageName, options, suggestions, defined)
+            environment.provideEnvsAsMacroInPkg(packageName, options, suggestions, defined)
         })
     }
 
-    // Start working on commands in tex. To avoid over populating suggestions, we do not include
-    // user defined commands, whose name matches a default command or one provided by a package
+    // Start working on macros in tex. To avoid over populating suggestions, we do not include
+    // user defined macros, whose name matches a default macro or one provided by a package
     defined = new Set<string>(suggestions.map(s => s.signatureAsString()))
     lw.cache.getIncludedTeX().forEach(tex => {
-        const cmds = lw.cache.get(tex)?.elements.command
+        const cmds = lw.cache.get(tex)?.elements.macro
         if (cmds !== undefined) {
             cmds.forEach(cmd => {
                 if (!defined.has(cmd.signatureAsString())) {
@@ -150,30 +149,68 @@ function provide(langId: string, line?: string, position?: vscode.Position): Com
 }
 
 /**
- * Surrounds `content` with a command picked in QuickPick.
+ * Surrounds `content` with a macro picked in QuickPick.
  *
  * @param content A string to be surrounded. If not provided, then we loop over all the selections and surround each of them.
  */
 function surround() {
-    if (!vscode.window.activeTextEditor) {
+    const editor = vscode.window.activeTextEditor
+    if (!editor) {
         return
     }
-    const editor = vscode.window.activeTextEditor
     const cmdItems = provide(editor.document.languageId)
-    SurroundCommand.surround(cmdItems)
+
+    const candidate: { macro: string, detail: string, label: string }[] = []
+    cmdItems.forEach(item => {
+        if (item.insertText === undefined) {
+            return
+        }
+        if (item.label === '\\begin') { // Causing a lot of trouble
+            return
+        }
+        let macroStr = (typeof item.insertText !== 'string') ? item.insertText.value : item.insertText
+        if (macroStr.match(/(.*)(\${\d.*?})/)) {
+            macroStr = macroStr.replace('\\\\', '\\').replace(/:\${TM_SELECTED_TEXT:?(.*?)}/g, '$1')
+            candidate.push({
+                macro: macroStr,
+                detail: '\\' + macroStr.replace(/[\n\t]/g, '').replace(/\$\{(\d+)\}/g, '$$$1'),
+                label: item.label
+            })
+        }
+    })
+    void vscode.window.showQuickPick(candidate, {
+        placeHolder: 'Press ENTER to surround previous selection with selected macro',
+        matchOnDetail: false,
+        matchOnDescription: false
+    }).then(selected => {
+        if (selected === undefined) {
+            return
+        }
+        void editor.edit( editBuilder => {
+            for (const selection of editor.selections) {
+                const selectedContent = editor.document.getText(selection)
+                const selectedMacro = '\\' + selected.macro
+                editBuilder.replace(new vscode.Range(selection.start, selection.end),
+                    selectedMacro.replace(/(.*)(\${\d.*?})/, `$1${selectedContent}`) // Replace text
+                                 .replace(/\${\d:?(.*?)}/g, '$1')                    // Remove snippet placeholders
+                                 .replace(/\$\d/, ''))                               // Remove $2 etc
+            }
+        })
+    })
+    return
 }
 
 function parse(cache: FileCache) {
-    // Remove newcommand cmds, because they will be re-insert in the next step
+    // Remove newcommand macros, because they will be re-insert in the next step
     data.definedCmds.forEach((entry,cmd) => {
         if (entry.filePath === cache.filePath) {
             data.definedCmds.delete(cmd)
         }
     })
     if (cache.ast !== undefined) {
-        cache.elements.command = parseAst(cache.ast, cache.filePath)
+        cache.elements.macro = parseAst(cache.ast, cache.filePath)
     } else {
-        cache.elements.command = parseContent(cache.content, cache.filePath)
+        cache.elements.macro = parseContent(cache.content, cache.filePath)
     }
 }
 
@@ -367,7 +404,7 @@ function entryCmdToCompletion(itemKey: string, item: Macro): CmdEnvSuggestion {
     }
     suggestion.filterText = itemKey
     suggestion.detail = item.detail || `\\${item.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}`
-    suggestion.documentation = item.documentation ? item.documentation : `Command \\${item.macro}.`
+    suggestion.documentation = item.documentation ? item.documentation : `Macro \\${item.macro}.`
     if (item.package) {
         suggestion.documentation += ` From package: ${item.package}.`
     }
@@ -378,24 +415,24 @@ function entryCmdToCompletion(itemKey: string, item: Macro): CmdEnvSuggestion {
     if (item.postAction) {
         suggestion.command = { title: 'Post-Action', command: item.postAction }
     } else if (isTriggerSuggestNeeded(item.macro)) {
-        // Automatically trigger completion if the command is for citation, filename, reference or glossary
+        // Automatically trigger completion if the macro is for citation, filename, reference or glossary
         suggestion.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
     }
     return suggestion
 }
 
 function setPackageCmds(packageName: string, cmds: {[key: string]: Macro}) {
-    const commands: CmdEnvSuggestion[] = []
+    const macros: CmdEnvSuggestion[] = []
     Object.entries(cmds).forEach(([key, cmd]) => {
         cmd.package = packageName
         if (isCmdWithSnippet(cmd)) {
-            commands.push(entryCmdToCompletion(key, cmd))
+            macros.push(entryCmdToCompletion(key, cmd))
         } else {
             logger.log(`Cannot parse intellisense file for ${packageName}.`)
             logger.log(`Missing field in entry: "${key}": ${JSON.stringify(cmd)}.`)
         }
     })
-    data.packageCmds.set(packageName, commands)
+    data.packageCmds.set(packageName, macros)
 }
 
 function getPackageCmds(packageName: string) {
@@ -406,16 +443,16 @@ function provideCmdInPkg(packageName: string, options: string[], suggestions: Cm
     const defined = new Set<string>()
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
-    // Load command in pkg
+    // Load macro in pkg
     lw.completion.usepackage.load(packageName)
 
-    // No package command defined
+    // No package macro defined
     const pkgCmds = data.packageCmds.get(packageName)
     if (!pkgCmds || pkgCmds.length === 0) {
         return
     }
 
-    // Insert commands
+    // Insert macros
     pkgCmds.forEach(cmd => {
         if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
             return

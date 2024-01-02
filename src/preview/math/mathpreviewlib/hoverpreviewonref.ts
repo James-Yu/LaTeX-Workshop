@@ -7,8 +7,8 @@ import { MathPreviewUtils } from './mathpreviewutils'
 const logger = lw.log('Preview', 'Hover')
 
 export class HoverPreviewOnRefProvider {
-    static async provideHoverPreviewOnRef(tex: TeXMathEnv, newCommand: string, refData: ReferenceEntry, color: string): Promise<vscode.Hover> {
-        const md = await HoverPreviewOnRefProvider.renderSvgOnRef(tex, newCommand, refData, color)
+    static async provideHoverPreviewOnRef(tex: TeXMathEnv, macros: string, refData: ReferenceEntry, color: string): Promise<vscode.Hover> {
+        const md = await HoverPreviewOnRefProvider.renderSvgOnRef(tex, macros, refData, color)
         const line = refData.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
@@ -16,7 +16,7 @@ export class HoverPreviewOnRefProvider {
         return new vscode.Hover( [MathPreviewUtils.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
     }
 
-    static async renderSvgOnRef(tex: TeXMathEnv, newCommand: string, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, color: string) {
+    static async renderSvgOnRef(tex: TeXMathEnv, macros: string, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, color: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
 
@@ -28,7 +28,7 @@ export class HoverPreviewOnRefProvider {
         } else {
             newTeXString = MathPreviewUtils.mathjaxify(tex.texString, tex.envname)
         }
-        const typesetArg = newCommand + MathPreviewUtils.stripTeX(newTeXString, newCommand)
+        const typesetArg = macros + MathPreviewUtils.stripTeX(newTeXString, macros)
         const typesetOpts = { scale, color }
         try {
             const xml = await lw.preview.math.typeset(typesetArg, typesetOpts)

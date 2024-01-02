@@ -19,8 +19,8 @@ export type FileCache = {
         environment?: CmdEnvSuggestion[],
         /** \cite{} items from \bibitem definition */
         bibitem?: CitationItem[],
-        /** command items */
-        command?: CmdEnvSuggestion[],
+        /** macro items */
+        macro?: CmdEnvSuggestion[],
         /** \usepackage{}, a dictionary whose key is package name and value is the options */
         package?: {[packageName: string]: string[]},
         /** _{} */
@@ -116,7 +116,7 @@ export interface LaTeXLinter {
     parseLog(log: string, filePath?: string): void
 }
 
-export enum TeXElementType { Environment, Command, Section, SectionAst, SubFile, BibItem, BibField }
+export enum TeXElementType { Environment, Macro, Section, SectionAst, SubFile, BibItem, BibField }
 
 export type TeXElement = {
     readonly type: TeXElementType,
@@ -175,7 +175,7 @@ export interface CitationItem extends CompletionItem {
     position: vscode.Position
 }
 
-export enum EnvSnippetType { AsName, AsCommand, ForBegin }
+export enum EnvSnippetType { AsName, AsMacro, ForBegin }
 
 export type Environment = {
     /** Name of the environment, what comes inside \begin{...} */

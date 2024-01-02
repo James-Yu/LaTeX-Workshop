@@ -50,9 +50,9 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         }
 
         if (token.startsWith('\\')) {
-            const command = lw.completion.macro.getData().definedCmds.get(token.slice(1))
-            if (command) {
-                return command.location
+            const macro = lw.completion.macro.getData().definedCmds.get(token.slice(1))
+            if (macro) {
+                return macro.location
             }
             return
         }

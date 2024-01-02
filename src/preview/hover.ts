@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import { lw } from '../lw'
-import { findNewCommand } from './math/mathpreviewlib/newcommandfinder'
+import { findMacros } from './math/mathpreviewlib/newcommandfinder'
 import { tokenizer, onAPackage } from '../utils/tokenizer'
 import { CmdEnvSuggestion } from '../completion/completer/completerutils'
 
@@ -19,8 +19,7 @@ class HoverProvider implements vscode.HoverProvider {
         if (hov) {
             const tex = lw.preview.math.findTeX(document, position)
             if (tex) {
-                const newCommands = await findNewCommand(ctoken)
-                const hover = await lw.preview.math.onTeX(document, tex, newCommands)
+                const hover = await lw.preview.math.onTeX(document, tex, await findMacros(ctoken))
                 return hover
             }
             const graphicsHover = await lw.preview.hover(document, position)
@@ -32,12 +31,12 @@ class HoverProvider implements vscode.HoverProvider {
         if (!token) {
             return
         }
-        // Test if we are on a command
+        // Test if we are on a macro
         if (token.startsWith('\\')) {
             if (!hovCommand) {
                 return
             }
-            return this.provideHoverOnCommand(token)
+            return this.provideHoverOnMacro(token)
         }
         if (onAPackage(document, position, token)) {
             const packageName = encodeURIComponent(JSON.stringify(token))
@@ -64,7 +63,7 @@ class HoverProvider implements vscode.HoverProvider {
         return
     }
 
-    private provideHoverOnCommand(token: string): vscode.Hover | undefined {
+    private provideHoverOnMacro(token: string): vscode.Hover | undefined {
         const signatures: string[] = []
         const packageNames: string[] = []
         const tokenWithoutSlash = token.substring(1)
@@ -75,7 +74,7 @@ class HoverProvider implements vscode.HoverProvider {
             const packages = lw.completion.usepackage.getAll('latex-expl3')
             Object.entries(packages).forEach(([packageName, options]) => {
                 lw.completion.macro.provideCmdInPkg(packageName, options, packageCmds)
-                lw.completion.environment.provideEnvsAsCommandInPkg(packageName, options, packageCmds)
+                lw.completion.environment.provideEnvsAsMacroInPkg(packageName, options, packageCmds)
             })
         }
 
@@ -97,7 +96,7 @@ class HoverProvider implements vscode.HoverProvider {
         packageCmds.forEach(checkCmd)
 
         lw.cache.getIncludedTeX().forEach(cachedFile => {
-            lw.cache.get(cachedFile)?.elements.command?.forEach(checkCmd)
+            lw.cache.get(cachedFile)?.elements.macro?.forEach(checkCmd)
         })
 
         let pkgLink = ''

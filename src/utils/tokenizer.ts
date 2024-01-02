@@ -2,13 +2,13 @@ import * as vscode from 'vscode'
 import * as utils from './utils'
 
 /**
- * If a string on `position` is like `\command`, `\command{` or `\command[`,
- * return `\command`.
+ * If a string on `position` is like `\macro`, `\macro{` or `\macro[`,
+ * return `\macro`.
  *
  * @param document The document to be scanned.
  * @param position The position to be scanned at.
  */
-function commandTokenizer(document: vscode.TextDocument, position: vscode.Position): string | undefined {
+function macroTokenizer(document: vscode.TextDocument, position: vscode.Position): string | undefined {
     let startRegex: RegExp
     if (document.languageId === 'latex-expl3') {
         startRegex = /\\(?=[^\\{},[\]]*$)/
@@ -57,18 +57,18 @@ function argTokenizer(document: vscode.TextDocument, position: vscode.Position):
 
 
 /**
- * If a string on `position` is like `\command{` or `\command[`, then
- * returns the `\command`. If it is like `{...}` or `[...]`, then
+ * If a string on `position` is like `\macro{` or `\macro[`, then
+ * returns the `\macro`. If it is like `{...}` or `[...]`, then
  * returns the string inside brackets.
  *
  * @param document The document to be scanned.
  * @param position The position to be scanned at.
  */
 export function tokenizer(document: vscode.TextDocument, position: vscode.Position): string | undefined {
-    // \command case
-    const commandToken = commandTokenizer(document, position)
-    if (commandToken) {
-        return commandToken
+    // \macro case
+    const macroToken = macroTokenizer(document, position)
+    if (macroToken) {
+        return macroToken
     }
 
     // Inside {...} or [...]
@@ -80,7 +80,7 @@ export function tokenizer(document: vscode.TextDocument, position: vscode.Positi
 }
 
 /**
- * Return `true` if the `position` of the `document` is on a command `\usepackage{...}` including
+ * Return `true` if the `position` of the `document` is on a macro `\usepackage{...}` including
  * `token`
  * @param document The document to be scanned.
  * @param position The position to be scanned at.

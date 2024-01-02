@@ -36,8 +36,8 @@ export class Provider implements vscode.CompletionItemProvider {
 
     provide(args: CompletionArgs): vscode.CompletionItem[] {
         // Note that the order of the following array affects the result.
-        // 'command' must be at the last because it matches any commands.
-        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'argument', 'command', 'subsuper']) {
+        // 'macro' must be at the last because it matches any macros.
+        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'argument', 'macro', 'subsuper']) {
             const suggestions = this.completion(type, args)
             if (suggestions.length > 0) {
                 if (type === 'citation') {
@@ -114,7 +114,7 @@ export class Provider implements vscode.CompletionItemProvider {
                 reg = /(?:\\begin|\\end){([^}]*)$/
                 provider = environmentProvider
                 break
-            case 'command':
+            case 'macro':
                 reg = args.langId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)$/ : /\\(\+?[a-zA-Z]*|(?:left|[Bb]ig{1,2}l)?[({[]?)$/
                 provider = macroProvider
                 break

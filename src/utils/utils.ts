@@ -19,40 +19,40 @@ export function escapeRegExp(str: string) {
 }
 
 /**
- * Strip text and comments from LaTeX, leaving only commands and environments.
+ * Strip text and comments from LaTeX, leaving only macros and environments.
  *
  * @param raw The raw LaTeX content as a string
- * @returns The stripped LaTeX command barebone
+ * @returns The stripped LaTeX macro barebone
  */
 export function stripText(raw: string): string {
     const text = stripComments(raw)
     // We first create an array of empty strings, each of which corresponds to
     // one line in the original document.
     const result = Array(text.split('\n').length).fill('')
-    // The following regex defines a LaTeX command.
+    // The following regex defines a LaTeX macro.
     // We also consider a special case of verbatim "label={something}"
-    const cmdReg = /(\\(?:[^a-zA-Z@]|[a-zA-Z@]+[*=']?)\s*)|(label={[^{}]+})/gm
+    const macroReg = /(\\(?:[^a-zA-Z@]|[a-zA-Z@]+[*=']?)\s*)|(label={[^{}]+})/gm
     let match
-    while ((match = cmdReg.exec(text)) !== null) {
-        // Stores the complete command, including arguments.
+    while ((match = macroReg.exec(text)) !== null) {
+        // Stores the complete macro, including arguments.
         let matchedText = match[0]
-        // match[1]: command, null on "label={something}"
-        // There is an (optional) argument after the command. They can be many.
-        while (['{', '['].includes(text[cmdReg.lastIndex])) {
-            const isCurly = text[cmdReg.lastIndex] === '{'
-            const balanceStr = getLongestBalancedString(text.substring(cmdReg.lastIndex), isCurly ? undefined : 'square')
+        // match[1]: macro, null on "label={something}"
+        // There is an (optional) argument after the macro. They can be many.
+        while (['{', '['].includes(text[macroReg.lastIndex])) {
+            const isCurly = text[macroReg.lastIndex] === '{'
+            const balanceStr = getLongestBalancedString(text.substring(macroReg.lastIndex), isCurly ? undefined : 'square')
             if (balanceStr === undefined) { // \in[1, 2]
                 break
             }
             matchedText += isCurly ? `{${balanceStr}}` : `[${balanceStr}]`
-            cmdReg.lastIndex += balanceStr.length + 2
+            macroReg.lastIndex += balanceStr.length + 2
             // It's possible to have spaces between arguments. If so, skip them.
-            while (text[cmdReg.lastIndex] === ' ' || text[cmdReg.lastIndex] === '\t') {
-                cmdReg.lastIndex++
+            while (text[macroReg.lastIndex] === ' ' || text[macroReg.lastIndex] === '\t') {
+                macroReg.lastIndex++
             }
         }
         const line = text.substring(0, match.index).split('\n').length - 1
-        // Append each line in the command to the array.
+        // Append each line in the macro to the array.
         matchedText.split('\n').forEach((content, index) => result[line+index] += content)
     }
     return result.join('\n')
@@ -157,25 +157,25 @@ export function getLongestBalancedString(s: string, bracket: 'curly' | 'square'=
 }
 
 /**
- * If the current position is inside command{...}, return the range of command{...} and its argument. Otherwise return undefined
+ * If the current position is inside macro{...}, return the range of macro{...} and its argument. Otherwise return undefined
  *
- * @param command the command name, with or without the leading '\\'
+ * @param macro the macro name, with or without the leading '\\'
  * @param position the current position in the document
  * @param document a TextDocument
  */
-export function getSurroundingCommandRange(command: string, position: vscode.Position, document: vscode.TextDocument): {range: vscode.Range, arg: string} | undefined {
-    if (!command.startsWith('\\')) {
-        command = '\\' + command
+export function getSurroundingMacroRange(macro: string, position: vscode.Position, document: vscode.TextDocument): {range: vscode.Range, arg: string} | undefined {
+    if (!macro.startsWith('\\')) {
+        macro = '\\' + macro
     }
     const line = document.lineAt(position.line).text
-    const regex = new RegExp('\\' + command + '{', 'g')
+    const regex = new RegExp('\\' + macro + '{', 'g')
     while (true) {
         const match = regex.exec(line)
         if (!match) {
             break
         }
         const matchPos = match.index
-        const openingBracePos = matchPos + command.length + 1
+        const openingBracePos = matchPos + macro.length + 1
         const arg = getLongestBalancedString(line.slice(openingBracePos))
         if (arg !== undefined && position.character >= openingBracePos && position.character <= openingBracePos + arg.length + 1) {
             const start = new vscode.Position(position.line, matchPos)
@@ -187,16 +187,16 @@ export function getSurroundingCommandRange(command: string, position: vscode.Pos
 }
 
 
-// export type CommandArgument = {
+// export type MacroArgument = {
 //     arg: string, // The argument we are looking for
 //     index: number // the starting position of the argument
 // }
 
 /**
- * @param text a string starting with a command call
+ * @param text a string starting with a macro call
  * @param nth the index of the argument to return
  */
-// export function getNthArgument(text: string, nth: number): CommandArgument | undefined {
+// export function getNthArgument(text: string, nth: number): MacroArgument | undefined {
 //     let arg: string = ''
 //     let index: number = 0 // start of the nth argument
 //     let offset: number = 0 // current offset of the new text to consider

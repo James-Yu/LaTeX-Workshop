@@ -68,7 +68,7 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
 
 /**
  * Create subdirectories of the output directory. This is necessary as some
- * LaTeX commands do not create the output directory themselves.
+ * LaTeX macros do not create the output directory themselves.
  *
  * @param {string} rootFile - Path to the root LaTeX file.
  */
