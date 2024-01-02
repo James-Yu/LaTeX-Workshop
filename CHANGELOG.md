@@ -1,5 +1,17 @@
 # Change Log
 
+## [9.17.0] - 2024-01-02
+
+### Added
+- (#4114) Support `\boldsymbol`, `\bm` and other `mathtools` macros in preview.
+- (#4118) Sub- and superscript auto-completion.
+- (#4119) Enable VIM-like scrolling by shift+J, K, H, L in PDF viewer.
+
+### Fixed
+- (#4104) PDF viewer cannot revert to no spread.
+- (#4105) Retry MathJax if failed rendering with defined macros.
+- (#4116) Use `newcommand` in place of `providecommand` for MathJax.
+
 ## [9.16.1] - 2023-12-21
 
 ### Fixed
