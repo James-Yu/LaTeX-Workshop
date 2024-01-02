@@ -4,7 +4,6 @@ import * as assert from 'assert'
 import * as test from './utils'
 import { lw } from '../../src/lw'
 import type { CompletionItem } from '../../src/types'
-import { SurroundCommand } from '../../src/completion/completer/commandlib/surround'
 
 suite('Snippet test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
@@ -34,7 +33,7 @@ suite('Snippet test suite', () => {
             insertText: new vscode.SnippetString('fbox{${1:${TM_SELECTED_TEXT:text}}}'),
             kind: 2
         }]
-        SurroundCommand.surround(items)
+        lw.completion.macro.surround(items)
         const promise = test.wait(lw.event.DocumentChanged)
         await test.sleep(500)
         await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')

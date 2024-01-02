@@ -153,12 +153,12 @@ function provide(langId: string, line?: string, position?: vscode.Position): Com
  *
  * @param content A string to be surrounded. If not provided, then we loop over all the selections and surround each of them.
  */
-function surround() {
+function surround(cmdItems?: CompletionItem[]) {
     const editor = vscode.window.activeTextEditor
     if (!editor) {
         return
     }
-    const cmdItems = provide(editor.document.languageId)
+    cmdItems = cmdItems ?? provide(editor.document.languageId)
 
     const candidate: { macro: string, detail: string, label: string }[] = []
     cmdItems.forEach(item => {
