@@ -611,13 +611,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
         // keyboard bindings
         window.addEventListener('keydown', (evt: KeyboardEvent) => {
-            // F opens find bar, cause Ctrl-F is handled by vscode
-            // const target = evt.target as HTMLElement
-            // if(evt.keyCode === 70 && target.nodeName !== 'INPUT') { // ignore F typed in the search box
-            //     this.showToolbar(false)
-            //     PDFViewerApplication.findBar.open()
-            //     evt.preventDefault()
-            // }
             if (this.embedded && evt.key === 'c' && (evt.ctrlKey || evt.metaKey)) {
                 const selection = window.getSelection()
                 if (selection !== null && selection.toString().length > 0) {
@@ -627,25 +620,29 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
             // Chrome's usual Alt-Left/Right (Command-Left/Right on OSX) for history
             // Back/Forward don't work in the embedded viewer, so we simulate them.
-            if (this.embedded && (
-                (evt.altKey && !navigator.userAgent.includes('Mac OS')) ||
-                (evt.metaKey && navigator.userAgent.includes('Mac OS'))
-            )) {
+            if (this.embedded && (navigator.userAgent.includes('Mac OS') ? evt.metaKey : evt.altKey)) {
                 if (evt.key === 'ArrowLeft') {
                     this.viewerHistory.back()
                 } else if(evt.key === 'ArrowRight') {
                     this.viewerHistory.forward()
                 }
             }
-            if (evt.key === 'Backspace' && (evt.target as HTMLElement).nodeName !== 'INPUT') {
+
+            // Following are shortcuts when focus is not in inputs, e.g., search
+            // box or page input
+            if ((evt.target as HTMLElement).nodeName === 'INPUT') {
+                return
+            }
+
+            if (evt.key === 'Backspace') {
                 this.viewerHistory.back()
             }
-            if (evt.key === 'Backspace' && evt.shiftKey && (evt.target as HTMLElement).nodeName !== 'INPUT') {
+            if (evt.key === 'Backspace' && evt.shiftKey) {
                 this.viewerHistory.forward()
             }
 
             // Configure VIM-like shortcut keys
-            if (this.embedded && !evt.altKey && !evt.ctrlKey && !evt.metaKey && ['J', 'K', 'H', 'L'].includes(evt.key)) {
+            if (!evt.altKey && !evt.ctrlKey && !evt.metaKey && ['J', 'K', 'H', 'L'].includes(evt.key)) {
                 evt.stopImmediatePropagation()
                 const container = document.getElementById('viewerContainer') as HTMLElement
 
