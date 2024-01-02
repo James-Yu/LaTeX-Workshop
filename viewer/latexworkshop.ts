@@ -647,14 +647,15 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 const container = document.getElementById('viewerContainer') as HTMLElement
 
                 const configMap: {[key: string]: ScrollToOptions} = {
-                    'J': { top: evt.repeat ? 20 : 40 },
-                    'K': { top: evt.repeat ? -20 : -40 },
-                    'H': { left: evt.repeat ? -20 : -40 },
-                    'L': { left: evt.repeat ? 20 : 40 },
+                    'J': { top: evt.repeat ? 30 : 40 },
+                    'K': { top: evt.repeat ? -30 : -40 },
+                    'H': { left: evt.repeat ? -30 : -40 },
+                    'L': { left: evt.repeat ? 30 : 40 },
                 }
+                const behavior = evt.repeat ? 'auto' : 'smooth'
 
                 if (configMap[evt.key]) {
-                    container.scrollBy({ ...configMap[evt.key], behavior: 'smooth' })
+                    container.scrollBy({ ...configMap[evt.key], behavior })
                 }
             }
         })
