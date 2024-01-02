@@ -645,47 +645,19 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
 
             // Configure VIM-like shortcut keys
-            if (this.embedded && !evt.altKey && !evt.ctrlKey && !evt.metaKey) {
-                if (evt.key === 'j') {
-                    evt.stopImmediatePropagation()
-                    const container = document.getElementById('viewerContainer') as HTMLElement
-                    container.scrollBy({top: 40, behavior: evt.repeat ? 'instant' : 'smooth'})
-                } else if (evt.key === 'k') {
-                    evt.stopImmediatePropagation()
-                    const container = document.getElementById('viewerContainer') as HTMLElement
-                    container.scrollBy({top: -40, behavior: evt.repeat ? 'instant' : 'smooth'})
-                } else if (evt.key === 'J') {
-                    evt.stopImmediatePropagation()
-                    const container = document.getElementById('viewerContainer') as HTMLElement
-                    if (evt.repeat) {
-                        container.scrollBy({top: container.offsetHeight/5, behavior: 'instant'})
-                    } else {
-                        container.scrollBy({top: container.offsetHeight, behavior: 'smooth'})
-                    }
-                } else if (evt.key === 'K') {
-                    evt.stopImmediatePropagation()
-                    const container = document.getElementById('viewerContainer') as HTMLElement
-                    if (evt.repeat) {
-                        container.scrollBy({top: -container.offsetHeight/5, behavior: 'instant'})
-                    } else {
-                        container.scrollBy({top: -container.offsetHeight, behavior: 'smooth'})
-                    }
-                } else if (evt.key === 'H') {
-                    evt.stopImmediatePropagation()
-                    const container = document.getElementById('viewerContainer') as HTMLElement
-                    if (evt.repeat) {
-                        container.scrollBy({left: -20, behavior: 'instant'})
-                    } else {
-                        container.scrollBy({left: -40, behavior: 'smooth'})
-                    }
-                } else if (evt.key === 'L') {
-                    evt.stopImmediatePropagation()
-                    const container = document.getElementById('viewerContainer') as HTMLElement
-                    if (evt.repeat) {
-                        container.scrollBy({left: 20, behavior: 'instant'})
-                    } else {
-                        container.scrollBy({left: 40, behavior: 'smooth'})
-                    }
+            if (this.embedded && !evt.altKey && !evt.ctrlKey && !evt.metaKey && ['J', 'K', 'H', 'L'].includes(evt.key)) {
+                evt.stopImmediatePropagation()
+                const container = document.getElementById('viewerContainer') as HTMLElement
+
+                const configMap: {[key: string]: ScrollToOptions} = {
+                    'J': { top: evt.repeat ? 20 : 40 },
+                    'K': { top: evt.repeat ? -20 : -40 },
+                    'H': { left: evt.repeat ? -20 : -40 },
+                    'L': { left: evt.repeat ? 20 : 40 },
+                }
+
+                if (configMap[evt.key]) {
+                    container.scrollBy({ ...configMap[evt.key], behavior: 'smooth' })
                 }
             }
         })
