@@ -33,5 +33,8 @@
 			"start": "^\\s*#pragma\\s+region\\b",
 			"end": "^\\s*#pragma\\s+endregion\\b"
 		}
-	}
+	},
+	"onEnterRules": [
+		{"previousLineText":"^\\s*(((else ?)?if|for|while)\\s*\\(.*\\)\\s*|else\\s*)$", "beforeText":"^\\s+([^{i\\s]|i(?!f\\b))", "action":{"indent":"outdent"}}
+	]
 }
