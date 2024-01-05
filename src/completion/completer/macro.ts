@@ -251,6 +251,21 @@ function parseAst(node: Ast.Node, filePath: string, defined?: Set<string>): CmdE
             parseInt(node.args?.[2].content?.[0].content) > 0) {
             args = (node.args?.[3].openMark === '[' ? '[]' : '{}') + '{}'.repeat(parseInt(node.args?.[2].content?.[0].content) - 1)
         }
+    } else if (node.type === 'macro' &&
+        ['ReNewDocumentCommand', 'NewDocumentCommand', 'ProvideDocumentCommand', 'DeclareDocumentCommand'].includes(node.content) &&
+        node.args?.length === 3 && node.args[0]?.content?.[0]?.type === 'macro') {
+        found = true
+        name = node.args[0].content[0].content
+        node.args[1].content.forEach((entry: Ast.Node) => {
+            if (entry.type === 'string') {
+                if (entry.content === 'm') {
+                    args += '{}'
+                }
+                if (entry.content === 'o' || entry.content === 'O') {
+                    args += '[]'
+                }
+            }
+        })
     }
 
     if (found && !defined.has(`${name}${args}`)) {
