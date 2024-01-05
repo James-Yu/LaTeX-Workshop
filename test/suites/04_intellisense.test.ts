@@ -156,6 +156,17 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('\\fix[]{}{}'))
     })
 
+    test.run('command intellisense with cmds defined by \\NewDocumentCommand', async (fixture: string) => {
+        await test.load(fixture, [
+            {src: 'intellisense/newdocumentcommand.tex', dst: 'main.tex'}
+        ])
+        const suggestions = test.suggest(0, 1)
+        assert.ok(suggestions.labels.includes('\\testNoArg'))
+        assert.ok(suggestions.labels.includes('\\testA{}'))
+        assert.ok(suggestions.labels.includes('\\testB[]{}'))
+        assert.ok(suggestions.labels.includes('\\testC{}[][]{}{}'))
+    })
+
     test.run('command intellisense with config `intellisense.argumentHint.enabled`', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', true)
         await test.load(fixture, [

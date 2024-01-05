@@ -1,0 +1,9 @@
+\documentclass[10pt]{article}
+\usepackage{xparse}
+\NewDocumentCommand\testNoArg{}{ABC}
+\DeclareDocumentCommand\testA{m}{ABC #1}
+\NewDocumentCommand{\testB}{O{}m}{ABC #2 #1}
+\ProvideDocumentCommand{\testC}{m o O{} m r() m}{ABC}
+\begin{document}
+
+\end{document}
