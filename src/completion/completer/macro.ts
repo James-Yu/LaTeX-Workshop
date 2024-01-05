@@ -260,8 +260,7 @@ function parseAst(node: Ast.Node, filePath: string, defined?: Set<string>): CmdE
             if (entry.type === 'string') {
                 if (entry.content === 'm') {
                     args += '{}'
-                }
-                if (entry.content === 'o' || entry.content === 'O') {
+                } else if (entry.content === 'o' || entry.content === 'O') {
                     args += '[]'
                 }
             }
