@@ -25,15 +25,13 @@ const state = {
 loadConfigs()
 
 lw.onConfigChange(['texcount', 'docker.enabled'], loadConfigs)
-lw.onDispose({ dispose: () => {
-    vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
-        if (e && lw.file.hasTexLangId(e.document.languageId)) {
-            loadConfigs(e.document.uri)
-        } else {
-            state.statusBar.hide()
-        }
-    })
-} })
+lw.onDispose(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
+    if (e && lw.file.hasTexLangId(e.document.languageId)) {
+        loadConfigs(e.document.uri)
+    } else {
+        state.statusBar.hide()
+    }
+}))
 
 function loadConfigs(scope?: vscode.ConfigurationScope | undefined) {
     scope = scope ?? vscode.window.activeTextEditor?.document.uri ?? lw.root.getWorkspace()

@@ -42,9 +42,7 @@ lw.watcher.src.onDelete((filePath: string) => {
         logger.log(`Removed ${filePath} .`)
     }
 })
-lw.onDispose({
-    dispose: () => reset()
-})
+lw.onDispose({ dispose: () => reset() })
 
 /**
  * Checks if a file path can be cached based on its extension and exclusion

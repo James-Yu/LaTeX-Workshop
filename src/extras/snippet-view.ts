@@ -10,11 +10,9 @@ export {
     provider
 }
 
-lw.onDispose({ dispose: () => {
-    vscode.window.onDidChangeActiveTextEditor(e => {
-            state.lastActiveTextEditor = lw.file.hasTexLangId(e?.document.languageId ?? '') ? e : undefined
-    })
-} })
+lw.onDispose(vscode.window.onDidChangeActiveTextEditor(e => {
+    state.editor = lw.file.hasTexLangId(e?.document.languageId ?? '') ? e : undefined
+}))
 
 type SnippetViewResult = RenderResult | {
     type: 'insertSnippet',
@@ -69,16 +67,15 @@ function on(cb: (e: SnippetViewResult) => void) {
 
 function receive(message: SnippetViewResult) {
     if (message.type === 'insertSnippet') {
-        const editor = state.lastActiveTextEditor
-        if (editor) {
-            editor.insertSnippet(new vscode.SnippetString(message.snippet.replace(/\\\n/g, '\\n'))).then(
+        if (state.editor) {
+            state.editor.insertSnippet(new vscode.SnippetString(message.snippet.replace(/\\\n/g, '\\n'))).then(
                 () => {},
                 err => {
                     void vscode.window.showWarningMessage(`Unable to insert symbol, ${err}`)
                 }
             )
         } else {
-            void vscode.window.showWarningMessage('Unable get document to insert symbol into')
+            void vscode.window.showWarningMessage('Please select a LaTeX document to insert the symbol.')
         }
     }
 }
@@ -110,6 +107,6 @@ class SnippetViewProvider implements vscode.WebviewViewProvider {
 const provider = new SnippetViewProvider()
 const state = {
     view: undefined as vscode.WebviewView | undefined,
-    lastActiveTextEditor: lw.file.hasTexLangId(vscode.window.activeTextEditor?.document.languageId ?? '') ? vscode.window.activeTextEditor : undefined,
+    editor: lw.file.hasTexLangId(vscode.window.activeTextEditor?.document.languageId ?? '') ? vscode.window.activeTextEditor : undefined,
     callbacks: new Set<(e: SnippetViewResult) => void>()
 }

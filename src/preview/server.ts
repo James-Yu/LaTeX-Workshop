@@ -58,9 +58,7 @@ const state: {
     // initialized
 }
 
-lw.onDispose({
-    dispose: () => state.httpServer.close()
-})
+lw.onDispose({ dispose: () => state.httpServer.close() })
 
 function getPort(): number {
     const portNum = state.address?.port
