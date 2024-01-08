@@ -8,12 +8,15 @@ import { getEnvDefs, getMacroDefs } from './parser/unified-defs'
 import { bibtexLogParser } from './parser/bibtexlog'
 import { biberLogParser } from './parser/biberlog'
 import { latexLogParser } from './parser/latexlog'
+// @ts-expect-error Load unified.js from /out/src/...
+import { toString } from '../../../resources/unified.js'
 
 export const parser = {
     bib,
     log,
     tex,
     args,
+    stringify,
     reset
 }
 
@@ -39,6 +42,11 @@ async function reset() {
 
 async function bib(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst> {
     return (await proxy).parseBibTeX(s, options)
+}
+
+function stringify(ast: Ast.Ast): string {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
+    return toString(ast)
 }
 
 

@@ -38,7 +38,6 @@ export async function findMacros(ctoken?: vscode.CancellationToken): Promise<str
 
 function parseAst(content: string, node: Ast.Node): string[] {
     let macros = []
-    const args = node.type === 'macro' && node.args
     // \newcommand{\fix}[3][]{\chdeleted{#2}\chadded[comment={#1}]{#3}}
     // \newcommand\WARNING{\textcolor{red}{WARNING}}
     const isNewCommand = node.type === 'macro' &&
@@ -51,21 +50,9 @@ function parseAst(content: string, node: Ast.Node): string[] {
     const isProvideCommand = node.type === 'macro' &&
         ['providecommand', 'DeclareMathOperator', 'DeclareRobustCommand'].includes(node.content) &&
         node.args?.[1]?.content?.[0]?.type === 'macro'
-    if (args && (isNewCommand || isDeclarePairedDelimiter || isProvideCommand)) {
-        // \newcommand{\fix}[3][]{\chdeleted{#2}\chadded[comment={#1}]{#3}}
-        // \newcommand\WARNING{\textcolor{red}{WARNING}}
-        const start = node.position?.start.offset ?? 0
-        let lastArg = args[args.length - 1]
-        let lastContent = lastArg.content[lastArg.content.length - 1]
-        let closeBraceOffset = 0
-        while (lastContent.type === 'macro' && lastContent.args && lastContent.args.length > 0) {
-            closeBraceOffset += lastArg.closeMark.length
-            lastArg = lastContent.args[lastContent.args.length - 1]
-            lastContent = lastArg.content[lastArg.content.length - 1]
-        }
-        const end = (lastArg.content[lastArg.content.length - 1].position?.end.offset ?? -1 - closeBraceOffset) + closeBraceOffset
+    if (isNewCommand || isDeclarePairedDelimiter || isProvideCommand) {
         macros.push(
-            content.slice(start, end + 1)
+            lw.parse.stringify(node)
                 // Change providecommand to newcommand
                 .replaceAll(/^\\providecommand([^a-zA-Z])/g, '\\newcommand$1')
                 // Remove the star as MathJax does not support #4127
