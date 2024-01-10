@@ -1,5 +1,15 @@
 # Change Log
 
+## [9.18.0] - 2024-01-10
+
+### Added
+- (4126) Add intellisense for macros defined by `\NewDocumentCommand`.
+
+### Fixed
+- (#4111) Snippet view cannot find proper editor.
+- (#4127) Remove macro star when rendering MathJax.
+- (#4131) Use `unified-latex-util-to-string` to stringify macro definitions.
+
 ## [9.17.0] - 2024-01-02
 
 ### Added
