@@ -10,7 +10,10 @@ export const subsuperscript = {
     parse,
 }
 
-function from(result: RegExpMatchArray, _: CompletionArgs) {
+function from(result: RegExpMatchArray, _: CompletionArgs): CompletionItem[] {
+    if (false === vscode.workspace.getConfiguration('latex-workshop').get('intellisense.subsuperscript.enabled') as boolean) {
+        return []
+    }
     const isSub = result[0].startsWith('_')
     let suggestions: CompletionItem[] = []
     lw.cache.getIncludedTeX().forEach(cachedFile => {
