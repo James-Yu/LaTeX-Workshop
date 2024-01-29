@@ -1,5 +1,4 @@
 import json
-from shutil import copy
 import argparse
 import sys
 import dataclasses
@@ -34,16 +33,16 @@ if args.infile:
 def get_cwl_files() -> List[Path]:
     """ Get the list of cwl files from github if not already available on disk."""
     files = []
-    with open('cwl.list', 'r') as l:
-        candidates = l.read().splitlines() 
+    with open('cwl.list', mode='r', encoding='utf8') as l:
+        candidates = l.read().splitlines()
     for f in CWD.joinpath('cwl').iterdir():
         if f.suffix == '.cwl' and f.name in candidates:
             files.append(f)
     return files
 
-def dump_dict(dictionnary, out_json):
-    if dictionnary != {}:
-        json.dump(dictionnary, open(out_json, 'w', encoding='utf8'), indent=2, ensure_ascii=False)
+def dump_dict(dictionary, out_json):
+    if dictionary != {}:
+        json.dump(dictionary, open(out_json, 'w', encoding='utf8'), indent=2, ensure_ascii=False)
 
 
 def parse_cwl_files(cwl_files):
@@ -57,8 +56,8 @@ def parse_cwl_files(cwl_files):
         if cwl_file.name in FILES_TO_REMOVE_SPACES_IN:
             remove_spaces = True
         pkg = cwlIntel.parse_cwl_file(cwl_file, remove_spaces)
-        json.dump(dataclasses.asdict(pkg, dict_factory=lambda x: {k: v for (k, v) in x if v is not None}),
-                  open(OUT_DIR.joinpath(change_json_name(cwl_file.stem) + '.json'), 'w', encoding='utf8'), indent=2, ensure_ascii=False)
+        with open(OUT_DIR.joinpath(change_json_name(cwl_file.stem) + '.json'), 'w', encoding='utf8') as fp:
+            json.dump(dataclasses.asdict(pkg, dict_factory=lambda x: {k: v for (k, v) in x if v is not None}), fp, indent=2, ensure_ascii=False)
 
 def change_json_name(file_stem):
     if (file_stem in ['yathesis']):
