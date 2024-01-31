@@ -148,7 +148,7 @@ async function parseNode(
         element = {
             type: TeXElementType.Environment,
             name: node.env,
-            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (config.caption && caption ? `: ${caption}` : ''),
+            label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (config.caption && caption ? `: ${caption.content}` : ''),
             ...attributes
         }
     } else if ((node.type === 'environment' || node.type === 'mathenv') && config.macros.envs.includes(node.env)) {
