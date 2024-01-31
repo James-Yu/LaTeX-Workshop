@@ -14,7 +14,7 @@ UNIMATHSYMBOLS = CWD.joinpath('unimathsymbols.txt').resolve()
 COMMANDS_FILE = CWD.joinpath('../data/commands.json').resolve()
 ENVS_FILE = CWD.joinpath('../data/environments.json').resolve()
 OUT_DIR = CWD.joinpath('../data/packages').resolve()
-dtx_files = Path('/usr/local/texlive/2022/texmf-dist/source/latex/l3kernel/').glob('*.dtx')
+dtx_files = Path('/usr/local/texlive/2023/texmf-dist/source/latex/l3kernel/').glob('*.dtx')
 dtx_files_to_ignore = ['l3doc.dtx']
 
 def exclude(entry: str) -> bool:
@@ -57,7 +57,7 @@ def parse_file(fpath, _type):
     inside_documentation = False
     block_start = None
     block_end = None
-    with open(fpath) as fp:
+    with open(fpath, encoding='utf8') as fp:
         lines = fp.readlines()
         # content = '\n'.join(lines)
         for i, line in enumerate(lines):
@@ -88,19 +88,19 @@ def parse_all_files():
 
 if __name__ == "__main__":
     entries_dict = parse_all_files()
-    entries_array = list(set(itertools.chain.from_iterable(entries_dict.values())))
+    entries_array = sorted(set(itertools.chain.from_iterable(entries_dict.values())))
 
     # Write a .cwl file
     with open('expl3.cwl', encoding='utf8', mode='w') as fp:
         fp.writelines([e + '\n' for e in entries_array])
     cwlIntel = CwlIntel(COMMANDS_FILE, ENVS_FILE, UNIMATHSYMBOLS)
     expl3 = cwlIntel.parse_cwl_file('expl3.cwl')
-    expl3.cmds['ExplSyntaxBlock'] = {
+    expl3.macros['ExplSyntaxBlock'] = {
         'command': 'ExplSyntaxBlock',
         'option': '',
         'detail': '',
         'snippet': 'ExplSyntaxOn\n\t$0\n\\ExplSyntaxOff',
         'documentation': 'Insert a \\ExplSyntax block'
     }
-    json.dump(dataclasses.asdict(expl3, dict_factory=lambda x: {k: v for (k, v) in x if v is not None}),
-                open(OUT_DIR.joinpath('expl3.json'), 'w', encoding='utf8'), indent=2, ensure_ascii=False)
+    with open(OUT_DIR.joinpath('expl3.json'), 'w', encoding='utf8') as fp:
+        json.dump(dataclasses.asdict(expl3, dict_factory=lambda x: {k: v for (k, v) in x if v is not None}), fp, indent=2, ensure_ascii=False)
