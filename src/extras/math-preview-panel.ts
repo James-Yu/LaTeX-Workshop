@@ -54,7 +54,7 @@ function open() {
         }
         return
     }
-    lw.preview.math.getColor()
+    lw.preview.math.refreshMathColor()
     const panel = vscode.window.createWebviewPanel(
         'latex-workshop-mathpreview',
         'Math Preview',

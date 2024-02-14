@@ -10,7 +10,7 @@ export {
 
 class HoverProvider implements vscode.HoverProvider {
     public async provideHover(document: vscode.TextDocument, position: vscode.Position, ctoken: vscode.CancellationToken): Promise<vscode.Hover | undefined> {
-        lw.preview.math.getColor()
+        lw.preview.math.refreshMathColor()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const hov = configuration.get('hover.preview.enabled') as boolean
         const hovReference = configuration.get('hover.ref.enabled') as boolean
@@ -18,10 +18,12 @@ class HoverProvider implements vscode.HoverProvider {
         const hovCommand = configuration.get('hover.command.enabled') as boolean
         if (hov) {
             const tex = lw.preview.math.findTeX(document, position)
+            // Hovered over equations
             if (tex) {
                 const hover = await lw.preview.math.onTeX(document, tex, await findMacros(ctoken))
                 return hover
             }
+            // Hovered over graphics
             const graphicsHover = await lw.preview.hover(document, position)
             if (graphicsHover) {
                 return graphicsHover
@@ -49,7 +51,7 @@ class HoverProvider implements vscode.HoverProvider {
         }
         const refData = lw.completion.reference.getItem(token)
         if (hovReference && refData) {
-            const hover = await lw.preview.math.onRef(document, position, refData, token, ctoken)
+            const hover = await lw.preview.math.onRef(document, position, refData, ctoken)
             return hover
         }
         const cite = lw.completion.citation.getItem(token, document.uri)

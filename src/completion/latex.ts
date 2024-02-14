@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import { lw } from '../lw'
-import type { CompletionArgs, CompletionProvider, ReferenceDocType } from '../types'
+import type { CompletionArgs, CompletionProvider, ReferenceItem } from '../types'
 import { citation, provider as citationProvider } from './completer/citation'
 import { provider as environmentProvider } from './completer/environment'
 import { provider as macroProvider } from './completer/macro'
@@ -53,30 +53,19 @@ export class Provider implements vscode.CompletionItemProvider {
         return []
     }
 
-    async resolveCompletionItem(item: vscode.CompletionItem, token: vscode.CancellationToken): Promise<vscode.CompletionItem> {
+    async resolveCompletionItem(item: vscode.CompletionItem, ctoken: vscode.CancellationToken): Promise<vscode.CompletionItem> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (item.kind === vscode.CompletionItemKind.Reference) {
-            if (typeof item.documentation !== 'string') {
+            if (!('file' in item) || !configuration.get('hover.ref.enabled')) {
                 return item
             }
-            const data = JSON.parse(item.documentation) as ReferenceDocType
-            const sug = {
-                file: data.file,
-                position: new vscode.Position(data.position.line, data.position.character)
-            }
-            if (!configuration.get('hover.ref.enabled')) {
-                item.documentation = data.documentation
+            const refItem = item as ReferenceItem
+            if (!refItem.math) {
                 return item
             }
-            const tex = lw.preview.math.findRef(sug, data.key)
-            if (tex) {
-                const svgDataUrl = await lw.preview.math.renderSvgOnRef(tex, data, token)
-                item.documentation = new vscode.MarkdownString(`![equation](${svgDataUrl})`)
-                return item
-            } else {
-                item.documentation = data.documentation
-                return item
-            }
+            const svgDataUrl = await lw.preview.math.ref2svg(refItem, ctoken)
+            item.documentation = new vscode.MarkdownString(`![equation](${svgDataUrl})`)
+            return item
         } else if (item.kind === vscode.CompletionItemKind.File) {
             const preview = configuration.get('intellisense.includegraphics.preview.enabled') as boolean
             if (!preview) {

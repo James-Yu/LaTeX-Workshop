@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import type { ReferenceEntry, TeXMathEnv } from '../../../types'
+import type { ReferenceItem, TeXMathEnv } from '../../../types'
 import * as utils from '../../../utils/utils'
 import { type ITextDocumentLike, TextDocumentLike } from './textdocumentlike'
 
@@ -30,7 +30,7 @@ export class TeXMathEnvFinder {
     static findHoverOnRef(
         document: ITextDocumentLike,
         position: vscode.Position,
-        refData: Pick<ReferenceEntry, 'file' | 'position'>,
+        refData: Pick<ReferenceItem, 'file' | 'position'>,
         token: string,
     ): TeXMathEnv | undefined {
         const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.preview.maxLines') as number

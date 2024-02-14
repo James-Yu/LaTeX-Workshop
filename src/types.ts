@@ -12,7 +12,7 @@ export type FileCache = {
     /** Completion items */
     elements: {
         /** \ref{} items */
-        reference?: CompletionItem[],
+        reference?: ReferenceItem[],
         /** \gls items */
         glossary?: GlossaryItem[],
         /** \begin{} items */
@@ -216,22 +216,15 @@ export type Macro = {
     postAction?: string
 }
 
-export interface ReferenceEntry extends CompletionItem {
+export interface ReferenceItem extends CompletionItem {
     /** The file that defines the ref. */
     file: string,
     /** The position that defines the ref. */
     position: vscode.Position,
+    /** Math macros */
+    math?: TeXMathEnv,
     /**  Stores the ref number. */
     prevIndex?: {refNumber: string, pageNumber: string}
-}
-
-export type ReferenceDocType = {
-    documentation: ReferenceEntry['documentation'],
-    file: ReferenceEntry['file'],
-    position: {line: number, character: number},
-    key: string,
-    label: ReferenceEntry['label'],
-    prevIndex: ReferenceEntry['prevIndex']
 }
 
 export enum GlossaryType {

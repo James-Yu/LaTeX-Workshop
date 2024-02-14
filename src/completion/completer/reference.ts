@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
-import type { CompletionArgs, CompletionItem, CompletionProvider, FileCache, ReferenceDocType, ReferenceEntry } from '../../types'
+import type { CompletionArgs, CompletionProvider, FileCache, ReferenceItem, TeXMathEnv } from '../../types'
 import { getLongestBalancedString, stripEnvironments } from '../../utils/utils'
 import { computeFilteringRange } from './completerutils'
 import { argContentToStr } from '../../utils/parser'
@@ -16,7 +16,7 @@ export const reference = {
 }
 
 const data = {
-    suggestions: new Map<string, ReferenceEntry>(),
+    suggestions: new Map<string, ReferenceItem>(),
     prevIndexObj: new Map<string, {refNumber: string, pageNumber: string}>()
 }
 
@@ -31,29 +31,12 @@ function provide(line: string, position: vscode.Position): vscode.CompletionItem
     keys = Array.from(new Set(keys))
     const items: vscode.CompletionItem[] = []
     for (const key of keys) {
-        const suggestion = data.suggestions.get(key)
-        if (suggestion) {
-            const refDoc: ReferenceDocType = {
-                documentation: suggestion.documentation,
-                file: suggestion.file,
-                position: {
-                    line: suggestion.position.line,
-                    character: suggestion.position.character
-                },
-                key,
-                label: suggestion.label,
-                prevIndex: suggestion.prevIndex
-            }
-            suggestion.documentation = JSON.stringify(refDoc)
-            items.push(suggestion)
-        } else {
-            items.push({label: key})
-        }
+        items.push(data.suggestions.get(key) ?? {label: key})
     }
     return items
 }
 
-function getItem(token: string): ReferenceEntry | undefined {
+function getItem(token: string): ReferenceItem | undefined {
     updateAll()
     return data.suggestions.get(token)
 }
@@ -123,8 +106,6 @@ function updateAll(line?: string, position?: vscode.Position) {
             const label = (cachedFile in prefixes ? prefixes[cachedFile] : '') + ref.label
             data.suggestions.set(label, {...ref,
                 label,
-                file: cachedFile,
-                position: 'inserting' in ref.range ? ref.range.inserting.start : ref.range.start,
                 range,
                 prevIndex: data.prevIndexObj.get(label)
             })
@@ -143,14 +124,14 @@ function parse(cache: FileCache) {
     if (cache.ast !== undefined) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const labelMacros = configuration.get('intellisense.label.command') as string[]
-        cache.elements.reference = parseAst(cache.ast, cache.content.split('\n'), labelMacros)
+        cache.elements.reference = parseAst(cache.ast, [], cache.filePath, cache.content.split('\n'), labelMacros)
     } else {
-        cache.elements.reference = parseContent(cache.content)
+        cache.elements.reference = parseContent(cache.content, cache.filePath)
     }
 }
 
-function parseAst(node: Ast.Node, lines: string[], labelMacros: string[]): CompletionItem[] {
-    let refs: CompletionItem[] = []
+function parseAst(node: Ast.Node, nodeStack: Ast.Node[], filePath: string, lines: string[], labelMacros: string[]): ReferenceItem[] {
+    let refs: ReferenceItem[] = []
     if (node.type === 'macro' &&
         ['renewcommand', 'newcommand', 'providecommand', 'DeclareMathOperator', 'renewenvironment', 'newenvironment'].includes(node.content)) {
         // Do not scan labels inside \newcommand, \newenvironment & co
@@ -179,20 +160,24 @@ function parseAst(node: Ast.Node, lines: string[], labelMacros: string[]): Compl
     }
 
     if (label !== '' && node.position !== undefined) {
-        refs.push({
+        const ref: ReferenceItem = {
             label,
             kind: vscode.CompletionItemKind.Reference,
             // One row before, four rows after
             documentation: lines.slice(node.position.start.line - 2, node.position.end.line + 4).join('\n'),
             // Here we abuse the definition of range to store the location of the reference definition
             range: new vscode.Range(node.position.start.line - 1, node.position.start.column - 1,
-                                    node.position.end.line - 1, node.position.end.column - 1)
-        })
+                                    node.position.end.line - 1, node.position.end.column - 1),
+            file: filePath,
+            position: new vscode.Position(node.position.start.line - 1, node.position.start.column - 1),
+            math: findMath(nodeStack)
+        }
+        refs.push(ref)
     }
 
     const parseContentNodes = (content: Ast.Node[]) => {
         for (const subNode of content) {
-            refs = [...refs, ...parseAst(subNode, lines, labelMacros)]
+            refs = [...refs, ...parseAst(subNode, [...nodeStack, node], filePath, lines, labelMacros)]
         }
     }
     if (node.type === 'macro' && node.args) {
@@ -206,9 +191,29 @@ function parseAst(node: Ast.Node, lines: string[], labelMacros: string[]): Compl
     return refs
 }
 
-function parseContent(content: string): CompletionItem[] {
+function findMath(nodeStack: Ast.Node[]): TeXMathEnv | undefined {
+    const node = nodeStack[nodeStack.length - 1]
+    if (node.type !== 'environment' && node.type !== 'mathenv') {
+        return
+    }
+    const env = (typeof node.env === 'string') ? node.env : (node.env as unknown as {content: string}).content
+    if (![
+        'align', 'align\\*', 'alignat', 'alignat\\*', 'aligned', 'alignedat', 'array', 'Bmatrix', 'bmatrix', 'cases', 'CD', 'eqnarray', 'eqnarray\\*', 'equation', 'equation\\*', 'flalign', 'flalign\\*', 'gather', 'gather\\*', 'gathered', 'matrix', 'multline', 'multline\\*', 'pmatrix', 'smallmatrix', 'split', 'subarray', 'Vmatrix', 'vmatrix'
+    ].includes(env)) {
+        return
+    }
+    const math = lw.parse.stringify(node)
+    return {
+        envname: env,
+        range: new vscode.Range((node.position?.start.line ?? 1) - 1, (node.position?.start.column ?? 1) - 1,
+                                (node.position?.end.line ?? 1) - 1, (node.position?.end.column ?? 1) - 1),
+        texString: math
+    }
+}
+
+function parseContent(content: string, filePath: string): ReferenceItem[] {
     const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^#\\}]*)}/gm
-    const refs: CompletionItem[] = []
+    const refs: ReferenceItem[] = []
     const refList: string[] = []
     content = stripEnvironments(content, [''])
     while (true) {
@@ -230,7 +235,9 @@ function parseContent(content: string): CompletionItem[] {
             documentation: content.substring(prevContent.lastIndexOf('\n') + 1, result.index + followLength),
             // Here we abuse the definition of range to store the location of the reference definition
             range: new vscode.Range(positionContent.length - 1, positionContent[positionContent.length - 1].length,
-                                    positionContent.length - 1, positionContent[positionContent.length - 1].length)
+                                    positionContent.length - 1, positionContent[positionContent.length - 1].length),
+            file: filePath,
+            position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length)
         })
         refList.push(result[1])
     }
