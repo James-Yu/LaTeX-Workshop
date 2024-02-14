@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
-import type { ReferenceItem, TeXMathEnv } from '../../../types'
+import type { TeXMathEnv } from '../../../types'
 import * as utils from '../../../utils/utils'
-import { type ITextDocumentLike, TextDocumentLike } from './textdocumentlike'
+import { type ITextDocumentLike } from './textdocumentlike'
 
 const ENV_NAMES = [
     'align', 'align\\*', 'alignat', 'alignat\\*', 'aligned', 'alignedat', 'array', 'Bmatrix', 'bmatrix', 'cases', 'CD', 'eqnarray', 'eqnarray\\*', 'equation', 'equation\\*', 'flalign', 'flalign\\*', 'gather', 'gather\\*', 'gathered', 'matrix', 'multline', 'multline\\*', 'pmatrix', 'smallmatrix', 'split', 'subarray', 'Vmatrix', 'vmatrix'
@@ -25,36 +25,6 @@ export class TeXMathEnvFinder {
             return TeXMathEnvFinder.findHoverOnParen(document, paren, r.start)
         }
         return TeXMathEnvFinder.findHoverOnInline(document, position)
-    }
-
-    static findHoverOnRef(
-        document: ITextDocumentLike,
-        position: vscode.Position,
-        refData: Pick<ReferenceItem, 'file' | 'position'>,
-        token: string,
-    ): TeXMathEnv | undefined {
-        const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.preview.maxLines') as number
-        const docOfRef = TextDocumentLike.load(refData.file)
-        const envBeginPatMathMode = new RegExp(`\\\\begin\\{(${MATH_ENV_NAMES.join('|')})\\}`)
-        const l = docOfRef.lineAt(refData.position.line).text
-        const pat = new RegExp('\\\\label\\{' + utils.escapeRegExp(token) + '\\}')
-        const m = l.match(pat)
-        if (m && m.index !== undefined) {
-            const labelPos = new vscode.Position(refData.position.line, m.index)
-            const beginPos = TeXMathEnvFinder.findBeginPair(docOfRef, envBeginPatMathMode, labelPos, limit)
-            if (beginPos) {
-                const t = TeXMathEnvFinder.findHoverOnTex(docOfRef, beginPos)
-                if (t) {
-                    const beginEndRange = t.range
-                    const refRange = document.getWordRangeAtPosition(position, /\S+?\{.*?\}/)
-                    if (refRange && beginEndRange.contains(labelPos)) {
-                        t.range = refRange
-                        return t
-                    }
-                }
-            }
-        }
-        return
     }
 
     static findMathEnvIncludingPosition(document: ITextDocumentLike, position: vscode.Position): TeXMathEnv | undefined {

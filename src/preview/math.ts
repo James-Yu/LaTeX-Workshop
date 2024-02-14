@@ -5,13 +5,12 @@ import type { SupportedExtension } from 'mathjax-full'
 import type { IMathJaxWorker } from './math/mathjax'
 import { lw } from '../lw'
 import type { ReferenceItem, TeXMathEnv } from '../types'
-import * as utils from '../utils/svg'
 import { getCurrentThemeLightness } from '../utils/theme'
+import { stripComments } from '../utils/utils'
 import { renderCursor as renderCursorWorker } from './math/mathpreviewlib/cursorrenderer'
-import { type ITextDocumentLike, TextDocumentLike } from './math/mathpreviewlib/textdocumentlike'
+import { type ITextDocumentLike } from './math/mathpreviewlib/textdocumentlike'
 import { findMacros } from './math/mathpreviewlib/newcommandfinder'
 import { TeXMathEnvFinder } from './math/mathpreviewlib/texmathenvfinder'
-import { MathPreviewUtils } from './math/mathpreviewlib/mathpreviewutils'
 
 const logger = lw.log('Preview', 'Math')
 
@@ -19,13 +18,11 @@ export const math = {
     refreshMathColor,
     onRef,
     onTeX,
-    findRef,
     findTeX,
     findMath,
-    generateSVG,
     ref2svg,
-    renderCursor,
-    typeset
+    tex2svg,
+    renderCursor
 }
 
 const pool: workerpool.WorkerPool = workerpool.pool(
@@ -51,13 +48,13 @@ async function onTeX(document: vscode.TextDocument, tex: TeXMathEnv, macros: str
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const scale = configuration.get('hover.preview.scale') as number
     let s = await renderCursor(document, tex)
-    s = MathPreviewUtils.mathjaxify(s, tex.envname)
-    const typesetArg = macros + MathPreviewUtils.stripTeX(s, macros)
+    s = mathjaxify(s, tex.envname)
+    const typesetArg = macros + stripTeX(s, macros)
     const typesetOpts = { scale, color: foreColor }
     try {
         const xml = await typeset(typesetArg, typesetOpts)
-        const md = utils.svgToDataUrl(xml)
-        return new vscode.Hover(new vscode.MarkdownString(MathPreviewUtils.addDummyCodeBlock(`![equation](${md})`)), tex.range )
+        const md = svg2DataUrl(xml)
+        return new vscode.Hover(new vscode.MarkdownString(addDummyCodeBlock(`![equation](${md})`)), tex.range )
     } catch(e) {
         if (macros !== '') {
             logger.log(`Failed rendering MathJax ${typesetArg} . Try removing macro definitions.`)
@@ -98,33 +95,39 @@ async function onRefMathJax(refData: ReferenceItem, ctoken?: vscode.Cancellation
     const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
     const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
     mdLink.isTrusted = true
-    return new vscode.Hover( [MathPreviewUtils.addDummyCodeBlock(`![equation](${md})`), mdLink], refData.math?.range )
+    return new vscode.Hover( [addDummyCodeBlock(`![equation](${md})`), mdLink], refData.math?.range )
 }
 
 async function ref2svg(refData: ReferenceItem, ctoken?: vscode.CancellationToken) {
     if (refData.math === undefined) {
         return ''
     }
+    const texMath = refData.math
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const scale = configuration.get('hover.preview.scale') as number
 
     const macros = await findMacros(ctoken)
 
-    let newTeXString: string
+    let texStr: string | undefined = undefined
     if (refData.prevIndex !== undefined && configuration.get('hover.ref.number.enabled') as boolean) {
         const tag = refData.prevIndex.refNumber
-        const texString = replaceLabelWithTag(refData.math.texString, refData.label, tag)
-        newTeXString = MathPreviewUtils.mathjaxify(texString, refData.math.envname, {stripLabel: false})
-    } else {
-        newTeXString = MathPreviewUtils.mathjaxify(refData.math.texString, refData.math.envname)
+        const texString = replaceLabelWithTag(texMath.texString, refData.label, tag)
+        texStr = mathjaxify(texString, texMath.envname, {stripLabel: false})
     }
-    const typesetArg = macros + MathPreviewUtils.stripTeX(newTeXString, macros)
+    const svg = await tex2svg(texMath, macros, texStr)
+    return svg.svgDataUrl
+}
+
+async function tex2svg(tex: TeXMathEnv, macros?: string, texStr?: string) {
+    macros = macros ?? await findMacros()
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const scale = configuration.get('hover.preview.scale') as number
+    texStr = texStr ?? mathjaxify(tex.texString, tex.envname)
+    texStr = macros + stripTeX(texStr, macros)
     try {
-        const xml = await lw.preview.math.typeset(typesetArg, { scale, color: foreColor })
-        const svg = utils.svgToDataUrl(xml)
-        return svg
+        const xml = await typeset(texStr, {scale, color: foreColor})
+        return { svgDataUrl: svg2DataUrl(xml), macros }
     } catch(e) {
-        logger.logError(`Failed rendering MathJax ${typesetArg} .`, e)
+        logger.logError(`Failed rendering MathJax ${texStr} .`, e)
         throw e
     }
 }
@@ -163,15 +166,6 @@ function refNumberMessage(refData: Pick<ReferenceItem, 'prevIndex'>): string | u
     return
 }
 
-async function generateSVG(tex: TeXMathEnv, macros?: string) {
-    macros = macros ?? await findMacros()
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const scale = configuration.get('hover.preview.scale') as number
-    const s = MathPreviewUtils.mathjaxify(tex.texString, tex.envname)
-    const xml = await typeset(macros + MathPreviewUtils.stripTeX(s, macros), {scale, color: foreColor})
-    return { svgDataUrl: utils.svgToDataUrl(xml), macros }
-}
-
 function refreshMathColor() {
     foreColor = getCurrentThemeLightness() === 'light' ? '#000000' : '#ffffff'
 }
@@ -188,15 +182,51 @@ function findTeX(document: ITextDocumentLike, position: vscode.Position): TeXMat
     return TeXMathEnvFinder.findHoverOnTex(document, position)
 }
 
-function findRef(
-    refData: Pick<ReferenceItem, 'file' | 'position'>,
-    token: string
-) {
-    const document = TextDocumentLike.load(refData.file)
-    const position = refData.position
-    return TeXMathEnvFinder.findHoverOnRef(document, position, refData, token)
-}
-
 function findMath(document: ITextDocumentLike, position: vscode.Position): TeXMathEnv | undefined {
     return TeXMathEnvFinder.findMathEnvIncludingPosition(document, position)
+}
+
+function addDummyCodeBlock(md: string): string {
+    // We need a dummy code block in hover to make the width of hover larger.
+    const dummyCodeBlock = '```\n```'
+    return dummyCodeBlock + '\n' + md + '\n' + dummyCodeBlock
+}
+
+function stripTeX(tex: string, macros: string): string {
+    // First remove math env declaration
+    if (tex.startsWith('$$') && tex.endsWith('$$')) {
+        tex = tex.slice(2, tex.length - 2)
+    } else if (tex.startsWith('$') && tex.endsWith('$')) {
+        tex = tex.slice(1, tex.length - 1)
+    } else if (tex.startsWith('\\(') && tex.endsWith('\\)')) {
+        tex = tex.slice(2, tex.length - 2)
+    } else if (tex.startsWith('\\[') && tex.endsWith('\\]')) {
+        tex = tex.slice(2, tex.length - 2)
+    }
+    // Then remove the star variant of new macros
+    [...macros.matchAll(/\\newcommand\{(.*?)\}/g)].forEach(match => {
+        tex = tex.replaceAll(match[1] + '*', match[1])
+    })
+    return tex
+}
+
+function mathjaxify(tex: string, envname: string, opt = { stripLabel: true }): string {
+    // remove TeX comments
+    let s = stripComments(tex)
+    // remove \label{...}
+    if (opt.stripLabel) {
+        s = s.replace(/\\label\{.*?\}/g, '')
+    }
+    if (envname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
+        s = '\\begin{equation}' + s + '\\end{equation}'
+    }
+    return s
+}
+
+function svg2DataUrl(xml: string): string {
+    // We have to call encodeURIComponent and unescape because SVG can includes non-ASCII characters.
+    // We have to encode them before converting them to base64.
+    const svg64 = Buffer.from(unescape(encodeURIComponent(xml)), 'binary').toString('base64')
+    const b64Start = 'data:image/svg+xml;base64,'
+    return b64Start + svg64
 }

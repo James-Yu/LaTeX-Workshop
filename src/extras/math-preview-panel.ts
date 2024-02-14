@@ -192,7 +192,7 @@ async function update(ev?: UpdateEvent) {
     if (vscode.workspace.getConfiguration('latex-workshop').get('mathpreviewpanel.cursor.enabled', false)) {
         await renderCursor(document, texMath)
     }
-    const result = await lw.preview.math.generateSVG(texMath, cachedMacros).catch(() => undefined)
+    const result = await lw.preview.math.tex2svg(texMath, cachedMacros).catch(() => undefined)
     if (!result) {
         return
     }
