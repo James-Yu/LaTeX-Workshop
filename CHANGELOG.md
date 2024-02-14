@@ -1,5 +1,13 @@
 # Change Log
 
+## [9.18.1] - 2024-02-14
+
+### Fixed
+- (#4134) Add a new config `intellisense.subsuperscript.enabled` to enable/disable sub- and super-script intellisense
+  - There is a related feature request in [#4159](https://github.com/James-Yu/LaTeX-Workshop/issues/4159) to be implemented related to this.
+- (#4151) Update LaTeX3 completion.
+- (#4153) Fix wrong item label in outline for macros and envs in `doctex`.
+
 ## [9.18.0] - 2024-01-10
 
 ### Added
