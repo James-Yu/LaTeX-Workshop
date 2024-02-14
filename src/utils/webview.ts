@@ -1,12 +1,21 @@
 import * as vscode from 'vscode'
 import { lw } from '../lw'
 
+const logger = lw.log('Util', 'Webview')
+
+let pathLogged = false
 export function replaceWebviewPlaceholders(content: string, webview: vscode.Webview): string {
     const extensionRootUri = vscode.Uri.file(lw.extensionRoot)
     const resourcesFolderUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionRootUri, 'resources'))
     const resourcesFolderLink = resourcesFolderUri.toString()
     const pdfjsDistUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionRootUri, 'node_modules', 'pdfjs-dist'))
     const pdfjsDistLink = pdfjsDistUri.toString()
+    if (!pathLogged) {
+        pathLogged = true
+        logger.log(`%VSCODE_RES% = ${resourcesFolderLink} .`)
+        logger.log(`%VSCODE_PDFJS_DIST% = ${pdfjsDistLink} .`)
+        logger.log(`%VSCODE_CSP% = ${webview.cspSource} .`)
+    }
     return content.replace(/%VSCODE_RES%/g, resourcesFolderLink)
                   .replace(/%VSCODE_PDFJS_DIST%/g, pdfjsDistLink)
                   .replace(/%VSCODE_CSP%/g, webview.cspSource)
