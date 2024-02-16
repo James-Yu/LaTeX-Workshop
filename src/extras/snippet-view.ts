@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import { readFileSync } from 'fs'
 import * as path from 'path'
 import { lw } from '../lw'
-import { replaceWebviewPlaceholders } from '../utils/webview'
 
 export {
     state,
@@ -81,7 +80,19 @@ function receive(message: SnippetViewResult) {
 }
 
 class SnippetViewProvider implements vscode.WebviewViewProvider {
+    private serverHandlerInserted = false
+
     public resolveWebviewView(webviewView: vscode.WebviewView) {
+        if (this.serverHandlerInserted === false) {
+            lw.server.setHandler((url: string) => {
+                if (url.startsWith('/snippetview/')) {
+                    return path.resolve(lw.extensionRoot, 'resources')
+                }
+                return undefined
+            })
+            this.serverHandlerInserted = true
+        }
+
         state.view = webviewView
 
         webviewView.webview.options = {
@@ -93,9 +104,8 @@ class SnippetViewProvider implements vscode.WebviewViewProvider {
         })
 
         const webviewSourcePath = path.join(lw.extensionRoot, 'resources', 'snippetview', 'snippetview.html')
-        let webviewHtml = readFileSync(webviewSourcePath, { encoding: 'utf8' })
-        webviewHtml = replaceWebviewPlaceholders(webviewHtml, state.view.webview)
-        webviewView.webview.html = webviewHtml
+        webviewView.webview.html = readFileSync(webviewSourcePath, { encoding: 'utf8' })
+            .replaceAll('%PORT%', lw.server.getPort().toString())
 
         webviewView.webview.onDidReceiveMessage((e: SnippetViewResult) => {
             state.callbacks.forEach((cb) => void cb(e))

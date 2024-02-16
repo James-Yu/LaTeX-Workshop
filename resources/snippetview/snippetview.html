@@ -3,17 +3,17 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; connect-src %VSCODE_CSP%; script-src %VSCODE_CSP% 'unsafe-inline' blob:; style-src %VSCODE_CSP% 'unsafe-inline';">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; connect-src 'self' http://127.0.0.1:* ; script-src 'self' http://127.0.0.1:* 'unsafe-inline' blob:; style-src 'self' http://127.0.0.1:* 'unsafe-inline';">
         <script>
-            var mathSymbolsJsonUrl = '%VSCODE_RES%/snippetview/snippetpanel.json';
+            var mathSymbolsJsonUrl = 'http://127.0.0.1:%PORT%/snippetview/snippetpanel.json';
         </script>
-        <script src="%VSCODE_RES%/snippetview/snippetview.js" defer></script>
+        <script src="http://127.0.0.1:%PORT%/snippetview/snippetview.js" defer></script>
         <script>
-            var pdfjsDistUri = '%VSCODE_PDFJS_DIST%';
+            var pdfjsDistUri = 'http://127.0.0.1:%PORT%';
         </script>
-        <script src="%VSCODE_PDFJS_DIST%/build/pdf.mjs" type="module"></script>
-        <script src="%VSCODE_RES%/snippetview/pdfrenderer.js" defer></script>
-        <link rel="stylesheet" href="%VSCODE_RES%/snippetview/snippetview.css">
+        <script src="http://127.0.0.1:%PORT%/build/pdf.mjs" type="module"></script>
+        <script src="http://127.0.0.1:%PORT%/snippetview/pdfrenderer.js" defer></script>
+        <link rel="stylesheet" href="http://127.0.0.1:%PORT%/snippetview/snippetview.css">
     </head>
     <body>
         <div class="tab">

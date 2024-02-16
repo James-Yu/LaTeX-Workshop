@@ -11,6 +11,7 @@ const logger = lw.log('Server')
 export {
     getPort,
     getUrl,
+    setHandler,
     initialize,
     // initialized
 }
@@ -52,9 +53,11 @@ const state: {
     httpServer: http.Server,
     wsServer?: WsServer,
     address?: AddressInfo,
-    validOriginUri?: vscode.Uri
+    validOriginUri?: vscode.Uri,
+    handlers: ((url: string) => string | undefined)[]
 } = {
     httpServer: initialize(),
+    handlers: []
     // initialized
 }
 
@@ -74,6 +77,10 @@ async function getUrl(pdfUri: vscode.Uri): Promise<{url: string, uri: vscode.Uri
     const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.getPort()}`, true))
     const url = origUrl.toString() + (origUrl.toString().endsWith('/') ? '' : '/' ) + `viewer.html?file=${encodePathWithPrefix(pdfUri)}`
     return { url, uri: vscode.Uri.parse(url, true) }
+}
+
+function setHandler(newHandler: (url: string) => string | undefined) {
+    state.handlers.push(newHandler)
 }
 
 function getValidOrigin(): string {
@@ -144,7 +151,7 @@ function checkHttpOrigin(req: http.IncomingMessage, response: http.ServerRespons
         return true
     }
     const reqOrigin = req.headers['origin']
-    if (reqOrigin !== undefined && reqOrigin !== validOrigin) {
+    if (reqOrigin !== undefined && !reqOrigin.startsWith('vscode-webview:') && reqOrigin !== validOrigin) {
         logger.log(`Origin in http request is invalid: ${JSON.stringify(req.headers)}`)
         logger.log(`Valid origin: ${validOrigin}`)
         response.writeHead(403)
@@ -155,7 +162,7 @@ function checkHttpOrigin(req: http.IncomingMessage, response: http.ServerRespons
     }
 }
 
-function sendOkResponse(response: http.ServerResponse, content: Buffer, contentType: string) {
+function sendOkResponse(response: http.ServerResponse, content: Buffer, contentType: string, cors: boolean = true) {
     //
     // Headers to enable site isolation.
     // - https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header
@@ -170,7 +177,7 @@ function sendOkResponse(response: http.ServerResponse, content: Buffer, contentT
     response.writeHead(200, {
         'Content-Type': contentType,
         'Content-Length': content.length,
-        ...sameOriginPolicyHeaders
+        ...(cors ? sameOriginPolicyHeaders : {'Access-Control-Allow-Origin': '*'})
     })
     response.end(content)
 }
@@ -209,13 +216,20 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
     }
     let root: string
     if (request.url.startsWith('/build/') || request.url.startsWith('/cmaps/') || request.url.startsWith('/standard_fonts/')) {
-        root = path.resolve(`${lw.extensionRoot}/node_modules/pdfjs-dist`)
+        root = path.resolve(lw.extensionRoot, 'node_modules', 'pdfjs-dist')
     } else if (request.url.startsWith('/out/viewer/') || request.url.startsWith('/viewer/')) {
         // For requests to /out/viewer/*.js and requests to /viewer/*.ts.
         // The latter is for debugging with sourcemap.
         root = path.resolve(lw.extensionRoot)
     } else {
-        root = path.resolve(`${lw.extensionRoot}/viewer`)
+        root = path.resolve(lw.extensionRoot, 'viewer')
+    }
+    for (const overrideHandler of state.handlers) {
+        const overrideRoot = overrideHandler(request.url)
+        if (overrideRoot !== undefined) {
+            root = overrideRoot
+            break
+        }
     }
     //
     // Prevent directory traversal attack.
@@ -276,7 +290,7 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
             }
             response.end()
         } else {
-            sendOkResponse(response, content, contentType)
+            sendOkResponse(response, content, contentType, false)
         }
     })
 }

@@ -31,7 +31,7 @@ class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
             enableScripts: true,
             localResourceRoots: [resourcesFolder(lw.extensionRoot)]
         }
-        panel.webview.html = getHtml(panel.webview)
+        panel.webview.html = getHtml()
         logger.log('Math preview panel: restored')
         return Promise.resolve()
     }
@@ -66,7 +66,7 @@ function open() {
         }
     )
     initializePanel(panel)
-    panel.webview.html = getHtml(panel.webview)
+    panel.webview.html = getHtml()
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const editorGroup = configuration.get('mathpreviewpanel.editorGroup') as string
     if (activeDocument) {
@@ -130,13 +130,21 @@ function clearCache() {
     state.prevMacros = undefined
 }
 
-function getHtml(webview: vscode.Webview) {
-    const jsPath = vscode.Uri.file(path.join(lw.extensionRoot, './resources/mathpreviewpanel/mathpreview.js'))
-    const jsPathSrc = webview.asWebviewUri(jsPath)
+let serverHandlerInserted = false
+function getHtml() {
+    if (serverHandlerInserted === false) {
+        lw.server.setHandler((url: string) => {
+            if (url.startsWith('/mathpreviewpanel/')) {
+                return path.resolve(lw.extensionRoot, 'resources')
+            }
+            return undefined
+        })
+        serverHandlerInserted = true
+    }
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
-        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; script-src ${webview.cspSource}; img-src data:; style-src 'unsafe-inline';">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; script-src 'self' http://127.0.0.1:*; img-src data:; style-src 'unsafe-inline';">
         <meta charset="UTF-8">
         <style>
             body {
@@ -148,7 +156,7 @@ function getHtml(webview: vscode.Webview) {
                 padding-left: 50px;
             }
         </style>
-        <script src='${jsPathSrc}' defer></script>
+        <script src='http://127.0.0.1:${lw.server.getPort().toString()}/mathpreviewpanel/mathpreview.js' defer></script>
     </head>
     <body>
         <div id="mathBlock"><img src="" id="math" /></div>
