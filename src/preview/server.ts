@@ -72,10 +72,12 @@ function getPort(): number {
     return portNum
 }
 
-async function getUrl(pdfUri: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
+async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
     // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
     const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.getPort()}`, true))
-    const url = origUrl.toString() + (origUrl.toString().endsWith('/') ? '' : '/' ) + `viewer.html?file=${encodePathWithPrefix(pdfUri)}`
+    const url =
+        (origUrl.toString().endsWith('/') ? origUrl.toString().slice(0, -1) : origUrl.toString()) +
+        (pdfUri ? ('/viewer.html?file=' + encodePathWithPrefix(pdfUri)) : '')
     return { url, uri: vscode.Uri.parse(url, true) }
 }
 

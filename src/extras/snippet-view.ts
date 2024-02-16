@@ -68,7 +68,7 @@ function receive(message: SnippetViewResult) {
 class SnippetViewProvider implements vscode.WebviewViewProvider {
     private serverHandlerInserted = false
 
-    public resolveWebviewView(webviewView: vscode.WebviewView) {
+    public async resolveWebviewView(webviewView: vscode.WebviewView) {
         if (this.serverHandlerInserted === false) {
             lw.server.setHandler((url: string) => {
                 if (url.startsWith('/snippetview/')) {
@@ -91,7 +91,7 @@ class SnippetViewProvider implements vscode.WebviewViewProvider {
 
         const webviewSourcePath = path.join(lw.extensionRoot, 'resources', 'snippetview', 'snippetview.html')
         webviewView.webview.html = readFileSync(webviewSourcePath, { encoding: 'utf8' })
-            .replaceAll('%PORT%', lw.server.getPort().toString())
+            .replaceAll('%SRC%', (await lw.server.getUrl()).url)
             .replaceAll('%CSP%', webviewView.webview.cspSource + ' http://127.0.0.1:*')
 
         webviewView.webview.onDidReceiveMessage((e: SnippetViewResult) => {
