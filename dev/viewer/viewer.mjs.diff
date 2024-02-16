@@ -1,5 +1,5 @@
 diff --git a/../../web/viewer.mjs b/../viewer/viewer.mjs
-index c28e89f8..629241fd 100644
+index e9041cadd..abe86214e 100644
 --- a/../../web/viewer.mjs
 +++ b/../viewer/viewer.mjs
 @@ -1121,7 +1121,7 @@ class Localization {
@@ -11,7 +11,7 @@ index c28e89f8..629241fd 100644
        }
      }
      if (!hasAtLeastOneBundle && typeof console !== "undefined") {
-@@ -2534,7 +2534,7 @@ const PDFViewerApplication = {
+@@ -2537,7 +2537,7 @@ const PDFViewerApplication = {
          title = url;
        }
      }
@@ -20,7 +20,7 @@ index c28e89f8..629241fd 100644
    },
    setTitle(title = this._title) {
      this._title = title;
-@@ -2986,7 +2986,7 @@ const PDFViewerApplication = {
+@@ -2989,7 +2989,7 @@ const PDFViewerApplication = {
      this.metadata = metadata;
      this._contentDispositionFilename ??= contentDispositionFilename;
      this._contentLength ??= contentLength;
@@ -29,7 +29,43 @@ index c28e89f8..629241fd 100644
      let pdfTitle = info.Title;
      const metadataTitle = metadata?.get("dc:title");
      if (metadataTitle) {
-@@ -4974,11 +4974,11 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_app
+@@ -4452,7 +4452,7 @@ const defaultOptions = {
+     kind: OptionKind.API
+   },
+   cMapUrl: {
+-    value: "../web/cmaps/",
++    value: "../cmaps/",
+     kind: OptionKind.API
+   },
+   disableAutoFetch: {
+@@ -4500,7 +4500,7 @@ const defaultOptions = {
+     kind: OptionKind.API
+   },
+   standardFontDataUrl: {
+-    value: "../web/standard_fonts/",
++    value: "../standard_fonts/",
+     kind: OptionKind.API
+   },
+   verbosity: {
+@@ -4512,7 +4512,7 @@ const defaultOptions = {
+     kind: OptionKind.WORKER
+   },
+   workerSrc: {
+-    value: "../build/pdf.worker.mjs",
++    value: "./build/pdf.worker.mjs",
+     kind: OptionKind.WORKER
+   }
+ };
+@@ -4522,7 +4522,7 @@ const defaultOptions = {
+     kind: OptionKind.VIEWER
+   };
+   defaultOptions.sandboxBundleSrc = {
+-    value: "../build/pdf.sandbox.mjs",
++    value: "./build/pdf.sandbox.mjs",
+     kind: OptionKind.VIEWER
+   };
+   defaultOptions.viewerCssTheme = {
+@@ -5030,11 +5030,11 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_app
  const GenericCom = {};
  class GenericPreferences extends _preferences_js__WEBPACK_IMPORTED_MODULE_2__.BasePreferences {
    async _writeToStorage(prefObj) {
@@ -43,7 +79,7 @@ index c28e89f8..629241fd 100644
      };
    }
  }
-@@ -6138,7 +6138,7 @@ const FindState = {
+@@ -6192,7 +6192,7 @@ const FindState = {
    PENDING: 3
  };
  const FIND_TIMEOUT = 250;
@@ -52,7 +88,7 @@ index c28e89f8..629241fd 100644
  const MATCH_SCROLL_OFFSET_LEFT = -400;
  const CHARACTERS_TO_NORMALIZE = {
    "\u2010": "-",
-@@ -9604,6 +9604,9 @@ function renderProgress(index, total) {
+@@ -9682,6 +9682,9 @@ function renderProgress(index, total) {
  }
  window.addEventListener("keydown", function (event) {
    if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
@@ -62,7 +98,7 @@ index c28e89f8..629241fd 100644
      window.print();
      event.preventDefault();
      event.stopImmediatePropagation();
-@@ -10224,7 +10227,7 @@ class PDFSidebar {
+@@ -10296,7 +10299,7 @@ class PDFSidebar {
        this.#dispatchEvent();
        return;
      }
@@ -71,8 +107,8 @@ index c28e89f8..629241fd 100644
      if (!this.isInitialEventDispatched) {
        this.#dispatchEvent();
      }
-@@ -11123,7 +11126,7 @@ class PDFViewer {
-     this.#annotationEditorMode = options.annotationEditorMode ?? pdfjs_lib__WEBPACK_IMPORTED_MODULE_0__.AnnotationEditorType.NONE;
+@@ -11202,7 +11205,7 @@ class PDFViewer {
+     this.#annotationEditorHighlightColors = options.annotationEditorHighlightColors || null;
      this.imageResourcesPath = options.imageResourcesPath || "";
      this.enablePrintAutoRotate = options.enablePrintAutoRotate || false;
 -    this.removePageBorders = options.removePageBorders || false;
@@ -80,7 +116,7 @@ index c28e89f8..629241fd 100644
      this.isOffscreenCanvasSupported = options.isOffscreenCanvasSupported ?? true;
      this.maxCanvasPixels = options.maxCanvasPixels;
      this.l10n = options.l10n || web_l10n_utils__WEBPACK_IMPORTED_MODULE_2__.NullL10n;
-@@ -14576,10 +14579,10 @@ class ViewHistory {
+@@ -14679,10 +14682,10 @@ class ViewHistory {
    }
    async _writeToStorage() {
      const databaseStr = JSON.stringify(this.database);
@@ -93,7 +129,7 @@ index c28e89f8..629241fd 100644
    }
    async set(name, val) {
      await this._initializedPromise;
-@@ -14783,7 +14786,7 @@ function webViewerLoad() {
+@@ -14888,7 +14891,7 @@ function webViewerLoad() {
    try {
      parent.document.dispatchEvent(event);
    } catch (ex) {
@@ -102,7 +138,7 @@ index c28e89f8..629241fd 100644
      document.dispatchEvent(event);
    }
    _app_js__WEBPACK_IMPORTED_MODULE_5__.PDFViewerApplication.run(config);
-@@ -15006,4 +15009,3 @@ __webpack_async_result__();
+@@ -15111,4 +15114,3 @@ __webpack_async_result__();
  /******/ export { __webpack_exports__PDFViewerApplication as PDFViewerApplication, __webpack_exports__PDFViewerApplicationConstants as PDFViewerApplicationConstants, __webpack_exports__PDFViewerApplicationOptions as PDFViewerApplicationOptions };
  /******/ 
  
