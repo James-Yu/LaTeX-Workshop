@@ -106,6 +106,7 @@ class SnippetViewProvider implements vscode.WebviewViewProvider {
         const webviewSourcePath = path.join(lw.extensionRoot, 'resources', 'snippetview', 'snippetview.html')
         webviewView.webview.html = readFileSync(webviewSourcePath, { encoding: 'utf8' })
             .replaceAll('%PORT%', lw.server.getPort().toString())
+            .replaceAll('%CSP%', webviewView.webview.cspSource + ' http://127.0.0.1:*')
 
         webviewView.webview.onDidReceiveMessage((e: SnippetViewResult) => {
             state.callbacks.forEach((cb) => void cb(e))

@@ -64,8 +64,8 @@ async function asMD(filePath: string, opts: { height: number, width: number, pag
             let msg = '$(error) Failed to render.'
             if (!vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath))) {
                 msg = '$(warning) Cannot render a PDF file not in workspaces.'
-            } else if (!lw.extra.snippet.state.view) {
-                msg = '$(info) Please activate LaTeX Workshop sidebar item to render the thumbnail of a PDF file.'
+            } else if (lw.extra.snippet.state.view?.webview === undefined) {
+                msg = '$(info) Please activate the LaTeX Workshop activity bar item to render PDF thumbnails.'
             }
             return new vscode.MarkdownString(msg, true)
         }
