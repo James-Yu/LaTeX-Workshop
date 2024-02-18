@@ -1,5 +1,13 @@
 # Change Log
 
+## [9.18.2] - 2024-02-18
+
+### Fixed
+- Hold PDF refresh for 1s after compile.
+- Snippet and math preview panels use networked resource.
+- (#4156) Store the math tex of references on parsing.
+- (#4162) Snippet view can insert on any langID.
+
 ## [9.18.1] - 2024-02-14
 
 ### Fixed
