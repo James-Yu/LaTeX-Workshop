@@ -6,9 +6,8 @@ export const compile = {
     build,
     autoBuild,
     terminate,
-    compiling: false,
     lastBuildTime: 0,
     compiledPDFPath: '',
-    compiledRootFile: '' as string | undefined,
+    compiledPDFWriting: 0,
     process: undefined as ChildProcessWithoutNullStreams | undefined
 }

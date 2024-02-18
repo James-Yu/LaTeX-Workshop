@@ -60,6 +60,7 @@ function canAutoBuild(): boolean {
     return Date.now() - lw.compile.lastBuildTime >= (configuration.get('latex.autoBuild.interval', 1000) as number)
 }
 
+let isBuilding = false
 /**
  * Initiates the build process for the LaTeX project. It can build the entire
  * project or a specific root file depending on the parameters.
@@ -100,8 +101,13 @@ async function build(skipSelection: boolean = false, rootFile: string | undefine
         languageId = lw.root.file.langId
     }
     if (externalBuildCommand) {
-        const pwd = path.dirname(rootFile ? rootFile : activeEditor.document.fileName)
-        await buildExternal(externalBuildCommand, externalBuildArgs, pwd, buildLoop, rootFile)
+        // Check if a build is already in progress
+        if (isBuilding) {
+            void logger.showErrorMessageWithCompilerLogButton('Please wait for the current build to finish.')
+        } else {
+            const pwd = path.dirname(rootFile ? rootFile : activeEditor.document.fileName)
+            await buildExternal(externalBuildCommand, externalBuildArgs, pwd, buildLoop, rootFile)
+        }
         return
     }
     if (rootFile === undefined || languageId === undefined) {
@@ -129,17 +135,18 @@ async function build(skipSelection: boolean = false, rootFile: string | undefine
  * This function first checks if a build is already in progress. If it is, it
  * returns early. Otherwise, it sets the `compiling` flag to true and the
  * `lastBuildTime` to the current timestamp. It then enters a loop where it
- * dequeues steps from the queue. For each step, it sets the `compiledRootFile`
- * property, spawns the process, and monitors the process until completion.
- * After each step, it checks if it's the last step and performs cleanup if
- * necessary. Finally, it sets the `compiling` flag to false.
+ * dequeues steps from the queue. For each step, it spawns the process and
+ * monitors the process until completion. After each step, it checks if it's the
+ * last step and performs cleanup if necessary. Finally, it sets the `compiling`
+ * flag to false.
  */
 async function buildLoop() {
-    if (lw.compile.compiling) {
+    if (isBuilding) {
         return
     }
 
-    lw.compile.compiling = true
+    isBuilding = true
+    lw.compile.compiledPDFWriting++
     lw.compile.lastBuildTime = Date.now()
     // Stop watching the PDF file to avoid reloading the PDF viewer twice.
     // The builder will be responsible for refreshing the viewer.
@@ -149,7 +156,6 @@ async function buildLoop() {
         if (step === undefined) {
             break
         }
-        lw.compile.compiledRootFile = step.rootFile
         const env = spawnProcess(step)
         const success = await monitorProcess(step, env)
         skipped = skipped && !(step.isExternal || !step.isSkipped)
@@ -157,7 +163,8 @@ async function buildLoop() {
             await afterSuccessfulBuilt(step, skipped)
         }
     }
-    lw.compile.compiling = false
+    isBuilding = false
+    setTimeout(() => lw.compile.compiledPDFWriting--, 1000)
 }
 
 /**

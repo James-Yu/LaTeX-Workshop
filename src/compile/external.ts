@@ -5,8 +5,6 @@ import { lw } from '../lw'
 import type { Tool } from '../types'
 import { queue } from './queue'
 
-const logger = lw.log('Build', 'External')
-
 /**
  * Build LaTeX project using external command. This function creates a
  * {@link Tool} containing the external command info and adds it to the
@@ -20,12 +18,6 @@ const logger = lw.log('Build', 'External')
  * @param {string} [rootFile] - Optional. The root file for the build.
  */
 export async function build(command: string, args: string[], pwd: string, buildLoop: () => Promise<void>, rootFile?: string) {
-    // Check if a build is already in progress
-    if (lw.compile.compiling) {
-        void logger.showErrorMessageWithCompilerLogButton('Please wait for the current build to finish.')
-        return
-    }
-
     // Save all open files in the workspace
     await vscode.workspace.saveAll()
 

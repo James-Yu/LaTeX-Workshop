@@ -52,8 +52,6 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
     // Check for invalid toolchain
     if (tools === undefined) {
         logger.log('Invalid toolchain.')
-        // Set compiling status to false
-        lw.compile.compiling = false
         return
     }
 
