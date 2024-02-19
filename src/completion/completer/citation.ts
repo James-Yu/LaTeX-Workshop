@@ -116,7 +116,7 @@ function provide(uri: vscode.Uri, line: string, position: vscode.Position): Comp
                 }
                 break
         }
-        item.filterText = item.key + ' ' + item.fields.join(fields, false)
+        item.filterText = item.key + ' ' + item.fields.title + ' ' + item.fields.join(fields.filter(field => field !== 'title'), false)
         item.insertText = item.key
         item.range = range
         // We need two spaces to ensure md newline
