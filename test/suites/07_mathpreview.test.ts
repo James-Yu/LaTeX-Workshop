@@ -2,9 +2,8 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
 import * as test from './utils'
-import { TextDocumentLike } from '../../src/preview/math/textdocumentlike'
-import { TeXMathEnvFinder } from '../../src/preview/math/texmathenvfinder'
-import { testTools } from '../../src/preview/math/cursorrenderer'
+import { testTools } from '../../src/preview/hover/cursor'
+import { lw } from '../../src/lw'
 
 suite('Math preview test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
@@ -23,7 +22,7 @@ suite('Math preview test suite', () => {
         const docString = '$a+b$'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 2)
-        const texMath = TeXMathEnvFinder.findMathEnvIncludingPosition(doc, cursorPos)
+        const texMath = lw.parser.find.math(doc, cursorPos)
         assert.ok(texMath)
         const result = texMath && await testTools.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$a|+b$')
@@ -33,7 +32,7 @@ suite('Math preview test suite', () => {
         const docString = '$a+b$'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 0)
-        const texMath = TeXMathEnvFinder.findMathEnvIncludingPosition(doc, cursorPos)
+        const texMath = lw.parser.find.math(doc, cursorPos)
         assert.ok(texMath)
 
         const result = testTools.isCursorInsideTexMath(texMath.range, cursorPos)
@@ -57,7 +56,7 @@ suite('Math preview test suite', () => {
         const docString = '$\\frac{1}{2}$'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 3)
-        const texMath = TeXMathEnvFinder.findMathEnvIncludingPosition(doc, cursorPos)
+        const texMath = lw.parser.find.math(doc, cursorPos)
         assert.ok(texMath)
         const result = texMath && await testTools.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$\\frac{1}{2}$')
@@ -67,7 +66,7 @@ suite('Math preview test suite', () => {
         const docString = '$a^b$'
         const doc = new TextDocumentLike(docString)
         const cursorPos = new vscode.Position(0, 3)
-        const texMath = TeXMathEnvFinder.findMathEnvIncludingPosition(doc, cursorPos)
+        const texMath = lw.parser.find.math(doc, cursorPos)
         assert.ok(texMath)
         const result = texMath && await testTools.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$a^|b$')

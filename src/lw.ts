@@ -12,7 +12,7 @@ import type { completion } from './completion'
 import type { language } from './language'
 import type { lint } from './lint'
 import type { outline } from './outline'
-import type { parse } from './parse'
+import type { parser } from './parse'
 import type { extra } from './extras'
 
 import type * as commands from './core/commands'
@@ -27,7 +27,7 @@ export const lw = {
     watcher: {} as typeof watcher,
     cache: {} as typeof cache,
     root: {} as typeof root,
-    parse: {} as typeof parse,
+    parser: {} as typeof parser,
     compile: {} as typeof compile,
     viewer: {} as typeof viewer,
     server: {} as typeof server,

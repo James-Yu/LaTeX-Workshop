@@ -63,7 +63,7 @@ export class Provider implements vscode.CompletionItemProvider {
             if (!refItem.math) {
                 return item
             }
-            const svgDataUrl = await lw.preview.math.ref2svg(refItem, ctoken)
+            const svgDataUrl = await lw.preview.mathjax.ref2svg(refItem, ctoken)
             item.documentation = new vscode.MarkdownString(`![equation](${svgDataUrl})`)
             return item
         } else if (item.kind === vscode.CompletionItemKind.File) {
@@ -75,7 +75,7 @@ export class Provider implements vscode.CompletionItemProvider {
             if (typeof filePath !== 'string') {
                 return item
             }
-            const md = await lw.preview.asMD(filePath, { height: 190, width: 300 })
+            const md = await lw.preview.graph2md(filePath, { height: 190, width: 300 })
             if (md === undefined) {
                 return item
             }

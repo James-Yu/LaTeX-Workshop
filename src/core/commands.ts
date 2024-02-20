@@ -409,14 +409,14 @@ export function devParseLog() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    lw.parse.log(vscode.window.activeTextEditor.document.getText())
+    lw.parser.parse.log(vscode.window.activeTextEditor.document.getText())
 }
 
 export async function devParseTeX() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = await lw.parse.tex(vscode.window.activeTextEditor.document.getText())
+    const ast = await lw.parser.parse.tex(vscode.window.activeTextEditor.document.getText())
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 
@@ -424,7 +424,7 @@ export async function devParseBib() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = await lw.parse.bib(vscode.window.activeTextEditor.document.getText())
+    const ast = await lw.parser.parse.bib(vscode.window.activeTextEditor.document.getText())
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 
@@ -450,15 +450,15 @@ export async function saveActive() {
 }
 
 export function openMathPreviewPanel() {
-    lw.extra.mathpreview.toggle('open')
+    lw.preview.mathpreview.toggle('open')
 }
 
 export function closeMathPreviewPanel() {
-    lw.extra.mathpreview.toggle('close')
+    lw.preview.mathpreview.toggle('close')
 }
 
 export function toggleMathPreviewPanel() {
-    lw.extra.mathpreview.toggle()
+    lw.preview.mathpreview.toggle()
 }
 
 async function quickPickRootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {

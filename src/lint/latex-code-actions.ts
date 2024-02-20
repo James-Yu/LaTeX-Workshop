@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { TeXMathEnvFinder } from '../preview/math/texmathenvfinder'
+import { lw } from '../lw'
 
 export {
     provider,
@@ -181,7 +181,7 @@ function replaceMathDelimitersInRange(document: vscode.TextDocument, range: vsco
     if (text !== oldDelim) {
         if (oldDelim === '$$') {
             const pat = /(?<!\\)\$\$/
-            const endPos = TeXMathEnvFinder.findEndPair(document, pat, endRange.start)
+            const endPos = lw.parser.find.endPair(document, pat, endRange.start)
             if (!endPos) {
                 return
             }

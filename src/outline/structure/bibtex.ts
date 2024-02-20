@@ -28,7 +28,7 @@ export async function buildBibTeX(document: vscode.TextDocument): Promise<TeXEle
         return []
     }
     logger.log('Parse active BibTeX document for AST.')
-    const ast = await lw.parse.bib(document.getText())
+    const ast = await lw.parser.parse.bib(document.getText())
     if (ast === undefined) {
         return []
     }

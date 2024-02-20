@@ -202,7 +202,7 @@ function findMath(nodeStack: Ast.Node[]): TeXMathEnv | undefined {
     ].includes(env)) {
         return
     }
-    const math = lw.parse.stringify(node)
+    const math = lw.parser.parse.stringify(node)
     return {
         envname: env,
         range: new vscode.Range((node.position?.start.line ?? 1) - 1, (node.position?.start.column ?? 1) - 1,

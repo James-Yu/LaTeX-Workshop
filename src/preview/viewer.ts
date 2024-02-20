@@ -8,7 +8,6 @@ import type { SyncTeXRecordToPDF, ViewerMode } from '../types'
 import * as manager from './viewer/pdfviewermanager'
 import { populate } from './viewer/pdfviewerpanel'
 
-import { getCurrentThemeLightness } from '../utils/theme'
 import type { ClientRequest, PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index'
 import { Client } from './viewer/client'
 
@@ -348,7 +347,7 @@ function handler(websocket: ws, msg: string): void {
 function getParams(): PdfViewerParams {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const invertType = configuration.get('view.pdf.invertMode.enabled') as string
-    const invertEnabled = (invertType === 'auto' && (getCurrentThemeLightness() === 'dark')) ||
+    const invertEnabled = (invertType === 'auto' && vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark) ||
     invertType === 'always' ||
     (invertType === 'compat' && ((configuration.get('view.pdf.invert') as number) > 0))
     const pack: PdfViewerParams = {
@@ -379,7 +378,7 @@ function getParams(): PdfViewerParams {
                 pageBorderColor: configuration.get('view.pdf.color.dark.pageBorderColor', 'lightgrey')
             }
         },
-        codeColorTheme: getCurrentThemeLightness(),
+        codeColorTheme: vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Light ? 'light' : 'dark',
         keybindings: {
             synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
         }

@@ -245,7 +245,7 @@ function refreshCacheAggressive(filePath: string) {
  */
 async function updateAST(fileCache: FileCache) {
     logger.log(`Parse LaTeX AST: ${fileCache.filePath} .`)
-    fileCache.ast = await lw.parse.tex(fileCache.content)
+    fileCache.ast = await lw.parser.parse.tex(fileCache.content)
     logger.log(`Parsed LaTeX AST: ${fileCache.filePath} .`)
 }
 

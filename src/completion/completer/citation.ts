@@ -247,7 +247,7 @@ async function parseBibFile(fileName: string) {
     const newEntry: CitationItem[] = []
     const bibtex = fs.readFileSync(fileName).toString()
     logger.log(`Parse BibTeX AST from ${fileName} .`)
-    const ast = await lw.parse.bib(bibtex)
+    const ast = await lw.parser.parse.bib(bibtex)
     if (ast === undefined) {
         logger.log(`Parsed 0 bib entries from ${fileName}.`)
         lw.event.fire(lw.event.FileParsed, fileName)

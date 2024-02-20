@@ -46,7 +46,7 @@ function getDoc(content: string) {
 }
 
 async function getToC(document: vscode.TextDocument, docContent: string) {
-    const ast = await lw.parse.tex(docContent)
+    const ast = await lw.parser.parse.tex(docContent)
     if (ast === undefined) {
         logger.log('Failed parsing LaTeX AST.')
         return []

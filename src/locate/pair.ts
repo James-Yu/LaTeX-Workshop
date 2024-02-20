@@ -81,7 +81,7 @@ class MacroPair {
  * document.
  */
 async function build(document: vscode.TextDocument): Promise<MacroPair[]> {
-    const ast = await lw.parse.tex(document.getText())
+    const ast = await lw.parser.parse.tex(document.getText())
     if (!ast) {
         logger.log('Error parsing current document as AST.')
         return []

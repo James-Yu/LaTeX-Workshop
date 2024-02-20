@@ -1,16 +1,11 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import { lw } from '../lw'
+import { lw } from '../../lw'
 
 const logger = lw.log('Preview', 'Graphics')
 
-export {
-    hover,
-    asMD
-}
-
-async function hover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
+export async function onGraphics(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
     const pat = /\\includegraphics\s*(?:\[(.*?)\])?\s*\{(.*?)\}/
     const range = document.getWordRangeAtPosition(position, pat)
     if (!range) {
@@ -34,14 +29,14 @@ async function hover(document: vscode.TextDocument, position: vscode.Position): 
             pageNumber = Number(m[1])
         }
     }
-    const md = await asMD(filePath, { height: 230, width: 500, pageNumber })
+    const md = await graph2md(filePath, { height: 230, width: 500, pageNumber })
     if (md !== undefined) {
         return new vscode.Hover(md, range)
     }
     return
 }
 
-async function asMD(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<vscode.MarkdownString | undefined> {
+export async function graph2md(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<vscode.MarkdownString | undefined> {
     const filePathUriString = vscode.Uri.file(filePath).toString()
     if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
         // Workaround for https://github.com/microsoft/vscode/issues/137632

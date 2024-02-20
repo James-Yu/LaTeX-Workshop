@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
 import type { TeXMathEnv } from '../../types'
-import type { ITextDocumentLike } from './textdocumentlike'
 import { findNode } from '../../language/selection'
 
 const logger = lw.log('Preview', 'Math', 'Cursor')
@@ -14,7 +13,7 @@ const cache: {
 
 // Test whether cursor is in tex macro strings
 // like \begin{...} \end{...} \xxxx{ \[ \] \( \) or \\
-function isCursorInTeXMacro(document: ITextDocumentLike): boolean {
+function isCursorInTeXMacro(document: vscode.TextDocument): boolean {
     const editor = vscode.window.activeTextEditor
     if (!editor) {
         return false
@@ -57,7 +56,7 @@ async function findNodeAt(texMath: TeXMathEnv, cursorPos: vscode.Position) {
         ast = cache.ast
     } else {
         logger.log(`Parse LaTeX AST from ${texMath.texString} .`)
-        ast = await lw.parse.tex(texMath.texString)
+        ast = await lw.parser.parse.tex(texMath.texString)
         cache.ast = ast
         cache.texString = texMath.texString
     }
@@ -70,7 +69,7 @@ async function findNodeAt(texMath: TeXMathEnv, cursorPos: vscode.Position) {
     return result
 }
 
-export async function renderCursor(document: ITextDocumentLike, texMath: TeXMathEnv, thisColor: string): Promise<string> {
+export async function renderCursor(document: vscode.TextDocument, texMath: TeXMathEnv, thisColor: string): Promise<string> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const cursorEnabled = configuration.get('hover.preview.cursor.enabled') as boolean
     if (!cursorEnabled) {

@@ -2,7 +2,9 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import { moveWebviewPanel } from '../utils/webview'
 import { lw } from '../lw'
-import type { TeXMathEnv } from '../types'
+import { getColor } from './hover/utils'
+import { tex2svg } from './hover'
+import { renderCursor } from './hover/cursor'
 
 const logger = lw.log('Preview', 'Math')
 
@@ -54,7 +56,6 @@ function open() {
         }
         return
     }
-    lw.preview.math.refreshMathColor()
     const panel = vscode.window.createWebviewPanel(
         'latex-workshop-mathpreview',
         'Math Preview',
@@ -198,9 +199,9 @@ async function update(ev?: UpdateEvent) {
         cachedMacros = state.prevMacros
     }
     if (vscode.workspace.getConfiguration('latex-workshop').get('mathpreviewpanel.cursor.enabled', false)) {
-        await renderCursor(document, texMath)
+        texMath.texString = await renderCursor(document, texMath, getColor())
     }
-    const result = await lw.preview.math.tex2svg(texMath, cachedMacros).catch(() => undefined)
+    const result = await tex2svg(texMath, cachedMacros).catch(() => undefined)
     if (!result) {
         return
     }
@@ -211,7 +212,7 @@ async function update(ev?: UpdateEvent) {
 }
 
 function getTexMath(document: vscode.TextDocument, position: vscode.Position) {
-    const texMath = lw.preview.math.findMath(document, position)
+    const texMath = lw.parser.find.math(document, position)
     if (texMath) {
         if (texMath.envname !== '$') {
             return texMath
@@ -221,9 +222,4 @@ function getTexMath(document: vscode.TextDocument, position: vscode.Position) {
         }
     }
     return
-}
-
-async function renderCursor(document: vscode.TextDocument, tex: TeXMathEnv) {
-    const s = await lw.preview.math.renderCursor(document, tex)
-    tex.texString = s
 }

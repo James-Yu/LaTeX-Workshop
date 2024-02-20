@@ -14,11 +14,11 @@ export const outline = {
 }
 
 lw.onConfigChange(['view.outline.sections', 'view.outline.commands'], async () => {
-    await lw.parse.reset()
+    await lw.parser.parse.reset()
     lw.cache.paths().forEach(async filePath => {
         const ast = lw.cache.get(filePath)?.ast
         if (ast) {
-            await lw.parse.args(ast)
+            await lw.parser.parse.args(ast)
         }
     })
     void reconstruct()

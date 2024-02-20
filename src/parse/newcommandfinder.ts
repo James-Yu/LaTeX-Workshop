@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as Ast from '@unified-latex/unified-latex-types'
-import { lw } from '../../lw'
+import { lw } from '../lw'
 
-const logger = lw.log('Preview', 'Math')
+const logger = lw.log('Parse', 'Macro')
 
 export async function findMacros(ctoken?: vscode.CancellationToken): Promise<string> {
     let macros = ''
@@ -52,7 +52,7 @@ function parseAst(content: string, node: Ast.Node): string[] {
         node.args?.[1]?.content?.[0]?.type === 'macro'
     if (isNewCommand || isDeclarePairedDelimiter || isProvideCommand) {
         macros.push(
-            lw.parse.stringify(node)
+            lw.parser.parse.stringify(node)
                 // Change providecommand to newcommand
                 .replaceAll(/^\\providecommand([^a-zA-Z])/g, '\\newcommand$1')
                 // Remove the star as MathJax does not support #4127

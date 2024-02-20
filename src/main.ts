@@ -16,9 +16,9 @@ import { cache } from './core/cache'
 lw.cache = cache
 import { root } from './core/root'
 lw.root = root
-import { parse } from './parse'
-lw.parse = parse
-void lw.parse.reset()
+import { parser } from './parse'
+lw.parser = parser
+void lw.parser.parse.reset()
 import { compile } from './compile'
 lw.compile = compile
 import { preview, server, viewer } from './preview'
@@ -252,7 +252,7 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     extensionContext.subscriptions.push(
         vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', lw.viewer.serializer),
         vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', lw.viewer.hook, {supportsMultipleEditorsPerDocument: true, webviewOptions: {retainContextWhenHidden: true}}),
-        vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', lw.extra.mathpreview.serializer)
+        vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', lw.preview.mathpreview.serializer)
     )
 
     extensionContext.subscriptions.push(

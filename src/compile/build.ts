@@ -266,7 +266,7 @@ async function monitorProcess(step: Step, env: ProcessEnv): Promise<boolean> {
         })
 
         lw.compile.process.on('exit', (code, signal) => {
-            const isSkipped = lw.parse.log(stdout, step.rootFile)
+            const isSkipped = lw.parser.parse.log(stdout, step.rootFile)
             if (!step.isExternal) {
                 step.isSkipped = isSkipped
             }
