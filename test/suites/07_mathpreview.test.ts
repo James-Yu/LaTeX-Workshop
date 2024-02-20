@@ -18,21 +18,25 @@ suite('Math preview test suite', () => {
         await test.reset()
     })
 
-    test.run('mathpreviewlib/cursorrenderer: test insertCursor', async () => {
-        const docString = '$a+b$'
-        const doc = new TextDocumentLike(docString)
+    test.run('mathpreviewlib/cursorrenderer: test insertCursor', async (fixture: string) => {
+        await test.load(fixture, [
+            {src: 'mathpreview/base.tex', dst: 'main.tex'}
+        ], {open: 0, skipCache: true})
+        assert.ok(vscode.window.activeTextEditor?.document)
         const cursorPos = new vscode.Position(0, 2)
-        const texMath = lw.parser.find.math(doc, cursorPos)
+        const texMath = lw.parser.find.math(vscode.window.activeTextEditor.document, cursorPos)
         assert.ok(texMath)
         const result = texMath && await testTools.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$a|+b$')
     })
 
-    test.run('mathpreviewlib/cursorrenderer: test shouldNotWriteCursor', () => {
-        const docString = '$a+b$'
-        const doc = new TextDocumentLike(docString)
+    test.run('mathpreviewlib/cursorrenderer: test shouldNotWriteCursor', async (fixture: string) => {
+        await test.load(fixture, [
+            {src: 'mathpreview/base.tex', dst: 'main.tex'}
+        ], {open: 0, skipCache: true})
+        assert.ok(vscode.window.activeTextEditor?.document)
         const cursorPos = new vscode.Position(0, 0)
-        const texMath = lw.parser.find.math(doc, cursorPos)
+        const texMath = lw.parser.find.math(vscode.window.activeTextEditor.document, cursorPos)
         assert.ok(texMath)
 
         const result = testTools.isCursorInsideTexMath(texMath.range, cursorPos)
@@ -52,21 +56,25 @@ suite('Math preview test suite', () => {
 
     })
 
-    test.run('mathpreviewlib/cursorrenderer: test \\f|rac{1}{2}', async () => {
-        const docString = '$\\frac{1}{2}$'
-        const doc = new TextDocumentLike(docString)
-        const cursorPos = new vscode.Position(0, 3)
-        const texMath = lw.parser.find.math(doc, cursorPos)
+    test.run('mathpreviewlib/cursorrenderer: test \\f|rac{1}{2}', async (fixture: string) => {
+        await test.load(fixture, [
+            {src: 'mathpreview/base.tex', dst: 'main.tex'}
+        ], {open: 0, skipCache: true})
+        assert.ok(vscode.window.activeTextEditor?.document)
+        const cursorPos = new vscode.Position(1, 3)
+        const texMath = lw.parser.find.math(vscode.window.activeTextEditor.document, cursorPos)
         assert.ok(texMath)
         const result = texMath && await testTools.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$\\frac{1}{2}$')
     })
 
-    test.run('mathpreviewlib/cursorrenderer: test a^|b', async () => {
-        const docString = '$a^b$'
-        const doc = new TextDocumentLike(docString)
-        const cursorPos = new vscode.Position(0, 3)
-        const texMath = lw.parser.find.math(doc, cursorPos)
+    test.run('mathpreviewlib/cursorrenderer: test a^|b', async (fixture: string) => {
+        await test.load(fixture, [
+            {src: 'mathpreview/base.tex', dst: 'main.tex'}
+        ], {open: 0, skipCache: true})
+        assert.ok(vscode.window.activeTextEditor?.document)
+        const cursorPos = new vscode.Position(2, 3)
+        const texMath = lw.parser.find.math(vscode.window.activeTextEditor.document, cursorPos)
         assert.ok(texMath)
         const result = texMath && await testTools.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$a^|b$')

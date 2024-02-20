@@ -33,19 +33,19 @@ function findCursorPosInSnippet(texMath: TeXMathEnv, cursorPos: vscode.Position)
 }
 
 async function insertCursor(texMath: TeXMathEnv, cursorPos: vscode.Position, cursor: string): Promise<string> {
-    const findResult = await findNodeAt(texMath, cursorPos)
-    if (findResult === undefined || cache.ast === undefined) {
+    const { result, cursorPosInSnippet } = await findNodeAt(texMath, cursorPos)
+    if (result === undefined || cursorPosInSnippet === undefined || cache.ast === undefined) {
         return texMath.texString
     }
-    if (findResult.find(node => node.type === 'macro' && node.content === 'text')) {
+    if (result.find(node => node.type === 'macro' && node.content === 'text')) {
         return texMath.texString
     }
-    const cursorNode = findResult[findResult.length - 1]
+    const cursorNode = result[result.length - 1]
     if (cursorNode?.type === 'macro') {
         return texMath.texString
     }
     const texLines = texMath.texString.split('\n')
-    texLines[cursorPos.line] = texLines[cursorPos.line].slice(0, cursorPos.character) + cursor + texLines[cursorPos.line].slice(cursorPos.character)
+    texLines[cursorPosInSnippet.line] = texLines[cursorPosInSnippet.line].slice(0, cursorPosInSnippet.character) + cursor + texLines[cursorPosInSnippet.line].slice(cursorPosInSnippet.character)
     return texLines.join('\n')
 }
 
@@ -62,11 +62,11 @@ async function findNodeAt(texMath: TeXMathEnv, cursorPos: vscode.Position) {
     }
     if (!ast) {
         logger.log('Failed parsing LaTeX AST.')
-        return
+        return { result: undefined, cursorPosInSnippet: undefined }
     }
     const cursorPosInSnippet = findCursorPosInSnippet(texMath, cursorPos)
     const result = findNode(cursorPosInSnippet, ast)
-    return result
+    return { result, cursorPosInSnippet }
 }
 
 export async function renderCursor(document: vscode.TextDocument, texMath: TeXMathEnv, thisColor: string): Promise<string> {
