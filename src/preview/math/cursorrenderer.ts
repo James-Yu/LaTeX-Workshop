@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import { lw } from '../../../lw'
-import type { TeXMathEnv } from '../../../types'
+import { lw } from '../../lw'
+import type { TeXMathEnv } from '../../types'
 import type { ITextDocumentLike } from './textdocumentlike'
-import { findNode } from '../../../language/selection'
+import { findNode } from '../../language/selection'
 
 const logger = lw.log('Preview', 'Math', 'Cursor')
 

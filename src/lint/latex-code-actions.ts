@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { TeXMathEnvFinder } from '../preview/math/mathpreviewlib/texmathenvfinder'
+import { TeXMathEnvFinder } from '../preview/math/texmathenvfinder'
 
 export {
     provider,

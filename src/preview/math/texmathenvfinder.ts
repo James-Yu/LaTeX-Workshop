@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
-import type { TeXMathEnv } from '../../../types'
-import * as utils from '../../../utils/utils'
+import type { TeXMathEnv } from '../../types'
+import * as utils from '../../utils/utils'
 import { type ITextDocumentLike } from './textdocumentlike'
 
 const ENV_NAMES = [

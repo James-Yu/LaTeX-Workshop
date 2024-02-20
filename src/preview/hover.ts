@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import { lw } from '../lw'
-import { findMacros } from './math/mathpreviewlib/newcommandfinder'
+import type { CmdEnvSuggestion } from '../completion/completer/completerutils'
+import { findMacros } from './math/newcommandfinder'
 import { tokenizer, onAPackage } from '../utils/tokenizer'
-import { CmdEnvSuggestion } from '../completion/completer/completerutils'
 
 export {
     provider

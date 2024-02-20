@@ -7,10 +7,10 @@ import { lw } from '../lw'
 import type { ReferenceItem, TeXMathEnv } from '../types'
 import { getCurrentThemeLightness } from '../utils/theme'
 import { stripComments } from '../utils/utils'
-import { renderCursor as renderCursorWorker } from './math/mathpreviewlib/cursorrenderer'
-import { type ITextDocumentLike } from './math/mathpreviewlib/textdocumentlike'
-import { findMacros } from './math/mathpreviewlib/newcommandfinder'
-import { TeXMathEnvFinder } from './math/mathpreviewlib/texmathenvfinder'
+import { renderCursor as renderCursorWorker } from './math/cursorrenderer'
+import { type ITextDocumentLike } from './math/textdocumentlike'
+import { findMacros } from './math/newcommandfinder'
+import { TeXMathEnvFinder } from './math/texmathenvfinder'
 
 const logger = lw.log('Preview', 'Math')
 

@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as Ast from '@unified-latex/unified-latex-types'
-import { lw } from '../../../lw'
+import { lw } from '../../lw'
 
 const logger = lw.log('Preview', 'Math')
 
