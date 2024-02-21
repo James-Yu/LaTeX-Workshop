@@ -1162,26 +1162,11 @@
           ],
           "markdownDescription": "Determine if the root file is detected based on the presence of \\documentclass[]{} or \\begin{document}."
         },
-        "latex-workshop.latex.watch.usePolling": {
-          "scope": "window",
-          "type": "boolean",
-          "default": false,
-          "deprecationMessage": "Deprecated: This config is deprecated and has no use.",
-          "markdownDeprecationMessage": "**Deprecated**: This config is deprecated and has no use."
-        },
-        "latex-workshop.latex.watch.interval": {
-          "scope": "window",
-          "type": "number",
-          "default": 300,
-          "deprecationMessage": "Deprecated: This config is deprecated and has no use.",
-          "markdownDeprecationMessage": "**Deprecated**: This config is deprecated and has no use."
-        },
         "latex-workshop.latex.watch.delay": {
           "scope": "window",
           "type": "number",
           "default": 250,
-          "deprecationMessage": "Deprecated: This config is deprecated and has no use.",
-          "markdownDeprecationMessage": "**Deprecated**: This config is deprecated and has no use."
+          "markdownDescription": "Defines the time delay before confirming a non-binary file is indeed deleted. Increase this value if your toolchain involves external file changes with a delete-then-create pattern. LaTeX Workshop internally monitors file change events and initiates auto-builds, intellisense parsing, latex importing, and/or PDF viewing refresh. We use this config to control the file polling delay before confirming that the file deletion is not a delete-then-create."
         },
         "latex-workshop.latex.watch.pdf.delay": {
           "scope": "window",
@@ -1464,13 +1449,6 @@
             "Put the viewer tab in a new group above the current one",
             "Put the viewer tab in a new group below the current one"
           ]
-        },
-        "latex-workshop.view.pdf.tab.openDelay": {
-          "scope": "window",
-          "type": "number",
-          "default": 1000,
-          "deprecationMessage": "Deprecated: This config has no use and has been removed.",
-          "markdownDeprecationMessage": "**Deprecated**: This config has no use and has been removed."
         },
         "latex-workshop.view.pdf.ref.viewer": {
           "type": "string",
@@ -1912,16 +1890,6 @@
           "default": "@",
           "markdownDescription": "Character to trigger snippet suggestions as part of intellisense. Set this variable to `''` to deactivate these suggestions."
         },
-        "latex-workshop.intellisense.atSuggestionJSON.replace": {
-          "scope": "window",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "default": {},
-          "deprecationMessage": "Deprecated: This config has been renamed to `latex-workshop.intellisense.atSuggestion.user`.",
-          "markdownDeprecationMessage": "**Deprecated**: This config has been renamed to `#latex-workshop.intellisense.atSuggestion.user#`."
-        },
         "latex-workshop.intellisense.file.exclude": {
           "scope": "resource",
           "type": "array",
@@ -2327,16 +2295,6 @@
           },
           "default": {},
           "markdownDescription": "Dictionary of `\"entry name\": [\"array\", \"of\", \"fields\"]` to replace the default fields used in `data/biblatex-entries.json`. See `data/biblatex-entries.json` for the list of fields for each entry. This variable is used when `#latex-workshop.intellisense.citation.backend#` is set to `biblatex`."
-        },
-        "latex-workshop.intellisense.commandsJSON.replace": {
-          "scope": "window",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "default": {},
-          "deprecationMessage": "Deprecated: This config has been superseded by config `latex-workshop.intellisense.command.user`, which provides more features.",
-          "markdownDeprecationMessage": "**Deprecated**: This config has been superseded by config `#latex-workshop.intellisense.command.user#`, which provides more features."
         },
         "latex-workshop.texdoc.path": {
           "scope": "window",

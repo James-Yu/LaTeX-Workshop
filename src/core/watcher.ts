@@ -193,14 +193,21 @@ class Watcher {
 
         const filePath = uri.fsPath
         logger.log(`"delete" emitted on ${filePath}.`)
-        this.onDeleteHandlers.forEach(handler => handler(filePath))
-        watcherInfo.files.delete(fileName)
+        setTimeout(() => {
+            if (fs.existsSync(filePath)) {
+                logger.log(`File deleted and re-created: ${filePath} .`)
+                return
+            }
+            logger.log(`File deletion confirmed: ${filePath} .`)
+            this.onDeleteHandlers.forEach(handler => handler(filePath))
+            watcherInfo.files.delete(fileName)
 
-        if (watcherInfo.files.size === 0) {
-            this.disposeWatcher(folder)
-        }
+            if (watcherInfo.files.size === 0) {
+                this.disposeWatcher(folder)
+            }
 
-        lw.event.fire(lw.event.FileRemoved, filePath)
+            lw.event.fire(lw.event.FileRemoved, filePath)
+        }, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.delay') as number)
     }
 
     /**
@@ -235,11 +242,11 @@ class Watcher {
                 files: new Set([fileName])
             }
             this.onCreateHandlers.forEach(handler => handler(filePath))
-            logger.log(`Watched ${filePath} with a new watcher on ${folder} .`)
+            logger.log(`Watched ${filePath} with a new ${this.fileExt} watcher on ${folder} .`)
         } else {
             this.watchers[folder].files.add(fileName)
             this.onCreateHandlers.forEach(handler => handler(filePath))
-            logger.log(`Watched ${filePath} .`)
+            logger.log(`Watched ${filePath} by the ${this.fileExt} watcher.`)
         }
         lw.event.fire(lw.event.FileWatched, filePath)
     }
