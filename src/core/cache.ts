@@ -140,7 +140,7 @@ async function wait(filePath: string, seconds: number = 2): Promise<Promise<void
 function reset() {
     lw.watcher.src.reset()
     lw.watcher.bib.reset()
-    lw.watcher.pdf.reset()
+    // lw.watcher.pdf.reset()
     Object.keys(caches).forEach(filePath => caches.delete(filePath))
 }
 
