@@ -232,10 +232,11 @@ function toPackageObj(packageName: string, options: string[], node?: Ast.Node): 
     }
     let pkgObj: {[pkgName: string]: string[]} = {}
     if (node?.type === 'macro' && node.content === 'documentclass') {
-        const clsPath = lw.file.kpsewhich([`${packageName}.cls`])
-        if (vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.enabled') as boolean &&
-            clsPath && fs.existsSync(clsPath)) {
-            pkgObj = parseContent(fs.readFileSync(clsPath).toString())
+        if (vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.enabled') as boolean) {
+            const clsPath = lw.file.kpsewhich([`${packageName}.cls`])
+            if (clsPath && fs.existsSync(clsPath)) {
+                pkgObj = parseContent(fs.readFileSync(clsPath).toString())
+            }
         }
         packageName = 'class-' + packageName
     }
