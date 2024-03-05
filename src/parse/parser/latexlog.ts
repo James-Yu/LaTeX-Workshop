@@ -16,6 +16,10 @@ const latexMissChar = /^\s*(Missing character:.*?!)/
 const bibEmpty = /^Empty `thebibliography' environment/
 const biberWarn = /^Biber warning:.*WARN - I didn't find a database entry for '([^']+)'/
 
+// LaTeX Warning: Reference `non-exist' on page 1 undefined on input line 10.
+// LaTeX Warning: Citation `also-nothing' on page 1 undefined on input line 12.
+const UNDEFINED_REFERENCE = /^LaTeX Warning: (Reference|Citation) `(.*?)' on page (?:\d+) undefined on input line (\d+).$/
+
 // const truncatedLine = /(.{77}[^\.](\w|\s|-|\\|\/))(\r\n|\n)/g
 // A line with an error message will start with an 'l' character followed by a line number and then a space.
 // After that it shows the line with the error but only up to the position of the error.
@@ -134,6 +138,9 @@ function parseLine(line: string, state: ParserState) {
             return
         }
     }
+    if (parseUndefinedReference(line, filename, state)) {
+        return
+    }
     let result = line.match(latexBox)
     if (!result) {
         result = line.match(latexBoxAlt)
@@ -231,6 +238,30 @@ function parseLine(line: string, state: ParserState) {
     if (state.fileStack.length === 0) {
         state.fileStack.push(state.rootFile)
     }
+}
+
+function parseUndefinedReference(line: string, filename: string, state: ParserState): boolean {
+    if (line === 'LaTeX Warning: There were undefined references.') {
+        return true
+    }
+    const match = line.match(UNDEFINED_REFERENCE)
+    if (match === null) {
+        return false
+    }
+
+    if (state.currentResult.type !== '') {
+        buildLog.push(state.currentResult)
+    }
+    state.currentResult = {
+        type: 'warning',
+        file: filename,
+        line: match[3] ? parseInt(match[3], 10) : 1,
+        text: `Cannot find ${match[1].toLowerCase()} \`${match[2]}\`.`,
+        errorPosText: match[2]
+    }
+    state.searchEmptyLine = false
+
+    return true
 }
 
 function parseLaTeXFileStack(line: string, fileStack: string[], nested: number): number {
