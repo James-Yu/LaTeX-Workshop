@@ -56,7 +56,7 @@ export function showCompilerDiagnostics(diagnostics: vscode.DiagnosticCollection
         }
 
         const range = new vscode.Range(new vscode.Position(item.line - 1, startChar), new vscode.Position(item.line - 1, endChar))
-        const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
+        const diag = new vscode.Diagnostic(range, item.text.trimEnd(), DIAGNOSTIC_SEVERITY[item.type])
         diag.source = diagnostics.name
         if (diagsCollection[item.file] === undefined) {
             diagsCollection[item.file] = []

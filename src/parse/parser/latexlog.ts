@@ -198,7 +198,7 @@ function parseLine(line: string, state: ParserState) {
             type: 'warning',
             file: filename,
             line: result[4] ? parseInt(result[4], 10) : 1,
-            text: result[3] + result[5]
+            text: result[1] + ': ' + result[3] + result[5]
         }
         state.searchEmptyLine = true
         return
