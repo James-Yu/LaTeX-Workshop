@@ -203,6 +203,7 @@ function getFlsPath(texPath: string): string | undefined {
     return fs.existsSync(flsFile) ? flsFile : undefined
 }
 
+const kpsecache: {[query: string]: string} = {}
 /**
  * Calls `kpsewhich` to resolve file paths.
  *
@@ -211,20 +212,30 @@ function getFlsPath(texPath: string): string | undefined {
  * found.
  */
 function kpsewhich(args: string[]): string | undefined {
+    const query = args.join(' ')
+    if (kpsecache[query]) {
+        logger.log(`kpsewhich cache hit on ${query}: ${kpsecache[query]} .`)
+        return kpsecache[query]
+    }
     const command = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
-    logger.log(`Calling ${command} to resolve ${args.join(' ')} .`)
+    logger.log(`Calling ${command} to resolve ${query} .`)
 
     try {
         const kpsewhichReturn = cs.sync(command, args, {cwd: lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path})
         if (kpsewhichReturn.status === 0) {
             const output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
-            return output !== '' ? output : undefined
+            logger.log(`kpsewhich returned with '${output}'.`)
+            if (output !== '') {
+                kpsecache[query] = output
+                return output
+            }
         }
+        logger.log(`kpsewhich returned with non-zero code ${kpsewhichReturn.status}.`)
+        return undefined
     } catch (e) {
-        logger.logError(`Calling ${command} on ${args.join(' ')} failed.`, e)
+        logger.logError(`Calling ${command} on ${query} failed.`, e)
+        return undefined
     }
-
-    return undefined
 }
 
 /**
