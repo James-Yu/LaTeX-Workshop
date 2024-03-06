@@ -1,5 +1,19 @@
 # Change Log
 
+## [9.19.0] - 2024-03-06
+
+### Added
+- (#4173) Add source to warning messages.
+- (#4181) Missing reference warnings now located precisely.
+
+### Fixed
+- Fix incorrect cursor position in math preview when cursor is at line > 0.
+- (#4166) Add deletion polling for non-binary files.
+- (#4167) PDF watcher never resets now.
+- (#4184) `kpsewhich` caches results.
+- (#4184) `kpsewhich.enabled` correctly controls calls to `kpsewhich`.
+- (#4188) Cleaning with `latexmk` honors `outdir`.
+
 ## [9.18.2] - 2024-02-18
 
 ### Fixed
