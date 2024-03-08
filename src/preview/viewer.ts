@@ -4,7 +4,7 @@ import * as path from 'path'
 import * as os from 'os'
 import * as cs from 'cross-spawn'
 import { lw } from '../lw'
-import type { SyncTeXRecordToPDF, ViewerMode } from '../types'
+import type { SyncTeXRecordToPDF, SyncTeXRecordToPDFAllList, ViewerMode } from '../types'
 import * as manager from './viewer/pdfviewermanager'
 import { populate } from './viewer/pdfviewerpanel'
 
@@ -21,6 +21,7 @@ export {
     handler,
     isViewing,
     locate,
+    locateRange,
     viewInWebviewPanel,
     refresh,
     view
@@ -411,6 +412,38 @@ async function locate(pdfFile: string, record: SyncTeXRecordToPDF): Promise<void
             client.send({type: 'synctex', data: {...record, indicator}})
         }, needDelay ? 200 : 0)
         logger.log(`Try to synctex ${pdfFile}`)
+    }
+}
+
+/**
+ * Reveals the position range of `records` on the internal PDF viewers with a Rectangle indicator.
+ *
+ * @param pdfFile The path of a PDF file.
+ * @param recordList The list of positions to be revealed.
+ */
+async function locateRange(pdfFile: string, recordList: SyncTeXRecordToPDFAllList): Promise<void> {
+    const pdfUri = vscode.Uri.file(pdfFile);
+    let clientSet = manager.getClients(pdfUri);
+    if (clientSet === undefined || clientSet.size === 0) {
+      logger.log(`PDF is not opened: ${pdfFile}, try opening.`);
+      await view(pdfFile);
+      clientSet = manager.getClients(pdfUri);
+    }
+    if (clientSet === undefined || clientSet.size === 0) {
+      logger.log(`PDF cannot be opened: ${pdfFile}.`);
+      return;
+    }
+    const needDelay = showInvisibleWebviewPanel(pdfUri);
+    for (const client of clientSet) {
+      setTimeout(() => {
+        const indicator = vscode.workspace
+          .getConfiguration('latex-workshop')
+          .get('synctex.indicator.enabled') as boolean;
+
+        client.send({ type: 'synctexRange', data: { records: recordList.records, indicator } });
+
+      }, needDelay ? 200 : 0);
+      logger.log(`Try to synctex ${pdfFile}`);
     }
 }
 

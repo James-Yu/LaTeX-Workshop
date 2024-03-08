@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
 import { lw } from '../lw'
-import type { SyncTeXRecordToPDF, SyncTeXRecordToTeX } from '../types'
+import type { SyncTeXRecordToPDF, SyncTeXRecordToPDFAll, SyncTeXRecordToPDFAllList, SyncTeXRecordToTeX } from '../types'
 import { syncTeXToPDF, syncTeXToTeX } from './synctex/worker'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { isSameRealPath } from '../utils/pathnormalize'
@@ -56,6 +56,68 @@ function parseToPDF(result: string): SyncTeXRecordToPDF {
     }
     if (record.page !== undefined && record.x !== undefined && record.y !== undefined) {
         return { page: record.page, x: record.x, y: record.y, indicator: true }
+    } else {
+        throw(new Error('parse error when parsing the result of synctex forward.'))
+    }
+}
+
+/**
+ * Parse the result of SyncTeX forward to PDF with a list.
+ *
+ * This function takes the result of SyncTeX forward to PDF as a string and
+ * parses it to extract page number, x-coordinate, y-coordinate, box-based 
+ * coordinates (h, v, H, W), and whether the red indicator should be shown 
+ * in the viewer.
+ *
+ * @param result - The result string of SyncTeX forward to PDF.
+ * @returns A SyncTeXRecordToPDFAllList object containing a list of records, 
+ * with each record containing page number, x-coordinate, y-coordinate, 
+ * h-coordinate, v-coordinate, H-coordinate, W-coordinate, and an indicator.
+ * @throws Error if there is a parsing error.
+ */
+function parseToPDFList(result: string): SyncTeXRecordToPDFAllList {
+    const records: SyncTeXRecordToPDFAll[] = [];
+    let started = false;
+    let recordIndex = -1;
+
+    for (const line of result.split('\n')) {
+        if (line.includes('SyncTeX result begin')) {
+            started = true;
+            continue;
+        }
+
+        if (line.includes('SyncTeX result end')) {
+            break;
+        }
+
+        if (!started) {
+            continue;
+        }
+
+        const pos = line.indexOf(':');
+        if (pos < 0) {
+            continue;
+        }
+
+        const key = line.substring(0, pos);
+        const value = line.substring(pos + 1).trim();
+
+        if (key == 'Output') {
+            recordIndex += 1;
+            const record : SyncTeXRecordToPDFAll = { Page: 0, x: 0, y: 0, h: 0, v: 0, W: 0, H: 0 };
+            records[recordIndex] = record;
+        }
+
+        if (key === 'Page' || key === 'h' || key === 'v' || key === 'W' || key === 'H' || key === 'x' || key === 'y') {
+            const record = records[recordIndex];
+            if (record) {
+              record[key] = Number(value);
+            }
+        }
+    }
+
+    if (recordIndex != -1) {
+        return { records };
     } else {
         throw(new Error('parse error when parsing the result of synctex forward.'))
     }
@@ -181,11 +243,21 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
             logger.logError('Forward SyncTeX failed.', e)
         }
     } else {
-        void callSyncTeXToPDF(line, character, filePath, pdfFile).then( (record) => {
-            if (pdfFile) {
-                void lw.viewer.locate(pdfFile, record)
-            }
-        })
+        const indicatorType = configuration.get('synctex.indicator.type')
+
+        if (indicatorType === 'Range') {
+            void callSyncTeXToPDFRange(line, character, filePath, pdfFile).then( (recordList) => {
+                if (pdfFile) {
+                    void lw.viewer.locateRange(pdfFile, recordList)
+                }
+            })
+        } else {
+            void callSyncTeXToPDF(line, character, filePath, pdfFile).then( (record) => {
+                if (pdfFile) {
+                    void lw.viewer.locate(pdfFile, record)
+                }
+            })
+        }
     }
 }
 
@@ -245,6 +317,66 @@ function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: 
             }
         })
     })
+}
+
+/**
+ * Call SyncTeX to PDF for a specific line and character position.
+ *
+ * This function calls the SyncTeX binary to retrieve PDF information for a
+ * given line as a range in a TeX file. It returns a promise
+ * resolving to a SyncTeXRecordToPDFAllList object.
+ *
+ * @param line - The line number in the TeX file.
+ * @param _col - The character position (column) in the line. (not used)
+ * @param filePath - The path of the TeX file.
+ * @param pdfFile - The path of the PDF file.
+ * @returns A promise resolving to a SyncTeXRecordToPDFAllList object.
+ */
+function callSyncTeXToPDFRange(line: number, _col: number, filePath: string, pdfFile: string): Thenable<SyncTeXRecordToPDFAllList> {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const docker = configuration.get('docker.enabled')
+    // Pass column parameter with 0 to make SyncTex Cmd ignore specific character, returning whole range of location with respect to the line.
+    const args = ['view', '-i', `${line}:0:${docker ? path.basename(filePath): filePath}`, '-o', docker ? path.basename(pdfFile): pdfFile]
+
+    let command = configuration.get('synctex.path') as string
+    if (docker) {
+        if (process.platform === 'win32') {
+            command = path.resolve(lw.extensionRoot, './scripts/synctex.bat')
+        } else {
+            command = path.resolve(lw.extensionRoot, './scripts/synctex')
+            fs.chmodSync(command, 0o755)
+        }
+    }
+    const logTag = docker ? 'Docker' : 'Legacy'
+    logger.log(`Forward from ${filePath} to ${pdfFile} on line ${line}.`)
+    const proc = cs.spawn(command, args, {cwd: path.dirname(pdfFile)})
+    proc.stdout.setEncoding('utf8')
+    proc.stderr.setEncoding('utf8')
+
+    let stdout = ''
+    proc.stdout.on('data', newStdout => {
+        stdout += newStdout
+    })
+
+    let stderr = ''
+    proc.stderr.on('data', newStderr => {
+        stderr += newStderr
+    })
+
+    proc.on('error', err => {
+        logger.logError(`(${logTag}) Forward SyncTeX failed.`, err, stderr)
+    })
+
+    return new Promise( (resolve) => {
+        proc.on('exit', exitCode => {
+            if (exitCode !== 0) {
+                logger.logError(`(${logTag}) Forward SyncTeX failed.`, exitCode, stderr)
+            } else {
+                resolve(parseToPDFList(stdout))
+            }
+        })
+    })
+
 }
 
 /**

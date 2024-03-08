@@ -7,7 +7,7 @@ import {ExternalPromise} from './components/externalpromise.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
-import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState} from '../types/latex-workshop-protocol-types/index'
+import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState, SyncTeXRecordToPDFAll} from '../types/latex-workshop-protocol-types/index'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
@@ -346,6 +346,65 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         // }, 1000)
     }
 
+    private forwardSynctexRange(position: { records: SyncTeXRecordToPDFAll[], indicator: boolean }) {
+        if (!this.synctexEnabled) {
+            this.addLogMessage('SyncTeX temporarily disabled.')
+            return
+        }
+
+        const indicatorTemplate = document.getElementById('synctex-indicator') as HTMLElement
+        const indicatorParent = indicatorTemplate.parentNode as HTMLElement
+
+        for (const record of position.records) {
+            const container = document.getElementById('viewerContainer') as HTMLElement
+
+            const pos_left_top = PDFViewerApplication.pdfViewer._pages[record.Page - 1].viewport.convertToViewportPoint(record.h, record.v - record.H)
+            const pos_right_down = PDFViewerApplication.pdfViewer._pages[record.Page - 1].viewport.convertToViewportPoint(record.h + record.W, record.v)
+
+            const width_px = pos_right_down[0] - pos_left_top[0]
+            const height_px = pos_left_top[1] - pos_right_down[1]
+
+            const page = document.getElementsByClassName('page')[record.Page - 1] as HTMLElement
+
+            const maxScrollX = window.innerWidth
+            const minScrollX = 0
+            let scrollX = page.offsetLeft + pos_left_top[0]
+            scrollX = Math.min(scrollX, maxScrollX)
+            scrollX = Math.max(scrollX, minScrollX)
+            const scrollY = page.offsetTop + page.offsetHeight - pos_left_top[1]
+    
+            // set positions before and after SyncTeX to viewerHistory
+            this.viewerHistory.set(container.scrollTop)
+            if (PDFViewerApplication.pdfViewer.scrollMode === 1) {
+                // horizontal scrolling
+                container.scrollLeft = page.offsetLeft
+            } else {
+                // vertical scrolling
+                container.scrollTop = scrollY - document.body.offsetHeight * 0.4
+            }
+            this.viewerHistory.set(container.scrollTop)
+    
+            if (!position.indicator) {
+                return
+            }
+
+            const indicator = indicatorTemplate.cloneNode(true) as HTMLElement
+            indicator.id = ''
+
+            indicator.classList.add('synctex-indicator-rect')
+            indicator.addEventListener('animationend', () => {
+                indicator.style.display = 'none';
+            });
+
+            indicator.style.left = `${scrollX}px`
+            indicator.style.top = `${scrollY}px`
+            indicator.style.width = `${width_px}px`
+            indicator.style.height = `${height_px}px`
+
+            indicatorParent.appendChild(indicator)
+        }
+    }
+
     private reload() {
         location.reload()
     }
@@ -480,6 +539,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             switch (data.type) {
                 case 'synctex': {
                     this.forwardSynctex(data.data)
+                    break
+                }
+                case 'synctexRange': {
+                    this.forwardSynctexRange(data.data)
                     break
                 }
                 case 'refresh': {

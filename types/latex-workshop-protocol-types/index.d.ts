@@ -1,3 +1,14 @@
+
+type SyncTeXRecordToPDFAll = {
+    Page: number;
+    x: number;
+    y: number;
+    h: number;
+    v: number;
+    W: number;
+    H: number;
+}
+
 export type ServerResponse = {
     type: 'refresh'
 } | {
@@ -10,6 +21,12 @@ export type ServerResponse = {
     }
 } | {
     type: 'reload'
+} | {
+    type: 'synctexRange',
+    data: {
+        records: SyncTeXRecordToPDFAll[],
+        indicator: boolean
+    }
 }
 
 export type PdfViewerParams = {

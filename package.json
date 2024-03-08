@@ -1672,7 +1672,22 @@
           "scope": "window",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Define the visibility of SyncTeX indicator (a red highlighting circle) after a forward SyncTeX in the PDF viewer."
+          "markdownDescription": "Define the visibility of SyncTeX indicator after a forward SyncTeX in the PDF viewer."
+        },
+        "latex-workshop.synctex.indicator.type": {
+          "scope": "window",
+          "type": "string",
+          "when": "!latex-workshop.synctex.synctexjs.enabled",
+          "enum": [
+            "Range",
+            "Spot"
+          ],
+          "enumDescriptions": [
+            "Indicates a possible range with a rectangular SyncTeX indicator.",
+            "Indicates a single specific spot with a red circle SyncTeX indicator"
+          ],
+          "default": "Range",
+          "markdownDescription": "Define the behavior of SyncTex indicator after a forward SyncTeX in the PDF viewer (tab or browser). Valid when use SyncTex binary (latex-workshop.synctex.synctexjs.enabled = false)."
         },
         "latex-workshop.synctex.afterBuild.enabled": {
           "scope": "window",
