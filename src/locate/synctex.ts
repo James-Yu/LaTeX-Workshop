@@ -246,7 +246,7 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
         const indicatorType = configuration.get('synctex.indicator.type')
 
         if (indicatorType === 'Range') {
-            void callSyncTeXToPDFRange(line, character, filePath, pdfFile).then( (recordList) => {
+            void callSyncTeXToPDFRange(line, filePath, pdfFile).then( (recordList) => {
                 if (pdfFile) {
                     void lw.viewer.locateRange(pdfFile, recordList)
                 }
@@ -327,12 +327,11 @@ function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: 
  * resolving to a SyncTeXRecordToPDFAllList object.
  *
  * @param line - The line number in the TeX file.
- * @param _col - The character position (column) in the line. (not used)
  * @param filePath - The path of the TeX file.
  * @param pdfFile - The path of the PDF file.
  * @returns A promise resolving to a SyncTeXRecordToPDFAllList object.
  */
-function callSyncTeXToPDFRange(line: number, _col: number, filePath: string, pdfFile: string): Thenable<SyncTeXRecordToPDFAllList> {
+function callSyncTeXToPDFRange(line: number, filePath: string, pdfFile: string): Thenable<SyncTeXRecordToPDFAllList> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const docker = configuration.get('docker.enabled')
     // Pass column parameter with 0 to make SyncTex Cmd ignore specific character, returning whole range of location with respect to the line.
