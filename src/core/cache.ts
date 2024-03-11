@@ -399,6 +399,9 @@ function updateBibfiles(fileCache: FileCache) {
         for (const bib of bibs) {
             const bibPaths = lw.file.getBibPath(bib, path.dirname(fileCache.filePath))
             for (const bibPath of bibPaths) {
+                if (isExcluded(bibPath)) {
+                    continue
+                }
                 fileCache.bibfiles.add(bibPath)
                 logger.log(`Bib ${bibPath} from ${fileCache.filePath} .`)
                 if (!lw.watcher.bib.has(bibPath)) {
@@ -543,6 +546,9 @@ function parseAuxFile(filePath: string, srcDir: string) {
         for (const bib of bibs) {
             const bibPaths = lw.file.getBibPath(bib, srcDir)
             for (const bibPath of bibPaths) {
+                if (isExcluded(bibPath)) {
+                    continue
+                }
                 if (lw.root.file.path && !get(lw.root.file.path)?.bibfiles.has(bibPath)) {
                     get(lw.root.file.path)?.bibfiles.add(bibPath)
                     logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
