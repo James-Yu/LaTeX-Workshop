@@ -387,7 +387,7 @@ function updateElements(fileCache: FileCache) {
  * for.
  */
 function updateBibfiles(fileCache: FileCache) {
-    const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){([\s\S]+?)}|(?:\\putbib)\[(.+?)\]/gm
+    const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(?:\\subfix{)?([\s\S]+?)(?:\})?}|(?:\\putbib)\[(.+?)\]/gm
     while (true) {
         const result = bibReg.exec(fileCache.contentTrimmed)
         if (!result) {
