@@ -330,6 +330,8 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
             }
         }
         tool.args = tool.args?.map(replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath))
+        tool.outdir = tool.args?.filter(arg => arg.startsWith('-out-directory') || arg.startsWith('-outdir'))[0]?.replace(/^-out-directory=|^-outdir=/, '')
+        tool.auxdir = tool.args?.filter(arg => arg.startsWith('-aux-directory') || arg.startsWith('-auxdir'))[0]?.replace(/^-aux-directory=|^-auxdir=/, '')
         const env = tool.env ?? {}
         Object.entries(env).forEach(([key, value]) => {
             env[key] = value && replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(value)
@@ -337,11 +339,11 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
         if (configuration.get('latex.option.maxPrintLine.enabled')) {
             tool.args = tool.args ?? []
             const isLuaLatex = tool.args.includes('-lualatex') ||
-                                tool.args.includes('-pdflua') ||
-                                tool.args.includes('-pdflualatex') ||
-                                tool.args.includes('--lualatex') ||
-                                tool.args.includes('--pdflua') ||
-                                tool.args.includes('--pdflualatex')
+                               tool.args.includes('-pdflua') ||
+                               tool.args.includes('-pdflualatex') ||
+                               tool.args.includes('--lualatex') ||
+                               tool.args.includes('--pdflua') ||
+                               tool.args.includes('--pdflualatex')
             if (isMikTeX() && ((tool.command === 'latexmk' && !isLuaLatex) || tool.command === 'pdflatex')) {
                 tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
             }

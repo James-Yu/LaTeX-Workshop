@@ -156,6 +156,7 @@ async function buildLoop() {
         if (step === undefined) {
             break
         }
+        lw.compile.lastSteps.push(step)
         const env = spawnProcess(step)
         const success = await monitorProcess(step, env)
         skipped = skipped && !(step.isExternal || !step.isSkipped)

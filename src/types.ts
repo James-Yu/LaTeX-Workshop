@@ -64,7 +64,9 @@ export type Tool = {
     name: string,
     command: string,
     args?: string[],
-    env?: ProcessEnv
+    env?: ProcessEnv,
+    outdir?: string,
+    auxdir?: string
 }
 
 export type Recipe = {

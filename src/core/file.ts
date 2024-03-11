@@ -140,6 +140,9 @@ function getOutDir(texPath?: string): string {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath))
     const outDir = configuration.get('latex.outDir') as string
     const out = utils.replaceArgumentPlaceholders(texPath, file.tmpDirPath)(outDir)
+    if (outDir === '%DIR%' || outDir === '%DIR_W32%') {
+        return lw.compile.lastSteps.filter(step => step.outdir).slice(-1)[0]?.outdir ?? path.normalize(out).split(path.sep).join('/')
+    }
     return path.normalize(out).split(path.sep).join('/')
 }
 
@@ -198,8 +201,12 @@ function getPdfPath(texPath: string): string {
 function getFlsPath(texPath: string): string | undefined {
     const rootDir = path.dirname(texPath)
     const outDir = getOutDir(texPath)
-    const baseName = path.parse(getJobname(texPath)).name
-    const flsFile = path.resolve(rootDir, path.join(outDir, baseName + '.fls'))
+    const fileName = path.parse(getJobname(texPath)).name + '.fls'
+    let flsFile = path.resolve(rootDir, path.join(outDir, fileName))
+    if (fs.existsSync(flsFile)) {
+        return flsFile
+    }
+    flsFile = path.resolve(rootDir, lw.compile.lastSteps.filter(step => step.auxdir).slice(-1)[0]?.auxdir ?? '', fileName)
     return fs.existsSync(flsFile) ? flsFile : undefined
 }
 
