@@ -1,5 +1,14 @@
 # Change Log
 
+## [9.19.1] - 2024-03-12
+
+### Fixed
+- `auxdir` is automatically determined from last run recipe.
+  - `outdir` also, for testing purpose.
+- (#4193) Optional capture pattern for `\subfix` when including `bib` files.
+- (#4195) `bib` watcher follows `latex.watch.files.ignore`.
+- (#4197) Use BibTeX log parsing rules for its variants.
+
 ## [9.19.0] - 2024-03-06
 
 ### Added
