@@ -66,6 +66,7 @@ const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
 
 const bibtexPattern = /^This is BibTeX, Version.*$/m
 const biberPattern = /^INFO - This is Biber .*$/m
+const bibtexPatternAlt = /^The top-level auxiliary file: .*$/m // #4197
 
 /**
  * @param msg The log message to parse.
@@ -83,6 +84,9 @@ function log(msg: string, rootFile?: string): boolean {
     } else if (msg.match(biberPattern)) {
         biberLogParser.parse(msg.match(latexmkPattern) ? trimLaTeXmkBiber(msg) : msg, rootFile)
         biberLogParser.showLog()
+    } else if (msg.match(bibtexPatternAlt)) {
+        bibtexLogParser.parse(msg.match(latexmkPattern) ? trimLaTeXmkBibTeX(msg) : msg, rootFile)
+        bibtexLogParser.showLog()
     }
 
     if (msg.match(latexmkPattern)) {
