@@ -11,6 +11,7 @@ suite('Cleaner test suite', () => {
 
     suiteSetup(async () => {
         await vscode.commands.executeCommand('latex-workshop.activate')
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.run', 'never')
     })
 
