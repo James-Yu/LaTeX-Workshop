@@ -134,6 +134,9 @@
     "getlocaleproperty*{}{}{}": {
       "snippet": "getlocaleproperty*{${1:cmd}}{${2:locale}}{${3:property}}"
     },
+    "ShowLocaleProperties{}": {
+      "snippet": "ShowLocaleProperties{${1:language}}"
+    },
     "LocaleForEach{}": {
       "snippet": "LocaleForEach{${1:code}}"
     },
@@ -199,6 +202,9 @@
     },
     "disablelocaleinterchar{}": {
       "snippet": "disablelocaleinterchar{${1:label}}"
+    },
+    "IfBabelIntercharT{}{}": {
+      "snippet": "IfBabelIntercharT{${1:interchar-list}}{${2:code}}"
     },
     "ensureascii{}": {
       "snippet": "ensureascii{${1:text}}"
@@ -1837,6 +1843,18 @@
     },
     "ck": {
       "option": "uppersorbian"
+    },
+    "ifcapsz": {
+      "option": "swissgerman"
+    },
+    "capsztrue": {
+      "option": "swissgerman"
+    },
+    "capszfalse": {
+      "option": "swissgerman"
+    },
+    "mkngender": {
+      "option": "swissgerman"
     },
     "captionsaustrian": {
       "option": "austrian"
@@ -4479,7 +4497,6 @@
     "headfoot=${1:language}",
     "noconfigs",
     "showlanguages",
-    "nocase",
     "silent",
     "hyphenmap=",
     "bidi=",
@@ -4541,7 +4558,8 @@
       "mapdigits",
       "calendar=${1:calendar}",
       "calendar=${1:calendar}.${2:variant}",
-      "casing="
+      "casing=",
+      "interchar=${1:interchar-list}"
     ],
     [
       "calendar=${1:calendar}",

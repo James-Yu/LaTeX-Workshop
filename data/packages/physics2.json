@@ -1,0 +1,295 @@
+{
+  "includes": {
+    "keyval": [],
+    "amsmath": []
+  },
+  "macros": {
+    "usephysicsmodule{}": {
+      "snippet": "usephysicsmodule{${1:modules}}"
+    },
+    "usephysicsmodule[]{}": {
+      "snippet": "usephysicsmodule[${2:options}]{${1:modules}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "pab{}": {
+      "snippet": "pab{${1:arg}}"
+    },
+    "pab*{}": {
+      "snippet": "pab*{${1:arg}}"
+    },
+    "pab[]{}": {
+      "snippet": "pab[${2:size}]{${1:arg}}"
+    },
+    "bab{}": {
+      "snippet": "bab{${1:arg}}"
+    },
+    "bab*{}": {
+      "snippet": "bab*{${1:arg}}"
+    },
+    "bab[]{}": {
+      "snippet": "bab[${2:size}]{${1:arg}}"
+    },
+    "Bab{}": {
+      "snippet": "Bab{${1:arg}}"
+    },
+    "Bab*{}": {
+      "snippet": "Bab*{${1:arg}}"
+    },
+    "Bab[]{}": {
+      "snippet": "Bab[${2:size}]{${1:arg}}"
+    },
+    "vab{}": {
+      "snippet": "vab{${1:arg}}"
+    },
+    "vab*{}": {
+      "snippet": "vab*{${1:arg}}"
+    },
+    "vab[]{}": {
+      "snippet": "vab[${2:size}]{${1:arg}}"
+    },
+    "aab{}": {
+      "snippet": "aab{${1:arg}}"
+    },
+    "aab*{}": {
+      "snippet": "aab*{${1:arg}}"
+    },
+    "aab[]{}": {
+      "snippet": "aab[${2:size}]{${1:arg}}"
+    },
+    "Vab{}": {
+      "snippet": "Vab{${1:arg}}"
+    },
+    "Vab*{}": {
+      "snippet": "Vab*{${1:arg}}"
+    },
+    "Vab[]{}": {
+      "snippet": "Vab[${2:size}]{${1:arg}}"
+    },
+    "ketbra": {
+      "snippet": "ketbra|subformula1>${1:optional}<subformula2|"
+    },
+    "ketbra*": {
+      "snippet": "ketbra*|subformula1>${1:optional}<subformula2|"
+    },
+    "diagmat{}": {
+      "snippet": "diagmat{${1:entry1,entry2,...}}"
+    },
+    "diagmat[]{}": {
+      "snippet": "diagmat[${2:empty=entry}]{${1:entry1,entry2,...}}"
+    },
+    "pdiagmat{}": {
+      "snippet": "pdiagmat{${1:entry1,entry2,...}}"
+    },
+    "pdiagmat[]{}": {
+      "snippet": "pdiagmat[${2:empty=entry}]{${1:entry1,entry2,...}}"
+    },
+    "bdiagmat{}": {
+      "snippet": "bdiagmat{${1:entry1,entry2,...}}"
+    },
+    "bdiagmat[]{}": {
+      "snippet": "bdiagmat[${2:empty=entry}]{${1:entry1,entry2,...}}"
+    },
+    "Bdiagmat{}": {
+      "snippet": "Bdiagmat{${1:entry1,entry2,...}}"
+    },
+    "Bdiagmat[]{}": {
+      "snippet": "Bdiagmat[${2:empty=entry}]{${1:entry1,entry2,...}}"
+    },
+    "vdiagmat{}": {
+      "snippet": "vdiagmat{${1:entry1,entry2,...}}"
+    },
+    "vdiagmat[]{}": {
+      "snippet": "vdiagmat[${2:empty=entry}]{${1:entry1,entry2,...}}"
+    },
+    "Vdiagmat{}": {
+      "snippet": "Vdiagmat{${1:entry1,entry2,...}}"
+    },
+    "Vdiagmat[]{}": {
+      "snippet": "Vdiagmat[${2:empty=entry}]{${1:entry1,entry2,...}}"
+    },
+    "doublecross": {},
+    "doubledot": {},
+    "xmat{}{}{}": {
+      "snippet": "xmat{${1:entry}}{${2:rows shown}}{${3:cols shown}}"
+    },
+    "xmat[]{}{}{}": {
+      "snippet": "xmat[${4:options}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "pxmat{}{}{}": {
+      "snippet": "pxmat{${1:entry}}{${2:rows shown}}{${3:cols shown}}"
+    },
+    "pxmat[]{}{}{}": {
+      "snippet": "pxmat[${4:options}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "bxmat{}{}{}": {
+      "snippet": "bxmat{${1:entry}}{${2:rows shown}}{${3:cols shown}}"
+    },
+    "bxmat[]{}{}{}": {
+      "snippet": "bxmat[${4:options}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "Bxmat{}{}{}": {
+      "snippet": "Bxmat{${1:entry}}{${2:rows shown}}{${3:cols shown}}"
+    },
+    "Bxmat[]{}{}{}": {
+      "snippet": "Bxmat[${4:options}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "vxmat{}{}{}": {
+      "snippet": "vxmat{${1:entry}}{${2:rows shown}}{${3:cols shown}}"
+    },
+    "vxmat[]{}{}{}": {
+      "snippet": "vxmat[${4:options}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "Vxmat{}{}{}": {
+      "snippet": "Vxmat{${1:entry}}{${2:rows shown}}{${3:cols shown}}"
+    },
+    "Vxmat[]{}{}{}": {
+      "snippet": "Vxmat[${4:options}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "abs{}": {
+      "snippet": "abs{${1:arg}}"
+    },
+    "abs*{}": {
+      "snippet": "abs*{${1:arg}}"
+    },
+    "abs[]{}": {
+      "snippet": "abs[${2:size}]{${1:arg}}"
+    },
+    "norm{}": {
+      "snippet": "norm{${1:arg}}"
+    },
+    "norm*{}": {
+      "snippet": "norm*{${1:arg}}"
+    },
+    "norm[]{}": {
+      "snippet": "norm[${2:size}]{${1:arg}}"
+    },
+    "eval{}": {
+      "snippet": "eval{${1:arg}}"
+    },
+    "eval*{}": {
+      "snippet": "eval*{${1:arg}}"
+    },
+    "eval[]{}": {
+      "snippet": "eval[${2:size}]{${1:arg}}"
+    },
+    "peval{}": {
+      "snippet": "peval{${1:arg}}"
+    },
+    "peval*{}": {
+      "snippet": "peval*{${1:arg}}"
+    },
+    "peval[]{}": {
+      "snippet": "peval[${2:size}]{${1:arg}}"
+    },
+    "beval{}": {
+      "snippet": "beval{${1:arg}}"
+    },
+    "beval*{}": {
+      "snippet": "beval*{${1:arg}}"
+    },
+    "beval[]{}": {
+      "snippet": "beval[${2:size}]{${1:arg}}"
+    },
+    "order{}": {
+      "snippet": "order{${1:arg}}"
+    },
+    "order*{}": {
+      "snippet": "order*{${1:arg}}"
+    },
+    "order[]{}": {
+      "snippet": "order[${2:size}]{${1:arg}}"
+    },
+    "bm{}": {
+      "snippet": "bm{${1:letter}}"
+    },
+    "grad": {},
+    "curl": {},
+    "laplacian": {},
+    "asin": {},
+    "acos": {},
+    "atan": {},
+    "acsc": {},
+    "asec": {},
+    "acot": {},
+    "Tr": {},
+    "tr": {},
+    "rank": {},
+    "erf": {},
+    "Res": {},
+    "res": {},
+    "PV": {},
+    "pv": {},
+    "Resymbol": {},
+    "Imsymbol": {},
+    "qqtext{}": {
+      "snippet": "qqtext{${1:text}}"
+    },
+    "qqtext*{}": {
+      "snippet": "qqtext*{${1:text}}"
+    },
+    "qq{}": {
+      "snippet": "qq{${1:text}}"
+    },
+    "qq*{}": {
+      "snippet": "qq*{${1:text}}"
+    },
+    "qcomma": {},
+    "qc": {},
+    "qcc": {},
+    "qcc*": {},
+    "qif": {},
+    "qthen": {},
+    "qelse": {},
+    "qotherwise": {},
+    "qunless": {},
+    "qgive": {},
+    "qusing": {},
+    "qassume": {},
+    "qsince": {},
+    "qlet": {},
+    "qfor": {},
+    "qall": {},
+    "qeven": {},
+    "qodd": {},
+    "qinteger": {},
+    "qand": {},
+    "qor": {},
+    "qas": {},
+    "qin": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "ab.braket",
+      "ab.legacy",
+      "ab",
+      "bm-um.legacy",
+      "braket",
+      "diagmat",
+      "doubleprod",
+      "nabla.legacy",
+      "op.legacy",
+      "qtext.legacy",
+      "xmat"
+    ],
+    [
+      "showtop=${1:rows}",
+      "showleft=${1:columns}",
+      "format=${1:format code}"
+    ]
+  ]
+}
