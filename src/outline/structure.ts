@@ -89,11 +89,19 @@ function getCachedDataRootFileName(sections: TeXElement[]): string | undefined {
     return sections[0]?.filePath
 }
 
+function getChildPaths(section: TeXElement, paths: Set<string> = new Set()) {
+    section.children.forEach(child => {
+        paths.add(child.filePath)
+        getChildPaths(child, paths)
+    })
+    return paths
+}
+
 function traverseSectionTree(sections: TeXElement[], filePath: string, lineNo: number): TeXElement | undefined {
     for (const node of sections) {
         if ((node.filePath === filePath &&
                 node.lineFr <= lineNo && node.lineTo >= lineNo) ||
-            (node.filePath !== filePath && node.children.map(child => child.filePath).includes(filePath))) {
+            (node.filePath !== filePath && getChildPaths(node).has(filePath))) {
             // Look for a more precise surrounding section
             return traverseSectionTree(node.children, filePath, lineNo) ?? node
         }
