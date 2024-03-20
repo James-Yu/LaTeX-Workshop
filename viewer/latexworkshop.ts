@@ -7,7 +7,7 @@ import {ExternalPromise} from './components/externalpromise.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
-import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState, SyncTeXRecordToPDFAll} from '../types/latex-workshop-protocol-types/index'
+import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
@@ -346,7 +346,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         // }, 1000)
     }
 
-    private forwardSynctexRange(position: { records: SyncTeXRecordToPDFAll[], indicator: boolean }) {
+    private forwardSynctexRange(records: SynctexRangeData[]) {
         if (!this.synctexEnabled) {
             this.addLogMessage('SyncTeX temporarily disabled.')
             return
@@ -355,16 +355,16 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         const indicatorTemplate = document.getElementById('synctex-indicator') as HTMLElement
         const indicatorParent = indicatorTemplate.parentNode as HTMLElement
 
-        for (const record of position.records) {
+        for (const record of records) {
             const container = document.getElementById('viewerContainer') as HTMLElement
 
-            const pos_left_top = PDFViewerApplication.pdfViewer._pages[record.Page - 1].viewport.convertToViewportPoint(record.h, record.v - record.H)
-            const pos_right_down = PDFViewerApplication.pdfViewer._pages[record.Page - 1].viewport.convertToViewportPoint(record.h + record.W, record.v)
+            const pos_left_top = PDFViewerApplication.pdfViewer._pages[record.page - 1].viewport.convertToViewportPoint(record.h, record.v - record.H)
+            const pos_right_down = PDFViewerApplication.pdfViewer._pages[record.page - 1].viewport.convertToViewportPoint(record.h + record.W, record.v)
 
             const width_px = pos_right_down[0] - pos_left_top[0]
             const height_px = pos_left_top[1] - pos_right_down[1]
 
-            const page = document.getElementsByClassName('page')[record.Page - 1] as HTMLElement
+            const page = document.getElementsByClassName('page')[record.page - 1] as HTMLElement
 
             const maxScrollX = window.innerWidth
             const minScrollX = 0
@@ -384,7 +384,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
             this.viewerHistory.set(container.scrollTop)
     
-            if (!position.indicator) {
+            if (!record.indicator) {
                 return
             }
 

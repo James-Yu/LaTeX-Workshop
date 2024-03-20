@@ -1,8 +1,12 @@
 
-type SyncTeXRecordToPDFAll = {
-    Page: number;
+type SynctexData = {
+    page: number;
     x: number;
     y: number;
+    indicator: boolean;
+}
+
+type SynctexRangeData = SynctexData & {
     h: number;
     v: number;
     W: number;
@@ -13,20 +17,12 @@ export type ServerResponse = {
     type: 'refresh'
 } | {
     type: 'synctex',
-    data: {
-        page: number,
-        x: number,
-        y: number,
-        indicator: boolean
-    }
+    data: SynctexData 
 } | {
     type: 'reload'
 } | {
     type: 'synctexRange',
-    data: {
-        records: SyncTeXRecordToPDFAll[],
-        indicator: boolean
-    }
+    data: SynctexRangeData[]
 }
 
 export type PdfViewerParams = {

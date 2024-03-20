@@ -108,18 +108,11 @@ export type SyncTeXRecordToTeX = {
     column: number
 }
 
-export type SyncTeXRecordToPDFAll = {
-    Page: number;
-    x: number;
-    y: number;
+export type SyncTeXRecordToPDFAll = SyncTeXRecordToPDF & {
     h: number;
     v: number;
     W: number;
     H: number;
-}
-
-export type SyncTeXRecordToPDFAllList = {
-    records: SyncTeXRecordToPDFAll[];
 }
 
 export interface LaTeXLinter {

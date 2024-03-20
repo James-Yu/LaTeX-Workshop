@@ -1670,24 +1670,19 @@
         },
         "latex-workshop.synctex.indicator.enabled": {
           "scope": "window",
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Define the visibility of SyncTeX indicator after a forward SyncTeX in the PDF viewer."
-        },
-        "latex-workshop.synctex.indicator.type": {
-          "scope": "window",
           "type": "string",
-          "when": "!latex-workshop.synctex.synctexjs.enabled",
           "enum": [
-            "Range",
-            "Spot"
+            "disabled",
+            "spot",
+            "range"
           ],
           "enumDescriptions": [
-            "Indicates a possible range with a rectangular SyncTeX indicator.",
-            "Indicates a single specific spot with a red circle SyncTeX indicator"
+            "Disable indicator.",
+            "Indicates a single specific spot with a red circle SyncTeX indicator.",
+            "Indicates a possible range with a blue rectangular SyncTeX indicator. (Valid when not using synctex.js)"
           ],
-          "default": "Spot",
-          "markdownDescription": "Define the behavior of SyncTex indicator after a forward SyncTeX in the PDF viewer (tab or browser). Valid when use SyncTex binary (latex-workshop.synctex.synctexjs.enabled = false)."
+          "default": "spot",
+          "markdownDescription": "Define the visibility and style of SyncTeX indicator after a forward SyncTeX in the PDF viewer."
         },
         "latex-workshop.synctex.afterBuild.enabled": {
           "scope": "window",
