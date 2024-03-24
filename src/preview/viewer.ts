@@ -392,7 +392,7 @@ function getParams(): PdfViewerParams {
  * @param pdfFile The path of a PDF file.
  * @param record The position to be revealed.
  */
-async function locate(pdfFile: string, record: SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[], indicatorType: string): Promise<void> {
+async function locate(pdfFile: string, record: SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]): Promise<void> {
     const pdfUri = vscode.Uri.file(pdfFile)
     let clientSet = manager.getClients(pdfUri)
     if (clientSet === undefined || clientSet.size === 0) {
@@ -407,14 +407,7 @@ async function locate(pdfFile: string, record: SyncTeXRecordToPDF | SyncTeXRecor
     const needDelay = showInvisibleWebviewPanel(pdfUri)
     for (const client of clientSet) {
         setTimeout(() => {
-            if (indicatorType === 'range') {
-                const rangeRecord = record as SyncTeXRecordToPDFAll[]
-                client.send({type: 'synctexRange', data: rangeRecord})
-            } else if (indicatorType === 'spot') {
-                const spotRecord = record as SyncTeXRecordToPDF
-                client.send({type: 'synctex', data: spotRecord})
-            }
-
+            client.send({type: 'synctex', data: record})
         }, needDelay ? 200 : 0)
         logger.log(`Try to synctex ${pdfFile}`)
     }

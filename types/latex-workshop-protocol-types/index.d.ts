@@ -17,12 +17,9 @@ export type ServerResponse = {
     type: 'refresh'
 } | {
     type: 'synctex',
-    data: SynctexData 
+    data: SynctexData | SynctexRangeData[]
 } | {
     type: 'reload'
-} | {
-    type: 'synctexRange',
-    data: SynctexRangeData[]
 }
 
 export type PdfViewerParams = {

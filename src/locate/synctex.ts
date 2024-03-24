@@ -242,7 +242,7 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
             if (!record) {
                 return
             }
-            void lw.viewer.locate(pdfFile, record, 'spot')
+            void lw.viewer.locate(pdfFile, record)
         } catch (e) {
             logger.logError('Forward SyncTeX failed.', e)
         }
@@ -267,7 +267,7 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
 
         void callSyncTeXToPDF(line, character, filePath, pdfFile, indicatorType).then( (record) => {
             if (pdfFile) {
-                    void lw.viewer.locate(pdfFile, record, indicatorType)
+                    void lw.viewer.locate(pdfFile, record)
             }
         })
 
