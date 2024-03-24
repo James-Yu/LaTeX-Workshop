@@ -267,7 +267,7 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
 
         void callSyncTeXToPDF(line, character, filePath, pdfFile, indicatorType).then( (record) => {
             if (pdfFile) {
-                    void lw.viewer.locate(pdfFile, record)
+                void lw.viewer.locate(pdfFile, record)
             }
         })
 
