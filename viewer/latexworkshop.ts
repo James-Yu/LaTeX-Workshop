@@ -312,10 +312,12 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         
         const container = document.getElementById('viewerContainer') as HTMLElement
 
+        // if the type of data is SynctexRangeData[], parse as a rectangular indicator.
         if (Array.isArray(data)){
             const indicatorTemplate = document.getElementById('synctex-indicator') as HTMLElement
             const indicatorParent = indicatorTemplate.parentNode as HTMLElement
 
+            // for each record in the array, create a rectangle respectively.
             for (const record of data) {
                 const pos_left_top = PDFViewerApplication.pdfViewer._pages[record.page - 1].viewport.convertToViewportPoint(record.h, record.v - record.H)
                 const pos_right_down = PDFViewerApplication.pdfViewer._pages[record.page - 1].viewport.convertToViewportPoint(record.h + record.W, record.v)

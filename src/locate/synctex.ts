@@ -235,42 +235,40 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
 
     const useSyncTexJs = configuration.get('synctex.synctexjs.enabled') as boolean
 
-    if (useSyncTexJs) {
-        try {
-            logger.log(`Forward from ${filePath} to ${pdfFile} on line ${line}.`)
-            const record = syncTeXToPDF(line, filePath, pdfFile)
-            if (!record) {
-                return
-            }
-            void lw.viewer.locate(pdfFile, record)
-        } catch (e) {
-            logger.logError('Forward SyncTeX failed.', e)
-        }
+    let indicatorType: string
+
+    const indicatorConfig = configuration.get('synctex.indicator.enabled')
+    
+    if (typeof indicatorConfig === "boolean") {
+        // if configuration is boolean in previous version, then use fallback logic.
+        indicatorType = indicatorConfig ? 'circle' : 'none'
+    } else if (typeof indicatorConfig === "string") {
+        // if configuration is enum, then use directly.
+        indicatorType = indicatorConfig
     } else {
-        let indicatorType: string;
+        throw new Error("Invalid configuration value for indicator enabled")
+    }
 
-        const indicatorConfig = configuration.get('synctex.indicator.enabled')
-        
-        if (typeof indicatorConfig === "boolean") {
-            // if configuration is boolean in previous version, then use fallback logic.
-            if (indicatorConfig) {
-                indicatorType = "spot"
-            } else {
-                indicatorType = "disabled"
-            }
-        } else if (typeof indicatorConfig === "string") {
-            // if configuration is enum, then use directly.
-            indicatorType = indicatorConfig;
-        } else {
-            throw new Error("Invalid configuration value for indicator enabled");
-        }
-
-        void callSyncTeXToPDF(line, character, filePath, pdfFile, indicatorType).then( (record) => {
-            if (pdfFile) {
+    // guard if indicatorConfig is illegal or equals to 'none', display none.
+    if (indicatorType === 'circle' || indicatorType === 'rectangle') {
+        if (useSyncTexJs) {
+            try {
+                logger.log(`Forward from ${filePath} to ${pdfFile} on line ${line}.`)
+                const record = syncTeXToPDF(line, filePath, pdfFile)
+                if (!record) {
+                    return
+                }
                 void lw.viewer.locate(pdfFile, record)
+            } catch (e) {
+                logger.logError('Forward SyncTeX failed.', e)
             }
-        })
-
+        } else {
+            void callSyncTeXToPDF(line, character, filePath, pdfFile, indicatorType).then( (record) => {
+                if (pdfFile) {
+                    void lw.viewer.locate(pdfFile, record)
+                }
+            })
+        }
     }
 }
 
@@ -294,12 +292,11 @@ function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: 
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const docker = configuration.get('docker.enabled')
 
-    let args: string[]
-    if (indicatorType === 'range') {
-        args = ['view', '-i', `${line}:0:${docker ? path.basename(filePath): filePath}`, '-o', docker ? path.basename(pdfFile): pdfFile]
-    } else {
-        args = ['view', '-i', `${line}:${col + 1}:${docker ? path.basename(filePath): filePath}`, '-o', docker ? path.basename(pdfFile): pdfFile]
-    }
+    const args = ['view', '-i'].concat([
+        `${line}${indicatorType === 'rectangle' ? ':0' : `:${col + 1}`}:${docker ? path.basename(filePath) : filePath}`,
+        '-o',
+        docker ? path.basename(pdfFile) : pdfFile
+    ])
 
     let command = configuration.get('synctex.path') as string
     if (docker) {
@@ -335,12 +332,7 @@ function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: 
             if (exitCode !== 0) {
                 logger.logError(`(${logTag}) Forward SyncTeX failed.`, exitCode, stderr)
             } else {
-                if (indicatorType === 'range') {
-                    resolve(parseToPDFList(stdout))
-                } else if (indicatorType === 'spot') {
-                    resolve(parseToPDF(stdout))
-                }
-                // indicatorType === 'disabled' will do nothing, return directly
+                resolve(indicatorType === 'rectangle' ? parseToPDFList(stdout) : parseToPDF(stdout))
             }
         })
     }) as Thenable<SyncTeXRecordToPDF> | Thenable<SyncTeXRecordToPDFAll[]>
