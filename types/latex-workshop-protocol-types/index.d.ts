@@ -1,13 +1,23 @@
+
+type SynctexData = {
+    page: number;
+    x: number;
+    y: number;
+    indicator: boolean;
+}
+
+type SynctexRangeData = SynctexData & {
+    h: number;
+    v: number;
+    W: number;
+    H: number;
+}
+
 export type ServerResponse = {
     type: 'refresh'
 } | {
     type: 'synctex',
-    data: {
-        page: number,
-        x: number,
-        y: number,
-        indicator: boolean
-    }
+    data: SynctexData | SynctexRangeData[]
 } | {
     type: 'reload'
 }

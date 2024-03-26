@@ -4,7 +4,7 @@ import * as path from 'path'
 import * as os from 'os'
 import * as cs from 'cross-spawn'
 import { lw } from '../lw'
-import type { SyncTeXRecordToPDF, ViewerMode } from '../types'
+import type { SyncTeXRecordToPDF, SyncTeXRecordToPDFAll, ViewerMode } from '../types'
 import * as manager from './viewer/pdfviewermanager'
 import { populate } from './viewer/pdfviewerpanel'
 
@@ -392,7 +392,7 @@ function getParams(): PdfViewerParams {
  * @param pdfFile The path of a PDF file.
  * @param record The position to be revealed.
  */
-async function locate(pdfFile: string, record: SyncTeXRecordToPDF): Promise<void> {
+async function locate(pdfFile: string, record: SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]): Promise<void> {
     const pdfUri = vscode.Uri.file(pdfFile)
     let clientSet = manager.getClients(pdfUri)
     if (clientSet === undefined || clientSet.size === 0) {
@@ -407,8 +407,7 @@ async function locate(pdfFile: string, record: SyncTeXRecordToPDF): Promise<void
     const needDelay = showInvisibleWebviewPanel(pdfUri)
     for (const client of clientSet) {
         setTimeout(() => {
-            const indicator = vscode.workspace.getConfiguration('latex-workshop').get('synctex.indicator.enabled') as boolean
-            client.send({type: 'synctex', data: {...record, indicator}})
+            client.send({type: 'synctex', data: record})
         }, needDelay ? 200 : 0)
         logger.log(`Try to synctex ${pdfFile}`)
     }
