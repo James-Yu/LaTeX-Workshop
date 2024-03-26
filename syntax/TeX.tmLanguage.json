@@ -2,6 +2,35 @@
 	"name": "TeX",
 	"patterns": [
 		{
+			"begin": "(\\\\)iffalse",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.control.tex"
+				},
+				"1": {
+					"name": "punctuation.definition.keyword.tex"
+				}
+			},
+			"end": "(\\\\)(else|fi)",
+			"endCaptures": {
+				"0": {
+					"name": "keyword.control.tex"
+				},
+				"1": {
+					"name": "punctuation.definition.keyword.tex"
+				}
+			},
+			"contentName": "comment.line.percentage.tex",
+			"patterns": [
+				{
+					"include": "#comment"
+				},
+				{
+					"include": "#conditionals"
+				}
+			]
+		},
+		{
 			"captures": {
 				"1": {
 					"name": "punctuation.definition.keyword.tex"
@@ -29,35 +58,7 @@
 			"name": "meta.catcode.tex"
 		},
 		{
-			"begin": "(^[ \\t]+)?(?=%)",
-			"beginCaptures": {
-				"1": {
-					"name": "punctuation.whitespace.comment.leading.tex"
-				}
-			},
-			"end": "(?!\\G)",
-			"patterns": [
-				{
-					"begin": "%:?",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.comment.tex"
-						}
-					},
-					"end": "$\\n?",
-					"name": "comment.line.percentage.tex"
-				},
-				{
-					"begin": "^(%!TEX) (\\S*) =",
-					"beginCaptures": {
-						"1": {
-							"name": "punctuation.definition.comment.tex"
-						}
-					},
-					"end": "$\\n?",
-					"name": "comment.line.percentage.directive.tex"
-				}
-			]
+			"include": "#comment"
 		},
 		{
 			"match": "[\\[\\]]",
@@ -114,6 +115,37 @@
 		}
 	],
 	"repository": {
+		"comment": {
+			"begin": "(^[ \\t]+)?(?=%)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.whitespace.comment.leading.tex"
+				}
+			},
+			"end": "(?!\\G)",
+			"patterns": [
+				{
+					"begin": "%:?",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.tex"
+						}
+					},
+					"end": "$\\n?",
+					"name": "comment.line.percentage.tex"
+				},
+				{
+					"begin": "^(%!TEX) (\\S*) =",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.comment.tex"
+						}
+					},
+					"end": "$\\n?",
+					"name": "comment.line.percentage.directive.tex"
+				}
+			]
+		},
 		"math": {
 			"patterns": [
 				{
@@ -272,6 +304,18 @@
 			"patterns": [
 				{
 					"include": "#braces"
+				}
+			]
+		},
+		"conditionals": {
+			"begin": "\\\\(if[a-z]*)",
+			"end": "\\\\fi",
+			"patterns": [
+				{
+					"include": "#comment"
+				},
+				{
+					"include": "#conditionals"
 				}
 			]
 		}
