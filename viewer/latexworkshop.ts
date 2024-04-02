@@ -35,7 +35,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
         // Bugfix when using LaTeXWorkshop with web based version of vscode
         try {
-          parent.document.addEventListener('webviewerloaded', () => resolve() );
+          parent.document.addEventListener('webviewerloaded', () => resolve() )
         } catch(err) { /* do nothing */ }
     })
     private synctexEnabled = true
