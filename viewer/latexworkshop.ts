@@ -32,6 +32,11 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     // - https://github.com/mozilla/pdf.js/pull/10318
     private readonly webViewerLoaded: Promise<void> = new Promise((resolve) => {
         document.addEventListener('webviewerloaded', () => resolve() )
+
+        // Bugfix when using LaTeXWorkshop with web based version of vscode
+        try {
+          parent.document.addEventListener('webviewerloaded', () => resolve() );
+        } catch(err) { /* do nothing */ }
     })
     private synctexEnabled = true
     private autoReloadEnabled = true
