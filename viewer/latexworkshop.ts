@@ -33,7 +33,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private readonly webViewerLoaded: Promise<void> = new Promise((resolve) => {
         document.addEventListener('webviewerloaded', () => resolve() )
 
-        // Bugfix when using LaTeXWorkshop with web based version of vscode
+        // https://github.com/James-Yu/LaTeX-Workshop/pull/4220#issuecomment-2034520751
         try {
           parent.document.addEventListener('webviewerloaded', () => resolve() )
         } catch(err) { /* do nothing */ }
