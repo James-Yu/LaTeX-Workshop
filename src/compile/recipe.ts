@@ -21,6 +21,14 @@ function setDockerImage() {
     process.env['LATEXWORKSHOP_DOCKER_LATEX'] = dockerImageName
 }
 
+setDockerPath()
+lw.onConfigChange('docker.path', setDockerPath)
+function setDockerPath() {
+    const dockerPath: string = vscode.workspace.getConfiguration('latex-workshop').get('docker.path', '')
+    logger.log(`Set $LATEXWORKSHOP_DOCKER_PATH: ${JSON.stringify(dockerPath)}`)
+    process.env['LATEXWORKSHOP_DOCKER_PATH'] = dockerPath
+}
+
 /**
  * Build LaTeX project using the recipe system. Creates Tools containing the
  * tool info and adds them to the queue. Initiates a buildLoop if there is no
