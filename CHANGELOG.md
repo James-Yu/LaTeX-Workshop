@@ -1,5 +1,12 @@
 # Change Log
 
+## [9.19.2] - 2024-04-04
+
+### Fixed
+- Prevent `.aux` and `.out` file changes from triggering auto-build
+- (#4207) Cursor tracing in structure works across files with 2+ level differences.
+- ($4220) Synctex does not work while using vscode in browser.
+
 ## [9.19.1] - 2024-03-12
 
 ### Fixed
