@@ -447,7 +447,8 @@ async function loadFlsFile(filePath: string) {
             // onWatchedFileChange.
             continue
         }
-        if (path.extname(inputFile) === '.tex') {
+        const inputExt = path.extname(inputFile)
+        if (inputExt === '.tex') {
             if (get(filePath) === undefined) {
                 logger.log(`Cache not finished on ${filePath} when parsing fls, try re-cache.`)
                 await refreshCache(filePath)
@@ -466,8 +467,8 @@ async function loadFlsFile(filePath: string) {
             } else {
                 logger.log(`Cache not finished on ${filePath} when parsing fls.`)
             }
-        } else if (!lw.watcher.src.has(inputFile)) {
-            // Watch non-tex files.
+        } else if (!lw.watcher.src.has(inputFile) && !['.aux', '.out'].includes(inputExt)) {
+            // Watch non-tex files. aux and out are excluded because they are auto-generated during the building process
             add(inputFile)
         }
     }

@@ -34,7 +34,7 @@ function autoBuild(file: string, type: 'onFileChange' | 'onSave', bibChanged: bo
     if (configuration.get('latex.autoBuild.run') as string !== type) {
         return
     }
-    logger.log('Auto build started' + (type === 'onFileChange' ? 'detecting the change of a file' : 'on saving file') + `: ${file} .`)
+    logger.log('Auto build started ' + (type === 'onFileChange' ? 'detecting the change of a file' : 'on saving file') + `: ${file} .`)
     lw.event.fire(lw.event.AutoBuildInitiated, {type, file})
     if (!canAutoBuild()) {
         logger.log('Autobuild temporarily disabled.')
