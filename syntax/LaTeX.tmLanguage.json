@@ -2897,6 +2897,32 @@
             "name": "meta.function.verb.latex"
         },
         {
+            "begin": "((\\\\)(?:directlua|luadirect))(\\{)",
+            "beginCaptures": {
+                "1": {
+                    "name": "support.function.verb.latex"
+                },
+                "2": {
+                    "name": "punctuation.definition.function.latex"
+                },
+                "3": {
+                    "name": "punctuation.definition.arguments.begin.latex"
+                }
+            },
+            "end": "\\}",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.arguments.end.latex"
+                }
+            },
+            "contentName": "source.lua",
+            "patterns": [
+                {
+                    "include": "source.lua"
+                }
+            ]
+        },
+        {
             "match": "\\\\(?:newline|pagebreak|clearpage|linebreak|pause)(?:\\b)",
             "name": "keyword.control.layout.latex"
         },
