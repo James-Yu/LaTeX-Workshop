@@ -133,7 +133,11 @@ function parse(cache: FileCache) {
 function parseAst(node: Ast.Node, nodeStack: Ast.Node[], filePath: string, lines: string[], labelMacros: string[]): ReferenceItem[] {
     let refs: ReferenceItem[] = []
     if (node.type === 'macro' &&
-        ['renewcommand', 'newcommand', 'providecommand', 'DeclareMathOperator', 'renewenvironment', 'newenvironment'].includes(node.content)) {
+        ['renewcommand', 'newcommand', 'providecommand', 'DeclareMathOperator', 'renewenvironment', 'newenvironment',
+         'NewDocumentCommand', 'RenewDocumentCommand', 'ProvideDocumentCommand', 'DeclareDocumentCommand',
+         'NewDocumentEnvironment', 'RenewDocumentEnvironment', 'ProvideDocumentEnvironment', 'DeclareDocumentEnvironment',
+         'NewExpandableDocumentCommand', 'RenewExpandableDocumentCommand', 'ProvideExpandableDocumentCommand', 'DeclareExpandableDocumentCommand'
+        ].includes(node.content)) {
         // Do not scan labels inside \newcommand, \newenvironment & co
         return []
     }
