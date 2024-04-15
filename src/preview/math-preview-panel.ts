@@ -180,7 +180,7 @@ async function update(ev?: UpdateEvent) {
     }
     const editor = vscode.window.activeTextEditor
     const document = editor?.document
-    if (!editor || !document?.languageId || !lw.file.hasTexLangId(document.languageId)) {
+    if (!editor || !document?.languageId || !lw.file.hasTeXLangId(document.languageId)) {
         clearCache()
         return
     }

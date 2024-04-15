@@ -26,7 +26,7 @@ loadConfigs()
 
 lw.onConfigChange(['texcount', 'docker.enabled'], loadConfigs)
 lw.onDispose(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
-    if (e && lw.file.hasTexLangId(e.document.languageId)) {
+    if (e && lw.file.hasTeXLangId(e.document.languageId)) {
         loadConfigs(e.document.uri)
     } else {
         state.statusBar.hide()

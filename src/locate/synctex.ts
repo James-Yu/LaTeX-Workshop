@@ -200,7 +200,7 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
 
     if (args === undefined) {
         filePath = vscode.window.activeTextEditor.document.uri.fsPath
-        if (!lw.file.hasTexLangId(vscode.window.activeTextEditor.document.languageId)) {
+        if (!lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
             logger.log(`${filePath} is not valid LaTeX.`)
             return
         }
