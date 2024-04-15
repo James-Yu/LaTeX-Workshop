@@ -1799,6 +1799,7 @@
     "bibrangedash": {},
     "bibrangessep": {},
     "bibdatesep": {},
+    "bibdatendsep": {},
     "bibdaterangesep": {},
     "mkbibdatelong{}{}{}": {
       "snippet": "mkbibdatelong{${1:year}}{${2:month}}{${3:day}}"
@@ -2733,6 +2734,9 @@
     "iflabelalphanametemplatename{}{}{}": {
       "snippet": "iflabelalphanametemplatename{${1:string}}{${2:true}}{${3:false}}"
     },
+    "ifnamehashtemplatename{}{}{}": {
+      "snippet": "ifnamehashtemplatename{${1:string}}{${2:true}}{${3:false}}"
+    },
     "iffieldundef{}{}{}": {
       "snippet": "iffieldundef{${1:field}}{${2:true}}{${3:false}}"
     },
@@ -3596,6 +3600,9 @@
     "AtNextRefsection{}": {
       "snippet": "AtNextRefsection{${1:code}}"
     },
+    "AtFollowingRefsections{}": {
+      "snippet": "AtFollowingRefsections{${1:code}}"
+    },
     "AtBeginBibliography{}": {
       "snippet": "AtBeginBibliography{${1:code}}"
     },
@@ -3674,6 +3681,12 @@
     },
     "DeclareUniquenameTemplate[]{}": {
       "snippet": "DeclareUniquenameTemplate[${2:name}]{${1:specification}}"
+    },
+    "DeclareNamehashTemplate{}": {
+      "snippet": "DeclareNamehashTemplate{${1:specification}}"
+    },
+    "DeclareNamehashTemplate[]{}": {
+      "snippet": "DeclareNamehashTemplate[${2:name}]{${1:specification}}"
     },
     "actualoperator": {},
     "begrelateddelimmultivolume": {},
@@ -7804,6 +7817,7 @@
       "sortingnamekeytemplatename=${1:name}",
       "uniquenametemplatename=${1:name}",
       "labelalphanametemplatename=${1:name}",
+      "namehashtemplatename=${1:name}",
       "nametemplates=${1:name}",
       "labelprefix=${1:string}"
     ],
@@ -7812,6 +7826,7 @@
       "sortingnamekeytemplatename=${1:name}",
       "uniquenametemplatename=${1:name}",
       "labelalphanametemplatename=${1:name}",
+      "namehashtemplatename=${1:name}",
       "nametemplates=${1:name}",
       "labelprefix=${1:string}",
       "name=${1:refcontextname}"
@@ -7913,7 +7928,8 @@
       "strside=",
       "inits",
       "base",
-      "disambiguation="
+      "disambiguation=",
+      "hashscope="
     ],
     [
       "locale="
