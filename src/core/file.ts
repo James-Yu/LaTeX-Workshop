@@ -275,7 +275,7 @@ function getBibPath(bib: string, baseDir: string): string[] {
     const bibPath = bib.includes('*') ? utils.resolveFileGlob(searchDirs, bib, '.bib') : utils.resolveFile(searchDirs, bib, '.bib')
 
     if (bibPath === undefined || bibPath.length === 0) {
-        if (configuration.get('kpsewhich.enabled')) {
+        if (configuration.get('kpsewhich.bibtex.enabled')) {
             const kpsePath = kpsewhich(['-format=.bib', bib])
             return kpsePath ? [ kpsePath ] : []
         } else {

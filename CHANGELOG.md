@@ -1,5 +1,12 @@
 # Change Log
 
+## Unreleased
+
+### Fixed
+- (#4215) Use `kpsewhich.class.enabled` and `kpsewhich.bibtex.enabled` to control `kpsewhich`.
+  - Replaces `kpsewhich.enabled`.
+- (#4227) Ignore label defs in `xparse` macros.
+
 ## [9.19.2] - 2024-04-04
 
 ### Fixed
