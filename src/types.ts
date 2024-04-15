@@ -109,10 +109,10 @@ export type SyncTeXRecordToTeX = {
 }
 
 export type SyncTeXRecordToPDFAll = SyncTeXRecordToPDF & {
-    h: number;
-    v: number;
-    W: number;
-    H: number;
+    h: number,
+    v: number,
+    W: number,
+    H: number
 }
 
 export interface LaTeXLinter {

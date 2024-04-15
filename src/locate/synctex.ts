@@ -65,63 +65,63 @@ function parseToPDF(result: string): SyncTeXRecordToPDF {
  * Parse the result of SyncTeX forward to PDF with a list.
  *
  * This function takes the result of SyncTeX forward to PDF as a string and
- * parses it to extract page number, x-coordinate, y-coordinate, box-based 
- * coordinates (h, v, H, W), and whether the red indicator should be shown 
- * in the viewer.
+ * parses it to extract page number, x-coordinate, y-coordinate, box-based
+ * coordinates (h, v, H, W), and whether the red indicator should be shown in
+ * the viewer.
  *
  * @param result - The result string of SyncTeX forward to PDF.
- * @returns A SyncTeXRecordToPDFAllList object containing a list of records, 
- * with each record containing page number, x-coordinate, y-coordinate, 
+ * @returns A SyncTeXRecordToPDFAllList object containing a list of records,
+ * with each record containing page number, x-coordinate, y-coordinate,
  * h-coordinate, v-coordinate, H-coordinate, W-coordinate, and an indicator.
  * @throws Error if there is a parsing error.
  */
 function parseToPDFList(result: string): SyncTeXRecordToPDFAll[] {
-    const records: SyncTeXRecordToPDFAll[] = [];
-    let started = false;
-    let recordIndex = -1;
+    const records: SyncTeXRecordToPDFAll[] = []
+    let started = false
+    let recordIndex = -1
 
     for (const line of result.split('\n')) {
         if (line.includes('SyncTeX result begin')) {
-            started = true;
-            continue;
+            started = true
+            continue
         }
 
         if (line.includes('SyncTeX result end')) {
-            break;
+            break
         }
 
         if (!started) {
-            continue;
+            continue
         }
 
-        const pos = line.indexOf(':');
+        const pos = line.indexOf(':')
         if (pos < 0) {
-            continue;
+            continue
         }
 
-        const key = line.substring(0, pos);
-        const value = line.substring(pos + 1).trim();
+        const key = line.substring(0, pos)
+        const value = line.substring(pos + 1).trim()
 
-        if (key == 'Output') {
-            recordIndex += 1;
-            const record : SyncTeXRecordToPDFAll = { page: 0, x: 0, y: 0, h: 0, v: 0, W: 0, H: 0, indicator: true };
-            records[recordIndex] = record;
+        if (key === 'Output') {
+            recordIndex += 1
+            const record: SyncTeXRecordToPDFAll = { page: 0, x: 0, y: 0, h: 0, v: 0, W: 0, H: 0, indicator: true }
+            records[recordIndex] = record
         }
 
         if (key === 'Page' || key === 'h' || key === 'v' || key === 'W' || key === 'H' || key === 'x' || key === 'y') {
-            const record = records[recordIndex];
+            const record = records[recordIndex]
             if (record) {
                 if (key === 'Page') {
                     record['page'] = Number(value)
                 } else {
-                    record[key] = Number(value);
+                    record[key] = Number(value)
                 }
             }
         }
     }
 
-    if (recordIndex != -1) {
-        return records;
+    if (recordIndex !== -1) {
+        return records
     } else {
         throw(new Error('parse error when parsing the result of synctex forward.'))
     }
@@ -238,15 +238,13 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
     let indicatorType: string
 
     const indicatorConfig = configuration.get('synctex.indicator.enabled')
-    
-    if (typeof indicatorConfig === "boolean") {
+
+    if (typeof indicatorConfig === 'boolean') {
         // if configuration is boolean in previous version, then use fallback logic.
         indicatorType = indicatorConfig ? 'circle' : 'none'
-    } else if (typeof indicatorConfig === "string") {
-        // if configuration is enum, then use directly.
-        indicatorType = indicatorConfig
     } else {
-        throw new Error("Invalid configuration value for indicator enabled")
+        // if configuration is enum, then use directly.
+        indicatorType = indicatorConfig as string
     }
 
     // guard if indicatorConfig is illegal or equals to 'none', display none.
@@ -286,9 +284,9 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
  * @param indicatorType - The type of the SyncTex indicator.
  * @returns A promise resolving to a SyncTeXRecordToPDF object or a SyncTeXRecordToPDF[] object.
  */
-function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicatorType: string): Thenable<SyncTeXRecordToPDF>;
-function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicatorType: string): Thenable<SyncTeXRecordToPDFAll[]>;
-function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicatorType: string): Thenable<SyncTeXRecordToPDF> | Thenable<SyncTeXRecordToPDFAll[]>  {
+function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicatorType: string): Thenable<SyncTeXRecordToPDF>
+function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicatorType: string): Thenable<SyncTeXRecordToPDFAll[]>
+function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicatorType: string): Thenable<SyncTeXRecordToPDF> | Thenable<SyncTeXRecordToPDFAll[]> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const docker = configuration.get('docker.enabled')
 
