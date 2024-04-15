@@ -233,45 +233,27 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
         return
     }
 
-    const useSyncTexJs = configuration.get('synctex.synctexjs.enabled') as boolean
-
-    let indicatorType: string
-
-    const indicatorConfig = configuration.get('synctex.indicator.enabled')
-
-    if (typeof indicatorConfig === 'boolean') {
-        // if configuration is boolean in previous version, then use fallback logic.
-        indicatorType = indicatorConfig ? 'circle' : 'none'
-    } else {
-        // if configuration is enum, then use directly.
-        indicatorType = indicatorConfig as string
-    }
-
-    // guard if indicatorConfig is illegal or equals to 'none', display none.
-    if (indicatorType === 'circle' || indicatorType === 'rectangle') {
-        if (useSyncTexJs) {
-            try {
-                logger.log(`Forward from ${filePath} to ${pdfFile} on line ${line}.`)
-                const record = syncTeXToPDF(line, filePath, pdfFile)
-                if (!record) {
-                    return
-                }
-                void lw.viewer.locate(pdfFile, record)
-            } catch (e) {
-                logger.logError('Forward SyncTeX failed.', e)
-            }
-        } else {
-            void callSyncTeXToPDF(line, character, filePath, pdfFile, indicatorType).then( (record) => {
-                if (pdfFile) {
-                    void lw.viewer.locate(pdfFile, record)
-                }
-            })
+    callSyncTeXToPDF(line, character, filePath, pdfFile, configuration.get('synctex.indicator') as 'none' | 'circle' | 'rectangle').then((record) => {
+        if (pdfFile) {
+            void lw.viewer.locate(pdfFile, record)
         }
-    }
+    }).catch(() => {
+        try {
+            logger.log(`Forward with synctex.js from ${filePath} to ${pdfFile} on line ${line}.`)
+            const record = syncTeXToPDF(line, filePath, pdfFile)
+            if (!record) {
+                return
+            }
+            void lw.viewer.locate(pdfFile, record)
+        } catch (e) {
+            logger.logError('Forward SyncTeX failed.', e)
+        }
+    })
 }
 
 /**
- * Call SyncTeX to PDF for a specific line and character position.
+ * Call SyncTeX to PDF for a specific line and character position. If SyncTeX
+ * call failed, raise an exception.
  *
  * This function calls the SyncTeX binary to retrieve PDF information for a
  * given line and character position in a TeX file. It returns a promise
@@ -281,17 +263,18 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
  * @param col - The character position (column) in the line.
  * @param filePath - The path of the TeX file.
  * @param pdfFile - The path of the PDF file.
- * @param indicatorType - The type of the SyncTex indicator.
- * @returns A promise resolving to a SyncTeXRecordToPDF object or a SyncTeXRecordToPDF[] object.
+ * @param indicator - The type of the SyncTex indicator.
+ * @returns A promise resolving to a SyncTeXRecordToPDF object or a
+ * SyncTeXRecordToPDF[] object.
  */
-function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicatorType: string): Thenable<SyncTeXRecordToPDF>
-function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicatorType: string): Thenable<SyncTeXRecordToPDFAll[]>
-function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicatorType: string): Thenable<SyncTeXRecordToPDF> | Thenable<SyncTeXRecordToPDFAll[]> {
+function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDF>
+function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDFAll[]>
+function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDF> | Promise<SyncTeXRecordToPDFAll[]> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const docker = configuration.get('docker.enabled')
 
     const args = ['view', '-i'].concat([
-        `${line}${indicatorType === 'rectangle' ? ':0' : `:${col + 1}`}:${docker ? path.basename(filePath) : filePath}`,
+        `${line}${indicator === 'rectangle' ? ':0' : `:${col + 1}`}:${docker ? path.basename(filePath) : filePath}`,
         '-o',
         docker ? path.basename(pdfFile) : pdfFile
     ])
@@ -305,7 +288,7 @@ function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: 
             fs.chmodSync(command, 0o755)
         }
     }
-    const logTag = docker ? 'Docker' : 'Legacy'
+    const logTag = docker ? 'Docker' : 'SyncTeX'
     logger.log(`Forward from ${filePath} to ${pdfFile} on line ${line}.`)
     const proc = cs.spawn(command, args, {cwd: path.dirname(pdfFile)})
     proc.stdout.setEncoding('utf8')
@@ -321,19 +304,25 @@ function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: 
         stderr += newStderr
     })
 
-    proc.on('error', err => {
-        logger.logError(`(${logTag}) Forward SyncTeX failed.`, err, stderr)
-    })
+    return new Promise<SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]>( (resolve, reject) => {
+        proc.on('error', err => {
+            logger.logError(`(${logTag}) Forward SyncTeX failed, fallback to synctex.js.`, err, stderr)
+            reject()
+        })
 
-    return new Promise<SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]>( (resolve) => {
         proc.on('exit', exitCode => {
             if (exitCode !== 0) {
-                logger.logError(`(${logTag}) Forward SyncTeX failed.`, exitCode, stderr)
+                logger.logError(`(${logTag}) Forward SyncTeX failed, fallback to synctex.js.`, exitCode, stderr)
+                reject()
             } else {
-                resolve(indicatorType === 'rectangle' ? parseToPDFList(stdout) : parseToPDF(stdout))
+                const record = indicator === 'rectangle' ? parseToPDFList(stdout) : parseToPDF(stdout)
+                if (!Array.isArray(record)) {
+                    record.indicator = indicator !== 'none'
+                }
+                resolve(record)
             }
         })
-    }) as Thenable<SyncTeXRecordToPDF> | Thenable<SyncTeXRecordToPDFAll[]>
+    }) as Promise<SyncTeXRecordToPDF> | Promise<SyncTeXRecordToPDFAll[]>
 }
 
 /**
@@ -405,14 +394,16 @@ function callSyncTeXToTeX(page: number, x: number, y: number, pdfPath: string): 
         stderr += newStderr
     })
 
-    proc.on('error', err => {
-        logger.logError(`(${logTag}) Backward SyncTeX failed.`, err, stderr)
-    })
 
-    return new Promise( (resolve) => {
+    return new Promise( (resolve, reject) => {
+        proc.on('error', err => {
+            logger.logError(`(${logTag}) Backward SyncTeX failed.`, err, stderr)
+            reject()
+        })
         proc.on('exit', exitCode => {
             if (exitCode !== 0) {
                 logger.logError(`(${logTag}) Backward SyncTeX failed.`, exitCode, stderr)
+                reject()
             } else {
                 const record = parseToTeX(stdout)
                 resolve(record)
@@ -435,10 +426,14 @@ function callSyncTeXToTeX(page: number, x: number, y: number, pdfPath: string): 
 async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfPath: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const docker = configuration.get('docker.enabled')
-    const useSyncTexJs = configuration.get('synctex.synctexjs.enabled') as boolean
     let record: SyncTeXRecordToTeX
 
-    if (useSyncTexJs) {
+    try {
+        record = await callSyncTeXToTeX(data.page, data.pos[0], data.pos[1], pdfPath)
+        if (docker && process.platform === 'win32') {
+            record.input = path.join(path.dirname(pdfPath), record.input.replace('/data/', ''))
+        }
+    } catch {
         try {
             logger.log(`Backward from ${pdfPath} at x=${data.pos[0]}, y=${data.pos[1]} on page ${data.page}.`)
             const temp = syncTeXToTeX(data.page, data.pos[0], data.pos[1], pdfPath)
@@ -449,11 +444,6 @@ async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pd
         } catch (e) {
             logger.logError('Backward SyncTeX failed.', e)
             return
-        }
-    } else {
-        record = await callSyncTeXToTeX(data.page, data.pos[0], data.pos[1], pdfPath)
-        if (docker && process.platform === 'win32') {
-            record.input = path.join(path.dirname(pdfPath), record.input.replace('/data/', ''))
         }
     }
     record.input = record.input.replace(/(\r\n|\n|\r)/gm, '')
