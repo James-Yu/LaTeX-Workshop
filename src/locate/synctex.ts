@@ -221,30 +221,26 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
         logger.log('No root file found.')
         return
     }
-    if (!pdfFile) {
-        pdfFile = lw.file.getPdfPath(rootFile)
-    }
+    const targetPdfFile = pdfFile ?? lw.file.getPdfPath(rootFile)
     if (vscode.window.activeTextEditor.document.lineCount === line &&
         vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {
             line -= 1
     }
     if (forcedViewer === 'external' || (forcedViewer === 'auto' && configuration.get('view.pdf.viewer') === 'external') ) {
-        syncTeXExternal(line, pdfFile, rootFile)
+        syncTeXExternal(line, targetPdfFile, rootFile)
         return
     }
 
-    callSyncTeXToPDF(line, character, filePath, pdfFile, configuration.get('synctex.indicator') as 'none' | 'circle' | 'rectangle').then((record) => {
-        if (pdfFile) {
-            void lw.viewer.locate(pdfFile, record)
-        }
+    callSyncTeXToPDF(line, character, filePath, targetPdfFile, configuration.get('synctex.indicator') as 'none' | 'circle' | 'rectangle').then((record) => {
+        void lw.viewer.locate(targetPdfFile, record)
     }).catch(() => {
         try {
             logger.log(`Forward with synctex.js from ${filePath} to ${pdfFile} on line ${line}.`)
-            const record = syncTeXToPDF(line, filePath, pdfFile)
+            const record = syncTeXToPDF(line, filePath, targetPdfFile)
             if (!record) {
                 return
             }
-            void lw.viewer.locate(pdfFile, record)
+            void lw.viewer.locate(targetPdfFile, record)
         } catch (e) {
             logger.logError('Forward SyncTeX failed.', e)
         }
