@@ -54,6 +54,26 @@ html[dir='rtl'] .findbar {
     transform: translate(-50%, -50%);
 }
 
+@keyframes synctex-indicator-fadeOut {
+    0% {
+        background-color: rgba(255, 0, 0, 0.4);
+    }
+    25% {
+        background-color: rgba(255, 0, 0, 0.4);
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0);
+    }
+}
+
+.synctex-indicator-rect {
+    position: absolute;
+    z-index: 100000;
+    background-color: rgba(0, 0, 255, 0.5);
+    pointer-events: none;
+    animation: synctex-indicator-fadeOut 1s forwards;
+}
+
 #synctex-indicator.show {
     transition: none;
     opacity: 0.8;

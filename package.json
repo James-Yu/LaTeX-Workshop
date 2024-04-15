@@ -1682,9 +1682,19 @@
         },
         "latex-workshop.synctex.indicator.enabled": {
           "scope": "window",
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Define the visibility of SyncTeX indicator (a red highlighting circle) after a forward SyncTeX in the PDF viewer."
+          "type": "string",
+          "enum": [
+            "none",
+            "circle",
+            "rectangle"
+          ],
+          "enumDescriptions": [
+            "Hide the indicator.",
+            "Indicates a possible location with a red circular SyncTeX indicator.",
+            "Indicates the whole line selected in the Tex file with a red rectangular SyncTeX indicator. (Valid when not using synctex.js)"
+          ],
+          "default": "circle",
+          "markdownDescription": "Define the visibility and style of SyncTeX indicator after a forward SyncTeX in the PDF viewer."
         },
         "latex-workshop.synctex.afterBuild.enabled": {
           "scope": "window",

@@ -7,7 +7,7 @@ import {ExternalPromise} from './components/externalpromise.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
-import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState} from '../types/latex-workshop-protocol-types/index'
+import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState, SynctexData, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
@@ -309,46 +309,94 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.sendCurrentStateToPanelManager()
     }
 
-    private forwardSynctex(position: { page: number, x: number, y: number, indicator: boolean }) {
-        if (!this.synctexEnabled) {
-            this.addLogMessage('SyncTeX temporarily disabled.')
-            return
-        }
-        // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
-        // https://github.com/James-Yu/LaTeX-Workshop/pull/417
+    private scrollToPosition(page: HTMLElement, posX: number, posY: number, isCircle: boolean = false): { scrollX: number, scrollY: number } {
         const container = document.getElementById('viewerContainer') as HTMLElement
-        const pos = PDFViewerApplication.pdfViewer._pages[position.page - 1].viewport.convertToViewportPoint(position.x, position.y)
-        const page = document.getElementsByClassName('page')[position.page - 1] as HTMLElement
-        const maxScrollX = window.innerWidth * 0.9
-        const minScrollX = window.innerWidth * 0.1
-        let scrollX = page.offsetLeft + pos[0]
+        const maxScrollX = window.innerWidth * (isCircle ? 0.9 : 1)
+        const minScrollX = window.innerWidth * (isCircle ? 0.1 : 0)
+        let scrollX = page.offsetLeft + posX
         scrollX = Math.min(scrollX, maxScrollX)
         scrollX = Math.max(scrollX, minScrollX)
-        const scrollY = page.offsetTop + page.offsetHeight - pos[1]
+        const scrollY = page.offsetTop + page.offsetHeight - posY
 
-        // set positions before and after SyncTeX to viewerHistory
         this.viewerHistory.set(container.scrollTop)
         if (PDFViewerApplication.pdfViewer.scrollMode === 1) {
-            // horizontal scrolling
             container.scrollLeft = page.offsetLeft
         } else {
-            // vertical scrolling
             container.scrollTop = scrollY - document.body.offsetHeight * 0.4
         }
         this.viewerHistory.set(container.scrollTop)
 
-        if (!position.indicator) {
-            return
+        return { scrollX, scrollY }
+    }
+
+    private createIndicator(type: 'rect' | 'circ', scrollX: number, scrollY: number, width_px?: number, height_px?: number): void {
+        let indicator = document.getElementById('synctex-indicator') as HTMLElement
+
+        if (type === 'rect') {
+            const parent = indicator.parentNode as HTMLElement
+            indicator = indicator.cloneNode(true) as HTMLElement
+            indicator.id = ''
+            indicator.classList.add('synctex-indicator-rect')
+            indicator.style.width = `${width_px}px`
+            indicator.style.height = `${height_px}px`
+            indicator.addEventListener('animationend', () => {
+                indicator.style.display = 'none'
+                parent.removeChild(indicator)
+            })
+            parent.appendChild(indicator)
+        } else {
+            indicator.className = 'show'
+            setTimeout(() => indicator.className = 'hide', 10)
+            // setTimeout(() => {
+            //     indicator.style.left = ''
+            //     indicator.style.top = ''
+            // }, 1000)
         }
-        const indicator = document.getElementById('synctex-indicator') as HTMLElement
-        indicator.className = 'show'
         indicator.style.left = `${scrollX}px`
         indicator.style.top = `${scrollY}px`
-        setTimeout(() => indicator.className = 'hide', 10)
-        // setTimeout(() => {
-        //     indicator.style.left = ''
-        //     indicator.style.top = ''
-        // }, 1000)
+
+    }
+
+    private forwardSynctexRect(data: SynctexRangeData[]) {
+        for (const record of data) {
+            const page = document.getElementsByClassName('page')[record.page - 1] as HTMLElement
+            const pos_left_top = PDFViewerApplication.pdfViewer._pages[record.page - 1].viewport.convertToViewportPoint(record.h, record.v - record.H)
+            const pos_right_down = PDFViewerApplication.pdfViewer._pages[record.page - 1].viewport.convertToViewportPoint(record.h + record.W, record.v)
+
+            const { scrollX, scrollY } = this.scrollToPosition(page, pos_left_top[0], pos_left_top[1])
+
+            if (record.indicator) {
+                const width_px = pos_right_down[0] - pos_left_top[0]
+                const height_px = pos_left_top[1] - pos_right_down[1]
+                this.createIndicator('rect', scrollX, scrollY, width_px, height_px)
+            }
+        }
+    }
+
+    private forwardSynctexCirc(data: SynctexData) {
+        const page = document.getElementsByClassName('page')[data.page - 1] as HTMLElement
+        // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
+        // https://github.com/James-Yu/LaTeX-Workshop/pull/417
+        const pos = PDFViewerApplication.pdfViewer._pages[data.page - 1].viewport.convertToViewportPoint(data.x, data.y)
+        const { scrollX, scrollY } = this.scrollToPosition(page, pos[0], pos[1], true)
+
+        if (data.indicator) {
+            this.createIndicator('circ', scrollX, scrollY)
+        }
+    }
+
+    private forwardSynctex(data: SynctexData | SynctexRangeData[]) {
+        if (!this.synctexEnabled) {
+            this.addLogMessage('SyncTeX temporarily disabled.')
+            return
+        }
+
+        // if the type of data is SynctexRangeData[], parse as a rectangular indicator.
+        if (Array.isArray(data)){
+            this.forwardSynctexRect(data)
+        } else {
+            this.forwardSynctexCirc(data)
+        }
     }
 
     private reload() {

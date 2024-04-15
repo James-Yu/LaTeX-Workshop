@@ -110,6 +110,13 @@ export type SyncTeXRecordToTeX = {
     column: number
 }
 
+export type SyncTeXRecordToPDFAll = SyncTeXRecordToPDF & {
+    h: number,
+    v: number,
+    W: number,
+    H: number
+}
+
 export interface LaTeXLinter {
     readonly linterDiagnostics: vscode.DiagnosticCollection,
     getName(): string,
