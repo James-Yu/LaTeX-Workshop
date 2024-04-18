@@ -1,6 +1,4 @@
 {
-    "name": "RSweave",
-    "scopeName": "text.tex.latex.rsweave",
     "fileTypes": [
         "rnw",
         "Rnw",
@@ -9,6 +7,7 @@
         "snw",
         "Snw"
     ],
+    "name": "RSweave",
     "patterns": [
         {
             "captures": {
@@ -39,8 +38,26 @@
             "include": "text.tex.latex"
         },
         {
-            "name": "text.tex.latex.rsweave.codeblock",
             "begin": "^(\\s*?)(<<)(.*?)(>>=)\\s*(.+)?\\s*\\n",
+            "beginCaptures": {
+                "2": {
+                    "name": "meta.tag.rsweave"
+                },
+                "3": {
+                    "patterns": [
+                        {
+                            "include": "source.r#function-parameters"
+                        }
+                    ]
+                },
+                "4": {
+                    "name": "meta.tag.rsweave"
+                },
+                "5": {
+                    "name": "invalid.illegal.rsweave"
+                }
+            },
+            "contentName": "source.r",
             "end": "^\\1(@)\\s*(.+)?\\s*\\n",
             "endCaptures": {
                 "1": {
@@ -50,30 +67,13 @@
                     "name": "invalid.illegal.rsweave"
                 }
             },
-            "beginCaptures": {
-                "2": {
-                    "name": "meta.tag.rsweave"
-                },
-                "4": {
-                    "name": "meta.tag.rsweave"
-                },
-                "5": {
-                    "name": "invalid.illegal.rsweave"
-                },
-                "3": {
-                    "patterns": [
-                        {
-                            "include": "source.r#function-parameters"
-                        }
-                    ]
-                }
-            },
-            "contentName": "source.r",
+            "name": "text.tex.latex.rsweave.codeblock",
             "patterns": [
                 {
                     "include": "source.r"
                 }
             ]
         }
-    ]
+    ],
+    "scopeName": "text.tex.latex.rsweave"
 }

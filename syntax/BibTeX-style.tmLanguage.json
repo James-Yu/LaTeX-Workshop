@@ -1,116 +1,116 @@
 {
-  "name": "BibTeX Style",
-  "scopeName": "source.bst",
-  "patterns": [
-    {
-      "include": "#comments"
-    },
-    {
-      "include": "#function-declaration"
-    },
-    {
-      "include": "#command-keywords"
-    },
-    {
-      "include": "#operators"
-    },
-    {
-      "include": "#builtin-objects"
-    },
-    {
-      "include": "#string"
-    },
-    {
-      "include": "#number"
-    }
-  ],
-  "repository": {
-    "function-declaration": {
-      "name": "meta.function.bst",
-      "begin": "\\b(FUNCTION)\\s*\\{\\s*([[:alpha:]_.\\$]*\\$?)",
-      "end": "\\}",
-      "beginCaptures": {
-        "1": {
-          "name": "storage.type.function.bst"
+    "name": "BibTeX Style",
+    "patterns": [
+        {
+            "include": "#comments"
         },
-        "2": {
-          "name": "entity.name.function.bst"
+        {
+            "include": "#function-declaration"
+        },
+        {
+            "include": "#command-keywords"
+        },
+        {
+            "include": "#operators"
+        },
+        {
+            "include": "#builtin-objects"
+        },
+        {
+            "include": "#string"
+        },
+        {
+            "include": "#number"
         }
-      }
-    },
-    "command-keywords": {
-      "patterns": [
-        {
-          "name": "storage.type.int.bst",
-          "match": "\\b(?<!\\.)INTEGERS\\b(?!\\.)"
+    ],
+    "repository": {
+        "builtin-objects": {
+            "patterns": [
+                {
+                    "match": "\\b(?<!\\.)(if\\$|while\\$)(?!(\\w|\\.))",
+                    "name": "keyword.control.bst"
+                },
+                {
+                    "match": "\\b(?<!\\.)(add\\.period\\$|call\\.type\\$|change\\.case\\$|chr\\.to\\.int\\$|cite\\$|duplicate\\$|empty\\$|format\\.name\\$|int\\.to\\.chr\\$|int\\.to\\.chr\\$|int\\.to\\.str\\$|missing\\$|newline\\$|num\\.names\\$|pop\\$|preamble\\$|purify\\$|quote\\$|skip\\$|stack\\$|substring\\$|swap\\$|text\\.length\\$|text\\.prefix\\$|top\\$|type\\$|warning\\$|width\\$|write\\$)(?!(\\w|\\.))",
+                    "name": "support.function.bst"
+                },
+                {
+                    "match": "\\b(?<!\\.)(entry\\.max\\$|global\\.max\\$)(?!(\\w|\\.))",
+                    "name": "support.constant.bst"
+                },
+                {
+                    "match": "\\b(?<!\\.)sort\\.key\\$(?!(\\w|\\.))",
+                    "name": "support.variable.bst"
+                }
+            ]
         },
-        {
-          "name": "storage.type.var.bst",
-          "match": "\\b(?<!\\.)(ENTRY|MACRO|STRINGS)\\b(?!\\.)"
+        "command-keywords": {
+            "patterns": [
+                {
+                    "match": "\\b(?<!\\.)INTEGERS\\b(?!\\.)",
+                    "name": "storage.type.int.bst"
+                },
+                {
+                    "match": "\\b(?<!\\.)(ENTRY|MACRO|STRINGS)\\b(?!\\.)",
+                    "name": "storage.type.var.bst"
+                },
+                {
+                    "match": "\\b(?<!\\.)(READ|EXECUTE|ITERATE|REVERSE|SORT)\\b(?!\\.)",
+                    "name": "support.function.bst"
+                }
+            ]
         },
-        {
-          "name": "support.function.bst",
-          "match": "\\b(?<!\\.)(READ|EXECUTE|ITERATE|REVERSE|SORT)\\b(?!\\.)"
+        "comments": {
+            "begin": "%",
+            "end": "$",
+            "name": "comment.line.percentage.bst"
+        },
+        "function-declaration": {
+            "begin": "\\b(FUNCTION)\\s*\\{\\s*([[:alpha:]_.\\$]*\\$?)",
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.type.function.bst"
+                },
+                "2": {
+                    "name": "entity.name.function.bst"
+                }
+            },
+            "end": "\\}",
+            "name": "meta.function.bst"
+        },
+        "number": {
+            "match": "#-?\\d+\\b",
+            "name": "constant.numeric.bst"
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "match": "<|>",
+                    "name": "keyword.operator.relational.bst"
+                },
+                {
+                    "match": "\\=",
+                    "name": "keyword.operator.comparison.bst"
+                },
+                {
+                    "match": "\\+|-|\\*",
+                    "name": "keyword.operator.arithmetic.bst"
+                },
+                {
+                    "match": ":\\=",
+                    "name": "keyword.operator.assignment.bst"
+                },
+                {
+                    "match": "\\b(?<!\\.)(and|or|not)(?!(\\w|\\.))",
+                    "name": "keyword.operator.logic.bst"
+                }
+            ]
+        },
+        "string": {
+            "begin": "\"",
+            "end": "\"",
+            "name": "string.quoted.double.bst"
         }
-      ]
     },
-    "operators": {
-      "patterns": [
-        {
-          "name": "keyword.operator.relational.bst",
-          "match": "<|>"
-        },
-        {
-          "name": "keyword.operator.comparison.bst",
-          "match": "\\="
-        },
-        {
-          "name": "keyword.operator.arithmetic.bst",
-          "match": "\\+|-|\\*"
-        },
-        {
-          "name": "keyword.operator.assignment.bst",
-          "match": ":\\="
-        },
-        {
-          "name": "keyword.operator.logic.bst",
-          "match": "\\b(?<!\\.)(and|or|not)(?!(\\w|\\.))"
-        }
-      ]
-    },
-    "builtin-objects": {
-      "patterns": [
-        {
-          "name": "keyword.control.bst",
-          "match": "\\b(?<!\\.)(if\\$|while\\$)(?!(\\w|\\.))"
-        },
-        {
-          "name": "support.function.bst",
-          "match": "\\b(?<!\\.)(add\\.period\\$|call\\.type\\$|change\\.case\\$|chr\\.to\\.int\\$|cite\\$|duplicate\\$|empty\\$|format\\.name\\$|int\\.to\\.chr\\$|int\\.to\\.chr\\$|int\\.to\\.str\\$|missing\\$|newline\\$|num\\.names\\$|pop\\$|preamble\\$|purify\\$|quote\\$|skip\\$|stack\\$|substring\\$|swap\\$|text\\.length\\$|text\\.prefix\\$|top\\$|type\\$|warning\\$|width\\$|write\\$)(?!(\\w|\\.))"
-        },
-        {
-          "name": "support.constant.bst",
-          "match": "\\b(?<!\\.)(entry\\.max\\$|global\\.max\\$)(?!(\\w|\\.))"
-        },
-        {
-          "name": "support.variable.bst",
-          "match": "\\b(?<!\\.)sort\\.key\\$(?!(\\w|\\.))"
-        }
-      ]
-    },
-    "string": {
-      "name": "string.quoted.double.bst",
-      "begin": "\"",
-      "end": "\""
-    },
-    "number": {
-      "name": "constant.numeric.bst",
-      "match": "#-?\\d+\\b"
-    },
-    "comments": {
-      "name": "comment.line.percentage.bst",
-      "begin": "%",
-      "end": "$"
-    }
-  }
+    "scopeName": "source.bst"
 }

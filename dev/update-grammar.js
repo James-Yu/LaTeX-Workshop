@@ -2,6 +2,8 @@ const fs = require('fs')
 const path = require('path')
 const vel = require('vscode-extend-language')
 
+const syntaxDir = path.join(__dirname, '..', 'syntax')
+
 async function downloadFile(repo, file, version='main') {
     const url = 'https://raw.githubusercontent.com/' + repo + '/' + version + '/' + file
     var content = await vel.download(url)
@@ -9,7 +11,7 @@ async function downloadFile(repo, file, version='main') {
         console.log('Cannot retrieve ', url)
         return
     }
-    const syntaxFilePath = '../syntax/' + path.basename(file)
+    const syntaxFilePath = path.join(syntaxDir, path.basename(file))
     fs.writeFileSync(syntaxFilePath, content)
     console.log('Updating', syntaxFilePath)
 }
@@ -32,6 +34,18 @@ async function main() {
     }
     for (const file of grammarFiles) {
         downloadFile(latexBasicsRepo, 'syntaxes/' + file)
+    }
+
+    // The order of the files matters!
+    languageFiles = [
+        'latex-cpp-embedded-language-configuration.json',
+        'markdown-latex-combined-language-configuration.json',
+        'latex-language-configuration.json',
+        'latex3-language-configuration.json'
+    ]
+    for (const file of languageFiles) {
+        console.log('Expanding', path.join(syntaxDir, file))
+        await vel.expandConfigurationFile(path.join(syntaxDir, 'src', file), path.join(syntaxDir, file))
     }
 }
 

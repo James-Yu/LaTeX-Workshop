@@ -1,0 +1,25 @@
+name: jlweave
+patterns:
+- include: text.tex.latex
+- begin: ^(\s*?)(<<)(.*?)(>>=)\s*(.+)?\s*\n
+  beginCaptures:
+    '2':
+      name: meta.tag.jlweave
+    '3':
+      patterns:
+      - include: source.julia
+    '4':
+      name: meta.tag.jlweave
+    '5':
+      name: invalid.illegal.jlweave
+  contentName: source.julia
+  end: ^\1(@)\s*(.+)?\s*\n
+  endCaptures:
+    '1':
+      name: meta.tag.jlweave
+    '2':
+      name: invalid.illegal.jlweave
+  name: text.tex.latex.jlweave.codeblock
+  patterns:
+  - include: source.julia
+scopeName: text.tex.latex.jlweave

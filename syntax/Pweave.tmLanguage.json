@@ -1,13 +1,30 @@
 {
     "name": "pweave",
-    "scopeName": "text.tex.latex.pweave",
     "patterns": [
         {
             "include": "text.tex.latex"
         },
         {
-            "name": "text.tex.latex.pweave.codeblock",
             "begin": "^(\\s*?)(<<)(.*?)(>>=)\\s*(.+)?\\s*\\n",
+            "beginCaptures": {
+                "2": {
+                    "name": "meta.tag.pweave"
+                },
+                "3": {
+                    "patterns": [
+                        {
+                            "include": "source.python"
+                        }
+                    ]
+                },
+                "4": {
+                    "name": "meta.tag.pweave"
+                },
+                "5": {
+                    "name": "invalid.illegal.pweave"
+                }
+            },
+            "contentName": "source.python",
             "end": "^\\1(@)\\s*(.+)?\\s*\\n",
             "endCaptures": {
                 "1": {
@@ -17,25 +34,7 @@
                     "name": "invalid.illegal.pweave"
                 }
             },
-            "beginCaptures": {
-                "2": {
-                    "name": "meta.tag.pweave"
-                },
-                "4": {
-                    "name": "meta.tag.pweave"
-                },
-                "5": {
-                    "name": "invalid.illegal.pweave"
-                },
-                "3": {
-                    "patterns": [
-                        {
-                            "include": "source.python"
-                        }
-                    ]
-                }
-            },
-            "contentName": "source.python",
+            "name": "text.tex.latex.pweave.codeblock",
             "patterns": [
                 {
                     "include": "source.python"
@@ -43,8 +42,6 @@
             ]
         },
         {
-            "name": "text.tex.latex.pweave.inlinecode",
-            "match": "(<%=?)\\s*(.*?)\\s*(%>)",
             "captures": {
                 "1": {
                     "name": "meta.tag.pweave"
@@ -59,7 +56,10 @@
                 "3": {
                     "name": "meta.tag.pweave"
                 }
-            }
+            },
+            "match": "(<%=?)\\s*(.*?)\\s*(%>)",
+            "name": "text.tex.latex.pweave.inlinecode"
         }
-    ]
+    ],
+    "scopeName": "text.tex.latex.pweave"
 }

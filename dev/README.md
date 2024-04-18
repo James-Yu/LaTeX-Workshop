@@ -122,4 +122,5 @@ This script generates intellisense data for LaTeX stored in [`../data/expl3.json
 
 ## Grammar files
 
-All the grammar files `*.tmLanguage.json` in `../syntax/` except `latexblock.tmLanguage.json` are retrieved from https://github.com/jlelong/vscode-latex-basics. They are updated by running the script `update-grammar.js`.
+- `update-grammar.js` retrieves the latest grammar files from https://github.com/jlelong/vscode-latex-basics.
+-`build-grammar.js` generates the `.json` grammar files from `.yaml`.

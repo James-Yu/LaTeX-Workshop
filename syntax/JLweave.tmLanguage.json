@@ -1,13 +1,30 @@
 {
     "name": "jlweave",
-    "scopeName": "text.tex.latex.jlweave",
     "patterns": [
         {
             "include": "text.tex.latex"
         },
         {
-            "name": "text.tex.latex.jlweave.codeblock",
             "begin": "^(\\s*?)(<<)(.*?)(>>=)\\s*(.+)?\\s*\\n",
+            "beginCaptures": {
+                "2": {
+                    "name": "meta.tag.jlweave"
+                },
+                "3": {
+                    "patterns": [
+                        {
+                            "include": "source.julia"
+                        }
+                    ]
+                },
+                "4": {
+                    "name": "meta.tag.jlweave"
+                },
+                "5": {
+                    "name": "invalid.illegal.jlweave"
+                }
+            },
+            "contentName": "source.julia",
             "end": "^\\1(@)\\s*(.+)?\\s*\\n",
             "endCaptures": {
                 "1": {
@@ -17,30 +34,13 @@
                     "name": "invalid.illegal.jlweave"
                 }
             },
-            "beginCaptures": {
-                "2": {
-                    "name": "meta.tag.jlweave"
-                },
-                "4": {
-                    "name": "meta.tag.jlweave"
-                },
-                "5": {
-                    "name": "invalid.illegal.jlweave"
-                },
-                "3": {
-                    "patterns": [
-                        {
-                            "include": "source.julia"
-                        }
-                    ]
-                }
-            },
-            "contentName": "source.julia",
+            "name": "text.tex.latex.jlweave.codeblock",
             "patterns": [
                 {
                     "include": "source.julia"
                 }
             ]
         }
-    ]
+    ],
+    "scopeName": "text.tex.latex.jlweave"
 }
