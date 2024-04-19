@@ -64,6 +64,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.pageTrimmer = new PageTrimmer(this)
 
         this.setupConnectionPort()
+            .catch((e) => console.error("Setting up connection port failed:", e))
 
         this.onDidStartPdfViewer(() => {
             return this.applyParamsOnStart()
@@ -521,14 +522,14 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    private setupConnectionPort() {
+    private async setupConnectionPort() {
         const openPack: ClientRequest = {
             type: 'open',
             pdfFileUri: this.pdfFileUri,
             viewer: (this.embedded ? 'tab' : 'browser')
         }
         this.send(openPack)
-        this.connectionPort.onDidReceiveMessage((event: MessageEvent<string>) => {
+        await this.connectionPort.onDidReceiveMessage((event: MessageEvent<string>) => {
             const data = JSON.parse(event.data) as ServerResponse
             switch (data.type) {
                 case 'synctex': {
@@ -549,39 +550,32 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
         })
 
-        this.connectionPort.onDidClose(() => {
+        await this.connectionPort.onDidClose(async () => {
             document.title = `[Disconnected] ${this.documentTitle}`
-            console.log('Closed: WebScocket to LaTeX Workshop.')
+            console.log('Closed: WebSocket to LaTeX Workshop.')
 
             // Since WebSockets are disconnected when PC resumes from sleep,
             // we have to reconnect. https://github.com/James-Yu/LaTeX-Workshop/pull/1812
-            const reconnect = (tries: number = 1) => () => {
-                const retry = () => {
-                    if (tries <= 10) {
-                        tries++
-                        setTimeout(reconnect(tries), 1000 * (tries + 2))
-                    } else {
-                        console.log('Cannot reconnect to LaTeX Workshop.')
-                    }
-                }
-                const onOpen = () => {
-                    document.title = this.documentTitle
-                    try {
-                        this.setupConnectionPort()
-                        console.log('Reconnected: WebSocket to LaTeX Workshop.')
-                    } catch {
-                        retry()
-                    }
-                }
+            await sleep(3000)
+
+            let tries = 1
+            while (tries <= 10) {
                 console.log(`Try to reconnect to LaTeX Workshop: (${tries}/10).`)
                 try {
                     this.connectionPort = createConnectionPort(this)
-                    this.connectionPort.onDidOpen(onOpen)
-                } catch {
-                    retry()
+                    await this.connectionPort.awaitOpen()
+                    document.title = this.documentTitle
+                    await this.setupConnectionPort()
+                    console.log('Reconnected: WebSocket to LaTeX Workshop.')
+                    return
+                } catch (e) {
+                    console.error(e)
                 }
+
+                await sleep(1000 * (tries + 2))
+                tries++
             }
-            setTimeout(reconnect(), 3000)
+            console.error('Cannot reconnect to LaTeX Workshop.')
         })
     }
 
@@ -864,6 +858,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.sendToPanelManager({type: 'initialized'})
     }
 
+}
+
+async function sleep(timeout: number) {
+    await new Promise((resolve) => setTimeout(resolve, timeout))
 }
 
 const extension = new LateXWorkshopPdfViewer()
