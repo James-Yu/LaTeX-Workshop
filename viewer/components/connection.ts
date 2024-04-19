@@ -2,10 +2,10 @@ import type {ClientRequest} from '../../types/latex-workshop-protocol-types/inde
 import type {ILatexWorkshopPdfViewer} from './interface.js'
 
 export interface IConnectionPort {
-    send(message: ClientRequest): void | Promise<void>,
-    onDidReceiveMessage(cb: (event: WebSocketEventMap['message']) => void): void,
-    onDidClose(cb: () => unknown): void,
-    onDidOpen(cb: () => unknown): void
+    send(message: ClientRequest): Promise<void>,
+    onDidReceiveMessage(cb: (event: WebSocketEventMap['message']) => void): Promise<void>,
+    onDidClose(cb: () => unknown): Promise<void>,
+    awaitOpen(): Promise<void>
 }
 
 export function createConnectionPort(lwApp: ILatexWorkshopPdfViewer): IConnectionPort {
@@ -62,8 +62,10 @@ export class WebSocketPort implements IConnectionPort {
         sock.addEventListener('close', () => cb())
     }
 
-    async onDidOpen(cb: () => unknown) {
-        await this.socket
-        cb()
+    async awaitOpen() {
+        const sock = await this.socket
+        if (sock.readyState !== 1) {
+            throw new Error(`Connection to ${this.server} is not open.`)
+        }
     }
 }
