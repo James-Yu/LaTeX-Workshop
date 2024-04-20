@@ -18,8 +18,7 @@ patterns:
   end: ^(%)    (\\end\{macrocode\})
   patterns:
   - include: '#guards'
-  - include: text.tex.latex.expl3
-  - include: text.tex
+  - include: text.tex.latex
 - include: '#guards'
 - match: (^[ \t]*)%?%
   name: comment.line.percentage.doctex
@@ -27,7 +26,7 @@ patterns:
   name: comment.line.percentage.tex
 - match: (?<=[^%\\])%
   name: invalid
-- include: text.tex.latex.expl3
+- include: text.tex.latex
 repository:
   guards:
     match: ^%(\<[^\>]*\>)
