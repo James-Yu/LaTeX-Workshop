@@ -64,7 +64,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.pageTrimmer = new PageTrimmer(this)
 
         this.setupConnectionPort()
-            .catch((e) => console.error("Setting up connection port failed:", e))
+            .catch((e) => console.error('Setting up connection port failed:', e))
 
         this.onDidStartPdfViewer(() => {
             return this.applyParamsOnStart()
