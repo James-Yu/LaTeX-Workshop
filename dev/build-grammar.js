@@ -23,7 +23,6 @@ async function main() {
         'src/BibTeX-style.tmLanguage.yaml',
         'src/DocTeX.tmLanguage.yaml',
         'src/JLweave.tmLanguage.yaml',
-        'src/LaTeX-Expl3.tmLanguage.yaml',
         'src/Pweave.tmLanguage.yaml',
         'src/RSweave.tmLanguage.yaml'
     ]
