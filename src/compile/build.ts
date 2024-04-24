@@ -40,6 +40,7 @@ function autoBuild(file: string, type: 'onFileChange' | 'onSave', bibChanged: bo
         logger.log('Autobuild temporarily disabled.')
         return
     }
+    lw.compile.lastAutoBuildTime = Date.now()
     if (!bibChanged && lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
         return build(true, lw.root.subfiles.path, lw.root.subfiles.langId)
     } else {
@@ -57,7 +58,7 @@ function autoBuild(file: string, type: 'onFileChange' | 'onSave', bibChanged: bo
  */
 function canAutoBuild(): boolean {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.file.path ? vscode.Uri.file(lw.root.file.path) : undefined)
-    return Date.now() - lw.compile.lastBuildTime >= (configuration.get('latex.autoBuild.interval', 1000) as number)
+    return Date.now() - lw.compile.lastAutoBuildTime >= (configuration.get('latex.autoBuild.interval', 1000) as number)
 }
 
 let isBuilding = false
@@ -147,7 +148,6 @@ async function buildLoop() {
 
     isBuilding = true
     lw.compile.compiledPDFWriting++
-    lw.compile.lastBuildTime = Date.now()
     // Stop watching the PDF file to avoid reloading the PDF viewer twice.
     // The builder will be responsible for refreshing the viewer.
     let skipped = true

@@ -76,7 +76,7 @@ export async function reset() {
     await vscode.commands.executeCommand('workbench.action.closeAllEditors')
     await Promise.all(Object.values(lw.cache.promises))
     lw.compile.lastSteps = []
-    lw.compile.lastBuildTime = 0
+    lw.compile.lastAutoBuildTime = 0
     lw.compile.compiledPDFPath = ''
     lw.compile.compiledPDFWriting = 0
     lw.root.file.path = undefined

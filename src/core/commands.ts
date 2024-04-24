@@ -445,7 +445,7 @@ export function texdocUsepackages() {
 }
 
 export async function saveActive() {
-    lw.compile.lastBuildTime = Date.now()
+    lw.compile.lastAutoBuildTime = Date.now()
     await vscode.window.activeTextEditor?.document.save()
 }
 

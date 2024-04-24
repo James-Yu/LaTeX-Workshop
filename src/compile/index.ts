@@ -8,7 +8,7 @@ export const compile = {
     autoBuild,
     terminate,
     lastSteps: [] as Step[],
-    lastBuildTime: 0,
+    lastAutoBuildTime: 0,
     compiledPDFPath: '',
     compiledPDFWriting: 0,
     process: undefined as ChildProcessWithoutNullStreams | undefined
