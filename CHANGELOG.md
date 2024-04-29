@@ -1,5 +1,16 @@
 # Change Log
 
+## [9.20.1] - 2024-04-29
+
+### Fixed
+- Update grammars.
+- (#4215) Add `tkz-euclide` suggestions, update some others
+- (#4233) Cache outdir/auxdir per root file.
+- (#4239) Use synctex.js for backward sync (CJK-compatible)
+- (#4243) Fix WebSocket reconnect mechanism.
+- (#4247) Fix racing build-on-save when multiple files are edited.
+- (#4252) `intellisense.label.command` should not affect reference parsing.
+
 ## [9.20.0] - 2024-04-15
 
 ### Added
