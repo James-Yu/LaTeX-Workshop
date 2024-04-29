@@ -124,7 +124,8 @@ function parse(cache: FileCache) {
     if (cache.ast !== undefined) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const labelMacros = configuration.get('intellisense.label.command') as string[]
-        cache.elements.reference = parseAst(cache.ast, [], cache.filePath, cache.content.split('\n'), labelMacros)
+        const defaultLabelMacros = configuration.inspect('intellisense.label.command')?.defaultValue as string[]
+        cache.elements.reference = parseAst(cache.ast, [], cache.filePath, cache.content.split('\n'), [... new Set(labelMacros.concat(defaultLabelMacros))])
     } else {
         cache.elements.reference = parseContent(cache.content, cache.filePath)
     }
