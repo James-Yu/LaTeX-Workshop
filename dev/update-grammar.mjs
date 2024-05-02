@@ -44,7 +44,7 @@ async function updateGrammars() {
         console.log('Cannot read last commit information')
     }
     for (const file of grammarFiles) {
-        void downloadFile(latexBasicsRepo, 'syntaxes/' + file)
+        await downloadFile(latexBasicsRepo, 'syntaxes/' + file)
     }
 
 }
