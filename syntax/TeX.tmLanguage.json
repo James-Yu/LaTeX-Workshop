@@ -101,7 +101,16 @@
                     "name": "punctuation.definition.function.tex"
                 }
             },
-            "match": "(\\\\)(?:[,;]|(?:[\\p{Alphabetic}@]+(?:(?:_[\\p{Alphabetic}@]+)*:[NncVvoxefTFpwD]*)?))",
+            "match": "(\\\\)(?:[,;]|(?:[\\p{Alphabetic}@]+(?:(?:_[\\p{Alphabetic}@]+)*:[NncVvoxefTFpwD]*)?)|(?:_+[\\p{Alphabetic}@]+(?:_[\\p{Alphabetic}@]+)*:[NncVvoxefTFpwD]*))",
+            "name": "support.function.general.tex"
+        },
+        {
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.function.tex"
+                }
+            },
+            "match": "(\\.)[\\p{Alphabetic}@]+(?:_[\\p{Alphabetic}@]+)*:[NncVvoxefTFpwD]*",
             "name": "support.function.general.tex"
         },
         {
