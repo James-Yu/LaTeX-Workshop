@@ -110,7 +110,7 @@ async function parseNode(
             ...attributes
         }
     } else if (node.type === 'macro' && config.macros.cmds.includes(node.content)) {
-        const argStr = argContentToStr(node.args?.[1]?.content || [])
+        const argStr = argContentToStr(node.args?.[2]?.content || [])
         element = {
             type: TeXElementType.Macro,
             name: node.content,

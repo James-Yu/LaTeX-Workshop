@@ -37,11 +37,14 @@ const ENVS: EnvInfoRecord = {}
 
 export function getMacroDefs(): MacroInfoRecord {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const cmds = configuration.get('view.outline.commands') as string[]
+    const cmds = [... new Set([
+        ...configuration.get('view.outline.commands') as string[],
+        ...configuration.get('intellisense.label.command') as string[]
+    ])]
     const secs = (configuration.get('view.outline.sections') as string[]).map(level => level.split('|')).flat()
 
     const macroDefs = Object.assign({}, MACROS)
-    cmds.forEach(cmd => macroDefs[cmd] = { signature: 'o m' })
+    cmds.forEach(cmd => macroDefs[cmd] = { signature: 'd<> o m' })
     secs.forEach(sec => macroDefs[sec] = { signature: 's o m' })
 
     return macroDefs
