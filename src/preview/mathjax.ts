@@ -9,7 +9,7 @@ export const mathjax = {
     typeset
 }
 
-const pool: workerpool.WorkerPool = workerpool.pool(
+const pool: workerpool.Pool = workerpool.pool(
     path.join(__dirname, 'mathjax', 'mathjax.js'),
     { minWorkers: 1, maxWorkers: 1, workerType: 'process' }
 )
