@@ -1,5 +1,5 @@
 diff --git a/../../web/viewer.mjs b/../viewer/viewer.mjs
-index e9041cadd..abe86214e 100644
+index 28fdb8765..8cfd52e60 100644
 --- a/../../web/viewer.mjs
 +++ b/../viewer/viewer.mjs
 @@ -1121,7 +1121,7 @@ class Localization {
@@ -11,7 +11,7 @@ index e9041cadd..abe86214e 100644
        }
      }
      if (!hasAtLeastOneBundle && typeof console !== "undefined") {
-@@ -2537,7 +2537,7 @@ const PDFViewerApplication = {
+@@ -2551,7 +2551,7 @@ const PDFViewerApplication = {
          title = url;
        }
      }
@@ -20,7 +20,7 @@ index e9041cadd..abe86214e 100644
    },
    setTitle(title = this._title) {
      this._title = title;
-@@ -2989,7 +2989,7 @@ const PDFViewerApplication = {
+@@ -2998,7 +2998,7 @@ const PDFViewerApplication = {
      this.metadata = metadata;
      this._contentDispositionFilename ??= contentDispositionFilename;
      this._contentLength ??= contentLength;
@@ -29,7 +29,7 @@ index e9041cadd..abe86214e 100644
      let pdfTitle = info.Title;
      const metadataTitle = metadata?.get("dc:title");
      if (metadataTitle) {
-@@ -4452,7 +4452,7 @@ const defaultOptions = {
+@@ -4558,7 +4558,7 @@ const defaultOptions = {
      kind: OptionKind.API
    },
    cMapUrl: {
@@ -38,7 +38,7 @@ index e9041cadd..abe86214e 100644
      kind: OptionKind.API
    },
    disableAutoFetch: {
-@@ -4500,7 +4500,7 @@ const defaultOptions = {
+@@ -4606,7 +4606,7 @@ const defaultOptions = {
      kind: OptionKind.API
    },
    standardFontDataUrl: {
@@ -47,7 +47,7 @@ index e9041cadd..abe86214e 100644
      kind: OptionKind.API
    },
    verbosity: {
-@@ -4512,7 +4512,7 @@ const defaultOptions = {
+@@ -4618,7 +4618,7 @@ const defaultOptions = {
      kind: OptionKind.WORKER
    },
    workerSrc: {
@@ -56,7 +56,7 @@ index e9041cadd..abe86214e 100644
      kind: OptionKind.WORKER
    }
  };
-@@ -4522,7 +4522,7 @@ const defaultOptions = {
+@@ -4628,7 +4628,7 @@ const defaultOptions = {
      kind: OptionKind.VIEWER
    };
    defaultOptions.sandboxBundleSrc = {
@@ -65,9 +65,9 @@ index e9041cadd..abe86214e 100644
      kind: OptionKind.VIEWER
    };
    defaultOptions.viewerCssTheme = {
-@@ -5030,11 +5030,11 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_app
- const GenericCom = {};
- class GenericPreferences extends _preferences_js__WEBPACK_IMPORTED_MODULE_2__.BasePreferences {
+@@ -5388,11 +5388,11 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_gen
+ function initCom(app) {}
+ class Preferences extends _preferences_js__WEBPACK_IMPORTED_MODULE_1__.BasePreferences {
    async _writeToStorage(prefObj) {
 -    localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));
 +    // localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));
@@ -79,7 +79,7 @@ index e9041cadd..abe86214e 100644
      };
    }
  }
-@@ -6192,7 +6192,7 @@ const FindState = {
+@@ -6571,7 +6571,7 @@ const FindState = {
    PENDING: 3
  };
  const FIND_TIMEOUT = 250;
@@ -88,7 +88,7 @@ index e9041cadd..abe86214e 100644
  const MATCH_SCROLL_OFFSET_LEFT = -400;
  const CHARACTERS_TO_NORMALIZE = {
    "\u2010": "-",
-@@ -9682,6 +9682,9 @@ function renderProgress(index, total) {
+@@ -9923,6 +9923,9 @@ function renderProgress(index, total) {
  }
  window.addEventListener("keydown", function (event) {
    if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
@@ -98,7 +98,7 @@ index e9041cadd..abe86214e 100644
      window.print();
      event.preventDefault();
      event.stopImmediatePropagation();
-@@ -10296,7 +10299,7 @@ class PDFSidebar {
+@@ -10549,7 +10552,7 @@ class PDFSidebar {
        this.#dispatchEvent();
        return;
      }
@@ -107,16 +107,16 @@ index e9041cadd..abe86214e 100644
      if (!this.isInitialEventDispatched) {
        this.#dispatchEvent();
      }
-@@ -11202,7 +11205,7 @@ class PDFViewer {
-     this.#annotationEditorHighlightColors = options.annotationEditorHighlightColors || null;
+@@ -11460,7 +11463,7 @@ class PDFViewer {
+     this.#enableHighlightFloatingButton = options.enableHighlightFloatingButton === true;
      this.imageResourcesPath = options.imageResourcesPath || "";
      this.enablePrintAutoRotate = options.enablePrintAutoRotate || false;
 -    this.removePageBorders = options.removePageBorders || false;
 +    this.removePageBorders = options.removePageBorders || true;
-     this.isOffscreenCanvasSupported = options.isOffscreenCanvasSupported ?? true;
      this.maxCanvasPixels = options.maxCanvasPixels;
-     this.l10n = options.l10n || web_l10n_utils__WEBPACK_IMPORTED_MODULE_2__.NullL10n;
-@@ -14679,10 +14682,10 @@ class ViewHistory {
+     this.l10n = options.l10n;
+     this.l10n ||= new web_null_l10n__WEBPACK_IMPORTED_MODULE_2__.GenericL10n();
+@@ -14951,10 +14954,10 @@ class ViewHistory {
    }
    async _writeToStorage() {
      const databaseStr = JSON.stringify(this.database);
@@ -129,7 +129,7 @@ index e9041cadd..abe86214e 100644
    }
    async set(name, val) {
      await this._initializedPromise;
-@@ -14888,7 +14891,7 @@ function webViewerLoad() {
+@@ -15156,7 +15159,7 @@ function webViewerLoad() {
    try {
      parent.document.dispatchEvent(event);
    } catch (ex) {
@@ -137,8 +137,8 @@ index e9041cadd..abe86214e 100644
 +    // console.error(`webviewerloaded: ${ex}`);
      document.dispatchEvent(event);
    }
-   _app_js__WEBPACK_IMPORTED_MODULE_5__.PDFViewerApplication.run(config);
-@@ -15111,4 +15114,3 @@ __webpack_async_result__();
+   _app_js__WEBPACK_IMPORTED_MODULE_3__.PDFViewerApplication.run(config);
+@@ -15379,4 +15382,3 @@ __webpack_async_result__();
  /******/ export { __webpack_exports__PDFViewerApplication as PDFViewerApplication, __webpack_exports__PDFViewerApplicationConstants as PDFViewerApplicationConstants, __webpack_exports__PDFViewerApplicationOptions as PDFViewerApplicationOptions };
  /******/ 
  
