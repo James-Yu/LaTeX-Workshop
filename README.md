@@ -120,7 +120,7 @@ This is not a complete list but rather a preview of some of the coolest features
 
   <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/preview.gif" alt="demo of preview feature" height="220px">
 
-- Direct and reverse SyncTeX. Click to jump between location in `.tex` source and PDF and vice versa.
+- Direct and reverse [SyncTeX](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#synctex). Click to jump between location in `.tex` source and PDF and vice versa.
 
   <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/synctex.gif" alt="demo of SyncTeX" height="220px">
 
