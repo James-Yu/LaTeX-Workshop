@@ -1,0 +1,841 @@
+{
+  "includes": {
+    "l3keys2e": [],
+    "amstext": [],
+    "chemformula": [],
+    "chemgreek": [],
+    "elements": [],
+    "mathtools": [],
+    "chemnum": [],
+    "siunitx": [],
+    "relsize": [],
+    "bm": [],
+    "etoolbox": [],
+    "translations": [],
+    "tikz": [],
+    "tikzlibrarycalc": [],
+    "tikzlibrarydecorations.pathmorphing": [],
+    "xfrac": []
+  },
+  "macros": {
+    "chemsetup{}": {
+      "snippet": "chemsetup{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "chemsetup[]{}": {
+      "snippet": "chemsetup[${2:module}]{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "pH": {},
+    "pOH": {},
+    "Ka": {},
+    "Kb": {},
+    "Kw": {},
+    "pKa": {},
+    "pKa[]": {
+      "snippet": "pKa[${1:number}]"
+    },
+    "pKb": {},
+    "pKb[]": {
+      "snippet": "pKb[${1:number}]"
+    },
+    "p{}": {
+      "snippet": "p{${1:anything}}"
+    },
+    "NewChemEqConstant{}{}{}": {
+      "snippet": "NewChemEqConstant{${1:cmd}}{${2:name}}{${3:subscript}}"
+    },
+    "RenewChemEqConstant{}{}{}": {
+      "snippet": "RenewChemEqConstant{${1:cmd}}{${2:name}}{${3:default appearance}}"
+    },
+    "DeclareChemEqConstant{}{}{}": {
+      "snippet": "DeclareChemEqConstant{${1:cmd}}{${2:name}}{${3:default appearance}}"
+    },
+    "ProvideChemEqConstant{}{}{}": {
+      "snippet": "ProvideChemEqConstant{${1:cmd}}{${2:name}}{${3:default appearance}}"
+    },
+    "fplus": {},
+    "fminus": {},
+    "scrp": {},
+    "scrm": {},
+    "fscrp": {},
+    "fscrm": {},
+    "fsscrp": {},
+    "fsscrm": {},
+    "pch": {},
+    "pch[]": {
+      "snippet": "pch[${1:number}]"
+    },
+    "mch": {},
+    "mch[]": {
+      "snippet": "mch[${1:number}]"
+    },
+    "fpch": {},
+    "fpch[]": {
+      "snippet": "fpch[${1:number}]"
+    },
+    "fmch": {},
+    "fmch[]": {
+      "snippet": "fmch[${1:number}]"
+    },
+    "delp": {},
+    "delm": {},
+    "fdelp": {},
+    "fdelm": {},
+    "NewChemCharge{}{}": {
+      "snippet": "NewChemCharge{${1:cmd}}{${2:charge symbol}}"
+    },
+    "RenewChemCharge{}{}": {
+      "snippet": "RenewChemCharge{${1:cmd}}{${2:charge symbol}}"
+    },
+    "DeclareChemCharge{}{}": {
+      "snippet": "DeclareChemCharge{${1:cmd}}{${2:charge symbol}}"
+    },
+    "ProvideChemCharge{}{}": {
+      "snippet": "ProvideChemCharge{${1:cmd}}{${2:charge symbol}}"
+    },
+    "NewChemPartialCharge{}{}": {
+      "snippet": "NewChemPartialCharge{${1:cmd}}{${2:charge symbol}}"
+    },
+    "RenewChemPartialCharge{}{}": {
+      "snippet": "RenewChemPartialCharge{${1:cmd}}{${2:charge symbol}}"
+    },
+    "DeclareChemPartialCharge{}{}": {
+      "snippet": "DeclareChemPartialCharge{${1:cmd}}{${2:charge symbol}}"
+    },
+    "ProvideChemPartialCharge{}{}": {
+      "snippet": "ProvideChemPartialCharge{${1:cmd}}{${2:charge symbol}}"
+    },
+    "iupac{}": {
+      "snippet": "iupac{${1:IUPAC name}}"
+    },
+    "chemprime": {},
+    "nonbreakinghyphen": {},
+    "hydrogen": {},
+    "H": {
+      "detail": "𝐻",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL H"
+    },
+    "oxygen": {},
+    "O": {
+      "detail": "𝑂",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL O"
+    },
+    "nitrogen": {},
+    "N": {
+      "detail": "𝑁",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL N"
+    },
+    "sulfur": {},
+    "Sf": {},
+    "phosphorus": {},
+    "P": {
+      "detail": "𝑃",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL P"
+    },
+    "cip{}": {
+      "snippet": "cip{${1:conformation}}"
+    },
+    "rectus": {},
+    "R": {
+      "detail": "𝑅",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL R"
+    },
+    "sinister": {},
+    "S": {
+      "detail": "𝑆",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL S"
+    },
+    "dexter": {},
+    "D": {
+      "detail": "𝐷",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL D"
+    },
+    "laevus": {},
+    "L": {
+      "detail": "𝐿",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL L"
+    },
+    "cis": {},
+    "trans": {},
+    "fac": {},
+    "mer": {},
+    "sin": {},
+    "ter": {},
+    "zusammen": {},
+    "Z": {
+      "detail": "𝑍",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL Z"
+    },
+    "entgegen": {},
+    "E": {
+      "detail": "𝐸",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL E"
+    },
+    "syn": {},
+    "anti": {},
+    "tert": {},
+    "ortho": {},
+    "meta": {},
+    "para": {},
+    "Rconf": {},
+    "Rconf[]": {
+      "snippet": "Rconf[${1:letter}]"
+    },
+    "Sconf": {},
+    "Sconf[]": {
+      "snippet": "Sconf[${1:letter}]"
+    },
+    "bridge{}": {
+      "snippet": "bridge{${1:number}}"
+    },
+    "hapto{}": {
+      "snippet": "hapto{${1:number}}"
+    },
+    "dento{}": {
+      "snippet": "dento{${1:number}}"
+    },
+    "latin{}": {
+      "snippet": "latin{${1:phrase}}"
+    },
+    "latin[]{}": {
+      "snippet": "latin[${2:options}]{${1:phrase}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "insitu": {},
+    "invacuo": {},
+    "abinitio": {},
+    "NewChemIUPAC{}{}": {
+      "snippet": "NewChemIUPAC{${1:cmd}}{${2:declaration}}"
+    },
+    "ProvideChemIUPAC{}{}": {
+      "snippet": "ProvideChemIUPAC{${1:cmd}}{${2:declaration}}"
+    },
+    "RenewChemIUPAC{}{}": {
+      "snippet": "RenewChemIUPAC{${1:cmd}}{${2:declaration}}"
+    },
+    "DeclareChemIUPAC{}{}": {
+      "snippet": "DeclareChemIUPAC{${1:cmd}}{${2:declaration}}"
+    },
+    "LetChemIUPAC{}{}": {
+      "snippet": "LetChemIUPAC{${1:cmd1}}{${2:cmd2}}"
+    },
+    "NewChemIUPACShorthand{}{}": {
+      "snippet": "NewChemIUPACShorthand{${1:shorthand token}}{${2:cs}}"
+    },
+    "RenewChemIUPACShorthand{}{}": {
+      "snippet": "RenewChemIUPACShorthand{${1:shorthand token}}{${2:cs}}"
+    },
+    "DeclareChemIUPACShorthand{}{}": {
+      "snippet": "DeclareChemIUPACShorthand{${1:shorthand token}}{${2:cs}}"
+    },
+    "ProvideChemIUPACShorthand{}{}": {
+      "snippet": "ProvideChemIUPACShorthand{${1:shorthand token}}{${2:cs}}"
+    },
+    "RemoveChemIUPACShorthand{}{}": {
+      "snippet": "RemoveChemIUPACShorthand{${1:shorthand token}}{${2:cs}}"
+    },
+    "NewChemLatin{}{}": {
+      "snippet": "NewChemLatin{${1:cmd}}{${2:phrase}}"
+    },
+    "DeclareChemLatin{}{}": {
+      "snippet": "DeclareChemLatin{${1:cmd}}{${2:phrase}}"
+    },
+    "RenewChemLatin{}{}": {
+      "snippet": "RenewChemLatin{${1:cmd}}{${2:phrase}}"
+    },
+    "ProvideChemLatin{}{}": {
+      "snippet": "ProvideChemLatin{${1:cmd}}{${2:phrase}}"
+    },
+    "el": {},
+    "prt": {},
+    "ntr": {},
+    "Hyd": {},
+    "Oxo": {},
+    "water": {},
+    "El": {},
+    "Nuc": {},
+    "ba": {},
+    "NewChemParticle{}{}": {
+      "snippet": "NewChemParticle{${1:cmd}}{${2:formula}}"
+    },
+    "RenewChemParticle{}{}": {
+      "snippet": "RenewChemParticle{${1:cmd}}{${2:formula}}"
+    },
+    "DeclareChemParticle{}{}": {
+      "snippet": "DeclareChemParticle{${1:cmd}}{${2:formula}}"
+    },
+    "ProvideChemParticle{}{}": {
+      "snippet": "ProvideChemParticle{${1:cmd}}{${2:formula}}"
+    },
+    "NewChemNucleophile{}{}": {
+      "snippet": "NewChemNucleophile{${1:cmd}}{${2:formula}}"
+    },
+    "RenewChemNucleophile{}{}": {
+      "snippet": "RenewChemNucleophile{${1:cmd}}{${2:formula}}"
+    },
+    "DeclareChemNucleophile{}{}": {
+      "snippet": "DeclareChemNucleophile{${1:cmd}}{${2:formula}}"
+    },
+    "ProvideChemNucleophile{}{}": {
+      "snippet": "ProvideChemNucleophile{${1:cmd}}{${2:formula}}"
+    },
+    "sld": {},
+    "lqd": {},
+    "gas": {},
+    "aq": {},
+    "phase{}": {
+      "snippet": "phase{${1:phase}}"
+    },
+    "NewChemPhase{}{}": {
+      "snippet": "NewChemPhase{${1:cmd}}{${2:symbol}}"
+    },
+    "DeclareChemPhase{}{}": {
+      "snippet": "DeclareChemPhase{${1:cmd}}{${2:symbol}}"
+    },
+    "RenewChemPhase{}{}": {
+      "snippet": "RenewChemPhase{${1:cmd}}{${2:symbol}}"
+    },
+    "ProvideChemPhase{}{}": {
+      "snippet": "ProvideChemPhase{${1:cmd}}{${2:symbol}}"
+    },
+    "transitionstatesymbol": {},
+    "standardstate": {},
+    "changestate": {},
+    "isotope{}": {
+      "snippet": "isotope{${1:isotope}}"
+    },
+    "isotope*{}": {
+      "snippet": "isotope*{${1:isotope}}"
+    },
+    "mech": {},
+    "mech[]": {
+      "snippet": "mech[${1:type}]"
+    },
+    "newman{}": {
+      "snippet": "newman{${1:part-list}}"
+    },
+    "newman[]{}": {
+      "snippet": "newman[${2:options}]{${1:part-list}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "orbital{}": {
+      "snippet": "orbital{${1:type}}"
+    },
+    "orbital[]{}": {
+      "snippet": "orbital[${2:options}]{${1:type}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "copolymer": {},
+    "statistical": {},
+    "random": {},
+    "alternating": {},
+    "periodic": {},
+    "block": {},
+    "graft": {},
+    "blend": {},
+    "comb": {},
+    "complex": {},
+    "cyclic": {},
+    "branch": {},
+    "network": {},
+    "ipnetwork": {},
+    "sipnetwork": {},
+    "star": {
+      "detail": "⋆",
+      "documentation": "small s filled, low"
+    },
+    "makepolymerdelims{}{}{}": {
+      "snippet": "makepolymerdelims{${1:height}}{${2:opening node}}{${3:closing node}}"
+    },
+    "makepolymerdelims[]{}{}[]{}": {
+      "snippet": "makepolymerdelims[${4:options}]{${1:height}}{${2:opening node}}[${5:depth}]{${3:closing node}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "AddRxnDesc{}": {
+      "snippet": "AddRxnDesc{${1:description}}"
+    },
+    "listofreactions": {},
+    "NewChemReaction{}{}": {
+      "snippet": "NewChemReaction{${1:envname}}{${2:math envname}}"
+    },
+    "NewChemReaction{}[]{}": {
+      "snippet": "NewChemReaction{${1:envname}}[${2:args}]{${3:math envname}}"
+    },
+    "RenewChemReaction{}{}": {
+      "snippet": "RenewChemReaction{${1:envname}}{${2:math envname}}"
+    },
+    "RenewChemReaction{}[]{}": {
+      "snippet": "RenewChemReaction{${1:envname}}[${2:args}]{${3:math envname}}"
+    },
+    "DeclareChemReaction{}{}": {
+      "snippet": "DeclareChemReaction{${1:envname}}{${2:math envname}}"
+    },
+    "DeclareChemReaction{}[]{}": {
+      "snippet": "DeclareChemReaction{${1:envname}}[${2:args}]{${3:math envname}}"
+    },
+    "ProvideChemReaction{}{}": {
+      "snippet": "ProvideChemReaction{${1:envname}}{${2:math envname}}"
+    },
+    "ProvideChemReaction{}[]{}": {
+      "snippet": "ProvideChemReaction{${1:envname}}[${2:args}]{${3:math envname}}"
+    },
+    "reactionlistname": {},
+    "DeclareChemReactant{}{}": {
+      "snippet": "DeclareChemReactant{${1:ID}}{${2:properties}}"
+    },
+    "reactant{}": {
+      "snippet": "reactant{${1:ID}}"
+    },
+    "reactant[]{}": {
+      "snippet": "reactant[${2:data and units}]{${1:ID}}"
+    },
+    "reactantplain{}": {
+      "snippet": "reactantplain{${1:ID}}"
+    },
+    "submainreactantplain{}{}": {
+      "snippet": "submainreactantplain{${1:main ID}}{${2:sub ID}}"
+    },
+    "Reactant{}": {
+      "snippet": "Reactant{${1:ID}}"
+    },
+    "Reactant[]{}": {
+      "snippet": "Reactant[${2:data and units}]{${1:ID}}"
+    },
+    "Reactantplain{}": {
+      "snippet": "Reactantplain{${1:ID}}"
+    },
+    "Submainreactantplain{}{}": {
+      "snippet": "Submainreactantplain{${1:main ID}}{${2:sub ID}}"
+    },
+    "solvent{}": {
+      "snippet": "solvent{${1:ID}}"
+    },
+    "solvent[]{}": {
+      "snippet": "solvent[${2:data and units}]{${1:ID}}"
+    },
+    "solventplain{}": {
+      "snippet": "solventplain{${1:ID}}"
+    },
+    "Solventplain{}": {
+      "snippet": "Solventplain{${1:ID}}"
+    },
+    "Solvent{}": {
+      "snippet": "Solvent{${1:ID}}"
+    },
+    "Solvent[]{}": {
+      "snippet": "Solvent[${2:data and units}]{${1:ID}}"
+    },
+    "printreactants": {},
+    "printreactants*": {},
+    "reactants{}": {
+      "snippet": "reactants{${1:ID}}"
+    },
+    "reactantl{}": {
+      "snippet": "reactantl{${1:ID}}"
+    },
+    "solvents{}": {
+      "snippet": "solvents{${1:ID}}"
+    },
+    "solventl{}": {
+      "snippet": "solventl{${1:ID}}"
+    },
+    "ox{}": {
+      "snippet": "ox{${1:number,atom}}"
+    },
+    "ox[]{}": {
+      "snippet": "ox[${2:options}]{${1:number,atom}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "ox*{}": {
+      "snippet": "ox*{${1:number,atom}}"
+    },
+    "ox*[]{}": {
+      "snippet": "ox*[${2:options}]{${1:number,atom}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "OX{}": {
+      "snippet": "OX{${1:name,atom}}"
+    },
+    "listschemename": {},
+    "schemename": {},
+    "listofschemes": {},
+    "NMR{}": {
+      "snippet": "NMR{${1:isotope,element}}"
+    },
+    "NMR{}[]": {
+      "snippet": "NMR{${1:isotope,element}}[${2:solvent}]"
+    },
+    "NMR": {},
+    "NMR*{}": {
+      "snippet": "NMR*{${1:isotope,element}}"
+    },
+    "NMR*{}[]": {
+      "snippet": "NMR*{${1:isotope,element}}[${2:solvent}]"
+    },
+    "NMR*": {},
+    "data{}": {
+      "snippet": "data{${1:type}}"
+    },
+    "data{}[]": {
+      "snippet": "data{${1:type}}[${2:specification}]"
+    },
+    "data*{}": {
+      "snippet": "data*{${1:type}}"
+    },
+    "data*{}[]": {
+      "snippet": "data*{${1:type}}[${2:specification}]"
+    },
+    "J[]{}": {
+      "snippet": "J[${2:unit}]{${1:num-list}}"
+    },
+    "J{}": {
+      "snippet": "J{${1:num-list}}"
+    },
+    "": {},
+    "pos{}": {
+      "snippet": "pos{${1:number}}"
+    },
+    "val{}": {
+      "snippet": "val{${1:num1--num2}}"
+    },
+    "NewChemNMR{}{}": {
+      "snippet": "NewChemNMR{${1:cmd}}{${2:isotope,atom}}"
+    },
+    "DeclareChemNMR{}{}": {
+      "snippet": "DeclareChemNMR{${1:cmd}}{${2:isotope,atom}}"
+    },
+    "RenewChemNMR{}{}": {
+      "snippet": "RenewChemNMR{${1:cmd}}{${2:isotope,atom}}"
+    },
+    "ProvideChemNMR{}{}": {
+      "snippet": "ProvideChemNMR{${1:cmd}}{${2:isotope,atom}}"
+    },
+    "state{}": {
+      "snippet": "state{${1:symbol}}"
+    },
+    "state[]{}": {
+      "snippet": "state[${2:options}]{${1:symbol}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "enthalpy[]{}": {
+      "snippet": "enthalpy[${2:options}]{${1:value}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "enthalpy{}": {
+      "snippet": "enthalpy{${1:value}}"
+    },
+    "enthalpy*[]{}": {
+      "snippet": "enthalpy*[${2:options}]{${1:value}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "enthalpy*{}": {
+      "snippet": "enthalpy*{${1:value}}"
+    },
+    "entropy[]{}": {
+      "snippet": "entropy[${2:options}]{${1:value}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "entropy{}": {
+      "snippet": "entropy{${1:value}}"
+    },
+    "entropy*[]{}": {
+      "snippet": "entropy*[${2:options}]{${1:value}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "entropy*{}": {
+      "snippet": "entropy*{${1:value}}"
+    },
+    "gibbs[]{}": {
+      "snippet": "gibbs[${2:options}]{${1:value}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "gibbs{}": {
+      "snippet": "gibbs{${1:value}}"
+    },
+    "gibbs*[]{}": {
+      "snippet": "gibbs*[${2:options}]{${1:value}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "gibbs*{}": {
+      "snippet": "gibbs*{${1:value}}"
+    },
+    "NewChemState{}{}": {
+      "snippet": "NewChemState{${1:cmd}}{${2:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 1
+    },
+    "RenewChemState{}{}": {
+      "snippet": "RenewChemState{${1:cmd}}{${2:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 1
+    },
+    "DeclareChemState{}{}": {
+      "snippet": "DeclareChemState{${1:cmd}}{${2:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 1
+    },
+    "ProvideChemState{}{}": {
+      "snippet": "ProvideChemState{${1:cmd}}{${2:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 1
+    },
+    "atmosphere": {},
+    "atm": {},
+    "calory": {},
+    "cal": {},
+    "cmc": {},
+    "molar": {},
+    "moLar": {},
+    "Molar": {},
+    "MolMass": {},
+    "normal": {},
+    "torr": {},
+    "angstrom": {},
+    "atomicmassunit": {},
+    "bar": {
+      "detail": " ̄",
+      "documentation": "macron"
+    },
+    "elementarycharge": {},
+    "mmHg": {},
+    "NewChemMacroset{}{}{}": {
+      "snippet": "NewChemMacroset{${1:name}}{${2:arg spec}}{${3:internal command call}}"
+    },
+    "NewChemMacroset*{}{}{}": {
+      "snippet": "NewChemMacroset*{${1:name}}{${2:arg spec}}{${3:internal command call}}"
+    },
+    "ChemCleverefSupport{}{}{}": {
+      "snippet": "ChemCleverefSupport{${1:counter}}{${2:singular}}{${3:plural}}"
+    },
+    "ChemCleverefSupport{}{}[]{}[]": {
+      "snippet": "ChemCleverefSupport{${1:counter}}{${2:singular}}[${3:uppercase singular}]{${4:plural}}[${5:uppercase plural}]"
+    },
+    "ChemFancyrefSupport{}{}": {
+      "snippet": "ChemFancyrefSupport{${1:prefix}}{${2:name}}"
+    },
+    "ChemFancyrefSupport{}{}[]": {
+      "snippet": "ChemFancyrefSupport{${1:prefix}}{${2:name}}[${3:uppercase name}]"
+    },
+    "DeclareChemTranslation{}{}{}": {
+      "snippet": "DeclareChemTranslation{${1:key}}{${2:language}}{${3:translation}}"
+    },
+    "DeclareChemTranslations{}{}": {
+      "snippet": "DeclareChemTranslations{${1:key}}{${2:language=translation,...}}"
+    },
+    "AddChemTranslation{}{}{}": {
+      "snippet": "AddChemTranslation{${1:language}}{${2:key}}{${3:translation}}"
+    },
+    "AddChemTranslations{}{}": {
+      "snippet": "AddChemTranslations{${1:language}}{${2:key=translation,...}}"
+    },
+    "ChemTranslate{}": {
+      "snippet": "ChemTranslate{${1:translation key}}"
+    },
+    "chemfrac{}{}": {
+      "snippet": "chemfrac{${1:numerator}}{${2:denominator}}"
+    },
+    "chemfrac[]{}{}": {
+      "snippet": "chemfrac[${3:type}]{${1:numerator}}{${2:denominator}}"
+    },
+    "ChemStyle{}": {
+      "snippet": "ChemStyle{${1:name}}"
+    },
+    "ChemStyle{}[]": {
+      "snippet": "ChemStyle{${1:name}}[${2:version description}]"
+    },
+    "ChemStyle*{}": {
+      "snippet": "ChemStyle*{${1:name}}"
+    },
+    "ChemStyle*{}[]": {
+      "snippet": "ChemStyle*{${1:name}}[${2:version description}]"
+    },
+    "usechemstyle{}": {
+      "snippet": "usechemstyle{${1:list of styles}}"
+    }
+  },
+  "envs": {
+    "reaction": {},
+    "reaction*": {},
+    "reactions": {},
+    "reactions*": {},
+    "scheme": {},
+    "experimental": {}
+  },
+  "options": [
+    "minimal",
+    "modules={${1:list of modules}}"
+  ],
+  "keyvals": [
+    [
+      "p-style=",
+      "K-acid={${1:text}}",
+      "K-base={${1:text}}",
+      "K-water={${1:text}}",
+      "eq-constant={${1:text}}",
+      "circled=",
+      "circletype=",
+      "partial-format={${1:LaTeX code}}",
+      "hyphen-pre-space",
+      "hyphen-post-space",
+      "break-space",
+      "iupac=",
+      "iupac-format={${1:definition}}",
+      "cip-kern=",
+      "cip-outer-format={${1:format}}",
+      "cip-inner-format={${1:format}}",
+      "cip-number-format={${1:format}}",
+      "bridge-number=",
+      "coord-use-hyphen",
+      "latin-format={${1:definition}}",
+      "elpair=",
+      "space=",
+      "pos=",
+      "formula=",
+      "format={${1:format}}",
+      "greek={${1:mapping}}",
+      "side-connect={${1:input}}",
+      "angle=${1:degrees}",
+      "scale=${1:factor}",
+      "ring={${1:TikZ options}}",
+      "atoms={${1:TikZ options}}",
+      "back-atoms={${1:TikZ options}}",
+      "phase=",
+      "color=",
+      "half",
+      "overlay",
+      "opacity=${1:number}",
+      "delimiters={${1:<left><right>}}",
+      "subscript=",
+      "superscript=",
+      "tag-open={${1:left delim}}",
+      "tag-close={${1:right delim}}",
+      "before-tag={${1:format}}",
+      "own-counter",
+      "autoref-name={${1:name}}",
+      "list-name=",
+      "list-entry={${1:prefix}}",
+      "list-heading-cmd={${1:code}}",
+      "mass-unit=${1:unit}",
+      "volume-unit=${1:unit}",
+      "fraction-unit=${1:unit}",
+      "amount-unit=${1:unit}",
+      "equiv-unit=${1:unit}",
+      "concentration-unit=${1:unit}",
+      "purity-unit=${1:unit}",
+      "initiate",
+      "switch",
+      "reactant-output-style=",
+      "solvent-output-style=",
+      "main=",
+      "equivalents",
+      "acronym-support=",
+      "printreactants-style=",
+      "parse",
+      "roman",
+      "explicit-sign",
+      "decimal-marker=",
+      "align=",
+      "text-frac=${1:cmd}",
+      "super-frac=${1:cmd}",
+      "dist=",
+      "sep=",
+      "float-method=",
+      "unit=${1:unit}",
+      "nucleus={${1:num},${2:atom}}",
+      "connector={${1:code}}",
+      "method={${1:code}}",
+      "nmr-base-format={${1:commands}}",
+      "pos-number=",
+      "coupling-symbol={${1:code}}",
+      "coupling-unit=${1:unit}",
+      "coupling-pos=",
+      "coupling-nuclei-pre={${1:code}}",
+      "coupling-nuclei-post={${1:code}}",
+      "coupling-bonds-pre={${1:code}}",
+      "coupling-bonds-post={${1:code}}",
+      "coupling-pos-cs={${1:cmd}}",
+      "atom-number-cs={${1:cmd}}",
+      "atom-number-space=",
+      "delta={${1:tokens}}",
+      "list",
+      "list-setup={${1:setup}}",
+      "use-equal",
+      "language="
+    ],
+    [
+      "format={${1:format}}"
+    ],
+    [
+      "angle=${1:degrees}",
+      "scale=${1:factor}",
+      "ring={${1:TikZ options}}",
+      "atoms={${1:TikZ options}}",
+      "back-atoms={${1:TikZ options}}"
+    ],
+    [
+      "scale=${1:factor}",
+      "angle=${1:degrees}",
+      "phase=",
+      "color=",
+      "half",
+      "overlay",
+      "opacity=${1:number}"
+    ],
+    [
+      "delimiters={${1:<left><right>}}",
+      "subscript=",
+      "superscript="
+    ],
+    [
+      "format={${1:code}}",
+      "pos=",
+      "side-connect={${1:code}}",
+      "parse",
+      "roman",
+      "explicit-sign",
+      "decimal-marker=",
+      "align=",
+      "text-frac=${1:cmd}",
+      "super-frac=${1:cmd}"
+    ],
+    [
+      "pre={${1:text}}",
+      "post={${1:text}}",
+      "superscript-left={${1:text}}",
+      "superscript-right={${1:text}}",
+      "superscript={${1:text}}",
+      "subscript-left={${1:text}}",
+      "subscript-right={${1:text}}",
+      "subscript={${1:text}}"
+    ],
+    [
+      "pre={${1:text}}",
+      "post={${1:text}}",
+      "superscript-left={${1:text}}",
+      "superscript-right={${1:text}}",
+      "superscript={${1:text}}",
+      "subscript-left={${1:text}}",
+      "subscript-right={${1:text}}",
+      "subscript={${1:text}}",
+      "subscript-pos=",
+      "symbol=",
+      "unit="
+    ]
+  ]
+}

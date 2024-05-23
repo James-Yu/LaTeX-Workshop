@@ -1,0 +1,298 @@
+{
+  "includes": {
+    "tikz": [],
+    "tikzlibraryexternal": [
+      "external"
+    ]
+  },
+  "macros": {
+    "tikzcausetsset{}": {
+      "snippet": "tikzcausetsset{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "pcauset{}": {
+      "snippet": "pcauset{${1:permutation}}"
+    },
+    "pcauset[]{}": {
+      "snippet": "pcauset[${2:options}]{${1:permutation}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "pcausetP{}": {
+      "snippet": "pcausetP{${1:permutation}}"
+    },
+    "pcausetP[]{}": {
+      "snippet": "pcausetP[${2:options}]{${1:permutation}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "pcausetL{}": {
+      "snippet": "pcausetL{${1:permutation}}"
+    },
+    "pcausetL[]{}": {
+      "snippet": "pcausetL[${2:options}]{${1:permutation}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "pcausetX{}": {
+      "snippet": "pcausetX{${1:permutation}}"
+    },
+    "pcausetX[]{}": {
+      "snippet": "pcausetX[${2:options}]{${1:permutation}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "rcauset{}{}": {
+      "snippet": "rcauset{${1:permutation}}{${2:event pairs}}"
+    },
+    "rcauset[]{}{}": {
+      "snippet": "rcauset[${3:options}]{${1:permutation}}{${2:event pairs}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "rcausetP{}{}": {
+      "snippet": "rcausetP{${1:permutation}}{${2:event pairs}}"
+    },
+    "rcausetP[]{}{}": {
+      "snippet": "rcausetP[${3:options}]{${1:permutation}}{${2:event pairs}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "rcausetL{}{}": {
+      "snippet": "rcausetL{${1:permutation}}{${2:event pairs}}"
+    },
+    "rcausetL[]{}{}": {
+      "snippet": "rcausetL[${3:options}]{${1:permutation}}{${2:event pairs}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "rcausetX{}{}": {
+      "snippet": "rcausetX{${1:permutation}}{${2:event pairs}}"
+    },
+    "rcausetX[]{}{}": {
+      "snippet": "rcausetX[${3:options}]{${1:permutation}}{${2:event pairs}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "causet{}{}": {
+      "snippet": "causet{${1:permutation}}{${2:event pairs}}"
+    },
+    "causet[]{}{}": {
+      "snippet": "causet[${3:options}]{${1:permutation}}{${2:event pairs}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "causetP{}{}": {
+      "snippet": "causetP{${1:permutation}}{${2:event pairs}}"
+    },
+    "causetP[]{}{}": {
+      "snippet": "causetP[${3:options}]{${1:permutation}}{${2:event pairs}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "causetL{}{}": {
+      "snippet": "causetL{${1:permutation}}{${2:event pairs}}"
+    },
+    "causetL[]{}{}": {
+      "snippet": "causetL[${3:options}]{${1:permutation}}{${2:event pairs}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "causetX{}{}": {
+      "snippet": "causetX{${1:permutation}}{${2:event pairs}}"
+    },
+    "causetX[]{}{}": {
+      "snippet": "causetX[${3:options}]{${1:permutation}}{${2:event pairs}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "causetFence{}": {
+      "snippet": "causetFence{${1:number}}"
+    },
+    "causetFence[]{}": {
+      "snippet": "causetFence[${2:options}]{${1:number}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "causetCrown{}": {
+      "snippet": "causetCrown{${1:number}}"
+    },
+    "causetCrown[]{}": {
+      "snippet": "causetCrown[${2:options}]{${1:number}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "causetTileSize": {},
+    "causetRegionLine": {},
+    "causetGridLine": {},
+    "causetEventSize": {},
+    "causetLinkWidth": {},
+    "causetBrokenLinkGap": {},
+    "ifcausetsDrawPermutation": {},
+    "causetsDrawPermutationtrue": {},
+    "causetsDrawPermutationfalse": {},
+    "ifcausetsDrawLinks": {},
+    "causetsDrawLinkstrue": {},
+    "causetsDrawLinksfalse": {},
+    "ifcausetsBreakLinks": {},
+    "causetsBreakLinkstrue": {},
+    "causetsBreakLinksfalse": {},
+    "ifcausetsDrawSpatialLinks": {},
+    "causetsDrawSpatialLinkstrue": {},
+    "causetsDrawSpatialLinksfalse": {},
+    "ifcausetsDrawLabels": {},
+    "causetsDrawLabelstrue": {},
+    "causetsDrawLabelsfalse": {},
+    "ifcausetsDrawULabels": {},
+    "causetsDrawULabelstrue": {},
+    "causetsDrawULabelsfalse": {},
+    "ifcausetsDrawVLabels": {},
+    "causetsDrawVLabelstrue": {},
+    "causetsDrawVLabelsfalse": {},
+    "ifcausetsNameExternal": {},
+    "causetsNameExternaltrue": {},
+    "causetsNameExternalfalse": {},
+    "causetfile{}": {
+      "snippet": "causetfile{${1:imagefile}}"
+    },
+    "causetfile[]{}": {
+      "snippet": "causetfile[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "drawpcauset{}": {
+      "snippet": "drawpcauset{${1:permutation}}"
+    },
+    "drawrcauset{}{}": {
+      "snippet": "drawrcauset{${1:permutation}}{${2:event pairs}}"
+    },
+    "drawcauset{}{}": {
+      "snippet": "drawcauset{${1:permutation}}{${2:event pairs}}"
+    }
+  },
+  "envs": {},
+  "options": [
+    "tiny",
+    "smaller",
+    "small",
+    "large",
+    "larger",
+    "huge",
+    "gray",
+    "black",
+    "blue",
+    "neon",
+    "linked",
+    "unlinked",
+    "caps",
+    "arrows",
+    "continuous",
+    "spatial",
+    "external",
+    "permutation",
+    "labeled",
+    "unlabeled",
+    "ulabeled",
+    "uunlabeled",
+    "vlabeled",
+    "vunlabeled"
+  ],
+  "keyvals": [
+    [
+      "all labels={${1:TikZ keys}}",
+      "arrow links",
+      "baseline=",
+      "black colors",
+      "blue colors",
+      "broken link gap=",
+      "brokenly linked",
+      "cap links",
+      "continuously linked",
+      "event=${1:value}",
+      "event color=",
+      "event outline=",
+      "event size=",
+      "events={${1:TikZ keys}}",
+      "gray colors",
+      "grid color=",
+      "grid line width=",
+      "grid={${1:TikZ keys}}",
+      "huge",
+      "label=${1:text}",
+      "label color=",
+      "labeled",
+      "labels={${1:TikZ keys}}",
+      "large",
+      "link color=",
+      "link ends={${1:TikZ keys}}",
+      "link pauses={${1:TikZ keys}}",
+      "link resumes={${1:TikZ keys}}",
+      "link starts={${1:TikZ keys}}",
+      "link width=",
+      "links={${1:TikZ keys}}",
+      "name=${1:name}",
+      "name external",
+      "name prefix=${1:prefix}",
+      "neon colors",
+      "normal",
+      "offset=${1:integer}",
+      "padding=",
+      "permutation",
+      "region color=",
+      "region line width=",
+      "region={${1:TikZ keys}}",
+      "replaced events={${1:TikZ keys}}",
+      "replaced labels={${1:TikZ keys}}",
+      "set prefix=${1:prefix}",
+      "show permutation",
+      "small",
+      "spatial link color=",
+      "spatial links={${1:TikZ keys}}",
+      "spatially linked",
+      "text font=${1:font commands}",
+      "text scale=${1:factor}",
+      "tile color=",
+      "tile size=",
+      "tiles={${1:TikZ keys}}",
+      "tiny",
+      "ulabel color=",
+      "ulabels={${1:TikZ keys}}",
+      "very large",
+      "very small",
+      "vlabel color=",
+      "vlabels={${1:TikZ keys}}"
+    ],
+    [
+      "alt={${1:alt text}}",
+      "bb=${1:llx lly urx ury}",
+      "bbllx=",
+      "bblly=",
+      "bburx=",
+      "bbury=",
+      "natwidth=",
+      "natheight=",
+      "hiresbb",
+      "pagebox=",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:llx lly urx ury}",
+      "angle=${1:degrees}",
+      "origin=",
+      "width=",
+      "height=",
+      "totalheight=",
+      "keepaspectratio",
+      "scale=${1:factor}",
+      "clip",
+      "draft",
+      "type=${1:file type}",
+      "ext=${1:file extension}",
+      "read=${1:read-file extension}",
+      "command=",
+      "quiet",
+      "page=${1:page number}",
+      "interpolate",
+      "decodearray={${1:color array}}"
+    ]
+  ]
+}

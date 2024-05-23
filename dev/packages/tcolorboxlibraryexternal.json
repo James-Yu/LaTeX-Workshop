@@ -1,0 +1,94 @@
+{
+  "includes": {
+    "incgraph": []
+  },
+  "macros": {
+    "tcbEXTERNALIZE": {},
+    "tcbifexternal{}{}": {
+      "snippet": "tcbifexternal{${1:true}}{${2:false}}"
+    },
+    "newtcbexternalizeenvironment{}{}{}{}{}": {
+      "snippet": "newtcbexternalizeenvironment{${1:newenv}}{${2:env}}{${3:options}}{${4:begdef}}{${5:enddef}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "renewtcbexternalizeenvironment{}{}{}{}{}": {
+      "snippet": "renewtcbexternalizeenvironment{${1:newenv}}{${2:env}}{${3:options}}{${4:begdef}}{${5:enddef}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "newtcbexternalizetcolorbox{}{}{}{}": {
+      "snippet": "newtcbexternalizetcolorbox{${1:newenv}}{${2:env}}{${3:options}}{${4:begin end options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "renewtcbexternalizetcolorbox{}{}{}{}": {
+      "snippet": "renewtcbexternalizetcolorbox{${1:newenv}}{${2:env}}{${3:options}}{${4:begin end options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "tcbiffileprocess{}{}{}{}{}{}": {
+      "snippet": "tcbiffileprocess{${1:condition}}{${2:source}}{${3:md5-file}}{${4:target}}{${5:true}}{${6:false}}"
+    }
+  },
+  "envs": {
+    "tcbexternal{}": {
+      "name": "tcbexternal",
+      "snippet": "{${1:name}}"
+    },
+    "tcbexternal[]{}": {
+      "name": "tcbexternal",
+      "snippet": "[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "extcolorbox{}": {
+      "name": "extcolorbox",
+      "snippet": "{${1:name}}"
+    },
+    "extcolorbox[]{}[]": {
+      "name": "extcolorbox",
+      "snippet": "[${2:options}]{${1:name}}[${3:tcolorbox options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "extikzpicture{}": {
+      "name": "extikzpicture",
+      "snippet": "{${1:name}}"
+    },
+    "extikzpicture[]{}[]": {
+      "name": "extikzpicture",
+      "snippet": "[${2:options}]{${1:name}}[${3:tikz options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "runner=${1:file name}",
+      "prefix=${1:text}",
+      "externalize",
+      "force remake",
+      "!",
+      "-",
+      "name=${1:name}",
+      "safety=${1:length}",
+      "environment=${1:envname}",
+      "environment with percent",
+      "minipage",
+      "minipage=",
+      "plain",
+      "compiler=${1:text}",
+      "runs=${1:number}",
+      "input source on error",
+      "preclass={${1:code}}",
+      "PassOptionsToPackage={${1:options}}{${2:package}}",
+      "PassOptionsToClass={${1:options}}{${2:class}}",
+      "clear preclass",
+      "preamble={${1:code}}",
+      "preamble tcbset={${1:options}}",
+      "clear preamble"
+    ]
+  ]
+}

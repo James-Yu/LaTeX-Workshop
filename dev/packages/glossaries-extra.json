@@ -1,0 +1,6041 @@
+{
+  "includes": {
+    "glossaries": [],
+    "glossaries-extra-stylemods": [
+      "stylemods",
+      "stylemods=default",
+      "stylemods=all",
+      "stylemods=inline",
+      "stylemods=list",
+      "stylemods=tree",
+      "stylemods=mcols",
+      "stylemods=long",
+      "stylemods=longragged",
+      "stylemods=longbooktabs",
+      "stylemods=super",
+      "stylemods=superragged",
+      "stylemods=bookindex",
+      "stylemods=longextra",
+      "stylemods=topic",
+      "stylemods=table"
+    ],
+    "glossary-inline": [
+      "stylemods=all",
+      "stylemods=inline"
+    ],
+    "glossary-mcols": [
+      "stylemods=all",
+      "stylemods=mcols"
+    ],
+    "glossary-longragged": [
+      "stylemods=all",
+      "stylemods=longragged"
+    ],
+    "glossary-longbooktabs": [
+      "stylemods=all",
+      "stylemods=longbooktabs"
+    ],
+    "glossary-superragged": [
+      "stylemods=all",
+      "stylemods=superragged"
+    ],
+    "glossary-bookindex": [
+      "stylemods=all",
+      "stylemods=bookindex"
+    ],
+    "glossary-longextra": [
+      "stylemods=all",
+      "stylemods=longextra"
+    ],
+    "glossary-topic": [
+      "stylemods=all",
+      "stylemods=topic"
+    ],
+    "glossary-table": [
+      "stylemods=all",
+      "stylemods=table"
+    ],
+    "glossaries-prefix": [
+      "prefix"
+    ],
+    "glossaries-accsupp": [
+      "accsupp"
+    ],
+    "glossaries-extra-bib2gls": [
+      "record",
+      "record=only",
+      "record=nameref"
+    ],
+    "translator": [
+      "translate",
+      "translate=true"
+    ],
+    "tracklang": [
+      "translate",
+      "translate=true"
+    ],
+    "glossaries-babel": [
+      "translate=babel"
+    ]
+  },
+  "macros": {
+    "glossariesextrasetup{}": {
+      "snippet": "glossariesextrasetup{${1:options}}"
+    },
+    "printabbreviations": {
+      "option": "abbreviations"
+    },
+    "printabbreviations[]": {
+      "snippet": "printabbreviations[${1:options}]",
+      "option": "abbreviations",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "printunsrtabbreviations": {
+      "option": "abbreviations"
+    },
+    "printunsrtabbreviations[]": {
+      "snippet": "printunsrtabbreviations[${1:options}]",
+      "option": "abbreviations",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "abbreviationsname": {
+      "option": "abbreviations"
+    },
+    "printsymbols": {
+      "option": "symbols"
+    },
+    "printsymbols[]": {
+      "snippet": "printsymbols[${1:options}]",
+      "option": "symbols",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "glsxtrnewsymbol{}{}": {
+      "snippet": "glsxtrnewsymbol{${1:label}}{${2:symbol}}",
+      "option": "symbols"
+    },
+    "glsxtrnewsymbol[]{}{}": {
+      "snippet": "glsxtrnewsymbol[${3:options}]{${1:label}}{${2:symbol}}",
+      "option": "symbols",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "printunsrtsymbols": {
+      "option": "symbols"
+    },
+    "printunsrtsymbols[]": {
+      "snippet": "printunsrtsymbols[${1:options}]",
+      "option": "symbols",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "glsxtrpostdescsymbol": {
+      "option": "symbols"
+    },
+    "printnumbers": {
+      "option": "numbers"
+    },
+    "printnumbers[]": {
+      "snippet": "printnumbers[${1:options}]",
+      "option": "numbers",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "glsxtrnewnumber{}{}": {
+      "snippet": "glsxtrnewnumber{${1:label}}{${2:number}}",
+      "option": "numbers"
+    },
+    "glsxtrnewnumber[]{}{}": {
+      "snippet": "glsxtrnewnumber[${3:options}]{${1:label}}{${2:number}}",
+      "option": "numbers",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "printunsrtnumbers": {
+      "option": "numbers"
+    },
+    "printunsrtnumbers[]": {
+      "snippet": "printunsrtnumbers[${1:options}]",
+      "option": "numbers",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "glsxtrpostdescnumber": {
+      "option": "numbers"
+    },
+    "newterm{}": {
+      "snippet": "newterm{${1:term}}",
+      "option": "index"
+    },
+    "newterm[]{}": {
+      "snippet": "newterm[${2:options}]{${1:term}}",
+      "option": "index",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "printindex": {
+      "option": "index"
+    },
+    "printindex[]": {
+      "snippet": "printindex[${1:options}]",
+      "option": "index",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "printunsrtindex": {
+      "option": "index"
+    },
+    "printunsrtindex[]": {
+      "snippet": "printunsrtindex[${1:options}]",
+      "option": "index",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "glsxtrpostdescindex": {
+      "option": "index"
+    },
+    "printacronyms": {
+      "option": "acronyms"
+    },
+    "printacronyms[]": {
+      "snippet": "printacronyms[${1:options}]",
+      "option": "acronyms",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "printunsrtacronyms": {
+      "option": "acronyms"
+    },
+    "printunsrtacronyms[]": {
+      "snippet": "printunsrtacronyms[${1:options}]",
+      "option": "acronyms",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "pglsxtrshort{}": {
+      "snippet": "pglsxtrshort{${1:label}}",
+      "option": "prefix"
+    },
+    "pglsxtrshort[]{}": {
+      "snippet": "pglsxtrshort[${2:options}]{${1:label}}",
+      "option": "prefix"
+    },
+    "pglsxtrshort{}[]": {
+      "snippet": "pglsxtrshort{${1:label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "pglsxtrshort[]{}[]": {
+      "snippet": "pglsxtrshort[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "prefix"
+    },
+    "Pglsxtrshort{}": {
+      "snippet": "Pglsxtrshort{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsxtrshort[]{}": {
+      "snippet": "Pglsxtrshort[${2:options}]{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsxtrshort{}[]": {
+      "snippet": "Pglsxtrshort{${1:label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "Pglsxtrshort[]{}[]": {
+      "snippet": "Pglsxtrshort[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "prefix"
+    },
+    "PGLSxtrshort{}": {
+      "snippet": "PGLSxtrshort{${1:label}}",
+      "option": "prefix"
+    },
+    "PGLSxtrshort[]{}": {
+      "snippet": "PGLSxtrshort[${2:options}]{${1:label}}",
+      "option": "prefix"
+    },
+    "PGLSxtrshort{}[]": {
+      "snippet": "PGLSxtrshort{${1:label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "PGLSxtrshort[]{}[]": {
+      "snippet": "PGLSxtrshort[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "prefix"
+    },
+    "pglsxtrshortpl{}": {
+      "snippet": "pglsxtrshortpl{${1:label}}",
+      "option": "prefix"
+    },
+    "pglsxtrshortpl[]{}": {
+      "snippet": "pglsxtrshortpl[${2:options}]{${1:label}}",
+      "option": "prefix"
+    },
+    "pglsxtrshortpl{}[]": {
+      "snippet": "pglsxtrshortpl{${1:label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "pglsxtrshortpl[]{}[]": {
+      "snippet": "pglsxtrshortpl[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "prefix"
+    },
+    "Pglsxtrshortpl{}": {
+      "snippet": "Pglsxtrshortpl{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsxtrshortpl[]{}": {
+      "snippet": "Pglsxtrshortpl[${2:options}]{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsxtrshortpl{}[]": {
+      "snippet": "Pglsxtrshortpl{${1:label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "Pglsxtrshortpl[]{}[]": {
+      "snippet": "Pglsxtrshortpl[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "prefix"
+    },
+    "PGLSxtrshortpl{}": {
+      "snippet": "PGLSxtrshortpl{${1:label}}",
+      "option": "prefix"
+    },
+    "PGLSxtrshortpl[]{}": {
+      "snippet": "PGLSxtrshortpl[${2:options}]{${1:label}}",
+      "option": "prefix"
+    },
+    "PGLSxtrshortpl{}[]": {
+      "snippet": "PGLSxtrshortpl{${1:label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "PGLSxtrshortpl[]{}[]": {
+      "snippet": "PGLSxtrshortpl[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "prefix"
+    },
+    "pglsxtrlong{}": {
+      "snippet": "pglsxtrlong{${1:label}}",
+      "option": "prefix"
+    },
+    "pglsxtrlong[]{}": {
+      "snippet": "pglsxtrlong[${2:options}]{${1:label}}",
+      "option": "prefix"
+    },
+    "pglsxtrlong{}[]": {
+      "snippet": "pglsxtrlong{${1:label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "pglsxtrlong[]{}[]": {
+      "snippet": "pglsxtrlong[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "prefix"
+    },
+    "Pglsxtrlong{}": {
+      "snippet": "Pglsxtrlong{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsxtrlong[]{}": {
+      "snippet": "Pglsxtrlong[${2:options}]{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsxtrlong{}[]": {
+      "snippet": "Pglsxtrlong{${1:label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "Pglsxtrlong[]{}[]": {
+      "snippet": "Pglsxtrlong[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "prefix"
+    },
+    "PGLSxtrlong{}": {
+      "snippet": "PGLSxtrlong{${1:label}}",
+      "option": "prefix"
+    },
+    "PGLSxtrlong[]{}": {
+      "snippet": "PGLSxtrlong[${2:options}]{${1:label}}",
+      "option": "prefix"
+    },
+    "PGLSxtrlong{}[]": {
+      "snippet": "PGLSxtrlong{${1:label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "PGLSxtrlong[]{}[]": {
+      "snippet": "PGLSxtrlong[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "prefix"
+    },
+    "pglsxtrlongpl{}": {
+      "snippet": "pglsxtrlongpl{${1:label}}",
+      "option": "prefix"
+    },
+    "pglsxtrlongpl[]{}": {
+      "snippet": "pglsxtrlongpl[${2:options}]{${1:label}}",
+      "option": "prefix"
+    },
+    "pglsxtrlongpl{}[]": {
+      "snippet": "pglsxtrlongpl{${1:label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "pglsxtrlongpl[]{}[]": {
+      "snippet": "pglsxtrlongpl[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "prefix"
+    },
+    "Pglsxtrlongpl{}": {
+      "snippet": "Pglsxtrlongpl{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsxtrlongpl[]{}": {
+      "snippet": "Pglsxtrlongpl[${2:options}]{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsxtrlongpl{}[]": {
+      "snippet": "Pglsxtrlongpl{${1:label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "Pglsxtrlongpl[]{}[]": {
+      "snippet": "Pglsxtrlongpl[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "prefix"
+    },
+    "PGLSxtrlongpl{}": {
+      "snippet": "PGLSxtrlongpl{${1:label}}",
+      "option": "prefix"
+    },
+    "PGLSxtrlongpl[]{}": {
+      "snippet": "PGLSxtrlongpl[${2:options}]{${1:label}}",
+      "option": "prefix"
+    },
+    "PGLSxtrlongpl{}[]": {
+      "snippet": "PGLSxtrlongpl{${1:label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "PGLSxtrlongpl[]{}[]": {
+      "snippet": "PGLSxtrlongpl[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "prefix"
+    },
+    "pglsfmtshort{}": {
+      "snippet": "pglsfmtshort{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsfmtshort{}": {
+      "snippet": "Pglsfmtshort{${1:label}}",
+      "option": "prefix"
+    },
+    "PGLSfmtshort{}": {
+      "snippet": "PGLSfmtshort{${1:label}}",
+      "option": "prefix"
+    },
+    "pglsfmtshortpl{}": {
+      "snippet": "pglsfmtshortpl{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsfmtshortpl{}": {
+      "snippet": "Pglsfmtshortpl{${1:label}}",
+      "option": "prefix"
+    },
+    "PGLSfmtshortpl{}": {
+      "snippet": "PGLSfmtshortpl{${1:label}}",
+      "option": "prefix"
+    },
+    "pglsfmtlong{}": {
+      "snippet": "pglsfmtlong{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsfmtlong{}": {
+      "snippet": "Pglsfmtlong{${1:label}}",
+      "option": "prefix"
+    },
+    "PGLSfmtlong{}": {
+      "snippet": "PGLSfmtlong{${1:label}}",
+      "option": "prefix"
+    },
+    "pglsfmtlongpl{}": {
+      "snippet": "pglsfmtlongpl{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsfmtlongpl{}": {
+      "snippet": "Pglsfmtlongpl{${1:label}}",
+      "option": "prefix"
+    },
+    "PGLSfmtlongpl{}": {
+      "snippet": "PGLSfmtlongpl{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsxtrtitleshort{}": {
+      "snippet": "Pglsxtrtitleshort{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsxtrtitleshortpl{}": {
+      "snippet": "Pglsxtrtitleshortpl{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsxtrtitlelong{}": {
+      "snippet": "Pglsxtrtitlelong{${1:label}}",
+      "option": "prefix"
+    },
+    "Pglsxtrtitlelongpl{}": {
+      "snippet": "Pglsxtrtitlelongpl{${1:label}}",
+      "option": "prefix"
+    },
+    "mpgls{}": {
+      "snippet": "mpgls{${1:multi-label}}",
+      "option": "prefix"
+    },
+    "mpgls[]{}": {
+      "snippet": "mpgls[${2:options}]{${1:multi-label}}",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "mpgls{}[]": {
+      "snippet": "mpgls{${1:multi-label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "mpgls[]{}[]": {
+      "snippet": "mpgls[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "mpglspl{}": {
+      "snippet": "mpglspl{${1:multi-label}}",
+      "option": "prefix"
+    },
+    "mpglspl[]{}": {
+      "snippet": "mpglspl[${2:options}]{${1:multi-label}}",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "mpglspl{}[]": {
+      "snippet": "mpglspl{${1:multi-label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "mpglspl[]{}[]": {
+      "snippet": "mpglspl[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "mpglsmainpl{}": {
+      "snippet": "mpglsmainpl{${1:multi-label}}",
+      "option": "prefix"
+    },
+    "mpglsmainpl[]{}": {
+      "snippet": "mpglsmainpl[${2:options}]{${1:multi-label}}",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "mpglsmainpl{}[]": {
+      "snippet": "mpglsmainpl{${1:multi-label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "mpglsmainpl[]{}[]": {
+      "snippet": "mpglsmainpl[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "Mpgls{}": {
+      "snippet": "Mpgls{${1:multi-label}}",
+      "option": "prefix"
+    },
+    "Mpgls[]{}": {
+      "snippet": "Mpgls[${2:options}]{${1:multi-label}}",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "Mpgls{}[]": {
+      "snippet": "Mpgls{${1:multi-label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "Mpgls[]{}[]": {
+      "snippet": "Mpgls[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "Mpglspl{}": {
+      "snippet": "Mpglspl{${1:multi-label}}",
+      "option": "prefix"
+    },
+    "Mpglspl[]{}": {
+      "snippet": "Mpglspl[${2:options}]{${1:multi-label}}",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "Mpglspl{}[]": {
+      "snippet": "Mpglspl{${1:multi-label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "Mpglspl[]{}[]": {
+      "snippet": "Mpglspl[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "Mpglsmainpl{}": {
+      "snippet": "Mpglsmainpl{${1:multi-label}}",
+      "option": "prefix"
+    },
+    "Mpglsmainpl[]{}": {
+      "snippet": "Mpglsmainpl[${2:options}]{${1:multi-label}}",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "Mpglsmainpl{}[]": {
+      "snippet": "Mpglsmainpl{${1:multi-label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "Mpglsmainpl[]{}[]": {
+      "snippet": "Mpglsmainpl[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "MPGls{}": {
+      "snippet": "MPGls{${1:multi-label}}",
+      "option": "prefix"
+    },
+    "MPGls[]{}": {
+      "snippet": "MPGls[${2:options}]{${1:multi-label}}",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "MPGls{}[]": {
+      "snippet": "MPGls{${1:multi-label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "MPGls[]{}[]": {
+      "snippet": "MPGls[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "MPGlspl{}": {
+      "snippet": "MPGlspl{${1:multi-label}}",
+      "option": "prefix"
+    },
+    "MPGlspl[]{}": {
+      "snippet": "MPGlspl[${2:options}]{${1:multi-label}}",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "MPGlspl{}[]": {
+      "snippet": "MPGlspl{${1:multi-label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "MPGlspl[]{}[]": {
+      "snippet": "MPGlspl[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "MPGlsmainpl{}": {
+      "snippet": "MPGlsmainpl{${1:multi-label}}",
+      "option": "prefix"
+    },
+    "MPGlsmainpl[]{}": {
+      "snippet": "MPGlsmainpl[${2:options}]{${1:multi-label}}",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "MPGlsmainpl{}[]": {
+      "snippet": "MPGlsmainpl{${1:multi-label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "MPGlsmainpl[]{}[]": {
+      "snippet": "MPGlsmainpl[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "MPGLS{}": {
+      "snippet": "MPGLS{${1:multi-label}}",
+      "option": "prefix"
+    },
+    "MPGLS[]{}": {
+      "snippet": "MPGLS[${2:options}]{${1:multi-label}}",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "MPGLS{}[]": {
+      "snippet": "MPGLS{${1:multi-label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "MPGLS[]{}[]": {
+      "snippet": "MPGLS[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "MPGLSpl{}": {
+      "snippet": "MPGLSpl{${1:multi-label}}",
+      "option": "prefix"
+    },
+    "MPGLSpl[]{}": {
+      "snippet": "MPGLSpl[${2:options}]{${1:multi-label}}",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "MPGLSpl{}[]": {
+      "snippet": "MPGLSpl{${1:multi-label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "MPGLSpl[]{}[]": {
+      "snippet": "MPGLSpl[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "MPGLSmainpl{}": {
+      "snippet": "MPGLSmainpl{${1:multi-label}}",
+      "option": "prefix"
+    },
+    "MPGLSmainpl[]{}": {
+      "snippet": "MPGLSmainpl[${2:options}]{${1:multi-label}}",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "MPGLSmainpl{}[]": {
+      "snippet": "MPGLSmainpl{${1:multi-label}}[${2:insert}]",
+      "option": "prefix"
+    },
+    "MPGLSmainpl[]{}[]": {
+      "snippet": "MPGLSmainpl[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "option": "prefix",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "pglsprefix{}{}": {
+      "snippet": "pglsprefix{${1:arg1}}{${2:arg2}}",
+      "option": "prefix"
+    },
+    "Pglsprefix{}{}": {
+      "snippet": "Pglsprefix{${1:arg1}}{${2:arg2}}",
+      "option": "prefix"
+    },
+    "PGLSprefix{}{}": {
+      "snippet": "PGLSprefix{${1:arg1}}{${2:arg2}}",
+      "option": "prefix"
+    },
+    "acs{}": {
+      "snippet": "acs{${1:label}}"
+    },
+    "acs[]{}": {
+      "snippet": "acs[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "acs{}[]": {
+      "snippet": "acs{${1:label}}[${2:insert}]"
+    },
+    "acs[]{}[]": {
+      "snippet": "acs[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "acs*{}": {
+      "snippet": "acs*{${1:label}}"
+    },
+    "acs*[]{}": {
+      "snippet": "acs*[${2:options}]{${1:label}}"
+    },
+    "acs*{}[]": {
+      "snippet": "acs*{${1:label}}[${2:insert}]"
+    },
+    "acs*[]{}[]": {
+      "snippet": "acs*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Acs{}": {
+      "snippet": "Acs{${1:label}}"
+    },
+    "Acs[]{}": {
+      "snippet": "Acs[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Acs{}[]": {
+      "snippet": "Acs{${1:label}}[${2:insert}]"
+    },
+    "Acs[]{}[]": {
+      "snippet": "Acs[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Acs*{}": {
+      "snippet": "Acs*{${1:label}}"
+    },
+    "Acs*[]{}": {
+      "snippet": "Acs*[${2:options}]{${1:label}}"
+    },
+    "Acs*{}[]": {
+      "snippet": "Acs*{${1:label}}[${2:insert}]"
+    },
+    "Acs*[]{}[]": {
+      "snippet": "Acs*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACS{}": {
+      "snippet": "ACS{${1:label}}"
+    },
+    "ACS[]{}": {
+      "snippet": "ACS[${2:options}]{${1:label}}"
+    },
+    "ACS{}[]": {
+      "snippet": "ACS{${1:label}}[${2:insert}]"
+    },
+    "ACS[]{}[]": {
+      "snippet": "ACS[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACS*{}": {
+      "snippet": "ACS*{${1:label}}"
+    },
+    "ACS*[]{}": {
+      "snippet": "ACS*[${2:options}]{${1:label}}"
+    },
+    "ACS*{}[]": {
+      "snippet": "ACS*{${1:label}}[${2:insert}]"
+    },
+    "ACS*[]{}[]": {
+      "snippet": "ACS*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "acsp{}": {
+      "snippet": "acsp{${1:label}}"
+    },
+    "acsp[]{}": {
+      "snippet": "acsp[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "acsp{}[]": {
+      "snippet": "acsp{${1:label}}[${2:insert}]"
+    },
+    "acsp[]{}[]": {
+      "snippet": "acsp[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "acsp*{}": {
+      "snippet": "acsp*{${1:label}}"
+    },
+    "acsp*[]{}": {
+      "snippet": "acsp*[${2:options}]{${1:label}}"
+    },
+    "acsp*{}[]": {
+      "snippet": "acsp*{${1:label}}[${2:insert}]"
+    },
+    "acsp*[]{}[]": {
+      "snippet": "acsp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Acsp{}": {
+      "snippet": "Acsp{${1:label}}"
+    },
+    "Acsp[]{}": {
+      "snippet": "Acsp[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Acsp{}[]": {
+      "snippet": "Acsp{${1:label}}[${2:insert}]"
+    },
+    "Acsp[]{}[]": {
+      "snippet": "Acsp[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Acsp*{}": {
+      "snippet": "Acsp*{${1:label}}"
+    },
+    "Acsp*[]{}": {
+      "snippet": "Acsp*[${2:options}]{${1:label}}"
+    },
+    "Acsp*{}[]": {
+      "snippet": "Acsp*{${1:label}}[${2:insert}]"
+    },
+    "Acsp*[]{}[]": {
+      "snippet": "Acsp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACSP{}": {
+      "snippet": "ACSP{${1:label}}"
+    },
+    "ACSP[]{}": {
+      "snippet": "ACSP[${2:options}]{${1:label}}"
+    },
+    "ACSP{}[]": {
+      "snippet": "ACSP{${1:label}}[${2:insert}]"
+    },
+    "ACSP[]{}[]": {
+      "snippet": "ACSP[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACSP*{}": {
+      "snippet": "ACSP*{${1:label}}"
+    },
+    "ACSP*[]{}": {
+      "snippet": "ACSP*[${2:options}]{${1:label}}"
+    },
+    "ACSP*{}[]": {
+      "snippet": "ACSP*{${1:label}}[${2:insert}]"
+    },
+    "ACSP*[]{}[]": {
+      "snippet": "ACSP*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "acl{}": {
+      "snippet": "acl{${1:label}}"
+    },
+    "acl[]{}": {
+      "snippet": "acl[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "acl{}[]": {
+      "snippet": "acl{${1:label}}[${2:insert}]"
+    },
+    "acl[]{}[]": {
+      "snippet": "acl[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "acl*{}": {
+      "snippet": "acl*{${1:label}}"
+    },
+    "acl*[]{}": {
+      "snippet": "acl*[${2:options}]{${1:label}}"
+    },
+    "acl*{}[]": {
+      "snippet": "acl*{${1:label}}[${2:insert}]"
+    },
+    "acl*[]{}[]": {
+      "snippet": "acl*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Acl{}": {
+      "snippet": "Acl{${1:label}}"
+    },
+    "Acl[]{}": {
+      "snippet": "Acl[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Acl{}[]": {
+      "snippet": "Acl{${1:label}}[${2:insert}]"
+    },
+    "Acl[]{}[]": {
+      "snippet": "Acl[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Acl*{}": {
+      "snippet": "Acl*{${1:label}}"
+    },
+    "Acl*[]{}": {
+      "snippet": "Acl*[${2:options}]{${1:label}}"
+    },
+    "Acl*{}[]": {
+      "snippet": "Acl*{${1:label}}[${2:insert}]"
+    },
+    "Acl*[]{}[]": {
+      "snippet": "Acl*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACL{}": {
+      "snippet": "ACL{${1:label}}"
+    },
+    "ACL[]{}": {
+      "snippet": "ACL[${2:options}]{${1:label}}"
+    },
+    "ACL{}[]": {
+      "snippet": "ACL{${1:label}}[${2:insert}]"
+    },
+    "ACL[]{}[]": {
+      "snippet": "ACL[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACL*{}": {
+      "snippet": "ACL*{${1:label}}"
+    },
+    "ACL*[]{}": {
+      "snippet": "ACL*[${2:options}]{${1:label}}"
+    },
+    "ACL*{}[]": {
+      "snippet": "ACL*{${1:label}}[${2:insert}]"
+    },
+    "ACL*[]{}[]": {
+      "snippet": "ACL*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "aclp{}": {
+      "snippet": "aclp{${1:label}}"
+    },
+    "aclp[]{}": {
+      "snippet": "aclp[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "aclp{}[]": {
+      "snippet": "aclp{${1:label}}[${2:insert}]"
+    },
+    "aclp[]{}[]": {
+      "snippet": "aclp[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "aclp*{}": {
+      "snippet": "aclp*{${1:label}}"
+    },
+    "aclp*[]{}": {
+      "snippet": "aclp*[${2:options}]{${1:label}}"
+    },
+    "aclp*{}[]": {
+      "snippet": "aclp*{${1:label}}[${2:insert}]"
+    },
+    "aclp*[]{}[]": {
+      "snippet": "aclp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Aclp{}": {
+      "snippet": "Aclp{${1:label}}"
+    },
+    "Aclp[]{}": {
+      "snippet": "Aclp[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Aclp{}[]": {
+      "snippet": "Aclp{${1:label}}[${2:insert}]"
+    },
+    "Aclp[]{}[]": {
+      "snippet": "Aclp[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Aclp*{}": {
+      "snippet": "Aclp*{${1:label}}"
+    },
+    "Aclp*[]{}": {
+      "snippet": "Aclp*[${2:options}]{${1:label}}"
+    },
+    "Aclp*{}[]": {
+      "snippet": "Aclp*{${1:label}}[${2:insert}]"
+    },
+    "Aclp*[]{}[]": {
+      "snippet": "Aclp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACLP{}": {
+      "snippet": "ACLP{${1:label}}"
+    },
+    "ACLP[]{}": {
+      "snippet": "ACLP[${2:options}]{${1:label}}"
+    },
+    "ACLP{}[]": {
+      "snippet": "ACLP{${1:label}}[${2:insert}]"
+    },
+    "ACLP[]{}[]": {
+      "snippet": "ACLP[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACLP*{}": {
+      "snippet": "ACLP*{${1:label}}"
+    },
+    "ACLP*[]{}": {
+      "snippet": "ACLP*[${2:options}]{${1:label}}"
+    },
+    "ACLP*{}[]": {
+      "snippet": "ACLP*{${1:label}}[${2:insert}]"
+    },
+    "ACLP*[]{}[]": {
+      "snippet": "ACLP*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "acf{}": {
+      "snippet": "acf{${1:label}}"
+    },
+    "acf[]{}": {
+      "snippet": "acf[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "acf{}[]": {
+      "snippet": "acf{${1:label}}[${2:insert}]"
+    },
+    "acf[]{}[]": {
+      "snippet": "acf[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "acf*{}": {
+      "snippet": "acf*{${1:label}}"
+    },
+    "acf*[]{}": {
+      "snippet": "acf*[${2:options}]{${1:label}}"
+    },
+    "acf*{}[]": {
+      "snippet": "acf*{${1:label}}[${2:insert}]"
+    },
+    "acf*[]{}[]": {
+      "snippet": "acf*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Acf{}": {
+      "snippet": "Acf{${1:label}}"
+    },
+    "Acf[]{}": {
+      "snippet": "Acf[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Acf{}[]": {
+      "snippet": "Acf{${1:label}}[${2:insert}]"
+    },
+    "Acf[]{}[]": {
+      "snippet": "Acf[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Acf*{}": {
+      "snippet": "Acf*{${1:label}}"
+    },
+    "Acf*[]{}": {
+      "snippet": "Acf*[${2:options}]{${1:label}}"
+    },
+    "Acf*{}[]": {
+      "snippet": "Acf*{${1:label}}[${2:insert}]"
+    },
+    "Acf*[]{}[]": {
+      "snippet": "Acf*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACF{}": {
+      "snippet": "ACF{${1:label}}"
+    },
+    "ACF[]{}": {
+      "snippet": "ACF[${2:options}]{${1:label}}"
+    },
+    "ACF{}[]": {
+      "snippet": "ACF{${1:label}}[${2:insert}]"
+    },
+    "ACF[]{}[]": {
+      "snippet": "ACF[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACF*{}": {
+      "snippet": "ACF*{${1:label}}"
+    },
+    "ACF*[]{}": {
+      "snippet": "ACF*[${2:options}]{${1:label}}"
+    },
+    "ACF*{}[]": {
+      "snippet": "ACF*{${1:label}}[${2:insert}]"
+    },
+    "ACF*[]{}[]": {
+      "snippet": "ACF*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "acfp{}": {
+      "snippet": "acfp{${1:label}}"
+    },
+    "acfp[]{}": {
+      "snippet": "acfp[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "acfp{}[]": {
+      "snippet": "acfp{${1:label}}[${2:insert}]"
+    },
+    "acfp[]{}[]": {
+      "snippet": "acfp[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "acfp*{}": {
+      "snippet": "acfp*{${1:label}}"
+    },
+    "acfp*[]{}": {
+      "snippet": "acfp*[${2:options}]{${1:label}}"
+    },
+    "acfp*{}[]": {
+      "snippet": "acfp*{${1:label}}[${2:insert}]"
+    },
+    "acfp*[]{}[]": {
+      "snippet": "acfp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Acfp{}": {
+      "snippet": "Acfp{${1:label}}"
+    },
+    "Acfp[]{}": {
+      "snippet": "Acfp[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Acfp{}[]": {
+      "snippet": "Acfp{${1:label}}[${2:insert}]"
+    },
+    "Acfp[]{}[]": {
+      "snippet": "Acfp[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Acfp*{}": {
+      "snippet": "Acfp*{${1:label}}"
+    },
+    "Acfp*[]{}": {
+      "snippet": "Acfp*[${2:options}]{${1:label}}"
+    },
+    "Acfp*{}[]": {
+      "snippet": "Acfp*{${1:label}}[${2:insert}]"
+    },
+    "Acfp*[]{}[]": {
+      "snippet": "Acfp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACFP{}": {
+      "snippet": "ACFP{${1:label}}"
+    },
+    "ACFP[]{}": {
+      "snippet": "ACFP[${2:options}]{${1:label}}"
+    },
+    "ACFP{}[]": {
+      "snippet": "ACFP{${1:label}}[${2:insert}]"
+    },
+    "ACFP[]{}[]": {
+      "snippet": "ACFP[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACFP*{}": {
+      "snippet": "ACFP*{${1:label}}"
+    },
+    "ACFP*[]{}": {
+      "snippet": "ACFP*[${2:options}]{${1:label}}"
+    },
+    "ACFP*{}[]": {
+      "snippet": "ACFP*{${1:label}}[${2:insert}]"
+    },
+    "ACFP*[]{}[]": {
+      "snippet": "ACFP*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ac{}": {
+      "snippet": "ac{${1:label}}"
+    },
+    "ac[]{}": {
+      "snippet": "ac[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "ac{}[]": {
+      "snippet": "ac{${1:label}}[${2:insert}]"
+    },
+    "ac[]{}[]": {
+      "snippet": "ac[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Ac{}": {
+      "snippet": "Ac{${1:label}}"
+    },
+    "Ac[]{}": {
+      "snippet": "Ac[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Ac{}[]": {
+      "snippet": "Ac{${1:label}}[${2:insert}]"
+    },
+    "Ac[]{}[]": {
+      "snippet": "Ac[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "ac*{}": {
+      "snippet": "ac*{${1:label}}"
+    },
+    "ac*[]{}": {
+      "snippet": "ac*[${2:options}]{${1:label}}"
+    },
+    "ac*{}[]": {
+      "snippet": "ac*{${1:label}}[${2:insert}]"
+    },
+    "ac*[]{}[]": {
+      "snippet": "ac*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Ac*{}": {
+      "snippet": "Ac*{${1:label}}"
+    },
+    "Ac*[]{}": {
+      "snippet": "Ac*[${2:options}]{${1:label}}"
+    },
+    "Ac*{}[]": {
+      "snippet": "Ac*{${1:label}}[${2:insert}]"
+    },
+    "Ac*[]{}[]": {
+      "snippet": "Ac*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "AC{}": {
+      "snippet": "AC{${1:label}}"
+    },
+    "AC[]{}": {
+      "snippet": "AC[${2:options}]{${1:label}}"
+    },
+    "AC{}[]": {
+      "snippet": "AC{${1:label}}[${2:insert}]"
+    },
+    "AC[]{}[]": {
+      "snippet": "AC[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "AC*{}": {
+      "snippet": "AC*{${1:label}}"
+    },
+    "AC*[]{}": {
+      "snippet": "AC*[${2:options}]{${1:label}}"
+    },
+    "AC*{}[]": {
+      "snippet": "AC*{${1:label}}[${2:insert}]"
+    },
+    "AC*[]{}[]": {
+      "snippet": "AC*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "acp{}": {
+      "snippet": "acp{${1:label}}"
+    },
+    "acp[]{}": {
+      "snippet": "acp[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "acp{}[]": {
+      "snippet": "acp{${1:label}}[${2:insert}]"
+    },
+    "acp[]{}[]": {
+      "snippet": "acp[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Acp{}": {
+      "snippet": "Acp{${1:label}}"
+    },
+    "Acp[]{}": {
+      "snippet": "Acp[${2:options}]{${1:label}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Acp{}[]": {
+      "snippet": "Acp{${1:label}}[${2:insert}]"
+    },
+    "Acp[]{}[]": {
+      "snippet": "Acp[${2:options}]{${1:label}}[${3:insert}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "acp*{}": {
+      "snippet": "acp*{${1:label}}"
+    },
+    "acp*[]{}": {
+      "snippet": "acp*[${2:options}]{${1:label}}"
+    },
+    "acp*{}[]": {
+      "snippet": "acp*{${1:label}}[${2:insert}]"
+    },
+    "acp*[]{}[]": {
+      "snippet": "acp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Acp*{}": {
+      "snippet": "Acp*{${1:label}}"
+    },
+    "Acp*[]{}": {
+      "snippet": "Acp*[${2:options}]{${1:label}}"
+    },
+    "Acp*{}[]": {
+      "snippet": "Acp*{${1:label}}[${2:insert}]"
+    },
+    "Acp*[]{}[]": {
+      "snippet": "Acp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACP{}": {
+      "snippet": "ACP{${1:label}}"
+    },
+    "ACP[]{}": {
+      "snippet": "ACP[${2:options}]{${1:label}}"
+    },
+    "ACP{}[]": {
+      "snippet": "ACP{${1:label}}[${2:insert}]"
+    },
+    "ACP[]{}[]": {
+      "snippet": "ACP[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ACP*{}": {
+      "snippet": "ACP*{${1:label}}"
+    },
+    "ACP*[]{}": {
+      "snippet": "ACP*[${2:options}]{${1:label}}"
+    },
+    "ACP*{}[]": {
+      "snippet": "ACP*{${1:label}}[${2:insert}]"
+    },
+    "ACP*[]{}[]": {
+      "snippet": "ACP*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ab{}": {
+      "snippet": "ab{${1:label}}"
+    },
+    "ab[]{}": {
+      "snippet": "ab[${2:options}]{${1:label}}"
+    },
+    "ab{}[]": {
+      "snippet": "ab{${1:label}}[${2:insert}]"
+    },
+    "ab[]{}[]": {
+      "snippet": "ab[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ab*{}": {
+      "snippet": "ab*{${1:label}}"
+    },
+    "ab*[]{}": {
+      "snippet": "ab*[${2:options}]{${1:label}}"
+    },
+    "ab*{}[]": {
+      "snippet": "ab*{${1:label}}[${2:insert}]"
+    },
+    "ab*[]{}[]": {
+      "snippet": "ab*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "abp{}": {
+      "snippet": "abp{${1:label}}"
+    },
+    "abp[]{}": {
+      "snippet": "abp[${2:options}]{${1:label}}"
+    },
+    "abp{}[]": {
+      "snippet": "abp{${1:label}}[${2:insert}]"
+    },
+    "abp[]{}[]": {
+      "snippet": "abp[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "abp*{}": {
+      "snippet": "abp*{${1:label}}"
+    },
+    "abp*[]{}": {
+      "snippet": "abp*[${2:options}]{${1:label}}"
+    },
+    "abp*{}[]": {
+      "snippet": "abp*{${1:label}}[${2:insert}]"
+    },
+    "abp*[]{}[]": {
+      "snippet": "abp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "as{}": {
+      "snippet": "as{${1:label}}"
+    },
+    "as[]{}": {
+      "snippet": "as[${2:options}]{${1:label}}"
+    },
+    "as{}[]": {
+      "snippet": "as{${1:label}}[${2:insert}]"
+    },
+    "as[]{}[]": {
+      "snippet": "as[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "as*{}": {
+      "snippet": "as*{${1:label}}"
+    },
+    "as*[]{}": {
+      "snippet": "as*[${2:options}]{${1:label}}"
+    },
+    "as*{}[]": {
+      "snippet": "as*{${1:label}}[${2:insert}]"
+    },
+    "as*[]{}[]": {
+      "snippet": "as*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "asp{}": {
+      "snippet": "asp{${1:label}}"
+    },
+    "asp[]{}": {
+      "snippet": "asp[${2:options}]{${1:label}}"
+    },
+    "asp{}[]": {
+      "snippet": "asp{${1:label}}[${2:insert}]"
+    },
+    "asp[]{}[]": {
+      "snippet": "asp[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "asp*{}": {
+      "snippet": "asp*{${1:label}}"
+    },
+    "asp*[]{}": {
+      "snippet": "asp*[${2:options}]{${1:label}}"
+    },
+    "asp*{}[]": {
+      "snippet": "asp*{${1:label}}[${2:insert}]"
+    },
+    "asp*[]{}[]": {
+      "snippet": "asp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "al{}": {
+      "snippet": "al{${1:label}}"
+    },
+    "al[]{}": {
+      "snippet": "al[${2:options}]{${1:label}}"
+    },
+    "al{}[]": {
+      "snippet": "al{${1:label}}[${2:insert}]"
+    },
+    "al[]{}[]": {
+      "snippet": "al[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "al*{}": {
+      "snippet": "al*{${1:label}}"
+    },
+    "al*[]{}": {
+      "snippet": "al*[${2:options}]{${1:label}}"
+    },
+    "al*{}[]": {
+      "snippet": "al*{${1:label}}[${2:insert}]"
+    },
+    "al*[]{}[]": {
+      "snippet": "al*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "alp{}": {
+      "snippet": "alp{${1:label}}"
+    },
+    "alp[]{}": {
+      "snippet": "alp[${2:options}]{${1:label}}"
+    },
+    "alp{}[]": {
+      "snippet": "alp{${1:label}}[${2:insert}]"
+    },
+    "alp[]{}[]": {
+      "snippet": "alp[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "alp*{}": {
+      "snippet": "alp*{${1:label}}"
+    },
+    "alp*[]{}": {
+      "snippet": "alp*[${2:options}]{${1:label}}"
+    },
+    "alp*{}[]": {
+      "snippet": "alp*{${1:label}}[${2:insert}]"
+    },
+    "alp*[]{}[]": {
+      "snippet": "alp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "af{}": {
+      "snippet": "af{${1:label}}"
+    },
+    "af[]{}": {
+      "snippet": "af[${2:options}]{${1:label}}"
+    },
+    "af{}[]": {
+      "snippet": "af{${1:label}}[${2:insert}]"
+    },
+    "af[]{}[]": {
+      "snippet": "af[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "af*{}": {
+      "snippet": "af*{${1:label}}"
+    },
+    "af*[]{}": {
+      "snippet": "af*[${2:options}]{${1:label}}"
+    },
+    "af*{}[]": {
+      "snippet": "af*{${1:label}}[${2:insert}]"
+    },
+    "af*[]{}[]": {
+      "snippet": "af*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "afp{}": {
+      "snippet": "afp{${1:label}}"
+    },
+    "afp[]{}": {
+      "snippet": "afp[${2:options}]{${1:label}}"
+    },
+    "afp{}[]": {
+      "snippet": "afp{${1:label}}[${2:insert}]"
+    },
+    "afp[]{}[]": {
+      "snippet": "afp[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "afp*{}": {
+      "snippet": "afp*{${1:label}}"
+    },
+    "afp*[]{}": {
+      "snippet": "afp*[${2:options}]{${1:label}}"
+    },
+    "afp*{}[]": {
+      "snippet": "afp*{${1:label}}[${2:insert}]"
+    },
+    "afp*[]{}[]": {
+      "snippet": "afp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Ab{}": {
+      "snippet": "Ab{${1:label}}"
+    },
+    "Ab[]{}": {
+      "snippet": "Ab[${2:options}]{${1:label}}"
+    },
+    "Ab{}[]": {
+      "snippet": "Ab{${1:label}}[${2:insert}]"
+    },
+    "Ab[]{}[]": {
+      "snippet": "Ab[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Ab*{}": {
+      "snippet": "Ab*{${1:label}}"
+    },
+    "Ab*[]{}": {
+      "snippet": "Ab*[${2:options}]{${1:label}}"
+    },
+    "Ab*{}[]": {
+      "snippet": "Ab*{${1:label}}[${2:insert}]"
+    },
+    "Ab*[]{}[]": {
+      "snippet": "Ab*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Abp{}": {
+      "snippet": "Abp{${1:label}}"
+    },
+    "Abp[]{}": {
+      "snippet": "Abp[${2:options}]{${1:label}}"
+    },
+    "Abp{}[]": {
+      "snippet": "Abp{${1:label}}[${2:insert}]"
+    },
+    "Abp[]{}[]": {
+      "snippet": "Abp[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Abp*{}": {
+      "snippet": "Abp*{${1:label}}"
+    },
+    "Abp*[]{}": {
+      "snippet": "Abp*[${2:options}]{${1:label}}"
+    },
+    "Abp*{}[]": {
+      "snippet": "Abp*{${1:label}}[${2:insert}]"
+    },
+    "Abp*[]{}[]": {
+      "snippet": "Abp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "As{}": {
+      "snippet": "As{${1:label}}"
+    },
+    "As[]{}": {
+      "snippet": "As[${2:options}]{${1:label}}"
+    },
+    "As{}[]": {
+      "snippet": "As{${1:label}}[${2:insert}]"
+    },
+    "As[]{}[]": {
+      "snippet": "As[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "As*{}": {
+      "snippet": "As*{${1:label}}"
+    },
+    "As*[]{}": {
+      "snippet": "As*[${2:options}]{${1:label}}"
+    },
+    "As*{}[]": {
+      "snippet": "As*{${1:label}}[${2:insert}]"
+    },
+    "As*[]{}[]": {
+      "snippet": "As*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Asp{}": {
+      "snippet": "Asp{${1:label}}"
+    },
+    "Asp[]{}": {
+      "snippet": "Asp[${2:options}]{${1:label}}"
+    },
+    "Asp{}[]": {
+      "snippet": "Asp{${1:label}}[${2:insert}]"
+    },
+    "Asp[]{}[]": {
+      "snippet": "Asp[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Asp*{}": {
+      "snippet": "Asp*{${1:label}}"
+    },
+    "Asp*[]{}": {
+      "snippet": "Asp*[${2:options}]{${1:label}}"
+    },
+    "Asp*{}[]": {
+      "snippet": "Asp*{${1:label}}[${2:insert}]"
+    },
+    "Asp*[]{}[]": {
+      "snippet": "Asp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Al{}": {
+      "snippet": "Al{${1:label}}"
+    },
+    "Al[]{}": {
+      "snippet": "Al[${2:options}]{${1:label}}"
+    },
+    "Al{}[]": {
+      "snippet": "Al{${1:label}}[${2:insert}]"
+    },
+    "Al[]{}[]": {
+      "snippet": "Al[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Al*{}": {
+      "snippet": "Al*{${1:label}}"
+    },
+    "Al*[]{}": {
+      "snippet": "Al*[${2:options}]{${1:label}}"
+    },
+    "Al*{}[]": {
+      "snippet": "Al*{${1:label}}[${2:insert}]"
+    },
+    "Al*[]{}[]": {
+      "snippet": "Al*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Alp{}": {
+      "snippet": "Alp{${1:label}}"
+    },
+    "Alp[]{}": {
+      "snippet": "Alp[${2:options}]{${1:label}}"
+    },
+    "Alp{}[]": {
+      "snippet": "Alp{${1:label}}[${2:insert}]"
+    },
+    "Alp[]{}[]": {
+      "snippet": "Alp[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Alp*{}": {
+      "snippet": "Alp*{${1:label}}"
+    },
+    "Alp*[]{}": {
+      "snippet": "Alp*[${2:options}]{${1:label}}"
+    },
+    "Alp*{}[]": {
+      "snippet": "Alp*{${1:label}}[${2:insert}]"
+    },
+    "Alp*[]{}[]": {
+      "snippet": "Alp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Af{}": {
+      "snippet": "Af{${1:label}}"
+    },
+    "Af[]{}": {
+      "snippet": "Af[${2:options}]{${1:label}}"
+    },
+    "Af{}[]": {
+      "snippet": "Af{${1:label}}[${2:insert}]"
+    },
+    "Af[]{}[]": {
+      "snippet": "Af[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Af*{}": {
+      "snippet": "Af*{${1:label}}"
+    },
+    "Af*[]{}": {
+      "snippet": "Af*[${2:options}]{${1:label}}"
+    },
+    "Af*{}[]": {
+      "snippet": "Af*{${1:label}}[${2:insert}]"
+    },
+    "Af*[]{}[]": {
+      "snippet": "Af*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Afp{}": {
+      "snippet": "Afp{${1:label}}"
+    },
+    "Afp[]{}": {
+      "snippet": "Afp[${2:options}]{${1:label}}"
+    },
+    "Afp{}[]": {
+      "snippet": "Afp{${1:label}}[${2:insert}]"
+    },
+    "Afp[]{}[]": {
+      "snippet": "Afp[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Afp*{}": {
+      "snippet": "Afp*{${1:label}}"
+    },
+    "Afp*[]{}": {
+      "snippet": "Afp*[${2:options}]{${1:label}}"
+    },
+    "Afp*{}[]": {
+      "snippet": "Afp*{${1:label}}[${2:insert}]"
+    },
+    "Afp*[]{}[]": {
+      "snippet": "Afp*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "AB{}": {
+      "snippet": "AB{${1:label}}"
+    },
+    "AB[]{}": {
+      "snippet": "AB[${2:options}]{${1:label}}"
+    },
+    "AB{}[]": {
+      "snippet": "AB{${1:label}}[${2:insert}]"
+    },
+    "AB[]{}[]": {
+      "snippet": "AB[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "AB*{}": {
+      "snippet": "AB*{${1:label}}"
+    },
+    "AB*[]{}": {
+      "snippet": "AB*[${2:options}]{${1:label}}"
+    },
+    "AB*{}[]": {
+      "snippet": "AB*{${1:label}}[${2:insert}]"
+    },
+    "AB*[]{}[]": {
+      "snippet": "AB*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ABP{}": {
+      "snippet": "ABP{${1:label}}"
+    },
+    "ABP[]{}": {
+      "snippet": "ABP[${2:options}]{${1:label}}"
+    },
+    "ABP{}[]": {
+      "snippet": "ABP{${1:label}}[${2:insert}]"
+    },
+    "ABP[]{}[]": {
+      "snippet": "ABP[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ABP*{}": {
+      "snippet": "ABP*{${1:label}}"
+    },
+    "ABP*[]{}": {
+      "snippet": "ABP*[${2:options}]{${1:label}}"
+    },
+    "ABP*{}[]": {
+      "snippet": "ABP*{${1:label}}[${2:insert}]"
+    },
+    "ABP*[]{}[]": {
+      "snippet": "ABP*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "AS{}": {
+      "snippet": "AS{${1:label}}"
+    },
+    "AS[]{}": {
+      "snippet": "AS[${2:options}]{${1:label}}"
+    },
+    "AS{}[]": {
+      "snippet": "AS{${1:label}}[${2:insert}]"
+    },
+    "AS[]{}[]": {
+      "snippet": "AS[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "AS*{}": {
+      "snippet": "AS*{${1:label}}"
+    },
+    "AS*[]{}": {
+      "snippet": "AS*[${2:options}]{${1:label}}"
+    },
+    "AS*{}[]": {
+      "snippet": "AS*{${1:label}}[${2:insert}]"
+    },
+    "AS*[]{}[]": {
+      "snippet": "AS*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ASP{}": {
+      "snippet": "ASP{${1:label}}"
+    },
+    "ASP[]{}": {
+      "snippet": "ASP[${2:options}]{${1:label}}"
+    },
+    "ASP{}[]": {
+      "snippet": "ASP{${1:label}}[${2:insert}]"
+    },
+    "ASP[]{}[]": {
+      "snippet": "ASP[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ASP*{}": {
+      "snippet": "ASP*{${1:label}}"
+    },
+    "ASP*[]{}": {
+      "snippet": "ASP*[${2:options}]{${1:label}}"
+    },
+    "ASP*{}[]": {
+      "snippet": "ASP*{${1:label}}[${2:insert}]"
+    },
+    "ASP*[]{}[]": {
+      "snippet": "ASP*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "AL{}": {
+      "snippet": "AL{${1:label}}"
+    },
+    "AL[]{}": {
+      "snippet": "AL[${2:options}]{${1:label}}"
+    },
+    "AL{}[]": {
+      "snippet": "AL{${1:label}}[${2:insert}]"
+    },
+    "AL[]{}[]": {
+      "snippet": "AL[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "AL*{}": {
+      "snippet": "AL*{${1:label}}"
+    },
+    "AL*[]{}": {
+      "snippet": "AL*[${2:options}]{${1:label}}"
+    },
+    "AL*{}[]": {
+      "snippet": "AL*{${1:label}}[${2:insert}]"
+    },
+    "AL*[]{}[]": {
+      "snippet": "AL*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ALP{}": {
+      "snippet": "ALP{${1:label}}"
+    },
+    "ALP[]{}": {
+      "snippet": "ALP[${2:options}]{${1:label}}"
+    },
+    "ALP{}[]": {
+      "snippet": "ALP{${1:label}}[${2:insert}]"
+    },
+    "ALP[]{}[]": {
+      "snippet": "ALP[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "ALP*{}": {
+      "snippet": "ALP*{${1:label}}"
+    },
+    "ALP*[]{}": {
+      "snippet": "ALP*[${2:options}]{${1:label}}"
+    },
+    "ALP*{}[]": {
+      "snippet": "ALP*{${1:label}}[${2:insert}]"
+    },
+    "ALP*[]{}[]": {
+      "snippet": "ALP*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "AF{}": {
+      "snippet": "AF{${1:label}}"
+    },
+    "AF[]{}": {
+      "snippet": "AF[${2:options}]{${1:label}}"
+    },
+    "AF{}[]": {
+      "snippet": "AF{${1:label}}[${2:insert}]"
+    },
+    "AF[]{}[]": {
+      "snippet": "AF[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "AF*{}": {
+      "snippet": "AF*{${1:label}}"
+    },
+    "AF*[]{}": {
+      "snippet": "AF*[${2:options}]{${1:label}}"
+    },
+    "AF*{}[]": {
+      "snippet": "AF*{${1:label}}[${2:insert}]"
+    },
+    "AF*[]{}[]": {
+      "snippet": "AF*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "AFP{}": {
+      "snippet": "AFP{${1:label}}"
+    },
+    "AFP[]{}": {
+      "snippet": "AFP[${2:options}]{${1:label}}"
+    },
+    "AFP{}[]": {
+      "snippet": "AFP{${1:label}}[${2:insert}]"
+    },
+    "AFP[]{}[]": {
+      "snippet": "AFP[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "AFP*{}": {
+      "snippet": "AFP*{${1:label}}"
+    },
+    "AFP*[]{}": {
+      "snippet": "AFP*[${2:options}]{${1:label}}"
+    },
+    "AFP*{}[]": {
+      "snippet": "AFP*{${1:label}}[${2:insert}]"
+    },
+    "AFP*[]{}[]": {
+      "snippet": "AFP*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "newabbr{}{}{}": {
+      "snippet": "newabbr{${1:label}}{${2:short}}{${3:long}}",
+      "option": "shortcuts=true"
+    },
+    "newabbr[]{}{}{}": {
+      "snippet": "newabbr[${4:options}]{${1:label}}{${2:short}}{${3:long}}",
+      "option": "shortcuts=true",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "newentry{}{}": {
+      "snippet": "newentry{${1:label}}{${2:keyvals}}",
+      "option": "shortcuts=true",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "newsym{}{}": {
+      "snippet": "newsym{${1:label}}{${2:symbol}}",
+      "option": "shortcuts=true"
+    },
+    "newsym[]{}{}": {
+      "snippet": "newsym[${3:options}]{${1:label}}{${2:symbol}}",
+      "option": "shortcuts=true",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "newnum{}{}": {
+      "snippet": "newnum{${1:label}}{${2:number}}",
+      "option": "shortcuts=true"
+    },
+    "newnum[]{}{}": {
+      "snippet": "newnum[${3:options}]{${1:label}}{${2:number}}",
+      "option": "shortcuts=true",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "GlsAddXdyStyle{}": {
+      "snippet": "GlsAddXdyStyle{${1:style-name}}",
+      "option": "xindy"
+    },
+    "GlsSetXdyStyles{}": {
+      "snippet": "GlsSetXdyStyles{${1:style name list}}",
+      "option": "xindy"
+    },
+    "GlsSetXdyLanguage{}": {
+      "snippet": "GlsSetXdyLanguage{${1:language}}",
+      "option": "xindy"
+    },
+    "GlsSetXdyLanguage[]{}": {
+      "snippet": "GlsSetXdyLanguage[${2:glossary-type}]{${1:language}}",
+      "option": "xindy"
+    },
+    "GlsSetXdyCodePage{}": {
+      "snippet": "GlsSetXdyCodePage{${1:codepage}}",
+      "option": "xindy"
+    },
+    "GlsAddXdyCounters{}": {
+      "snippet": "GlsAddXdyCounters{${1:counter list}}",
+      "option": "xindy"
+    },
+    "GlsAddXdyAttribute{}": {
+      "snippet": "GlsAddXdyAttribute{${1:name}}",
+      "option": "xindy"
+    },
+    "GlsAddXdyLocation{}{}": {
+      "snippet": "GlsAddXdyLocation{${1:name}}{${2:definition}}",
+      "option": "xindy"
+    },
+    "GlsAddXdyLocation[]{}{}": {
+      "snippet": "GlsAddXdyLocation[${3:H-prefix}]{${1:name}}{${2:definition}}",
+      "option": "xindy"
+    },
+    "GlsSetXdyLocationClassOrder{}": {
+      "snippet": "GlsSetXdyLocationClassOrder{${1:location names}}",
+      "option": "xindy"
+    },
+    "GlsSetXdyMinRangeLength{}": {
+      "snippet": "GlsSetXdyMinRangeLength{${1:integer}}",
+      "option": "xindy"
+    },
+    "GlsSetXdyFirstLetterAfterDigits{}": {
+      "snippet": "GlsSetXdyFirstLetterAfterDigits{${1:letter}}",
+      "option": "xindy"
+    },
+    "GlsSetXdyNumberGroupOrder{}": {
+      "snippet": "GlsSetXdyNumberGroupOrder{${1:relative location}}",
+      "option": "xindy"
+    },
+    "GlsAddLetterGroup{}{}": {
+      "snippet": "GlsAddLetterGroup{${1:name}}{${2:xindy code}}",
+      "option": "xindy"
+    },
+    "GlsAddSortRule{}{}": {
+      "snippet": "GlsAddSortRule{${1:arg1}}{${2:arg2}}",
+      "option": "xindy"
+    },
+    "GlsAddXdyAlphabet{}{}": {
+      "snippet": "GlsAddXdyAlphabet{${1:name}}{${2:definition}}",
+      "option": "xindy"
+    },
+    "glsxtrundeftag": {},
+    "glsxtrundefaction{}{}": {
+      "snippet": "glsxtrundefaction{${1:message}}{${2:additional help}}"
+    },
+    "glsxtrsetbibglsaux{}": {
+      "snippet": "glsxtrsetbibglsaux{${1:basename}}"
+    },
+    "thewrglossary": {},
+    "glsxtrwrglossmark": {},
+    "glsxtrwrglosscountermark{}": {
+      "snippet": "glsxtrwrglosscountermark{${1:number}}"
+    },
+    "glsxtrshowtargetouter{}": {
+      "snippet": "glsxtrshowtargetouter{${1:target-name}}"
+    },
+    "glsxtrshowtargetinner{}": {
+      "snippet": "glsxtrshowtargetinner{${1:target-name}}"
+    },
+    "glsshowtargetinnersymleft{}": {
+      "snippet": "glsshowtargetinnersymleft{${1:name}}"
+    },
+    "glsxtrshowtargetsymbolleft": {},
+    "glsshowtargetinnersymright{}": {
+      "snippet": "glsshowtargetinnersymright{${1:name}}"
+    },
+    "glsxtrshowtargetsymbolright": {},
+    "longnewglossaryentry*{}{}{}": {
+      "snippet": "longnewglossaryentry*{${1:label}}{${2:keyvals}}{${3:long description}}",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "glsxtrpostlongdescription": {},
+    "glsxtrprovidestoragekey{}{}{}": {
+      "snippet": "glsxtrprovidestoragekey{${1:key}}{${2:default value}}{${3:no link cs}}"
+    },
+    "glsxtrifkeydefined{}{}{}": {
+      "snippet": "glsxtrifkeydefined{${1:key}}{${2:true}}{${3:false}}"
+    },
+    "glsxtraliashook{}": {
+      "snippet": "glsxtraliashook{${1:label}}"
+    },
+    "glsxtrdeffield{}{}{}": {
+      "snippet": "glsxtrdeffield{${1:label}}{${2:field}}{${3:value}}"
+    },
+    "glsxtredeffield{}{}{}": {
+      "snippet": "glsxtredeffield{${1:label}}{${2:field}}{${3:value}}"
+    },
+    "glsxtrapptocsvfield{}{}{}": {
+      "snippet": "glsxtrapptocsvfield{${1:label}}{${2:field}}{${3:value}}"
+    },
+    "glsxtrfieldlistadd{}{}{}": {
+      "snippet": "glsxtrfieldlistadd{${1:label}}{${2:field}}{${3:value}}"
+    },
+    "glsxtrfieldlistgadd{}{}{}": {
+      "snippet": "glsxtrfieldlistgadd{${1:label}}{${2:field}}{${3:value}}"
+    },
+    "glsxtrfieldlisteadd{}{}{}": {
+      "snippet": "glsxtrfieldlisteadd{${1:label}}{${2:field}}{${3:value}}"
+    },
+    "glsxtrfieldlistxadd{}{}{}": {
+      "snippet": "glsxtrfieldlistxadd{${1:label}}{${2:field}}{${3:value}}"
+    },
+    "glsxtrsetfieldifexists{}{}{}": {
+      "snippet": "glsxtrsetfieldifexists{${1:label}}{${2:field}}{${3:code}}"
+    },
+    "GlsXtrSetField{}{}{}": {
+      "snippet": "GlsXtrSetField{${1:label}}{${2:field}}{${3:value}}"
+    },
+    "gGlsXtrSetField{}{}{}": {
+      "snippet": "gGlsXtrSetField{${1:label}}{${2:field}}{${3:value}}"
+    },
+    "eGlsXtrSetField{}{}{}": {
+      "snippet": "eGlsXtrSetField{${1:label}}{${2:field}}{${3:value}}"
+    },
+    "xGlsXtrSetField{}{}{}": {
+      "snippet": "xGlsXtrSetField{${1:label}}{${2:field}}{${3:value}}"
+    },
+    "GlsXtrLetField{}{}{}": {
+      "snippet": "GlsXtrLetField{${1:label}}{${2:field}}{${3:value}}"
+    },
+    "csGlsXtrLetField{}{}{}": {
+      "snippet": "csGlsXtrLetField{${1:label}}{${2:field}}{${3:csname}}"
+    },
+    "GlsXtrLetFieldToField{}{}{}{}": {
+      "snippet": "GlsXtrLetFieldToField{${1:label1}}{${2:field1}}{${3:label2}}{${4:field2}}"
+    },
+    "newabbreviation{}{}{}": {
+      "snippet": "newabbreviation{${1:label}}{${2:short}}{${3:long}}"
+    },
+    "newabbreviation[]{}{}{}": {
+      "snippet": "newabbreviation[${4:options}]{${1:label}}{${2:short}}{${3:long}}"
+    },
+    "glsxtrabbrvpluralsuffix": {},
+    "glsxtrabbrvtype": {},
+    "glsxtrnewabbrevpresetkeyhook{}{}{}": {
+      "snippet": "glsxtrnewabbrevpresetkeyhook{${1:options}}{${2:label}}{${3:short}}"
+    },
+    "newabbreviationhook": {},
+    "glsxtrshort{}": {
+      "snippet": "glsxtrshort{${1:label}}"
+    },
+    "glsxtrshort[]{}": {
+      "snippet": "glsxtrshort[${2:options}]{${1:label}}"
+    },
+    "glsxtrshort{}[]": {
+      "snippet": "glsxtrshort{${1:label}}[${2:insert}]"
+    },
+    "glsxtrshort[]{}[]": {
+      "snippet": "glsxtrshort[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Glsxtrshort{}": {
+      "snippet": "Glsxtrshort{${1:label}}"
+    },
+    "Glsxtrshort[]{}": {
+      "snippet": "Glsxtrshort[${2:options}]{${1:label}}"
+    },
+    "Glsxtrshort{}[]": {
+      "snippet": "Glsxtrshort{${1:label}}[${2:insert}]"
+    },
+    "Glsxtrshort[]{}[]": {
+      "snippet": "Glsxtrshort[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "GLSxtrshort{}": {
+      "snippet": "GLSxtrshort{${1:label}}"
+    },
+    "GLSxtrshort[]{}": {
+      "snippet": "GLSxtrshort[${2:options}]{${1:label}}"
+    },
+    "GLSxtrshort{}[]": {
+      "snippet": "GLSxtrshort{${1:label}}[${2:insert}]"
+    },
+    "GLSxtrshort[]{}[]": {
+      "snippet": "GLSxtrshort[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "glsxtrshortpl{}": {
+      "snippet": "glsxtrshortpl{${1:label}}"
+    },
+    "glsxtrshortpl[]{}": {
+      "snippet": "glsxtrshortpl[${2:options}]{${1:label}}"
+    },
+    "glsxtrshortpl{}[]": {
+      "snippet": "glsxtrshortpl{${1:label}}[${2:insert}]"
+    },
+    "glsxtrshortpl[]{}[]": {
+      "snippet": "glsxtrshortpl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Glsxtrshortpl{}": {
+      "snippet": "Glsxtrshortpl{${1:label}}"
+    },
+    "Glsxtrshortpl[]{}": {
+      "snippet": "Glsxtrshortpl[${2:options}]{${1:label}}"
+    },
+    "Glsxtrshortpl{}[]": {
+      "snippet": "Glsxtrshortpl{${1:label}}[${2:insert}]"
+    },
+    "Glsxtrshortpl[]{}[]": {
+      "snippet": "Glsxtrshortpl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "GLSxtrshortpl{}": {
+      "snippet": "GLSxtrshortpl{${1:label}}"
+    },
+    "GLSxtrshortpl[]{}": {
+      "snippet": "GLSxtrshortpl[${2:options}]{${1:label}}"
+    },
+    "GLSxtrshortpl{}[]": {
+      "snippet": "GLSxtrshortpl{${1:label}}[${2:insert}]"
+    },
+    "GLSxtrshortpl[]{}[]": {
+      "snippet": "GLSxtrshortpl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "glsxtrlong{}": {
+      "snippet": "glsxtrlong{${1:label}}"
+    },
+    "glsxtrlong[]{}": {
+      "snippet": "glsxtrlong[${2:options}]{${1:label}}"
+    },
+    "glsxtrlong{}[]": {
+      "snippet": "glsxtrlong{${1:label}}[${2:insert}]"
+    },
+    "glsxtrlong[]{}[]": {
+      "snippet": "glsxtrlong[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Glsxtrlong{}": {
+      "snippet": "Glsxtrlong{${1:label}}"
+    },
+    "Glsxtrlong[]{}": {
+      "snippet": "Glsxtrlong[${2:options}]{${1:label}}"
+    },
+    "Glsxtrlong{}[]": {
+      "snippet": "Glsxtrlong{${1:label}}[${2:insert}]"
+    },
+    "Glsxtrlong[]{}[]": {
+      "snippet": "Glsxtrlong[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "GLSxtrlong{}": {
+      "snippet": "GLSxtrlong{${1:label}}"
+    },
+    "GLSxtrlong[]{}": {
+      "snippet": "GLSxtrlong[${2:options}]{${1:label}}"
+    },
+    "GLSxtrlong{}[]": {
+      "snippet": "GLSxtrlong{${1:label}}[${2:insert}]"
+    },
+    "GLSxtrlong[]{}[]": {
+      "snippet": "GLSxtrlong[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "glsxtrlongpl{}": {
+      "snippet": "glsxtrlongpl{${1:label}}"
+    },
+    "glsxtrlongpl[]{}": {
+      "snippet": "glsxtrlongpl[${2:options}]{${1:label}}"
+    },
+    "glsxtrlongpl{}[]": {
+      "snippet": "glsxtrlongpl{${1:label}}[${2:insert}]"
+    },
+    "glsxtrlongpl[]{}[]": {
+      "snippet": "glsxtrlongpl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Glsxtrlongpl{}": {
+      "snippet": "Glsxtrlongpl{${1:label}}"
+    },
+    "Glsxtrlongpl[]{}": {
+      "snippet": "Glsxtrlongpl[${2:options}]{${1:label}}"
+    },
+    "Glsxtrlongpl{}[]": {
+      "snippet": "Glsxtrlongpl{${1:label}}[${2:insert}]"
+    },
+    "Glsxtrlongpl[]{}[]": {
+      "snippet": "Glsxtrlongpl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "GLSxtrlongpl{}": {
+      "snippet": "GLSxtrlongpl{${1:label}}"
+    },
+    "GLSxtrlongpl[]{}": {
+      "snippet": "GLSxtrlongpl[${2:options}]{${1:label}}"
+    },
+    "GLSxtrlongpl{}[]": {
+      "snippet": "GLSxtrlongpl{${1:label}}[${2:insert}]"
+    },
+    "GLSxtrlongpl[]{}[]": {
+      "snippet": "GLSxtrlongpl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "glsxtrfull{}": {
+      "snippet": "glsxtrfull{${1:label}}"
+    },
+    "glsxtrfull[]{}": {
+      "snippet": "glsxtrfull[${2:options}]{${1:label}}"
+    },
+    "glsxtrfull{}[]": {
+      "snippet": "glsxtrfull{${1:label}}[${2:insert}]"
+    },
+    "glsxtrfull[]{}[]": {
+      "snippet": "glsxtrfull[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Glsxtrfull{}": {
+      "snippet": "Glsxtrfull{${1:label}}"
+    },
+    "Glsxtrfull[]{}": {
+      "snippet": "Glsxtrfull[${2:options}]{${1:label}}"
+    },
+    "Glsxtrfull{}[]": {
+      "snippet": "Glsxtrfull{${1:label}}[${2:insert}]"
+    },
+    "Glsxtrfull[]{}[]": {
+      "snippet": "Glsxtrfull[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "GLSxtrfull{}": {
+      "snippet": "GLSxtrfull{${1:label}}"
+    },
+    "GLSxtrfull[]{}": {
+      "snippet": "GLSxtrfull[${2:options}]{${1:label}}"
+    },
+    "GLSxtrfull{}[]": {
+      "snippet": "GLSxtrfull{${1:label}}[${2:insert}]"
+    },
+    "GLSxtrfull[]{}[]": {
+      "snippet": "GLSxtrfull[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "glsxtrfullpl{}": {
+      "snippet": "glsxtrfullpl{${1:label}}"
+    },
+    "glsxtrfullpl[]{}": {
+      "snippet": "glsxtrfullpl[${2:options}]{${1:label}}"
+    },
+    "glsxtrfullpl{}[]": {
+      "snippet": "glsxtrfullpl{${1:label}}[${2:insert}]"
+    },
+    "glsxtrfullpl[]{}[]": {
+      "snippet": "glsxtrfullpl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "Glsxtrfullpl{}": {
+      "snippet": "Glsxtrfullpl{${1:label}}"
+    },
+    "Glsxtrfullpl[]{}": {
+      "snippet": "Glsxtrfullpl[${2:options}]{${1:label}}"
+    },
+    "Glsxtrfullpl{}[]": {
+      "snippet": "Glsxtrfullpl{${1:label}}[${2:insert}]"
+    },
+    "Glsxtrfullpl[]{}[]": {
+      "snippet": "Glsxtrfullpl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "GLSxtrfullpl{}": {
+      "snippet": "GLSxtrfullpl{${1:label}}"
+    },
+    "GLSxtrfullpl[]{}": {
+      "snippet": "GLSxtrfullpl[${2:options}]{${1:label}}"
+    },
+    "GLSxtrfullpl{}[]": {
+      "snippet": "GLSxtrfullpl{${1:label}}[${2:insert}]"
+    },
+    "GLSxtrfullpl[]{}[]": {
+      "snippet": "GLSxtrfullpl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "glsxtrsetlongfirstuse{}": {
+      "snippet": "glsxtrsetlongfirstuse{${1:label}}"
+    },
+    "glsxtrsetupfulldefs": {},
+    "glsxtrfullsaveinsert{}{}": {
+      "snippet": "glsxtrfullsaveinsert{${1:label}}{${2:insert}}"
+    },
+    "GlsXtrEnableInitialTagging{}{}": {
+      "snippet": "GlsXtrEnableInitialTagging{${1:categories}}{${2:cmd}}"
+    },
+    "GlsXtrEnableInitialTagging*{}{}": {
+      "snippet": "GlsXtrEnableInitialTagging*{${1:categories}}{${2:cmd}}"
+    },
+    "glsxtrtagfont{}": {
+      "snippet": "glsxtrtagfont{${1:text}}"
+    },
+    "setabbreviationstyle{}": {
+      "snippet": "setabbreviationstyle{${1:style-name}}"
+    },
+    "setabbreviationstyle[]{}": {
+      "snippet": "setabbreviationstyle[${2:category}]{${1:style-name}}"
+    },
+    "ifglsxtrinsertinside": {},
+    "glsxtrinsertinsidetrue": {},
+    "glsxtrinsertinsidefalse": {},
+    "glsxtrparen{}": {
+      "snippet": "glsxtrparen{${1:text}}"
+    },
+    "glsxtrfullsep{}": {
+      "snippet": "glsxtrfullsep{${1:label}}"
+    },
+    "glsabbrvdefaultfont{}": {
+      "snippet": "glsabbrvdefaultfont{${1:text}}"
+    },
+    "glsfirstabbrvdefaultfont{}": {
+      "snippet": "glsfirstabbrvdefaultfont{${1:text}}"
+    },
+    "glsxtrdefaultrevert{}": {
+      "snippet": "glsxtrdefaultrevert{${1:text}}"
+    },
+    "glslongdefaultfont{}": {
+      "snippet": "glslongdefaultfont{${1:text}}"
+    },
+    "glsfirstlongdefaultfont{}": {
+      "snippet": "glsfirstlongdefaultfont{${1:text}}"
+    },
+    "glsxtrlongshortname": {},
+    "glsxtrlongshortdescsort": {},
+    "glsxtrlongshortdescname": {},
+    "glsxtrshortlongname": {},
+    "glsxtrshortlongdescsort": {},
+    "glsxtrshortlongdescname": {},
+    "glsxtruserfield": {},
+    "glsxtruserparensep": {},
+    "glsxtruserfieldfmt{}": {
+      "snippet": "glsxtruserfieldfmt{${1:text}}"
+    },
+    "glsabbrvuserfont{}": {
+      "snippet": "glsabbrvuserfont{${1:text}}"
+    },
+    "glsfirstabbrvuserfont{}": {
+      "snippet": "glsfirstabbrvuserfont{${1:text}}"
+    },
+    "glsxtrusersuffix": {},
+    "glslonguserfont{}": {
+      "snippet": "glslonguserfont{${1:text}}"
+    },
+    "glsfirstlonguserfont{}": {
+      "snippet": "glsfirstlonguserfont{${1:text}}"
+    },
+    "glsabbrvscuserfont{}": {
+      "snippet": "glsabbrvscuserfont{${1:text}}"
+    },
+    "glsfirstabbrvscuserfont{}": {
+      "snippet": "glsfirstabbrvscuserfont{${1:text}}"
+    },
+    "glsxtrscuserrevert{}": {
+      "snippet": "glsxtrscuserrevert{${1:text}}"
+    },
+    "glsxtrscusersuffix": {},
+    "glsuserdescription{}{}": {
+      "snippet": "glsuserdescription{${1:long}}{${2:label}}"
+    },
+    "glsxtruserparen{}{}": {
+      "snippet": "glsxtruserparen{${1:text}}{${2:label}}"
+    },
+    "GLSxtruserparen{}{}": {
+      "snippet": "GLSxtruserparen{${1:text}}{${2:label}}"
+    },
+    "glsxtrlongshortuserdescname": {},
+    "glsxtrlongshortscusername": {},
+    "glsxtrlongshortscuserdescname": {},
+    "glsxtrshortlonguserdescname": {},
+    "glsxtruserlongshortformat{}{}{}{}": {
+      "snippet": "glsxtruserlongshortformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "Glsxtruserlongshortformat{}{}{}{}": {
+      "snippet": "Glsxtruserlongshortformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "GLSxtruserlongshortformat{}{}{}{}": {
+      "snippet": "GLSxtruserlongshortformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "glsxtruserlongshortplformat{}{}{}{}": {
+      "snippet": "glsxtruserlongshortplformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "Glsxtruserlongshortplformat{}{}{}{}": {
+      "snippet": "Glsxtruserlongshortplformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "GLSxtruserlongshortplformat{}{}{}{}": {
+      "snippet": "GLSxtruserlongshortplformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "glsxtrusershortlongformat{}{}{}{}": {
+      "snippet": "glsxtrusershortlongformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "Glsxtrusershortlongformat{}{}{}{}": {
+      "snippet": "Glsxtrusershortlongformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "GLSxtrusershortlongformat{}{}{}{}": {
+      "snippet": "GLSxtrusershortlongformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "glsxtrusershortlongplformat{}{}{}{}": {
+      "snippet": "glsxtrusershortlongplformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "Glsxtrusershortlongplformat{}{}{}{}": {
+      "snippet": "Glsxtrusershortlongplformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "GLSxtrusershortlongplformat{}{}{}{}": {
+      "snippet": "GLSxtrusershortlongplformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "glsxtrusershortformat{}{}": {
+      "snippet": "glsxtrusershortformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "glsxtrusershortplformat{}{}": {
+      "snippet": "glsxtrusershortplformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "GLSxtrusershortformat{}{}": {
+      "snippet": "GLSxtrusershortformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "GLSxtrusershortplformat{}{}": {
+      "snippet": "GLSxtrusershortplformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "glsxtrpostusershortformat{}{}": {
+      "snippet": "glsxtrpostusershortformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "glsxtruserlongformat{}{}": {
+      "snippet": "glsxtruserlongformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "GLSxtruserlongformat{}{}": {
+      "snippet": "GLSxtruserlongformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "glsxtruserlongplformat{}{}": {
+      "snippet": "glsxtruserlongplformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "GLSxtruserlongplformat{}{}": {
+      "snippet": "GLSxtruserlongplformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "glsxtrpostuserlongformat{}{}": {
+      "snippet": "glsxtrpostuserlongformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "glsxtrfootnotename": {},
+    "glsxtrfootnotedescname": {},
+    "glsxtrfootnotedescsort": {},
+    "glslongfootnotefont{}": {
+      "snippet": "glslongfootnotefont{${1:text}}"
+    },
+    "glsfirstlongfootnotefont{}": {
+      "snippet": "glsfirstlongfootnotefont{${1:text}}"
+    },
+    "glsxtrabbrvfootnote{}{}": {
+      "snippet": "glsxtrabbrvfootnote{${1:label}}{${2:text}}"
+    },
+    "glsxtrfootnotelongformat{}{}": {
+      "snippet": "glsxtrfootnotelongformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "glsxtrfootnotelongplformat{}{}": {
+      "snippet": "glsxtrfootnotelongplformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "glsxtrpostfootnotelongformat{}{}": {
+      "snippet": "glsxtrpostfootnotelongformat{${1:label}}{${2:fmt-cs}}"
+    },
+    "glsxtrshortnolongname": {},
+    "glsxtrshortdescname": {},
+    "glsxtrlongnoshortdescname": {},
+    "glsxtrlongnoshortname": {},
+    "glsabbrvhyphenfont{}": {
+      "snippet": "glsabbrvhyphenfont{${1:text}}"
+    },
+    "glsfirstabbrvhyphenfont{}": {
+      "snippet": "glsfirstabbrvhyphenfont{${1:text}}"
+    },
+    "glslonghyphenfont{}": {
+      "snippet": "glslonghyphenfont{${1:text}}"
+    },
+    "glsfirstlonghyphenfont{}": {
+      "snippet": "glsfirstlonghyphenfont{${1:text}}"
+    },
+    "glsxtrhyphensuffix": {},
+    "glsxtrlonghyphenshortsort": {},
+    "glsxtrshorthyphenlongsort": {},
+    "glsxtrlonghyphennoshortsort": {},
+    "glsxtrlonghyphennoshortdescsort": {},
+    "glsxtrlonghyphenshort{}{}{}{}": {
+      "snippet": "glsxtrlonghyphenshort{${1:label}}{${2:long}}{${3:short}}{${4:insert}}"
+    },
+    "GLSxtrlonghyphenshort{}{}{}{}": {
+      "snippet": "GLSxtrlonghyphenshort{${1:label}}{${2:long}}{${3:short}}{${4:insert}}"
+    },
+    "glsxtrlonghyphennoshort{}{}{}": {
+      "snippet": "glsxtrlonghyphennoshort{${1:label}}{${2:long}}{${3:insert}}"
+    },
+    "GLSxtrlonghyphennoshort{}{}{}": {
+      "snippet": "GLSxtrlonghyphennoshort{${1:label}}{${2:long}}{${3:insert}}"
+    },
+    "glsxtrlonghyphen{}{}{}": {
+      "snippet": "glsxtrlonghyphen{${1:label}}{${2:long}}{${3:insert}}"
+    },
+    "xpglsxtrposthyphenshort": {},
+    "glsxtrposthyphenshort{}{}": {
+      "snippet": "glsxtrposthyphenshort{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrposthyphenshort{}{}": {
+      "snippet": "GLSxtrposthyphenshort{${1:label}}{${2:insert}}"
+    },
+    "glsxtrposthyphenshortpl{}{}": {
+      "snippet": "glsxtrposthyphenshortpl{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrposthyphenshortpl{}{}": {
+      "snippet": "GLSxtrposthyphenshortpl{${1:label}}{${2:insert}}"
+    },
+    "xpglsxtrposthyphensubsequent": {},
+    "glsxtrposthyphensubsequent{}{}": {
+      "snippet": "glsxtrposthyphensubsequent{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrposthyphensubsequent{}{}": {
+      "snippet": "GLSxtrposthyphensubsequent{${1:label}}{${2:insert}}"
+    },
+    "glsxtrshorthyphenlong{}{}{}{}": {
+      "snippet": "glsxtrshorthyphenlong{${1:label}}{${2:long}}{${3:short}}{${4:insert}}"
+    },
+    "GLSxtrshorthyphenlong{}{}{}{}": {
+      "snippet": "GLSxtrshorthyphenlong{${1:label}}{${2:long}}{${3:short}}{${4:insert}}"
+    },
+    "glsxtrshorthyphen{}{}{}": {
+      "snippet": "glsxtrshorthyphen{${1:label}}{${2:short}}{${3:insert}}"
+    },
+    "xpglsxtrposthyphenlong": {},
+    "glsxtrposthyphenlong{}{}": {
+      "snippet": "glsxtrposthyphenlong{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrposthyphenlong{}{}": {
+      "snippet": "GLSxtrposthyphenlong{${1:label}}{${2:insert}}"
+    },
+    "glsxtrposthyphenlongpl{}{}": {
+      "snippet": "glsxtrposthyphenlongpl{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrposthyphenlongpl{}{}": {
+      "snippet": "GLSxtrposthyphenlongpl{${1:label}}{${2:insert}}"
+    },
+    "glsabbrvonlyfont{}": {
+      "snippet": "glsabbrvonlyfont{${1:text}}"
+    },
+    "glsfirstabbrvonlyfont{}": {
+      "snippet": "glsfirstabbrvonlyfont{${1:text}}"
+    },
+    "glslongonlyfont{}": {
+      "snippet": "glslongonlyfont{${1:text}}"
+    },
+    "glsfirstlongonlyfont{}": {
+      "snippet": "glsfirstlongonlyfont{${1:text}}"
+    },
+    "glsxtronlysuffix": {},
+    "glsabbrvsconlyfont{}": {
+      "snippet": "glsabbrvsconlyfont{${1:text}}"
+    },
+    "glsfirstabbrvsconlyfont{}": {
+      "snippet": "glsfirstabbrvsconlyfont{${1:text}}"
+    },
+    "glsxtrsconlyrevert{}": {
+      "snippet": "glsxtrsconlyrevert{${1:text}}"
+    },
+    "glsxtrsconlysuffix": {},
+    "glsxtronlyname": {},
+    "glsxtronlydescname": {},
+    "glsxtronlydescsort": {},
+    "glsxtrsconlyname": {},
+    "glsxtrsconlydescname": {},
+    "glsxtrsconlydescsort": {},
+    "glsabbrvscfont{}": {
+      "snippet": "glsabbrvscfont{${1:text}}"
+    },
+    "glsfirstabbrvscfont{}": {
+      "snippet": "glsfirstabbrvscfont{${1:text}}"
+    },
+    "glsxtrscrevert{}": {
+      "snippet": "glsxtrscrevert{${1:text}}"
+    },
+    "glsxtrscsuffix": {},
+    "glsabbrvsmfont{}": {
+      "snippet": "glsabbrvsmfont{${1:text}}"
+    },
+    "glsfirstabbrvsmfont{}": {
+      "snippet": "glsfirstabbrvsmfont{${1:text}}"
+    },
+    "glsxtrsmrevert{}": {
+      "snippet": "glsxtrsmrevert{${1:text}}"
+    },
+    "glsxtrsmsuffix": {},
+    "glsabbrvemfont{}": {
+      "snippet": "glsabbrvemfont{${1:text}}"
+    },
+    "glsfirstabbrvemfont{}": {
+      "snippet": "glsfirstabbrvemfont{${1:text}}"
+    },
+    "glsxtremrevert{}": {
+      "snippet": "glsxtremrevert{${1:text}}"
+    },
+    "glsxtremsuffix": {},
+    "glslongemfont{}": {
+      "snippet": "glslongemfont{${1:text}}"
+    },
+    "glsfirstlongemfont{}": {
+      "snippet": "glsfirstlongemfont{${1:text}}"
+    },
+    "glssetabbrvfmt{}": {
+      "snippet": "glssetabbrvfmt{${1:category}}"
+    },
+    "glsuseabbrvfont{}{}": {
+      "snippet": "glsuseabbrvfont{${1:style-name}}{${2:text}}"
+    },
+    "glsuselongfont{}{}": {
+      "snippet": "glsuselongfont{${1:style-name}}{${2:text}}"
+    },
+    "GlsXtrUseAbbrStyleSetup{}": {
+      "snippet": "GlsXtrUseAbbrStyleSetup{${1:style-name}}"
+    },
+    "GlsXtrUseAbbrStyleFmts{}": {
+      "snippet": "GlsXtrUseAbbrStyleFmts{${1:style-name}}"
+    },
+    "xpglsxtrpostabbrvfootnote": {},
+    "glsxtrpostabbrvfootnote{}{}": {
+      "snippet": "glsxtrpostabbrvfootnote{${1:label}}{${2:fmt-code}}"
+    },
+    "glsxtrifhyphenstart{}{}{}": {
+      "snippet": "glsxtrifhyphenstart{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "GlsXtrWarnDeprecatedAbbrStyle{}{}": {
+      "snippet": "GlsXtrWarnDeprecatedAbbrStyle{${1:old name}}{${2:new name}}"
+    },
+    "newabbreviationstyle{}{}{}": {
+      "snippet": "newabbreviationstyle{${1:name}}{${2:setup}}{${3:definitions}}"
+    },
+    "renewabbreviationstyle{}{}{}": {
+      "snippet": "renewabbreviationstyle{${1:name}}{${2:setup}}{${3:definitions}}"
+    },
+    "letabbreviationstyle{}{}": {
+      "snippet": "letabbreviationstyle{${1:new-style}}{${2:existing-style}}"
+    },
+    "glscategorylabel": {},
+    "glsxtrorgkeylist": {},
+    "glsxtrorgshort": {},
+    "glsshortpltok": {},
+    "glsxtrorglong": {},
+    "glslongpltok": {},
+    "ExtraCustomAbbreviationFields": {},
+    "CustomAbbreviationFields": {},
+    "GlsXtrPostNewAbbreviation": {},
+    "glsxtrsetcomplexstyle{}{}": {
+      "snippet": "glsxtrsetcomplexstyle{${1:label}}{${2:n}}"
+    },
+    "glsfirstinnerfmtabbrvfont{}": {
+      "snippet": "glsfirstinnerfmtabbrvfont{${1:text}}"
+    },
+    "glsfirstxpabbrvfont{}{}": {
+      "snippet": "glsfirstxpabbrvfont{${1:text}}{${2:category}}"
+    },
+    "glsinnerfmtabbrvfont{}": {
+      "snippet": "glsinnerfmtabbrvfont{${1:text}}"
+    },
+    "glsxpabbrvfont{}{}": {
+      "snippet": "glsxpabbrvfont{${1:text}}{${2:category}}"
+    },
+    "glsfirstinnerfmtlongfont{}": {
+      "snippet": "glsfirstinnerfmtlongfont{${1:text}}"
+    },
+    "glsfirstxplongfont{}{}": {
+      "snippet": "glsfirstxplongfont{${1:text}}{${2:category}}"
+    },
+    "glsinnerfmtlongfont{}": {
+      "snippet": "glsinnerfmtlongfont{${1:text}}"
+    },
+    "glsxplongfont{}{}": {
+      "snippet": "glsxplongfont{${1:text}}{${2:category}}"
+    },
+    "glsxtrAccSuppAbbrSetNoLongAttrs{}": {
+      "snippet": "glsxtrAccSuppAbbrSetNoLongAttrs{${1:category}}"
+    },
+    "glsxtrAccSuppAbbrSetNameLongAttrs{}": {
+      "snippet": "glsxtrAccSuppAbbrSetNameLongAttrs{${1:category}}"
+    },
+    "glsxtrAccSuppAbbrSetFirstLongAttrs{}": {
+      "snippet": "glsxtrAccSuppAbbrSetFirstLongAttrs{${1:category}}"
+    },
+    "glsxtrAccSuppAbbrSetTextShortAttrs{}": {
+      "snippet": "glsxtrAccSuppAbbrSetTextShortAttrs{${1:category}}"
+    },
+    "glsxtrAccSuppAbbrSetNameShortAttrs{}": {
+      "snippet": "glsxtrAccSuppAbbrSetNameShortAttrs{${1:category}}"
+    },
+    "abbrvpluralsuffix": {},
+    "glsfirstabbrvfont{}": {
+      "snippet": "glsfirstabbrvfont{${1:text}}"
+    },
+    "glsabbrvfont{}": {
+      "snippet": "glsabbrvfont{${1:text}}"
+    },
+    "glsxtrrevert{}": {
+      "snippet": "glsxtrrevert{${1:text}}"
+    },
+    "glsfirstlongfont{}": {
+      "snippet": "glsfirstlongfont{${1:text}}"
+    },
+    "glslongfont{}": {
+      "snippet": "glslongfont{${1:text}}"
+    },
+    "glsxtrfullformat{}{}": {
+      "snippet": "glsxtrfullformat{${1:label}}{${2:insert}}"
+    },
+    "glsxtrfullplformat{}{}": {
+      "snippet": "glsxtrfullplformat{${1:label}}{${2:insert}}"
+    },
+    "Glsxtrfullformat{}{}": {
+      "snippet": "Glsxtrfullformat{${1:label}}{${2:insert}}"
+    },
+    "Glsxtrfullplformat{}{}": {
+      "snippet": "Glsxtrfullplformat{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrfullformat{}{}": {
+      "snippet": "GLSxtrfullformat{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrfullplformat{}{}": {
+      "snippet": "GLSxtrfullplformat{${1:label}}{${2:insert}}"
+    },
+    "glsxtrsubsequentfmt{}{}": {
+      "snippet": "glsxtrsubsequentfmt{${1:label}}{${2:insert}}"
+    },
+    "glsxtrsubsequentplfmt{}{}": {
+      "snippet": "glsxtrsubsequentplfmt{${1:label}}{${2:insert}}"
+    },
+    "Glsxtrsubsequentfmt{}{}": {
+      "snippet": "Glsxtrsubsequentfmt{${1:label}}{${2:insert}}"
+    },
+    "Glsxtrsubsequentplfmt{}{}": {
+      "snippet": "Glsxtrsubsequentplfmt{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrsubsequentfmt{}{}": {
+      "snippet": "GLSxtrsubsequentfmt{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrsubsequentplfmt{}{}": {
+      "snippet": "GLSxtrsubsequentplfmt{${1:label}}{${2:insert}}"
+    },
+    "glsxtrdefaultsubsequentfmt{}{}": {
+      "snippet": "glsxtrdefaultsubsequentfmt{${1:label}}{${2:insert}}"
+    },
+    "glsxtrdefaultsubsequentplfmt{}{}": {
+      "snippet": "glsxtrdefaultsubsequentplfmt{${1:label}}{${2:insert}}"
+    },
+    "Glsxtrdefaultsubsequentfmt{}{}": {
+      "snippet": "Glsxtrdefaultsubsequentfmt{${1:label}}{${2:insert}}"
+    },
+    "Glsxtrdefaultsubsequentplfmt{}{}": {
+      "snippet": "Glsxtrdefaultsubsequentplfmt{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrdefaultsubsequentfmt{}{}": {
+      "snippet": "GLSxtrdefaultsubsequentfmt{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrdefaultsubsequentplfmt{}{}": {
+      "snippet": "GLSxtrdefaultsubsequentplfmt{${1:label}}{${2:insert}}"
+    },
+    "glsxtrinlinefullformat{}{}": {
+      "snippet": "glsxtrinlinefullformat{${1:label}}{${2:insert}}"
+    },
+    "glsxtrinlinefullplformat{}{}": {
+      "snippet": "glsxtrinlinefullplformat{${1:label}}{${2:insert}}"
+    },
+    "Glsxtrinlinefullformat{}{}": {
+      "snippet": "Glsxtrinlinefullformat{${1:label}}{${2:insert}}"
+    },
+    "Glsxtrinlinefullplformat{}{}": {
+      "snippet": "Glsxtrinlinefullplformat{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrinlinefullformat{}{}": {
+      "snippet": "GLSxtrinlinefullformat{${1:label}}{${2:insert}}"
+    },
+    "GLSxtrinlinefullplformat{}{}": {
+      "snippet": "GLSxtrinlinefullplformat{${1:label}}{${2:insert}}"
+    },
+    "glsxtrlongformat{}{}{}": {
+      "snippet": "glsxtrlongformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "Glsxtrlongformat{}{}{}": {
+      "snippet": "Glsxtrlongformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "GLSxtrlongformat{}{}{}": {
+      "snippet": "GLSxtrlongformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "glsxtrlongplformat{}{}{}": {
+      "snippet": "glsxtrlongplformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "Glsxtrlongplformat{}{}{}": {
+      "snippet": "Glsxtrlongplformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "GLSxtrlongplformat{}{}{}": {
+      "snippet": "GLSxtrlongplformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "glsxtrlongformatgrp{}{}{}": {
+      "snippet": "glsxtrlongformatgrp{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "Glsxtrlongformatgrp{}{}{}": {
+      "snippet": "Glsxtrlongformatgrp{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "GLSxtrlongformatgrp{}{}{}": {
+      "snippet": "GLSxtrlongformatgrp{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "glsxtrlongplformatgrp{}{}{}": {
+      "snippet": "glsxtrlongplformatgrp{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "Glsxtrlongplformatgrp{}{}{}": {
+      "snippet": "Glsxtrlongplformatgrp{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "GLSxtrlongplformatgrp{}{}{}": {
+      "snippet": "GLSxtrlongplformatgrp{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "glsxtrshortformat{}{}{}": {
+      "snippet": "glsxtrshortformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "Glsxtrshortformat{}{}{}": {
+      "snippet": "Glsxtrshortformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "GLSxtrshortformat{}{}{}": {
+      "snippet": "GLSxtrshortformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "glsxtrshortplformat{}{}{}": {
+      "snippet": "glsxtrshortplformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "Glsxtrshortplformat{}{}{}": {
+      "snippet": "Glsxtrshortplformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "GLSxtrshortplformat{}{}{}": {
+      "snippet": "GLSxtrshortplformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "glsxtrshortformatgrp{}{}{}": {
+      "snippet": "glsxtrshortformatgrp{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "Glsxtrshortformatgrp{}{}{}": {
+      "snippet": "Glsxtrshortformatgrp{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "GLSxtrshortformatgrp{}{}{}": {
+      "snippet": "GLSxtrshortformatgrp{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "glsxtrshortplformatgrp{}{}{}": {
+      "snippet": "glsxtrshortplformatgrp{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "Glsxtrshortplformatgrp{}{}{}": {
+      "snippet": "Glsxtrshortplformatgrp{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "GLSxtrshortplformatgrp{}{}{}": {
+      "snippet": "GLSxtrshortplformatgrp{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "glsxtrlongshortformat{}{}{}": {
+      "snippet": "glsxtrlongshortformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "Glsxtrlongshortformat{}{}{}": {
+      "snippet": "Glsxtrlongshortformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "GLSxtrlongshortformat{}{}{}": {
+      "snippet": "GLSxtrlongshortformat{${1:label}}{${2:insert}}{${3:format-cs}}"
+    },
+    "glsxtrlongshortplformat{}{}{}{}": {
+      "snippet": "glsxtrlongshortplformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "Glsxtrlongshortplformat{}{}{}{}": {
+      "snippet": "Glsxtrlongshortplformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "GLSxtrlongshortplformat{}{}{}{}": {
+      "snippet": "GLSxtrlongshortplformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "glsxtrshortlongformat{}{}{}{}": {
+      "snippet": "glsxtrshortlongformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "Glsxtrshortlongformat{}{}{}{}": {
+      "snippet": "Glsxtrshortlongformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "GLSxtrshortlongformat{}{}{}{}": {
+      "snippet": "GLSxtrshortlongformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "glsxtrshortlongplformat{}{}{}{}": {
+      "snippet": "glsxtrshortlongplformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "Glsxtrshortlongplformat{}{}{}{}": {
+      "snippet": "Glsxtrshortlongplformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "GLSxtrshortlongplformat{}{}{}{}": {
+      "snippet": "GLSxtrshortlongplformat{${1:label}}{${2:insert}}{${3:long-cs}}{${4:short-cs}}"
+    },
+    "RestoreAcronyms": {},
+    "MakeAcronymsAbbreviations": {},
+    "GlsXtrSetAltModifier{}{}": {
+      "snippet": "GlsXtrSetAltModifier{${1:token}}{${2:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 1
+    },
+    "GlsXtrSetStarModifier{}": {
+      "snippet": "GlsXtrSetStarModifier{${1:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "GlsXtrSetPlusModifier{}": {
+      "snippet": "GlsXtrSetPlusModifier{${1:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "glslinkwrcontent{}": {
+      "snippet": "glslinkwrcontent{${1:code}}"
+    },
+    "GlsXtrSetDefaultGlsOpts{}": {
+      "snippet": "GlsXtrSetDefaultGlsOpts{${1:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "GlsXtrAppToDefaultGlsOpts{}": {
+      "snippet": "GlsXtrAppToDefaultGlsOpts{${1:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "GlsXtrPreToDefaultGlsOpts{}": {
+      "snippet": "GlsXtrPreToDefaultGlsOpts{${1:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "GlsXtrSetDefaultNumberFormat{}": {
+      "snippet": "GlsXtrSetDefaultNumberFormat{${1:encap}}"
+    },
+    "GlsXtrFmtDefaultOptions": {},
+    "glslinkpresetkeys": {},
+    "glsaddpresetkeys": {},
+    "glsaddpostsetkeys": {},
+    "glsinitreunsets": {},
+    "glsxtrchecknohyperfirst{}": {
+      "snippet": "glsxtrchecknohyperfirst{${1:label}}"
+    },
+    "glsxtrinitwrgloss": {},
+    "glsxtrinithyperoutside": {},
+    "setupglslink{}": {
+      "snippet": "setupglslink{${1:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "setupglsadd{}": {
+      "snippet": "setupglsadd{${1:options}}",
+      "keyvalindex": 8,
+      "keyvalpos": 0
+    },
+    "ifglsxtrinitwrgloss": {},
+    "glsxtrinitwrglosstrue": {},
+    "glsxtrinitwrglossfalse": {},
+    "glsxtrsupphypernumber{}": {
+      "snippet": "glsxtrsupphypernumber{${1:location}}"
+    },
+    "glsxtrRevertMarks": {},
+    "glsxtrRevertTocMarks": {},
+    "glsxtrtitleopts": {},
+    "glsfmtshort{}": {
+      "snippet": "glsfmtshort{${1:label}}"
+    },
+    "Glsfmtshort{}": {
+      "snippet": "Glsfmtshort{${1:label}}"
+    },
+    "GLSfmtshort{}": {
+      "snippet": "GLSfmtshort{${1:label}}"
+    },
+    "glsfmtshortpl{}": {
+      "snippet": "glsfmtshortpl{${1:label}}"
+    },
+    "Glsfmtshortpl{}": {
+      "snippet": "Glsfmtshortpl{${1:label}}"
+    },
+    "GLSfmtshortpl{}": {
+      "snippet": "GLSfmtshortpl{${1:label}}"
+    },
+    "glsfmtlong{}": {
+      "snippet": "glsfmtlong{${1:label}}"
+    },
+    "Glsfmtlong{}": {
+      "snippet": "Glsfmtlong{${1:label}}"
+    },
+    "GLSfmtlong{}": {
+      "snippet": "GLSfmtlong{${1:label}}"
+    },
+    "glsfmtlongpl{}": {
+      "snippet": "glsfmtlongpl{${1:label}}"
+    },
+    "Glsfmtlongpl{}": {
+      "snippet": "Glsfmtlongpl{${1:label}}"
+    },
+    "GLSfmtlongpl{}": {
+      "snippet": "GLSfmtlongpl{${1:label}}"
+    },
+    "glspdffmtfull{}": {
+      "snippet": "glspdffmtfull{${1:label}}"
+    },
+    "glspdffmtfullpl{}": {
+      "snippet": "glspdffmtfullpl{${1:label}}"
+    },
+    "glsfmtfull{}": {
+      "snippet": "glsfmtfull{${1:label}}"
+    },
+    "Glsfmtfull{}": {
+      "snippet": "Glsfmtfull{${1:label}}"
+    },
+    "GLSfmtfull{}": {
+      "snippet": "GLSfmtfull{${1:label}}"
+    },
+    "glsfmtfullpl{}": {
+      "snippet": "glsfmtfullpl{${1:label}}"
+    },
+    "Glsfmtfullpl{}": {
+      "snippet": "Glsfmtfullpl{${1:label}}"
+    },
+    "GLSfmtfullpl{}": {
+      "snippet": "GLSfmtfullpl{${1:label}}"
+    },
+    "glsfmtname{}": {
+      "snippet": "glsfmtname{${1:label}}"
+    },
+    "Glsfmtname{}": {
+      "snippet": "Glsfmtname{${1:label}}"
+    },
+    "GLSfmtname{}": {
+      "snippet": "GLSfmtname{${1:label}}"
+    },
+    "glsfmttext{}": {
+      "snippet": "glsfmttext{${1:label}}"
+    },
+    "Glsfmttext{}": {
+      "snippet": "Glsfmttext{${1:label}}"
+    },
+    "GLSfmttext{}": {
+      "snippet": "GLSfmttext{${1:label}}"
+    },
+    "glsfmtplural{}": {
+      "snippet": "glsfmtplural{${1:label}}"
+    },
+    "Glsfmtplural{}": {
+      "snippet": "Glsfmtplural{${1:label}}"
+    },
+    "GLSfmtplural{}": {
+      "snippet": "GLSfmtplural{${1:label}}"
+    },
+    "glsfmtfirst{}": {
+      "snippet": "glsfmtfirst{${1:label}}"
+    },
+    "Glsfmtfirst{}": {
+      "snippet": "Glsfmtfirst{${1:label}}"
+    },
+    "GLSfmtfirst{}": {
+      "snippet": "GLSfmtfirst{${1:label}}"
+    },
+    "glsfmtfirstpl{}": {
+      "snippet": "glsfmtfirstpl{${1:label}}"
+    },
+    "Glsfmtfirstpl{}": {
+      "snippet": "Glsfmtfirstpl{${1:label}}"
+    },
+    "GLSfmtfirstpl{}": {
+      "snippet": "GLSfmtfirstpl{${1:label}}"
+    },
+    "glsxtrifinmark{}{}": {
+      "snippet": "glsxtrifinmark{${1:true}}{${2:false}}"
+    },
+    "glsxtrifintoc{}{}": {
+      "snippet": "glsxtrifintoc{${1:true}}{${2:false}}"
+    },
+    "glsxtrtitleorpdforheading{}{}{}": {
+      "snippet": "glsxtrtitleorpdforheading{${1:title}}{${2:PDF bookmarks}}{${3:heading}}"
+    },
+    "glsxtrifheaduc{}{}{}": {
+      "snippet": "glsxtrifheaduc{${1:label}}{${2:true}}{${3:false}}"
+    },
+    "glsxtrtitleshort{}": {
+      "snippet": "glsxtrtitleshort{${1:label}}"
+    },
+    "glsxtrheadshort{}": {
+      "snippet": "glsxtrheadshort{${1:label}}"
+    },
+    "Glsxtrtitleshort{}": {
+      "snippet": "Glsxtrtitleshort{${1:label}}"
+    },
+    "Glsxtrheadshort{}": {
+      "snippet": "Glsxtrheadshort{${1:label}}"
+    },
+    "GLSxtrtitleshort{}": {
+      "snippet": "GLSxtrtitleshort{${1:label}}"
+    },
+    "GLSxtrheadshort{}": {
+      "snippet": "GLSxtrheadshort{${1:label}}"
+    },
+    "glsxtrtitleshortpl{}": {
+      "snippet": "glsxtrtitleshortpl{${1:label}}"
+    },
+    "glsxtrheadshortpl{}": {
+      "snippet": "glsxtrheadshortpl{${1:label}}"
+    },
+    "Glsxtrtitleshortpl{}": {
+      "snippet": "Glsxtrtitleshortpl{${1:label}}"
+    },
+    "Glsxtrheadshortpl{}": {
+      "snippet": "Glsxtrheadshortpl{${1:label}}"
+    },
+    "GLSxtrtitleshortpl{}": {
+      "snippet": "GLSxtrtitleshortpl{${1:label}}"
+    },
+    "GLSxtrheadshortpl{}": {
+      "snippet": "GLSxtrheadshortpl{${1:label}}"
+    },
+    "glsxtrtitlelong{}": {
+      "snippet": "glsxtrtitlelong{${1:label}}"
+    },
+    "glsxtrheadlong{}": {
+      "snippet": "glsxtrheadlong{${1:label}}"
+    },
+    "Glsxtrtitlelong{}": {
+      "snippet": "Glsxtrtitlelong{${1:label}}"
+    },
+    "Glsxtrheadlong{}": {
+      "snippet": "Glsxtrheadlong{${1:label}}"
+    },
+    "GLSxtrtitlelong{}": {
+      "snippet": "GLSxtrtitlelong{${1:label}}"
+    },
+    "GLSxtrheadlong{}": {
+      "snippet": "GLSxtrheadlong{${1:label}}"
+    },
+    "glsxtrtitlelongpl{}": {
+      "snippet": "glsxtrtitlelongpl{${1:label}}"
+    },
+    "glsxtrheadlongpl{}": {
+      "snippet": "glsxtrheadlongpl{${1:label}}"
+    },
+    "Glsxtrtitlelongpl{}": {
+      "snippet": "Glsxtrtitlelongpl{${1:label}}"
+    },
+    "Glsxtrheadlongpl{}": {
+      "snippet": "Glsxtrheadlongpl{${1:label}}"
+    },
+    "GLSxtrtitlelongpl{}": {
+      "snippet": "GLSxtrtitlelongpl{${1:label}}"
+    },
+    "GLSxtrheadlongpl{}": {
+      "snippet": "GLSxtrheadlongpl{${1:label}}"
+    },
+    "glsxtrtitlefull{}": {
+      "snippet": "glsxtrtitlefull{${1:label}}"
+    },
+    "glsxtrheadfull{}": {
+      "snippet": "glsxtrheadfull{${1:label}}"
+    },
+    "Glsxtrtitlefull{}": {
+      "snippet": "Glsxtrtitlefull{${1:label}}"
+    },
+    "Glsxtrheadfull{}": {
+      "snippet": "Glsxtrheadfull{${1:label}}"
+    },
+    "GLSxtrtitlefull{}": {
+      "snippet": "GLSxtrtitlefull{${1:label}}"
+    },
+    "GLSxtrheadfull{}": {
+      "snippet": "GLSxtrheadfull{${1:label}}"
+    },
+    "glsxtrtitlefullpl{}": {
+      "snippet": "glsxtrtitlefullpl{${1:label}}"
+    },
+    "glsxtrheadfullpl{}": {
+      "snippet": "glsxtrheadfullpl{${1:label}}"
+    },
+    "Glsxtrtitlefullpl{}": {
+      "snippet": "Glsxtrtitlefullpl{${1:label}}"
+    },
+    "Glsxtrheadfullpl{}": {
+      "snippet": "Glsxtrheadfullpl{${1:label}}"
+    },
+    "GLSxtrtitlefullpl{}": {
+      "snippet": "GLSxtrtitlefullpl{${1:label}}"
+    },
+    "GLSxtrheadfullpl{}": {
+      "snippet": "GLSxtrheadfullpl{${1:label}}"
+    },
+    "glsxtrtitlename{}": {
+      "snippet": "glsxtrtitlename{${1:label}}"
+    },
+    "glsxtrheadname{}": {
+      "snippet": "glsxtrheadname{${1:label}}"
+    },
+    "Glsxtrtitlename{}": {
+      "snippet": "Glsxtrtitlename{${1:label}}"
+    },
+    "Glsxtrheadname{}": {
+      "snippet": "Glsxtrheadname{${1:label}}"
+    },
+    "GLSxtrtitlename{}": {
+      "snippet": "GLSxtrtitlename{${1:label}}"
+    },
+    "GLSxtrheadname{}": {
+      "snippet": "GLSxtrheadname{${1:label}}"
+    },
+    "glsxtrtitletext{}": {
+      "snippet": "glsxtrtitletext{${1:label}}"
+    },
+    "glsxtrheadtext{}": {
+      "snippet": "glsxtrheadtext{${1:label}}"
+    },
+    "Glsxtrtitletext{}": {
+      "snippet": "Glsxtrtitletext{${1:label}}"
+    },
+    "Glsxtrheadtext{}": {
+      "snippet": "Glsxtrheadtext{${1:label}}"
+    },
+    "GLSxtrtitletext{}": {
+      "snippet": "GLSxtrtitletext{${1:label}}"
+    },
+    "GLSxtrheadtext{}": {
+      "snippet": "GLSxtrheadtext{${1:label}}"
+    },
+    "glsxtrtitleplural{}": {
+      "snippet": "glsxtrtitleplural{${1:label}}"
+    },
+    "glsxtrheadplural{}": {
+      "snippet": "glsxtrheadplural{${1:label}}"
+    },
+    "Glsxtrtitleplural{}": {
+      "snippet": "Glsxtrtitleplural{${1:label}}"
+    },
+    "Glsxtrheadplural{}": {
+      "snippet": "Glsxtrheadplural{${1:label}}"
+    },
+    "GLSxtrtitleplural{}": {
+      "snippet": "GLSxtrtitleplural{${1:label}}"
+    },
+    "GLSxtrheadplural{}": {
+      "snippet": "GLSxtrheadplural{${1:label}}"
+    },
+    "glsxtrtitlefirst{}": {
+      "snippet": "glsxtrtitlefirst{${1:label}}"
+    },
+    "glsxtrheadfirst{}": {
+      "snippet": "glsxtrheadfirst{${1:label}}"
+    },
+    "Glsxtrtitlefirst{}": {
+      "snippet": "Glsxtrtitlefirst{${1:label}}"
+    },
+    "Glsxtrheadfirst{}": {
+      "snippet": "Glsxtrheadfirst{${1:label}}"
+    },
+    "GLSxtrtitlefirst{}": {
+      "snippet": "GLSxtrtitlefirst{${1:label}}"
+    },
+    "GLSxtrheadfirst{}": {
+      "snippet": "GLSxtrheadfirst{${1:label}}"
+    },
+    "glsxtrtitlefirstplural{}": {
+      "snippet": "glsxtrtitlefirstplural{${1:label}}"
+    },
+    "glsxtrheadfirstplural{}": {
+      "snippet": "glsxtrheadfirstplural{${1:label}}"
+    },
+    "Glsxtrtitlefirstplural{}": {
+      "snippet": "Glsxtrtitlefirstplural{${1:label}}"
+    },
+    "Glsxtrheadfirstplural{}": {
+      "snippet": "Glsxtrheadfirstplural{${1:label}}"
+    },
+    "GLSxtrtitlefirstplural{}": {
+      "snippet": "GLSxtrtitlefirstplural{${1:label}}"
+    },
+    "GLSxtrheadfirstplural{}": {
+      "snippet": "GLSxtrheadfirstplural{${1:label}}"
+    },
+    "glsxtrmarkhook": {},
+    "glsxtrrestoremarkhook": {},
+    "glsxtrp{}{}": {
+      "snippet": "glsxtrp{${1:field}}{${2:label}}"
+    },
+    "glsxtrpInit{}{}": {
+      "snippet": "glsxtrpInit{${1:csname}}{${2:label}}"
+    },
+    "glsxtrsetpopts{}": {
+      "snippet": "glsxtrsetpopts{${1:options}}"
+    },
+    "glossxtrsetpopts": {},
+    "glsps{}": {
+      "snippet": "glsps{${1:label}}"
+    },
+    "glspt{}": {
+      "snippet": "glspt{${1:label}}"
+    },
+    "Glsps{}": {
+      "snippet": "Glsps{${1:label}}"
+    },
+    "Glspt{}": {
+      "snippet": "Glspt{${1:label}}"
+    },
+    "GLSps{}": {
+      "snippet": "GLSps{${1:label}}"
+    },
+    "GLSpt{}": {
+      "snippet": "GLSpt{${1:label}}"
+    },
+    "Glsxtrp{}{}": {
+      "snippet": "Glsxtrp{${1:field}}{${2:label}}"
+    },
+    "GLSxtrp{}{}": {
+      "snippet": "GLSxtrp{${1:field}}{${2:label}}"
+    },
+    "GlsXtrExpandedFmt{}{}": {
+      "snippet": "GlsXtrExpandedFmt{${1:cs}}{${2:text}}"
+    },
+    "glsxtrregularfont{}": {
+      "snippet": "glsxtrregularfont{${1:text}}"
+    },
+    "glsxtrabbreviationfont{}": {
+      "snippet": "glsxtrabbreviationfont{${1:text}}"
+    },
+    "glsxtrassignfieldfont{}": {
+      "snippet": "glsxtrassignfieldfont{${1:text}}"
+    },
+    "glsxtrgenentrytextfmt": {},
+    "glsxtrdefaultentrytextfmt{}": {
+      "snippet": "glsxtrdefaultentrytextfmt{${1:text}}"
+    },
+    "glsxtrattrentrytextfmt{}": {
+      "snippet": "glsxtrattrentrytextfmt{${1:text}}"
+    },
+    "glsifapplyinnerfmtfield{}{}{}{}": {
+      "snippet": "glsifapplyinnerfmtfield{${1:label}}{${2:internal-field}}{${3:true}}{${4:false}}"
+    },
+    "glsexclapplyinnerfmtfield{}{}": {
+      "snippet": "glsexclapplyinnerfmtfield{${1:label}}{${2:internal-field}}"
+    },
+    "glsfmtfield{}{}{}{}": {
+      "snippet": "glsfmtfield{${1:insert}}{${2:cs}}{${3:label}}{${4:internal-field}}"
+    },
+    "Glsfmtfield{}{}{}{}": {
+      "snippet": "Glsfmtfield{${1:insert}}{${2:cs}}{${3:label}}{${4:internal-field}}"
+    },
+    "GLSfmtfield{}{}{}{}": {
+      "snippet": "GLSfmtfield{${1:insert}}{${2:cs}}{${3:label}}{${4:internal-field}}"
+    },
+    "glsxtrpostlinkhook": {},
+    "glsxtrdiscardperiod{}{}{}": {
+      "snippet": "glsxtrdiscardperiod{${1:label}}{${2:discarded}}{${3:no discard}}"
+    },
+    "glsxtrdiscardperiodretainfirstuse{}{}{}": {
+      "snippet": "glsxtrdiscardperiodretainfirstuse{${1:label}}{${2:discarded}}{${3:no discard}}"
+    },
+    "glsxtrifcustomdiscardperiod{}{}": {
+      "snippet": "glsxtrifcustomdiscardperiod{${1:true}}{${2:false}}"
+    },
+    "glsxtrpostlinkendsentence": {},
+    "glsxtrifperiod{}{}": {
+      "snippet": "glsxtrifperiod{${1:true}}{${2:false}}"
+    },
+    "glsxtrifnextpunc{}{}": {
+      "snippet": "glsxtrifnextpunc{${1:true}}{${2:false}}"
+    },
+    "glsxtrdopostpunc{}": {
+      "snippet": "glsxtrdopostpunc{${1:code}}"
+    },
+    "glsxtraddpunctuationmark{}": {
+      "snippet": "glsxtraddpunctuationmark{${1:tokens}}"
+    },
+    "glsxtrsetpunctuationmarks{}": {
+      "snippet": "glsxtrsetpunctuationmarks{${1:tokens}}"
+    },
+    "glsxtrpostlink": {},
+    "glsdefpostlink{}{}": {
+      "snippet": "glsdefpostlink{${1:category}}{${2:definition}}"
+    },
+    "glspretopostlink{}{}": {
+      "snippet": "glspretopostlink{${1:category}}{${2:code}}"
+    },
+    "glsapptopostlink{}{}": {
+      "snippet": "glsapptopostlink{${1:category}}{${2:code}}"
+    },
+    "glsxtrpostlinkAddDescOnFirstUse": {},
+    "glsxtrpostlinkAddSymbolOnFirstUse": {},
+    "glsxtrpostlinkAddSymbolDescOnFirstUse": {},
+    "glsxtrpostlinkSymbolDescSep": {},
+    "glsxtrcurrentfield": {},
+    "glsxtrifwasglslike{}{}": {
+      "snippet": "glsxtrifwasglslike{${1:true}}{${2:false}}"
+    },
+    "glsxtrifwasglslikeandfirstuse{}{}": {
+      "snippet": "glsxtrifwasglslikeandfirstuse{${1:true}}{${2:false}}"
+    },
+    "glsxtrifwassubsequentuse{}{}": {
+      "snippet": "glsxtrifwassubsequentuse{${1:true}}{${2:false}}"
+    },
+    "glsxtrifwassubsequentorshort{}{}": {
+      "snippet": "glsxtrifwassubsequentorshort{${1:true}}{${2:false}}"
+    },
+    "glsxtrifallcaps{}{}": {
+      "snippet": "glsxtrifallcaps{${1:true}}{${2:false}}"
+    },
+    "glsxtrsaveinsert{}{}": {
+      "snippet": "glsxtrsaveinsert{${1:label}}{${2:insert}}"
+    },
+    "glsxtrassignlinktextfmt": {},
+    "glsxtrgenabbrvfmt": {},
+    "glsxtrtarget{}{}": {
+      "snippet": "glsxtrtarget{${1:label}}{${2:text}}"
+    },
+    "glsxtrtargetfield": {},
+    "glsxtrnewgls{}{}": {
+      "snippet": "glsxtrnewgls{${1:prefix}}{${2:cmd}}"
+    },
+    "glsxtrnewgls[]{}{}": {
+      "snippet": "glsxtrnewgls[${3:default-options}]{${1:prefix}}{${2:cmd}}"
+    },
+    "glsxtrnewglslike{}{}{}{}{}": {
+      "snippet": "glsxtrnewglslike{${1:prefix}}{${2:gls-cmd}}{${3:glspl-cmd}}{${4:Gls-cmd}}{${5:Glspl-cmd}}"
+    },
+    "glsxtrnewglslike[]{}{}{}{}{}": {
+      "snippet": "glsxtrnewglslike[${6:default-options}]{${1:prefix}}{${2:gls-cmd}}{${3:glspl-cmd}}{${4:Gls-cmd}}{${5:Glspl-cmd}}"
+    },
+    "glsxtrnewGLSlike{}{}{}": {
+      "snippet": "glsxtrnewGLSlike{${1:prefix}}{${2:GLS-cmd}}{${3:GLSpl-cmd}}"
+    },
+    "glsxtrnewGLSlike[]{}{}{}": {
+      "snippet": "glsxtrnewGLSlike[${4:default options}]{${1:prefix}}{${2:GLS-cmd}}{${3:GLSpl-cmd}}"
+    },
+    "glsxtrnewglslink{}{}": {
+      "snippet": "glsxtrnewglslink{${1:prefix}}{${2:cmd}}"
+    },
+    "glsxtrnewglslink[]{}{}": {
+      "snippet": "glsxtrnewglslink[${3:default-options}]{${1:prefix}}{${2:cmd}}"
+    },
+    "glsxtrnewglsdisp{}{}": {
+      "snippet": "glsxtrnewglsdisp{${1:prefix}}{${2:cmd}}"
+    },
+    "glsxtrnewglsdisp[]{}{}": {
+      "snippet": "glsxtrnewglsdisp[${3:default-options}]{${1:prefix}}{${2:cmd}}"
+    },
+    "glsxtridentifyglslike{}{}": {
+      "snippet": "glsxtridentifyglslike{${1:prefix}}{${2:cmd}}"
+    },
+    "glsxtrnewrgls{}{}": {
+      "snippet": "glsxtrnewrgls{${1:prefix}}{${2:cmd}}"
+    },
+    "glsxtrnewrgls[]{}{}": {
+      "snippet": "glsxtrnewrgls[${3:default-options}]{${1:prefix}}{${2:cmd}}"
+    },
+    "glsxtrnewrglslike{}{}{}{}{}": {
+      "snippet": "glsxtrnewrglslike{${1:prefix}}{${2:rgls-cmd}}{${3:rglspl-cmd}}{${4:rGls-cmd}}{${5:rGlspl-cmd}}"
+    },
+    "glsxtrnewrglslike[]{}{}{}{}{}": {
+      "snippet": "glsxtrnewrglslike[${6:default-options}]{${1:prefix}}{${2:rgls-cmd}}{${3:rglspl-cmd}}{${4:rGls-cmd}}{${5:rGlspl-cmd}}"
+    },
+    "glsxtrnewrGLSlike{}{}{}": {
+      "snippet": "glsxtrnewrGLSlike{${1:prefix}}{${2:rGLS-cmd}}{${3:rGLSpl-cmd}}"
+    },
+    "glsxtrnewrGLSlike[]{}{}{}": {
+      "snippet": "glsxtrnewrGLSlike[${4:default-options}]{${1:prefix}}{${2:rGLS-cmd}}{${3:rGLSpl-cmd}}"
+    },
+    "glsaddallunindexed": {},
+    "glsaddallunindexed[]": {
+      "snippet": "glsaddallunindexed[${1:glossary-types}]"
+    },
+    "glsaddeach{}": {
+      "snippet": "glsaddeach{${1:labellist}}"
+    },
+    "glsaddeach[]{}": {
+      "snippet": "glsaddeach[${2:options}]{${1:labellist}}"
+    },
+    "glsstartrange{}": {
+      "snippet": "glsstartrange{${1:labellist}}"
+    },
+    "glsstartrange[]{}": {
+      "snippet": "glsstartrange[${2:options}]{${1:labellist}}"
+    },
+    "glsendrange{}": {
+      "snippet": "glsendrange{${1:labellist}}"
+    },
+    "glsendrange[]{}": {
+      "snippet": "glsendrange[${2:options}]{${1:labellist}}"
+    },
+    "GlsXtrSetDefaultRangeFormat{}": {
+      "snippet": "GlsXtrSetDefaultRangeFormat{${1:encap}}"
+    },
+    "GlsXtrAutoAddOnFormat{}{}": {
+      "snippet": "GlsXtrAutoAddOnFormat{${1:format list}}{${2:glsadd options}}"
+    },
+    "GlsXtrAutoAddOnFormat[]{}{}": {
+      "snippet": "GlsXtrAutoAddOnFormat[${3:label}]{${1:format list}}{${2:glsadd options}}"
+    },
+    "glsxtrdowrglossaryhook{}": {
+      "snippet": "glsxtrdowrglossaryhook{${1:label}}"
+    },
+    "glsentryindexcount{}": {
+      "snippet": "glsentryindexcount{${1:label}}"
+    },
+    "glsifindexed{}{}{}": {
+      "snippet": "glsifindexed{${1:label}}{${2:true}}{${3:false}}"
+    },
+    "glsxtrifindexing{}{}": {
+      "snippet": "glsxtrifindexing{${1:true}}{${2:false}}"
+    },
+    "glsxtrseelists{}": {
+      "snippet": "glsxtrseelists{${1:label}}"
+    },
+    "glsxtrseelistsencap{}": {
+      "snippet": "glsxtrseelistsencap{${1:content}}"
+    },
+    "glsxtrseelistsdelim": {},
+    "glsxtrusesee{}": {
+      "snippet": "glsxtrusesee{${1:label}}"
+    },
+    "glsxtrusealias{}": {
+      "snippet": "glsxtrusealias{${1:label}}"
+    },
+    "glsxtruseseealso{}": {
+      "snippet": "glsxtruseseealso{${1:label}}"
+    },
+    "glsxtralias{}": {
+      "snippet": "glsxtralias{${1:label}}"
+    },
+    "glsxtrseealsolabels{}": {
+      "snippet": "glsxtrseealsolabels{${1:label}}"
+    },
+    "glsxtruseseealsoformat{}": {
+      "snippet": "glsxtruseseealsoformat{${1:xr-list}}"
+    },
+    "glsxtrindexseealso{}{}": {
+      "snippet": "glsxtrindexseealso{${1:label}}{${2:xr-list}}"
+    },
+    "glsxtrsetaliasnoindex": {},
+    "glsxtrindexaliased": {},
+    "glsxtraddallcrossrefs": {},
+    "glsxtraddunusedxrefs": {},
+    "glsxtrunusedformat{}": {
+      "snippet": "glsxtrunusedformat{${1:location}}"
+    },
+    "glsxtrpostunset{}": {
+      "snippet": "glsxtrpostunset{${1:label}}"
+    },
+    "glsxtrpostlocalunset{}": {
+      "snippet": "glsxtrpostlocalunset{${1:label}}"
+    },
+    "glsxtrpostreset{}": {
+      "snippet": "glsxtrpostreset{${1:label}}"
+    },
+    "glsxtrpostlocalreset{}": {
+      "snippet": "glsxtrpostlocalreset{${1:label}}"
+    },
+    "glslocalunseteach{}": {
+      "snippet": "glslocalunseteach{${1:labellist}}"
+    },
+    "glslocalreseteach{}": {
+      "snippet": "glslocalreseteach{${1:labellist}}"
+    },
+    "glsxtrifwasfirstuse{}{}": {
+      "snippet": "glsxtrifwasfirstuse{${1:true}}{${2:false}}"
+    },
+    "GlsXtrIfUnusedOrUndefined{}{}{}": {
+      "snippet": "GlsXtrIfUnusedOrUndefined{${1:label}}{${2:true}}{${3:false}}"
+    },
+    "GlsXtrStartUnsetBuffering": {},
+    "GlsXtrClearUnsetBuffer": {},
+    "GlsXtrStopUnsetBuffering": {},
+    "GlsXtrForUnsetBufferedList{}": {
+      "snippet": "GlsXtrForUnsetBufferedList{${1:handler-cs}}"
+    },
+    "GlsXtrDiscardUnsetBuffering": {},
+    "GlsXtrUnsetBufferEnableRepeatLocal": {},
+    "GlsXtrResetLocalBuffer": {},
+    "GlsXtrUnsetBufferDisableRepeatLocal": {},
+    "glsxtrusefield{}{}": {
+      "snippet": "glsxtrusefield{${1:label}}{${2:field}}"
+    },
+    "Glsxtrusefield{}{}": {
+      "snippet": "Glsxtrusefield{${1:label}}{${2:field}}"
+    },
+    "GLSxtrusefield{}{}": {
+      "snippet": "GLSxtrusefield{${1:label}}{${2:field}}"
+    },
+    "glsxtrfieldtitlecase{}{}": {
+      "snippet": "glsxtrfieldtitlecase{${1:label}}{${2:field}}"
+    },
+    "glsxtrfieldtitlecasecs{}": {
+      "snippet": "glsxtrfieldtitlecasecs{${1:content}}"
+    },
+    "glsxtrentryparentname{}": {
+      "snippet": "glsxtrentryparentname{${1:entry-name}}"
+    },
+    "glsxtrhiername{}": {
+      "snippet": "glsxtrhiername{${1:label}}"
+    },
+    "glsxtrhiernamesep": {},
+    "Glsxtrhiername{}": {
+      "snippet": "Glsxtrhiername{${1:label}}"
+    },
+    "GlsXtrhiername{}": {
+      "snippet": "GlsXtrhiername{${1:label}}"
+    },
+    "GLSxtrhiername{}": {
+      "snippet": "GLSxtrhiername{${1:label}}"
+    },
+    "GLSXTRhiername{}": {
+      "snippet": "GLSXTRhiername{${1:label}}"
+    },
+    "GlsXtrForeignTextField": {},
+    "GlsXtrForeignText{}{}": {
+      "snippet": "GlsXtrForeignText{${1:label}}{${2:text}}"
+    },
+    "GlsXtrUnknownDialectWarning{}{}": {
+      "snippet": "GlsXtrUnknownDialectWarning{${1:locale}}{${2:language}}"
+    },
+    "GlsXtrFmtField": {},
+    "glsxtrfmt{}{}": {
+      "snippet": "glsxtrfmt{${1:label}}{${2:text}}"
+    },
+    "glsxtrfmt[]{}{}": {
+      "snippet": "glsxtrfmt[${3:options}]{${1:label}}{${2:text}}"
+    },
+    "glsxtrfmt*{}{}": {
+      "snippet": "glsxtrfmt*{${1:label}}{${2:text}}"
+    },
+    "glsxtrfmt*{}{}[]": {
+      "snippet": "glsxtrfmt*{${1:label}}{${2:text}}[${3:insert}]"
+    },
+    "glsxtrfmt*[]{}{}": {
+      "snippet": "glsxtrfmt*[${3:options}]{${1:label}}{${2:text}}"
+    },
+    "glsxtrfmt*[]{}{}[]": {
+      "snippet": "glsxtrfmt*[${3:options}]{${1:label}}{${2:text}}[${4:insert}]"
+    },
+    "glsxtrfmtdisplay{}{}{}": {
+      "snippet": "glsxtrfmtdisplay{${1:csname}}{${2:text}}{${3:insert}}"
+    },
+    "glsxtrentryfmt{}{}": {
+      "snippet": "glsxtrentryfmt{${1:label}}{${2:text}}"
+    },
+    "glsxtrpdfentryfmt{}{}": {
+      "snippet": "glsxtrpdfentryfmt{${1:label}}{${2:text}}"
+    },
+    "Glsxtrfmt{}{}": {
+      "snippet": "Glsxtrfmt{${1:label}}{${2:text}}"
+    },
+    "Glsxtrfmt[]{}{}": {
+      "snippet": "Glsxtrfmt[${3:options}]{${1:label}}{${2:text}}"
+    },
+    "Glsxtrfmt*{}{}": {
+      "snippet": "Glsxtrfmt*{${1:label}}{${2:text}}"
+    },
+    "Glsxtrfmt*{}{}[]": {
+      "snippet": "Glsxtrfmt*{${1:label}}{${2:text}}[${3:insert}]"
+    },
+    "Glsxtrfmt*[]{}{}": {
+      "snippet": "Glsxtrfmt*[${3:options}]{${1:label}}{${2:text}}"
+    },
+    "Glsxtrfmt*[]{}{}[]": {
+      "snippet": "Glsxtrfmt*[${3:options}]{${1:label}}{${2:text}}[${4:insert}]"
+    },
+    "Glsxtrentryfmt{}{}": {
+      "snippet": "Glsxtrentryfmt{${1:label}}{${2:text}}"
+    },
+    "Glsxtrpdfentryfmt{}{}": {
+      "snippet": "Glsxtrpdfentryfmt{${1:label}}{${2:text}}"
+    },
+    "glsxtrseelist{}": {
+      "snippet": "glsxtrseelist{${1:xr-list}}"
+    },
+    "glsxtrtaggedlist{}{}{}{}": {
+      "snippet": "glsxtrtaggedlist{${1:sing-tag}}{${2:plural-tag}}{${3:prefix}}{${4:xr-list}}"
+    },
+    "glsxtrtaggedlistsep": {},
+    "glsseefirstitem{}": {
+      "snippet": "glsseefirstitem{${1:label}}"
+    },
+    "glsseelastoxfordsep": {},
+    "glsxtrforcsvfield{}{}{}": {
+      "snippet": "glsxtrforcsvfield{${1:label}}{${2:field}}{${3:handler}}"
+    },
+    "glsxtrendfor": {},
+    "glsxtrfieldformatcsvlist{}{}": {
+      "snippet": "glsxtrfieldformatcsvlist{${1:label}}{${2:field}}"
+    },
+    "GlsXtrIfValueInFieldCsvList{}{}{}{}{}": {
+      "snippet": "GlsXtrIfValueInFieldCsvList{${1:label}}{${2:field}}{${3:value}}{${4:true}}{${5:false}}"
+    },
+    "GlsXtrIfFieldValueInCsvList{}{}{}{}{}": {
+      "snippet": "GlsXtrIfFieldValueInCsvList{${1:label}}{${2:field}}{${3:list}}{${4:true}}{${5:false}}"
+    },
+    "xGlsXtrIfValueInFieldCsvList{}{}{}{}{}": {
+      "snippet": "xGlsXtrIfValueInFieldCsvList{${1:label}}{${2:field}}{${3:value}}{${4:true}}{${5:false}}"
+    },
+    "glsxtrfieldformatlist{}{}": {
+      "snippet": "glsxtrfieldformatlist{${1:label}}{${2:field}}"
+    },
+    "glsxtrfielddolistloop{}{}": {
+      "snippet": "glsxtrfielddolistloop{${1:label}}{${2:field}}"
+    },
+    "glsxtrfieldforlistloop{}{}{}": {
+      "snippet": "glsxtrfieldforlistloop{${1:label}}{${2:field}}{${3:handler}}"
+    },
+    "glsxtrfieldifinlist{}{}{}{}{}": {
+      "snippet": "glsxtrfieldifinlist{${1:label}}{${2:field}}{${3:item}}{${4:true}}{${5:false}}"
+    },
+    "glsxtrfieldxifinlist{}{}{}{}{}": {
+      "snippet": "glsxtrfieldxifinlist{${1:label}}{${2:field}}{${3:item}}{${4:true}}{${5:false}}"
+    },
+    "GlsXtrIfFieldUndef{}{}{}{}": {
+      "snippet": "GlsXtrIfFieldUndef{${1:field}}{${2:label}}{${3:true}}{${4:false}}"
+    },
+    "glsxtrifhasfield{}{}{}{}": {
+      "snippet": "glsxtrifhasfield{${1:field}}{${2:label}}{${3:true}}{${4:false}}"
+    },
+    "glsxtrifhasfield*{}{}{}{}": {
+      "snippet": "glsxtrifhasfield*{${1:field}}{${2:label}}{${3:true}}{${4:false}}"
+    },
+    "GlsXtrIfFieldCmpNum{}{}{}{}{}{}": {
+      "snippet": "GlsXtrIfFieldCmpNum{${1:field}}{${2:label}}{${3:comparison}}{${4:integer}}{${5:true}}{${6:false}}"
+    },
+    "GlsXtrIfFieldCmpNum*{}{}{}{}{}{}": {
+      "snippet": "GlsXtrIfFieldCmpNum*{${1:field}}{${2:label}}{${3:comparison}}{${4:integer}}{${5:true}}{${6:false}}"
+    },
+    "GlsXtrIfFieldEqNum{}{}{}{}{}": {
+      "snippet": "GlsXtrIfFieldEqNum{${1:field}}{${2:label}}{${3:integer}}{${4:true}}{${5:false}}"
+    },
+    "GlsXtrIfFieldEqNum*{}{}{}{}{}": {
+      "snippet": "GlsXtrIfFieldEqNum*{${1:field}}{${2:label}}{${3:integer}}{${4:true}}{${5:false}}"
+    },
+    "GlsXtrIfFieldNonZero{}{}{}{}": {
+      "snippet": "GlsXtrIfFieldNonZero{${1:field}}{${2:label}}{${3:true}}{${4:false}}"
+    },
+    "GlsXtrIfFieldNonZero*{}{}{}{}": {
+      "snippet": "GlsXtrIfFieldNonZero*{${1:field}}{${2:label}}{${3:true}}{${4:false}}"
+    },
+    "GlsXtrIfFieldEqStr{}{}{}{}{}": {
+      "snippet": "GlsXtrIfFieldEqStr{${1:field}}{${2:label}}{${3:text}}{${4:true}}{${5:false}}"
+    },
+    "GlsXtrIfFieldEqStr*{}{}{}{}{}": {
+      "snippet": "GlsXtrIfFieldEqStr*{${1:field}}{${2:label}}{${3:text}}{${4:true}}{${5:false}}"
+    },
+    "GlsXtrIfFieldEqXpStr{}{}{}{}{}": {
+      "snippet": "GlsXtrIfFieldEqXpStr{${1:field}}{${2:label}}{${3:text}}{${4:true}}{${5:false}}"
+    },
+    "GlsXtrIfFieldEqXpStr*{}{}{}{}{}": {
+      "snippet": "GlsXtrIfFieldEqXpStr*{${1:field}}{${2:label}}{${3:text}}{${4:true}}{${5:false}}"
+    },
+    "GlsXtrIfXpFieldEqXpStr{}{}{}{}{}": {
+      "snippet": "GlsXtrIfXpFieldEqXpStr{${1:field}}{${2:label}}{${3:text}}{${4:true}}{${5:false}}"
+    },
+    "GlsXtrIfXpFieldEqXpStr*{}{}{}{}{}": {
+      "snippet": "GlsXtrIfXpFieldEqXpStr*{${1:field}}{${2:label}}{${3:text}}{${4:true}}{${5:false}}"
+    },
+    "GlsXtrEnableEntryCounting{}{}": {
+      "snippet": "GlsXtrEnableEntryCounting{${1:category-list}}{${2:value}}"
+    },
+    "cGLS{}": {
+      "snippet": "cGLS{${1:label}}"
+    },
+    "cGLS[]{}": {
+      "snippet": "cGLS[${2:options}]{${1:label}}"
+    },
+    "cGLS{}[]": {
+      "snippet": "cGLS{${1:label}}[${2:insert}]"
+    },
+    "cGLS[]{}[]": {
+      "snippet": "cGLS[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "cGLS*{}": {
+      "snippet": "cGLS*{${1:label}}"
+    },
+    "cGLS*[]{}": {
+      "snippet": "cGLS*[${2:options}]{${1:label}}"
+    },
+    "cGLS*{}[]": {
+      "snippet": "cGLS*{${1:label}}[${2:insert}]"
+    },
+    "cGLS*[]{}[]": {
+      "snippet": "cGLS*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "cGLSpl{}": {
+      "snippet": "cGLSpl{${1:label}}"
+    },
+    "cGLSpl[]{}": {
+      "snippet": "cGLSpl[${2:options}]{${1:label}}"
+    },
+    "cGLSpl{}[]": {
+      "snippet": "cGLSpl{${1:label}}[${2:insert}]"
+    },
+    "cGLSpl[]{}[]": {
+      "snippet": "cGLSpl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "cGLSpl*{}": {
+      "snippet": "cGLSpl*{${1:label}}"
+    },
+    "cGLSpl*[]{}": {
+      "snippet": "cGLSpl*[${2:options}]{${1:label}}"
+    },
+    "cGLSpl*{}[]": {
+      "snippet": "cGLSpl*{${1:label}}[${2:insert}]"
+    },
+    "cGLSpl*[]{}[]": {
+      "snippet": "cGLSpl*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "cGLSformat{}{}": {
+      "snippet": "cGLSformat{${1:label}}{${2:insert}}"
+    },
+    "cGLSplformat{}{}": {
+      "snippet": "cGLSplformat{${1:label}}{${2:insert}}"
+    },
+    "glsxtrifcounttrigger{}{}{}": {
+      "snippet": "glsxtrifcounttrigger{${1:label}}{${2:true}}{${3:false}}"
+    },
+    "glsenableentryunitcount": {},
+    "GlsXtrEnableEntryUnitCounting{}{}{}": {
+      "snippet": "GlsXtrEnableEntryUnitCounting{${1:category-list}}{${2:value}}{${3:counter}}"
+    },
+    "glsentryprevtotalcount{}": {
+      "snippet": "glsentryprevtotalcount{${1:label}}"
+    },
+    "glsentryprevmaxcount{}": {
+      "snippet": "glsentryprevmaxcount{${1:label}}"
+    },
+    "GlsXtrEnableLinkCounting{}": {
+      "snippet": "GlsXtrEnableLinkCounting{${1:categories}}"
+    },
+    "GlsXtrEnableLinkCounting[]{}": {
+      "snippet": "GlsXtrEnableLinkCounting[${2:parent-counter}]{${1:categories}}"
+    },
+    "glsxtrinclinkcounter{}": {
+      "snippet": "glsxtrinclinkcounter{${1:counter}}"
+    },
+    "GlsXtrLinkCounterValue{}": {
+      "snippet": "GlsXtrLinkCounterValue{${1:label}}"
+    },
+    "GlsXtrTheLinkCounter{}": {
+      "snippet": "GlsXtrTheLinkCounter{${1:counter}}"
+    },
+    "GlsXtrIfLinkCounterDef{}{}{}": {
+      "snippet": "GlsXtrIfLinkCounterDef{${1:label}}{${2:true}}{${3:false}}"
+    },
+    "GlsXtrLinkCounterName{}": {
+      "snippet": "GlsXtrLinkCounterName{${1:label}}"
+    },
+    "multiglossaryentry{}{}": {
+      "snippet": "multiglossaryentry{${1:multi-label}}{${2:labellist}}"
+    },
+    "multiglossaryentry{}[]{}": {
+      "snippet": "multiglossaryentry{${1:multi-label}}[${2:main-label}]{${3:labellist}}"
+    },
+    "multiglossaryentry[]{}{}": {
+      "snippet": "multiglossaryentry[${3:options}]{${1:multi-label}}{${2:labellist}}",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "multiglossaryentry[]{}[]{}": {
+      "snippet": "multiglossaryentry[${3:options}]{${1:multi-label}}[${4:main-label}]{${2:labellist}}",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "mgls{}": {
+      "snippet": "mgls{${1:multi-label}}"
+    },
+    "mgls[]{}": {
+      "snippet": "mgls[${2:options}]{${1:multi-label}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "mgls{}[]": {
+      "snippet": "mgls{${1:multi-label}}[${2:insert}]"
+    },
+    "mgls[]{}[]": {
+      "snippet": "mgls[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "mgls*{}": {
+      "snippet": "mgls*{${1:multi-label}}"
+    },
+    "mgls*[]{}": {
+      "snippet": "mgls*[${2:options}]{${1:multi-label}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "mgls*{}[]": {
+      "snippet": "mgls*{${1:multi-label}}[${2:insert}]"
+    },
+    "mgls*[]{}[]": {
+      "snippet": "mgls*[${2:options}]{${1:multi-label}}[${3:insert}]",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "providemultiglossaryentry{}{}": {
+      "snippet": "providemultiglossaryentry{${1:multi-label}}{${2:labellist}}"
+    },
+    "providemultiglossaryentry{}[]{}": {
+      "snippet": "providemultiglossaryentry{${1:multi-label}}[${2:main label}]{${3:labellist}}"
+    },
+    "providemultiglossaryentry[]{}{}": {
+      "snippet": "providemultiglossaryentry[${3:options}]{${1:multi-label}}{${2:labellist}}",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "providemultiglossaryentry[]{}[]{}": {
+      "snippet": "providemultiglossaryentry[${3:options}]{${1:multi-label}}[${4:main label}]{${2:labellist}}",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "multiglossaryentryglobaltrue": {},
+    "multiglossaryentryglobalfalse": {},
+    "ifmultiglossaryentryglobal": {},
+    "mglsSetOptions{}{}": {
+      "snippet": "mglsSetOptions{${1:multi-label}}{${2:options}}",
+      "keyvalindex": 5,
+      "keyvalpos": 1
+    },
+    "mglsAddOptions{}{}": {
+      "snippet": "mglsAddOptions{${1:multi-label}}{${2:options}}",
+      "keyvalindex": 5,
+      "keyvalpos": 1
+    },
+    "GlsXtrMglsOrGls{}{}{}": {
+      "snippet": "GlsXtrMglsOrGls{${1:mgls-cmd}}{${2:gls-cmd}}{${3:label}}"
+    },
+    "GlsXtrMglsOrGls{}{}[]{}": {
+      "snippet": "GlsXtrMglsOrGls{${1:mgls-cmd}}{${2:gls-cmd}}[${3:options}]{${4:label}}",
+      "keyvalindex": 5,
+      "keyvalpos": 2
+    },
+    "GlsXtrMglsOrGls{}{}[]{}[]": {
+      "snippet": "GlsXtrMglsOrGls{${1:mgls-cmd}}{${2:gls-cmd}}[${3:options}]{${4:label}}[${5:insert}]",
+      "keyvalindex": 5,
+      "keyvalpos": 2
+    },
+    "mglsprefix": {},
+    "mglssuffix": {},
+    "mglsdefcategoryprefix{}{}": {
+      "snippet": "mglsdefcategoryprefix{${1:category}}{${2:definition}}"
+    },
+    "mglsdefcategorysuffix{}{}": {
+      "snippet": "mglsdefcategorysuffix{${1:category}}{${2:definition}}"
+    },
+    "mglshascategoryprefix{}{}{}": {
+      "snippet": "mglshascategoryprefix{${1:category}}{${2:true}}{${3:false}}"
+    },
+    "mglsusecategoryprefix{}": {
+      "snippet": "mglsusecategoryprefix{${1:category}}"
+    },
+    "mglshascategorysuffix{}{}{}": {
+      "snippet": "mglshascategorysuffix{${1:category}}{${2:true}}{${3:false}}"
+    },
+    "mglsusecategorysuffix{}": {
+      "snippet": "mglsusecategorysuffix{${1:category}}"
+    },
+    "glscombinedsep{}{}": {
+      "snippet": "glscombinedsep{${1:prev label}}{${2:next label}}"
+    },
+    "glscombinedfirstsep{}{}": {
+      "snippet": "glscombinedfirstsep{${1:prev label}}{${2:next label}}"
+    },
+    "glscombinedsepfirst{}{}": {
+      "snippet": "glscombinedsepfirst{${1:prev label}}{${2:next label}}"
+    },
+    "glscombinedfirstsepfirst{}{}": {
+      "snippet": "glscombinedfirstsepfirst{${1:prev label}}{${2:next label}}"
+    },
+    "glssetcombinedsepabbrvnbsp": {},
+    "glssetcombinedsepabbrvnone": {},
+    "glssetcombinedsepnarrow{}{}": {
+      "snippet": "glssetcombinedsepnarrow{${1:width}}{${2:narrow sep}}"
+    },
+    "mglselementprehook": {},
+    "mglselementposthook": {},
+    "mglscurrentmultilabel": {},
+    "mglscurrentmainlabel": {},
+    "mglscurrentlist": {},
+    "mglscurrentoptions": {},
+    "mglscurrentcategory": {},
+    "glsxtrcurrentmglscsname": {},
+    "mglsisfirstuse{}{}": {
+      "snippet": "mglsisfirstuse{${1:true}}{${2:false}}"
+    },
+    "mglscurrentlabel": {},
+    "mglselementindex": {},
+    "mglscurrentprefix": {},
+    "mglscurrentsuffix": {},
+    "mglsiflast{}{}": {
+      "snippet": "mglsiflast{${1:true}}{${2:false}}"
+    },
+    "mglscustompostlinkhook": {},
+    "mglslastelementpostlinkhook": {},
+    "mglslastmainpostlinkhook": {},
+    "mglslastmultilabel": {},
+    "mglslastcategory": {},
+    "mglswasfirstuse{}{}": {
+      "snippet": "mglswasfirstuse{${1:true}}{${2:false}}"
+    },
+    "mglslastelementlabel": {},
+    "mglsiflastelementskipped{}{}": {
+      "snippet": "mglsiflastelementskipped{${1:true}}{${2:false}}"
+    },
+    "mglsiflastelementwasfirstuse{}{}": {
+      "snippet": "mglsiflastelementwasfirstuse{${1:true}}{${2:false}}"
+    },
+    "mglsiflastelementwasplural{}{}": {
+      "snippet": "mglsiflastelementwasplural{${1:true}}{${2:false}}"
+    },
+    "mglsiflastelementcapscase{}{}{}": {
+      "snippet": "mglsiflastelementcapscase{${1:no-change}}{${2:firstuc}}{${3:all caps}}"
+    },
+    "mglslastmainlabel": {},
+    "mglsiflastmainskipped{}{}": {
+      "snippet": "mglsiflastmainskipped{${1:true}}{${2:false}}"
+    },
+    "mglsiflastmainwasfirstuse{}{}": {
+      "snippet": "mglsiflastmainwasfirstuse{${1:true}}{${2:false}}"
+    },
+    "mglsiflastmainwasplural{}{}": {
+      "snippet": "mglsiflastmainwasplural{${1:true}}{${2:false}}"
+    },
+    "mglsiflastmaincapscase{}{}{}": {
+      "snippet": "mglsiflastmaincapscase{${1:no-change}}{${2:firstuc}}{${3:all caps}}"
+    },
+    "ifmglsused{}{}{}": {
+      "snippet": "ifmglsused{${1:multi-label}}{${2:true}}{${3:false}}"
+    },
+    "mglsunset{}": {
+      "snippet": "mglsunset{${1:multi-label}}"
+    },
+    "mglsreset{}": {
+      "snippet": "mglsreset{${1:multi-label}}"
+    },
+    "mglslocalunset{}": {
+      "snippet": "mglslocalunset{${1:multi-label}}"
+    },
+    "mglslocalreset{}": {
+      "snippet": "mglslocalreset{${1:multi-label}}"
+    },
+    "mglsunsetall": {},
+    "mglsresetall": {},
+    "multiglossaryentrysetup{}": {
+      "snippet": "multiglossaryentrysetup{${1:options}}",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "glsxtrmglsWarnAllSkipped{}{}{}": {
+      "snippet": "glsxtrmglsWarnAllSkipped{${1:message}}{${2:insert}}{${3:fmt-cs}}"
+    },
+    "mglselementreset{}": {
+      "snippet": "mglselementreset{${1:label}}"
+    },
+    "mglselementunset{}": {
+      "snippet": "mglselementunset{${1:label}}"
+    },
+    "mglsunsetothers{}": {
+      "snippet": "mglsunsetothers{${1:multi-label}}"
+    },
+    "mglslocalunsetothers{}": {
+      "snippet": "mglslocalunsetothers{${1:multi-label}}"
+    },
+    "mglspl{}": {
+      "snippet": "mglspl{${1:multi-label}}"
+    },
+    "mglspl[]{}": {
+      "snippet": "mglspl[${2:options}]{${1:multi-label}}"
+    },
+    "mglspl{}[]": {
+      "snippet": "mglspl{${1:multi-label}}[${2:insert}]"
+    },
+    "mglspl[]{}[]": {
+      "snippet": "mglspl[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "mglsmainpl{}": {
+      "snippet": "mglsmainpl{${1:multi-label}}"
+    },
+    "mglsmainpl[]{}": {
+      "snippet": "mglsmainpl[${2:options}]{${1:multi-label}}"
+    },
+    "mglsmainpl{}[]": {
+      "snippet": "mglsmainpl{${1:multi-label}}[${2:insert}]"
+    },
+    "mglsmainpl[]{}[]": {
+      "snippet": "mglsmainpl[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "Mgls{}": {
+      "snippet": "Mgls{${1:multi-label}}"
+    },
+    "Mgls[]{}": {
+      "snippet": "Mgls[${2:options}]{${1:multi-label}}"
+    },
+    "Mgls{}[]": {
+      "snippet": "Mgls{${1:multi-label}}[${2:insert}]"
+    },
+    "Mgls[]{}[]": {
+      "snippet": "Mgls[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "MGls{}": {
+      "snippet": "MGls{${1:multi-label}}"
+    },
+    "MGls[]{}": {
+      "snippet": "MGls[${2:options}]{${1:multi-label}}"
+    },
+    "MGls{}[]": {
+      "snippet": "MGls{${1:multi-label}}[${2:insert}]"
+    },
+    "MGls[]{}[]": {
+      "snippet": "MGls[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "Mglspl{}": {
+      "snippet": "Mglspl{${1:multi-label}}"
+    },
+    "Mglspl[]{}": {
+      "snippet": "Mglspl[${2:options}]{${1:multi-label}}"
+    },
+    "Mglspl{}[]": {
+      "snippet": "Mglspl{${1:multi-label}}[${2:insert}]"
+    },
+    "Mglspl[]{}[]": {
+      "snippet": "Mglspl[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "Mglsmainpl{}": {
+      "snippet": "Mglsmainpl{${1:multi-label}}"
+    },
+    "Mglsmainpl[]{}": {
+      "snippet": "Mglsmainpl[${2:options}]{${1:multi-label}}"
+    },
+    "Mglsmainpl{}[]": {
+      "snippet": "Mglsmainpl{${1:multi-label}}[${2:insert}]"
+    },
+    "Mglsmainpl[]{}[]": {
+      "snippet": "Mglsmainpl[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "MGlspl{}": {
+      "snippet": "MGlspl{${1:multi-label}}"
+    },
+    "MGlspl[]{}": {
+      "snippet": "MGlspl[${2:options}]{${1:multi-label}}"
+    },
+    "MGlspl{}[]": {
+      "snippet": "MGlspl{${1:multi-label}}[${2:insert}]"
+    },
+    "MGlspl[]{}[]": {
+      "snippet": "MGlspl[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "MGlsmainpl{}": {
+      "snippet": "MGlsmainpl{${1:multi-label}}"
+    },
+    "MGlsmainpl[]{}": {
+      "snippet": "MGlsmainpl[${2:options}]{${1:multi-label}}"
+    },
+    "MGlsmainpl{}[]": {
+      "snippet": "MGlsmainpl{${1:multi-label}}[${2:insert}]"
+    },
+    "MGlsmainpl[]{}[]": {
+      "snippet": "MGlsmainpl[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "MGLS{}": {
+      "snippet": "MGLS{${1:multi-label}}"
+    },
+    "MGLS[]{}": {
+      "snippet": "MGLS[${2:options}]{${1:multi-label}}"
+    },
+    "MGLS{}[]": {
+      "snippet": "MGLS{${1:multi-label}}[${2:insert}]"
+    },
+    "MGLS[]{}[]": {
+      "snippet": "MGLS[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "MGLSpl{}": {
+      "snippet": "MGLSpl{${1:multi-label}}"
+    },
+    "MGLSpl[]{}": {
+      "snippet": "MGLSpl[${2:options}]{${1:multi-label}}"
+    },
+    "MGLSpl{}[]": {
+      "snippet": "MGLSpl{${1:multi-label}}[${2:insert}]"
+    },
+    "MGLSpl[]{}[]": {
+      "snippet": "MGLSpl[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "MGLSmainpl{}": {
+      "snippet": "MGLSmainpl{${1:multi-label}}"
+    },
+    "MGLSmainpl[]{}": {
+      "snippet": "MGLSmainpl[${2:options}]{${1:multi-label}}"
+    },
+    "MGLSmainpl{}[]": {
+      "snippet": "MGLSmainpl{${1:multi-label}}[${2:insert}]"
+    },
+    "MGLSmainpl[]{}[]": {
+      "snippet": "MGLSmainpl[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "mglsshort{}": {
+      "snippet": "mglsshort{${1:multi-label}}"
+    },
+    "mglsshort[]{}": {
+      "snippet": "mglsshort[${2:options}]{${1:multi-label}}"
+    },
+    "mglsshort{}[]": {
+      "snippet": "mglsshort{${1:multi-label}}[${2:insert}]"
+    },
+    "mglsshort[]{}[]": {
+      "snippet": "mglsshort[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "mglslong{}": {
+      "snippet": "mglslong{${1:multi-label}}"
+    },
+    "mglslong[]{}": {
+      "snippet": "mglslong[${2:options}]{${1:multi-label}}"
+    },
+    "mglslong{}[]": {
+      "snippet": "mglslong{${1:multi-label}}[${2:insert}]"
+    },
+    "mglslong[]{}[]": {
+      "snippet": "mglslong[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "mglsfull{}": {
+      "snippet": "mglsfull{${1:multi-label}}"
+    },
+    "mglsfull[]{}": {
+      "snippet": "mglsfull[${2:options}]{${1:multi-label}}"
+    },
+    "mglsfull{}[]": {
+      "snippet": "mglsfull{${1:multi-label}}[${2:insert}]"
+    },
+    "mglsfull[]{}[]": {
+      "snippet": "mglsfull[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "Mglsshort{}": {
+      "snippet": "Mglsshort{${1:multi-label}}"
+    },
+    "Mglsshort[]{}": {
+      "snippet": "Mglsshort[${2:options}]{${1:multi-label}}"
+    },
+    "Mglsshort{}[]": {
+      "snippet": "Mglsshort{${1:multi-label}}[${2:insert}]"
+    },
+    "Mglsshort[]{}[]": {
+      "snippet": "Mglsshort[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "Mglslong{}": {
+      "snippet": "Mglslong{${1:multi-label}}"
+    },
+    "Mglslong[]{}": {
+      "snippet": "Mglslong[${2:options}]{${1:multi-label}}"
+    },
+    "Mglslong{}[]": {
+      "snippet": "Mglslong{${1:multi-label}}[${2:insert}]"
+    },
+    "Mglslong[]{}[]": {
+      "snippet": "Mglslong[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "Mglsfull{}": {
+      "snippet": "Mglsfull{${1:multi-label}}"
+    },
+    "Mglsfull[]{}": {
+      "snippet": "Mglsfull[${2:options}]{${1:multi-label}}"
+    },
+    "Mglsfull{}[]": {
+      "snippet": "Mglsfull{${1:multi-label}}[${2:insert}]"
+    },
+    "Mglsfull[]{}[]": {
+      "snippet": "Mglsfull[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "mglsname{}": {
+      "snippet": "mglsname{${1:multi-label}}"
+    },
+    "mglsname[]{}": {
+      "snippet": "mglsname[${2:options}]{${1:multi-label}}"
+    },
+    "mglsname{}[]": {
+      "snippet": "mglsname{${1:multi-label}}[${2:insert}]"
+    },
+    "mglsname[]{}[]": {
+      "snippet": "mglsname[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "mglssymbol{}": {
+      "snippet": "mglssymbol{${1:multi-label}}"
+    },
+    "mglssymbol[]{}": {
+      "snippet": "mglssymbol[${2:options}]{${1:multi-label}}"
+    },
+    "mglssymbol{}[]": {
+      "snippet": "mglssymbol{${1:multi-label}}[${2:insert}]"
+    },
+    "mglssymbol[]{}[]": {
+      "snippet": "mglssymbol[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "mglsusefield{}": {
+      "snippet": "mglsusefield{${1:multi-label}}"
+    },
+    "mglsusefield[]{}": {
+      "snippet": "mglsusefield[${2:options}]{${1:multi-label}}"
+    },
+    "mglsusefield{}[]": {
+      "snippet": "mglsusefield{${1:multi-label}}[${2:insert}]"
+    },
+    "mglsusefield[]{}[]": {
+      "snippet": "mglsusefield[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "Mglsname{}": {
+      "snippet": "Mglsname{${1:multi-label}}"
+    },
+    "Mglsname[]{}": {
+      "snippet": "Mglsname[${2:options}]{${1:multi-label}}"
+    },
+    "Mglsname{}[]": {
+      "snippet": "Mglsname{${1:multi-label}}[${2:insert}]"
+    },
+    "Mglsname[]{}[]": {
+      "snippet": "Mglsname[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "Mglssymbol{}": {
+      "snippet": "Mglssymbol{${1:multi-label}}"
+    },
+    "Mglssymbol[]{}": {
+      "snippet": "Mglssymbol[${2:options}]{${1:multi-label}}"
+    },
+    "Mglssymbol{}[]": {
+      "snippet": "Mglssymbol{${1:multi-label}}[${2:insert}]"
+    },
+    "Mglssymbol[]{}[]": {
+      "snippet": "Mglssymbol[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "Mglsusefield{}": {
+      "snippet": "Mglsusefield{${1:multi-label}}"
+    },
+    "Mglsusefield[]{}": {
+      "snippet": "Mglsusefield[${2:options}]{${1:multi-label}}"
+    },
+    "Mglsusefield{}[]": {
+      "snippet": "Mglsusefield{${1:multi-label}}[${2:insert}]"
+    },
+    "Mglsusefield[]{}[]": {
+      "snippet": "Mglsusefield[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "MGlsname{}": {
+      "snippet": "MGlsname{${1:multi-label}}"
+    },
+    "MGlsname[]{}": {
+      "snippet": "MGlsname[${2:options}]{${1:multi-label}}"
+    },
+    "MGlsname{}[]": {
+      "snippet": "MGlsname{${1:multi-label}}[${2:insert}]"
+    },
+    "MGlsname[]{}[]": {
+      "snippet": "MGlsname[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "MGlssymbol{}": {
+      "snippet": "MGlssymbol{${1:multi-label}}"
+    },
+    "MGlssymbol[]{}": {
+      "snippet": "MGlssymbol[${2:options}]{${1:multi-label}}"
+    },
+    "MGlssymbol{}[]": {
+      "snippet": "MGlssymbol{${1:multi-label}}[${2:insert}]"
+    },
+    "MGlssymbol[]{}[]": {
+      "snippet": "MGlssymbol[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "MGlsusefield{}": {
+      "snippet": "MGlsusefield{${1:multi-label}}"
+    },
+    "MGlsusefield[]{}": {
+      "snippet": "MGlsusefield[${2:options}]{${1:multi-label}}"
+    },
+    "MGlsusefield{}[]": {
+      "snippet": "MGlsusefield{${1:multi-label}}[${2:insert}]"
+    },
+    "MGlsusefield[]{}[]": {
+      "snippet": "MGlsusefield[${2:options}]{${1:multi-label}}[${3:insert}]"
+    },
+    "mglsfield": {},
+    "mpglsWarning": {},
+    "mglsseefirstitem{}": {
+      "snippet": "mglsseefirstitem{${1:multi-label}}"
+    },
+    "mglsseeitem{}": {
+      "snippet": "mglsseeitem{${1:multi-label}}"
+    },
+    "glsxtrifmulti{}{}{}": {
+      "snippet": "glsxtrifmulti{${1:multi-label}}{${2:true}}{${3:false}}"
+    },
+    "glsxtrmultimain{}": {
+      "snippet": "glsxtrmultimain{${1:multi-label}}"
+    },
+    "glsxtrmultilist{}": {
+      "snippet": "glsxtrmultilist{${1:multi-label}}"
+    },
+    "mglsforelements{}{}{}": {
+      "snippet": "mglsforelements{${1:multi-label}}{${2:cmd}}{${3:body}}"
+    },
+    "mglsforotherelements{}{}{}": {
+      "snippet": "mglsforotherelements{${1:multi-label}}{${2:cmd}}{${3:body}}"
+    },
+    "glsxtrmultitotalelements{}": {
+      "snippet": "glsxtrmultitotalelements{${1:multi-label}}"
+    },
+    "glsxtrmultimainindex{}": {
+      "snippet": "glsxtrmultimainindex{${1:multi-label}}"
+    },
+    "glsxtrmultilastotherindex{}": {
+      "snippet": "glsxtrmultilastotherindex{${1:multi-label}}"
+    },
+    "writemultiglossentry{}{}{}{}": {
+      "snippet": "writemultiglossentry{${1:options}}{${2:multi-label}}{${3:main-label}}{${4:list}}"
+    },
+    "makeglossaries[]": {
+      "snippet": "makeglossaries[${1:types}]"
+    },
+    "newignoredglossary*{}": {
+      "snippet": "newignoredglossary*{${1:name}}"
+    },
+    "provideignoredglossary{}": {
+      "snippet": "provideignoredglossary{${1:name}}"
+    },
+    "glsxtrcopytoglossary{}{}": {
+      "snippet": "glsxtrcopytoglossary{${1:label}}{${2:glossary-type}}"
+    },
+    "glsxtrcopytoglossary*{}{}": {
+      "snippet": "glsxtrcopytoglossary*{${1:label}}{${2:glossary-type}}"
+    },
+    "forallabbreviationlists{}{}": {
+      "snippet": "forallabbreviationlists{${1:cmd}}{${2:body}}"
+    },
+    "glsxtrpageref{}": {
+      "snippet": "glsxtrpageref{${1:label}}"
+    },
+    "apptoglossarypreamble{}": {
+      "snippet": "apptoglossarypreamble{${1:text}}"
+    },
+    "apptoglossarypreamble[]{}": {
+      "snippet": "apptoglossarypreamble[${2:type}]{${1:text}}"
+    },
+    "pretoglossarypreamble{}": {
+      "snippet": "pretoglossarypreamble{${1:text}}"
+    },
+    "pretoglossarypreamble[]{}": {
+      "snippet": "pretoglossarypreamble[${2:type}]{${1:text}}"
+    },
+    "glsxtrsetglossarylabel{}": {
+      "snippet": "glsxtrsetglossarylabel{${1:label}}"
+    },
+    "printunsrtglossary": {},
+    "printunsrtglossary[]": {
+      "snippet": "printunsrtglossary[${1:options}]"
+    },
+    "printunsrtglossary*{}": {
+      "snippet": "printunsrtglossary*{${1:init-code}}"
+    },
+    "printunsrtglossary*[]{}": {
+      "snippet": "printunsrtglossary*[${2:options}]{${1:init-code}}"
+    },
+    "printunsrtglossaries": {},
+    "glsxtrnoidxgroups": {},
+    "glsxtrgroupfield": {},
+    "glsxtraddgroup{}{}": {
+      "snippet": "glsxtraddgroup{${1:label}}{${2:code}}"
+    },
+    "printunsrtglossarygrouphook{}": {
+      "snippet": "printunsrtglossarygrouphook{${1:internal cs}}"
+    },
+    "glssubgroupheading{}{}{}{}": {
+      "snippet": "glssubgroupheading{${1:prev-level}}{${2:level}}{${3:parent-label}}{${4:group-label}}"
+    },
+    "GlsXtrLocationField": {},
+    "printunsrtglossarypostbegin{}": {
+      "snippet": "printunsrtglossarypostbegin{${1:internal cs}}"
+    },
+    "printunsrtglossarypreend{}": {
+      "snippet": "printunsrtglossarypreend{${1:internal cs}}"
+    },
+    "glscurrententrylevel": {},
+    "glscurrenttoplevelentry": {},
+    "glscurrentrootentry": {},
+    "printunsrtglossaryentryprocesshook{}": {
+      "snippet": "printunsrtglossaryentryprocesshook{${1:label}}"
+    },
+    "printunsrtglossaryskipentry": {},
+    "printunsrtglossarypreentryprocesshook{}": {
+      "snippet": "printunsrtglossarypreentryprocesshook{${1:internal cs}}"
+    },
+    "printunsrtglossarypostentryprocesshook{}": {
+      "snippet": "printunsrtglossarypostentryprocesshook{${1:internal cs}}"
+    },
+    "printunsrtglossarypredoglossary": {},
+    "printunsrtglossaryhandler{}": {
+      "snippet": "printunsrtglossaryhandler{${1:label}}"
+    },
+    "glsxtrunsrtdo{}": {
+      "snippet": "glsxtrunsrtdo{${1:label}}"
+    },
+    "glsxtriflabelinlist{}{}{}{}": {
+      "snippet": "glsxtriflabelinlist{${1:label}}{${2:labellist}}{${3:true}}{${4:false}}"
+    },
+    "ifglsxtrprintglossflatten": {},
+    "glsxtrprintglossflattentrue": {},
+    "glsxtrprintglossflattenfalse": {},
+    "printunsrtinnerglossary{}{}": {
+      "snippet": "printunsrtinnerglossary{${1:pre-code}}{${2:post-code}}"
+    },
+    "printunsrtinnerglossary[]{}{}": {
+      "snippet": "printunsrtinnerglossary[${3:options}]{${1:pre-code}}{${2:post-code}}",
+      "keyvalindex": 10,
+      "keyvalpos": 0
+    },
+    "GlsXtrRecordCounter{}": {
+      "snippet": "GlsXtrRecordCounter{${1:counter}}"
+    },
+    "glsxtrAddCounterRecordHook{}{}{}": {
+      "snippet": "glsxtrAddCounterRecordHook{${1:label}}{${2:counter}}{${3:value}}"
+    },
+    "printunsrtglossaryunit{}": {
+      "snippet": "printunsrtglossaryunit{${1:counter}}"
+    },
+    "printunsrtglossaryunit[]{}": {
+      "snippet": "printunsrtglossaryunit[${2:options}]{${1:counter}}"
+    },
+    "printunsrtglossaryunitsetup{}": {
+      "snippet": "printunsrtglossaryunitsetup{${1:counter}}"
+    },
+    "printunsrtglossaryunitpostskip": {},
+    "glsxtrglossentry{}": {
+      "snippet": "glsxtrglossentry{${1:label}}"
+    },
+    "GlsXtrStandaloneGlossaryType": {},
+    "GlsXtrStandaloneSubEntryItem{}": {
+      "snippet": "GlsXtrStandaloneSubEntryItem{${1:label}}"
+    },
+    "GlsXtrStandaloneEntryName{}": {
+      "snippet": "GlsXtrStandaloneEntryName{${1:label}}"
+    },
+    "glsxtractivatenopost": {},
+    "glsxtrglossentryother{}{}{}": {
+      "snippet": "glsxtrglossentryother{${1:header}}{${2:label}}{${3:field}}"
+    },
+    "GlsXtrStandaloneEntryOther{}{}": {
+      "snippet": "GlsXtrStandaloneEntryOther{${1:label}}{${2:field}}"
+    },
+    "GlsXtrStandaloneEntryPdfName{}": {
+      "snippet": "GlsXtrStandaloneEntryPdfName{${1:label}}"
+    },
+    "GlsXtrStandaloneEntryHeadName{}": {
+      "snippet": "GlsXtrStandaloneEntryHeadName{${1:label}}"
+    },
+    "GlsXtrStandaloneEntryPdfOther{}{}": {
+      "snippet": "GlsXtrStandaloneEntryPdfOther{${1:label}}{${2:field}}"
+    },
+    "GlsXtrStandaloneEntryHeadOther{}{}": {
+      "snippet": "GlsXtrStandaloneEntryHeadOther{${1:label}}{${2:field}}"
+    },
+    "glsxtrpreglossarystyle": {},
+    "glsentrypdfsymbol{}": {
+      "snippet": "glsentrypdfsymbol{${1:label}}"
+    },
+    "glossentrynameother{}{}": {
+      "snippet": "glossentrynameother{${1:label}}{${2:field}}"
+    },
+    "glsxtrpostnamehook{}": {
+      "snippet": "glsxtrpostnamehook{${1:label}}"
+    },
+    "glsdefpostname{}{}": {
+      "snippet": "glsdefpostname{${1:category}}{${2:definition}}"
+    },
+    "glsextrapostnamehook{}": {
+      "snippet": "glsextrapostnamehook{${1:label}}"
+    },
+    "glsxtrpostdescription": {},
+    "glsxtrpostdescgeneral": {},
+    "glsxtrpostdescterm": {},
+    "glsxtrpostdescacronym": {},
+    "glsxtrpostdescabbreviation": {},
+    "glsdefpostdesc{}{}": {
+      "snippet": "glsdefpostdesc{${1:category}}{${2:definition}}"
+    },
+    "glsxtrnopostpunc": {},
+    "glsxtrrestorepostpunc": {},
+    "GlsXtrFormatLocationList{}": {
+      "snippet": "GlsXtrFormatLocationList{${1:location list}}"
+    },
+    "GlsXtrEnablePreLocationTag{}{}": {
+      "snippet": "GlsXtrEnablePreLocationTag{${1:page tag}}{${2:pages tag}}"
+    },
+    "glsxtrdisplaysingleloc{}{}": {
+      "snippet": "glsxtrdisplaysingleloc{${1:format}}{${2:location}}"
+    },
+    "glsxtrdisplaystartloc{}{}": {
+      "snippet": "glsxtrdisplaystartloc{${1:format}}{${2:location}}"
+    },
+    "glsxtrdisplayendloc{}{}": {
+      "snippet": "glsxtrdisplayendloc{${1:format}}{${2:location}}"
+    },
+    "glsxtrlocrangefmt": {},
+    "glsxtrdisplayendlochook{}{}": {
+      "snippet": "glsxtrdisplayendlochook{${1:format}}{${2:location}}"
+    },
+    "glsxtrsetgrouptitle{}{}": {
+      "snippet": "glsxtrsetgrouptitle{${1:group-label}}{${2:group-title}}"
+    },
+    "glsxtrlocalsetgrouptitle{}{}": {
+      "snippet": "glsxtrlocalsetgrouptitle{${1:group-label}}{${2:group-title}}"
+    },
+    "glsxtrgetgrouptitle{}{}": {
+      "snippet": "glsxtrgetgrouptitle{${1:group-label}}{${2:cmd}}"
+    },
+    "glsxtrassignactualsetup": {},
+    "glsdefaultshortaccess{}{}": {
+      "snippet": "glsdefaultshortaccess{${1:long}}{${2:short}}"
+    },
+    "glsaccessname{}": {
+      "snippet": "glsaccessname{${1:label}}"
+    },
+    "Glsaccessname{}": {
+      "snippet": "Glsaccessname{${1:label}}"
+    },
+    "GLSaccessname{}": {
+      "snippet": "GLSaccessname{${1:label}}"
+    },
+    "glsaccesstext{}": {
+      "snippet": "glsaccesstext{${1:label}}"
+    },
+    "Glsaccesstext{}": {
+      "snippet": "Glsaccesstext{${1:label}}"
+    },
+    "GLSaccesstext{}": {
+      "snippet": "GLSaccesstext{${1:label}}"
+    },
+    "GLSaccessplural{}": {
+      "snippet": "GLSaccessplural{${1:label}}"
+    },
+    "glsaccessplural{}": {
+      "snippet": "glsaccessplural{${1:label}}"
+    },
+    "Glsaccessplural{}": {
+      "snippet": "Glsaccessplural{${1:label}}"
+    },
+    "glsaccessfirst{}": {
+      "snippet": "glsaccessfirst{${1:label}}"
+    },
+    "Glsaccessfirst{}": {
+      "snippet": "Glsaccessfirst{${1:label}}"
+    },
+    "GLSaccessfirst{}": {
+      "snippet": "GLSaccessfirst{${1:label}}"
+    },
+    "glsaccessfirstplural{}": {
+      "snippet": "glsaccessfirstplural{${1:label}}"
+    },
+    "Glsaccessfirstplural{}": {
+      "snippet": "Glsaccessfirstplural{${1:label}}"
+    },
+    "GLSaccessfirstplural{}": {
+      "snippet": "GLSaccessfirstplural{${1:label}}"
+    },
+    "glsaccesssymbol{}": {
+      "snippet": "glsaccesssymbol{${1:label}}"
+    },
+    "Glsaccesssymbol{}": {
+      "snippet": "Glsaccesssymbol{${1:label}}"
+    },
+    "GLSaccesssymbol{}": {
+      "snippet": "GLSaccesssymbol{${1:label}}"
+    },
+    "glsaccesssymbolplural{}": {
+      "snippet": "glsaccesssymbolplural{${1:label}}"
+    },
+    "Glsaccesssymbolplural{}": {
+      "snippet": "Glsaccesssymbolplural{${1:label}}"
+    },
+    "GLSaccesssymbolplural{}": {
+      "snippet": "GLSaccesssymbolplural{${1:label}}"
+    },
+    "glsaccessdesc{}": {
+      "snippet": "glsaccessdesc{${1:label}}"
+    },
+    "Glsaccessdesc{}": {
+      "snippet": "Glsaccessdesc{${1:label}}"
+    },
+    "GLSaccessdesc{}": {
+      "snippet": "GLSaccessdesc{${1:label}}"
+    },
+    "glsaccessdescplural{}": {
+      "snippet": "glsaccessdescplural{${1:label}}"
+    },
+    "Glsaccessdescplural{}": {
+      "snippet": "Glsaccessdescplural{${1:label}}"
+    },
+    "GLSaccessdescplural{label": {},
+    "glsaccessshort{}": {
+      "snippet": "glsaccessshort{${1:label}}"
+    },
+    "Glsaccessshort{}": {
+      "snippet": "Glsaccessshort{${1:label}}"
+    },
+    "GLSaccessshort{}": {
+      "snippet": "GLSaccessshort{${1:label}}"
+    },
+    "glsaccessshortpl{}": {
+      "snippet": "glsaccessshortpl{${1:label}}"
+    },
+    "Glsaccessshortpl{}": {
+      "snippet": "Glsaccessshortpl{${1:label}}"
+    },
+    "GLSaccessshortpl{}": {
+      "snippet": "GLSaccessshortpl{${1:label}}"
+    },
+    "glsaccesslong{}": {
+      "snippet": "glsaccesslong{${1:label}}"
+    },
+    "Glsaccesslong{}": {
+      "snippet": "Glsaccesslong{${1:label}}"
+    },
+    "GLSaccesslong{}": {
+      "snippet": "GLSaccesslong{${1:label}}"
+    },
+    "glsaccesslongpl{}": {
+      "snippet": "glsaccesslongpl{${1:label}}"
+    },
+    "Glsaccesslongpl{}": {
+      "snippet": "Glsaccesslongpl{${1:label}}"
+    },
+    "GLSaccesslongpl{}": {
+      "snippet": "GLSaccesslongpl{${1:label}}"
+    },
+    "glsaccessuseri{}": {
+      "snippet": "glsaccessuseri{${1:label}}"
+    },
+    "Glsaccessuseri{}": {
+      "snippet": "Glsaccessuseri{${1:label}}"
+    },
+    "GLSaccessuseri{}": {
+      "snippet": "GLSaccessuseri{${1:label}}"
+    },
+    "glsaccessuserii{}": {
+      "snippet": "glsaccessuserii{${1:label}}"
+    },
+    "Glsaccessuserii{}": {
+      "snippet": "Glsaccessuserii{${1:label}}"
+    },
+    "GLSaccessuserii{}": {
+      "snippet": "GLSaccessuserii{${1:label}}"
+    },
+    "glsaccessuseriii{}": {
+      "snippet": "glsaccessuseriii{${1:label}}"
+    },
+    "Glsaccessuseriii{}": {
+      "snippet": "Glsaccessuseriii{${1:label}}"
+    },
+    "GLSaccessuseriii{}": {
+      "snippet": "GLSaccessuseriii{${1:label}}"
+    },
+    "glsaccessuseriv{}": {
+      "snippet": "glsaccessuseriv{${1:label}}"
+    },
+    "Glsaccessuseriv{}": {
+      "snippet": "Glsaccessuseriv{${1:label}}"
+    },
+    "GLSaccessuseriv{}": {
+      "snippet": "GLSaccessuseriv{${1:label}}"
+    },
+    "glsaccessuserv{}": {
+      "snippet": "glsaccessuserv{${1:label}}"
+    },
+    "Glsaccessuserv{}": {
+      "snippet": "Glsaccessuserv{${1:label}}"
+    },
+    "GLSaccessuserv{}": {
+      "snippet": "GLSaccessuserv{${1:label}}"
+    },
+    "glsaccessuservi{}": {
+      "snippet": "glsaccessuservi{${1:label}}"
+    },
+    "Glsaccessuservi{}": {
+      "snippet": "Glsaccessuservi{${1:label}}"
+    },
+    "GLSaccessuservi{}": {
+      "snippet": "GLSaccessuservi{${1:label}}"
+    },
+    "glsaccessfmtname{}{}{}": {
+      "snippet": "glsaccessfmtname{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtname{}{}{}": {
+      "snippet": "Glsaccessfmtname{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtname{}{}{}": {
+      "snippet": "GLSaccessfmtname{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmttext{}{}{}": {
+      "snippet": "glsaccessfmttext{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmttext{}{}{}": {
+      "snippet": "Glsaccessfmttext{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmttext{}{}{}": {
+      "snippet": "GLSaccessfmttext{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtplural{}{}{}": {
+      "snippet": "glsaccessfmtplural{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtplural{}{}{}": {
+      "snippet": "Glsaccessfmtplural{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtplural{}{}{}": {
+      "snippet": "GLSaccessfmtplural{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtfirst{}{}{}": {
+      "snippet": "glsaccessfmtfirst{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtfirst{}{}{}": {
+      "snippet": "Glsaccessfmtfirst{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtfirst{}{}{}": {
+      "snippet": "GLSaccessfmtfirst{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtfirstplural{}{}{}": {
+      "snippet": "glsaccessfmtfirstplural{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtfirstplural{}{}{}": {
+      "snippet": "Glsaccessfmtfirstplural{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtfirstplural{}{}{}": {
+      "snippet": "GLSaccessfmtfirstplural{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtsymbol{}{}{}": {
+      "snippet": "glsaccessfmtsymbol{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtsymbol{}{}{}": {
+      "snippet": "Glsaccessfmtsymbol{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtsymbol{}{}{}": {
+      "snippet": "GLSaccessfmtsymbol{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtsymbolplural{}{}{}": {
+      "snippet": "glsaccessfmtsymbolplural{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtsymbolplural{}{}{}": {
+      "snippet": "Glsaccessfmtsymbolplural{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtsymbolplural{}{}{}": {
+      "snippet": "GLSaccessfmtsymbolplural{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtdesc{}{}{}": {
+      "snippet": "glsaccessfmtdesc{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtdesc{}{}{}": {
+      "snippet": "Glsaccessfmtdesc{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtdesc{}{}{}": {
+      "snippet": "GLSaccessfmtdesc{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtdescplural{}{}{}": {
+      "snippet": "glsaccessfmtdescplural{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtdescplural{}{}{}": {
+      "snippet": "Glsaccessfmtdescplural{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtdescplural{}{}{}": {
+      "snippet": "GLSaccessfmtdescplural{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtshort{}{}{}": {
+      "snippet": "glsaccessfmtshort{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtshort{}{}{}": {
+      "snippet": "Glsaccessfmtshort{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtshort{}{}{}": {
+      "snippet": "GLSaccessfmtshort{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtshortpl{}{}{}": {
+      "snippet": "glsaccessfmtshortpl{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtshortpl{}{}{}": {
+      "snippet": "Glsaccessfmtshortpl{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtshortpl{}{}{}": {
+      "snippet": "GLSaccessfmtshortpl{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtlong{}{}{}": {
+      "snippet": "glsaccessfmtlong{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtlong{}{}{}": {
+      "snippet": "Glsaccessfmtlong{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtlong{}{}{}": {
+      "snippet": "GLSaccessfmtlong{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtlongpl{}{}{}": {
+      "snippet": "glsaccessfmtlongpl{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtlongpl{}{}{}": {
+      "snippet": "Glsaccessfmtlongpl{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtlongpl{}{}{}": {
+      "snippet": "GLSaccessfmtlongpl{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtuseri{}{}{}": {
+      "snippet": "glsaccessfmtuseri{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtuseri{}{}{}": {
+      "snippet": "Glsaccessfmtuseri{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtuseri{}{}{}": {
+      "snippet": "GLSaccessfmtuseri{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtuserii{}{}{}": {
+      "snippet": "glsaccessfmtuserii{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtuserii{}{}{}": {
+      "snippet": "Glsaccessfmtuserii{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtuserii{}{}{}": {
+      "snippet": "GLSaccessfmtuserii{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtuseriii{}{}{}": {
+      "snippet": "glsaccessfmtuseriii{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtuseriii{}{}{}": {
+      "snippet": "Glsaccessfmtuseriii{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtuseriii{}{}{}": {
+      "snippet": "GLSaccessfmtuseriii{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtuseriv{}{}{}": {
+      "snippet": "glsaccessfmtuseriv{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtuseriv{}{}{}": {
+      "snippet": "Glsaccessfmtuseriv{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtuseriv{}{}{}": {
+      "snippet": "GLSaccessfmtuseriv{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtuserv{}{}{}": {
+      "snippet": "glsaccessfmtuserv{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtuserv{}{}{}": {
+      "snippet": "Glsaccessfmtuserv{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtuserv{}{}{}": {
+      "snippet": "GLSaccessfmtuserv{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glsaccessfmtuservi{}{}{}": {
+      "snippet": "glsaccessfmtuservi{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "Glsaccessfmtuservi{}{}{}": {
+      "snippet": "Glsaccessfmtuservi{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "GLSaccessfmtuservi{}{}{}": {
+      "snippet": "GLSaccessfmtuservi{${1:insert}}{${2:cmd}}{${3:label}}"
+    },
+    "glscategory{}": {
+      "snippet": "glscategory{${1:label}}"
+    },
+    "glsifcategory{}{}{}{}": {
+      "snippet": "glsifcategory{${1:label}}{${2:category}}{${3:true}}{${4:false}}"
+    },
+    "glsxtrsetcategory{}{}": {
+      "snippet": "glsxtrsetcategory{${1:labellist}}{${2:category}}"
+    },
+    "glsxtrsetcategoryforall{}{}": {
+      "snippet": "glsxtrsetcategoryforall{${1:glossary-labels}}{${2:category}}"
+    },
+    "glsforeachincategory{}{}{}{}": {
+      "snippet": "glsforeachincategory{${1:category}}{${2:glossarycmd}}{${3:labelcmd}}{${4:body}}"
+    },
+    "glsforeachincategory[]{}{}{}{}": {
+      "snippet": "glsforeachincategory[${5:glossary-types}]{${1:category}}{${2:glossarycmd}}{${3:labelcmd}}{${4:body}}"
+    },
+    "glsforeachwithattribute{}{}{}{}{}": {
+      "snippet": "glsforeachwithattribute{${1:attribute}}{${2:value}}{${3:glossary-cmd}}{${4:label-cmd}}{${5:body}}"
+    },
+    "glsforeachwithattribute[]{}{}{}{}{}": {
+      "snippet": "glsforeachwithattribute[${6:glossary-types}]{${1:attribute}}{${2:value}}{${3:glossary-cmd}}{${4:label-cmd}}{${5:body}}"
+    },
+    "glsxtrwordsep": {},
+    "glsxtrword{}": {
+      "snippet": "glsxtrword{${1:word}}"
+    },
+    "glssetcategoryattribute{}{}{}": {
+      "snippet": "glssetcategoryattribute{${1:category}}{${2:attribute}}{${3:value}}"
+    },
+    "glssetcategoriesattribute{}{}{}": {
+      "snippet": "glssetcategoriesattribute{${1:category list}}{${2:attribute}}{${3:value}}"
+    },
+    "glssetcategoryattributes{}{}{}": {
+      "snippet": "glssetcategoryattributes{${1:category}}{${2:attribute list}}{${3:value}}"
+    },
+    "glssetcategoriesattributes{}{}{}": {
+      "snippet": "glssetcategoriesattributes{${1:category list}}{${2:attribute list}}{${3:value}}"
+    },
+    "glssetattribute{}{}{}": {
+      "snippet": "glssetattribute{${1:label}}{${2:attribute}}{${3:value}}"
+    },
+    "glssetregularcategory{}": {
+      "snippet": "glssetregularcategory{${1:category}}"
+    },
+    "glsunsetcategoryattribute{}{}": {
+      "snippet": "glsunsetcategoryattribute{${1:category}}{${2:attribute}}"
+    },
+    "glsgetcategoryattribute{}{}": {
+      "snippet": "glsgetcategoryattribute{${1:category}}{${2:attribute}}"
+    },
+    "glsgetattribute{}{}": {
+      "snippet": "glsgetattribute{${1:label}}{${2:attribute}}"
+    },
+    "glshascategoryattribute{}{}{}{}": {
+      "snippet": "glshascategoryattribute{${1:category}}{${2:attribute}}{${3:true}}{${4:false}}"
+    },
+    "glshasattribute{}{}{}{}{}": {
+      "snippet": "glshasattribute{${1:label}}{${2:attribute}}{${3:value}}{${4:true}}{${5:false}}"
+    },
+    "glsifcategoryattribute{}{}{}{}{}": {
+      "snippet": "glsifcategoryattribute{${1:category}}{${2:attribute}}{${3:value}}{${4:true}}{${5:false}}"
+    },
+    "glsifattribute{}{}{}{}{}": {
+      "snippet": "glsifattribute{${1:label}}{${2:attribute}}{${3:value}}{${4:true}}{${5:false}}"
+    },
+    "glsifregularcategory{}{}{}": {
+      "snippet": "glsifregularcategory{${1:category}}{${2:true}}{${3:false}}"
+    },
+    "glsifnotregularcategory{}{}{}": {
+      "snippet": "glsifnotregularcategory{${1:category}}{${2:true}}{${3:false}}"
+    },
+    "glsifregular{}{}{}": {
+      "snippet": "glsifregular{${1:label}}{${2:true}}{${3:false}}"
+    },
+    "glsifnotregular{}{}{}": {
+      "snippet": "glsifnotregular{${1:label}}{${2:true}}{${3:false}}"
+    },
+    "glsifcategoryattributetrue{}{}{}{}": {
+      "snippet": "glsifcategoryattributetrue{${1:category}}{${2:attribute}}{${3:true}}{${4:false}}"
+    },
+    "glsifattributetrue{}{}{}{}": {
+      "snippet": "glsifattributetrue{${1:label}}{${2:attribute}}{${3:true}}{${4:false}}"
+    },
+    "glsifcategoryattributehasitem{}{}{}{}{}": {
+      "snippet": "glsifcategoryattributehasitem{${1:category}}{${2:attribute}}{${3:item}}{${4:true}}{${5:false}}"
+    },
+    "glsxtrresourcefile{}": {
+      "snippet": "glsxtrresourcefile{${1:filename}}"
+    },
+    "glsxtrresourcefile[]{}": {
+      "snippet": "glsxtrresourcefile[${2:options}]{${1:filename}}",
+      "keyvalindex": 11,
+      "keyvalpos": 0
+    },
+    "GlsXtrLoadResources": {},
+    "GlsXtrLoadResources[]": {
+      "snippet": "GlsXtrLoadResources[${1:options}]",
+      "keyvalindex": 11,
+      "keyvalpos": 0
+    },
+    "glsxtrresourcecount": {},
+    "glsxtrresourceinit": {},
+    "glsxtrMFUsave": {},
+    "GlsXtrDefaultResourceOptions": {},
+    "glsxtrdetoklocation{}": {
+      "snippet": "glsxtrdetoklocation{${1:location}}"
+    },
+    "GlsXtrTotalRecordCount{}": {
+      "snippet": "GlsXtrTotalRecordCount{${1:label}}"
+    },
+    "GlsXtrRecordCount{}{}": {
+      "snippet": "GlsXtrRecordCount{${1:label}}{${2:counter}}"
+    },
+    "GlsXtrLocationRecordCount{}{}{}": {
+      "snippet": "GlsXtrLocationRecordCount{${1:label}}{${2:counter}}{${3:location}}"
+    },
+    "glsxtrifrecordtrigger{}{}{}": {
+      "snippet": "glsxtrifrecordtrigger{${1:label}}{${2:true}}{${3:false}}"
+    },
+    "glsxtrrecordtriggervalue{}": {
+      "snippet": "glsxtrrecordtriggervalue{${1:label}}"
+    },
+    "GlsXtrSetRecordCountAttribute{}{}": {
+      "snippet": "GlsXtrSetRecordCountAttribute{${1:category list}}{${2:value}}"
+    },
+    "glstriggerrecordformat{}": {
+      "snippet": "glstriggerrecordformat{${1:location}}"
+    },
+    "rgls{}": {
+      "snippet": "rgls{${1:label}}"
+    },
+    "rgls[]{}": {
+      "snippet": "rgls[${2:options}]{${1:label}}"
+    },
+    "rgls{}[]": {
+      "snippet": "rgls{${1:label}}[${2:insert}]"
+    },
+    "rgls[]{}[]": {
+      "snippet": "rgls[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "rgls*{}": {
+      "snippet": "rgls*{${1:label}}"
+    },
+    "rgls*[]{}": {
+      "snippet": "rgls*[${2:options}]{${1:label}}"
+    },
+    "rgls*{}[]": {
+      "snippet": "rgls*{${1:label}}[${2:insert}]"
+    },
+    "rgls*[]{}[]": {
+      "snippet": "rgls*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "rGls{}": {
+      "snippet": "rGls{${1:label}}"
+    },
+    "rGls[]{}": {
+      "snippet": "rGls[${2:options}]{${1:label}}"
+    },
+    "rGls{}[]": {
+      "snippet": "rGls{${1:label}}[${2:insert}]"
+    },
+    "rGls[]{}[]": {
+      "snippet": "rGls[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "rGls*{}": {
+      "snippet": "rGls*{${1:label}}"
+    },
+    "rGls*[]{}": {
+      "snippet": "rGls*[${2:options}]{${1:label}}"
+    },
+    "rGls*{}[]": {
+      "snippet": "rGls*{${1:label}}[${2:insert}]"
+    },
+    "rGls*[]{}[]": {
+      "snippet": "rGls*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "rGLS{}": {
+      "snippet": "rGLS{${1:label}}"
+    },
+    "rGLS[]{}": {
+      "snippet": "rGLS[${2:options}]{${1:label}}"
+    },
+    "rGLS{}[]": {
+      "snippet": "rGLS{${1:label}}[${2:insert}]"
+    },
+    "rGLS[]{}[]": {
+      "snippet": "rGLS[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "rGLS*{}": {
+      "snippet": "rGLS*{${1:label}}"
+    },
+    "rGLS*[]{}": {
+      "snippet": "rGLS*[${2:options}]{${1:label}}"
+    },
+    "rGLS*{}[]": {
+      "snippet": "rGLS*{${1:label}}[${2:insert}]"
+    },
+    "rGLS*[]{}[]": {
+      "snippet": "rGLS*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "rglspl{}": {
+      "snippet": "rglspl{${1:label}}"
+    },
+    "rglspl[]{}": {
+      "snippet": "rglspl[${2:options}]{${1:label}}"
+    },
+    "rglspl{}[]": {
+      "snippet": "rglspl{${1:label}}[${2:insert}]"
+    },
+    "rglspl[]{}[]": {
+      "snippet": "rglspl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "rglspl*{}": {
+      "snippet": "rglspl*{${1:label}}"
+    },
+    "rglspl*[]{}": {
+      "snippet": "rglspl*[${2:options}]{${1:label}}"
+    },
+    "rglspl*{}[]": {
+      "snippet": "rglspl*{${1:label}}[${2:insert}]"
+    },
+    "rglspl*[]{}[]": {
+      "snippet": "rglspl*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "rGlspl{}": {
+      "snippet": "rGlspl{${1:label}}"
+    },
+    "rGlspl[]{}": {
+      "snippet": "rGlspl[${2:options}]{${1:label}}"
+    },
+    "rGlspl{}[]": {
+      "snippet": "rGlspl{${1:label}}[${2:insert}]"
+    },
+    "rGlspl[]{}[]": {
+      "snippet": "rGlspl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "rGlspl*{}": {
+      "snippet": "rGlspl*{${1:label}}"
+    },
+    "rGlspl*[]{}": {
+      "snippet": "rGlspl*[${2:options}]{${1:label}}"
+    },
+    "rGlspl*{}[]": {
+      "snippet": "rGlspl*{${1:label}}[${2:insert}]"
+    },
+    "rGlspl*[]{}[]": {
+      "snippet": "rGlspl*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "rGLSpl{}": {
+      "snippet": "rGLSpl{${1:label}}"
+    },
+    "rGLSpl[]{}": {
+      "snippet": "rGLSpl[${2:options}]{${1:label}}"
+    },
+    "rGLSpl{}[]": {
+      "snippet": "rGLSpl{${1:label}}[${2:insert}]"
+    },
+    "rGLSpl[]{}[]": {
+      "snippet": "rGLSpl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "rGLSpl*{}": {
+      "snippet": "rGLSpl*{${1:label}}"
+    },
+    "rGLSpl*[]{}": {
+      "snippet": "rGLSpl*[${2:options}]{${1:label}}"
+    },
+    "rGLSpl*{}[]": {
+      "snippet": "rGLSpl*{${1:label}}[${2:insert}]"
+    },
+    "rGLSpl*[]{}[]": {
+      "snippet": "rGLSpl*[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "rglsformat{}{}": {
+      "snippet": "rglsformat{${1:label}}{${2:insert}}"
+    },
+    "rglsplformat{}{}": {
+      "snippet": "rglsplformat{${1:label}}{${2:insert}}"
+    },
+    "rGlsformat{}{}": {
+      "snippet": "rGlsformat{${1:label}}{${2:insert}}"
+    },
+    "rGlsplformat{}{}": {
+      "snippet": "rGlsplformat{${1:label}}{${2:insert}}"
+    },
+    "rGLSformat{}{}": {
+      "snippet": "rGLSformat{${1:label}}{${2:insert}}"
+    },
+    "rGLSplformat{}{}": {
+      "snippet": "rGLSplformat{${1:label}}{${2:insert}}"
+    },
+    "glsxtrenablerecordcount": {},
+    "glsxtrdoautoindexname{}{}": {
+      "snippet": "glsxtrdoautoindexname{${1:label}}{${2:attribute}}"
+    },
+    "glsxtrautoindexentry{}": {
+      "snippet": "glsxtrautoindexentry{${1:label}}"
+    },
+    "glsxtrautoindexassignsort{}{}": {
+      "snippet": "glsxtrautoindexassignsort{${1:cmd}}{${2:label}}"
+    },
+    "glsxtrautoindexesc": {},
+    "glsxtrautoindex{}": {
+      "snippet": "glsxtrautoindex{${1:text}}"
+    },
+    "GlsXtrEnableIndexFormatOverride": {},
+    "GlsXtrSetActualChar{}": {
+      "snippet": "GlsXtrSetActualChar{${1:character}}"
+    },
+    "GlsXtrSetLevelChar{}": {
+      "snippet": "GlsXtrSetLevelChar{${1:character}}"
+    },
+    "GlsXtrSetEscChar{}": {
+      "snippet": "GlsXtrSetEscChar{${1:character}}"
+    },
+    "GlsXtrSetEncapChar{}": {
+      "snippet": "GlsXtrSetEncapChar{${1:character}}"
+    },
+    "GlsXtrEnableOnTheFly": {},
+    "glsxtr{}": {
+      "snippet": "glsxtr{${1:label}}"
+    },
+    "glsxtr[]{}": {
+      "snippet": "glsxtr[${2:gls-options}]{${1:label}}"
+    },
+    "glsxtr[][]{}": {
+      "snippet": "glsxtr[${2:gls-options}][${3:dfn-options}]{${1:label}}"
+    },
+    "GlsXtrWarning{}{}": {
+      "snippet": "GlsXtrWarning{${1:defn options}}{${2:label}}"
+    },
+    "glsxtrpl{}": {
+      "snippet": "glsxtrpl{${1:label}}"
+    },
+    "glsxtrpl[]{}": {
+      "snippet": "glsxtrpl[${2:gls-options}]{${1:label}}"
+    },
+    "glsxtrpl[][]{}": {
+      "snippet": "glsxtrpl[${2:gls-options}][${3:dfn-options}]{${1:label}}"
+    },
+    "Glsxtr{}": {
+      "snippet": "Glsxtr{${1:label}}"
+    },
+    "Glsxtr[]{}": {
+      "snippet": "Glsxtr[${2:gls-options}]{${1:label}}"
+    },
+    "Glsxtr[][]{}": {
+      "snippet": "Glsxtr[${2:gls-options}][${3:dfn-options}]{${1:label}}"
+    },
+    "Glsxtrpl{}": {
+      "snippet": "Glsxtrpl{${1:label}}"
+    },
+    "Glsxtrpl[]{}": {
+      "snippet": "Glsxtrpl[${2:gls-options}]{${1:label}}"
+    },
+    "Glsxtrpl[][]{}": {
+      "snippet": "Glsxtrpl[${2:gls-options}][${3:dfn-options}]{${1:label}}"
+    },
+    "glsxtrcat": {},
+    "ProvidesGlossariesExtraLang{}": {
+      "snippet": "ProvidesGlossariesExtraLang{${1:tag}}"
+    },
+    "GlsXtrNoGlsWarningHead{}{}": {
+      "snippet": "GlsXtrNoGlsWarningHead{${1:glossary-label}}{${2:file}}"
+    },
+    "GlsXtrNoGlsWarningEmptyStart": {},
+    "GlsXtrNoGlsWarningEmptyMain": {},
+    "GlsXtrNoGlsWarningEmptyNotMain{}": {
+      "snippet": "GlsXtrNoGlsWarningEmptyNotMain{${1:glossary-label}}"
+    },
+    "GlsXtrNoGlsWarningCheckFile{}": {
+      "snippet": "GlsXtrNoGlsWarningCheckFile{${1:file}}"
+    },
+    "GlsXtrNoGlsWarningMisMatch": {},
+    "GlsXtrNoGlsWarningNoOut{}": {
+      "snippet": "GlsXtrNoGlsWarningNoOut{${1:file}}"
+    },
+    "GlsXtrNoGlsWarningTail": {},
+    "GlsXtrNoGlsWarningBuildInfo": {},
+    "GlsXtrNoGlsWarningAutoMake{}": {
+      "snippet": "GlsXtrNoGlsWarningAutoMake{${1:glossary-label}}"
+    },
+    "GlossariesAbbrStyleTooComplexWarning{}{}": {
+      "snippet": "GlossariesAbbrStyleTooComplexWarning{${1:arg1}}{${2:arg2}}"
+    },
+    "GlossariesExtraInfo{}": {
+      "snippet": "GlossariesExtraInfo{${1:message}}"
+    },
+    "GlossariesExtraWarning{}": {
+      "snippet": "GlossariesExtraWarning{${1:message}}"
+    },
+    "GlossariesExtraWarningNoLine{}": {
+      "snippet": "GlossariesExtraWarningNoLine{${1:message}}"
+    },
+    "glsabspace{}": {
+      "snippet": "glsabspace{${1:label}}"
+    },
+    "glsacspacemax": {},
+    "glsfmtinsert": {},
+    "GLSfmtinsert": {},
+    "GlsXtrDefineAbbreviationShortcuts": {},
+    "GlsXtrDefineAcShortcuts": {},
+    "GlsXtrDefineOtherShortcuts": {},
+    "glsxtrfirstscfont{}": {
+      "snippet": "glsxtrfirstscfont{${1:text}}"
+    },
+    "glsxtrfirstsmfont{}": {
+      "snippet": "glsxtrfirstsmfont{${1:text}}"
+    },
+    "glsxtrifemptyglossary{}{}{}": {
+      "snippet": "glsxtrifemptyglossary{${1:type}}{${2:true}}{${3:false}}"
+    },
+    "GlsXtrIfInGlossary{}{}{}{}": {
+      "snippet": "GlsXtrIfInGlossary{${1:label}}{${2:glossary-type}}{${3:true}}{${4:false}}"
+    },
+    "glsxtrinitwrglossbeforefalse": {},
+    "glsxtrinitwrglossbeforetrue": {},
+    "GlsXtrInternalLocationHyperlink{}{}{}": {
+      "snippet": "GlsXtrInternalLocationHyperlink{${1:counter}}{${2:prefix}}{${3:location}}"
+    },
+    "glsxtrlocationhyperlink{}{}{}": {
+      "snippet": "glsxtrlocationhyperlink{${1:counter}}{${2:prefix}}{${3:location}}"
+    },
+    "glsxtrNoGlossaryWarning{}": {
+      "snippet": "glsxtrNoGlossaryWarning{${1:type}}"
+    },
+    "glsxtrprovideaccsuppcmd{}{}": {
+      "snippet": "glsxtrprovideaccsuppcmd{${1:category}}{${2:field}}"
+    },
+    "GlsXtrRecordWarning{}": {
+      "snippet": "GlsXtrRecordWarning{${1:type}}"
+    },
+    "glsxtrscfont{}": {
+      "snippet": "glsxtrscfont{${1:text}}"
+    },
+    "glsxtrsmfont{}": {
+      "snippet": "glsxtrsmfont{${1:text}}"
+    },
+    "glsxtrstarflywarn": {},
+    "glsxtrsupplocationurl": {},
+    "glsxtruseseeformat{}{}": {
+      "snippet": "glsxtruseseeformat{${1:tag}}{${2:xr-list}}"
+    },
+    "glsxtrwordsephyphen": {},
+    "ifglsxtrinitwrglossbefore": {},
+    "mglsSetMain{}{}": {
+      "snippet": "mglsSetMain{${1:multi-label}}{${2:new-main-label}}"
+    },
+    "RequireGlossariesExtraLang{}": {
+      "snippet": "RequireGlossariesExtraLang{${1:tag}}"
+    },
+    "seealsoname": {},
+    "glsxtrcontinuedname": {},
+    "glsxtrcounterprefix": {},
+    "glsxtrdohyperlink": {},
+    "glsxtrdoidentify{}": {
+      "snippet": "glsxtrdoidentify{${1:arg}}"
+    },
+    "glsxtrhyperlink{}{}": {
+      "snippet": "glsxtrhyperlink{${1:arg1}}{${2:arg2}}"
+    },
+    "glsxtridentifyglsfamily{}{}{}{}{}{}{}{}": {
+      "snippet": "glsxtridentifyglsfamily{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
+    },
+    "glsxtridentifyglslink{}{}": {
+      "snippet": "glsxtridentifyglslink{${1:arg1}}{${2:arg2}}"
+    },
+    "glsxtrmglswrite{}": {
+      "snippet": "glsxtrmglswrite{${1:arg}}"
+    },
+    "glsxtrprotectlinks": {},
+    "glsxtrshorthyphennoinsert{}{}{}": {
+      "snippet": "glsxtrshorthyphennoinsert{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "glsxtrshorthyphennolong{}{}{}": {
+      "snippet": "glsxtrshorthyphennolong{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "GLSxtrshorthyphennolong{}{}{}": {
+      "snippet": "GLSxtrshorthyphennolong{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "glsxtrundefdebug{}": {
+      "snippet": "glsxtrundefdebug{${1:arg}}"
+    },
+    "mglsWriteSeparateRefsFalse": {},
+    "mglsWriteSeparateRefsTrue": {},
+    "preglossarypreamble{}": {
+      "snippet": "preglossarypreamble{${1:text}}"
+    },
+    "preglossarypreamble[]{}": {
+      "snippet": "preglossarypreamble[${2:type}]{${1:text}}"
+    }
+  },
+  "envs": {
+    "printunsrtglossarywrap": {},
+    "printunsrtglossarywrap[]": {
+      "name": "printunsrtglossarywrap",
+      "snippet": "[${1:options}]"
+    }
+  },
+  "options": [
+    "nowarn",
+    "nolangwarn",
+    "noredefwarn",
+    "translate=",
+    "notranslate",
+    "languages=${1:language}",
+    "nolong",
+    "nosuper",
+    "nolist",
+    "notree",
+    "nostyles",
+    "makeindex",
+    "xindy",
+    "xindy={${1:options}}",
+    "xindygloss",
+    "xindynoglsnumbers",
+    "acronym",
+    "acronyms",
+    "debug=",
+    "savewrites",
+    "hyperfirst",
+    "writeglslabels",
+    "writeglslabelnames",
+    "toc",
+    "numberline",
+    "section=${1:section unit}",
+    "ucmark",
+    "numberedsection=",
+    "savenumberlist",
+    "entrycounter",
+    "counterwithin=${1:counter}",
+    "subentrycounter",
+    "style=${1:style-name}",
+    "nonumberlist",
+    "seeautonumberlist",
+    "counter=${1:counter}",
+    "nopostdot",
+    "nogroupskip",
+    "seenoindex=",
+    "esclocations",
+    "indexonlyfirst",
+    "sanitizesort",
+    "sort=",
+    "order=",
+    "automake=",
+    "automakegloss",
+    "automakeglosslite",
+    "disablemakegloss",
+    "restoremakegloss",
+    "nohypertypes={${1:list}}",
+    "nomain",
+    "symbols",
+    "numbers",
+    "index",
+    "noglossaryindex",
+    "acronymlists={${1:label-list}}",
+    "shortcuts=",
+    "mfirstuc=",
+    "kernelglossredefs={${1:value}}",
+    "nomissingglstext",
+    "abbreviations",
+    "postdot",
+    "postpunc=",
+    "stylemods",
+    "stylemods=",
+    "prefix",
+    "accsupp",
+    "undefaction=",
+    "docdef=",
+    "indexcrossrefs",
+    "autoseeindex",
+    "record=",
+    "bibglsaux=${1:basename}",
+    "equations",
+    "floats",
+    "indexcounter",
+    "showtargets="
+  ],
+  "keyvals": [
+    [
+      "type=${1:glossary-label}",
+      "title=${1:text}",
+      "toctitle=${1:text}",
+      "style=${1:style-name}",
+      "numberedsection=",
+      "nonumberlist",
+      "nogroupskip",
+      "nopostdot",
+      "entrycounter",
+      "subentrycounter",
+      "sort=",
+      "label=",
+      "prefix=${1:prefix}",
+      "targetnameprefix=${1:prefix}",
+      "target",
+      "preamble=${1:text}",
+      "postamble=${1:text}"
+    ],
+    [
+      "type=${1:glossary-label}",
+      "title=${1:text}",
+      "toctitle=${1:text}",
+      "style=${1:style-name}",
+      "numberedsection=",
+      "nonumberlist",
+      "nogroupskip",
+      "nopostdot",
+      "entrycounter",
+      "subentrycounter",
+      "sort=",
+      "label=",
+      "prefix=${1:prefix}",
+      "targetnameprefix=${1:prefix}",
+      "target",
+      "preamble=${1:text}",
+      "postamble=${1:text}",
+      "leveloffset=${1:<n> or ++<n>}",
+      "flatten",
+      "groups"
+    ],
+    [
+      "label=",
+      "prefix=${1:prefix}",
+      "targetnameprefix=${1:prefix}",
+      "target",
+      "preamble=${1:text}",
+      "postamble=${1:text}"
+    ],
+    [
+      "name=${1:text}",
+      "description=${1:text}",
+      "parent=${1:parent-label}",
+      "descriptionplural=${1:text}",
+      "text=${1:text}",
+      "first=${1:text}",
+      "plural=${1:text}",
+      "firstplural=${1:text}",
+      "symbol=${1:symbol}",
+      "symbolplural=${1:symbol}",
+      "sort=${1:entry}",
+      "type=${1:glossary-label}",
+      "user1=${1:text}",
+      "user2=${1:text}",
+      "user3=${1:text}",
+      "user4=${1:text}",
+      "user5=${1:text}",
+      "user6=${1:text}",
+      "nonumberlist",
+      "see={${1:xr-list}}",
+      "see={[${1:tag}]${2:xr-list}}",
+      "category=${1:category-label}",
+      "seealso={${1:xr-list}}",
+      "alias={${1:xr-label}}"
+    ],
+    [
+      "category=${1:category-label}",
+      "seealso={${1:xr-list}}",
+      "alias={${1:xr-label}}"
+    ],
+    [
+      "setup={${1:options}}",
+      "all={${1:gls options}}",
+      "main={${1:gls options}}",
+      "others={${1:gls options}}",
+      "hyper",
+      "multiunset=",
+      "presetlocal",
+      "resetall",
+      "resetmain",
+      "resetothers",
+      "unsetall",
+      "unsetmain",
+      "unsetothers"
+    ],
+    [
+      "hyperoutside",
+      "textformat=${1:csname}",
+      "innertextformat=${1:csname}",
+      "postunset=",
+      "prereset",
+      "prereset=",
+      "preunset=",
+      "noindex",
+      "wrgloss=",
+      "thevalue=${1:location}",
+      "theHvalue=${1:the-H-value}",
+      "prefix=${1:link-prefix}"
+    ],
+    [
+      "hyperoutside",
+      "textformat=${1:csname}",
+      "innertextformat=${1:csname}",
+      "postunset=",
+      "prereset",
+      "prereset=",
+      "preunset=",
+      "noindex",
+      "wrgloss=",
+      "thevalue=${1:location}",
+      "theHvalue=${1:the-H-value}",
+      "prefix=${1:link-prefix}",
+      "hyper",
+      "format=${1:csname}",
+      "counter=${1:counter}",
+      "local"
+    ],
+    [
+      "format=${1:csname}",
+      "counter=${1:counter}",
+      "local",
+      "thevalue=${1:location}",
+      "theHvalue=${1:<prefix><location>}"
+    ],
+    [
+      "indexmain=",
+      "indexothers=",
+      "encapmain=${1:csname}",
+      "encapothers=${1:csname}",
+      "postlinks=",
+      "mpostlink=",
+      "mpostlinkelement=",
+      "firstprefix=${1:prefix}",
+      "usedprefix=${1:prefix}",
+      "firstsuffix=${1:suffix}",
+      "usedsuffix=${1:suffix}",
+      "firstskipmain",
+      "firstskipothers",
+      "usedskipmain",
+      "usedskipothers",
+      "hyper=",
+      "textformat=${1:csname}",
+      "category=${1:category}",
+      "mglsopts={${1:mgls options}}"
+    ],
+    [
+      "type=${1:glossary-label}",
+      "nonumberlist",
+      "nogroupskip",
+      "nopostdot",
+      "entrycounter",
+      "subentrycounter",
+      "target",
+      "targetnameprefix=${1:prefix}",
+      "prefix=${1:prefix}",
+      "groups",
+      "leveloffset=${1:<n> or ++<n>}"
+    ],
+    [
+      "charset=${1:encoding name}",
+      "locale=${1:lang tag}",
+      "interpret-preamble",
+      "write-preamble",
+      "set-widest",
+      "entry-type-aliases={${1:keyvals}}",
+      "unknown-entry-alias=${1:value}",
+      "action=",
+      "copy-to-glossary={${1:list}}",
+      "copy-to-glossary-missing-field-action=",
+      "src={${1:list}}",
+      "selection=",
+      "match={${1:keyvals}}",
+      "match-op=",
+      "not-match={${1:keyvals}}",
+      "match-action=",
+      "limit=${1:number}",
+      "save-child-count",
+      "save-sibling-count",
+      "save-root-ancestor",
+      "flatten",
+      "flatten-lonely=",
+      "flatten-lonely-rule=",
+      "flatten-lonely-condition=${1:value}",
+      "flatten-lonely-missing-field-action=",
+      "strip-missing-parents",
+      "missing-parents=",
+      "missing-parent-category=",
+      "group-level=",
+      "merge-small-groups",
+      "merge-small-groups=${1:n}",
+      "master=${1:name}",
+      "master-resources={${1:list}}",
+      "interpret-label-fields",
+      "labelify={${1:list}}",
+      "labelify-replace={${1:list}}",
+      "label-prefix=${1:prefix}",
+      "duplicate-label-suffix=${1:suffix}",
+      "record-label-prefix=${1:tag}",
+      "cs-label-prefix=${1:tag}",
+      "ext-prefixes={${1:list}}",
+      "prefix-only-existing",
+      "save-original-id=",
+      "save-original-id-action=",
+      "save-definition-index",
+      "save-use-index",
+      "dependency-fields={${1:list}}",
+      "group=${1:label}",
+      "category=",
+      "type=",
+      "trigger-type=${1:type}",
+      "progenitor-type=${1:type}",
+      "progeny-type=${1:type}",
+      "adopted-parent-field=${1:field}",
+      "abbreviation-name-fallback=${1:field}",
+      "abbreviation-text-fallback=${1:field}",
+      "ignore-fields={${1:list}}",
+      "field-aliases={${1:keyvals}}",
+      "replicate-fields={${1:keyvals}}",
+      "replicate-override",
+      "replicate-missing-field-action=",
+      "assign-fields={${1:keyvals}}",
+      "assign-override",
+      "assign-missing-field-action=",
+      "counter=${1:value}",
+      "copy-action-group-field=${1:value}",
+      "copy-alias-to-see",
+      "save-from-see=${1:value}",
+      "save-from-seealso=${1:value}",
+      "save-from-alias=${1:value}",
+      "save-crossref-tail=${1:value}",
+      "save-original-entrytype=${1:value}",
+      "save-original-entrytype-action=",
+      "post-description-dot=",
+      "strip-trailing-nopost=",
+      "check-end-punctuation={${1:list}}",
+      "sort-label-list={${1:list}}",
+      "prune-xr",
+      "prune-see-match={${1:keyvals}}",
+      "prune-see-op=",
+      "prune-seealso-match={${1:keyvals}}",
+      "prune-seealso-op=",
+      "prune-iterations=${1:number}",
+      "bibtex-contributor-fields={${1:list}}",
+      "contributor-order=",
+      "encapsulate-fields={${1:keyvals}}",
+      "encapsulate-fields*={${1:keyvals}}",
+      "format-integer-fields={${1:keyvals}}",
+      "format-decimal-fields={${1:keyvals}}",
+      "interpret-fields={${1:list}}",
+      "interpret-fields-action=",
+      "hex-unicode-fields={${1:list}}",
+      "date-time-fields={${1:list}}",
+      "date-fields={${1:list}}",
+      "time-fields={${1:list}}",
+      "date-time-field-format=${1:value}",
+      "date-field-format=${1:value}",
+      "time-field-format=${1:value}",
+      "date-time-field-locale=${1:value}",
+      "date-field-locale=${1:value}",
+      "time-field-locale=${1:value}",
+      "prefix-fields={${1:list}}",
+      "append-prefix-field=",
+      "append-prefix-field-cs=${1:cs}",
+      "append-prefix-field-exceptions=${1:sequence}",
+      "append-prefix-field-cs-exceptions=${1:sequence}",
+      "append-prefix-field-nbsp-match=${1:pattern}",
+      "no-case-change-cs={${1:list}}",
+      "word-boundaries={${1:list}}",
+      "short-case-change=",
+      "long-case-change=",
+      "name-case-change=",
+      "description-case-change=",
+      "field-case-change={${1:keyvals}}",
+      "short-plural-suffix=${1:suffix}",
+      "dual-short-plural-suffix=${1:suffix}",
+      "save-locations=",
+      "save-loclist",
+      "save-primary-locations=",
+      "save-principal-locations=",
+      "primary-location-formats={${1:list}}",
+      "principal-location-formats={${1:list}}",
+      "primary-loc-counters=",
+      "principal-loc-counters=",
+      "merge-ranges",
+      "min-loc-range=${1:value}",
+      "max-loc-diff=${1:integer}",
+      "suffixF=${1:value}",
+      "suffixFF=${1:value}",
+      "compact-ranges=${1:value}",
+      "see=",
+      "seealso=",
+      "alias=",
+      "alias-loc=",
+      "loc-prefix=${1:value}",
+      "loc-prefix-def=",
+      "loc-suffix=${1:value}",
+      "loc-suffix-def=",
+      "loc-counters={${1:list}}",
+      "save-index-counter=${1:value}",
+      "supplemental-locations=${1:basename}",
+      "supplemental-selection=${1:value}",
+      "supplemental-category=${1:value}",
+      "sort=${1:value}",
+      "shuffle=${1:seed}",
+      "sort-field=${1:field}",
+      "missing-sort-fallback=${1:field}",
+      "custom-sort-fallbacks={${1:keyvals}}",
+      "entry-sort-fallback=${1:field}",
+      "abbreviation-sort-fallback=${1:field}",
+      "symbol-sort-fallback=${1:field}",
+      "bibtexentry-sort-fallback=${1:field}",
+      "field-concat-sep=${1:separator}",
+      "trim-sort",
+      "sort-replace={${1:list}}",
+      "sort-rule=${1:value}",
+      "break-at=",
+      "break-marker=${1:marker}",
+      "break-at-match={${1:keyvals}}",
+      "break-at-match-op=",
+      "break-at-not-match={${1:keyvals}}",
+      "sort-number-pad=${1:number}",
+      "sort-pad-plus=${1:marker}",
+      "sort-pad-minus=${1:marker}",
+      "identical-sort-action=",
+      "sort-suffix=",
+      "sort-suffix-marker=${1:marker}",
+      "encapsulate-sort=${1:csname}",
+      "strength=",
+      "decomposition=",
+      "letter-number-rule=",
+      "letter-number-punc-rule=",
+      "numeric-sort-pattern=${1:value}",
+      "numeric-locale=",
+      "date-sort-locale=",
+      "date-sort-format=",
+      "group-formation=",
+      "secondary=${1:value}",
+      "secondary-match={${1:keyvals}}",
+      "secondary-not-match={${1:keyvals}}",
+      "secondary-match-op=",
+      "secondary-match-action=",
+      "secondary-missing-sort-fallback=${1:field}",
+      "secondary-trim-sort",
+      "secondary-sort-replace={${1:list}}",
+      "secondary-sort-rule=${1:value}",
+      "secondary-break-at=",
+      "secondary-break-marker=${1:marker}",
+      "secondary-break-at-match={${1:keyvals}}",
+      "secondary-break-at-match-op=",
+      "secondary-break-at-not-match={${1:keyvals}}",
+      "secondary-sort-number-pad=${1:number}",
+      "secondary-sort-pad-plus=${1:marker}",
+      "secondary-sort-pad-minus=${1:marker}",
+      "secondary-identical-sort-action=",
+      "secondary-sort-suffix=",
+      "secondary-sort-suffix-marker=${1:marker}",
+      "secondary-strength=",
+      "secondary-decomposition=",
+      "secondary-letter-number-rule=",
+      "secondary-letter-number-punc-rule=",
+      "secondary-numeric-sort-pattern=${1:value}",
+      "secondary-numeric-locale=",
+      "secondary-date-sort-locale=",
+      "secondary-date-sort-format=",
+      "secondary-group-formation=",
+      "dual-prefix=${1:prefix}",
+      "primary-dual-dependency",
+      "combine-dual-locations=",
+      "dual-type=",
+      "dual-category=",
+      "dual-counter=${1:value}",
+      "dual-short-case-change=",
+      "dual-long-case-change=",
+      "dual-field=${1:value}",
+      "dual-date-time-field-format=${1:value}",
+      "dual-date-field-format=${1:value}",
+      "dual-time-field-format=${1:value}",
+      "dual-date-time-field-locale=${1:value}",
+      "dual-date-field-locale=${1:value}",
+      "date-time-field-locale=${1:value}",
+      "dual-sort=${1:value}",
+      "dual-sort-field=${1:value}",
+      "dual-missing-sort-fallback=${1:field}",
+      "dual-trim-sort",
+      "dual-sort-replace={${1:list}}",
+      "dual-sort-rule=${1:value}",
+      "dual-break-at=",
+      "dual-break-marker=${1:marker}",
+      "dual-break-at-match={${1:keyvals}}",
+      "dual-break-at-match-op=",
+      "dual-break-at-not-match={${1:keyvals}}",
+      "dual-sort-number-pad=${1:number}",
+      "dual-sort-pad-plus=${1:marker}",
+      "dual-sort-pad-minus=${1:marker}",
+      "dual-identical-sort-action=",
+      "dual-sort-suffix=",
+      "dual-sort-suffix-marker=${1:marker}",
+      "dual-strength=",
+      "dual-decomposition=",
+      "dual-letter-number-rule=",
+      "dual-letter-number-punc-rule=",
+      "dual-numeric-sort-pattern=${1:value}",
+      "dual-numeric-locale=",
+      "dual-date-sort-locale=",
+      "dual-date-sort-format=",
+      "dual-group-formation=",
+      "dual-entry-map={{${1:list1}},{${2:list2}}}",
+      "dual-abbrv-map={{${1:list1}},{${2:list2}}}",
+      "dual-abbrventry-map={{${1:list1}},{${2:list2}}}",
+      "dual-symbol-map={{${1:list1}},{${2:list2}}}",
+      "dual-indexentry-map={{${1:list1}},{${2:list2}}}",
+      "dual-indexsymbol-map={{${1:list1}},{${2:list2}}}",
+      "dual-indexabbrv-map={{${1:list1}},{${2:list2}}}",
+      "dual-entry-backlink",
+      "dual-abbrv-backlink",
+      "dual-symbol-backlink",
+      "dual-abbrventry-backlink",
+      "dual-entryabbrv-backlink",
+      "dual-indexentry-backlink",
+      "dual-indexsymbol-backlink",
+      "dual-indexabbrv-backlink",
+      "dual-backlink",
+      "tertiary-prefix=${1:prefix}",
+      "tertiary-type=${1:value}",
+      "tertiary-category=${1:value}",
+      "compound-options-global",
+      "compound-dependent",
+      "compound-add-hierarchy",
+      "compound-has-records",
+      "compound-adjust-name=",
+      "compound-main-type=",
+      "compound-other-type=",
+      "compound-type-override",
+      "compound-write-def="
+    ]
+  ]
+}

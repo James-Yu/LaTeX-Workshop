@@ -1,0 +1,394 @@
+{
+  "includes": {
+    "xcolor": [],
+    "moresize": [],
+    "relsize": [],
+    "makecmds": [],
+    "xspace": [],
+    "calc": [],
+    "ifthen": [],
+    "adjustbox": [],
+    "translator": [],
+    "array": [],
+    "collcell": [],
+    "pgfopts": [],
+    "environ": [],
+    "xstring": [],
+    "tracklang": [],
+    "pict2e": []
+  },
+  "macros": {
+    "setdefaults{}": {
+      "snippet": "setdefaults{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "setdefaults*{}": {
+      "snippet": "setdefaults*{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Cl": {},
+    "Di": {},
+    "He": {},
+    "Sp": {},
+    "NT": {},
+    "pass": {},
+    "allpass": {},
+    "double": {},
+    "redouble": {},
+    "north": {},
+    "east": {},
+    "south": {},
+    "west": {},
+    "northsouth": {},
+    "eastwest": {},
+    "HCP": {},
+    "HLP": {},
+    "LP": {},
+    "DP": {},
+    "TP": {},
+    "GF": {},
+    "SF": {},
+    "NMF": {},
+    "TSF": {},
+    "FSF": {},
+    "namesNS{}{}": {
+      "snippet": "namesNS{${1:N-name}}{${2:S-name}}"
+    },
+    "namesEW{}{}": {
+      "snippet": "namesEW{${1:E-name}}{${2:W-name}}"
+    },
+    "northhand{}{}{}{}": {
+      "snippet": "northhand{${1:Sp}}{${2:He}}{${3:Di}}{${4:Cl}}"
+    },
+    "northhand[]{}{}{}{}": {
+      "snippet": "northhand[${5:v-offset}]{${1:Sp}}{${2:He}}{${3:Di}}{${4:Cl}}"
+    },
+    "easthand{}{}{}{}": {
+      "snippet": "easthand{${1:Sp}}{${2:He}}{${3:Di}}{${4:Cl}}"
+    },
+    "easthand[]{}{}{}{}": {
+      "snippet": "easthand[${5:h-offset}]{${1:Sp}}{${2:He}}{${3:Di}}{${4:Cl}}"
+    },
+    "southhand{}{}{}{}": {
+      "snippet": "southhand{${1:Sp}}{${2:He}}{${3:Di}}{${4:Cl}}"
+    },
+    "southhand[]{}{}{}{}": {
+      "snippet": "southhand[${5:v-offset}]{${1:Sp}}{${2:He}}{${3:Di}}{${4:Cl}}"
+    },
+    "westhand{}{}{}{}": {
+      "snippet": "westhand{${1:Sp}}{${2:He}}{${3:Di}}{${4:Cl}}"
+    },
+    "westhand[]{}{}{}{}": {
+      "snippet": "westhand[${5:h-offset}]{${1:Sp}}{${2:He}}{${3:Di}}{${4:Cl}}"
+    },
+    "hand{}{}{}{}": {
+      "snippet": "hand{${1:Sp}}{${2:He}}{${3:Di}}{${4:Cl}}"
+    },
+    "hand[]{}{}{}{}": {
+      "snippet": "hand[${5:pos}]{${1:Sp}}{${2:He}}{${3:Di}}{${4:Cl}}"
+    },
+    "hand*{}{}{}{}": {
+      "snippet": "hand*{${1:Sp}}{${2:He}}{${3:Di}}{${4:Cl}}"
+    },
+    "hand*[]{}{}{}{}": {
+      "snippet": "hand*[${5:pos}]{${1:Sp}}{${2:He}}{${3:Di}}{${4:Cl}}"
+    },
+    "onesuitAll{}{}{}{}": {
+      "snippet": "onesuitAll{${1:N}}{${2:S}}{${3:E}}{${4:W}}"
+    },
+    "onesuitAll*{}{}{}{}": {
+      "snippet": "onesuitAll*{${1:N}}{${2:S}}{${3:E}}{${4:W}}"
+    },
+    "onesuitNS{}{}": {
+      "snippet": "onesuitNS{${1:N}}{${2:S}}"
+    },
+    "onesuitNS*{}{}": {
+      "snippet": "onesuitNS*{${1:N}}{${2:S}}"
+    },
+    "onesuitEW{}{}": {
+      "snippet": "onesuitEW{${1:E}}{${2:W}}"
+    },
+    "onesuitEW*{}{}": {
+      "snippet": "onesuitEW*{${1:E}}{${2:W}}"
+    },
+    "onesuitNE{}{}": {
+      "snippet": "onesuitNE{${1:N}}{${2:E}}"
+    },
+    "onesuitNE*{}{}": {
+      "snippet": "onesuitNE*{${1:N}}{${2:E}}"
+    },
+    "onesuitNW{}{}": {
+      "snippet": "onesuitNW{${1:N}}{${2:W}}"
+    },
+    "onesuitNW*{}{}": {
+      "snippet": "onesuitNW*{${1:N}}{${2:W}}"
+    },
+    "suit{}": {
+      "snippet": "suit{${1:cards}}"
+    },
+    "suit[]{}": {
+      "snippet": "suit[${2:symbol}]{${1:cards}}"
+    },
+    "showAll": {},
+    "showAll[]": {
+      "snippet": "showAll[${1:pos}]"
+    },
+    "showAll*": {},
+    "showAll*[]": {
+      "snippet": "showAll*[${1:pos}]"
+    },
+    "showNS": {},
+    "showNS[]": {
+      "snippet": "showNS[${1:pos}]"
+    },
+    "showNS*": {},
+    "showNS*[]": {
+      "snippet": "showNS*[${1:pos}]"
+    },
+    "showEW": {},
+    "showEW[]": {
+      "snippet": "showEW[${1:pos}]"
+    },
+    "showEW*": {},
+    "showEW*[]": {
+      "snippet": "showEW*[${1:pos}]"
+    },
+    "showNE": {},
+    "showNE[]": {
+      "snippet": "showNE[${1:pos}]"
+    },
+    "showNE*": {},
+    "showNE*[]": {
+      "snippet": "showNE*[${1:pos}]"
+    },
+    "showNW": {},
+    "showNW[]": {
+      "snippet": "showNW[${1:pos}]"
+    },
+    "showNW*": {},
+    "showNW*[]": {
+      "snippet": "showNW*[${1:pos}]"
+    },
+    "headlinetext{}": {
+      "snippet": "headlinetext{${1:text}}"
+    },
+    "footlinetext{}": {
+      "snippet": "footlinetext{${1:text}}"
+    },
+    "leftupper{}{}{}": {
+      "snippet": "leftupper{${1:line1}}{${2:line2}}{${3:line3}}"
+    },
+    "leftupper[]{}{}{}": {
+      "snippet": "leftupper[${4:h-offset}]{${1:line1}}{${2:line2}}{${3:line3}}"
+    },
+    "leftlower{}{}{}": {
+      "snippet": "leftlower{${1:line1}}{${2:line2}}{${3:line3}}"
+    },
+    "leftlower[]{}{}{}": {
+      "snippet": "leftlower[${4:h-offset}]{${1:line1}}{${2:line2}}{${3:line3}}"
+    },
+    "rightupper{}{}{}": {
+      "snippet": "rightupper{${1:line1}}{${2:line2}}{${3:line3}}"
+    },
+    "rightupper[]{}{}{}": {
+      "snippet": "rightupper[${4:h-offset}]{${1:line1}}{${2:line2}}{${3:line3}}"
+    },
+    "rightlower{}{}{}": {
+      "snippet": "rightlower{${1:line1}}{${2:line2}}{${3:line3}}"
+    },
+    "rightlower[]{}{}{}": {
+      "snippet": "rightlower[${4:h-offset}]{${1:line1}}{${2:line2}}{${3:line3}}"
+    },
+    "dealer": {},
+    "dealer[]": {
+      "snippet": "dealer[${1:text}]"
+    },
+    "vulner": {},
+    "vulner[]": {
+      "snippet": "vulner[${1:text}]"
+    },
+    "dealertext": {},
+    "dealertext[]": {
+      "snippet": "dealertext[${1:text}]"
+    },
+    "vulnertext": {},
+    "vulnertext[]": {
+      "snippet": "vulnertext[${1:text}]"
+    },
+    "boardnr{}": {
+      "snippet": "boardnr{${1:Nr}}"
+    },
+    "boardtext": {},
+    "boardtext*": {},
+    "handskip{}": {
+      "snippet": "handskip{${1:length}}"
+    },
+    "bidderfont{}": {
+      "snippet": "bidderfont{${1:font commands}}"
+    },
+    "compassfont{}": {
+      "snippet": "compassfont{${1:font commands}}"
+    },
+    "gamefont{}": {
+      "snippet": "gamefont{${1:font commands}}"
+    },
+    "legendfont{}": {
+      "snippet": "legendfont{${1:font commands}}"
+    },
+    "namefont{}": {
+      "snippet": "namefont{${1:font commands}}"
+    },
+    "otherfont{}": {
+      "snippet": "otherfont{${1:font commands}}"
+    },
+    "Ace": {},
+    "Ace*": {},
+    "ace": {},
+    "King": {},
+    "King*": {},
+    "king": {},
+    "Queen": {},
+    "Queen*": {},
+    "queen": {},
+    "Jack": {},
+    "Jack*": {},
+    "jack": {},
+    "nt": {},
+    "nt*": {},
+    "Pass": {},
+    "Pass*": {},
+    "Allpass": {},
+    "Allpass*": {},
+    "Double": {},
+    "Double*": {},
+    "Redouble": {},
+    "Redouble*": {},
+    "North": {},
+    "North*": {},
+    "East": {},
+    "East*": {},
+    "South": {},
+    "South*": {},
+    "West": {},
+    "West*": {},
+    "NorthSouth": {},
+    "NorthSouth*": {},
+    "EastWest": {},
+    "EastWest*": {},
+    "hpts": {},
+    "hpts*": {},
+    "tpts": {},
+    "tpts*": {},
+    "lpts": {},
+    "lpts*": {},
+    "dpts": {},
+    "dpts*": {},
+    "gforce": {},
+    "gforce*": {},
+    "sforce": {},
+    "sforce*": {},
+    "nmforce": {},
+    "nmforce*": {},
+    "tsforce": {},
+    "tsforce*": {},
+    "fsforce": {},
+    "fsforce*": {},
+    "All": {},
+    "All*": {},
+    "all": {},
+    "None": {},
+    "None*": {},
+    "none": {},
+    "by": {},
+    "Board": {},
+    "Board*": {},
+    "board": {},
+    "Contract": {},
+    "Contract*": {},
+    "contract": {},
+    "Declarer": {},
+    "Declarer*": {},
+    "declarer": {},
+    "Deal": {},
+    "Deal*": {},
+    "deal": {},
+    "Lead": {},
+    "Lead*": {},
+    "lead": {},
+    "alert": {},
+    "announce": {},
+    "markit": {},
+    "explainit{}": {
+      "snippet": "explainit{${1:explanation}}"
+    },
+    "expertquiz{}": {
+      "snippet": "expertquiz{${1:award}}"
+    },
+    "expertquiz[]{}": {
+      "snippet": "expertquiz[${2:comment}]{${1:award}}"
+    },
+    "expertquiz*{}": {
+      "snippet": "expertquiz*{${1:award}}"
+    },
+    "expertquiz*[]{}": {
+      "snippet": "expertquiz*[${2:comment}]{${1:award}}"
+    },
+    "newgame": {},
+    "resetfonts": {},
+    "doubled": {},
+    "doubled*": {},
+    "Hoffset": {},
+    "MidSize": {},
+    "ODwstyledate": {},
+    "ODwstyleversion": {},
+    "PicSize": {},
+    "redoubled": {},
+    "redoubled*": {},
+    "Ten": {},
+    "Voffset": {}
+  },
+  "envs": {
+    "play{}": {
+      "name": "play",
+      "snippet": "{${1:lead}}"
+    },
+    "play{}[]": {
+      "name": "play",
+      "snippet": "{${1:lead}}[${2:trump}]"
+    },
+    "play*{}": {
+      "name": "play",
+      "snippet": "*{${1:lead}}"
+    },
+    "play*{}[]": {
+      "name": "play",
+      "snippet": "*{${1:lead}}[${2:trump}]"
+    }
+  },
+  "options": [
+    "colors=",
+    "err=",
+    "warn="
+  ],
+  "keyvals": [
+    [
+      "bidder=${1:font commands}",
+      "compass=${1:font commands}",
+      "game=${1:font commands}",
+      "legend=${1:font commands}",
+      "name=${1:font commands}",
+      "other=${1:font commands}",
+      "compline=${1:factor}",
+      "compmid=",
+      "compshow=",
+      "compsize=${1:factor}",
+      "compturn=",
+      "bidders=",
+      "bidfirst=",
+      "bidline=",
+      "bidlong="
+    ]
+  ]
+}

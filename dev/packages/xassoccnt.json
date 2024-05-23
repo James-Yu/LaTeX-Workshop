@@ -1,0 +1,622 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "letltxmacro": [],
+    "xcolor": [],
+    "l3keys2e": []
+  },
+  "macros": {
+    "addtocounter{}{}[]": {
+      "snippet": "addtocounter{${1:counter}}{${2:value}}[${3:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "NewDocumentCounter{}": {
+      "snippet": "NewDocumentCounter{${1:counter1,counter2,...}}"
+    },
+    "NewDocumentCounter{}[]": {
+      "snippet": "NewDocumentCounter{${1:counter1,counter2,...}}[${2:resetting counter}]"
+    },
+    "NewDocumentCounter[]{}": {
+      "snippet": "NewDocumentCounter[${2:options}]{${1:counter1,counter2,...}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "NewDocumentCounter[]{}[]": {
+      "snippet": "NewDocumentCounter[${2:options}]{${1:counter1,counter2,...}}[${3:resetting counter}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "DeclareDocumentCounter{}": {
+      "snippet": "DeclareDocumentCounter{${1:counter1,counter2,...}}"
+    },
+    "DeclareDocumentCounter{}[]": {
+      "snippet": "DeclareDocumentCounter{${1:counter1,counter2,...}}[${2:resetting counter}]"
+    },
+    "DeclareDocumentCounter[]{}": {
+      "snippet": "DeclareDocumentCounter[${2:options}]{${1:counter1,counter2,...}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "DeclareDocumentCounter[]{}[]": {
+      "snippet": "DeclareDocumentCounter[${2:options}]{${1:counter1,counter2,...}}[${3:resetting counter}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "SetDocumentCounter{}{}": {
+      "snippet": "SetDocumentCounter{${1:counter}}{${2:value}}"
+    },
+    "SetDocumentCounter[]{}{}": {
+      "snippet": "SetDocumentCounter[${3:options}]{${1:counter}}{${2:value}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "StepDownCounter{}": {
+      "snippet": "StepDownCounter{${1:counter}}"
+    },
+    "SubtractFromCounter{}{}": {
+      "snippet": "SubtractFromCounter{${1:counter}}{${2:delta value}}"
+    },
+    "CopyDocumentCounters{}{}": {
+      "snippet": "CopyDocumentCounters{${1:source counter}}{${2:target counter}}"
+    },
+    "SwapDocumentCounters{}{}": {
+      "snippet": "SwapDocumentCounters{${1:counter1}}{${2:counter2}}"
+    },
+    "SyncCounters{}": {
+      "snippet": "SyncCounters{${1:driver counter}}"
+    },
+    "IfIsDocumentCounterTF{}{}{}": {
+      "snippet": "IfIsDocumentCounterTF{${1:name}}{${2:true}}{${3:false}}"
+    },
+    "IfIsDocumentCounterT{}{}": {
+      "snippet": "IfIsDocumentCounterT{${1:name}}{${2:true}}"
+    },
+    "IfIsDocumentCounterF{}{}": {
+      "snippet": "IfIsDocumentCounterF{${1:name}}{${2:false}}"
+    },
+    "LastAddedToCounter": {},
+    "LastSteppedCounter": {},
+    "LastRefSteppedCounter": {},
+    "LastSetCounter": {},
+    "LastCounterValue": {},
+    "RemoveFromReset{}{}": {
+      "snippet": "RemoveFromReset{${1:counter1,counter2,...}}{${2:driver counter}}"
+    },
+    "RemoveFromFullReset{}{}": {
+      "snippet": "RemoveFromFullReset{${1:counter1,counter2,...}}{${2:driver counter}}"
+    },
+    "ClearCounterResetList{}": {
+      "snippet": "ClearCounterResetList{${1:driver counter}}"
+    },
+    "ClearCounterResetList*{}": {
+      "snippet": "ClearCounterResetList*{${1:driver counter}}"
+    },
+    "AddToReset{}{}": {
+      "snippet": "AddToReset{${1:counter1,counter2,...}}{${2:driver counter}}"
+    },
+    "countersresetlistcount{}": {
+      "snippet": "countersresetlistcount{${1:counter}}"
+    },
+    "getresetlistcount": {},
+    "CounterFullResetList{}": {
+      "snippet": "CounterFullResetList{${1:counter}}"
+    },
+    "IfInResetListTF{}{}{}{}": {
+      "snippet": "IfInResetListTF{${1:resetting counter}}{${2:counter}}{${3:true}}{${4:false}}"
+    },
+    "IfInResetListT{}{}{}": {
+      "snippet": "IfInResetListT{${1:resetting counter}}{${2:counter}}{${3:true}}"
+    },
+    "IfInResetListF{}{}{}": {
+      "snippet": "IfInResetListF{${1:resetting counter}}{${2:counter}}{${3:false}}"
+    },
+    "DisplayResetList{}": {
+      "snippet": "DisplayResetList{${1:resetting counter}}"
+    },
+    "DisplayResetList[]{}": {
+      "snippet": "DisplayResetList[${2:separator}]{${1:resetting counter}}"
+    },
+    "ShowResetList{}": {
+      "snippet": "ShowResetList{${1:resetting counter}}"
+    },
+    "GetAllResetLists": {},
+    "GetParentCounter{}": {
+      "snippet": "GetParentCounter{${1:counter}}"
+    },
+    "LoopAddtoCounters{}{}": {
+      "snippet": "LoopAddtoCounters{${1:counter1,counter2,...}}{${2:increment}}"
+    },
+    "LoopResetCounters{}": {
+      "snippet": "LoopResetCounters{${1:counter1,counter2,...}}"
+    },
+    "LoopRefstepCounters{}": {
+      "snippet": "LoopRefstepCounters{${1:counter1,counter2,...}}"
+    },
+    "LoopSetCounters{}{}": {
+      "snippet": "LoopSetCounters{${1:counter1,counter2,...}}{${2:value}}"
+    },
+    "LoopStepCounters{}": {
+      "snippet": "LoopStepCounters{${1:counter1,counter2,...}}"
+    },
+    "LoopCountersFunction{}{}": {
+      "snippet": "LoopCountersFunction{${1:counter1,counter2,...}}{${2:macro}}"
+    },
+    "LoopCounterResetList{}{}": {
+      "snippet": "LoopCounterResetList{${1:counter}}{${2:macro}}"
+    },
+    "LoopFullCounterResetList{}{}": {
+      "snippet": "LoopFullCounterResetList{${1:counter}}{${2:macro}}"
+    },
+    "CounterWithin{}{}": {
+      "snippet": "CounterWithin{${1:counter1,counter2,...}}{${2:driver counter}}"
+    },
+    "CounterWithin*{}{}": {
+      "snippet": "CounterWithin*{${1:counter1,counter2,...}}{${2:driver counter}}"
+    },
+    "CounterWithout{}{}": {
+      "snippet": "CounterWithout{${1:counter1,counter2,...}}{${2:driver counter}}"
+    },
+    "CounterWithout*{}{}": {
+      "snippet": "CounterWithout*{${1:counter1,counter2,...}}{${2:driver counter}}"
+    },
+    "BinaryValue{}": {
+      "snippet": "BinaryValue{${1:counter}}"
+    },
+    "hexValue{}": {
+      "snippet": "hexValue{${1:counter}}"
+    },
+    "HexValue{}": {
+      "snippet": "HexValue{${1:counter}}"
+    },
+    "OctalValue{}": {
+      "snippet": "OctalValue{${1:counter}}"
+    },
+    "xalphalph{}": {
+      "snippet": "xalphalph{${1:counter}}"
+    },
+    "xAlphAlph{}": {
+      "snippet": "xAlphAlph{${1:counter}}"
+    },
+    "CounterFormat{}": {
+      "snippet": "CounterFormat{${1:counter1!format1,counter2!format2,...}}"
+    },
+    "CounterFormat[]{}": {
+      "snippet": "CounterFormat[${2:options}]{${1:counter1!format1,counter2!format2,...}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "StoreCounterFormats{}": {
+      "snippet": "StoreCounterFormats{${1:shorthand1!macro1,shorthand2!macro2,...}}"
+    },
+    "StoreCounterFormats[]{}": {
+      "snippet": "StoreCounterFormats[${2:options}]{${1:shorthand1!macro1,shorthand2!macro2,...}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "AddCounterFormats{}": {
+      "snippet": "AddCounterFormats{${1:shorthand1!macro1,shorthand2!macro2,...}}"
+    },
+    "AddCounterFormats[]{}": {
+      "snippet": "AddCounterFormats[${2:options}]{${1:shorthand1!macro1,shorthand2!macro2,...}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "RemoveCounterFormats{}": {
+      "snippet": "RemoveCounterFormats{${1:shorthand1,shorthand2,...}}"
+    },
+    "DeclareAssociatedCounters{}{}": {
+      "snippet": "DeclareAssociatedCounters{${1:driver counter}}{${2:assoc counter list}}"
+    },
+    "DeclareAssociatedCounters[]{}{}": {
+      "snippet": "DeclareAssociatedCounters[${3:options}]{${1:driver counter}}{${2:assoc counter list}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "AddAssociatedCounters{}{}": {
+      "snippet": "AddAssociatedCounters{${1:driver counter}}{${2:assoc counter list}}"
+    },
+    "AddAssociatedCounters[]{}{}": {
+      "snippet": "AddAssociatedCounters[${3:options}]{${1:driver counter}}{${2:assoc counter list}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "RemoveAssociatedCounter{}{}": {
+      "snippet": "RemoveAssociatedCounter{${1:driver counter}}{${2:assoc counter}}"
+    },
+    "RemoveAssociatedCounters{}{}": {
+      "snippet": "RemoveAssociatedCounters{${1:driver counter}}{${2:assoc counter list}}"
+    },
+    "ClearAssociatedCounters{}": {
+      "snippet": "ClearAssociatedCounters{${1:driver counter}}"
+    },
+    "DeclareTotalAssociatedCounters{}{}": {
+      "snippet": "DeclareTotalAssociatedCounters{${1:driver counter}}{${2:assoc counter list}}"
+    },
+    "AddDriverCounter{}": {
+      "snippet": "AddDriverCounter{${1:driver counter}}"
+    },
+    "RemoveDriverCounter{}": {
+      "snippet": "RemoveDriverCounter{${1:driver counter}}"
+    },
+    "ClearDriverCounters": {},
+    "IsAssociatedToCounter{}{}{}{}": {
+      "snippet": "IsAssociatedToCounter{${1:driver counter}}{${2:assoc counter}}{${3:true}}{${4:false}}"
+    },
+    "GetDriverCounter{}": {
+      "snippet": "GetDriverCounter{${1:counter}}"
+    },
+    "IsAssociatedCounter{}{}{}": {
+      "snippet": "IsAssociatedCounter{${1:counter}}{${2:true}}{${3:false}}"
+    },
+    "IsDriverCounter{}{}{}": {
+      "snippet": "IsDriverCounter{${1:driver counter}}{${2:true}}{${3:false}}"
+    },
+    "DeclareCoupledCounters{}": {
+      "snippet": "DeclareCoupledCounters{${1:counter1,counter2,...}}"
+    },
+    "DeclareCoupledCounters[]{}": {
+      "snippet": "DeclareCoupledCounters[${2:options}]{${1:counter1,counter2,...}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "DeclareCoupledCountersGroup{}": {
+      "snippet": "DeclareCoupledCountersGroup{${1:group name}}"
+    },
+    "RemoveCoupledCounters{}": {
+      "snippet": "RemoveCoupledCounters{${1:counter1,counter2,...}}"
+    },
+    "RemoveCoupledCounters[]{}": {
+      "snippet": "RemoveCoupledCounters[${2:options}]{${1:counter1,counter2,...}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "AddCoupledCounters{}": {
+      "snippet": "AddCoupledCounters{${1:counter1,counter2,...}}"
+    },
+    "AddCoupledCounters[]{}": {
+      "snippet": "AddCoupledCounters[${2:options}]{${1:counter1,counter2,...}}"
+    },
+    "ClearCoupledCounters{}": {
+      "snippet": "ClearCoupledCounters{${1:options}}"
+    },
+    "ClearAllCoupledCounters": {},
+    "IsCoupledCounterTF{}{}{}": {
+      "snippet": "IsCoupledCounterTF{${1:counter}}{${2:true}}{${3:false}}"
+    },
+    "IsCoupledCounterT{}{}": {
+      "snippet": "IsCoupledCounterT{${1:counter}}{${2:true}}"
+    },
+    "IsCoupledCounterF{}{}": {
+      "snippet": "IsCoupledCounterF{${1:counter}}{${2:false}}"
+    },
+    "DeclarePeriodicCounter{}{}": {
+      "snippet": "DeclarePeriodicCounter{${1:counter}}{${2:threshold value}}"
+    },
+    "AddPeriodicCounter{}{}": {
+      "snippet": "AddPeriodicCounter{${1:counter}}{${2:threshold value}}"
+    },
+    "RemovePeriodicCounter{}": {
+      "snippet": "RemovePeriodicCounter{${1:counter}}"
+    },
+    "RemoveAllPeriodicCounters": {},
+    "RemoveAllPeriodicCounters[]": {
+      "snippet": "RemoveAllPeriodicCounters[${1:options}]",
+      "keyvalindex": 8,
+      "keyvalpos": 0
+    },
+    "ChangePeriodicCounterCondition{}{}": {
+      "snippet": "ChangePeriodicCounterCondition{${1:counter}}{${2:threshold value}}"
+    },
+    "ChangePeriodicCounterCondition[]{}{}": {
+      "snippet": "ChangePeriodicCounterCondition[${3:options}]{${1:counter}}{${2:threshold value}}",
+      "keyvalindex": 8,
+      "keyvalpos": 0
+    },
+    "IsPeriodicCounterTF{}{}{}": {
+      "snippet": "IsPeriodicCounterTF{${1:counter}}{${2:true}}{${3:false}}"
+    },
+    "IsPeriodicCounterT{}{}": {
+      "snippet": "IsPeriodicCounterT{${1:counter}}{${2:true}}"
+    },
+    "IsPeriodicCounterF{}{}": {
+      "snippet": "IsPeriodicCounterF{${1:counter}}{${2:false}}"
+    },
+    "SuspendCounters{}": {
+      "snippet": "SuspendCounters{${1:counter1,counter2,...}}"
+    },
+    "CascadeSuspendCounters{}": {
+      "snippet": "CascadeSuspendCounters{${1:counter1,counter2,...}}"
+    },
+    "ResumeSuspendedCounters{}": {
+      "snippet": "ResumeSuspendedCounters{${1:counter1,counter2,...}}"
+    },
+    "ResumeAllSuspendedCounters": {},
+    "IsSuspendedCounter{}{}{}": {
+      "snippet": "IsSuspendedCounter{${1:counter}}{${2:true}}{${3:false}}"
+    },
+    "RegisterTotalDocumentCounter{}": {
+      "snippet": "RegisterTotalDocumentCounter{${1:total counter}}"
+    },
+    "RegisterTotalDocumentCounter[]{}": {
+      "snippet": "RegisterTotalDocumentCounter[${2:options}]{${1:total counter}}",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "TotalCounterInternalName{}": {
+      "snippet": "TotalCounterInternalName{${1:counter}}"
+    },
+    "TotalCounterInternalNameExp{}": {
+      "snippet": "TotalCounterInternalNameExp{${1:counter}}"
+    },
+    "TotalValue{}": {
+      "snippet": "TotalValue{${1:counter}}"
+    },
+    "IsTotalCounterTF{}{}{}": {
+      "snippet": "IsTotalCounterTF{${1:counter}}{${2:true}}{${3:false}}"
+    },
+    "IsTotalCounterT{}{}": {
+      "snippet": "IsTotalCounterT{${1:counter}}{${2:true}}"
+    },
+    "IsTotalCounterF{}{}": {
+      "snippet": "IsTotalCounterF{${1:counter}}{${2:false}}"
+    },
+    "NewTotalDocumentCounter{}": {
+      "snippet": "NewTotalDocumentCounter{${1:total-counter1,total-counter2,...}}"
+    },
+    "NewTotalDocumentCounter[]{}": {
+      "snippet": "NewTotalDocumentCounter[${2:options}]{${1:total-counter1,total-counter2,...}}"
+    },
+    "DeclareTotalDocumentCounter{}": {
+      "snippet": "DeclareTotalDocumentCounter{${1:total-counter1,total-counter2,...}}"
+    },
+    "DeclareTotalDocumentCounter[]{}": {
+      "snippet": "DeclareTotalDocumentCounter[${2:options}]{${1:total-counter1,total-counter2,...}}"
+    },
+    "IsSuperTotalCounterTF{}{}{}": {
+      "snippet": "IsSuperTotalCounterTF{${1:counter}}{${2:true}}{${3:false}}"
+    },
+    "IsSuperTotalCounterT{}{}": {
+      "snippet": "IsSuperTotalCounterT{${1:counter}}{${2:true}}"
+    },
+    "IsSuperTotalCounterF{}{}": {
+      "snippet": "IsSuperTotalCounterF{${1:counter}}{${2:false}}"
+    },
+    "label{}[]": {
+      "snippet": "label{${1:key}}[${2:options}]",
+      "keyvalindex": 10,
+      "keyvalpos": 1
+    },
+    "label[]{}[]": {
+      "snippet": "label[${2:cleveref overrule}]{${1:key}}[${3:options}]",
+      "keyvalindex": 10,
+      "keyvalpos": 2
+    },
+    "LaTeXLabel{}": {
+      "snippet": "LaTeXLabel{${1:key}}"
+    },
+    "LaTeXLabel[]{}": {
+      "snippet": "LaTeXLabel[${2:cleveref overrule}]{${1:key}}"
+    },
+    "RegisterPreLabelHook{}": {
+      "snippet": "RegisterPreLabelHook{${1:cmd1,cmd2,...}}"
+    },
+    "RegisterPostLabelHook{}": {
+      "snippet": "RegisterPostLabelHook{${1:cmd1,cmd2,...}}"
+    },
+    "ClearPostLabelHook": {},
+    "ClearPreLabelHook": {},
+    "AddBackupCounters[]{}": {
+      "snippet": "AddBackupCounters[${2:options}]{${1:arg}}"
+    },
+    "AddFeature[]{}": {
+      "snippet": "AddFeature[${2:options}]{${1:arg}}"
+    },
+    "AddLanguageMappings{}{}": {
+      "snippet": "AddLanguageMappings{${1:arg1}}{${2:arg2}}"
+    },
+    "AssignBackupCounters[]{}": {
+      "snippet": "AssignBackupCounters[${2:options}]{${1:arg}}"
+    },
+    "AssociatedCounterInfoColor": {},
+    "BackupCounterGroup[]{}": {
+      "snippet": "BackupCounterGroup[${2:options}]{${1:arg}}"
+    },
+    "BackupCounterValues[]{}": {
+      "snippet": "BackupCounterValues[${2:options}]{${1:arg}}"
+    },
+    "ClearBackupCounterGroups[]{}": {
+      "snippet": "ClearBackupCounterGroups[${2:options}]{${1:arg}}"
+    },
+    "ClearBackupState[]{}": {
+      "snippet": "ClearBackupState[${2:options}]{${1:arg}}"
+    },
+    "ClearCounterBackupState[]{}{}": {
+      "snippet": "ClearCounterBackupState[${3:options}]{${1:arg1}}{${2:arg2}}"
+    },
+    "ClearCounterFormats": {},
+    "DeclareBackupCountersGroupName{}": {
+      "snippet": "DeclareBackupCountersGroupName{${1:arg}}"
+    },
+    "DeclareLanguageMappings{}{}": {
+      "snippet": "DeclareLanguageMappings{${1:arg1}}{${2:arg2}}"
+    },
+    "DeclareLanguageMap{}": {
+      "snippet": "DeclareLanguageMap{${1:arg}}"
+    },
+    "DeleteBackupCounterGroups[]{}": {
+      "snippet": "DeleteBackupCounterGroups[${2:options}]{${1:arg}}"
+    },
+    "DriverCounterInfoColor": {},
+    "EnableNumberofrunsTF{}{}": {
+      "snippet": "EnableNumberofrunsTF{${1:arg1}}{${2:arg2}}"
+    },
+    "GeneralCounterInfoColor": {},
+    "GetParentCounterChain{}": {
+      "snippet": "GetParentCounterChain{${1:arg}}"
+    },
+    "IfExistsDriverCounterList{}{}{}": {
+      "snippet": "IfExistsDriverCounterList{${1:name}}{${2:true}}{${3:false}}"
+    },
+    "IsBackupCounterF{}{}": {
+      "snippet": "IsBackupCounterF{${1:name}}{${2:false}}"
+    },
+    "IsBackupCounterGroupF{}{}": {
+      "snippet": "IsBackupCounterGroupF{${1:name}}{${2:false}}"
+    },
+    "IsBackupCounterGroupTF{}{}{}": {
+      "snippet": "IsBackupCounterGroupTF{${1:name}}{${2:true}}{${3:false}}"
+    },
+    "IsBackupCounterGroupT{}{}": {
+      "snippet": "IsBackupCounterGroupT{${1:name}}{${2:true}}"
+    },
+    "IsBackupCounterTF{}{}{}": {
+      "snippet": "IsBackupCounterTF{${1:name}}{${2:true}}{${3:false}}"
+    },
+    "IsBackupCounterT{}{}": {
+      "snippet": "IsBackupCounterT{${1:name}}{${2:true}}"
+    },
+    "IsBackupStateF{}{}": {
+      "snippet": "IsBackupStateF{${1:name}}{${2:false}}"
+    },
+    "IsBackupStateTF{}{}{}": {
+      "snippet": "IsBackupStateTF{${1:name}}{${2:true}}{${3:false}}"
+    },
+    "IsBackupStateT{}{}": {
+      "snippet": "IsBackupStateT{${1:name}}{${2:true}}"
+    },
+    "NewContainer{}": {
+      "snippet": "NewContainer{${1:name}}"
+    },
+    "NewCounterHierarchy[]{}": {
+      "snippet": "NewCounterHierarchy[${2:options}]{${1:name}}"
+    },
+    "PrettyPrintCounterName{}{}": {
+      "snippet": "PrettyPrintCounterName{${1:arg1}}{${2:arg2}}"
+    },
+    "ProvideOriginalLabelCommands": {},
+    "RedefineLabelCommand": {},
+    "RemoveCountersFromBackupGroup[]{}": {
+      "snippet": "RemoveCountersFromBackupGroup[${2:options}]{${1:arg}}"
+    },
+    "RemoveFeature[]{}": {
+      "snippet": "RemoveFeature[${2:options}]{${1:arg}}"
+    },
+    "RestoreBackupCounterGroup[]{}": {
+      "snippet": "RestoreBackupCounterGroup[${2:options}]{${1:arg}}"
+    },
+    "RunLabelHooks{}": {
+      "snippet": "RunLabelHooks{${1:arg}}"
+    },
+    "RunPostLabelHooks{}": {
+      "snippet": "RunPostLabelHooks{${1:arg}}"
+    },
+    "RunPreLabelHooks{}": {
+      "snippet": "RunPreLabelHooks{${1:arg}}"
+    },
+    "ShowAllAssociatedCounters": {},
+    "ShowAssociatedCountersList{}": {
+      "snippet": "ShowAssociatedCountersList{${1:arg}}"
+    },
+    "ShowCounterFormats": {},
+    "ShowDriverCounterList": {},
+    "ShowLanguageMappings{}": {
+      "snippet": "ShowLanguageMappings{${1:arg}}"
+    },
+    "ShowSuspendedCounters": {},
+    "TotalCounterInfoColor": {},
+    "WriteCountersAtEnd": {},
+    "showresetlist{}": {
+      "snippet": "showresetlist{${1:arg}}"
+    },
+    "AlphAlphinternal{}": {
+      "snippet": "AlphAlphinternal{${1:arg}}"
+    },
+    "alphalphinternal{}": {
+      "snippet": "alphalphinternal{${1:arg}}"
+    },
+    "CheckIfNotPackageLoadedF": {},
+    "CheckIfNotPackageLoadedTF": {},
+    "CheckIfNotPackageLoadedT": {},
+    "CheckIfPackageLoadedF": {},
+    "CheckIfPackageLoadedTF": {},
+    "CheckIfPackageLoadedT": {},
+    "FormerAddBackupCounter[]{}": {
+      "snippet": "FormerAddBackupCounter[${2:options}]{${1:arg}}"
+    },
+    "FormerBackupCounterValues[]{}": {
+      "snippet": "FormerBackupCounterValues[${2:options}]{${1:arg}}"
+    },
+    "FormerRemoveBackupCounterInternal*{}": {
+      "snippet": "FormerRemoveBackupCounterInternal*{${1:arg}}"
+    },
+    "FormerRemoveBackupCounterInternal{}": {
+      "snippet": "FormerRemoveBackupCounterInternal{${1:arg}}"
+    },
+    "FormerRemoveBackupCounters*{}": {
+      "snippet": "FormerRemoveBackupCounters*{${1:arg}}"
+    },
+    "FormerRemoveBackupCounters{}": {
+      "snippet": "FormerRemoveBackupCounters{${1:arg}}"
+    },
+    "FormerRestoreAllCounterValues[]": {
+      "snippet": "FormerRestoreAllCounterValues[${1:options}]"
+    },
+    "FormerRestoreCounterValues[]{}": {
+      "snippet": "FormerRestoreCounterValues[${2:options}]{${1:arg}}"
+    },
+    "ifexplversionnew": {},
+    "explversionnewtrue": {},
+    "explversionnewfalse": {},
+    "xassoccntpackageversion": {}
+  },
+  "envs": {},
+  "options": [
+    "autodefinecounters",
+    "nonumberofruns",
+    "redefinelabel",
+    "standardcounterformats="
+  ],
+  "keyvals": [
+    [
+      "wrap"
+    ],
+    [
+      "initial=${1:integer}"
+    ],
+    [
+      "associatedtoo",
+      "onlycounters=${1:counter list}"
+    ],
+    [
+      "recursive",
+      "separator=${1:character}"
+    ],
+    [
+      "separator=${1:character}"
+    ],
+    [
+      "autodefine=",
+      "sloppy"
+    ],
+    [
+      "name=${1:group name}",
+      "multiple"
+    ],
+    [
+      "name=${1:group name}"
+    ],
+    [
+      "reset"
+    ],
+    [
+      "supertotal"
+    ],
+    [
+      "all",
+      "select=${1:counter list}",
+      "prefix=${1:string}",
+      "prefix-sep=${1:string}"
+    ]
+  ]
+}

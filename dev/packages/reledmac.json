@@ -1,0 +1,2907 @@
+{
+  "includes": {
+    "xargs": [],
+    "etoolbox": [],
+    "suffix": [],
+    "xstring": [],
+    "ifluatex": [],
+    "ragged2e": [],
+    "ifxetex": [],
+    "xkeyval": []
+  },
+  "macros": {
+    "beginnumbering": {},
+    "endnumbering": {},
+    "pstart": {},
+    "pstart[]": {
+      "snippet": "pstart[${1:before code}]"
+    },
+    "pstart[][]": {
+      "snippet": "pstart[${1:before code}][${2:indented code}]"
+    },
+    "pend": {},
+    "pend[]": {
+      "snippet": "pend[${1:after code}]"
+    },
+    "pend[][]": {
+      "snippet": "pend[${1:after code}][${2:indented code}]"
+    },
+    "autopar": {},
+    "AtEveryPstart{}": {
+      "snippet": "AtEveryPstart{${1:code}}"
+    },
+    "AtEveryPstart*{}": {
+      "snippet": "AtEveryPstart*{${1:code}}"
+    },
+    "AtEveryPend{}": {
+      "snippet": "AtEveryPend{${1:code}}"
+    },
+    "AtEveryPend*{}": {
+      "snippet": "AtEveryPend*{${1:code}}"
+    },
+    "AtStartEveryPstart{}": {
+      "snippet": "AtStartEveryPstart{${1:code}}"
+    },
+    "AtEndEveryPend{}": {
+      "snippet": "AtEndEveryPend{${1:code}}"
+    },
+    "numberpstarttrue": {},
+    "numberpstartfalse": {},
+    "thepstart": {},
+    "sidepstartnumtrue": {},
+    "sidepstartnumfalse": {},
+    "labelpstarttrue": {},
+    "labelpstartfalse": {},
+    "pausenumbering": {},
+    "resumenumbering": {},
+    "numberlinetrue": {},
+    "numberlinefalse": {},
+    "firstlinenum{}": {
+      "snippet": "firstlinenum{${1:number}}"
+    },
+    "linenumincrement{}": {
+      "snippet": "linenumincrement{${1:number}}"
+    },
+    "firstsublinenum{}": {
+      "snippet": "firstsublinenum{${1:number}}"
+    },
+    "sublinenumincrement{}": {
+      "snippet": "sublinenumincrement{${1:number}}"
+    },
+    "linenumberlist": {},
+    "lineation{}": {
+      "snippet": "lineation{${1:type}}"
+    },
+    "linenummargin{}": {
+      "snippet": "linenummargin{${1:location}}"
+    },
+    "leftlinenum": {},
+    "rightlinenum": {},
+    "linenumsep": {},
+    "startsub": {},
+    "endsub": {},
+    "Xsublinesep{}": {
+      "snippet": "Xsublinesep{${1:separator}}"
+    },
+    "Xsublinesep[]{}": {
+      "snippet": "Xsublinesep[${2:series}]{${1:separator}}"
+    },
+    "Xsublinesepside{}": {
+      "snippet": "Xsublinesepside{${1:separator}}"
+    },
+    "startlock": {},
+    "endlock": {},
+    "lockdisp{}": {
+      "snippet": "lockdisp{${1:type}}"
+    },
+    "setline{}": {
+      "snippet": "setline{${1:number}}"
+    },
+    "advanceline{}": {
+      "snippet": "advanceline{${1:number}}"
+    },
+    "setlinenum{}": {
+      "snippet": "setlinenum{${1:number}}"
+    },
+    "linenumberstyle{}": {
+      "snippet": "linenumberstyle{${1:style}}"
+    },
+    "sublinenumberstyle{}": {
+      "snippet": "sublinenumberstyle{${1:style}}"
+    },
+    "skipnumbering": {},
+    "hidenumbering": {},
+    "hidenumberingonleftpage": {},
+    "hidenumberingonrightpage": {},
+    "linenumannotation{}": {
+      "snippet": "linenumannotation{${1:annotation}}"
+    },
+    "lineannot{}": {
+      "snippet": "lineannot{${1:annot1|annot2}}"
+    },
+    "Xlinenumannotationposition{}": {
+      "snippet": "Xlinenumannotationposition{${1:pos}}"
+    },
+    "Xlinenumannotationposition[]{}": {
+      "snippet": "Xlinenumannotationposition[${2:series}]{${1:pos}}"
+    },
+    "Xlinenumannotationpositionside{}": {
+      "snippet": "Xlinenumannotationpositionside{${1:pos}}"
+    },
+    "Xendlinenumannotationposition{}": {
+      "snippet": "Xendlinenumannotationposition{${1:pos}}"
+    },
+    "Xendlinenumannotationposition[]{}": {
+      "snippet": "Xendlinenumannotationposition[${2:series}]{${1:pos}}"
+    },
+    "linenumannotationothersidetrue": {},
+    "linenumannotationothersidefalse": {},
+    "Xwraplinenumannotation{}": {
+      "snippet": "Xwraplinenumannotation{${1:command}}"
+    },
+    "Xwraplinenumannotation[]{}": {
+      "snippet": "Xwraplinenumannotation[${2:series}]{${1:command}}"
+    },
+    "Xwraplinenumannotationside": {},
+    "Xwraplinenumannotationref": {},
+    "Xendwraplinenumannotation{}": {
+      "snippet": "Xendwraplinenumannotation{${1:command}}"
+    },
+    "Xendwraplinenumannotation[]{}": {
+      "snippet": "Xendwraplinenumannotation[${2:series}]{${1:command}}"
+    },
+    "Xnoidenticallinenumannotation": {},
+    "Xnoidenticallinenumannotation[]": {
+      "snippet": "Xnoidenticallinenumannotation[${1:series}]"
+    },
+    "Xendnoidenticallinenumannotation": {},
+    "Xendnoidenticallinenumannotation[]": {
+      "snippet": "Xendnoidenticallinenumannotation[${1:series}]"
+    },
+    "setlinenumannotationsep{}": {
+      "snippet": "setlinenumannotationsep{${1:sep}}"
+    },
+    "dolinehook{}": {
+      "snippet": "dolinehook{${1:code}}"
+    },
+    "doinsidelinehook{}": {
+      "snippet": "doinsidelinehook{${1:code}}"
+    },
+    "doinsidethislinehook{}": {
+      "snippet": "doinsidethislinehook{${1:code}}"
+    },
+    "edtext{}{}": {
+      "snippet": "edtext{${1:lemma}}{${2:commands}}"
+    },
+    "Afootnote{}": {
+      "snippet": "Afootnote{${1:text}}"
+    },
+    "Afootnote[]{}": {
+      "snippet": "Afootnote[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Bfootnote{}": {
+      "snippet": "Bfootnote{${1:text}}"
+    },
+    "Bfootnote[]{}": {
+      "snippet": "Bfootnote[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Cfootnote{}": {
+      "snippet": "Cfootnote{${1:text}}"
+    },
+    "Cfootnote[]{}": {
+      "snippet": "Cfootnote[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Dfootnote{}": {
+      "snippet": "Dfootnote{${1:text}}"
+    },
+    "Dfootnote[]{}": {
+      "snippet": "Dfootnote[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Efootnote{}": {
+      "snippet": "Efootnote{${1:text}}"
+    },
+    "Efootnote[]{}": {
+      "snippet": "Efootnote[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Aendnote{}": {
+      "snippet": "Aendnote{${1:text}}"
+    },
+    "Aendnote[]{}": {
+      "snippet": "Aendnote[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Bendnote{}": {
+      "snippet": "Bendnote{${1:text}}"
+    },
+    "Bendnote[]{}": {
+      "snippet": "Bendnote[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Cendnote{}": {
+      "snippet": "Cendnote{${1:text}}"
+    },
+    "Cendnote[]{}": {
+      "snippet": "Cendnote[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Dendnote{}": {
+      "snippet": "Dendnote{${1:text}}"
+    },
+    "Dendnote[]{}": {
+      "snippet": "Dendnote[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Eendnote{}": {
+      "snippet": "Eendnote{${1:text}}"
+    },
+    "Eendnote[]{}": {
+      "snippet": "Eendnote[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "doendnotes{}": {
+      "snippet": "doendnotes{${1:series}}"
+    },
+    "doendnotesbysection{}": {
+      "snippet": "doendnotesbysection{${1:series}}"
+    },
+    "toendnotes{}": {
+      "snippet": "toendnotes{${1:content}}"
+    },
+    "toendnotes[]{}": {
+      "snippet": "toendnotes[${2:series}]{${1:content}}"
+    },
+    "Atoendnotes{}": {
+      "snippet": "Atoendnotes{${1:content}}"
+    },
+    "Atoendnotes*{}": {
+      "snippet": "Atoendnotes*{${1:content}}"
+    },
+    "Btoendnotes{}": {
+      "snippet": "Btoendnotes{${1:content}}"
+    },
+    "Btoendnotes*{}": {
+      "snippet": "Btoendnotes*{${1:content}}"
+    },
+    "Ctoendnotes{}": {
+      "snippet": "Ctoendnotes{${1:content}}"
+    },
+    "Ctoendnotes*{}": {
+      "snippet": "Ctoendnotes*{${1:content}}"
+    },
+    "Dtoendnotes{}": {
+      "snippet": "Dtoendnotes{${1:content}}"
+    },
+    "Dtoendnotes*{}": {
+      "snippet": "Dtoendnotes*{${1:content}}"
+    },
+    "Etoendnotes{}": {
+      "snippet": "Etoendnotes{${1:content}}"
+    },
+    "Etoendnotes*{}": {
+      "snippet": "Etoendnotes*{${1:content}}"
+    },
+    "lemma{}": {
+      "snippet": "lemma{${1:alternative}}"
+    },
+    "linenum{}": {
+      "snippet": "linenum{${1:page1|line1|subline1|page2|line2|subline2|font}}"
+    },
+    "sameword{}": {
+      "snippet": "sameword{${1:word}}"
+    },
+    "sameword[]{}": {
+      "snippet": "sameword[${2:depth}]{${1:word}}"
+    },
+    "showwordrank{}{}": {
+      "snippet": "showwordrank{${1:word}}{${2:number}}"
+    },
+    "swnoexpands": {},
+    "msdata{}": {
+      "snippet": "msdata{${1:text}}"
+    },
+    "stopmsdata": {},
+    "setmsdataseries{}": {
+      "snippet": "setmsdataseries{${1:series}}"
+    },
+    "setmsdatalabel{}": {
+      "snippet": "setmsdatalabel{${1:text}}"
+    },
+    "setmsdataposition{}": {
+      "snippet": "setmsdataposition{${1:position}}"
+    },
+    "footnoteA{}": {
+      "snippet": "footnoteA{${1:text}}"
+    },
+    "footnoteA[]{}": {
+      "snippet": "footnoteA[${2:number}]{${1:text}}"
+    },
+    "footnoteB{}": {
+      "snippet": "footnoteB{${1:text}}"
+    },
+    "footnoteB[]{}": {
+      "snippet": "footnoteB[${2:number}]{${1:text}}"
+    },
+    "footnoteC{}": {
+      "snippet": "footnoteC{${1:text}}"
+    },
+    "footnoteC[]{}": {
+      "snippet": "footnoteC[${2:number}]{${1:text}}"
+    },
+    "footnoteD{}": {
+      "snippet": "footnoteD{${1:text}}"
+    },
+    "footnoteD[]{}": {
+      "snippet": "footnoteD[${2:number}]{${1:text}}"
+    },
+    "footnoteE{}": {
+      "snippet": "footnoteE{${1:text}}"
+    },
+    "footnoteE[]{}": {
+      "snippet": "footnoteE[${2:number}]{${1:text}}"
+    },
+    "thefootnoteA": {},
+    "thefootnoteB": {},
+    "thefootnoteC": {},
+    "thefootnoteD": {},
+    "thefootnoteE": {},
+    "bodyfootmarkA": {},
+    "bodyfootmarkB": {},
+    "bodyfootmarkC": {},
+    "bodyfootmarkD": {},
+    "bodyfootmarkE": {},
+    "footfootmarkA": {},
+    "footfootmarkB": {},
+    "footfootmarkC": {},
+    "footfootmarkD": {},
+    "footfootmarkE": {},
+    "multfootsep": {},
+    "footnoteAmark": {},
+    "footnoteAmark[]": {
+      "snippet": "footnoteAmark[${1:number}]"
+    },
+    "footnoteBmark": {},
+    "footnoteBmark[]": {
+      "snippet": "footnoteBmark[${1:number}]"
+    },
+    "footnoteCmark": {},
+    "footnoteCmark[]": {
+      "snippet": "footnoteCmark[${1:number}]"
+    },
+    "footnoteDmark": {},
+    "footnoteDmark[]": {
+      "snippet": "footnoteDmark[${1:number}]"
+    },
+    "footnoteEmark": {},
+    "footnoteEmark[]": {
+      "snippet": "footnoteEmark[${1:number}]"
+    },
+    "footnoteAtext{}": {
+      "snippet": "footnoteAtext{${1:text}}"
+    },
+    "footnoteAtext[]{}": {
+      "snippet": "footnoteAtext[${2:number}]{${1:text}}"
+    },
+    "footnoteBtext{}": {
+      "snippet": "footnoteBtext{${1:text}}"
+    },
+    "footnoteBtext[]{}": {
+      "snippet": "footnoteBtext[${2:number}]{${1:text}}"
+    },
+    "footnoteCtext{}": {
+      "snippet": "footnoteCtext{${1:text}}"
+    },
+    "footnoteCtext[]{}": {
+      "snippet": "footnoteCtext[${2:number}]{${1:text}}"
+    },
+    "footnoteDtext{}": {
+      "snippet": "footnoteDtext{${1:text}}"
+    },
+    "footnoteDtext[]{}": {
+      "snippet": "footnoteDtext[${2:number}]{${1:text}}"
+    },
+    "footnoteEtext{}": {
+      "snippet": "footnoteEtext{${1:text}}"
+    },
+    "footnoteEtext[]{}": {
+      "snippet": "footnoteEtext[${2:number}]{${1:text}}"
+    },
+    "seriesatbegin{}": {
+      "snippet": "seriesatbegin{${1:series}}"
+    },
+    "seriesatend{}": {
+      "snippet": "seriesatend{${1:series}}"
+    },
+    "fnpos{}": {
+      "snippet": "fnpos{${1:position}}"
+    },
+    "mpfnpos{}": {
+      "snippet": "mpfnpos{${1:position}}"
+    },
+    "Xarrangement{}": {
+      "snippet": "Xarrangement{${1:type}}"
+    },
+    "Xarrangement[]{}": {
+      "snippet": "Xarrangement[${2:series}]{${1:type}}"
+    },
+    "arrangementX{}": {
+      "snippet": "arrangementX{${1:type}}"
+    },
+    "arrangementX[]{}": {
+      "snippet": "arrangementX[${2:series}]{${1:type}}"
+    },
+    "Xnonote": {},
+    "Xnonote[]": {
+      "snippet": "Xnonote[${1:series}]"
+    },
+    "nonoteX": {},
+    "nonoteX[]": {
+      "snippet": "nonoteX[${1:series}]"
+    },
+    "Xnumberonlyfirstinline": {},
+    "Xnumberonlyfirstinline[]": {
+      "snippet": "Xnumberonlyfirstinline[${1:series}]"
+    },
+    "Xnumberonlyfirstintwolines": {},
+    "Xnumberonlyfirstintwolines[]": {
+      "snippet": "Xnumberonlyfirstintwolines[${1:series}]"
+    },
+    "Xsymlinenum{}": {
+      "snippet": "Xsymlinenum{${1:symbol}}"
+    },
+    "Xsymlinenum[]{}": {
+      "snippet": "Xsymlinenum[${2:series}]{${1:symbol}}"
+    },
+    "Xendnumberonlyfirstinline": {},
+    "Xendnumberonlyfirstinline[]": {
+      "snippet": "Xendnumberonlyfirstinline[${1:series}]"
+    },
+    "Xendnumberonlyfirstintwolines": {},
+    "Xendnumberonlyfirstintwolines[]": {
+      "snippet": "Xendnumberonlyfirstintwolines[${1:series}]"
+    },
+    "Xendsymlinenum{}": {
+      "snippet": "Xendsymlinenum{${1:symbol}}"
+    },
+    "Xendsymlinenum[]{}": {
+      "snippet": "Xendsymlinenum[${2:series}]{${1:symbol}}"
+    },
+    "Xendpagenumberonlyfirst": {},
+    "Xendpagenumberonlyfirst[]": {
+      "snippet": "Xendpagenumberonlyfirst[${1:series}]"
+    },
+    "Xendpagenumberonlyfirstifsingle": {},
+    "Xendpagenumberonlyfirstifsingle[]": {
+      "snippet": "Xendpagenumberonlyfirstifsingle[${1:series}]"
+    },
+    "Xendpagenumberonlyfirstintwo": {},
+    "Xendpagenumberonlyfirstintwo[]": {
+      "snippet": "Xendpagenumberonlyfirstintwo[${1:series}]"
+    },
+    "Xendsympagenum{}": {
+      "snippet": "Xendsympagenum{${1:symbol}}"
+    },
+    "Xendsympagenum[]{}": {
+      "snippet": "Xendsympagenum[${2:series}]{${1:symbol}}"
+    },
+    "Xendinplaceofpagenumber{}": {
+      "snippet": "Xendinplaceofpagenumber{${1:length}}"
+    },
+    "Xendinplaceofpagenumber[]{}": {
+      "snippet": "Xendinplaceofpagenumber[${2:series}]{${1:length}}"
+    },
+    "Xtxtbeforenumber{}": {
+      "snippet": "Xtxtbeforenumber{${1:text}}"
+    },
+    "Xtxtbeforenumber[]{}": {
+      "snippet": "Xtxtbeforenumber[${2:series}]{${1:text}}"
+    },
+    "Xbeforepagenumber{}": {
+      "snippet": "Xbeforepagenumber{${1:text}}"
+    },
+    "Xbeforepagenumber[]{}": {
+      "snippet": "Xbeforepagenumber[${2:series}]{${1:text}}"
+    },
+    "Xendbeforepagenumber{}": {
+      "snippet": "Xendbeforepagenumber{${1:text}}"
+    },
+    "Xendbeforepagenumber[]{}": {
+      "snippet": "Xendbeforepagenumber[${2:series}]{${1:text}}"
+    },
+    "Xendafterpagenumber{}": {
+      "snippet": "Xendafterpagenumber{${1:text}}"
+    },
+    "Xendafterpagenumber[]{}": {
+      "snippet": "Xendafterpagenumber[${2:series}]{${1:text}}"
+    },
+    "Xendlineprefixsingle{}": {
+      "snippet": "Xendlineprefixsingle{${1:text}}"
+    },
+    "Xendlineprefixsingle[]{}": {
+      "snippet": "Xendlineprefixsingle[${2:series}]{${1:text}}"
+    },
+    "Xendlineprefixmore{}": {
+      "snippet": "Xendlineprefixmore{${1:text}}"
+    },
+    "Xlinerangeseparator{}": {
+      "snippet": "Xlinerangeseparator{${1:separator}}"
+    },
+    "Xlinerangeseparator[]{}": {
+      "snippet": "Xlinerangeseparator[${2:series}]{${1:separator}}"
+    },
+    "Xendlinerangeseparator{}": {
+      "snippet": "Xendlinerangeseparator{${1:separator}}"
+    },
+    "Xendlinerangeseparator[]{}": {
+      "snippet": "Xendlinerangeseparator[${2:series}]{${1:separator}}"
+    },
+    "Xtwolines{}": {
+      "snippet": "Xtwolines{${1:text}}"
+    },
+    "Xtwolines[]{}": {
+      "snippet": "Xtwolines[${2:series}]{${1:text}}"
+    },
+    "Xmorethantwolines{}": {
+      "snippet": "Xmorethantwolines{${1:text}}"
+    },
+    "Xmorethantwolines[]{}": {
+      "snippet": "Xmorethantwolines[${2:series}]{${1:text}}"
+    },
+    "Xtwolinesbutnotmore": {},
+    "Xtwolinesbutnotmore[]": {
+      "snippet": "Xtwolinesbutnotmore[${1:series}]"
+    },
+    "Xtwolinesonlyinsamepage": {},
+    "Xtwolinesonlyinsamepage[]": {
+      "snippet": "Xtwolinesonlyinsamepage[${1:series}]"
+    },
+    "Xendtwolines{}": {
+      "snippet": "Xendtwolines{${1:text}}"
+    },
+    "Xendtwolines[]{}": {
+      "snippet": "Xendtwolines[${2:series}]{${1:text}}"
+    },
+    "Xendmorethantwolines{}": {
+      "snippet": "Xendmorethantwolines{${1:text}}"
+    },
+    "Xendmorethantwolines[]{}": {
+      "snippet": "Xendmorethantwolines[${2:series}]{${1:text}}"
+    },
+    "Xendtwolinesbutnotmore": {},
+    "Xendtwolinesbutnotmore[]": {
+      "snippet": "Xendtwolinesbutnotmore[${1:series}]"
+    },
+    "Xendtwolinesonlyinsamepage": {},
+    "Xendtwolinesonlyinsamepage[]": {
+      "snippet": "Xendtwolinesonlyinsamepage[${1:series}]"
+    },
+    "Xnonumber": {},
+    "Xnonumber[]": {
+      "snippet": "Xnonumber[${1:series}]"
+    },
+    "Xendnonumber": {},
+    "Xendnonumber[]": {
+      "snippet": "Xendnonumber[${1:series}]"
+    },
+    "Xnopagenumberifcurrent": {},
+    "Xnopagenumberifcurrent[]": {
+      "snippet": "Xnopagenumberifcurrent[${1:series}]"
+    },
+    "Xpstart": {},
+    "Xpstart[]": {
+      "snippet": "Xpstart[${1:series}]"
+    },
+    "Xpstarteverytime": {},
+    "Xpstarteverytime[]": {
+      "snippet": "Xpstarteverytime[${1:series}]"
+    },
+    "Xonlypstart": {},
+    "Xonlypstart[]": {
+      "snippet": "Xonlypstart[${1:series}]"
+    },
+    "Xpstartonlyfirst": {},
+    "Xpstartonlyfirst[]": {
+      "snippet": "Xpstartonlyfirst[${1:series}]"
+    },
+    "Xpstartseparator{}": {
+      "snippet": "Xpstartseparator{${1:separator}}"
+    },
+    "Xpstartseparator[]{}": {
+      "snippet": "Xpstartseparator[${2:series}]{${1:separator}}"
+    },
+    "Xstanza": {},
+    "Xstanza[]": {
+      "snippet": "Xstanza[${1:series}]"
+    },
+    "Xstanzaseparator{}": {
+      "snippet": "Xstanzaseparator{${1:separator}}"
+    },
+    "Xstanzaseparator[]{}": {
+      "snippet": "Xstanzaseparator[${2:series}]{${1:separator}}"
+    },
+    "Xstanzaonlyfirst": {},
+    "Xstanzaonlyfirst[]": {
+      "snippet": "Xstanzaonlyfirst[${1:series}]"
+    },
+    "Xlinenumannotationonlyfirst": {},
+    "Xlinenumannotationonlyfirst[]": {
+      "snippet": "Xlinenumannotationonlyfirst[${1:series}]"
+    },
+    "Xlinenumannotationonlyfirstintwo": {},
+    "Xlinenumannotationonlyfirstintwo[]": {
+      "snippet": "Xlinenumannotationonlyfirstintwo[${1:series}]"
+    },
+    "Xsymlinenumannotation{}": {
+      "snippet": "Xsymlinenumannotation{${1:symbol}}"
+    },
+    "Xsymlinenumannotation[]{}": {
+      "snippet": "Xsymlinenumannotation[${2:series}]{${1:symbol}}"
+    },
+    "Xendlinenumannotationonlyfirst": {},
+    "Xendlinenumannotationonlyfirst[]": {
+      "snippet": "Xendlinenumannotationonlyfirst[${1:series}]"
+    },
+    "Xendlinenumannotationonlyfirstintwo": {},
+    "Xendlinenumannotationonlyfirstintwo[]": {
+      "snippet": "Xendlinenumannotationonlyfirstintwo[${1:series}]"
+    },
+    "Xendsymlinenumannotation{}": {
+      "snippet": "Xendsymlinenumannotation{${1:symbol}}"
+    },
+    "Xendsymlinenumannotation[]{}": {
+      "snippet": "Xendsymlinenumannotation[${2:series}]{${1:symbol}}"
+    },
+    "Xnolinenumber": {},
+    "Xendnolinenumber": {},
+    "Xnolinenumberifannotation": {},
+    "Xendnolinenumberifannotation": {},
+    "Xendsublinesep{}": {
+      "snippet": "Xendsublinesep{${1:separator}}"
+    },
+    "Xendsublinesep[]{}": {
+      "snippet": "Xendsublinesep[${2:series}]{${1:separator}}"
+    },
+    "Xpagelinesep{}": {
+      "snippet": "Xpagelinesep{${1:separator}}"
+    },
+    "Xpagelinesep[]{}": {
+      "snippet": "Xpagelinesep[${2:series}]{${1:separator}}"
+    },
+    "Xbeforenumber{}": {
+      "snippet": "Xbeforenumber{${1:length}}"
+    },
+    "Xbeforenumber[]{}": {
+      "snippet": "Xbeforenumber[${2:series}]{${1:length}}"
+    },
+    "Xafternumber{}": {
+      "snippet": "Xafternumber{${1:length}}"
+    },
+    "Xafternumber[]{}": {
+      "snippet": "Xafternumber[${2:series}]{${1:length}}"
+    },
+    "Xendbeforenumber{}": {
+      "snippet": "Xendbeforenumber{${1:length}}"
+    },
+    "Xendbeforenumber[]{}": {
+      "snippet": "Xendbeforenumber[${2:series}]{${1:length}}"
+    },
+    "Xendafternumber{}": {
+      "snippet": "Xendafternumber{${1:length}}"
+    },
+    "Xendafternumber[]{}": {
+      "snippet": "Xendafternumber[${2:series}]{${1:length}}"
+    },
+    "Xnonbreakableafternumber": {},
+    "Xnonbreakableafternumber[]": {
+      "snippet": "Xnonbreakableafternumber[${1:series}]"
+    },
+    "Xbeforesymlinenum{}": {
+      "snippet": "Xbeforesymlinenum{${1:length}}"
+    },
+    "Xbeforesymlinenum[]{}": {
+      "snippet": "Xbeforesymlinenum[${2:series}]{${1:length}}"
+    },
+    "Xaftersymlinenum{}": {
+      "snippet": "Xaftersymlinenum{${1:length}}"
+    },
+    "Xaftersymlinenum[]{}": {
+      "snippet": "Xaftersymlinenum[${2:series}]{${1:length}}"
+    },
+    "Xendbeforesymlinenum{}": {
+      "snippet": "Xendbeforesymlinenum{${1:length}}"
+    },
+    "Xendbeforesymlinenum[]{}": {
+      "snippet": "Xendbeforesymlinenum[${2:series}]{${1:length}}"
+    },
+    "Xendaftersymlinenum{}": {
+      "snippet": "Xendaftersymlinenum{${1:length}}"
+    },
+    "Xendaftersymlinenum[]{}": {
+      "snippet": "Xendaftersymlinenum[${2:series}]{${1:length}}"
+    },
+    "Xinplaceofnumber{}": {
+      "snippet": "Xinplaceofnumber{${1:length}}"
+    },
+    "Xinplaceofnumber[]{}": {
+      "snippet": "Xinplaceofnumber[${2:series}]{${1:length}}"
+    },
+    "Xendinplaceofnumber{}": {
+      "snippet": "Xendinplaceofnumber{${1:length}}"
+    },
+    "Xendinplaceofnumber[]{}": {
+      "snippet": "Xendinplaceofnumber[${2:series}]{${1:length}}"
+    },
+    "Xboxlinenum{}": {
+      "snippet": "Xboxlinenum{${1:length}}"
+    },
+    "Xboxlinenum[]{}": {
+      "snippet": "Xboxlinenum[${2:series}]{${1:length}}"
+    },
+    "Xboxsymlinenum{}": {
+      "snippet": "Xboxsymlinenum{${1:length}}"
+    },
+    "Xboxsymlinenum[]{}": {
+      "snippet": "Xboxsymlinenum[${2:series}]{${1:length}}"
+    },
+    "Xendboxsymlinenum{}": {
+      "snippet": "Xendboxsymlinenum{${1:length}}"
+    },
+    "Xendboxsymlinenum[]{}": {
+      "snippet": "Xendboxsymlinenum[${2:series}]{${1:length}}"
+    },
+    "Xboxlinenumalign{}": {
+      "snippet": "Xboxlinenumalign{${1:alignment}}"
+    },
+    "Xboxlinenumalign[]{}": {
+      "snippet": "Xboxlinenumalign[${2:series}]{${1:alignment}}"
+    },
+    "Xendboxlinenumalign{}": {
+      "snippet": "Xendboxlinenumalign{${1:alignment}}"
+    },
+    "Xendboxlinenumalign[]{}": {
+      "snippet": "Xendboxlinenumalign[${2:series}]{${1:alignment}}"
+    },
+    "Xboxstartlinenum{}": {
+      "snippet": "Xboxstartlinenum{${1:length}}"
+    },
+    "Xboxstartlinenum[]{}": {
+      "snippet": "Xboxstartlinenum[${2:series}]{${1:length}}"
+    },
+    "Xboxendlinenum{}": {
+      "snippet": "Xboxendlinenum{${1:length}}"
+    },
+    "Xboxendlinenum[]{}": {
+      "snippet": "Xboxendlinenum[${2:series}]{${1:length}}"
+    },
+    "Xnotboxingsubline": {},
+    "Xnotboxingsubline[]": {
+      "snippet": "Xnotboxingsubline[${1:series}]"
+    },
+    "Xendboxlinenum{}": {
+      "snippet": "Xendboxlinenum{${1:length}}"
+    },
+    "Xendboxlinenum[]{}": {
+      "snippet": "Xendboxlinenum[${2:series}]{${1:length}}"
+    },
+    "Xendboxstartlinenum{}": {
+      "snippet": "Xendboxstartlinenum{${1:length}}"
+    },
+    "Xendboxstartlinenum[]{}": {
+      "snippet": "Xendboxstartlinenum[${2:series}]{${1:length}}"
+    },
+    "Xendboxendlinenum{}": {
+      "snippet": "Xendboxendlinenum{${1:length}}"
+    },
+    "Xendboxendlinenum[]{}": {
+      "snippet": "Xendboxendlinenum[${2:series}]{${1:length}}"
+    },
+    "Xendnotboxingsubline": {},
+    "Xendnotboxingsubline[]": {
+      "snippet": "Xendnotboxingsubline[${1:series}]"
+    },
+    "Xlemmaseparator{}": {
+      "snippet": "Xlemmaseparator{${1:separator}}"
+    },
+    "Xlemmaseparator[]{}": {
+      "snippet": "Xlemmaseparator[${2:series}]{${1:separator}}"
+    },
+    "Xbeforelemmaseparator{}": {
+      "snippet": "Xbeforelemmaseparator{${1:length}}"
+    },
+    "Xbeforelemmaseparator[]{}": {
+      "snippet": "Xbeforelemmaseparator[${2:series}]{${1:length}}"
+    },
+    "Xafterlemmaseparator{}": {
+      "snippet": "Xafterlemmaseparator{${1:length}}"
+    },
+    "Xafterlemmaseparator[]{}": {
+      "snippet": "Xafterlemmaseparator[${2:series}]{${1:length}}"
+    },
+    "Xnolemmaseparator": {},
+    "Xnolemmaseparator[]": {
+      "snippet": "Xnolemmaseparator[${1:series}]"
+    },
+    "Xinplaceoflemmaseparator{}": {
+      "snippet": "Xinplaceoflemmaseparator{${1:length}}"
+    },
+    "Xinplaceoflemmaseparator[]{}": {
+      "snippet": "Xinplaceoflemmaseparator[${2:series}]{${1:length}}"
+    },
+    "Xendlemmaseparator{}": {
+      "snippet": "Xendlemmaseparator{${1:separator}}"
+    },
+    "Xendlemmaseparator[]{}": {
+      "snippet": "Xendlemmaseparator[${2:series}]{${1:separator}}"
+    },
+    "Xendbeforelemmaseparator{}": {
+      "snippet": "Xendbeforelemmaseparator{${1:length}}"
+    },
+    "Xendbeforelemmaseparator[]{}": {
+      "snippet": "Xendbeforelemmaseparator[${2:series}]{${1:length}}"
+    },
+    "Xendafterlemmaseparator{}": {
+      "snippet": "Xendafterlemmaseparator{${1:length}}"
+    },
+    "Xendafterlemmaseparator[]{}": {
+      "snippet": "Xendafterlemmaseparator[${2:series}]{${1:length}}"
+    },
+    "Xendinplaceoflemmaseparator{}": {
+      "snippet": "Xendinplaceoflemmaseparator{${1:length}}"
+    },
+    "Xendinplaceoflemmaseparator[]{}": {
+      "snippet": "Xendinplaceoflemmaseparator[${2:series}]{${1:length}}"
+    },
+    "Xnotenumfont{}": {
+      "snippet": "Xnotenumfont{${1:font commands}}"
+    },
+    "Xnotenumfont[]{}": {
+      "snippet": "Xnotenumfont[${2:series}]{${1:font commands}}"
+    },
+    "Xendnotenumfont{}": {
+      "snippet": "Xendnotenumfont{${1:font commands}}"
+    },
+    "Xendnotenumfont[]{}": {
+      "snippet": "Xendnotenumfont[${2:series}]{${1:font commands}}"
+    },
+    "notenumfontX{}": {
+      "snippet": "notenumfontX{${1:font commands}}"
+    },
+    "notenumfontX[]{}": {
+      "snippet": "notenumfontX[${2:series}]{${1:font commands}}"
+    },
+    "Xlemmadisablefontselection": {},
+    "Xlemmadisablefontselection[]": {
+      "snippet": "Xlemmadisablefontselection[${1:series}]"
+    },
+    "Xendlemmadisablefontselection": {},
+    "Xendlemmadisablefontselection[]": {
+      "snippet": "Xendlemmadisablefontselection[${1:series}]"
+    },
+    "Xlemmafont{}": {
+      "snippet": "Xlemmafont{${1:font commands}}"
+    },
+    "Xlemmafont[]{}": {
+      "snippet": "Xlemmafont[${2:series}]{${1:font commands}}"
+    },
+    "Xendlemmafont{}": {
+      "snippet": "Xendlemmafont{${1:font commands}}"
+    },
+    "Xendlemmafont[]{}": {
+      "snippet": "Xendlemmafont[${2:series}]{${1:font commands}}"
+    },
+    "Xnotefontsize{}": {
+      "snippet": "Xnotefontsize{${1:fontsize commands}}"
+    },
+    "Xnotefontsize[]{}": {
+      "snippet": "Xnotefontsize[${2:series}]{${1:fontsize commands}}"
+    },
+    "notefontsizeX{}": {
+      "snippet": "notefontsizeX{${1:fontsize commands}}"
+    },
+    "notefontsizeX[]{}": {
+      "snippet": "notefontsizeX[${2:series}]{${1:fontsize commands}}"
+    },
+    "Xendnotefontsize{}": {
+      "snippet": "Xendnotefontsize{${1:fontsize commands}}"
+    },
+    "Xendnotefontsize[]{}": {
+      "snippet": "Xendnotefontsize[${2:series}]{${1:fontsize commands}}"
+    },
+    "Xwraplemma{}": {
+      "snippet": "Xwraplemma{${1:command}}"
+    },
+    "Xwraplemma[]{}": {
+      "snippet": "Xwraplemma[${2:series}]{${1:command}}"
+    },
+    "Xwrapendlemma{}": {
+      "snippet": "Xwrapendlemma{${1:command}}"
+    },
+    "Xwrapendlemma[]{}": {
+      "snippet": "Xwrapendlemma[${2:series}]{${1:command}}"
+    },
+    "Xwrapcontent{}": {
+      "snippet": "Xwrapcontent{${1:command}}"
+    },
+    "Xwrapcontent[]{}": {
+      "snippet": "Xwrapcontent[${2:series}]{${1:command}}"
+    },
+    "Xendwrapcontent{}": {
+      "snippet": "Xendwrapcontent{${1:command}}"
+    },
+    "Xendwrapcontent[]{}": {
+      "snippet": "Xendwrapcontent[${2:series}]{${1:command}}"
+    },
+    "wrapcontentX{}": {
+      "snippet": "wrapcontentX{${1:command}}"
+    },
+    "wrapcontentX[]{}": {
+      "snippet": "wrapcontentX[${2:series}]{${1:command}}"
+    },
+    "Xparindent": {},
+    "parindentX": {},
+    "Xhangindent{}": {
+      "snippet": "Xhangindent{${1:length}}"
+    },
+    "Xhangindent[]{}": {
+      "snippet": "Xhangindent[${2:series}]{${1:length}}"
+    },
+    "hangindentX{}": {
+      "snippet": "hangindentX{${1:length}}"
+    },
+    "hangindentX[]{}": {
+      "snippet": "hangindentX[${2:series}]{${1:length}}"
+    },
+    "Xendhangindent{}": {
+      "snippet": "Xendhangindent{${1:length}}"
+    },
+    "Xendhangindent[]{}": {
+      "snippet": "Xendhangindent[${2:series}]{${1:length}}"
+    },
+    "Xendbhooklinenumber{}": {
+      "snippet": "Xendbhooklinenumber{${1:code}}"
+    },
+    "Xendbhooklinenumber[]{}": {
+      "snippet": "Xendbhooklinenumber[${2:series}]{${1:code}}"
+    },
+    "Xendahooklinenumber{}": {
+      "snippet": "Xendahooklinenumber{${1:code}}"
+    },
+    "Xendahooklinenumber[]{}": {
+      "snippet": "Xendahooklinenumber[${2:series}]{${1:code}}"
+    },
+    "Xendbhookinplaceofnumber{}": {
+      "snippet": "Xendbhookinplaceofnumber{${1:code}}"
+    },
+    "Xendbhookinplaceofnumber[]{}": {
+      "snippet": "Xendbhookinplaceofnumber[${2:series}]{${1:code}}"
+    },
+    "Xendahookinplaceofnumber{}": {
+      "snippet": "Xendahookinplaceofnumber{${1:code}}"
+    },
+    "Xendahookinplaceofnumber[]{}": {
+      "snippet": "Xendahookinplaceofnumber[${2:series}]{${1:code}}"
+    },
+    "Xbhooknote{}": {
+      "snippet": "Xbhooknote{${1:code}}"
+    },
+    "Xbhooknote[]{}": {
+      "snippet": "Xbhooknote[${2:series}]{${1:code}}"
+    },
+    "bhooknoteX{}": {
+      "snippet": "bhooknoteX{${1:code}}"
+    },
+    "bhooknoteX[]{}": {
+      "snippet": "bhooknoteX[${2:series}]{${1:code}}"
+    },
+    "Xendbhooknote{}": {
+      "snippet": "Xendbhooknote{${1:code}}"
+    },
+    "Xendbhooknote[]{}": {
+      "snippet": "Xendbhooknote[${2:series}]{${1:code}}"
+    },
+    "Xbeforeinserting{}": {
+      "snippet": "Xbeforeinserting{${1:code}}"
+    },
+    "Xbeforeinserting[]{}": {
+      "snippet": "Xbeforeinserting[${2:series}]{${1:code}}"
+    },
+    "beforeinsertingX{}": {
+      "snippet": "beforeinsertingX{${1:code}}"
+    },
+    "beforeinsertingX[]{}": {
+      "snippet": "beforeinsertingX[${2:series}]{${1:code}}"
+    },
+    "Xcolalign{}": {
+      "snippet": "Xcolalign{${1:code}}"
+    },
+    "Xcolalign[]{}": {
+      "snippet": "Xcolalign[${2:series}]{${1:code}}"
+    },
+    "colalignX{}": {
+      "snippet": "colalignX{${1:code}}"
+    },
+    "colalignX[]{}": {
+      "snippet": "colalignX[${2:series}]{${1:code}}"
+    },
+    "Xhsizetwocol{}": {
+      "snippet": "Xhsizetwocol{${1:length}}"
+    },
+    "Xhsizetwocol[]{}": {
+      "snippet": "Xhsizetwocol[${2:series}]{${1:length}}"
+    },
+    "Xhsizethreecol{}": {
+      "snippet": "Xhsizethreecol{${1:length}}"
+    },
+    "Xhsizethreecol[]{}": {
+      "snippet": "Xhsizethreecol[${2:series}]{${1:length}}"
+    },
+    "hsizetwocolX{}": {
+      "snippet": "hsizetwocolX{${1:length}}"
+    },
+    "hsizetwocolX[]{}": {
+      "snippet": "hsizetwocolX[${2:series}]{${1:length}}"
+    },
+    "hsizethreecolX{}": {
+      "snippet": "hsizethreecolX{${1:length}}"
+    },
+    "hsizethreecolX[]{}": {
+      "snippet": "hsizethreecolX[${2:series}]{${1:length}}"
+    },
+    "Xafternote{}": {
+      "snippet": "Xafternote{${1:length}}"
+    },
+    "Xafternote[]{}": {
+      "snippet": "Xafternote[${2:series}]{${1:length}}"
+    },
+    "afternoteX{}": {
+      "snippet": "afternoteX{${1:length}}"
+    },
+    "afternoteX[]{}": {
+      "snippet": "afternoteX[${2:series}]{${1:length}}"
+    },
+    "Xparafootsep{}": {
+      "snippet": "Xparafootsep{${1:separator}}"
+    },
+    "Xparafootsep[]{}": {
+      "snippet": "Xparafootsep[${2:series}]{${1:separator}}"
+    },
+    "parafootsepX{}": {
+      "snippet": "parafootsepX{${1:separator}}"
+    },
+    "parafootsepX[]{}": {
+      "snippet": "parafootsepX[${2:series}]{${1:separator}}"
+    },
+    "Xragged{}": {
+      "snippet": "Xragged{${1:justification}}"
+    },
+    "Xragged[]{}": {
+      "snippet": "Xragged[${2:series}]{${1:justification}}"
+    },
+    "raggedX{}": {
+      "snippet": "raggedX{${1:justification}}"
+    },
+    "raggedX[]{}": {
+      "snippet": "raggedX[${2:series}]{${1:justification}}"
+    },
+    "Xgroupbyline": {},
+    "Xgroupbyline[]": {
+      "snippet": "Xgroupbyline[${1:series}]"
+    },
+    "Xgroupbylineseparetwolines": {},
+    "Xgroupbylineseparetwolines[]": {
+      "snippet": "Xgroupbylineseparetwolines[${1:series}]"
+    },
+    "Xtxtbeforenotes{}": {
+      "snippet": "Xtxtbeforenotes{${1:text}}"
+    },
+    "Xtxtbeforenotes[]{}": {
+      "snippet": "Xtxtbeforenotes[${2:series}]{${1:text}}"
+    },
+    "txtbeforenotesX{}": {
+      "snippet": "txtbeforenotesX{${1:text}}"
+    },
+    "txtbeforenotesX[]{}": {
+      "snippet": "txtbeforenotesX[${2:series}]{${1:text}}"
+    },
+    "Xendtxtbeforenotes{}": {
+      "snippet": "Xendtxtbeforenotes{${1:text}}"
+    },
+    "Xendtxtbeforenotes[]{}": {
+      "snippet": "Xendtxtbeforenotes[${2:series}]{${1:text}}"
+    },
+    "Xtxtbeforenotesonlyonce": {},
+    "txtbeforenotesonlyonceX": {},
+    "Xbhookgroup{}": {
+      "snippet": "Xbhookgroup{${1:code}}"
+    },
+    "Xbhookgroup[]{}": {
+      "snippet": "Xbhookgroup[${2:series}]{${1:code}}"
+    },
+    "bhookgroupX{}": {
+      "snippet": "bhookgroupX{${1:code}}"
+    },
+    "bhookgroupX[]{}": {
+      "snippet": "bhookgroupX[${2:series}]{${1:code}}"
+    },
+    "Xbeforenotes{}": {
+      "snippet": "Xbeforenotes{${1:length}}"
+    },
+    "Xbeforenotes[]{}": {
+      "snippet": "Xbeforenotes[${2:series}]{${1:length}}"
+    },
+    "beforenotesX{}": {
+      "snippet": "beforenotesX{${1:length}}"
+    },
+    "beforenotesX[]{}": {
+      "snippet": "beforenotesX[${2:series}]{${1:length}}"
+    },
+    "Xprenotes{}": {
+      "snippet": "Xprenotes{${1:length}}"
+    },
+    "prenotesX{}": {
+      "snippet": "prenotesX{${1:length}}"
+    },
+    "Xonlyonerule": {},
+    "onlyoneruleX": {},
+    "Xafterrule{}": {
+      "snippet": "Xafterrule{${1:length}}"
+    },
+    "Xafterrule[]{}": {
+      "snippet": "Xafterrule[${2:series}]{${1:length}}"
+    },
+    "afterruleX{}": {
+      "snippet": "afterruleX{${1:length}}"
+    },
+    "afterruleX[]{}": {
+      "snippet": "afterruleX[${2:series}]{${1:length}}"
+    },
+    "Xmaxhnotes{}": {
+      "snippet": "Xmaxhnotes{${1:length}}"
+    },
+    "Xmaxhnotes[]{}": {
+      "snippet": "Xmaxhnotes[${2:series}]{${1:length}}"
+    },
+    "maxhnotesX{}": {
+      "snippet": "maxhnotesX{${1:length}}"
+    },
+    "maxhnotesX[]{}": {
+      "snippet": "maxhnotesX[${2:series}]{${1:width}}"
+    },
+    "Xwidth{}": {
+      "snippet": "Xwidth{${1:width}}"
+    },
+    "widthX{}": {
+      "snippet": "widthX{${1:width}}"
+    },
+    "Xnoteswidthliketwocolumns": {},
+    "Xnoteswidthliketwocolumns[]": {
+      "snippet": "Xnoteswidthliketwocolumns[${1:series}]"
+    },
+    "noteswidthliketwocolumnsX": {},
+    "noteswidthliketwocolumnsX[]": {
+      "snippet": "noteswidthliketwocolumnsX[${1:series}]"
+    },
+    "Xendparagraph": {},
+    "Xendparagraph[]": {
+      "snippet": "Xendparagraph[${1:series}]"
+    },
+    "Xendafternote{}": {
+      "snippet": "Xendafternote{${1:length}}"
+    },
+    "Xendafternote[]{}": {
+      "snippet": "Xendafternote[${2:series}]{${1:length}}"
+    },
+    "Xendsep{}": {
+      "snippet": "Xendsep{${1:separator}}"
+    },
+    "Xendsep[]{}": {
+      "snippet": "Xendsep[${2:series}]{${1:separator}}"
+    },
+    "numlabfont": {},
+    "stanza": {},
+    "stanzaindentbase": {},
+    "setstanzaindents{}": {
+      "snippet": "setstanzaindents{${1:values}}"
+    },
+    "stanzaindent{}": {
+      "snippet": "stanzaindent{${1:value}}"
+    },
+    "stanzaindent*{}": {
+      "snippet": "stanzaindent*{${1:value}}"
+    },
+    "setstanzapenalties{}": {
+      "snippet": "setstanzapenalties{${1:values}}"
+    },
+    "sethangingsymbol{}": {
+      "snippet": "sethangingsymbol{${1:symbol}}"
+    },
+    "AtEveryStanza{}": {
+      "snippet": "AtEveryStanza{${1:code}}"
+    },
+    "AtEveryStanza*{}": {
+      "snippet": "AtEveryStanza*{${1:code}}"
+    },
+    "AtStartEveryStanza{}": {
+      "snippet": "AtStartEveryStanza{${1:code}}"
+    },
+    "AtEveryStopStanza{}": {
+      "snippet": "AtEveryStopStanza{${1:code}}"
+    },
+    "AtEveryStopStanza*{}": {
+      "snippet": "AtEveryStopStanza*{${1:code}}"
+    },
+    "BeforeEveryStopStanza{}": {
+      "snippet": "BeforeEveryStopStanza{${1:code}}"
+    },
+    "numberstanzatrue": {},
+    "numberstanzafalse": {},
+    "thestanza": {},
+    "stanzanumwrapper{}": {
+      "snippet": "stanzanumwrapper{${1:text}}"
+    },
+    "antilabe{}": {
+      "snippet": "antilabe{${1:command}}"
+    },
+    "beforeantilabe": {},
+    "afterantilabe": {},
+    "ampersand": {
+      "detail": "&",
+      "documentation": "# \\binampersand (stmaryrd)"
+    },
+    "flagstanza{}": {
+      "snippet": "flagstanza{${1:text}}"
+    },
+    "flagstanza[]{}": {
+      "snippet": "flagstanza[${2:length}]{${1:text}}"
+    },
+    "edlabel{}": {
+      "snippet": "edlabel{${1:label}}"
+    },
+    "edpageref{}": {
+      "snippet": "edpageref{${1:label}}"
+    },
+    "edlineref{}": {
+      "snippet": "edlineref{${1:label}}"
+    },
+    "sublineref{}": {
+      "snippet": "sublineref{${1:label}}"
+    },
+    "pstartref{}": {
+      "snippet": "pstartref{${1:label}}"
+    },
+    "annotationref{}": {
+      "snippet": "annotationref{${1:label}}"
+    },
+    "xpageref{}": {
+      "snippet": "xpageref{${1:label}}"
+    },
+    "xlineref{}": {
+      "snippet": "xlineref{${1:label}}"
+    },
+    "xsublineref{}": {
+      "snippet": "xsublineref{${1:label}}"
+    },
+    "xpstartref{}": {
+      "snippet": "xpstartref{${1:label}}"
+    },
+    "xannotationref{}": {
+      "snippet": "xannotationref{${1:label}}"
+    },
+    "xflagref{}": {
+      "snippet": "xflagref{${1:label}}"
+    },
+    "xxref{}{}": {
+      "snippet": "xxref{${1:label1}}{${2:label2}}"
+    },
+    "edmakelabel{}{}": {
+      "snippet": "edmakelabel{${1:label}}{${2:numbers}}"
+    },
+    "edlabelS{}": {
+      "snippet": "edlabelS{${1:label}}"
+    },
+    "edlabelE{}": {
+      "snippet": "edlabelE{${1:label}}"
+    },
+    "edlabelSE{}": {
+      "snippet": "edlabelSE{${1:label}}"
+    },
+    "SEref{}": {
+      "snippet": "SEref{${1:label}}"
+    },
+    "SEref[]{}": {
+      "snippet": "SEref[${2:options}]{${1:label}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "SErefwithpage{}": {
+      "snippet": "SErefwithpage{${1:label}}"
+    },
+    "SErefwithpage[]{}": {
+      "snippet": "SErefwithpage[${2:options}]{${1:label}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "SErefonlypage{}": {
+      "snippet": "SErefonlypage{${1:label}}"
+    },
+    "SErefonlypage[]{}": {
+      "snippet": "SErefonlypage[${2:options}]{${1:label}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "applabel{}": {
+      "snippet": "applabel{${1:label}}"
+    },
+    "appref{}": {
+      "snippet": "appref{${1:label}}"
+    },
+    "appref[]{}": {
+      "snippet": "appref[${2:options}]{${1:label}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "apprefwithpage{}": {
+      "snippet": "apprefwithpage{${1:label}}"
+    },
+    "apprefwithpage[]{}": {
+      "snippet": "apprefwithpage[${2:options}]{${1:label}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "setapprefprefixsingle{}": {
+      "snippet": "setapprefprefixsingle{${1:prefix}}"
+    },
+    "setapprefprefixmore{}": {
+      "snippet": "setapprefprefixmore{${1:prefix}}"
+    },
+    "setSErefprefixsingle{}": {
+      "snippet": "setSErefprefixsingle{${1:prefix}}"
+    },
+    "setSErefprefixmore{}": {
+      "snippet": "setSErefprefixmore{${1:prefix}}"
+    },
+    "setSErefonlypageprefixsingle{}": {
+      "snippet": "setSErefonlypageprefixsingle{${1:prefix}}"
+    },
+    "setSErefonlypageprefixmore{}": {
+      "snippet": "setSErefonlypageprefixmore{${1:prefix}}"
+    },
+    "ledinnernote{}": {
+      "snippet": "ledinnernote{${1:text}}"
+    },
+    "ledouternote{}": {
+      "snippet": "ledouternote{${1:text}}"
+    },
+    "ledleftnote{}": {
+      "snippet": "ledleftnote{${1:text}}"
+    },
+    "ledrightnote{}": {
+      "snippet": "ledrightnote{${1:text}}"
+    },
+    "ledsidenote{}": {
+      "snippet": "ledsidenote{${1:text}}"
+    },
+    "sidenotemargin{}": {
+      "snippet": "sidenotemargin{${1:type}}"
+    },
+    "ledlsnotewidth": {},
+    "ledrsnotewidth": {},
+    "rightnoteupfalse": {},
+    "leftnoteupfalse": {},
+    "ledlsnotesep": {},
+    "ledrsnotesep": {},
+    "ledlsnotefontsetup": {},
+    "ledrsnotefontsetup": {},
+    "setsidenotesep{}": {
+      "snippet": "setsidenotesep{${1:sep}}"
+    },
+    "edindex{}": {
+      "snippet": "edindex{${1:entry}}"
+    },
+    "Xinnotemark{}": {
+      "snippet": "Xinnotemark{${1:definition}}"
+    },
+    "Xinnotemark[]{}": {
+      "snippet": "Xinnotemark[${2:series}]{${1:definition}}"
+    },
+    "innotemarkX{}": {
+      "snippet": "innotemarkX{${1:definition}}"
+    },
+    "innotemarkX[]{}": {
+      "snippet": "innotemarkX[${2:series}]{${1:definition}}"
+    },
+    "pagelinesep": {},
+    "edindexlab": {},
+    "edtabcolsep": {},
+    "spreadmath{}": {
+      "snippet": "spreadmath{${1:math}}"
+    },
+    "spreadtext{}": {
+      "snippet": "spreadtext{${1:text}}"
+    },
+    "edrowfill{}{}{}": {
+      "snippet": "edrowfill{${1:start}}{${2:end}}{${3:fill}}"
+    },
+    "edatleft{}{}": {
+      "snippet": "edatleft{${1:symbol}}{${2:halfheight}}"
+    },
+    "edatleft[]{}{}": {
+      "snippet": "edatleft[${3:math}]{${1:symbol}}{${2:halfheight}}"
+    },
+    "edatright{}{}": {
+      "snippet": "edatright{${1:symbol}}{${2:halfheight}}"
+    },
+    "edatright[]{}{}": {
+      "snippet": "edatright[${3:math}]{${1:symbol}}{${2:halfheight}}"
+    },
+    "edbeforetab{}{}": {
+      "snippet": "edbeforetab{${1:text}}{${2:entry}}"
+    },
+    "edaftertab{}{}": {
+      "snippet": "edaftertab{${1:entry}}{${2:text}}"
+    },
+    "edvertline{}": {
+      "snippet": "edvertline{${1:height}}"
+    },
+    "edvertdots{}": {
+      "snippet": "edvertdots{${1:height}}"
+    },
+    "eledchapter{}": {
+      "snippet": "eledchapter{${1:critical text}}"
+    },
+    "eledchapter[]{}": {
+      "snippet": "eledchapter[${2:text}]{${1:critical text}}"
+    },
+    "eledchapter*{}": {
+      "snippet": "eledchapter*{${1:critical text}}"
+    },
+    "eledchapter*[]{}": {
+      "snippet": "eledchapter*[${2:text}]{${1:critical text}}"
+    },
+    "eledsection{}": {
+      "snippet": "eledsection{${1:critical text}}"
+    },
+    "eledsection[]{}": {
+      "snippet": "eledsection[${2:text}]{${1:critical text}}"
+    },
+    "eledsection*{}": {
+      "snippet": "eledsection*{${1:critical text}}"
+    },
+    "eledsection*[]{}": {
+      "snippet": "eledsection*[${2:text}]{${1:critical text}}"
+    },
+    "eledsubsection{}": {
+      "snippet": "eledsubsection{${1:critical text}}"
+    },
+    "eledsubsection[]{}": {
+      "snippet": "eledsubsection[${2:text}]{${1:critical text}}"
+    },
+    "eledsubsection*{}": {
+      "snippet": "eledsubsection*{${1:critical text}}"
+    },
+    "eledsubsection*[]{}": {
+      "snippet": "eledsubsection*[${2:text}]{${1:critical text}}"
+    },
+    "eledsubsubsection{}": {
+      "snippet": "eledsubsubsection{${1:critical text}}"
+    },
+    "eledsubsubsection[]{}": {
+      "snippet": "eledsubsubsection[${2:text}]{${1:critical text}}"
+    },
+    "eledsubsubsection*{}": {
+      "snippet": "eledsubsubsection*{${1:critical text}}"
+    },
+    "eledsubsubsection*[]{}": {
+      "snippet": "eledsubsubsection*[${2:text}]{${1:critical text}}"
+    },
+    "ledpb": {},
+    "lednopb": {},
+    "ledpbsetting{}": {
+      "snippet": "ledpbsetting{${1:setting}}"
+    },
+    "lednopbinversetrue": {},
+    "lednopbinversefalse": {},
+    "extensionchars": {},
+    "ifledfinal": {},
+    "showlemma{}": {
+      "snippet": "showlemma{${1:lemma}}"
+    },
+    "theballast": {},
+    "footfudgefiddle": {},
+    "morenoexpands": {},
+    "edgls{}": {
+      "snippet": "edgls{${1:label}}"
+    },
+    "edgls{}[]": {
+      "snippet": "edgls{${1:label}}[${2:insert}]"
+    },
+    "edgls[]{}": {
+      "snippet": "edgls[${2:options}]{${1:label}}"
+    },
+    "edgls[]{}[]": {
+      "snippet": "edgls[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGls{}": {
+      "snippet": "edGls{${1:label}}"
+    },
+    "edGls{}[]": {
+      "snippet": "edGls{${1:label}}[${2:insert}]"
+    },
+    "edGls[]{}": {
+      "snippet": "edGls[${2:options}]{${1:label}}"
+    },
+    "edGls[]{}[]": {
+      "snippet": "edGls[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLS{}": {
+      "snippet": "edGLS{${1:label}}"
+    },
+    "edGLS{}[]": {
+      "snippet": "edGLS{${1:label}}[${2:insert}]"
+    },
+    "edGLS[]{}": {
+      "snippet": "edGLS[${2:options}]{${1:label}}"
+    },
+    "edGLS[]{}[]": {
+      "snippet": "edGLS[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglspl{}": {
+      "snippet": "edglspl{${1:label}}"
+    },
+    "edglspl{}[]": {
+      "snippet": "edglspl{${1:label}}[${2:insert}]"
+    },
+    "edglspl[]{}": {
+      "snippet": "edglspl[${2:options}]{${1:label}}"
+    },
+    "edglspl[]{}[]": {
+      "snippet": "edglspl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlspl{}": {
+      "snippet": "edGlspl{${1:label}}"
+    },
+    "edGlspl{}[]": {
+      "snippet": "edGlspl{${1:label}}[${2:insert}]"
+    },
+    "edGlspl[]{}": {
+      "snippet": "edGlspl[${2:options}]{${1:label}}"
+    },
+    "edGlspl[]{}[]": {
+      "snippet": "edGlspl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSpl{}": {
+      "snippet": "edGLSpl{${1:label}}"
+    },
+    "edGLSpl{}[]": {
+      "snippet": "edGLSpl{${1:label}}[${2:insert}]"
+    },
+    "edGLSpl[]{}": {
+      "snippet": "edGLSpl[${2:options}]{${1:label}}"
+    },
+    "edGLSpl[]{}[]": {
+      "snippet": "edGLSpl[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglstext{}": {
+      "snippet": "edglstext{${1:label}}"
+    },
+    "edglstext{}[]": {
+      "snippet": "edglstext{${1:label}}[${2:insert}]"
+    },
+    "edglstext[]{}": {
+      "snippet": "edglstext[${2:options}]{${1:label}}"
+    },
+    "edglstext[]{}[]": {
+      "snippet": "edglstext[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlstext{}": {
+      "snippet": "edGlstext{${1:label}}"
+    },
+    "edGlstext{}[]": {
+      "snippet": "edGlstext{${1:label}}[${2:insert}]"
+    },
+    "edGlstext[]{}": {
+      "snippet": "edGlstext[${2:options}]{${1:label}}"
+    },
+    "edGlstext[]{}[]": {
+      "snippet": "edGlstext[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLStext{}": {
+      "snippet": "edGLStext{${1:label}}"
+    },
+    "edGLStext{}[]": {
+      "snippet": "edGLStext{${1:label}}[${2:insert}]"
+    },
+    "edGLStext[]{}": {
+      "snippet": "edGLStext[${2:options}]{${1:label}}"
+    },
+    "edGLStext[]{}[]": {
+      "snippet": "edGLStext[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlsfirst{}": {
+      "snippet": "edGlsfirst{${1:label}}"
+    },
+    "edGlsfirst{}[]": {
+      "snippet": "edGlsfirst{${1:label}}[${2:insert}]"
+    },
+    "edGlsfirst[]{}": {
+      "snippet": "edGlsfirst[${2:options}]{${1:label}}"
+    },
+    "edGlsfirst[]{}[]": {
+      "snippet": "edGlsfirst[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSfirst{}": {
+      "snippet": "edGLSfirst{${1:label}}"
+    },
+    "edGLSfirst{}[]": {
+      "snippet": "edGLSfirst{${1:label}}[${2:insert}]"
+    },
+    "edGLSfirst[]{}": {
+      "snippet": "edGLSfirst[${2:options}]{${1:label}}"
+    },
+    "edGLSfirst[]{}[]": {
+      "snippet": "edGLSfirst[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglsplural{}": {
+      "snippet": "edglsplural{${1:label}}"
+    },
+    "edglsplural{}[]": {
+      "snippet": "edglsplural{${1:label}}[${2:insert}]"
+    },
+    "edglsplural[]{}": {
+      "snippet": "edglsplural[${2:options}]{${1:label}}"
+    },
+    "edglsplural[]{}[]": {
+      "snippet": "edglsplural[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlsplural{}": {
+      "snippet": "edGlsplural{${1:label}}"
+    },
+    "edGlsplural{}[]": {
+      "snippet": "edGlsplural{${1:label}}[${2:insert}]"
+    },
+    "edGlsplural[]{}": {
+      "snippet": "edGlsplural[${2:options}]{${1:label}}"
+    },
+    "edGlsplural[]{}[]": {
+      "snippet": "edGlsplural[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSplural{}": {
+      "snippet": "edGLSplural{${1:label}}"
+    },
+    "edGLSplural{}[]": {
+      "snippet": "edGLSplural{${1:label}}[${2:insert}]"
+    },
+    "edGLSplural[]{}": {
+      "snippet": "edGLSplural[${2:options}]{${1:label}}"
+    },
+    "edGLSplural[]{}[]": {
+      "snippet": "edGLSplural[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglsfirstplural{}": {
+      "snippet": "edglsfirstplural{${1:label}}"
+    },
+    "edglsfirstplural{}[]": {
+      "snippet": "edglsfirstplural{${1:label}}[${2:insert}]"
+    },
+    "edglsfirstplural[]{}": {
+      "snippet": "edglsfirstplural[${2:options}]{${1:label}}"
+    },
+    "edglsfirstplural[]{}[]": {
+      "snippet": "edglsfirstplural[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlsfirstplural{}": {
+      "snippet": "edGlsfirstplural{${1:label}}"
+    },
+    "edGlsfirstplural{}[]": {
+      "snippet": "edGlsfirstplural{${1:label}}[${2:insert}]"
+    },
+    "edGlsfirstplural[]{}": {
+      "snippet": "edGlsfirstplural[${2:options}]{${1:label}}"
+    },
+    "edGlsfirstplural[]{}[]": {
+      "snippet": "edGlsfirstplural[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSfirstplural{}": {
+      "snippet": "edGLSfirstplural{${1:label}}"
+    },
+    "edGLSfirstplural{}[]": {
+      "snippet": "edGLSfirstplural{${1:label}}[${2:insert}]"
+    },
+    "edGLSfirstplural[]{}": {
+      "snippet": "edGLSfirstplural[${2:options}]{${1:label}}"
+    },
+    "edGLSfirstplural[]{}[]": {
+      "snippet": "edGLSfirstplural[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglsname{}": {
+      "snippet": "edglsname{${1:label}}"
+    },
+    "edglsname{}[]": {
+      "snippet": "edglsname{${1:label}}[${2:insert}]"
+    },
+    "edglsname[]{}": {
+      "snippet": "edglsname[${2:options}]{${1:label}}"
+    },
+    "edglsname[]{}[]": {
+      "snippet": "edglsname[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlsname{}": {
+      "snippet": "edGlsname{${1:label}}"
+    },
+    "edGlsname{}[]": {
+      "snippet": "edGlsname{${1:label}}[${2:insert}]"
+    },
+    "edGlsname[]{}": {
+      "snippet": "edGlsname[${2:options}]{${1:label}}"
+    },
+    "edGlsname[]{}[]": {
+      "snippet": "edGlsname[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSname{}": {
+      "snippet": "edGLSname{${1:label}}"
+    },
+    "edGLSname{}[]": {
+      "snippet": "edGLSname{${1:label}}[${2:insert}]"
+    },
+    "edGLSname[]{}": {
+      "snippet": "edGLSname[${2:options}]{${1:label}}"
+    },
+    "edGLSname[]{}[]": {
+      "snippet": "edGLSname[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglssymbol{}": {
+      "snippet": "edglssymbol{${1:label}}"
+    },
+    "edglssymbol{}[]": {
+      "snippet": "edglssymbol{${1:label}}[${2:insert}]"
+    },
+    "edglssymbol[]{}": {
+      "snippet": "edglssymbol[${2:options}]{${1:label}}"
+    },
+    "edglssymbol[]{}[]": {
+      "snippet": "edglssymbol[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlssymbol{}": {
+      "snippet": "edGlssymbol{${1:label}}"
+    },
+    "edGlssymbol{}[]": {
+      "snippet": "edGlssymbol{${1:label}}[${2:insert}]"
+    },
+    "edGlssymbol[]{}": {
+      "snippet": "edGlssymbol[${2:options}]{${1:label}}"
+    },
+    "edGlssymbol[]{}[]": {
+      "snippet": "edGlssymbol[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSsymbol{}": {
+      "snippet": "edGLSsymbol{${1:label}}"
+    },
+    "edGLSsymbol{}[]": {
+      "snippet": "edGLSsymbol{${1:label}}[${2:insert}]"
+    },
+    "edGLSsymbol[]{}": {
+      "snippet": "edGLSsymbol[${2:options}]{${1:label}}"
+    },
+    "edGLSsymbol[]{}[]": {
+      "snippet": "edGLSsymbol[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglsdesc{}": {
+      "snippet": "edglsdesc{${1:label}}"
+    },
+    "edglsdesc{}[]": {
+      "snippet": "edglsdesc{${1:label}}[${2:insert}]"
+    },
+    "edglsdesc[]{}": {
+      "snippet": "edglsdesc[${2:options}]{${1:label}}"
+    },
+    "edglsdesc[]{}[]": {
+      "snippet": "edglsdesc[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlsdesc{}": {
+      "snippet": "edGlsdesc{${1:label}}"
+    },
+    "edGlsdesc{}[]": {
+      "snippet": "edGlsdesc{${1:label}}[${2:insert}]"
+    },
+    "edGlsdesc[]{}": {
+      "snippet": "edGlsdesc[${2:options}]{${1:label}}"
+    },
+    "edGlsdesc[]{}[]": {
+      "snippet": "edGlsdesc[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSdesc{}": {
+      "snippet": "edGLSdesc{${1:label}}"
+    },
+    "edGLSdesc{}[]": {
+      "snippet": "edGLSdesc{${1:label}}[${2:insert}]"
+    },
+    "edGLSdesc[]{}": {
+      "snippet": "edGLSdesc[${2:options}]{${1:label}}"
+    },
+    "edGLSdesc[]{}[]": {
+      "snippet": "edGLSdesc[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglsuseri{}": {
+      "snippet": "edglsuseri{${1:label}}"
+    },
+    "edglsuseri{}[]": {
+      "snippet": "edglsuseri{${1:label}}[${2:insert}]"
+    },
+    "edglsuseri[]{}": {
+      "snippet": "edglsuseri[${2:options}]{${1:label}}"
+    },
+    "edglsuseri[]{}[]": {
+      "snippet": "edglsuseri[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlsuseri{}": {
+      "snippet": "edGlsuseri{${1:label}}"
+    },
+    "edGlsuseri{}[]": {
+      "snippet": "edGlsuseri{${1:label}}[${2:insert}]"
+    },
+    "edGlsuseri[]{}": {
+      "snippet": "edGlsuseri[${2:options}]{${1:label}}"
+    },
+    "edGlsuseri[]{}[]": {
+      "snippet": "edGlsuseri[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSuseri{}": {
+      "snippet": "edGLSuseri{${1:label}}"
+    },
+    "edGLSuseri{}[]": {
+      "snippet": "edGLSuseri{${1:label}}[${2:insert}]"
+    },
+    "edGLSuseri[]{}": {
+      "snippet": "edGLSuseri[${2:options}]{${1:label}}"
+    },
+    "edGLSuseri[]{}[]": {
+      "snippet": "edGLSuseri[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglsuserii{}": {
+      "snippet": "edglsuserii{${1:label}}"
+    },
+    "edglsuserii{}[]": {
+      "snippet": "edglsuserii{${1:label}}[${2:insert}]"
+    },
+    "edglsuserii[]{}": {
+      "snippet": "edglsuserii[${2:options}]{${1:label}}"
+    },
+    "edglsuserii[]{}[]": {
+      "snippet": "edglsuserii[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlsuserii{}": {
+      "snippet": "edGlsuserii{${1:label}}"
+    },
+    "edGlsuserii{}[]": {
+      "snippet": "edGlsuserii{${1:label}}[${2:insert}]"
+    },
+    "edGlsuserii[]{}": {
+      "snippet": "edGlsuserii[${2:options}]{${1:label}}"
+    },
+    "edGlsuserii[]{}[]": {
+      "snippet": "edGlsuserii[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSuserii{}": {
+      "snippet": "edGLSuserii{${1:label}}"
+    },
+    "edGLSuserii{}[]": {
+      "snippet": "edGLSuserii{${1:label}}[${2:insert}]"
+    },
+    "edGLSuserii[]{}": {
+      "snippet": "edGLSuserii[${2:options}]{${1:label}}"
+    },
+    "edGLSuserii[]{}[]": {
+      "snippet": "edGLSuserii[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglsuseriii{}": {
+      "snippet": "edglsuseriii{${1:label}}"
+    },
+    "edglsuseriii{}[]": {
+      "snippet": "edglsuseriii{${1:label}}[${2:insert}]"
+    },
+    "edglsuseriii[]{}": {
+      "snippet": "edglsuseriii[${2:options}]{${1:label}}"
+    },
+    "edglsuseriii[]{}[]": {
+      "snippet": "edglsuseriii[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlsuseriii{}": {
+      "snippet": "edGlsuseriii{${1:label}}"
+    },
+    "edGlsuseriii{}[]": {
+      "snippet": "edGlsuseriii{${1:label}}[${2:insert}]"
+    },
+    "edGlsuseriii[]{}": {
+      "snippet": "edGlsuseriii[${2:options}]{${1:label}}"
+    },
+    "edGlsuseriii[]{}[]": {
+      "snippet": "edGlsuseriii[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSuseriii{}": {
+      "snippet": "edGLSuseriii{${1:label}}"
+    },
+    "edGLSuseriii{}[]": {
+      "snippet": "edGLSuseriii{${1:label}}[${2:insert}]"
+    },
+    "edGLSuseriii[]{}": {
+      "snippet": "edGLSuseriii[${2:options}]{${1:label}}"
+    },
+    "edGLSuseriii[]{}[]": {
+      "snippet": "edGLSuseriii[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglsuseriv{}": {
+      "snippet": "edglsuseriv{${1:label}}"
+    },
+    "edglsuseriv{}[]": {
+      "snippet": "edglsuseriv{${1:label}}[${2:insert}]"
+    },
+    "edglsuseriv[]{}": {
+      "snippet": "edglsuseriv[${2:options}]{${1:label}}"
+    },
+    "edglsuseriv[]{}[]": {
+      "snippet": "edglsuseriv[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlsuseriv{}": {
+      "snippet": "edGlsuseriv{${1:label}}"
+    },
+    "edGlsuseriv{}[]": {
+      "snippet": "edGlsuseriv{${1:label}}[${2:insert}]"
+    },
+    "edGlsuseriv[]{}": {
+      "snippet": "edGlsuseriv[${2:options}]{${1:label}}"
+    },
+    "edGlsuseriv[]{}[]": {
+      "snippet": "edGlsuseriv[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSuseriv{}": {
+      "snippet": "edGLSuseriv{${1:label}}"
+    },
+    "edGLSuseriv{}[]": {
+      "snippet": "edGLSuseriv{${1:label}}[${2:insert}]"
+    },
+    "edGLSuseriv[]{}": {
+      "snippet": "edGLSuseriv[${2:options}]{${1:label}}"
+    },
+    "edGLSuseriv[]{}[]": {
+      "snippet": "edGLSuseriv[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglsuserv{}": {
+      "snippet": "edglsuserv{${1:label}}"
+    },
+    "edglsuserv{}[]": {
+      "snippet": "edglsuserv{${1:label}}[${2:insert}]"
+    },
+    "edglsuserv[]{}": {
+      "snippet": "edglsuserv[${2:options}]{${1:label}}"
+    },
+    "edglsuserv[]{}[]": {
+      "snippet": "edglsuserv[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlsuserv{}": {
+      "snippet": "edGlsuserv{${1:label}}"
+    },
+    "edGlsuserv{}[]": {
+      "snippet": "edGlsuserv{${1:label}}[${2:insert}]"
+    },
+    "edGlsuserv[]{}": {
+      "snippet": "edGlsuserv[${2:options}]{${1:label}}"
+    },
+    "edGlsuserv[]{}[]": {
+      "snippet": "edGlsuserv[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSuserv{}": {
+      "snippet": "edGLSuserv{${1:label}}"
+    },
+    "edGLSuserv{}[]": {
+      "snippet": "edGLSuserv{${1:label}}[${2:insert}]"
+    },
+    "edGLSuserv[]{}": {
+      "snippet": "edGLSuserv[${2:options}]{${1:label}}"
+    },
+    "edGLSuserv[]{}[]": {
+      "snippet": "edGLSuserv[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglsuservi{}": {
+      "snippet": "edglsuservi{${1:label}}"
+    },
+    "edglsuservi{}[]": {
+      "snippet": "edglsuservi{${1:label}}[${2:insert}]"
+    },
+    "edglsuservi[]{}": {
+      "snippet": "edglsuservi[${2:options}]{${1:label}}"
+    },
+    "edglsuservi[]{}[]": {
+      "snippet": "edglsuservi[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGlsuservi{}": {
+      "snippet": "edGlsuservi{${1:label}}"
+    },
+    "edGlsuservi{}[]": {
+      "snippet": "edGlsuservi{${1:label}}[${2:insert}]"
+    },
+    "edGlsuservi[]{}": {
+      "snippet": "edGlsuservi[${2:options}]{${1:label}}"
+    },
+    "edGlsuservi[]{}[]": {
+      "snippet": "edGlsuservi[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edGLSuservi{}": {
+      "snippet": "edGLSuservi{${1:label}}"
+    },
+    "edGLSuservi{}[]": {
+      "snippet": "edGLSuservi{${1:label}}[${2:insert}]"
+    },
+    "edGLSuservi[]{}": {
+      "snippet": "edGLSuservi[${2:options}]{${1:label}}"
+    },
+    "edGLSuservi[]{}[]": {
+      "snippet": "edGLSuservi[${2:options}]{${1:label}}[${3:insert}]"
+    },
+    "edglsdisp{}{}": {
+      "snippet": "edglsdisp{${1:label}}{${2:link text}}"
+    },
+    "edglsdisp[]{}{}": {
+      "snippet": "edglsdisp[${3:options}]{${1:label}}{${2:link text}}"
+    },
+    "edglslink{}{}": {
+      "snippet": "edglslink{${1:label}}{${2:link text}}"
+    },
+    "edglslink[]{}{}": {
+      "snippet": "edglslink[${3:options}]{${1:label}}{${2:link text}}"
+    },
+    "edglsadd{}": {
+      "snippet": "edglsadd{${1:label}}"
+    },
+    "edglsadd[]{}": {
+      "snippet": "edglsadd[${2:options}]{${1:label}}"
+    },
+    "Afootfmt": {},
+    "Afootgroup": {},
+    "Afootins": {},
+    "Afootnoterule": {},
+    "Afootstart": {},
+    "afterendnumberingRfalse": {},
+    "afterendnumberingRtrue": {},
+    "autoparfalse": {},
+    "autopartrue": {},
+    "beforeeledchapter": {},
+    "beginnumberingR": {},
+    "Bfootfmt": {},
+    "Bfootgroup": {},
+    "Bfootins": {},
+    "Bfootnoterule": {},
+    "Bfootstart": {},
+    "boxfootnotenumbers{}{}": {
+      "snippet": "boxfootnotenumbers{${1:arg1}}{${2:arg2}}"
+    },
+    "Cfootfmt": {},
+    "Cfootgroup": {},
+    "Cfootins": {},
+    "Cfootnoterule": {},
+    "Cfootstart": {},
+    "content": {},
+    "ctab{}": {
+      "snippet": "ctab{${1:arg}}"
+    },
+    "ctabtext{}": {
+      "snippet": "ctabtext{${1:arg}}"
+    },
+    "dcoli": {},
+    "dcolii": {},
+    "dcoliii": {},
+    "dcoliv": {},
+    "dcolv": {},
+    "dcolvi": {},
+    "dcolvii": {},
+    "dcolviii": {},
+    "dcolix": {},
+    "dcolx": {},
+    "dcolxi": {},
+    "dcolxii": {},
+    "dcolxiii": {},
+    "dcolxiv": {},
+    "dcolxv": {},
+    "dcolxvi": {},
+    "dcolxvii": {},
+    "dcolxviii": {},
+    "dcolxix": {},
+    "dcolxx": {},
+    "dcolxxi": {},
+    "dcolxxii": {},
+    "dcolxxiii": {},
+    "dcolxxiv": {},
+    "dcolxxv": {},
+    "dcolxxvi": {},
+    "dcolxxvii": {},
+    "dcolxxviii": {},
+    "dcolxxix": {},
+    "dcolxxx": {},
+    "dcolerr": {},
+    "Dfootfmt": {},
+    "Dfootgroup": {},
+    "Dfootins": {},
+    "Dfootnoterule": {},
+    "Dfootstart": {},
+    "disablel": {},
+    "doedindexlabel": {},
+    "dosplits": {},
+    "edfilldimen": {},
+    "edglsom": {},
+    "edglsomm": {},
+    "edglsomo": {},
+    "EDTAB{}": {
+      "snippet": "EDTAB{${1:arg1}}"
+    },
+    "EDTABINDENT": {},
+    "edtabindent": {},
+    "EDTABtext{}": {
+      "snippet": "EDTABtext{${1:arg1}}"
+    },
+    "EDTEXT": {},
+    "Efootfmt": {},
+    "Efootgroup": {},
+    "Efootins": {},
+    "Efootnoterule": {},
+    "Efootstart": {},
+    "eledmacmarkuplocrefdepth": {},
+    "enablel": {},
+    "endashchar": {},
+    "endprint{}{}{}{}{}": {
+      "snippet": "endprint{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+    },
+    "footsplitskips": {},
+    "fullstop": {},
+    "Hilfsbox": {},
+    "hilfsbox": {},
+    "hilfscount": {},
+    "HILFSskip": {},
+    "Hilfsskip": {},
+    "hilfsskip": {},
+    "hyperlinkformat{}{}{}": {
+      "snippet": "hyperlinkformat{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "hyperlinkformatR{}{}{}": {
+      "snippet": "hyperlinkformatR{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "hyperlinkR{}{}": {
+      "snippet": "hyperlinkR{${1:arg1}}{${2:arg2}}"
+    },
+    "HyperRaiseLinkLength": {},
+    "ifafterendnumberingR": {},
+    "ifautopar": {},
+    "ifinastanzaL": {},
+    "ifinastanzaR": {},
+    "ifinserthangingsymbol": {},
+    "ifinserthangingymbol": {},
+    "ifinstanza": {},
+    "ifinstanzaL": {},
+    "ifinstanzaR": {},
+    "ifistwofollowinglines": {},
+    "iflednopbinverse": {},
+    "ifledRcol": {},
+    "iflinenumannotationotherside": {},
+    "ifnumbering": {},
+    "ifnumberingR": {},
+    "ifnumberline": {},
+    "ifnumberstanza": {},
+    "ifparledgroup": {},
+    "ifprevpgnotnumbered": {},
+    "ifsameparallelpagenumber": {},
+    "ifseriesbefore{}{}{}{}": {
+      "snippet": "ifseriesbefore{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ifsidepstartnum": {},
+    "ifwidthliketwocolumns": {},
+    "inastanzaLfalse": {},
+    "inastanzaLtrue": {},
+    "inastanzaRfalse": {},
+    "inastanzaRtrue": {},
+    "inserthangingsymbol": {},
+    "inserthangingsymbolfalse": {},
+    "inserthangingsymboltrue": {},
+    "insertparafootsepX{}": {
+      "snippet": "insertparafootsepX{${1:arg1}}"
+    },
+    "instanzafalse": {},
+    "instanzaLfalse": {},
+    "instanzaLtrue": {},
+    "instanzaRfalse": {},
+    "instanzaRtrue": {},
+    "instanzatrue": {},
+    "istwofollowinglinesfalse": {},
+    "istwofollowinglinestrue": {},
+    "labelrefsparseabsline{}": {
+      "snippet": "labelrefsparseabsline{${1:arg1}}"
+    },
+    "labelrefsparseline{}": {
+      "snippet": "labelrefsparseline{${1:arg1}}"
+    },
+    "labelrefsparsesubline": {},
+    "ledinnote[]{}{}{}{}": {
+      "snippet": "ledinnote[${5:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ledinnote{}{}{}{}": {
+      "snippet": "ledinnote{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ledinnotemark{}": {
+      "snippet": "ledinnotemark{${1:arg}}"
+    },
+    "ledlinenum": {},
+    "ledllfill": {},
+    "lednopbnum{}": {
+      "snippet": "lednopbnum{${1:arg1}}"
+    },
+    "ledpbnum{}": {
+      "snippet": "ledpbnum{${1:arg1}}"
+    },
+    "ledRcolfalse": {},
+    "ledRcoltrue": {},
+    "ledrlfill": {},
+    "ledsectnomark": {},
+    "ledsectnotoc": {},
+    "ledsetnormalparstuffX{}": {
+      "snippet": "ledsetnormalparstuffX{${1:arg}}"
+    },
+    "leftctab{}{}": {
+      "snippet": "leftctab{${1:arg1}}{${2:arg2}}"
+    },
+    "leftlinenumannotation": {},
+    "leftlinenumR": {},
+    "leftltab{}": {
+      "snippet": "leftltab{${1:arg1}}"
+    },
+    "leftpstartnum": {},
+    "leftrtab{}{}": {
+      "snippet": "leftrtab{${1:arg1}}{${2:arg2}}"
+    },
+    "letsforverteilen": {},
+    "linenumrep{}": {
+      "snippet": "linenumrep{${1:arg}}"
+    },
+    "ltab{}": {
+      "snippet": "ltab{${1:arg1}}"
+    },
+    "ltabtext{}": {
+      "snippet": "ltabtext{${1:arg1}}"
+    },
+    "makehboxofhboxes": {},
+    "measurembody{}": {
+      "snippet": "measurembody{${1:arg1}}"
+    },
+    "measuremcell{}": {
+      "snippet": "measuremcell{${1:arg1}}"
+    },
+    "measuremrow{}": {
+      "snippet": "measuremrow{${1:arg1}}"
+    },
+    "measuretbody{}": {
+      "snippet": "measuretbody{${1:arg1}}"
+    },
+    "measuretcell{}": {
+      "snippet": "measuretcell{${1:arg1}}"
+    },
+    "measuretrow{}": {
+      "snippet": "measuretrow{${1:arg1}}"
+    },
+    "mpnormalfootgroup{}": {
+      "snippet": "mpnormalfootgroup{${1:arg}}"
+    },
+    "mpnormalfootgroupX{}": {
+      "snippet": "mpnormalfootgroupX{${1:arg1}}"
+    },
+    "mpnormalvfootnote{}{}": {
+      "snippet": "mpnormalvfootnote{${1:series}}{${2:text}}"
+    },
+    "mpnormalvfootnoteX{}{}{}": {
+      "snippet": "mpnormalvfootnoteX{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "mpparafootgroup{}": {
+      "snippet": "mpparafootgroup{${1:arg1}}"
+    },
+    "mpparavfootnote{}{}": {
+      "snippet": "mpparavfootnote{${1:arg1}}{${2:arg2}}"
+    },
+    "mpthreecolfootgroup{}": {
+      "snippet": "mpthreecolfootgroup{${1:arg1}}"
+    },
+    "mpthreecolfootgroupX{}": {
+      "snippet": "mpthreecolfootgroupX{${1:arg1}}"
+    },
+    "mpthreecolfootsetup{}": {
+      "snippet": "mpthreecolfootsetup{${1:arg1}}"
+    },
+    "mpthreecolfootsetupX{}": {
+      "snippet": "mpthreecolfootsetupX{${1:arg1}}"
+    },
+    "mptwocolfootgroup{}": {
+      "snippet": "mptwocolfootgroup{${1:arg1}}"
+    },
+    "mptwocolfootgroupX{}": {
+      "snippet": "mptwocolfootgroupX{${1:arg1}}"
+    },
+    "mptwocolfootsetup{}": {
+      "snippet": "mptwocolfootsetup{${1:arg1}}"
+    },
+    "mptwocolfootsetupX{}": {
+      "snippet": "mptwocolfootsetupX{${1:arg1}}"
+    },
+    "multiplefootnotemarker": {},
+    "newseries{}": {
+      "snippet": "newseries{${1:arg1}}"
+    },
+    "newverse[]{}{}{}": {
+      "snippet": "newverse[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "newverse{}{}{}": {
+      "snippet": "newverse{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "NEXT": {},
+    "Next": {},
+    "next": {},
+    "normalbfnoteX{}{}{}": {
+      "snippet": "normalbfnoteX{${1:series}}{${2:text}}{${3:number}}"
+    },
+    "normalbodyfootmarkX{}": {
+      "snippet": "normalbodyfootmarkX{${1:arg1}}"
+    },
+    "normalfootfmt{}{}{}{}": {
+      "snippet": "normalfootfmt{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "normalfootfmtX{}{}": {
+      "snippet": "normalfootfmtX{${1:series}}{${2:text}}"
+    },
+    "normalfootfootmarkX{}": {
+      "snippet": "normalfootfootmarkX{${1:arg1}}"
+    },
+    "normalfootgroup{}": {
+      "snippet": "normalfootgroup{${1:arg}}"
+    },
+    "normalfootgroupX{}": {
+      "snippet": "normalfootgroupX{${1:arg1}}"
+    },
+    "normalfootnoterule": {},
+    "normalfootnoteruleX": {},
+    "normalfootstart{}": {
+      "snippet": "normalfootstart{${1:arg}}"
+    },
+    "normalfootstartX{}": {
+      "snippet": "normalfootstartX{${1:arg1}}"
+    },
+    "normalvfootnote{}{}": {
+      "snippet": "normalvfootnote{${1:series}}{${2:text}}"
+    },
+    "normalvfootnoteX{}{}": {
+      "snippet": "normalvfootnoteX{${1:series}}{${2:text}}"
+    },
+    "nulledindex[]{}": {
+      "snippet": "nulledindex[${2:opt}]{${1:arg1}}"
+    },
+    "nulledindex{}": {
+      "snippet": "nulledindex{${1:arg1}}"
+    },
+    "nullsetzen": {},
+    "numberingfalse": {},
+    "numberingRfalse": {},
+    "numberingRtrue": {},
+    "numberingtrue": {},
+    "parafootfmt{}{}{}{}": {
+      "snippet": "parafootfmt{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "parafootfmtX{}{}": {
+      "snippet": "parafootfmtX{${1:arg1}}{${2:arg2}}"
+    },
+    "parafootgroup{}": {
+      "snippet": "parafootgroup{${1:arg1}}"
+    },
+    "parafootstart{}": {
+      "snippet": "parafootstart{${1:arg1}}"
+    },
+    "parafootstartX{}": {
+      "snippet": "parafootstartX{${1:arg1}}"
+    },
+    "paravfootnote{}{}": {
+      "snippet": "paravfootnote{${1:arg1}}{${2:arg2}}"
+    },
+    "parledgroupfalse": {},
+    "parledgrouptrue": {},
+    "postbodyfootmark": {},
+    "prebodyfootmark": {},
+    "prevpgnotnumberedfalse": {},
+    "prevpgnotnumberedtrue": {},
+    "preXnotes{}": {
+      "snippet": "preXnotes{${1:arg1}}"
+    },
+    "printendlines": {},
+    "printlineendnote{}{}": {
+      "snippet": "printlineendnote{${1:arg1}}{${2:arg2}}"
+    },
+    "printlineendnotearea{}{}": {
+      "snippet": "printlineendnotearea{${1:arg1}}{${2:arg2}}"
+    },
+    "printlinefootnote{}{}": {
+      "snippet": "printlinefootnote{${1:arg1}}{${2:arg2}}"
+    },
+    "printlinefootnotearea{}{}": {
+      "snippet": "printlinefootnotearea{${1:arg1}}{${2:arg2}}"
+    },
+    "printlinefootnotenumbers{}{}": {
+      "snippet": "printlinefootnotenumbers{${1:arg1}}{${2:arg2}}"
+    },
+    "printlines": {},
+    "printnpnum{}": {
+      "snippet": "printnpnum{${1:arg1}}"
+    },
+    "printpstart": {},
+    "printstanza": {},
+    "printsymlineendnotearea{}": {
+      "snippet": "printsymlineendnotearea{${1:arg1}}"
+    },
+    "printsymlinefootnotearea{}": {
+      "snippet": "printsymlinefootnotearea{${1:arg1}}"
+    },
+    "printXafternumber{}": {
+      "snippet": "printXafternumber{${1:arg1}}"
+    },
+    "printXbeforenumber{}": {
+      "snippet": "printXbeforenumber{${1:arg1}}"
+    },
+    "pstartnumtrue": {},
+    "pstartnumtruefalse": {},
+    "rbracket": {},
+    "Relax": {},
+    "removehboxes": {},
+    "resetlinenumannotation": {},
+    "rightctab{}{}": {
+      "snippet": "rightctab{${1:arg1}}{${2:arg2}}"
+    },
+    "rightlinenumannotation": {},
+    "rightlinenumR": {},
+    "rightltab{}{}": {
+      "snippet": "rightltab{${1:arg1}}{${2:arg2}}"
+    },
+    "rightpstartnum": {},
+    "rightrtab{}{}": {
+      "snippet": "rightrtab{${1:arg1}}{${2:arg2}}"
+    },
+    "rigidbalance{}{}{}": {
+      "snippet": "rigidbalance{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "rigidbalanceX{}{}{}": {
+      "snippet": "rigidbalanceX{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "rtab{}": {
+      "snippet": "rtab{${1:arg1}}"
+    },
+    "rtabtext{}": {
+      "snippet": "rtabtext{${1:arg1}}"
+    },
+    "sameparallelpagenumberfalse": {},
+    "sameparallelpagenumbertrue": {},
+    "sethangindentX{}": {
+      "snippet": "sethangindentX{${1:arg1}}"
+    },
+    "setistwofollowinglines{}{}{}{}": {
+      "snippet": "setistwofollowinglines{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "setmcellcenter{}": {
+      "snippet": "setmcellcenter{${1:arg1}}"
+    },
+    "setmcellleft{}": {
+      "snippet": "setmcellleft{${1:arg1}}"
+    },
+    "setmcellright{}": {
+      "snippet": "setmcellright{${1:arg1}}"
+    },
+    "setmrowcenter{}": {
+      "snippet": "setmrowcenter{${1:arg1}}"
+    },
+    "setmrowleft{}": {
+      "snippet": "setmrowleft{${1:arg1}}"
+    },
+    "setmrowright{}": {
+      "snippet": "setmrowright{${1:arg1}}"
+    },
+    "setparindentX{}": {
+      "snippet": "setparindentX{${1:arg1}}"
+    },
+    "setprintendlines{}{}{}{}{}{}": {
+      "snippet": "setprintendlines{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "setprintlines{}{}{}{}{}{}": {
+      "snippet": "setprintlines{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "settcellcenter{}": {
+      "snippet": "settcellcenter{${1:arg1}}"
+    },
+    "settcellleft{}": {
+      "snippet": "settcellleft{${1:arg1}}"
+    },
+    "settcellright{}": {
+      "snippet": "settcellright{${1:arg1}}"
+    },
+    "settrowcenter{}": {
+      "snippet": "settrowcenter{${1:arg1}}"
+    },
+    "settrowleft{}": {
+      "snippet": "settrowleft{${1:arg1}}"
+    },
+    "settrowright{}": {
+      "snippet": "settrowright{${1:arg1}}"
+    },
+    "splitoff": {},
+    "sublinenumrep{}": {
+      "snippet": "sublinenumrep{${1:arg}}"
+    },
+    "sublockdisp{}": {
+      "snippet": "sublockdisp{${1:arg1}}"
+    },
+    "tabHilfbox": {},
+    "tabhilfbox": {},
+    "theabsline": {},
+    "theaddcolcount": {},
+    "theedtext": {},
+    "theendpageline": {},
+    "thefirstlinenum": {},
+    "thefirstsublinenum": {},
+    "thelabidx": {},
+    "theline": {},
+    "thelinenumincrement": {},
+    "thepageline": {},
+    "thepstartL": {},
+    "thepstartR": {},
+    "thestanzaindentsrepetition": {},
+    "thestartpageline": {},
+    "thestartstanzaindentsrepetition": {},
+    "thesubline": {},
+    "thesublinenumincrement": {},
+    "threecolfootfmt{}{}{}{}": {
+      "snippet": "threecolfootfmt{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "threecolfootfmtX{}{}": {
+      "snippet": "threecolfootfmtX{${1:series}}{${2:text}}"
+    },
+    "threecolfootgroup{}": {
+      "snippet": "threecolfootgroup{${1:arg1}}"
+    },
+    "threecolfootgroupX{}": {
+      "snippet": "threecolfootgroupX{${1:arg1}}"
+    },
+    "threecolfootsetup{}": {
+      "snippet": "threecolfootsetup{${1:arg1}}"
+    },
+    "threecolfootsetupX{}": {
+      "snippet": "threecolfootsetupX{${1:arg1}}"
+    },
+    "threecolvfootnote{}{}": {
+      "snippet": "threecolvfootnote{${1:series}}{${2:text}}"
+    },
+    "threecolvfootnoteX{}{}": {
+      "snippet": "threecolvfootnoteX{${1:series}}{${2:text}}"
+    },
+    "twocolfootfmt{}{}{}{}": {
+      "snippet": "twocolfootfmt{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "twocolfootfmtX{}{}": {
+      "snippet": "twocolfootfmtX{${1:series}}{${2:text}}"
+    },
+    "twocolfootgroup{}": {
+      "snippet": "twocolfootgroup{${1:arg1}}"
+    },
+    "twocolfootgroupX{}": {
+      "snippet": "twocolfootgroupX{${1:arg1}}"
+    },
+    "twocolfootsetup{}": {
+      "snippet": "twocolfootsetup{${1:arg1}}"
+    },
+    "twocolfootsetupX{}": {
+      "snippet": "twocolfootsetupX{${1:arg1}}"
+    },
+    "twocolvfootnote{}{}": {
+      "snippet": "twocolvfootnote{${1:series}}{${2:text}}"
+    },
+    "twocolvfootnoteX{}{}": {
+      "snippet": "twocolvfootnoteX{${1:series}}{${2:text}}"
+    },
+    "unvxhX{}{}": {
+      "snippet": "unvxhX{${1:arg1}}{${2:arg2}}"
+    },
+    "vAfootnote": {},
+    "variab": {},
+    "vbfnoteX{}{}{}{}": {
+      "snippet": "vbfnoteX{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "vBfootnote": {},
+    "vCfootnote": {},
+    "vDfootnote": {},
+    "vEfootnote": {},
+    "vnumfootnoteX{}{}{}": {
+      "snippet": "vnumfootnoteX{${1:series}}{${2:text}}{${3:mark}}"
+    },
+    "widthliketwocolumnsfalse": {},
+    "widthliketwocolumnstrue": {},
+    "xabslineref{}": {
+      "snippet": "xabslineref{${1:arg1}}"
+    },
+    "xedindex": {},
+    "xedtext{}{}": {
+      "snippet": "xedtext{${1:arg1}}{${2:arg2}}"
+    },
+    "Xendstorelineinfo{}{}": {
+      "snippet": "Xendstorelineinfo{${1:spec}}{${2:series}}"
+    },
+    "Xendwraplemma": {},
+    "Xinsertparafootsep{}": {
+      "snippet": "Xinsertparafootsep{${1:arg}}"
+    },
+    "Xledsetnormalparstuff{}": {
+      "snippet": "Xledsetnormalparstuff{${1:arg}}"
+    },
+    "Xrigidbalance{}{}{}": {
+      "snippet": "Xrigidbalance{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "Xsethangindent{}": {
+      "snippet": "Xsethangindent{${1:arg}}"
+    },
+    "Xsetparindent{}": {
+      "snippet": "Xsetparindent{${1:arg1}}"
+    },
+    "Xstorelineinfo{}{}": {
+      "snippet": "Xstorelineinfo{${1:arg1}}{${2:arg2}}"
+    },
+    "Xunvxh{}{}": {
+      "snippet": "Xunvxh{${1:arg1}}{${2:arg2}}"
+    },
+    "footnormalX{}": {
+      "snippet": "footnormalX{${1:arg}}",
+      "option": "eledmac-compat"
+    },
+    "footparagraphX{}": {
+      "snippet": "footparagraphX{${1:arg}}",
+      "option": "eledmac-compat"
+    },
+    "foottwocolX{}": {
+      "snippet": "foottwocolX{${1:arg}}",
+      "option": "eledmac-compat"
+    },
+    "footthreecolX{}": {
+      "snippet": "footthreecolX{${1:arg}}",
+      "option": "eledmac-compat"
+    },
+    "footnormal{}": {
+      "snippet": "footnormal{${1:arg}}",
+      "option": "eledmac-compat"
+    },
+    "footparagraph{}": {
+      "snippet": "footparagraph{${1:arg}}",
+      "option": "eledmac-compat"
+    },
+    "foottwocol{}": {
+      "snippet": "foottwocol{${1:arg}}",
+      "option": "eledmac-compat"
+    },
+    "footthreecol{}": {
+      "snippet": "footthreecol{${1:arg}}",
+      "option": "eledmac-compat"
+    },
+    "hsizetwocol": {
+      "option": "eledmac-compat"
+    },
+    "hsizethreecol": {
+      "option": "eledmac-compat"
+    },
+    "bhookXnote": {
+      "option": "eledmac-compat"
+    },
+    "boxsymlinenum": {
+      "option": "eledmac-compat"
+    },
+    "symlinenum": {
+      "option": "eledmac-compat"
+    },
+    "beforenumberinfootnote": {
+      "option": "eledmac-compat"
+    },
+    "afternumberinfootnote": {
+      "option": "eledmac-compat"
+    },
+    "beforeXsymlinenum": {
+      "option": "eledmac-compat"
+    },
+    "afterXsymlinenum": {
+      "option": "eledmac-compat"
+    },
+    "inplaceofnumber": {
+      "option": "eledmac-compat"
+    },
+    "lemmaseparator": {
+      "option": "eledmac-compat"
+    },
+    "afterlemmaseparator": {
+      "option": "eledmac-compat"
+    },
+    "beforelemmaseparator": {
+      "option": "eledmac-compat"
+    },
+    "inplaceoflemmaseparator": {
+      "option": "eledmac-compat"
+    },
+    "txtbeforeXnotes": {
+      "option": "eledmac-compat"
+    },
+    "afterXrule": {
+      "option": "eledmac-compat"
+    },
+    "numberonlyfirstinline": {
+      "option": "eledmac-compat"
+    },
+    "numberonlyfirstintwolines": {
+      "option": "eledmac-compat"
+    },
+    "nonumberinfootnote": {
+      "option": "eledmac-compat"
+    },
+    "pstartinfootnote": {
+      "option": "eledmac-compat"
+    },
+    "pstartinfootnoteeverytime": {
+      "option": "eledmac-compat"
+    },
+    "onlyXpstart": {
+      "option": "eledmac-compat"
+    },
+    "Xnonumberinfootnote": {
+      "option": "eledmac-compat"
+    },
+    "nonbreakableafternumber": {
+      "option": "eledmac-compat"
+    },
+    "maxhXnotes": {
+      "option": "eledmac-compat"
+    },
+    "beforeXnotes": {
+      "option": "eledmac-compat"
+    },
+    "boxlinenum": {
+      "option": "eledmac-compat"
+    },
+    "boxlinenumalign": {
+      "option": "eledmac-compat"
+    },
+    "boxstartlinenum": {
+      "option": "eledmac-compat"
+    },
+    "boxendlinenum": {
+      "option": "eledmac-compat"
+    },
+    "twolines": {
+      "option": "eledmac-compat"
+    },
+    "morethantwolines": {
+      "option": "eledmac-compat"
+    },
+    "twolinesbutnotmore": {
+      "option": "eledmac-compat"
+    },
+    "twolinesonlyinsamepage": {
+      "option": "eledmac-compat"
+    },
+    "notesXwidthliketwocolumns": {
+      "option": "eledmac-compat"
+    },
+    "parafootsep{}": {
+      "snippet": "parafootsep{${1:arg}}",
+      "option": "eledmac-compat"
+    },
+    "afternote{}": {
+      "snippet": "afternote{${1:arg}}",
+      "option": "eledmac-compat"
+    },
+    "XendXtwolines": {
+      "option": "eledmac-compat"
+    },
+    "XendXmorethantwolines": {
+      "option": "eledmac-compat"
+    },
+    "bhookXendnote": {
+      "option": "eledmac-compat"
+    },
+    "boxXendlinenum": {
+      "option": "eledmac-compat"
+    },
+    "boxXendlinenumalign": {
+      "option": "eledmac-compat"
+    },
+    "boxXendstartlinenum": {
+      "option": "eledmac-compat"
+    },
+    "boxXendendlinenum": {
+      "option": "eledmac-compat"
+    },
+    "XendXlemmaseparator": {
+      "option": "eledmac-compat"
+    },
+    "XendXbeforelemmaseparator": {
+      "option": "eledmac-compat"
+    },
+    "XendXafterlemmaseparator": {
+      "option": "eledmac-compat"
+    },
+    "XendXinplaceoflemmaseparator": {
+      "option": "eledmac-compat"
+    },
+    "lineref": {
+      "option": "eledmac-compat"
+    }
+  },
+  "envs": {
+    "ledgroup": {},
+    "ledgroupsized{}": {
+      "name": "ledgroupsized",
+      "snippet": "{${1:width}}"
+    },
+    "ledgroupsized[]{}": {
+      "name": "ledgroupsized",
+      "snippet": "[${2:pos}]{${1:width}}"
+    },
+    "edarrayl": {},
+    "edarrayc": {},
+    "edarrayr": {},
+    "edtabularl": {},
+    "edtabularc": {},
+    "edtabularr": {}
+  },
+  "options": [
+    "series={${1:A,B,C,D,and/or E}}",
+    "noeledsec",
+    "nocritical",
+    "nofamiliar",
+    "noledgroup",
+    "noend",
+    "noquotation",
+    "final",
+    "draft",
+    "parapparatus",
+    "nopbinverse",
+    "widthliketwocolumns",
+    "continuousnumberingwithcolumns",
+    "xindy",
+    "xindy+hyperref",
+    "eledmac-compat",
+    "nopenalties",
+    "auxdir=${1:folder}",
+    "swcaseinsensitive",
+    "noresetlinenumannotation",
+    "onlyonerule",
+    "antilabe"
+  ],
+  "keyvals": [
+    [
+      "fulllines",
+      "nonum",
+      "nosep",
+      "linerangesep=${1:separator}"
+    ],
+    [
+      "fulllines",
+      "nonum",
+      "nosep",
+      "linerangesep=${1:separator}",
+      "noprefix",
+      "prefixmore"
+    ]
+  ]
+}

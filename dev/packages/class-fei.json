@@ -1,0 +1,637 @@
+{
+  "includes": {
+    "kvoptions": [],
+    "newtxtext": [],
+    "class-memoir": [],
+    "inputenc": [],
+    "fontenc": [],
+    "microtype": [],
+    "babel": [],
+    "csquotes": [],
+    "indentfirst": [],
+    "mathtools": [],
+    "lmodern": [],
+    "icomma": [],
+    "graphicx": [],
+    "morewrites": [],
+    "algorithm2e": [],
+    "amsthm": [],
+    "thmtools": [],
+    "enumitem": [],
+    "pdfpages": [],
+    "ifthen": [],
+    "imakeidx": [],
+    "pdfx": [],
+    "biblatex": [],
+    "uarial": [
+      "font=arial"
+    ],
+    "arimo": [
+      "font=arimo"
+    ],
+    "glossaries-extra": [
+      "symbols",
+      "acronym",
+      "record",
+      "abbr-shortcuts"
+    ],
+    "glossaries-extra-bib2gls": [
+      "record"
+    ],
+    "xpatch": []
+  },
+  "macros": {
+    "GlsSetXdyLanguage{}": {
+      "snippet": "GlsSetXdyLanguage{${1:language}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsSetXdyLanguage[]{}": {
+      "snippet": "GlsSetXdyLanguage[${2:glossary type}]{${1:language}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsSetXdyCodePage{}": {
+      "snippet": "GlsSetXdyCodePage{${1:code}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsAddXdyCounters{}": {
+      "snippet": "GlsAddXdyCounters{${1:counter list}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsAddXdyAttribute{}": {
+      "snippet": "GlsAddXdyAttribute{${1:name}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsAddXdyLocation{}{}": {
+      "snippet": "GlsAddXdyLocation{${1:name}}{${2:definition}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsAddXdyLocation[]{}{}": {
+      "snippet": "GlsAddXdyLocation[${3:prefix-location}]{${1:name}}{${2:definition}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsSetXdyLocationClassOrder{}": {
+      "snippet": "GlsSetXdyLocationClassOrder{${1:location names}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsSetXdyMinRangeLength{}": {
+      "snippet": "GlsSetXdyMinRangeLength{${1:integer}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsSetXdyFirstLetterAfterDigits{}": {
+      "snippet": "GlsSetXdyFirstLetterAfterDigits{${1:letter}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsSetXdyNumberGroupOrder{}": {
+      "snippet": "GlsSetXdyNumberGroupOrder{${1:relative location}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsAddLetterGroup{}{}": {
+      "snippet": "GlsAddLetterGroup{${1:arg1}}{${2:arg2}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsAddSortRule{}{}": {
+      "snippet": "GlsAddSortRule{${1:arg1}}{${2:arg2}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsAddXdyAlphabet{}{}": {
+      "snippet": "GlsAddXdyAlphabet{${1:name}}{${2:definition}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsAddXdyStyle{}": {
+      "snippet": "GlsAddXdyStyle{${1:xindy style}}",
+      "option": "abbr-shortcuts"
+    },
+    "GlsSetXdyStyles{}": {
+      "snippet": "GlsSetXdyStyles{${1:xindy styles}}",
+      "option": "abbr-shortcuts"
+    },
+    "printsymbols": {
+      "option": "symbols"
+    },
+    "printsymbols[]": {
+      "snippet": "printsymbols[${1:options}]",
+      "option": "symbols"
+    },
+    "glsxtrnewsymbol{}{}": {
+      "snippet": "glsxtrnewsymbol{${1:label}}{${2:symbol}}",
+      "option": "symbols"
+    },
+    "glsxtrnewsymbol[]{}{}": {
+      "snippet": "glsxtrnewsymbol[${3:options}]{${1:label}}{${2:symbol}}",
+      "option": "symbols"
+    },
+    "printunsrtsymbols": {
+      "option": "symbols"
+    },
+    "printunsrtsymbols[]": {
+      "snippet": "printunsrtsymbols[${1:options}]",
+      "option": "symbols"
+    },
+    "printacronyms": {
+      "option": "acronym"
+    },
+    "printacronyms[]": {
+      "snippet": "printacronyms[${1:options}]",
+      "option": "acronym"
+    },
+    "printunsrtacronyms": {
+      "option": "acronym"
+    },
+    "printunsrtacronyms[]": {
+      "snippet": "printunsrtacronyms[${1:options}]",
+      "option": "acronym"
+    },
+    "newabbr{}{}{}": {
+      "snippet": "newabbr{${1:label}}{${2:short}}{${3:long}}",
+      "option": "abbr-shortcuts"
+    },
+    "newabbr[]{}{}{}": {
+      "snippet": "newabbr[${4:options}]{${1:label}}{${2:short}}{${3:long}}",
+      "option": "abbr-shortcuts"
+    },
+    "advisor{}": {
+      "snippet": "advisor{${1:name}}"
+    },
+    "anexos": {},
+    "cftdesenhoaftersnum": {},
+    "cftdesenhoname": {},
+    "cftdiagramaaftersnum": {},
+    "cftdiagramaname": {},
+    "cftesquemaaftersnum": {},
+    "cftesquemaname": {},
+    "cftfluxogramaaftersnum": {},
+    "cftfluxogramaname": {},
+    "cftfotografiaaftersnum": {},
+    "cftfotografianame": {},
+    "cftgraficoaftersnum": {},
+    "cftgraficoname": {},
+    "cftmapaaftersnum": {},
+    "cftmapaname": {},
+    "cftorganogramaaftersnum": {},
+    "cftorganogramaname": {},
+    "cftplantaaftersnum": {},
+    "cftplantaname": {},
+    "cftquadroaftersnum": {},
+    "cftquadroname": {},
+    "cftretratoaftersnum": {},
+    "cftretratoname": {},
+    "cidade{}": {
+      "snippet": "cidade{${1:cidade}}"
+    },
+    "citefloat{}": {
+      "snippet": "citefloat{${1:bibid}}"
+    },
+    "citeonline{}": {
+      "snippet": "citeonline{${1:bibid}}"
+    },
+    "curso{}": {
+      "snippet": "curso{${1:curso}}"
+    },
+    "dedicatoria{}": {
+      "snippet": "dedicatoria{${1:text}}"
+    },
+    "desenhoname": {},
+    "diagramaname": {},
+    "epig{}{}": {
+      "snippet": "epig{${1:citacao}}{${2:Autor}}"
+    },
+    "esquemaname": {},
+    "fichacatalografica": {},
+    "fluxogramaname": {},
+    "folhadeaprovacao": {},
+    "fotografianame": {},
+    "graficoname": {},
+    "instituicao{}": {
+      "snippet": "instituicao{${1:instituição}}"
+    },
+    "keywords{}": {
+      "snippet": "keywords{${1:keywords}}"
+    },
+    "mapaname": {},
+    "oldlistofalgorithms": {},
+    "oldnumberline": {},
+    "oldprintbibliography": {},
+    "oldprintindex": {},
+    "organogramaname": {},
+    "palavraschave{}": {
+      "snippet": "palavraschave{${1:text}}"
+    },
+    "plantaname": {},
+    "quadroname": {},
+    "reformchapapp": {},
+    "retratoname": {},
+    "smallcaption{}": {
+      "snippet": "smallcaption{${1:text}}"
+    },
+    "subtitulo{}": {
+      "snippet": "subtitulo{${1:text}}"
+    },
+    "tocnumwidth": {},
+    "ifglossaries": {},
+    "glossariestrue": {},
+    "glossariesfalse": {},
+    "ifsublist": {},
+    "sublisttrue": {},
+    "sublistfalse": {},
+    "ifdeposito": {},
+    "depositotrue": {},
+    "depositofalse": {},
+    "ifnumeric": {},
+    "numerictrue": {},
+    "numericfalse": {},
+    "ifoneside": {},
+    "onesidetrue": {},
+    "onesidefalse": {},
+    "ifpdfa": {},
+    "pdfatrue": {},
+    "pdfafalse": {},
+    "DH": {},
+    "dh": {},
+    "dj": {},
+    "DJ": {},
+    "guillemetleft": {},
+    "guillemetright": {},
+    "guillemotleft": {},
+    "guillemotright": {},
+    "guilsinglleft": {},
+    "guilsinglright": {},
+    "Hwithstroke": {},
+    "hwithstroke": {},
+    "k{}": {
+      "snippet": "k{${1:arg}}"
+    },
+    "NG": {},
+    "ng": {},
+    "quotedblbase": {},
+    "quotesinglbase": {},
+    "textogonekcentered{}": {
+      "snippet": "textogonekcentered{${1:arg}}"
+    },
+    "textquotedbl": {},
+    "th": {},
+    "TH": {},
+    "captionsenglish": {},
+    "dateenglish": {},
+    "extrasenglish": {},
+    "noextrasenglish": {},
+    "englishhyphenmins": {},
+    "britishhyphenmins": {},
+    "americanhyphenmins": {},
+    "prefacename": {},
+    "bibname": {},
+    "chaptername": {},
+    "enclname": {},
+    "ccname": {},
+    "headtoname": {},
+    "seename": {},
+    "alsoname": {},
+    "proofname": {},
+    "glossaryname": {},
+    "captionsbrazil": {},
+    "datebrazil": {},
+    "extrasbrazil": {},
+    "noextrasbrazil": {},
+    "ord": {},
+    "orda": {},
+    "ro": {},
+    "ra": {},
+    "Entrada{}": {
+      "snippet": "Entrada{${1:Entrada}}"
+    },
+    "Saida{}": {
+      "snippet": "Saida{${1:Saída}}"
+    },
+    "Dados{}": {
+      "snippet": "Dados{${1:Dados}}"
+    },
+    "Resultado{}": {
+      "snippet": "Resultado{${1:Resultado}}"
+    },
+    "Ate": {},
+    "KwRetorna{}": {
+      "snippet": "KwRetorna{${1:val}}"
+    },
+    "Retorna{}": {
+      "snippet": "Retorna{${1:val}}"
+    },
+    "Inicio{}": {
+      "snippet": "Inicio{${1:inside block}}"
+    },
+    "Repita{}{}": {
+      "snippet": "Repita{${1:stop condition}}{${2:text loop}}"
+    },
+    "lRepita{}{}": {
+      "snippet": "lRepita{${1:stop condition}}{${2:line of the loop}}"
+    },
+    "eSe{}{}{}": {
+      "snippet": "eSe{${1:condition}}{${2:then block}}{${3:else block}}"
+    },
+    "Se{}{}": {
+      "snippet": "Se{${1:condition}}{${2:then block}}"
+    },
+    "uSe{}{}": {
+      "snippet": "uSe{${1:condition}}{${2:then block without end}}"
+    },
+    "lSe{}{}": {
+      "snippet": "lSe{${1:condition}}{${2:then’s line text}}"
+    },
+    "Senao{}": {
+      "snippet": "Senao{${1:else block}}"
+    },
+    "uSenao{}": {
+      "snippet": "uSenao{${1:else block without else}}"
+    },
+    "lSenao{}": {
+      "snippet": "lSenao{${1:else’s line text}}"
+    },
+    "SenaoSe{}{}": {
+      "snippet": "SenaoSe{${1:condition}}{${2:elseif block}}"
+    },
+    "uSenaoSe{}{}": {
+      "snippet": "uSenaoSe{${1:condition}}{${2:elseif block without end}}"
+    },
+    "lSenaoSe{}{}": {
+      "snippet": "lSenaoSe{${1:condition}}{${2:elseif’s line text}}"
+    },
+    "Selec{}{}": {
+      "snippet": "Selec{${1:condition}}{${2:switch block}}"
+    },
+    "Caso{}{}": {
+      "snippet": "Caso{${1:a case}}{${2:case block}}"
+    },
+    "uCaso{}{}": {
+      "snippet": "uCaso{${1:a case}}{${2:case block without end}}"
+    },
+    "lCaso{}{}": {
+      "snippet": "lCaso{${1:a case}}{${2:case’s line}}"
+    },
+    "Outro{}": {
+      "snippet": "Outro{${1:otherwise block}}"
+    },
+    "lOutro{}": {
+      "snippet": "lOutro{${1:otherwise’s line}}"
+    },
+    "Para{}{}": {
+      "snippet": "Para{${1:condition}}{${2:text loop}}"
+    },
+    "lPara{}{}": {
+      "snippet": "lPara{${1:condition}}{${2:line text loop}}"
+    },
+    "ParaPar{}{}": {
+      "snippet": "ParaPar{${1:condition}}{${2:text loop}}"
+    },
+    "lParaPar{}{}": {
+      "snippet": "lParaPar{${1:condition}}{${2:line text loop}}"
+    },
+    "ParaCada{}{}": {
+      "snippet": "ParaCada{${1:condition}}{${2:text loop}}"
+    },
+    "lParaCada{}{}": {
+      "snippet": "lParaCada{${1:condition}}{${2:line text loop}}"
+    },
+    "ParaTodo{}{}": {
+      "snippet": "ParaTodo{${1:condition}}{${2:text loop}}"
+    },
+    "lParaTodo{}{}": {
+      "snippet": "lParaTodo{${1:condition}}{${2:line text loop}}"
+    },
+    "Enqto{}{}": {
+      "snippet": "Enqto{${1:stop condition}}{${2:text loop}}"
+    },
+    "lEnqto{}{}": {
+      "snippet": "lEnqto{${1:stop condition}}{${2:text loop}}"
+    },
+    "origbibsetup": {},
+    "FirstWordUpper{}": {
+      "snippet": "FirstWordUpper{${1:text}}"
+    },
+    "FirstWordSC{}": {
+      "snippet": "FirstWordSC{${1:text}}"
+    },
+    "FirstWordLCSC{}": {
+      "snippet": "FirstWordLCSC{${1:text}}"
+    },
+    "traceparam{}": {
+      "snippet": "traceparam{${1:arg}}"
+    },
+    "paramL": {},
+    "traceparamA": {},
+    "traceparamB": {},
+    "traceparamS": {},
+    "traceparamC{}": {
+      "snippet": "traceparamC{${1:arg}}"
+    },
+    "traceparamD{}": {
+      "snippet": "traceparamD{${1:arg}}"
+    },
+    "traceparamE": {},
+    "smartuppercase{}": {
+      "snippet": "smartuppercase{${1:text}}"
+    },
+    "smartlowercase{}": {
+      "snippet": "smartlowercase{${1:text}}"
+    },
+    "smartlcsc{}": {
+      "snippet": "smartlcsc{${1:text}}"
+    },
+    "smartsc{}": {
+      "snippet": "smartsc{${1:text}}"
+    },
+    "UpperOrSC{}": {
+      "snippet": "UpperOrSC{${1:text}}"
+    },
+    "NormalOrSC{}": {
+      "snippet": "NormalOrSC{${1:text}}"
+    },
+    "iffieldregex{}{}{}{}": {
+      "snippet": "iffieldregex{${1:field}}{${2:regex}}{${3:true}}{${4:false}}"
+    },
+    "iffieldendswithpunct{}{}{}": {
+      "snippet": "iffieldendswithpunct{${1:field}}{${2:true}}{${3:false}}"
+    },
+    "IfGivenIsInitial{}{}": {
+      "snippet": "IfGivenIsInitial{${1:arg1}}{${2:arg2}}"
+    },
+    "multinamedelimorig": {},
+    "finalnamedelimorig": {},
+    "abntnum{}": {
+      "snippet": "abntnum{${1:number}}"
+    },
+    "bibnameunderscore": {},
+    "nopunctdash": {},
+    "UpperOrSCCite{}": {
+      "snippet": "UpperOrSCCite{${1:text}}"
+    },
+    "NormalOrSCCite{}": {
+      "snippet": "NormalOrSCCite{${1:text}}"
+    },
+    "IfGivenIsInit{}{}": {
+      "snippet": "IfGivenIsInit{${1:arg1}}{${2:arg2}}"
+    },
+    "origmkbibnamefamily": {},
+    "origmkbibnamegiven": {},
+    "origmkbibnameprefix": {},
+    "origmkbibnamesuffix": {},
+    "FirstWord{}": {
+      "snippet": "FirstWord{${1:text}}"
+    },
+    "addapud": {},
+    "apud{}{}": {
+      "snippet": "apud{${1:bibid}}{${2:bibid}}"
+    },
+    "apud[]{}[]{}": {
+      "snippet": "apud[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+    },
+    "apud[][]{}[][]{}": {
+      "snippet": "apud[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+    },
+    "plaincite[][]{}": {
+      "snippet": "plaincite[${2:prenote}][${3:postnote}]{${1:bibid}}"
+    },
+    "plaincite[]{}": {
+      "snippet": "plaincite[${2:postnote}]{${1:bibid}}"
+    },
+    "plaincite{}": {
+      "snippet": "plaincite{${1:bibid}}"
+    },
+    "citelastname[][]{}": {
+      "snippet": "citelastname[${2:prenote}][${3:postnote}]{${1:bibid}}"
+    },
+    "citelastname[]{}": {
+      "snippet": "citelastname[${2:postnote}]{${1:bibid}}"
+    },
+    "citelastname{}": {
+      "snippet": "citelastname{${1:bibid}}"
+    },
+    "textapud{}{}": {
+      "snippet": "textapud{${1:bibid}}{${2:bibid}}"
+    },
+    "textapud{}[]{}": {
+      "snippet": "textapud{${1:bibid}}[${2:post}]{${3:bibid}}"
+    },
+    "textapud[]{}{}": {
+      "snippet": "textapud[${3:post}]{${1:bibid}}{${2:bibid}}"
+    },
+    "textapud[]{}[]{}": {
+      "snippet": "textapud[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+    },
+    "textapud[][]{}[][]{}": {
+      "snippet": "textapud[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+    },
+    "citeyearorsh*[][]{}": {
+      "snippet": "citeyearorsh*[${2:prenote}][${3:postnote}]{${1:bibid}}"
+    },
+    "citeyearorsh*[]{}": {
+      "snippet": "citeyearorsh*[${2:postnote}]{${1:bibid}}"
+    },
+    "citeyearorsh*{}": {
+      "snippet": "citeyearorsh*{${1:bibid}}"
+    }
+  },
+  "envs": {
+    "agradecimentos": {},
+    "axioma": {},
+    "axioma[]": {
+      "name": "axioma",
+      "snippet": "[${1:heading}]"
+    },
+    "conjectura": {},
+    "conjectura[]": {
+      "name": "conjectura",
+      "snippet": "[${1:heading}]"
+    },
+    "corolario": {},
+    "corolario[]": {
+      "name": "corolario",
+      "snippet": "[${1:heading}]"
+    },
+    "definicao": {},
+    "definicao[]": {
+      "name": "definicao",
+      "snippet": "[${1:heading}]"
+    },
+    "desenho": {},
+    "diagrama": {},
+    "epigrafe": {},
+    "esquema": {},
+    "exemplo": {},
+    "exemplo[]": {
+      "name": "exemplo",
+      "snippet": "[${1:heading}]"
+    },
+    "fluxograma": {},
+    "folhaderosto": {},
+    "fotografia": {},
+    "grafico": {},
+    "hipotese": {},
+    "hipotese[]": {
+      "name": "hipotese",
+      "snippet": "[${1:heading}]"
+    },
+    "lema": {},
+    "lema[]": {
+      "name": "lema",
+      "snippet": "[${1:heading}]"
+    },
+    "mapa": {},
+    "organograma": {},
+    "paradoxo": {},
+    "paradoxo[]": {
+      "name": "paradoxo",
+      "snippet": "[${1:heading}]"
+    },
+    "planta": {},
+    "proposicao": {},
+    "proposicao[]": {
+      "name": "proposicao",
+      "snippet": "[${1:heading}]"
+    },
+    "prova": {},
+    "prova[]": {
+      "name": "prova",
+      "snippet": "[${1:heading}]"
+    },
+    "quadro": {},
+    "resumo": {},
+    "retrato": {},
+    "teorema": {},
+    "teorema[]": {
+      "name": "teorema",
+      "snippet": "[${1:heading}]"
+    }
+  },
+  "options": [
+    "font=",
+    "draft",
+    "final",
+    "symbols",
+    "acronym",
+    "record",
+    "abbr-shortcuts",
+    "sublist",
+    "deposito",
+    "numeric",
+    "oneside",
+    "twoside",
+    "backrefs",
+    "algo-as-figure",
+    "nopdfa",
+    "ittitles",
+    "scbib",
+    "nosl",
+    "nosn",
+    "noslsn",
+    "repeattitles",
+    "repeatfirstfields",
+    "repeatfields",
+    "usedashes",
+    "indent",
+    "extradate",
+    "extrayear",
+    "justify",
+    "pretty",
+    "citecount",
+    "sccite"
+  ],
+  "keyvals": []
+}

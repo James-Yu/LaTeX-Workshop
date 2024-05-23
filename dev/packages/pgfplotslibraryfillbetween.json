@@ -1,0 +1,50 @@
+{
+  "includes": {
+    "pgfplotslibrarydecorations.softclip": []
+  },
+  "macros": {
+    "pgfplotslibraryfillbetweenpreparecurrentlayer": {},
+    "tikzsegmentindex": {},
+    "tikzfillbetween[]{}": {
+      "snippet": "tikzfillbetween[${2:options}]{${1:draw style}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "tikzgetnamedpath{}": {
+      "snippet": "tikzgetnamedpath{${1:path name}}"
+    },
+    "tikznamecurrentpath{}": {
+      "snippet": "tikznamecurrentpath{${1:name}}"
+    },
+    "tikzpathintersectionsegments[]": {
+      "snippet": "tikzpathintersectionsegments[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "tikzsegmentlastindex": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "split",
+      "soft clip={${1:specification}}",
+      "soft clip first={${1:specification}}",
+      "soft clip second={${1:specification}}",
+      "every segment/.style={${1:TikZ keys}}",
+      "every odd segment/.style={${1:TikZ keys}}",
+      "every even segment/.style={${1:TikZ keys}}",
+      "every segment no ${1:<n>}/.style={${2:TikZ keys}}",
+      "every last segment/.style={${1:TikZ keys}}",
+      "of=${1:first} and ${2:second}",
+      "reverse=",
+      "on layer=${1:layer name}",
+      "inner moveto="
+    ],
+    [
+      "of=${1:first} and ${2:second}",
+      "sequence={${1:series spec}}",
+      "reverse"
+    ]
+  ]
+}

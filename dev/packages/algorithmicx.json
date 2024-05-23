@@ -1,0 +1,192 @@
+{
+  "includes": {
+    "ifthen": []
+  },
+  "macros": {
+    "State": {},
+    "Statex": {},
+    "BState": {},
+    "Comment{}": {
+      "snippet": "Comment{${1:text}}"
+    },
+    "algref{}{}": {
+      "snippet": "algref{${1:algorithm}}{${2:line}}"
+    },
+    "algstore{}": {
+      "snippet": "algstore{${1:savename}}"
+    },
+    "algstore*{}": {
+      "snippet": "algstore*{${1:savename}}"
+    },
+    "algrestore{}": {
+      "snippet": "algrestore{${1:savename}}"
+    },
+    "algrestore*{}": {
+      "snippet": "algrestore*{${1:savename}}"
+    },
+    "alglanguage{}": {
+      "snippet": "alglanguage{${1:layoutname}}"
+    },
+    "algnewcommand{}[][]{}": {
+      "snippet": "algnewcommand{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "algnewcommand{}[]{}": {
+      "snippet": "algnewcommand{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "algnewcommand{}{}": {
+      "snippet": "algnewcommand{${1:cmd}}{${2:def}}"
+    },
+    "algrenewcommand{}[][]{}": {
+      "snippet": "algrenewcommand{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "algrenewcommand{}[]{}": {
+      "snippet": "algrenewcommand{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "algrenewcommand{}{}": {
+      "snippet": "algrenewcommand{${1:cmd}}{${2:def}}"
+    },
+    "algrenewcommand[]{}[][]{}": {
+      "snippet": "algrenewcommand[${3:block}]{${1:cmd}}[${4:args}][${5:default}]{${2:def}}"
+    },
+    "algorithmiccomment{}": {
+      "snippet": "algorithmiccomment{${1:text}}"
+    },
+    "algorithmicindent": {},
+    "alglinenumber{}": {
+      "snippet": "alglinenumber{${1:num}}"
+    },
+    "algsetlanguage{}": {
+      "snippet": "algsetlanguage{${1:layoutname}}"
+    },
+    "algdeflanguage{}": {
+      "snippet": "algdeflanguage{${1:layoutname}}"
+    },
+    "algnewlanguage{}": {
+      "snippet": "algnewlanguage{${1:layoutname}}"
+    },
+    "algrenewcomment{}": {
+      "snippet": "algrenewcomment{${1:definition}}"
+    },
+    "algbreak": {},
+    "algblock[]{}{}": {
+      "snippet": "algblock[${3:block}]{${1:start}}{${2:end}}"
+    },
+    "algblockdefx[]{}{}[]{}[]{}": {
+      "snippet": "algblockdefx[${5:block}]{${1:start}}{${2:end}}[${6:start args}]{${3:start text}}[${7:end args}]{${4:end text}}"
+    },
+    "algblockdefx[]{}{}[][]{}[][]{}": {
+      "snippet": "algblockdefx[${5:block}]{${1:start}}{${2:end}}[${6:start args}][${7:default}]{${3:start text}}[${8:end args}][${9:default}]{${4:end text}}"
+    },
+    "algblockx[]{}{}[]{}[]{}": {
+      "snippet": "algblockx[${5:block}]{${1:start}}{${2:end}}[${6:start args}]{${3:start text}}[${7:end args}]{${4:end text}}"
+    },
+    "algblockx[]{}{}[][]{}[][]{}": {
+      "snippet": "algblockx[${5:block}]{${1:start}}{${2:end}}[${6:start args}][${7:default}]{${3:start text}}[${8:end args}][${9:default}]{${4:end text}}"
+    },
+    "algloop[]{}": {
+      "snippet": "algloop[${2:loop}]{${1:start}}"
+    },
+    "algloopdefx[]{}[][]{}": {
+      "snippet": "algloopdefx[${3:loop}]{${1:start}}[${4:start args}][${5:default}]{${2:start text}}"
+    },
+    "algcblock[]{}{}{}": {
+      "snippet": "algcblock[${4:new block}]{${1:old block}}{${2:continue}}{${3:end}}"
+    },
+    "algcblockdefx[]{}{}{}[]{}[]{}": {
+      "snippet": "algcblockdefx[${6:new block}]{${1:old block}}{${2:continue}}{${3:end}}[${7:continue args}]{${4:continue text}}[${8:end args}]{${5:end text}}"
+    },
+    "algcblockdefx[]{}{}{}[][]{}[][]{}": {
+      "snippet": "algcblockdefx[${6:new block}]{${1:old block}}{${2:continue}}{${3:end}}[${7:continue args}][${8:default}]{${4:continue text}}[${9:end args}][${10:default}]{${5:end text}}"
+    },
+    "algcblockx[]{}{}{}[][]{}[][]{}": {
+      "snippet": "algcblockx[${6:new block}]{${1:old block}}{${2:continue}}{${3:end}}[${7:continue args}][${8:default}]{${4:continue text}}[${9:end args}][${10:default}]{${5:end text}}"
+    },
+    "algcblockx[]{}{}{}[]{}[]{}": {
+      "snippet": "algcblockx[${6:new block}]{${1:old block}}{${2:continue}}{${3:end}}[${7:continue args}]{${4:continue text}}[${8:end args}]{${5:end text}}"
+    },
+    "algcloop[]{}{}": {
+      "snippet": "algcloop[${3:new loop}]{${1:old loop}}{${2:continue}}"
+    },
+    "algcloopdefx[]{}{}[]{}": {
+      "snippet": "algcloopdefx[${4:new loop}]{${1:old loop}}{${2:continue}}[${5:continue args}]{${3:continue text}}"
+    },
+    "algcloopdefx[]{}{}[][]{}": {
+      "snippet": "algcloopdefx[${4:new loop}]{${1:old loop}}{${2:continue}}[${5:continue args}][${6:default}]{${3:continue text}}"
+    },
+    "algcloopx[]{}{}[]{}": {
+      "snippet": "algcloopx[${4:new loop}]{${1:old loop}}{${2:continue}}[${5:continue args}]{${3:continue text}}"
+    },
+    "algcloopx[]{}{}[][]{}": {
+      "snippet": "algcloopx[${4:new loop}]{${1:old loop}}{${2:continue}}[${5:continue args}][${6:default}]{${3:continue text}}"
+    },
+    "algsetblock[]{}{}{}{}": {
+      "snippet": "algsetblock[${5:block}]{${1:start}}{${2:end}}{${3:lifetime}}{${4:indent}}"
+    },
+    "algsetblockdefx[]{}{}{}{}[][]{}[][]{}": {
+      "snippet": "algsetblockdefx[${7:block}]{${1:start}}{${2:end}}{${3:lifetime}}{${4:indent}}[${8:start args}][${9:default}]{${5:start text}}[${10:end args}][${11:default}]{${6:end text}}"
+    },
+    "algsetblockdefx[]{}{}{}{}[]{}[]{}": {
+      "snippet": "algsetblockdefx[${7:block}]{${1:start}}{${2:end}}{${3:lifetime}}{${4:indent}}[${8:start args}]{${5:start text}}[${9:end args}]{${6:end text}}"
+    },
+    "algsetblockx[]{}{}{}{}[]{}[]{}": {
+      "snippet": "algsetblockx[${7:block}]{${1:start}}{${2:end}}{${3:lifetime}}{${4:indent}}[${8:start args}]{${5:start text}}[${9:end args}]{${6:end text}}"
+    },
+    "algsetblockx[]{}{}{}{}[][]{}[][]{}": {
+      "snippet": "algsetblockx[${7:block}]{${1:start}}{${2:end}}{${3:lifetime}}{${4:indent}}[${8:start args}][${9:default}]{${5:start text}}[${10:end args}][${11:default}]{${6:end text}}"
+    },
+    "algsetcblock[]{}{}{}{}{}": {
+      "snippet": "algsetcblock[${6:new block}]{${1:old block}}{${2:continue}}{${3:end}}{${4:lifetime}}{${5:indent}}"
+    },
+    "algsetcblockdefx[]{}{}{}{}{}[]{}[]{}": {
+      "snippet": "algsetcblockdefx[${8:new block}]{${1:old block}}{${2:continue}}{${3:end}}{${4:lifetime}}{${5:indent}}[${9:continue args}]{${6:continue text}}[${10:end args}]{${7:end text}}"
+    },
+    "algsetcblockdefx[]{}{}{}{}{}[][]{}[][]{}": {
+      "snippet": "algsetcblockdefx[${8:new block}]{${1:old block}}{${2:continue}}{${3:end}}{${4:lifetime}}{${5:indent}}[${9:continue args}][${10:default}]{${6:continue text}}[${11:end args}][${12:default}]{${7:end text}}"
+    },
+    "algsetcblockx[]{}{}{}{}{}[]{}[]{}": {
+      "snippet": "algsetcblockx[${8:new block}]{${1:old block}}{${2:continue}}{${3:end}}{${4:lifetime}}{${5:indent}}[${9:continue args}]{${6:continue text}}[${10:end args}]{${7:end text}}"
+    },
+    "algsetcblockx[]{}{}{}{}{}[][]{}[][]{}": {
+      "snippet": "algsetcblockx[${8:new block}]{${1:old block}}{${2:continue}}{${3:end}}{${4:lifetime}}{${5:indent}}[${9:continue args}][${10:default}]{${6:continue text}}[${11:end args}][${12:default}]{${7:end text}}"
+    },
+    "algnotext{}": {
+      "snippet": "algnotext{${1:ending command}}"
+    },
+    "algnotext[]{}": {
+      "snippet": "algnotext[${2:block}]{${1:ending command}}"
+    },
+    "algdefaulttext{}": {
+      "snippet": "algdefaulttext{${1:command}}"
+    },
+    "algdefaulttext[]{}": {
+      "snippet": "algdefaulttext[${2:block}]{${1:command}}"
+    },
+    "algrenewtext{}{}": {
+      "snippet": "algrenewtext{${1:name}}{${2:definition}}"
+    },
+    "algrenewtext{}[]{}": {
+      "snippet": "algrenewtext{${1:name}}[${2:args}]{${3:definition}}"
+    },
+    "algtext{}{}": {
+      "snippet": "algtext{${1:name}}{${2:definition}}"
+    },
+    "algtext{}[]{}": {
+      "snippet": "algtext{${1:name}}[${2:args}]{${3:definition}}"
+    },
+    "algdef{}{}{}{}{}{}{}{}": {
+      "snippet": "algdef{${1:flags}}{${2:old block}}{${3:start}}{${4:end}}{${5:lifetime}}{${6:indent}}{${7:start text}}{${8:end text}}"
+    },
+    "algdef{}[]{}{}{}{}{}[][]{}[][]{}": {
+      "snippet": "algdef{${1:flags}}[${2:new block}]{${3:old block}}{${4:start}}{${5:end}}{${6:lifetime}}{${7:indent}}[${8:start args}][${9:default}]{${10:start text}}[${11:end args}][${12:default}]{${13:end text}}"
+    }
+  },
+  "envs": {
+    "algorithmic": {},
+    "algorithmic[]": {
+      "name": "algorithmic",
+      "snippet": "[${1:lines}]"
+    }
+  },
+  "options": [],
+  "keyvals": []
+}

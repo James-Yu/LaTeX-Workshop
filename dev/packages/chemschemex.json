@@ -1,0 +1,501 @@
+{
+  "includes": {
+    "xkeyval": [],
+    "etoolbox": [],
+    "xargs": [],
+    "xifthen": [],
+    "suffix": [],
+    "fancylabel": [],
+    "graphicx": [],
+    "tikz": [],
+    "tikzlibraryshapes.multipart": [],
+    "tikzlibrarydecorations": [],
+    "tikzlibrarydecorations.markings": [],
+    "tikzlibrarypositioning": []
+  },
+  "macros": {
+    "customstruct{}{}": {
+      "snippet": "customstruct{${1:caption}}{${2:object}}"
+    },
+    "customstruct[]{}{}": {
+      "snippet": "customstruct[${3:capt TikZ keys}]{${1:caption}}{${2:object}}"
+    },
+    "customstruct[][]{}{}": {
+      "snippet": "customstruct[${3:capt TikZ keys}][${4:obj TikZ keys}]{${1:caption}}{${2:object}}"
+    },
+    "CSXimage{}": {
+      "snippet": "CSXimage{${1:imagefile}}"
+    },
+    "CSXimage[]{}": {
+      "snippet": "CSXimage[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "struct{}": {
+      "snippet": "struct{${1:imagefile}}"
+    },
+    "struct[]{}": {
+      "snippet": "struct[${2:caption}]{${1:imagefile}}"
+    },
+    "struct[][]{}": {
+      "snippet": "struct[${2:caption}][${3:family}]{${1:imagefile}}"
+    },
+    "struct[][][]{}": {
+      "snippet": "struct[${2:caption}][${3:family}][${4:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "struct[][][][]{}": {
+      "snippet": "struct[${2:caption}][${3:family}][${4:options}][${5:capt TikZ keys}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "struct[][][][][]{}": {
+      "snippet": "struct[${2:caption}][${3:family}][${4:options}][${5:capt TikZ keys}][${6:obj TikZ keys}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "struct*{}": {
+      "snippet": "struct*{${1:imagefile}}"
+    },
+    "struct*[]{}": {
+      "snippet": "struct*[${2:caption}]{${1:imagefile}}"
+    },
+    "struct*[][]{}": {
+      "snippet": "struct*[${2:caption}][${3:family}]{${1:imagefile}}"
+    },
+    "struct*[][][]{}": {
+      "snippet": "struct*[${2:caption}][${3:family}][${4:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "struct*[][][][]{}": {
+      "snippet": "struct*[${2:caption}][${3:family}][${4:options}][${5:capt TikZ keys}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "struct*[][][][][]{}": {
+      "snippet": "struct*[${2:caption}][${3:family}][${4:options}][${5:capt TikZ keys}][${6:obj TikZ keys}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "structalt{}{}": {
+      "snippet": "structalt{${1:imagefile}}{${2:alt imagefile}}"
+    },
+    "structalt[]{}{}": {
+      "snippet": "structalt[${3:caption}]{${1:imagefile}}{${2:alt imagefile}}"
+    },
+    "structalt[][]{}{}": {
+      "snippet": "structalt[${3:caption}][${4:family}]{${1:imagefile}}{${2:alt imagefile}}"
+    },
+    "structalt[][][]{}{}": {
+      "snippet": "structalt[${3:caption}][${4:family}][${5:options}]{${1:imagefile}}{${2:alt imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "structalt[][][][]{}{}": {
+      "snippet": "structalt[${3:caption}][${4:family}][${5:options}][${6:capt TikZ keys}]{${1:imagefile}}{${2:alt imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "structalt[][][][][]{}{}": {
+      "snippet": "structalt[${3:caption}][${4:family}][${5:options}][${6:capt TikZ keys}][${7:obj TikZ keys}]{${1:imagefile}}{${2:alt imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "structalt*{}{}": {
+      "snippet": "structalt*{${1:imagefile}}{${2:alt imagefile}}"
+    },
+    "structalt*[]{}{}": {
+      "snippet": "structalt*[${3:caption}]{${1:imagefile}}{${2:alt imagefile}}"
+    },
+    "structalt*[][]{}{}": {
+      "snippet": "structalt*[${3:caption}][${4:family}]{${1:imagefile}}{${2:alt imagefile}}"
+    },
+    "structalt*[][][]{}{}": {
+      "snippet": "structalt*[${3:caption}][${4:family}][${5:options}]{${1:imagefile}}{${2:alt imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "structalt*[][][][]{}{}": {
+      "snippet": "structalt*[${3:caption}][${4:family}][${5:options}][${6:capt TikZ keys}]{${1:imagefile}}{${2:alt imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "structalt*[][][][][]{}{}": {
+      "snippet": "structalt*[${3:caption}][${4:family}][${5:options}][${6:capt TikZ keys}][${7:obj TikZ keys}]{${1:imagefile}}{${2:alt imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "newstruct{}{}{}{}": {
+      "snippet": "newstruct{${1:imagefile}}{${2:structname}}{${3:Structname}}{${4:abbr}}"
+    },
+    "newstruct[]{}{}{}{}": {
+      "snippet": "newstruct[${5:sublabels}]{${1:imagefile}}{${2:structname}}{${3:Structname}}{${4:abbr}}"
+    },
+    "Struct{}{}": {
+      "snippet": "Struct{${1:sublabels}}{${2:imagefile}}"
+    },
+    "Struct[]{}{}": {
+      "snippet": "Struct[${3:family}]{${1:sublabels}}{${2:imagefile}}"
+    },
+    "Struct[][]{}{}": {
+      "snippet": "Struct[${3:family}][${4:options}]{${1:sublabels}}{${2:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "Struct[][][]{}{}": {
+      "snippet": "Struct[${3:family}][${4:options}][${5:capt TikZ keys}]{${1:sublabels}}{${2:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "Struct[][][][]{}{}": {
+      "snippet": "Struct[${3:family}][${4:options}][${5:capt TikZ keys}][${6:obj TikZ keys}]{${1:sublabels}}{${2:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "Struct*{}{}": {
+      "snippet": "Struct*{${1:sublabels}}{${2:imagefile}}"
+    },
+    "Struct*[]{}{}": {
+      "snippet": "Struct*[${3:family}]{${1:sublabels}}{${2:imagefile}}"
+    },
+    "Struct*[][]{}{}": {
+      "snippet": "Struct*[${3:family}][${4:options}]{${1:sublabels}}{${2:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "Struct*[][][]{}{}": {
+      "snippet": "Struct*[${3:family}][${4:options}][${5:capt TikZ keys}]{${1:sublabels}}{${2:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "Struct*[][][][]{}{}": {
+      "snippet": "Struct*[${3:family}][${4:options}][${5:capt TikZ keys}][${6:obj TikZ keys}]{${1:sublabels}}{${2:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "Structalt{}{}{}": {
+      "snippet": "Structalt{${1:sublabels}}{${2:imagefile}}{${3:alt imagefile}}"
+    },
+    "Structalt[]{}{}{}": {
+      "snippet": "Structalt[${4:family}]{${1:sublabels}}{${2:imagefile}}{${3:alt imagefile}}"
+    },
+    "Structalt[][]{}{}{}": {
+      "snippet": "Structalt[${4:family}][${5:options}]{${1:sublabels}}{${2:imagefile}}{${3:alt imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "Structalt[][][]{}{}{}": {
+      "snippet": "Structalt[${4:family}][${5:options}][${6:capt TikZ keys}]{${1:sublabels}}{${2:imagefile}}{${3:alt imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "Structalt[][][][]{}{}{}": {
+      "snippet": "Structalt[${4:family}][${5:options}][${6:capt TikZ keys}][${7:obj TikZ keys}]{${1:sublabels}}{${2:imagefile}}{${3:alt imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "Structalt*{}{}{}": {
+      "snippet": "Structalt*{${1:sublabels}}{${2:imagefile}}{${3:alt imagefile}}"
+    },
+    "Structalt*[]{}{}{}": {
+      "snippet": "Structalt*[${4:family}]{${1:sublabels}}{${2:imagefile}}{${3:alt imagefile}}"
+    },
+    "Structalt*[][]{}{}{}": {
+      "snippet": "Structalt*[${4:family}][${5:options}]{${1:sublabels}}{${2:imagefile}}{${3:alt imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "Structalt*[][][]{}{}{}": {
+      "snippet": "Structalt*[${4:family}][${5:options}][${6:capt TikZ keys}]{${1:sublabels}}{${2:imagefile}}{${3:alt imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "Structalt*[][][][]{}{}{}": {
+      "snippet": "Structalt*[${4:family}][${5:options}][${6:capt TikZ keys}][${7:obj TikZ keys}]{${1:sublabels}}{${2:imagefile}}{${3:alt imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "structname{}": {
+      "snippet": "structname{${1:img}}"
+    },
+    "Structname{}": {
+      "snippet": "Structname{${1:img}}"
+    },
+    "structabbr{}": {
+      "snippet": "structabbr{${1:img}}"
+    },
+    "ChemschemeNextRow": {},
+    "ChemschemeNextRow[]": {
+      "snippet": "ChemschemeNextRow[${1:rowsep}]"
+    },
+    "CSXcommands{}": {
+      "snippet": "CSXcommands{${1:TikZ code}}"
+    },
+    "structref{}": {
+      "snippet": "structref{${1:img}}"
+    },
+    "structref[]{}": {
+      "snippet": "structref[${2:family}]{${1:img}}"
+    },
+    "structref*{}": {
+      "snippet": "structref*{${1:img}}"
+    },
+    "structref*[]{}": {
+      "snippet": "structref*[${2:family}]{${1:img}}"
+    },
+    "structsubref{}{}": {
+      "snippet": "structsubref{${1:img}}{${2:sublabels}}"
+    },
+    "structsubref[]{}{}": {
+      "snippet": "structsubref[${3:family}]{${1:img}}{${2:sublabels}}"
+    },
+    "structsubref*{}{}": {
+      "snippet": "structsubref*{${1:img}}{${2:sublabels}}"
+    },
+    "structsubref*[]{}{}": {
+      "snippet": "structsubref*[${3:family}]{${1:img}}{${2:sublabels}}"
+    },
+    "CSXstructref{}": {
+      "snippet": "CSXstructref{${1:text}}"
+    },
+    "customarrow{}{}{}": {
+      "snippet": "customarrow{${1:TikZ keys}}{${2:upper caption}}{${3:lower caption}}"
+    },
+    "customarrow[]{}{}{}": {
+      "snippet": "customarrow[${4:length}]{${1:TikZ keys}}{${2:upper caption}}{${3:lower caption}}"
+    },
+    "RightArrow{}{}": {
+      "snippet": "RightArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "RightArrow[]{}{}": {
+      "snippet": "RightArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftArrow{}{}": {
+      "snippet": "LeftArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftArrow[]{}{}": {
+      "snippet": "LeftArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftRightArrow{}{}": {
+      "snippet": "LeftRightArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftRightArrow[]{}{}": {
+      "snippet": "LeftRightArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "DoubleRightArrow{}{}": {
+      "snippet": "DoubleRightArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "DoubleRightArrow[]{}{}": {
+      "snippet": "DoubleRightArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "DoubleLeftArrow{}{}": {
+      "snippet": "DoubleLeftArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "DoubleLeftArrow[]{}{}": {
+      "snippet": "DoubleLeftArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "DoubleLeftRightArrow{}{}": {
+      "snippet": "DoubleLeftRightArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "DoubleLeftRightArrow[]{}{}": {
+      "snippet": "DoubleLeftRightArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "RightupHarpoon{}{}": {
+      "snippet": "RightupHarpoon{${1:upper caption}}{${2:lower caption}}"
+    },
+    "RightupHarpoon[]{}{}": {
+      "snippet": "RightupHarpoon[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "RightdownHarpoon{}{}": {
+      "snippet": "RightdownHarpoon{${1:upper caption}}{${2:lower caption}}"
+    },
+    "RightdownHarpoon[]{}{}": {
+      "snippet": "RightdownHarpoon[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftupHarpoon{}{}": {
+      "snippet": "LeftupHarpoon{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftupHarpoon[]{}{}": {
+      "snippet": "LeftupHarpoon[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftdownHarpoon{}{}": {
+      "snippet": "LeftdownHarpoon{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftdownHarpoon[]{}{}": {
+      "snippet": "LeftdownHarpoon[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftupRightupHarpoon{}{}": {
+      "snippet": "LeftupRightupHarpoon{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftupRightupHarpoon[]{}{}": {
+      "snippet": "LeftupRightupHarpoon[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftupRightdownHarpoon{}{}": {
+      "snippet": "LeftupRightdownHarpoon{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftupRightdownHarpoon[]{}{}": {
+      "snippet": "LeftupRightdownHarpoon[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftdownRightupHarpoon{}{}": {
+      "snippet": "LeftdownRightupHarpoon{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftdownRightupHarpoon[]{}{}": {
+      "snippet": "LeftdownRightupHarpoon[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftdownRightdownHarpoon{}{}": {
+      "snippet": "LeftdownRightdownHarpoon{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftdownRightdownHarpoon[]{}{}": {
+      "snippet": "LeftdownRightdownHarpoon[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "Equilibrium{}{}": {
+      "snippet": "Equilibrium{${1:upper caption}}{${2:lower caption}}"
+    },
+    "Equilibrium[]{}{}": {
+      "snippet": "Equilibrium[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "RightEquilibrium{}{}": {
+      "snippet": "RightEquilibrium{${1:upper caption}}{${2:lower caption}}"
+    },
+    "RightEquilibrium[]{}{}": {
+      "snippet": "RightEquilibrium[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftEquilibrium{}{}": {
+      "snippet": "LeftEquilibrium{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LeftEquilibrium[]{}{}": {
+      "snippet": "LeftEquilibrium[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "RRightEquilibrium{}{}": {
+      "snippet": "RRightEquilibrium{${1:upper caption}}{${2:lower caption}}"
+    },
+    "RRightEquilibrium[]{}{}": {
+      "snippet": "RRightEquilibrium[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LLeftEquilibrium{}{}": {
+      "snippet": "LLeftEquilibrium{${1:upper caption}}{${2:lower caption}}"
+    },
+    "LLeftEquilibrium[]{}{}": {
+      "snippet": "LLeftEquilibrium[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "TwoRightArrow{}{}": {
+      "snippet": "TwoRightArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "TwoRightArrow[]{}{}": {
+      "snippet": "TwoRightArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "TTwoRightArrow{}{}": {
+      "snippet": "TTwoRightArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "TTwoRightArrow[]{}{}": {
+      "snippet": "TTwoRightArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "TwoLeftArrow{}{}": {
+      "snippet": "TwoLeftArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "TwoLeftArrow[]{}{}": {
+      "snippet": "TwoLeftArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "TTwoLeftArrow{}{}": {
+      "snippet": "TTwoLeftArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "TTwoLeftArrow[]{}{}": {
+      "snippet": "TTwoLeftArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "ThreeRightArrow{}{}": {
+      "snippet": "ThreeRightArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "ThreeRightArrow[]{}{}": {
+      "snippet": "ThreeRightArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "TThreeRightArrow{}{}": {
+      "snippet": "TThreeRightArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "TThreeRightArrow[]{}{}": {
+      "snippet": "TThreeRightArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "ThreeLeftArrow{}{}": {
+      "snippet": "ThreeLeftArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "ThreeLeftArrow[]{}{}": {
+      "snippet": "ThreeLeftArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "TThreeLeftArrow{}{}": {
+      "snippet": "TThreeLeftArrow{${1:upper caption}}{${2:lower caption}}"
+    },
+    "TThreeLeftArrow[]{}{}": {
+      "snippet": "TThreeLeftArrow[${3:length}]{${1:upper caption}}{${2:lower caption}}"
+    },
+    "CSXdeclarearrow{}{}": {
+      "snippet": "CSXdeclarearrow{${1:command}}{${2:TikZ keys}}"
+    },
+    "CSXdeclarearrowbundle{}{}": {
+      "snippet": "CSXdeclarearrowbundle{${1:csname}}{${2:TikZ keys}}"
+    },
+    "structplus": {},
+    "structminus": {},
+    "CSXarrowadvance": {},
+    "CSXarrowlength": {},
+    "CSXcaption": {},
+    "CSXgeneratecaption{}{}{}{}": {
+      "snippet": "CSXgeneratecaption{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "CSXimagewidth": {},
+    "CSXlabelsep": {},
+    "CSXlabelwidth": {},
+    "CSXmaxlabelwidth": {},
+    "CSXmaxtextwidth": {},
+    "CSXtextwidth": {},
+    "fancylabelformatCSX": {},
+    "fancyonlysublabelformatCSX": {},
+    "fancysublabelformatCSX": {},
+    "lastx": {},
+    "theCSXcaption": {},
+    "theCSXscheme": {},
+    "theCSXstruct": {},
+    "theCSXstructinarrow": {}
+  },
+  "envs": {
+    "Chemscheme": {}
+  },
+  "options": [
+    "image={${1:\\includegraphics options}}",
+    "labelseparator=${1:separator}",
+    "arrowadvance="
+  ],
+  "keyvals": [
+    [
+      "alt={${1:alt text}}",
+      "bb=${1:llx lly urx ury}",
+      "bbllx=",
+      "bblly=",
+      "bburx=",
+      "bbury=",
+      "natwidth=",
+      "natheight=",
+      "hiresbb",
+      "pagebox=",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:llx lly urx ury}",
+      "angle=${1:degrees}",
+      "origin=",
+      "width=",
+      "height=",
+      "totalheight=",
+      "keepaspectratio",
+      "scale=${1:factor}",
+      "clip",
+      "draft",
+      "type=${1:file type}",
+      "ext=${1:file extension}",
+      "read=${1:read-file extension}",
+      "command=",
+      "quiet",
+      "page=${1:page number}",
+      "interpolate",
+      "decodearray={${1:color array}}"
+    ]
+  ]
+}

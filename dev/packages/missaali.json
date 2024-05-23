@@ -1,0 +1,293 @@
+{
+  "includes": {
+    "fontspec": [],
+    "ifthen": [],
+    "accsupp": [],
+    "calc": [],
+    "multicol": [],
+    "geometry": []
+  },
+  "macros": {
+    "ifOldFinnish": {},
+    "OldFinnishtrue": {},
+    "OldFinnishfalse": {},
+    "ifContextualAlternates": {},
+    "ContextualAlternatestrue": {},
+    "ContextualAlternatesfalse": {},
+    "ifLigatures": {},
+    "Ligaturestrue": {},
+    "Ligaturesfalse": {},
+    "ifMissaleAbbrStyle": {},
+    "MissaleAbbrStyletrue": {},
+    "MissaleAbbrStylefalse": {},
+    "ifAbbreviate": {},
+    "Abbreviatetrue": {},
+    "Abbreviatefalse": {},
+    "ifHistForms": {},
+    "HistFormstrue": {},
+    "HistFormsfalse": {},
+    "ifPoFusion": {},
+    "PoFusiontrue": {},
+    "PoFusionfalse": {},
+    "ifAlternateG": {},
+    "AlternateGtrue": {},
+    "AlternateGfalse": {},
+    "ifAlternateZ": {},
+    "AlternateZtrue": {},
+    "AlternateZfalse": {},
+    "ifAltPunctuation": {},
+    "AltPunctuationtrue": {},
+    "AltPunctuationfalse": {},
+    "ifAdditionalAbbrs": {},
+    "AdditionalAbbrstrue": {},
+    "AdditionalAbbrsfalse": {},
+    "ifManuscriptSpacing": {},
+    "ManuscriptSpacingtrue": {},
+    "ManuscriptSpacingfalse": {},
+    "msabbr{}": {
+      "snippet": "msabbr{${1:text}}"
+    },
+    "msabbra{}": {
+      "snippet": "msabbra{${1:text}}"
+    },
+    "msabbralt{}": {
+      "snippet": "msabbralt{${1:text}}"
+    },
+    "mssetfontsize{}": {
+      "snippet": "mssetfontsize{${1:size}}"
+    },
+    "mssetblockwidth{}": {
+      "snippet": "mssetblockwidth{${1:width}}"
+    },
+    "mssetblocklines{}": {
+      "snippet": "mssetblocklines{${1:number of lines}}"
+    },
+    "mssetgutterwidth{}": {
+      "snippet": "mssetgutterwidth{${1:width}}"
+    },
+    "mssetsizes{}{}{}": {
+      "snippet": "mssetsizes{${1:font size}}{${2:block width}}{${3:block lines}}"
+    },
+    "mschapterinitial{}": {
+      "snippet": "mschapterinitial{${1:initial}}"
+    },
+    "mschapterinitialblue{}": {
+      "snippet": "mschapterinitialblue{${1:initial}}"
+    },
+    "mschapterinitialgreen{}": {
+      "snippet": "mschapterinitialgreen{${1:initial}}"
+    },
+    "mschapterinitialwithcolor{}{}": {
+      "snippet": "mschapterinitialwithcolor{${1:initial}}{${2:color}}"
+    },
+    "msparinitial{}": {
+      "snippet": "msparinitial{${1:initial}}"
+    },
+    "msparinitialblue{}": {
+      "snippet": "msparinitialblue{${1:initial}}"
+    },
+    "msparinitialgreen{}": {
+      "snippet": "msparinitialgreen{${1:initial}}"
+    },
+    "msparinitialwithcolor{}{}": {
+      "snippet": "msparinitialwithcolor{${1:initial}}{${2:color}}"
+    },
+    "msstartchapter{}{}{}": {
+      "snippet": "msstartchapter{${1:initial}}{${2:first line}}{${3:second line}}"
+    },
+    "msstartchapterblue{}{}{}": {
+      "snippet": "msstartchapterblue{${1:initial}}{${2:first line}}{${3:second line}}"
+    },
+    "msstartchaptergreen{}{}{}": {
+      "snippet": "msstartchaptergreen{${1:initial}}{${2:first line}}{${3:second line}}"
+    },
+    "msstartchapterwithcolor{}{}{}{}": {
+      "snippet": "msstartchapterwithcolor{${1:initial}}{${2:first line}}{${3:second line}}{${4:color}}"
+    },
+    "msstartchapterwithrubric{}{}{}{}": {
+      "snippet": "msstartchapterwithrubric{${1:rubric}}{${2:initial}}{${3:first}}{${4:second}}"
+    },
+    "msstartchapterwithrubricblue{}{}{}{}": {
+      "snippet": "msstartchapterwithrubricblue{${1:rubric}}{${2:initial}}{${3:first}}{${4:second}}"
+    },
+    "msstartchapterwithrubricgreen{}{}{}{}": {
+      "snippet": "msstartchapterwithrubricgreen{${1:rubric}}{${2:initial}}{${3:first}}{${4:second}}"
+    },
+    "msstartchapterwithrubricandcolors{}{}{}{}{}{}": {
+      "snippet": "msstartchapterwithrubricandcolors{${1:rubric}}{${2:initial}}{${3:first}}{${4:second}}{${5:color1}}{${6:color2}}"
+    },
+    "mstd{}": {
+      "snippet": "mstd{${1:text}}"
+    },
+    "mstdacc{}{}": {
+      "snippet": "mstdacc{${1:text1}}{${2:text2}}"
+    },
+    "rmstd{}": {
+      "snippet": "rmstd{${1:text}}"
+    },
+    "rmstdacc{}{}": {
+      "snippet": "rmstdacc{${1:text1}}{${2:text2}}"
+    },
+    "mstda{}": {
+      "snippet": "mstda{${1:text}}"
+    },
+    "mstdaacc{}{}": {
+      "snippet": "mstdaacc{${1:text1}}{${2:text2}}"
+    },
+    "rmstda{}": {
+      "snippet": "rmstda{${1:text}}"
+    },
+    "rmstdaacc{}{}": {
+      "snippet": "rmstdaacc{${1:text1}}{${2:text2}}"
+    },
+    "mstdr{}": {
+      "snippet": "mstdr{${1:text}}"
+    },
+    "mstdracc{}{}": {
+      "snippet": "mstdracc{${1:text1}}{${2:text2}}"
+    },
+    "rmstdr{}": {
+      "snippet": "rmstdr{${1:text}}"
+    },
+    "rmstdracc{}{}": {
+      "snippet": "rmstdracc{${1:text1}}{${2:text2}}"
+    },
+    "mstdo{}": {
+      "snippet": "mstdo{${1:text}}"
+    },
+    "mstdoacc{}{}": {
+      "snippet": "mstdoacc{${1:text1}}{${2:text2}}"
+    },
+    "rmstdo{}": {
+      "snippet": "rmstdo{${1:text}}"
+    },
+    "rmstdoacc{}{}": {
+      "snippet": "rmstdoacc{${1:text1}}{${2:text2}}"
+    },
+    "mstdt{}": {
+      "snippet": "mstdt{${1:text}}"
+    },
+    "mstdtacc{}{}": {
+      "snippet": "mstdtacc{${1:text1}}{${2:text2}}"
+    },
+    "rmstdt{}": {
+      "snippet": "rmstdt{${1:text}}"
+    },
+    "rmstdtacc{}{}": {
+      "snippet": "rmstdtacc{${1:text1}}{${2:text2}}"
+    },
+    "mstdst{}": {
+      "snippet": "mstdst{${1:text}}"
+    },
+    "mstdstacc{}{}": {
+      "snippet": "mstdstacc{${1:text1}}{${2:text2}}"
+    },
+    "rmstdst{}": {
+      "snippet": "rmstdst{${1:text}}"
+    },
+    "rmstdstacc{}{}": {
+      "snippet": "rmstdstacc{${1:text1}}{${2:text2}}"
+    },
+    "mstdd{}": {
+      "snippet": "mstdd{${1:text}}"
+    },
+    "mstddacc{}{}": {
+      "snippet": "mstddacc{${1:text1}}{${2:text2}}"
+    },
+    "rmstdd{}": {
+      "snippet": "rmstdd{${1:text}}"
+    },
+    "rmstddacc{}{}": {
+      "snippet": "rmstddacc{${1:text1}}{${2:text2}}"
+    },
+    "mstddg{}": {
+      "snippet": "mstddg{${1:text}}"
+    },
+    "mstddgacc{}{}": {
+      "snippet": "mstddgacc{${1:text1}}{${2:text2}}"
+    },
+    "rmstddg{}": {
+      "snippet": "rmstddg{${1:text}}"
+    },
+    "msmanualspacing": {},
+    "msaltpunctuation": {},
+    "msinit{}": {
+      "snippet": "msinit{${1:letter}}"
+    },
+    "msinita{}": {
+      "snippet": "msinita{${1:letter}}"
+    },
+    "msrubric{}": {
+      "snippet": "msrubric{${1:text}}"
+    },
+    "msrubricblue{}": {
+      "snippet": "msrubricblue{${1:text}}"
+    },
+    "msrubricgreen{}": {
+      "snippet": "msrubricgreen{${1:text}}"
+    },
+    "mspara": {},
+    "mstdl{}": {
+      "snippet": "mstdl{${1:character}}"
+    },
+    "rotundar": {},
+    "straightr": {},
+    "shorts": {},
+    "longs": {},
+    "msnoliga{}": {
+      "snippet": "msnoliga{${1:text}}"
+    },
+    "mspartialrubric{}": {
+      "snippet": "mspartialrubric{${1:text}}"
+    },
+    "mspartialrubricblue{}": {
+      "snippet": "mspartialrubricblue{${1:text}}"
+    },
+    "mspartialrubricgreen{}": {
+      "snippet": "mspartialrubricgreen{${1:text}}"
+    },
+    "mspartialrubricwithcolor{}{}": {
+      "snippet": "mspartialrubricwithcolor{${1:text}}{${2:color}}"
+    },
+    "mspartialline{}": {
+      "snippet": "mspartialline{${1:text}}"
+    },
+    "mstexturafamily": {},
+    "MsNormalStyle": {},
+    "MsAltAEStyle": {},
+    "MsAltPunctiationStyle": {},
+    "MsAltZStyle": {},
+    "MsAltGStyle": {},
+    "MsOldFinnishStyle": {},
+    "MsPoFusionStyle": {},
+    "MsAltAbbrStyle": {},
+    "MsNormalAbbrStyle": {},
+    "MsAdditionalAbbrStyle": {},
+    "Missaali": {},
+    "initialibox": {},
+    "rubricbox": {},
+    "initialI": {},
+    "missaali{}": {
+      "snippet": "missaali{${1:text}}"
+    },
+    "mschapterindent": {},
+    "texturaemph{}": {
+      "snippet": "texturaemph{${1:text}}"
+    }
+  },
+  "envs": {
+    "mstextura": {},
+    "mstexturablock": {},
+    "mstexturablocks": {}
+  },
+  "options": [
+    "ManuscriptSpacing",
+    "OldPunctuation",
+    "OldFinnish",
+    "OldAE",
+    "AltG",
+    "AltZ",
+    "FusePo"
+  ],
+  "keyvals": []
+}

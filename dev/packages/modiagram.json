@@ -1,0 +1,66 @@
+{
+  "includes": {
+    "l3keys2e": [],
+    "tikz": [],
+    "chemgreek": []
+  },
+  "macros": {
+    "setmodiagram{}": {
+      "snippet": "setmodiagram{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "atom{}{}": {
+      "snippet": "atom{${1:left or right}}{${2:AO-spec}}"
+    },
+    "atom[]{}{}": {
+      "snippet": "atom[${3:name}]{${1:left or right}}{${2:AO-spec}}"
+    },
+    "molecule{}": {
+      "snippet": "molecule{${1:MO-spec}}"
+    },
+    "molecule[]{}": {
+      "snippet": "molecule[${2:name}]{${1:MO-spec}}"
+    },
+    "connect{}": {
+      "snippet": "connect{${1:AO-connect}}"
+    },
+    "EnergyAxis": {},
+    "EnergyAxis[]": {
+      "snippet": "EnergyAxis[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    }
+  },
+  "envs": {
+    "modiagram": {},
+    "modiagram[]": {
+      "name": "modiagram",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "style=",
+      "distance=",
+      "AO-width=",
+      "el-sep=${1:number}",
+      "up-el-pos=${1:number}",
+      "down-el-pos=${1:number}",
+      "lines={${1:TikZ}}",
+      "names",
+      "names-style={${1:TikZ}}",
+      "names-style-add={${1:TikZ}}",
+      "labels",
+      "labels-fs=${1:cmd}",
+      "labels-style={${1:TikZ}}"
+    ],
+    [
+      "title=",
+      "head=${1:TikZ arrow head}"
+    ]
+  ]
+}

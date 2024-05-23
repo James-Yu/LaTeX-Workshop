@@ -1,0 +1,182 @@
+{
+  "includes": {
+    "tikz": [],
+    "tikzlibrarydecorations.pathreplacing": [],
+    "tikzlibrarydecorations.markings": [],
+    "tikzlibrarycalc": [],
+    "tikzlibraryfadings": [],
+    "etoolbox": [],
+    "environ": [],
+    "ifthen": [],
+    "kvsetkeys": [],
+    "kvoptions": []
+  },
+  "macros": {
+    "drawBall": {},
+    "drawBall[]": {
+      "snippet": "drawBall[${1:options}]"
+    },
+    "drawBallGrid{}{}": {
+      "snippet": "drawBallGrid{${1:lat deg sep}}{${2:long deg sep}}"
+    },
+    "drawBallGrid[]{}{}": {
+      "snippet": "drawBallGrid[${3:options}]{${1:lat deg sep}}{${2:long deg sep}}"
+    },
+    "setDrawingPlane{}{}": {
+      "snippet": "setDrawingPlane{${1:tilt angle}}{${2:rotation angle}}"
+    },
+    "setDrawingPlane[]": {
+      "snippet": "setDrawingPlane[${1:options}]"
+    },
+    "setLatitudinalDrawingPlane{}": {
+      "snippet": "setLatitudinalDrawingPlane{${1:latitude}}"
+    },
+    "setLatitudinalDrawingPlane[]{}": {
+      "snippet": "setLatitudinalDrawingPlane[${2:options}]{${1:latitude}}"
+    },
+    "setLongitudinalDrawingPlane{}": {
+      "snippet": "setLongitudinalDrawingPlane{${1:longitude}}"
+    },
+    "setLongitudinalDrawingPlane[]{}": {
+      "snippet": "setLongitudinalDrawingPlane[${2:options}]{${1:longitude}}"
+    },
+    "drawCircle{}{}": {
+      "snippet": "drawCircle{${1:tilt angle}}{${2:rotation angle}}"
+    },
+    "drawCircle[]{}{}": {
+      "snippet": "drawCircle[${3:options}]{${1:tilt angle}}{${2:rotation angle}}"
+    },
+    "drawGreatCircle{}{}": {
+      "snippet": "drawGreatCircle{${1:tilt angle}}{${2:rotation angle}}"
+    },
+    "drawGreatCircle[]{}{}": {
+      "snippet": "drawGreatCircle[${3:options}]{${1:tilt angle}}{${2:rotation angle}}"
+    },
+    "drawSmallCircle{}{}{}": {
+      "snippet": "drawSmallCircle{${1:tilt angle}}{${2:rotation angle}}{${3:offset latitude}}"
+    },
+    "drawSmallCircle[]{}{}{}": {
+      "snippet": "drawSmallCircle[${4:options}]{${1:tilt angle}}{${2:rotation angle}}{${3:offset latitude}}"
+    },
+    "drawLatitudeCircle{}": {
+      "snippet": "drawLatitudeCircle{${1:latitude}}"
+    },
+    "drawLatitudeCircle[]{}": {
+      "snippet": "drawLatitudeCircle[${2:options}]{${1:latitude}}"
+    },
+    "drawLongitudeCircle{}": {
+      "snippet": "drawLongitudeCircle{${1:longitude}}"
+    },
+    "drawLongitudeCircle[]{}": {
+      "snippet": "drawLongitudeCircle[${2:options}]{${1:longitude}}"
+    },
+    "drawRotationLeft{}{}{}{}": {
+      "snippet": "drawRotationLeft{${1:tilt angle}}{${2:rotation angle}}{${3:axis offset}}{${4:clear angle}}"
+    },
+    "drawRotationLeft[]{}{}{}{}": {
+      "snippet": "drawRotationLeft[${5:options}]{${1:tilt angle}}{${2:rotation angle}}{${3:axis offset}}{${4:clear angle}}"
+    },
+    "drawRotationRight{}{}{}{}": {
+      "snippet": "drawRotationRight{${1:tilt angle}}{${2:rotation angle}}{${3:axis offset}}{${4:clear angle}}"
+    },
+    "drawRotationRight[]{}{}{}{}": {
+      "snippet": "drawRotationRight[${5:options}]{${1:tilt angle}}{${2:rotation angle}}{${3:axis offset}}{${4:clear angle}}"
+    },
+    "drawAxis{}{}": {
+      "snippet": "drawAxis{${1:tilt angle}}{${2:rotation angle}}"
+    },
+    "drawAxis[]{}{}": {
+      "snippet": "drawAxis[${3:options}]{${1:tilt angle}}{${2:rotation angle}}"
+    },
+    "labelPolar{}{}{}": {
+      "snippet": "labelPolar{${1:TikZ label}}{${2:tilt angle}}{${3:rotation angle}}"
+    },
+    "labelPolar[]{}{}{}": {
+      "snippet": "labelPolar[${4:options}]{${1:TikZ label}}{${2:tilt angle}}{${3:rotation angle}}"
+    },
+    "labelLatLon{}{}{}": {
+      "snippet": "labelLatLon{${1:TikZ label}}{${2:latitude}}{${3:longitude}}"
+    },
+    "labelLatLon[]{}{}{}": {
+      "snippet": "labelLatLon[${4:options}]{${1:TikZ label}}{${2:latitude}}{${3:longitude}}"
+    },
+    "drawStatePolar{}{}{}": {
+      "snippet": "drawStatePolar{${1:TikZ label}}{${2:tilt angle}}{${3:rotation angle}}"
+    },
+    "drawStatePolar[]{}{}{}": {
+      "snippet": "drawStatePolar[${4:options}]{${1:TikZ label}}{${2:tilt angle}}{${3:rotation angle}}"
+    },
+    "drawStateLatLon{}{}{}": {
+      "snippet": "drawStateLatLon{${1:TikZ label}}{${2:latitude}}{${3:longitude}}"
+    },
+    "drawStateLatLon[]{}{}{}": {
+      "snippet": "drawStateLatLon[${4:options}]{${1:TikZ label}}{${2:latitude}}{${3:longitude}}"
+    },
+    "computeOffset{}": {
+      "snippet": "computeOffset{${1:name}}"
+    },
+    "computeOffset[]{}": {
+      "snippet": "computeOffset[${2:options}]{${1:name}}"
+    },
+    "computeVisibility{}{}{}{}": {
+      "snippet": "computeVisibility{${1:name1}}{${2:name2}}{${3:name3}}{${4:name4}}"
+    },
+    "computeVisibility[]{}{}{}{}": {
+      "snippet": "computeVisibility[${5:options}]{${1:name1}}{${2:name2}}{${3:name3}}{${4:name4}}"
+    },
+    "tmp{}": {
+      "snippet": "tmp{${1:arg}}"
+    },
+    "aphi": {},
+    "atheta": {},
+    "dot": {
+      "detail": "⦁",
+      "documentation": "Z NOTATION SPOT"
+    },
+    "norm": {},
+    "xx": {},
+    "xy": {},
+    "yx": {},
+    "yy": {},
+    "xshift": {},
+    "yshift": {},
+    "zshift": {},
+    "behind": {},
+    "newphi": {},
+    "newtheta": {},
+    "myval": {},
+    "tatheta": {},
+    "domaintest": {},
+    "domaintesttwo": {},
+    "domaintestthree": {},
+    "agamma": {},
+    "aalpha": {},
+    "aalphatest": {},
+    "abeta": {}
+  },
+  "envs": {
+    "blochsphere": {},
+    "blochsphere[]": {
+      "name": "blochsphere",
+      "snippet": "[${1:options}]"
+    }
+  },
+  "options": [
+    "radius=",
+    "tilt=${1:degrees}",
+    "rotation=${1:degrees}",
+    "color=",
+    "opacity=${1:factor}",
+    "style={${1:TikZ options}}",
+    "scale=${1:factor}",
+    "plane=${1:name}",
+    "shift={${1:x,y,z}}",
+    "ball=",
+    "statecolor=",
+    "statewidth=",
+    "axisarrow=${1:arrow}",
+    "labelmark",
+    "nested"
+  ],
+  "keyvals": []
+}

@@ -1,0 +1,407 @@
+{
+  "includes": {
+    "class-book": [],
+    "iftex": [],
+    "latexsym": [],
+    "amssymb": [],
+    "subfig": [],
+    "amsthm": [],
+    "mathtools": [],
+    "libertine": [],
+    "babel": [],
+    "adjustbox": [],
+    "enumitem": [],
+    "graphicx": [],
+    "fancyhdr": [],
+    "marvosym": [],
+    "eurosym": [],
+    "multicol": [],
+    "xcolor": [],
+    "tabularx": [],
+    "booktabs": [],
+    "url": [],
+    "hyperref": [],
+    "tikz": [],
+    "tikzlibrarycalc": [],
+    "ifthen": [],
+    "titlesec": [],
+    "titletoc": [],
+    "caption": [],
+    "biblatex": [],
+    "calc": [],
+    "geometry": [],
+    "etoc": [],
+    "bclogo": [],
+    "lettrine": [],
+    "tcolorbox": [],
+    "tcolorboxlibrarymost": [],
+    "incgraph": [],
+    "listings": [],
+    "listingsutf8": [],
+    "shellesc": [],
+    "pdfcol": []
+  },
+  "macros": {
+    "titre{}": {
+      "snippet": "titre{${1:titre de l’article}}"
+    },
+    "titre[]{}": {
+      "snippet": "titre[${2:options}]{${1:titre de l’article}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "author[]{}": {
+      "snippet": "author[${2:options}]{${1:Nom,Prénom}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "printauthors": {},
+    "printauthors[]": {
+      "snippet": "printauthors[${1:option}]"
+    },
+    "partie{}": {
+      "snippet": "partie{${1:title}}"
+    },
+    "partie[]{}": {
+      "snippet": "partie[${2:option}]{${1:title}}"
+    },
+    "thelemma": {},
+    "thecorollary": {},
+    "MatapliQuestion{}": {
+      "snippet": "MatapliQuestion{${1:Une question posée}}"
+    },
+    "MatapliQuestion[]{}": {
+      "snippet": "MatapliQuestion[${2:Nom optionnel}]{${1:Une question posée}}"
+    },
+    "MatapliReponse{}{}": {
+      "snippet": "MatapliReponse{${1:Nom}}{${2:Réponse}}"
+    },
+    "articletableofcontents": {},
+    "sommaire": {},
+    "correspondant{}{}{}{}": {
+      "snippet": "correspondant{${1:ville}}{${2:Nom Prénom}}{${3:laboratoire/université}}{${4:email}}"
+    },
+    "colloque{}{}{}": {
+      "snippet": "colloque{${1:Titre du colloque}}{${2:date et lieu}}{${3:site web}}"
+    },
+    "MatapliChapterFont": {},
+    "numero": {},
+    "mois": {},
+    "redacteurMatapli{}{}{}{}": {
+      "snippet": "redacteurMatapli{${1:titre ou thème}}{${2:Prénom Nom}}{${3:affiliation laboratoire université}}{${4:email}}"
+    },
+    "creditcouverture{}": {
+      "snippet": "creditcouverture{${1:Crédit}}"
+    },
+    "chapformat{}": {
+      "snippet": "chapformat{${1:text}}"
+    },
+    "corrsp{}{}{}{}": {
+      "snippet": "corrsp{${1:ville}}{${2:Nom Prénom}}{${3:laboratoire/université}}{${4:email}}"
+    },
+    "ruleundersub{}": {
+      "snippet": "ruleundersub{${1:content}}"
+    },
+    "ruleunder{}": {
+      "snippet": "ruleunder{${1:content}}"
+    },
+    "thechapterpart": {},
+    "captionsenglish": {},
+    "dateenglish": {},
+    "extrasenglish": {},
+    "noextrasenglish": {},
+    "englishhyphenmins": {},
+    "britishhyphenmins": {},
+    "americanhyphenmins": {},
+    "prefacename": {},
+    "bibname": {},
+    "chaptername": {},
+    "enclname": {},
+    "ccname": {},
+    "headtoname": {},
+    "seename": {},
+    "alsoname": {},
+    "proofname": {},
+    "glossaryname": {},
+    "frenchsetup{}": {
+      "snippet": "frenchsetup{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "frenchbsetup{}": {
+      "snippet": "frenchbsetup{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "AddThinSpaceBeforeFootnotes": {},
+    "at": {},
+    "AutoSpaceBeforeFDP": {},
+    "boi": {},
+    "bname{}": {
+      "snippet": "bname{${1:text}}"
+    },
+    "bsc{}": {
+      "snippet": "bsc{${1:text}}"
+    },
+    "CaptionSeparator": {},
+    "captionsfrench": {},
+    "circonflexe": {},
+    "dateacadian": {},
+    "datefrench": {},
+    "DecimalMathComma": {},
+    "degre": {},
+    "degres": {},
+    "descindentFB": {},
+    "dotFFN": {},
+    "extrasfrench": {},
+    "FBcolonspace": {},
+    "FBdatebox": {},
+    "FBdatespace": {},
+    "FBeverylineguill": {},
+    "FBfigtabshape": {},
+    "FBfnindent": {},
+    "FBFrenchFootnotesfalse": {},
+    "FBFrenchFootnotestrue": {},
+    "FBFrenchSuperscriptstrue": {},
+    "FBGlobalLayoutFrenchtrue": {},
+    "FBgspchar": {},
+    "FBguillopen": {},
+    "FBguillspace": {},
+    "FBInnerGuillSinglefalse": {},
+    "FBInnerGuillSingletrue": {},
+    "FBListItemsAsParfalse": {},
+    "FBListItemsAsPartrue": {},
+    "FBLowercaseSuperscriptstrue": {},
+    "FBmedkern": {},
+    "FBPartNameFulltrue": {},
+    "FBsetspaces[]{}{}{}{}": {
+      "snippet": "FBsetspaces[${5:language}]{${1:type}}{${2:width}}{${3:stretch}}{${4:shrink}}"
+    },
+    "FBsetspaces{}{}{}{}": {
+      "snippet": "FBsetspaces{${1:type}}{${2:width}}{${3:stretch}}{${4:shrink}}"
+    },
+    "FBSmallCapsFigTabCaptionstrue": {},
+    "FBStandardEnumerateEnvtrue": {},
+    "FBStandardItemizeEnvtrue": {},
+    "FBStandardItemLabelstrue": {},
+    "FBStandardLayouttrue": {},
+    "FBStandardListSpacingtrue": {},
+    "FBStandardListstrue": {},
+    "FBsupR": {},
+    "FBsupS": {},
+    "FBtextellipsis": {},
+    "FBthickkern": {},
+    "FBthinspace": {},
+    "FBthousandsep": {},
+    "FBWarning{}": {
+      "snippet": "FBWarning{${1:message}}"
+    },
+    "fg": {},
+    "fgi": {},
+    "fgii": {},
+    "frenchdate{}{}{}": {
+      "snippet": "frenchdate{${1:day}}{${2:month}}{${3:year}}"
+    },
+    "FrenchEnumerate{}": {
+      "snippet": "FrenchEnumerate{${1:arg}}"
+    },
+    "FrenchFootnotes": {},
+    "FrenchLabelItem": {},
+    "frenchpartfirst": {},
+    "frenchpartsecond": {},
+    "FrenchPopularEnumerate{}": {
+      "snippet": "FrenchPopularEnumerate{${1:arg}}"
+    },
+    "frenchtoday": {},
+    "Frlabelitemi": {},
+    "Frlabelitemii": {},
+    "Frlabelitemiii": {},
+    "Frlabelitemiv": {},
+    "frquote{}": {
+      "snippet": "frquote{${1:text}}"
+    },
+    "fup{}": {
+      "snippet": "fup{${1:text}}"
+    },
+    "ieme": {},
+    "iemes": {},
+    "ier": {},
+    "iere": {},
+    "ieres": {},
+    "iers": {},
+    "ifFBAutoSpaceFootnotes": {},
+    "ifFBCompactItemize": {},
+    "ifFBCustomiseFigTabCaptions": {},
+    "ifFBfrench": {},
+    "ifFBFrenchFootnotes": {},
+    "ifFBFrenchSuperscripts": {},
+    "ifFBGlobalLayoutFrench": {},
+    "ifFBIndentFirst": {},
+    "ifFBINGuillSpace": {},
+    "ifFBListItemsAsPar": {},
+    "ifFBListOldLayout": {},
+    "ifFBLowercaseSuperscripts": {},
+    "ifFBLuaTeX": {},
+    "ifFBOldFigTabCaptions": {},
+    "ifFBOriginalTypewriter": {},
+    "ifFBPartNameFull": {},
+    "ifFBReduceListSpacing": {},
+    "ifFBShowOptions": {},
+    "ifFBSmallCapsFigTabCaptions": {},
+    "ifFBStandardEnumerateEnv": {},
+    "ifFBStandardItemizeEnv": {},
+    "ifFBStandardItemLabels": {},
+    "ifFBStandardLayout": {},
+    "ifFBStandardLists": {},
+    "ifFBStandardListSpacing": {},
+    "ifFBSuppressWarning": {},
+    "ifFBThinColonSpace": {},
+    "ifFBThinSpaceInFrenchNumbers": {},
+    "ifFBunicode": {},
+    "ifFBXeTeX": {},
+    "ifLaTeXe": {},
+    "kernFFN": {},
+    "labelindentFB": {},
+    "labelwidthFB": {},
+    "leftmarginFB": {},
+    "listfigurename": {},
+    "listindentFB": {},
+    "No": {},
+    "no": {},
+    "NoAutoSpaceBeforeFDP": {},
+    "NoAutoSpacing": {},
+    "NoEveryParQuote": {},
+    "noextrasfrench": {},
+    "nombre{}": {
+      "snippet": "nombre{${1:arg}}"
+    },
+    "nos": {},
+    "Nos": {},
+    "og": {},
+    "ogi": {},
+    "ogii": {},
+    "parindentFFN": {},
+    "partfirst": {},
+    "partnameord": {},
+    "partsecond": {},
+    "primo": {},
+    "quarto": {},
+    "rmfamilyFB": {},
+    "secundo": {},
+    "sffamilyFB": {},
+    "StandardFootnotes": {},
+    "StandardMathComma": {},
+    "tertio": {},
+    "tild": {},
+    "ttfamilyFB": {},
+    "up{}": {
+      "snippet": "up{${1:text}}"
+    },
+    "xspace": {}
+  },
+  "envs": {
+    "bloc": {},
+    "bloc[]": {
+      "name": "bloc",
+      "snippet": "[${1:titre}]"
+    },
+    "Important": {},
+    "theorem{}{}": {
+      "name": "theorem",
+      "snippet": "{${1:Titre du théorème}}{${2:label}}"
+    },
+    "definition{}{}": {
+      "name": "definition",
+      "snippet": "{${1:Titre de la définition}}{${2:label}}"
+    },
+    "lemma": {},
+    "lemma[]": {
+      "name": "lemma",
+      "snippet": "[${1:heading}]"
+    },
+    "corollary": {},
+    "corollary[]": {
+      "name": "corollary",
+      "snippet": "[${1:heading}]"
+    },
+    "remark": {},
+    "remark[]": {
+      "name": "remark",
+      "snippet": "[${1:heading}]"
+    },
+    "soutenance{}{}{}{}": {
+      "name": "soutenance",
+      "snippet": "{${1:nom du/de la docteure}}{${2:date et lieu}}{${3:titre}}{${4:nom du ou de la directrice}}"
+    },
+    "soutenanceHDR{}{}{}": {
+      "name": "soutenanceHDR",
+      "snippet": "{${1:nom du/de la docteure}}{${2:date et lieu}}{${3:titre}}"
+    },
+    "matapliauteurtitre": {},
+    "matapliquote": {},
+    "descriptionFB": {},
+    "enumerateFB": {},
+    "itemizeFB": {},
+    "listFB{}": {
+      "name": "listFB",
+      "snippet": "{${1:symbol}}"
+    },
+    "listORI{}": {
+      "name": "listORI",
+      "snippet": "{${1:symbol}}"
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "court={${1:titre court}}",
+      "auteur="
+    ],
+    [
+      "affiliation={${1:Laboratoire, université, etc.}}",
+      "email=${1:email}",
+      "minibio={${1:Petite biographie de l’auteur}}",
+      "photo=${1:imagefile}",
+      "webpage=${1:URL}",
+      "type="
+    ],
+    [
+      "ShowOptions",
+      "StandardLayout",
+      "GlobalLayoutFrench",
+      "IndentFirst",
+      "PartNameFull",
+      "ListItemsAsPar",
+      "StandardListSpacing",
+      "StandardItemizeEnv",
+      "StandardEnumerateEnv",
+      "StandardItemLabels",
+      "ItemLabels=",
+      "ItemLabeli=",
+      "ItemLabelii=",
+      "ItemLabeliii=",
+      "ItemLabeliv=",
+      "StandardLists",
+      "ListOldLayout",
+      "FrenchFootnotes",
+      "AutoSpaceFootnotes",
+      "AutoSpacePunctuation",
+      "ThinColonSpace",
+      "OriginalTypewriter",
+      "UnicodeNoBreakSpaces",
+      "og=",
+      "fg=",
+      "INGuillSpace",
+      "EveryParGuill=",
+      "EveryLineGuill=",
+      "InnerGuillSingle",
+      "ThinSpaceInFrenchNumbers",
+      "SmallCapsFigTabCaptions",
+      "CustomiseFigTabCaptions",
+      "OldFigTabCaptions",
+      "FrenchSuperscripts",
+      "LowercaseSuperscripts",
+      "SuppressWarning"
+    ]
+  ]
+}

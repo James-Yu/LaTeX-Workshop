@@ -1,0 +1,58 @@
+{
+  "includes": {
+    "keyval": [],
+    "ifthen": [],
+    "ifpdf": [],
+    "ifplatform": [],
+    "graphicx": []
+  },
+  "macros": {
+    "autopdfoptions{}": {
+      "snippet": "autopdfoptions{${1:options}}"
+    },
+    "autopdfinclude": {},
+    "autopdfendinclude": {},
+    "autopdfpsfrag{}{}": {
+      "snippet": "autopdfpsfrag{${1:tag}}{${2:content}}"
+    },
+    "autopdfpsfrag[]{}{}": {
+      "snippet": "autopdfpsfrag[${3:options}]{${1:tag}}{${2:content}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "autopdfpsfoptions{}": {
+      "snippet": "autopdfpsfoptions{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "DELETE": {},
+    "LEFT": {},
+    "REDIRTO": {},
+    "RIGHT": {},
+    "SILENT": {}
+  },
+  "envs": {},
+  "options": [
+    "from=${1:file extension}",
+    "to=${1:file extension}",
+    "logfile",
+    "nologfile",
+    "showcmds",
+    "cleanup",
+    "scale",
+    "margin=",
+    "resolution=${1:dpi}",
+    "gscmd=${1:GhostScript cmd}",
+    "gmidentifycmd=${1:GraphicsMagick cmd}",
+    "gmconvertcmd=${1:GraphicsMagick cmd}"
+  ],
+  "keyvals": [
+    [
+      "texpos=${1:LaTeX ref point}",
+      "epspos=${1:PS ref point}",
+      "scale=${1:factor}",
+      "angle=${1:degrees}",
+      "add=${1:text}"
+    ]
+  ]
+}

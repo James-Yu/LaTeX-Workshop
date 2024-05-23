@@ -1,0 +1,218 @@
+{
+  "includes": {
+    "calc": [],
+    "environ": [],
+    "etoolbox": [],
+    "mathtools": [],
+    "xifthen": []
+  },
+  "macros": {
+    "addConstraint{}": {
+      "snippet": "addConstraint{${1:left}}"
+    },
+    "addConstraint{}{}": {
+      "snippet": "addConstraint{${1:left}}{${2:right}}"
+    },
+    "addConstraint{}{}{}": {
+      "snippet": "addConstraint{${1:left}}{${2:right}}{${3:extra}}"
+    },
+    "labelOP{}": {
+      "snippet": "labelOP{${1:label}}"
+    },
+    "breakObjective{}": {
+      "snippet": "breakObjective{${1:argument}}"
+    },
+    "defaultConstraintFormat": {},
+    "defaultOCPConstraint": {},
+    "defaultProblemFormat": {},
+    "equalsNothing{}{}{}": {
+      "snippet": "equalsNothing{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "spanit": {},
+    "bodySubjectTo": {},
+    "BelowAddConstraint{}{}{}": {
+      "snippet": "BelowAddConstraint{${1:left}}{${2:right}}{${3:extra}}"
+    },
+    "BelowAddConstraintMult{}{}{}": {
+      "snippet": "BelowAddConstraintMult{${1:left}}{${2:right}}{${3:extra}}"
+    },
+    "oneAlignAddConstraint{}{}{}": {
+      "snippet": "oneAlignAddConstraint{${1:left}}{${2:right}}{${3:extra}}"
+    },
+    "oneAlignBelowAddConstraint{}{}{}": {
+      "snippet": "oneAlignBelowAddConstraint{${1:left}}{${2:right}}{${3:extra}}"
+    },
+    "oneAlignBelowAddConstraintMult{}{}{}": {
+      "snippet": "oneAlignBelowAddConstraintMult{${1:left}}{${2:right}}{${3:extra}}"
+    },
+    "standardAddConstraint{}{}{}": {
+      "snippet": "standardAddConstraint{${1:left}}{${2:right}}{${3:extra}}"
+    },
+    "selectConstraint{}": {
+      "snippet": "selectConstraint{${1:constraint format}}"
+    },
+    "selectConstraintMult{}": {
+      "snippet": "selectConstraintMult{${1:constraint format}}"
+    },
+    "setStandardMini": {},
+    "setFormatShort{}{}": {
+      "snippet": "setFormatShort{${1:problem type}}{${2:arg}}"
+    },
+    "setFormatLong{}{}": {
+      "snippet": "setFormatLong{${1:problem type}}{${2:arg}}"
+    },
+    "localProblemFormat": {},
+    "localOptimalVariable": {},
+    "localProblemType": {},
+    "bodyBreakObjectiveDefinition": {},
+    "bodyBreakObjective": {},
+    "BaseMini": {},
+    "endBaseMini": {},
+    "BaseMiniStar": {},
+    "endBaseMiniStar": {},
+    "BaseMiniExclam": {},
+    "endBaseMiniExclam": {},
+    "widthInit": {},
+    "bodyobjLong{}{}{}{}": {
+      "snippet": "bodyobjLong{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "bodyobjShort{}{}{}{}": {
+      "snippet": "bodyobjShort{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "bodyobj{}{}{}{}": {
+      "snippet": "bodyobj{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "bodyconstBelowMult{}{}": {
+      "snippet": "bodyconstBelowMult{${1:arg1}}{${2:arg2}}"
+    },
+    "bodyconstBelow{}{}": {
+      "snippet": "bodyconstBelow{${1:arg1}}{${2:arg2}}"
+    },
+    "bodyconstOneAlignBelowMult{}{}": {
+      "snippet": "bodyconstOneAlignBelowMult{${1:arg1}}{${2:arg2}}"
+    },
+    "bodyconstOneAlignBelow{}{}": {
+      "snippet": "bodyconstOneAlignBelow{${1:arg1}}{${2:arg2}}"
+    },
+    "bodyconstOneAlign{}{}": {
+      "snippet": "bodyconstOneAlign{${1:arg1}}{${2:arg2}}"
+    },
+    "bodyconstRight{}{}": {
+      "snippet": "bodyconstRight{${1:arg1}}{${2:arg2}}"
+    },
+    "bodyconst{}{}": {
+      "snippet": "bodyconst{${1:arg1}}{${2:arg2}}"
+    },
+    "bodySubjectToDefinition": {}
+  },
+  "envs": {
+    "mini{}{}{}{}": {
+      "name": "mini",
+      "snippet": "{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "mini[]{}{}{}{}": {
+      "name": "mini",
+      "snippet": "[${5:constraint format}]{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "mini*{}{}{}{}": {
+      "name": "mini*",
+      "snippet": "{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "mini*[]{}{}{}{}": {
+      "name": "mini*",
+      "snippet": "[${5:constraint format}]{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "minie{}{}{}{}": {
+      "name": "minie",
+      "snippet": "{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "minie[]{}{}{}{}": {
+      "name": "minie",
+      "snippet": "[${5:constraint format}]{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "maxi{}{}{}{}": {
+      "name": "maxi",
+      "snippet": "{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "maxi[]{}{}{}{}": {
+      "name": "maxi",
+      "snippet": "[${5:constraint format}]{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "maxi*{}{}{}{}": {
+      "name": "maxi*",
+      "snippet": "{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "maxi*[]{}{}{}{}": {
+      "name": "maxi*",
+      "snippet": "[${5:constraint format}]{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "maxie{}{}{}{}": {
+      "name": "maxie",
+      "snippet": "{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "maxie[]{}{}{}{}": {
+      "name": "maxie",
+      "snippet": "[${5:constraint format}]{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "argmini{}{}{}{}": {
+      "name": "argmini",
+      "snippet": "{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "argmini[]{}{}{}{}": {
+      "name": "argmini",
+      "snippet": "[${5:constraint format}]{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "argmini*{}{}{}{}": {
+      "name": "argmini*",
+      "snippet": "{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "argmini*[]{}{}{}{}": {
+      "name": "argmini*",
+      "snippet": "[${5:constraint format}]{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "argminie{}{}{}{}": {
+      "name": "argminie",
+      "snippet": "{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "argminie[]{}{}{}{}": {
+      "name": "argminie",
+      "snippet": "[${5:constraint format}]{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "argmaxi{}{}{}{}": {
+      "name": "argmaxi",
+      "snippet": "{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "argmaxi[]{}{}{}{}": {
+      "name": "argmaxi",
+      "snippet": "[${5:constraint format}]{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "argmaxi*{}{}{}{}": {
+      "name": "argmaxi*",
+      "snippet": "{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "argmaxi*[]{}{}{}{}": {
+      "name": "argmaxi*",
+      "snippet": "[${5:constraint format}]{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "argmaxie{}{}{}{}": {
+      "name": "argmaxie",
+      "snippet": "{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "argmaxie[]{}{}{}{}": {
+      "name": "argmaxie",
+      "snippet": "[${5:constraint format}]{${1:variable}}{${2:function}}{${3:label code}}{${4:result}}"
+    },
+    "BaseMini": {},
+    "BaseMiniStar": {},
+    "BaseMiniExclam": {}
+  },
+  "options": [
+    "short",
+    "long",
+    "nocomma",
+    "c1",
+    "c2",
+    "c3"
+  ],
+  "keyvals": []
+}

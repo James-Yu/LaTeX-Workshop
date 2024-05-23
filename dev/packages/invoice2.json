@@ -1,0 +1,48 @@
+{
+  "includes": {
+    "booktabs": [],
+    "l3keys2e": [],
+    "longtable": [],
+    "siunitx": [],
+    "translations": [],
+    "xcolor": [],
+    "colortbl": []
+  },
+  "macros": {
+    "invoiceoptions{}": {
+      "snippet": "invoiceoptions{${1:options}}"
+    },
+    "invoiceitem{}{}{}": {
+      "snippet": "invoiceitem{${1:amount}}{${2:item name}}{${3:unit price}}"
+    },
+    "invoiceitem[]{}{}{}": {
+      "snippet": "invoiceitem[${4:VAT}]{${1:amount}}{${2:item name}}{${3:unit price}}"
+    },
+    "invoicesingleitem{}{}": {
+      "snippet": "invoicesingleitem{${1:item name}}{${2:unit price}}"
+    },
+    "invoicesingleitem[]{}{}": {
+      "snippet": "invoicesingleitem[${3:VAT}]{${1:item name}}{${2:unit price}}"
+    }
+  },
+  "envs": {
+    "invoice": {},
+    "invoice[]": {
+      "name": "invoice",
+      "snippet": "[${1:options}]"
+    }
+  },
+  "options": [
+    "vat=${1:VAT}",
+    "included-vat",
+    "currency-symbol={${1:symbol}}",
+    "currency-fraction-digits=${1:digits}",
+    "currency-in-header",
+    "colorize",
+    "odd-color=",
+    "even-color=",
+    "title-color=",
+    "total-color="
+  ],
+  "keyvals": []
+}

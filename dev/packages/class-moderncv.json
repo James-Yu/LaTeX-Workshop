@@ -1,0 +1,434 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "ifthen": [],
+    "xcolor": [],
+    "iftex": [],
+    "url": [],
+    "hyperref": [],
+    "graphicx": [],
+    "fancyhdr": [],
+    "tweaklist": [],
+    "calc": [],
+    "microtype": [],
+    "moderncvcollection": [],
+    "moderncvcompatibility": [],
+    "colortbl": []
+  },
+  "macros": {
+    "ifxetexorluatex": {},
+    "xetexorluatextrue": {},
+    "xetexorluatexfalse": {},
+    "pdfpagemode": {},
+    "nopagenumbers": {},
+    "pagenumberwidth": {},
+    "name{}{}": {
+      "snippet": "name{${1:first name}}{${2:last name}}"
+    },
+    "address{}{}{}": {
+      "snippet": "address{${1:street}}{${2:city}}{${3:country}}"
+    },
+    "born{}": {
+      "snippet": "born{${1:date}}"
+    },
+    "email{}": {
+      "snippet": "email{${1:address}}"
+    },
+    "homepage{}": {
+      "snippet": "homepage{${1:URL}}"
+    },
+    "phone{}": {
+      "snippet": "phone{${1:number}}"
+    },
+    "phone[]{}": {
+      "snippet": "phone[${2:type}]{${1:number}}"
+    },
+    "SplitMyMacro": {},
+    "social{}": {
+      "snippet": "social{${1:user name}}"
+    },
+    "social[]{}": {
+      "snippet": "social[${2:type}]{${1:user name}}"
+    },
+    "social[][]{}": {
+      "snippet": "social[${2:type}][${3:URL}]{${1:user name}}"
+    },
+    "extrainfo{}": {
+      "snippet": "extrainfo{${1:extra info}}"
+    },
+    "listitemsymbol": {},
+    "addresssymbol": {},
+    "bornsymbol": {},
+    "mobilephonesymbol": {},
+    "fixedphonesymbol": {},
+    "faxphonesymbol": {},
+    "emailsymbol": {},
+    "homepagesymbol": {},
+    "linkedinsocialsymbol": {},
+    "xingsocialsymbol": {},
+    "twittersocialsymbol": {},
+    "mastodonsocialsymbol": {},
+    "githubsocialsymbol": {},
+    "gitlabsocialsymbol": {},
+    "stackoverflowsocialsymbol": {},
+    "bitbucketsocialsymbol": {},
+    "skypesocialsymbol": {},
+    "orcidsocialsymbol": {},
+    "researchgatesocialsymbol": {},
+    "researcheridsocialsymbol": {},
+    "googlescholarsocialsymbol": {},
+    "telegramsocialsymbol": {},
+    "whatsappsocialsymbol": {},
+    "matrixsocialsymbol": {},
+    "signalsocialsymbol": {},
+    "codebergsocialsymbol": {},
+    "discordsocialsymbol": {},
+    "enclname": {},
+    "makefooter": {},
+    "moderncvstyle{}": {
+      "snippet": "moderncvstyle{${1:style}}"
+    },
+    "moderncvstyle[]{}": {
+      "snippet": "moderncvstyle[${2:options}]{${1:style}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "moderncvhead{}": {
+      "snippet": "moderncvhead{${1:header variant number}}"
+    },
+    "moderncvhead[]{}": {
+      "snippet": "moderncvhead[${2:options}]{${1:header variant number}}"
+    },
+    "moderncvbody{}": {
+      "snippet": "moderncvbody{${1:body variant number}}"
+    },
+    "moderncvbody[]{}": {
+      "snippet": "moderncvbody[${2:options}]{${1:body variant number}}"
+    },
+    "moderncvfoot{}": {
+      "snippet": "moderncvfoot{${1:foot variant number}}"
+    },
+    "moderncvfoot[]{}": {
+      "snippet": "moderncvfoot[${2:options}]{${1:foot variant number}}"
+    },
+    "moderncvcolor{}": {
+      "snippet": "moderncvcolor{${1:color-scheme}}"
+    },
+    "moderncvicons{}": {
+      "snippet": "moderncvicons{${1:icon set}}"
+    },
+    "recomputeheadlengths": {},
+    "recomputebodylengths": {},
+    "recomputefootlengths": {},
+    "recomputelengths": {},
+    "photo{}": {
+      "snippet": "photo{${1:imagefile}}"
+    },
+    "photo[]{}": {
+      "snippet": "photo[${2:width}]{${1:imagefile}}"
+    },
+    "photo[][]{}": {
+      "snippet": "photo[${2:width}][${3:frame thickness}]{${1:imagefile}}"
+    },
+    "quote{}": {
+      "snippet": "quote{${1:text}}"
+    },
+    "namefont": {},
+    "titlefont": {},
+    "addressfont": {},
+    "quotefont": {},
+    "sectionfont": {},
+    "subsectionfont": {},
+    "hintfont": {},
+    "pagenumberfont": {},
+    "namestyle{}": {
+      "snippet": "namestyle{${1:text}}"
+    },
+    "titlestyle{}": {
+      "snippet": "titlestyle{${1:text}}"
+    },
+    "addressstyle{}": {
+      "snippet": "addressstyle{${1:text}}"
+    },
+    "quotestyle{}": {
+      "snippet": "quotestyle{${1:text}}"
+    },
+    "sectionstyle{}": {
+      "snippet": "sectionstyle{${1:text}}"
+    },
+    "subsectionstyle{}": {
+      "snippet": "subsectionstyle{${1:text}}"
+    },
+    "hintstyle{}": {
+      "snippet": "hintstyle{${1:text}}"
+    },
+    "pagenumberstyle{}": {
+      "snippet": "pagenumberstyle{${1:text}}"
+    },
+    "recomputecvheadlengths": {},
+    "recomputecvbodylengths": {},
+    "recomputecvfootlengths": {},
+    "recomputecvlengths": {},
+    "makenewline": {},
+    "makecvtitle": {},
+    "makecvhead": {},
+    "makecvfoot": {},
+    "cvitem{}{}": {
+      "snippet": "cvitem{${1:heading}}{${2:text}}"
+    },
+    "cvitem[]{}{}": {
+      "snippet": "cvitem[${3:spacing}]{${1:heading}}{${2:text}}"
+    },
+    "cvdoubleitem{}{}{}{}": {
+      "snippet": "cvdoubleitem{${1:heading1}}{${2:text1}}{${3:heading2}}{${4:text2}}"
+    },
+    "cvdoubleitem[]{}{}{}{}": {
+      "snippet": "cvdoubleitem[${5:spacing}]{${1:heading1}}{${2:text1}}{${3:heading2}}{${4:text2}}"
+    },
+    "cvlistitem{}": {
+      "snippet": "cvlistitem{${1:item}}"
+    },
+    "cvlistitem[]{}": {
+      "snippet": "cvlistitem[${2:spacing}]{${1:item}}"
+    },
+    "cvlistdoubleitem{}{}": {
+      "snippet": "cvlistdoubleitem{${1:item1}}{${2:item2}}"
+    },
+    "cvlistdoubleitem[]{}{}": {
+      "snippet": "cvlistdoubleitem[${3:spacing}]{${1:item1}}{${2:item2}}"
+    },
+    "cventry{}{}{}{}{}{}": {
+      "snippet": "cventry{${1:years}}{${2:degree or job title}}{${3:institution or employer}}{${4:city}}{${5:grade}}{${6:description}}"
+    },
+    "cventry[]{}{}{}{}{}{}": {
+      "snippet": "cventry[${7:spacing}]{${1:years}}{${2:degree or job title}}{${3:institution or employer}}{${4:city}}{${5:grade}}{${6:description}}"
+    },
+    "cvitemwithcomment{}{}{}": {
+      "snippet": "cvitemwithcomment{${1:item}}{${2:item description}}{${3:comment}}"
+    },
+    "link{}": {
+      "snippet": "link{${1:URL}}"
+    },
+    "link[]{}": {
+      "snippet": "link[${2:text}]{${1:URL}}"
+    },
+    "httplink{}": {
+      "snippet": "httplink{${1:URL}}"
+    },
+    "httplink[]{}": {
+      "snippet": "httplink[${2:text}]{${1:URL}}"
+    },
+    "httpslink{}": {
+      "snippet": "httpslink{${1:URL}}"
+    },
+    "httpslink[]{}": {
+      "snippet": "httpslink[${2:text}]{${1:URL}}"
+    },
+    "emaillink{}": {
+      "snippet": "emaillink{${1:address}}"
+    },
+    "emaillink[]{}": {
+      "snippet": "emaillink[${2:text}]{${1:address}}"
+    },
+    "tellink{}": {
+      "snippet": "tellink{${1:phone number}}"
+    },
+    "tellink[]{}": {
+      "snippet": "tellink[${2:text}]{${1:phone number}}"
+    },
+    "onlynumberslink{}": {
+      "snippet": "onlynumberslink{${1:arg}}"
+    },
+    "thecvcolumnscounter": {},
+    "thecvcolumnsautowidthcounter": {},
+    "thetmpiteratorcounter": {},
+    "cvcolumnsdummywidth": {},
+    "cvcolumnswidth": {},
+    "cvcolumnsautowidth": {},
+    "cvcolumnautowidth": {},
+    "cvcolumn{}{}": {
+      "snippet": "cvcolumn{${1:head}}{${2:content}}"
+    },
+    "cvcolumn[]{}{}": {
+      "snippet": "cvcolumn[${3:width}]{${1:head}}{${2:content}}"
+    },
+    "cvcolumncell{}": {
+      "snippet": "cvcolumncell{${1:arg}}"
+    },
+    "bibindent": {},
+    "bibliographyhead{}": {
+      "snippet": "bibliographyhead{${1:title}}"
+    },
+    "recipient{}{}": {
+      "snippet": "recipient{${1:recipient}}{${2:recipient address}}"
+    },
+    "opening{}": {
+      "snippet": "opening{${1:opening}}"
+    },
+    "closing{}": {
+      "snippet": "closing{${1:closing}}"
+    },
+    "enclosure{}": {
+      "snippet": "enclosure{${1:enclosure}}"
+    },
+    "enclosure[]{}": {
+      "snippet": "enclosure[${2:alternative name}]{${1:enclosure}}"
+    },
+    "recomputeletterheadlengths": {},
+    "recomputeletterbodylengths": {},
+    "recomputeletterfootlengths": {},
+    "recomputeletterlengths": {},
+    "makelettertitle": {},
+    "makeletterhead": {},
+    "makeletterfoot": {},
+    "makeletterclosing": {},
+    "separatorcolumnwidth": {},
+    "maincolumnwidth": {},
+    "doubleitemcolumnwidth": {},
+    "separatorrulewidth": {},
+    "listitemsymbolwidth": {},
+    "listitemcolumnwidth": {},
+    "listdoubleitemcolumnwidth": {},
+    "cventryyearbox": {},
+    "cventrytitleboxwidth": {},
+    "cvskill{}": {
+      "snippet": "cvskill{${1:integer}}"
+    },
+    "setcvskillcolumns[]": {
+      "snippet": "setcvskillcolumns[${1:width}]"
+    },
+    "setcvskillcolumns[][]": {
+      "snippet": "setcvskillcolumns[${1:width}][${2:factor}]"
+    },
+    "setcvskillcolumns[][][]": {
+      "snippet": "setcvskillcolumns[${1:width}][${2:factor}][${3:exp-width}]"
+    },
+    "setcvskilllegendcolumns[]": {
+      "snippet": "setcvskilllegendcolumns[${1:width}]"
+    },
+    "setcvskilllegendcolumns[][]": {
+      "snippet": "setcvskilllegendcolumns[${1:width}][${2:factor}]"
+    },
+    "cvskilllegend{}": {
+      "snippet": "cvskilllegend{${1:name}}"
+    },
+    "cvskilllegend[]{}": {
+      "snippet": "cvskilllegend[${2:padding}]{${1:name}}"
+    },
+    "cvskilllegend[][][][][][]{}": {
+      "snippet": "cvskilllegend[${2:padding}][${3:1st}][${4:2nd}][${5:3rd}][${6:4th}][${7:5th}]{${1:name}}"
+    },
+    "cvskilllegend*{}": {
+      "snippet": "cvskilllegend*{${1:name}}"
+    },
+    "cvskilllegend*[]{}": {
+      "snippet": "cvskilllegend*[${2:padding}]{${1:name}}"
+    },
+    "cvskilllegend*[][][][][][]{}": {
+      "snippet": "cvskilllegend*[${2:padding}][${3:1st}][${4:2nd}][${5:3rd}][${6:4th}][${7:5th}]{${1:name}}"
+    },
+    "cvskillplainlegend{}": {
+      "snippet": "cvskillplainlegend{${1:name}}"
+    },
+    "cvskillplainlegend[]{}": {
+      "snippet": "cvskillplainlegend[${2:padding}]{${1:name}}"
+    },
+    "cvskillplainlegend[][][][][][]{}": {
+      "snippet": "cvskillplainlegend[${2:padding}][${3:1st}][${4:2nd}][${5:3rd}][${6:4th}][${7:5th}]{${1:name}}"
+    },
+    "cvskillplainlegend*{}": {
+      "snippet": "cvskillplainlegend*{${1:name}}"
+    },
+    "cvskillplainlegend*[]{}": {
+      "snippet": "cvskillplainlegend*[${2:padding}]{${1:name}}"
+    },
+    "cvskillplainlegend*[][][][][][]{}": {
+      "snippet": "cvskillplainlegend*[${2:padding}][${3:1st}][${4:2nd}][${5:3rd}][${6:4th}][${7:5th}]{${1:name}}"
+    },
+    "cvskillhead[]": {
+      "snippet": "cvskillhead[${1:padding}]"
+    },
+    "cvskillhead[][][][][]": {
+      "snippet": "cvskillhead[${1:padding}][${2:name1}][${3:name2}][${4:name3}][${5:name4}]"
+    },
+    "cvskillentry{}{}{}{}{}": {
+      "snippet": "cvskillentry{${1:category}}{${2:level}}{${3:name}}{${4:years}}{${5:comment}}"
+    },
+    "cvskillentry[]{}{}{}{}{}": {
+      "snippet": "cvskillentry[${6:padding}]{${1:category}}{${2:level}}{${3:name}}{${4:years}}{${5:comment}}"
+    },
+    "cvskillentry*{}{}{}{}{}": {
+      "snippet": "cvskillentry*{${1:category}}{${2:level}}{${3:name}}{${4:years}}{${5:comment}}"
+    },
+    "cvskillentry*[]{}{}{}{}{}": {
+      "snippet": "cvskillentry*[${6:padding}]{${1:category}}{${2:level}}{${3:name}}{${4:years}}{${5:comment}}"
+    },
+    "footsymbol": {},
+    "footbox": {},
+    "foottempbox": {},
+    "footboxwidth": {},
+    "addtofoot{}": {
+      "snippet": "addtofoot{${1:element}}"
+    },
+    "addtofoot[]{}": {
+      "snippet": "addtofoot[${2:symbol}]{${1:element}}"
+    },
+    "flushfoot": {},
+    "quotewidth": {},
+    "makecvheadnamewidth": {},
+    "makecvheadpicturebox": {},
+    "makecvheaddetailswidth": {},
+    "makecvheadpicturewidth": {},
+    "makecvheadnamebox": {},
+    "makeheaddetailssymbol": {},
+    "makeheaddetailsbox": {},
+    "makeheaddetailstempbox": {},
+    "makeheaddetailswidth": {},
+    "makeheaddetailsboxwidth": {},
+    "addtomakeheaddetails{}": {
+      "snippet": "addtomakeheaddetails{${1:element}}"
+    },
+    "addtomakeheaddetails[]{}": {
+      "snippet": "addtomakeheaddetails[${2:symbol}]{${1:element}}"
+    },
+    "flushmakeheaddetails": {},
+    "makehead": {},
+    "makecvheadinfo{}": {
+      "snippet": "makecvheadinfo{${1:arg}}"
+    },
+    "makecvheadinfobox": {},
+    "makecvheadinfoheight": {},
+    "marvosymbol{}": {
+      "snippet": "marvosymbol{${1:number}}"
+    }
+  },
+  "envs": {
+    "cvcolumns": {}
+  },
+  "options": [
+    "a4paper",
+    "a5paper",
+    "b5paper",
+    "letterpaper",
+    "legalpaper",
+    "executivepaper",
+    "landscape",
+    "10pt",
+    "11pt",
+    "12pt",
+    "sans",
+    "roman",
+    "draft",
+    "final"
+  ],
+  "keyvals": [
+    [
+      "banking",
+      "casual",
+      "classic",
+      "empty",
+      "fancy",
+      "oldstyle"
+    ]
+  ]
+}

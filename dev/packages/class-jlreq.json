@@ -1,0 +1,431 @@
+{
+  "includes": {
+    "l3keys2e": [],
+    "etoolbox": [],
+    "jlreq-helpers": [],
+    "luatexja": [],
+    "luatexja-adjust": [],
+    "everyhook": [],
+    "lmodern": [],
+    "jlreq-complements": [],
+    "stfloats": []
+  },
+  "macros": {
+    "chapter{}[]": {
+      "snippet": "chapter{${1:title}}[${2:subtitle}]",
+      "option": "article_type=report"
+    },
+    "chapter[]{}[]": {
+      "snippet": "chapter[${2:short title}]{${1:title}}[${3:subtitle}]",
+      "option": "article_type=report"
+    },
+    "chapter*{}[]": {
+      "snippet": "chapter*{${1:title}}[${2:subtitle}]",
+      "option": "article_type=report"
+    },
+    "thechapter": {
+      "option": "article_type=report"
+    },
+    "frontmatter": {
+      "option": "article_type=book"
+    },
+    "mainmatter": {
+      "option": "article_type=book"
+    },
+    "backmatter": {
+      "option": "article_type=book"
+    },
+    "jlreqsetup{}": {
+      "snippet": "jlreqsetup{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "part{}[]": {
+      "snippet": "part{${1:title}}[${2:subtitle}]"
+    },
+    "part[]{}[]": {
+      "snippet": "part[${2:short title}]{${1:title}}[${3:subtitle}]"
+    },
+    "part*{}[]": {
+      "snippet": "part*{${1:title}}[${2:subtitle}]"
+    },
+    "section{}[]": {
+      "snippet": "section{${1:title}}[${2:subtitle}]"
+    },
+    "section[]{}[]": {
+      "snippet": "section[${2:short title}]{${1:title}}[${3:subtitle}]"
+    },
+    "section*{}[]": {
+      "snippet": "section*{${1:title}}[${2:subtitle}]"
+    },
+    "subsection{}[]": {
+      "snippet": "subsection{${1:title}}[${2:subtitle}]"
+    },
+    "subsection[]{}[]": {
+      "snippet": "subsection[${2:short title}]{${1:title}}[${3:subtitle}]"
+    },
+    "subsection*{}[]": {
+      "snippet": "subsection*{${1:title}}[${2:subtitle}]"
+    },
+    "subsubsection{}[]": {
+      "snippet": "subsubsection{${1:title}}[${2:subtitle}]"
+    },
+    "subsubsection[]{}[]": {
+      "snippet": "subsubsection[${2:short title}]{${1:title}}[${3:subtitle}]"
+    },
+    "subsubsection*{}[]": {
+      "snippet": "subsubsection*{${1:title}}[${2:subtitle}]"
+    },
+    "sidenote{}{}": {
+      "snippet": "sidenote{${1:heading}}{${2:text}}"
+    },
+    "sidenotemark{}": {
+      "snippet": "sidenotemark{${1:heading}}"
+    },
+    "sidenotemark[]{}": {
+      "snippet": "sidenotemark[${2:number}]{${1:heading}}"
+    },
+    "sidenotetext{}{}": {
+      "snippet": "sidenotetext{${1:heading}}{${2:text}}"
+    },
+    "sidenotetext[]{}{}": {
+      "snippet": "sidenotetext[${3:number}]{${1:heading}}{${2:text}}"
+    },
+    "endnote{}": {
+      "snippet": "endnote{${1:text}}"
+    },
+    "endnote[]{}": {
+      "snippet": "endnote[${2:number}]{${1:text}}"
+    },
+    "endnotemark": {},
+    "endnotemark[]": {
+      "snippet": "endnotemark[${1:number}]"
+    },
+    "endnotetext{}": {
+      "snippet": "endnotetext{${1:text}}"
+    },
+    "endnotetext[]{}": {
+      "snippet": "endnotetext[${2:number}]{${1:text}}"
+    },
+    "theendnotes": {},
+    "warichu{}": {
+      "snippet": "warichu{${1:text}}"
+    },
+    "warichu*{}": {
+      "snippet": "warichu*{${1:text}}"
+    },
+    "tatechuyoko{}": {
+      "snippet": "tatechuyoko{${1:text}}"
+    },
+    "tatechuyoko*{}": {
+      "snippet": "tatechuyoko*{${1:text}}"
+    },
+    "jidori{}{}": {
+      "snippet": "jidori{${1:width}}{${2:text}}"
+    },
+    "akigumi{}{}": {
+      "snippet": "akigumi{${1:width}}{${2:text}}"
+    },
+    "jafontsize{}{}": {
+      "snippet": "jafontsize{${1:size}}{${2:skip}}"
+    },
+    "jlreqkanjiskip": {},
+    "jlreqxkanjiskip": {},
+    "NewTobiraHeading{}{}{}": {
+      "snippet": "NewTobiraHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "RenewTobiraHeading{}{}{}": {
+      "snippet": "RenewTobiraHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "ProvideTobiraHeading{}{}{}": {
+      "snippet": "ProvideTobiraHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "DeclareTobiraHeading{}{}{}": {
+      "snippet": "DeclareTobiraHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "NewBlockHeading{}{}{}": {
+      "snippet": "NewBlockHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "RenewBlockHeading{}{}{}": {
+      "snippet": "RenewBlockHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "ProvideBlockHeading{}{}{}": {
+      "snippet": "ProvideBlockHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "DeclareBlockHeading{}{}{}": {
+      "snippet": "DeclareBlockHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "SetBlockHeadingSpaces{}": {
+      "snippet": "SetBlockHeadingSpaces{${1:specs}}"
+    },
+    "NewRuninHeading{}{}{}": {
+      "snippet": "NewRuninHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 3,
+      "keyvalpos": 2
+    },
+    "RenewRuninHeading{}{}{}": {
+      "snippet": "RenewRuninHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 3,
+      "keyvalpos": 2
+    },
+    "ProvideRuninHeading{}{}{}": {
+      "snippet": "ProvideRuninHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 3,
+      "keyvalpos": 2
+    },
+    "DeclareRuninHeading{}{}{}": {
+      "snippet": "DeclareRuninHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 3,
+      "keyvalpos": 2
+    },
+    "NewCutinHeading{}{}{}": {
+      "snippet": "NewCutinHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 4,
+      "keyvalpos": 2
+    },
+    "RenewCutinHeading{}{}{}": {
+      "snippet": "RenewCutinHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 4,
+      "keyvalpos": 2
+    },
+    "ProvideCutinHeading{}{}{}": {
+      "snippet": "ProvideCutinHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 4,
+      "keyvalpos": 2
+    },
+    "DeclareCutinHeading{}{}{}": {
+      "snippet": "DeclareCutinHeading{${1:sectionname}}{${2:level}}{${3:options}}",
+      "keyvalindex": 4,
+      "keyvalpos": 2
+    },
+    "ModifyHeading{}{}": {
+      "snippet": "ModifyHeading{${1:sectionname}}{${2:options}}",
+      "keyvalindex": 4,
+      "keyvalpos": 1
+    },
+    "SaveHeading{}{}": {
+      "snippet": "SaveHeading{${1:sectionname}}{${2:command}}"
+    },
+    "NewPageStyle{}{}": {
+      "snippet": "NewPageStyle{${1:name}}{${2:options}}",
+      "keyvalindex": 5,
+      "keyvalpos": 1
+    },
+    "RenewPageStyle{}{}": {
+      "snippet": "RenewPageStyle{${1:name}}{${2:options}}",
+      "keyvalindex": 5,
+      "keyvalpos": 1
+    },
+    "ProvidePageStyle{}{}": {
+      "snippet": "ProvidePageStyle{${1:name}}{${2:options}}",
+      "keyvalindex": 5,
+      "keyvalpos": 1
+    },
+    "DeclarePageStyle{}{}": {
+      "snippet": "DeclarePageStyle{${1:name}}{${2:options}}",
+      "keyvalindex": 5,
+      "keyvalpos": 1
+    },
+    "ModifyPageStyle{}{}": {
+      "snippet": "ModifyPageStyle{${1:pagestyle}}{${2:options}}",
+      "keyvalindex": 5,
+      "keyvalpos": 1
+    },
+    "ifjlreqadjustreferencemark": {},
+    "inlinenote*{}": {
+      "snippet": "inlinenote*{${1:text}}"
+    },
+    "inlinenote{}": {
+      "snippet": "inlinenote{${1:text}}"
+    },
+    "inlinenotesize": {},
+    "jaspace{}": {
+      "snippet": "jaspace{${1:type}}"
+    },
+    "jlreqadjustreferencemarkfalse": {},
+    "jlreqadjustreferencemarktrue": {},
+    "jlreqHeadingLabel": {},
+    "jlreqHeadingSubtitle": {},
+    "jlreqHeadingText": {},
+    "jlreqparindent": {},
+    "jlreqtateheadlength": {},
+    "jlreqyokoheadlength": {},
+    "lastnodechar": {},
+    "thejlreqreversepage": {},
+    "toclineskip": {}
+  },
+  "envs": {},
+  "options": [
+    "uplatex",
+    "platex",
+    "lualatex",
+    "tate",
+    "report",
+    "book",
+    "oneside",
+    "twoside",
+    "onecolumn",
+    "twocolumn",
+    "titlepage",
+    "notitlepage",
+    "draft",
+    "final",
+    "landscape",
+    "openright",
+    "openany",
+    "leqno",
+    "fleqn",
+    "disablejfam",
+    "paper=",
+    "fontsize=",
+    "jafontsize=",
+    "jafontscale=${1:factor}",
+    "line_length=",
+    "number_of_lines",
+    "gutter=",
+    "fore-edge=",
+    "head_space=",
+    "foot_space=",
+    "baselineskip=",
+    "linegap=",
+    "headfoot_sidemargin=",
+    "column_gap=",
+    "sidenote_length=",
+    "open_bracket_pos=",
+    "hanging_punctuation",
+    "use_reverse_pagination"
+  ],
+  "keyvals": [
+    [
+      "reference_mark=",
+      "footnote_second_indent=",
+      "sidenote_type=",
+      "sidenote_symbol=${1:symbol}",
+      "sidenote_keyword_font=${1:font commands}",
+      "endnote_second_indent=",
+      "endnote_position=",
+      "caption_font=${1:font commands}",
+      "caption_label_font=${1:font commands}",
+      "caption_after_label_space=",
+      "caption_label_format={${1:code}}",
+      "caption_align=",
+      "quote_indent=",
+      "quote_end_indent",
+      "quote_beforeafter_space",
+      "quote_fontsize=",
+      "itemization_beforeafter_space=",
+      "itemization_itemsep=",
+      "theorem_beforeafter_space=",
+      "theorem_label_font=${1:font commands}",
+      "theorem_font=${1:font commands}",
+      "frontmatter_pagebreak=",
+      "frontmatter_counter={${1:counter}={value=${2:integer},the=${3:code},restore=${4:true|false}}${5:,...}}",
+      "frontmatter_heading={${1:sectionname}={${2:settings}}${3:,...}}",
+      "frontmatter_pagestyle={${1:<pagestyle>,restore=<true|false>}}",
+      "frontmatter_pagination={${1:<numstyle>,continuous,independent}}",
+      "frontmatter_precode=${1:code}",
+      "frontmatter_postcode=${1:code}",
+      "mainmatter_pagebreak=",
+      "mainmatter_counter={${1:counter}={value=${2:integer},the=${3:code}}${4:,...}}",
+      "mainmatter_heading={${1:sectionname}={${2:settings}}${3:,...}}",
+      "mainmatter_pagestyle=${1:pagestyle}",
+      "mainmatter_pagination=${1:numstyle}",
+      "mainmatter_precode=${1:code}",
+      "mainmatter_postcode=${1:code}",
+      "backmatter_pagebreak=",
+      "backmatter_counter={${1:counter}={value=${2:integer},the=${3:code}}${4:,...}}",
+      "backmatter_heading={${1:sectionname}={${2:settings}}${3:,...}}",
+      "backmatter_pagestyle=${1:pagestyle}",
+      "backmatter_pagination={${1:<numstyle>,continuous,independent}}",
+      "backmatter_precode=${1:code}",
+      "backmatter_postcode=${1:code}",
+      "appendix_counter={${1:counter}={value=${2:integer},the=${3:code}}${4:,...}}",
+      "appendix_heading={${1:sectionname}={${2:settings}}${3:,...}}",
+      "appendix_precode=${1:code}",
+      "appendix_postcode=${1:code}",
+      "abstract_with_maketitle",
+      "tableofcontents_twocolumn"
+    ],
+    [
+      "type=",
+      "pagestyle=${1:pagestyle}",
+      "label_format=${1:code}",
+      "format=${1:code}",
+      "number"
+    ],
+    [
+      "font=${1:font commands}",
+      "subtitle_font=${1:font commands}",
+      "label_format=${1:code}",
+      "subtitle_format=${1:code}",
+      "format=${1:code}",
+      "align=",
+      "indent=",
+      "end_indent=",
+      "after_label_space=",
+      "second_heading_text_indent=",
+      "subtitle_indent=",
+      "subtitle_break",
+      "allowbreak_if_evenpage",
+      "pagebreak=",
+      "pagestyle=${1:pagestyle}",
+      "afterindent",
+      "column_spanning",
+      "number",
+      "lines=${1:integer}",
+      "before_lines=${1:integer}",
+      "after_lines=${1:integer}",
+      "before_space=",
+      "after_space="
+    ],
+    [
+      "font=${1:font commands}",
+      "indent=",
+      "after_label_space=",
+      "label_format=${1:code}",
+      "after_space=",
+      "number"
+    ],
+    [
+      "font=${1:font commands}",
+      "indent=",
+      "after_space=",
+      "onelinemax=",
+      "twolinemax="
+    ],
+    [
+      "yoko",
+      "tate",
+      "running_head_font=${1:font commands}",
+      "nombre_font=${1:font commands}",
+      "running_head_position=",
+      "nombre_position=",
+      "nombre=${1:code}",
+      "odd_running_head=${1:code}",
+      "even_running_head=${1:code}",
+      "mark_format={odd=${1:code},even=${2:code,_<sectionname>=code,...}}",
+      "running_head_ii_font=${1:font commands}",
+      "nombre_ii_font=${1:font commands}",
+      "running_head_ii_position=",
+      "nombre_ii_position=",
+      "nombre_ii=${1:code}",
+      "clear_markcommand"
+    ]
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "includes": {
+    "ocgbase": [],
+    "tikz": [
+      "tikz",
+      "tikz=true"
+    ],
+    "tikzlibrarycalc": [
+      "tikz",
+      "tikz=true"
+    ]
+  },
+  "macros": {
+    "AllOn{}": {
+      "snippet": "AllOn{${1:ocg1,ocg2,...}}"
+    },
+    "AnyOn{}": {
+      "snippet": "AnyOn{${1:ocg1,ocg2,...}}"
+    },
+    "AnyOff{}": {
+      "snippet": "AnyOff{${1:ocg1,ocg2,...}}"
+    },
+    "AllOff{}": {
+      "snippet": "AllOff{${1:ocg1,ocg2,...}}"
+    },
+    "Not{}": {
+      "snippet": "Not{${1:item}}"
+    },
+    "And{}": {
+      "snippet": "And{${1:item1,item2,...}}"
+    },
+    "Or{}": {
+      "snippet": "Or{${1:item1,item2,...}}"
+    },
+    "switchocg{}{}": {
+      "snippet": "switchocg{${1:ocg1,ocg2,...}}{${2:link text}}"
+    },
+    "switchocg[]{}{}": {
+      "snippet": "switchocg[${3:trigger}]{${1:ocg1,ocg2,...}}{${2:link text}}"
+    },
+    "switchocg*{}{}": {
+      "snippet": "switchocg*{${1:ocg1,ocg2,...}}{${2:link text}}"
+    },
+    "switchocg*[]{}{}": {
+      "snippet": "switchocg*[${3:trigger}]{${1:ocg1,ocg2,...}}{${2:link text}}"
+    },
+    "showocg{}{}": {
+      "snippet": "showocg{${1:ocg1,ocg2,...}}{${2:link text}}"
+    },
+    "showocg[]{}{}": {
+      "snippet": "showocg[${3:trigger}]{${1:ocg1,ocg2,...}}{${2:link text}}"
+    },
+    "showocg*{}{}": {
+      "snippet": "showocg*{${1:ocg1,ocg2,...}}{${2:link text}}"
+    },
+    "showocg*[]{}{}": {
+      "snippet": "showocg*[${3:trigger}]{${1:ocg1,ocg2,...}}{${2:link text}}"
+    },
+    "hideocg{}{}": {
+      "snippet": "hideocg{${1:ocg1,ocg2,...}}{${2:link text}}"
+    },
+    "hideocg[]{}{}": {
+      "snippet": "hideocg[${3:trigger}]{${1:ocg1,ocg2,...}}{${2:link text}}"
+    },
+    "hideocg*{}{}": {
+      "snippet": "hideocg*{${1:ocg1,ocg2,...}}{${2:link text}}"
+    },
+    "hideocg*[]{}{}": {
+      "snippet": "hideocg*[${3:trigger}]{${1:ocg1,ocg2,...}}{${2:link text}}"
+    },
+    "actionsocg{}{}{}{}": {
+      "snippet": "actionsocg{${1:switchocg1,...}}{${2:showocg1,...}}{${3:hideocg1,...}}{${4:link text}}"
+    },
+    "actionsocg[]{}{}{}{}": {
+      "snippet": "actionsocg[${5:trigger}]{${1:switchocg1,...}}{${2:showocg1,...}}{${3:hideocg1,...}}{${4:link text}}"
+    },
+    "actionsocg*{}{}{}{}": {
+      "snippet": "actionsocg*{${1:switchocg1,...}}{${2:showocg1,...}}{${3:hideocg1,...}}{${4:link text}}"
+    },
+    "actionsocg*[]{}{}{}{}": {
+      "snippet": "actionsocg*[${5:trigger}]{${1:switchocg1,...}}{${2:showocg1,...}}{${3:hideocg1,...}}{${4:link text}}"
+    },
+    "ocglinkprotect{}": {
+      "snippet": "ocglinkprotect{${1:text}}"
+    },
+    "toggleocgs{}{}": {
+      "snippet": "toggleocgs{${1:layerid1 layerid2 ...}}{${2:link text}}"
+    },
+    "toggleocgs[]{}{}": {
+      "snippet": "toggleocgs[${3:option}]{${1:layerid1 layerid2 ...}}{${2:link text}}"
+    },
+    "showocgs{}{}": {
+      "snippet": "showocgs{${1:layerid1 layerid2 ...}}{${2:link text}}"
+    },
+    "showocgs[]{}{}": {
+      "snippet": "showocgs[${3:option}]{${1:layerid1 layerid2 ...}}{${2:link text}}"
+    },
+    "hideocgs{}{}": {
+      "snippet": "hideocgs{${1:layerid1 layerid2 ...}}{${2:link text}}"
+    },
+    "hideocgs[]{}{}": {
+      "snippet": "hideocgs[${3:option}]{${1:layerid1 layerid2 ...}}{${2:link text}}"
+    },
+    "setocgs{}{}{}{}": {
+      "snippet": "setocgs{${1:tlayerid1 ...}}{${2:slayerid1 ...}}{${3:hlayerid1 ...}}{${4:link text}}"
+    },
+    "setocgs[]{}{}{}{}": {
+      "snippet": "setocgs[${5:option}]{${1:tlayerid1 ...}}{${2:slayerid1 ...}}{${3:hlayerid1 ...}}{${4:link text}}"
+    }
+  },
+  "envs": {
+    "ocg{}{}{}": {
+      "name": "ocg",
+      "snippet": "{${1:layer name}}{${2:ocg id}}{${3:initial visibility}}"
+    },
+    "ocg[]{}{}{}": {
+      "name": "ocg",
+      "snippet": "[${4:options}]{${1:layer name}}{${2:ocg id}}{${3:initial visibility}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ocmd{}": {
+      "name": "ocmd",
+      "snippet": "{${1:visibility policy,visibility expression}}"
+    },
+    "ocmd[]{}": {
+      "name": "ocmd",
+      "snippet": "[${2:id}]{${1:visibility policy,visibility expression}}"
+    }
+  },
+  "options": [
+    "dvipdfmx",
+    "viewocg=",
+    "printocg=",
+    "exportocg=",
+    "showingui=",
+    "tikz",
+    "ocgcolorlinks"
+  ],
+  "keyvals": [
+    [
+      "viewocg=",
+      "printocg=",
+      "exportocg=",
+      "showingui=",
+      "listintoolbar=",
+      "radiobtngrps={${1:group1,group2,...}}"
+    ]
+  ]
+}

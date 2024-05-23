@@ -1,0 +1,432 @@
+{
+  "includes": {
+    "l3draw": [],
+    "tikz": [
+      "pgf"
+    ]
+  },
+  "macros": {
+    "die{}{}": {
+      "snippet": "die{${1:shape}}{${2:integer}}"
+    },
+    "die{}[]{}": {
+      "snippet": "die{${1:shape}}[${2:options}]{${3:integer}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "die[]{}{}": {
+      "snippet": "die[${3:style}]{${1:shape}}{${2:integer}}"
+    },
+    "die[]{}[]{}": {
+      "snippet": "die[${3:style}]{${1:shape}}[${4:options}]{${2:integer}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "ability{}": {
+      "snippet": "ability{${1:shape}}"
+    },
+    "ability{}[]": {
+      "snippet": "ability{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "ability[]{}": {
+      "snippet": "ability[${2:style}]{${1:shape}}"
+    },
+    "ability[]{}[]": {
+      "snippet": "ability[${2:style}]{${1:shape}}[${3:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "saving{}": {
+      "snippet": "saving{${1:shape}}"
+    },
+    "saving{}[]": {
+      "snippet": "saving{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "saving[]{}": {
+      "snippet": "saving[${2:style}]{${1:shape}}"
+    },
+    "saving[]{}[]": {
+      "snippet": "saving[${2:style}]{${1:shape}}[${3:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "spell{}": {
+      "snippet": "spell{${1:shape}}"
+    },
+    "spell{}[]": {
+      "snippet": "spell{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "spellschool{}": {
+      "snippet": "spellschool{${1:shape}}"
+    },
+    "spellschool{}[]": {
+      "snippet": "spellschool{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "spellschool[]{}": {
+      "snippet": "spellschool[${2:style}]{${1:shape}}"
+    },
+    "spellschool[]{}[]": {
+      "snippet": "spellschool[${2:style}]{${1:shape}}[${3:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "damage{}": {
+      "snippet": "damage{${1:shape}}"
+    },
+    "damage{}[]": {
+      "snippet": "damage{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "attack{}": {
+      "snippet": "attack{${1:shape}}"
+    },
+    "attack{}[]": {
+      "snippet": "attack{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "condition{}": {
+      "snippet": "condition{${1:shape}}"
+    },
+    "condition{}[]": {
+      "snippet": "condition{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "RPGIconsUseIcon{}": {
+      "snippet": "RPGIconsUseIcon{${1:shape}}"
+    },
+    "RPGIconsUseIcon[]{}": {
+      "snippet": "RPGIconsUseIcon[${2:options}]{${1:shape}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "RPGIconsUseIcon[][]{}": {
+      "snippet": "RPGIconsUseIcon[${2:options}][${3:integer}]{${1:shape}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "RPGIconsUseIcon*{}": {
+      "snippet": "RPGIconsUseIcon*{${1:shape}}"
+    },
+    "RPGIconsUseIcon*[]{}": {
+      "snippet": "RPGIconsUseIcon*[${2:options}]{${1:shape}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "RPGIconsUseIcon*[][]{}": {
+      "snippet": "RPGIconsUseIcon*[${2:options}][${3:integer}]{${1:shape}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "RPGIconsDie{}{}": {
+      "snippet": "RPGIconsDie{${1:shape}}{${2:integer}}"
+    },
+    "RPGIconsDie{}[]{}": {
+      "snippet": "RPGIconsDie{${1:shape}}[${2:options}]{${3:integer}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "RPGIconsDie[]{}{}": {
+      "snippet": "RPGIconsDie[${3:style}]{${1:shape}}{${2:integer}}"
+    },
+    "RPGIconsDie[]{}[]{}": {
+      "snippet": "RPGIconsDie[${3:style}]{${1:shape}}[${4:options}]{${2:integer}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "RPGIconsAbility{}": {
+      "snippet": "RPGIconsAbility{${1:shape}}"
+    },
+    "RPGIconsAbility{}[]": {
+      "snippet": "RPGIconsAbility{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "RPGIconsAbility[]{}": {
+      "snippet": "RPGIconsAbility[${2:style}]{${1:shape}}"
+    },
+    "RPGIconsAbility[]{}[]": {
+      "snippet": "RPGIconsAbility[${2:style}]{${1:shape}}[${3:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "RPGIconsSaving{}": {
+      "snippet": "RPGIconsSaving{${1:shape}}"
+    },
+    "RPGIconsSaving{}[]": {
+      "snippet": "RPGIconsSaving{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "RPGIconsSaving[]{}": {
+      "snippet": "RPGIconsSaving[${2:style}]{${1:shape}}"
+    },
+    "RPGIconsSaving[]{}[]": {
+      "snippet": "RPGIconsSaving[${2:style}]{${1:shape}}[${3:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "RPGIconsSpell{}": {
+      "snippet": "RPGIconsSpell{${1:shape}}"
+    },
+    "RPGIconsSpell{}[]": {
+      "snippet": "RPGIconsSpell{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "RPGIconsSpellschool{}": {
+      "snippet": "RPGIconsSpellschool{${1:shape}}"
+    },
+    "RPGIconsSpellschool{}[]": {
+      "snippet": "RPGIconsSpellschool{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "RPGIconsSpellschool[]{}": {
+      "snippet": "RPGIconsSpellschool[${2:style}]{${1:shape}}"
+    },
+    "RPGIconsSpellschool[]{}[]": {
+      "snippet": "RPGIconsSpellschool[${2:style}]{${1:shape}}[${3:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "RPGIconsDamage{}": {
+      "snippet": "RPGIconsDamage{${1:shape}}"
+    },
+    "RPGIconsDamage{}[]": {
+      "snippet": "RPGIconsDamage{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "RPGIconsAttack{}": {
+      "snippet": "RPGIconsAttack{${1:shape}}"
+    },
+    "RPGIconsAttack{}[]": {
+      "snippet": "RPGIconsAttack{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "RPGIconsCondition{}": {
+      "snippet": "RPGIconsCondition{${1:shape}}"
+    },
+    "RPGIconsCondition{}[]": {
+      "snippet": "RPGIconsCondition{${1:shape}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "rpgiconsset{}": {
+      "snippet": "rpgiconsset{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "roll{}": {
+      "snippet": "roll{${1:roll syntax}}"
+    },
+    "RPGIconsRoll{}": {
+      "snippet": "RPGIconsRoll{${1:roll syntax}}"
+    },
+    "rpgiconsdie{}{}": {
+      "snippet": "rpgiconsdie{${1:shape}}{${2:integer}}",
+      "option": "pgf"
+    },
+    "rpgiconsdie{}[]{}": {
+      "snippet": "rpgiconsdie{${1:shape}}[${2:options}]{${3:integer}}",
+      "option": "pgf"
+    },
+    "rpgiconsdie[]{}{}": {
+      "snippet": "rpgiconsdie[${3:style}]{${1:shape}}{${2:integer}}",
+      "option": "pgf"
+    },
+    "rpgiconsdie[]{}[]{}": {
+      "snippet": "rpgiconsdie[${3:style}]{${1:shape}}[${4:options}]{${2:integer}}",
+      "option": "pgf"
+    },
+    "rpgiconsability{}": {
+      "snippet": "rpgiconsability{${1:shape}}",
+      "option": "pgf"
+    },
+    "rpgiconsability{}[]": {
+      "snippet": "rpgiconsability{${1:shape}}[${2:options}]",
+      "option": "pgf"
+    },
+    "rpgiconsability[]{}": {
+      "snippet": "rpgiconsability[${2:style}]{${1:shape}}",
+      "option": "pgf"
+    },
+    "rpgiconsability[]{}[]": {
+      "snippet": "rpgiconsability[${2:style}]{${1:shape}}[${3:options}]",
+      "option": "pgf"
+    },
+    "rpgiconssaving{}": {
+      "snippet": "rpgiconssaving{${1:shape}}",
+      "option": "pgf"
+    },
+    "rpgiconssaving{}[]": {
+      "snippet": "rpgiconssaving{${1:shape}}[${2:options}]",
+      "option": "pgf"
+    },
+    "rpgiconssaving[]{}": {
+      "snippet": "rpgiconssaving[${2:style}]{${1:shape}}",
+      "option": "pgf"
+    },
+    "rpgiconssaving[]{}[]": {
+      "snippet": "rpgiconssaving[${2:style}]{${1:shape}}[${3:options}]",
+      "option": "pgf"
+    },
+    "rpgiconsspell{}": {
+      "snippet": "rpgiconsspell{${1:shape}}",
+      "option": "pgf"
+    },
+    "rpgiconsspell{}[]": {
+      "snippet": "rpgiconsspell{${1:shape}}[${2:options}]",
+      "option": "pgf"
+    },
+    "rpgiconsspellschool{}": {
+      "snippet": "rpgiconsspellschool{${1:shape}}",
+      "option": "pgf"
+    },
+    "rpgiconsspellschool{}[]": {
+      "snippet": "rpgiconsspellschool{${1:shape}}[${2:options}]",
+      "option": "pgf"
+    },
+    "rpgiconsspellschool[]{}": {
+      "snippet": "rpgiconsspellschool[${2:style}]{${1:shape}}",
+      "option": "pgf"
+    },
+    "rpgiconsspellschool[]{}[]": {
+      "snippet": "rpgiconsspellschool[${2:style}]{${1:shape}}[${3:options}]",
+      "option": "pgf"
+    },
+    "rpgiconsdamage{}": {
+      "snippet": "rpgiconsdamage{${1:shape}}",
+      "option": "pgf"
+    },
+    "rpgiconsdamage{}[]": {
+      "snippet": "rpgiconsdamage{${1:shape}}[${2:options}]",
+      "option": "pgf"
+    },
+    "rpgiconsattack{}": {
+      "snippet": "rpgiconsattack{${1:shape}}",
+      "option": "pgf"
+    },
+    "rpgiconsattack{}[]": {
+      "snippet": "rpgiconsattack{${1:shape}}[${2:options}]",
+      "option": "pgf"
+    },
+    "rpgiconscondition{}": {
+      "snippet": "rpgiconscondition{${1:shape}}",
+      "option": "pgf"
+    },
+    "rpgiconscondition{}[]": {
+      "snippet": "rpgiconscondition{${1:shape}}[${2:options}]",
+      "option": "pgf"
+    },
+    "provideprotectedrpgicon{}{}{}": {
+      "snippet": "provideprotectedrpgicon{${1:command}}{${2:shape}}{${3:box name}}",
+      "option": "pgf"
+    },
+    "provideprotectedrpgicon{}{}[]{}": {
+      "snippet": "provideprotectedrpgicon{${1:command}}{${2:shape}}[${3:options}]{${4:box name}}",
+      "option": "pgf"
+    },
+    "provideprotectedrpgicon{}[]{}{}": {
+      "snippet": "provideprotectedrpgicon{${1:command}}[${2:style}]{${3:shape}}{${4:box name}}",
+      "option": "pgf"
+    },
+    "provideprotectedrpgicon{}[]{}[]{}": {
+      "snippet": "provideprotectedrpgicon{${1:command}}[${2:style}]{${3:shape}}[${4:options}]{${5:box name}}",
+      "option": "pgf"
+    },
+    "useprotectedrpgicon{}": {
+      "snippet": "useprotectedrpgicon{${1:box name}}",
+      "option": "pgf"
+    },
+    "rpgiconsroll{}": {
+      "snippet": "rpgiconsroll{${1:roll syntax}}",
+      "option": "pgf"
+    }
+  },
+  "envs": {},
+  "options": [
+    "l3",
+    "pgf",
+    "compat",
+    "opacity",
+    "pics"
+  ],
+  "keyvals": [
+    [
+      "frame=",
+      "stroke=",
+      "fill=",
+      "text=",
+      "color=",
+      "background=",
+      "stroke opacity=${1:factor}",
+      "fill opacity=${1:factor}",
+      "text opacity=${1:factor}",
+      "opacity=${1:factor}",
+      "background opacity=${1:factor}",
+      "line width=",
+      "scale=${1:factor}",
+      "scale inner=${1:factor}",
+      "rotate=${1:degrees}",
+      "accessible",
+      "accessible=",
+      "every die={${1:options}}",
+      "every ability={${1:options}}",
+      "every saving={${1:options}}",
+      "every spell={${1:options}}",
+      "every spellschool={${1:options}}",
+      "every damage={${1:options}}",
+      "every attack={${1:options}}",
+      "every condition={${1:options}}",
+      "every ${1:shape}={${2:options}}",
+      "before sep=",
+      "after sep=",
+      "baseline="
+    ],
+    [
+      "frame=",
+      "stroke=",
+      "fill=",
+      "text=",
+      "color=",
+      "background=",
+      "stroke opacity=${1:factor}",
+      "fill opacity=${1:factor}",
+      "text opacity=${1:factor}",
+      "opacity=${1:factor}",
+      "background opacity=${1:factor}",
+      "line width=",
+      "scale=${1:factor}",
+      "scale inner=${1:factor}",
+      "rotate=${1:degrees}",
+      "accessible",
+      "accessible=",
+      "every die={${1:options}}",
+      "every ability={${1:options}}",
+      "every saving={${1:options}}",
+      "every spell={${1:options}}",
+      "every spellschool={${1:options}}",
+      "every damage={${1:options}}",
+      "every attack={${1:options}}",
+      "every condition={${1:options}}",
+      "every ${1:shape}={${2:options}}",
+      "before sep=",
+      "after sep=",
+      "baseline=",
+      "roll syntax={${1:syntax}}"
+    ]
+  ]
+}

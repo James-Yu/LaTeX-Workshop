@@ -1,0 +1,700 @@
+{
+  "includes": {
+    "l3keys2e": [],
+    "xsimverb": [],
+    "array": [],
+    "booktabs": [],
+    "translations": []
+  },
+  "macros": {
+    "xsimsetup{}": {
+      "snippet": "xsimsetup{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "DeclareExerciseType{}{}": {
+      "snippet": "DeclareExerciseType{${1:type}}{${2:parameters}}"
+    },
+    "numberofexercises": {},
+    "DeclareExerciseParameter{}": {
+      "snippet": "DeclareExerciseParameter{${1:parameter}}"
+    },
+    "DeclareExerciseParameter*{}": {
+      "snippet": "DeclareExerciseParameter*{${1:parameter}}"
+    },
+    "SetExerciseParameter{}{}{}": {
+      "snippet": "SetExerciseParameter{${1:type}}{${2:parameter}}{${3:value}}"
+    },
+    "SetExerciseParameters{}{}": {
+      "snippet": "SetExerciseParameters{${1:type}}{${2:parameters}}"
+    },
+    "DeclareExerciseProperty{}": {
+      "snippet": "DeclareExerciseProperty{${1:property}}"
+    },
+    "DeclareExerciseProperty*{}": {
+      "snippet": "DeclareExerciseProperty*{${1:property}}"
+    },
+    "DeclareExercisePropertyAlias{}{}": {
+      "snippet": "DeclareExercisePropertyAlias{${1:property1}}{${2:property2}}"
+    },
+    "DeclareExerciseGoal{}": {
+      "snippet": "DeclareExerciseGoal{${1:goal}}"
+    },
+    "TotalExerciseTypeGoal{}{}{}{}": {
+      "snippet": "TotalExerciseTypeGoal{${1:goal}}{${2:type}}{${3:singular}}{${4:plural}}"
+    },
+    "TotalExerciseTypeGoals{}{}{}{}": {
+      "snippet": "TotalExerciseTypeGoals{${1:type}}{${2:list of goals}}{${3:singular}}{${4:plural}}"
+    },
+    "TotalExerciseGoal{}{}{}": {
+      "snippet": "TotalExerciseGoal{${1:goal}}{${2:singular}}{${3:plural}}"
+    },
+    "TotalExerciseGoals{}{}{}": {
+      "snippet": "TotalExerciseGoals{${1:list of goals}}{${2:singular}}{${3:plural}}"
+    },
+    "AddtoExerciseTypeGoal{}{}{}": {
+      "snippet": "AddtoExerciseTypeGoal{${1:type}}{${2:goal}}{${3:value}}"
+    },
+    "AddtoExerciseTypeGoalPrint{}{}{}{}{}": {
+      "snippet": "AddtoExerciseTypeGoalPrint{${1:type}}{${2:goal}}{${3:value}}{${4:singular}}{${5:plural}}"
+    },
+    "AddtoExerciseGoal{}{}": {
+      "snippet": "AddtoExerciseGoal{${1:goal}}{${2:value}}"
+    },
+    "AddtoExerciseGoalPrint{}{}{}{}": {
+      "snippet": "AddtoExerciseGoalPrint{${1:goal}}{${2:value}}{${3:singular}}{${4:plural}}"
+    },
+    "ExerciseGoalValuePrint{}{}{}": {
+      "snippet": "ExerciseGoalValuePrint{${1:value}}{${2:singular}}{${3:plural}}"
+    },
+    "printgoal{}": {
+      "snippet": "printgoal{${1:value}}"
+    },
+    "printpoints{}": {
+      "snippet": "printpoints{${1:type}}"
+    },
+    "printtotalpoints": {},
+    "addpoints{}": {
+      "snippet": "addpoints{${1:value}}"
+    },
+    "addpoints*{}": {
+      "snippet": "addpoints*{${1:value}}"
+    },
+    "points{}": {
+      "snippet": "points{${1:value}}"
+    },
+    "printbonus{}": {
+      "snippet": "printbonus{${1:type}}"
+    },
+    "printtotalbonus": {},
+    "addbonus{}": {
+      "snippet": "addbonus{${1:value}}"
+    },
+    "addbonus*{}": {
+      "snippet": "addbonus*{${1:value}}"
+    },
+    "DeclareExerciseTagging{}": {
+      "snippet": "DeclareExerciseTagging{${1:tag}}"
+    },
+    "ProvideExerciseTagging{}": {
+      "snippet": "ProvideExerciseTagging{${1:tag}}"
+    },
+    "printexercise{}{}": {
+      "snippet": "printexercise{${1:type}}{${2:list of ids}}"
+    },
+    "xprintexercise{}{}": {
+      "snippet": "xprintexercise{${1:type}}{${2:list of ids}}"
+    },
+    "DeclareExerciseCollection{}": {
+      "snippet": "DeclareExerciseCollection{${1:name}}"
+    },
+    "DeclareExerciseCollection[]{}": {
+      "snippet": "DeclareExerciseCollection[${2:tag values}]{${1:name}}"
+    },
+    "activatecollection{}": {
+      "snippet": "activatecollection{${1:collection name}}"
+    },
+    "deactivatecollection{}": {
+      "snippet": "deactivatecollection{${1:collection name}}"
+    },
+    "collectexercises{}": {
+      "snippet": "collectexercises{${1:collection name}}"
+    },
+    "collectexercisesstop{}": {
+      "snippet": "collectexercisesstop{${1:collection name}}"
+    },
+    "printcollection{}": {
+      "snippet": "printcollection{${1:collection name}}"
+    },
+    "printcollection[]{}": {
+      "snippet": "printcollection[${2:options}]{${1:collection name}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "printrandomexercises{}": {
+      "snippet": "printrandomexercises{${1:number}}"
+    },
+    "printrandomexercises[]{}": {
+      "snippet": "printrandomexercises[${2:options}]{${1:number}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "printsolutionstype{}": {
+      "snippet": "printsolutionstype{${1:type}}"
+    },
+    "printsolutionstype[]{}": {
+      "snippet": "printsolutionstype[${2:options}]{${1:type}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "printsolutionstype*{}": {
+      "snippet": "printsolutionstype*{${1:type}}"
+    },
+    "printsolutionstype*[]{}": {
+      "snippet": "printsolutionstype*[${2:options}]{${1:type}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "printsolutions": {},
+    "printsolutions[]": {
+      "snippet": "printsolutions[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "printsolutions*": {},
+    "printsolutions*[]": {
+      "snippet": "printsolutions*[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "printallsolutions": {},
+    "printallsolutions[]": {
+      "snippet": "printallsolutions[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "printallsolutions*": {},
+    "printallsolutions*[]": {
+      "snippet": "printallsolutions*[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "printsolution{}{}": {
+      "snippet": "printsolution{${1:type}}{${2:id}}"
+    },
+    "printsolution[]{}{}": {
+      "snippet": "printsolution[${3:options}]{${1:type}}{${2:id}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "xprintsolution{}{}": {
+      "snippet": "xprintsolution{${1:type}}{${2:id}}"
+    },
+    "gradingtable": {},
+    "gradingtable[]": {
+      "snippet": "gradingtable[${1:options}]",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "IfExerciseGoalTF{}{}{}{}": {
+      "snippet": "IfExerciseGoalTF{${1:goal}}{${2:relation and value}}{${3:true}}{${4:false}}"
+    },
+    "IfExerciseGoalT{}{}{}": {
+      "snippet": "IfExerciseGoalT{${1:goal}}{${2:relation and value}}{${3:true}}"
+    },
+    "IfExerciseGoalF{}{}{}": {
+      "snippet": "IfExerciseGoalF{${1:goal}}{${2:relation and value}}{${3:false}}"
+    },
+    "IfExerciseGoalSingularTF{}{}{}": {
+      "snippet": "IfExerciseGoalSingularTF{${1:goal}}{${2:true}}{${3:false}}"
+    },
+    "IfExerciseGoalSingularT{}{}": {
+      "snippet": "IfExerciseGoalSingularT{${1:goal}}{${2:true}}"
+    },
+    "IfExerciseGoalSingularF{}{}": {
+      "snippet": "IfExerciseGoalSingularF{${1:goal}}{${2:false}}"
+    },
+    "IfExerciseTypeGoalsSumTF{}{}{}{}{}": {
+      "snippet": "IfExerciseTypeGoalsSumTF{${1:type}}{${2:list of goals}}{${3:relation and value}}{${4:true}}{${5:false}}"
+    },
+    "IfExerciseTypeGoalsSumT{}{}{}{}": {
+      "snippet": "IfExerciseTypeGoalsSumT{${1:type}}{${2:list of goals}}{${3:relation and value}}{${4:true}}"
+    },
+    "IfExerciseTypeGoalsSumF{}{}{}{}": {
+      "snippet": "IfExerciseTypeGoalsSumF{${1:type}}{${2:list of goals}}{${3:relation and value}}{${4:false}}"
+    },
+    "IfExerciseGoalsSumTF{}{}{}{}{}": {
+      "snippet": "IfExerciseGoalsSumTF{${1:type}}{${2:list of goals}}{${3:relation and value}}{${4:true}}{${5:false}}"
+    },
+    "IfExerciseGoalsSumT{}{}{}{}": {
+      "snippet": "IfExerciseGoalsSumT{${1:type}}{${2:list of goals}}{${3:relation and value}}{${4:true}}"
+    },
+    "IfExerciseGoalsSumF{}{}{}{}": {
+      "snippet": "IfExerciseGoalsSumF{${1:type}}{${2:list of goals}}{${3:relation and value}}{${4:false}}"
+    },
+    "IfExercisePropertyExistTF{}{}{}": {
+      "snippet": "IfExercisePropertyExistTF{${1:property}}{${2:true}}{${3:false}}"
+    },
+    "IfExercisePropertyExistT{}{}": {
+      "snippet": "IfExercisePropertyExistT{${1:property}}{${2:true}}"
+    },
+    "IfExercisePropertyExistF{}{}": {
+      "snippet": "IfExercisePropertyExistF{${1:property}}{${2:false}}"
+    },
+    "IfExercisePropertySetTF{}{}{}": {
+      "snippet": "IfExercisePropertySetTF{${1:property}}{${2:true}}{${3:false}}"
+    },
+    "IfExercisePropertySetT{}{}": {
+      "snippet": "IfExercisePropertySetT{${1:property}}{${2:true}}"
+    },
+    "IfExercisePropertySetF{}{}": {
+      "snippet": "IfExercisePropertySetF{${1:property}}{${2:false}}"
+    },
+    "GetExerciseProperty{}": {
+      "snippet": "GetExerciseProperty{${1:property}}"
+    },
+    "GetExercisePropertyTF{}{}{}": {
+      "snippet": "GetExercisePropertyTF{${1:property}}{${2:true}}{${3:false}}"
+    },
+    "GetExercisePropertyT{}{}": {
+      "snippet": "GetExercisePropertyT{${1:property}}{${2:true}}"
+    },
+    "GetExercisePropertyF{}{}": {
+      "snippet": "GetExercisePropertyF{${1:property}}{${2:false}}"
+    },
+    "GetExerciseBody{}": {
+      "snippet": "GetExerciseBody{${1:exercise|solution}}"
+    },
+    "GetExerciseIdForProperty{}{}": {
+      "snippet": "GetExerciseIdForProperty{${1:property}}{${2:value}}"
+    },
+    "GetExerciseTypeForProperty{}{}": {
+      "snippet": "GetExerciseTypeForProperty{${1:property}}{${2:value}}"
+    },
+    "SetExerciseProperty{}{}": {
+      "snippet": "SetExerciseProperty{${1:property}}{${2:value}}"
+    },
+    "SetExpandedExerciseProperty{}{}": {
+      "snippet": "SetExpandedExerciseProperty{${1:property}}{${2:value}}"
+    },
+    "ExerciseSetProperty{}{}{}{}": {
+      "snippet": "ExerciseSetProperty{${1:type}}{${2:id}}{${3:property}}{${4:value}}"
+    },
+    "ExerciseSetExpandedProperty{}{}{}{}": {
+      "snippet": "ExerciseSetExpandedProperty{${1:type}}{${2:id}}{${3:property}}{${4:value}}"
+    },
+    "IfExerciseBooleanPropertyTF{}{}{}": {
+      "snippet": "IfExerciseBooleanPropertyTF{${1:property}}{${2:true}}{${3:false}}"
+    },
+    "IfExerciseBooleanPropertyT{}{}": {
+      "snippet": "IfExerciseBooleanPropertyT{${1:property}}{${2:true}}"
+    },
+    "IfExerciseBooleanPropertyF{}{}": {
+      "snippet": "IfExerciseBooleanPropertyF{${1:property}}{${2:false}}"
+    },
+    "GetExerciseAliasProperty{}": {
+      "snippet": "GetExerciseAliasProperty{${1:property}}"
+    },
+    "SaveExerciseProperty{}{}": {
+      "snippet": "SaveExerciseProperty{${1:property}}{${2:macro}}"
+    },
+    "GlobalSaveExerciseProperty{}{}": {
+      "snippet": "GlobalSaveExerciseProperty{${1:property}}{${2:macro}}"
+    },
+    "ExercisePropertyIfSetTF{}{}{}{}{}": {
+      "snippet": "ExercisePropertyIfSetTF{${1:type}}{${2:id}}{${3:property}}{${4:true}}{${5:false}}"
+    },
+    "ExercisePropertyIfSetT{}{}{}{}": {
+      "snippet": "ExercisePropertyIfSetT{${1:type}}{${2:id}}{${3:property}}{${4:true}}"
+    },
+    "ExercisePropertyIfSetF{}{}{}{}": {
+      "snippet": "ExercisePropertyIfSetF{${1:type}}{${2:id}}{${3:property}}{${4:false}}"
+    },
+    "ExercisePropertyGet{}{}{}": {
+      "snippet": "ExercisePropertyGet{${1:type}}{${2:id}}{${3:property}}"
+    },
+    "ExercisePropertyGetAlias{}{}{}": {
+      "snippet": "ExercisePropertyGetAlias{${1:type}}{${2:id}}{${3:property}}"
+    },
+    "ExercisePropertySave{}{}{}{}": {
+      "snippet": "ExercisePropertySave{${1:type}}{${2:id}}{${3:property}}{${4:macro}}"
+    },
+    "ExercisePropertyGlobalSave{}{}{}{}": {
+      "snippet": "ExercisePropertyGlobalSave{${1:type}}{${2:id}}{${3:property}}{${4:macro}}"
+    },
+    "GetExerciseParameter{}": {
+      "snippet": "GetExerciseParameter{${1:parameter}}"
+    },
+    "GetExerciseParameterTF{}{}{}": {
+      "snippet": "GetExerciseParameterTF{${1:parameter}}{${2:true}}{${3:false}}"
+    },
+    "GetExerciseParameterT{}{}": {
+      "snippet": "GetExerciseParameterT{${1:parameter}}{${2:true}}"
+    },
+    "GetExerciseParameterF{}{}": {
+      "snippet": "GetExerciseParameterF{${1:parameter}}{${2:false}}"
+    },
+    "GetExerciseName": {},
+    "GetExerciseHeadingF{}": {
+      "snippet": "GetExerciseHeadingF{${1:false}}"
+    },
+    "ExerciseParameterGet{}{}": {
+      "snippet": "ExerciseParameterGet{${1:type}}{${2:parameter}}"
+    },
+    "IfExerciseParameterSetTF{}{}{}": {
+      "snippet": "IfExerciseParameterSetTF{${1:parameter}}{${2:true}}{${3:false}}"
+    },
+    "IfExerciseParameterSetT{}{}": {
+      "snippet": "IfExerciseParameterSetT{${1:parameter}}{${2:true}}"
+    },
+    "IfExerciseParameterSetF{}{}": {
+      "snippet": "IfExerciseParameterSetF{${1:parameter}}{${2:false}}"
+    },
+    "ExerciseParameterIfSetTF{}{}{}{}": {
+      "snippet": "ExerciseParameterIfSetTF{${1:type}}{${2:parameter}}{${3:true}}{${4:false}}"
+    },
+    "ExerciseParameterIfSetT{}{}{}": {
+      "snippet": "ExerciseParameterIfSetT{${1:type}}{${2:parameter}}{${3:true}}"
+    },
+    "ExerciseParameterIfSetF{}{}{}": {
+      "snippet": "ExerciseParameterIfSetF{${1:type}}{${2:parameter}}{${3:false}}"
+    },
+    "ForEachExerciseTag{}{}": {
+      "snippet": "ForEachExerciseTag{${1:type}}{${2:code}}"
+    },
+    "ListExerciseTags{}{}": {
+      "snippet": "ListExerciseTags{${1:type}}{${2:between}}"
+    },
+    "UseExerciseTags{}{}{}{}": {
+      "snippet": "UseExerciseTags{${1:type}}{${2:between two}}{${3:between}}{${4:between last two}}"
+    },
+    "IfExerciseTagSetTF{}{}{}": {
+      "snippet": "IfExerciseTagSetTF{${1:value}}{${2:true}}{${3:false}}"
+    },
+    "IfExerciseTagSetT{}{}": {
+      "snippet": "IfExerciseTagSetT{${1:value}}{${2:true}}"
+    },
+    "IfExerciseTagSetF{}{}": {
+      "snippet": "IfExerciseTagSetF{${1:value}}{${2:false}}"
+    },
+    "IfExerciseTopicSetTF{}{}{}": {
+      "snippet": "IfExerciseTopicSetTF{${1:value}}{${2:true}}{${3:false}}"
+    },
+    "IfExerciseTopicSetT{}{}": {
+      "snippet": "IfExerciseTopicSetT{${1:value}}{${2:true}}"
+    },
+    "IfExerciseTopicSetF{}{}": {
+      "snippet": "IfExerciseTopicSetF{${1:value}}{${2:false}}"
+    },
+    "UseExerciseTemplate{}{}": {
+      "snippet": "UseExerciseTemplate{${1:type}}{${2:name}}"
+    },
+    "ExerciseType": {},
+    "ExerciseID": {},
+    "ExerciseText": {},
+    "ExerciseCollection": {},
+    "numberofusedexercises": {},
+    "ExerciseTableType{}": {
+      "snippet": "ExerciseTableType{${1:code}}"
+    },
+    "IfInsideSolutionTF{}{}": {
+      "snippet": "IfInsideSolutionTF{${1:true}}{${2:false}}"
+    },
+    "IfInsideSolutionT{}": {
+      "snippet": "IfInsideSolutionT{${1:true}}"
+    },
+    "IfInsideSolutionF{}": {
+      "snippet": "IfInsideSolutionF{${1:false}}"
+    },
+    "IfSolutionPrintTF{}{}": {
+      "snippet": "IfSolutionPrintTF{${1:true}}{${2:false}}"
+    },
+    "IfSolutionPrintT{}": {
+      "snippet": "IfSolutionPrintT{${1:true}}"
+    },
+    "IfSolutionPrintF{}": {
+      "snippet": "IfSolutionPrintF{${1:false}}"
+    },
+    "IfExistSolutionTF{}{}": {
+      "snippet": "IfExistSolutionTF{${1:true}}{${2:false}}"
+    },
+    "IfExistSolutionT{}": {
+      "snippet": "IfExistSolutionT{${1:true}}"
+    },
+    "IfExistSolutionF{}": {
+      "snippet": "IfExistSolutionF{${1:false}}"
+    },
+    "ForEachPrintedExerciseByType{}": {
+      "snippet": "ForEachPrintedExerciseByType{${1:code}}"
+    },
+    "ForEachUsedExerciseByType{}": {
+      "snippet": "ForEachUsedExerciseByType{${1:code}}"
+    },
+    "ForEachUsedExerciseByOrder{}": {
+      "snippet": "ForEachUsedExerciseByOrder{${1:code}}"
+    },
+    "ForEachPrintedExerciseByID{}": {
+      "snippet": "ForEachPrintedExerciseByID{${1:code}}"
+    },
+    "ForEachUsedExerciseByID{}": {
+      "snippet": "ForEachUsedExerciseByID{${1:code}}"
+    },
+    "XSIMprint{}{}{}": {
+      "snippet": "XSIMprint{${1:exercise|solution}}{${2:type}}{${3:id}}"
+    },
+    "XSIMxprint{}{}{}": {
+      "snippet": "XSIMxprint{${1:exercise|solution}}{${2:type}}{${3:id}}"
+    },
+    "XSIMtranslate{}": {
+      "snippet": "XSIMtranslate{${1:keyword}}"
+    },
+    "XSIMexpandcode{}": {
+      "snippet": "XSIMexpandcode{${1:code}}"
+    },
+    "XSIMifchapterTF{}{}": {
+      "snippet": "XSIMifchapterTF{${1:true}}{${2:false}}"
+    },
+    "XSIMifchapterT{}": {
+      "snippet": "XSIMifchapterT{${1:true}}"
+    },
+    "XSIMifchapterF{}": {
+      "snippet": "XSIMifchapterF{${1:false}}"
+    },
+    "XSIMmixedcase{}": {
+      "snippet": "XSIMmixedcase{${1:code}}"
+    },
+    "XSIMifeqTF{}{}{}{}": {
+      "snippet": "XSIMifeqTF{${1:code1}}{${2:code2}}{${3:true}}{${4:false}}"
+    },
+    "XSIMifeqT{}{}{}": {
+      "snippet": "XSIMifeqT{${1:code1}}{${2:code2}}{${3:true}}"
+    },
+    "XSIMifeqF{}{}{}": {
+      "snippet": "XSIMifeqF{${1:code1}}{${2:code2}}{${3:false}}"
+    },
+    "XSIMifblankTF{}{}{}": {
+      "snippet": "XSIMifblankTF{${1:code}}{${2:true}}{${3:false}}"
+    },
+    "XSIMifblankT{}{}": {
+      "snippet": "XSIMifblankT{${1:code}}{${2:true}}"
+    },
+    "XSIMifblankF{}{}": {
+      "snippet": "XSIMifblankF{${1:code}}{${2:false}}"
+    },
+    "XSIMatbegindocument{}": {
+      "snippet": "XSIMatbegindocument{${1:code}}"
+    },
+    "XSIMatenddocument{}": {
+      "snippet": "XSIMatenddocument{${1:code}}"
+    },
+    "DeclareExerciseEnvironmentTemplate{}{}{}": {
+      "snippet": "DeclareExerciseEnvironmentTemplate{${1:name}}{${2:begin code}}{${3:end code}}"
+    },
+    "DeclareExerciseHeadingTemplate{}{}": {
+      "snippet": "DeclareExerciseHeadingTemplate{${1:name}}{${2:code}}"
+    },
+    "DeclareExerciseTableTemplate{}{}": {
+      "snippet": "DeclareExerciseTableTemplate{${1:name}}{${2:code}}"
+    },
+    "xsimstyle{}": {
+      "snippet": "xsimstyle{${1:style name}}"
+    },
+    "xsimstyle*{}": {
+      "snippet": "xsimstyle*{${1:style name}}"
+    },
+    "loadxsimstyle{}": {
+      "snippet": "loadxsimstyle{${1:list of style names}}"
+    },
+    "DeclareExerciseTranslation{}{}{}": {
+      "snippet": "DeclareExerciseTranslation{${1:language}}{${2:keyword}}{${3:translation}}"
+    },
+    "DeclareExerciseTranslations{}{}": {
+      "snippet": "DeclareExerciseTranslations{${1:keyword}}{${2:translations}}"
+    },
+    "ForEachExerciseTranslation{}": {
+      "snippet": "ForEachExerciseTranslation{${1:code}}"
+    },
+    "blank{}": {
+      "snippet": "blank{${1:text}}"
+    },
+    "blank[]{}": {
+      "snippet": "blank[${2:options}]{${1:text}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "blank*{}": {
+      "snippet": "blank*{${1:text}}"
+    },
+    "blank*[]{}": {
+      "snippet": "blank*[${2:options}]{${1:text}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "ExerciseTableCode": {},
+    "numberofcolumns": {},
+    "theexercise": {},
+    "ParameterValue": {},
+    "PropertyValue": {},
+    "DeclareGradeDistribution{}": {
+      "snippet": "DeclareGradeDistribution{${1:arg}}"
+    },
+    "GetGradeRequirementForGoals{}{}{}{}": {
+      "snippet": "GetGradeRequirementForGoals{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "GetGradeRequirementForGoal{}{}{}{}": {
+      "snippet": "GetGradeRequirementForGoal{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "GetGradeRequirement{}{}{}": {
+      "snippet": "GetGradeRequirement{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "examspace{}": {
+      "snippet": "examspace{${1:arg}}"
+    },
+    "examspace*{}": {
+      "snippet": "examspace*{${1:arg}}"
+    },
+    "goalsforgrade{}{}": {
+      "snippet": "goalsforgrade{${1:arg1}}{${2:arg2}}"
+    },
+    "pointsforgrade{}": {
+      "snippet": "pointsforgrade{${1:arg}}"
+    },
+    "printforexercises*{}": {
+      "snippet": "printforexercises*{${1:arg}}"
+    },
+    "printforexercises{}": {
+      "snippet": "printforexercises{${1:arg}}"
+    },
+    "totalgoalforgrade{}": {
+      "snippet": "totalgoalforgrade{${1:arg}}"
+    }
+  },
+  "envs": {
+    "exercise": {},
+    "exercise[]": {
+      "name": "exercise",
+      "snippet": "[${1:properties}]"
+    },
+    "solution": {},
+    "solution[]": {
+      "name": "solution",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    }
+  },
+  "options": [
+    "verbose",
+    "final",
+    "clear-aux",
+    "no-files",
+    "use-files",
+    "use-aux",
+    "blank"
+  ],
+  "keyvals": [
+    [
+      "path=${1:file path}",
+      "file-extension=${1:extension}",
+      "split-aux-lists=${1:string}",
+      "goal-print={${1:code}}",
+      "tags={${1:tag1,tag2,...}}",
+      "topics={${1:topic1,topic2,...}}",
+      "tags/ignore-untagged",
+      "topics/ignore-untagged",
+      "tags/use-unmatched",
+      "topics/use-untagged",
+      "exercise/print",
+      "exercise/use",
+      "exercise/collect",
+      "exercise/within=${1:counter}",
+      "exercise/the-counter={${1:code}}",
+      "exercise/template=${1:template}",
+      "solution/template=${1:template}",
+      "exercise/name=${1:name}",
+      "solution/name=${1:name}",
+      "exercise/heading=${1:heading command}",
+      "solution/heading=${1:heading command}",
+      "exercise/pre-hook={${1:code}}",
+      "exercise/begin-hook={${1:code}}",
+      "exercise/end-hook={${1:code}}",
+      "exercise/post-hook={${1:code}}",
+      "solution/print",
+      "solution/pre-hook={${1:code}}",
+      "solution/begin-hook={${1:code}}",
+      "solution/end-hook={${1:code}}",
+      "solution/post-hook={${1:code}}",
+      "collection/${1:name}/match-all",
+      "collection/${1:name}/match-any",
+      "collect",
+      "print-collection/headings",
+      "print-collection/headings-template=${1:template}",
+      "print-collection/print=",
+      "random/sort",
+      "random/collection=${1:collection}",
+      "random/exclude={${1:list of ids}}",
+      "random/print=",
+      "print-solutions/headings",
+      "print-solutions/headings-template=${1:template}",
+      "print-solutions/section=",
+      "print-solutions/chapter=",
+      "print-solutions/collection=",
+      "grading-table/template=${1:template}",
+      "grading-table/type=${1:type}",
+      "load-style={${1:list of styles}}",
+      "blank/blank-style={${1:code}}",
+      "blank/filled-style={${1:code}}",
+      "blank/style={${1:code}}",
+      "blank/scale=${1:factor}",
+      "blank/width=",
+      "blank/linespread=${1:factor}",
+      "blank/line-increment=",
+      "blank/line-minimum-length=",
+      "blank/fill",
+      "%xsimexertag"
+    ],
+    [
+      "headings",
+      "headings-template=${1:template}",
+      "print="
+    ],
+    [
+      "sort",
+      "collection=${1:collection}",
+      "exclude={${1:list of ids}}",
+      "print="
+    ],
+    [
+      "headings",
+      "headings-template=${1:template}",
+      "section=",
+      "chapter=",
+      "collection=",
+      "%xsimexertag"
+    ],
+    [
+      "template=${1:template}",
+      "type=${1:type}"
+    ],
+    [
+      "blank-style={${1:code}}",
+      "filled-style={${1:code}}",
+      "style={${1:code}}",
+      "scale=${1:factor}",
+      "width=",
+      "linespread=${1:factor}",
+      "line-increment=",
+      "line-minimum-length="
+    ],
+    [
+      "template=${1:template}",
+      "name=${1:name}",
+      "heading=${1:heading command}",
+      "print",
+      "pre-hook={${1:code}}",
+      "begin-hook={${1:code}}",
+      "end-hook={${1:code}}",
+      "post-hook={${1:code}}"
+    ]
+  ]
+}

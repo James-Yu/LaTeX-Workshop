@@ -1,0 +1,40 @@
+{
+  "includes": {
+    "pstricks": []
+  },
+  "macros": {
+    "pstODEsolve{}{}{}{}{}{}{}": {
+      "snippet": "pstODEsolve{${1:result}}{${2:output format}}{${3:t0}}{${4:t1}}{${5:N}}{${6:X_0}}{${7:function}}"
+    },
+    "pstODEsolve[]{}{}{}{}{}{}{}": {
+      "snippet": "pstODEsolve[${8:options}]{${1:result}}{${2:output format}}{${3:t0}}{${4:t1}}{${5:N}}{${6:X_0}}{${7:function}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "pstODEsaveState{}": {
+      "snippet": "pstODEsaveState{${1:state}}"
+    },
+    "pstODErestoreState{}": {
+      "snippet": "pstODErestoreState{${1:state}}"
+    },
+    "PSTODELoaded": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "dt0=${1:number}",
+      "append",
+      "saveData",
+      "algebraicOutputFormat",
+      "algebraicT",
+      "algebraicN",
+      "algebraicIC",
+      "algebraic",
+      "algebraicAll",
+      "silent",
+      "varsteptol=${1:number}",
+      "rk4"
+    ]
+  ]
+}

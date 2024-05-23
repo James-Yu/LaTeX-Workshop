@@ -1,0 +1,495 @@
+{
+  "includes": {
+    "iftex": [],
+    "xcolor": [],
+    "pgffor": [],
+    "pst-calculate": [
+      "useCalc"
+    ],
+    "luatex": [
+      "luatex"
+    ],
+    "xetex": [
+      "xetex"
+    ],
+    "colortbl": [
+      "table"
+    ],
+    "pdfcolmk": [
+      "fixpdftex"
+    ]
+  },
+  "macros": {
+    "addtopsstyle{}{}": {
+      "snippet": "addtopsstyle{${1:style}}{${2:keyvals}}"
+    },
+    "AltClipMode": {},
+    "altcolormode": {},
+    "arrows{}": {
+      "snippet": "arrows{${1:arrows}}"
+    },
+    "black": {},
+    "blue": {},
+    "Cartesian": {},
+    "clipbox[]{}": {
+      "snippet": "clipbox[${2:dim}]{${1:stuff}}"
+    },
+    "clipbox{}": {
+      "snippet": "clipbox{${1:stuff}}"
+    },
+    "closedshadow": {},
+    "closedshadow[]": {
+      "snippet": "closedshadow[${1:keyvals}]"
+    },
+    "closepath": {},
+    "code{}": {
+      "snippet": "code{${1:code}}"
+    },
+    "cyan": {},
+    "darkgray": {},
+    "degrees": {},
+    "degrees[]": {
+      "snippet": "degrees[${1:num}]"
+    },
+    "dim{}": {
+      "snippet": "dim{${1:dim}}"
+    },
+    "DontKillGlue": {},
+    "endoverlaybox": {},
+    "endpsclip": {},
+    "endpspicture": {},
+    "everypsbox{}": {
+      "snippet": "everypsbox{${1:commands}}"
+    },
+    "file{}": {
+      "snippet": "file{${1:file}}"
+    },
+    "fill": {},
+    "fill[]": {
+      "snippet": "fill[${1:keyvals}]"
+    },
+    "gray": {},
+    "green": {},
+    "grestore": {},
+    "gsave": {},
+    "ifpsmathbox": {},
+    "ifPSTlualatex": {},
+    "ifPSTricks": {},
+    "ifpstUndefined": {},
+    "ifshowgrid": {},
+    "KillGlue": {},
+    "lightgray": {},
+    "magenta": {},
+    "mrestore": {},
+    "msave": {},
+    "newcmykcolor{}{}": {
+      "snippet": "newcmykcolor{${1:color}}{${2:num1 num2 num3 num4}}"
+    },
+    "newcmykcolorx": {},
+    "newgray{}{}": {
+      "snippet": "newgray{${1:color}}{${2:num}}"
+    },
+    "newhsbcolor{}{}": {
+      "snippet": "newhsbcolor{${1:color}}{${2:num1 num2 num3}}"
+    },
+    "newhsbcolorx": {},
+    "newpath": {},
+    "newpsfontdot{}[]{}{}": {
+      "snippet": "newpsfontdot{${1:arg1}}[${2:arg2}]{${3:arg3}}{${4:arg4}}"
+    },
+    "newpsfontdotH{}[]{}{}{}": {
+      "snippet": "newpsfontdotH{${1:arg1}}[${2:arg2}]{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+    },
+    "newpsobject{}{}{}": {
+      "snippet": "newpsobject{${1:name}}{${2:object}}{${3:keyvals}}"
+    },
+    "NewPsput": {},
+    "newpsstyle[]{}{}": {
+      "snippet": "newpsstyle[${3:package}]{${1:name}}{${2:keyvals}}"
+    },
+    "newpsstyle{}{}": {
+      "snippet": "newpsstyle{${1:name}}{${2:keyvals}}"
+    },
+    "newrgbcolor{}{}": {
+      "snippet": "newrgbcolor{${1:color}}{${2:num1 num2 num3}}"
+    },
+    "newrgbcolorx": {},
+    "NormalCoor": {},
+    "oldpsput": {},
+    "OldPsput": {},
+    "openshadow": {},
+    "openshadow[]": {
+      "snippet": "openshadow[${1:keyvals}]"
+    },
+    "overlaybox": {},
+    "pgfforeach": {},
+    "pgfforeach{}": {
+      "snippet": "pgfforeach{${1:cmd}}"
+    },
+    "Polar": {},
+    "psaddtolength{}{}": {
+      "snippet": "psaddtolength{${1:cmd}}{${2:dim}}"
+    },
+    "psarrowlinestyle": {},
+    "psbordercolor": {},
+    "pscirclebox*[]{}": {
+      "snippet": "pscirclebox*[${2:keyvals}]{${1:stuff}}"
+    },
+    "psCirclebox*[]{}": {
+      "snippet": "psCirclebox*[${2:keyvals}]{${1:stuff}}"
+    },
+    "pscirclebox*{}": {
+      "snippet": "pscirclebox*{${1:stuff}}"
+    },
+    "psCirclebox*{}": {
+      "snippet": "psCirclebox*{${1:stuff}}"
+    },
+    "pscirclebox[]{}": {
+      "snippet": "pscirclebox[${2:keyvals}]{${1:stuff}}"
+    },
+    "psCirclebox[]{}": {
+      "snippet": "psCirclebox[${2:keyvals}]{${1:stuff}}"
+    },
+    "pscirclebox{}": {
+      "snippet": "pscirclebox{${1:stuff}}"
+    },
+    "psCirclebox{}": {
+      "snippet": "psCirclebox{${1:stuff}}"
+    },
+    "psclip{}": {
+      "snippet": "psclip{${1:graphics}}"
+    },
+    "pscoor": {},
+    "pscustom*[]{}": {
+      "snippet": "pscustom*[${2:keyvals}]{${1:commands}}"
+    },
+    "pscustom*{}": {
+      "snippet": "pscustom*{${1:commands}}"
+    },
+    "pscustom[]{}": {
+      "snippet": "pscustom[${2:keyvals}]{${1:commands}}"
+    },
+    "pscustom{}": {
+      "snippet": "pscustom{${1:commands}}"
+    },
+    "psdashcolor": {},
+    "psdblframebox*[]{}": {
+      "snippet": "psdblframebox*[${2:keyvals}]{${1:stuff}}"
+    },
+    "psdblframebox*{}": {
+      "snippet": "psdblframebox*{${1:stuff}}"
+    },
+    "psdblframebox[]{}": {
+      "snippet": "psdblframebox[${2:keyvals}]{${1:stuff}}"
+    },
+    "psdblframebox{}": {
+      "snippet": "psdblframebox{${1:stuff}}"
+    },
+    "psDEBUG[]{}": {
+      "snippet": "psDEBUG[${2:opt}]{${1:text}}"
+    },
+    "psDEBUG{}": {
+      "snippet": "psDEBUG{${1:text}}"
+    },
+    "psdiabox*[]{}": {
+      "snippet": "psdiabox*[${2:keyvals}]{${1:stuff}}"
+    },
+    "psdiabox*{}": {
+      "snippet": "psdiabox*{${1:stuff}}"
+    },
+    "psdiabox[]{}": {
+      "snippet": "psdiabox[${2:keyvals}]{${1:stuff}}"
+    },
+    "psdiabox{}": {
+      "snippet": "psdiabox{${1:stuff}}"
+    },
+    "psdoublecolor": {},
+    "psdoublesep": {},
+    "psfillcolor": {},
+    "psforeach{}{}{}": {
+      "snippet": "psforeach{${1:variable}}{${2:value list}}{${3:action}}"
+    },
+    "psForeach{}{}{}": {
+      "snippet": "psForeach{${1:variable}}{${2:value list}}{${3:action}}"
+    },
+    "psframebox*[]{}": {
+      "snippet": "psframebox*[${2:keyvals}]{${1:stuff}}"
+    },
+    "psframebox*{}": {
+      "snippet": "psframebox*{${1:stuff}}"
+    },
+    "psframebox[]{}": {
+      "snippet": "psframebox[${2:keyvals}]{${1:stuff}}"
+    },
+    "psframebox{}": {
+      "snippet": "psframebox{${1:stuff}}"
+    },
+    "psframesep": {},
+    "psgetCMYKColorValues{}": {
+      "snippet": "psgetCMYKColorValues{${1:color macro}}"
+    },
+    "psgetColorValues{}": {
+      "snippet": "psgetColorValues{${1:color macro}}"
+    },
+    "psgetRGBColorValues{}": {
+      "snippet": "psgetRGBColorValues{${1:color macro}}"
+    },
+    "psgridcolor": {},
+    "psgridlabelcolor": {},
+    "pshatchcolor": {},
+    "pshooklength": {},
+    "pshookwidth": {},
+    "pshskip{}": {
+      "snippet": "pshskip{${1:length}}"
+    },
+    "pslabelsep": {},
+    "pslbrace": {},
+    "pslinearc": {},
+    "pslinecolor": {},
+    "pslinestyle": {},
+    "pslinetype": {},
+    "pslinewidth": {},
+    "pslongbox{}{}": {
+      "snippet": "pslongbox{${1:name}}{${2:cmd}}"
+    },
+    "psLoop{}{}": {
+      "snippet": "psLoop{${1:n}}{${2:argument}}"
+    },
+    "psLoopIndex": {},
+    "psmathboxfalse": {},
+    "psmathboxtrue": {},
+    "psovalbox*[]{}": {
+      "snippet": "psovalbox*[${2:keyvals}]{${1:stuff}}"
+    },
+    "psovalbox*{}": {
+      "snippet": "psovalbox*{${1:stuff}}"
+    },
+    "psovalbox[]{}": {
+      "snippet": "psovalbox[${2:keyvals}]{${1:stuff}}"
+    },
+    "psovalbox{}": {
+      "snippet": "psovalbox{${1:stuff}}"
+    },
+    "psoverlay{}": {
+      "snippet": "psoverlay{${1:string}}"
+    },
+    "pspicture[]": {
+      "snippet": "pspicture[${1:keyvals}]"
+    },
+    "psrbrace": {},
+    "psresetColor": {},
+    "psrotatedown{}": {
+      "snippet": "psrotatedown{${1:stuff}}"
+    },
+    "psrotateleft{}": {
+      "snippet": "psrotateleft{${1:stuff}}"
+    },
+    "psrotateright{}": {
+      "snippet": "psrotateright{${1:stuff}}"
+    },
+    "psrunit": {},
+    "psscalebox{}{}": {
+      "snippet": "psscalebox{${1:num1 num2}}{${2:stuff}}"
+    },
+    "pssetGrayscale": {},
+    "pssetlength{}{}": {
+      "snippet": "pssetlength{${1:cmd}}{${2:dim}}"
+    },
+    "pssetMonochrome": {},
+    "pssetxlength{}{}": {
+      "snippet": "pssetxlength{${1:cmd}}{${2:dim}}"
+    },
+    "pssetylength{}{}": {
+      "snippet": "pssetylength{${1:cmd}}{${2:dim}}"
+    },
+    "psshadowbox*[]{}": {
+      "snippet": "psshadowbox*[${2:keyvals}]{${1:stuff}}"
+    },
+    "psshadowbox*{}": {
+      "snippet": "psshadowbox*{${1:stuff}}"
+    },
+    "psshadowbox[]{}": {
+      "snippet": "psshadowbox[${2:keyvals}]{${1:stuff}}"
+    },
+    "psshadowbox{}": {
+      "snippet": "psshadowbox{${1:stuff}}"
+    },
+    "psshadowcolor": {},
+    "pssubgridcolor": {},
+    "PstAtCode": {},
+    "pstCheckCoorType{}": {
+      "snippet": "pstCheckCoorType{${1:arg}}"
+    },
+    "pstcustomize": {},
+    "pstdriver": {},
+    "pstheader{}": {
+      "snippet": "pstheader{${1:arg}}"
+    },
+    "PSTlualatexfalse": {},
+    "PSTlualatextrue": {},
+    "pstnodescale": {},
+    "pstribox*[]{}": {
+      "snippet": "pstribox*[${2:keyvals}]{${1:stuff}}"
+    },
+    "pstribox*{}": {
+      "snippet": "pstribox*{${1:stuff}}"
+    },
+    "pstribox[]{}": {
+      "snippet": "pstribox[${2:keyvals}]{${1:stuff}}"
+    },
+    "pstribox{}": {
+      "snippet": "pstribox{${1:stuff}}"
+    },
+    "PSTricksfalse": {},
+    "PSTricksLoaded": {},
+    "PSTricksOff": {},
+    "PSTrickstrue": {},
+    "pstrotate": {},
+    "pstunit": {},
+    "pstverb{}": {
+      "snippet": "pstverb{${1:commands}}"
+    },
+    "pstVerb{}": {
+      "snippet": "pstVerb{${1:commands}}"
+    },
+    "pstverbscale": {},
+    "psunit": {},
+    "psverbboxfalse": {},
+    "psverbboxtrue": {},
+    "psxunit": {},
+    "psyunit": {},
+    "putoverlaybox{}": {
+      "snippet": "putoverlaybox{${1:string}}"
+    },
+    "radians": {},
+    "red": {},
+    "resetArrowOptions": {},
+    "reversepath": {},
+    "rotate{}": {
+      "snippet": "rotate{${1:angle}}"
+    },
+    "rotatedown{}": {
+      "snippet": "rotatedown{${1:stuff}}"
+    },
+    "rotateleft{}": {
+      "snippet": "rotateleft{${1:stuff}}"
+    },
+    "rotateright{}": {
+      "snippet": "rotateright{${1:stuff}}"
+    },
+    "scale{}": {
+      "snippet": "scale{${1:num1 num2}}"
+    },
+    "setcolor{}": {
+      "snippet": "setcolor{${1:color}}"
+    },
+    "showgridfalse": {},
+    "showgridtrue": {},
+    "SpecialCoor": {},
+    "stroke": {},
+    "stroke[]": {
+      "snippet": "stroke[${1:keyvals}]"
+    },
+    "swapaxes": {},
+    "white": {},
+    "yellow": {},
+    "psarcOA": {},
+    "psSquare": {},
+    "psset{}": {
+      "snippet": "psset{${1:keyvals}}"
+    },
+    "setkeys{}{}": {
+      "snippet": "setkeys{${1:family}}{${2:keyvals}}"
+    },
+    "PSTFPloaded": {},
+    "pstFPadd{}{}{}": {
+      "snippet": "pstFPadd{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "pstFPsub{}{}{}": {
+      "snippet": "pstFPsub{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "pstFPmul{}{}{}": {
+      "snippet": "pstFPmul{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "pstFPdiv{}{}{}": {
+      "snippet": "pstFPdiv{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "pstFPMul{}{}{}": {
+      "snippet": "pstFPMul{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "pstFPDiv{}{}{}": {
+      "snippet": "pstFPDiv{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "pstFPstripZeros{}{}": {
+      "snippet": "pstFPstripZeros{${1:cmd}}{${2:num}}"
+    }
+  },
+  "envs": {
+    "psclip{}": {
+      "name": "psclip",
+      "snippet": "{${1:graphics}}"
+    }
+  },
+  "options": [
+    "noxcolor",
+    "useCalc",
+    "gsfonts",
+    "psfonts",
+    "noEngineCheck",
+    "pdf",
+    "xetex",
+    "nometadata",
+    "distiller",
+    "monochrome",
+    "grayscale",
+    "dvips",
+    "xdvi",
+    "dvipdf",
+    "dvipdfm",
+    "dvipdfmx",
+    "luatex",
+    "pdftex",
+    "dvipsone",
+    "dviwindo",
+    "emtex",
+    "dviwin",
+    "oztex",
+    "textures",
+    "pctexps",
+    "pctexwin",
+    "pctexhp",
+    "pctex32",
+    "truetex",
+    "tcidvi",
+    "vtex",
+    "dvisvgm",
+    "natural",
+    "rgb",
+    "cmy",
+    "cmyk",
+    "hsb",
+    "gray",
+    "RGB",
+    "HTML",
+    "HSB",
+    "Gray",
+    "monochrome",
+    "dvipsnames",
+    "dvipsnames*",
+    "svgnames",
+    "svgnames*",
+    "x11names",
+    "x11names*",
+    "table",
+    "fixpdftex",
+    "hyperref",
+    "prologue",
+    "kernelfbox",
+    "xcdraw",
+    "noxcdraw",
+    "fixinclude",
+    "showerrors",
+    "hideerrors"
+  ],
+  "keyvals": []
+}

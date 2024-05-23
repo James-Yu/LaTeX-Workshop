@@ -5,7 +5,7 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
 import type { CompletionProvider, FileCache, Package } from '../../types'
 import { argContentToStr } from '../../utils/parser'
-import { replaceArgumentPlaceholders }  from '../../utils/utils'
+import { replaceArgumentPlaceholders } from '../../utils/utils'
 
 const logger = lw.log('Intelli', 'Package')
 
@@ -61,8 +61,8 @@ function load(packageName: string) {
 
 function resolvePackageFile(packageName: string): string | undefined {
     const defaultDir = `${lw.extensionRoot}/data/packages/`
-    const dirs_raw = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.dirs') as string[]
-    const dirs = dirs_raw.map((dir) => {return replaceArgumentPlaceholders("","")(dir)}) 
+    const rawDirs = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.dirs') as string[]
+    const dirs = rawDirs.map((dir) => {return replaceArgumentPlaceholders('', '')(dir)})
 
     dirs.push(defaultDir)
     for (const dir of dirs) {

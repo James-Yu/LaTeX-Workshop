@@ -1,0 +1,76 @@
+{
+  "includes": {
+    "ifluatex": [],
+    "verbatim": [],
+    "keyval": [],
+    "graphicx": [],
+    "ifpdf": [],
+    "shellesc": []
+  },
+  "macros": {
+    "abcinput{}": {
+      "snippet": "abcinput{${1:file}}"
+    },
+    "abcinput[]{}": {
+      "snippet": "abcinput[${2:options}]{${1:file}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "abcwidth": {},
+    "normalabcoutputfile": {},
+    "normalmupoutputfile": {
+      "option": "mup"
+    },
+    "mupinput{}": {
+      "snippet": "mupinput{${1:file}}",
+      "option": "mup"
+    },
+    "mupinput[]{}": {
+      "snippet": "mupinput[${2:options}]{${1:file}}",
+      "option": "mup"
+    },
+    "mupwidth": {
+      "option": "mup"
+    }
+  },
+  "envs": {
+    "abc": {},
+    "abc[]": {
+      "name": "abc",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mup": {
+      "option": "mup"
+    },
+    "mup[]": {
+      "name": "mup",
+      "snippet": "[${1:options}]",
+      "option": "mup"
+    }
+  },
+  "options": [
+    "shellescape",
+    "noshellescape",
+    "generate",
+    "nogenerate",
+    "ps2epsi",
+    "ps2epsidos",
+    "ps2eps",
+    "nosaveall",
+    "saveall",
+    "mup"
+  ],
+  "keyvals": [
+    [
+      "name=${1:name}",
+      "options={${1:abcm2ps options}}",
+      "postoptions={${1:abcm2ps options}}",
+      "program=${1:program}",
+      "width=",
+      "center",
+      "extension=${1:extension}"
+    ]
+  ]
+}

@@ -1,0 +1,520 @@
+{
+  "includes": {
+    "amssymb": [],
+    "etoolbox": [],
+    "ifthen": [],
+    "bm": [],
+    "tikzlibrarycd": [],
+    "tikzlibrarybackgrounds": [],
+    "tikzlibrarypositioning": [],
+    "tikzlibraryshapes": [],
+    "tikzlibrarycalc": [],
+    "tikzlibraryintersections": []
+  },
+  "macros": {
+    "zx{}": {
+      "snippet": "zx{${1:diagram}}"
+    },
+    "zx[]{}": {
+      "snippet": "zx[${2:options}]{${1:diagram}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "zxEmptyDiagram": {},
+    "zxNone{}": {
+      "snippet": "zxNone{${1:text}}"
+    },
+    "zxN{}": {
+      "snippet": "zxN{${1:text}}"
+    },
+    "zxNoneDouble{}": {
+      "snippet": "zxNoneDouble{${1:text}}"
+    },
+    "zxFracZ{}{}": {
+      "snippet": "zxFracZ{${1:numerator}}{${2:denominator}}"
+    },
+    "zxFracZ{}[][]{}": {
+      "snippet": "zxFracZ{${1:numerator}}[${2:num with parens}][${3:denom with parens}]{${4:denominator}}"
+    },
+    "zxFracX{}{}": {
+      "snippet": "zxFracX{${1:numerator}}{${2:denominator}}"
+    },
+    "zxZ{}": {
+      "snippet": "zxZ{${1:text}}"
+    },
+    "zxZ[]{}": {
+      "snippet": "zxZ[${2:options}]{${1:text}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "zxZ*{}": {
+      "snippet": "zxZ*{${1:text}}"
+    },
+    "zxZ[]*{}": {
+      "snippet": "zxZ[${2:options}]*{${1:text}}"
+    },
+    "zxX{}": {
+      "snippet": "zxX{${1:text}}"
+    },
+    "zxX[]{}": {
+      "snippet": "zxX[${2:options}]{${1:text}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "zxX*{}": {
+      "snippet": "zxX*{${1:text}}"
+    },
+    "zxX[]*{}": {
+      "snippet": "zxX[${2:options}]*{${1:text}}"
+    },
+    "zxH{}": {
+      "snippet": "zxH{${1:text}}"
+    },
+    "zxH[]{}": {
+      "snippet": "zxH[${2:options}]{${1:text}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "leftManyDots{}": {
+      "snippet": "leftManyDots{${1:text}}"
+    },
+    "leftManyDots[]{}": {
+      "snippet": "leftManyDots[${2:text scale}]{${1:text}}"
+    },
+    "leftManyDots[][]{}": {
+      "snippet": "leftManyDots[${2:text scale}][${3:dots scale}]{${1:text}}"
+    },
+    "rightManyDots{}": {
+      "snippet": "rightManyDots{${1:text}}"
+    },
+    "rightManyDots[]{}": {
+      "snippet": "rightManyDots[${2:text scale}]{${1:text}}"
+    },
+    "rightManyDots[][]{}": {
+      "snippet": "rightManyDots[${2:text scale}][${3:dots scale}]{${1:text}}"
+    },
+    "middleManyDots": {},
+    "zxLoop{}": {
+      "snippet": "zxLoop{${1:}}"
+    },
+    "zxLoop[]{}": {
+      "snippet": "zxLoop[${2:dir angle}]{${1:}}"
+    },
+    "zxLoop[][]{}": {
+      "snippet": "zxLoop[${2:dir angle}][${3:open angle}]{${1:}}"
+    },
+    "zxLoop[][][]{}": {
+      "snippet": "zxLoop[${2:dir angle}][${3:open angle}][${4:styles}]{${1:}}"
+    },
+    "zxLoopAboveDots{}": {
+      "snippet": "zxLoopAboveDots{${1:}}"
+    },
+    "zxLoopAboveDots[]{}": {
+      "snippet": "zxLoopAboveDots[${2:open angle}]{${1:}}"
+    },
+    "zxLoopAboveDots[][]{}": {
+      "snippet": "zxLoopAboveDots[${2:open angle}][${3:styles}]{${1:}}"
+    },
+    "zxDebugMode": {},
+    "arrow[]": {
+      "snippet": "arrow[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "arrow[]{}": {
+      "snippet": "arrow[${2:options}]{${1:direction}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "ar[]": {
+      "snippet": "ar[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "rar[]{}": {
+      "snippet": "rar[${2:options}]{${1:labels}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "lar[]{}": {
+      "snippet": "lar[${2:options}]{${1:labels}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "dar[]{}": {
+      "snippet": "dar[${2:options}]{${1:labels}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "uar[]{}": {
+      "snippet": "uar[${2:options}]{${1:labels}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "drar[]{}": {
+      "snippet": "drar[${2:options}]{${1:labels}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "urar[]{}": {
+      "snippet": "urar[${2:options}]{${1:labels}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "dlar[]{}": {
+      "snippet": "dlar[${2:options}]{${1:labels}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "ular[]{}": {
+      "snippet": "ular[${2:options}]{${1:labels}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "zxConvertToFracInContent": {},
+    "zxConvertToFracInLabel": {},
+    "zxMinusInShort": {},
+    "zxHCol": {},
+    "zxHRow": {},
+    "zxHColFlat": {},
+    "zxHRowFlat": {},
+    "zxSCol": {},
+    "zxSRow": {},
+    "zxSColFlat": {},
+    "zxSRowFlat": {},
+    "zxHSCol": {},
+    "zxHSRow": {},
+    "zxHSColFlat": {},
+    "zxHSRowFlat": {},
+    "zxWCol": {},
+    "zxWRow": {},
+    "zxwCol": {},
+    "zxwRow": {},
+    "zxDotsCol": {},
+    "zxDotsRow": {},
+    "zxZeroCol": {},
+    "zxZeroRow": {},
+    "zxNCol": {},
+    "zxNRow": {},
+    "zxDefaultColumnSep": {},
+    "zxDefaultRowSep": {},
+    "zxDefaultSoftAngleS": {},
+    "zxDefaultSoftAngleN": {},
+    "zxDefaultSoftAngleO": {},
+    "zxDefaultSoftAngleChevron": {},
+    "zxScaleDots": {},
+    "zxMinus": {},
+    "zxEdgesAbove": {},
+    "zxControlPointsVisible": {},
+    "zxEnableIntersections": {},
+    "zxDisableIntersections": {},
+    "zxEnableIntersectionsNodes": {},
+    "zxEnableIntersectionsWires": {},
+    "zxIntersectionLineBetweenStartEnd": {},
+    "zxDefaultLineWidth": {},
+    "zxSaveDiagram{}{}": {
+      "snippet": "zxSaveDiagram{${1:cmd}}{${2:diagram}}"
+    },
+    "zxSaveDiagram{}[]{}": {
+      "snippet": "zxSaveDiagram{${1:cmd}}[${2:options}]{${3:diagram}}"
+    },
+    "chdots": {},
+    "controlOne": {},
+    "controlTwo": {},
+    "cvdots": {},
+    "cvdotsAboveBaseline": {},
+    "cvdotsCenterBaseline": {},
+    "cvdotsCenterMathline": {},
+    "ifAnchorExists{}{}{}{}": {
+      "snippet": "ifAnchorExists{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ifAnchorExistsFromShape{}{}{}{}": {
+      "snippet": "ifAnchorExistsFromShape{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ifPgfpointOrNode{}{}{}": {
+      "snippet": "ifPgfpointOrNode{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "StartPoint": {},
+    "TargetPoint": {},
+    "zxChooseStyle{}{}{}{}": {
+      "snippet": "zxChooseStyle{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "zxMaxDepthPlusHeight": {},
+    "zxMaxRatio": {},
+    "zxUseDiagram{}": {
+      "snippet": "zxUseDiagram{${1:arg}}"
+    },
+    "zxWireInsideIfNoIntersectionName": {}
+  },
+  "envs": {
+    "ZX": {},
+    "ZX[]": {
+      "name": "ZX",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "every diagram",
+      "diagrams={${1:options}}",
+      "every matrix",
+      "every cell",
+      "cells={${1:options}}",
+      "row sep=",
+      "column sep=",
+      "sep=",
+      "cramped",
+      "math mode",
+      "background color=",
+      "every arrow",
+      "arrows={${1:options}}",
+      "arrow style=",
+      "every label",
+      "labels={${1:options}}",
+      "center yshift=",
+      "ampersand replacement=${1:macro}",
+      "shorten=",
+      "crossing over",
+      "crossing over clearance=",
+      "marking",
+      "description",
+      "%color",
+      "color=",
+      "in=${1:degrees}",
+      "out=${1:degrees}",
+      "font=${1:font commands}",
+      "line width=",
+      "execute at begin picture={${1:code}}",
+      "math baseline=${1:node alias}",
+      "zx column sep=",
+      "zx row sep=",
+      "use diagram={${1:\\name}}{${2:nodes}}",
+      "phase in content",
+      "phase in label",
+      "phase in label={${1:styles}}",
+      "pil",
+      "pil={${1:styles}}",
+      "phase in label above",
+      "phase in label above={${1:styles}}",
+      "pila",
+      "pila={${1:styles}}",
+      "phase in label below",
+      "phase in label below={${1:styles}}",
+      "pilb",
+      "pilb={${1:styles}}",
+      "phase in label right",
+      "phase in label right={${1:styles}}",
+      "pilr",
+      "pilr={${1:styles}}",
+      "phase in label left",
+      "phase in label left={${1:styles}}",
+      "pill",
+      "pill={${1:styles}}",
+      "text="
+    ],
+    [
+      "phase in content",
+      "phase in label",
+      "phase in label={${1:styles}}",
+      "pil",
+      "pil={${1:styles}}",
+      "phase in label above",
+      "phase in label above={${1:styles}}",
+      "pila",
+      "pila={${1:styles}}",
+      "phase in label below",
+      "phase in label below={${1:styles}}",
+      "pilb",
+      "pilb={${1:styles}}",
+      "phase in label right",
+      "phase in label right={${1:styles}}",
+      "pilr",
+      "pilr={${1:styles}}",
+      "phase in label left",
+      "phase in label left={${1:styles}}",
+      "pill",
+      "pill={${1:styles}}",
+      "text=",
+      "a=${1:alias}"
+    ],
+    [
+      "C",
+      "C=${1:radius ratio}",
+      "C.",
+      "C.=${1:radius ratio}",
+      "C'",
+      "C'=${1:radius ratio}",
+      "C-",
+      "C-=${1:radius ratio}",
+      "o'",
+      "o'=${1:angle}",
+      "o.",
+      "o.=${1:angle}",
+      "o-",
+      "o-=${1:angle}",
+      "-o",
+      "-o=${1:angle}",
+      "(",
+      "(=${1:angle}",
+      ")",
+      ")=${1:angle}",
+      "('-",
+      "('=${1:angle}",
+      "(.",
+      "(.=${1:angle}",
+      "start fake center north",
+      "start fake center south",
+      "start fake center east",
+      "start fake center west",
+      "start real center",
+      "end fake center north",
+      "end fake center south",
+      "end fake center east",
+      "end fake center west",
+      "end real center",
+      "left to right",
+      "right to left",
+      "up to down",
+      "down to up",
+      "force left to right",
+      "force right to left",
+      "force up to down",
+      "force down to up",
+      "no fake center",
+      "s",
+      "s=${1:-andL config}",
+      "s'",
+      "s'=${1:-andL config}",
+      "s.",
+      "s.=${1:-andL config}",
+      "-s",
+      "-s=${1:-andL config}",
+      "-s'",
+      "-s'=${1:-andL config}",
+      "-s.",
+      "-s.=${1:-andL config}",
+      "s'-",
+      "s'-=${1:-andL config}",
+      "s.-",
+      "s.-=${1:-andL config}",
+      "S",
+      "S=${1:-andL config}",
+      "S'",
+      "S'=${1:-andL config}",
+      "S.",
+      "S.=${1:-andL config}",
+      "-S",
+      "-S=${1:-andL config}",
+      "-S'",
+      "-S'=${1:-andL config}",
+      "-S.",
+      "-S.=${1:-andL config}",
+      "S'-",
+      "S'-=${1:-andL config}",
+      "S.-",
+      "S.-=${1:-andL config}",
+      "ss",
+      "ss=${1:-andL config}",
+      "SS",
+      "SS=${1:-andL config}",
+      "ss.",
+      "ss.=${1:-andL config}",
+      ".ss",
+      ".ss=${1:-andL config}",
+      "sIs.",
+      "sIs.=${1:-andL config}",
+      ".sIs",
+      ".sIs=${1:-andL config}",
+      "ss.I",
+      "ss.I=${1:-andL config}",
+      "I.ss",
+      "I.ss=${1:-andL config}",
+      "SIS",
+      "SIS=${1:-andL config}",
+      ".SIS",
+      ".SIS=${1:-andL config}",
+      "ISS",
+      "ISS=${1:-andL config}",
+      "SS.I",
+      "SS.I=${1:-andL config}",
+      "I.SS",
+      "I.SS=${1:-andL config}",
+      "SSI",
+      "SSI=${1:-andL config}",
+      "N",
+      "N=${1:-andL config}",
+      "N'",
+      "N'=${1:-andL config}",
+      "N.",
+      "N.=${1:-andL config}",
+      "-N",
+      "-N=${1:-andL config}",
+      "-N'",
+      "-N'=${1:-andL config}",
+      "-N.",
+      "-N.=${1:-andL config}",
+      "N-",
+      "N-=${1:-andL config}",
+      "N'",
+      "N'=${1:-andL config}",
+      "N.",
+      "N.=${1:-andL config}",
+      "Nbase",
+      "Nbase=${1:-andL config}",
+      "NN",
+      "NN=${1:-andL config}",
+      "NN.",
+      "NN.=${1:-andL config}",
+      ".NN",
+      ".NN=${1:-andL config}",
+      "NIN",
+      "NIN=${1:-andL config}",
+      "INN",
+      "INN=${1:-andL config}",
+      "NNI",
+      "NNI=${1:-andL config}",
+      "<'",
+      "<'=${1:-andL config}",
+      "<.",
+      "<.=${1:-andL config}",
+      "'>",
+      "'>=${1:-andL config}",
+      ".>",
+      ".>=${1:-andL config}",
+      "'v",
+      "'v=${1:-andL config}",
+      "v'",
+      "v'=${1:-andL config}",
+      ".^",
+      ".^=${1:-andL config}",
+      "^.",
+      "^.=${1:-andL config}",
+      "3 dots",
+      "3 dots=${1:text}",
+      "3 vdots",
+      "3 vdots=${1:text}",
+      "H",
+      "H={${1:styles}}",
+      "Z",
+      "Z={${1:styles}}",
+      "X",
+      "X={${1:styles}}",
+      "wire centered",
+      "wc",
+      "wire centered start",
+      "wcs",
+      "wire centered end",
+      "wce",
+      "edge above",
+      "edge not above",
+      "control points visible",
+      "control points not visible",
+      "use intersections",
+      "dont use intersections",
+      "ui"
+    ]
+  ]
+}

@@ -1,0 +1,454 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "morewrites": [],
+    "tcolorbox": [],
+    "tcolorboxlibrarymany": [],
+    "xcolor": [],
+    "inputenc": [],
+    "textgreek": [],
+    "xifthen": [],
+    "xstring": [],
+    "forloop": [],
+    "minted": [],
+    "listings": [
+      "listings"
+    ]
+  },
+  "macros": {
+    "runExtCode{}{}{}": {
+      "snippet": "runExtCode{${1:program}}{${2:source file}}{${3:output file}}"
+    },
+    "runExtCode{}{}{}[]": {
+      "snippet": "runExtCode{${1:program}}{${2:source file}}{${3:output file}}[${4:run|cache}]"
+    },
+    "showCode{}{}": {
+      "snippet": "showCode{${1:lang}}{${2:source file}}"
+    },
+    "showCode{}{}[]": {
+      "snippet": "showCode{${1:lang}}{${2:source file}}[${3:first line}]"
+    },
+    "showCode{}{}[][]": {
+      "snippet": "showCode{${1:lang}}{${2:source file}}[${3:first line}][${4:last line}]"
+    },
+    "includeOutput{}": {
+      "snippet": "includeOutput{${1:output file}}"
+    },
+    "includeOutput{}[]": {
+      "snippet": "includeOutput{${1:output file}}[${2:type}]"
+    },
+    "inln{}{}": {
+      "snippet": "inln{${1:program}}{${2:code}}"
+    },
+    "inln{}{}[]": {
+      "snippet": "inln{${1:program}}{${2:code}}[${3:output file}]"
+    },
+    "inln{}{}[][]": {
+      "snippet": "inln{${1:program}}{${2:code}}[${3:output file}][${4:vbox|inline}]"
+    },
+    "showChunk{}{}": {
+      "snippet": "showChunk{${1:language}}{${2:source file}}"
+    },
+    "showChunk{}{}[]": {
+      "snippet": "showChunk{${1:language}}{${2:source file}}[${3:chunk id}]"
+    },
+    "showChunk{}{}[][][]": {
+      "snippet": "showChunk{${1:language}}{${2:source file}}[${3:chunk id}][${4:begin mark}][${5:end mark}]"
+    },
+    "runCodeIncOut{}{}": {
+      "snippet": "runCodeIncOut{${1:program}}{${2:source file}}"
+    },
+    "runCodeIncOut{}{}[]": {
+      "snippet": "runCodeIncOut{${1:program}}{${2:source file}}[${3:run|cache}]"
+    },
+    "runCodeIncOut{}{}[][]": {
+      "snippet": "runCodeIncOut{${1:program}}{${2:source file}}[${3:run|cache}][${4:output file}]"
+    },
+    "runCodeIncOut{}{}[][][]": {
+      "snippet": "runCodeIncOut{${1:program}}{${2:source file}}[${3:run|cache}][${4:output file}][${5:type}]"
+    },
+    "runR{}{}": {
+      "snippet": "runR{${1:source file}}{${2:output file}}"
+    },
+    "runR{}{}[]": {
+      "snippet": "runR{${1:source file}}{${2:output file}}[${3:run|cache}]"
+    },
+    "runR[]{}{}": {
+      "snippet": "runR[${3:server spec}]{${1:source file}}{${2:output file}}"
+    },
+    "runR[]{}{}[]": {
+      "snippet": "runR[${3:server spec}]{${1:source file}}{${2:output file}}[${4:run|cache}]"
+    },
+    "runRIncOut{}": {
+      "snippet": "runRIncOut{${1:source file}}"
+    },
+    "runRIncOut{}[]": {
+      "snippet": "runRIncOut{${1:source file}}[${2:run|cache}]"
+    },
+    "runRIncOut{}[][]": {
+      "snippet": "runRIncOut{${1:source file}}[${2:run|cache}][${3:output file}]"
+    },
+    "runRIncOut{}[][][]": {
+      "snippet": "runRIncOut{${1:source file}}[${2:run|cache}][${3:output file}][${4:type}]"
+    },
+    "runRIncOut[]{}": {
+      "snippet": "runRIncOut[${2:server spec}]{${1:source file}}"
+    },
+    "runRIncOut[]{}[]": {
+      "snippet": "runRIncOut[${2:server spec}]{${1:source file}}[${3:run|cache}]"
+    },
+    "runRIncOut[]{}[][]": {
+      "snippet": "runRIncOut[${2:server spec}]{${1:source file}}[${3:run|cache}][${4:output file}]"
+    },
+    "runRIncOut[]{}[][][]": {
+      "snippet": "runRIncOut[${2:server spec}]{${1:source file}}[${3:run|cache}][${4:output file}][${5:type}]"
+    },
+    "inlnR{}": {
+      "snippet": "inlnR{${1:code}}"
+    },
+    "inlnR{}[]": {
+      "snippet": "inlnR{${1:code}}[${2:output file}]"
+    },
+    "inlnR{}[][]": {
+      "snippet": "inlnR{${1:code}}[${2:output file}][${3:vbox|inline}]"
+    },
+    "inlnR[]{}": {
+      "snippet": "inlnR[${2:server spec}]{${1:code}}"
+    },
+    "inlnR[]{}[]": {
+      "snippet": "inlnR[${2:server spec}]{${1:code}}[${3:output file}]"
+    },
+    "inlnR[]{}[][]": {
+      "snippet": "inlnR[${2:server spec}]{${1:code}}[${3:output file}][${4:vbox|inline}]"
+    },
+    "runRChunk{}{}": {
+      "snippet": "runRChunk{${1:source file}}{${2:chunk id}}"
+    },
+    "runRChunk{}{}[]": {
+      "snippet": "runRChunk{${1:source file}}{${2:chunk id}}[${3:run|cache}]"
+    },
+    "runRChunk{}{}[][]": {
+      "snippet": "runRChunk{${1:source file}}{${2:chunk id}}[${3:run|cache}][${4:output file}]"
+    },
+    "runRChunk{}{}[][][]": {
+      "snippet": "runRChunk{${1:source file}}{${2:chunk id}}[${3:run|cache}][${4:output file}][${5:vbox|inline}]"
+    },
+    "runRChunk[]{}{}": {
+      "snippet": "runRChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}"
+    },
+    "runRChunk[]{}{}[]": {
+      "snippet": "runRChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}[${4:run|cache}]"
+    },
+    "runRChunk[]{}{}[][]": {
+      "snippet": "runRChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}[${4:run|cache}][${5:output file}]"
+    },
+    "runRChunk[]{}{}[][][]": {
+      "snippet": "runRChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}[${4:run|cache}][${5:output file}][${6:vbox|inline}]"
+    },
+    "runJulia{}{}": {
+      "snippet": "runJulia{${1:source file}}{${2:output file}}"
+    },
+    "runJulia{}{}[]": {
+      "snippet": "runJulia{${1:source file}}{${2:output file}}[${3:run|cache}]"
+    },
+    "runJulia[]{}{}": {
+      "snippet": "runJulia[${3:server spec}]{${1:source file}}{${2:output file}}"
+    },
+    "runJulia[]{}{}[]": {
+      "snippet": "runJulia[${3:server spec}]{${1:source file}}{${2:output file}}[${4:run|cache}]"
+    },
+    "runJuliaIncOut{}": {
+      "snippet": "runJuliaIncOut{${1:source file}}"
+    },
+    "runJuliaIncOut{}[]": {
+      "snippet": "runJuliaIncOut{${1:source file}}[${2:run|cache}]"
+    },
+    "runJuliaIncOut{}[][]": {
+      "snippet": "runJuliaIncOut{${1:source file}}[${2:run|cache}][${3:output file}]"
+    },
+    "runJuliaIncOut{}[][][]": {
+      "snippet": "runJuliaIncOut{${1:source file}}[${2:run|cache}][${3:output file}][${4:type}]"
+    },
+    "runJuliaIncOut[]{}": {
+      "snippet": "runJuliaIncOut[${2:server spec}]{${1:source file}}"
+    },
+    "runJuliaIncOut[]{}[]": {
+      "snippet": "runJuliaIncOut[${2:server spec}]{${1:source file}}[${3:run|cache}]"
+    },
+    "runJuliaIncOut[]{}[][]": {
+      "snippet": "runJuliaIncOut[${2:server spec}]{${1:source file}}[${3:run|cache}][${4:output file}]"
+    },
+    "runJuliaIncOut[]{}[][][]": {
+      "snippet": "runJuliaIncOut[${2:server spec}]{${1:source file}}[${3:run|cache}][${4:output file}][${5:type}]"
+    },
+    "inlnJulia{}": {
+      "snippet": "inlnJulia{${1:code}}"
+    },
+    "inlnJulia{}[]": {
+      "snippet": "inlnJulia{${1:code}}[${2:output file}]"
+    },
+    "inlnJulia{}[][]": {
+      "snippet": "inlnJulia{${1:code}}[${2:output file}][${3:vbox|inline}]"
+    },
+    "inlnJulia[]{}": {
+      "snippet": "inlnJulia[${2:server spec}]{${1:code}}"
+    },
+    "inlnJulia[]{}[]": {
+      "snippet": "inlnJulia[${2:server spec}]{${1:code}}[${3:output file}]"
+    },
+    "inlnJulia[]{}[][]": {
+      "snippet": "inlnJulia[${2:server spec}]{${1:code}}[${3:output file}][${4:vbox|inline}]"
+    },
+    "runJuliaChunk{}{}": {
+      "snippet": "runJuliaChunk{${1:source file}}{${2:chunk id}}"
+    },
+    "runJuliaChunk{}{}[]": {
+      "snippet": "runJuliaChunk{${1:source file}}{${2:chunk id}}[${3:run|cache}]"
+    },
+    "runJuliaChunk{}{}[][]": {
+      "snippet": "runJuliaChunk{${1:source file}}{${2:chunk id}}[${3:run|cache}][${4:output file}]"
+    },
+    "runJuliaChunk{}{}[][][]": {
+      "snippet": "runJuliaChunk{${1:source file}}{${2:chunk id}}[${3:run|cache}][${4:output file}][${5:vbox|inline}]"
+    },
+    "runJuliaChunk[]{}{}": {
+      "snippet": "runJuliaChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}"
+    },
+    "runJuliaChunk[]{}{}[]": {
+      "snippet": "runJuliaChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}[${4:run|cache}]"
+    },
+    "runJuliaChunk[]{}{}[][]": {
+      "snippet": "runJuliaChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}[${4:run|cache}][${5:output file}]"
+    },
+    "runJuliaChunk[]{}{}[][][]": {
+      "snippet": "runJuliaChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}[${4:run|cache}][${5:output file}][${6:vbox|inline}]"
+    },
+    "runMatlab{}{}": {
+      "snippet": "runMatlab{${1:source file}}{${2:output file}}"
+    },
+    "runMatlab{}{}[]": {
+      "snippet": "runMatlab{${1:source file}}{${2:output file}}[${3:run|cache}]"
+    },
+    "runMatlab[]{}{}": {
+      "snippet": "runMatlab[${3:server spec}]{${1:source file}}{${2:output file}}"
+    },
+    "runMatlab[]{}{}[]": {
+      "snippet": "runMatlab[${3:server spec}]{${1:source file}}{${2:output file}}[${4:run|cache}]"
+    },
+    "runMatlabIncOut{}": {
+      "snippet": "runMatlabIncOut{${1:source file}}"
+    },
+    "runMatlabIncOut{}[]": {
+      "snippet": "runMatlabIncOut{${1:source file}}[${2:run|cache}]"
+    },
+    "runMatlabIncOut{}[][]": {
+      "snippet": "runMatlabIncOut{${1:source file}}[${2:run|cache}][${3:output file}]"
+    },
+    "runMatlabIncOut{}[][][]": {
+      "snippet": "runMatlabIncOut{${1:source file}}[${2:run|cache}][${3:output file}][${4:type}]"
+    },
+    "runMatlabIncOut[]{}": {
+      "snippet": "runMatlabIncOut[${2:server spec}]{${1:source file}}"
+    },
+    "runMatlabIncOut[]{}[]": {
+      "snippet": "runMatlabIncOut[${2:server spec}]{${1:source file}}[${3:run|cache}]"
+    },
+    "runMatlabIncOut[]{}[][]": {
+      "snippet": "runMatlabIncOut[${2:server spec}]{${1:source file}}[${3:run|cache}][${4:output file}]"
+    },
+    "runMatlabIncOut[]{}[][][]": {
+      "snippet": "runMatlabIncOut[${2:server spec}]{${1:source file}}[${3:run|cache}][${4:output file}][${5:type}]"
+    },
+    "inlnMatlab{}": {
+      "snippet": "inlnMatlab{${1:code}}"
+    },
+    "inlnMatlab{}[]": {
+      "snippet": "inlnMatlab{${1:code}}[${2:output file}]"
+    },
+    "inlnMatlab{}[][]": {
+      "snippet": "inlnMatlab{${1:code}}[${2:output file}][${3:vbox|inline}]"
+    },
+    "inlnMatlab[]{}": {
+      "snippet": "inlnMatlab[${2:server spec}]{${1:code}}"
+    },
+    "inlnMatlab[]{}[]": {
+      "snippet": "inlnMatlab[${2:server spec}]{${1:code}}[${3:output file}]"
+    },
+    "inlnMatlab[]{}[][]": {
+      "snippet": "inlnMatlab[${2:server spec}]{${1:code}}[${3:output file}][${4:vbox|inline}]"
+    },
+    "runMatlabChunk{}{}": {
+      "snippet": "runMatlabChunk{${1:source file}}{${2:chunk id}}"
+    },
+    "runMatlabChunk{}{}[]": {
+      "snippet": "runMatlabChunk{${1:source file}}{${2:chunk id}}[${3:run|cache}]"
+    },
+    "runMatlabChunk{}{}[][]": {
+      "snippet": "runMatlabChunk{${1:source file}}{${2:chunk id}}[${3:run|cache}][${4:output file}]"
+    },
+    "runMatlabChunk{}{}[][][]": {
+      "snippet": "runMatlabChunk{${1:source file}}{${2:chunk id}}[${3:run|cache}][${4:output file}][${5:vbox|inline}]"
+    },
+    "runMatlabChunk[]{}{}": {
+      "snippet": "runMatlabChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}"
+    },
+    "runMatlabChunk[]{}{}[]": {
+      "snippet": "runMatlabChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}[${4:run|cache}]"
+    },
+    "runMatlabChunk[]{}{}[][]": {
+      "snippet": "runMatlabChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}[${4:run|cache}][${5:output file}]"
+    },
+    "runMatlabChunk[]{}{}[][][]": {
+      "snippet": "runMatlabChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}[${4:run|cache}][${5:output file}][${6:vbox|inline}]"
+    },
+    "runPython{}{}": {
+      "snippet": "runPython{${1:source file}}{${2:output file}}"
+    },
+    "runPython{}{}[]": {
+      "snippet": "runPython{${1:source file}}{${2:output file}}[${3:run|cache}]"
+    },
+    "runPython[]{}{}": {
+      "snippet": "runPython[${3:server spec}]{${1:source file}}{${2:output file}}"
+    },
+    "runPython[]{}{}[]": {
+      "snippet": "runPython[${3:server spec}]{${1:source file}}{${2:output file}}[${4:run|cache}]"
+    },
+    "runPythonIncOut{}": {
+      "snippet": "runPythonIncOut{${1:source file}}"
+    },
+    "runPythonIncOut{}[]": {
+      "snippet": "runPythonIncOut{${1:source file}}[${2:run|cache}]"
+    },
+    "runPythonIncOut{}[][]": {
+      "snippet": "runPythonIncOut{${1:source file}}[${2:run|cache}][${3:output file}]"
+    },
+    "runPythonIncOut{}[][][]": {
+      "snippet": "runPythonIncOut{${1:source file}}[${2:run|cache}][${3:output file}][${4:type}]"
+    },
+    "runPythonIncOut[]{}": {
+      "snippet": "runPythonIncOut[${2:server spec}]{${1:source file}}"
+    },
+    "runPythonIncOut[]{}[]": {
+      "snippet": "runPythonIncOut[${2:server spec}]{${1:source file}}[${3:run|cache}]"
+    },
+    "runPythonIncOut[]{}[][]": {
+      "snippet": "runPythonIncOut[${2:server spec}]{${1:source file}}[${3:run|cache}][${4:output file}]"
+    },
+    "runPythonIncOut[]{}[][][]": {
+      "snippet": "runPythonIncOut[${2:server spec}]{${1:source file}}[${3:run|cache}][${4:output file}][${5:type}]"
+    },
+    "inlnPython{}": {
+      "snippet": "inlnPython{${1:code}}"
+    },
+    "inlnPython{}[]": {
+      "snippet": "inlnPython{${1:code}}[${2:output file}]"
+    },
+    "inlnPython{}[][]": {
+      "snippet": "inlnPython{${1:code}}[${2:output file}][${3:vbox|inline}]"
+    },
+    "inlnPython[]{}": {
+      "snippet": "inlnPython[${2:server spec}]{${1:code}}"
+    },
+    "inlnPython[]{}[]": {
+      "snippet": "inlnPython[${2:server spec}]{${1:code}}[${3:output file}]"
+    },
+    "inlnPython[]{}[][]": {
+      "snippet": "inlnPython[${2:server spec}]{${1:code}}[${3:output file}][${4:vbox|inline}]"
+    },
+    "runPythonChunk{}{}": {
+      "snippet": "runPythonChunk{${1:source file}}{${2:chunk id}}"
+    },
+    "runPythonChunk{}{}[]": {
+      "snippet": "runPythonChunk{${1:source file}}{${2:chunk id}}[${3:run|cache}]"
+    },
+    "runPythonChunk{}{}[][]": {
+      "snippet": "runPythonChunk{${1:source file}}{${2:chunk id}}[${3:run|cache}][${4:output file}]"
+    },
+    "runPythonChunk{}{}[][][]": {
+      "snippet": "runPythonChunk{${1:source file}}{${2:chunk id}}[${3:run|cache}][${4:output file}][${5:vbox|inline}]"
+    },
+    "runPythonChunk[]{}{}": {
+      "snippet": "runPythonChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}"
+    },
+    "runPythonChunk[]{}{}[]": {
+      "snippet": "runPythonChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}[${4:run|cache}]"
+    },
+    "runPythonChunk[]{}{}[][]": {
+      "snippet": "runPythonChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}[${4:run|cache}][${5:output file}]"
+    },
+    "runPythonChunk[]{}{}[][][]": {
+      "snippet": "runPythonChunk[${3:server spec}]{${1:source file}}{${2:chunk id}}[${4:run|cache}][${5:output file}][${6:vbox|inline}]"
+    },
+    "runPythonBatch{}{}": {
+      "snippet": "runPythonBatch{${1:code}}{${2:output file}}"
+    },
+    "checkZeroBytes{}": {
+      "snippet": "checkZeroBytes{${1:arg}}"
+    },
+    "runcmd{}{}": {
+      "snippet": "runcmd{${1:arg1}}{${2:arg2}}"
+    },
+    "setvalue{}{}": {
+      "snippet": "setvalue{${1:cmd}}{${2:def}}"
+    },
+    "thecodeOutput": {},
+    "thecodelisting": {},
+    "generated": {},
+    "tempfile": {},
+    "tmpname": {},
+    "ifruncode": {},
+    "runcodetrue": {},
+    "runcodefalse": {},
+    "ifminted": {},
+    "mintedtrue": {},
+    "mintedfalse": {},
+    "ifreducedspace": {},
+    "reducedspacetrue": {},
+    "reducedspacefalse": {},
+    "ifnotnohup": {},
+    "notnohuptrue": {},
+    "notnohupfalse": {},
+    "ifinlnrun": {},
+    "inlnruntrue": {},
+    "inlnrunfalse": {},
+    "langs": {},
+    "theportNo": {},
+    "InitLang{}": {
+      "snippet": "InitLang{${1:arg}}"
+    },
+    "writeChunk{}{}": {
+      "snippet": "writeChunk{${1:arg1}}{${2:arg2}}"
+    },
+    "writeChunk{}{}[]": {
+      "snippet": "writeChunk{${1:arg1}}{${2:arg2}}[${3:opt}]"
+    },
+    "writeChunk{}{}[][]": {
+      "snippet": "writeChunk{${1:arg1}}{${2:arg2}}[${3:opt1}][${4:opt2}]"
+    },
+    "LANG": {},
+    "LANGcmd": {}
+  },
+  "envs": {
+    "codelisting": {},
+    "codelisting[]": {
+      "name": "codelisting",
+      "snippet": "[${1:number}]"
+    }
+  },
+  "options": [
+    "run",
+    "cache",
+    "nominted",
+    "minted",
+    "listings",
+    "fvextra",
+    "reducedspace",
+    "nohup",
+    "R",
+    "julia",
+    "matlab",
+    "python",
+    "stopserver"
+  ],
+  "keyvals": []
+}

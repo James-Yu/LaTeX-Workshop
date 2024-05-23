@@ -1,0 +1,501 @@
+{
+  "includes": {
+    "xstring": [],
+    "xkeyval": [],
+    "quran": []
+  },
+  "macros": {
+    "deSetTrans{}": {
+      "snippet": "deSetTrans{${1:index}}"
+    },
+    "deGetTrans": {},
+    "quransurahde": {},
+    "quransurahde[]": {
+      "snippet": "quransurahde[${1:surah range}]"
+    },
+    "quransurahde*": {},
+    "quransurahde*[]": {
+      "snippet": "quransurahde*[${1:surah range}]"
+    },
+    "quranayahde[]": {
+      "snippet": "quranayahde[${1:surah range}]"
+    },
+    "quranayahde[][]": {
+      "snippet": "quranayahde[${1:surah range}][${2:ayah range}]"
+    },
+    "quranayahde*[]": {
+      "snippet": "quranayahde*[${1:surah range}]"
+    },
+    "quranayahde*[][]": {
+      "snippet": "quranayahde*[${1:surah range}][${2:ayah range}]"
+    },
+    "quranpagede[]": {
+      "snippet": "quranpagede[${1:page range}]"
+    },
+    "quranpagede*[]": {
+      "snippet": "quranpagede*[${1:page range}]"
+    },
+    "quranjuzde[]": {
+      "snippet": "quranjuzde[${1:juz range}]"
+    },
+    "quranjuzde*[]": {
+      "snippet": "quranjuzde*[${1:juz range}]"
+    },
+    "quranhizbde[]": {
+      "snippet": "quranhizbde[${1:hizb range}]"
+    },
+    "quranhizbde*[]": {
+      "snippet": "quranhizbde*[${1:hizb range}]"
+    },
+    "quranquarterde[]": {
+      "snippet": "quranquarterde[${1:quarter range}]"
+    },
+    "quranquarterde*[]": {
+      "snippet": "quranquarterde*[${1:quarter range}]"
+    },
+    "quranrukude[]": {
+      "snippet": "quranrukude[${1:ruku range}]"
+    },
+    "quranrukude*[]": {
+      "snippet": "quranrukude*[${1:ruku range}]"
+    },
+    "quranmanzilde[]": {
+      "snippet": "quranmanzilde[${1:manzil range}]"
+    },
+    "quranmanzilde*[]": {
+      "snippet": "quranmanzilde*[${1:manzil range}]"
+    },
+    "qurantextde": {},
+    "qurantextde[]": {
+      "snippet": "qurantextde[${1:index range}]"
+    },
+    "qurantextde*": {},
+    "qurantextde*[]": {
+      "snippet": "qurantextde*[${1:index range}]"
+    },
+    "basmalahde": {},
+    "Basmalahde": {},
+    "quranayah[][][]": {
+      "snippet": "quranayah[${1:surah range}][${2:ayah range}][${3:chunk range}]",
+      "option": "wordwise"
+    },
+    "qurantext[][]": {
+      "snippet": "qurantext[${1:index range}][${2:chunk range}]",
+      "option": "wordwise"
+    },
+    "quransurahlt": {
+      "option": "trans=lt"
+    },
+    "quransurahlt[]": {
+      "snippet": "quransurahlt[${1:surah range}]",
+      "option": "trans=lt"
+    },
+    "quransurahlt*": {
+      "option": "trans=lt"
+    },
+    "quransurahlt*[]": {
+      "snippet": "quransurahlt*[${1:surah range}]",
+      "option": "trans=lt"
+    },
+    "quranayahlt[]": {
+      "snippet": "quranayahlt[${1:surah range}]",
+      "option": "trans=lt"
+    },
+    "quranayahlt[][]": {
+      "snippet": "quranayahlt[${1:surah range}][${2:ayah range}]",
+      "option": "trans=lt"
+    },
+    "quranayahlt*[]": {
+      "snippet": "quranayahlt*[${1:surah range}]",
+      "option": "trans=lt"
+    },
+    "quranayahlt*[][]": {
+      "snippet": "quranayahlt*[${1:surah range}][${2:ayah range}]",
+      "option": "trans=lt"
+    },
+    "quranpagelt[]": {
+      "snippet": "quranpagelt[${1:page range}]",
+      "option": "trans=lt"
+    },
+    "quranpagelt*[]": {
+      "snippet": "quranpagelt*[${1:page range}]",
+      "option": "trans=lt"
+    },
+    "quranjuzlt[]": {
+      "snippet": "quranjuzlt[${1:juz range}]",
+      "option": "trans=lt"
+    },
+    "quranjuzlt*[]": {
+      "snippet": "quranjuzlt*[${1:juz range}]",
+      "option": "trans=lt"
+    },
+    "quranhizblt[]": {
+      "snippet": "quranhizblt[${1:hizb range}]",
+      "option": "trans=lt"
+    },
+    "quranhizblt*[]": {
+      "snippet": "quranhizblt*[${1:hizb range}]",
+      "option": "trans=lt"
+    },
+    "quranquarterlt[]": {
+      "snippet": "quranquarterlt[${1:quarter range}]",
+      "option": "trans=lt"
+    },
+    "quranquarterlt*[]": {
+      "snippet": "quranquarterlt*[${1:quarter range}]",
+      "option": "trans=lt"
+    },
+    "quranrukult[]": {
+      "snippet": "quranrukult[${1:ruku range}]",
+      "option": "trans=lt"
+    },
+    "quranrukult*[]": {
+      "snippet": "quranrukult*[${1:ruku range}]",
+      "option": "trans=lt"
+    },
+    "quranmanzillt[]": {
+      "snippet": "quranmanzillt[${1:manzil range}]",
+      "option": "trans=lt"
+    },
+    "quranmanzillt*[]": {
+      "snippet": "quranmanzillt*[${1:manzil range}]",
+      "option": "trans=lt"
+    },
+    "qurantextlt": {
+      "option": "trans=lt"
+    },
+    "qurantextlt[]": {
+      "snippet": "qurantextlt[${1:index range}]",
+      "option": "trans=lt"
+    },
+    "qurantextlt*": {
+      "option": "trans=lt"
+    },
+    "qurantextlt*[]": {
+      "snippet": "qurantextlt*[${1:index range}]",
+      "option": "trans=lt"
+    },
+    "basmalahlt": {
+      "option": "trans=lt"
+    },
+    "Basmalahlt": {
+      "option": "trans=lt"
+    },
+    "quransurahen": {
+      "option": "trans=en"
+    },
+    "quransurahen[]": {
+      "snippet": "quransurahen[${1:surah range}]",
+      "option": "trans=en"
+    },
+    "quransurahen*": {
+      "option": "trans=en"
+    },
+    "quransurahen*[]": {
+      "snippet": "quransurahen*[${1:surah range}]",
+      "option": "trans=en"
+    },
+    "quranayahen[]": {
+      "snippet": "quranayahen[${1:surah range}]",
+      "option": "trans=en"
+    },
+    "quranayahen[][]": {
+      "snippet": "quranayahen[${1:surah range}][${2:ayah range}]",
+      "option": "trans=en"
+    },
+    "quranayahen*[]": {
+      "snippet": "quranayahen*[${1:surah range}]",
+      "option": "trans=en"
+    },
+    "quranayahen*[][]": {
+      "snippet": "quranayahen*[${1:surah range}][${2:ayah range}]",
+      "option": "trans=en"
+    },
+    "quranpageen[]": {
+      "snippet": "quranpageen[${1:page range}]",
+      "option": "trans=en"
+    },
+    "quranpageen*[]": {
+      "snippet": "quranpageen*[${1:page range}]",
+      "option": "trans=en"
+    },
+    "quranjuzen[]": {
+      "snippet": "quranjuzen[${1:juz range}]",
+      "option": "trans=en"
+    },
+    "quranjuzen*[]": {
+      "snippet": "quranjuzen*[${1:juz range}]",
+      "option": "trans=en"
+    },
+    "quranhizben[]": {
+      "snippet": "quranhizben[${1:hizb range}]",
+      "option": "trans=en"
+    },
+    "quranhizben*[]": {
+      "snippet": "quranhizben*[${1:hizb range}]",
+      "option": "trans=en"
+    },
+    "quranquarteren[]": {
+      "snippet": "quranquarteren[${1:quarter range}]",
+      "option": "trans=en"
+    },
+    "quranquarteren*[]": {
+      "snippet": "quranquarteren*[${1:quarter range}]",
+      "option": "trans=en"
+    },
+    "quranrukuen[]": {
+      "snippet": "quranrukuen[${1:ruku range}]",
+      "option": "trans=en"
+    },
+    "quranrukuen*[]": {
+      "snippet": "quranrukuen*[${1:ruku range}]",
+      "option": "trans=en"
+    },
+    "quranmanzilen[]": {
+      "snippet": "quranmanzilen[${1:manzil range}]",
+      "option": "trans=en"
+    },
+    "quranmanzilen*[]": {
+      "snippet": "quranmanzilen*[${1:manzil range}]",
+      "option": "trans=en"
+    },
+    "qurantexten": {
+      "option": "trans=en"
+    },
+    "qurantexten[]": {
+      "snippet": "qurantexten[${1:index range}]",
+      "option": "trans=en"
+    },
+    "qurantexten*": {
+      "option": "trans=en"
+    },
+    "qurantexten*[]": {
+      "snippet": "qurantexten*[${1:index range}]",
+      "option": "trans=en"
+    },
+    "basmalahen": {
+      "option": "trans=en"
+    },
+    "Basmalahen": {
+      "option": "trans=en"
+    },
+    "quransurahfr": {
+      "option": "trans=fr"
+    },
+    "quransurahfr[]": {
+      "snippet": "quransurahfr[${1:surah range}]",
+      "option": "trans=fr"
+    },
+    "quransurahfr*": {
+      "option": "trans=fr"
+    },
+    "quransurahfr*[]": {
+      "snippet": "quransurahfr*[${1:surah range}]",
+      "option": "trans=fr"
+    },
+    "quranayahfr[]": {
+      "snippet": "quranayahfr[${1:surah range}]",
+      "option": "trans=fr"
+    },
+    "quranayahfr[][]": {
+      "snippet": "quranayahfr[${1:surah range}][${2:ayah range}]",
+      "option": "trans=fr"
+    },
+    "quranayahfr*[]": {
+      "snippet": "quranayahfr*[${1:surah range}]",
+      "option": "trans=fr"
+    },
+    "quranayahfr*[][]": {
+      "snippet": "quranayahfr*[${1:surah range}][${2:ayah range}]",
+      "option": "trans=fr"
+    },
+    "quranpagefr[]": {
+      "snippet": "quranpagefr[${1:page range}]",
+      "option": "trans=fr"
+    },
+    "quranpagefr*[]": {
+      "snippet": "quranpagefr*[${1:page range}]",
+      "option": "trans=fr"
+    },
+    "quranjuzfr[]": {
+      "snippet": "quranjuzfr[${1:juz range}]",
+      "option": "trans=fr"
+    },
+    "quranjuzfr*[]": {
+      "snippet": "quranjuzfr*[${1:juz range}]",
+      "option": "trans=fr"
+    },
+    "quranhizbfr[]": {
+      "snippet": "quranhizbfr[${1:hizb range}]",
+      "option": "trans=fr"
+    },
+    "quranhizbfr*[]": {
+      "snippet": "quranhizbfr*[${1:hizb range}]",
+      "option": "trans=fr"
+    },
+    "quranquarterfr[]": {
+      "snippet": "quranquarterfr[${1:quarter range}]",
+      "option": "trans=fr"
+    },
+    "quranquarterfr*[]": {
+      "snippet": "quranquarterfr*[${1:quarter range}]",
+      "option": "trans=fr"
+    },
+    "quranrukufr[]": {
+      "snippet": "quranrukufr[${1:ruku range}]",
+      "option": "trans=fr"
+    },
+    "quranrukufr*[]": {
+      "snippet": "quranrukufr*[${1:ruku range}]",
+      "option": "trans=fr"
+    },
+    "quranmanzilfr[]": {
+      "snippet": "quranmanzilfr[${1:manzil range}]",
+      "option": "trans=fr"
+    },
+    "quranmanzilfr*[]": {
+      "snippet": "quranmanzilfr*[${1:manzil range}]",
+      "option": "trans=fr"
+    },
+    "qurantextfr": {
+      "option": "trans=fr"
+    },
+    "qurantextfr[]": {
+      "snippet": "qurantextfr[${1:index range}]",
+      "option": "trans=fr"
+    },
+    "qurantextfr*": {
+      "option": "trans=fr"
+    },
+    "qurantextfr*[]": {
+      "snippet": "qurantextfr*[${1:index range}]",
+      "option": "trans=fr"
+    },
+    "basmalahfr": {
+      "option": "trans=fr"
+    },
+    "Basmalahfr": {
+      "option": "trans=fr"
+    },
+    "quransurahfa": {
+      "option": "trans=fa"
+    },
+    "quransurahfa[]": {
+      "snippet": "quransurahfa[${1:surah range}]",
+      "option": "trans=fa"
+    },
+    "quransurahfa*": {
+      "option": "trans=fa"
+    },
+    "quransurahfa*[]": {
+      "snippet": "quransurahfa*[${1:surah range}]",
+      "option": "trans=fa"
+    },
+    "quranayahfa[]": {
+      "snippet": "quranayahfa[${1:surah range}]",
+      "option": "trans=fa"
+    },
+    "quranayahfa[][]": {
+      "snippet": "quranayahfa[${1:surah range}][${2:ayah range}]",
+      "option": "trans=fa"
+    },
+    "quranayahfa*[]": {
+      "snippet": "quranayahfa*[${1:surah range}]",
+      "option": "trans=fa"
+    },
+    "quranayahfa*[][]": {
+      "snippet": "quranayahfa*[${1:surah range}][${2:ayah range}]",
+      "option": "trans=fa"
+    },
+    "quranpagefa[]": {
+      "snippet": "quranpagefa[${1:page range}]",
+      "option": "trans=fa"
+    },
+    "quranpagefa*[]": {
+      "snippet": "quranpagefa*[${1:page range}]",
+      "option": "trans=fa"
+    },
+    "quranjuzfa[]": {
+      "snippet": "quranjuzfa[${1:juz range}]",
+      "option": "trans=fa"
+    },
+    "quranjuzfa*[]": {
+      "snippet": "quranjuzfa*[${1:juz range}]",
+      "option": "trans=fa"
+    },
+    "quranhizbfa[]": {
+      "snippet": "quranhizbfa[${1:hizb range}]",
+      "option": "trans=fa"
+    },
+    "quranhizbfa*[]": {
+      "snippet": "quranhizbfa*[${1:hizb range}]",
+      "option": "trans=fa"
+    },
+    "quranquarterfa[]": {
+      "snippet": "quranquarterfa[${1:quarter range}]",
+      "option": "trans=fa"
+    },
+    "quranquarterfa*[]": {
+      "snippet": "quranquarterfa*[${1:quarter range}]",
+      "option": "trans=fa"
+    },
+    "quranrukufa[]": {
+      "snippet": "quranrukufa[${1:ruku range}]",
+      "option": "trans=fa"
+    },
+    "quranrukufa*[]": {
+      "snippet": "quranrukufa*[${1:ruku range}]",
+      "option": "trans=fa"
+    },
+    "quranmanzilfa[]": {
+      "snippet": "quranmanzilfa[${1:manzil range}]",
+      "option": "trans=fa"
+    },
+    "quranmanzilfa*[]": {
+      "snippet": "quranmanzilfa*[${1:manzil range}]",
+      "option": "trans=fa"
+    },
+    "qurantextfa": {
+      "option": "trans=fa"
+    },
+    "qurantextfa[]": {
+      "snippet": "qurantextfa[${1:index range}]",
+      "option": "trans=fa"
+    },
+    "qurantextfa*": {
+      "option": "trans=fa"
+    },
+    "qurantextfa*[]": {
+      "snippet": "qurantextfa*[${1:index range}]",
+      "option": "trans=fa"
+    },
+    "basmalahfa": {
+      "option": "trans=fa"
+    },
+    "Basmalahfa": {
+      "option": "trans=fa"
+    },
+    "qurandedate": {},
+    "qurandeversion": {}
+  },
+  "envs": {},
+  "options": [
+    "aburida",
+    "bubenheim",
+    "khoury",
+    "zaidan",
+    "all",
+    "nopar",
+    "nonumber",
+    "uthmani",
+    "uthmani-min",
+    "translt",
+    "transen",
+    "transfa",
+    "transfr",
+    "trans=",
+    "wordwise",
+    "ornbraces"
+  ],
+  "keyvals": []
+}

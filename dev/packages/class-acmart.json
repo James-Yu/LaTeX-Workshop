@@ -1,0 +1,1035 @@
+{
+  "includes": {
+    "xkeyval": [],
+    "xstring": [],
+    "iftex": [],
+    "class-amsart": [],
+    "microtype": [],
+    "etoolbox": [],
+    "booktabs": [],
+    "refcount": [],
+    "totpages": [],
+    "environ": [],
+    "setspace": [],
+    "textcase": [],
+    "natbib": [],
+    "hyperxmp": [],
+    "hyperref": [],
+    "graphicx": [],
+    "xcolor": [],
+    "geometry": [],
+    "manyfoot": [],
+    "cmap": [],
+    "fontenc": [],
+    "newtxmath": [],
+    "libertine": [],
+    "zi4": [],
+    "caption": [],
+    "float": [],
+    "comment": [],
+    "fancyhdr": [],
+    "draftwatermark": [
+      "authordraft",
+      "authordraft=true"
+    ],
+    "balance": [
+      "format=acmtog",
+      "acmtog",
+      "acmtog=true",
+      "format=sigconf",
+      "sigconf",
+      "sigconf=true",
+      "format=sigplan",
+      "sigplan",
+      "sigplan=true"
+    ],
+    "framed": [
+      "format=acmcp",
+      "acmcp",
+      "acmcp=true"
+    ],
+    "zref-savepos": [
+      "format=acmcp",
+      "acmcp",
+      "acmcp=true"
+    ],
+    "zref-user": [
+      "format=acmcp",
+      "acmcp",
+      "acmcp=true"
+    ],
+    "pbalance": [
+      "pbalance",
+      "pbalance=true"
+    ],
+    "babel": [
+      "language=english",
+      "language=french",
+      "language=german"
+    ]
+  },
+  "macros": {
+    "acmJournal{}": {
+      "snippet": "acmJournal{${1:short name}}"
+    },
+    "acmConference{}{}{}": {
+      "snippet": "acmConference{${1:name}}{${2:date}}{${3:venue}}"
+    },
+    "acmConference[]{}{}{}": {
+      "snippet": "acmConference[${4:short name}]{${1:name}}{${2:date}}{${3:venue}}"
+    },
+    "acmBooktitle{}": {
+      "snippet": "acmBooktitle{${1:title}}"
+    },
+    "editor{}": {
+      "snippet": "editor{${1:editor}}"
+    },
+    "subtitle{}": {
+      "snippet": "subtitle{${1:subtitle}}"
+    },
+    "orcid{}": {
+      "snippet": "orcid{${1:orcid}}"
+    },
+    "affiliation{}": {
+      "snippet": "affiliation{${1:affiliation}}"
+    },
+    "affiliation[]{}": {
+      "snippet": "affiliation[${2:obeypunctuation=true|false}]{${1:affiliation}}"
+    },
+    "additionalaffiliation{}": {
+      "snippet": "additionalaffiliation{${1:affiliation}}"
+    },
+    "position{}": {
+      "snippet": "position{${1:position}}"
+    },
+    "institution{}": {
+      "snippet": "institution{${1:institution}}"
+    },
+    "department{}": {
+      "snippet": "department{${1:department}}"
+    },
+    "city{}": {
+      "snippet": "city{${1:city}}"
+    },
+    "state{}": {
+      "snippet": "state{${1:state}}"
+    },
+    "country{}": {
+      "snippet": "country{${1:country}}"
+    },
+    "authorsaddresses{}": {
+      "snippet": "authorsaddresses{${1:contact addresses}}"
+    },
+    "titlenote{}": {
+      "snippet": "titlenote{${1:text}}"
+    },
+    "subtitlenote{}": {
+      "snippet": "subtitlenote{${1:text}}"
+    },
+    "authornote{}": {
+      "snippet": "authornote{${1:text}}"
+    },
+    "authornotemark": {},
+    "authornotemark[]": {
+      "snippet": "authornotemark[${1:number}]"
+    },
+    "acmVolume{}": {
+      "snippet": "acmVolume{${1:volume number}}"
+    },
+    "acmNumber{}": {
+      "snippet": "acmNumber{${1:issue number}}"
+    },
+    "acmArticle{}": {
+      "snippet": "acmArticle{${1:article number}}"
+    },
+    "acmYear{}": {
+      "snippet": "acmYear{${1:year}}"
+    },
+    "acmMonth{}": {
+      "snippet": "acmMonth{${1:month}}"
+    },
+    "acmArticleSeq{}": {
+      "snippet": "acmArticleSeq{${1:number}}"
+    },
+    "acmSubmissionID{}": {
+      "snippet": "acmSubmissionID{${1:ID}}"
+    },
+    "acmISBN{}": {
+      "snippet": "acmISBN{${1:ISBN}}"
+    },
+    "acmDOI{}": {
+      "snippet": "acmDOI{${1:DOI}}"
+    },
+    "acmBadge{}": {
+      "snippet": "acmBadge{${1:imagefile}}"
+    },
+    "acmBadge[]{}": {
+      "snippet": "acmBadge[${2:URL}]{${1:imagefile}}"
+    },
+    "acmBadgeR{}": {
+      "snippet": "acmBadgeR{${1:imagefile}}"
+    },
+    "acmBadgeR[]{}": {
+      "snippet": "acmBadgeR[${2:URL}]{${1:imagefile}}"
+    },
+    "acmBadgeL{}": {
+      "snippet": "acmBadgeL{${1:imagefile}}"
+    },
+    "acmBadgeL[]{}": {
+      "snippet": "acmBadgeL[${2:URL}]{${1:imagefile}}"
+    },
+    "startPage{}": {
+      "snippet": "startPage{${1:page}}"
+    },
+    "ccsdesc{}": {
+      "snippet": "ccsdesc{${1:text}}"
+    },
+    "ccsdesc[]{}": {
+      "snippet": "ccsdesc[${2:number}]{${1:text}}"
+    },
+    "setcopyright{}": {
+      "snippet": "setcopyright{${1:type}}"
+    },
+    "setcctype{}": {
+      "snippet": "setcctype{${1:type}}"
+    },
+    "setcctype[]{}": {
+      "snippet": "setcctype[${2:version}]{${1:type}}"
+    },
+    "copyrightyear{}": {
+      "snippet": "copyrightyear{${1:year}}"
+    },
+    "settopmatter{}": {
+      "snippet": "settopmatter{${1:settings}}"
+    },
+    "received{}": {
+      "snippet": "received{${1:date}}"
+    },
+    "received[]{}": {
+      "snippet": "received[${2:stage}]{${1:date}}"
+    },
+    "setengagemetadata{}{}": {
+      "snippet": "setengagemetadata{${1:name}}{${2:value}}"
+    },
+    "acmArticleType{}": {
+      "snippet": "acmArticleType{${1:type}}"
+    },
+    "acmCodeLink{}": {
+      "snippet": "acmCodeLink{${1:link}}"
+    },
+    "acmDataLink{}": {
+      "snippet": "acmDataLink{${1:link}}"
+    },
+    "acmContributions{}": {
+      "snippet": "acmContributions{${1:contributions}}"
+    },
+    "Description{}": {
+      "snippet": "Description{${1:description}}"
+    },
+    "Description[]{}": {
+      "snippet": "Description[${2:short description}]{${1:description}}"
+    },
+    "anon{}": {
+      "snippet": "anon{${1:suppressed text}}"
+    },
+    "anon[]{}": {
+      "snippet": "anon[${2:substitute}]{${1:suppressed text}}"
+    },
+    "grantsponsor{}{}{}": {
+      "snippet": "grantsponsor{${1:sponsorID}}{${2:name}}{${3:URL}}"
+    },
+    "grantnum{}{}": {
+      "snippet": "grantnum{${1:sponsorID}}{${2:number}}"
+    },
+    "grantnum[]{}{}": {
+      "snippet": "grantnum[${3:URL}]{${1:sponsorID}}{${2:number}}"
+    },
+    "AtBeginMaketitle{}": {
+      "snippet": "AtBeginMaketitle{${1:code}}"
+    },
+    "shortcite[]{}": {
+      "snippet": "shortcite[${2:add.text}]{${1:keylist}}"
+    },
+    "citeA{}": {
+      "snippet": "citeA{${1:keylist}}"
+    },
+    "citeA[]{}": {
+      "snippet": "citeA[${2:postfix}]{${1:keylist}}"
+    },
+    "citeA[][]{}": {
+      "snippet": "citeA[${2:prefix}][${3:postfix}]{${1:keylist}}"
+    },
+    "citeANP{}": {
+      "snippet": "citeANP{${1:keylist}}"
+    },
+    "citeANP*{}": {
+      "snippet": "citeANP*{${1:keylist}}"
+    },
+    "citeN{}": {
+      "snippet": "citeN{${1:keylist}}"
+    },
+    "citeN[]{}": {
+      "snippet": "citeN[${2:add. text}]{${1:keylist}}"
+    },
+    "citeNN{}": {
+      "snippet": "citeNN{${1:keylist}}"
+    },
+    "citeNP{}": {
+      "snippet": "citeNP{${1:keylist}}"
+    },
+    "citeNP*{}": {
+      "snippet": "citeNP*{${1:keylist}}"
+    },
+    "citeyearNP{}": {
+      "snippet": "citeyearNP{${1:keylist}}"
+    },
+    "Sectionformat": {},
+    "realSectionformat": {},
+    "acksname": {},
+    "copyrightpermissionfootnoterule": {},
+    "noindentparagraph*{}": {
+      "snippet": "noindentparagraph*{${1:title}}"
+    },
+    "noindentparagraph[]{}": {
+      "snippet": "noindentparagraph[${2:short title}]{${1:title}}"
+    },
+    "noindentparagraph{}": {
+      "snippet": "noindentparagraph{${1:title}}"
+    },
+    "showeprint[]{}": {
+      "snippet": "showeprint[${2:prefix}]{${1:number}}"
+    },
+    "showeprint{}": {
+      "snippet": "showeprint{${1:number}}"
+    },
+    "DH": {},
+    "NG": {},
+    "dj": {},
+    "ng": {},
+    "k{}": {
+      "snippet": "k{${1:arg}}"
+    },
+    "guillemotleft": {},
+    "guillemotright": {},
+    "guilsinglleft": {},
+    "guilsinglright": {},
+    "quotedblbase": {},
+    "quotesinglbase": {},
+    "textquotedbl": {},
+    "DJ": {},
+    "th": {},
+    "TH": {},
+    "dh": {},
+    "Hwithstroke": {},
+    "hwithstroke": {},
+    "textogonekcentered{}": {
+      "snippet": "textogonekcentered{${1:arg}}"
+    },
+    "guillemetleft": {},
+    "guillemetright": {},
+    "translatedtitle{}{}": {
+      "snippet": "translatedtitle{${1:language}}{${2:title}}",
+      "option": "language=german"
+    },
+    "translatedsubtitle{}{}": {
+      "snippet": "translatedsubtitle{${1:language}}{${2:subtitle}}",
+      "option": "language=german"
+    },
+    "translatedkeywords{}{}": {
+      "snippet": "translatedkeywords{${1:language}}{${2:keywords}}",
+      "option": "language=german"
+    },
+    "streetaddress{}": {
+      "snippet": "streetaddress{${1:address}}"
+    },
+    "postcode{}": {
+      "snippet": "postcode{${1:postcode}}"
+    },
+    "captionsenglish": {
+      "option": "language=english"
+    },
+    "dateenglish": {
+      "option": "language=english"
+    },
+    "extrasenglish": {
+      "option": "language=english"
+    },
+    "noextrasenglish": {
+      "option": "language=english"
+    },
+    "englishhyphenmins": {
+      "option": "language=english"
+    },
+    "britishhyphenmins": {
+      "option": "language=english"
+    },
+    "americanhyphenmins": {
+      "option": "language=english"
+    },
+    "prefacename": {
+      "option": "language=german"
+    },
+    "bibname": {
+      "option": "language=german"
+    },
+    "chaptername": {
+      "option": "language=german"
+    },
+    "enclname": {
+      "option": "language=german"
+    },
+    "ccname": {
+      "option": "language=german"
+    },
+    "headtoname": {
+      "option": "language=german"
+    },
+    "seename": {
+      "option": "language=german"
+    },
+    "alsoname": {
+      "option": "language=german"
+    },
+    "proofname": {
+      "option": "language=german"
+    },
+    "glossaryname": {
+      "option": "language=german"
+    },
+    "frenchsetup{}": {
+      "snippet": "frenchsetup{${1:options}}",
+      "option": "language=french",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "frenchbsetup{}": {
+      "snippet": "frenchbsetup{${1:options}}",
+      "option": "language=french",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "AddThinSpaceBeforeFootnotes": {
+      "option": "language=french"
+    },
+    "at": {
+      "option": "language=french"
+    },
+    "AutoSpaceBeforeFDP": {
+      "option": "language=french"
+    },
+    "boi": {
+      "option": "language=french"
+    },
+    "bname{}": {
+      "snippet": "bname{${1:text}}",
+      "option": "language=french"
+    },
+    "bsc{}": {
+      "snippet": "bsc{${1:text}}",
+      "option": "language=french"
+    },
+    "CaptionSeparator": {
+      "option": "language=french"
+    },
+    "captionsfrench": {
+      "option": "language=french"
+    },
+    "circonflexe": {
+      "option": "language=french"
+    },
+    "dateacadian": {
+      "option": "language=french"
+    },
+    "datefrench": {
+      "option": "language=french"
+    },
+    "DecimalMathComma": {
+      "option": "language=french"
+    },
+    "degre": {
+      "option": "language=french"
+    },
+    "degres": {
+      "option": "language=french"
+    },
+    "descindentFB": {
+      "option": "language=french"
+    },
+    "dotFFN": {
+      "option": "language=french"
+    },
+    "extrasfrench": {
+      "option": "language=french"
+    },
+    "FBcolonspace": {
+      "option": "language=french"
+    },
+    "FBdatebox": {
+      "option": "language=french"
+    },
+    "FBdatespace": {
+      "option": "language=french"
+    },
+    "FBeverylineguill": {
+      "option": "language=french"
+    },
+    "FBfigtabshape": {
+      "option": "language=french"
+    },
+    "FBfnindent": {
+      "option": "language=french"
+    },
+    "FBFrenchFootnotesfalse": {
+      "option": "language=french"
+    },
+    "FBFrenchFootnotestrue": {
+      "option": "language=french"
+    },
+    "FBFrenchSuperscriptstrue": {
+      "option": "language=french"
+    },
+    "FBGlobalLayoutFrenchtrue": {
+      "option": "language=french"
+    },
+    "FBgspchar": {
+      "option": "language=french"
+    },
+    "FBguillopen": {
+      "option": "language=french"
+    },
+    "FBguillspace": {
+      "option": "language=french"
+    },
+    "FBInnerGuillSinglefalse": {
+      "option": "language=french"
+    },
+    "FBInnerGuillSingletrue": {
+      "option": "language=french"
+    },
+    "FBListItemsAsParfalse": {
+      "option": "language=french"
+    },
+    "FBListItemsAsPartrue": {
+      "option": "language=french"
+    },
+    "FBLowercaseSuperscriptstrue": {
+      "option": "language=french"
+    },
+    "FBmedkern": {
+      "option": "language=french"
+    },
+    "FBPartNameFulltrue": {
+      "option": "language=french"
+    },
+    "FBsetspaces[]{}{}{}{}": {
+      "snippet": "FBsetspaces[${5:language}]{${1:type}}{${2:width}}{${3:stretch}}{${4:shrink}}",
+      "option": "language=french"
+    },
+    "FBsetspaces{}{}{}{}": {
+      "snippet": "FBsetspaces{${1:type}}{${2:width}}{${3:stretch}}{${4:shrink}}",
+      "option": "language=french"
+    },
+    "FBSmallCapsFigTabCaptionstrue": {
+      "option": "language=french"
+    },
+    "FBStandardEnumerateEnvtrue": {
+      "option": "language=french"
+    },
+    "FBStandardItemizeEnvtrue": {
+      "option": "language=french"
+    },
+    "FBStandardItemLabelstrue": {
+      "option": "language=french"
+    },
+    "FBStandardLayouttrue": {
+      "option": "language=french"
+    },
+    "FBStandardListSpacingtrue": {
+      "option": "language=french"
+    },
+    "FBStandardListstrue": {
+      "option": "language=french"
+    },
+    "FBsupR": {
+      "option": "language=french"
+    },
+    "FBsupS": {
+      "option": "language=french"
+    },
+    "FBtextellipsis": {
+      "option": "language=french"
+    },
+    "FBthickkern": {
+      "option": "language=french"
+    },
+    "FBthinspace": {
+      "option": "language=french"
+    },
+    "FBthousandsep": {
+      "option": "language=french"
+    },
+    "FBWarning{}": {
+      "snippet": "FBWarning{${1:message}}",
+      "option": "language=french"
+    },
+    "fg": {
+      "option": "language=french"
+    },
+    "fgi": {
+      "option": "language=french"
+    },
+    "fgii": {
+      "option": "language=french"
+    },
+    "frenchdate{}{}{}": {
+      "snippet": "frenchdate{${1:day}}{${2:month}}{${3:year}}",
+      "option": "language=french"
+    },
+    "FrenchEnumerate{}": {
+      "snippet": "FrenchEnumerate{${1:arg}}",
+      "option": "language=french"
+    },
+    "FrenchFootnotes": {
+      "option": "language=french"
+    },
+    "FrenchLabelItem": {
+      "option": "language=french"
+    },
+    "frenchpartfirst": {
+      "option": "language=french"
+    },
+    "frenchpartsecond": {
+      "option": "language=french"
+    },
+    "FrenchPopularEnumerate{}": {
+      "snippet": "FrenchPopularEnumerate{${1:arg}}",
+      "option": "language=french"
+    },
+    "frenchtoday": {
+      "option": "language=french"
+    },
+    "Frlabelitemi": {
+      "option": "language=french"
+    },
+    "Frlabelitemii": {
+      "option": "language=french"
+    },
+    "Frlabelitemiii": {
+      "option": "language=french"
+    },
+    "Frlabelitemiv": {
+      "option": "language=french"
+    },
+    "frquote{}": {
+      "snippet": "frquote{${1:text}}",
+      "option": "language=french"
+    },
+    "fup{}": {
+      "snippet": "fup{${1:text}}",
+      "option": "language=french"
+    },
+    "ieme": {
+      "option": "language=french"
+    },
+    "iemes": {
+      "option": "language=french"
+    },
+    "ier": {
+      "option": "language=french"
+    },
+    "iere": {
+      "option": "language=french"
+    },
+    "ieres": {
+      "option": "language=french"
+    },
+    "iers": {
+      "option": "language=french"
+    },
+    "ifFBAutoSpaceFootnotes": {
+      "option": "language=french"
+    },
+    "ifFBCompactItemize": {
+      "option": "language=french"
+    },
+    "ifFBCustomiseFigTabCaptions": {
+      "option": "language=french"
+    },
+    "ifFBfrench": {
+      "option": "language=french"
+    },
+    "ifFBFrenchFootnotes": {
+      "option": "language=french"
+    },
+    "ifFBFrenchSuperscripts": {
+      "option": "language=french"
+    },
+    "ifFBGlobalLayoutFrench": {
+      "option": "language=french"
+    },
+    "ifFBIndentFirst": {
+      "option": "language=french"
+    },
+    "ifFBINGuillSpace": {
+      "option": "language=french"
+    },
+    "ifFBListItemsAsPar": {
+      "option": "language=french"
+    },
+    "ifFBListOldLayout": {
+      "option": "language=french"
+    },
+    "ifFBLowercaseSuperscripts": {
+      "option": "language=french"
+    },
+    "ifFBLuaTeX": {
+      "option": "language=french"
+    },
+    "ifFBOldFigTabCaptions": {
+      "option": "language=french"
+    },
+    "ifFBOriginalTypewriter": {
+      "option": "language=french"
+    },
+    "ifFBPartNameFull": {
+      "option": "language=french"
+    },
+    "ifFBReduceListSpacing": {
+      "option": "language=french"
+    },
+    "ifFBShowOptions": {
+      "option": "language=french"
+    },
+    "ifFBSmallCapsFigTabCaptions": {
+      "option": "language=french"
+    },
+    "ifFBStandardEnumerateEnv": {
+      "option": "language=french"
+    },
+    "ifFBStandardItemizeEnv": {
+      "option": "language=french"
+    },
+    "ifFBStandardItemLabels": {
+      "option": "language=french"
+    },
+    "ifFBStandardLayout": {
+      "option": "language=french"
+    },
+    "ifFBStandardLists": {
+      "option": "language=french"
+    },
+    "ifFBStandardListSpacing": {
+      "option": "language=french"
+    },
+    "ifFBSuppressWarning": {
+      "option": "language=french"
+    },
+    "ifFBThinColonSpace": {
+      "option": "language=french"
+    },
+    "ifFBThinSpaceInFrenchNumbers": {
+      "option": "language=french"
+    },
+    "ifFBunicode": {
+      "option": "language=french"
+    },
+    "ifFBXeTeX": {
+      "option": "language=french"
+    },
+    "ifLaTeXe": {
+      "option": "language=french"
+    },
+    "kernFFN": {
+      "option": "language=french"
+    },
+    "labelindentFB": {
+      "option": "language=french"
+    },
+    "labelwidthFB": {
+      "option": "language=french"
+    },
+    "leftmarginFB": {
+      "option": "language=french"
+    },
+    "listfigurename": {
+      "option": "language=french"
+    },
+    "listindentFB": {
+      "option": "language=french"
+    },
+    "No": {
+      "option": "language=french"
+    },
+    "no": {
+      "option": "language=french"
+    },
+    "NoAutoSpaceBeforeFDP": {
+      "option": "language=french"
+    },
+    "NoAutoSpacing": {
+      "option": "language=french"
+    },
+    "NoEveryParQuote": {
+      "option": "language=french"
+    },
+    "noextrasfrench": {
+      "option": "language=french"
+    },
+    "nombre{}": {
+      "snippet": "nombre{${1:arg}}",
+      "option": "language=french"
+    },
+    "nos": {
+      "option": "language=french"
+    },
+    "Nos": {
+      "option": "language=french"
+    },
+    "og": {
+      "option": "language=french"
+    },
+    "ogi": {
+      "option": "language=french"
+    },
+    "ogii": {
+      "option": "language=french"
+    },
+    "parindentFFN": {
+      "option": "language=french"
+    },
+    "partfirst": {
+      "option": "language=french"
+    },
+    "partnameord": {
+      "option": "language=french"
+    },
+    "partsecond": {
+      "option": "language=french"
+    },
+    "primo": {
+      "option": "language=french"
+    },
+    "quarto": {
+      "option": "language=french"
+    },
+    "rmfamilyFB": {
+      "option": "language=french"
+    },
+    "secundo": {
+      "option": "language=french"
+    },
+    "sffamilyFB": {
+      "option": "language=french"
+    },
+    "StandardFootnotes": {
+      "option": "language=french"
+    },
+    "StandardMathComma": {
+      "option": "language=french"
+    },
+    "tertio": {
+      "option": "language=french"
+    },
+    "tild": {
+      "option": "language=french"
+    },
+    "ttfamilyFB": {
+      "option": "language=french"
+    },
+    "up{}": {
+      "snippet": "up{${1:text}}",
+      "option": "language=french"
+    },
+    "xspace": {
+      "option": "language=french"
+    },
+    "captionsgerman": {
+      "option": "language=german"
+    },
+    "dategerman": {
+      "option": "language=german"
+    },
+    "extrasgerman": {
+      "option": "language=german"
+    },
+    "noextrasgerman": {
+      "option": "language=german"
+    },
+    "dq": {
+      "option": "language=german"
+    },
+    "tosstrue": {
+      "option": "language=german"
+    },
+    "tossfalse": {
+      "option": "language=german"
+    },
+    "mdqon": {
+      "option": "language=german"
+    },
+    "mdqoff": {
+      "option": "language=german"
+    },
+    "ck": {
+      "option": "language=german"
+    }
+  },
+  "envs": {
+    "CCSXML": {},
+    "teaserfigure": {},
+    "theorem": {},
+    "theorem[]": {
+      "name": "theorem",
+      "snippet": "[${1:header}]"
+    },
+    "conjecture": {},
+    "conjecture[]": {
+      "name": "conjecture",
+      "snippet": "[${1:header}]"
+    },
+    "proposition": {},
+    "proposition[]": {
+      "name": "proposition",
+      "snippet": "[${1:header}]"
+    },
+    "lemma": {},
+    "lemma[]": {
+      "name": "lemma",
+      "snippet": "[${1:header}]"
+    },
+    "corollary": {},
+    "corollary[]": {
+      "name": "corollary",
+      "snippet": "[${1:header}]"
+    },
+    "example": {},
+    "example[]": {
+      "name": "example",
+      "snippet": "[${1:header}]"
+    },
+    "definition": {},
+    "definition[]": {
+      "name": "definition",
+      "snippet": "[${1:header}]"
+    },
+    "printonly": {},
+    "screenonly": {},
+    "anonsuppress": {},
+    "acks": {},
+    "sidebar": {},
+    "marginfigure": {},
+    "margintable": {},
+    "translatedabstract{}": {
+      "name": "translatedabstract",
+      "snippet": "{${1:language}}",
+      "option": "language=german"
+    },
+    "descriptionFB": {
+      "option": "language=french"
+    },
+    "enumerateFB": {
+      "option": "language=french"
+    },
+    "itemizeFB": {
+      "option": "language=french"
+    },
+    "listFB{}": {
+      "name": "listFB",
+      "snippet": "{${1:symbol}}",
+      "option": "language=french"
+    },
+    "listORI{}": {
+      "name": "listORI",
+      "snippet": "{${1:symbol}}",
+      "option": "language=french"
+    }
+  },
+  "options": [
+    "format=",
+    "manuscript",
+    "acmsmall",
+    "acmlarge",
+    "acmtog",
+    "sigconf",
+    "sigplan",
+    "review",
+    "screen",
+    "natbib",
+    "anonymous",
+    "authorversion",
+    "nonacm",
+    "timestamp",
+    "authordraft",
+    "acmthm",
+    "balance",
+    "pbalance",
+    "urlbreakonhyphens",
+    "8pt",
+    "9pt",
+    "10pt",
+    "11pt",
+    "12pt",
+    "draft",
+    "language=${1:language}",
+    "8pt",
+    "a4paper",
+    "centertags",
+    "e-only",
+    "final",
+    "fleqn",
+    "landscape",
+    "leqno",
+    "letterpaper",
+    "noamsfonts",
+    "nomath",
+    "notitlepage",
+    "onecolumn",
+    "oneside",
+    "portrait",
+    "reqno",
+    "tbtags",
+    "titlepage",
+    "twocolumn",
+    "twoside"
+  ],
+  "keyvals": [
+    [
+      "ShowOptions",
+      "StandardLayout",
+      "GlobalLayoutFrench",
+      "IndentFirst",
+      "PartNameFull",
+      "ListItemsAsPar",
+      "StandardListSpacing",
+      "StandardItemizeEnv",
+      "StandardEnumerateEnv",
+      "StandardItemLabels",
+      "ItemLabels=",
+      "ItemLabeli=",
+      "ItemLabelii=",
+      "ItemLabeliii=",
+      "ItemLabeliv=",
+      "StandardLists",
+      "ListOldLayout",
+      "FrenchFootnotes",
+      "AutoSpaceFootnotes",
+      "AutoSpacePunctuation",
+      "ThinColonSpace",
+      "OriginalTypewriter",
+      "UnicodeNoBreakSpaces",
+      "og=",
+      "fg=",
+      "INGuillSpace",
+      "EveryParGuill=",
+      "EveryLineGuill=",
+      "InnerGuillSingle",
+      "ThinSpaceInFrenchNumbers",
+      "SmallCapsFigTabCaptions",
+      "CustomiseFigTabCaptions",
+      "OldFigTabCaptions",
+      "FrenchSuperscripts",
+      "LowercaseSuperscripts",
+      "SuppressWarning"
+    ]
+  ]
+}

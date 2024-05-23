@@ -1,0 +1,405 @@
+{
+  "includes": {
+    "pgfopts": [],
+    "tikz": [],
+    "tcolorbox": [],
+    "tcolorboxlibrarymagazine": [],
+    "class-standalone": []
+  },
+  "macros": {
+    "twoside": {},
+    "beginleft": {},
+    "fanfold": {},
+    "cover": {},
+    "beginright": {},
+    "pagewidth": {},
+    "pageheight": {},
+    "bleed": {},
+    "outerbleed": {},
+    "innerbleed": {},
+    "topbleed": {},
+    "bottombleed": {},
+    "safetymargin": {},
+    "topsafetymargin": {},
+    "bottomsafetymargin": {},
+    "innersafetymargin": {},
+    "outersafetymargin": {},
+    "margin": {},
+    "innermargin": {},
+    "bottommargin": {},
+    "outermargin": {},
+    "gutter": {},
+    "coverwidth": {},
+    "coverheight": {},
+    "spinewidth": {},
+    "bindingoffset": {},
+    "coverbleed": {},
+    "coverouterbleed": {},
+    "coverinnerbleed": {},
+    "covertopbleed": {},
+    "coverbottombleed": {},
+    "coversafetymargin": {},
+    "covertopsafetymargin": {},
+    "coverbottomsafetymargin": {},
+    "coverinnersafetymargin": {},
+    "coveroutersafetymargin": {},
+    "grid": {},
+    "nogrid": {},
+    "safezone": {},
+    "nosafezone": {},
+    "cuttingmarks": {},
+    "nocuttingmarks": {},
+    "graphpaper": {},
+    "nographpaper": {},
+    "placeholders": {},
+    "noplaceholders": {},
+    "fillpages": {},
+    "nofillpages": {},
+    "page{}": {
+      "snippet": "page{${1:content}}"
+    },
+    "page[]{}": {
+      "snippet": "page[${2:options}]{${1:content}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "pagecolor[]{}": {
+      "snippet": "pagecolor[${2:model}]{${1:color}}"
+    },
+    "setpagecolor{}": {
+      "snippet": "setpagecolor{${1:color}}"
+    },
+    "setpagecolor[]{}": {
+      "snippet": "setpagecolor[${2:model}]{${1:color}}"
+    },
+    "setpagegraphic{}": {
+      "snippet": "setpagegraphic{${1:name}}"
+    },
+    "setpagegraphic[]{}": {
+      "snippet": "setpagegraphic[${2:options}]{${1:name}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "newbeforepage{}{}": {
+      "snippet": "newbeforepage{${1:name}}{${2:content}}"
+    },
+    "setbeforepage{}": {
+      "snippet": "setbeforepage{${1:name}}"
+    },
+    "ifleftpage{}": {
+      "snippet": "ifleftpage{${1:content}}"
+    },
+    "ifrightpage{}": {
+      "snippet": "ifrightpage{${1:content}}"
+    },
+    "leftpage{}": {
+      "snippet": "leftpage{${1:content}}"
+    },
+    "rightpage{}": {
+      "snippet": "rightpage{${1:content}}"
+    },
+    "ifspine{}": {
+      "snippet": "ifspine{${1:content}}"
+    },
+    "setgrid{}": {
+      "snippet": "setgrid{${1:config}}"
+    },
+    "setgrid[]{}": {
+      "snippet": "setgrid[${2:options}]{${1:config}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "place{}": {
+      "snippet": "place{${1:fromrow fromcell torow tocell}}"
+    },
+    "text[]{}": {
+      "snippet": "text[${2:options}]{${1:text}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "usetext": {},
+    "usetext[]": {
+      "snippet": "usetext[${1:name}]"
+    },
+    "newgraphic{}{}": {
+      "snippet": "newgraphic{${1:name}}{${2:options}}"
+    },
+    "graphic{}": {
+      "snippet": "graphic{${1:name}}"
+    },
+    "graphic[]{}": {
+      "snippet": "graphic[${2:options}]{${1:name}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "xput{}": {
+      "snippet": "xput{${1:code}}"
+    },
+    "tikzgraphic{}": {
+      "snippet": "tikzgraphic{${1:TikZ code}}"
+    },
+    "newborder{}{}": {
+      "snippet": "newborder{${1:name}}{${2:options}}",
+      "keyvalindex": 5,
+      "keyvalpos": 1
+    },
+    "setborder{}": {
+      "snippet": "setborder{${1:name}}"
+    },
+    "setborder[]{}": {
+      "snippet": "setborder[${2:options}]{${1:name}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "newshadow{}{}": {
+      "snippet": "newshadow{${1:name}}{${2:options}}",
+      "keyvalindex": 6,
+      "keyvalpos": 1
+    },
+    "setshadow{}": {
+      "snippet": "setshadow{${1:name}}"
+    },
+    "setshadow[]{}": {
+      "snippet": "setshadow[${2:options}]{${1:name}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "newtemplate{}{}": {
+      "snippet": "newtemplate{${1:name}}{${2:layout}}"
+    },
+    "newtemplate[]{}{}": {
+      "snippet": "newtemplate[${3:options}]{${1:name}}{${2:layout}}"
+    },
+    "placeholder{}": {
+      "snippet": "placeholder{${1:fromrow fromcell torow tocell}}"
+    },
+    "template{}{}": {
+      "snippet": "template{${1:name}}{${2:content}}"
+    },
+    "template[]{}{}": {
+      "snippet": "template[${3:options}]{${1:name}}{${2:content}}"
+    },
+    "optimize": {},
+    "optimize[]": {
+      "snippet": "optimize[${1:options}]",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "import": {},
+    "preflight": {},
+    "nopreflight": {},
+    "density{}": {
+      "snippet": "density{${1:arg}}"
+    },
+    "isoptimizable{}{}": {
+      "snippet": "isoptimizable{${1:arg1}}{${2:arg2}}"
+    },
+    "loopcells": {},
+    "looprows": {},
+    "nobeforepage": {},
+    "noborder": {},
+    "nopagegraphic": {},
+    "noshadow": {},
+    "originaltcbset{}": {
+      "snippet": "originaltcbset{${1:options}}"
+    },
+    "posx{}{}{}{}": {
+      "snippet": "posx{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "posxcell{}{}{}": {
+      "snippet": "posxcell{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "posxrow{}{}{}{}": {
+      "snippet": "posxrow{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "posy{}{}": {
+      "snippet": "posy{${1:arg1}}{${2:arg2}}"
+    },
+    "posycell{}": {
+      "snippet": "posycell{${1:arg}}"
+    },
+    "posyrow{}{}": {
+      "snippet": "posyrow{${1:arg1}}{${2:arg2}}"
+    },
+    "quality{}": {
+      "snippet": "quality{${1:arg}}"
+    },
+    "rowsF": {},
+    "rowsFlex": {},
+    "rowsH": {},
+    "sectioncalled": {},
+    "setcolor{}": {
+      "snippet": "setcolor{${1:color}}"
+    },
+    "setgraphpaper{}": {
+      "snippet": "setgraphpaper{${1:arg}}"
+    },
+    "pagelayoutversion": {},
+    "togglesnapv": {},
+    "togglesnaph": {},
+    "togglepos": {}
+  },
+  "envs": {},
+  "options": [
+    "pagewidth=",
+    "pageheight=",
+    "bleed=",
+    "outerbleed=",
+    "innerbleed=",
+    "topbleed=",
+    "bottombleed=",
+    "safetymargin=",
+    "outersafetymargin=",
+    "innersafetymargin=",
+    "topsafetymargin=",
+    "bottomsafetymargin=",
+    "coverwidth=",
+    "coverheight=",
+    "coverbleed=",
+    "coverouterbleed=",
+    "coverinnerbleed=",
+    "covertopbleed=",
+    "coverbottombleed=",
+    "coversafetymargin=",
+    "coveroutersafetymargin=",
+    "coverinnersafetymargin=",
+    "covertopsafetymargin=",
+    "coverbottomsafetymargin=",
+    "spinewidth=",
+    "bindingoffset=",
+    "margin=",
+    "outermargin=",
+    "innermargin=",
+    "topmargin=",
+    "bottommargin=",
+    "gutter=",
+    "pagecolor=",
+    "pagegraphic=${1:name}",
+    "color=",
+    "grid",
+    "safezone",
+    "cuttingmarks",
+    "graphpaper",
+    "placeholder",
+    "fillpages",
+    "draft",
+    "preflight",
+    "twoside",
+    "fanfold",
+    "cover",
+    "beginleft",
+    "beginright",
+    "import"
+  ],
+  "keyvals": [
+    [
+      "gutter=",
+      "margin=",
+      "top margin=",
+      "bottom margin=",
+      "inner margin=",
+      "outer margin=",
+      "vpos=${1:number 0-1}",
+      "hpos=${1:number 0-1}",
+      "color=",
+      "page color=",
+      "page graphic=${1:name}",
+      "before page=${1:name}",
+      "double",
+      "front cover",
+      "back cover"
+    ],
+    [
+      "file=${1:imagefile}",
+      "scale=${1:factor}",
+      "orientation=${1:number}",
+      "hflip",
+      "vflip",
+      "vpos=${1:number 0-1}",
+      "hpos=${1:number 0-1}",
+      "unsharp="
+    ],
+    [
+      "gutter=",
+      "margin=",
+      "top margin=",
+      "bottom margin=",
+      "inner margin=",
+      "outer margin=",
+      "width=",
+      "height=",
+      "x=",
+      "y=",
+      "vpos=${1:number 0-1}",
+      "hpos=${1:number 0-1}"
+    ],
+    [
+      "name=${1:name}",
+      "color=",
+      "opacity=${1:factor}",
+      "top",
+      "center",
+      "bottom",
+      "boxrule=",
+      "toprule=",
+      "rightrule=",
+      "bottomrule=",
+      "leftrule=",
+      "height=",
+      "parbox",
+      "breakable",
+      "baselinesnap=",
+      "border radius=",
+      "arc=",
+      "border width=",
+      "border color=",
+      "border opacity=${1:factor}",
+      "shadow=${1:name}",
+      "shadow size=",
+      "shadow color=",
+      "shadow opacity=${1:factor}",
+      "shadow xshift=",
+      "shadow yshift="
+    ],
+    [
+      "file=${1:imagefile}",
+      "scale=${1:factor}",
+      "orientation=${1:number}",
+      "hflip",
+      "vflip",
+      "vpos=${1:number 0-1}",
+      "hpos=${1:number 0-1}",
+      "unsharp=",
+      "border=",
+      "border radius=",
+      "border width=",
+      "border color=",
+      "border opacity=${1:factor}",
+      "shadow=${1:name}",
+      "shadow size=",
+      "shadow color=",
+      "shadow opacity=${1:factor}",
+      "shadow xshift=",
+      "shadow yshift="
+    ],
+    [
+      "radius=",
+      "width=",
+      "color=",
+      "opacity=${1:factor}"
+    ],
+    [
+      "size=",
+      "color=",
+      "opacity=${1:factor}",
+      "xshift=",
+      "yshift="
+    ],
+    [
+      "density=${1:pixels per inch}",
+      "quality=${1:number 1-100}",
+      "unsharp=",
+      "downsample threshold=${1:number}"
+    ]
+  ]
+}

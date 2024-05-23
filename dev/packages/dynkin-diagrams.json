@@ -1,0 +1,792 @@
+{
+  "includes": {
+    "tikz": [],
+    "xstring": [],
+    "etoolbox": [],
+    "pgfkeys": [],
+    "pgfopts": [],
+    "amsmath": [],
+    "amssymb": [],
+    "mathtools": [],
+    "tikzlibrarybackgrounds": [],
+    "tikzlibrarycalc": [],
+    "tikzlibrarydecorations.markings": [],
+    "tikzlibrarydecorations.pathreplacing": [],
+    "tikzlibrarydecorations.pathmorphing": [],
+    "tikzlibraryfit": [],
+    "tikzlibrarypatterns": [],
+    "tikzlibraryshadows": []
+  },
+  "macros": {
+    "dynkin{}{}": {
+      "snippet": "dynkin{${1:letter}}{${2:rank}}"
+    },
+    "dynkin{}[]{}": {
+      "snippet": "dynkin{${1:letter}}[${2:twisted rank}]{${3:rank}}"
+    },
+    "dynkin[]{}{}": {
+      "snippet": "dynkin[${3:options}]{${1:letter}}{${2:rank}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "dynkin[]{}[]{}": {
+      "snippet": "dynkin[${3:options}]{${1:letter}}[${4:twisted rank}]{${2:rank}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "dynkinName{}{}": {
+      "snippet": "dynkinName{${1:letter}}{${2:rank}}"
+    },
+    "dynkinName{}[]{}": {
+      "snippet": "dynkinName{${1:letter}}[${2:twisted rank}]{${3:rank}}"
+    },
+    "dynkinName[]{}{}": {
+      "snippet": "dynkinName[${3:options}]{${1:letter}}{${2:rank}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "dynkinName[]{}[]{}": {
+      "snippet": "dynkinName[${3:options}]{${1:letter}}[${4:twisted rank}]{${2:rank}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "dynkins{}": {
+      "snippet": "dynkins{${1:spec}}"
+    },
+    "dynkinFold{}{}": {
+      "snippet": "dynkinFold{${1:start}}{${2:end}}"
+    },
+    "dynkinFold[]{}{}": {
+      "snippet": "dynkinFold[${3:TikZ keys}]{${1:start}}{${2:end}}"
+    },
+    "drlap{}": {
+      "snippet": "drlap{${1:arg}}"
+    },
+    "dynkinBrace{}{}": {
+      "snippet": "dynkinBrace{${1:start}}{${2:end}}"
+    },
+    "dynkinBrace[]{}{}": {
+      "snippet": "dynkinBrace[${3:label}]{${1:start}}{${2:end}}"
+    },
+    "dynkinBrace*{}{}": {
+      "snippet": "dynkinBrace*{${1:start}}{${2:end}}"
+    },
+    "dynkinBrace*[]{}{}": {
+      "snippet": "dynkinBrace*[${3:label}]{${1:start}}{${2:end}}"
+    },
+    "dynkinTripleEdge{}{}": {
+      "snippet": "dynkinTripleEdge{${1:root1}}{${2:root2}}"
+    },
+    "dynkinTripleEdge[]{}{}": {
+      "snippet": "dynkinTripleEdge[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinTripleEdge*{}{}": {
+      "snippet": "dynkinTripleEdge*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinTripleEdge*[]{}{}": {
+      "snippet": "dynkinTripleEdge*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinQuadrupleEdge{}{}": {
+      "snippet": "dynkinQuadrupleEdge{${1:root1}}{${2:root2}}"
+    },
+    "dynkinQuadrupleEdge[]{}{}": {
+      "snippet": "dynkinQuadrupleEdge[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinQuadrupleEdge*{}{}": {
+      "snippet": "dynkinQuadrupleEdge*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinQuadrupleEdge*[]{}{}": {
+      "snippet": "dynkinQuadrupleEdge*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleEdge{}{}": {
+      "snippet": "dynkinDefiniteDoubleEdge{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleEdge[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleEdge[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleEdge*{}{}": {
+      "snippet": "dynkinDefiniteDoubleEdge*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleEdge*[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleEdge*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "Adynkin": {},
+    "Bdynkin": {},
+    "braceYshift": {},
+    "Cdynkin": {},
+    "convertRootNumber{}": {
+      "snippet": "convertRootNumber{${1:n}}"
+    },
+    "convertRootPair{}{}": {
+      "snippet": "convertRootPair{${1:root1}}{${2:root2}}"
+    },
+    "currentDynkinOrdering": {},
+    "Ddynkin": {},
+    "defaultpgflinewidth": {},
+    "DfourPly": {},
+    "Dir": {},
+    "distance": {},
+    "DOneFourFourPly": {},
+    "DthreePly": {},
+    "dynkinCrossRootMark*[]{}": {
+      "snippet": "dynkinCrossRootMark*[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinCrossRootMark*{}": {
+      "snippet": "dynkinCrossRootMark*{${1:root}}"
+    },
+    "dynkinCrossRootMark[]{}": {
+      "snippet": "dynkinCrossRootMark[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinCrossRootMark{}": {
+      "snippet": "dynkinCrossRootMark{${1:root}}"
+    },
+    "dynkinDefiniteDoubleDownLeftArc*[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleDownLeftArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleDownLeftArc*{}{}": {
+      "snippet": "dynkinDefiniteDoubleDownLeftArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleDownLeftArc[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleDownLeftArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleDownLeftArc{}{}": {
+      "snippet": "dynkinDefiniteDoubleDownLeftArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleDownRightArc*[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleDownRightArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleDownRightArc*{}{}": {
+      "snippet": "dynkinDefiniteDoubleDownRightArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleDownRightArc[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleDownRightArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleDownRightArc{}{}": {
+      "snippet": "dynkinDefiniteDoubleDownRightArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleDownRightSemiCircle*[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleDownRightSemiCircle*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleDownRightSemiCircle*{}{}": {
+      "snippet": "dynkinDefiniteDoubleDownRightSemiCircle*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleDownRightSemiCircle[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleDownRightSemiCircle[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleDownRightSemiCircle{}{}": {
+      "snippet": "dynkinDefiniteDoubleDownRightSemiCircle{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleLeftDownArc*[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleLeftDownArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleLeftDownArc*{}{}": {
+      "snippet": "dynkinDefiniteDoubleLeftDownArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleLeftDownArc[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleLeftDownArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleLeftDownArc{}{}": {
+      "snippet": "dynkinDefiniteDoubleLeftDownArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleLeftUpArc*[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleLeftUpArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleLeftUpArc*{}{}": {
+      "snippet": "dynkinDefiniteDoubleLeftUpArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleLeftUpArc[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleLeftUpArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleLeftUpArc{}{}": {
+      "snippet": "dynkinDefiniteDoubleLeftUpArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleRightDownArc*[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleRightDownArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleRightDownArc*{}{}": {
+      "snippet": "dynkinDefiniteDoubleRightDownArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleRightDownArc[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleRightDownArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleRightDownArc{}{}": {
+      "snippet": "dynkinDefiniteDoubleRightDownArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleRightUpArc*[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleRightUpArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleRightUpArc*{}{}": {
+      "snippet": "dynkinDefiniteDoubleRightUpArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleRightUpArc[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleRightUpArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleRightUpArc{}{}": {
+      "snippet": "dynkinDefiniteDoubleRightUpArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleUpLeftArc*[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleUpLeftArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleUpLeftArc*{}{}": {
+      "snippet": "dynkinDefiniteDoubleUpLeftArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleUpLeftArc[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleUpLeftArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleUpLeftArc{}{}": {
+      "snippet": "dynkinDefiniteDoubleUpLeftArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleUpRightArc*[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleUpRightArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleUpRightArc*{}{}": {
+      "snippet": "dynkinDefiniteDoubleUpRightArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleUpRightArc[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleUpRightArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleUpRightArc{}{}": {
+      "snippet": "dynkinDefiniteDoubleUpRightArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleUpRightSemiCircle*[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleUpRightSemiCircle*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleUpRightSemiCircle*{}{}": {
+      "snippet": "dynkinDefiniteDoubleUpRightSemiCircle*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleUpRightSemiCircle[]{}{}": {
+      "snippet": "dynkinDefiniteDoubleUpRightSemiCircle[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteDoubleUpRightSemiCircle{}{}": {
+      "snippet": "dynkinDefiniteDoubleUpRightSemiCircle{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteLeftDownArc*[]{}{}": {
+      "snippet": "dynkinDefiniteLeftDownArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteLeftDownArc*{}{}": {
+      "snippet": "dynkinDefiniteLeftDownArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteLeftDownArc[]{}{}": {
+      "snippet": "dynkinDefiniteLeftDownArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteLeftDownArc{}{}": {
+      "snippet": "dynkinDefiniteLeftDownArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteLeftUpArc*[]{}{}": {
+      "snippet": "dynkinDefiniteLeftUpArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteLeftUpArc*{}{}": {
+      "snippet": "dynkinDefiniteLeftUpArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteLeftUpArc[]{}{}": {
+      "snippet": "dynkinDefiniteLeftUpArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteLeftUpArc{}{}": {
+      "snippet": "dynkinDefiniteLeftUpArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteRightDownArc*[]{}{}": {
+      "snippet": "dynkinDefiniteRightDownArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteRightDownArc*{}{}": {
+      "snippet": "dynkinDefiniteRightDownArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteRightDownArc[]{}{}": {
+      "snippet": "dynkinDefiniteRightDownArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteRightDownArc{}{}": {
+      "snippet": "dynkinDefiniteRightDownArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteRightUpArc*[]{}{}": {
+      "snippet": "dynkinDefiniteRightUpArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteRightUpArc*{}{}": {
+      "snippet": "dynkinDefiniteRightUpArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteRightUpArc[]{}{}": {
+      "snippet": "dynkinDefiniteRightUpArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteRightUpArc{}{}": {
+      "snippet": "dynkinDefiniteRightUpArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteSemiCircle*[]{}{}": {
+      "snippet": "dynkinDefiniteSemiCircle*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteSemiCircle*{}{}": {
+      "snippet": "dynkinDefiniteSemiCircle*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteSemiCircle[]{}{}": {
+      "snippet": "dynkinDefiniteSemiCircle[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteSemiCircle{}{}": {
+      "snippet": "dynkinDefiniteSemiCircle{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteSingleEdge*[]{}{}": {
+      "snippet": "dynkinDefiniteSingleEdge*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteSingleEdge*{}{}": {
+      "snippet": "dynkinDefiniteSingleEdge*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteSingleEdge[]{}{}": {
+      "snippet": "dynkinDefiniteSingleEdge[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteSingleEdge{}{}": {
+      "snippet": "dynkinDefiniteSingleEdge{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteTripleDownRightSemiCircle*[]{}{}": {
+      "snippet": "dynkinDefiniteTripleDownRightSemiCircle*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteTripleDownRightSemiCircle*{}{}": {
+      "snippet": "dynkinDefiniteTripleDownRightSemiCircle*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteTripleDownRightSemiCircle[]{}{}": {
+      "snippet": "dynkinDefiniteTripleDownRightSemiCircle[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDefiniteTripleDownRightSemiCircle{}{}": {
+      "snippet": "dynkinDefiniteTripleDownRightSemiCircle{${1:root1}}{${2:root2}}"
+    },
+    "dynkinDoubleHollowRootMark*[]{}": {
+      "snippet": "dynkinDoubleHollowRootMark*[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinDoubleHollowRootMark*{}": {
+      "snippet": "dynkinDoubleHollowRootMark*{${1:root}}"
+    },
+    "dynkinDoubleHollowRootMark[]{}": {
+      "snippet": "dynkinDoubleHollowRootMark[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinDoubleHollowRootMark{}": {
+      "snippet": "dynkinDoubleHollowRootMark{${1:root}}"
+    },
+    "dynkinDrawCrossRootMark[]{}": {
+      "snippet": "dynkinDrawCrossRootMark[${2:TikZ keys}]{${1:name}}"
+    },
+    "dynkinDrawCrossRootMark{}": {
+      "snippet": "dynkinDrawCrossRootMark{${1:name}}"
+    },
+    "dynkinDrawSolidRootMark[]{}": {
+      "snippet": "dynkinDrawSolidRootMark[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinDrawSolidRootMark{}": {
+      "snippet": "dynkinDrawSolidRootMark{${1:root}}"
+    },
+    "dynkinEast": {},
+    "dynkinEast*": {},
+    "dynkinEdge*[]{}{}{}": {
+      "snippet": "dynkinEdge*[${4:TikZ keys}]{${1:type}}{${2:root1}}{${3:root2}}"
+    },
+    "dynkinEdge*{}{}{}": {
+      "snippet": "dynkinEdge*{${1:type}}{${2:root1}}{${3:root2}}"
+    },
+    "dynkinEdge[]{}{}{}": {
+      "snippet": "dynkinEdge[${4:TikZ keys}]{${1:type}}{${2:root1}}{${3:root2}}"
+    },
+    "dynkinEdge{}{}{}": {
+      "snippet": "dynkinEdge{${1:type}}{${2:root1}}{${3:root2}}"
+    },
+    "dynkinEdgeArrow*[]{}{}": {
+      "snippet": "dynkinEdgeArrow*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinEdgeArrow*{}{}": {
+      "snippet": "dynkinEdgeArrow*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinEdgeArrow[]{}{}": {
+      "snippet": "dynkinEdgeArrow[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinEdgeArrow{}{}": {
+      "snippet": "dynkinEdgeArrow{${1:root1}}{${2:root2}}"
+    },
+    "dynkinEdgeLabel{}{}{}": {
+      "snippet": "dynkinEdgeLabel{${1:root1}}{${2:root2}}{${3:label text}}"
+    },
+    "dynkinHeavyCrossRootMark*[]{}": {
+      "snippet": "dynkinHeavyCrossRootMark*[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinHeavyCrossRootMark*{}": {
+      "snippet": "dynkinHeavyCrossRootMark*{${1:root}}"
+    },
+    "dynkinHeavyCrossRootMark[]{}": {
+      "snippet": "dynkinHeavyCrossRootMark[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinHeavyCrossRootMark{}": {
+      "snippet": "dynkinHeavyCrossRootMark{${1:root}}"
+    },
+    "dynkinHollowRootMark*[]{}": {
+      "snippet": "dynkinHollowRootMark*[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinHollowRootMark*{}": {
+      "snippet": "dynkinHollowRootMark*{${1:root}}"
+    },
+    "dynkinHollowRootMark[]{}": {
+      "snippet": "dynkinHollowRootMark[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinHollowRootMark{}": {
+      "snippet": "dynkinHollowRootMark{${1:root}}"
+    },
+    "dynkinIndefiniteLeftDownArc*[]{}{}": {
+      "snippet": "dynkinIndefiniteLeftDownArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteLeftDownArc*{}{}": {
+      "snippet": "dynkinIndefiniteLeftDownArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteLeftDownArc[]{}{}": {
+      "snippet": "dynkinIndefiniteLeftDownArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteLeftDownArc{}{}": {
+      "snippet": "dynkinIndefiniteLeftDownArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteLeftUpArc*[]{}{}": {
+      "snippet": "dynkinIndefiniteLeftUpArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteLeftUpArc*{}{}": {
+      "snippet": "dynkinIndefiniteLeftUpArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteLeftUpArc[]{}{}": {
+      "snippet": "dynkinIndefiniteLeftUpArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteLeftUpArc{}{}": {
+      "snippet": "dynkinIndefiniteLeftUpArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteRightDownArc*[]{}{}": {
+      "snippet": "dynkinIndefiniteRightDownArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteRightDownArc*{}{}": {
+      "snippet": "dynkinIndefiniteRightDownArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteRightDownArc[]{}{}": {
+      "snippet": "dynkinIndefiniteRightDownArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteRightDownArc{}{}": {
+      "snippet": "dynkinIndefiniteRightDownArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteRightUpArc*[]{}{}": {
+      "snippet": "dynkinIndefiniteRightUpArc*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteRightUpArc*{}{}": {
+      "snippet": "dynkinIndefiniteRightUpArc*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteRightUpArc[]{}{}": {
+      "snippet": "dynkinIndefiniteRightUpArc[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteRightUpArc{}{}": {
+      "snippet": "dynkinIndefiniteRightUpArc{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteSemiCircle*[]{}{}": {
+      "snippet": "dynkinIndefiniteSemiCircle*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteSemiCircle*{}{}": {
+      "snippet": "dynkinIndefiniteSemiCircle*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteSemiCircle[]{}{}": {
+      "snippet": "dynkinIndefiniteSemiCircle[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteSemiCircle{}{}": {
+      "snippet": "dynkinIndefiniteSemiCircle{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteSingleEdge*[]{}{}": {
+      "snippet": "dynkinIndefiniteSingleEdge*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteSingleEdge*{}{}": {
+      "snippet": "dynkinIndefiniteSingleEdge*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteSingleEdge[]{}{}": {
+      "snippet": "dynkinIndefiniteSingleEdge[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteSingleEdge{}{}": {
+      "snippet": "dynkinIndefiniteSingleEdge{${1:root1}}{${2:root2}}"
+    },
+    "dynkinIndefiniteSymbol{}": {
+      "snippet": "dynkinIndefiniteSymbol{${1:symbol}}"
+    },
+    "dynkinKacDoubleArrow[]{}{}": {
+      "snippet": "dynkinKacDoubleArrow[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinKacDoubleArrow{}{}": {
+      "snippet": "dynkinKacDoubleArrow{${1:root1}}{${2:root2}}"
+    },
+    "dynkinKacQuadrupleArrow[]{}{}": {
+      "snippet": "dynkinKacQuadrupleArrow[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinKacQuadrupleArrow{}{}": {
+      "snippet": "dynkinKacQuadrupleArrow{${1:root1}}{${2:root2}}"
+    },
+    "dynkinKacTripleArrow[]{}{}": {
+      "snippet": "dynkinKacTripleArrow[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinKacTripleArrow{}{}": {
+      "snippet": "dynkinKacTripleArrow{${1:root1}}{${2:root2}}"
+    },
+    "dynkinLabelRoot*{}{}": {
+      "snippet": "dynkinLabelRoot*{${1:root}}{${2:label}}"
+    },
+    "dynkinLabelRoot{}{}": {
+      "snippet": "dynkinLabelRoot{${1:root}}{${2:label}}"
+    },
+    "dynkinLeftFold*[]{}{}": {
+      "snippet": "dynkinLeftFold*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinLeftFold*{}{}": {
+      "snippet": "dynkinLeftFold*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinLeftFold[]{}{}": {
+      "snippet": "dynkinLeftFold[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinLeftFold{}{}": {
+      "snippet": "dynkinLeftFold{${1:root1}}{${2:root2}}"
+    },
+    "dynkinMoveToRoot*{}": {
+      "snippet": "dynkinMoveToRoot*{${1:n}}"
+    },
+    "dynkinMoveToRoot{}": {
+      "snippet": "dynkinMoveToRoot{${1:n}}"
+    },
+    "dynkinNorth": {},
+    "dynkinNorth*": {},
+    "dynkinNorthEast": {},
+    "dynkinNorthEast*": {},
+    "dynkinNorthWest": {},
+    "dynkinNorthWest*": {},
+    "dynkinOrder": {},
+    "dynkinOrderFromBourbaki{}{}{}{}{}": {
+      "snippet": "dynkinOrderFromBourbaki{${1:series}}{${2:rank}}{${3:root}}{${4:to order}}{${5:count}}"
+    },
+    "dynkinOrderToBourbaki{}{}{}{}{}": {
+      "snippet": "dynkinOrderToBourbaki{${1:series}}{${2:rank}}{${3:from order}}{${4:root}}{${5:count}}"
+    },
+    "dynkinOverrideRoot": {},
+    "dynkinPlaceRootHere*{}{}{}": {
+      "snippet": "dynkinPlaceRootHere*{${1:n}}{${2:L}}{${3:L*}}"
+    },
+    "dynkinPlaceRootHere{}{}{}": {
+      "snippet": "dynkinPlaceRootHere{${1:n}}{${2:L}}{${3:L*}}"
+    },
+    "dynkinPlaceRootRelativeTo*{}{}{}{}{}": {
+      "snippet": "dynkinPlaceRootRelativeTo*{${1:root1}}{${2:root2}}{${3:dir}}{${4:L}}{${5:L*}}"
+    },
+    "dynkinPlaceRootRelativeTo{}{}{}{}{}": {
+      "snippet": "dynkinPlaceRootRelativeTo{${1:root1}}{${2:root2}}{${3:dir}}{${4:L}}{${5:L*}}"
+    },
+    "dynkinPrintLabels": {},
+    "dynkinPrintLabelsStar": {},
+    "dynkinPutLabelInDirection*{}{}": {
+      "snippet": "dynkinPutLabelInDirection*{${1:root}}{${2:val 0-7}}"
+    },
+    "dynkinPutLabelInDirection{}{}": {
+      "snippet": "dynkinPutLabelInDirection{${1:root}}{${2:val 0-7}}"
+    },
+    "dynkinRefreshRoots": {},
+    "dynkinRightFold*[]{}{}": {
+      "snippet": "dynkinRightFold*[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinRightFold*{}{}": {
+      "snippet": "dynkinRightFold*{${1:root1}}{${2:root2}}"
+    },
+    "dynkinRightFold[]{}{}": {
+      "snippet": "dynkinRightFold[${3:TikZ keys}]{${1:root1}}{${2:root2}}"
+    },
+    "dynkinRightFold{}{}": {
+      "snippet": "dynkinRightFold{${1:root1}}{${2:root2}}"
+    },
+    "dynkinRootMark*{}{}": {
+      "snippet": "dynkinRootMark*{${1:mark style}}{${2:root}}"
+    },
+    "dynkinRootMark{}{}": {
+      "snippet": "dynkinRootMark{${1:mark style}}{${2:root}}"
+    },
+    "dynkinSkip": {},
+    "dynkinSolidRootMark*[]{}": {
+      "snippet": "dynkinSolidRootMark*[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinSolidRootMark*{}": {
+      "snippet": "dynkinSolidRootMark*{${1:root}}"
+    },
+    "dynkinSolidRootMark[]{}": {
+      "snippet": "dynkinSolidRootMark[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinSolidRootMark{}": {
+      "snippet": "dynkinSolidRootMark{${1:root}}"
+    },
+    "dynkinSouth": {},
+    "dynkinSouth*": {},
+    "dynkinSouthEast": {},
+    "dynkinSouthEast*": {},
+    "dynkinSouthEastFold": {},
+    "dynkinSouthFold": {},
+    "dynkinSouthWest": {},
+    "dynkinSouthWest*": {},
+    "dynkinSouthWestFold": {},
+    "dynkinTensorRootMark*[]{}": {
+      "snippet": "dynkinTensorRootMark*[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinTensorRootMark*{}": {
+      "snippet": "dynkinTensorRootMark*{${1:root}}"
+    },
+    "dynkinTensorRootMark[]{}": {
+      "snippet": "dynkinTensorRootMark[${2:TikZ keys}]{${1:root}}"
+    },
+    "dynkinTensorRootMark{}": {
+      "snippet": "dynkinTensorRootMark{${1:root}}"
+    },
+    "dynkinWest": {},
+    "dynkinWest*": {},
+    "Edynkin": {},
+    "ESixThreePly": {},
+    "ESixTwoPly": {},
+    "extendedAdynkin": {},
+    "extendedBdynkin": {},
+    "extendedBthreePly": {},
+    "extendedCdynkin": {},
+    "extendedDdynkin": {},
+    "extendedDthreePly": {},
+    "extendedEdynkin": {},
+    "extendedESevenFolded": {},
+    "extendedFdynkin": {},
+    "extendedGdynkin": {},
+    "extendedHdynkin": {},
+    "extendedIdynkin": {},
+    "Fdynkin": {},
+    "forDynkinSemicolonsvlist{}{}": {
+      "snippet": "forDynkinSemicolonsvlist{${1:macro}}{${2:item1;item2;...}}"
+    },
+    "Gdynkin": {},
+    "Hdynkin": {},
+    "Idynkin": {},
+    "LL": {},
+    "pipebmo": {},
+    "pipefpo": {},
+    "regurgitate{}": {
+      "snippet": "regurgitate{${1:arg}}"
+    },
+    "repeatCharacter{}{}": {
+      "snippet": "repeatCharacter{${1:n}}{${2:string}}"
+    },
+    "replacementLeftString": {},
+    "replacementN": {},
+    "replacementRightString": {},
+    "replaceNthChar{}{}{}": {
+      "snippet": "replaceNthChar{${1:string}}{${2:N}}{${3:char}}"
+    },
+    "replaceNthCounter": {},
+    "series": {},
+    "stringCharacterInPosition{}{}": {
+      "snippet": "stringCharacterInPosition{${1:string}}{${2:n}}"
+    },
+    "swapRootIfInLastTwoRoots{}": {
+      "snippet": "swapRootIfInLastTwoRoots{${1:root}}"
+    },
+    "tempDynkinReorder": {},
+    "testbit{}{}": {
+      "snippet": "testbit{${1:n}}{${2:b}}"
+    },
+    "thedynkinRootNo": {},
+    "twistedAdynkin": {},
+    "twistedDdynkin": {},
+    "twistedDTwo": {},
+    "twistedEdynkin": {},
+    "typeDynkinOrder": {},
+    "xd": {},
+    "yd": {},
+    "yfp": {},
+    "yj": {},
+    "yjj": {},
+    "yyyy": {}
+  },
+  "envs": {
+    "dynkinDiagram{}{}": {
+      "name": "dynkinDiagram",
+      "snippet": "{${1:letter}}{${2:rank}}"
+    },
+    "dynkinDiagram{}[]{}": {
+      "name": "dynkinDiagram",
+      "snippet": "{${1:letter}}[${2:twisted rank}]{${3:rank}}"
+    },
+    "dynkinDiagram[]{}{}": {
+      "name": "dynkinDiagram",
+      "snippet": "[${3:options}]{${1:letter}}{${2:rank}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "dynkinDiagram[]{}[]{}": {
+      "name": "dynkinDiagram",
+      "snippet": "[${3:options}]{${1:letter}}[${4:twisted rank}]{${2:rank}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "DynkinDiagrams{}": {
+      "name": "DynkinDiagrams",
+      "snippet": "{${1:spec}}"
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "*/.style={${1:style specs}}",
+      "affine mark=",
+      "arrow shape/.style={${1:style specs}}",
+      "arrow style={${1:style specs}}",
+      "arrow width=",
+      "arrows",
+      "at=(${1:node})",
+      "backwards",
+      "bird arrow",
+      "Bourbaki arrow",
+      "ceref",
+      "Coxeter",
+      "double edges",
+      "double fold",
+      "double fold left",
+      "double fold right",
+      "double left",
+      "double right",
+      "edge label/.style={${1:style specs}}",
+      "edge length=",
+      "edge/.style={${1:style specs}}",
+      "extended",
+      "fold",
+      "fold left",
+      "fold left style/.style={${1:style specs}}",
+      "fold radius=",
+      "fold right",
+      "fold right style/.style={${1:style specs}}",
+      "fold style/.style={${1:style specs}}",
+      "gonality=${1:math}",
+      "horizontal shift=",
+      "indefinite edge/.style={${1:style specs}}",
+      "indefinite edge=",
+      "indefinite edge ratio=${1:number}",
+      "involution/.style={${1:style specs}}",
+      "involutions={${1:inv1;inv2;...}}",
+      "Kac",
+      "Kac arrows",
+      "label",
+      "label depth=${1:label text}",
+      "label directions={${1:dir1,dir2,...}}",
+      "label height=${1:label text}",
+      "label macro*/.code={${1:code}}",
+      "label macro/.code={${1:code}}",
+      "label* directions={${1:dir1,dir2,...}}",
+      "labels*={${1:label list}}",
+      "labels={${1:label list}}",
+      "make indefinite edge/.list={${1:i1-j1,i2-j2,...}}",
+      "make indefinite edge={${1:i-j}}",
+      "mark=",
+      "name=${1:name}",
+      "o/.append style={${1:style specs}}",
+      "o/.style={${1:style specs}}",
+      "O/.style={${1:style specs}}",
+      "odd",
+      "ordering=",
+      "parabolic=${1:integer}",
+      "ply=",
+      "reverse arrows",
+      "root radius=",
+      "separator length=",
+      "scale=${1:factor}",
+      "t/.style={${1:style specs}}",
+      "text style/.style={${1:style specs}}",
+      "text style={${1:style specs}}",
+      "upside down",
+      "vertical shift=",
+      "x/.style={${1:style specs}}",
+      "X/.style={${1:style specs}}"
+    ]
+  ]
+}

@@ -1,0 +1,681 @@
+{
+  "includes": {
+    "pgfopts": [],
+    "xifthen": [],
+    "xstring": [],
+    "forarray": [],
+    "babel": [],
+    "inputenc": [],
+    "fontenc": [],
+    "environ": [],
+    "amsmath": [],
+    "xcolor": [],
+    "tikz": [],
+    "graphicx": [],
+    "hyperref": [],
+    "schulealt": [
+      "typ=schuleALT"
+    ],
+    "xsim": [],
+    "tcolorbox": [],
+    "utfsym": [],
+    "standalone": [],
+    "enumitem": [],
+    "multirow": [],
+    "longtable": [],
+    "ctable": [],
+    "array": [],
+    "tasks": [],
+    "csquotes": [],
+    "setspace": [],
+    "ulem": [],
+    "xspace": [],
+    "amssymb": [],
+    "eurosym": [],
+    "zref-totpages": [],
+    "refcount": [],
+    "doclicense": [],
+    "ccicons": [],
+    "lineno": [],
+    "multicol": [],
+    "struktex": [],
+    "relaycircuit": [],
+    "pgf-umlcd": [],
+    "pgf-umlsd": [],
+    "syntaxdi": [],
+    "tikzlibraryer": [],
+    "listings": [],
+    "tikzlibraryshapes": [],
+    "tikzlibraryshadows.blur": [],
+    "nicefrac": [],
+    "mhchem": [],
+    "ziffer": [],
+    "biblatex": [],
+    "marginnote": [],
+    "scrlayer-scrpage": [],
+    "scrhack": [],
+    "geometry": [],
+    "tcolorboxlibrarybreakable": [],
+    "tcolorboxlibraryskins": [],
+    "colortbl": []
+  },
+  "macros": {
+    "swarnung{}": {
+      "snippet": "swarnung{${1:Text}}"
+    },
+    "sfehler{}": {
+      "snippet": "sfehler{${1:Text}}"
+    },
+    "sinfo{}": {
+      "snippet": "sinfo{${1:Text}}"
+    },
+    "sdwarnung{}": {
+      "snippet": "sdwarnung{${1:Text}}"
+    },
+    "sdinfo{}": {
+      "snippet": "sdinfo{${1:Text}}"
+    },
+    "setzeSymbol{}": {
+      "snippet": "setzeSymbol{${1:Symbol}}"
+    },
+    "punkteAufgabe": {},
+    "punkteTotal": {},
+    "punktuebersicht": {},
+    "punktuebersicht[]": {
+      "snippet": "punktuebersicht[${1:Darstellungsart}]"
+    },
+    "punktuebersicht*": {},
+    "punktuebersicht*[]": {
+      "snippet": "punktuebersicht*[${1:Darstellungsart}]"
+    },
+    "setzeAufgabentemplate{}": {
+      "snippet": "setzeAufgabentemplate{${1:Templatename}}"
+    },
+    "setzeLoesungentemplate{}": {
+      "snippet": "setzeLoesungentemplate{${1:Templatename}}"
+    },
+    "teilaufgabe": {},
+    "teilaufgabe[]": {
+      "snippet": "teilaufgabe[${1:Punkte}]"
+    },
+    "teilaufgabeOhneLoesung": {},
+    "luecke{}": {
+      "snippet": "luecke{${1:Länge}}"
+    },
+    "luecke[]{}": {
+      "snippet": "luecke[${2:Optionen für blank}]{${1:Text}}"
+    },
+    "textluecke{}": {
+      "snippet": "textluecke{${1:Länge}}"
+    },
+    "textluecke[]{}": {
+      "snippet": "textluecke[${2:Optionen für blank}]{${1:Text}}"
+    },
+    "choice": {},
+    "choice[]": {
+      "snippet": "choice[${1:richtig}]"
+    },
+    "mcrichtig": {},
+    "mcloesung": {},
+    "bearbeitungshinweisZuAufgabe{}": {
+      "snippet": "bearbeitungshinweisZuAufgabe{${1:AufgabenId}}"
+    },
+    "bearbeitungshinweisZuAufgabe[]{}": {
+      "snippet": "bearbeitungshinweisZuAufgabe[${2:Aufgabentyp}]{${1:AufgabenId}}"
+    },
+    "bearbeitungshinweisliste": {},
+    "aufgabeninput{}{}": {
+      "snippet": "aufgabeninput{${1:Verzeichnis}}{${2:Datei}}"
+    },
+    "getBasedir": {},
+    "setBasedir": {},
+    "inputOnce{}": {
+      "snippet": "inputOnce{${1:Datei}}"
+    },
+    "ifAufgabenpoolOptionTF{}{}{}": {
+      "snippet": "ifAufgabenpoolOptionTF{${1:Optionname}}{${2:Wahr}}{${3:Falsch}}"
+    },
+    "ifAufgabenpoolOptionT{}{}": {
+      "snippet": "ifAufgabenpoolOptionT{${1:Optionname}}{${2:Wahr}}"
+    },
+    "ifAufgabenpoolOptionF{}{}": {
+      "snippet": "ifAufgabenpoolOptionF{${1:Optionname}}{${2:Falsch}}"
+    },
+    "setAufgabenpoolOptionen{}": {
+      "snippet": "setAufgabenpoolOptionen{${1:Optionennamen}}"
+    },
+    "erwartung{}{}": {
+      "snippet": "erwartung{${1:Erwartung}}{${2:Punkte}}"
+    },
+    "erwartung{}{}[]": {
+      "snippet": "erwartung{${1:Erwartung}}{${2:Punkte}}[${3:Zusatzpunkte}]"
+    },
+    "erwartungshorizont": {},
+    "notenverteilung": {},
+    "achtung{}": {
+      "snippet": "achtung{${1:Text}}"
+    },
+    "chb": {},
+    "chb*": {},
+    "hinweis{}": {
+      "snippet": "hinweis{${1:Text}}"
+    },
+    "person{}": {
+      "snippet": "person{${1:Name}}"
+    },
+    "so{}": {
+      "snippet": "so{${1:Text}}"
+    },
+    "Seitenzahlen": {},
+    "diastring{}": {
+      "snippet": "diastring{${1:Zeichenkette}}"
+    },
+    "hierkeineseitenzahl": {},
+    "abhierkeineseitenzahl": {},
+    "feldLinFormular{}": {
+      "snippet": "feldLinFormular{${1:Anzahl}}"
+    },
+    "feldLinFormular{}[]": {
+      "snippet": "feldLinFormular{${1:Anzahl}}[${2:Textfeldargumente}]"
+    },
+    "feldLinFormular[]{}": {
+      "snippet": "feldLinFormular[${2:Abstand}]{${1:Anzahl}}"
+    },
+    "feldLinFormular[]{}[]": {
+      "snippet": "feldLinFormular[${2:Abstand}]{${1:Anzahl}}[${3:Textfeldargumente}]"
+    },
+    "Lkr": {},
+    "Lkre": {},
+    "Lpr": {},
+    "Lprn": {},
+    "EuE": {},
+    "EuEn": {},
+    "EK": {},
+    "GK": {},
+    "LK": {},
+    "EKe": {},
+    "GKe": {},
+    "LKe": {},
+    "EKen": {},
+    "GKen": {},
+    "LKen": {},
+    "SuS": {},
+    "SuSn": {},
+    "LuL": {},
+    "LuLn": {},
+    "KuK": {},
+    "KuKn": {},
+    "lizenzName": {},
+    "lizenzNameKurz": {},
+    "lizenzSymbol": {},
+    "Autor": {},
+    "Datum": {},
+    "Titel": {},
+    "Fach": {},
+    "Lerngruppe": {},
+    "Kurs": {},
+    "DokumentNummer": {},
+    "feldLin{}": {
+      "snippet": "feldLin{${1:Anzahl}}"
+    },
+    "feldLin[]{}": {
+      "snippet": "feldLin[${2:Abstand}]{${1:Anzahl}}"
+    },
+    "feldKar{}": {
+      "snippet": "feldKar{${1:Anzahl}}"
+    },
+    "feldKar[]{}": {
+      "snippet": "feldKar[${2:Seitenlänge}]{${1:Anzahl}}"
+    },
+    "feldMil{}": {
+      "snippet": "feldMil{${1:Anzahl}}"
+    },
+    "symNase": {},
+    "symAuge": {},
+    "symAugen": {},
+    "symMund": {},
+    "symZunge": {},
+    "symOhr": {},
+    "symDaumenHoch": {},
+    "symDaumenRunter": {},
+    "symZeigefinger": {},
+    "symApplaus": {},
+    "symSprechblase": {},
+    "symZweiSprechblasen": {},
+    "symDreiSprechblasen": {},
+    "symDenkblase": {},
+    "symPalette": {},
+    "symBleistift": {},
+    "symFueller": {},
+    "symKuli": {},
+    "symBuntstift": {},
+    "symLineal": {},
+    "symGeodreieck": {},
+    "symBueroklammer": {},
+    "symBueroklammern": {},
+    "symPin": {},
+    "symNadel": {},
+    "symPinsel": {},
+    "symBuch": {},
+    "symBild": {},
+    "symMikroskop": {},
+    "symHeft": {},
+    "symBuecher": {},
+    "symKlemmbrett": {},
+    "symCD": {},
+    "symZeitung": {},
+    "symThermometer": {},
+    "symSchere": {},
+    "symSchloss": {},
+    "symSchlossOffen": {},
+    "symSchluessel": {},
+    "symGlocke": {},
+    "symKeineGlocke": {},
+    "symLupe": {},
+    "symNote": {},
+    "symNoten": {},
+    "symSmileyLachend": {},
+    "symSmileyNeutral": {},
+    "symSmileyTraurig": {},
+    "symSmileyGrinsend": {},
+    "symSmileySchlafend": {},
+    "symSmileyZwinkernd": {},
+    "symKlee": {},
+    "symSonne": {},
+    "symMond": {},
+    "symStern": {},
+    "symUhr": {},
+    "symHaken": {},
+    "symSpielkarte": {},
+    "symPik": {},
+    "symHerz": {},
+    "symKaro": {},
+    "symKreuz": {},
+    "symPikAss": {},
+    "symPikZwei": {},
+    "symPikDrei": {},
+    "symPikVier": {},
+    "symPikFuenf": {},
+    "symPikSechs": {},
+    "symPikSieben": {},
+    "symPikAcht": {},
+    "symPikNeun": {},
+    "symPikZehn": {},
+    "symPikBube": {},
+    "symPikDame": {},
+    "symPikKoenig": {},
+    "symHerzAss": {},
+    "symHerzZwei": {},
+    "symHerzDrei": {},
+    "symHerzVier": {},
+    "symHerzFuenf": {},
+    "symHerzSechs": {},
+    "symHerzSieben": {},
+    "symHerzAcht": {},
+    "symHerzNeun": {},
+    "symHerzZehn": {},
+    "symHerzBube": {},
+    "symHerzDame": {},
+    "symHerzKoenig": {},
+    "symKaroAss": {},
+    "symKaroZwei": {},
+    "symKaroDrei": {},
+    "symKaroVier": {},
+    "symKaroFuenf": {},
+    "symKaroSechs": {},
+    "symKaroSieben": {},
+    "symKaroAcht": {},
+    "symKaroNeun": {},
+    "symKaroZehn": {},
+    "symKaroBube": {},
+    "symKaroDame": {},
+    "symKaroKoenig": {},
+    "symKreuzAss": {},
+    "symKreuzZwei": {},
+    "symKreuzDrei": {},
+    "symKreuzVier": {},
+    "symKreuzFuenf": {},
+    "symKreuzSechs": {},
+    "symKreuzSieben": {},
+    "symKreuzAcht": {},
+    "symKreuzNeun": {},
+    "symKreuzZehn": {},
+    "symKreuzBube": {},
+    "symKreuzDame": {},
+    "symKreuzKoenig": {},
+    "symBaseball": {},
+    "symBasketball": {},
+    "symFussball": {},
+    "symVolleyball": {},
+    "symHockey": {},
+    "symLaufen": {},
+    "symReiten": {},
+    "symSchwimmen": {},
+    "symSki": {},
+    "symSnowboard": {},
+    "symSurfen": {},
+    "symTennis": {},
+    "symTischtennis": {},
+    "symPokal": {},
+    "symMedaille": {},
+    "symZielflagge": {},
+    "symHandy": {},
+    "symKeinHandy": {},
+    "symTheater": {},
+    "symAuto": {},
+    "symBus": {},
+    "symBahn": {},
+    "symStrassenbahn": {},
+    "symSchwebebahn": {},
+    "symSeilbahn": {},
+    "symSchiff": {},
+    "symBoot": {},
+    "symFahrrad": {},
+    "symFussgaenger": {},
+    "symRollstuhl": {},
+    "symWuerfelEins": {},
+    "symWuerfelZwei": {},
+    "symWuerfelDrei": {},
+    "symWuerfelVier": {},
+    "symWuerfelFuenf": {},
+    "symWuerfelSechs": {},
+    "resetZeilenNr": {},
+    "anchormark{}": {
+      "snippet": "anchormark{${1:Nodename}}"
+    },
+    "anchormark{}[]": {
+      "snippet": "anchormark{${1:Nodename}}[${2:Skalierung}]"
+    },
+    "anchormark[]{}": {
+      "snippet": "anchormark[${2:Horizontale Verschiebung}]{${1:Nodename}}"
+    },
+    "anchormark[]{}[]": {
+      "snippet": "anchormark[${2:Horizontale Verschiebung}]{${1:Nodename}}[${3:Skalierung}]"
+    },
+    "skaliereSequenzdiagramm{}": {
+      "snippet": "skaliereSequenzdiagramm{${1:Faktor}}"
+    },
+    "newthreadtwo{}{}{}": {
+      "snippet": "newthreadtwo{${1:Bezeichnung}}{${2:Name}}{${3:Abstand}}"
+    },
+    "newthreadtwo[]{}{}{}": {
+      "snippet": "newthreadtwo[${4:Farbe}]{${1:Bezeichnung}}{${2:Name}}{${3:Abstand}}"
+    },
+    "nextlevel": {},
+    "methodenDokumentation{}{}{}": {
+      "snippet": "methodenDokumentation{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "elementarladung": {},
+    "plankscheEV": {},
+    "plankscheJ": {},
+    "elektronenmasse": {},
+    "protonenmasse": {},
+    "lichtgeschwindigkeit": {},
+    "rydbergfrequenz": {},
+    "unit{}": {
+      "snippet": "unit{${1:dimension}}"
+    },
+    "unit[]{}": {
+      "snippet": "unit[${2:value}]{${1:dimension}}"
+    },
+    "unitfrac{}{}": {
+      "snippet": "unitfrac{${1:num}}{${2:den}}"
+    },
+    "unitfrac[]{}{}": {
+      "snippet": "unitfrac[${3:value}]{${1:num}}{${2:den}}"
+    },
+    "material{}": {
+      "snippet": "material{${1:title}}"
+    },
+    "material[]{}": {
+      "snippet": "material[${2:Ebene}]{${1:title}}"
+    },
+    "quelle{}": {
+      "snippet": "quelle{${1:title}}"
+    },
+    "quelle[]{}": {
+      "snippet": "quelle[${2:Ebene}]{${1:title}}"
+    },
+    "vt{}": {
+      "snippet": "vt{${1:title}}"
+    },
+    "vt[]{}": {
+      "snippet": "vt[${2:Ebene}]{${1:title}}"
+    },
+    "thematcounter": {},
+    "thequelcounter": {},
+    "thevtcounter": {},
+    "dokumententypName{}": {
+      "snippet": "dokumententypName{${1:arg}}"
+    },
+    "TextFeld{}": {
+      "snippet": "TextFeld{${1:Höhe}}"
+    },
+    "monatWort{}": {
+      "snippet": "monatWort{${1:Monatszahl}}"
+    },
+    "uebungBild": {},
+    "hinweisBild": {},
+    "headingpar": {},
+    "besuchtitel{}": {
+      "snippet": "besuchtitel{${1:Titel}}"
+    },
+    "lehrer{}": {
+      "snippet": "lehrer{${1:Lehrername}}"
+    },
+    "schulform{}": {
+      "snippet": "schulform{${1:Schulform}}"
+    },
+    "lerngruppe{}{}{}": {
+      "snippet": "lerngruppe{${1:Name der Lerngruppe}}{${2:Anzahl weiblich}}{${3:Anzahl männlich}}"
+    },
+    "lerngruppe[]{}{}{}": {
+      "snippet": "lerngruppe[${4:Kurzform der Lerngruppe}]{${1:Name der Lerngruppe}}{${2:Anzahl weiblich}}{${3:Anzahl männlich}}"
+    },
+    "zeit{}{}{}": {
+      "snippet": "zeit{${1:Startzeit}}{${2:Endzeit}}{${3:Stunde}}"
+    },
+    "schule{}": {
+      "snippet": "schule{${1:Name der Schule}}"
+    },
+    "raum{}": {
+      "snippet": "raum{${1:Raumbezeichnung}}"
+    },
+    "setzeGrundlagen{}": {
+      "snippet": "setzeGrundlagen{${1:Termine}}"
+    },
+    "captionsngerman": {},
+    "datengerman": {},
+    "extrasngerman": {},
+    "noextrasngerman": {},
+    "dq": {},
+    "ntosstrue": {},
+    "ntossfalse": {},
+    "prefacename": {},
+    "bibname": {},
+    "chaptername": {},
+    "enclname": {},
+    "ccname": {},
+    "headtoname": {},
+    "seename": {},
+    "alsoname": {},
+    "proofname": {},
+    "glossaryname": {},
+    "mdqon": {},
+    "mdqoff": {},
+    "DH": {},
+    "dh": {},
+    "dj": {},
+    "DJ": {},
+    "guillemetleft": {},
+    "guillemetright": {},
+    "guillemotleft": {},
+    "guillemotright": {},
+    "guilsinglleft": {},
+    "guilsinglright": {},
+    "Hwithstroke": {},
+    "hwithstroke": {},
+    "k{}": {
+      "snippet": "k{${1:arg}}"
+    },
+    "NG": {},
+    "ng": {},
+    "quotedblbase": {},
+    "quotesinglbase": {},
+    "textogonekcentered{}": {
+      "snippet": "textogonekcentered{${1:arg}}"
+    },
+    "textquotedbl": {},
+    "th": {},
+    "TH": {}
+  },
+  "envs": {
+    "aufgabe": {},
+    "aufgabe[]": {
+      "name": "aufgabe",
+      "snippet": "[${1:Optionen}]"
+    },
+    "aufgabe*": {},
+    "aufgabe*[]": {
+      "name": "aufgabe*",
+      "snippet": "[${1:Optionen}]"
+    },
+    "teilaufgaben": {},
+    "loesung": {},
+    "loesung*": {},
+    "bearbeitungshinweis": {},
+    "aufgabenpoolHinweis": {},
+    "erwartungen": {},
+    "enumerate*": {},
+    "enumerate*[]": {
+      "name": "enumerate*",
+      "snippet": "[${1:options}]"
+    },
+    "itemize*": {},
+    "itemize*[]": {
+      "name": "itemize*",
+      "snippet": "[${1:options}]"
+    },
+    "description*": {},
+    "description*[]": {
+      "name": "description*",
+      "snippet": "[${1:options}]"
+    },
+    "smalldescription": {},
+    "smallenumerate": {},
+    "smallitemize": {},
+    "mehrspaltig": {},
+    "mehrspaltig[]": {
+      "name": "mehrspaltig",
+      "snippet": "[${1:Anzahl}]"
+    },
+    "zeilenNr": {},
+    "zeilenNr[]": {
+      "name": "zeilenNr",
+      "snippet": "[${1:Modulo}]"
+    },
+    "zeilenNrMehrspaltig{}": {
+      "name": "zeilenNrMehrspaltig",
+      "snippet": "{${1:Anzahl}}"
+    },
+    "zeilenNrMehrspaltig[]{}": {
+      "name": "zeilenNrMehrspaltig",
+      "snippet": "[${2:Modulo}]{${1:Anzahl}}"
+    },
+    "zeilenNrZweispaltig": {},
+    "zeilenNrZweispaltig[]": {
+      "name": "zeilenNrZweispaltig",
+      "snippet": "[${1:Modulo}]"
+    },
+    "scMaterial": {},
+    "scNeedSkillCards": {},
+    "scAufgabe": {},
+    "scLoesung": {},
+    "scStoryCard{}": {
+      "name": "scStoryCard",
+      "snippet": "{${1:arg}}"
+    },
+    "scStoryCard[]{}": {
+      "name": "scStoryCard",
+      "snippet": "[${2:opt}]{${1:arg}}"
+    },
+    "scSkillCard{}": {
+      "name": "scSkillCard",
+      "snippet": "{${1:arg}}"
+    },
+    "scSkillCard[]{}": {
+      "name": "scSkillCard",
+      "snippet": "[${2:opt}]{${1:arg}}"
+    },
+    "klassenDokumentation": {},
+    "hinweisBox": {},
+    "handlungsfeld1": {},
+    "handlungsfeld1[]": {
+      "name": "handlungsfeld1",
+      "snippet": "[${1:tcolorbox options}]"
+    },
+    "handlungsfeld2": {},
+    "handlungsfeld2[]": {
+      "name": "handlungsfeld2",
+      "snippet": "[${1:tcolorbox options}]"
+    },
+    "handlungsfeld3": {},
+    "handlungsfeld3[]": {
+      "name": "handlungsfeld3",
+      "snippet": "[${1:tcolorbox options}]"
+    },
+    "handlungsfeld4": {},
+    "handlungsfeld4[]": {
+      "name": "handlungsfeld4",
+      "snippet": "[${1:tcolorbox options}]"
+    },
+    "handlungsfeld5": {},
+    "handlungsfeld5[]": {
+      "name": "handlungsfeld5",
+      "snippet": "[${1:tcolorbox options}]"
+    },
+    "handlungsfeld6": {},
+    "handlungsfeld6[]": {
+      "name": "handlungsfeld6",
+      "snippet": "[${1:tcolorbox options}]"
+    }
+  },
+  "options": [
+    "fach=",
+    "weitereFaecher={${1:Fach1,Fach2,...}}",
+    "module=",
+    "typ=",
+    "sprache={${1:lang1,lang2,...}}",
+    "debug",
+    "loesungen=",
+    "erwartungshorizontAnzeigen",
+    "erwartungshorizontKeineSeiten",
+    "erwartungshorizontStil=",
+    "kmkPunkte",
+    "notenOhneTendenz",
+    "notenschema={${1:spec}}",
+    "farbig",
+    "datumAnzeigen",
+    "namensfeldAnzeigen",
+    "seitenzahlen=",
+    "zitate=",
+    "gendering=",
+    "lizenz=",
+    "nohyperxmp",
+    "lerngruppe=${1:Lerngruppe}",
+    "nummer=${1:Dokumentnummer}",
+    "klausurtyp=",
+    "hinweisLinkVerbergen",
+    "loesungLinkVerbergen",
+    "beurteilung={${1:Namen}}",
+    "ref={${1:Namen}}",
+    "zeitraum={${1:Zeitraum}}",
+    "schulname={${1:Namen}}",
+    "schullogo=${1:imagefile}",
+    "schulanschrift={${1:schulanschrift}}",
+    "schulstr={${1:Straße}}",
+    "schulort={${1:Ort}}",
+    "lehramt={${1:Lehramt}}"
+  ],
+  "keyvals": []
+}

@@ -1,0 +1,477 @@
+{
+  "includes": {
+    "l3keys2e": [],
+    "translations": [],
+    "fontspec": [
+      "musejazz"
+    ],
+    "etoolbox": [],
+    "amsmath": []
+  },
+  "macros": {
+    "useleadsheetslibraries{}": {
+      "snippet": "useleadsheetslibraries{${1:list of libraries}}"
+    },
+    "useleadsheetslibrary{}": {
+      "snippet": "useleadsheetslibrary{${1:library}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "musix": {},
+    "textmusix{}": {
+      "snippet": "textmusix{${1:text}}"
+    },
+    "musicsymbol{}": {
+      "snippet": "musicsymbol{${1:symbol}}"
+    },
+    "musicsymbol[]{}": {
+      "snippet": "musicsymbol[${2:raise}]{${1:symbol}}"
+    },
+    "sharp": {
+      "detail": "♯",
+      "documentation": "= \\ MUSIC SHARP SIGN, z notation infix bag count"
+    },
+    "flat": {
+      "detail": "♭",
+      "documentation": "musical flat"
+    },
+    "doublesharp": {},
+    "doubleflat": {},
+    "natural": {
+      "detail": "♮",
+      "documentation": "music natural"
+    },
+    "trebleclef": {},
+    "bassclef": {},
+    "altoclef": {},
+    "allabreve": {},
+    "meterC": {},
+    "wholerest": {},
+    "halfrest": {},
+    "quarterrest": {},
+    "eighthrest": {},
+    "sixteenthrest": {},
+    "Break": {},
+    "normalbar": {},
+    "leftrepeat": {},
+    "rightrepeat": {},
+    "leftrightrepeat": {},
+    "doublebar": {},
+    "stopbar": {},
+    "normalbarwidth": {},
+    "thickbarwidth": {},
+    "interbarwidth": {},
+    "meter{}{}": {
+      "snippet": "meter{${1:numerator}}{${2:denominator}}"
+    },
+    "chordname{}": {
+      "snippet": "chordname{${1:chord}}"
+    },
+    "writechord{}": {
+      "snippet": "writechord{${1:chord}}"
+    },
+    "setchords{}": {
+      "snippet": "setchords{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "musejazz": {},
+    "setleadsheets{}": {
+      "snippet": "setleadsheets{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "capo": {},
+    "newversetype{}": {
+      "snippet": "newversetype{${1:envname}}"
+    },
+    "newversetype{}[]": {
+      "snippet": "newversetype{${1:envname}}[${2:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "newversetype*{}": {
+      "snippet": "newversetype*{${1:envname}}"
+    },
+    "newversetype*{}[]": {
+      "snippet": "newversetype*{${1:envname}}[${2:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "provideversetype{}": {
+      "snippet": "provideversetype{${1:envname}}"
+    },
+    "provideversetype{}[]": {
+      "snippet": "provideversetype{${1:envname}}[${2:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "provideversetype*{}": {
+      "snippet": "provideversetype*{${1:envname}}"
+    },
+    "provideversetype*{}[]": {
+      "snippet": "provideversetype*{${1:envname}}[${2:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "chord{}": {
+      "snippet": "chord{${1:chord}}"
+    },
+    "chord*{}": {
+      "snippet": "chord*{${1:chord}}"
+    },
+    "definesongtitletemplate{}{}": {
+      "snippet": "definesongtitletemplate{${1:name}}{${2:code}}"
+    },
+    "definesongproperty{}": {
+      "snippet": "definesongproperty{${1:property}}"
+    },
+    "copysongproperty{}{}": {
+      "snippet": "copysongproperty{${1:from}}{${2:to}}"
+    },
+    "songproperty{}": {
+      "snippet": "songproperty{${1:property}}"
+    },
+    "printsongpropertylist{}{}{}{}": {
+      "snippet": "printsongpropertylist{${1:property}}{${2:between two}}{${3:between more}}{${4:between last two}}"
+    },
+    "printsongpropertylist[]{}{}{}{}": {
+      "snippet": "printsongpropertylist[${5:code}]{${1:property}}{${2:between two}}{${3:between more}}{${4:between last two}}"
+    },
+    "usesongpropertylist{}{}": {
+      "snippet": "usesongpropertylist{${1:property}}{${2:between}}"
+    },
+    "usesongpropertylist[]{}{}": {
+      "snippet": "usesongpropertylist[${3:code}]{${1:property}}{${2:between}}"
+    },
+    "forsongpropertylist{}{}": {
+      "snippet": "forsongpropertylist{${1:property}}{${2:code}}"
+    },
+    "ifsongproperty{}{}{}": {
+      "snippet": "ifsongproperty{${1:property}}{${2:true}}{${3:false}}"
+    },
+    "ifanysongproperty{}{}{}": {
+      "snippet": "ifanysongproperty{${1:properties}}{${2:true}}{${3:false}}"
+    },
+    "ifallsongproperties{}{}{}": {
+      "snippet": "ifallsongproperties{${1:properties}}{${2:true}}{${3:false}}"
+    },
+    "ifsongpropertiesequal{}{}{}{}": {
+      "snippet": "ifsongpropertiesequal{${1:property1}}{${2:property2}}{${3:true}}{${4:false}}"
+    },
+    "ifsongpropertyequal{}{}{}{}": {
+      "snippet": "ifsongpropertyequal{${1:property1}}{${2:property2}}{${3:true}}{${4:false}}"
+    },
+    "ifsongmeasuring{}{}": {
+      "snippet": "ifsongmeasuring{${1:true}}{${2:false}}"
+    },
+    "expandcode{}": {
+      "snippet": "expandcode{${1:code}}"
+    },
+    "defineversetypetemplate{}{}{}": {
+      "snippet": "defineversetypetemplate{${1:name}}{${2:begin code}}{${3:end code}}"
+    },
+    "verselabel": {},
+    "verselabelformat": {},
+    "verseafterlabel": {},
+    "versename": {},
+    "versenumber": {},
+    "ifversestarred{}{}": {
+      "snippet": "ifversestarred{${1:true}}{${2:false}}"
+    },
+    "ifversenumbered{}{}": {
+      "snippet": "ifversenumbered{${1:true}}{${2:false}}"
+    },
+    "ifversenamed{}{}": {
+      "snippet": "ifversenamed{${1:true}}{${2:false}}"
+    },
+    "ifobeylines{}{}": {
+      "snippet": "ifobeylines{${1:true}}{${2:false}}"
+    },
+    "includeleadsheet{}": {
+      "snippet": "includeleadsheet{${1:file}}"
+    },
+    "includeleadsheet[]{}": {
+      "snippet": "includeleadsheet[${2:options}]{${1:file}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "includeleadsheet*{}": {
+      "snippet": "includeleadsheet*{${1:file}}"
+    },
+    "includeleadsheet*[]{}": {
+      "snippet": "includeleadsheet*[${2:options}]{${1:file}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "AddExternalClass{}": {
+      "snippet": "AddExternalClass{${1:class}}"
+    },
+    "AddExternalFile{}{}": {
+      "snippet": "AddExternalFile{${1:file}}{${2:ext}}"
+    },
+    "AddExternalPackage{}": {
+      "snippet": "AddExternalPackage{${1:package}}"
+    },
+    "coda": {},
+    "defleadsheetstranslation{}{}{}": {
+      "snippet": "defleadsheetstranslation{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "eigthnote": {},
+    "genericbar{}": {
+      "snippet": "genericbar{${1:arg}}"
+    },
+    "getorprintchord": {},
+    "halfdim": {},
+    "halfnote": {},
+    "LeadsheetEndSurvive": {},
+    "leadsheetsdate": {},
+    "LeadsheetsExplLibrary{}{}": {
+      "snippet": "LeadsheetsExplLibrary{${1:library name}}{${2:info}}"
+    },
+    "leadsheetsiflibrary{}": {
+      "snippet": "leadsheetsiflibrary{${1:library}}"
+    },
+    "leadsheetsifpackageloaded{}": {
+      "snippet": "leadsheetsifpackageloaded{${1:package}}"
+    },
+    "leadsheetsinfo": {},
+    "LeadsheetsLibrary{}{}": {
+      "snippet": "LeadsheetsLibrary{${1:library name}}{${2:info}}"
+    },
+    "leadsheetstranslate{}": {
+      "snippet": "leadsheetstranslate{${1:arg}}"
+    },
+    "LeadsheetSurvive": {},
+    "leadsheetsversion": {},
+    "musicdot": {},
+    "quarternote": {
+      "detail": "♩",
+      "documentation": "music note (sung text sign)"
+    },
+    "recallchord": {},
+    "segno": {},
+    "sixteenthnote": {
+      "detail": "♬",
+      "documentation": "BEAMED SIXTEENTH NOTES"
+    },
+    "wholenote": {}
+  },
+  "envs": {
+    "song{}": {
+      "name": "song",
+      "snippet": "{${1:properties}}"
+    },
+    "song[]{}": {
+      "name": "song",
+      "snippet": "[${2:options}]{${1:properties}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "verse": {},
+    "verse[]": {
+      "name": "verse",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "verse*": {},
+    "verse*[]": {
+      "name": "verse*",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "chorus": {},
+    "chorus[]": {
+      "name": "chorus",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "chorus*": {},
+    "chorus*[]": {
+      "name": "chorus*",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "intro": {},
+    "intro[]": {
+      "name": "intro",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "intro*": {},
+    "intro*[]": {
+      "name": "intro*",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "outro": {},
+    "outro[]": {
+      "name": "outro",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "interlude": {},
+    "interlude[]": {
+      "name": "interlude",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "bridge": {},
+    "bridge[]": {
+      "name": "bridge",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "info": {},
+    "info[]": {
+      "name": "info",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "solo": {},
+    "solo[]": {
+      "name": "solo",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "solo*": {},
+    "solo*[]": {
+      "name": "solo*",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    }
+  },
+  "options": [
+    "full",
+    "minimal",
+    "musicsymbols",
+    "chords",
+    "musejazz",
+    "songs",
+    "external"
+  ],
+  "keyvals": [
+    [
+      "musicsymbols",
+      "chords",
+      "musejazz",
+      "songs",
+      "external"
+    ],
+    [
+      "format={${1:code}}",
+      "sharp={${1:code}}",
+      "flat={${1:code}}",
+      "double-sharp={${1:code}}",
+      "double-flat={${1:code}}",
+      "aug={${1:code}}",
+      "half-dim={${1:code}}",
+      "full-dim={${1:code}}",
+      "dim={${1:code}}",
+      "add={${1:code}}",
+      "sus={${1:code}}",
+      "major={${1:code}}",
+      "minor={${1:code}}",
+      "major-seven={${1:code}}",
+      "major-nine={${1:code}}",
+      "input-notation=",
+      "output-notation=",
+      "german-B={${1:code}}",
+      "german-H={${1:code}}"
+    ],
+    [
+      "title-template=${1:template name}",
+      "chord-cs=${1:command}",
+      "song-format={${1:code}}",
+      "text-format={${1:code}}",
+      "before-song={${1:code}}",
+      "after-song={${1:code}}",
+      "after-title={${1:code}}",
+      "print-tags={${1:list of tags}}",
+      "add-to-reset={${1:list of counters}}",
+      "obey-lines",
+      "bar-shortcuts",
+      "disable-measuring",
+      "capo-nr-format=",
+      "capo-nr={${1:code}}",
+      "smash-chords",
+      "smash-next-chord",
+      "empty-chord-dim=",
+      "align-chords=${1:col}",
+      "print-chords",
+      "remember-chords",
+      "transpose=${1:number}",
+      "enharmonic=",
+      "transpose-capo",
+      "verses-format={${1:code}}",
+      "verses-label-format={${1:code}}",
+      "verses-after-label={${1:code}}",
+      "chords/format={${1:code}}",
+      "chords/sharp={${1:code}}",
+      "chords/flat={${1:code}}",
+      "chords/double-sharp={${1:code}}",
+      "chords/double-flat={${1:code}}",
+      "chords/aug={${1:code}}",
+      "chords/half-dim={${1:code}}",
+      "chords/full-dim={${1:code}}",
+      "chords/dim={${1:code}}",
+      "chords/add={${1:code}}",
+      "chords/sus={${1:code}}",
+      "chords/major={${1:code}}",
+      "chords/minor={${1:code}}",
+      "chords/major-seven={${1:code}}",
+      "chords/major-nine={${1:code}}",
+      "chords/input-notation=",
+      "chords/output-notation=",
+      "chords/german-B={${1:code}}",
+      "chords/german-H={${1:code}}",
+      "verse/format={${1:code}}",
+      "verse/label-format={${1:code}}",
+      "verse/class={${1:class name}}",
+      "verse/after-label={${1:code}}",
+      "verse/name=${1:name}",
+      "verse/template=${1:template}",
+      "verse/numbered",
+      "verse/named",
+      "verse/recall-chords={${1:env-class}}"
+    ],
+    [
+      "format={${1:code}}",
+      "label-format={${1:code}}",
+      "class={${1:class name}}",
+      "after-label={${1:code}}",
+      "name=${1:name}",
+      "template=${1:template}",
+      "numbered",
+      "named",
+      "recall-chords={${1:env-class}}"
+    ],
+    [
+      "gobble-preamble"
+    ],
+    [
+      "format={${1:code}}",
+      "label-format={${1:code}}",
+      "class={${1:class name}}",
+      "after-label={${1:code}}",
+      "name=${1:name}",
+      "template=${1:template}",
+      "numbered",
+      "named",
+      "recall-chords={${1:env-class}}",
+      "type=${1:type}"
+    ]
+  ]
+}

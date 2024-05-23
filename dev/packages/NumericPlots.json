@@ -1,0 +1,445 @@
+{
+  "includes": {
+    "calc": [],
+    "fp": [],
+    "ifthen": [],
+    "pstricks": [],
+    "pst-node": [],
+    "pst-plot": [],
+    "pstricks-add": [],
+    "xcolor": [],
+    "xkeyval": [],
+    "xkvview": []
+  },
+  "macros": {
+    "setxAxis{}": {
+      "snippet": "setxAxis{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "setyAxis{}": {
+      "snippet": "setyAxis{${1:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "plotxAxis{}": {
+      "snippet": "plotxAxis{${1:label text}}"
+    },
+    "plotxAxis[]{}": {
+      "snippet": "plotxAxis[${2:options}]{${1:label text}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "plotyAxis{}": {
+      "snippet": "plotyAxis{${1:label text}}"
+    },
+    "plotyAxis[]{}": {
+      "snippet": "plotyAxis[${2:options}]{${1:label text}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "LegendDefinition{}": {
+      "snippet": "LegendDefinition{${1:definition}}"
+    },
+    "LegendDefinition[]{}": {
+      "snippet": "LegendDefinition[${2:options}]{${1:definition}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "LegLine{}": {
+      "snippet": "LegLine{${1:\\psline keys}}"
+    },
+    "LegLine[]{}": {
+      "snippet": "LegLine[${2:legend options}]{${1:\\psline keys}}"
+    },
+    "LegDot{}": {
+      "snippet": "LegDot{${1:\\psdots keys}}"
+    },
+    "LegDot[]{}": {
+      "snippet": "LegDot[${2:legend options}]{${1:\\psdots keys}}"
+    },
+    "putN{}": {
+      "snippet": "putN{${1:stuff}}"
+    },
+    "putS{}": {
+      "snippet": "putS{${1:stuff}}"
+    },
+    "putW{}": {
+      "snippet": "putW{${1:stuff}}"
+    },
+    "putE{}": {
+      "snippet": "putE{${1:stuff}}"
+    },
+    "putNW{}": {
+      "snippet": "putNW{${1:stuff}}"
+    },
+    "putNE{}": {
+      "snippet": "putNE{${1:stuff}}"
+    },
+    "putSW{}": {
+      "snippet": "putSW{${1:stuff}}"
+    },
+    "putSE{}": {
+      "snippet": "putSE{${1:stuff}}"
+    },
+    "NDPput[]{}": {
+      "snippet": "NDPput[${2:options}]{${1:stuff}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "putExpX{}": {
+      "snippet": "putExpX{${1:stuff}}"
+    },
+    "putExpY{}": {
+      "snippet": "putExpY{${1:stuff}}"
+    },
+    "NDPhline{}": {
+      "snippet": "NDPhline{${1:y}}"
+    },
+    "NDPhline[]{}": {
+      "snippet": "NDPhline[${2:options}]{${1:y}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "NDPvline{}": {
+      "snippet": "NDPvline{${1:x}}"
+    },
+    "NDPvline[]{}": {
+      "snippet": "NDPvline[${2:options}]{${1:x}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "NDPline{}{}{}{}": {
+      "snippet": "NDPline{${1:x1}}{${2:y1}}{${3:x2}}{${4:y2}}"
+    },
+    "NDPline[]{}{}{}{}": {
+      "snippet": "NDPline[${5:options}]{${1:x1}}{${2:y1}}{${3:x2}}{${4:y2}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "NDPhbox{}{}": {
+      "snippet": "NDPhbox{${1:y1}}{${2:y2}}"
+    },
+    "NDPhbox[]{}{}": {
+      "snippet": "NDPhbox[${3:options}]{${1:y1}}{${2:y2}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "NDPvbox{}{}": {
+      "snippet": "NDPvbox{${1:x1}}{${2:x2}}"
+    },
+    "NDPvbox[]{}{}": {
+      "snippet": "NDPvbox[${3:options}]{${1:x1}}{${2:x2}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "NDPbox{}{}{}{}": {
+      "snippet": "NDPbox{${1:x1}}{${2:y1}}{${3:x2}}{${4:y2}}"
+    },
+    "NDPbox[]{}{}{}{}": {
+      "snippet": "NDPbox[${5:options}]{${1:x1}}{${2:y1}}{${3:x2}}{${4:y2}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "plotxGrid": {},
+    "plotyGrid": {},
+    "multilistplot{}{}": {
+      "snippet": "multilistplot{${1:options}}{${2:identifier}}"
+    },
+    "PutTickLabelXaxis[]{}": {
+      "snippet": "PutTickLabelXaxis[${2:options}]{${1:label}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "PutTickLabelYaxis[]{}": {
+      "snippet": "PutTickLabelYaxis[${2:options}]{${1:label}}",
+      "keyvalindex": 8,
+      "keyvalpos": 0
+    },
+    "CheckIfColumntypeDefined{}": {
+      "snippet": "CheckIfColumntypeDefined{${1:coltype}}"
+    },
+    "CPicHeight": {},
+    "CPicWidth": {},
+    "ifLegendOrientationCenter": {},
+    "ifLegendOrientationLeft": {},
+    "ifLegendOrientationRight": {},
+    "iSubb": {},
+    "LegLineOld[]{}": {
+      "snippet": "LegLineOld[${2:style}]{${1:keyvals}}"
+    },
+    "LegLineOld{}": {
+      "snippet": "LegLineOld{${1:keyvals}}"
+    },
+    "LegLineWidth": {},
+    "LogxAxis": {},
+    "LogxAxisLabel{}": {
+      "snippet": "LogxAxisLabel{${1:label}}"
+    },
+    "LogyAxis": {},
+    "LogyAxisLabel{}": {
+      "snippet": "LogyAxisLabel{${1:label}}"
+    },
+    "makeXLabel{}": {
+      "snippet": "makeXLabel{${1:label}}"
+    },
+    "makeXTickLabel{}": {
+      "snippet": "makeXTickLabel{${1:label}}"
+    },
+    "makeYLabel{}": {
+      "snippet": "makeYLabel{${1:label}}"
+    },
+    "makeYTickLabel{}": {
+      "snippet": "makeYTickLabel{${1:label}}"
+    },
+    "NDPputRotation": {},
+    "NDPputXcoord": {},
+    "NDPputXcoordOne": {},
+    "NDPputYcoord": {},
+    "NDPRefPoint": {},
+    "nrAxisStyle": {},
+    "nrLegendCols": {},
+    "nrLegOrient": {},
+    "nrPutAxis": {},
+    "NumDataPlotBaseline": {},
+    "NumDataPlotBuffer": {},
+    "NumDataPlotBufferI": {},
+    "NumDataPlotDDx": {},
+    "NumDataPlotDDy": {},
+    "NumDataPlotDistance": {},
+    "NumDataPlotDx": {},
+    "NumDataPlotdx": {},
+    "NumDataPlotdxLabels": {},
+    "NumDataPlotDy": {},
+    "NumDataPlotdy": {},
+    "NumDataPlotdyLabels": {},
+    "NumDataPlotGxPicMax": {},
+    "NumDataPlotGxPicMin": {},
+    "NumDataPlotGyPicMax": {},
+    "NumDataPlotGyPicMin": {},
+    "NumDataPlotLnTen": {},
+    "NumDataPlotTickPos": {},
+    "NumDataPlotxCoordMax": {},
+    "NumDataPlotxCoordMin": {},
+    "NumDataPlotxCoordRange": {},
+    "NumDataPlotxDataCoordRatio": {},
+    "NumDataPlotxLabelOption": {},
+    "NumDataPlotxLabelOrientation": {},
+    "NumDataPlotxLabelPos": {},
+    "NumDataPlotxMax": {},
+    "NumDataPlotxMin": {},
+    "NumDataPlotxO": {},
+    "NumDataPlotxRange": {},
+    "NumDataPlotxTickBaseline": {},
+    "NumDataPlotxTickDistance": {},
+    "NumDataPlotxTickLabelOption": {},
+    "NumDataPlotxTickLabelRot": {},
+    "NumDataPlotyCoordMax": {},
+    "NumDataPlotyCoordMin": {},
+    "NumDataPlotyCoordRange": {},
+    "NumDataPlotyDataCoordRatio": {},
+    "NumDataPlotyLabelOption": {},
+    "NumDataPlotyLabelOrientation": {},
+    "NumDataPlotyLabelPos": {},
+    "NumDataPlotyMax": {},
+    "NumDataPlotyMin": {},
+    "NumDataPlotyO": {},
+    "NumDataPlotyRange": {},
+    "NumDataPlotyTickBaseline": {},
+    "NumDataPlotyTickDistance": {},
+    "NumDataPlotyTickLabelOption": {},
+    "NumDataPlotyTickLabelRot": {},
+    "OffsetHeight": {},
+    "OffsetWidth": {},
+    "origXLabelSep": {},
+    "origXTickLabelSep": {},
+    "origYLabelSep": {},
+    "origYTickLabelSep": {},
+    "plotxGridLine{}": {
+      "snippet": "plotxGridLine{${1:value}}"
+    },
+    "plotxSubGridLine{}": {
+      "snippet": "plotxSubGridLine{${1:value}}"
+    },
+    "plotxTickLabels{}": {
+      "snippet": "plotxTickLabels{${1:keyvals}}"
+    },
+    "plotyGridBoxed": {},
+    "plotyGridLine{}": {
+      "snippet": "plotyGridLine{${1:value}}"
+    },
+    "plotySubGridLine{}": {
+      "snippet": "plotySubGridLine{${1:value}}"
+    },
+    "plotyTickLabels{}": {
+      "snippet": "plotyTickLabels{${1:keyvals}}"
+    },
+    "PutLabelXaxis[]{}": {
+      "snippet": "PutLabelXaxis[${2:options}]{${1:label}}"
+    },
+    "PutLabelXaxis{}": {
+      "snippet": "PutLabelXaxis{${1:label}}"
+    },
+    "PutLabelYaxis[]{}": {
+      "snippet": "PutLabelYaxis[${2:options}]{${1:label}}"
+    },
+    "PutLabelYaxis{}": {
+      "snippet": "PutLabelYaxis{${1:label}}"
+    },
+    "repeatxAxis": {},
+    "ScaleAxes": {},
+    "StdLabelOption": {},
+    "StdLLX": {},
+    "StdLLY": {},
+    "StdTickLabelOption": {},
+    "StdURX": {},
+    "StdURY": {},
+    "TempLengthA": {},
+    "TempLengthB": {},
+    "testframe{}": {
+      "snippet": "testframe{${1:content}}"
+    },
+    "theBufferCounter": {},
+    "TickLabelsXLeft": {},
+    "TickLabelsXRight": {},
+    "TickLabelsYLeft": {},
+    "TickLabelsYRight": {},
+    "TicksXLeft": {},
+    "TicksXRight": {},
+    "TicksYLeft": {},
+    "TicksYRight": {},
+    "val": {},
+    "xCoordOrig": {},
+    "xLabelRefPt": {},
+    "xLabelRot": {},
+    "xLabelSep": {},
+    "xLogSubGrid{}": {
+      "snippet": "xLogSubGrid{${1:value}}"
+    },
+    "xNrTickLabels": {},
+    "xNrTicks": {},
+    "xScaling": {},
+    "xTickLabelRefPt": {},
+    "xTickLabelSep": {},
+    "xTickLength": {},
+    "yCoordOrig": {},
+    "yLabelRefPt": {},
+    "yLabelRot": {},
+    "yLabelSep": {},
+    "yLogSubGrid{}": {
+      "snippet": "yLogSubGrid{${1:value}}"
+    },
+    "yNrTickLabels": {},
+    "yNrTicks": {},
+    "yScaling": {},
+    "yTickLabelRefPt": {},
+    "yTickLabelSep": {},
+    "yTickLength": {}
+  },
+  "envs": {
+    "NumericDataPlot{}{}": {
+      "name": "NumericDataPlot",
+      "snippet": "{${1:width}}{${2:height}}"
+    },
+    "NumericDataPlot[]{}{}": {
+      "name": "NumericDataPlot",
+      "snippet": "[${3:options}]{${1:width}}{${2:height}}",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    }
+  },
+  "options": [
+    "beamer",
+    "xAxisStyle=${1:style}",
+    "yAxisStyle=${1:style}",
+    "LabelOption=${1:font commands}",
+    "TickLabelOption=${1:font commands}",
+    "BW"
+  ],
+  "keyvals": [
+    [
+      "xO=${1:value}",
+      "xMin=${1:value}",
+      "xMax=${1:value}",
+      "xCoordMin=${1:value}",
+      "xCoordMax=${1:value}",
+      "Dx=${1:value}",
+      "dx=${1:value}",
+      "DDx=${1:value}",
+      "xLog",
+      "xLogNoSubGrid"
+    ],
+    [
+      "yO=${1:value}",
+      "yMin=${1:value}",
+      "yMax=${1:value}",
+      "yCoordMin=${1:value}",
+      "yCoordMax=${1:value}",
+      "Dy=${1:value}",
+      "dy=${1:value}",
+      "DDy=${1:value}",
+      "yLog",
+      "yLogNoSubGrid"
+    ],
+    [
+      "LabelOption=${1:font commands}",
+      "TickLabelOption=${1:font commands}",
+      "LabelSep=",
+      "NoGrid",
+      "NoLabel",
+      "NoTicks",
+      "NoTickLabel",
+      "LabelPos=${1:factor}",
+      "LabelRefPt=",
+      "AxisStyle=",
+      "LabelRot=${1:degrees}",
+      "TickLabelRot=${1:degrees}",
+      "TickLabelSep=",
+      "LabelOrientation=",
+      "TickLabelRefPt="
+    ],
+    [
+      "nrCols=${1:integer}",
+      "LabelOrientation="
+    ],
+    [
+      "x=${1:value}",
+      "y=${1:value}",
+      "RefPoint=",
+      "Rot=${1:degrees}"
+    ],
+    [
+      "linecolor=",
+      "linestyle=${1:style}",
+      "linewidth=",
+      "style=${1:style}"
+    ],
+    [
+      "fillstyle=${1:style}",
+      "fillcolor=",
+      "opacity=${1:factor}",
+      "linestyle=${1:style}"
+    ],
+    [
+      "x=${1:value}",
+      "TickLabelSep=",
+      "ax="
+    ],
+    [
+      "y=${1:value}",
+      "TickLabelSep=",
+      "ax="
+    ],
+    [
+      "xPicMin=${1:value}",
+      "xPicMax=${1:value}",
+      "yPicMin=${1:value}",
+      "yPicMax=${1:value}",
+      "TickLength=${1:value}",
+      "llx=",
+      "lly=",
+      "urx=",
+      "ury="
+    ]
+  ]
+}

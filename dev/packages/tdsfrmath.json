@@ -1,0 +1,566 @@
+{
+  "includes": {
+    "ifthen": [],
+    "xkeyval": [],
+    "xstring": [],
+    "amsmath": [],
+    "amssymb": [],
+    "xspace": [],
+    "xargs": [],
+    "suffix": [],
+    "mathrsfs": [],
+    "stmaryrd": [
+      "taupe"
+    ]
+  },
+  "macros": {
+    "nuplet{}": {
+      "snippet": "nuplet{${1:valeurs}}"
+    },
+    "anuplet{}": {
+      "snippet": "anuplet{${1:valeurs}}"
+    },
+    "rnuplet{}": {
+      "snippet": "rnuplet{${1:valeurs}}"
+    },
+    "rnuplet{}[]": {
+      "snippet": "rnuplet{${1:valeurs}}[${2:écart}]"
+    },
+    "rnuplet[]{}": {
+      "snippet": "rnuplet[${2:md}]{${1:valeurs}}"
+    },
+    "rnuplet[]{}[]": {
+      "snippet": "rnuplet[${2:md}]{${1:valeurs}}[${3:écart}]"
+    },
+    "parent{}": {
+      "snippet": "parent{${1:valeurs}}"
+    },
+    "accol{}": {
+      "snippet": "accol{${1:valeur}}"
+    },
+    "crochet{}": {
+      "snippet": "crochet{${1:valeur}}"
+    },
+    "varabs{}": {
+      "snippet": "varabs{${1:valeur}}"
+    },
+    "norme{}": {
+      "snippet": "norme{${1:valeur}}"
+    },
+    "EncloreExtensible{}{}{}": {
+      "snippet": "EncloreExtensible{${1:délim-gauche}}{${2:délim-droite}}{${3:texte}}"
+    },
+    "EncloreExtensible[]{}{}{}": {
+      "snippet": "EncloreExtensible[${4:md}]{${1:délim-gauche}}{${2:délim-droite}}{${3:texte}}"
+    },
+    "EnsembleDeNombre{}{}{}{}": {
+      "snippet": "EnsembleDeNombre{${1:lettre}}{${2:sup}}{${3:arg3}}{${4:arg4}}"
+    },
+    "grastab{}": {
+      "snippet": "grastab{${1:lettre}}"
+    },
+    "C": {
+      "detail": "𝐶",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL C"
+    },
+    "C[]": {
+      "snippet": "C[${1:sup}]"
+    },
+    "N": {
+      "detail": "𝑁",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL N"
+    },
+    "N[]": {
+      "snippet": "N[${1:sup}]"
+    },
+    "Q": {
+      "detail": "𝑄",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL Q"
+    },
+    "Q[]": {
+      "snippet": "Q[${1:sup}]"
+    },
+    "R": {
+      "detail": "𝑅",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL R"
+    },
+    "R[]": {
+      "snippet": "R[${1:sup}]"
+    },
+    "Z": {
+      "detail": "𝑍",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL Z"
+    },
+    "Z[]": {
+      "snippet": "Z[${1:sup}]"
+    },
+    "K": {
+      "detail": "𝐾",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL K"
+    },
+    "K[]": {
+      "snippet": "K[${1:sup}]"
+    },
+    "definirvecteur{}{}{}": {
+      "snippet": "definirvecteur{${1:a}}{${2:n}}{${3:m}}"
+    },
+    "definirvecteur[]{}{}{}": {
+      "snippet": "definirvecteur[${4:bb}]{${1:a}}{${2:n}}{${3:m}}"
+    },
+    "redefinirvecteur{}{}{}": {
+      "snippet": "redefinirvecteur{${1:a}}{${2:n}}{${3:m}}"
+    },
+    "redefinirvecteur[]{}{}{}": {
+      "snippet": "redefinirvecteur[${4:bb}]{${1:a}}{${2:n}}{${3:m}}"
+    },
+    "vecti": {},
+    "vectj": {},
+    "vectk": {},
+    "vectu": {},
+    "vectv": {},
+    "vecteur{}": {
+      "snippet": "vecteur{${1:texte}}"
+    },
+    "vecteur{}[]": {
+      "snippet": "vecteur{${1:texte}}[${2:espace-après}]"
+    },
+    "vecteur[]{}": {
+      "snippet": "vecteur[${2:espace-avant}]{${1:texte}}"
+    },
+    "vecteur[]{}[]": {
+      "snippet": "vecteur[${2:espace-avant}]{${1:texte}}[${3:espace-après}]"
+    },
+    "vecteur*{}": {
+      "snippet": "vecteur*{${1:texte}}"
+    },
+    "vecteur*{}[]": {
+      "snippet": "vecteur*{${1:texte}}[${2:espace-après}]"
+    },
+    "vecteur*[]{}": {
+      "snippet": "vecteur*[${2:espace-avant}]{${1:texte}}"
+    },
+    "vecteur*[]{}[]": {
+      "snippet": "vecteur*[${2:espace-avant}]{${1:texte}}[${3:espace-après}]"
+    },
+    "V{}": {
+      "snippet": "V{${1:texte}}"
+    },
+    "V{}[]": {
+      "snippet": "V{${1:texte}}[${2:espace-après}]"
+    },
+    "V[]{}": {
+      "snippet": "V[${2:espace-avant}]{${1:texte}}"
+    },
+    "V[]{}[]": {
+      "snippet": "V[${2:espace-avant}]{${1:texte}}[${3:espace-après}]"
+    },
+    "V*{}": {
+      "snippet": "V*{${1:texte}}"
+    },
+    "V*{}[]": {
+      "snippet": "V*{${1:texte}}[${2:espace-après}]"
+    },
+    "V*[]{}": {
+      "snippet": "V*[${2:espace-avant}]{${1:texte}}"
+    },
+    "V*[]{}[]": {
+      "snippet": "V*[${2:espace-avant}]{${1:texte}}[${3:espace-après}]"
+    },
+    "base": {},
+    "base[]": {
+      "snippet": "base[${1:dimension : 1, 2 ou 3}]"
+    },
+    "repere": {},
+    "repere[]": {
+      "snippet": "repere[${1:dimension : 1, 2 ou 3}]"
+    },
+    "repere[][]": {
+      "snippet": "repere[${1:dimension : 1, 2 ou 3}][${2:centre}]"
+    },
+    "rog": {},
+    "rog[]": {
+      "snippet": "rog[${1:dimension : 1, 2 ou 3}]"
+    },
+    "rog[][]": {
+      "snippet": "rog[${1:dimension : 1, 2 ou 3}][${2:centre}]"
+    },
+    "ron": {},
+    "ron[]": {
+      "snippet": "ron[${1:dimension : 1, 2 ou 3}]"
+    },
+    "ron[][]": {
+      "snippet": "ron[${1:dimension : 1, 2 ou 3}][${2:centre}]"
+    },
+    "rond": {},
+    "rond[]": {
+      "snippet": "rond[${1:dimension : 1, 2 ou 3}]"
+    },
+    "rond[][]": {
+      "snippet": "rond[${1:dimension : 1, 2 ou 3}][${2:centre}]"
+    },
+    "repcom": {},
+    "roncom": {},
+    "rondcom": {},
+    "Repere": {},
+    "Repere*": {},
+    "Rog": {},
+    "Ron": {},
+    "Rond": {},
+    "E": {
+      "detail": "𝐸",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL E"
+    },
+    "eu{}": {
+      "snippet": "eu{${1:exposant}}"
+    },
+    "I": {
+      "detail": "𝐼",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL I"
+    },
+    "D": {
+      "detail": "𝐷",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL D"
+    },
+    "FixeAvanceDx{}": {
+      "snippet": "FixeAvanceDx{${1:nombre}}"
+    },
+    "FixeReculIntegrande{}": {
+      "snippet": "FixeReculIntegrande{${1:nombre}}"
+    },
+    "intgen{}{}{}": {
+      "snippet": "intgen{${1:inf}}{${2:sup}}{${3:intégrande}}"
+    },
+    "intgen[]{}{}{}": {
+      "snippet": "intgen[${4:md}]{${1:inf}}{${2:sup}}{${3:intégrande}}"
+    },
+    "intgen[][]{}{}{}": {
+      "snippet": "intgen[${4:md}][${5:recul}]{${1:inf}}{${2:sup}}{${3:intégrande}}"
+    },
+    "integrer{}{}{}{}": {
+      "snippet": "integrer{${1:inf}}{${2:sup}}{${3:intégrande}}{${4:variable}}"
+    },
+    "integrer[]{}{}{}{}": {
+      "snippet": "integrer[${5:md}]{${1:inf}}{${2:sup}}{${3:intégrande}}{${4:variable}}"
+    },
+    "integrer[][]{}{}{}{}": {
+      "snippet": "integrer[${5:md}][${6:recul}]{${1:inf}}{${2:sup}}{${3:intégrande}}{${4:variable}}"
+    },
+    "integrale{}{}{}{}": {
+      "snippet": "integrale{${1:inf}}{${2:sup}}{${3:nom de fonction}}{${4:variable}}"
+    },
+    "integrale[]{}{}{}{}": {
+      "snippet": "integrale[${5:md}]{${1:inf}}{${2:sup}}{${3:nom de fonction}}{${4:variable}}"
+    },
+    "integrale[][]{}{}{}{}": {
+      "snippet": "integrale[${5:md}][${6:recul}]{${1:inf}}{${2:sup}}{${3:nom de fonction}}{${4:variable}}"
+    },
+    "intabfx": {},
+    "intabfx[]": {
+      "snippet": "intabfx[${1:md}]"
+    },
+    "intabfx[][]": {
+      "snippet": "intabfx[${1:md}][${2:recul}]"
+    },
+    "plusinf": {},
+    "moinsinf": {},
+    "interff{}": {
+      "snippet": "interff{${1:bornes}}"
+    },
+    "interoo{}": {
+      "snippet": "interoo{${1:bornes}}"
+    },
+    "interfo{}": {
+      "snippet": "interfo{${1:bornes}}"
+    },
+    "interof{}": {
+      "snippet": "interof{${1:bornes}}"
+    },
+    "intferab": {},
+    "manus{}": {
+      "snippet": "manus{${1:une lettre}}"
+    },
+    "ensemble{}{}": {
+      "snippet": "ensemble{${1:domaine}}{${2:attributs}}"
+    },
+    "ensemble{}{}[]": {
+      "snippet": "ensemble{${1:domaine}}{${2:attributs}}[${3:espace-après}]"
+    },
+    "ensemble[]{}{}": {
+      "snippet": "ensemble[${3:espace-avant}]{${1:domaine}}{${2:attributs}}"
+    },
+    "ensemble[]{}{}[]": {
+      "snippet": "ensemble[${3:espace-avant}]{${1:domaine}}{${2:attributs}}[${4:espace-après}]"
+    },
+    "vide": {},
+    "dans": {},
+    "donne": {},
+    "ppq": {},
+    "pgq": {},
+    "cnp{}{}": {
+      "snippet": "cnp{${1:n}}{${2:p}}"
+    },
+    "mdfrac{}{}": {
+      "snippet": "mdfrac{${1:numerator}}{${2:denominator}}"
+    },
+    "mfrac{}{}": {
+      "snippet": "mfrac{${1:numerator}}{${2:denominator}}"
+    },
+    "suite": {
+      "option": "suite"
+    },
+    "suite[]": {
+      "snippet": "suite[${1:texte}]",
+      "option": "suite"
+    },
+    "suite*": {
+      "option": "suite"
+    },
+    "suite*[]": {
+      "snippet": "suite*[${1:deco}]",
+      "option": "suite"
+    },
+    "suite*[][]": {
+      "snippet": "suite*[${1:deco}][${2:texte}]",
+      "option": "suite"
+    },
+    "suitar{}{}": {
+      "snippet": "suitar{${1:raison}}{${2:premier}}",
+      "option": "suite"
+    },
+    "suitar[]{}{}": {
+      "snippet": "suitar[${3:texte}]{${1:raison}}{${2:premier}}",
+      "option": "suite"
+    },
+    "suitar{}[]{}": {
+      "snippet": "suitar{${1:raison}}[${2:rang}]{${3:premier}}",
+      "option": "suite"
+    },
+    "suitar{}{}[]": {
+      "snippet": "suitar{${1:raison}}{${2:premier}}[${3:entre}]",
+      "option": "suite"
+    },
+    "suitar[]{}[]{}": {
+      "snippet": "suitar[${3:texte}]{${1:raison}}[${4:rang}]{${2:premier}}",
+      "option": "suite"
+    },
+    "suitar{}[]{}[]": {
+      "snippet": "suitar{${1:raison}}[${2:rang}]{${3:premier}}[${4:entre}]",
+      "option": "suite"
+    },
+    "suitar[]{}[]{}[]": {
+      "snippet": "suitar[${3:texte}]{${1:raison}}[${4:rang}]{${2:premier}}[${5:entre}]",
+      "option": "suite"
+    },
+    "suitar*{}{}": {
+      "snippet": "suitar*{${1:raison}}{${2:premier}}",
+      "option": "suite"
+    },
+    "suitar*[]{}{}": {
+      "snippet": "suitar*[${3:texte}]{${1:raison}}{${2:premier}}",
+      "option": "suite"
+    },
+    "suitar*{}[]{}": {
+      "snippet": "suitar*{${1:raison}}[${2:rang}]{${3:premier}}",
+      "option": "suite"
+    },
+    "suitar*{}{}[]": {
+      "snippet": "suitar*{${1:raison}}{${2:premier}}[${3:entre}]",
+      "option": "suite"
+    },
+    "suitar*[]{}[]{}": {
+      "snippet": "suitar*[${3:texte}]{${1:raison}}[${4:rang}]{${2:premier}}",
+      "option": "suite"
+    },
+    "suitar*{}[]{}[]": {
+      "snippet": "suitar*{${1:raison}}[${2:rang}]{${3:premier}}[${4:entre}]",
+      "option": "suite"
+    },
+    "suitar*[]{}[]{}[]": {
+      "snippet": "suitar*[${3:texte}]{${1:raison}}[${4:rang}]{${2:premier}}[${5:entre}]",
+      "option": "suite"
+    },
+    "suitgeo{}{}": {
+      "snippet": "suitgeo{${1:raison}}{${2:premier}}",
+      "option": "suite"
+    },
+    "suitgeo[]{}{}": {
+      "snippet": "suitgeo[${3:texte}]{${1:raison}}{${2:premier}}",
+      "option": "suite"
+    },
+    "suitgeo{}[]{}": {
+      "snippet": "suitgeo{${1:raison}}[${2:rang}]{${3:premier}}",
+      "option": "suite"
+    },
+    "suitgeo{}{}[]": {
+      "snippet": "suitgeo{${1:raison}}{${2:premier}}[${3:entre}]",
+      "option": "suite"
+    },
+    "suitgeo[]{}[]{}": {
+      "snippet": "suitgeo[${3:texte}]{${1:raison}}[${4:rang}]{${2:premier}}",
+      "option": "suite"
+    },
+    "suitgeo{}[]{}[]": {
+      "snippet": "suitgeo{${1:raison}}[${2:rang}]{${3:premier}}[${4:entre}]",
+      "option": "suite"
+    },
+    "suitgeo[]{}[]{}[]": {
+      "snippet": "suitgeo[${3:texte}]{${1:raison}}[${4:rang}]{${2:premier}}[${5:entre}]",
+      "option": "suite"
+    },
+    "suitgeo*{}{}": {
+      "snippet": "suitgeo*{${1:raison}}{${2:premier}}",
+      "option": "suite"
+    },
+    "suitgeo*[]{}{}": {
+      "snippet": "suitgeo*[${3:texte}]{${1:raison}}{${2:premier}}",
+      "option": "suite"
+    },
+    "suitgeo*{}[]{}": {
+      "snippet": "suitgeo*{${1:raison}}[${2:rang}]{${3:premier}}",
+      "option": "suite"
+    },
+    "suitgeo*{}{}[]": {
+      "snippet": "suitgeo*{${1:raison}}{${2:premier}}[${3:entre}]",
+      "option": "suite"
+    },
+    "suitgeo*[]{}[]{}": {
+      "snippet": "suitgeo*[${3:texte}]{${1:raison}}[${4:rang}]{${2:premier}}",
+      "option": "suite"
+    },
+    "suitgeo*{}[]{}[]": {
+      "snippet": "suitgeo*{${1:raison}}[${2:rang}]{${3:premier}}[${4:entre}]",
+      "option": "suite"
+    },
+    "suitgeo*[]{}[]{}[]": {
+      "snippet": "suitgeo*[${3:texte}]{${1:raison}}[${4:rang}]{${2:premier}}[${5:entre}]",
+      "option": "suite"
+    },
+    "prodscal{}": {
+      "snippet": "prodscal{${1:deux vecteurs}}",
+      "option": "taupe"
+    },
+    "Ker": {
+      "option": "taupe"
+    },
+    "Img": {
+      "option": "taupe"
+    },
+    "tendversen{}": {
+      "snippet": "tendversen{${1:valeur}}",
+      "option": "taupe"
+    },
+    "devlim{}": {
+      "snippet": "devlim{${1:ordre du DL}}",
+      "option": "taupe"
+    },
+    "devlim[]{}": {
+      "snippet": "devlim[${2:en}]{${1:ordre du DL}}",
+      "option": "taupe"
+    },
+    "drv{}{}": {
+      "snippet": "drv{${1:fonction}}{${2:variable}}",
+      "option": "taupe"
+    },
+    "drv[]{}{}": {
+      "snippet": "drv[${3:n-ième}]{${1:fonction}}{${2:variable}}",
+      "option": "taupe"
+    },
+    "ddrv{}{}": {
+      "snippet": "ddrv{${1:fonction}}{${2:variable}}",
+      "option": "taupe"
+    },
+    "ddrv[]{}{}": {
+      "snippet": "ddrv[${3:n-ième}]{${1:fonction}}{${2:variable}}",
+      "option": "taupe"
+    },
+    "derpart{}{}": {
+      "snippet": "derpart{${1:dessus}}{${2:dessous}}",
+      "option": "taupe"
+    },
+    "interent{}": {
+      "snippet": "interent{${1:bornes entières}}",
+      "option": "taupe"
+    },
+    "interent{}[]": {
+      "snippet": "interent{${1:bornes entières}}[${2:espace-après}]",
+      "option": "taupe"
+    },
+    "interent[]{}": {
+      "snippet": "interent[${2:md}]{${1:bornes entières}}",
+      "option": "taupe"
+    },
+    "interent[]{}[]": {
+      "snippet": "interent[${2:md}]{${1:bornes entières}}[${3:espace-après}]",
+      "option": "taupe"
+    },
+    "interent[][]{}": {
+      "snippet": "interent[${2:md}][${3:espace-avant}]{${1:bornes entières}}",
+      "option": "taupe"
+    },
+    "interent[][]{}[]": {
+      "snippet": "interent[${2:md}][${3:espace-avant}]{${1:bornes entières}}[${4:espace-après}]",
+      "option": "taupe"
+    },
+    "interzn": {
+      "option": "taupe"
+    },
+    "interzn[]": {
+      "snippet": "interzn[${1:md}]",
+      "option": "taupe"
+    },
+    "interzn[][]": {
+      "snippet": "interzn[${1:md}][${2:espace-avant}]",
+      "option": "taupe"
+    },
+    "interzn[][][]": {
+      "snippet": "interzn[${1:md}][${2:espace-avant}][${3:espace-après}]",
+      "option": "taupe"
+    },
+    "parties{}": {
+      "snippet": "parties{${1:ensemble}}",
+      "option": "taupe"
+    },
+    "parties[]{}": {
+      "snippet": "parties[${2:n}]{${1:ensemble}}",
+      "option": "taupe"
+    },
+    "argsh": {
+      "option": "taupe"
+    },
+    "argch": {
+      "option": "taupe"
+    },
+    "argth": {
+      "option": "taupe"
+    },
+    "TdSMDerPartSepar": {},
+    "TdSMnuplet{}": {
+      "snippet": "TdSMnuplet{${1:arg}}"
+    },
+    "TdSMReculParenthese": {},
+    "TdSMsepdefens": {},
+    "filedate": {},
+    "fileversion": {}
+  },
+  "envs": {},
+  "options": [
+    "ArgArcMaj",
+    "avecmathdesign",
+    "calcomd=${1:csname}",
+    "caloptn=${1:option}",
+    "calpack=${1:package}",
+    "CharPoCal",
+    "CharPoGdT",
+    "ensdeco=",
+    "gdtcomd=${1:csname}",
+    "gdtoptn=${1:option}",
+    "gdtpack=${1:package}",
+    "nupletsep=",
+    "placesigne=",
+    "SepDefEnsExt",
+    "suite",
+    "suitedeco",
+    "taupe"
+  ],
+  "keyvals": []
+}

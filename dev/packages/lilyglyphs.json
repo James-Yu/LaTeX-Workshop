@@ -1,0 +1,890 @@
+{
+  "includes": {
+    "keyval": [],
+    "pgf": [],
+    "adjustbox": [],
+    "ifluatex": [],
+    "ifxetex": [],
+    "luaotfload": [],
+    "luacode": []
+  },
+  "macros": {
+    "lilyglyphs": {},
+    "lilyglyphs[]": {
+      "snippet": "lilyglyphs[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyOpticalSuffix": {},
+    "lilyOpticalSize{}": {
+      "snippet": "lilyOpticalSize{${1:number}}"
+    },
+    "lilyGlobalOptions{}": {
+      "snippet": "lilyGlobalOptions{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "interpretLilyOptions{}": {
+      "snippet": "interpretLilyOptions{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyEffectiveScale": {},
+    "lilyEffectiveRaise": {},
+    "lilyPrint{}": {
+      "snippet": "lilyPrint{${1:content}}"
+    },
+    "lilyPrint[]{}": {
+      "snippet": "lilyPrint[${2:options}]{${1:content}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "currentFontRatio": {},
+    "currentFontSize": {},
+    "normalFontSize": {},
+    "getCurrentFontRatio": {},
+    "lilyScaleImage": {},
+    "lilyImageEffectiveScale": {},
+    "lilyPrintImage{}": {
+      "snippet": "lilyPrintImage{${1:imagefile}}"
+    },
+    "lilyPrintImage[]{}": {
+      "snippet": "lilyPrintImage[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyGetGlyph{}": {
+      "snippet": "lilyGetGlyph{${1:slot}}"
+    },
+    "lilyGetGlyphByNumber{}": {
+      "snippet": "lilyGetGlyphByNumber{${1:char number}}"
+    },
+    "lilyGlyph{}": {
+      "snippet": "lilyGlyph{${1:slot}}"
+    },
+    "lilyGlyph[]{}": {
+      "snippet": "lilyGlyph[${2:options}]{${1:slot}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyGlyphByNumber{}": {
+      "snippet": "lilyGlyphByNumber{${1:char number}}"
+    },
+    "lilyGlyphByNumber[]{}": {
+      "snippet": "lilyGlyphByNumber[${2:options}]{${1:char number}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyText{}": {
+      "snippet": "lilyText{${1:text}}"
+    },
+    "lilyText[]{}": {
+      "snippet": "lilyText[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyImage{}": {
+      "snippet": "lilyImage{${1:imagefile}}"
+    },
+    "lilyImage[]{}": {
+      "snippet": "lilyImage[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyDot": {},
+    "lilyDot[]": {
+      "snippet": "lilyDot[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyCalcDotSpace{}{}{}{}": {
+      "snippet": "lilyCalcDotSpace{${1:scale factor}}{${2:curve factor}}{${3:offset}}{${4:steepness}}"
+    },
+    "lilyDotSpaceF": {},
+    "lilySetDotOptions{}{}{}": {
+      "snippet": "lilySetDotOptions{${1:curve factor}}{${2:offset}}{${3:steepness}}"
+    },
+    "lilySetDotOptions[]{}{}{}": {
+      "snippet": "lilySetDotOptions[${4:options}]{${1:curve factor}}{${2:offset}}{${3:steepness}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyDotScale": {},
+    "lilyDotRaise": {},
+    "lilyDotSpace": {},
+    "lilyPrintDot": {},
+    "lilyPrintMoreDots": {},
+    "lilyPrintMoreDots[]": {
+      "snippet": "lilyPrintMoreDots[${1:number}]"
+    },
+    "clefG": {},
+    "clefG[]": {
+      "snippet": "clefG[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "clefGInline": {},
+    "clefGInline[]": {
+      "snippet": "clefGInline[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "clefF": {},
+    "clefF[]": {
+      "snippet": "clefF[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "clefFInline": {},
+    "clefFInline[]": {
+      "snippet": "clefFInline[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "clefC": {},
+    "clefC[]": {
+      "snippet": "clefC[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "clefCInline": {},
+    "clefCInline[]": {
+      "snippet": "clefCInline[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyTimeC": {},
+    "lilyTimeC[]": {
+      "snippet": "lilyTimeC[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyTimeCHalf": {},
+    "lilyTimeCHalf[]": {
+      "snippet": "lilyTimeCHalf[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyTimeSignature": {},
+    "lilyTimeSignature[]": {
+      "snippet": "lilyTimeSignature[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyDynamics{}": {
+      "snippet": "lilyDynamics{${1:text}}"
+    },
+    "lilyDynamics[]{}": {
+      "snippet": "lilyDynamics[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyRF": {},
+    "lilyRF[]": {
+      "snippet": "lilyRF[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyRFZ": {},
+    "lilyRFZ[]": {
+      "snippet": "lilyRFZ[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "decrescHairpin": {},
+    "decrescHairpin[]": {
+      "snippet": "decrescHairpin[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "crescHairpin": {},
+    "crescHairpin[]": {
+      "snippet": "crescHairpin[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "natural": {
+      "detail": "♮",
+      "documentation": "music natural"
+    },
+    "natural[]": {
+      "snippet": "natural[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "flat": {
+      "detail": "♭",
+      "documentation": "musical flat"
+    },
+    "flat[]": {
+      "snippet": "flat[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "flatflat": {},
+    "flatflat[]": {
+      "snippet": "flatflat[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sharp": {
+      "detail": "♯",
+      "documentation": "= \\ MUSIC SHARP SIGN, z notation infix bag count"
+    },
+    "sharp[]": {
+      "snippet": "sharp[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sharpArrowup": {},
+    "sharpArrowup[]": {
+      "snippet": "sharpArrowup[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sharpArrowdown": {},
+    "sharpArrowdown[]": {
+      "snippet": "sharpArrowdown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sharpArrowboth": {},
+    "sharpArrowboth[]": {
+      "snippet": "sharpArrowboth[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sharpSlashslashStem": {},
+    "sharpSlashslashStem[]": {
+      "snippet": "sharpSlashslashStem[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sharpSlashslashslashStemstem": {},
+    "sharpSlashslashslashStemstem[]": {
+      "snippet": "sharpSlashslashslashStemstem[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sharpSlashslashslashStem": {},
+    "sharpSlashslashslashStem[]": {
+      "snippet": "sharpSlashslashslashStem[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sharpSlashslashStemstemstem": {},
+    "sharpSlashslashStemstemstem[]": {
+      "snippet": "sharpSlashslashStemstemstem[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "doublesharp": {},
+    "doublesharp[]": {
+      "snippet": "doublesharp[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "wholeNoteRest": {},
+    "wholeNoteRest[]": {
+      "snippet": "wholeNoteRest[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "wholeNoteRestDotted": {},
+    "wholeNoteRestDotted[]": {
+      "snippet": "wholeNoteRestDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "halfNoteRest": {},
+    "halfNoteRest[]": {
+      "snippet": "halfNoteRest[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "halfNoteRestDotted": {},
+    "halfNoteRestDotted[]": {
+      "snippet": "halfNoteRestDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "crotchetRest": {},
+    "crotchetRest[]": {
+      "snippet": "crotchetRest[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "crotchetRestDotted": {},
+    "crotchetRestDotted[]": {
+      "snippet": "crotchetRestDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quaverRest": {},
+    "quaverRest[]": {
+      "snippet": "quaverRest[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quaverRestDotted": {},
+    "quaverRestDotted[]": {
+      "snippet": "quaverRestDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "semiquaverRest": {},
+    "semiquaverRest[]": {
+      "snippet": "semiquaverRest[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "semiquaverRestDotted": {},
+    "semiquaverRestDotted[]": {
+      "snippet": "semiquaverRestDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "fermata": {},
+    "fermata[]": {
+      "snippet": "fermata[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyAccent": {},
+    "lilyAccent[]": {
+      "snippet": "lilyAccent[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyEspressivo": {},
+    "lilyEspressivo[]": {
+      "snippet": "lilyEspressivo[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyStaccato": {},
+    "lilyStaccato[]": {
+      "snippet": "lilyStaccato[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyThumb": {},
+    "lilyThumb[]": {
+      "snippet": "lilyThumb[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "marcato": {},
+    "marcato[]": {
+      "snippet": "marcato[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "marcatoDown": {},
+    "marcatoDown[]": {
+      "snippet": "marcatoDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "portato": {},
+    "portato[]": {
+      "snippet": "portato[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "portatoDown": {},
+    "portatoDown[]": {
+      "snippet": "portatoDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "staccatissimo": {},
+    "staccatissimo[]": {
+      "snippet": "staccatissimo[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "tenuto": {},
+    "tenuto[]": {
+      "snippet": "tenuto[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "accordionBayanBass": {},
+    "accordionBayanBass[]": {
+      "snippet": "accordionBayanBass[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "accordionDiscant": {},
+    "accordionDiscant[]": {
+      "snippet": "accordionDiscant[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "accordionDot": {},
+    "accordionDot[]": {
+      "snippet": "accordionDot[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "accordionFreeBass": {},
+    "accordionFreeBass[]": {
+      "snippet": "accordionFreeBass[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "accordionOldEE": {},
+    "accordionOldEE[]": {
+      "snippet": "accordionOldEE[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "accordionPull": {},
+    "accordionPull[]": {
+      "snippet": "accordionPull[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "accordionPush": {},
+    "accordionPush[]": {
+      "snippet": "accordionPush[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "accordionStdBass": {},
+    "accordionStdBass[]": {
+      "snippet": "accordionStdBass[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "semibreve": {},
+    "semibreve[]": {
+      "snippet": "semibreve[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "wholeNote": {},
+    "wholeNote[]": {
+      "snippet": "wholeNote[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "semibreveDotted": {},
+    "semibreveDotted[]": {
+      "snippet": "semibreveDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "wholeNoteDotted": {},
+    "wholeNoteDotted[]": {
+      "snippet": "wholeNoteDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "minim": {},
+    "minim[]": {
+      "snippet": "minim[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "halfNote": {},
+    "halfNote[]": {
+      "snippet": "halfNote[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "minimDown": {},
+    "minimDown[]": {
+      "snippet": "minimDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "halfNoteDown": {},
+    "halfNoteDown[]": {
+      "snippet": "halfNoteDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "minimDotted": {},
+    "minimDotted[]": {
+      "snippet": "minimDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "halfNoteDotted": {},
+    "halfNoteDotted[]": {
+      "snippet": "halfNoteDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "minimDottedDown": {},
+    "minimDottedDown[]": {
+      "snippet": "minimDottedDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "halfNoteDottedDown": {},
+    "halfNoteDottedDown[]": {
+      "snippet": "halfNoteDottedDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "minimDottedDouble": {},
+    "minimDottedDouble[]": {
+      "snippet": "minimDottedDouble[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "halfNoteDottedDouble": {},
+    "halfNoteDottedDouble[]": {
+      "snippet": "halfNoteDottedDouble[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "minimDottedDoubleDown": {},
+    "minimDottedDoubleDown[]": {
+      "snippet": "minimDottedDoubleDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "halfNoteDottedDoubleDown": {},
+    "halfNoteDottedDoubleDown[]": {
+      "snippet": "halfNoteDottedDoubleDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "crotchet": {},
+    "crotchet[]": {
+      "snippet": "crotchet[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quarterNote": {},
+    "quarterNote[]": {
+      "snippet": "quarterNote[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "crotchetDown": {},
+    "crotchetDown[]": {
+      "snippet": "crotchetDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quarterNoteDown": {},
+    "quarterNoteDown[]": {
+      "snippet": "quarterNoteDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "crotchetDotted": {},
+    "crotchetDotted[]": {
+      "snippet": "crotchetDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quarterNoteDotted": {},
+    "quarterNoteDotted[]": {
+      "snippet": "quarterNoteDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "crotchetDottedDown": {},
+    "crotchetDottedDown[]": {
+      "snippet": "crotchetDottedDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quarterNoteDottedDown": {},
+    "quarterNoteDottedDown[]": {
+      "snippet": "quarterNoteDottedDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "crotchetDottedDouble": {},
+    "crotchetDottedDouble[]": {
+      "snippet": "crotchetDottedDouble[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quarterNoteDottedDouble": {},
+    "quarterNoteDottedDouble[]": {
+      "snippet": "quarterNoteDottedDouble[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "crotchetDottedDoubleDown": {},
+    "crotchetDottedDoubleDown[]": {
+      "snippet": "crotchetDottedDoubleDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quarterNoteDottedDoubleDown": {},
+    "quarterNoteDottedDoubleDown[]": {
+      "snippet": "quarterNoteDottedDoubleDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quaver": {},
+    "quaver[]": {
+      "snippet": "quaver[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "eighthNote": {},
+    "eighthNote[]": {
+      "snippet": "eighthNote[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quaverDown": {},
+    "quaverDown[]": {
+      "snippet": "quaverDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "eighthNoteDown": {},
+    "eighthNoteDown[]": {
+      "snippet": "eighthNoteDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quaverDotted": {},
+    "quaverDotted[]": {
+      "snippet": "quaverDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "eighthNoteDotted": {},
+    "eighthNoteDotted[]": {
+      "snippet": "eighthNoteDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quaverDottedDown": {},
+    "quaverDottedDown[]": {
+      "snippet": "quaverDottedDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "eighthNoteDottedDown": {},
+    "eighthNoteDottedDown[]": {
+      "snippet": "eighthNoteDottedDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quaverDottedDouble": {},
+    "quaverDottedDouble[]": {
+      "snippet": "quaverDottedDouble[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "eighthNoteDottedDouble": {},
+    "eighthNoteDottedDouble[]": {
+      "snippet": "eighthNoteDottedDouble[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "quaverDottedDoubleDown": {},
+    "quaverDottedDoubleDown[]": {
+      "snippet": "quaverDottedDoubleDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "eighthNoteDottedDoubleDown": {},
+    "eighthNoteDottedDoubleDown[]": {
+      "snippet": "eighthNoteDottedDoubleDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "semiquaver": {},
+    "semiquaver[]": {
+      "snippet": "semiquaver[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sixteenthNote": {},
+    "sixteenthNote[]": {
+      "snippet": "sixteenthNote[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "semiquaverDown": {},
+    "semiquaverDown[]": {
+      "snippet": "semiquaverDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sixteenthNoteDown": {},
+    "sixteenthNoteDown[]": {
+      "snippet": "sixteenthNoteDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "semiquaverDotted": {},
+    "semiquaverDotted[]": {
+      "snippet": "semiquaverDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sixteenthNoteDotted": {},
+    "sixteenthNoteDotted[]": {
+      "snippet": "sixteenthNoteDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "semiquaverDottedDown": {},
+    "semiquaverDottedDown[]": {
+      "snippet": "semiquaverDottedDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sixteenthNoteDottedDown": {},
+    "sixteenthNoteDottedDown[]": {
+      "snippet": "sixteenthNoteDottedDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "semiquaverDottedDouble": {},
+    "semiquaverDottedDouble[]": {
+      "snippet": "semiquaverDottedDouble[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sixteenthNoteDottedDouble": {},
+    "sixteenthNoteDottedDouble[]": {
+      "snippet": "sixteenthNoteDottedDouble[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "semiquaverDottedDoubleDown": {},
+    "semiquaverDottedDoubleDown[]": {
+      "snippet": "semiquaverDottedDoubleDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sixteenthNoteDottedDoubleDown": {},
+    "sixteenthNoteDottedDoubleDown[]": {
+      "snippet": "sixteenthNoteDottedDoubleDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "demisemiquaver": {},
+    "demisemiquaver[]": {
+      "snippet": "demisemiquaver[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "thirtysecondNote": {},
+    "thirtysecondNote[]": {
+      "snippet": "thirtysecondNote[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "demisemiquaverDotted": {},
+    "demisemiquaverDotted[]": {
+      "snippet": "demisemiquaverDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "thirtysecondNoteDotted": {},
+    "thirtysecondNoteDotted[]": {
+      "snippet": "thirtysecondNoteDotted[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "demisemiquaverDottedDouble": {},
+    "demisemiquaverDottedDouble[]": {
+      "snippet": "demisemiquaverDottedDouble[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "thirtysecondNoteDottedDouble": {},
+    "thirtysecondNoteDottedDouble[]": {
+      "snippet": "thirtysecondNoteDottedDouble[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "demisemiquaverDottedDoubleDown": {},
+    "demisemiquaverDottedDoubleDown[]": {
+      "snippet": "demisemiquaverDottedDoubleDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "thirtysecondNoteDottedDoubleDown": {},
+    "thirtysecondNoteDottedDoubleDown[]": {
+      "snippet": "thirtysecondNoteDottedDoubleDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "demisemiquaverDottedDown": {},
+    "demisemiquaverDottedDown[]": {
+      "snippet": "demisemiquaverDottedDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "thirtysecondNoteDottedDown": {},
+    "thirtysecondNoteDottedDown[]": {
+      "snippet": "thirtysecondNoteDottedDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "demisemiquaverDown": {},
+    "demisemiquaverDown[]": {
+      "snippet": "demisemiquaverDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "thirtysecondNoteDown": {},
+    "thirtysecondNoteDown[]": {
+      "snippet": "thirtysecondNoteDown[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "twoBeamedQuavers": {},
+    "twoBeamedQuavers[]": {
+      "snippet": "twoBeamedQuavers[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "threeBeamedQuavers": {},
+    "threeBeamedQuavers[]": {
+      "snippet": "threeBeamedQuavers[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "threeBeamedQuaversI": {},
+    "threeBeamedQuaversI[]": {
+      "snippet": "threeBeamedQuaversI[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "threeBeamedQuaversII": {},
+    "threeBeamedQuaversII[]": {
+      "snippet": "threeBeamedQuaversII[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "threeBeamedQuaversIII": {},
+    "threeBeamedQuaversIII[]": {
+      "snippet": "threeBeamedQuaversIII[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lilyFancyExample": {},
+    "lilyFancyExample[]": {
+      "snippet": "lilyFancyExample[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "scale=${1:factor}",
+      "raise=${1:number}"
+    ]
+  ]
+}

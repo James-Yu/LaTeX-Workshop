@@ -1,0 +1,734 @@
+{
+  "includes": {},
+  "macros": {
+    "TeXOSQuery{}{}": {
+      "snippet": "TeXOSQuery{${1:cmd}}{${2:args}}"
+    },
+    "TeXOSQueryFromFile{}{}": {
+      "snippet": "TeXOSQueryFromFile{${1:cmd}}{${2:file}}"
+    },
+    "TeXOSQueryLocale{}": {
+      "snippet": "TeXOSQueryLocale{${1:cmd}}"
+    },
+    "TeXOSQueryLangTag{}": {
+      "snippet": "TeXOSQueryLangTag{${1:cmd}}"
+    },
+    "TeXOSQueryNumeric{}{}": {
+      "snippet": "TeXOSQueryNumeric{${1:cmd}}{${2:locale}}"
+    },
+    "TeXOSQueryLocaleData{}{}": {
+      "snippet": "TeXOSQueryLocaleData{${1:cmd}}{${2:locale}}"
+    },
+    "TeXOSQueryName{}": {
+      "snippet": "TeXOSQueryName{${1:cmd}}"
+    },
+    "TeXOSQueryVersion{}": {
+      "snippet": "TeXOSQueryVersion{${1:cmd}}"
+    },
+    "TeXOSQueryArch{}": {
+      "snippet": "TeXOSQueryArch{${1:cmd}}"
+    },
+    "TeXOSQueryDateTime{}": {
+      "snippet": "TeXOSQueryDateTime{${1:cmd}}"
+    },
+    "TeXOSQueryTimeZones{}{}": {
+      "snippet": "TeXOSQueryTimeZones{${1:cmd}}{${2:locale}}"
+    },
+    "TeXOSQueryNow{}": {
+      "snippet": "TeXOSQueryNow{${1:cmd}}"
+    },
+    "TeXOSQueryFileDate{}{}": {
+      "snippet": "TeXOSQueryFileDate{${1:cmd}}{${2:file}}"
+    },
+    "TeXOSQueryCwd{}": {
+      "snippet": "TeXOSQueryCwd{${1:cmd}}"
+    },
+    "TeXOSQueryHome{}": {
+      "snippet": "TeXOSQueryHome{${1:cmd}}"
+    },
+    "TeXOSQueryTmpDir{}": {
+      "snippet": "TeXOSQueryTmpDir{${1:cmd}}"
+    },
+    "TeXOSQueryFileSize{}{}": {
+      "snippet": "TeXOSQueryFileSize{${1:cmd}}{${2:file}}"
+    },
+    "TeXOSQueryFileURI{}{}": {
+      "snippet": "TeXOSQueryFileURI{${1:cmd}}{${2:file}}"
+    },
+    "TeXOSQueryFilePath{}{}": {
+      "snippet": "TeXOSQueryFilePath{${1:cmd}}{${2:file}}"
+    },
+    "TeXOSQueryDirName{}{}": {
+      "snippet": "TeXOSQueryDirName{${1:cmd}}{${2:file}}"
+    },
+    "TeXOSQueryFileList{}{}{}": {
+      "snippet": "TeXOSQueryFileList{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryRegularFileList{}{}{}": {
+      "snippet": "TeXOSQueryRegularFileList{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQuerySubDirList{}{}{}": {
+      "snippet": "TeXOSQuerySubDirList{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryFilterFileList{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterFileList{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterRegularFileList{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterRegularFileList{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterSubDirList{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterSubDirList{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFileListDateAsc{}{}{}": {
+      "snippet": "TeXOSQueryFileListDateAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryRegularFileListDateAsc{}{}{}": {
+      "snippet": "TeXOSQueryRegularFileListDateAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQuerySubDirListDateAsc{}{}{}": {
+      "snippet": "TeXOSQuerySubDirListDateAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryFilterFileListDateAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterFileListDateAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterRegularFileListDateAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterRegularFileListDateAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterSubDirListDateAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterSubDirListDateAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFileListDateDes{}{}{}": {
+      "snippet": "TeXOSQueryFileListDateDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryRegularFileListDateDes{}{}{}": {
+      "snippet": "TeXOSQueryRegularFileListDateDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQuerySubDirListDateDes{}{}{}": {
+      "snippet": "TeXOSQuerySubDirListDateDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryFilterFileListDateDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterFileListDateDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterRegularFileListDateDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterRegularFileListDateDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterSubDirListDateDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterSubDirListDateDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFileListSizeAsc{}{}{}": {
+      "snippet": "TeXOSQueryFileListSizeAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryRegularFileListSizeAsc{}{}{}": {
+      "snippet": "TeXOSQueryRegularFileListSizeAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQuerySubDirListSizeAsc{}{}{}": {
+      "snippet": "TeXOSQuerySubDirListSizeAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryFilterFileListSizeAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterFileListSizeAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterRegularFileListSizeAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterRegularFileListSizeAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterSubDirListSizeAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterSubDirListSizeAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFileListSizeDes{}{}{}": {
+      "snippet": "TeXOSQueryFileListSizeDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryRegularFileListSizeDes{}{}{}": {
+      "snippet": "TeXOSQueryRegularFileListSizeDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQuerySubDirListSizeDes{}{}{}": {
+      "snippet": "TeXOSQuerySubDirListSizeDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryFilterFileListSizeDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterFileListSizeDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterRegularFileListSizeDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterRegularFileListSizeDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterSubDirListSizeDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterSubDirListSizeDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFileListNameAsc{}{}{}": {
+      "snippet": "TeXOSQueryFileListNameAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryRegularFileListNameAsc{}{}{}": {
+      "snippet": "TeXOSQueryRegularFileListNameAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQuerySubDirListNameAsc{}{}{}": {
+      "snippet": "TeXOSQuerySubDirListNameAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryFilterFileListNameAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterFileListNameAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterRegularFileListNameAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterRegularFileListNameAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterSubDirListNameAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterSubDirListNameAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFileListNameDes{}{}{}": {
+      "snippet": "TeXOSQueryFileListNameDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryRegularFileListNameDes{}{}{}": {
+      "snippet": "TeXOSQueryRegularFileListNameDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQuerySubDirListNameDes{}{}{}": {
+      "snippet": "TeXOSQuerySubDirListNameDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryFilterFileListNameDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterFileListNameDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterRegularFileListNameDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterRegularFileListNameDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterSubDirListNameDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterSubDirListNameDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFileListNameIgnoreCaseAsc{}{}{}": {
+      "snippet": "TeXOSQueryFileListNameIgnoreCaseAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryRegularFileListNameIgnoreCaseAsc{}{}{}": {
+      "snippet": "TeXOSQueryRegularFileListNameIgnoreCaseAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQuerySubDirListNameIgnoreCaseAsc{}{}{}": {
+      "snippet": "TeXOSQuerySubDirListNameIgnoreCaseAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryFilterFileListNameIgnoreCaseAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterFileListNameIgnoreCaseAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterRegularFileListNameIgnoreCaseAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterRegularFileListNameIgnoreCaseAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterSubDirListNameIgnoreCaseAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterSubDirListNameIgnoreCaseAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFileListNameIgnoreCaseDes{}{}{}": {
+      "snippet": "TeXOSQueryFileListNameIgnoreCaseDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryRegularFileListNameIgnoreCaseDes{}{}{}": {
+      "snippet": "TeXOSQueryRegularFileListNameIgnoreCaseDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQuerySubDirListNameIgnoreCaseDes{}{}{}": {
+      "snippet": "TeXOSQuerySubDirListNameIgnoreCaseDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryFilterFileListNameIgnoreCaseDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterFileListNameIgnoreCaseDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterRegularFileListNameIgnoreCaseDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterRegularFileListNameIgnoreCaseDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterSubDirListNameIgnoreCaseDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterSubDirListNameIgnoreCaseDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFileListExtAsc{}{}{}": {
+      "snippet": "TeXOSQueryFileListExtAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryRegularFileListExtAsc{}{}{}": {
+      "snippet": "TeXOSQueryRegularFileListExtAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQuerySubDirListExtAsc{}{}{}": {
+      "snippet": "TeXOSQuerySubDirListExtAsc{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryFilterFileListExtAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterFileListExtAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterRegularFileListExtAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterRegularFileListExtAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterSubDirListExtAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterSubDirListExtAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFileListExtDes{}{}{}": {
+      "snippet": "TeXOSQueryFileListExtDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryRegularFileListExtDes{}{}{}": {
+      "snippet": "TeXOSQueryRegularFileListExtDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQuerySubDirListExtDes{}{}{}": {
+      "snippet": "TeXOSQuerySubDirListExtDes{${1:cmd}}{${2:separator}}{${3:directory}}"
+    },
+    "TeXOSQueryFilterFileListExtDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterFileListExtDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterRegularFileListExtDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterRegularFileListExtDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryFilterSubDirListExtDes{}{}{}{}": {
+      "snippet": "TeXOSQueryFilterSubDirListExtDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryWalk{}{}{}{}": {
+      "snippet": "TeXOSQueryWalk{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryWalkDateAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryWalkDateAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryWalkDateDes{}{}{}{}": {
+      "snippet": "TeXOSQueryWalkDateDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryWalkSizeAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryWalkSizeAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryWalkSizeDes{}{}{}{}": {
+      "snippet": "TeXOSQueryWalkSizeDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryWalkNameAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryWalkNameAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryWalkNameDes{}{}{}{}": {
+      "snippet": "TeXOSQueryWalkNameDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryWalkNameIgnoreCaseAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryWalkNameIgnoreCaseAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryWalkNameIgnoreCaseDes{}{}{}{}": {
+      "snippet": "TeXOSQueryWalkNameIgnoreCaseDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryWalkExtAsc{}{}{}{}": {
+      "snippet": "TeXOSQueryWalkExtAsc{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSQueryWalkExtDes{}{}{}{}": {
+      "snippet": "TeXOSQueryWalkExtDes{${1:cmd}}{${2:separator}}{${3:regex}}{${4:directory}}"
+    },
+    "TeXOSInvokerName": {},
+    "TeXOSQueryInvoker{}": {
+      "snippet": "TeXOSQueryInvoker{${1:invoker}}"
+    },
+    "ifTeXOSQueryDryRun": {},
+    "TeXOSQueryDryRuntrue": {},
+    "TeXOSQueryDryRunfalse": {},
+    "TeXOSQueryAllowRestricted": {},
+    "TeXOSQueryDenyRestricted": {},
+    "TeXOSInvokerRestrictedMessage": {},
+    "texosquerynonasciiwrap{}": {
+      "snippet": "texosquerynonasciiwrap{${1:arg}}"
+    },
+    "twrp{}": {
+      "snippet": "twrp{${1:arg}}"
+    },
+    "texosquerynonasciidetokwrap{}": {
+      "snippet": "texosquerynonasciidetokwrap{${1:arg}}"
+    },
+    "fwrp{}": {
+      "snippet": "fwrp{${1:arg}}"
+    },
+    "texosquerybackslash": {},
+    "texosquerytextbackslash": {},
+    "texosqueryleftbrace": {},
+    "texosquerytextleftbrace": {},
+    "texosqueryrightbrace": {},
+    "texosquerytextrightbrace": {},
+    "texosqueryhash": {},
+    "texosquerytexthash": {},
+    "texosqueryunderscore": {},
+    "texosquerytextunderscore": {
+      "snippet": "texosquerytextunderscore "
+    },
+    "texosquerybacktick": {},
+    "texosquerytextbacktick": {},
+    "texosqueryclosequote": {},
+    "texosquerytextclosequote": {},
+    "texosquerydoublequote": {},
+    "texosquerytextdoublequote": {},
+    "texosquerycolon": {},
+    "texosquerytextcolon": {},
+    "texosquerysemicolon": {},
+    "texosquerytextsemicolon": {},
+    "texosqueryequals": {},
+    "texosquerytextequals": {},
+    "texosqueryslash": {},
+    "texosquerytextslash": {},
+    "texosqueryhyphen": {},
+    "texosquerytexthyphen": {},
+    "texosqueryplus": {},
+    "texosquerytextplus": {
+      "snippet": "texosquerytextplus "
+    },
+    "texosqueryperiod": {},
+    "texosquerytextperiod": {},
+    "texosquerycomma": {},
+    "texosquerytextcomma": {},
+    "texosqueryopenparen": {},
+    "texosquerytextopenparen": {},
+    "texosquerycloseparen": {},
+    "texosquerytextcloseparen": {},
+    "texosqueryopensq": {},
+    "texosquerytextopensq": {},
+    "texosqueryclosesq": {},
+    "texosquerytextclosesq": {},
+    "texosqueryasterisk": {},
+    "texosquerytextasterisk": {},
+    "texosqueryatchar": {},
+    "texosquerytextatchar": {},
+    "texosquerybar": {},
+    "texosquerytextbar": {},
+    "texosquerylessthan": {},
+    "texosquerytextlessthan": {},
+    "texosquerygreaterthan": {},
+    "texosquerytextgreaterthan": {},
+    "texosquerytilde": {},
+    "texosquerytexttilde": {},
+    "texosquerycircum": {},
+    "texosquerytextcircum": {},
+    "texosqueryampersand": {},
+    "texosquerytextampersand": {},
+    "texosquerydollar": {},
+    "texosquerytextdollar": {},
+    "texosquerypercent": {},
+    "texosquerytextpercent": {},
+    "texosqueryexclam": {},
+    "texosquerytextexclam": {},
+    "texosqueryquestion": {},
+    "texosquerytextquestion": {},
+    "texosqueryliteralspace": {},
+    "texosquerytextspace": {},
+    "texosquerycurrency{}": {
+      "snippet": "texosquerycurrency{${1:label}}"
+    },
+    "texosquerycurrencydollar": {},
+    "texosquerycurrencycent": {},
+    "texosquerycurrencypound": {},
+    "texosquerycurrencysign": {},
+    "texosquerycurrencyyen": {},
+    "texosquerycurrencyecu": {},
+    "texosquerycurrencycolon": {},
+    "texosquerycurrencycruzeiro": {},
+    "texosquerycurrencyfranc": {},
+    "texosquerycurrencylira": {},
+    "texosquerycurrencymill": {},
+    "texosquerycurrencynaira": {},
+    "texosquerycurrencypeseta": {},
+    "texosquerycurrencyrupee": {},
+    "texosquerycurrencywon": {},
+    "texosquerycurrencynewsheqel": {},
+    "texosquerycurrencydong": {},
+    "texosquerycurrencyeuro": {},
+    "texosquerycurrencykip": {},
+    "texosquerycurrencytugrik": {},
+    "texosquerycurrencydrachma": {},
+    "texosquerycurrencygermanpenny": {},
+    "texosquerycurrencypeso": {},
+    "texosquerycurrencyguarani": {},
+    "texosquerycurrencyaustral": {},
+    "texosquerycurrencyhryvnia": {},
+    "texosquerycurrencycedi": {},
+    "texosquerycurrencylivretournois": {},
+    "texosquerycurrencyspesmilo": {},
+    "texosquerycurrencytenge": {},
+    "texosquerycurrencyturkishlira": {},
+    "texosquerycurrencynordicmark": {},
+    "texosquerycurrencymanat": {},
+    "texosquerycurrencyruble": {},
+    "famp": {},
+    "fapo": {},
+    "fast": {},
+    "fatc": {},
+    "fbks": {},
+    "fcir": {},
+    "fclb": {},
+    "fcln": {},
+    "fcom": {},
+    "fcsb": {},
+    "fdol": {},
+    "fdot": {},
+    "fdqt": {},
+    "feql": {},
+    "fexc": {},
+    "fgre": {},
+    "fgrv": {},
+    "fhsh": {},
+    "fhyn": {},
+    "flbr": {},
+    "fles": {},
+    "fopb": {},
+    "fosb": {},
+    "fpct": {},
+    "fpls": {},
+    "fque": {},
+    "frbr": {},
+    "fscl": {},
+    "fslh": {},
+    "fspc": {},
+    "ftld": {},
+    "fusc": {},
+    "pdfd": {},
+    "tamp": {},
+    "tapo": {},
+    "tast": {},
+    "tatc": {},
+    "tbks": {},
+    "tcir": {},
+    "tclb": {},
+    "tcln": {},
+    "tcom": {},
+    "tcsb": {},
+    "tdol": {},
+    "tdot": {},
+    "tdqt": {},
+    "teql": {},
+    "texc": {},
+    "tgre": {},
+    "tgrv": {},
+    "thsh": {},
+    "thyn": {},
+    "tlbr": {},
+    "tles": {},
+    "topb": {},
+    "tosb": {},
+    "tpct": {},
+    "tpls": {},
+    "tque": {},
+    "trbr": {},
+    "tscl": {},
+    "tslh": {},
+    "tspc": {},
+    "ttld": {},
+    "tusc": {},
+    "texosquerystripquotes{}": {
+      "snippet": "texosquerystripquotes{${1:arg}}"
+    },
+    "texosquerydefpattern{}{}": {
+      "snippet": "texosquerydefpattern{${1:cmd}}{${2:pattern specs}}"
+    },
+    "texosquerydtf{}{}": {
+      "snippet": "texosquerydtf{${1:n}}{${2:identifier}}"
+    },
+    "patdtf{}{}": {
+      "snippet": "patdtf{${1:n}}{${2:identifier}}"
+    },
+    "texosquerypatnum{}": {
+      "snippet": "texosquerypatnum{${1:numeric pattern}}"
+    },
+    "numfmt{}": {
+      "snippet": "numfmt{${1:numeric pattern}}"
+    },
+    "patnumfmt{}": {
+      "snippet": "patnumfmt{${1:numeric pattern}}"
+    },
+    "texosquerypatplusminus{}{}": {
+      "snippet": "texosquerypatplusminus{${1:+ve numeric pattern}}{${2:-ve numeric pattern}}"
+    },
+    "pmnumfmt{}{}": {
+      "snippet": "pmnumfmt{${1:decimal pattern}}{${2:text}}"
+    },
+    "patpmnumfmt{}{}": {
+      "snippet": "patpmnumfmt{${1:decimal pattern}}{${2:text}}"
+    },
+    "texosquerypatsinum{}{}": {
+      "snippet": "texosquerypatsinum{${1:decimal pattern}}{${2:mantissa pattern}}"
+    },
+    "sinumfmt{}{}": {
+      "snippet": "sinumfmt{${1:decimal pattern}}{${2:text}}"
+    },
+    "patsinumfmt{}{}": {
+      "snippet": "patsinumfmt{${1:decimal pattern}}{${2:text}}"
+    },
+    "texosquerypatdec{}{}": {
+      "snippet": "texosquerypatdec{${1:integer pattern}}{${2:fraction pattern}}"
+    },
+    "decfmt{}{}": {
+      "snippet": "decfmt{${1:decimal pattern}}{${2:text}}"
+    },
+    "patdecfmt{}{}": {
+      "snippet": "patdecfmt{${1:decimal pattern}}{${2:text}}"
+    },
+    "texosquerypatprefixcurrency{}{}": {
+      "snippet": "texosquerypatprefixcurrency{${1:decimal pattern}}{${2:text}}"
+    },
+    "pcur{}{}": {
+      "snippet": "pcur{${1:decimal pattern}}{${2:text}}"
+    },
+    "patpcur{}{}": {
+      "snippet": "patpcur{${1:decimal pattern}}{${2:text}}"
+    },
+    "texosquerypatprefixicurrency{}{}": {
+      "snippet": "texosquerypatprefixicurrency{${1:decimal pattern}}{${2:text}}"
+    },
+    "picur{}{}": {
+      "snippet": "picur{${1:decimal pattern}}{${2:text}}"
+    },
+    "patpicur{}{}": {
+      "snippet": "patpicur{${1:decimal pattern}}{${2:text}}"
+    },
+    "texosquerypatsuffixcurrency{}{}": {
+      "snippet": "texosquerypatsuffixcurrency{${1:decimal pattern}}{${2:text}}"
+    },
+    "scur{}{}": {
+      "snippet": "scur{${1:decimal pattern}}{${2:text}}"
+    },
+    "patscur{}{}": {
+      "snippet": "patscur{${1:decimal pattern}}{${2:text}}"
+    },
+    "texosquerypatsuffixicurrency{}{}": {
+      "snippet": "texosquerypatsuffixicurrency{${1:decimal pattern}}{${2:text}}"
+    },
+    "sicur{}{}": {
+      "snippet": "sicur{${1:decimal pattern}}{${2:text}}"
+    },
+    "patsicur{}{}": {
+      "snippet": "patsicur{${1:decimal pattern}}{${2:text}}"
+    },
+    "texosquerypatprefixpercent{}{}": {
+      "snippet": "texosquerypatprefixpercent{${1:decimal pattern}}{${2:text}}"
+    },
+    "ppct{}{}": {
+      "snippet": "ppct{${1:decimal pattern}}{${2:text}}"
+    },
+    "patppct{}{}": {
+      "snippet": "patppct{${1:decimal pattern}}{${2:text}}"
+    },
+    "texosquerypatsuffixpercent{}{}": {
+      "snippet": "texosquerypatsuffixpercent{${1:decimal pattern}}{${2:text}}"
+    },
+    "spct{}{}": {
+      "snippet": "spct{${1:decimal pattern}}{${2:text}}"
+    },
+    "patspct{}{}": {
+      "snippet": "patspct{${1:decimal pattern}}{${2:text}}"
+    },
+    "texosquerypatprefixpermill{}{}": {
+      "snippet": "texosquerypatprefixpermill{${1:decimal pattern}}{${2:text}}"
+    },
+    "ppml{}{}": {
+      "snippet": "ppml{${1:decimal pattern}}{${2:text}}"
+    },
+    "patppml{}{}": {
+      "snippet": "patppml{${1:decimal pattern}}{${2:text}}"
+    },
+    "texosquerypatsuffixpermill{}{}": {
+      "snippet": "texosquerypatsuffixpermill{${1:decimal pattern}}{${2:text}}"
+    },
+    "spml{}{}": {
+      "snippet": "spml{${1:decimal pattern}}{${2:text}}"
+    },
+    "patspml{}{}": {
+      "snippet": "patspml{${1:decimal pattern}}{${2:text}}"
+    },
+    "texosquerypatstr{}": {
+      "snippet": "texosquerypatstr{${1:string}}"
+    },
+    "patstr{}": {
+      "snippet": "patstr{${1:string}}"
+    },
+    "texosquerypatquote": {},
+    "patapo": {},
+    "texosquerypatdigit": {},
+    "patdgt": {},
+    "texosquerypatdigitnozero": {},
+    "patdgtnz": {},
+    "texosquerypatgroupsep": {},
+    "patngp": {},
+    "texosquerypatminus": {},
+    "patmsg": {},
+    "texosqueryfmtdatetime{}": {
+      "snippet": "texosqueryfmtdatetime{${1:pattern}}"
+    },
+    "texosqueryfmttimezonehr{}": {
+      "snippet": "texosqueryfmttimezonehr{${1:number}}"
+    },
+    "texosqueryfmttimezonenumhr{}": {
+      "snippet": "texosqueryfmttimezonenumhr{${1:number}}"
+    },
+    "texosqueryfmttimezonemin{}": {
+      "snippet": "texosqueryfmttimezonemin{${1:number}}"
+    },
+    "texosqueryshorttimezone{}": {
+      "snippet": "texosqueryshorttimezone{${1:id}}"
+    },
+    "texosqueryshortdstzone{}": {
+      "snippet": "texosqueryshortdstzone{${1:id}}"
+    },
+    "texosquerylongtimezone{}": {
+      "snippet": "texosquerylongtimezone{${1:id}}"
+    },
+    "texosquerylongdstzone{}": {
+      "snippet": "texosquerylongdstzone{${1:id}}"
+    },
+    "texosquerytimesep": {},
+    "texosqueryfmtpatz{}": {
+      "snippet": "texosqueryfmtpatz{${1:format}}"
+    },
+    "texosqueryfmtpatzz{}": {
+      "snippet": "texosqueryfmtpatzz{${1:format}}"
+    },
+    "texosqueryfmtpatzzz{}": {
+      "snippet": "texosqueryfmtpatzzz{${1:format}}"
+    },
+    "texosqueryfmtpatzzzz{}": {
+      "snippet": "texosqueryfmtpatzzzz{${1:format}}"
+    },
+    "texosqueryfmtpatZ{}": {
+      "snippet": "texosqueryfmtpatZ{${1:format}}"
+    },
+    "texosqueryfmtpatZZ{}": {
+      "snippet": "texosqueryfmtpatZZ{${1:format}}"
+    },
+    "texosqueryfmtpatZZZ{}": {
+      "snippet": "texosqueryfmtpatZZZ{${1:format}}"
+    },
+    "texosqueryfmtpatZZZZ{}": {
+      "snippet": "texosqueryfmtpatZZZZ{${1:format}}"
+    },
+    "texosqueryfmtpatX{}": {
+      "snippet": "texosqueryfmtpatX{${1:format}}"
+    },
+    "texosqueryfmtpatXX{}": {
+      "snippet": "texosqueryfmtpatXX{${1:format}}"
+    },
+    "texosqueryfmtpatXXX{}": {
+      "snippet": "texosqueryfmtpatXXX{${1:format}}"
+    },
+    "texosqueryfmtpatXXXX{}": {
+      "snippet": "texosqueryfmtpatXXXX{${1:format}}"
+    },
+    "texosqueryfmtpata{}": {
+      "snippet": "texosqueryfmtpata{${1:format}}"
+    },
+    "texosqueryfmtpataa{}": {
+      "snippet": "texosqueryfmtpataa{${1:format}}"
+    },
+    "texosqueryfmtpataaa{}": {
+      "snippet": "texosqueryfmtpataaa{${1:format}}"
+    },
+    "texosqueryfmtpataaaa{}": {
+      "snippet": "texosqueryfmtpataaaa{${1:format}}"
+    },
+    "texosqueryfmtpatG{}": {
+      "snippet": "texosqueryfmtpatG{${1:format}}"
+    },
+    "texosqueryfmtpatGG{}": {
+      "snippet": "texosqueryfmtpatGG{${1:format}}"
+    },
+    "texosqueryfmtpatGGG {}": {
+      "snippet": "texosqueryfmtpatGGG {${1:format}}"
+    },
+    "texosqueryfmtpatGGGG{}": {
+      "snippet": "texosqueryfmtpatGGGG{${1:format}}"
+    },
+    "texosqueryfmtnumber{}{}{}{}": {
+      "snippet": "texosqueryfmtnumber{${1:pattern}}{${2:int}}{${3:frac}}{${4:mantissa}}"
+    },
+    "texosquerypatfmtstr{}": {
+      "snippet": "texosquerypatfmtstr{${1:arg}}"
+    },
+    "texosquerypatfmtquote": {},
+    "texosquerypatfmtexp": {},
+    "texosquerypatfmtdecsep": {},
+    "texosquerypatfmtcurdecsep": {},
+    "texosquerypatfmtint{}": {
+      "snippet": "texosquerypatfmtint{${1:arg}}"
+    },
+    "texosquerypatfmtcurrencysign": {},
+    "texosquerypatfmticurrencysign": {},
+    "texosquerypatfmtminus": {},
+    "texosquerypatfmtplus": {},
+    "texosquerypatfmtgroupsep": {},
+    "texosquerypatfmtpercentsign": {},
+    "texosquerypatfmtpermillsign": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

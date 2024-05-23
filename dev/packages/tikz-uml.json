@@ -1,0 +1,1580 @@
+{
+  "includes": {
+    "ifthen": [],
+    "tikz": [],
+    "tikzlibrarybackgrounds": [],
+    "tikzlibraryshapes": [],
+    "tikzlibraryfit": [],
+    "tikzlibraryshadows": [],
+    "tikzlibrarydecorations.markings": [],
+    "xstring": [],
+    "calc": [],
+    "pgfopts": []
+  },
+  "macros": {
+    "umlemptypackage{}": {
+      "snippet": "umlemptypackage{${1:package-name}}"
+    },
+    "umlemptypackage[]{}": {
+      "snippet": "umlemptypackage[${2:options}]{${1:package-name}}"
+    },
+    "umlclass{}{}{}": {
+      "snippet": "umlclass{${1:class-name}}{${2:attributes}}{${3:operations}}"
+    },
+    "umlclass[]{}{}{}": {
+      "snippet": "umlclass[${4:options}]{${1:class-name}}{${2:attributes}}{${3:operations}}"
+    },
+    "umlstatic{}": {
+      "snippet": "umlstatic{${1:text}}"
+    },
+    "umlvirt{}": {
+      "snippet": "umlvirt{${1:text}}"
+    },
+    "umlemptyclass{}": {
+      "snippet": "umlemptyclass{${1:class-name}}"
+    },
+    "umlemptyclass[]{}": {
+      "snippet": "umlemptyclass[${2:options}]{${1:class-name}}"
+    },
+    "umlsimpleclass{}": {
+      "snippet": "umlsimpleclass{${1:class-name}}"
+    },
+    "umlsimpleclass[]{}": {
+      "snippet": "umlsimpleclass[${2:options}]{${1:class-name}}"
+    },
+    "umlabstract{}{}{}": {
+      "snippet": "umlabstract{${1:class-name}}{${2:attributes}}{${3:operations}}"
+    },
+    "umlabstract[]{}{}{}": {
+      "snippet": "umlabstract[${4:options}]{${1:class-name}}{${2:attributes}}{${3:operations}}"
+    },
+    "umltypedef{}{}{}": {
+      "snippet": "umltypedef{${1:class-name}}{${2:attributes}}{${3:operations}}"
+    },
+    "umltypedef[]{}{}{}": {
+      "snippet": "umltypedef[${4:options}]{${1:class-name}}{${2:attributes}}{${3:operations}}"
+    },
+    "umlenum{}{}{}": {
+      "snippet": "umlenum{${1:class-name}}{${2:attributes}}{${3:operations}}"
+    },
+    "umlenum[]{}{}{}": {
+      "snippet": "umlenum[${4:options}]{${1:class-name}}{${2:attributes}}{${3:operations}}"
+    },
+    "umlinterface{}{}{}": {
+      "snippet": "umlinterface{${1:class-name}}{${2:attributes}}{${3:operations}}"
+    },
+    "umlinterface[]{}{}{}": {
+      "snippet": "umlinterface[${4:options}]{${1:class-name}}{${2:attributes}}{${3:operations}}"
+    },
+    "umlsimpleinterface{}": {
+      "snippet": "umlsimpleinterface{${1:interface-name}}"
+    },
+    "umlsimpleinterface[]{}": {
+      "snippet": "umlsimpleinterface[${2:options}]{${1:interface-name}}"
+    },
+    "umldep{}{}": {
+      "snippet": "umldep{${1:source-class}}{${2:target-class}}"
+    },
+    "umldep[]{}{}": {
+      "snippet": "umldep[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlassoc{}{}": {
+      "snippet": "umlassoc{${1:source-class}}{${2:target-class}}"
+    },
+    "umlassoc[]{}{}": {
+      "snippet": "umlassoc[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umluniassoc{}{}": {
+      "snippet": "umluniassoc{${1:source-class}}{${2:target-class}}"
+    },
+    "umluniassoc[]{}{}": {
+      "snippet": "umluniassoc[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlbiassoc{}{}": {
+      "snippet": "umlbiassoc{${1:source-class}}{${2:target-class}}"
+    },
+    "umlbiassoc[]{}{}": {
+      "snippet": "umlbiassoc[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlaggreg{}{}": {
+      "snippet": "umlaggreg{${1:source-class}}{${2:target-class}}"
+    },
+    "umlaggreg[]{}{}": {
+      "snippet": "umlaggreg[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umluniaggreg{}{}": {
+      "snippet": "umluniaggreg{${1:source-class}}{${2:target-class}}"
+    },
+    "umluniaggreg[]{}{}": {
+      "snippet": "umluniaggreg[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlcompo{}{}": {
+      "snippet": "umlcompo{${1:source-class}}{${2:target-class}}"
+    },
+    "umlcompo[]{}{}": {
+      "snippet": "umlcompo[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlunicompo{}{}": {
+      "snippet": "umlunicompo{${1:source-class}}{${2:target-class}}"
+    },
+    "umlunicompo[]{}{}": {
+      "snippet": "umlunicompo[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlimport{}{}": {
+      "snippet": "umlimport{${1:source-class}}{${2:target-class}}"
+    },
+    "umlimport[]{}{}": {
+      "snippet": "umlimport[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlinherit{}{}": {
+      "snippet": "umlinherit{${1:source-class}}{${2:target-class}}"
+    },
+    "umlinherit[]{}{}": {
+      "snippet": "umlinherit[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlimpl{}{}": {
+      "snippet": "umlimpl{${1:source-class}}{${2:target-class}}"
+    },
+    "umlimpl[]{}{}": {
+      "snippet": "umlimpl[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlnest{}{}": {
+      "snippet": "umlnest{${1:source-class}}{${2:target-class}}"
+    },
+    "umlnest[]{}{}": {
+      "snippet": "umlnest[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlreal{}{}": {
+      "snippet": "umlreal{${1:source-class}}{${2:target-class}}"
+    },
+    "umlreal[]{}{}": {
+      "snippet": "umlreal[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVinherit{}{}": {
+      "snippet": "umlHVinherit{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVinherit[]{}{}": {
+      "snippet": "umlHVinherit[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVimpl{}{}": {
+      "snippet": "umlHVimpl{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVimpl[]{}{}": {
+      "snippet": "umlHVimpl[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVreal{}{}": {
+      "snippet": "umlHVreal{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVreal[]{}{}": {
+      "snippet": "umlHVreal[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVassoc{}{}": {
+      "snippet": "umlHVassoc{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVassoc[]{}{}": {
+      "snippet": "umlHVassoc[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVuniassoc{}{}": {
+      "snippet": "umlHVuniassoc{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVuniassoc[]{}{}": {
+      "snippet": "umlHVuniassoc[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVaggreg{}{}": {
+      "snippet": "umlHVaggreg{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVaggreg[]{}{}": {
+      "snippet": "umlHVaggreg[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVuniaggreg{}{}": {
+      "snippet": "umlHVuniaggreg{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVuniaggreg[]{}{}": {
+      "snippet": "umlHVuniaggreg[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVcompo{}{}": {
+      "snippet": "umlHVcompo{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVcompo[]{}{}": {
+      "snippet": "umlHVcompo[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVunicompo{}{}": {
+      "snippet": "umlHVunicompo{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVunicompo[]{}{}": {
+      "snippet": "umlHVunicompo[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVimport{}{}": {
+      "snippet": "umlHVimport{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVimport[]{}{}": {
+      "snippet": "umlHVimport[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVnest{}{}": {
+      "snippet": "umlHVnest{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVnest[]{}{}": {
+      "snippet": "umlHVnest[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVdep{}{}": {
+      "snippet": "umlHVdep{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVdep[]{}{}": {
+      "snippet": "umlHVdep[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHinherit{}{}": {
+      "snippet": "umlVHinherit{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHinherit[]{}{}": {
+      "snippet": "umlVHinherit[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHimpl{}{}": {
+      "snippet": "umlVHimpl{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHimpl[]{}{}": {
+      "snippet": "umlVHimpl[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHreal{}{}": {
+      "snippet": "umlVHreal{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHreal[]{}{}": {
+      "snippet": "umlVHreal[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHassoc{}{}": {
+      "snippet": "umlVHassoc{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHassoc[]{}{}": {
+      "snippet": "umlVHassoc[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHuniassoc{}{}": {
+      "snippet": "umlVHuniassoc{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHuniassoc[]{}{}": {
+      "snippet": "umlVHuniassoc[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHaggreg{}{}": {
+      "snippet": "umlVHaggreg{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHaggreg[]{}{}": {
+      "snippet": "umlVHaggreg[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHuniaggreg{}{}": {
+      "snippet": "umlVHuniaggreg{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHuniaggreg[]{}{}": {
+      "snippet": "umlVHuniaggreg[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHcompo{}{}": {
+      "snippet": "umlVHcompo{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHcompo[]{}{}": {
+      "snippet": "umlVHcompo[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHunicompo{}{}": {
+      "snippet": "umlVHunicompo{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHunicompo[]{}{}": {
+      "snippet": "umlVHunicompo[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHimport{}{}": {
+      "snippet": "umlVHimport{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHimport[]{}{}": {
+      "snippet": "umlVHimport[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHnest{}{}": {
+      "snippet": "umlVHnest{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHnest[]{}{}": {
+      "snippet": "umlVHnest[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHdep{}{}": {
+      "snippet": "umlVHdep{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHdep[]{}{}": {
+      "snippet": "umlVHdep[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHinherit{}{}": {
+      "snippet": "umlHVHinherit{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHinherit[]{}{}": {
+      "snippet": "umlHVHinherit[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHimpl{}{}": {
+      "snippet": "umlHVHimpl{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHimpl[]{}{}": {
+      "snippet": "umlHVHimpl[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHreal{}{}": {
+      "snippet": "umlHVHreal{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHreal[]{}{}": {
+      "snippet": "umlHVHreal[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHassoc{}{}": {
+      "snippet": "umlHVHassoc{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHassoc[]{}{}": {
+      "snippet": "umlHVHassoc[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHuniassoc{}{}": {
+      "snippet": "umlHVHuniassoc{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHuniassoc[]{}{}": {
+      "snippet": "umlHVHuniassoc[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHaggreg{}{}": {
+      "snippet": "umlHVHaggreg{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHaggreg[]{}{}": {
+      "snippet": "umlHVHaggreg[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHuniaggreg{}{}": {
+      "snippet": "umlHVHuniaggreg{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHuniaggreg[]{}{}": {
+      "snippet": "umlHVHuniaggreg[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHcompo{}{}": {
+      "snippet": "umlHVHcompo{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHcompo[]{}{}": {
+      "snippet": "umlHVHcompo[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHunicompo{}{}": {
+      "snippet": "umlHVHunicompo{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHunicompo[]{}{}": {
+      "snippet": "umlHVHunicompo[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHimport{}{}": {
+      "snippet": "umlHVHimport{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHimport[]{}{}": {
+      "snippet": "umlHVHimport[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHnest{}{}": {
+      "snippet": "umlHVHnest{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHnest[]{}{}": {
+      "snippet": "umlHVHnest[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHdep{}{}": {
+      "snippet": "umlHVHdep{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHdep[]{}{}": {
+      "snippet": "umlHVHdep[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVinherit{}{}": {
+      "snippet": "umlVHVinherit{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVinherit[]{}{}": {
+      "snippet": "umlVHVinherit[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVimpl{}{}": {
+      "snippet": "umlVHVimpl{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVimpl[]{}{}": {
+      "snippet": "umlVHVimpl[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVreal{}{}": {
+      "snippet": "umlVHVreal{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVreal[]{}{}": {
+      "snippet": "umlVHVreal[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVassoc{}{}": {
+      "snippet": "umlVHVassoc{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVassoc[]{}{}": {
+      "snippet": "umlVHVassoc[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVuniassoc{}{}": {
+      "snippet": "umlVHVuniassoc{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVuniassoc[]{}{}": {
+      "snippet": "umlVHVuniassoc[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVaggreg{}{}": {
+      "snippet": "umlVHVaggreg{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVaggreg[]{}{}": {
+      "snippet": "umlVHVaggreg[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVuniaggreg{}{}": {
+      "snippet": "umlVHVuniaggreg{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVuniaggreg[]{}{}": {
+      "snippet": "umlVHVuniaggreg[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVcompo{}{}": {
+      "snippet": "umlVHVcompo{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVcompo[]{}{}": {
+      "snippet": "umlVHVcompo[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVunicompo{}{}": {
+      "snippet": "umlVHVunicompo{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVunicompo[]{}{}": {
+      "snippet": "umlVHVunicompo[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVimport{}{}": {
+      "snippet": "umlVHVimport{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVimport[]{}{}": {
+      "snippet": "umlVHVimport[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVnest{}{}": {
+      "snippet": "umlVHVnest{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVnest[]{}{}": {
+      "snippet": "umlVHVnest[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVdep{}{}": {
+      "snippet": "umlVHVdep{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVdep[]{}{}": {
+      "snippet": "umlVHVdep[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlrelation{}{}": {
+      "snippet": "umlrelation{${1:source-class}}{${2:target-class}}"
+    },
+    "umlrelation[]{}{}": {
+      "snippet": "umlrelation[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVrelation{}{}": {
+      "snippet": "umlHVrelation{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVrelation[]{}{}": {
+      "snippet": "umlHVrelation[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHrelation{}{}": {
+      "snippet": "umlVHrelation{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHrelation[]{}{}": {
+      "snippet": "umlVHrelation[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHrelation{}{}": {
+      "snippet": "umlHVHrelation{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHrelation[]{}{}": {
+      "snippet": "umlHVHrelation[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVrelation{}{}": {
+      "snippet": "umlVHVrelation{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVrelation[]{}{}": {
+      "snippet": "umlVHVrelation[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlCNrelation{}{}{}": {
+      "snippet": "umlCNrelation{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNrelation[]{}{}{}": {
+      "snippet": "umlCNrelation[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNinherit{}{}{}": {
+      "snippet": "umlCNinherit{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNinherit[]{}{}{}": {
+      "snippet": "umlCNinherit[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNimpl{}{}{}": {
+      "snippet": "umlCNimpl{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNimpl[]{}{}{}": {
+      "snippet": "umlCNimpl[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNreal{}{}{}": {
+      "snippet": "umlCNreal{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNreal[]{}{}{}": {
+      "snippet": "umlCNreal[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNassoc{}{}{}": {
+      "snippet": "umlCNassoc{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNassoc[]{}{}{}": {
+      "snippet": "umlCNassoc[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNuniassoc{}{}{}": {
+      "snippet": "umlCNuniassoc{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNuniassoc[]{}{}{}": {
+      "snippet": "umlCNuniassoc[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNaggreg{}{}{}": {
+      "snippet": "umlCNaggreg{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNaggreg[]{}{}{}": {
+      "snippet": "umlCNaggreg[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNuniaggreg{}{}{}": {
+      "snippet": "umlCNuniaggreg{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNuniaggreg[]{}{}{}": {
+      "snippet": "umlCNuniaggreg[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNcompo{}{}{}": {
+      "snippet": "umlCNcompo{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNcompo[]{}{}{}": {
+      "snippet": "umlCNcompo[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNunicompo{}{}{}": {
+      "snippet": "umlCNunicompo{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNunicompo[]{}{}{}": {
+      "snippet": "umlCNunicompo[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNimport{}{}{}": {
+      "snippet": "umlCNimport{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNimport[]{}{}{}": {
+      "snippet": "umlCNimport[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNnest{}{}{}": {
+      "snippet": "umlCNnest{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNnest[]{}{}{}": {
+      "snippet": "umlCNnest[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNdep{}{}{}": {
+      "snippet": "umlCNdep{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlCNdep[]{}{}{}": {
+      "snippet": "umlCNdep[${4:options}]{${1:source-class}}{${2:control-node}}{${3:target-class}}"
+    },
+    "umlpoint{}": {
+      "snippet": "umlpoint{${1:node}}"
+    },
+    "umlNarynode{}": {
+      "snippet": "umlNarynode{${1:label-text}}"
+    },
+    "umlNarynode[]{}": {
+      "snippet": "umlNarynode[${2:options}]{${1:label-text}}"
+    },
+    "umlnote{}{}": {
+      "snippet": "umlnote{${1:node-name}}{${2:note}}"
+    },
+    "umlnote[]{}{}": {
+      "snippet": "umlnote[${3:options}]{${1:node-name}}{${2:note}}"
+    },
+    "umlHVHnote{}{}": {
+      "snippet": "umlHVHnote{${1:node-name}}{${2:note}}"
+    },
+    "umlHVHnote[]{}{}": {
+      "snippet": "umlHVHnote[${3:options}]{${1:node-name}}{${2:note}}"
+    },
+    "umlHVnote{}{}": {
+      "snippet": "umlHVnote{${1:node-name}}{${2:note}}"
+    },
+    "umlHVnote[]{}{}": {
+      "snippet": "umlHVnote[${3:options}]{${1:node-name}}{${2:note}}"
+    },
+    "umlVHVnote{}{}": {
+      "snippet": "umlVHVnote{${1:node-name}}{${2:note}}"
+    },
+    "umlVHVnote[]{}{}": {
+      "snippet": "umlVHVnote[${3:options}]{${1:node-name}}{${2:note}}"
+    },
+    "umlVHnote{}{}": {
+      "snippet": "umlVHnote{${1:node-name}}{${2:note}}"
+    },
+    "umlVHnote[]{}{}": {
+      "snippet": "umlVHnote[${3:options}]{${1:node-name}}{${2:note}}"
+    },
+    "umlassocclass{}{}{}{}": {
+      "snippet": "umlassocclass{${1:class-name}}{${2:attributes}}{${3:operations}}{${4:}}"
+    },
+    "umlassocclass[]{}{}{}{}": {
+      "snippet": "umlassocclass[${5:options}]{${1:class-name}}{${2:attributes}}{${3:operations}}{${4:}}"
+    },
+    "tikzumlset{}": {
+      "snippet": "tikzumlset{${1:options}}"
+    },
+    "umlactor{}": {
+      "snippet": "umlactor{${1:actor-name}}"
+    },
+    "umlactor[]{}": {
+      "snippet": "umlactor[${2:options}]{${1:actor-name}}"
+    },
+    "umlusecase{}": {
+      "snippet": "umlusecase{${1:label-text}}"
+    },
+    "umlusecase[]{}": {
+      "snippet": "umlusecase[${2:options}]{${1:label-text}}"
+    },
+    "umlinclude{}{}": {
+      "snippet": "umlinclude{${1:source-case}}{${2:target-case}}"
+    },
+    "umlinclude[]{}{}": {
+      "snippet": "umlinclude[${3:options}]{${1:source-case}}{${2:target-case}}"
+    },
+    "umlHVinclude{}{}": {
+      "snippet": "umlHVinclude{${1:source-case}}{${2:target-case}}"
+    },
+    "umlHVinclude[]{}{}": {
+      "snippet": "umlHVinclude[${3:options}]{${1:source-case}}{${2:target-case}}"
+    },
+    "umlVHinclude{}{}": {
+      "snippet": "umlVHinclude{${1:source-case}}{${2:target-case}}"
+    },
+    "umlVHinclude[]{}{}": {
+      "snippet": "umlVHinclude[${3:options}]{${1:source-case}}{${2:target-case}}"
+    },
+    "umlHVHinclude{}{}": {
+      "snippet": "umlHVHinclude{${1:source-case}}{${2:target-case}}"
+    },
+    "umlHVHinclude[]{}{}": {
+      "snippet": "umlHVHinclude[${3:options}]{${1:source-case}}{${2:target-case}}"
+    },
+    "umlVHVinclude{}{}": {
+      "snippet": "umlVHVinclude{${1:source-case}}{${2:target-case}}"
+    },
+    "umlVHVinclude[]{}{}": {
+      "snippet": "umlVHVinclude[${3:options}]{${1:source-case}}{${2:target-case}}"
+    },
+    "umlCNinclude{}{}{}": {
+      "snippet": "umlCNinclude{${1:source-case}}{${2:control-node}}{${3:target-case}}"
+    },
+    "umlCNinclude[]{}{}{}": {
+      "snippet": "umlCNinclude[${4:options}]{${1:source-case}}{${2:control-node}}{${3:target-case}}"
+    },
+    "umlextend{}{}": {
+      "snippet": "umlextend{${1:source-case}}{${2:target-case}}"
+    },
+    "umlextend[]{}{}": {
+      "snippet": "umlextend[${3:options}]{${1:source-case}}{${2:target-case}}"
+    },
+    "umlHVextend{}{}": {
+      "snippet": "umlHVextend{${1:source-case}}{${2:target-case}}"
+    },
+    "umlHVextend[]{}{}": {
+      "snippet": "umlHVextend[${3:options}]{${1:source-case}}{${2:target-case}}"
+    },
+    "umlVHextend{}{}": {
+      "snippet": "umlVHextend{${1:source-case}}{${2:target-case}}"
+    },
+    "umlVHextend[]{}{}": {
+      "snippet": "umlVHextend[${3:options}]{${1:source-case}}{${2:target-case}}"
+    },
+    "umlHVHextend{}{}": {
+      "snippet": "umlHVHextend{${1:source-case}}{${2:target-case}}"
+    },
+    "umlHVHextend[]{}{}": {
+      "snippet": "umlHVHextend[${3:options}]{${1:source-case}}{${2:target-case}}"
+    },
+    "umlVHVextend{}{}": {
+      "snippet": "umlVHVextend{${1:source-case}}{${2:target-case}}"
+    },
+    "umlVHVextend[]{}{}": {
+      "snippet": "umlVHVextend[${3:options}]{${1:source-case}}{${2:target-case}}"
+    },
+    "umlCNextend{}{}{}": {
+      "snippet": "umlCNextend{${1:source-case}}{${2:control-node}}{${3:target-case}}"
+    },
+    "umlCNextend[]{}{}{}": {
+      "snippet": "umlCNextend[${4:options}]{${1:source-case}}{${2:control-node}}{${3:target-case}}"
+    },
+    "umlbasicstate{}": {
+      "snippet": "umlbasicstate{${1:state-name}}"
+    },
+    "umlbasicstate[]{}": {
+      "snippet": "umlbasicstate[${2:options}]{${1:state-name}}"
+    },
+    "umlstateinitial": {},
+    "umlstateinitial[]": {
+      "snippet": "umlstateinitial[${1:options}]"
+    },
+    "umlstatefinal": {},
+    "umlstatefinal[]": {
+      "snippet": "umlstatefinal[${1:options}]"
+    },
+    "umlstatejoin": {},
+    "umlstatejoin[]": {
+      "snippet": "umlstatejoin[${1:options}]"
+    },
+    "umlstatedecision": {},
+    "umlstatedecision[]": {
+      "snippet": "umlstatedecision[${1:options}]"
+    },
+    "umlstateenter": {},
+    "umlstateenter[]": {
+      "snippet": "umlstateenter[${1:options}]"
+    },
+    "umlstateexit": {},
+    "umlstateexit[]": {
+      "snippet": "umlstateexit[${1:options}]"
+    },
+    "umlstateend": {},
+    "umlstateend[]": {
+      "snippet": "umlstateend[${1:options}]"
+    },
+    "umlstatehistory": {},
+    "umlstatehistory[]": {
+      "snippet": "umlstatehistory[${1:options}]"
+    },
+    "umlstatedeephistory": {},
+    "umlstatedeephistory[]": {
+      "snippet": "umlstatedeephistory[${1:options}]"
+    },
+    "umltrans{}{}": {
+      "snippet": "umltrans{${1:source-state}}{${2:target-state}}"
+    },
+    "umltrans[]{}{}": {
+      "snippet": "umltrans[${3:options}]{${1:source-state}}{${2:target-state}}"
+    },
+    "umlHVtrans{}{}": {
+      "snippet": "umlHVtrans{${1:source-state}}{${2:target-state}}"
+    },
+    "umlHVtrans[]{}{}": {
+      "snippet": "umlHVtrans[${3:options}]{${1:source-state}}{${2:target-state}}"
+    },
+    "umlVHtrans{}{}": {
+      "snippet": "umlVHtrans{${1:source-state}}{${2:target-state}}"
+    },
+    "umlVHtrans[]{}{}": {
+      "snippet": "umlVHtrans[${3:options}]{${1:source-state}}{${2:target-state}}"
+    },
+    "umlVHVtrans{}{}": {
+      "snippet": "umlVHVtrans{${1:source-state}}{${2:target-state}}"
+    },
+    "umlVHVtrans[]{}{}": {
+      "snippet": "umlVHVtrans[${3:options}]{${1:source-state}}{${2:target-state}}"
+    },
+    "umlHVHtrans{}{}": {
+      "snippet": "umlHVHtrans{${1:source-state}}{${2:target-state}}"
+    },
+    "umlHVHtrans[]{}{}": {
+      "snippet": "umlHVHtrans[${3:options}]{${1:source-state}}{${2:target-state}}"
+    },
+    "umlCNtrans{}{}{}": {
+      "snippet": "umlCNtrans{${1:source-state}}{${2:control-node}}{${3:target-state}}"
+    },
+    "umlCNtrans[]{}{}{}": {
+      "snippet": "umlCNtrans[${4:options}]{${1:source-state}}{${2:control-node}}{${3:target-state}}"
+    },
+    "umlobject{}": {
+      "snippet": "umlobject{${1:object-name}}"
+    },
+    "umlobject[]{}": {
+      "snippet": "umlobject[${2:options}]{${1:object-name}}"
+    },
+    "umlbasicobject{}": {
+      "snippet": "umlbasicobject{${1:object-name}}"
+    },
+    "umlbasicobject[]{}": {
+      "snippet": "umlbasicobject[${2:options}]{${1:object-name}}"
+    },
+    "umldatabase{}": {
+      "snippet": "umldatabase{${1:database-name}}"
+    },
+    "umldatabase[]{}": {
+      "snippet": "umldatabase[${2:options}]{${1:database-name}}"
+    },
+    "umlmulti{}": {
+      "snippet": "umlmulti{${1:object-name}}"
+    },
+    "umlmulti[]{}": {
+      "snippet": "umlmulti[${2:options}]{${1:object-name}}"
+    },
+    "umlentity{}": {
+      "snippet": "umlentity{${1:entity-name}}"
+    },
+    "umlentity[]{}": {
+      "snippet": "umlentity[${2:options}]{${1:entity-name}}"
+    },
+    "umlboundary{}": {
+      "snippet": "umlboundary{${1:boundary-name}}"
+    },
+    "umlboundary[]{}": {
+      "snippet": "umlboundary[${2:options}]{${1:boundary-name}}"
+    },
+    "umlcontrol{}": {
+      "snippet": "umlcontrol{${1:control-name}}"
+    },
+    "umlcontrol[]{}": {
+      "snippet": "umlcontrol[${2:options}]{${1:control-name}}"
+    },
+    "umlcreatecall{}{}": {
+      "snippet": "umlcreatecall{${1:call-sender}}{${2:object-name}}"
+    },
+    "umlcreatecall[]{}{}": {
+      "snippet": "umlcreatecall[${3:options}]{${1:call-sender}}{${2:object-name}}"
+    },
+    "umlfpart": {},
+    "umlfpart[]": {
+      "snippet": "umlfpart[${1:label-text}]"
+    },
+    "umlbasiccomponent{}": {
+      "snippet": "umlbasiccomponent{${1:component-name}}"
+    },
+    "umlbasiccomponent[]{}": {
+      "snippet": "umlbasiccomponent[${2:options}]{${1:component-name}}"
+    },
+    "umlprovidedinterface{}": {
+      "snippet": "umlprovidedinterface{${1:interface-name}}"
+    },
+    "umlprovidedinterface[]{}": {
+      "snippet": "umlprovidedinterface[${2:options}]{${1:interface-name}}"
+    },
+    "umlrequiredinterface{}": {
+      "snippet": "umlrequiredinterface{${1:interface-name}}"
+    },
+    "umlrequiredinterface[]{}": {
+      "snippet": "umlrequiredinterface[${2:options}]{${1:interface-name}}"
+    },
+    "umlassemblyconnector{}{}": {
+      "snippet": "umlassemblyconnector{${1:component1}}{${2:component2}}"
+    },
+    "umlassemblyconnector[]{}{}": {
+      "snippet": "umlassemblyconnector[${3:options}]{${1:component1}}{${2:component2}}"
+    },
+    "umlHVassemblyconnector{}{}": {
+      "snippet": "umlHVassemblyconnector{${1:component1}}{${2:component2}}"
+    },
+    "umlHVassemblyconnector[]{}{}": {
+      "snippet": "umlHVassemblyconnector[${3:options}]{${1:component1}}{${2:component2}}"
+    },
+    "umlVHassemblyconnector{}{}": {
+      "snippet": "umlVHassemblyconnector{${1:component1}}{${2:component2}}"
+    },
+    "umlVHassemblyconnector[]{}{}": {
+      "snippet": "umlVHassemblyconnector[${3:options}]{${1:component1}}{${2:component2}}"
+    },
+    "umlHVHassemblyconnector{}{}": {
+      "snippet": "umlHVHassemblyconnector{${1:component1}}{${2:component2}}"
+    },
+    "umlHVHassemblyconnector[]{}{}": {
+      "snippet": "umlHVHassemblyconnector[${3:options}]{${1:component1}}{${2:component2}}"
+    },
+    "umlVHVassemblyconnector{}{}": {
+      "snippet": "umlVHVassemblyconnector{${1:component1}}{${2:component2}}"
+    },
+    "umlVHVassemblyconnector[]{}{}": {
+      "snippet": "umlVHVassemblyconnector[${3:options}]{${1:component1}}{${2:component2}}"
+    },
+    "umldelegateconnector{}{}": {
+      "snippet": "umldelegateconnector{${1:sub-component}}{${2:parent-component}}"
+    },
+    "umldelegateconnector[]{}{}": {
+      "snippet": "umldelegateconnector[${3:options}]{${1:sub-component}}{${2:parent-component}}"
+    },
+    "umlHVdelegateconnector{}{}": {
+      "snippet": "umlHVdelegateconnector{${1:sub-component}}{${2:parent-component}}"
+    },
+    "umlHVdelegateconnector[]{}{}": {
+      "snippet": "umlHVdelegateconnector[${3:options}]{${1:sub-component}}{${2:parent-component}}"
+    },
+    "umlVHdelegateconnector{}{}": {
+      "snippet": "umlVHdelegateconnector{${1:sub-component}}{${2:parent-component}}"
+    },
+    "umlVHdelegateconnector[]{}{}": {
+      "snippet": "umlVHdelegateconnector[${3:options}]{${1:sub-component}}{${2:parent-component}}"
+    },
+    "umlHVHdelegateconnector{}{}": {
+      "snippet": "umlHVHdelegateconnector{${1:sub-component}}{${2:parent-component}}"
+    },
+    "umlHVHdelegateconnector[]{}{}": {
+      "snippet": "umlHVHdelegateconnector[${3:options}]{${1:sub-component}}{${2:parent-component}}"
+    },
+    "umlVHVdelegateconnector{}{}": {
+      "snippet": "umlVHVdelegateconnector{${1:sub-component}}{${2:parent-component}}"
+    },
+    "umlVHVdelegateconnector[]{}{}": {
+      "snippet": "umlVHVdelegateconnector[${3:options}]{${1:sub-component}}{${2:parent-component}}"
+    },
+    "umlport{}{}": {
+      "snippet": "umlport{${1:component-name}}{${2:anchor}}"
+    },
+    "umlport[]{}{}": {
+      "snippet": "umlport[${3:options}]{${1:component-name}}{${2:anchor}}"
+    },
+    "umlCNfriend{}{}": {
+      "snippet": "umlCNfriend{${1:source-class}}{${2:target-class}}"
+    },
+    "umlCNfriend[]{}{}": {
+      "snippet": "umlCNfriend[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHfriend{}{}": {
+      "snippet": "umlHVHfriend{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVHfriend[]{}{}": {
+      "snippet": "umlHVHfriend[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVfriend{}{}": {
+      "snippet": "umlHVfriend{${1:source-class}}{${2:target-class}}"
+    },
+    "umlHVfriend[]{}{}": {
+      "snippet": "umlHVfriend[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVfriend{}{}": {
+      "snippet": "umlVHVfriend{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHVfriend[]{}{}": {
+      "snippet": "umlVHVfriend[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHfriend{}{}": {
+      "snippet": "umlVHfriend{${1:source-class}}{${2:target-class}}"
+    },
+    "umlVHfriend[]{}{}": {
+      "snippet": "umlVHfriend[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlfriend{}{}": {
+      "snippet": "umlfriend{${1:source-class}}{${2:target-class}}"
+    },
+    "umlfriend[]{}{}": {
+      "snippet": "umlfriend[${3:options}]{${1:source-class}}{${2:target-class}}"
+    },
+    "umlassemblyconnectorsymbol{}{}": {
+      "snippet": "umlassemblyconnectorsymbol{${1:start-name}}{${2:end-name}}"
+    },
+    "umlnode{}{}": {
+      "snippet": "umlnode{${1:arg1}}{${2:arg2}}"
+    },
+    "umlsdnode{}": {
+      "snippet": "umlsdnode{${1:node}}"
+    },
+    "umlsdnode[]{}": {
+      "snippet": "umlsdnode[${2:options}]{${1:node}}"
+    },
+    "umlstatetext{}": {
+      "snippet": "umlstatetext{${1:text}}"
+    },
+    "arcNum": {},
+    "arcNumT": {},
+    "attrAlign": {},
+    "attrAlignT": {},
+    "iftikzumlactorWithoutCoords": {},
+    "iftikzumlassocclassWithoutCoords": {},
+    "iftikzumlclassCircleShape": {},
+    "iftikzumlclassSimpleStyle": {},
+    "iftikzumlclassWithoutCoords": {},
+    "iftikzumlcomponentWithoutCoords": {},
+    "iftikzumlcreatecallNoDDots": {},
+    "iftikzumlnoteWithoutCoords": {},
+    "iftikzumlobjectNoDDots": {},
+    "iftikzumlpackageSimpleStyle": {},
+    "iftikzumlpackageWithoutCoords": {},
+    "iftikzumlstatedecisionWithoutCoords": {},
+    "iftikzumlstatedeephistoryWithoutCoords": {},
+    "iftikzumlstateendWithoutCoords": {},
+    "iftikzumlstateenterWithoutCoords": {},
+    "iftikzumlstateexitWithoutCoords": {},
+    "iftikzumlstatefinalWithoutCoords": {},
+    "iftikzumlstatehistoryWithoutCoords": {},
+    "iftikzumlstateinitialWithoutCoords": {},
+    "iftikzumlstatejoinWithoutCoords": {},
+    "iftikzumlstateWithoutCoords": {},
+    "iftikzumlusecaseWithoutCoords": {},
+    "keyname": {},
+    "keyvalue": {},
+    "multAlign": {},
+    "multAlignT": {},
+    "numArcs": {},
+    "orientationT": {},
+    "pgfsetlayersArg": {},
+    "picturedactor{}": {
+      "snippet": "picturedactor{${1:arg1}}"
+    },
+    "picturedboundary{}": {
+      "snippet": "picturedboundary{${1:arg1}}"
+    },
+    "picturedcomponent{}": {
+      "snippet": "picturedcomponent{${1:arg1}}"
+    },
+    "picturedcontrol{}": {
+      "snippet": "picturedcontrol{${1:arg1}}"
+    },
+    "pictureddatabase{}": {
+      "snippet": "pictureddatabase{${1:arg1}}"
+    },
+    "pictureddeephistory{}": {
+      "snippet": "pictureddeephistory{${1:arg1}}"
+    },
+    "picturedentity{}": {
+      "snippet": "picturedentity{${1:arg1}}"
+    },
+    "picturedhistory{}": {
+      "snippet": "picturedhistory{${1:arg1}}"
+    },
+    "posAttrName": {},
+    "posAttrNameT": {},
+    "posMultiplicity": {},
+    "posMultiplicityT": {},
+    "stereotype": {},
+    "thepos": {},
+    "theposStereo": {},
+    "theposT": {},
+    "thetikzumlActorNum": {},
+    "thetikzumlCallEndFragmentNum": {},
+    "thetikzumlCallLevel": {},
+    "thetikzumlCallNum": {},
+    "thetikzumlCallStartFragmentNum": {},
+    "thetikzumlComponentLayers": {},
+    "thetikzumlComponentLevel": {},
+    "thetikzumlComponentSubComponentNum": {},
+    "thetikzumlConnectorNum": {},
+    "thetikzumlFragmentLayers": {},
+    "thetikzumlFragmentLevel": {},
+    "thetikzumlFragmentLevelNum": {},
+    "thetikzumlFragmentNum": {},
+    "thetikzumlFragmentPartNum": {},
+    "thetikzumlNoteNum": {},
+    "thetikzumlObjectNum": {},
+    "thetikzumlPackageClassNum": {},
+    "thetikzumlPackageLayers": {},
+    "thetikzumlPackageLevel": {},
+    "thetikzumlPackageSubPackageNum": {},
+    "thetikzumlRelationNum": {},
+    "thetikzumlSDNodeNum": {},
+    "thetikzumlStateDecisionNum": {},
+    "thetikzumlStateDeepHistoryNum": {},
+    "thetikzumlStateEndNum": {},
+    "thetikzumlStateEnterNum": {},
+    "thetikzumlStateExitNum": {},
+    "thetikzumlStateFinalNum": {},
+    "thetikzumlStateHistoryNum": {},
+    "thetikzumlStateInitialNum": {},
+    "thetikzumlStateJoinNum": {},
+    "thetikzumlStateLayers": {},
+    "thetikzumlStateLevel": {},
+    "thetikzumlStateSubStateNum": {},
+    "thetikzumlStateText": {},
+    "thetikzumlSystemLevel": {},
+    "thetikzumlSystemUseCaseNum": {},
+    "thetikzumlUseCaseNum": {},
+    "tikzumlActorBelow": {},
+    "tikzumlActorDefaultBelow": {},
+    "tikzumlActorDrawColor": {},
+    "tikzumlActorName": {},
+    "tikzumlActorNodeName": {},
+    "tikzumlActorPos": {},
+    "tikzumlActorScale": {},
+    "tikzumlActorTextColor": {},
+    "tikzumlactorWithoutCoordsfalse": {},
+    "tikzumlactorWithoutCoordstrue": {},
+    "tikzumlActorX": {},
+    "tikzumlActorY": {},
+    "tikzumlAssemblyConnectorDefaultFillColor": {},
+    "tikzumlAssemblyConnectorDrawColor": {},
+    "tikzumlAssemblyConnectorEndAnchor": {},
+    "tikzumlAssemblyConnectorEndAnchorTmp": {},
+    "tikzumlAssemblyConnectorEndArm": {},
+    "tikzumlAssemblyConnectorFillColor": {},
+    "tikzumlAssemblyConnectorFirstArm": {},
+    "tikzumlAssemblyConnectorGeometry": {},
+    "tikzumlAssemblyConnectorLabel": {},
+    "tikzumlAssemblyConnectorLastArm": {},
+    "tikzumlAssemblyConnectorMiddleArm": {},
+    "tikzumlAssemblyConnectorName": {},
+    "tikzumlAssemblyConnectorPortFillColor": {},
+    "tikzumlAssemblyConnectorSecondArm": {},
+    "tikzumlAssemblyConnectorStartAnchor": {},
+    "tikzumlAssemblyConnectorStartAnchorTmp": {},
+    "tikzumlAssemblyConnectorStartArm": {},
+    "tikzumlAssemblyConnectorSymbolName": {},
+    "tikzumlAssemblyConnectorWidth": {},
+    "tikzumlAssemblyConnectorWithPort": {},
+    "tikzumlAssocClassArm": {},
+    "tikzumlAssocClassAttributes": {},
+    "tikzumlAssocClassDestAnchor": {},
+    "tikzumlAssocClassDestAnchorold": {},
+    "tikzumlAssocClassDrawColor": {},
+    "tikzumlAssocClassFillColor": {},
+    "tikzumlAssocClassGeometry": {},
+    "tikzumlAssocClassHPadding": {},
+    "tikzumlAssocClassMinimumWidth": {},
+    "tikzumlAssocClassName": {},
+    "tikzumlAssocClassNameOld": {},
+    "tikzumlAssocClassNodeName": {},
+    "tikzumlAssocClassOperations": {},
+    "tikzumlassocclasspath": {},
+    "tikzumlAssocClassPos": {},
+    "tikzumlAssocClassRelationName": {},
+    "tikzumlAssocClassRelationNodeName": {},
+    "tikzumlAssocClassSrcAnchor": {},
+    "tikzumlAssocClassSrcAnchorold": {},
+    "tikzumlAssocClassTemplateFillColor": {},
+    "tikzumlAssocClassTemplateParam": {},
+    "tikzumlAssocClassTextColor": {},
+    "tikzumlAssocClassType": {},
+    "tikzumlAssocClassTypeTmp": {},
+    "tikzumlAssocClassVPadding": {},
+    "tikzumlAssocClassWeight": {},
+    "tikzumlassocclassWithoutCoordsfalse": {},
+    "tikzumlassocclassWithoutCoordstrue": {},
+    "tikzumlAssocClassX": {},
+    "tikzumlAssocClassY": {},
+    "tikzumlBoundaryScale": {},
+    "tikzumlCallBottom": {},
+    "tikzumlCallBottomSrc": {},
+    "tikzumlCallDefaultDT": {},
+    "tikzumlCallDefaultFillColor": {},
+    "tikzumlCallDefaultPadding": {},
+    "tikzumlCallDefaultType": {},
+    "tikzumlCallDrawColor": {},
+    "tikzumlCallDT": {},
+    "tikzumlCallDTold": {},
+    "tikzumlCallEndNodeName": {},
+    "tikzumlCallEndNodeNameold": {},
+    "tikzumlCallFillColor": {},
+    "tikzumlcallheight": {},
+    "tikzumlcallheightold": {},
+    "tikzumlCallName": {},
+    "tikzumlCallOp": {},
+    "tikzumlCallPadding": {},
+    "tikzumlCallReturn": {},
+    "tikzumlcallSrc": {},
+    "tikzumlCallStartNodeName": {},
+    "tikzumlCallStartNodeNameold": {},
+    "tikzumlcallstyle": {},
+    "tikzumlCallTextColor": {},
+    "tikzumlCallType": {},
+    "tikzumlCallWithReturn": {},
+    "tikzumlClassAttributes": {},
+    "tikzumlclassCircleShapefalse": {},
+    "tikzumlclassCircleShapetrue": {},
+    "tikzumlClassDefaultFillColor": {},
+    "tikzumlClassDefaultType": {},
+    "tikzumlClassDefaultWidth": {},
+    "tikzumlClassDrawColor": {},
+    "tikzumlClassFillColor": {},
+    "tikzumlClassHPadding": {},
+    "tikzumlClassMinimumWidth": {},
+    "tikzumlClassName": {},
+    "tikzumlClassNameOld": {},
+    "tikzumlClassNodeName": {},
+    "tikzumlClassOperations": {},
+    "tikzumlClassPos": {},
+    "tikzumlclassSimpleStylefalse": {},
+    "tikzumlclassSimpleStyletrue": {},
+    "tikzumlClassTags": {},
+    "tikzumlClassTagsTmp": {},
+    "tikzumlClassTemplateFillColor": {},
+    "tikzumlClassTemplateFillColorDefaultFillColor": {},
+    "tikzumlClassTemplateFillColorParam": {},
+    "tikzumlClassTextColor": {},
+    "tikzumlClassType": {},
+    "tikzumlClassTypeTmp": {},
+    "tikzumlClassVPadding": {},
+    "tikzumlclassWithoutCoordsfalse": {},
+    "tikzumlclassWithoutCoordstrue": {},
+    "tikzumlClassX": {},
+    "tikzumlClassY": {},
+    "tikzumlCNRelationAlign": {},
+    "tikzumlCNRelationAlignT": {},
+    "tikzumlCNRelationAlignTO": {},
+    "tikzumlCNRelationAlignTT": {},
+    "tikzumlCNRelationAttrName": {},
+    "tikzumlCNRelationAttrNameT": {},
+    "tikzumlCNRelationAttrNameTO": {},
+    "tikzumlCNRelationAttrNameTT": {},
+    "tikzumlCNRelationDestAnchor": {},
+    "tikzumlCNRelationDestAnchorold": {},
+    "tikzumlCNRelationMultiplicity": {},
+    "tikzumlCNRelationMultiplicityT": {},
+    "tikzumlCNRelationMultiplicityTO": {},
+    "tikzumlCNRelationMultiplicityTT": {},
+    "tikzumlCNRelationName": {},
+    "tikzumlCNRelationPositionT": {},
+    "tikzumlCNRelationPositionTO": {},
+    "tikzumlCNRelationPositionTT": {},
+    "tikzumlCNRelationSrcAnchor": {},
+    "tikzumlCNRelationSrcAnchorold": {},
+    "tikzumlCNRelationStereoType": {},
+    "tikzumlCNRelationStyle": {},
+    "tikzumlComponentDefaultFillColor": {},
+    "tikzumlComponentDefaultWidth": {},
+    "tikzumlComponentDrawColor": {},
+    "tikzumlComponentFillColor": {},
+    "tikzumlComponentFitTmp": {},
+    "tikzumlComponentLayersNum": {},
+    "tikzumlComponentMinimumWidth": {},
+    "tikzumlComponentName": {},
+    "tikzumlComponentScale": {},
+    "tikzumlComponentTextColor": {},
+    "tikzumlcomponentWithoutCoordsfalse": {},
+    "tikzumlcomponentWithoutCoordstrue": {},
+    "tikzumlComponentXShift": {},
+    "tikzumlComponentYShift": {},
+    "tikzumlControlScale": {},
+    "tikzumlCreateCallClass": {},
+    "tikzumlCreateCallDefaultDT": {},
+    "tikzumlCreateCallDrawColor": {},
+    "tikzumlCreateCallDT": {},
+    "tikzumlCreateCallDTold": {},
+    "tikzumlCreateCallFillColor": {},
+    "tikzumlCreateCallName": {},
+    "tikzumlcreatecallNoDDotsfalse": {},
+    "tikzumlcreatecallNoDDotstrue": {},
+    "tikzumlCreateCallObjectDrawColor": {},
+    "tikzumlCreateCallObjectFillColor": {},
+    "tikzumlCreateCallObjectSrc": {},
+    "tikzumlCreateCallObjectTextColor": {},
+    "tikzumlCreateCallStereo": {},
+    "tikzumlCreateCallTextColor": {},
+    "tikzumlCreateCallX": {},
+    "tikzumlDatabaseScale": {},
+    "tikzumlDefaultDrawColor": {},
+    "tikzumlDefaultFont": {},
+    "tikzumlDefaultTextColor": {},
+    "tikzumlDefaultX": {},
+    "tikzumlDefaultY": {},
+    "tikzumlDelegateConnectorWithEndPort": {},
+    "tikzumlDelegateConnectorWithStartPort": {},
+    "tikzumlDestClassName": {},
+    "tikzumlDestClassNodeName": {},
+    "tikzumldrawcall": {},
+    "tikzumlEntityScale": {},
+    "tikzumlfillcall": {},
+    "tikzumlFirstArc": {},
+    "tikzumlFragmentDefaultFillColor": {},
+    "tikzumlFragmentDefaultType": {},
+    "tikzumlFragmentDefaultXSep": {},
+    "tikzumlFragmentDefaultYSep": {},
+    "tikzumlFragmentDrawColor": {},
+    "tikzumlFragmentFillColor": {},
+    "tikzumlFragmentFitOld": {},
+    "tikzumlFragmentLabel": {},
+    "tikzumlFragmentLabelold": {},
+    "tikzumlFragmentLayersNum": {},
+    "tikzumlFragmentName": {},
+    "tikzumlFragmentTextColor": {},
+    "tikzumlFragmentType": {},
+    "tikzumlFragmentXSep": {},
+    "tikzumlFragmentYSep": {},
+    "tikzumlIdList": {},
+    "tikzumlIdListOld": {},
+    "tikzumlInCreateCall": {},
+    "tikzumlInterfaceWithPort": {},
+    "tikzumlLastArc": {},
+    "tikzumlMidOneArc": {},
+    "tikzumlMidTwoArc": {},
+    "tikzumlNaryName": {},
+    "tikzumlNaryNodeAnchor": {},
+    "tikzumlNaryNodeDefaultWidth": {},
+    "tikzumlNaryNodeDrawColor": {},
+    "tikzumlNaryNodeFillColor": {},
+    "tikzumlNaryNodeLabelPos": {},
+    "tikzumlNaryNodeMinimumWidth": {},
+    "tikzumlNaryNodeName": {},
+    "tikzumlNarynodePos": {},
+    "tikzumlNaryNodeTextColor": {},
+    "tikzumlNaryNodeWidth": {},
+    "tikzumlNaryNodeX": {},
+    "tikzumlNaryNodeY": {},
+    "tikzumlNestingSymbolSize": {},
+    "tikzumlNoteArm": {},
+    "tikzumlNoteDefaultFillColor": {},
+    "tikzumlNoteDefaultWidth": {},
+    "tikzumlNoteDestAnchor": {},
+    "tikzumlNoteDestAnchorold": {},
+    "tikzumlNoteDrawColor": {},
+    "tikzumlNoteFillColor": {},
+    "tikzumlNoteGeometry": {},
+    "tikzumlnotepath": {},
+    "tikzumlNoteSrcAnchor": {},
+    "tikzumlNoteSrcAnchorold": {},
+    "tikzumlNoteTextColor": {},
+    "tikzumlNoteTextWidth": {},
+    "tikzumlNoteWeight": {},
+    "tikzumlnoteWithoutCoordsfalse": {},
+    "tikzumlnoteWithoutCoordstrue": {},
+    "tikzumlNoteX": {},
+    "tikzumlNoteY": {},
+    "tikzumlObjectClass": {},
+    "tikzumlObjectDefaultFillColor": {},
+    "tikzumlObjectDefaultStereo": {},
+    "tikzumlObjectDrawColor": {},
+    "tikzumlObjectFillColor": {},
+    "tikzumlObjectName": {},
+    "tikzumlobjectNoDDotsfalse": {},
+    "tikzumlobjectNoDDotstrue": {},
+    "tikzumlObjectScale": {},
+    "tikzumlObjectStereo": {},
+    "tikzumlObjectTextColor": {},
+    "tikzumlObjectY": {},
+    "tikzumlPackageDefaultFillColor": {},
+    "tikzumlPackageDefaultType": {},
+    "tikzumlPackageDrawColor": {},
+    "tikzumlPackageFillColor": {},
+    "tikzumlPackageFitOld": {},
+    "tikzumlPackageFitTmp": {},
+    "tikzumlPackageLayersNum": {},
+    "tikzumlPackageName": {},
+    "tikzumlpackageSimpleStylefalse": {},
+    "tikzumlpackageSimpleStyletrue": {},
+    "tikzumlPackageTextColor": {},
+    "tikzumlPackageType": {},
+    "tikzumlPackageTypeTmp": {},
+    "tikzumlpackageWithoutCoordsfalse": {},
+    "tikzumlpackageWithoutCoordstrue": {},
+    "tikzumlPackageXShift": {},
+    "tikzumlPackageYShift": {},
+    "tikzumlPath": {},
+    "tikzumlPicturedActorScale": {},
+    "tikzumlPortDefaultFillColor": {},
+    "tikzumlPortDefaultWidth": {},
+    "tikzumlPortDrawColor": {},
+    "tikzumlPortFillColor": {},
+    "tikzumlPortWidth": {},
+    "tikzumlProvidedInterfaceDefaultDistance": {},
+    "tikzumlProvidedInterfaceDefaultPadding": {},
+    "tikzumlProvidedInterfaceDefaultWidth": {},
+    "tikzumlProvidedInterfaceDistance": {},
+    "tikzumlProvidedInterfaceDrawColor": {},
+    "tikzumlProvidedInterfaceFillColor": {},
+    "tikzumlProvidedInterfaceLabel": {},
+    "tikzumlProvidedInterfaceName": {},
+    "tikzumlProvidedInterfacePadding": {},
+    "tikzumlProvidedInterfaceWidth": {},
+    "tikzumlRelationAlign": {},
+    "tikzumlRelationAlignT": {},
+    "tikzumlRelationAlignTO": {},
+    "tikzumlRelationAlignTT": {},
+    "tikzumlRelationArmO": {},
+    "tikzumlRelationArmT": {},
+    "tikzumlRelationAttrName": {},
+    "tikzumlRelationAttrNameT": {},
+    "tikzumlRelationAttrNameTO": {},
+    "tikzumlRelationAttrNameTT": {},
+    "tikzumlRelationDefaultAngleO": {},
+    "tikzumlRelationDefaultAngleT": {},
+    "tikzumlRelationDefaultGeometry": {},
+    "tikzumlRelationDefaultLoopSize": {},
+    "tikzumlRelationDefaultPosO": {},
+    "tikzumlRelationDefaultPosStereo": {},
+    "tikzumlRelationDefaultPosT": {},
+    "tikzumlRelationDefaultWeight": {},
+    "tikzumlRelationDestAnchor": {},
+    "tikzumlRelationDestAnchorold": {},
+    "tikzumlRelationEndAngle": {},
+    "tikzumlRelationGeometry": {},
+    "tikzumlRelationLoopSize": {},
+    "tikzumlRelationMultiplicity": {},
+    "tikzumlRelationMultiplicityT": {},
+    "tikzumlRelationMultiplicityTO": {},
+    "tikzumlRelationMultiplicityTT": {},
+    "tikzumlRelationName": {},
+    "tikzumlRelationPositionT": {},
+    "tikzumlRelationPositionTO": {},
+    "tikzumlRelationPositionTT": {},
+    "tikzumlRelationRecursiveDirectionEnd": {},
+    "tikzumlRelationRecursiveDirectionStart": {},
+    "tikzumlRelationRecursiveMode": {},
+    "tikzumlRelationSrcAnchor": {},
+    "tikzumlRelationSrcAnchorold": {},
+    "tikzumlRelationStartAngle": {},
+    "tikzumlRelationStereoType": {},
+    "tikzumlRelationStyle": {},
+    "tikzumlRelationWeight": {},
+    "tikzumlRequiredInterfaceDefaultDistance": {},
+    "tikzumlRequiredInterfaceDefaultPadding": {},
+    "tikzumlRequiredInterfaceDefaultWidth": {},
+    "tikzumlRequiredInterfaceDistance": {},
+    "tikzumlRequiredInterfaceDrawColor": {},
+    "tikzumlRequiredInterfaceFillColor": {},
+    "tikzumlRequiredInterfaceLabel": {},
+    "tikzumlRequiredInterfaceName": {},
+    "tikzumlRequiredInterfacePadding": {},
+    "tikzumlRequiredInterfaceWidth": {},
+    "tikzumlSDNodeDT": {},
+    "tikzumlSDNodeName": {},
+    "tikzumlSimpleInterfaceDefaultWidth": {},
+    "tikzumlskipescape[]{}{}": {
+      "snippet": "tikzumlskipescape[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "tikzumlskipescape{}{}": {
+      "snippet": "tikzumlskipescape{${1:arg1}}{${2:arg2}}"
+    },
+    "tikzumlSrcClassName": {},
+    "tikzumlSrcClassNodeName": {},
+    "tikzumlstatebodyinnerysep": {},
+    "tikzumlStateDecisionColor": {},
+    "tikzumlStateDecisionDefaultWidth": {},
+    "tikzumlStateDecisionMinimumWidth": {},
+    "tikzumlStateDecisionName": {},
+    "tikzumlStateDecisionPos": {},
+    "tikzumlstatedecisionWithoutCoordsfalse": {},
+    "tikzumlstatedecisionWithoutCoordstrue": {},
+    "tikzumlStateDecisionX": {},
+    "tikzumlStateDecisionY": {},
+    "tikzumlStateDeepHistoryColor": {},
+    "tikzumlStateDeepHistoryDefaultWidth": {},
+    "tikzumlStateDeepHistoryMinimumWidth": {},
+    "tikzumlStateDeepHistoryName": {},
+    "tikzumlStateDeepHistoryPos": {},
+    "tikzumlstatedeephistoryWithoutCoordsfalse": {},
+    "tikzumlstatedeephistoryWithoutCoordstrue": {},
+    "tikzumlStateDeepHistoryX": {},
+    "tikzumlStateDeepHistoryY": {},
+    "tikzumlStateDefaultFillColor": {},
+    "tikzumlStateDefaultWidth": {},
+    "tikzumlStateDo": {},
+    "tikzumlStateDrawColor": {},
+    "tikzumlStateEndColor": {},
+    "tikzumlStateEndDefaultWidth": {},
+    "tikzumlStateEndMinimumWidth": {},
+    "tikzumlStateEndName": {},
+    "tikzumlStateEndPos": {},
+    "tikzumlstateendWithoutCoordsfalse": {},
+    "tikzumlstateendWithoutCoordstrue": {},
+    "tikzumlStateEndX": {},
+    "tikzumlStateEndY": {},
+    "tikzumlStateEnterColor": {},
+    "tikzumlStateEnterDefaultWidth": {},
+    "tikzumlStateEnterMinimumWidth": {},
+    "tikzumlStateEnterName": {},
+    "tikzumlStateEnterPos": {},
+    "tikzumlstateenterWithoutCoordsfalse": {},
+    "tikzumlstateenterWithoutCoordstrue": {},
+    "tikzumlStateEnterX": {},
+    "tikzumlStateEnterY": {},
+    "tikzumlStateEntry": {},
+    "tikzumlStateExit": {},
+    "tikzumlStateExitColor": {},
+    "tikzumlStateExitDefaultWidth": {},
+    "tikzumlStateExitMinimumWidth": {},
+    "tikzumlStateExitName": {},
+    "tikzumlStateExitPos": {},
+    "tikzumlstateexitWithoutCoordsfalse": {},
+    "tikzumlstateexitWithoutCoordstrue": {},
+    "tikzumlStateExitX": {},
+    "tikzumlStateExitY": {},
+    "tikzumlStateFillColor": {},
+    "tikzumlStateFinalColor": {},
+    "tikzumlStateFinalDefaultWidth": {},
+    "tikzumlStateFinalMinimumWidth": {},
+    "tikzumlStateFinalName": {},
+    "tikzumlStateFinalPos": {},
+    "tikzumlstatefinalWithoutCoordsfalse": {},
+    "tikzumlstatefinalWithoutCoordstrue": {},
+    "tikzumlStateFinalX": {},
+    "tikzumlStateFinalY": {},
+    "tikzumlStateFitOld": {},
+    "tikzumlStateFitTmp": {},
+    "tikzumlStateHistoryColor": {},
+    "tikzumlStateHistoryDefaultWidth": {},
+    "tikzumlStateHistoryMinimumWidth": {},
+    "tikzumlStateHistoryName": {},
+    "tikzumlStateHistoryPos": {},
+    "tikzumlstatehistoryWithoutCoordsfalse": {},
+    "tikzumlstatehistoryWithoutCoordstrue": {},
+    "tikzumlStateHistoryX": {},
+    "tikzumlStateHistoryY": {},
+    "tikzumlStateInitialColor": {},
+    "tikzumlStateInitialDefaultWidth": {},
+    "tikzumlStateInitialMinimumWidth": {},
+    "tikzumlStateInitialName": {},
+    "tikzumlStateInitialPos": {},
+    "tikzumlstateinitialWithoutCoordsfalse": {},
+    "tikzumlstateinitialWithoutCoordstrue": {},
+    "tikzumlStateInitialX": {},
+    "tikzumlStateInitialY": {},
+    "tikzumlStateJoinColor": {},
+    "tikzumlStateJoinDefaultWidth": {},
+    "tikzumlStateJoinMinimumWidth": {},
+    "tikzumlStateJoinName": {},
+    "tikzumlStateJoinPos": {},
+    "tikzumlstatejoinWithoutCoordsfalse": {},
+    "tikzumlstatejoinWithoutCoordstrue": {},
+    "tikzumlStateJoinX": {},
+    "tikzumlStateJoinY": {},
+    "tikzumlStateLayersNum": {},
+    "tikzumlStateMinimumWidth": {},
+    "tikzumlStateName": {},
+    "tikzumlstaterootinnerysep": {},
+    "tikzumlstaterootlabel": {},
+    "tikzumlStateText": {},
+    "tikzumlStateTextColor": {},
+    "tikzumlStateTextOld": {},
+    "tikzumlstateWithoutCoordsfalse": {},
+    "tikzumlstateWithoutCoordstrue": {},
+    "tikzumlStateXShift": {},
+    "tikzumlStateYShift": {},
+    "tikzumlSystemDefaultFillColor": {},
+    "tikzumlSystemDrawColor": {},
+    "tikzumlSystemFillColor": {},
+    "tikzumlSystemFit": {},
+    "tikzumlSystemFitOld": {},
+    "tikzumlSystemName": {},
+    "tikzumlSystemTextColor": {},
+    "tikzumlSystemXShift": {},
+    "tikzumlSystemYShift": {},
+    "tikzumltextcall": {},
+    "tikzumltypecall": {},
+    "tikzumlUseCaseDefaultFillColor": {},
+    "tikzumlUseCaseDrawColor": {},
+    "tikzumlUseCaseFillColor": {},
+    "tikzumlUseCaseName": {},
+    "tikzumlUseCasePos": {},
+    "tikzumlUseCaseText": {},
+    "tikzumlUseCaseTextColor": {},
+    "tikzumlUseCaseTextWidth": {},
+    "tikzumlusecaseWithoutCoordsfalse": {},
+    "tikzumlusecaseWithoutCoordstrue": {},
+    "tikzumlUseCaseX": {},
+    "tikzumlUseCaseY": {}
+  },
+  "envs": {
+    "umlpackage{}": {
+      "name": "umlpackage",
+      "snippet": "{${1:package-name}}"
+    },
+    "umlpackage[]{}": {
+      "name": "umlpackage",
+      "snippet": "[${2:options}]{${1:package-name}}"
+    },
+    "umlsystem{}": {
+      "name": "umlsystem",
+      "snippet": "{${1:system-name}}"
+    },
+    "umlsystem[]{}": {
+      "name": "umlsystem",
+      "snippet": "[${2:options}]{${1:system-name}}"
+    },
+    "umlstate{}": {
+      "name": "umlstate",
+      "snippet": "{${1:state-name}}"
+    },
+    "umlstate[]{}": {
+      "name": "umlstate",
+      "snippet": "[${2:options}]{${1:state-name}}"
+    },
+    "umlseqdiag": {},
+    "umlcall{}{}": {
+      "name": "umlcall",
+      "snippet": "{${1:source-object}}{${2:target-object}}"
+    },
+    "umlcall[]{}{}": {
+      "name": "umlcall",
+      "snippet": "[${3:options}]{${1:source-object}}{${2:target-object}}"
+    },
+    "umlcallself{}": {
+      "name": "umlcallself",
+      "snippet": "{${1:object}}"
+    },
+    "umlcallself[]{}": {
+      "name": "umlcallself",
+      "snippet": "[${2:options}]{${1:object}}"
+    },
+    "umlfragment": {},
+    "umlfragment[]": {
+      "name": "umlfragment",
+      "snippet": "[${1:options}]"
+    },
+    "umlcomponent{}": {
+      "name": "umlcomponent",
+      "snippet": "{${1:component-name}}"
+    },
+    "umlcomponent[]{}": {
+      "name": "umlcomponent",
+      "snippet": "[${2:options}]{${1:component-name}}"
+    }
+  },
+  "options": [],
+  "keyvals": []
+}

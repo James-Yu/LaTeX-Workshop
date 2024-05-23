@@ -1,0 +1,356 @@
+{
+  "includes": {
+    "tikz": [],
+    "simplekv": [],
+    "xstring": [],
+    "listofitems": [],
+    "tikzlibrarycalc": [],
+    "tikzlibraryshapes.geometric": []
+  },
+  "macros": {
+    "TangramTikz{}": {
+      "snippet": "TangramTikz{${1:tangram name}}"
+    },
+    "TangramTikz<>{}": {
+      "snippet": "TangramTikz<${2:TikZ options}>{${1:tangram name}}"
+    },
+    "TangramTikz[]{}": {
+      "snippet": "TangramTikz[${2:options}]{${1:tangram name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "TangramTikz[]<>{}": {
+      "snippet": "TangramTikz[${2:options}]<${3:TikZ options}>{${1:tangram name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "TangramSquare": {},
+    "TangramSquare[]": {
+      "snippet": "TangramSquare[${1:TikZ options}]"
+    },
+    "TangramSquare*": {},
+    "TangramSquare*[]": {
+      "snippet": "TangramSquare*[${1:TikZ options}]"
+    },
+    "TangramPinguin": {},
+    "TangramPinguin[]": {
+      "snippet": "TangramPinguin[${1:TikZ options}]"
+    },
+    "TangramPinguin*": {},
+    "TangramPinguin*[]": {
+      "snippet": "TangramPinguin*[${1:TikZ options}]"
+    },
+    "TangramBoat": {},
+    "TangramBoat[]": {
+      "snippet": "TangramBoat[${1:TikZ options}]"
+    },
+    "TangramBoat*": {},
+    "TangramBoat*[]": {
+      "snippet": "TangramBoat*[${1:TikZ options}]"
+    },
+    "TangramHome": {},
+    "TangramHome[]": {
+      "snippet": "TangramHome[${1:TikZ options}]"
+    },
+    "TangramHome*": {},
+    "TangramHome*[]": {
+      "snippet": "TangramHome*[${1:TikZ options}]"
+    },
+    "TangramFirTree": {},
+    "TangramFirTree[]": {
+      "snippet": "TangramFirTree[${1:TikZ options}]"
+    },
+    "TangramFirTree*": {},
+    "TangramFirTree*[]": {
+      "snippet": "TangramFirTree*[${1:TikZ options}]"
+    },
+    "TangramCat": {},
+    "TangramCat[]": {
+      "snippet": "TangramCat[${1:TikZ options}]"
+    },
+    "TangramCat*": {},
+    "TangramCat*[]": {
+      "snippet": "TangramCat*[${1:TikZ options}]"
+    },
+    "TangramSwan": {},
+    "TangramSwan[]": {
+      "snippet": "TangramSwan[${1:TikZ options}]"
+    },
+    "TangramSwan*": {},
+    "TangramSwan*[]": {
+      "snippet": "TangramSwan*[${1:TikZ options}]"
+    },
+    "TangramDuck": {},
+    "TangramDuck[]": {
+      "snippet": "TangramDuck[${1:TikZ options}]"
+    },
+    "TangramDuck*": {},
+    "TangramDuck*[]": {
+      "snippet": "TangramDuck*[${1:TikZ options}]"
+    },
+    "TangramPyramid": {},
+    "TangramPyramid[]": {
+      "snippet": "TangramPyramid[${1:TikZ options}]"
+    },
+    "TangramPyramid*": {},
+    "TangramPyramid*[]": {
+      "snippet": "TangramPyramid*[${1:TikZ options}]"
+    },
+    "TangramRocket": {},
+    "TangramRocket[]": {
+      "snippet": "TangramRocket[${1:TikZ options}]"
+    },
+    "TangramRocket*": {},
+    "TangramRocket*[]": {
+      "snippet": "TangramRocket*[${1:TikZ options}]"
+    },
+    "TangramCandle": {},
+    "TangramCandle[]": {
+      "snippet": "TangramCandle[${1:TikZ options}]"
+    },
+    "TangramCandle*": {},
+    "TangramCandle*[]": {
+      "snippet": "TangramCandle*[${1:TikZ options}]"
+    },
+    "TangramShirt": {},
+    "TangramShirt[]": {
+      "snippet": "TangramShirt[${1:TikZ options}]"
+    },
+    "TangramShirt*": {},
+    "TangramShirt*[]": {
+      "snippet": "TangramShirt*[${1:TikZ options}]"
+    },
+    "TangramFish": {},
+    "TangramFish[]": {
+      "snippet": "TangramFish[${1:TikZ options}]"
+    },
+    "TangramFish*": {},
+    "TangramFish*[]": {
+      "snippet": "TangramFish*[${1:TikZ options}]"
+    },
+    "TangramSailboat": {},
+    "TangramSailboat[]": {
+      "snippet": "TangramSailboat[${1:TikZ options}]"
+    },
+    "TangramSailboat*": {},
+    "TangramSailboat*[]": {
+      "snippet": "TangramSailboat*[${1:TikZ options}]"
+    },
+    "TangramKangaroo": {},
+    "TangramKangaroo[]": {
+      "snippet": "TangramKangaroo[${1:TikZ options}]"
+    },
+    "TangramKangaroo*": {},
+    "TangramKangaroo*[]": {
+      "snippet": "TangramKangaroo*[${1:TikZ options}]"
+    },
+    "TangramDog": {},
+    "TangramDog[]": {
+      "snippet": "TangramDog[${1:TikZ options}]"
+    },
+    "TangramDog*": {},
+    "TangramDog*[]": {
+      "snippet": "TangramDog*[${1:TikZ options}]"
+    },
+    "TangramRabbit": {},
+    "TangramRabbit[]": {
+      "snippet": "TangramRabbit[${1:TikZ options}]"
+    },
+    "TangramRabbit*": {},
+    "TangramRabbit*[]": {
+      "snippet": "TangramRabbit*[${1:TikZ options}]"
+    },
+    "TangramPlane": {},
+    "TangramPlane[]": {
+      "snippet": "TangramPlane[${1:TikZ options}]"
+    },
+    "TangramPlane*": {},
+    "TangramPlane*[]": {
+      "snippet": "TangramPlane*[${1:TikZ options}]"
+    },
+    "TangramRooster": {},
+    "TangramRooster[]": {
+      "snippet": "TangramRooster[${1:TikZ options}]"
+    },
+    "TangramRooster*": {},
+    "TangramRooster*[]": {
+      "snippet": "TangramRooster*[${1:TikZ options}]"
+    },
+    "TangramJogger": {},
+    "TangramJogger[]": {
+      "snippet": "TangramJogger[${1:TikZ options}]"
+    },
+    "TangramJogger*": {},
+    "TangramJogger*[]": {
+      "snippet": "TangramJogger*[${1:TikZ options}]"
+    },
+    "TangramDancer": {},
+    "TangramDancer[]": {
+      "snippet": "TangramDancer[${1:TikZ options}]"
+    },
+    "TangramDancer*": {},
+    "TangramDancer*[]": {
+      "snippet": "TangramDancer*[${1:TikZ options}]"
+    },
+    "TangramCamel": {},
+    "TangramCamel[]": {
+      "snippet": "TangramCamel[${1:TikZ options}]"
+    },
+    "TangramCamel*": {},
+    "TangramCamel*[]": {
+      "snippet": "TangramCamel*[${1:TikZ options}]"
+    },
+    "TangramFlamingo": {},
+    "TangramFlamingo[]": {
+      "snippet": "TangramFlamingo[${1:TikZ options}]"
+    },
+    "TangramFlamingo*": {},
+    "TangramFlamingo*[]": {
+      "snippet": "TangramFlamingo*[${1:TikZ options}]"
+    },
+    "TangramHeart": {},
+    "TangramHeart[]": {
+      "snippet": "TangramHeart[${1:TikZ options}]"
+    },
+    "TangramHeart*": {},
+    "TangramHeart*[]": {
+      "snippet": "TangramHeart*[${1:TikZ options}]"
+    },
+    "TangramGiraffe": {},
+    "TangramGiraffe[]": {
+      "snippet": "TangramGiraffe[${1:TikZ options}]"
+    },
+    "TangramGiraffe*": {},
+    "TangramGiraffe*[]": {
+      "snippet": "TangramGiraffe*[${1:TikZ options}]"
+    },
+    "TangramHorse": {},
+    "TangramHorse[]": {
+      "snippet": "TangramHorse[${1:TikZ options}]"
+    },
+    "TangramHorse*": {},
+    "TangramHorse*[]": {
+      "snippet": "TangramHorse*[${1:TikZ options}]"
+    },
+    "TangramGoat": {},
+    "TangramGoat[]": {
+      "snippet": "TangramGoat[${1:TikZ options}]"
+    },
+    "TangramGoat*": {},
+    "TangramGoat*[]": {
+      "snippet": "TangramGoat*[${1:Tikz options}]"
+    },
+    "TangramLion": {},
+    "TangramLion[]": {
+      "snippet": "TangramLion[${1:TikZ options}]"
+    },
+    "TangramLion*": {},
+    "TangramLion*[]": {
+      "snippet": "TangramLion*[${1:Tikz options}]"
+    },
+    "TangramFactory": {},
+    "TangramFactory[]": {
+      "snippet": "TangramFactory[${1:TikZ options}]"
+    },
+    "TangramFactory*": {},
+    "TangramFactory*[]": {
+      "snippet": "TangramFactory*[${1:TikZ options}]"
+    },
+    "TangramAngel": {},
+    "TangramAngel[]": {
+      "snippet": "TangramAngel[${1:TikZ options}]"
+    },
+    "TangramAngel*": {},
+    "TangramAngel*[]": {
+      "snippet": "TangramAngel*[${1:TikZ options}]"
+    },
+    "TangramTower": {},
+    "TangramTower[]": {
+      "snippet": "TangramTower[${1:TikZ options}]"
+    },
+    "TangramTower*": {},
+    "TangramTower*[]": {
+      "snippet": "TangramTower*[${1:TikZ options}]"
+    },
+    "TangramUfo": {},
+    "TangramUfo[]": {
+      "snippet": "TangramUfo[${1:TikZ options}]"
+    },
+    "TangramUfo*": {},
+    "TangramUfo*[]": {
+      "snippet": "TangramUfo*[${1:TikZ options}]"
+    },
+    "TangramChicken": {},
+    "TangramChicken[]": {
+      "snippet": "TangramChicken[${1:TikZ options}]"
+    },
+    "TangramChicken*": {},
+    "TangramChicken*[]": {
+      "snippet": "TangramChicken*[${1:TikZ options}]"
+    },
+    "TangramTurtle": {},
+    "TangramTurtle[]": {
+      "snippet": "TangramTurtle[${1:TikZ options}]"
+    },
+    "TangramTurtle*": {},
+    "TangramTurtle*[]": {
+      "snippet": "TangramTurtle*[${1:TikZ options}]"
+    },
+    "TangramCrab": {},
+    "TangramCrab[]": {
+      "snippet": "TangramCrab[${1:TikZ options}]"
+    },
+    "TangramCrab*": {},
+    "TangramCrab*[]": {
+      "snippet": "TangramCrab*[${1:TikZ options}]"
+    },
+    "TangramSnail": {},
+    "TangramSnail[]": {
+      "snippet": "TangramSnail[${1:TikZ options}]"
+    },
+    "TangramSnail*": {},
+    "TangramSnail*[]": {
+      "snippet": "TangramSnail*[${1:TikZ options}]"
+    },
+    "TangramTikzCreateEN{}": {
+      "snippet": "TangramTikzCreateEN{${1:cmd}}"
+    },
+    "TangramTikzCreateFR{}": {
+      "snippet": "TangramTikzCreateFR{${1:cmd}}"
+    },
+    "TangCouleurs": {},
+    "TangColors": {},
+    "TangCouleur": {},
+    "TangColor": {},
+    "TangBorder": {}
+  },
+  "envs": {
+    "EnvTangramTikz": {},
+    "EnvTangramTikz[]": {
+      "name": "EnvTangramTikz",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "EnvTangramTikz[]<>": {
+      "name": "EnvTangramTikz",
+      "snippet": "[${1:options}]<${2:TikZ options}>",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "Puzzle",
+      "Correction",
+      "Color=",
+      "Couleur=",
+      "ColorCorrection",
+      "CorrectionCouleur",
+      "ColorList={${1:color1,color2,...}}",
+      "ListeCouleurs={${1:couleur1,couleur2,...}}",
+      "Sep="
+    ]
+  ]
+}

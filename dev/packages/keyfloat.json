@@ -1,0 +1,479 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "xkeyval": [],
+    "graphicx": [],
+    "caption": [],
+    "subcaption": [],
+    "calc": [],
+    "rotating": [],
+    "placeins": [],
+    "wrapfig": []
+  },
+  "macros": {
+    "keyfig{}{}": {
+      "snippet": "keyfig{${1:keyvals}}{${2:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "keyfig[]{}{}": {
+      "snippet": "keyfig[${3:loc}]{${1:keyvals}}{${2:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "keyfig*{}{}": {
+      "snippet": "keyfig*{${1:keyvals}}{${2:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "keyfig*[]{}{}": {
+      "snippet": "keyfig*[${3:loc}]{${1:keyvals}}{${2:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "keytab{}{}": {
+      "snippet": "keytab{${1:keyvals}}{${2:tabular contents}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "keytab[]{}{}": {
+      "snippet": "keytab[${3:loc}]{${1:keyvals}}{${2:tabular contents}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "keytab*{}{}": {
+      "snippet": "keytab*{${1:keyvals}}{${2:tabular contents}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "keytab*[]{}{}": {
+      "snippet": "keytab*[${3:loc}]{${1:keyvals}}{${2:tabular contents}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "keyflt{}{}{}": {
+      "snippet": "keyflt{${1:float type}}{${2:keyvals}}{${3:contents}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "keyflt[]{}{}{}": {
+      "snippet": "keyflt[${4:loc}]{${1:float type}}{${2:keyvals}}{${3:contents}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "keyflt*{}{}{}": {
+      "snippet": "keyflt*{${1:float type}}{${2:keyvals}}{${3:contents}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "keyflt*[]{}{}{}": {
+      "snippet": "keyflt*[${4:loc}]{${1:float type}}{${2:keyvals}}{${3:contents}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "keyfigbox{}{}": {
+      "snippet": "keyfigbox{${1:keyvals}}{${2:box contents}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "keyfigbox[]{}{}": {
+      "snippet": "keyfigbox[${3:loc}]{${1:keyvals}}{${2:box contents}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "keyfigbox*{}{}": {
+      "snippet": "keyfigbox*{${1:keyvals}}{${2:box contents}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "keyfigbox*[]{}{}": {
+      "snippet": "keyfigbox*[${3:loc}]{${1:keyvals}}{${2:box contents}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "keyparbox{}{}": {
+      "snippet": "keyparbox{${1:keyvals}}{${2:box contents}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "keyparbox[]{}{}": {
+      "snippet": "keyparbox[${3:loc}]{${1:keyvals}}{${2:box contents}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "keyparbox*{}{}": {
+      "snippet": "keyparbox*{${1:keyvals}}{${2:box contents}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "keyparbox*[]{}{}": {
+      "snippet": "keyparbox*[${3:loc}]{${1:keyvals}}{${2:box contents}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "KFLTtightframe{}": {
+      "snippet": "KFLTtightframe{${1:contents}}"
+    },
+    "KFLTlooseframe{}": {
+      "snippet": "KFLTlooseframe{${1:contents}}"
+    },
+    "KFLTtightframewidth": {},
+    "KFLTlooseframewidth": {},
+    "KFLTimageboxwidth": {},
+    "tdartistcenter": {},
+    "tdartistjustify": {},
+    "tdartistleft": {},
+    "tdartistright": {},
+    "tdartisttextcenter": {},
+    "tdartisttextjustify": {},
+    "tdartisttextleft": {},
+    "tdartisttextright": {},
+    "tdauthorcenter": {},
+    "tdauthorjustify": {},
+    "tdauthorleft": {},
+    "tdauthorright": {},
+    "tdauthortextcenter": {},
+    "tdauthortextjustify": {},
+    "tdauthortextleft": {},
+    "tdauthortextright": {}
+  },
+  "envs": {
+    "keyfigure{}": {
+      "name": "keyfigure",
+      "snippet": "{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "keyfigure[]{}": {
+      "name": "keyfigure",
+      "snippet": "[${2:loc}]{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "keyfigure*{}": {
+      "name": "keyfigure",
+      "snippet": "*{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "keyfigure*[]{}": {
+      "name": "keyfigure",
+      "snippet": "*[${2:loc}]{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "keytable{}": {
+      "name": "keytable",
+      "snippet": "{${1:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "keytable[]{}": {
+      "name": "keytable",
+      "snippet": "[${2:loc}]{${1:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "keytable*{}": {
+      "name": "keytable",
+      "snippet": "*{${1:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "keytable*[]{}": {
+      "name": "keytable",
+      "snippet": "*[${2:loc}]{${1:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "keyfloat{}{}": {
+      "name": "keyfloat",
+      "snippet": "{${1:float type}}{${2:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "keyfloat[]{}{}": {
+      "name": "keyfloat",
+      "snippet": "[${3:loc}]{${1:float type}}{${2:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "keyfloat*{}{}": {
+      "name": "keyfloat",
+      "snippet": "*{${1:float type}}{${2:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "keyfloat*[]{}{}": {
+      "name": "keyfloat",
+      "snippet": "*[${3:loc}]{${1:float type}}{${2:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "keyfloats{}": {
+      "name": "keyfloats",
+      "snippet": "{${1:num cols}}"
+    },
+    "keyfloats{}[]": {
+      "name": "keyfloats",
+      "snippet": "{${1:num cols}}[${2:keyvals}]",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "keysubfigs{}{}": {
+      "name": "keysubfigs",
+      "snippet": "{${1:num cols}}{${2:keyvals}}",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "keysubfigs{}{}[]": {
+      "name": "keysubfigs",
+      "snippet": "{${1:num cols}}{${2:keyvals}}[${3:shared keyvals}]",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "keysubfigs[]{}{}": {
+      "name": "keysubfigs",
+      "snippet": "[${3:loc}]{${1:num cols}}{${2:keyvals}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "keysubfigs[]{}{}[]": {
+      "name": "keysubfigs",
+      "snippet": "[${3:loc}]{${1:num cols}}{${2:keyvals}}[${4:shared keyvals}]",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "keysubfigs*{}{}": {
+      "name": "keysubfigs",
+      "snippet": "*{${1:num cols}}{${2:keyvals}}",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "keysubfigs*{}{}[]": {
+      "name": "keysubfigs",
+      "snippet": "*{${1:num cols}}{${2:keyvals}}[${3:shared keyvals}]",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "keysubfigs*[]{}{}": {
+      "name": "keysubfigs",
+      "snippet": "*[${3:loc}]{${1:num cols}}{${2:keyvals}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "keysubfigs*[]{}{}[]": {
+      "name": "keysubfigs",
+      "snippet": "*[${3:loc}]{${1:num cols}}{${2:keyvals}}[${4:shared keyvals}]",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "keysubtabs{}{}": {
+      "name": "keysubtabs",
+      "snippet": "{${1:num cols}}{${2:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "keysubtabs{}{}[]": {
+      "name": "keysubtabs",
+      "snippet": "{${1:num cols}}{${2:keyvals}}[${3:shared keyvals}]",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "keysubtabs[]{}{}": {
+      "name": "keysubtabs",
+      "snippet": "[${3:loc}]{${1:num cols}}{${2:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 2
+    },
+    "keysubtabs[]{}{}[]": {
+      "name": "keysubtabs",
+      "snippet": "[${3:loc}]{${1:num cols}}{${2:keyvals}}[${4:shared keyvals}]",
+      "keyvalindex": 3,
+      "keyvalpos": 2
+    },
+    "keysubtabs*{}{}": {
+      "name": "keysubtabs",
+      "snippet": "*{${1:num cols}}{${2:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "keysubtabs*{}{}[]": {
+      "name": "keysubtabs",
+      "snippet": "*{${1:num cols}}{${2:keyvals}}[${3:shared keyvals}]",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "keysubtabs*[]{}{}": {
+      "name": "keysubtabs",
+      "snippet": "*[${3:loc}]{${1:num cols}}{${2:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 2
+    },
+    "keysubtabs*[]{}{}[]": {
+      "name": "keysubtabs",
+      "snippet": "*[${3:loc}]{${1:num cols}}{${2:keyvals}}[${4:shared keyvals}]",
+      "keyvalindex": 3,
+      "keyvalpos": 2
+    },
+    "keysubfloats{}{}{}": {
+      "name": "keysubfloats",
+      "snippet": "{${1:float type}}{${2:num cols}}{${3:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 2
+    },
+    "keysubfloats{}{}{}[]": {
+      "name": "keysubfloats",
+      "snippet": "{${1:float type}}{${2:num cols}}{${3:keyvals}}[${4:shared keyvals}]",
+      "keyvalindex": 3,
+      "keyvalpos": 2
+    },
+    "keysubfloats[]{}{}{}": {
+      "name": "keysubfloats",
+      "snippet": "[${4:loc}]{${1:float type}}{${2:num cols}}{${3:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 3
+    },
+    "keysubfloats[]{}{}{}[]": {
+      "name": "keysubfloats",
+      "snippet": "[${4:loc}]{${1:float type}}{${2:num cols}}{${3:keyvals}}[${5:shared keyvals}]",
+      "keyvalindex": 3,
+      "keyvalpos": 3
+    },
+    "keysubfloats*{}{}{}": {
+      "name": "keysubfloats",
+      "snippet": "*{${1:float type}}{${2:num cols}}{${3:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 2
+    },
+    "keysubfloats*{}{}{}[]": {
+      "name": "keysubfloats",
+      "snippet": "*{${1:float type}}{${2:num cols}}{${3:keyvals}}[${4:shared keyvals}]",
+      "keyvalindex": 3,
+      "keyvalpos": 2
+    },
+    "keysubfloats*[]{}{}{}": {
+      "name": "keysubfloats",
+      "snippet": "*[${4:loc}]{${1:float type}}{${2:num cols}}{${3:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 3
+    },
+    "keysubfloats*[]{}{}{}[]": {
+      "name": "keysubfloats",
+      "snippet": "*[${4:loc}]{${1:float type}}{${2:num cols}}{${3:keyvals}}[${5:shared keyvals}]",
+      "keyvalindex": 3,
+      "keyvalpos": 3
+    },
+    "keywrap{}{}": {
+      "name": "keywrap",
+      "snippet": "{${1:width}}{${2:keyfloat}}"
+    },
+    "marginfigure": {},
+    "marginfigure[]": {
+      "name": "marginfigure",
+      "snippet": "[${1:offset}]"
+    },
+    "margintable": {},
+    "margintable[]": {
+      "name": "margintable",
+      "snippet": "[${1:offset}]"
+    },
+    "figurehere": {},
+    "tablehere": {}
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "c={${1:caption}}",
+      "cstar={${1:caption}}",
+      "sc={${1:short caption}}",
+      "cont",
+      "l=",
+      "t={${1:text}}",
+      "tc={${1:text}}",
+      "tl={${1:text}}",
+      "tr={${1:text}}",
+      "lw=${1:factor}",
+      "w=",
+      "h=",
+      "kar",
+      "s=${1:factor}",
+      "r=${1:degrees}",
+      "f",
+      "ft",
+      "stretch=${1:factor}",
+      "mo=",
+      "wn=${1:integer}",
+      "wp=",
+      "wo=",
+      "wlw=${1:factor}",
+      "ww=",
+      "va=",
+      "ap=${1:author prefix}",
+      "aup=${1:author prefix}",
+      "af=${1:first name}",
+      "auf=${1:first name}",
+      "al=${1:last name}",
+      "aul=${1:last name}",
+      "as=${1:author suffix}",
+      "aus=${1:author suffix}"
+    ],
+    [
+      "c={${1:caption}}",
+      "cstar={${1:caption}}",
+      "sc={${1:short caption}}",
+      "cont",
+      "l=",
+      "t={${1:text}}",
+      "tc={${1:text}}",
+      "tl={${1:text}}",
+      "tr={${1:text}}",
+      "lw=${1:factor}",
+      "w=",
+      "h=",
+      "kar",
+      "s=${1:factor}",
+      "r=${1:degrees}",
+      "f",
+      "ft",
+      "stretch=${1:factor}",
+      "mo=",
+      "wn=${1:integer}",
+      "wp=",
+      "wo=",
+      "wlw=${1:factor}",
+      "ww=",
+      "va="
+    ],
+    [
+      "c={${1:caption}}",
+      "cstar={${1:caption}}",
+      "sc={${1:short caption}}",
+      "cont",
+      "l=",
+      "t={${1:text}}",
+      "tc={${1:text}}",
+      "tl={${1:text}}",
+      "tr={${1:text}}",
+      "ap=${1:author prefix}",
+      "aup=${1:author prefix}",
+      "af=${1:first name}",
+      "auf=${1:first name}",
+      "al=${1:last name}",
+      "aul=${1:last name}",
+      "as=${1:author suffix}",
+      "aus=${1:author suffix}"
+    ],
+    [
+      "c={${1:caption}}",
+      "cstar={${1:caption}}",
+      "sc={${1:short caption}}",
+      "cont",
+      "l=",
+      "t={${1:text}}",
+      "tc={${1:text}}",
+      "tl={${1:text}}",
+      "tr={${1:text}}"
+    ]
+  ]
+}

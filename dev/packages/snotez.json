@@ -1,0 +1,62 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "pgfopts": [],
+    "marginnote": [],
+    "perpage": []
+  },
+  "macros": {
+    "sidenote{}": {
+      "snippet": "sidenote{${1:text}}"
+    },
+    "sidenote[]{}": {
+      "snippet": "sidenote[${2:mark}]{${1:text}}"
+    },
+    "sidenote[][]{}": {
+      "snippet": "sidenote[${2:offset}][${3:mark}]{${1:text}}",
+      "option": "dblarg=true"
+    },
+    "sidenotemark": {},
+    "sidenotemark[]": {
+      "snippet": "sidenotemark[${1:mark}]"
+    },
+    "sidenotetext{}": {
+      "snippet": "sidenotetext{${1:text}}"
+    },
+    "sidenotetext[]{}": {
+      "snippet": "sidenotetext[${2:mark}]{${1:text}}"
+    },
+    "newsnotezfloat{}": {
+      "snippet": "newsnotezfloat{${1:name}}"
+    },
+    "newsnotezfloat[]{}": {
+      "snippet": "newsnotezfloat[${2:code}]{${1:name}}"
+    },
+    "setsidenotes{}": {
+      "snippet": "setsidenotes{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "envs": {
+    "sidefigure": {},
+    "sidetable": {}
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "dblarg",
+      "marginnote",
+      "text-format=${1:code}",
+      "text-format+=${1:code}",
+      "perpage",
+      "perchapter",
+      "note-mark-sep=${1:code}",
+      "note-mark-format=${1:code}",
+      "text-mark-format=${1:code}",
+      "footnote",
+      "sidefloat-format=${1:code}",
+      "sidefloat-format+=${1:code}"
+    ]
+  ]
+}

@@ -1,0 +1,481 @@
+{
+  "includes": {
+    "calc": []
+  },
+  "macros": {
+    "ifsymfamily": {},
+    "ifgeofamily": {},
+    "narrowshape": {},
+    "wideshape": {},
+    "textifsym{}": {
+      "snippet": "textifsym{${1:text}}"
+    },
+    "textifgeo{}": {
+      "snippet": "textifgeo{${1:text}}"
+    },
+    "textnarrow{}": {
+      "snippet": "textnarrow{${1:text}}"
+    },
+    "textwide{}": {
+      "snippet": "textwide{${1:text}}"
+    },
+    "textifsymbol{}": {
+      "snippet": "textifsymbol{${1:slot}}"
+    },
+    "textifsymbol[]{}": {
+      "snippet": "textifsymbol[${2:font family}]{${1:slot}}"
+    },
+    "theifsymcnt": {},
+    "Letter": {
+      "option": "misc"
+    },
+    "Telephone": {
+      "option": "misc"
+    },
+    "SectioningDiamond": {
+      "option": "misc"
+    },
+    "FilledSectioningDiamond": {
+      "option": "misc"
+    },
+    "PaperPortrait": {
+      "option": "misc"
+    },
+    "PaperLandscape": {
+      "option": "misc"
+    },
+    "Cube{}": {
+      "snippet": "Cube{${1:integer}}",
+      "option": "misc"
+    },
+    "Irritant": {
+      "option": "misc"
+    },
+    "Fire": {
+      "option": "misc"
+    },
+    "Radiation": {
+      "option": "misc"
+    },
+    "StrokeOne": {
+      "option": "misc"
+    },
+    "StrokeTwo": {
+      "option": "misc"
+    },
+    "StrokeThree": {
+      "option": "misc"
+    },
+    "StrokeFour": {
+      "option": "misc"
+    },
+    "StrokeFive": {
+      "option": "misc"
+    },
+    "RaisingEdge": {
+      "option": "electronic"
+    },
+    "FallingEdge": {
+      "option": "electronic"
+    },
+    "ShortPulseHigh": {
+      "option": "electronic"
+    },
+    "ShortPulseLow": {
+      "option": "electronic"
+    },
+    "PulseHigh": {
+      "option": "electronic"
+    },
+    "PulseLow": {
+      "option": "electronic"
+    },
+    "LongPulseHigh": {
+      "option": "electronic"
+    },
+    "LongPulseLow": {
+      "option": "electronic"
+    },
+    "SummitSign": {
+      "option": "alpine"
+    },
+    "StoneMan": {
+      "option": "alpine"
+    },
+    "Hut": {
+      "option": "alpine"
+    },
+    "FilledHut": {
+      "option": "alpine"
+    },
+    "Village": {
+      "option": "alpine"
+    },
+    "Summit": {
+      "option": "alpine"
+    },
+    "Mountain": {
+      "option": "alpine"
+    },
+    "IceMountain": {
+      "option": "alpine"
+    },
+    "VarMountain": {
+      "option": "alpine"
+    },
+    "VarIceMountain": {
+      "option": "alpine"
+    },
+    "SurveySign": {
+      "option": "alpine"
+    },
+    "Joch": {
+      "option": "alpine"
+    },
+    "Flag": {
+      "option": "alpine"
+    },
+    "VarFlag": {
+      "option": "alpine"
+    },
+    "Tent": {
+      "option": "alpine"
+    },
+    "HalfFilledHut": {
+      "option": "alpine"
+    },
+    "VarSummit": {
+      "option": "alpine"
+    },
+    "BigSquare": {
+      "option": "geometry"
+    },
+    "Square": {
+      "option": "geometry",
+      "detail": "☐",
+      "documentation": "BALLOT BOX"
+    },
+    "SmallSquare": {
+      "option": "geometry"
+    },
+    "FilledBigSquare": {
+      "option": "geometry"
+    },
+    "FilledSquare": {
+      "option": "geometry"
+    },
+    "FilledSmallSquare": {
+      "option": "geometry"
+    },
+    "SquareShadowA": {
+      "option": "geometry"
+    },
+    "SquareShadowB": {
+      "option": "geometry"
+    },
+    "SquareShadowC": {
+      "option": "geometry"
+    },
+    "FilledSquareShadowA": {
+      "option": "geometry"
+    },
+    "FilledSquareShadowC": {
+      "option": "geometry"
+    },
+    "BigCross": {
+      "option": "geometry"
+    },
+    "Cross": {
+      "option": "geometry"
+    },
+    "SmallCross": {
+      "option": "geometry"
+    },
+    "SpinUp": {
+      "option": "geometry"
+    },
+    "SpinDown": {
+      "option": "geometry"
+    },
+    "BigTriangleUp": {
+      "option": "geometry"
+    },
+    "TriangleUp": {
+      "option": "geometry"
+    },
+    "SmallTriangleUp": {
+      "option": "geometry"
+    },
+    "FilledBigTriangleUp": {
+      "option": "geometry"
+    },
+    "FilledTriangleUp": {
+      "option": "geometry"
+    },
+    "FilledSmallTriangleUp": {
+      "option": "geometry"
+    },
+    "BigTriangleLeft": {
+      "option": "geometry"
+    },
+    "TriangleLeft": {
+      "option": "geometry"
+    },
+    "SmallTriangleLeft": {
+      "option": "geometry"
+    },
+    "FilledBigTriangleLeft": {
+      "option": "geometry"
+    },
+    "FilledTriangleLeft": {
+      "option": "geometry"
+    },
+    "FilledSmallTriangleLeft": {
+      "option": "geometry"
+    },
+    "BigTriangleDown": {
+      "option": "geometry"
+    },
+    "TriangleDown": {
+      "option": "geometry"
+    },
+    "SmallTriangleDown": {
+      "option": "geometry"
+    },
+    "FilledBigTriangleDown": {
+      "option": "geometry"
+    },
+    "FilledTriangleDown": {
+      "option": "geometry"
+    },
+    "FilledSmallTriangleDown": {
+      "option": "geometry"
+    },
+    "BigTriangleRight": {
+      "option": "geometry"
+    },
+    "TriangleRight": {
+      "option": "geometry"
+    },
+    "SmallTriangleRight": {
+      "option": "geometry"
+    },
+    "FilledBigTriangleRight": {
+      "option": "geometry"
+    },
+    "FilledTriangleRight": {
+      "option": "geometry"
+    },
+    "FilledSmallTriangleRight": {
+      "option": "geometry"
+    },
+    "BigCircle": {
+      "option": "geometry"
+    },
+    "Circle": {
+      "option": "geometry",
+      "detail": "○",
+      "documentation": "medium large circle"
+    },
+    "SmallCircle": {
+      "option": "geometry"
+    },
+    "FilledBigCircle": {
+      "option": "geometry"
+    },
+    "FilledCircle": {
+      "option": "geometry"
+    },
+    "FilledSmallCircle": {
+      "option": "geometry"
+    },
+    "BigDiamondshape": {
+      "option": "geometry"
+    },
+    "Diamondshape": {
+      "option": "geometry"
+    },
+    "SmallDiamondshape": {
+      "option": "geometry"
+    },
+    "FilledBigDiamondshape": {
+      "option": "geometry"
+    },
+    "FilledDiamondshape": {
+      "option": "geometry"
+    },
+    "FilledSmallDiamondshape": {
+      "option": "geometry"
+    },
+    "DiamondShadowA": {
+      "option": "geometry"
+    },
+    "DiamondShadowB": {
+      "option": "geometry"
+    },
+    "DiamondShadowC": {
+      "option": "geometry"
+    },
+    "FilledDiamondShadowA": {
+      "option": "geometry"
+    },
+    "FilledDiamondShadowC": {
+      "option": "geometry"
+    },
+    "BigRightDiamond": {
+      "option": "geometry"
+    },
+    "RightDiamond": {
+      "option": "geometry"
+    },
+    "SmallRightDiamond": {
+      "option": "geometry"
+    },
+    "BigLowerDiamond": {
+      "option": "geometry"
+    },
+    "LowerDiamond": {
+      "option": "geometry"
+    },
+    "SmallLowerDiamond": {
+      "option": "geometry"
+    },
+    "BigHBar": {
+      "option": "geometry"
+    },
+    "HBar": {
+      "option": "geometry"
+    },
+    "SmallHBar": {
+      "option": "geometry"
+    },
+    "BigVBar": {
+      "option": "geometry"
+    },
+    "VBar": {
+      "option": "geometry"
+    },
+    "SmallVBar": {
+      "option": "geometry"
+    },
+    "ifclkfamily": {
+      "option": "clock"
+    },
+    "textifclk{}": {
+      "snippet": "textifclk{${1:text}}",
+      "option": "clock"
+    },
+    "showclock{}{}": {
+      "snippet": "showclock{${1:hour}}{${2:minute}}",
+      "option": "clock"
+    },
+    "Taschenuhr": {
+      "option": "clock"
+    },
+    "VarTaschenuhr": {
+      "option": "clock"
+    },
+    "StopWatchStart": {
+      "option": "clock"
+    },
+    "StopWatchEnd": {
+      "option": "clock"
+    },
+    "Interval": {
+      "option": "clock"
+    },
+    "Wecker": {
+      "option": "clock"
+    },
+    "VarClock": {
+      "option": "clock"
+    },
+    "textweathersymbol{}": {
+      "snippet": "textweathersymbol{${1:slot}}",
+      "option": "weather"
+    },
+    "Sun": {
+      "option": "weather",
+      "detail": "☉",
+      "documentation": "SUN"
+    },
+    "HalfSun": {
+      "option": "weather"
+    },
+    "NoSun": {
+      "option": "weather"
+    },
+    "Fog": {
+      "option": "weather"
+    },
+    "ThinFog": {
+      "option": "weather"
+    },
+    "Rain": {
+      "option": "weather"
+    },
+    "WeakRain": {
+      "option": "weather"
+    },
+    "Hail": {
+      "option": "weather"
+    },
+    "Sleet": {
+      "option": "weather"
+    },
+    "Snow": {
+      "option": "weather"
+    },
+    "Lightning": {
+      "option": "weather"
+    },
+    "Cloud": {
+      "option": "weather"
+    },
+    "RainCloud": {
+      "option": "weather"
+    },
+    "WeakRainCloud": {
+      "option": "weather"
+    },
+    "SunCloud": {
+      "option": "weather"
+    },
+    "SnowCloud": {
+      "option": "weather"
+    },
+    "FilledCloud": {
+      "option": "weather"
+    },
+    "FilledRainCloud": {
+      "option": "weather"
+    },
+    "FilledWeakRainCloud": {
+      "option": "weather"
+    },
+    "FilledSunCloud": {
+      "option": "weather"
+    },
+    "FilledSnowCloud": {
+      "option": "weather"
+    },
+    "wind{}{}{}": {
+      "snippet": "wind{${1:integer}}{${2:angle}}{${3:speed}}",
+      "option": "weather"
+    },
+    "Thermo{}": {
+      "snippet": "Thermo{${1:integer}}",
+      "option": "weather"
+    }
+  },
+  "envs": {},
+  "options": [
+    "misc",
+    "electronic",
+    "alpine",
+    "geometry",
+    "clock",
+    "weather"
+  ],
+  "keyvals": []
+}

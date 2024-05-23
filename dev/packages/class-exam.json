@@ -1,0 +1,857 @@
+{
+  "includes": {
+    "ifthen": []
+  },
+  "macros": {
+    "addpoints": {},
+    "addquestionobject": {},
+    "answerclearance": {},
+    "answerline": {},
+    "answerline[]": {
+      "snippet": "answerline[${1:answer}]"
+    },
+    "answerlinelength": {},
+    "answerskip": {},
+    "begingradingrange{}": {
+      "snippet": "begingradingrange{${1:range name}}"
+    },
+    "bhpgword{}": {
+      "snippet": "bhpgword{${1:text}}"
+    },
+    "bhpword{}": {
+      "snippet": "bhpword{${1:text}}"
+    },
+    "bhqword{}": {
+      "snippet": "bhqword{${1:text}}"
+    },
+    "bhsword{}": {
+      "snippet": "bhsword{${1:text}}"
+    },
+    "bhtword{}": {
+      "snippet": "bhtword{${1:text}}"
+    },
+    "bonusgradetable": {},
+    "bonusgradetable[]": {
+      "snippet": "bonusgradetable[${1:h or v}]"
+    },
+    "bonusgradetable[][]": {
+      "snippet": "bonusgradetable[${1:h or v}][${2:type}]"
+    },
+    "bonuspart": {},
+    "bonuspart[]": {
+      "snippet": "bonuspart[${1:points}]"
+    },
+    "bonuspointformat{}": {
+      "snippet": "bonuspointformat{${1:format commands}}"
+    },
+    "bonuspointname{}": {
+      "snippet": "bonuspointname{${1:text}}"
+    },
+    "bonuspointpoints{}{}": {
+      "snippet": "bonuspointpoints{${1:singular text}}{${2:plural text}}"
+    },
+    "bonuspoints": {},
+    "bonuspointsinrange{}": {
+      "snippet": "bonuspointsinrange{${1:range name}}"
+    },
+    "bonuspointsofquestion{}": {
+      "snippet": "bonuspointsofquestion{${1:number}}"
+    },
+    "bonuspointsonpage{}": {
+      "snippet": "bonuspointsonpage{${1:page number}}"
+    },
+    "bonuspointtable": {},
+    "bonuspointtable[]": {
+      "snippet": "bonuspointtable[${1:h or v}]"
+    },
+    "bonuspointtable[][]": {
+      "snippet": "bonuspointtable[${1:h or v}][${2:type}]"
+    },
+    "bonusqformat{}": {
+      "snippet": "bonusqformat{${1:format spec}}"
+    },
+    "bonusquestion": {},
+    "bonusquestion[]": {
+      "snippet": "bonusquestion[${1:points}]"
+    },
+    "bonussubpart": {},
+    "bonussubpart[]": {
+      "snippet": "bonussubpart[${1:points}]"
+    },
+    "bonussubsubpart": {},
+    "bonussubsubpart[]": {
+      "snippet": "bonussubsubpart[${1:points}]"
+    },
+    "bonustitledquestion{}": {
+      "snippet": "bonustitledquestion{${1:title}}"
+    },
+    "bonustitledquestion{}[]": {
+      "snippet": "bonustitledquestion{${1:title}}[${2:points}]"
+    },
+    "bonustotalformat{}": {
+      "snippet": "bonustotalformat{${1:format commands}}"
+    },
+    "boxedpoints": {},
+    "bracketedpoints": {},
+    "bvpgword{}": {
+      "snippet": "bvpgword{${1:text}}"
+    },
+    "bvpword{}": {
+      "snippet": "bvpword{${1:text}}"
+    },
+    "bvqword{}": {
+      "snippet": "bvqword{${1:text}}"
+    },
+    "bvsword{}": {
+      "snippet": "bvsword{${1:text}}"
+    },
+    "bvtword{}": {
+      "snippet": "bvtword{${1:text}}"
+    },
+    "cancelspace": {},
+    "cancelspacefalse": {},
+    "cancelspacetrue": {},
+    "cellwidth{}": {
+      "snippet": "cellwidth{${1:length}}"
+    },
+    "cfoot[]{}": {
+      "snippet": "cfoot[${2:first page text}]{${1:text}}"
+    },
+    "cfoot{}": {
+      "snippet": "cfoot{${1:text}}"
+    },
+    "chbpword{}": {
+      "snippet": "chbpword{${1:text}}"
+    },
+    "chead[]{}": {
+      "snippet": "chead[${2:first page text}]{${1:text}}"
+    },
+    "chead{}": {
+      "snippet": "chead{${1:text}}"
+    },
+    "checkboxchar{}": {
+      "snippet": "checkboxchar{${1:symbol}}"
+    },
+    "checkboxeshook": {},
+    "checkedchar{}": {
+      "snippet": "checkedchar{${1:symbol}}"
+    },
+    "choice": {},
+    "choicelabel": {},
+    "choiceshook": {},
+    "chpgword{}": {
+      "snippet": "chpgword{${1:text}}"
+    },
+    "chpword{}": {
+      "snippet": "chpword{${1:text}}"
+    },
+    "chqword{}": {
+      "snippet": "chqword{${1:text}}"
+    },
+    "chsword{}": {
+      "snippet": "chsword{${1:text}}"
+    },
+    "chtword{}": {
+      "snippet": "chtword{${1:text}}"
+    },
+    "colorfbox{}{}": {
+      "snippet": "colorfbox{${1:color}}{${2:text}}"
+    },
+    "colorfillwithdottedlines": {},
+    "colorfillwithlines": {},
+    "colorgrids": {},
+    "colorsolutionboxes": {},
+    "combinedgradetable": {},
+    "combinedgradetable[]": {
+      "snippet": "combinedgradetable[${1:h or v}]"
+    },
+    "combinedgradetable[][]": {
+      "snippet": "combinedgradetable[${1:h or v}][${2:type}]"
+    },
+    "combinedpointtable": {},
+    "combinedpointtable[]": {
+      "snippet": "combinedpointtable[${1:h or v}]"
+    },
+    "combinedpointtable[][]": {
+      "snippet": "combinedpointtable[${1:h or v}][${2:type}]"
+    },
+    "ContinuedQuestion": {},
+    "CorrectChoice": {},
+    "correctchoice": {},
+    "CorrectChoiceEmphasis{}": {
+      "snippet": "CorrectChoiceEmphasis{${1:format commands}}"
+    },
+    "correctchoiceemphasis{}": {
+      "snippet": "correctchoiceemphasis{${1:format commands}}"
+    },
+    "covercfoot[]{}": {
+      "snippet": "covercfoot[${2:first page text}]{${1:text}}"
+    },
+    "covercfoot{}": {
+      "snippet": "covercfoot{${1:text}}"
+    },
+    "coverchead[]{}": {
+      "snippet": "coverchead[${2:first page text}]{${1:text}}"
+    },
+    "coverchead{}": {
+      "snippet": "coverchead{${1:text}}"
+    },
+    "coverextrafootheight[]{}": {
+      "snippet": "coverextrafootheight[${2:first page height}]{${1:height}}"
+    },
+    "coverextrafootheight{}": {
+      "snippet": "coverextrafootheight{${1:height}}"
+    },
+    "coverextraheadheight[]{}": {
+      "snippet": "coverextraheadheight[${2:first page height}]{${1:height}}"
+    },
+    "coverextraheadheight{}": {
+      "snippet": "coverextraheadheight{${1:height}}"
+    },
+    "coverfirstpagefooter{}{}{}": {
+      "snippet": "coverfirstpagefooter{${1:left}}{${2:center}}{${3:right}}"
+    },
+    "coverfirstpagefootrule": {},
+    "coverfirstpageheader{}{}{}": {
+      "snippet": "coverfirstpageheader{${1:left}}{${2:center}}{${3:right}}"
+    },
+    "coverfirstpageheadrule": {},
+    "coverfooter{}{}{}": {
+      "snippet": "coverfooter{${1:left}}{${2:center}}{${3:right}}"
+    },
+    "coverfootrule": {},
+    "coverheader{}{}{}": {
+      "snippet": "coverheader{${1:left}}{${2:center}}{${3:right}}"
+    },
+    "coverheadrule": {},
+    "coverlfoot[]{}": {
+      "snippet": "coverlfoot[${2:first page text}]{${1:text}}"
+    },
+    "coverlfoot{}": {
+      "snippet": "coverlfoot{${1:text}}"
+    },
+    "coverlhead[]{}": {
+      "snippet": "coverlhead[${2:first page text}]{${1:text}}"
+    },
+    "coverlhead{}": {
+      "snippet": "coverlhead{${1:text}}"
+    },
+    "coverrfoot[]{}": {
+      "snippet": "coverrfoot[${2:first page text}]{${1:text}}"
+    },
+    "coverrfoot{}": {
+      "snippet": "coverrfoot{${1:text}}"
+    },
+    "coverrhead[]{}": {
+      "snippet": "coverrhead[${2:first page text}]{${1:text}}"
+    },
+    "coverrhead{}": {
+      "snippet": "coverrhead{${1:text}}"
+    },
+    "coverrunningfooter{}{}{}": {
+      "snippet": "coverrunningfooter{${1:left}}{${2:center}}{${3:right}}"
+    },
+    "coverrunningfootrule": {},
+    "coverrunningheader{}{}{}": {
+      "snippet": "coverrunningheader{${1:left}}{${2:center}}{${3:right}}"
+    },
+    "coverrunningheadrule": {},
+    "cvbpword{}": {
+      "snippet": "cvbpword{${1:text}}"
+    },
+    "cvpgword{}": {
+      "snippet": "cvpgword{${1:text}}"
+    },
+    "cvpword{}": {
+      "snippet": "cvpword{${1:text}}"
+    },
+    "cvqword{}": {
+      "snippet": "cvqword{${1:text}}"
+    },
+    "cvsword{}": {
+      "snippet": "cvsword{${1:text}}"
+    },
+    "cvtword{}": {
+      "snippet": "cvtword{${1:text}}"
+    },
+    "dottedlinefillheight": {},
+    "droppoints": {},
+    "droptotalbonuspoints": {},
+    "droptotalpoints": {},
+    "endgradingrange{}": {
+      "snippet": "endgradingrange{${1:range name}}"
+    },
+    "extrafootheight[]{}": {
+      "snippet": "extrafootheight[${2:first page height}]{${1:height}}"
+    },
+    "extrafootheight{}": {
+      "snippet": "extrafootheight{${1:height}}"
+    },
+    "extraheadheight[]{}": {
+      "snippet": "extraheadheight[${2:first page height}]{${1:height}}"
+    },
+    "extraheadheight{}": {
+      "snippet": "extraheadheight{${1:height}}"
+    },
+    "extrawidth{}": {
+      "snippet": "extrawidth{${1:width}}"
+    },
+    "filedate": {},
+    "fileversion": {},
+    "fillin": {},
+    "fillin[]": {
+      "snippet": "fillin[${1:answer}]"
+    },
+    "fillin[][]": {
+      "snippet": "fillin[${1:answer}][${2:length}]"
+    },
+    "fillinlinelength": {},
+    "fillwithdottedlines{}": {
+      "snippet": "fillwithdottedlines{${1:length}}"
+    },
+    "fillwithgrid{}": {
+      "snippet": "fillwithgrid{${1:length}}"
+    },
+    "fillwithlines{}": {
+      "snippet": "fillwithlines{${1:length}}"
+    },
+    "firstpagefooter{}{}{}": {
+      "snippet": "firstpagefooter{${1:left}}{${2:center}}{${3:right}}"
+    },
+    "firstpagefootrule": {},
+    "firstpageheader{}{}{}": {
+      "snippet": "firstpageheader{${1:left}}{${2:center}}{${3:right}}"
+    },
+    "firstpageheadrule": {},
+    "firstqinrange{}": {
+      "snippet": "firstqinrange{${1:range name}}"
+    },
+    "footer{}{}{}": {
+      "snippet": "footer{${1:left}}{${2:center}}{${3:right}}"
+    },
+    "footrule": {},
+    "framedsolutions": {},
+    "fullwidth{}": {
+      "snippet": "fullwidth{${1:text}}"
+    },
+    "gradetable": {},
+    "gradetable[]": {
+      "snippet": "gradetable[${1:h or v}]"
+    },
+    "gradetable[][]": {
+      "snippet": "gradetable[${1:h or v}][${2:type}]"
+    },
+    "gradetablestretch{}": {
+      "snippet": "gradetablestretch{${1:factor}}"
+    },
+    "greeknum{}": {
+      "snippet": "greeknum{${1:counter}}"
+    },
+    "gridlinewidth": {},
+    "gridsize": {},
+    "half": {},
+    "header{}{}{}": {
+      "snippet": "header{${1:left}}{${2:center}}{${3:right}}"
+    },
+    "headrule": {},
+    "hpgword{}": {
+      "snippet": "hpgword{${1:text}}"
+    },
+    "hpword{}": {
+      "snippet": "hpword{${1:text}}"
+    },
+    "hqword{}": {
+      "snippet": "hqword{${1:text}}"
+    },
+    "hsword{}": {
+      "snippet": "hsword{${1:text}}"
+    },
+    "htword{}": {
+      "snippet": "htword{${1:text}}"
+    },
+    "ifcontinuation{}{}": {
+      "snippet": "ifcontinuation{${1:true text}}{${2:false text}}"
+    },
+    "ifincomplete{}{}": {
+      "snippet": "ifincomplete{${1:true text}}{${2:false text}}"
+    },
+    "iflastpage{}{}": {
+      "snippet": "iflastpage{${1:true text}}{${2:false text}}"
+    },
+    "ifprintanswers": {},
+    "ifsolutionsreseteqcounter": {},
+    "IncompleteQuestion": {},
+    "lastqinrange{}": {
+      "snippet": "lastqinrange{${1:range name}}"
+    },
+    "lfoot[]{}": {
+      "snippet": "lfoot[${2:first page text}]{${1:text}}"
+    },
+    "lfoot{}": {
+      "snippet": "lfoot{${1:text}}"
+    },
+    "lhead[]{}": {
+      "snippet": "lhead[${2:first page text}]{${1:text}}"
+    },
+    "lhead{}": {
+      "snippet": "lhead{${1:text}}"
+    },
+    "linefill": {},
+    "linefillheight": {},
+    "linefillthickness": {},
+    "makeemptybox{}": {
+      "snippet": "makeemptybox{${1:length}}"
+    },
+    "marginbonuspointname{}": {
+      "snippet": "marginbonuspointname{${1:text}}"
+    },
+    "marginpointname{}": {
+      "snippet": "marginpointname{${1:text}}"
+    },
+    "marginpointssep": {},
+    "marksnotpoints": {},
+    "multicolumnbonusgradetable{}": {
+      "snippet": "multicolumnbonusgradetable{${1:numcols}}"
+    },
+    "multicolumnbonusgradetable{}[]": {
+      "snippet": "multicolumnbonusgradetable{${1:numcols}}[${2:type}]"
+    },
+    "multicolumnbonuspointtable{}": {
+      "snippet": "multicolumnbonuspointtable{${1:numcols}}"
+    },
+    "multicolumnbonuspointtable{}[]": {
+      "snippet": "multicolumnbonuspointtable{${1:numcols}}[${2:type}]"
+    },
+    "multicolumncombinedgradetable{}": {
+      "snippet": "multicolumncombinedgradetable{${1:numcols}}"
+    },
+    "multicolumncombinedgradetable{}[]": {
+      "snippet": "multicolumncombinedgradetable{${1:numcols}}[${2:type}]"
+    },
+    "multicolumncombinedpointtable{}": {
+      "snippet": "multicolumncombinedpointtable{${1:numcols}}"
+    },
+    "multicolumncombinedpointtable{}[]": {
+      "snippet": "multicolumncombinedpointtable{${1:numcols}}[${2:type}]"
+    },
+    "multicolumngradetable{}": {
+      "snippet": "multicolumngradetable{${1:numcols}}"
+    },
+    "multicolumngradetable{}[]": {
+      "snippet": "multicolumngradetable{${1:numcols}}[${2:type}]"
+    },
+    "multicolumnpartialbonusgradetable{}{}": {
+      "snippet": "multicolumnpartialbonusgradetable{${1:numcols}}{${2:range name}}"
+    },
+    "multicolumnpartialbonusgradetable{}{}[]": {
+      "snippet": "multicolumnpartialbonusgradetable{${1:numcols}}{${2:range name}}[${3:type}]"
+    },
+    "multicolumnpartialbonuspointtable{}{}": {
+      "snippet": "multicolumnpartialbonuspointtable{${1:numcols}}{${2:range name}}"
+    },
+    "multicolumnpartialbonuspointtable{}{}[]": {
+      "snippet": "multicolumnpartialbonuspointtable{${1:numcols}}{${2:range name}}[${3:type}]"
+    },
+    "multicolumnpartialcombinedgradetable{}{}": {
+      "snippet": "multicolumnpartialcombinedgradetable{${1:numcols}}{${2:rangename}}"
+    },
+    "multicolumnpartialcombinedgradetable{}{}[]": {
+      "snippet": "multicolumnpartialcombinedgradetable{${1:numcols}}{${2:rangename}}[${3:type}]"
+    },
+    "multicolumnpartialcombinedpointtable{}{}": {
+      "snippet": "multicolumnpartialcombinedpointtable{${1:numcols}}{${2:rangename}}"
+    },
+    "multicolumnpartialcombinedpointtable{}{}[]": {
+      "snippet": "multicolumnpartialcombinedpointtable{${1:numcols}}{${2:rangename}}[${3:type}]"
+    },
+    "multicolumnpartialgradetable{}{}": {
+      "snippet": "multicolumnpartialgradetable{${1:numcols}}{${2:range name}}"
+    },
+    "multicolumnpartialgradetable{}{}[]": {
+      "snippet": "multicolumnpartialgradetable{${1:numcols}}{${2:range name}}[${3:type}]"
+    },
+    "multicolumnpartialpointtable{}{}": {
+      "snippet": "multicolumnpartialpointtable{${1:numcols}}{${2:range name}}"
+    },
+    "multicolumnpartialpointtable{}{}[]": {
+      "snippet": "multicolumnpartialpointtable{${1:numcols}}{${2:range name}}[${3:type}]"
+    },
+    "multicolumnpointtable{}": {
+      "snippet": "multicolumnpointtable{${1:numcols}}"
+    },
+    "multicolumnpointtable{}[]": {
+      "snippet": "multicolumnpointtable{${1:numcols}}[${2:type}]"
+    },
+    "multirowbonusgradetable{}": {
+      "snippet": "multirowbonusgradetable{${1:numrows}}"
+    },
+    "multirowbonusgradetable{}[]": {
+      "snippet": "multirowbonusgradetable{${1:numrows}}[${2:type}]"
+    },
+    "multirowbonuspointtable{}": {
+      "snippet": "multirowbonuspointtable{${1:numrows}}"
+    },
+    "multirowbonuspointtable{}[]": {
+      "snippet": "multirowbonuspointtable{${1:numrows}}[${2:type}]"
+    },
+    "multirowcombinedgradetable{}": {
+      "snippet": "multirowcombinedgradetable{${1:numrows}}"
+    },
+    "multirowcombinedgradetable{}[]": {
+      "snippet": "multirowcombinedgradetable{${1:numrows}}[${2:type}]"
+    },
+    "multirowcombinedpointtable{}": {
+      "snippet": "multirowcombinedpointtable{${1:numrows}}"
+    },
+    "multirowcombinedpointtable{}[]": {
+      "snippet": "multirowcombinedpointtable{${1:numrows}}[${2:type}]"
+    },
+    "multirowgradetable{}": {
+      "snippet": "multirowgradetable{${1:numrows}}"
+    },
+    "multirowgradetable{}[]": {
+      "snippet": "multirowgradetable{${1:numrows}}[${2:type}]"
+    },
+    "multirowpartialbonusgradetable{}{}": {
+      "snippet": "multirowpartialbonusgradetable{${1:numrows}}{${2:range name}}"
+    },
+    "multirowpartialbonusgradetable{}{}[]": {
+      "snippet": "multirowpartialbonusgradetable{${1:numrows}}{${2:range name}}[${3:type}]"
+    },
+    "multirowpartialbonuspointtable{}{}": {
+      "snippet": "multirowpartialbonuspointtable{${1:numrows}}{${2:range name}}"
+    },
+    "multirowpartialbonuspointtable{}{}[]": {
+      "snippet": "multirowpartialbonuspointtable{${1:numrows}}{${2:range name}}[${3:type}]"
+    },
+    "multirowpartialcombinedgradetable{}{}": {
+      "snippet": "multirowpartialcombinedgradetable{${1:numrows}}{${2:rangename}}"
+    },
+    "multirowpartialcombinedgradetable{}{}[]": {
+      "snippet": "multirowpartialcombinedgradetable{${1:numrows}}{${2:rangename}}[${3:type}]"
+    },
+    "multirowpartialcombinedpointtable{}{}": {
+      "snippet": "multirowpartialcombinedpointtable{${1:numrows}}{${2:rangename}}"
+    },
+    "multirowpartialcombinedpointtable{}{}[]": {
+      "snippet": "multirowpartialcombinedpointtable{${1:numrows}}{${2:rangename}}[${3:type}]"
+    },
+    "multirowpartialgradetable{}{}": {
+      "snippet": "multirowpartialgradetable{${1:numrows}}{${2:range name}}"
+    },
+    "multirowpartialgradetable{}{}[]": {
+      "snippet": "multirowpartialgradetable{${1:numrows}}{${2:range name}}[${3:type}]"
+    },
+    "multirowpartialpointtable{}{}": {
+      "snippet": "multirowpartialpointtable{${1:numrows}}{${2:range name}}"
+    },
+    "multirowpartialpointtable{}{}[]": {
+      "snippet": "multirowpartialpointtable{${1:numrows}}{${2:range name}}[${3:type}]"
+    },
+    "multirowpointtable{}": {
+      "snippet": "multirowpointtable{${1:numrows}}"
+    },
+    "multirowpointtable{}[]": {
+      "snippet": "multirowpointtable{${1:numrows}}[${2:type}]"
+    },
+    "noaddpoints": {},
+    "nobonusqformat": {},
+    "noboxedpoints": {},
+    "nobracketedpoints": {},
+    "nocancelspace": {},
+    "nocolorfillwithdottedlines": {},
+    "nocolorfillwithlines": {},
+    "nocolorgrids": {},
+    "nocolorsolutionboxes": {},
+    "nocoverfirstpagefootrule": {},
+    "nocoverfirstpageheadrule": {},
+    "nocoverfootrule": {},
+    "nocoverheadrule": {},
+    "nocoverrunningfootrule": {},
+    "nocoverrunningheadrule": {},
+    "nofirstpagefootrule": {},
+    "nofirstpageheadrule": {},
+    "nofootrule": {},
+    "noheadrule": {},
+    "nomorequestions": {},
+    "nopointsinleftmargin": {},
+    "nopointsinmargin": {},
+    "nopointsinrightmargin": {},
+    "noprintanswers": {},
+    "noqformat": {},
+    "noquestionsonthispage": {},
+    "norunningfootrule": {},
+    "norunningheadrule": {},
+    "nosolutionsreseteqcounter": {},
+    "nounstarredvspace": {},
+    "numbonuspoints": {},
+    "numcoverpages": {},
+    "numpages": {},
+    "numparts": {},
+    "numpoints": {},
+    "numqinrange{}": {
+      "snippet": "numqinrange{${1:range name}}"
+    },
+    "numquestions": {},
+    "numsubparts": {},
+    "numsubsubparts": {},
+    "oddeven{}{}": {
+      "snippet": "oddeven{${1:odd text}}{${2:even text}}"
+    },
+    "part": {},
+    "part[]": {
+      "snippet": "part[${1:points}]"
+    },
+    "partialbonusgradetable{}": {
+      "snippet": "partialbonusgradetable{${1:range name}}"
+    },
+    "partialbonusgradetable{}[]": {
+      "snippet": "partialbonusgradetable{${1:range name}}[${2:h or v}]"
+    },
+    "partialbonusgradetable{}[][]": {
+      "snippet": "partialbonusgradetable{${1:range name}}[${2:h or v}][${3:type}]"
+    },
+    "partialbonuspointtable{}": {
+      "snippet": "partialbonuspointtable{${1:range name}}"
+    },
+    "partialbonuspointtable{}[]": {
+      "snippet": "partialbonuspointtable{${1:range name}}[${2:h or v}]"
+    },
+    "partialbonuspointtable{}[][]": {
+      "snippet": "partialbonuspointtable{${1:range name}}[${2:h or v}][${3:type}]"
+    },
+    "partialcombinedgradetable{}": {
+      "snippet": "partialcombinedgradetable{${1:range name}}"
+    },
+    "partialcombinedgradetable{}[]": {
+      "snippet": "partialcombinedgradetable{${1:range name}}[${2:h or v}]"
+    },
+    "partialcombinedgradetable{}[][]": {
+      "snippet": "partialcombinedgradetable{${1:range name}}[${2:h or v}][${3:type}]"
+    },
+    "partialcombinedpointtable{}": {
+      "snippet": "partialcombinedpointtable{${1:range name}}"
+    },
+    "partialcombinedpointtable{}[]": {
+      "snippet": "partialcombinedpointtable{${1:range name}}[${2:h or v}]"
+    },
+    "partialcombinedpointtable{}[][]": {
+      "snippet": "partialcombinedpointtable{${1:range name}}[${2:h or v}][${3:type}]"
+    },
+    "partialgradetable{}": {
+      "snippet": "partialgradetable{${1:range name}}"
+    },
+    "partialgradetable{}[]": {
+      "snippet": "partialgradetable{${1:range name}}[${2:h or v}]"
+    },
+    "partialgradetable{}[][]": {
+      "snippet": "partialgradetable{${1:range name}}[${2:h or v}][${3:type}]"
+    },
+    "partialpointtable{}": {
+      "snippet": "partialpointtable{${1:range name}}"
+    },
+    "partialpointtable{}[]": {
+      "snippet": "partialpointtable{${1:range name}}[${2:h or v}]"
+    },
+    "partialpointtable{}[][]": {
+      "snippet": "partialpointtable{${1:range name}}[${2:h or v}][${3:type}]"
+    },
+    "partlabel": {},
+    "partshook": {},
+    "PgInfo{}{}": {
+      "snippet": "PgInfo{${1:question label}}{${2:page}}"
+    },
+    "pointformat{}": {
+      "snippet": "pointformat{${1:format commands}}"
+    },
+    "pointname{}": {
+      "snippet": "pointname{${1:text}}"
+    },
+    "pointpoints{}{}": {
+      "snippet": "pointpoints{${1:singular text}}{${2:plural text}}"
+    },
+    "points": {},
+    "pointsdroppedatright": {},
+    "pointsinleftmargin": {},
+    "pointsinmargin": {},
+    "pointsinrange{}": {
+      "snippet": "pointsinrange{${1:range name}}"
+    },
+    "pointsinrightmargin": {},
+    "pointsofquestion{}": {
+      "snippet": "pointsofquestion{${1:number}}"
+    },
+    "pointsonpage{}": {
+      "snippet": "pointsonpage{${1:page number}}"
+    },
+    "pointstwosided": {},
+    "pointstwosidedreversed": {},
+    "pointtable": {},
+    "pointtable[]": {
+      "snippet": "pointtable[${1:h or v}]"
+    },
+    "pointtable[][]": {
+      "snippet": "pointtable[${1:h or v}][${2:type}]"
+    },
+    "printanswers": {},
+    "printanswersfalse": {},
+    "printanswerstrue": {},
+    "qformat{}": {
+      "snippet": "qformat{${1:format spec}}"
+    },
+    "question": {
+      "detail": "?",
+      "documentation": "QUESTION MARK"
+    },
+    "question[]": {
+      "snippet": "question[${1:points}]"
+    },
+    "questionlabel": {},
+    "questionshook": {},
+    "rfoot[]{}": {
+      "snippet": "rfoot[${2:first page text}]{${1:text}}"
+    },
+    "rfoot{}": {
+      "snippet": "rfoot{${1:text}}"
+    },
+    "rhead[]{}": {
+      "snippet": "rhead[${2:first page text}]{${1:text}}"
+    },
+    "rhead{}": {
+      "snippet": "rhead{${1:text}}"
+    },
+    "rightpointsmargin": {},
+    "runningfooter{}{}{}": {
+      "snippet": "runningfooter{${1:left}}{${2:center}}{${3:right}}"
+    },
+    "runningfootrule": {},
+    "runningheader{}{}{}": {
+      "snippet": "runningheader{${1:left}}{${2:center}}{${3:right}}"
+    },
+    "runningheadrule": {},
+    "settabletotalbonuspoints{}": {
+      "snippet": "settabletotalbonuspoints{${1:number}}"
+    },
+    "settabletotalpoints{}": {
+      "snippet": "settabletotalpoints{${1:number}}"
+    },
+    "shadedsolutions": {},
+    "SolutionEmphasis{}": {
+      "snippet": "SolutionEmphasis{${1:format commands}}"
+    },
+    "solutionsreseteqcounter": {},
+    "solutionsreseteqcounterfalse": {},
+    "solutionsreseteqcountertrue": {},
+    "solutiontitle": {},
+    "subpart": {},
+    "subpart[]": {
+      "snippet": "subpart[${1:points}]"
+    },
+    "subpartlabel": {},
+    "subpartshook": {},
+    "subsubpart": {},
+    "subsubpart[]": {
+      "snippet": "subsubpart[${1:points}]"
+    },
+    "subsubpartlabel": {},
+    "subsubpartshook": {},
+    "thechoice": {},
+    "themarginpoints": {},
+    "thenumparts": {},
+    "thenumquestions": {},
+    "thenumsubparts": {},
+    "thenumsubsubparts": {},
+    "thepartno": {},
+    "thepoints": {},
+    "thequestion": {},
+    "thequestiontitle": {},
+    "thesubpart": {},
+    "thesubsubpart": {},
+    "titledquestion{}": {
+      "snippet": "titledquestion{${1:title}}"
+    },
+    "titledquestion{}[]": {
+      "snippet": "titledquestion{${1:title}}[${2:points}]"
+    },
+    "totalbonuspoints": {},
+    "totalformat{}": {
+      "snippet": "totalformat{${1:format commands}}"
+    },
+    "totalnumpages": {},
+    "totalpoints": {},
+    "unframedsolutions": {},
+    "unstarredvspace": {},
+    "uplevel{}": {
+      "snippet": "uplevel{${1:text}}"
+    },
+    "usehorizontalhalf": {},
+    "useslantedhalf": {},
+    "vpgword{}": {
+      "snippet": "vpgword{${1:text}}"
+    },
+    "vpword{}": {
+      "snippet": "vpword{${1:text}}"
+    },
+    "vqword{}": {
+      "snippet": "vqword{${1:text}}"
+    },
+    "vsword{}": {
+      "snippet": "vsword{${1:text}}"
+    },
+    "vtword{}": {
+      "snippet": "vtword{${1:text}}"
+    }
+  },
+  "envs": {
+    "checkboxes": {},
+    "choices": {},
+    "coverpages": {},
+    "EnvFullwidth": {},
+    "EnvUplevel": {},
+    "examframed": {},
+    "examleftbar": {},
+    "oneparcheckboxes": {},
+    "oneparchoices": {},
+    "parts": {},
+    "questions": {},
+    "solution": {},
+    "solution[]": {
+      "name": "solution",
+      "snippet": "[${1:space}]"
+    },
+    "solutionbox{}": {
+      "name": "solutionbox",
+      "snippet": "{${1:size}}"
+    },
+    "solutionorbox": {},
+    "solutionorbox[]": {
+      "name": "solutionorbox",
+      "snippet": "[${1:space}]"
+    },
+    "solutionordottedlines": {},
+    "solutionordottedlines[]": {
+      "name": "solutionordottedlines",
+      "snippet": "[${1:space}]"
+    },
+    "solutionorgrid": {},
+    "solutionorgrid[]": {
+      "name": "solutionorgrid",
+      "snippet": "[${1:space}]"
+    },
+    "solutionorlines": {},
+    "solutionorlines[]": {
+      "name": "solutionorlines",
+      "snippet": "[${1:space}]"
+    },
+    "subparts": {},
+    "subsubparts": {},
+    "TheSolution": {}
+  },
+  "options": [
+    "answers",
+    "cancelspace",
+    "addpoints",
+    "solutionsreseteqcounter"
+  ],
+  "keyvals": []
+}

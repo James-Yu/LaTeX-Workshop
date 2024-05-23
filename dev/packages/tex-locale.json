@@ -1,0 +1,655 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "xfor": [],
+    "tracklang": [],
+    "ifxetex": [],
+    "ifluatex": [],
+    "xkeyval": [],
+    "texosquery": [],
+    "fontenc": [],
+    "fontawesome": [
+      "symbols=fontawesome"
+    ],
+    "babel": [
+      "support=babel"
+    ],
+    "polyglossia": [
+      "support=polyglossia"
+    ],
+    "CJK": [
+      "support=cjk"
+    ],
+    "inputenc": [
+      "inputenc=auto",
+      "inputenc=utf8",
+      "inputenc=utf8x"
+    ],
+    "ucs": [
+      "inputenc=utf8x"
+    ],
+    "datetime2": [
+      "datetime=iso",
+      "datetime=text",
+      "datetime=num",
+      "datetime=numeric",
+      "iso"
+    ]
+  },
+  "macros": {
+    "DH": {
+      "option": "fontenc=T1"
+    },
+    "NG": {
+      "option": "fontenc=T1"
+    },
+    "dj": {
+      "option": "fontenc=T1"
+    },
+    "ng": {
+      "option": "fontenc=T1"
+    },
+    "k{}": {
+      "snippet": "k{${1:arg}}",
+      "option": "fontenc=T1"
+    },
+    "guillemotleft": {
+      "option": "fontenc=T1"
+    },
+    "guillemotright": {
+      "option": "fontenc=T1"
+    },
+    "guilsinglleft": {
+      "option": "fontenc=T1"
+    },
+    "guilsinglright": {
+      "option": "fontenc=T1"
+    },
+    "quotedblbase": {
+      "option": "fontenc=T1"
+    },
+    "quotesinglbase": {
+      "option": "fontenc=T1"
+    },
+    "textquotedbl": {
+      "option": "fontenc=T1"
+    },
+    "DJ": {
+      "option": "fontenc=T1"
+    },
+    "th": {
+      "option": "fontenc=T1"
+    },
+    "TH": {
+      "option": "fontenc=T1"
+    },
+    "dh": {
+      "option": "fontenc=T1"
+    },
+    "Hwithstroke": {
+      "option": "fontenc=T1"
+    },
+    "hwithstroke": {
+      "option": "fontenc=T1"
+    },
+    "textogonekcentered{}": {
+      "snippet": "textogonekcentered{${1:arg}}",
+      "option": "fontenc=T1"
+    },
+    "guillemetleft": {
+      "option": "fontenc=T1"
+    },
+    "guillemetright": {
+      "option": "fontenc=T1"
+    },
+    "LocaleQueryFile": {},
+    "LocaleStyQueryFile": {},
+    "localeprequery": {},
+    "localepostquery": {},
+    "LocaleMain": {},
+    "LocaleOther": {},
+    "selectlocale{}": {
+      "snippet": "selectlocale{${1:locale}}"
+    },
+    "LocaleOSname": {},
+    "LocaleOSversion": {},
+    "LocaleOSarch": {},
+    "LocaleOScodeset": {},
+    "LocaleQueryCodesetParam": {},
+    "LocaleOStag": {},
+    "LocaleNowStamp": {},
+    "LocaleMainFile": {},
+    "LocaleFileMod": {},
+    "LocaleSetAttribute{}{}{}": {
+      "snippet": "LocaleSetAttribute{${1:label}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleGetAttribute{}{}": {
+      "snippet": "LocaleGetAttribute{${1:label}}{${2:attribute}}"
+    },
+    "LocaleSetDialectAttribute{}{}{}": {
+      "snippet": "LocaleSetDialectAttribute{${1:dialect}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleGetDialectAttribute{}{}": {
+      "snippet": "LocaleGetDialectAttribute{${1:dialect}}{${2:attribute}}"
+    },
+    "LocaleSetRegionAttribute{}{}{}": {
+      "snippet": "LocaleSetRegionAttribute{${1:region code}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleGetRegionAttribute{}{}": {
+      "snippet": "LocaleGetRegionAttribute{${1:region code}}{${2:attribute}}"
+    },
+    "LocaleSetCurrencyAttribute{}{}{}": {
+      "snippet": "LocaleSetCurrencyAttribute{${1:currency code}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleGetCurrencyAttribute{}{}": {
+      "snippet": "LocaleGetCurrencyAttribute{${1:currency code}}{${2:attribute}}"
+    },
+    "localeshowattribute{}{}": {
+      "snippet": "localeshowattribute{${1:label}}{${2:attribute}}"
+    },
+    "localeshowdialectattribute{}{}": {
+      "snippet": "localeshowdialectattribute{${1:dialect}}{${2:attribute}}"
+    },
+    "localeshowregionattribute{}{}": {
+      "snippet": "localeshowregionattribute{${1:region code}}{${2:attribute}}"
+    },
+    "localeshowcurrencyattribute{}{}": {
+      "snippet": "localeshowcurrencyattribute{${1:currency code}}{${2:attribute}}"
+    },
+    "LocaleAddToAttributeList{}{}{}": {
+      "snippet": "LocaleAddToAttributeList{${1:label}}{${2:attribute}}{${3:item}}"
+    },
+    "LocaleXpAddToAttributeList{}{}{}": {
+      "snippet": "LocaleXpAddToAttributeList{${1:label}}{${2:attribute}}{${3:item}}"
+    },
+    "LocaleIfInAttributeList{}{}{}{}{}": {
+      "snippet": "LocaleIfInAttributeList{${1:label}}{${2:attribute}}{${3:item}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfXpInAttributeList{}{}{}{}{}": {
+      "snippet": "LocaleIfXpInAttributeList{${1:label}}{${2:attribute}}{${3:item}}{${4:true}}{${5:false}}"
+    },
+    "LocaleForEachInAttributeList{}{}{}{}": {
+      "snippet": "LocaleForEachInAttributeList{${1:label}}{${2:attribute}}{${3:cmd}}{${4:body}}"
+    },
+    "LocaleAddToDialectAttributeList{}{}{}": {
+      "snippet": "LocaleAddToDialectAttributeList{${1:label}}{${2:attribute}}{${3:item}}"
+    },
+    "LocaleXpAddToDialectAttributeList{}{}{}": {
+      "snippet": "LocaleXpAddToDialectAttributeList{${1:label}}{${2:attribute}}{${3:item}}"
+    },
+    "LocaleIfInDialectAttributeList{}{}{}{}{}": {
+      "snippet": "LocaleIfInDialectAttributeList{${1:label}}{${2:attribute}}{${3:item}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfXpInDialectAttributeList{}{}{}{}{}": {
+      "snippet": "LocaleIfXpInDialectAttributeList{${1:label}}{${2:attribute}}{${3:item}}{${4:true}}{${5:false}}"
+    },
+    "LocaleForEachInDialectAttributeList{}{}{}{}": {
+      "snippet": "LocaleForEachInDialectAttributeList{${1:label}}{${2:attribute}}{${3:cmd}}{${4:body}}"
+    },
+    "LocaleAddToRegionAttributeList{}{}{}": {
+      "snippet": "LocaleAddToRegionAttributeList{${1:label}}{${2:attribute}}{${3:item}}"
+    },
+    "LocaleXpAddToRegionAttributeList{}{}{}": {
+      "snippet": "LocaleXpAddToRegionAttributeList{${1:label}}{${2:attribute}}{${3:item}}"
+    },
+    "LocaleIfInRegionAttributeList{}{}{}{}{}": {
+      "snippet": "LocaleIfInRegionAttributeList{${1:label}}{${2:attribute}}{${3:item}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfXpInRegionAttributeList{}{}{}{}{}": {
+      "snippet": "LocaleIfXpInRegionAttributeList{${1:label}}{${2:attribute}}{${3:item}}{${4:true}}{${5:false}}"
+    },
+    "LocaleForEachInRegionAttributeList{}{}{}{}": {
+      "snippet": "LocaleForEachInRegionAttributeList{${1:label}}{${2:attribute}}{${3:cmd}}{${4:body}}"
+    },
+    "LocaleAddToCurrencyAttributeList{}{}{}": {
+      "snippet": "LocaleAddToCurrencyAttributeList{${1:label}}{${2:attribute}}{${3:item}}"
+    },
+    "LocaleXpAddToCurrencyAttributeList{}{}{}": {
+      "snippet": "LocaleXpAddToCurrencyAttributeList{${1:label}}{${2:attribute}}{${3:item}}"
+    },
+    "LocaleIfInCurrencyAttributeList{}{}{}{}{}": {
+      "snippet": "LocaleIfInCurrencyAttributeList{${1:label}}{${2:attribute}}{${3:item}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfXpInCurrencyAttributeList{}{}{}{}{}": {
+      "snippet": "LocaleIfXpInCurrencyAttributeList{${1:label}}{${2:attribute}}{${3:item}}{${4:true}}{${5:false}}"
+    },
+    "LocaleForEachInCurrencyAttributeList{}{}{}{}": {
+      "snippet": "LocaleForEachInCurrencyAttributeList{${1:label}}{${2:attribute}}{${3:cmd}}{${4:body}}"
+    },
+    "localenumfmt{}{}": {
+      "snippet": "localenumfmt{${1:pattern}}{${2:decimal}}"
+    },
+    "localenumfmtneg{}": {
+      "snippet": "localenumfmtneg{${1:text}}"
+    },
+    "localenumfmtzero{}": {
+      "snippet": "localenumfmtzero{${1:text}}"
+    },
+    "localenumfmtpos{}": {
+      "snippet": "localenumfmtpos{${1:text}}"
+    },
+    "localeint{}": {
+      "snippet": "localeint{${1:value}}"
+    },
+    "localedec{}": {
+      "snippet": "localedec{${1:decimal}}"
+    },
+    "localecur{}": {
+      "snippet": "localecur{${1:decimal}}"
+    },
+    "localeper{}": {
+      "snippet": "localeper{${1:decimal}}"
+    },
+    "LocaleIfDateTimePatternsSupported{}{}": {
+      "snippet": "LocaleIfDateTimePatternsSupported{${1:true}}{${2:false}}"
+    },
+    "LocaleDateTimeInfo": {},
+    "LocaleApplyDateTimePattern{}{}{}": {
+      "snippet": "LocaleApplyDateTimePattern{${1:dialect}}{${2:attribute}}{${3:data}}"
+    },
+    "LocaleMainDialect": {},
+    "LocaleMainRegion": {},
+    "LocaleLanguageTag{}": {
+      "snippet": "LocaleLanguageTag{${1:dialect}}"
+    },
+    "LocaleLanguageName{}": {
+      "snippet": "LocaleLanguageName{${1:dialect}}"
+    },
+    "LocaleLanguageNativeName{}": {
+      "snippet": "LocaleLanguageNativeName{${1:dialect}}"
+    },
+    "LocaleRegionName{}": {
+      "snippet": "LocaleRegionName{${1:dialect}}"
+    },
+    "LocaleRegionNativeName{}": {
+      "snippet": "LocaleRegionNativeName{${1:dialect}}"
+    },
+    "LocaleVariantName{}": {
+      "snippet": "LocaleVariantName{${1:dialect}}"
+    },
+    "LocaleVariantNativeName{}": {
+      "snippet": "LocaleVariantNativeName{${1:dialect}}"
+    },
+    "LocaleIfHasLanguageName{}{}{}": {
+      "snippet": "LocaleIfHasLanguageName{${1:dialect}}{${2:true}}{${3:false}}"
+    },
+    "LocaleIfHasRegionName{}{}{}": {
+      "snippet": "LocaleIfHasRegionName{${1:dialect}}{${2:true}}{${3:false}}"
+    },
+    "LocaleIfHasVariantName{}{}{}": {
+      "snippet": "LocaleIfHasVariantName{${1:dialect}}{${2:true}}{${3:false}}"
+    },
+    "localedatetimefmt{}": {
+      "snippet": "localedatetimefmt{${1:date-time text}}"
+    },
+    "LocaleFullDate{}": {
+      "snippet": "LocaleFullDate{${1:dialect}}"
+    },
+    "LocaleLongDate{}": {
+      "snippet": "LocaleLongDate{${1:dialect}}"
+    },
+    "LocaleMediumDate{}": {
+      "snippet": "LocaleMediumDate{${1:dialect}}"
+    },
+    "LocaleShortDate{}": {
+      "snippet": "LocaleShortDate{${1:dialect}}"
+    },
+    "dtmMondayIndex": {},
+    "dtmTuesdayIndex": {},
+    "dtmWednesdayIndex": {},
+    "dtmThursdayIndex": {},
+    "dtmFridayIndex": {},
+    "dtmSaturdayIndex": {},
+    "dtmSundayIndex": {},
+    "LocaleDayName{}{}": {
+      "snippet": "LocaleDayName{${1:dialect}}{${2:index}}"
+    },
+    "LocaleShortDayName{}{}": {
+      "snippet": "LocaleShortDayName{${1:dialect}}{${2:index}}"
+    },
+    "LocaleStandaloneDayName{}{}": {
+      "snippet": "LocaleStandaloneDayName{${1:dialect}}{${2:index}}"
+    },
+    "LocaleStandaloneShortDayName{}{}": {
+      "snippet": "LocaleStandaloneShortDayName{${1:dialect}}{${2:index}}"
+    },
+    "LocaleFirstDayIndex{}": {
+      "snippet": "LocaleFirstDayIndex{${1:dialect}}"
+    },
+    "LocaleDayIndexFromZeroMonToOneSun{}": {
+      "snippet": "LocaleDayIndexFromZeroMonToOneSun{${1:index}}"
+    },
+    "LocaleDayIndexFromZeroMonToOneMon{}": {
+      "snippet": "LocaleDayIndexFromZeroMonToOneMon{${1:index}}"
+    },
+    "LocaleDayIndexFromOneSunToZeroMon{}": {
+      "snippet": "LocaleDayIndexFromOneSunToZeroMon{${1:index}}"
+    },
+    "LocaleDayIndexFromOneMonToZeroMon{}": {
+      "snippet": "LocaleDayIndexFromOneMonToZeroMon{${1:index}}"
+    },
+    "LocaleDayIndexFromRegion{}{}": {
+      "snippet": "LocaleDayIndexFromRegion{${1:dialect}}{${2:index}}"
+    },
+    "LocaleDayIndexToRegion{}{}": {
+      "snippet": "LocaleDayIndexToRegion{${1:dialect}}{${2:index}}"
+    },
+    "LocaleMonthName{}{}": {
+      "snippet": "LocaleMonthName{${1:dialect}}{${2:index}}"
+    },
+    "LocaleShortMonthName{}{}": {
+      "snippet": "LocaleShortMonthName{${1:dialect}}{${2:index}}"
+    },
+    "LocaleStandaloneMonthName{}{}": {
+      "snippet": "LocaleStandaloneMonthName{${1:dialect}}{${2:index}}"
+    },
+    "LocaleStandaloneShortMonthName{}{}": {
+      "snippet": "LocaleStandaloneShortMonthName{${1:dialect}}{${2:index}}"
+    },
+    "LocaleFullTime{}": {
+      "snippet": "LocaleFullTime{${1:dialect}}"
+    },
+    "LocaleLongTime{}": {
+      "snippet": "LocaleLongTime{${1:dialect}}"
+    },
+    "LocaleMediumTime{}": {
+      "snippet": "LocaleMediumTime{${1:dialect}}"
+    },
+    "LocaleShortTime{}": {
+      "snippet": "LocaleShortTime{${1:dialect}}"
+    },
+    "LocaleFullDateTime{}": {
+      "snippet": "LocaleFullDateTime{${1:dialect}}"
+    },
+    "LocaleLongDateTime{}": {
+      "snippet": "LocaleLongDateTime{${1:dialect}}"
+    },
+    "LocaleMediumDateTime{}": {
+      "snippet": "LocaleMediumDateTime{${1:dialect}}"
+    },
+    "LocaleShortDateTime{}": {
+      "snippet": "LocaleShortDateTime{${1:dialect}}"
+    },
+    "LocaleNumericGroupSep{}": {
+      "snippet": "LocaleNumericGroupSep{${1:dialect}}"
+    },
+    "LocaleIfNumericUsesGroup{}{}{}": {
+      "snippet": "LocaleIfNumericUsesGroup{${1:dialect}}{${2:true}}{${3:false}}"
+    },
+    "LocaleNumericDecimalSep{}": {
+      "snippet": "LocaleNumericDecimalSep{${1:dialect}}"
+    },
+    "LocaleNumericMonetarySep{}": {
+      "snippet": "LocaleNumericMonetarySep{${1:dialect}}"
+    },
+    "LocaleNumericExponent{}": {
+      "snippet": "LocaleNumericExponent{${1:dialect}}"
+    },
+    "LocaleNumericPercent{}": {
+      "snippet": "LocaleNumericPercent{${1:dialect}}"
+    },
+    "LocaleNumericPermill{}": {
+      "snippet": "LocaleNumericPermill{${1:dialect}}"
+    },
+    "LocaleCurrencyLabel{}": {
+      "snippet": "LocaleCurrencyLabel{${1:dialect}}"
+    },
+    "LocaleCurrencyRegionalLabel{}": {
+      "snippet": "LocaleCurrencyRegionalLabel{${1:dialect}}"
+    },
+    "LocaleCurrencySymbol{}": {
+      "snippet": "LocaleCurrencySymbol{${1:dialect}}"
+    },
+    "LocaleCurrencyTeXSymbol{}": {
+      "snippet": "LocaleCurrencyTeXSymbol{${1:dialect}}"
+    },
+    "CurrentLocaleLanguageName": {},
+    "CurrentLocaleLanguageNativeName": {},
+    "CurrentLocaleRegionName": {},
+    "CurrentLocaleRegionNativeName": {},
+    "CurrentLocaleVariantName": {},
+    "CurrentLocaleVariantNativeName": {},
+    "CurrentLocaleFirstDayIndex": {},
+    "CurrentLocaleDayIndexFromRegion{}": {
+      "snippet": "CurrentLocaleDayIndexFromRegion{${1:index}}"
+    },
+    "CurrentLocaleDayName{}": {
+      "snippet": "CurrentLocaleDayName{${1:index}}"
+    },
+    "CurrentLocaleShortDayName{}": {
+      "snippet": "CurrentLocaleShortDayName{${1:index}}"
+    },
+    "CurrentLocaleStandaloneDayName{}": {
+      "snippet": "CurrentLocaleStandaloneDayName{${1:index}}"
+    },
+    "CurrentLocaleStandaloneShortDayName{}": {
+      "snippet": "CurrentLocaleStandaloneShortDayName{${1:index}}"
+    },
+    "CurrentLocaleMonthName{}": {
+      "snippet": "CurrentLocaleMonthName{${1:index}}"
+    },
+    "CurrentLocaleShortMonthName{}": {
+      "snippet": "CurrentLocaleShortMonthName{${1:index}}"
+    },
+    "CurrentLocaleStandaloneMonthName{}": {
+      "snippet": "CurrentLocaleStandaloneMonthName{${1:index}}"
+    },
+    "CurrentLocaleStandaloneShortMonthName{}": {
+      "snippet": "CurrentLocaleStandaloneShortMonthName{${1:index}}"
+    },
+    "CurrentLocaleDate": {},
+    "localedatechoice{}{}{}{}": {
+      "snippet": "localedatechoice{${1:full}}{${2:long}}{${3:medium}}{${4:short}}"
+    },
+    "CurrentLocaleTime": {},
+    "localetimechoice{}{}{}{}": {
+      "snippet": "localetimechoice{${1:full}}{${2:long}}{${3:medium}}{${4:short}}"
+    },
+    "CurrentLocaleDateTime": {},
+    "CurrentLocaleFullDate": {},
+    "CurrentLocaleLongDate": {},
+    "CurrentLocaleMediumDate": {},
+    "CurrentLocaleShortDate": {},
+    "CurrentLocaleFullTime": {},
+    "CurrentLocaleLongTime": {},
+    "CurrentLocaleMediumTime": {},
+    "CurrentLocaleShortTime": {},
+    "CurrentLocaleFullDateTime": {},
+    "CurrentLocaleLongDateTime": {},
+    "CurrentLocaleMediumDateTime": {},
+    "CurrentLocaleShortDateTime": {},
+    "CurrentLocaleCurrency": {},
+    "localecurrchoice{}{}{}{}": {
+      "snippet": "localecurrchoice{${1:label}}{${2:regional}}{${3:symbol}}{${4:TeX}}"
+    },
+    "CurrentLocaleNumericGroupSep": {},
+    "CurrentLocaleIfNumericUsesGroup{}{}": {
+      "snippet": "CurrentLocaleIfNumericUsesGroup{${1:true}}{${2:false}}"
+    },
+    "CurrentLocaleDecimalSep": {},
+    "CurrentLocaleMonetarySep": {},
+    "CurrentLocaleExponent": {},
+    "CurrentLocalePercent": {},
+    "CurrentLocalePermill": {},
+    "CurrentLocaleIntegerPattern": {},
+    "CurrentLocaleDecimalPattern": {},
+    "CurrentLocaleCurrencyPattern": {},
+    "CurrentLocalePercentPattern": {},
+    "CurrentLocaleApplyDateTimePattern": {},
+    "LocaleSupportPackageCase{}{}{}": {
+      "snippet": "LocaleSupportPackageCase{${1:babel}}{${2:polyglossia}}{${3:neither}}"
+    },
+    "LocaleAppToAttribute{}{}{}": {
+      "snippet": "LocaleAppToAttribute{${1:label}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleAppToCurrencyAttribute{}{}{}": {
+      "snippet": "LocaleAppToCurrencyAttribute{${1:currency code}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleAppToDialectAttribute{}{}{}": {
+      "snippet": "LocaleAppToDialectAttribute{${1:dialect}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleAppToRegionAttribute{}{}{}": {
+      "snippet": "LocaleAppToRegionAttribute{${1:region code}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleGetAttributeOrDefValue{}{}{}": {
+      "snippet": "LocaleGetAttributeOrDefValue{${1:label}}{${2:attribute}}{${3:default}}"
+    },
+    "LocaleGetCurrencyAttributeOrDefValue{}{}{}": {
+      "snippet": "LocaleGetCurrencyAttributeOrDefValue{${1:currency code}}{${2:attribute}}{${3:default}}"
+    },
+    "LocaleGetDialectAttributeOrDefValue{}{}{}": {
+      "snippet": "LocaleGetDialectAttributeOrDefValue{${1:dialect}}{${2:attribute}}{${3:default}}"
+    },
+    "LocaleGetRegionAttributeOrDefValue{}{}{}": {
+      "snippet": "LocaleGetRegionAttributeOrDefValue{${1:region code}}{${2:attribute}}{${3:default}}"
+    },
+    "LocaleIfAttributeEqCsName{}{}{}{}{}": {
+      "snippet": "LocaleIfAttributeEqCsName{${1:label}}{${2:attribute}}{${3:csname}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfAttributeEqCs{}{}{}{}{}": {
+      "snippet": "LocaleIfAttributeEqCs{${1:label}}{${2:attribute}}{${3:cmd}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfAttributeEqNum{}{}{}{}{}": {
+      "snippet": "LocaleIfAttributeEqNum{${1:label}}{${2:attribute}}{${3:num}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfCurrencyAttributeEqCsName{}{}{}{}{}": {
+      "snippet": "LocaleIfCurrencyAttributeEqCsName{${1:currency code}}{${2:attribute}}{${3:csname}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfCurrencyAttributeEqCs{}{}{}{}{}": {
+      "snippet": "LocaleIfCurrencyAttributeEqCs{${1:currency code}}{${2:attribute}}{${3:cmd}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfCurrencyAttributeEqNum{}{}{}{}{}": {
+      "snippet": "LocaleIfCurrencyAttributeEqNum{${1:currency code}}{${2:attribute}}{${3:num}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfDialectAttributeEqCsName{}{}{}{}{}": {
+      "snippet": "LocaleIfDialectAttributeEqCsName{${1:dialect}}{${2:attribute}}{${3:csname}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfDialectAttributeEqCs{}{}{}{}{}": {
+      "snippet": "LocaleIfDialectAttributeEqCs{${1:dialect}}{${2:attribute}}{${3:cmd}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfDialectAttributeEqNum{}{}{}{}{}": {
+      "snippet": "LocaleIfDialectAttributeEqNum{${1:dialect}}{${2:attribute}}{${3:num}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfHasAttribute{}{}{}{}": {
+      "snippet": "LocaleIfHasAttribute{${1:label}}{${2:attribute}}{${3:true}}{${4:false}}"
+    },
+    "LocaleIfHasCurrencyAttribute{}{}{}{}": {
+      "snippet": "LocaleIfHasCurrencyAttribute{${1:currency code}}{${2:attribute}}{${3:true}}{${4:false}}"
+    },
+    "LocaleIfHasCurrencyNonEmptyAttribute{}{}{}{}": {
+      "snippet": "LocaleIfHasCurrencyNonEmptyAttribute{${1:currency code}}{${2:attribute}}{${3:true}}{${4:false}}"
+    },
+    "LocaleIfHasDialectAttribute{}{}{}{}": {
+      "snippet": "LocaleIfHasDialectAttribute{${1:dialect}}{${2:attribute}}{${3:true}}{${4:false}}"
+    },
+    "LocaleIfHasDialectNonEmptyAttribute{}{}{}{}": {
+      "snippet": "LocaleIfHasDialectNonEmptyAttribute{${1:dialect}}{${2:attribute}}{${3:true}}{${4:false}}"
+    },
+    "LocaleIfHasNonEmptyAttribute{}{}{}{}": {
+      "snippet": "LocaleIfHasNonEmptyAttribute{${1:label}}{${2:attribute}}{${3:true}}{${4:false}}"
+    },
+    "LocaleIfHasRegionAttribute{}{}{}{}": {
+      "snippet": "LocaleIfHasRegionAttribute{${1:region code}}{${2:attribute}}{${3:true}}{${4:false}}"
+    },
+    "LocaleIfHasRegionNonEmptyAttribute{}{}{}{}": {
+      "snippet": "LocaleIfHasRegionNonEmptyAttribute{${1:region code}}{${2:attribute}}{${3:true}}{${4:false}}"
+    },
+    "LocaleIfRegionAttributeEqCsName{}{}{}{}{}": {
+      "snippet": "LocaleIfRegionAttributeEqCsName{${1:region code}}{${2:attribute}}{${3:csname}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfRegionAttributeEqCs{}{}{}{}{}": {
+      "snippet": "LocaleIfRegionAttributeEqCs{${1:region code}}{${2:attribute}}{${3:cmd}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfRegionAttributeEqNum{}{}{}{}{}": {
+      "snippet": "LocaleIfRegionAttributeEqNum{${1:region code}}{${2:attribute}}{${3:num}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfSameAttributeValues{}{}{}{}{}": {
+      "snippet": "LocaleIfSameAttributeValues{${1:label}}{${2:attribute1}}{${3:attribute2}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfSameCurrencyAttributeValues{}{}{}{}{}": {
+      "snippet": "LocaleIfSameCurrencyAttributeValues{${1:currency code}}{${2:attribute1}}{${3:attribute2}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfSameDialectAttributeValues{}{}{}{}{}": {
+      "snippet": "LocaleIfSameDialectAttributeValues{${1:dialect}}{${2:attribute1}}{${3:attribute2}}{${4:true}}{${5:false}}"
+    },
+    "LocaleIfSameRegionAttributeValues{}{}{}{}{}": {
+      "snippet": "LocaleIfSameRegionAttributeValues{${1:region code}}{${2:attribute1}}{${3:attribute2}}{${4:true}}{${5:false}}"
+    },
+    "LocaleLetAttribute{}{}{}": {
+      "snippet": "LocaleLetAttribute{${1:label}}{${2:attribute}}{${3:cmd}}"
+    },
+    "LocaleLetCurrencyAttribute{}{}{}": {
+      "snippet": "LocaleLetCurrencyAttribute{${1:currency code}}{${2:attribute}}{${3:cmd}}"
+    },
+    "LocaleLetDialectAttribute{}{}{}": {
+      "snippet": "LocaleLetDialectAttribute{${1:dialect}}{${2:attribute}}{${3:cmd}}"
+    },
+    "LocaleLetRegionAttribute{}{}{}": {
+      "snippet": "LocaleLetRegionAttribute{${1:region code}}{${2:attribute}}{${3:cmd}}"
+    },
+    "LocaleProvideAttribute{}{}{}": {
+      "snippet": "LocaleProvideAttribute{${1:label}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleProvideCurrencyAttribute{}{}{}": {
+      "snippet": "LocaleProvideCurrencyAttribute{${1:currency code}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleProvideDialectAttribute{}{}{}": {
+      "snippet": "LocaleProvideDialectAttribute{${1:dialect}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleProvideRegionAttribute{}{}{}": {
+      "snippet": "LocaleProvideRegionAttribute{${1:region code}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleXpAppToAttribute{}{}{}": {
+      "snippet": "LocaleXpAppToAttribute{${1:label}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleXpAppToCurrencyAttribute{}{}{}": {
+      "snippet": "LocaleXpAppToCurrencyAttribute{${1:currency code}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleXpAppToDialectAttribute{}{}{}": {
+      "snippet": "LocaleXpAppToDialectAttribute{${1:dialect}}{${2:attribute}}{${3:value}}"
+    },
+    "LocaleXpAppToRegionAttribute{}{}{}": {
+      "snippet": "LocaleXpAppToRegionAttribute{${1:region code}}{${2:attribute}}{${3:value}}"
+    },
+    "localenopolypunct{}": {
+      "snippet": "localenopolypunct{${1:arg}}"
+    },
+    "texosqueryfmtpatEEEE{}": {
+      "snippet": "texosqueryfmtpatEEEE{${1:index}}"
+    },
+    "texosqueryfmtpatEEE{}": {
+      "snippet": "texosqueryfmtpatEEE{${1:index}}"
+    },
+    "texosqueryfmtpatLLLL{}": {
+      "snippet": "texosqueryfmtpatLLLL{${1:index}}"
+    },
+    "texosqueryfmtpatLLL{}": {
+      "snippet": "texosqueryfmtpatLLL{${1:index}}"
+    },
+    "texosqueryfmtpatMMMM{}": {
+      "snippet": "texosqueryfmtpatMMMM{${1:index}}"
+    },
+    "texosqueryfmtpatMMM{}": {
+      "snippet": "texosqueryfmtpatMMM{${1:index}}"
+    },
+    "texosquerytimezonefmt{}": {
+      "snippet": "texosquerytimezonefmt{${1:arg}}"
+    }
+  },
+  "envs": {},
+  "options": [
+    "main=${1:tag}",
+    "other={${1:tag list}}",
+    "symbols=",
+    "support=",
+    "fontenc=",
+    "inputenc=",
+    "datetime=",
+    "iso",
+    "date=",
+    "time=",
+    "timedate",
+    "currency="
+  ],
+  "keyvals": []
+}

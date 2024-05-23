@@ -1,0 +1,466 @@
+{
+  "includes": {
+    "lastpage": [],
+    "iftex": [],
+    "inputenc": [],
+    "fontenc": [],
+    "array": [],
+    "fancyhdr": [],
+    "xcolor": [],
+    "url": [],
+    "soul": [],
+    "setspace": [],
+    "geometry": [],
+    "enumitem": [],
+    "hyperref": [],
+    "colortbl": [],
+    "graphicx": [],
+    "substr": [],
+    "keyval": [],
+    "xstring": [],
+    "xifthen": [],
+    "showframe": [
+      "debug"
+    ]
+  },
+  "macros": {
+    "convertstring{}": {
+      "snippet": "convertstring{${1:arg}}"
+    },
+    "difflength": {},
+    "ecladdressee[]{}{}{}{}": {
+      "snippet": "ecladdressee[${5:vspace}]{${1:name}}{${2:organization}}{${3:address}}{${4:city}}"
+    },
+    "ecladdressee{}{}{}{}": {
+      "snippet": "ecladdressee{${1:name}}{${2:organization}}{${3:address}}{${4:city}}"
+    },
+    "eclcitydatesubject[]{}{}{}": {
+      "snippet": "eclcitydatesubject[${4:vspace}]{${1:city}}{${2:date}}{${3:subject}}"
+    },
+    "eclcitydatesubject{}{}{}": {
+      "snippet": "eclcitydatesubject{${1:city}}{${2:date}}{${3:subject}}"
+    },
+    "eclclosingsalutation[]{}": {
+      "snippet": "eclclosingsalutation[${2:vspace}]{${1:text}}"
+    },
+    "eclclosingsalutation{}": {
+      "snippet": "eclclosingsalutation{${1:text}}"
+    },
+    "eclIconwidth{}": {
+      "snippet": "eclIconwidth{${1:width}}"
+    },
+    "eclitem[]{}": {
+      "snippet": "eclitem[${2:vspace}]{${1:text}}"
+    },
+    "eclitem{}": {
+      "snippet": "eclitem{${1:text}}"
+    },
+    "eclmaincontent[]{}{}{}": {
+      "snippet": "eclmaincontent[${4:vspace}]{${1:opening}}{${2:content}}{${3:closing}}"
+    },
+    "eclmaincontent{}{}{}": {
+      "snippet": "eclmaincontent{${1:opening}}{${2:content}}{${3:closing}}"
+    },
+    "eclopeningsalutation[]{}": {
+      "snippet": "eclopeningsalutation[${2:vspace}]{${1:text}}"
+    },
+    "eclopeningsalutation{}": {
+      "snippet": "eclopeningsalutation{${1:text}}"
+    },
+    "eclpersonalinfo": {},
+    "eclpersonalinfo[]": {
+      "snippet": "eclpersonalinfo[${1:vspace}]"
+    },
+    "eclsignature": {},
+    "eclsignature[]": {
+      "snippet": "eclsignature[${1:imagefile}]"
+    },
+    "eclsignature[][]": {
+      "snippet": "eclsignature[${1:imagefile}][${2:name}]"
+    },
+    "ecvaddress{}": {
+      "snippet": "ecvaddress{${1:address}}"
+    },
+    "ecvBasic": {},
+    "ecvbigitem[]{}{}": {
+      "snippet": "ecvbigitem[${3:vspace}]{${1:left}}{${2:right}}"
+    },
+    "ecvbigitem{}{}": {
+      "snippet": "ecvbigitem{${1:left}}{${2:right}}"
+    },
+    "ecvblueitem[]{}{}": {
+      "snippet": "ecvblueitem[${3:vspace}]{${1:left}}{${2:right}}"
+    },
+    "ecvblueitem{}{}": {
+      "snippet": "ecvblueitem{${1:left}}{${2:right}}"
+    },
+    "ecvbluenormalstyle{}": {
+      "snippet": "ecvbluenormalstyle{${1:text}}"
+    },
+    "ecvbluestyle{}": {
+      "snippet": "ecvbluestyle{${1:text}}"
+    },
+    "ecvbullet": {},
+    "ecvcoloredtitle": {},
+    "ecvColSep{}": {
+      "snippet": "ecvColSep{${1:sep}}"
+    },
+    "ecvcurrvitae": {},
+    "ecvdateofbirth{}": {
+      "snippet": "ecvdateofbirth{${1:date}}"
+    },
+    "ecvdigitalcompetence{}{}{}{}{}": {
+      "snippet": "ecvdigitalcompetence{${1:info-processing}}{${2:communication}}{${3:content-creation}}{${4:safety}}{${5:prob-solving}}"
+    },
+    "ecvemail{}": {
+      "snippet": "ecvemail{${1:email}}"
+    },
+    "ecvExtraRowHeight{}": {
+      "snippet": "ecvExtraRowHeight{${1:height}}"
+    },
+    "ecvfax{}": {
+      "snippet": "ecvfax{${1:number}}"
+    },
+    "ecvfont{}": {
+      "snippet": "ecvfont{${1:font}}"
+    },
+    "ecvfootername{}": {
+      "snippet": "ecvfootername{${1:name}}"
+    },
+    "ecvfootnote{}": {
+      "snippet": "ecvfootnote{${1:text}}"
+    },
+    "ecvgender{}": {
+      "snippet": "ecvgender{${1:gender}}"
+    },
+    "ecvgithubpage{}": {
+      "snippet": "ecvgithubpage{${1:URL}}"
+    },
+    "ecvgitlabpage{}": {
+      "snippet": "ecvgitlabpage{${1:URL}}"
+    },
+    "ecvgitpage{}": {
+      "snippet": "ecvgitpage{${1:URL}}"
+    },
+    "ecvhighlight{}": {
+      "snippet": "ecvhighlight{${1:text}}"
+    },
+    "ecvhighlightcell{}": {
+      "snippet": "ecvhighlightcell{${1:text}}"
+    },
+    "ecvhomepage{}": {
+      "snippet": "ecvhomepage{${1:URL}}"
+    },
+    "ecvim{}{}": {
+      "snippet": "ecvim{${1:service}}{${2:username}}"
+    },
+    "ecvIndependent": {},
+    "ecvitem[]{}{}": {
+      "snippet": "ecvitem[${3:vspace}]{${1:left}}{${2:right}}"
+    },
+    "ecvitem{}{}": {
+      "snippet": "ecvitem{${1:left}}{${2:right}}"
+    },
+    "ecvlangrow[]{}{}{}{}{}{}{}": {
+      "snippet": "ecvlangrow[${8:vspace}]{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}{${7:width}}"
+    },
+    "ecvlangrow{}{}{}{}{}{}{}": {
+      "snippet": "ecvlangrow{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}{${7:width}}"
+    },
+    "ecvlanguage[]{}{}{}{}{}{}": {
+      "snippet": "ecvlanguage[${7:vspace}]{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}"
+    },
+    "ecvlanguage{}{}{}{}{}{}": {
+      "snippet": "ecvlanguage{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}"
+    },
+    "ecvlanguagecertificate{}": {
+      "snippet": "ecvlanguagecertificate{${1:certificate}}"
+    },
+    "ecvlanguagefooter": {},
+    "ecvlanguagefooter[]": {
+      "snippet": "ecvlanguagefooter[${1:vspace}]"
+    },
+    "ecvlanguageheader": {},
+    "ecvlanguageheader[]": {
+      "snippet": "ecvlanguageheader[${1:vspace}]"
+    },
+    "ecvlargenormalstyle{}": {
+      "snippet": "ecvlargenormalstyle{${1:text}}"
+    },
+    "ecvLargenormalstyle{}": {
+      "snippet": "ecvLargenormalstyle{${1:text}}"
+    },
+    "ecvlastlanguage[]{}{}{}{}{}{}": {
+      "snippet": "ecvlastlanguage[${7:vspace}]{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}"
+    },
+    "ecvlastlanguage{}{}{}{}{}{}": {
+      "snippet": "ecvlastlanguage{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}"
+    },
+    "ecvLeftColumnWidth{}": {
+      "snippet": "ecvLeftColumnWidth{${1:width}}"
+    },
+    "ecvlinkedinpage{}": {
+      "snippet": "ecvlinkedinpage{${1:URL}}"
+    },
+    "ecvLogoOffset{}": {
+      "snippet": "ecvLogoOffset{${1:offset}}"
+    },
+    "ecvLogoWidth{}": {
+      "snippet": "ecvLogoWidth{${1:width}}"
+    },
+    "ecvmobile{}": {
+      "snippet": "ecvmobile{${1:number}}"
+    },
+    "ecvmothertongue[]{}": {
+      "snippet": "ecvmothertongue[${2:vspace}]{${1:language}}"
+    },
+    "ecvmothertongue{}": {
+      "snippet": "ecvmothertongue{${1:language}}"
+    },
+    "ecvname{}": {
+      "snippet": "ecvname{${1:name}}"
+    },
+    "ecvnationality{}": {
+      "snippet": "ecvnationality{${1:nationality}}"
+    },
+    "ecvNoHorRule": {},
+    "ecvorcid[]{}": {
+      "snippet": "ecvorcid[${2:options}]{${1:ORCID}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ecvorcid{}": {
+      "snippet": "ecvorcid{${1:ORCID}}"
+    },
+    "ecvpage{}": {
+      "snippet": "ecvpage{${1:number}}"
+    },
+    "ecvpersonalinfo": {},
+    "ecvpersonalinfo[]": {
+      "snippet": "ecvpersonalinfo[${1:vspace}]"
+    },
+    "ecvpicture[]{}": {
+      "snippet": "ecvpicture[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "ecvpicture{}": {
+      "snippet": "ecvpicture{${1:imagefile}}"
+    },
+    "ecvpictureleft[]{}": {
+      "snippet": "ecvpictureleft[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "ecvpictureleft{}": {
+      "snippet": "ecvpictureleft{${1:imagefile}}"
+    },
+    "ecvpictureright[]{}": {
+      "snippet": "ecvpictureright[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "ecvpictureright{}": {
+      "snippet": "ecvpictureright{${1:imagefile}}"
+    },
+    "ecvProficient": {},
+    "ecvRuleWidth{}": {
+      "snippet": "ecvRuleWidth{${1:width}}"
+    },
+    "ecvsection[]{}": {
+      "snippet": "ecvsection[${2:vspace}]{${1:title}}"
+    },
+    "ecvsection{}": {
+      "snippet": "ecvsection{${1:title}}"
+    },
+    "ecvsectionstyle{}": {
+      "snippet": "ecvsectionstyle{${1:text}}"
+    },
+    "ecvtelephone{}": {
+      "snippet": "ecvtelephone{${1:number}}"
+    },
+    "ecvtitle[]{}{}": {
+      "snippet": "ecvtitle[${3:vspace}]{${1:left}}{${2:right}}"
+    },
+    "ecvtitle{}{}": {
+      "snippet": "ecvtitle{${1:left}}{${2:right}}"
+    },
+    "ecvTitleKern{}": {
+      "snippet": "ecvTitleKern{${1:kern}}"
+    },
+    "ecvtitlelevel[]{}{}{}": {
+      "snippet": "ecvtitlelevel[${4:vspace}]{${1:left}}{${2:right}}{${3:degree level}}"
+    },
+    "ecvtitlelevel{}{}{}": {
+      "snippet": "ecvtitlelevel{${1:left}}{${2:right}}{${3:degree level}}"
+    },
+    "ecvtitlestyle{}": {
+      "snippet": "ecvtitlestyle{${1:text}}"
+    },
+    "ecvupdatecurrentskip{}{}": {
+      "snippet": "ecvupdatecurrentskip{${1:arg1}}{${2:arg2}}"
+    },
+    "ecvWithHorRule": {},
+    "ecvworkphone{}": {
+      "snippet": "ecvworkphone{${1:number}}"
+    },
+    "makesub{}": {
+      "snippet": "makesub{${1:arg}}"
+    },
+    "newecvitemize{}{}": {
+      "snippet": "newecvitemize{${1:envname}}{${2:orig envname}}"
+    },
+    "processlinks{}": {
+      "snippet": "processlinks{${1:arg}}"
+    },
+    "readwords": {},
+    "selectecvfont": {},
+    "toemail{}": {
+      "snippet": "toemail{${1:arg}}"
+    },
+    "tourl{}": {
+      "snippet": "tourl{${1:arg}}"
+    },
+    "ecvAOne": {},
+    "ecvATwo": {},
+    "ecvBOne": {},
+    "ecvBTwo": {},
+    "ecvCEF{}{}": {
+      "snippet": "ecvCEF{${1:arg1}}{${2:arg2}}"
+    },
+    "ecvCOne": {},
+    "ecvCTwo": {},
+    "ecvfirstname{}": {
+      "snippet": "ecvfirstname{${1:arg}}"
+    },
+    "ecvlastname{}": {
+      "snippet": "ecvlastname{${1:arg}}"
+    },
+    "DH": {},
+    "dh": {},
+    "dj": {},
+    "DJ": {},
+    "guillemetleft": {},
+    "guillemetright": {},
+    "guillemotleft": {},
+    "guillemotright": {},
+    "guilsinglleft": {},
+    "guilsinglright": {},
+    "Hwithstroke": {},
+    "hwithstroke": {},
+    "k{}": {
+      "snippet": "k{${1:arg}}"
+    },
+    "NG": {},
+    "ng": {},
+    "quotedblbase": {},
+    "quotesinglbase": {},
+    "textogonekcentered{}": {
+      "snippet": "textogonekcentered{${1:arg}}"
+    },
+    "textquotedbl": {},
+    "th": {},
+    "TH": {}
+  },
+  "envs": {
+    "europasscv": {},
+    "ecvitemize": {},
+    "ecvenumerate": {}
+  },
+  "options": [
+    "english",
+    "italian",
+    "spanish",
+    "french",
+    "danish",
+    "german",
+    "finnish",
+    "portuguese",
+    "swedish",
+    "norsk",
+    "dutch",
+    "catalan",
+    "polish",
+    "hungarian",
+    "estonian",
+    "icelandic",
+    "lithuanian",
+    "czech",
+    "slovak",
+    "latvian",
+    "slovenian",
+    "romanian",
+    "maltese",
+    "bulgarian",
+    "greek",
+    "galician",
+    "serbian",
+    "turkish",
+    "narrow",
+    "bigfont",
+    "black",
+    "nologo",
+    "notitle",
+    "nototpages",
+    "nodocument",
+    "debug",
+    "a4paper",
+    "a5paper",
+    "b5paper",
+    "letterpaper",
+    "legalpaper",
+    "executivepaper",
+    "landscape",
+    "10pt",
+    "11pt",
+    "12pt",
+    "oneside",
+    "twoside",
+    "draft",
+    "final",
+    "titlepage",
+    "notitlepage",
+    "onecolumn",
+    "twocolumn",
+    "leqno",
+    "fleqn",
+    "openbib"
+  ],
+  "keyvals": [
+    [
+      "label",
+      "link"
+    ],
+    [
+      "alt={${1:alt text}}",
+      "bb=${1:llx lly urx ury}",
+      "bbllx=",
+      "bblly=",
+      "bburx=",
+      "bbury=",
+      "natwidth=",
+      "natheight=",
+      "hiresbb",
+      "pagebox=",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:llx lly urx ury}",
+      "angle=${1:degrees}",
+      "origin=",
+      "width=",
+      "height=",
+      "totalheight=",
+      "keepaspectratio",
+      "scale=${1:factor}",
+      "clip",
+      "draft",
+      "type=${1:file type}",
+      "ext=${1:file extension}",
+      "read=${1:read-file extension}",
+      "command=",
+      "quiet",
+      "page=${1:page number}",
+      "interpolate",
+      "decodearray={${1:color array}}"
+    ]
+  ]
+}

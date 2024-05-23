@@ -1,0 +1,471 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "amsmath": [],
+    "xkeyval": [],
+    "xfor": [],
+    "ifthen": [],
+    "substr": [],
+    "datatool-fp": [],
+    "datatool-pgfmath": [
+      "math=pgfmath"
+    ]
+  },
+  "macros": {
+    "DTLsetnumberchars{}{}": {
+      "snippet": "DTLsetnumberchars{${1:number group character}}{${2:decimal character}}"
+    },
+    "DTLnewcurrencysymbol{}": {
+      "snippet": "DTLnewcurrencysymbol{${1:symbol}}"
+    },
+    "DTLifint{}{}{}": {
+      "snippet": "DTLifint{${1:text}}{${2:true case}}{${3:false case}}"
+    },
+    "DTLifreal{}{}{}": {
+      "snippet": "DTLifreal{${1:text}}{${2:true case}}{${3:false case}}"
+    },
+    "DTLifcurrency{}{}{}": {
+      "snippet": "DTLifcurrency{${1:text}}{${2:true case}}{${3:false case}}"
+    },
+    "DTLifcurrencyunit{}{}{}{}": {
+      "snippet": "DTLifcurrencyunit{${1:text}}{${2:symbol}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifnumerical{}{}{}": {
+      "snippet": "DTLifnumerical{${1:text}}{${2:true case}}{${3:false case}}"
+    },
+    "DTLifstring{}{}{}": {
+      "snippet": "DTLifstring{${1:text}}{${2:true case}}{${3:false case}}"
+    },
+    "DTLifcasedatatype{}{}{}{}{}": {
+      "snippet": "DTLifcasedatatype{${1:text}}{${2:string case}}{${3:int case}}{${4:real case}}{${5:currency case}}"
+    },
+    "DTLifnumeq{}{}{}{}": {
+      "snippet": "DTLifnumeq{${1:num1}}{${2:num2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifstringeq{}{}{}{}": {
+      "snippet": "DTLifstringeq{${1:string1}}{${2:string2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifstringeq*{}{}{}{}": {
+      "snippet": "DTLifstringeq*{${1:string1}}{${2:string2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifeq{}{}{}{}": {
+      "snippet": "DTLifeq{${1:arg1}}{${2:arg2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifeq*{}{}{}{}": {
+      "snippet": "DTLifeq*{${1:arg1}}{${2:arg2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifnumlt{}{}{}{}": {
+      "snippet": "DTLifnumlt{${1:num1}}{${2:num2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifstringlt{}{}{}{}": {
+      "snippet": "DTLifstringlt{${1:string1}}{${2:string2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifstringlt*{}{}{}{}": {
+      "snippet": "DTLifstringlt*{${1:string1}}{${2:string2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLiflt{}{}{}{}": {
+      "snippet": "DTLiflt{${1:arg1}}{${2:arg2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLiflt*{}{}{}{}": {
+      "snippet": "DTLiflt*{${1:arg1}}{${2:arg2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifnumgt{}{}{}{}": {
+      "snippet": "DTLifnumgt{${1:num1}}{${2:num2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifstringgt{}{}{}{}": {
+      "snippet": "DTLifstringgt{${1:string1}}{${2:string2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifstringgt*{}{}{}{}": {
+      "snippet": "DTLifstringgt*{${1:string1}}{${2:string2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifgt{}{}{}{}": {
+      "snippet": "DTLifgt{${1:arg1}}{${2:arg2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifgt*{}{}{}{}": {
+      "snippet": "DTLifgt*{${1:arg1}}{${2:arg2}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifnumclosedbetween{}{}{}{}{}": {
+      "snippet": "DTLifnumclosedbetween{${1:num}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLifstringclosedbetween{}{}{}{}{}": {
+      "snippet": "DTLifstringclosedbetween{${1:string}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLifstringclosedbetween*{}{}{}{}{}": {
+      "snippet": "DTLifstringclosedbetween*{${1:string}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLifclosedbetween{}{}{}{}{}": {
+      "snippet": "DTLifclosedbetween{${1:arg}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLifclosedbetween*{}{}{}{}{}": {
+      "snippet": "DTLifclosedbetween*{${1:arg}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLifnumopenbetween{}{}{}{}{}": {
+      "snippet": "DTLifnumopenbetween{${1:num}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLifstringopenbetween{}{}{}{}{}": {
+      "snippet": "DTLifstringopenbetween{${1:string}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLifstringopenbetween*{}{}{}{}{}": {
+      "snippet": "DTLifstringopenbetween*{${1:string}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLifopenbetween{}{}{}{}{}": {
+      "snippet": "DTLifopenbetween{${1:arg}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLifopenbetween*{}{}{}{}{}": {
+      "snippet": "DTLifopenbetween*{${1:arg}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLifFPclosedbetween{}{}{}{}{}": {
+      "snippet": "DTLifFPclosedbetween{${1:num}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLifFPopenbetween{}{}{}{}{}": {
+      "snippet": "DTLifFPopenbetween{${1:num}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLifAllUpperCase{}{}{}": {
+      "snippet": "DTLifAllUpperCase{${1:string}}{${2:true case}}{${3:false case}}"
+    },
+    "DTLifAllLowerCase{}{}{}": {
+      "snippet": "DTLifAllLowerCase{${1:string}}{${2:true case}}{${3:false case}}"
+    },
+    "DTLifSubString{}{}{}{}": {
+      "snippet": "DTLifSubString{${1:string}}{${2:substring}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLifStartsWith{}{}{}{}": {
+      "snippet": "DTLifStartsWith{${1:string}}{${2:substring}}{${3:true case}}{${4:false case}}"
+    },
+    "dtlifintclosedbetween{}{}{}{}{}": {
+      "snippet": "dtlifintclosedbetween{${1:num}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "dtlifintopenbetween{}{}{}{}{}": {
+      "snippet": "dtlifintopenbetween{${1:num}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    },
+    "DTLisstring{}": {
+      "snippet": "DTLisstring{${1:test}}"
+    },
+    "DTLisnumerical{}": {
+      "snippet": "DTLisnumerical{${1:test}}"
+    },
+    "DTLiscurrency{}": {
+      "snippet": "DTLiscurrency{${1:test}}"
+    },
+    "DTLiscurrencyunit{}{}": {
+      "snippet": "DTLiscurrencyunit{${1:test}}{${2:symbol}}"
+    },
+    "DTLisreal{}": {
+      "snippet": "DTLisreal{${1:test}}"
+    },
+    "DTLisint{}": {
+      "snippet": "DTLisint{${1:test}}"
+    },
+    "DTLislt{}{}": {
+      "snippet": "DTLislt{${1:arg1}}{${2:arg2}}"
+    },
+    "DTLisilt{}{}": {
+      "snippet": "DTLisilt{${1:arg1}}{${2:arg2}}"
+    },
+    "DTLisgt{}{}": {
+      "snippet": "DTLisgt{${1:arg1}}{${2:arg2}}"
+    },
+    "DTLisigt{}{}": {
+      "snippet": "DTLisigt{${1:arg1}}{${2:arg2}}"
+    },
+    "DTLiseq{}{}": {
+      "snippet": "DTLiseq{${1:arg1}}{${2:arg2}}"
+    },
+    "DTLisieq{}{}": {
+      "snippet": "DTLisieq{${1:arg1}}{${2:arg2}}"
+    },
+    "DTLisclosedbetween{}{}{}": {
+      "snippet": "DTLisclosedbetween{${1:arg}}{${2:min}}{${3:max}}"
+    },
+    "DTLisiclosedbetween{}{}{}": {
+      "snippet": "DTLisiclosedbetween{${1:arg}}{${2:min}}{${3:max}}"
+    },
+    "DTLisopenbetween{}{}{}": {
+      "snippet": "DTLisopenbetween{${1:arg}}{${2:min}}{${3:max}}"
+    },
+    "DTLisiopenbetween{}{}{}": {
+      "snippet": "DTLisiopenbetween{${1:arg}}{${2:min}}{${3:max}}"
+    },
+    "DTLisFPlt{}{}": {
+      "snippet": "DTLisFPlt{${1:num1}}{${2:num2}}"
+    },
+    "DTLisFPlteq{}{}": {
+      "snippet": "DTLisFPlteq{${1:num1}}{${2:num2}}"
+    },
+    "DTLisFPgt{}{}": {
+      "snippet": "DTLisFPgt{${1:num1}}{${2:num2}}"
+    },
+    "DTLisFPgteq{}{}": {
+      "snippet": "DTLisFPgteq{${1:num1}}{${2:num2}}"
+    },
+    "DTLisFPeq{}{}": {
+      "snippet": "DTLisFPeq{${1:num1}}{${2:num2}}"
+    },
+    "DTLisFPclosedbetween{}{}{}": {
+      "snippet": "DTLisFPclosedbetween{${1:num}}{${2:min}}{${3:max}}"
+    },
+    "DTLisFPopenbetween{}{}{}": {
+      "snippet": "DTLisFPopenbetween{${1:num}}{${2:min}}{${3:max}}"
+    },
+    "DTLisSubString{}{}": {
+      "snippet": "DTLisSubString{${1:string}}{${2:substring}}"
+    },
+    "DTLisPrefix{}{}": {
+      "snippet": "DTLisPrefix{${1:string}}{${2:prefix}}"
+    },
+    "DTLisinlist{}{}": {
+      "snippet": "DTLisinlist{${1:element}}{${2:list}}"
+    },
+    "DTLisnumclosedbetween{}{}{}": {
+      "snippet": "DTLisnumclosedbetween{${1:num}}{${2:min}}{${3:max}}"
+    },
+    "DTLisnumopenbetween{}{}{}": {
+      "snippet": "DTLisnumopenbetween{${1:num}}{${2:min}}{${3:max}}"
+    },
+    "DTLconverttodecimal{}{}": {
+      "snippet": "DTLconverttodecimal{${1:num}}{${2:cmd}}"
+    },
+    "DTLdecimaltolocale{}{}": {
+      "snippet": "DTLdecimaltolocale{${1:num}}{${2:cmd}}"
+    },
+    "DTLdecimaltocurrency{}{}": {
+      "snippet": "DTLdecimaltocurrency{${1:num}}{${2:cmd}}"
+    },
+    "DTLsetdefaultcurrency{}": {
+      "snippet": "DTLsetdefaultcurrency{${1:symbol}}"
+    },
+    "DTLadd{}{}{}": {
+      "snippet": "DTLadd{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "DTLgadd{}{}{}": {
+      "snippet": "DTLgadd{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "DTLaddall{}{}": {
+      "snippet": "DTLaddall{${1:cmd}}{${2:number list}}"
+    },
+    "DTLgaddall{}{}": {
+      "snippet": "DTLgaddall{${1:cmd}}{${2:number list}}"
+    },
+    "DTLsub{}{}{}": {
+      "snippet": "DTLsub{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "DTLgsub{}{}{}": {
+      "snippet": "DTLgsub{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "DTLmul{}{}{}": {
+      "snippet": "DTLmul{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "DTLgmul{}{}{}": {
+      "snippet": "DTLgmul{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "DTLdiv{}{}{}": {
+      "snippet": "DTLdiv{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "DTLgdiv{}{}{}": {
+      "snippet": "DTLgdiv{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "DTLabs{}{}": {
+      "snippet": "DTLabs{${1:cmd}}{${2:num}}"
+    },
+    "DTLgabs{}{}": {
+      "snippet": "DTLgabs{${1:cmd}}{${2:num}}"
+    },
+    "DTLneg{}{}": {
+      "snippet": "DTLneg{${1:cmd}}{${2:num}}"
+    },
+    "DTLgneg{}{}": {
+      "snippet": "DTLgneg{${1:cmd}}{${2:num}}"
+    },
+    "DTLsqrt{}{}": {
+      "snippet": "DTLsqrt{${1:cmd}}{${2:num}}"
+    },
+    "DTLgsqrt{}{}": {
+      "snippet": "DTLgsqrt{${1:cmd}}{${2:num}}"
+    },
+    "DTLmin{}{}{}": {
+      "snippet": "DTLmin{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "DTLgmin{}{}{}": {
+      "snippet": "DTLgmin{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "DTLminall{}{}": {
+      "snippet": "DTLminall{${1:cmd}}{${2:number list}}"
+    },
+    "DTLgminall{}{}": {
+      "snippet": "DTLgminall{${1:cmd}}{${2:number list}}"
+    },
+    "DTLmax{}{}{}": {
+      "snippet": "DTLmax{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "DTLgmax{}{}{}": {
+      "snippet": "DTLgmax{${1:cmd}}{${2:num1}}{${3:num2}}"
+    },
+    "DTLmaxall{}{}": {
+      "snippet": "DTLmaxall{${1:cmd}}{${2:number list}}"
+    },
+    "DTLgmaxall{}{}": {
+      "snippet": "DTLgmaxall{${1:cmd}}{${2:number list}}"
+    },
+    "DTLmeanforall{}{}": {
+      "snippet": "DTLmeanforall{${1:cmd}}{${2:number list}}"
+    },
+    "DTLgmeanforall{}{}": {
+      "snippet": "DTLgmeanforall{${1:cmd}}{${2:number list}}"
+    },
+    "DTLvarianceforall{}{}": {
+      "snippet": "DTLvarianceforall{${1:cmd}}{${2:number list}}"
+    },
+    "DTLgvarianceforall{}{}": {
+      "snippet": "DTLgvarianceforall{${1:cmd}}{${2:number list}}"
+    },
+    "DTLsdforall{}{}": {
+      "snippet": "DTLsdforall{${1:cmd}}{${2:number list}}"
+    },
+    "DTLgsdforall{}{}": {
+      "snippet": "DTLgsdforall{${1:cmd}}{${2:number list}}"
+    },
+    "DTLround{}{}{}": {
+      "snippet": "DTLround{${1:cmd}}{${2:num}}{${3:digits}}"
+    },
+    "DTLground{}{}{}": {
+      "snippet": "DTLground{${1:cmd}}{${2:num}}{${3:digits}}"
+    },
+    "DTLtrunc{}{}{}": {
+      "snippet": "DTLtrunc{${1:cmd}}{${2:num}}{${3:digits}}"
+    },
+    "DTLgtrunc{}{}{}": {
+      "snippet": "DTLgtrunc{${1:cmd}}{${2:num}}{${3:digits}}"
+    },
+    "DTLclip{}{}": {
+      "snippet": "DTLclip{${1:cmd}}{${2:num}}"
+    },
+    "DTLgclip{}{}": {
+      "snippet": "DTLgclip{${1:cmd}}{${2:num}}"
+    },
+    "DTLsubstitute{}{}{}": {
+      "snippet": "DTLsubstitute{${1:cmd}}{${2:original}}{${3:replacement}}"
+    },
+    "DTLsubstituteall{}{}{}": {
+      "snippet": "DTLsubstituteall{${1:cmd}}{${2:original}}{${3:replacement}}"
+    },
+    "DTLsplitstring{}{}{}{}": {
+      "snippet": "DTLsplitstring{${1:string}}{${2:split text}}{${3:before cmd}}{${4:after cmd}}"
+    },
+    "DTLinitials{}": {
+      "snippet": "DTLinitials{${1:string}}"
+    },
+    "DTLstoreinitials{}{}": {
+      "snippet": "DTLstoreinitials{${1:string}}{${2:cmd}}"
+    },
+    "DTLafterinitials": {},
+    "DTLbetweeninitials": {},
+    "DTLinitialhyphen": {},
+    "DTLafterinitialbeforehyphen": {},
+    "DTLformatlist{}": {
+      "snippet": "DTLformatlist{${1:list}}"
+    },
+    "ifDTLlistskipempty": {},
+    "DTLlistskipemptytrue": {},
+    "DTLlistskipemptyfalse": {},
+    "DTLlistformatsep": {},
+    "DTLlistformatlastsep": {},
+    "DTLlistformatoxford": {},
+    "DTLandname": {},
+    "DTLlistformatitem{}": {
+      "snippet": "DTLlistformatitem{${1:item}}"
+    },
+    "DTLifinlist{}{}{}{}": {
+      "snippet": "DTLifinlist{${1:element}}{${2:list}}{${3:true case}}{${4:false case}}"
+    },
+    "DTLnumitemsinlist{}{}": {
+      "snippet": "DTLnumitemsinlist{${1:list}}{${2:cmd}}"
+    },
+    "DTLlistelement{}{}": {
+      "snippet": "DTLlistelement{${1:list}}{${2:index}}"
+    },
+    "DTLfetchlistelement{}{}{}": {
+      "snippet": "DTLfetchlistelement{${1:list}}{${2:index}}{${3:cmd}}"
+    },
+    "dtlsortlist{}{}": {
+      "snippet": "dtlsortlist{${1:list cmd}}{${2:criteria cmd}}"
+    },
+    "dtlcompare{}{}{}": {
+      "snippet": "dtlcompare{${1:register}}{${2:A}}{${3:B}}"
+    },
+    "dtlicompare{}{}{}": {
+      "snippet": "dtlicompare{${1:register}}{${2:A}}{${3:B}}"
+    },
+    "ifdtlcompareskipcs": {},
+    "dtlcompareskipcstrue": {},
+    "dtlcompareskipcsfalse": {},
+    "dtlwordindexcompare{}{}{}": {
+      "snippet": "dtlwordindexcompare{${1:register}}{${2:word1}}{${3:word1}}"
+    },
+    "dtlletterindexcompare{}{}{}": {
+      "snippet": "dtlletterindexcompare{${1:register}}{${2:letter1}}{${3:letter2}}"
+    },
+    "dtlicomparewords{}{}{}": {
+      "snippet": "dtlicomparewords{${1:count}}{${2:word1}}{${3:word2}}"
+    },
+    "dtlcomparewords{}{}{}": {
+      "snippet": "dtlcomparewords{${1:count}}{${2:word1}}{${3:word2}}"
+    },
+    "dtlinsertinto{}{}{}": {
+      "snippet": "dtlinsertinto{${1:element}}{${2:list cmd}}{${3:criteria cmd}}"
+    },
+    "edtlinsertinto{}{}{}": {
+      "snippet": "edtlinsertinto{${1:element}}{${2:list cmd}}{${3:criteria cmd}}"
+    },
+    "datatoolpersoncomma": {},
+    "datatoolplacecomma": {},
+    "datatoolsubjectcomma": {},
+    "datatoolparenstart": {},
+    "dtlbreak": {},
+    "dtlsetcharcode{}{}": {
+      "snippet": "dtlsetcharcode{${1:character}}{${2:count register}}"
+    },
+    "dtlsetlccharcode{}{}": {
+      "snippet": "dtlsetlccharcode{${1:character}}{${2:count register}}"
+    },
+    "dtlsetUTFviiicharcode{}{}": {
+      "snippet": "dtlsetUTFviiicharcode{${1:octet tokens}}{${2:count}}"
+    },
+    "dtlsetUTFviiilccharcode{}{}": {
+      "snippet": "dtlsetUTFviiilccharcode{${1:octet tokens}}{${2:count}}"
+    },
+    "dtlsetdefaultUTFviiicharcode{}{}": {
+      "snippet": "dtlsetdefaultUTFviiicharcode{${1:octet tokens}}{${2:count}}"
+    },
+    "dtlsetdefaultUTFviiilccharcode{}{}": {
+      "snippet": "dtlsetdefaultUTFviiilccharcode{${1:octet tokens}}{${2:count}}"
+    },
+    "dtlifcasechargroup{}{}{}{}": {
+      "snippet": "dtlifcasechargroup{${1:char}}{${2:case letter}}{${3:case digit}}{${4:case symbol}}"
+    },
+    "dtlparsewords{}{}": {
+      "snippet": "dtlparsewords{${1:phrase}}{${2:handler cmd}}"
+    },
+    "dtlforint": {},
+    "dtlgforint": {},
+    "to{}": {
+      "snippet": "to{${1:arg}}"
+    },
+    "step{}": {
+      "snippet": "step{${1:arg}}"
+    },
+    "ifdtlverbose": {},
+    "dtlverbosetrue": {},
+    "dtlverbosefalse": {},
+    "dtlenableUTFviii": {},
+    "dtldisableUTFviii": {}
+  },
+  "envs": {
+    "dtlenvgforint": {}
+  },
+  "options": [
+    "verbose",
+    "math=",
+    "utf8"
+  ],
+  "keyvals": []
+}

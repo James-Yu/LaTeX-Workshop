@@ -1,0 +1,219 @@
+{
+  "includes": {
+    "afterpackage": []
+  },
+  "macros": {
+    "startpart{}{}": {
+      "snippet": "startpart{${1:level}}{${2:title}}"
+    },
+    "startpart{}[]{}": {
+      "snippet": "startpart{${1:level}}[${2:short title}]{${3:title}}"
+    },
+    "startpart{}*{}": {
+      "snippet": "startpart{${1:level}}*{${2:title}}"
+    },
+    "startchapter{}{}": {
+      "snippet": "startchapter{${1:level}}{${2:title}}"
+    },
+    "startchapter{}[]{}": {
+      "snippet": "startchapter{${1:level}}[${2:short title}]{${3:title}}"
+    },
+    "startchapter{}*{}": {
+      "snippet": "startchapter{${1:level}}*{${2:title}}"
+    },
+    "startsection{}{}": {
+      "snippet": "startsection{${1:level}}{${2:title}}"
+    },
+    "startsection{}[]{}": {
+      "snippet": "startsection{${1:level}}[${2:short title}]{${3:title}}"
+    },
+    "startsection{}*{}": {
+      "snippet": "startsection{${1:level}}*{${2:title}}"
+    },
+    "startsubsection{}{}": {
+      "snippet": "startsubsection{${1:level}}{${2:title}}"
+    },
+    "startsubsection{}[]{}": {
+      "snippet": "startsubsection{${1:level}}[${2:short title}]{${3:title}}"
+    },
+    "startsubsection{}*{}": {
+      "snippet": "startsubsection{${1:level}}*{${2:title}}"
+    },
+    "startsubsubsection{}{}": {
+      "snippet": "startsubsubsection{${1:level}}{${2:title}}"
+    },
+    "startsubsubsection{}[]{}": {
+      "snippet": "startsubsubsection{${1:level}}[${2:short title}]{${3:title}}"
+    },
+    "startsubsubsection{}*{}": {
+      "snippet": "startsubsubsection{${1:level}}*{${2:title}}"
+    },
+    "startparagraph{}{}": {
+      "snippet": "startparagraph{${1:level}}{${2:title}}"
+    },
+    "startparagraph{}[]{}": {
+      "snippet": "startparagraph{${1:level}}[${2:short title}]{${3:title}}"
+    },
+    "startparagraph{}*{}": {
+      "snippet": "startparagraph{${1:level}}*{${2:title}}"
+    },
+    "startsubparagraph{}{}": {
+      "snippet": "startsubparagraph{${1:level}}{${2:title}}"
+    },
+    "startsubparagraph{}[]{}": {
+      "snippet": "startsubparagraph{${1:level}}[${2:short title}]{${3:title}}"
+    },
+    "startsubparagraph{}*{}": {
+      "snippet": "startsubparagraph{${1:level}}*{${2:title}}"
+    },
+    "sectionstyle{}": {
+      "snippet": "sectionstyle{${1:style}}"
+    },
+    "sectionstyle[]{}": {
+      "snippet": "sectionstyle[${2:type}]{${1:style}}"
+    },
+    "sectiontagsuffix{}": {
+      "snippet": "sectiontagsuffix{${1:suffix}}"
+    },
+    "sectiontagsuffix[]{}": {
+      "snippet": "sectiontagsuffix[${2:type}]{${1:suffix}}"
+    },
+    "indentaftersection": {},
+    "noindentaftersection": {},
+    "aftersectionvspace{}": {
+      "snippet": "aftersectionvspace{${1:space}}"
+    },
+    "adjustsectionmargins{}{}": {
+      "snippet": "adjustsectionmargins{${1:left skip}}{${2:right skip}}"
+    },
+    "norunninghead": {},
+    "runninghead{}": {
+      "snippet": "runninghead{${1:running title}}"
+    },
+    "noheadingtag": {},
+    "headingtag{}": {
+      "snippet": "headingtag{${1:tag}}"
+    },
+    "headingtag*{}": {
+      "snippet": "headingtag*{${1:tag}}"
+    },
+    "skipwritingtoaux": {},
+    "caption*{}": {
+      "snippet": "caption*{${1:text}}"
+    },
+    "captionstyle{}": {
+      "snippet": "captionstyle{${1:style}}"
+    },
+    "captionstyle[]{}": {
+      "snippet": "captionstyle[${2:type}]{${1:style}}"
+    },
+    "captiontagstyle{}": {
+      "snippet": "captiontagstyle{${1:style}}"
+    },
+    "captiontagstyle[]{}": {
+      "snippet": "captiontagstyle[${2:type}]{${1:style}}"
+    },
+    "captiontagsuffix{}": {
+      "snippet": "captiontagsuffix{${1:suffix}}"
+    },
+    "captiontagsuffix[]{}": {
+      "snippet": "captiontagsuffix[${2:type}]{${1:suffix}}"
+    },
+    "captionwidth{}": {
+      "snippet": "captionwidth{${1:width}}"
+    },
+    "captionwidth[]{}": {
+      "snippet": "captionwidth[${2:type}]{${1:width}}"
+    },
+    "SetTOCStyle{}": {
+      "snippet": "SetTOCStyle{${1:declarations}}"
+    },
+    "ChapterPrefixStyle{}": {
+      "snippet": "ChapterPrefixStyle{${1:appearance list}}"
+    },
+    "newplainsectionstyle{}{}{}{}": {
+      "snippet": "newplainsectionstyle{${1:name}}{${2:indent}}{${3:left skip}}{${4:right skip}}"
+    },
+    "newplainsectionstyle{}{}[]{}{}": {
+      "snippet": "newplainsectionstyle{${1:name}}{${2:indent}}[${3:pos}]{${4:left skip}}{${5:right skip}}"
+    },
+    "newhangsectionstyle{}{}{}{}": {
+      "snippet": "newhangsectionstyle{${1:name}}{${2:min tag width}}{${3:left skip}}{${4:right skip}}"
+    },
+    "newhangsectionstyle{}{}[]{}{}": {
+      "snippet": "newhangsectionstyle{${1:name}}{${2:min tag width}}[${3:pos}]{${4:left skip}}{${5:right skip}}"
+    },
+    "DeclareSection{}{}{}{}{}{}": {
+      "snippet": "DeclareSection{${1:level}}{${2:type}}{${3:prefix}}{${4:beforeskip}}{${5:afterskip}}{${6:style}}"
+    },
+    "DeclareSection{}{}[]{}{}{}{}": {
+      "snippet": "DeclareSection{${1:level}}{${2:type}}[${3:indent}]{${4:prefix}}{${5:beforeskip}}{${6:afterskip}}{${7:style}}"
+    },
+    "DeclareSection*{}{}{}{}{}{}": {
+      "snippet": "DeclareSection*{${1:level}}{${2:type}}{${3:prefix}}{${4:beforeskip}}{${5:afterskip}}{${6:style}}"
+    },
+    "bff": {},
+    "SectionTagSuffix{}": {
+      "snippet": "SectionTagSuffix{${1:suffix}}"
+    },
+    "RunningSectionSuffix{}": {
+      "snippet": "RunningSectionSuffix{${1:suffix}}"
+    },
+    "norunningsuffix": {},
+    "CaptionTagSuffix{}": {
+      "snippet": "CaptionTagSuffix{${1:suffix}}"
+    },
+    "DeclareTOCEntry{}{}{}{}{}": {
+      "snippet": "DeclareTOCEntry{${1:level}}{${2:action}}{${3:prefix}}{${4:prototype}}{${5:style}}"
+    },
+    "DeclareTOCEntry{}{}{}{}{}[]": {
+      "snippet": "DeclareTOCEntry{${1:level}}{${2:action}}{${3:prefix}}{${4:prototype}}{${5:style}}[${6:next}]"
+    },
+    "applystyle{}{}": {
+      "snippet": "applystyle{${1:text style}}{${2:number style}}"
+    },
+    "NumberlineSuffix{}{}": {
+      "snippet": "NumberlineSuffix{${1:calc suffix}}{${2:actual suffix}}"
+    },
+    "PnumPrototype{}": {
+      "snippet": "PnumPrototype{${1:prototype}}"
+    },
+    "TOCMarginDrift{}": {
+      "snippet": "TOCMarginDrift{${1:increment}}"
+    },
+    "runinsectionskip": {},
+    "RegisterFloatType{}": {
+      "snippet": "RegisterFloatType{${1:float type}}"
+    },
+    "beforechapter{}": {
+      "snippet": "beforechapter{${1:code}}"
+    },
+    "epigraph{}{}": {
+      "snippet": "epigraph{${1:text}}{${2:author}}"
+    },
+    "epigraph[]{}{}": {
+      "snippet": "epigraph[${3:width}]{${1:text}}{${2:author}}"
+    },
+    "epigraphparameters{}{}{}{}{}": {
+      "snippet": "epigraphparameters{${1:style}}{${2:width}}{${3:height}}{${4:author style}}{${5:after code}}"
+    },
+    "epigraphwidth": {},
+    "StartFromTextArea": {},
+    "StartFromHeaderArea": {},
+    "DeclarePart{}{}{}{}": {
+      "snippet": "DeclarePart{${1:before}}{${2:after}}{${3:prefix}}{${4:style}}"
+    },
+    "DeclareTOCPart{}{}{}{}": {
+      "snippet": "DeclareTOCPart{${1:action}}{${2:prefix}}{${3:prototype}}{${4:style}}"
+    },
+    "DeclareTOCPart{}[]{}{}{}": {
+      "snippet": "DeclareTOCPart{${1:action}}[${2:afterskip}]{${3:prefix}}{${4:prototype}}{${5:style}}"
+    },
+    "partmark{}": {
+      "snippet": "partmark{${1:text}}"
+    }
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

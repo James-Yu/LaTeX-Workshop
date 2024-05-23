@@ -1,0 +1,832 @@
+{
+  "includes": {
+    "keyval": [],
+    "ifthen": [],
+    "ifpdf": [],
+    "setdim": [],
+    "fancyhdr": [],
+    "eso-pic": [],
+    "setspace": [],
+    "lastpage": [],
+    "calc": [],
+    "graphicx": [],
+    "rotating": [],
+    "class-letter": [],
+    "addrset": [],
+    "afterpage": [],
+    "envlab": []
+  },
+  "macros": {
+    "newlfmP{}": {
+      "snippet": "newlfmP{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "addrf{}": {
+      "snippet": "addrf{${1:id}}"
+    },
+    "addrfromskipafter{}": {
+      "snippet": "addrfromskipafter{${1:skip}}"
+    },
+    "addrfromskipbefore{}": {
+      "snippet": "addrfromskipbefore{${1:skip}}"
+    },
+    "addrt{}": {
+      "snippet": "addrt{${1:id}}"
+    },
+    "addrtoskipafter{}": {
+      "snippet": "addrtoskipafter{${1:skip}}"
+    },
+    "addrtoskipbefore{}": {
+      "snippet": "addrtoskipbefore{${1:skip}}"
+    },
+    "adr": {},
+    "Alaba": {},
+    "Alabb": {},
+    "Alabc": {},
+    "Alabd": {},
+    "Alabe": {},
+    "background{}": {
+      "snippet": "background{${1:code}}"
+    },
+    "Background{}": {
+      "snippet": "Background{${1:code}}"
+    },
+    "bottommarginskip{}": {
+      "snippet": "bottommarginskip{${1:skip}}"
+    },
+    "bottommarginskipbelow{}": {
+      "snippet": "bottommarginskipbelow{${1:skip}}"
+    },
+    "boxht{}": {
+      "snippet": "boxht{${1:height}}"
+    },
+    "boxwd{}": {
+      "snippet": "boxwd{${1:width}}"
+    },
+    "btwlb{}": {
+      "snippet": "btwlb{${1:length}}"
+    },
+    "cellodown{}": {
+      "snippet": "cellodown{${1:length}}"
+    },
+    "celloheight{}": {
+      "snippet": "celloheight{${1:height}}"
+    },
+    "celloleft{}": {
+      "snippet": "celloleft{${1:length}}"
+    },
+    "cellowidth{}": {
+      "snippet": "cellowidth{${1:width}}"
+    },
+    "Cfooter{}": {
+      "snippet": "Cfooter{${1:text}}"
+    },
+    "cfooter{}": {
+      "snippet": "cfooter{${1:text}}"
+    },
+    "Cheader{}": {
+      "snippet": "Cheader{${1:text}}"
+    },
+    "cheader{}": {
+      "snippet": "cheader{${1:text}}"
+    },
+    "clearall": {},
+    "closeskipafter{}": {
+      "snippet": "closeskipafter{${1:skip}}"
+    },
+    "closeskipbefore{}": {
+      "snippet": "closeskipbefore{${1:skip}}"
+    },
+    "closlfm": {},
+    "COfooter{}": {
+      "snippet": "COfooter{${1:text}}"
+    },
+    "CUheader{}": {
+      "snippet": "CUheader{${1:text}}"
+    },
+    "datecenter{}": {
+      "snippet": "datecenter{${1:true|false}}"
+    },
+    "dateleft{}": {
+      "snippet": "dateleft{${1:true|false}}"
+    },
+    "dateno{}": {
+      "snippet": "dateno{${1:true|false}}"
+    },
+    "DatePhrase{}": {
+      "snippet": "DatePhrase{${1:text}}"
+    },
+    "dateright{}": {
+      "snippet": "dateright{${1:true|false}}"
+    },
+    "dateskipafter{}": {
+      "snippet": "dateskipafter{${1:skip}}"
+    },
+    "dateskipbefore{}": {
+      "snippet": "dateskipbefore{${1:skip}}"
+    },
+    "datestamp": {},
+    "Dimens": {},
+    "DimensP{}": {
+      "snippet": "DimensP{${1:arg}}"
+    },
+    "doletter{}": {
+      "snippet": "doletter{${1:commands}}"
+    },
+    "doltr{}": {
+      "snippet": "doltr{${1:commands}}"
+    },
+    "faxblocka": {},
+    "faxblockb": {},
+    "FAXP{}": {
+      "snippet": "FAXP{${1:arg}}"
+    },
+    "faxpage": {},
+    "FAZParam": {},
+    "fixcs{}": {
+      "snippet": "fixcs{${1:definition}}"
+    },
+    "fixem{}": {
+      "snippet": "fixem{${1:definition}}"
+    },
+    "fixfs{}": {
+      "snippet": "fixfs{${1:definition}}"
+    },
+    "fixhh{}": {
+      "snippet": "fixhh{${1:definition}}"
+    },
+    "fixhs{}": {
+      "snippet": "fixhs{${1:definition}}"
+    },
+    "fixom{}": {
+      "snippet": "fixom{${1:definition}}"
+    },
+    "fixphr{}{}": {
+      "snippet": "fixphr{${1:arg1}}{${2:arg2}}"
+    },
+    "fixth{}": {
+      "snippet": "fixth{${1:definition}}"
+    },
+    "fixtm{}": {
+      "snippet": "fixtm{${1:definition}}"
+    },
+    "fixtw{}": {
+      "snippet": "fixtw{${1:definition}}"
+    },
+    "footermarginsize{}": {
+      "snippet": "footermarginsize{${1:size}}"
+    },
+    "Footlinewd{}": {
+      "snippet": "Footlinewd{${1:width}}"
+    },
+    "footlinewd{}": {
+      "snippet": "footlinewd{${1:width}}"
+    },
+    "greettoskipafter{}": {
+      "snippet": "greettoskipafter{${1:skip}}"
+    },
+    "headermarginsize{}": {
+      "snippet": "headermarginsize{${1:size}}"
+    },
+    "headermarginskip{}": {
+      "snippet": "headermarginskip{${1:skip}}"
+    },
+    "Headlinewd{}": {
+      "snippet": "Headlinewd{${1:width}}"
+    },
+    "headlinewd{}": {
+      "snippet": "headlinewd{${1:width}}"
+    },
+    "ifempty{}{}{}": {
+      "snippet": "ifempty{${1:arg}}{${2:true}}{${3:false}}"
+    },
+    "iffixf{}{}": {
+      "snippet": "iffixf{${1:true}}{${2:false}}"
+    },
+    "iffixq{}{}": {
+      "snippet": "iffixq{${1:true}}{${2:false}}"
+    },
+    "iffixt{}{}": {
+      "snippet": "iffixt{${1:true}}{${2:false}}"
+    },
+    "ifpempty{}{}{}": {
+      "snippet": "ifpempty{${1:arg}}{${2:true}}{${3:false}}"
+    },
+    "labpl{}": {
+      "snippet": "labpl{${1:length}}"
+    },
+    "labsize{}": {
+      "snippet": "labsize{${1:size}}"
+    },
+    "Language": {},
+    "LanguageP{}": {
+      "snippet": "LanguageP{${1:arg}}"
+    },
+    "leftmarginsize{}": {
+      "snippet": "leftmarginsize{${1:size}}"
+    },
+    "leftmarginskipleft{}": {
+      "snippet": "leftmarginskipleft{${1:skip}}"
+    },
+    "leftmarginskipright{}": {
+      "snippet": "leftmarginskipright{${1:skip}}"
+    },
+    "leftmargintopdist{}": {
+      "snippet": "leftmargintopdist{${1:dist}}"
+    },
+    "letrh{}": {
+      "snippet": "letrh{${1:id}}"
+    },
+    "letterbody{}": {
+      "snippet": "letterbody{${1:text}}"
+    },
+    "LetterP{}": {
+      "snippet": "LetterP{${1:arg}}"
+    },
+    "LetterParam": {},
+    "Lfooter{}": {
+      "snippet": "Lfooter{${1:text}}"
+    },
+    "lfooter{}": {
+      "snippet": "lfooter{${1:text}}"
+    },
+    "lftwd{}": {
+      "snippet": "lftwd{${1:width}}"
+    },
+    "lheader{}": {
+      "snippet": "lheader{${1:text}}"
+    },
+    "Lheader{}": {
+      "snippet": "Lheader{${1:text}}"
+    },
+    "Lmargin{}": {
+      "snippet": "Lmargin{${1:text}}"
+    },
+    "lmargin{}": {
+      "snippet": "lmargin{${1:text}}"
+    },
+    "LOfooter{}": {
+      "snippet": "LOfooter{${1:text}}"
+    },
+    "lth": {},
+    "ltrbody{}": {
+      "snippet": "ltrbody{${1:text}}"
+    },
+    "LUheader{}": {
+      "snippet": "LUheader{${1:text}}"
+    },
+    "makeenvfn": {},
+    "makeenvst": {},
+    "MemoP{}": {
+      "snippet": "MemoP{${1:arg}}"
+    },
+    "MemoParam": {},
+    "memosec": {},
+    "memoskipafter{}": {
+      "snippet": "memoskipafter{${1:skip}}"
+    },
+    "memoskipbefore{}": {
+      "snippet": "memoskipbefore{${1:skip}}"
+    },
+    "MinFoot{}": {
+      "snippet": "MinFoot{${1:length}}"
+    },
+    "minfoot{}": {
+      "snippet": "minfoot{${1:length}}"
+    },
+    "MinHead{}": {
+      "snippet": "MinHead{${1:length}}"
+    },
+    "minhead{}": {
+      "snippet": "minhead{${1:length}}"
+    },
+    "MinLeft{}": {
+      "snippet": "MinLeft{${1:length}}"
+    },
+    "minleft{}": {
+      "snippet": "minleft{${1:length}}"
+    },
+    "MinRight{}": {
+      "snippet": "MinRight{${1:length}}"
+    },
+    "minright{}": {
+      "snippet": "minright{${1:length}}"
+    },
+    "monthname": {},
+    "multletter{}": {
+      "snippet": "multletter{${1:id1,id2,...}}"
+    },
+    "newlfmParam": {},
+    "noFootline": {},
+    "nofootline": {},
+    "noheadline": {},
+    "noHeadline": {},
+    "nolines": {},
+    "noLines": {},
+    "npind": {},
+    "oneletter{}": {
+      "snippet": "oneletter{${1:id}}"
+    },
+    "openlfm": {},
+    "pgrph{}": {
+      "snippet": "pgrph{${1:text}}"
+    },
+    "PhrCc{}": {
+      "snippet": "PhrCc{${1:text}}"
+    },
+    "PhrContact{}": {
+      "snippet": "PhrContact{${1:text}}"
+    },
+    "PhrDocument{}": {
+      "snippet": "PhrDocument{${1:text}}"
+    },
+    "PhrEmail{}": {
+      "snippet": "PhrEmail{${1:text}}"
+    },
+    "PhrEncl{}": {
+      "snippet": "PhrEncl{${1:text}}"
+    },
+    "PhrFax{}": {
+      "snippet": "PhrFax{${1:text}}"
+    },
+    "PhrFAXcovp{}": {
+      "snippet": "PhrFAXcovp{${1:text}}"
+    },
+    "PhrFAXpgcnt{}": {
+      "snippet": "PhrFAXpgcnt{${1:text}}"
+    },
+    "PhrFrom{}": {
+      "snippet": "PhrFrom{${1:text}}"
+    },
+    "PhrMessage{}": {
+      "snippet": "PhrMessage{${1:text}}"
+    },
+    "PhrMore{}": {
+      "snippet": "PhrMore{${1:text}}"
+    },
+    "PhrPager{}": {
+      "snippet": "PhrPager{${1:text}}"
+    },
+    "PhrPhone{}": {
+      "snippet": "PhrPhone{${1:text}}"
+    },
+    "PhrPpps{}": {
+      "snippet": "PhrPpps{${1:text}}"
+    },
+    "PhrPps{}": {
+      "snippet": "PhrPps{${1:text}}"
+    },
+    "PhrPRend{}": {
+      "snippet": "PhrPRend{${1:text}}"
+    },
+    "PhrPs{}": {
+      "snippet": "PhrPs{${1:text}}"
+    },
+    "PhrRe{}": {
+      "snippet": "PhrRe{${1:text}}"
+    },
+    "PhrRegard{}": {
+      "snippet": "PhrRegard{${1:regarding}}"
+    },
+    "PhrRelease{}": {
+      "snippet": "PhrRelease{${1:text}}"
+    },
+    "PhrSubre{}": {
+      "snippet": "PhrSubre{${1:text}}"
+    },
+    "PhrTo{}": {
+      "snippet": "PhrTo{${1:text}}"
+    },
+    "postsigskipafter{}": {
+      "snippet": "postsigskipafter{${1:skip}}"
+    },
+    "postsigskipbefore{}": {
+      "snippet": "postsigskipbefore{${1:skip}}"
+    },
+    "pressbegin": {},
+    "restletter{}": {
+      "snippet": "restletter{${1:text}}"
+    },
+    "restlettera{}": {
+      "snippet": "restlettera{${1:text}}"
+    },
+    "restletterb{}": {
+      "snippet": "restletterb{${1:text}}"
+    },
+    "restletterc{}": {
+      "snippet": "restletterc{${1:text}}"
+    },
+    "restletterd{}": {
+      "snippet": "restletterd{${1:text}}"
+    },
+    "restlettere{}": {
+      "snippet": "restlettere{${1:text}}"
+    },
+    "Rfooter{}": {
+      "snippet": "Rfooter{${1:text}}"
+    },
+    "rfooter{}": {
+      "snippet": "rfooter{${1:text}}"
+    },
+    "rheader{}": {
+      "snippet": "rheader{${1:text}}"
+    },
+    "Rheader{}": {
+      "snippet": "Rheader{${1:text}}"
+    },
+    "rightmarginsize{}": {
+      "snippet": "rightmarginsize{${1:size}}"
+    },
+    "rightmarginskipleft{}": {
+      "snippet": "rightmarginskipleft{${1:skip}}"
+    },
+    "rightmarginskipright{}": {
+      "snippet": "rightmarginskipright{${1:skip}}"
+    },
+    "rightmargintopdist{}": {
+      "snippet": "rightmargintopdist{${1:dist}}"
+    },
+    "Rmargin{}": {
+      "snippet": "Rmargin{${1:text}}"
+    },
+    "rmargin{}": {
+      "snippet": "rmargin{${1:text}}"
+    },
+    "ROfooter{}": {
+      "snippet": "ROfooter{${1:text}}"
+    },
+    "RUheader{}": {
+      "snippet": "RUheader{${1:text}}"
+    },
+    "setsigc": {},
+    "setsigl": {},
+    "setsigr": {},
+    "showdim{}": {
+      "snippet": "showdim{${1:text}}"
+    },
+    "sig": {},
+    "sigcenter{}": {
+      "snippet": "sigcenter{${1:true|false}}"
+    },
+    "sigleft{}": {
+      "snippet": "sigleft{${1:true|false}}"
+    },
+    "signaturecenter{}": {
+      "snippet": "signaturecenter{${1:true|false}}"
+    },
+    "signatureleft{}": {
+      "snippet": "signatureleft{${1:true|false}}"
+    },
+    "signatureno{}": {
+      "snippet": "signatureno{${1:true|false}}"
+    },
+    "signatureright{}": {
+      "snippet": "signatureright{${1:true|false}}"
+    },
+    "sigright{}": {
+      "snippet": "sigright{${1:true|false}}"
+    },
+    "sigsize{}": {
+      "snippet": "sigsize{${1:true|false}}"
+    },
+    "sigskipafter{}": {
+      "snippet": "sigskipafter{${1:skip}}"
+    },
+    "sigskipbefore{}": {
+      "snippet": "sigskipbefore{${1:skip}}"
+    },
+    "sigskipcolumn{}": {
+      "snippet": "sigskipcolumn{${1:skip}}"
+    },
+    "sigskiprow{}": {
+      "snippet": "sigskiprow{${1:skip}}"
+    },
+    "sigtr{}": {
+      "snippet": "sigtr{${1:id}}"
+    },
+    "textheightsize{}": {
+      "snippet": "textheightsize{${1:size}}"
+    },
+    "textwidthsize{}": {
+      "snippet": "textwidthsize{${1:size}}"
+    },
+    "timestamp": {},
+    "timestring": {},
+    "topht{}": {
+      "snippet": "topht{${1:height}}"
+    },
+    "topmarginsize{}": {
+      "snippet": "topmarginsize{${1:size}}"
+    },
+    "topmarginskip{}": {
+      "snippet": "topmarginskip{${1:skip}}"
+    },
+    "txb{}": {
+      "snippet": "txb{${1:text}}"
+    },
+    "unprbottom{}": {
+      "snippet": "unprbottom{${1:length}}"
+    },
+    "unprleft{}": {
+      "snippet": "unprleft{${1:length}}"
+    },
+    "unprright{}": {
+      "snippet": "unprright{${1:length}}"
+    },
+    "unprtop{}": {
+      "snippet": "unprtop{${1:length}}"
+    },
+    "waterpage{}": {
+      "snippet": "waterpage{${1:imagefile}}"
+    }
+  },
+  "envs": {
+    "newlfm": {}
+  },
+  "options": [
+    "a3paper",
+    "a4paper",
+    "addrfromemail",
+    "addrfromfax",
+    "addrfromleft",
+    "addrfromno",
+    "addrfromphone",
+    "addrfromright",
+    "addrtoemail",
+    "addrtofax",
+    "addrtoleft",
+    "addrtono",
+    "addrtophone",
+    "addrtoright",
+    "american",
+    "Avery5160",
+    "Avery5161",
+    "Avery5162",
+    "Avery5163",
+    "Avery5164",
+    "Avery5261",
+    "Avery5264",
+    "biggap",
+    "Blankall",
+    "blankall",
+    "blankfooter",
+    "Blankfooter",
+    "blankheader",
+    "Blankheader",
+    "blankleftmargin",
+    "Blankleftmargin",
+    "blanklmargin",
+    "blankrightmargin",
+    "Blankrightmargin",
+    "blankrmargin",
+    "BlankTotal",
+    "busletter",
+    "busletternofrom",
+    "cellowindow",
+    "datecenter",
+    "dateleft",
+    "dateno",
+    "dateright",
+    "dateyes",
+    "dspace",
+    "english",
+    "faxbla",
+    "faxblb",
+    "faxblocka",
+    "faxblockb",
+    "faxhba",
+    "faxhbb",
+    "faxheaderpage",
+    "faxhp",
+    "french",
+    "fullmemo",
+    "german",
+    "greetno",
+    "labcolfrto",
+    "labrowfrto",
+    "labto",
+    "legalpaper",
+    "letterpaper",
+    "margflush",
+    "memoaddrfrom",
+    "memoaddrto",
+    "memodate",
+    "memoemailfrom",
+    "memoemailto",
+    "memofaxfrom",
+    "memofaxto",
+    "memonofrom",
+    "memonore",
+    "memonoto",
+    "memopagerfrom",
+    "memopagerto",
+    "memophonefrom",
+    "memophoneto",
+    "noaddrfr",
+    "noaddrfrom",
+    "noaddrto",
+    "orderdatefromto",
+    "orderfromdateto",
+    "orderfromtodate",
+    "othlang",
+    "piglatin",
+    "pressrelease",
+    "printallfrom",
+    "printallto",
+    "setuplabel",
+    "sidebyside",
+    "sigcenter",
+    "sigleft",
+    "signaturecenter",
+    "signatureleft",
+    "signatureno",
+    "signatureright",
+    "sigright",
+    "sspace",
+    "stdletter",
+    "stdletternofrom",
+    "stdmemo",
+    "stdpressrelease",
+    "useenvlab",
+    "a5paper",
+    "b5paper",
+    "executivepaper",
+    "landscape",
+    "10pt",
+    "11pt",
+    "12pt",
+    "twoside",
+    "oneside",
+    "draft",
+    "final",
+    "leqno",
+    "fleqn"
+  ],
+  "keyvals": [
+    [
+      "a3paper",
+      "a4paper",
+      "addrf=${1:id}",
+      "addrfromemail=${1:email}",
+      "addrfromfax",
+      "addrfromleft",
+      "addrfromphone",
+      "addrfromright",
+      "addrfromskipafter=",
+      "addrfromskipbefore=",
+      "addrt=${1:id}",
+      "addrtoemail",
+      "addrtoleft",
+      "addrtophone",
+      "addrtoright",
+      "addrtoskipafter=",
+      "addrtoskipbefore=",
+      "american",
+      "Avery5160",
+      "Avery5161",
+      "Avery5162",
+      "Avery5163",
+      "Avery5164",
+      "Avery5261",
+      "Avery5264",
+      "Background=",
+      "background=",
+      "Blankall",
+      "blankall",
+      "blankfooter",
+      "Blankfooter",
+      "blankheader",
+      "Blankheader",
+      "blankleftmargin",
+      "Blankleftmargin",
+      "blankrightmargin",
+      "Blankrightmargin",
+      "BlankTotal",
+      "bottommarginskip=",
+      "bottommarginskipbelow=",
+      "busletter",
+      "busletternofrom",
+      "cellodown=",
+      "celloheight=",
+      "celloleft=",
+      "cellowidth=",
+      "cellowindow",
+      "closeskipafter=",
+      "closeskipbefore=",
+      "datecenter",
+      "dateleft",
+      "dateno",
+      "dateright",
+      "dateskipafter=",
+      "dateskipbefore=",
+      "dspace",
+      "english",
+      "faxblocka",
+      "faxblockb",
+      "faxhba",
+      "faxheaderpage",
+      "footermarginsize=",
+      "Footlinewd=",
+      "footlinewd=",
+      "french",
+      "fullmemo",
+      "german",
+      "greettoskipafter=",
+      "headermarginsize=",
+      "headermarginskip=",
+      "Headlinewd=",
+      "headlinewd=",
+      "InfoFileName=${1:file name}",
+      "labcolfrto",
+      "labrowfrto",
+      "labsize=${1:size cmd}",
+      "labto",
+      "leftmarginsize=",
+      "leftmarginskipleft=",
+      "leftmarginskipright=",
+      "leftmargintopdist=",
+      "legalpaper",
+      "letrh=${1:id}",
+      "letterpaper",
+      "margflush",
+      "memoaddrfrom",
+      "memoaddrto",
+      "memodate",
+      "memoemailfrom",
+      "memoemailto",
+      "memofaxfrom",
+      "memofaxto",
+      "memonofrom",
+      "memonore",
+      "memonoto",
+      "memopagerfrom",
+      "memopagerto",
+      "memophonefrom",
+      "memophoneto",
+      "memoskipafter=",
+      "memoskipbefore=",
+      "MinFoot=",
+      "minfoot=",
+      "MinHead=",
+      "minhead=",
+      "MinLeft=",
+      "minleft=",
+      "MinRight=",
+      "minright=",
+      "noaddrfrom",
+      "noaddrto",
+      "nofootline",
+      "noFootline",
+      "nogreet",
+      "noheadline",
+      "noHeadline",
+      "nolines",
+      "noLines",
+      "orderdatefromto",
+      "orderfromdateto",
+      "orderfromtodate",
+      "othlang",
+      "piglatin",
+      "postsigskipafter=",
+      "postsigskipbefore=",
+      "pressrelease",
+      "printallfrom",
+      "printallto",
+      "rightmarginsize=",
+      "rightmarginskipleft=",
+      "rightmarginskipright=",
+      "rightmargintopdist=",
+      "setuplabel",
+      "sidebyside",
+      "sigcenter",
+      "sigleft",
+      "signaturecenter",
+      "signatureleft",
+      "signatureno",
+      "signatureright",
+      "sigright",
+      "sigsize=",
+      "sigskipafter=",
+      "sigskipbefore=",
+      "sigskipcolumn=",
+      "sigskiprow=",
+      "sigtr=${1:id}",
+      "sspace",
+      "stdletter",
+      "stdletternofrom",
+      "stdmemo",
+      "stdpressrelease",
+      "textheightsize=",
+      "textwidthsize=",
+      "topmarginsize=",
+      "topmarginskip=",
+      "unprbottom=",
+      "unprleft=",
+      "unprright=",
+      "unprtop=",
+      "useenvlab",
+      "waterpage=${1:imagefile}"
+    ]
+  ]
+}

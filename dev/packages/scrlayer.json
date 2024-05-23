@@ -1,0 +1,317 @@
+{
+  "includes": {
+    "scrkbase": [],
+    "scrlfile": [],
+    "scrlogo": []
+  },
+  "macros": {
+    "footheight": {},
+    "MakeMarkcase{}": {
+      "snippet": "MakeMarkcase{${1:text}}"
+    },
+    "rightfirstmark": {},
+    "rightbotmark": {},
+    "righttopmark": {},
+    "leftfirstmark": {},
+    "leftbotmark": {},
+    "lefttopmark": {},
+    "headmark": {},
+    "pagemark": {},
+    "pnumfont{}": {
+      "snippet": "pnumfont{${1:text}}"
+    },
+    "partmarkformat": {},
+    "chaptermarkformat": {},
+    "sectionmarkformat": {},
+    "subsectionmarkformat": {},
+    "subsubsectionmarkformat": {},
+    "paragraphmarkformat": {},
+    "subparagraphmarkformat": {},
+    "GenericMarkFormat": {},
+    "partmark{}": {
+      "snippet": "partmark{${1:text}}"
+    },
+    "markleft{}": {
+      "snippet": "markleft{${1:left mark}}"
+    },
+    "markdouble{}": {
+      "snippet": "markdouble{${1:mark}}"
+    },
+    "manualmark": {},
+    "automark{}": {
+      "snippet": "automark{${1:left-mark level}}"
+    },
+    "automark[]{}": {
+      "snippet": "automark[${2:right-mark level}]{${1:left-mark level}}"
+    },
+    "automark*{}": {
+      "snippet": "automark*{${1:left-mark level}}"
+    },
+    "automark*[]{}": {
+      "snippet": "automark*[${2:right-mark level}]{${1:left-mark level}}"
+    },
+    "DeclareSectionNumberDepth{}{}": {
+      "snippet": "DeclareSectionNumberDepth{${1:level name}}{${2:level depth}}"
+    },
+    "DeclareLayer{}": {
+      "snippet": "DeclareLayer{${1:layer name}}"
+    },
+    "DeclareLayer[]{}": {
+      "snippet": "DeclareLayer[${2:options}]{${1:layer name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "DeclareNewLayer{}": {
+      "snippet": "DeclareNewLayer{${1:layer name}}"
+    },
+    "DeclareNewLayer[]{}": {
+      "snippet": "DeclareNewLayer[${2:options}]{${1:layer name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ProvideLayer{}": {
+      "snippet": "ProvideLayer{${1:layer name}}"
+    },
+    "ProvideLayer[]{}": {
+      "snippet": "ProvideLayer[${2:options}]{${1:layer name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "RedeclareLayer{}": {
+      "snippet": "RedeclareLayer{${1:layer name}}"
+    },
+    "RedeclareLayer[]{}": {
+      "snippet": "RedeclareLayer[${2:options}]{${1:layer name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ModifyLayer{}": {
+      "snippet": "ModifyLayer{${1:layer name}}"
+    },
+    "ModifyLayer[]{}": {
+      "snippet": "ModifyLayer[${2:options}]{${1:layer name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ModifyLayers{}": {
+      "snippet": "ModifyLayers{${1:layer list}}"
+    },
+    "ModifyLayers[]{}": {
+      "snippet": "ModifyLayers[${2:options}]{${1:layer list}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "layerhalign": {},
+    "layervalign": {},
+    "layerxoffset": {},
+    "layeryoffset": {},
+    "layerwidth": {},
+    "layerheight": {},
+    "IfLayerExists{}{}{}": {
+      "snippet": "IfLayerExists{${1:layer name}}{${2:then code}}{${3:else code}}"
+    },
+    "GetLayerContents{}": {
+      "snippet": "GetLayerContents{${1:layer name}}"
+    },
+    "DestroyLayer{}": {
+      "snippet": "DestroyLayer{${1:layer name}}"
+    },
+    "layercontentsmeasure": {},
+    "LenToUnit{}": {
+      "snippet": "LenToUnit{${1:length}}"
+    },
+    "ForEachLayerOfPageStyle{}{}": {
+      "snippet": "ForEachLayerOfPageStyle{${1:pagestyle name}}{${2:code}}"
+    },
+    "ForEachLayerOfPageStyle*{}{}": {
+      "snippet": "ForEachLayerOfPageStyle*{${1:pagestyle name}}{${2:code}}"
+    },
+    "layerrawmode": {},
+    "layertextmode": {},
+    "layerpicturemode": {},
+    "putLL{}": {
+      "snippet": "putLL{${1:content}}"
+    },
+    "putUL{}": {
+      "snippet": "putUL{${1:content}}"
+    },
+    "putLR{}": {
+      "snippet": "putLR{${1:content}}"
+    },
+    "putUR{}": {
+      "snippet": "putUR{${1:content}}"
+    },
+    "putC{}": {
+      "snippet": "putC{${1:content}}"
+    },
+    "DeclarePageStyleByLayers{}{}": {
+      "snippet": "DeclarePageStyleByLayers{${1:pagestyle name}}{${2:layer list}}"
+    },
+    "DeclarePageStyleByLayers[]{}{}": {
+      "snippet": "DeclarePageStyleByLayers[${3:options}]{${1:page style name}}{${2:layer list}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "DeclareNewPageStyleByLayers{}{}": {
+      "snippet": "DeclareNewPageStyleByLayers{${1:pagestyle name}}{${2:layer list}}"
+    },
+    "DeclareNewPageStyleByLayers[]{}{}": {
+      "snippet": "DeclareNewPageStyleByLayers[${3:options}]{${1:page style name}}{${2:layer list}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "ProvidePageStyleByLayers{}{}": {
+      "snippet": "ProvidePageStyleByLayers{${1:pagestyle name}}{${2:layer list}}"
+    },
+    "ProvidePageStyleByLayers[]{}{}": {
+      "snippet": "ProvidePageStyleByLayers[${3:options}]{${1:page style name}}{${2:layer list}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "RedeclarePageStyleByLayers{}{}": {
+      "snippet": "RedeclarePageStyleByLayers{${1:pagestyle name}}{${2:layer list}}"
+    },
+    "RedeclarePageStyleByLayers[]{}{}": {
+      "snippet": "RedeclarePageStyleByLayers[${3:options}]{${1:page style name}}{${2:layer list}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "AddLayersToPageStyle{}{}": {
+      "snippet": "AddLayersToPageStyle{${1:pagestyle name}}{${2:layer list}}"
+    },
+    "AddLayersAtEndOfPageStyle{}{}": {
+      "snippet": "AddLayersAtEndOfPageStyle{${1:pagestyle name}}{${2:layer list}}"
+    },
+    "AddLayersAtBeginOfPageStyle{}{}": {
+      "snippet": "AddLayersAtBeginOfPageStyle{${1:pagestyle name}}{${2:layer list}}"
+    },
+    "RemoveLayersFromPageStyle{}{}": {
+      "snippet": "RemoveLayersFromPageStyle{${1:pagestyle name}}{${2:layer list}}"
+    },
+    "AddLayersToPageStyleAfterLayer{}{}{}": {
+      "snippet": "AddLayersToPageStyleAfterLayer{${1:pagestyle name}}{${2:layer list}}{${3:ref layer name}}"
+    },
+    "AddLayersToPageStyleBeforeLayer{}{}{}": {
+      "snippet": "AddLayersToPageStyleBeforeLayer{${1:pagestyle name}}{${2:layer list}}{${3:ref layer name}}"
+    },
+    "UnifyLayersAtPageStyle{}": {
+      "snippet": "UnifyLayersAtPageStyle{${1:pagestyle name}}"
+    },
+    "ModifyLayerPageStyleOptions{}{}": {
+      "snippet": "ModifyLayerPageStyleOptions{${1:pagestyle name}}{${2:options}}"
+    },
+    "AddToLayerPageStyleOptions{}{}": {
+      "snippet": "AddToLayerPageStyleOptions{${1:pagestyle name}}{${2:options}}"
+    },
+    "DeclarePageStyleAlias{}{}": {
+      "snippet": "DeclarePageStyleAlias{${1:alias name}}{${2:original name}}"
+    },
+    "DeclareNewPageStyleAlias{}{}": {
+      "snippet": "DeclareNewPageStyleAlias{${1:alias name}}{${2:original name}}"
+    },
+    "ProvidePageStyleAlias{}{}": {
+      "snippet": "ProvidePageStyleAlias{${1:alias name}}{${2:original name}}"
+    },
+    "RedeclarePageStyleAlias{}{}": {
+      "snippet": "RedeclarePageStyleAlias{${1:alias name}}{${2:original name}}"
+    },
+    "DestroyPageStyleAlias{}": {
+      "snippet": "DestroyPageStyleAlias{${1:pagestyle name}}"
+    },
+    "GetRealPageStyle{}": {
+      "snippet": "GetRealPageStyle{${1:pagestyle name}}"
+    },
+    "IfLayerPageStyleExists{}{}{}": {
+      "snippet": "IfLayerPageStyleExists{${1:pagestyle name}}{${2:then code}}{${3:else code}}"
+    },
+    "IfRealLayerPageStyleExists{}{}{}": {
+      "snippet": "IfRealLayerPageStyleExists{${1:pagestyle name}}{${2:then code}}{${3:else code}}"
+    },
+    "IfLayerAtPageStyle{}{}{}{}": {
+      "snippet": "IfLayerAtPageStyle{${1:pagestyle name}}{${2:layer name}}{${3:then code}}{${4:else code}}"
+    },
+    "IfSomeLayersAtPageStyle{}{}{}{}": {
+      "snippet": "IfSomeLayersAtPageStyle{${1:pagestyle name}}{${2:layer list}}{${3:then code}}{${4:else code}}"
+    },
+    "IfLayersAtPageStyle{}{}{}{}": {
+      "snippet": "IfLayersAtPageStyle{${1:pagestyle name}}{${2:layer list}}{${3:then code}}{${4:else code}}"
+    },
+    "DestroyRealLayerPageStyle{}": {
+      "snippet": "DestroyRealLayerPageStyle{${1:pagestyle name}}"
+    },
+    "currentpagestyle": {},
+    "toplevelpagestyle": {},
+    "iftoplevelpagestyle": {},
+    "toplevelpagestyletrue": {},
+    "toplevelpagestylefalse": {},
+    "BeforeSelectAnyPageStyle{}": {
+      "snippet": "BeforeSelectAnyPageStyle{${1:code}}"
+    },
+    "AfterSelectAnyPageStyle{}": {
+      "snippet": "AfterSelectAnyPageStyle{${1:code}}"
+    },
+    "scrlayerAddToInterface": {},
+    "scrlayerAddCsToInterface": {},
+    "scrlayerInitInterface": {},
+    "scrlayerOnAutoRemoveInterface": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "addcontents=${1:code}",
+      "addheight=",
+      "addhoffset=",
+      "addvoffset=",
+      "addwidth=",
+      "align=${1:alignment chars}",
+      "area={${1:hoffset}}{${2:voffset}}{${3:width}}{${4:height}}",
+      "backandforeground",
+      "background",
+      "bottommargin",
+      "clone=${1:layer name}",
+      "contents=${1:code}",
+      "evenpage",
+      "everypage",
+      "everyside",
+      "floatornonfloatpage",
+      "floatpage",
+      "foot",
+      "footskip",
+      "foreground",
+      "head",
+      "headsep",
+      "height=",
+      "hoffset=",
+      "innermargin",
+      "leftmargin",
+      "mode=",
+      "nonfloatpage",
+      "oddorevenpage",
+      "oddpage",
+      "oneside",
+      "outermargin",
+      "page",
+      "pretocontents=${1:code}",
+      "rightmargin",
+      "textarea",
+      "topmargin",
+      "twoside",
+      "unrestricted",
+      "voffset=",
+      "width="
+    ],
+    [
+      "onselect=${1:code}",
+      "oninit=${1:code}",
+      "ononeside=${1:code}",
+      "ontwoside=${1:code}",
+      "onoddpage=${1:code}",
+      "onevenpage=${1:code}",
+      "onfloatpage=${1:code}",
+      "onnonfloatpage=${1:code}",
+      "onbackground=${1:code}",
+      "onforeground=${1:code}"
+    ]
+  ]
+}

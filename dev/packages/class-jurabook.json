@@ -1,0 +1,445 @@
+{
+  "includes": {
+    "jurabase": [],
+    "remreset": [],
+    "fancyhdr": [],
+    "multicol": [],
+    "class-book": [],
+    "ifpdf": [],
+    "ragged2e": [
+      "allowhyphens"
+    ]
+  },
+  "macros": {
+    "titlepublisherbox": {
+      "option": "ruwtitle"
+    },
+    "addextrawebcite{}": {
+      "snippet": "addextrawebcite{${1:URL}}"
+    },
+    "bibtotoc": {},
+    "birthplace{}": {
+      "snippet": "birthplace{${1:geburtsort}}"
+    },
+    "changestarchapters": {},
+    "chapterlevel": {},
+    "citeweb[]{}{}": {
+      "snippet": "citeweb[${3:abrufdatum}]{${1:URL}}{${2:beschreibung}}"
+    },
+    "citeweb{}{}": {
+      "snippet": "citeweb{${1:URL}}{${2:beschreibung}}"
+    },
+    "citewebx[]{}{}": {
+      "snippet": "citewebx[${3:abrufdatum}]{${1:urldef}}{${2:beschreibung}}"
+    },
+    "citewebx{}{}": {
+      "snippet": "citewebx{${1:urldef}}{${2:beschreibung}}"
+    },
+    "dcs*{}{}{}": {
+      "snippet": "dcs*{${1:gericht}}{${2:fundstelle}}{${3:stichwort}}"
+    },
+    "dcs{}{}{}": {
+      "snippet": "dcs{${1:gericht}}{${2:fundstelle}}{${3:stichwort}}"
+    },
+    "decision*[]{}{}{}{}{}{}{}": {
+      "snippet": "decision*[${8:nichtrechtskraeftig}]{${1:gericht}}{${2:fundstelle}}{${3:stichwort}}{${4:entschdatum}}{${5:az}}{${6:extra}}{${7:vermerk}}"
+    },
+    "decision*{}{}{}{}{}{}{}": {
+      "snippet": "decision*{${1:gericht}}{${2:fundstelle}}{${3:stichwort}}{${4:entschdatum}}{${5:az}}{${6:extra}}{${7:vermerk}}"
+    },
+    "decision[]{}{}{}{}{}{}{}": {
+      "snippet": "decision[${8:nichtrechtskraeftig}]{${1:gericht}}{${2:fundstelle}}{${3:stichwort}}{${4:entschdatum}}{${5:az}}{${6:extra}}{${7:vermerk}}"
+    },
+    "decision{}{}{}{}{}{}{}": {
+      "snippet": "decision{${1:gericht}}{${2:fundstelle}}{${3:stichwort}}{${4:entschdatum}}{${5:az}}{${6:extra}}{${7:vermerk}}"
+    },
+    "decree*{}{}{}{}{}{}{}": {
+      "snippet": "decree*{${1:gericht}}{${2:fundstelle}}{${3:stichwort}}{${4:datum}}{${5:az}}{${6:extra}}{${7:anmerkung}}"
+    },
+    "decree{}{}{}{}{}{}{}": {
+      "snippet": "decree{${1:gericht}}{${2:fundstelle}}{${3:stichwort}}{${4:datum}}{${5:az}}{${6:extra}}{${7:anmerkung}}"
+    },
+    "dumpoptions": {},
+    "dumpoptions[]": {
+      "snippet": "dumpoptions[${1:ausgabe}]"
+    },
+    "examdate{}": {
+      "snippet": "examdate{${1:datum}}"
+    },
+    "FIndex{}": {
+      "snippet": "FIndex{${1:text}}"
+    },
+    "findex{}": {
+      "snippet": "findex{${1:text}}"
+    },
+    "firstexaminer{}": {
+      "snippet": "firstexaminer{${1:name}}"
+    },
+    "hnewline": {},
+    "ifjpdf": {},
+    "Index{}": {
+      "snippet": "Index{${1:text}}"
+    },
+    "leveldown": {},
+    "levelup": {},
+    "lonelyappendixchapter[]{}": {
+      "snippet": "lonelyappendixchapter[${2:short title}]{${1:title}}"
+    },
+    "lonelyappendixchapter{}": {
+      "snippet": "lonelyappendixchapter{${1:title}}"
+    },
+    "longpage": {},
+    "longpage[]": {
+      "snippet": "longpage[${1:size}]"
+    },
+    "MIndex{}": {
+      "snippet": "MIndex{${1:text}}"
+    },
+    "newcourt": {},
+    "nomencltotoc": {},
+    "notyet[]{}{}{}{}{}{}{}": {
+      "snippet": "notyet[${8:nichtrechtskraeftig}]{${1:gericht}}{${2:fundstelle}}{${3:stichwort}}{${4:entschdatum}}{${5:az}}{${6:extra}}{${7:vermerk}}"
+    },
+    "notyet{}{}{}{}{}{}{}": {
+      "snippet": "notyet{${1:gericht}}{${2:fundstelle}}{${3:stichwort}}{${4:entschdatum}}{${5:az}}{${6:extra}}{${7:vermerk}}"
+    },
+    "officialtitle{}": {
+      "snippet": "officialtitle{${1:kuerzel}}"
+    },
+    "onehalfspacing": {},
+    "onespacing": {},
+    "overview": {},
+    "publishinfo{}": {
+      "snippet": "publishinfo{${1:pubvermerk}}"
+    },
+    "publishplace{}": {
+      "snippet": "publishplace{${1:ort}}"
+    },
+    "publishyear{}": {
+      "snippet": "publishyear{${1:jahr}}"
+    },
+    "resetstarchapters": {},
+    "rn[]{}": {
+      "snippet": "rn[${2:label}]{${1:ersteswort}}"
+    },
+    "rn{}": {
+      "snippet": "rn{${1:ersteswort}}"
+    },
+    "rnref{}": {
+      "snippet": "rnref{${1:label}}"
+    },
+    "rnreff{}": {
+      "snippet": "rnreff{${1:label}}"
+    },
+    "rnrefff{}": {
+      "snippet": "rnrefff{${1:label}}"
+    },
+    "secondexaminer{}": {
+      "snippet": "secondexaminer{${1:name}}"
+    },
+    "setchaptername[]{}": {
+      "snippet": "setchaptername[${2:trennz}]{${1:name}}"
+    },
+    "setchaptername{}": {
+      "snippet": "setchaptername{${1:name}}"
+    },
+    "setjbooklength{}{}": {
+      "snippet": "setjbooklength{${1:element}}{${2:neuelaenge}}"
+    },
+    "setjbookstyle{}{}": {
+      "snippet": "setjbookstyle{${1:element}}{${2:neuerstil}}"
+    },
+    "setjbooktext{}{}": {
+      "snippet": "setjbooktext{${1:element}}{${2:neuertext}}"
+    },
+    "shortindexingoff": {},
+    "shortindexingon": {},
+    "shortpage": {},
+    "shortpage[]": {
+      "snippet": "shortpage[${1:size}]"
+    },
+    "sub[]{}": {
+      "snippet": "sub[${2:short title}]{${1:title}}"
+    },
+    "sub{}": {
+      "snippet": "sub{${1:title}}"
+    },
+    "subauthor{}": {
+      "snippet": "subauthor{${1:zusatztext}}"
+    },
+    "subeightsection*{}": {
+      "snippet": "subeightsection*{${1:title}}"
+    },
+    "subeightsection[]{}": {
+      "snippet": "subeightsection[${2:short title}]{${1:title}}"
+    },
+    "subeightsection{}": {
+      "snippet": "subeightsection{${1:title}}"
+    },
+    "subfivesection*{}": {
+      "snippet": "subfivesection*{${1:title}}"
+    },
+    "subfivesection[]{}": {
+      "snippet": "subfivesection[${2:short title}]{${1:title}}"
+    },
+    "subfivesection{}": {
+      "snippet": "subfivesection{${1:title}}"
+    },
+    "subfoursection*{}": {
+      "snippet": "subfoursection*{${1:title}}"
+    },
+    "subfoursection[]{}": {
+      "snippet": "subfoursection[${2:short title}]{${1:title}}"
+    },
+    "subfoursection{}": {
+      "snippet": "subfoursection{${1:title}}"
+    },
+    "subsevensection*{}": {
+      "snippet": "subsevensection*{${1:title}}"
+    },
+    "subsevensection[]{}": {
+      "snippet": "subsevensection[${2:short title}]{${1:title}}"
+    },
+    "subsevensection{}": {
+      "snippet": "subsevensection{${1:title}}"
+    },
+    "subsixsection*{}": {
+      "snippet": "subsixsection*{${1:title}}"
+    },
+    "subsixsection[]{}": {
+      "snippet": "subsixsection[${2:short title}]{${1:title}}"
+    },
+    "subsixsection{}": {
+      "snippet": "subsixsection{${1:title}}"
+    },
+    "subsubsubsection*{}": {
+      "snippet": "subsubsubsection*{${1:title}}"
+    },
+    "subsubsubsection[]{}": {
+      "snippet": "subsubsubsection[${2:short title}]{${1:title}}"
+    },
+    "subsubsubsection{}": {
+      "snippet": "subsubsubsection{${1:title}}"
+    },
+    "subsubsubsubsection*{}": {
+      "snippet": "subsubsubsubsection*{${1:title}}"
+    },
+    "subsubsubsubsection[]{}": {
+      "snippet": "subsubsubsubsection[${2:short title}]{${1:title}}"
+    },
+    "subsubsubsubsection{}": {
+      "snippet": "subsubsubsubsection{${1:title}}"
+    },
+    "subthreesection*{}": {
+      "snippet": "subthreesection*{${1:title}}"
+    },
+    "subthreesection[]{}": {
+      "snippet": "subthreesection[${2:short title}]{${1:title}}"
+    },
+    "subthreesection{}": {
+      "snippet": "subthreesection{${1:title}}"
+    },
+    "subtitle{}": {
+      "snippet": "subtitle{${1:untertitel}}"
+    },
+    "tableofwebcites": {},
+    "toc[]{}": {
+      "snippet": "toc[${2:short title}]{${1:title}}"
+    },
+    "toc{}": {
+      "snippet": "toc{${1:title}}"
+    },
+    "TODO{}": {
+      "snippet": "TODO{${1:hinweistext}}"
+    },
+    "xref{}": {
+      "snippet": "xref{${1:label}}"
+    },
+    "appendixchapter": {},
+    "autornref{}": {
+      "snippet": "autornref{${1:arg}}"
+    },
+    "chapterextra": {},
+    "chapternumwidth": {},
+    "chapterstartspace": {},
+    "combinemarks": {},
+    "decisionentry{}{}": {
+      "snippet": "decisionentry{${1:arg1}}{${2:arg2}}"
+    },
+    "dnrefname": {},
+    "extrarn[]{}": {
+      "snippet": "extrarn[${2:label}]{${1:Erstes}}"
+    },
+    "extrarn{}": {
+      "snippet": "extrarn{${1:Erstes}}"
+    },
+    "findexproofmode": {},
+    "firstexaminername": {},
+    "fnlabelwidth": {},
+    "fnmarksep": {},
+    "fussnote{}": {
+      "snippet": "fussnote{${1:text}}"
+    },
+    "ifjscreen": {},
+    "jpdffalse": {},
+    "jpdftrue": {},
+    "jscreenfalse": {},
+    "jscreentrue": {},
+    "jurabookdate": {},
+    "jurabookversion": {},
+    "lowcontentsline{}{}{}": {
+      "snippet": "lowcontentsline{${1:URL}}{${2:arg2}}{${3:arg3}}"
+    },
+    "lowcontentslinex{}{}{}": {
+      "snippet": "lowcontentslinex{${1:urldef}}{${2:arg2}}{${3:arg3}}"
+    },
+    "newindexletter{}": {
+      "snippet": "newindexletter{${1:arg}}"
+    },
+    "paragraphtocindent": {},
+    "secondexaminername": {},
+    "sectionnumwidth": {},
+    "sectiontocindent": {},
+    "seealso{}{}": {
+      "snippet": "seealso{${1:arg1}}{${2:arg2}}"
+    },
+    "SetJuboPagestyle": {},
+    "subeightsectionmark{}": {
+      "snippet": "subeightsectionmark{${1:code}}"
+    },
+    "subeightsectionnumwidth": {},
+    "subeightsectiontocindent": {},
+    "subfivesectionmark{}": {
+      "snippet": "subfivesectionmark{${1:code}}"
+    },
+    "subfivesectionnumwidth": {},
+    "subfivesectiontocindent": {},
+    "subfoursectionmark{}": {
+      "snippet": "subfoursectionmark{${1:code}}"
+    },
+    "subfoursectionnumwidth": {},
+    "subfoursectiontocindent": {},
+    "subparagraphtocindent": {},
+    "subsectionnumwidth": {},
+    "subsectiontocindent": {},
+    "subsevensectionmark{}": {
+      "snippet": "subsevensectionmark{${1:code}}"
+    },
+    "subsevensectionnumwidth": {},
+    "subsevensectiontocindent": {},
+    "subsixsectionmark{}": {
+      "snippet": "subsixsectionmark{${1:code}}"
+    },
+    "subsixsectionnumwidth": {},
+    "subsixsectiontocindent": {},
+    "subsubsectionnumwidth": {},
+    "subsubsectiontocindent": {},
+    "subsubsubsubsubsection*{}": {
+      "snippet": "subsubsubsubsubsection*{${1:title}}"
+    },
+    "subsubsubsubsubsection[]{}": {
+      "snippet": "subsubsubsubsubsection[${2:short title}]{${1:title}}"
+    },
+    "subsubsubsubsubsection{}": {
+      "snippet": "subsubsubsubsubsection{${1:title}}"
+    },
+    "subsubsubsubsubsubsection*{}": {
+      "snippet": "subsubsubsubsubsubsection*{${1:title}}"
+    },
+    "subsubsubsubsubsubsection[]{}": {
+      "snippet": "subsubsubsubsubsubsection[${2:short title}]{${1:title}}"
+    },
+    "subsubsubsubsubsubsection{}": {
+      "snippet": "subsubsubsubsubsubsection{${1:title}}"
+    },
+    "subsubsubsubsubsubsubsection*{}": {
+      "snippet": "subsubsubsubsubsubsubsection*{${1:title}}"
+    },
+    "subsubsubsubsubsubsubsection[]{}": {
+      "snippet": "subsubsubsubsubsubsubsection[${2:short title}]{${1:title}}"
+    },
+    "subsubsubsubsubsubsubsection{}": {
+      "snippet": "subsubsubsubsubsubsubsection{${1:title}}"
+    },
+    "subsubsubsubsubsubsubsubsection*{}": {
+      "snippet": "subsubsubsubsubsubsubsubsection*{${1:title}}"
+    },
+    "subsubsubsubsubsubsubsubsection[]{}": {
+      "snippet": "subsubsubsubsubsubsubsubsection[${2:short title}]{${1:title}}"
+    },
+    "subsubsubsubsubsubsubsubsection{}": {
+      "snippet": "subsubsubsubsubsubsubsubsection{${1:title}}"
+    },
+    "subthreesectionmark{}": {
+      "snippet": "subthreesectionmark{${1:code}}"
+    },
+    "subthreesectionnumwidth": {},
+    "subthreesectiontocindent": {},
+    "theextrarunner": {},
+    "therealchapters": {},
+    "therunner": {},
+    "thesubeightsection": {},
+    "thesubfivesection": {},
+    "thesubfoursection": {},
+    "thesubsevensection": {},
+    "thesubsixsection": {},
+    "thesubthreesection": {},
+    "thetotaldcs": {},
+    "thetotaldecisions": {},
+    "thetotalfootnotes": {},
+    "thetotalnotyets": {},
+    "thetotalsections": {},
+    "thetotalwebcites": {},
+    "uprefname": {}
+  },
+  "envs": {
+    "decisionlist": {}
+  },
+  "options": [
+    "allowhyphens",
+    "indexpagenumbers",
+    "norunners",
+    "rnrefbold",
+    "oldfootnotes",
+    "fncontinued",
+    "showpagenumber",
+    "suppresswebdates",
+    "longfnrule",
+    "classiclayout",
+    "centeredpartsintoc",
+    "centeredlayout",
+    "screenmode",
+    "compact",
+    "decisionhints",
+    "overviewwithsec",
+    "seminar",
+    "chapterprefix",
+    "chaptersuffix",
+    "fixtocindent",
+    "maketime",
+    "ruwtitle",
+    "a4paper",
+    "a5paper",
+    "b5paper",
+    "letterpaper",
+    "legalpaper",
+    "executivepaper",
+    "landscape",
+    "10pt",
+    "11pt",
+    "12pt",
+    "oneside",
+    "twoside",
+    "draft",
+    "final",
+    "titlepage",
+    "openright",
+    "openany",
+    "onecolumn",
+    "twocolumn",
+    "leqno",
+    "fleqn",
+    "openbib"
+  ],
+  "keyvals": []
+}

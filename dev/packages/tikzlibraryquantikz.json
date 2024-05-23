@@ -1,0 +1,390 @@
+{
+  "includes": {
+    "xargs": [],
+    "ifthen": [],
+    "xstring": [],
+    "etoolbox": [],
+    "mathtools": [],
+    "pgfmath": [],
+    "environ": [],
+    "tikzlibrarycd": [],
+    "tikzlibrarydecorations.pathreplacing": [],
+    "tikzlibrarycalc": [],
+    "tikzlibrarypositioning": [],
+    "tikzlibraryfit": [],
+    "tikzlibraryshapes.symbols": [],
+    "tikzlibraryshapes.misc": [],
+    "tikzlibrarydecorations.pathmorphing": [],
+    "tikzlibrarybackgrounds": [],
+    "tikzlibrarydecorations.markings": [],
+    "tikzlibrarymath": []
+  },
+  "macros": {
+    "gate{}": {
+      "snippet": "gate{${1:label}}"
+    },
+    "gate[]{}": {
+      "snippet": "gate[${2:options}]{${1:label}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "gate[][]{}": {
+      "snippet": "gate[${2:options}][${3:width}]{${1:label}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "gate[][][]{}": {
+      "snippet": "gate[${2:options}][${3:width}][${4:height}]{${1:label}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "phase{}": {
+      "snippet": "phase{${1:label}}"
+    },
+    "phase[]{}": {
+      "snippet": "phase[${2:TikZ keys}]{${1:label}}"
+    },
+    "lstick{}": {
+      "snippet": "lstick{${1:text}}"
+    },
+    "lstick[]{}": {
+      "snippet": "lstick[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "rstick{}": {
+      "snippet": "rstick{${1:text}}"
+    },
+    "rstick[]{}": {
+      "snippet": "rstick[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "qw": {},
+    "cw": {},
+    "push{}": {
+      "snippet": "push{${1:label}}"
+    },
+    "alias{}": {
+      "snippet": "alias{${1:arg}}"
+    },
+    "trash{}": {
+      "snippet": "trash{${1:label}}"
+    },
+    "trash[]{}": {
+      "snippet": "trash[${2:TikZ keys}]{${1:label}}"
+    },
+    "qwbundle{}": {
+      "snippet": "qwbundle{${1:label}}"
+    },
+    "qwbundle[]{}": {
+      "snippet": "qwbundle[${2:alternate=2}]{${1:label}}"
+    },
+    "ctrl{}": {
+      "snippet": "ctrl{${1:number}}"
+    },
+    "octrl{}": {
+      "snippet": "octrl{${1:number}}"
+    },
+    "targ{}": {
+      "snippet": "targ{${1:}}"
+    },
+    "targ[]{}": {
+      "snippet": "targ[${2:TikZ keys}]{${1:}}"
+    },
+    "control{}": {
+      "snippet": "control{${1:}}"
+    },
+    "control[]{}": {
+      "snippet": "control[${2:TikZ keys}]{${1:}}"
+    },
+    "ocontrol{}": {
+      "snippet": "ocontrol{${1:}}"
+    },
+    "ocontrol[]{}": {
+      "snippet": "ocontrol[${2:TikZ keys}]{${1:}}"
+    },
+    "targX{}": {
+      "snippet": "targX{${1:}}"
+    },
+    "targX[]{}": {
+      "snippet": "targX[${2:TikZ keys}]{${1:}}"
+    },
+    "swap{}": {
+      "snippet": "swap{${1:number}}"
+    },
+    "vqw{}": {
+      "snippet": "vqw{${1:number}}"
+    },
+    "vcw{}": {
+      "snippet": "vcw{${1:number}}"
+    },
+    "cwbend{}": {
+      "snippet": "cwbend{${1:number}}"
+    },
+    "ctrlbundle{}": {
+      "snippet": "ctrlbundle{${1:number}}"
+    },
+    "ctrlbundle[]{}": {
+      "snippet": "ctrlbundle[${2:1 or 2}]{${1:number}}"
+    },
+    "ctrlbundle[][]{}": {
+      "snippet": "ctrlbundle[${2:1 or 2}][${3:TikZ keys}]{${1:number}}"
+    },
+    "gateinput{}": {
+      "snippet": "gateinput{${1:text}}"
+    },
+    "gateinput[]{}": {
+      "snippet": "gateinput[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "gateoutput{}": {
+      "snippet": "gateoutput{${1:text}}"
+    },
+    "gateoutput[]{}": {
+      "snippet": "gateoutput[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "slice{}": {
+      "snippet": "slice{${1:title}}"
+    },
+    "slice[]{}": {
+      "snippet": "slice[${2:options}]{${1:title}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "phantomgate{}": {
+      "snippet": "phantomgate{${1:text}}"
+    },
+    "hphantomgate{}": {
+      "snippet": "hphantomgate{${1:text}}"
+    },
+    "ghost{}": {
+      "snippet": "ghost{${1:text}}"
+    },
+    "ghost[]{}": {
+      "snippet": "ghost[${2:options}]{${1:text}}"
+    },
+    "ghost[][]{}": {
+      "snippet": "ghost[${2:options}][${3:width}]{${1:text}}"
+    },
+    "ghost[][][]{}": {
+      "snippet": "ghost[${2:options}][${3:width}][${4:height}]{${1:text}}"
+    },
+    "midstick{}": {
+      "snippet": "midstick{${1:text}}"
+    },
+    "midstick[]{}": {
+      "snippet": "midstick[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "linethrough": {},
+    "meter{}": {
+      "snippet": "meter{${1:text}}"
+    },
+    "meter[]{}": {
+      "snippet": "meter[${2:TikZ keys}]{${1:text}}"
+    },
+    "measuretab{}": {
+      "snippet": "measuretab{${1:label}}"
+    },
+    "measuretab[]{}": {
+      "snippet": "measuretab[${2:TikZ keys}]{${1:label}}"
+    },
+    "meterD{}": {
+      "snippet": "meterD{${1:label}}"
+    },
+    "meterD[]{}": {
+      "snippet": "meterD[${2:TikZ keys}]{${1:label}}"
+    },
+    "measure{}": {
+      "snippet": "measure{${1:label}}"
+    },
+    "measure[]{}": {
+      "snippet": "measure[${2:TikZ keys}]{${1:label}}"
+    },
+    "gategroup{}": {
+      "snippet": "gategroup{${1:text}}"
+    },
+    "gategroup[]{}": {
+      "snippet": "gategroup[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "wave": {},
+    "wave[]": {
+      "snippet": "wave[${1:TikZ keys}]"
+    },
+    "makeebit{}": {
+      "snippet": "makeebit{${1:text}}"
+    },
+    "makeebit[]{}": {
+      "snippet": "makeebit[${2:angle}]{${1:text}}"
+    },
+    "makeebit[][]{}": {
+      "snippet": "makeebit[${2:angle}][${3:TikZ keys}]{${1:text}}"
+    },
+    "ket{}": {
+      "snippet": "ket{${1:arg}}"
+    },
+    "bra{}": {
+      "snippet": "bra{${1:arg}}"
+    },
+    "proj{}": {
+      "snippet": "proj{${1:arg}}"
+    },
+    "braket{}{}": {
+      "snippet": "braket{${1:left}}{${2:right}}"
+    },
+    "myl": {},
+    "myh": {},
+    "myd": {},
+    "theaaa": {},
+    "IfInList{}{}": {
+      "snippet": "IfInList{${1:item}}{${2:list}}"
+    },
+    "ifnodedefined{}{}{}": {
+      "snippet": "ifnodedefined{${1:node}}{${2:true}}{${3:false}}"
+    },
+    "MathAxis": {},
+    "DisableMinSize": {},
+    "quantwires": {},
+    "dotikzset": {},
+    "undotikzset": {},
+    "sliceallr": {},
+    "sliceallvr": {},
+    "DivideRowsCols": {},
+    "setmiddle{}": {
+      "snippet": "setmiddle{${1:row num}}"
+    },
+    "vqwexplicit{}{}": {
+      "snippet": "vqwexplicit{${1:from}}{${2:to}}"
+    },
+    "vqbundleexplicit{}{}": {
+      "snippet": "vqbundleexplicit{${1:from}}{${2:to}}"
+    },
+    "vcwexplicit{}{}": {
+      "snippet": "vcwexplicit{${1:from}}{${2:to}}"
+    },
+    "vcwhexplicit{}{}": {
+      "snippet": "vcwhexplicit{${1:from}}{${2:to}}"
+    },
+    "vqwexplicitcenter{}{}": {
+      "snippet": "vqwexplicitcenter{${1:from}}{${2:to}}"
+    },
+    "resetstyles": {},
+    "maketransparent": {},
+    "row": {},
+    "col": {},
+    "arrow[]": {
+      "snippet": "arrow[${1:options}]"
+    },
+    "ar[]": {
+      "snippet": "ar[${1:options}]"
+    },
+    "rar[]": {
+      "snippet": "rar[${1:options}]"
+    },
+    "lar[]": {
+      "snippet": "lar[${1:options}]"
+    },
+    "dar[]": {
+      "snippet": "dar[${1:options}]"
+    },
+    "uar[]": {
+      "snippet": "uar[${1:options}]"
+    },
+    "drar[]": {
+      "snippet": "drar[${1:options}]"
+    },
+    "urar[]": {
+      "snippet": "urar[${1:options}]"
+    },
+    "dlar[]": {
+      "snippet": "dlar[${1:options}]"
+    },
+    "ular[]": {
+      "snippet": "ular[${1:options}]"
+    }
+  },
+  "envs": {
+    "quantikz": {},
+    "quantikz[]": {
+      "name": "quantikz",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "wires=${1:integer}",
+      "style={${1:TikZ keys}}",
+      "label style={${1:TikZ keys}}",
+      "cwires=${1:integer}",
+      "nwires=${1:integer}",
+      "bundle=${1:integer}",
+      "disable auto height",
+      "brackets=",
+      "${1:integer}",
+      "steps=${1:integer}",
+      "background",
+      "swap"
+    ],
+    [
+      "slice all",
+      "remove end slices=${1:integer}",
+      "slice titles=${1:text}",
+      "slice style={${1:TikZ keys}}",
+      "slice label style={${1:TikZ keys}}",
+      "vertical slice labels",
+      "align equals at=${1:wire number}",
+      "thin lines",
+      "transparent",
+      "every diagram",
+      "diagrams={${1:options}}",
+      "every matrix",
+      "every cell",
+      "cells={${1:options}}",
+      "row sep=",
+      "column sep=",
+      "sep=",
+      "cramped",
+      "math mode",
+      "background color=",
+      "every arrow",
+      "arrows={${1:options}}",
+      "arrow style=",
+      "every label",
+      "labels={${1:options}}",
+      "center yshift=",
+      "ampersand replacement=${1:macro}",
+      "shorten=",
+      "crossing over",
+      "crossing over clearance=",
+      "marking",
+      "description",
+      "%color",
+      "color=",
+      "in=${1:degrees}",
+      "out=${1:degrees}",
+      "font=${1:font commands}",
+      "line width=",
+      "shorten=",
+      "crossing over",
+      "crossing over clearance=",
+      "marking",
+      "description",
+      "%color",
+      "color=",
+      "in=${1:degrees}",
+      "out=${1:degrees}",
+      "font=${1:font commands}",
+      "line width="
+    ]
+  ]
+}

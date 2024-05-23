@@ -1,0 +1,89 @@
+{
+  "includes": {
+    "ocgbase": [],
+    "pdfbase": []
+  },
+  "macros": {
+    "includemedia{}{}": {
+      "snippet": "includemedia{${1:poster text}}{${2:file or URL}}"
+    },
+    "includemedia[]{}{}": {
+      "snippet": "includemedia[${3:options}]{${1:poster text}}{${2:file or URL}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "addmediapath{}": {
+      "snippet": "addmediapath{${1:directory}}"
+    },
+    "mediabutton{}": {
+      "snippet": "mediabutton{${1:button text}}"
+    },
+    "mediabutton[]{}": {
+      "snippet": "mediabutton[${2:options}]{${1:button text}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    }
+  },
+  "envs": {},
+  "options": [
+    "dvipdfmx",
+    "xetex",
+    "bigfiles",
+    "draft",
+    "final",
+    "playbutton=",
+    "noplaybutton",
+    "activate=",
+    "deactivate=",
+    "windowed=",
+    "transparent",
+    "passcontext",
+    "attachfiles",
+    "3Dplaytype=",
+    "3Dplaycount=${1:integer}",
+    "3Dplayspeed=${1:number}",
+    "3Dtoolbar",
+    "3Dnavpane",
+    "3Dpartsattrs=",
+    "3Dmenu",
+    "3Dbg=${1:<r> <g> <b>}",
+    "3Dlights=",
+    "3Drender="
+  ],
+  "keyvals": [
+    [
+      "label=${1:label text}",
+      "width=",
+      "height=",
+      "totalheight=",
+      "keepaspectratio",
+      "scale=${1:factor}",
+      "addresource=${1:file}",
+      "flashvars={${1:var1=val1&var2=val2&...}}",
+      "3Dcoo=${1:<x> <y> <z>}",
+      "3Dc2c=${1:<x> <y> <z>}",
+      "3Droll=${1:roll}",
+      "3Dc2w=${1:camera-to-world matrix}",
+      "3Dpsob=",
+      "3Droo=${1:number}",
+      "3Daac=${1:angle}",
+      "3Dortho=${1:factor}",
+      "3Dviews=${1:views file}",
+      "add3Djscript=${1:3D JavaScript file}"
+    ],
+    [
+      "overface=${1:text or graphic}",
+      "downface=${1:text or graphic}",
+      "tooltip=${1:tip text}",
+      "3Dgotoview=${1:label text}",
+      "3Dgotoview=${1:label text}:${2:view spec}",
+      "mediacommand=${1:label text}",
+      "mediacommand=${1:label text}:${2:command}",
+      "mediacommand=${1:label text}:${2:command}[(${3:arg1})${4:(arg2)...}]",
+      "jsaction={${1:JavaScript code}}",
+      "jsaction=${1:label text}:{${2:JavaScript code}}",
+      "draft",
+      "final"
+    ]
+  ]
+}

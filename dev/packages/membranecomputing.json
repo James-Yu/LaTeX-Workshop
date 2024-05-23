@@ -1,0 +1,344 @@
+{
+  "includes": {
+    "ifthen": [],
+    "xstring": []
+  },
+  "macros": {
+    "wa": {},
+    "ia": {},
+    "ls": {},
+    "ms": {},
+    "im{}": {
+      "snippet": "im{${1:index}}"
+    },
+    "rs{}": {
+      "snippet": "rs{${1:index}}"
+    },
+    "ps{}": {
+      "snippet": "ps{${1:index}}"
+    },
+    "vE": {},
+    "neuron{}": {
+      "snippet": "neuron{${1:index}}"
+    },
+    "compartment{}": {
+      "snippet": "compartment{${1:index}}"
+    },
+    "agent{}": {
+      "snippet": "agent{${1:index}}"
+    },
+    "degree": {},
+    "syn": {},
+    "iin": {},
+    "iout": {},
+    "yes": {},
+    "no": {},
+    "REG": {},
+    "mcREG": {},
+    "LIN": {},
+    "mcLIN": {},
+    "CF": {},
+    "CS": {},
+    "RE": {},
+    "mcRE": {},
+    "compSet{}": {
+      "snippet": "compSet{${1:arg}}"
+    },
+    "AM{}": {
+      "snippet": "AM{${1:arg}}"
+    },
+    "AM[]{}": {
+      "snippet": "AM[${2:sup}]{${1:arg}}"
+    },
+    "mcAM{}": {
+      "snippet": "mcAM{${1:arg}}"
+    },
+    "mcAM[]{}": {
+      "snippet": "mcAM[${2:sup}]{${1:arg}}"
+    },
+    "AMO{}": {
+      "snippet": "AMO{${1:arg}}"
+    },
+    "mcTC[]{}": {
+      "snippet": "mcTC[${2:optarg}]{${1:arg}}"
+    },
+    "TC[]{}": {
+      "snippet": "TC[${2:optarg}]{${1:arg}}"
+    },
+    "TDC{}": {
+      "snippet": "TDC{${1:arg}}"
+    },
+    "TSC{}": {
+      "snippet": "TSC{${1:arg}}"
+    },
+    "CC[]{}": {
+      "snippet": "CC[${2:optarg}]{${1:arg}}"
+    },
+    "CDC{}": {
+      "snippet": "CDC{${1:arg}}"
+    },
+    "CSC{}": {
+      "snippet": "CSC{${1:arg}}"
+    },
+    "TEC[]{}": {
+      "snippet": "TEC[${2:optarg}]{${1:arg}}"
+    },
+    "TDEC{}": {
+      "snippet": "TDEC{${1:arg}}"
+    },
+    "TSEC{}": {
+      "snippet": "TSEC{${1:arg}}"
+    },
+    "CEC[]{}": {
+      "snippet": "CEC[${2:optarg}]{${1:arg}}"
+    },
+    "CDEC{}": {
+      "snippet": "CDEC{${1:arg}}"
+    },
+    "CSEC{}": {
+      "snippet": "CSEC{${1:arg}}"
+    },
+    "Pfamily{}{}{}{}": {
+      "snippet": "Pfamily{${1:name}}{${2:sup}}{${3:sub}}{${4:arg}}"
+    },
+    "PMC{}": {
+      "snippet": "PMC{${1:sub}}"
+    },
+    "PMC[]{}": {
+      "snippet": "PMC[${2:sup}]{${1:sub}}"
+    },
+    "PSPACEMC{}": {
+      "snippet": "PSPACEMC{${1:sub}}"
+    },
+    "PSPACEMC[]{}": {
+      "snippet": "PSPACEMC[${2:sup}]{${1:sub}}"
+    },
+    "EXPMC{}": {
+      "snippet": "EXPMC{${1:sub}}"
+    },
+    "EXPMC[]{}": {
+      "snippet": "EXPMC[${2:sup}]{${1:sub}}"
+    },
+    "EXPSPACEMC{}": {
+      "snippet": "EXPSPACEMC{${1:sub}}"
+    },
+    "EXPSPACEMC[]{}": {
+      "snippet": "EXPSPACEMC[${2:sup}]{${1:sub}}"
+    },
+    "complClass{}{}{}": {
+      "snippet": "complClass{${1:name}}{${2:sup}}{${3:sub}}"
+    },
+    "psystem{}{}{}{}": {
+      "snippet": "psystem{${1:memb struc}}{${2:parameters}}{${3:sub}}{${4:degree}}"
+    },
+    "psystem[]{}{}{}{}": {
+      "snippet": "psystem[${5:input option}]{${1:memb struc}}{${2:parameters}}{${3:sub}}{${4:degree}}"
+    },
+    "psystemT": {},
+    "rpsystemT": {},
+    "psystemAM": {},
+    "rpsystemAM": {},
+    "psystemSA": {},
+    "rpsystemSA": {},
+    "SNpsystem": {},
+    "rSNpsystem": {},
+    "kpsystem": {},
+    "rkpsystem": {},
+    "pcolony": {},
+    "rpcolony": {},
+    "mcrule{}{}{}{}{}": {
+      "snippet": "mcrule{${1:parameters}}{${2:num1}}{${3:num2}}{${4:rulespecs1}}{${5:rulespec2}}"
+    },
+    "mcrule[]{}{}{}{}{}": {
+      "snippet": "mcrule[${6:notation}]{${1:parameters}}{${2:num1}}{${3:num2}}{${4:rulespecs1}}{${5:rulespec2}}"
+    },
+    "rewriting{}{}": {
+      "snippet": "rewriting{${1:arg1}}{${2:arg2}}"
+    },
+    "rewritingT": {},
+    "evolution{}{}{}{}": {
+      "snippet": "evolution{${1:arg1}}{${2:arg2}}{${3:sub}}{${4:sup}}"
+    },
+    "evolutionT": {},
+    "evolutionP{}{}{}{}": {
+      "snippet": "evolutionP{${1:arg1}}{${2:arg2}}{${3:sub}}{${4:sup}}"
+    },
+    "evolutionPT": {},
+    "pevolution{}{}{}": {
+      "snippet": "pevolution{${1:arg1}}{${2:arg2}}{${3:sub}}"
+    },
+    "pevolutionT": {},
+    "pevolutionP{}{}{}": {
+      "snippet": "pevolutionP{${1:arg1}}{${2:arg2}}{${3:sub}}"
+    },
+    "pevolutionPT": {},
+    "antiport{}{}{}{}": {
+      "snippet": "antiport{${1:arg1}}{${2:index1}}{${3:arg2}}{${4:index2}}"
+    },
+    "antiportT": {},
+    "symportT": {},
+    "antiportP{}{}{}{}": {
+      "snippet": "antiportP{${1:arg1}}{${2:index1}}{${3:arg2}}{${4:index2}}"
+    },
+    "antiportPT": {},
+    "symportPT": {},
+    "sendin{}{}{}{}{}": {
+      "snippet": "sendin{${1:arg1}}{${2:arg2}}{${3:sub}}{${4:sup1}}{${5:sup2}}"
+    },
+    "sendinT": {},
+    "sendinP{}{}{}{}{}": {
+      "snippet": "sendinP{${1:arg1}}{${2:arg2}}{${3:sub}}{${4:sup1}}{${5:sup2}}"
+    },
+    "sendinPT": {},
+    "psendin{}{}{}": {
+      "snippet": "psendin{${1:arg1}}{${2:arg2}}{${3:sub}}"
+    },
+    "psendinT": {},
+    "psendinP{}{}{}": {
+      "snippet": "psendinP{${1:arg1}}{${2:arg2}}{${3:sub}}"
+    },
+    "psendinPT": {},
+    "sendout{}{}{}{}{}": {
+      "snippet": "sendout{${1:arg1}}{${2:arg2}}{${3:sub}}{${4:sup1}}{${5:sup2}}"
+    },
+    "sendoutT": {},
+    "sendoutP{}{}{}{}{}": {
+      "snippet": "sendoutP{${1:arg1}}{${2:arg2}}{${3:sub}}{${4:sup1}}{${5:sup2}}"
+    },
+    "sendoutPT": {},
+    "psendout{}{}{}": {
+      "snippet": "psendout{${1:arg1}}{${2:arg2}}{${3:sub}}"
+    },
+    "psendoutT": {},
+    "psendoutP{}{}{}": {
+      "snippet": "psendoutP{${1:arg1}}{${2:arg2}}{${3:sub}}"
+    },
+    "psendoutPT": {},
+    "dissolution{}{}{}{}": {
+      "snippet": "dissolution{${1:arg1}}{${2:arg2}}{${3:sub}}{${4:sup}}"
+    },
+    "dissolutionT": {},
+    "dissolutionP{}{}{}{}": {
+      "snippet": "dissolutionP{${1:arg1}}{${2:arg2}}{${3:sub}}{${4:sup}}"
+    },
+    "dissolutionPT": {},
+    "pdissolution{}{}{}": {
+      "snippet": "pdissolution{${1:arg1}}{${2:arg2}}{${3:sub}}"
+    },
+    "pdissolutionT": {},
+    "pdissolutionP{}{}{}": {
+      "snippet": "pdissolutionP{${1:arg1}}{${2:arg2}}{${3:sub}}"
+    },
+    "pdissolutionPT": {},
+    "division{}{}{}{}{}{}{}": {
+      "snippet": "division{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:sub}}{${5:sup1}}{${6:sup2}}{${7:sup3}}"
+    },
+    "divisionT": {},
+    "divisionP{}{}{}{}{}{}{}": {
+      "snippet": "divisionP{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:sub}}{${5:sup1}}{${6:sup2}}{${7:sup3}}"
+    },
+    "divisionPT": {},
+    "pdivision{}{}{}{}": {
+      "snippet": "pdivision{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:sub}}"
+    },
+    "pdivisionT": {},
+    "pdivisionP{}{}{}{}": {
+      "snippet": "pdivisionP{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:sub}}"
+    },
+    "pdivisionPT": {},
+    "separation{}{}{}{}{}": {
+      "snippet": "separation{${1:arg}}{${2:sub}}{${3:sup1}}{${4:sup2}}{${5:sup3}}"
+    },
+    "separationT": {},
+    "separationP{}{}{}{}{}": {
+      "snippet": "separationP{${1:arg}}{${2:sub}}{${3:sup1}}{${4:sup2}}{${5:sup3}}"
+    },
+    "separationPT": {},
+    "pseparation{}{}": {
+      "snippet": "pseparation{${1:arg}}{${2:sub}}"
+    },
+    "pseparationT": {},
+    "pseparationP{}{}": {
+      "snippet": "pseparationP{${1:arg}}{${2:sub}}"
+    },
+    "pseparationPT": {},
+    "creation{}{}{}{}{}{}{}{}": {
+      "snippet": "creation{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:sub1}}{${5:sub2}}{${6:sup1}}{${7:sup2}}{${8:sup3}}"
+    },
+    "creationT": {},
+    "creationP{}{}{}{}{}{}{}{}": {
+      "snippet": "creationP{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:sub1}}{${5:sub2}}{${6:sup1}}{${7:sup2}}{${8:sup3}}"
+    },
+    "creationPT": {},
+    "pcreation{}{}{}{}{}": {
+      "snippet": "pcreation{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:sub1}}{${5:sub2}}"
+    },
+    "pcreationT": {},
+    "pcreationP{}{}{}{}{}": {
+      "snippet": "pcreationP{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:sub1}}{${5:sub2}}"
+    },
+    "pcreationPT": {},
+    "spiking{}{}{}{}": {
+      "snippet": "spiking{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "spikingT": {},
+    "forgettingT": {},
+    "spikingP{}{}{}{}": {
+      "snippet": "spikingP{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "spikingPT": {},
+    "forgettingPT": {},
+    "krewriting{}{}{}": {
+      "snippet": "krewriting{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "krewritingT": {},
+    "krewritingP{}{}{}": {
+      "snippet": "krewritingP{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "krewritingPT": {},
+    "linkcreation{}{}{}{}{}": {
+      "snippet": "linkcreation{${1:arg1}}{${2:arg2}}{${3:sub1}}{${4:sub2}}{${5:arg3}}"
+    },
+    "linkcreationT": {},
+    "linkcreationP{}{}{}{}{}": {
+      "snippet": "linkcreationP{${1:arg1}}{${2:arg2}}{${3:sub1}}{${4:sub2}}{${5:arg3}}"
+    },
+    "linkcreationPT": {},
+    "linkdestruction{}{}{}{}{}": {
+      "snippet": "linkdestruction{${1:arg1}}{${2:arg2}}{${3:sub1}}{${4:sub2}}{${5:arg3}}"
+    },
+    "linkdestructionT": {},
+    "linkdestructionP{}{}{}{}{}": {
+      "snippet": "linkdestructionP{${1:arg1}}{${2:arg2}}{${3:sub1}}{${4:sub2}}{${5:arg3}}"
+    },
+    "linkdestructionPT": {},
+    "tissueevolcomm{}{}{}{}{}{}": {
+      "snippet": "tissueevolcomm{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:sub1}}{${6:sub2}}"
+    },
+    "tissueevolcommT": {},
+    "tissueevolsympT": {},
+    "tissueevolcommP{}{}{}{}{}{}": {
+      "snippet": "tissueevolcommP{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:sub1}}{${6:sub2}}"
+    },
+    "tissueevolcommPT": {},
+    "tissueevolsympPT": {},
+    "evolcomm{}{}{}{}{}{}": {
+      "snippet": "evolcomm{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:sub1}}{${6:sub2}}"
+    },
+    "evolcommT": {},
+    "evolsyminT": {},
+    "evolsymoutT": {},
+    "evolcommP{}{}{}{}{}{}": {
+      "snippet": "evolcommP{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:sub1}}{${6:sub2}}"
+    },
+    "evolcommPT": {},
+    "evolsyminPT": {},
+    "evolsymoutPT": {}
+  },
+  "envs": {},
+  "options": [
+    "blackboard",
+    "traditional"
+  ],
+  "keyvals": []
+}

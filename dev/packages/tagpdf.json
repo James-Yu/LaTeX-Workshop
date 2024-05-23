@@ -1,0 +1,133 @@
+{
+  "includes": {
+    "pdfmanagement-testphase": []
+  },
+  "macros": {
+    "tagpdfsetup{}": {
+      "snippet": "tagpdfsetup{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "tagtool{}": {
+      "snippet": "tagtool{${1:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "tagmcbegin{}": {
+      "snippet": "tagmcbegin{${1:keyvals}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "tagmcend": {},
+    "tagmcuse": {},
+    "tagmcifinTF{}{}": {
+      "snippet": "tagmcifinTF{${1:true code}}{${2:false code}}"
+    },
+    "tagstructbegin{}": {
+      "snippet": "tagstructbegin{${1:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "tagstructend": {},
+    "tagstructuse{}": {
+      "snippet": "tagstructuse{${1:label}}"
+    },
+    "tagstop": {},
+    "tagstart": {},
+    "ShowTagging{}": {
+      "snippet": "ShowTagging{${1:keyvals}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "tagpdfsuppressmarks{}": {
+      "snippet": "tagpdfsuppressmarks{${1:arg}}"
+    },
+    "UseTaggingSocket{}": {
+      "snippet": "UseTaggingSocket{${1:socket name}}"
+    }
+  },
+  "envs": {},
+  "options": [
+    "luamode",
+    "genericmode",
+    "disabledelayedshipout"
+  ],
+  "keyvals": [
+    [
+      "activate=${1:tag}",
+      "activate/all",
+      "activate/mc",
+      "activate/spaces",
+      "activate/struct",
+      "activate/struct-dest",
+      "activate/tagunmarked",
+      "activate/tree",
+      "role/mathml-tags",
+      "role/new-tag=${1:tag/role}",
+      "role/new-attribute={${1:name}}{${2:content}}",
+      "role/map-tags=",
+      "debug/show",
+      "debug/show=",
+      "debug/log=",
+      "debug/uncompress",
+      "viewer/pane/mathml",
+      "viewer/pane/mathsource",
+      "viewer/startstructure=${1:number}",
+      "page/tabsorder=",
+      "page/exclude-header-footer=",
+      "para/tagging",
+      "para/tag=${1:tag}",
+      "para/maintag=${1:tag}",
+      "para/flattened",
+      "math/alt/use",
+      "math/mathml/write-dummy=${1:code}",
+      "math/mathml/sources=${1:comma list}",
+      "math/mathml/AF",
+      "math/tex/AF",
+      "table/tagging=",
+      "table/header-rows=${1:comma list}",
+      "text/lang=${1:lang}"
+    ],
+    [
+      "para/tagging",
+      "para/maintag=${1:tag}",
+      "para/tag=${1:tag}",
+      "para/flattened"
+    ],
+    [
+      "tag=${1:tag}",
+      "artifact=",
+      "stash",
+      "label=${1:name}",
+      "alt=${1:text}",
+      "actualtext=${1:text}",
+      "raw=${1:PDF code}"
+    ],
+    [
+      "tag=${1:tag}",
+      "stash",
+      "label=${1:name}",
+      "parent=${1:structure number}",
+      "alt=${1:text}",
+      "actualtext=${1:text}",
+      "attribute={${1:attr1,attr2,...}}",
+      "attribute-class={${1:attr1,attr2,...}}",
+      "title=${1:text}",
+      "title-o=${1:text}",
+      "AF=${1:object}",
+      "root-AF=${1:object}",
+      "AFinline=${1:text}",
+      "AFinline-o=${1:text}",
+      "texsource=${1:text}",
+      "lang=${1:lang id}",
+      "ref=${1:label1,label2,...}}",
+      "E=${1:text}"
+    ],
+    [
+      "mc-data=${1:integer}",
+      "mc-current",
+      "struct-stack=",
+      "debug/structures"
+    ]
+  ]
+}

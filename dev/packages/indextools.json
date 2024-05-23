@@ -1,0 +1,104 @@
+{
+  "includes": {
+    "xkeyval": [],
+    "ifxetex": [],
+    "ifluatex": [],
+    "pdftexcmds": [],
+    "xpatch": [],
+    "multicol": []
+  },
+  "macros": {
+    "makeindex[]": {
+      "snippet": "makeindex[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "indexsetup{}": {
+      "snippet": "indexsetup{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "splitindexoptions{}": {
+      "snippet": "splitindexoptions{${1:splitindex option}}"
+    },
+    "index[]{}": {
+      "snippet": "index[${2:name}]{${1:entry}}"
+    },
+    "indexprologue{}": {
+      "snippet": "indexprologue{${1:text}}"
+    },
+    "indexprologue[]{}": {
+      "snippet": "indexprologue[${2:spacing}]{${1:text}}"
+    },
+    "printindex": {},
+    "printindex[name": {},
+    "alsoname": {},
+    "innotenumber{}{}": {
+      "snippet": "innotenumber{${1:arg1}}{${2:arg2}}"
+    },
+    "innote{}": {
+      "snippet": "innote{${1:text}}"
+    },
+    "seealso{}{}": {
+      "snippet": "seealso{${1:text}}{${2:page}}"
+    },
+    "seename": {},
+    "see{}{}": {
+      "snippet": "see{${1:text}}{${2:page}}"
+    },
+    "nindex[]{}": {
+      "snippet": "nindex[${2:name}]{${1:entry}}",
+      "option": "notenumber"
+    },
+    "nindex{}": {
+      "snippet": "nindex{${1:entry}}",
+      "option": "notenumber"
+    },
+    "nnumberindex[]{}": {
+      "snippet": "nnumberindex[${2:name}]{${1:entry}}",
+      "option": "notenumber"
+    },
+    "nnumberindex{}": {
+      "snippet": "nnumberindex{${1:entry}}",
+      "option": "notenumber"
+    }
+  },
+  "envs": {},
+  "options": [
+    "makeindex",
+    "xindy",
+    "texindy",
+    "truexindy",
+    "upmendex",
+    "xindex",
+    "noautomatic",
+    "nonewpage",
+    "quiet",
+    "original",
+    "afterindex",
+    "innote",
+    "notenumber",
+    "splitindex"
+  ],
+  "keyvals": [
+    [
+      "name=${1:name}",
+      "title=${1:text}",
+      "program=",
+      "options=${1:program options}",
+      "noautomatic",
+      "intoc",
+      "columns=${1:integer}",
+      "columnsep=",
+      "columnseprule"
+    ],
+    [
+      "level=${1:section command}",
+      "toclevel=${1:section csname}",
+      "noclearpage",
+      "firstpagestyle=${1:page style}",
+      "headers={${1:left mark}}{${2:right mark}}",
+      "othercode=${1:code}"
+    ]
+  ]
+}

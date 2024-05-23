@@ -1,0 +1,751 @@
+{
+  "includes": {
+    "tcolorboxlibrarylistings": [],
+    "tcolorboxlibraryskins": [],
+    "tcolorboxlibraryexternal": [],
+    "tcolorboxlibraryraster": [],
+    "makeidx": [],
+    "refcount": [],
+    "hyperref": [],
+    "marginnote": []
+  },
+  "macros": {
+    "docValue{}": {
+      "snippet": "docValue{${1:name}}"
+    },
+    "docValue[]{}": {
+      "snippet": "docValue[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "docValue*{}": {
+      "snippet": "docValue*{${1:name}}"
+    },
+    "docValue*[]{}": {
+      "snippet": "docValue*[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "docAuxCommand{}": {
+      "snippet": "docAuxCommand{${1:name}}"
+    },
+    "docAuxCommand[]{}": {
+      "snippet": "docAuxCommand[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "docAuxCommand*{}": {
+      "snippet": "docAuxCommand*{${1:name}}"
+    },
+    "docAuxCommand*[]{}": {
+      "snippet": "docAuxCommand*[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "docAuxEnvironment{}": {
+      "snippet": "docAuxEnvironment{${1:name}}"
+    },
+    "docAuxEnvironment[]{}": {
+      "snippet": "docAuxEnvironment[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "docAuxEnvironment*{}": {
+      "snippet": "docAuxEnvironment*{${1:name}}"
+    },
+    "docAuxEnvironment*[]{}": {
+      "snippet": "docAuxEnvironment*[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "docAuxKey{}": {
+      "snippet": "docAuxKey{${1:name}}"
+    },
+    "docAuxKey[][]{}": {
+      "snippet": "docAuxKey[${2:key path}][${3:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "docAuxKey*{}": {
+      "snippet": "docAuxKey*{${1:name}}"
+    },
+    "docAuxKey*[][]{}": {
+      "snippet": "docAuxKey*[${2:key path}][${3:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "docCounter{}": {
+      "snippet": "docCounter{${1:name}}"
+    },
+    "docCounter[]{}": {
+      "snippet": "docCounter[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "docCounter*{}": {
+      "snippet": "docCounter*{${1:name}}"
+    },
+    "docCounter*[]{}": {
+      "snippet": "docCounter*[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "docLength{}": {
+      "snippet": "docLength{${1:name}}"
+    },
+    "docLength[]{}": {
+      "snippet": "docLength[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "docLength*{}": {
+      "snippet": "docLength*{${1:name}}"
+    },
+    "docLength*[]{}": {
+      "snippet": "docLength*[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "docColor{}": {
+      "snippet": "docColor{${1:name}}"
+    },
+    "docColor[]{}": {
+      "snippet": "docColor[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "docColor*{}": {
+      "snippet": "docColor*{${1:name}}"
+    },
+    "docColor*[]{}": {
+      "snippet": "docColor*[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "cs{}": {
+      "snippet": "cs{${1:name}}"
+    },
+    "meta{}": {
+      "snippet": "meta{${1:text}}"
+    },
+    "marg{}": {
+      "snippet": "marg{${1:text}}"
+    },
+    "oarg{}": {
+      "snippet": "oarg{${1:text}}"
+    },
+    "sarg": {},
+    "brackets{}": {
+      "snippet": "brackets{${1:text}}"
+    },
+    "tcbmakedocSubKey{}{}": {
+      "snippet": "tcbmakedocSubKey{${1:envname}}{${2:key path}}"
+    },
+    "tcbmakedocSubKey[]{}{}": {
+      "snippet": "tcbmakedocSubKey[${3:options}]{${1:envname}}{${2:key path}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "tcbmakedocSubKeys{}{}": {
+      "snippet": "tcbmakedocSubKeys{${1:envname}}{${2:key path}}"
+    },
+    "tcbmakedocSubKeys[]{}{}": {
+      "snippet": "tcbmakedocSubKeys[${3:options}]{${1:envname}}{${2:key path}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "refCom{}": {
+      "snippet": "refCom{${1:name}}"
+    },
+    "refCom*{}": {
+      "snippet": "refCom*{${1:name}}"
+    },
+    "refEnv{}": {
+      "snippet": "refEnv{${1:name}}"
+    },
+    "refEnv*{}": {
+      "snippet": "refEnv*{${1:name}}"
+    },
+    "refKey{}": {
+      "snippet": "refKey{${1:name}}"
+    },
+    "refKey*{}": {
+      "snippet": "refKey*{${1:name}}"
+    },
+    "refPathOperation{}": {
+      "snippet": "refPathOperation{${1:name}}"
+    },
+    "refPathOperation*{}": {
+      "snippet": "refPathOperation*{${1:name}}"
+    },
+    "refAux{}": {
+      "snippet": "refAux{${1:name}}"
+    },
+    "refAuxcs{}": {
+      "snippet": "refAuxcs{${1:name}}"
+    },
+    "colDef{}": {
+      "snippet": "colDef{${1:text}}"
+    },
+    "colOpt{}": {
+      "snippet": "colOpt{${1:text}}"
+    },
+    "colFade{}": {
+      "snippet": "colFade{${1:text}}"
+    },
+    "tcbdocmarginnote{}": {
+      "snippet": "tcbdocmarginnote{${1:text}}"
+    },
+    "tcbdocmarginnote[]{}": {
+      "snippet": "tcbdocmarginnote[${2:options}]{${1:text}}"
+    },
+    "tcbdocnew{}": {
+      "snippet": "tcbdocnew{${1:date}}"
+    },
+    "tcbdocupdated{}": {
+      "snippet": "tcbdocupdated{${1:date}}"
+    }
+  },
+  "envs": {
+    "docCommand{}{}": {
+      "name": "docCommand",
+      "snippet": "{${1:name}}{${2:parameters}}"
+    },
+    "docCommand[]{}{}": {
+      "name": "docCommand",
+      "snippet": "[${3:options}]{${1:name}}{${2:parameters}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "docCommand*{}{}": {
+      "name": "docCommand*",
+      "snippet": "{${1:name}}{${2:parameters}}"
+    },
+    "docCommand*[]{}{}": {
+      "name": "docCommand*",
+      "snippet": "[${3:options}]{${1:name}}{${2:parameters}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "docEnvironment{}{}": {
+      "name": "docEnvironment",
+      "snippet": "{${1:name}}{${2:parameters}}"
+    },
+    "docEnvironment[]{}{}": {
+      "name": "docEnvironment",
+      "snippet": "[${3:options}]{${1:name}}{${2:parameters}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "docEnvironment*{}{}": {
+      "name": "docEnvironment*",
+      "snippet": "{${1:name}}{${2:parameters}}"
+    },
+    "docEnvironment*[]{}{}": {
+      "name": "docEnvironment*",
+      "snippet": "[${3:options}]{${1:name}}{${2:parameters}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "docKey{}{}{}": {
+      "name": "docKey",
+      "snippet": "{${1:name}}{${2:parameters}}{${3:description}}"
+    },
+    "docKey[][]{}{}{}": {
+      "name": "docKey",
+      "snippet": "[${4:key path}][${5:options}]{${1:name}}{${2:parameters}}{${3:description}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "docKey*{}{}{}": {
+      "name": "docKey*",
+      "snippet": "{${1:name}}{${2:parameters}}{${3:description}}"
+    },
+    "docKey*[][]{}{}{}": {
+      "name": "docKey*",
+      "snippet": "[${4:key path}][${5:options}]{${1:name}}{${2:parameters}}{${3:description}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "docPathOperation{}{}": {
+      "name": "docPathOperation",
+      "snippet": "{${1:name}}{${2:parameters}}"
+    },
+    "docPathOperation[]{}{}": {
+      "name": "docPathOperation",
+      "snippet": "[${3:options}]{${1:name}}{${2:parameters}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "docPathOperation*{}{}": {
+      "name": "docPathOperation*",
+      "snippet": "{${1:name}}{${2:parameters}}"
+    },
+    "docPathOperation*[]{}{}": {
+      "name": "docPathOperation*",
+      "snippet": "[${3:options}]{${1:name}}{${2:parameters}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "dispExample": {},
+    "dispExample*{}": {
+      "name": "dispExample*",
+      "snippet": "{${1:options}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "dispListing": {},
+    "dispListing*{}": {
+      "name": "dispListing*",
+      "snippet": "{${1:options}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "absquote": {}
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "doc name=${1:name}",
+      "doc label=${1:text}",
+      "doc index=${1:text}",
+      "doc sort index=${1:text}",
+      "doc into index",
+      "doc no index",
+      "keywords bold",
+      "index command=${1:macro}",
+      "index command name=${1:name}",
+      "index format=",
+      "index actual=${1:character}",
+      "index quote=${1:character}",
+      "index level=${1:character}",
+      "index default settings/.style=",
+      "index german settings/.style=",
+      "index annotate",
+      "index colorize",
+      "index gather colors",
+      "index gather commands",
+      "index gather counters",
+      "index gather environments",
+      "index gather keys",
+      "index gather lengths",
+      "index gather paths",
+      "index gather values",
+      "index gather all",
+      "index gather none",
+      "color command=",
+      "color environment=",
+      "color key=",
+      "color path=",
+      "color value=",
+      "color counter=",
+      "color length=",
+      "color color=",
+      "color definition=",
+      "color option=",
+      "color fade=",
+      "color hyperlink=",
+      "english language",
+      "doclang/color=${1:text}",
+      "doclang/colors=${1:text}",
+      "doclang/commands=${1:text}",
+      "doclang/counter=${1:text}",
+      "doclang/environment=${1:text}",
+      "doclang/environments=${1:text}",
+      "doclang/environment content=${1:text}",
+      "doclang/index=${1:text}",
+      "doclang/key=${1:text}",
+      "doclang/keys=${1:text}",
+      "doclang/length=${1:text}",
+      "doclang/lengths=${1:text}",
+      "doclang/new=${1:text}",
+      "doclang/path=${1:text}",
+      "doclang/paths=${1:text}",
+      "doclang/pageshort=${1:text}",
+      "doclang/updated=${1:text}",
+      "doclang/value=${1:text}",
+      "doclang/values=${1:text}"
+    ],
+    [
+      "doc name=${1:name}",
+      "doc label=${1:text}",
+      "doc index=${1:text}",
+      "doc sort index=${1:text}",
+      "doc into index",
+      "doc no index",
+      "doc parameter=${1:parameters}",
+      "doc description=${1:description}",
+      "doc new=${1:date}",
+      "doc updated=${1:date}",
+      "doc new and updated={${1:new date}}{${2:update date}}",
+      "doc left=",
+      "doc right=",
+      "doc left indent=",
+      "doc right indent=",
+      "doc raster={${1:options}}",
+      "doc head={${1:options}}",
+      "before doc body={${1:code}}",
+      "after doc body={${1:code}}",
+      "doc keypath=${1:key path}",
+      "doc key prefix=${1:key prefix}",
+      "index key formatter",
+      "index key formatter=${1:macro}",
+      "index keys formatter",
+      "index keys formatter=${1:macro}",
+      "before doc body key={${1:code}}",
+      "after doc body key={${1:code}}",
+      "doc head key={${1:options}}",
+      "doc raster key={${1:options}}",
+      "keywords bold",
+      "index command=${1:macro}",
+      "index command name=${1:name}",
+      "index format=",
+      "index actual=${1:character}",
+      "index quote=${1:character}",
+      "index level=${1:character}",
+      "index default settings/.style=",
+      "index german settings/.style=",
+      "index annotate",
+      "index colorize",
+      "index gather colors",
+      "index gather commands",
+      "index gather counters",
+      "index gather environments",
+      "index gather keys",
+      "index gather lengths",
+      "index gather paths",
+      "index gather values",
+      "index gather all",
+      "index gather none",
+      "color command=",
+      "color environment=",
+      "color key=",
+      "color path=",
+      "color value=",
+      "color counter=",
+      "color length=",
+      "color color=",
+      "color definition=",
+      "color option=",
+      "color fade=",
+      "color hyperlink=",
+      "english language",
+      "doclang/color=${1:text}",
+      "doclang/colors=${1:text}",
+      "doclang/commands=${1:text}",
+      "doclang/counter=${1:text}",
+      "doclang/environment=${1:text}",
+      "doclang/environments=${1:text}",
+      "doclang/environment content=${1:text}",
+      "doclang/index=${1:text}",
+      "doclang/key=${1:text}",
+      "doclang/keys=${1:text}",
+      "doclang/length=${1:text}",
+      "doclang/lengths=${1:text}",
+      "doclang/new=${1:text}",
+      "doclang/path=${1:text}",
+      "doclang/paths=${1:text}",
+      "doclang/pageshort=${1:text}",
+      "doclang/updated=${1:text}",
+      "doclang/value=${1:text}",
+      "doclang/values=${1:text}"
+    ],
+    [
+      "doc name=${1:name}",
+      "doc label=${1:text}",
+      "doc index=${1:text}",
+      "doc sort index=${1:text}",
+      "doc into index",
+      "doc no index",
+      "doc parameter=${1:parameters}",
+      "doc description=${1:description}",
+      "doc new=${1:date}",
+      "doc updated=${1:date}",
+      "doc new and updated={${1:new date}}{${2:update date}}",
+      "doc left=",
+      "doc right=",
+      "doc left indent=",
+      "doc right indent=",
+      "doc raster={${1:options}}",
+      "doc head={${1:options}}",
+      "before doc body={${1:code}}",
+      "after doc body={${1:code}}",
+      "before doc body command={${1:code}}",
+      "after doc body command={${1:code}}",
+      "doc head command={${1:options}}",
+      "doc raster command={${1:options}}",
+      "keywords bold",
+      "index command=${1:macro}",
+      "index command name=${1:name}",
+      "index format=",
+      "index actual=${1:character}",
+      "index quote=${1:character}",
+      "index level=${1:character}",
+      "index default settings/.style=",
+      "index german settings/.style=",
+      "index annotate",
+      "index colorize",
+      "index gather colors",
+      "index gather commands",
+      "index gather counters",
+      "index gather environments",
+      "index gather keys",
+      "index gather lengths",
+      "index gather paths",
+      "index gather values",
+      "index gather all",
+      "index gather none",
+      "color command=",
+      "color environment=",
+      "color key=",
+      "color path=",
+      "color value=",
+      "color counter=",
+      "color length=",
+      "color color=",
+      "color definition=",
+      "color option=",
+      "color fade=",
+      "color hyperlink=",
+      "english language",
+      "doclang/color=${1:text}",
+      "doclang/colors=${1:text}",
+      "doclang/commands=${1:text}",
+      "doclang/counter=${1:text}",
+      "doclang/environment=${1:text}",
+      "doclang/environments=${1:text}",
+      "doclang/environment content=${1:text}",
+      "doclang/index=${1:text}",
+      "doclang/key=${1:text}",
+      "doclang/keys=${1:text}",
+      "doclang/length=${1:text}",
+      "doclang/lengths=${1:text}",
+      "doclang/new=${1:text}",
+      "doclang/path=${1:text}",
+      "doclang/paths=${1:text}",
+      "doclang/pageshort=${1:text}",
+      "doclang/updated=${1:text}",
+      "doclang/value=${1:text}",
+      "doclang/values=${1:text}"
+    ],
+    [
+      "doc name=${1:name}",
+      "doc label=${1:text}",
+      "doc index=${1:text}",
+      "doc sort index=${1:text}",
+      "doc into index",
+      "doc no index",
+      "doc parameter=${1:parameters}",
+      "doc description=${1:description}",
+      "doc new=${1:date}",
+      "doc updated=${1:date}",
+      "doc new and updated={${1:new date}}{${2:update date}}",
+      "doc left=",
+      "doc right=",
+      "doc left indent=",
+      "doc right indent=",
+      "doc raster={${1:options}}",
+      "doc head={${1:options}}",
+      "before doc body={${1:code}}",
+      "after doc body={${1:code}}",
+      "before doc body environment={${1:code}}",
+      "after doc body environment={${1:code}}",
+      "doc head environment={${1:options}}",
+      "doc raster environment={${1:options}}",
+      "keywords bold",
+      "index command=${1:macro}",
+      "index command name=${1:name}",
+      "index format=",
+      "index actual=${1:character}",
+      "index quote=${1:character}",
+      "index level=${1:character}",
+      "index default settings/.style=",
+      "index german settings/.style=",
+      "index annotate",
+      "index colorize",
+      "index gather colors",
+      "index gather commands",
+      "index gather counters",
+      "index gather environments",
+      "index gather keys",
+      "index gather lengths",
+      "index gather paths",
+      "index gather values",
+      "index gather all",
+      "index gather none",
+      "color command=",
+      "color environment=",
+      "color key=",
+      "color path=",
+      "color value=",
+      "color counter=",
+      "color length=",
+      "color color=",
+      "color definition=",
+      "color option=",
+      "color fade=",
+      "color hyperlink=",
+      "english language",
+      "doclang/color=${1:text}",
+      "doclang/colors=${1:text}",
+      "doclang/commands=${1:text}",
+      "doclang/counter=${1:text}",
+      "doclang/environment=${1:text}",
+      "doclang/environments=${1:text}",
+      "doclang/environment content=${1:text}",
+      "doclang/index=${1:text}",
+      "doclang/key=${1:text}",
+      "doclang/keys=${1:text}",
+      "doclang/length=${1:text}",
+      "doclang/lengths=${1:text}",
+      "doclang/new=${1:text}",
+      "doclang/path=${1:text}",
+      "doclang/paths=${1:text}",
+      "doclang/pageshort=${1:text}",
+      "doclang/updated=${1:text}",
+      "doclang/value=${1:text}",
+      "doclang/values=${1:text}"
+    ],
+    [
+      "doc name=${1:name}",
+      "doc label=${1:text}",
+      "doc index=${1:text}",
+      "doc sort index=${1:text}",
+      "doc into index",
+      "doc no index",
+      "doc parameter=${1:parameters}",
+      "doc description=${1:description}",
+      "doc new=${1:date}",
+      "doc updated=${1:date}",
+      "doc new and updated={${1:new date}}{${2:update date}}",
+      "doc left=",
+      "doc right=",
+      "doc left indent=",
+      "doc right indent=",
+      "doc raster={${1:options}}",
+      "doc head={${1:options}}",
+      "before doc body={${1:code}}",
+      "after doc body={${1:code}}",
+      "before doc body path={${1:code}}",
+      "after doc body path={${1:code}}",
+      "doc head path={${1:options}}",
+      "doc raster path={${1:options}}",
+      "keywords bold",
+      "index command=${1:macro}",
+      "index command name=${1:name}",
+      "index format=",
+      "index actual=${1:character}",
+      "index quote=${1:character}",
+      "index level=${1:character}",
+      "index default settings/.style=",
+      "index german settings/.style=",
+      "index annotate",
+      "index colorize",
+      "index gather colors",
+      "index gather commands",
+      "index gather counters",
+      "index gather environments",
+      "index gather keys",
+      "index gather lengths",
+      "index gather paths",
+      "index gather values",
+      "index gather all",
+      "index gather none",
+      "color command=",
+      "color environment=",
+      "color key=",
+      "color path=",
+      "color value=",
+      "color counter=",
+      "color length=",
+      "color color=",
+      "color definition=",
+      "color option=",
+      "color fade=",
+      "color hyperlink=",
+      "english language",
+      "doclang/color=${1:text}",
+      "doclang/colors=${1:text}",
+      "doclang/commands=${1:text}",
+      "doclang/counter=${1:text}",
+      "doclang/environment=${1:text}",
+      "doclang/environments=${1:text}",
+      "doclang/environment content=${1:text}",
+      "doclang/index=${1:text}",
+      "doclang/key=${1:text}",
+      "doclang/keys=${1:text}",
+      "doclang/length=${1:text}",
+      "doclang/lengths=${1:text}",
+      "doclang/new=${1:text}",
+      "doclang/path=${1:text}",
+      "doclang/paths=${1:text}",
+      "doclang/pageshort=${1:text}",
+      "doclang/updated=${1:text}",
+      "doclang/value=${1:text}",
+      "doclang/values=${1:text}"
+    ],
+    [
+      "docexample/.style={${1:options}}",
+      "documentation listing options={${1:listings keys}}",
+      "documentation listing style=${1:listings style}",
+      "documentation minted options={${1:minted keys}}",
+      "documentation minted style=${1:minted style}",
+      "documentation minted language=${1:language}",
+      "before example={${1:code}}",
+      "after example={${1:code}}",
+      "keywords bold",
+      "index command=${1:macro}",
+      "index command name=${1:name}",
+      "index format=",
+      "index actual=${1:character}",
+      "index quote=${1:character}",
+      "index level=${1:character}",
+      "index default settings/.style=",
+      "index german settings/.style=",
+      "index annotate",
+      "index colorize",
+      "index gather colors",
+      "index gather commands",
+      "index gather counters",
+      "index gather environments",
+      "index gather keys",
+      "index gather lengths",
+      "index gather paths",
+      "index gather values",
+      "index gather all",
+      "index gather none",
+      "color command=",
+      "color environment=",
+      "color key=",
+      "color path=",
+      "color value=",
+      "color counter=",
+      "color length=",
+      "color color=",
+      "color definition=",
+      "color option=",
+      "color fade=",
+      "color hyperlink=",
+      "english language",
+      "doclang/color=${1:text}",
+      "doclang/colors=${1:text}",
+      "doclang/commands=${1:text}",
+      "doclang/counter=${1:text}",
+      "doclang/environment=${1:text}",
+      "doclang/environments=${1:text}",
+      "doclang/environment content=${1:text}",
+      "doclang/index=${1:text}",
+      "doclang/key=${1:text}",
+      "doclang/keys=${1:text}",
+      "doclang/length=${1:text}",
+      "doclang/lengths=${1:text}",
+      "doclang/new=${1:text}",
+      "doclang/path=${1:text}",
+      "doclang/paths=${1:text}",
+      "doclang/pageshort=${1:text}",
+      "doclang/updated=${1:text}",
+      "doclang/value=${1:text}",
+      "doclang/values=${1:text}"
+    ]
+  ]
+}

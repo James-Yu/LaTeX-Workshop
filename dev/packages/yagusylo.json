@@ -1,0 +1,202 @@
+{
+  "includes": {
+    "xifthen": [],
+    "suffix": [],
+    "xargs": [],
+    "xcolor": [
+      "color=true"
+    ],
+    "colortbl": [
+      "XcolorOptions=table"
+    ],
+    "pdfcolmk": [
+      "XcolorOptions=fixpdftex"
+    ]
+  },
+  "macros": {
+    "setyagusylokeys{}": {
+      "snippet": "setyagusylokeys{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "yagding{}": {
+      "snippet": "yagding{${1:char-num}}"
+    },
+    "yagding{}[]": {
+      "snippet": "yagding{${1:char-num}}[${2:color}]"
+    },
+    "yagding[]{}": {
+      "snippet": "yagding[${2:symfam}]{${1:char-num}}"
+    },
+    "yagding[]{}[]": {
+      "snippet": "yagding[${2:symfam}]{${1:char-num}}[${3:color}]"
+    },
+    "defdingname{}{}": {
+      "snippet": "defdingname{${1:char-num}}{${2:ding-name}}"
+    },
+    "defdingname{}{}[]": {
+      "snippet": "defdingname{${1:char-num}}{${2:ding-name}}[${3:color}]"
+    },
+    "defdingname[]{}{}": {
+      "snippet": "defdingname[${3:symfam}]{${1:char-num}}{${2:ding-name}}"
+    },
+    "defdingname[]{}{}[]": {
+      "snippet": "defdingname[${3:symfam}]{${1:char-num}}{${2:ding-name}}[${4:color}]"
+    },
+    "defdingname[][]{}{}": {
+      "snippet": "defdingname[${3:symfam}][${4:defext}]{${1:char-num}}{${2:ding-name}}"
+    },
+    "defdingname[][]{}{}[]": {
+      "snippet": "defdingname[${3:symfam}][${4:defext}]{${1:char-num}}{${2:ding-name}}[${5:color}]"
+    },
+    "yagding*{}": {
+      "snippet": "yagding*{${1:ding-name}}"
+    },
+    "yagfill{}": {
+      "snippet": "yagfill{${1:char-num}}"
+    },
+    "yagfill[]{}": {
+      "snippet": "yagfill[${2:options}]{${1:char-num}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "yagfill*{}": {
+      "snippet": "yagfill*{${1:ding-name}}"
+    },
+    "yagfill*[]{}": {
+      "snippet": "yagfill*[${2:options}]{${1:ding-name}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "setyagline{}": {
+      "snippet": "setyagline{${1:head-value}}"
+    },
+    "setyagline{}[]": {
+      "snippet": "setyagline{${1:head-value}}[${2:tail-value}]"
+    },
+    "yagline{}": {
+      "snippet": "yagline{${1:char-num}}"
+    },
+    "yagline[]{}": {
+      "snippet": "yagline[${2:options}]{${1:char-num}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "yagline*{}": {
+      "snippet": "yagline*{${1:ding-name}}"
+    },
+    "yagline*[]{}": {
+      "snippet": "yagline*[${2:options}]{${1:ding-name}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "setyagitemize{}": {
+      "snippet": "setyagitemize{${1:symfam1, number1, color1. symfam2, number2, color2. ...}}"
+    },
+    "setyagitemize*{}": {
+      "snippet": "setyagitemize*{${1:dingname1. dingname2. ...}}"
+    },
+    "newenumpattern{}{}": {
+      "snippet": "newenumpattern{${1:name}}{${2:keyvals}}",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "setyagenumeratekeys{}": {
+      "snippet": "setyagenumeratekeys{${1:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "LaBoite": {},
+    "Leaders": {},
+    "STOP": {},
+    "docdate": {},
+    "filedate": {},
+    "fileinfo": {},
+    "fileversion": {},
+    "motif": {},
+    "numero": {},
+    "yagnumber{}{}{}": {
+      "snippet": "yagnumber{${1:symfam}}{${2:counter}}{${3:color}}"
+    }
+  },
+  "envs": {
+    "yagitemize{}": {
+      "name": "yagitemize",
+      "snippet": "{${1:char-num}}"
+    },
+    "yagitemize{}[]": {
+      "name": "yagitemize",
+      "snippet": "{${1:char-num}}[${2:color}]"
+    },
+    "yagitemize[]{}": {
+      "name": "yagitemize",
+      "snippet": "[${2:symfam}]{${1:char-num}}"
+    },
+    "yagitemize[]{}[]": {
+      "name": "yagitemize",
+      "snippet": "[${2:symfam}]{${1:char-num}}[${3:color}]"
+    },
+    "yagitemize*": {},
+    "yagitemize*[]": {
+      "name": "yagitemize*",
+      "snippet": "[${1:ding-name}]"
+    },
+    "yagenumerate": {},
+    "yagenumerate[]": {
+      "name": "yagenumerate",
+      "snippet": "[${1:keyvals}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "notyagenum": {}
+  },
+  "options": [
+    "info=",
+    "onerror=",
+    "color",
+    "XcolorOptions={${1:xcolor options}}",
+    "configfile"
+  ],
+  "keyvals": [
+    [
+      "*",
+      "symfam=",
+      "symcolor=",
+      "leadtype=",
+      "symplace=",
+      "sympos=${1:integer 0-1000}",
+      "boxwidth=",
+      "before=",
+      "after=",
+      "head=",
+      "tail="
+    ],
+    [
+      "symfam=",
+      "symcolor=",
+      "leadtype=",
+      "symplace=",
+      "sympos=${1:integer 0-1000}",
+      "boxwidth=",
+      "before=",
+      "after=",
+      "head=",
+      "tail="
+    ],
+    [
+      "symfam=",
+      "symcolor=",
+      "firstitemnum=${1:integer 0-255}",
+      "enumlength=${1:integer}",
+      "enumpattern=${1:name}"
+    ],
+    [
+      "*",
+      "symfam=",
+      "symcolor=",
+      "firstitemnum=${1:integer 0-255}",
+      "enumlength=${1:integer}",
+      "enumpattern=${1:name}"
+    ]
+  ]
+}

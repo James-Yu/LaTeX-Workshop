@@ -1,0 +1,662 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "perpage": [],
+    "iflang": [],
+    "xstring": [],
+    "hyperref": [],
+    "kvoptions": [],
+    "biblatex": []
+  },
+  "macros": {
+    "formatmargincitation{}": {
+      "snippet": "formatmargincitation{${1:bibid}}"
+    },
+    "formatmarginsupercitation{}": {
+      "snippet": "formatmarginsupercitation{${1:bibid}}"
+    },
+    "sidecite[][]{}": {
+      "snippet": "sidecite[${2:offset}][${3:postnote}]{${1:bibid}}"
+    },
+    "sidecite[]{}": {
+      "snippet": "sidecite[${2:offset}]{${1:bibid}}"
+    },
+    "sidecite{}": {
+      "snippet": "sidecite{${1:bibid}}"
+    },
+    "sidecite[][][]{}": {
+      "snippet": "sidecite[${2:offset}][${3:prenote}][${4:postnote}]{${1:bibid}}"
+    },
+    "sidesupercite[][]{}": {
+      "snippet": "sidesupercite[${2:offset}][${3:postnote}]{${1:bibid}}"
+    },
+    "sidesupercite[]{}": {
+      "snippet": "sidesupercite[${2:offset}]{${1:bibid}}"
+    },
+    "sidesupercite{}": {
+      "snippet": "sidesupercite{${1:bibid}}"
+    },
+    "sidesupercite[][][]{}": {
+      "snippet": "sidesupercite[${2:offset}][${3:prenote}][${4:postnote}]{${1:bibid}}"
+    },
+    "sidetextcite[][]{}": {
+      "snippet": "sidetextcite[${2:offset}][${3:postnote}]{${1:bibid}}"
+    },
+    "sidetextcite[]{}": {
+      "snippet": "sidetextcite[${2:offset}]{${1:bibid}}"
+    },
+    "sidetextcite{}": {
+      "snippet": "sidetextcite{${1:bibid}}"
+    },
+    "sidetextcite[][][]{}": {
+      "snippet": "sidetextcite[${2:offset}][${3:prenote}][${4:postnote}]{${1:bibid}}"
+    },
+    "sideparencite[][]{}": {
+      "snippet": "sideparencite[${2:offset}][${3:postnote}]{${1:bibid}}"
+    },
+    "sideparencite[]{}": {
+      "snippet": "sideparencite[${2:offset}]{${1:bibid}}"
+    },
+    "sideparencite{}": {
+      "snippet": "sideparencite{${1:bibid}}"
+    },
+    "sideparencite[][][]{}": {
+      "snippet": "sideparencite[${2:offset}][${3:prenote}][${4:postnote}]{${1:bibid}}"
+    },
+    "sideparencite*[][]{}": {
+      "snippet": "sideparencite*[${2:offset}][${3:postnote}]{${1:bibid}}"
+    },
+    "sideparencite*[]{}": {
+      "snippet": "sideparencite*[${2:offset}]{${1:bibid}}"
+    },
+    "sideparencite*{}": {
+      "snippet": "sideparencite*{${1:bibid}}"
+    },
+    "sideparencite*[][][]{}": {
+      "snippet": "sideparencite*[${2:offset}][${3:prenote}][${4:postnote}]{${1:bibid}}"
+    },
+    "IfStringInList{}{}{}{}": {
+      "snippet": "IfStringInList{${1:string}}{${2:list}}{${3:true}}{${4:false}}"
+    },
+    "iflinkparens": {},
+    "citet[][]{}": {
+      "snippet": "citet[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citet[]{}": {
+      "snippet": "citet[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citet{}": {
+      "snippet": "citet{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citet*[][]{}": {
+      "snippet": "citet*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citet*[]{}": {
+      "snippet": "citet*[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citet*{}": {
+      "snippet": "citet*{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citep[][]{}": {
+      "snippet": "citep[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citep[]{}": {
+      "snippet": "citep[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citep{}": {
+      "snippet": "citep{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citep*[][]{}": {
+      "snippet": "citep*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citep*[]{}": {
+      "snippet": "citep*[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citep*{}": {
+      "snippet": "citep*{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citealt[][]{}": {
+      "snippet": "citealt[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citealt[]{}": {
+      "snippet": "citealt[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citealt{}": {
+      "snippet": "citealt{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citealt*[][]{}": {
+      "snippet": "citealt*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citealt*[]{}": {
+      "snippet": "citealt*[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citealt*{}": {
+      "snippet": "citealt*{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citealp[][]{}": {
+      "snippet": "citealp[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citealp[]{}": {
+      "snippet": "citealp[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citealp{}": {
+      "snippet": "citealp{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citealp*[][]{}": {
+      "snippet": "citealp*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citealp*[]{}": {
+      "snippet": "citealp*[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citealp*{}": {
+      "snippet": "citealp*{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citeauthor[][]{}": {
+      "snippet": "citeauthor[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citeauthor[]{}": {
+      "snippet": "citeauthor[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citeauthor{}": {
+      "snippet": "citeauthor{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citeauthor*[][]{}": {
+      "snippet": "citeauthor*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citeauthor*[]{}": {
+      "snippet": "citeauthor*[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citeauthor*{}": {
+      "snippet": "citeauthor*{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citeyearpar[][]{}": {
+      "snippet": "citeyearpar[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citeyearpar[]{}": {
+      "snippet": "citeyearpar[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citeyearpar{}": {
+      "snippet": "citeyearpar{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citet[][]{}": {
+      "snippet": "Citet[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citet[]{}": {
+      "snippet": "Citet[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citet{}": {
+      "snippet": "Citet{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citet*[][]{}": {
+      "snippet": "Citet*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citet*[]{}": {
+      "snippet": "Citet*[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citet*{}": {
+      "snippet": "Citet*{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citep[][]{}": {
+      "snippet": "Citep[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citep[]{}": {
+      "snippet": "Citep[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citep{}": {
+      "snippet": "Citep{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citep*[][]{}": {
+      "snippet": "Citep*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citep*[]{}": {
+      "snippet": "Citep*[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citep*{}": {
+      "snippet": "Citep*{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citealt[][]{}": {
+      "snippet": "Citealt[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citealt[]{}": {
+      "snippet": "Citealt[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citealt{}": {
+      "snippet": "Citealt{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citealt*[][]{}": {
+      "snippet": "Citealt*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citealt*[]{}": {
+      "snippet": "Citealt*[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citealt*{}": {
+      "snippet": "Citealt*{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citealp[][]{}": {
+      "snippet": "Citealp[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citealp[]{}": {
+      "snippet": "Citealp[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citealp{}": {
+      "snippet": "Citealp{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citealp*[][]{}": {
+      "snippet": "Citealp*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citealp*[]{}": {
+      "snippet": "Citealp*[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citealp*{}": {
+      "snippet": "Citealp*{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citefullauthor[][]{}": {
+      "snippet": "citefullauthor[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citefullauthor[]{}": {
+      "snippet": "citefullauthor[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citefullauthor{}": {
+      "snippet": "citefullauthor{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citefullauthor[][]{}": {
+      "snippet": "Citefullauthor[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citefullauthor[]{}": {
+      "snippet": "Citefullauthor[${2:postnote}]{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "Citefullauthor{}": {
+      "snippet": "Citefullauthor{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citetext{}": {
+      "snippet": "citetext{${1:text}}",
+      "option": "natbib=true"
+    },
+    "defcitealias{}{}": {
+      "snippet": "defcitealias{${1:bibid}}{${2:alias}}",
+      "option": "natbib=true"
+    },
+    "citetalias{}": {
+      "snippet": "citetalias{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "citepalias{}": {
+      "snippet": "citepalias{${1:bibid}}",
+      "option": "natbib=true"
+    },
+    "mcite[][]{}": {
+      "snippet": "mcite[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mcite[]{}": {
+      "snippet": "mcite[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mcite{}": {
+      "snippet": "mcite{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mcite[][]{}": {
+      "snippet": "Mcite[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mcite[]{}": {
+      "snippet": "Mcite[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mcite{}": {
+      "snippet": "Mcite{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mparencite[][]{}": {
+      "snippet": "mparencite[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mparencite[]{}": {
+      "snippet": "mparencite[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mparencite{}": {
+      "snippet": "mparencite{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mparencite[][]{}": {
+      "snippet": "Mparencite[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mparencite[]{}": {
+      "snippet": "Mparencite[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mparencite{}": {
+      "snippet": "Mparencite{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mfootcite[][]{}": {
+      "snippet": "mfootcite[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mfootcite[]{}": {
+      "snippet": "mfootcite[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mfootcite{}": {
+      "snippet": "mfootcite{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mfootcitetext[][]{}": {
+      "snippet": "mfootcitetext[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mfootcitetext[]{}": {
+      "snippet": "mfootcitetext[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mfootcitetext{}": {
+      "snippet": "mfootcitetext{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mtextcite[][]{}": {
+      "snippet": "mtextcite[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mtextcite[]{}": {
+      "snippet": "mtextcite[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mtextcite{}": {
+      "snippet": "mtextcite{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mtextcite[][]{}": {
+      "snippet": "Mtextcite[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mtextcite[]{}": {
+      "snippet": "Mtextcite[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mtextcite{}": {
+      "snippet": "Mtextcite{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "msupercite{}": {
+      "snippet": "msupercite{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mcite*[][]{}": {
+      "snippet": "mcite*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mcite*[]{}": {
+      "snippet": "mcite*[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mcite*{}": {
+      "snippet": "mcite*{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mparencite*[][]{}": {
+      "snippet": "mparencite*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mparencite*[]{}": {
+      "snippet": "mparencite*[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mparencite*{}": {
+      "snippet": "mparencite*{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mautocite[][]{}": {
+      "snippet": "mautocite[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mautocite[]{}": {
+      "snippet": "mautocite[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mautocite{}": {
+      "snippet": "mautocite{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mautocite[][]{}": {
+      "snippet": "Mautocite[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mautocite[]{}": {
+      "snippet": "Mautocite[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mautocite{}": {
+      "snippet": "Mautocite{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mautocite*[][]{}": {
+      "snippet": "mautocite*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mautocite*[]{}": {
+      "snippet": "mautocite*[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "mautocite*{}": {
+      "snippet": "mautocite*{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mautocite*[][]{}": {
+      "snippet": "Mautocite*[${2:prenote}][${3:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mautocite*[]{}": {
+      "snippet": "Mautocite*[${2:postnote}]{${1:bibid}}",
+      "option": "mcite=true"
+    },
+    "Mautocite*{}": {
+      "snippet": "Mautocite*{${1:bibid}}",
+      "option": "mcite=true"
+    }
+  },
+  "envs": {},
+  "options": [
+    "addspace",
+    "linkeverything",
+    "backend=",
+    "style=${1:file}",
+    "bibstyle=${1:file}",
+    "citestyle=${1:file}",
+    "natbib",
+    "mcite",
+    "casechanger=",
+    "datamodel=${1:model}",
+    "sorting=",
+    "sortcase",
+    "sortupper",
+    "sortlocale=",
+    "sortcites",
+    "sortsets",
+    "maxnames=${1:integer}",
+    "minnames=${1:integer}",
+    "maxbibnames=${1:integer}",
+    "minbibnames=${1:integer}",
+    "maxcitenames=${1:integer}",
+    "mincitenames=${1:integer}",
+    "maxsortnames=${1:integer}",
+    "minsortnames=${1:integer}",
+    "maxitems=${1:integer}",
+    "minitems=${1:integer}",
+    "autocite=",
+    "autopunct",
+    "language=",
+    "clearlang",
+    "autolang=",
+    "langhook=",
+    "block=",
+    "locallabelwidth",
+    "notetype=",
+    "hyperref=",
+    "backref",
+    "backrefstyle=",
+    "backrefsetstyle=",
+    "backreffloats",
+    "indexing=",
+    "loadfiles",
+    "refsection=",
+    "refsegment=",
+    "citereset=",
+    "abbreviate",
+    "date=",
+    "labeldate=",
+    "eventdate=",
+    "origdate=",
+    "urldate=",
+    "alldates=",
+    "julian",
+    "gregorianstart=${1:YYYY-MM-DD}",
+    "datezeros",
+    "timezeros",
+    "timezones",
+    "seconds",
+    "dateabbrev",
+    "datecirca",
+    "dateuncertain",
+    "dateera=",
+    "dateeraauto=${1:integer}",
+    "time=",
+    "labeltime=",
+    "eventtime=",
+    "origtime=",
+    "urltime=",
+    "alltimes=",
+    "dateusetime",
+    "labeldateusetime",
+    "eventdateusetime",
+    "origdateusetime",
+    "urldateusetime",
+    "alldatesusetime",
+    "defernumbers",
+    "punctfont",
+    "arxiv=",
+    "texencoding=",
+    "bibencoding=",
+    "safeinputenc",
+    "bibwarn",
+    "mincrossrefs=${1:integer}",
+    "minxrefs=${1:integer}",
+    "bibtexcaseprotection",
+    "isbn",
+    "url",
+    "doi",
+    "eprint",
+    "related",
+    "subentry",
+    "subentrycomp",
+    "dashed",
+    "mergedate=",
+    "ibidpage",
+    "citepages=",
+    "strict",
+    "pagetracker=",
+    "citecounter=",
+    "citetracker=",
+    "ibidtracker=",
+    "opcittracker=",
+    "loccittracker=",
+    "idemtracker=",
+    "trackfloats",
+    "parentracker",
+    "maxparens=${1:integer}",
+    "giveninits",
+    "terseinits",
+    "labelalpha",
+    "maxalphanames=${1:integer}",
+    "minalphanames=${1:integer}",
+    "labelnumber",
+    "noroman",
+    "labeltitle",
+    "labeltitleyear",
+    "labeldateparts",
+    "singletitle",
+    "uniquetitle",
+    "uniquebaretitle",
+    "uniquework",
+    "uniqueprimaryauthor",
+    "uniquename=",
+    "uniquelist=",
+    "nohashothers",
+    "nosortothers",
+    "useauthor",
+    "useeditor",
+    "usetranslator",
+    "useprefix",
+    "indexing=",
+    "skipbib",
+    "skipbiblist",
+    "skiplab",
+    "dataonly"
+  ],
+  "keyvals": []
+}

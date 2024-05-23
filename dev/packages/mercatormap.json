@@ -1,0 +1,425 @@
+{
+  "includes": {
+    "graphicx": [],
+    "pdftexcmds": [],
+    "siunitx": [],
+    "tikz": [],
+    "tikzlibraryshadings": []
+  },
+  "macros": {
+    "mermapset{}": {
+      "snippet": "mermapset{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mrcdefinemap{}": {
+      "snippet": "mrcdefinemap{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "mrcmapeast": {},
+    "mrcmapnorth": {},
+    "mrcmapsouth": {},
+    "mrcmapwest": {},
+    "mrcmapattribution": {},
+    "mrcmapattributionprint": {},
+    "mrcpixelheight": {},
+    "mrcpixelwidth": {},
+    "mrcpgfpoint{}{}": {
+      "snippet": "mrcpgfpoint{${1:latitude}}{${2:longitude}}"
+    },
+    "mrcNPdef{}{}{}": {
+      "snippet": "mrcNPdef{${1:name}}{${2:latitude}}{${3:longitude}}"
+    },
+    "mrcNPfrompoint{}{}": {
+      "snippet": "mrcNPfrompoint{${1:name}}{${2:TiKZ point}}"
+    },
+    "mrcNPcs{}": {
+      "snippet": "mrcNPcs{${1:name}}"
+    },
+    "mrcNPlat{}": {
+      "snippet": "mrcNPlat{${1:name}}"
+    },
+    "mrcNPlon{}": {
+      "snippet": "mrcNPlon{${1:name}}"
+    },
+    "ifmrcinmap{}{}{}{}": {
+      "snippet": "ifmrcinmap{${1:latitude}}{${2:longitude}}{${3:true}}{${4:false}}"
+    },
+    "ifmrcNPinmap{}{}{}": {
+      "snippet": "ifmrcNPinmap{${1:name}}{${2:true}}{${3:false}}"
+    },
+    "ifmrcinvicinity{}{}{}{}": {
+      "snippet": "ifmrcinvicinity{${1:latitude}}{${2:longitude}}{${3:true}}{${4:false}}"
+    },
+    "ifmrcNPinvicinity{}{}{}": {
+      "snippet": "ifmrcNPinvicinity{${1:name}}{${2:true}}{${3:false}}"
+    },
+    "mrcformlat{}": {
+      "snippet": "mrcformlat{${1:latitude}}"
+    },
+    "mrcformlat[]{}": {
+      "snippet": "mrcformlat[${2:options}]{${1:latitude}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "mrcformlon{}": {
+      "snippet": "mrcformlon{${1:longitude}}"
+    },
+    "mrcformlon[]{}": {
+      "snippet": "mrcformlon[${2:options}]{${1:longitude}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "mrcactivatescript": {},
+    "mrcsupplymap{}": {
+      "snippet": "mrcsupplymap{${1:definition}}"
+    },
+    "mrcsupplymap[]{}": {
+      "snippet": "mrcsupplymap[${2:options}]{${1:definition}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "mermapsetsupply{}": {
+      "snippet": "mermapsetsupply{${1:options}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "mrcsetapikey{}{}": {
+      "snippet": "mrcsetapikey{${1:name}}{${2:value}}"
+    },
+    "mrcumlaut{}": {
+      "snippet": "mrcumlaut{${1:char}}"
+    },
+    "mrcapplymap{}": {
+      "snippet": "mrcapplymap{${1:definition}}"
+    },
+    "mrcmap{}": {
+      "snippet": "mrcmap{${1:definition}}"
+    },
+    "mrcmap[]{}": {
+      "snippet": "mrcmap[${2:options}]{${1:definition}}"
+    },
+    "mrcnewsupplysource{}{}": {
+      "snippet": "mrcnewsupplysource{${1:source}}{${2:options}}"
+    },
+    "mrcdrawmap": {},
+    "mrcdrawmap[]": {
+      "snippet": "mrcdrawmap[${1:options}]",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "mrcclipmap": {},
+    "mrcboundmap": {},
+    "mrcdrawnetwork": {},
+    "mrcdrawnetwork[]": {
+      "snippet": "mrcdrawnetwork[${1:options}]",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "mrcdrawinfo": {},
+    "mrctexwidth": {},
+    "mrctexheight": {},
+    "mrcscale": {},
+    "mrctextokm{}": {
+      "snippet": "mrctextokm{${1:length}}"
+    },
+    "mrctextomile{}": {
+      "snippet": "mrctextomile{${1:length}}"
+    },
+    "mrckmtotex{}": {
+      "snippet": "mrckmtotex{${1:number}}"
+    },
+    "mrcmiletotex{}": {
+      "snippet": "mrcmiletotex{${1:number}}"
+    },
+    "mrcmapscaledenominator": {},
+    "mrcprettymapscale": {},
+    "mrcprettymapwidth": {},
+    "mrcprettymapheight": {},
+    "mrcprettymapresolution": {},
+    "mrcprettytilesize": {},
+    "mrcdrawscalebar": {},
+    "mrcdrawscalebar[]": {
+      "snippet": "mrcdrawscalebar[${1:options}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "mrcmarker{}": {
+      "snippet": "mrcmarker{${1:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "mermapsetmarker{}": {
+      "snippet": "mermapsetmarker{${1:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "mrcmarkerangle": {},
+    "mrcmarkercategory": {},
+    "mrcmarkercontents": {},
+    "mrcmarkerdistance": {},
+    "mrcmarkerfont": {},
+    "mrcmarkergeneric": {},
+    "mrcmarkerinnerradius": {},
+    "mrcmarkerlatitude": {},
+    "mrcmarkerlongitude": {},
+    "mrcmarkerpictocontents": {},
+    "mrcmarkerradius": {},
+    "mrcmarkershift": {},
+    "mrcmarkeruuid": {},
+    "mrcnewmarkertype{}{}": {
+      "snippet": "mrcnewmarkertype{${1:type name}}{${2:TikZ code}}"
+    },
+    "mrcnewmarkerstyle{}{}": {
+      "snippet": "mrcnewmarkerstyle{${1:style name}}{${2:options}}"
+    },
+    "mrcrouteinput{}": {
+      "snippet": "mrcrouteinput{${1:file}}"
+    },
+    "mrcrouteinput[]{}": {
+      "snippet": "mrcrouteinput[${2:TikZ options}]{${1:file}}"
+    },
+    "mrcrouteinput*{}": {
+      "snippet": "mrcrouteinput*{${1:file}}"
+    },
+    "mrcrouteinput*[]{}": {
+      "snippet": "mrcrouteinput*[${2:TikZ options}]{${1:file}}"
+    },
+    "mrcpoint{}{}": {
+      "snippet": "mrcpoint{${1:latitude}}{${2:longitude}}"
+    },
+    "mrcdraworthodrome{}{}{}{}": {
+      "snippet": "mrcdraworthodrome{${1:lat1}}{${2:lon1}}{${3:lat2}}{${4:lon2}}"
+    },
+    "mrcdraworthodrome[]{}{}{}{}": {
+      "snippet": "mrcdraworthodrome[${5:TikZ options}]{${1:lat1}}{${2:lon1}}{${3:lat2}}{${4:lon2}}"
+    },
+    "mrcNPdraworthodrome{}{}": {
+      "snippet": "mrcNPdraworthodrome{${1:name1}}{${2:name2}}"
+    },
+    "mrcNPdraworthodrome[]{}{}": {
+      "snippet": "mrcNPdraworthodrome[${3:TikZ options}]{${1:name1}}{${2:name2}}"
+    },
+    "mrcprettyorthodistance{}{}{}{}": {
+      "snippet": "mrcprettyorthodistance{${1:lat1}}{${2:lon1}}{${3:lat2}}{${4:lon2}}"
+    },
+    "mrcNPprettyorthodistance{}{}": {
+      "snippet": "mrcNPprettyorthodistance{${1:name1}}{${2:name2}}"
+    },
+    "mrcstoreorthodistance{}{}{}{}{}": {
+      "snippet": "mrcstoreorthodistance{${1:macro}}{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}"
+    },
+    "mrcprettyloxodistance{}{}{}{}": {
+      "snippet": "mrcprettyloxodistance{${1:lat1}}{${2:lon1}}{${3:lat2}}{${4:lon2}}"
+    },
+    "mrcNPprettyloxodistance{}{}": {
+      "snippet": "mrcNPprettyloxodistance{${1:name1}}{${2:name2}}"
+    },
+    "mrcstoreloxodistance{}{}{}{}{}": {
+      "snippet": "mrcstoreloxodistance{${1:macro}}{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}"
+    },
+    "mermaplastfivesum{}": {
+      "snippet": "mermaplastfivesum{${1:arg}}"
+    },
+    "mrcpkgprefix": {}
+  },
+  "envs": {
+    "mrcroute": {},
+    "mrcroute[]": {
+      "name": "mrcroute",
+      "snippet": "[${1:TikZ options}]"
+    },
+    "mrcroute*": {},
+    "mrcroute*[]": {
+      "name": "mrcroute*",
+      "snippet": "[${1:TikZ options}]"
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "vicinity=",
+      "python=${1:python}",
+      "definition prefix=${1:prefix}",
+      "fail on missing resource",
+      "every route={${1:TikZ options}}",
+      "samples=${1:number}",
+      "format angle=",
+      "format south=${1:code}",
+      "format north=${1:code}",
+      "format east=${1:code}",
+      "format west=${1:code}",
+      "format NEWS numeric",
+      "format NEWS absolute",
+      "draw=",
+      "map path={${1:TikZ options}}",
+      "map clip=${1:code}",
+      "map scope={${1:TikZ options}}",
+      "tile size=",
+      "flex tile size=",
+      "flex zoom=${1:pseudo zoom}",
+      "flex scale=${1:scale denominator}:${2:latitude}",
+      "named flex scale=${1:scale denominator}:${2:name}",
+      "network pieces=${1:number}",
+      "network distance=",
+      "network font=${1:font commands}"
+    ],
+    [
+      "north=${1:latitude}",
+      "south=${1:latitude}",
+      "west=${1:longitude}",
+      "east=${1:longitude}",
+      "xmin=${1:tile xmin}",
+      "xmax=${1:tile xmax}",
+      "ymin=${1:tile ymin}",
+      "ymax=${1:tile ymax}",
+      "zoom=${1:zoom}",
+      "pixelwidth=${1:pixels}",
+      "pixelheight=${1:pixels}",
+      "westoffset=${1:tile offset}",
+      "northoffset=${1:tile offset}",
+      "southoffset=${1:tile offset}",
+      "basename=${1:tile base name}",
+      "attribution=${1:text}",
+      "attribution print=${1:text}",
+      "resource=",
+      "tile size="
+    ],
+    [
+      "format angle=",
+      "format south=${1:code}",
+      "format north=${1:code}",
+      "format east=${1:code}",
+      "format west=${1:code}",
+      "format NEWS numeric",
+      "format NEWS absolute"
+    ],
+    [
+      "type=",
+      "zoom=${1:zoom}",
+      "north=${1:latitude}",
+      "south=${1:latitude}",
+      "west=${1:longitude}",
+      "east=${1:longitude}",
+      "area={${1:name1,name2,...}}",
+      "add area={${1:name1,name2,...}}",
+      "area from marker input=${1:file name}",
+      "add area from marker input=${1:file name}",
+      "area to reference",
+      "latitude=${1:latitude}",
+      "longitude=${1:longitude}",
+      "position=${1:latitude}:${2:longitude}",
+      "named position=${1:name}",
+      "width=${1:width in tiles}",
+      "tex width=",
+      "height=${1:height in tiles}",
+      "tex height=",
+      "align=",
+      "target=",
+      "url=${1:URL}",
+      "url with api key={${1:prefix}}{${2:name}}{${3:postfix}}",
+      "attribution=${1:text}",
+      "attribution print=${1:text}",
+      "basename=${1:tile base name}",
+      "flex reference scale=${1:scale denominator}",
+      "flex area scale=${1:scale denominator}",
+      "flex area fit",
+      "flex area fit=",
+      "pixel=${1:pixel size}",
+      "dpi=${1:dpi value}",
+      "source="
+    ],
+    [
+      "draw=",
+      "map path={${1:TikZ options}}",
+      "map clip=${1:code}",
+      "map scope={${1:TikZ options}}",
+      "tile size=",
+      "flex tile size=",
+      "flex zoom=${1:pseudo zoom}",
+      "flex scale=${1:scale denominator}:${2:latitude}",
+      "named flex scale=${1:scale denominator}:${2:name}"
+    ],
+    [
+      "network pieces=${1:number}",
+      "network distance=",
+      "network font=${1:font commands}"
+    ],
+    [
+      "width-in-km=${1:number}",
+      "width-in-kilometer=${1:number}",
+      "width-in-meter=${1:number}",
+      "width-in-mile=${1:number}",
+      "width-in-yard=${1:number}",
+      "partitions=${1:number}",
+      "height=",
+      "at={${1:TikZ coordinate}}",
+      "placement=${1:TikZ placement}",
+      "south-east-inside",
+      "south-east-inside=${1:xshift};${2:yshift}",
+      "south-east-outside",
+      "south-east-outside=${1:xshift};${2:yshift}",
+      "south-west-inside",
+      "south-west-inside=${1:xshift};${2:yshift}",
+      "south-west-outside",
+      "south-west-outside=${1:xshift};${2:yshift}",
+      "north-west-inside",
+      "north-west-inside=${1:xshift};${2:yshift}",
+      "north-west-outside",
+      "north-west-outside=${1:xshift};${2:yshift}",
+      "north-east-inside",
+      "north-east-inside=${1:xshift};${2:yshift}",
+      "north-east-outside",
+      "north-east-outside=${1:xshift};${2:yshift}",
+      "major style={${1:TikZ options}}",
+      "minor style={${1:TikZ options}}",
+      "double",
+      "single",
+      "transparent",
+      "solid",
+      "scale=${1:scale denominator}"
+    ],
+    [
+      "first options={${1:options}}",
+      "last options={${1:options}}",
+      "latitude=${1:latitude}",
+      "lat=${1:latitude}",
+      "longitude=${1:longitude}",
+      "lon=${1:longitude}",
+      "position=${1:latitude}:${2:longitude}",
+      "named position=${1:name}",
+      "use inside=",
+      "contents=${1:text}",
+      "pictocontents=${1:code}",
+      "alias=${1:text}",
+      "uuid=${1:uuid}",
+      "generic=${1:text}",
+      "category=${1:category}",
+      "show",
+      "hide",
+      "show category=${1:category}",
+      "show all but category=${1:category}",
+      "hide category=${1:category}",
+      "hide all but category=${1:category}",
+      "url=${1:URL}",
+      "link=${1:name}",
+      "use urls",
+      "ignore urls",
+      "use links",
+      "ignore links",
+      "type=",
+      "font=${1:font commands}",
+      "text=",
+      "draw=",
+      "fill=",
+      "angle=${1:degrees}",
+      "shift=",
+      "distance=",
+      "radius=",
+      "inner radius=",
+      "path style={${1:TikZ options}}",
+      "node style={${1:TikZ options}}"
+    ]
+  ]
+}

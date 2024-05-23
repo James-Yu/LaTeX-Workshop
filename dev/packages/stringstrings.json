@@ -1,0 +1,499 @@
+{
+  "includes": {
+    "ifthen": []
+  },
+  "macros": {
+    "thestring": {},
+    "theresult": {},
+    "Treatments{}{}{}{}{}{}": {
+      "snippet": "Treatments{${1:U-mode}}{${2:l-mode}}{${3:p-mode}}{${4:n-mode}}{${5:s-mode}}{${6:b-mode}}"
+    },
+    "defaultTreatments": {},
+    "encodetoken{}": {
+      "snippet": "encodetoken{${1:token}}"
+    },
+    "encodetoken[]{}": {
+      "snippet": "encodetoken[${2:index}]{${1:token}}"
+    },
+    "decodetoken{}": {
+      "snippet": "decodetoken{${1:token}}"
+    },
+    "decodetoken[]{}": {
+      "snippet": "decodetoken[${2:index}]{${1:token}}"
+    },
+    "substring{}{}{}": {
+      "snippet": "substring{${1:string}}{${2:min}}{${3:max}}"
+    },
+    "substring[]{}{}{}": {
+      "snippet": "substring[${4:mode}]{${1:string}}{${2:min}}{${3:max}}"
+    },
+    "caseupper{}": {
+      "snippet": "caseupper{${1:string}}"
+    },
+    "caseupper[]{}": {
+      "snippet": "caseupper[${2:mode}]{${1:string}}"
+    },
+    "caselower{}": {
+      "snippet": "caselower{${1:string}}"
+    },
+    "caselower[]{}": {
+      "snippet": "caselower[${2:mode}]{${1:string}}"
+    },
+    "solelyuppercase{}": {
+      "snippet": "solelyuppercase{${1:string}}"
+    },
+    "solelyuppercase[]{}": {
+      "snippet": "solelyuppercase[${2:mode}]{${1:string}}"
+    },
+    "solelylowercase{}": {
+      "snippet": "solelylowercase{${1:string}}"
+    },
+    "solelylowercase[]{}": {
+      "snippet": "solelylowercase[${2:mode}]{${1:string}}"
+    },
+    "changecase{}": {
+      "snippet": "changecase{${1:string}}"
+    },
+    "changecase[]{}": {
+      "snippet": "changecase[${2:mode}]{${1:string}}"
+    },
+    "noblanks{}": {
+      "snippet": "noblanks{${1:string}}"
+    },
+    "noblanks[]{}": {
+      "snippet": "noblanks[${2:mode}]{${1:string}}"
+    },
+    "nosymbolsnumerals{}": {
+      "snippet": "nosymbolsnumerals{${1:string}}"
+    },
+    "nosymbolsnumerals[]{}": {
+      "snippet": "nosymbolsnumerals[${2:mode}]{${1:string}}"
+    },
+    "alphabetic{}": {
+      "snippet": "alphabetic{${1:string}}"
+    },
+    "alphabetic[]{}": {
+      "snippet": "alphabetic[${2:mode}]{${1:string}}"
+    },
+    "capitalize{}": {
+      "snippet": "capitalize{${1:string}}"
+    },
+    "capitalize[]{}": {
+      "snippet": "capitalize[${2:mode}]{${1:string}}"
+    },
+    "capitalizewords{}": {
+      "snippet": "capitalizewords{${1:string}}"
+    },
+    "capitalizewords[]{}": {
+      "snippet": "capitalizewords[${2:mode}]{${1:string}}"
+    },
+    "capitalizetitle{}": {
+      "snippet": "capitalizetitle{${1:string}}"
+    },
+    "capitalizetitle[]{}": {
+      "snippet": "capitalizetitle[${2:mode}]{${1:string}}"
+    },
+    "addlcword{}": {
+      "snippet": "addlcword{${1:word}}"
+    },
+    "addlcwords{}": {
+      "snippet": "addlcwords{${1:word1 word2 word3 . . . }}"
+    },
+    "resetlcwords": {},
+    "reversestring{}": {
+      "snippet": "reversestring{${1:string}}"
+    },
+    "reversestring[]{}": {
+      "snippet": "reversestring[${2:mode}]{${1:string}}"
+    },
+    "convertchar{}{}{}": {
+      "snippet": "convertchar{${1:string}}{${2:from-char}}{${3:to-string}}"
+    },
+    "convertchar[]{}{}{}": {
+      "snippet": "convertchar[${4:mode}]{${1:string}}{${2:from-char}}{${3:to-string}}"
+    },
+    "convertword{}{}{}": {
+      "snippet": "convertword{${1:string}}{${2:from-string}}{${3:to-string}}"
+    },
+    "convertword[]{}{}{}": {
+      "snippet": "convertword[${4:mode}]{${1:string}}{${2:from-string}}{${3:to-string}}"
+    },
+    "rotateword{}": {
+      "snippet": "rotateword{${1:string}}"
+    },
+    "rotateword[]{}": {
+      "snippet": "rotateword[${2:mode}]{${1:string}}"
+    },
+    "removeword{}": {
+      "snippet": "removeword{${1:string}}"
+    },
+    "removeword[]{}": {
+      "snippet": "removeword[${2:mode}]{${1:string}}"
+    },
+    "getnextword{}": {
+      "snippet": "getnextword{${1:string}}"
+    },
+    "getnextword[]{}": {
+      "snippet": "getnextword[${2:mode}]{${1:string}}"
+    },
+    "getaword{}{}": {
+      "snippet": "getaword{${1:string}}{${2:n}}"
+    },
+    "getaword[]{}{}": {
+      "snippet": "getaword[${3:mode}]{${1:string}}{${2:n}}"
+    },
+    "rotateleadingspaces{}": {
+      "snippet": "rotateleadingspaces{${1:string}}"
+    },
+    "rotateleadingspaces[]{}": {
+      "snippet": "rotateleadingspaces[${2:mode}]{${1:string}}"
+    },
+    "removeleadingspaces{}": {
+      "snippet": "removeleadingspaces{${1:string}}"
+    },
+    "removeleadingspaces[]{}": {
+      "snippet": "removeleadingspaces[${2:mode}]{${1:string}}"
+    },
+    "stringencode{}": {
+      "snippet": "stringencode{${1:string}}"
+    },
+    "stringencode[]{}": {
+      "snippet": "stringencode[${2:mode}]{${1:string}}"
+    },
+    "stringdecode{}": {
+      "snippet": "stringdecode{${1:string}}"
+    },
+    "stringdecode[]{}": {
+      "snippet": "stringdecode[${2:mode}]{${1:string}}"
+    },
+    "gobblechar{}": {
+      "snippet": "gobblechar{${1:string}}"
+    },
+    "gobblechar[]{}": {
+      "snippet": "gobblechar[${2:mode}]{${1:string}}"
+    },
+    "gobblechars{}{}": {
+      "snippet": "gobblechars{${1:string}}{${2:n}}"
+    },
+    "gobblechars[]{}{}": {
+      "snippet": "gobblechars[${3:mode}]{${1:string}}{${2:n}}"
+    },
+    "retokenize{}": {
+      "snippet": "retokenize{${1:string}}"
+    },
+    "retokenize[]{}": {
+      "snippet": "retokenize[${2:mode}]{${1:string}}"
+    },
+    "stringlength{}": {
+      "snippet": "stringlength{${1:string}}"
+    },
+    "stringlength[]{}": {
+      "snippet": "stringlength[${2:mode}]{${1:string}}"
+    },
+    "findchars{}{}": {
+      "snippet": "findchars{${1:string}}{${2:match-char}}"
+    },
+    "findchars[]{}{}": {
+      "snippet": "findchars[${3:mode}]{${1:string}}{${2:match-char}}"
+    },
+    "findwords{}{}": {
+      "snippet": "findwords{${1:string}}{${2:match-string}}"
+    },
+    "findwords[]{}{}": {
+      "snippet": "findwords[${3:mode}]{${1:string}}{${2:match-string}}"
+    },
+    "whereischar{}{}": {
+      "snippet": "whereischar{${1:string}}{${2:match-char}}"
+    },
+    "whereischar[]{}{}": {
+      "snippet": "whereischar[${3:mode}]{${1:string}}{${2:match-char}}"
+    },
+    "whereisword{}{}": {
+      "snippet": "whereisword{${1:string}}{${2:match-string}}"
+    },
+    "whereisword[]{}{}": {
+      "snippet": "whereisword[${3:mode}]{${1:string}}{${2:match-string}}"
+    },
+    "wordcount{}": {
+      "snippet": "wordcount{${1:string}}"
+    },
+    "wordcount[]{}": {
+      "snippet": "wordcount[${2:mode}]{${1:string}}"
+    },
+    "getargs{}": {
+      "snippet": "getargs{${1:string}}"
+    },
+    "getargs[]{}": {
+      "snippet": "getargs[${2:mode}]{${1:string}}"
+    },
+    "isnextbyte{}{}": {
+      "snippet": "isnextbyte{${1:match-byte}}{${2:string}}"
+    },
+    "isnextbyte[]{}{}": {
+      "snippet": "isnextbyte[${3:mode}]{${1:match-byte}}{${2:string}}"
+    },
+    "testmatchingchar{}{}{}": {
+      "snippet": "testmatchingchar{${1:string}}{${2:n}}{${3:match-char}}"
+    },
+    "testcapitalized{}": {
+      "snippet": "testcapitalized{${1:string}}"
+    },
+    "testuncapitalized{}": {
+      "snippet": "testuncapitalized{${1:string}}"
+    },
+    "testleadingalpha{}": {
+      "snippet": "testleadingalpha{${1:string}}"
+    },
+    "testuppercase{}": {
+      "snippet": "testuppercase{${1:string}}"
+    },
+    "testsolelyuppercase{}": {
+      "snippet": "testsolelyuppercase{${1:string}}"
+    },
+    "testlowercase{}": {
+      "snippet": "testlowercase{${1:string}}"
+    },
+    "testsolelylowercase{}": {
+      "snippet": "testsolelylowercase{${1:string}}"
+    },
+    "testalphabetic{}": {
+      "snippet": "testalphabetic{${1:string}}"
+    },
+    "AEsc": {},
+    "AEscCode": {},
+    "Acute": {},
+    "AcuteCode": {},
+    "AlphaCapsTreatment": {},
+    "AlphaTreatment": {},
+    "Angstrom": {
+      "detail": "Å",
+      "documentation": "Ångström capital A with ring"
+    },
+    "AngstromCode": {},
+    "ArchJoin": {},
+    "ArchJoinCode": {},
+    "BarredL": {},
+    "BarredLCode": {},
+    "Barredl": {},
+    "BarredlCode": {},
+    "BlankSpace": {},
+    "BlankTreatment": {},
+    "Breve": {},
+    "BreveCode": {},
+    "CapitalizeString": {},
+    "Carat": {},
+    "CaratCode": {},
+    "Caron": {},
+    "CaronCode": {},
+    "Cedilla": {},
+    "CedillaCode": {},
+    "Circumflex": {},
+    "CircumflexCode": {},
+    "Copyright": {},
+    "CopyrightCode": {},
+    "Dagger": {},
+    "DaggerCode": {},
+    "Dollar": {},
+    "DollarCode": {},
+    "DoubleAcute": {},
+    "DoubleAcuteCode": {},
+    "DoubleDagger": {},
+    "DoubleDaggerCode": {},
+    "ESCrotate{}": {
+      "snippet": "ESCrotate{${1:arg}}"
+    },
+    "EncodedAEsc": {},
+    "EncodedAcute": {},
+    "EncodedAngstrom": {},
+    "EncodedArchJoin": {},
+    "EncodedBarredL": {},
+    "EncodedBarredl": {},
+    "EncodedBlankSpace": {},
+    "EncodedBreve": {},
+    "EncodedCarat": {},
+    "EncodedCaron": {},
+    "EncodedCedilla": {},
+    "EncodedCircumflex": {},
+    "EncodedCopyright": {},
+    "EncodedDagger": {},
+    "EncodedDollar": {},
+    "EncodedDoubleAcute": {},
+    "EncodedDoubleDagger": {},
+    "EncodedEszett": {},
+    "EncodedGrave": {},
+    "EncodedLB": {},
+    "EncodedLeftBrace": {},
+    "EncodedLineUnder": {},
+    "EncodedMacron": {},
+    "EncodedOEthel": {},
+    "EncodedOverdot": {},
+    "EncodedPilcrow": {},
+    "EncodedPipe": {},
+    "EncodedPounds": {},
+    "EncodedRB": {},
+    "EncodedRightBrace": {},
+    "EncodedSectionSymbol": {},
+    "EncodedSlashedO": {},
+    "EncodedSlashedo": {},
+    "EncodedTilde": {},
+    "EncodedUmlaut": {},
+    "EncodedUnderdot": {},
+    "EncodedUnderscore": {},
+    "EncodedUvari": {},
+    "EncodedUvarii": {},
+    "EncodedUvariii": {},
+    "Encodedaesc": {},
+    "Encodedangstrom": {},
+    "Encodedoethel": {},
+    "EncodingTreatment": {},
+    "EscapeChar": {},
+    "Eszett": {},
+    "EszettCode": {},
+    "Grave": {},
+    "GraveCode": {},
+    "LB": {},
+    "LBCode": {},
+    "LeftBrace": {},
+    "LeftBraceCode": {},
+    "LineUnder": {},
+    "LineUnderCode": {},
+    "Macron": {},
+    "MacronCode": {},
+    "NumeralTreatment": {},
+    "OEthel": {},
+    "OEthelCode": {},
+    "Overdot": {},
+    "OverdotCode": {},
+    "Pilcrow": {},
+    "PilcrowCode": {},
+    "Pipe": {},
+    "PipeCode": {},
+    "Pounds": {},
+    "PoundsCode": {},
+    "PrimarySignalChar": {},
+    "PunctuationTreatment": {},
+    "RB": {},
+    "RBCode": {},
+    "RightBrace": {},
+    "RightBraceCode": {},
+    "SaveAEsc": {},
+    "SaveAcute": {},
+    "SaveAlphaCapsTreatment": {},
+    "SaveAlphaTreatment": {},
+    "SaveAngstrom": {},
+    "SaveArchJoin": {},
+    "SaveBarredL": {},
+    "SaveBarredl": {},
+    "SaveBreve": {},
+    "SaveCaron": {},
+    "SaveCedilla": {},
+    "SaveCircumflex": {},
+    "SaveCopyright": {},
+    "SaveDagger": {},
+    "SaveDollar": {},
+    "SaveDoubleAcute": {},
+    "SaveDoubleDagger": {},
+    "SaveEszett": {},
+    "SaveGrave": {},
+    "SaveHardspace": {},
+    "SaveLB": {},
+    "SaveLeftBrace": {},
+    "SaveLineUnder": {},
+    "SaveMacron": {},
+    "SaveOEthel": {},
+    "SaveOverdot": {},
+    "SavePilcrow": {},
+    "SavePounds": {},
+    "SaveRB": {},
+    "SaveRightBrace": {},
+    "SaveSectionSymbol": {},
+    "SaveSlashedO": {},
+    "SaveSlashedo": {},
+    "SaveTilde": {},
+    "SaveUmlaut": {},
+    "SaveUnderdot": {},
+    "SaveUnderscore": {},
+    "Saveaesc": {},
+    "Saveangstrom": {},
+    "Saveoethel": {},
+    "SecondarySignalChar": {},
+    "SectionSymbol": {},
+    "SectionSymbolCode": {},
+    "SeekBlankSpace": {},
+    "SignalChar": {},
+    "SlashedO": {},
+    "SlashedOCode": {},
+    "Slashedo": {},
+    "SlashedoCode": {},
+    "SymbolTreatment": {},
+    "Tilde": {},
+    "TildeCode": {},
+    "Umlaut": {},
+    "UmlautCode": {},
+    "Underdot": {},
+    "UnderdotCode": {},
+    "Underscore": {},
+    "UnderscoreCode": {},
+    "UnencodedLB": {},
+    "UnencodedRB": {},
+    "Uvari": {},
+    "UvariCode": {},
+    "Uvarii": {},
+    "UvariiCode": {},
+    "Uvariii": {},
+    "UvariiiCode": {},
+    "aesc": {},
+    "aescCode": {},
+    "angstrom": {},
+    "angstromCode": {},
+    "buildtoken": {},
+    "carat": {},
+    "encodedfromarg": {},
+    "encodedstring": {},
+    "encodedtoarg": {},
+    "endofstring": {},
+    "gobbledword": {},
+    "lcword": {},
+    "matchchar": {},
+    "mystring": {},
+    "narg": {},
+    "oethel": {},
+    "oethelCode": {},
+    "rotatingword": {},
+    "ucword": {},
+    "undecipherable": {},
+    "uvari": {},
+    "uvarii": {},
+    "uvariii": {},
+    "ifmatchingchar": {},
+    "matchingchartrue": {},
+    "matchingcharfalse": {},
+    "ifcapitalized": {},
+    "capitalizedtrue": {},
+    "capitalizedfalse": {},
+    "ifuncapitalized": {},
+    "uncapitalizedtrue": {},
+    "uncapitalizedfalse": {},
+    "ifleadingalpha": {},
+    "leadingalphatrue": {},
+    "leadingalphafalse": {},
+    "ifuppercase": {},
+    "uppercasetrue": {},
+    "uppercasefalse": {},
+    "ifsolelyuppercase": {},
+    "solelyuppercasetrue": {},
+    "solelyuppercasefalse": {},
+    "iflowercase": {},
+    "lowercasetrue": {},
+    "lowercasefalse": {},
+    "ifsolelylowercase": {},
+    "solelylowercasetrue": {},
+    "solelylowercasefalse": {},
+    "ifalphabetic": {},
+    "alphabetictrue": {},
+    "alphabeticfalse": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

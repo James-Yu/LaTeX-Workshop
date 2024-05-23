@@ -1,0 +1,315 @@
+{
+  "includes": {},
+  "macros": {
+    "TrackPredefinedDialect{}": {
+      "snippet": "TrackPredefinedDialect{${1:dialect}}"
+    },
+    "TrackLocale{}": {
+      "snippet": "TrackLocale{${1:locale}}"
+    },
+    "TrackLanguageTag{}": {
+      "snippet": "TrackLanguageTag{${1:tag}}"
+    },
+    "TrackIfKnownLanguage{}{}{}": {
+      "snippet": "TrackIfKnownLanguage{${1:tag}}{${2:success code}}{${3:fail code}}"
+    },
+    "TrackLangFromEnv": {},
+    "TrackLangShowWarningsfalse": {},
+    "TrackLangShowWarningstrue": {},
+    "TrackLangEnv": {},
+    "TrackLangEnvLang": {},
+    "TrackLangEnvTerritory": {},
+    "TrackLangEnvCodeSet": {},
+    "TrackLangEnvModifier": {},
+    "TrackLangQueryEnv": {},
+    "TrackLangQueryOtherEnv{}": {
+      "snippet": "TrackLangQueryOtherEnv{${1:env-name}}"
+    },
+    "TrackLangParseFromEnv": {},
+    "AnyTrackedLanguages{}{}": {
+      "snippet": "AnyTrackedLanguages{${1:true}}{${2:false}}"
+    },
+    "GetTrackedDialectFromLanguageTag{}{}": {
+      "snippet": "GetTrackedDialectFromLanguageTag{${1:tag}}{${2:cmd}}"
+    },
+    "TrackedDialectClosestSubMatch": {},
+    "ForEachTrackedDialect{}{}": {
+      "snippet": "ForEachTrackedDialect{${1:cmd}}{${2:body}}"
+    },
+    "ForEachTrackedLanguage{}{}": {
+      "snippet": "ForEachTrackedLanguage{${1:cmd}}{${2:body}}"
+    },
+    "IfTrackedLanguage{}{}{}": {
+      "snippet": "IfTrackedLanguage{${1:language-label}}{${2:true}}{${3:false}}"
+    },
+    "IfTrackedDialect{}{}{}": {
+      "snippet": "IfTrackedDialect{${1:dialect-label}}{${2:true}}{${3:false}}"
+    },
+    "TrackedLanguageFromDialect{}": {
+      "snippet": "TrackedLanguageFromDialect{${1:dialect}}"
+    },
+    "TrackedDialectsFromLanguage{}": {
+      "snippet": "TrackedDialectsFromLanguage{${1:root language label}}"
+    },
+    "IfTrackedLanguageHasIsoCode{}{}{}{}": {
+      "snippet": "IfTrackedLanguageHasIsoCode{${1:code type}}{${2:label}}{${3:true}}{${4:false}}"
+    },
+    "IfTrackedIsoCode{}{}{}{}": {
+      "snippet": "IfTrackedIsoCode{${1:code type}}{${2:code}}{${3:true}}{${4:false}}"
+    },
+    "TrackedLanguageFromIsoCode{}{}": {
+      "snippet": "TrackedLanguageFromIsoCode{${1:code type}}{${2:code}}"
+    },
+    "TrackedIsoCodeFromLanguage{}{}": {
+      "snippet": "TrackedIsoCodeFromLanguage{${1:code type}}{${2:label}}"
+    },
+    "TwoLetterIsoCountryCode": {},
+    "TwoLetterIsoLanguageCode": {},
+    "ThreeLetterIsoLanguageCode": {},
+    "ThreeLetterExtIsoLanguageCode": {},
+    "GetTrackedLanguageTag{}": {
+      "snippet": "GetTrackedLanguageTag{${1:dialect}}"
+    },
+    "GetTrackedDialectModifier{}": {
+      "snippet": "GetTrackedDialectModifier{${1:dialect}}"
+    },
+    "IfHasTrackedDialectModifier{}{}{}": {
+      "snippet": "IfHasTrackedDialectModifier{${1:dialect}}{${2:true}}{${3:false}}"
+    },
+    "GetTrackedDialectVariant{}": {
+      "snippet": "GetTrackedDialectVariant{${1:dialect}}"
+    },
+    "IfHasTrackedDialectVariant{}{}{}": {
+      "snippet": "IfHasTrackedDialectVariant{${1:dialect}}{${2:true}}{${3:false}}"
+    },
+    "GetTrackedDialectScript{}": {
+      "snippet": "GetTrackedDialectScript{${1:dialect}}"
+    },
+    "IfHasTrackedDialectScript{}{}{}": {
+      "snippet": "IfHasTrackedDialectScript{${1:dialect}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangGetDefaultScript{}": {
+      "snippet": "TrackLangGetDefaultScript{${1:language}}"
+    },
+    "IfTrackedDialectIsScriptCs{}{}{}{}": {
+      "snippet": "IfTrackedDialectIsScriptCs{${1:dialect}}{${2:cs}}{${3:true}}{${4:false}}"
+    },
+    "GetTrackedDialectSubLang{}": {
+      "snippet": "GetTrackedDialectSubLang{${1:dialect}}"
+    },
+    "IfHasTrackedDialectSubLang{}{}{}": {
+      "snippet": "IfHasTrackedDialectSubLang{${1:dialect}}{${2:true}}{${3:false}}"
+    },
+    "GetTrackedDialectAdditional{}": {
+      "snippet": "GetTrackedDialectAdditional{${1:dialect}}"
+    },
+    "IfHasTrackedDialectAdditional{}{}{}": {
+      "snippet": "IfHasTrackedDialectAdditional{${1:dialect}}{${2:true}}{${3:false}}"
+    },
+    "IfTrackedLanguageFileExists{}{}{}{}{}": {
+      "snippet": "IfTrackedLanguageFileExists{${1:dialect}}{${2:prefix}}{${3:suffix}}{${4:true}}{${5:false}}"
+    },
+    "CurrentTrackedTag": {},
+    "TrackLangRequireDialect{}{}": {
+      "snippet": "TrackLangRequireDialect{${1:pkgname}}{${2:dialect}}"
+    },
+    "TrackLangRequireDialect[]{}{}": {
+      "snippet": "TrackLangRequireDialect[${3:load code}]{${1:pkgname}}{${2:dialect}}"
+    },
+    "TrackLangRequireDialectPrefix": {},
+    "CurrentTrackedDialect": {},
+    "CurrentTrackedLanguage": {},
+    "CurrentTrackedRegion": {},
+    "CurrentTrackedIsoCode": {},
+    "CurrentTrackedDialectModifier": {},
+    "CurrentTrackedDialectVariant": {},
+    "CurrentTrackedDialectSubLang": {},
+    "CurrentTrackedDialectAdditional": {},
+    "CurrentTrackedLanguageTag": {},
+    "CurrentTrackedDialectScript": {},
+    "TrackLangProvidesResource{}{}": {
+      "snippet": "TrackLangProvidesResource{${1:tag}}{${2:version info}}"
+    },
+    "TrackLangRequireResource{}": {
+      "snippet": "TrackLangRequireResource{${1:tag}}"
+    },
+    "TrackLangEncodingName": {},
+    "TrackLangRequireResourceOrDo{}{}{}": {
+      "snippet": "TrackLangRequireResourceOrDo{${1:tag}}{${2:code1}}{${3:code2}}"
+    },
+    "TrackLangRequestResource{}{}": {
+      "snippet": "TrackLangRequestResource{${1:tag}}{${2:not found code}}"
+    },
+    "TrackLangAddToHook{}{}": {
+      "snippet": "TrackLangAddToHook{${1:code}}{${2:type}}"
+    },
+    "TrackLangAddToCaptions{}": {
+      "snippet": "TrackLangAddToCaptions{${1:code}}"
+    },
+    "TrackLangRedefHook{}{}": {
+      "snippet": "TrackLangRedefHook{${1:code}}{${2:type}}"
+    },
+    "TrackLangAddExtraScriptFile{}": {
+      "snippet": "TrackLangAddExtraScriptFile{${1:file}}"
+    },
+    "TrackLangAddExtraRegionFile{}": {
+      "snippet": "TrackLangAddExtraRegionFile{${1:file}}"
+    },
+    "SetCurrentTrackedDialect{}": {
+      "snippet": "SetCurrentTrackedDialect{${1:dialect}}"
+    },
+    "TrackLangNewLanguage{}{}{}{}{}{}{}": {
+      "snippet": "TrackLangNewLanguage{${1:language}}{${2:639-1 code}}{${3:639-2 (${8:T})}}{${4:639-2 (${9:B})}}{${5:639-3}}{${6:3166-1}}{${7:default script}}"
+    },
+    "AddTrackedDialect{}{}": {
+      "snippet": "AddTrackedDialect{${1:dialect label}}{${2:root language label}}"
+    },
+    "AddTrackedLanguage{}": {
+      "snippet": "AddTrackedLanguage{${1:root language label}}"
+    },
+    "TrackLangLastTrackedDialect": {},
+    "TrackLangProvidePredefinedLanguage{}": {
+      "snippet": "TrackLangProvidePredefinedLanguage{${1:language label}}"
+    },
+    "TrackLangProvidePredefinedDialect{}{}{}{}{}{}{}": {
+      "snippet": "TrackLangProvidePredefinedDialect{${1:dialect}}{${2:language}}{${3:3166-1 code}}{${4:modifier}}{${5:variant}}{${6:map}}{${7:script}}"
+    },
+    "SetTrackedDialectLabelMap{}{}": {
+      "snippet": "SetTrackedDialectLabelMap{${1:tracklang-label}}{${2:hook-label}}"
+    },
+    "AddTrackedLanguageIsoCodes{}": {
+      "snippet": "AddTrackedLanguageIsoCodes{${1:root language label}}"
+    },
+    "SetTrackedDialectModifier{}{}": {
+      "snippet": "SetTrackedDialectModifier{${1:dialect}}{${2:value}}"
+    },
+    "SetTrackedDialectScript{}{}": {
+      "snippet": "SetTrackedDialectScript{${1:dialect}}{${2:value}}"
+    },
+    "SetTrackedDialectVariant{}{}": {
+      "snippet": "SetTrackedDialectVariant{${1:dialect}}{${2:value}}"
+    },
+    "SetTrackedDialectSubLang{}{}": {
+      "snippet": "SetTrackedDialectSubLang{${1:dialect}}{${2:value}}"
+    },
+    "SetTrackedDialectAdditional{}{}": {
+      "snippet": "SetTrackedDialectAdditional{${1:dialect}}{${2:value}}"
+    },
+    "AddTrackedCountryIsoCode{}": {
+      "snippet": "AddTrackedCountryIsoCode{${1:root language}}"
+    },
+    "AddTrackedIsoLanguage{}{}{}": {
+      "snippet": "AddTrackedIsoLanguage{${1:code type}}{${2:code}}{${3:language}}"
+    },
+    "TrackLangDeclareDialectOption{}{}{}{}{}{}{}": {
+      "snippet": "TrackLangDeclareDialectOption{${1:dialect}}{${2:root lang}}{${3:3166-1 code}}{${4:modifier}}{${5:variant}}{${6:map}}{${7:script}}"
+    },
+    "TrackLangDeclareLanguageOption{}{}{}{}{}{}{}": {
+      "snippet": "TrackLangDeclareLanguageOption{${1:language}}{${2:639-1 code}}{${3:639-2 (${8:T})}}{${4:639-2 (${9:B})}}{${5:639-3}}{${6:3166-1}}{${7:default script}}"
+    },
+    "TrackLangGetKnownCountry{}": {
+      "snippet": "TrackLangGetKnownCountry{${1:language}}"
+    },
+    "TrackLangGetKnownIsoThreeLetterLangB{}": {
+      "snippet": "TrackLangGetKnownIsoThreeLetterLangB{${1:language}}"
+    },
+    "TrackLangGetKnownIsoThreeLetterLang{}": {
+      "snippet": "TrackLangGetKnownIsoThreeLetterLang{${1:language}}"
+    },
+    "TrackLangGetKnownIsoTwoLetterLang{}": {
+      "snippet": "TrackLangGetKnownIsoTwoLetterLang{${1:language}}"
+    },
+    "TrackLangGetKnownLangFromIso{}": {
+      "snippet": "TrackLangGetKnownLangFromIso{${1:ISO code}}"
+    },
+    "TrackLangIfAlphaNumericChar{}{}{}": {
+      "snippet": "TrackLangIfAlphaNumericChar{${1:tag}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangIfHasDefaultScript{}{}{}": {
+      "snippet": "TrackLangIfHasDefaultScript{${1:language}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangIfHasKnownCountry{}{}{}": {
+      "snippet": "TrackLangIfHasKnownCountry{${1:language}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangIfKnownIsoThreeLetterLangB{}{}{}": {
+      "snippet": "TrackLangIfKnownIsoThreeLetterLangB{${1:language}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangIfKnownIsoThreeLetterLang{}{}{}": {
+      "snippet": "TrackLangIfKnownIsoThreeLetterLang{${1:language}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangIfKnownIsoTwoLetterLang{}{}{}": {
+      "snippet": "TrackLangIfKnownIsoTwoLetterLang{${1:language}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangIfKnownLangFromIso{}{}{}": {
+      "snippet": "TrackLangIfKnownLangFromIso{${1:ISO code}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangIfKnownLang{}{}{}": {
+      "snippet": "TrackLangIfKnownLang{${1:language}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangIfLanguageTag{}{}{}": {
+      "snippet": "TrackLangIfLanguageTag{${1:tag}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangIfRegionTag{}{}{}": {
+      "snippet": "TrackLangIfRegionTag{${1:tag}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangIfScriptTag{}{}{}": {
+      "snippet": "TrackLangIfScriptTag{${1:tag}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangIfVariantTag{}{}{}": {
+      "snippet": "TrackLangIfVariantTag{${1:tag}}{${2:true}}{${3:false}}"
+    },
+    "CurrentTrackedIsoCodeI": {},
+    "CurrentTrackedIsoCodeII": {},
+    "CurrentTrackedIsoCodeIII": {},
+    "GetTrackedDialectFromMapping{}": {
+      "snippet": "GetTrackedDialectFromMapping{${1:language hook}}"
+    },
+    "GetTrackedDialectToMapping{}": {
+      "snippet": "GetTrackedDialectToMapping{${1:tracklang label}}"
+    },
+    "IfHookHasMappingFromTrackedDialect{}{}{}": {
+      "snippet": "IfHookHasMappingFromTrackedDialect{${1:hook label}}{${2:true}}{${3:false}}"
+    },
+    "IfTrackedDialectHasMapping{}{}{}": {
+      "snippet": "IfTrackedDialectHasMapping{${1:tracklang label}}{${2:true}}{${3:false}}"
+    },
+    "LetTrackLangOption{}{}": {
+      "snippet": "LetTrackLangOption{${1:option}}{${2:synonym}}"
+    },
+    "LetTrackLangSynonym{}{}": {
+      "snippet": "LetTrackLangSynonym{${1:option}}{${2:synonym}}"
+    },
+    "tracklangparseenvatmod": {},
+    "tracklangparsemod": {},
+    "tracklangtmp": {},
+    "TrackLangAlphaIIToNumericRegion{}": {
+      "snippet": "TrackLangAlphaIIToNumericRegion{${1:alpha-2 code}}"
+    },
+    "TrackLangNumericToAlphaIIRegion{}": {
+      "snippet": "TrackLangNumericToAlphaIIRegion{${1:numeric code}}"
+    },
+    "TrackLangIfKnownAlphaIIRegion{}{}{}": {
+      "snippet": "TrackLangIfKnownAlphaIIRegion{${1:alpha-2 code}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangIfKnownNumericRegion{}{}{}": {
+      "snippet": "TrackLangIfKnownNumericRegion{${1:numeric code}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangAlphaIIIToNumericRegion{}": {
+      "snippet": "TrackLangAlphaIIIToNumericRegion{${1:alpha-3 code}}"
+    },
+    "TrackLangNumericToAlphaIIIRegion{}": {
+      "snippet": "TrackLangNumericToAlphaIIIRegion{${1:numeric code}}"
+    },
+    "TrackLangIfKnownAlphaIIIRegion{}{}{}": {
+      "snippet": "TrackLangIfKnownAlphaIIIRegion{${1:alpha-3 code}}{${2:true}}{${3:false}}"
+    },
+    "TrackLangRegionMap{}{}{}": {
+      "snippet": "TrackLangRegionMap{${1:numeric code}}{${2:alpha-2 code}}{${3:alpha-3 code}}"
+    }
+  },
+  "envs": {},
+  "options": [
+    "${1:language}"
+  ],
+  "keyvals": []
+}

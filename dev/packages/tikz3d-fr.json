@@ -1,0 +1,186 @@
+{
+  "includes": {
+    "tikz": [],
+    "xstring": [],
+    "simplekv": [],
+    "xinttools": [],
+    "xintexpr": [],
+    "listofitems": [],
+    "tikzlibrarycalc": []
+  },
+  "macros": {
+    "PlacePointEspace{}{}": {
+      "snippet": "PlacePointEspace{${1:nœud}}{${2:coordonnées}}"
+    },
+    "PlacePointEspace{}{}<>": {
+      "snippet": "PlacePointEspace{${1:nœud}}{${2:coordonnées}}<${3:label}>"
+    },
+    "PlacePointEspace[]{}{}": {
+      "snippet": "PlacePointEspace[${3:clés}]{${1:nœud}}{${2:coordonnées}}"
+    },
+    "PlacePointEspace[]{}{}<>": {
+      "snippet": "PlacePointEspace[${3:clés}]{${1:nœud}}{${2:coordonnées}}<${4:label}>"
+    },
+    "PlacePointEspace*{}{}": {
+      "snippet": "PlacePointEspace*{${1:nœud}}{${2:coordonnées}}"
+    },
+    "PlacePointEspace*{}{}<>": {
+      "snippet": "PlacePointEspace*{${1:nœud}}{${2:coordonnées}}<${3:label}>"
+    },
+    "PlacePointEspace*[]{}{}": {
+      "snippet": "PlacePointEspace*[${3:clés}]{${1:nœud}}{${2:coordonnées}}"
+    },
+    "PlacePointEspace*[]{}{}<>": {
+      "snippet": "PlacePointEspace*[${3:clés}]{${1:nœud}}{${2:coordonnées}}<${4:label}>"
+    },
+    "PlacePointsEspace{}": {
+      "snippet": "PlacePointsEspace{${1:liste}}"
+    },
+    "PlacePointsEspace[]{}": {
+      "snippet": "PlacePointsEspace[${2:clés}]{${1:liste}}"
+    },
+    "PlacePointsEspace*{}": {
+      "snippet": "PlacePointsEspace*{${1:liste}}"
+    },
+    "PlacePointsEspace*[]{}": {
+      "snippet": "PlacePointsEspace*[${2:clés}]{${1:liste}}"
+    },
+    "MarquePointEspace{}": {
+      "snippet": "MarquePointEspace{${1:point}}"
+    },
+    "MarquePointEspace[]{}": {
+      "snippet": "MarquePointEspace[${2:clés}]{${1:point}}"
+    },
+    "MarquePointsEspace{}": {
+      "snippet": "MarquePointsEspace{${1:liste}}"
+    },
+    "MarquePointsEspace[]{}": {
+      "snippet": "MarquePointsEspace[${2:clés}]{${1:liste}}"
+    },
+    "TraceSegmentsEspace{}": {
+      "snippet": "TraceSegmentsEspace{${1:liste}}"
+    },
+    "TraceSegmentsEspace[]{}": {
+      "snippet": "TraceSegmentsEspace[${2:options TikZ}]{${1:liste}}"
+    },
+    "PaveTikzTriDim": {},
+    "PaveTikzTriDim[]": {
+      "snippet": "PaveTikzTriDim[${1:clés}]"
+    },
+    "PlaquePetitsCubes{}": {
+      "snippet": "PlaquePetitsCubes{${1:empilement}}"
+    },
+    "PlaquePetitsCubes{}[]": {
+      "snippet": "PlaquePetitsCubes{${1:empilement}}[${2:épaisseur}]"
+    },
+    "PlaquePetitsCubes[]{}": {
+      "snippet": "PlaquePetitsCubes[${2:color}]{${1:empilement}}"
+    },
+    "PlaquePetitsCubes[]{}[]": {
+      "snippet": "PlaquePetitsCubes[${2:color}]{${1:empilement}}[${3:épaisseur}]"
+    },
+    "PlaqueVide": {},
+    "PlaqueVide[]": {
+      "snippet": "PlaqueVide[${1:nb}]"
+    },
+    "BlocPetitsCubes{}": {
+      "snippet": "BlocPetitsCubes{${1:grille des hauteurs}}"
+    },
+    "BlocPetitsCubes{}[]": {
+      "snippet": "BlocPetitsCubes{${1:grille des hauteurs}}[${2:épaisseur}]"
+    },
+    "BlocPetitsCubes[]{}": {
+      "snippet": "BlocPetitsCubes[${2:color}]{${1:grille des hauteurs}}"
+    },
+    "BlocPetitsCubes[]{}[]": {
+      "snippet": "BlocPetitsCubes[${2:color}]{${1:grille des hauteurs}}[${3:épaisseur}]"
+    },
+    "BlocPetitsCubes*{}": {
+      "snippet": "BlocPetitsCubes*{${1:grille des hauteurs}}"
+    },
+    "BlocPetitsCubes*{}[]": {
+      "snippet": "BlocPetitsCubes*{${1:grille des hauteurs}}[${2:épaisseur}]"
+    },
+    "BlocPetitsCubes*[]{}": {
+      "snippet": "BlocPetitsCubes*[${2:color}]{${1:grille des hauteurs}}"
+    },
+    "BlocPetitsCubes*[]{}[]": {
+      "snippet": "BlocPetitsCubes*[${2:color}]{${1:grille des hauteurs}}[${3:épaisseur}]"
+    },
+    "PetitCube{}": {
+      "snippet": "PetitCube{${1:grille des hauteurs}}"
+    },
+    "PetitCube[]{}": {
+      "snippet": "PetitCube[${2:color}]{${1:grille des hauteurs}}"
+    },
+    "PetitCube[][]{}": {
+      "snippet": "PetitCube[${2:color}][${3:épaisseur}]{${1:grille des hauteurs}}"
+    },
+    "thelgblocs": {},
+    "PLTriDimUx": {},
+    "PLTriDimUy": {},
+    "PLTriDimUz": {},
+    "PFPaveLgDDD": {},
+    "PFPavePfDDD": {},
+    "PFPaveHtDDD": {},
+    "PFPaveSommetsDDD": {},
+    "PFPaveThickDDD": {},
+    "PFPaveCouleurDDD": {},
+    "PFPaveCouleurSommDDD": {},
+    "PFListeSommets": {},
+    "TransfPosTikz{}": {
+      "snippet": "TransfPosTikz{${1:arg}}"
+    },
+    "PosTmpLabel": {},
+    "TrimDimLabel": {},
+    "TrimDimDecalLabel": {},
+    "TrimDimStylePt": {},
+    "TrimDimtaillePt": {},
+    "TrimDimCoul": {},
+    "VecteursBase": {},
+    "VecteursBase[]": {
+      "snippet": "VecteursBase[${1:opt}]"
+    }
+  },
+  "envs": {
+    "EnvTikzEspace": {},
+    "EnvTikzEspace<>": {
+      "name": "EnvTikzEspace",
+      "snippet": "<${1:options TikZ}>",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "EnvTikzEspace[]": {
+      "name": "EnvTikzEspace",
+      "snippet": "[${1:clés}]"
+    },
+    "EnvTikzEspace[]<>": {
+      "name": "EnvTikzEspace",
+      "snippet": "[${1:clés}]<${2:options TikZ}>",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "EmpilementCubes": {},
+    "EmpilementCubes<>": {
+      "name": "EmpilementCubes",
+      "snippet": "<${1:options TikZ}>"
+    },
+    "EmpilementCubes[]": {
+      "name": "EmpilementCubes",
+      "snippet": "[${1:échelle}]"
+    },
+    "EmpilementCubes[]<>": {
+      "name": "EmpilementCubes",
+      "snippet": "[${1:échelle}]<${2:options TikZ}>"
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "UniteX={${1:angle}:${2:longueur}}",
+      "UniteY={${1:angle}:${2:longueur}}",
+      "UniteZ={${1:angle}:${2:longueur}}",
+      "VueClassique"
+    ]
+  ]
+}

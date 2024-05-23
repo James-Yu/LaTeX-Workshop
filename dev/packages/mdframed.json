@@ -1,0 +1,342 @@
+{
+  "includes": {
+    "color": [],
+    "etoolbox": [],
+    "kvoptions": [],
+    "needspace": [],
+    "zref-abspage": [],
+    "xcolor": [
+      "xcolor"
+    ],
+    "tikz": [
+      "tikz",
+      "TikZ",
+      "framemethod=tikz",
+      "framemethod=pgf",
+      "framemethod=1"
+    ],
+    "pstricks": [
+      "pstricks",
+      "PSTricks",
+      "framemethod=pstricks",
+      "framemethod=ps",
+      "framemethod=postscript",
+      "framemethod=2"
+    ]
+  },
+  "macros": {
+    "newmdenv{}": {
+      "snippet": "newmdenv{${1:envname}}"
+    },
+    "newmdenv[]{}": {
+      "snippet": "newmdenv[${2:options}]{${1:envname}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "renewmdenv{}": {
+      "snippet": "renewmdenv{${1:envname}}"
+    },
+    "renewmdenv[]{}": {
+      "snippet": "renewmdenv[${2:options}]{${1:envname}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "surroundwithmdframed{}": {
+      "snippet": "surroundwithmdframed{${1:env}}"
+    },
+    "surroundwithmdframed[]{}": {
+      "snippet": "surroundwithmdframed[${2:options}]{${1:env}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mdflength{}": {
+      "snippet": "mdflength{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "mdfsetup{}": {
+      "snippet": "mdfsetup{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mdfdefinestyle{}{}": {
+      "snippet": "mdfdefinestyle{${1:style name}}{${2:options}}"
+    },
+    "mdfapptodefinestyle{}{}": {
+      "snippet": "mdfapptodefinestyle{${1:style name}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "mdfsubtitle{}": {
+      "snippet": "mdfsubtitle{${1:subtitle}}"
+    },
+    "mdfsubtitle[]{}": {
+      "snippet": "mdfsubtitle[${2:options}]{${1:subtitle}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mdfsubsubtitle{}": {
+      "snippet": "mdfsubsubtitle{${1:subtitle}}"
+    },
+    "mdfsubsubtitle[]{}": {
+      "snippet": "mdfsubsubtitle[${2:options}]{${1:subtitle}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "newmdtheoremenv[]{}[]{}": {
+      "snippet": "newmdtheoremenv[${3:options}]{${1:envname}}[${4:numbered like}]{${2:caption}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "newmdtheoremenv[]{}{}": {
+      "snippet": "newmdtheoremenv[${3:options}]{${1:envname}}{${2:caption}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "newmdtheoremenv[]{}{}[]": {
+      "snippet": "newmdtheoremenv[${3:options}]{${1:envname}}{${2:caption}}[${4:within}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "newmdtheoremenv{}[]{}": {
+      "snippet": "newmdtheoremenv{${1:envname}}[${2:numbered like}]{${3:caption}}"
+    },
+    "newmdtheoremenv{}{}": {
+      "snippet": "newmdtheoremenv{${1:envname}}{${2:caption}}"
+    },
+    "newmdtheoremenv{}{}[]": {
+      "snippet": "newmdtheoremenv{${1:envname}}{${2:caption}}[${3:within}]"
+    },
+    "mdtheorem[]{}[]{}": {
+      "snippet": "mdtheorem[${3:options}]{${1:envname}}[${4:numbered like}]{${2:caption}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mdtheorem[]{}{}": {
+      "snippet": "mdtheorem[${3:options}]{${1:envname}}{${2:caption}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mdtheorem[]{}{}[]": {
+      "snippet": "mdtheorem[${3:options}]{${1:envname}}{${2:caption}}[${4:within}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mdtheorem{}[]{}": {
+      "snippet": "mdtheorem{${1:envname}}[${2:numbered like}]{${3:caption}}"
+    },
+    "mdtheorem{}{}": {
+      "snippet": "mdtheorem{${1:envname}}{${2:caption}}"
+    },
+    "mdtheorem{}{}[]": {
+      "snippet": "mdtheorem{${1:envname}}{${2:caption}}[${3:within}]"
+    },
+    "mdfsplitboxwidth": {},
+    "mdfsplitboxtotalwidth": {},
+    "mdfsplitboxheight": {},
+    "mdfsplitboxdepth": {},
+    "mdfsplitboxtotalheight": {},
+    "mdfframetitleboxwidth": {},
+    "mdfframetitleboxtotalwidth": {},
+    "mdfframetitleboxheight": {},
+    "mdfframetitleboxdepth": {},
+    "mdfframetitleboxtotalheight": {},
+    "mdffootnoteboxwidth": {},
+    "mdffootnoteboxtotalwidth": {},
+    "mdffootnoteboxheight": {},
+    "mdffootnoteboxdepth": {},
+    "mdffootnoteboxtotalheight": {},
+    "mdftotallinewidth": {},
+    "mdfboundingboxwidth": {},
+    "mdfboundingboxtotalwidth": {},
+    "mdfboundingboxheight": {},
+    "mdfboundingboxdepth": {},
+    "mdfboundingboxtotalheight": {},
+    "mdfsubtitleheight": {},
+    "mdfsubsubtitleheight": {},
+    "themdfcountframes": {},
+    "mdfframedtitleenv{}": {
+      "snippet": "mdfframedtitleenv{${1:text}}"
+    },
+    "mdversion": {},
+    "mdframedpackagename": {},
+    "mdfmaindate": {},
+    "mdfrevision": {}
+  },
+  "envs": {
+    "mdframed": {},
+    "mdframed[]": {
+      "name": "mdframed",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [
+    "xcolor",
+    "framemethod="
+  ],
+  "keyvals": [
+    [
+      "extratopheight=",
+      "footenotedistance=",
+      "frametitleaboveskip=",
+      "frametitlebelowskip=",
+      "frametitleleftmargin=",
+      "frametitlerightmargin=",
+      "frametitlerulewidth=",
+      "innerbottommargin=",
+      "innerleftmargin=",
+      "innerlinewidth=",
+      "innermargin=",
+      "innerrightmargin=",
+      "innertopmargin=",
+      "leftmargin=",
+      "linewidth=",
+      "middlelinewidth=",
+      "needspace=",
+      "outerlinewidth=",
+      "outermargin=",
+      "rightmargin=",
+      "roundcorner=",
+      "shadowsize=",
+      "skipabove=",
+      "skipbelow=",
+      "splitbottomskip=",
+      "splittopskip=",
+      "subsubtitleabovelinewidth=",
+      "subsubtitleaboveskip=",
+      "subsubtitlebelowlinewidth=",
+      "subsubtitlebelowskip=",
+      "subsubtitleinneraboveskip=",
+      "subsubtitleinnerbelowskip=",
+      "subtitleabovelinewidth=",
+      "subtitleaboveskip=",
+      "subtitlebelowlinewidth=",
+      "subtitlebelowskip=",
+      "subtitleinneraboveskip=",
+      "subtitleinnerbelowskip=",
+      "userdefinedwidth=",
+      "afterbreak=${1:code}",
+      "afterlastframe=${1:code}",
+      "aftersingleframe=${1:code}",
+      "alignment=",
+      "backgroundcolor=",
+      "beforebreak=${1:code}",
+      "beforelastframe=${1:code}",
+      "beforesingleframe=${1:code}",
+      "defaultunit=",
+      "endcode=${1:code}",
+      "endinnercode=${1:code}",
+      "extra=${1:code}",
+      "firstextra=${1:code}",
+      "firstframetitle={${1:text}}",
+      "font=${1:font commands}",
+      "fontcolor=",
+      "framefoot=${1:code}",
+      "frametitle={${1:text}}",
+      "frametitlealignment",
+      "frametitlebackgroundcolor=",
+      "frametitlefont=${1:font commands}",
+      "frametitlefontcolor=",
+      "frametitlerulecolor=",
+      "frametitlesettings=${1:code}",
+      "innerlinecolor=",
+      "lastframefoot=${1:code}",
+      "linecolor=",
+      "middleextra=${1:code}",
+      "middlelinecolor=",
+      "outerlinecolor=",
+      "printheight=",
+      "psroundlinecolor=",
+      "secondextra=${1:code}",
+      "settings=${1:code}",
+      "shadowcolor=",
+      "singleextra=${1:code}",
+      "startcode=${1:code}",
+      "startinnercode=${1:code}",
+      "subsubtitleabovelinecolor=",
+      "subsubtitlebackgroundcolor=",
+      "subsubtitlebelowlinecolor=",
+      "subsubtitlefont=${1:font commands}",
+      "subtitleabovelinecolor=",
+      "subtitlebackgroundcolor=",
+      "subtitlebelowlinecolor=",
+      "subtitlefont=${1:font commands}",
+      "theoremcountersep=${1:separator}",
+      "theoremseparator=${1:separator}",
+      "theoremspace=${1:space cmd}",
+      "theoremtitlefont=${1:font commands}",
+      "bottomline",
+      "draft",
+      "everyline",
+      "footnoteinside",
+      "frametitlebottomline",
+      "frametitleleftline",
+      "frametitlerightline",
+      "frametitlerule",
+      "frametitletopline",
+      "hidealllines",
+      "ignorelastdescenders",
+      "leftline",
+      "ntheorem",
+      "repeatframetitle",
+      "rightline",
+      "shadow",
+      "subsubtitleaboveline",
+      "subsubtitlebelowline",
+      "subtitleaboveline",
+      "subtitlebelowline",
+      "suppressfirstparskip",
+      "topline",
+      "usetwoside",
+      "align=",
+      "tikzsetting={${1:TikZ keys}}",
+      "apptotikzsetting=${1:code}",
+      "pstrickssetting={${1:pstricks keys}}",
+      "pstrickappsetting=${1:code}",
+      "style=${1:style name}"
+    ],
+    [
+      "extratopheight",
+      "footenotedistance",
+      "frametitleaboveskip",
+      "frametitlebelowskip",
+      "frametitleleftmargin",
+      "frametitlerightmargin",
+      "frametitlerulewidth",
+      "innerbottommargin",
+      "innerleftmargin",
+      "innerlinewidth",
+      "innermargin",
+      "innerrightmargin",
+      "innertopmargin",
+      "leftmargin",
+      "linewidth",
+      "middlelinewidth",
+      "needspace",
+      "outerlinewidth",
+      "outermargin",
+      "rightmargin",
+      "roundcorner",
+      "shadowsize",
+      "skipabove",
+      "skipbelow",
+      "splitbottomskip",
+      "splittopskip",
+      "subsubtitleabovelinewidth",
+      "subsubtitleaboveskip",
+      "subsubtitlebelowlinewidth",
+      "subsubtitlebelowskip",
+      "subsubtitleinneraboveskip",
+      "subsubtitleinnerbelowskip",
+      "subtitleabovelinewidth",
+      "subtitleaboveskip",
+      "subtitlebelowlinewidth",
+      "subtitlebelowskip",
+      "subtitleinneraboveskip",
+      "subtitleinnerbelowskip",
+      "userdefinedwidth"
+    ]
+  ]
+}

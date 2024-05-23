@@ -1,0 +1,576 @@
+{
+  "includes": {
+    "tikz": [],
+    "xkeyval": [],
+    "etoolbox": [],
+    "tikzlibrarycalc": [],
+    "tikzlibraryintersections": [],
+    "tikzlibrarypatterns": [],
+    "booktabs": [],
+    "xltabular": [],
+    "multicol": [],
+    "adjustbox": []
+  },
+  "macros": {
+    "tsFullSymbology": {},
+    "tsSymbol[]{}": {
+      "snippet": "tsSymbol[${2:width}]{${1:symbol name}}"
+    },
+    "maintrack": {},
+    "secondarytrack": {},
+    "sidetrack": {},
+    "tracklabel": {},
+    "bufferstop[]": {
+      "snippet": "bufferstop[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "trackclosure": {},
+    "turnout[]": {
+      "snippet": "turnout[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "crossing[]": {
+      "snippet": "crossing[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "slipturnout[]": {
+      "snippet": "slipturnout[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "derailer[]": {
+      "snippet": "derailer[${1:options}]",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "parkedvehicles[]": {
+      "snippet": "parkedvehicles[${1:options}]",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "shunting[]": {
+      "snippet": "shunting[${1:options}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "train[]": {
+      "snippet": "train[${1:options}]",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "signal[]": {
+      "snippet": "signal[${1:options}]",
+      "keyvalindex": 8,
+      "keyvalpos": 0
+    },
+    "distantsignal[]": {
+      "snippet": "distantsignal[${1:options}]",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "speedsignal[]": {
+      "snippet": "speedsignal[${1:options}]",
+      "keyvalindex": 10,
+      "keyvalpos": 0
+    },
+    "speedsign[]": {
+      "snippet": "speedsign[${1:options}]",
+      "keyvalindex": 10,
+      "keyvalpos": 0
+    },
+    "blocksignal[]": {
+      "snippet": "blocksignal[${1:options}]",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "routesignal[]": {
+      "snippet": "routesignal[${1:options}]",
+      "keyvalindex": 11,
+      "keyvalpos": 0
+    },
+    "shuntsignal[]": {
+      "snippet": "shuntsignal[${1:options}]",
+      "keyvalindex": 12,
+      "keyvalpos": 0
+    },
+    "shuntlimit[]": {
+      "snippet": "shuntlimit[${1:options}]",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "berthsignal[]": {
+      "snippet": "berthsignal[${1:options}]",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "berthsign[]": {
+      "snippet": "berthsign[${1:options}]",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "viewpoint[]": {
+      "snippet": "viewpoint[${1:options}]",
+      "keyvalindex": 13,
+      "keyvalpos": 0
+    },
+    "clearingpoint[]": {
+      "snippet": "clearingpoint[${1:options}]",
+      "keyvalindex": 14,
+      "keyvalpos": 0
+    },
+    "standardclearing[]": {
+      "snippet": "standardclearing[${1:options}]",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "blockclearing[]": {
+      "snippet": "blockclearing[${1:options}]",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "routeclearing[]": {
+      "snippet": "routeclearing[${1:options}]",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "brakingpoint[]": {
+      "snippet": "brakingpoint[${1:options}]",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "movementauthority[]": {
+      "snippet": "movementauthority[${1:options}]",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "dangerpoint[]": {
+      "snippet": "dangerpoint[${1:options}]",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "route[]": {
+      "snippet": "route[${1:options}]",
+      "keyvalindex": 16,
+      "keyvalpos": 0
+    },
+    "directioncontrol[]": {
+      "snippet": "directioncontrol[${1:options}]",
+      "keyvalindex": 17,
+      "keyvalpos": 0
+    },
+    "balise[]": {
+      "snippet": "balise[${1:options}]",
+      "keyvalindex": 18,
+      "keyvalpos": 0
+    },
+    "transmitter[]": {
+      "snippet": "transmitter[${1:options}]",
+      "keyvalindex": 19,
+      "keyvalpos": 0
+    },
+    "trackloop[]": {
+      "snippet": "trackloop[${1:options}]",
+      "keyvalindex": 20,
+      "keyvalpos": 0
+    },
+    "platform[]": {
+      "snippet": "platform[${1:options}]",
+      "keyvalindex": 21,
+      "keyvalpos": 0
+    },
+    "levelcrossing[]": {
+      "snippet": "levelcrossing[${1:options}]",
+      "keyvalindex": 22,
+      "keyvalpos": 0
+    },
+    "bridge[]": {
+      "snippet": "bridge[${1:options}]",
+      "keyvalindex": 23,
+      "keyvalpos": 0
+    },
+    "interlocking": {},
+    "hump": {},
+    "pylon[]": {
+      "snippet": "pylon[${1:options}]",
+      "keyvalindex": 24,
+      "keyvalpos": 0
+    },
+    "distantpoweroff[]": {
+      "snippet": "distantpoweroff[${1:options}]",
+      "keyvalindex": 25,
+      "keyvalpos": 0
+    },
+    "poweroff[]": {
+      "snippet": "poweroff[${1:options}]",
+      "keyvalindex": 25,
+      "keyvalpos": 0
+    },
+    "poweron[]": {
+      "snippet": "poweron[${1:options}]",
+      "keyvalindex": 25,
+      "keyvalpos": 0
+    },
+    "distantpantographdown[]": {
+      "snippet": "distantpantographdown[${1:options}]",
+      "keyvalindex": 25,
+      "keyvalpos": 0
+    },
+    "pantographdown[]": {
+      "snippet": "pantographdown[${1:options}]",
+      "keyvalindex": 25,
+      "keyvalpos": 0
+    },
+    "pantographup[]": {
+      "snippet": "pantographup[${1:options}]",
+      "keyvalindex": 25,
+      "keyvalpos": 0
+    },
+    "wirelimit[]": {
+      "snippet": "wirelimit[${1:options}]",
+      "keyvalindex": 25,
+      "keyvalpos": 0
+    },
+    "trackdistance": {},
+    "berth[]": {
+      "snippet": "berth[${1:options}]",
+      "keyvalindex": 26,
+      "keyvalpos": 0
+    },
+    "measureline": {},
+    "hectometer[]": {
+      "snippet": "hectometer[${1:options}]",
+      "keyvalindex": 27,
+      "keyvalpos": 0
+    },
+    "trackmarking[]": {
+      "snippet": "trackmarking[${1:color}]"
+    },
+    "background": {},
+    "barrier": {},
+    "foreground": {},
+    "objectwidth": {},
+    "roadwidth": {},
+    "shiftleft": {},
+    "shiftright": {},
+    "side": {},
+    "sidefactor": {},
+    "trafficfactor": {},
+    "trafficpractice": {},
+    "align": {},
+    "coordcommand": {},
+    "facefactor": {},
+    "labelcommand": {},
+    "labelcontent": {},
+    "labelcoord": {},
+    "signalcolor": {},
+    "basecoord": {},
+    "hectometercolor": {},
+    "objectlength": {},
+    "backwardpoints": {},
+    "branch": {},
+    "branchfactor": {},
+    "forwardpoints": {},
+    "friction": {},
+    "labelcontentleft": {},
+    "labelcontentright": {},
+    "operationmode": {},
+    "patterntype": {},
+    "points": {},
+    "along": {},
+    "alongswitched": {},
+    "distantspeed": {},
+    "face": {},
+    "oppose": {},
+    "opposeswitched": {},
+    "speed": {},
+    "trafficfactorTEST": {},
+    "trafficfactorX": {},
+    "type": {},
+    "baseX": {},
+    "baseY": {},
+    "bendfactor": {},
+    "bendleftcoord": {},
+    "bendlength": {},
+    "bendrightcoord": {},
+    "bendrightX": {},
+    "bendrightY": {},
+    "bendX": {},
+    "bendY": {},
+    "frontBendfactor": {},
+    "frontBendX": {},
+    "labelalign": {},
+    "labelanchor": {},
+    "rearBendfactor": {},
+    "rearBendX": {},
+    "rearBendY": {},
+    "trainrun": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "face=",
+      "forward",
+      "backward",
+      "friction=",
+      "foreground="
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "branch=",
+      "operation=",
+      "fouling point",
+      "points=",
+      "shift label={${1:(x,y)}}",
+      "foreground="
+    ],
+    [
+      "branch=",
+      "fouling point",
+      "shift label={${1:(x,y)}}",
+      "foreground="
+    ],
+    [
+      "branch=",
+      "slip=",
+      "operation=",
+      "fouling point",
+      "forward points=",
+      "backwards points=",
+      "shift label={${1:(x,y)}}",
+      "foreground="
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "branch=",
+      "shift label={${1:(x,y)}}",
+      "foreground="
+    ],
+    [
+      "length=",
+      "label at={${1:(x,y)}}",
+      "label align=",
+      "foreground=",
+      "background="
+    ],
+    [
+      "face=",
+      "movement",
+      "forward",
+      "backward",
+      "operation=",
+      "bend left at={${1:(x,y)}}",
+      "bend right at={${1:(x,y)}}",
+      "label at={${1:(x,y)}}",
+      "label align=",
+      "foreground=",
+      "background="
+    ],
+    [
+      "face=",
+      "run=",
+      "forward",
+      "backward",
+      "length=",
+      "operation=",
+      "ghost",
+      "bend left at={${1:(x,y)}}",
+      "bend right at={${1:(x,y)}}",
+      "shift label={${1:(x,y)}}",
+      "label align=",
+      "foreground=",
+      "background="
+    ],
+    [
+      "distant",
+      "speed type",
+      "block",
+      "route",
+      "shunt limit",
+      "shunting",
+      "berth",
+      "face=",
+      "forward",
+      "backward",
+      "speed=",
+      "distant speed=",
+      "locked",
+      "position=",
+      "shift label={${1:(x,y)}}",
+      "foreground=",
+      "rotate=${1:degrees}"
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "position=",
+      "shift label={${1:(x,y)}}",
+      "foreground=",
+      "rotate=${1:degrees}"
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "position=",
+      "shift label={${1:(x,y)}}",
+      "foreground=",
+      "rotate=${1:degrees}",
+      "speed="
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "position=",
+      "shift label={${1:(x,y)}}",
+      "foreground=",
+      "rotate=${1:degrees}",
+      "speed=",
+      "locked"
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "position=",
+      "shift label={${1:(x,y)}}",
+      "foreground=",
+      "rotate=${1:degrees}",
+      "locked"
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "position=",
+      "foreground=",
+      "rotate=${1:degrees}"
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "position=",
+      "foreground=",
+      "rotate=${1:degrees}",
+      "standard",
+      "block",
+      "route",
+      "shift label={${1:(x,y)}}"
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "bidirectional",
+      "position=",
+      "shift label={${1:(x,y)}}",
+      "foreground="
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "background="
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "background=",
+      "bidirectional"
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "switched",
+      "shift label={${1:(x,y)}}",
+      "foreground=",
+      "along={${1:list of integers}}",
+      "oppose={${1:list of integers}}",
+      "along switched={${1:list of integers}}",
+      "oppose switched={${1:list of integers}}",
+      "index"
+    ],
+    [
+      "face=",
+      "type=",
+      "forward",
+      "backward",
+      "bidirectional",
+      "position=",
+      "shift label={${1:(x,y)}}",
+      "foreground="
+    ],
+    [
+      "position=",
+      "shift label={${1:(x,y)}}",
+      "foreground="
+    ],
+    [
+      "side=",
+      "length=",
+      "width=",
+      "foreground="
+    ],
+    [
+      "barrier=",
+      "side=",
+      "road width=",
+      "width=",
+      "no road",
+      "foreground="
+    ],
+    [
+      "length=",
+      "width=",
+      "shift left=",
+      "shift right=",
+      "side=",
+      "foreground=",
+      "background=",
+      "no background"
+    ],
+    [
+      "side=",
+      "foreground=",
+      "background="
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "bidirectional",
+      "position=",
+      "signal color=",
+      "shift label={${1:(x,y)}}",
+      "foreground=",
+      "background="
+    ],
+    [
+      "face=",
+      "forward",
+      "backward",
+      "bidirectional",
+      "length=",
+      "position=",
+      "foreground="
+    ],
+    [
+      "hectometer base={${1:(x,y)}}",
+      "orientation=",
+      "shift label={${1:(x,y)}}",
+      "hectometer color="
+    ]
+  ]
+}

@@ -1,0 +1,1330 @@
+{
+  "includes": {},
+  "macros": {
+    "ActivateGenericHook{}": {
+      "snippet": "ActivateGenericHook{${1:hook}}"
+    },
+    "AddToHook{}[]{}": {
+      "snippet": "AddToHook{${1:hook}}[${2:label}]{${3:code}}"
+    },
+    "AddToHook{}{}": {
+      "snippet": "AddToHook{${1:hook}}{${2:code}}"
+    },
+    "AddToHookNext{}{}": {
+      "snippet": "AddToHookNext{${1:hook}}{${2:code}}"
+    },
+    "AddToHookNextWithArguments{}{}": {
+      "snippet": "AddToHookNextWithArguments{${1:hook}}{${2:code}}"
+    },
+    "AddToHookWithArguments{}[]{}": {
+      "snippet": "AddToHookWithArguments{${1:hook}}[${2:label}]{${3:code}}"
+    },
+    "AddToHookWithArguments{}{}": {
+      "snippet": "AddToHookWithArguments{${1:hook}}{${2:code}}"
+    },
+    "AddToNoCaseChangeList{}": {
+      "snippet": "AddToNoCaseChangeList{${1:command}}"
+    },
+    "AfterEndEnvironment[]{}{}": {
+      "snippet": "AfterEndEnvironment[${3:label}]{${1:environment}}{${2:code}}"
+    },
+    "AfterEndEnvironment{}{}": {
+      "snippet": "AfterEndEnvironment{${1:environment}}{${2:code}}"
+    },
+    "AssignSocketPlug{}{}": {
+      "snippet": "AssignSocketPlug{${1:socket}}{${2:socket plug}}"
+    },
+    "AtBeginDocument[]{}": {
+      "snippet": "AtBeginDocument[${2:label}]{${1:code}}"
+    },
+    "AtBeginDocument{}": {
+      "snippet": "AtBeginDocument{${1:code}}"
+    },
+    "AtBeginDvi{}": {
+      "snippet": "AtBeginDvi{${1:code}}"
+    },
+    "AtBeginEnvironment[]{}{}": {
+      "snippet": "AtBeginEnvironment[${3:label}]{${1:environment}}{${2:code}}"
+    },
+    "AtBeginEnvironment{}{}": {
+      "snippet": "AtBeginEnvironment{${1:environment}}{${2:code}}"
+    },
+    "AtEndDocument[]{}": {
+      "snippet": "AtEndDocument[${2:label}]{${1:code}}"
+    },
+    "AtEndDocument{}": {
+      "snippet": "AtEndDocument{${1:code}}"
+    },
+    "AtEndDvi{}": {
+      "snippet": "AtEndDvi{${1:code}}"
+    },
+    "AtEndEnvironment[]{}{}": {
+      "snippet": "AtEndEnvironment[${3:label}]{${1:environment}}{${2:code}}"
+    },
+    "AtEndEnvironment{}{}": {
+      "snippet": "AtEndEnvironment{${1:environment}}{${2:code}}"
+    },
+    "AtEndOfClass{}": {
+      "snippet": "AtEndOfClass{${1:code}}"
+    },
+    "AtEndOfPackage{}": {
+      "snippet": "AtEndOfPackage{${1:code}}"
+    },
+    "BCPdata{}": {
+      "snippet": "BCPdata{${1:keywords}}"
+    },
+    "BeforeBeginEnvironment[]{}{}": {
+      "snippet": "BeforeBeginEnvironment[${3:label}]{${1:environment}}{${2:code}}"
+    },
+    "BeforeBeginEnvironment{}{}": {
+      "snippet": "BeforeBeginEnvironment{${1:environment}}{${2:code}}"
+    },
+    "BooleanFalse": {},
+    "BooleanTrue": {},
+    "CaseSwitch{}{}{}{}": {
+      "snippet": "CaseSwitch{${1:normal}}{${2:upper}}{${3:lower}}{${4:title}}"
+    },
+    "CheckCommand*{}[][]{}": {
+      "snippet": "CheckCommand*{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "CheckCommand*{}[]{}": {
+      "snippet": "CheckCommand*{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "CheckCommand*{}{}": {
+      "snippet": "CheckCommand*{${1:cmd}}{${2:def}}"
+    },
+    "CheckCommand{}[][]{}": {
+      "snippet": "CheckCommand{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "CheckCommand{}[]{}": {
+      "snippet": "CheckCommand{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "CheckCommand{}{}": {
+      "snippet": "CheckCommand{${1:cmd}}{${2:def}}"
+    },
+    "CheckEncodingSubset{}{}{}{}{}": {
+      "snippet": "CheckEncodingSubset{${1:text cmd}}{${2:encoding}}{${3:error}}{${4:subset id}}{${5:symbol}}"
+    },
+    "ClassError{}{}{}": {
+      "snippet": "ClassError{${1:class name}}{${2:error text}}{${3:help text}}"
+    },
+    "ClassInfo{}{}": {
+      "snippet": "ClassInfo{${1:class name}}{${2:info text}}"
+    },
+    "ClassNote{}{}": {
+      "snippet": "ClassNote{${1:class name}}{${2:note text}}"
+    },
+    "ClassNoteNoLine{}{}": {
+      "snippet": "ClassNoteNoLine{${1:class name}}{${2:note text}}"
+    },
+    "ClassWarning{}{}": {
+      "snippet": "ClassWarning{${1:class name}}{${2:warning text}}"
+    },
+    "ClassWarningNoLine{}{}": {
+      "snippet": "ClassWarningNoLine{${1:class name}}{${2:warning text}}"
+    },
+    "ClearHookNext{}": {
+      "snippet": "ClearHookNext{${1:hook}}"
+    },
+    "ClearHookRule{}{}{}": {
+      "snippet": "ClearHookRule{${1:hook}}{${2:label1}}{${3:label2}}"
+    },
+    "CurrentFile": {},
+    "CurrentFilePath": {},
+    "CurrentFilePathUsed": {},
+    "CurrentFileUsed": {},
+    "CurrentOption": {},
+    "DebugHooksOff": {},
+    "DebugHooksOn": {},
+    "DebugMarksOff": {},
+    "DebugMarksOn": {},
+    "DebugShipoutsOff": {},
+    "DebugShipoutsOn": {},
+    "DebugSocketsOff": {},
+    "DebugSocketsOn": {},
+    "DeclareCaseChangeEquivalent{}{}": {
+      "snippet": "DeclareCaseChangeEquivalent{${1:cmd}}{${2:replacement text}}"
+    },
+    "DeclareCommandCopy{}{}": {
+      "snippet": "DeclareCommandCopy{${1:cmd}}{${2:copied cmd}}"
+    },
+    "DeclareCurrentRelease{}{}": {
+      "snippet": "DeclareCurrentRelease{${1:name}}{${2:date}}"
+    },
+    "DeclareDefaultHookRule{}{}{}": {
+      "snippet": "DeclareDefaultHookRule{${1:label1}}{${2:relation}}{${3:label2}}"
+    },
+    "DeclareDocumentCommand{}{}{}": {
+      "snippet": "DeclareDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "DeclareDocumentEnvironment{}{}{}{}": {
+      "snippet": "DeclareDocumentEnvironment{${1:envname}}{${2:xargs}}{${3:begdef}}{${4:enddef}}"
+    },
+    "DeclareEmphSequence{}": {
+      "snippet": "DeclareEmphSequence{${1:font cmd list}}"
+    },
+    "DeclareEncodingSubset{}{}{}": {
+      "snippet": "DeclareEncodingSubset{${1:encoding}}{${2:family}}{${3:subset number}}"
+    },
+    "DeclareEnvironmentCopy{}{}": {
+      "snippet": "DeclareEnvironmentCopy{${1:envname}}{${2:copied envname}}"
+    },
+    "DeclareErrorFont{}{}{}{}{}": {
+      "snippet": "DeclareErrorFont{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}"
+    },
+    "DeclareExpandableDocumentCommand{}{}{}": {
+      "snippet": "DeclareExpandableDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "DeclareFixedFont{}{}{}{}{}{}": {
+      "snippet": "DeclareFixedFont{${1:cmd}}{${2:encoding}}{${3:family}}{${4:series}}{${5:shape}}{${6:size}}"
+    },
+    "DeclareFontEncoding{}{}{}": {
+      "snippet": "DeclareFontEncoding{${1:encoding}}{${2:text-settings}}{${3:math-settings}}"
+    },
+    "DeclareFontEncodingDefaults{}{}": {
+      "snippet": "DeclareFontEncodingDefaults{${1:text-settings}}{${2:math-settings}}"
+    },
+    "DeclareFontFamily{}{}{}": {
+      "snippet": "DeclareFontFamily{${1:encoding}}{${2:family}}{${3:loading-settings}}"
+    },
+    "DeclareFontFamilySubstitution{}{}{}": {
+      "snippet": "DeclareFontFamilySubstitution{${1:encoding}}{${2:family1}}{${3:family2}}"
+    },
+    "DeclareFontSeriesChangeRule{}{}{}{}": {
+      "snippet": "DeclareFontSeriesChangeRule{${1:series1}}{${2:series2}}{${3:result1}}{${4:result2}}"
+    },
+    "DeclareFontSeriesDefault[]{}{}": {
+      "snippet": "DeclareFontSeriesDefault[${3:family}]{${1:face}}{${2:series name}}"
+    },
+    "DeclareFontSeriesDefault{}{}": {
+      "snippet": "DeclareFontSeriesDefault{${1:face}}{${2:series name}}"
+    },
+    "DeclareFontShape{}{}{}{}{}{}": {
+      "snippet": "DeclareFontShape{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:loading-info}}{${6:loading-settings}}"
+    },
+    "DeclareFontShapeChangeRule{}{}{}{}": {
+      "snippet": "DeclareFontShapeChangeRule{${1:shape1}}{${2:shape2}}{${3:result1}}{${4:result2}}"
+    },
+    "DeclareFontSubstitution{}{}{}{}": {
+      "snippet": "DeclareFontSubstitution{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+    },
+    "DeclareHookRule{}{}{}{}": {
+      "snippet": "DeclareHookRule{${1:hook}}{${2:label1}}{${3:relation}}{${4:label2}}"
+    },
+    "DeclareKeys[]{}": {
+      "snippet": "DeclareKeys[${2:family}]{${1:declarations}}"
+    },
+    "DeclareKeys{}": {
+      "snippet": "DeclareKeys{${1:declarations}}"
+    },
+    "DeclareLowercaseMapping[]{}{}": {
+      "snippet": "DeclareLowercaseMapping[${3:locale}]{${1:codepoint}}{${2:output}}"
+    },
+    "DeclareLowercaseMapping{}{}": {
+      "snippet": "DeclareLowercaseMapping{${1:codepoint}}{${2:output}}"
+    },
+    "DeclareMathAccent{}{}{}{}": {
+      "snippet": "DeclareMathAccent{${1:cmd}}{${2:type}}{${3:sym-font}}{${4:slot}}"
+    },
+    "DeclareMathAlphabet{}{}{}{}{}": {
+      "snippet": "DeclareMathAlphabet{${1:math-alph}}{${2:encoding}}{${3:family}}{${4:series}}{${5:shape}}"
+    },
+    "DeclareMathDelimiter{}{}{}{}{}{}": {
+      "snippet": "DeclareMathDelimiter{${1:cmd}}{${2:type}}{${3:sym-font-1}}{${4:slot-1}}{${5:sym-font-2}}{${6:slot-2}}"
+    },
+    "DeclareMathRadical{}{}{}{}{}": {
+      "snippet": "DeclareMathRadical{${1:cmd}}{${2:sym-font-1}}{${3:slot-1}}{${4:sym-font-2}}{${5:slot-2}}"
+    },
+    "DeclareMathSizes*{}{}{}{}": {
+      "snippet": "DeclareMathSizes*{${1:t-size}}{${2:mt-size}}{${3:s-size}}{${4:ss-size}}"
+    },
+    "DeclareMathSizes{}{}{}{}": {
+      "snippet": "DeclareMathSizes{${1:t-size}}{${2:mt-size}}{${3:s-size}}{${4:ss-size}}"
+    },
+    "DeclareMathSymbol{}{}{}{}": {
+      "snippet": "DeclareMathSymbol{${1:cmd}}{${2:type}}{${3:sym-font}}{${4:slot}}"
+    },
+    "DeclareMathVersion{}": {
+      "snippet": "DeclareMathVersion{${1:version}}"
+    },
+    "DeclareOldFontCommand{}{}{}": {
+      "snippet": "DeclareOldFontCommand{${1:cmd}}{${2:text-switch}}{${3:math-switch}}"
+    },
+    "DeclareOption*{}": {
+      "snippet": "DeclareOption*{${1:code}}"
+    },
+    "DeclareOption{}{}": {
+      "snippet": "DeclareOption{${1:option}}{${2:code}}"
+    },
+    "DeclarePreloadSizes{}{}{}{}{}": {
+      "snippet": "DeclarePreloadSizes{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:sizes}}"
+    },
+    "DeclareRelease{}{}{}": {
+      "snippet": "DeclareRelease{${1:name}}{${2:date}}{${3:file name}}"
+    },
+    "DeclareRobustCommand*{}[][]{}": {
+      "snippet": "DeclareRobustCommand*{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "DeclareRobustCommand*{}[]{}": {
+      "snippet": "DeclareRobustCommand*{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "DeclareRobustCommand*{}{}": {
+      "snippet": "DeclareRobustCommand*{${1:cmd}}{${2:def}}"
+    },
+    "DeclareRobustCommand{}[][]{}": {
+      "snippet": "DeclareRobustCommand{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "DeclareRobustCommand{}[]{}": {
+      "snippet": "DeclareRobustCommand{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "DeclareRobustCommand{}{}": {
+      "snippet": "DeclareRobustCommand{${1:cmd}}{${2:def}}"
+    },
+    "DeclareSizeFunction{}{}": {
+      "snippet": "DeclareSizeFunction{${1:name}}{${2:code}}"
+    },
+    "DeclareSymbolFont{}{}{}{}{}": {
+      "snippet": "DeclareSymbolFont{${1:sym-font}}{${2:encoding}}{${3:family}}{${4:series}}{${5:shape}}"
+    },
+    "DeclareSymbolFontAlphabet{}{}": {
+      "snippet": "DeclareSymbolFontAlphabet{${1:math-alph}}{${2:sym-font}}"
+    },
+    "DeclareTextAccent{}{}{}": {
+      "snippet": "DeclareTextAccent{${1:cmd}}{${2:encoding}}{${3:slot}}"
+    },
+    "DeclareTextAccentDefault{}{}": {
+      "snippet": "DeclareTextAccentDefault{${1:cmd}}{${2:encoding}}"
+    },
+    "DeclareTextCommand{}{}[][]{}": {
+      "snippet": "DeclareTextCommand{${1:cmd}}{${2:encoding}}[${3:args}][${4:default}]{${5:definition}}"
+    },
+    "DeclareTextCommand{}{}[]{}": {
+      "snippet": "DeclareTextCommand{${1:cmd}}{${2:encoding}}[${3:args}]{${4:definition}}"
+    },
+    "DeclareTextCommand{}{}{}": {
+      "snippet": "DeclareTextCommand{${1:cmd}}{${2:encoding}}{${3:definition}}"
+    },
+    "DeclareTextCommandDefault{}{}": {
+      "snippet": "DeclareTextCommandDefault{${1:cmd}}{${2:definition}}"
+    },
+    "DeclareTextComposite{}{}{}{}": {
+      "snippet": "DeclareTextComposite{${1:cmd}}{${2:encoding}}{${3:argument}}{${4:text}}"
+    },
+    "DeclareTextCompositeCommand{}{}{}{}": {
+      "snippet": "DeclareTextCompositeCommand{${1:cmd}}{${2:encoding}}{${3:letter}}{${4:definition}}"
+    },
+    "DeclareTextFontCommand{}{}": {
+      "snippet": "DeclareTextFontCommand{${1:cmd}}{${2:font-switches}}"
+    },
+    "DeclareTextSymbol{}{}{}": {
+      "snippet": "DeclareTextSymbol{${1:cmd}}{${2:encoding}}{${3:slot}}"
+    },
+    "DeclareTextSymbolDefault{}{}": {
+      "snippet": "DeclareTextSymbolDefault{${1:cmd}}{${2:encoding}}"
+    },
+    "DeclareTitlecaseMapping[]{}{}": {
+      "snippet": "DeclareTitlecaseMapping[${3:locale}]{${1:codepoint}}{${2:output}}"
+    },
+    "DeclareTitlecaseMapping{}{}": {
+      "snippet": "DeclareTitlecaseMapping{${1:codepoint}}{${2:output}}"
+    },
+    "DeclareUnicodeCharacter{}{}": {
+      "snippet": "DeclareUnicodeCharacter{${1:hexadecimal}}{${2:definition}}"
+    },
+    "DeclareUnknownKeyHandler[]{}": {
+      "snippet": "DeclareUnknownKeyHandler[${2:family}]{${1:code}}"
+    },
+    "DeclareUnknownKeyHandler{}": {
+      "snippet": "DeclareUnknownKeyHandler{${1:code}}"
+    },
+    "DeclareUppercaseMapping[]{}{}": {
+      "snippet": "DeclareUppercaseMapping[${3:locale}]{${1:codepoint}}{${2:output}}"
+    },
+    "DeclareUppercaseMapping{}{}": {
+      "snippet": "DeclareUppercaseMapping{${1:codepoint}}{${2:output}}"
+    },
+    "DisableGenericHook{}": {
+      "snippet": "DisableGenericHook{${1:hook}}"
+    },
+    "DisableHook{}": {
+      "snippet": "DisableHook{${1:hook}}"
+    },
+    "DiscardShipoutBox": {},
+    "EndIncludeInRelease": {},
+    "EndModuleRelease": {},
+    "ExecuteOptions{}": {
+      "snippet": "ExecuteOptions{${1:optionlist}}"
+    },
+    "ExpandArgs{}": {
+      "snippet": "ExpandArgs{${1:spec}}"
+    },
+    "ExplSyntaxOff": {},
+    "ExplSyntaxOn": {},
+    "FirstMark[]{}": {
+      "snippet": "FirstMark[${2:region}]{${1:class}}"
+    },
+    "FirstMark{}": {
+      "snippet": "FirstMark{${1:class}}"
+    },
+    "GenericError{}{}{}{}": {
+      "snippet": "GenericError{${1:continuation}}{${2:message}}{${3:help location}}{${4:help info}}"
+    },
+    "GenericInfo{}{}": {
+      "snippet": "GenericInfo{${1:continuation}}{${2:message}}"
+    },
+    "GenericWarning{}{}": {
+      "snippet": "GenericWarning{${1:continuation}}{${2:message}}"
+    },
+    "IfBlankF{}{}": {
+      "snippet": "IfBlankF{${1:arg}}{${2:false code}}"
+    },
+    "IfBlankT{}{}": {
+      "snippet": "IfBlankT{${1:arg}}{${2:true code}}"
+    },
+    "IfBlankTF{}{}{}": {
+      "snippet": "IfBlankTF{${1:arg}}{${2:true code}}{${3:false code}}"
+    },
+    "IfBooleanF{}{}": {
+      "snippet": "IfBooleanF{${1:arg}}{${2:false code}}"
+    },
+    "IfBooleanT{}{}": {
+      "snippet": "IfBooleanT{${1:arg}}{${2:true code}}"
+    },
+    "IfBooleanTF{}{}{}": {
+      "snippet": "IfBooleanTF{${1:arg}}{${2:true code}}{${3:false code}}"
+    },
+    "IfClassAtLeastTF{}{}{}{}": {
+      "snippet": "IfClassAtLeastTF{${1:class}}{${2:date}}{${3:true code}}{${4:false code}}"
+    },
+    "IfClassLoadedTF{}{}{}": {
+      "snippet": "IfClassLoadedTF{${1:class}}{${2:true code}}{${3:false code}}"
+    },
+    "IfClassLoadedWithOptionsTF{}{}{}{}": {
+      "snippet": "IfClassLoadedWithOptionsTF{${1:class}}{${2:options}}{${3:true code}}{${4:false code}}"
+    },
+    "IfExplAtLeastTF{}{}{}": {
+      "snippet": "IfExplAtLeastTF{${1:date}}{${2:true code}}{${3:false code}}"
+    },
+    "IfFileAtLeastTF{}{}{}{}": {
+      "snippet": "IfFileAtLeastTF{${1:file}}{${2:date}}{${3:true code}}{${4:false code}}"
+    },
+    "IfFileExists{}{}{}": {
+      "snippet": "IfFileExists{${1:file}}{${2:true code}}{${3:false code}}"
+    },
+    "IfFontSeriesContextTF{}{}{}": {
+      "snippet": "IfFontSeriesContextTF{${1:face}}{${2:true code}}{${3:false code}}"
+    },
+    "IfFormatAtLeastTF{}{}{}": {
+      "snippet": "IfFormatAtLeastTF{${1:date}}{${2:true code}}{${3:false code}}"
+    },
+    "IfHookEmptyTF{}{}{}": {
+      "snippet": "IfHookEmptyTF{${1:hook}}{${2:true code}}{${3:false code}}"
+    },
+    "IfLabelExistTF{}{}{}": {
+      "snippet": "IfLabelExistTF{${1:label}}{${2:true code}}{${3:false code}}"
+    },
+    "IfMarksEqualTF[]{}{}{}{}{}": {
+      "snippet": "IfMarksEqualTF[${6:region}]{${1:class}}{${2:pos1}}{${3:pos2}}{${4:true code}}{${5:false code}}"
+    },
+    "IfMarksEqualTF{}{}{}{}{}": {
+      "snippet": "IfMarksEqualTF{${1:class}}{${2:pos1}}{${3:pos2}}{${4:true code}}{${5:false code}}"
+    },
+    "IfNoValueF{}{}": {
+      "snippet": "IfNoValueF{${1:arg}}{${2:ValueCode}}"
+    },
+    "IfNoValueT{}{}": {
+      "snippet": "IfNoValueT{${1:arg}}{${2:-NoValue-Code}}"
+    },
+    "IfNoValueTF{}{}{}": {
+      "snippet": "IfNoValueTF{${1:arg}}{${2:-NoValue-Code}}{${3:ValueCode}}"
+    },
+    "IfPackageAtLeastTF{}{}{}{}": {
+      "snippet": "IfPackageAtLeastTF{${1:package}}{${2:date}}{${3:true code}}{${4:false code}}"
+    },
+    "IfPackageLoadedTF{}{}{}": {
+      "snippet": "IfPackageLoadedTF{${1:package}}{${2:true code}}{${3:false code}}"
+    },
+    "IfPackageLoadedWithOptionsTF{}{}{}{}": {
+      "snippet": "IfPackageLoadedWithOptionsTF{${1:package}}{${2:options}}{${3:true code}}{${4:false code}}"
+    },
+    "IfPDFManagementActiveTF{}{}": {
+      "snippet": "IfPDFManagementActiveTF{${1:true code}}{${2:false code}}"
+    },
+    "IfPropertyExistTF{}{}{}": {
+      "snippet": "IfPropertyExistTF{${1:property}}{${2:true code}}{${3:false code}}"
+    },
+    "IfPropertyRecordedTF{}{}{}{}": {
+      "snippet": "IfPropertyRecordedTF{${1:label}}{${2:property}}{${3:true code}}{${4:false code}}"
+    },
+    "IfTargetDateBefore{}{}{}": {
+      "snippet": "IfTargetDateBefore{${1:date}}{${2:before code}}{${3:after code}}"
+    },
+    "IfValueF{}{}": {
+      "snippet": "IfValueF{${1:arg}}{${2:-NoValue-Code}}"
+    },
+    "IfValueT{}{}": {
+      "snippet": "IfValueT{${1:arg}}{${2:ValueCode}}"
+    },
+    "IfValueTF{}{}{}": {
+      "snippet": "IfValueTF{${1:arg}}{${2:ValueCode}}{${3:-NoValue-Code}}"
+    },
+    "IncludeInRelease{}{}{}": {
+      "snippet": "IncludeInRelease{${1:date}}{${2:command}}{${3:description}}"
+    },
+    "IndentBox": {},
+    "InputIfFileExists{}{}{}": {
+      "snippet": "InputIfFileExists{${1:file}}{${2:true code}}{${3:false code}}"
+    },
+    "InsertMark{}{}": {
+      "snippet": "InsertMark{${1:class}}{${2:text}}"
+    },
+    "LastDeclaredEncoding": {},
+    "LastMark[]{}": {
+      "snippet": "LastMark[${2:region}]{${1:class}}"
+    },
+    "LastMark{}": {
+      "snippet": "LastMark{${1:class}}"
+    },
+    "LaTeXReleaseInfo": {},
+    "LinkTargetOff": {},
+    "LinkTargetOn": {},
+    "LoadClass[]{}": {
+      "snippet": "LoadClass[${2:optionlist}]{${1:class}}"
+    },
+    "LoadClass[]{}[]": {
+      "snippet": "LoadClass[${2:optionlist}]{${1:class}}[${3:release}]"
+    },
+    "LoadClass{}": {
+      "snippet": "LoadClass{${1:class}}"
+    },
+    "LoadClass{}[]": {
+      "snippet": "LoadClass{${1:class}}[${2:release}]"
+    },
+    "LoadClassWithOptions{}": {
+      "snippet": "LoadClassWithOptions{${1:class}}"
+    },
+    "LoadClassWithOptions{}[]": {
+      "snippet": "LoadClassWithOptions{${1:class}}[${2:release}]"
+    },
+    "LoadFontDefinitionFile{}{}": {
+      "snippet": "LoadFontDefinitionFile{${1:encoding}}{${2:family}}"
+    },
+    "LogHook{}": {
+      "snippet": "LogHook{${1:hook}}"
+    },
+    "LogSocket{}": {
+      "snippet": "LogSocket{${1:socket}}"
+    },
+    "MakeLinkTarget*{}": {
+      "snippet": "MakeLinkTarget*{${1:target name}}"
+    },
+    "MakeLinkTarget[]{}": {
+      "snippet": "MakeLinkTarget[${2:prefix}]{${1:counter}}"
+    },
+    "MakeLinkTarget{}": {
+      "snippet": "MakeLinkTarget{${1:counter}}"
+    },
+    "MakeRobust{}": {
+      "snippet": "MakeRobust{${1:cmd}}"
+    },
+    "MessageBreak": {},
+    "NeedsTeXFormat{}": {
+      "snippet": "NeedsTeXFormat{${1:format}}"
+    },
+    "NeedsTeXFormat{}[]": {
+      "snippet": "NeedsTeXFormat{${1:format}}[${2:release}]"
+    },
+    "NewCommandCopy{}{}": {
+      "snippet": "NewCommandCopy{${1:cmd}}{${2:copied cmd}}"
+    },
+    "NewDocumentCommand{}{}{}": {
+      "snippet": "NewDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "NewDocumentEnvironment{}{}{}{}": {
+      "snippet": "NewDocumentEnvironment{${1:envname}}{${2:xargs}}{${3:begdef}}{${4:enddef}}"
+    },
+    "NewEnvironmentCopy{}{}": {
+      "snippet": "NewEnvironmentCopy{${1:envname}}{${2:copied envname}}"
+    },
+    "NewExpandableDocumentCommand{}{}{}": {
+      "snippet": "NewExpandableDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "NewHook{}": {
+      "snippet": "NewHook{${1:hook}}"
+    },
+    "NewHookWithArguments{}{}": {
+      "snippet": "NewHookWithArguments{${1:hook}}{${2:number}}"
+    },
+    "NewMarkClass{}": {
+      "snippet": "NewMarkClass{${1:class}}"
+    },
+    "NewMirroredHookPair{}{}": {
+      "snippet": "NewMirroredHookPair{${1:hook1}}{${2:hook2}}"
+    },
+    "NewMirroredHookPairWithArguments{}{}{}": {
+      "snippet": "NewMirroredHookPairWithArguments{${1:hook1}}{${2:hook2}}{${3:number}}"
+    },
+    "NewModuleRelease{}{}": {
+      "snippet": "NewModuleRelease{${1:date}}{${2:name}}"
+    },
+    "NewProperty{}{}{}{}": {
+      "snippet": "NewProperty{${1:property}}{${2:setpoint}}{${3:default}}{${4:code}}"
+    },
+    "NewReversedHook{}": {
+      "snippet": "NewReversedHook{${1:hook}}"
+    },
+    "NewReversedHookWithArguments{}{}": {
+      "snippet": "NewReversedHookWithArguments{${1:hook}}{${2:number}}"
+    },
+    "NewSocket{}{}": {
+      "snippet": "NewSocket{${1:socket}}{${2:number of inputs}}"
+    },
+    "NewSocketPlug{}{}{}": {
+      "snippet": "NewSocketPlug{${1:socket}}{${2:socket plug}}{${3:code}}"
+    },
+    "NextLinkTarget{}": {
+      "snippet": "NextLinkTarget{${1:target name}}"
+    },
+    "OmitIndent": {},
+    "OptionNotUsed": {},
+    "obeyedline": {},
+    "obeyedspace": {},
+    "PackageError{}{}{}": {
+      "snippet": "PackageError{${1:package name}}{${2:error text}}{${3:help text}}"
+    },
+    "PackageInfo{}{}": {
+      "snippet": "PackageInfo{${1:package name}}{${2:info text}}"
+    },
+    "PackageNote{}{}": {
+      "snippet": "PackageNote{${1:package name}}{${2:note text}}"
+    },
+    "PackageNoteNoLine{}{}": {
+      "snippet": "PackageNoteNoLine{${1:package name}}{${2:note text}}"
+    },
+    "PackageWarning{}{}": {
+      "snippet": "PackageWarning{${1:package name}}{${2:warning text}}"
+    },
+    "PackageWarningNoLine{}{}": {
+      "snippet": "PackageWarningNoLine{${1:package name}}{${2:warning text}}"
+    },
+    "PassOptionsToClass{}{}": {
+      "snippet": "PassOptionsToClass{${1:optionlist}}{${2:class}}"
+    },
+    "PassOptionsToPackage{}{}": {
+      "snippet": "PassOptionsToPackage{${1:optionlist}}{${2:package}}"
+    },
+    "PopDefaultHookLabel": {},
+    "PreviousTotalPages": {},
+    "ProcessedArgument": {},
+    "ProcessKeyOptions": {},
+    "ProcessKeyOptions[]": {
+      "snippet": "ProcessKeyOptions[${1:family}]"
+    },
+    "ProcessList{}{}": {
+      "snippet": "ProcessList{${1:list}}{${2:cmd}}"
+    },
+    "ProcessOptions": {},
+    "ProcessOptions*": {},
+    "ProvideDocumentCommand{}{}{}": {
+      "snippet": "ProvideDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "ProvideDocumentEnvironment{}{}{}{}": {
+      "snippet": "ProvideDocumentEnvironment{${1:envname}}{${2:xargs}}{${3:begdef}}{${4:enddef}}"
+    },
+    "ProvideExpandableDocumentCommand{}{}{}": {
+      "snippet": "ProvideExpandableDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "ProvideHook{}": {
+      "snippet": "ProvideHook{${1:hook}}"
+    },
+    "ProvideMirroredHookPair{}{}": {
+      "snippet": "ProvideMirroredHookPair{${1:hook1}}{${2:hook2}}"
+    },
+    "ProvideReversedHook{}": {
+      "snippet": "ProvideReversedHook{${1:hook}}"
+    },
+    "ProvidesClass{}": {
+      "snippet": "ProvidesClass{${1:name}}"
+    },
+    "ProvidesClass{}[]": {
+      "snippet": "ProvidesClass{${1:name}}[${2:release info}]"
+    },
+    "ProvidesFile{}": {
+      "snippet": "ProvidesFile{${1:name}}"
+    },
+    "ProvidesFile{}[]": {
+      "snippet": "ProvidesFile{${1:name}}[${2:release info}]"
+    },
+    "ProvidesPackage{}": {
+      "snippet": "ProvidesPackage{${1:name}}"
+    },
+    "ProvidesPackage{}[]": {
+      "snippet": "ProvidesPackage{${1:name}}[${2:release info}]"
+    },
+    "ProvideTextCommand{}{}[][]{}": {
+      "snippet": "ProvideTextCommand{${1:cmd}}{${2:encoding}}[${3:args}][${4:default}]{${5:definition}}"
+    },
+    "ProvideTextCommand{}{}[]{}": {
+      "snippet": "ProvideTextCommand{${1:cmd}}{${2:encoding}}[${3:args}]{${4:definition}}"
+    },
+    "ProvideTextCommand{}{}{}": {
+      "snippet": "ProvideTextCommand{${1:cmd}}{${2:encoding}}{${3:definition}}"
+    },
+    "ProvideTextCommandDefault{}{}": {
+      "snippet": "ProvideTextCommandDefault{${1:cmd}}{${2:definition}}"
+    },
+    "PushDefaultHookLabel{}": {
+      "snippet": "PushDefaultHookLabel{${1:default label}}"
+    },
+    "RawIndent": {},
+    "RawNoindent": {},
+    "RawParEnd": {},
+    "RawShipout": {},
+    "ReadonlyShipoutCounter": {},
+    "RecordProperties{}{}": {
+      "snippet": "RecordProperties{${1:label}}{${2:properties}}"
+    },
+    "RefProperty[]{}{}": {
+      "snippet": "RefProperty[${3:local default}]{${1:label}}{${2:property}}"
+    },
+    "RefProperty{}{}": {
+      "snippet": "RefProperty{${1:label}}{${2:property}}"
+    },
+    "RefUndefinedWarn{}{}": {
+      "snippet": "RefUndefinedWarn{${1:label}}{${2:property}}"
+    },
+    "RemoveFromHook{}": {
+      "snippet": "RemoveFromHook{${1:hook}}"
+    },
+    "RemoveFromHook{}[]": {
+      "snippet": "RemoveFromHook{${1:hook}}[${2:label}]"
+    },
+    "RenewCommandCopy{}{}": {
+      "snippet": "RenewCommandCopy{${1:cmd}}{${2:copied cmd}}"
+    },
+    "RenewDocumentCommand{}{}{}": {
+      "snippet": "RenewDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "RenewDocumentEnvironment{}{}{}{}": {
+      "snippet": "RenewDocumentEnvironment{${1:envname}}{${2:xargs}}{${3:begdef}}{${4:enddef}}"
+    },
+    "RenewEnvironmentCopy{}{}": {
+      "snippet": "RenewEnvironmentCopy{${1:envname}}{${2:copied envname}}"
+    },
+    "RenewExpandableDocumentCommand{}{}{}": {
+      "snippet": "RenewExpandableDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "RequirePackage[]{}": {
+      "snippet": "RequirePackage[${2:options}]{${1:package}}"
+    },
+    "RequirePackage[]{}[]": {
+      "snippet": "RequirePackage[${2:options}]{${1:package}}[${3:release}]"
+    },
+    "RequirePackage{}": {
+      "snippet": "RequirePackage{${1:package}}"
+    },
+    "RequirePackage{}[]": {
+      "snippet": "RequirePackage{${1:package}}[${2:release}]"
+    },
+    "RequirePackageWithOptions{}": {
+      "snippet": "RequirePackageWithOptions{${1:package}}"
+    },
+    "RequirePackageWithOptions{}[]": {
+      "snippet": "RequirePackageWithOptions{${1:package}}[${2:release}]"
+    },
+    "ReverseBoolean": {},
+    "SetDefaultHookLabel{}": {
+      "snippet": "SetDefaultHookLabel{${1:default label}}"
+    },
+    "SetKeys[]{}": {
+      "snippet": "SetKeys[${2:family}]{${1:keyvals}}"
+    },
+    "SetKeys{}": {
+      "snippet": "SetKeys{${1:keyvals}}"
+    },
+    "SetMathAlphabet{}{}{}{}{}{}": {
+      "snippet": "SetMathAlphabet{${1:math-alph}}{${2:version}}{${3:encoding}}{${4:family}}{${5:series}}{${6:shape}}"
+    },
+    "SetProperty{}{}{}{}": {
+      "snippet": "SetProperty{${1:property}}{${2:setpoint}}{${3:default}}{${4:code}}"
+    },
+    "SetSymbolFont{}{}{}{}{}{}": {
+      "snippet": "SetSymbolFont{${1:sym-font}}{${2:version}}{${3:encoding}}{${4:family}}{${5:series}}{${6:shape}}"
+    },
+    "ShipoutBox": {},
+    "ShipoutBoxDepth": {},
+    "ShipoutBoxHeight": {},
+    "ShipoutBoxWidth": {},
+    "ShowCommand{}": {
+      "snippet": "ShowCommand{${1:cmd}}"
+    },
+    "ShowEnvironment{}": {
+      "snippet": "ShowEnvironment{${1:envname}}"
+    },
+    "ShowFloat{}": {
+      "snippet": "ShowFloat{${1:identifier}}"
+    },
+    "ShowHook{}": {
+      "snippet": "ShowHook{${1:hook}}"
+    },
+    "ShowSocket{}": {
+      "snippet": "ShowSocket{${1:socket}}"
+    },
+    "SplitArgument{}{}": {
+      "snippet": "SplitArgument{${1:number}}{${2:tokens}}"
+    },
+    "SplitList{}": {
+      "snippet": "SplitList{${1:tokens}}"
+    },
+    "TextSymbolUnavailable{}": {
+      "snippet": "TextSymbolUnavailable{${1:arg}}"
+    },
+    "TopMark[]{}": {
+      "snippet": "TopMark[${2:region}]{${1:class}}"
+    },
+    "TopMark{}": {
+      "snippet": "TopMark{${1:class}}"
+    },
+    "TrimSpaces": {},
+    "UndeclareTextCommand{}{}": {
+      "snippet": "UndeclareTextCommand{${1:cmd}}{${2:encoding}}"
+    },
+    "UseHook{}": {
+      "snippet": "UseHook{${1:hook}}"
+    },
+    "UseLegacyTextSymbols": {},
+    "UseName{}": {
+      "snippet": "UseName{${1:csname}}"
+    },
+    "UseOneTimeHook{}": {
+      "snippet": "UseOneTimeHook{${1:hook}}"
+    },
+    "UseRawInputEncoding": {},
+    "UseSocket{}": {
+      "snippet": "UseSocket{${1:socket}}"
+    },
+    "UseTextAccent{}{}{}": {
+      "snippet": "UseTextAccent{${1:encoding}}{${2:cmd}}{${3:text}}"
+    },
+    "UseTextSymbol{}{}": {
+      "snippet": "UseTextSymbol{${1:encoding}}{${2:cmd}}"
+    },
+    "ExplFileDate": {},
+    "ExplLoaderFileDate": {},
+    "ProvidesExplFile{}{}{}{}": {
+      "snippet": "ProvidesExplFile{${1:name}}{${2:date}}{${3:version}}{${4:description}}"
+    },
+    "ProvidesExplClass{}{}{}{}": {
+      "snippet": "ProvidesExplClass{${1:name}}{${2:date}}{${3:version}}{${4:description}}"
+    },
+    "ProvidesExplPackage{}{}{}{}": {
+      "snippet": "ProvidesExplPackage{${1:name}}{${2:date}}{${3:version}}{${4:description}}"
+    },
+    "DocumentMetadata{}": {
+      "snippet": "DocumentMetadata{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "IfDocumentMetadataTF{}{}": {
+      "snippet": "IfDocumentMetadataTF{${1:true code}}{${2:false code}}"
+    },
+    "setcounter{}{}": {
+      "snippet": "setcounter{${1:counter}}{${2:value}}"
+    },
+    "setlanguage{}": {
+      "snippet": "setlanguage{${1:language}}"
+    },
+    "setlength{}{}": {
+      "snippet": "setlength{${1:\\gnat}}{${2:length}}"
+    },
+    "setpapersize{}": {
+      "snippet": "setpapersize{${1:layout}}"
+    },
+    "settodepth{}{}": {
+      "snippet": "settodepth{${1:\\gnat}}{${2:text}}"
+    },
+    "settoheight{}{}": {
+      "snippet": "settoheight{${1:\\gnat}}{${2:text}}"
+    },
+    "settowidth{}{}": {
+      "snippet": "settowidth{${1:\\gnat}}{${2:text}}"
+    },
+    "addtocontents{}{}": {
+      "snippet": "addtocontents{${1:ext}}{${2:text}}"
+    },
+    "addtocounter{}{}": {
+      "snippet": "addtocounter{${1:counter}}{${2:value}}"
+    },
+    "addtolength{}{}": {
+      "snippet": "addtolength{${1:\\gnat}}{${2:length}}"
+    },
+    "addvspace{}": {
+      "snippet": "addvspace{${1:length}}"
+    },
+    "newcounter{}": {
+      "snippet": "newcounter{${1:foo}}"
+    },
+    "newcounter{}[]": {
+      "snippet": "newcounter{${1:foo}}[${2:counter}]"
+    },
+    "refstepcounter{}": {
+      "snippet": "refstepcounter{${1:counter}}"
+    },
+    "restorecr": {},
+    "reversemarginpar": {},
+    "stepcounter{}": {
+      "snippet": "stepcounter{${1:counter}}"
+    },
+    "stretch{}": {
+      "snippet": "stretch{${1:number}}"
+    },
+    "usecounter{}": {
+      "snippet": "usecounter{${1:counter}}"
+    },
+    "usefont{}{}{}{}": {
+      "snippet": "usefont{${1:enc}}{${2:family}}{${3:series}}{${4:shape}}"
+    },
+    "value{}": {
+      "snippet": "value{${1:counter}}"
+    },
+    "newfont{}{}": {
+      "snippet": "newfont{${1:cmd}}{${2:fontname}}"
+    },
+    "theenumi": {},
+    "theenumii": {},
+    "theenumiii": {},
+    "theenumiv": {},
+    "theequation": {},
+    "thefigure": {},
+    "thefootnote": {},
+    "thempfn": {},
+    "thempfootnote": {},
+    "thepage": {},
+    "theparagraph": {},
+    "thepart": {},
+    "thesection": {},
+    "thesubparagraph": {},
+    "thesubsection": {},
+    "thesubsubsection": {},
+    "thetable": {},
+    "thetotalpages": {},
+    "savebox{}[][]{}": {
+      "snippet": "savebox{${1:box}}[${2:width}][${3:position}]{${4:text}}"
+    },
+    "savebox{}[]{}": {
+      "snippet": "savebox{${1:box}}[${2:width}]{${3:text}}"
+    },
+    "savebox{}{}": {
+      "snippet": "savebox{${1:box}}{${2:text}}"
+    },
+    "makebox[][]{}": {
+      "snippet": "makebox[${2:width}][${3:position}]{${1:text}}"
+    },
+    "makebox[]{}": {
+      "snippet": "makebox[${2:width}]{${1:text}}"
+    },
+    "usebox{}": {
+      "snippet": "usebox{${1:box}}"
+    },
+    "raisebox{}[][]{}": {
+      "snippet": "raisebox{${1:raise}}[${2:height}][${3:depth}]{${4:text}}"
+    },
+    "raisebox{}[]{}": {
+      "snippet": "raisebox{${1:raise}}[${2:height}]{${3:text}}"
+    },
+    "raisebox{}{}": {
+      "snippet": "raisebox{${1:raise}}{${2:text}}"
+    },
+    "newsavebox{}": {
+      "snippet": "newsavebox{${1:box}}"
+    },
+    "belowcaptionskip": {},
+    "binoppenalty": {},
+    "bottomfraction": {},
+    "dblfigrule": {},
+    "dblfloatpagefraction": {},
+    "dblfloatsep": {},
+    "dbltextfloatsep": {},
+    "dbltopfraction": {},
+    "defaultscriptratio": {},
+    "defaultscriptscriptratio": {},
+    "doublerulesep": {},
+    "footnotesep": {},
+    "footskip": {},
+    "intextsep": {},
+    "itemindent": {},
+    "itemsep": {},
+    "labelenumi": {},
+    "labelenumii": {},
+    "labelenumiii": {},
+    "labelenumiv": {},
+    "labelitemi": {},
+    "labelitemii": {},
+    "labelitemiii": {},
+    "labelitemiv": {},
+    "labelsep": {},
+    "labelwidth": {},
+    "leftmargin": {},
+    "leftmargini": {},
+    "leftmarginii": {},
+    "leftmarginiii": {},
+    "leftmarginiv": {},
+    "leftmarginv": {},
+    "leftmarginvi": {},
+    "leftmark": {},
+    "marginparpush": {},
+    "marginparsep": {},
+    "marginparwidth": {},
+    "paperheight": {},
+    "paperwidth": {},
+    "tabbingsep": {},
+    "tabcolsep": {},
+    "topfigrule": {},
+    "topfraction": {},
+    "topmargin": {},
+    "topsep": {},
+    "totalheight": {},
+    "textfloatsep": {},
+    "textfraction": {},
+    "abovecaptionskip": {},
+    "addpenalty": {},
+    "arraycolsep": {},
+    "arrayrulewidth": {},
+    "arraystretch": {},
+    "badness": {},
+    "baselinestretch": {},
+    "columnsep": {},
+    "columnseprule": {},
+    "evensidemargin": {},
+    "extracolsep": {},
+    "fboxrule": {},
+    "fboxsep": {},
+    "floatpagefraction": {},
+    "floatsep": {},
+    "headheight": {},
+    "headsep": {},
+    "height": {},
+    "partopsep": {},
+    "parsep": {},
+    "hideskip": {},
+    "stockheight": {},
+    "stockwidth": {},
+    "efcode": {},
+    "expanded": {},
+    "ifincsname": {},
+    "ifpdfabsdim": {},
+    "ifpdfabsnum": {},
+    "ifpdfprimitive": {},
+    "knaccode": {},
+    "knbccode": {},
+    "knbscode": {},
+    "leftmarginkern": {},
+    "letterspacefont": {},
+    "lpcode": {},
+    "partokencontext": {},
+    "partokenname": {},
+    "pdfadjustinterwordglue": {},
+    "pdfadjustspacing": {},
+    "pdfannot": {},
+    "pdfappendkern": {},
+    "pdfcatalog{}": {
+      "snippet": "pdfcatalog{${1:action spec}}"
+    },
+    "pdfcolorstack": {},
+    "pdfcolorstackinit": {},
+    "pdfcompresslevel": {},
+    "pdfcopyfont": {},
+    "pdfcreationdate": {},
+    "pdfdecimaldigits": {},
+    "pdfdest": {},
+    "pdfdestmargin": {},
+    "pdfdraftmode": {},
+    "pdfeachlinedepth": {},
+    "pdfeachlineheight": {},
+    "pdfelapsedtime": {},
+    "pdfendlink": {},
+    "pdfendthread": {},
+    "pdfescapehex{}": {
+      "snippet": "pdfescapehex{${1:string}}"
+    },
+    "pdfescapename{}": {
+      "snippet": "pdfescapename{${1:string}}"
+    },
+    "pdfescapestring{}": {
+      "snippet": "pdfescapestring{${1:string}}"
+    },
+    "pdffakespace": {},
+    "pdffiledump": {},
+    "pdffilemoddate{}": {
+      "snippet": "pdffilemoddate{${1:file}}"
+    },
+    "pdffilesize{}": {
+      "snippet": "pdffilesize{${1:file}}"
+    },
+    "pdffirstlineheight": {},
+    "pdffontattr": {},
+    "pdffontexpand": {},
+    "pdffontname": {},
+    "pdffontobjnum": {},
+    "pdffontsize": {},
+    "pdfforcepagebox": {},
+    "pdfgamma": {},
+    "pdfgentounicode": {},
+    "pdfglyphtounicode{}{}": {
+      "snippet": "pdfglyphtounicode{${1:glyphname}}{${2:codepoint}}"
+    },
+    "pdfhorigin": {},
+    "pdfignoreddimen": {},
+    "pdfimageapplygamma": {},
+    "pdfimagegamma": {},
+    "pdfimagehicolor": {},
+    "pdfimageresolution": {},
+    "pdfincludechars": {},
+    "pdfinclusioncopyfonts": {},
+    "pdfinclusionerrorlevel": {},
+    "pdfinfo{}": {
+      "snippet": "pdfinfo{${1:info}}"
+    },
+    "pdfinfoomitdate": {},
+    "pdfinsertht": {},
+    "pdfinterwordspaceoff": {},
+    "pdfinterwordspaceon": {},
+    "pdflastannot": {},
+    "pdflastlinedepth": {},
+    "pdflastlink": {},
+    "pdflastmatch": {},
+    "pdflastobj": {},
+    "pdflastxform": {},
+    "pdflastximage": {},
+    "pdflastximagecolordepth": {},
+    "pdflastximagepages": {},
+    "pdflastxpos": {},
+    "pdflastypos": {},
+    "pdflinkmargin": {},
+    "pdfliteral{}": {
+      "snippet": "pdfliteral{${1:literal}}"
+    },
+    "pdfmajorversion": {},
+    "pdfmapfile{}": {
+      "snippet": "pdfmapfile{${1:file}}"
+    },
+    "pdfmapline{}": {
+      "snippet": "pdfmapline{${1:map spec}}"
+    },
+    "pdfmatch": {},
+    "pdfmdfivesum": {},
+    "pdfminorversion": {},
+    "pdfmovechars": {},
+    "pdfnames{}": {
+      "snippet": "pdfnames{${1:action spec}}"
+    },
+    "pdfnobuiltintounicode": {},
+    "pdfnoligatures": {},
+    "pdfnormaldeviate": {},
+    "pdfobj{}": {
+      "snippet": "pdfobj{${1:object type spec}}"
+    },
+    "pdfobjcompresslevel": {},
+    "pdfomitcharset": {},
+    "pdfomitinfodict": {},
+    "pdfomitprocset": {},
+    "pdfoutline": {},
+    "pdfoutput": {},
+    "pdfpageattr{}": {
+      "snippet": "pdfpageattr{${1:attributes}}"
+    },
+    "pdfpagebox": {},
+    "pdfpageheight": {},
+    "pdfpageref": {},
+    "pdfpageresources{}": {
+      "snippet": "pdfpageresources{${1:resources}}"
+    },
+    "pdfpagesattr{}": {
+      "snippet": "pdfpagesattr{${1:attributes}}"
+    },
+    "pdfpagewidth": {},
+    "pdfpkmode": {},
+    "pdfpkresolution": {},
+    "pdfprependkern": {},
+    "pdfprimitive": {},
+    "pdfprotrudechars": {},
+    "pdfpxdimen": {},
+    "pdfrandomseed": {},
+    "pdfrefobj": {},
+    "pdfrefxform": {},
+    "pdfrefximage": {},
+    "pdfresettimer": {},
+    "pdfrestore": {},
+    "pdfretval": {},
+    "pdfrunninglinkoff": {},
+    "pdfrunninglinkon": {},
+    "pdfsave": {},
+    "pdfsavepos": {},
+    "pdfsetmatrix{}": {
+      "snippet": "pdfsetmatrix{${1:matrix}}"
+    },
+    "pdfsetrandomseed": {},
+    "pdfshellescape": {},
+    "pdfsnaprefpoint": {},
+    "pdfsnapy": {},
+    "pdfsnapycomp": {},
+    "pdfspacefont": {},
+    "pdfstartlink": {},
+    "pdfstartthread": {},
+    "pdfstrcmp{}{}": {
+      "snippet": "pdfstrcmp{${1:string1}}{${2:string2}}"
+    },
+    "pdfsuppressptexinfo": {},
+    "pdfsuppresswarningdupdest": {},
+    "pdfsuppresswarningdupmap": {},
+    "pdfsuppresswarningpagegroup": {},
+    "pdftexbanner": {},
+    "pdftexrevision": {},
+    "pdftexversion": {},
+    "pdfthread": {},
+    "pdfthreadmargin": {},
+    "pdftracingfonts": {},
+    "pdftrailer{}": {
+      "snippet": "pdftrailer{${1:text}}"
+    },
+    "pdftrailerid{}": {
+      "snippet": "pdftrailerid{${1:text}}"
+    },
+    "pdfunescapehex{}": {
+      "snippet": "pdfunescapehex{${1:string}}"
+    },
+    "pdfuniformdeviate": {},
+    "pdfuniqueresname": {},
+    "pdfvorigin": {},
+    "pdfxform": {},
+    "pdfxformname": {},
+    "pdfximage{}": {
+      "snippet": "pdfximage{${1:file}}"
+    },
+    "pdfximagebbox": {},
+    "quitvmode": {},
+    "rightmarginkern": {},
+    "rpcode": {},
+    "shbscode": {},
+    "showstream": {},
+    "stbscode": {},
+    "synctex": {},
+    "tagcode": {},
+    "tracingstacklevels": {},
+    "allocationnumber": {},
+    "bfdefault": {},
+    "counterwithin{}{}": {
+      "snippet": "counterwithin{${1:counter}}{${2:within-counter}}"
+    },
+    "counterwithin[]{}{}": {
+      "snippet": "counterwithin[${3:format}]{${1:counter}}{${2:within-counter}}"
+    },
+    "counterwithin*{}{}": {
+      "snippet": "counterwithin*{${1:counter}}{${2:within-counter}}"
+    },
+    "counterwithout{}{}": {
+      "snippet": "counterwithout{${1:counter}}{${2:within-counter}}"
+    },
+    "counterwithout[]{}{}": {
+      "snippet": "counterwithout[${3:format}]{${1:counter}}{${2:within-counter}}"
+    },
+    "counterwithout*{}{}": {
+      "snippet": "counterwithout*{${1:counter}}{${2:within-counter}}"
+    },
+    "emforce": {},
+    "eminnershape": {},
+    "emreset": {},
+    "extrafloats{}": {
+      "snippet": "extrafloats{${1:number}}"
+    },
+    "familydefault": {},
+    "fill": {},
+    "hideoutput": {},
+    "IeC": {},
+    "ignorespacesafterend": {},
+    "itdefault": {},
+    "loggingall": {},
+    "loggingoutput": {},
+    "ltcmddate": {},
+    "ltcmdhooksdate": {},
+    "ltcmdhooksversion": {},
+    "ltcmdversion": {},
+    "ltfilehookdate": {},
+    "ltfilehookversion": {},
+    "lthooksdate": {},
+    "lthooksversion": {},
+    "ltmarksdate": {},
+    "ltmarksversion": {},
+    "ltmetadate": {},
+    "ltmetaversion": {},
+    "ltparadate": {},
+    "ltparaversion": {},
+    "ltpropertiesdate": {},
+    "ltpropertiesversion": {},
+    "ltshipoutdate": {},
+    "ltshipoutversion": {},
+    "ltsocketsdate": {},
+    "ltsocketsversion": {},
+    "mathalpha": {},
+    "mathgroup": {},
+    "mathhexbox": {},
+    "mddefault": {},
+    "nobreakdashes": {},
+    "nobreakspace": {},
+    "normalsfcodes": {},
+    "numberline{}": {
+      "snippet": "numberline{${1:number}}"
+    },
+    "poptabs": {},
+    "pushtabs": {},
+    "requestedLaTeXdate": {},
+    "rmdefault": {},
+    "rmsubstdefault": {},
+    "scdefault": {},
+    "secdef{}{}": {
+      "snippet": "secdef{${1:star cmd}}{${2:unstar cmd}}"
+    },
+    "seriesdefault": {},
+    "sfdefault": {},
+    "sfsubstdefault": {},
+    "shapedefault": {},
+    "showoutput": {},
+    "showoverfull": {},
+    "sldefault": {},
+    "sscdefault": {},
+    "swdefault": {},
+    "symletters": {},
+    "symoperators": {},
+    "tencirc": {},
+    "tencircw": {},
+    "tenln": {},
+    "tenlnw": {},
+    "textcompsubstdefault": {},
+    "TextOrMath{}{}": {
+      "snippet": "TextOrMath{${1:text content}}{${2:math content}}"
+    },
+    "tmspace{}{}{}": {
+      "snippet": "tmspace{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tracingnone": {},
+    "ttdefault": {},
+    "ttsubstdefault": {},
+    "ulcdefault": {},
+    "unitlength": {},
+    "updefault": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "backend=${1:backend}",
+      "pdfversion=${1:version}",
+      "uncompress",
+      "lang=${1:lang}",
+      "pdfstandard=",
+      "colorprofiles={${1:options}}",
+      "testphase=",
+      "debug={${1:options}}"
+    ]
+  ]
+}

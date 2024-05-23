@@ -1,0 +1,375 @@
+{
+  "includes": {
+    "pstricks": [],
+    "pst-node": [],
+    "pst-text": [],
+    "pstricks-add": [],
+    "fancybox": [],
+    "setspace": [],
+    "calc": [],
+    "graphicx": [],
+    "everypage": []
+  },
+  "macros": {
+    "ifnotinline": {},
+    "notinlinetrue": {},
+    "notinlinefalse": {},
+    "cut{}": {
+      "snippet": "cut{${1:text}}"
+    },
+    "ifellipsecut": {},
+    "ellipsecuttrue": {},
+    "ellipsecutfalse": {},
+    "ontop{}": {
+      "snippet": "ontop{${1:above \\\\ below}}"
+    },
+    "ontopl{}": {
+      "snippet": "ontopl{${1:above \\\\ below}}"
+    },
+    "ontopr{}": {
+      "snippet": "ontopr{${1:above \\\\ below}}"
+    },
+    "vcut{}": {
+      "snippet": "vcut{${1:text}}"
+    },
+    "vvcut{}": {
+      "snippet": "vvcut{${1:text}}"
+    },
+    "scroll{}{}": {
+      "snippet": "scroll{${1:left}}{${2:right}}"
+    },
+    "scroll*{}{}{}{}{}": {
+      "snippet": "scroll*{${1:left-width}}{${2:left}}{${3:middle-width}}{${4:right}}{${5:right-width}}"
+    },
+    "vscroll{}{}": {
+      "snippet": "vscroll{${1:top}}{${2:bottom}}"
+    },
+    "vscroll*{}{}{}{}{}": {
+      "snippet": "vscroll*{${1:top-width}}{${2:top}}{${3:middle-width}}{${4:bottom}}{${5:bottom-width}}"
+    },
+    "inversescroll{}{}": {
+      "snippet": "inversescroll{${1:left}}{${2:right}}"
+    },
+    "inversescroll*{}{}{}{}{}": {
+      "snippet": "inversescroll*{${1:left-width}}{${2:left}}{${3:middle-width}}{${4:right}}{${5:right-width}}"
+    },
+    "inversevscroll{}{}": {
+      "snippet": "inversevscroll{${1:top}}{${2:bottom}}"
+    },
+    "inversevscroll*{}{}{}{}{}": {
+      "snippet": "inversevscroll*{${1:top-width}}{${2:top}}{${3:middle-width}}{${4:bottom}}{${5:bottom-width}}"
+    },
+    "longscroll{}{}": {
+      "snippet": "longscroll{${1:left}}{${2:right}}"
+    },
+    "longscroll*{}{}{}{}{}": {
+      "snippet": "longscroll*{${1:left-width}}{${2:left}}{${3:middle-width}}{${4:right}}{${5:right-width}}"
+    },
+    "longvscroll{}{}": {
+      "snippet": "longvscroll{${1:top}}{${2:bottom}}"
+    },
+    "longvscroll*{}{}{}{}{}": {
+      "snippet": "longvscroll*{${1:top-width}}{${2:top}}{${3:middle-width}}{${4:bottom}}{${5:bottom-width}}"
+    },
+    "longinversescroll{}{}": {
+      "snippet": "longinversescroll{${1:left}}{${2:right}}"
+    },
+    "longinversescroll*{}{}{}{}{}": {
+      "snippet": "longinversescroll*{${1:left-width}}{${2:left}}{${3:middle-width}}{${4:right}}{${5:right-width}}"
+    },
+    "longinversevscroll{}{}": {
+      "snippet": "longinversevscroll{${1:top}}{${2:bottom}}"
+    },
+    "longinversevscroll*{}{}{}{}{}": {
+      "snippet": "longinversevscroll*{${1:top-width}}{${2:top}}{${3:middle-width}}{${4:bottom}}{${5:bottom-width}}"
+    },
+    "nscroll{}": {
+      "snippet": "nscroll{${1:A,B,C,...}}"
+    },
+    "nscroll*{}{}": {
+      "snippet": "nscroll*{${1:A,B,C,...}}{${2:center}}"
+    },
+    "nscrollwidth{}": {
+      "snippet": "nscrollwidth{${1:factor}}"
+    },
+    "nscrolldistance{}": {
+      "snippet": "nscrolldistance{${1:factor}}"
+    },
+    "defaultscrollwidth": {},
+    "defaultscrolldistance": {},
+    "defaultnscrollangle": {},
+    "ifcolouredcuts": {},
+    "colouredcutstrue": {},
+    "colouredcutsfalse": {},
+    "cutx{}": {
+      "snippet": "cutx{${1:text}}"
+    },
+    "vcutx{}": {
+      "snippet": "vcutx{${1:text}}"
+    },
+    "vvcutx{}": {
+      "snippet": "vvcutx{${1:text}}"
+    },
+    "hk{}": {
+      "snippet": "hk{${1:text}}"
+    },
+    "li{}{}": {
+      "snippet": "li{${1:num1}}{${2:num2}}"
+    },
+    "li[]{}{}": {
+      "snippet": "li[${3:gap spec}]{${1:num1}}{${2:num2}}"
+    },
+    "upright{}{}": {
+      "snippet": "upright{${1:num1}}{${2:num2}}"
+    },
+    "upright[]{}{}": {
+      "snippet": "upright[${3:gap spec}]{${1:num1}}{${2:num2}}"
+    },
+    "downright{}{}": {
+      "snippet": "downright{${1:num1}}{${2:num2}}"
+    },
+    "downright[]{}{}": {
+      "snippet": "downright[${3:gap spec}]{${1:num1}}{${2:num2}}"
+    },
+    "rightdown{}{}": {
+      "snippet": "rightdown{${1:num1}}{${2:num2}}"
+    },
+    "rightdown[]{}{}": {
+      "snippet": "rightdown[${3:gap spec}]{${1:num1}}{${2:num2}}"
+    },
+    "rightup{}{}": {
+      "snippet": "rightup{${1:num1}}{${2:num2}}"
+    },
+    "rightup[]{}{}": {
+      "snippet": "rightup[${3:gap spec}]{${1:num1}}{${2:num2}}"
+    },
+    "sligature{}{}": {
+      "snippet": "sligature{${1:num1}}{${2:num2}}"
+    },
+    "sligature[]{}{}": {
+      "snippet": "sligature[${3:gap spec}]{${1:num1}}{${2:num2}}"
+    },
+    "hsligature{}{}": {
+      "snippet": "hsligature{${1:num1}}{${2:num2}}"
+    },
+    "hsligature[]{}{}": {
+      "snippet": "hsligature[${3:gap spec}]{${1:num1}}{${2:num2}}"
+    },
+    "reflexivel{}{}": {
+      "snippet": "reflexivel{${1:num1}}{${2:num2}}"
+    },
+    "reflexivel[]{}{}": {
+      "snippet": "reflexivel[${3:gap spec}]{${1:num1}}{${2:num2}}"
+    },
+    "reflexiver{}{}": {
+      "snippet": "reflexiver{${1:num1}}{${2:num2}}"
+    },
+    "reflexiver[]{}{}": {
+      "snippet": "reflexiver[${3:gap spec}]{${1:num1}}{${2:num2}}"
+    },
+    "ifdebugmode": {},
+    "debugmodetrue": {},
+    "debugmodefalse": {},
+    "gcut{}": {
+      "snippet": "gcut{${1:text}}"
+    },
+    "gvcut{}": {
+      "snippet": "gvcut{${1:text}}"
+    },
+    "gvvcut{}": {
+      "snippet": "gvvcut{${1:text}}"
+    },
+    "dbcut{}": {
+      "snippet": "dbcut{${1:text}}"
+    },
+    "pcut{}": {
+      "snippet": "pcut{${1:text}}"
+    },
+    "ncut{}": {
+      "snippet": "ncut{${1:text}}"
+    },
+    "shk{}": {
+      "snippet": "shk{${1:text}}"
+    },
+    "everygraphhook{}": {
+      "snippet": "everygraphhook{${1:arg}}"
+    },
+    "DefNodes{}{}": {
+      "snippet": "DefNodes{${1:ref}}{${2:text}}"
+    },
+    "egatn": {},
+    "vv": {},
+    "cutwidth": {},
+    "ligaturewidth": {},
+    "cutxfillcolour": {},
+    "cutxwidth": {},
+    "cutxcolour": {},
+    "xfillstyle": {},
+    "cutcolour": {},
+    "licolour": {},
+    "scrollstretch": {},
+    "commoncoefficient": {},
+    "ifscaledsymbols": {},
+    "scaledsymbolstrue": {},
+    "scaledsymbolsfalse": {},
+    "aggregate": {},
+    "varaggregate": {},
+    "Paries": {},
+    "dragonhead": {},
+    "reversedragonhead": {},
+    "flatinfty": {},
+    "fsymbol": {},
+    "implicates": {},
+    "cursiveimplicates": {},
+    "varinclusion": {},
+    "Ppropto": {},
+    "Pinversepropto": {},
+    "varwedge": {},
+    "weirdone": {},
+    "weirdtwo": {},
+    "weirdthree": {},
+    "weirdfour": {},
+    "napierianbase": {},
+    "Pratiocircdia": {},
+    "boxxoperator{}": {
+      "snippet": "boxxoperator{${1:lines}}"
+    },
+    "PPi": {},
+    "PSigma": {},
+    "heartright": {},
+    "heartleft": {},
+    "heartleftnofill": {},
+    "heartdown": {},
+    "heartup": {},
+    "norlike": {},
+    "inversenorlike": {},
+    "whiskers{}{}{}": {
+      "snippet": "whiskers{${1:text1}}{${2:text2}}{${3:text3}}"
+    },
+    "inversewhiskers{}{}{}": {
+      "snippet": "inversewhiskers{${1:text1}}{${2:text2}}{${3:text3}}"
+    },
+    "whiskersdot{}{}{}": {
+      "snippet": "whiskersdot{${1:text1}}{${2:text2}}{${3:text3}}"
+    },
+    "inversewhiskersdot{}{}{}": {
+      "snippet": "inversewhiskersdot{${1:text1}}{${2:text2}}{${3:text3}}"
+    },
+    "agoverline{}": {
+      "snippet": "agoverline{${1:text}}"
+    },
+    "reverseagoverline{}": {
+      "snippet": "reverseagoverline{${1:text}}"
+    },
+    "inlineagoverline{}": {
+      "snippet": "inlineagoverline{${1:text}}"
+    },
+    "reverseinlineagoverline{}": {
+      "snippet": "reverseinlineagoverline{${1:text}}"
+    },
+    "croverline{}": {
+      "snippet": "croverline{${1:text}}"
+    },
+    "reversecroverline{}": {
+      "snippet": "reversecroverline{${1:text}}"
+    },
+    "cuoverline{}": {
+      "snippet": "cuoverline{${1:text}}"
+    },
+    "reversecuoverline{}": {
+      "snippet": "reversecuoverline{${1:text}}"
+    },
+    "ahk{}{}": {
+      "snippet": "ahk{${1:arg1}}{${2:arg2}}"
+    },
+    "bydefaultblack": {},
+    "correvlenght": {},
+    "cutcenter": {},
+    "cutlength": {},
+    "cutskip": {},
+    "dbgnolength": {},
+    "doublescroll": {},
+    "drawboxb": {},
+    "drawboxl": {},
+    "drawboxr": {},
+    "drawboxt": {},
+    "drawboxx": {},
+    "EgDLength": {},
+    "Egeee": {},
+    "EgELength": {},
+    "Egexpandcoord{}{}": {
+      "snippet": "Egexpandcoord{${1:arg1}}{${2:arg2}}"
+    },
+    "Egexpandcoordaux{}{}": {
+      "snippet": "Egexpandcoordaux{${1:arg1}}{${2:arg2}}"
+    },
+    "EgFLength": {},
+    "egpopin": {},
+    "egpopout": {},
+    "Egshiftamount": {},
+    "EgTbox": {},
+    "Egtolastnode": {},
+    "EgTTBox": {},
+    "Egwholewidth": {},
+    "forscale": {},
+    "getcurrentfontsize": {},
+    "halfpiwidth": {},
+    "halfsigmawidth": {},
+    "holdsthenormalsize": {},
+    "iahk{}": {
+      "snippet": "iahk{${1:arg}}"
+    },
+    "ifempty{}": {
+      "snippet": "ifempty{${1:arg}}"
+    },
+    "ifinnerloop": {},
+    "ifintbox": {},
+    "innerloopfalse": {},
+    "innerlooptrue": {},
+    "intboxfalse": {},
+    "intboxtrue": {},
+    "isitscaled": {},
+    "iter{}": {
+      "snippet": "iter{${1:arg}}"
+    },
+    "lastnodewidth": {},
+    "miniscule": {},
+    "negboxx": {},
+    "revcsymbollength": {},
+    "revnsymbollength": {},
+    "revsymbollength": {},
+    "revtextlenght": {},
+    "scalecoefficient": {},
+    "scalesymbol{}": {
+      "snippet": "scalesymbol{${1:arg}}"
+    },
+    "scrollscroll": {},
+    "scrollscrollalt": {},
+    "scrolltokenlist": {},
+    "sep": {},
+    "TAGbox": {},
+    "TAGHeight": {},
+    "therheme": {},
+    "thesubiter": {},
+    "TTAGHeight": {},
+    "TWidht": {},
+    "varsubsumption": {},
+    "whiskerswidth": {},
+    "wholenscrollwidth": {},
+    "wholeshiftamount": {},
+    "xoperb": {},
+    "xoperl": {},
+    "xoperr": {},
+    "xopert": {},
+    "xscroll": {}
+  },
+  "envs": {
+    "inline": {},
+    "inline[]": {
+      "name": "inline",
+      "snippet": "[${1:stretch factor}]"
+    }
+  },
+  "options": [],
+  "keyvals": []
+}

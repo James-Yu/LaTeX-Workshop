@@ -1,0 +1,239 @@
+{
+  "includes": {
+    "tikz": [],
+    "ifthen": [],
+    "siunitx": [],
+    "xargs": [],
+    "etoolbox": [],
+    "iflang": [],
+    "tikzlibrarycalc": [],
+    "tikzlibrarypositioning": [],
+    "tikzlibraryfit": [],
+    "tikzlibrarychains": []
+  },
+  "macros": {
+    "drift{}": {
+      "snippet": "drift{${1:length}}"
+    },
+    "drift{}[]": {
+      "snippet": "drift{${1:length}}[${2:name}]"
+    },
+    "dipole{}{}{}": {
+      "snippet": "dipole{${1:name}}{${2:arc length}}{${3:bending angle}}"
+    },
+    "dipole{}{}{}[]": {
+      "snippet": "dipole{${1:name}}{${2:arc length}}{${3:bending angle}}[${4:type}]"
+    },
+    "dipole{}{}{}[][]": {
+      "snippet": "dipole{${1:name}}{${2:arc length}}{${3:bending angle}}[${4:type}][${5:thickness}]"
+    },
+    "quadrupole{}{}": {
+      "snippet": "quadrupole{${1:name}}{${2:length}}"
+    },
+    "quadrupole{}{}[]": {
+      "snippet": "quadrupole{${1:name}}{${2:length}}[${3:thickness}]"
+    },
+    "sextupole{}{}": {
+      "snippet": "sextupole{${1:name}}{${2:length}}"
+    },
+    "sextupole{}{}[]": {
+      "snippet": "sextupole{${1:name}}{${2:length}}[${3:thickness}]"
+    },
+    "corrector{}{}": {
+      "snippet": "corrector{${1:name}}{${2:length}}"
+    },
+    "corrector{}{}[]": {
+      "snippet": "corrector{${1:name}}{${2:length}}[${3:thickness}]"
+    },
+    "kicker{}{}": {
+      "snippet": "kicker{${1:name}}{${2:length}}"
+    },
+    "kicker{}{}[]": {
+      "snippet": "kicker{${1:name}}{${2:length}}[${3:thickness}]"
+    },
+    "cavity{}{}": {
+      "snippet": "cavity{${1:name}}{${2:length}}"
+    },
+    "cavity{}{}[]": {
+      "snippet": "cavity{${1:name}}{${2:length}}[${3:thickness}]"
+    },
+    "solenoid{}{}": {
+      "snippet": "solenoid{${1:name}}{${2:length}}"
+    },
+    "solenoid{}{}[]": {
+      "snippet": "solenoid{${1:name}}{${2:length}}[${3:thickness}]"
+    },
+    "beamdump{}{}": {
+      "snippet": "beamdump{${1:name}}{${2:length}}"
+    },
+    "beamdump{}{}[]": {
+      "snippet": "beamdump{${1:name}}{${2:length}}[${3:thickness}]"
+    },
+    "source{}{}": {
+      "snippet": "source{${1:name}}{${2:length}}"
+    },
+    "source{}{}[]": {
+      "snippet": "source{${1:name}}{${2:length}}[${3:thickness}]"
+    },
+    "screen{}": {
+      "snippet": "screen{${1:name}}"
+    },
+    "screen{}[]": {
+      "snippet": "screen{${1:name}}[${2:length}]"
+    },
+    "valve{}": {
+      "snippet": "valve{${1:name}}"
+    },
+    "valve{}[]": {
+      "snippet": "valve{${1:name}}[${2:length}]"
+    },
+    "marker{}": {
+      "snippet": "marker{${1:name}}"
+    },
+    "marker{}[]": {
+      "snippet": "marker{${1:name}}[${2:length}]"
+    },
+    "start{}": {
+      "snippet": "start{${1:coordinate}}"
+    },
+    "rotate{}": {
+      "snippet": "rotate{${1:degrees}}"
+    },
+    "setangle{}": {
+      "snippet": "setangle{${1:degrees}}"
+    },
+    "goto{}": {
+      "snippet": "goto{${1:coordinate}}"
+    },
+    "drawrule{}": {
+      "snippet": "drawrule{${1:coordinate}}"
+    },
+    "drawrule{}[]": {
+      "snippet": "drawrule{${1:coordinate}}[${2:tick distance}]"
+    },
+    "drawrule{}[][]": {
+      "snippet": "drawrule{${1:coordinate}}[${2:tick distance}][${3:scale}]"
+    },
+    "drawrule{}[][][]": {
+      "snippet": "drawrule{${1:coordinate}}[${2:tick distance}][${3:scale}][${4:height}]"
+    },
+    "legend{}": {
+      "snippet": "legend{${1:coordinate}}"
+    },
+    "legend{}[]": {
+      "snippet": "legend{${1:coordinate}}[${2:scale}]"
+    },
+    "completelegend{}": {
+      "snippet": "completelegend{${1:coordinate}}"
+    },
+    "completelegend{}[]": {
+      "snippet": "completelegend{${1:coordinate}}[${2:scale}]"
+    },
+    "setlegendtext{}{}": {
+      "snippet": "setlegendtext{${1:type}}{${2:text}}"
+    },
+    "addlegendentry{}{}": {
+      "snippet": "addlegendentry{${1:text}}{${2:TikZ options}}"
+    },
+    "turnlabels": {},
+    "northlabels": {},
+    "southlabels": {},
+    "rotatelabels{}": {
+      "snippet": "rotatelabels{${1:degrees}}"
+    },
+    "rotatelabels{}[]": {
+      "snippet": "rotatelabels{${1:degrees}}[${2:anchor}]"
+    },
+    "setlabeldistance{}": {
+      "snippet": "setlabeldistance{${1:distance}}"
+    },
+    "resetlabeldistance": {},
+    "setlabelfont{}": {
+      "snippet": "setlabelfont{${1:fontsize cmd}}"
+    },
+    "setlinecolor{}{}": {
+      "snippet": "setlinecolor{${1:type}}{${2:color}}"
+    },
+    "resetlinecolor{}": {
+      "snippet": "resetlinecolor{${1:type}}"
+    },
+    "setelementcolor{}{}": {
+      "snippet": "setelementcolor{${1:type}}{${2:color}}"
+    },
+    "resetelementcolor{}": {
+      "snippet": "resetelementcolor{${1:type}}"
+    },
+    "setlabelcolor{}": {
+      "snippet": "setlabelcolor{${1:color}}"
+    },
+    "savecoordinate{}": {
+      "snippet": "savecoordinate{${1:name}}"
+    },
+    "savecoordinate{}[]": {
+      "snippet": "savecoordinate{${1:name}}[${2:position}]"
+    },
+    "angleinc": {},
+    "corners": {},
+    "declarecoords": {},
+    "dist": {},
+    "elementheight": {},
+    "elementlabel{}": {
+      "snippet": "elementlabel{${1:name}}"
+    },
+    "elementwidth": {},
+    "emptycustomlegendkeys": {},
+    "h": {
+      "detail": "h",
+      "documentation": "LATIN SMALL LETTER H"
+    },
+    "iang": {},
+    "iinc": {},
+    "jinc": {},
+    "labelanchor": {},
+    "labelang": {},
+    "labelcolor": {},
+    "labeldist": {},
+    "labelfont": {},
+    "labelrot": {},
+    "len": {},
+    "markerlen": {},
+    "marklabelang": {},
+    "mylist": {},
+    "points": {},
+    "ra": {},
+    "rectangleelement{}{}{}{}": {
+      "snippet": "rectangleelement{${1:name}}{${2:length}}{${3:thickness}}{${4:type}}"
+    },
+    "ri": {},
+    "saveang": {},
+    "savelabeldist": {},
+    "savescal": {},
+    "scal": {},
+    "straightlength": {},
+    "updatelabelanchor": {},
+    "updatemarkerlabelanchor": {},
+    "winkel": {}
+  },
+  "envs": {
+    "lattice": {},
+    "lattice[]": {
+      "name": "lattice",
+      "snippet": "[${1:scale}]"
+    },
+    "lattice[][]": {
+      "name": "lattice",
+      "snippet": "[${1:scale}][${2:TikZ options}]"
+    },
+    "labeldistance{}": {
+      "name": "labeldistance",
+      "snippet": "{${1:distance}}"
+    },
+    "fade": {},
+    "fade[]": {
+      "name": "fade",
+      "snippet": "[${1:opacity}]"
+    }
+  },
+  "options": [],
+  "keyvals": []
+}

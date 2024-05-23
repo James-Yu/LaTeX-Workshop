@@ -1,0 +1,567 @@
+{
+  "includes": {
+    "l3keys2e": [],
+    "etoolbox": [],
+    "ctex": [],
+    "fontspec": [],
+    "spbmark": [],
+    "ulem": [],
+    "enumitem": [],
+    "chemformula": [],
+    "siunitx": [],
+    "pifont": [],
+    "geometry": [],
+    "marginnote": [],
+    "pdfpages": [],
+    "multicol": [],
+    "fancyhdr": [],
+    "titletoc": [],
+    "caption": [],
+    "tabularray": [],
+    "tabularraylibrarybooktabs": [],
+    "listings": [],
+    "amsthm": [],
+    "thmtools": [],
+    "hyperref": []
+  },
+  "macros": {
+    "frontmatter": {},
+    "frontmatter[]": {
+      "snippet": "frontmatter[${1:numstyle}]"
+    },
+    "frontmatter*": {},
+    "frontmatter*[]": {
+      "snippet": "frontmatter*[${1:numstyle}]"
+    },
+    "mainmatter": {},
+    "mainmatter*": {},
+    "backmatter": {},
+    "cleardoublepage[]": {
+      "snippet": "cleardoublepage[${1:pagestyle}]"
+    },
+    "blankpagestyle{}": {
+      "snippet": "blankpagestyle{${1:pagestyle}}"
+    },
+    "tableofcontents[]": {
+      "snippet": "tableofcontents[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "tableofcontents*": {},
+    "tableofcontents*[]": {
+      "snippet": "tableofcontents*[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "listoffigures[]": {
+      "snippet": "listoffigures[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "listoffigures*": {},
+    "listoffigures*[]": {
+      "snippet": "listoffigures*[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "listoftables[]": {
+      "snippet": "listoftables[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "listoftables*": {},
+    "listoftables*[]": {
+      "snippet": "listoftables*[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "listoflstlistings": {},
+    "listoflstlistings[]": {
+      "snippet": "listoflstlistings[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "listoflstlistings*": {},
+    "listoflstlistings*[]": {
+      "snippet": "listoflstlistings*[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "bichapter{}{}": {
+      "snippet": "bichapter{${1:title}}{${2:short english title}}"
+    },
+    "bichapter[]{}{}": {
+      "snippet": "bichapter[${3:short chinese title}]{${1:title}}{${2:short english title}}"
+    },
+    "bichapter*{}{}": {
+      "snippet": "bichapter*{${1:title}}{${2:short english title}}"
+    },
+    "bichapter*[]{}{}": {
+      "snippet": "bichapter*[${3:short chinese title}]{${1:title}}{${2:short english title}}"
+    },
+    "bisection{}{}": {
+      "snippet": "bisection{${1:title}}{${2:short english title}}"
+    },
+    "bisection[]{}{}": {
+      "snippet": "bisection[${3:short chinese title}]{${1:title}}{${2:short english title}}"
+    },
+    "bisection*{}{}": {
+      "snippet": "bisection*{${1:title}}{${2:short english title}}"
+    },
+    "bisection*[]{}{}": {
+      "snippet": "bisection*[${3:short chinese title}]{${1:title}}{${2:short english title}}"
+    },
+    "bisubsection{}{}": {
+      "snippet": "bisubsection{${1:title}}{${2:short english title}}"
+    },
+    "bisubsection[]{}{}": {
+      "snippet": "bisubsection[${3:short chinese title}]{${1:title}}{${2:short english title}}"
+    },
+    "bisubsection*{}{}": {
+      "snippet": "bisubsection*{${1:title}}{${2:short english title}}"
+    },
+    "bisubsection*[]{}{}": {
+      "snippet": "bisubsection*[${3:short chinese title}]{${1:title}}{${2:short english title}}"
+    },
+    "thebichapter": {},
+    "thebisection": {},
+    "thebisubsection": {},
+    "appendix[]": {
+      "snippet": "appendix[${1:前名字,后名字}]"
+    },
+    "BeforeAddBitoc{}": {
+      "snippet": "BeforeAddBitoc{${1:英文标题加入目录前的代码}}"
+    },
+    "BeforeAddBitoc*{}": {
+      "snippet": "BeforeAddBitoc*{${1:英文标题加入目录前的代码}}"
+    },
+    "ebstyle{}": {
+      "snippet": "ebstyle{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "ebrefset{}": {
+      "snippet": "ebrefset{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "ebspread{}": {
+      "snippet": "ebspread{${1:options}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "ebsubfont{}": {
+      "snippet": "ebsubfont{${1:options}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "ebbibset{}": {
+      "snippet": "ebbibset{${1:options}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "ebthmset{}": {
+      "snippet": "ebthmset{${1:options}}"
+    },
+    "ebgeoset{}": {
+      "snippet": "ebgeoset{${1:options}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "ebhdrset{}": {
+      "snippet": "ebhdrset{${1:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "ebtocset{}": {
+      "snippet": "ebtocset{${1:options}}",
+      "keyvalindex": 8,
+      "keyvalpos": 0
+    },
+    "DeclareThemeColor{}": {
+      "snippet": "DeclareThemeColor{${1:name,frame color,emph color,verb color}}"
+    },
+    "DeclareLinkColor{}": {
+      "snippet": "DeclareLinkColor{${1:name,link color,url color,cite color}}"
+    },
+    "addtosubfont{}{}": {
+      "snippet": "addtosubfont{${1:字体类型}}{${2:字体命令}}"
+    },
+    "printbibliography": {},
+    "printbibliography[]": {
+      "snippet": "printbibliography[${1:options}]"
+    },
+    "markdouble{}": {
+      "snippet": "markdouble{${1:双页标题标记}}"
+    },
+    "markrule{}": {
+      "snippet": "markrule{${1:线宽}}"
+    },
+    "fnfirstindent": {},
+    "fnafterindent": {},
+    "fnparskip": {},
+    "DefineFntSymbols{}{}{}": {
+      "snippet": "DefineFntSymbols{${1:符号表名}}{${2:符号数量}}{${3:符号列表}}"
+    },
+    "setfntsymbol{}": {
+      "snippet": "setfntsymbol{${1:符号表名}}"
+    },
+    "defupfntmark{}": {
+      "snippet": "defupfntmark{${1:脚注正文标记格式}}"
+    },
+    "defdownfntmark{}": {
+      "snippet": "defdownfntmark{${1:脚注内容标记格式}}"
+    },
+    "notminipage{}{}": {
+      "snippet": "notminipage{${1:普通页内容}}{${2:迷你页内容}}"
+    },
+    "theupfootnote": {},
+    "thedownfootnote": {},
+    "Footnote{}{}": {
+      "snippet": "Footnote{${1:正文标记}}{${2:脚注文本}}"
+    },
+    "Footnote[]{}{}": {
+      "snippet": "Footnote[${3:内容标记}]{${1:正文标记}}{${2:脚注文本}}"
+    },
+    "Footnotetext{}{}": {
+      "snippet": "Footnotetext{${1:内容标记}}{${2:脚注文本}}"
+    },
+    "Footnotemark{}": {
+      "snippet": "Footnotemark{${1:正文标记}}"
+    },
+    "tocrule{}": {
+      "snippet": "tocrule{${1:引导点}}"
+    },
+    "tocrule*{}": {
+      "snippet": "tocrule*{${1:引导点}}"
+    },
+    "RegisterTocName{}": {
+      "snippet": "RegisterTocName{${1:条目名}}"
+    },
+    "DeclareFloatList{}{}": {
+      "snippet": "DeclareFloatList{${1:条目名}}{${2:扩展名}}"
+    },
+    "listnumberline{}": {
+      "snippet": "listnumberline{${1:条目名}}"
+    },
+    "hangpara{}{}": {
+      "snippet": "hangpara{${1:缩进长度}}{${2:缩进开始行数}}"
+    },
+    "deftcbstyle{}{}": {
+      "snippet": "deftcbstyle{${1:name}}{${2:tcolorbox keys}}"
+    },
+    "addtotcbstyle{}{}": {
+      "snippet": "addtotcbstyle{${1:name}}{${2:tcolorbox keys}}"
+    },
+    "ebemph{}": {
+      "snippet": "ebemph{${1:内容}}"
+    },
+    "ebemph[]{}[]": {
+      "snippet": "ebemph[${2:颜色名}]{${1:内容}}[${3:配置选项}]"
+    },
+    "ebfbox{}": {
+      "snippet": "ebfbox{${1:内容}}"
+    },
+    "ebfbox[]{}[]": {
+      "snippet": "ebfbox[${2:颜色名}]{${1:内容}}[${3:配置选项}]"
+    },
+    "counteruse{}": {
+      "snippet": "counteruse{${1:计数器}}"
+    },
+    "counteruse*{}": {
+      "snippet": "counteruse*{${1:计数器}}"
+    },
+    "counterwithin[]{}{}": {
+      "snippet": "counterwithin[${3:⟨格式⟩}]{${1:⟨计数器⟩}}{${2:⟨父计数器⟩}}"
+    },
+    "counterwithin*[]{}{}": {
+      "snippet": "counterwithin*[${3:⟨格式⟩}]{${1:⟨计数器⟩}}{${2:⟨父计数器⟩}}"
+    },
+    "counterwithout[]{}{}": {
+      "snippet": "counterwithout[${3:⟨格式⟩}]{${1:⟨计数器⟩}}{${2:⟨父计数器⟩}}"
+    },
+    "counterwithout*[]{}{}": {
+      "snippet": "counterwithout*[${3:⟨格式⟩}]{${1:⟨计数器⟩}}{${2:⟨父计数器⟩}}"
+    },
+    "symb{}": {
+      "snippet": "symb{${1:⟨符号⟩}}"
+    },
+    "symb{}[]": {
+      "snippet": "symb{${1:⟨符号⟩}}[${2:⟨引导符⟩}]"
+    },
+    "symb*{}": {
+      "snippet": "symb*{${1:⟨符号⟩}}"
+    },
+    "symb*{}[]": {
+      "snippet": "symb*{${1:⟨符号⟩}}[${2:⟨引导符⟩}]"
+    },
+    "seteqcomplist{}": {
+      "snippet": "seteqcomplist{${1:键值列表 2}}"
+    },
+    "seteqcomp{}": {
+      "snippet": "seteqcomp{${1:options}}",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "LoadPackage{}": {
+      "snippet": "LoadPackage{${1:package}}"
+    },
+    "LoadPackage[]{}": {
+      "snippet": "LoadPackage[${2:options}]{${1:package}}"
+    },
+    "listlstlistingname": {},
+    "setspread{}": {
+      "snippet": "setspread{${1:factor}}"
+    },
+    "bicontentsname": {},
+    "sp{}": {
+      "snippet": "sp{${1:content}}"
+    },
+    "sp[]{}": {
+      "snippet": "sp[${2:keyvals}]{${1:content}}"
+    },
+    "sp[][]{}": {
+      "snippet": "sp[${2:keyvals}][${3:height,depth}]{${1:content}}"
+    },
+    "sp{}[]": {
+      "snippet": "sp{${1:content}}[${2:keyvals}]"
+    },
+    "sb{}": {
+      "snippet": "sb{${1:content}}"
+    },
+    "sb[]{}": {
+      "snippet": "sb[${2:keyvals}]{${1:content}}"
+    },
+    "sb[][]{}": {
+      "snippet": "sb[${2:keyvals}][${3:height,depth}]{${1:content}}"
+    },
+    "sb{}[]": {
+      "snippet": "sb{${1:content}}[${2:keyvals}]"
+    },
+    "textsuperscript{}": {
+      "snippet": "textsuperscript{${1:content}}"
+    },
+    "textsuperscript[]{}": {
+      "snippet": "textsuperscript[${2:keyvals}]{${1:content}}"
+    },
+    "textsuperscript[][]{}": {
+      "snippet": "textsuperscript[${2:keyvals}][${3:height,depth}]{${1:content}}"
+    },
+    "textsuperscript{}[]": {
+      "snippet": "textsuperscript{${1:content}}[${2:keyvals}]"
+    },
+    "textsubscript{}": {
+      "snippet": "textsubscript{${1:content}}"
+    },
+    "textsubscript[]{}": {
+      "snippet": "textsubscript[${2:keyvals}]{${1:content}}"
+    },
+    "textsubscript[][]{}": {
+      "snippet": "textsubscript[${2:keyvals}][${3:height,depth}]{${1:content}}"
+    },
+    "textsubscript{}[]": {
+      "snippet": "textsubscript{${1:content}}[${2:keyvals}]"
+    }
+  },
+  "envs": {
+    "hangparas{}{}": {
+      "name": "hangparas",
+      "snippet": "{${1:缩进长度}}{${2:缩进开始行数}}"
+    },
+    "easybox": {},
+    "easybox*": {
+      "name": "easybox",
+      "snippet": "*"
+    },
+    "ebparbox": {},
+    "ebparbox*": {
+      "name": "ebparbox",
+      "snippet": "*"
+    },
+    "eqcomp": {},
+    "eqcomp[]": {
+      "name": "eqcomp",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "enumerate*": {},
+    "enumerate*[]": {
+      "name": "enumerate*",
+      "snippet": "[${1:options}]"
+    },
+    "itemize*": {},
+    "itemize*[]": {
+      "name": "itemize*",
+      "snippet": "[${1:options}]"
+    },
+    "description*": {},
+    "description*[]": {
+      "name": "description*",
+      "snippet": "[${1:options}]"
+    }
+  },
+  "options": [
+    "draft",
+    "paper=",
+    "floatpage",
+    "theorem",
+    "class=",
+    "book",
+    "article",
+    "GBK",
+    "UTF8",
+    "zhmap=",
+    "zihao=",
+    "heading",
+    "sub3section",
+    "sub4section",
+    "scheme=",
+    "linespread=${1:number}",
+    "fontset=",
+    "punct=",
+    "space=",
+    "autoindent="
+  ],
+  "keyvals": [
+    [
+      "plan=",
+      "bicontentsname=${1:英文目录标题}",
+      "level=${1:标题命令}",
+      "multoc=${1:整数}",
+      "title={${1:中文目录标题,英文目录标题}}",
+      "bilist=",
+      "format=${1:目录标题格式}",
+      "aftertitle=${1:标题后代码}",
+      "pagestyle=${1:页面风格}"
+    ],
+    [
+      "color=",
+      "color-every=${1:HTML 颜色代码}",
+      "multoc=${1:整数}",
+      "withpart",
+      "fntnumwith=",
+      "uppercase=",
+      "brackets={${1:左括号,右括号}}",
+      "figurepath={${1:路径名 1}}{${2:路径名 2}}${3:...{路径名 n}}",
+      "hyphen-figure=${1:图片连字符}",
+      "hyphen-table=${1:表格连字符}",
+      "hyphen-listing=${1:代码连字符}",
+      "hyphen-equation=${1:公式连字符}",
+      "hyphen-every=${1:连字符}",
+      "spvmove=",
+      "sphmove=",
+      "sbvmove=",
+      "sbhmove=",
+      "nohmove",
+      "novmove",
+      "spcmd=${1:格式命令}",
+      "sbcmd=${1:格式命令}",
+      "spbhmove=",
+      "spbcmd={${1:上标格式,下标格式}}",
+      "vsep={${1:上标偏移,下标偏移}}",
+      "halign="
+    ],
+    [
+      "linktype=",
+      "linkcolor=",
+      "linkcolor-every=${1:HTML 颜色代码}",
+      "linktoc="
+    ],
+    [
+      "line=${1:数值}",
+      "table=${1:数值}",
+      "math=${1:数值}",
+      "caption-figure=${1:数值}",
+      "caption-table=${1:数值}",
+      "caption-listing=${1:数值}",
+      "caption-every=${1:数值}",
+      "footnote=${1:数值}",
+      "every=${1:数值}"
+    ],
+    [
+      "caption-table=${1:字体命令}",
+      "caption-figure=${1:字体命令}",
+      "caption-listing=${1:字体命令}",
+      "caption-every=${1:字体命令}",
+      "footnote=${1:字体命令}",
+      "marginpar=${1:字体命令}"
+    ],
+    [
+      "backend=",
+      "bibstyle=${1:bibstyle}",
+      "citestyle=${1:标注风格}",
+      "datafile=${1:数据库列表}",
+      "bititle=${1:title}"
+    ],
+    [
+      "headruleskip=",
+      "footruleskip=",
+      "hdivide={${1:左边距,页面文本宽度},${2:右边距}}",
+      "hmargin={${1:左边距,右边距}}",
+      "textheight=${1:页面文本高度}",
+      "nofoot"
+    ],
+    [
+      "chap-mark=${1:标题标记}",
+      "sec-mark=${1:标题标记}",
+      "subsec-mark= ${1:标题标记}",
+      "chap-label={${1:距离命令}}",
+      "chap-label=[${1:数字输出命令}]{${2:距离命令}}",
+      "sec-label={${1:距离命令}}",
+      "sec-label=[${1:数字输出命令}]{${2:距离命令}}",
+      "subsec-label={${1:距离命令}}",
+      "subsec-label=[${1:数字输出命令}]{${2:距离命令}}",
+      "headrule=${1:横线命令}",
+      "footrule=${1:横线命令}",
+      "footnoterule=${1:横线命令}",
+      "headrulewd=",
+      "footnoterulewd=",
+      "footnotetype=",
+      "fnfirstindent=",
+      "fnafterindent=",
+      "fnparskip=",
+      "fntext-pos=",
+      "fnmark-num=",
+      "fntext-num=",
+      "fnmarktext-num=",
+      "fnmark-vmove=",
+      "fnmark-hmove=",
+      "fntext-vmove=",
+      "fnmarktext-format=${1:format code}",
+      "fncustom-format=${1:format code}",
+      "fnboth-format=${1:format code}",
+      "fnpara-format=${1:格式代码}",
+      "fntext-code={${1:前代码,后代码}}"
+    ],
+    [
+      "tocformat=${1:条目格式}",
+      "tocformat+=${1:条目格式}",
+      "tocindent=${1:刚性长度}",
+      "tocrule=${1:引导线命令}",
+      "tocafter=${1:距离命令}",
+      "tocbelow=${1:距离命令}",
+      "tocline=${1:条目定义}",
+      "hang",
+      "lolskip=",
+      "between=${1:代码钩子}",
+      "bibetween=${1:代码钩子}",
+      "dotalign",
+      "pagenumwd=",
+      "tocafter-every=${1:距离命令}",
+      "tocindent-every=${1:刚性长度}",
+      "tocrule-every=${1:引导线命令}"
+    ],
+    [
+      "width=",
+      "delim=${1:引导符}",
+      "space=",
+      "item-align=",
+      "delim-align=",
+      "enumitem=${1:键值列表 2}",
+      "intro=${1:首行文字}",
+      "font=${1:符号字体}",
+      "mode="
+    ]
+  ]
+}

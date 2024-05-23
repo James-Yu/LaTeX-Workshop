@@ -1,0 +1,296 @@
+{
+  "includes": {
+    "l3keys2e": [],
+    "tikz": [],
+    "amsmath": [],
+    "xfrac": [],
+    "nicefrac": []
+  },
+  "macros": {
+    "setchemformula{}": {
+      "snippet": "setchemformula{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ch{}": {
+      "snippet": "ch{${1:formula}}"
+    },
+    "ch[]{}": {
+      "snippet": "ch[${2:options}]{${1:formula}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "bond{}": {
+      "snippet": "bond{${1:bond name}}"
+    },
+    "NewChemBond{}{}": {
+      "snippet": "NewChemBond{${1:name}}{${2:code}}"
+    },
+    "DeclareChemBond{}{}": {
+      "snippet": "DeclareChemBond{${1:name}}{${2:code}}"
+    },
+    "RenewChemBond{}{}": {
+      "snippet": "RenewChemBond{${1:name}}{${2:code}}"
+    },
+    "ProvideChemBond{}{}": {
+      "snippet": "ProvideChemBond{${1:name}}{${2:code}}"
+    },
+    "NewChemBondAlias{}{}": {
+      "snippet": "NewChemBondAlias{${1:new name}}{${2:old name}}"
+    },
+    "DeclareChemBondAlias{}{}": {
+      "snippet": "DeclareChemBondAlias{${1:new name}}{${2:old name}}"
+    },
+    "ShowChemBond{}": {
+      "snippet": "ShowChemBond{${1:name}}"
+    },
+    "chcpd{}": {
+      "snippet": "chcpd{${1:compound}}"
+    },
+    "chcpd[]{}": {
+      "snippet": "chcpd[${2:options}]{${1:compound}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "NewChemCompoundProperty{}{}": {
+      "snippet": "NewChemCompoundProperty{${1:token}}{${2:replacement}}"
+    },
+    "ProvideChemCompoundProperty{}{}": {
+      "snippet": "ProvideChemCompoundProperty{${1:token}}{${2:replacement}}"
+    },
+    "RenewChemCompoundProperty{}{}": {
+      "snippet": "RenewChemCompoundProperty{${1:token}}{${2:replacement}}"
+    },
+    "DeclareChemCompoundProperty{}{}": {
+      "snippet": "DeclareChemCompoundProperty{${1:token}}{${2:replacement}}"
+    },
+    "RemoveChemCompoundProperty{}": {
+      "snippet": "RemoveChemCompoundProperty{${1:token}}"
+    },
+    "NewChemAdditionSymbol{}{}{}": {
+      "snippet": "NewChemAdditionSymbol{${1:name}}{${2:input}}{${3:output}}"
+    },
+    "ProvideChemAdditionSymbol{}{}{}": {
+      "snippet": "ProvideChemAdditionSymbol{${1:name}}{${2:input}}{${3:output}}"
+    },
+    "RenewChemAdditionSymbol{}{}{}": {
+      "snippet": "RenewChemAdditionSymbol{${1:name}}{${2:input}}{${3:output}}"
+    },
+    "DeclareChemAdditionSymbol{}{}{}": {
+      "snippet": "DeclareChemAdditionSymbol{${1:name}}{${2:input}}{${3:output}}"
+    },
+    "NewChemSymbol{}{}": {
+      "snippet": "NewChemSymbol{${1:input}}{${2:output}}"
+    },
+    "ProvideChemSymbol{}{}": {
+      "snippet": "ProvideChemSymbol{${1:input}}{${2:output}}"
+    },
+    "RenewChemSymbol{}{}": {
+      "snippet": "RenewChemSymbol{${1:input}}{${2:output}}"
+    },
+    "DeclareChemSymbol{}{}": {
+      "snippet": "DeclareChemSymbol{${1:input}}{${2:output}}"
+    },
+    "NewChemArrow{}{}": {
+      "snippet": "NewChemArrow{${1:type}}{${2:TikZ}}"
+    },
+    "ProvideChemArrow{}{}": {
+      "snippet": "ProvideChemArrow{${1:type}}{${2:TikZ}}"
+    },
+    "DeclareChemArrow{}{}": {
+      "snippet": "DeclareChemArrow{${1:type}}{${2:TikZ}}"
+    },
+    "RenewChemArrow{}{}": {
+      "snippet": "RenewChemArrow{${1:type}}{${2:TikZ}}"
+    },
+    "ShowChemArrow{}": {
+      "snippet": "ShowChemArrow{${1:type}}"
+    },
+    "charrow{}": {
+      "snippet": "charrow{${1:type}}"
+    },
+    "charrow{}[]": {
+      "snippet": "charrow{${1:type}}[${2:above}]"
+    },
+    "charrow{}[][]": {
+      "snippet": "charrow{${1:type}}[${2:above}][${3:below}]"
+    },
+    "chlewis{}{}": {
+      "snippet": "chlewis{${1:electron spec}}{${2:atom}}"
+    },
+    "chlewis[]{}{}": {
+      "snippet": "chlewis[${3:options}]{${1:electron spec}}{${2:atom}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "chstoich{}": {
+      "snippet": "chstoich{${1:arg1}}"
+    },
+    "DeprecatedFormulaCommand{}{}{}": {
+      "snippet": "DeprecatedFormulaCommand{${1:deprecated macro}}{${2:replacement macro}}{${3:code}}"
+    }
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "decimal-marker={${1:marker}}",
+      "frac-style=",
+      "frac-math-cmd={${1:command sequence}}",
+      "stoich-space={${1:skip}}",
+      "stoich-paren-parse=",
+      "stoich-format={${1:code}}",
+      "circled=",
+      "circletype=",
+      "subscript-vshift={${1:dim}}",
+      "subscript-style=",
+      "charge-hshift={${1:dim}}",
+      "charge-vshift={${1:dim}}",
+      "charge-style=",
+      "math-scripts",
+      "adduct-space={${1:dim}}",
+      "adduct-penalty={${1:num}}",
+      "bond-length={${1:dim}}",
+      "bond-offset={${1:dim}}",
+      "bond-style={${1:TikZ}}",
+      "bond-penalty={${1:num}}",
+      "radical-style={${1:TikZ}}",
+      "radical-radius={${1:dim}}",
+      "radical-hshift={${1:dim}}",
+      "radical-vshift={${1:dim}}",
+      "radical-space={${1:dim}}",
+      "plus-space={${1:skip}}",
+      "plus-penalty={${1:num}}",
+      "plus-output-symbol={${1:code}}",
+      "minus-space={${1:skip}}",
+      "minus-penalty={${1:num}}",
+      "minus-output-symbol={${1:code}}",
+      "math-space={${1:skip}}",
+      "arrow-offset={${1:dim}}",
+      "arrow-min-length={${1:dim}}",
+      "arrow-yshift={${1:dim}}",
+      "arrow-ratio={${1:factor}}",
+      "compound-sep={${1:dim}}",
+      "label-offset={${1:dim}}",
+      "label-style={${1:font command}}",
+      "arrow-penalty={${1:num}}",
+      "arrow-style={${1:TikZ}}",
+      "name-format={${1:comands}}",
+      "name-width=",
+      "format={${1:code}}",
+      "atom-format={${1:code}}",
+      "font-family={${1:family}}",
+      "font-series={${1:series}}",
+      "font-shape={${1:shape}}",
+      "font-spec={${1:font}}",
+      "font-spec={[${1:options}]${2:font}}",
+      "tikz-external-disable=",
+      "lewis-default=",
+      "lewis-distance={${1:dim}}",
+      "lewis-line-length={${1:dim}}",
+      "lewis-line-width={${1:dim}}",
+      "lewis-offset={${1:dim}}",
+      "kroeger-vink=",
+      "kv-positive-style={${1:TikZ}}",
+      "kv-positive-radius={${1:dim}}",
+      "kv-positive-hshift={${1:dim}}",
+      "kv-positive-vshift={${1:dim}}",
+      "kv-positive-offset={${1:dim}}",
+      "kv-positive-symbol={${1:TeX code}}"
+    ],
+    [
+      "decimal-marker={${1:marker}}",
+      "frac-style=",
+      "frac-math-cmd={${1:command sequence}}",
+      "stoich-space={${1:skip}}",
+      "stoich-paren-parse=",
+      "stoich-format={${1:code}}",
+      "circled=",
+      "circletype=",
+      "charge-hshift={${1:dim}}",
+      "subscript-vshift={${1:dim}}",
+      "subscript-style=",
+      "charge-hshift={${1:dim}}",
+      "charge-vshift={${1:dim}}",
+      "charge-style=",
+      "math-scripts",
+      "adduct-space={${1:dim}}",
+      "adduct-penalty={${1:num}}",
+      "bond-length={${1:dim}}",
+      "bond-offset={${1:dim}}",
+      "bond-style={${1:TikZ}}",
+      "bond-penalty={${1:num}}",
+      "radical-style={${1:TikZ}}",
+      "radical-radius={${1:dim}}",
+      "radical-hshift={${1:dim}}",
+      "radical-vshift={${1:dim}}",
+      "radical-space={${1:dim}}",
+      "plus-space={${1:skip}}",
+      "plus-penalty={${1:num}}",
+      "plus-output-symbol={${1:code}}",
+      "minus-space={${1:skip}}",
+      "minus-penalty={${1:num}}",
+      "minus-output-symbol={${1:code}}",
+      "math-space={${1:skip}}",
+      "arrow-offset={${1:dim}}",
+      "arrow-min-length={${1:dim}}",
+      "arrow-yshift={${1:dim}}",
+      "arrow-ratio={${1:factor}}",
+      "compound-sep={${1:dim}}",
+      "label-offset={${1:dim}}",
+      "label-style={${1:font command}}",
+      "arrow-penalty={${1:num}}",
+      "arrow-style={${1:TikZ}}",
+      "name-format={${1:comands}}",
+      "name-width=",
+      "format={${1:code}}",
+      "atom-format={${1:code}}",
+      "font-family={${1:family}}",
+      "font-series={${1:series}}",
+      "font-shape={${1:shape}}",
+      "font-spec={${1:font}}",
+      "font-spec={[${1:options}]${2:font}}",
+      "kroeger-vink=",
+      "kv-positive-style={${1:TikZ}}",
+      "kv-positive-radius={${1:dim}}",
+      "kv-positive-hshift={${1:dim}}",
+      "kv-positive-vshift={${1:dim}}",
+      "kv-positive-offset={${1:dim}}",
+      "kv-positive-symbol={${1:TeX code}}"
+    ],
+    [
+      "plus-space={${1:skip}}",
+      "plus-penalty={${1:num}}",
+      "plus-output-symbol={${1:code}}",
+      "minus-space={${1:skip}}",
+      "minus-penalty={${1:num}}",
+      "minus-output-symbol={${1:code}}",
+      "math-space={${1:skip}}",
+      "arrow-offset={${1:dim}}",
+      "arrow-min-length={${1:dim}}",
+      "arrow-yshift={${1:dim}}",
+      "arrow-ratio={${1:factor}}",
+      "compound-sep={${1:dim}}",
+      "label-offset={${1:dim}}",
+      "label-style={${1:font command}}",
+      "arrow-penalty={${1:num}}",
+      "arrow-style={${1:TikZ}}",
+      "name-format={${1:comands}}",
+      "name-width=",
+      "format={${1:code}}",
+      "atom-format={${1:code}}",
+      "font-family={${1:family}}",
+      "font-series={${1:series}}",
+      "font-shape={${1:shape}}",
+      "font-spec={${1:font}}",
+      "font-spec={[${1:options}]${2:font}}"
+    ],
+    [
+      "lewis-default=",
+      "lewis-distance={${1:dim}}",
+      "lewis-line-length={${1:dim}}",
+      "lewis-line-width={${1:dim}}",
+      "lewis-offset={${1:dim}}5ex"
+    ]
+  ]
+}

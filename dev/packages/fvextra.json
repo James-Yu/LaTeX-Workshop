@@ -1,0 +1,283 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "fancyvrb": [],
+    "upquote": [],
+    "lineno": []
+  },
+  "macros": {
+    "fvinlineset{}": {
+      "snippet": "fvinlineset{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "FancyVerbFormatInline{}": {
+      "snippet": "FancyVerbFormatInline{${1:text}}"
+    },
+    "FancyVerbFormatText": {},
+    "EscVerb{}": {
+      "snippet": "EscVerb{${1:backslash-escaped text}}"
+    },
+    "EscVerb[]{}": {
+      "snippet": "EscVerb[${2:options}]{${1:backslash-escaped text}}"
+    },
+    "EscVerb*{}": {
+      "snippet": "EscVerb*{${1:backslash-escaped text}}"
+    },
+    "EscVerb*[]{}": {
+      "snippet": "EscVerb*[${2:options}]{${1:backslash-escaped text}}"
+    },
+    "FancyVerbWriteFileHandle": {},
+    "FancyVerbDefaultWriter": {},
+    "FancyVerbDefaultBufferer": {},
+    "FancyVerbBufferLineName": {},
+    "VerbatimInsertBuffer": {},
+    "VerbatimInsertBuffer[]": {
+      "snippet": "VerbatimInsertBuffer[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "FancyVerbBreakStart": {},
+    "FancyVerbBreakStop": {},
+    "FancyVerbBreakAnywhereBreak": {},
+    "FancyVerbBreakBeforeBreak": {},
+    "FancyVerbBreakAfterBreak": {},
+    "FancyVerbBreakByTokenAnywhereBreak": {},
+    "VerbatimPygments{}{}": {
+      "snippet": "VerbatimPygments{${1:literal macro}}{${2:actual macro}}"
+    },
+    "FVExtraDoSpecials": {},
+    "FVExtraReadOArgBeforeVArg{}": {
+      "snippet": "FVExtraReadOArgBeforeVArg{${1:arg}}"
+    },
+    "FVExtraReadOArgBeforeVArg[]{}": {
+      "snippet": "FVExtraReadOArgBeforeVArg[${2:opt}]{${1:arg}}"
+    },
+    "FVExtraReadOArgBeforeVEnv{}": {
+      "snippet": "FVExtraReadOArgBeforeVEnv{${1:arg}}"
+    },
+    "FVExtraReadOArgBeforeVEnv[]{}": {
+      "snippet": "FVExtraReadOArgBeforeVEnv[${2:opt}]{${1:arg}}"
+    },
+    "FVExtraReadVArg{}": {
+      "snippet": "FVExtraReadVArg{${1:arg}}"
+    },
+    "FVExtrapdfstringdef{}{}": {
+      "snippet": "FVExtrapdfstringdef{${1:arg1}}{${2:arg2}}"
+    },
+    "FVExtrapdfstringdefDisableCommands": {},
+    "FVExtraAlwaysUnexpanded{}": {
+      "snippet": "FVExtraAlwaysUnexpanded{${1:arg}}"
+    },
+    "FVExtraRobustCommand{}{}": {
+      "snippet": "FVExtraRobustCommand{${1:arg1}}{${2:arg2}}"
+    },
+    "FVExtraUnexpandedReadStarOArgMArg{}": {
+      "snippet": "FVExtraUnexpandedReadStarOArgMArg{${1:arg}}"
+    },
+    "FVExtraUseVerbUnexpandedReadStarOArgMArg{}": {
+      "snippet": "FVExtraUseVerbUnexpandedReadStarOArgMArg{${1:arg}}"
+    },
+    "FVExtraUnexpandedReadStarOArgBVArg{}": {
+      "snippet": "FVExtraUnexpandedReadStarOArgBVArg{${1:arg}}"
+    },
+    "FVExtraUnexpandedReadStarOArgBEscVArg{}": {
+      "snippet": "FVExtraUnexpandedReadStarOArgBEscVArg{${1:arg}}"
+    },
+    "FVExtraPDFStringEscapeChar{}": {
+      "snippet": "FVExtraPDFStringEscapeChar{${1:arg}}"
+    },
+    "FVExtraPDFStringEscapeChars{}": {
+      "snippet": "FVExtraPDFStringEscapeChars{${1:arg}}"
+    },
+    "FVExtraVerbatimDetokenize{}": {
+      "snippet": "FVExtraVerbatimDetokenize{${1:arg}}"
+    },
+    "FVExtraPDFStringVerbatimDetokenize{}": {
+      "snippet": "FVExtraPDFStringVerbatimDetokenize{${1:arg}}"
+    },
+    "FVExtraEscapedVerbatimDetokenize{}": {
+      "snippet": "FVExtraEscapedVerbatimDetokenize{${1:arg}}"
+    },
+    "FVExtraPDFStringEscapedVerbatimDetokenize{}": {
+      "snippet": "FVExtraPDFStringEscapedVerbatimDetokenize{${1:arg}}"
+    },
+    "FVExtraDetokenizeVArg{}{}": {
+      "snippet": "FVExtraDetokenizeVArg{${1:arg1}}{${2:arg2}}"
+    },
+    "FVExtraDetokenizeEscVArg{}{}": {
+      "snippet": "FVExtraDetokenizeEscVArg{${1:arg1}}{${2:arg2}}"
+    },
+    "FVExtraDetokenizeREscVArg{}{}": {
+      "snippet": "FVExtraDetokenizeREscVArg{${1:arg1}}{${2:arg2}}"
+    },
+    "FVExtraRetokenizeVArg{}{}{}": {
+      "snippet": "FVExtraRetokenizeVArg{${1:macro}}{${2:code}}{${3:chars}}"
+    },
+    "FVExtraUnexpandedReadStarOArgMArgBVArg{}": {
+      "snippet": "FVExtraUnexpandedReadStarOArgMArgBVArg{${1:arg}}"
+    },
+    "RobustVerb[]{}": {
+      "snippet": "RobustVerb[${2:options}]{${1:verbatimSymbol}}"
+    },
+    "RobustVerb": {
+      "snippet": "RobustVerb|${1:code}|"
+    },
+    "RobustVerb[]": {
+      "snippet": "RobustVerb[${1:options}]|${2:code}|"
+    },
+    "RobustVerb*[]{}": {
+      "snippet": "RobustVerb*[${2:options}]{${1:verbatimSymbol}}"
+    },
+    "RobustVerb*": {
+      "snippet": "RobustVerb*|${1:code}|"
+    },
+    "RobustVerb*[]": {
+      "snippet": "RobustVerb*[${1:options}]|${2:code}|"
+    },
+    "RobustUseVerb{}": {
+      "snippet": "RobustUseVerb{${1:name}}"
+    },
+    "RobustUseVerb[]{}": {
+      "snippet": "RobustUseVerb[${2:options}]{${1:name}}"
+    },
+    "RobustUseVerb*{}": {
+      "snippet": "RobustUseVerb*{${1:name}}"
+    },
+    "RobustUseVerb*[]{}": {
+      "snippet": "RobustUseVerb*[${2:options}]{${1:name}}"
+    },
+    "RobustEscVerb{}": {
+      "snippet": "RobustEscVerb{${1:backslash-escaped text}}"
+    },
+    "RobustEscVerb[]{}": {
+      "snippet": "RobustEscVerb[${2:options}]{${1:backslash-escaped text}}"
+    },
+    "RobustEscVerb*{}": {
+      "snippet": "RobustEscVerb*{${1:backslash-escaped text}}"
+    },
+    "RobustEscVerb*[]{}": {
+      "snippet": "RobustEscVerb*[${2:options}]{${1:backslash-escaped text}}"
+    },
+    "FancyVerbMathSpace": {},
+    "FancyVerbFillColor": {},
+    "FancyVerbMathEscape": {},
+    "FancyVerbBeamerOverlays": {},
+    "FancyVerbCurlyQuotes": {},
+    "FancyVerbHighlightColor": {},
+    "FancyVerbHighlightLine{}": {
+      "snippet": "FancyVerbHighlightLine{${1:arg}}"
+    },
+    "FancyVerbHighlightLineNormal{}": {
+      "snippet": "FancyVerbHighlightLineNormal{${1:arg}}"
+    },
+    "FancyVerbHighlightLineFirst{}": {
+      "snippet": "FancyVerbHighlightLineFirst{${1:arg}}"
+    },
+    "FancyVerbHighlightLineMiddle{}": {
+      "snippet": "FancyVerbHighlightLineMiddle{${1:arg}}"
+    },
+    "FancyVerbHighlightLineLast{}": {
+      "snippet": "FancyVerbHighlightLineLast{${1:arg}}"
+    },
+    "FancyVerbHighlightLineSingle{}": {
+      "snippet": "FancyVerbHighlightLineSingle{${1:arg}}"
+    },
+    "FancyVerbBreakSymbolLeft": {},
+    "FancyVerbBreakSymbolRight": {},
+    "FancyVerbBreakSymbolLeftLogic{}": {
+      "snippet": "FancyVerbBreakSymbolLeftLogic{${1:arg}}"
+    },
+    "theFancyVerbLineBreakLast": {},
+    "FancyVerbBreakSymbolRightLogic{}": {
+      "snippet": "FancyVerbBreakSymbolRightLogic{${1:arg}}"
+    },
+    "FancyVerbBreakAnywhereSymbolPre": {},
+    "FancyVerbBreakAnywhereSymbolPost": {},
+    "FancyVerbBreakBeforeSymbolPre": {},
+    "FancyVerbBreakBeforeSymbolPost": {},
+    "FancyVerbBreakAfterSymbolPre": {},
+    "FancyVerbBreakAfterSymbolPost": {},
+    "FancyVerbSpaceBreak": {}
+  },
+  "envs": {
+    "VerbEnv": {},
+    "VerbEnv[]": {
+      "name": "VerbEnv",
+      "snippet": "[${1:options}]"
+    },
+    "VerbatimWrite": {},
+    "VerbatimWrite[]": {
+      "name": "VerbatimWrite",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "VerbatimBuffer": {},
+    "VerbatimBuffer[]": {
+      "name": "VerbatimBuffer",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "commentchar=${1:single char}",
+      "gobble=${1:integer}",
+      "formatcom=${1:commands}",
+      "formatcom*=${1:commands}",
+      "fontfamily=${1:family}",
+      "fontsize=${1:size macro}",
+      "fontshape=${1:shape}",
+      "fontseries=${1:series}",
+      "frame=",
+      "framerule=",
+      "framesep=",
+      "rulecolor=${1:color cmd}",
+      "fillcolor=${1:color cmd}",
+      "label=${1:label text}",
+      "labelposition=",
+      "numbers=",
+      "numbersep=",
+      "firstnumber=${1:auto|last|<integer>}",
+      "stepnumber=${1:integer}",
+      "numberblanklines",
+      "firstline=${1:integer}",
+      "lastline=${1:integer}",
+      "showspaces",
+      "showtabs",
+      "obeytabs",
+      "tabsize=${1:integer}",
+      "baselinestretch=${1:factor}",
+      "commandchars=${1:three chars}",
+      "xleftmargin=",
+      "xrightmargin=",
+      "resetmargins",
+      "hfuzz=",
+      "samepage",
+      "codes={${1:code}}",
+      "codes*={${1:code}}",
+      "defineactive={${1:code}}",
+      "defineactive*={${1:code}}",
+      "reflabel=",
+      "fileext=${1:extension}",
+      "vspace=",
+      "listparameters={${1:code}}",
+      "aftersave={${1:code}}"
+    ],
+    [
+      "afterbuffer=${1:macro}",
+      "bufferer=${1:macro}",
+      "bufferlengthname=${1:string}",
+      "bufferlinename=${1:string}",
+      "buffername=${1:string}",
+      "globalbuffer"
+    ],
+    [
+      "writefilehandle=${1:file handle}",
+      "writer=${1:macro}"
+    ]
+  ]
+}

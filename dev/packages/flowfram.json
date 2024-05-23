@@ -1,0 +1,1127 @@
+{
+  "includes": {
+    "ifthen": [],
+    "xkeyval": [],
+    "graphics": [],
+    "afterpage": [],
+    "xfor": [],
+    "etoolbox": [],
+    "color": []
+  },
+  "macros": {
+    "ifshowtypeblock": {},
+    "showtypeblocktrue": {},
+    "showtypeblockfalse": {},
+    "ifshowmargins": {},
+    "showmarginstrue": {},
+    "showmarginsfalse": {},
+    "ifshowframebbox": {},
+    "showframebboxtrue": {},
+    "showframebboxfalse": {},
+    "flowframeshowlayout": {},
+    "chapterfirstpagestyle": {},
+    "ffprechapterhook": {},
+    "newflowframe{}{}{}{}": {
+      "snippet": "newflowframe{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "newflowframe{}{}{}{}[]": {
+      "snippet": "newflowframe{${1:width}}{${2:height}}{${3:x}}{${4:y}}[${5:label}]"
+    },
+    "newflowframe[]{}{}{}{}": {
+      "snippet": "newflowframe[${5:page list}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "newflowframe[]{}{}{}{}[]": {
+      "snippet": "newflowframe[${5:page list}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}[${6:label}]"
+    },
+    "newflowframe*{}{}{}{}": {
+      "snippet": "newflowframe*{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "newflowframe*{}{}{}{}[]": {
+      "snippet": "newflowframe*{${1:width}}{${2:height}}{${3:x}}{${4:y}}[${5:label}]"
+    },
+    "newflowframe*[]{}{}{}{}": {
+      "snippet": "newflowframe*[${5:page list}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "newflowframe*[]{}{}{}{}[]": {
+      "snippet": "newflowframe*[${5:page list}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}[${6:label}]"
+    },
+    "getflowlabel{}": {
+      "snippet": "getflowlabel{${1:IDN}}"
+    },
+    "getflowid{}{}": {
+      "snippet": "getflowid{${1:cmd}}{${2:IDL}}"
+    },
+    "framebreak": {},
+    "fftolerance": {},
+    "newstaticframe{}{}{}{}": {
+      "snippet": "newstaticframe{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "newstaticframe{}{}{}{}[]": {
+      "snippet": "newstaticframe{${1:width}}{${2:height}}{${3:x}}{${4:y}}[${5:label}]"
+    },
+    "newstaticframe[]{}{}{}{}": {
+      "snippet": "newstaticframe[${5:page list}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "newstaticframe[]{}{}{}{}[]": {
+      "snippet": "newstaticframe[${5:page list}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}[${6:label}]"
+    },
+    "newstaticframe*{}{}{}{}": {
+      "snippet": "newstaticframe*{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "newstaticframe*{}{}{}{}[]": {
+      "snippet": "newstaticframe*{${1:width}}{${2:height}}{${3:x}}{${4:y}}[${5:label}]"
+    },
+    "newstaticframe*[]{}{}{}{}": {
+      "snippet": "newstaticframe*[${5:page list}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "newstaticframe*[]{}{}{}{}[]": {
+      "snippet": "newstaticframe*[${5:page list}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}[${6:label}]"
+    },
+    "getstaticlabel{}": {
+      "snippet": "getstaticlabel{${1:IDN}}"
+    },
+    "getstaticid{}{}": {
+      "snippet": "getstaticid{${1:cmd}}{${2:IDL}}"
+    },
+    "setstaticcontents{}{}": {
+      "snippet": "setstaticcontents{${1:IDN}}{${2:contents}}"
+    },
+    "setstaticcontents*{}{}": {
+      "snippet": "setstaticcontents*{${1:IDL}}{${2:contents}}"
+    },
+    "newdynamicframe{}{}{}{}": {
+      "snippet": "newdynamicframe{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "newdynamicframe{}{}{}{}[]": {
+      "snippet": "newdynamicframe{${1:width}}{${2:height}}{${3:x}}{${4:y}}[${5:label}]"
+    },
+    "newdynamicframe[]{}{}{}{}": {
+      "snippet": "newdynamicframe[${5:page list}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "newdynamicframe[]{}{}{}{}[]": {
+      "snippet": "newdynamicframe[${5:page list}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}[${6:label}]"
+    },
+    "newdynamicframe*{}{}{}{}": {
+      "snippet": "newdynamicframe*{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "newdynamicframe*{}{}{}{}[]": {
+      "snippet": "newdynamicframe*{${1:width}}{${2:height}}{${3:x}}{${4:y}}[${5:label}]"
+    },
+    "newdynamicframe*[]{}{}{}{}": {
+      "snippet": "newdynamicframe*[${5:page list}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "newdynamicframe*[]{}{}{}{}[]": {
+      "snippet": "newdynamicframe*[${5:page list}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}[${6:label}]"
+    },
+    "getdynamiclabel{}": {
+      "snippet": "getdynamiclabel{${1:IDN}}"
+    },
+    "getdynamicid{}{}": {
+      "snippet": "getdynamicid{${1:cmd}}{${2:IDL}}"
+    },
+    "setdynamiccontents{}{}": {
+      "snippet": "setdynamiccontents{${1:IDN}}{${2:contents}}"
+    },
+    "setdynamiccontents*{}{}": {
+      "snippet": "setdynamiccontents*{${1:IDL}}{${2:contents}}"
+    },
+    "appenddynamiccontents{}{}": {
+      "snippet": "appenddynamiccontents{${1:IDN}}{${2:contents}}"
+    },
+    "appenddynamiccontents*{}{}": {
+      "snippet": "appenddynamiccontents*{${1:IDL}}{${2:contents}}"
+    },
+    "dfchaphead{}": {
+      "snippet": "dfchaphead{${1:IDN}}"
+    },
+    "dfchaphead*{}": {
+      "snippet": "dfchaphead*{${1:IDL}}"
+    },
+    "DFchapterstyle{}": {
+      "snippet": "DFchapterstyle{${1:text}}"
+    },
+    "DFschapterstyle{}": {
+      "snippet": "DFschapterstyle{${1:text}}"
+    },
+    "makedfheaderfooter": {},
+    "continueonframe{}": {
+      "snippet": "continueonframe{${1:ID}}"
+    },
+    "continueonframe[]{}": {
+      "snippet": "continueonframe[${2:continuation text}]{${1:ID}}"
+    },
+    "ffcontinuedtextlayout{}": {
+      "snippet": "ffcontinuedtextlayout{${1:text}}"
+    },
+    "ffcontinuedtextfont{}": {
+      "snippet": "ffcontinuedtextfont{${1:text}}"
+    },
+    "setflowframe{}{}": {
+      "snippet": "setflowframe{${1:IDN list}}{${2:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "setflowframe*{}{}": {
+      "snippet": "setflowframe*{${1:IDL list}}{${2:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "setallflowframes{}": {
+      "snippet": "setallflowframes{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "setstaticframe{}{}": {
+      "snippet": "setstaticframe{${1:IDN list}}{${2:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "setstaticframe*{}{}": {
+      "snippet": "setstaticframe*{${1:IDL list}}{${2:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "setallstaticframes{}": {
+      "snippet": "setallstaticframes{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "setdynamicframe{}{}": {
+      "snippet": "setdynamicframe{${1:IDN list}}{${2:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "setdynamicframe*{}{}": {
+      "snippet": "setdynamicframe*{${1:IDL list}}{${2:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "setalldynamicframes{}": {
+      "snippet": "setalldynamicframes{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ffswapoddeven{}": {
+      "snippet": "ffswapoddeven{${1:IDN}}"
+    },
+    "sfswapoddeven{}": {
+      "snippet": "sfswapoddeven{${1:IDN}}"
+    },
+    "dfswapoddeven{}": {
+      "snippet": "dfswapoddeven{${1:IDN}}"
+    },
+    "flowsetpagelist{}{}": {
+      "snippet": "flowsetpagelist{${1:IDN}}{${2:pages}}"
+    },
+    "dynamicsetpagelist{}{}": {
+      "snippet": "dynamicsetpagelist{${1:IDN}}{${2:pages}}"
+    },
+    "staticsetpagelist{}{}": {
+      "snippet": "staticsetpagelist{${1:IDN}}{${2:pages}}"
+    },
+    "flowsetexclusion{}{}": {
+      "snippet": "flowsetexclusion{${1:IDN}}{${2:pages}}"
+    },
+    "dynamicsetexclusion{}{}": {
+      "snippet": "dynamicsetexclusion{${1:IDN}}{${2:pages}}"
+    },
+    "staticsetexclusion{}{}": {
+      "snippet": "staticsetexclusion{${1:IDN}}{${2:pages}}"
+    },
+    "flowaddexclusion{}{}": {
+      "snippet": "flowaddexclusion{${1:IDN}}{${2:pages}}"
+    },
+    "dynamicaddexclusion{}{}": {
+      "snippet": "dynamicaddexclusion{${1:IDN}}{${2:pages}}"
+    },
+    "staticaddexclusion{}{}": {
+      "snippet": "staticaddexclusion{${1:IDN}}{${2:pages}}"
+    },
+    "simpar": {},
+    "flowswitchonnext{}": {
+      "snippet": "flowswitchonnext{${1:IDN list}}"
+    },
+    "flowswitchonnext*{}": {
+      "snippet": "flowswitchonnext*{${1:IDL list}}"
+    },
+    "flowswitchoffnext{}": {
+      "snippet": "flowswitchoffnext{${1:IDN list}}"
+    },
+    "flowswitchoffnext*{}": {
+      "snippet": "flowswitchoffnext*{${1:IDL list}}"
+    },
+    "flowswitchonnextodd{}": {
+      "snippet": "flowswitchonnextodd{${1:IDN list}}"
+    },
+    "flowswitchonnextodd*{}": {
+      "snippet": "flowswitchonnextodd*{${1:IDL list}}"
+    },
+    "flowswitchoffnextodd{}": {
+      "snippet": "flowswitchoffnextodd{${1:IDN list}}"
+    },
+    "flowswitchoffnextodd*{}": {
+      "snippet": "flowswitchoffnextodd*{${1:IDL list}}"
+    },
+    "flowswitchonnextonly{}": {
+      "snippet": "flowswitchonnextonly{${1:IDN list}}"
+    },
+    "flowswitchonnextonly*{}": {
+      "snippet": "flowswitchonnextonly*{${1:IDL list}}"
+    },
+    "flowswitchoffnextonly{}": {
+      "snippet": "flowswitchoffnextonly{${1:IDN list}}"
+    },
+    "flowswitchoffnextonly*{}": {
+      "snippet": "flowswitchoffnextonly*{${1:IDL list}}"
+    },
+    "flowswitchonnextoddonly{}": {
+      "snippet": "flowswitchonnextoddonly{${1:IDN list}}"
+    },
+    "flowswitchonnextoddonly*{}": {
+      "snippet": "flowswitchonnextoddonly*{${1:IDL list}}"
+    },
+    "flowswitchoffnextoddonly{}": {
+      "snippet": "flowswitchoffnextoddonly{${1:IDN list}}"
+    },
+    "flowswitchoffnextoddonly*{}": {
+      "snippet": "flowswitchoffnextoddonly*{${1:IDL list}}"
+    },
+    "dynamicswitchonnext{}": {
+      "snippet": "dynamicswitchonnext{${1:IDN list}}"
+    },
+    "dynamicswitchonnext*{}": {
+      "snippet": "dynamicswitchonnext*{${1:IDL list}}"
+    },
+    "dynamicswitchoffnext{}": {
+      "snippet": "dynamicswitchoffnext{${1:IDN list}}"
+    },
+    "dynamicswitchoffnext*{}": {
+      "snippet": "dynamicswitchoffnext*{${1:IDL list}}"
+    },
+    "dynamicswitchonnextodd{}": {
+      "snippet": "dynamicswitchonnextodd{${1:IDN list}}"
+    },
+    "dynamicswitchonnextodd*{}": {
+      "snippet": "dynamicswitchonnextodd*{${1:IDL list}}"
+    },
+    "dynamicswitchoffnextodd{}": {
+      "snippet": "dynamicswitchoffnextodd{${1:IDN list}}"
+    },
+    "dynamicswitchoffnextodd*{}": {
+      "snippet": "dynamicswitchoffnextodd*{${1:IDL list}}"
+    },
+    "dynamicswitchonnextonly{}": {
+      "snippet": "dynamicswitchonnextonly{${1:IDN list}}"
+    },
+    "dynamicswitchonnextonly*{}": {
+      "snippet": "dynamicswitchonnextonly*{${1:IDL list}}"
+    },
+    "dynamicswitchoffnextonly{}": {
+      "snippet": "dynamicswitchoffnextonly{${1:IDN list}}"
+    },
+    "dynamicswitchoffnextonly*{}": {
+      "snippet": "dynamicswitchoffnextonly*{${1:IDL list}}"
+    },
+    "dynamicswitchonnextoddonly{}": {
+      "snippet": "dynamicswitchonnextoddonly{${1:IDN list}}"
+    },
+    "dynamicswitchonnextoddonly*{}": {
+      "snippet": "dynamicswitchonnextoddonly*{${1:IDL list}}"
+    },
+    "dynamicswitchoffnextoddonly{}": {
+      "snippet": "dynamicswitchoffnextoddonly{${1:IDN list}}"
+    },
+    "dynamicswitchoffnextoddonly*{}": {
+      "snippet": "dynamicswitchoffnextoddonly*{${1:IDL list}}"
+    },
+    "staticswitchonnext{}": {
+      "snippet": "staticswitchonnext{${1:IDN list}}"
+    },
+    "staticswitchonnext*{}": {
+      "snippet": "staticswitchonnext*{${1:IDL list}}"
+    },
+    "staticswitchoffnext{}": {
+      "snippet": "staticswitchoffnext{${1:IDN list}}"
+    },
+    "staticswitchoffnext*{}": {
+      "snippet": "staticswitchoffnext*{${1:IDL list}}"
+    },
+    "staticswitchonnextodd{}": {
+      "snippet": "staticswitchonnextodd{${1:IDN list}}"
+    },
+    "staticswitchonnextodd*{}": {
+      "snippet": "staticswitchonnextodd*{${1:IDL list}}"
+    },
+    "staticswitchoffnextodd{}": {
+      "snippet": "staticswitchoffnextodd{${1:IDN list}}"
+    },
+    "staticswitchoffnextodd*{}": {
+      "snippet": "staticswitchoffnextodd*{${1:IDL list}}"
+    },
+    "staticswitchonnextonly{}": {
+      "snippet": "staticswitchonnextonly{${1:IDN list}}"
+    },
+    "staticswitchonnextonly*{}": {
+      "snippet": "staticswitchonnextonly*{${1:IDL list}}"
+    },
+    "staticswitchoffnextonly{}": {
+      "snippet": "staticswitchoffnextonly{${1:IDN list}}"
+    },
+    "staticswitchoffnextonly*{}": {
+      "snippet": "staticswitchoffnextonly*{${1:IDL list}}"
+    },
+    "staticswitchonnextoddonly{}": {
+      "snippet": "staticswitchonnextoddonly{${1:IDN list}}"
+    },
+    "staticswitchonnextoddonly*{}": {
+      "snippet": "staticswitchonnextoddonly*{${1:IDL list}}"
+    },
+    "staticswitchoffnextoddonly{}": {
+      "snippet": "staticswitchoffnextoddonly{${1:IDN list}}"
+    },
+    "staticswitchoffnextoddonly*{}": {
+      "snippet": "staticswitchoffnextoddonly*{${1:IDL list}}"
+    },
+    "computeleftedgeodd{}": {
+      "snippet": "computeleftedgeodd{${1:length}}"
+    },
+    "computeleftedgeeven{}": {
+      "snippet": "computeleftedgeeven{${1:length}}"
+    },
+    "computetopedge{}": {
+      "snippet": "computetopedge{${1:length}}"
+    },
+    "computebottomedge{}": {
+      "snippet": "computebottomedge{${1:length}}"
+    },
+    "computerightedgeodd{}": {
+      "snippet": "computerightedgeodd{${1:length}}"
+    },
+    "computerightedgeeven{}": {
+      "snippet": "computerightedgeeven{${1:length}}"
+    },
+    "computeflowframearea{}": {
+      "snippet": "computeflowframearea{${1:IDN list}}"
+    },
+    "computeflowframearea*{}": {
+      "snippet": "computeflowframearea*{${1:IDL list}}"
+    },
+    "getstaticbounds{}": {
+      "snippet": "getstaticbounds{${1:IDN}}"
+    },
+    "getstaticbounds*{}": {
+      "snippet": "getstaticbounds*{${1:IDL}}"
+    },
+    "getflowbounds{}": {
+      "snippet": "getflowbounds{${1:IDN}}"
+    },
+    "getflowbounds*{}": {
+      "snippet": "getflowbounds*{${1:IDL}}"
+    },
+    "getdynamicbounds{}": {
+      "snippet": "getdynamicbounds{${1:IDN}}"
+    },
+    "getdynamicbounds*{}": {
+      "snippet": "getdynamicbounds*{${1:IDL}}"
+    },
+    "ffareawidth": {},
+    "ffareaheight": {},
+    "ffareax": {},
+    "ffareay": {},
+    "relativeframelocation{}{}{}{}": {
+      "snippet": "relativeframelocation{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "relativeframelocation*{}{}{}{}": {
+      "snippet": "relativeframelocation*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "FFaboveleft": {},
+    "FFaboveright": {},
+    "FFbelowleft": {},
+    "FFbelowright": {},
+    "FFleft": {},
+    "FFright": {},
+    "FFabove": {},
+    "FFbelow": {},
+    "FFoverlap": {},
+    "reldynamicloc{}{}": {
+      "snippet": "reldynamicloc{${1:IDN1}}{${2:IDN2}}"
+    },
+    "reldynamicloc*{}{}": {
+      "snippet": "reldynamicloc*{${1:IDN1}}{${2:IDN2}}"
+    },
+    "relstaticloc{}{}": {
+      "snippet": "relstaticloc{${1:IDN1}}{${2:IDN2}}"
+    },
+    "relstaticloc*{}{}": {
+      "snippet": "relstaticloc*{${1:IDN1}}{${2:IDN2}}"
+    },
+    "relflowloc{}{}": {
+      "snippet": "relflowloc{${1:IDN1}}{${2:IDN2}}"
+    },
+    "relflowloc*{}{}": {
+      "snippet": "relflowloc*{${1:IDN1}}{${2:IDN2}}"
+    },
+    "ifffvadjust": {},
+    "ffvadjusttrue": {},
+    "ffvadjustfalse": {},
+    "onecolumn[]": {
+      "snippet": "onecolumn[${1:pages}]"
+    },
+    "twocolumn[]": {
+      "snippet": "twocolumn[${1:pages}]"
+    },
+    "Ncolumn{}": {
+      "snippet": "Ncolumn{${1:n}}"
+    },
+    "Ncolumn[]{}": {
+      "snippet": "Ncolumn[${2:pages}]{${1:n}}"
+    },
+    "onecolumninarea{}{}{}{}": {
+      "snippet": "onecolumninarea{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "onecolumninarea[]{}{}{}{}": {
+      "snippet": "onecolumninarea[${5:pages}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "twocolumninarea{}{}{}{}": {
+      "snippet": "twocolumninarea{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "twocolumninarea[]{}{}{}{}": {
+      "snippet": "twocolumninarea[${5:pages}]{${1:width}}{${2:height}}{${3:x}}{${4:y}}"
+    },
+    "Ncolumninarea{}{}{}{}{}": {
+      "snippet": "Ncolumninarea{${1:n}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "Ncolumninarea[]{}{}{}{}{}": {
+      "snippet": "Ncolumninarea[${6:pages}]{${1:n}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "onecolumntopinarea{}{}{}{}{}{}": {
+      "snippet": "onecolumntopinarea{${1:type}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "onecolumntopinarea[]{}{}{}{}{}{}": {
+      "snippet": "onecolumntopinarea[${7:pages}]{${1:type}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "twocolumntopinarea{}{}{}{}{}{}": {
+      "snippet": "twocolumntopinarea{${1:type}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "twocolumntopinarea[]{}{}{}{}{}{}": {
+      "snippet": "twocolumntopinarea[${7:pages}]{${1:type}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "Ncolumntopinarea{}{}{}{}{}{}{}": {
+      "snippet": "Ncolumntopinarea{${1:type}}{${2:n}}{${3:H}}{${4:width}}{${5:height}}{${6:x}}{${7:y}}"
+    },
+    "Ncolumntopinarea[]{}{}{}{}{}{}{}": {
+      "snippet": "Ncolumntopinarea[${8:pages}]{${1:type}}{${2:n}}{${3:H}}{${4:width}}{${5:height}}{${6:x}}{${7:y}}"
+    },
+    "onecolumnbottominarea{}{}{}{}{}{}": {
+      "snippet": "onecolumnbottominarea{${1:type}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "onecolumnbottominarea[]{}{}{}{}{}{}": {
+      "snippet": "onecolumnbottominarea[${7:pages}]{${1:type}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "twocolumnbottominarea{}{}{}{}{}{}": {
+      "snippet": "twocolumnbottominarea{${1:type}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "twocolumnbottominarea[]{}{}{}{}{}{}": {
+      "snippet": "twocolumnbottominarea[${7:pages}]{${1:type}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "Ncolumnbottominarea{}{}{}{}{}{}{}": {
+      "snippet": "Ncolumnbottominarea{${1:type}}{${2:n}}{${3:H}}{${4:width}}{${5:height}}{${6:x}}{${7:y}}"
+    },
+    "Ncolumnbottominarea[]{}{}{}{}{}{}{}": {
+      "snippet": "Ncolumnbottominarea[${8:pages}]{${1:type}}{${2:n}}{${3:H}}{${4:width}}{${5:height}}{${6:x}}{${7:y}}"
+    },
+    "onecolumnStopinarea{}{}{}{}{}": {
+      "snippet": "onecolumnStopinarea{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "onecolumnStopinarea[]{}{}{}{}{}": {
+      "snippet": "onecolumnStopinarea[${6:pages}]{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "onecolumnDtopinarea{}{}{}{}{}": {
+      "snippet": "onecolumnDtopinarea{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "onecolumnDtopinarea[]{}{}{}{}{}": {
+      "snippet": "onecolumnDtopinarea[${6:pages}]{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "onecolumntop{}{}": {
+      "snippet": "onecolumntop{${1:type}}{${2:H}}"
+    },
+    "onecolumntop[]{}{}": {
+      "snippet": "onecolumntop[${3:pages}]{${1:type}}{${2:H}}"
+    },
+    "onecolumnStop{}": {
+      "snippet": "onecolumnStop{${1:H}}"
+    },
+    "onecolumnStop[]{}": {
+      "snippet": "onecolumnStop[${2:pages}]{${1:H}}"
+    },
+    "onecolumnDtop{}": {
+      "snippet": "onecolumnDtop{${1:H}}"
+    },
+    "onecolumnDtop[]{}": {
+      "snippet": "onecolumnDtop[${2:pages}]{${1:H}}"
+    },
+    "twocolumnStopinarea{}{}{}{}{}": {
+      "snippet": "twocolumnStopinarea{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "twocolumnStopinarea[]{}{}{}{}{}": {
+      "snippet": "twocolumnStopinarea[${6:pages}]{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "twocolumnDtopinarea{}{}{}{}{}": {
+      "snippet": "twocolumnDtopinarea{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "twocolumnDtopinarea[]{}{}{}{}{}": {
+      "snippet": "twocolumnDtopinarea[${6:pages}]{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "twocolumntop{}{}": {
+      "snippet": "twocolumntop{${1:type}}{${2:H}}"
+    },
+    "twocolumntop[]{}{}": {
+      "snippet": "twocolumntop[${3:pages}]{${1:type}}{${2:H}}"
+    },
+    "twocolumnStop{}": {
+      "snippet": "twocolumnStop{${1:H}}"
+    },
+    "twocolumnStop[]{}": {
+      "snippet": "twocolumnStop[${2:pages}]{${1:H}}"
+    },
+    "twocolumnDtop{}": {
+      "snippet": "twocolumnDtop{${1:H}}"
+    },
+    "twocolumnDtop[]{}": {
+      "snippet": "twocolumnDtop[${2:pages}]{${1:H}}"
+    },
+    "NcolumnStopinarea{}{}{}{}{}{}": {
+      "snippet": "NcolumnStopinarea{${1:n}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "NcolumnStopinarea[]{}{}{}{}{}{}": {
+      "snippet": "NcolumnStopinarea[${7:pages}]{${1:n}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "NcolumnDtopinarea{}{}{}{}{}{}": {
+      "snippet": "NcolumnDtopinarea{${1:n}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "NcolumnDtopinarea[]{}{}{}{}{}{}": {
+      "snippet": "NcolumnDtopinarea[${7:pages}]{${1:n}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "Ncolumntop{}{}{}": {
+      "snippet": "Ncolumntop{${1:type}}{${2:n}}{${3:H}}"
+    },
+    "Ncolumntop[]{}{}{}": {
+      "snippet": "Ncolumntop[${4:pages}]{${1:type}}{${2:n}}{${3:H}}"
+    },
+    "NcolumnStop{}{}": {
+      "snippet": "NcolumnStop{${1:n}}{${2:H}}"
+    },
+    "NcolumnStop[]{}{}": {
+      "snippet": "NcolumnStop[${3:pages}]{${1:n}}{${2:H}}"
+    },
+    "NcolumnDtop{}{}": {
+      "snippet": "NcolumnDtop{${1:n}}{${2:H}}"
+    },
+    "NcolumnDtop[]{}{}": {
+      "snippet": "NcolumnDtop[${3:pages}]{${1:n}}{${2:H}}"
+    },
+    "onecolumnSbottominarea{}{}{}{}{}": {
+      "snippet": "onecolumnSbottominarea{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "onecolumnSbottominarea[]{}{}{}{}{}": {
+      "snippet": "onecolumnSbottominarea[${6:pages}]{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "onecolumnDbottominarea{}{}{}{}{}": {
+      "snippet": "onecolumnDbottominarea{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "onecolumnDbottominarea[]{}{}{}{}{}": {
+      "snippet": "onecolumnDbottominarea[${6:pages}]{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "onecolumnbottom{}{}": {
+      "snippet": "onecolumnbottom{${1:type}}{${2:H}}"
+    },
+    "onecolumnbottom[]{}{}": {
+      "snippet": "onecolumnbottom[${3:pages}]{${1:type}}{${2:H}}"
+    },
+    "onecolumnSbottom{}": {
+      "snippet": "onecolumnSbottom{${1:H}}"
+    },
+    "onecolumnSbottom[]{}": {
+      "snippet": "onecolumnSbottom[${2:pages}]{${1:H}}"
+    },
+    "onecolumnDbottom{}": {
+      "snippet": "onecolumnDbottom{${1:H}}"
+    },
+    "onecolumnDbottom[]{}": {
+      "snippet": "onecolumnDbottom[${2:pages}]{${1:H}}"
+    },
+    "twocolumnSbottominarea{}{}{}{}{}": {
+      "snippet": "twocolumnSbottominarea{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "twocolumnSbottominarea[]{}{}{}{}{}": {
+      "snippet": "twocolumnSbottominarea[${6:pages}]{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "twocolumnDbottominarea{}{}{}{}{}": {
+      "snippet": "twocolumnDbottominarea{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "twocolumnDbottominarea[]{}{}{}{}{}": {
+      "snippet": "twocolumnDbottominarea[${6:pages}]{${1:H}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "twocolumnbottom{}{}": {
+      "snippet": "twocolumnbottom{${1:type}}{${2:H}}"
+    },
+    "twocolumnbottom[]{}{}": {
+      "snippet": "twocolumnbottom[${3:pages}]{${1:type}}{${2:H}}"
+    },
+    "twocolumnSbottom{}": {
+      "snippet": "twocolumnSbottom{${1:H}}"
+    },
+    "twocolumnSbottom[]{}": {
+      "snippet": "twocolumnSbottom[${2:pages}]{${1:H}}"
+    },
+    "twocolumnDbottom{}": {
+      "snippet": "twocolumnDbottom{${1:H}}"
+    },
+    "twocolumnDbottom[]{}": {
+      "snippet": "twocolumnDbottom[${2:pages}]{${1:H}}"
+    },
+    "NcolumnSbottominarea{}{}{}{}{}{}": {
+      "snippet": "NcolumnSbottominarea{${1:n}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "NcolumnSbottominarea[]{}{}{}{}{}{}": {
+      "snippet": "NcolumnSbottominarea[${7:pages}]{${1:n}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "NcolumnDbottominarea{}{}{}{}{}{}": {
+      "snippet": "NcolumnDbottominarea{${1:n}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "NcolumnDbottominarea[]{}{}{}{}{}{}": {
+      "snippet": "NcolumnDbottominarea[${7:pages}]{${1:n}}{${2:H}}{${3:width}}{${4:height}}{${5:x}}{${6:y}}"
+    },
+    "Ncolumnbottom{}{}{}": {
+      "snippet": "Ncolumnbottom{${1:type}}{${2:n}}{${3:H}}"
+    },
+    "Ncolumnbottom[]{}{}{}": {
+      "snippet": "Ncolumnbottom[${4:pages}]{${1:type}}{${2:n}}{${3:H}}"
+    },
+    "NcolumnSbottom{}{}": {
+      "snippet": "NcolumnSbottom{${1:n}}{${2:H}}"
+    },
+    "NcolumnSbottom[]{}{}": {
+      "snippet": "NcolumnSbottom[${3:pages}]{${1:n}}{${2:H}}"
+    },
+    "NcolumnDbottom{}{}": {
+      "snippet": "NcolumnDbottom{${1:n}}{${2:H}}"
+    },
+    "NcolumnDbottom[]{}{}": {
+      "snippet": "NcolumnDbottom[${3:pages}]{${1:n}}{${2:H}}"
+    },
+    "iflefttorightcolumns": {},
+    "lefttorightcolumnstrue": {},
+    "lefttorightcolumnsfalse": {},
+    "vtwotone{}{}{}{}{}{}": {
+      "snippet": "vtwotone{${1:width1}}{${2:color}}{${3:IDL1}}{${4:width2}}{${5:color}}{${6:IDL2}}"
+    },
+    "vtwotone[]{}{}{}{}{}{}": {
+      "snippet": "vtwotone[${7:pages}]{${1:width1}}{${2:color}}{${3:IDL1}}{${4:width2}}{${5:color}}{${6:IDL2}}"
+    },
+    "vtwotone[][]{}{}{}{}{}{}": {
+      "snippet": "vtwotone[${7:pages}][${8:xoffset}]{${1:width1}}{${2:color}}{${3:IDL1}}{${4:width2}}{${5:color}}{${6:IDL2}}"
+    },
+    "vtwotonebottom{}{}{}{}{}{}{}": {
+      "snippet": "vtwotonebottom{${1:H}}{${2:width1}}{${3:color}}{${4:IDL1}}{${5:width2}}{${6:color}}{${7:IDL2}}"
+    },
+    "vtwotonebottom[]{}{}{}{}{}{}{}": {
+      "snippet": "vtwotonebottom[${8:pages}]{${1:H}}{${2:width1}}{${3:color}}{${4:IDL1}}{${5:width2}}{${6:color}}{${7:IDL2}}"
+    },
+    "vtwotonebottom[][]{}{}{}{}{}{}{}": {
+      "snippet": "vtwotonebottom[${8:pages}][${9:xoffset}]{${1:H}}{${2:width1}}{${3:color}}{${4:IDL1}}{${5:width2}}{${6:color}}{${7:IDL2}}"
+    },
+    "vtwotonetop{}{}{}{}{}{}{}": {
+      "snippet": "vtwotonetop{${1:H}}{${2:width1}}{${3:color}}{${4:IDL1}}{${5:width2}}{${6:color}}{${7:IDL2}}"
+    },
+    "vtwotonetop[]{}{}{}{}{}{}{}": {
+      "snippet": "vtwotonetop[${8:pages}]{${1:H}}{${2:width1}}{${3:color}}{${4:IDL1}}{${5:width2}}{${6:color}}{${7:IDL2}}"
+    },
+    "vtwotonetop[][]{}{}{}{}{}{}{}": {
+      "snippet": "vtwotonetop[${8:pages}][${9:xoffset}]{${1:H}}{${2:width1}}{${3:color}}{${4:IDL1}}{${5:width2}}{${6:color}}{${7:IDL2}}"
+    },
+    "htwotone{}{}{}{}{}{}": {
+      "snippet": "htwotone{${1:height1}}{${2:color}}{${3:IDL1}}{${4:height2}}{${5:color}}{${6:IDL2}}"
+    },
+    "htwotone[]{}{}{}{}{}{}": {
+      "snippet": "htwotone[${7:pages}]{${1:height1}}{${2:color}}{${3:IDL1}}{${4:height2}}{${5:color}}{${6:IDL2}}"
+    },
+    "htwotone[][]{}{}{}{}{}{}": {
+      "snippet": "htwotone[${7:pages}][${8:yoffset}]{${1:height1}}{${2:color}}{${3:IDL1}}{${4:height2}}{${5:color}}{${6:IDL2}}"
+    },
+    "htwotoneleft{}{}{}{}{}{}{}": {
+      "snippet": "htwotoneleft{${1:W}}{${2:width1}}{${3:color}}{${4:IDL1}}{${5:width2}}{${6:color}}{${7:IDL2}}"
+    },
+    "htwotoneleft[]{}{}{}{}{}{}{}": {
+      "snippet": "htwotoneleft[${8:pages}]{${1:W}}{${2:width1}}{${3:color}}{${4:IDL1}}{${5:width2}}{${6:color}}{${7:IDL2}}"
+    },
+    "htwotoneleft[][]{}{}{}{}{}{}{}": {
+      "snippet": "htwotoneleft[${8:pages}][${9:xoffset}]{${1:W}}{${2:width1}}{${3:color}}{${4:IDL1}}{${5:width2}}{${6:color}}{${7:IDL2}}"
+    },
+    "htwotoneright{}{}{}{}{}{}{}": {
+      "snippet": "htwotoneright{${1:W}}{${2:width1}}{${3:color}}{${4:IDL1}}{${5:width2}}{${6:color}}{${7:IDL2}}"
+    },
+    "htwotoneright[]{}{}{}{}{}{}{}": {
+      "snippet": "htwotoneright[${8:pages}]{${1:W}}{${2:width1}}{${3:color}}{${4:IDL1}}{${5:width2}}{${6:color}}{${7:IDL2}}"
+    },
+    "htwotoneright[][]{}{}{}{}{}{}{}": {
+      "snippet": "htwotoneright[${8:pages}][${9:xoffset}]{${1:W}}{${2:width1}}{${3:color}}{${4:IDL1}}{${5:width2}}{${6:color}}{${7:IDL2}}"
+    },
+    "makebackgroundframe{}": {
+      "snippet": "makebackgroundframe{${1:IDL}}"
+    },
+    "makebackgroundframe[]{}": {
+      "snippet": "makebackgroundframe[${2:pages}]{${1:IDL}}"
+    },
+    "insertvrule{}{}{}{}": {
+      "snippet": "insertvrule{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "insertvrule[]{}{}{}{}": {
+      "snippet": "insertvrule[${5:ytop}]{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "insertvrule[][]{}{}{}{}": {
+      "snippet": "insertvrule[${5:ytop}][${6:ybottom}]{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "ffcolumnseprule": {},
+    "ffvrule{}{}{}": {
+      "snippet": "ffvrule{${1:offset}}{${2:width}}{${3:height}}"
+    },
+    "inserthrule{}{}{}{}": {
+      "snippet": "inserthrule{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "inserthrule[]{}{}{}{}": {
+      "snippet": "inserthrule[${5:xleft}]{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "inserthrule[][]{}{}{}{}": {
+      "snippet": "inserthrule[${5:xleft}][${6:xright}]{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "ffhrule{}{}{}": {
+      "snippet": "ffhrule{${1:offset}}{${2:width}}{${3:height}}"
+    },
+    "ffruledeclarations": {},
+    "makethumbtabs{}": {
+      "snippet": "makethumbtabs{${1:height}}"
+    },
+    "makethumbtabs{}[]": {
+      "snippet": "makethumbtabs{${1:height}}[${2:section type}]"
+    },
+    "makethumbtabs[]{}": {
+      "snippet": "makethumbtabs[${2:yoffset}]{${1:height}}"
+    },
+    "makethumbtabs[]{}[]": {
+      "snippet": "makethumbtabs[${2:yoffset}]{${1:height}}[${3:section type}]"
+    },
+    "thumbtabwidth": {},
+    "thumbtabindex": {},
+    "enablethumbtabs": {},
+    "disablethumbtabs": {},
+    "tocandthumbtabindex": {},
+    "thumbtabindexformat{}{}{}": {
+      "snippet": "thumbtabindexformat{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "thumbtabformat{}{}": {
+      "snippet": "thumbtabformat{${1:arg1}}{${2:arg2}}"
+    },
+    "setthumbtab{}{}": {
+      "snippet": "setthumbtab{${1:n}}{${2:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "setthumbtabindex{}{}": {
+      "snippet": "setthumbtabindex{${1:n}}{${2:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "themaxthumbtabs": {},
+    "enableminitoc": {},
+    "enableminitoc[]": {
+      "snippet": "enableminitoc[${1:section type}]"
+    },
+    "appenddfminitoc{}": {
+      "snippet": "appenddfminitoc{${1:IDN}}"
+    },
+    "appenddfminitoc*{}": {
+      "snippet": "appenddfminitoc*{${1:IDL}}"
+    },
+    "minitocstyle{}": {
+      "snippet": "minitocstyle{${1:contents}}"
+    },
+    "beforeminitocskip": {},
+    "afterminitocskip": {},
+    "setffdraftcolor": {},
+    "setffdrafttypeblockcolor": {},
+    "fflabelfont": {},
+    "fflabelsep": {},
+    "flowframesep": {},
+    "flowframerule": {},
+    "sdfparindent": {},
+    "vcolumnsep": {},
+    "labelflowidn{}": {
+      "snippet": "labelflowidn{${1:label}}"
+    },
+    "labelflow{}": {
+      "snippet": "labelflow{${1:label}}"
+    },
+    "themaxflow": {},
+    "thethisframe": {},
+    "thedisplayedframe": {},
+    "themaxstatic": {},
+    "themaxdynamic": {},
+    "theabsolutepage": {},
+    "adjustheight{}": {
+      "snippet": "adjustheight{${1:height}}"
+    },
+    "adjustcolsep": {},
+    "aligntocfalse": {},
+    "aligntoctrue": {},
+    "checkifframeabove*{}{}{}{}": {
+      "snippet": "checkifframeabove*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "checkifframeabove{}{}{}{}": {
+      "snippet": "checkifframeabove{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "checkifframebelow*{}{}{}{}": {
+      "snippet": "checkifframebelow*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "checkifframebelow{}{}{}{}": {
+      "snippet": "checkifframebelow{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "checkifframeleft*{}{}{}{}": {
+      "snippet": "checkifframeleft*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "checkifframeleft{}{}{}{}": {
+      "snippet": "checkifframeleft{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "checkifframeright*{}{}{}{}": {
+      "snippet": "checkifframeright*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "checkifframeright{}{}{}{}": {
+      "snippet": "checkifframeright{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "defaultthumbtabtype": {},
+    "dfcontinuedfalse": {},
+    "dfcontinuedtrue": {},
+    "dominitoc{}": {
+      "snippet": "dominitoc{${1:IDN}}"
+    },
+    "dynamicframeevenx{}": {
+      "snippet": "dynamicframeevenx{${1:IDN}}"
+    },
+    "dynamicframeeveny{}": {
+      "snippet": "dynamicframeeveny{${1:IDN}}"
+    },
+    "dynamicframex{}": {
+      "snippet": "dynamicframex{${1:IDN}}"
+    },
+    "dynamicframey{}": {
+      "snippet": "dynamicframey{${1:IDN}}"
+    },
+    "emulateonecolumn": {},
+    "emulatetwocolumn": {},
+    "evencheckifframeabove*{}{}{}{}": {
+      "snippet": "evencheckifframeabove*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "evencheckifframeabove{}{}{}{}": {
+      "snippet": "evencheckifframeabove{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "evencheckifframebelow*{}{}{}{}": {
+      "snippet": "evencheckifframebelow*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "evencheckifframebelow{}{}{}{}": {
+      "snippet": "evencheckifframebelow{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "evencheckifframeleft*{}{}{}{}": {
+      "snippet": "evencheckifframeleft*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "evencheckifframeleft{}{}{}{}": {
+      "snippet": "evencheckifframeleft{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "evencheckifframeright*{}{}{}{}": {
+      "snippet": "evencheckifframeright*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "evencheckifframeright{}{}{}{}": {
+      "snippet": "evencheckifframeright{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "ffaddtoadjustframeshook{}": {
+      "snippet": "ffaddtoadjustframeshook{${1:code}}"
+    },
+    "ffpshpar": {},
+    "finishthispage": {},
+    "FLFabovefalse": {},
+    "FLFabovetrue": {},
+    "FLFbelowfalse": {},
+    "FLFbelowtrue": {},
+    "FLFleftfalse": {},
+    "FLFlefttrue": {},
+    "FLForgpar": {},
+    "FLFrightfalse": {},
+    "FLFrighttrue": {},
+    "flowframecol": {},
+    "flowframeevenx{}": {
+      "snippet": "flowframeevenx{${1:IDN}}"
+    },
+    "flowframeeveny{}": {
+      "snippet": "flowframeeveny{${1:IDN}}"
+    },
+    "flowframeheight{}": {
+      "snippet": "flowframeheight{${1:IDN}}"
+    },
+    "flowframetextcol": {},
+    "flowframewidth{}": {
+      "snippet": "flowframewidth{${1:IDN}}"
+    },
+    "flowframex{}": {
+      "snippet": "flowframex{${1:IDN}}"
+    },
+    "flowframey{}": {
+      "snippet": "flowframey{${1:IDN}}"
+    },
+    "footnotecolor": {},
+    "getdynamicevenbounds*{}": {
+      "snippet": "getdynamicevenbounds*{${1:IDN}}"
+    },
+    "getdynamicevenbounds{}": {
+      "snippet": "getdynamicevenbounds{${1:IDN}}"
+    },
+    "getflowevenbounds*{}": {
+      "snippet": "getflowevenbounds*{${1:IDN}}"
+    },
+    "getflowevenbounds{}": {
+      "snippet": "getflowevenbounds{${1:IDN}}"
+    },
+    "getstaticevenbounds*{}": {
+      "snippet": "getstaticevenbounds*{${1:IDN}}"
+    },
+    "getstaticevenbounds{}": {
+      "snippet": "getstaticevenbounds{${1:IDN}}"
+    },
+    "globalnormalmargin": {},
+    "globalreversemargin": {},
+    "ifaligntoc": {},
+    "ifdfcontinued": {},
+    "ifFLFabove": {},
+    "ifFLFbelow": {},
+    "ifFLFleft": {},
+    "ifFLFright": {},
+    "ifusedframebreak": {},
+    "newframe[]{}{}{}{}{}": {
+      "snippet": "newframe[${6:pages}]{${1:type}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "newframe{}{}{}{}{}": {
+      "snippet": "newframe{${1:type}}{${2:width}}{${3:height}}{${4:x}}{${5:y}}"
+    },
+    "oddcheckifframeabove*{}{}{}{}": {
+      "snippet": "oddcheckifframeabove*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "oddcheckifframeabove{}{}{}{}": {
+      "snippet": "oddcheckifframeabove{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "oddcheckifframebelow*{}{}{}{}": {
+      "snippet": "oddcheckifframebelow*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "oddcheckifframebelow{}{}{}{}": {
+      "snippet": "oddcheckifframebelow{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "oddcheckifframeleft*{}{}{}{}": {
+      "snippet": "oddcheckifframeleft*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "oddcheckifframeleft{}{}{}{}": {
+      "snippet": "oddcheckifframeleft{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "oddcheckifframeright*{}{}{}{}": {
+      "snippet": "oddcheckifframeright*{${1:type1}}{${2:IDL1}}{${3:type2}}{${4:IDL2}}"
+    },
+    "oddcheckifframeright{}{}{}{}": {
+      "snippet": "oddcheckifframeright{${1:type1}}{${2:IDN1}}{${3:type2}}{${4:IDN2}}"
+    },
+    "oldpar": {},
+    "rotateframe{}{}": {
+      "snippet": "rotateframe{${1:angle}}{${2:text}}"
+    },
+    "setframes": {},
+    "setinitialframe{}": {
+      "snippet": "setinitialframe{${1:IDN}}"
+    },
+    "setmargin": {},
+    "staticframeevenx{}": {
+      "snippet": "staticframeevenx{${1:IDN}}"
+    },
+    "staticframeeveny{}": {
+      "snippet": "staticframeeveny{${1:IDN}}"
+    },
+    "staticframex{}": {
+      "snippet": "staticframex{${1:IDN}}"
+    },
+    "staticframey{}": {
+      "snippet": "staticframey{${1:IDN}}"
+    },
+    "theHdisplayedframe": {},
+    "theHthisframe": {},
+    "theminitoc": {},
+    "thumbtab{}{}{}{}": {
+      "snippet": "thumbtab{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "tocandhumbtabindex": {},
+    "usedframebreakfalse": {},
+    "usedframebreaktrue": {}
+  },
+  "envs": {
+    "staticfigure": {},
+    "statictable": {},
+    "staticcontents{}": {
+      "name": "staticcontents",
+      "snippet": "{${1:IDN}}"
+    },
+    "staticcontents*{}": {
+      "name": "staticcontents*",
+      "snippet": "{${1:IDL}}"
+    },
+    "dynamiccontents{}": {
+      "name": "dynamiccontents",
+      "snippet": "{${1:IDN}}"
+    },
+    "dynamiccontents*{}": {
+      "name": "dynamiccontents*",
+      "snippet": "{${1:IDL}}"
+    }
+  },
+  "options": [
+    "pages=",
+    "draft",
+    "final",
+    "thumbtabs=",
+    "LR",
+    "RL",
+    "rotate",
+    "color",
+    "verbose"
+  ],
+  "keyvals": [
+    [
+      "width=",
+      "height=",
+      "x=",
+      "y=",
+      "evenx=",
+      "eveny=",
+      "oddx=",
+      "oddy=",
+      "valign=",
+      "label=${1:text}",
+      "border=${1:frame csname}",
+      "offset=",
+      "bordercolor=",
+      "textcolor=",
+      "backcolor=",
+      "pages={${1:page list}}",
+      "excludepages={${1:page list}}",
+      "hide",
+      "hidethis",
+      "margin=",
+      "clear",
+      "style=${1:style csname}",
+      "angle=${1:degrees}",
+      "shape=${1:shape command}"
+    ]
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "includes": {
+    "simplekv": [],
+    "xifthen": []
+  },
+  "macros": {
+    "setcondispace{}": {
+      "snippet": "setcondispace{${1:propriété de condition}}"
+    },
+    "setcondispace[]{}": {
+      "snippet": "setcondispace[${2:domaine de condition}]{${1:propriété de condition}}"
+    },
+    "setcondispace*{}": {
+      "snippet": "setcondispace*{${1:propriété de condition}}"
+    },
+    "setcondispace*[]{}": {
+      "snippet": "setcondispace*[${2:domaine de condition}]{${1:propriété de condition}}"
+    },
+    "newcondifield{}": {
+      "snippet": "newcondifield{${1:nouveau domaine de condition}}"
+    },
+    "newcondifield*{}": {
+      "snippet": "newcondifield*{${1:nouveau domaine de condition}}"
+    },
+    "newcondiprop{}{}": {
+      "snippet": "newcondiprop{${1:domaine de condition}}{${2:nouvelle propriété de condition}}"
+    },
+    "setimplicitcondifield{}": {
+      "snippet": "setimplicitcondifield{${1:domaine de condition}}"
+    },
+    "miniconditext{}": {
+      "snippet": "miniconditext{${1:forme-substituable}}"
+    },
+    "setminicondiprop{}{}": {
+      "snippet": "setminicondiprop{${1:i-ix}}{${2:propriété de condition redéfinie}}"
+    },
+    "setminicondipropi{}": {
+      "snippet": "setminicondipropi{${1:propriété de condition redéfinie}}"
+    },
+    "setminicondipropii{}": {
+      "snippet": "setminicondipropii{${1:propriété de condition redéfinie}}"
+    },
+    "setminicondipropiii{}": {
+      "snippet": "setminicondipropiii{${1:propriété de condition redéfinie}}"
+    },
+    "setminicondipropiv{}": {
+      "snippet": "setminicondipropiv{${1:propriété de condition redéfinie}}"
+    },
+    "setminicondipropv{}": {
+      "snippet": "setminicondipropv{${1:propriété de condition redéfinie}}"
+    },
+    "setminicondipropvi{}": {
+      "snippet": "setminicondipropvi{${1:propriété de condition redéfinie}}"
+    },
+    "setminicondipropvii{}": {
+      "snippet": "setminicondipropvii{${1:propriété de condition redéfinie}}"
+    },
+    "setminicondipropviii{}": {
+      "snippet": "setminicondipropviii{${1:propriété de condition redéfinie}}"
+    },
+    "setminicondipropix{}": {
+      "snippet": "setminicondipropix{${1:propriété de condition redéfinie}}"
+    },
+    "resettingminicondiprops": {},
+    "setminicondispace{}": {
+      "snippet": "setminicondispace{${1:propriété de condition}}"
+    },
+    "errorifcfalreadycreated{}{}": {
+      "snippet": "errorifcfalreadycreated{${1:arg1}}{${2:arg2}}"
+    },
+    "errorifcfempty{}": {
+      "snippet": "errorifcfempty{${1:arg1}}"
+    },
+    "errorifcfnoncreated{}{}": {
+      "snippet": "errorifcfnoncreated{${1:arg1}}{${2:arg2}}"
+    },
+    "errorifcpalreadycreated{}{}": {
+      "snippet": "errorifcpalreadycreated{${1:arg1}}{${2:arg2}}"
+    },
+    "errorifcpempty{}": {
+      "snippet": "errorifcpempty{${1:arg1}}"
+    },
+    "errorifcpnoncreated{}{}": {
+      "snippet": "errorifcpnoncreated{${1:arg1}}{${2:arg2}}"
+    },
+    "errorifcpnonok{}{}": {
+      "snippet": "errorifcpnonok{${1:arg1}}{${2:arg2}}"
+    },
+    "errorifcsalreadydefined{}{}{}": {
+      "snippet": "errorifcsalreadydefined{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "errorifmncpalreadyredefined{}{}": {
+      "snippet": "errorifmncpalreadyredefined{${1:arg1}}{${2:arg2}}"
+    },
+    "errorifmncpempty{}": {
+      "snippet": "errorifmncpempty{${1:arg1}}"
+    },
+    "errorifmncpnone{}{}": {
+      "snippet": "errorifmncpnone{${1:arg1}}{${2:arg2}}"
+    },
+    "errorifmncpnonok{}": {
+      "snippet": "errorifmncpnonok{${1:arg1}}"
+    },
+    "errorifmncpnoresetting{}": {
+      "snippet": "errorifmncpnoresetting{${1:arg1}}"
+    },
+    "errorifmncsalreadydefined{}{}": {
+      "snippet": "errorifmncsalreadydefined{${1:arg1}}{${2:arg2}}"
+    },
+    "errorifmncsempty{}": {
+      "snippet": "errorifmncsempty{${1:arg1}}"
+    },
+    "errtxtifcfalreadycreated": {},
+    "errtxtifcfempty": {},
+    "errtxtifcfnoncreated": {},
+    "errtxtifcpalreadycreated": {},
+    "errtxtifcpempty": {},
+    "errtxtifcpnoncreated": {},
+    "errtxtifcpnonok": {},
+    "errtxtifcsalreadydefined": {},
+    "errtxtifmncpalreadyredefined": {},
+    "errtxtifmncpempty": {},
+    "errtxtifmncpnone": {},
+    "errtxtifmncpnonok": {},
+    "errtxtifmncpnoresetting": {},
+    "errtxtifmncsalreadydefined": {},
+    "errtxtifmncsempty": {},
+    "hlptxtifcfalreadycreated": {},
+    "hlptxtifcfempty": {},
+    "hlptxtifcfnoncreated": {},
+    "hlptxtifcpalreadycreated": {},
+    "hlptxtifcpempty": {},
+    "hlptxtifcpnoncreated": {},
+    "hlptxtifcpnonok": {},
+    "hlptxtifcsalreadydefined": {},
+    "hlptxtifmncpalreadyredefined": {},
+    "hlptxtifmncpempty": {},
+    "hlptxtifmncpnone": {},
+    "hlptxtifmncpnonok": {},
+    "hlptxtifmncpnoresetting": {},
+    "hlptxtifmncsalreadydefined": {},
+    "hlptxtifmncsempty": {},
+    "icf": {},
+    "ifcfalreadycreatedthenelse{}{}{}": {
+      "snippet": "ifcfalreadycreatedthenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "ifcfemptythenelse{}{}{}": {
+      "snippet": "ifcfemptythenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "ifcfokthenelse{}{}{}": {
+      "snippet": "ifcfokthenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "ifcpalreadycreatedthenelse{}{}{}{}": {
+      "snippet": "ifcpalreadycreatedthenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ifcpemptythenelse{}{}{}": {
+      "snippet": "ifcpemptythenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "ifcpokthenelse{}{}{}{}": {
+      "snippet": "ifcpokthenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ifcsalreadydefinedthenelse{}{}{}{}": {
+      "snippet": "ifcsalreadydefinedthenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ifmatchingcsthenelse{}{}{}{}": {
+      "snippet": "ifmatchingcsthenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ifmatchingmncsthenelse{}{}{}": {
+      "snippet": "ifmatchingmncsthenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "ifmncpalreadyredefinedthenelse{}{}{}{}": {
+      "snippet": "ifmncpalreadyredefinedthenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ifmncpemptythenelse{}{}{}": {
+      "snippet": "ifmncpemptythenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "ifmncpnonethenelse{}{}{}": {
+      "snippet": "ifmncpnonethenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "ifmncpnoresettingthenelse{}{}": {
+      "snippet": "ifmncpnoresettingthenelse{${1:arg1}}{${2:arg2}}"
+    },
+    "ifmncpokthenelse{}{}{}": {
+      "snippet": "ifmncpokthenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "ifmncsalreadydefinedthenelse{}{}{}": {
+      "snippet": "ifmncsalreadydefinedthenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "ifmncsemptythenelse{}{}{}": {
+      "snippet": "ifmncsemptythenelse{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "minidisplayiii{}{}": {
+      "snippet": "minidisplayiii{${1:arg1}}{${2:arg2}}"
+    },
+    "minidisplayii{}{}": {
+      "snippet": "minidisplayii{${1:arg1}}{${2:arg2}}"
+    },
+    "minidisplayiv{}{}": {
+      "snippet": "minidisplayiv{${1:arg1}}{${2:arg2}}"
+    },
+    "minidisplayix{}{}": {
+      "snippet": "minidisplayix{${1:arg1}}{${2:arg2}}"
+    },
+    "minidisplayi{}{}": {
+      "snippet": "minidisplayi{${1:arg1}}{${2:arg2}}"
+    },
+    "minidisplayviii{}{}": {
+      "snippet": "minidisplayviii{${1:arg1}}{${2:arg2}}"
+    },
+    "minidisplayvii{}{}": {
+      "snippet": "minidisplayvii{${1:arg1}}{${2:arg2}}"
+    },
+    "minidisplayvi{}{}": {
+      "snippet": "minidisplayvi{${1:arg1}}{${2:arg2}}"
+    },
+    "minidisplayv{}{}": {
+      "snippet": "minidisplayv{${1:arg1}}{${2:arg2}}"
+    },
+    "minidisplay{}{}{}": {
+      "snippet": "minidisplay{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "textdisplay{}{}{}": {
+      "snippet": "textdisplay{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    }
+  },
+  "envs": {
+    "conditext{}": {
+      "name": "conditext",
+      "snippet": "{${1:propriété de condition}}"
+    },
+    "conditext[]{}": {
+      "name": "conditext",
+      "snippet": "[${2:domaine de condition}]{${1:propriété de condition}}"
+    },
+    "conditext{}*": {
+      "name": "conditext",
+      "snippet": "{${1:propriété de condition}}*"
+    },
+    "conditext[]{}*": {
+      "name": "conditext",
+      "snippet": "[${2:domaine de condition}]{${1:propriété de condition}}*"
+    }
+  },
+  "options": [
+    "defaultdisplayall"
+  ],
+  "keyvals": []
+}

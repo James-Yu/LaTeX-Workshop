@@ -1,0 +1,130 @@
+{
+  "includes": {
+    "xcolor": [],
+    "tikz": [],
+    "xstring": [],
+    "etextools": []
+  },
+  "macros": {
+    "com{}": {
+      "snippet": "com{${1:text}}"
+    },
+    "com[]{}": {
+      "snippet": "com[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "jus{}": {
+      "snippet": "jus{${1:text}}"
+    },
+    "jus[]{}": {
+      "snippet": "jus[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "startblock{}": {
+      "snippet": "startblock{${1:text}}"
+    },
+    "startblock[]{}": {
+      "snippet": "startblock[${2:options}]{${1:text}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "finishblock{}": {
+      "snippet": "finishblock{${1:text}}"
+    },
+    "finishblock[]{}": {
+      "snippet": "finishblock[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ribbonpagebreak": {},
+    "continueblock{}": {
+      "snippet": "continueblock{${1:text}}"
+    },
+    "continueblock[]{}": {
+      "snippet": "continueblock[${2:options}]{${1:text}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "moveribbons{}": {
+      "snippet": "moveribbons{${1:ribbon1,ribbon2,...}}"
+    },
+    "swapribbons{}{}": {
+      "snippet": "swapribbons{${1:name1,name2,...}}{${2:name'1,name'2,...}}"
+    },
+    "moveboxes{}": {
+      "snippet": "moveboxes{${1:box1,box2,...}}"
+    },
+    "extendboxes{}": {
+      "snippet": "extendboxes{${1:box1,box2,...}}"
+    },
+    "jusColor": {},
+    "comColor": {},
+    "ribColor": {},
+    "varribColor": {},
+    "ribTextColor": {},
+    "boxTextColor": {},
+    "guideTextColor": {},
+    "defaultStepHeight": {},
+    "defaultRowHeight": {},
+    "ribTextVOffset": {},
+    "boxTextVOffset": {},
+    "boxTextHOffset": {},
+    "guideTextVOffset": {},
+    "roundingRadius": {},
+    "boxRoundingRadius": {},
+    "blockLineWidth": {},
+    "boxLineWidth": {},
+    "shadowHeight": {},
+    "shadowColor": {},
+    "zigzagHeight": {},
+    "zigzagLength": {},
+    "twistiness": {}
+  },
+  "envs": {
+    "ribbonproof": {},
+    "ribbonproof[]": {
+      "name": "ribbonproof",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "height=${1:integer}",
+      "finish ribbons={${1:name1,name2,...}}",
+      "start ribbons={${1:ribbon1,ribbon2,...}}",
+      "finish boxes={${1:name1,name2,...}}",
+      "start boxes={${1:box1,box2,...}}",
+      "extra left=${1:integer}",
+      "extra right=${1:integer}"
+    ],
+    [
+      "height=${1:integer}",
+      "finish ribbons={${1:name1,name2,...}}",
+      "start ribbons={${1:ribbon1,ribbon2,...}}",
+      "finish boxes={${1:name1,name2,...}}",
+      "start boxes={${1:box1,box2,...}}",
+      "extra left=${1:integer}",
+      "extra right=${1:integer}",
+      "fit ribbons={${1:name1,name2,...}}",
+      "fit boxes={${1:name1,name2,...}}"
+    ],
+    [
+      "height=${1:integer}",
+      "start ribbons={${1:ribbon1,ribbon2,...}}",
+      "start boxes={${1:box1,box2,...}}",
+      "jagged",
+      "repeat labels"
+    ],
+    [
+      "extra height=${1:integer}",
+      "start ribbons={${1:ribbon1,ribbon2,...}}",
+      "start boxes={${1:box1,box2,...}}",
+      "draw grid"
+    ]
+  ]
+}

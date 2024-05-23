@@ -1,0 +1,720 @@
+{
+  "includes": {
+    "pstricks": [],
+    "pst-node": [],
+    "pst-tools": [],
+    "pst-calculate": [],
+    "pst-arrow": [],
+    "pst-plot": [],
+    "multido": []
+  },
+  "macros": {
+    "pstAbscissa{}": {
+      "snippet": "pstAbscissa{${1:A}}"
+    },
+    "pstOrdinate{}": {
+      "snippet": "pstOrdinate{${1:A}}"
+    },
+    "pstSegmentMark{}{}": {
+      "snippet": "pstSegmentMark{${1:A}}{${2:B}}"
+    },
+    "pstSegmentMark[]{}{}": {
+      "snippet": "pstSegmentMark[${3:options}]{${1:A}}{${2:B}}"
+    },
+    "pstLabelAB{}{}{}": {
+      "snippet": "pstLabelAB{${1:A}}{${2:B}}{${3:label}}"
+    },
+    "pstLabelAB[]{}{}{}": {
+      "snippet": "pstLabelAB[${4:options}]{${1:A}}{${2:B}}{${3:label}}"
+    },
+    "pstLabelAB*{}{}{}": {
+      "snippet": "pstLabelAB*{${1:A}}{${2:B}}{${3:label}}"
+    },
+    "pstLabelAB*[]{}{}{}": {
+      "snippet": "pstLabelAB*[${4:options}]{${1:A}}{${2:B}}{${3:label}}"
+    },
+    "pstTriangleIC{}{}{}": {
+      "snippet": "pstTriangleIC{${1:A}}{${2:B}}{${3:C}}"
+    },
+    "pstTriangleIC{}{}{}[][]": {
+      "snippet": "pstTriangleIC{${1:A}}{${2:B}}{${3:C}}[${4:I}][${5:H}]"
+    },
+    "pstTriangleIC[]{}{}{}": {
+      "snippet": "pstTriangleIC[${4:options}]{${1:A}}{${2:B}}{${3:C}}"
+    },
+    "pstTriangleIC[]{}{}{}[][]": {
+      "snippet": "pstTriangleIC[${4:options}]{${1:A}}{${2:B}}{${3:C}}[${5:I}][${6:H}]"
+    },
+    "pstTriangleOC{}{}{}": {
+      "snippet": "pstTriangleOC{${1:A}}{${2:B}}{${3:C}}"
+    },
+    "pstTriangleOC{}{}{}[]": {
+      "snippet": "pstTriangleOC{${1:A}}{${2:B}}{${3:C}}[${4:O}]"
+    },
+    "pstTriangleOC[]{}{}{}": {
+      "snippet": "pstTriangleOC[${4:options}]{${1:A}}{${2:B}}{${3:C}}"
+    },
+    "pstTriangleOC[]{}{}{}[]": {
+      "snippet": "pstTriangleOC[${4:options}]{${1:A}}{${2:B}}{${3:C}}[${5:O}]"
+    },
+    "pstTriangleGC{}{}{}{}": {
+      "snippet": "pstTriangleGC{${1:A}}{${2:B}}{${3:C}}{${4:G}}"
+    },
+    "pstTriangleGC{}{}{}{}[][]": {
+      "snippet": "pstTriangleGC{${1:A}}{${2:B}}{${3:C}}{${4:G}}[${5:M1}][${6:M2}]"
+    },
+    "pstTriangleGC[]{}{}{}{}": {
+      "snippet": "pstTriangleGC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:G}}"
+    },
+    "pstTriangleGC[]{}{}{}{}[][]": {
+      "snippet": "pstTriangleGC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:G}}[${6:M1}][${7:M2}]"
+    },
+    "pstTriangleHC{}{}{}{}": {
+      "snippet": "pstTriangleHC{${1:A}}{${2:B}}{${3:C}}{${4:H}}"
+    },
+    "pstTriangleHC{}{}{}{}[][]": {
+      "snippet": "pstTriangleHC{${1:A}}{${2:B}}{${3:C}}{${4:H}}[${5:H1}][${6:H2}]"
+    },
+    "pstTriangleHC[]{}{}{}{}": {
+      "snippet": "pstTriangleHC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:H}}"
+    },
+    "pstTriangleHC[]{}{}{}{}[][]": {
+      "snippet": "pstTriangleHC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:H}}[${6:H1}][${7:H2}]"
+    },
+    "pstTriangleEC{}{}{}{}": {
+      "snippet": "pstTriangleEC{${1:A}}{${2:B}}{${3:C}}{${4:E}}"
+    },
+    "pstTriangleEC{}{}{}{}[]": {
+      "snippet": "pstTriangleEC{${1:A}}{${2:B}}{${3:C}}{${4:E}}[${5:T1}]"
+    },
+    "pstTriangleEC[]{}{}{}{}": {
+      "snippet": "pstTriangleEC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:E}}"
+    },
+    "pstTriangleEC[]{}{}{}{}[]": {
+      "snippet": "pstTriangleEC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:E}}[${6:T1}]"
+    },
+    "pstTriangleNC{}{}{}{}": {
+      "snippet": "pstTriangleNC{${1:A}}{${2:B}}{${3:C}}{${4:N}}"
+    },
+    "pstTriangleNC{}{}{}{}[][][]": {
+      "snippet": "pstTriangleNC{${1:A}}{${2:B}}{${3:C}}{${4:N}}[${5:M1}][${6:M2}][${7:M3}]"
+    },
+    "pstTriangleNC[]{}{}{}{}": {
+      "snippet": "pstTriangleNC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:N}}"
+    },
+    "pstTriangleNC[]{}{}{}{}[][][]": {
+      "snippet": "pstTriangleNC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:N}}[${6:M1}][${7:M2}][${8:M3}]"
+    },
+    "pstTriangleLC{}{}{}{}": {
+      "snippet": "pstTriangleLC{${1:A}}{${2:B}}{${3:C}}{${4:L}}"
+    },
+    "pstTriangleLC{}{}{}{}[][][]": {
+      "snippet": "pstTriangleLC{${1:A}}{${2:B}}{${3:C}}{${4:L}}[${5:S1}][${6:S2}][${7:S3}]"
+    },
+    "pstTriangleLC[]{}{}{}{}": {
+      "snippet": "pstTriangleLC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:L}}"
+    },
+    "pstTriangleLC[]{}{}{}{}[][][]": {
+      "snippet": "pstTriangleLC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:L}}[${6:S1}][${7:S2}][${8:S3}]"
+    },
+    "pstRightAngle{}{}{}": {
+      "snippet": "pstRightAngle{${1:A}}{${2:B}}{${3:C}}"
+    },
+    "pstRightAngle[]{}{}{}": {
+      "snippet": "pstRightAngle[${4:options}]{${1:A}}{${2:B}}{${3:C}}"
+    },
+    "pstMarkAngle{}{}{}{}": {
+      "snippet": "pstMarkAngle{${1:A}}{${2:B}}{${3:C}}{${4:label}}"
+    },
+    "pstMarkAngle[]{}{}{}{}": {
+      "snippet": "pstMarkAngle[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:label}}"
+    },
+    "pstLineAB{}{}": {
+      "snippet": "pstLineAB{${1:A}}{${2:B}}"
+    },
+    "pstLineAB[]{}{}": {
+      "snippet": "pstLineAB[${3:options}]{${1:A}}{${2:B}}"
+    },
+    "pstLine{}{}": {
+      "snippet": "pstLine{${1:A}}{${2:B}}"
+    },
+    "pstLine[]{}{}": {
+      "snippet": "pstLine[${3:options}]{${1:A}}{${2:B}}"
+    },
+    "pstLineAA{}{}{}": {
+      "snippet": "pstLineAA{${1:A}}{${2:angle}}{${3:B}}"
+    },
+    "pstLineAA[]{}{}{}": {
+      "snippet": "pstLineAA[${4:options}]{${1:A}}{${2:angle}}{${3:B}}"
+    },
+    "pstLineAS{}{}{}": {
+      "snippet": "pstLineAS{${1:A}}{${2:gradient}}{${3:B}}"
+    },
+    "pstLineAS[]{}{}{}": {
+      "snippet": "pstLineAS[${4:options}]{${1:A}}{${2:gradient}}{${3:B}}"
+    },
+    "pstLineCoef{}{}{}": {
+      "snippet": "pstLineCoef{${1:a,b,c}}{${2:A}}{${3:B}}"
+    },
+    "pstLineCoef[]{}{}{}": {
+      "snippet": "pstLineCoef[${4:options}]{${1:a,b,c}}{${2:A}}{${3:B}}"
+    },
+    "pstLineAbsNode{}{}{}{}": {
+      "snippet": "pstLineAbsNode{${1:A}}{${2:B}}{${3:x}}{${4:C}}"
+    },
+    "pstLineAbsNode[]{}{}{}{}": {
+      "snippet": "pstLineAbsNode[${5:options}]{${1:A}}{${2:B}}{${3:x}}{${4:C}}"
+    },
+    "pstLineOrdNode{}{}{}{}": {
+      "snippet": "pstLineOrdNode{${1:A}}{${2:B}}{${3:y}}{${4:C}}"
+    },
+    "pstLineOrdNode[]{}{}{}{}": {
+      "snippet": "pstLineOrdNode[${5:options}]{${1:A}}{${2:B}}{${3:y}}{${4:C}}"
+    },
+    "pstProportionNode{}{}{}{}{}": {
+      "snippet": "pstProportionNode{${1:A}}{${2:B}}{${3:λ}}{${4:C}}{${5:C'}}"
+    },
+    "pstProportionNode[]{}{}{}{}{}": {
+      "snippet": "pstProportionNode[${6:options}]{${1:A}}{${2:B}}{${3:λ}}{${4:C}}{${5:C'}}"
+    },
+    "pstBisectorAOB{}{}{}{}{}": {
+      "snippet": "pstBisectorAOB{${1:A}}{${2:O}}{${3:B}}{${4:T1}}{${5:T2}}"
+    },
+    "pstBisectorAOB[]{}{}{}{}{}": {
+      "snippet": "pstBisectorAOB[${6:options}]{${1:A}}{${2:O}}{${3:B}}{${4:T1}}{${5:T2}}"
+    },
+    "pstFourthHarmonicNode{}{}{}{}": {
+      "snippet": "pstFourthHarmonicNode{${1:A}}{${2:B}}{${3:C}}{${4:X}}"
+    },
+    "pstFourthHarmonicNode[]{}{}{}{}": {
+      "snippet": "pstFourthHarmonicNode[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:X}}"
+    },
+    "pstLocateAB{}{}{}{}": {
+      "snippet": "pstLocateAB{${1:A}}{${2:B}}{${3:L}}{${4:C}}"
+    },
+    "pstLocateAB[]{}{}{}{}": {
+      "snippet": "pstLocateAB[${5:options}]{${1:A}}{${2:B}}{${3:L}}{${4:C}}"
+    },
+    "pstExtendAB{}{}{}{}": {
+      "snippet": "pstExtendAB{${1:A}}{${2:B}}{${3:L}}{${4:C}}"
+    },
+    "pstExtendAB[]{}{}{}{}": {
+      "snippet": "pstExtendAB[${5:options}]{${1:A}}{${2:B}}{${3:L}}{${4:C}}"
+    },
+    "pstInversion{}{}{}{}": {
+      "snippet": "pstInversion{${1:O}}{${2:A}}{${3:C}}{${4:C'}}"
+    },
+    "pstInversion[]{}{}{}{}": {
+      "snippet": "pstInversion[${5:options}]{${1:O}}{${2:A}}{${3:C}}{${4:C'}}"
+    },
+    "pstGoldenMean{}{}{}": {
+      "snippet": "pstGoldenMean{${1:A}}{${2:B}}{${3:C}}"
+    },
+    "pstGoldenMean[]{}{}{}": {
+      "snippet": "pstGoldenMean[${4:options}]{${1:A}}{${2:B}}{${3:C}}"
+    },
+    "pstGeometricMean{}{}{}{}{}": {
+      "snippet": "pstGeometricMean{${1:A}}{${2:B}}{${3:L1}}{${4:L2}}{${5:C}}"
+    },
+    "pstGeometricMean[]{}{}{}{}{}": {
+      "snippet": "pstGeometricMean[${6:options}]{${1:A}}{${2:B}}{${3:L1}}{${4:L2}}{${5:C}}"
+    },
+    "pstHarmonicMean{}{}{}{}{}": {
+      "snippet": "pstHarmonicMean{${1:A}}{${2:B}}{${3:L1}}{${4:L2}}{${5:C}}"
+    },
+    "pstHarmonicMean[]{}{}{}{}{}": {
+      "snippet": "pstHarmonicMean[${6:options}]{${1:A}}{${2:B}}{${3:L1}}{${4:L2}}{${5:C}}"
+    },
+    "pstDistAB{}{}": {
+      "snippet": "pstDistAB{${1:A}}{${2:B}}"
+    },
+    "pstDistVal{}": {
+      "snippet": "pstDistVal{${1:l}}"
+    },
+    "pstDistCalc{}": {
+      "snippet": "pstDistCalc{${1:expr}}"
+    },
+    "pstDist{}{}": {
+      "snippet": "pstDist{${1:A}}{${2:B}}"
+    },
+    "pstDistConst{}": {
+      "snippet": "pstDistConst{${1:l}}"
+    },
+    "pstDistExpr{}": {
+      "snippet": "pstDistExpr{${1:expr}}"
+    },
+    "pstDistCoef{}": {
+      "snippet": "pstDistCoef{${1:distance}}"
+    },
+    "pstUserDist{}": {
+      "snippet": "pstUserDist{${1:distance}}"
+    },
+    "pstScreenDist{}": {
+      "snippet": "pstScreenDist{${1:distance}}"
+    },
+    "pstDistMul{}{}{}": {
+      "snippet": "pstDistMul{${1:A}}{${2:B}}{${3:λ}}"
+    },
+    "pstDistAdd{}{}{}{}": {
+      "snippet": "pstDistAdd{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+    },
+    "pstDistAddVal{}{}{}{}": {
+      "snippet": "pstDistAddVal{${1:A}}{${2:B}}{${3:λ}}{${4:L}}"
+    },
+    "pstDistAddCoef{}{}{}{}{}{}": {
+      "snippet": "pstDistAddCoef{${1:A}}{${2:B}}{${3:λ1}}{${4:C}}{${5:D}}{${6:λ2}}"
+    },
+    "pstDistSub{}{}{}{}": {
+      "snippet": "pstDistSub{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+    },
+    "pstDistSubVal{}{}{}{}": {
+      "snippet": "pstDistSubVal{${1:A}}{${2:B}}{${3:λ}}{${4:L}}"
+    },
+    "pstDistSubCoef{}{}{}{}{}{}": {
+      "snippet": "pstDistSubCoef{${1:A}}{${2:B}}{${3:λ1}}{${4:C}}{${5:D}}{${6:λ2}}"
+    },
+    "pstDistDiv{}{}{}{}": {
+      "snippet": "pstDistDiv{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+    },
+    "pstDistABC{}{}{}": {
+      "snippet": "pstDistABC{${1:A}}{${2:B}}{${3:C}}"
+    },
+    "pstCircleOA{}{}": {
+      "snippet": "pstCircleOA{${1:O}}{${2:A}}"
+    },
+    "pstCircleOA{}{}[][]": {
+      "snippet": "pstCircleOA{${1:O}}{${2:A}}[${3:angleA}][${4:angleB}]"
+    },
+    "pstCircleOA[]{}{}": {
+      "snippet": "pstCircleOA[${3:options}]{${1:O}}{${2:A}}"
+    },
+    "pstCircleOA[]{}{}[][]": {
+      "snippet": "pstCircleOA[${3:options}]{${1:O}}{${2:A}}[${4:angleA}][${5:angleB}]"
+    },
+    "pstCircleAB{}{}": {
+      "snippet": "pstCircleAB{${1:A}}{${2:B}}"
+    },
+    "pstCircleAB{}{}[][]": {
+      "snippet": "pstCircleAB{${1:A}}{${2:B}}[${3:angleA}][${4:angleB}]"
+    },
+    "pstCircleAB[]{}{}": {
+      "snippet": "pstCircleAB[${3:options}]{${1:A}}{${2:B}}"
+    },
+    "pstCircleAB[]{}{}[][]": {
+      "snippet": "pstCircleAB[${3:options}]{${1:A}}{${2:B}}[${4:angleA}][${5:angleB}]"
+    },
+    "pstCircleABR{}{}{}{}": {
+      "snippet": "pstCircleABR{${1:A}}{${2:B}}{${3:R}}{${4:O}}"
+    },
+    "pstCircleABR[]{}{}{}{}": {
+      "snippet": "pstCircleABR[${5:options}]{${1:A}}{${2:B}}{${3:R}}{${4:O}}"
+    },
+    "pstArcOAB{}{}{}": {
+      "snippet": "pstArcOAB{${1:O}}{${2:A}}{${3:B}}"
+    },
+    "pstArcOAB[]{}{}{}": {
+      "snippet": "pstArcOAB[${4:options}]{${1:O}}{${2:A}}{${3:B}}"
+    },
+    "pstArcnOAB{}{}{}": {
+      "snippet": "pstArcnOAB{${1:O}}{${2:A}}{${3:B}}"
+    },
+    "pstArcnOAB[]{}{}{}": {
+      "snippet": "pstArcnOAB[${4:options}]{${1:O}}{${2:A}}{${3:B}}"
+    },
+    "pstCircleNode{}{}{}{}": {
+      "snippet": "pstCircleNode{${1:O}}{${2:A}}{${3:θ}}{${4:X}}"
+    },
+    "pstCircleNode[]{}{}{}{}": {
+      "snippet": "pstCircleNode[${5:options}]{${1:O}}{${2:A}}{${3:θ}}{${4:X}}"
+    },
+    "pstCircleRotNode{}{}{}": {
+      "snippet": "pstCircleRotNode{${1:O}}{${2:A}}{${3:X}}"
+    },
+    "pstCircleRotNode[]{}{}{}": {
+      "snippet": "pstCircleRotNode[${4:options}]{${1:O}}{${2:A}}{${3:X}}"
+    },
+    "pstCircleChordNode{}{}{}{}": {
+      "snippet": "pstCircleChordNode{${1:O}}{${2:A}}{${3:L}}{${4:X}}"
+    },
+    "pstCircleChordNode[]{}{}{}{}": {
+      "snippet": "pstCircleChordNode[${5:options}]{${1:O}}{${2:A}}{${3:L}}{${4:X}}"
+    },
+    "pstCircleAbsNode{}{}{}{}{}": {
+      "snippet": "pstCircleAbsNode{${1:O}}{${2:A}}{${3:x}}{${4:C}}{${5:D}}"
+    },
+    "pstCircleAbsNode[]{}{}{}{}{}": {
+      "snippet": "pstCircleAbsNode[${6:options}]{${1:O}}{${2:A}}{${3:x}}{${4:C}}{${5:D}}"
+    },
+    "pstCircleOrdNode{}{}{}{}{}": {
+      "snippet": "pstCircleOrdNode{${1:O}}{${2:A}}{${3:y}}{${4:C}}{${5:D}}"
+    },
+    "pstCircleOrdNode[]{}{}{}{}{}": {
+      "snippet": "pstCircleOrdNode[${6:options}]{${1:O}}{${2:A}}{${3:y}}{${4:C}}{${5:D}}"
+    },
+    "pstCurvAbsNode{}{}{}{}": {
+      "snippet": "pstCurvAbsNode{${1:O}}{${2:A}}{${3:B}}{${4:abscissa}}"
+    },
+    "pstCurvAbsNode[]{}{}{}{}": {
+      "snippet": "pstCurvAbsNode[${5:options}]{${1:O}}{${2:A}}{${3:B}}{${4:abscissa}}"
+    },
+    "pstCircleTangentLine{}{}{}": {
+      "snippet": "pstCircleTangentLine{${1:O}}{${2:A}}{${3:T}}"
+    },
+    "pstCircleTangentLine[]{}{}{}": {
+      "snippet": "pstCircleTangentLine[${4:options}]{${1:O}}{${2:A}}{${3:T}}"
+    },
+    "pstCircleTangentNode{}{}{}{}{}": {
+      "snippet": "pstCircleTangentNode{${1:O}}{${2:A}}{${3:P}}{${4:T1}}{${5:T2}}"
+    },
+    "pstCircleTangentNode[]{}{}{}{}{}": {
+      "snippet": "pstCircleTangentNode[${6:options}]{${1:O}}{${2:A}}{${3:P}}{${4:T1}}{${5:T2}}"
+    },
+    "pstCircleExternalCommonTangent{}{}{}{}{}{}{}{}": {
+      "snippet": "pstCircleExternalCommonTangent{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:T1}}{${6:T2}}{${7:T3}}{${8:T4}}"
+    },
+    "pstCircleExternalCommonTangent[]{}{}{}{}{}{}{}{}": {
+      "snippet": "pstCircleExternalCommonTangent[${9:options}]{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:T1}}{${6:T2}}{${7:T3}}{${8:T4}}"
+    },
+    "pstCircleInternalCommonTangent{}{}{}{}{}{}{}{}": {
+      "snippet": "pstCircleInternalCommonTangent{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:T1}}{${6:T2}}{${7:T3}}{${8:T4}}"
+    },
+    "pstCircleInternalCommonTangent[]{}{}{}{}{}{}{}{}": {
+      "snippet": "pstCircleInternalCommonTangent[${9:options}]{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:T1}}{${6:T2}}{${7:T3}}{${8:T4}}"
+    },
+    "pstCircleRadicalAxis{}{}{}{}{}{}": {
+      "snippet": "pstCircleRadicalAxis{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:C}}{${6:D}}"
+    },
+    "pstCircleRadicalAxis[]{}{}{}{}{}{}": {
+      "snippet": "pstCircleRadicalAxis[${7:options}]{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:C}}{${6:D}}"
+    },
+    "pstETriangleAB{}{}{}": {
+      "snippet": "pstETriangleAB{${1:A}}{${2:B}}{${3:C}}"
+    },
+    "pstETriangleAB[]{}{}{}": {
+      "snippet": "pstETriangleAB[${4:options}]{${1:A}}{${2:B}}{${3:C}}"
+    },
+    "pstSquareAB{}{}{}{}": {
+      "snippet": "pstSquareAB{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+    },
+    "pstSquareAB[]{}{}{}{}": {
+      "snippet": "pstSquareAB[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+    },
+    "pstRegularPolygonAB{}{}{}{}": {
+      "snippet": "pstRegularPolygonAB{${1:A0}}{${2:A1}}{${3:n}}{${4:A2,A3,...}}"
+    },
+    "pstRegularPolygonAB[]{}{}{}{}": {
+      "snippet": "pstRegularPolygonAB[${5:options}]{${1:A0}}{${2:A1}}{${3:n}}{${4:A2,A3,...}}"
+    },
+    "pstRegularPolygonOA{}{}{}{}": {
+      "snippet": "pstRegularPolygonOA{${1:O}}{${2:A0}}{${3:n}}{${4:A1,A2,...}}"
+    },
+    "pstRegularPolygonOA[]{}{}{}{}": {
+      "snippet": "pstRegularPolygonOA[${5:options}]{${1:O}}{${2:A0}}{${3:n}}{${4:A1,A2,...}}"
+    },
+    "pstGenericCurve{}{}{}": {
+      "snippet": "pstGenericCurve{${1:radical}}{${2:n1}}{${3:n2}}"
+    },
+    "pstGenericCurve[]{}{}{}": {
+      "snippet": "pstGenericCurve[${4:options}]{${1:radical}}{${2:n1}}{${3:n2}}"
+    },
+    "pstGeneralEllipseFle{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralEllipseFle{${1:F}}{${2:A}}{${3:B}}{${4:e}}{${5:O}}{${6:Rab}}{${7:θ}}"
+    },
+    "pstGeneralEllipseFle[]{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralEllipseFle[${8:options}]{${1:F}}{${2:A}}{${3:B}}{${4:e}}{${5:O}}{${6:Rab}}{${7:θ}}"
+    },
+    "pstGeneralEllipseFFN{}{}{}{}{}": {
+      "snippet": "pstGeneralEllipseFFN{${1:F1}}{${2:F2}}{${3:O}}{${4:Rab}}{${5:θ}}"
+    },
+    "pstGeneralEllipseFFN[]{}{}{}{}{}": {
+      "snippet": "pstGeneralEllipseFFN[${6:options}]{${1:F1}}{${2:F2}}{${3:O}}{${4:Rab}}{${5:θ}}"
+    },
+    "pstGeneralEllipseCoef{}{}{}{}": {
+      "snippet": "pstGeneralEllipseCoef{${1:a,b,c,d,e,f}}{${2:O}}{${3:Rab}}{${4:θ}}"
+    },
+    "pstGeneralEllipseCoef[]{}{}{}{}": {
+      "snippet": "pstGeneralEllipseCoef[${5:options}]{${1:a,b,c,d,e,f}}{${2:O}}{${3:Rab}}{${4:θ}}"
+    },
+    "pstGeneralEllipseABCDE{}{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralEllipseABCDE{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:Rab}}{${8:θ}}"
+    },
+    "pstGeneralEllipseABCDE[]{}{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralEllipseABCDE[${9:options}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:Rab}}{${8:θ}}"
+    },
+    "pstGeneralParabolaFl{}{}{}{}{}{}": {
+      "snippet": "pstGeneralParabolaFl{${1:F}}{${2:A}}{${3:B}}{${4:O}}{${5:p}}{${6:θ}}"
+    },
+    "pstGeneralParabolaFl[]{}{}{}{}{}{}": {
+      "snippet": "pstGeneralParabolaFl[${7:options}]{${1:F}}{${2:A}}{${3:B}}{${4:O}}{${5:p}}{${6:θ}}"
+    },
+    "pstGeneralParabolaCoef{}{}{}{}": {
+      "snippet": "pstGeneralParabolaCoef{${1:a,b,c,d,e,f}}{${2:O}}{${3:p}}{${4:θ}}"
+    },
+    "pstGeneralParabolaCoef[]{}{}{}{}": {
+      "snippet": "pstGeneralParabolaCoef[${5:options}]{${1:a,b,c,d,e,f}}{${2:O}}{${3:p}}{${4:θ}}"
+    },
+    "pstGeneralParabolaABCDE{}{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralParabolaABCDE{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:p}}{${8:θ}}"
+    },
+    "pstGeneralParabolaABCDE[]{}{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralParabolaABCDE[${9:options}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:p}}{${8:θ}}"
+    },
+    "pstGeneralHyperbolaFle{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralHyperbolaFle{${1:F}}{${2:A}}{${3:B}}{${4:e}}{${5:O}}{${6:Rab}}{${7:θ}}"
+    },
+    "pstGeneralHyperbolaFle[]{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralHyperbolaFle[${8:options}]{${1:F}}{${2:A}}{${3:B}}{${4:e}}{${5:O}}{${6:Rab}}{${7:θ}}"
+    },
+    "pstGeneralHyperbolaFFN{}{}{}{}{}": {
+      "snippet": "pstGeneralHyperbolaFFN{${1:F1}}{${2:F2}}{${3:O}}{${4:Rab}}{${5:θ}}"
+    },
+    "pstGeneralHyperbolaFFN[]{}{}{}{}{}": {
+      "snippet": "pstGeneralHyperbolaFFN[${6:options}]{${1:F1}}{${2:F2}}{${3:O}}{${4:Rab}}{${5:θ}}"
+    },
+    "pstGeneralHyperbolaCoef{}{}{}{}": {
+      "snippet": "pstGeneralHyperbolaCoef{${1:a,b,c,d,e,f}}{${2:O}}{${3:Rab}}{${4:θ}}"
+    },
+    "pstGeneralHyperbolaCoef[]{}{}{}{}": {
+      "snippet": "pstGeneralHyperbolaCoef[${5:options}]{${1:a,b,c,d,e,f}}{${2:O}}{${3:Rab}}{${4:θ}}"
+    },
+    "pstGeneralHyperbolaABCDE{}{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralHyperbolaABCDE{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:Rab}}{${8:θ}}"
+    },
+    "pstGeneralHyperbolaABCDE[]{}{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralHyperbolaABCDE[${9:options}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:Rab}}{${8:θ}}"
+    },
+    "pstGeneralConicEquation{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralConicEquation{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}{${7:a,b,c,d,e,f}}"
+    },
+    "pstGeneralConicEquation[]{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralConicEquation[${8:options}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}{${7:a,b,c,d,e,f}}"
+    },
+    "pstGeneralConicLineInter{}{}{}{}{}": {
+      "snippet": "pstGeneralConicLineInter{${1:A}}{${2:B}}{${3:a,b,c,d,e,f}}{${4:C}}{${5:D}}"
+    },
+    "pstGeneralConicLineInter[]{}{}{}{}{}": {
+      "snippet": "pstGeneralConicLineInter[${6:options}]{${1:A}}{${2:B}}{${3:a,b,c,d,e,f}}{${4:C}}{${5:D}}"
+    },
+    "pstGeneralConicCircleInter{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralConicCircleInter{${1:O}}{${2:A}}{${3:a,b,c,d,e,f}}{${4:C}}{${5:D}}{${6:E}}{${7:F}}"
+    },
+    "pstGeneralConicCircleInter[]{}{}{}{}{}{}{}": {
+      "snippet": "pstGeneralConicCircleInter[${8:options}]{${1:O}}{${2:A}}{${3:a,b,c,d,e,f}}{${4:C}}{${5:D}}{${6:E}}{${7:F}}"
+    },
+    "pstGeneralConicInter{}{}{}{}{}{}": {
+      "snippet": "pstGeneralConicInter{${1:a,b,c,d,e,f}}{${2:a',b',c',d',e',f'}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}"
+    },
+    "pstGeneralConicTangentLine{}{}{}": {
+      "snippet": "pstGeneralConicTangentLine{${1:A}}{${2:a,b,c,d,e,f}}{${3:B}}"
+    },
+    "pstGeneralConicTangentLine[]{}{}{}": {
+      "snippet": "pstGeneralConicTangentLine[${4:options}]{${1:A}}{${2:a,b,c,d,e,f}}{${3:B}}"
+    },
+    "pstGeneralConicTangentChord{}{}{}{}": {
+      "snippet": "pstGeneralConicTangentChord{${1:T}}{${2:a,b,c,d,e,f}}{${3:A}}{${4:B}}"
+    },
+    "pstGeneralConicTangentChord[]{}{}{}{}": {
+      "snippet": "pstGeneralConicTangentChord[${5:options}]{${1:T}}{${2:a,b,c,d,e,f}}{${3:A}}{${4:B}}"
+    },
+    "pstSymO{}{}": {
+      "snippet": "pstSymO{${1:O}}{${2:M1,...,Mn}}"
+    },
+    "pstSymO{}{}[]": {
+      "snippet": "pstSymO{${1:O}}{${2:M1,...,Mn}}[${3:M1',...,Mn'}]"
+    },
+    "pstSymO[]{}{}": {
+      "snippet": "pstSymO[${3:options}]{${1:O}}{${2:M1,...,Mn}}"
+    },
+    "pstSymO[]{}{}[]": {
+      "snippet": "pstSymO[${3:options}]{${1:O}}{${2:M1,...,Mn}}[${4:M1',...,Mn'}]"
+    },
+    "pstOrtSym{}{}{}": {
+      "snippet": "pstOrtSym{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
+    },
+    "pstOrtSym{}{}{}[]": {
+      "snippet": "pstOrtSym{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${4:M1',...,Mn'}]"
+    },
+    "pstOrtSym[]{}{}{}": {
+      "snippet": "pstOrtSym[${4:options}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
+    },
+    "pstOrtSym[]{}{}{}[]": {
+      "snippet": "pstOrtSym[${4:options}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${5:M1',...,Mn'}]"
+    },
+    "pstRotation{}{}": {
+      "snippet": "pstRotation{${1:O}}{${2:M1,...,Mn}}"
+    },
+    "pstRotation{}{}[]": {
+      "snippet": "pstRotation{${1:O}}{${2:M1,...,Mn}}[${3:M1',...,Mn'}]"
+    },
+    "pstRotation[]{}{}": {
+      "snippet": "pstRotation[${3:options}]{${1:O}}{${2:M1,...,Mn}}"
+    },
+    "pstRotation[]{}{}[]": {
+      "snippet": "pstRotation[${3:options}]{${1:O}}{${2:M1,...,Mn}}[${4:M1',...,Mn'}]"
+    },
+    "pstAngleAOB{}{}{}": {
+      "snippet": "pstAngleAOB{${1:A}}{${2:O}}{${3:B}}"
+    },
+    "pstTranslation{}{}{}": {
+      "snippet": "pstTranslation{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
+    },
+    "pstTranslation{}{}{}[]": {
+      "snippet": "pstTranslation{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${4:M1',...,Mn'}]"
+    },
+    "pstTranslation[]{}{}{}": {
+      "snippet": "pstTranslation[${4:options}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
+    },
+    "pstTranslation[]{}{}{}[]": {
+      "snippet": "pstTranslation[${4:options}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${5:M1',...,Mn'}]"
+    },
+    "pstHomO{}{}": {
+      "snippet": "pstHomO{${1:O}}{${2:M1,...,Mn}}"
+    },
+    "pstHomO{}{}[]": {
+      "snippet": "pstHomO{${1:O}}{${2:M1,...,Mn}}[${3:M1',...,Mn'}]"
+    },
+    "pstHomO[]{}{}": {
+      "snippet": "pstHomO[${3:options}]{${1:O}}{${2:M1,...,Mn}}"
+    },
+    "pstHomO[]{}{}[]": {
+      "snippet": "pstHomO[${3:options}]{${1:O}}{${2:M1,...,Mn}}[${4:M1',...,Mn'}]"
+    },
+    "pstProjection{}{}{}": {
+      "snippet": "pstProjection{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
+    },
+    "pstProjection{}{}{}[]": {
+      "snippet": "pstProjection{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${4:M1',...,Mn'}]"
+    },
+    "pstProjection[]{}{}{}": {
+      "snippet": "pstProjection[${4:options}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
+    },
+    "pstProjection[]{}{}{}[]": {
+      "snippet": "pstProjection[${4:options}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${5:M1',...,Mn'}]"
+    },
+    "pstMiddleAB{}{}{}": {
+      "snippet": "pstMiddleAB{${1:A}}{${2:B}}{${3:I}}"
+    },
+    "pstMiddleAB[]{}{}{}": {
+      "snippet": "pstMiddleAB[${4:options}]{${1:A}}{${2:B}}{${3:I}}"
+    },
+    "pstCGravABC{}{}{}{}": {
+      "snippet": "pstCGravABC{${1:A}}{${2:B}}{${3:C}}{${4:G}}"
+    },
+    "pstCGravABC[]{}{}{}{}": {
+      "snippet": "pstCGravABC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:G}}"
+    },
+    "pstCircleABC{}{}{}{}": {
+      "snippet": "pstCircleABC{${1:A}}{${2:B}}{${3:C}}{${4:O}}"
+    },
+    "pstCircleABC[]{}{}{}{}": {
+      "snippet": "pstCircleABC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:O}}"
+    },
+    "pstMediatorAB{}{}{}{}": {
+      "snippet": "pstMediatorAB{${1:A}}{${2:B}}{${3:I}}{${4:M}}"
+    },
+    "pstMediatorAB[]{}{}{}{}": {
+      "snippet": "pstMediatorAB[${5:options}]{${1:A}}{${2:B}}{${3:I}}{${4:M}}"
+    },
+    "pstBissectBAC{}{}{}{}": {
+      "snippet": "pstBissectBAC{${1:B}}{${2:A}}{${3:C}}{${4:N}}"
+    },
+    "pstBissectBAC[]{}{}{}{}": {
+      "snippet": "pstBissectBAC[${5:options}]{${1:B}}{${2:A}}{${3:C}}{${4:N}}"
+    },
+    "pstOutBissectBAC{}{}{}{}": {
+      "snippet": "pstOutBissectBAC{${1:B}}{${2:A}}{${3:C}}{${4:N}}"
+    },
+    "pstOutBissectBAC[]{}{}{}{}": {
+      "snippet": "pstOutBissectBAC[${5:options}]{${1:B}}{${2:A}}{${3:C}}{${4:N}}"
+    },
+    "pstInterLL{}{}{}{}{}": {
+      "snippet": "pstInterLL{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:M}}"
+    },
+    "pstInterLL[]{}{}{}{}{}": {
+      "snippet": "pstInterLL[${6:options}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:M}}"
+    },
+    "pstInterLC{}{}{}{}{}{}": {
+      "snippet": "pstInterLC{${1:A}}{${2:B}}{${3:O}}{${4:C}}{${5:M1}}{${6:M2}}"
+    },
+    "pstInterLC[]{}{}{}{}{}{}": {
+      "snippet": "pstInterLC[${7:options}]{${1:A}}{${2:B}}{${3:O}}{${4:C}}{${5:M1}}{${6:M2}}"
+    },
+    "pstInterCC{}{}{}{}{}{}": {
+      "snippet": "pstInterCC{${1:O1}}{${2:B}}{${3:O2}}{${4:C}}{${5:M1}}{${6:M2}}"
+    },
+    "pstInterCC[]{}{}{}{}{}{}": {
+      "snippet": "pstInterCC[${7:options}]{${1:O1}}{${2:B}}{${3:O2}}{${4:C}}{${5:M1}}{${6:M2}}"
+    },
+    "pstInterFF{}{}{}{}": {
+      "snippet": "pstInterFF{${1:f}}{${2:g}}{${3:x0}}{${4:M}}"
+    },
+    "pstInterFF[]{}{}{}{}": {
+      "snippet": "pstInterFF[${5:options}]{${1:f}}{${2:g}}{${3:x0}}{${4:M}}"
+    },
+    "pstInterFL{}{}{}{}{}": {
+      "snippet": "pstInterFL{${1:f}}{${2:A}}{${3:B}}{${4:x0}}{${5:M}}"
+    },
+    "pstInterFL[]{}{}{}{}{}": {
+      "snippet": "pstInterFL[${6:options}]{${1:f}}{${2:A}}{${3:B}}{${4:x0}}{${5:M}}"
+    },
+    "pstInterFC{}{}{}{}{}": {
+      "snippet": "pstInterFC{${1:f}}{${2:O}}{${3:A}}{${4:x0}}{${5:M}}"
+    },
+    "pstInterFC[]{}{}{}{}{}": {
+      "snippet": "pstInterFC[${6:options}]{${1:f}}{${2:O}}{${3:A}}{${4:x0}}{${5:M}}"
+    },
+    "AngleMarkCirc": {},
+    "AngleMarkCros": {},
+    "AngleMarkCross": {},
+    "AngleMarkHash": {},
+    "AngleMarkHashh": {},
+    "AngleMarkHashhh": {},
+    "Anglepstslash": {},
+    "Anglepstslashh": {},
+    "Anglepstslashhh": {},
+    "Anglepstslashslash": {},
+    "Anglepstslashslashslash": {},
+    "LastValidPN": {},
+    "LastValidSS": {},
+    "MarkArrow": {},
+    "MarkArroww": {},
+    "MarkArrowww": {},
+    "MarkCirc": {},
+    "MarkCros": {},
+    "MarkCross": {},
+    "MarkHash": {},
+    "MarkHashh": {},
+    "MarkHashhh": {},
+    "OldPointName": {},
+    "OldPointNameSep": {},
+    "OldPointSymbol": {},
+    "OldPosAngle": {},
+    "PstParamListFirst{}": {
+      "snippet": "PstParamListFirst{${1:arg}}"
+    },
+    "PstParamListLasts{}": {
+      "snippet": "PstParamListLasts{${1:arg}}"
+    },
+    "SegSymLst": {},
+    "pstParseArg{}{}{}": {
+      "snippet": "pstParseArg{${1:prefix}}{${2:element list}}{${3:value list}}"
+    },
+    "pstShowCoor{}": {
+      "snippet": "pstShowCoor{${1:A}}"
+    },
+    "pstslash": {},
+    "pstslashh": {},
+    "pstslashhh": {},
+    "pstslashslash": {},
+    "pstslashslashslash": {},
+    "resetEUCLvalues": {},
+    "psMarkHashLength": {},
+    "psMarkHashSep": {},
+    "PSTEuclideLoaded": {}
+  },
+  "envs": {},
+  "options": [
+    "old"
+  ],
+  "keyvals": []
+}

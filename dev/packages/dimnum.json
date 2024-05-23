@@ -1,0 +1,496 @@
+{
+  "includes": {
+    "amsmath": [],
+    "xifthen": []
+  },
+  "macros": {
+    "newdimnum{}{}{}{}": {
+      "snippet": "newdimnum{${1:csname}}{${2:symbol}}{${3:name}}{${4:identifier}}"
+    },
+    "Ar": {},
+    "Ar[]": {
+      "snippet": "Ar[${1:l or s}]"
+    },
+    "At": {},
+    "At[]": {
+      "snippet": "At[${1:l or s}]"
+    },
+    "Ba": {},
+    "Ba[]": {
+      "snippet": "Ba[${1:l or s}]"
+    },
+    "Be": {},
+    "Be[]": {
+      "snippet": "Be[${1:l or s}]"
+    },
+    "Bm": {},
+    "Bm[]": {
+      "snippet": "Bm[${1:l or s}]"
+    },
+    "Bi": {},
+    "Bi[]": {
+      "snippet": "Bi[${1:l or s}]"
+    },
+    "Bl": {},
+    "Bl[]": {
+      "snippet": "Bl[${1:l or s}]"
+    },
+    "Bs": {},
+    "Bs[]": {
+      "snippet": "Bs[${1:l or s}]"
+    },
+    "Bo": {},
+    "Bo[]": {
+      "snippet": "Bo[${1:l or s}]"
+    },
+    "Br": {},
+    "Br[]": {
+      "snippet": "Br[${1:l or s}]"
+    },
+    "BK": {},
+    "BK[]": {
+      "snippet": "BK[${1:l or s}]"
+    },
+    "Ca": {},
+    "Ca[]": {
+      "snippet": "Ca[${1:l or s}]"
+    },
+    "Cau": {},
+    "Cau[]": {
+      "snippet": "Cau[${1:l or s}]"
+    },
+    "Ch": {},
+    "Ch[]": {
+      "snippet": "Ch[${1:l or s}]"
+    },
+    "CoF": {},
+    "CoF[]": {
+      "snippet": "CoF[${1:l or s}]"
+    },
+    "Co": {},
+    "Co[]": {
+      "snippet": "Co[${1:l or s}]"
+    },
+    "Dah": {},
+    "Dah[]": {
+      "snippet": "Dah[${1:l or s}]"
+    },
+    "Dar": {},
+    "Dar[]": {
+      "snippet": "Dar[${1:l or s}]"
+    },
+    "De": {},
+    "De[]": {
+      "snippet": "De[${1:l or s}]"
+    },
+    "Deb": {},
+    "Deb[]": {
+      "snippet": "Deb[${1:l or s}]"
+    },
+    "Cd": {},
+    "Cd[]": {
+      "snippet": "Cd[${1:l or s}]"
+    },
+    "Du": {},
+    "Du[]": {
+      "snippet": "Du[${1:l or s}]"
+    },
+    "Ec": {},
+    "Ec[]": {
+      "snippet": "Ec[${1:l or s}]"
+    },
+    "Ek": {},
+    "Ek[]": {
+      "snippet": "Ek[${1:l or s}]"
+    },
+    "Ela": {},
+    "Ela[]": {
+      "snippet": "Ela[${1:l or s}]"
+    },
+    "El": {},
+    "El[]": {
+      "snippet": "El[${1:l or s}]"
+    },
+    "Eo": {},
+    "Eo[]": {
+      "snippet": "Eo[${1:l or s}]"
+    },
+    "Er": {},
+    "Er[]": {
+      "snippet": "Er[${1:l or s}]"
+    },
+    "Eu": {},
+    "Eu[]": {
+      "snippet": "Eu[${1:l or s}]"
+    },
+    "Fo": {},
+    "Fo[]": {
+      "snippet": "Fo[${1:l or s}]"
+    },
+    "Fr": {},
+    "Fr[]": {
+      "snippet": "Fr[${1:l or s}]"
+    },
+    "Ga": {},
+    "Ga[]": {
+      "snippet": "Ga[${1:l or s}]"
+    },
+    "Go": {},
+    "Go[]": {
+      "snippet": "Go[${1:l or s}]"
+    },
+    "Gz": {},
+    "Gz[]": {
+      "snippet": "Gz[${1:l or s}]"
+    },
+    "Gr": {},
+    "Gr[]": {
+      "snippet": "Gr[${1:l or s}]"
+    },
+    "Ha": {},
+    "Ha[]": {
+      "snippet": "Ha[${1:l or s}]"
+    },
+    "Hg": {},
+    "Hg[]": {
+      "snippet": "Hg[${1:l or s}]"
+    },
+    "Ho": {},
+    "Ho[]": {
+      "snippet": "Ho[${1:l or s}]"
+    },
+    "Ir": {},
+    "Ir[]": {
+      "snippet": "Ir[${1:l or s}]"
+    },
+    "Ja": {},
+    "Ja[]": {
+      "snippet": "Ja[${1:l or s}]"
+    },
+    "Ka": {},
+    "Ka[]": {
+      "snippet": "Ka[${1:l or s}]"
+    },
+    "KC": {},
+    "KC[]": {
+      "snippet": "KC[${1:l or s}]"
+    },
+    "Kn": {},
+    "Kn[]": {
+      "snippet": "Kn[${1:l or s}]"
+    },
+    "Ku": {},
+    "Ku[]": {
+      "snippet": "Ku[${1:l or s}]"
+    },
+    "La": {},
+    "La[]": {
+      "snippet": "La[${1:l or s}]"
+    },
+    "Le": {},
+    "Le[]": {
+      "snippet": "Le[${1:l or s}]"
+    },
+    "Ma": {},
+    "Ma[]": {
+      "snippet": "Ma[${1:l or s}]"
+    },
+    "Mg": {},
+    "Mg[]": {
+      "snippet": "Mg[${1:l or s}]"
+    },
+    "Mo": {},
+    "Mo[]": {
+      "snippet": "Mo[${1:l or s}]"
+    },
+    "Nus": {},
+    "Nus[]": {
+      "snippet": "Nus[${1:l or s}]"
+    },
+    "Oh": {},
+    "Oh[]": {
+      "snippet": "Oh[${1:l or s}]"
+    },
+    "Pe": {},
+    "Pe[]": {
+      "snippet": "Pe[${1:l or s}]"
+    },
+    "pH": {},
+    "pH[]": {
+      "snippet": "pH[${1:l or s}]"
+    },
+    "Po": {},
+    "Po[]": {
+      "snippet": "Po[${1:l or s}]"
+    },
+    "Pr": {},
+    "Pr[]": {
+      "snippet": "Pr[${1:l or s}]"
+    },
+    "Ra": {},
+    "Ra[]": {
+      "snippet": "Ra[${1:l or s}]"
+    },
+    "Rey": {},
+    "Rey[]": {
+      "snippet": "Rey[${1:l or s}]"
+    },
+    "Ri": {},
+    "Ri[]": {
+      "snippet": "Ri[${1:l or s}]"
+    },
+    "Ro": {},
+    "Ro[]": {
+      "snippet": "Ro[${1:l or s}]"
+    },
+    "Ros": {},
+    "Ros[]": {
+      "snippet": "Ros[${1:l or s}]"
+    },
+    "Rou": {},
+    "Rou[]": {
+      "snippet": "Rou[${1:l or s}]"
+    },
+    "Sc": {},
+    "Sc[]": {
+      "snippet": "Sc[${1:l or s}]"
+    },
+    "Sh": {},
+    "Sh[]": {
+      "snippet": "Sh[${1:l or s}]"
+    },
+    "So": {},
+    "So[]": {
+      "snippet": "So[${1:l or s}]"
+    },
+    "St": {},
+    "St[]": {
+      "snippet": "St[${1:l or s}]"
+    },
+    "Ste": {},
+    "Ste[]": {
+      "snippet": "Ste[${1:l or s}]"
+    },
+    "Stk": {},
+    "Stk[]": {
+      "snippet": "Stk[${1:l or s}]"
+    },
+    "Sr": {},
+    "Sr[]": {
+      "snippet": "Sr[${1:l or s}]"
+    },
+    "Stu": {},
+    "Stu[]": {
+      "snippet": "Stu[${1:l or s}]"
+    },
+    "Sv": {},
+    "Sv[]": {
+      "snippet": "Sv[${1:l or s}]"
+    },
+    "Ta": {},
+    "Ta[]": {
+      "snippet": "Ta[${1:l or s}]"
+    },
+    "Ur": {},
+    "Ur[]": {
+      "snippet": "Ur[${1:l or s}]"
+    },
+    "Va": {},
+    "Va[]": {
+      "snippet": "Va[${1:l or s}]"
+    },
+    "Wa": {},
+    "Wa[]": {
+      "snippet": "Wa[${1:l or s}]"
+    },
+    "Wea": {},
+    "Wea[]": {
+      "snippet": "Wea[${1:l or s}]"
+    },
+    "We": {},
+    "We[]": {
+      "snippet": "We[${1:l or s}]"
+    },
+    "Wei": {},
+    "Wei[]": {
+      "snippet": "Wei[${1:l or s}]"
+    },
+    "Ab": {},
+    "Ab[]": {
+      "snippet": "Ab[${1:l or s}]"
+    },
+    "AC": {
+      "detail": "∿",
+      "documentation": "SINE WAVE, alternating current"
+    },
+    "AC[]": {
+      "snippet": "AC[${1:l or s}]"
+    },
+    "Al": {},
+    "Al[]": {
+      "snippet": "Al[${1:l or s}]"
+    },
+    "Arr": {},
+    "Arr[]": {
+      "snippet": "Arr[${1:l or s}]"
+    },
+    "AW": {},
+    "AW[]": {
+      "snippet": "AW[${1:l or s}]"
+    },
+    "Rz": {},
+    "Rz[]": {
+      "snippet": "Rz[${1:l or s}]"
+    },
+    "Blo": {},
+    "Blo[]": {
+      "snippet": "Blo[${1:l or s}]"
+    },
+    "Jm": {},
+    "Jm[]": {
+      "snippet": "Jm[${1:l or s}]"
+    },
+    "Jh": {},
+    "Jh[]": {
+      "snippet": "Jh[${1:l or s}]"
+    },
+    "Jd": {},
+    "Jd[]": {
+      "snippet": "Jd[${1:l or s}]"
+    },
+    "CoD": {},
+    "CoD[]": {
+      "snippet": "CoD[${1:l or s}]"
+    },
+    "CoK": {},
+    "CoK[]": {
+      "snippet": "CoK[${1:l or s}]"
+    },
+    "CoS": {},
+    "CoS[]": {
+      "snippet": "CoS[${1:l or s}]"
+    },
+    "CoV": {},
+    "CoV[]": {
+      "snippet": "CoV[${1:l or s}]"
+    },
+    "Coh": {},
+    "Coh[]": {
+      "snippet": "Coh[${1:l or s}]"
+    },
+    "CFL": {},
+    "CFL[]": {
+      "snippet": "CFL[${1:l or s}]"
+    },
+    "Dr": {},
+    "Dr[]": {
+      "snippet": "Dr[${1:l or s}]"
+    },
+    "fD": {},
+    "fD[]": {
+      "snippet": "fD[${1:l or s}]"
+    },
+    "ExT": {},
+    "ExT[]": {
+      "snippet": "ExT[${1:l or s}]"
+    },
+    "fF": {},
+    "fF[]": {
+      "snippet": "fF[${1:l or s}]"
+    },
+    "Fs": {},
+    "Fs[]": {
+      "snippet": "Fs[${1:l or s}]"
+    },
+    "FvK": {},
+    "FvK[]": {
+      "snippet": "FvK[${1:l or s}]"
+    },
+    "Fre": {},
+    "Fre[]": {
+      "snippet": "Fre[${1:l or s}]"
+    },
+    "Hav": {},
+    "Hav[]": {
+      "snippet": "Hav[${1:l or s}]"
+    },
+    "He": {},
+    "He[]": {
+      "snippet": "He[${1:l or s}]"
+    },
+    "Cl": {},
+    "Cl[]": {
+      "snippet": "Cl[${1:l or s}]"
+    },
+    "LM": {},
+    "LM[]": {
+      "snippet": "LM[${1:l or s}]"
+    },
+    "Lu": {},
+    "Lu[]": {
+      "snippet": "Lu[${1:l or s}]"
+    },
+    "Mar": {},
+    "Mar[]": {
+      "snippet": "Mar[${1:l or s}]"
+    },
+    "Peel": {},
+    "Peel[]": {
+      "snippet": "Peel[${1:l or s}]"
+    },
+    "Pie": {},
+    "Pie[]": {
+      "snippet": "Pie[${1:l or s}]"
+    },
+    "Poi": {},
+    "Poi[]": {
+      "snippet": "Poi[${1:l or s}]"
+    },
+    "Pf": {},
+    "Pf[]": {
+      "snippet": "Pf[${1:l or s}]"
+    },
+    "Pn": {},
+    "Pn[]": {
+      "snippet": "Pn[${1:l or s}]"
+    },
+    "Cp": {},
+    "Cp[]": {
+      "snippet": "Cp[${1:l or s}]"
+    },
+    "Rfi": {},
+    "Rfi[]": {
+      "snippet": "Rfi[${1:l or s}]"
+    },
+    "Crr": {},
+    "Crr[]": {
+      "snippet": "Crr[${1:l or s}]"
+    },
+    "Shi": {},
+    "Shi[]": {
+      "snippet": "Shi[${1:l or s}]"
+    },
+    "vtH": {},
+    "vtH[]": {
+      "snippet": "vtH[${1:l or s}]"
+    },
+    "Wal": {},
+    "Wal[]": {
+      "snippet": "Wal[${1:l or s}]"
+    },
+    "Wo": {},
+    "Wo[]": {
+      "snippet": "Wo[${1:l or s}]"
+    },
+    "Zd": {},
+    "Zd[]": {
+      "snippet": "Zd[${1:l or s}]"
+    },
+    "ifstartedinmathmode": {},
+    "startedinmathmodetrue": {},
+    "startedinmathmodefalse": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

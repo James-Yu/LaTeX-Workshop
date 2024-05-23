@@ -1,0 +1,408 @@
+{
+  "includes": {},
+  "macros": {
+    "opset{}": {
+      "snippet": "opset{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "opadd{}{}": {
+      "snippet": "opadd{${1:num1}}{${2:num2}}"
+    },
+    "opadd[]{}{}": {
+      "snippet": "opadd[${3:options}]{${1:num1}}{${2:num2}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "opsub{}{}": {
+      "snippet": "opsub{${1:num1}}{${2:num2}}"
+    },
+    "opsub[]{}{}": {
+      "snippet": "opsub[${3:options}]{${1:num1}}{${2:num2}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "opmul{}{}": {
+      "snippet": "opmul{${1:num1}}{${2:num2}}"
+    },
+    "opmul[]{}{}": {
+      "snippet": "opmul[${3:options}]{${1:num1}}{${2:num2}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "opdiv{}{}": {
+      "snippet": "opdiv{${1:num1}}{${2:num2}}"
+    },
+    "opdiv[]{}{}": {
+      "snippet": "opdiv[${3:options}]{${1:num1}}{${2:num2}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "opidiv{}{}": {
+      "snippet": "opidiv{${1:num1}}{${2:num2}}"
+    },
+    "opidiv[]{}{}": {
+      "snippet": "opidiv[${3:options}]{${1:num1}}{${2:num2}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "opcolumnwidth": {},
+    "oplineheight": {},
+    "opadd*{}{}{}": {
+      "snippet": "opadd*{${1:num1}}{${2:num2}}{${3:variable}}"
+    },
+    "opsub*{}{}{}": {
+      "snippet": "opsub*{${1:num1}}{${2:num2}}{${3:variable}}"
+    },
+    "opmul*{}{}{}": {
+      "snippet": "opmul*{${1:num1}}{${2:num2}}{${3:variable}}"
+    },
+    "opdiv*{}{}{}{}": {
+      "snippet": "opdiv*{${1:num1}}{${2:num2}}{${3:quotient var}}{${4:remainder var}}"
+    },
+    "opdiv*[]{}{}{}{}": {
+      "snippet": "opdiv*[${5:options}]{${1:num1}}{${2:num2}}{${3:quotient var}}{${4:remainder var}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "opidiv*{}{}{}{}": {
+      "snippet": "opidiv*{${1:num1}}{${2:num2}}{${3:quotient var}}{${4:remainder var}}"
+    },
+    "opcopy{}{}": {
+      "snippet": "opcopy{${1:number}}{${2:variable}}"
+    },
+    "opprint{}": {
+      "snippet": "opprint{${1:arg}}"
+    },
+    "opdisplay{}{}": {
+      "snippet": "opdisplay{${1:style}}{${2:number}}"
+    },
+    "opdisplay[]{}{}": {
+      "snippet": "opdisplay[${3:specs}]{${1:style}}{${2:number}}"
+    },
+    "opexport{}{}": {
+      "snippet": "opexport{${1:number}}{${2:cmd}}"
+    },
+    "opwidth{}{}": {
+      "snippet": "opwidth{${1:number}}{${2:variable}}"
+    },
+    "opintegerwidth{}{}": {
+      "snippet": "opintegerwidth{${1:number}}{${2:variable}}"
+    },
+    "opdecimalwidth{}{}": {
+      "snippet": "opdecimalwidth{${1:number}}{${2:variable}}"
+    },
+    "opunzero{}": {
+      "snippet": "opunzero{${1:number}}"
+    },
+    "opinteger{}{}": {
+      "snippet": "opinteger{${1:number}}{${2:variable}}"
+    },
+    "opdecimal{}{}": {
+      "snippet": "opdecimal{${1:number}}{${2:variable}}"
+    },
+    "opgetdigit{}{}{}": {
+      "snippet": "opgetdigit{${1:number}}{${2:index}}{${3:variable}}"
+    },
+    "opsetdigit{}{}{}": {
+      "snippet": "opsetdigit{${1:number}}{${2:index}}{${3:variable}}"
+    },
+    "opgetintegerdigit{}{}{}": {
+      "snippet": "opgetintegerdigit{${1:number}}{${2:index}}{${3:variable}}"
+    },
+    "opsetintegerdigit{}{}{}": {
+      "snippet": "opsetintegerdigit{${1:number}}{${2:index}}{${3:variable}}"
+    },
+    "opgetdecimaldigit{}{}{}": {
+      "snippet": "opgetdecimaldigit{${1:number}}{${2:index}}{${3:variable}}"
+    },
+    "opsetdecimaldigit{}{}{}": {
+      "snippet": "opsetdecimaldigit{${1:number}}{${2:index}}{${3:variable}}"
+    },
+    "opcmp{}{}": {
+      "snippet": "opcmp{${1:num1}}{${2:num2}}"
+    },
+    "ifopgt": {},
+    "opgttrue": {},
+    "opgtfalse": {},
+    "ifopge": {},
+    "opgetrue": {},
+    "opgefalse": {},
+    "ifople": {},
+    "opletrue": {},
+    "oplefalse": {},
+    "ifoplt": {},
+    "oplttrue": {},
+    "opltfalse": {},
+    "ifopeq": {},
+    "opeqtrue": {},
+    "opeqfalse": {},
+    "ifopneq": {},
+    "opneqtrue": {},
+    "opneqfalse": {},
+    "opgcd{}{}{}": {
+      "snippet": "opgcd{${1:num1}}{${2:num2}}{${3:variable}}"
+    },
+    "opdivperiod{}{}{}": {
+      "snippet": "opdivperiod{${1:num1}}{${2:num2}}{${3:variable}}"
+    },
+    "opcastingoutnines{}{}": {
+      "snippet": "opcastingoutnines{${1:number}}{${2:variable}}"
+    },
+    "opcastingoutelevens{}{}": {
+      "snippet": "opcastingoutelevens{${1:number}}{${2:variable}}"
+    },
+    "oppower{}{}{}": {
+      "snippet": "oppower{${1:number}}{${2:power}}{${3:variable}}"
+    },
+    "opfloor{}{}{}": {
+      "snippet": "opfloor{${1:number}}{${2:approx rank}}{${3:variable}}"
+    },
+    "opceil{}{}{}": {
+      "snippet": "opceil{${1:number}}{${2:approx rank}}{${3:variable}}"
+    },
+    "opround{}{}{}": {
+      "snippet": "opround{${1:number}}{${2:approx rank}}{${3:variable}}"
+    },
+    "opsqrt{}{}": {
+      "snippet": "opsqrt{${1:number}}{${2:variable}}"
+    },
+    "opsqrt[]{}{}": {
+      "snippet": "opsqrt[${3:options}]{${1:number}}{${2:variable}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "opgfsqrt{}": {
+      "snippet": "opgfsqrt{${1:number}}"
+    },
+    "opgfsqrt[]{}": {
+      "snippet": "opgfsqrt[${2:options}]{${1:number}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "opexpr{}{}": {
+      "snippet": "opexpr{${1:expression}}{${2:variable}}"
+    },
+    "opexpr[]{}{}": {
+      "snippet": "opexpr[${3:options}]{${1:expression}}{${2:variable}}"
+    },
+    "opabs{}{}": {
+      "snippet": "opabs{${1:number}}{${2:variable}}"
+    },
+    "opneg{}{}": {
+      "snippet": "opneg{${1:number}}{${2:variable}}"
+    },
+    "fileversion": {},
+    "filedate": {},
+    "xlopLoaded": {},
+    "opAtCode": {},
+    "opHatCode": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "afterperiodsymbol=${1:symbol}",
+      "equalsymbol=${1:symbol}",
+      "approxsymbol=${1:symbol}",
+      "decimalsepsymbol=${1:symbol}",
+      "addsymbol=${1:symbol}",
+      "subsymbol=${1:symbol}",
+      "mulsymbol=${1:symbol}",
+      "divsymbol=${1:symbol}",
+      "voperation=",
+      "voperator=",
+      "deletezero",
+      "style=",
+      "parenthesisnegative=",
+      "lineheight=",
+      "columnwidth=",
+      "decimalsepwidth=",
+      "hrulewidth=",
+      "vrulewidth=",
+      "decimalsepoffset=",
+      "operandstyle=${1:style cmds}",
+      "operandstyle.${1:num}=${2:style cmds}",
+      "resultstyle=${1:style cmds}",
+      "resultstyle.${1:num}=${2:style cmds}",
+      "remainderstyle=${1:style cmds}",
+      "remainderstyle.${1:num}=${2:style cmds}",
+      "intermediarystyle=${1:style cmds}",
+      "intermediarystyle.${1:num}=${2:style cmds}",
+      "carrystyle=${1:style cmds}",
+      "carrystyle.${1:num}=${2:style cmds}",
+      "carryadd",
+      "lastcarry",
+      "vmanyoperator=",
+      "carrysub",
+      "lastcarry",
+      "offsetcarry=",
+      "behaviorsub=",
+      "displayshiftintermediary=",
+      "shiftintermediarysymbol=",
+      "displayintermediary=",
+      "hfactor=",
+      "maxdivstep=${1:integer}",
+      "safedivstep=${1:integer}",
+      "period",
+      "vruleperiod=",
+      "displayintermediary=",
+      "dividendbridge",
+      "shiftdecimalsep=",
+      "strikedecimalsepsymbol=",
+      "maxdivstep=${1:integer}",
+      "safedivstep=${1:integer}",
+      "period"
+    ],
+    [
+      "afterperiodsymbol=${1:symbol}",
+      "equalsymbol=${1:symbol}",
+      "approxsymbol=${1:symbol}",
+      "decimalsepsymbol=${1:symbol}",
+      "addsymbol=${1:symbol}",
+      "subsymbol=${1:symbol}",
+      "mulsymbol=${1:symbol}",
+      "divsymbol=${1:symbol}",
+      "voperation=",
+      "voperator=",
+      "deletezero",
+      "style=",
+      "parenthesisnegative=",
+      "lineheight=",
+      "columnwidth=",
+      "decimalsepwidth=",
+      "hrulewidth=",
+      "vrulewidth=",
+      "decimalsepoffset=",
+      "operandstyle=${1:style cmds}",
+      "operandstyle.${1:num}=${2:style cmds}",
+      "resultstyle=${1:style cmds}",
+      "resultstyle.${1:num}=${2:style cmds}",
+      "remainderstyle=${1:style cmds}",
+      "remainderstyle.${1:num}=${2:style cmds}",
+      "intermediarystyle=${1:style cmds}",
+      "intermediarystyle.${1:num}=${2:style cmds}",
+      "carrystyle=${1:style cmds}",
+      "carrystyle.${1:num}=${2:style cmds}",
+      "carryadd",
+      "lastcarry"
+    ],
+    [
+      "afterperiodsymbol=${1:symbol}",
+      "equalsymbol=${1:symbol}",
+      "approxsymbol=${1:symbol}",
+      "decimalsepsymbol=${1:symbol}",
+      "addsymbol=${1:symbol}",
+      "subsymbol=${1:symbol}",
+      "mulsymbol=${1:symbol}",
+      "divsymbol=${1:symbol}",
+      "voperation=",
+      "voperator=",
+      "deletezero",
+      "style=",
+      "parenthesisnegative=",
+      "lineheight=",
+      "columnwidth=",
+      "decimalsepwidth=",
+      "hrulewidth=",
+      "vrulewidth=",
+      "decimalsepoffset=",
+      "operandstyle=${1:style cmds}",
+      "operandstyle.${1:num}=${2:style cmds}",
+      "resultstyle=${1:style cmds}",
+      "resultstyle.${1:num}=${2:style cmds}",
+      "remainderstyle=${1:style cmds}",
+      "remainderstyle.${1:num}=${2:style cmds}",
+      "intermediarystyle=${1:style cmds}",
+      "intermediarystyle.${1:num}=${2:style cmds}",
+      "carrystyle=${1:style cmds}",
+      "carrystyle.${1:num}=${2:style cmds}",
+      "carrysub",
+      "lastcarry",
+      "offsetcarry=",
+      "behaviorsub="
+    ],
+    [
+      "afterperiodsymbol=${1:symbol}",
+      "equalsymbol=${1:symbol}",
+      "approxsymbol=${1:symbol}",
+      "decimalsepsymbol=${1:symbol}",
+      "addsymbol=${1:symbol}",
+      "subsymbol=${1:symbol}",
+      "mulsymbol=${1:symbol}",
+      "divsymbol=${1:symbol}",
+      "voperation=",
+      "voperator=",
+      "deletezero",
+      "style=",
+      "parenthesisnegative=",
+      "lineheight=",
+      "columnwidth=",
+      "decimalsepwidth=",
+      "hrulewidth=",
+      "vrulewidth=",
+      "decimalsepoffset=",
+      "operandstyle=${1:style cmds}",
+      "operandstyle.${1:num}=${2:style cmds}",
+      "resultstyle=${1:style cmds}",
+      "resultstyle.${1:num}=${2:style cmds}",
+      "remainderstyle=${1:style cmds}",
+      "remainderstyle.${1:num}=${2:style cmds}",
+      "intermediarystyle=${1:style cmds}",
+      "intermediarystyle.${1:num}=${2:style cmds}",
+      "carrystyle=${1:style cmds}",
+      "carrystyle.${1:num}=${2:style cmds}",
+      "displayshiftintermediary=",
+      "shiftintermediarysymbol=",
+      "displayintermediary=",
+      "hfactor="
+    ],
+    [
+      "afterperiodsymbol=${1:symbol}",
+      "equalsymbol=${1:symbol}",
+      "approxsymbol=${1:symbol}",
+      "decimalsepsymbol=${1:symbol}",
+      "addsymbol=${1:symbol}",
+      "subsymbol=${1:symbol}",
+      "mulsymbol=${1:symbol}",
+      "divsymbol=${1:symbol}",
+      "voperation=",
+      "voperator=",
+      "deletezero",
+      "style=",
+      "parenthesisnegative=",
+      "lineheight=",
+      "columnwidth=",
+      "decimalsepwidth=",
+      "hrulewidth=",
+      "vrulewidth=",
+      "decimalsepoffset=",
+      "operandstyle=${1:style cmds}",
+      "operandstyle.${1:num}=${2:style cmds}",
+      "resultstyle=${1:style cmds}",
+      "resultstyle.${1:num}=${2:style cmds}",
+      "remainderstyle=${1:style cmds}",
+      "remainderstyle.${1:num}=${2:style cmds}",
+      "intermediarystyle=${1:style cmds}",
+      "intermediarystyle.${1:num}=${2:style cmds}",
+      "carrystyle=${1:style cmds}",
+      "carrystyle.${1:num}=${2:style cmds}",
+      "maxdivstep=${1:integer}",
+      "safedivstep=${1:integer}",
+      "period",
+      "vruleperiod=",
+      "displayintermediary=",
+      "dividendbridge",
+      "shiftdecimalsep=",
+      "strikedecimalsepsymbol="
+    ],
+    [
+      "maxdivstep=${1:integer}",
+      "safedivstep=${1:integer}",
+      "period"
+    ],
+    [
+      "maxdivstep=${1:integer}"
+    ]
+  ]
+}

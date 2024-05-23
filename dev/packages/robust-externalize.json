@@ -1,0 +1,1212 @@
+{
+  "includes": {
+    "pgfkeys": [],
+    "pgffor": [],
+    "graphicx": [],
+    "verbatim": [],
+    "xsimverb": [],
+    "etoolbox": [],
+    "iftex": [],
+    "xparse": [],
+    "atveryend": [],
+    "etl": []
+  },
+  "macros": {
+    "addBeforePlaceholder*{}{}": {
+      "snippet": "addBeforePlaceholder*{${1:placeholder}}{${2:content}}"
+    },
+    "addBeforePlaceholder{}{}": {
+      "snippet": "addBeforePlaceholder{${1:placeholder}}{${2:content}}"
+    },
+    "addBeforePlaceholderNoImport*{}{}": {
+      "snippet": "addBeforePlaceholderNoImport*{${1:placeholder}}{${2:content}}"
+    },
+    "addBeforePlaceholderNoImport{}{}": {
+      "snippet": "addBeforePlaceholderNoImport{${1:placeholder}}{${2:content}}"
+    },
+    "addPlaceholdersToGroup{}{}": {
+      "snippet": "addPlaceholdersToGroup{${1:name group}}{${2:placeholders}}"
+    },
+    "addToPlaceholder*{}{}": {
+      "snippet": "addToPlaceholder*{${1:placeholder}}{${2:content}}"
+    },
+    "addToPlaceholder{}{}": {
+      "snippet": "addToPlaceholder{${1:placeholder}}{${2:content}}"
+    },
+    "addToPlaceholderNoImport*{}{}": {
+      "snippet": "addToPlaceholderNoImport*{${1:placeholder}}{${2:content}}"
+    },
+    "addToPlaceholderNoImport{}{}": {
+      "snippet": "addToPlaceholderNoImport{${1:placeholder}}{${2:content}}"
+    },
+    "appendBeforeGroupPlaceholders{}{}": {
+      "snippet": "appendBeforeGroupPlaceholders{${1:name group}}{${2:name group to append}}"
+    },
+    "appendGroupPlaceholders{}{}": {
+      "snippet": "appendGroupPlaceholders{${1:name group}}{${2:name group to append}}"
+    },
+    "boxRobExt": {},
+    "cacheEnvironment[]{}{}": {
+      "snippet": "cacheEnvironment[${3:delimiters}]{${1:envname}}{${2:preset options}}"
+    },
+    "cacheEnvironment{}{}": {
+      "snippet": "cacheEnvironment{${1:envname}}{${2:preset options}}"
+    },
+    "cacheMe[]{}": {
+      "snippet": "cacheMe[${2:preset style}]{${1:content}}"
+    },
+    "cacheMe{}": {
+      "snippet": "cacheMe{${1:content}}"
+    },
+    "cacheMeCode[]{}": {
+      "snippet": "cacheMeCode[${2:preset style}]{${1:code}}"
+    },
+    "cacheMeCode{}": {
+      "snippet": "cacheMeCode{${1:code}}"
+    },
+    "cacheTikz": {},
+    "cacheTikz[]": {
+      "snippet": "cacheTikz[${1:preset for TikZ}]"
+    },
+    "cacheTikz[][]": {
+      "snippet": "cacheTikz[${1:preset for TikZ}][${2:preset for TikZpicture}]"
+    },
+    "cacheTikz[][][]": {
+      "snippet": "cacheTikz[${1:preset for TikZ}][${2:preset for TikZpicture}][${3:delimiters}]"
+    },
+    "clearGroupPlaceholders{}": {
+      "snippet": "clearGroupPlaceholders{${1:name group}}"
+    },
+    "clearImportedPlaceholders{}": {
+      "snippet": "clearImportedPlaceholders{${1:name placeholder}}"
+    },
+    "configIfMacroPresent{}{}": {
+      "snippet": "configIfMacroPresent{${1:macro}}{${2:options}}"
+    },
+    "copyGroupPlaceholders{}{}": {
+      "snippet": "copyGroupPlaceholders{${1:name group}}{${2:name group to copy}}"
+    },
+    "copyPlaceholder{}{}": {
+      "snippet": "copyPlaceholder{${1:new placeholder}}{${2:old placeholder}}"
+    },
+    "DeclareDocumentCommandAutoForward{}{}[]{}": {
+      "snippet": "DeclareDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}[${3:add. style}]{${4:def}}"
+    },
+    "DeclareDocumentCommandAutoForward{}{}{}": {
+      "snippet": "DeclareDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "DeclareExpandableDocumentCommandAutoForward{}{}[]{}": {
+      "snippet": "DeclareExpandableDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}[${3:add. style}]{${4:def}}"
+    },
+    "DeclareExpandableDocumentCommandAutoForward{}{}{}": {
+      "snippet": "DeclareExpandableDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "defAutoForward{}[]{}": {
+      "snippet": "defAutoForward{${1:cmd}}[${2:arg spec}]{${3:def}}"
+    },
+    "defAutoForward{}[]{}[]": {
+      "snippet": "defAutoForward{${1:cmd}}[${2:arg spec}]{${3:def}}[${4:add. style}]"
+    },
+    "defAutoForward{}{}": {
+      "snippet": "defAutoForward{${1:cmd}}{${2:def}}"
+    },
+    "defAutoForward{}{}[]": {
+      "snippet": "defAutoForward{${1:cmd}}{${2:def}}[${3:add. style}]"
+    },
+    "evalPlaceholder{}": {
+      "snippet": "evalPlaceholder{${1:name placeholder}}"
+    },
+    "evalPlaceholderInplace{}": {
+      "snippet": "evalPlaceholderInplace{${1:name placeholder}}"
+    },
+    "evalPlaceholderNoReplacement{}": {
+      "snippet": "evalPlaceholderNoReplacement{${1:name placeholder}}"
+    },
+    "firstPlaceholdersInCompilationCommand{}": {
+      "snippet": "firstPlaceholdersInCompilationCommand{${1:list of placeholders}}"
+    },
+    "firstPlaceholdersInTemplate{}": {
+      "snippet": "firstPlaceholdersInTemplate{${1:list of placeholders}}"
+    },
+    "genericAutoForward{}{}": {
+      "snippet": "genericAutoForward{${1:string}}{${2:code}}"
+    },
+    "genericAutoForward{}[]{}": {
+      "snippet": "genericAutoForward{${1:string}}[${2:add. style}]{${3:code}}"
+    },
+    "genericAutoForward[]{}{}": {
+      "snippet": "genericAutoForward[${3:preset}]{${1:string}}{${2:code}}"
+    },
+    "genericAutoForward[]{}[]{}": {
+      "snippet": "genericAutoForward[${3:preset}]{${1:string}}[${4:add. style}]{${2:code}}"
+    },
+    "genericAutoForward*{}{}": {
+      "snippet": "genericAutoForward*{${1:string}}{${2:code}}"
+    },
+    "genericAutoForward*{}[]{}": {
+      "snippet": "genericAutoForward*{${1:string}}[${2:add. style}]{${3:code}}"
+    },
+    "genericAutoForward*[]{}{}": {
+      "snippet": "genericAutoForward*[${3:preset}]{${1:string}}{${2:code}}"
+    },
+    "genericAutoForward*[]{}[]{}": {
+      "snippet": "genericAutoForward*[${3:preset}]{${1:string}}[${4:add. style}]{${2:code}}"
+    },
+    "genericAutoForwardStringMatch{}{}": {
+      "snippet": "genericAutoForwardStringMatch{${1:string}}{${2:code}}"
+    },
+    "genericAutoForwardStringMatch{}[]{}": {
+      "snippet": "genericAutoForwardStringMatch{${1:string}}[${2:add. style}]{${3:code}}"
+    },
+    "genericAutoForwardStringMatch[]{}{}": {
+      "snippet": "genericAutoForwardStringMatch[${3:preset}]{${1:string}}{${2:code}}"
+    },
+    "genericAutoForwardStringMatch[]{}[]{}": {
+      "snippet": "genericAutoForwardStringMatch[${3:preset}]{${1:string}}[${4:add. style}]{${2:code}}"
+    },
+    "genericAutoForwardStringMatch*{}{}": {
+      "snippet": "genericAutoForwardStringMatch*{${1:string}}{${2:code}}"
+    },
+    "genericAutoForwardStringMatch*{}[]{}": {
+      "snippet": "genericAutoForwardStringMatch*{${1:string}}[${2:add. style}]{${3:code}}"
+    },
+    "genericAutoForwardStringMatch*[]{}{}": {
+      "snippet": "genericAutoForwardStringMatch*[${3:preset}]{${1:string}}{${2:code}}"
+    },
+    "genericAutoForwardStringMatch*[]{}[]{}": {
+      "snippet": "genericAutoForwardStringMatch*[${3:preset}]{${1:string}}[${4:add. style}]{${2:code}}"
+    },
+    "getPlaceholder[]{}": {
+      "snippet": "getPlaceholder[${2:new placeholder}]{${1:name placeholder}}"
+    },
+    "getPlaceholder{}": {
+      "snippet": "getPlaceholder{${1:name placeholder}}"
+    },
+    "getPlaceholderInResult[]{}": {
+      "snippet": "getPlaceholderInResult[${2:new placeholder}]{${1:name placeholder}}"
+    },
+    "getPlaceholderInResult{}": {
+      "snippet": "getPlaceholderInResult{${1:name placeholder}}"
+    },
+    "getPlaceholderInResultReplaceFromList*[]{}{}": {
+      "snippet": "getPlaceholderInResultReplaceFromList*[${3:new placeholder}]{${1:name placeholder}}{${2:arg}}"
+    },
+    "getPlaceholderInResultReplaceFromList[]{}{}": {
+      "snippet": "getPlaceholderInResultReplaceFromList[${3:new placeholder}]{${1:name placeholder}}{${2:arg}}"
+    },
+    "getPlaceholderInResultReplaceFromList{}{}": {
+      "snippet": "getPlaceholderInResultReplaceFromList{${1:name placeholder}}{${2:arg}}"
+    },
+    "getPlaceholderNoReplacement{}": {
+      "snippet": "getPlaceholderNoReplacement{${1:name placeholder}}"
+    },
+    "importAllPlaceholders": {},
+    "importPlaceholder{}": {
+      "snippet": "importPlaceholder{${1:name placeholder}}"
+    },
+    "importPlaceholderFirst": {},
+    "importPlaceholdersFromGroup{}": {
+      "snippet": "importPlaceholdersFromGroup{${1:name placeholder}}"
+    },
+    "newcommandAutoForward{}[][]{}": {
+      "snippet": "newcommandAutoForward{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "newcommandAutoForward{}[][]{}[]": {
+      "snippet": "newcommandAutoForward{${1:cmd}}[${2:args}][${3:default}]{${4:def}}[${5:add. style}]"
+    },
+    "newcommandAutoForward{}[]{}": {
+      "snippet": "newcommandAutoForward{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "newcommandAutoForward{}[]{}[]": {
+      "snippet": "newcommandAutoForward{${1:cmd}}[${2:args}]{${3:def}}[${4:add. style}]"
+    },
+    "newcommandAutoForward{}{}": {
+      "snippet": "newcommandAutoForward{${1:cmd}}{${2:def}}"
+    },
+    "newcommandAutoForward{}{}[]": {
+      "snippet": "newcommandAutoForward{${1:cmd}}{${2:def}}[${3:add. style}]"
+    },
+    "NewDocumentCommandAutoForward{}{}[]{}": {
+      "snippet": "NewDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}[${3:add. style}]{${4:def}}"
+    },
+    "NewDocumentCommandAutoForward{}{}{}": {
+      "snippet": "NewDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "NewExpandableDocumentCommandAutoForward{}{}[]{}": {
+      "snippet": "NewExpandableDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}[${3:add. style}]{${4:def}}"
+    },
+    "NewExpandableDocumentCommandAutoForward{}{}{}": {
+      "snippet": "NewExpandableDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "newGroupPlaceholders{}": {
+      "snippet": "newGroupPlaceholders{${1:name group}}"
+    },
+    "onlyPlaceholdersInCompilationCommand{}": {
+      "snippet": "onlyPlaceholdersInCompilationCommand{${1:list of placeholders}}"
+    },
+    "onlyPlaceholdersInTemplate{}": {
+      "snippet": "onlyPlaceholdersInTemplate{${1:list of placeholders}}"
+    },
+    "placeholderDoubleNumberHashesInplace{}": {
+      "snippet": "placeholderDoubleNumberHashesInplace{${1:placeholder}}"
+    },
+    "placeholderFromContent{}{}": {
+      "snippet": "placeholderFromContent{${1:name placeholder}}{${2:content placeholder}}"
+    },
+    "placeholderFromFileContent{}{}": {
+      "snippet": "placeholderFromFileContent{${1:name placeholder}}{${2:file}}"
+    },
+    "placeholderFromString*{}": {
+      "snippet": "placeholderFromString*{${1:latex3 string}}"
+    },
+    "placeholderFromString{}": {
+      "snippet": "placeholderFromString{${1:latex3 string}}"
+    },
+    "placeholderHalveNumberHashesInplace{}": {
+      "snippet": "placeholderHalveNumberHashesInplace{${1:placeholder}}"
+    },
+    "placeholderPathFromContent{}[]{}": {
+      "snippet": "placeholderPathFromContent{${1:name placeholder}}[${2:suffix}]{${3:content}}"
+    },
+    "placeholderPathFromContent{}{}": {
+      "snippet": "placeholderPathFromContent{${1:name placeholder}}{${2:content}}"
+    },
+    "placeholderPathFromFilename{}{}": {
+      "snippet": "placeholderPathFromFilename{${1:name placeholder}}{${2:file}}"
+    },
+    "placeholderReplaceInplace{}{}{}": {
+      "snippet": "placeholderReplaceInplace{${1:placeholder}}{${2:from}}{${3:to}}"
+    },
+    "placeholderReplaceInplaceEval{}{}{}": {
+      "snippet": "placeholderReplaceInplaceEval{${1:placeholder}}{${2:from}}{${3:to}}"
+    },
+    "printAllPlaceholders": {},
+    "printAllPlaceholdersExceptDefaults": {},
+    "printAllPlaceholdersExceptDefaults*": {},
+    "printAllRegisteredGroups": {},
+    "printAllRegisteredGroupsAndPlaceholders": {},
+    "printAllRegisteredGroupsAndPlaceholders*": {},
+    "printGroupPlaceholders*{}": {
+      "snippet": "printGroupPlaceholders*{${1:name group}}"
+    },
+    "printGroupPlaceholders{}": {
+      "snippet": "printGroupPlaceholders{${1:name group}}"
+    },
+    "printImportedPlaceholders": {},
+    "printImportedPlaceholdersExceptDefaults": {},
+    "printPlaceholder*{}": {
+      "snippet": "printPlaceholder*{${1:name placeholder}}"
+    },
+    "printPlaceholder{}": {
+      "snippet": "printPlaceholder{${1:name placeholder}}"
+    },
+    "printPlaceholderNoReplacement*{}": {
+      "snippet": "printPlaceholderNoReplacement*{${1:name placeholder}}"
+    },
+    "printPlaceholderNoReplacement{}": {
+      "snippet": "printPlaceholderNoReplacement{${1:name placeholder}}"
+    },
+    "providecommandAutoForward{}[][]{}": {
+      "snippet": "providecommandAutoForward{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "providecommandAutoForward{}[][]{}[]": {
+      "snippet": "providecommandAutoForward{${1:cmd}}[${2:args}][${3:default}]{${4:def}}[${5:add. style}]"
+    },
+    "providecommandAutoForward{}[]{}": {
+      "snippet": "providecommandAutoForward{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "providecommandAutoForward{}[]{}[]": {
+      "snippet": "providecommandAutoForward{${1:cmd}}[${2:args}]{${3:def}}[${4:add. style}]"
+    },
+    "providecommandAutoForward{}{}": {
+      "snippet": "providecommandAutoForward{${1:cmd}}{${2:def}}"
+    },
+    "providecommandAutoForward{}{}[]": {
+      "snippet": "providecommandAutoForward{${1:cmd}}{${2:def}}[${3:add. style}]"
+    },
+    "ProvideDocumentCommandAutoForward{}{}[]{}": {
+      "snippet": "ProvideDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}[${3:add. style}]{${4:def}}"
+    },
+    "ProvideDocumentCommandAutoForward{}{}{}": {
+      "snippet": "ProvideDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "ProvideExpandableDocumentCommandAutoForward{}{}[]{}": {
+      "snippet": "ProvideExpandableDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}[${3:add. style}]{${4:def}}"
+    },
+    "ProvideExpandableDocumentCommandAutoForward{}{}{}": {
+      "snippet": "ProvideExpandableDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "removeImportedPlaceholder{}": {
+      "snippet": "removeImportedPlaceholder{${1:name placeholder}}"
+    },
+    "removePlaceholder{}": {
+      "snippet": "removePlaceholder{${1:placeholder}}"
+    },
+    "removePlaceholderFromGroup{}{}": {
+      "snippet": "removePlaceholderFromGroup{${1:name group}}{${2:list of placeholders}}"
+    },
+    "removePlaceholdersFromGroup{}{}": {
+      "snippet": "removePlaceholdersFromGroup{${1:name group}}{${2:list of placeholders}}"
+    },
+    "renewcommandAutoForward{}[][]{}": {
+      "snippet": "renewcommandAutoForward{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "renewcommandAutoForward{}[][]{}[]": {
+      "snippet": "renewcommandAutoForward{${1:cmd}}[${2:args}][${3:default}]{${4:def}}[${5:add. style}]"
+    },
+    "renewcommandAutoForward{}[]{}": {
+      "snippet": "renewcommandAutoForward{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "renewcommandAutoForward{}[]{}[]": {
+      "snippet": "renewcommandAutoForward{${1:cmd}}[${2:args}]{${3:def}}[${4:add. style}]"
+    },
+    "renewcommandAutoForward{}{}": {
+      "snippet": "renewcommandAutoForward{${1:cmd}}{${2:def}}"
+    },
+    "renewcommandAutoForward{}{}[]": {
+      "snippet": "renewcommandAutoForward{${1:cmd}}{${2:def}}[${3:add. style}]"
+    },
+    "RenewDocumentCommandAutoForward{}{}[]{}": {
+      "snippet": "RenewDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}[${3:add. style}]{${4:def}}"
+    },
+    "RenewDocumentCommandAutoForward{}{}{}": {
+      "snippet": "RenewDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "RenewExpandableDocumentCommandAutoForward{}{}[]{}": {
+      "snippet": "RenewExpandableDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}[${3:add. style}]{${4:def}}"
+    },
+    "RenewExpandableDocumentCommandAutoForward{}{}{}": {
+      "snippet": "RenewExpandableDocumentCommandAutoForward{${1:cmd}}{${2:xargs}}{${3:def}}"
+    },
+    "res{}": {
+      "snippet": "res{${1:name}}"
+    },
+    "rescanPlaceholderInVariableNoReplacement{}{}": {
+      "snippet": "rescanPlaceholderInVariableNoReplacement{${1:name macro}}{${2:name placeholder}}"
+    },
+    "robExtAddCachePath{}": {
+      "snippet": "robExtAddCachePath{${1:path}}"
+    },
+    "robExtAddCachePathAndName{}": {
+      "snippet": "robExtAddCachePathAndName{${1:path}}"
+    },
+    "robExtCacheCommand[]{}[]{}": {
+      "snippet": "robExtCacheCommand[${3:opt1}]{${1:arg1}}[${4:opt2}]{${2:arg2}}"
+    },
+    "robExtCacheCommand[]{}{}": {
+      "snippet": "robExtCacheCommand[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtCacheCommand{}[]{}": {
+      "snippet": "robExtCacheCommand{${1:arg1}}[${2:opt}]{${3:arg2}}"
+    },
+    "robExtCacheCommand{}{}": {
+      "snippet": "robExtCacheCommand{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtConfigure{}": {
+      "snippet": "robExtConfigure{${1:preset style}}"
+    },
+    "robExtDepth": {},
+    "robExtDisableTikzpictureOverwrite": {},
+    "robExtExternalizeAllTikzpictures": {},
+    "robExtGetPlaceholderInResultReplaceFromList*{}{}": {
+      "snippet": "robExtGetPlaceholderInResultReplaceFromList*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtHeight": {},
+    "robExtPathToInput": {},
+    "robExtPrefixFilename": {},
+    "robExtResult": {},
+    "robExtWidth": {},
+    "setPlaceholder{}{}": {
+      "snippet": "setPlaceholder{${1:name placeholder}}{${2:content placeholder}}"
+    },
+    "setPlaceholderFromString*{}": {
+      "snippet": "setPlaceholderFromString*{${1:latex3 string}}"
+    },
+    "setPlaceholderFromString{}": {
+      "snippet": "setPlaceholderFromString{${1:latex3 string}}"
+    },
+    "setPlaceholderRec{}{}": {
+      "snippet": "setPlaceholderRec{${1:name placeholder}}{${2:content placeholder}}"
+    },
+    "setPlaceholderRecReplaceFromList{}{}{}": {
+      "snippet": "setPlaceholderRecReplaceFromList{${1:list of placeholders}}{${2:new placeholder}}{${3:content}}"
+    },
+    "writeRobExt": {},
+    "robExtMv": {},
+    "robExtCp": {},
+    "copyFileToCache": {},
+    "definecolorAutoForward{}{}{}": {
+      "snippet": "definecolorAutoForward{${1:color}}{${2:model}}{${3:value}}"
+    },
+    "definecolorAutoForward{}{}{}[]": {
+      "snippet": "definecolorAutoForward{${1:color}}{${2:model}}{${3:value}}[${4:add. style}]"
+    },
+    "colorletAutoForward{}{}": {
+      "snippet": "colorletAutoForward{${1:color}}{${2:value}}"
+    },
+    "colorletAutoForward{}{}[]": {
+      "snippet": "colorletAutoForward{${1:color}}{${2:value}}[${3:add. style}]"
+    },
+    "runHereAndInPreambleOfCachedFiles{}": {
+      "snippet": "runHereAndInPreambleOfCachedFiles{${1:code}}"
+    },
+    "runHereAndInPreambleOfCachedFiles[]{}": {
+      "snippet": "runHereAndInPreambleOfCachedFiles[${2:preset}]{${1:code}}"
+    },
+    "lenToCm{}": {
+      "snippet": "lenToCm{${1:length}}"
+    },
+    "lenToCm[]{}": {
+      "snippet": "lenToCm[${2:unit}]{${1:length}}"
+    },
+    "robExtGpgetvar{}": {
+      "snippet": "robExtGpgetvar{${1:variable}}"
+    },
+    "robExtGpgetvarNb{}": {
+      "snippet": "robExtGpgetvarNb{${1:variable}}"
+    },
+    "robExtGpgetvarNb[]{}": {
+      "snippet": "robExtGpgetvarNb[${2:text}]{${1:variable}}"
+    },
+    "robExtGpgetvarNb*{}": {
+      "snippet": "robExtGpgetvarNb*{${1:variable}}"
+    },
+    "robExtGpgetvarNb*[]{}": {
+      "snippet": "robExtGpgetvarNb*[${2:text}]{${1:variable}}"
+    },
+    "includegraphicsWeb{}": {
+      "snippet": "includegraphicsWeb{${1:URL}}"
+    },
+    "includegraphicsWeb[]{}": {
+      "snippet": "includegraphicsWeb[${2:graphics options}]{${1:URL}}"
+    },
+    "includegraphicsWeb<>{}": {
+      "snippet": "includegraphicsWeb<${2:options}>{${1:URL}}"
+    },
+    "includegraphicsWeb<>[]{}": {
+      "snippet": "includegraphicsWeb<${3:options}>[${2:graphics options}]{${1:URL}}"
+    },
+    "doNotCacheTikz": {},
+    "cacheTikzit": {},
+    "cacheTikzit[]": {
+      "snippet": "cacheTikzit[${1:preset}]"
+    },
+    "cacheTikzitWithStyle{}": {
+      "snippet": "cacheTikzitWithStyle{${1:file}}"
+    },
+    "cacheTikzitWithStyle[]{}": {
+      "snippet": "cacheTikzitWithStyle[${2:preset}]{${1:file}}"
+    },
+    "tikzfig{}": {
+      "snippet": "tikzfig{${1:name}}"
+    },
+    "tikzfig<>{}": {
+      "snippet": "tikzfig<${2:options}>{${1:name}}"
+    },
+    "placeholderRemoveSpacesUntil{}{}": {
+      "snippet": "placeholderRemoveSpacesUntil{${1:placeholder}}{${2:separator}}"
+    },
+    "placeholderRemoveSpacesUntil{}[]{}": {
+      "snippet": "placeholderRemoveSpacesUntil{${1:placeholder}}[${2:number}]{${3:separator}}"
+    },
+    "placeholderPrependAllLines{}{}": {
+      "snippet": "placeholderPrependAllLines{${1:placeholder}}{${2:text}}"
+    },
+    "placeholderRemoveLeadingSpaces{}": {
+      "snippet": "placeholderRemoveLeadingSpaces{${1:placeholder}}"
+    },
+    "lenToCmNoUnit{}": {
+      "snippet": "lenToCmNoUnit{${1:length}}"
+    },
+    "lenToCmNoUnit[]{}": {
+      "snippet": "lenToCmNoUnit[${2:unit}]{${1:length}}"
+    },
+    "addPlaceholdersToGroupBefore{}{}": {
+      "snippet": "addPlaceholdersToGroupBefore{${1:arg1}}{${2:arg2}}"
+    },
+    "autoForwardMacro{}": {
+      "snippet": "autoForwardMacro{${1:arg}}"
+    },
+    "autoForwardMacro{}[]": {
+      "snippet": "autoForwardMacro{${1:arg}}[${2:opt}]"
+    },
+    "checkIfPlaceholderNameIsLegal{}": {
+      "snippet": "checkIfPlaceholderNameIsLegal{${1:arg}}"
+    },
+    "ensureGroupPlaceholdersExists{}": {
+      "snippet": "ensureGroupPlaceholdersExists{${1:arg}}"
+    },
+    "evalPlaceholderInplaceFromSinglePlaceholder{}": {
+      "snippet": "evalPlaceholderInplaceFromSinglePlaceholder{${1:arg}}"
+    },
+    "evalPlaceholderReplaceFromList{}{}": {
+      "snippet": "evalPlaceholderReplaceFromList{${1:arg1}}{${2:arg2}}"
+    },
+    "evalPlaceholderStartFromList{}{}": {
+      "snippet": "evalPlaceholderStartFromList{${1:arg1}}{${2:arg2}}"
+    },
+    "keepPlaceholderAfterGroup{}": {
+      "snippet": "keepPlaceholderAfterGroup{${1:arg}}"
+    },
+    "placeholderFromContentFirst{}{}": {
+      "snippet": "placeholderFromContentFirst{${1:arg1}}{${2:arg2}}"
+    },
+    "placeholderFromStringExpanded{}{}": {
+      "snippet": "placeholderFromStringExpanded{${1:arg1}}{${2:arg2}}"
+    },
+    "registerGroupPlaceholders{}": {
+      "snippet": "registerGroupPlaceholders{${1:arg}}"
+    },
+    "robExtAddArgumentToCompilationCommand{}": {
+      "snippet": "robExtAddArgumentToCompilationCommand{${1:arg}}"
+    },
+    "robExtAddBeforePlaceholder*{}{}": {
+      "snippet": "robExtAddBeforePlaceholder*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtAddBeforePlaceholder{}{}": {
+      "snippet": "robExtAddBeforePlaceholder{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtAddBeforePlaceholderNoImport*{}{}": {
+      "snippet": "robExtAddBeforePlaceholderNoImport*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtAddBeforePlaceholderNoImport{}{}": {
+      "snippet": "robExtAddBeforePlaceholderNoImport{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtAddDependency{}": {
+      "snippet": "robExtAddDependency{${1:arg}}"
+    },
+    "robExtAddPlaceholdersToGroup{}{}": {
+      "snippet": "robExtAddPlaceholdersToGroup{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtAddPlaceholdersToGroupBefore{}{}": {
+      "snippet": "robExtAddPlaceholdersToGroupBefore{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtAddPlaceholderToList{}": {
+      "snippet": "robExtAddPlaceholderToList{${1:arg}}"
+    },
+    "robExtAddPlaceholderToListFirst{}": {
+      "snippet": "robExtAddPlaceholderToListFirst{${1:arg}}"
+    },
+    "robExtAddPrefixName{}": {
+      "snippet": "robExtAddPrefixName{${1:arg}}"
+    },
+    "robExtAddToCommandResetList{}": {
+      "snippet": "robExtAddToCommandResetList{${1:arg}}"
+    },
+    "robExtAddToEnvironmentResetList{}": {
+      "snippet": "robExtAddToEnvironmentResetList{${1:arg}}"
+    },
+    "robExtAddToPlaceholder*{}{}": {
+      "snippet": "robExtAddToPlaceholder*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtAddToPlaceholder{}{}": {
+      "snippet": "robExtAddToPlaceholder{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtAddToPlaceholderNoImport*{}{}": {
+      "snippet": "robExtAddToPlaceholderNoImport*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtAddToPlaceholderNoImport{}{}": {
+      "snippet": "robExtAddToPlaceholderNoImport{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtAppendBeforeGroupPlaceholders{}{}": {
+      "snippet": "robExtAppendBeforeGroupPlaceholders{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtAppendGroupPlaceholders{}{}": {
+      "snippet": "robExtAppendGroupPlaceholders{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtArgumentList": {},
+    "robExtAutoForward": {},
+    "robExtAutoForwardMacro{}": {
+      "snippet": "robExtAutoForwardMacro{${1:arg}}"
+    },
+    "robExtAutoForwardMacro{}[]": {
+      "snippet": "robExtAutoForwardMacro{${1:arg}}[${2:opt}]"
+    },
+    "robExtCacheEnvironment[]{}{}": {
+      "snippet": "robExtCacheEnvironment[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtCacheEnvironment{}{}": {
+      "snippet": "robExtCacheEnvironment{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtCacheMe[]{}": {
+      "snippet": "robExtCacheMe[${2:opt}]{${1:arg}}"
+    },
+    "robExtCacheMe{}": {
+      "snippet": "robExtCacheMe{${1:arg}}"
+    },
+    "robExtCheckIfPrefixFolderExists": {},
+    "robExtClearGroupPlaceholders{}": {
+      "snippet": "robExtClearGroupPlaceholders{${1:arg}}"
+    },
+    "robExtClearImportedPlaceholders": {},
+    "robExtCompileFile{}": {
+      "snippet": "robExtCompileFile{${1:arg}}"
+    },
+    "robExtConfigIfMacroPresent{}{}": {
+      "snippet": "robExtConfigIfMacroPresent{${1:macro}}{${2:options}}"
+    },
+    "robExtCopyGroupPlaceholders{}{}": {
+      "snippet": "robExtCopyGroupPlaceholders{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtCopyPlaceholder*{}{}": {
+      "snippet": "robExtCopyPlaceholder*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtCopyPlaceholder{}{}": {
+      "snippet": "robExtCopyPlaceholder{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtCurrentCompilationCommand": {},
+    "robExtDebugDependency": {},
+    "robExtDebugMessage{}": {
+      "snippet": "robExtDebugMessage{${1:arg}}"
+    },
+    "robExtDebugWarning{}": {
+      "snippet": "robExtDebugWarning{${1:arg}}"
+    },
+    "robExtEnsureGroupPlaceholdersExists{}": {
+      "snippet": "robExtEnsureGroupPlaceholdersExists{${1:arg}}"
+    },
+    "robExtEvalPlaceholder{}": {
+      "snippet": "robExtEvalPlaceholder{${1:arg}}"
+    },
+    "robExtEvalPlaceholderInplace{}": {
+      "snippet": "robExtEvalPlaceholderInplace{${1:arg}}"
+    },
+    "robExtEvalPlaceholderInplaceFromSinglePlaceholder{}": {
+      "snippet": "robExtEvalPlaceholderInplaceFromSinglePlaceholder{${1:arg}}"
+    },
+    "robExtEvalPlaceholderNoReplacement{}": {
+      "snippet": "robExtEvalPlaceholderNoReplacement{${1:arg}}"
+    },
+    "robExtEvalPlaceholderReplaceFromList{}{}": {
+      "snippet": "robExtEvalPlaceholderReplaceFromList{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtEvalPlaceholderStartFromList{}{}": {
+      "snippet": "robExtEvalPlaceholderStartFromList{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtEvaluateCompileAndInclude": {},
+    "robExtFirstPlaceholdersInCompilationCommand{}": {
+      "snippet": "robExtFirstPlaceholdersInCompilationCommand{${1:arg}}"
+    },
+    "robExtFirstPlaceholdersInTemplate{}": {
+      "snippet": "robExtFirstPlaceholdersInTemplate{${1:arg}}"
+    },
+    "robExtGetCommandDefinition{}": {
+      "snippet": "robExtGetCommandDefinition{${1:arg}}"
+    },
+    "robExtGetCommandDefinitionInMacro{}": {
+      "snippet": "robExtGetCommandDefinitionInMacro{${1:arg}}"
+    },
+    "robExtGetNearlyFinalValueTemplateAndCompilationCommand": {},
+    "robExtGetPlaceholder[]{}": {
+      "snippet": "robExtGetPlaceholder[${2:opt}]{${1:arg}}"
+    },
+    "robExtGetPlaceholder{}": {
+      "snippet": "robExtGetPlaceholder{${1:arg}}"
+    },
+    "robExtGetPlaceholderInResult*[]{}": {
+      "snippet": "robExtGetPlaceholderInResult*[${2:opt}]{${1:arg}}"
+    },
+    "robExtGetPlaceholderInResult*{}": {
+      "snippet": "robExtGetPlaceholderInResult*{${1:arg}}"
+    },
+    "robExtGetPlaceholderInResult[]{}": {
+      "snippet": "robExtGetPlaceholderInResult[${2:opt}]{${1:arg}}"
+    },
+    "robExtGetPlaceholderInResult{}": {
+      "snippet": "robExtGetPlaceholderInResult{${1:arg}}"
+    },
+    "robExtGetPlaceholderInResultFromSinglePlaceholder*[]{}": {
+      "snippet": "robExtGetPlaceholderInResultFromSinglePlaceholder*[${2:opt}]{${1:arg}}"
+    },
+    "robExtGetPlaceholderInResultFromSinglePlaceholder*{}": {
+      "snippet": "robExtGetPlaceholderInResultFromSinglePlaceholder*{${1:arg}}"
+    },
+    "robExtGetPlaceholderInResultFromSinglePlaceholder[]{}": {
+      "snippet": "robExtGetPlaceholderInResultFromSinglePlaceholder[${2:opt}]{${1:arg}}"
+    },
+    "robExtGetPlaceholderInResultFromSinglePlaceholder{}": {
+      "snippet": "robExtGetPlaceholderInResultFromSinglePlaceholder{${1:arg}}"
+    },
+    "robExtGetPlaceholderInResultReplaceFromList*{}[]{}": {
+      "snippet": "robExtGetPlaceholderInResultReplaceFromList*{${1:arg1}}[${2:opt}]{${3:arg2}}"
+    },
+    "robExtGetPlaceholderInResultReplaceFromList{}[]{}": {
+      "snippet": "robExtGetPlaceholderInResultReplaceFromList{${1:arg1}}[${2:opt}]{${3:arg2}}"
+    },
+    "robExtGetPlaceholderInResultReplaceFromList{}{}": {
+      "snippet": "robExtGetPlaceholderInResultReplaceFromList{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtGetPlaceholderNoReplacement{}": {
+      "snippet": "robExtGetPlaceholderNoReplacement{${1:arg}}"
+    },
+    "robExtGetPrefixPath": {},
+    "RobExtIfFormatAtLeastTF{}{}": {
+      "snippet": "RobExtIfFormatAtLeastTF{${1:true}}{${2:false}}"
+    },
+    "robExtIfMatchesRegex{}{}": {
+      "snippet": "robExtIfMatchesRegex{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtIfMatchesString{}{}": {
+      "snippet": "robExtIfMatchesString{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtIfWindowsTF{}{}": {
+      "snippet": "robExtIfWindowsTF{${1:true}}{${2:false}}"
+    },
+    "robExtImagePlaceholderIfFallbackMode": {},
+    "robExtImagePlaceholderIfManualMode": {},
+    "robExtImagePlaceholderIfParallelCompilation": {},
+    "robExtImportAllPlaceholders": {},
+    "robExtImportPlaceholder": {},
+    "robExtImportPlaceholderFirst{}": {
+      "snippet": "robExtImportPlaceholderFirst{${1:arg}}"
+    },
+    "robExtImportPlaceholdersFromGroup{}": {
+      "snippet": "robExtImportPlaceholdersFromGroup{${1:arg}}"
+    },
+    "robExtIncludeFile{}": {
+      "snippet": "robExtIncludeFile{${1:arg}}"
+    },
+    "robExtIncludeGraphicsArgs": {},
+    "robExtKeepaftergroup{}": {
+      "snippet": "robExtKeepaftergroup{${1:arg}}"
+    },
+    "robExtKeepPlaceholderAfterGroup{}": {
+      "snippet": "robExtKeepPlaceholderAfterGroup{${1:arg}}"
+    },
+    "robExtLoadAutoForwardMacroConfig{}": {
+      "snippet": "robExtLoadAutoForwardMacroConfig{${1:arg}}"
+    },
+    "robExtLoadSpecialPlaceholders": {},
+    "robExtOnlyPlaceholdersInCompilationCommand{}": {
+      "snippet": "robExtOnlyPlaceholdersInCompilationCommand{${1:arg}}"
+    },
+    "robExtOnlyPlaceholdersInTemplate{}": {
+      "snippet": "robExtOnlyPlaceholdersInTemplate{${1:arg}}"
+    },
+    "robExtPlaceholderDoubleNumberHashesInplace{}": {
+      "snippet": "robExtPlaceholderDoubleNumberHashesInplace{${1:arg}}"
+    },
+    "robExtPlaceholderFromContent{}{}": {
+      "snippet": "robExtPlaceholderFromContent{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderFromContentFirst*{}{}": {
+      "snippet": "robExtPlaceholderFromContentFirst*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderFromContentFirst{}{}": {
+      "snippet": "robExtPlaceholderFromContentFirst{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderFromFileContent*{}{}": {
+      "snippet": "robExtPlaceholderFromFileContent*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderFromFileContent{}{}": {
+      "snippet": "robExtPlaceholderFromFileContent{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderFromString*{}{}": {
+      "snippet": "robExtPlaceholderFromString*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderFromString{}{}": {
+      "snippet": "robExtPlaceholderFromString{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderFromStringExpanded*{}{}": {
+      "snippet": "robExtPlaceholderFromStringExpanded*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderFromStringExpanded{}{}": {
+      "snippet": "robExtPlaceholderFromStringExpanded{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderHalveNumberHashesInplace{}": {
+      "snippet": "robExtPlaceholderHalveNumberHashesInplace{${1:arg}}"
+    },
+    "robExtPlaceholderPathFromContent*{}[]{}": {
+      "snippet": "robExtPlaceholderPathFromContent*{${1:arg1}}[${2:opt}]{${3:arg2}}"
+    },
+    "robExtPlaceholderPathFromContent*{}{}": {
+      "snippet": "robExtPlaceholderPathFromContent*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderPathFromContent{}[]{}": {
+      "snippet": "robExtPlaceholderPathFromContent{${1:arg1}}[${2:opt}]{${3:arg2}}"
+    },
+    "robExtPlaceholderPathFromContent{}{}": {
+      "snippet": "robExtPlaceholderPathFromContent{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderPathFromFilename*{}{}": {
+      "snippet": "robExtPlaceholderPathFromFilename*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderPathFromFilename{}{}": {
+      "snippet": "robExtPlaceholderPathFromFilename{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderReplaceInplace{}{}{}": {
+      "snippet": "robExtPlaceholderReplaceInplace{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "robExtPlaceholderReplaceInplaceEval{}{}{}": {
+      "snippet": "robExtPlaceholderReplaceInplaceEval{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "robExtPrintAllPlaceholders": {},
+    "robExtPrintAllPlaceholdersExceptDefaults": {},
+    "robExtPrintAllPlaceholdersExceptDefaults*": {},
+    "robExtPrintAllRegisteredGroups": {},
+    "robExtPrintAllRegisteredGroups*": {},
+    "robExtPrintAllRegisteredGroupsAndPlaceholders": {},
+    "robExtPrintAllRegisteredGroupsAndPlaceholders*": {},
+    "robExtPrintGroupPlaceholders*{}": {
+      "snippet": "robExtPrintGroupPlaceholders*{${1:arg}}"
+    },
+    "robExtPrintGroupPlaceholders{}": {
+      "snippet": "robExtPrintGroupPlaceholders{${1:arg}}"
+    },
+    "robExtPrintPlaceholder*{}": {
+      "snippet": "robExtPrintPlaceholder*{${1:arg}}"
+    },
+    "robExtPrintPlaceholder{}": {
+      "snippet": "robExtPrintPlaceholder{${1:arg}}"
+    },
+    "robExtPrintPlaceholderNoReplacement*{}": {
+      "snippet": "robExtPrintPlaceholderNoReplacement*{${1:arg}}"
+    },
+    "robExtPrintPlaceholderNoReplacement{}": {
+      "snippet": "robExtPrintPlaceholderNoReplacement{${1:arg}}"
+    },
+    "robExtRegisterGroupPlaceholders{}": {
+      "snippet": "robExtRegisterGroupPlaceholders{${1:arg}}"
+    },
+    "robExtRemoveImportedPlaceholder{}": {
+      "snippet": "robExtRemoveImportedPlaceholder{${1:arg}}"
+    },
+    "robExtRemovePlaceholder{}": {
+      "snippet": "robExtRemovePlaceholder{${1:arg}}"
+    },
+    "robExtRemovePlaceholdersFromGroup{}{}": {
+      "snippet": "robExtRemovePlaceholdersFromGroup{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtRescanHashRobust{}": {
+      "snippet": "robExtRescanHashRobust{${1:arg}}"
+    },
+    "robExtRescanPlaceholderInVariableNoReplacement{}{}": {
+      "snippet": "robExtRescanPlaceholderInVariableNoReplacement{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtResetDependencies{}": {
+      "snippet": "robExtResetDependencies{${1:arg}}"
+    },
+    "robExtRestoreDependencies{}": {
+      "snippet": "robExtRestoreDependencies{${1:arg}}"
+    },
+    "robExtRunCodeToRunForMacroPresent{}": {
+      "snippet": "robExtRunCodeToRunForMacroPresent{${1:arg}}"
+    },
+    "robExtSaveDependencies{}": {
+      "snippet": "robExtSaveDependencies{${1:arg}}"
+    },
+    "robExtSetBackCompilationCommandAndTemplate": {},
+    "robExtSetCodeToRunIfMacroPresent{}{}": {
+      "snippet": "robExtSetCodeToRunIfMacroPresent{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtSetCommandResetList{}": {
+      "snippet": "robExtSetCommandResetList{${1:arg}}"
+    },
+    "robExtSetCompilationCommand{}": {
+      "snippet": "robExtSetCompilationCommand{${1:arg}}"
+    },
+    "robExtSetEnvironmentResetList{}": {
+      "snippet": "robExtSetEnvironmentResetList{${1:arg}}"
+    },
+    "robExtSetPlaceholder{}{}": {
+      "snippet": "robExtSetPlaceholder{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtSetPlaceholderFirst{}{}": {
+      "snippet": "robExtSetPlaceholderFirst{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtSetPlaceholderRec*{}{}": {
+      "snippet": "robExtSetPlaceholderRec*{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtSetPlaceholderRec{}{}": {
+      "snippet": "robExtSetPlaceholderRec{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtSetPlaceholderRecReplaceFromList*{}{}{}": {
+      "snippet": "robExtSetPlaceholderRecReplaceFromList*{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "robExtSetPlaceholderRecReplaceFromList{}{}{}": {
+      "snippet": "robExtSetPlaceholderRecReplaceFromList{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "robExtShowAllRegisteredGroupsAndPlaceholders": {},
+    "robExtShowAllRegisteredGroupsAndPlaceholders*": {},
+    "robExtShowPlaceholder*{}": {
+      "snippet": "robExtShowPlaceholder*{${1:arg}}"
+    },
+    "robExtShowPlaceholder{}": {
+      "snippet": "robExtShowPlaceholder{${1:arg}}"
+    },
+    "robExtShowPlaceholders": {},
+    "robExtShowPlaceholders*": {},
+    "robExtShowPlaceholdersContents": {},
+    "robExtShowPlaceholdersContents*": {},
+    "robExtStrSetHashRobust{}{}": {
+      "snippet": "robExtStrSetHashRobust{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtUseHookJustBeforeWritingFiles": {},
+    "robExtWriteFile{}": {
+      "snippet": "robExtWriteFile{${1:arg}}"
+    },
+    "setPlaceholderFirst{}{}": {
+      "snippet": "setPlaceholderFirst{${1:arg1}}{${2:arg2}}"
+    },
+    "setPlaceholderFromStringExpanded{}{}": {
+      "snippet": "setPlaceholderFromStringExpanded{${1:arg1}}{${2:arg2}}"
+    },
+    "showAllRegisteredGroupsAndPlaceholders": {},
+    "robExtGenericAutoForward{}{}": {
+      "snippet": "robExtGenericAutoForward{${1:string}}{${2:code}}"
+    },
+    "robExtGenericAutoForward{}[]{}": {
+      "snippet": "robExtGenericAutoForward{${1:string}}[${2:add. style}]{${3:code}}"
+    },
+    "robExtGenericAutoForward[]{}{}": {
+      "snippet": "robExtGenericAutoForward[${3:preset}]{${1:string}}{${2:code}}"
+    },
+    "robExtGenericAutoForward[]{}[]{}": {
+      "snippet": "robExtGenericAutoForward[${3:preset}]{${1:string}}[${4:add. style}]{${2:code}}"
+    },
+    "robExtGenericAutoForward*{}{}": {
+      "snippet": "robExtGenericAutoForward*{${1:string}}{${2:code}}"
+    },
+    "robExtGenericAutoForward*{}[]{}": {
+      "snippet": "robExtGenericAutoForward*{${1:string}}[${2:add. style}]{${3:code}}"
+    },
+    "robExtGenericAutoForward*[]{}{}": {
+      "snippet": "robExtGenericAutoForward*[${3:preset}]{${1:string}}{${2:code}}"
+    },
+    "robExtGenericAutoForward*[]{}[]{}": {
+      "snippet": "robExtGenericAutoForward*[${3:preset}]{${1:string}}[${4:add. style}]{${2:code}}"
+    },
+    "robExtGenericAutoForwardStringMatch{}{}": {
+      "snippet": "robExtGenericAutoForwardStringMatch{${1:string}}{${2:code}}"
+    },
+    "robExtGenericAutoForwardStringMatch{}[]{}": {
+      "snippet": "robExtGenericAutoForwardStringMatch{${1:string}}[${2:add. style}]{${3:code}}"
+    },
+    "robExtGenericAutoForwardStringMatch[]{}{}": {
+      "snippet": "robExtGenericAutoForwardStringMatch[${3:preset}]{${1:string}}{${2:code}}"
+    },
+    "robExtGenericAutoForwardStringMatch[]{}[]{}": {
+      "snippet": "robExtGenericAutoForwardStringMatch[${3:preset}]{${1:string}}[${4:add. style}]{${2:code}}"
+    },
+    "robExtGenericAutoForwardStringMatch*{}{}": {
+      "snippet": "robExtGenericAutoForwardStringMatch*{${1:string}}{${2:code}}"
+    },
+    "robExtGenericAutoForwardStringMatch*{}[]{}": {
+      "snippet": "robExtGenericAutoForwardStringMatch*{${1:string}}[${2:add. style}]{${3:code}}"
+    },
+    "robExtGenericAutoForwardStringMatch*[]{}{}": {
+      "snippet": "robExtGenericAutoForwardStringMatch*[${3:preset}]{${1:string}}{${2:code}}"
+    },
+    "robExtGenericAutoForwardStringMatch*[]{}[]{}": {
+      "snippet": "robExtGenericAutoForwardStringMatch*[${3:preset}]{${1:string}}[${4:add. style}]{${2:code}}"
+    },
+    "jobnameNoQuotes": {},
+    "setjobnameNoQuotes": {},
+    "setjobnameNoQuotesaux": {},
+    "robExtPrefixLogMessage": {},
+    "robExtLinesAfterError": {},
+    "robExtRemoveLineNumber": {},
+    "robExtMessageWithPrefixNumberLines": {},
+    "robExtDebugInfo{}": {
+      "snippet": "robExtDebugInfo{${1:arg}}"
+    },
+    "robExtPrefixAllCompilationCommands": {},
+    "robExtBackupSource{}": {
+      "snippet": "robExtBackupSource{${1:arg}}"
+    },
+    "robExtRunCmdIfPossible{}": {
+      "snippet": "robExtRunCmdIfPossible{${1:arg}}"
+    },
+    "robExtCopyFileToCache{}": {
+      "snippet": "robExtCopyFileToCache{${1:arg}}"
+    },
+    "robExtRenameBackupFilesForArxiv{}": {
+      "snippet": "robExtRenameBackupFilesForArxiv{${1:arg}}"
+    },
+    "robExtRenameBackupFilesForArxiv[]{}": {
+      "snippet": "robExtRenameBackupFilesForArxiv[${2:opt}]{${1:arg}}"
+    },
+    "robExtRunHereAndInPreambleOfCachedFiles{}": {
+      "snippet": "robExtRunHereAndInPreambleOfCachedFiles{${1:code}}"
+    },
+    "robExtRunHereAndInPreambleOfCachedFiles[]{}": {
+      "snippet": "robExtRunHereAndInPreambleOfCachedFiles[${2:preset}]{${1:code}}"
+    },
+    "robExtRegisterWord{}{}{}": {
+      "snippet": "robExtRegisterWord{${1:namespace}}{${2:word}}{${3:style}}"
+    },
+    "robExtAutoForwardWords{}": {
+      "snippet": "robExtAutoForwardWords{${1:namespace}}"
+    },
+    "robExtWordSeparators": {},
+    "robExtRegisterWordCode{}{}{}": {
+      "snippet": "robExtRegisterWordCode{${1:namespace}}{${2:word}}{${3:code}}"
+    },
+    "robExtLenToCm{}": {
+      "snippet": "robExtLenToCm{${1:arg}}"
+    },
+    "robExtLenToCm[]{}": {
+      "snippet": "robExtLenToCm[${2:opt}]{${1:arg}}"
+    },
+    "robExtIncludegraphicsWeb{}": {
+      "snippet": "robExtIncludegraphicsWeb{${1:URL}}"
+    },
+    "robExtIncludegraphicsWeb[]{}": {
+      "snippet": "robExtIncludegraphicsWeb[${2:graphics options}]{${1:URL}}"
+    },
+    "robExtIncludegraphicsWeb<>{}": {
+      "snippet": "robExtIncludegraphicsWeb<${2:options}>{${1:URL}}"
+    },
+    "robExtIncludegraphicsWeb<>[]{}": {
+      "snippet": "robExtIncludegraphicsWeb<${3:options}>[${2:graphics options}]{${1:URL}}"
+    },
+    "robExtDoNotExternalizeAllTikzpictures": {},
+    "robExtCacheTikzit": {},
+    "robExtCacheTikzit[]": {
+      "snippet": "robExtCacheTikzit[${1:preset}]"
+    },
+    "robExtCacheTikzitWithStyle{}": {
+      "snippet": "robExtCacheTikzitWithStyle{${1:file}}"
+    },
+    "robExtCacheTikzitWithStyle[]{}": {
+      "snippet": "robExtCacheTikzitWithStyle[${2:preset}]{${1:file}}"
+    },
+    "robExtPlaceholderRemoveSpacesUntil{}{}": {
+      "snippet": "robExtPlaceholderRemoveSpacesUntil{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderRemoveSpacesUntil{}[]{}": {
+      "snippet": "robExtPlaceholderRemoveSpacesUntil{${1:arg1}}[${2:opt}]{${3:arg2}}"
+    },
+    "robExtPlaceholderPrependAllLines{}{}": {
+      "snippet": "robExtPlaceholderPrependAllLines{${1:arg1}}{${2:arg2}}"
+    },
+    "robExtPlaceholderRemoveLeadingSpaces{}": {
+      "snippet": "robExtPlaceholderRemoveLeadingSpaces{${1:arg}}"
+    },
+    "robExtLenToCmNoUnit{}": {
+      "snippet": "robExtLenToCmNoUnit{${1:arg}}"
+    },
+    "robExtLenToCmNoUnit[]{}": {
+      "snippet": "robExtLenToCmNoUnit[${2:opt}]{${1:arg}}"
+    },
+    "robExtCurrentPlaceholderName": {},
+    "robExtCacheMeCode[]{}": {
+      "snippet": "robExtCacheMeCode[${2:preset style}]{${1:code}}"
+    },
+    "robExtCacheMeCode{}": {
+      "snippet": "robExtCacheMeCode{${1:code}}"
+    },
+    "robExtResForceNumber{}": {
+      "snippet": "robExtResForceNumber{${1:arg}}"
+    },
+    "robExtNoResult{}": {
+      "snippet": "robExtNoResult{${1:arg}}"
+    },
+    "robExtRes{}": {
+      "snippet": "robExtRes{${1:arg}}"
+    }
+  },
+  "envs": {
+    "CacheMe{}": {
+      "name": "CacheMe",
+      "snippet": "{${1:preset style}}"
+    },
+    "CacheMeCode{}": {
+      "name": "CacheMeCode",
+      "snippet": "{${1:preset style}}"
+    },
+    "CacheMeNoContent": {},
+    "PlaceholderFromCode{}": {
+      "name": "PlaceholderFromCode",
+      "snippet": "{${1:name placeholder}}"
+    },
+    "PlaceholderFromCode[]{}": {
+      "name": "PlaceholderFromCode",
+      "snippet": "[${2:style}]{${1:name placeholder}}"
+    },
+    "PlaceholderFromCode*{}": {
+      "name": "PlaceholderFromCode",
+      "snippet": "*{${1:name placeholder}}"
+    },
+    "PlaceholderFromCode*[]{}": {
+      "name": "PlaceholderFromCode",
+      "snippet": "*[${2:style}]{${1:name placeholder}}"
+    },
+    "PlaceholderPathFromCode{}": {
+      "name": "PlaceholderPathFromCode",
+      "snippet": "{${1:name placeholder}}"
+    },
+    "PlaceholderPathFromCode[]{}": {
+      "name": "PlaceholderPathFromCode",
+      "snippet": "[${2:suffix}]{${1:name placeholder}}"
+    },
+    "PlaceholderPathFromCode*{}": {
+      "name": "PlaceholderPathFromCode",
+      "snippet": "*{${1:name placeholder}}"
+    },
+    "PlaceholderPathFromCode*[]{}": {
+      "name": "PlaceholderPathFromCode",
+      "snippet": "*[${2:suffix}]{${1:name placeholder}}"
+    },
+    "SetPlaceholderCode{}": {
+      "name": "SetPlaceholderCode",
+      "snippet": "{${1:name placeholder}}"
+    },
+    "tikzpictureC": {},
+    "tikzpictureC[]": {
+      "name": "tikzpictureC",
+      "snippet": "[${1:options}]"
+    },
+    "tikzpictureC<>": {
+      "name": "tikzpictureC",
+      "snippet": "<${1:preset style}>"
+    },
+    "tikzpictureC<>[]": {
+      "name": "tikzpictureC",
+      "snippet": "<${2:preset style}>[${1:options}]"
+    },
+    "RobExtCacheMe{}": {
+      "name": "RobExtCacheMe",
+      "snippet": "{${1:arg}}"
+    },
+    "RobExtCacheMeCode{}": {
+      "name": "RobExtCacheMeCode",
+      "snippet": "{${1:arg}}"
+    },
+    "RobExtCacheMeNoContent": {},
+    "RobExtPlaceholderFromCode{}": {
+      "name": "RobExtPlaceholderFromCode",
+      "snippet": "{${1:arg}}"
+    },
+    "RobExtPlaceholderFromCode[]{}": {
+      "name": "RobExtPlaceholderFromCode",
+      "snippet": "[${2:opt}]{${1:arg}}"
+    },
+    "RobExtPlaceholderFromCode*{}": {
+      "name": "RobExtPlaceholderFromCode",
+      "snippet": "*{${1:arg}}"
+    },
+    "RobExtPlaceholderFromCode*[]{}": {
+      "name": "RobExtPlaceholderFromCode",
+      "snippet": "*[${2:opt}]{${1:arg}}"
+    },
+    "RobExtPlaceholderPathFromCode[]{}": {
+      "name": "RobExtPlaceholderPathFromCode",
+      "snippet": "[${2:opt}]{${1:arg}}"
+    },
+    "RobExtPlaceholderPathFromCode{}": {
+      "name": "RobExtPlaceholderPathFromCode",
+      "snippet": "{${1:arg}}"
+    },
+    "RobExtPlaceholderPathFromCode*[]{}": {
+      "name": "RobExtPlaceholderPathFromCode",
+      "snippet": "*[${2:opt}]{${1:arg}}"
+    },
+    "RobExtPlaceholderPathFromCode*{}": {
+      "name": "RobExtPlaceholderPathFromCode",
+      "snippet": "*{${1:arg}}"
+    }
+  },
+  "options": [],
+  "keyvals": []
+}

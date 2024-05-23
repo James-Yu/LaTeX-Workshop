@@ -1,0 +1,272 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "ifthen": [],
+    "pgfkeys": [],
+    "pgfrcs": [],
+    "shellesc": []
+  },
+  "macros": {
+    "csvreader{}{}{}": {
+      "snippet": "csvreader{${1:file}}{${2:assignments}}{${3:command list}}"
+    },
+    "csvreader[]{}{}{}": {
+      "snippet": "csvreader[${4:options}]{${1:file}}{${2:assignments}}{${3:command list}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "csvcoli": {},
+    "csvcolii": {},
+    "csvcoliii": {},
+    "csvcoliv": {},
+    "csvcolv": {},
+    "csvloop{}": {
+      "snippet": "csvloop{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "csvautotabular{}": {
+      "snippet": "csvautotabular{${1:file}}"
+    },
+    "csvautotabular[]{}": {
+      "snippet": "csvautotabular[${2:options}]{${1:file}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "csvautolongtable{}": {
+      "snippet": "csvautolongtable{${1:file}}"
+    },
+    "csvautolongtable[]{}": {
+      "snippet": "csvautolongtable[${2:options}]{${1:file}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "csvautobooktabular{}": {
+      "snippet": "csvautobooktabular{${1:file}}"
+    },
+    "csvautobooktabular[]{}": {
+      "snippet": "csvautobooktabular[${2:options}]{${1:file}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "csvautobooklongtable{}": {
+      "snippet": "csvautobooklongtable{${1:file}}"
+    },
+    "csvautobooklongtable[]{}": {
+      "snippet": "csvautobooklongtable[${2:options}]{${1:file}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "csvset{}": {
+      "snippet": "csvset{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "csvstyle{}{}": {
+      "snippet": "csvstyle{${1:key name}}{${2:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "csvnames{}{}": {
+      "snippet": "csvnames{${1:key name}}{${2:assignments}}"
+    },
+    "csvheadset{}": {
+      "snippet": "csvheadset{${1:assignments}}"
+    },
+    "csviffirstrow{}{}": {
+      "snippet": "csviffirstrow{${1:then}}{${2:else}}"
+    },
+    "csvifoddrow{}{}": {
+      "snippet": "csvifoddrow{${1:then}}{${2:else}}"
+    },
+    "csvfilteraccept": {},
+    "csvfilterreject": {},
+    "csvline": {},
+    "thecsvrow": {},
+    "thecsvcol": {},
+    "thecsvinputline": {},
+    "csvlinetotablerow": {},
+    "ifcsvstrcmp{}{}{}{}": {
+      "snippet": "ifcsvstrcmp{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+    },
+    "ifcsvnotstrcmp{}{}{}{}": {
+      "snippet": "ifcsvnotstrcmp{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+    },
+    "ifcsvstrequal{}{}{}{}": {
+      "snippet": "ifcsvstrequal{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+    },
+    "ifcsvprostrequal{}{}{}{}": {
+      "snippet": "ifcsvprostrequal{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+    },
+    "tabularnewline": {},
+    "toprule": {},
+    "midrule": {},
+    "bottomrule": {},
+    "cmidrule": {},
+    "morecmidrules": {},
+    "specialrule": {},
+    "addlinespace": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "before reading=${1:code}",
+      "after head=${1:code}",
+      "before filter=${1:code}",
+      "after filter=${1:code}",
+      "late after head=${1:code}",
+      "late after line=${1:code}",
+      "late after first line=${1:code}",
+      "late after last line=${1:code}",
+      "before line=${1:code}",
+      "before first line=${1:code}",
+      "command=${1:code}",
+      "after line=${1:code}",
+      "after first line=${1:code}",
+      "after reading=${1:code}",
+      "head",
+      "no head",
+      "column names={${1:assignments}}",
+      "column names reset",
+      "head to column names",
+      "head to column names prefix=${1:text}",
+      "check column count",
+      "no check column count",
+      "column count=${1:number}",
+      "on column count error=${1:code}",
+      "warn on column count error",
+      "filter test=${1:condition}",
+      "filter strcmp={${1:stringA}}{${2:stringB}}",
+      "filter not strcmp={${1:stringA}}{${2:stringB}}",
+      "filter expr=${1:condition}",
+      "filter ifthen=${1:boolean expr}",
+      "filter=${1:condition}",
+      "filter equal={${1:stringA}}{${2:stringB}}",
+      "filter not equal={${1:stringA}}{${2:stringB}}",
+      "no filter",
+      "filter accept all",
+      "filter reject all",
+      "full filter=${1:code}",
+      "range={${1:range1,range2,...}}",
+      "tabular=${1:preamble}",
+      "centered tabular=${1:preamble}",
+      "longtable=${1:preamble}",
+      "tabbing",
+      "centered tabbing",
+      "no table",
+      "before table=${1:code}",
+      "table head=${1:code}",
+      "table foot=${1:code}",
+      "after table=${1:code}",
+      "respect tab",
+      "respect percent",
+      "respect sharp",
+      "respect dollar",
+      "respect and",
+      "respect backslash",
+      "respect underscore",
+      "respect tilde",
+      "respect circumflex",
+      "respect leftbrace",
+      "respect rightbrace",
+      "respect all",
+      "respect none",
+      "separator=",
+      "every csv/.style={${1:options}}",
+      "default/.style={${1:options}}",
+      "file=${1:file}",
+      "preprocessed file=${1:file}",
+      "preprocessor=${1:macro}",
+      "no preprocessing",
+      "csvsorter command=${1:system command}",
+      "csvsorter configpath=${1:path}",
+      "csvsorter log=${1:file}",
+      "csvsorter token=${1:file}",
+      "sort by=${1:file}",
+      "new sorting rule={${1:name}}{${2:file}}",
+      "%csvstyle",
+      "autotabular=${1:file}",
+      "autolongtable=${1:file}",
+      "autobooktabular=${1:file}",
+      "autobooklongtable=${1:file}"
+    ],
+    [
+      "before reading=${1:code}",
+      "after head=${1:code}",
+      "before filter=${1:code}",
+      "after filter=${1:code}",
+      "late after head=${1:code}",
+      "late after line=${1:code}",
+      "late after first line=${1:code}",
+      "late after last line=${1:code}",
+      "before line=${1:code}",
+      "before first line=${1:code}",
+      "command=${1:code}",
+      "after line=${1:code}",
+      "after first line=${1:code}",
+      "after reading=${1:code}",
+      "head",
+      "no head",
+      "column names={${1:assignments}}",
+      "column names reset",
+      "head to column names",
+      "head to column names prefix=${1:text}",
+      "check column count",
+      "no check column count",
+      "column count=${1:number}",
+      "on column count error=${1:code}",
+      "warn on column count error",
+      "filter test=${1:condition}",
+      "filter strcmp={${1:stringA}}{${2:stringB}}",
+      "filter not strcmp={${1:stringA}}{${2:stringB}}",
+      "filter expr=${1:condition}",
+      "filter ifthen=${1:boolean expr}",
+      "filter=${1:condition}",
+      "filter equal={${1:stringA}}{${2:stringB}}",
+      "filter not equal={${1:stringA}}{${2:stringB}}",
+      "no filter",
+      "filter accept all",
+      "filter reject all",
+      "full filter=${1:code}",
+      "range={${1:range1,range2,...}}",
+      "tabular=${1:preamble}",
+      "centered tabular=${1:preamble}",
+      "longtable=${1:preamble}",
+      "tabbing",
+      "centered tabbing",
+      "no table",
+      "before table=${1:code}",
+      "table head=${1:code}",
+      "table foot=${1:code}",
+      "after table=${1:code}",
+      "respect tab",
+      "respect percent",
+      "respect sharp",
+      "respect dollar",
+      "respect and",
+      "respect backslash",
+      "respect underscore",
+      "respect tilde",
+      "respect circumflex",
+      "respect leftbrace",
+      "respect rightbrace",
+      "respect all",
+      "respect none",
+      "separator=",
+      "every csv/.style={${1:options}}",
+      "default/.style={${1:options}}",
+      "file=${1:file}",
+      "preprocessed file=${1:file}",
+      "preprocessor=${1:macro}",
+      "no preprocessing",
+      "csvsorter command=${1:system command}",
+      "csvsorter configpath=${1:path}",
+      "csvsorter log=${1:file}",
+      "csvsorter token=${1:file}",
+      "sort by=${1:file}",
+      "new sorting rule={${1:name}}{${2:file}}",
+      "%csvstyle"
+    ]
+  ]
+}

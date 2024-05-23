@@ -1,0 +1,383 @@
+{
+  "includes": {
+    "zhnumber": [],
+    "fontspec": []
+  },
+  "macros": {
+    "CTEXnumberline{}": {
+      "snippet": "CTEXnumberline{${1:arg}}",
+      "option": "heading=true"
+    },
+    "songti": {},
+    "heiti": {},
+    "fangsong": {},
+    "kaishu": {},
+    "lishu": {},
+    "youyuan": {},
+    "yahei": {},
+    "pingfang": {},
+    "ctexset{}": {
+      "snippet": "ctexset{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "CTEXthepart": {},
+    "CTEXthechapter": {},
+    "CTEXthesection": {},
+    "CTEXthesubsection": {},
+    "CTEXthesubsubsection": {},
+    "CTEXtheparagraph": {},
+    "CTEXthesubparagraph": {},
+    "CTEXifname{}{}": {
+      "snippet": "CTEXifname{${1:contents with name}}{${2:contents with name}}"
+    },
+    "zihao{}": {
+      "snippet": "zihao{${1:number}}"
+    },
+    "ziju{}": {
+      "snippet": "ziju{${1:factor}}"
+    },
+    "ccwd": {},
+    "chinese{}": {
+      "snippet": "chinese{${1:counter}}"
+    },
+    "CTEXnumber{}{}": {
+      "snippet": "CTEXnumber{${1:cmd}}{${2:number}}"
+    },
+    "CTEXdigits{}{}": {
+      "snippet": "CTEXdigits{${1:cmd}}{${2:number}}"
+    },
+    "CTeX": {},
+    "addCJKfontfeature*[]{}": {
+      "snippet": "addCJKfontfeature*[${2:blocks}]{${1:font features}}"
+    },
+    "addCJKfontfeature*{}": {
+      "snippet": "addCJKfontfeature*{${1:font features}}"
+    },
+    "addCJKfontfeature[]{}": {
+      "snippet": "addCJKfontfeature[${2:blocks}]{${1:font features}}"
+    },
+    "addCJKfontfeature{}": {
+      "snippet": "addCJKfontfeature{${1:font features}}"
+    },
+    "addCJKfontfeatures*[]{}": {
+      "snippet": "addCJKfontfeatures*[${2:blocks}]{${1:font features}}"
+    },
+    "addCJKfontfeatures*{}": {
+      "snippet": "addCJKfontfeatures*{${1:font features}}"
+    },
+    "addCJKfontfeatures[]{}": {
+      "snippet": "addCJKfontfeatures[${2:blocks}]{${1:font features}}"
+    },
+    "addCJKfontfeatures{}": {
+      "snippet": "addCJKfontfeatures{${1:font features}}"
+    },
+    "CJKfamilydefault": {},
+    "CJKfontspec[]{}": {
+      "snippet": "CJKfontspec[${2:font features}]{${1:font name}}"
+    },
+    "CJKfontspec{}": {
+      "snippet": "CJKfontspec{${1:font name}}"
+    },
+    "CJKfontspec{}[]": {
+      "snippet": "CJKfontspec{${1:font name}}[${2:font features}]"
+    },
+    "CJKrmdefault": {},
+    "CJKsfdefault": {},
+    "CJKttdefault": {},
+    "defaultCJKfontfeatures{}": {
+      "snippet": "defaultCJKfontfeatures{${1:font features}}"
+    },
+    "newCJKfontfamily[]{}[]{}": {
+      "snippet": "newCJKfontfamily[${3:family}]{${1:cmd}}[${4:font features}]{${2:font name}}"
+    },
+    "newCJKfontfamily[]{}{}": {
+      "snippet": "newCJKfontfamily[${3:family}]{${1:cmd}}{${2:font name}}"
+    },
+    "newCJKfontfamily{}[]{}": {
+      "snippet": "newCJKfontfamily{${1:cmd}}[${2:font features}]{${3:font name}}"
+    },
+    "newCJKfontfamily{}{}": {
+      "snippet": "newCJKfontfamily{${1:cmd}}{${2:font name}}"
+    },
+    "setCJKfamilyfont{}[]{}": {
+      "snippet": "setCJKfamilyfont{${1:family}}[${2:font features}]{${3:font name}}"
+    },
+    "setCJKfamilyfont{}{}": {
+      "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}"
+    },
+    "setCJKfamilyfont{}{}[]": {
+      "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}[${3:font features}]"
+    },
+    "setCJKmainfont[]{}": {
+      "snippet": "setCJKmainfont[${2:font features}]{${1:font name}}"
+    },
+    "setCJKmainfont{}": {
+      "snippet": "setCJKmainfont{${1:font name}}"
+    },
+    "setCJKmainfont{}[]": {
+      "snippet": "setCJKmainfont{${1:font name}}[${2:font features}]"
+    },
+    "setCJKmathfont[]{}": {
+      "snippet": "setCJKmathfont[${2:font features}]{${1:font name}}"
+    },
+    "setCJKmathfont{}": {
+      "snippet": "setCJKmathfont{${1:font name}}"
+    },
+    "setCJKmathfont{}[]": {
+      "snippet": "setCJKmathfont{${1:font name}}[${2:font features}]"
+    },
+    "setCJKmonofont[]{}": {
+      "snippet": "setCJKmonofont[${2:font features}]{${1:font name}}"
+    },
+    "setCJKmonofont{}": {
+      "snippet": "setCJKmonofont{${1:font name}}"
+    },
+    "setCJKmonofont{}[]": {
+      "snippet": "setCJKmonofont{${1:font name}}[${2:font features}]"
+    },
+    "setCJKromanfont[]{}": {
+      "snippet": "setCJKromanfont[${2:font features}]{${1:font name}}"
+    },
+    "setCJKromanfont{}": {
+      "snippet": "setCJKromanfont{${1:font name}}"
+    },
+    "setCJKromanfont{}[]": {
+      "snippet": "setCJKromanfont{${1:font name}}[${2:font features}]"
+    },
+    "setCJKsansfont[]{}": {
+      "snippet": "setCJKsansfont[${2:font features}]{${1:font name}}"
+    },
+    "setCJKsansfont{}": {
+      "snippet": "setCJKsansfont{${1:font name}}"
+    },
+    "setCJKsansfont{}[]": {
+      "snippet": "setCJKsansfont{${1:font name}}[${2:font features}]"
+    }
+  },
+  "envs": {},
+  "options": [
+    "GBK",
+    "UTF8",
+    "zhmap=",
+    "zihao=",
+    "heading",
+    "sub3section",
+    "sub4section",
+    "scheme=",
+    "linespread=${1:number}"
+  ],
+  "keyvals": [
+    [
+      "fontset=",
+      "punct=",
+      "space=",
+      "autoindent=",
+      "linestretch=",
+      "today=",
+      "contentsname=${1:name}",
+      "listfigurename=${1:name}",
+      "listtablename=${1:name}",
+      "figurename=${1:name}",
+      "tablename=${1:name}",
+      "abstractname=${1:name}",
+      "indexname=${1:name}",
+      "appendixname=${1:name}",
+      "bibname=${1:name}",
+      "proofname=${1:name}",
+      "refname=${1:name}",
+      "algorithmname=${1:name}",
+      "continuation=${1:name}",
+      "part={${1:settings}}",
+      "chapter={${1:settings}}",
+      "section={${1:settings}}",
+      "subsection={${1:settings}}",
+      "subsubsection={${1:settings}}",
+      "paragraph={${1:settings}}",
+      "subparagraph={${1:settings}}",
+      "part/numbering",
+      "chapter/numbering",
+      "section/numbering",
+      "subsection/numbering",
+      "subsubsection/numbering",
+      "paragraph/numbering",
+      "subparagraph/numbering",
+      "secnumdepth=",
+      "part/name=",
+      "chapter/name=",
+      "section/name=",
+      "subsection/name=",
+      "subsubsection/name=",
+      "paragraph/name=",
+      "subparagraph/name=",
+      "part/number=",
+      "chapter/number=",
+      "section/number=",
+      "subsection/number=",
+      "subsubsection/number=",
+      "paragraph/number=",
+      "subparagraph/number=",
+      "part/format=${1:format commands}",
+      "chapter/format=${1:format commands}",
+      "section/format=${1:format commands}",
+      "subsection/format=${1:format commands}",
+      "subsubsection/format=${1:format commands}",
+      "paragraph/format=${1:format commands}",
+      "subparagraph/format=${1:format commands}",
+      "part/format+=${1:format commands}",
+      "chapter/format+=${1:format commands}",
+      "section/format+=${1:format commands}",
+      "subsection/format+=${1:format commands}",
+      "subsubsection/format+=${1:format commands}",
+      "paragraph/format+=${1:format commands}",
+      "subparagraph/format+=${1:format commands}",
+      "part/nameformat=${1:format commands}",
+      "chapter/nameformat=${1:format commands}",
+      "section/nameformat=${1:format commands}",
+      "subsection/nameformat=${1:format commands}",
+      "subsubsection/nameformat=${1:format commands}",
+      "paragraph/nameformat=${1:format commands}",
+      "subparagraph/nameformat=${1:format commands}",
+      "part/nameformat+=${1:format commands}",
+      "chapter/nameformat+=${1:format commands}",
+      "section/nameformat+=${1:format commands}",
+      "subsection/nameformat+=${1:format commands}",
+      "subsubsection/nameformat+=${1:format commands}",
+      "paragraph/nameformat+=${1:format commands}",
+      "subparagraph/nameformat+=${1:format commands}",
+      "part/numberformat=${1:format commands}",
+      "chapter/numberformat=${1:format commands}",
+      "section/numberformat=${1:format commands}",
+      "subsection/numberformat=${1:format commands}",
+      "subsubsection/numberformat=${1:format commands}",
+      "paragraph/numberformat=${1:format commands}",
+      "subparagraph/numberformat=${1:format commands}",
+      "part/numberformat+=${1:format commands}",
+      "chapter/numberformat+=${1:format commands}",
+      "section/numberformat+=${1:format commands}",
+      "subsection/numberformat+=${1:format commands}",
+      "subsubsection/numberformat+=${1:format commands}",
+      "paragraph/numberformat+=${1:format commands}",
+      "subparagraph/numberformat+=${1:format commands}",
+      "part/titleformat=${1:format commands}",
+      "chapter/titleformat=${1:format commands}",
+      "section/titleformat=${1:format commands}",
+      "subsection/titleformat=${1:format commands}",
+      "subsubsection/titleformat=${1:format commands}",
+      "paragraph/titleformat=${1:format commands}",
+      "subparagraph/titleformat=${1:format commands}",
+      "part/titleformat+=${1:format commands}",
+      "chapter/titleformat+=${1:format commands}",
+      "section/titleformat+=${1:format commands}",
+      "subsection/titleformat+=${1:format commands}",
+      "subsubsection/titleformat+=${1:format commands}",
+      "paragraph/titleformat+=${1:format commands}",
+      "subparagraph/titleformat+=${1:format commands}",
+      "part/aftername=${1:code}",
+      "chapter/aftername=${1:code}",
+      "section/aftername=${1:code}",
+      "subsection/aftername=${1:code}",
+      "subsubsection/aftername=${1:code}",
+      "paragraph/aftername=${1:code}",
+      "subparagraph/aftername=${1:code}",
+      "part/aftername+=${1:code}",
+      "chapter/aftername+=${1:code}",
+      "section/aftername+=${1:code}",
+      "subsection/aftername+=${1:code}",
+      "subsubsection/aftername+=${1:code}",
+      "paragraph/aftername+=${1:code}",
+      "subparagraph/aftername+=${1:code}",
+      "part/aftertitle=${1:code}",
+      "chapter/aftertitle=${1:code}",
+      "section/aftertitle=${1:code}",
+      "subsection/aftertitle=${1:code}",
+      "subsubsection/aftertitle=${1:code}",
+      "paragraph/aftertitle=${1:code}",
+      "subparagraph/aftertitle=${1:code}",
+      "part/aftertitle+=${1:code}",
+      "chapter/aftertitle+=${1:code}",
+      "section/aftertitle+=${1:code}",
+      "subsection/aftertitle+=${1:code}",
+      "subsubsection/aftertitle+=${1:code}",
+      "paragraph/aftertitle+=${1:code}",
+      "subparagraph/aftertitle+=${1:code}",
+      "part/pagestyle=",
+      "chapter/pagestyle=",
+      "section/runin",
+      "subsection/runin",
+      "subsubsection/runin",
+      "paragraph/runin",
+      "subparagraph/runin",
+      "section/hang",
+      "subsection/hang",
+      "subsubsection/hang",
+      "paragraph/hang",
+      "subparagraph/hang",
+      "part/indent=",
+      "chapter/indent=",
+      "section/indent=",
+      "subsection/indent=",
+      "subsubsection/indent=",
+      "paragraph/indent=",
+      "subparagraph/indent=",
+      "part/beforeskip=",
+      "chapter/beforeskip=",
+      "section/beforeskip=",
+      "subsection/beforeskip=",
+      "subsubsection/beforeskip=",
+      "paragraph/beforeskip=",
+      "subparagraph/beforeskip=",
+      "part/afterskip=",
+      "chapter/afterskip=",
+      "section/afterskip=",
+      "subsection/afterskip=",
+      "subsubsection/afterskip=",
+      "paragraph/afterskip=",
+      "subparagraph/afterskip=",
+      "part/fixskip",
+      "chapter/fixskip",
+      "section/fixskip",
+      "subsection/fixskip",
+      "subsubsection/fixskip",
+      "paragraph/fixskip",
+      "subparagraph/fixskip",
+      "part/break=",
+      "chapter/break=",
+      "section/break=",
+      "subsection/break=",
+      "subsubsection/break=",
+      "paragraph/break=",
+      "subparagraph/break=",
+      "part/break+=",
+      "chapter/break+=",
+      "section/break+=",
+      "subsection/break+=",
+      "subsubsection/break+=",
+      "paragraph/break+=",
+      "subparagraph/break+=",
+      "part/afterindent",
+      "chapter/afterindent",
+      "section/afterindent",
+      "subsection/afterindent",
+      "subsubsection/afterindent",
+      "paragraph/afterindent",
+      "subparagraph/afterindent",
+      "tocdepth=",
+      "part/tocline=",
+      "chapter/tocline=",
+      "section/tocline=",
+      "subsection/tocline=",
+      "subsubsection/tocline=",
+      "paragraph/tocline=",
+      "subparagraph/tocline=",
+      "chapter/lofskip=",
+      "chapter/lotskip=",
+      "appendix/numbering",
+      "appendix/name=",
+      "appendix/number=",
+      "declarecharrange=",
+      "clearalternatefont={${1:family1,family2,...}}",
+      "resetalternatefont={${1:family1,family2,...}}"
+    ]
+  ]
+}

@@ -1,0 +1,691 @@
+{
+  "includes": {
+    "fontenc": [],
+    "babel": [],
+    "silence": [],
+    "setspace": [],
+    "csquotes": []
+  },
+  "macros": {
+    "AddLanguageSetting{}": {
+      "snippet": "AddLanguageSetting{${1:settings}}"
+    },
+    "AddLanguageSetting[]{}": {
+      "snippet": "AddLanguageSetting[${2:language}]{${1:settings}}"
+    },
+    "DefineMultilingualText{}{}": {
+      "snippet": "DefineMultilingualText{${1:command}}{${2:keyvals}}"
+    },
+    "ProjLibLanguageSet{}{}{}": {
+      "snippet": "ProjLibLanguageSet{${1:object}}{${2:language}}{${3:setting}}"
+    },
+    "UseLanguage{}": {
+      "snippet": "UseLanguage{${1:language}}"
+    },
+    "UseOtherLanguage{}{}": {
+      "snippet": "UseOtherLanguage{${1:language}}{${2:content}}"
+    },
+    "DH": {},
+    "dh": {},
+    "dj": {},
+    "DJ": {},
+    "guillemetleft": {},
+    "guillemetright": {},
+    "guillemotleft": {},
+    "guillemotright": {},
+    "guilsinglleft": {},
+    "guilsinglright": {},
+    "Hwithstroke": {},
+    "hwithstroke": {},
+    "k{}": {
+      "snippet": "k{${1:arg}}"
+    },
+    "NG": {},
+    "ng": {},
+    "quotedblbase": {},
+    "quotesinglbase": {},
+    "textogonekcentered{}": {
+      "snippet": "textogonekcentered{${1:arg}}"
+    },
+    "textquotedbl": {},
+    "th": {
+      "option": "Russian"
+    },
+    "TH": {},
+    "frenchsetup{}": {
+      "snippet": "frenchsetup{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "frenchbsetup{}": {
+      "snippet": "frenchbsetup{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "AddThinSpaceBeforeFootnotes": {},
+    "alsoname": {},
+    "at": {},
+    "AutoSpaceBeforeFDP": {},
+    "bibname": {},
+    "boi": {},
+    "bname{}": {
+      "snippet": "bname{${1:text}}"
+    },
+    "bsc{}": {
+      "snippet": "bsc{${1:text}}"
+    },
+    "CaptionSeparator": {},
+    "captionsfrench": {},
+    "ccname": {},
+    "chaptername": {},
+    "circonflexe": {},
+    "dateacadian": {},
+    "datefrench": {},
+    "DecimalMathComma": {},
+    "degre": {},
+    "degres": {},
+    "descindentFB": {},
+    "dotFFN": {},
+    "enclname": {},
+    "extrasfrench": {},
+    "FBcolonspace": {},
+    "FBdatebox": {},
+    "FBdatespace": {},
+    "FBeverylineguill": {},
+    "FBfigtabshape": {},
+    "FBfnindent": {},
+    "FBFrenchFootnotesfalse": {},
+    "FBFrenchFootnotestrue": {},
+    "FBFrenchSuperscriptstrue": {},
+    "FBGlobalLayoutFrenchtrue": {},
+    "FBgspchar": {},
+    "FBguillopen": {},
+    "FBguillspace": {},
+    "FBInnerGuillSinglefalse": {},
+    "FBInnerGuillSingletrue": {},
+    "FBListItemsAsParfalse": {},
+    "FBListItemsAsPartrue": {},
+    "FBLowercaseSuperscriptstrue": {},
+    "FBmedkern": {},
+    "FBPartNameFulltrue": {},
+    "FBsetspaces[]{}{}{}{}": {
+      "snippet": "FBsetspaces[${5:language}]{${1:type}}{${2:width}}{${3:stretch}}{${4:shrink}}"
+    },
+    "FBsetspaces{}{}{}{}": {
+      "snippet": "FBsetspaces{${1:type}}{${2:width}}{${3:stretch}}{${4:shrink}}"
+    },
+    "FBSmallCapsFigTabCaptionstrue": {},
+    "FBStandardEnumerateEnvtrue": {},
+    "FBStandardItemizeEnvtrue": {},
+    "FBStandardItemLabelstrue": {},
+    "FBStandardLayouttrue": {},
+    "FBStandardListSpacingtrue": {},
+    "FBStandardListstrue": {},
+    "FBsupR": {},
+    "FBsupS": {},
+    "FBtextellipsis": {},
+    "FBthickkern": {},
+    "FBthinspace": {},
+    "FBthousandsep": {},
+    "FBWarning{}": {
+      "snippet": "FBWarning{${1:message}}"
+    },
+    "fg": {},
+    "fgi": {},
+    "fgii": {},
+    "frenchdate{}{}{}": {
+      "snippet": "frenchdate{${1:day}}{${2:month}}{${3:year}}"
+    },
+    "FrenchEnumerate{}": {
+      "snippet": "FrenchEnumerate{${1:arg}}"
+    },
+    "FrenchFootnotes": {},
+    "FrenchLabelItem": {},
+    "frenchpartfirst": {},
+    "frenchpartsecond": {},
+    "FrenchPopularEnumerate{}": {
+      "snippet": "FrenchPopularEnumerate{${1:arg}}"
+    },
+    "frenchtoday": {},
+    "Frlabelitemi": {},
+    "Frlabelitemii": {},
+    "Frlabelitemiii": {},
+    "Frlabelitemiv": {},
+    "frquote{}": {
+      "snippet": "frquote{${1:text}}"
+    },
+    "fup{}": {
+      "snippet": "fup{${1:text}}"
+    },
+    "glossaryname": {},
+    "headtoname": {},
+    "ieme": {},
+    "iemes": {},
+    "ier": {},
+    "iere": {},
+    "ieres": {},
+    "iers": {},
+    "ifFBAutoSpaceFootnotes": {},
+    "ifFBCompactItemize": {},
+    "ifFBCustomiseFigTabCaptions": {},
+    "ifFBfrench": {},
+    "ifFBFrenchFootnotes": {},
+    "ifFBFrenchSuperscripts": {},
+    "ifFBGlobalLayoutFrench": {},
+    "ifFBIndentFirst": {},
+    "ifFBINGuillSpace": {},
+    "ifFBListItemsAsPar": {},
+    "ifFBListOldLayout": {},
+    "ifFBLowercaseSuperscripts": {},
+    "ifFBLuaTeX": {},
+    "ifFBOldFigTabCaptions": {},
+    "ifFBOriginalTypewriter": {},
+    "ifFBPartNameFull": {},
+    "ifFBReduceListSpacing": {},
+    "ifFBShowOptions": {},
+    "ifFBSmallCapsFigTabCaptions": {},
+    "ifFBStandardEnumerateEnv": {},
+    "ifFBStandardItemizeEnv": {},
+    "ifFBStandardItemLabels": {},
+    "ifFBStandardLayout": {},
+    "ifFBStandardLists": {},
+    "ifFBStandardListSpacing": {},
+    "ifFBSuppressWarning": {},
+    "ifFBThinColonSpace": {},
+    "ifFBThinSpaceInFrenchNumbers": {},
+    "ifFBunicode": {},
+    "ifFBXeTeX": {},
+    "ifLaTeXe": {},
+    "kernFFN": {},
+    "labelindentFB": {},
+    "labelwidthFB": {},
+    "leftmarginFB": {},
+    "listfigurename": {},
+    "listindentFB": {},
+    "No": {},
+    "no": {},
+    "NoAutoSpaceBeforeFDP": {},
+    "NoAutoSpacing": {},
+    "NoEveryParQuote": {},
+    "noextrasfrench": {},
+    "nombre{}": {
+      "snippet": "nombre{${1:arg}}"
+    },
+    "nos": {},
+    "Nos": {},
+    "og": {},
+    "ogi": {},
+    "ogii": {},
+    "parindentFFN": {},
+    "partfirst": {},
+    "partnameord": {},
+    "partsecond": {},
+    "prefacename": {},
+    "primo": {},
+    "proofname": {},
+    "quarto": {},
+    "rmfamilyFB": {},
+    "secundo": {},
+    "seename": {},
+    "sffamilyFB": {},
+    "StandardFootnotes": {},
+    "StandardMathComma": {},
+    "tertio": {},
+    "tild": {},
+    "ttfamilyFB": {},
+    "up{}": {
+      "snippet": "up{${1:text}}"
+    },
+    "xspace": {},
+    "captionsportuguese": {},
+    "dateportuguese": {},
+    "extrasportuguese": {},
+    "noextrasportuguese": {},
+    "ord": {},
+    "orda": {},
+    "ro": {},
+    "ra": {},
+    "captionsbrazilian": {},
+    "datebrazilian": {},
+    "extrasbrazilian": {},
+    "noextrasbrazilian": {},
+    "captionsitalian": {},
+    "dateitalian": {},
+    "extrasitalian": {},
+    "noextrasitalian": {},
+    "italianhyphenmins": {},
+    "setactivedoublequote": {},
+    "setISOcompliance": {},
+    "IntelligentComma": {},
+    "NoIntelligentComma": {},
+    "XXIletters": {},
+    "XXVIletters": {},
+    "ap{}": {
+      "snippet": "ap{${1:arg}}"
+    },
+    "ped{}": {
+      "snippet": "ped{${1:arg}}"
+    },
+    "unit{}": {
+      "snippet": "unit{${1:arg}}"
+    },
+    "virgola": {},
+    "virgoladecimale": {},
+    "LtxSymbCaporali": {},
+    "CaporaliFrom{}{}{}{}": {
+      "snippet": "CaporaliFrom{${1:encoding}}{${2:family}}{${3:open guill slot}}{${4:close guill slot}}"
+    },
+    "captionsngerman": {},
+    "datengerman": {},
+    "extrasngerman": {},
+    "noextrasngerman": {},
+    "dq": {
+      "option": "Russian"
+    },
+    "ntosstrue": {},
+    "ntossfalse": {},
+    "mdqon": {},
+    "mdqoff": {},
+    "captionsenglish": {},
+    "dateenglish": {},
+    "extrasenglish": {},
+    "noextrasenglish": {},
+    "englishhyphenmins": {},
+    "britishhyphenmins": {},
+    "americanhyphenmins": {},
+    "captionsjapanese": {
+      "option": "Japanese"
+    },
+    "datejapanese": {
+      "option": "Japanese"
+    },
+    "extrasjapanese": {
+      "option": "Japanese"
+    },
+    "noextrasjapanese": {
+      "option": "Japanese"
+    },
+    "cyrdash": {
+      "option": "Russian"
+    },
+    "asbuk{}": {
+      "snippet": "asbuk{${1:counter}}",
+      "option": "Russian"
+    },
+    "Asbuk{}": {
+      "snippet": "Asbuk{${1:counter}}",
+      "option": "Russian"
+    },
+    "Russian": {
+      "option": "Russian"
+    },
+    "sh": {
+      "option": "Russian"
+    },
+    "ch": {
+      "option": "Russian"
+    },
+    "tg": {
+      "option": "Russian"
+    },
+    "ctg": {
+      "option": "Russian"
+    },
+    "arctg": {
+      "option": "Russian"
+    },
+    "arcctg": {
+      "option": "Russian"
+    },
+    "cth": {
+      "option": "Russian"
+    },
+    "cosec": {
+      "option": "Russian"
+    },
+    "Prob": {
+      "option": "Russian"
+    },
+    "Variance": {
+      "option": "Russian"
+    },
+    "NOD": {
+      "option": "Russian"
+    },
+    "nod": {
+      "option": "Russian"
+    },
+    "NOK": {
+      "option": "Russian"
+    },
+    "nok": {
+      "option": "Russian"
+    },
+    "Proj": {
+      "option": "Russian"
+    },
+    "cyrillicencoding": {
+      "option": "Russian"
+    },
+    "cyrillictext": {
+      "option": "Russian"
+    },
+    "cyr": {
+      "option": "Russian"
+    },
+    "textcyrillic{}": {
+      "snippet": "textcyrillic{${1:text}}",
+      "option": "Russian"
+    },
+    "captionsrussian": {
+      "option": "Russian"
+    },
+    "daterussian": {
+      "option": "Russian"
+    },
+    "extrasrussian": {
+      "option": "Russian"
+    },
+    "noextrasrussian": {
+      "option": "Russian"
+    },
+    "CYRA": {
+      "option": "Russian"
+    },
+    "CYRB": {
+      "option": "Russian"
+    },
+    "CYRV": {
+      "option": "Russian"
+    },
+    "CYRG": {
+      "option": "Russian"
+    },
+    "CYRGUP": {
+      "option": "Russian"
+    },
+    "CYRD": {
+      "option": "Russian"
+    },
+    "CYRE": {
+      "option": "Russian"
+    },
+    "CYRIE": {
+      "option": "Russian"
+    },
+    "CYRZH": {
+      "option": "Russian"
+    },
+    "CYRZ": {
+      "option": "Russian"
+    },
+    "CYRI": {
+      "option": "Russian"
+    },
+    "CYRII": {
+      "option": "Russian"
+    },
+    "CYRYI": {
+      "option": "Russian"
+    },
+    "CYRISHRT": {
+      "option": "Russian"
+    },
+    "CYRK": {
+      "option": "Russian"
+    },
+    "CYRL": {
+      "option": "Russian"
+    },
+    "CYRM": {
+      "option": "Russian"
+    },
+    "CYRN": {
+      "option": "Russian"
+    },
+    "CYRO": {
+      "option": "Russian"
+    },
+    "CYRP": {
+      "option": "Russian"
+    },
+    "CYRR": {
+      "option": "Russian"
+    },
+    "CYRS": {
+      "option": "Russian"
+    },
+    "CYRT": {
+      "option": "Russian"
+    },
+    "CYRU": {
+      "option": "Russian"
+    },
+    "CYRF": {
+      "option": "Russian"
+    },
+    "CYRH": {
+      "option": "Russian"
+    },
+    "CYRC": {
+      "option": "Russian"
+    },
+    "CYRCH": {
+      "option": "Russian"
+    },
+    "CYRSH": {
+      "option": "Russian"
+    },
+    "CYRSHCH": {
+      "option": "Russian"
+    },
+    "CYRYU": {
+      "option": "Russian"
+    },
+    "CYRYA": {
+      "option": "Russian"
+    },
+    "CYRSFTSN": {
+      "option": "Russian"
+    },
+    "CYRERY": {
+      "option": "Russian"
+    },
+    "cyra": {
+      "option": "Russian"
+    },
+    "cyrb": {
+      "option": "Russian"
+    },
+    "cyrv": {
+      "option": "Russian"
+    },
+    "cyrg": {
+      "option": "Russian"
+    },
+    "cyrgup": {
+      "option": "Russian"
+    },
+    "cyrd": {
+      "option": "Russian"
+    },
+    "cyre": {
+      "option": "Russian"
+    },
+    "cyrie": {
+      "option": "Russian"
+    },
+    "cyrzh": {
+      "option": "Russian"
+    },
+    "cyrz": {
+      "option": "Russian"
+    },
+    "cyri": {
+      "option": "Russian"
+    },
+    "cyrii": {
+      "option": "Russian"
+    },
+    "cyryi": {
+      "option": "Russian"
+    },
+    "cyrishrt": {
+      "option": "Russian"
+    },
+    "cyrk": {
+      "option": "Russian"
+    },
+    "cyrl": {
+      "option": "Russian"
+    },
+    "cyrm": {
+      "option": "Russian"
+    },
+    "cyrn": {
+      "option": "Russian"
+    },
+    "cyro": {
+      "option": "Russian"
+    },
+    "cyrp": {
+      "option": "Russian"
+    },
+    "cyrr": {
+      "option": "Russian"
+    },
+    "cyrs": {
+      "option": "Russian"
+    },
+    "cyrt": {
+      "option": "Russian"
+    },
+    "cyru": {
+      "option": "Russian"
+    },
+    "cyrf": {
+      "option": "Russian"
+    },
+    "cyrh": {
+      "option": "Russian"
+    },
+    "cyrc": {
+      "option": "Russian"
+    },
+    "cyrch": {
+      "option": "Russian"
+    },
+    "cyrsh": {
+      "option": "Russian"
+    },
+    "cyrshch": {
+      "option": "Russian"
+    },
+    "cyryu": {
+      "option": "Russian"
+    },
+    "cyrya": {
+      "option": "Russian"
+    },
+    "cyrsftsn": {
+      "option": "Russian"
+    },
+    "cyrery": {
+      "option": "Russian"
+    },
+    "cdash": {
+      "option": "Russian"
+    },
+    "tocname": {
+      "option": "Russian"
+    },
+    "authorname": {
+      "option": "Russian"
+    },
+    "acronymname": {
+      "option": "Russian"
+    },
+    "lstlistingname": {
+      "option": "Russian"
+    },
+    "lstlistlistingname": {
+      "option": "Russian"
+    },
+    "notesname": {
+      "option": "Russian"
+    },
+    "nomname": {
+      "option": "Russian"
+    }
+  },
+  "envs": {
+    "OtherLanguage{}": {
+      "name": "OtherLanguage",
+      "snippet": "{${1:language}}"
+    },
+    "descriptionFB": {},
+    "enumerateFB": {},
+    "itemizeFB": {},
+    "listFB{}": {
+      "name": "listFB",
+      "snippet": "{${1:symbol}}"
+    },
+    "listORI{}": {
+      "name": "listORI",
+      "snippet": "{${1:symbol}}"
+    }
+  },
+  "options": [
+    "English",
+    "French",
+    "German",
+    "Italian",
+    "Portuguese",
+    "Brazilian",
+    "Spanish",
+    "Chinese",
+    "TChinese",
+    "Japanese",
+    "Russian"
+  ],
+  "keyvals": [
+    [
+      "ShowOptions",
+      "StandardLayout",
+      "GlobalLayoutFrench",
+      "IndentFirst",
+      "PartNameFull",
+      "ListItemsAsPar",
+      "StandardListSpacing",
+      "StandardItemizeEnv",
+      "StandardEnumerateEnv",
+      "StandardItemLabels",
+      "ItemLabels=",
+      "ItemLabeli=",
+      "ItemLabelii=",
+      "ItemLabeliii=",
+      "ItemLabeliv=",
+      "StandardLists",
+      "ListOldLayout",
+      "FrenchFootnotes",
+      "AutoSpaceFootnotes",
+      "AutoSpacePunctuation",
+      "ThinColonSpace",
+      "OriginalTypewriter",
+      "UnicodeNoBreakSpaces",
+      "og=",
+      "fg=",
+      "INGuillSpace",
+      "EveryParGuill=",
+      "EveryLineGuill=",
+      "InnerGuillSingle",
+      "ThinSpaceInFrenchNumbers",
+      "SmallCapsFigTabCaptions",
+      "CustomiseFigTabCaptions",
+      "OldFigTabCaptions",
+      "FrenchSuperscripts",
+      "LowercaseSuperscripts",
+      "SuppressWarning"
+    ]
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "includes": {
+    "pstricks": [],
+    "pst-plot": [],
+    "pst-math": [],
+    "pst-tools": [],
+    "pstricks-add": [],
+    "pst-xkey": [],
+    "iftex": [],
+    "luacode": []
+  },
+  "macros": {
+    "ChebyshevT": {},
+    "ChebyshevU": {},
+    "psPolynomial{}{}": {
+      "snippet": "psPolynomial{${1:x0}}{${2:x1}}"
+    },
+    "psPolynomial[]{}{}": {
+      "snippet": "psPolynomial[${3:options}]{${1:x start}}{${2:x end}}"
+    },
+    "psFourier{}{}": {
+      "snippet": "psFourier{${1:x0}}{${2:x1}}"
+    },
+    "psFourier[]{}{}": {
+      "snippet": "psFourier[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psBessel{}{}{}": {
+      "snippet": "psBessel{${1:order}}{${2:x0}}{${3:x1}}"
+    },
+    "psBessel[]{}{}{}": {
+      "snippet": "psBessel[${4:options}]{${1:order}}{${2:x0}}{${3:x1}}"
+    },
+    "psModBessel{}{}": {
+      "snippet": "psModBessel{${1:x0}}{${2:x1}}"
+    },
+    "psModBessel[]{}{}": {
+      "snippet": "psModBessel[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psSi{}{}": {
+      "snippet": "psSi{${1:x0}}{${2:x1}}"
+    },
+    "psSi[]{}{}": {
+      "snippet": "psSi[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "pssi{}{}": {
+      "snippet": "pssi{${1:x0}}{${2:x1}}"
+    },
+    "pssi[]{}{}": {
+      "snippet": "pssi[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psCi{}{}": {
+      "snippet": "psCi{${1:x0}}{${2:x1}}"
+    },
+    "psCi[]{}{}": {
+      "snippet": "psCi[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psci{}{}": {
+      "snippet": "psci{${1:x0}}{${2:x1}}"
+    },
+    "psci[]{}{}": {
+      "snippet": "psci[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psCumIntegral{}{}{}": {
+      "snippet": "psCumIntegral{${1:x0}}{${2:x1}}{${3:function}}"
+    },
+    "psCumIntegral[]{}{}{}": {
+      "snippet": "psCumIntegral[${4:options}]{${1:x0}}{${2:x1}}{${3:function}}"
+    },
+    "psGauss{}{}": {
+      "snippet": "psGauss{${1:x0}}{${2:x1}}"
+    },
+    "psGauss[]{}{}": {
+      "snippet": "psGauss[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psGaussI{}{}": {
+      "snippet": "psGaussI{${1:x0}}{${2:x1}}"
+    },
+    "psGaussI[]{}{}": {
+      "snippet": "psGaussI[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psBinomial{}{}": {
+      "snippet": "psBinomial{${1:<${3:N}> or <m,N> or <m,n,N>}}{${2:probability}}"
+    },
+    "psBinomial[]{}{}": {
+      "snippet": "psBinomial[${3:options}]{${1:<${4:N}> or <m,N> or <m,n,N>}}{${2:probability}}"
+    },
+    "psBinomialC{}{}": {
+      "snippet": "psBinomialC{${1:N}}{${2:probability}}"
+    },
+    "psBinomialC[]{}{}": {
+      "snippet": "psBinomialC[${3:options}]{${1:N}}{${2:probability}}"
+    },
+    "psBinomialN{}{}": {
+      "snippet": "psBinomialN{${1:N}}{${2:probability}}"
+    },
+    "psBinomialN[]{}{}": {
+      "snippet": "psBinomialN[${3:options}]{${1:N}}{${2:probability}}"
+    },
+    "psBinomialF{}{}": {
+      "snippet": "psBinomialF{${1:<${3:N}> or <m,N> or <m,n,N>}}{${2:probability}}"
+    },
+    "psBinomialF[]{}{}": {
+      "snippet": "psBinomialF[${3:options}]{${1:<${4:N}> or <m,N> or <m,n,N>}}{${2:probability}}"
+    },
+    "psBinomialFS{}{}": {
+      "snippet": "psBinomialFS{${1:<${3:N}> or <m,N> or <m,n,N>}}{${2:probability}}"
+    },
+    "psBinomialFS[]{}{}": {
+      "snippet": "psBinomialFS[${3:options}]{${1:<${4:N}> or <m,N> or <m,n,N>}}{${2:probability}}"
+    },
+    "psPoisson{}{}": {
+      "snippet": "psPoisson{${1:<${3:N}> or <M,N>}}{${2:lambda}}"
+    },
+    "psPoisson[]{}{}": {
+      "snippet": "psPoisson[${3:options}]{${1:<${4:N}> or <M,N>}}{${2:lambda}}"
+    },
+    "psGammaDist{}{}": {
+      "snippet": "psGammaDist{${1:x0}}{${2:x1}}"
+    },
+    "psGammaDist[]{}{}": {
+      "snippet": "psGammaDist[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psChiIIDist{}{}": {
+      "snippet": "psChiIIDist{${1:x0}}{${2:x1}}"
+    },
+    "psChiIIDist[]{}{}": {
+      "snippet": "psChiIIDist[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psTDist{}{}": {
+      "snippet": "psTDist{${1:x0}}{${2:x1}}"
+    },
+    "psTDist[]{}{}": {
+      "snippet": "psTDist[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psNonCentralTDist{}{}": {
+      "snippet": "psNonCentralTDist{${1:x0}}{${2:x1}}"
+    },
+    "psNonCentralTDist[]{}{}": {
+      "snippet": "psNonCentralTDist[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psFDist{}{}": {
+      "snippet": "psFDist{${1:x0}}{${2:x1}}"
+    },
+    "psFDist[]{}{}": {
+      "snippet": "psFDist[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psNonCentralFDist{}{}": {
+      "snippet": "psNonCentralFDist{${1:x0}}{${2:x1}}"
+    },
+    "psNonCentralFDist[]{}{}": {
+      "snippet": "psNonCentralFDist[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psBetaDist{}{}": {
+      "snippet": "psBetaDist{${1:x0}}{${2:x1}}"
+    },
+    "psBetaDist[]{}{}": {
+      "snippet": "psBetaDist[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psCauchy{}{}": {
+      "snippet": "psCauchy{${1:x0}}{${2:x1}}"
+    },
+    "psCauchy[]{}{}": {
+      "snippet": "psCauchy[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psCauchyI{}{}": {
+      "snippet": "psCauchyI{${1:x0}}{${2:x1}}"
+    },
+    "psCauchyI[]{}{}": {
+      "snippet": "psCauchyI[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psWeibull{}{}": {
+      "snippet": "psWeibull{${1:x0}}{${2:x1}}"
+    },
+    "psWeibull[]{}{}": {
+      "snippet": "psWeibull[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psWeibullI{}{}": {
+      "snippet": "psWeibullI{${1:x0}}{${2:x1}}"
+    },
+    "psWeibullI[]{}{}": {
+      "snippet": "psWeibullI[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psVasicek{}{}": {
+      "snippet": "psVasicek{${1:x0}}{${2:x1}}"
+    },
+    "psVasicek[]{}{}": {
+      "snippet": "psVasicek[${3:options}]{${1:x0}}{${2:x1}}"
+    },
+    "psLorenz{}": {
+      "snippet": "psLorenz{${1:y data}}"
+    },
+    "psLorenz<>{}": {
+      "snippet": "psLorenz<${2:x data}>{${1:y data}}"
+    },
+    "psLorenz[]{}": {
+      "snippet": "psLorenz[${2:options}]{${1:y data}}"
+    },
+    "psLorenz[]<>{}": {
+      "snippet": "psLorenz[${2:options}]<${3:x data}>{${1:y data}}"
+    },
+    "psLorenz*{}": {
+      "snippet": "psLorenz*{${1:y data}}"
+    },
+    "psLorenz*<>{}": {
+      "snippet": "psLorenz*<${2:x data}>{${1:y data}}"
+    },
+    "psLorenz*[]{}": {
+      "snippet": "psLorenz*[${2:options}]{${1:y data}}"
+    },
+    "psLorenz*[]<>{}": {
+      "snippet": "psLorenz*[${2:options}]<${3:x data}>{${1:y data}}"
+    },
+    "psLame{}": {
+      "snippet": "psLame{${1:r}}"
+    },
+    "psLame[]{}": {
+      "snippet": "psLame[${2:options}]{${1:r}}"
+    },
+    "cplotstyle": {},
+    "psCplot{}{}{}{}": {
+      "snippet": "psCplot{${1:x0}}{${2:x1}}{${3:vars}}{${4:function}}"
+    },
+    "PSTfuncLoaded": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

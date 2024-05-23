@@ -1,0 +1,229 @@
+{
+  "includes": {},
+  "macros": {
+    "newlist{}{}{}": {
+      "snippet": "newlist{${1:name}}{${2:type}}{${3:max-depth}}"
+    },
+    "renewlist{}{}{}": {
+      "snippet": "renewlist{${1:name}}{${2:type}}{${3:max-depth}}"
+    },
+    "setlist{}": {
+      "snippet": "setlist{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "setlist*{}": {
+      "snippet": "setlist*{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "setlist[]{}": {
+      "snippet": "setlist[${2:names, levels}]{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "setlist*[]{}": {
+      "snippet": "setlist*[${2:names, levels}]{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "restartlist{}": {
+      "snippet": "restartlist{${1:list name}}"
+    },
+    "EnumitemId": {},
+    "SetLabelAlign{}{}": {
+      "snippet": "SetLabelAlign{${1:value}}{${2:commands}}"
+    },
+    "labelindent": {},
+    "SetEnumerateShortLabel{}{}": {
+      "snippet": "SetEnumerateShortLabel{${1:key}}{${2:replacement}}"
+    },
+    "setlistdepth{}": {
+      "snippet": "setlistdepth{${1:integer}}"
+    },
+    "AddEnumerateCounter{}{}{}": {
+      "snippet": "AddEnumerateCounter{${1:LaTeX-cmd}}{${2:internal-cmd}}{${3:widest label}}"
+    },
+    "AddEnumerateCounter*{}{}{}": {
+      "snippet": "AddEnumerateCounter*{${1:LaTeX-cmd}}{${2:internal-cmd}}{${3:integer}}"
+    },
+    "SetEnumitemKey{}{}": {
+      "snippet": "SetEnumitemKey{${1:key}}{${2:replacement options}}"
+    },
+    "SetEnumitemValue{}{}{}": {
+      "snippet": "SetEnumitemValue{${1:key}}{${2:string-value}}{${3:replacement}}"
+    },
+    "SetEnumitemSize{}{}": {
+      "snippet": "SetEnumitemSize{${1:name}}{${2:selector}}"
+    },
+    "DrawEnumitemLabel": {}
+  },
+  "envs": {
+    "enumerate*": {
+      "option": "inline"
+    },
+    "enumerate*[]": {
+      "name": "enumerate*",
+      "snippet": "[${1:options}]",
+      "option": "inline",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "itemize*": {
+      "option": "inline"
+    },
+    "itemize*[]": {
+      "name": "itemize*",
+      "snippet": "[${1:options}]",
+      "option": "inline",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "description*": {
+      "option": "inline"
+    },
+    "description*[]": {
+      "name": "description*",
+      "snippet": "[${1:options}]",
+      "option": "inline",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "enumerate[]": {
+      "name": "enumerate",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "itemize[]": {
+      "name": "itemize",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "description[]": {
+      "name": "description",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [
+    "shortlabels",
+    "inline",
+    "sizes",
+    "ignoredisplayed",
+    "includedisplayed",
+    "series=override",
+    "loadonly"
+  ],
+  "keyvals": [
+    [
+      "topsep=",
+      "partopsep=",
+      "parsep=",
+      "itemsep=",
+      "leftmargin=",
+      "rightmargin=",
+      "listparindent=",
+      "labelwidth=",
+      "labelsep=",
+      "itemindent=",
+      "label=${1:commands}",
+      "label*=${1:commands}",
+      "ref=${1:commands}",
+      "font=${1:commands}",
+      "format=${1:commands}",
+      "align=",
+      "labelindent=",
+      "left=${1:labelindent}",
+      "left=${1:labelindent} .. ${2:leftmargin}",
+      "widest",
+      "widest=${1:string}",
+      "widest*=${1:integer}",
+      "labelsep*=",
+      "labelindent*=",
+      "start=${1:integer}",
+      "resume",
+      "resume=${1:series name}",
+      "resume*",
+      "resume*=${1:series name}",
+      "series=${1:series name}",
+      "beginpenalty=${1:integer}",
+      "midpenalty=${1:integer}",
+      "endpenalty=${1:integer}",
+      "before=${1:code}",
+      "before*=${1:code}",
+      "after=${1:code}",
+      "after*=${1:code}",
+      "first=${1:code}",
+      "first*=${1:code}",
+      "style=",
+      "noitemsep",
+      "nosep",
+      "wide",
+      "wide=${1:parindent}",
+      "itemjoin=${1:string}",
+      "itemjoin*=${1:string}",
+      "afterlabel=${1:string}",
+      "mode=",
+      "%enumitemkey"
+    ],
+    [
+      "A",
+      "a",
+      "I",
+      "i",
+      "1",
+      "topsep=",
+      "partopsep=",
+      "parsep=",
+      "itemsep=",
+      "leftmargin=",
+      "rightmargin=",
+      "listparindent=",
+      "labelwidth=",
+      "labelsep=",
+      "itemindent=",
+      "label=${1:commands}",
+      "label*=${1:commands}",
+      "ref=${1:commands}",
+      "font=${1:commands}",
+      "format=${1:commands}",
+      "align=",
+      "labelindent=",
+      "left=${1:labelindent}",
+      "left=${1:labelindent} .. ${2:leftmargin}",
+      "widest",
+      "widest=${1:string}",
+      "widest*=${1:integer}",
+      "labelsep*=",
+      "labelindent*=",
+      "start=${1:integer}",
+      "resume",
+      "resume=${1:series name}",
+      "resume*",
+      "resume*=${1:series name}",
+      "series=${1:series name}",
+      "beginpenalty=${1:integer}",
+      "midpenalty=${1:integer}",
+      "endpenalty=${1:integer}",
+      "before=${1:code}",
+      "before*=${1:code}",
+      "after=${1:code}",
+      "after*=${1:code}",
+      "first=${1:code}",
+      "first*=${1:code}",
+      "style=",
+      "noitemsep",
+      "nosep",
+      "wide",
+      "wide=${1:parindent}",
+      "itemjoin=${1:string}",
+      "itemjoin*=${1:string}",
+      "afterlabel=${1:string}",
+      "mode=",
+      "%enumitemkey"
+    ]
+  ]
+}

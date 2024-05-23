@@ -1,0 +1,73 @@
+{
+  "includes": {},
+  "macros": {
+    "setbeamercolor{}{}": {
+      "snippet": "setbeamercolor{${1:beamer-color name}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "setbeamercolor*{}{}": {
+      "snippet": "setbeamercolor*{${1:beamer-color name}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "ifbeamercolorempty{}{}{}": {
+      "snippet": "ifbeamercolorempty{${1:beamer-color name}}{${2:if undefined}}{${3:if defined}}"
+    },
+    "ifbeamercolorempty[]{}{}{}": {
+      "snippet": "ifbeamercolorempty[${4:fg or bg}]{${1:beamer-color name}}{${2:if undefined}}{${3:if defined}}"
+    },
+    "usebeamercolor{}": {
+      "snippet": "usebeamercolor{${1:beamer-color name}}"
+    },
+    "usebeamercolor[]{}": {
+      "snippet": "usebeamercolor[${2:fg or bg}]{${1:beamer-color name}}"
+    },
+    "usebeamercolor*{}": {
+      "snippet": "usebeamercolor*{${1:beamer-color name}}"
+    },
+    "usebeamercolor*[]{}": {
+      "snippet": "usebeamercolor*[${2:fg or bg}]{${1:beamer-color name}}"
+    },
+    "donotcoloroutermaths": {},
+    "donotcolorouterdisplaymaths": {}
+  },
+  "envs": {
+    "beamercolorbox{}": {
+      "name": "beamercolorbox",
+      "snippet": "{${1:beamer color}}"
+    },
+    "beamercolorbox[]{}": {
+      "name": "beamercolorbox",
+      "snippet": "[${2:options}]{${1:beamer color}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "fg=",
+      "bg=",
+      "parent={${1:parent beamer colors}}",
+      "use=${1:beamer color}"
+    ],
+    [
+      "wd=",
+      "dp=",
+      "ht=",
+      "left",
+      "right",
+      "center",
+      "leftskip=",
+      "rightskip=",
+      "sep=",
+      "colsep=",
+      "colsep*=",
+      "shadow",
+      "rounded",
+      "ignorebg",
+      "vmode"
+    ]
+  ]
+}

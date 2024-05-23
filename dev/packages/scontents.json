@@ -1,0 +1,131 @@
+{
+  "includes": {
+    "l3keys2e": []
+  },
+  "macros": {
+    "setupsc{}": {
+      "snippet": "setupsc{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "newenvsc{}": {
+      "snippet": "newenvsc{${1:envname}}"
+    },
+    "newenvsc{}[]": {
+      "snippet": "newenvsc{${1:envname}}[${2:initial keys}]"
+    },
+    "Scontents{}": {
+      "snippet": "Scontents{${1:argument}}"
+    },
+    "Scontents[]{}": {
+      "snippet": "Scontents[${2:options}]{${1:argument}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "Scontents*{}": {
+      "snippet": "Scontents*{${1:argument}}"
+    },
+    "Scontents*[]{}": {
+      "snippet": "Scontents*[${2:options}]{${1:argument}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "getstored{}": {
+      "snippet": "getstored{${1:seq name}}"
+    },
+    "getstored[]{}": {
+      "snippet": "getstored[${2:index}]{${1:seq name}}"
+    },
+    "foreachsc{}": {
+      "snippet": "foreachsc{${1:seq name}}"
+    },
+    "foreachsc[]{}": {
+      "snippet": "foreachsc[${2:options}]{${1:seq name}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "typestored{}": {
+      "snippet": "typestored{${1:seq name}}"
+    },
+    "typestored[]{}": {
+      "snippet": "typestored[${2:options}]{${1:seq name}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "meaningsc{}": {
+      "snippet": "meaningsc{${1:seq name}}"
+    },
+    "meaningsc[]{}": {
+      "snippet": "meaningsc[${2:options}]{${1:seq name}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "countsc{}": {
+      "snippet": "countsc{${1:seq name}}"
+    },
+    "cleanseqsc{}": {
+      "snippet": "cleanseqsc{${1:seq name}}"
+    },
+    "ScontentsFileDate": {},
+    "ScontentsFileVersion": {},
+    "ScontentsFileDescription": {}
+  },
+  "envs": {
+    "scontents": {},
+    "scontents[]": {
+      "name": "scontents",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "verbatimsc": {}
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "store-env=${1:seq name}",
+      "store-cmd=${1:seq name}",
+      "print-env",
+      "print-cmd",
+      "print-all",
+      "store-all=${1:seq name}",
+      "overwrite",
+      "width-tab=${1:integer}",
+      "force-eol",
+      "verb-font=${1:font family}"
+    ],
+    [
+      "store-cmd=${1:seq name}",
+      "print-cmd",
+      "force-eol"
+    ],
+    [
+      "store-cmd=${1:seq name}",
+      "print-cmd",
+      "write-cmd=${1:file.ext}",
+      "write-out=${1:file.ext}",
+      "overwrite",
+      "force-eol"
+    ],
+    [
+      "sep={${1:code}}",
+      "step=${1:integer}",
+      "start=${1:integer}",
+      "stop=${1:integer}",
+      "before={${1:code}}",
+      "after={${1:code}}",
+      "wrapper={${1:code}}"
+    ],
+    [
+      "width-tab=${1:integer}"
+    ],
+    [
+      "store-env=${1:seq name}",
+      "print-env",
+      "write-env=${1:file.ext}",
+      "write-out=${1:file.ext}",
+      "overwrite",
+      "force-eol"
+    ]
+  ]
+}

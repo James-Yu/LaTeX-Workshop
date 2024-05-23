@@ -1,0 +1,323 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "xkeyval": [],
+    "trimspaces": [],
+    "colortbl": [],
+    "xcolor": [],
+    "booktabs": []
+  },
+  "macros": {
+    "NewKeyValTable{}{}": {
+      "snippet": "NewKeyValTable{${1:table name}}{${2:colspecs}}"
+    },
+    "NewKeyValTable[]{}{}": {
+      "snippet": "NewKeyValTable[${3:options}]{${1:table name}}{${2:colspecs}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "NewKeyValTable{}{}[]": {
+      "snippet": "NewKeyValTable{${1:table name}}{${2:colspecs}}[${3:layout}]"
+    },
+    "NewKeyValTable[]{}{}[]": {
+      "snippet": "NewKeyValTable[${3:options}]{${1:table name}}{${2:colspecs}}[${4:layout}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Row{}": {
+      "snippet": "Row{${1:col=text,...}}"
+    },
+    "Row[]{}": {
+      "snippet": "Row[${2:options}]{${1:col=text,...}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "NewCollectedTable{}{}": {
+      "snippet": "NewCollectedTable{${1:collection name}}{${2:table name}}"
+    },
+    "CollectRow{}{}": {
+      "snippet": "CollectRow{${1:collection name}}{${2:col=text,...}}"
+    },
+    "CollectRow[]{}{}": {
+      "snippet": "CollectRow[${3:options}]{${1:collection name}}{${2:col=text,...}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "ShowCollectedTable{}": {
+      "snippet": "ShowCollectedTable{${1:collection name}}"
+    },
+    "ShowCollectedTable[]{}": {
+      "snippet": "ShowCollectedTable[${2:options}]{${1:collection name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ShowKeyValTableFile{}{}": {
+      "snippet": "ShowKeyValTableFile{${1:table name}}{${2:file}}"
+    },
+    "ShowKeyValTableFile[]{}{}": {
+      "snippet": "ShowKeyValTableFile[${3:options}]{${1:table name}}{${2:file}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "AddKeyValRow{}{}": {
+      "snippet": "AddKeyValRow{${1:table name}}{${2:col=text,...}}"
+    },
+    "AddKeyValRow{}[]{}": {
+      "snippet": "AddKeyValRow{${1:table name}}[${2:options}]{${3:col=text,...}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "ShowKeyValTable{}": {
+      "snippet": "ShowKeyValTable{${1:table name}}"
+    },
+    "ShowKeyValTable[]{}": {
+      "snippet": "ShowKeyValTable[${2:options}]{${1:table name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "thekvtRow": {},
+    "thekvtTypeRow": {},
+    "thekvtTotalRow": {},
+    "kvtLabel{}{}": {
+      "snippet": "kvtLabel{${1:counter}}{${2:label}}"
+    },
+    "kvtLabel[]{}{}": {
+      "snippet": "kvtLabel[${3:options}]{${1:counter}}{${2:label}}"
+    },
+    "kvtDeclareTableMacros{}": {
+      "snippet": "kvtDeclareTableMacros{${1:macro list}}"
+    },
+    "kvtDeclareTableCounters{}": {
+      "snippet": "kvtDeclareTableCounters{${1:counter list}}"
+    },
+    "kvtDeclareCtrFormatters{}": {
+      "snippet": "kvtDeclareCtrFormatters{${1:macro list}}"
+    },
+    "kvtNewTableStyle{}{}": {
+      "snippet": "kvtNewTableStyle{${1:name}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "kvtRenewTableStyle{}{}": {
+      "snippet": "kvtRenewTableStyle{${1:name}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "kvtStrutted{}": {
+      "snippet": "kvtStrutted{${1:arg}}"
+    },
+    "kvtStrutted[]{}": {
+      "snippet": "kvtStrutted[${2:inner}]{${1:arg}}"
+    },
+    "kvtNewRowStyle{}{}": {
+      "snippet": "kvtNewRowStyle{${1:name}}{${2:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "kvtRenewRowStyle{}{}": {
+      "snippet": "kvtRenewRowStyle{${1:name}}{${2:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "MidRule": {},
+    "MidRule[]": {
+      "snippet": "MidRule[${1:width}]"
+    },
+    "CMidRule{}": {
+      "snippet": "CMidRule{${1:columns}}"
+    },
+    "CMidRule[]{}": {
+      "snippet": "CMidRule[${2:width}]{${1:columns}}"
+    },
+    "kvtRuleTop{}": {
+      "snippet": "kvtRuleTop{${1:color}}"
+    },
+    "kvtRuleTop[]{}": {
+      "snippet": "kvtRuleTop[${2:width}]{${1:color}}"
+    },
+    "kvtRuleBottom{}": {
+      "snippet": "kvtRuleBottom{${1:color}}"
+    },
+    "kvtRuleBottom[]{}": {
+      "snippet": "kvtRuleBottom[${2:width}]{${1:color}}"
+    },
+    "kvtRuleMid{}{}": {
+      "snippet": "kvtRuleMid{${1:color}}{${2:color}}"
+    },
+    "kvtRuleMid[]{}{}": {
+      "snippet": "kvtRuleMid[${3:width}]{${1:color}}{${2:color}}"
+    },
+    "kvtRuleCMid{}{}{}": {
+      "snippet": "kvtRuleCMid{${1:a-b}}{${2:color}}{${3:color}}"
+    },
+    "kvtRulesCMid{}{}{}": {
+      "snippet": "kvtRulesCMid{${1:rlist}}{${2:color}}{${3:color}}"
+    },
+    "kvtRulesCMid[]{}{}{}": {
+      "snippet": "kvtRulesCMid[${4:width}]{${1:rlist}}{${2:color}}{${3:color}}"
+    },
+    "kvtTableOpt{}": {
+      "snippet": "kvtTableOpt{${1:option}}"
+    },
+    "kvtSet{}": {
+      "snippet": "kvtSet{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "metatblRegisterEnv{}{}": {
+      "snippet": "metatblRegisterEnv{${1:envname}}{${2:properties}}"
+    },
+    "metatblRegistered{}{}{}": {
+      "snippet": "metatblRegistered{${1:envname}}{${2:true}}{${3:false}}"
+    },
+    "metatblIsLong{}{}{}": {
+      "snippet": "metatblIsLong{${1:envname}}{${2:true}}{${3:false}}"
+    },
+    "metatblIsTabu{}{}{}": {
+      "snippet": "metatblIsTabu{${1:envname}}{${2:true}}{${3:false}}"
+    },
+    "metatblHasWidth{}{}{}": {
+      "snippet": "metatblHasWidth{${1:envname}}{${2:true}}{${3:false}}"
+    },
+    "metatblHasCaption{}{}{}": {
+      "snippet": "metatblHasCaption{${1:envname}}{${2:true}}{${3:false}}"
+    },
+    "metatblCanVAlign{}{}{}": {
+      "snippet": "metatblCanVAlign{${1:envname}}{${2:true}}{${3:false}}"
+    },
+    "metatblCanHAlign{}{}{}": {
+      "snippet": "metatblCanHAlign{${1:envname}}{${2:true}}{${3:false}}"
+    },
+    "metatblUsePackage{}": {
+      "snippet": "metatblUsePackage{${1:envnames}}"
+    },
+    "metatblRequire{}": {
+      "snippet": "metatblRequire{${1:envnames}}"
+    },
+    "metatblAtEnd{}{}": {
+      "snippet": "metatblAtEnd{${1:envname}}{${2:code}}"
+    }
+  },
+  "envs": {
+    "KeyValTable{}": {
+      "name": "KeyValTable",
+      "snippet": "{${1:table name}}"
+    },
+    "KeyValTable[]{}": {
+      "name": "KeyValTable",
+      "snippet": "[${2:options}]{${1:table name}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "KeyValTableContent{}": {
+      "name": "KeyValTableContent",
+      "snippet": "{${1:table name}}"
+    }
+  },
+  "options": [
+    "compat=${1:version}"
+  ],
+  "keyvals": [
+    [
+      "backend=",
+      "shape=",
+      "width=",
+      "valign=",
+      "halign=",
+      "showhead",
+      "showrules",
+      "norules",
+      "headalign=${1:coltype}",
+      "headbg=",
+      "headformat=${1:cmd}",
+      "rowbg=",
+      "norowbg",
+      "nobg",
+      "style=${1:list of style names}",
+      "captionpos="
+    ],
+    [
+      "uncounted",
+      "hidden",
+      "align=${1:coltype}",
+      "bg=",
+      "format=${1:cmd}",
+      "format*=${1:cmd}",
+      "format!=${1:cmd}",
+      "headlike",
+      "above=",
+      "below=",
+      "around=",
+      "style=${1:list of style names}",
+      "expandonce",
+      "expand"
+    ],
+    [
+      "align=${1:coltype}",
+      "default=${1:content}",
+      "format=${1:single-arg macro}",
+      "head=${1:content}",
+      "hidden",
+      "Row/uncounted",
+      "Row/hidden",
+      "Row/align=${1:coltype}",
+      "Row/bg=",
+      "Row/format=${1:cmd}",
+      "Row/format*=${1:cmd}",
+      "Row/format!=${1:cmd}",
+      "Row/headlike",
+      "Row/above=",
+      "Row/below=",
+      "Row/around=",
+      "Row/style=${1:list of style names}",
+      "Row/expandonce",
+      "Row/expand",
+      "HeadCell/align=${1:coltype}",
+      "HeadCell/head=${1:text}",
+      "HeadCell/underline",
+      "ColGroup/span=${1:+ separated columns}",
+      "ColGroup/align=${1:coltype}",
+      "ColGroup/format=${1:single-arg macro}",
+      "backend=",
+      "shape=",
+      "width=",
+      "valign=",
+      "halign=",
+      "showhead",
+      "showrules",
+      "norules",
+      "headalign=${1:coltype}",
+      "headbg=",
+      "headformat=${1:cmd}",
+      "rowbg=",
+      "norowbg",
+      "nobg",
+      "style=${1:list of style names}",
+      "captionpos="
+    ],
+    [
+      "resume",
+      "resume*",
+      "caption=${1:text}",
+      "caption/lot=${1:text}",
+      "caption/alt=${1:text}",
+      "label=",
+      "backend=",
+      "shape=",
+      "width=",
+      "valign=",
+      "halign=",
+      "showhead",
+      "showrules",
+      "norules",
+      "headalign=${1:coltype}",
+      "headbg=",
+      "headformat=${1:cmd}",
+      "rowbg=",
+      "norowbg",
+      "nobg",
+      "style=${1:list of style names}",
+      "captionpos="
+    ]
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "includes": {
+    "tikz": [],
+    "pgfcalendar": [],
+    "tikzlibrarybackgrounds": [],
+    "tikzlibrarycalc": [],
+    "tikzlibrarypatterns": [],
+    "tikzlibrarypositioning": [],
+    "tikzlibraryshapes.geometric": []
+  },
+  "macros": {
+    "ganttset{}": {
+      "snippet": "ganttset{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "newgantttimeslotformat{}{}": {
+      "snippet": "newgantttimeslotformat{${1:name}}{${2:converter code}}"
+    },
+    "ganttnewline": {},
+    "ganttnewline[]": {
+      "snippet": "ganttnewline[${1:TikZ options}]"
+    },
+    "ganttalignnewline": {},
+    "gantttitle{}{}": {
+      "snippet": "gantttitle{${1:label}}{${2:number of time slots}}"
+    },
+    "gantttitle[]{}{}": {
+      "snippet": "gantttitle[${3:options}]{${1:label}}{${2:number of time slots}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "gantttitlelist{}{}": {
+      "snippet": "gantttitlelist{${1:pgffor list}}{${2:length of each element}}"
+    },
+    "gantttitlelist[]{}{}": {
+      "snippet": "gantttitlelist[${3:options}]{${1:pgffor list}}{${2:length of each element}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "gantttitlecalendar{}": {
+      "snippet": "gantttitlecalendar{${1:calendar lines}}"
+    },
+    "gantttitlecalendar[]{}": {
+      "snippet": "gantttitlecalendar[${2:options}]{${1:calendar lines}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "gantttitlecalendar*{}{}{}": {
+      "snippet": "gantttitlecalendar*{${1:start tss}}{${2:end tss}}{${3:calendar lines}}"
+    },
+    "gantttitlecalendar*[]{}{}{}": {
+      "snippet": "gantttitlecalendar*[${4:options}]{${1:start tss}}{${2:end tss}}{${3:calendar lines}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "currentweek": {},
+    "startyear": {},
+    "startmonth": {},
+    "startday": {},
+    "ganttvrule{}{}": {
+      "snippet": "ganttvrule{${1:label}}{${2:tss}}"
+    },
+    "ganttvrule[]{}{}": {
+      "snippet": "ganttvrule[${3:options}]{${1:label}}{${2:tss}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ganttbar{}{}{}": {
+      "snippet": "ganttbar{${1:label}}{${2:start tss}}{${3:end tss}}"
+    },
+    "ganttbar[]{}{}{}": {
+      "snippet": "ganttbar[${4:options}]{${1:label}}{${2:start tss}}{${3:end tss}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ganttgroup{}{}{}": {
+      "snippet": "ganttgroup{${1:label}}{${2:start tss}}{${3:end tss}}"
+    },
+    "ganttgroup[]{}{}{}": {
+      "snippet": "ganttgroup[${4:options}]{${1:label}}{${2:start tss}}{${3:end tss}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ganttmilestone{}{}": {
+      "snippet": "ganttmilestone{${1:label}}{${2:tss}}"
+    },
+    "ganttmilestone[]{}{}": {
+      "snippet": "ganttmilestone[${3:options}]{${1:label}}{${2:tss}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ganttlinkedbar{}{}{}": {
+      "snippet": "ganttlinkedbar{${1:label}}{${2:start tss}}{${3:end tss}}"
+    },
+    "ganttlinkedbar[]{}{}{}": {
+      "snippet": "ganttlinkedbar[${4:options}]{${1:label}}{${2:start tss}}{${3:end tss}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ganttlinkedgroup{}{}{}": {
+      "snippet": "ganttlinkedgroup{${1:label}}{${2:start tss}}{${3:end tss}}"
+    },
+    "ganttlinkedgroup[]{}{}{}": {
+      "snippet": "ganttlinkedgroup[${4:options}]{${1:label}}{${2:start tss}}{${3:end tss}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ganttlinkedmilestone{}{}": {
+      "snippet": "ganttlinkedmilestone{${1:label}}{${2:tss}}"
+    },
+    "ganttlinkedmilestone[]{}{}": {
+      "snippet": "ganttlinkedmilestone[${3:options}]{${1:label}}{${2:tss}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "newganttchartelement{}{}": {
+      "snippet": "newganttchartelement{${1:name}}{${2:new default keyvals}}"
+    },
+    "newganttchartelement*{}{}": {
+      "snippet": "newganttchartelement*{${1:name}}{${2:new default keyvals}}"
+    },
+    "ganttlink{}{}": {
+      "snippet": "ganttlink{${1:start element name}}{${2:end element name}}"
+    },
+    "ganttlink[]{}{}": {
+      "snippet": "ganttlink[${3:options}]{${1:start element name}}{${2:end element name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "newganttlinktype{}{}": {
+      "snippet": "newganttlinktype{${1:type}}{${2:TikZ code}}"
+    },
+    "ganttsetstartanchor{}": {
+      "snippet": "ganttsetstartanchor{${1:anchor}}"
+    },
+    "ganttsetendanchor{}": {
+      "snippet": "ganttsetendanchor{${1:anchor}}"
+    },
+    "xLeft": {},
+    "yUpper": {},
+    "xRight": {},
+    "yLower": {},
+    "ganttlinklabel": {},
+    "ganttvalueof{}": {
+      "snippet": "ganttvalueof{${1:key}}"
+    },
+    "newganttlinktypealias{}{}": {
+      "snippet": "newganttlinktypealias{${1:new type}}{${2:existing type}}"
+    },
+    "setganttlinklabel{}{}": {
+      "snippet": "setganttlinklabel{${1:type}}{${2:label}}"
+    },
+    "endofdecade": {},
+    "querydecade": {}
+  },
+  "envs": {
+    "ganttchart{}{}": {
+      "name": "ganttchart",
+      "snippet": "{${1:start tss}}{${2:end tss}}"
+    },
+    "ganttchart[]{}{}": {
+      "name": "ganttchart",
+      "snippet": "[${3:options}]{${1:start tss}}{${2:end tss}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "time slot format=",
+      "time slot format/base century=${1:year}",
+      "time slot format/start date=${1:ISO-standard date}",
+      "canvas/.style={${1:TikZ options}}",
+      "x unit=",
+      "y unit title=",
+      "y unit chart=",
+      "expand chart=",
+      "hgrid=",
+      "hgrid style/.style={${1:TikZ options}}",
+      "vgrid=",
+      "today=${1:tss}",
+      "today offset=${1:number}",
+      "today rule/.style={${1:TikZ options}}",
+      "today label=${1:text}",
+      "today label font=${1:font commands}",
+      "today label node/.style={${1:TikZ options}}",
+      "newline shortcut",
+      "title list options={${1:pgffor options}}",
+      "calendar week text={${1:format}}",
+      "time slot unit=",
+      "title/.style={${1:TikZ options}}",
+      "title label font=${1:font commands}",
+      "title label node/.style={${1:TikZ options}}",
+      "title label text=${1:text}",
+      "title left shift=${1:factor}",
+      "title right shift=${1:factor}",
+      "title top shift=${1:factor}",
+      "title height=${1:factor}",
+      "include title in canvas",
+      "vrule offset=${1:number}",
+      "vrule/.style={${1:TikZ options}}",
+      "vrule label font=${1:font commands}",
+      "vrule label node/.style={${1:TikZ options}}",
+      "chart element start border=",
+      "bar/.style={${1:TikZ options}}",
+      "group/.style={${1:TikZ options}}",
+      "milestone/.style={${1:TikZ options}}",
+      "bar label text=${1:text}",
+      "group label text=${1:text}",
+      "milestone label text=${1:text}",
+      "bar label font=${1:font commands}",
+      "group label font=${1:font commands}",
+      "milestone label font=${1:font commands}",
+      "bar label node/.style={${1:TikZ options}}",
+      "group label node/.style={${1:TikZ options}}",
+      "milestone label node/.style={${1:TikZ options}}",
+      "inline",
+      "bar inline label anchor=${1:anchor}",
+      "group inline label anchor=${1:anchor}",
+      "milestone inline label anchor=${1:anchor}",
+      "bar inline label node/.style={${1:TikZ options}}",
+      "group inline label node/.style={${1:TikZ options}}",
+      "milestone inline label node/.style={${1:TikZ options}}",
+      "bar left shift=${1:factor}",
+      "bar right shift=${1:factor}",
+      "bar top shift=${1:factor}",
+      "bar height=${1:factor}",
+      "group left shift=${1:factor}",
+      "group right shift=${1:factor}",
+      "group top shift=${1:factor}",
+      "group height=${1:factor}",
+      "milestone left shift=${1:factor}",
+      "milestone right shift=${1:factor}",
+      "milestone top shift=${1:factor}",
+      "milestone height=${1:factor}",
+      "group right peak tip position=${1:fraction}",
+      "group right peak width=${1:factor}",
+      "group right peak height=${1:factor}",
+      "group left peak tip position=${1:fraction}",
+      "group left peak width=${1:factor}",
+      "group left peak height=${1:factor}",
+      "group peaks tip position=${1:fraction}",
+      "group peaks width=${1:factor}",
+      "group peaks height=${1:factor}",
+      "progress=",
+      "bar incomplete/.style={${1:TikZ options}}",
+      "group incomplete/.style={${1:TikZ options}}",
+      "milestone incomplete/.style={${1:TikZ options}}",
+      "progress label text=${1:text}",
+      "bar progress label anchor=${1:anchor}",
+      "bar progress label font=${1:font commands}",
+      "bar progress label node/.style={${1:TikZ options}}",
+      "group progress label anchor=${1:anchor}",
+      "group progress label font=${1:font commands}",
+      "group progress label node/.style={${1:TikZ options}}",
+      "milestone progress label anchor=${1:anchor}",
+      "milestone progress label font=${1:font commands}",
+      "milestone progress label node/.style={${1:TikZ options}}",
+      "on top fraction=${1:fraction}",
+      "on bottom fraction=${1:fraction}",
+      "on left fraction=${1:fraction}",
+      "on right fraction=${1:fraction}",
+      "name=${1:name}",
+      "link/.style={${1:TikZ options}}",
+      "link type=",
+      "link mid=${1:factor}",
+      "link bulge=${1:factor}",
+      "link tolerance=${1:factor}",
+      "link label=${1:text}",
+      "link label font=${1:font commands}",
+      "link label node/.style={${1:TikZ options}}"
+    ]
+  ]
+}

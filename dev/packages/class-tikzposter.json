@@ -1,0 +1,337 @@
+{
+  "includes": {
+    "xkeyval": [],
+    "calc": [],
+    "ifthen": [],
+    "ae": [],
+    "xstring": [],
+    "etoolbox": [],
+    "tikz": [],
+    "tikzlibraryshapes": [],
+    "tikzlibrarydecorations": [],
+    "tikzlibraryshadows": [],
+    "tikzlibrarybackgrounds": [],
+    "tikzlibrarycalc": [],
+    "tikzlibraryfadings": [],
+    "tikzlibraryfit": [],
+    "tikzlibrarydecorations.pathmorphing": [],
+    "class-extarticle": [],
+    "geometry": []
+  },
+  "macros": {
+    "titlewidth": {},
+    "titlelinewidth": {},
+    "titleroundedcorners": {},
+    "titleinnersep": {},
+    "titletotopverticalspace": {},
+    "titleheight": {},
+    "titlegraphicheight": {},
+    "titleposleft": {},
+    "titleposright": {},
+    "titlepostop": {},
+    "titleposbottom": {},
+    "colwidth": {},
+    "subcolwidth": {},
+    "blocktitleinnersep": {},
+    "blockbodyinnersep": {},
+    "ifBlockHasTitle": {},
+    "BlockHasTitletrue": {},
+    "BlockHasTitlefalse": {},
+    "blockroundedcorners": {},
+    "blocklinewidth": {},
+    "innerblocktitleinnersep": {},
+    "innerblockbodyinnersep": {},
+    "ifInnerblockHasTitle": {},
+    "InnerblockHasTitletrue": {},
+    "InnerblockHasTitlefalse": {},
+    "innerblockroundedcorners": {},
+    "innerblocklinewidth": {},
+    "noteinnersep": {},
+    "ifNoteHasConnection": {},
+    "NoteHasConnectiontrue": {},
+    "NoteHasConnectionfalse": {},
+    "noterotate": {},
+    "noteroundedcorners": {},
+    "notelinewidth": {},
+    "definebackgroundstyle{}{}": {
+      "snippet": "definebackgroundstyle{${1:name}}{${2:background commands}}"
+    },
+    "usebackgroundstyle{}": {
+      "snippet": "usebackgroundstyle{${1:background style}}"
+    },
+    "definetitlestyle{}{}{}": {
+      "snippet": "definetitlestyle{${1:name}}{${2:options}}{${3:title commands}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "usetitlestyle{}": {
+      "snippet": "usetitlestyle{${1:title style}}"
+    },
+    "usetitlestyle[]{}": {
+      "snippet": "usetitlestyle[${2:options}]{${1:title style}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "maketitle[]": {
+      "snippet": "maketitle[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "institute{}": {
+      "snippet": "institute{${1:institute}}"
+    },
+    "titlegraphic{}": {
+      "snippet": "titlegraphic{${1:graphic commands}}"
+    },
+    "settitle{}": {
+      "snippet": "settitle{${1:title code}}"
+    },
+    "defineblockstyle{}{}{}": {
+      "snippet": "defineblockstyle{${1:name}}{${2:options}}{${3:commands}}",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "useblockstyle{}": {
+      "snippet": "useblockstyle{${1:block style}}"
+    },
+    "useblockstyle[]{}": {
+      "snippet": "useblockstyle[${2:options}]{${1:block style}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "block{}{}": {
+      "snippet": "block{${1:title}}{${2:text}}"
+    },
+    "block[]{}{}": {
+      "snippet": "block[${3:options}]{${1:title}}{${2:text}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "defineinnerblockstyle{}{}{}": {
+      "snippet": "defineinnerblockstyle{${1:name}}{${2:options}}{${3:commands}}",
+      "keyvalindex": 4,
+      "keyvalpos": 1
+    },
+    "useinnerblockstyle{}": {
+      "snippet": "useinnerblockstyle{${1:innerblock style}}"
+    },
+    "useinnerblockstyle[]{}": {
+      "snippet": "useinnerblockstyle[${2:options}]{${1:innerblock style}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "innerblock{}{}": {
+      "snippet": "innerblock{${1:heading}}{${2:text}}"
+    },
+    "innerblock[]{}{}": {
+      "snippet": "innerblock[${3:options}]{${1:heading}}{${2:text}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "coloredbox{}": {
+      "snippet": "coloredbox{${1:text}}"
+    },
+    "coloredbox[]{}": {
+      "snippet": "coloredbox[${2:options}]{${1:text}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "definenotestyle{}{}{}": {
+      "snippet": "definenotestyle{${1:name}}{${2:options}}{${3:commands}}",
+      "keyvalindex": 7,
+      "keyvalpos": 1
+    },
+    "usenotestyle{}": {
+      "snippet": "usenotestyle{${1:note style}}"
+    },
+    "usenotestyle[]{}": {
+      "snippet": "usenotestyle[${2:options}]{${1:note style}}",
+      "keyvalindex": 8,
+      "keyvalpos": 0
+    },
+    "note{}": {
+      "snippet": "note{${1:text}}"
+    },
+    "note[]{}": {
+      "snippet": "note[${2:options}]{${1:text}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "definecolorpalette{}{}": {
+      "snippet": "definecolorpalette{${1:name}}{${2:definitions}}"
+    },
+    "usecolorpalette{}": {
+      "snippet": "usecolorpalette{${1:color palette}}"
+    },
+    "definecolorstyle{}{}{}": {
+      "snippet": "definecolorstyle{${1:name}}{${2:default palette}}{${3:definitions}}"
+    },
+    "usecolorstyle{}": {
+      "snippet": "usecolorstyle{${1:color style}}"
+    },
+    "usecolorstyle[]{}": {
+      "snippet": "usecolorstyle[${2:options}]{${1:color style}}",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "definelayouttheme{}{}": {
+      "snippet": "definelayouttheme{${1:name}}{${2:commands}}"
+    },
+    "usetheme{}": {
+      "snippet": "usetheme{${1:theme}}"
+    },
+    "column{}": {
+      "snippet": "column{${1:relative width}}"
+    },
+    "subcolumn{}": {
+      "snippet": "subcolumn{${1:relative width}}"
+    },
+    "tikzposterlatexaffectionproofon": {},
+    "tikzposterlatexaffectionproofoff": {},
+    "thefigurecounter": {},
+    "rememberparameter": {}
+  },
+  "envs": {
+    "settitle": {},
+    "columns": {},
+    "subcolumns": {},
+    "tikzfigure": {},
+    "tikzfigure[]": {
+      "name": "tikzfigure",
+      "snippet": "[${1:caption}]"
+    }
+  },
+  "options": [
+    "12pt",
+    "14pt",
+    "17pt",
+    "20pt",
+    "25pt",
+    "fleqn",
+    "leqno",
+    "a0paper",
+    "a1paper",
+    "a2paper",
+    "landscape",
+    "portrait",
+    "margin=",
+    "innermargin=",
+    "colspace=",
+    "subcolspace=",
+    "blockverticalspace="
+  ],
+  "keyvals": [
+    [
+      "width=",
+      "roundedcorners=${1:number}",
+      "linewidth=",
+      "innersep=",
+      "titletotopverticalspace=",
+      "titletoblockverticalspace=",
+      "titlegraphictotitledistance=",
+      "titletextscale=${1:factor}"
+    ],
+    [
+      "Default",
+      "Basic",
+      "Envelope",
+      "Wave",
+      "VerticalShading",
+      "Filled",
+      "Empty",
+      "%tikzpostertitlestyle"
+    ],
+    [
+      "titleoffsetx=",
+      "titleoffsety=",
+      "bodyoffsetx=",
+      "bodyoffsety=",
+      "titlewidthscale=${1:factor}",
+      "bodywidthscale=${1:factor}",
+      "titleleft",
+      "titlecenter",
+      "titleright",
+      "bodyverticalshift=",
+      "roundedcorners=${1:number}",
+      "linewidth=",
+      "titleinnersep=",
+      "bodyinnersep="
+    ],
+    [
+      "Default",
+      "Basic",
+      "Minimal",
+      "Envelope",
+      "Corner",
+      "Slide",
+      "TornOut",
+      "%tikzposterblockstyle"
+    ],
+    [
+      "titlewidth=",
+      "bodywidth=",
+      "titlewidthscale=${1:factor}",
+      "bodywidthscale=${1:factor}",
+      "titleleft",
+      "titlecenter",
+      "titleright",
+      "titleoffsetx=",
+      "titleoffsety=",
+      "bodyoffsetx=",
+      "bodyoffsety=",
+      "roundedcorners=${1:number}",
+      "linewidth=",
+      "titleinnersep=",
+      "bodyinnersep="
+    ],
+    [
+      "Default",
+      "Table",
+      "Basic",
+      "Minimal",
+      "Envelope",
+      "Corner",
+      "Slide",
+      "TornOut",
+      "%tikzposterinnerblockstyle"
+    ],
+    [
+      "width=",
+      "linewidth=",
+      "roundedcorners=${1:number}",
+      "bgcolor=",
+      "fgcolor=",
+      "framecolor="
+    ],
+    [
+      "targetoffsetx=",
+      "targetoffsety=",
+      "angle=${1:degrees}",
+      "radius=",
+      "width=",
+      "connection",
+      "rotate=${1:degrees}",
+      "roundedcorners=${1:number}",
+      "linewidth=",
+      "innersep="
+    ],
+    [
+      "Default",
+      "Corner",
+      "VerticalShading",
+      "Sticky",
+      "%tikzposternotestyle"
+    ],
+    [
+      "Default",
+      "Australia",
+      "Britain",
+      "Sweden",
+      "Spain",
+      "Russia",
+      "Denmark",
+      "Germany",
+      "%tikzpostercolorstyle"
+    ]
+  ]
+}

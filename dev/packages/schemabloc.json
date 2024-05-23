@@ -1,0 +1,452 @@
+{
+  "includes": {
+    "ifthen": [],
+    "tikz": [],
+    "tikzlibraryshapes": [],
+    "tikzlibrarypositioning": [],
+    "tikzlibraryfit": []
+  },
+  "macros": {
+    "sbStyleLienDefaut": {},
+    "sbStyleLien{}": {
+      "snippet": "sbStyleLien{${1:options}}"
+    },
+    "sbStyleBloc{}": {
+      "snippet": "sbStyleBloc{${1:options}}"
+    },
+    "sbStyleBlocDefaut": {},
+    "sbEntree{}": {
+      "snippet": "sbEntree{${1:nom}}"
+    },
+    "sbEntree[]{}": {
+      "snippet": "sbEntree[${2:at}]{${1:nom}}"
+    },
+    "sbSortie{}{}": {
+      "snippet": "sbSortie{${1:nom}}{${2:bloc-nom}}"
+    },
+    "sbSortie[]{}{}": {
+      "snippet": "sbSortie[${3:distance}]{${1:nom}}{${2:bloc-nom}}"
+    },
+    "sbBloc{}{}{}": {
+      "snippet": "sbBloc{${1:nom}}{${2:contenu}}{${3:bloc precédent}}"
+    },
+    "sbBloc[]{}{}{}": {
+      "snippet": "sbBloc[${4:distance}]{${1:nom}}{${2:contenu}}{${3:bloc précédent}}"
+    },
+    "sbBlocr{}{}{}": {
+      "snippet": "sbBlocr{${1:nom}}{${2:contenu}}{${3:bloc precédent}}"
+    },
+    "sbBlocr[]{}{}{}": {
+      "snippet": "sbBlocr[${4:distance}]{${1:nom}}{${2:contenu}}{${3:bloc précédent}}"
+    },
+    "sbBlocL{}{}{}": {
+      "snippet": "sbBlocL{${1:nom}}{${2:contenu}}{${3:bloc precédent}}"
+    },
+    "sbBlocL[]{}{}{}": {
+      "snippet": "sbBlocL[${4:distance}]{${1:nom}}{${2:contenu}}{${3:bloc précédent}}"
+    },
+    "sbBlocrL{}{}{}": {
+      "snippet": "sbBlocrL{${1:nom}}{${2:contenu}}{${3:bloc precédent}}"
+    },
+    "sbBlocrL[]{}{}{}": {
+      "snippet": "sbBlocrL[${4:distance}]{${1:nom}}{${2:contenu}}{${3:bloc précédent}}"
+    },
+    "sbBlocseul{}{}{}": {
+      "snippet": "sbBlocseul{${1:nom}}{${2:contenu}}{${3:bloc precédent}}"
+    },
+    "sbBlocseul[]{}{}{}": {
+      "snippet": "sbBlocseul[${4:distance}]{${1:nom}}{${2:contenu}}{${3:bloc précédent}}"
+    },
+    "sbRelier{}{}": {
+      "snippet": "sbRelier{${1:b1}}{${2:b2}}"
+    },
+    "sbRelier[]{}{}": {
+      "snippet": "sbRelier[${3:nom}]{${1:b1}}{${2:b2}}"
+    },
+    "sbRelieryx{}{}": {
+      "snippet": "sbRelieryx{${1:nom1}}{${2:nom2}}"
+    },
+    "sbRelierxy{}{}": {
+      "snippet": "sbRelierxy{${1:bloc-nom}}{${2:comp-nom}}"
+    },
+    "sbRelierxy[]{}{}": {
+      "snippet": "sbRelierxy[${3:label}]{${1:bloc-nom}}{${2:comp-nom}}"
+    },
+    "sbRenvoi{}{}{}": {
+      "snippet": "sbRenvoi{${1:nom1}}{${2:nom2}}{${3:label}}"
+    },
+    "sbRenvoi[]{}{}{}": {
+      "snippet": "sbRenvoi[${4:distance}]{${1:nom1}}{${2:nom2}}{${3:label}}"
+    },
+    "sbNomLien{}{}": {
+      "snippet": "sbNomLien{${1:nom}}{${2:label}}"
+    },
+    "sbNomLien[]{}{}": {
+      "snippet": "sbNomLien[${3:distance}]{${1:nom}}{${2:label}}"
+    },
+    "sbCompSum{}{}{}{}{}{}": {
+      "snippet": "sbCompSum{${1:nom}}{${2:E1}}{${3:a}}{${4:b}}{${5:c}}{${6:d}}"
+    },
+    "sbCompSum[]{}{}{}{}{}{}": {
+      "snippet": "sbCompSum[${7:distance}]{${1:nom}}{${2:E1}}{${3:a}}{${4:b}}{${5:c}}{${6:d}}"
+    },
+    "sbCompSumr{}{}{}{}{}{}": {
+      "snippet": "sbCompSumr{${1:nom}}{${2:E1}}{${3:a}}{${4:b}}{${5:c}}{${6:d}}"
+    },
+    "sbCompSumr[]{}{}{}{}{}{}": {
+      "snippet": "sbCompSumr[${7:distance}]{${1:nom}}{${2:E1}}{${3:a}}{${4:b}}{${5:c}}{${6:d}}"
+    },
+    "sbComp{}{}": {
+      "snippet": "sbComp{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbComp[]{}{}": {
+      "snippet": "sbComp[${3:distance}]{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbComp*{}{}": {
+      "snippet": "sbComp*{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbComp*[]{}{}": {
+      "snippet": "sbComp*[${3:distance}]{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbCompr{}{}": {
+      "snippet": "sbCompr{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbCompr[]{}{}": {
+      "snippet": "sbCompr[${3:distance}]{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbCompr*{}{}": {
+      "snippet": "sbCompr*{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbCompr*[]{}{}": {
+      "snippet": "sbCompr*[${3:distance}]{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbCompL{}{}": {
+      "snippet": "sbCompL{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbCompL[]{}{}": {
+      "snippet": "sbCompL[${3:distance}]{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbCompL*{}{}": {
+      "snippet": "sbCompL*{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbCompL*[]{}{}": {
+      "snippet": "sbCompL*[${3:distance}]{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbComph{}{}": {
+      "snippet": "sbComph{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbComph[]{}{}": {
+      "snippet": "sbComph[${3:distance}]{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbComph*{}{}": {
+      "snippet": "sbComph*{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbComph*[]{}{}": {
+      "snippet": "sbComph*[${3:distance}]{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbSumh{}{}": {
+      "snippet": "sbSumh{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbSumh[]{}{}": {
+      "snippet": "sbSumh[${3:distance}]{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbSumh*{}{}": {
+      "snippet": "sbSumh*{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbSumh*[]{}{}": {
+      "snippet": "sbSumh*[${3:distance}]{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbSumb{}{}": {
+      "snippet": "sbSumb{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbSumb[]{}{}": {
+      "snippet": "sbSumb[${3:distance}]{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbSumb*{}{}": {
+      "snippet": "sbSumb*{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbSumb*[]{}{}": {
+      "snippet": "sbSumb*[${3:distance}]{${1:nom}}{${2:bloc précédent}}"
+    },
+    "sbDecaleNoeudy{}{}": {
+      "snippet": "sbDecaleNoeudy{${1:N1}}{${2:N2}}"
+    },
+    "sbDecaleNoeudy[]{}{}": {
+      "snippet": "sbDecaleNoeudy[${3:distance}]{${1:N1}}{${2:N2}}"
+    },
+    "sbDecaleNoeudx{}{}": {
+      "snippet": "sbDecaleNoeudx{${1:N1}}{${2:N2}}"
+    },
+    "sbDecaleNoeudx[]{}{}": {
+      "snippet": "sbDecaleNoeudx[${3:distance}]{${1:N1}}{${2:N2}}"
+    },
+    "sbChaine{}{}": {
+      "snippet": "sbChaine{${1:noeud depart}}{${2:liste blocs nom/Fonction}}"
+    },
+    "sbChaine[]{}{}": {
+      "snippet": "sbChaine[${3:pas}]{${1:noeud depart}}{${2:liste blocs nom/Fonction}}"
+    },
+    "sbChaineRetour{}{}": {
+      "snippet": "sbChaineRetour{${1:noeud depart}}{${2:liste blocs nom/Fonction}}"
+    },
+    "sbChaineRetour[]{}{}": {
+      "snippet": "sbChaineRetour[${3:pas}]{${1:noeud depart}}{${2:liste blocs nom/Fonction}}"
+    },
+    "sbBoucleSeule{}{}{}": {
+      "snippet": "sbBoucleSeule{${1:noeud depart}}{${2:liste blocs}}{${3:sortie}}"
+    },
+    "sbBoucleSeule[]{}{}{}": {
+      "snippet": "sbBoucleSeule[${4:pas}]{${1:noeud depart}}{${2:liste blocs}}{${3:sortie}}"
+    },
+    "sbBoucle{}{}": {
+      "snippet": "sbBoucle{${1:noeud depart}}{${2:liste blocs chaine directe}}"
+    },
+    "sbBoucle[]{}{}": {
+      "snippet": "sbBoucle[${3:pas}]{${1:noeud depart}}{${2:liste blocs chaine directe}}"
+    },
+    "sbBoucleRetour{}{}{}": {
+      "snippet": "sbBoucleRetour{${1:noeud depart}}{${2:liste chaine directe}}{${3:liste chaine de retour}}"
+    },
+    "sbBoucleRetour[]{}{}{}": {
+      "snippet": "sbBoucleRetour[${4:pas}]{${1:noeud depart}}{${2:liste chaine directe}}{${3:liste chaine de retour}}"
+    },
+    "sbStyleSum{}": {
+      "snippet": "sbStyleSum{${1:options}}"
+    },
+    "sbStyleSumDefaut": {},
+    "sbEntrees{}": {
+      "snippet": "sbEntrees{${1:nom}}"
+    },
+    "sbEntrees[]{}": {
+      "snippet": "sbEntrees[${2:at}]{${1:nom}}"
+    },
+    "sbSortieL{}{}": {
+      "snippet": "sbSortieL{${1:nom}}{${2:bloc-nom}}"
+    },
+    "sbSortieL[]{}{}": {
+      "snippet": "sbSortieL[${3:distance}]{${1:nom}}{${2:bloc-nom}}"
+    },
+    "sbBlocPatate{}{}{}": {
+      "snippet": "sbBlocPatate{${1:nom}}{${2:contenu}}{${3:bloc precédent}}"
+    },
+    "sbBlocPatate[]{}{}{}": {
+      "snippet": "sbBlocPatate[${4:distance}]{${1:nom}}{${2:contenu}}{${3:bloc precédent}}"
+    },
+    "sbCompSumUsuel{}{}{}{}{}{}": {
+      "snippet": "sbCompSumUsuel{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "sbCompSumUsuel[]{}{}{}{}{}{}": {
+      "snippet": "sbCompSumUsuel[${7:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "sbCompSumUsuelr{}{}{}{}{}{}": {
+      "snippet": "sbCompSumUsuelr{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "sbCompSumUsuelr[]{}{}{}{}{}{}": {
+      "snippet": "sbCompSumUsuelr[${7:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "sbCompSumNorm{}{}{}{}{}{}": {
+      "snippet": "sbCompSumNorm{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "sbCompSumNorm[]{}{}{}{}{}{}": {
+      "snippet": "sbCompSumNorm[${7:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "sbCompSumNormr{}{}{}{}{}{}": {
+      "snippet": "sbCompSumNormr{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "sbCompSumNormr[]{}{}{}{}{}{}": {
+      "snippet": "sbCompSumNormr[${7:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "sbSum{}{}{}{}{}": {
+      "snippet": "sbSum{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+    },
+    "sbSum[]{}{}{}{}{}": {
+      "snippet": "sbSum[${6:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+    },
+    "sbCompUsuel{}{}": {
+      "snippet": "sbCompUsuel{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompUsuel[]{}{}": {
+      "snippet": "sbCompUsuel[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompNorm{}{}": {
+      "snippet": "sbCompNorm{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompNorm[]{}{}": {
+      "snippet": "sbCompNorm[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompUsuelr{}{}": {
+      "snippet": "sbCompUsuelr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompUsuelr[]{}{}": {
+      "snippet": "sbCompUsuelr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompNormr{}{}": {
+      "snippet": "sbCompNormr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompNormr[]{}{}": {
+      "snippet": "sbCompNormr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompUsuelL{}{}": {
+      "snippet": "sbCompUsuelL{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompUsuelL[]{}{}": {
+      "snippet": "sbCompUsuelL[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompNormL{}{}": {
+      "snippet": "sbCompNormL{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompNormL[]{}{}": {
+      "snippet": "sbCompNormL[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompUsuelLr{}{}": {
+      "snippet": "sbCompUsuelLr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompUsuelLr[]{}{}": {
+      "snippet": "sbCompUsuelLr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompNormLr{}{}": {
+      "snippet": "sbCompNormLr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompNormLr[]{}{}": {
+      "snippet": "sbCompNormLr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbComphUsuel{}{}": {
+      "snippet": "sbComphUsuel{${1:arg1}}{${2:arg2}}"
+    },
+    "sbComphUsuel[]{}{}": {
+      "snippet": "sbComphUsuel[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbComphNorm{}{}": {
+      "snippet": "sbComphNorm{${1:arg1}}{${2:arg2}}"
+    },
+    "sbComphNorm[]{}{}": {
+      "snippet": "sbComphNorm[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbComphUsuelr{}{}": {
+      "snippet": "sbComphUsuelr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbComphUsuelr[]{}{}": {
+      "snippet": "sbComphUsuelr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbComphNormr{}{}": {
+      "snippet": "sbComphNormr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbComphNormr[]{}{}": {
+      "snippet": "sbComphNormr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumhUsuel{}{}": {
+      "snippet": "sbSumhUsuel{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumhUsuel[]{}{}": {
+      "snippet": "sbSumhUsuel[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumhNorm{}{}": {
+      "snippet": "sbSumhNorm{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumhNorm[]{}{}": {
+      "snippet": "sbSumhNorm[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumhUsuelr{}{}": {
+      "snippet": "sbSumhUsuelr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumhUsuelr[]{}{}": {
+      "snippet": "sbSumhUsuelr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumhNormr{}{}": {
+      "snippet": "sbSumhNormr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumhNormr[]{}{}": {
+      "snippet": "sbSumhNormr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumbUsuel{}{}": {
+      "snippet": "sbSumbUsuel{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumbUsuel[]{}{}": {
+      "snippet": "sbSumbUsuel[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumbNorm{}{}": {
+      "snippet": "sbSumbNorm{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumbNorm[]{}{}": {
+      "snippet": "sbSumbNorm[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumbUsuelr{}{}": {
+      "snippet": "sbSumbUsuelr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumbUsuelr[]{}{}": {
+      "snippet": "sbSumbUsuelr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumbNormr{}{}": {
+      "snippet": "sbSumbNormr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumbNormr[]{}{}": {
+      "snippet": "sbSumbNormr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompLr{}{}": {
+      "snippet": "sbCompLr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompLr[]{}{}": {
+      "snippet": "sbCompLr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompLr*{}{}": {
+      "snippet": "sbCompLr*{${1:arg1}}{${2:arg2}}"
+    },
+    "sbCompLr*[]{}{}": {
+      "snippet": "sbCompLr*[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbComphr{}{}": {
+      "snippet": "sbComphr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbComphr[]{}{}": {
+      "snippet": "sbComphr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbComphr*{}{}": {
+      "snippet": "sbComphr*{${1:arg1}}{${2:arg2}}"
+    },
+    "sbComphr*[]{}{}": {
+      "snippet": "sbComphr*[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumhr{}{}": {
+      "snippet": "sbSumhr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumhr[]{}{}": {
+      "snippet": "sbSumhr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumhr*{}{}": {
+      "snippet": "sbSumhr*{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumhr*[]{}{}": {
+      "snippet": "sbSumhr*[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumbr{}{}": {
+      "snippet": "sbSumbr{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumbr[]{}{}": {
+      "snippet": "sbSumbr[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumbr*{}{}": {
+      "snippet": "sbSumbr*{${1:arg1}}{${2:arg2}}"
+    },
+    "sbSumbr*[]{}{}": {
+      "snippet": "sbSumbr*[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbDecaleNoeudyZ{}{}": {
+      "snippet": "sbDecaleNoeudyZ{${1:arg1}}{${2:arg2}}"
+    },
+    "sbDecaleNoeudyZ[]{}{}": {
+      "snippet": "sbDecaleNoeudyZ[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "sbDecaleNoeudxy{}{}{}{}": {
+      "snippet": "sbDecaleNoeudxy{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "sbChaineComp{}{}": {
+      "snippet": "sbChaineComp{${1:arg1}}{${2:arg2}}"
+    },
+    "sbChaineComp[]{}{}": {
+      "snippet": "sbChaineComp[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    }
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

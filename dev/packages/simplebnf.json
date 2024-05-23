@@ -1,0 +1,59 @@
+{
+  "includes": {
+    "tabularray": [],
+    "mathtools": []
+  },
+  "macros": {
+    "SetBNFLayout{}": {
+      "snippet": "SetBNFLayout{${1:tblr options}}"
+    },
+    "SetBNFConfig{}": {
+      "snippet": "SetBNFConfig{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "SimpleBNFDefEq": {},
+    "SimpleBNFDefOr": {},
+    "SimpleBNFStretch": {},
+    "bnfexpr{}": {
+      "snippet": "bnfexpr{${1:text}}"
+    },
+    "bnfannot{}": {
+      "snippet": "bnfannot{${1:text}}"
+    }
+  },
+  "envs": {
+    "bnf": {},
+    "bnf[]": {
+      "name": "bnf",
+      "snippet": "[${1:tblr options}]"
+    },
+    "bnfgrammar": {},
+    "bnfgrammar[]": {
+      "name": "bnfgrammar",
+      "snippet": "[${1:cols}]"
+    },
+    "bnfgrammar[][]": {
+      "name": "bnfgrammar",
+      "snippet": "[${1:cols}][${2:newline sep regexp}]"
+    },
+    "bnfgrammar[][][]": {
+      "name": "bnfgrammar",
+      "snippet": "[${1:cols}][${2:newline sep regexp}][${3:non-breaking sep regexp}]"
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "prod-delim={${1:characters}}",
+      "new-line-delim={${1:characters}}",
+      "single-line-delim={${1:characters}}",
+      "comment={${1:characters}}",
+      "relation={${1:characters}}",
+      "relation-sym-map={${1:specification}}",
+      "or-sym=${1:symbol}",
+      "prod-sep=",
+      "row-sep="
+    ]
+  ]
+}

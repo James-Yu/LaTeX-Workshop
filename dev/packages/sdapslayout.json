@@ -1,0 +1,94 @@
+{
+  "includes": {
+    "sdapsbase": [],
+    "sdapsarray": []
+  },
+  "macros": {
+    "choice{}": {
+      "snippet": "choice{${1:text}}"
+    },
+    "choice[]{}": {
+      "snippet": "choice[${2:options}]{${1:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "question{}": {
+      "snippet": "question{${1:text}}"
+    },
+    "question[]{}": {
+      "snippet": "question[${2:options}]{${1:text}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "range{}{}{}{}": {
+      "snippet": "range{${1:question}}{${2:lower}}{${3:upper}}{${4:other}}"
+    },
+    "range[]{}{}{}{}": {
+      "snippet": "range[${5:options}]{${1:question}}{${2:lower}}{${3:upper}}{${4:other}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    }
+  },
+  "envs": {
+    "choicearray": {},
+    "choicearray[]": {
+      "name": "choicearray",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "optionarray": {},
+    "optionarray[]": {
+      "name": "optionarray",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "rangearray": {},
+    "rangearray[]": {
+      "name": "rangearray",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "text=${1:text}",
+      "var=${1:variable}",
+      "val=${1:value}"
+    ],
+    [
+      "text=${1:text}",
+      "var=${1:variable}",
+      "range=${1:list}"
+    ],
+    [
+      "text=${1:text}",
+      "var=${1:variable}",
+      "upper=${1:text}",
+      "lower=${1:text}",
+      "other"
+    ],
+    [
+      "align=",
+      "noalign",
+      "horizontal",
+      "layouter=",
+      "angle=${1:angle}",
+      "vertical",
+      "type=",
+      "multichoice",
+      "singlechoice",
+      "type=",
+      "multichoice",
+      "singlechoice"
+    ],
+    [
+      "count=${1:integer}",
+      "align=${1:string}",
+      "other"
+    ]
+  ]
+}

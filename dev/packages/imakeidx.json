@@ -1,0 +1,69 @@
+{
+  "includes": {
+    "xkeyval": [],
+    "ifxetex": [],
+    "ifluatex": [],
+    "multicol": []
+  },
+  "macros": {
+    "makeindex[]": {
+      "snippet": "makeindex[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "indexsetup{}": {
+      "snippet": "indexsetup{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "splitindexoptions{}": {
+      "snippet": "splitindexoptions{${1:splitindex options}}"
+    },
+    "index[]{}": {
+      "snippet": "index[${2:name}]{${1:entry}}"
+    },
+    "indexprologue{}": {
+      "snippet": "indexprologue{${1:text}}"
+    },
+    "indexprologue[]{}": {
+      "snippet": "indexprologue[${2:spacing}]{${1:text}}"
+    },
+    "printindex": {},
+    "printindex[]": {
+      "snippet": "printindex[${1:name}]"
+    }
+  },
+  "envs": {},
+  "options": [
+    "xindy",
+    "texindy",
+    "truexindy",
+    "makeindex",
+    "noautomatic",
+    "nonewpage",
+    "splitindex",
+    "original",
+    "quiet"
+  ],
+  "keyvals": [
+    [
+      "name=${1:name}",
+      "title=${1:text}",
+      "program=",
+      "options=${1:program options}",
+      "noautomatic",
+      "intoc",
+      "columns=${1:number}",
+      "columnsep=",
+      "columnseprule"
+    ],
+    [
+      "level=${1:section cmd}",
+      "toclevel=${1:section csname}",
+      "noclearpage",
+      "firstpagestyle=",
+      "headers={${1:left marks}}{${2:right marks}}",
+      "othercode=${1:code}"
+    ]
+  ]
+}

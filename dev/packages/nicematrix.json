@@ -1,0 +1,1088 @@
+{
+  "includes": {
+    "amsmath": [],
+    "array": [],
+    "l3keys2e": [],
+    "pgfcore": [],
+    "footnote": [
+      "footnote",
+      "footnote=true"
+    ],
+    "footnotehyper": [
+      "footnotehyper",
+      "footnotehyper=true"
+    ]
+  },
+  "macros": {
+    "NiceMatrixOptions{}": {
+      "snippet": "NiceMatrixOptions{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Block{}{}": {
+      "snippet": "Block{${1:i-j}}{${2:content}}"
+    },
+    "Block{}<>{}": {
+      "snippet": "Block{${1:i-j}}<${3:code}>{${2:content}}"
+    },
+    "Block[]{}{}": {
+      "snippet": "Block[${3:options}]{${1:i-j}}{${2:content}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "Block[]{}<>{}": {
+      "snippet": "Block[${3:options}]{${1:i-j}}<${4:code}>{${2:content}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "Hline": {},
+    "Hline[]": {
+      "snippet": "Hline[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "diagbox{}{}": {
+      "snippet": "diagbox{${1:lower}}{${2:upper}}"
+    },
+    "hdottedline": {},
+    "cdottedline{}": {
+      "snippet": "cdottedline{${1:linespec}}"
+    },
+    "CodeBefore": {},
+    "CodeBefore[]": {
+      "snippet": "CodeBefore[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "Body": {},
+    "cellcolor{}{}": {
+      "snippet": "cellcolor{${1:color}}{${2:i-j,k-l,...}}"
+    },
+    "cellcolor[]{}{}": {
+      "snippet": "cellcolor[${3:color_model}]{${1:color}}{${2:i-j,k-l,...}}"
+    },
+    "rectanglecolor{}{}{}": {
+      "snippet": "rectanglecolor{${1:color}}{${2:i-j}}{${3:k-l}}"
+    },
+    "rectanglecolor[]{}{}{}": {
+      "snippet": "rectanglecolor[${4:color_model}]{${1:color}}{${2:i-j}}{${3:k-l}}"
+    },
+    "arraycolor{}": {
+      "snippet": "arraycolor{${1:color}}"
+    },
+    "arraycolor[]{}": {
+      "snippet": "arraycolor[${2:color_model}]{${1:color}}"
+    },
+    "chessboardcolors{}{}": {
+      "snippet": "chessboardcolors{${1:color1}}{${2:color2}}"
+    },
+    "chessboardcolors[]{}{}": {
+      "snippet": "chessboardcolors[${3:color_model}]{${1:color1}}{${2:color2}}"
+    },
+    "rowcolor{}{}": {
+      "snippet": "rowcolor{${1:color}}{${2:i,j-k,l-,...}}"
+    },
+    "rowcolor[]{}{}": {
+      "snippet": "rowcolor[${3:color_model}]{${1:color}}{${2:i,j-k,l-,...}}"
+    },
+    "columncolor{}{}": {
+      "snippet": "columncolor{${1:color}}{${2:i,j-k,l-,...}}"
+    },
+    "columncolor[]{}{}": {
+      "snippet": "columncolor[${3:color_model}]{${1:color}}{${2:i,j-k,l-,...}}"
+    },
+    "rowcolors{}{}{}": {
+      "snippet": "rowcolors{${1:row}}{${2:color1}}{${3:color2}}"
+    },
+    "rowcolors[]{}{}{}[]": {
+      "snippet": "rowcolors[${4:color model}]{${1:row}}{${2:color1}}{${3:color2}}[${5:options}]",
+      "keyvalindex": 4,
+      "keyvalpos": 4
+    },
+    "rowlistcolors{}{}": {
+      "snippet": "rowlistcolors{${1:row}}{${2:color1,color2,...}}"
+    },
+    "rowlistcolors[]{}{}": {
+      "snippet": "rowlistcolors[${3:color model}]{${1:row}}{${2:color1,color2,...}}"
+    },
+    "RowStyle{}": {
+      "snippet": "RowStyle{${1:code}}"
+    },
+    "RowStyle[]{}": {
+      "snippet": "RowStyle[${2:options}]{${1:code}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "Ldots": {},
+    "Ldots[]": {
+      "snippet": "Ldots[${1:options}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Cdots": {},
+    "Cdots[]": {
+      "snippet": "Cdots[${1:options}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Vdots": {},
+    "Vdots[]": {
+      "snippet": "Vdots[${1:options}]",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Ddots": {},
+    "Ddots[]": {
+      "snippet": "Ddots[${1:options}]",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "Iddots": {},
+    "Iddots[]": {
+      "snippet": "Iddots[${1:options}]",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "iddots": {
+      "detail": "⋰",
+      "documentation": "three do ascending"
+    },
+    "line[]{}{}": {
+      "snippet": "line[${3:options}]{${1:i-j}}{${2:k-l}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "Hspace{}": {
+      "snippet": "Hspace{${1:length}}"
+    },
+    "Hspace*{}": {
+      "snippet": "Hspace*{${1:length}}"
+    },
+    "Hdotsfor{}": {
+      "snippet": "Hdotsfor{${1:number}}"
+    },
+    "Vdotsfor{}": {
+      "snippet": "Vdotsfor{${1:number}}"
+    },
+    "CodeAfter": {},
+    "CodeAfter[]": {
+      "snippet": "CodeAfter[${1:options}]",
+      "keyvalindex": 8,
+      "keyvalpos": 0
+    },
+    "SubMatrix{}{}{}{}": {
+      "snippet": "SubMatrix{${1:delim1}}{${2:i-j}}{${3:k-l}}{${4:delim2}}"
+    },
+    "SubMatrix{}{}{}{}[]": {
+      "snippet": "SubMatrix{${1:delim1}}{${2:i-j}}{${3:k-l}}{${4:delim2}}[${5:options}]",
+      "keyvalindex": 9,
+      "keyvalpos": 4
+    },
+    "OverBrace{}{}{}": {
+      "snippet": "OverBrace{${1:i-j}}{${2:k-l}}{${3:label}}"
+    },
+    "OverBrace[]{}{}{}": {
+      "snippet": "OverBrace[${4:options}]{${1:i-j}}{${2:k-l}}{${3:label}}",
+      "keyvalindex": 10,
+      "keyvalpos": 0
+    },
+    "UnderBrace{}{}{}": {
+      "snippet": "UnderBrace{${1:i-j}}{${2:k-l}}{${3:label}}"
+    },
+    "UnderBrace[]{}{}{}": {
+      "snippet": "UnderBrace[${4:options}]{${1:i-j}}{${2:k-l}}{${3:label}}",
+      "keyvalindex": 10,
+      "keyvalpos": 0
+    },
+    "TikzEveryCell{}": {
+      "snippet": "TikzEveryCell{${1:TikZ keys}}"
+    },
+    "TikzEveryCell[]{}": {
+      "snippet": "TikzEveryCell[${2:options}]{${1:TikZ keys}}",
+      "keyvalindex": 11,
+      "keyvalpos": 0
+    },
+    "tabularnote{}": {
+      "snippet": "tabularnote{${1:note}}"
+    },
+    "tabularnote[]{}": {
+      "snippet": "tabularnote[${2:symbol}]{${1:note}}"
+    },
+    "rotate": {},
+    "ShowCellNames": {},
+    "AutoNiceMatrix{}{}": {
+      "snippet": "AutoNiceMatrix{${1:i-j}}{${2:pattern}}"
+    },
+    "AutoNiceMatrix[]{}{}": {
+      "snippet": "AutoNiceMatrix[${3:options}]{${1:i-j}}{${2:pattern}}",
+      "keyvalindex": 12,
+      "keyvalpos": 0
+    },
+    "pAutoNiceMatrix{}{}": {
+      "snippet": "pAutoNiceMatrix{${1:i-j}}{${2:pattern}}"
+    },
+    "pAutoNiceMatrix[]{}{}": {
+      "snippet": "pAutoNiceMatrix[${3:options}]{${1:i-j}}{${2:pattern}}",
+      "keyvalindex": 12,
+      "keyvalpos": 0
+    },
+    "bAutoNiceMatrix{}{}": {
+      "snippet": "bAutoNiceMatrix{${1:i-j}}{${2:pattern}}"
+    },
+    "bAutoNiceMatrix[]{}{}": {
+      "snippet": "bAutoNiceMatrix[${3:options}]{${1:i-j}}{${2:pattern}}",
+      "keyvalindex": 12,
+      "keyvalpos": 0
+    },
+    "BAutoNiceMatrix{}{}": {
+      "snippet": "BAutoNiceMatrix{${1:i-j}}{${2:pattern}}"
+    },
+    "BAutoNiceMatrix[]{}{}": {
+      "snippet": "BAutoNiceMatrix[${3:options}]{${1:i-j}}{${2:pattern}}",
+      "keyvalindex": 12,
+      "keyvalpos": 0
+    },
+    "vAutoNiceMatrix{}{}": {
+      "snippet": "vAutoNiceMatrix{${1:i-j}}{${2:pattern}}"
+    },
+    "vAutoNiceMatrix[]{}{}": {
+      "snippet": "vAutoNiceMatrix[${3:options}]{${1:i-j}}{${2:pattern}}",
+      "keyvalindex": 12,
+      "keyvalpos": 0
+    },
+    "VAutoNiceMatrix{}{}": {
+      "snippet": "VAutoNiceMatrix{${1:i-j}}{${2:pattern}}"
+    },
+    "VAutoNiceMatrix[]{}{}": {
+      "snippet": "VAutoNiceMatrix[${3:options}]{${1:i-j}}{${2:pattern}}",
+      "keyvalindex": 12,
+      "keyvalpos": 0
+    },
+    "NiceMatrixLastEnv": {},
+    "OnlyMainNiceMatrix{}": {
+      "snippet": "OnlyMainNiceMatrix{${1:code}}"
+    },
+    "NotEmpty": {},
+    "myfileversion": {},
+    "myfiledate": {}
+  },
+  "envs": {
+    "NiceTabular{}": {
+      "name": "NiceTabular",
+      "snippet": "{${1:preamble}}"
+    },
+    "NiceTabular[]{}": {
+      "name": "NiceTabular",
+      "snippet": "[${2:options}]{${1:preamble}}",
+      "keyvalindex": 13,
+      "keyvalpos": 0
+    },
+    "NiceTabular[]{}[]": {
+      "name": "NiceTabular",
+      "snippet": "[${2:options}]{${1:preamble}}[${3:options}]",
+      "keyvalindex": 13,
+      "keyvalpos": 0
+    },
+    "NiceTabular*{}": {
+      "name": "NiceTabular*",
+      "snippet": "{${1:preamble}}"
+    },
+    "NiceTabular*[]{}": {
+      "name": "NiceTabular*",
+      "snippet": "[${2:options}]{${1:preamble}}",
+      "keyvalindex": 14,
+      "keyvalpos": 0
+    },
+    "NiceTabular*[]{}[]": {
+      "name": "NiceTabular*",
+      "snippet": "[${2:options}]{${1:preamble}}[${3:options}]",
+      "keyvalindex": 14,
+      "keyvalpos": 0
+    },
+    "NiceTabularX{}{}": {
+      "name": "NiceTabularX",
+      "snippet": "{${1:width}}{${2:preamble}}"
+    },
+    "NiceTabularX{}[]{}": {
+      "name": "NiceTabularX",
+      "snippet": "{${1:width}}[${2:options}]{${3:preamble}}",
+      "keyvalindex": 14,
+      "keyvalpos": 1
+    },
+    "NiceTabularX{}[]{}[]": {
+      "name": "NiceTabularX",
+      "snippet": "{${1:width}}[${2:options}]{${3:preamble}}[${4:options}]",
+      "keyvalindex": 14,
+      "keyvalpos": 1
+    },
+    "NiceArray{}": {
+      "name": "NiceArray",
+      "snippet": "{${1:preamble}}"
+    },
+    "NiceArray[]{}": {
+      "name": "NiceArray",
+      "snippet": "[${2:options}]{${1:preamble}}",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "NiceArray[]{}[]": {
+      "name": "NiceArray",
+      "snippet": "[${2:options}]{${1:preamble}}[${3:options}]",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "pNiceArray{}": {
+      "name": "pNiceArray",
+      "snippet": "{${1:preamble}}"
+    },
+    "pNiceArray[]{}": {
+      "name": "pNiceArray",
+      "snippet": "[${2:options}]{${1:preamble}}",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "pNiceArray[]{}[]": {
+      "name": "pNiceArray",
+      "snippet": "[${2:options}]{${1:preamble}}[${3:options}]",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "bNiceArray{}": {
+      "name": "bNiceArray",
+      "snippet": "{${1:preamble}}"
+    },
+    "bNiceArray[]{}": {
+      "name": "bNiceArray",
+      "snippet": "[${2:options}]{${1:preamble}}",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "bNiceArray[]{}[]": {
+      "name": "bNiceArray",
+      "snippet": "[${2:options}]{${1:preamble}}[${3:options}]",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "BNiceArray{}": {
+      "name": "BNiceArray",
+      "snippet": "{${1:preamble}}"
+    },
+    "BNiceArray[]{}": {
+      "name": "BNiceArray",
+      "snippet": "[${2:options}]{${1:preamble}}",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "BNiceArray[]{}[]": {
+      "name": "BNiceArray",
+      "snippet": "[${2:options}]{${1:preamble}}[${3:options}]",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "vNiceArray{}": {
+      "name": "vNiceArray",
+      "snippet": "{${1:preamble}}"
+    },
+    "vNiceArray[]{}": {
+      "name": "vNiceArray",
+      "snippet": "[${2:options}]{${1:preamble}}",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "vNiceArray[]{}[]": {
+      "name": "vNiceArray",
+      "snippet": "[${2:options}]{${1:preamble}}[${3:options}]",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "VNiceArray{}": {
+      "name": "VNiceArray",
+      "snippet": "{${1:preamble}}"
+    },
+    "VNiceArray[]{}": {
+      "name": "VNiceArray",
+      "snippet": "[${2:options}]{${1:preamble}}",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "VNiceArray[]{}[]": {
+      "name": "VNiceArray",
+      "snippet": "[${2:options}]{${1:preamble}}[${3:options}]",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "NiceMatrix": {},
+    "NiceMatrix[]": {
+      "name": "NiceMatrix",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 16,
+      "keyvalpos": 0
+    },
+    "pNiceMatrix": {},
+    "pNiceMatrix[]": {
+      "name": "pNiceMatrix",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 16,
+      "keyvalpos": 0
+    },
+    "bNiceMatrix": {},
+    "bNiceMatrix[]": {
+      "name": "bNiceMatrix",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 16,
+      "keyvalpos": 0
+    },
+    "BNiceMatrix": {},
+    "BNiceMatrix[]": {
+      "name": "BNiceMatrix",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 16,
+      "keyvalpos": 0
+    },
+    "vNiceMatrix": {},
+    "vNiceMatrix[]": {
+      "name": "vNiceMatrix",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 16,
+      "keyvalpos": 0
+    },
+    "VNiceMatrix": {},
+    "VNiceMatrix[]": {
+      "name": "VNiceMatrix",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 16,
+      "keyvalpos": 0
+    },
+    "NiceMatrixBlock": {},
+    "NiceMatrixBlock[]": {
+      "name": "NiceMatrixBlock",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 17,
+      "keyvalpos": 0
+    },
+    "TabularNote": {},
+    "NiceArrayWithDelims{}{}{}": {
+      "name": "NiceArrayWithDelims",
+      "snippet": "{${1:delim1}}{${2:delim2}}{${3:preamble}}"
+    },
+    "NiceArrayWithDelims{}{}{}[]": {
+      "name": "NiceArrayWithDelims",
+      "snippet": "{${1:delim1}}{${2:delim2}}{${3:preamble}}[${4:options}]"
+    }
+  },
+  "options": [
+    "renew-dots",
+    "renew-matrix",
+    "footnote",
+    "footnotehyper",
+    "no-test-for-array"
+  ],
+  "keyvals": [
+    [
+      "t",
+      "b",
+      "c",
+      "baseline=${1:row number}",
+      "standard-cline",
+      "vlines",
+      "vlines=",
+      "hlines",
+      "hlines=",
+      "hvlines",
+      "hvlines-except-borders",
+      "corners",
+      "corners=",
+      "custom-line={${1:keyvals}}",
+      "code-before=${1:code}",
+      "columns-width=",
+      "first-row",
+      "last-row",
+      "first-col",
+      "last-col",
+      "last-row=${1:number}",
+      "last-col=${1:number}",
+      "code-for-first-row=${1:code}",
+      "code-for-last-row=${1:code}",
+      "code-for-first-col=${1:code}",
+      "code-for-last-col=${1:code}",
+      "nullify-dots",
+      "renew-dots",
+      "code-after=${1:code}",
+      "cell-space-top-limit=",
+      "cell-space-bottom-limit=",
+      "cell-space-limits=",
+      "tabularnote=${1:text}",
+      "notes/para",
+      "notes/bottomrule",
+      "small",
+      "light-syntax",
+      "light-syntax-expanded",
+      "name=${1:name}",
+      "create-medium-nodes",
+      "create-large-nodes",
+      "create-extra-nodes",
+      "left-margin",
+      "left-margin=",
+      "right-margin",
+      "right-margin=",
+      "margin=",
+      "extra-left-margin=",
+      "extra-right-margin=",
+      "extra-margin=",
+      "parallelize-diags",
+      "delimiters/max-width",
+      "vlines-in-sub-matrix=${1:letter}",
+      "colortbl-like",
+      "color-inside",
+      "rounded-corners",
+      "rounded-corners=",
+      "no-cell-nodes",
+      "width=",
+      "notes={${1:specs}}",
+      "notes/style=",
+      "notes/label-in-tabular=",
+      "notes/label-in-list=",
+      "notes/enumitem-keys={${1:enumitem keys}}",
+      "notes/enumitem-keys-para={${1:enumitem keys}}",
+      "matrix/columns-type=",
+      "notes/code-before=${1:code}",
+      "letter-for-dotted-lines=",
+      "renew-matrix",
+      "exterior-arraycolsep",
+      "caption-above",
+      "delimiters/color=",
+      "sub-matrix/left-xshift=",
+      "sub-matrix/right-xshift=",
+      "sub-matrix/extra-height=",
+      "sub-matrix/slim",
+      "sub-matrix/vlines",
+      "sub-matrix/vlines=",
+      "sub-matrix/hlines",
+      "sub-matrix/hlines=",
+      "sub-matrix/hvlines",
+      "rules/width=",
+      "rules/color=",
+      "xdots/horizontal-labels",
+      "xdots/color=",
+      "xdots/radius=",
+      "xdots/shorten-start=",
+      "xdots/shorten-end=",
+      "xdots/shorten=",
+      "xdots/inter=",
+      "xdots/line-style="
+    ],
+    [
+      "l",
+      "c",
+      "r",
+      "fill=",
+      "opacity=${1:factor}",
+      "draw",
+      "draw=",
+      "color=",
+      "line-width=",
+      "rounded-corners",
+      "rounded-corners=",
+      "borders={${1:borders options}}",
+      "hvlines",
+      "v-center",
+      "m",
+      "t",
+      "b",
+      "T",
+      "B",
+      "L",
+      "R",
+      "C",
+      "tikz={${1:TikZ options}}",
+      "name=${1:name}",
+      "respect-arraystretch",
+      "transparent"
+    ],
+    [
+      "command=${1:csname}",
+      "ccommand=${1:csname}",
+      "letter=${1:letter}",
+      "multiplicity=${1:integer}",
+      "color=",
+      "sep-color=",
+      "tikz={${1:TikZ keys}}",
+      "total-width=",
+      "dotted"
+    ],
+    [
+      "create-cell-nodes"
+    ],
+    [
+      "cols=",
+      "restart",
+      "respect-blocks"
+    ],
+    [
+      "nb-rows=${1:number}",
+      "cell-space-top-limit=",
+      "cell-space-bottom-limit=",
+      "cell-space-limits=",
+      "rowcolor=",
+      "color=",
+      "bold"
+    ],
+    [
+      "horizontal-labels",
+      "color=",
+      "radius=",
+      "shorten-start=",
+      "shorten-end=",
+      "shorten=",
+      "inter=",
+      "line-style="
+    ],
+    [
+      "horizontal-labels",
+      "color=",
+      "radius=",
+      "shorten-start=",
+      "shorten-end=",
+      "shorten=",
+      "inter=",
+      "line-style=",
+      "draw-first"
+    ],
+    [
+      "delimiters/color=",
+      "sub-matrix/left-xshift=",
+      "sub-matrix/right-xshift=",
+      "sub-matrix/extra-height=",
+      "sub-matrix/slim",
+      "sub-matrix/vlines",
+      "sub-matrix/vlines=",
+      "sub-matrix/hlines",
+      "sub-matrix/hlines=",
+      "sub-matrix/hvlines",
+      "rules/width=",
+      "rules/color=",
+      "xdots/horizontal-labels",
+      "xdots/color=",
+      "xdots/radius=",
+      "xdots/shorten-start=",
+      "xdots/shorten-end=",
+      "xdots/shorten=",
+      "xdots/inter=",
+      "xdots/line-style="
+    ],
+    [
+      "left-xshift=",
+      "right-xshift=",
+      "xshift=",
+      "extra-height=",
+      "delimiters/color=",
+      "slim",
+      "vlines",
+      "vlines=",
+      "hlines",
+      "hlines=",
+      "hvlines",
+      "name=${1:name}",
+      "code=${1:code}"
+    ],
+    [
+      "left-shorten",
+      "right-shorten",
+      "shorten",
+      "yshift=",
+      "color="
+    ],
+    [
+      "empty",
+      "not-empty"
+    ],
+    [
+      "l",
+      "r",
+      "c",
+      "columns-type=",
+      "t",
+      "b",
+      "baseline=",
+      "standard-cline",
+      "vlines",
+      "vlines=",
+      "hlines",
+      "hlines=",
+      "hvlines",
+      "hvlines-except-borders",
+      "corners",
+      "corners=",
+      "code-before=${1:code}",
+      "columns-width=",
+      "first-row",
+      "last-row",
+      "first-col",
+      "last-col",
+      "last-row=",
+      "last-col=",
+      "code-for-first-row=${1:code}",
+      "code-for-last-row=${1:code}",
+      "code-for-first-col=${1:code}",
+      "code-for-last-col=${1:code}",
+      "nullify-dots",
+      "renew-dots",
+      "code-after=${1:code}",
+      "small",
+      "light-syntax",
+      "name=${1:name}",
+      "create-medium-nodes",
+      "create-large-nodes",
+      "create-extra-nodes",
+      "left-margin",
+      "left-margin=",
+      "right-margin",
+      "right-margin=",
+      "margin=",
+      "extra-left-margin=",
+      "extra-right-margin=",
+      "extra-margin=",
+      "parallelize-diags",
+      "delimiters/max-width",
+      "vlines-in-sub-matrix=${1:letter}",
+      "colortbl-like",
+      "color-inside",
+      "rounded-corners",
+      "rounded-corners="
+    ],
+    [
+      "t",
+      "b",
+      "c",
+      "baseline=${1:row number}",
+      "standard-cline",
+      "vlines",
+      "vlines=",
+      "hlines",
+      "hlines=",
+      "hvlines",
+      "hvlines-except-borders",
+      "corners",
+      "corners=",
+      "custom-line={${1:keyvals}}",
+      "code-before=${1:code}",
+      "columns-width=",
+      "first-row",
+      "last-row",
+      "first-col",
+      "last-col",
+      "last-row=${1:number}",
+      "last-col=${1:number}",
+      "code-for-first-row=${1:code}",
+      "code-for-last-row=${1:code}",
+      "code-for-first-col=${1:code}",
+      "code-for-last-col=${1:code}",
+      "nullify-dots",
+      "renew-dots",
+      "code-after=${1:code}",
+      "cell-space-top-limit=",
+      "cell-space-bottom-limit=",
+      "cell-space-limits=",
+      "tabularnote=${1:text}",
+      "notes/para",
+      "notes/bottomrule",
+      "small",
+      "light-syntax",
+      "light-syntax-expanded",
+      "name=${1:name}",
+      "create-medium-nodes",
+      "create-large-nodes",
+      "create-extra-nodes",
+      "left-margin",
+      "left-margin=",
+      "right-margin",
+      "right-margin=",
+      "margin=",
+      "extra-left-margin=",
+      "extra-right-margin=",
+      "extra-margin=",
+      "parallelize-diags",
+      "delimiters/max-width",
+      "vlines-in-sub-matrix=${1:letter}",
+      "colortbl-like",
+      "color-inside",
+      "rounded-corners",
+      "rounded-corners=",
+      "no-cell-nodes",
+      "width=",
+      "caption=${1:text}",
+      "short-caption=${1:text}",
+      "label=",
+      "delimiters/color=",
+      "sub-matrix/left-xshift=",
+      "sub-matrix/right-xshift=",
+      "sub-matrix/extra-height=",
+      "sub-matrix/slim",
+      "sub-matrix/vlines",
+      "sub-matrix/vlines=",
+      "sub-matrix/hlines",
+      "sub-matrix/hlines=",
+      "sub-matrix/hvlines",
+      "rules/width=",
+      "rules/color=",
+      "xdots/horizontal-labels",
+      "xdots/color=",
+      "xdots/radius=",
+      "xdots/shorten-start=",
+      "xdots/shorten-end=",
+      "xdots/shorten=",
+      "xdots/inter=",
+      "xdots/line-style="
+    ],
+    [
+      "t",
+      "b",
+      "c",
+      "baseline=${1:row number}",
+      "standard-cline",
+      "vlines",
+      "vlines=",
+      "hlines",
+      "hlines=",
+      "hvlines",
+      "hvlines-except-borders",
+      "corners",
+      "corners=",
+      "custom-line={${1:keyvals}}",
+      "code-before=${1:code}",
+      "columns-width=",
+      "first-row",
+      "last-row",
+      "first-col",
+      "last-col",
+      "last-row=${1:number}",
+      "last-col=${1:number}",
+      "code-for-first-row=${1:code}",
+      "code-for-last-row=${1:code}",
+      "code-for-first-col=${1:code}",
+      "code-for-last-col=${1:code}",
+      "nullify-dots",
+      "renew-dots",
+      "code-after=${1:code}",
+      "cell-space-top-limit=",
+      "cell-space-bottom-limit=",
+      "cell-space-limits=",
+      "tabularnote=${1:text}",
+      "notes/para",
+      "notes/bottomrule",
+      "small",
+      "light-syntax",
+      "light-syntax-expanded",
+      "name=${1:name}",
+      "create-medium-nodes",
+      "create-large-nodes",
+      "create-extra-nodes",
+      "left-margin",
+      "left-margin=",
+      "right-margin",
+      "right-margin=",
+      "margin=",
+      "extra-left-margin=",
+      "extra-right-margin=",
+      "extra-margin=",
+      "parallelize-diags",
+      "delimiters/max-width",
+      "vlines-in-sub-matrix=${1:letter}",
+      "colortbl-like",
+      "color-inside",
+      "rounded-corners",
+      "rounded-corners=",
+      "no-cell-nodes",
+      "caption=${1:text}",
+      "short-caption=${1:text}",
+      "label=",
+      "delimiters/color=",
+      "sub-matrix/left-xshift=",
+      "sub-matrix/right-xshift=",
+      "sub-matrix/extra-height=",
+      "sub-matrix/slim",
+      "sub-matrix/vlines",
+      "sub-matrix/vlines=",
+      "sub-matrix/hlines",
+      "sub-matrix/hlines=",
+      "sub-matrix/hvlines",
+      "rules/width=",
+      "rules/color=",
+      "xdots/horizontal-labels",
+      "xdots/color=",
+      "xdots/radius=",
+      "xdots/shorten-start=",
+      "xdots/shorten-end=",
+      "xdots/shorten=",
+      "xdots/inter=",
+      "xdots/line-style="
+    ],
+    [
+      "t",
+      "b",
+      "c",
+      "baseline=${1:row number}",
+      "standard-cline",
+      "vlines",
+      "vlines=",
+      "hlines",
+      "hlines=",
+      "hvlines",
+      "hvlines-except-borders",
+      "corners",
+      "corners=",
+      "custom-line={${1:keyvals}}",
+      "code-before=${1:code}",
+      "columns-width=",
+      "first-row",
+      "last-row",
+      "first-col",
+      "last-col",
+      "last-row=${1:number}",
+      "last-col=${1:number}",
+      "code-for-first-row=${1:code}",
+      "code-for-last-row=${1:code}",
+      "code-for-first-col=${1:code}",
+      "code-for-last-col=${1:code}",
+      "nullify-dots",
+      "renew-dots",
+      "code-after=${1:code}",
+      "cell-space-top-limit=",
+      "cell-space-bottom-limit=",
+      "cell-space-limits=",
+      "tabularnote=${1:text}",
+      "notes/para",
+      "notes/bottomrule",
+      "small",
+      "light-syntax",
+      "light-syntax-expanded",
+      "name=${1:name}",
+      "create-medium-nodes",
+      "create-large-nodes",
+      "create-extra-nodes",
+      "left-margin",
+      "left-margin=",
+      "right-margin",
+      "right-margin=",
+      "margin=",
+      "extra-left-margin=",
+      "extra-right-margin=",
+      "extra-margin=",
+      "parallelize-diags",
+      "delimiters/max-width",
+      "vlines-in-sub-matrix=${1:letter}",
+      "colortbl-like",
+      "color-inside",
+      "rounded-corners",
+      "rounded-corners=",
+      "no-cell-nodes",
+      "delimiters/color=",
+      "sub-matrix/left-xshift=",
+      "sub-matrix/right-xshift=",
+      "sub-matrix/extra-height=",
+      "sub-matrix/slim",
+      "sub-matrix/vlines",
+      "sub-matrix/vlines=",
+      "sub-matrix/hlines",
+      "sub-matrix/hlines=",
+      "sub-matrix/hvlines",
+      "rules/width=",
+      "rules/color=",
+      "xdots/horizontal-labels",
+      "xdots/color=",
+      "xdots/radius=",
+      "xdots/shorten-start=",
+      "xdots/shorten-end=",
+      "xdots/shorten=",
+      "xdots/inter=",
+      "xdots/line-style="
+    ],
+    [
+      "t",
+      "b",
+      "c",
+      "baseline=${1:row number}",
+      "standard-cline",
+      "vlines",
+      "vlines=",
+      "hlines",
+      "hlines=",
+      "hvlines",
+      "hvlines-except-borders",
+      "corners",
+      "corners=",
+      "custom-line={${1:keyvals}}",
+      "code-before=${1:code}",
+      "columns-width=",
+      "first-row",
+      "last-row",
+      "first-col",
+      "last-col",
+      "last-row=${1:number}",
+      "last-col=${1:number}",
+      "code-for-first-row=${1:code}",
+      "code-for-last-row=${1:code}",
+      "code-for-first-col=${1:code}",
+      "code-for-last-col=${1:code}",
+      "nullify-dots",
+      "renew-dots",
+      "code-after=${1:code}",
+      "cell-space-top-limit=",
+      "cell-space-bottom-limit=",
+      "cell-space-limits=",
+      "tabularnote=${1:text}",
+      "notes/para",
+      "notes/bottomrule",
+      "small",
+      "light-syntax",
+      "light-syntax-expanded",
+      "name=${1:name}",
+      "create-medium-nodes",
+      "create-large-nodes",
+      "create-extra-nodes",
+      "left-margin",
+      "left-margin=",
+      "right-margin",
+      "right-margin=",
+      "margin=",
+      "extra-left-margin=",
+      "extra-right-margin=",
+      "extra-margin=",
+      "parallelize-diags",
+      "delimiters/max-width",
+      "vlines-in-sub-matrix=${1:letter}",
+      "colortbl-like",
+      "color-inside",
+      "rounded-corners",
+      "rounded-corners=",
+      "no-cell-nodes",
+      "l",
+      "c",
+      "r",
+      "columns-type=",
+      "delimiters/color=",
+      "sub-matrix/left-xshift=",
+      "sub-matrix/right-xshift=",
+      "sub-matrix/extra-height=",
+      "sub-matrix/slim",
+      "sub-matrix/vlines",
+      "sub-matrix/vlines=",
+      "sub-matrix/hlines",
+      "sub-matrix/hlines=",
+      "sub-matrix/hvlines",
+      "rules/width=",
+      "rules/color=",
+      "xdots/horizontal-labels",
+      "xdots/color=",
+      "xdots/radius=",
+      "xdots/shorten-start=",
+      "xdots/shorten-end=",
+      "xdots/shorten=",
+      "xdots/inter=",
+      "xdots/line-style="
+    ],
+    [
+      "auto-columns-width"
+    ]
+  ]
+}

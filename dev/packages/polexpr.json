@@ -1,0 +1,438 @@
+{
+  "includes": {
+    "xintexpr": []
+  },
+  "macros": {
+    "PolDef{}{}": {
+      "snippet": "PolDef{${1:polname}}{${2:pol expr}}"
+    },
+    "PolDef[]{}{}": {
+      "snippet": "PolDef[${3:letter}]{${1:polname}}{${2:pol expr}}"
+    },
+    "PolGenFloatVariant{}": {
+      "snippet": "PolGenFloatVariant{${1:polname}}"
+    },
+    "PolTypeset{}": {
+      "snippet": "PolTypeset{${1:polname}}"
+    },
+    "PolTypeset[]{}": {
+      "snippet": "PolTypeset[${2:letter}]{${1:polname}}"
+    },
+    "PolTypeset*{}": {
+      "snippet": "PolTypeset*{${1:polname}}"
+    },
+    "PolTypeset*[]{}": {
+      "snippet": "PolTypeset*[${2:letter}]{${1:polname}}"
+    },
+    "PolTypesetCmd{}": {
+      "snippet": "PolTypesetCmd{${1:raw coeff}}"
+    },
+    "PolIfCoeffIsPlusOrMinusOne{}{}": {
+      "snippet": "PolIfCoeffIsPlusOrMinusOne{${1:true}}{${2:false}}"
+    },
+    "PolTypesetOne{}": {
+      "snippet": "PolTypesetOne{${1:raw coeff}}"
+    },
+    "PolTypesetMonomialCmd": {},
+    "PolTypesetCmdPrefix{}": {
+      "snippet": "PolTypesetCmdPrefix{${1:raw coeff}}"
+    },
+    "PolIndex": {},
+    "PolVar": {},
+    "PolToSturm{}{}": {
+      "snippet": "PolToSturm{${1:polname}}{${2:sturmname}}"
+    },
+    "PolToSturm*{}{}": {
+      "snippet": "PolToSturm*{${1:polname}}{${2:sturmname}}"
+    },
+    "PolSturmIsolateZeros{}": {
+      "snippet": "PolSturmIsolateZeros{${1:sturmname}}"
+    },
+    "PolSturmIsolateZeros*{}": {
+      "snippet": "PolSturmIsolateZeros*{${1:sturmname}}"
+    },
+    "PolSturmIsolateZeros**{}": {
+      "snippet": "PolSturmIsolateZeros**{${1:sturmname}}"
+    },
+    "PolSturmIsolateZerosAndGetMultiplicities{}": {
+      "snippet": "PolSturmIsolateZerosAndGetMultiplicities{${1:sturmname}}"
+    },
+    "PolSturmIsolateZerosGetMultiplicitiesAndRationalRoots{}": {
+      "snippet": "PolSturmIsolateZerosGetMultiplicitiesAndRationalRoots{${1:sturmname}}"
+    },
+    "PolSturmIsolateZerosAndFindRationalRoots{}": {
+      "snippet": "PolSturmIsolateZerosAndFindRationalRoots{${1:sturmname}}"
+    },
+    "PolRefineInterval*{}{}": {
+      "snippet": "PolRefineInterval*{${1:sturmname}}{${2:index}}"
+    },
+    "PolRefineInterval{}{}": {
+      "snippet": "PolRefineInterval{${1:sturmname}}{${2:index}}"
+    },
+    "PolRefineInterval[]{}{}": {
+      "snippet": "PolRefineInterval[${3:N}]{${1:sturmname}}{${2:index}}"
+    },
+    "PolEnsureIntervalLength{}{}{}": {
+      "snippet": "PolEnsureIntervalLength{${1:sturmname}}{${2:index}}{${3:exponent}}"
+    },
+    "PolEnsureIntervalLengths{}{}": {
+      "snippet": "PolEnsureIntervalLengths{${1:sturmname}}{${2:exponent}}"
+    },
+    "PolPrintIntervals{}": {
+      "snippet": "PolPrintIntervals{${1:sturmname}}"
+    },
+    "PolPrintIntervals[]{}": {
+      "snippet": "PolPrintIntervals[${2:varname}]{${1:sturmname}}"
+    },
+    "PolPrintIntervals*{}": {
+      "snippet": "PolPrintIntervals*{${1:sturmname}}"
+    },
+    "PolPrintIntervals*[]{}": {
+      "snippet": "PolPrintIntervals*[${2:varname}]{${1:sturmname}}"
+    },
+    "PolPrintIntervalsNoRealRoots": {},
+    "PolPrintIntervalsBeginEnv": {},
+    "PolPrintIntervalsEndEnv": {},
+    "PolPrintIntervalsRowSeparator": {},
+    "PolPrintIntervalsKnownRoot": {},
+    "PolPrintIntervalsUnknownRoot": {},
+    "PolPrintIntervalsPrintExactZero": {},
+    "PolPrintIntervalsPrintLeftEndPoint": {},
+    "PolPrintIntervalsPrintRightEndPoint": {},
+    "PolPrintIntervalsPrintMultiplicity": {},
+    "PolSetToSturmChainSignChangesAt{}{}{}": {
+      "snippet": "PolSetToSturmChainSignChangesAt{${1:macro}}{${2:sturmname}}{${3:value}}"
+    },
+    "PolSetToNbOfZerosWithin{}{}{}{}": {
+      "snippet": "PolSetToNbOfZerosWithin{${1:macro}}{${2:sturmname}}{${3:value left}}{${4:value right}}"
+    },
+    "toarray{}": {
+      "snippet": "toarray{${1:cmd}}"
+    },
+    "fromarray": {},
+    "PolFromCSV{}{}": {
+      "snippet": "PolFromCSV{${1:polname}}{${2:csv}}"
+    },
+    "PolMapCoeffs{}{}": {
+      "snippet": "PolMapCoeffs{${1:macro}}{${2:polname}}"
+    },
+    "PolReduceCoeffs{}": {
+      "snippet": "PolReduceCoeffs{${1:polname}}"
+    },
+    "PolReduceCoeffs*{}": {
+      "snippet": "PolReduceCoeffs*{${1:polname}}"
+    },
+    "PolMakeMonic{}": {
+      "snippet": "PolMakeMonic{${1:polname}}"
+    },
+    "PolMakePrimitive{}": {
+      "snippet": "PolMakePrimitive{${1:polname}}"
+    },
+    "PolDiff{}{}": {
+      "snippet": "PolDiff{${1:polname1}}{${2:polname2}}"
+    },
+    "PolDiff[]{}{}": {
+      "snippet": "PolDiff[${3:N}]{${1:polname1}}{${2:polname2}}"
+    },
+    "PolAntiDiff{}{}": {
+      "snippet": "PolAntiDiff{${1:polname1}}{${2:polname2}}"
+    },
+    "PolAntiDiff[]{}{}": {
+      "snippet": "PolAntiDiff[${3:N}]{${1:polname1}}{${2:polname2}}"
+    },
+    "PolDivide{}{}{}{}": {
+      "snippet": "PolDivide{${1:polname1}}{${2:polname2}}{${3:polnameQ}}{${4:polnameR}}"
+    },
+    "PolQuo{}{}{}": {
+      "snippet": "PolQuo{${1:polname1}}{${2:polname2}}{${3:polnameQ}}"
+    },
+    "PolRem{}{}{}": {
+      "snippet": "PolRem{${1:polname1}}{${2:polname2}}{${3:polnameR}}"
+    },
+    "PolGCD{}{}{}": {
+      "snippet": "PolGCD{${1:polname1}}{${2:polname2}}{${3:polnameGCD}}"
+    },
+    "PolToExpr{}": {
+      "snippet": "PolToExpr{${1:pol expr}}"
+    },
+    "PolToExpr*{}": {
+      "snippet": "PolToExpr*{${1:pol expr}}"
+    },
+    "PolToExprVar": {},
+    "PolToExprInVar": {},
+    "PolToExprTimes": {},
+    "PolToExprCaret": {},
+    "PolToExprCmd{}": {
+      "snippet": "PolToExprCmd{${1:raw coeff}}"
+    },
+    "PolToExprOneTerm{}{}": {
+      "snippet": "PolToExprOneTerm{${1:raw coeff}}{${2:exponent}}"
+    },
+    "PolToExprOneTermStyleA{}{}": {
+      "snippet": "PolToExprOneTermStyleA{${1:raw coeff}}{${2:exponent}}"
+    },
+    "PolToExprOneTermStyleB{}{}": {
+      "snippet": "PolToExprOneTermStyleB{${1:raw coeff}}{${2:exponent}}"
+    },
+    "PolToExprTermPrefix{}": {
+      "snippet": "PolToExprTermPrefix{${1:raw coeff}}"
+    },
+    "PolToFloatExpr{}": {
+      "snippet": "PolToFloatExpr{${1:pol expr}}"
+    },
+    "PolToFloatExpr*{}": {
+      "snippet": "PolToFloatExpr*{${1:pol expr}}"
+    },
+    "PolToFloatExprOneTerm{}{}": {
+      "snippet": "PolToFloatExprOneTerm{${1:raw coeff}}{${2:exponent}}"
+    },
+    "PolToFloatExprCmd{}": {
+      "snippet": "PolToFloatExprCmd{${1:raw coeff}}"
+    },
+    "PolNthCoeff{}{}": {
+      "snippet": "PolNthCoeff{${1:polname}}{${2:index}}"
+    },
+    "PolLeadingCoeff{}": {
+      "snippet": "PolLeadingCoeff{${1:polname}}"
+    },
+    "PolDegree{}": {
+      "snippet": "PolDegree{${1:polname}}"
+    },
+    "PolIContent{}": {
+      "snippet": "PolIContent{${1:polname}}"
+    },
+    "PolToList{}": {
+      "snippet": "PolToList{${1:polname}}"
+    },
+    "PolToCSV{}": {
+      "snippet": "PolToCSV{${1:polname}}"
+    },
+    "AtExpr": {},
+    "At": {},
+    "PolSturmChainLength{}": {
+      "snippet": "PolSturmChainLength{${1:sturmname}}"
+    },
+    "PolSturmIfZeroExactlyKnown{}{}{}{}": {
+      "snippet": "PolSturmIfZeroExactlyKnown{${1:sturmname}}{${2:index}}{${3:true}}{${4:false}}"
+    },
+    "PolSturmIsolatedZeroLeft{}{}": {
+      "snippet": "PolSturmIsolatedZeroLeft{${1:sturmname}}{${2:index}}"
+    },
+    "PolSturmIsolatedZeroRight{}{}": {
+      "snippet": "PolSturmIsolatedZeroRight{${1:sturmname}}{${2:index}}"
+    },
+    "PolSturmIsolatedZeroMultiplicity{}{}": {
+      "snippet": "PolSturmIsolatedZeroMultiplicity{${1:sturmname}}{${2:index}}"
+    },
+    "PolSturmNbOfIsolatedZeros{}": {
+      "snippet": "PolSturmNbOfIsolatedZeros{${1:sturmname}}"
+    },
+    "PolSturmNbOfRationalRoots{}": {
+      "snippet": "PolSturmNbOfRationalRoots{${1:sturmname}}"
+    },
+    "PolSturmNbOfRationalRootsWithMultiplicities{}": {
+      "snippet": "PolSturmNbOfRationalRootsWithMultiplicities{${1:sturmname}}"
+    },
+    "PolSturmRationalRoot{}{}": {
+      "snippet": "PolSturmRationalRoot{${1:sturmname}}{${2:k}}"
+    },
+    "PolSturmRationalRootIndex{}{}": {
+      "snippet": "PolSturmRationalRootIndex{${1:sturmname}}{${2:k}}"
+    },
+    "PolSturmRationalRootMultiplicity{}{}": {
+      "snippet": "PolSturmRationalRootMultiplicity{${1:sturmname}}{${2:k}}"
+    },
+    "PolIntervalWidth{}{}": {
+      "snippet": "PolIntervalWidth{${1:sturmname}}{${2:index}}"
+    },
+    "PolPrintIntervalsTheVar": {},
+    "PolPrintIntervalsTheIndex": {},
+    "PolPrintIntervalsTheSturmName": {},
+    "PolPrintIntervalsTheLeftEndPoint": {},
+    "PolPrintIntervalsTheRightEndPoint": {},
+    "PolPrintIntervalsTheMultiplicity": {},
+    "ifpolnewpolverbose": {},
+    "polnewpolverbosetrue": {},
+    "polnewpolverbosefalse": {},
+    "ifpoltypesetall": {},
+    "poltypesetalltrue": {},
+    "poltypesetallfalse": {},
+    "ifpoltoexprall": {},
+    "poltoexpralltrue": {},
+    "poltoexprallfalse": {},
+    "PolDecToString{}": {
+      "snippet": "PolDecToString{${1:decimal number}}"
+    },
+    "polexprsetup{}": {
+      "snippet": "polexprsetup{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ifxintveryverbose": {},
+    "xintveryverbosetrue": {},
+    "xintveryverbosefalse": {},
+    "next": {},
+    "PolNbOfRootsLessThanOrEqualToExpr{}{}": {
+      "snippet": "PolNbOfRootsLessThanOrEqualToExpr{${1:arg1}}{${2:arg2}}"
+    },
+    "PolNbOfRootsLessThanOrEqualTo{}": {
+      "snippet": "PolNbOfRootsLessThanOrEqualTo{${1:arg1}}"
+    },
+    "PolNbWithMultOfRootsLessThanOrEqualToExpr{}{}": {
+      "snippet": "PolNbWithMultOfRootsLessThanOrEqualToExpr{${1:arg1}}{${2:arg2}}"
+    },
+    "PolNbWithMultOfRootsLessThanOrEqualTo{}": {
+      "snippet": "PolNbWithMultOfRootsLessThanOrEqualTo{${1:arg1}}"
+    },
+    "PolPrintIntervalsArrayStretch": {},
+    "PolSturmIntervalIndexAtExpr{}{}": {
+      "snippet": "PolSturmIntervalIndexAtExpr{${1:arg1}}{${2:arg2}}"
+    },
+    "PolSturmIntervalIndexAt{}{}": {
+      "snippet": "PolSturmIntervalIndexAt{${1:arg1}}{${2:arg2}}"
+    },
+    "PolSturmIntervalIndex{}{}{}": {
+      "snippet": "PolSturmIntervalIndex{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "PolToExprAscending{}{}": {
+      "snippet": "PolToExprAscending{${1:arg1}}{${2:arg2}}"
+    },
+    "PolToExprDescending{}": {
+      "snippet": "PolToExprDescending{${1:arg1}}"
+    },
+    "PolToFloatExprAscending{}{}": {
+      "snippet": "PolToFloatExprAscending{${1:arg1}}{${2:arg2}}"
+    },
+    "PolToFloatExprDescending{}": {
+      "snippet": "PolToFloatExprDescending{${1:arg1}}"
+    },
+    "xintPolAdd{}": {
+      "snippet": "xintPolAdd{${1:arg1}}"
+    },
+    "xintPolAntiOne{}": {
+      "snippet": "xintPolAntiOne{${1:arg1}}"
+    },
+    "xintPolCoeffs{}": {
+      "snippet": "xintPolCoeffs{${1:arg1}}"
+    },
+    "xintPolCoeff{}{}": {
+      "snippet": "xintPolCoeff{${1:arg1}}{${2:arg2}}"
+    },
+    "xintPolCont{}": {
+      "snippet": "xintPolCont{${1:arg1}}"
+    },
+    "xintPolDeg{}": {
+      "snippet": "xintPolDeg{${1:arg1}}"
+    },
+    "xintPolDiffN{}{}": {
+      "snippet": "xintPolDiffN{${1:arg1}}{${2:arg2}}"
+    },
+    "xintPolDiffOne{}": {
+      "snippet": "xintPolDiffOne{${1:arg1}}"
+    },
+    "xintPolDiffTwo{}": {
+      "snippet": "xintPolDiffTwo{${1:arg1}}"
+    },
+    "xintPolDivModQ{}": {
+      "snippet": "xintPolDivModQ{${1:arg1}}"
+    },
+    "xintPolDivModR{}": {
+      "snippet": "xintPolDivModR{${1:arg1}}"
+    },
+    "xintPolDivMod{}": {
+      "snippet": "xintPolDivMod{${1:arg1}}"
+    },
+    "xintPolEvalAt{}{}": {
+      "snippet": "xintPolEvalAt{${1:arg1}}{${2:arg2}}"
+    },
+    "xintPolGCDof{}": {
+      "snippet": "xintPolGCDof{${1:arg1}}"
+    },
+    "xintPolIntFrom{}": {
+      "snippet": "xintPolIntFrom{${1:arg1}}"
+    },
+    "xintPolIntegral{}{}": {
+      "snippet": "xintPolIntegral{${1:arg1}}{${2:arg2}}"
+    },
+    "xintPolLCoeffs{}": {
+      "snippet": "xintPolLCoeffs{${1:arg1}}"
+    },
+    "xintPolLC{}": {
+      "snippet": "xintPolLC{${1:arg1}}"
+    },
+    "xintPolLPol{}": {
+      "snippet": "xintPolLPol{${1:arg1}}"
+    },
+    "xintPolMonicPart{}": {
+      "snippet": "xintPolMonicPart{${1:arg1}}"
+    },
+    "xintPolMul{}": {
+      "snippet": "xintPolMul{${1:arg1}}"
+    },
+    "xintPolOpp{}": {
+      "snippet": "xintPolOpp{${1:arg1}}"
+    },
+    "xintPolPRem{}": {
+      "snippet": "xintPolPRem{${1:arg1}}"
+    },
+    "xintPolPol{}": {
+      "snippet": "xintPolPol{${1:arg1}}"
+    },
+    "xintPolPow{}": {
+      "snippet": "xintPolPow{${1:arg1}}"
+    },
+    "xintPolPrimPart{}": {
+      "snippet": "xintPolPrimPart{${1:arg1}}"
+    },
+    "xintPolQuoRem{}": {
+      "snippet": "xintPolQuoRem{${1:arg1}}"
+    },
+    "xintPolQuo{}": {
+      "snippet": "xintPolQuo{${1:arg1}}"
+    },
+    "xintPolRedCoeffs{}": {
+      "snippet": "xintPolRedCoeffs{${1:arg1}}"
+    },
+    "xintPolRem{}": {
+      "snippet": "xintPolRem{${1:arg1}}"
+    },
+    "xintPolSRedCoeffs{}": {
+      "snippet": "xintPolSRedCoeffs{${1:arg1}}"
+    },
+    "xintPolSqr{}": {
+      "snippet": "xintPolSqr{${1:arg1}}"
+    },
+    "xintPolSub{}": {
+      "snippet": "xintPolSub{${1:arg1}}"
+    },
+    "xintiiifNeg": {},
+    "xintiiifneg": {},
+    "PolEvalAtExpr{}{}": {
+      "snippet": "PolEvalAtExpr{${1:arg1}}{${2:arg2}}"
+    },
+    "PolEvalAt{}{}": {
+      "snippet": "PolEvalAt{${1:arg1}}{${2:arg2}}"
+    },
+    "PolEvalReducedAtExpr{}{}": {
+      "snippet": "PolEvalReducedAtExpr{${1:arg1}}{${2:arg2}}"
+    },
+    "PolEvalReducedAt{}{}": {
+      "snippet": "PolEvalReducedAt{${1:arg1}}{${2:arg2}}"
+    },
+    "PolFloatEvalAtExpr{}{}": {
+      "snippet": "PolFloatEvalAtExpr{${1:arg1}}{${2:arg2}}"
+    },
+    "PolFloatEvalAt{}{}": {
+      "snippet": "PolFloatEvalAt{${1:arg1}}{${2:arg2}}"
+    },
+    "POL": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "norr=${1:sturmname postfix}",
+      "sqfnorr=${1:sturmname postfix}"
+    ]
+  ]
+}

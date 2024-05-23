@@ -1,0 +1,404 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "graphicx": [],
+    "natbib": [],
+    "txfonts": [
+      "times"
+    ],
+    "endfloat": [
+      "endfloat",
+      "endfloats"
+    ],
+    "geometry": [
+      "1p",
+      "3p",
+      "5p"
+    ]
+  },
+  "macros": {
+    "affiliation[]{}": {
+      "snippet": "affiliation[${2:id}]{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "affiliation{}": {
+      "snippet": "affiliation{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "author[]{}": {
+      "snippet": "author[${2:id}]{${1:names}}"
+    },
+    "biboptions{}": {
+      "snippet": "biboptions{${1:natbib options}}"
+    },
+    "corref{}": {
+      "snippet": "corref{${1:ids}}"
+    },
+    "cortext[]{}": {
+      "snippet": "cortext[${2:id}]{${1:text}}"
+    },
+    "cortext{}": {
+      "snippet": "cortext{${1:text}}"
+    },
+    "ead[]{}": {
+      "snippet": "ead[${2:url}]{${1:URL}}"
+    },
+    "ead{}": {
+      "snippet": "ead{${1:email}}"
+    },
+    "fnref{}": {
+      "snippet": "fnref{${1:ids}}"
+    },
+    "fntext[]{}": {
+      "snippet": "fntext[${2:id}]{${1:text}}"
+    },
+    "fntext{}": {
+      "snippet": "fntext{${1:text}}"
+    },
+    "JEL": {},
+    "journal{}": {
+      "snippet": "journal{${1:journal name}}"
+    },
+    "MSC": {},
+    "MSC[]": {
+      "snippet": "MSC[${1:year}]"
+    },
+    "newdefinition{}[]{}": {
+      "snippet": "newdefinition{${1:envname}}[${2:numbered like}]{${3:caption}}"
+    },
+    "newdefinition{}{}": {
+      "snippet": "newdefinition{${1:envname}}{${2:caption}}"
+    },
+    "newdefinition{}{}[]": {
+      "snippet": "newdefinition{${1:envname}}{${2:caption}}[${3:within}]"
+    },
+    "newpageafter{}": {
+      "snippet": "newpageafter{${1:type}}"
+    },
+    "newproof{}{}": {
+      "snippet": "newproof{${1:envname}}{${2:caption}}"
+    },
+    "PACS": {},
+    "sep": {},
+    "tnoteref{}": {
+      "snippet": "tnoteref{${1:ids}}"
+    },
+    "tnotetext[]{}": {
+      "snippet": "tnotetext[${2:id}]{${1:text}}"
+    },
+    "tnotetext{}": {
+      "snippet": "tnotetext{${1:text}}"
+    },
+    "ABD[]{}": {
+      "snippet": "ABD[${2:label}]{${1:code}}"
+    },
+    "ABD{}": {
+      "snippet": "ABD{${1:code}}"
+    },
+    "absbox": {},
+    "abstracttitle{}": {
+      "snippet": "abstracttitle{${1:text}}"
+    },
+    "address[]{}": {
+      "snippet": "address[${2:id}]{${1:address}}"
+    },
+    "address{}": {
+      "snippet": "address{${1:address}}"
+    },
+    "addsep": {},
+    "affnum": {},
+    "alarm{}": {
+      "snippet": "alarm{${1:warning}}"
+    },
+    "appnamewidth": {},
+    "authorsep": {},
+    "caaddressline[]{}": {
+      "snippet": "caaddressline[${2:punctuation}]{${1:address}}"
+    },
+    "caaddressline{}": {
+      "snippet": "caaddressline{${1:address}}"
+    },
+    "caaffcity[]{}": {
+      "snippet": "caaffcity[${2:punctuation}]{${1:city}}"
+    },
+    "caaffcity{}": {
+      "snippet": "caaffcity{${1:city}}"
+    },
+    "caaffiliationvalues": {},
+    "caaffitempostskip": {},
+    "cacountry[]{}": {
+      "snippet": "cacountry[${2:punctuation}]{${1:country}}"
+    },
+    "cacountry{}": {
+      "snippet": "cacountry{${1:country}}"
+    },
+    "caorganization[]{}": {
+      "snippet": "caorganization[${2:punctuation}]{${1:organization}}"
+    },
+    "caorganization{}": {
+      "snippet": "caorganization{${1:organization}}"
+    },
+    "capostalcode[]{}": {
+      "snippet": "capostalcode[${2:punctuation}]{${1:postcode}}"
+    },
+    "capostalcode{}": {
+      "snippet": "capostalcode{${1:postcode}}"
+    },
+    "castate[]{}": {
+      "snippet": "castate[${2:punctuation}]{${1:state}}"
+    },
+    "castate{}": {
+      "snippet": "castate{${1:state}}"
+    },
+    "castmaddressline[]{}": {
+      "snippet": "castmaddressline[${2:punctuation}]{${1:address}}"
+    },
+    "castmaddressline{}": {
+      "snippet": "castmaddressline{${1:address}}"
+    },
+    "castmaffcity[]{}": {
+      "snippet": "castmaffcity[${2:punctuation}]{${1:city}}"
+    },
+    "castmaffcity{}": {
+      "snippet": "castmaffcity{${1:city}}"
+    },
+    "castmcountry[]{}": {
+      "snippet": "castmcountry[${2:punctuation}]{${1:country}}"
+    },
+    "castmcountry{}": {
+      "snippet": "castmcountry{${1:country}}"
+    },
+    "castmorganization[]{}": {
+      "snippet": "castmorganization[${2:punctuation}]{${1:organization}}"
+    },
+    "castmorganization{}": {
+      "snippet": "castmorganization{${1:organization}}"
+    },
+    "castmpostalcode[]{}": {
+      "snippet": "castmpostalcode[${2:punctuation}]{${1:postcode}}"
+    },
+    "castmpostalcode{}": {
+      "snippet": "castmpostalcode{${1:postcode}}"
+    },
+    "castmstate[]{}": {
+      "snippet": "castmstate[${2:punctuation}]{${1:state}}"
+    },
+    "castmstate{}": {
+      "snippet": "castmstate{${1:state}}"
+    },
+    "Columnwidth": {},
+    "comma": {
+      "detail": ",",
+      "documentation": "COMMA"
+    },
+    "cormark[]": {
+      "snippet": "cormark[${1:id}]"
+    },
+    "doubleblindfalse": {},
+    "doubleblindtrue": {},
+    "eadsep": {},
+    "elsaddress": {},
+    "elsarticlegrabsbox": {},
+    "elsarticlehighlightsbox": {},
+    "elsarticleprelims": {},
+    "elsarticletitlealign": {},
+    "elsauthors": {},
+    "elsLabel{}": {
+      "snippet": "elsLabel{${1:id}}"
+    },
+    "elsparagraph": {},
+    "elsprelimauthors": {},
+    "elsprelimpagegrabsfalse": {},
+    "elsprelimpagegrabstrue": {},
+    "elsprelimpagehlfalse": {},
+    "elsprelimpagehltrue": {},
+    "elsRef{}": {
+      "snippet": "elsRef{${1:id}}"
+    },
+    "emailauthor{}{}": {
+      "snippet": "emailauthor{${1:id}}{${2:email}}"
+    },
+    "finalMaketitle": {},
+    "fnmark[]": {
+      "snippet": "fnmark[${1:id}]"
+    },
+    "fnotenum": {},
+    "FNtext{}": {
+      "snippet": "FNtext{${1:text}}"
+    },
+    "getSpaceLeft": {},
+    "gstmappto{}{}": {
+      "snippet": "gstmappto{${1:cmd}}{${2:def}}"
+    },
+    "hashchar": {},
+    "idotsint": {},
+    "ifdoubleblind": {},
+    "ifelsprelimpagegrabs": {},
+    "ifelsprelimpagehl": {},
+    "iflongmktitle": {},
+    "ifnonatbib": {},
+    "ifnopreprintline": {},
+    "ifpreprint": {},
+    "ifstmundef{}": {
+      "snippet": "ifstmundef{${1:arg1}}"
+    },
+    "ifuseexplthreefunctions": {},
+    "jtype": {},
+    "keybox": {},
+    "keywordtitle{}": {
+      "snippet": "keywordtitle{${1:text}}"
+    },
+    "keywordtitlesep{}": {
+      "snippet": "keywordtitlesep{${1:punctuation}}"
+    },
+    "lbracechar": {},
+    "leftMargin": {},
+    "longmktitlefalse": {},
+    "longmktitletrue": {},
+    "MaketitleBox": {},
+    "myfooter[]{}": {
+      "snippet": "myfooter[${2:align}]{${1:footer}}"
+    },
+    "myfooterfont{}": {
+      "snippet": "myfooterfont{${1:font commands}}"
+    },
+    "myfor{}{}{}": {
+      "snippet": "myfor{${1:num1}}{${2:num2}}{${3:code}}"
+    },
+    "Newlabel{}{}": {
+      "snippet": "Newlabel{${1:id}}{${2:arg}}"
+    },
+    "newstmrobustcmd{}[]{}": {
+      "snippet": "newstmrobustcmd{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "newstmrobustcmd{}{}": {
+      "snippet": "newstmrobustcmd{${1:cmd}}{${2:def}}"
+    },
+    "nonatbibfalse": {},
+    "nonatbibtrue": {},
+    "nonumnote{}": {
+      "snippet": "nonumnote{${1:text}}"
+    },
+    "nopreprintlinefalse": {},
+    "nopreprintlinetrue": {},
+    "noteheight": {},
+    "pprintMaketitle": {},
+    "pprinttitle": {},
+    "prelimauthorsep": {},
+    "preprintfalse": {},
+    "preprinttrue": {},
+    "printFirstPageNotes": {},
+    "printWarning": {},
+    "qed": {},
+    "rbracechar": {},
+    "RCSdate": {},
+    "RCSfile": {},
+    "RCSversion": {},
+    "resetTitleCounters": {},
+    "savefpageheight": {},
+    "savetitlepagespan": {},
+    "sfbc": {},
+    "sfn": {},
+    "sitem": {},
+    "stmexpandonce{}": {
+      "snippet": "stmexpandonce{${1:arg}}"
+    },
+    "textmarker{}{}": {
+      "snippet": "textmarker{${1:color}}{${2:text}}"
+    },
+    "theaffn": {},
+    "theauthor": {},
+    "thecnote": {},
+    "theead": {},
+    "thefnote": {},
+    "thetnote": {},
+    "titleheight": {},
+    "titlespancalculator{}{}{}{}": {
+      "snippet": "titlespancalculator{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "tmptocnumberline{}": {
+      "snippet": "tmptocnumberline{${1:arg}}"
+    },
+    "tnotemark[]": {
+      "snippet": "tnotemark[${1:id}]"
+    },
+    "tnotesep": {},
+    "underscorechar": {},
+    "urlauthor{}{}": {
+      "snippet": "urlauthor{${1:id}}{${2:URL}}"
+    },
+    "useauthors": {},
+    "useelstitle": {},
+    "useexplthreefunctionsfalse": {},
+    "useexplthreefunctionstrue": {},
+    "xstmappto{}{}": {
+      "snippet": "xstmappto{${1:cmd}}{${2:def}}"
+    }
+  },
+  "envs": {
+    "enumerate[]": {
+      "name": "enumerate",
+      "snippet": "[${1:itemlabel}]"
+    },
+    "frontmatter": {},
+    "graphicalabstract": {},
+    "highlights": {},
+    "keyword": {}
+  },
+  "options": [
+    "preprint",
+    "review",
+    "1p",
+    "3p",
+    "5p",
+    "authoryear",
+    "number",
+    "sort&compress",
+    "longtitle",
+    "times",
+    "reversenotenum",
+    "lefttitle",
+    "endfloat",
+    "nonatbib",
+    "doubleblind",
+    "a4paper",
+    "a5paper",
+    "b5paper",
+    "letterpaper",
+    "legalpaper",
+    "executivepaper",
+    "landscape",
+    "10pt",
+    "11pt",
+    "12pt",
+    "oneside",
+    "twoside",
+    "draft",
+    "final",
+    "titlepage",
+    "notitlepage",
+    "onecolumn",
+    "twocolumn",
+    "leqno",
+    "fleqn",
+    "openbib"
+  ],
+  "keyvals": [
+    [
+      "organizationsep=${1:punctuation}",
+      "addresslinesep=${1:punctuation}",
+      "citysep=${1:punctuation}",
+      "postcodesep=${1:punctuation}",
+      "statesep=${1:punctuation}",
+      "countrysep=${1:punctuation}",
+      "organization={${1:organization}}",
+      "addressline={${1:address}}",
+      "city={${1:city}}",
+      "postcode={${1:postcode}}",
+      "state={${1:state}}",
+      "country={${1:country}}"
+    ]
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "includes": {
+    "etoolbox": []
+  },
+  "macros": {
+    "bxRequireDefinition{}": {
+      "snippet": "bxRequireDefinition{${1:file}}"
+    },
+    "ifbxOk": {},
+    "bxOktrue": {},
+    "bxOkfalse": {},
+    "bxRes": {},
+    "bxIfcsundefX{}{}{}": {
+      "snippet": "bxIfcsundefX{${1:csname}}{${2:true}}{${3:false}}"
+    },
+    "bxCsuseX{}": {
+      "snippet": "bxCsuseX{${1:csname}}"
+    },
+    "ifbxineTeX": {},
+    "ifbxinpdfTeX": {},
+    "ifbxinLuaTeX": {},
+    "ifbxinOmega": {},
+    "ifbxinAleph": {},
+    "ifbxinXeTeX": {},
+    "ifbxinpTeX": {},
+    "ifbxinupTeX": {},
+    "ifbxinnativeupTeX": {},
+    "ifbxinjTeX": {},
+    "bxIfineTeX{}{}": {
+      "snippet": "bxIfineTeX{${1:true}}{${2:false}}"
+    },
+    "bxIfinpdfTeX{}{}": {
+      "snippet": "bxIfinpdfTeX{${1:true}}{${2:false}}"
+    },
+    "bxIfinLuaTeX{}{}": {
+      "snippet": "bxIfinLuaTeX{${1:true}}{${2:false}}"
+    },
+    "bxIfinOmega{}{}": {
+      "snippet": "bxIfinOmega{${1:true}}{${2:false}}"
+    },
+    "bxIfinAleph{}{}": {
+      "snippet": "bxIfinAleph{${1:true}}{${2:false}}"
+    },
+    "bxIfinXeTeX{}{}": {
+      "snippet": "bxIfinXeTeX{${1:true}}{${2:false}}"
+    },
+    "bxIfinpTeX{}{}": {
+      "snippet": "bxIfinpTeX{${1:true}}{${2:false}}"
+    },
+    "bxIfinupTeX{}{}": {
+      "snippet": "bxIfinupTeX{${1:true}}{${2:false}}"
+    },
+    "bxIfinnativeupTeX{}{}": {
+      "snippet": "bxIfinnativeupTeX{${1:true}}{${2:false}}"
+    },
+    "bxIfinjTeX{}{}": {
+      "snippet": "bxIfinjTeX{${1:true}}{${2:false}}"
+    },
+    "bxPreamble": {},
+    "bxConstIfToken{}{}": {
+      "snippet": "bxConstIfToken{${1:boolean1}}{${2:boolean2}}"
+    },
+    "bxIf{}{}{}": {
+      "snippet": "bxIf{${1:test}}{${2:true}}{${3:false}}"
+    },
+    "bxIfcat{}{}{}": {
+      "snippet": "bxIfcat{${1:test}}{${2:true}}{${3:false}}"
+    },
+    "bxIfx{}{}{}": {
+      "snippet": "bxIfx{${1:test}}{${2:true}}{${3:false}}"
+    },
+    "bxIfdim{}{}{}": {
+      "snippet": "bxIfdim{${1:test}}{${2:true}}{${3:false}}"
+    },
+    "bxIfnum{}{}{}": {
+      "snippet": "bxIfnum{${1:test}}{${2:true}}{${3:false}}"
+    },
+    "bxIfInMovingArg{}{}": {
+      "snippet": "bxIfInMovingArg{${1:true}}{${2:false}}"
+    },
+    "bxMessageToken{}{}": {
+      "snippet": "bxMessageToken{${1:string}}{${2:text}}"
+    },
+    "bxCheckForMovingArg{}": {
+      "snippet": "bxCheckForMovingArg{${1:text}}"
+    },
+    "bxCheckForMovingArgForTest{}{}{}": {
+      "snippet": "bxCheckForMovingArgForTest{${1:test}}{${2:true}}{${3:false}}"
+    },
+    "bxSetDummyIfs": {},
+    "bxUnsetDummyIfs": {},
+    "ifbxPrimitive": {},
+    "bxIfHasIfPrimitive{}{}": {
+      "snippet": "bxIfHasIfPrimitive{${1:true}}{${2:false}}"
+    },
+    "bxPrimitive": {},
+    "bxStrcmp": {},
+    "bxRobustdef{}": {
+      "snippet": "bxRobustdef{${1:cmd}}"
+    },
+    "bxRobustgdef{}": {
+      "snippet": "bxRobustgdef{${1:cmd}}"
+    },
+    "bxRobustedef{}": {
+      "snippet": "bxRobustedef{${1:cmd}}"
+    },
+    "bxRobustxdef{}": {
+      "snippet": "bxRobustxdef{${1:cmd}}"
+    },
+    "bxIfPdfOutput{}{}": {
+      "snippet": "bxIfPdfOutput{${1:true}}{${2:false}}"
+    },
+    "bxIfPdfOutputNow{}{}": {
+      "snippet": "bxIfPdfOutputNow{${1:true}}{${2:false}}"
+    },
+    "ifbxPdfOutput": {},
+    "bxIfCsPrimitive{}": {
+      "snippet": "bxIfCsPrimitive{${1:csname}}"
+    },
+    "bxIfExpToEqual{}{}{}{}": {
+      "snippet": "bxIfExpToEqual{${1:text1}}{${2:text2}}{${3:true}}{${4:false}}"
+    },
+    "bxIfExpToEqualX{}{}{}{}": {
+      "snippet": "bxIfExpToEqualX{${1:text1}}{${2:text2}}{${3:true}}{${4:false}}"
+    },
+    "bxIfstrequal{}{}{}{}": {
+      "snippet": "bxIfstrequal{${1:string1}}{${2:string2}}{${3:true}}{${4:false}}"
+    },
+    "bxIfstrequalX{}{}{}{}": {
+      "snippet": "bxIfstrequalX{${1:string1}}{${2:string2}}{${3:true}}{${4:false}}"
+    },
+    "bxDetokenize{}": {
+      "snippet": "bxDetokenize{${1:text}}"
+    },
+    "bxStringify{}": {
+      "snippet": "bxStringify{${1:text}}"
+    },
+    "bxCsNoexpand{}": {
+      "snippet": "bxCsNoexpand{${1:csname}}"
+    },
+    "bxNewrobustcmd{}{}": {
+      "snippet": "bxNewrobustcmd{${1:cmd}}{${2:def}}"
+    },
+    "bxNewrobustcmd{}[]{}": {
+      "snippet": "bxNewrobustcmd{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "bxNewrobustcmd{}[][]{}": {
+      "snippet": "bxNewrobustcmd{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "bxNewrobustcmd*{}{}": {
+      "snippet": "bxNewrobustcmd*{${1:cmd}}{${2:def}}"
+    },
+    "bxNewrobustcmd*{}[]{}": {
+      "snippet": "bxNewrobustcmd*{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "bxNewrobustcmd*{}[][]{}": {
+      "snippet": "bxNewrobustcmd*{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "bxRenewrobustcmd{}{}": {
+      "snippet": "bxRenewrobustcmd{${1:cmd}}{${2:def}}"
+    },
+    "bxRenewrobustcmd{}[]{}": {
+      "snippet": "bxRenewrobustcmd{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "bxRenewrobustcmd{}[][]{}": {
+      "snippet": "bxRenewrobustcmd{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "bxRenewrobustcmd*{}{}": {
+      "snippet": "bxRenewrobustcmd*{${1:cmd}}{${2:def}}"
+    },
+    "bxRenewrobustcmd*{}[]{}": {
+      "snippet": "bxRenewrobustcmd*{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "bxRenewrobustcmd*{}[][]{}": {
+      "snippet": "bxRenewrobustcmd*{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "bxProviderobustcmd{}{}": {
+      "snippet": "bxProviderobustcmd{${1:cmd}}{${2:def}}"
+    },
+    "bxProviderobustcmd{}[]{}": {
+      "snippet": "bxProviderobustcmd{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "bxProviderobustcmd{}[][]{}": {
+      "snippet": "bxProviderobustcmd{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "bxProviderobustcmd*{}{}": {
+      "snippet": "bxProviderobustcmd*{${1:cmd}}{${2:def}}"
+    },
+    "bxProviderobustcmd*{}[]{}": {
+      "snippet": "bxProviderobustcmd*{${1:cmd}}[${2:args}]{${3:def}}"
+    },
+    "bxProviderobustcmd*{}[][]{}": {
+      "snippet": "bxProviderobustcmd*{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    },
+    "bxRobustify{}": {
+      "snippet": "bxRobustify{${1:command}}"
+    },
+    "bxIfcsdef{}{}{}": {
+      "snippet": "bxIfcsdef{${1:csname}}{${2:true}}{${3:false}}"
+    },
+    "bxIfcsundef{}{}{}": {
+      "snippet": "bxIfcsundef{${1:csname}}{${2:true}}{${3:false}}"
+    },
+    "bxCsuse{}": {
+      "snippet": "bxCsuse{${1:csname}}"
+    },
+    "bxCsshow{}": {
+      "snippet": "bxCsshow{${1:csname}}"
+    },
+    "bxResDim": {},
+    "bxDebug{}": {
+      "snippet": "bxDebug{${1:text}}"
+    },
+    "bxShowbool{}": {
+      "snippet": "bxShowbool{${1:name}}"
+    },
+    "bxShowtoggle{}": {
+      "snippet": "bxShowtoggle{${1:name}}"
+    },
+    "bxInputDefFile{}": {
+      "snippet": "bxInputDefFile{${1:file}}"
+    },
+    "bxProcessOptions": {},
+    "bxProcessOptions*": {},
+    "ifbxHasUcsChar": {},
+    "bxHasUcsChartrue": {},
+    "bxHasUcsCharfalse": {},
+    "ifbxHasAlUcsChar": {},
+    "bxHasAlUcsChartrue": {},
+    "bxHasAlUcsCharfalse": {},
+    "bxToChar{}": {
+      "snippet": "bxToChar{${1:number}}"
+    },
+    "bxToJaChar{}": {
+      "snippet": "bxToJaChar{${1:number}}"
+    },
+    "bxToUcsChar": {},
+    "bxToUcsCharDual{}{}": {
+      "snippet": "bxToUcsCharDual{${1:jis}}{${2:ucs}}"
+    },
+    "bxToUcsCharSeq{}": {
+      "snippet": "bxToUcsCharSeq{${1:jis:ucs,...}}"
+    },
+    "bxToHexTiny{}": {
+      "snippet": "bxToHexTiny{${1:number}}"
+    },
+    "bxToHexSmall{}": {
+      "snippet": "bxToHexSmall{${1:number}}"
+    },
+    "bxToHexTwo{}": {
+      "snippet": "bxToHexTwo{${1:number}}"
+    },
+    "bxToHexThree{}": {
+      "snippet": "bxToHexThree{${1:number}}"
+    },
+    "bxToHexFour{}": {
+      "snippet": "bxToHexFour{${1:number}}"
+    },
+    "bxToHexFive{}": {
+      "snippet": "bxToHexFive{${1:number}}"
+    },
+    "bxToHexFiveX{}": {
+      "snippet": "bxToHexFiveX{${1:number}}"
+    },
+    "bxToHexEight{}": {
+      "snippet": "bxToHexEight{${1:number}}"
+    },
+    "bxToHexUC{}": {
+      "snippet": "bxToHexUC{${1:number}}"
+    },
+    "bxToDecFour{}": {
+      "snippet": "bxToDecFour{${1:number}}"
+    },
+    "bxToDecFive{}": {
+      "snippet": "bxToDecFive{${1:number}}"
+    },
+    "bxToLower{}": {
+      "snippet": "bxToLower{${1:string}}"
+    },
+    "bxToUpper{}": {
+      "snippet": "bxToUpper{${1:string}}"
+    },
+    "bxDocumentSpecial{}": {
+      "snippet": "bxDocumentSpecial{${1:text}}"
+    },
+    "bxDocumentSpecialUrgent{}": {
+      "snippet": "bxDocumentSpecialUrgent{${1:text}}"
+    },
+    "bxUseShadowMap{}": {
+      "snippet": "bxUseShadowMap{${1:cmd}}"
+    },
+    "bxSetModuleName{}": {
+      "snippet": "bxSetModuleName{${1:name}}"
+    },
+    "bxModuleName": {},
+    "bxCurrentError": {},
+    "bxCurrentWarning": {},
+    "bxCurrentWarningNoLine": {},
+    "bxCurrentInfo": {},
+    "bxPrepareSetKeysSafe": {},
+    "bxSetKeysSafe": {},
+    "bxRestKeys": {},
+    "bxDriverList": {},
+    "bxDriverInherent": {},
+    "bxDriver": {},
+    "bxSetDriver{}": {
+      "snippet": "bxSetDriver{${1:driver}}"
+    },
+    "bxSetDriver[]{}": {
+      "snippet": "bxSetDriver[${2:file}]{${1:driver}}"
+    },
+    "bxDriverSpecifiedFor{}": {
+      "snippet": "bxDriverSpecifiedFor{${1:file}}"
+    },
+    "bxDefineDDProcess{}{}{}": {
+      "snippet": "bxDefineDDProcess{${1:name}}{${2:driver}}{${3:text}}"
+    },
+    "bxDefineDDProcessDefault{}{}": {
+      "snippet": "bxDefineDDProcessDefault{${1:name}}{${2:text}}"
+    },
+    "bxDoDDProcess{}": {
+      "snippet": "bxDoDDProcess{${1:name}}"
+    },
+    "bxDeclareDriverOptions": {},
+    "bxToYokoDir": {},
+    "bxAtBeginDviX{}": {
+      "snippet": "bxAtBeginDviX{${1:code}}"
+    },
+    "bxGetZenkakuWidth": {},
+    "bxIfCharToken{}{}{}": {
+      "snippet": "bxIfCharToken{${1:token}}{${2:yes}}{${3:no}}"
+    },
+    "bxInternalJaEncoding": {},
+    "bxInputJaEncoding": {},
+    "bxOutputJaEncoding": {},
+    "internaljaencodingname": {},
+    "inputjaencodingname": {},
+    "outputjaencodingname": {},
+    "infojenc": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

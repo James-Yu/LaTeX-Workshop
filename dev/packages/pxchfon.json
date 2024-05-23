@@ -1,0 +1,380 @@
+{
+  "includes": {
+    "platex": [],
+    "keyval": [],
+    "uplatex": [
+      "glyphid",
+      "expert"
+    ],
+    "pxufont": [
+      "glyphid",
+      "expert"
+    ]
+  },
+  "macros": {
+    "gid{}": {
+      "snippet": "gid{${1:整数}}",
+      "option": "glyphid"
+    },
+    "pxchfonDeclareOneWeightPreset{}{}{}": {
+      "snippet": "pxchfonDeclareOneWeightPreset{${1:名前}}{${2:明朝}}{${3:ゴシック}}"
+    },
+    "pxchfonDeclareMultiWeightPreset{}{}{}{}{}{}{}{}{}": {
+      "snippet": "pxchfonDeclareMultiWeightPreset{${1:名前}}{${2:明朝・細}}{${3:明朝・中}}{${4:明朝・太}}{${5:ゴシック・中}}{${6:ゴシック・太}}{${7:ゴシック・極太}}{${8:ゴシック・単}}{${9:丸ゴシック}}"
+    },
+    "setminchofont{}": {
+      "snippet": "setminchofont{${1:フォントファイル名}}"
+    },
+    "setminchofont[]{}": {
+      "snippet": "setminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setgothicfont{}": {
+      "snippet": "setgothicfont{${1:フォントファイル名}}"
+    },
+    "setgothicfont[]{}": {
+      "snippet": "setgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setlightminchofont{}": {
+      "snippet": "setlightminchofont{${1:フォントファイル名}}"
+    },
+    "setlightminchofont[]{}": {
+      "snippet": "setlightminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setmediumminchofont{}": {
+      "snippet": "setmediumminchofont{${1:フォントファイル名}}"
+    },
+    "setmediumminchofont[]{}": {
+      "snippet": "setmediumminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setboldminchofont{}": {
+      "snippet": "setboldminchofont{${1:フォントファイル名}}"
+    },
+    "setboldminchofont[]{}": {
+      "snippet": "setboldminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setmediumgothicfont{}": {
+      "snippet": "setmediumgothicfont{${1:フォントファイル名}}"
+    },
+    "setmediumgothicfont[]{}": {
+      "snippet": "setmediumgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setboldgothicfont{}": {
+      "snippet": "setboldgothicfont{${1:フォントファイル名}}"
+    },
+    "setboldgothicfont[]{}": {
+      "snippet": "setboldgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setxboldgothicfont{}": {
+      "snippet": "setxboldgothicfont{${1:フォントファイル名}}"
+    },
+    "setxboldgothicfont[]{}": {
+      "snippet": "setxboldgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setoneweightgothicfont{}": {
+      "snippet": "setoneweightgothicfont{${1:フォントファイル名}}"
+    },
+    "setoneweightgothicfont[]{}": {
+      "snippet": "setoneweightgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setmarugothicfont{}": {
+      "snippet": "setmarugothicfont{${1:フォントファイル名}}"
+    },
+    "setmarugothicfont[]{}": {
+      "snippet": "setmarugothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setkoreanminchofont{}": {
+      "snippet": "setkoreanminchofont{${1:フォントファイル名}}"
+    },
+    "setkoreanminchofont[]{}": {
+      "snippet": "setkoreanminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setkoreangothicfont{}": {
+      "snippet": "setkoreangothicfont{${1:フォントファイル名}}"
+    },
+    "setkoreangothicfont[]{}": {
+      "snippet": "setkoreangothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setkoreanlightminchofont{}": {
+      "snippet": "setkoreanlightminchofont{${1:フォントファイル名}}"
+    },
+    "setkoreanlightminchofont[]{}": {
+      "snippet": "setkoreanlightminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setkoreanmediumminchofont{}": {
+      "snippet": "setkoreanmediumminchofont{${1:フォントファイル名}}"
+    },
+    "setkoreanmediumminchofont[]{}": {
+      "snippet": "setkoreanmediumminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setkoreanboldminchofont{}": {
+      "snippet": "setkoreanboldminchofont{${1:フォントファイル名}}"
+    },
+    "setkoreanboldminchofont[]{}": {
+      "snippet": "setkoreanboldminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setkoreanmediumgothicfont{}": {
+      "snippet": "setkoreanmediumgothicfont{${1:フォントファイル名}}"
+    },
+    "setkoreanmediumgothicfont[]{}": {
+      "snippet": "setkoreanmediumgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setkoreanboldgothicfont{}": {
+      "snippet": "setkoreanboldgothicfont{${1:フォントファイル名}}"
+    },
+    "setkoreanboldgothicfont[]{}": {
+      "snippet": "setkoreanboldgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setkoreanxboldgothicfont{}": {
+      "snippet": "setkoreanxboldgothicfont{${1:フォントファイル名}}"
+    },
+    "setkoreanxboldgothicfont[]{}": {
+      "snippet": "setkoreanxboldgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setkoreanoneweightgothicfont{}": {
+      "snippet": "setkoreanoneweightgothicfont{${1:フォントファイル名}}"
+    },
+    "setkoreanoneweightgothicfont[]{}": {
+      "snippet": "setkoreanoneweightgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setkoreanmarugothicfont{}": {
+      "snippet": "setkoreanmarugothicfont{${1:フォントファイル名}}"
+    },
+    "setkoreanmarugothicfont[]{}": {
+      "snippet": "setkoreanmarugothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setschineseminchofont{}": {
+      "snippet": "setschineseminchofont{${1:フォントファイル名}}"
+    },
+    "setschineseminchofont[]{}": {
+      "snippet": "setschineseminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setschinesegothicfont{}": {
+      "snippet": "setschinesegothicfont{${1:フォントファイル名}}"
+    },
+    "setschinesegothicfont[]{}": {
+      "snippet": "setschinesegothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setschineselightminchofont{}": {
+      "snippet": "setschineselightminchofont{${1:フォントファイル名}}"
+    },
+    "setschineselightminchofont[]{}": {
+      "snippet": "setschineselightminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setschinesemediumminchofont{}": {
+      "snippet": "setschinesemediumminchofont{${1:フォントファイル名}}"
+    },
+    "setschinesemediumminchofont[]{}": {
+      "snippet": "setschinesemediumminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setschineseboldminchofont{}": {
+      "snippet": "setschineseboldminchofont{${1:フォントファイル名}}"
+    },
+    "setschineseboldminchofont[]{}": {
+      "snippet": "setschineseboldminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setschinesemediumgothicfont{}": {
+      "snippet": "setschinesemediumgothicfont{${1:フォントファイル名}}"
+    },
+    "setschinesemediumgothicfont[]{}": {
+      "snippet": "setschinesemediumgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setschineseboldgothicfont{}": {
+      "snippet": "setschineseboldgothicfont{${1:フォントファイル名}}"
+    },
+    "setschineseboldgothicfont[]{}": {
+      "snippet": "setschineseboldgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setschinesexboldgothicfont{}": {
+      "snippet": "setschinesexboldgothicfont{${1:フォントファイル名}}"
+    },
+    "setschinesexboldgothicfont[]{}": {
+      "snippet": "setschinesexboldgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setschineseoneweightgothicfont{}": {
+      "snippet": "setschineseoneweightgothicfont{${1:フォントファイル名}}"
+    },
+    "setschineseoneweightgothicfont[]{}": {
+      "snippet": "setschineseoneweightgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "setschinesemarugothicfont{}": {
+      "snippet": "setschinesemarugothicfont{${1:フォントファイル名}}"
+    },
+    "setschinesemarugothicfont[]{}": {
+      "snippet": "setschinesemarugothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "settchineseminchofont{}": {
+      "snippet": "settchineseminchofont{${1:フォントファイル名}}"
+    },
+    "settchineseminchofont[]{}": {
+      "snippet": "settchineseminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "settchinesegothicfont{}": {
+      "snippet": "settchinesegothicfont{${1:フォントファイル名}}"
+    },
+    "settchinesegothicfont[]{}": {
+      "snippet": "settchinesegothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "settchineselightminchofont{}": {
+      "snippet": "settchineselightminchofont{${1:フォントファイル名}}"
+    },
+    "settchineselightminchofont[]{}": {
+      "snippet": "settchineselightminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "settchinesemediumminchofont{}": {
+      "snippet": "settchinesemediumminchofont{${1:フォントファイル名}}"
+    },
+    "settchinesemediumminchofont[]{}": {
+      "snippet": "settchinesemediumminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "settchineseboldminchofont{}": {
+      "snippet": "settchineseboldminchofont{${1:フォントファイル名}}"
+    },
+    "settchineseboldminchofont[]{}": {
+      "snippet": "settchineseboldminchofont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "settchinesemediumgothicfont{}": {
+      "snippet": "settchinesemediumgothicfont{${1:フォントファイル名}}"
+    },
+    "settchinesemediumgothicfont[]{}": {
+      "snippet": "settchinesemediumgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "settchineseboldgothicfont{}": {
+      "snippet": "settchineseboldgothicfont{${1:フォントファイル名}}"
+    },
+    "settchineseboldgothicfont[]{}": {
+      "snippet": "settchineseboldgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "settchinesexboldgothicfont{}": {
+      "snippet": "settchinesexboldgothicfont{${1:フォントファイル名}}"
+    },
+    "settchinesexboldgothicfont[]{}": {
+      "snippet": "settchinesexboldgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "settchineseoneweightgothicfont{}": {
+      "snippet": "settchineseoneweightgothicfont{${1:フォントファイル名}}"
+    },
+    "settchineseoneweightgothicfont[]{}": {
+      "snippet": "settchineseoneweightgothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "settchinesemarugothicfont{}": {
+      "snippet": "settchinesemarugothicfont{${1:フォントファイル名}}"
+    },
+    "settchinesemarugothicfont[]{}": {
+      "snippet": "settchinesemarugothicfont[${2:番号}]{${1:フォントファイル名}}"
+    },
+    "usecmapforalphabet": {},
+    "nousecmapforalphabet": {},
+    "JaFontReplacementFor{}": {
+      "snippet": "JaFontReplacementFor{${1:sym}}"
+    },
+    "JaFontReplacementHook{}": {
+      "snippet": "JaFontReplacementHook{${1:code}}"
+    },
+    "JaFontUserDefinedMap": {},
+    "usefontmapline{}": {
+      "snippet": "usefontmapline{${1:マップ行}}"
+    },
+    "usefontmapfile{}": {
+      "snippet": "usefontmapfile{${1:マップファイル名}}"
+    },
+    "setnewglyphcmapprefix{}": {
+      "snippet": "setnewglyphcmapprefix{${1:文字列}}"
+    },
+    "Entry{}{}{}{}": {
+      "snippet": "Entry{${1:sym}}{${2:tfm}}{${3:cmap}}{${4:modify,...}}"
+    },
+    "diruni": {},
+    "textdiruni{}": {
+      "snippet": "textdiruni{${1:テキスト}}"
+    },
+    "jfmsync": {},
+    "jfmsyncbox{}{}": {
+      "snippet": "jfmsyncbox{${1:width}}{${2:text}}"
+    },
+    "maybemultiweight": {},
+    "pxchfonMaybeMultiweight": {}
+  },
+  "envs": {},
+  "options": [
+    "nodvidriver",
+    "dvips",
+    "dviout",
+    "xdvi",
+    "dvipdfmx",
+    "use=${1:名前}",
+    "alphabet",
+    "noalphabet",
+    "relfont",
+    "otf",
+    "nootf",
+    "utf",
+    "noutf",
+    "usecmapforalphabet",
+    "nousecmapforalphabet",
+    "preferjis2004",
+    "nopreferjis2004",
+    "everypage",
+    "noeverypage",
+    "oneweight",
+    "nooneweight",
+    "unicode",
+    "unicode=",
+    "dumpmap",
+    "nodumpmap",
+    "dumpmaptl",
+    "nodumpmaptl",
+    "switchfont",
+    "noswitchfont",
+    "strictcsi",
+    "nostrictcsi",
+    "fullwidth",
+    "nofullwidth",
+    "legacycode=",
+    "legacycode-replace=${1:真偽値}",
+    "expert",
+    "noexpert",
+    "glyphid",
+    "noglyphid",
+    "maybe-multiweight",
+    "autojfmsync",
+    "noautojfmsync",
+    "noembed",
+    "ms",
+    "ipa",
+    "ipaex",
+    "ms-hg",
+    "ipa-hg",
+    "ipaex-hg",
+    "moga-mobo",
+    "moga-mobo-ex",
+    "moga-maruberi",
+    "ume",
+    "kozuka-pro",
+    "kozuka-pr6",
+    "kozuka-pr6n",
+    "hiragino-pro",
+    "hiragino-pron",
+    "hiragino-elcapitan-pro",
+    "hiragino-elcapitan-pron",
+    "morisawa-pro",
+    "morisawa-pr6n",
+    "yu-win",
+    "yu-win10",
+    "yu-osx",
+    "sourcehan-otc",
+    "sourcehan",
+    "sourcehan-jp",
+    "noto-otc",
+    "noto",
+    "noto-jp",
+    "haranoaji",
+    "sourcehan-otc!",
+    "sourcehan!",
+    "sourcehan-jp!",
+    "noto-otc!",
+    "noto!",
+    "noto-jp!",
+    "noto-otf!"
+  ],
+  "keyvals": []
+}

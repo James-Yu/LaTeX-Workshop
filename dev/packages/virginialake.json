@@ -1,0 +1,347 @@
+{
+  "includes": {},
+  "macros": {
+    "vlor": {},
+    "vlan": {},
+    "vlim": {},
+    "vlne": {},
+    "vldi": {},
+    "vlmi": {},
+    "vls": {},
+    "vlsbr": {},
+    "vlscn": {},
+    "vlhole": {},
+    "vlsmallbrackets": {},
+    "vlnosmallbrackets": {},
+    "vlupdate": {},
+    "vlstore": {},
+    "vlread": {},
+    "vldot": {},
+    "vlsqbrl": {},
+    "vlsqbrr": {},
+    "vlrobrl": {},
+    "vlrobrr": {},
+    "vlnos": {},
+    "vlnostructuresyntax": {},
+    "vlsmallleftlabels": {},
+    "vlnosmallleftlabels": {},
+    "vlderivation{}": {
+      "snippet": "vlderivation{${1:derivation}}"
+    },
+    "vlproof{}{}{}": {
+      "snippet": "vlproof{${1:left label}}{${2:right label}}{${3:conclusion}}"
+    },
+    "vlder{}{}{}{}": {
+      "snippet": "vlder{${1:left label}}{${2:right label}}{${3:conclusion}}{${4:premiss}}"
+    },
+    "vltreeder{}{}{}{}{}": {
+      "snippet": "vltreeder{${1:label}}{${2:conclusion}}{${3:left premiss}}{${4:middle premiss}}{${5:right premiss}}"
+    },
+    "vlinf{}{}{}{}": {
+      "snippet": "vlinf{${1:left label}}{${2:right label}}{${3:conclusion}}{${4:premiss}}"
+    },
+    "vliinf{}{}{}{}{}": {
+      "snippet": "vliinf{${1:left label}}{${2:right label}}{${3:conclusion}}{${4:left premiss}}{${5:right premiss}}"
+    },
+    "vliiinf{}{}{}{}{}{}": {
+      "snippet": "vliiinf{${1:left label}}{${2:right label}}{${3:conclusion}}{${4:left premiss}}{${5:middle premiss}}{${6:right premiss}}"
+    },
+    "vlpr{}{}{}": {
+      "snippet": "vlpr{${1:left label}}{${2:right label}}{${3:conclusion}}"
+    },
+    "vlde{}{}{}{}": {
+      "snippet": "vlde{${1:left label}}{${2:right label}}{${3:conclusion}}{${4:premiss (${5:derivation})}}"
+    },
+    "vltr{}{}{}{}{}": {
+      "snippet": "vltr{${1:label}}{${2:conclusion}}{${3:left premiss (${6:derivation})}}{${4:middle premiss (${7:derivation})}}{${5:right premiss (${8:derivation})}}"
+    },
+    "vltr{}{}{}{}{}{}": {
+      "snippet": "vltr{${1:label}}{${2:conclusion}}{${3:left premiss (${7:derivation})}}{${4:middle premiss (${8:derivation})}}{${5:right premiss (${9:derivation})}}{${6:scale}}"
+    },
+    "vlin{}{}{}{}": {
+      "snippet": "vlin{${1:left label}}{${2:right label}}{${3:conclusion}}{${4:premiss (${5:derivation})}}"
+    },
+    "vliin{}{}{}{}{}": {
+      "snippet": "vliin{${1:left label}}{${2:right label}}{${3:conclusion}}{${4:left premiss (${6:derivation})}}{${5:right premiss (${7:derivation})}}"
+    },
+    "vliiin{}{}{}{}{}{}": {
+      "snippet": "vliiin{${1:left label}}{${2:right label}}{${3:conclusion}}{${4:left premiss (${7:derivation})}}{${5:middle premiss (${8:derivation})}}{${6:right premiss (${9:derivation})}}"
+    },
+    "vlhy{}": {
+      "snippet": "vlhy{${1:premiss}}"
+    },
+    "aftriangletrue": {},
+    "aftrianglefalse": {},
+    "afaid{}{}{}{}{}{}": {
+      "snippet": "afaid{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}"
+    },
+    "afaidcol{}{}{}{}{}{}{}{}": {
+      "snippet": "afaidcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:colour}}{${8:colour}}"
+    },
+    "afaidex{}{}{}{}{}{}{}{}": {
+      "snippet": "afaidex{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:scale numerator}}{${8:scale denominator}}"
+    },
+    "afaidexcol{}{}{}{}{}{}{}{}{}{}": {
+      "snippet": "afaidexcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:scale numerator}}{${8:scale denominator}}{${9:colour}}{${10:colour}}"
+    },
+    "afaidnw{}{}": {
+      "snippet": "afaidnw{${1:label}}{${2:label}}"
+    },
+    "afaidnwcol{}{}{}": {
+      "snippet": "afaidnwcol{${1:label}}{${2:label}}{${3:colour}}"
+    },
+    "afaiu{}{}{}{}{}{}": {
+      "snippet": "afaiu{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}"
+    },
+    "afaiucol{}{}{}{}{}{}{}{}": {
+      "snippet": "afaiucol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:colour}}{${8:colour}}"
+    },
+    "afaiuex{}{}{}{}{}{}{}{}": {
+      "snippet": "afaiuex{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:scale numerator}}{${8:scale denominator}}"
+    },
+    "afaiuexcol{}{}{}{}{}{}{}{}{}{}": {
+      "snippet": "afaiuexcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:scale numerator}}{${8:scale denominator}}{${9:colour}}{${10:colour}}"
+    },
+    "afaiunw{}{}": {
+      "snippet": "afaiunw{${1:label}}{${2:label}}"
+    },
+    "afaiunwcol{}{}{}": {
+      "snippet": "afaiunwcol{${1:label}}{${2:label}}{${3:colour}}"
+    },
+    "afnegspace": {},
+    "afraise": {},
+    "aflower": {},
+    "afacd{}{}{}{}{}{}": {
+      "snippet": "afacd{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}"
+    },
+    "afacdcol{}{}{}{}{}{}{}{}{}": {
+      "snippet": "afacdcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:colour}}{${8:colour}}{${9:colour}}"
+    },
+    "afacdex{}{}{}{}{}{}{}{}": {
+      "snippet": "afacdex{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:scale numerator}}{${8:scale denominator}}"
+    },
+    "afacdexsq{}{}{}{}{}{}{}{}": {
+      "snippet": "afacdexsq{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:scale numerator}}{${8:scale denominator}}"
+    },
+    "afacdexcol{}{}{}{}{}{}{}{}{}{}{}": {
+      "snippet": "afacdexcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:scale numerator}}{${8:scale denominator}}{${9:colour}}{${10:colour}}{${11:colour}}"
+    },
+    "afacdexsqcol{}{}{}{}{}{}{}{}{}{}{}": {
+      "snippet": "afacdexsqcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:scale numerator}}{${8:scale denominator}}{${9:colour}}{${10:colour}}{${11:colour}}"
+    },
+    "afacdnw{}{}{}{}": {
+      "snippet": "afacdnw{${1:label}}{${2:label}}{${3:label}}{${4:label}}"
+    },
+    "afacdnwcol{}{}{}{}{}{}": {
+      "snippet": "afacdnwcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:colour}}{${6:colour}}"
+    },
+    "afacdnwex{}{}{}{}{}{}": {
+      "snippet": "afacdnwex{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:scale numerator}}{${6:scale denominator}}"
+    },
+    "afacdexsq{}{}{}{}{}{}": {
+      "snippet": "afacdexsq{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:scale numerator}}{${6:scale denominator}}"
+    },
+    "afacdnwexcol{}{}{}{}{}{}{}{}": {
+      "snippet": "afacdnwexcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:scale numerator}}{${6:scale denominator}}{${7:colour}}{${8:colour}}"
+    },
+    "afacdnwexsqcol{}{}{}{}{}{}{}{}": {
+      "snippet": "afacdnwexsqcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:scale numerator}}{${6:scale denominator}}{${7:colour}}{${8:colour}}"
+    },
+    "afacu{}{}{}{}{}{}": {
+      "snippet": "afacu{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}"
+    },
+    "afacucol{}{}{}{}{}{}{}{}{}": {
+      "snippet": "afacucol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:colour}}{${8:colour}}{${9:colour}}"
+    },
+    "afacuex{}{}{}{}{}{}{}{}": {
+      "snippet": "afacuex{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:scale numerator}}{${8:scale denominator}}"
+    },
+    "afacuexsq{}{}{}{}{}{}{}{}": {
+      "snippet": "afacuexsq{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:scale numerator}}{${8:scale denominator}}"
+    },
+    "afacuexcol{}{}{}{}{}{}{}{}{}{}{}": {
+      "snippet": "afacuexcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:scale numerator}}{${8:scale denominator}}{${9:colour}}{${10:colour}}{${11:colour}}"
+    },
+    "afacuexsqcol{}{}{}{}{}{}{}{}{}{}{}": {
+      "snippet": "afacuexsqcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:label}}{${6:label}}{${7:scale numerator}}{${8:scale denominator}}{${9:colour}}{${10:colour}}{${11:colour}}"
+    },
+    "afacunw{}{}{}{}": {
+      "snippet": "afacunw{${1:label}}{${2:label}}{${3:label}}{${4:label}}"
+    },
+    "afacunwcol{}{}{}{}{}{}": {
+      "snippet": "afacunwcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:colour}}{${6:colour}}"
+    },
+    "afacunwex{}{}{}{}{}{}": {
+      "snippet": "afacunwex{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:scale numerator}}{${6:scale denominator}}"
+    },
+    "afacuexsq{}{}{}{}{}{}": {
+      "snippet": "afacuexsq{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:scale numerator}}{${6:scale denominator}}"
+    },
+    "afacunwexcol{}{}{}{}{}{}{}{}": {
+      "snippet": "afacunwexcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:scale numerator}}{${6:scale denominator}}{${7:colour}}{${8:colour}}"
+    },
+    "afacunwexsqcol{}{}{}{}{}{}{}{}": {
+      "snippet": "afacunwexsqcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:scale numerator}}{${6:scale denominator}}{${7:colour}}{${8:colour}}"
+    },
+    "afawd{}{}{}{}": {
+      "snippet": "afawd{${1:label}}{${2:label}}{${3:label}}{${4:label}}"
+    },
+    "afawdcol{}{}{}{}{}{}": {
+      "snippet": "afawdcol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:colour}}{${6:colour}}"
+    },
+    "afawdnw{}{}": {
+      "snippet": "afawdnw{${1:label}}{${2:label}}"
+    },
+    "afawu{}{}{}{}": {
+      "snippet": "afawu{${1:label}}{${2:label}}{${3:label}}{${4:label}}"
+    },
+    "afawucol{}{}{}{}{}{}": {
+      "snippet": "afawucol{${1:label}}{${2:label}}{${3:label}}{${4:label}}{${5:colour}}{${6:colour}}"
+    },
+    "afawunw{}{}": {
+      "snippet": "afawunw{${1:label}}{${2:label}}"
+    },
+    "aff{}{}{}": {
+      "snippet": "aff{${1:scale}}{${2:label}}{${3:label}}"
+    },
+    "affcol{}{}{}{}": {
+      "snippet": "affcol{${1:scale}}{${2:label}}{${3:label}}{${4:colour}}"
+    },
+    "aft{}{}{}": {
+      "snippet": "aft{${1:scale}}{${2:label}}{${3:label}}"
+    },
+    "aftcol{}{}{}{}": {
+      "snippet": "aftcol{${1:scale}}{${2:label}}{${3:label}}{${4:colour}}"
+    },
+    "afvdj": {},
+    "afvj{}": {
+      "snippet": "afvj{${1:scale}}"
+    },
+    "afvjcol{}{}": {
+      "snippet": "afvjcol{${1:scale}}{${2:colour}}"
+    },
+    "afvjd{}{}{}": {
+      "snippet": "afvjd{${1:label}}{${2:label}}{${3:scale}}"
+    },
+    "afvjdcol{}{}{}{}": {
+      "snippet": "afvjdcol{${1:label}}{${2:label}}{${3:scale}}{${4:colour}}"
+    },
+    "afvju{}{}{}": {
+      "snippet": "afvju{${1:label}}{${2:label}}{${3:scale}}"
+    },
+    "afvjucol{}{}{}{}": {
+      "snippet": "afvjucol{${1:label}}{${2:label}}{${3:scale}}{${4:colour}}"
+    },
+    "aftvj{}": {
+      "snippet": "aftvj{${1:scale}}"
+    },
+    "aftvjcol{}{}": {
+      "snippet": "aftvjcol{${1:scale}}{${2:colour}}"
+    },
+    "aftvjd{}{}{}": {
+      "snippet": "aftvjd{${1:label}}{${2:label}}{${3:scale}}"
+    },
+    "aftvjdcol{}{}{}{}": {
+      "snippet": "aftvjdcol{${1:label}}{${2:label}}{${3:scale}}{${4:colour}}"
+    },
+    "aftvju{}{}{}": {
+      "snippet": "aftvju{${1:label}}{${2:label}}{${3:scale}}"
+    },
+    "aftvjucol{}{}{}{}": {
+      "snippet": "aftvjucol{${1:label}}{${2:label}}{${3:scale}}{${4:colour}}"
+    },
+    "afex{}{}": {
+      "snippet": "afex{${1:scale}}{${2:scale}}"
+    },
+    "afexcol{}{}{}{}": {
+      "snippet": "afexcol{${1:scale}}{${2:scale}}{${3:colour}}{${4:colour}}"
+    },
+    "afcjl{}": {
+      "snippet": "afcjl{${1:scale}}"
+    },
+    "afcjlcol{}{}": {
+      "snippet": "afcjlcol{${1:scale}}{${2:colour}}"
+    },
+    "afcjld{}{}{}": {
+      "snippet": "afcjld{${1:label}}{${2:label}}{${3:scale}}"
+    },
+    "afcjldcol{}{}{}{}": {
+      "snippet": "afcjldcol{${1:label}}{${2:label}}{${3:scale}}{${4:colour}}"
+    },
+    "afcjlu{}{}{}": {
+      "snippet": "afcjlu{${1:label}}{${2:label}}{${3:scale}}"
+    },
+    "afcjlucol{}{}{}{}": {
+      "snippet": "afcjlucol{${1:label}}{${2:label}}{${3:scale}}{${4:colour}}"
+    },
+    "aftcjl{}": {
+      "snippet": "aftcjl{${1:scale}}"
+    },
+    "aftcjlcol{}{}": {
+      "snippet": "aftcjlcol{${1:scale}}{${2:colour}}"
+    },
+    "aftcjld{}{}{}": {
+      "snippet": "aftcjld{${1:label}}{${2:label}}{${3:scale}}"
+    },
+    "aftcjldcol{}{}{}{}": {
+      "snippet": "aftcjldcol{${1:label}}{${2:label}}{${3:scale}}{${4:colour}}"
+    },
+    "aftcjlu{}{}{}": {
+      "snippet": "aftcjlu{${1:label}}{${2:label}}{${3:scale}}"
+    },
+    "aftcjlucol{}{}{}{}": {
+      "snippet": "aftcjlucol{${1:label}}{${2:label}}{${3:scale}}{${4:colour}}"
+    },
+    "afcjr{}": {
+      "snippet": "afcjr{${1:scale}}"
+    },
+    "afcjrcol{}{}": {
+      "snippet": "afcjrcol{${1:scale}}{${2:colour}}"
+    },
+    "afcjrd{}{}{}": {
+      "snippet": "afcjrd{${1:label}}{${2:label}}{${3:scale}}"
+    },
+    "afcjrdcol{}{}{}{}": {
+      "snippet": "afcjrdcol{${1:label}}{${2:label}}{${3:scale}}{${4:colour}}"
+    },
+    "afcjru{}{}{}": {
+      "snippet": "afcjru{${1:label}}{${2:label}}{${3:scale}}"
+    },
+    "afcjrucol{}{}{}{}": {
+      "snippet": "afcjrucol{${1:label}}{${2:label}}{${3:scale}}{${4:colour}}"
+    },
+    "aftcjr{}": {
+      "snippet": "aftcjr{${1:scale}}"
+    },
+    "aftcjrcol{}{}": {
+      "snippet": "aftcjrcol{${1:scale}}{${2:colour}}"
+    },
+    "aftcjrd{}{}{}": {
+      "snippet": "aftcjrd{${1:label}}{${2:label}}{${3:scale}}"
+    },
+    "aftcjrdcol{}{}{}{}": {
+      "snippet": "aftcjrdcol{${1:label}}{${2:label}}{${3:scale}}{${4:colour}}"
+    },
+    "aftcjru{}{}{}": {
+      "snippet": "aftcjru{${1:label}}{${2:label}}{${3:scale}}"
+    },
+    "aftcjrucol{}{}{}{}": {
+      "snippet": "aftcjrucol{${1:label}}{${2:label}}{${3:scale}}{${4:colour}}"
+    },
+    "affr{}{}": {
+      "snippet": "affr{${1:scale}}{${2:scale}}"
+    },
+    "atomicflow{}": {
+      "snippet": "atomicflow{${1:atomicflow}}"
+    },
+    "atomicflowinv{}": {
+      "snippet": "atomicflowinv{${1:atomicflow}}"
+    },
+    "vldownsmash": {},
+    "vlupsmash": {},
+    "vlsmash": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

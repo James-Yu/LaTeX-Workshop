@@ -1,0 +1,455 @@
+{
+  "includes": {
+    "etex": [],
+    "etoolbox": [],
+    "letltxmacro": []
+  },
+  "macros": {
+    "expandaftercmds{}{}": {
+      "snippet": "expandaftercmds{${1:code}}{${2:control sequences}}"
+    },
+    "expandnext{}{}": {
+      "snippet": "expandnext{${1:code}}{${2:control sequences}}"
+    },
+    "expandnexttwo{}{}{}": {
+      "snippet": "expandnexttwo{${1:code}}{${2:control sequences}}{${3:control sequences}}"
+    },
+    "ExpandAftercmds{}{}": {
+      "snippet": "ExpandAftercmds{${1:code}}{${2:control sequences}}"
+    },
+    "ExpandNext{}{}": {
+      "snippet": "ExpandNext{${1:code}}{${2:control sequences}}"
+    },
+    "ExpandNextTwo{}{}{}": {
+      "snippet": "ExpandNextTwo{${1:code}}{${2:control sequences}}{${3:control sequences}}"
+    },
+    "noexpandcs{}": {
+      "snippet": "noexpandcs{${1:csname}}"
+    },
+    "noexpandafter": {},
+    "thefontname": {},
+    "showcs{}": {
+      "snippet": "showcs{${1:csname}}"
+    },
+    "showthecs{}": {
+      "snippet": "showthecs{${1:csname}}"
+    },
+    "meaningcs{}": {
+      "snippet": "meaningcs{${1:csname}}"
+    },
+    "ifdefcount{}{}{}": {
+      "snippet": "ifdefcount{${1:token}}{${2:true}}{${3:false}}"
+    },
+    "ifdeftoks{}{}{}": {
+      "snippet": "ifdeftoks{${1:token}}{${2:true}}{${3:false}}"
+    },
+    "ifdefskip{}{}{}": {
+      "snippet": "ifdefskip{${1:token}}{${2:true}}{${3:false}}"
+    },
+    "ifdefmuskip{}{}{}": {
+      "snippet": "ifdefmuskip{${1:token}}{${2:true}}{${3:false}}"
+    },
+    "ifdefchar{}{}{}": {
+      "snippet": "ifdefchar{${1:token}}{${2:true}}{${3:false}}"
+    },
+    "ifdefmathchar{}{}{}": {
+      "snippet": "ifdefmathchar{${1:token}}{${2:true}}{${3:false}}"
+    },
+    "avoidvoid{}": {
+      "snippet": "avoidvoid{${1:string}}"
+    },
+    "avoidvoid[]{}": {
+      "snippet": "avoidvoid[${2:replacement code}]{${1:string}}"
+    },
+    "avoidvoid*{}": {
+      "snippet": "avoidvoid*{${1:string}}"
+    },
+    "avoidvoid*[]{}": {
+      "snippet": "avoidvoid*[${2:replacement code}]{${1:string}}"
+    },
+    "avoidvoidcs{}": {
+      "snippet": "avoidvoidcs{${1:csname}}"
+    },
+    "avoidvoidcs[]{}": {
+      "snippet": "avoidvoidcs[${2:replacement code}]{${1:csname}}"
+    },
+    "avoidvoidcs*{}": {
+      "snippet": "avoidvoidcs*{${1:csname}}"
+    },
+    "avoidvoidcs*[]{}": {
+      "snippet": "avoidvoidcs*[${2:replacement code}]{${1:csname}}"
+    },
+    "ifsingletoken{}{}{}{}": {
+      "snippet": "ifsingletoken{${1:token}}{${2:code}}{${3:true}}{${4:false}}"
+    },
+    "ifOneToken{}{}{}": {
+      "snippet": "ifOneToken{${1:code}}{${2:true}}{${3:false}}"
+    },
+    "ifsinglechar{}{}{}{}": {
+      "snippet": "ifsinglechar{${1:token}}{${2:string}}{${3:true}}{${4:false}}"
+    },
+    "ifOneChar{}{}{}": {
+      "snippet": "ifOneChar{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "ifOneCharWithBlanks{}{}{}": {
+      "snippet": "ifOneCharWithBlanks{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "iffirsttoken{}{}{}{}": {
+      "snippet": "iffirsttoken{${1:string1}}{${2:string2}}{${3:true}}{${4:false}}"
+    },
+    "iffirstchar{}{}{}{}": {
+      "snippet": "iffirstchar{${1:string1}}{${2:string2}}{${3:true}}{${4:false}}"
+    },
+    "ifiscs{}{}{}": {
+      "snippet": "ifiscs{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "detokenizeChars{}": {
+      "snippet": "detokenizeChars{${1:token list}}"
+    },
+    "protectspace{}": {
+      "snippet": "protectspace{${1:code}}"
+    },
+    "ifempty{}{}{}": {
+      "snippet": "ifempty{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "xifempty{}{}{}": {
+      "snippet": "xifempty{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "ifnotempty{}{}{}": {
+      "snippet": "ifnotempty{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "xifblank{}{}{}": {
+      "snippet": "xifblank{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "ifnotblank{}{}{}": {
+      "snippet": "ifnotblank{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "deblank{}": {
+      "snippet": "deblank{${1:string}}"
+    },
+    "ifstrcmp{}{}{}{}": {
+      "snippet": "ifstrcmp{${1:string1}}{${2:string2}}{${3:true}}{${4:false}}"
+    },
+    "xifstrequal{}{}{}{}": {
+      "snippet": "xifstrequal{${1:string1}}{${2:string2}}{${3:true}}{${4:false}}"
+    },
+    "xifstrcmp{}{}{}{}": {
+      "snippet": "xifstrcmp{${1:string1}}{${2:string2}}{${3:true}}{${4:false}}"
+    },
+    "ifcharupper{}{}{}": {
+      "snippet": "ifcharupper{${1:char}}{${2:true}}{${3:false}}"
+    },
+    "ifcharlower{}{}{}": {
+      "snippet": "ifcharlower{${1:char}}{${2:true}}{${3:false}}"
+    },
+    "ifuppercase{}{}{}": {
+      "snippet": "ifuppercase{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "iflowercase{}{}{}": {
+      "snippet": "iflowercase{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "ifstrmatch{}{}{}{}": {
+      "snippet": "ifstrmatch{${1:pattern}}{${2:string}}{${3:true}}{${4:false}}"
+    },
+    "ifstrdigit{}{}{}": {
+      "snippet": "ifstrdigit{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "ifstrnum{}{}{}": {
+      "snippet": "ifstrnum{${1:string}}{${2:true}}{${3:false}}"
+    },
+    "DeclareStringFilter{}{}": {
+      "snippet": "DeclareStringFilter{${1:cmd}}{${2:string}}"
+    },
+    "DeclareStringFilter[]{}{}": {
+      "snippet": "DeclareStringFilter[${3:\\global}]{${1:cmd}}{${2:string}}"
+    },
+    "futuredef{}{}": {
+      "snippet": "futuredef{${1:cmd}}{${2:commands to expand after}}"
+    },
+    "futuredef[]{}{}": {
+      "snippet": "futuredef[${3:allowed token list}]{${1:cmd}}{${2:commands to expand after}}"
+    },
+    "futuredef*{}{}": {
+      "snippet": "futuredef*{${1:cmd}}{${2:commands to expand after}}"
+    },
+    "futuredef*[]{}{}": {
+      "snippet": "futuredef*[${3:allowed token list}]{${1:cmd}}{${2:commands to expand after}}"
+    },
+    "AfterGroup{}": {
+      "snippet": "AfterGroup{${1:code}}"
+    },
+    "AfterGroup*{}": {
+      "snippet": "AfterGroup*{${1:code}}"
+    },
+    "AfterAssignment{}": {
+      "snippet": "AfterAssignment{${1:code}}"
+    },
+    "naturalloop{}{}": {
+      "snippet": "naturalloop{${1:number}}{${2:argument}}"
+    },
+    "naturalloop[]{}{}": {
+      "snippet": "naturalloop[${3:auxiliary cmds}]{${1:number}}{${2:argument}}"
+    },
+    "ifintokslist{}{}{}{}": {
+      "snippet": "ifintokslist{${1:token}}{${2:token list}}{${3:true}}{${4:false}}"
+    },
+    "ifincharlist{}{}{}{}": {
+      "snippet": "ifincharlist{${1:token}}{${2:token list}}{${3:true}}{${4:false}}"
+    },
+    "gettokslistindex{}{}": {
+      "snippet": "gettokslistindex{${1:item}}{${2:token list}}"
+    },
+    "getcharlistindex{}{}": {
+      "snippet": "getcharlistindex{${1:item}}{${2:token list}}"
+    },
+    "gettokslistcount{}": {
+      "snippet": "gettokslistcount{${1:token list}}"
+    },
+    "gettokslisttoken{}{}": {
+      "snippet": "gettokslisttoken{${1:item}}{${2:token list}}"
+    },
+    "getcharlistcount{}": {
+      "snippet": "getcharlistcount{${1:token list}}"
+    },
+    "getcharlisttoken{}{}": {
+      "snippet": "getcharlisttoken{${1:item}}{${2:token list}}"
+    },
+    "DeclareCmdListParser{}{}": {
+      "snippet": "DeclareCmdListParser{${1:cmd}}{${2:separator}}"
+    },
+    "DeclareCmdListParser[]{}{}": {
+      "snippet": "DeclareCmdListParser[${3:\\global}]{${1:cmd}}{${2:separator}}"
+    },
+    "breakloop{}": {
+      "snippet": "breakloop{${1:code}}"
+    },
+    "csvloop{}": {
+      "snippet": "csvloop{${1:csv list}}"
+    },
+    "csvloop[]{}": {
+      "snippet": "csvloop[${2:auxiliary cmds}]{${1:csv list}}"
+    },
+    "csvloop*{}": {
+      "snippet": "csvloop*{${1:csv list}}"
+    },
+    "csvloop*[]{}": {
+      "snippet": "csvloop*[${2:auxiliary cmds}]{${1:csv list}}"
+    },
+    "listloop{}": {
+      "snippet": "listloop{${1:list}}"
+    },
+    "listloop[]{}": {
+      "snippet": "listloop[${2:auxiliary cmds}]{${1:list}}"
+    },
+    "listloop*{}": {
+      "snippet": "listloop*{${1:list}}"
+    },
+    "listloop*[]{}": {
+      "snippet": "listloop*[${2:auxiliary cmds}]{${1:list}}"
+    },
+    "toksloop{}": {
+      "snippet": "toksloop{${1:token list}}"
+    },
+    "toksloop[]{}": {
+      "snippet": "toksloop[${2:auxiliary cmds}]{${1:token list}}"
+    },
+    "toksloop*{}": {
+      "snippet": "toksloop*{${1:token list}}"
+    },
+    "toksloop*[]{}": {
+      "snippet": "toksloop*[${2:auxiliary cmds}]{${1:token list}}"
+    },
+    "forcsvloop{}": {
+      "snippet": "forcsvloop{${1:csv list}}"
+    },
+    "fortoksloop{}": {
+      "snippet": "fortoksloop{${1:token list}}"
+    },
+    "forcsvloop*{}": {
+      "snippet": "forcsvloop*{${1:csv list}}"
+    },
+    "forlistloop*{}": {
+      "snippet": "forlistloop*{${1:list}}"
+    },
+    "fortoksloop*{}": {
+      "snippet": "fortoksloop*{${1:token list}}"
+    },
+    "csvlistadd{}{}": {
+      "snippet": "csvlistadd{${1:list macro}}{${2:item}}"
+    },
+    "csvlistgadd{}{}": {
+      "snippet": "csvlistgadd{${1:list macro}}{${2:item}}"
+    },
+    "csvlisteadd{}{}": {
+      "snippet": "csvlisteadd{${1:list macro}}{${2:item}}"
+    },
+    "csvlistxadd{}{}": {
+      "snippet": "csvlistxadd{${1:list macro}}{${2:item}}"
+    },
+    "csvtolist{}": {
+      "snippet": "csvtolist{${1:csv list}}"
+    },
+    "csvtolist[]{}": {
+      "snippet": "csvtolist[${2:list macro}]{${1:csv list}}"
+    },
+    "csvtolist*{}": {
+      "snippet": "csvtolist*{${1:csv list}}"
+    },
+    "csvtolist*[]{}": {
+      "snippet": "csvtolist*[${2:list macro}]{${1:csv list}}"
+    },
+    "tokstolist{}": {
+      "snippet": "tokstolist{${1:token list}}"
+    },
+    "tokstolist[]{}": {
+      "snippet": "tokstolist[${2:list macro}]{${1:token list}}"
+    },
+    "tokstolist*{}": {
+      "snippet": "tokstolist*{${1:token list}}"
+    },
+    "tokstolist*[]{}": {
+      "snippet": "tokstolist*[${2:list macro}]{${1:token list}}"
+    },
+    "listtocsv{}": {
+      "snippet": "listtocsv{${1:list}}"
+    },
+    "listtocsv[]{}": {
+      "snippet": "listtocsv[${2:list macro}]{${1:list}}"
+    },
+    "listtocsv*{}": {
+      "snippet": "listtocsv*{${1:list}}"
+    },
+    "listtocsv*[]{}": {
+      "snippet": "listtocsv*[${2:list macro}]{${1:list}}"
+    },
+    "csvtolistadd{}{}": {
+      "snippet": "csvtolistadd{${1:list macro}}{${2:csv list}}"
+    },
+    "csvtolistadd*{}{}": {
+      "snippet": "csvtolistadd*{${1:list macro}}{${2:csv list}}"
+    },
+    "tokstolistadd{}{}": {
+      "snippet": "tokstolistadd{${1:list macro}}{${2:token list}}"
+    },
+    "tokstolistadd*{}{}": {
+      "snippet": "tokstolistadd*{${1:list macro}}{${2:token list}}"
+    },
+    "ifincsvlist{}{}{}{}": {
+      "snippet": "ifincsvlist{${1:item}}{${2:csv list}}{${3:true}}{${4:false}}"
+    },
+    "xifincsvlist{}{}{}{}": {
+      "snippet": "xifincsvlist{${1:item}}{${2:csv list}}{${3:true}}{${4:false}}"
+    },
+    "ifincsvlist*{}{}{}{}": {
+      "snippet": "ifincsvlist*{${1:item}}{${2:csv list}}{${3:true}}{${4:false}}"
+    },
+    "xifincsvlist*{}{}{}{}": {
+      "snippet": "xifincsvlist*{${1:item}}{${2:csv list}}{${3:true}}{${4:false}}"
+    },
+    "listdel{}{}": {
+      "snippet": "listdel{${1:list macro}}{${2:item}}"
+    },
+    "listdel[]{}{}": {
+      "snippet": "listdel[${3:number}]{${1:list macro}}{${2:item}}"
+    },
+    "listgdel{}{}": {
+      "snippet": "listgdel{${1:list macro}}{${2:item}}"
+    },
+    "listgdel[]{}{}": {
+      "snippet": "listgdel[${3:number}]{${1:list macro}}{${2:item}}"
+    },
+    "listedel{}{}": {
+      "snippet": "listedel{${1:list macro}}{${2:item}}"
+    },
+    "listedel[]{}{}": {
+      "snippet": "listedel[${3:number}]{${1:list macro}}{${2:item}}"
+    },
+    "listxdel{}{}": {
+      "snippet": "listxdel{${1:list macro}}{${2:item}}"
+    },
+    "listxdel[]{}{}": {
+      "snippet": "listxdel[${3:number}]{${1:list macro}}{${2:item}}"
+    },
+    "csvdel{}{}": {
+      "snippet": "csvdel{${1:list macro}}{${2:item}}"
+    },
+    "csvdel[]{}{}": {
+      "snippet": "csvdel[${3:number}]{${1:list macro}}{${2:item}}"
+    },
+    "csvgdel{}{}": {
+      "snippet": "csvgdel{${1:list macro}}{${2:item}}"
+    },
+    "csvgdel[]{}{}": {
+      "snippet": "csvgdel[${3:number}]{${1:list macro}}{${2:item}}"
+    },
+    "csvedel{}{}": {
+      "snippet": "csvedel{${1:list macro}}{${2:item}}"
+    },
+    "csvedel[]{}{}": {
+      "snippet": "csvedel[${3:number}]{${1:list macro}}{${2:item}}"
+    },
+    "csvxdel{}{}": {
+      "snippet": "csvxdel{${1:list macro}}{${2:item}}"
+    },
+    "csvxdel[]{}{}": {
+      "snippet": "csvxdel[${3:number}]{${1:list macro}}{${2:item}}"
+    },
+    "toksdel{}{}": {
+      "snippet": "toksdel{${1:list macro}}{${2:item}}"
+    },
+    "toksdel[]{}{}": {
+      "snippet": "toksdel[${3:number}]{${1:list macro}}{${2:item}}"
+    },
+    "toksgdel{}{}": {
+      "snippet": "toksgdel{${1:list macro}}{${2:item}}"
+    },
+    "toksgdel[]{}{}": {
+      "snippet": "toksgdel[${3:number}]{${1:list macro}}{${2:item}}"
+    },
+    "toksedel{}{}": {
+      "snippet": "toksedel{${1:list macro}}{${2:item}}"
+    },
+    "toksedel[]{}{}": {
+      "snippet": "toksedel[${3:number}]{${1:list macro}}{${2:item}}"
+    },
+    "toksxdel{}{}": {
+      "snippet": "toksxdel{${1:list macro}}{${2:item}}"
+    },
+    "toksxdel[]{}{}": {
+      "snippet": "toksxdel[${3:number}]{${1:list macro}}{${2:item}}"
+    },
+    "getlistindex{}{}": {
+      "snippet": "getlistindex{${1:item}}{${2:list macro}}"
+    },
+    "getlistindex[]{}{}": {
+      "snippet": "getlistindex[${3:result index}]{${1:item}}{${2:list macro}}"
+    },
+    "getlistindex*{}{}": {
+      "snippet": "getlistindex*{${1:item}}{${2:list}}"
+    },
+    "getlistindex*[]{}{}": {
+      "snippet": "getlistindex*[${3:result index}]{${1:item}}{${2:list}}"
+    },
+    "getcsvlistindex{}{}": {
+      "snippet": "getcsvlistindex{${1:item}}{${2:list macro}}"
+    },
+    "getcsvlistindex[]{}{}": {
+      "snippet": "getcsvlistindex[${3:result index}]{${1:item}}{${2:list macro}}"
+    },
+    "getcsvlistindex*{}{}": {
+      "snippet": "getcsvlistindex*{${1:item}}{${2:list}}"
+    },
+    "getcsvlistindex*[]{}{}": {
+      "snippet": "getcsvlistindex*[${3:result index}]{${1:item}}{${2:list}}"
+    },
+    "interval{}{}": {
+      "snippet": "interval{${1:number}}{${2:number list}}"
+    },
+    "locinterplin{}{}{}": {
+      "snippet": "locinterplin{${1:number}}{${2:sorted number list}}{${3:number list}}"
+    }
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

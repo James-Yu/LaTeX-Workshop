@@ -1,0 +1,576 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "datetime2": [],
+    "calc": [],
+    "ifthen": [],
+    "datetime2-calc": []
+  },
+  "macros": {
+    "LecType{}": {
+      "snippet": "LecType{${1:course type}}"
+    },
+    "LecTitle{}": {
+      "snippet": "LecTitle{${1:title}}"
+    },
+    "LecTitle[]{}": {
+      "snippet": "LecTitle[${2:package options}]{${1:title}}"
+    },
+    "LecTitleSep{}": {
+      "snippet": "LecTitleSep{${1:separator}}"
+    },
+    "LecSubTitle{}": {
+      "snippet": "LecSubTitle{${1:subtitle}}"
+    },
+    "LecYear{}{}": {
+      "snippet": "LecYear{${1:term}}{${2:year}}"
+    },
+    "LecUni{}": {
+      "snippet": "LecUni{${1:university}}"
+    },
+    "LecInstitute{}": {
+      "snippet": "LecInstitute{${1:institute}}"
+    },
+    "LecRoom{}": {
+      "snippet": "LecRoom{${1:room}}"
+    },
+    "LecStartDate{}": {
+      "snippet": "LecStartDate{${1:date}}"
+    },
+    "LecStartTime{}": {
+      "snippet": "LecStartTime{${1:time}}"
+    },
+    "LecDuration{}": {
+      "snippet": "LecDuration{${1:minutes}}"
+    },
+    "LecInterval{}": {
+      "snippet": "LecInterval{${1:days}}"
+    },
+    "SetAutoOffset{}{}": {
+      "snippet": "SetAutoOffset{${1:n}}{${2:days}}"
+    },
+    "SetAutoOffset[]{}{}": {
+      "snippet": "SetAutoOffset[${3:first}]{${1:n}}{${2:days}}"
+    },
+    "LecInstructor{}": {
+      "snippet": "LecInstructor{${1:name}}"
+    },
+    "LecInstructor[]{}": {
+      "snippet": "LecInstructor[${2:short name}]{${1:name}}"
+    },
+    "SetOfficeHours{}": {
+      "snippet": "SetOfficeHours{${1:hours}}"
+    },
+    "SetOfficeNumber{}": {
+      "snippet": "SetOfficeNumber{${1:number}}"
+    },
+    "SetPlatform{}": {
+      "snippet": "SetPlatform{${1:information}}"
+    },
+    "SessionTitleSep{}": {
+      "snippet": "SessionTitleSep{${1:separator}}"
+    },
+    "NewSession{}": {
+      "snippet": "NewSession{${1:title}}"
+    },
+    "NewSession[]{}": {
+      "snippet": "NewSession[${2:options}]{${1:title}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "SetBreak{}": {
+      "snippet": "SetBreak{${1:text}}"
+    },
+    "SetBreak[]{}": {
+      "snippet": "SetBreak[${2:span}]{${1:text}}"
+    },
+    "SetBreaks{}": {
+      "snippet": "SetBreaks{${1:text}}"
+    },
+    "SetBreaks[]{}": {
+      "snippet": "SetBreaks[${2:options}]{${1:text}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "SetLecOffset{}": {
+      "snippet": "SetLecOffset{${1:n}}"
+    },
+    "SetBeamerFrameBreak": {},
+    "SetBeamerHook{}": {
+      "snippet": "SetBeamerHook{${1:code}}"
+    },
+    "lectype": {},
+    "lectypeverb": {},
+    "lectypesession": {},
+    "lectitle": {},
+    "lectitlesep": {},
+    "lecsubtitle": {},
+    "lecfulltitle": {},
+    "lecshorttitle": {},
+    "lecsemshort": {},
+    "lecsemverb": {},
+    "lecyear": {},
+    "lecendyear": {},
+    "lecendyearsep": {},
+    "lecsemester": {},
+    "lecsemesterverb": {},
+    "adjsemester": {},
+    "adjsemesterverb": {},
+    "lecuniversity": {},
+    "lecinstitute": {},
+    "lecinstructor": {},
+    "lecshortinstructor": {},
+    "lecroom": {},
+    "lecstartdate": {},
+    "lecstarttime": {},
+    "lecduration": {},
+    "lecendtime": {},
+    "lecslot": {},
+    "lecplatform": {},
+    "officehours": {},
+    "officenumber": {},
+    "makeprogram": {},
+    "makeexamprogram": {},
+    "makebeamerprogram": {},
+    "makebeamerprogram[]": {
+      "snippet": "makebeamerprogram[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "makebeamerexamprogram": {},
+    "makebeamerexamprogram[]": {
+      "snippet": "makebeamerexamprogram[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "makesessionbib": {},
+    "makepreslist": {},
+    "makepreslist*": {},
+    "makebeamerpreslist": {},
+    "setfirstpressession{}": {
+      "snippet": "setfirstpressession{${1:session number}}"
+    },
+    "setlastpressession{}": {
+      "snippet": "setlastpressession{${1:session number}}"
+    },
+    "ThisSession{}": {
+      "snippet": "ThisSession{${1:n}}"
+    },
+    "examsesno{}": {
+      "snippet": "examsesno{${1:n}}"
+    },
+    "sesdate": {},
+    "sesshortdate": {},
+    "sesdtmdate": {},
+    "sesstarttime": {},
+    "sesendtime": {},
+    "seslot": {},
+    "sestitle": {},
+    "sesshorttitle": {},
+    "sestitlesep": {},
+    "sessubtitle": {},
+    "sesfulltitle": {},
+    "sesblocktitle": {},
+    "sesblocknumber": {},
+    "sesinstructor": {},
+    "sesinstructor*": {},
+    "sesshortinstructor": {},
+    "sesshortinstructor*": {},
+    "sespresstudents": {},
+    "sesnr": {},
+    "sesroom": {},
+    "AdjSessionTitle": {},
+    "AdjSessionTitle[]": {
+      "snippet": "AdjSessionTitle[${1:offset}]"
+    },
+    "AdjSessionFullTitle": {},
+    "AdjSessionFullTitle[]": {
+      "snippet": "AdjSessionFullTitle[${1:offset}]"
+    },
+    "AdjSessionShortTitle": {},
+    "AdjSessionShortTitle[]": {
+      "snippet": "AdjSessionShortTitle[${1:offset}]"
+    },
+    "AdjSessionBlockTitle": {},
+    "AdjSessionBlockTitle[]": {
+      "snippet": "AdjSessionBlockTitle[${1:offset}]"
+    },
+    "AdjSessionBlockNumber": {},
+    "AdjSessionBlockNumber[]": {
+      "snippet": "AdjSessionBlockNumber[${1:offset}]"
+    },
+    "AdjSessionDate": {},
+    "AdjSessionDate[]": {
+      "snippet": "AdjSessionDate[${1:offset}]"
+    },
+    "AdjSessionShortDate": {},
+    "AdjSessionShortDate[]": {
+      "snippet": "AdjSessionShortDate[${1:offset}]"
+    },
+    "AdjSessionDTMDate": {},
+    "AdjSessionDTMDate[]": {
+      "snippet": "AdjSessionDTMDate[${1:offset}]"
+    },
+    "AdjSessionStartTime": {},
+    "AdjSessionStartTime[]": {
+      "snippet": "AdjSessionStartTime[${1:offset}]"
+    },
+    "AdjSessionEndTime": {},
+    "AdjSessionEndTime[]": {
+      "snippet": "AdjSessionEndTime[${1:offset}]"
+    },
+    "AdjSessionTimeSlot": {},
+    "AdjSessionTimeSlot[]": {
+      "snippet": "AdjSessionTimeSlot[${1:offset}]"
+    },
+    "AdjSessionInstructor": {},
+    "AdjSessionInstructor[]": {
+      "snippet": "AdjSessionInstructor[${1:offset}]"
+    },
+    "AdjSessionInstructor*": {},
+    "AdjSessionInstructor*[]": {
+      "snippet": "AdjSessionInstructor*[${1:offset}]"
+    },
+    "AdjSessionShortInstructor": {},
+    "AdjSessionShortInstructor[]": {
+      "snippet": "AdjSessionShortInstructor[${1:offset}]"
+    },
+    "AdjSessionShortInstructor*": {},
+    "AdjSessionShortInstructor*[]": {
+      "snippet": "AdjSessionShortInstructor*[${1:offset}]"
+    },
+    "AdjSessionPresStudents": {},
+    "AdjSessionPresStudents[]": {
+      "snippet": "AdjSessionPresStudents[${1:offset}]"
+    },
+    "AdjSessionRoom": {},
+    "AdjSessionRoom[]": {
+      "snippet": "AdjSessionRoom[${1:offset}]"
+    },
+    "SessionTitle{}": {
+      "snippet": "SessionTitle{${1:n}}"
+    },
+    "SessionFullTitle{}": {
+      "snippet": "SessionFullTitle{${1:n}}"
+    },
+    "SessionShortTitle{}": {
+      "snippet": "SessionShortTitle{${1:n}}"
+    },
+    "SessionBlockTitle{}": {
+      "snippet": "SessionBlockTitle{${1:n}}"
+    },
+    "SessionBlockNumber{}": {
+      "snippet": "SessionBlockNumber{${1:n}}"
+    },
+    "SessionDate{}": {
+      "snippet": "SessionDate{${1:n}}"
+    },
+    "SessionShortDate{}": {
+      "snippet": "SessionShortDate{${1:n}}"
+    },
+    "SessionDTMDate{}": {
+      "snippet": "SessionDTMDate{${1:n}}"
+    },
+    "SessionStartTime{}": {
+      "snippet": "SessionStartTime{${1:n}}"
+    },
+    "SessionEndTime{}": {
+      "snippet": "SessionEndTime{${1:n}}"
+    },
+    "SessionTimeSlot{}": {
+      "snippet": "SessionTimeSlot{${1:n}}"
+    },
+    "SessionInstructor{}": {
+      "snippet": "SessionInstructor{${1:n}}"
+    },
+    "SessionInstructor*{}": {
+      "snippet": "SessionInstructor*{${1:n}}"
+    },
+    "SessionShortInstructor{}": {
+      "snippet": "SessionShortInstructor{${1:n}}"
+    },
+    "SessionShortInstructor*{}": {
+      "snippet": "SessionShortInstructor*{${1:n}}"
+    },
+    "SessionPresStudents{}": {
+      "snippet": "SessionPresStudents{${1:n}}"
+    },
+    "SessionRoom{}": {
+      "snippet": "SessionRoom{${1:n}}"
+    },
+    "MakeProgramline{}": {
+      "snippet": "MakeProgramline{${1:n}}"
+    },
+    "DefLecType{}{}{}{}": {
+      "snippet": "DefLecType{${1:key}}{${2:short form}}{${3:title}}{${4:session title}}"
+    },
+    "DefSemType{}{}{}": {
+      "snippet": "DefSemType{${1:key}}{${2:short form}}{${3:verbose form}}"
+    },
+    "DefSemType[]{}{}{}": {
+      "snippet": "DefSemType[${4:options}]{${1:key}}{${2:short form}}{${3:verbose form}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "jstimeslot{}{}": {
+      "snippet": "jstimeslot{${1:arg1}}{${2:arg2}}"
+    },
+    "ProgramListItem{}{}{}{}": {
+      "snippet": "ProgramListItem{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "PresListItem{}{}{}{}": {
+      "snippet": "PresListItem{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ProgramListCancelItem{}{}{}{}": {
+      "snippet": "ProgramListCancelItem{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ProgramListExamItem{}{}{}{}": {
+      "snippet": "ProgramListExamItem{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "BeamerProgramListItem{}{}{}{}": {
+      "snippet": "BeamerProgramListItem{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "BeamerPresListItem{}{}{}{}": {
+      "snippet": "BeamerPresListItem{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "BeamerProgramListCancelItem{}{}{}{}": {
+      "snippet": "BeamerProgramListCancelItem{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "BeamerProgramListExamItem{}{}{}{}": {
+      "snippet": "BeamerProgramListExamItem{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "ProgramBlockItem{}{}": {
+      "snippet": "ProgramBlockItem{${1:arg1}}{${2:arg2}}"
+    },
+    "BeamerProgramBlockItem{}{}": {
+      "snippet": "BeamerProgramBlockItem{${1:arg1}}{${2:arg2}}"
+    },
+    "BeamerProgramBlockBlocksOnlyItem{}{}": {
+      "snippet": "BeamerProgramBlockBlocksOnlyItem{${1:arg1}}{${2:arg2}}"
+    },
+    "lecprogramlistindent": {},
+    "blankpreslistvspace": {},
+    "presseparator": {},
+    "beamerpresseparator": {},
+    "programdateformat{}": {
+      "snippet": "programdateformat{${1:text}}"
+    },
+    "cansestitleformat{}": {
+      "snippet": "cansestitleformat{${1:text}}"
+    },
+    "sestitleformat{}": {
+      "snippet": "sestitleformat{${1:text}}"
+    },
+    "exsestitleformat{}": {
+      "snippet": "exsestitleformat{${1:text}}"
+    },
+    "blocktitleformat{}": {
+      "snippet": "blocktitleformat{${1:text}}"
+    },
+    "blocknumberformat{}": {
+      "snippet": "blocknumberformat{${1:text}}"
+    },
+    "ProgramListBreak{}": {
+      "snippet": "ProgramListBreak{${1:arg}}"
+    },
+    "ProgramListBreak[]{}": {
+      "snippet": "ProgramListBreak[${2:opt}]{${1:arg}}"
+    },
+    "breakevent{}{}{}": {
+      "snippet": "breakevent{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "leccancel": {},
+    "lecprogram": {},
+    "sestopic": {},
+    "emptypressession": {},
+    "DefTypeFS{}{}": {
+      "snippet": "DefTypeFS{${1:arg1}}{${2:arg2}}"
+    },
+    "DefTypeHS{}{}": {
+      "snippet": "DefTypeHS{${1:arg1}}{${2:arg2}}"
+    },
+    "DefTypeKO{}{}{}": {
+      "snippet": "DefTypeKO{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "DefTypePS{}{}{}": {
+      "snippet": "DefTypePS{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "DefTypePV{}{}{}": {
+      "snippet": "DefTypePV{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "DefTypeSE{}{}{}": {
+      "snippet": "DefTypeSE{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "DefTypeSS{}{}": {
+      "snippet": "DefTypeSS{${1:arg1}}{${2:arg2}}"
+    },
+    "DefTypeUE{}{}{}": {
+      "snippet": "DefTypeUE{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "DefTypeVL{}{}{}": {
+      "snippet": "DefTypeVL{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "DefTypeVO{}{}{}": {
+      "snippet": "DefTypeVO{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "DefTypeWS{}{}": {
+      "snippet": "DefTypeWS{${1:arg1}}{${2:arg2}}"
+    },
+    "EndBlock": {},
+    "LocalSession{}": {
+      "snippet": "LocalSession{${1:arg1}}"
+    },
+    "MakeBeamerPresListLine{}": {
+      "snippet": "MakeBeamerPresListLine{${1:arg1}}"
+    },
+    "MakePresListLine{}": {
+      "snippet": "MakePresListLine{${1:arg1}}"
+    },
+    "NewBlock{}": {
+      "snippet": "NewBlock{${1:arg1}}"
+    },
+    "StartBlock{}": {
+      "snippet": "StartBlock{${1:arg1}}"
+    },
+    "beameruncoverblocksonlyspec": {},
+    "beameruncoverffslidesspec": {},
+    "beameruncoverspec": {},
+    "bpdescbeg": {},
+    "btitleapp": {},
+    "filedate": {},
+    "filename": {},
+    "fileversion": {},
+    "jsbiblist": {},
+    "labelinglabel{}": {
+      "snippet": "labelinglabel{${1:arg1}}"
+    },
+    "lecnsemny": {},
+    "lecnsemshort": {},
+    "lecnsemverb": {},
+    "lecnyear": {},
+    "lsesblocknumber": {},
+    "lsesblocktitle": {},
+    "lsesdate": {},
+    "lsesdtmdate": {},
+    "lsesendtime": {},
+    "lsesinstructor": {},
+    "lsesnr": {},
+    "lsespresstudents": {},
+    "lsesroom": {},
+    "lsesshortdate": {},
+    "lsesshortinstructor": {},
+    "lsesshorttitle": {},
+    "lsesslot": {},
+    "lsesstarttime": {},
+    "lsessubtitle": {},
+    "lsestitle": {},
+    "lsestitlesep": {},
+    "programblocklistbeamer": {},
+    "programlist": {},
+    "programlistbeamer": {},
+    "programlistbeamerexam": {},
+    "programlistbeamerii": {},
+    "programlistbeameriii": {},
+    "programlistbeameriv": {},
+    "programlistexam": {},
+    "sesslot": {},
+    "theadjsession": {},
+    "theautooffset": {},
+    "theautooffsetcounter": {},
+    "theautooffsettrigger": {},
+    "theblocks": {},
+    "thebreakunits": {},
+    "thecancellations": {},
+    "thedateratio": {},
+    "theexams": {},
+    "thefbreaks": {},
+    "thelastpressession": {},
+    "thelecinterval": {},
+    "theloopcounter": {},
+    "thepressession": {},
+    "thesesoffset": {},
+    "thesestopic": {},
+    "thesesunit": {},
+    "thesnum": {}
+  },
+  "envs": {
+    "SessionBlock{}": {
+      "name": "SessionBlock",
+      "snippet": "{${1:title}}"
+    },
+    "labeling{}": {
+      "name": "labeling",
+      "snippet": "{${1:widest pattern}}"
+    },
+    "labeling[]{}": {
+      "name": "labeling",
+      "snippet": "[${2:delimiter}]{${1:widest pattern}}"
+    },
+    "ProgramList": {},
+    "ProgramListExam": {},
+    "PresList": {},
+    "BeamerProgramList": {},
+    "BeamerPresList": {},
+    "BeamerProgramListExam": {},
+    "ProgramListBlock": {}
+  },
+  "options": [
+    "style=",
+    "type=",
+    "title=${1:title}",
+    "titlesep=${1:separator}",
+    "subtitle=${1:subtitle}",
+    "shorttitle=${1:shorttitle}",
+    "semester=",
+    "year=${1:year}",
+    "endyear=${1:year}",
+    "uni=${1:university}",
+    "institute=${1:institute}",
+    "room=${1:room}",
+    "startdate=${1:date}",
+    "starttime=${1:time}",
+    "duration=${1:minutes}",
+    "interval=${1:days}",
+    "instructor=${1:name}",
+    "shortinstructor=${1:name}",
+    "platform=${1:data}",
+    "officehours=${1:hours}",
+    "officenumber=${1:number}",
+    "sestitlesep=${1:separator}",
+    "type="
+  ],
+  "keyvals": [
+    [
+      "draft",
+      "topicnumber=${1:n}",
+      "titlesep=${1:separator}",
+      "subtitle=${1:subtitle}",
+      "shorttitle=${1:shorttitle}",
+      "instructor=${1:name}",
+      "shortinstructor=${1:name}",
+      "presstudents=${1:names}",
+      "room=${1:room}",
+      "starttime=${1:time}",
+      "duration=${1:minutes}",
+      "bibsec=${1:keyword}",
+      "cancel",
+      "exam",
+      "extradate"
+    ],
+    [
+      "units=${1:n}",
+      "span=${1:span}"
+    ],
+    [
+      "title=${1:title}",
+      "blocksonly",
+      "uncover",
+      "options={${1:frame options}}",
+      "overlayarg=${1:overlay specification}"
+    ],
+    [
+      "next=${1:key}",
+      "nextny"
+    ]
+  ]
+}

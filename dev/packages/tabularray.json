@@ -1,0 +1,423 @@
+{
+  "includes": {
+    "ninecolors": []
+  },
+  "macros": {
+    "SetTblrOuter{}": {
+      "snippet": "SetTblrOuter{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "SetTblrOuter[]{}": {
+      "snippet": "SetTblrOuter[${2:envname}]{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "SetTblrInner{}": {
+      "snippet": "SetTblrInner{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "SetTblrInner[]{}": {
+      "snippet": "SetTblrInner[${2:envname}]{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "SetHline{}{}": {
+      "snippet": "SetHline{${1:cols}}{${2:styles}}"
+    },
+    "SetHline[]{}{}": {
+      "snippet": "SetHline[${3:index}]{${1:cols}}{${2:styles}}"
+    },
+    "SetHlines{}{}": {
+      "snippet": "SetHlines{${1:cols}}{${2:styles}}"
+    },
+    "SetHlines[]{}{}": {
+      "snippet": "SetHlines[${3:index}]{${1:cols}}{${2:styles}}"
+    },
+    "SetVspace{}": {
+      "snippet": "SetVspace{${1:styles}}"
+    },
+    "hline[]": {
+      "snippet": "hline[${1:styles}]"
+    },
+    "cline[]{}": {
+      "snippet": "cline[${2:styles}]{${1:index}}"
+    },
+    "therownum": {},
+    "thecolnum": {},
+    "therowcount": {},
+    "thecolcount": {},
+    "tablewidth": {},
+    "SetVline{}{}": {
+      "snippet": "SetVline{${1:rows}}{${2:styles}}"
+    },
+    "SetVline[]{}{}": {
+      "snippet": "SetVline[${3:index}]{${1:rows}}{${2:styles}}"
+    },
+    "SetVlines{}{}": {
+      "snippet": "SetVlines{${1:rows}}{${2:styles}}"
+    },
+    "SetVlines[]{}{}": {
+      "snippet": "SetVlines[${3:index}]{${1:rows}}{${2:styles}}"
+    },
+    "vline": {},
+    "vline[]": {
+      "snippet": "vline[${1:styles}]"
+    },
+    "rline{}": {
+      "snippet": "rline{${1:index}}"
+    },
+    "rline[]{}": {
+      "snippet": "rline[${2:styles}]{${1:index}}"
+    },
+    "SetCell{}": {
+      "snippet": "SetCell{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "SetCell[]{}": {
+      "snippet": "SetCell[${2:r=rows,c=columns}]{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "SetCells{}": {
+      "snippet": "SetCells{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "SetCells[]{}": {
+      "snippet": "SetCells[${2:r=rows,c=columns}]{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "SetRow{}": {
+      "snippet": "SetRow{${1:styles}}"
+    },
+    "SetRows{}": {
+      "snippet": "SetRows{${1:styles}}"
+    },
+    "SetColumn{}": {
+      "snippet": "SetColumn{${1:styles}}"
+    },
+    "SetColumns{}": {
+      "snippet": "SetColumns{${1:styles}}"
+    },
+    "hborder{}": {
+      "snippet": "hborder{${1:options}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "vborder{}": {
+      "snippet": "vborder{${1:options}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "NewColumnType{}{}": {
+      "snippet": "NewColumnType{${1:name}}{${2:definition}}"
+    },
+    "NewColumnType{}[][]{}": {
+      "snippet": "NewColumnType{${1:name}}[${2:args}][${3:default}]{${4:definition}}"
+    },
+    "NewRowType{}{}": {
+      "snippet": "NewRowType{${1:name}}{${2:definition}}"
+    },
+    "NewRowType{}[][]{}": {
+      "snippet": "NewRowType{${1:name}}[${2:args}][${3:default}]{${4:definition}}"
+    },
+    "NewColumnRowType{}{}": {
+      "snippet": "NewColumnRowType{${1:name}}{${2:definition}}"
+    },
+    "NewColumnRowType{}[][]{}": {
+      "snippet": "NewColumnRowType{${1:name}}[${2:args}][${3:default}]{${4:definition}}"
+    },
+    "NewTblrEnviron{}": {
+      "snippet": "NewTblrEnviron{${1:envname}}"
+    },
+    "NewTableCommand{}{}": {
+      "snippet": "NewTableCommand{${1:cmd}}{${2:definition}}"
+    },
+    "NewTableCommand{}[]{}": {
+      "snippet": "NewTableCommand{${1:cmd}}[${2:args}]{${3:definition}}"
+    },
+    "NewTableCommand{}[][]{}": {
+      "snippet": "NewTableCommand{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
+    },
+    "NewChildSelector{}{}": {
+      "snippet": "NewChildSelector{${1:arg1}}{${2:arg2}}"
+    },
+    "NewChildSelector{}[][]{}": {
+      "snippet": "NewChildSelector{${1:arg1}}[${2:opt1}][${3:opt2}]{${4:arg2}}"
+    },
+    "leftsep": {},
+    "rightsep": {},
+    "abovesep": {},
+    "belowsep": {},
+    "SetTblrTracing{}": {
+      "snippet": "SetTblrTracing{${1:settings}}"
+    },
+    "SetTabularrayTracing{}": {
+      "snippet": "SetTabularrayTracing{${1:settings}}"
+    },
+    "DefTblrTemplate{}{}{}": {
+      "snippet": "DefTblrTemplate{${1:element}}{${2:template name}}{${3:definition}}"
+    },
+    "DeclareTblrTemplate{}{}{}": {
+      "snippet": "DeclareTblrTemplate{${1:element}}{${2:template name}}{${3:definition}}"
+    },
+    "SetTblrTemplate{}{}": {
+      "snippet": "SetTblrTemplate{${1:element}}{${2:template name}}"
+    },
+    "UseTblrTemplate{}{}": {
+      "snippet": "UseTblrTemplate{${1:element}}{${2:default}}"
+    },
+    "ExpTblrTemplate{}{}": {
+      "snippet": "ExpTblrTemplate{${1:element}}{${2:default}}"
+    },
+    "tblrcontfootname": {},
+    "tblrcontheadname": {},
+    "SetTblrStyle{}{}": {
+      "snippet": "SetTblrStyle{${1:element}}{${2:styles}}"
+    },
+    "NewTblrTheme{}{}": {
+      "snippet": "NewTblrTheme{${1:theme name}}{${2:specs}}"
+    },
+    "TblrNote{}": {
+      "snippet": "TblrNote{${1:mark-symbol}}"
+    },
+    "InsertTblrText{}": {
+      "snippet": "InsertTblrText{${1:key}}"
+    },
+    "InsertTblrNoteTag": {},
+    "InsertTblrNoteText": {},
+    "InsertTblrRemarkTag": {},
+    "InsertTblrRemarkText": {},
+    "MapTblrNotes{}": {
+      "snippet": "MapTblrNotes{${1:code}}"
+    },
+    "MapTblrRemarks{}": {
+      "snippet": "MapTblrRemarks{${1:code}}"
+    },
+    "NewTblrLibrary{}{}": {
+      "snippet": "NewTblrLibrary{${1:name}}{${2:code}}"
+    },
+    "UseTblrLibrary{}": {
+      "snippet": "UseTblrLibrary{${1:library}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "LogTblrTracing{}": {
+      "snippet": "LogTblrTracing{${1:arg}}"
+    },
+    "LogTabularrayTracing{}": {
+      "snippet": "LogTabularrayTracing{${1:arg}}"
+    },
+    "GetTblrStyle{}{}": {
+      "snippet": "GetTblrStyle{${1:element}}{${2:key}}"
+    },
+    "UseTblrAlign{}": {
+      "snippet": "UseTblrAlign{${1:element}}"
+    },
+    "UseTblrIndent{}": {
+      "snippet": "UseTblrIndent{${1:element}}"
+    },
+    "UseTblrHang{}": {
+      "snippet": "UseTblrHang{${1:element}}"
+    },
+    "UseTblrColor{}": {
+      "snippet": "UseTblrColor{${1:element}}"
+    },
+    "UseTblrFont{}": {
+      "snippet": "UseTblrFont{${1:element}}"
+    },
+    "InsertTblrMore{}": {
+      "snippet": "InsertTblrMore{${1:arg}}"
+    },
+    "NewDashStyle{}{}": {
+      "snippet": "NewDashStyle{${1:name}}{${2:definition}}"
+    },
+    "NewContentCommand{}{}": {
+      "snippet": "NewContentCommand{${1:cmd}}{${2:definition}}"
+    },
+    "NewContentCommand{}[]{}": {
+      "snippet": "NewContentCommand{${1:cmd}}[${2:args}]{${3:definition}}"
+    },
+    "NewContentCommand{}[][]{}": {
+      "snippet": "NewContentCommand{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
+    },
+    "TblrParboxRestore": {},
+    "TblrAlignBoth": {},
+    "TblrAlignLeft": {},
+    "TblrAlignCenter": {},
+    "TblrAlignRight": {},
+    "TblrNewPage": {},
+    "rulewidth": {},
+    "SetTblrDefault{}": {
+      "snippet": "SetTblrDefault{${1:options}}"
+    },
+    "TblrOverlap": {},
+    "lTblrCaptionTl": {},
+    "lTblrEntryTl": {},
+    "lTblrLabelTl": {},
+    "lTblrMeasuringBool": {},
+    "lTblrRefMoreClist": {},
+    "lTblrCellRowSpanTl": {},
+    "lTblrCellColSpanTl": {},
+    "lTblrCellBackgroundTl": {},
+    "lTblrCellOmittedBool": {},
+    "lTblrCellAboveBorderStyleTl": {},
+    "lTblrCellAboveBorderWidthTl": {},
+    "lTblrCellAboveBorderColorTl": {},
+    "lTblrCellBelowBorderStyleTl": {},
+    "lTblrCellBelowBorderWidthTl": {},
+    "lTblrCellBelowBorderColorTl": {},
+    "lTblrCellLeftBorderStyleTl": {},
+    "lTblrCellLeftBorderWidthTl": {},
+    "lTblrCellLeftBorderColorTl": {},
+    "lTblrCellRightBorderStyleTl": {},
+    "lTblrCellRightBorderWidthTl": {},
+    "lTblrCellRightBorderColorTl": {}
+  },
+  "envs": {
+    "tblr{}": {
+      "name": "tblr",
+      "snippet": "{${1:preamble}}"
+    },
+    "tblr[]{}": {
+      "name": "tblr",
+      "snippet": "[${2:outer specs}]{${1:preamble}}"
+    },
+    "longtblr{}": {
+      "name": "longtblr",
+      "snippet": "{${1:preamble}}"
+    },
+    "longtblr[]{}": {
+      "name": "longtblr",
+      "snippet": "[${2:outer specs}]{${1:preamble}}"
+    },
+    "talltblr{}": {
+      "name": "talltblr",
+      "snippet": "{${1:preamble}}"
+    },
+    "talltblr[]{}": {
+      "name": "talltblr",
+      "snippet": "[${2:outer specs}]{${1:preamble}}"
+    },
+    "tblrNoHyper": {}
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "halign=",
+      "valign=",
+      "l",
+      "c",
+      "r",
+      "t",
+      "m",
+      "b",
+      "headsep=",
+      "footsep=",
+      "presep=",
+      "postsep=",
+      "theme=${1:theme}",
+      "caption=${1:caption text}",
+      "entry=${1:short caption text}",
+      "label=",
+      "baseline=",
+      "long",
+      "tall",
+      "expand",
+      "expand+"
+    ],
+    [
+      "colspec={${1:col types}}",
+      "rowspec={${1:row types}}",
+      "width=",
+      "hspan=",
+      "vspan=",
+      "stretch=${1:factor}",
+      "columns={${1:styles}}",
+      "rows={${1:styles}}",
+      "cells={${1:styles}}",
+      "hlines",
+      "hlines={${1:styles}}",
+      "hlines={${1:cols}}{${2:styles}}",
+      "vlines",
+      "vlines={${1:styles}}",
+      "vlines={${1:rows}}{${2:styles}}",
+      "leftsep=",
+      "rightsep=",
+      "colsep=",
+      "abovesep=",
+      "belowsep=",
+      "rowsep=",
+      "rulesep=",
+      "rowhead=${1:number}",
+      "rowfoot=${1:number}",
+      "column{${1:j}}={${2:styles}}",
+      "column",
+      "row{${1:i}}={${2:styles}}",
+      "row",
+      "cell{${1:i}}{${2:j}}={${3:styles}}",
+      "cell",
+      "vline{${1:j}}={${2:index}}{${3:cols}}{${4:styles}}",
+      "vline",
+      "hline{${1:i}}={${2:index}}{${3:cols}}{${4:styles}}",
+      "hline",
+      "measure=",
+      "baseline=",
+      "delimiter={${1:keyvals}}"
+    ],
+    [
+      "halign=",
+      "l",
+      "c",
+      "r",
+      "valign=",
+      "t",
+      "m",
+      "b",
+      "h",
+      "f",
+      "wd=",
+      "${1:width}",
+      "bg=",
+      "${1:background color}",
+      "fg=",
+      "font=${1:font commands}",
+      "mode=",
+      "$",
+      "$$",
+      "cmd=${1:command}",
+      "preto=${1:text}",
+      "appto=${1:text}"
+    ],
+    [
+      "pagebreak=",
+      "abovespace=",
+      "belowspace=",
+      "abovespace+=",
+      "belowspace+="
+    ],
+    [
+      "leftspace=",
+      "rightspace=",
+      "leftspace+=",
+      "rightspace+="
+    ],
+    [
+      "amsmath",
+      "booktabs",
+      "counter",
+      "diagbox",
+      "functional",
+      "hook",
+      "html",
+      "nameref",
+      "siunitx",
+      "varwidth",
+      "zref"
+    ]
+  ]
+}

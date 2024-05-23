@@ -1,0 +1,96 @@
+{
+  "includes": {
+    "catchfile": [],
+    "xcolor": [],
+    "ninecolors": [],
+    "varwidth": [],
+    "iftex": []
+  },
+  "macros": {
+    "CodeHigh{}": {
+      "snippet": "CodeHigh{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "dochighinput{}": {
+      "snippet": "dochighinput{${1:file}}"
+    },
+    "dochighinput[]{}": {
+      "snippet": "dochighinput[${2:options}]{${1:file}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "fakeverb{}": {
+      "snippet": "fakeverb{${1:verbatim content}}"
+    },
+    "NewCodeHighEnv{}{}": {
+      "snippet": "NewCodeHighEnv{${1:envname}}{${2:options}}"
+    },
+    "NewCodeHighInput{}{}": {
+      "snippet": "NewCodeHighInput{${1:command}}{${2:options}}"
+    },
+    "AddCodeHighRule{}{}{}": {
+      "snippet": "AddCodeHighRule{${1:type}}{${2:name}}{${3:regex}}"
+    },
+    "AddCodeHighRule[]{}{}{}": {
+      "snippet": "AddCodeHighRule[${4:language}]{${1:type}}{${2:name}}{${3:regex}}"
+    },
+    "SetCodeHighStyle{}{}": {
+      "snippet": "SetCodeHighStyle{${1:type}}{${2:color}}"
+    },
+    "SetCodeHighStyle[]{}{}": {
+      "snippet": "SetCodeHighStyle[${3:theme}]{${1:type}}{${2:color}}"
+    },
+    "GetCodeHighStyle{}": {
+      "snippet": "GetCodeHighStyle{${1:type}}"
+    },
+    "GetCodeHighStyle[]{}": {
+      "snippet": "GetCodeHighStyle[${2:theme}]{${1:type}}"
+    },
+    "SetCodeHighTracing{}": {
+      "snippet": "SetCodeHighTracing{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    }
+  },
+  "envs": {
+    "codehigh": {},
+    "codehigh[]": {
+      "name": "codehigh",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "demohigh": {},
+    "demohigh[]": {
+      "name": "demohigh",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "language=",
+      "style/main=",
+      "style/code=",
+      "style/demo=",
+      "boxsep=",
+      "lite",
+      "long",
+      "demo",
+      "theme=${1:theme}"
+    ],
+    [
+      "+code",
+      "-code",
+      "+demo",
+      "-demo",
+      "+parser",
+      "-parser",
+      "all",
+      "none"
+    ]
+  ]
+}

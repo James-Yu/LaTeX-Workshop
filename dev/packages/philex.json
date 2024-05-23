@@ -1,0 +1,346 @@
+{
+  "includes": {
+    "xspace": [],
+    "calc": [],
+    "cgloss4e": [],
+    "linguex": [],
+    "ifthen": [],
+    "suffix": []
+  },
+  "macros": {
+    "km": {
+      "option": "oldpunct"
+    },
+    "kmt": {
+      "option": "oldpunct"
+    },
+    "p": {
+      "option": "oldpunct",
+      "detail": "𝑝",
+      "documentation": "MATHEMATICAL ITALIC SMALL P"
+    },
+    "pt": {
+      "option": "oldpunct"
+    },
+    "q": {
+      "option": "oldpunct",
+      "detail": "𝑞",
+      "documentation": "MATHEMATICAL ITALIC SMALL Q"
+    },
+    "qt": {
+      "option": "oldpunct"
+    },
+    "s": {
+      "option": "oldpunct",
+      "detail": "𝑠",
+      "documentation": "MATHEMATICAL ITALIC SMALL S"
+    },
+    "stp": {
+      "option": "oldpunct"
+    },
+    "bpaformat{}{}{}": {
+      "snippet": "bpaformat{${1:numstyle}}{${2:prefix}}{${3:suffix}}"
+    },
+    "bpbformat{}{}{}": {
+      "snippet": "bpbformat{${1:numstyle}}{${2:prefix}}{${3:suffix}}"
+    },
+    "bpcformat{}{}{}": {
+      "snippet": "bpcformat{${1:numstyle}}{${2:prefix}}{${3:suffix}}"
+    },
+    "bpdformat{}{}{}": {
+      "snippet": "bpdformat{${1:numstyle}}{${2:prefix}}{${3:suffix}}"
+    },
+    "broff": {},
+    "bron": {},
+    "lb[]{}{}": {
+      "snippet": "lb[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lb{}{}": {
+      "snippet": "lb{${1:label}}{${2:content}}"
+    },
+    "lba[]{}{}": {
+      "snippet": "lba[${3:labeltext}]{${1:label}}{${2:content}}"
+    },
+    "lba{}{}": {
+      "snippet": "lba{${1:label}}{${2:content}}"
+    },
+    "lbb[]{}{}": {
+      "snippet": "lbb[${3:labeltext}]{${1:label}}{${2:content}}"
+    },
+    "lbb{}{}": {
+      "snippet": "lbb{${1:label}}{${2:content}}"
+    },
+    "lbp*[]{}{}{}": {
+      "snippet": "lbp*[${4:c}]{${1:label}}{${2:labeltext}}{${3:content}}"
+    },
+    "lbp*{}{}{}": {
+      "snippet": "lbp*{${1:label}}{${2:labeltext}}{${3:content}}"
+    },
+    "lbp[]{}{}{}": {
+      "snippet": "lbp[${4:c}]{${1:label}}{${2:labeltext}}{${3:content}}"
+    },
+    "lbp{}{}{}": {
+      "snippet": "lbp{${1:label}}{${2:labeltext}}{${3:content}}"
+    },
+    "lbpa*[]{}{}": {
+      "snippet": "lbpa*[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lbpa*{}{}": {
+      "snippet": "lbpa*{${1:label}}{${2:content}}"
+    },
+    "lbpa[]{}{}": {
+      "snippet": "lbpa[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lbpa{}{}": {
+      "snippet": "lbpa{${1:label}}{${2:content}}"
+    },
+    "lbpb*[]{}{}": {
+      "snippet": "lbpb*[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lbpb*{}{}": {
+      "snippet": "lbpb*{${1:label}}{${2:content}}"
+    },
+    "lbpb[]{}{}": {
+      "snippet": "lbpb[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lbpb{}{}": {
+      "snippet": "lbpb{${1:label}}{${2:content}}"
+    },
+    "lbpc*[]{}{}": {
+      "snippet": "lbpc*[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lbpc*{}{}": {
+      "snippet": "lbpc*{${1:label}}{${2:content}}"
+    },
+    "lbpc[]{}{}": {
+      "snippet": "lbpc[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lbpc{}{}": {
+      "snippet": "lbpc{${1:label}}{${2:content}}"
+    },
+    "lbpd*[]{}{}": {
+      "snippet": "lbpd*[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lbpd*{}{}": {
+      "snippet": "lbpd*{${1:label}}{${2:content}}"
+    },
+    "lbpd[]{}{}": {
+      "snippet": "lbpd[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lbpd{}{}": {
+      "snippet": "lbpd{${1:label}}{${2:content}}"
+    },
+    "lbpsep[]{}{}{}{}": {
+      "snippet": "lbpsep[${5:c}]{${1:label}}{${2:reflabel}}{${3:labeltext}}{${4:content}}"
+    },
+    "lbpsep{}{}{}{}": {
+      "snippet": "lbpsep{${1:label}}{${2:reflabel}}{${3:labeltext}}{${4:content}}"
+    },
+    "lbu*[]{}{}{}{}": {
+      "snippet": "lbu*[${5:c}]{${1:label}}{${2:reflabel}}{${3:suffix}}{${4:content}}"
+    },
+    "lbu*{}{}{}{}": {
+      "snippet": "lbu*{${1:label}}{${2:reflabel}}{${3:suffix}}{${4:content}}"
+    },
+    "lbu[]{}{}{}{}": {
+      "snippet": "lbu[${5:c}]{${1:label}}{${2:reflabel}}{${3:suffix}}{${4:content}}"
+    },
+    "lbu{}{}{}{}": {
+      "snippet": "lbu{${1:label}}{${2:reflabel}}{${3:suffix}}{${4:content}}"
+    },
+    "lbusep[]{}{}{}{}{}": {
+      "snippet": "lbusep[${6:c}]{${1:label}}{${2:reflabel}}{${3:suffix}}{${4:envlabel}}{${5:content}}"
+    },
+    "lbusep{}{}{}{}{}": {
+      "snippet": "lbusep{${1:label}}{${2:reflabel}}{${3:suffix}}{${4:envlabel}}{${5:content}}"
+    },
+    "lbz[]{}{}": {
+      "snippet": "lbz[${3:labeltext}]{${1:label}}{${2:content}}"
+    },
+    "lbz{}{}": {
+      "snippet": "lbz{${1:label}}{${2:content}}"
+    },
+    "ml{}": {
+      "snippet": "ml{${1:label}}"
+    },
+    "narrowcenter": {},
+    "oddity{}": {
+      "snippet": "oddity{${1:text}}"
+    },
+    "philbrackets{}{}": {
+      "snippet": "philbrackets{${1:delim1}}{${2:delim2}}"
+    },
+    "philcomma": {},
+    "phildashes{}{}": {
+      "snippet": "phildashes{${1:delim1}}{${2:delim2}}"
+    },
+    "philempty": {},
+    "philexclaim": {},
+    "philfullstop": {},
+    "philpunct": {},
+    "philquestion": {},
+    "philsubcomma": {},
+    "philsubempty": {},
+    "philsubexclaim": {},
+    "philsubpunct": {},
+    "philsubquestion": {},
+    "philsubstop": {},
+    "phlabelsep{}": {
+      "snippet": "phlabelsep{${1:length}}"
+    },
+    "phlabelsepdefault": {},
+    "rf[]{}": {
+      "snippet": "rf[${2:suffix}]{${1:label}}"
+    },
+    "rf{}": {
+      "snippet": "rf{${1:label}}"
+    },
+    "rff[]{}": {
+      "snippet": "rff[${2:suffix}]{${1:label}}"
+    },
+    "rff{}": {
+      "snippet": "rff{${1:label}}"
+    },
+    "rffnot[]{}": {
+      "snippet": "rffnot[${2:suffix}]{${1:label}}"
+    },
+    "rffnot{}": {
+      "snippet": "rffnot{${1:label}}"
+    },
+    "rfx[]{}": {
+      "snippet": "rfx[${2:suffix}]{${1:label}}"
+    },
+    "rfx{}": {
+      "snippet": "rfx{${1:label}}"
+    },
+    "rn[]{}": {
+      "snippet": "rn[${2:suffix}]{${1:label}}"
+    },
+    "rn{}": {
+      "snippet": "rn{${1:label}}"
+    },
+    "rnx[]{}": {
+      "snippet": "rnx[${2:suffix}]{${1:label}}"
+    },
+    "rnx{}": {
+      "snippet": "rnx{${1:label}}"
+    },
+    "rp{}": {
+      "snippet": "rp{${1:label}}"
+    },
+    "sepset{}{": {
+      "snippet": "sepset{${1:label}}{"
+    },
+    "subformat{}{}{}": {
+      "snippet": "subformat{${1:numstyle}}{${2:prefix}}{${3:suffix}}"
+    },
+    "subsubformat{}{}{}": {
+      "snippet": "subsubformat{${1:numstyle}}{${2:prefix}}{${3:suffix}}"
+    },
+    "widecenter": {},
+    "bn": {},
+    "bns": {},
+    "bota{}": {
+      "snippet": "bota{${1:counter}}"
+    },
+    "botb{}": {
+      "snippet": "botb{${1:counter}}"
+    },
+    "botc{}": {
+      "snippet": "botc{${1:counter}}"
+    },
+    "botd{}": {
+      "snippet": "botd{${1:counter}}"
+    },
+    "bpasize": {},
+    "bpbsize": {},
+    "bpcsize": {},
+    "bpdsize": {},
+    "centro": {},
+    "firstphildash": {},
+    "grlen": {},
+    "hyperreffalse": {},
+    "hyperreftrue": {},
+    "ifhyperref": {},
+    "ifoldpunct": {},
+    "ifphildraft": {},
+    "lbpaStar[]{}{}": {
+      "snippet": "lbpaStar[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lbpaStar{}{}": {
+      "snippet": "lbpaStar{${1:label}}{${2:content}}"
+    },
+    "lbpbStar[]{}{}": {
+      "snippet": "lbpbStar[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lbpbStar{}{}": {
+      "snippet": "lbpbStar{${1:label}}{${2:content}}"
+    },
+    "lbpcStar[]{}{}": {
+      "snippet": "lbpcStar[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lbpcStar{}{}": {
+      "snippet": "lbpcStar{${1:label}}{${2:content}}"
+    },
+    "lbpdStar[]{}{}": {
+      "snippet": "lbpdStar[${3:c}]{${1:label}}{${2:content}}"
+    },
+    "lbpdStar{}{}": {
+      "snippet": "lbpdStar{${1:label}}{${2:content}}"
+    },
+    "lbpStar[]{}{}{}": {
+      "snippet": "lbpStar[${4:c}]{${1:label}}{${2:labeltext}}{${3:content}}"
+    },
+    "lbpStar{}{}{}": {
+      "snippet": "lbpStar{${1:label}}{${2:labeltext}}{${3:content}}"
+    },
+    "lbuStar[]{}{}{}{}": {
+      "snippet": "lbuStar[${5:c}]{${1:label}}{${2:reflabel}}{${3:suffix}}{${4:content}}"
+    },
+    "lbuStar{}{}{}{}": {
+      "snippet": "lbuStar{${1:label}}{${2:reflabel}}{${3:suffix}}{${4:content}}"
+    },
+    "lebrack": {},
+    "ncentro": {},
+    "oldpunctfalse": {},
+    "oldpuncttrue": {},
+    "phildraftfalse": {},
+    "phildrafttrue": {},
+    "philmarginfactor": {},
+    "philsemi": {},
+    "rfp{}": {
+      "snippet": "rfp{${1:label}}"
+    },
+    "ribrack": {},
+    "rsep{}": {
+      "snippet": "rsep{${1:label}}"
+    },
+    "sa": {},
+    "sab": {},
+    "seba": {},
+    "sebatemp": {},
+    "secondphildash": {},
+    "sr": {},
+    "subettan{}": {
+      "snippet": "subettan{${1:counter}}"
+    },
+    "tempa": {},
+    "tempb": {},
+    "tempc": {},
+    "thealtsub": {},
+    "thealtsubsub": {},
+    "thebna": {},
+    "thebpa": {},
+    "thebpb": {},
+    "thebpc": {},
+    "thebpd": {},
+    "wcentro": {}
+  },
+  "envs": {},
+  "options": [
+    "oldpunct",
+    "hyper",
+    "draft"
+  ],
+  "keyvals": []
+}

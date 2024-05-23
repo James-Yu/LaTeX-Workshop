@@ -1,0 +1,208 @@
+{
+  "includes": {
+    "tikz": []
+  },
+  "macros": {
+    "chronology": {},
+    "chronology[]": {
+      "snippet": "chronology[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "endchronology": {},
+    "startchronology": {},
+    "startchronology[]": {
+      "snippet": "startchronology[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "stopchronology": {},
+    "chronoevent{}{}": {
+      "snippet": "chronoevent{${1:day/${3:month}/year}}{${2:label text}}"
+    },
+    "chronoevent[]{}{}": {
+      "snippet": "chronoevent[${3:options}]{${1:day/${4:month}/year}}{${2:label text}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "chronoperiode{}{}{}": {
+      "snippet": "chronoperiode{${1:start-year}}{${2:end-year}}{${3:label text}}"
+    },
+    "chronoperiode[]{}{}{}": {
+      "snippet": "chronoperiode[${4:options}]{${1:start-year}}{${2:end-year}}{${3:label text}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "chronoperiodecoloralternation{}": {
+      "snippet": "chronoperiodecoloralternation{${1:color}}"
+    },
+    "restartchronoperiodecolor": {},
+    "restartchronoperiodecolor[]": {
+      "snippet": "restartchronoperiodecolor[${1:color}]"
+    },
+    "chronograduation{}": {
+      "snippet": "chronograduation{${1:integer}}"
+    },
+    "chronograduation[]{}": {
+      "snippet": "chronograduation[${2:periode|event}]{${1:integer}}"
+    },
+    "chronograduation[][]{}": {
+      "snippet": "chronograduation[${2:periode|event}][${3:options}]{${1:integer}}",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "definechronoevent{}": {
+      "snippet": "definechronoevent{${1:name}}"
+    },
+    "definechronoevent{}[]": {
+      "snippet": "definechronoevent{${1:name}}[${2:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "definechronoperiode{}": {
+      "snippet": "definechronoperiode{${1:name}}"
+    },
+    "definechronoperiode{}[]": {
+      "snippet": "definechronoperiode{${1:name}}[${2:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "setupchronology{}": {
+      "snippet": "setupchronology{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "setupchronoevent{}": {
+      "snippet": "setupchronoevent{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "setupchronoevent[]{}": {
+      "snippet": "setupchronoevent[${2:name}]{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "setupchronoperiode{}": {
+      "snippet": "setupchronoperiode{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "setupchronoperiode[]{}": {
+      "snippet": "setupchronoperiode[${2:name}]{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "setupchronograduation{}": {
+      "snippet": "setupchronograduation{${1:options}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "setupchronograduation[]{}": {
+      "snippet": "setupchronograduation[${2:periode|event}]{${1:options}}",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "chronoperiodcolor": {},
+    "dochronoevent": {},
+    "dochronograduation": {},
+    "dochronoperiode": {},
+    "dorestartchronoperiodecolor": {},
+    "dosetupchronoeventandperiode": {},
+    "dosetupchronograduation": {},
+    "dostartchronology": {},
+    "dostartchronologyfinal": {},
+    "ifnexttoken": {},
+    "savefirsttwoarg": {},
+    "todoafterarg": {}
+  },
+  "envs": {
+    "chronology": {},
+    "chronology[]": {
+      "name": "chronology",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "startyear=${1:number}",
+      "stopyear=${1:number}",
+      "color=",
+      "height=",
+      "width=",
+      "datesstyle=${1:command}",
+      "dateselevation=",
+      "startdate",
+      "stopdate",
+      "dates",
+      "arrow",
+      "arrowheight=",
+      "arrowwidth=",
+      "arrowcolor=",
+      "box",
+      "align="
+    ],
+    [
+      "barre",
+      "date",
+      "conversionmonth",
+      "mark",
+      "year",
+      "icon=${1:symbol}",
+      "markdepth=",
+      "iconheight=",
+      "textstyle=${1:command}",
+      "datesseparation=${1:symbol}",
+      "datestyle=${1:command}",
+      "datesstyle=${1:command}",
+      "colorbox=",
+      "ifcolorbox",
+      "textwidth="
+    ],
+    [
+      "startdate",
+      "stopdate",
+      "dates",
+      "datesstyle=${1:command}",
+      "textstyle=${1:command}",
+      "color=",
+      "dateselevation=",
+      "textdepth=",
+      "colorbox=",
+      "ifcolorbox",
+      "topheight=",
+      "bottomdepth="
+    ],
+    [
+      "barre",
+      "date",
+      "conversionmonth",
+      "mark",
+      "year",
+      "icon=${1:symbol}",
+      "markdepth=",
+      "iconheight=",
+      "textstyle=${1:command}",
+      "datesseparation=${1:symbol}",
+      "datestyle=${1:command}",
+      "datesstyle=${1:command}",
+      "colorbox=",
+      "ifcolorbox",
+      "textwidth=",
+      "startdate",
+      "stopdate",
+      "dates",
+      "datesstyle=${1:command}",
+      "textstyle=${1:command}",
+      "color=",
+      "dateselevation=",
+      "textdepth=",
+      "colorbox=",
+      "ifcolorbox",
+      "topheight=",
+      "bottomdepth="
+    ]
+  ]
+}

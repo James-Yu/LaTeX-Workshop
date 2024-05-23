@@ -1,0 +1,2483 @@
+{
+  "includes": {
+    "graphicx": [],
+    "pgfsys": [],
+    "keyval": [],
+    "xcolor": [],
+    "pgfmath": []
+  },
+  "macros": {
+    "pgfintloaded": {},
+    "pgfinteval{}": {
+      "snippet": "pgfinteval{${1:expr}}"
+    },
+    "pgfintabs{}": {
+      "snippet": "pgfintabs{${1:number}}"
+    },
+    "pgfintmax{}{}": {
+      "snippet": "pgfintmax{${1:number1}}{${2:number2}}"
+    },
+    "pgfintmin{}{}": {
+      "snippet": "pgfintmin{${1:number1}}{${2:number2}}"
+    },
+    "pgfintdivtruncate{}{}": {
+      "snippet": "pgfintdivtruncate{${1:number1}}{${2:number2}}"
+    },
+    "pgfintdivfloor{}{}": {
+      "snippet": "pgfintdivfloor{${1:number1}}{${2:number2}}"
+    },
+    "pgfintdivround{}{}": {
+      "snippet": "pgfintdivround{${1:number1}}{${2:number2}}"
+    },
+    "pgfintmod{}{}": {
+      "snippet": "pgfintmod{${1:number}}{${2:modulus}}"
+    },
+    "pgfintset{}{}": {
+      "snippet": "pgfintset{${1:arg}}{${2:expr}}"
+    },
+    "pgfpoint{}{}": {
+      "snippet": "pgfpoint{${1:x}}{${2:y}}"
+    },
+    "pgfqpoint{}{}": {
+      "snippet": "pgfqpoint{${1:x}}{${2:y}}"
+    },
+    "pgfpointorigin": {},
+    "pgfpointtransformed{}": {
+      "snippet": "pgfpointtransformed{${1:point}}"
+    },
+    "pgfpointdiff{}{}": {
+      "snippet": "pgfpointdiff{${1:start}}{${2:end}}"
+    },
+    "pgfpointadd{}{}": {
+      "snippet": "pgfpointadd{${1:vec1}}{${2:vec2}}"
+    },
+    "pgfpointscale{}{}": {
+      "snippet": "pgfpointscale{${1:factor}}{${2:coordinate}}"
+    },
+    "pgfqpointscale{}{}": {
+      "snippet": "pgfqpointscale{${1:factor}}{${2:coordinate}}"
+    },
+    "pgfpointintersectionoflines{}{}{}{}": {
+      "snippet": "pgfpointintersectionoflines{${1:start1}}{${2:end1}}{${3:start2}}{${4:end2}}"
+    },
+    "pgfpointintersectionofcircles{}{}{}{}{}": {
+      "snippet": "pgfpointintersectionofcircles{${1:p1}}{${2:p2}}{${3:r1}}{${4:r2}}{${5:solution}}"
+    },
+    "pgfpointlineattime{}{}{}": {
+      "snippet": "pgfpointlineattime{${1:time}}{${2:p1}}{${3:p2}}"
+    },
+    "pgfpointlineatdistance{}{}{}": {
+      "snippet": "pgfpointlineatdistance{${1:distance}}{${2:p1}}{${3:p2}}"
+    },
+    "pgfpointcurveattime{}{}{}{}{}": {
+      "snippet": "pgfpointcurveattime{${1:time}}{${2:p1}}{${3:p2}}{${4:p3}}{${5:p4}}"
+    },
+    "pgfpointarcaxesattime{}{}{}{}{}{}": {
+      "snippet": "pgfpointarcaxesattime{${1:time}}{${2:center}}{${3:0-degree axis}}{${4:90-degree axis}}{${5:start angle}}{${6:end angle}}"
+    },
+    "pgfpointpolar{}{}": {
+      "snippet": "pgfpointpolar{${1:degree}}{${2:radius}}"
+    },
+    "pgfqpointpolar{}{}": {
+      "snippet": "pgfqpointpolar{${1:degree}}{${2:radius}}"
+    },
+    "pgfpointpolarxy{}{}": {
+      "snippet": "pgfpointpolarxy{${1:degree}}{${2:radius}}"
+    },
+    "pgfpointcylindrical{}{}{}": {
+      "snippet": "pgfpointcylindrical{${1:degree}}{${2:radius}}{${3:height}}"
+    },
+    "pgfpointspherical{}{}{}": {
+      "snippet": "pgfpointspherical{${1:longitude}}{${2:latitude}}{${3:radius}}"
+    },
+    "pgfpointxy{}{}": {
+      "snippet": "pgfpointxy{${1:x}}{${2:y}}"
+    },
+    "pgfqpointxy{}{}": {
+      "snippet": "pgfqpointxy{${1:x}}{${2:y}}"
+    },
+    "pgfpointxyz{}{}{}": {
+      "snippet": "pgfpointxyz{${1:x}}{${2:y}}{${3:z}}"
+    },
+    "pgfqpointxyz{}{}{}": {
+      "snippet": "pgfqpointxyz{${1:x}}{${2:y}}{${3:z}}"
+    },
+    "pgfsetxvec{}": {
+      "snippet": "pgfsetxvec{${1:point}}"
+    },
+    "pgfsetyvec{}": {
+      "snippet": "pgfsetyvec{${1:point}}"
+    },
+    "pgfsetzvec{}": {
+      "snippet": "pgfsetzvec{${1:point}}"
+    },
+    "pgfpointnormalised{}": {
+      "snippet": "pgfpointnormalised{${1:point}}"
+    },
+    "pgfpointborderrectangle{}{}": {
+      "snippet": "pgfpointborderrectangle{${1:direction}}{${2:corner}}"
+    },
+    "pgfpointborderellipse{}{}": {
+      "snippet": "pgfpointborderellipse{${1:direction}}{${2:corner}}"
+    },
+    "pgfextractx{}{}": {
+      "snippet": "pgfextractx{${1:dimension}}{${2:point}}"
+    },
+    "pgfextracty{}{}": {
+      "snippet": "pgfextracty{${1:dimension}}{${2:point}}"
+    },
+    "pgfgetlastxy{}{}": {
+      "snippet": "pgfgetlastxy{${1:macro for x}}{${2:macro for y}}"
+    },
+    "pgfpointtransformednonlinear{}": {
+      "snippet": "pgfpointtransformednonlinear{${1:point}}"
+    },
+    "pgfgetpath{}": {
+      "snippet": "pgfgetpath{${1:macro}}"
+    },
+    "pgfsetpath{}": {
+      "snippet": "pgfsetpath{${1:macro}}"
+    },
+    "pgfsetcornersarced{}": {
+      "snippet": "pgfsetcornersarced{${1:point}}"
+    },
+    "pgfpathmoveto{}": {
+      "snippet": "pgfpathmoveto{${1:point}}"
+    },
+    "pgfpathlineto{}": {
+      "snippet": "pgfpathlineto{${1:point}}"
+    },
+    "pgfpathclose": {},
+    "pgfpathcurveto{}{}{}": {
+      "snippet": "pgfpathcurveto{${1:support p1}}{${2:support p2}}{${3:end point}}"
+    },
+    "pgfpathquadraticcurveto{}{}": {
+      "snippet": "pgfpathquadraticcurveto{${1:support point}}{${2:end point}}"
+    },
+    "pgfpatharc{}{}{}": {
+      "snippet": "pgfpatharc{${1:start angle}}{${2:end angle}}{${3:radius}}"
+    },
+    "pgfpatharcaxes{}{}{}{}": {
+      "snippet": "pgfpatharcaxes{${1:start angle}}{${2:end angle}}{${3:axis1}}{${4:axis2}}"
+    },
+    "pgfpatharcto{}{}{}{}{}{}": {
+      "snippet": "pgfpatharcto{${1:x-radius}}{${2:y-radius}}{${3:rotation}}{${4:large arc flag}}{${5:countercl flag}}{${6:target point}}"
+    },
+    "pgfpatharctomaxstepsize": {},
+    "pgfpatharctoprecomputed{}{}{}{}{}{}{}{}": {
+      "snippet": "pgfpatharctoprecomputed{${1:point1}}{${2:start angle}}{${3:end angle}}{${4:point2}}{${5:a}}{${6:b}}{${7:ab-ratio}}{${8:ba-ratio}}"
+    },
+    "pgfpathellipse{}{}{}": {
+      "snippet": "pgfpathellipse{${1:center}}{${2:axis2}}{${3:axis2}}"
+    },
+    "pgfpathcircle{}{}": {
+      "snippet": "pgfpathcircle{${1:center}}{${2:radius}}"
+    },
+    "pgfpathrectangle{}{}": {
+      "snippet": "pgfpathrectangle{${1:corner}}{${2:diagonal vector}}"
+    },
+    "pgfpathrectanglecorners{}{}": {
+      "snippet": "pgfpathrectanglecorners{${1:corner}}{${2:opposite corner}}"
+    },
+    "pgfpathgrid{}{}": {
+      "snippet": "pgfpathgrid{${1:corner1}}{${2:corner2}}"
+    },
+    "pgfpathgrid[]{}{}": {
+      "snippet": "pgfpathgrid[${3:options}]{${1:corner1}}{${2:corner2}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "pgfpathparabola{}{}": {
+      "snippet": "pgfpathparabola{${1:bend vector}}{${2:end vector}}"
+    },
+    "pgfpathsine{}": {
+      "snippet": "pgfpathsine{${1:vector}}"
+    },
+    "pgfpathcosine{}": {
+      "snippet": "pgfpathcosine{${1:vector}}"
+    },
+    "pgfpathcurvebetweentime{}{}{}{}{}{}": {
+      "snippet": "pgfpathcurvebetweentime{${1:time t1}}{${2:time t2}}{${3:point p}}{${4:point s1}}{${5:point s2}}{${6:point q}}"
+    },
+    "pgfpathcurvebetweentimecontinue{}{}{}{}{}{}": {
+      "snippet": "pgfpathcurvebetweentimecontinue{${1:time t1}}{${2:time t2}}{${3:point p}}{${4:point s1}}{${5:point s2}}{${6:point q}}"
+    },
+    "pgfusepath{}": {
+      "snippet": "pgfusepath{${1:actions}}"
+    },
+    "pgfsetshortenstart{}": {
+      "snippet": "pgfsetshortenstart{${1:dimen}}"
+    },
+    "pgfsetshortenend{}": {
+      "snippet": "pgfsetshortenend{${1:dimen}}"
+    },
+    "pgfpic": {},
+    "ifpgfrememberpicturepositiononpage": {},
+    "pgfrememberpicturepositiononpagetrue": {},
+    "pgfrememberpicturepositiononpagefalse": {},
+    "pgfscope": {},
+    "endpgfscope": {},
+    "pgfqbox{}": {
+      "snippet": "pgfqbox{${1:box number}}"
+    },
+    "pgfqboxsynced{}": {
+      "snippet": "pgfqboxsynced{${1:box number}}"
+    },
+    "pgftext{}": {
+      "snippet": "pgftext{${1:text}}"
+    },
+    "pgftext[]{}": {
+      "snippet": "pgftext[${2:options}]{${1:text}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "pgfresetboundingbox": {},
+    "pgfpicture": {},
+    "endpgfpicture": {},
+    "pgfsetbaselinepointlater{}": {
+      "snippet": "pgfsetbaselinepointlater{${1:point}}"
+    },
+    "pgfsetbaselinepointnow{}": {
+      "snippet": "pgfsetbaselinepointnow{${1:point}}"
+    },
+    "pgfsetbaseline{}": {
+      "snippet": "pgfsetbaseline{${1:dimen}}"
+    },
+    "pgfsettrimleftpointlater{}": {
+      "snippet": "pgfsettrimleftpointlater{${1:coordinate}}"
+    },
+    "pgfsettrimleftpointnow{}": {
+      "snippet": "pgfsettrimleftpointnow{${1:coordinate}}"
+    },
+    "pgfsettrimleft{}": {
+      "snippet": "pgfsettrimleft{${1:coordinate}}"
+    },
+    "pgfsettrimrightpointlater{}": {
+      "snippet": "pgfsettrimrightpointlater{${1:coordinate}}"
+    },
+    "pgfsettrimrightpointnow{}": {
+      "snippet": "pgfsettrimrightpointnow{${1:coordinate}}"
+    },
+    "pgfsettrimright{}": {
+      "snippet": "pgfsettrimright{${1:coordinate}}"
+    },
+    "pgfinterruptpath": {},
+    "endpgfinterruptpath": {},
+    "pgfinterruptboundingbox": {},
+    "endpgfinterruptboundingbox": {},
+    "pgfidscope": {},
+    "endpgfidscope": {},
+    "pgfuseid{}": {
+      "snippet": "pgfuseid{${1:name}}"
+    },
+    "pgfclearid": {},
+    "pgfidrefnextuse{}{}": {
+      "snippet": "pgfidrefnextuse{${1:cmd}}{${2:name}}"
+    },
+    "pgfidrefprevuse{}{}": {
+      "snippet": "pgfidrefprevuse{${1:cmd}}{${2:name}}"
+    },
+    "pgfusetype{}": {
+      "snippet": "pgfusetype{${1:type}}"
+    },
+    "pgfpushtype": {},
+    "pgfpoptype": {},
+    "pgfaliasid{}{}": {
+      "snippet": "pgfaliasid{${1:alias}}{${2:name}}"
+    },
+    "pgfgaliasid{}{}": {
+      "snippet": "pgfgaliasid{${1:alias}}{${2:name}}"
+    },
+    "pgfifidreferenced{}{}{}": {
+      "snippet": "pgfifidreferenced{${1:name}}{${2:then code}}{${3:else code}}"
+    },
+    "pgfinterruptpicture": {},
+    "endpgfinterruptpicture": {},
+    "pgflinewidth": {},
+    "pgfsetlinewidth{}": {
+      "snippet": "pgfsetlinewidth{${1:width}}"
+    },
+    "pgfsetinnerlinewidth{}": {
+      "snippet": "pgfsetinnerlinewidth{${1:width}}"
+    },
+    "pgfinnerlinewidth": {},
+    "pgfsetinnerstrokecolor{}": {
+      "snippet": "pgfsetinnerstrokecolor{${1:color}}"
+    },
+    "pgfinnerstrokecolor": {},
+    "pgfsetmiterlimit{}": {
+      "snippet": "pgfsetmiterlimit{${1:miter limit factor}}"
+    },
+    "pgfsetstrokecolor{}": {
+      "snippet": "pgfsetstrokecolor{${1:color}}"
+    },
+    "pgfsetfillcolor{}": {
+      "snippet": "pgfsetfillcolor{${1:color}}"
+    },
+    "pgfsetcolor{}": {
+      "snippet": "pgfsetcolor{${1:color}}"
+    },
+    "pgfsetbuttcap": {},
+    "pgfsetroundcap": {},
+    "pgfsetrectcap": {},
+    "pgfsetmiterjoin": {},
+    "pgfsetbeveljoin": {},
+    "pgfsetroundjoin": {},
+    "pgfseteorule": {},
+    "pgfsetnonzerorule": {},
+    "pgfgettransform{}": {
+      "snippet": "pgfgettransform{${1:macro}}"
+    },
+    "pgfgettransformentries{}{}{}{}{}{}": {
+      "snippet": "pgfgettransformentries{${1:macro1}}{${2:macro2}}{${3:macro3}}{${4:macro4}}{${5:xshift-macro}}{${6:yshift-macro}}"
+    },
+    "pgfsettransformentries{}{}{}{}{}{}": {
+      "snippet": "pgfsettransformentries{${1:macro1}}{${2:macro2}}{${3:macro3}}{${4:macro4}}{${5:xshift-macro}}{${6:yshift-macro}}"
+    },
+    "pgfsettransform{}": {
+      "snippet": "pgfsettransform{${1:macro}}"
+    },
+    "pgftransforminvert": {},
+    "pgftransformcm{}{}{}{}{}": {
+      "snippet": "pgftransformcm{${1:a}}{${2:b}}{${3:c}}{${4:d}}{${5:point}}"
+    },
+    "pgftransformtriangle{}{}{}": {
+      "snippet": "pgftransformtriangle{${1:a}}{${2:b}}{${3:c}}"
+    },
+    "pgftransformreset": {},
+    "pgftransformresetnontranslations": {},
+    "pgftransformshift{}": {
+      "snippet": "pgftransformshift{${1:point}}"
+    },
+    "pgftransformxshift{}": {
+      "snippet": "pgftransformxshift{${1:dimen}}"
+    },
+    "pgftransformyshift{}": {
+      "snippet": "pgftransformyshift{${1:dimen}}"
+    },
+    "pgftransformscale{}": {
+      "snippet": "pgftransformscale{${1:factor}}"
+    },
+    "pgftransformxscale{}": {
+      "snippet": "pgftransformxscale{${1:factor}}"
+    },
+    "pgftransformyscale{}": {
+      "snippet": "pgftransformyscale{${1:factor}}"
+    },
+    "pgftransformxslant{}": {
+      "snippet": "pgftransformxslant{${1:factor}}"
+    },
+    "pgftransformyslant{}": {
+      "snippet": "pgftransformyslant{${1:factor}}"
+    },
+    "pgftransformrotate{}": {
+      "snippet": "pgftransformrotate{${1:angle}}"
+    },
+    "ifpgfslopedattime": {},
+    "pgfslopedattimetrue": {},
+    "pgfslopedattimefalse": {},
+    "ifpgfallowupsidedownattime": {},
+    "pgfallowupsidedownattimetrue": {},
+    "pgfallowupsidedownattimefalse": {},
+    "ifpgfresetnontranslationattime": {},
+    "pgfresetnontranslationattimetrue": {},
+    "pgfresetnontranslationattimefalse": {},
+    "pgftransformlineattime{}{}{}": {
+      "snippet": "pgftransformlineattime{${1:time}}{${2:start}}{${3:end}}"
+    },
+    "pgftransformarcaxesattime{}{}{}{}{}{}": {
+      "snippet": "pgftransformarcaxesattime{${1:time}}{${2:center}}{${3:0-deg axis}}{${4:90-deg axis}}{${5:start angle}}{${6:end angle}}"
+    },
+    "pgftransformcurveattime{}{}{}{}{}": {
+      "snippet": "pgftransformcurveattime{${1:time}}{${2:start}}{${3:support1}}{${4:support2}}{${5:end}}"
+    },
+    "pgftransformarrow{}{}": {
+      "snippet": "pgftransformarrow{${1:start}}{${2:end}}"
+    },
+    "pgftransformationadjustments": {},
+    "pgfhorizontaltransformationadjustment": {},
+    "pgfverticaltransformationadjustment": {},
+    "pgflowlevelsynccm": {},
+    "pgflowlevel{}": {
+      "snippet": "pgflowlevel{${1:transformation code}}"
+    },
+    "pgflowlevelscope{}": {
+      "snippet": "pgflowlevelscope{${1:transformation code}}"
+    },
+    "endpgflowlevelscope": {},
+    "pgflowlevelobj{}{}": {
+      "snippet": "pgflowlevelobj{${1:transformation code}}{${2:code}}"
+    },
+    "pgfviewboxscope{}{}{}{}{}": {
+      "snippet": "pgfviewboxscope{${1:ll1}}{${2:ur1}}{${3:ll2}}{${4:ur2}}{${5:meet or slice}}"
+    },
+    "endpgfviewboxscope": {},
+    "pgfapproximatenonlineartranslation": {},
+    "pgfapproximatenonlineartransformation": {},
+    "pgftransformnonlinear{}": {
+      "snippet": "pgftransformnonlinear{${1:transformation code}}"
+    },
+    "pgfpathqmoveto{}{}": {
+      "snippet": "pgfpathqmoveto{${1:x-dimen}}{${2:y-dimen}}"
+    },
+    "pgfpathqlineto{}{}": {
+      "snippet": "pgfpathqlineto{${1:x-dimen}}{${2:y-dimen}}"
+    },
+    "pgfpathqcurveto{}{}{}{}{}{}": {
+      "snippet": "pgfpathqcurveto{${1:x-dimen1}}{${2:y-dimen1}}{${3:x-dimen2}}{${4:y-dimen2}}{${5:target-x-dimen}}{${6:target-y-dimen}}"
+    },
+    "pgfpathqcircle{}": {
+      "snippet": "pgfpathqcircle{${1:radius}}"
+    },
+    "pgfusepathqstroke": {},
+    "pgfusepathqfill": {},
+    "pgfusepathqfillstroke": {},
+    "pgfusepathqclip": {},
+    "pgfdefobject{}{}{}{}": {
+      "snippet": "pgfdefobject{${1:name}}{${2:ll}}{${3:ur}}{${4:code}}"
+    },
+    "pgfuseobject{}": {
+      "snippet": "pgfuseobject{${1:name}}"
+    },
+    "pgfuseobjectmagnify{}": {
+      "snippet": "pgfuseobjectmagnify{${1:name}}"
+    },
+    "pgfprocesssplitpath{}": {
+      "snippet": "pgfprocesssplitpath{${1:macro}}"
+    },
+    "pgfprocesssplitsubpath{}": {
+      "snippet": "pgfprocesssplitsubpath{${1:macro}}"
+    },
+    "pgfprocessresultsubpathprefix": {},
+    "pgfprocessresultsubpathsuffix": {},
+    "pgfprocesspathextractpoints{}": {
+      "snippet": "pgfprocesspathextractpoints{${1:macro}}"
+    },
+    "pgfpointfirstonpath": {},
+    "pgfpointsecondonpath": {},
+    "pgfpointsecondlastonpath": {},
+    "pgfpointlastonpath": {},
+    "pgfprocesscheckclosed{}{}": {
+      "snippet": "pgfprocesscheckclosed{${1:macro}}{${2:code}}"
+    },
+    "pgfprocessround{}{}": {
+      "snippet": "pgfprocessround{${1:macro1}}{${2:macro2}}"
+    },
+    "pgfprocesspathreplacestartandend{}{}": {
+      "snippet": "pgfprocesspathreplacestartandend{${1:start coord}}{${2:end coord}}"
+    },
+    "pgfdeclarearrow{}": {
+      "snippet": "pgfdeclarearrow{${1:config}}"
+    },
+    "pgfarrowdraw{}": {
+      "snippet": "pgfarrowdraw{${1:specification}}"
+    },
+    "pgfarrowtotallength{}": {
+      "snippet": "pgfarrowtotallength{${1:specification}}"
+    },
+    "pgfsetarrowsend{}": {
+      "snippet": "pgfsetarrowsend{${1:specification}}"
+    },
+    "pgfsetarrowsstart{}": {
+      "snippet": "pgfsetarrowsstart{${1:specification}}"
+    },
+    "pgfarrowsep": {},
+    "ifpgfarrowswap": {},
+    "pgfarrowswaptrue": {},
+    "pgfarrowswapfalse": {},
+    "ifpgfarrowreversed": {},
+    "pgfarrowreversedtrue": {},
+    "pgfarrowreversedfalse": {},
+    "ifpgfarrowharpoon": {},
+    "pgfarrowharpoontrue": {},
+    "pgfarrowharpoonfalse": {},
+    "ifpgfarrowopen": {},
+    "pgfarrowopentrue": {},
+    "pgfarrowopenfalse": {},
+    "pgfarrowsaddtolengthscalelist{}": {
+      "snippet": "pgfarrowsaddtolengthscalelist{${1:dimen register}}"
+    },
+    "pgfarrowsaddtowidthscalelist{}": {
+      "snippet": "pgfarrowsaddtowidthscalelist{${1:dimen register}}"
+    },
+    "pgfarrowsaddtooptions{}": {
+      "snippet": "pgfarrowsaddtooptions{${1:code}}"
+    },
+    "pgfarrowsaddtolateoptions{}": {
+      "snippet": "pgfarrowsaddtolateoptions{${1:code}}"
+    },
+    "pgfarrowlength": {},
+    "pgfarrowsthreeparameters{}": {
+      "snippet": "pgfarrowsthreeparameters{${1:size spec}}"
+    },
+    "pgfarrowstheparameters": {},
+    "pgfarrowsfourparameters{}": {
+      "snippet": "pgfarrowsfourparameters{${1:size spec}}"
+    },
+    "pgfarrowslinewidthdependent{}{}{}": {
+      "snippet": "pgfarrowslinewidthdependent{${1:dimen}}{${2:line width factor}}{${3:outer factor}}"
+    },
+    "pgfarrowslengthdependent{}{}{}": {
+      "snippet": "pgfarrowslengthdependent{${1:dimen}}{${2:length factor}}{${3:dummy}}"
+    },
+    "pgfarrowssavethe{}": {
+      "snippet": "pgfarrowssavethe{${1:register}}"
+    },
+    "pgfarrowssave{}": {
+      "snippet": "pgfarrowssave{${1:macro}}"
+    },
+    "pgfarrowshullpoint{}{}": {
+      "snippet": "pgfarrowshullpoint{${1:x-dimen}}{${2:y-dimen}}"
+    },
+    "pgfarrowsupperhullpoint{}{}": {
+      "snippet": "pgfarrowsupperhullpoint{${1:x-dimen}}{${2:y-dimen}}"
+    },
+    "pgfarrowssettipend{}": {
+      "snippet": "pgfarrowssettipend{${1:dimen}}"
+    },
+    "pgfarrowssetbackend{}": {
+      "snippet": "pgfarrowssetbackend{${1:dimen}}"
+    },
+    "pgfarrowssetlineend{}": {
+      "snippet": "pgfarrowssetlineend{${1:dimen}}"
+    },
+    "pgfarrowssetvisualtipend{}": {
+      "snippet": "pgfarrowssetvisualtipend{${1:dimen}}"
+    },
+    "pgfarrowssetvisualbackend{}": {
+      "snippet": "pgfarrowssetvisualbackend{${1:dimen}}"
+    },
+    "pgfsetarrows{}": {
+      "snippet": "pgfsetarrows{${1:startspec-endspec}}"
+    },
+    "pgfsetarrowoptions{}{}": {
+      "snippet": "pgfsetarrowoptions{${1:shape}}{${2:dimen}}"
+    },
+    "pgfgetarrowoptions{}": {
+      "snippet": "pgfgetarrowoptions{${1:shape}}"
+    },
+    "pgfarrowsdeclare{}{}{}{}": {
+      "snippet": "pgfarrowsdeclare{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "pgfarrowsleftextend{}": {
+      "snippet": "pgfarrowsleftextend{${1:arg1}}"
+    },
+    "pgfarrowsrightextend{}": {
+      "snippet": "pgfarrowsrightextend{${1:arg1}}"
+    },
+    "pgfarrowsdeclarealias{}{}{}{}": {
+      "snippet": "pgfarrowsdeclarealias{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "pgfarrowsdeclarereversed{}{}{}{}": {
+      "snippet": "pgfarrowsdeclarereversed{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "pgfarrowsdeclarecombine": {},
+    "pgfarrowsdeclaredouble": {},
+    "pgfarrowsdeclaretriple": {},
+    "ifpgfshadingmodelrgb": {},
+    "pgfshadingmodelrgbtrue": {},
+    "pgfshadingmodelrgbfalse": {},
+    "ifpgfshadingmodelcmyk": {},
+    "pgfshadingmodelcmyktrue": {},
+    "pgfshadingmodelcmykfalse": {},
+    "ifpgfshadingmodelgray": {},
+    "pgfshadingmodelgraytrue": {},
+    "pgfshadingmodelgrayfalse": {},
+    "pgfdeclarehorizontalshading{}{}{}": {
+      "snippet": "pgfdeclarehorizontalshading{${1:name}}{${2:height}}{${3:color spec}}"
+    },
+    "pgfdeclarehorizontalshading[]{}{}{}": {
+      "snippet": "pgfdeclarehorizontalshading[${4:color list}]{${1:name}}{${2:height}}{${3:color spec}}"
+    },
+    "pgfdeclareverticalshading{}{}{}": {
+      "snippet": "pgfdeclareverticalshading{${1:name}}{${2:width}}{${3:color spec}}"
+    },
+    "pgfdeclareverticalshading[]{}{}{}": {
+      "snippet": "pgfdeclareverticalshading[${4:color list}]{${1:name}}{${2:width}}{${3:color spec}}"
+    },
+    "pgfdeclareradialshading{}{}{}": {
+      "snippet": "pgfdeclareradialshading{${1:name}}{${2:center point}}{${3:color spec}}"
+    },
+    "pgfdeclareradialshading[]{}{}{}": {
+      "snippet": "pgfdeclareradialshading[${4:color list}]{${1:name}}{${2:center point}}{${3:color spec}}"
+    },
+    "pgfdeclarefunctionalshading{}{}{}{}{}": {
+      "snippet": "pgfdeclarefunctionalshading{${1:name}}{${2:ll-corner}}{${3:ur-corner}}{${4:init-code}}{${5:function}}"
+    },
+    "pgfdeclarefunctionalshading[]{}{}{}{}{}": {
+      "snippet": "pgfdeclarefunctionalshading[${6:color list}]{${1:name}}{${2:ll-corner}}{${3:ur-corner}}{${4:init-code}}{${5:function}}"
+    },
+    "pgfshadecolortorgb{}{}": {
+      "snippet": "pgfshadecolortorgb{${1:color}}{${2:macro}}"
+    },
+    "pgfshadecolortocmyk{}{}": {
+      "snippet": "pgfshadecolortocmyk{${1:color}}{${2:macro}}"
+    },
+    "pgfshadecolortogray{}{}": {
+      "snippet": "pgfshadecolortogray{${1:color}}{${2:macro}}"
+    },
+    "pgffuncshadingrgbtocmyk": {},
+    "pgffuncshadingrgbtogray": {},
+    "pgffuncshadingcmyktorgb": {},
+    "pgffuncshadingcmyktogray": {},
+    "pgffuncshadinggraytorgb": {},
+    "pgffuncshadinggraytocmyk": {},
+    "pgfuseshading{}": {
+      "snippet": "pgfuseshading{${1:name}}"
+    },
+    "pgfaliasshading{}{}": {
+      "snippet": "pgfaliasshading{${1:alias name}}{${2:original name}}"
+    },
+    "pgfshadepath{}{}": {
+      "snippet": "pgfshadepath{${1:name}}{${2:angle}}"
+    },
+    "pgfsetadditionalshadetransform{}": {
+      "snippet": "pgfsetadditionalshadetransform{${1:transformation}}"
+    },
+    "pgfdeclareimage[]{}{}": {
+      "snippet": "pgfdeclareimage[${3:options}]{${1:image name}}{${2:imagefile}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "pgfdeclareimage{}{}": {
+      "snippet": "pgfdeclareimage{${1:image name}}{${2:imagefile}}"
+    },
+    "pgfdeclaremask[]{}{}": {
+      "snippet": "pgfdeclaremask[${3:options}]{${1:mask name}}{${2:imagefile}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "pgfdeclaremask{}{}": {
+      "snippet": "pgfdeclaremask{${1:mask name}}{${2:imagefile}}"
+    },
+    "pgfaliasimage{}{}": {
+      "snippet": "pgfaliasimage{${1:new image name}}{${2:existing image name}}"
+    },
+    "pgfuseimage{}": {
+      "snippet": "pgfuseimage{${1:image name}}"
+    },
+    "pgfalternateextension": {},
+    "pgfimage[]{}": {
+      "snippet": "pgfimage[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "pgfimage{}": {
+      "snippet": "pgfimage{${1:imagefile}}"
+    },
+    "ifpgfexternalreadmainaux": {},
+    "pgfexternalreadmainauxtrue": {},
+    "pgfexternalreadmainauxfalse": {},
+    "pgfrealjobname{}": {
+      "snippet": "pgfrealjobname{${1:name}}"
+    },
+    "pgfactualjobname": {},
+    "beginpgfgraphicnamed{}": {
+      "snippet": "beginpgfgraphicnamed{${1:file name prefix}}"
+    },
+    "endpgfgraphicnamed": {},
+    "pgfincludeexternalgraphics{}": {
+      "snippet": "pgfincludeexternalgraphics{${1:imagefile}}"
+    },
+    "pgfexternalreaddpth{}": {
+      "snippet": "pgfexternalreaddpth{${1:imagefile}}"
+    },
+    "pgfexternaldepth": {},
+    "pgfexternaltrimleft": {},
+    "pgfexternaltrimright": {},
+    "dpthimport": {},
+    "pgfexternalstorecommand{}": {
+      "snippet": "pgfexternalstorecommand{${1:cmd}}"
+    },
+    "pgfexternalwidth": {},
+    "pgfexternalheight": {},
+    "pgfdeclarelayer{}": {
+      "snippet": "pgfdeclarelayer{${1:name}}"
+    },
+    "pgfsetlayers{}": {
+      "snippet": "pgfsetlayers{${1:layer list}}"
+    },
+    "pgfonlayer{}": {
+      "snippet": "pgfonlayer{${1:layer name}}"
+    },
+    "endpgfonlayer": {},
+    "pgfdiscardlayername": {},
+    "pgfsetstrokeopacity{}": {
+      "snippet": "pgfsetstrokeopacity{${1:value}}"
+    },
+    "pgfsetfillopacity{}": {
+      "snippet": "pgfsetfillopacity{${1:value}}"
+    },
+    "pgfsetblendmode{}": {
+      "snippet": "pgfsetblendmode{${1:mode}}"
+    },
+    "pgfdeclarefading{}{}": {
+      "snippet": "pgfdeclarefading{${1:name}}{${2:contents}}"
+    },
+    "pgfsetfading{}{}": {
+      "snippet": "pgfsetfading{${1:name}}{${2:transformations}}"
+    },
+    "pgfsetfadingforcurrentpath{}{}": {
+      "snippet": "pgfsetfadingforcurrentpath{${1:name}}{${2:transformations}}"
+    },
+    "pgfsetfadingforcurrentpathstroked{}{}": {
+      "snippet": "pgfsetfadingforcurrentpathstroked{${1:name}}{${2:transformations}}"
+    },
+    "pgftransparencygroup": {},
+    "pgftransparencygroup[]": {
+      "snippet": "pgftransparencygroup[${1:options}]",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "endpgftransparencygroup": {},
+    "pgfdeclarepatternformonly{}{}{}{}{}": {
+      "snippet": "pgfdeclarepatternformonly{${1:name}}{${2:bottom left}}{${3:top right}}{${4:tile size}}{${5:code}}"
+    },
+    "pgfdeclarepatternformonly[]{}{}{}{}{}": {
+      "snippet": "pgfdeclarepatternformonly[${6:variables}]{${1:name}}{${2:bottom left}}{${3:top right}}{${4:tile size}}{${5:code}}"
+    },
+    "pgfdeclarepatterninherentlycolored{}{}{}{}{}": {
+      "snippet": "pgfdeclarepatterninherentlycolored{${1:name}}{${2:bottom left}}{${3:top right}}{${4:tile size}}{${5:code}}"
+    },
+    "pgfdeclarepatterninherentlycolored[]{}{}{}{}{}": {
+      "snippet": "pgfdeclarepatterninherentlycolored[${6:variables}]{${1:name}}{${2:bottom left}}{${3:top right}}{${4:tile size}}{${5:code}}"
+    },
+    "pgfpatternreleasename{}": {
+      "snippet": "pgfpatternreleasename{${1:name}}"
+    },
+    "pgfsetfillpattern{}{}": {
+      "snippet": "pgfsetfillpattern{${1:name}}{${2:color}}"
+    },
+    "pgfrdfabout{}": {
+      "snippet": "pgfrdfabout{${1:text}}"
+    },
+    "pgfrdfcontent{}": {
+      "snippet": "pgfrdfcontent{${1:text}}"
+    },
+    "pgfrdfdatatype{}": {
+      "snippet": "pgfrdfdatatype{${1:text}}"
+    },
+    "pgfrdfhref{}": {
+      "snippet": "pgfrdfhref{${1:text}}"
+    },
+    "pgfrdfinlist": {},
+    "pgfrdfprefix{}": {
+      "snippet": "pgfrdfprefix{${1:text}}"
+    },
+    "pgfrdfproperty{}": {
+      "snippet": "pgfrdfproperty{${1:text}}"
+    },
+    "pgfrdfrel{}": {
+      "snippet": "pgfrdfrel{${1:text}}"
+    },
+    "pgfrdfresource{}": {
+      "snippet": "pgfrdfresource{${1:text}}"
+    },
+    "pgfrdfrev{}": {
+      "snippet": "pgfrdfrev{${1:text}}"
+    },
+    "pgfrdfsrc{}": {
+      "snippet": "pgfrdfsrc{${1:text}}"
+    },
+    "pgfrdftypeof{}": {
+      "snippet": "pgfrdftypeof{${1:text}}"
+    },
+    "pgfrdfvocab{}": {
+      "snippet": "pgfrdfvocab{${1:text}}"
+    },
+    "arrowsize": {},
+    "pgfarrowinset": {},
+    "pgfarrowwidth": {},
+    "pgfarrowlinewidth": {},
+    "ifpgfarrowroundcap": {},
+    "pgfarrowroundcaptrue": {},
+    "pgfarrowroundcapfalse": {},
+    "ifpgfarrowroundjoin": {},
+    "pgfarrowroundjointrue": {},
+    "pgfarrowroundjoinfalse": {},
+    "pgfarrowarc": {},
+    "pgfarrown": {},
+    "pgfsetcurvilinearbeziercurve{}{}{}{}": {
+      "snippet": "pgfsetcurvilinearbeziercurve{${1:start}}{${2:support1}}{${3:support2}}{${4:end}}"
+    },
+    "pgfcurvilineardistancetotime{}": {
+      "snippet": "pgfcurvilineardistancetotime{${1:distance}}"
+    },
+    "pgfpointcurvilinearbezierorthogonal{}{}": {
+      "snippet": "pgfpointcurvilinearbezierorthogonal{${1:distance}}{${2:offset}}"
+    },
+    "pgfpointcurvilinearbezierpolar{}{}": {
+      "snippet": "pgfpointcurvilinearbezierpolar{${1:x}}{${2:y}}"
+    },
+    "ifpgfshapedecorationsloped": {},
+    "pgfshapedecorationslopedtrue": {},
+    "pgfshapedecorationslopedfalse": {},
+    "ifpgfshapedecorationscaled": {},
+    "pgfshapedecorationscaledtrue": {},
+    "pgfshapedecorationscaledfalse": {},
+    "pgfdecorationrestoftext": {},
+    "pgfdecorationtext": {},
+    "pgfsetdecoratetextformatdelimiters{}{}": {
+      "snippet": "pgfsetdecoratetextformatdelimiters{${1:delim1}}{${2:delim2}}"
+    },
+    "pgfmathfpscale": {},
+    "pgfmathfpparse{}": {
+      "snippet": "pgfmathfpparse{${1:expr}}"
+    },
+    "pgfmathfpscientific{}{}": {
+      "snippet": "pgfmathfpscientific{${1:x}}{${2:y}}"
+    },
+    "pgfmathfplessthan{}{}": {
+      "snippet": "pgfmathfplessthan{${1:x}}{${2:y}}"
+    },
+    "pgfmathfpgreaterthan{}{}": {
+      "snippet": "pgfmathfpgreaterthan{${1:x}}{${2:y}}"
+    },
+    "pgfmathfpequalto{}{}": {
+      "snippet": "pgfmathfpequalto{${1:x}}{${2:y}}"
+    },
+    "pgfmathfpadd{}{}": {
+      "snippet": "pgfmathfpadd{${1:x}}{${2:y}}"
+    },
+    "pgfmathfpsubtract{}{}": {
+      "snippet": "pgfmathfpsubtract{${1:x}}{${2:y}}"
+    },
+    "pgfmathfpmultiply{}{}": {
+      "snippet": "pgfmathfpmultiply{${1:x}}{${2:y}}"
+    },
+    "pgfmathfpdivide{}{}": {
+      "snippet": "pgfmathfpdivide{${1:x}}{${2:y}}"
+    },
+    "pgfmathfpabs{}": {
+      "snippet": "pgfmathfpabs{${1:x}}"
+    },
+    "pgfmathfpneg{}": {
+      "snippet": "pgfmathfpneg{${1:x}}"
+    },
+    "pgfmathfpround{}": {
+      "snippet": "pgfmathfpround{${1:x}}"
+    },
+    "pgfmathfpfloor{}": {
+      "snippet": "pgfmathfpfloor{${1:x}}"
+    },
+    "pgfmathfpceil{}": {
+      "snippet": "pgfmathfpceil{${1:x}}"
+    },
+    "pgfmathfpmod{}{}": {
+      "snippet": "pgfmathfpmod{${1:x}}{${2:y}}"
+    },
+    "pgfmathfpmax{}{}": {
+      "snippet": "pgfmathfpmax{${1:x}}{${2:y}}"
+    },
+    "pgfmathfpmin{}{}": {
+      "snippet": "pgfmathfpmin{${1:x}}{${2:y}}"
+    },
+    "pgfmathfppow{}{}": {
+      "snippet": "pgfmathfppow{${1:x}}{${2:y}}"
+    },
+    "pgfmathfpexp{}": {
+      "snippet": "pgfmathfpexp{${1:x}}"
+    },
+    "pgfmathfpln{}": {
+      "snippet": "pgfmathfpln{${1:x}}"
+    },
+    "pgfmathfpsqrt{}": {
+      "snippet": "pgfmathfpsqrt{${1:x}}"
+    },
+    "pgfmathfpveclen{}{}": {
+      "snippet": "pgfmathfpveclen{${1:x}}{${2:y}}"
+    },
+    "pgfmathfpsin{}": {
+      "snippet": "pgfmathfpsin{${1:x}}"
+    },
+    "pgfmathfpcos{}": {
+      "snippet": "pgfmathfpcos{${1:x}}"
+    },
+    "pgfmathfptan{}": {
+      "snippet": "pgfmathfptan{${1:x}}"
+    },
+    "pgfmathfpacos{}": {
+      "snippet": "pgfmathfpacos{${1:x}}"
+    },
+    "pgfmathfpasin{}": {
+      "snippet": "pgfmathfpasin{${1:x}}"
+    },
+    "pgfmathfpatan{}": {
+      "snippet": "pgfmathfpatan{${1:x}}"
+    },
+    "pgfmathfpcot{}": {
+      "snippet": "pgfmathfpcot{${1:x}}"
+    },
+    "pgfmathfpsec{}": {
+      "snippet": "pgfmathfpsec{${1:x}}"
+    },
+    "pgfmathfpcosec{}": {
+      "snippet": "pgfmathfpcosec{${1:x}}"
+    },
+    "pgfmathfpdeg{}": {
+      "snippet": "pgfmathfpdeg{${1:x}}"
+    },
+    "pgfmathfprad{}": {
+      "snippet": "pgfmathfprad{${1:x}}"
+    },
+    "pgfmathfpsetseed{}": {
+      "snippet": "pgfmathfpsetseed{${1:x}}"
+    },
+    "pgfmathfprnd": {},
+    "pgfmathfprand": {},
+    "ifpgfmathfloatparseactive": {},
+    "pgfmathfloatparseactivetrue": {},
+    "pgfmathfloatparseactivefalse": {},
+    "pgflibraryfpuifactive{}{}": {
+      "snippet": "pgflibraryfpuifactive{${1:true code}}{${2:false code}}"
+    },
+    "pgfmathfloatscale": {},
+    "pgfmathfloatone": {},
+    "pgfmathfloatparse": {},
+    "pgfmathfloatscientific{}{}": {
+      "snippet": "pgfmathfloatscientific{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatlessthan{}{}": {
+      "snippet": "pgfmathfloatlessthan{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatgreaterthan{}{}": {
+      "snippet": "pgfmathfloatgreaterthan{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatmaxtwo{}{}": {
+      "snippet": "pgfmathfloatmaxtwo{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatmax{}{}": {
+      "snippet": "pgfmathfloatmax{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatmin{}{}": {
+      "snippet": "pgfmathfloatmin{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatmintwo{}{}": {
+      "snippet": "pgfmathfloatmintwo{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloattoextentedprecision{}": {
+      "snippet": "pgfmathfloattoextentedprecision{${1:x}}"
+    },
+    "pgfmathfloatsetextprecision{}": {
+      "snippet": "pgfmathfloatsetextprecision{${1:shift}}"
+    },
+    "pgfmathfloatifzero{}{}{}": {
+      "snippet": "pgfmathfloatifzero{${1:x}}{${2:true code}}{${3:false code}}"
+    },
+    "pgfmathfloatiffinite{}{}{}": {
+      "snippet": "pgfmathfloatiffinite{${1:x}}{${2:true code}}{${3:false code}}"
+    },
+    "pgfmathfloatifapproxequalrel{}{}{}{}": {
+      "snippet": "pgfmathfloatifapproxequalrel{${1:x}}{${2:y}}{${3:true code}}{${4:false code}}"
+    },
+    "pgfmathfloatifflags{}{}{}{}": {
+      "snippet": "pgfmathfloatifflags{${1:number}}{${2:flag}}{${3:true code}}{${4:false code}}"
+    },
+    "pgfmathfloatadd{}{}": {
+      "snippet": "pgfmathfloatadd{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatsubtract{}{}": {
+      "snippet": "pgfmathfloatsubtract{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatmultiplyfixed{}{}": {
+      "snippet": "pgfmathfloatmultiplyfixed{${1:float}}{${2:fixed}}"
+    },
+    "pgfmathfloatmultiply{}{}": {
+      "snippet": "pgfmathfloatmultiply{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatdivide{}{}": {
+      "snippet": "pgfmathfloatdivide{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatsqrt{}": {
+      "snippet": "pgfmathfloatsqrt{${1:x}}"
+    },
+    "pgfmathfloatint{}": {
+      "snippet": "pgfmathfloatint{${1:x}}"
+    },
+    "pgfmathfloatfloor{}": {
+      "snippet": "pgfmathfloatfloor{${1:x}}"
+    },
+    "pgfmathfloatceil{}": {
+      "snippet": "pgfmathfloatceil{${1:x}}"
+    },
+    "pgfmathfloatshift{}{}": {
+      "snippet": "pgfmathfloatshift{${1:x}}{${2:num}}"
+    },
+    "pgfmathfloatsign{}": {
+      "snippet": "pgfmathfloatsign{${1:x}}"
+    },
+    "pgfmathfloatabserror{}{}": {
+      "snippet": "pgfmathfloatabserror{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatrelerror{}{}": {
+      "snippet": "pgfmathfloatrelerror{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatmod{}{}": {
+      "snippet": "pgfmathfloatmod{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatmodknowsinverse{}{}{}": {
+      "snippet": "pgfmathfloatmodknowsinverse{${1:x}}{${2:y}}{${3:z}}"
+    },
+    "pgfmathfloatpi": {},
+    "pgfmathfloate": {},
+    "pgfmathfloatdeg{}": {
+      "snippet": "pgfmathfloatdeg{${1:x in radians}}"
+    },
+    "pgfmathfloatrad{}": {
+      "snippet": "pgfmathfloatrad{${1:x in degrees}}"
+    },
+    "pgfmathfloatsin{}": {
+      "snippet": "pgfmathfloatsin{${1:x in degrees}}"
+    },
+    "pgfmathfloatcos{}": {
+      "snippet": "pgfmathfloatcos{${1:x in degrees}}"
+    },
+    "pgfmathfloattan{}": {
+      "snippet": "pgfmathfloattan{${1:x in degrees}}"
+    },
+    "pgfmathfloatcot{}": {
+      "snippet": "pgfmathfloatcot{${1:x in degrees}}"
+    },
+    "pgfmathfloatatan{}": {
+      "snippet": "pgfmathfloatatan{${1:x}}"
+    },
+    "pgfmathfloatatantwo{}{}": {
+      "snippet": "pgfmathfloatatantwo{${1:x}}{${2:y}}"
+    },
+    "pgfmathfloatsec{}": {
+      "snippet": "pgfmathfloatsec{${1:x in degrees}}"
+    },
+    "pgfmathfloatcosec{}": {
+      "snippet": "pgfmathfloatcosec{${1:x in degrees}}"
+    },
+    "pgfmathfloatln{}": {
+      "snippet": "pgfmathfloatln{${1:x}}"
+    },
+    "pgfmathlog{}": {
+      "snippet": "pgfmathlog{${1:x}}"
+    },
+    "pgfmathfloatexp{}": {
+      "snippet": "pgfmathfloatexp{${1:x}}"
+    },
+    "pgfmathfloatrand": {},
+    "pgfmathfloatrnd": {},
+    "pgfgdset{}": {
+      "snippet": "pgfgdset{${1:options}}"
+    },
+    "pgfgdappendtoforwardinglist{}": {
+      "snippet": "pgfgdappendtoforwardinglist{${1:paths}}"
+    },
+    "pgfgdcallbackdeclareparameter{}{}": {
+      "snippet": "pgfgdcallbackdeclareparameter{${1:key}}{${2:type}}"
+    },
+    "pgfgdtriggerrequest": {},
+    "pgfgdcallbackrendercollectionkindstart{}{}": {
+      "snippet": "pgfgdcallbackrendercollectionkindstart{${1:kind}}{${2:layer}}"
+    },
+    "pgfgdcallbackrendercollectionkindstop{}{}": {
+      "snippet": "pgfgdcallbackrendercollectionkindstop{${1:kind}}{${2:layer}}"
+    },
+    "pgfgdcallbackrendercollection{}{}": {
+      "snippet": "pgfgdcallbackrendercollection{${1:kind}}{${2:options}}"
+    },
+    "pgfgdevent{}{}": {
+      "snippet": "pgfgdevent{${1:name}}{${2:parameter}}"
+    },
+    "pgfgdbegineventgroup{}": {
+      "snippet": "pgfgdbegineventgroup{${1:parameter}}"
+    },
+    "pgfgdendeventgroup": {},
+    "pgfgdeventgroup{}": {
+      "snippet": "pgfgdeventgroup{${1:name}}"
+    },
+    "pgfgdsetlatenodeoption{}": {
+      "snippet": "pgfgdsetlatenodeoption{${1:node name}}"
+    },
+    "pgfgdcallbackrendernode{}{}{}{}{}{}{}{}{}": {
+      "snippet": "pgfgdcallbackrendernode{${1:node name}}{${2:xmin}}{${3:xmax}}{${4:ymin}}{${5:ymax}}{${6:xpos}}{${7:ypos}}{${8:boxnum}}{${9:code}}"
+    },
+    "pgfpositionnodelatername": {},
+    "pgfpositionnodelaterminx": {},
+    "pgfpositionnodelatermaxx": {},
+    "pgfpositionnodelaterminy": {},
+    "pgfpositionnodelatermaxy": {},
+    "pgfgdedge{}{}{}{}{}": {
+      "snippet": "pgfgdedge{${1:node1}}{${2:node2}}{${3:edge dir}}{${4:edge opts}}{${5:edge nodes}}"
+    },
+    "pgfgdprepareedge": {},
+    "pgfgdaddprepareedgehook{}": {
+      "snippet": "pgfgdaddprepareedgehook{${1:code}}"
+    },
+    "pgfgdsetedgecallback{}": {
+      "snippet": "pgfgdsetedgecallback{${1:macro}}"
+    },
+    "pgfgddefaultedgecallback{}{}{}{}{}{}{}": {
+      "snippet": "pgfgddefaultedgecallback{${1:node1}}{${2:node2}}{${3:options}}{${4:auxtext}}{${5:alg options}}{${6:bend info}}{${7:animations}}"
+    },
+    "pgfgdcallbackbeginshipout": {},
+    "pgfgdcallbackendshipout": {},
+    "pgfgdcallbackbeginnodeshipout": {},
+    "pgfgdcallbackendnodeshipout": {},
+    "pgfgdcallbackbeginedgeshipout": {},
+    "pgfgdcallbackendedgeshipout": {},
+    "pgfgdcallbackcreatevertex{}{}{}{}": {
+      "snippet": "pgfgdcallbackcreatevertex{${1:node name}}{${2:shape}}{${3:options}}{${4:text}}"
+    },
+    "pgfgdbeginlayout": {},
+    "pgfgdendlayout": {},
+    "pgfgdsubgraphnode{}{}{}": {
+      "snippet": "pgfgdsubgraphnode{${1:node name}}{${2:node options}}{${3:node text}}"
+    },
+    "pgfgdsubgraphnodecontents{}": {
+      "snippet": "pgfgdsubgraphnodecontents{${1:arg}}"
+    },
+    "pgfgdbeginrequest": {},
+    "pgfgdendrequest": {},
+    "ifpgfgdlayoutscopeactive": {},
+    "pgfgdlayoutscopeactivetrue": {},
+    "pgfgdlayoutscopeactivefalse": {},
+    "pgfgdsetrequestcallback{}": {
+      "snippet": "pgfgdsetrequestcallback{${1:macro}}"
+    },
+    "ifpgfgdgraphdrawingscopeactive": {},
+    "pgfgdgraphdrawingscopeactivetrue": {},
+    "pgfgdgraphdrawingscopeactivefalse": {},
+    "pgfgdbeginscope": {},
+    "ifpgfgdresumecoroutine": {},
+    "pgfgdresumecoroutinetrue": {},
+    "pgfgdresumecoroutinefalse": {},
+    "pgfgdendscope": {},
+    "pgfgdaddspecificationhook{}": {
+      "snippet": "pgfgdaddspecificationhook{${1:code}}"
+    },
+    "usegdlibrary{}": {
+      "snippet": "usegdlibrary{${1:list of libraries}}"
+    },
+    "pgfintersectionsortbyfirstpath": {},
+    "pgfintersectionsortbysecondpath": {},
+    "pgfpointintersectionsolution{}": {
+      "snippet": "pgfpointintersectionsolution{${1:number}}"
+    },
+    "pgfintersectiongetsolutionsegmentindices{}{}{}": {
+      "snippet": "pgfintersectiongetsolutionsegmentindices{${1:number}}{${2:macro1}}{${3:macro2}}"
+    },
+    "pgfintersectionsolutions": {},
+    "pgfintersectiongetsolutiontimes{}{}{}": {
+      "snippet": "pgfintersectiongetsolutiontimes{${1:number}}{${2:macro1}}{${3:macro2}}"
+    },
+    "pgfintersectionofpaths{}{}": {
+      "snippet": "pgfintersectionofpaths{${1:path1}}{${2:path2}}"
+    },
+    "pgfiflinesintersect{}{}{}{}": {
+      "snippet": "pgfiflinesintersect{${1:line1}}{${2:line2}}{${3:true}}{${4:false}}"
+    },
+    "pgfintersectionoflineandcurve{}{}{}{}{}{}": {
+      "snippet": "pgfintersectionoflineandcurve{${1:p1}}{${2:p2}}{${3:q1}}{${4:q2}}{${5:q3}}{${6:q4}}"
+    },
+    "pgfintersectiontolerance": {},
+    "pgfintersectiontoleranceupperbound": {},
+    "pgfintersectiontolerancefactor": {},
+    "pgfpointintersectionofcurves{}{}{}{}{}{}{}{}{}": {
+      "snippet": "pgfpointintersectionofcurves{${1:p1}}{${2:p2}}{${3:p3}}{${4:p4}}{${5:q1}}{${6:q2}}{${7:q3}}{${8:q4}}{${9:number}}"
+    },
+    "pgfintersectionofcurves{}{}{}{}{}{}{}{}": {
+      "snippet": "pgfintersectionofcurves{${1:p1}}{${2:p2}}{${3:p3}}{${4:p4}}{${5:q1}}{${6:q2}}{${7:q3}}{${8:q4}}"
+    },
+    "pgfintersectionsolutionsortbytime": {},
+    "pgflsystemstep": {},
+    "pgflsystemrandomizesteppercent": {},
+    "pgflsystemrandomizeanglepercent": {},
+    "pgfdeclarelindenmayersystem{}{}": {
+      "snippet": "pgfdeclarelindenmayersystem{${1:name}}{${2:specification}}"
+    },
+    "pgflsystemcurrentstep": {},
+    "pgflsystemcurrentleftangle": {},
+    "pgflsystemcurrentrightangle": {},
+    "pgflsystemrandomizestep": {},
+    "pgflsystemrandomizerightangle": {},
+    "pgflsystemrandomizeleftangle": {},
+    "pgflsystemdrawforward": {},
+    "pgflsystemmoveforward": {},
+    "pgflsystemturnright": {},
+    "pgflsystemturnleft": {},
+    "pgflsystemsavestate": {},
+    "pgflsystemrestorestate": {},
+    "pgflindenmayersystem{}{}{}": {
+      "snippet": "pgflindenmayersystem{${1:name}}{${2:axiom}}{${3:order}}"
+    },
+    "ifpgfluamathshowerrormessage": {},
+    "pgfluamathshowerrormessagetrue": {},
+    "pgfluamathshowerrormessagefalse": {},
+    "ifpgfluamathenableTeXfallback": {},
+    "pgfluamathenableTeXfallbacktrue": {},
+    "pgfluamathenableTeXfallbackfalse": {},
+    "ifpgfluamathcomputationactive": {},
+    "pgfluamathcomputationactivetrue": {},
+    "pgfluamathcomputationactivefalse": {},
+    "ifpgfluamathparseractive": {},
+    "pgfluamathparseractivetrue": {},
+    "pgfluamathparseractivefalse": {},
+    "pgfluamathgetresult{}": {
+      "snippet": "pgfluamathgetresult{${1:lua expr}}"
+    },
+    "pgfluamathone": {},
+    "pgfluamathfloatone": {},
+    "pgfluamathreciprocal{}": {
+      "snippet": "pgfluamathreciprocal{${1:lua expr}}"
+    },
+    "pgfluamathpointnormalised{}": {
+      "snippet": "pgfluamathpointnormalised{${1:expr}}"
+    },
+    "ifpgfluamathunitsdeclared": {},
+    "pgfluamathunitsdeclaredtrue": {},
+    "pgfluamathunitsdeclaredfalse": {},
+    "ifpgfluamathusedTeXfallback": {},
+    "pgfluamathusedTeXfallbacktrue": {},
+    "pgfluamathusedTeXfallbackfalse": {},
+    "pgfluamathparse{}": {
+      "snippet": "pgfluamathparse{${1:expr}}"
+    },
+    "pgfifpatternundefined{}": {
+      "snippet": "pgfifpatternundefined{${1:name}}"
+    },
+    "pgfdeclarepattern{}": {
+      "snippet": "pgfdeclarepattern{${1:config}}"
+    },
+    "pgfpatternalias{}{}": {
+      "snippet": "pgfpatternalias{${1:name1}}{${2:name2}}"
+    },
+    "pgfplothandlercurveto": {},
+    "pgfsetplottension{}": {
+      "snippet": "pgfsetplottension{${1:tension}}"
+    },
+    "pgfplothandlerclosedcurve": {},
+    "pgfplothandlerxcomb": {},
+    "pgfplothandlerycomb": {},
+    "pgfplotxzerolevelstreamstart": {},
+    "pgfplotxzerolevelstreamend": {},
+    "pgfplotxzerolevelstreamnext": {},
+    "pgfplotyzerolevelstreamstart": {},
+    "pgfplotyzerolevelstreamend": {},
+    "pgfplotyzerolevelstreamnext": {},
+    "pgfplotxzerolevelstreamconstant{}": {
+      "snippet": "pgfplotxzerolevelstreamconstant{${1:dimen}}"
+    },
+    "pgfplotyzerolevelstreamconstant{}": {
+      "snippet": "pgfplotyzerolevelstreamconstant{${1:dimen}}"
+    },
+    "pgfplotbarwidth": {},
+    "pgfplotbarshift": {},
+    "pgfplothandlerybar": {},
+    "pgfplothandlerxbar": {},
+    "pgfplothandlerybarinterval": {},
+    "pgfplothandlerxbarinterval": {},
+    "pgfplothandlerconstantlineto": {},
+    "pgfplothandlerconstantlinetomarkright": {},
+    "pgfplothandlerconstantlinetomarkmid": {},
+    "pgfplothandlerjumpmarkright": {},
+    "pgfplothandlerjumpmarkleft": {},
+    "pgfplothandlerjumpmarkmid": {},
+    "pgfplothandlerpolarcomb": {},
+    "pgfplothandlermark{}": {
+      "snippet": "pgfplothandlermark{${1:mark code}}"
+    },
+    "pgfsetplotmarkrepeat{}": {
+      "snippet": "pgfsetplotmarkrepeat{${1:repeat count}}"
+    },
+    "pgfsetplotmarkphase{}": {
+      "snippet": "pgfsetplotmarkphase{${1:index}}"
+    },
+    "pgfplothandlermarklisted{}{}": {
+      "snippet": "pgfplothandlermarklisted{${1:code}}{${2:positions}}"
+    },
+    "pgfdeclareplotmark{}{}": {
+      "snippet": "pgfdeclareplotmark{${1:name}}{${2:code}}"
+    },
+    "pgfsetplotmarksize{}": {
+      "snippet": "pgfsetplotmarksize{${1:size}}"
+    },
+    "pgfplotmarksize": {},
+    "pgfuseplotmark{}": {
+      "snippet": "pgfuseplotmark{${1:name}}"
+    },
+    "pgfplothandlergaplineto": {},
+    "pgfplothandlergapcycle": {},
+    "pgfprofilenew{}": {
+      "snippet": "pgfprofilenew{${1:name}}"
+    },
+    "pgfprofilenewforenvironment{}": {
+      "snippet": "pgfprofilenewforenvironment{${1:envname}}"
+    },
+    "pgfprofilenewforenvironment[]{}": {
+      "snippet": "pgfprofilenewforenvironment[${2:profiler entry name}]{${1:envname}}"
+    },
+    "pgfprofilecs": {},
+    "pgfprofileenv": {},
+    "pgfprofilenewforcommand{}{}": {
+      "snippet": "pgfprofilenewforcommand{${1:macro}}{${2:args}}"
+    },
+    "pgfprofilenewforcommand[]{}{}": {
+      "snippet": "pgfprofilenewforcommand[${3:profiler entry name}]{${1:macro}}{${2:args}}"
+    },
+    "pgfprofilenewforcommandpattern{}{}{}": {
+      "snippet": "pgfprofilenewforcommandpattern{${1:macro}}{${2:arg pattern}}{${3:invocation pattern}}"
+    },
+    "pgfprofilenewforcommandpattern[]{}{}{}": {
+      "snippet": "pgfprofilenewforcommandpattern[${4:profiler entry name}]{${1:macro}}{${2:arg pattern}}{${3:invocation pattern}}"
+    },
+    "pgfprofileshowinvocationsfor{}": {
+      "snippet": "pgfprofileshowinvocationsfor{${1:profiler entry name}}"
+    },
+    "pgfprofileshowinvocationsexpandedfor{}": {
+      "snippet": "pgfprofileshowinvocationsexpandedfor{${1:profiler entry name}}"
+    },
+    "pgfprofileinvokecommand{}": {
+      "snippet": "pgfprofileinvokecommand{${1:arg}}"
+    },
+    "pgfprofilestart{}": {
+      "snippet": "pgfprofilestart{${1:profiler entry name}}"
+    },
+    "pgfprofileend{}": {
+      "snippet": "pgfprofileend{${1:profiler entry name}}"
+    },
+    "pgfprofileifisrunning{}{}{}": {
+      "snippet": "pgfprofileifisrunning{${1:profiler entry name}}{${2:true code}}{${3:false code}}"
+    },
+    "pgfprofilesetrel{}": {
+      "snippet": "pgfprofilesetrel{${1:profiler entry name}}"
+    },
+    "pgfprofilepostprocess": {},
+    "pgfprofileforeachentryinCSV{}{}": {
+      "snippet": "pgfprofileforeachentryinCSV{${1:list}}{${2:macro}}"
+    },
+    "pgfprofilestackpush{}": {
+      "snippet": "pgfprofilestackpush{${1:arg}}"
+    },
+    "pgfprofilestackpop{}": {
+      "snippet": "pgfprofilestackpop{${1:arg}}"
+    },
+    "pgfprofilestacktop{}": {
+      "snippet": "pgfprofilestacktop{${1:arg}}"
+    },
+    "pgfprofilestackifempty{}{}": {
+      "snippet": "pgfprofilestackifempty{${1:arg1}}{${2:arg2}}"
+    },
+    "pgfprofiletotwodigitstr{}": {
+      "snippet": "pgfprofiletotwodigitstr{${1:arg}}"
+    },
+    "getsinglearrowpoints": {},
+    "xoutersep": {},
+    "youtersep": {},
+    "cosechalftipangle": {},
+    "sechalftipangle": {},
+    "tanhalftipangle": {},
+    "arrowtip": {},
+    "beforearrowtip": {},
+    "beforearrowhead": {},
+    "afterarrowtail": {},
+    "arrowtipanchor": {},
+    "beforearrowtipanchor": {},
+    "beforearrowheadanchor": {},
+    "afterarrowtailanchor": {},
+    "getdoublearrowpoints": {},
+    "shaftwidth": {},
+    "arrowboxpoints": {},
+    "halfboxwidth": {},
+    "halfboxheight": {},
+    "westextend": {},
+    "eastextend": {},
+    "northextend": {},
+    "southextend": {},
+    "arrowheadextend": {},
+    "arrowheadindent": {},
+    "arrowtipmiterangle": {},
+    "arrowheadangles": {},
+    "cosecarrowtipmiterangle": {},
+    "beforearrowheadmiterangle": {},
+    "cosecbeforearrowheadmiterangle": {},
+    "beforearrowtipmiterangle": {},
+    "cosecbeforearrowtipmiterangle": {},
+    "arrowboxcorner": {},
+    "ellipsecalloutpoints": {},
+    "xpathradius": {},
+    "ypathradius": {},
+    "pointerarc": {},
+    "calloutpointer": {},
+    "pointerradius": {},
+    "calloutpointeranchor": {},
+    "beforecalloutangle": {},
+    "aftercalloutangle": {},
+    "beforecalloutpointer": {},
+    "aftercalloutpointer": {},
+    "sinpointerangle": {},
+    "cospointerangle": {},
+    "rectanglecalloutpoints": {},
+    "xtemp": {},
+    "ytemp": {},
+    "xlength": {},
+    "ylength": {},
+    "pointerwidth": {},
+    "borderpoint": {},
+    "fourthpoint": {},
+    "borderangle": {},
+    "northeast": {},
+    "southwest": {},
+    "innerhalfwidth": {},
+    "innerhalfheight": {},
+    "ifpgfgateanchorsuseboundingrectangle": {},
+    "pgfgateanchorsuseboundingrectangletrue": {},
+    "pgfgateanchorsuseboundingrectanglefalse": {},
+    "halfside": {},
+    "outerxsep": {},
+    "outerysep": {},
+    "halfwidth": {},
+    "halfheight": {},
+    "tipanchor": {},
+    "numinputs": {},
+    "invertedradius": {},
+    "outerinvertedradius": {},
+    "dimensions": {},
+    "centerpoint": {},
+    "midpoint": {},
+    "basepoint": {},
+    "externalangle": {},
+    "halflinewidth": {},
+    "radius": {},
+    "pgfsetshapeaspect{}": {
+      "snippet": "pgfsetshapeaspect{${1:value}}"
+    },
+    "pgfshapeaspect": {},
+    "pgfshapeaspectinverse": {},
+    "outernortheast": {},
+    "totalstarpoints": {},
+    "anglestep": {},
+    "calculateradii": {},
+    "outerradius": {},
+    "angletofirstpoint": {},
+    "angletosecondpoint": {},
+    "anchorouterradius": {},
+    "anchorinnerradius": {},
+    "innerradius": {},
+    "startangle": {},
+    "angle": {
+      "detail": "∠",
+      "documentation": "ANGLE"
+    },
+    "externalx": {},
+    "externaly": {},
+    "firstangle": {},
+    "secondangle": {},
+    "sides": {},
+    "anchorradius": {},
+    "installtrapeziumparameters": {},
+    "rotate": {},
+    "leftangle": {},
+    "rightangle": {
+      "detail": "∟",
+      "documentation": "right (90 degree) angle"
+    },
+    "leftextension": {},
+    "rightextension": {},
+    "outersep": {},
+    "externalradius": {},
+    "lowerleftpoint": {},
+    "upperleftpoint": {},
+    "upperrightpoint": {},
+    "lowerrightpoint": {},
+    "lowerleftmiter": {},
+    "upperleftmiter": {},
+    "upperrightmiter": {},
+    "lowerrightmiter": {},
+    "lowerleftborderpoint": {},
+    "upperleftborderpoint": {},
+    "upperrightborderpoint": {},
+    "lowerrightborderpoint": {},
+    "angletolowerleft": {},
+    "angletoupperleft": {},
+    "angletoupperright": {},
+    "angletolowerright": {},
+    "rotatedbasepoint": {},
+    "baseangletolowerleft": {},
+    "baseangletoupperleft": {},
+    "baseangletoupperright": {},
+    "baseangletolowerright": {},
+    "rotatedmidpoint": {},
+    "midangletolowerleft": {},
+    "midangletoupperleft": {},
+    "midangletoupperright": {},
+    "midangletolowerright": {},
+    "referencepoint": {},
+    "installsemicircleparameters": {},
+    "defaultradius": {},
+    "semicircleradius": {},
+    "semicirclecenterpoint": {},
+    "centerpointdiff": {},
+    "arcstartborder": {},
+    "arcendborder": {},
+    "arcstartcorner": {},
+    "arcendcorner": {},
+    "angletoarcstartborder": {},
+    "angletoarcendborder": {},
+    "angletoarcstartcorner": {},
+    "angletoarcendcorner": {},
+    "baseangletoarcstartborder": {},
+    "baseangletoarcendborder": {},
+    "baseangletoarcstartcorner": {},
+    "baseangletoarcendcorner": {},
+    "midangletoarcstartborder": {},
+    "midangletoarcendborder": {},
+    "midangletoarcstartcorner": {},
+    "midangletoarcendcorner": {},
+    "basesemicirclecenterdiff": {},
+    "midsemicirclecenterdiff": {},
+    "firstpoint": {},
+    "secondpoint": {},
+    "sineangle": {},
+    "reciprocalradius": {},
+    "trianglepoints": {},
+    "halfapexangle": {},
+    "tanhalfapexangle": {},
+    "cothalfapexangle": {},
+    "sinhalfapexangle": {},
+    "cosechalfapexangle": {},
+    "apex": {},
+    "lowerleft": {},
+    "apexanchor": {},
+    "lowerleftanchor": {},
+    "lowerrightanchor": {},
+    "installkiteparameters": {},
+    "halfuppervertexangle": {},
+    "halflowervertexangle": {},
+    "sinehalfuppervertexangle": {},
+    "cosechalfuppervertexangle": {},
+    "sinehalflowervertexangle": {},
+    "deltay": {},
+    "kitehalfwidth": {},
+    "kiteheight": {},
+    "kitedepth": {},
+    "toppoint": {},
+    "bottompoint": {},
+    "leftpoint": {},
+    "rightpoint": {},
+    "topmiter": {},
+    "bottommiter": {},
+    "topborderpoint": {},
+    "bottomborderpoint": {},
+    "leftborderpoint": {},
+    "rightborderpoint": {},
+    "angletotoppoint": {},
+    "angletoleftpoint": {},
+    "angletobottompoint": {},
+    "angletorightpoint": {},
+    "baseangletotoppoint": {},
+    "baseangletoleftpoint": {},
+    "baseangletobottompoint": {},
+    "baseangletorightpoint": {},
+    "midangletotoppoint": {},
+    "midangletoleftpoint": {},
+    "midangletobottompoint": {},
+    "midangletorightpoint": {},
+    "installdartparameters": {},
+    "halftipangle": {},
+    "halftailangle": {},
+    "cothalftipangle": {},
+    "dartlength": {},
+    "deltax": {},
+    "taillength": {},
+    "halftailseparation": {},
+    "tippoint": {},
+    "tailcenterpoint": {},
+    "lefttailpoint": {},
+    "righttailpoint": {},
+    "tipmiter": {},
+    "tailcentermiter": {},
+    "righttailmiter": {},
+    "tipborderpoint": {},
+    "tailcenterborderpoint": {},
+    "lefttailborderpoint": {},
+    "righttailborderpoint": {},
+    "angletotip": {},
+    "angletotailcenter": {},
+    "angletolefttail": {},
+    "angletorighttail": {},
+    "baseangletotip": {},
+    "baseangletotailcenter": {},
+    "baseangletolefttail": {},
+    "baseangletorighttail": {},
+    "midangletotip": {},
+    "midangletotailcenter": {},
+    "midangletolefttail": {},
+    "midangletorighttail": {},
+    "installcircularsectorparameters": {},
+    "halfangle": {},
+    "sinehalfangle": {},
+    "cosechalfangle": {},
+    "coshalfangle": {},
+    "cothalfangle": {},
+    "centermiter": {},
+    "centeroffset": {},
+    "borderradius": {},
+    "cornerradius": {},
+    "sectorcenter": {},
+    "arcstart": {},
+    "sectorcenterborder": {},
+    "angletosectorcenterborder": {},
+    "ifpgfcylinderusescustomfill": {},
+    "pgfcylinderusescustomfilltrue": {},
+    "pgfcylinderusescustomfillfalse": {},
+    "getcylinderpoints": {},
+    "xradius": {},
+    "yradius": {},
+    "cylindercenter": {},
+    "beforetop": {},
+    "afterbottom": {},
+    "beforetopanchor": {},
+    "afterbottomanchor": {},
+    "externalpoint": {},
+    "westarc": {},
+    "eastarc": {},
+    "roundedrectanglepoints": {},
+    "halftextwidth": {},
+    "halftextheight": {},
+    "xoffset": {},
+    "arcwidth": {},
+    "chordwidth": {},
+    "concavexshift": {},
+    "convexxshift": {},
+    "northeastcorner": {},
+    "southeastcorner": {},
+    "southwestcorner": {},
+    "northwestcorner": {},
+    "getchamferedrectanglepoints": {},
+    "tanangle": {},
+    "cotangle": {},
+    "beforenortheast": {},
+    "afternortheast": {},
+    "beforesouthwest": {},
+    "aftersouthwest": {},
+    "pgfnodepartlowerbox": {},
+    "loweranchor": {},
+    "pgfnodeparttwobox": {},
+    "pgfnodepartthreebox": {},
+    "pgfnodepartfourbox": {},
+    "pgfnodepartonebox": {},
+    "pgfnodepartsecondbox": {},
+    "pgfnodepartthirdbox": {},
+    "pgfnodepartfourthbox": {},
+    "ifpgfrectanglesplithorizontal": {},
+    "pgfrectanglesplithorizontaltrue": {},
+    "pgfrectanglesplithorizontalfalse": {},
+    "ifpgfrectanglesplitdrawsplits": {},
+    "pgfrectanglesplitdrawsplitstrue": {},
+    "pgfrectanglesplitdrawsplitsfalse": {},
+    "ifpgfrectanglesplitignoreemptyparts": {},
+    "pgfrectanglesplitignoreemptypartstrue": {},
+    "pgfrectanglesplitignoreemptypartsfalse": {},
+    "ifpgfrectanglesplitusecustomfill": {},
+    "pgfrectanglesplitusecustomfilltrue": {},
+    "pgfrectanglesplitusecustomfillfalse": {},
+    "rectanglesplitparameters": {},
+    "parts": {},
+    "innerxsep": {},
+    "innerysep": {},
+    "radii": {},
+    "calculatestarburstpoints": {},
+    "totalpoints": {},
+    "xinnerradius": {},
+    "yinnerradius": {},
+    "looppoints": {},
+    "thirdpoint": {},
+    "miterlength": {},
+    "angletemp": {},
+    "miterangle": {},
+    "first": {},
+    "second": {
+      "detail": "″",
+      "documentation": "DOUBLE PRIME or second, not superscripted"
+    },
+    "ifpgfcloudanchorsuseellipse": {},
+    "pgfcloudanchorsuseellipsetrue": {},
+    "pgfcloudanchorsuseellipsefalse": {},
+    "ifpgfcloudignoresaspect": {},
+    "pgfcloudignoresaspecttrue": {},
+    "pgfcloudignoresaspectfalse": {},
+    "getradii": {},
+    "puffs": {},
+    "tempangle": {},
+    "arcradiusquotient": {},
+    "archeightquotient": {},
+    "halfarcangle": {},
+    "coshalfanglestep": {},
+    "xouterradius": {},
+    "youterradius": {},
+    "quarterarc": {},
+    "halfcomplementarc": {},
+    "arc": {},
+    "sechalfcomplementarc": {},
+    "sinhalfcomplementarc": {},
+    "sinquarterarc": {},
+    "cosquarterarc": {},
+    "tanquarterarc": {},
+    "arcendpoint": {},
+    "arcfirstpoint": {},
+    "arcstartpoint": {},
+    "arcrotate": {},
+    "sinarcrotate": {},
+    "cosarcrotate": {},
+    "arcradius": {},
+    "controlscale": {},
+    "controlone": {},
+    "arcmidpoint": {},
+    "halfchordlength": {},
+    "segmentheight": {},
+    "controltwo": {},
+    "arcslope": {},
+    "halfanglestep": {},
+    "endangle": {},
+    "lastangle": {},
+    "miterpoint": {},
+    "anglealpha": {},
+    "anglebeta": {},
+    "miterradius": {},
+    "anchorangle": {},
+    "outerarcradius": {},
+    "circlecenterpoint": {},
+    "installsignalparameters": {},
+    "pointerangle": {},
+    "halfpointerangle": {},
+    "cosechalfpointerangle": {},
+    "quarterpointerangle": {},
+    "cosecquarterpointerangle": {},
+    "secquarterpointerangle": {},
+    "complementquarterpointerangle": {},
+    "pointerapexmiter": {},
+    "tocornermiter": {},
+    "fromcornermiter": {},
+    "north": {},
+    "south": {},
+    "east": {},
+    "west": {},
+    "southeast": {},
+    "northwest": {},
+    "northmiter": {},
+    "southmiter": {},
+    "eastmiter": {},
+    "westmiter": {},
+    "northeastmiter": {},
+    "southeastmiter": {},
+    "southwestmiter": {},
+    "northwestmiter": {},
+    "anchornorth": {},
+    "anchorsouth": {},
+    "anchoreast": {},
+    "anchorwest": {},
+    "anchornortheast": {},
+    "anchorsouthwest": {},
+    "anchorsoutheast": {},
+    "anchornorthwest": {},
+    "tapedimensions": {},
+    "topbendstyle": {},
+    "bottombendstyle": {},
+    "bendyradius": {},
+    "outerbendyradius": {},
+    "innerbendyradius": {},
+    "bendxradius": {},
+    "outerbendxradius": {},
+    "innerbendxradius": {},
+    "outerhalfwidth": {},
+    "cothalfanglein": {},
+    "cothalfangleout": {},
+    "installparameters": {},
+    "tailheight": {},
+    "tailextend": {},
+    "tailangle": {},
+    "tailbottomangle": {},
+    "tailtopangle": {},
+    "base": {},
+    "pgfpathsvg{}": {
+      "snippet": "pgfpathsvg{${1:path}}"
+    },
+    "pgftimelinebegin": {},
+    "pgftimelineend": {},
+    "pgftimelineentry{}{}{}{}": {
+      "snippet": "pgftimelineentry{${1:time}}{${2:object}}{${3:attribute}}{${4:value}}"
+    },
+    "pgfsysanimationsloaded": {},
+    "pgfsysanimsnapshot{}": {
+      "snippet": "pgfsysanimsnapshot{${1:time}}"
+    },
+    "pgfsysanimsnapshotafter{}": {
+      "snippet": "pgfsysanimsnapshotafter{${1:time}}"
+    },
+    "pgfsysanimate{}": {
+      "snippet": "pgfsysanimate{${1:attribute}}"
+    },
+    "pgfsysanimkeyrestartalways": {},
+    "pgfsysanimkeyrestartnever": {},
+    "pgfsysanimkeyrestartwhennotactive": {},
+    "pgfsysanimkeyrepeat{}": {
+      "snippet": "pgfsysanimkeyrepeat{${1:number}}"
+    },
+    "pgfsysanimkeyrepeatindefinite": {},
+    "pgfsysanimkeyrepeatdur{}": {
+      "snippet": "pgfsysanimkeyrepeatdur{${1:seconds}}"
+    },
+    "pgfsysanimkeyfreezeatend": {},
+    "pgfsysanimkeyremoveatend": {},
+    "pgfsysanimkeytime{}{}{}{}{}": {
+      "snippet": "pgfsysanimkeytime{${1:time}}{${2:entryx}}{${3:entryy}}{${4:exitx}}{${5:exity}}"
+    },
+    "pgfsysanimkeybase": {},
+    "pgfsysanimkeysnapshotstart{}": {
+      "snippet": "pgfsysanimkeysnapshotstart{${1:time offset}}"
+    },
+    "pgfsysanimkeyoffset{}{}": {
+      "snippet": "pgfsysanimkeyoffset{${1:time offset}}{${2:begin or end}}"
+    },
+    "pgfsysanimkeysyncbegin{}{}{}{}": {
+      "snippet": "pgfsysanimkeysyncbegin{${1:id}}{${2:type}}{${3:time offset}}{${4:begin or end}}"
+    },
+    "pgfsysanimkeysyncend{}{}{}{}": {
+      "snippet": "pgfsysanimkeysyncend{${1:id}}{${2:type}}{${3:time offset}}{${4:begin or end}}"
+    },
+    "pgfsysanimkeyevent{}{}{}{}{}": {
+      "snippet": "pgfsysanimkeyevent{${1:id}}{${2:type}}{${3:event name}}{${4:time offset}}{${5:begin or end}}"
+    },
+    "pgfsysanimkeyrepeatevent{}{}{}{}{}": {
+      "snippet": "pgfsysanimkeyrepeatevent{${1:id}}{${2:type}}{${3:repeat count}}{${4:time offset}}{${5:begin or end}}"
+    },
+    "pgfsysanimkeyaccesskey{}{}{}": {
+      "snippet": "pgfsysanimkeyaccesskey{${1:character}}{${2:time offset}}{${3:begin or end}}"
+    },
+    "pgfsysanimkeyaccumulate": {},
+    "pgfsysanimkeynoaccumulate": {},
+    "pgfsysanimkeywhom{}{}": {
+      "snippet": "pgfsysanimkeywhom{${1:id}}{${2:type}}"
+    },
+    "pgfsysanimkeyrotatealong": {},
+    "pgfsysanimkeymovealong{}": {
+      "snippet": "pgfsysanimkeymovealong{${1:path}}"
+    },
+    "pgfsysanimkeytipmarkers{}{}": {
+      "snippet": "pgfsysanimkeytipmarkers{${1:start marker}}{${2:end marker}}"
+    },
+    "pgfsysanimkeycanvastransform{}{}": {
+      "snippet": "pgfsysanimkeycanvastransform{${1:pre}}{${2:post}}"
+    },
+    "pgfsysanimvalcurrent": {},
+    "pgfsysanimvalnone": {},
+    "pgfsysanimvaltext{}": {
+      "snippet": "pgfsysanimvaltext{${1:text}}"
+    },
+    "pgfsysanimvalscalar{}": {
+      "snippet": "pgfsysanimvalscalar{${1:number}}"
+    },
+    "pgfsysanimvaldimension{}": {
+      "snippet": "pgfsysanimvaldimension{${1:dimension}}"
+    },
+    "pgfsysanimvalcolor{}": {
+      "snippet": "pgfsysanimvalcolor{${1:color}}"
+    },
+    "pgfsysanimvalcolorrgb{}{}{}": {
+      "snippet": "pgfsysanimvalcolorrgb{${1:red}}{${2:green}}{${3:blue}}"
+    },
+    "pgfsysanimvalcolorcmyk{}{}{}{}": {
+      "snippet": "pgfsysanimvalcolorcmyk{${1:cyan}}{${2:magenta}}{${3:yellow}}{${4:black}}"
+    },
+    "pgfsysanimvalcolorcmy{}{}{}": {
+      "snippet": "pgfsysanimvalcolorcmy{${1:cyan}}{${2:magenta}}{${3:yellow}}"
+    },
+    "pgfsysanimvalcolorgray{}": {
+      "snippet": "pgfsysanimvalcolorgray{${1:gray value}}"
+    },
+    "pgfsysanimvalpath{}": {
+      "snippet": "pgfsysanimvalpath{${1:path commands}}"
+    },
+    "pgfsysanimvaltranslate{}{}": {
+      "snippet": "pgfsysanimvaltranslate{${1:x-dimen}}{${2:y-dimen}}"
+    },
+    "pgfsysanimvalscale{}{}": {
+      "snippet": "pgfsysanimvalscale{${1:x-scale}}{${2:y-scale}}"
+    },
+    "pgfsysanimvalviewbox{}{}{}{}": {
+      "snippet": "pgfsysanimvalviewbox{${1:x1}}{${2:y1}}{${3:x2}}{${4:y2}}"
+    },
+    "pgfsysanimvaldash{}{}": {
+      "snippet": "pgfsysanimvaldash{${1:pattern}}{${2:phase}}"
+    },
+    "pgfanimateattribute{}{}": {
+      "snippet": "pgfanimateattribute{${1:attribute}}{${2:options}}"
+    },
+    "pgfanimateattributecode{}{}": {
+      "snippet": "pgfanimateattributecode{${1:attribute}}{${2:code}}"
+    },
+    "pgfsnapshot{}": {
+      "snippet": "pgfsnapshot{${1:time}}"
+    },
+    "pgfsnapshotafter{}": {
+      "snippet": "pgfsnapshotafter{${1:time}}"
+    },
+    "pgfparsetime{}": {
+      "snippet": "pgfparsetime{${1:time}}"
+    },
+    "pgfanimationset{}": {
+      "snippet": "pgfanimationset{${1:keyvals}}"
+    },
+    "pgfdvbeforesurvey": {},
+    "pgfdvbeginsurvey": {},
+    "pgfdvendsurvey": {},
+    "pgfdvaftersurvey": {},
+    "pgfdvbeforevisualization": {},
+    "pgfdvbeginvisualization": {},
+    "pgfdvendvisualization": {},
+    "pgfdvaftervisualization": {},
+    "pgfdvpathmovetotoken": {},
+    "pgfdvpathlinetotoken": {},
+    "pgfdvdirectionfromtoken": {},
+    "pgfdvdirectiontotoken": {},
+    "pgfdvdirectionattoken": {},
+    "pgfdatapoint": {},
+    "pgfdvmapdatapointtocanvas": {},
+    "pgfpointdvdatapoint": {},
+    "pgfpointdvlocaldatapoint": {},
+    "ifpgfdvhandled": {},
+    "pgfdvhandledtrue": {},
+    "pgfdvhandledfalse": {},
+    "pgfpathdvmoveto": {},
+    "pgfpathdvlineto": {},
+    "pgfpointdvdirection{}{}": {
+      "snippet": "pgfpointdvdirection{${1:code1}}{${2:code2}}"
+    },
+    "pgfdata{}": {
+      "snippet": "pgfdata{${1:inline data}}"
+    },
+    "pgfdata[]{}": {
+      "snippet": "pgfdata[${2:options}]{${1:inline data}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "pgfdeclaredataformat{}{}{}{}{}{}{}": {
+      "snippet": "pgfdeclaredataformat{${1:name}}{${2:catcodecode}}{${3:startcode}}{${4:line args}}{${5:linecode}}{${6:emptylinecode}}{${7:endcode}}"
+    },
+    "pgfeoltext": {},
+    "pgfeol": {},
+    "pgfdvmathenter{}{}": {
+      "snippet": "pgfdvmathenter{${1:macro}}{${2:expression}}"
+    },
+    "pgfdvmathvalue": {},
+    "pgfdvmathexitbyprinting{}": {
+      "snippet": "pgfdvmathexitbyprinting{${1:variable}}"
+    },
+    "pgfdvmathexitbyscientificformat{}{}": {
+      "snippet": "pgfdvmathexitbyscientificformat{${1:macro}}{${2:variable}}"
+    },
+    "pgfdvmathexitbyserializing{}{}": {
+      "snippet": "pgfdvmathexitbyserializing{${1:macro}}{${2:variable}}"
+    },
+    "pgfdvmathadd{}{}{}": {
+      "snippet": "pgfdvmathadd{${1:macro}}{${2:variable1}}{${3:variable2}}"
+    },
+    "pgfdvmathsub{}{}{}": {
+      "snippet": "pgfdvmathsub{${1:macro}}{${2:variable1}}{${3:variable2}}"
+    },
+    "pgfdvmathmul{}{}{}": {
+      "snippet": "pgfdvmathmul{${1:macro}}{${2:variable1}}{${3:variable2}}"
+    },
+    "pgfdvmathdiv{}{}{}": {
+      "snippet": "pgfdvmathdiv{${1:macro}}{${2:variable1}}{${3:variable2}}"
+    },
+    "pgfdvmathmulfixed{}{}{}": {
+      "snippet": "pgfdvmathmulfixed{${1:macro}}{${2:variable1}}{${3:variable2}}"
+    },
+    "pgfdvmathln{}{}": {
+      "snippet": "pgfdvmathln{${1:macro}}{${2:variable}}"
+    },
+    "pgfdvmathlog{}{}": {
+      "snippet": "pgfdvmathlog{${1:macro}}{${2:variable}}"
+    },
+    "pgfdvmathexp{}{}": {
+      "snippet": "pgfdvmathexp{${1:macro}}{${2:variable}}"
+    },
+    "pgfdvmathpowten{}{}": {
+      "snippet": "pgfdvmathpowten{${1:macro}}{${2:variable}}"
+    },
+    "pgfdvmathfloor{}{}": {
+      "snippet": "pgfdvmathfloor{${1:macro}}{${2:variable}}"
+    },
+    "pgfdvmathunaryop{}{}{}": {
+      "snippet": "pgfdvmathunaryop{${1:macro}}{${2:operation}}{${3:variable}}"
+    },
+    "pgfdvmathbinop{}{}{}{}": {
+      "snippet": "pgfdvmathbinop{${1:macro}}{${2:operation}}{${3:var1}}{${4:var2}}"
+    },
+    "pgfdvmathifless{}{}{}{}": {
+      "snippet": "pgfdvmathifless{${1:var1}}{${2:var2}}{${3:true}}{${4:false}}"
+    },
+    "ifpgfdvnewstream": {},
+    "pgfdvnewstreamtrue": {},
+    "pgfdvnewstreamfalse": {},
+    "pgfdvvisualizerfilter{}": {
+      "snippet": "pgfdvvisualizerfilter{${1:text}}"
+    },
+    "pgfdvnamedvisualizerfilter": {},
+    "pgfdvdeclarestylesheet{}{}": {
+      "snippet": "pgfdvdeclarestylesheet{${1:name}}{${2:settings}}"
+    },
+    "ifpgfdvfilterpassed": {},
+    "pgfdvfilterpassedtrue": {},
+    "pgfdvfilterpassedfalse": {},
+    "pgfdvmathalwaysloge": {},
+    "pgfdvmathalwayslnten": {},
+    "pgfdvmathalwayszero": {},
+    "pgfdvmathalwaysone": {},
+    "pgfdecoratedcompleteddistance": {},
+    "pgfdecoratedremainingdistance": {},
+    "pgfdecoratedinputsegmentcompleteddistance": {},
+    "pgfdecoratedinputsegmentremainingdistance": {},
+    "pgfdecorationsegmentamplitude": {},
+    "pgfdecorationsegmentlength": {},
+    "pgfdecorationsegmentangle": {},
+    "pgfdecorationsegmentaspect": {},
+    "pgfmetadecorationsegmentamplitude": {},
+    "pgfmetadecorationsegmentlength": {},
+    "ifpgfdecoratepathhascorners": {},
+    "pgfdecoratepathhascornerstrue": {},
+    "pgfdecoratepathhascornersfalse": {},
+    "pgfdeclaredecoration{}{}{}": {
+      "snippet": "pgfdeclaredecoration{${1:name}}{${2:initial state}}{${3:states}}"
+    },
+    "state{}{}": {
+      "snippet": "state{${1:name}}{${2:code}}"
+    },
+    "state{}[]{}": {
+      "snippet": "state{${1:name}}[${2:options}]{${3:code}}",
+      "keyvalindex": 6,
+      "keyvalpos": 1
+    },
+    "pgfifdecoration{}{}{}": {
+      "snippet": "pgfifdecoration{${1:name}}{${2:if code}}{${3:else code}}"
+    },
+    "pgfdeclaremetadecoration{}{}{}": {
+      "snippet": "pgfdeclaremetadecoration{${1:name}}{${2:initial state}}{${3:states}}"
+    },
+    "pgfifmetadecoration{}{}{}": {
+      "snippet": "pgfifmetadecoration{${1:name}}{${2:if code}}{${3:else code}}"
+    },
+    "decoration{}": {
+      "snippet": "decoration{${1:name}}"
+    },
+    "beforedecoration{}": {
+      "snippet": "beforedecoration{${1:before code}}"
+    },
+    "afterdecoration{}": {
+      "snippet": "afterdecoration{${1:after code}}"
+    },
+    "pgfmetadecoratedpathlength": {},
+    "pgfmetadecoratedcompleteddistance": {},
+    "pgfmetadecoratedinputsegmentcompleteddistance": {},
+    "pgfmetadecoratedinputsegmentremainingdistance": {},
+    "pgfdecoratebeforecode": {},
+    "pgfdecorateaftercode": {},
+    "pgfdecoratepath{}{}": {
+      "snippet": "pgfdecoratepath{${1:name}}{${2:path commands}}"
+    },
+    "pgfdecoratecurrentpath{}": {
+      "snippet": "pgfdecoratecurrentpath{${1:name}}"
+    },
+    "pgfdecoration{}": {
+      "snippet": "pgfdecoration{${1:name}}"
+    },
+    "endpgfdecoration": {},
+    "pgfdecorationpath": {},
+    "pgfdecoratedpath": {},
+    "pgfdecorateexistingpath": {},
+    "pgfdecoratedpathlength": {},
+    "pgfpointdecoratedpathfirst": {},
+    "pgfpointdecoratedpathlast": {},
+    "pgfpointdecoratedinputsegmentfirst": {},
+    "pgfpointdecoratedinputsegmentlast": {},
+    "pgfsetdecorationsegmenttransformation{}": {
+      "snippet": "pgfsetdecorationsegmenttransformation{${1:code}}"
+    },
+    "pgfmetadecoratedremainingdistance": {},
+    "pgfpointmetadecoratedpathfirst": {},
+    "pgfpointmetadecoratedpathlast": {},
+    "pgfdecoratedinputsegmentlength": {},
+    "pgfdecoratedangle": {},
+    "pgfdecoratedinputsegmentstartangle": {},
+    "pgfdecoratedinputsegmentendangle": {},
+    "pgfdecorationcurrentinputsegment": {},
+    "pgfdecorationnextinputsegmentobject": {},
+    "pgfdecorationinputsegmentmoveto": {},
+    "pgfdecorationinputsegmentlineto": {},
+    "pgfdecorationinputsegmentcurveto": {},
+    "pgfdecorationinputsegmentclosepath": {},
+    "pgfdecorationinputsegmentlast": {},
+    "ifpgfdecoraterectangleclockwise": {},
+    "pgfdecoraterectangleclockwisetrue": {},
+    "pgfdecoraterectangleclockwisefalse": {},
+    "pgfmetadecoration{}": {
+      "snippet": "pgfmetadecoration{${1:name}}"
+    },
+    "endpgfmetadecoration": {},
+    "ifpgfmatrix": {},
+    "pgfmatrixtrue": {},
+    "pgfmatrixfalse": {},
+    "pgfmatrixcurrentrow": {},
+    "pgfmatrixcurrentcolumn": {},
+    "pgfmatrixbeforeassemblenode{}": {
+      "snippet": "pgfmatrixbeforeassemblenode{${1:code}}"
+    },
+    "pgfsetmatrixrowsep{}": {
+      "snippet": "pgfsetmatrixrowsep{${1:sep list}}"
+    },
+    "pgfsetmatrixcolumnsep{}": {
+      "snippet": "pgfsetmatrixcolumnsep{${1:sep list}}"
+    },
+    "pgfmatrixrowsep": {},
+    "pgfmatrixcolumnsep": {},
+    "pgfmatrix{}{}{}{}{}{}{}": {
+      "snippet": "pgfmatrix{${1:shape}}{${2:anchor}}{${3:name}}{${4:usage}}{${5:shift}}{${6:precode}}{${7:matrix cells}}"
+    },
+    "pgfmatrixnextcell": {},
+    "pgfmatrixnextcell[]": {
+      "snippet": "pgfmatrixnextcell[${1:additional sep list}]"
+    },
+    "pgfmatrixbegincode": {},
+    "pgfmatrixendcode": {},
+    "pgfmatrixemptycode": {},
+    "pgfmatrixendrow": {},
+    "pgfmatrixendrow[]": {
+      "snippet": "pgfmatrixendrow[${1:additional sep list}]"
+    },
+    "pgftransformnonlinearflatness": {},
+    "pgfsettransformnonlinearflatness{}": {
+      "snippet": "pgfsettransformnonlinearflatness{${1:dimen}}"
+    },
+    "pgfooclass{}{}": {
+      "snippet": "pgfooclass{${1:class}}{${2:body}}"
+    },
+    "attribute": {},
+    "method": {},
+    "pgfoovalueof{}": {
+      "snippet": "pgfoovalueof{${1:attribute}}"
+    },
+    "pgfooget{}{}": {
+      "snippet": "pgfooget{${1:attribute}}{${2:macro}}"
+    },
+    "pgfooset{}{}": {
+      "snippet": "pgfooset{${1:attribute}}{${2:value}}"
+    },
+    "pgfooeset{}{}": {
+      "snippet": "pgfooeset{${1:attribute}}{${2:value}}"
+    },
+    "pgfoolet{}{}": {
+      "snippet": "pgfoolet{${1:attribute}}{${2:macro}}"
+    },
+    "pgfooappend{}{}": {
+      "snippet": "pgfooappend{${1:attribute}}{${2:value}}"
+    },
+    "pgfooprefix{}{}": {
+      "snippet": "pgfooprefix{${1:attribute}}{${2:value}}"
+    },
+    "pgfoonew{}": {
+      "snippet": "pgfoonew{${1:cmd}}"
+    },
+    "pgfoothis": {},
+    "pgfooobj{}": {
+      "snippet": "pgfooobj{${1:id}}"
+    },
+    "pgfoogc": {},
+    "pgfparserparse{}": {
+      "snippet": "pgfparserparse{${1:parser name}}"
+    },
+    "pgfparserdef{}{}{}{}": {
+      "snippet": "pgfparserdef{${1:parser name}}{${2:state}}{${3:symbol meaning}}{${4:action}}"
+    },
+    "pgfparserdef{}{}{}[]{}": {
+      "snippet": "pgfparserdef{${1:parser name}}{${2:state}}{${3:symbol meaning}}[${4:args}]{${5:action}}"
+    },
+    "pgfparserlet{}{}{}{}": {
+      "snippet": "pgfparserlet{${1:parser1}}{${2:state1}}{${3:meaning1}}{${4:meaning2}}"
+    },
+    "pgfparserlet{}{}{}[][]{}": {
+      "snippet": "pgfparserlet{${1:parser1}}{${2:state1}}{${3:meaning1}}[${4:opt1}][${5:opt2}]{${6:meaning2}}"
+    },
+    "pgfparserdefunknown{}{}{}": {
+      "snippet": "pgfparserdefunknown{${1:parser name}}{${2:state}}{${3:action}}"
+    },
+    "pgfparserdeffinal{}{}": {
+      "snippet": "pgfparserdeffinal{${1:parser name}}{${2:action}}"
+    },
+    "pgfparserswitch{}": {
+      "snippet": "pgfparserswitch{${1:state}}"
+    },
+    "pgfparserifmark{}{}{}": {
+      "snippet": "pgfparserifmark{${1:arg}}{${2:true}}{${3:false}}"
+    },
+    "pgfparserreinsert": {},
+    "pgfparserstate": {},
+    "pgfparsertoken": {},
+    "pgfparserletter": {},
+    "pgfparserset{}": {
+      "snippet": "pgfparserset{${1:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "pgfplotstreamstart": {},
+    "pgfplotstreampoint{}": {
+      "snippet": "pgfplotstreampoint{${1:point}}"
+    },
+    "pgfplotstreampointoutlier{}": {
+      "snippet": "pgfplotstreampointoutlier{${1:point}}"
+    },
+    "pgfplotstreampointundefined": {},
+    "pgfplotstreamnewdataset": {},
+    "pgfplotstreamspecial{}": {
+      "snippet": "pgfplotstreamspecial{${1:text}}"
+    },
+    "pgfplotstreamend": {},
+    "pgfdeclareplothandler{}{}{}": {
+      "snippet": "pgfdeclareplothandler{${1:macro}}{${2:args}}{${3:options}}",
+      "keyvalindex": 8,
+      "keyvalpos": 2
+    },
+    "pgfsetlinetofirstplotpoint": {},
+    "pgfsetmovetofirstplotpoint": {},
+    "pgfplothandlerlineto": {},
+    "pgfplothandlerpolygon": {},
+    "pgfplothandlerdiscard": {},
+    "pgfplothandlerrecord{}": {
+      "snippet": "pgfplothandlerrecord{${1:macro}}"
+    },
+    "pgfplotxyfile{}": {
+      "snippet": "pgfplotxyfile{${1:file}}"
+    },
+    "pgfplotxyzfile{}": {
+      "snippet": "pgfplotxyzfile{${1:file}}"
+    },
+    "pgfplotgnuplot{}": {
+      "snippet": "pgfplotgnuplot{${1:gnuplot function}}"
+    },
+    "pgfplotgnuplot[]{}": {
+      "snippet": "pgfplotgnuplot[${2:prefix}]{${1:gnuplot function}}"
+    },
+    "pgfplotfunction{}{}{}": {
+      "snippet": "pgfplotfunction{${1:variable}}{${2:sample list}}{${3:point}}"
+    },
+    "pgfnodeparttextbox": {},
+    "pgfmultipartnode{}{}{}{}": {
+      "snippet": "pgfmultipartnode{${1:shape}}{${2:anchor}}{${3:name}}{${4:path usage cmd}}"
+    },
+    "pgfnode{}{}{}{}{}": {
+      "snippet": "pgfnode{${1:shape}}{${2:anchor}}{${3:label text}}{${4:name}}{${5:path usage cmd}}"
+    },
+    "pgfpositionnodelater{}": {
+      "snippet": "pgfpositionnodelater{${1:macro}}"
+    },
+    "ifpgflatenodepositioning": {},
+    "pgflatenodepositioningtrue": {},
+    "pgflatenodepositioningfalse": {},
+    "pgfpositionnodelaterbox": {},
+    "pgfpositionnodenow{}": {
+      "snippet": "pgfpositionnodenow{${1:coordinate}}"
+    },
+    "pgffakenode{}": {
+      "snippet": "pgffakenode{${1:node name}}"
+    },
+    "pgfnodepostsetupcode{}{}": {
+      "snippet": "pgfnodepostsetupcode{${1:node name}}{${2:code}}"
+    },
+    "pgfnodealias{}{}": {
+      "snippet": "pgfnodealias{${1:new name}}{${2:existing name}}"
+    },
+    "pgfnoderename{}{}": {
+      "snippet": "pgfnoderename{${1:new name}}{${2:existing name}}"
+    },
+    "pgfcoordinate{}{}": {
+      "snippet": "pgfcoordinate{${1:name}}{${2:coordinate}}"
+    },
+    "pgfdeclaregenericanchor{}{}": {
+      "snippet": "pgfdeclaregenericanchor{${1:anchor}}{${2:code}}"
+    },
+    "pgfpointanchor{}{}": {
+      "snippet": "pgfpointanchor{${1:node}}{${2:anchor}}"
+    },
+    "pgfpointshapeborder{}{}": {
+      "snippet": "pgfpointshapeborder{${1:node}}{${2:point}}"
+    },
+    "pgfgetnodeparts{}{}": {
+      "snippet": "pgfgetnodeparts{${1:macro}}{${2:shape name}}"
+    },
+    "pgfdeclareshape{}{}": {
+      "snippet": "pgfdeclareshape{${1:shape name}}{${2:shape spec}}"
+    },
+    "ifpgfshapeborderusesincircle": {},
+    "pgfshapeborderusesincircletrue": {},
+    "pgfshapeborderusesincirclefalse": {},
+    "nodeparts{}": {
+      "snippet": "nodeparts{${1:list of node parts}}"
+    },
+    "savedanchor{}{}": {
+      "snippet": "savedanchor{${1:cmd}}{${2:code}}"
+    },
+    "saveddimen{}{}": {
+      "snippet": "saveddimen{${1:cmd}}{${2:code}}"
+    },
+    "savedmacro{}{}": {
+      "snippet": "savedmacro{${1:cmd}}{${2:code}}"
+    },
+    "addtosavedmacro{}": {
+      "snippet": "addtosavedmacro{${1:macro}}"
+    },
+    "anchor{}{}": {
+      "snippet": "anchor{${1:name}}{${2:code}}"
+    },
+    "deferredanchor{}{}": {
+      "snippet": "deferredanchor{${1:name}}{${2:code}}"
+    },
+    "anchorborder{}": {
+      "snippet": "anchorborder{${1:code}}"
+    },
+    "backgroundpath{}": {
+      "snippet": "backgroundpath{${1:code}}"
+    },
+    "foregroundpath{}": {
+      "snippet": "foregroundpath{${1:code}}"
+    },
+    "behindbackgroundpath{}": {
+      "snippet": "behindbackgroundpath{${1:code}}"
+    },
+    "beforebackgroundpath{}": {
+      "snippet": "beforebackgroundpath{${1:code}}"
+    },
+    "behindforegroundpath{}": {
+      "snippet": "behindforegroundpath{${1:code}}"
+    },
+    "beforeforegroundpath{}": {
+      "snippet": "beforeforegroundpath{${1:code}}"
+    },
+    "inheritsavedanchors": {},
+    "inheritbehindbackgroundpath": {},
+    "inheritbackgroundpath": {},
+    "inheritbeforebackgroundpath": {},
+    "inheritbehindforegroundpath": {},
+    "inheritforegroundpath": {},
+    "inheritbeforeforegroundpath": {},
+    "inheritanchor": {},
+    "inheritanchorborder": {},
+    "pgfsortingbuckets": {},
+    "pgfsortinginit{}": {
+      "snippet": "pgfsortinginit{${1:number of buckets}}"
+    },
+    "pgfsortinginsert{}{}": {
+      "snippet": "pgfsortinginsert{${1:bucket}}{${2:code}}"
+    },
+    "pgfsortingexecute": {}
+  },
+  "envs": {
+    "pgfscope": {},
+    "pgfpicture": {},
+    "pgfinterruptpath": {},
+    "pgfinterruptboundingbox": {},
+    "pgfidscope": {},
+    "pgfinterruptpicture": {},
+    "pgflowlevelscope{}": {
+      "name": "pgflowlevelscope",
+      "snippet": "{${1:transformation code}}"
+    },
+    "pgfviewboxscope{}{}{}{}{}": {
+      "name": "pgfviewboxscope",
+      "snippet": "{${1:ll1}}{${2:ur1}}{${3:ll2}}{${4:ur2}}{${5:meet or slice}}"
+    },
+    "pgfonlayer{}": {
+      "name": "pgfonlayer",
+      "snippet": "{${1:layer name}}"
+    },
+    "pgftransparencygroup": {},
+    "pgftransparencygroup[]": {
+      "name": "pgftransparencygroup",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "pgfdecoration{}": {
+      "name": "pgfdecoration",
+      "snippet": "{${1:name}}"
+    },
+    "pgfmetadecoration{}": {
+      "name": "pgfmetadecoration",
+      "snippet": "{${1:name}}"
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "stepx=",
+      "stepy=",
+      "step=${1:vector}"
+    ],
+    [
+      "left",
+      "right",
+      "top",
+      "bottom",
+      "base",
+      "at=${1:point}",
+      "x=",
+      "y=",
+      "rotate=${1:degree}"
+    ],
+    [
+      "height=",
+      "width=",
+      "page=${1:page number}",
+      "interpolate",
+      "mask=${1:mask name}"
+    ],
+    [
+      "matte=${1:color components}"
+    ],
+    [
+      "knockout",
+      "isolated"
+    ],
+    [
+      "read from file=${1:file name}",
+      "inline",
+      "format=",
+      "every data",
+      "new set=${1:name}",
+      "store in set=${1:name}",
+      "use set=${1:name}"
+    ],
+    [
+      "switch if less than=${1:dimen} to ${2:new state}",
+      "switch if input segment less than=${1:dimen} to ${2:new state}",
+      "width=",
+      "repeat state=${1:repetitions}",
+      "next state=${1:new state}",
+      "if input segment is closepath={${1:options}}",
+      "auto end on length=",
+      "auto corner on length=",
+      "persistent precomputation=${1:precode}",
+      "persistent postcomputation=${1:postcode}"
+    ],
+    [
+      "silent",
+      "status"
+    ],
+    [
+      "start=${1:code}",
+      "end=${1:code}",
+      "point=${1:code}",
+      "jump=${1:code}",
+      "special=${1:code}",
+      "point macro=${1:macro}",
+      "special macro=${1:macro}",
+      "start macro=${1:macro}",
+      "end macro=${1:macro}",
+      "jump macro=${1:macro}"
+    ]
+  ]
+}

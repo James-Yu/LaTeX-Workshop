@@ -1,0 +1,380 @@
+{
+  "includes": {
+    "etoolbox": [],
+    "trimspaces": [],
+    "suffix": [
+      "oldargs"
+    ],
+    "xargs": [
+      "oldargs"
+    ]
+  },
+  "macros": {
+    "AccentCapThis": {},
+    "AKA*[]{}[]{}": {
+      "snippet": "AKA*[${3:forename}]{${1:surname}}[${4:xref forename}]{${2:xref surname}}"
+    },
+    "AKA*[]{}[]{}[]": {
+      "snippet": "AKA*[${3:forename}]{${1:surname}}[${4:xref forename}]{${2:xref surname}}[${5:xref alternate}]"
+    },
+    "AKA*[]{}{}": {
+      "snippet": "AKA*[${3:forename}]{${1:surname}}{${2:xref surname}}"
+    },
+    "AKA*{}{}": {
+      "snippet": "AKA*{${1:surname,affix}}{${2:xref surname,affix}}"
+    },
+    "AKA[]{}[]{}": {
+      "snippet": "AKA[${3:forename}]{${1:surname}}[${4:xref forename}]{${2:xref surname}}"
+    },
+    "AKA[]{}[]{}[]": {
+      "snippet": "AKA[${3:forename}]{${1:surname}}[${4:xref forename}]{${2:xref surname}}[${5:xref alternate}]"
+    },
+    "AKA[]{}{}": {
+      "snippet": "AKA[${3:forename}]{${1:surname}}{${2:xref surname}}"
+    },
+    "AKA{}{}": {
+      "snippet": "AKA{${1:surname,affix}}{${2:xref surname,affix}}"
+    },
+    "AllCapsActive": {},
+    "AllCapsInactive": {},
+    "AltCaps{}": {
+      "snippet": "AltCaps{${1:arg}}"
+    },
+    "AltFormatActive": {},
+    "AltFormatActive*": {},
+    "AltFormatInactive": {},
+    "AltOff": {},
+    "AltOn": {},
+    "CapName": {},
+    "CapThis": {},
+    "DropAffix": {},
+    "ExcludeName[]{}": {
+      "snippet": "ExcludeName[${2:forename}]{${1:surname}}"
+    },
+    "ExcludeName[]{}[]": {
+      "snippet": "ExcludeName[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "ExcludeName{}": {
+      "snippet": "ExcludeName{${1:surname,affix}}"
+    },
+    "FName[]{}": {
+      "snippet": "FName[${2:forename}]{${1:surname}}"
+    },
+    "FName[]{}[]": {
+      "snippet": "FName[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "FName{}": {
+      "snippet": "FName{${1:surname,affix}}"
+    },
+    "ForceFN": {},
+    "ForceName": {},
+    "ForgetName[]{}": {
+      "snippet": "ForgetName[${2:forename}]{${1:surname}}"
+    },
+    "ForgetName[]{}[]": {
+      "snippet": "ForgetName[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "ForgetName{}": {
+      "snippet": "ForgetName{${1:surname,affix}}"
+    },
+    "ForgetThis": {},
+    "GlobalNames": {},
+    "GlobalNameTest": {},
+    "IfAKA[]{}[]{}{}": {
+      "snippet": "IfAKA[${4:forename}]{${1:surname}}[${5:alternate}]{${2:yes}}{${3:no}}"
+    },
+    "IfAKA[]{}{}{}": {
+      "snippet": "IfAKA[${4:forename}]{${1:surname}}{${2:yes}}{${3:no}}"
+    },
+    "IfAKA{}{}{}": {
+      "snippet": "IfAKA{${1:surname,affix}}{${2:yes}}{${3:no}}"
+    },
+    "IfFrontName[]{}[]{}{}": {
+      "snippet": "IfFrontName[${4:forename}]{${1:surname}}[${5:alternate}]{${2:yes}}{${3:no}}"
+    },
+    "IfFrontName[]{}{}{}": {
+      "snippet": "IfFrontName[${4:forename}]{${1:surname}}{${2:yes}}{${3:no}}"
+    },
+    "IfFrontName{}{}{}": {
+      "snippet": "IfFrontName{${1:surname,affix}}{${2:yes}}{${3:no}}"
+    },
+    "IfMainName[]{}[]{}{}": {
+      "snippet": "IfMainName[${4:forename}]{${1:surname}}[${5:alternate}]{${2:yes}}{${3:no}}"
+    },
+    "IfMainName[]{}{}{}": {
+      "snippet": "IfMainName[${4:forename}]{${1:surname}}{${2:yes}}{${3:no}}"
+    },
+    "IfMainName{}{}{}": {
+      "snippet": "IfMainName{${1:surname,affix}}{${2:yes}}{${3:no}}"
+    },
+    "IncludeName*[]{}": {
+      "snippet": "IncludeName*[${2:forename}]{${1:surname}}"
+    },
+    "IncludeName*[]{}[]": {
+      "snippet": "IncludeName*[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "IncludeName*{}": {
+      "snippet": "IncludeName*{${1:surname,affix}}"
+    },
+    "IncludeName[]{}": {
+      "snippet": "IncludeName[${2:forename}]{${1:surname}}"
+    },
+    "IncludeName[]{}[]": {
+      "snippet": "IncludeName[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "IncludeName{}": {
+      "snippet": "IncludeName{${1:surname,affix}}"
+    },
+    "IndexActive": {},
+    "IndexActual": {},
+    "IndexInactive": {},
+    "IndexName[]{}": {
+      "snippet": "IndexName[${2:forename}]{${1:surname}}"
+    },
+    "IndexName[]{}[]": {
+      "snippet": "IndexName[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "IndexName{}": {
+      "snippet": "IndexName{${1:surname,affix}}"
+    },
+    "IndexProtect": {},
+    "IndexRef[]{}[]{}": {
+      "snippet": "IndexRef[${3:forename}]{${1:surname}}[${4:alternate}]{${2:ref target}}"
+    },
+    "IndexRef[]{}{}": {
+      "snippet": "IndexRef[${3:forename}]{${1:surname}}{${2:ref target}}"
+    },
+    "IndexRef{}{}": {
+      "snippet": "IndexRef{${1:surname,affix}}{${2:ref target}}"
+    },
+    "IndexWarnTerse": {},
+    "IndexWarnVerbose": {},
+    "JustIndex": {},
+    "KeepAffix": {},
+    "KeepName": {},
+    "LocalNames": {},
+    "LocalNameTest": {},
+    "Name*[]{}": {
+      "snippet": "Name*[${2:forename}]{${1:surname}}"
+    },
+    "Name*[]{}[]": {
+      "snippet": "Name*[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "Name*{}": {
+      "snippet": "Name*{${1:surname,affix}}"
+    },
+    "Name[]{}": {
+      "snippet": "Name[${2:forename}]{${1:surname}}"
+    },
+    "Name[]{}[]": {
+      "snippet": "Name[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "Name{}": {
+      "snippet": "Name{${1:surname,affix}}"
+    },
+    "NameAddInfo[]{}[]{}": {
+      "snippet": "NameAddInfo[${3:forename}]{${1:surname}}[${4:alternate}]{${2:tag}}"
+    },
+    "NameAddInfo[]{}{}": {
+      "snippet": "NameAddInfo[${3:forename}]{${1:surname}}{${2:tag}}"
+    },
+    "NameAddInfo{}{}": {
+      "snippet": "NameAddInfo{${1:surname,affix}}{${2:tag}}"
+    },
+    "NameauthIndex": {},
+    "NameClearInfo[]{}[]{}": {
+      "snippet": "NameClearInfo[${3:forename}]{${1:surname}}[${4:alternate}]{${2:tag}}"
+    },
+    "NameClearInfo[]{}{}": {
+      "snippet": "NameClearInfo[${3:forename}]{${1:surname}}{${2:tag}}"
+    },
+    "NameClearInfo{}{}": {
+      "snippet": "NameClearInfo{${1:surname,affix}}{${2:tag}}"
+    },
+    "NameQueryInfo[]{}[]{}": {
+      "snippet": "NameQueryInfo[${3:forename}]{${1:surname}}[${4:alternate}]{${2:tag}}"
+    },
+    "NameQueryInfo[]{}{}": {
+      "snippet": "NameQueryInfo[${3:forename}]{${1:surname}}{${2:tag}}"
+    },
+    "NameQueryInfo{}{}": {
+      "snippet": "NameQueryInfo{${1:surname,affix}}{${2:tag}}"
+    },
+    "NamesActive": {},
+    "NamesInactive": {},
+    "NoComma": {},
+    "PName*[]{}[]{}": {
+      "snippet": "PName*[${3:forename}]{${1:surname}}[${4:xref forename}]{${2:xref surname}}"
+    },
+    "PName*[]{}[]{}[]": {
+      "snippet": "PName*[${3:forename}]{${1:surname}}[${4:xref forename}]{${2:xref surname}}[${5:xref alternate}]"
+    },
+    "PName*[]{}{}": {
+      "snippet": "PName*[${3:forename}]{${1:surname}}{${2:xref surname}}"
+    },
+    "PName*{}{}": {
+      "snippet": "PName*{${1:surname,affix}}{${2:xref surname,affix}}"
+    },
+    "PName[]{}[]{}": {
+      "snippet": "PName[${3:forename}]{${1:surname}}[${4:xref forename}]{${2:xref surname}}"
+    },
+    "PName[]{}[]{}[]": {
+      "snippet": "PName[${3:forename}]{${1:surname}}[${4:xref forename}]{${2:xref surname}}[${5:xref alternate}]"
+    },
+    "PName[]{}{}": {
+      "snippet": "PName[${3:forename}]{${1:surname}}{${2:xref surname}}"
+    },
+    "PretagName[]{}[]{}": {
+      "snippet": "PretagName[${3:forename}]{${1:surname}}[${4:alternate}]{${2:tag}}"
+    },
+    "PretagName[]{}{}": {
+      "snippet": "PretagName[${3:forename}]{${1:surname}}{${2:tag}}"
+    },
+    "PretagName{}{}": {
+      "snippet": "PretagName{${1:surname,affix}}{${2:tag}}"
+    },
+    "RevComma": {},
+    "ReverseActive": {},
+    "ReverseCommaActive": {},
+    "ReverseCommaInactive": {},
+    "ReverseInactive": {},
+    "RevName": {},
+    "SeeAlso": {},
+    "ShowComma": {},
+    "SkipIndex": {},
+    "SubvertName[]{}": {
+      "snippet": "SubvertName[${2:forename}]{${1:surname}}"
+    },
+    "SubvertName[]{}[]": {
+      "snippet": "SubvertName[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "SubvertName{}": {
+      "snippet": "SubvertName{${1:surname,affix}}"
+    },
+    "SubvertThis": {},
+    "TagName[]{}[]{}": {
+      "snippet": "TagName[${3:forename}]{${1:surname}}[${4:alternate}]{${2:tag}}"
+    },
+    "TagName[]{}{}": {
+      "snippet": "TagName[${3:forename}]{${1:surname}}{${2:tag}}"
+    },
+    "TagName{}{}": {
+      "snippet": "TagName{${1:surname,affix}}{${2:tag}}"
+    },
+    "textBF{}": {
+      "snippet": "textBF{${1:text}}"
+    },
+    "textIT{}": {
+      "snippet": "textIT{${1:text}}"
+    },
+    "textSC{}": {
+      "snippet": "textSC{${1:text}}"
+    },
+    "textUC{}": {
+      "snippet": "textUC{${1:text}}"
+    },
+    "UntagName[]{}": {
+      "snippet": "UntagName[${2:forename}]{${1:surname}}"
+    },
+    "UntagName[]{}[]": {
+      "snippet": "UntagName[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "UntagName{}": {
+      "snippet": "UntagName{${1:surname,affix}}"
+    },
+    "<": {
+      "detail": "<",
+      "documentation": "LESS-THAN SIGN r:"
+    },
+    "FrontNameHook": {},
+    "FrontNamesFormat": {},
+    "ifNameauthObsolete": {},
+    "ifNameauthWestern": {},
+    "MainNameHook": {},
+    "NameauthFName": {},
+    "NameauthLName": {},
+    "NameauthObsoletefalse": {},
+    "NameauthObsoletetrue": {},
+    "NameauthPattern": {},
+    "NameauthWesternfalse": {},
+    "NameauthWesterntrue": {},
+    "NameauthName": {},
+    "NameParser": {},
+    "NamesFormat": {},
+    "RevSpace": {},
+    "ShowIdxPageref*[]{}": {
+      "snippet": "ShowIdxPageref*[${2:forename}]{${1:surname}}"
+    },
+    "ShowIdxPageref*[]{}[]": {
+      "snippet": "ShowIdxPageref*[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "ShowIdxPageref*{}": {
+      "snippet": "ShowIdxPageref*{${1:surname,affix}}"
+    },
+    "ShowIdxPageref[]{}": {
+      "snippet": "ShowIdxPageref[${2:forename}]{${1:surname}}"
+    },
+    "ShowIdxPageref[]{}[]": {
+      "snippet": "ShowIdxPageref[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "ShowIdxPageref{}": {
+      "snippet": "ShowIdxPageref{${1:surname,affix}}"
+    },
+    "ShowNameInfo[]{}": {
+      "snippet": "ShowNameInfo[${2:forename}]{${1:surname}}"
+    },
+    "ShowNameInfo[]{}[]": {
+      "snippet": "ShowNameInfo[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "ShowNameInfo{}": {
+      "snippet": "ShowNameInfo{${1:surname,affix}}"
+    },
+    "ShowNameState[]{}": {
+      "snippet": "ShowNameState[${2:forename}]{${1:surname}}"
+    },
+    "ShowNameState[]{}[]": {
+      "snippet": "ShowNameState[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "ShowNameState{}": {
+      "snippet": "ShowNameState{${1:surname,affix}}"
+    },
+    "ShowPattern[]{}": {
+      "snippet": "ShowPattern[${2:forename}]{${1:surname}}"
+    },
+    "ShowPattern[]{}[]": {
+      "snippet": "ShowPattern[${2:forename}]{${1:surname}}[${3:alternate}]"
+    },
+    "ShowPattern{}": {
+      "snippet": "ShowPattern{${1:surname,affix}}"
+    },
+    "Space": {},
+    "SpaceW": {}
+  },
+  "envs": {
+    "nameauth": {}
+  },
+  "options": [
+    "comma",
+    "allcaps",
+    "allreversed",
+    "allrevcomma",
+    "noindex",
+    "nopretag",
+    "verbose",
+    "frontmatter",
+    "alwaysformat",
+    "formatAKA",
+    "smallcaps",
+    "italic",
+    "boldface",
+    "altformat",
+    "globaltest",
+    "oldAKA",
+    "oldreset",
+    "oldpass",
+    "oldtoks",
+    "oldsee",
+    "oldargs"
+  ],
+  "keyvals": []
+}

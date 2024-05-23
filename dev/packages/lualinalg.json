@@ -1,0 +1,230 @@
+{
+  "includes": {
+    "xkeyval": [],
+    "amsmath": [],
+    "luamaths": [],
+    "luacode": []
+  },
+  "macros": {
+    "vectorNew{}{}": {
+      "snippet": "vectorNew{${1:name}}{${2:entries}}"
+    },
+    "vectorPrint{}": {
+      "snippet": "vectorPrint{${1:vector}}"
+    },
+    "vectorPrint[]{}": {
+      "snippet": "vectorPrint[${2:truncate=integer}]{${1:vector}}"
+    },
+    "vectorGetCoordinate{}{}": {
+      "snippet": "vectorGetCoordinate{${1:vector}}{${2:index}}"
+    },
+    "vectorSetCoordinate{}{}{}": {
+      "snippet": "vectorSetCoordinate{${1:vector}}{${2:index}}{${3:value}}"
+    },
+    "vectorCopy{}{}": {
+      "snippet": "vectorCopy{${1:name}}{${2:vector}}"
+    },
+    "vectorEql{}{}": {
+      "snippet": "vectorEql{${1:vector1}}{${2:vector2}}"
+    },
+    "vectorAdd{}{}{}": {
+      "snippet": "vectorAdd{${1:name}}{${2:vector1}}{${3:vector2}}"
+    },
+    "vectorSub{}{}{}": {
+      "snippet": "vectorSub{${1:name}}{${2:vector1}}{${3:vector2}}"
+    },
+    "vectorMulNum{}{}{}": {
+      "snippet": "vectorMulNum{${1:name}}{${2:vector}}{${3:number}}"
+    },
+    "vectorDot{}{}": {
+      "snippet": "vectorDot{${1:vector1}}{${2:vector2}}"
+    },
+    "vectorCross{}{}{}": {
+      "snippet": "vectorCross{${1:name}}{${2:vector1}}{${3:vector2}}"
+    },
+    "vectorSumNorm{}": {
+      "snippet": "vectorSumNorm{${1:vector}}"
+    },
+    "vectorEuclidNorm{}": {
+      "snippet": "vectorEuclidNorm{${1:vector}}"
+    },
+    "vectorpNorm{}{}": {
+      "snippet": "vectorpNorm{${1:vector}}{${2:p}}"
+    },
+    "vectorSupNorm{}": {
+      "snippet": "vectorSupNorm{${1:vector}}"
+    },
+    "vectorCreateRandom{}{}{}{}": {
+      "snippet": "vectorCreateRandom{${1:name}}{${2:dimension}}{${3:a}}{${4:b}}"
+    },
+    "vectorOp{}{}": {
+      "snippet": "vectorOp{${1:name}}{${2:expression}}"
+    },
+    "vectorGetAngle{}{}": {
+      "snippet": "vectorGetAngle{${1:vector1}}{${2:vector2}}"
+    },
+    "vectorParse{}": {
+      "snippet": "vectorParse{${1:vector}}"
+    },
+    "vectorGramSchmidt{}": {
+      "snippet": "vectorGramSchmidt{${1:list of vectors}}"
+    },
+    "vectorGramSchmidt[]{}": {
+      "snippet": "vectorGramSchmidt[${2:options}]{${1:list of vectors}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "vectorGramSchmidtSteps{}": {
+      "snippet": "vectorGramSchmidtSteps{${1:list of vectors}}"
+    },
+    "vectorGramSchmidtSteps[]{}": {
+      "snippet": "vectorGramSchmidtSteps[${2:options}]{${1:list of vectors}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "matrixNew{}{}": {
+      "snippet": "matrixNew{${1:name}}{${2:entries}}"
+    },
+    "matrixPrint{}": {
+      "snippet": "matrixPrint{${1:matrix}}"
+    },
+    "matrixPrint[]{}": {
+      "snippet": "matrixPrint[${2:options}]{${1:matrix}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "matrixNumRows{}": {
+      "snippet": "matrixNumRows{${1:matrix}}"
+    },
+    "matrixNumCols{}": {
+      "snippet": "matrixNumCols{${1:matrix}}"
+    },
+    "matrixGetElement{}{}{}": {
+      "snippet": "matrixGetElement{${1:matrix}}{${2:i}}{${3:j}}"
+    },
+    "matrixAdd{}{}{}": {
+      "snippet": "matrixAdd{${1:name}}{${2:matrix1}}{${3:matrix2}}"
+    },
+    "matrixSub{}{}{}": {
+      "snippet": "matrixSub{${1:name}}{${2:matrix1}}{${3:matrix2}}"
+    },
+    "matrixMulNum{}{}{}": {
+      "snippet": "matrixMulNum{${1:name}}{${2:number}}{${3:matrix}}"
+    },
+    "matrixMul{}{}{}": {
+      "snippet": "matrixMul{${1:name}}{${2:matrix1}}{${3:matrix2}}"
+    },
+    "matrixPow{}{}{}": {
+      "snippet": "matrixPow{${1:name}}{${2:matrix}}{${3:power}}"
+    },
+    "matrixInvert{}{}": {
+      "snippet": "matrixInvert{${1:name}}{${2:matrix}}"
+    },
+    "matrixTrace{}": {
+      "snippet": "matrixTrace{${1:matrix}}"
+    },
+    "matrixConjugate{}{}": {
+      "snippet": "matrixConjugate{${1:name}}{${2:matrix}}"
+    },
+    "matrixConjugateT{}{}": {
+      "snippet": "matrixConjugateT{${1:name}}{${2:matrix}}"
+    },
+    "matrixNormOne{}": {
+      "snippet": "matrixNormOne{${1:matrix}}"
+    },
+    "matrixNormInfty{}": {
+      "snippet": "matrixNormInfty{${1:matrix}}"
+    },
+    "matrixNormMax{}": {
+      "snippet": "matrixNormMax{${1:matrix}}"
+    },
+    "matrixNormF{}": {
+      "snippet": "matrixNormF{${1:matrix}}"
+    },
+    "matrixRank{}": {
+      "snippet": "matrixRank{${1:matrix}}"
+    },
+    "matrixDet{}": {
+      "snippet": "matrixDet{${1:matrix}}"
+    },
+    "matrixTranspose{}{}": {
+      "snippet": "matrixTranspose{${1:name}}{${2:matrix}}"
+    },
+    "matrixSetElement{}{}{}{}": {
+      "snippet": "matrixSetElement{${1:matrix}}{${2:i}}{${3:j}}{${4:value}}"
+    },
+    "matrixSubmatrix{}{}{}{}{}{}": {
+      "snippet": "matrixSubmatrix{${1:name}}{${2:matrix}}{${3:i}}{${4:j}}{${5:k}}{${6:l}}"
+    },
+    "matrixConcatH{}{}{}": {
+      "snippet": "matrixConcatH{${1:name}}{${2:matrix1}}{${3:matrix2}}"
+    },
+    "matrixConcatV{}{}{}": {
+      "snippet": "matrixConcatV{${1:name}}{${2:matrix1}}{${3:matrix2}}"
+    },
+    "matrixOp{}{}": {
+      "snippet": "matrixOp{${1:matrix}}{${2:expression}}"
+    },
+    "matrixCopy{}{}": {
+      "snippet": "matrixCopy{${1:name}}{${2:matrix}}"
+    },
+    "matrixEql{}{}": {
+      "snippet": "matrixEql{${1:matrix1}}{${2:matrix2}}"
+    },
+    "matrixCreateRandom{}{}{}{}{}": {
+      "snippet": "matrixCreateRandom{${1:name}}{${2:i}}{${3:j}}{${4:k}}{${5:l}}"
+    },
+    "matrixSwapRows{}{}{}{}": {
+      "snippet": "matrixSwapRows{${1:name}}{${2:matrix}}{${3:row1}}{${4:row2}}"
+    },
+    "matrixMulRow{}{}{}{}": {
+      "snippet": "matrixMulRow{${1:name}}{${2:matrix}}{${3:row}}{${4:number}}"
+    },
+    "matrixMulAddRow{}{}{}{}{}": {
+      "snippet": "matrixMulAddRow{${1:name}}{${2:matrix}}{${3:row1}}{${4:number}}{${5:row2}}"
+    },
+    "matrixSwapCols{}{}{}{}": {
+      "snippet": "matrixSwapCols{${1:name}}{${2:matrix}}{${3:col1}}{${4:col2}}"
+    },
+    "matrixMulCol{}{}{}{}": {
+      "snippet": "matrixMulCol{${1:name}}{${2:matrix}}{${3:col}}{${4:number}}"
+    },
+    "matrixMulAddCol{}{}{}{}{}": {
+      "snippet": "matrixMulAddCol{${1:name}}{${2:matrix}}{${3:col1}}{${4:number}}{${5:col2}}"
+    },
+    "matrixRREF{}{}": {
+      "snippet": "matrixRREF{${1:name}}{${2:matrix}}"
+    },
+    "matrixRREFSteps{}": {
+      "snippet": "matrixRREFSteps{${1:matrix}}"
+    },
+    "matrixRREFSteps[]{}": {
+      "snippet": "matrixRREFSteps[${2:options}]{${1:matrix}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "matrixGaussJordan{}{}{}": {
+      "snippet": "matrixGaussJordan{${1:name}}{${2:matrix1}}{${3:matrix2}}"
+    },
+    "matrixGaussJordanSteps{}{}": {
+      "snippet": "matrixGaussJordanSteps{${1:matrix1}}{${2:matrix2}}"
+    },
+    "matrixGaussJordanSteps[]{}{}": {
+      "snippet": "matrixGaussJordanSteps[${3:options}]{${1:matrix1}}{${2:matrix2}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    }
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "brckt=",
+      "truncate=${1:integer}"
+    ],
+    [
+      "type=",
+      "truncate=${1:integer}"
+    ]
+  ]
+}

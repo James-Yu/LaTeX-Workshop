@@ -1,0 +1,647 @@
+{
+  "includes": {
+    "tikz": [],
+    "tikzlibrarypositioning": [],
+    "tikzlibraryfit": [],
+    "tikzlibrarycalc": [],
+    "tikzlibrarydecorations.markings": [],
+    "tikzlibraryshapes.misc": [],
+    "tikzlibraryshapes.geometric": [],
+    "tikzlibraryshapes.symbols": [],
+    "xstring": [],
+    "calc": []
+  },
+  "macros": {
+    "mscset{}": {
+      "snippet": "mscset{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "nextlevel": {},
+    "nextlevel[]": {
+      "snippet": "nextlevel[${1:level offset}]"
+    },
+    "declinst{}{}{}": {
+      "snippet": "declinst{${1:nickname}}{${2:instance name above}}{${3:instance name within}}"
+    },
+    "declinst*{}{}{}": {
+      "snippet": "declinst*{${1:nickname}}{${2:instance name above}}{${3:instance name within}}"
+    },
+    "mess{}{}{}": {
+      "snippet": "mess{${1:name}}{${2:sender}}{${3:receiver}}"
+    },
+    "mess{}{}{}[]": {
+      "snippet": "mess{${1:name}}{${2:sender}}{${3:receiver}}[${4:level offset}]"
+    },
+    "mess[]{}{}{}": {
+      "snippet": "mess[${4:options}]{${1:name}}{${2:sender}}{${3:receiver}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mess[]{}{}{}[]": {
+      "snippet": "mess[${4:options}]{${1:name}}{${2:sender}}{${3:receiver}}[${5:level offset}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mess*{}{}{}": {
+      "snippet": "mess*{${1:name}}{${2:sender}}{${3:receiver}}"
+    },
+    "mess*{}{}{}[]": {
+      "snippet": "mess*{${1:name}}{${2:sender}}{${3:receiver}}[${4:level offset}]"
+    },
+    "mess*[]{}{}{}": {
+      "snippet": "mess*[${4:options}]{${1:name}}{${2:sender}}{${3:receiver}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mess*[]{}{}{}[]": {
+      "snippet": "mess*[${4:options}]{${1:name}}{${2:sender}}{${3:receiver}}[${5:level offset}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "msccomment{}{}": {
+      "snippet": "msccomment{${1:text}}{${2:instance}}"
+    },
+    "msccomment[]{}{}": {
+      "snippet": "msccomment[${3:options}]{${1:text}}{${2:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "action{}{}": {
+      "snippet": "action{${1:name}}{${2:instance}}"
+    },
+    "action[]{}{}": {
+      "snippet": "action[${3:options}]{${1:name}}{${2:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "action*{}{}": {
+      "snippet": "action*{${1:name}}{${2:instance}}"
+    },
+    "action*[]{}{}": {
+      "snippet": "action*[${3:options}]{${1:name}}{${2:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "naction{}{}": {
+      "snippet": "naction{${1:name}}{${2:instance}}"
+    },
+    "naction[]{}{}": {
+      "snippet": "naction[${3:options}]{${1:name}}{${2:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "naction*{}{}": {
+      "snippet": "naction*{${1:name}}{${2:instance}}"
+    },
+    "naction*[]{}{}": {
+      "snippet": "naction*[${3:options}]{${1:name}}{${2:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "settimer{}{}": {
+      "snippet": "settimer{${1:name}}{${2:instance}}"
+    },
+    "settimer[]{}{}": {
+      "snippet": "settimer[${3:options}]{${1:name}}{${2:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "timeout{}{}": {
+      "snippet": "timeout{${1:name}}{${2:instance}}"
+    },
+    "stoptimer{}{}": {
+      "snippet": "stoptimer{${1:name}}{${2:instance}}"
+    },
+    "settimeout{}{}": {
+      "snippet": "settimeout{${1:name}}{${2:instance}}"
+    },
+    "settimeout{}{}[]": {
+      "snippet": "settimeout{${1:name}}{${2:instance}}[${3:offset}]"
+    },
+    "settimeout[]{}{}": {
+      "snippet": "settimeout[${3:options}]{${1:name}}{${2:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "settimeout[]{}{}[]": {
+      "snippet": "settimeout[${3:options}]{${1:name}}{${2:instance}}[${4:offset}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "setstoptimer{}{}": {
+      "snippet": "setstoptimer{${1:name}}{${2:instance}}"
+    },
+    "setstoptimer{}{}[]": {
+      "snippet": "setstoptimer{${1:name}}{${2:instance}}[${3:offset}]"
+    },
+    "setstoptimer[]{}{}": {
+      "snippet": "setstoptimer[${3:options}]{${1:name}}{${2:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "setstoptimer[]{}{}[]": {
+      "snippet": "setstoptimer[${3:options}]{${1:name}}{${2:instance}}[${4:offset}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mscmark{}{}": {
+      "snippet": "mscmark{${1:name}}{${2:instance}}"
+    },
+    "mscmark[]{}{}": {
+      "snippet": "mscmark[${3:options}]{${1:name}}{${2:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "measure{}{}{}": {
+      "snippet": "measure{${1:name}}{${2:instance1}}{${3:instance2}}"
+    },
+    "measure{}{}{}[]": {
+      "snippet": "measure{${1:name}}{${2:instance1}}{${3:instance2}}[${4:offset}]"
+    },
+    "measure[]{}{}{}": {
+      "snippet": "measure[${4:options}]{${1:name}}{${2:instance1}}{${3:instance2}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "measure[]{}{}{}[]": {
+      "snippet": "measure[${4:options}]{${1:name}}{${2:instance1}}{${3:instance2}}[${5:offset}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "measure*{}{}{}": {
+      "snippet": "measure*{${1:name}}{${2:instance1}}{${3:instance2}}"
+    },
+    "measure*{}{}{}[]": {
+      "snippet": "measure*{${1:name}}{${2:instance1}}{${3:instance2}}[${4:offset}]"
+    },
+    "measure*[]{}{}{}": {
+      "snippet": "measure*[${4:options}]{${1:name}}{${2:instance1}}{${3:instance2}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "measure*[]{}{}{}[]": {
+      "snippet": "measure*[${4:options}]{${1:name}}{${2:instance1}}{${3:instance2}}[${5:offset}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "measurestart{}{}{}": {
+      "snippet": "measurestart{${1:name}}{${2:instance}}{${3:gate}}"
+    },
+    "measurestart[]{}{}{}": {
+      "snippet": "measurestart[${4:options}]{${1:name}}{${2:instance}}{${3:gate}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "measurestart*{}{}{}": {
+      "snippet": "measurestart*{${1:name}}{${2:instance}}{${3:gate}}"
+    },
+    "measurestart*[]{}{}{}": {
+      "snippet": "measurestart*[${4:options}]{${1:name}}{${2:instance}}{${3:gate}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "measureend{}{}{}": {
+      "snippet": "measureend{${1:name}}{${2:instance}}{${3:gate}}"
+    },
+    "measureend[]{}{}{}": {
+      "snippet": "measureend[${4:options}]{${1:name}}{${2:instance}}{${3:gate}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "measureend*{}{}{}": {
+      "snippet": "measureend*{${1:name}}{${2:instance}}{${3:gate}}"
+    },
+    "measureend*[]{}{}{}": {
+      "snippet": "measureend*[${4:options}]{${1:name}}{${2:instance}}{${3:gate}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "lost{}{}{}": {
+      "snippet": "lost{${1:name}}{${2:gate}}{${3:instance}}"
+    },
+    "lost[]{}{}{}": {
+      "snippet": "lost[${4:options}]{${1:name}}{${2:gate}}{${3:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "found{}{}{}": {
+      "snippet": "found{${1:name}}{${2:gate}}{${3:instance}}"
+    },
+    "found[]{}{}{}": {
+      "snippet": "found[${4:options}]{${1:name}}{${2:gate}}{${3:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "condition{}{}": {
+      "snippet": "condition{${1:text}}{${2:instance list}}"
+    },
+    "condition[]{}{}": {
+      "snippet": "condition[${3:options}]{${1:text}}{${2:instance list}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "condition*{}{}": {
+      "snippet": "condition*{${1:text}}{${2:instance list}}"
+    },
+    "condition*[]{}{}": {
+      "snippet": "condition*[${3:options}]{${1:text}}{${2:instance list}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ncondition{}{}": {
+      "snippet": "ncondition{${1:text}}{${2:instance list}}"
+    },
+    "ncondition[]{}{}": {
+      "snippet": "ncondition[${3:options}]{${1:text}}{${2:instance list}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ncondition*{}{}": {
+      "snippet": "ncondition*{${1:text}}{${2:instance list}}"
+    },
+    "ncondition*[]{}{}": {
+      "snippet": "ncondition*[${3:options}]{${1:text}}{${2:instance list}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "order{}{}": {
+      "snippet": "order{${1:sender}}{${2:receiver}}"
+    },
+    "order{}{}[]": {
+      "snippet": "order{${1:sender}}{${2:receiver}}[${3:level offset}]"
+    },
+    "order[]{}{}": {
+      "snippet": "order[${3:options}]{${1:sender}}{${2:receiver}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "order[]{}{}[]": {
+      "snippet": "order[${3:options}]{${1:sender}}{${2:receiver}}[${4:level offset}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "regionstart{}{}": {
+      "snippet": "regionstart{${1:type}}{${2:instance}}"
+    },
+    "regionstart[]{}{}": {
+      "snippet": "regionstart[${3:options}]{${1:type}}{${2:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "regionend{}": {
+      "snippet": "regionend{${1:instance}}"
+    },
+    "dummyinst{}": {
+      "snippet": "dummyinst{${1:created instance}}"
+    },
+    "dummyinst[]{}": {
+      "snippet": "dummyinst[${2:options}]{${1:created instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "startinst{}{}{}": {
+      "snippet": "startinst{${1:instance name}}{${2:text above}}{${3:text inside}}"
+    },
+    "startinst[]{}{}{}": {
+      "snippet": "startinst[${4:options}]{${1:instance name}}{${2:text above}}{${3:text inside}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "create{}{}{}{}{}": {
+      "snippet": "create{${1:name}}{${2:creator}}{${3:instance name}}{${4:text above}}{${5:text inside}}"
+    },
+    "create[]{}{}{}{}{}": {
+      "snippet": "create[${6:options}]{${1:name}}{${2:creator}}{${3:instance name}}{${4:text above}}{${5:text inside}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "stop{}": {
+      "snippet": "stop{${1:instance}}"
+    },
+    "stop[]{}": {
+      "snippet": "stop[${2:options}]{${1:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "stop*{}": {
+      "snippet": "stop*{${1:instance}}"
+    },
+    "stop*[]{}": {
+      "snippet": "stop*[${2:options}]{${1:instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "referencestart{}{}{}{}": {
+      "snippet": "referencestart{${1:nickname}}{${2:text}}{${3:left instance}}{${4:right instance}}"
+    },
+    "referencestart[]{}{}{}{}": {
+      "snippet": "referencestart[${5:options}]{${1:nickname}}{${2:text}}{${3:left instance}}{${4:right instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "referenceend{}": {
+      "snippet": "referenceend{${1:nickname}}"
+    },
+    "referenceend[]{}": {
+      "snippet": "referenceend[${2:options}]{${1:nickname}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "inlinestart{}{}{}{}": {
+      "snippet": "inlinestart{${1:nickname}}{${2:operator}}{${3:left instance}}{${4:right instance}}"
+    },
+    "inlinestart[]{}{}{}{}": {
+      "snippet": "inlinestart[${5:options}]{${1:nickname}}{${2:operator}}{${3:left instance}}{${4:right instance}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "inlineseparator{}": {
+      "snippet": "inlineseparator{${1:nickname}}"
+    },
+    "inlineseparator[]{}": {
+      "snippet": "inlineseparator[${2:options}]{${1:nickname}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "inlineend{}": {
+      "snippet": "inlineend{${1:nickname}}"
+    },
+    "inlineend[]{}": {
+      "snippet": "inlineend[${2:options}]{${1:nickname}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "inlineend*{}": {
+      "snippet": "inlineend*{${1:nickname}}"
+    },
+    "inlineend*[]{}": {
+      "snippet": "inlineend*[${2:options}]{${1:nickname}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "gate{}{}": {
+      "snippet": "gate{${1:gate name}}{${2:instance name}}"
+    },
+    "gate[]{}{}": {
+      "snippet": "gate[${3:options}]{${1:gate name}}{${2:instance name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "gate*{}{}": {
+      "snippet": "gate*{${1:gate name}}{${2:instance name}}"
+    },
+    "gate*[]{}{}": {
+      "snippet": "gate*[${3:options}]{${1:gate name}}{${2:instance name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "hmscstartsymbol{}": {
+      "snippet": "hmscstartsymbol{${1:nickname}}"
+    },
+    "hmscstartsymbol[]{}": {
+      "snippet": "hmscstartsymbol[${2:options}]{${1:nickname}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "hmscendsymbol{}": {
+      "snippet": "hmscendsymbol{${1:nickname}}"
+    },
+    "hmscendsymbol[]{}": {
+      "snippet": "hmscendsymbol[${2:options}]{${1:nickname}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "hmscreference{}{}": {
+      "snippet": "hmscreference{${1:nickname}}{${2:text}}"
+    },
+    "hmscreference[]{}{}": {
+      "snippet": "hmscreference[${3:options}]{${1:nickname}}{${2:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "hmsccondition{}{}": {
+      "snippet": "hmsccondition{${1:nickname}}{${2:text}}"
+    },
+    "hmsccondition[]{}{}": {
+      "snippet": "hmsccondition[${3:options}]{${1:nickname}}{${2:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "hmscconnection{}": {
+      "snippet": "hmscconnection{${1:nickname}}"
+    },
+    "hmscconnection[]{}": {
+      "snippet": "hmscconnection[${2:options}]{${1:nickname}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "separator{}": {
+      "snippet": "separator{${1:y}}"
+    },
+    "mscdocreferenceheight": {},
+    "mscdocreferencewidth": {},
+    "topnamedist": {},
+    "coregionstart{}": {
+      "snippet": "coregionstart{${1:nickname}}"
+    },
+    "coregionend{}": {
+      "snippet": "coregionend{${1:nickname}}"
+    },
+    "mscget{}": {
+      "snippet": "mscget{${1:option}}"
+    },
+    "actionheight": {},
+    "actionwidth": {},
+    "addDdraw{}{}{}{}": {
+      "snippet": "addDdraw{${1:instance1}}{${2:instance2}}{${3:level}}{${4:code}}"
+    },
+    "adddraw{}{}{}": {
+      "snippet": "adddraw{${1:instance}}{${2:level}}{${3:code}}"
+    },
+    "bottomfootdist": {},
+    "conditionheight": {},
+    "conditionoverlap": {},
+    "drawframe{}": {
+      "snippet": "drawframe{${1:yes|no}}"
+    },
+    "drawinstfoot{}": {
+      "snippet": "drawinstfoot{${1:yes|no}}"
+    },
+    "drawinsthead{}": {
+      "snippet": "drawinsthead{${1:yes|no}}"
+    },
+    "envinstdist": {},
+    "firstlevelheight": {},
+    "gatesymbolradius": {},
+    "hmscconditionheight": {},
+    "hmscconditionwidth": {},
+    "hmscconnectionradius": {},
+    "hmsckeywordstyle": {},
+    "hmscreferenceheight": {},
+    "hmscreferencewidth": {},
+    "hmscstartsymbolwidth": {},
+    "inlineoverlap": {},
+    "instbarwidth": {},
+    "instdist": {},
+    "instfootheight": {},
+    "instheadheight": {},
+    "inststart": {},
+    "inststop": {},
+    "instwidth": {},
+    "labeldist": {},
+    "lastlevelheight": {},
+    "leftnamedist": {},
+    "levelheight": {},
+    "lostsymbolradius": {},
+    "markdist": {},
+    "measuredist": {},
+    "measuresymbolwidth": {},
+    "messarrowscale{}": {
+      "snippet": "messarrowscale{${1:factor}}"
+    },
+    "msccommentdist": {},
+    "mscdate": {},
+    "mscdockeywordstyle": {},
+    "mscdockeywordstyle{}": {
+      "snippet": "mscdockeywordstyle{${1:arg1}}"
+    },
+    "mscgetx{}{}": {
+      "snippet": "mscgetx{${1:arg1}}{${2:arg2}}"
+    },
+    "mscgety{}{}": {
+      "snippet": "mscgety{${1:arg1}}{${2:arg2}}"
+    },
+    "msckeywordstyle{}": {
+      "snippet": "msckeywordstyle{${1:text}}"
+    },
+    "mscunit": {},
+    "mscversion": {},
+    "nogrid": {},
+    "referenceoverlap": {},
+    "regionbarwidth": {},
+    "selfmesswidth": {},
+    "sethmsckeyword{}": {
+      "snippet": "sethmsckeyword{${1:keyword}}"
+    },
+    "setmscdockeyword{}": {
+      "snippet": "setmscdockeyword{${1:keyword}}"
+    },
+    "setmsckeyword{}": {
+      "snippet": "setmsckeyword{${1:keyword}}"
+    },
+    "setmscscale{}": {
+      "snippet": "setmscscale{${1:factor}}"
+    },
+    "setmscvalues{}": {
+      "snippet": "setmscvalues{${1:large|normal|small}}"
+    },
+    "showgrid": {},
+    "stopwidth": {},
+    "thickness": {},
+    "timerwidth": {},
+    "topheaddist": {}
+  },
+  "envs": {
+    "msc{}": {
+      "name": "msc",
+      "snippet": "{${1:name}}"
+    },
+    "msc[]{}": {
+      "name": "msc",
+      "snippet": "[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "msc[][]{}": {
+      "name": "msc",
+      "snippet": "[${2:options}][${3:pos}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "hmsc{}": {
+      "name": "hmsc",
+      "snippet": "{${1:name}}"
+    },
+    "hmsc[]{}": {
+      "name": "hmsc",
+      "snippet": "[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "above",
+      "above left",
+      "above right",
+      "action height=",
+      "action width=",
+      "anchor=",
+      "arrow scale=${1:factor}",
+      "below",
+      "below left",
+      "below right",
+      "condition height=",
+      "condition overlap=",
+      "draw frame",
+      "draw frame=",
+      "draw grid",
+      "draw grid=",
+      "draw head=",
+      "east hmsc margin=",
+      "environment distance=",
+      "first level height=",
+      "foot distance=",
+      "foot height=",
+      "gate symbol radius=",
+      "head height=",
+      "head top distance=",
+      "hmsc condition height=",
+      "hmsc condition width=",
+      "hmsc connection radius=",
+      "hmsc keyword=${1:keyword}",
+      "hmsc margin=",
+      "hmsc symbol width=",
+      "instance distance=",
+      "instance width=",
+      "l",
+      "label distance=",
+      "label position=",
+      "last level height=",
+      "left",
+      "left environment distance=",
+      "left inline overlap=",
+      "left reference overlap=",
+      "level height=",
+      "level shift=${1:integer}",
+      "lost symbol radius=",
+      "measure distance=",
+      "measure symbol width=",
+      "msc keyword=${1:keyword}",
+      "msccomment distance=",
+      "north hmsc margin=",
+      "offset=${1:integer}",
+      "pos=${1:real}",
+      "position=",
+      "r",
+      "reference height=",
+      "reference width=",
+      "right",
+      "right environment distance=",
+      "right inline overlap=",
+      "right reference overlap=",
+      "self message width=",
+      "side=",
+      "small values",
+      "south hmsc margin=",
+      "stop width=",
+      "timer width=",
+      "title distance=",
+      "title position=",
+      "title top distance=",
+      "west hmsc margin="
+    ]
+  ]
+}

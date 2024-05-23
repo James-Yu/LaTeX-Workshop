@@ -1,0 +1,358 @@
+{
+  "includes": {
+    "ifsym": [],
+    "ifthen": [],
+    "relsize": [],
+    "tikz": [],
+    "tikzlibraryshapes": [],
+    "tikzlibrarybackgrounds": [],
+    "tikzlibrarydecorations.markings": []
+  },
+  "macros": {
+    "semilog{}{}{}{}": {
+      "snippet": "semilog{${1:min-decades}}{${2:max-decades}}{${3:y-min}}{${4:y-max}}"
+    },
+    "semilog*{}{}{}{}": {
+      "snippet": "semilog*{${1:min-decades}}{${2:max-decades}}{${3:y-min}}{${4:y-max}}"
+    },
+    "semilogNG{}{}": {
+      "snippet": "semilogNG{${1:decades}}{${2:amplitude}}"
+    },
+    "UnitedB": {},
+    "UniteDegre": {},
+    "OrdBode{}": {
+      "snippet": "OrdBode{${1:number}}"
+    },
+    "Unites{}{}": {
+      "snippet": "Unites{${1:label axe X}}{${2:label axe Y}}"
+    },
+    "Unitx": {},
+    "Unity": {},
+    "BodeGraph{}{}": {
+      "snippet": "BodeGraph{${1:domain}}{${2:function}}"
+    },
+    "BodeGraph[]{}{}": {
+      "snippet": "BodeGraph[${3:options}]{${1:domain}}{${2:function}}"
+    },
+    "BodeGraph*{}{}{[}": {
+      "snippet": "BodeGraph*{${1:domain}}{${2:function}}{[${3:node options]text}}"
+    },
+    "BodeGraph*[]{}{}{[}": {
+      "snippet": "BodeGraph*[${4:options}]{${1:domain}}{${2:function}}{${3:[${5:node options}]text}}"
+    },
+    "BodePoint{}{}": {
+      "snippet": "BodePoint{${1:list}}{${2:function}}"
+    },
+    "BodePoint[]{}{}": {
+      "snippet": "BodePoint[${3:options}]{${1:list}}{${2:function}}"
+    },
+    "NomGnuplot[]": {
+      "snippet": "NomGnuplot[${1:name}]"
+    },
+    "POAmp{}{}": {
+      "snippet": "POAmp{${1:K}}{${2:tau}}"
+    },
+    "POAmpAsymp{}{}": {
+      "snippet": "POAmpAsymp{${1:K}}{${2:tau}}"
+    },
+    "POArg{}{}": {
+      "snippet": "POArg{${1:K}}{${2:tau}}"
+    },
+    "POArgAsymp{}{}": {
+      "snippet": "POArgAsymp{${1:K}}{${2:tau}}"
+    },
+    "SOAmp{}{}{}": {
+      "snippet": "SOAmp{${1:K}}{${2:z}}{${3:Wn}}"
+    },
+    "SOAmpAsymp{}{}{}": {
+      "snippet": "SOAmpAsymp{${1:K}}{${2:z}}{${3:Wn}}"
+    },
+    "SOArg{}{}{}": {
+      "snippet": "SOArg{${1:K}}{${2:z}}{${3:Wn}}"
+    },
+    "SOArgAsymp{}{}{}": {
+      "snippet": "SOArgAsymp{${1:K}}{${2:z}}{${3:Wn}}"
+    },
+    "IntAmp{}": {
+      "snippet": "IntAmp{${1:K}}"
+    },
+    "IntArg{}": {
+      "snippet": "IntArg{${1:K}}"
+    },
+    "KAmp{}": {
+      "snippet": "KAmp{${1:K}}"
+    },
+    "KArg{}": {
+      "snippet": "KArg{${1:K}}"
+    },
+    "RetAmp{}": {
+      "snippet": "RetAmp{${1:Tr}}"
+    },
+    "RetArg{}": {
+      "snippet": "RetArg{${1:Tr}}"
+    },
+    "POgAmp{}{}{}{}{}": {
+      "snippet": "POgAmp{${1:K}}{${2:a1}}{${3:a2}}{${4:b1}}{${5:b2}}"
+    },
+    "POgArg{}{}{}{}{}": {
+      "snippet": "POgArg{${1:K}}{${2:a1}}{${3:a2}}{${4:b1}}{${5:b2}}"
+    },
+    "POgAmpAsymp{}{}{}{}{}": {
+      "snippet": "POgAmpAsymp{${1:K}}{${2:a1}}{${3:a2}}{${4:b1}}{${5:b2}}"
+    },
+    "POgArgAsymp{}{}{}{}{}": {
+      "snippet": "POgArgAsymp{${1:K}}{${2:a1}}{${3:a2}}{${4:b1}}{${5:b2}}"
+    },
+    "PIAmp{}{}": {
+      "snippet": "PIAmp{${1:Kp}}{${2:Ti}}"
+    },
+    "PIArg{}{}": {
+      "snippet": "PIArg{${1:Kp}}{${2:Ti}}"
+    },
+    "PIAmpAsymp{}{}": {
+      "snippet": "PIAmpAsymp{${1:Kp}}{${2:Ti}}"
+    },
+    "PIArgAsymp{}{}": {
+      "snippet": "PIArgAsymp{${1:Kp}}{${2:Ti}}"
+    },
+    "PDAmp{}{}": {
+      "snippet": "PDAmp{${1:Kp}}{${2:Td}}"
+    },
+    "PDArg{}{}": {
+      "snippet": "PDArg{${1:Kp}}{${2:Td}}"
+    },
+    "PDAmpAsymp{}{}": {
+      "snippet": "PDAmpAsymp{${1:Kp}}{${2:Td}}"
+    },
+    "PDArgAsymp{}{}": {
+      "snippet": "PDArgAsymp{${1:Kp}}{${2:Td}}"
+    },
+    "APAmp{}{}{}": {
+      "snippet": "APAmp{${1:Kp}}{${2:T1}}{${3:a}}"
+    },
+    "APArg{}{}{}": {
+      "snippet": "APArg{${1:Kp}}{${2:Ti}}{${3:a}}"
+    },
+    "APAmpAsymp{}{}{}": {
+      "snippet": "APAmpAsymp{${1:Kp}}{${2:T1}}{${3:a}}"
+    },
+    "APArgAsymp{}{}{}": {
+      "snippet": "APArgAsymp{${1:Kp}}{${2:Ti}}{${3:a}}"
+    },
+    "RPAmp{}{}{}": {
+      "snippet": "RPAmp{${1:Kp}}{${2:T1}}{${3:a}}"
+    },
+    "RPArg{}{}{}": {
+      "snippet": "RPArg{${1:Kp}}{${2:Ti}}{${3:a}}"
+    },
+    "RPAmpAsymp{}{}{}": {
+      "snippet": "RPAmpAsymp{${1:Kp}}{${2:T1}}{${3:a}}"
+    },
+    "RPArgAsymp{}{}{}": {
+      "snippet": "RPArgAsymp{${1:Kp}}{${2:Ti}}{${3:a}}"
+    },
+    "PIDAmp{}{}{}": {
+      "snippet": "PIDAmp{${1:Kp}}{${2:Ti}}{${3:Td}}"
+    },
+    "PIDArg{}{}{}": {
+      "snippet": "PIDArg{${1:Kp}}{${2:Ti}}{${3:Td}}"
+    },
+    "PIDAmpAsymp{}{}{}": {
+      "snippet": "PIDAmpAsymp{${1:Kp}}{${2:Ti}}{${3:Td}}"
+    },
+    "PIDArgAsymp{}{}{}": {
+      "snippet": "PIDArgAsymp{${1:Kp}}{${2:Ti}}{${3:Td}}"
+    },
+    "BlackGraph{}{}": {
+      "snippet": "BlackGraph{${1:domain}}{${2:argument,module}}"
+    },
+    "BlackGraph[]{}{}": {
+      "snippet": "BlackGraph[${3:options}]{${1:domain}}{${2:argument,module}}"
+    },
+    "BlackGraph*{}{}{[}": {
+      "snippet": "BlackGraph*{${1:domain}}{${2:argument,module}}{[${3:node options]text}}"
+    },
+    "BlackGraph*[]{}{}{[}": {
+      "snippet": "BlackGraph*[${4:options}]{${1:domain}}{${2:argument,module}}{${3:[${5:node options}]text}}"
+    },
+    "BlackPoint{}{}": {
+      "snippet": "BlackPoint{${1:pulse list}}{${2:argument,module}}"
+    },
+    "BlackPoint[]{}{}": {
+      "snippet": "BlackPoint[${3:options}]{${1:pulse list}}{${2:argument,module}}"
+    },
+    "BlackPoint*{}{}": {
+      "snippet": "BlackPoint*{${1:pulse list}}{${2:argument,module}}"
+    },
+    "BlackPoint*[]{}{}": {
+      "snippet": "BlackPoint*[${3:options}]{${1:pulse list}}{${2:argument,module}}"
+    },
+    "BlackText{}{}": {
+      "snippet": "BlackText{${1:pulse/pos/text}}{${2:argument,module}}"
+    },
+    "BlackText[]{}{}": {
+      "snippet": "BlackText[${3:options}]{${1:pulse/pos/text}}{${2:argument,module}}"
+    },
+    "BlackText*{}{}": {
+      "snippet": "BlackText*{${1:pulse/pos/text}}{${2:argument,module}}"
+    },
+    "BlackText*[]{}{}": {
+      "snippet": "BlackText*[${3:options}]{${1:pulse/pos/text}}{${2:argument,module}}"
+    },
+    "BlackGrid": {},
+    "BlackGrid*": {},
+    "valgridBx": {},
+    "valgridBy": {},
+    "AbaqueBlack": {},
+    "AbaqueBlack*": {},
+    "IsoModule": {},
+    "IsoModule[]": {
+      "snippet": "IsoModule[${1:amplitudes}]"
+    },
+    "IsoArgument": {},
+    "IsoArgument[]": {
+      "snippet": "IsoArgument[${1:amplitudes}]"
+    },
+    "StyleIsoM[]": {
+      "snippet": "StyleIsoM[${1:options}]"
+    },
+    "StyleIsoA[]": {
+      "snippet": "StyleIsoA[${1:options}]"
+    },
+    "NyquistGraph{}{}{}": {
+      "snippet": "NyquistGraph{${1:domain}}{${2:module}}{${3:argument}}"
+    },
+    "NyquistGraph[]{}{}{}": {
+      "snippet": "NyquistGraph[${4:options}]{${1:domain}}{${2:module}}{${3:argument}}"
+    },
+    "NyquistGraph*{}{}{}{[}": {
+      "snippet": "NyquistGraph*{${1:domain}}{${2:module}}{${3:argument}}{[${4:node options]text}}"
+    },
+    "NyquistGraph*[]{}{}{}{[}": {
+      "snippet": "NyquistGraph*[${5:options}]{${1:domain}}{${2:module}}{${3:argument}}{${4:[${6:node options}]text}}"
+    },
+    "NyquistPoint{}{}{}": {
+      "snippet": "NyquistPoint{${1:pulse list}}{${2:module}}{${3:argument}}"
+    },
+    "NyquistPoint[]{}{}{}": {
+      "snippet": "NyquistPoint[${4:options}]{${1:pulse list}}{${2:module}}{${3:argument}}"
+    },
+    "NyquistPoint*{}{}{}": {
+      "snippet": "NyquistPoint*{${1:pulse list}}{${2:module}}{${3:argument}}"
+    },
+    "NyquistPoint*[]{}{}{}": {
+      "snippet": "NyquistPoint*[${4:options}]{${1:pulse list}}{${2:module}}{${3:argument}}"
+    },
+    "NyquistText{}{}{}": {
+      "snippet": "NyquistText{${1:pulse/pos/text}}{${2:module}}{${3:argument}}"
+    },
+    "NyquistText[]{}{}{}": {
+      "snippet": "NyquistText[${4:options}]{${1:pulse/pos/text}}{${2:module}}{${3:argument}}"
+    },
+    "NyquistText*{}{}{}": {
+      "snippet": "NyquistText*{${1:pulse/pos/text}}{${2:module}}{${3:argument}}"
+    },
+    "NyquistText*[]{}{}{}": {
+      "snippet": "NyquistText*[${4:options}]{${1:pulse/pos/text}}{${2:module}}{${3:argument}}"
+    },
+    "NyquistGrid": {},
+    "valgridNx": {},
+    "valgridNy": {},
+    "RepTemp{}{}": {
+      "snippet": "RepTemp{${1:domain}}{${2:function}}"
+    },
+    "RepTemp[]{}{}": {
+      "snippet": "RepTemp[${3:options}]{${1:domain}}{${2:function}}"
+    },
+    "RepTemp*{}{}{[}": {
+      "snippet": "RepTemp*{${1:domain}}{${2:function}}{[${3:node options]text}}"
+    },
+    "RepTemp*[]{}{}{[}": {
+      "snippet": "RepTemp*[${4:options}]{${1:domain}}{${2:function}}{${3:[${5:node options}]text}}"
+    },
+    "TempGrid": {},
+    "TempGrid[]": {
+      "snippet": "TempGrid[${1:options}]"
+    },
+    "AbaqueTRsecond": {},
+    "AbaqueDepassement": {},
+    "AbaqueBlackNoStar": {},
+    "AbaqueBlackStar": {},
+    "BlackGraphNoText": {},
+    "BlackGraphText": {},
+    "BlackGridNoStar": {},
+    "BlackGridStar": {},
+    "BlackPointNoPos": {},
+    "BlackPointPos": {},
+    "BlackTextNoPoint": {},
+    "BlackTextPoint": {},
+    "BodeAmp": {},
+    "BodeAmpPointA": {},
+    "BodeArg": {},
+    "BodeGraphNoText": {},
+    "BodeGraphText": {},
+    "CorpsPol": {},
+    "LW": {},
+    "NameGraph": {},
+    "NOMgnuplot": {},
+    "NomGraphe{}": {
+      "snippet": "NomGraphe{${1:name}}"
+    },
+    "NyquistGraphNoText": {},
+    "NyquistGraphText": {},
+    "NyquistGridNoStar": {},
+    "NyquistGridStar": {},
+    "NyquistPointNoPos": {},
+    "NyquistPointPos": {},
+    "NyquistTextNoPoint": {},
+    "NyquistTextPoint": {},
+    "POAmpng{}{}": {
+      "snippet": "POAmpng{${1:arg1}}{${2:arg2}}"
+    },
+    "POAmpReel{}{}": {
+      "snippet": "POAmpReel{${1:arg1}}{${2:arg2}}"
+    },
+    "POArgReel{}{}": {
+      "snippet": "POArgReel{${1:arg1}}{${2:arg2}}"
+    },
+    "POBlack{}{}": {
+      "snippet": "POBlack{${1:arg1}}{${2:arg2}}"
+    },
+    "puce": {},
+    "RepTempNoText": {},
+    "RepTempText": {},
+    "semilogNS": {},
+    "semilogS": {},
+    "SOAmpReel{}{}{}": {
+      "snippet": "SOAmpReel{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "SOArgReel{}{}{}": {
+      "snippet": "SOArgReel{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "SOBlack{}{}{}": {
+      "snippet": "SOBlack{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "SOncArg{}{}{}{}": {
+      "snippet": "SOncArg{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "TempGridNoStar": {},
+    "TempGridStar": {},
+    "theidGnuplot": {},
+    "UnitS": {},
+    "valgridx": {},
+    "valgridy": {},
+    "ValK": {},
+    "valmaxBf": {},
+    "valmaxx": {},
+    "valmaxy": {},
+    "valpas": {},
+    "valpi": {},
+    "Valsuivante": {},
+    "ValW": {},
+    "ValZ": {},
+    "Xmax": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

@@ -1,3 +1,6 @@
+# python pkgcommand.py -a -o ../dev/packages
+# python pkgcommand.py -o ../data/packages
+
 import json
 import argparse
 import sys
@@ -19,6 +22,7 @@ INFILES = None
 parser = argparse.ArgumentParser()
 parser.add_argument('-o', '--outdir', help=f'Directory where to write the JSON files. Default is {OUT_DIR}', type=str)
 parser.add_argument('-i', '--infile', help='Files to process. Default is the content from cwl.list and cwl/ folder', type=str, nargs='+')
+parser.add_argument('-a', '--all', help='Process all .cwl files in cwl/ folder', action='store_true')
 args = parser.parse_args()
 
 if args.outdir:
@@ -28,6 +32,8 @@ if args.outdir:
         sys.exit(0)
 if args.infile:
     INFILES = args.infile
+if args.all:
+    INFILES = [f for f in CWD.joinpath('cwl').iterdir() if f.suffix == '.cwl']
 
 
 def get_cwl_files() -> List[Path]:

@@ -1,0 +1,932 @@
+{
+  "includes": {
+    "inputenc": [],
+    "fontenc": [],
+    "microtype": [],
+    "babel": [],
+    "float": [],
+    "caption": [],
+    "graphicx": [],
+    "xcolor": [],
+    "etoolbox": [],
+    "biblatex": [],
+    "csquotes": [],
+    "twoopt": [],
+    "environ": [],
+    "paralist": [],
+    "afterpage": [],
+    "xspace": [],
+    "calc": [],
+    "geometry": [],
+    "eso-pic": [],
+    "placeins": [],
+    "newtxtext": [],
+    "amsmath": [],
+    "amssymb": [],
+    "newtxmath": [],
+    "newtxtt": [],
+    "booktabs": [],
+    "listings": [],
+    "ntheorem": [],
+    "url": [],
+    "hyperref": [],
+    "cleveref": [],
+    "doclicense": [],
+    "colortbl": []
+  },
+  "macros": {
+    "captionsbritish": {
+      "option": "british"
+    },
+    "datebritish": {
+      "option": "british"
+    },
+    "extrasbritish": {
+      "option": "british"
+    },
+    "noextrasbritish": {
+      "option": "british"
+    },
+    "englishhyphenmins": {
+      "option": "USenglish"
+    },
+    "britishhyphenmins": {
+      "option": "USenglish"
+    },
+    "americanhyphenmins": {
+      "option": "USenglish"
+    },
+    "prefacename": {
+      "option": "USenglish"
+    },
+    "bibname": {
+      "option": "USenglish"
+    },
+    "chaptername": {
+      "option": "USenglish"
+    },
+    "enclname": {
+      "option": "USenglish"
+    },
+    "ccname": {
+      "option": "USenglish"
+    },
+    "headtoname": {
+      "option": "USenglish"
+    },
+    "seename": {
+      "option": "USenglish"
+    },
+    "alsoname": {
+      "option": "USenglish"
+    },
+    "proofname": {
+      "option": "USenglish"
+    },
+    "glossaryname": {
+      "option": "USenglish"
+    },
+    "captionsUKenglish": {
+      "option": "UKenglish"
+    },
+    "dateUKenglish": {
+      "option": "UKenglish"
+    },
+    "extrasUKenglish": {
+      "option": "UKenglish"
+    },
+    "noextrasUKenglish": {
+      "option": "UKenglish"
+    },
+    "captionsamerican": {
+      "option": "american"
+    },
+    "dateamerican": {
+      "option": "american"
+    },
+    "extrasamerican": {
+      "option": "american"
+    },
+    "noextrasamerican": {
+      "option": "american"
+    },
+    "captionsUSenglish": {
+      "option": "USenglish"
+    },
+    "dateUSenglish": {
+      "option": "USenglish"
+    },
+    "extrasUSenglish": {
+      "option": "USenglish"
+    },
+    "noextrasUSenglish": {
+      "option": "USenglish"
+    },
+    "title[]{}": {
+      "snippet": "title[${2:short title}]{${1:text}}"
+    },
+    "title[][]{}": {
+      "snippet": "title[${2:short title}][${3:ToC title}]{${1:text}}"
+    },
+    "subtitle{}": {
+      "snippet": "subtitle{${1:text}}"
+    },
+    "subtitle[]{}": {
+      "snippet": "subtitle[${2:short subtitle}]{${1:text}}"
+    },
+    "subtitle[][]{}": {
+      "snippet": "subtitle[${2:short subtitle}][${3:ToC subtitle}]{${1:text}}"
+    },
+    "author[]{}": {
+      "snippet": "author[${2:short author}]{${1:name}}"
+    },
+    "author[][]{}": {
+      "snippet": "author[${2:short author}][${3:ToC author}]{${1:name}}"
+    },
+    "address{}": {
+      "snippet": "address{${1:address}}"
+    },
+    "address[]{}": {
+      "snippet": "address[${2:letter of address}]{${1:}}"
+    },
+    "author*{}{}": {
+      "snippet": "author*{${1:name}}{${2:email}}"
+    },
+    "abstract{}": {
+      "snippet": "abstract{${1:text}}"
+    },
+    "keywords{}": {
+      "snippet": "keywords{${1:word1 \\and word2 \\and ...}}"
+    },
+    "acknowledgements{}": {
+      "snippet": "acknowledgements{${1:text}}"
+    },
+    "authornote{}": {
+      "snippet": "authornote{${1:text}}"
+    },
+    "meta{}": {
+      "snippet": "meta{${1:metatype}}"
+    },
+    "type{}": {
+      "snippet": "type{${1:type}}"
+    },
+    "eg": {},
+    "ie": {},
+    "cf": {},
+    "etal": {},
+    "emisaabbrv{}{}": {
+      "snippet": "emisaabbrv{${1:cmd}}{${2:text}}"
+    },
+    "OMG": {},
+    "BPM": {},
+    "BPMN": {},
+    "UML": {},
+    "emisainitialism{}{}": {
+      "snippet": "emisainitialism{${1:cmd}}{${2:text}}"
+    },
+    "editor{}": {
+      "snippet": "editor{${1:name}}"
+    },
+    "received{}": {
+      "snippet": "received{${1:date}}"
+    },
+    "accepted{}": {
+      "snippet": "accepted{${1:date}}"
+    },
+    "volume{}": {
+      "snippet": "volume{${1:number}}"
+    },
+    "issue{}{}": {
+      "snippet": "issue{${1:number}}{${2:year}}"
+    },
+    "specialissuetitle{}": {
+      "snippet": "specialissuetitle{${1:text}}"
+    },
+    "CCBYNCSAFour": {},
+    "CCBYNCSAThree": {},
+    "license{}": {
+      "snippet": "license{${1:text}}"
+    },
+    "licence{}": {
+      "snippet": "licence{${1:text}}"
+    },
+    "AtPageDeadCenter{}": {
+      "snippet": "AtPageDeadCenter{${1:code}}"
+    },
+    "abstractfont": {},
+    "addtocentry[]{}{}{}": {
+      "snippet": "addtocentry[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "addtocentry{}{}{}": {
+      "snippet": "addtocentry{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "affiliationaddressfont": {},
+    "affiliationauthorfont": {},
+    "affiliationemailfont": {},
+    "affiliationfont": {},
+    "authorfont": {},
+    "basecoverfont": {},
+    "bleed": {},
+    "cfpname": {},
+    "copyrightholder{}": {
+      "snippet": "copyrightholder{${1:name}}"
+    },
+    "copyrightyear{}": {
+      "snippet": "copyrightyear{${1:year}}"
+    },
+    "coverIII{}": {
+      "snippet": "coverIII{${1:code}}"
+    },
+    "coverII{}": {
+      "snippet": "coverII{${1:code}}"
+    },
+    "coverIVbgname": {},
+    "coverIV{}": {
+      "snippet": "coverIV{${1:code}}"
+    },
+    "coverIbgname": {},
+    "coverI{}": {
+      "snippet": "coverI{${1:code}}"
+    },
+    "coveroff": {},
+    "coveron": {},
+    "coverpage{}": {
+      "snippet": "coverpage{${1:code}}"
+    },
+    "coverpage[]{}": {
+      "snippet": "coverpage[${2:pagenum}]{${1:code}}"
+    },
+    "covertitlefont": {},
+    "covervolumefont": {},
+    "displayskipstretch": {},
+    "doitext": {},
+    "doi{}": {
+      "snippet": "doi{${1:DOI}}"
+    },
+    "editorialboardbody{}": {
+      "snippet": "editorialboardbody{${1:arg}}"
+    },
+    "editorialboardname{}": {
+      "snippet": "editorialboardname{${1:arg}}"
+    },
+    "editorialboxmaxheight": {},
+    "editorialname": {},
+    "email{}": {
+      "snippet": "email{${1:email}}"
+    },
+    "footruleoff": {},
+    "footruleon": {},
+    "footrulewidth": {},
+    "footrule{}": {
+      "snippet": "footrule{${1:arg}}"
+    },
+    "gislogoname": {},
+    "guidelinesbody{}": {
+      "snippet": "guidelinesbody{${1:arg}}"
+    },
+    "guidelinesname{}": {
+      "snippet": "guidelinesname{${1:arg}}"
+    },
+    "headbox{}{}{}{}{}{}{}{}": {
+      "snippet": "headbox{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
+    },
+    "headfootruleheight": {},
+    "headmargin": {},
+    "headmarkstyle{}": {
+      "snippet": "headmarkstyle{${1:arg}}"
+    },
+    "headpageoffset": {},
+    "headwidth": {},
+    "imprintbody{}": {
+      "snippet": "imprintbody{${1:arg}}"
+    },
+    "imprintname{}": {
+      "snippet": "imprintname{${1:arg}}"
+    },
+    "issn{}": {
+      "snippet": "issn{${1:ISSN}}"
+    },
+    "journalname{}": {
+      "snippet": "journalname{${1:text}}"
+    },
+    "journalsubtitle{}": {
+      "snippet": "journalsubtitle{${1:text}}"
+    },
+    "markarticle": {},
+    "markeditorial": {},
+    "markhead{}{}": {
+      "snippet": "markhead{${1:arg1}}{${2:arg2}}"
+    },
+    "outdoi": {},
+    "outputarticleappendix": {},
+    "pagebg{}": {
+      "snippet": "pagebg{${1:color}}"
+    },
+    "pagefootfont": {},
+    "pageheadfont": {},
+    "pagenumfont": {},
+    "picturepage[]{}": {
+      "snippet": "picturepage[${2:pagestyle}]{${1:code}}"
+    },
+    "picturepage{}": {
+      "snippet": "picturepage{${1:code}}"
+    },
+    "sectionfont": {},
+    "setstretch{}": {
+      "snippet": "setstretch{${1:arg}}"
+    },
+    "sigEMISAlogoname": {},
+    "sigmobislogoname": {},
+    "sigmobispage": {},
+    "sigmobispagefoot": {},
+    "sigmobispagehead": {},
+    "sigmobispagerule{}": {
+      "snippet": "sigmobispagerule{${1:text}}"
+    },
+    "specialissuetitleprefix{}": {
+      "snippet": "specialissuetitleprefix{${1:prefix}}"
+    },
+    "subtitlefont": {},
+    "theaddresses": {},
+    "thearticle": {},
+    "thecovertitle": {},
+    "thecovervolumeline": {},
+    "theevenheadpage": {},
+    "theheadvolume": {},
+    "theoddheadpage": {},
+    "thispagebackground{}": {
+      "snippet": "thispagebackground{${1:code}}"
+    },
+    "thispagebackground[]{}": {
+      "snippet": "thispagebackground[${2:pagestyle}]{${1:code}}"
+    },
+    "titlefont": {},
+    "DH": {},
+    "dh": {},
+    "dj": {},
+    "DJ": {},
+    "guillemetleft": {},
+    "guillemetright": {},
+    "guillemotleft": {},
+    "guillemotright": {},
+    "guilsinglleft": {},
+    "guilsinglright": {},
+    "Hwithstroke": {},
+    "hwithstroke": {},
+    "k{}": {
+      "snippet": "k{${1:arg}}"
+    },
+    "NG": {},
+    "ng": {},
+    "quotedblbase": {},
+    "quotesinglbase": {},
+    "textogonekcentered{}": {
+      "snippet": "textogonekcentered{${1:arg}}"
+    },
+    "textquotedbl": {},
+    "th": {},
+    "TH": {},
+    "bibitemlabel{}": {
+      "snippet": "bibitemlabel{${1:text}}"
+    },
+    "mkbibdateiso{}{}{}": {
+      "snippet": "mkbibdateiso{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    }
+  },
+  "envs": {
+    "article{}": {
+      "name": "article",
+      "snippet": "{${1:title elements}}"
+    },
+    "sourcecode": {},
+    "sourcecode[]": {
+      "name": "sourcecode",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "sourcecode*": {},
+    "sourcecode*[]": {
+      "name": "sourcecode*",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "java": {},
+    "java[]": {
+      "name": "java",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "java*": {},
+    "java*[]": {
+      "name": "java*",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "articleappendix": {},
+    "articleappendix*": {},
+    "cfp": {},
+    "editorialcontent{}": {
+      "name": "editorialcontent",
+      "snippet": "{${1:arg}}"
+    },
+    "editorial": {},
+    "editorial[]": {
+      "name": "editorial",
+      "snippet": "[${1:heading}]"
+    },
+    "asparablank": {},
+    "inparablank": {},
+    "Theorem": {},
+    "Theorem[]": {
+      "name": "Theorem",
+      "snippet": "[${1:heading}]"
+    },
+    "theorem": {},
+    "theorem[]": {
+      "name": "theorem",
+      "snippet": "[${1:heading}]"
+    },
+    "Lemma": {},
+    "Lemma[]": {
+      "name": "Lemma",
+      "snippet": "[${1:heading}]"
+    },
+    "lemma": {},
+    "lemma[]": {
+      "name": "lemma",
+      "snippet": "[${1:heading}]"
+    },
+    "Proposition": {},
+    "Proposition[]": {
+      "name": "Proposition",
+      "snippet": "[${1:heading}]"
+    },
+    "proposition": {},
+    "proposition[]": {
+      "name": "proposition",
+      "snippet": "[${1:heading}]"
+    },
+    "Corollary": {},
+    "Corollary[]": {
+      "name": "Corollary",
+      "snippet": "[${1:heading}]"
+    },
+    "corollary": {},
+    "corollary[]": {
+      "name": "corollary",
+      "snippet": "[${1:heading}]"
+    },
+    "Satz": {},
+    "Satz[]": {
+      "name": "Satz",
+      "snippet": "[${1:heading}]"
+    },
+    "satz": {},
+    "satz[]": {
+      "name": "satz",
+      "snippet": "[${1:heading}]"
+    },
+    "Korollar": {},
+    "Korollar[]": {
+      "name": "Korollar",
+      "snippet": "[${1:heading}]"
+    },
+    "korollar": {},
+    "korollar[]": {
+      "name": "korollar",
+      "snippet": "[${1:heading}]"
+    },
+    "Definition": {},
+    "Definition[]": {
+      "name": "Definition",
+      "snippet": "[${1:heading}]"
+    },
+    "definition": {},
+    "definition[]": {
+      "name": "definition",
+      "snippet": "[${1:heading}]"
+    },
+    "Example": {},
+    "Example[]": {
+      "name": "Example",
+      "snippet": "[${1:heading}]"
+    },
+    "example": {},
+    "example[]": {
+      "name": "example",
+      "snippet": "[${1:heading}]"
+    },
+    "Beispiel": {},
+    "Beispiel[]": {
+      "name": "Beispiel",
+      "snippet": "[${1:heading}]"
+    },
+    "beispiel": {},
+    "beispiel[]": {
+      "name": "beispiel",
+      "snippet": "[${1:heading}]"
+    },
+    "Anmerkung": {},
+    "Anmerkung[]": {
+      "name": "Anmerkung",
+      "snippet": "[${1:heading}]"
+    },
+    "anmerkung": {},
+    "anmerkung[]": {
+      "name": "anmerkung",
+      "snippet": "[${1:heading}]"
+    },
+    "Bemerkung": {},
+    "Bemerkung[]": {
+      "name": "Bemerkung",
+      "snippet": "[${1:heading}]"
+    },
+    "bemerkung": {},
+    "bemerkung[]": {
+      "name": "bemerkung",
+      "snippet": "[${1:heading}]"
+    },
+    "Remark": {},
+    "Remark[]": {
+      "name": "Remark",
+      "snippet": "[${1:heading}]"
+    },
+    "remark": {},
+    "remark[]": {
+      "name": "remark",
+      "snippet": "[${1:heading}]"
+    },
+    "Proof": {},
+    "Proof[]": {
+      "name": "Proof",
+      "snippet": "[${1:heading}]"
+    },
+    "proof": {},
+    "proof[]": {
+      "name": "proof",
+      "snippet": "[${1:heading}]"
+    },
+    "Beweis": {},
+    "Beweis[]": {
+      "name": "Beweis",
+      "snippet": "[${1:heading}]"
+    },
+    "beweis": {},
+    "beweis[]": {
+      "name": "beweis",
+      "snippet": "[${1:heading}]"
+    },
+    "Theorem*": {},
+    "Theorem*[]": {
+      "name": "Theorem*",
+      "snippet": "[${1:heading}]"
+    },
+    "theorem*": {},
+    "theorem*[]": {
+      "name": "theorem*",
+      "snippet": "[${1:heading}]"
+    },
+    "Lemma*": {},
+    "Lemma*[]": {
+      "name": "Lemma*",
+      "snippet": "[${1:heading}]"
+    },
+    "lemma*": {},
+    "lemma*[]": {
+      "name": "lemma*",
+      "snippet": "[${1:heading}]"
+    },
+    "Proposition*": {},
+    "Proposition*[]": {
+      "name": "Proposition*",
+      "snippet": "[${1:heading}]"
+    },
+    "proposition*": {},
+    "proposition*[]": {
+      "name": "proposition*",
+      "snippet": "[${1:heading}]"
+    },
+    "Corollary*": {},
+    "Corollary*[]": {
+      "name": "Corollary*",
+      "snippet": "[${1:heading}]"
+    },
+    "corollary*": {},
+    "corollary*[]": {
+      "name": "corollary*",
+      "snippet": "[${1:heading}]"
+    },
+    "Satz*": {},
+    "Satz*[]": {
+      "name": "Satz*",
+      "snippet": "[${1:heading}]"
+    },
+    "satz*": {},
+    "satz*[]": {
+      "name": "satz*",
+      "snippet": "[${1:heading}]"
+    },
+    "Korollar*": {},
+    "Korollar*[]": {
+      "name": "Korollar*",
+      "snippet": "[${1:heading}]"
+    },
+    "korollar*": {},
+    "korollar*[]": {
+      "name": "korollar*",
+      "snippet": "[${1:heading}]"
+    },
+    "Definition*": {},
+    "Definition*[]": {
+      "name": "Definition*",
+      "snippet": "[${1:heading}]"
+    },
+    "definition*": {},
+    "definition*[]": {
+      "name": "definition*",
+      "snippet": "[${1:heading}]"
+    },
+    "Example*": {},
+    "Example*[]": {
+      "name": "Example*",
+      "snippet": "[${1:heading}]"
+    },
+    "example*": {},
+    "example*[]": {
+      "name": "example*",
+      "snippet": "[${1:heading}]"
+    },
+    "Beispiel*": {},
+    "Beispiel*[]": {
+      "name": "Beispiel*",
+      "snippet": "[${1:heading}]"
+    },
+    "beispiel*": {},
+    "beispiel*[]": {
+      "name": "beispiel*",
+      "snippet": "[${1:heading}]"
+    },
+    "Anmerkung*": {},
+    "Anmerkung*[]": {
+      "name": "Anmerkung*",
+      "snippet": "[${1:heading}]"
+    },
+    "anmerkung*": {},
+    "anmerkung*[]": {
+      "name": "anmerkung*",
+      "snippet": "[${1:heading}]"
+    },
+    "Bemerkung*": {},
+    "Bemerkung*[]": {
+      "name": "Bemerkung*",
+      "snippet": "[${1:heading}]"
+    },
+    "bemerkung*": {},
+    "bemerkung*[]": {
+      "name": "bemerkung*",
+      "snippet": "[${1:heading}]"
+    },
+    "Remark*": {},
+    "Remark*[]": {
+      "name": "Remark*",
+      "snippet": "[${1:heading}]"
+    },
+    "remark*": {},
+    "remark*[]": {
+      "name": "remark*",
+      "snippet": "[${1:heading}]"
+    },
+    "Proof*": {},
+    "Proof*[]": {
+      "name": "Proof*",
+      "snippet": "[${1:heading}]"
+    },
+    "proof*": {},
+    "proof*[]": {
+      "name": "proof*",
+      "snippet": "[${1:heading}]"
+    },
+    "Beweis*": {},
+    "Beweis*[]": {
+      "name": "Beweis*",
+      "snippet": "[${1:heading}]"
+    },
+    "beweis*": {},
+    "beweis*[]": {
+      "name": "beweis*",
+      "snippet": "[${1:heading}]"
+    }
+  },
+  "options": [
+    "british",
+    "UKenglish",
+    "american",
+    "USenglish",
+    "draft",
+    "final",
+    "referee",
+    "noreferee",
+    "review",
+    "noreview",
+    "cleveref",
+    "nocleveref",
+    "cover",
+    "nocover",
+    "nomicrotype"
+  ],
+  "keyvals": [
+    [
+      "inputpath=${1:path}",
+      "aboveskip=",
+      "belowskip=",
+      "lineskip=",
+      "boxpos=",
+      "print",
+      "showlines",
+      "emptylines=${1:number}",
+      "emptylines=*${1:number}",
+      "gobble=${1:number}",
+      "style=${1:style name}",
+      "language=${1:language}",
+      "language=[${1:dialect}]${2:language}",
+      "alsolanguage=${1:language}",
+      "alsolanguage=[${1:dialect}]${2:language}",
+      "defaultdialect=[${1:dialect}]${2:language}",
+      "printpod",
+      "usekeywordsintag",
+      "tagstyle=${1:style}",
+      "markfirstintag=${1:style}",
+      "makemacrouse",
+      "basicstyle=${1:style}",
+      "identifierstyle=${1:style}",
+      "commentstyle=${1:style}",
+      "stringstyle=${1:style}",
+      "keywordstyle=${1:style}",
+      "keywordstyle=[${1:number}]${2:style}",
+      "keywordstyle=[${1:number}]*${2:style}",
+      "ndkeywordstyle=${1:style}",
+      "classoffset=${1:number}",
+      "texcsstyle=${1:style}",
+      "texcsstyle=[${1:class number}]${2:style}",
+      "texcsstyle=*[${1:class number}]${2:style}",
+      "directivestyle=${1:style}",
+      "emph={${1:identifier list}}",
+      "emph=[${1:number}]{${2:identifier list}}",
+      "moreemph={${1:identifier list}}",
+      "moreemph=[${1:number}]{${2:identifier list}}",
+      "deleteemph={${1:identifier list}}",
+      "deleteemph=[${1:number}]{${2:identifier list}}",
+      "emphstyle={${1:style}}",
+      "emphstyle=[${1:number}]{${2:style}}",
+      "delim=[${1:type}][${2:style}]${3:delimiters}",
+      "delim=*[${1:type}][${2:style}]${3:delimiters}",
+      "delim=**[${1:type}][${2:style}]${3:delimiters}",
+      "moredelim=[${1:type}][${2:style}]${3:delimiters}",
+      "moredelim=*[${1:type}][${2:style}]${3:delimiters}",
+      "moredelim=**[${1:type}][${2:style}]${3:delimiters}",
+      "deletedelim=[${1:type}][${2:style}]${3:delimiters}",
+      "deletedelim=*[${1:type}][${2:style}]${3:delimiters}",
+      "deletedelim=**[${1:type}][${2:style}]${3:delimiters}",
+      "extendedchars",
+      "inputencoding=${1:encoding}",
+      "upquote",
+      "tabsize=${1:number}",
+      "showtabs",
+      "tab=${1:tokens}",
+      "showspaces",
+      "showstringspaces",
+      "formfeed=${1:tokens}",
+      "numbers=",
+      "stepnumber=${1:number}",
+      "numberfirstline",
+      "numberstyle=${1:style}",
+      "numbersep=",
+      "numberblanklines",
+      "firstnumber=${1:auto|last|<number>}",
+      "name=${1:name}",
+      "title=${1:title text}",
+      "caption={${1:caption text}}",
+      "caption={[${1:short}]${2:caption text}}",
+      "label=",
+      "nolol",
+      "numberbychapter",
+      "captionpos=${1:subset of tb}",
+      "abovecaptionskip=",
+      "belowcaptionskip=",
+      "linewidth=",
+      "xleftmargin=",
+      "xrightmargin=",
+      "resetmargins",
+      "breaklines",
+      "breakatwhitespace",
+      "prebreak=${1:tokens}",
+      "postbreak=${1:tokens}",
+      "breakindent=",
+      "breakautoindent",
+      "frame=${1:type}",
+      "frameround=",
+      "framesep=",
+      "rulesep=",
+      "framerule=",
+      "framexleftmargin=",
+      "framexrightmargin=",
+      "framextopmargin=",
+      "framexbottommargin=",
+      "backgroundcolor=",
+      "rulecolor=",
+      "fillcolor=",
+      "rulesepcolor=",
+      "frameshape={${1:top shape}}{${2:left shape}}{${3:right shape}}{${4:bottom shape}}",
+      "index={${1:identifiers}}",
+      "index=[${1:number}]{${2:identifiers}}",
+      "index=[${1:number}][${2:keyword classes}]{${3:identifiers}}",
+      "moreindex={${1:identifiers}}",
+      "moreindex=[${1:number}]{${2:identifiers}}",
+      "moreindex=[${1:number}][${2:keyword classes}]{${3:identifiers}}",
+      "deleteindex={${1:identifiers}}",
+      "deleteindex=[${1:number}]{${2:identifiers}}",
+      "deleteindex=[${1:number}][${2:keyword classes}]{${3:identifiers}}",
+      "indexstyle=${1:one-parameter macro}",
+      "indexstyle=[${1:number}]${2:one-parameter macro}",
+      "columns=${1:alignment}",
+      "columns=[${1:c|l|r}]${2:alignment}",
+      "flexiblecolumns",
+      "keepspaces",
+      "basewidth=",
+      "fontadjust",
+      "texcl",
+      "mathescape",
+      "escapechar=${1:character}",
+      "escapeinside=${1:<char1><char2>}",
+      "escapebegin=${1:tokens}",
+      "escapeend=${1:tokens}",
+      "fancyvrb",
+      "fvcmdparams=${1:<cmd1> <num1> ...}",
+      "morefvcmdparams=${1:<cmd1> <num1> ...}",
+      "literate={${1:replace}}{${2:replacement text}}{${3:length}}${4:...}",
+      "literate=*{${1:replace}}{${2:replacement text}}{${3:length}}${4:...}",
+      "rangebeginprefix=${1:prefix}",
+      "rangebeginsuffix=${1:suffix}",
+      "rangeendprefix=${1:prefix}",
+      "rangeendsuffix=${1:suffix}",
+      "rangeprefix=${1:prefix}",
+      "rangesuffix=${1:suffix}",
+      "includerangemarker",
+      "multicols=${1:number}",
+      "float",
+      "float=${1:subset of tbph}",
+      "float=*${1:subset of tbph}",
+      "floatplacement=${1:place specifiers}",
+      "firstline=${1:number}",
+      "lastline=${1:number}",
+      "linerange={${1:first1-last1,first2-last2,...}}",
+      "consecutivenumbers",
+      "keywordsprefix=${1:prefix}",
+      "keywords={${1:list of keywords}}",
+      "keywords=[${1:number}]{${2:list of keywords}}",
+      "morekeywords={${1:list of keywords}}",
+      "morekeywords=[${1:number}]{${2:list of keywords}}",
+      "deletekeywords={${1:list of keywords}}",
+      "deletekeywords=[${1:number}]{${2:list of keywords}}",
+      "ndkeywords={${1:list of keywords}}",
+      "moreendkeywords={${1:list of keywords}}",
+      "deleteendkeywords={${1:list of keywords}}",
+      "texcs={${1:list of csnames}}",
+      "texcs=[${1:class number}]{${2:list of csnames}}",
+      "moretexcs={${1:list of csnames}}",
+      "moretexcs=[${1:class number}]{${2:list of csnames}}",
+      "deletetexcs={${1:list of csnames}}",
+      "deletetexcs=[${1:class number}]{${2:list of csnames}}",
+      "directives={${1:list of compiler directives}}",
+      "moredirectives={${1:list of compiler directives}}",
+      "deletedirectives={${1:list of compiler directives}}",
+      "sensitive",
+      "alsoletter={${1:character sequence}}",
+      "alsodigit={${1:character sequence}}",
+      "alsoother={${1:character sequence}}",
+      "otherkeywords={${1:keywords}}",
+      "tag=${1:<char1><char2>}",
+      "string=${1:delimiter}",
+      "string=[${1:b|d|m|bd|s}]${2:delimiter}",
+      "morestring=${1:delimiter}",
+      "morestring=[${1:b|d|m|bd|s}]${2:delimiter}",
+      "deletestring=${1:delimiter}",
+      "deletestring=[${1:b|d|m|bd|s}]${2:delimiter}",
+      "comment=${1:delimiter(s)}",
+      "comment=[${1:type}]${2:delimiter(s)}",
+      "morecomment=${1:delimiter(s)}",
+      "morecomment=[${1:type}]${2:delimiter(s)}",
+      "deletecomment=${1:delimiter(s)}",
+      "deletecomment=[${1:type}]${2:delimiter(s)}",
+      "keywordcomment={${1:keywords}}",
+      "morekeywordcomment={${1:keywords}}",
+      "deletekeywordcomment={${1:keywords}}",
+      "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
+      "podcomment"
+    ]
+  ]
+}

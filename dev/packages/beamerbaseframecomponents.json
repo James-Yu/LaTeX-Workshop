@@ -1,0 +1,82 @@
+{
+  "includes": {},
+  "macros": {
+    "setbeamersize{}": {
+      "snippet": "setbeamersize{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "insertpagenumber": {},
+    "column{}": {
+      "snippet": "column{${1:column width}}"
+    },
+    "column[]{}": {
+      "snippet": "column[${2:placement}]{${1:column width}}"
+    },
+    "column<>[]{}": {
+      "snippet": "column<${3:overlay specification}>[${2:placement}]{${1:column width}}"
+    },
+    "insertfootnotetext": {},
+    "insertfootnotemark": {},
+    "footnote<>{}": {
+      "snippet": "footnote<${2:overlay specification}>{${1:text}}"
+    },
+    "footnote<>[]{}": {
+      "snippet": "footnote<${3:overlay specification}>[${2:options}]{${1:text}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    }
+  },
+  "envs": {
+    "columns": {},
+    "columns[]": {
+      "name": "columns",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "columns<>[]": {
+      "name": "columns",
+      "snippet": "<${2:overlay specification}>[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "column{}": {
+      "name": "column",
+      "snippet": "{${1:column width}}"
+    },
+    "column[]{}": {
+      "name": "column",
+      "snippet": "[${2:placement}]{${1:column width}}"
+    },
+    "column<>[]{}": {
+      "name": "column",
+      "snippet": "<${3:overlay specification}>[${2:placement}]{${1:column width}}"
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "text margin left=",
+      "text margin right=",
+      "sidebar width left=",
+      "sidebar width right=",
+      "description width=",
+      "description width of=${1:text}",
+      "mini frame size=",
+      "mini frame offset="
+    ],
+    [
+      "${1:number}",
+      "frame"
+    ],
+    [
+      "b",
+      "c",
+      "onlytextwidth",
+      "t",
+      "T",
+      "totalwidth="
+    ]
+  ]
+}

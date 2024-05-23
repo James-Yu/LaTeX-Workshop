@@ -1,0 +1,754 @@
+{
+  "includes": {
+    "tikz": [],
+    "circuitikz": [],
+    "tikzlibraryshapes.misc": [],
+    "tikzlibrarymath": [],
+    "tikzlibrarycalc": [],
+    "tikzlibrarydecorations.pathmorphing": [],
+    "tikzlibrarydecorations.markings": [],
+    "tikzlibrarybackgrounds": [],
+    "tikzlibraryfit": [],
+    "tikzlibraryshadows": [],
+    "tikzlibrarymatrix": [],
+    "tikzlibrarychains": [],
+    "tikzlibrarypositioning": [],
+    "tikzlibrarydecorations.pathreplacing": [],
+    "tikzlibrarydecorations.text": [],
+    "tikzlibraryshapes.multipart": [],
+    "tikzlibrarygraphs": [],
+    "tikzlibraryexternal": []
+  },
+  "macros": {
+    "ExtractCoordinate{}": {
+      "snippet": "ExtractCoordinate{${1:node}}"
+    },
+    "kColorB{}": {
+      "snippet": "kColorB{${1:color}}"
+    },
+    "kColorL{}": {
+      "snippet": "kColorL{${1:color}}"
+    },
+    "kColorT{}": {
+      "snippet": "kColorT{${1:color}}"
+    },
+    "kCoverRect[]{}{}{}{}{}": {
+      "snippet": "kCoverRect[${6:color}]{${1:ref node}}{${2:N-shift}}{${3:S-shift}}{${4:W-shift}}{${5:E-shift}}"
+    },
+    "kCoverRect{}{}{}{}{}": {
+      "snippet": "kCoverRect{${1:ref node}}{${2:N-shift}}{${3:S-shift}}{${4:W-shift}}{${5:E-shift}}"
+    },
+    "kGain[]{}{}": {
+      "snippet": "kGain[${3:right-of node}]{${1:node}}{${2:label text}}"
+    },
+    "kGain{}{}": {
+      "snippet": "kGain{${1:node}}{${2:label text}}"
+    },
+    "kInDown[]{}{}{}{}": {
+      "snippet": "kInDown[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kInDown{}{}{}{}": {
+      "snippet": "kInDown{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kInDownM[]{}{}{}{}{}": {
+      "snippet": "kInDownM[${6:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}{${5:style 1-6}}"
+    },
+    "kInDownM{}{}{}{}{}": {
+      "snippet": "kInDownM{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}{${5:style 1-6}}"
+    },
+    "kInLeft[]{}{}{}{}": {
+      "snippet": "kInLeft[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kInLeft{}{}{}{}": {
+      "snippet": "kInLeft{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kInLeftM[]{}{}{}{}{}": {
+      "snippet": "kInLeftM[${6:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}{${5:style 1-6}}"
+    },
+    "kInLeftM{}{}{}{}{}": {
+      "snippet": "kInLeftM{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}{${5:style 1-6}}"
+    },
+    "kInRight[]{}{}{}{}": {
+      "snippet": "kInRight[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kInRight{}{}{}{}": {
+      "snippet": "kInRight{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kInRightM[]{}{}{}{}{}": {
+      "snippet": "kInRightM[${6:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}{${5:style 1-6}}"
+    },
+    "kInRightM{}{}{}{}{}": {
+      "snippet": "kInRightM{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}{${5:style 1-6}}"
+    },
+    "kInUp[]{}{}{}{}": {
+      "snippet": "kInUp[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kInUp{}{}{}{}": {
+      "snippet": "kInUp{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kInUpM[]{}{}{}{}{}": {
+      "snippet": "kInUpM[${6:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}{${5:style 1-6}}"
+    },
+    "kInUpM{}{}{}{}{}": {
+      "snippet": "kInUpM{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}{${5:style 1-6}}"
+    },
+    "kJumpCS[]{}": {
+      "snippet": "kJumpCS[${2:label text}]{${1:node}}"
+    },
+    "kJumpCS{}": {
+      "snippet": "kJumpCS{${1:node}}"
+    },
+    "kJumpCSAbove[]{}{}{}{}": {
+      "snippet": "kJumpCSAbove[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:dir shift}}{${4:label text}}"
+    },
+    "kJumpCSAbove{}{}{}{}": {
+      "snippet": "kJumpCSAbove{${1:from node}}{${2:to node}}{${3:dir shift}}{${4:label text}}"
+    },
+    "kJumpCSBelow[]{}{}{}{}": {
+      "snippet": "kJumpCSBelow[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:dir shift}}{${4:label text}}"
+    },
+    "kJumpCSBelow{}{}{}{}": {
+      "snippet": "kJumpCSBelow{${1:from node}}{${2:to node}}{${3:dir shift}}{${4:label text}}"
+    },
+    "kJumpCSLeft[]{}{}{}{}": {
+      "snippet": "kJumpCSLeft[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:dir shift}}{${4:label text}}"
+    },
+    "kJumpCSLeft{}{}{}{}": {
+      "snippet": "kJumpCSLeft{${1:from node}}{${2:to node}}{${3:dir shift}}{${4:label text}}"
+    },
+    "kJumpCSRight[]{}{}{}{}": {
+      "snippet": "kJumpCSRight[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:dir shift}}{${4:label text}}"
+    },
+    "kJumpCSRight{}{}{}{}": {
+      "snippet": "kJumpCSRight{${1:from node}}{${2:to node}}{${3:dir shift}}{${4:label text}}"
+    },
+    "kLink[]{}{}": {
+      "snippet": "kLink[${3:label text}]{${1:from node}}{${2:to node}}"
+    },
+    "kLink{}{}": {
+      "snippet": "kLink{${1:from node}}{${2:to node}}"
+    },
+    "kLinkCrossLeftAbove{}{}": {
+      "snippet": "kLinkCrossLeftAbove{${1:from node}}{${2:to node}}"
+    },
+    "kLinkCrossLeftBelow{}{}": {
+      "snippet": "kLinkCrossLeftBelow{${1:from node}}{${2:to node}}"
+    },
+    "kLinkCrossRightAbove{}{}": {
+      "snippet": "kLinkCrossRightAbove{${1:from node}}{${2:to node}}"
+    },
+    "kLinkCrossRightBelow{}{}": {
+      "snippet": "kLinkCrossRightBelow{${1:from node}}{${2:to node}}"
+    },
+    "kLinkdir[]{}{}{}": {
+      "snippet": "kLinkdir[${4:label text}]{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kLinkdir{}{}{}": {
+      "snippet": "kLinkdir{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kLinkHV[]{}{}{}{}{}{}": {
+      "snippet": "kLinkHV[${7:label text}]{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kLinkHV{}{}{}{}{}{}": {
+      "snippet": "kLinkHV{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kLinkHVHLeft[]{}{}{}{}{}": {
+      "snippet": "kLinkHVHLeft[${6:link scale}]{${1:label text}}{${2:from node}}{${3:to node}}{${4:from-shift}}{${5:to-shift}}"
+    },
+    "kLinkHVHLeft{}{}{}{}{}": {
+      "snippet": "kLinkHVHLeft{${1:label text}}{${2:from node}}{${3:to node}}{${4:from-shift}}{${5:to-shift}}"
+    },
+    "kLinkHVHRight[]{}{}{}{}{}": {
+      "snippet": "kLinkHVHRight[${6:link scale}]{${1:label text}}{${2:from node}}{${3:to node}}{${4:from-shift}}{${5:to-shift}}"
+    },
+    "kLinkHVHRight{}{}{}{}{}": {
+      "snippet": "kLinkHVHRight{${1:label text}}{${2:from node}}{${3:to node}}{${4:from-shift}}{${5:to-shift}}"
+    },
+    "kLinkn[]{}{}": {
+      "snippet": "kLinkn[${3:label text}]{${1:from node}}{${2:to node}}"
+    },
+    "kLinkn{}{}": {
+      "snippet": "kLinkn{${1:from node}}{${2:to node}}"
+    },
+    "kLinkndir[]{}{}{}": {
+      "snippet": "kLinkndir[${4:label text}]{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kLinkndir{}{}{}": {
+      "snippet": "kLinkndir{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kLinknHV[]{}{}{}{}{}{}": {
+      "snippet": "kLinknHV[${7:label text}]{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kLinknHV{}{}{}{}{}{}": {
+      "snippet": "kLinknHV{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kLinknVH[]{}{}{}{}{}{}": {
+      "snippet": "kLinknVH[${7:label text}]{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kLinknVH{}{}{}{}{}{}": {
+      "snippet": "kLinknVH{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kLinknVHHVAbove[]{}{}{}{}{}{}": {
+      "snippet": "kLinknVHHVAbove[${7:label text}]{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kLinknVHHVAbove{}{}{}{}{}{}": {
+      "snippet": "kLinknVHHVAbove{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kLinknVHHVBelow[]{}{}{}{}{}": {
+      "snippet": "kLinknVHHVBelow[${6:link shift}]{${1:label text}}{${2:from node}}{${3:to node}}{${4:from-shift}}{${5:to-shift}}"
+    },
+    "kLinknVHHVBelow{}{}{}{}{}": {
+      "snippet": "kLinknVHHVBelow{${1:label text}}{${2:from node}}{${3:to node}}{${4:from-shift}}{${5:to-shift}}"
+    },
+    "kLinkVH[]{}{}{}{}{}{}": {
+      "snippet": "kLinkVH[${7:label text}]{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kLinkVH{}{}{}{}{}{}": {
+      "snippet": "kLinkVH{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kLinkVHHVAbove[]{}{}{}{}{}": {
+      "snippet": "kLinkVHHVAbove[${6:link shift}]{${1:label text}}{${2:from node}}{${3:to node}}{${4:from-shift}}{${5:to-shift}}"
+    },
+    "kLinkVHHVAbove{}{}{}{}{}": {
+      "snippet": "kLinkVHHVAbove{${1:label text}}{${2:from node}}{${3:to node}}{${4:from-shift}}{${5:to-shift}}"
+    },
+    "kLinkVHHVBelow[]{}{}{}{}{}": {
+      "snippet": "kLinkVHHVBelow[${6:link shift}]{${1:label text}}{${2:from node}}{${3:to node}}{${4:from-shift}}{${5:to-shift}}"
+    },
+    "kLinkVHHVBelow{}{}{}{}{}": {
+      "snippet": "kLinkVHHVBelow{${1:label text}}{${2:from node}}{${3:to node}}{${4:from-shift}}{${5:to-shift}}"
+    },
+    "kLinkVHTFHVAbove{}{}{}{}{}{}{}{}": {
+      "snippet": "kLinkVHTFHVAbove{${1:label1}}{${2:label2}}{${3:node1}}{${4:node2}}{${5:node3}}{${6:x}}{${7:y}}{${8:xshift}}"
+    },
+    "kLinkVHTFHVAboveRight{}{}{}{}{}{}{}{}": {
+      "snippet": "kLinkVHTFHVAboveRight{${1:label1}}{${2:label2}}{${3:node1}}{${4:node2}}{${5:node3}}{${6:x}}{${7:y}}{${8:xshift}}"
+    },
+    "kLinkVHTFHVBelow{}{}{}{}{}{}{}{}": {
+      "snippet": "kLinkVHTFHVBelow{${1:label1}}{${2:label2}}{${3:node1}}{${4:node2}}{${5:node3}}{${6:x}}{${7:y}}{${8:xshift}}"
+    },
+    "kLinkVHTFHVBelowRight{}{}{}{}{}{}{}{}": {
+      "snippet": "kLinkVHTFHVBelowRight{${1:label1}}{${2:label2}}{${3:node1}}{${4:node2}}{${5:node3}}{${6:x}}{${7:y}}{${8:xshift}}"
+    },
+    "kMarkNode{}{}{}{}": {
+      "snippet": "kMarkNode{${1:xshift}}{${2:yshift}}{${3:label text}}{${4:node}}"
+    },
+    "kMarkNodeAbove{}{}{}{}{}": {
+      "snippet": "kMarkNodeAbove{${1:xshift}}{${2:yshift}}{${3:label text}}{${4:from node}}{${5:to node}}"
+    },
+    "kMarkNodeBelow{}{}{}{}{}": {
+      "snippet": "kMarkNodeBelow{${1:xshift}}{${2:yshift}}{${3:label text}}{${4:from node}}{${5:to node}}"
+    },
+    "kMarkNodeLeft{}{}{}{}{}": {
+      "snippet": "kMarkNodeLeft{${1:xshift}}{${2:yshift}}{${3:label text}}{${4:from node}}{${5:to node}}"
+    },
+    "kMarkNodeRight{}{}{}{}{}": {
+      "snippet": "kMarkNodeRight{${1:xshift}}{${2:yshift}}{${3:label text}}{${4:from node}}{${5:to node}}"
+    },
+    "kMinusMinusDown{}{}{}": {
+      "snippet": "kMinusMinusDown{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusMinusDownA{}{}{}": {
+      "snippet": "kMinusMinusDownA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusMinusDownB{}{}{}": {
+      "snippet": "kMinusMinusDownB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusMinusDownL{}{}{}": {
+      "snippet": "kMinusMinusDownL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusMinusUp{}{}{}": {
+      "snippet": "kMinusMinusUp{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusMinusUpA{}{}{}": {
+      "snippet": "kMinusMinusUpA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusMinusUpB{}{}{}": {
+      "snippet": "kMinusMinusUpB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusMinusUpL{}{}{}": {
+      "snippet": "kMinusMinusUpL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusPlusDown{}{}{}": {
+      "snippet": "kMinusPlusDown{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusPlusDownA{}{}{}": {
+      "snippet": "kMinusPlusDownA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusPlusDownB{}{}{}": {
+      "snippet": "kMinusPlusDownB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusPlusDownL{}{}{}": {
+      "snippet": "kMinusPlusDownL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusPlusUp{}{}{}": {
+      "snippet": "kMinusPlusUp{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusPlusUpA{}{}{}": {
+      "snippet": "kMinusPlusUpA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusPlusUpB{}{}{}": {
+      "snippet": "kMinusPlusUpB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kMinusPlusUpL{}{}{}": {
+      "snippet": "kMinusPlusUpL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kmT{}": {
+      "snippet": "kmT{${1:math}}"
+    },
+    "kmTw{}": {
+      "snippet": "kmTw{${1:math}}"
+    },
+    "kOutDown[]{}{}{}{}": {
+      "snippet": "kOutDown[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kOutDown{}{}{}{}": {
+      "snippet": "kOutDown{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kOutLeft[]{}{}{}{}": {
+      "snippet": "kOutLeft[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kOutLeft{}{}{}{}": {
+      "snippet": "kOutLeft{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kOutRight[]{}{}{}{}": {
+      "snippet": "kOutRight[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kOutRight{}{}{}{}": {
+      "snippet": "kOutRight{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kOutUp[]{}{}{}{}": {
+      "snippet": "kOutUp[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kOutUp{}{}{}{}": {
+      "snippet": "kOutUp{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kPlusDownPlusUp{}{}{}": {
+      "snippet": "kPlusDownPlusUp{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusDownPlusUpA{}{}{}": {
+      "snippet": "kPlusDownPlusUpA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusDownPlusUpB{}{}{}": {
+      "snippet": "kPlusDownPlusUpB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusDownPlusUpL{}{}{}": {
+      "snippet": "kPlusDownPlusUpL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusDown{}{}{}": {
+      "snippet": "kPlusMinusDown{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusDownA{}{}{}": {
+      "snippet": "kPlusMinusDownA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusDownB{}{}{}": {
+      "snippet": "kPlusMinusDownB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusDownL{}{}{}": {
+      "snippet": "kPlusMinusDownL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusDownPlaceAbove{}{}{}": {
+      "snippet": "kPlusMinusDownPlaceAbove{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusDownPlaceBelow{}{}{}": {
+      "snippet": "kPlusMinusDownPlaceBelow{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusMinus{}{}{}": {
+      "snippet": "kPlusMinusMinus{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusMinusA{}{}{}": {
+      "snippet": "kPlusMinusMinusA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusMinusB{}{}{}": {
+      "snippet": "kPlusMinusMinusB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusMinusL{}{}{}": {
+      "snippet": "kPlusMinusMinusL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusPlus{}{}{}": {
+      "snippet": "kPlusMinusPlus{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusPlusA{}{}{}": {
+      "snippet": "kPlusMinusPlusA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusPlusB{}{}{}": {
+      "snippet": "kPlusMinusPlusB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusPlusL{}{}{}": {
+      "snippet": "kPlusMinusPlusL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusUp{}{}{}": {
+      "snippet": "kPlusMinusUp{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusUpA{}{}{}": {
+      "snippet": "kPlusMinusUpA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusUpB{}{}{}": {
+      "snippet": "kPlusMinusUpB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusMinusUpL{}{}{}": {
+      "snippet": "kPlusMinusUpL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusDown{}{}{}": {
+      "snippet": "kPlusPlusDown{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusDownA{}{}{}": {
+      "snippet": "kPlusPlusDownA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusDownB{}{}{}": {
+      "snippet": "kPlusPlusDownB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusDownL{}{}{}": {
+      "snippet": "kPlusPlusDownL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusMinus{}{}{}": {
+      "snippet": "kPlusPlusMinus{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusMinusA{}{}{}": {
+      "snippet": "kPlusPlusMinusA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusMinusB{}{}{}": {
+      "snippet": "kPlusPlusMinusB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusMinusL{}{}{}": {
+      "snippet": "kPlusPlusMinusL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusPlus{}{}{}": {
+      "snippet": "kPlusPlusPlus{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusPlusA{}{}{}": {
+      "snippet": "kPlusPlusPlusA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusPlusB{}{}{}": {
+      "snippet": "kPlusPlusPlusB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusPlusL{}{}{}": {
+      "snippet": "kPlusPlusPlusL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusUp{}{}{}": {
+      "snippet": "kPlusPlusUp{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusUpA{}{}{}": {
+      "snippet": "kPlusPlusUpA{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusUpB{}{}{}": {
+      "snippet": "kPlusPlusUpB{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kPlusPlusUpL{}{}{}": {
+      "snippet": "kPlusPlusUpL{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kScaleDistX": {},
+    "kScaleDistX[]": {
+      "snippet": "kScaleDistX[${1:factor}]"
+    },
+    "kScaleDistY": {},
+    "kScaleDistY[]": {
+      "snippet": "kScaleDistY[${1:factor}]"
+    },
+    "ksfgCLink[]{}{}{}": {
+      "snippet": "ksfgCLink[${4:label text}]{${1:from node}}{${2:to node}}{${3:node options}}"
+    },
+    "ksfgCLink{}{}{}": {
+      "snippet": "ksfgCLink{${1:from node}}{${2:to node}}{${3:node options}}"
+    },
+    "ksfgCLinkFlip[]{}{}{}": {
+      "snippet": "ksfgCLinkFlip[${4:label text}]{${1:from node}}{${2:to node}}{${3:node options}}"
+    },
+    "ksfgCLinkFlip{}{}{}": {
+      "snippet": "ksfgCLinkFlip{${1:from node}}{${2:to node}}{${3:node options}}"
+    },
+    "ksfgLinkSelfD[]{}": {
+      "snippet": "ksfgLinkSelfD[${2:label text}]{${1:node}}"
+    },
+    "ksfgLinkSelfD{}": {
+      "snippet": "ksfgLinkSelfD{${1:node}}"
+    },
+    "ksfgLinkSelfL[]{}": {
+      "snippet": "ksfgLinkSelfL[${2:label text}]{${1:node}}"
+    },
+    "ksfgLinkSelfL{}": {
+      "snippet": "ksfgLinkSelfL{${1:node}}"
+    },
+    "ksfgLinkSelfR[]{}": {
+      "snippet": "ksfgLinkSelfR[${2:label text}]{${1:node}}"
+    },
+    "ksfgLinkSelfR{}": {
+      "snippet": "ksfgLinkSelfR{${1:node}}"
+    },
+    "ksfgLinkSelfU[]{}": {
+      "snippet": "ksfgLinkSelfU[${2:label text}]{${1:node}}"
+    },
+    "ksfgLinkSelfU{}": {
+      "snippet": "ksfgLinkSelfU{${1:node}}"
+    },
+    "ksfgNodeD[]{}{}{}{}": {
+      "snippet": "ksfgNodeD[${5:link text}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:angle}}"
+    },
+    "ksfgNodeD{}{}{}{}": {
+      "snippet": "ksfgNodeD{${1:from node}}{${2:to node}}{${3:label text}}{${4:angle}}"
+    },
+    "ksfgNodeL[]{}{}{}{}": {
+      "snippet": "ksfgNodeL[${5:link text}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:angle}}"
+    },
+    "ksfgNodeL{}{}{}{}": {
+      "snippet": "ksfgNodeL{${1:from node}}{${2:to node}}{${3:label text}}{${4:angle}}"
+    },
+    "ksfgNodeR[]{}{}{}{}": {
+      "snippet": "ksfgNodeR[${5:link text}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:angle}}"
+    },
+    "ksfgNodeR{}{}{}{}": {
+      "snippet": "ksfgNodeR{${1:from node}}{${2:to node}}{${3:label text}}{${4:angle}}"
+    },
+    "ksfgNodeU[]{}{}{}{}": {
+      "snippet": "ksfgNodeU[${5:link text}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:angle}}"
+    },
+    "ksfgNodeU{}{}{}{}": {
+      "snippet": "ksfgNodeU{${1:from node}}{${2:to node}}{${3:label text}}{${4:angle}}"
+    },
+    "ksfgNStart{}{}{}": {
+      "snippet": "ksfgNStart{${1:node name}}{${2:coord}}{${3:label text}}"
+    },
+    "ksfgStart{}{}{}": {
+      "snippet": "ksfgStart{${1:node name}}{${2:coord}}{${3:label text}}"
+    },
+    "kShadow": {},
+    "kStartNode[]{}": {
+      "snippet": "kStartNode[${2:label text}]{${1:node name}}"
+    },
+    "kStartNode{}": {
+      "snippet": "kStartNode{${1:node name}}"
+    },
+    "kStartNodec[]{}{}": {
+      "snippet": "kStartNodec[${3:label text}]{${1:coord}}{${2:node name}}"
+    },
+    "kStartNodec{}{}": {
+      "snippet": "kStartNodec{${1:coord}}{${2:node name}}"
+    },
+    "kTF{}{}": {
+      "snippet": "kTF{${1:node name}}{${2:label text}}"
+    },
+    "kTFAbove[]{}{}{}": {
+      "snippet": "kTFAbove[${4:shift}]{${1:from node}}{${2:to node}}{${3:label text}}"
+    },
+    "kTFAbove{}{}{}": {
+      "snippet": "kTFAbove{${1:from node}}{${2:to node}}{${3:label text}}"
+    },
+    "kTFAboveLeft{}{}{}{}{}": {
+      "snippet": "kTFAboveLeft{${1:yshift}}{${2:xshift}}{${3:from node}}{${4:to node}}{${5:label text}}"
+    },
+    "kTFAboveRight{}{}{}{}{}": {
+      "snippet": "kTFAboveRight{${1:yshift}}{${2:xshift}}{${3:from node}}{${4:to node}}{${5:label text}}"
+    },
+    "kTFBelow[]{}{}{}": {
+      "snippet": "kTFBelow[${4:shift}]{${1:from node}}{${2:to node}}{${3:label text}}"
+    },
+    "kTFBelow{}{}{}": {
+      "snippet": "kTFBelow{${1:from node}}{${2:to node}}{${3:label text}}"
+    },
+    "kTFBelowLeft{}{}{}{}{}": {
+      "snippet": "kTFBelowLeft{${1:yshift}}{${2:xshift}}{${3:from node}}{${4:to node}}{${5:label text}}"
+    },
+    "kTFBelowRight{}{}{}{}{}": {
+      "snippet": "kTFBelowRight{${1:yshift}}{${2:xshift}}{${3:from node}}{${4:to node}}{${5:label text}}"
+    },
+    "kTFCs{}{}{}": {
+      "snippet": "kTFCs{${1:coord}}{${2:node name}}{${3:label text}}"
+    },
+    "kTFLeft[]{}{}{}": {
+      "snippet": "kTFLeft[${4:shift}]{${1:from node}}{${2:to node}}{${3:label text}}"
+    },
+    "kTFLeft{}{}{}": {
+      "snippet": "kTFLeft{${1:from node}}{${2:to node}}{${3:label text}}"
+    },
+    "kTFRight[]{}{}{}": {
+      "snippet": "kTFRight[${4:shift}]{${1:from node}}{${2:to node}}{${3:label text}}"
+    },
+    "kTFRight{}{}{}": {
+      "snippet": "kTFRight{${1:from node}}{${2:to node}}{${3:label text}}"
+    },
+    "kVecInDown[]{}{}{}{}": {
+      "snippet": "kVecInDown[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecInDown{}{}{}{}": {
+      "snippet": "kVecInDown{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecInLeft[]{}{}{}{}": {
+      "snippet": "kVecInLeft[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecInLeft{}{}{}{}": {
+      "snippet": "kVecInLeft{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecInRight[]{}{}{}{}": {
+      "snippet": "kVecInRight[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecInRight{}{}{}{}": {
+      "snippet": "kVecInRight{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecInUp[]{}{}{}{}": {
+      "snippet": "kVecInUp[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecInUp{}{}{}{}": {
+      "snippet": "kVecInUp{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecLink[]{}{}": {
+      "snippet": "kVecLink[${3:label text}]{${1:from node}}{${2:to node}}"
+    },
+    "kVecLink{}{}": {
+      "snippet": "kVecLink{${1:from node}}{${2:to node}}"
+    },
+    "kVecLinkdir[]{}{}{}": {
+      "snippet": "kVecLinkdir[${4:label text}]{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kVecLinkdir{}{}{}": {
+      "snippet": "kVecLinkdir{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kVecLinkHV[]{}{}{}{}{}{}": {
+      "snippet": "kVecLinkHV[${7:label text}]{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kVecLinkHV{}{}{}{}{}{}": {
+      "snippet": "kVecLinkHV{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kVecLinkn[]{}{}": {
+      "snippet": "kVecLinkn[${3:label text}]{${1:from node}}{${2:to node}}"
+    },
+    "kVecLinkn{}{}": {
+      "snippet": "kVecLinkn{${1:from node}}{${2:to node}}"
+    },
+    "kVecLinkndir[]{}{}{}": {
+      "snippet": "kVecLinkndir[${4:label text}]{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kVecLinkndir{}{}{}": {
+      "snippet": "kVecLinkndir{${1:from node}}{${2:to node}}{${3:shift}}"
+    },
+    "kVecLinknHV[]{}{}{}{}{}{}": {
+      "snippet": "kVecLinknHV[${7:label text}]{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kVecLinknHV{}{}{}{}{}{}": {
+      "snippet": "kVecLinknHV{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kVecLinknVH[]{}{}{}{}{}{}": {
+      "snippet": "kVecLinknVH[${7:label text}]{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kVecLinknVH{}{}{}{}{}{}": {
+      "snippet": "kVecLinknVH{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kVecLinkVH[]{}{}{}{}{}{}": {
+      "snippet": "kVecLinkVH[${7:label text}]{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kVecLinkVH{}{}{}{}{}{}": {
+      "snippet": "kVecLinkVH{${1:from node}}{${2:to node}}{${3:yshift}}{${4:xshift}}{${5:labelpos 0-9}}{${6:mkpt}}"
+    },
+    "kVecOutDown[]{}{}{}{}": {
+      "snippet": "kVecOutDown[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecOutDown{}{}{}{}": {
+      "snippet": "kVecOutDown{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecOutLeft[]{}{}{}{}": {
+      "snippet": "kVecOutLeft[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecOutLeft{}{}{}{}": {
+      "snippet": "kVecOutLeft{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecOutRight[]{}{}{}{}": {
+      "snippet": "kVecOutRight[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecOutRight{}{}{}{}": {
+      "snippet": "kVecOutRight{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecOutUp[]{}{}{}{}": {
+      "snippet": "kVecOutUp[${5:dist shift}]{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVecOutUp{}{}{}{}": {
+      "snippet": "kVecOutUp{${1:from node}}{${2:to node}}{${3:label text}}{${4:dir shift}}"
+    },
+    "kVLinkHVHRight[]{}{}{}{}{}": {
+      "snippet": "kVLinkHVHRight[${6:link scale}]{${1:label text}}{${2:from node}}{${3:to node}}{${4:from-shift}}{${5:to-shift}}"
+    },
+    "kVLinkHVHRight{}{}{}{}{}": {
+      "snippet": "kVLinkHVHRight{${1:label text}}{${2:from node}}{${3:to node}}{${4:from-shift}}{${5:to-shift}}"
+    },
+    "asumxft": {},
+    "backgroundcolor": {},
+    "colortext": {},
+    "dark": {},
+    "de": {},
+    "dn": {},
+    "ds": {},
+    "dw": {},
+    "dxb": {},
+    "dxina": {},
+    "dxinr": {},
+    "dxj": {},
+    "dxl": {},
+    "dxnax": {},
+    "dxnbx": {},
+    "dxncsx": {},
+    "dxnlx": {},
+    "dxnrx": {},
+    "dxoutr": {},
+    "dxpm": {},
+    "dxpos": {},
+    "dxr": {},
+    "dxt": {},
+    "dxtf": {},
+    "dynay": {},
+    "dynby": {},
+    "dyncsy": {},
+    "dynly": {},
+    "dynry": {},
+    "dypos": {},
+    "dyt": {},
+    "dytf": {},
+    "dytfb": {},
+    "horizdist": {},
+    "linecolor": {},
+    "linepathtype": {},
+    "linetype": {},
+    "minheight": {},
+    "mkpt": {},
+    "phasedist": {},
+    "poslabel": {},
+    "sfghorizdist": {},
+    "textsize": {},
+    "verticdist": {},
+    "xc": {},
+    "xca": {},
+    "xcb": {},
+    "xcr": {},
+    "xe": {},
+    "xf": {},
+    "xn": {},
+    "xon": {},
+    "xone": {},
+    "xonw": {},
+    "xos": {},
+    "xose": {},
+    "xosw": {},
+    "xs": {},
+    "xt": {},
+    "xtohat": {},
+    "xw": {},
+    "yc": {},
+    "yca": {},
+    "ycb": {},
+    "ye": {},
+    "yf": {},
+    "yn": {},
+    "yon": {},
+    "yos": {},
+    "ys": {},
+    "yt": {},
+    "ytohat": {},
+    "yw": {},
+    "kOutLeftM": {},
+    "kOutRightM": {},
+    "kOutUpM": {},
+    "kOutDownM": {}
+  },
+  "envs": {
+    "kblock": {}
+  },
+  "options": [],
+  "keyvals": []
+}

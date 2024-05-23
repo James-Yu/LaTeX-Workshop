@@ -1,0 +1,472 @@
+{
+  "includes": {
+    "color": [],
+    "graphicx": [],
+    "ifthen": [],
+    "ifxetex": [],
+    "keyval": []
+  },
+  "macros": {
+    "B": {
+      "option": "v1compatible",
+      "detail": "𝐵",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL B"
+    },
+    "G": {
+      "option": "v1compatible",
+      "detail": "𝐺",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL G"
+    },
+    "C": {
+      "option": "v1compatible",
+      "detail": "𝐶",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL C"
+    },
+    "Curve{}": {
+      "snippet": "Curve{${1:(${2:x1,y1})(${3:x2,y2})...}}"
+    },
+    "DashCurve{}{}": {
+      "snippet": "DashCurve{${1:(${3:x1,y1})(${4:x2,y2})...}}{${2:dashsize}}"
+    },
+    "Polygon{}{}": {
+      "snippet": "Polygon{${1:(${3:x1,y1}),(${4:x2,y2}),...}}{${2:color}}"
+    },
+    "FilledPolygon{}{}": {
+      "snippet": "FilledPolygon{${1:(${3:x1,y1}),(${4:x2,y2}),...}}{${2:color}}"
+    },
+    "SetPFont{}{}": {
+      "snippet": "SetPFont{${1:postscript font}}{${2:size}}"
+    },
+    "SetDashSize{}": {
+      "snippet": "SetDashSize{${1:number}}"
+    },
+    "SetLineSep{}": {
+      "snippet": "SetLineSep{${1:number}}"
+    },
+    "SetSep{}": {
+      "snippet": "SetSep{${1:number}}"
+    },
+    "SetWidth{}": {
+      "snippet": "SetWidth{${1:number}}"
+    },
+    "SetArrowAspect{}": {
+      "snippet": "SetArrowAspect{${1:number}}"
+    },
+    "SetArrowInset{}": {
+      "snippet": "SetArrowInset{${1:number}}"
+    },
+    "SetArrowPosition{}": {
+      "snippet": "SetArrowPosition{${1:number}}"
+    },
+    "SetArrowScale{}": {
+      "snippet": "SetArrowScale{${1:number}}"
+    },
+    "DefaultArrowScale{}": {
+      "snippet": "DefaultArrowScale{${1:number}}"
+    },
+    "SetArrowStroke{}": {
+      "snippet": "SetArrowStroke{${1:number}}"
+    },
+    "SetArrowSize{}": {
+      "snippet": "SetArrowSize{${1:number}}"
+    },
+    "canvasScaleOnept": {},
+    "canvasScaleObjectScale": {},
+    "canvasScaleUnitLength": {},
+    "SetScale{}": {
+      "snippet": "SetScale{${1:number}}"
+    },
+    "SetTextScale{}": {
+      "snippet": "SetTextScale{${1:number}}"
+    },
+    "SetCanvasScale{}": {
+      "snippet": "SetCanvasScale{${1:number}}"
+    },
+    "ifPSTextScalesLikeGraphics": {},
+    "PSTextScalesLikeGraphicsfalse": {},
+    "PSTextScalesLikeGraphicstrue": {},
+    "SetColor{}": {
+      "snippet": "SetColor{${1:color}}"
+    },
+    "SetObjectScale{}": {
+      "snippet": "SetObjectScale{${1:number}}"
+    },
+    "textGreenYellow": {},
+    "textYellow": {},
+    "textGoldenrod": {},
+    "textDandelion": {},
+    "textApricot": {},
+    "textPeach": {},
+    "textMelon": {},
+    "textYellowOrange": {},
+    "textOrange": {},
+    "textBurntOrange": {},
+    "textBittersweet": {},
+    "textRedOrange": {},
+    "textMahogany": {},
+    "textMaroon": {},
+    "textBrickRed": {},
+    "textRed": {},
+    "textOrangeRed": {},
+    "textRubineRed": {},
+    "textWildStrawberry": {},
+    "textSalmon": {},
+    "textCarnationPink": {},
+    "textMagenta": {},
+    "textVioletRed": {},
+    "textRhodamine": {},
+    "textMulberry": {},
+    "textRedViolet": {},
+    "textFuchsia": {},
+    "textLavender": {},
+    "textThistle": {},
+    "textOrchid": {},
+    "textDarkOrchid": {},
+    "textPurple": {},
+    "textPlum": {},
+    "textViolet": {},
+    "textRoyalPurple": {},
+    "textBlueViolet": {},
+    "textPeriwinkle": {},
+    "textCadetBlue": {},
+    "textCornflowerBlue": {},
+    "textMidnightBlue": {},
+    "textNavyBlue": {},
+    "textRoyalBlue": {},
+    "textBlue": {},
+    "textCerulean": {},
+    "textCyan": {},
+    "textProcessBlue": {},
+    "textSkyBlue": {},
+    "textTurquoise": {},
+    "textTealBlue": {},
+    "textAquamarine": {},
+    "textBlueGreen": {},
+    "textEmerald": {},
+    "textJungleGreen": {},
+    "textSeaGreen": {},
+    "textGreen": {},
+    "textForestGreen": {},
+    "textPineGreen": {},
+    "textLimeGreen": {},
+    "textYellowGreen": {},
+    "textSpringGreen": {},
+    "textOliveGreen": {},
+    "textRawSienna": {},
+    "textSepia": {},
+    "textBrown": {},
+    "textTan": {},
+    "textGray": {},
+    "textBlack": {},
+    "textWhite": {},
+    "textLightYellow": {},
+    "textLightRed": {},
+    "textLightBlue": {},
+    "textLightGray": {},
+    "textVeryLightBlue": {},
+    "GreenYellow{}": {
+      "snippet": "GreenYellow{${1:text}}"
+    },
+    "Yellow{}": {
+      "snippet": "Yellow{${1:text}}"
+    },
+    "Goldenrod{}": {
+      "snippet": "Goldenrod{${1:text}}"
+    },
+    "Dandelion{}": {
+      "snippet": "Dandelion{${1:text}}"
+    },
+    "Apricot{}": {
+      "snippet": "Apricot{${1:text}}"
+    },
+    "Peach{}": {
+      "snippet": "Peach{${1:text}}"
+    },
+    "Melon{}": {
+      "snippet": "Melon{${1:text}}"
+    },
+    "YellowOrange{}": {
+      "snippet": "YellowOrange{${1:text}}"
+    },
+    "Orange{}": {
+      "snippet": "Orange{${1:text}}"
+    },
+    "BurntOrange{}": {
+      "snippet": "BurntOrange{${1:text}}"
+    },
+    "Bittersweet{}": {
+      "snippet": "Bittersweet{${1:text}}"
+    },
+    "RedOrange{}": {
+      "snippet": "RedOrange{${1:text}}"
+    },
+    "Mahogany{}": {
+      "snippet": "Mahogany{${1:text}}"
+    },
+    "Maroon{}": {
+      "snippet": "Maroon{${1:text}}"
+    },
+    "BrickRed{}": {
+      "snippet": "BrickRed{${1:text}}"
+    },
+    "Red{}": {
+      "snippet": "Red{${1:text}}"
+    },
+    "OrangeRed{}": {
+      "snippet": "OrangeRed{${1:text}}"
+    },
+    "RubineRed{}": {
+      "snippet": "RubineRed{${1:text}}"
+    },
+    "WildStrawberry{}": {
+      "snippet": "WildStrawberry{${1:text}}"
+    },
+    "Salmon{}": {
+      "snippet": "Salmon{${1:text}}"
+    },
+    "CarnationPink{}": {
+      "snippet": "CarnationPink{${1:text}}"
+    },
+    "Magenta{}": {
+      "snippet": "Magenta{${1:text}}"
+    },
+    "VioletRed{}": {
+      "snippet": "VioletRed{${1:text}}"
+    },
+    "Rhodamine{}": {
+      "snippet": "Rhodamine{${1:text}}"
+    },
+    "Mulberry{}": {
+      "snippet": "Mulberry{${1:text}}"
+    },
+    "RedViolet{}": {
+      "snippet": "RedViolet{${1:text}}"
+    },
+    "Fuchsia{}": {
+      "snippet": "Fuchsia{${1:text}}"
+    },
+    "Lavender{}": {
+      "snippet": "Lavender{${1:text}}"
+    },
+    "Thistle{}": {
+      "snippet": "Thistle{${1:text}}"
+    },
+    "Orchid{}": {
+      "snippet": "Orchid{${1:text}}"
+    },
+    "DarkOrchid{}": {
+      "snippet": "DarkOrchid{${1:text}}"
+    },
+    "Purple{}": {
+      "snippet": "Purple{${1:text}}"
+    },
+    "Plum{}": {
+      "snippet": "Plum{${1:text}}"
+    },
+    "Violet{}": {
+      "snippet": "Violet{${1:text}}"
+    },
+    "RoyalPurple{}": {
+      "snippet": "RoyalPurple{${1:text}}"
+    },
+    "BlueViolet{}": {
+      "snippet": "BlueViolet{${1:text}}"
+    },
+    "Periwinkle{}": {
+      "snippet": "Periwinkle{${1:text}}"
+    },
+    "CadetBlue{}": {
+      "snippet": "CadetBlue{${1:text}}"
+    },
+    "CornflowerBlue{}": {
+      "snippet": "CornflowerBlue{${1:text}}"
+    },
+    "MidnightBlue{}": {
+      "snippet": "MidnightBlue{${1:text}}"
+    },
+    "NavyBlue{}": {
+      "snippet": "NavyBlue{${1:text}}"
+    },
+    "RoyalBlue{}": {
+      "snippet": "RoyalBlue{${1:text}}"
+    },
+    "Blue{}": {
+      "snippet": "Blue{${1:text}}"
+    },
+    "Cerulean{}": {
+      "snippet": "Cerulean{${1:text}}"
+    },
+    "Cyan{}": {
+      "snippet": "Cyan{${1:text}}"
+    },
+    "ProcessBlue{}": {
+      "snippet": "ProcessBlue{${1:text}}"
+    },
+    "SkyBlue{}": {
+      "snippet": "SkyBlue{${1:text}}"
+    },
+    "Turquoise{}": {
+      "snippet": "Turquoise{${1:text}}"
+    },
+    "TealBlue{}": {
+      "snippet": "TealBlue{${1:text}}"
+    },
+    "Aquamarine{}": {
+      "snippet": "Aquamarine{${1:text}}"
+    },
+    "BlueGreen{}": {
+      "snippet": "BlueGreen{${1:text}}"
+    },
+    "Emerald{}": {
+      "snippet": "Emerald{${1:text}}"
+    },
+    "JungleGreen{}": {
+      "snippet": "JungleGreen{${1:text}}"
+    },
+    "SeaGreen{}": {
+      "snippet": "SeaGreen{${1:text}}"
+    },
+    "Green{}": {
+      "snippet": "Green{${1:text}}"
+    },
+    "ForestGreen{}": {
+      "snippet": "ForestGreen{${1:text}}"
+    },
+    "PineGreen{}": {
+      "snippet": "PineGreen{${1:text}}"
+    },
+    "LimeGreen{}": {
+      "snippet": "LimeGreen{${1:text}}"
+    },
+    "YellowGreen{}": {
+      "snippet": "YellowGreen{${1:text}}"
+    },
+    "SpringGreen{}": {
+      "snippet": "SpringGreen{${1:text}}"
+    },
+    "OliveGreen{}": {
+      "snippet": "OliveGreen{${1:text}}"
+    },
+    "RawSienna{}": {
+      "snippet": "RawSienna{${1:text}}"
+    },
+    "Sepia{}": {
+      "snippet": "Sepia{${1:text}}"
+    },
+    "Brown{}": {
+      "snippet": "Brown{${1:text}}"
+    },
+    "Tan{}": {
+      "snippet": "Tan{${1:text}}"
+    },
+    "Gray{}": {
+      "snippet": "Gray{${1:text}}"
+    },
+    "Black{}": {
+      "snippet": "Black{${1:text}}"
+    },
+    "White{}": {
+      "snippet": "White{${1:text}}"
+    },
+    "LightYellow{}": {
+      "snippet": "LightYellow{${1:text}}"
+    },
+    "LightRed{}": {
+      "snippet": "LightRed{${1:text}}"
+    },
+    "LightBlue{}": {
+      "snippet": "LightBlue{${1:text}}"
+    },
+    "LightGray{}": {
+      "snippet": "LightGray{${1:text}}"
+    },
+    "VeryLightBlue{}": {
+      "snippet": "VeryLightBlue{${1:text}}"
+    },
+    "AXOputPDF{}": {
+      "snippet": "AXOputPDF{${1:pdf code}}"
+    },
+    "AXOputPS{}": {
+      "snippet": "AXOputPS{${1:ps code}}"
+    },
+    "AXOspecial{}": {
+      "snippet": "AXOspecial{${1:ps code}}"
+    },
+    "AssignDecDiv{}{}{}": {
+      "snippet": "AssignDecDiv{${1:variable}}{${2:integer1}}{${3:integer2}}"
+    },
+    "IfColor{}{}": {
+      "snippet": "IfColor{${1:arg1}}{${2:arg2}}"
+    },
+    "SetTmpBoxTwo{}{}": {
+      "snippet": "SetTmpBoxTwo{${1:contents1}}{${2:contents2}}"
+    },
+    "SetTmpBox{}": {
+      "snippet": "SetTmpBox{${1:contents}}"
+    },
+    "UseCurrentPSFont": {},
+    "axoarrowsize": {},
+    "axocanvas": {},
+    "axofontsize": {},
+    "axohelp": {},
+    "axominusone": {},
+    "axoone": {},
+    "axoscale": {},
+    "axoscalePT": {},
+    "axoscaleTT": {},
+    "axotextscale": {},
+    "axounitlength": {},
+    "axowidth": {},
+    "axoxo": {},
+    "axoxoff": {},
+    "axoyo": {},
+    "axoyoff": {},
+    "axozero": {},
+    "contentspdf": {},
+    "contentspdfNoOffset": {},
+    "defWithOption{}{}{}": {
+      "snippet": "defWithOption{${1:csname}}{${2:args}}{${3:definition}}"
+    },
+    "defineaxofont{}{}": {
+      "snippet": "defineaxofont{${1:user-visible font name}}{${2:LaTeX font name}}"
+    },
+    "eind": {},
+    "getaxohelp{}{}": {
+      "snippet": "getaxohelp{${1:csname}}{${2:spec}}"
+    },
+    "getoneline{}{}": {
+      "snippet": "getoneline{${1:csname}}{${2:input stream num}}"
+    },
+    "newcolor{}{}": {
+      "snippet": "newcolor{${1:color}}{${2:CMYK}}"
+    },
+    "pfontC": {},
+    "pfontN": {},
+    "tmpfh": {},
+    "useX{}": {
+      "snippet": "useX{${1:point name}}"
+    },
+    "useY{}": {
+      "snippet": "useY{${1:point name}}"
+    },
+    "ifAXONotImplemented": {},
+    "AXONotImplementedtrue": {},
+    "AXONotImplementedfalse": {},
+    "tmpX": {},
+    "tmpY": {},
+    "bpinsp": {},
+    "ptinsp": {}
+  },
+  "envs": {
+    "OLDpicture": {}
+  },
+  "options": [
+    "v1compatible",
+    "canvasScaleIs1pt",
+    "canvasScaleIsObjectScale",
+    "canvasScaleIsUnitLength",
+    "PSTextScalesIndependently",
+    "PSTextScalesLikeGraphics"
+  ],
+  "keyvals": []
+}

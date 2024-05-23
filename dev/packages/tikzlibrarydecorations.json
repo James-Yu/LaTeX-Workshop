@@ -1,0 +1,92 @@
+{
+  "includes": {},
+  "macros": {
+    "pgfdecoratedcompleteddistance": {},
+    "pgfdecoratedremainingdistance": {},
+    "pgfdecoratedinputsegmentcompleteddistance": {},
+    "pgfdecoratedinputsegmentremainingdistance": {},
+    "pgfdecorationsegmentamplitude": {},
+    "pgfdecorationsegmentlength": {},
+    "pgfdecorationsegmentangle": {},
+    "pgfdecorationsegmentaspect": {},
+    "pgfmetadecorationsegmentamplitude": {},
+    "pgfmetadecorationsegmentlength": {},
+    "ifpgfdecoratepathhascorners": {},
+    "pgfdeclaredecoration{}{}{}": {
+      "snippet": "pgfdeclaredecoration{${1:name}}{${2:initial state}}{${3:states}}"
+    },
+    "state{}{}": {
+      "snippet": "state{${1:name}}{${2:code}}"
+    },
+    "state{}[]{}": {
+      "snippet": "state{${1:name}}[${2:options}]{${3:code}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "pgfdeclaremetadecoration{}{}{}": {
+      "snippet": "pgfdeclaremetadecoration{${1:name}}{${2:initial state}}{${3:states}}"
+    },
+    "decoration{}": {
+      "snippet": "decoration{${1:name}}"
+    },
+    "beforedecoration{}": {
+      "snippet": "beforedecoration{${1:before code}}"
+    },
+    "afterdecoration{}": {
+      "snippet": "afterdecoration{${1:after code}}"
+    },
+    "pgfmetadecoratedpathlength": {},
+    "pgfmetadecoratedcompleteddistance": {},
+    "pgfmetadecoratedinputsegmentcompleteddistance": {},
+    "pgfmetadecoratedinputsegmentremainingdistance": {},
+    "pgfdecoratebeforecode": {},
+    "pgfdecorateaftercode": {},
+    "pgfdecoratepath{}{}": {
+      "snippet": "pgfdecoratepath{${1:name}}{${2:path commands}}"
+    },
+    "pgfdecoratecurrentpath{}": {
+      "snippet": "pgfdecoratecurrentpath{${1:name}}"
+    },
+    "pgfdecorationpath": {},
+    "pgfdecoratedpath": {},
+    "pgfdecorateexistingpath": {},
+    "pgfdecoratedpathlength": {},
+    "pgfpointdecoratedpathfirst": {},
+    "pgfpointdecoratedpathlast": {},
+    "pgfpointdecoratedinputsegmentfirst": {},
+    "pgfpointdecoratedinputsegmentlast": {},
+    "pgfsetdecorationsegmenttransformation{}": {
+      "snippet": "pgfsetdecorationsegmenttransformation{${1:code}}"
+    },
+    "pgfmetadecoratedremainingdistance": {},
+    "pgfpointmetadecoratedpathfirst": {},
+    "pgfpointmetadecoratedpathlast": {},
+    "pgfdecoratedinputsegmentlength": {},
+    "pgfdecoratedangle": {}
+  },
+  "envs": {
+    "pgfdecoration{}": {
+      "name": "pgfdecoration",
+      "snippet": "{${1:name}}"
+    },
+    "pgfmetadecoration{}": {
+      "name": "pgfmetadecoration",
+      "snippet": "{${1:name}}"
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "switch if less than=${1:dimen} to ${2:new state}",
+      "switch if input segment less than=${1:dimen} to ${2:new state}",
+      "width=",
+      "repeat state=${1:repetitions}",
+      "next state=${1:new state}",
+      "if input segment is closepath={${1:options}}",
+      "auto end on length=",
+      "auto corner on length=",
+      "persistent precomputation=${1:precode}",
+      "persistent postcomputation=${1:postcode}"
+    ]
+  ]
+}

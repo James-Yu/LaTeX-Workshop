@@ -1,0 +1,858 @@
+{
+  "includes": {
+    "glossaries": [],
+    "glossary-inline": [],
+    "glossary-mcols": [],
+    "glossary-tree": [],
+    "glossaries-babel": [
+      "translate=babel"
+    ],
+    "glossaries-compatible-207": [
+      "compatible-2.07",
+      "compatible-2.07=true"
+    ]
+  },
+  "macros": {
+    "newleipzig{}{}{}": {
+      "snippet": "newleipzig{${1:label}}{${2:short}}{${3:long}}"
+    },
+    "newleipzig[]{}{}{}": {
+      "snippet": "newleipzig[${4:options}]{${1:label}}{${2:short}}{${3:long}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "renewleipzig{}{}{}": {
+      "snippet": "renewleipzig{${1:label}}{${2:short}}{${3:long}}"
+    },
+    "renewleipzig[]{}{}{}": {
+      "snippet": "renewleipzig[${4:options}]{${1:label}}{${2:short}}{${3:long}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "printglosses": {},
+    "printglosses[]": {
+      "snippet": "printglosses[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "printleipzig": {},
+    "printleipzig[]": {
+      "snippet": "printleipzig[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "leipzigfont{}": {
+      "snippet": "leipzigfont{${1:text}}"
+    },
+    "firstleipzigfont{}": {
+      "snippet": "firstleipzigfont{${1:text}}"
+    },
+    "ifleipzighyper": {},
+    "leipzighypertrue": {},
+    "leipzighyperfalse": {},
+    "leipzigname": {},
+    "ifleipzigdesccapitalize": {},
+    "leipzigdesccapitalizetrue": {},
+    "leipzigdesccapitalizefalse": {},
+    "ifleipzignonumbers": {},
+    "leipzignonumberstrue": {},
+    "leipzignonumbersfalse": {},
+    "ifleipzigdonotindex": {},
+    "leipzigdonotindextrue": {},
+    "leipzigdonotindexfalse": {},
+    "leipzigtype": {},
+    "glspostnamespace": {},
+    "glsinlineshortlongseparator": {},
+    "Aarg": {},
+    "Abl": {},
+    "Abs": {},
+    "Acc": {},
+    "Adj": {},
+    "Adv": {},
+    "Agr": {},
+    "All": {},
+    "Antip": {},
+    "Appl": {},
+    "Art": {},
+    "Aux": {},
+    "Ben": {},
+    "Caus": {},
+    "Clf": {},
+    "Com": {},
+    "Comp": {},
+    "Compl": {},
+    "Cond": {},
+    "Cop": {},
+    "Cvb": {},
+    "Dat": {},
+    "Decl": {},
+    "Def": {},
+    "Dem": {},
+    "Det": {},
+    "Dist": {},
+    "Distr": {},
+    "Du": {},
+    "Dur": {},
+    "Erg": {},
+    "Excl": {},
+    "F": {
+      "detail": "𝐹",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL F"
+    },
+    "Foc": {},
+    "Fut": {},
+    "Gen": {},
+    "Imp": {},
+    "Incl": {},
+    "Ind": {},
+    "Indf": {},
+    "Inf": {},
+    "Ins": {},
+    "Intr": {},
+    "Ipfv": {},
+    "Irr": {},
+    "Loc": {},
+    "M": {
+      "detail": "𝑀",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL M"
+    },
+    "N": {
+      "detail": "𝑁",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL N"
+    },
+    "Neg": {},
+    "Nmlz": {},
+    "Nom": {},
+    "Obj": {},
+    "Obl": {},
+    "Parg": {},
+    "Pass": {},
+    "Pfv": {},
+    "Pl": {},
+    "Poss": {},
+    "Pred": {},
+    "Prf": {},
+    "Prs": {},
+    "Prog": {},
+    "Proh": {},
+    "Prox": {},
+    "Pst": {},
+    "Ptcp": {},
+    "Purp": {},
+    "Q": {
+      "detail": "𝑄",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL Q"
+    },
+    "Quot": {},
+    "Recp": {},
+    "Refl": {},
+    "Rel": {},
+    "Res": {},
+    "Sarg": {},
+    "Sbj": {},
+    "Sbjv": {},
+    "Sg": {},
+    "Top": {
+      "detail": "⫪",
+      "documentation": "DOUBLE DOWN TACK"
+    },
+    "Tr": {},
+    "Voc": {},
+    "First": {},
+    "Second": {},
+    "Third": {},
+    "Fsg": {},
+    "Fdu": {},
+    "Fpl": {},
+    "Ssg": {},
+    "Sdu": {},
+    "Spl": {},
+    "Tsg": {},
+    "Tdu": {},
+    "Tpl": {},
+    "Subj": {},
+    "glsshowtarget{}": {
+      "snippet": "glsshowtarget{${1:target name}}",
+      "option": "debug=showtargets"
+    },
+    "glsshowtargetouter{}": {
+      "snippet": "glsshowtargetouter{${1:label}}",
+      "option": "debug=showtargets"
+    },
+    "glsshowtargetfont": {
+      "option": "debug=showtargets"
+    },
+    "glsshowaccsupp{}{}{}": {
+      "snippet": "glsshowaccsupp{${1:options}}{${2:tag}}{${3:replacement text}}",
+      "option": "debug=showaccsupp"
+    },
+    "printsymbols": {
+      "option": "symbols"
+    },
+    "printsymbols[]": {
+      "snippet": "printsymbols[${1:options}]",
+      "option": "symbols"
+    },
+    "printnumbers": {
+      "option": "numbers"
+    },
+    "printnumbers[]": {
+      "snippet": "printnumbers[${1:options}]",
+      "option": "numbers"
+    },
+    "newterm{}": {
+      "snippet": "newterm{${1:term}}",
+      "option": "index"
+    },
+    "newterm[]{}": {
+      "snippet": "newterm[${2:options}]{${1:term}}",
+      "option": "index"
+    },
+    "printindex": {
+      "option": "index"
+    },
+    "printindex[]": {
+      "snippet": "printindex[${1:options}]",
+      "option": "index"
+    },
+    "printacronyms": {
+      "option": "acronyms"
+    },
+    "printacronyms[]": {
+      "snippet": "printacronyms[${1:options}]",
+      "option": "acronyms"
+    },
+    "DeclareAcronymList{}": {
+      "snippet": "DeclareAcronymList{${1:list}}"
+    },
+    "SetAcronymLists{}": {
+      "snippet": "SetAcronymLists{${1:list}}"
+    },
+    "glsIfListOfAcronyms{}{}{}": {
+      "snippet": "glsIfListOfAcronyms{${1:label}}{${2:true}}{${3:false}}"
+    },
+    "DefineAcronymSynonyms": {},
+    "acs{}": {
+      "snippet": "acs{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acs[]{}": {
+      "snippet": "acs[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acs{}[]": {
+      "snippet": "acs{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "acs[]{}[]": {
+      "snippet": "acs[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "acs*{}": {
+      "snippet": "acs*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acs*[]{}": {
+      "snippet": "acs*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acs*{}[]": {
+      "snippet": "acs*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "acs*[]{}[]": {
+      "snippet": "acs*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Acs{}": {
+      "snippet": "Acs{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acs[]{}": {
+      "snippet": "Acs[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acs{}[]": {
+      "snippet": "Acs{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Acs[]{}[]": {
+      "snippet": "Acs[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Acs*{}": {
+      "snippet": "Acs*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acs*[]{}": {
+      "snippet": "Acs*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acs*{}[]": {
+      "snippet": "Acs*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Acs*[]{}[]": {
+      "snippet": "Acs*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "acsp{}": {
+      "snippet": "acsp{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acsp[]{}": {
+      "snippet": "acsp[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acsp{}[]": {
+      "snippet": "acsp{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "acsp[]{}[]": {
+      "snippet": "acsp[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "acsp*{}": {
+      "snippet": "acsp*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acsp*[]{}": {
+      "snippet": "acsp*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acsp*{}[]": {
+      "snippet": "acsp*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "acsp*[]{}[]": {
+      "snippet": "acsp*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Acsp{}": {
+      "snippet": "Acsp{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acsp[]{}": {
+      "snippet": "Acsp[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acsp{}[]": {
+      "snippet": "Acsp{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Acsp[]{}[]": {
+      "snippet": "Acsp[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Acsp*{}": {
+      "snippet": "Acsp*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acsp*[]{}": {
+      "snippet": "Acsp*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acsp*{}[]": {
+      "snippet": "Acsp*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Acsp*[]{}[]": {
+      "snippet": "Acsp*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "acl{}": {
+      "snippet": "acl{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acl[]{}": {
+      "snippet": "acl[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acl{}[]": {
+      "snippet": "acl{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "acl[]{}[]": {
+      "snippet": "acl[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "acl*{}": {
+      "snippet": "acl*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acl*[]{}": {
+      "snippet": "acl*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acl*{}[]": {
+      "snippet": "acl*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "acl*[]{}[]": {
+      "snippet": "acl*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Acl{}": {
+      "snippet": "Acl{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acl[]{}": {
+      "snippet": "Acl[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acl{}[]": {
+      "snippet": "Acl{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Acl[]{}[]": {
+      "snippet": "Acl[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Acl*{}": {
+      "snippet": "Acl*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acl*[]{}": {
+      "snippet": "Acl*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acl*{}[]": {
+      "snippet": "Acl*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Acl*[]{}[]": {
+      "snippet": "Acl*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "aclp{}": {
+      "snippet": "aclp{${1:label}}",
+      "option": "shortcuts"
+    },
+    "aclp[]{}": {
+      "snippet": "aclp[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "aclp{}[]": {
+      "snippet": "aclp{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "aclp[]{}[]": {
+      "snippet": "aclp[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "aclp*{}": {
+      "snippet": "aclp*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "aclp*[]{}": {
+      "snippet": "aclp*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "aclp*{}[]": {
+      "snippet": "aclp*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "aclp*[]{}[]": {
+      "snippet": "aclp*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Aclp{}": {
+      "snippet": "Aclp{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Aclp[]{}": {
+      "snippet": "Aclp[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Aclp{}[]": {
+      "snippet": "Aclp{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Aclp[]{}[]": {
+      "snippet": "Aclp[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Aclp*{}": {
+      "snippet": "Aclp*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Aclp*[]{}": {
+      "snippet": "Aclp*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Aclp*{}[]": {
+      "snippet": "Aclp*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Aclp*[]{}[]": {
+      "snippet": "Aclp*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "acf{}": {
+      "snippet": "acf{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acf[]{}": {
+      "snippet": "acf[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acf{}[]": {
+      "snippet": "acf{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "acf[]{}[]": {
+      "snippet": "acf[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "acf*{}": {
+      "snippet": "acf*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acf*[]{}": {
+      "snippet": "acf*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acf*{}[]": {
+      "snippet": "acf*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "acf*[]{}[]": {
+      "snippet": "acf*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Acf{}": {
+      "snippet": "Acf{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acf[]{}": {
+      "snippet": "Acf[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acf{}[]": {
+      "snippet": "Acf{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Acf[]{}[]": {
+      "snippet": "Acf[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Acf*{}": {
+      "snippet": "Acf*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acf*[]{}": {
+      "snippet": "Acf*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acf*{}[]": {
+      "snippet": "Acf*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Acf*[]{}[]": {
+      "snippet": "Acf*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "acfp{}": {
+      "snippet": "acfp{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acfp[]{}": {
+      "snippet": "acfp[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acfp{}[]": {
+      "snippet": "acfp{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "acfp[]{}[]": {
+      "snippet": "acfp[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "acfp*{}": {
+      "snippet": "acfp*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acfp*[]{}": {
+      "snippet": "acfp*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acfp*{}[]": {
+      "snippet": "acfp*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "acfp*[]{}[]": {
+      "snippet": "acfp*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Acfp{}": {
+      "snippet": "Acfp{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acfp[]{}": {
+      "snippet": "Acfp[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acfp{}[]": {
+      "snippet": "Acfp{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Acfp[]{}[]": {
+      "snippet": "Acfp[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Acfp*{}": {
+      "snippet": "Acfp*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acfp*[]{}": {
+      "snippet": "Acfp*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acfp*{}[]": {
+      "snippet": "Acfp*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Acfp*[]{}[]": {
+      "snippet": "Acfp*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "ac{}": {
+      "snippet": "ac{${1:label}}",
+      "option": "shortcuts"
+    },
+    "ac[]{}": {
+      "snippet": "ac[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "ac{}[]": {
+      "snippet": "ac{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "ac[]{}[]": {
+      "snippet": "ac[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Ac{}": {
+      "snippet": "Ac{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Ac[]{}": {
+      "snippet": "Ac[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Ac{}[]": {
+      "snippet": "Ac{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Ac[]{}[]": {
+      "snippet": "Ac[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "ac*{}": {
+      "snippet": "ac*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "ac*[]{}": {
+      "snippet": "ac*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "ac*{}[]": {
+      "snippet": "ac*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "ac*[]{}[]": {
+      "snippet": "ac*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Ac*{}": {
+      "snippet": "Ac*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Ac*[]{}": {
+      "snippet": "Ac*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Ac*{}[]": {
+      "snippet": "Ac*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Ac*[]{}[]": {
+      "snippet": "Ac*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "acp{}": {
+      "snippet": "acp{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acp[]{}": {
+      "snippet": "acp[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acp{}[]": {
+      "snippet": "acp{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "acp[]{}[]": {
+      "snippet": "acp[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Acp{}": {
+      "snippet": "Acp{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acp[]{}": {
+      "snippet": "Acp[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acp{}[]": {
+      "snippet": "Acp{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Acp[]{}[]": {
+      "snippet": "Acp[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "acp*{}": {
+      "snippet": "acp*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acp*[]{}": {
+      "snippet": "acp*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "acp*{}[]": {
+      "snippet": "acp*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "acp*[]{}[]": {
+      "snippet": "acp*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    },
+    "Acp*{}": {
+      "snippet": "Acp*{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acp*[]{}": {
+      "snippet": "Acp*[${2:options}]{${1:label}}",
+      "option": "shortcuts"
+    },
+    "Acp*{}[]": {
+      "snippet": "Acp*{${1:label}}[${2:insert}]",
+      "option": "shortcuts"
+    },
+    "Acp*[]{}[]": {
+      "snippet": "Acp*[${2:options}]{${1:label}}[${3:insert}]",
+      "option": "shortcuts"
+    }
+  },
+  "envs": {},
+  "options": [
+    "glossaries",
+    "noglossaries",
+    "glosses",
+    "leipzig",
+    "nostandards",
+    "block",
+    "mcolblock",
+    "inline",
+    "leipzighyper",
+    "leipzignohyper",
+    "nowarn",
+    "nolangwarn",
+    "noredefwarn",
+    "debug=",
+    "savewrites",
+    "translate=",
+    "notranslate",
+    "hyperfirst",
+    "writeglslabels",
+    "writeglslabelnames",
+    "toc",
+    "numberline",
+    "section=${1:section unit}",
+    "ucmark",
+    "numberedsection=",
+    "savenumberlist",
+    "entrycounter",
+    "counterwithin=${1:counter}",
+    "subentrycounter",
+    "style=",
+    "nolong",
+    "nosuper",
+    "nolist",
+    "notree",
+    "nostyles",
+    "nonumberlist",
+    "seeautonumberlist",
+    "counter=${1:counter}",
+    "nopostdot",
+    "nogroupskip",
+    "seenoindex=",
+    "esclocations",
+    "indexonlyfirst",
+    "sanitizesort",
+    "sort=",
+    "order=",
+    "makeindex",
+    "xindy",
+    "xindygloss",
+    "xindynoglsnumbers",
+    "automake=",
+    "disablemakegloss",
+    "restoremakegloss",
+    "nohypertypes={${1:list}}",
+    "nomain",
+    "symbols",
+    "numbers",
+    "index",
+    "noglossaryindex",
+    "acronym",
+    "acronyms",
+    "acronymlists={${1:value}}",
+    "shortcuts",
+    "compatible-2.07",
+    "compatible-3.07",
+    "kernelglossredefs={${1:value}}"
+  ],
+  "keyvals": [
+    [
+      "name=",
+      "description=",
+      "parent=",
+      "descriptionplural=",
+      "text=",
+      "first=",
+      "plural=",
+      "firstplural=",
+      "symbol=",
+      "symbolplural=",
+      "sort=",
+      "type=",
+      "user1=",
+      "user2=",
+      "user3=",
+      "user4=",
+      "user5=",
+      "user6=",
+      "nonumberlist",
+      "see=",
+      "long=",
+      "longplural=",
+      "short=",
+      "shortplural="
+    ],
+    [
+      "type=",
+      "title=",
+      "toctitle=",
+      "style=",
+      "numberedsection=",
+      "nonumberlist",
+      "nogroupskip",
+      "nopostdot",
+      "entrycounter",
+      "subentrycounter",
+      "sort="
+    ]
+  ]
+}

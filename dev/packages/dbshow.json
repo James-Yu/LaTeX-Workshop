@@ -1,0 +1,195 @@
+{
+  "includes": {},
+  "macros": {
+    "dbNewDatabase{}{}": {
+      "snippet": "dbNewDatabase{${1:database}}{${2:attr1=val1,attr2=val2,...}}"
+    },
+    "dbNewDatabase[]{}{}": {
+      "snippet": "dbNewDatabase[${3:base database}]{${1:database}}{${2:attr1=val1,attr2=val2,...}}"
+    },
+    "dbNewDatabase*{}{}": {
+      "snippet": "dbNewDatabase*{${1:database}}{${2:attr1=val1,attr2=val2,...}}"
+    },
+    "dbshow{}{}": {
+      "snippet": "dbshow{${1:style}}{${2:database}}"
+    },
+    "dbclear{}": {
+      "snippet": "dbclear{${1:database}}"
+    },
+    "dbNewStyle{}{}{}": {
+      "snippet": "dbNewStyle{${1:style}}{${2:database}}{${3:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "dbNewStyle[]{}{}{}": {
+      "snippet": "dbNewStyle[${4:base styles}]{${1:style}}{${2:database}}{${3:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "dbdatesep{}": {
+      "snippet": "dbdatesep{${1:separator}}"
+    },
+    "dbNewReviewPoints{}{}": {
+      "snippet": "dbNewReviewPoints{${1:name}}{${2:points}}"
+    },
+    "dbNewConditional{}{}{}": {
+      "snippet": "dbNewConditional{${1:name}}{${2:attr}}{${3:cond spec}}"
+    },
+    "dbNewConditional{}{}{}[]": {
+      "snippet": "dbNewConditional{${1:name}}{${2:attr}}{${3:cond spec}}[${4:filter info}]"
+    },
+    "dbNewConditional*{}{}{}": {
+      "snippet": "dbNewConditional*{${1:name}}{${2:attr}}{${3:cond spec}}"
+    },
+    "dbNewConditional*{}{}{}[]": {
+      "snippet": "dbNewConditional*{${1:name}}{${2:attr}}{${3:cond spec}}[${4:filter info}]"
+    },
+    "dbNewCond{}{}{}": {
+      "snippet": "dbNewCond{${1:name}}{${2:attr}}{${3:cond spec}}"
+    },
+    "dbNewCond{}{}{}[]": {
+      "snippet": "dbNewCond{${1:name}}{${2:attr}}{${3:cond spec}}[${4:filter info}]"
+    },
+    "dbNewCond*{}{}{}": {
+      "snippet": "dbNewCond*{${1:name}}{${2:attr}}{${3:cond spec}}"
+    },
+    "dbNewCond*{}{}{}[]": {
+      "snippet": "dbNewCond*{${1:name}}{${2:attr}}{${3:cond spec}}[${4:filter info}]"
+    },
+    "dbNewRawFilter{}{}{}{}": {
+      "snippet": "dbNewRawFilter{${1:name}}{${2:database}}{${3:attr}}{${4:cond spec}}"
+    },
+    "dbNewRawFilter{}{}{}{}[]": {
+      "snippet": "dbNewRawFilter{${1:name}}{${2:database}}{${3:attr}}{${4:cond spec}}[${5:filter info}]"
+    },
+    "dbNewRawFilter*{}{}{}{}": {
+      "snippet": "dbNewRawFilter*{${1:name}}{${2:database}}{${3:attr}}{${4:cond spec}}"
+    },
+    "dbNewRawFilter*{}{}{}{}[]": {
+      "snippet": "dbNewRawFilter*{${1:name}}{${2:database}}{${3:attr}}{${4:cond spec}}[${5:filter info}]"
+    },
+    "dbCombineConditionals{}{}": {
+      "snippet": "dbCombineConditionals{${1:name}}{${2:cond combination}}"
+    },
+    "dbCombineConditionals{}{}[]": {
+      "snippet": "dbCombineConditionals{${1:name}}{${2:cond combination}}[${3:filter info}]"
+    },
+    "dbCombCond{}{}": {
+      "snippet": "dbCombCond{${1:name}}{${2:cond combination}}"
+    },
+    "dbCombCond{}{}[]": {
+      "snippet": "dbCombCond{${1:name}}{${2:cond combination}}[${3:filter info}]"
+    },
+    "dbitemkv{}": {
+      "snippet": "dbitemkv{${1:database}}"
+    },
+    "dbitemkv{}[]": {
+      "snippet": "dbitemkv{${1:database}}[${2:attr1=val1,attr2=val2,...}]"
+    },
+    "dbsave{}{}": {
+      "snippet": "dbsave{${1:attr}}{${2:data}}"
+    },
+    "dbsave*{}{}": {
+      "snippet": "dbsave*{${1:attr}}{${2:data}}"
+    },
+    "dbuse{}": {
+      "snippet": "dbuse{${1:attr}}"
+    },
+    "dbIfEmptyT{}": {
+      "snippet": "dbIfEmptyT{${1:true code}}"
+    },
+    "dbIfEmptyF{}": {
+      "snippet": "dbIfEmptyF{${1:false code}}"
+    },
+    "dbIfEmptyTF{}{}": {
+      "snippet": "dbIfEmptyTF{${1:true code}}{${2:false code}}"
+    },
+    "dbIfLastT{}": {
+      "snippet": "dbIfLastT{${1:true code}}"
+    },
+    "dbIfLastF{}": {
+      "snippet": "dbIfLastF{${1:false code}}"
+    },
+    "dbIfLastTF{}{}": {
+      "snippet": "dbIfLastTF{${1:true code}}{${2:false code}}"
+    },
+    "dbIntAbs{}": {
+      "snippet": "dbIntAbs{${1:int expr}}"
+    },
+    "dbIntSign{}": {
+      "snippet": "dbIntSign{${1:int expr}}"
+    },
+    "dbIntDivRound{}{}": {
+      "snippet": "dbIntDivRound{${1:int expr1}}{${2:int expr2}}"
+    },
+    "dbIntDivTruncate{}{}": {
+      "snippet": "dbIntDivTruncate{${1:int expr1}}{${2:int expr2}}"
+    },
+    "dbIntMax{}{}": {
+      "snippet": "dbIntMax{${1:int expr1}}{${2:int expr2}}"
+    },
+    "dbIntMin{}{}": {
+      "snippet": "dbIntMin{${1:int expr1}}{${2:int expr2}}"
+    },
+    "dbIntMod{}{}": {
+      "snippet": "dbIntMod{${1:int expr1}}{${2:int expr2}}"
+    },
+    "dbFpSign{}": {
+      "snippet": "dbFpSign{${1:fp expr}}"
+    },
+    "dbval": {},
+    "dbtoday": {},
+    "dbDatabase": {},
+    "dbFilterName": {},
+    "dbFilterInfo": {},
+    "dbIndex": {},
+    "dbarabic": {},
+    "dbalph": {},
+    "dbAlph": {},
+    "dbroman": {},
+    "dbRoman": {}
+  },
+  "envs": {
+    "dbFilters{}": {
+      "name": "dbFilters",
+      "snippet": "{${1:database}}"
+    },
+    "dbFilters*{}": {
+      "name": "dbFilters",
+      "snippet": "*{${1:database}}"
+    },
+    "dbitem{}": {
+      "name": "dbitem",
+      "snippet": "{${1:database}}"
+    },
+    "dbitem{}[]": {
+      "name": "dbitem",
+      "snippet": "{${1:database}}[${2:attr1=val1,attr2=val2,...}]"
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "filter=${1:filter}",
+      "raw-filter={${1:conditional expr}}",
+      "sort={${1:attr spec1,attr spec2,...}}",
+      "before-code=${1:code}",
+      "after-code=${1:code}",
+      "item-code=${1:code}",
+      "item-code*=${1:code}",
+      "item-before-code=${1:code}",
+      "item-after-code=${1:code}",
+      "${1:<attr>}/code=${2:code}",
+      "${1:<attr>}/code*=${2:code}",
+      "${1:<attr>}/before-code=${2:code}",
+      "${1:<attr>}/after-code=${2:code}",
+      "${1:<attr>}/item-code=${2:code}",
+      "${1:<attr>}/item-code*=${2:code}",
+      "${1:<attr>}/item-before-code=${2:code}",
+      "${1:<attr>}/item-after-code=${2:code}",
+      "${1:<attr>}/sep=${2:separator}",
+      "${1:<attr>}/format-code=${2:code}",
+      "${1:<attr>}/zfill"
+    ]
+  ]
+}

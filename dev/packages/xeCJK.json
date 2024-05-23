@@ -1,0 +1,250 @@
+{
+  "includes": {
+    "xetex": [],
+    "xtemplate": [],
+    "fontspec": []
+  },
+  "macros": {
+    "xeCJKsetup{}": {
+      "snippet": "xeCJKsetup{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "setCJKmainfont{}": {
+      "snippet": "setCJKmainfont{${1:font name}}"
+    },
+    "setCJKmainfont{}[]": {
+      "snippet": "setCJKmainfont{${1:font name}}[${2:font features}]"
+    },
+    "setCJKmainfont[]{}": {
+      "snippet": "setCJKmainfont[${2:font features}]{${1:font name}}"
+    },
+    "setCJKsansfont{}": {
+      "snippet": "setCJKsansfont{${1:font name}}"
+    },
+    "setCJKsansfont{}[]": {
+      "snippet": "setCJKsansfont{${1:font name}}[${2:font features}]"
+    },
+    "setCJKsansfont[]{}": {
+      "snippet": "setCJKsansfont[${2:font features}]{${1:font name}}"
+    },
+    "setCJKmonofont{}": {
+      "snippet": "setCJKmonofont{${1:font name}}"
+    },
+    "setCJKmonofont{}[]": {
+      "snippet": "setCJKmonofont{${1:font name}}[${2:font features}]"
+    },
+    "setCJKmonofont[]{}": {
+      "snippet": "setCJKmonofont[${2:font features}]{${1:font name}}"
+    },
+    "setCJKfamilyfont{}{}": {
+      "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}"
+    },
+    "setCJKfamilyfont{}{}[]": {
+      "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}[${3:font features}]"
+    },
+    "setCJKfamilyfont{}[]{}": {
+      "snippet": "setCJKfamilyfont{${1:family}}[${2:font features}]{${3:font name}}"
+    },
+    "CJKfamily{}": {
+      "snippet": "CJKfamily{${1:family}}"
+    },
+    "newCJKfontfamily{}{}": {
+      "snippet": "newCJKfontfamily{${1:cmd}}{${2:font name}}"
+    },
+    "newCJKfontfamily{}[]{}": {
+      "snippet": "newCJKfontfamily{${1:cmd}}[${2:font features}]{${3:font name}}"
+    },
+    "newCJKfontfamily[]{}{}": {
+      "snippet": "newCJKfontfamily[${3:family}]{${1:cmd}}{${2:font name}}"
+    },
+    "newCJKfontfamily[]{}[]{}": {
+      "snippet": "newCJKfontfamily[${3:family}]{${1:cmd}}[${4:font features}]{${2:font name}}"
+    },
+    "CJKfontspec{}": {
+      "snippet": "CJKfontspec{${1:font name}}"
+    },
+    "CJKfontspec{}[]": {
+      "snippet": "CJKfontspec{${1:font name}}[${2:font features}]"
+    },
+    "CJKfontspec[]{}": {
+      "snippet": "CJKfontspec[${2:font features}]{${1:font name}}"
+    },
+    "defaultCJKfontfeatures{}": {
+      "snippet": "defaultCJKfontfeatures{${1:font features}}"
+    },
+    "addCJKfontfeatures{}": {
+      "snippet": "addCJKfontfeatures{${1:font features}}"
+    },
+    "addCJKfontfeatures*{}": {
+      "snippet": "addCJKfontfeatures*{${1:font features}}"
+    },
+    "addCJKfontfeatures[]{}": {
+      "snippet": "addCJKfontfeatures[${2:blocks}]{${1:font features}}"
+    },
+    "addCJKfontfeatures*[]{}": {
+      "snippet": "addCJKfontfeatures*[${2:blocks}]{${1:font features}}"
+    },
+    "CJKrmdefault": {},
+    "CJKsfdefault": {},
+    "CJKttdefault": {},
+    "CJKfamilydefault": {},
+    "setCJKmathfont{}": {
+      "snippet": "setCJKmathfont{${1:font name}}"
+    },
+    "setCJKmathfont{}[]": {
+      "snippet": "setCJKmathfont{${1:font name}}[${2:font features}]"
+    },
+    "setCJKmathfont[]{}": {
+      "snippet": "setCJKmathfont[${2:font features}]{${1:font name}}"
+    },
+    "setCJKfallbackfamilyfont{}{}": {
+      "snippet": "setCJKfallbackfamilyfont{${1:family}}{${2:font name}}"
+    },
+    "setCJKfallbackfamilyfont{}{}[]": {
+      "snippet": "setCJKfallbackfamilyfont{${1:family}}{${2:font name}}[${3:font features}]"
+    },
+    "setCJKfallbackfamilyfont{}[]{}": {
+      "snippet": "setCJKfallbackfamilyfont{${1:family}}[${2:font features}]{${3:font name}}"
+    },
+    "xeCJKDeclareSubCJKBlock{}{}": {
+      "snippet": "xeCJKDeclareSubCJKBlock{${1:block}}{${2:block range}}"
+    },
+    "xeCJKDeclareSubCJKBlock*{}{}": {
+      "snippet": "xeCJKDeclareSubCJKBlock*{${1:block}}{${2:block range}}"
+    },
+    "xeCJKCancelSubCJKBlock{}": {
+      "snippet": "xeCJKCancelSubCJKBlock{${1:blocks}}"
+    },
+    "xeCJKCancelSubCJKBlock*{}": {
+      "snippet": "xeCJKCancelSubCJKBlock*{${1:blocks}}"
+    },
+    "xeCJKRestoreSubCJKBlock{}": {
+      "snippet": "xeCJKRestoreSubCJKBlock{${1:blocks}}"
+    },
+    "xeCJKRestoreSubCJKBlock*{}": {
+      "snippet": "xeCJKRestoreSubCJKBlock*{${1:blocks}}"
+    },
+    "xeCJKDeclareCharClass{}{}": {
+      "snippet": "xeCJKDeclareCharClass{${1:char class}}{${2:class range}}"
+    },
+    "xeCJKDeclareCharClass*{}{}": {
+      "snippet": "xeCJKDeclareCharClass*{${1:char class}}{${2:class range}}"
+    },
+    "xeCJKResetCharClass": {},
+    "xeCJKResetPunctClass": {},
+    "normalspacechars{}": {
+      "snippet": "normalspacechars{${1:char list}}"
+    },
+    "xeCJKsetwidth{}{}": {
+      "snippet": "xeCJKsetwidth{${1:punct list}}{${2:length}}"
+    },
+    "xeCJKsetwidth*{}{}": {
+      "snippet": "xeCJKsetwidth*{${1:punct list}}{${2:length}}"
+    },
+    "xeCJKsetkern{}{}{}": {
+      "snippet": "xeCJKsetkern{${1:first punct}}{${2:second punct}}{${3:length}}"
+    },
+    "xeCJKDeclarePunctStyle{}{}": {
+      "snippet": "xeCJKDeclarePunctStyle{${1:style}}{${2:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "xeCJKEditPunctStyle{}{}": {
+      "snippet": "xeCJKEditPunctStyle{${1:style}}{${2:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "xeCJKVerbAddon": {},
+    "xeCJKOffVerbAddon": {},
+    "xeCJKnobreak": {},
+    "xeCJKShipoutHook": {}
+  },
+  "envs": {},
+  "options": [
+    "LocalConfig="
+  ],
+  "keyvals": [
+    [
+      "xeCJKactive",
+      "CJKspace",
+      "CJKmath",
+      "CJKglue=${1:glue}",
+      "CJKecglue=${1:glue}",
+      "xCJKecglue=${1:glue}",
+      "CheckSingle",
+      "WindowPenalty=${1:integer}",
+      "PlainEquation",
+      "NewLineCS={${1:commands}}",
+      "NewLineCS+={${1:commands}}",
+      "NewLineCS-={${1:commands}}",
+      "EnvCS={${1:commands}}",
+      "EnvCS+={${1:commands}}",
+      "EnvCS-={${1:commands}}",
+      "InlineEnv={${1:env1,env2,...}}",
+      "InlineEnv+={${1:env1,env2,...}}",
+      "InlineEnv-={${1:env1,env2,...}}",
+      "AutoFallback",
+      "AutoFakeBold=${1:true,false,or <number>}",
+      "AutoFakeSlant=${1:true,false,or <number>}",
+      "EmboldenFactor=${1:factor}",
+      "SlantFactor=${1:factor}",
+      "PunctStyle=",
+      "PunctFamily=${1:false or <family>}",
+      "KaiMingPunct={${1:punctuation}}",
+      "KaiMingPunct+={${1:punctuation}}",
+      "KaiMingPunct-={${1:punctuation}}",
+      "LongPunct={${1:punctuation}}",
+      "LongPunct+={${1:punctuation}}",
+      "LongPunct-={${1:punctuation}}",
+      "MiddlePunct={${1:punctuation}}",
+      "MiddlePunct+={${1:punctuation}}",
+      "MiddlePunct-={${1:punctuation}}",
+      "PunctWidth=",
+      "PunctBoundWidth=",
+      "AllowBreakBetweenPuncts",
+      "RubberPunctSkip=",
+      "CheckFullRight",
+      "NoBreakCS={${1:commands}}",
+      "NoBreakCS+={${1:commands}}",
+      "NoBreakCS-={${1:commands}}",
+      "Verb=",
+      "LoadFandol"
+    ],
+    [
+      "enabled-global-setting",
+      "fixed-punct-width=",
+      "fixed-punct-ratio=${1:real}",
+      "mixed-punct-width=",
+      "mixed-punct-ratio=${1:real}",
+      "middle-punct-width=",
+      "middle-punct-ratio=${1:real}",
+      "fixed-margin-width=",
+      "fixed-margin-ratio=${1:real}",
+      "mixed-margin-width=",
+      "mixed-margin-ratio=${1:real}",
+      "middle-margin-width=",
+      "middle-margin-ratio=${1:real}",
+      "bound-punct-width=",
+      "bound-punct-ratio=${1:real}",
+      "bound-margin-width=",
+      "bound-margin-ratio=${1:real}",
+      "enabled-hanging",
+      "add-min-bound-to-margin",
+      "optimize-margin",
+      "margin-minimum=",
+      "enabled-kerning",
+      "min-bound-to-kerning",
+      "kerning-total-width=",
+      "kerning-total-ratio=${1:real}",
+      "same-align-margin=",
+      "same-align-ratio=${1:real}",
+      "different-align-margin=",
+      "different-align-ratio=${1:real}",
+      "kerning-margin-width=",
+      "kerning-margin-ratio=${1:real}",
+      "optimize-kerning ",
+      "kerning-margin-minimum="
+    ]
+  ]
+}

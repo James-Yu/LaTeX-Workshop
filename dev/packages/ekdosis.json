@@ -1,0 +1,486 @@
+{
+  "includes": {
+    "luatex": [],
+    "iftex": [],
+    "expkv-opt": [],
+    "expkv-def": [],
+    "luacode": [],
+    "paracol": [],
+    "etoolbox": [],
+    "lineno": [],
+    "trivfloat": [],
+    "refcount": [],
+    "zref-user": [],
+    "zref-abspage": [],
+    "ltxcmds": [],
+    "pdftexcmds": [],
+    "ifoddpage": [],
+    "keyfloat": [
+      "layout=keyfloat"
+    ],
+    "tcolorbox": [
+      "layout=fitapp"
+    ],
+    "tcolorboxlibraryfitting": [
+      "layout=fitapp"
+    ],
+    "tcolorboxlibraryskins": [
+      "layout=fitapp"
+    ],
+    "verse": [
+      "poetry=verse"
+    ],
+    "parnotes": [
+      "parnotes"
+    ]
+  },
+  "macros": {
+    "ekdsetup{}": {
+      "snippet": "ekdsetup{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "DeclareWitness{}{}{}": {
+      "snippet": "DeclareWitness{${1:unique id}}{${2:rendition}}{${3:description}}"
+    },
+    "DeclareWitness{}{}{}[]": {
+      "snippet": "DeclareWitness{${1:unique id}}{${2:rendition}}{${3:description}}[${4:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 3
+    },
+    "DeclareHand{}{}{}": {
+      "snippet": "DeclareHand{${1:unique id}}{${2:base ms.}}{${3:rendition}}"
+    },
+    "DeclareHand{}{}{}[]": {
+      "snippet": "DeclareHand{${1:unique id}}{${2:base ms.}}{${3:rendition}}[${4:note}]"
+    },
+    "DeclareSource{}{}": {
+      "snippet": "DeclareSource{${1:unique label}}{${2:rendition}}"
+    },
+    "DeclareScholar{}{}": {
+      "snippet": "DeclareScholar{${1:unique id}}{${2:rendition}}"
+    },
+    "DeclareScholar{}{}[]": {
+      "snippet": "DeclareScholar{${1:unique id}}{${2:rendition}}[${3:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "DeclareShorthand{}{}{}": {
+      "snippet": "DeclareShorthand{${1:unique id}}{${2:rendition}}{${3:list of ids}}"
+    },
+    "getsiglum{}": {
+      "snippet": "getsiglum{${1:list of witnesses}}"
+    },
+    "SigLine{}": {
+      "snippet": "SigLine{${1:unique id}}"
+    },
+    "app{}": {
+      "snippet": "app{${1:apparatus entries}}"
+    },
+    "app[]{}": {
+      "snippet": "app[${2:type=type}]{${1:apparatus entries}}"
+    },
+    "lem{}": {
+      "snippet": "lem{${1:lemma text}}"
+    },
+    "lem[]{}": {
+      "snippet": "lem[${2:options}]{${1:lemma text}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "rdg{}": {
+      "snippet": "rdg{${1:variant reading}}"
+    },
+    "rdg[]{}": {
+      "snippet": "rdg[${2:options}]{${1:variant reading}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "note{}": {
+      "snippet": "note{${1:text}}"
+    },
+    "note[]{}": {
+      "snippet": "note[${2:options}]{${1:text}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "note*{}": {
+      "snippet": "note*{${1:text}}"
+    },
+    "note*[]{}": {
+      "snippet": "note*[${2:options}]{${1:text}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "rdgGrp{}": {
+      "snippet": "rdgGrp{${1:lemma text}}"
+    },
+    "rdgGrpe[]{}": {
+      "snippet": "rdgGrpe[${2:type=type}]{${1:lemma text}}"
+    },
+    "SetCritSymbols{}": {
+      "snippet": "SetCritSymbols{${1:options}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "supplied{}": {
+      "snippet": "supplied{${1:text}}"
+    },
+    "surplus{}": {
+      "snippet": "surplus{${1:text}}"
+    },
+    "sic{}": {
+      "snippet": "sic{${1:text}}"
+    },
+    "sic*{}": {
+      "snippet": "sic*{${1:text}}"
+    },
+    "gap{}": {
+      "snippet": "gap{${1:options}}",
+      "keyvalindex": 8,
+      "keyvalpos": 0
+    },
+    "SetAlignment{}": {
+      "snippet": "SetAlignment{${1:options}}",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "SetHooks{}": {
+      "snippet": "SetHooks{${1:list of hooks}}"
+    },
+    "SetLTRapp": {},
+    "SetRTLapp": {},
+    "SetSeparator{}": {
+      "snippet": "SetSeparator{${1:separator}}"
+    },
+    "SetSubseparator{}": {
+      "snippet": "SetSubseparator{${1:subseparator}}"
+    },
+    "ekdsep": {},
+    "ekdsubsep": {},
+    "SetBeginApparatus{}": {
+      "snippet": "SetBeginApparatus{${1:characters or commands}}"
+    },
+    "SetEndApparatus{}": {
+      "snippet": "SetEndApparatus{${1:characters}}"
+    },
+    "SetUnitDelimiter{}": {
+      "snippet": "SetUnitDelimiter{${1:delimiter}}"
+    },
+    "SetDefaultRule{}": {
+      "snippet": "SetDefaultRule{${1:line definition}}"
+    },
+    "SetApparatusLanguage{}": {
+      "snippet": "SetApparatusLanguage{${1:language}}"
+    },
+    "SetApparatusNoteLanguage{}": {
+      "snippet": "SetApparatusNoteLanguage{${1:language}}"
+    },
+    "SetApparatus{}": {
+      "snippet": "SetApparatus{${1:options}}",
+      "keyvalindex": 10,
+      "keyvalpos": 0
+    },
+    "iffootnoterule": {},
+    "footnoteruletrue": {},
+    "footnoterulefalse": {},
+    "SetDefaultApparatus{}": {
+      "snippet": "SetDefaultApparatus{${1:name}}"
+    },
+    "DeclareApparatus{}": {
+      "snippet": "DeclareApparatus{${1:name}}"
+    },
+    "DeclareApparatus{}[]": {
+      "snippet": "DeclareApparatus{${1:name}}[${2:options}]"
+    },
+    "SetLineation{}": {
+      "snippet": "SetLineation{${1:options}}",
+      "keyvalindex": 11,
+      "keyvalpos": 0
+    },
+    "innerlinenumbers": {},
+    "outerlinenumbers": {},
+    "vmodulolinenumbers": {
+      "option": "poetry=verse"
+    },
+    "vmodulolinenumbers[]": {
+      "snippet": "vmodulolinenumbers[${1:n}]",
+      "option": "poetry=verse"
+    },
+    "resetvlinenumber": {
+      "option": "poetry=verse"
+    },
+    "resetvlinenumber[]": {
+      "snippet": "resetvlinenumber[${1:n}]",
+      "option": "poetry=verse"
+    },
+    "setRL": {},
+    "setLR": {},
+    "MkBodyDivs{}{}{}{}{}{}": {
+      "snippet": "MkBodyDivs{${1:div1}}{${2:div2}}{${3:div3}}{${4:div4}}{${5:div5}}{${6:div6}}"
+    },
+    "ekddiv{}": {
+      "snippet": "ekddiv{${1:keyvals}}",
+      "keyvalindex": 12,
+      "keyvalpos": 0
+    },
+    "FormatDiv{}{}{}": {
+      "snippet": "FormatDiv{${1:n}}{${2:code before}}{${3:code after}}"
+    },
+    "ekdmark": {},
+    "endmark": {},
+    "ekdprintmark{}{}": {
+      "snippet": "ekdprintmark{${1:selector}}{${2:signpost}}"
+    },
+    "ekdnohfmark": {},
+    "ekdresethfmarks": {},
+    "ekdpb{}": {
+      "snippet": "ekdpb{${1:line no}}"
+    },
+    "ekdpb[]{}": {
+      "snippet": "ekdpb[${2:page no}]{${1:line no}}"
+    },
+    "ekdpb*{}": {
+      "snippet": "ekdpb*{${1:}}"
+    },
+    "addentries{}": {
+      "snippet": "addentries{${1:n}}"
+    },
+    "addentries[]{}": {
+      "snippet": "addentries[${2:layer}]{${1:n}}"
+    },
+    "SetTEIFileName{}": {
+      "snippet": "SetTEIFileName{${1:arg1}}"
+    },
+    "SetTEIxmlExport{}": {
+      "snippet": "SetTEIxmlExport{${1:options}}",
+      "keyvalindex": 13,
+      "keyvalpos": 0
+    },
+    "TeXtoTEI{}{}": {
+      "snippet": "TeXtoTEI{${1:csname}}{${2:TEI element}}"
+    },
+    "TeXtoTEI{}{}[]": {
+      "snippet": "TeXtoTEI{${1:csname}}{${2:TEI element}}[${3:TEI attributes}]"
+    },
+    "EnvtoTEI{}{}": {
+      "snippet": "EnvtoTEI{${1:envname}}{${2:TEI element}}"
+    },
+    "EnvtoTEI{}{}[]": {
+      "snippet": "EnvtoTEI{${1:envname}}{${2:TEI element}}[${3:TEI attributes}]"
+    },
+    "EnvtoTEI*{}{}": {
+      "snippet": "EnvtoTEI*{${1:envname}}{${2:TEI element}}"
+    },
+    "EnvtoTEI*{}{}[]": {
+      "snippet": "EnvtoTEI*{${1:envname}}{${2:TEI element}}[${3:TEI attributes}]"
+    },
+    "TeXtoTEIPat{}{}": {
+      "snippet": "TeXtoTEIPat{${1:TeX pattern}}{${2:TEI pattern}}"
+    },
+    "teidirect{}{}": {
+      "snippet": "teidirect{${1:XML element}}{${2:code}}"
+    },
+    "teidirect[]{}{}": {
+      "snippet": "teidirect[${3:XML attributes}]{${1:XML element}}{${2:code}}"
+    },
+    "AddxmlBibResource{}": {
+      "snippet": "AddxmlBibResource{${1:file name}}"
+    },
+    "EkdosisColStart": {},
+    "EkdosisColStop": {},
+    "EkdosisOff": {},
+    "EkdosisOn": {},
+    "LRnum{}": {
+      "snippet": "LRnum{${1:number}}"
+    },
+    "NLS": {},
+    "apparatus": {},
+    "blfootnote{}": {
+      "snippet": "blfootnote{${1:text}}"
+    },
+    "ekdatbegshihook": {},
+    "ekdpage": {},
+    "ekdverseindentlength": {}
+  },
+  "envs": {
+    "ekdosis": {},
+    "alignment": {},
+    "alignment[]": {
+      "name": "alignment",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    },
+    "edition": {},
+    "edition*": {},
+    "translation": {},
+    "translation*": {},
+    "ekdverse": {},
+    "ekdverse[]": {
+      "name": "ekdverse",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 14,
+      "keyvalpos": 0
+    },
+    "ekdstanza": {},
+    "ekdstanza[]": {
+      "name": "ekdstanza",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 15,
+      "keyvalpos": 0
+    },
+    "ekdpar": {}
+  },
+  "options": [
+    "layout=",
+    "divs=",
+    "poetry=verse",
+    "parnotes=",
+    "teiexport="
+  ],
+  "keyvals": [
+    [
+      "showpagebreaks",
+      "spbmk=${1:string}",
+      "hpbmk=${1:string}"
+    ],
+    [
+      "settlement=${1:name}",
+      "institution=${1:name}",
+      "repository=${1:name}",
+      "collection=${1:name}",
+      "idno=${1:call number}",
+      "msName=${1:name}",
+      "origDate=${1:date}",
+      "locus=${1:locus}"
+    ],
+    [
+      "rawname=${1:name}",
+      "forename=${1:name}",
+      "surname=${1:name}",
+      "addname=${1:additional name}",
+      "note=${1:note}"
+    ],
+    [
+      "wit=${1:list of witnesses}",
+      "source=${1:list of sources}",
+      "resp=${1:list of scholars}",
+      "alt=${1:alternate lemma}",
+      "sep=${1:separator}",
+      "nosep",
+      "nolem",
+      "type=${1:type}",
+      "num",
+      "nonum",
+      "pre=${1:words}",
+      "post=${1:words}",
+      "prewit=${1:words}",
+      "postwit=${1:words}"
+    ],
+    [
+      "wit=${1:list of witnesses}",
+      "source=${1:list of sources}",
+      "resp=${1:list of scholars}",
+      "alt=${1:alternate lemma}",
+      "nordg",
+      "type=${1:type}",
+      "pre=${1:words}",
+      "post=${1:words}",
+      "prewit=${1:words}",
+      "postwit=${1:words}",
+      "subsep=${1:subseparator}",
+      "nosubsep"
+    ],
+    [
+      "pre=${1:words}",
+      "post=${1:words}",
+      "sep",
+      "subsep",
+      "type=${1:type}",
+      "sep=${1:separator}",
+      "nosep",
+      "lem=${1:lemma text}",
+      "num",
+      "nonum",
+      "labelb=${1:label}",
+      "labele=${1:label}"
+    ],
+    [
+      "pre=${1:words}",
+      "post=${1:words}",
+      "sep",
+      "subsep"
+    ],
+    [
+      "suppbegin=${1:symbol}",
+      "suppend=${1:symbol}",
+      "delbegin=${1:symbol}",
+      "delend=${1:symbol}",
+      "sicbegin=${1:symbol}",
+      "sicend=${1:symbol}",
+      "gapmark=${1:symbols}",
+      "keepinapp"
+    ],
+    [
+      "reason=${1:reason}",
+      "unit=${1:unit}",
+      "quantity=${1:n}",
+      "extent=${1:description}"
+    ],
+    [
+      "tcols=${1:number}",
+      "lcols=${1:number}",
+      "texts=${1:semicolon-separated values}",
+      "apparatus=${1:semicolon-separated values}",
+      "paired",
+      "lineation=",
+      "flush",
+      "segmentation="
+    ],
+    [
+      "direction=",
+      "sep=${1:separator}",
+      "subsep=${1:subseparator}",
+      "delim=${1:delimiter}",
+      "bhook=${1:characters or commands}",
+      "ehook=${1:characters}",
+      "rule=${1:line definition}",
+      "norule",
+      "lang=${1:language}",
+      "notelang=${1:language}",
+      "maxentries=${1:integer}"
+    ],
+    [
+      "lineation=",
+      "modulo",
+      "modulonum=${1:integer}",
+      "margin=",
+      "numbers=",
+      "vlineation=",
+      "vmodulo=${1:integer}",
+      "vnumbrokenlines",
+      "vmargin=",
+      "continuousvnum"
+    ],
+    [
+      "type=${1:type}",
+      "n=${1:value}",
+      "head=${1:name}",
+      "barehead=${1:name}",
+      "depth=${1:n}",
+      "toc=",
+      "mark=${1:signpost}"
+    ],
+    [
+      "autopar"
+    ],
+    [
+      "width=",
+      "type=${1:type}"
+    ],
+    [
+      "type=${1:type}"
+    ]
+  ]
+}

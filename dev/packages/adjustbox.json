@@ -1,0 +1,872 @@
+{
+  "includes": {
+    "trimclip": [],
+    "ifoddpage": [],
+    "varwidth": [],
+    "pgf": [
+      "pgf",
+      "PGF",
+      "pgfmath"
+    ],
+    "calc": [
+      "calc"
+    ]
+  },
+  "macros": {
+    "adjustbox{}{}": {
+      "snippet": "adjustbox{${1:options}}{${2:content}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "adjustimage{}{}": {
+      "snippet": "adjustimage{${1:options}}{${2:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "adjincludegraphics[]{}": {
+      "snippet": "adjincludegraphics[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "newadjustboxenv{}{}": {
+      "snippet": "newadjustboxenv{${1:envname}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "newadjustboxenv{}[][]{}": {
+      "snippet": "newadjustboxenv{${1:envname}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "newadjustboxenv*{}{}": {
+      "snippet": "newadjustboxenv*{${1:envname}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "newadjustboxenv*{}[][]{}": {
+      "snippet": "newadjustboxenv*{${1:envname}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "renewadjustboxenv{}{}": {
+      "snippet": "renewadjustboxenv{${1:envname}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "renewadjustboxenv{}[][]{}": {
+      "snippet": "renewadjustboxenv{${1:envname}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "renewadjustboxenv*{}{}": {
+      "snippet": "renewadjustboxenv*{${1:envname}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "renewadjustboxenv*{}[][]{}": {
+      "snippet": "renewadjustboxenv*{${1:envname}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "provideadjustboxenv{}{}": {
+      "snippet": "provideadjustboxenv{${1:envname}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "provideadjustboxenv{}[][]{}": {
+      "snippet": "provideadjustboxenv{${1:envname}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "provideadjustboxenv*{}{}": {
+      "snippet": "provideadjustboxenv*{${1:envname}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "provideadjustboxenv*{}[][]{}": {
+      "snippet": "provideadjustboxenv*{${1:envname}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "declareadjustboxenv{}{}": {
+      "snippet": "declareadjustboxenv{${1:envname}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "declareadjustboxenv{}[][]{}": {
+      "snippet": "declareadjustboxenv{${1:envname}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "declareadjustboxenv*{}{}": {
+      "snippet": "declareadjustboxenv*{${1:envname}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "declareadjustboxenv*{}[][]{}": {
+      "snippet": "declareadjustboxenv*{${1:envname}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "newadjustboxcmd{}{}": {
+      "snippet": "newadjustboxcmd{${1:cmd}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "newadjustboxcmd{}[][]{}": {
+      "snippet": "newadjustboxcmd{${1:cmd}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "renewadjustboxcmd{}{}": {
+      "snippet": "renewadjustboxcmd{${1:cmd}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "renewadjustboxcmd{}[][]{}": {
+      "snippet": "renewadjustboxcmd{${1:cmd}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "provideadjustboxcmd{}{}": {
+      "snippet": "provideadjustboxcmd{${1:cmd}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "provideadjustboxcmd{}[][]{}": {
+      "snippet": "provideadjustboxcmd{${1:cmd}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "declareadjustboxcmd{}{}": {
+      "snippet": "declareadjustboxcmd{${1:cmd}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "declareadjustboxcmd{}[][]{}": {
+      "snippet": "declareadjustboxcmd{${1:cmd}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "newadjustimage{}{}": {
+      "snippet": "newadjustimage{${1:cmd}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "newadjustimage{}[][]{}": {
+      "snippet": "newadjustimage{${1:cmd}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "renewadjustimage{}{}": {
+      "snippet": "renewadjustimage{${1:cmd}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "renewadjustimage{}[][]{}": {
+      "snippet": "renewadjustimage{${1:cmd}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "provideadjustimage{}{}": {
+      "snippet": "provideadjustimage{${1:cmd}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "provideadjustimage{}[][]{}": {
+      "snippet": "provideadjustimage{${1:cmd}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "declareadjustimage{}{}": {
+      "snippet": "declareadjustimage{${1:cmd}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "declareadjustimage{}[][]{}": {
+      "snippet": "declareadjustimage{${1:cmd}}[${2:num}][${3:default}]{${4:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "NewAdjustImage{}{}{}": {
+      "snippet": "NewAdjustImage{${1:cmd}}{${2:xargs}}{${3:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "RenewAdjustImage{}{}{}": {
+      "snippet": "RenewAdjustImage{${1:cmd}}{${2:xargs}}{${3:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "ProvideAdjustImage{}{}{}": {
+      "snippet": "ProvideAdjustImage{${1:cmd}}{${2:xargs}}{${3:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "DeclareAdjustImage{}{}{}": {
+      "snippet": "DeclareAdjustImage{${1:cmd}}{${2:xargs}}{${3:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "adjustboxset{}": {
+      "snippet": "adjustboxset{${1:options}}"
+    },
+    "adjustboxset*{}": {
+      "snippet": "adjustboxset*{${1:options}}"
+    },
+    "bgimagebox{}": {
+      "snippet": "bgimagebox{${1:imagefile}}"
+    },
+    "bgimagebox[]{}": {
+      "snippet": "bgimagebox[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "bgimagebox*{}": {
+      "snippet": "bgimagebox*{${1:imagefile}}"
+    },
+    "bgimagebox*[]{}": {
+      "snippet": "bgimagebox*[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "fgimagebox{}": {
+      "snippet": "fgimagebox{${1:imagefile}}"
+    },
+    "fgimagebox[]{}": {
+      "snippet": "fgimagebox[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "fgimagebox*{}": {
+      "snippet": "fgimagebox*{${1:imagefile}}"
+    },
+    "fgimagebox*[]{}": {
+      "snippet": "fgimagebox*[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "backgroundbox{}": {
+      "snippet": "backgroundbox{${1:content}}"
+    },
+    "backgroundbox[]{}": {
+      "snippet": "backgroundbox[${2:options}]{${1:content}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "backgroundbox*{}": {
+      "snippet": "backgroundbox*{${1:content}}"
+    },
+    "backgroundbox*[]{}": {
+      "snippet": "backgroundbox*[${2:options}]{${1:content}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "foregroundbox{}": {
+      "snippet": "foregroundbox{${1:content}}"
+    },
+    "foregroundbox[]{}": {
+      "snippet": "foregroundbox[${2:options}]{${1:content}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "foregroundbox*{}": {
+      "snippet": "foregroundbox*{${1:content}}"
+    },
+    "foregroundbox*[]{}": {
+      "snippet": "foregroundbox*[${2:options}]{${1:content}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Width": {},
+    "Height": {},
+    "Depth": {},
+    "Totalheight": {},
+    "smallestside": {},
+    "largestside": {},
+    "Smallestside": {},
+    "Largestside": {},
+    "minsizebox{}{}{}": {
+      "snippet": "minsizebox{${1:width}}{${2:height}}{${3:content}}"
+    },
+    "minsizebox*{}{}{}": {
+      "snippet": "minsizebox*{${1:width}}{${2:totalheight}}{${3:content}}"
+    },
+    "maxsizebox{}{}{}": {
+      "snippet": "maxsizebox{${1:width}}{${2:height}}{${3:content}}"
+    },
+    "maxsizebox*{}{}{}": {
+      "snippet": "maxsizebox*{${1:width}}{${2:totalheight}}{${3:content}}"
+    },
+    "rndcornersbox{}{}": {
+      "snippet": "rndcornersbox{${1:length}}{${2:content}}"
+    },
+    "rndframebox{}{}": {
+      "snippet": "rndframebox{${1:length}}{${2:content}}"
+    },
+    "rndfbox{}{}": {
+      "snippet": "rndfbox{${1:length}}{${2:content}}"
+    },
+    "adjboxvtop": {},
+    "adjboxvbottom": {},
+    "adjboxvcenter": {},
+    "centerbox{}": {
+      "snippet": "centerbox{${1:content}}"
+    },
+    "centerbox[]{}": {
+      "snippet": "centerbox[${2:width}]{${1:content}}"
+    },
+    "leftalignbox{}": {
+      "snippet": "leftalignbox{${1:content}}"
+    },
+    "leftalignbox[]{}": {
+      "snippet": "leftalignbox[${2:width}]{${1:content}}"
+    },
+    "rightalignbox{}": {
+      "snippet": "rightalignbox{${1:content}}"
+    },
+    "rightalignbox[]{}": {
+      "snippet": "rightalignbox[${2:width}]{${1:content}}"
+    },
+    "innersidebox{}": {
+      "snippet": "innersidebox{${1:content}}"
+    },
+    "innersidebox[]{}": {
+      "snippet": "innersidebox[${2:width}]{${1:content}}"
+    },
+    "outersidebox{}": {
+      "snippet": "outersidebox{${1:content}}"
+    },
+    "outersidebox[]{}": {
+      "snippet": "outersidebox[${2:width}]{${1:content}}"
+    },
+    "centerpagebox{}": {
+      "snippet": "centerpagebox{${1:content}}"
+    },
+    "centerpagebox[]{}": {
+      "snippet": "centerpagebox[${2:width}]{${1:content}}"
+    },
+    "pagecenterbox{}": {
+      "snippet": "pagecenterbox{${1:content}}"
+    },
+    "pagecenterbox[]{}": {
+      "snippet": "pagecenterbox[${2:width}]{${1:content}}"
+    },
+    "pageleftalignbox{}": {
+      "snippet": "pageleftalignbox{${1:content}}"
+    },
+    "pageleftalignbox[]{}": {
+      "snippet": "pageleftalignbox[${2:width}]{${1:content}}"
+    },
+    "pagerightalignbox{}": {
+      "snippet": "pagerightalignbox{${1:content}}"
+    },
+    "pagerightalignbox[]{}": {
+      "snippet": "pagerightalignbox[${2:width}]{${1:content}}"
+    },
+    "pageinnerbox{}": {
+      "snippet": "pageinnerbox{${1:content}}"
+    },
+    "pageinnerbox[]{}": {
+      "snippet": "pageinnerbox[${2:width}]{${1:content}}"
+    },
+    "pageouterbox{}": {
+      "snippet": "pageouterbox{${1:content}}"
+    },
+    "pageouterbox[]{}": {
+      "snippet": "pageouterbox[${2:width}]{${1:content}}"
+    },
+    "textareacenterbox{}": {
+      "snippet": "textareacenterbox{${1:content}}"
+    },
+    "textareacenterbox[]{}": {
+      "snippet": "textareacenterbox[${2:width}]{${1:content}}"
+    },
+    "textarealeftalignbox{}": {
+      "snippet": "textarealeftalignbox{${1:content}}"
+    },
+    "textarealeftalignbox[]{}": {
+      "snippet": "textarealeftalignbox[${2:width}]{${1:content}}"
+    },
+    "textarearightalignbox{}": {
+      "snippet": "textarearightalignbox{${1:content}}"
+    },
+    "textarearightalignbox[]{}": {
+      "snippet": "textarearightalignbox[${2:width}]{${1:content}}"
+    },
+    "textareainnerbox{}": {
+      "snippet": "textareainnerbox{${1:content}}"
+    },
+    "textareainnerbox[]{}": {
+      "snippet": "textareainnerbox[${2:width}]{${1:content}}"
+    },
+    "textareaouterbox{}": {
+      "snippet": "textareaouterbox{${1:content}}"
+    },
+    "textareaouterbox[]{}": {
+      "snippet": "textareaouterbox[${2:width}]{${1:content}}"
+    },
+    "lapbox{}{}": {
+      "snippet": "lapbox{${1:length}}{${2:content}}"
+    },
+    "lapbox[]{}{}": {
+      "snippet": "lapbox[${3:width}]{${1:length}}{${2:content}}"
+    },
+    "bgcolorbox{}": {
+      "snippet": "bgcolorbox{${1:color}}"
+    },
+    "bgcolorbox[]{}": {
+      "snippet": "bgcolorbox[${2:model}]{${1:color}}"
+    },
+    "bgcolorbox*{}": {
+      "snippet": "bgcolorbox*{${1:color macro}}"
+    },
+    "pwidth": {},
+    "pheight": {},
+    "pdepth": {},
+    "ptotalheight": {},
+    "pdfpxdimen": {},
+    "stackbox{}": {
+      "snippet": "stackbox{${1:content}}"
+    },
+    "stackbox[]{}": {
+      "snippet": "stackbox[${2:halign}]{${1:content}}"
+    },
+    "stackbox[][]{}": {
+      "snippet": "stackbox[${2:halign}][${3:valign}]{${1:content}}"
+    },
+    "adjnofloat": {},
+    "endadjnofloat": {},
+    "phantombox{}{}{}": {
+      "snippet": "phantombox{${1:width}}{${2:height}}{${3:depth}}"
+    },
+    "newadjustboxkey{}{}": {
+      "snippet": "newadjustboxkey{${1:keyname}}{${2:code}}"
+    },
+    "newadjustboxkey{}[]{}": {
+      "snippet": "newadjustboxkey{${1:keyname}}[${2:default}]{${3:code}}"
+    },
+    "newadjustboxkey*{}{}": {
+      "snippet": "newadjustboxkey*{${1:keyname}}{${2:code}}"
+    },
+    "newadjustboxkey*{}[]{}": {
+      "snippet": "newadjustboxkey*{${1:keyname}}[${2:default}]{${3:code}}"
+    },
+    "renewadjustboxkey{}{}": {
+      "snippet": "renewadjustboxkey{${1:keyname}}{${2:code}}"
+    },
+    "renewadjustboxkey{}[]{}": {
+      "snippet": "renewadjustboxkey{${1:keyname}}[${2:default}]{${3:code}}"
+    },
+    "renewadjustboxkey*{}{}": {
+      "snippet": "renewadjustboxkey*{${1:keyname}}{${2:code}}"
+    },
+    "renewadjustboxkey*{}[]{}": {
+      "snippet": "renewadjustboxkey*{${1:keyname}}[${2:default}]{${3:code}}"
+    },
+    "provideadjustboxkey{}{}": {
+      "snippet": "provideadjustboxkey{${1:keyname}}{${2:code}}"
+    },
+    "provideadjustboxkey{}[]{}": {
+      "snippet": "provideadjustboxkey{${1:keyname}}[${2:default}]{${3:code}}"
+    },
+    "provideadjustboxkey*{}{}": {
+      "snippet": "provideadjustboxkey*{${1:keyname}}{${2:code}}"
+    },
+    "provideadjustboxkey*{}[]{}": {
+      "snippet": "provideadjustboxkey*{${1:keyname}}[${2:default}]{${3:code}}"
+    },
+    "defadjustboxkey{}{}": {
+      "snippet": "defadjustboxkey{${1:keyname}}{${2:code}}"
+    },
+    "defadjustboxkey{}[]{}": {
+      "snippet": "defadjustboxkey{${1:keyname}}[${2:default}]{${3:code}}"
+    },
+    "defadjustboxkey*{}{}": {
+      "snippet": "defadjustboxkey*{${1:keyname}}{${2:code}}"
+    },
+    "defadjustboxkey*{}[]{}": {
+      "snippet": "defadjustboxkey*{${1:keyname}}[${2:default}]{${3:code}}"
+    }
+  },
+  "envs": {
+    "adjustbox{}": {
+      "name": "adjustbox",
+      "snippet": "{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "bgimagebox{}": {
+      "name": "bgimagebox",
+      "snippet": "{${1:imagefile}}"
+    },
+    "bgimagebox[]{}": {
+      "name": "bgimagebox",
+      "snippet": "[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "bgimagebox*{}": {
+      "name": "bgimagebox*",
+      "snippet": "{${1:imagefile}}"
+    },
+    "bgimagebox*[]{}": {
+      "name": "bgimagebox*",
+      "snippet": "[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "fgimagebox{}": {
+      "name": "fgimagebox",
+      "snippet": "{${1:imagefile}}"
+    },
+    "fgimagebox[]{}": {
+      "name": "fgimagebox",
+      "snippet": "[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "fgimagebox*{}": {
+      "name": "fgimagebox*",
+      "snippet": "{${1:imagefile}}"
+    },
+    "fgimagebox*[]{}": {
+      "name": "fgimagebox*",
+      "snippet": "[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "backgroundbox{}": {
+      "name": "backgroundbox",
+      "snippet": "{${1:content}}"
+    },
+    "backgroundbox[]{}": {
+      "name": "backgroundbox",
+      "snippet": "[${2:options}]{${1:content}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "backgroundbox*{}": {
+      "name": "backgroundbox*",
+      "snippet": "{${1:content}}"
+    },
+    "backgroundbox*[]{}": {
+      "name": "backgroundbox*",
+      "snippet": "[${2:options}]{${1:content}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "foregroundbox{}": {
+      "name": "foregroundbox",
+      "snippet": "{${1:content}}"
+    },
+    "foregroundbox[]{}": {
+      "name": "foregroundbox",
+      "snippet": "[${2:options}]{${1:content}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "foregroundbox*{}": {
+      "name": "foregroundbox*",
+      "snippet": "{${1:content}}"
+    },
+    "foregroundbox*[]{}": {
+      "name": "foregroundbox*",
+      "snippet": "[${2:options}]{${1:content}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "centerbox": {},
+    "centerbox[]": {
+      "name": "centerbox",
+      "snippet": "[${1:width}]"
+    },
+    "leftalignbox": {},
+    "leftalignbox[]": {
+      "name": "leftalignbox",
+      "snippet": "[${1:width}]"
+    },
+    "rightalignbox": {},
+    "rightalignbox[]": {
+      "name": "rightalignbox",
+      "snippet": "[${1:width}]"
+    },
+    "innersidebox": {},
+    "innersidebox[]": {
+      "name": "innersidebox",
+      "snippet": "[${1:width}]"
+    },
+    "outersidebox": {},
+    "outersidebox[]": {
+      "name": "outersidebox",
+      "snippet": "[${1:width}]"
+    },
+    "centerpagebox": {},
+    "centerpagebox[]": {
+      "name": "centerpagebox",
+      "snippet": "[${1:width}]"
+    },
+    "pagecenterbox": {},
+    "pagecenterbox[]": {
+      "name": "pagecenterbox",
+      "snippet": "[${1:width}]"
+    },
+    "pageleftalignbox": {},
+    "pageleftalignbox[]": {
+      "name": "pageleftalignbox",
+      "snippet": "[${1:width}]"
+    },
+    "pagerightalignbox": {},
+    "pagerightalignbox[]": {
+      "name": "pagerightalignbox",
+      "snippet": "[${1:width}]"
+    },
+    "pageinnerbox": {},
+    "pageinnerbox[]": {
+      "name": "pageinnerbox",
+      "snippet": "[${1:width}]"
+    },
+    "pageouterbox": {},
+    "pageouterbox[]": {
+      "name": "pageouterbox",
+      "snippet": "[${1:width}]"
+    },
+    "textareacenterbox": {},
+    "textareacenterbox[]": {
+      "name": "textareacenterbox",
+      "snippet": "[${1:width}]"
+    },
+    "textarealeftalignbox": {},
+    "textarealeftalignbox[]": {
+      "name": "textarealeftalignbox",
+      "snippet": "[${1:width}]"
+    },
+    "textarearightalignbox": {},
+    "textarearightalignbox[]": {
+      "name": "textarearightalignbox",
+      "snippet": "[${1:width}]"
+    },
+    "textareainnerbox": {},
+    "textareainnerbox[]": {
+      "name": "textareainnerbox",
+      "snippet": "[${1:width}]"
+    },
+    "textareaouterbox": {},
+    "textareaouterbox[]": {
+      "name": "textareaouterbox",
+      "snippet": "[${1:width}]"
+    },
+    "bgcolorbox{}": {
+      "name": "bgcolorbox",
+      "snippet": "{${1:color}}"
+    },
+    "bgcolorbox[]{}": {
+      "name": "bgcolorbox",
+      "snippet": "[${2:model}]{${1:color}}"
+    },
+    "bgcolorbox*{}": {
+      "name": "bgcolorbox*",
+      "snippet": "{${1:color mcro}}"
+    },
+    "stackbox": {},
+    "stackbox[]": {
+      "name": "stackbox",
+      "snippet": "[${1:halign}]"
+    },
+    "stackbox[][]": {
+      "name": "stackbox",
+      "snippet": "[${1:halign}][${2:valign}]"
+    },
+    "adjnofloat{}": {
+      "name": "adjnofloat",
+      "snippet": "{${1:float type}}"
+    }
+  },
+  "options": [
+    "export",
+    "Export",
+    "pgf",
+    "PGF",
+    "minimal",
+    "etex",
+    "calc",
+    "pgfmath",
+    "defaultunit=${1:unit}",
+    "pdftex",
+    "luatex",
+    "dvips",
+    "xetex",
+    "dvipdfm",
+    "dvipdfmx"
+  ],
+  "keyvals": [
+    [
+      "alt={${1:alt text}}",
+      "bb=${1:llx lly urx ury}",
+      "bbllx=",
+      "bblly=",
+      "bburx=",
+      "bbury=",
+      "natwidth=",
+      "natheight=",
+      "hiresbb",
+      "pagebox=",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:llx lly urx ury}",
+      "angle=${1:degrees}",
+      "origin=",
+      "width=",
+      "height=",
+      "totalheight=",
+      "keepaspectratio",
+      "scale=${1:factor}",
+      "clip",
+      "draft",
+      "type=${1:file type}",
+      "ext=${1:file extension}",
+      "read=${1:read-file extension}",
+      "command=",
+      "quiet",
+      "page=${1:page number}",
+      "interpolate",
+      "decodearray={${1:color array}}",
+      "intent",
+      "maskarray",
+      "ocobjnum",
+      "ocobjref",
+      "resetcolor",
+      "resolution",
+      "xmpfile",
+      "Trim=",
+      "Viewport=",
+      "Clip=",
+      "Clip*=",
+      "rndcorners=",
+      "margin=",
+      "margin*=",
+      "padding=",
+      "padding*=",
+      "vspace=",
+      "vspace*=",
+      "min width=",
+      "max width=",
+      "min height=",
+      "max height=",
+      "min totalheight=",
+      "max totalheight=",
+      "min size={${1:width}}{${2:height}}",
+      "max size={${1:width}}{${2:height}}",
+      "min totalsize={${1:width}}{${2:totalheight}}",
+      "max totalsize={${1:width}}{${2:totalheight}}",
+      "warn width",
+      "warn width=",
+      "scale={${1:h-factor}}{${2:v-factor}}",
+      "reflect",
+      "fbox",
+      "fbox=",
+      "frame",
+      "frame=",
+      "cfbox=",
+      "cframe=",
+      "rndframe=",
+      "rndcornersbox",
+      "rndfbox",
+      "valign=",
+      "raise=",
+      "set height=",
+      "set depth=",
+      "set vsize={${1:height}}{${2:depth}}",
+      "center",
+      "center=",
+      "right",
+      "right=",
+      "left",
+      "left=",
+      "inner",
+      "inner=",
+      "outer",
+      "outer=",
+      "pagecenter",
+      "pagecenter=",
+      "pageleftalign",
+      "pageleftalign=",
+      "pagerightalign",
+      "pagerightalign=",
+      "pageinner",
+      "pageinner=",
+      "pageouter",
+      "pageouter=",
+      "textareacenter",
+      "textareacenter=",
+      "textarealeftalign",
+      "textarealeftalign=",
+      "textarearightalign",
+      "textarearightalign=",
+      "textareainner",
+      "textareainner=",
+      "textareaouter",
+      "textareaouter=",
+      "noindent",
+      "leavevmode",
+      "lap=",
+      "rlap",
+      "llap",
+      "clap",
+      "color=",
+      "color*=${1:color macro}",
+      "fgcolor=",
+      "fgcolor*=${1:color macro}",
+      "bgcolor=",
+      "bgcolor*=${1:color macro}",
+      "bgimage=",
+      "bgimage*=",
+      "fgimage=",
+      "fgimage*=",
+      "background=",
+      "background*=",
+      "foreground=",
+      "foreground*=",
+      "dpi=${1:number}",
+      "pxdim=",
+      "minipage=",
+      "varwidth=",
+      "tabular=[${1:position}]{${2:col spec}}",
+      "tabular*=[${1:position}]{${2:width}}{${3:col spec}}",
+      "array=[${1:position}]{${2:col spec}}",
+      "stack",
+      "stack=",
+      "innerenv=${1:envname}",
+      "innercode={${1:begin code}}{${2:end code}}",
+      "caption=",
+      "captionabove=",
+      "captionbelow=",
+      "label=",
+      "figure",
+      "figure=${1:placement}",
+      "float=",
+      "nofloat=${1:float type}",
+      "rotate=",
+      "env=",
+      "addcode={${1:code before}}{${2:code after}}",
+      "Addcode={${1:code before}}{${2:code after}}",
+      "appcode=${1:code after}",
+      "precode=${1:code before}",
+      "Precode={${1:code before}}",
+      "execute=${1:code}",
+      "Execute=${1:code}",
+      "phantom",
+      "phantom=",
+      "gobble",
+      "discard",
+      "content=${1:new content}",
+      "gstore=${1:box register}",
+      "gstore*=${1:box register}",
+      "gstore width=${1:length register}",
+      "gstore height=${1:length register}",
+      "gstore depth=${1:length register}",
+      "gstore totalheight=${1:length register}",
+      "gstore sizes=",
+      "process"
+    ]
+  ]
+}

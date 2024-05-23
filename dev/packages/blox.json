@@ -1,0 +1,225 @@
+{
+  "includes": {
+    "ifthen": [],
+    "pgffor": [],
+    "tikz": [],
+    "tikzlibraryshapes": []
+  },
+  "macros": {
+    "bXInput{}": {
+      "snippet": "bXInput{${1:name}}"
+    },
+    "bXInput[]{}": {
+      "snippet": "bXInput[${2:label}]{${1:name}}"
+    },
+    "bXOutput{}{}": {
+      "snippet": "bXOutput{${1:name}}{${2:preceding node}}"
+    },
+    "bXOutput[]{}{}": {
+      "snippet": "bXOutput[${3:distance}]{${1:name}}{${2:previous node}}"
+    },
+    "bXLinkName{}{}": {
+      "snippet": "bXLinkName{${1:previous node}}{${2:label}}"
+    },
+    "bXLinkName[]{}{}": {
+      "snippet": "bXLinkName[${3:distance}]{${1:previous node}}{${2:label}}"
+    },
+    "bXBloc{}{}{}": {
+      "snippet": "bXBloc{${1:name}}{${2:contents}}{${3:previous node}}"
+    },
+    "bXBloc[]{}{}{}": {
+      "snippet": "bXBloc[${4:distance}]{${1:name}}{${2:contents}}{${3:previous node}}"
+    },
+    "bXBlocL{}{}{}": {
+      "snippet": "bXBlocL{${1:name}}{${2:contents}}{${3:previous node}}"
+    },
+    "bXBlocL[]{}{}{}": {
+      "snippet": "bXBlocL[${4:distance}]{${1:name}}{${2:contents}}{${3:previous node}}"
+    },
+    "bXBlocr{}{}{}": {
+      "snippet": "bXBlocr{${1:name}}{${2:contents}}{${3:previous node}}"
+    },
+    "bXBlocr[]{}{}{}": {
+      "snippet": "bXBlocr[${4:distance}]{${1:name}}{${2:contents}}{${3:previous node}}"
+    },
+    "bXBlocrL{}{}{}": {
+      "snippet": "bXBlocrL{${1:name}}{${2:contents}}{${3:previous node}}"
+    },
+    "bXBlocrL[]{}{}{}": {
+      "snippet": "bXBlocrL[${4:distance}]{${1:name}}{${2:contents}}{${3:previous node}}"
+    },
+    "bXBlocPotato{}{}{}": {
+      "snippet": "bXBlocPotato{${1:name}}{${2:contents}}{${3:previous node}}"
+    },
+    "bXBlocPotato[]{}{}{}": {
+      "snippet": "bXBlocPotato[${4:distance}]{${1:name}}{${2:contents}}{${3:previous node}}"
+    },
+    "bXonlyOneBloc{}{}{}": {
+      "snippet": "bXonlyOneBloc{${1:input label}}{${2:block label}}{${3:output label}}"
+    },
+    "bXonlyOneBloc[]{}{}{}": {
+      "snippet": "bXonlyOneBloc[${4:distance}]{${1:input label}}{${2:block label}}{${3:output label}}"
+    },
+    "bXComp{}{}": {
+      "snippet": "bXComp{${1:name}}{${2:previous node}}"
+    },
+    "bXComp[]{}{}": {
+      "snippet": "bXComp[${3:distance}]{${1:name}}{${2:previous node}}"
+    },
+    "bXComp*{}{}": {
+      "snippet": "bXComp*{${1:name}}{${2:previous node}}"
+    },
+    "bXComp*[]{}{}": {
+      "snippet": "bXComp*[${3:distance}]{${1:name}}{${2:previous node}}"
+    },
+    "bXSum{}{}{}{}{}": {
+      "snippet": "bXSum{${1:name}}{${2:previous node}}{${3:a}}{${4:b}}{${5:c}}"
+    },
+    "bXSum[]{}{}{}{}{}": {
+      "snippet": "bXSum[${6:distance}]{${1:name}}{${2:previous node}}{${3:a}}{${4:b}}{${5:c}}"
+    },
+    "bXCompa{}{}": {
+      "snippet": "bXCompa{${1:name}}{${2:previous node}}"
+    },
+    "bXCompa[]{}{}": {
+      "snippet": "bXCompa[${3:distance}]{${1:name}}{${2:previous node}}"
+    },
+    "bXCompa*{}{}": {
+      "snippet": "bXCompa*{${1:name}}{${2:previous node}}"
+    },
+    "bXCompa*[]{}{}": {
+      "snippet": "bXCompa*[${3:distance}]{${1:name}}{${2:previous node}}"
+    },
+    "bXSuma{}{}": {
+      "snippet": "bXSuma{${1:name}}{${2:previous node}}"
+    },
+    "bXSuma[]{}{}": {
+      "snippet": "bXSuma[${3:distance}]{${1:name}}{${2:previous node}}"
+    },
+    "bXSuma*{}{}": {
+      "snippet": "bXSuma*{${1:name}}{${2:previous node}}"
+    },
+    "bXSuma*[]{}{}": {
+      "snippet": "bXSuma*[${3:distance}]{${1:name}}{${2:previous node}}"
+    },
+    "bXCompb{}{}": {
+      "snippet": "bXCompb{${1:name}}{${2:previous node}}"
+    },
+    "bXCompb[]{}{}": {
+      "snippet": "bXCompb[${3:distance}]{${1:name}}{${2:previous node}}"
+    },
+    "bXCompb*{}{}": {
+      "snippet": "bXCompb*{${1:name}}{${2:previous node}}"
+    },
+    "bXCompb*[]{}{}": {
+      "snippet": "bXCompb*[${3:distance}]{${1:name}}{${2:previous node}}"
+    },
+    "bXSumb{}{}": {
+      "snippet": "bXSumb{${1:name}}{${2:previous node}}"
+    },
+    "bXSumb[]{}{}": {
+      "snippet": "bXSumb[${3:distance}]{${1:name}}{${2:previous node}}"
+    },
+    "bXSumb*{}{}": {
+      "snippet": "bXSumb*{${1:name}}{${2:previous node}}"
+    },
+    "bXSumb*[]{}{}": {
+      "snippet": "bXSumb*[${3:distance}]{${1:name}}{${2:previous node}}"
+    },
+    "bXCompSum{}{}{}{}{}{}": {
+      "snippet": "bXCompSum{${1:name}}{${2:previous node}}{${3:n}}{${4:s}}{${5:w}}{${6:e}}"
+    },
+    "bXCompSum[]{}{}{}{}{}{}": {
+      "snippet": "bXCompSum[${7:distance}]{${1:name}}{${2:previous node}}{${3:n}}{${4:s}}{${5:w}}{${6:e}}"
+    },
+    "bXCompSum*{}{}{}{}{}{}": {
+      "snippet": "bXCompSum*{${1:name}}{${2:previous node}}{${3:n}}{${4:s}}{${5:w}}{${6:e}}"
+    },
+    "bXCompSum*[]{}{}{}{}{}{}": {
+      "snippet": "bXCompSum*[${7:distance}]{${1:name}}{${2:previous node}}{${3:n}}{${4:s}}{${5:w}}{${6:e}}"
+    },
+    "bXLink{}{}": {
+      "snippet": "bXLink{${1:previous node}}{${2:next node}}"
+    },
+    "bXLink[]{}{}": {
+      "snippet": "bXLink[${3:label}]{${1:previous node}}{${2:next node}}"
+    },
+    "bXLinkxy{}{}": {
+      "snippet": "bXLinkxy{${1:previous node}}{${2:next node}}"
+    },
+    "bXLinkxy[]{}{}": {
+      "snippet": "bXLinkxy[${3:label}]{${1:previous node}}{${2:next node}}"
+    },
+    "bXLinkyx{}{}": {
+      "snippet": "bXLinkyx{${1:previous node}}{${2:next node}}"
+    },
+    "bXLinktyx{}{}": {
+      "snippet": "bXLinktyx{${1:previous node}}{${2:next node}}"
+    },
+    "bXLinktb{}{}": {
+      "snippet": "bXLinktb{${1:previous node}}{${2:next node}}"
+    },
+    "bXReturn{}{}{}": {
+      "snippet": "bXReturn{${1:previous node}}{${2:next node}}{${3:label}}"
+    },
+    "bXReturn[]{}{}{}": {
+      "snippet": "bXReturn[${4:distance}]{${1:previous node}}{${2:next node}}{${3:label}}"
+    },
+    "bXChain{}{}": {
+      "snippet": "bXChain{${1:previous node}}{${2:list}}"
+    },
+    "bXChain[]{}{}": {
+      "snippet": "bXChain[${3:distance}]{${1:previous node}}{${2:list}}"
+    },
+    "bXChainReturn{}{}": {
+      "snippet": "bXChainReturn{${1:previous node}}{${2:list}}"
+    },
+    "bXChainReturn[]{}{}": {
+      "snippet": "bXChainReturn[${3:distance}]{${1:previous node}}{${2:list}}"
+    },
+    "bXLoop{}{}": {
+      "snippet": "bXLoop{${1:previous node}}{${2:list}}"
+    },
+    "bXLoop[]{}{}": {
+      "snippet": "bXLoop[${3:distance}]{${1:previous node}}{${2:list}}"
+    },
+    "lastx": {},
+    "bXBranchx{}{}": {
+      "snippet": "bXBranchx{${1:previous node}}{${2:name}}"
+    },
+    "bXBranchx[]{}{}": {
+      "snippet": "bXBranchx[${3:distance}]{${1:previous node}}{${2:name}}"
+    },
+    "bXNodeShiftx": {},
+    "bXBranchy{}{}": {
+      "snippet": "bXBranchy{${1:previous node}}{${2:name}}"
+    },
+    "bXBranchy[]{}{}": {
+      "snippet": "bXBranchy[${3:distance}]{${1:previous node}}{${2:name}}"
+    },
+    "bXNodeShifty": {},
+    "bXDefaultLineStyle": {},
+    "bXLineStyle{}": {
+      "snippet": "bXLineStyle{${1:TikZ keys}}"
+    },
+    "bXStyleBlocDefault": {},
+    "bXStyleBloc{}": {
+      "snippet": "bXStyleBloc{${1:TikZ keys}}"
+    },
+    "bXStyleSumDefault": {},
+    "bXStyleSum{}": {
+      "snippet": "bXStyleSum{${1:TikZ keys}}"
+    },
+    "bXLabelStyleDefault": {},
+    "bXLabelStyle{}": {
+      "snippet": "bXLabelStyle{${1:TikZ keys}}"
+    },
+    "bXStylePotatoDefault": {},
+    "bXStylePotato{}": {
+      "snippet": "bXStylePotato{${1:TikZ keys}}"
+    }
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

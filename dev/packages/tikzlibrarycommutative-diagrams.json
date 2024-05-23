@@ -1,0 +1,363 @@
+{
+  "includes": {
+    "tikzlibrarymatrix": [],
+    "tikzlibrarycalc": [],
+    "tikzlibrarypositioning": []
+  },
+  "macros": {
+    "obj[]": {
+      "snippet": "obj[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mor[]": {
+      "snippet": "mor[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "kDAct": {},
+    "ifkDRammaObjIsMatrix": {},
+    "kDRammaObjIsMatrixtrue": {},
+    "kDRammaObjIsMatrixfalse": {},
+    "kDRammaObjDecideWhetherIsMatrixThen{}": {
+      "snippet": "kDRammaObjDecideWhetherIsMatrixThen{${1:arg}}"
+    },
+    "kDRammaObjDWIM": {},
+    "kDRammaObjDWIMSightThen{}{}": {
+      "snippet": "kDRammaObjDWIMSightThen{${1:arg1}}{${2:arg2}}"
+    },
+    "kDRammaObjDWIMGobThen{}{}": {
+      "snippet": "kDRammaObjDWIMGobThen{${1:arg1}}{${2:arg2}}"
+    },
+    "kDRammaObjOutput": {},
+    "kDRammaObj": {},
+    "kDRammaMor": {},
+    "kDRamma": {},
+    "kDRammaOpen": {},
+    "kDRammaShut": {},
+    "kDRammaOptTok": {},
+    "kDRammaTmpTok": {},
+    "kDRammaMaybeFetchOptionsThen{}": {
+      "snippet": "kDRammaMaybeFetchOptionsThen{${1:arg}}"
+    },
+    "kDRammaFetchOptionsThen{}[]": {
+      "snippet": "kDRammaFetchOptionsThen{${1:arg1}}[${2:arg2}]"
+    },
+    "kDRammaOutput": {},
+    "kDEktropiDefaultToksBackup": {},
+    "kDEktropiRestore": {},
+    "kDKatharizoStringified": {},
+    "kDKatharizoStringify{}": {
+      "snippet": "kDKatharizoStringify{${1:arg}}"
+    },
+    "kDKatharizoSanitized": {},
+    "kDKatharizoSanitize{}": {
+      "snippet": "kDKatharizoSanitize{${1:arg}}"
+    },
+    "kDKatharizoSSpace": {},
+    "kDKatharizoSAppendSpace": {},
+    "kDKatharizoSString{}{}": {
+      "snippet": "kDKatharizoSString{${1:arg1}}{${2:arg2}}"
+    },
+    "kDKatharizoSWord{}{}": {
+      "snippet": "kDKatharizoSWord{${1:arg1}}{${2:arg2}}"
+    },
+    "kDKatharizoSCharacter{}": {
+      "snippet": "kDKatharizoSCharacter{${1:arg}}"
+    },
+    "kDFoo": {},
+    "kDEscapecharCounter": {},
+    "kDEscapecharDisable": {},
+    "kDEscapecharEnable": {},
+    "kDStoreCatcodeOf{}": {
+      "snippet": "kDStoreCatcodeOf{${1:arg}}"
+    },
+    "kDRestoreCatcodeOf{}": {
+      "snippet": "kDRestoreCatcodeOf{${1:arg}}"
+    },
+    "kDGobbleHardTok": {},
+    "kDGobbleSoftTok{}": {
+      "snippet": "kDGobbleSoftTok{${1:arg}}"
+    },
+    "kDIfNextHardCh": {},
+    "kDIfNextSoftCh{}{}{}": {
+      "snippet": "kDIfNextSoftCh{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "kDINCToken": {},
+    "kDINCTrue": {},
+    "kDINC": {},
+    "kDAppend{}{}": {
+      "snippet": "kDAppend{${1:arg1}}{${2:arg2}}"
+    },
+    "kDFetchOptAndGrpThen{}": {
+      "snippet": "kDFetchOptAndGrpThen{${1:arg}}"
+    },
+    "kDOptTok": {},
+    "kDGrpTok": {},
+    "kDFetchGrpThen{}{}": {
+      "snippet": "kDFetchGrpThen{${1:arg1}}{${2:arg2}}"
+    },
+    "kDExit": {},
+    "kDLoop": {},
+    "kDTmpTok": {},
+    "kDFetchTilGrpThen{}{}": {
+      "snippet": "kDFetchTilGrpThen{${1:arg1}}{${2:arg2}}"
+    },
+    "kDTrimTrailingSpace{}": {
+      "snippet": "kDTrimTrailingSpace{${1:arg}}"
+    },
+    "kDRTS": {},
+    "kDRTSAct": {},
+    "kDDetectTrailingSpace{}": {
+      "snippet": "kDDetectTrailingSpace{${1:arg}}"
+    },
+    "ifkDDTSHasTrail": {},
+    "kDDTSHasTrailtrue": {},
+    "kDDTSHasTrailfalse": {},
+    "kDDTSGob": {},
+    "ifkDDTSPrevSpace": {},
+    "kDDTSPrevSpacetrue": {},
+    "kDDTSPrevSpacefalse": {},
+    "kDTrimLeadingSpace{}": {
+      "snippet": "kDTrimLeadingSpace{${1:arg}}"
+    },
+    "kDGobbleSpaceThen{}": {
+      "snippet": "kDGobbleSpaceThen{${1:arg}}"
+    },
+    "kDGSGroupThen{}{}": {
+      "snippet": "kDGSGroupThen{${1:arg1}}{${2:arg2}}"
+    },
+    "kDGSOtherThen{}{}": {
+      "snippet": "kDGSOtherThen{${1:arg1}}{${2:arg2}}"
+    },
+    "ifConTeXt": {},
+    "ConTeXttrue": {},
+    "ConTeXtfalse": {},
+    "ifkDDumping": {},
+    "kDDumpingtrue": {},
+    "kDDumpingfalse": {},
+    "kDDumpFile": {},
+    "kDDumpOpen": {},
+    "kDDump{}": {
+      "snippet": "kDDump{${1:arg}}"
+    },
+    "kDDumpClose": {},
+    "kDOzos": {},
+    "kDOzosFetchThen": {},
+    "kDOzosMaybeDumpThen{}": {
+      "snippet": "kDOzosMaybeDumpThen{${1:arg}}"
+    },
+    "kDOzosOutput": {},
+    "kDMitra": {},
+    "kDMitraTmpTok": {},
+    "kDMitraFetchMatrixThen{}": {
+      "snippet": "kDMitraFetchMatrixThen{${1:arg}}"
+    },
+    "kDMitraMatOutTok": {},
+    "kDMitraParseMatrixTableThen{}": {
+      "snippet": "kDMitraParseMatrixTableThen{${1:arg}}"
+    },
+    "kDMitraParseTable": {},
+    "kDMitraParseAllRowsThen{}": {
+      "snippet": "kDMitraParseAllRowsThen{${1:arg}}"
+    },
+    "kDMitraParseOneRowThen{}": {
+      "snippet": "kDMitraParseOneRowThen{${1:arg}}"
+    },
+    "kDMitraMarkRowEndBefore{}{}": {
+      "snippet": "kDMitraMarkRowEndBefore{${1:arg1}}{${2:arg2}}"
+    },
+    "kDMitraParseAllColsThen{}": {
+      "snippet": "kDMitraParseAllColsThen{${1:arg}}"
+    },
+    "kDMitraParseRowEndThen{}": {
+      "snippet": "kDMitraParseRowEndThen{${1:arg}}"
+    },
+    "kDMitraFetchRowEndThen{}": {
+      "snippet": "kDMitraFetchRowEndThen{${1:arg}}"
+    },
+    "kDMitraRowOptTok": {},
+    "kDMitraPrintRowEndThen{}": {
+      "snippet": "kDMitraPrintRowEndThen{${1:arg}}"
+    },
+    "kDMitraMaybeFetchRowOptionsThen{}": {
+      "snippet": "kDMitraMaybeFetchRowOptionsThen{${1:arg}}"
+    },
+    "kDMitraFetchRowOptionsThen{}[]": {
+      "snippet": "kDMitraFetchRowOptionsThen{${1:arg1}}[${2:arg2}]"
+    },
+    "kDMitraParseOneColThen{}": {
+      "snippet": "kDMitraParseOneColThen{${1:arg}}"
+    },
+    "kDMitraParseColEndThen{}": {
+      "snippet": "kDMitraParseColEndThen{${1:arg}}"
+    },
+    "kDMitraColOptTok": {},
+    "kDMitraMaybeFetchColOptionsThen{}": {
+      "snippet": "kDMitraMaybeFetchColOptionsThen{${1:arg}}"
+    },
+    "kDMitraFetchColOptionsThen{}[]": {
+      "snippet": "kDMitraFetchColOptionsThen{${1:arg1}}[${2:arg2}]"
+    },
+    "kDMitraMaybePrintColEndThen{}": {
+      "snippet": "kDMitraMaybePrintColEndThen{${1:arg}}"
+    },
+    "kDMitraParseCellThen{}": {
+      "snippet": "kDMitraParseCellThen{${1:arg}}"
+    },
+    "kDMitraCelOptTok": {},
+    "kDMitraMaybeFetchCellOptionsThen{}": {
+      "snippet": "kDMitraMaybeFetchCellOptionsThen{${1:arg}}"
+    },
+    "kDMitraFetchCellOptionsThen{}": {
+      "snippet": "kDMitraFetchCellOptionsThen{${1:arg1}}|arg2|"
+    },
+    "kDMitraCelCntTok": {},
+    "kDMitraFetchCellContentThen{}{}": {
+      "snippet": "kDMitraFetchCellContentThen{${1:arg1}}{${2:arg1}}"
+    },
+    "kDMitraMaybeDoCellThen{}": {
+      "snippet": "kDMitraMaybeDoCellThen{${1:arg}}"
+    },
+    "kDMitraPrintCellThen{}": {
+      "snippet": "kDMitraPrintCellThen{${1:arg}}"
+    },
+    "kDMitraMaybeDumpCell": {},
+    "kDMitraOutput": {},
+    "kDVelosQuoteHandler{}": {
+      "snippet": "kDVelosQuoteHandler{${1:arg}}"
+    },
+    "kDVelosTemp": {},
+    "kDVelosGlobalLabelOptions": {},
+    "kDVelosGlobalEdgeOptions": {},
+    "ifkDVelosGOAfterColon": {},
+    "kDVelosGOAfterColontrue": {},
+    "kDVelosGOAfterColonfalse": {},
+    "kDVelosFetchGlobalOptionsThen{}": {
+      "snippet": "kDVelosFetchGlobalOptionsThen{${1:arg}}"
+    },
+    "kDVelosGOMaybeFetchThen{}": {
+      "snippet": "kDVelosGOMaybeFetchThen{${1:arg}}"
+    },
+    "kDVelosGOFetchThen{}[]": {
+      "snippet": "kDVelosGOFetchThen{${1:arg1}}[${2:arg2}]"
+    },
+    "kDVelosGOThinkThen{}": {
+      "snippet": "kDVelosGOThinkThen{${1:arg}}"
+    },
+    "kDVelosDoFirstEdgeThen{}": {
+      "snippet": "kDVelosDoFirstEdgeThen{${1:arg}}"
+    },
+    "kDVelosSource": {},
+    "kDVelosCurFstSrc": {},
+    "kDVelosPrvFstSrc": {},
+    "kDVelosFetchFirstSourceThen{}": {
+      "snippet": "kDVelosFetchFirstSourceThen{${1:arg}}"
+    },
+    "kDVelosFFSTillOverThen{}{}": {
+      "snippet": "kDVelosFFSTillOverThen{${1:arg1}}{${2:arg2}}"
+    },
+    "kDVelosFetchFirstEdgeThen{}": {
+      "snippet": "kDVelosFetchFirstEdgeThen{${1:arg}}"
+    },
+    "kDVelosEdge": {},
+    "kDVelosFetchEdgeThen{}": {
+      "snippet": "kDVelosFetchEdgeThen{${1:arg}}"
+    },
+    "kDVelosFEThen{}": {
+      "snippet": "kDVelosFEThen{${1:arg}}"
+    },
+    "ifkDVelosTempIsKeysList": {},
+    "kDVelosTempIsKeysListtrue": {},
+    "kDVelosTempIsKeysListfalse": {},
+    "kDVelosFEKeysListThen{}[]": {
+      "snippet": "kDVelosFEKeysListThen{${1:arg1}}[${2:arg2}]"
+    },
+    "kDVelosFETillOverThen{}": {
+      "snippet": "kDVelosFETillOverThen{${1:arg}}"
+    },
+    "kDVelosFETOThen{}": {
+      "snippet": "kDVelosFETOThen{${1:arg}}"
+    },
+    "kDVelosFEAppendThen{}{}": {
+      "snippet": "kDVelosFEAppendThen{${1:arg}}{${2:arg}}"
+    },
+    "kDVelosFEEdgePrepend{}": {
+      "snippet": "kDVelosFEEdgePrepend{${1:arg}}"
+    },
+    "kDVelosFEEdgePrependNode{}": {
+      "snippet": "kDVelosFEEdgePrependNode{${1:arg}}"
+    },
+    "kDVelosFEThinkThen{}": {
+      "snippet": "kDVelosFEThinkThen{${1:arg}}"
+    },
+    "kDVelosFELoop": {},
+    "kDVelosFEBreak": {},
+    "kDVelosTarget": {},
+    "kDVelosCurLstTar": {},
+    "kDVelosPrvLstTar": {},
+    "kDVelosFetchTargetThen": {},
+    "kDVelosFTTillOverThen{}": {
+      "snippet": "kDVelosFTTillOverThen{${1:arg}}"
+    },
+    "kDVelosFTTOThen{}": {
+      "snippet": "kDVelosFTTOThen{${1:arg}}"
+    },
+    "kDVelosFTTOLoop": {},
+    "kDVelosFTTOExit": {},
+    "kDVelosFTAppendThen{}{}": {
+      "snippet": "kDVelosFTAppendThen{${1:arg}}{${2:arg}}"
+    },
+    "kDVelosAlias": {},
+    "kDVelosSaila": {},
+    "kDVelosDerefSrc": {},
+    "kDVelosDerefTar": {},
+    "kDVelosDrawFetchedEdgeThen{}": {
+      "snippet": "kDVelosDrawFetchedEdgeThen{${1:arg}}"
+    },
+    "kDVelos": {},
+    "kDVelosMaybeChainEdge": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "expand=",
+      "tetragonal=base ${1:<length>} height ${2:<length>}",
+      "hexagonal=${1:<direction>} side ${2:<length>} angle ${3:<angle>}",
+      "square=",
+      "golden=",
+      "replace character=${1:character1} with ${2:character2}",
+      "replace charcode=${1:charcode} with ${2:character}",
+      "remove characters=${1:characters}",
+      "remove character=${1:character}",
+      "remove charcode=${1:charcode}",
+      "overwrite=",
+      "%color",
+      "above=of ${1:node}",
+      "below=of ${1:node}",
+      "left=of ${1:node}",
+      "right=of ${1:node}",
+      "above left=of ${1:node}",
+      "below left=of ${1:node}",
+      "above right=of ${1:node}",
+      "below right=of ${1:node}",
+      "base left=of ${1:node}",
+      "base right=of ${1:node}",
+      "mid left=of ${1:node}",
+      "mid right=of ${1:node}"
+    ],
+    [
+      "mid",
+      "%color",
+      "swap",
+      "at start",
+      "very near start",
+      "near start",
+      "midway",
+      "near end",
+      "very near end",
+      "at end"
+    ]
+  ]
+}

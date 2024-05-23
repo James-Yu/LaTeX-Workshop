@@ -1,0 +1,289 @@
+{
+  "includes": {
+    "ifluatex": [],
+    "luatexbase": [],
+    "xcolor": [],
+    "tikz": [],
+    "tikzlibrarypositioning": [],
+    "tikzlibrarysvg.path": []
+  },
+  "macros": {
+    "pgfmolbioset{}": {
+      "snippet": "pgfmolbioset{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "pgfmolbioset[]{}": {
+      "snippet": "pgfmolbioset[${2:module}]{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "pmbprotocolsizes{}{}": {
+      "snippet": "pmbprotocolsizes{${1:x}}{${2:y}}"
+    },
+    "pmbchromatogram{}": {
+      "snippet": "pmbchromatogram{${1:scf file}}",
+      "option": "chromatogram"
+    },
+    "pmbchromatogram[]{}": {
+      "snippet": "pmbchromatogram[${2:options}]{${1:scf file}}",
+      "option": "chromatogram",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "addfeature{}{}{}": {
+      "snippet": "addfeature{${1:type}}{${2:start}}{${3:stop}}",
+      "option": "domains"
+    },
+    "addfeature[]{}{}{}": {
+      "snippet": "addfeature[${4:options}]{${1:type}}{${2:start}}{${3:stop}}",
+      "option": "domains",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "setfeaturestyle{}{}": {
+      "snippet": "setfeaturestyle{${1:type}}{${2:style list}}",
+      "option": "domains"
+    },
+    "setfeaturestylealias{}{}": {
+      "snippet": "setfeaturestylealias{${1:new type}}{${2:existing type}}",
+      "option": "domains"
+    },
+    "setfeatureshape{}{}": {
+      "snippet": "setfeatureshape{${1:type}}{${2:TikZ code}}",
+      "option": "domains"
+    },
+    "xLeft": {
+      "option": "domains"
+    },
+    "xMid": {
+      "option": "domains"
+    },
+    "xRight": {
+      "option": "domains"
+    },
+    "yMid": {
+      "option": "domains"
+    },
+    "pmbdomvalueof{}": {
+      "snippet": "pmbdomvalueof{${1:key}}",
+      "option": "domains"
+    },
+    "featureSequence": {
+      "option": "domains"
+    },
+    "residueNumber": {
+      "option": "domains"
+    },
+    "currentResidue": {
+      "option": "domains"
+    },
+    "setfeatureshapealias{}{}": {
+      "snippet": "setfeatureshapealias{${1:new type}}{${2:existing type}}",
+      "option": "domains"
+    },
+    "setfeaturealias{}{}": {
+      "snippet": "setfeaturealias{${1:new type}}{${2:existing type}}",
+      "option": "domains"
+    },
+    "setdisulfidefeatures{}": {
+      "snippet": "setdisulfidefeatures{${1:key list}}",
+      "option": "domains"
+    },
+    "adddisulfidefeatures{}": {
+      "snippet": "adddisulfidefeatures{${1:key list}}",
+      "option": "domains"
+    },
+    "removedisulfidefeatures{}": {
+      "snippet": "removedisulfidefeatures{${1:key list}}",
+      "option": "domains"
+    },
+    "setfeatureprintfunction{}{}": {
+      "snippet": "setfeatureprintfunction{${1:key list}}{${2:Lua function}}",
+      "option": "domains"
+    },
+    "removefeatureprintfunction{}": {
+      "snippet": "removefeatureprintfunction{${1:key list}}",
+      "option": "domains"
+    },
+    "pmbdomdrawfeature{}": {
+      "snippet": "pmbdomdrawfeature{${1:type}}",
+      "option": "domains"
+    },
+    "inputuniprot{}": {
+      "snippet": "inputuniprot{${1:Uniprot file}}",
+      "option": "domains"
+    },
+    "inputgff{}": {
+      "snippet": "inputgff{${1:gff file}}",
+      "option": "domains"
+    }
+  },
+  "envs": {
+    "pmbdomains{}": {
+      "name": "pmbdomains",
+      "snippet": "{${1:sequence length}}",
+      "option": "domains"
+    },
+    "pmbdomains[]{}": {
+      "name": "pmbdomains",
+      "snippet": "[${2:options}]{${1:sequence length}}",
+      "option": "domains",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    }
+  },
+  "options": [
+    "chromatogram",
+    "domains",
+    "convert"
+  ],
+  "keyvals": [
+    [
+      "coordinate unit=${1:unit}",
+      "coordinate format string=${1:format string}",
+      "sample range=${1:lower}-${2:upper}",
+      "sample range=${1:lower}-${2:upper} step ${3:int}",
+      "x unit=",
+      "y unit=",
+      "samples per line=${1:number}",
+      "baseline skip=",
+      "canvas style/.style={${1:TikZ options}}",
+      "canvas height=",
+      "trace A style/.style={${1:TikZ options}}",
+      "trace C style/.style={${1:TikZ options}}",
+      "trace G style/.style={${1:TikZ options}}",
+      "trace T style/.style={${1:TikZ options}}",
+      "trace style={${1:TikZ options}}",
+      "traces drawn=",
+      "tick A style/.style={${1:TikZ options}}",
+      "tick C style/.style={${1:TikZ options}}",
+      "tick G style/.style={${1:TikZ options}}",
+      "tick T style/.style={${1:TikZ options}}",
+      "tick style={${1:TikZ options}}",
+      "tick length=",
+      "ticks drawn=",
+      "base label A text=${1:text}",
+      "base label C text=${1:text}",
+      "base label G text=${1:text}",
+      "base label T text=${1:text}",
+      "base label A style/.style={${1:TikZ options}}",
+      "base label C style/.style={${1:TikZ options}}",
+      "base label G style/.style={${1:TikZ options}}",
+      "base label T style/.style={${1:TikZ options}}",
+      "base label style={${1:TikZ options}}",
+      "base labels drawn=",
+      "show base numbers",
+      "base number style/.style={${1:TikZ options}}",
+      "base number range=${1:lower}-${2:upper}",
+      "base number range=${1:lower}-${2:upper} step ${3:int}",
+      "probability distance=",
+      "probabilities drawn=",
+      "probability style function=${1:Lua function}",
+      "bases drawn=",
+      "name=${1:text}",
+      "show name",
+      "description=${1:text}",
+      "x unit=",
+      "y unit=",
+      "residues per line=${1:number}",
+      "baseline skip=${1:factor}",
+      "residue numbering={${1:numbering scheme}}",
+      "residue range=${1:lower}-${2:upper}",
+      "enlarge left=",
+      "enlarge right=",
+      "enlarge top=",
+      "enlarge bottom=",
+      "style={${1:style list}}",
+      "domain font=${1:font commands}",
+      "level=${1:number}",
+      "disulfide base distance=${1:number}",
+      "disulfide level distance=${1:number}",
+      "range font=${1:font commands}",
+      "show ruler",
+      "ruler range={${1:ruler range list}}",
+      "default ruler step size=${1:number}",
+      "ruler distance=${1:factor}",
+      "sequence=${1:sequence}",
+      "magnified sequence font=${1:font commands}",
+      "show secondary structure",
+      "secondary structure distance=${1:factor}",
+      "sequence length=${1:number}",
+      "output file name=${1:text}",
+      "output file extension=${1:text}",
+      "output code=",
+      "include description"
+    ],
+    [
+      "sample range=${1:lower}-${2:upper}",
+      "sample range=${1:lower}-${2:upper} step ${3:int}",
+      "x unit=",
+      "y unit=",
+      "samples per line=${1:number}",
+      "baseline skip=",
+      "canvas style/.style={${1:TikZ options}}",
+      "canvas height=",
+      "trace A style/.style={${1:TikZ options}}",
+      "trace C style/.style={${1:TikZ options}}",
+      "trace G style/.style={${1:TikZ options}}",
+      "trace T style/.style={${1:TikZ options}}",
+      "trace style={${1:TikZ options}}",
+      "traces drawn=",
+      "tick A style/.style={${1:TikZ options}}",
+      "tick C style/.style={${1:TikZ options}}",
+      "tick G style/.style={${1:TikZ options}}",
+      "tick T style/.style={${1:TikZ options}}",
+      "tick style={${1:TikZ options}}",
+      "tick length=",
+      "ticks drawn=",
+      "base label A text=${1:text}",
+      "base label C text=${1:text}",
+      "base label G text=${1:text}",
+      "base label T text=${1:text}",
+      "base label A style/.style={${1:TikZ options}}",
+      "base label C style/.style={${1:TikZ options}}",
+      "base label G style/.style={${1:TikZ options}}",
+      "base label T style/.style={${1:TikZ options}}",
+      "base label style={${1:TikZ options}}",
+      "base labels drawn=",
+      "show base numbers",
+      "base number style/.style={${1:TikZ options}}",
+      "base number range=${1:lower}-${2:upper}",
+      "base number range=${1:lower}-${2:upper} step ${3:int}",
+      "probability distance=",
+      "probabilities drawn=",
+      "probability style function=${1:Lua function}",
+      "bases drawn="
+    ],
+    [
+      "name=${1:text}",
+      "show name",
+      "description=${1:text}",
+      "x unit=",
+      "y unit=",
+      "residues per line=${1:number}",
+      "baseline skip=${1:factor}",
+      "residue numbering={${1:numbering scheme}}",
+      "residue range=${1:lower}-${2:upper}",
+      "enlarge left=",
+      "enlarge right=",
+      "enlarge top=",
+      "enlarge bottom=",
+      "style={${1:style list}}",
+      "domain font=${1:font commands}",
+      "level=${1:number}",
+      "disulfide base distance=${1:number}",
+      "disulfide level distance=${1:number}",
+      "range font=${1:font commands}",
+      "show ruler",
+      "ruler range={${1:ruler range list}}",
+      "default ruler step size=${1:number}",
+      "ruler distance=${1:factor}",
+      "sequence=${1:sequence}",
+      "magnified sequence font=${1:font commands}",
+      "show secondary structure",
+      "secondary structure distance=${1:factor}",
+      "sequence length=${1:number}"
+    ]
+  ]
+}

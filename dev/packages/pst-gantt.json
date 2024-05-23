@@ -1,0 +1,65 @@
+{
+  "includes": {
+    "pstricks": [],
+    "pst-node": [],
+    "pst-grad": [],
+    "pst-xkey": [],
+    "multido": []
+  },
+  "macros": {
+    "PstGanttChart{}{}": {
+      "snippet": "PstGanttChart{${1:vertical units}}{${2:horizontal units}}"
+    },
+    "PstGanttChart[]{}{}": {
+      "snippet": "PstGanttChart[${3:options}]{${1:vertical units}}{${2:horizontal units}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "endPstGanttChart": {},
+    "PstGanttTask{}{}": {
+      "snippet": "PstGanttTask{${1:start}}{${2:end}}"
+    },
+    "PstGanttTask[]{}{}": {
+      "snippet": "PstGanttTask[${3:options}]{${1:start}}{${2:end}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "PSTganttLoaded": {}
+  },
+  "envs": {
+    "PstGanttChart{}{}": {
+      "name": "PstGanttChart",
+      "snippet": "{${1:vertical units}}{${2:horizontal units}}"
+    },
+    "PstGanttChart[]{}{}": {
+      "name": "PstGanttChart",
+      "snippet": "[${3:options}]{${1:vertical units}}{${2:horizontal units}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "PstPicture",
+      "ChartShowIntervals",
+      "ChartStartInterval=${1:number}",
+      "ChartModulo",
+      "ChartModuloValue=${1:number}",
+      "ChartUnitIntervalName=${1:name}",
+      "ChartUnitBasicIntervalName=${1:name}",
+      "TaskUnitIntervalValue=${1:number}",
+      "TaskUnitType=${1:text}",
+      "TaskOutsideLabelMaxSize=${1:number}",
+      "unit=${1:number}",
+      "xunit=${1:number}",
+      "yunit=${1:number}"
+    ],
+    [
+      "TaskUnitType=${1:text}",
+      "TaskOutsideLabel={${1:text}}",
+      "TaskInsideLabel={${1:text}}",
+      "TaskStyle=${1:style}"
+    ]
+  ]
+}

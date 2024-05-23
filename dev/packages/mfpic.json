@@ -1,0 +1,1223 @@
+{
+  "includes": {
+    "graphics": []
+  },
+  "macros": {
+    "getmfpicoffset{}": {
+      "snippet": "getmfpicoffset{${1:imagefile}}"
+    },
+    "mfpdraftfont": {},
+    "mfpicllx": {},
+    "mfpiclly": {},
+    "preparemfpicgraphic{}": {
+      "snippet": "preparemfpicgraphic{${1:imagefile}}"
+    },
+    "setmfpicgraphic{}": {
+      "snippet": "setmfpicgraphic{${1:imagefile}}"
+    },
+    "applyT{}": {
+      "snippet": "applyT{${1:transformer}}"
+    },
+    "arc[]{}": {
+      "snippet": "arc[${2:t}]{${1:p0,p1,p2}}"
+    },
+    "arccomplement": {},
+    "areagradient{}": {
+      "snippet": "areagradient{${1:function,hdim,vdim}}"
+    },
+    "arrow": {},
+    "arrow*": {},
+    "arrow*[][][][]": {
+      "snippet": "arrow*[${1:l<${5:headlen}>}][${2:r<${6:rotate}>}][${3:b<${7:backset}>}][${4:c<${8:color}>}]"
+    },
+    "arrow[][][][]": {
+      "snippet": "arrow[${1:l<${5:headlen}>}][${2:r<${6:rotate}>}][${3:b<${7:backset}>}][${4:c<${8:color}>}]"
+    },
+    "arrowhead{}": {
+      "snippet": "arrowhead{${1:symbol}}"
+    },
+    "arrowhead{}[][][][]": {
+      "snippet": "arrowhead{${1:symbol}}[${2:l<${6:headlen}>}][${3:r<${7:rotate}>}][${4:b<${8:backset}>}][${5:c<${9:color}>}]"
+    },
+    "arrowmid{}": {
+      "snippet": "arrowmid{${1:symbol}}"
+    },
+    "arrowmid{}[][][][]": {
+      "snippet": "arrowmid{${1:symbol}}[${2:l<${6:headlen}>}][${3:r<${7:rotate}>}][${4:b<${8:backset}>}][${5:c<${9:color}>}]"
+    },
+    "arrowtail{}": {
+      "snippet": "arrowtail{${1:symbol}}"
+    },
+    "arrowtail{}[][][][]": {
+      "snippet": "arrowtail{${1:symbol}}[${2:l<${6:headlen}>}][${3:r<${7:rotate}>}][${4:b<${8:backset}>}][${5:c<${9:color}>}]"
+    },
+    "assignmfvalue{}{}": {
+      "snippet": "assignmfvalue{${1:macro}}{${2:MF expr}}"
+    },
+    "assignmpvalue{}{}": {
+      "snippet": "assignmpvalue{${1:macro}}{${2:MF expr}}"
+    },
+    "axes": {},
+    "axes[]": {
+      "snippet": "axes[${1:length}]"
+    },
+    "axis[]{}": {
+      "snippet": "axis[${2:length}]{${1:axis type}}"
+    },
+    "axis{}": {
+      "snippet": "axis{${1:axis type}}"
+    },
+    "axisheadlen": {},
+    "axisline{}": {
+      "snippet": "axisline{${1:axis type}}"
+    },
+    "axismargin{}{}": {
+      "snippet": "axismargin{${1:axis type}}{${2:number}}"
+    },
+    "axismarks{}[]{}": {
+      "snippet": "axismarks{${1:axis}}[${2:length}]{${3:number list}}"
+    },
+    "axismarks{}": {
+      "snippet": "axismarks{${1:number list}}"
+    },
+    "backgroundcolor[]{}": {
+      "snippet": "backgroundcolor[${2:model}]{${1:color spec}}"
+    },
+    "backgroundcolor{}": {
+      "snippet": "backgroundcolor{${1:color spec}}"
+    },
+    "barchart[]{}{}": {
+      "snippet": "barchart[${3:start,sep,r}]{${1:h or v}}{${2:list}}"
+    },
+    "barchart{}{}": {
+      "snippet": "barchart{${1:h or v}}{${2:list}}"
+    },
+    "bargraph[]{}{}": {
+      "snippet": "bargraph[${3:start,sep,r}]{${1:h or v}}{${2:list}}"
+    },
+    "bargraph{}{}": {
+      "snippet": "bargraph{${1:h or v}}{${2:list}}"
+    },
+    "bclosed": {},
+    "bclosed[]": {
+      "snippet": "bclosed[${1:tension}]"
+    },
+    "belowfcn[]{}{}": {
+      "snippet": "belowfcn[${3:spec}]{${1:xmin,xmax,∆x}}{${2:f(${4:x})}}"
+    },
+    "belowfcn{}{}": {
+      "snippet": "belowfcn{${1:xmin,xmax,∆x}}{${2:f(${3:x})}}"
+    },
+    "bmarks[]{}": {
+      "snippet": "bmarks[${2:length}]{${1:number list}}"
+    },
+    "bmarks{}": {
+      "snippet": "bmarks{${1:number list}}"
+    },
+    "boost{}": {
+      "snippet": "boost{${1:χ}}"
+    },
+    "border": {},
+    "browniangraph{}": {
+      "snippet": "browniangraph{${1:num,scale}}"
+    },
+    "brownianmotion{}": {
+      "snippet": "brownianmotion{${1:start,num,scale}}"
+    },
+    "btwnfcn[]{}{}{}": {
+      "snippet": "btwnfcn[${4:spec}]{${1:xmin,xmax,∆x}}{${2:f(${5:x})}}{${3:g(${6:x})}}"
+    },
+    "btwnfcn{}{}{}": {
+      "snippet": "btwnfcn{${1:xmin,xmax,∆x}}{${2:f(${4:x})}}{${3:g(${5:x})}}"
+    },
+    "btwnplrfcn[]{}{}{}": {
+      "snippet": "btwnplrfcn[${4:spec}]{${1:θmin,θmax,∆θ}}{${2:f(${5:θ})}}{${3:g(${6:θ})}}"
+    },
+    "btwnplrfcn{}{}{}": {
+      "snippet": "btwnplrfcn{${1:θmin,θmax,∆θ}}{${2:f(${4:θ})}}{${3:g(${5:θ})}}"
+    },
+    "cbclosed": {},
+    "cbeziers{}": {
+      "snippet": "cbeziers{${1:list}}"
+    },
+    "chartbar{}": {
+      "snippet": "chartbar{${1:number}}"
+    },
+    "circle[]{}": {
+      "snippet": "circle[${2:t}]{${1:p1,p2,p3}}"
+    },
+    "clearsymbols": {},
+    "clipmfpic": {},
+    "closedcbeziers{}": {
+      "snippet": "closedcbeziers{${1:list}}"
+    },
+    "closedcomputedspline{}": {
+      "snippet": "closedcomputedspline{${1:list}}"
+    },
+    "closedconvexcurve[]{}": {
+      "snippet": "closedconvexcurve[${2:tension}]{${1:p0,p1,...}}"
+    },
+    "closedconvexcurve{}": {
+      "snippet": "closedconvexcurve{${1:p0,p1,...}}"
+    },
+    "closedcspline{}": {
+      "snippet": "closedcspline{${1:list}}"
+    },
+    "closedcurve[]{}": {
+      "snippet": "closedcurve[${2:tension}]{${1:p0,p1,...}}"
+    },
+    "closedcurve{}": {
+      "snippet": "closedcurve{${1:p0,p1,...}}"
+    },
+    "closedmfbezier[]{}": {
+      "snippet": "closedmfbezier[${2:tension}]{${1:list}}"
+    },
+    "closedmfbezier{}": {
+      "snippet": "closedmfbezier{${1:list}}"
+    },
+    "closedpolyline{}": {
+      "snippet": "closedpolyline{${1:p0,p1,...}}"
+    },
+    "closedqbeziers{}": {
+      "snippet": "closedqbeziers{${1:list}}"
+    },
+    "closedqspline{}": {
+      "snippet": "closedqspline{${1:list}}"
+    },
+    "closegraphsfile": {},
+    "cmykcolorarray{}{}": {
+      "snippet": "cmykcolorarray{${1:var}}{${2:list of cmykcolors}}"
+    },
+    "coil[]{}": {
+      "snippet": "coil[${2:tension}]{${1:start,end,wl,amp}}"
+    },
+    "coil{}": {
+      "snippet": "coil{${1:start,end,wl,amp}}"
+    },
+    "colorarray{}{}": {
+      "snippet": "colorarray{${1:var}}{${2:list of colors}}"
+    },
+    "coloredlines": {},
+    "computedspline{}": {
+      "snippet": "computedspline{${1:list}}"
+    },
+    "connect": {},
+    "convexcurve[]{}": {
+      "snippet": "convexcurve[${2:tension}]{${1:p0,p1,...}}"
+    },
+    "convexcurve{}": {
+      "snippet": "convexcurve{${1:p0,p1,...}}"
+    },
+    "convexcyclic[]{}": {
+      "snippet": "convexcyclic[${2:tension}]{${1:p0,p1,...}}"
+    },
+    "convexcyclic{}": {
+      "snippet": "convexcyclic{${1:p0,p1,...}}"
+    },
+    "coords": {},
+    "corkscrew[]{}": {
+      "snippet": "corkscrew[${2:tension}]{${1:start,end,wl,amp}}"
+    },
+    "corkscrew{}": {
+      "snippet": "corkscrew{${1:start,end,wl,amp}}"
+    },
+    "cspline{}": {
+      "snippet": "cspline{${1:list}}"
+    },
+    "curve[]{}": {
+      "snippet": "curve[${2:tension}]{${1:p0,p1,...}}"
+    },
+    "curve{}": {
+      "snippet": "curve{${1:p0,p1,...}}"
+    },
+    "cutoffafter{}": {
+      "snippet": "cutoffafter{${1:object}}"
+    },
+    "cutoffbefore{}": {
+      "snippet": "cutoffbefore{${1:object}}"
+    },
+    "cyclic[]{}": {
+      "snippet": "cyclic[${2:tension}]{${1:p0,p1,...}}"
+    },
+    "cyclic{}": {
+      "snippet": "cyclic{${1:p0,p1,...}}"
+    },
+    "darkershade": {},
+    "dashed[]": {
+      "snippet": "dashed[${1:length,space}]"
+    },
+    "dashedlines": {},
+    "dashlen": {},
+    "dashlineset": {},
+    "dashpattern{}{}": {
+      "snippet": "dashpattern{${1:name}}{${2:len1,...,len2k}}"
+    },
+    "dashspace": {},
+    "datafile[]{}": {
+      "snippet": "datafile[${2:spec}]{${1:file}}"
+    },
+    "datafile{}": {
+      "snippet": "datafile{${1:file}}"
+    },
+    "datapointsonly": {},
+    "defaultplot{}": {
+      "snippet": "defaultplot{${1:method}}"
+    },
+    "DEgraph[]{}{}": {
+      "snippet": "DEgraph[${3:spec}]{${1:x0,y0,∆s,N}}{${2:f(${4:x,y})}}"
+    },
+    "DEgraph{}{}": {
+      "snippet": "DEgraph{${1:x0,y0,∆s,N}}{${2:f(${3:x,y})}}"
+    },
+    "DEtrajectory{}{}": {
+      "snippet": "DEtrajectory{${1:p0,∆s,N}}{${2:F(${3:x,y,t})}}"
+    },
+    "doaxes[]{}": {
+      "snippet": "doaxes[${2:length}]{${1:axis list}}"
+    },
+    "doaxes{}": {
+      "snippet": "doaxes{${1:axis list}}"
+    },
+    "dotlineset": {},
+    "dotsize": {},
+    "dotspace": {},
+    "dotted": {},
+    "dotted[]": {
+      "snippet": "dotted[${1:size,space}]"
+    },
+    "doubledraw": {},
+    "doubledraw[]": {
+      "snippet": "doubledraw[${1:sep}]"
+    },
+    "doubledraw[][]": {
+      "snippet": "doubledraw[${1:sep}][${2:color}]"
+    },
+    "draw": {},
+    "draw[]": {
+      "snippet": "draw[${1:color}]"
+    },
+    "drawcolor[]{}": {
+      "snippet": "drawcolor[${2:model}]{${1:color spec}}"
+    },
+    "drawcolor{}": {
+      "snippet": "drawcolor{${1:color spec}}"
+    },
+    "drawpen{}": {
+      "snippet": "drawpen{${1:size}}"
+    },
+    "ellipse[]{}": {
+      "snippet": "ellipse[${2:θ}]{${1:c,rx,ry}}"
+    },
+    "ellipse{}": {
+      "snippet": "ellipse{${1:c,rx,ry}}"
+    },
+    "endconnect": {},
+    "endcoords": {},
+    "endmfpfor": {},
+    "endmfpframe": {},
+    "endmfpic": {},
+    "endmfpimage": {},
+    "endmfploop": {},
+    "endmfpwhile": {},
+    "endpatharr": {},
+    "endtile": {},
+    "everyendmfpic{}": {
+      "snippet": "everyendmfpic{${1:commands}}"
+    },
+    "everymfpic{}": {
+      "snippet": "everymfpic{${1:commands}}"
+    },
+    "everytlabel{}": {
+      "snippet": "everytlabel{${1:TeX code}}"
+    },
+    "fcncurve[]{}": {
+      "snippet": "fcncurve[${2:tension}]{${1:(${3:x0,y0}),(${4:x1,y1}),...}}"
+    },
+    "fcncurve{}": {
+      "snippet": "fcncurve{${1:(${2:x0,y0}),(${3:x1,y1}),...}}"
+    },
+    "fcnspline{}": {
+      "snippet": "fcnspline{${1:list}}"
+    },
+    "fdef{}{}{}": {
+      "snippet": "fdef{${1:function}}{${2:param1,param2,...}}{${3:MF expr}}"
+    },
+    "fillcolor[]{}": {
+      "snippet": "fillcolor[${2:model}]{${1:color spec}}"
+    },
+    "fillcolor{}": {
+      "snippet": "fillcolor{${1:color spec}}"
+    },
+    "fullellipse{}": {
+      "snippet": "fullellipse{${1:C,M1,M2}}"
+    },
+    "function[]{}{}": {
+      "snippet": "function[${3:spec}]{${1:xmin,xmax,∆x}}{${2:f(${4:x})}}"
+    },
+    "function{}{}": {
+      "snippet": "function{${1:xmin,xmax,∆x}}{${2:f(${3:x})}}"
+    },
+    "gantt[]{}{}": {
+      "snippet": "gantt[${3:start,sep,r}]{${1:h or v}}{${2:list}}"
+    },
+    "gantt{}{}": {
+      "snippet": "gantt{${1:h or v}}{${2:list}}"
+    },
+    "ganttbar{}": {
+      "snippet": "ganttbar{${1:number}}"
+    },
+    "gbrace{}": {
+      "snippet": "gbrace{${1:z1,C,z2}}"
+    },
+    "gclear": {},
+    "gclip": {},
+    "gendashed{}": {
+      "snippet": "gendashed{${1:name}}"
+    },
+    "gfill": {},
+    "gfill[]": {
+      "snippet": "gfill[${1:color}]"
+    },
+    "globalassignmfvalue{}{}": {
+      "snippet": "globalassignmfvalue{${1:macro}}{${2:MF expr}}"
+    },
+    "globalassignmpvalue{}{}": {
+      "snippet": "globalassignmpvalue{${1:macro}}{${2:MF expr}}"
+    },
+    "globalsetarray{}{}{}": {
+      "snippet": "globalsetarray{${1:type}}{${2:var}}{${3:list}}"
+    },
+    "globalsetmfvariable{}{}{}": {
+      "snippet": "globalsetmfvariable{${1:type}}{${2:name}}{${3:value}}"
+    },
+    "globalsetmpvariable{}{}{}": {
+      "snippet": "globalsetmpvariable{${1:type}}{${2:name}}{${3:value}}"
+    },
+    "gradient{}": {
+      "snippet": "gradient{${1:function,width,angle}}"
+    },
+    "graphbar{}": {
+      "snippet": "graphbar{${1:number}}"
+    },
+    "grid[]{}": {
+      "snippet": "grid[${2:size}]{${1:xsep,ysep}}"
+    },
+    "grid{}": {
+      "snippet": "grid{${1:xsep,ysep}}"
+    },
+    "gridarcs{}": {
+      "snippet": "gridarcs{${1:rsep}}"
+    },
+    "griddotsize": {},
+    "gridlines{}": {
+      "snippet": "gridlines{${1:xsep,ysep}}"
+    },
+    "gridpoints[]{}": {
+      "snippet": "gridpoints[${2:size}]{${1:xsep,ysep}}"
+    },
+    "gridpoints{}": {
+      "snippet": "gridpoints{${1:xsep,ysep}}"
+    },
+    "gridrays{}": {
+      "snippet": "gridrays{${1:anglesep}}"
+    },
+    "halfellipse{}": {
+      "snippet": "halfellipse{${1:M1,M2,M3}}"
+    },
+    "hashlen": {},
+    "hatch": {},
+    "hatch[]": {
+      "snippet": "hatch[${1:space}]"
+    },
+    "hatch[][]": {
+      "snippet": "hatch[${1:space}][${2:color}]"
+    },
+    "hatchcolor[]{}": {
+      "snippet": "hatchcolor[${2:model}]{${1:color spec}}"
+    },
+    "hatchcolor{}": {
+      "snippet": "hatchcolor{${1:color spec}}"
+    },
+    "hatchspace": {},
+    "hatchwd{}": {
+      "snippet": "hatchwd{${1:size}}"
+    },
+    "headcolor[]{}": {
+      "snippet": "headcolor[${2:model}]{${1:color spec}}"
+    },
+    "headcolor{}": {
+      "snippet": "headcolor{${1:color spec}}"
+    },
+    "headlen": {},
+    "headshape{}{}{}": {
+      "snippet": "headshape{${1:ratio}}{${2:tension}}{${3:filled}}"
+    },
+    "hgridlines{}": {
+      "snippet": "hgridlines{${1:ysep}}"
+    },
+    "histobar{}": {
+      "snippet": "histobar{${1:number}}"
+    },
+    "histogram[]{}{}": {
+      "snippet": "histogram[${3:start,sep,r}]{${1:h or v}}{${2:list}}"
+    },
+    "histogram{}{}": {
+      "snippet": "histogram{${1:h or v}}{${2:list}}"
+    },
+    "hypergeodesic*{}": {
+      "snippet": "hypergeodesic*{${1:z1,z2}}"
+    },
+    "hypergeodesic{}": {
+      "snippet": "hypergeodesic{${1:z1,z2}}"
+    },
+    "ifmfpmpost": {},
+    "ifpointfill": {},
+    "interpolatepath{}": {
+      "snippet": "interpolatepath{${1:frac,path}}"
+    },
+    "lattice[]{}": {
+      "snippet": "lattice[${2:size}]{${1:xsep,ysep}}"
+    },
+    "lattice{}": {
+      "snippet": "lattice{${1:xsep,ysep}}"
+    },
+    "lclosed": {},
+    "levelcurve[]{}{}": {
+      "snippet": "levelcurve[${3:spec}]{${1:seed,step}}{${2:inequality}}"
+    },
+    "levelcurve{}{}": {
+      "snippet": "levelcurve{${1:seed,step}}{${2:inequality}}"
+    },
+    "lhatch": {},
+    "lhatch[]": {
+      "snippet": "lhatch[${1:space}]"
+    },
+    "lhatch[][]": {
+      "snippet": "lhatch[${1:space}][${2:color}]"
+    },
+    "lightershade": {},
+    "lines{}": {
+      "snippet": "lines{${1:p0,p1,...}}"
+    },
+    "lmarks[]{}": {
+      "snippet": "lmarks[${2:length}]{${1:number list}}"
+    },
+    "lmarks{}": {
+      "snippet": "lmarks{${1:number list}}"
+    },
+    "makepercentcomment": {},
+    "makepercentother": {},
+    "makesector": {},
+    "mfbezier[]{}": {
+      "snippet": "mfbezier[${2:tension}]{${1:list}}"
+    },
+    "mfbezier{}": {
+      "snippet": "mfbezier{${1:list}}"
+    },
+    "mfcmd{}": {
+      "snippet": "mfcmd{${1:MF code}}"
+    },
+    "mflist{}": {
+      "snippet": "mflist{${1:MF code}}"
+    },
+    "mfmode{}": {
+      "snippet": "mfmode{${1:mode name}}"
+    },
+    "mfobj{}": {
+      "snippet": "mfobj{${1:path expr}}"
+    },
+    "mfpbarchart[]{}{}": {
+      "snippet": "mfpbarchart[${3:start,sep,r}]{${1:h or v}}{${2:list}}"
+    },
+    "mfpbarchart{}{}": {
+      "snippet": "mfpbarchart{${1:h or v}}{${2:list}}"
+    },
+    "mfpbargraph[]{}{}": {
+      "snippet": "mfpbargraph[${3:start,sep,r}]{${1:h or v}}{${2:list}}"
+    },
+    "mfpbargraph{}{}": {
+      "snippet": "mfpbargraph{${1:h or v}}{${2:list}}"
+    },
+    "mfpdatacomment": {},
+    "mfpdataperline": {},
+    "mfpdefinecolor{}{}{}": {
+      "snippet": "mfpdefinecolor{${1:name}}{${2:model}}{${3:color spec}}"
+    },
+    "mfpfiledate": {},
+    "mfpfileversion": {},
+    "mfpfor{}": {
+      "snippet": "mfpfor{${1:header}}"
+    },
+    "mfpframe": {},
+    "mfpframe[]": {
+      "snippet": "mfpframe[${1:framesep}]"
+    },
+    "mfpframed[]{}": {
+      "snippet": "mfpframed[${2:framesep}]{${1:content}}"
+    },
+    "mfpframed{}": {
+      "snippet": "mfpframed{${1:content}}"
+    },
+    "mfpgantt[]{}{}": {
+      "snippet": "mfpgantt[${3:start,sep,r}]{${1:h or v}}{${2:list}}"
+    },
+    "mfpgantt{}{}": {
+      "snippet": "mfpgantt{${1:h or v}}{${2:list}}"
+    },
+    "mfphistogram[]{}{}": {
+      "snippet": "mfphistogram[${3:start,sep,r}]{${1:h or v}}{${2:list}}"
+    },
+    "mfphistogram{}{}": {
+      "snippet": "mfphistogram{${1:h or v}}{${2:list}}"
+    },
+    "mfpic[][]{}{}{}{}": {
+      "snippet": "mfpic[${5:xfactor}][${6:yfactor}]{${1:xmin}}{${2:xmax}}{${3:ymin}}{${4:ymax}}"
+    },
+    "mfpic[]{}{}{}{}": {
+      "snippet": "mfpic[${5:xfactor}]{${1:xmin}}{${2:xmax}}{${3:ymin}}{${4:ymax}}"
+    },
+    "mfpic{}{}{}{}": {
+      "snippet": "mfpic{${1:xmin}}{${2:xmax}}{${3:ymin}}{${4:ymax}}"
+    },
+    "mfpiccaptionskip": {},
+    "mfpicdebugfalse": {},
+    "mfpicdebugtrue": {},
+    "mfpicdraft": {},
+    "mfpicfinal": {},
+    "mfpicheight": {},
+    "mfpicnowrite": {},
+    "mfpicnumber{}": {
+      "snippet": "mfpicnumber{${1:number}}"
+    },
+    "mfpicunit": {},
+    "mfpicvalue": {},
+    "mfpicversion": {},
+    "mfpicwidth": {},
+    "mfpimage[]{}": {
+      "snippet": "mfpimage[${2:ref pt}]{${1:picname}}"
+    },
+    "mfpimage{}": {
+      "snippet": "mfpimage{${1:picname}}"
+    },
+    "mfplinestyle{}": {
+      "snippet": "mfplinestyle{${1:number}}"
+    },
+    "mfplinetype{}": {
+      "snippet": "mfplinetype{${1:number}}"
+    },
+    "mfploop": {},
+    "mfpmpostfalse": {},
+    "mfpmposttrue": {},
+    "mfppiechart[]{}{}": {
+      "snippet": "mfppiechart[${3:<${4:dir}><${5:angle}>}]{${1:c,r}}{${2:list}}"
+    },
+    "mfppiechart{}{}": {
+      "snippet": "mfppiechart{${1:c,r}}{${2:list}}"
+    },
+    "mfpreadlog": {},
+    "MFPsanitize": {},
+    "MFPsavecodes": {},
+    "mfpsaveplus": {},
+    "mfpuntil{}": {
+      "snippet": "mfpuntil{${1:condition}}"
+    },
+    "mfpverbtex{}": {
+      "snippet": "mfpverbtex{${1:TeX commands}}"
+    },
+    "mfpwhile{}": {
+      "snippet": "mfpwhile{${1:condition}}"
+    },
+    "mfresolution{}": {
+      "snippet": "mfresolution{${1:DPI}}"
+    },
+    "mfsrc{}": {
+      "snippet": "mfsrc{${1:MF code}}"
+    },
+    "mftitle{}": {
+      "snippet": "mftitle{${1:title}}"
+    },
+    "mirror{}{}": {
+      "snippet": "mirror{${1:p1}}{${2:p2}}"
+    },
+    "mpobj{}": {
+      "snippet": "mpobj{${1:path expr}}"
+    },
+    "newdef{}{}": {
+      "snippet": "newdef{${1:cmd}}{${2:def}}"
+    },
+    "newfdim{}": {
+      "snippet": "newfdim{${1:cmd}}"
+    },
+    "newsavepic{}": {
+      "snippet": "newsavepic{${1:picname}}"
+    },
+    "nocenteredcaptions": {},
+    "noclearsymbols": {},
+    "noclipmfpic": {},
+    "nomplabels": {},
+    "nooverlaylabels": {},
+    "noraggedcaptions": {},
+    "norender": {},
+    "noship": {},
+    "notruebbox": {},
+    "numericarray{}{}": {
+      "snippet": "numericarray{${1:var}}{${2:list of numbers}}"
+    },
+    "opengraphsfile{}": {
+      "snippet": "opengraphsfile{${1:file}}"
+    },
+    "overlaylabels": {},
+    "pairarray{}{}": {
+      "snippet": "pairarray{${1:var}}{${2:list of points}}"
+    },
+    "parafcn[]{}{}": {
+      "snippet": "parafcn[${3:spec}]{${1:tmin,tmax,∆t}}{${2:(x(${4:t}),y(${5:t}))}}"
+    },
+    "parafcn{}{}": {
+      "snippet": "parafcn{${1:tmin,tmax,∆t}}{${2:(x(${3:t}),y(${4:t}))}}"
+    },
+    "parallelpath{}": {
+      "snippet": "parallelpath{${1:distance}}"
+    },
+    "partpath{}": {
+      "snippet": "partpath{${1:frac1,frac2}}"
+    },
+    "patharr{}": {
+      "snippet": "patharr{${1:name}}"
+    },
+    "pen{}": {
+      "snippet": "pen{${1:size}}"
+    },
+    "penwd{}": {
+      "snippet": "penwd{${1:size}}"
+    },
+    "periodicfcnspline{}": {
+      "snippet": "periodicfcnspline{${1:list}}"
+    },
+    "piechart[]{}{}": {
+      "snippet": "piechart[${3:<${4:dir}><${5:angle}>}]{${1:c,r}}{${2:list}}"
+    },
+    "piechart{}{}": {
+      "snippet": "piechart{${1:c,r}}{${2:list}}"
+    },
+    "piewedge[]{}": {
+      "snippet": "piewedge[${2:<${3:spec}><${4:trans}>}]{${1:number}}"
+    },
+    "piewedge{}": {
+      "snippet": "piewedge{${1:number}}"
+    },
+    "plot[]{}": {
+      "snippet": "plot[${2:size,space}]{${1:symbol}}"
+    },
+    "plot{}": {
+      "snippet": "plot{${1:symbol}}"
+    },
+    "plotdata[]{}": {
+      "snippet": "plotdata[${2:spec}]{${1:file}}"
+    },
+    "plotdata{}": {
+      "snippet": "plotdata{${1:file}}"
+    },
+    "plotnodes[]{}": {
+      "snippet": "plotnodes[${2:size}]{${1:symbol}}"
+    },
+    "plotnodes{}": {
+      "snippet": "plotnodes{${1:symbol}}"
+    },
+    "plotsymbol[]{}{}": {
+      "snippet": "plotsymbol[${3:size}]{${1:symbol}}{${2:p0,p1,...}}"
+    },
+    "plotsymbol{}{}": {
+      "snippet": "plotsymbol{${1:symbol}}{${2:p0,p1,...}}"
+    },
+    "plottext{}{}": {
+      "snippet": "plottext{${1:text}}{${2:(${3:x0,y0}),(${4:x1,y1}),...}}"
+    },
+    "plr{}": {
+      "snippet": "plr{${1:(${2:r0,θ0}),(${3:r1,θ1}),...}}"
+    },
+    "plrfcn[]{}{}": {
+      "snippet": "plrfcn[${3:spec}]{${1:θmin,θmax,∆θ}}{${2:f(${4:θ})}}"
+    },
+    "plrfcn{}{}": {
+      "snippet": "plrfcn{${1:θmin,θmax,∆θ}}{${2:f(${3:θ})}}"
+    },
+    "plrgrid{}": {
+      "snippet": "plrgrid{${1:rsep,anglesep}}"
+    },
+    "plrgridpoints[]{}": {
+      "snippet": "plrgridpoints[${2:size}]{${1:rsep,anglesep}}"
+    },
+    "plrgridpoints{}": {
+      "snippet": "plrgridpoints{${1:rsep,anglesep}}"
+    },
+    "plrpatch{}": {
+      "snippet": "plrpatch{${1:rmin,rmax,rsep,tmin,tmax,tsep}}"
+    },
+    "plrregion[]{}{}": {
+      "snippet": "plrregion[${3:spec}]{${1:θmin,θmax,∆θ}}{${2:f(${4:θ})}}"
+    },
+    "plrregion{}{}": {
+      "snippet": "plrregion{${1:θmin,θmax,∆θ}}{${2:f(${3:θ})}}"
+    },
+    "plrvectorfield[]{}{}{}": {
+      "snippet": "plrvectorfield[${4:length}]{${1:rsep,tsep}}{${2:formula}}{${3:restriction}}"
+    },
+    "plrvectorfield{}{}{}": {
+      "snippet": "plrvectorfield{${1:rsep,tsep}}{${2:formula}}{${3:restriction}}"
+    },
+    "point[]{}": {
+      "snippet": "point[${2:size}]{${1:p0,p1,...}}"
+    },
+    "point{}": {
+      "snippet": "point{${1:p0,p1,...}}"
+    },
+    "pointcolor[]{}": {
+      "snippet": "pointcolor[${2:model}]{${1:color spec}}"
+    },
+    "pointcolor{}": {
+      "snippet": "pointcolor{${1:color spec}}"
+    },
+    "pointedlines": {},
+    "pointfillfalse": {},
+    "pointfilltrue": {},
+    "pointsize": {},
+    "polkadot": {},
+    "polkadot[]": {
+      "snippet": "polkadot[${1:space}]"
+    },
+    "polkadotspace": {},
+    "polkadotwd{}": {
+      "snippet": "polkadotwd{${1:diameter}}"
+    },
+    "polygon{}": {
+      "snippet": "polygon{${1:p0,p1,...}}"
+    },
+    "polyline{}": {
+      "snippet": "polyline{${1:p0,p1,...}}"
+    },
+    "pshcircle*{}": {
+      "snippet": "pshcircle*{${1:center,radius}}"
+    },
+    "pshcircle{}": {
+      "snippet": "pshcircle{${1:center,radius}}"
+    },
+    "putmfpimage{}{}": {
+      "snippet": "putmfpimage{${1:name}}{${2:list}}"
+    },
+    "qbclosed": {},
+    "qbeziers{}": {
+      "snippet": "qbeziers{${1:list}}"
+    },
+    "qspline{}": {
+      "snippet": "qspline{${1:list}}"
+    },
+    "quarterellipse{}": {
+      "snippet": "quarterellipse{${1:M1,A,M2}}"
+    },
+    "radialgradient{}": {
+      "snippet": "radialgradient{${1:clr function,width,center}}"
+    },
+    "randomizepath{}": {
+      "snippet": "randomizepath{${1:maxshift,weirdness}}"
+    },
+    "randomlines{}": {
+      "snippet": "randomlines{${1:maxshift}}"
+    },
+    "randomwalk{}": {
+      "snippet": "randomwalk{${1:start,num,scale}}"
+    },
+    "reconfigureplot{}{}": {
+      "snippet": "reconfigureplot{${1:method}}{${2:list}}"
+    },
+    "rect{}": {
+      "snippet": "rect{${1:p0,p1}}"
+    },
+    "reflectabout{}{}": {
+      "snippet": "reflectabout{${1:p1}}{${2:p2}}"
+    },
+    "reflectpath{}": {
+      "snippet": "reflectpath{${1:p1,p2}}"
+    },
+    "regpolygon{}{}{}{}": {
+      "snippet": "regpolygon{${1:number}}{${2:name}}{${3:eqn1}}{${4:eqn2}}"
+    },
+    "resumeshipping": {},
+    "reverse": {},
+    "reversepath": {},
+    "rgbcolorarray{}{}": {
+      "snippet": "rgbcolorarray{${1:var}}{${2:list of rgbcolors}}"
+    },
+    "rhatch": {},
+    "rhatch[]": {
+      "snippet": "rhatch[${1:space}]"
+    },
+    "rhatch[][]": {
+      "snippet": "rhatch[${1:space}][${2:color}]"
+    },
+    "rmarks[]{}": {
+      "snippet": "rmarks[${2:length}]{${1:number list}}"
+    },
+    "rmarks{}": {
+      "snippet": "rmarks{${1:number list}}"
+    },
+    "rotate{}": {
+      "snippet": "rotate{${1:degrees}}"
+    },
+    "rotatearound{}{}": {
+      "snippet": "rotatearound{${1:p}}{${2:degrees}}"
+    },
+    "rotatepath{}": {
+      "snippet": "rotatepath{${1:p,θ}}"
+    },
+    "savepic{}": {
+      "snippet": "savepic{${1:picname}}"
+    },
+    "scale{}": {
+      "snippet": "scale{${1:factor}}"
+    },
+    "scalepath{}": {
+      "snippet": "scalepath{${1:p,factor}}"
+    },
+    "sclosed": {},
+    "sclosed[]": {
+      "snippet": "sclosed[${1:tension}]"
+    },
+    "sector{}": {
+      "snippet": "sector{${1:c,r,θ1,θ2}}"
+    },
+    "sequence": {},
+    "setallaxismargins{}": {
+      "snippet": "setallaxismargins{${1:number}}"
+    },
+    "setallbordermarks{}": {
+      "snippet": "setallbordermarks{${1:pos}}"
+    },
+    "setarray{}{}{}": {
+      "snippet": "setarray{${1:type}}{${2:var}}{${3:list}}"
+    },
+    "setaxismargins{}{}{}{}": {
+      "snippet": "setaxismargins{${1:num1}}{${2:num2}}{${3:num3}}{${4:num4}}"
+    },
+    "setaxismarks{}{}": {
+      "snippet": "setaxismarks{${1:axis}}{${2:pos}}"
+    },
+    "setbordermarks{}{}{}{}": {
+      "snippet": "setbordermarks{${1:lpos}}{${2:bpos}}{${3:rpos}}{${4:tpos}}"
+    },
+    "setfilename{}{}": {
+      "snippet": "setfilename{${1:file}}{${2:number}}"
+    },
+    "setfilenametemplate{}": {
+      "snippet": "setfilenametemplate{${1:template}}"
+    },
+    "setmfboolean{}{}": {
+      "snippet": "setmfboolean{${1:name}}{${2:value}}"
+    },
+    "setmfcolor{}{}": {
+      "snippet": "setmfcolor{${1:name}}{${2:value}}"
+    },
+    "setmfnumeric{}{}": {
+      "snippet": "setmfnumeric{${1:name}}{${2:value}}"
+    },
+    "setmfpair{}{}": {
+      "snippet": "setmfpair{${1:name}}{${2:value}}"
+    },
+    "setmfvariable{}{}{}": {
+      "snippet": "setmfvariable{${1:type}}{${2:name}}{${3:value}}"
+    },
+    "setmpvariable{}{}{}": {
+      "snippet": "setmpvariable{${1:type}}{${2:name}}{${3:value}}"
+    },
+    "setrender{}": {
+      "snippet": "setrender{${1:TeX commands}}"
+    },
+    "settension{}": {
+      "snippet": "settension{${1:number}}"
+    },
+    "setxmarks{}": {
+      "snippet": "setxmarks{${1:pos}}"
+    },
+    "setymarks{}": {
+      "snippet": "setymarks{${1:pos}}"
+    },
+    "shade": {},
+    "shade[]": {
+      "snippet": "shade[${1:space}]"
+    },
+    "shadespace": {},
+    "shadewd{}": {
+      "snippet": "shadewd{${1:diameter}}"
+    },
+    "shift{}": {
+      "snippet": "shift{${1:v}}"
+    },
+    "shiftpath{}": {
+      "snippet": "shiftpath{${1:v}}"
+    },
+    "sideheadlen": {},
+    "sinewave[]{}": {
+      "snippet": "sinewave[${2:tension}]{${1:start,end,wl,amp}}"
+    },
+    "sinewave{}": {
+      "snippet": "sinewave{${1:start,end,wl,amp}}"
+    },
+    "slantpath{}": {
+      "snippet": "slantpath{${1:y,factor}}"
+    },
+    "smoothdata": {},
+    "smoothdata[]": {
+      "snippet": "smoothdata[${1:tension}]"
+    },
+    "startbacktext": {},
+    "stopbacktext": {},
+    "stopshipping": {},
+    "store{}": {
+      "snippet": "store{${1:path variable}}"
+    },
+    "subpath{}": {
+      "snippet": "subpath{${1:num1,num2}}"
+    },
+    "symbolspace": {},
+    "tcaption[]{}": {
+      "snippet": "tcaption[${2:maxwidth,linewidth}]{${1:text}}"
+    },
+    "tcaption{}": {
+      "snippet": "tcaption{${1:text}}"
+    },
+    "tess{}": {
+      "snippet": "tess{${1:tilename}}"
+    },
+    "thatch": {},
+    "thatch[]": {
+      "snippet": "thatch[${1:space,angle}]"
+    },
+    "thatch[][]": {
+      "snippet": "thatch[${1:space,angle}][${2:color}]"
+    },
+    "tile{}": {
+      "snippet": "tile{${1:tilename,unit,width,height,clip}}"
+    },
+    "tlabel[]{}{}": {
+      "snippet": "tlabel[${3:just}]{${1:pair list}}{${2:label text}}"
+    },
+    "tlabel{}{}": {
+      "snippet": "tlabel{${1:pair list}}{${2:label text}}"
+    },
+    "tlabelcolor[]{}": {
+      "snippet": "tlabelcolor[${2:model}]{${1:color spec}}"
+    },
+    "tlabelcolor{}": {
+      "snippet": "tlabelcolor{${1:color spec}}"
+    },
+    "tlabeljustify{}": {
+      "snippet": "tlabeljustify{${1:just}}"
+    },
+    "tlabeloffset{}{}": {
+      "snippet": "tlabeloffset{${1:hlength}}{${2:vlength}}"
+    },
+    "tlabels{}": {
+      "snippet": "tlabels{${1:params1 params2 ...}}"
+    },
+    "tlabelsep{}": {
+      "snippet": "tlabelsep{${1:length}}"
+    },
+    "tlpathjustify{}": {
+      "snippet": "tlpathjustify{${1:just}}"
+    },
+    "tlpathsep{}": {
+      "snippet": "tlpathsep{${1:length}}"
+    },
+    "tlpointsep{}": {
+      "snippet": "tlpointsep{${1:length}}"
+    },
+    "tmarks[]{}": {
+      "snippet": "tmarks[${2:length}]{${1:number list}}"
+    },
+    "tmarks{}": {
+      "snippet": "tmarks{${1:number list}}"
+    },
+    "tmtitle{}": {
+      "snippet": "tmtitle{${1:title}}"
+    },
+    "transformpath{}": {
+      "snippet": "transformpath{${1:transformer}}"
+    },
+    "trimpath{}": {
+      "snippet": "trimpath{${1:dim1,dim2}}"
+    },
+    "turn[]{}": {
+      "snippet": "turn[${2:p}]{${1:degrees}}"
+    },
+    "turn{}": {
+      "snippet": "turn{${1:degrees}}"
+    },
+    "turtle{}": {
+      "snippet": "turtle{${1:p0,v1,v2,...}}"
+    },
+    "unsmoothdata": {},
+    "usecenteredcaptions": {},
+    "usemetafont": {},
+    "usemetapost": {},
+    "usemplabels": {},
+    "usepic{}": {
+      "snippet": "usepic{${1:picname}}"
+    },
+    "useraggedcaptions": {},
+    "usetruebbox": {},
+    "using{}{}": {
+      "snippet": "using{${1:in-pattern}}{${2:out-pattern}}"
+    },
+    "usingnumericdefault": {},
+    "usingpairdefault": {},
+    "vectorfield[]{}{}{}": {
+      "snippet": "vectorfield[${4:length}]{${1:xsep,ysep}}{${2:formula}}{${3:restriction}}"
+    },
+    "vectorfield{}{}{}": {
+      "snippet": "vectorfield{${1:xsep,ysep}}{${2:formula}}{${3:restriction}}"
+    },
+    "vgridlines{}": {
+      "snippet": "vgridlines{${1:xsep}}"
+    },
+    "xaxis": {},
+    "xaxis[]": {
+      "snippet": "xaxis[${1:length}]"
+    },
+    "xfactor": {},
+    "xhatch": {},
+    "xhatch[]": {
+      "snippet": "xhatch[${1:space}]"
+    },
+    "xhatch[][]": {
+      "snippet": "xhatch[${1:space}][${2:color}]"
+    },
+    "xmarks[]{}": {
+      "snippet": "xmarks[${2:length}]{${1:number list}}"
+    },
+    "xmarks{}": {
+      "snippet": "xmarks{${1:number list}}"
+    },
+    "xmax": {},
+    "xmin": {},
+    "xscale{}": {
+      "snippet": "xscale{${1:factor}}"
+    },
+    "xscalepath{}": {
+      "snippet": "xscalepath{${1:x,factor}}"
+    },
+    "xslant{}": {
+      "snippet": "xslant{${1:factor}}"
+    },
+    "xslantpath{}": {
+      "snippet": "xslantpath{${1:y,factor}}"
+    },
+    "xyswap": {},
+    "xyswappath": {},
+    "yaxis": {},
+    "yaxis[]": {
+      "snippet": "yaxis[${1:length}]"
+    },
+    "yfactor": {},
+    "ymarks[]{}": {
+      "snippet": "ymarks[${2:length}]{${1:number list}}"
+    },
+    "ymarks{}": {
+      "snippet": "ymarks{${1:number list}}"
+    },
+    "ymax": {},
+    "ymin": {},
+    "yscale{}": {
+      "snippet": "yscale{${1:factor}}"
+    },
+    "yscalepath{}": {
+      "snippet": "yscalepath{${1:y,factor}}"
+    },
+    "yslant{}": {
+      "snippet": "yslant{${1:factor}}"
+    },
+    "yslantpath{}": {
+      "snippet": "yslantpath{${1:x,factor}}"
+    },
+    "zigzag{}": {
+      "snippet": "zigzag{${1:start,end,wl,amp}}"
+    },
+    "zscale{}": {
+      "snippet": "zscale{${1:v}}"
+    },
+    "zslant{}": {
+      "snippet": "zslant{${1:v}}"
+    },
+    "finishmpxshipout": {},
+    "MFPbegingroup": {},
+    "MFPendgroup": {},
+    "MFPtext{}": {
+      "snippet": "MFPtext{${1:arg}}"
+    },
+    "middlempxshipout": {},
+    "mpxshipout": {}
+  },
+  "envs": {
+    "connect": {},
+    "coords": {},
+    "mfpfor{}": {
+      "name": "mfpfor",
+      "snippet": "{${1:header}}"
+    },
+    "mfpframe": {},
+    "mfpframe[]": {
+      "name": "mfpframe",
+      "snippet": "[${1:framesep}]"
+    },
+    "mfpic[][]{}{}{}{}": {
+      "name": "mfpic",
+      "snippet": "[${5:xfactor}][${6:yfactor}]{${1:xmin}}{${2:xmax}}{${3:ymin}}{${4:ymax}}"
+    },
+    "mfpic[]{}{}{}{}": {
+      "name": "mfpic",
+      "snippet": "[${5:xfactor}]{${1:xmin}}{${2:xmax}}{${3:ymin}}{${4:ymax}}"
+    },
+    "mfpic{}{}{}{}": {
+      "name": "mfpic",
+      "snippet": "{${1:xmin}}{${2:xmax}}{${3:ymin}}{${4:ymax}}"
+    },
+    "mfpimage[]{}": {
+      "name": "mfpimage",
+      "snippet": "[${2:ref pt}]{${1:picname}}"
+    },
+    "mfpimage{}": {
+      "name": "mfpimage",
+      "snippet": "{${1:picname}}"
+    },
+    "mfploop": {},
+    "mfpwhile{}": {
+      "name": "mfpwhile",
+      "snippet": "{${1:condition}}"
+    },
+    "patharr{}": {
+      "name": "patharr",
+      "snippet": "{${1:name}}"
+    },
+    "tile{}": {
+      "name": "tile",
+      "snippet": "{${1:tilename,unit,width,height,clip}}"
+    }
+  },
+  "options": [
+    "draft",
+    "final",
+    "nowrite",
+    "metapost",
+    "metafont",
+    "centeredcaptions",
+    "justifiedcaptions",
+    "raggedcaptions",
+    "clip",
+    "truebbox",
+    "mplabels",
+    "overlaylabels",
+    "clearsymbols",
+    "debug",
+    "mfpreadlog"
+  ],
+  "keyvals": []
+}

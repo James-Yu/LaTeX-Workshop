@@ -1,0 +1,293 @@
+{
+  "includes": {
+    "l3keys2e": [],
+    "luatexbase": [],
+    "luacode": [],
+    "xcolor": [],
+    "footnote": [
+      "footnote",
+      "footnote=true"
+    ],
+    "footnotehyper": [
+      "footnotehyper",
+      "footnotehyper=true"
+    ]
+  },
+  "macros": {
+    "piton{}": {
+      "snippet": "piton{${1:code}}"
+    },
+    "PitonInputFile{}": {
+      "snippet": "PitonInputFile{${1:file}}"
+    },
+    "PitonInputFile[]{}": {
+      "snippet": "PitonInputFile[${2:options}]{${1:file}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "PitonInputFileTF{}{}{}": {
+      "snippet": "PitonInputFileTF{${1:file}}{${2:true code}}{${3:false code}}"
+    },
+    "PitonInputFileTF[]{}{}{}": {
+      "snippet": "PitonInputFileTF[${4:options}]{${1:file}}{${2:true code}}{${3:false code}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "PitonInputFileT{}{}": {
+      "snippet": "PitonInputFileT{${1:file}}{${2:true code}}"
+    },
+    "PitonInputFileT[]{}{}": {
+      "snippet": "PitonInputFileT[${3:options}]{${1:file}}{${2:true code}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "PitonInputFileF{}{}": {
+      "snippet": "PitonInputFileF{${1:file}}{${2:false code}}"
+    },
+    "PitonInputFileF[]{}{}": {
+      "snippet": "PitonInputFileF[${3:options}]{${1:file}}{${2:false code}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "PitonInputFile<>{}": {
+      "snippet": "PitonInputFile<${2:overlay spec}>{${1:file}}"
+    },
+    "PitonInputFile<>[]{}": {
+      "snippet": "PitonInputFile<${3:overlay spec}>[${2:options}]{${1:file}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "PitonInputFileTF<>{}{}{}": {
+      "snippet": "PitonInputFileTF<${4:overlay spec}>{${1:file}}{${2:true code}}{${3:false code}}"
+    },
+    "PitonInputFileTF<>[]{}{}{}": {
+      "snippet": "PitonInputFileTF<${5:overlay spec}>[${4:options}]{${1:file}}{${2:true code}}{${3:false code}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "PitonInputFileT<>{}{}": {
+      "snippet": "PitonInputFileT<${3:overlay spec}>{${1:file}}{${2:true code}}"
+    },
+    "PitonInputFileT<>[]{}{}": {
+      "snippet": "PitonInputFileT<${4:overlay spec}>[${3:options}]{${1:file}}{${2:true code}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "PitonInputFileF<>{}{}": {
+      "snippet": "PitonInputFileF<${3:overlay spec}>{${1:file}}{${2:false code}}"
+    },
+    "PitonInputFileF<>[]{}{}": {
+      "snippet": "PitonInputFileF<${4:overlay spec}>[${3:options}]{${1:file}}{${2:false code}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "PitonOptions{}": {
+      "snippet": "PitonOptions{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "SetPitonStyle{}": {
+      "snippet": "SetPitonStyle{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "SetPitonStyle[]{}": {
+      "snippet": "SetPitonStyle[${2:language}]{${1:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "PitonStyle{}{}": {
+      "snippet": "PitonStyle{${1:style}}{${2:text}}"
+    },
+    "PitonClearUserFunctions": {},
+    "PitonClearUserFunctions[]": {
+      "snippet": "PitonClearUserFunctions[${1:languages}]"
+    },
+    "NewPitonEnvironment{}{}{}{}": {
+      "snippet": "NewPitonEnvironment{${1:envname}}{${2:xargs}}{${3:begdef}}{${4:enddef}}"
+    },
+    "NewPitonLanguage{}{}": {
+      "snippet": "NewPitonLanguage{${1:language}}{${2:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "SetPitonIdentifier{}{}": {
+      "snippet": "SetPitonIdentifier{${1:id1,id2,...}}{${2:code}}"
+    },
+    "SetPitonIdentifier[]{}{}": {
+      "snippet": "SetPitonIdentifier[${3:language}]{${1:id1,id2,...}}{${2:code}}"
+    },
+    "PitonFileVersion": {},
+    "PitonFileDate": {}
+  },
+  "envs": {
+    "Piton": {},
+    "Piton[]": {
+      "name": "Piton",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    }
+  },
+  "options": [
+    "footnote",
+    "footnotehyper",
+    "beamer"
+  ],
+  "keyvals": [
+    [
+      "first-line=${1:integer}",
+      "last-line=${1:integer}",
+      "begin-range=${1:content}",
+      "end-range=${1:content}",
+      "range=${1:content}",
+      "marker/include-lines"
+    ],
+    [
+      "comment-latex=${1:string}",
+      "math-comments",
+      "detected-commands={${1:csname1,csname2,...}}",
+      "line-numbers/absolute",
+      "marker={${1:options}}",
+      "marker/beginning=${1:spec}",
+      "marker/end=${1:spec}",
+      "begin-escape=${1:character}",
+      "end-escape=${1:character}",
+      "begin-escape-math=${1:character}",
+      "end-escape-math=${1:character}",
+      "path={${1:list of paths}}",
+      "language=",
+      "gobble=${1:integer}",
+      "auto-gobble",
+      "tabs-auto-gobble",
+      "env-gobble",
+      "line-numbers",
+      "line-numbers={${1:options}}",
+      "line-numbers/skip-empty-lines",
+      "line-numbers/label-empty-lines",
+      "line-numbers/resume",
+      "line-numbers/sep=",
+      "splittable",
+      "splittable=${1:integer}",
+      "background-color=",
+      "prompt-background-color=",
+      "width=",
+      "left-margin=",
+      "tab-size=${1:integer}",
+      "show-spaces",
+      "show-spaces-in-strings",
+      "break-lines-in-Piton",
+      "break-lines-in-piton",
+      "break-lines",
+      "indent-broken-lines",
+      "end-of-broken-line=${1:symbol}",
+      "continuation-symbol=${1:symbol}",
+      "continuation-symbol-on-indentation=${1:symbol}",
+      "write=${1:file}",
+      "path-write=${1:path}",
+      "split-on-empty-lines",
+      "split-separation=${1:code}"
+    ],
+    [
+      "Number=${1:formatting}",
+      "String.Short=${1:formatting}",
+      "String.Long=${1:formatting}",
+      "String=${1:formatting}",
+      "String.Doc=${1:formatting}",
+      "String.Interpol=${1:formatting}",
+      "Interpol.Inside=${1:formatting}",
+      "Operator=${1:formatting}",
+      "Operator.Word=${1:formatting}",
+      "Name.Builtin=${1:formatting}",
+      "Name.Decorator=${1:formatting}",
+      "Name.Namespace=${1:formatting}",
+      "Name.Class=${1:formatting}",
+      "Name.Function=${1:formatting}",
+      "UserFunction=${1:formatting}",
+      "Exception=${1:formatting}",
+      "InitialValues=${1:formatting}",
+      "Comment=${1:formatting}",
+      "Comment.LaTeX=${1:formatting}",
+      "Keyword.Constant=${1:formatting}",
+      "Keyword=${1:formatting}",
+      "Name.Type=${1:formatting}",
+      "Name.Field=${1:formatting}",
+      "Name.Constructor=${1:formatting}",
+      "Name.Module=${1:formatting}",
+      "TypeParameter=${1:formatting}",
+      "Preproc=${1:formatting}",
+      "Name.Table=${1:formatting}",
+      "Directive=${1:formatting}",
+      "FormattingType=${1:formatting}",
+      "Comment.Math=${1:formatting}",
+      "Discard=${1:formatting}",
+      "Identifier=${1:formatting}",
+      "Keyword2=${1:formatting}",
+      "Keyword3=${1:formatting}",
+      "Keyword4=${1:formatting}",
+      "Keyword5=${1:formatting}",
+      "Keyword6=${1:formatting}",
+      "Keyword7=${1:formatting}",
+      "Keyword8=${1:formatting}",
+      "Keyword9=${1:formatting}",
+      "ParseAgain.noCR=${1:formatting}",
+      "ParseAgain=${1:formatting}",
+      "Prompt=${1:formatting}",
+      "Tag=${1:formatting}"
+    ],
+    [
+      "morekeywords={${1:list of keywords}}",
+      "morekeywords=[${1:number}]{${2:list of keywords}}",
+      "otherkeywords={${1:keywords}}",
+      "sensitive",
+      "keywordsprefix=${1:prefix}",
+      "moretexcs={${1:list of csnames}}",
+      "moretexcs=[${1:class number}]{${2:list of csnames}}",
+      "morestring=${1:delimiter}",
+      "morestring=[${1:b|d|m|s}]${2:delimiter}",
+      "morecomment=${1:delimiter(s)}",
+      "morecomment=[${1:i|l|s|n}]${2:delimiter(s)}",
+      "moredelim=[${1:type}][${2:style}]${3:delimiters}",
+      "moredelim=*[${1:type}][${2:style}]${3:delimiters}",
+      "moredelim=**[${1:type}][${2:style}]${3:delimiters}",
+      "moredirectives={${1:list of compiler directives}}",
+      "tag=${1:<char1><char2>}",
+      "alsodigit={${1:character sequence}}",
+      "alsoletter={${1:character sequence}}"
+    ],
+    [
+      "line-numbers/start",
+      "language=",
+      "gobble=${1:integer}",
+      "auto-gobble",
+      "tabs-auto-gobble",
+      "env-gobble",
+      "line-numbers",
+      "line-numbers={${1:options}}",
+      "line-numbers/skip-empty-lines",
+      "line-numbers/label-empty-lines",
+      "line-numbers/resume",
+      "line-numbers/sep=",
+      "splittable",
+      "splittable=${1:integer}",
+      "background-color=",
+      "prompt-background-color=",
+      "width=",
+      "left-margin=",
+      "tab-size=${1:integer}",
+      "show-spaces",
+      "show-spaces-in-strings",
+      "break-lines-in-Piton",
+      "break-lines-in-piton",
+      "break-lines",
+      "indent-broken-lines",
+      "end-of-broken-line=${1:symbol}",
+      "continuation-symbol=${1:symbol}",
+      "continuation-symbol-on-indentation=${1:symbol}",
+      "write=${1:file}",
+      "path-write=${1:path}",
+      "split-on-empty-lines",
+      "split-separation=${1:code}"
+    ]
+  ]
+}

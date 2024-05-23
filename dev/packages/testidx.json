@@ -1,0 +1,691 @@
+{
+  "includes": {
+    "color": [],
+    "ifxetex": [],
+    "ifluatex": []
+  },
+  "macros": {
+    "testidxGermanOn": {},
+    "testidxGermanOff": {},
+    "testidxStripAccents": {},
+    "testidxNoStripAccents": {},
+    "testidxSanitizeOn": {},
+    "testidxSanitizeOff": {},
+    "testidxshowmarkstrue": {},
+    "testidxshowmarksfalse": {},
+    "iftestidxverbose": {},
+    "testidxverbosetrue": {},
+    "testidxverbosefalse": {},
+    "iftestidxdiglyphs": {},
+    "testidxdiglyphstrue": {},
+    "testidxdiglyphsfalse": {},
+    "iftestidxprefix": {},
+    "testidxprefixtrue": {},
+    "testidxprefixfalse": {},
+    "testidx": {},
+    "testidx[]": {
+      "snippet": "testidx[${1:blocks}]"
+    },
+    "tstidxmaxblocks": {},
+    "tstidxprefixblock{}": {
+      "snippet": "tstidxprefixblock{${1:n}}"
+    },
+    "tstindex{}": {
+      "snippet": "tstindex{${1:text}}"
+    },
+    "tstidxmarker": {},
+    "tstidxopenmarker": {},
+    "tstidxclosemarker": {},
+    "tstidxsubmarker": {},
+    "tstidxopensubmarker": {},
+    "tstidxclosesubmarker": {},
+    "tstidxsubsubmarker": {},
+    "tstidxopensubsubmarker": {},
+    "tstidxclosesubsubmarker": {},
+    "tstidxseemarker": {},
+    "tstidxsubseemarker": {},
+    "tstidxsubseesep": {},
+    "tstidxencapi{}": {
+      "snippet": "tstidxencapi{${1:location}}"
+    },
+    "tstidxencapii{}": {
+      "snippet": "tstidxencapii{${1:location}}"
+    },
+    "tstidxencapiii{}": {
+      "snippet": "tstidxencapiii{${1:location}}"
+    },
+    "tstidxSetSeeEncap{}": {
+      "snippet": "tstidxSetSeeEncap{${1:encap name}}"
+    },
+    "tstidxSetSeeAlsoEncap{}": {
+      "snippet": "tstidxSetSeeAlsoEncap{${1:encap name}}"
+    },
+    "tstidxtext{}": {
+      "snippet": "tstidxtext{${1:text}}"
+    },
+    "tstidxquote": {},
+    "tstidxactual": {},
+    "tstidxlevel": {},
+    "tstidxencap": {},
+    "tstidxopenrange": {},
+    "tstidxcloserange": {},
+    "testidxverbosefmt{}": {
+      "snippet": "testidxverbosefmt{${1:arg1}}"
+    },
+    "tstidxapp[]{}": {
+      "snippet": "tstidxapp[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxappfmt{}": {
+      "snippet": "tstidxappfmt{${1:arg1}}"
+    },
+    "tstidxappopt[]{}{}": {
+      "snippet": "tstidxappopt[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxappoptfmt{}": {
+      "snippet": "tstidxappoptfmt{${1:arg1}}"
+    },
+    "tstidxappopt{}{}": {
+      "snippet": "tstidxappopt{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxappopt{}{}{}": {
+      "snippet": "tstidxappopt{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxapp{}": {
+      "snippet": "tstidxapp{${1:arg1}}"
+    },
+    "tstidxapp{}{}": {
+      "snippet": "tstidxapp{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxartbook[]{}{}": {
+      "snippet": "tstidxartbook[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxartbook{}{}": {
+      "snippet": "tstidxartbook{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxartbook{}{}{}": {
+      "snippet": "tstidxartbook{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxartfilm[]{}{}": {
+      "snippet": "tstidxartfilm[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxartfilm{}{}": {
+      "snippet": "tstidxartfilm{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxartfilm{}{}{}": {
+      "snippet": "tstidxartfilm{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxartphrase{}{}{}": {
+      "snippet": "tstidxartphrase{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxartplace{}{}{}": {
+      "snippet": "tstidxartplace{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxbook[]{}": {
+      "snippet": "tstidxbook[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxbookfmt{}": {
+      "snippet": "tstidxbookfmt{${1:arg1}}"
+    },
+    "tstidxbook{}": {
+      "snippet": "tstidxbook{${1:arg1}}"
+    },
+    "tstidxbook{}{}": {
+      "snippet": "tstidxbook{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxcloseapp[]{}": {
+      "snippet": "tstidxcloseapp[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxcloseappopt[]{}{}": {
+      "snippet": "tstidxcloseappopt[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxcloseappopt{}{}": {
+      "snippet": "tstidxcloseappopt{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxcloseappopt{}{}{}": {
+      "snippet": "tstidxcloseappopt{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxcloseapp{}": {
+      "snippet": "tstidxcloseapp{${1:arg1}}"
+    },
+    "tstidxcloseapp{}{}": {
+      "snippet": "tstidxcloseapp{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxcloseartbook[]{}{}": {
+      "snippet": "tstidxcloseartbook[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxcloseartbook{}{}": {
+      "snippet": "tstidxcloseartbook{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxcloseartbook{}{}{}": {
+      "snippet": "tstidxcloseartbook{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxcloseartphrase{}{}{}": {
+      "snippet": "tstidxcloseartphrase{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxclosebook[]{}": {
+      "snippet": "tstidxclosebook[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxclosebook{}": {
+      "snippet": "tstidxclosebook{${1:arg1}}"
+    },
+    "tstidxclosebook{}{}": {
+      "snippet": "tstidxclosebook{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxclosecs[]{}": {
+      "snippet": "tstidxclosecs[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxclosecsn[]{}": {
+      "snippet": "tstidxclosecsn[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxclosecsn{}": {
+      "snippet": "tstidxclosecsn{${1:arg1}}"
+    },
+    "tstidxclosecsn{}{}": {
+      "snippet": "tstidxclosecsn{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxclosecs{}": {
+      "snippet": "tstidxclosecs{${1:arg1}}"
+    },
+    "tstidxclosecs{}{}": {
+      "snippet": "tstidxclosecs{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxcloseenv[]{}": {
+      "snippet": "tstidxcloseenv[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxcloseenv{}": {
+      "snippet": "tstidxcloseenv{${1:arg1}}"
+    },
+    "tstidxcloseenv{}{}": {
+      "snippet": "tstidxcloseenv{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxclosefilm[]{}": {
+      "snippet": "tstidxclosefilm[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxclosefilm{}": {
+      "snippet": "tstidxclosefilm{${1:arg1}}"
+    },
+    "tstidxclosefilm{}{}": {
+      "snippet": "tstidxclosefilm{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxcloseperson{}{}{}": {
+      "snippet": "tstidxcloseperson{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxclosephrase{}{}": {
+      "snippet": "tstidxclosephrase{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxclosesty[]{}": {
+      "snippet": "tstidxclosesty[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxclosestyopt[]{}{}": {
+      "snippet": "tstidxclosestyopt[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxclosestyopt{}{}": {
+      "snippet": "tstidxclosestyopt{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxclosestyopt{}{}{}": {
+      "snippet": "tstidxclosestyopt{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxclosesty{}": {
+      "snippet": "tstidxclosesty{${1:arg1}}"
+    },
+    "tstidxclosesty{}{}": {
+      "snippet": "tstidxclosesty{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxclosesym{}{}": {
+      "snippet": "tstidxclosesym{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxcloseutfphrase{}{}{}": {
+      "snippet": "tstidxcloseutfphrase{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxcloseutf{}{}{}{}": {
+      "snippet": "tstidxcloseutf{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "tstidxcloseword{}{}": {
+      "snippet": "tstidxcloseword{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxcs[]{}": {
+      "snippet": "tstidxcs[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxcsfmt{}": {
+      "snippet": "tstidxcsfmt{${1:arg1}}"
+    },
+    "tstidxcs{}": {
+      "snippet": "tstidxcs{${1:arg1}}"
+    },
+    "tstidxcs{}{}": {
+      "snippet": "tstidxcs{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxdash": {},
+    "tstidxdefblocksep": {},
+    "tstidxencapcsn[]{}": {
+      "snippet": "tstidxencapcsn[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxencapcsn{}": {
+      "snippet": "tstidxencapcsn{${1:arg1}}"
+    },
+    "tstidxencapcsn{}{}": {
+      "snippet": "tstidxencapcsn{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxencaptext{}{}": {
+      "snippet": "tstidxencaptext{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxensuretext{}": {
+      "snippet": "tstidxensuretext{${1:arg1}}"
+    },
+    "tstidxenv[]{}": {
+      "snippet": "tstidxenv[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxenvfmt{}": {
+      "snippet": "tstidxenvfmt{${1:arg1}}"
+    },
+    "tstidxenv{}": {
+      "snippet": "tstidxenv{${1:arg1}}"
+    },
+    "tstidxenv{}{}": {
+      "snippet": "tstidxenv{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxfilm[]{}": {
+      "snippet": "tstidxfilm[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxfilmfmt{}": {
+      "snippet": "tstidxfilmfmt{${1:arg1}}"
+    },
+    "tstidxfilm{}": {
+      "snippet": "tstidxfilm{${1:arg1}}"
+    },
+    "tstidxfilm{}{}": {
+      "snippet": "tstidxfilm{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxfmtclosepost{}{}{}": {
+      "snippet": "tstidxfmtclosepost{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxfmtclosepre{}{}{}": {
+      "snippet": "tstidxfmtclosepre{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxfmtopenpost{}{}{}": {
+      "snippet": "tstidxfmtopenpost{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxfmtopenpre{}{}{}": {
+      "snippet": "tstidxfmtopenpre{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxfmtpost{}{}{}": {
+      "snippet": "tstidxfmtpost{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxfmtpre{}{}{}": {
+      "snippet": "tstidxfmtpre{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxfootnote": {},
+    "tstidxgphword{}{}": {
+      "snippet": "tstidxgphword{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxindexmarkerprefix": {},
+    "tstidxindexmarker{}": {
+      "snippet": "tstidxindexmarker{${1:arg1}}"
+    },
+    "tstidxmath[]{}": {
+      "snippet": "tstidxmath[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxmathsym[]{}": {
+      "snippet": "tstidxmathsym[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxmathsymprefix": {},
+    "tstidxmathsym{}": {
+      "snippet": "tstidxmathsym{${1:arg1}}"
+    },
+    "tstidxmathsym{}{}": {
+      "snippet": "tstidxmathsym{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxmath{}": {
+      "snippet": "tstidxmath{${1:arg1}}"
+    },
+    "tstidxmath{}{}": {
+      "snippet": "tstidxmath{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxnewblock": {},
+    "tstidxnumber[]{}": {
+      "snippet": "tstidxnumber[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxnumber{}": {
+      "snippet": "tstidxnumber{${1:arg1}}"
+    },
+    "tstidxnumber{}{}": {
+      "snippet": "tstidxnumber{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopenapp[]{}": {
+      "snippet": "tstidxopenapp[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxopenappopt[]{}{}": {
+      "snippet": "tstidxopenappopt[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopenappopt{}{}": {
+      "snippet": "tstidxopenappopt{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopenappopt{}{}{}": {
+      "snippet": "tstidxopenappopt{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxopenapp{}": {
+      "snippet": "tstidxopenapp{${1:arg1}}"
+    },
+    "tstidxopenapp{}{}": {
+      "snippet": "tstidxopenapp{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopenartbook[]{}{}": {
+      "snippet": "tstidxopenartbook[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopenartbook{}{}": {
+      "snippet": "tstidxopenartbook{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopenartbook{}{}{}": {
+      "snippet": "tstidxopenartbook{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxopenartphrase{}{}{}": {
+      "snippet": "tstidxopenartphrase{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxopenbook[]{}": {
+      "snippet": "tstidxopenbook[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxopenbook{}": {
+      "snippet": "tstidxopenbook{${1:arg1}}"
+    },
+    "tstidxopenbook{}{}": {
+      "snippet": "tstidxopenbook{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopencs[]{}": {
+      "snippet": "tstidxopencs[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxopencsn[]{}": {
+      "snippet": "tstidxopencsn[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxopencsn{}": {
+      "snippet": "tstidxopencsn{${1:arg1}}"
+    },
+    "tstidxopencsn{}{}": {
+      "snippet": "tstidxopencsn{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopencs{}": {
+      "snippet": "tstidxopencs{${1:arg1}}"
+    },
+    "tstidxopencs{}{}": {
+      "snippet": "tstidxopencs{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopenenv[]{}": {
+      "snippet": "tstidxopenenv[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxopenenv{}": {
+      "snippet": "tstidxopenenv{${1:arg1}}"
+    },
+    "tstidxopenenv{}{}": {
+      "snippet": "tstidxopenenv{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopenfilm[]{}": {
+      "snippet": "tstidxopenfilm[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxopenfilm{}": {
+      "snippet": "tstidxopenfilm{${1:arg1}}"
+    },
+    "tstidxopenfilm{}{}": {
+      "snippet": "tstidxopenfilm{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopenperson{}{}{}": {
+      "snippet": "tstidxopenperson{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxopenphrase{}{}": {
+      "snippet": "tstidxopenphrase{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopensty[]{}": {
+      "snippet": "tstidxopensty[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxopenstyopt[]{}{}": {
+      "snippet": "tstidxopenstyopt[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopenstyopt{}{}": {
+      "snippet": "tstidxopenstyopt{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopenstyopt{}{}{}": {
+      "snippet": "tstidxopenstyopt{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxopensty{}": {
+      "snippet": "tstidxopensty{${1:arg1}}"
+    },
+    "tstidxopensty{}{}": {
+      "snippet": "tstidxopensty{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopensym{}{}": {
+      "snippet": "tstidxopensym{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxopenutfphrase{}{}{}": {
+      "snippet": "tstidxopenutfphrase{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxopenutf{}{}{}{}": {
+      "snippet": "tstidxopenutf{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "tstidxopenword{}{}": {
+      "snippet": "tstidxopenword{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxperson{}{}{}": {
+      "snippet": "tstidxperson{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxphrasepl{}": {
+      "snippet": "tstidxphrasepl{${1:arg1}}"
+    },
+    "tstidxphrase{}{}": {
+      "snippet": "tstidxphrase{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxplace{}{}": {
+      "snippet": "tstidxplace{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxprocessasciisort": {},
+    "tstidxprocessasciisortnostrip{}{}": {
+      "snippet": "tstidxprocessasciisortnostrip{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxprocessasciisortstrip{}{}": {
+      "snippet": "tstidxprocessasciisortstrip{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxprocessascii{}{}": {
+      "snippet": "tstidxprocessascii{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxprocessutf": {},
+    "tstidxprocessutfnosanitize{}{}": {
+      "snippet": "tstidxprocessutfnosanitize{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxprocessutfsanitize{}{}": {
+      "snippet": "tstidxprocessutfsanitize{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxqt{}": {
+      "snippet": "tstidxqt{${1:arg1}}"
+    },
+    "tstidxseeref{}{}{}": {
+      "snippet": "tstidxseeref{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxsortumlaut": {},
+    "tstidxsortumlautstrip": {},
+    "tstidxsty[]{}": {
+      "snippet": "tstidxsty[${2:opt}]{${1:arg1}}"
+    },
+    "tstidxstyfmt{}": {
+      "snippet": "tstidxstyfmt{${1:arg1}}"
+    },
+    "tstidxstyopt[]{}{}": {
+      "snippet": "tstidxstyopt[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxstyoptfmt{}": {
+      "snippet": "tstidxstyoptfmt{${1:arg1}}"
+    },
+    "tstidxstyopt{}{}": {
+      "snippet": "tstidxstyopt{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxstyopt{}{}{}": {
+      "snippet": "tstidxstyopt{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxsty{}": {
+      "snippet": "tstidxsty{${1:arg1}}"
+    },
+    "tstidxsty{}{}": {
+      "snippet": "tstidxsty{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxsubseeref{}{}{}{}": {
+      "snippet": "tstidxsubseeref{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "tstidxsubutf{}{}{}{}": {
+      "snippet": "tstidxsubutf{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "tstidxsubword{}{}{}": {
+      "snippet": "tstidxsubword{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxsym{}{}": {
+      "snippet": "tstidxsym{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxumlaut": {},
+    "tstidxutf": {},
+    "tstidxutfcloseperson{}{}{}": {
+      "snippet": "tstidxutfcloseperson{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxutfclosepost{}{}{}{}": {
+      "snippet": "tstidxutfclosepost{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "tstidxutfclosepre{}{}{}{}": {
+      "snippet": "tstidxutfclosepre{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "tstidxutfopenperson{}{}{}": {
+      "snippet": "tstidxutfopenperson{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxutfopenpost{}{}{}{}": {
+      "snippet": "tstidxutfopenpost{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "tstidxutfopenpre{}{}{}{}": {
+      "snippet": "tstidxutfopenpre{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "tstidxutfperson{}{}{}": {
+      "snippet": "tstidxutfperson{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstidxutfphrase{}{}": {
+      "snippet": "tstidxutfphrase{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxutfplace{}{}": {
+      "snippet": "tstidxutfplace{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxutfpost{}{}": {
+      "snippet": "tstidxutfpost{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxutfpre{}{}": {
+      "snippet": "tstidxutfpre{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxutfsubclosepost{}{}{}{}{}{}": {
+      "snippet": "tstidxutfsubclosepost{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "tstidxutfsubclosepre{}{}{}{}{}{}": {
+      "snippet": "tstidxutfsubclosepre{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "tstidxutfsubopenpost{}{}{}{}{}{}": {
+      "snippet": "tstidxutfsubopenpost{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "tstidxutfsubopenpre{}{}{}{}{}{}": {
+      "snippet": "tstidxutfsubopenpre{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "tstidxutfsubpost{}{}{}{}": {
+      "snippet": "tstidxutfsubpost{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "tstidxutfsubpre{}{}{}{}{}{}": {
+      "snippet": "tstidxutfsubpre{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    },
+    "tstidxutfword{}{}": {
+      "snippet": "tstidxutfword{${1:arg1}}{${2:arg2}}"
+    },
+    "tstidxwordpl{}": {
+      "snippet": "tstidxwordpl{${1:arg1}}"
+    },
+    "tstidxword{}{}": {
+      "snippet": "tstidxword{${1:arg1}}{${2:arg2}}"
+    },
+    "tstindexclosepost{}{}": {
+      "snippet": "tstindexclosepost{${1:arg1}}{${2:arg2}}"
+    },
+    "tstindexclosepre{}{}": {
+      "snippet": "tstindexclosepre{${1:arg1}}{${2:arg2}}"
+    },
+    "tstindexopenpost{}{}": {
+      "snippet": "tstindexopenpost{${1:arg1}}{${2:arg2}}"
+    },
+    "tstindexopenpre{}{}": {
+      "snippet": "tstindexopenpre{${1:arg1}}{${2:arg2}}"
+    },
+    "tstindexpost{}{}": {
+      "snippet": "tstindexpost{${1:arg1}}{${2:arg2}}"
+    },
+    "tstindexpre{}{}": {
+      "snippet": "tstindexpre{${1:arg1}}{${2:arg2}}"
+    },
+    "tstindexsee{}{}": {
+      "snippet": "tstindexsee{${1:arg1}}{${2:arg2}}"
+    },
+    "tstindexstysee{}{}{}": {
+      "snippet": "tstindexstysee{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "tstindexsubsee{}{}": {
+      "snippet": "tstindexsubsee{${1:arg1}}{${2:arg2}}"
+    },
+    "tstindexutfsee{}{}": {
+      "snippet": "tstindexutfsee{${1:arg1}}{${2:arg2}}"
+    },
+    "tstsubindexclosepost{}{}": {
+      "snippet": "tstsubindexclosepost{${1:arg1}}{${2:arg2}}"
+    },
+    "tstsubindexclosepre{}{}": {
+      "snippet": "tstsubindexclosepre{${1:arg1}}{${2:arg2}}"
+    },
+    "tstsubindexopenpost{}{}": {
+      "snippet": "tstsubindexopenpost{${1:arg1}}{${2:arg2}}"
+    },
+    "tstsubindexopenpre{}{}": {
+      "snippet": "tstsubindexopenpre{${1:arg1}}{${2:arg2}}"
+    },
+    "tstsubindexpost{}{}": {
+      "snippet": "tstsubindexpost{${1:arg1}}{${2:arg2}}"
+    },
+    "tstsubindexpre{}{}": {
+      "snippet": "tstsubindexpre{${1:arg1}}{${2:arg2}}"
+    },
+    "tstsubsubindexclosepost{}{}": {
+      "snippet": "tstsubsubindexclosepost{${1:arg1}}{${2:arg2}}"
+    },
+    "tstsubsubindexclosepre{}{}": {
+      "snippet": "tstsubsubindexclosepre{${1:arg1}}{${2:arg2}}"
+    },
+    "tstsubsubindexopenpost{}{}": {
+      "snippet": "tstsubsubindexopenpost{${1:arg1}}{${2:arg2}}"
+    },
+    "tstsubsubindexopenpre{}{}": {
+      "snippet": "tstsubsubindexopenpre{${1:arg1}}{${2:arg2}}"
+    },
+    "tstsubsubindexpost{}{}": {
+      "snippet": "tstsubsubindexpost{${1:arg1}}{${2:arg2}}"
+    },
+    "tstsubsubindexpre{}{}": {
+      "snippet": "tstsubsubindexpre{${1:arg1}}{${2:arg2}}"
+    }
+  },
+  "envs": {},
+  "options": [
+    "ascii",
+    "noascii",
+    "german",
+    "ngerman",
+    "nogerman",
+    "stripaccents",
+    "nostripaccents",
+    "sanitize",
+    "nosanitize",
+    "showmarks",
+    "hidemarks",
+    "noshowmarks",
+    "verbose",
+    "noverbose",
+    "notestencaps",
+    "testencaps",
+    "prefix",
+    "noprefix",
+    "diglyphs",
+    "nodiglyphs"
+  ],
+  "keyvals": []
+}

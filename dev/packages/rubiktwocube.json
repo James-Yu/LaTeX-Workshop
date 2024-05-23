@@ -1,0 +1,464 @@
+{
+  "includes": {
+    "tikz": []
+  },
+  "macros": {
+    "Blt": {},
+    "Dlt": {},
+    "DrawTwoCube": {},
+    "DrawTwoCubeF": {},
+    "DrawTwoCubeFrontFace": {},
+    "DrawTwoCubeLD": {},
+    "DrawTwoCubeLU": {},
+    "DrawTwoCubeRD": {},
+    "DrawTwoCubeRU": {},
+    "DrawTwoCubeSF": {},
+    "DrawTwoCubeSidebarBD{}": {
+      "snippet": "DrawTwoCubeSidebarBD{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarBDLD": {},
+    "DrawTwoCubeSidebarBDRD": {},
+    "DrawTwoCubeSidebarBL{}": {
+      "snippet": "DrawTwoCubeSidebarBL{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarBLLD": {},
+    "DrawTwoCubeSidebarBLLU": {},
+    "DrawTwoCubeSidebarBR{}": {
+      "snippet": "DrawTwoCubeSidebarBR{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarBRRD": {},
+    "DrawTwoCubeSidebarBRRU": {},
+    "DrawTwoCubeSidebarBU{}": {
+      "snippet": "DrawTwoCubeSidebarBU{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarBULU": {},
+    "DrawTwoCubeSidebarBURU": {},
+    "DrawTwoCubeSidebarDB{}": {
+      "snippet": "DrawTwoCubeSidebarDB{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarDBLD": {},
+    "DrawTwoCubeSidebarDBRD": {},
+    "DrawTwoCubeSidebarDF{}": {
+      "snippet": "DrawTwoCubeSidebarDF{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarDFLU": {},
+    "DrawTwoCubeSidebarDFRU": {},
+    "DrawTwoCubeSidebarFD{}": {
+      "snippet": "DrawTwoCubeSidebarFD{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarFDLU": {},
+    "DrawTwoCubeSidebarFDRU": {},
+    "DrawTwoCubeSidebarFL{}": {
+      "snippet": "DrawTwoCubeSidebarFL{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarFLRD": {},
+    "DrawTwoCubeSidebarFLRU": {},
+    "DrawTwoCubeSidebarFR{}": {
+      "snippet": "DrawTwoCubeSidebarFR{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarFRLD": {},
+    "DrawTwoCubeSidebarFRLU": {},
+    "DrawTwoCubeSidebarFU{}": {
+      "snippet": "DrawTwoCubeSidebarFU{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarFULD": {},
+    "DrawTwoCubeSidebarFURD": {},
+    "DrawTwoCubeSidebarLB{}": {
+      "snippet": "DrawTwoCubeSidebarLB{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarLBLD": {},
+    "DrawTwoCubeSidebarLBLU": {},
+    "DrawTwoCubeSidebarLF{}": {
+      "snippet": "DrawTwoCubeSidebarLF{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarLFRD": {},
+    "DrawTwoCubeSidebarLFRU": {},
+    "DrawTwoCubeSidebarRB{}": {
+      "snippet": "DrawTwoCubeSidebarRB{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarRBRD": {},
+    "DrawTwoCubeSidebarRBRU": {},
+    "DrawTwoCubeSidebarRF{}": {
+      "snippet": "DrawTwoCubeSidebarRF{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarRFLD": {},
+    "DrawTwoCubeSidebarRFLU": {},
+    "DrawTwoCubeSidebarUB{}": {
+      "snippet": "DrawTwoCubeSidebarUB{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarUBLU": {},
+    "DrawTwoCubeSidebarUBRU": {},
+    "DrawTwoCubeSidebarUF{}": {
+      "snippet": "DrawTwoCubeSidebarUF{${1:view direction}}"
+    },
+    "DrawTwoCubeSidebarUFLD": {},
+    "DrawTwoCubeSidebarUFRD": {},
+    "DrawTwoFaceB": {},
+    "DrawTwoFaceBack": {},
+    "DrawTwoFaceBackSide": {},
+    "DrawTwoFaceBS": {},
+    "DrawTwoFaceD": {},
+    "DrawTwoFaceDown": {},
+    "DrawTwoFaceDownSide": {},
+    "DrawTwoFaceDS": {},
+    "DrawTwoFaceF": {},
+    "DrawTwoFaceFront": {},
+    "DrawTwoFaceFrontSide": {},
+    "DrawTwoFaceFS": {},
+    "DrawTwoFaceL": {},
+    "DrawTwoFaceLeft": {},
+    "DrawTwoFaceLeftSide": {},
+    "DrawTwoFaceLS": {},
+    "DrawTwoFaceR": {},
+    "DrawTwoFaceRight": {},
+    "DrawTwoFaceRightSide": {},
+    "DrawTwoFaceRS": {},
+    "DrawTwoFaceU": {},
+    "DrawTwoFaceUp": {},
+    "DrawTwoFaceUpSide": {},
+    "DrawTwoFaceUS": {},
+    "DrawTwoFlatBack{}{}": {
+      "snippet": "DrawTwoFlatBack{${1:x}}{${2:y}}"
+    },
+    "DrawTwoFlatDown{}{}": {
+      "snippet": "DrawTwoFlatDown{${1:x}}{${2:y}}"
+    },
+    "DrawTwoFlatFront": {},
+    "DrawTwoFlatLeft{}{}": {
+      "snippet": "DrawTwoFlatLeft{${1:x}}{${2:y}}"
+    },
+    "DrawTwoFlatRight{}{}": {
+      "snippet": "DrawTwoFlatRight{${1:x}}{${2:y}}"
+    },
+    "DrawTwoFlatUp{}{}": {
+      "snippet": "DrawTwoFlatUp{${1:x}}{${2:y}}"
+    },
+    "Flb": {},
+    "Flt": {},
+    "Llb": {},
+    "Llt": {},
+    "NoSidebar{}": {
+      "snippet": "NoSidebar{${1:color-code}}"
+    },
+    "Rlt": {},
+    "RTCfiledate": {},
+    "RTCfileversion": {},
+    "rubiktwocube": {},
+    "SaveTwoState{}": {
+      "snippet": "SaveTwoState{${1:filename}}"
+    },
+    "SquaretD": {},
+    "SquaretDp": {},
+    "SquaretL": {},
+    "SquaretLp": {},
+    "SquaretR": {},
+    "SquaretRp": {},
+    "SquaretU": {},
+    "SquaretUp": {},
+    "textTwo{}": {
+      "snippet": "textTwo{${1:rotation code}}"
+    },
+    "textTwoB": {},
+    "textTwob": {},
+    "textTwoBc": {},
+    "textTwoBcp": {},
+    "textTwoBp": {},
+    "textTwobp": {},
+    "textTwoCB": {},
+    "textTwoCBp": {},
+    "textTwoCD": {},
+    "textTwoCDp": {},
+    "textTwoCF": {},
+    "textTwoCFp": {},
+    "textTwoCL": {},
+    "textTwoCLp": {},
+    "textTwoCR": {},
+    "textTwoCRp": {},
+    "textTwoCU": {},
+    "textTwoCUp": {},
+    "textTwoD": {},
+    "textTwod": {},
+    "textTwoDc": {},
+    "textTwoDcp": {},
+    "textTwoDp": {},
+    "textTwodp": {},
+    "textTwoF": {},
+    "textTwof": {},
+    "textTwoFc": {},
+    "textTwoFcp": {},
+    "textTwoFp": {},
+    "textTwofp": {},
+    "textTwoL": {},
+    "textTwol": {},
+    "textTwoLc": {},
+    "textTwoLcp": {},
+    "textTwoLp": {},
+    "textTwolp": {},
+    "textTwoR": {},
+    "textTwor": {},
+    "textTwoRc": {},
+    "textTwoRcp": {},
+    "textTwoRp": {},
+    "textTworp": {},
+    "textTwoU": {},
+    "textTwou": {},
+    "textTwoUc": {},
+    "textTwoUcp": {},
+    "textTwoUp": {},
+    "textTwoup": {},
+    "textTwox": {},
+    "textTwoxp": {},
+    "textTwoy": {},
+    "textTwoyp": {},
+    "textTwoz": {},
+    "textTwozp": {},
+    "tr{}": {
+      "snippet": "tr{${1:rotation code}}"
+    },
+    "trB": {},
+    "trb": {},
+    "trBc": {},
+    "trBcp": {},
+    "trBp": {},
+    "trbp": {},
+    "trCB": {},
+    "trCBp": {},
+    "trCD": {},
+    "trCDp": {},
+    "trCF": {},
+    "trCFp": {},
+    "trCL": {},
+    "trCLp": {},
+    "trCR": {},
+    "trCRp": {},
+    "trCU": {},
+    "trCUp": {},
+    "trD": {},
+    "trd": {},
+    "trDc": {},
+    "trDcp": {},
+    "trDp": {},
+    "trdp": {},
+    "trF": {},
+    "trf": {},
+    "trFc": {},
+    "trFcp": {},
+    "trFp": {},
+    "trfp": {},
+    "trh{}": {
+      "snippet": "trh{${1:rotation code}}"
+    },
+    "trhB": {},
+    "trhb": {},
+    "trhBc": {},
+    "trhBcp": {},
+    "trhBp": {},
+    "trhbp": {},
+    "trhCB": {},
+    "trhCBp": {},
+    "trhCD": {},
+    "trhCDp": {},
+    "trhCF": {},
+    "trhCFp": {},
+    "trhCL": {},
+    "trhCLp": {},
+    "trhCR": {},
+    "trhCRp": {},
+    "trhCU": {},
+    "trhCUp": {},
+    "trhD": {},
+    "trhd": {},
+    "trhDc": {},
+    "trhDcp": {},
+    "trhDp": {},
+    "trhdp": {},
+    "trhF": {},
+    "trhf": {},
+    "trhFc": {},
+    "trhFcp": {},
+    "trhFp": {},
+    "trhfp": {},
+    "trhL": {},
+    "trhl": {},
+    "trhLc": {},
+    "trhLcp": {},
+    "trhLp": {},
+    "trhlp": {},
+    "trhR": {},
+    "trhr": {},
+    "trhRc": {},
+    "trhRcp": {},
+    "trhRp": {},
+    "trhrp": {},
+    "trhU": {},
+    "trhu": {},
+    "trhUc": {},
+    "trhUcp": {},
+    "trhUp": {},
+    "trhup": {},
+    "trhx": {},
+    "trhxp": {},
+    "trhy": {},
+    "trhyp": {},
+    "trhz": {},
+    "trhzp": {},
+    "trL": {},
+    "trl": {},
+    "trLc": {},
+    "trLcp": {},
+    "trLp": {},
+    "trlp": {},
+    "trR": {},
+    "trr": {},
+    "trRc": {},
+    "trRcp": {},
+    "trRp": {},
+    "trrp": {},
+    "trU": {},
+    "tru": {},
+    "trUc": {},
+    "trUcp": {},
+    "trUp": {},
+    "trup": {},
+    "trx": {},
+    "trxp": {},
+    "try": {},
+    "tryp": {},
+    "trz": {},
+    "trzp": {},
+    "Two{}": {
+      "snippet": "Two{${1:rotation code}}"
+    },
+    "TwoB": {},
+    "Twob": {},
+    "TwoBc": {},
+    "TwoBcp": {},
+    "TwoBp": {},
+    "Twobp": {},
+    "TwoCB": {},
+    "TwoCBp": {},
+    "TwoCD": {},
+    "TwoCDp": {},
+    "TwoCF": {},
+    "TwoCFp": {},
+    "TwoCL": {},
+    "TwoCLp": {},
+    "TwoCR": {},
+    "TwoCRp": {},
+    "TwoCU": {},
+    "TwoCubeGray": {},
+    "TwoCubeGrayAll": {},
+    "TwoCubeGrey": {},
+    "TwoCubeGreyAll": {},
+    "TwoCubeSolved": {},
+    "TwoCubeSolvedWB": {},
+    "TwoCubeSolvedWY": {},
+    "TwoCUp": {},
+    "TwoD": {},
+    "Twod": {},
+    "TwoDc": {},
+    "TwoDcp": {},
+    "TwoDp": {},
+    "Twodp": {},
+    "TwoF": {},
+    "Twof": {},
+    "TwoFaceBack{}{}{}{}": {
+      "snippet": "TwoFaceBack{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    },
+    "TwoFaceBackAll{}": {
+      "snippet": "TwoFaceBackAll{${1:color}}"
+    },
+    "TwoFaceDown{}{}{}{}": {
+      "snippet": "TwoFaceDown{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    },
+    "TwoFaceDownAll{}": {
+      "snippet": "TwoFaceDownAll{${1:color}}"
+    },
+    "TwoFaceFront{}{}{}{}": {
+      "snippet": "TwoFaceFront{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    },
+    "TwoFaceFrontAll{}": {
+      "snippet": "TwoFaceFrontAll{${1:color}}"
+    },
+    "TwoFaceLeft{}{}{}{}": {
+      "snippet": "TwoFaceLeft{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    },
+    "TwoFaceLeftAll{}": {
+      "snippet": "TwoFaceLeftAll{${1:color}}"
+    },
+    "TwoFaceRight{}{}{}{}": {
+      "snippet": "TwoFaceRight{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    },
+    "TwoFaceRightAll{}": {
+      "snippet": "TwoFaceRightAll{${1:color}}"
+    },
+    "TwoFaceUp{}{}{}{}": {
+      "snippet": "TwoFaceUp{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    },
+    "TwoFaceUpAll{}": {
+      "snippet": "TwoFaceUpAll{${1:color}}"
+    },
+    "TwoFc": {},
+    "TwoFcp": {},
+    "TwoFp": {},
+    "Twofp": {},
+    "TwoL": {},
+    "Twol": {},
+    "TwoLc": {},
+    "TwoLcp": {},
+    "TwoLp": {},
+    "Twolp": {},
+    "TwoR": {},
+    "Twor": {},
+    "TwoRc": {},
+    "TwoRcp": {},
+    "TwoRotation[]{}": {
+      "snippet": "TwoRotation[${2:integer}]{${1:sequence}}"
+    },
+    "TwoRotation{}": {
+      "snippet": "TwoRotation{${1:sequence}}"
+    },
+    "TwoRp": {},
+    "Tworp": {},
+    "TwoSidebarLength{}": {
+      "snippet": "TwoSidebarLength{${1:number}}"
+    },
+    "TwoSidebarSep{}": {
+      "snippet": "TwoSidebarSep{${1:number}}"
+    },
+    "TwoSidebarWidth{}": {
+      "snippet": "TwoSidebarWidth{${1:number}}"
+    },
+    "TwoSliceBottomL{}{}{}{}": {
+      "snippet": "TwoSliceBottomL{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    },
+    "TwoSliceBottomR{}{}{}{}": {
+      "snippet": "TwoSliceBottomR{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    },
+    "TwoSliceTopL{}{}{}{}": {
+      "snippet": "TwoSliceTopL{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    },
+    "TwoSliceTopR{}{}{}{}": {
+      "snippet": "TwoSliceTopR{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    },
+    "TwoSolvedConfig{}{}{}{}{}{}": {
+      "snippet": "TwoSolvedConfig{${1:X+color}}{${2:X-color}}{${3:Y+color}}{${4:Y-color}}{${5:Z+color}}{${6:Z-color}}"
+    },
+    "TwoU": {},
+    "Twou": {},
+    "TwoUc": {},
+    "TwoUcp": {},
+    "TwoUp": {},
+    "Twoup": {},
+    "Twox": {},
+    "Twoxp": {},
+    "Twoy": {},
+    "Twoyp": {},
+    "Twoz": {},
+    "Twozp": {},
+    "Ult": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

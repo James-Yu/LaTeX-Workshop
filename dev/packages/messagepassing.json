@@ -1,0 +1,123 @@
+{
+  "includes": {
+    "tikz": [],
+    "tikzlibraryquotes": [],
+    "tikzlibrarycalc": [],
+    "float": []
+  },
+  "macros": {
+    "newprocess{}": {
+      "snippet": "newprocess{${1:name}}"
+    },
+    "newprocess{}[]": {
+      "snippet": "newprocess{${1:name}}[${2:display name}]"
+    },
+    "newprocesswithlength{}{}": {
+      "snippet": "newprocesswithlength{${1:name}}{${2:length}}"
+    },
+    "newprocesswithlength{}[]{}": {
+      "snippet": "newprocesswithlength{${1:name}}[${2:display name}]{${3:length}}"
+    },
+    "processlength{}{}": {
+      "snippet": "processlength{${1:name}}{${2:length}}"
+    },
+    "newprocesswithstateinterval{}{}": {
+      "snippet": "newprocesswithstateinterval{${1:name}}{${2:state name}}"
+    },
+    "newprocesswithstateinterval{}[]{}": {
+      "snippet": "newprocesswithstateinterval{${1:name}}[${2:display name}]{${3:state name}}"
+    },
+    "newprocesswithcrash{}{}{}": {
+      "snippet": "newprocesswithcrash{${1:name}}{${2:length}}{${3:crash coord name}}"
+    },
+    "newprocesswithcrash{}[]{}{}": {
+      "snippet": "newprocesswithcrash{${1:name}}[${2:display name}]{${3:length}}{${4:crash coord name}}"
+    },
+    "drawtimeline{}": {
+      "snippet": "drawtimeline{${1:length}}"
+    },
+    "send{}{}{}{}": {
+      "snippet": "send{${1:sender}}{${2:send time}}{${3:receiver}}{${4:receive time}}"
+    },
+    "sendwithname{}{}{}{}{}": {
+      "snippet": "sendwithname{${1:sender}}{${2:send time}}{${3:receiver}}{${4:receive time}}{${5:label}}"
+    },
+    "sendwithname{}{}{}{}{}[]": {
+      "snippet": "sendwithname{${1:sender}}{${2:send time}}{${3:receiver}}{${4:receive time}}{${5:label}}[${6:label options}]"
+    },
+    "sendoutofband{}{}{}{}{}": {
+      "snippet": "sendoutofband{${1:sender}}{${2:send time}}{${3:receiver}}{${4:receive time}}{${5:label}}"
+    },
+    "crash{}{}{}": {
+      "snippet": "crash{${1:process}}{${2:time}}{${3:name}}"
+    },
+    "restart{}{}{}": {
+      "snippet": "restart{${1:name}}{${2:date}}{${3:duration}}"
+    },
+    "checkpoint{}{}{}": {
+      "snippet": "checkpoint{${1:process}}{${2:time}}{${3:name}}"
+    },
+    "checkpointspecial{}{}{}{}": {
+      "snippet": "checkpointspecial{${1:process}}{${2:time}}{${3:name}}{${4:label}}"
+    },
+    "stateinterval{}{}{}": {
+      "snippet": "stateinterval{${1:process}}{${2:time}}{${3:name}}"
+    },
+    "stateintervalspecial{}{}{}{}": {
+      "snippet": "stateintervalspecial{${1:process}}{${2:time}}{${3:name}}{${4:label}}"
+    },
+    "colouredbox{}{}{}{}{}": {
+      "snippet": "colouredbox{${1:process1}}{${2:process2}}{${3:start time}}{${4:end time}}{${5:label}}"
+    },
+    "annotate{}{}{}": {
+      "snippet": "annotate{${1:process}}{${2:time}}{${3:text}}"
+    },
+    "annotatexplicit{}{}{}{}": {
+      "snippet": "annotatexplicit{${1:process}}{${2:time}}{${3:text}}{${4:name}}"
+    },
+    "sendwithstateinterval{}{}{}{}{}": {
+      "snippet": "sendwithstateinterval{${1:sender}}{${2:send time}}{${3:receiver}}{${4:receive time}}{${5:name}}"
+    },
+    "sendwithstateintervalandname{}{}{}{}{}{}": {
+      "snippet": "sendwithstateintervalandname{${1:sender}}{${2:send time}}{${3:receiver}}{${4:receive time}}{${5:name}}{${6:message name}}"
+    },
+    "sendwithstateintervalandname{}{}{}{}{}{}[]": {
+      "snippet": "sendwithstateintervalandname{${1:sender}}{${2:send time}}{${3:receiver}}{${4:receive time}}{${5:name}}{${6:message name}}[${7:label options}]"
+    },
+    "colouredboxcolour{}": {
+      "snippet": "colouredboxcolour{${1:color}}"
+    },
+    "oobcolour{}": {
+      "snippet": "oobcolour{${1:color}}"
+    },
+    "themaxtime": {},
+    "theprocessnb": {},
+    "iftimeline": {},
+    "timelinetrue": {},
+    "timelinefalse": {}
+  },
+  "envs": {
+    "messagepassing": {},
+    "messagepassing[]": {
+      "name": "messagepassing",
+      "snippet": "[${1:TikZ options}]"
+    },
+    "messagepassing[][]": {
+      "name": "messagepassing",
+      "snippet": "[${1:TikZ options}][${2:caption}]"
+    },
+    "messagepassing[][][]": {
+      "name": "messagepassing",
+      "snippet": "[${1:TikZ options}][${2:caption}][${3:placement}]"
+    },
+    "messagepassing[][][][]": {
+      "name": "messagepassing",
+      "snippet": "[${1:TikZ options}][${2:caption}][${3:placement}][${4:label}]"
+    }
+  },
+  "options": [
+    "vertical",
+    "annotatevertical"
+  ],
+  "keyvals": []
+}

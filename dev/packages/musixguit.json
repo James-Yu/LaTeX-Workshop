@@ -1,0 +1,411 @@
+{
+  "includes": {
+    "setspace": [],
+    "musixtex": []
+  },
+  "macros": {
+    "chord{}{}": {
+      "snippet": "chord{${1:note}}{${2:text}}"
+    },
+    "B": {
+      "detail": "𝐵",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL B"
+    },
+    "K": {
+      "detail": "𝐾",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL K"
+    },
+    "T": {
+      "detail": "𝑇",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL T"
+    },
+    "lage{}{}": {
+      "snippet": "lage{${1:num}}{${2:pitch}}"
+    },
+    "lage[]{}{}": {
+      "snippet": "lage[${3:internotes}]{${1:num}}{${2:pitch}}"
+    },
+    "finger{}{}": {
+      "snippet": "finger{${1:finger}}{${2:pitch}}"
+    },
+    "Finger{}{}": {
+      "snippet": "Finger{${1:finger}}{${2:pos}}"
+    },
+    "barree{}{}{}{}": {
+      "snippet": "barree{${1:pitch}}{${2:internotes}}{${3:noteskips}}{${4:lage}}"
+    },
+    "saite{}{}": {
+      "snippet": "saite{${1:pitch}}{${2:symbol}}"
+    },
+    "strike": {},
+    "strk": {},
+    "pickd": {},
+    "pickd[]": {
+      "snippet": "pickd[${1:pitch}]"
+    },
+    "picku": {},
+    "picku[]": {
+      "snippet": "picku[${1:pitch}]"
+    },
+    "tpickd": {},
+    "tpicku": {},
+    "release": {},
+    "release[]": {
+      "snippet": "release[${1:pitch}]"
+    },
+    "laen": {},
+    "len": {},
+    "lena": {},
+    "lenb": {},
+    "teil{}": {
+      "snippet": "teil{${1:arg}}"
+    },
+    "thebarree": {},
+    "thebarreee": {},
+    "thelaenge": {},
+    "thelage": {},
+    "drumclef": {},
+    "dcqu{}": {
+      "snippet": "dcqu{${1:pitch}}"
+    },
+    "dcql{}": {
+      "snippet": "dcql{${1:pitch}}"
+    },
+    "dcqb{}{}": {
+      "snippet": "dcqb{${1:n}}{${2:pitch}}"
+    },
+    "dczq{}": {
+      "snippet": "dczq{${1:pitch}}"
+    },
+    "dccu{}": {
+      "snippet": "dccu{${1:pitch}}"
+    },
+    "dcccu{}": {
+      "snippet": "dcccu{${1:pitch}}"
+    },
+    "dccl{}": {
+      "snippet": "dccl{${1:pitch}}"
+    },
+    "dcccl{}": {
+      "snippet": "dcccl{${1:pitch}}"
+    },
+    "dhqu{}": {
+      "snippet": "dhqu{${1:pitch}}"
+    },
+    "dhql{}": {
+      "snippet": "dhql{${1:pitch}}"
+    },
+    "dhqb{}{}": {
+      "snippet": "dhqb{${1:n}}{${2:pitch}}"
+    },
+    "dhzq{}": {
+      "snippet": "dhzq{${1:pitch}}"
+    },
+    "dhcu{}": {
+      "snippet": "dhcu{${1:pitch}}"
+    },
+    "dhccu{}": {
+      "snippet": "dhccu{${1:pitch}}"
+    },
+    "dhcl{}": {
+      "snippet": "dhcl{${1:pitch}}"
+    },
+    "dhccl{}": {
+      "snippet": "dhccl{${1:pitch}}"
+    },
+    "doqu{}": {
+      "snippet": "doqu{${1:pitch}}"
+    },
+    "doql{}": {
+      "snippet": "doql{${1:pitch}}"
+    },
+    "doqb{}{}": {
+      "snippet": "doqb{${1:n}}{${2:pitch}}"
+    },
+    "dozq{}": {
+      "snippet": "dozq{${1:pitch}}"
+    },
+    "docu{}": {
+      "snippet": "docu{${1:pitch}}"
+    },
+    "doccu{}": {
+      "snippet": "doccu{${1:pitch}}"
+    },
+    "docl{}": {
+      "snippet": "docl{${1:pitch}}"
+    },
+    "doccl{}": {
+      "snippet": "doccl{${1:pitch}}"
+    },
+    "xqu{}": {
+      "snippet": "xqu{${1:pitch}}"
+    },
+    "xql{}": {
+      "snippet": "xql{${1:pitch}}"
+    },
+    "xqb{}{}": {
+      "snippet": "xqb{${1:n}}{${2:pitch}}"
+    },
+    "xzq{}": {
+      "snippet": "xzq{${1:pitch}}"
+    },
+    "xcu{}": {
+      "snippet": "xcu{${1:pitch}}"
+    },
+    "xccu{}": {
+      "snippet": "xccu{${1:pitch}}"
+    },
+    "xcl{}": {
+      "snippet": "xcl{${1:pitch}}"
+    },
+    "xccl{}": {
+      "snippet": "xccl{${1:pitch}}"
+    },
+    "oxqu{}": {
+      "snippet": "oxqu{${1:pitch}}"
+    },
+    "oxql{}": {
+      "snippet": "oxql{${1:pitch}}"
+    },
+    "oxqb{}{}": {
+      "snippet": "oxqb{${1:n}}{${2:pitch}}"
+    },
+    "oxzq{}": {
+      "snippet": "oxzq{${1:pitch}}"
+    },
+    "oxcu{}": {
+      "snippet": "oxcu{${1:pitch}}"
+    },
+    "oxccu{}": {
+      "snippet": "oxccu{${1:pitch}}"
+    },
+    "oxcl{}": {
+      "snippet": "oxcl{${1:pitch}}"
+    },
+    "oxccl{}": {
+      "snippet": "oxccl{${1:pitch}}"
+    },
+    "roqu{}": {
+      "snippet": "roqu{${1:pitch}}"
+    },
+    "roql{}": {
+      "snippet": "roql{${1:pitch}}"
+    },
+    "roqb{}{}": {
+      "snippet": "roqb{${1:n}}{${2:pitch}}"
+    },
+    "rozq{}": {
+      "snippet": "rozq{${1:pitch}}"
+    },
+    "rocu{}": {
+      "snippet": "rocu{${1:pitch}}"
+    },
+    "roccu{}": {
+      "snippet": "roccu{${1:pitch}}"
+    },
+    "rocl{}": {
+      "snippet": "rocl{${1:pitch}}"
+    },
+    "roccl{}": {
+      "snippet": "roccl{${1:pitch}}"
+    },
+    "tgqu{}": {
+      "snippet": "tgqu{${1:pitch}}"
+    },
+    "tgql{}": {
+      "snippet": "tgql{${1:pitch}}"
+    },
+    "tgqb{}{}": {
+      "snippet": "tgqb{${1:n}}{${2:pitch}}"
+    },
+    "tgzq{}": {
+      "snippet": "tgzq{${1:pitch}}"
+    },
+    "tgcu{}": {
+      "snippet": "tgcu{${1:pitch}}"
+    },
+    "tgccu{}": {
+      "snippet": "tgccu{${1:pitch}}"
+    },
+    "tgcl{}": {
+      "snippet": "tgcl{${1:pitch}}"
+    },
+    "tgccl{}": {
+      "snippet": "tgccl{${1:pitch}}"
+    },
+    "kqu{}": {
+      "snippet": "kqu{${1:pitch}}"
+    },
+    "kql{}": {
+      "snippet": "kql{${1:pitch}}"
+    },
+    "kqb{}{}": {
+      "snippet": "kqb{${1:n}}{${2:pitch}}"
+    },
+    "kzq{}": {
+      "snippet": "kzq{${1:pitch}}"
+    },
+    "kcu{}": {
+      "snippet": "kcu{${1:pitch}}"
+    },
+    "kccu{}": {
+      "snippet": "kccu{${1:pitch}}"
+    },
+    "kcl{}": {
+      "snippet": "kcl{${1:pitch}}"
+    },
+    "kccl{}": {
+      "snippet": "kccl{${1:pitch}}"
+    },
+    "dnq{}": {
+      "snippet": "dnq{${1:pitch}}"
+    },
+    "dznq{}": {
+      "snippet": "dznq{${1:pitch}}"
+    },
+    "dqu{}": {
+      "snippet": "dqu{${1:pitch}}"
+    },
+    "dqup{}": {
+      "snippet": "dqup{${1:pitch}}"
+    },
+    "dqupp{}": {
+      "snippet": "dqupp{${1:pitch}}"
+    },
+    "dql{}": {
+      "snippet": "dql{${1:pitch}}"
+    },
+    "dqlp{}": {
+      "snippet": "dqlp{${1:pitch}}"
+    },
+    "dqlpp{}": {
+      "snippet": "dqlpp{${1:pitch}}"
+    },
+    "dqb{}{}": {
+      "snippet": "dqb{${1:n}}{${2:pitch}}"
+    },
+    "dzq{}": {
+      "snippet": "dzq{${1:pitch}}"
+    },
+    "dzqp{}": {
+      "snippet": "dzqp{${1:pitch}}"
+    },
+    "dzqpp{}": {
+      "snippet": "dzqpp{${1:pitch}}"
+    },
+    "dcu{}": {
+      "snippet": "dcu{${1:pitch}}"
+    },
+    "dccccu{}": {
+      "snippet": "dccccu{${1:pitch}}"
+    },
+    "dcl{}": {
+      "snippet": "dcl{${1:pitch}}"
+    },
+    "dccccl{}": {
+      "snippet": "dccccl{${1:pitch}}"
+    },
+    "dcup{}": {
+      "snippet": "dcup{${1:pitch}}"
+    },
+    "dcupp{}": {
+      "snippet": "dcupp{${1:pitch}}"
+    },
+    "dclp{}": {
+      "snippet": "dclp{${1:pitch}}"
+    },
+    "dclpp{}": {
+      "snippet": "dclpp{${1:pitch}}"
+    },
+    "ynq{}": {
+      "snippet": "ynq{${1:pitch}}"
+    },
+    "yznq{}": {
+      "snippet": "yznq{${1:pitch}}"
+    },
+    "zynq{}": {
+      "snippet": "zynq{${1:pitch}}"
+    },
+    "yqu{}": {
+      "snippet": "yqu{${1:pitch}}"
+    },
+    "yqup{}": {
+      "snippet": "yqup{${1:pitch}}"
+    },
+    "yqupp{}": {
+      "snippet": "yqupp{${1:pitch}}"
+    },
+    "yql{}": {
+      "snippet": "yql{${1:pitch}}"
+    },
+    "yqlp{}": {
+      "snippet": "yqlp{${1:pitch}}"
+    },
+    "yqlpp{}": {
+      "snippet": "yqlpp{${1:pitch}}"
+    },
+    "yqb{}{}": {
+      "snippet": "yqb{${1:n}}{${2:pitch}}"
+    },
+    "yzq{}": {
+      "snippet": "yzq{${1:pitch}}"
+    },
+    "yzqp{}": {
+      "snippet": "yzqp{${1:pitch}}"
+    },
+    "yzqpp{}": {
+      "snippet": "yzqpp{${1:pitch}}"
+    },
+    "ycu{}": {
+      "snippet": "ycu{${1:pitch}}"
+    },
+    "yccu{}": {
+      "snippet": "yccu{${1:pitch}}"
+    },
+    "ycccu{}": {
+      "snippet": "ycccu{${1:pitch}}"
+    },
+    "yccccu{}": {
+      "snippet": "yccccu{${1:pitch}}"
+    },
+    "ycl{}": {
+      "snippet": "ycl{${1:pitch}}"
+    },
+    "yccl{}": {
+      "snippet": "yccl{${1:pitch}}"
+    },
+    "ycccl{}": {
+      "snippet": "ycccl{${1:pitch}}"
+    },
+    "yccccl{}": {
+      "snippet": "yccccl{${1:pitch}}"
+    },
+    "ycup{}": {
+      "snippet": "ycup{${1:pitch}}"
+    },
+    "ycupp{}": {
+      "snippet": "ycupp{${1:pitch}}"
+    },
+    "yclp{}": {
+      "snippet": "yclp{${1:pitch}}"
+    },
+    "yclpp{}": {
+      "snippet": "yclpp{${1:pitch}}"
+    },
+    "raiseguitar{}": {
+      "snippet": "raiseguitar{${1:n}}"
+    },
+    "guitar": {},
+    "gbarre{}": {
+      "snippet": "gbarre{${1:b}}"
+    },
+    "gdot{}{}": {
+      "snippet": "gdot{${1:s}}{${2:b}}"
+    }
+  },
+  "envs": {
+    "song": {}
+  },
+  "options": [],
+  "keyvals": []
+}

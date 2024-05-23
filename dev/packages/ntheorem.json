@@ -1,0 +1,684 @@
+{
+  "includes": {
+    "ifthen": [],
+    "amssymb": [
+      "standard"
+    ]
+  },
+  "macros": {
+    "theoremsymbol{}": {
+      "snippet": "theoremsymbol{${1:symbol}}",
+      "option": "thmmarks"
+    },
+    "theendNonectr": {
+      "option": "thmmarks"
+    },
+    "thecurrNonectr": {
+      "option": "thmmarks"
+    },
+    "ifsetendmark": {
+      "option": "thmmarks"
+    },
+    "setendmarktrue": {
+      "option": "thmmarks"
+    },
+    "setendmarkfalse": {
+      "option": "thmmarks"
+    },
+    "label{}[]": {
+      "snippet": "label{${1:label}}[${2:type}]",
+      "option": "thref"
+    },
+    "thref{}": {
+      "snippet": "thref{${1:label}}",
+      "option": "thref"
+    },
+    "theproof": {
+      "option": "amsthm"
+    },
+    "thecurrproofctr": {
+      "option": "amsthm"
+    },
+    "theendproofctr": {
+      "option": "amsthm"
+    },
+    "openbox": {
+      "option": "amsthm"
+    },
+    "proofSymbol": {
+      "option": "amsthm"
+    },
+    "proofname": {
+      "option": "amsthm"
+    },
+    "newframedtheorem{}[]{}": {
+      "snippet": "newframedtheorem{${1:envname}}[${2:numbered like}]{${3:caption}}",
+      "option": "framed"
+    },
+    "newframedtheorem{}{}": {
+      "snippet": "newframedtheorem{${1:envname}}{${2:caption}}",
+      "option": "framed"
+    },
+    "newframedtheorem{}{}[]": {
+      "snippet": "newframedtheorem{${1:envname}}{${2:caption}}[${3:within}]",
+      "option": "framed"
+    },
+    "newshadedtheorem{}[]{}": {
+      "snippet": "newshadedtheorem{${1:envname}}[${2:numbered like}]{${3:caption}}",
+      "option": "framed"
+    },
+    "newshadedtheorem{}{}": {
+      "snippet": "newshadedtheorem{${1:envname}}{${2:caption}}",
+      "option": "framed"
+    },
+    "newshadedtheorem{}{}[]": {
+      "snippet": "newshadedtheorem{${1:envname}}{${2:caption}}[${3:within}]",
+      "option": "framed"
+    },
+    "shadecolor{}": {
+      "snippet": "shadecolor{${1:color}}",
+      "option": "framed"
+    },
+    "theoremframecommand": {
+      "option": "framed"
+    },
+    "theoremframepreskip{}": {
+      "snippet": "theoremframepreskip{${1:skip}}",
+      "option": "framed"
+    },
+    "theoremframepostskip{}": {
+      "snippet": "theoremframepostskip{${1:skip}}",
+      "option": "framed"
+    },
+    "theoreminframepreskip{}": {
+      "snippet": "theoreminframepreskip{${1:skip}}",
+      "option": "framed"
+    },
+    "theoreminframepostskip{}": {
+      "snippet": "theoreminframepostskip{${1:skip}}",
+      "option": "framed"
+    },
+    "newtheorem*{}{}": {
+      "snippet": "newtheorem*{${1:envname}}{${2:caption}}"
+    },
+    "renewtheorem{}[]{}": {
+      "snippet": "renewtheorem{${1:envname}}[${2:numbered like}]{${3:caption}}"
+    },
+    "renewtheorem{}{}": {
+      "snippet": "renewtheorem{${1:envname}}{${2:caption}}"
+    },
+    "renewtheorem{}{}[]": {
+      "snippet": "renewtheorem{${1:envname}}{${2:caption}}[${3:within}]"
+    },
+    "theoremstyle{}": {
+      "snippet": "theoremstyle{${1:style}}"
+    },
+    "theoremheaderfont{}": {
+      "snippet": "theoremheaderfont{${1:font cmds}}"
+    },
+    "theorembodyfont{}": {
+      "snippet": "theorembodyfont{${1:font cmds}}"
+    },
+    "theoremnumbering{}": {
+      "snippet": "theoremnumbering{${1:style}}"
+    },
+    "theoremseparator{}": {
+      "snippet": "theoremseparator{${1:symbol}}"
+    },
+    "theorempreskip": {},
+    "theorempostskip": {},
+    "theoremindent": {},
+    "theoremprework{}": {
+      "snippet": "theoremprework{${1:code}}"
+    },
+    "theorempostwork{}": {
+      "snippet": "theorempostwork{${1:code}}"
+    },
+    "theoremclass{}": {
+      "snippet": "theoremclass{${1:theorem type}}"
+    },
+    "theorempreskipamount": {},
+    "theorempostskipamount": {},
+    "theoremframepreskipamount": {},
+    "theoremframepostskipamount": {},
+    "theoreminframepreskipamount": {},
+    "theoreminframepostskipamount": {},
+    "theoremrightindent": {},
+    "listtheorems{}": {
+      "snippet": "listtheorems{${1:thmset1,thmset2,...}}"
+    },
+    "theoremlisttype{}": {
+      "snippet": "theoremlisttype{${1:type}}"
+    },
+    "addtheoremline{}{}": {
+      "snippet": "addtheoremline{${1:name}}{${2:text}}"
+    },
+    "addtheoremline*{}{}": {
+      "snippet": "addtheoremline*{${1:name}}{${2:text}}"
+    },
+    "addtotheoremfile{}": {
+      "snippet": "addtotheoremfile{${1:text}}"
+    },
+    "addtotheoremfile[]{}": {
+      "snippet": "addtotheoremfile[${2:name}]{${1:text}}"
+    },
+    "newtheoremstyle{}{}{}": {
+      "snippet": "newtheoremstyle{${1:name}}{${2:head}}{${3:opt-head}}"
+    },
+    "renewtheoremstyle{}{}{}": {
+      "snippet": "renewtheoremstyle{${1:name}}{${2:head}}{${3:opt-head}}"
+    },
+    "newtheoremlisttype{}{}{}{}": {
+      "snippet": "newtheoremlisttype{${1:name}}{${2:start}}{${3:line}}{${4:end}}"
+    },
+    "renewtheoremlisttype{}{}{}{}": {
+      "snippet": "renewtheoremlisttype{${1:name}}{${2:start}}{${3:line}}{${4:end}}"
+    },
+    "qed": {},
+    "qedsymbol{}": {
+      "snippet": "qedsymbol{${1:symbol}}"
+    },
+    "NoEndMark": {},
+    "greek{}": {
+      "snippet": "greek{${1:counter}}"
+    },
+    "Greek{}": {
+      "snippet": "Greek{${1:counter}}"
+    },
+    "basename": {},
+    "docdate": {},
+    "filedate": {},
+    "fileversion": {},
+    "getKeywordOf{}": {
+      "snippet": "getKeywordOf{${1:arg}}"
+    },
+    "InTheoType": {},
+    "mysavskip": {},
+    "None": {},
+    "NoneKeyword": {},
+    "NoneSymbol": {},
+    "OrganizeTheoremSymbol": {},
+    "PotEndMark{}": {
+      "snippet": "PotEndMark{${1:arg}}"
+    },
+    "RestoreTags": {},
+    "SetEndMark{}{}{}": {
+      "snippet": "SetEndMark{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "SetOnlyEndMark": {},
+    "SetTagPlusEndMark": {},
+    "TagsPlusEndmarks": {},
+    "tagwidth": {},
+    "theoremkeyword": {},
+    "theoremlistall": {},
+    "theoremlistallname": {},
+    "theoremlistdo{}{}": {
+      "snippet": "theoremlistdo{${1:arg1}}{${2:arg2}}"
+    },
+    "theoremlistoptional": {},
+    "theoremlistoptname": {}
+  },
+  "envs": {
+    "Theorem": {
+      "option": "standard"
+    },
+    "Theorem[]": {
+      "name": "Theorem",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "theorem": {
+      "option": "standard"
+    },
+    "theorem[]": {
+      "name": "theorem",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Lemma": {
+      "option": "standard"
+    },
+    "Lemma[]": {
+      "name": "Lemma",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "lemma": {
+      "option": "standard"
+    },
+    "lemma[]": {
+      "name": "lemma",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Proposition": {
+      "option": "standard"
+    },
+    "Proposition[]": {
+      "name": "Proposition",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "proposition": {
+      "option": "standard"
+    },
+    "proposition[]": {
+      "name": "proposition",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Corollary": {
+      "option": "standard"
+    },
+    "Corollary[]": {
+      "name": "Corollary",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "corollary": {
+      "option": "standard"
+    },
+    "corollary[]": {
+      "name": "corollary",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Satz": {
+      "option": "standard"
+    },
+    "Satz[]": {
+      "name": "Satz",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "satz": {
+      "option": "standard"
+    },
+    "satz[]": {
+      "name": "satz",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Korollar": {
+      "option": "standard"
+    },
+    "Korollar[]": {
+      "name": "Korollar",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "korollar": {
+      "option": "standard"
+    },
+    "korollar[]": {
+      "name": "korollar",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Definition": {
+      "option": "standard"
+    },
+    "Definition[]": {
+      "name": "Definition",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "definition": {
+      "option": "standard"
+    },
+    "definition[]": {
+      "name": "definition",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Example": {
+      "option": "standard"
+    },
+    "Example[]": {
+      "name": "Example",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "example": {
+      "option": "standard"
+    },
+    "example[]": {
+      "name": "example",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Beispiel": {
+      "option": "standard"
+    },
+    "Beispiel[]": {
+      "name": "Beispiel",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "beispiel": {
+      "option": "standard"
+    },
+    "beispiel[]": {
+      "name": "beispiel",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Anmerkung": {
+      "option": "standard"
+    },
+    "Anmerkung[]": {
+      "name": "Anmerkung",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "anmerkung": {
+      "option": "standard"
+    },
+    "anmerkung[]": {
+      "name": "anmerkung",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Bemerkung": {
+      "option": "standard"
+    },
+    "Bemerkung[]": {
+      "name": "Bemerkung",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "bemerkung": {
+      "option": "standard"
+    },
+    "bemerkung[]": {
+      "name": "bemerkung",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Remark": {
+      "option": "standard"
+    },
+    "Remark[]": {
+      "name": "Remark",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "remark": {
+      "option": "standard"
+    },
+    "remark[]": {
+      "name": "remark",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Proof": {
+      "option": "standard"
+    },
+    "Proof[]": {
+      "name": "Proof",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "proof": {
+      "option": "amsthm"
+    },
+    "proof[]": {
+      "name": "proof",
+      "snippet": "[${1:heading}]",
+      "option": "amsthm"
+    },
+    "Beweis": {
+      "option": "standard"
+    },
+    "Beweis[]": {
+      "name": "Beweis",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "beweis": {
+      "option": "standard"
+    },
+    "beweis[]": {
+      "name": "beweis",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Theorem*": {
+      "option": "standard"
+    },
+    "Theorem*[]": {
+      "name": "Theorem*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "theorem*": {
+      "option": "standard"
+    },
+    "theorem*[]": {
+      "name": "theorem*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Lemma*": {
+      "option": "standard"
+    },
+    "Lemma*[]": {
+      "name": "Lemma*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "lemma*": {
+      "option": "standard"
+    },
+    "lemma*[]": {
+      "name": "lemma*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Proposition*": {
+      "option": "standard"
+    },
+    "Proposition*[]": {
+      "name": "Proposition*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "proposition*": {
+      "option": "standard"
+    },
+    "proposition*[]": {
+      "name": "proposition*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Corollary*": {
+      "option": "standard"
+    },
+    "Corollary*[]": {
+      "name": "Corollary*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "corollary*": {
+      "option": "standard"
+    },
+    "corollary*[]": {
+      "name": "corollary*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Satz*": {
+      "option": "standard"
+    },
+    "Satz*[]": {
+      "name": "Satz*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "satz*": {
+      "option": "standard"
+    },
+    "satz*[]": {
+      "name": "satz*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Korollar*": {
+      "option": "standard"
+    },
+    "Korollar*[]": {
+      "name": "Korollar*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "korollar*": {
+      "option": "standard"
+    },
+    "korollar*[]": {
+      "name": "korollar*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Definition*": {
+      "option": "standard"
+    },
+    "Definition*[]": {
+      "name": "Definition*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "definition*": {
+      "option": "standard"
+    },
+    "definition*[]": {
+      "name": "definition*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Example*": {
+      "option": "standard"
+    },
+    "Example*[]": {
+      "name": "Example*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "example*": {
+      "option": "standard"
+    },
+    "example*[]": {
+      "name": "example*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Beispiel*": {
+      "option": "standard"
+    },
+    "Beispiel*[]": {
+      "name": "Beispiel*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "beispiel*": {
+      "option": "standard"
+    },
+    "beispiel*[]": {
+      "name": "beispiel*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Anmerkung*": {
+      "option": "standard"
+    },
+    "Anmerkung*[]": {
+      "name": "Anmerkung*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "anmerkung*": {
+      "option": "standard"
+    },
+    "anmerkung*[]": {
+      "name": "anmerkung*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Bemerkung*": {
+      "option": "standard"
+    },
+    "Bemerkung*[]": {
+      "name": "Bemerkung*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "bemerkung*": {
+      "option": "standard"
+    },
+    "bemerkung*[]": {
+      "name": "bemerkung*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Remark*": {
+      "option": "standard"
+    },
+    "Remark*[]": {
+      "name": "Remark*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "remark*": {
+      "option": "standard"
+    },
+    "remark*[]": {
+      "name": "remark*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Proof*": {
+      "option": "standard"
+    },
+    "Proof*[]": {
+      "name": "Proof*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "proof*": {
+      "option": "standard"
+    },
+    "proof*[]": {
+      "name": "proof*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "Beweis*": {
+      "option": "standard"
+    },
+    "Beweis*[]": {
+      "name": "Beweis*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    },
+    "beweis*": {
+      "option": "standard"
+    },
+    "beweis*[]": {
+      "name": "beweis*",
+      "snippet": "[${1:heading}]",
+      "option": "standard"
+    }
+  },
+  "options": [
+    "thmmarks",
+    "leqno",
+    "fleqn",
+    "thref",
+    "amsmath",
+    "standard",
+    "noconfig",
+    "amsthm",
+    "framed",
+    "hyperref"
+  ],
+  "keyvals": []
+}

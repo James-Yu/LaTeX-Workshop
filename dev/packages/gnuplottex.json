@@ -1,0 +1,78 @@
+{
+  "includes": {
+    "graphicx": [],
+    "moreverb": [],
+    "keyval": [],
+    "ifthen": [],
+    "catchfile": []
+  },
+  "macros": {
+    "gnuplotloadfile{}": {
+      "snippet": "gnuplotloadfile{${1:file}}"
+    },
+    "gnuplotloadfile[]{}": {
+      "snippet": "gnuplotloadfile[${2:options}]{${1:file}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "ifShellEscape": {},
+    "ShellEscapetrue": {},
+    "ShellEscapefalse": {},
+    "ifmiktex": {},
+    "miktextrue": {},
+    "miktexfalse": {},
+    "ifusesiunitx": {},
+    "usesiunitxtrue": {},
+    "usesiunitxfalse": {},
+    "ifcleanup": {},
+    "cleanuptrue": {},
+    "cleanupfalse": {},
+    "ifusesubfolder": {},
+    "usesubfoldertrue": {},
+    "usesubfolderfalse": {},
+    "tmpfile": {},
+    "subfolder": {},
+    "thefignum": {},
+    "figname": {},
+    "usesiunitxingnuplot": {},
+    "gnuplotverbatimwrite{}": {
+      "snippet": "gnuplotverbatimwrite{${1:arg}}"
+    },
+    "endgnuplotverbatimwrite": {},
+    "BeforeStream": {},
+    "gnuplotterminal": {},
+    "gnuplotterminaloptions": {},
+    "gnuplotscale": {},
+    "gnuplotCutFile": {},
+    "extension": {},
+    "gnuplotgraphicsprocess": {},
+    "gnuplotgraphicsinclude": {},
+    "gnuplotloadfilewrite{}{}": {
+      "snippet": "gnuplotloadfilewrite{${1:arg1}}{${2:arg2}}"
+    }
+  },
+  "envs": {
+    "gnuplot": {},
+    "gnuplot[]": {
+      "name": "gnuplot",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [
+    "shell",
+    "noshell",
+    "miktex",
+    "siunitx",
+    "cleanup",
+    "subfolder"
+  ],
+  "keyvals": [
+    [
+      "scale=${1:factor}",
+      "terminal=",
+      "terminaloptions=${1:terminal options}"
+    ]
+  ]
+}

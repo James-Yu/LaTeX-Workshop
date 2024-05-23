@@ -1,0 +1,354 @@
+{
+  "includes": {},
+  "macros": {
+    "IfSubStr{}{}{}{}": {
+      "snippet": "IfSubStr{${1:string}}{${2:stringA}}{${3:true}}{${4:false}}"
+    },
+    "IfSubStr[]{}{}{}{}": {
+      "snippet": "IfSubStr[${5:number}]{${1:string}}{${2:stringA}}{${3:true}}{${4:false}}"
+    },
+    "IfSubStr*{}{}{}{}": {
+      "snippet": "IfSubStr*{${1:string}}{${2:stringA}}{${3:true}}{${4:false}}"
+    },
+    "IfSubStr*[]{}{}{}{}": {
+      "snippet": "IfSubStr*[${5:number}]{${1:string}}{${2:stringA}}{${3:true}}{${4:false}}"
+    },
+    "IfSubStrBefore{}{}{}{}{}": {
+      "snippet": "IfSubStrBefore{${1:string}}{${2:stringA}}{${3:stringB}}{${4:true}}{${5:false}}"
+    },
+    "IfSubStrBefore[]{}{}{}{}{}": {
+      "snippet": "IfSubStrBefore[${6:num1,num2}]{${1:string}}{${2:stringA}}{${3:stringB}}{${4:true}}{${5:false}}"
+    },
+    "IfSubStrBefore*{}{}{}{}{}": {
+      "snippet": "IfSubStrBefore*{${1:string}}{${2:stringA}}{${3:stringB}}{${4:true}}{${5:false}}"
+    },
+    "IfSubStrBefore*[]{}{}{}{}{}": {
+      "snippet": "IfSubStrBefore*[${6:num1,num2}]{${1:string}}{${2:stringA}}{${3:stringB}}{${4:true}}{${5:false}}"
+    },
+    "IfSubStrBehind{}{}{}{}{}": {
+      "snippet": "IfSubStrBehind{${1:string}}{${2:stringA}}{${3:stringB}}{${4:true}}{${5:false}}"
+    },
+    "IfSubStrBehind[]{}{}{}{}{}": {
+      "snippet": "IfSubStrBehind[${6:num1,num2}]{${1:string}}{${2:stringA}}{${3:stringB}}{${4:true}}{${5:false}}"
+    },
+    "IfSubStrBehind*{}{}{}{}{}": {
+      "snippet": "IfSubStrBehind*{${1:string}}{${2:stringA}}{${3:stringB}}{${4:true}}{${5:false}}"
+    },
+    "IfSubStrBehind*[]{}{}{}{}{}": {
+      "snippet": "IfSubStrBehind*[${6:num1,num2}]{${1:string}}{${2:stringA}}{${3:stringB}}{${4:true}}{${5:false}}"
+    },
+    "IfBeginWith{}{}{}{}": {
+      "snippet": "IfBeginWith{${1:string}}{${2:stringA}}{${3:true}}{${4:false}}"
+    },
+    "IfBeginWith[]{}{}{}{}": {
+      "snippet": "IfBeginWith[${5:number}]{${1:string}}{${2:stringA}}{${3:true}}{${4:false}}"
+    },
+    "IfBeginWith*{}{}{}{}": {
+      "snippet": "IfBeginWith*{${1:string}}{${2:stringA}}{${3:true}}{${4:false}}"
+    },
+    "IfBeginWith*[]{}{}{}{}": {
+      "snippet": "IfBeginWith*[${5:number}]{${1:string}}{${2:stringA}}{${3:true}}{${4:false}}"
+    },
+    "IfEndWith{}{}{}{}": {
+      "snippet": "IfEndWith{${1:string}}{${2:stringA}}{${3:true}}{${4:false}}"
+    },
+    "IfEndWith[]{}{}{}{}": {
+      "snippet": "IfEndWith[${5:number}]{${1:string}}{${2:stringA}}{${3:true}}{${4:false}}"
+    },
+    "IfEndWith*{}{}{}{}": {
+      "snippet": "IfEndWith*{${1:string}}{${2:stringA}}{${3:true}}{${4:false}}"
+    },
+    "IfEndWith*[]{}{}{}{}": {
+      "snippet": "IfEndWith*[${5:number}]{${1:string}}{${2:stringA}}{${3:true}}{${4:false}}"
+    },
+    "IfInteger{}{}{}": {
+      "snippet": "IfInteger{${1:number}}{${2:true}}{${3:false}}"
+    },
+    "IfDecimal{}{}{}": {
+      "snippet": "IfDecimal{${1:number}}{${2:true}}{${3:false}}"
+    },
+    "integerpart": {},
+    "decimalpart": {},
+    "afterinteger": {},
+    "afterdecimal": {},
+    "IfStrEq{}{}{}{}": {
+      "snippet": "IfStrEq{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+    },
+    "IfStrEq*{}{}{}{}": {
+      "snippet": "IfStrEq*{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+    },
+    "IfEq{}{}{}{}": {
+      "snippet": "IfEq{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+    },
+    "StrBefore{}{}": {
+      "snippet": "StrBefore{${1:string}}{${2:stringA}}"
+    },
+    "StrBefore[]{}{}": {
+      "snippet": "StrBefore[${3:number}]{${1:string}}{${2:stringA}}"
+    },
+    "StrBefore{}{}[]": {
+      "snippet": "StrBefore{${1:string}}{${2:stringA}}[${3:name}]"
+    },
+    "StrBefore[]{}{}[]": {
+      "snippet": "StrBefore[${3:number}]{${1:string}}{${2:stringA}}[${4:name}]"
+    },
+    "StrBefore*{}{}": {
+      "snippet": "StrBefore*{${1:string}}{${2:stringA}}"
+    },
+    "StrBefore*[]{}{}": {
+      "snippet": "StrBefore*[${3:number}]{${1:string}}{${2:stringA}}"
+    },
+    "StrBefore*{}{}[]": {
+      "snippet": "StrBefore*{${1:string}}{${2:stringA}}[${3:name}]"
+    },
+    "StrBefore*[]{}{}[]": {
+      "snippet": "StrBefore*[${3:number}]{${1:string}}{${2:stringA}}[${4:name}]"
+    },
+    "StrBehind{}{}": {
+      "snippet": "StrBehind{${1:string}}{${2:stringA}}"
+    },
+    "StrBehind[]{}{}": {
+      "snippet": "StrBehind[${3:number}]{${1:string}}{${2:stringA}}"
+    },
+    "StrBehind{}{}[]": {
+      "snippet": "StrBehind{${1:string}}{${2:stringA}}[${3:name}]"
+    },
+    "StrBehind[]{}{}[]": {
+      "snippet": "StrBehind[${3:number}]{${1:string}}{${2:stringA}}[${4:name}]"
+    },
+    "StrBehind*{}{}": {
+      "snippet": "StrBehind*{${1:string}}{${2:stringA}}"
+    },
+    "StrBehind*[]{}{}": {
+      "snippet": "StrBehind*[${3:number}]{${1:string}}{${2:stringA}}"
+    },
+    "StrBehind*{}{}[]": {
+      "snippet": "StrBehind*{${1:string}}{${2:stringA}}[${3:name}]"
+    },
+    "StrBehind*[]{}{}[]": {
+      "snippet": "StrBehind*[${3:number}]{${1:string}}{${2:stringA}}[${4:name}]"
+    },
+    "StrCut{}{}{}{}": {
+      "snippet": "StrCut{${1:string}}{${2:stringA}}{${3:macroA}}{${4:macroB}}"
+    },
+    "StrCut[]{}{}{}{}": {
+      "snippet": "StrCut[${5:number}]{${1:string}}{${2:stringA}}{${3:macroA}}{${4:macroB}}"
+    },
+    "StrCut*{}{}{}{}": {
+      "snippet": "StrCut*{${1:string}}{${2:stringA}}{${3:macroA}}{${4:macroB}}"
+    },
+    "StrCut*[]{}{}{}{}": {
+      "snippet": "StrCut*[${5:number}]{${1:string}}{${2:stringA}}{${3:macroA}}{${4:macroB}}"
+    },
+    "StrBetween{}{}{}": {
+      "snippet": "StrBetween{${1:string}}{${2:stringA}}{${3:stringB}}"
+    },
+    "StrBetween[]{}{}{}": {
+      "snippet": "StrBetween[${4:num1,num2}]{${1:string}}{${2:stringA}}{${3:stringB}}"
+    },
+    "StrBetween{}{}{}[]": {
+      "snippet": "StrBetween{${1:string}}{${2:stringA}}{${3:stringB}}[${4:name}]"
+    },
+    "StrBetween[]{}{}{}[]": {
+      "snippet": "StrBetween[${4:num1,num2}]{${1:string}}{${2:stringA}}{${3:stringB}}[${5:name}]"
+    },
+    "StrBetween*{}{}{}": {
+      "snippet": "StrBetween*{${1:string}}{${2:stringA}}{${3:stringB}}"
+    },
+    "StrBetween*[]{}{}{}": {
+      "snippet": "StrBetween*[${4:num1,num2}]{${1:string}}{${2:stringA}}{${3:stringB}}"
+    },
+    "StrBetween*{}{}{}[]": {
+      "snippet": "StrBetween*{${1:string}}{${2:stringA}}{${3:stringB}}[${4:name}]"
+    },
+    "StrBetween*[]{}{}{}[]": {
+      "snippet": "StrBetween*[${4:num1,num2}]{${1:string}}{${2:stringA}}{${3:stringB}}[${5:name}]"
+    },
+    "StrSubstitute{}{}{}": {
+      "snippet": "StrSubstitute{${1:string}}{${2:stringA}}{${3:stringB}}"
+    },
+    "StrSubstitute[]{}{}{}": {
+      "snippet": "StrSubstitute[${4:number}]{${1:string}}{${2:stringA}}{${3:stringB}}"
+    },
+    "StrSubstitute{}{}{}[]": {
+      "snippet": "StrSubstitute{${1:string}}{${2:stringA}}{${3:stringB}}[${4:name}]"
+    },
+    "StrSubstitute[]{}{}{}[]": {
+      "snippet": "StrSubstitute[${4:number}]{${1:string}}{${2:stringA}}{${3:stringB}}[${5:name}]"
+    },
+    "StrSubstitute*{}{}{}": {
+      "snippet": "StrSubstitute*{${1:string}}{${2:stringA}}{${3:stringB}}"
+    },
+    "StrSubstitute*[]{}{}{}": {
+      "snippet": "StrSubstitute*[${4:number}]{${1:string}}{${2:stringA}}{${3:stringB}}"
+    },
+    "StrSubstitute*{}{}{}[]": {
+      "snippet": "StrSubstitute*{${1:string}}{${2:stringA}}{${3:stringB}}[${4:name}]"
+    },
+    "StrSubstitute*[]{}{}{}[]": {
+      "snippet": "StrSubstitute*[${4:number}]{${1:string}}{${2:stringA}}{${3:stringB}}[${5:name}]"
+    },
+    "StrDel{}{}": {
+      "snippet": "StrDel{${1:string}}{${2:stringA}}"
+    },
+    "StrDel[]{}{}": {
+      "snippet": "StrDel[${3:number}]{${1:string}}{${2:stringA}}"
+    },
+    "StrDel{}{}[]": {
+      "snippet": "StrDel{${1:string}}{${2:stringA}}[${3:name}]"
+    },
+    "StrDel[]{}{}[]": {
+      "snippet": "StrDel[${3:number}]{${1:string}}{${2:stringA}}[${4:name}]"
+    },
+    "StrDel*{}{}": {
+      "snippet": "StrDel*{${1:string}}{${2:stringA}}"
+    },
+    "StrDel*[]{}{}": {
+      "snippet": "StrDel*[${3:number}]{${1:string}}{${2:stringA}}"
+    },
+    "StrDel*{}{}[]": {
+      "snippet": "StrDel*{${1:string}}{${2:stringA}}[${3:name}]"
+    },
+    "StrDel*[]{}{}[]": {
+      "snippet": "StrDel*[${3:number}]{${1:string}}{${2:stringA}}[${4:name}]"
+    },
+    "StrGobbleLeft{}{}": {
+      "snippet": "StrGobbleLeft{${1:string}}{${2:number}}"
+    },
+    "StrGobbleLeft{}{}[]": {
+      "snippet": "StrGobbleLeft{${1:string}}{${2:number}}[${3:name}]"
+    },
+    "StrLeft{}{}": {
+      "snippet": "StrLeft{${1:string}}{${2:number}}"
+    },
+    "StrLeft{}{}[]": {
+      "snippet": "StrLeft{${1:string}}{${2:number}}[${3:name}]"
+    },
+    "StrGobbleRight{}{}": {
+      "snippet": "StrGobbleRight{${1:string}}{${2:number}}"
+    },
+    "StrGobbleRight{}{}[]": {
+      "snippet": "StrGobbleRight{${1:string}}{${2:number}}[${3:name}]"
+    },
+    "StrRight{}{}": {
+      "snippet": "StrRight{${1:string}}{${2:number}}"
+    },
+    "StrRight{}{}[]": {
+      "snippet": "StrRight{${1:string}}{${2:number}}[${3:name}]"
+    },
+    "StrChar{}{}": {
+      "snippet": "StrChar{${1:string}}{${2:number}}"
+    },
+    "StrChar{}{}[]": {
+      "snippet": "StrChar{${1:string}}{${2:number}}[${3:name}]"
+    },
+    "StrChar*{}{}": {
+      "snippet": "StrChar*{${1:string}}{${2:number}}"
+    },
+    "StrChar*{}{}[]": {
+      "snippet": "StrChar*{${1:string}}{${2:number}}[${3:name}]"
+    },
+    "StrMid{}{}{}": {
+      "snippet": "StrMid{${1:string}}{${2:numberA}}{${3:numberB}}"
+    },
+    "StrMid{}{}{}[]": {
+      "snippet": "StrMid{${1:string}}{${2:numberA}}{${3:numberB}}[${4:name}]"
+    },
+    "StrLen{}": {
+      "snippet": "StrLen{${1:string}}"
+    },
+    "StrLen{}[]": {
+      "snippet": "StrLen{${1:string}}[${2:name}]"
+    },
+    "StrCount{}{}": {
+      "snippet": "StrCount{${1:string}}{${2:stringA}}"
+    },
+    "StrCount{}{}[]": {
+      "snippet": "StrCount{${1:string}}{${2:stringA}}[${3:name}]"
+    },
+    "StrPosition{}{}": {
+      "snippet": "StrPosition{${1:string}}{${2:stringA}}"
+    },
+    "StrPosition[]{}{}": {
+      "snippet": "StrPosition[${3:number}]{${1:string}}{${2:stringA}}"
+    },
+    "StrPosition{}{}[]": {
+      "snippet": "StrPosition{${1:string}}{${2:stringA}}[${3:name}]"
+    },
+    "StrPosition[]{}{}[]": {
+      "snippet": "StrPosition[${3:number}]{${1:string}}{${2:stringA}}[${4:name}]"
+    },
+    "StrCompare{}{}": {
+      "snippet": "StrCompare{${1:stringA}}{${2:stringB}}"
+    },
+    "StrCompare{}{}[]": {
+      "snippet": "StrCompare{${1:stringA}}{${2:stringB}}[${3:name}]"
+    },
+    "StrCompare*{}{}": {
+      "snippet": "StrCompare*{${1:stringA}}{${2:stringB}}"
+    },
+    "StrCompare*{}{}[]": {
+      "snippet": "StrCompare*{${1:stringA}}{${2:stringB}}[${3:name}]"
+    },
+    "comparenormal": {},
+    "comparestrict": {},
+    "savecomparemode": {},
+    "restorecomparemode": {},
+    "fullexpandarg": {},
+    "noexpandarg": {},
+    "normalexpandarg": {},
+    "expandarg": {},
+    "saveexpandmode": {},
+    "restoreexpandmode": {},
+    "noexploregroups": {},
+    "exploregroups": {},
+    "saveexploremode": {},
+    "restoreexploremode": {},
+    "StrFindGroup{}{}": {
+      "snippet": "StrFindGroup{${1:arg}}{${2:identifier}}"
+    },
+    "StrFindGroup{}{}[]": {
+      "snippet": "StrFindGroup{${1:arg}}{${2:identifier}}[${3:name}]"
+    },
+    "groupID": {},
+    "StrSplit{}{}{}{}": {
+      "snippet": "StrSplit{${1:string}}{${2:number}}{${3:macroA}}{${4:macroB}}"
+    },
+    "verbtocs{}": {
+      "snippet": "verbtocs{${1:cmd}}"
+    },
+    "setverbdelim{}": {
+      "snippet": "setverbdelim{${1:character}}"
+    },
+    "tokenize{}{}": {
+      "snippet": "tokenize{${1:name}}{${2:control sequences}}"
+    },
+    "StrExpand{}{}": {
+      "snippet": "StrExpand{${1:string}}{${2:name}}"
+    },
+    "StrExpand[]{}{}": {
+      "snippet": "StrExpand[${3:number}]{${1:string}}{${2:name}}"
+    },
+    "noexpandingroups": {},
+    "expandingroups": {},
+    "scancs{}{}": {
+      "snippet": "scancs{${1:name}}{${2:string}}"
+    },
+    "scancs[]{}{}": {
+      "snippet": "scancs[${3:number}]{${1:name}}{${2:string}}"
+    },
+    "StrRemoveBraces{}": {
+      "snippet": "StrRemoveBraces{${1:string}}"
+    },
+    "StrRemoveBraces{}[]": {
+      "snippet": "StrRemoveBraces{${1:string}}[${2:name}]"
+    },
+    "restorexstringcatcode": {},
+    "xstringdate": {},
+    "xstringname": {},
+    "xstringversion": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

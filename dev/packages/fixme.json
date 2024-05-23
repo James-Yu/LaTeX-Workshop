@@ -1,0 +1,519 @@
+{
+  "includes": {
+    "ifthen": [],
+    "verbatim": [],
+    "xkeyval": [],
+    "xspace": []
+  },
+  "macros": {
+    "fxsetup{}": {
+      "snippet": "fxsetup{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "fxnote{}": {
+      "snippet": "fxnote{${1:FIX}}"
+    },
+    "fxnote[]{}": {
+      "snippet": "fxnote[${2:options}]{${1:FIX}}"
+    },
+    "fxwarning{}": {
+      "snippet": "fxwarning{${1:FIX}}"
+    },
+    "fxwarning[]{}": {
+      "snippet": "fxwarning[${2:options}]{${1:FIX}}"
+    },
+    "fxerror{}": {
+      "snippet": "fxerror{${1:FIX}}"
+    },
+    "fxerror[]{}": {
+      "snippet": "fxerror[${2:options}]{${1:FIX}}"
+    },
+    "fxfatal{}": {
+      "snippet": "fxfatal{${1:FIX}}"
+    },
+    "fxfatal[]{}": {
+      "snippet": "fxfatal[${2:options}]{${1:FIX}}"
+    },
+    "fxnote*{}": {
+      "snippet": "fxnote*{${1:FIX}}"
+    },
+    "fxnote*[]{}": {
+      "snippet": "fxnote*[${2:options}]{${1:FIX}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "fxwarning*{}": {
+      "snippet": "fxwarning*{${1:FIX}}"
+    },
+    "fxwarning*[]{}": {
+      "snippet": "fxwarning*[${2:options}]{${1:FIX}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "fxerror*{}": {
+      "snippet": "fxerror*{${1:FIX}}"
+    },
+    "fxerror*[]{}": {
+      "snippet": "fxerror*[${2:options}]{${1:FIX}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "fxfatal*{}": {
+      "snippet": "fxfatal*{${1:FIX}}"
+    },
+    "fxfatal*[]{}": {
+      "snippet": "fxfatal*[${2:options}]{${1:FIX}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "listoffixmes": {},
+    "fxuselayouts{}": {
+      "snippet": "fxuselayouts{${1:layouts}}"
+    },
+    "fxloadlayouts{}": {
+      "snippet": "fxloadlayouts{${1:layouts}}"
+    },
+    "fxuseenvlayout{}": {
+      "snippet": "fxuseenvlayout{${1:layout}}"
+    },
+    "fxloadenvlayouts{}": {
+      "snippet": "fxloadenvlayouts{${1:layouts}}"
+    },
+    "fxusetargetlayout{}": {
+      "snippet": "fxusetargetlayout{${1:layout}}"
+    },
+    "fxloadtargetlayouts{}": {
+      "snippet": "fxloadtargetlayouts{${1:layouts}}"
+    },
+    "fxsetface{}{}": {
+      "snippet": "fxsetface{${1:face}}{${2:value}}"
+    },
+    "FXRegisterAuthor{}{}{}": {
+      "snippet": "FXRegisterAuthor{${1:cmdprefix}}{${2:envprefix}}{${3:author}}"
+    },
+    "fxusetheme{}": {
+      "snippet": "fxusetheme{${1:theme}}"
+    },
+    "FXLayoutInline{}{}{}": {
+      "snippet": "FXLayoutInline{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutMargin{}{}{}": {
+      "snippet": "FXLayoutMargin{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutFootnote{}{}{}": {
+      "snippet": "FXLayoutFootnote{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutIndex{}{}{}": {
+      "snippet": "FXLayoutIndex{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutMarginClue{}{}{}": {
+      "snippet": "FXLayoutMarginClue{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutMarginNote{}{}{}": {
+      "snippet": "FXLayoutMarginNote{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutPDFNote{}{}{}": {
+      "snippet": "FXLayoutPDFNote{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutPDFMargin{}{}{}": {
+      "snippet": "FXLayoutPDFMargin{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutPDFSigNote{}{}{}": {
+      "snippet": "FXLayoutPDFSigNote{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutPDFSigMargin{}{}{}": {
+      "snippet": "FXLayoutPDFSigMargin{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutPDFCNote{}{}{}": {
+      "snippet": "FXLayoutPDFCNote{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutPDFCMargin{}{}{}": {
+      "snippet": "FXLayoutPDFCMargin{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutPDFCSigNote{}{}{}": {
+      "snippet": "FXLayoutPDFCSigNote{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutPDFCSigMargin{}{}{}": {
+      "snippet": "FXLayoutPDFCSigMargin{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXLayoutContentsLine{}{}{}": {
+      "snippet": "FXLayoutContentsLine{${1:type}}{${2:annotation}}{${3:author}}"
+    },
+    "FXEnvLayoutPlainBegin{}{}": {
+      "snippet": "FXEnvLayoutPlainBegin{${1:type}}{${2:author}}"
+    },
+    "FXEnvLayoutPlainEnd{}{}": {
+      "snippet": "FXEnvLayoutPlainEnd{${1:type}}{${2:author}}"
+    },
+    "FXEnvLayoutSignatureBegin{}{}": {
+      "snippet": "FXEnvLayoutSignatureBegin{${1:type}}{${2:author}}"
+    },
+    "FXEnvLayoutSignatureEnd{}{}": {
+      "snippet": "FXEnvLayoutSignatureEnd{${1:type}}{${2:author}}"
+    },
+    "FXEnvLayoutColorBegin{}{}": {
+      "snippet": "FXEnvLayoutColorBegin{${1:type}}{${2:author}}"
+    },
+    "FXEnvLayoutColorEnd{}{}": {
+      "snippet": "FXEnvLayoutColorEnd{${1:type}}{${2:author}}"
+    },
+    "FXEnvLayoutColorSigBegin{}{}": {
+      "snippet": "FXEnvLayoutColorSigBegin{${1:type}}{${2:author}}"
+    },
+    "FXEnvLayoutColorSigEnd{}{}": {
+      "snippet": "FXEnvLayoutColorSigEnd{${1:type}}{${2:author}}"
+    },
+    "FXTargetLayoutPlain{}{}": {
+      "snippet": "FXTargetLayoutPlain{${1:type}}{${2:target}}"
+    },
+    "FXTargetLayoutChangeBar{}{}": {
+      "snippet": "FXTargetLayoutChangeBar{${1:type}}{${2:target}}"
+    },
+    "FXTargetLayoutColor{}{}": {
+      "snippet": "FXTargetLayoutColor{${1:type}}{${2:target}}"
+    },
+    "FXTargetLayoutColorCB{}{}": {
+      "snippet": "FXTargetLayoutColorCB{${1:type}}{${2:target}}"
+    },
+    "FXRegisterLayout[]{}{}": {
+      "snippet": "FXRegisterLayout[${3:excluded layouts}]{${1:name}}{${2:cmd}}"
+    },
+    "FXRegisterLayout*[]{}{}": {
+      "snippet": "FXRegisterLayout*[${3:excluded layouts}]{${1:name}}{${2:cmd}}"
+    },
+    "FXProvidesLayout{}[]": {
+      "snippet": "FXProvidesLayout{${1:name}}[${2:release info}]"
+    },
+    "FXRegisterEnvLayout{}{}{}": {
+      "snippet": "FXRegisterEnvLayout{${1:name}}{${2:begincmd}}{${3:endcmd}}"
+    },
+    "FXProvidesEnvLayout{}[]": {
+      "snippet": "FXProvidesEnvLayout{${1:name}}[${2:release info}]"
+    },
+    "FXRegisterTargetLayout{}{}": {
+      "snippet": "FXRegisterTargetLayout{${1:name}}{${2:cmd}}"
+    },
+    "FXProvidesTargetLayout{}[]": {
+      "snippet": "FXProvidesTargetLayout{${1:name}}[${2:relase info}]"
+    },
+    "FXDefineLayoutKey{}[]{}": {
+      "snippet": "FXDefineLayoutKey{${1:key}}[${2:default}]{${3:function}}"
+    },
+    "FXDefineEnvLayoutKey{}[]{}": {
+      "snippet": "FXDefineEnvLayoutKey{${1:key}}[${2:default}]{${3:function}}"
+    },
+    "FXDefineTargetLayoutKey{}[]{}": {
+      "snippet": "FXDefineTargetLayoutKey{${1:key}}[${2:default}]{${3:function}}"
+    },
+    "FXDefineLayoutCmdKey[]{}[]{}": {
+      "snippet": "FXDefineLayoutCmdKey[${3:mp}]{${1:key}}[${4:default}]{${2:function}}"
+    },
+    "FXDefineEnvLayoutCmdKey[]{}[]{}": {
+      "snippet": "FXDefineEnvLayoutCmdKey[${3:mp}]{${1:key}}[${4:default}]{${2:function}}"
+    },
+    "FXDefineTargetLayoutCmdKey[]{}[]{}": {
+      "snippet": "FXDefineTargetLayoutCmdKey[${3:mp}]{${1:key}}[${4:default}]{${2:function}}"
+    },
+    "FXDefineLayoutChoiceKey{}[]{}[]{}": {
+      "snippet": "FXDefineLayoutChoiceKey{${1:key}}[${2:bin}]{${3:alternatives}}[${4:default}]{${5:function}}"
+    },
+    "FXDefineEnvLayoutChoiceKey{}[]{}[]{}": {
+      "snippet": "FXDefineEnvLayoutChoiceKey{${1:key}}[${2:bin}]{${3:alternatives}}[${4:default}]{${5:function}}"
+    },
+    "FXDefineTargetLayoutChoiceKey{}[]{}[]{}": {
+      "snippet": "FXDefineTargetLayoutChoiceKey{${1:key}}[${2:bin}]{${3:alternatives}}[${4:default}]{${5:function}}"
+    },
+    "FXDefineLayoutVoidKey{}{}": {
+      "snippet": "FXDefineLayoutVoidKey{${1:key}}{${2:function}}"
+    },
+    "FXDefineEnvLayoutVoidKey{}{}": {
+      "snippet": "FXDefineEnvLayoutVoidKey{${1:key}}{${2:function}}"
+    },
+    "FXDefineTargetLayoutVoidKey{}{}": {
+      "snippet": "FXDefineTargetLayoutVoidKey{${1:key}}{${2:function}}"
+    },
+    "FXDefineLayoutBoolKey[]{}": {
+      "snippet": "FXDefineLayoutBoolKey[${2:function}]{${1:key}}"
+    },
+    "FXDefineEnvLayoutBoolKey[]{}": {
+      "snippet": "FXDefineEnvLayoutBoolKey[${2:function}]{${1:key}}"
+    },
+    "FXDefineTargetLayoutBoolKey[]{}": {
+      "snippet": "FXDefineTargetLayoutBoolKey[${2:function}]{${1:key}}"
+    },
+    "FXRequireLayouts{}": {
+      "snippet": "FXRequireLayouts{${1:layouts}}"
+    },
+    "FXRequireEnvLayout{}": {
+      "snippet": "FXRequireEnvLayout{${1:layout}}"
+    },
+    "FXRequireTargetLayout{}": {
+      "snippet": "FXRequireTargetLayout{${1:layout}}"
+    },
+    "FXProvidesTheme{}[]": {
+      "snippet": "FXProvidesTheme{${1:name}}[${2:release info}]"
+    },
+    "croatianlistfixmename": {},
+    "danishlistfixmename": {},
+    "englishlistfixmename": {},
+    "fixmeindexname": {},
+    "fixmelogo": {},
+    "francaislistfixmename": {},
+    "frenchlistfixmename": {},
+    "fxaddcontentsline{}": {
+      "snippet": "fxaddcontentsline{${1:contents}}"
+    },
+    "fxcontentsline{}{}": {
+      "snippet": "fxcontentsline{${1:contents}}{${2:target}}"
+    },
+    "fxcroatianerrorname": {},
+    "fxcroatianerrorsname": {},
+    "fxcroatianfatalname": {},
+    "fxcroatianfatalsname": {},
+    "fxcroatiannotename": {},
+    "fxcroatiannotesname": {},
+    "fxcroatianwarningname": {},
+    "fxcroatianwarningsname": {},
+    "fxdanisherrorname": {},
+    "fxdanisherrorsname": {},
+    "fxdanishfatalname": {},
+    "fxdanishfatalsname": {},
+    "fxdanishnotename": {},
+    "fxdanishwarningname": {},
+    "fxdanishwarningsname": {},
+    "fxenglisherrorname": {},
+    "fxenglisherrorsname": {},
+    "fxenglishfatalname": {},
+    "fxenglishfatalsname": {},
+    "fxenglishnotename": {},
+    "fxenglishnotesname": {},
+    "fxenglishwarningname": {},
+    "fxenglishwarningsname": {},
+    "fxfrancaiserrorname": {},
+    "fxfrancaisfatalname": {},
+    "fxfrancaisnotename": {},
+    "fxfrancaiswarningname": {},
+    "fxfrencherrorname": {},
+    "fxfrencherrorsname": {},
+    "fxfrenchfatalname": {},
+    "fxfrenchfatalsname": {},
+    "fxfrenchnotename": {},
+    "fxfrenchnotesname": {},
+    "fxfrenchwarningname": {},
+    "fxfrenchwarningsname": {},
+    "fxgermanerrorname": {},
+    "fxgermanerrorsname": {},
+    "fxgermanfatalname": {},
+    "fxgermanfatalsname": {},
+    "fxgermannotename": {},
+    "fxgermannotesname": {},
+    "fxgermanwarningname": {},
+    "fxgermanwarningsname": {},
+    "fxitalianerrorname": {},
+    "fxitalianerrorsname": {},
+    "fxitalianfatalname": {},
+    "fxitalianfatalsname": {},
+    "fxitaliannotename": {},
+    "fxitaliannotesname": {},
+    "fxitalianwarningname": {},
+    "fxitalianwarningsname": {},
+    "fxngermanerrorname": {},
+    "fxngermanfatalname": {},
+    "fxngermannotename": {},
+    "fxngermanwarningname": {},
+    "fxnotename{}": {
+      "snippet": "fxnotename{${1:text}}"
+    },
+    "fxnotesname{}": {
+      "snippet": "fxnotesname{${1:text}}"
+    },
+    "fxspanisherrorname": {},
+    "fxspanisherrorsname": {},
+    "fxspanishfatalname": {},
+    "fxspanishfatalsname": {},
+    "fxspanishnotename": {},
+    "fxspanishnotesname": {},
+    "fxspanishwarningname": {},
+    "fxspanishwarningsname": {},
+    "germanlistfixmename": {},
+    "italianlistfixmename": {},
+    "spanishlistfixmename": {},
+    "FXLogError{}": {
+      "snippet": "FXLogError{${1:error text}}"
+    },
+    "FXLogFatal{}": {
+      "snippet": "FXLogFatal{${1:error text}}"
+    },
+    "FXLogNote{}": {
+      "snippet": "FXLogNote{${1:note text}}"
+    },
+    "FXLogWarning{}": {
+      "snippet": "FXLogWarning{${1:warning text}}"
+    },
+    "thefixmecount": {},
+    "thefxnotecount": {},
+    "thefxwarningcount": {},
+    "thefxerrorcount": {},
+    "thefxfatalcount": {}
+  },
+  "envs": {
+    "anfxnote[]{}": {
+      "name": "anfxnote",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "anfxnote{}": {
+      "name": "anfxnote",
+      "snippet": "{${1:summary}}"
+    },
+    "anfxwarning[]{}": {
+      "name": "anfxwarning",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "anfxwarning{}": {
+      "name": "anfxwarning",
+      "snippet": "{${1:summary}}"
+    },
+    "anfxerror[]{}": {
+      "name": "anfxerror",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "anfxerror{}": {
+      "name": "anfxerror",
+      "snippet": "{${1:summary}}"
+    },
+    "anfxfatal[]{}": {
+      "name": "anfxfatal",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "anfxfatal{}": {
+      "name": "anfxfatal",
+      "snippet": "{${1:summary}}"
+    },
+    "anfxnote*[]{}": {
+      "name": "anfxnote*",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "anfxnote*{}": {
+      "name": "anfxnote*",
+      "snippet": "{${1:summary}}"
+    },
+    "anfxwarning*[]{}": {
+      "name": "anfxwarning*",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "anfxwarning*{}": {
+      "name": "anfxwarning*",
+      "snippet": "{${1:summary}}"
+    },
+    "anfxerror*[]{}": {
+      "name": "anfxerror*",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "anfxerror*{}": {
+      "name": "anfxerror*",
+      "snippet": "{${1:summary}}"
+    },
+    "anfxfatal*[]{}": {
+      "name": "anfxfatal*",
+      "snippet": "[${2:options}]{${1:summary}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "anfxfatal*{}": {
+      "name": "anfxfatal*",
+      "snippet": "{${1:summary}}"
+    }
+  },
+  "options": [
+    "final",
+    "draft",
+    "status=",
+    "layout={${1:options}}",
+    "morelayout={${1:options}}",
+    "inline",
+    "noinline",
+    "margin",
+    "nomargin",
+    "footnote",
+    "nofootnote",
+    "index",
+    "noindex",
+    "marginclue",
+    "nomarginclue",
+    "marginnote",
+    "nomarginnote",
+    "pdfnote",
+    "nopdfnote",
+    "pdfmargin",
+    "nopdfmargin",
+    "pdfsignote",
+    "nopdfsignote",
+    "pdfsigmargin",
+    "nopdfsigmargin",
+    "pdfcnote",
+    "nopdfcnote",
+    "pdfcmargin",
+    "nopdfcmargin",
+    "pdfcsignote",
+    "nopdfcsignote",
+    "pdfcsigmargin",
+    "nopdfcsigmargin",
+    "innerlayout={${1:options}}",
+    "target=",
+    "inlineface=${1:font commands}",
+    "marginface=${1:font commands}",
+    "envface=${1:font commands}",
+    "signatureface=${1:font commands}",
+    "targetface=${1:font commands}",
+    "silent",
+    "nosilent",
+    "english",
+    "french",
+    "francais",
+    "spanish",
+    "italian",
+    "german",
+    "ngerman",
+    "danish",
+    "croatian",
+    "lang=",
+    "langtrack",
+    "defaultlang=",
+    "author=${1:name}",
+    "singleuser",
+    "multiuser",
+    "mode="
+  ],
+  "keyvals": [
+    [
+      "envlayout=",
+      "targetlayout=",
+      "theme="
+    ],
+    [
+      "targetlayout="
+    ],
+    [
+      "envlayout="
+    ],
+    [
+      "envlayout=",
+      "targetlayout="
+    ]
+  ]
+}

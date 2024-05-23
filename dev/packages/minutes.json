@@ -1,0 +1,517 @@
+{
+  "includes": {
+    "multicol": [],
+    "xspace": [],
+    "url": [],
+    "minitoc": [],
+    "keyval": []
+  },
+  "macros": {
+    "minutesstyle{}": {
+      "snippet": "minutesstyle{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "foreignMinutes{}": {
+      "snippet": "foreignMinutes{${1:description}}"
+    },
+    "foreignMinutes[]{}": {
+      "snippet": "foreignMinutes[${2:pages}]{${1:description}}"
+    },
+    "subtitle{}": {
+      "snippet": "subtitle{${1:text}}"
+    },
+    "moderation{}": {
+      "snippet": "moderation{${1:name}}"
+    },
+    "minutetaker{}": {
+      "snippet": "minutetaker{${1:name}}"
+    },
+    "participant{}": {
+      "snippet": "participant{${1:name1,name2,...}}"
+    },
+    "guest{}": {
+      "snippet": "guest{${1:name1,name2,...}}"
+    },
+    "minutesdate{}": {
+      "snippet": "minutesdate{${1:date}}"
+    },
+    "starttime{}": {
+      "snippet": "starttime{${1:time}}"
+    },
+    "endtime{}": {
+      "snippet": "endtime{${1:time}}"
+    },
+    "location{}": {
+      "snippet": "location{${1:location}}"
+    },
+    "cc{}": {
+      "snippet": "cc{${1:name1,name2,...}}"
+    },
+    "missing[]{}": {
+      "snippet": "missing[${2:no excuse name}]{${1:excused name1,excused name2,...}}"
+    },
+    "missingExcused{}": {
+      "snippet": "missingExcused{${1:name1,name2,...}}"
+    },
+    "missingNoExcuse{}": {
+      "snippet": "missingNoExcuse{${1:name1,name2,...}}"
+    },
+    "topic{}": {
+      "snippet": "topic{${1:title}}"
+    },
+    "topic[]{}": {
+      "snippet": "topic[${2:short title}]{${1:title}}"
+    },
+    "addtopic{}": {
+      "snippet": "addtopic{${1:title}}"
+    },
+    "addtopic[]{}": {
+      "snippet": "addtopic[${2:short title}]{${1:title}}"
+    },
+    "subtopic{}": {
+      "snippet": "subtopic{${1:title}}"
+    },
+    "subtopic[]{}": {
+      "snippet": "subtopic[${2:short title}]{${1:title}}"
+    },
+    "subsubtopic{}": {
+      "snippet": "subsubtopic{${1:title}}"
+    },
+    "subsubtopic[]{}": {
+      "snippet": "subsubtopic[${2:short title}]{${1:title}}"
+    },
+    "minitopic{}": {
+      "snippet": "minitopic{${1:title}}"
+    },
+    "newcols": {},
+    "newcols[]": {
+      "snippet": "newcols[${1:title}]"
+    },
+    "newcols[][]": {
+      "snippet": "newcols[${1:title}][${2:number}]"
+    },
+    "task{}{}": {
+      "snippet": "task{${1:*who}}{${2:what}}"
+    },
+    "task{}[]{}": {
+      "snippet": "task{${1:*who}}[${2:when}]{${3:what}}"
+    },
+    "task[]{}{}": {
+      "snippet": "task[${3:done}]{${1:*who}}{${2:what}}"
+    },
+    "task[]{}[]{}": {
+      "snippet": "task[${3:done}]{${1:*who}}[${4:when}]{${2:what}}"
+    },
+    "listoftasks": {},
+    "listoftasks[]": {
+      "snippet": "listoftasks[${1:file}]"
+    },
+    "schedule{}{}": {
+      "snippet": "schedule{${1:when}}{${2:what}}"
+    },
+    "schedule{}{}[]": {
+      "snippet": "schedule{${1:when}}{${2:what}}[${3:long}]"
+    },
+    "schedule{}[]{}": {
+      "snippet": "schedule{${1:when}}[${2:time}]{${3:what}}"
+    },
+    "schedule{}[]{}[]": {
+      "snippet": "schedule{${1:when}}[${2:time}]{${3:what}}[${4:long}]"
+    },
+    "schedule[]{}{}": {
+      "snippet": "schedule[${3:cal}]{${1:when}}{${2:what}}"
+    },
+    "schedule[]{}{}[]": {
+      "snippet": "schedule[${3:cal}]{${1:when}}{${2:what}}[${4:long}]"
+    },
+    "schedule[]{}[]{}": {
+      "snippet": "schedule[${3:cal}]{${1:when}}[${4:time}]{${2:what}}"
+    },
+    "schedule[]{}[]{}[]": {
+      "snippet": "schedule[${3:cal}]{${1:when}}[${4:time}]{${2:what}}[${5:long}]"
+    },
+    "vote{}{}{}{}": {
+      "snippet": "vote{${1:text}}{${2:yes}}{${3:no}}{${4:-}}"
+    },
+    "vote{}{}{}{}[]": {
+      "snippet": "vote{${1:text}}{${2:yes}}{${3:no}}{${4:-}}[${5:resolution}]"
+    },
+    "decisiontheme{}{}": {
+      "snippet": "decisiontheme{${1:label}}{${2:title}}"
+    },
+    "decision{}{}": {
+      "snippet": "decision{${1:ref}}{${2:text}}"
+    },
+    "decision{}{}[]": {
+      "snippet": "decision{${1:ref}}{${2:text}}[${3:longText}]"
+    },
+    "decision*{}": {
+      "snippet": "decision*{${1:text}}"
+    },
+    "decision*{}[]": {
+      "snippet": "decision*{${1:text}}[${2:longText}]"
+    },
+    "listofdecisions": {},
+    "pro": {},
+    "Pro": {},
+    "contra": {},
+    "Contra": {},
+    "result": {},
+    "opinion{}{}": {
+      "snippet": "opinion{${1:who}}{${2:what}}"
+    },
+    "secret{}": {
+      "snippet": "secret{${1:text}}"
+    },
+    "attachment{}{}": {
+      "snippet": "attachment{${1:title}}{${2:pages}}"
+    },
+    "attachment[]{}{}": {
+      "snippet": "attachment[${3:label}]{${1:title}}{${2:pages}}"
+    },
+    "listofattachments": {},
+    "postscript{}": {
+      "snippet": "postscript{${1:text}}"
+    },
+    "inputminutes{}": {
+      "snippet": "inputminutes{${1:file}}"
+    },
+    "protokollKopf": {},
+    "fremdProtokoll{}": {
+      "snippet": "fremdProtokoll{${1:description}}"
+    },
+    "fremdProtokoll[]{}": {
+      "snippet": "fremdProtokoll[${2:pages}]{${1:description}}"
+    },
+    "untertitel{}": {
+      "snippet": "untertitel{${1:text}}"
+    },
+    "protokollant{}": {
+      "snippet": "protokollant{${1:name}}"
+    },
+    "teilnehmer{}": {
+      "snippet": "teilnehmer{${1:name1,name2,...}}"
+    },
+    "gaeste{}": {
+      "snippet": "gaeste{${1:name1,name2,...}}"
+    },
+    "sitzungsdatum{}": {
+      "snippet": "sitzungsdatum{${1:date}}"
+    },
+    "sitzungsbeginn{}": {
+      "snippet": "sitzungsbeginn{${1:time}}"
+    },
+    "sitzungsende{}": {
+      "snippet": "sitzungsende{${1:time}}"
+    },
+    "sitzungsort{}": {
+      "snippet": "sitzungsort{${1:location}}"
+    },
+    "verteiler{}": {
+      "snippet": "verteiler{${1:name1,name2,...}}"
+    },
+    "fehlend[]{}": {
+      "snippet": "fehlend[${2:no excuse name}]{${1:excused name1,excused name2,...}}"
+    },
+    "fehlendEntschuldigt{}": {
+      "snippet": "fehlendEntschuldigt{${1:name1,name2,...}}"
+    },
+    "fehlendUnentschuldigt{}": {
+      "snippet": "fehlendUnentschuldigt{${1:name1,name2,...}}"
+    },
+    "zusatztopic{}": {
+      "snippet": "zusatztopic{${1:title}}"
+    },
+    "zusatztopic[]{}": {
+      "snippet": "zusatztopic[${2:short title}]{${1:title}}"
+    },
+    "neueSpalte": {},
+    "neueSpalte[]": {
+      "snippet": "neueSpalte[${1:title}]"
+    },
+    "neueSpalte[][]": {
+      "snippet": "neueSpalte[${1:title}][${2:number}]"
+    },
+    "aufgabe{}{}": {
+      "snippet": "aufgabe{${1:*who}}{${2:what}}"
+    },
+    "aufgabe{}[]{}": {
+      "snippet": "aufgabe{${1:*who}}[${2:when}]{${3:what}}"
+    },
+    "aufgabe[]{}{}": {
+      "snippet": "aufgabe[${3:done}]{${1:*who}}{${2:what}}"
+    },
+    "aufgabe[]{}[]{}": {
+      "snippet": "aufgabe[${3:done}]{${1:*who}}[${4:when}]{${2:what}}"
+    },
+    "aufgabenliste": {},
+    "aufgabenliste[]": {
+      "snippet": "aufgabenliste[${1:file}]"
+    },
+    "termin{}{}": {
+      "snippet": "termin{${1:when}}{${2:what}}"
+    },
+    "termin{}{}[]": {
+      "snippet": "termin{${1:when}}{${2:what}}[${3:long}]"
+    },
+    "termin{}[]{}": {
+      "snippet": "termin{${1:when}}[${2:time}]{${3:what}}"
+    },
+    "termin{}[]{}[]": {
+      "snippet": "termin{${1:when}}[${2:time}]{${3:what}}[${4:long}]"
+    },
+    "termin[]{}{}": {
+      "snippet": "termin[${3:cal}]{${1:when}}{${2:what}}"
+    },
+    "termin[]{}{}[]": {
+      "snippet": "termin[${3:cal}]{${1:when}}{${2:what}}[${4:long}]"
+    },
+    "termin[]{}[]{}": {
+      "snippet": "termin[${3:cal}]{${1:when}}[${4:time}]{${2:what}}"
+    },
+    "termin[]{}[]{}[]": {
+      "snippet": "termin[${3:cal}]{${1:when}}[${4:time}]{${2:what}}[${5:long}]"
+    },
+    "abstimmung{}{}{}{}": {
+      "snippet": "abstimmung{${1:text}}{${2:yes}}{${3:no}}{${4:-}}"
+    },
+    "abstimmung{}{}{}{}[]": {
+      "snippet": "abstimmung{${1:text}}{${2:yes}}{${3:no}}{${4:-}}[${5:resolution}]"
+    },
+    "beschlussthema{}{}": {
+      "snippet": "beschlussthema{${1:label}}{${2:title}}"
+    },
+    "beschluss{}{}": {
+      "snippet": "beschluss{${1:ref}}{${2:text}}"
+    },
+    "beschluss{}{}[]": {
+      "snippet": "beschluss{${1:ref}}{${2:text}}[${3:longText}]"
+    },
+    "beschluss*{}": {
+      "snippet": "beschluss*{${1:text}}"
+    },
+    "beschluss*{}[]": {
+      "snippet": "beschluss*{${1:text}}[${2:longText}]"
+    },
+    "beschlussliste": {},
+    "ergebnis": {},
+    "meinung{}{}": {
+      "snippet": "meinung{${1:who}}{${2:what}}"
+    },
+    "geheim{}": {
+      "snippet": "geheim{${1:text}}"
+    },
+    "anhang{}{}": {
+      "snippet": "anhang{${1:title}}{${2:pages}}"
+    },
+    "anhang[]{}{}": {
+      "snippet": "anhang[${3:label}]{${1:title}}{${2:pages}}"
+    },
+    "anhangsliste": {},
+    "nachtrag{}": {
+      "snippet": "nachtrag{${1:text}}"
+    },
+    "notulenkop": {},
+    "extranotulen{}": {
+      "snippet": "extranotulen{${1:description}}"
+    },
+    "extranotulen[]{}": {
+      "snippet": "extranotulen[${2:pages}]{${1:description}}"
+    },
+    "ondertitel{}": {
+      "snippet": "ondertitel{${1:text}}"
+    },
+    "voorzitter{}": {
+      "snippet": "voorzitter{${1:name}}"
+    },
+    "notulist{}": {
+      "snippet": "notulist{${1:name}}"
+    },
+    "deelnemer{}": {
+      "snippet": "deelnemer{${1:name1,name2,...}}"
+    },
+    "gast{}": {
+      "snippet": "gast{${1:name1,name2,...}}"
+    },
+    "bijeenkomstdatum{}": {
+      "snippet": "bijeenkomstdatum{${1:date}}"
+    },
+    "beginbijeenkomst{}": {
+      "snippet": "beginbijeenkomst{${1:time}}"
+    },
+    "eindbijeenkomst{}": {
+      "snippet": "eindbijeenkomst{${1:time}}"
+    },
+    "locatie{}": {
+      "snippet": "locatie{${1:location}}"
+    },
+    "afwezig[]{}": {
+      "snippet": "afwezig[${2:no excuse name}]{${1:excused name1,excused name2,...}}"
+    },
+    "afwezigBericht{}": {
+      "snippet": "afwezigBericht{${1:name1,name2,...}}"
+    },
+    "afwezigZonderBericht{}": {
+      "snippet": "afwezigZonderBericht{${1:name1,name2,...}}"
+    },
+    "extrapunt{}": {
+      "snippet": "extrapunt{${1:title}}"
+    },
+    "extrapunt[]{}": {
+      "snippet": "extrapunt[${2:short title}]{${1:title}}"
+    },
+    "nieuweKolom": {},
+    "nieuweKolom[]": {
+      "snippet": "nieuweKolom[${1:title}]"
+    },
+    "nieuweKolom[][]": {
+      "snippet": "nieuweKolom[${1:title}][${2:number}]"
+    },
+    "aktie{}{}": {
+      "snippet": "aktie{${1:*who}}{${2:what}}"
+    },
+    "aktie{}[]{}": {
+      "snippet": "aktie{${1:*who}}[${2:when}]{${3:what}}"
+    },
+    "aktie[]{}{}": {
+      "snippet": "aktie[${3:done}]{${1:*who}}{${2:what}}"
+    },
+    "aktie[]{}[]{}": {
+      "snippet": "aktie[${3:done}]{${1:*who}}[${4:when}]{${2:what}}"
+    },
+    "aktielijst": {},
+    "aktielijst[]": {
+      "snippet": "aktielijst[${1:file}]"
+    },
+    "termijn{}{}": {
+      "snippet": "termijn{${1:when}}{${2:what}}"
+    },
+    "termijn{}{}[]": {
+      "snippet": "termijn{${1:when}}{${2:what}}[${3:long}]"
+    },
+    "termijn{}[]{}": {
+      "snippet": "termijn{${1:when}}[${2:time}]{${3:what}}"
+    },
+    "termijn{}[]{}[]": {
+      "snippet": "termijn{${1:when}}[${2:time}]{${3:what}}[${4:long}]"
+    },
+    "termijn[]{}{}": {
+      "snippet": "termijn[${3:cal}]{${1:when}}{${2:what}}"
+    },
+    "termijn[]{}{}[]": {
+      "snippet": "termijn[${3:cal}]{${1:when}}{${2:what}}[${4:long}]"
+    },
+    "termijn[]{}[]{}": {
+      "snippet": "termijn[${3:cal}]{${1:when}}[${4:time}]{${2:what}}"
+    },
+    "termijn[]{}[]{}[]": {
+      "snippet": "termijn[${3:cal}]{${1:when}}[${4:time}]{${2:what}}[${5:long}]"
+    },
+    "stemming{}{}{}{}": {
+      "snippet": "stemming{${1:text}}{${2:yes}}{${3:no}}{${4:-}}"
+    },
+    "stemming{}{}{}{}[]": {
+      "snippet": "stemming{${1:text}}{${2:yes}}{${3:no}}{${4:-}}[${5:resolution}]"
+    },
+    "besluitonderwerp{}{}": {
+      "snippet": "besluitonderwerp{${1:label}}{${2:title}}"
+    },
+    "besluit{}{}": {
+      "snippet": "besluit{${1:ref}}{${2:text}}"
+    },
+    "besluit{}{}[]": {
+      "snippet": "besluit{${1:ref}}{${2:text}}[${3:longText}]"
+    },
+    "besluit*{}": {
+      "snippet": "besluit*{${1:text}}"
+    },
+    "besluit*{}[]": {
+      "snippet": "besluit*{${1:text}}[${2:longText}]"
+    },
+    "besluitenlijst": {},
+    "resultaat": {},
+    "bijlage{}{}": {
+      "snippet": "bijlage{${1:title}}{${2:pages}}"
+    },
+    "bijlage[]{}{}": {
+      "snippet": "bijlage[${3:label}]{${1:title}}{${2:pages}}"
+    },
+    "bijlagenlijst": {},
+    "naschrift{}": {
+      "snippet": "naschrift{${1:text}}"
+    },
+    "hyperloadedfalse": {},
+    "hyperloadedtrue": {},
+    "ifhyperloaded": {},
+    "minfiledate": {},
+    "minfileversion": {},
+    "minutestask{}{}{}{}{}{}{}": {
+      "snippet": "minutestask{${1:text}}{${2:section}}{${3:when}}{${4:who}}{${5:date}}{${6:file}}{${7:page}}"
+    },
+    "prepareCal": {},
+    "prepareCal[]": {
+      "snippet": "prepareCal[${1:file}]"
+    },
+    "responsiblelength": {},
+    "thecolumns": {},
+    "theHattachment": {},
+    "votelength": {}
+  },
+  "envs": {
+    "Minutes{}": {
+      "name": "Minutes",
+      "snippet": "{${1:title}}"
+    },
+    "Minutes[]{}": {
+      "name": "Minutes",
+      "snippet": "[${2:short title}]{${1:title}}"
+    },
+    "Vote": {},
+    "Argumentation": {},
+    "Opinions": {},
+    "Secret": {},
+    "Postscript": {},
+    "Protokoll{}": {
+      "name": "Protokoll",
+      "snippet": "{${1:title}}"
+    },
+    "Protokoll[]{}": {
+      "name": "Protokoll",
+      "snippet": "[${2:short title}]{${1:title}}"
+    },
+    "Abstimmung": {},
+    "Meinungen": {},
+    "Geheim": {},
+    "Nachtrag": {},
+    "Notulen{}": {
+      "name": "Notulen",
+      "snippet": "{${1:title}}"
+    },
+    "Notulen[]{}": {
+      "name": "Notulen",
+      "snippet": "[${2:short title}]{${1:title}}"
+    },
+    "Stemming": {},
+    "Naschrift": {}
+  },
+  "options": [
+    "ListTitle",
+    "TableTitle",
+    "OneColumn",
+    "TwoColumn",
+    "CreateCld",
+    "8+3",
+    "Fileinfo",
+    "Secret",
+    "ASCII"
+  ],
+  "keyvals": [
+    [
+      "columns=${1:number}",
+      "header=",
+      "contents",
+      "vote="
+    ]
+  ]
+}

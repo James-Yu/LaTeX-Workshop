@@ -1,0 +1,263 @@
+{
+  "includes": {
+    "skak": [],
+    "xifthen": [],
+    "etoolbox": [],
+    "chessboard": []
+  },
+  "macros": {
+    "newchessgame": {},
+    "newchessgame[]": {
+      "snippet": "newchessgame[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "resumechessgame[]": {
+      "snippet": "resumechessgame[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "xskaknewpgninfo{}": {
+      "snippet": "xskaknewpgninfo{${1:keyname}}"
+    },
+    "xskaknewpgninfo[]{}": {
+      "snippet": "xskaknewpgninfo[${2:default}]{${1:keyname}}"
+    },
+    "xskakgetgame{}": {
+      "snippet": "xskakgetgame{${1:type}}"
+    },
+    "xskakget{}": {
+      "snippet": "xskakget{${1:type}}"
+    },
+    "xskakcomment{}": {
+      "snippet": "xskakcomment{${1:text}}"
+    },
+    "xskakexportgames": {},
+    "xskakexportgames[]": {
+      "snippet": "xskakexportgames[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "xskakendgamedata": {},
+    "xskakcurrentgameid": {},
+    "xskakset{}": {
+      "snippet": "xskakset{${1:options}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "xskaktestmoveid{}{}": {
+      "snippet": "xskaktestmoveid{${1:movenr}}{${2:player}}"
+    },
+    "xskakloop{}": {
+      "snippet": "xskakloop{${1:code}}"
+    },
+    "xskakloop[]{}": {
+      "snippet": "xskakloop[${2:options}]{${1:code}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "xskakenpassanttext": {},
+    "mainline[]{}": {
+      "snippet": "mainline[${2:option}]{${1:moves}}"
+    },
+    "variation[]{}": {
+      "snippet": "variation[${2:option}]{${1:moves}}"
+    },
+    "xskaknewstyleitem{}": {
+      "snippet": "xskaknewstyleitem{${1:item}}"
+    },
+    "xskaknewstyleitem[]{}": {
+      "snippet": "xskaknewstyleitem[${2:options}]{${1:item}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "xskaknewstyle{}": {
+      "snippet": "xskaknewstyle{${1:style}}"
+    },
+    "xskaknewstyle[]{}": {
+      "snippet": "xskaknewstyle[${2:options}]{${1:style}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "xskakaddtostyle{}": {
+      "snippet": "xskakaddtostyle{${1:style}}"
+    },
+    "xskakaddtostyle[]{}": {
+      "snippet": "xskakaddtostyle[${2:options}]{${1:style}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "printchessgame": {},
+    "printchessgame[]": {
+      "snippet": "printchessgame[${1:options}]",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "chessdiagramname": {},
+    "xskakaddtoid": {},
+    "ifxskakboolcapture": {},
+    "ifxskakboolcastling": {},
+    "ifxskakboolcheck": {},
+    "ifxskakboolcomment": {},
+    "ifxskakboolenpassant": {},
+    "ifxskakboollongcastling": {},
+    "ifxskakboolmate": {},
+    "ifxskakboolnag": {},
+    "ifxskakboolpromotion": {},
+    "ifxskakboolvar": {},
+    "ifxskakpdfmatch": {},
+    "skaklongmoves": {},
+    "variationmovemode": {},
+    "xskakboolcapturefalse": {},
+    "xskakboolcapturetrue": {},
+    "xskakboolcastlingfalse": {},
+    "xskakboolcastlingtrue": {},
+    "xskakboolcheckfalse": {},
+    "xskakboolchecktrue": {},
+    "xskakboolcommentfalse": {},
+    "xskakboolcommenttrue": {},
+    "xskakboolenpassantfalse": {},
+    "xskakboolenpassanttrue": {},
+    "xskakboollongcastlingfalse": {},
+    "xskakboollongcastlingtrue": {},
+    "xskakboolmatefalse": {},
+    "xskakboolmatetrue": {},
+    "xskakboolnagfalse": {},
+    "xskakboolnagtrue": {},
+    "xskakboolpromotionfalse": {},
+    "xskakboolpromotiontrue": {},
+    "xskakboolvarfalse": {},
+    "xskakboolvartrue": {},
+    "xskakmovehyphen": {},
+    "xskakpdfmatchfalse": {},
+    "xskakpdfmatchtrue": {}
+  },
+  "envs": {},
+  "options": [
+    "nopdfmatch"
+  ],
+  "keyvals": [
+    [
+      "id",
+      "id=${1:GameID}",
+      "movenr=${1:number}",
+      "player=",
+      "moveid=${1:⟨number⟩⟨w or b⟩}",
+      "newvar=${1:GameID}",
+      "refid=${1:tag}",
+      "refpastmoveid=${1:tag}",
+      "refpastmovenr=${1:tag}",
+      "refpastplayer=${1:tag}",
+      "refnextmoveid=${1:tag}",
+      "refnextmovenr=${1:tag}",
+      "refnextplayer=${1:tag}",
+      "refpast=${1:tag}",
+      "refnext=${1:tag}",
+      "reffen=${1:tag}",
+      "reftag=${1:tag}",
+      "%xskakkey",
+      "result=${1:result}",
+      "white=${1:name}",
+      "black=${1:name}",
+      "whiteelo=${1:rating}",
+      "blackelo=${1:rating}",
+      "site=${1:site}",
+      "date=${1:date}",
+      "event=${1:event name}",
+      "round=${1:round}"
+    ],
+    [
+      "id",
+      "id=${1:GameID}",
+      "movenr=${1:number}",
+      "player=",
+      "moveid=${1:⟨number⟩⟨w or b⟩}",
+      "newvar=${1:GameID}",
+      "refid=${1:tag}",
+      "refpastmoveid=${1:tag}",
+      "refpastmovenr=${1:tag}",
+      "refpastplayer=${1:tag}",
+      "refnextmoveid=${1:tag}",
+      "refnextmovenr=${1:tag}",
+      "refnextplayer=${1:tag}",
+      "refpast=${1:tag}",
+      "refnext=${1:tag}",
+      "reffen=${1:tag}",
+      "reftag=${1:tag}",
+      "%xskakkey"
+    ],
+    [
+      "file=",
+      "games={${1:list of games}}"
+    ],
+    [
+      "stepmoveid=${1:number}",
+      "lastmoveid=${1:GameID}",
+      "tag=${1:name}",
+      "defaultid=${1:GameID}",
+      "defaultresult=${1:result}",
+      "defaultwhite=${1:name}",
+      "defaultblack=${1:name}",
+      "defaultwhiteelo=${1:rating}",
+      "defaultblackelo=${1:rating}",
+      "defaultsite=${1:site}",
+      "defaultdate=${1:date}",
+      "defaultevent=${1:event name}",
+      "defaultround=${1:round}",
+      "defaultmovenr=${1:number}",
+      "defaultplayer=",
+      "defaultmoveid=${1:⟨number⟩⟨w or b⟩}",
+      "defaultfen=${1:FEN}",
+      "style=${1:style name}",
+      "gstyle=${1:style name}",
+      "level=${1:number}",
+      "glevel=${1:number}",
+      "invar",
+      "ginvar",
+      "outvar",
+      "goutvar"
+    ],
+    [
+      "id=${1:GameID}",
+      "initmovenr=${1:number}",
+      "initplayer=",
+      "initmoveid=${1:⟨number⟩⟨w or b⟩}",
+      "stopmovenr=${1:number}",
+      "stopplayer=",
+      "stopmoveid=${1:⟨number⟩⟨w or b⟩}",
+      "step=${1:number}",
+      "showlast"
+    ],
+    [
+      "opencommands=${1:cmds}",
+      "closecommands=${1:cmds}",
+      "beforenumber=${1:cmds}",
+      "whiteopen=${1:cmds}",
+      "blackopen=${1:cmds}",
+      "beforewhite=${1:cmds}",
+      "beforeblack=${1:cmds}",
+      "afterwhite=${1:cmds}",
+      "afterblack=${1:cmds}",
+      "beforeNAG=${1:cmds}",
+      "beforecomment=${1:cmds}",
+      "template=${1:item}"
+    ],
+    [
+      "level=${1:number}",
+      "styleitem=${1:item}",
+      "font=${1:cmds}",
+      "xfont=${1:cmds}"
+    ],
+    [
+      "id=${1:GameID}",
+      "refid=${1:tag}",
+      "initmovenr=${1:number}",
+      "initplayer=",
+      "initmoveid=${1:⟨number⟩⟨w or b⟩}",
+      "stopmovenr=${1:number}",
+      "stopplayer=",
+      "stopmoveid=${1:⟨number⟩⟨w or b⟩}",
+      "reftag=${1:tag}"
+    ]
+  ]
+}

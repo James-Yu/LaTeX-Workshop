@@ -1,0 +1,560 @@
+{
+  "includes": {
+    "luatex": [],
+    "iftex": [],
+    "luatex85": [],
+    "pdftexcmds": [],
+    "etoolbox": [],
+    "xifthen": [],
+    "xstring": [],
+    "fp": [],
+    "keyval": [],
+    "silence": [],
+    "textpos": [],
+    "calc": [],
+    "atbegshi": [],
+    "letltxmacro": [],
+    "noindentafter": [],
+    "changepage": [],
+    "magaz": [],
+    "xcolor": [],
+    "adjustbox": [],
+    "eso-pic": [],
+    "pdfpages": [],
+    "fontspec": [],
+    "unicode-math": [],
+    "polyglossia": [],
+    "lipsum": [],
+    "microtype": [],
+    "fancyhdr": [],
+    "luacode": [],
+    "wrapfig": [],
+    "hyperref": []
+  },
+  "macros": {
+    "thepdfminorversion": {},
+    "gsetlength{}{}": {
+      "snippet": "gsetlength{${1:cmd}}{${2:length}}"
+    },
+    "ifdraftdoc": {},
+    "draftdoctrue": {},
+    "draftdocfalse": {},
+    "ifmsdoc": {},
+    "msdoctrue": {},
+    "msdocfalse": {},
+    "thesandboxcount": {},
+    "testsuiteoops{}": {
+      "snippet": "testsuiteoops{${1:arg}}"
+    },
+    "mustbelibertinus": {},
+    "mustbelmodern": {},
+    "SetTitle{}": {
+      "snippet": "SetTitle{${1:title}}"
+    },
+    "theTitle": {},
+    "thetitle": {},
+    "SetAuthor{}": {
+      "snippet": "SetAuthor{${1:author}}"
+    },
+    "theAuthor": {},
+    "theauthor": {},
+    "SetSubtitle{}": {
+      "snippet": "SetSubtitle{${1:subtitle}}"
+    },
+    "subtitle{}": {
+      "snippet": "subtitle{${1:subtitle}}"
+    },
+    "theSubtitle": {},
+    "thesubtitle": {},
+    "SetApplication{}": {
+      "snippet": "SetApplication{${1:text}}"
+    },
+    "SetProducer{}": {
+      "snippet": "SetProducer{${1:text}}"
+    },
+    "SetPDFX{}": {
+      "snippet": "SetPDFX{${1:compliance standard}}"
+    },
+    "SetPDFX[]{}": {
+      "snippet": "SetPDFX[${2:ouput intent}]{${1:compliance standard}}"
+    },
+    "SetTrimSize{}{}": {
+      "snippet": "SetTrimSize{${1:width}}{${2:height}}"
+    },
+    "SetMargins{}{}{}{}": {
+      "snippet": "SetMargins{${1:top}}{${2:outer}}{${3:bottom}}{${4:inner}}"
+    },
+    "SetMargin{}{}{}{}": {
+      "snippet": "SetMargin{${1:top}}{${2:outer}}{${3:bottom}}{${4:inner}}"
+    },
+    "SetUnsafeZone{}{}{}{}": {
+      "snippet": "SetUnsafeZone{${1:top}}{${2:outer}}{${3:bottom}}{${4:inner}}"
+    },
+    "SetMediaSize{}{}": {
+      "snippet": "SetMediaSize{${1:width}}{${2:height}}"
+    },
+    "SetLinesPerPage{}": {
+      "snippet": "SetLinesPerPage{${1:integer}}"
+    },
+    "SetFontSize{}": {
+      "snippet": "SetFontSize{${1:length}}"
+    },
+    "ifWithinFrontmatter": {},
+    "WithinFrontmattertrue": {},
+    "WithinFrontmatterfalse": {},
+    "ifWithinMainmatter": {},
+    "WithinMainmattertrue": {},
+    "WithinMainmatterfalse": {},
+    "mainmatter": {},
+    "backmatter": {},
+    "HUGE": {},
+    "frontmatter": {},
+    "CreateFontFeature{}{}": {
+      "snippet": "CreateFontFeature{${1:code}}{${2:substitutions}}"
+    },
+    "SetChapterFont{}": {
+      "snippet": "SetChapterFont{${1:font}}"
+    },
+    "SetChapterFont[]{}": {
+      "snippet": "SetChapterFont[${2:features}]{${1:font}}"
+    },
+    "SetDecoFont{}": {
+      "snippet": "SetDecoFont{${1:font}}"
+    },
+    "SetDecoFont[]{}": {
+      "snippet": "SetDecoFont[${2:features}]{${1:font}}"
+    },
+    "SetHeadFont{}": {
+      "snippet": "SetHeadFont{${1:font}}"
+    },
+    "SetHeadFont[]{}": {
+      "snippet": "SetHeadFont[${2:features}]{${1:font}}"
+    },
+    "SetMasterFont{}": {
+      "snippet": "SetMasterFont{${1:font}}"
+    },
+    "SetMasterFont[]{}": {
+      "snippet": "SetMasterFont[${2:features}]{${1:font}}"
+    },
+    "SetParentFont{}": {
+      "snippet": "SetParentFont{${1:font}}"
+    },
+    "SetParentFont[]{}": {
+      "snippet": "SetParentFont[${2:features}]{${1:font}}"
+    },
+    "SetSubchFont{}": {
+      "snippet": "SetSubchFont{${1:font}}"
+    },
+    "SetSubchFont[]{}": {
+      "snippet": "SetSubchFont[${2:features}]{${1:font}}"
+    },
+    "NewFontFamily{}{}": {
+      "snippet": "NewFontFamily{${1:cmd}}{${2:font family}}"
+    },
+    "NewFontFamily{}[]{}": {
+      "snippet": "NewFontFamily{${1:cmd}}[${2:features}]{${3:font}}"
+    },
+    "NewFontFace{}{}": {
+      "snippet": "NewFontFace{${1:cmd}}{${2:font}}"
+    },
+    "SetSansFont{}": {
+      "snippet": "SetSansFont{${1:font}}"
+    },
+    "SetSansFont[]{}": {
+      "snippet": "SetSansFont[${2:features}]{${1:font}}"
+    },
+    "SetMonoFont{}": {
+      "snippet": "SetMonoFont{${1:font}}"
+    },
+    "SetMonoFont[]{}": {
+      "snippet": "SetMonoFont[${2:features}]{${1:font}}"
+    },
+    "SetMathFont{}": {
+      "snippet": "SetMathFont{${1:font}}"
+    },
+    "SetMathFont[]{}": {
+      "snippet": "SetMathFont[${2:features}]{${1:font}}"
+    },
+    "AddFontFeatures{}": {
+      "snippet": "AddFontFeatures{${1:features}}"
+    },
+    "AddFontFeature{}": {
+      "snippet": "AddFontFeature{${1:features}}"
+    },
+    "SetDropCapColor{}": {
+      "snippet": "SetDropCapColor{${1:color}}"
+    },
+    "SetDropCapColor[]{}": {
+      "snippet": "SetDropCapColor[${2:color model}]{${1:color}}"
+    },
+    "SetDropCapFont{}": {
+      "snippet": "SetDropCapFont{${1:font}}"
+    },
+    "mainfont": {},
+    "parentfontfeatures": {},
+    "parentfontname": {},
+    "smcp{}": {
+      "snippet": "smcp{${1:text}}"
+    },
+    "theNDCDefaultLines": {},
+    "theNDCDefaultDepth": {},
+    "NDCDefaultVoffset": {},
+    "NDCDefaultHoffset": {},
+    "NDCDefaultScale": {},
+    "NDCDefaultBloat": {},
+    "NDCDefaultGap": {},
+    "NDCboxwidth": {},
+    "NDCboxheight": {},
+    "NDCboxdepth": {},
+    "dropcap{}": {
+      "snippet": "dropcap{${1:letter or image}}"
+    },
+    "dropcap[]{}": {
+      "snippet": "dropcap[${2:options}]{${1:letter or image}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "dropcap*{}": {
+      "snippet": "dropcap*{${1:letter or image}}"
+    },
+    "dropcap*[]{}": {
+      "snippet": "dropcap*[${2:options}]{${1:letter or image}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "straightquote": {},
+    "straightdblquote": {},
+    "midcase{}": {
+      "snippet": "midcase{${1:text}}"
+    },
+    "decoglyph{}": {
+      "snippet": "decoglyph{${1:char number}}"
+    },
+    "memo{}": {
+      "snippet": "memo{${1:arg}}"
+    },
+    "stake": {},
+    "allsmcp{}": {
+      "snippet": "allsmcp{${1:text}}"
+    },
+    "oldscshape": {},
+    "flexbox{}": {
+      "snippet": "flexbox{${1:contents}}"
+    },
+    "flexbox[]{}": {
+      "snippet": "flexbox[${2:width}]{${1:contents}}"
+    },
+    "bigemdash": {},
+    "bigemdash[]": {
+      "snippet": "bigemdash[${1:yoffset,thickness}]"
+    },
+    "charscale{}": {
+      "snippet": "charscale{${1:text}}"
+    },
+    "charscale[]{}": {
+      "snippet": "charscale[${2:scale,hoffset,voffset}]{${1:text}}"
+    },
+    "charscale*{}": {
+      "snippet": "charscale*{${1:text}}"
+    },
+    "charscale*[]{}": {
+      "snippet": "charscale*[${2:scale,hoffset,voffset}]{${1:text}}"
+    },
+    "TotalYpos": {},
+    "PosTolerance": {},
+    "getParapos": {},
+    "CurrentParapos": {},
+    "ParaHowdown": {},
+    "ParaLinesdown": {},
+    "ParaResidual": {},
+    "ParaComplain": {},
+    "ParaDeficit": {},
+    "tocitem{}{}": {
+      "snippet": "tocitem{${1:description}}{${2:page number}}"
+    },
+    "tocitem[]{}{}": {
+      "snippet": "tocitem[${3:chapter number}]{${1:description}}{${2:page number}}"
+    },
+    "tocitem*{}{}": {
+      "snippet": "tocitem*{${1:description}}{${2:page number}}"
+    },
+    "tocitem*[]{}{}": {
+      "snippet": "tocitem*[${3:chapter number}]{${1:description}}{${2:page number}}"
+    },
+    "hangleft{}": {
+      "snippet": "hangleft{${1:contents}}"
+    },
+    "showlength{}{}": {
+      "snippet": "showlength{${1:length}}{${2:units}}"
+    },
+    "showlength[]{}{}": {
+      "snippet": "showlength[${3:decimal places}]{${1:length}}{${2:units}}"
+    },
+    "lnum{}": {
+      "snippet": "lnum{${1:numbers}}"
+    },
+    "yadacurrentcount": {},
+    "yadaendcount": {},
+    "novelyadayada": {},
+    "novelyadayada[]": {
+      "snippet": "novelyadayada[${1:integer}]"
+    },
+    "novelyadayada*": {},
+    "novelyadayada*[]": {
+      "snippet": "novelyadayada*[${1:integer}]"
+    },
+    "sidebyside{}{}": {
+      "snippet": "sidebyside{${1:content1}}{${2:content2}}"
+    },
+    "sidebyside[]{}{}": {
+      "snippet": "sidebyside[${3:a,b,c,d}]{${1:content1}}{${2:content2}}"
+    },
+    "myparindent{}": {
+      "snippet": "myparindent{${1:length}}"
+    },
+    "nfs": {},
+    "nbs": {},
+    "normalparindent": {},
+    "normalxheight": {},
+    "normalXheight": {},
+    "normalscxheight": {},
+    "normalAringheight": {},
+    "normaldescender": {},
+    "forceindent": {},
+    "backindent": {},
+    "SetHeadFootStyle{}": {
+      "snippet": "SetHeadFootStyle{${1:style number}}"
+    },
+    "SetHeadStyle": {},
+    "SetHeadJump{}": {
+      "snippet": "SetHeadJump{${1:number}}"
+    },
+    "SetFootJump{}": {
+      "snippet": "SetFootJump{${1:number}}"
+    },
+    "SetLooseHead{}": {
+      "snippet": "SetLooseHead{${1:number}}"
+    },
+    "SetEmblems{}{}": {
+      "snippet": "SetEmblems{${1:verso}}{${2:recto}}"
+    },
+    "SetEmblem": {},
+    "SetPageNumberStyle{}": {
+      "snippet": "SetPageNumberStyle{${1:code}}"
+    },
+    "pagenumberstyle": {},
+    "dropfolionow": {},
+    "NewVersoHeadText{}": {
+      "snippet": "NewVersoHeadText{${1:text}}"
+    },
+    "versoheadtext": {},
+    "SetVersoHeadText{}": {
+      "snippet": "SetVersoHeadText{${1:text}}"
+    },
+    "RenewVersoHeadText{}": {
+      "snippet": "RenewVersoHeadText{${1:text}}"
+    },
+    "NewRectoHeadText{}": {
+      "snippet": "NewRectoHeadText{${1:text}}"
+    },
+    "rectoheadtext": {},
+    "SetRectoHeadText{}": {
+      "snippet": "SetRectoHeadText{${1:text}}"
+    },
+    "RenewRectoHeadText{}": {
+      "snippet": "RenewRectoHeadText{${1:text}}"
+    },
+    "SetChapterStartStyle{}": {
+      "snippet": "SetChapterStartStyle{${1:style}}"
+    },
+    "SetChapterStart": {},
+    "SetChapterStartHeight{}": {
+      "snippet": "SetChapterStartHeight{${1:lines}}"
+    },
+    "SetScenebreakIndent{}": {
+      "snippet": "SetScenebreakIndent{${1:true or false}}"
+    },
+    "scenebreak": {},
+    "sceneline": {},
+    "scenestars": {},
+    "getBreakpos{}": {
+      "snippet": "getBreakpos{${1:arg}}"
+    },
+    "CurrentBreakpos": {},
+    "FirstLine*{}": {
+      "snippet": "FirstLine*{${1:text}}"
+    },
+    "oldFirstLine{}": {
+      "snippet": "oldFirstLine{${1:text}}"
+    },
+    "FirstLineFoo{}": {
+      "snippet": "FirstLineFoo{${1:text}}"
+    },
+    "thenovelcn": {},
+    "ChapterTitle{}": {
+      "snippet": "ChapterTitle{${1:title}}"
+    },
+    "ChapterTitle[]{}": {
+      "snippet": "ChapterTitle[${2:alignment}]{${1:title}}"
+    },
+    "ChapterSubtitle{}": {
+      "snippet": "ChapterSubtitle{${1:text}}"
+    },
+    "ChapterSubtitle[]{}": {
+      "snippet": "ChapterSubtitle[${2:alignment}]{${1:text}}"
+    },
+    "ChapterDeco{}": {
+      "snippet": "ChapterDeco{${1:text}}"
+    },
+    "ChapterDeco[]{}": {
+      "snippet": "ChapterDeco[${2:alignment scale}]{${1:text}}"
+    },
+    "QuickChapter{}": {
+      "snippet": "QuickChapter{${1:title}}"
+    },
+    "QuickChapter[]{}": {
+      "snippet": "QuickChapter[${2:line length}]{${1:title}}"
+    },
+    "cleartorecto": {},
+    "cleartoend": {},
+    "thisline": {},
+    "IndentAfterScenebreak": {},
+    "PDFHasDisallowedColorspaceTF{}": {
+      "snippet": "PDFHasDisallowedColorspaceTF{${1:string}}"
+    },
+    "PDFVerifyInfoFieldTF{}{}{}": {
+      "snippet": "PDFVerifyInfoFieldTF{${1:string1}}{${2:string2}}{${3:string3}}"
+    },
+    "ScriptCoverImage{}": {
+      "snippet": "ScriptCoverImage{${1:imagefile}}"
+    },
+    "imagewidth": {},
+    "imageheight": {},
+    "imagehoffset": {},
+    "imagevoffset": {},
+    "imagestarred": {},
+    "imagefilename": {},
+    "InlineImage{}": {
+      "snippet": "InlineImage{${1:imagefile}}"
+    },
+    "InlineImage[]{}": {
+      "snippet": "InlineImage[${2:hoffset,voffset}]{${1:imagefile}}"
+    },
+    "InlineImage*{}": {
+      "snippet": "InlineImage*{${1:imagefile}}"
+    },
+    "InlineImage*[]{}": {
+      "snippet": "InlineImage*[${2:hoffset,voffset}]{${1:imagefile}}"
+    },
+    "floatlocation{}{}": {
+      "snippet": "floatlocation{${1:float}}{${2:pos}}"
+    },
+    "FloatImage{}": {
+      "snippet": "FloatImage{${1:imagefile}}"
+    },
+    "FloatImage[]{}": {
+      "snippet": "FloatImage[${2:pos,xoffset,yoffset}]{${1:imagefile}}"
+    },
+    "WrapImage{}": {
+      "snippet": "WrapImage{${1:imagefile}}"
+    },
+    "WrapImage[]{}": {
+      "snippet": "WrapImage[${2:position}]{${1:imagefile}}"
+    },
+    "wrapimage": {},
+    "novelgetbytes{}{}{}": {
+      "snippet": "novelgetbytes{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "novelbytesare": {},
+    "novelpngbitdepth{}": {
+      "snippet": "novelpngbitdepth{${1:arg}}"
+    },
+    "novelpngcolortype{}": {
+      "snippet": "novelpngcolortype{${1:arg}}"
+    },
+    "SetKnownGoodImages{}": {
+      "snippet": "SetKnownGoodImages{${1:imagefile list}}"
+    },
+    "sups{}": {
+      "snippet": "sups{${1:text}}"
+    },
+    "subs{}": {
+      "snippet": "subs{${1:text}}"
+    },
+    "realmarker": {},
+    "fakemarker": {},
+    "SetMarkerStyle{}": {
+      "snippet": "SetMarkerStyle{${1:astersk,dagger,number}}"
+    },
+    "SetMarkerStyle[]{}": {
+      "snippet": "SetMarkerStyle[${2:real,fake}]{${1:astersk,dagger,number}}"
+    },
+    "SetMarkers": {},
+    "endnote{}": {
+      "snippet": "endnote{${1:comment}}"
+    },
+    "endnotetext{}{}": {
+      "snippet": "endnotetext{${1:number}}{${2:text}}"
+    },
+    "Resetendnote": {},
+    "ResetFootnoteSymbol": {},
+    "ResetFootnote": {},
+    "nentext{}{}": {
+      "snippet": "nentext{${1:arg1}}{${2:arg2}}"
+    }
+  },
+  "envs": {
+    "labeling": {},
+    "labeling*": {},
+    "parascale": {},
+    "parascale[]": {
+      "name": "parascale",
+      "snippet": "[${1:scale}]"
+    },
+    "toc{}": {
+      "name": "toc",
+      "snippet": "{${1:extra margins}}"
+    },
+    "toc[]{}": {
+      "name": "toc",
+      "snippet": "[${2:extra entry sep}]{${1:extra margins}}"
+    },
+    "legalese": {},
+    "ChapterStart": {},
+    "ChapterStart[]": {
+      "name": "ChapterStart",
+      "snippet": "[${1:lines}]"
+    },
+    "ChapterStart[][]": {
+      "name": "ChapterStart",
+      "snippet": "[${1:lines}][${2:style}]"
+    }
+  },
+  "options": [
+    "draft",
+    "sandbox",
+    "shademargins",
+    "cropmarks",
+    "cropview",
+    "closecrop",
+    "xml",
+    "coverart",
+    "mtoff",
+    "test",
+    "unblock",
+    "revert"
+  ],
+  "keyvals": [
+    [
+      "lines=${1:integer}",
+      "gap=",
+      "hoffset=",
+      "voffset=",
+      "ante={${1:text}}",
+      "ante*={${1:text}}",
+      "scale=${1:number}",
+      "bloat=${1:number}",
+      "depth=${1:integer}"
+    ]
+  ]
+}

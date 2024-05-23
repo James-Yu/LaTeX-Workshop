@@ -1,0 +1,44 @@
+{
+  "includes": {
+    "pstricks": [],
+    "pst-xkey": [],
+    "marginnote": []
+  },
+  "macros": {
+    "psbarcode{}{}{}": {
+      "snippet": "psbarcode{${1:text or filename}}{${2:PS options}}{${3:barcode type}}"
+    },
+    "psbarcode[]{}{}{}": {
+      "snippet": "psbarcode[${4:options}]{${1:text or filename}}{${2:PS options}}{${3:barcode type}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "QR{}": {
+      "snippet": "QR{${1:URL}}"
+    },
+    "QR<>{}": {
+      "snippet": "QR<${2:label}>{${1:URL}}"
+    },
+    "QR[]{}": {
+      "snippet": "QR[${2:scale}]{${1:URL}}"
+    },
+    "QR[]<>{}": {
+      "snippet": "QR[${2:scale}]<${3:label}>{${1:URL}}"
+    },
+    "PSTBarcodeLoaded": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "fontstyle=${1:font commands}",
+      "transx=${1:number}",
+      "transy=${1:number}",
+      "scalex=${1:factor}",
+      "scaley=${1:factor}",
+      "rotate=${1:degrees}",
+      "file",
+      "linecolor="
+    ]
+  ]
+}

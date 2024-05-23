@@ -1,0 +1,466 @@
+{
+  "includes": {
+    "keyval": []
+  },
+  "macros": {
+    "Verb[]{}": {
+      "snippet": "Verb[${2:options}]{${1:verbatimSymbol}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Verb": {
+      "snippet": "Verb|${1:code}|"
+    },
+    "Verb[]": {
+      "snippet": "Verb[${1:options}]|${2:code}|",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Verb*[]{}": {
+      "snippet": "Verb*[${2:options}]{${1:verbatimSymbol}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Verb*": {
+      "snippet": "Verb*|${1:code}|"
+    },
+    "Verb*[]": {
+      "snippet": "Verb*[${1:options}]|${2:code}|",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "VerbatimFootnotes": {},
+    "DefineShortVerb{}": {
+      "snippet": "DefineShortVerb{${1:definition}}"
+    },
+    "DefineShortVerb[]{}": {
+      "snippet": "DefineShortVerb[${2:options}]{${1:definition}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "UndefineShortVerb{}": {
+      "snippet": "UndefineShortVerb{${1:definition}}"
+    },
+    "fvset{}": {
+      "snippet": "fvset{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "DefineVerbatimEnvironment{}{}{}": {
+      "snippet": "DefineVerbatimEnvironment{${1:envname}}{${2:env type}}{${3:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "CustomVerbatimEnvironment{}{}{}": {
+      "snippet": "CustomVerbatimEnvironment{${1:envname}}{${2:env type}}{${3:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 2
+    },
+    "RecustomVerbatimEnvironment{}{}{}": {
+      "snippet": "RecustomVerbatimEnvironment{${1:envname}}{${2:env type}}{${3:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "CustomVerbatimCommand{}{}{}": {
+      "snippet": "CustomVerbatimCommand{${1:command}}{${2:cmd type}}{${3:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "RecustomVerbatimCommand{}{}{}": {
+      "snippet": "RecustomVerbatimCommand{${1:command}}{${2:cmd type}}{${3:options}}",
+      "keyvalindex": 2,
+      "keyvalpos": 2
+    },
+    "SaveVerb[]{}{}": {
+      "snippet": "SaveVerb[${3:options}]{${1:name}}{${2:verbatimSymbol}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "SaveVerb{}": {
+      "snippet": "SaveVerb{${1:name}}|${2:code}|"
+    },
+    "SaveVerb[]{}": {
+      "snippet": "SaveVerb[${2:options}]{${1:name}}|${3:code}|",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "SaveVerb*[]{}{}": {
+      "snippet": "SaveVerb*[${3:options}]{${1:name}}{${2:verbatimSymbol}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "SaveVerb*{}": {
+      "snippet": "SaveVerb*{${1:name}}|${2:code}|"
+    },
+    "SaveVerb*[]{}": {
+      "snippet": "SaveVerb*[${2:options}]{${1:name}}|${3:code}|",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "UseVerb{}": {
+      "snippet": "UseVerb{${1:name}}"
+    },
+    "UseVerb[]{}": {
+      "snippet": "UseVerb[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "UseVerb*{}": {
+      "snippet": "UseVerb*{${1:name}}"
+    },
+    "UseVerb*[]{}": {
+      "snippet": "UseVerb*[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "UseVerbatim{}": {
+      "snippet": "UseVerbatim{${1:name}}"
+    },
+    "UseVerbatim[]{}": {
+      "snippet": "UseVerbatim[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "UseVerbatim*{}": {
+      "snippet": "UseVerbatim*{${1:name}}"
+    },
+    "UseVerbatim*[]{}": {
+      "snippet": "UseVerbatim*[${2:options}]{${1:name}}"
+    },
+    "BUseVerbatim{}": {
+      "snippet": "BUseVerbatim{${1:name}}"
+    },
+    "BUseVerbatim[]{}": {
+      "snippet": "BUseVerbatim[${2:options}]{${1:name}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "BUseVerbatim*{}": {
+      "snippet": "BUseVerbatim*{${1:name}}"
+    },
+    "BUseVerbatim*[]{}": {
+      "snippet": "BUseVerbatim*[${2:options}]{${1:name}}"
+    },
+    "LUseVerbatim{}": {
+      "snippet": "LUseVerbatim{${1:name}}"
+    },
+    "LUseVerbatim[]{}": {
+      "snippet": "LUseVerbatim[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "LUseVerbatim*{}": {
+      "snippet": "LUseVerbatim*{${1:name}}"
+    },
+    "LUseVerbatim*[]{}": {
+      "snippet": "LUseVerbatim*[${2:options}]{${1:name}}"
+    },
+    "VerbatimInput{}": {
+      "snippet": "VerbatimInput{${1:file}}"
+    },
+    "VerbatimInput[]{}": {
+      "snippet": "VerbatimInput[${2:options}]{${1:file}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "VerbatimInput*{}": {
+      "snippet": "VerbatimInput*{${1:file}}"
+    },
+    "VerbatimInput*[]{}": {
+      "snippet": "VerbatimInput*[${2:options}]{${1:file}}"
+    },
+    "BVerbatimInput{}": {
+      "snippet": "BVerbatimInput{${1:file}}"
+    },
+    "BVerbatimInput[]{}": {
+      "snippet": "BVerbatimInput[${2:options}]{${1:file}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "BVerbatimInput*{}": {
+      "snippet": "BVerbatimInput*{${1:file}}"
+    },
+    "BVerbatimInput*[]{}": {
+      "snippet": "BVerbatimInput*[${2:options}]{${1:file}}"
+    },
+    "LVerbatimInput{}": {
+      "snippet": "LVerbatimInput{${1:file}}"
+    },
+    "LVerbatimInput[]{}": {
+      "snippet": "LVerbatimInput[${2:options}]{${1:file}}"
+    },
+    "LVerbatimInput*{}": {
+      "snippet": "LVerbatimInput*{${1:file}}"
+    },
+    "LVerbatimInput*[]{}": {
+      "snippet": "LVerbatimInput*[${2:options}]{${1:file}}"
+    },
+    "FancyVerbAfterSave": {},
+    "FancyVerbCodes": {},
+    "FancyVerbDefineActive": {},
+    "FancyVerbFileExtension": {},
+    "FancyVerbFillColor": {},
+    "FancyVerbFormatCom": {},
+    "FancyVerbFormatLine": {},
+    "FancyVerbGetLine": {},
+    "FancyVerbGetVerb": {},
+    "FancyVerbHFuzz": {},
+    "FancyVerbRuleColor": {},
+    "FancyVerbSpace": {},
+    "FancyVerbStartNum": {},
+    "FancyVerbStartString": {},
+    "FancyVerbStopNum": {},
+    "FancyVerbStopString": {},
+    "FancyVerbTab": {},
+    "FancyVerbTabSize": {},
+    "FancyVerbVspace": {},
+    "filedate": {},
+    "fileversion": {},
+    "myFont": {},
+    "pUseMVerb": {},
+    "SaveGVerb": {},
+    "SaveMVerb": {},
+    "theFancyVerbLine": {},
+    "UseMVerb": {},
+    "VerbatimEnvironment": {}
+  },
+  "envs": {
+    "Verbatim": {},
+    "Verbatim[]": {
+      "name": "Verbatim",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "Verbatim*": {},
+    "Verbatim*[]": {
+      "name": "Verbatim*",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "BVerbatim": {},
+    "BVerbatim[]": {
+      "name": "BVerbatim",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "BVerbatim*": {},
+    "BVerbatim*[]": {
+      "name": "BVerbatim*",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "LVerbatim": {},
+    "LVerbatim[]": {
+      "name": "LVerbatim",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "LVerbatim*": {},
+    "LVerbatim*[]": {
+      "name": "LVerbatim*",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "SaveVerbatim{}": {
+      "name": "SaveVerbatim",
+      "snippet": "{${1:name}}"
+    },
+    "SaveVerbatim[]{}": {
+      "name": "SaveVerbatim",
+      "snippet": "[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "VerbatimOut{}": {
+      "name": "VerbatimOut",
+      "snippet": "{${1:file name}}"
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "commentchar=${1:single char}",
+      "gobble=${1:integer}",
+      "formatcom=${1:commands}",
+      "formatcom*=${1:commands}",
+      "fontfamily=${1:family}",
+      "fontsize=${1:size macro}",
+      "fontshape=${1:shape}",
+      "fontseries=${1:series}",
+      "frame=",
+      "framerule=",
+      "framesep=",
+      "rulecolor=${1:color cmd}",
+      "fillcolor=${1:color cmd}",
+      "label=${1:label text}",
+      "labelposition=",
+      "numbers=",
+      "numbersep=",
+      "firstnumber=${1:auto|last|<integer>}",
+      "stepnumber=${1:integer}",
+      "numberblanklines",
+      "firstline=${1:integer}",
+      "lastline=${1:integer}",
+      "showspaces",
+      "showtabs",
+      "obeytabs",
+      "tabsize=${1:integer}",
+      "baselinestretch=${1:factor}",
+      "commandchars=${1:three chars}",
+      "xleftmargin=",
+      "xrightmargin=",
+      "resetmargins",
+      "hfuzz=",
+      "samepage",
+      "codes={${1:code}}",
+      "codes*={${1:code}}",
+      "defineactive={${1:code}}",
+      "defineactive*={${1:code}}",
+      "reflabel=",
+      "fileext=${1:extension}",
+      "vspace=",
+      "listparameters={${1:code}}"
+    ],
+    [
+      "aftersave={${1:code}}",
+      "commentchar=${1:single char}",
+      "gobble=${1:integer}",
+      "formatcom=${1:commands}",
+      "formatcom*=${1:commands}",
+      "fontfamily=${1:family}",
+      "fontsize=${1:size macro}",
+      "fontshape=${1:shape}",
+      "fontseries=${1:series}",
+      "frame=",
+      "framerule=",
+      "framesep=",
+      "rulecolor=${1:color cmd}",
+      "fillcolor=${1:color cmd}",
+      "label=${1:label text}",
+      "labelposition=",
+      "numbers=",
+      "numbersep=",
+      "firstnumber=${1:auto|last|<integer>}",
+      "stepnumber=${1:integer}",
+      "numberblanklines",
+      "firstline=${1:integer}",
+      "lastline=${1:integer}",
+      "showspaces",
+      "showtabs",
+      "obeytabs",
+      "tabsize=${1:integer}",
+      "baselinestretch=${1:factor}",
+      "commandchars=${1:three chars}",
+      "xleftmargin=",
+      "xrightmargin=",
+      "resetmargins",
+      "hfuzz=",
+      "samepage",
+      "codes={${1:code}}",
+      "codes*={${1:code}}",
+      "defineactive={${1:code}}",
+      "defineactive*={${1:code}}",
+      "reflabel=",
+      "fileext=${1:extension}",
+      "vspace=",
+      "listparameters={${1:code}}",
+      "boxwidth=",
+      "baseline="
+    ],
+    [
+      "commentchar=${1:single char}",
+      "gobble=${1:integer}",
+      "formatcom=${1:commands}",
+      "formatcom*=${1:commands}",
+      "fontfamily=${1:family}",
+      "fontsize=${1:size macro}",
+      "fontshape=${1:shape}",
+      "fontseries=${1:series}",
+      "frame=",
+      "framerule=",
+      "framesep=",
+      "rulecolor=${1:color cmd}",
+      "fillcolor=${1:color cmd}",
+      "label=${1:label text}",
+      "labelposition=",
+      "numbers=",
+      "numbersep=",
+      "firstnumber=${1:auto|last|<integer>}",
+      "stepnumber=${1:integer}",
+      "numberblanklines",
+      "firstline=${1:integer}",
+      "lastline=${1:integer}",
+      "showspaces",
+      "showtabs",
+      "obeytabs",
+      "tabsize=${1:integer}",
+      "baselinestretch=${1:factor}",
+      "commandchars=${1:three chars}",
+      "xleftmargin=",
+      "xrightmargin=",
+      "resetmargins",
+      "hfuzz=",
+      "samepage",
+      "codes={${1:code}}",
+      "codes*={${1:code}}",
+      "defineactive={${1:code}}",
+      "defineactive*={${1:code}}",
+      "reflabel=",
+      "fileext=${1:extension}",
+      "vspace=",
+      "listparameters={${1:code}}",
+      "boxwidth=",
+      "baseline="
+    ],
+    [
+      "aftersave={${1:code}}",
+      "commentchar=${1:single char}",
+      "gobble=${1:integer}",
+      "formatcom=${1:commands}",
+      "formatcom*=${1:commands}",
+      "fontfamily=${1:family}",
+      "fontsize=${1:size macro}",
+      "fontshape=${1:shape}",
+      "fontseries=${1:series}",
+      "frame=",
+      "framerule=",
+      "framesep=",
+      "rulecolor=${1:color cmd}",
+      "fillcolor=${1:color cmd}",
+      "label=${1:label text}",
+      "labelposition=",
+      "numbers=",
+      "numbersep=",
+      "firstnumber=${1:auto|last|<integer>}",
+      "stepnumber=${1:integer}",
+      "numberblanklines",
+      "firstline=${1:integer}",
+      "lastline=${1:integer}",
+      "showspaces",
+      "showtabs",
+      "obeytabs",
+      "tabsize=${1:integer}",
+      "baselinestretch=${1:factor}",
+      "commandchars=${1:three chars}",
+      "xleftmargin=",
+      "xrightmargin=",
+      "resetmargins",
+      "hfuzz=",
+      "samepage",
+      "codes={${1:code}}",
+      "codes*={${1:code}}",
+      "defineactive={${1:code}}",
+      "defineactive*={${1:code}}",
+      "reflabel=",
+      "fileext=${1:extension}",
+      "vspace=",
+      "listparameters={${1:code}}"
+    ]
+  ]
+}

@@ -1,0 +1,399 @@
+{
+  "includes": {
+    "iftex": [],
+    "varwidth": []
+  },
+  "macros": {
+    "twodias{}{}{}": {
+      "snippet": "twodias{${1:upper diac}}{${2:lower diac}}{${3:char}}"
+    },
+    "acm{}": {
+      "snippet": "acm{${1:arg}}"
+    },
+    "grm{}": {
+      "snippet": "grm{${1:arg}}"
+    },
+    "cim{}": {
+      "snippet": "cim{${1:arg}}"
+    },
+    "SetDiaOffset{}": {
+      "snippet": "SetDiaOffset{${1:length}}"
+    },
+    "twoacc[]": {
+      "snippet": "twoacc[${1:upper|lower}]"
+    },
+    "exampleno": {},
+    "exampleno*": {},
+    "covchapexsep": {},
+    "setexampleoptions{}": {
+      "snippet": "setexampleoptions{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "examplenumbersep": {},
+    "subexamplenumbersep": {},
+    "exampleind": {},
+    "expreamble{}": {
+      "snippet": "expreamble{${1:text}}"
+    },
+    "expostamble{}": {
+      "snippet": "expostamble{${1:text}}"
+    },
+    "subexpreamble{}": {
+      "snippet": "subexpreamble{${1:text}}"
+    },
+    "subexpostamble{}": {
+      "snippet": "subexpostamble{${1:text}}"
+    },
+    "covexnumber{}": {
+      "snippet": "covexnumber{${1:arg}}"
+    },
+    "covexnumberfn{}": {
+      "snippet": "covexnumberfn{${1:arg}}"
+    },
+    "covsubexnumber{}": {
+      "snippet": "covsubexnumber{${1:arg}}"
+    },
+    "covexamplefs": {},
+    "covexamplenofs": {},
+    "expreamblefs": {},
+    "subexpreamblefs": {},
+    "expostamblefs": {},
+    "subexpostamblefs": {},
+    "thecovfnex": {},
+    "pxref{}": {
+      "snippet": "pxref{${1:label}}"
+    },
+    "ownexcounterprep": {},
+    "digloss{}{}{}": {
+      "snippet": "digloss{${1:glossline1}}{${2:glossline2}}{${3:translation}}"
+    },
+    "digloss{}[]{}[]{}": {
+      "snippet": "digloss{${1:glossline1}}[${2:comment1}]{${3:glossline2}}[${4:comment2}]{${5:translation}}"
+    },
+    "digloss[]{}{}{}": {
+      "snippet": "digloss[${4:options}]{${1:glossline1}}{${2:glossline2}}{${3:translation}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "digloss[]{}[]{}[]{}": {
+      "snippet": "digloss[${4:options}]{${1:glossline1}}[${5:comment1}]{${2:glossline2}}[${6:comment2}]{${3:translation}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "trigloss{}{}{}{}": {
+      "snippet": "trigloss{${1:glossline1}}{${2:glossline2}}{${3:glossline3}}{${4:translation}}"
+    },
+    "trigloss{}[]{}[]{}[]{}": {
+      "snippet": "trigloss{${1:glossline1}}[${2:comment1}]{${3:glossline2}}[${4:comment2}]{${5:glossline3}}[${6:comment3}]{${7:translation}}"
+    },
+    "trigloss[]{}{}{}{}": {
+      "snippet": "trigloss[${5:options}]{${1:glossline1}}{${2:glossline2}}{${3:glossline3}}{${4:translation}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "trigloss[]{}[]{}[]{}[]{}": {
+      "snippet": "trigloss[${5:options}]{${1:glossline1}}[${6:comment1}]{${2:glossline2}}[${7:comment2}]{${3:glossline3}}[${8:comment3}]{${4:translation}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "setglossoptions{}": {
+      "snippet": "setglossoptions{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "glosswidth": {},
+    "glosssep": {},
+    "gll": {},
+    "glll": {},
+    "xgll": {},
+    "xglll": {},
+    "xgle": {},
+    "glt": {},
+    "gln": {},
+    "glot{}": {
+      "snippet": "glot{${1:translation}}"
+    },
+    "glot[]{}": {
+      "snippet": "glot[${2:judgment marker}]{${1:translation}}"
+    },
+    "glosspreamble{}": {
+      "snippet": "glosspreamble{${1:text}}"
+    },
+    "glend": {},
+    "glosslinetrans{}": {
+      "snippet": "glosslinetrans{${1:text}}"
+    },
+    "covenquote{}": {
+      "snippet": "covenquote{${1:text}}"
+    },
+    "glosslinepreamble": {},
+    "glosslinepostamble": {},
+    "psr{}{}": {
+      "snippet": "psr{${1:constituent}}{${2:sub-constituents}}"
+    },
+    "fs{}": {
+      "snippet": "fs{${1:contents}}"
+    },
+    "lfs{}{}": {
+      "snippet": "lfs{${1:label}}{${2:contents}}"
+    },
+    "drs{}{}": {
+      "snippet": "drs{${1:variables}}{${2:contents}}"
+    },
+    "sdrs{}{}{}": {
+      "snippet": "sdrs{${1:above-text}}{${2:variables}}{${3:contents}}"
+    },
+    "negdrs{}{}": {
+      "snippet": "negdrs{${1:variables}}{${2:contents}}"
+    },
+    "ifdrs{}{}{}{}": {
+      "snippet": "ifdrs{${1:variables1}}{${2:contents1}}{${3:variables2}}{${4:contents2}}"
+    },
+    "alifdrs{}{}{}{}": {
+      "snippet": "alifdrs{${1:variables1}}{${2:contents1}}{${3:variables2}}{${4:contents2}}"
+    },
+    "reflistindent": {},
+    "reflistitemsep": {},
+    "reflistparsep": {},
+    "sentence{}": {
+      "snippet": "sentence{${1:text}}"
+    },
+    "sentencefs": {},
+    "lexp{}": {
+      "snippet": "lexp{${1:word}}"
+    },
+    "lcon{}": {
+      "snippet": "lcon{${1:concept}}"
+    },
+    "lmean{}": {
+      "snippet": "lmean{${1:meaning}}"
+    },
+    "either{}{}": {
+      "snippet": "either{${1:top}}{${2:bottom}}"
+    },
+    "twoaccsep": {},
+    "bx": {},
+    "donewords": {},
+    "eachwordone": {},
+    "eachwordthree": {},
+    "eachwordtwo": {},
+    "ex": {},
+    "exfmtchangedfalse": {},
+    "exfmtchangedtrue": {},
+    "exfmtgchangedfalse": {},
+    "exfmtgchangedtrue": {},
+    "filedate": {},
+    "filename": {},
+    "fileversion": {},
+    "forceredeffalse": {},
+    "forceredeftrue": {},
+    "fsglpostamble": {},
+    "fsglpreamble": {},
+    "getwords": {},
+    "gline": {},
+    "glnx": {},
+    "glossglue": {},
+    "glosslineone": {},
+    "glosslinetwo": {},
+    "glosslinethree": {},
+    "glosspwidth": {},
+    "ifexfmtchanged": {},
+    "ifexfmtgchanged": {},
+    "IfExPreamble{}": {
+      "snippet": "IfExPreamble{${1:arg}}"
+    },
+    "ifforceredef": {},
+    "ifnoglossbreaks": {},
+    "ifnotdone": {},
+    "ifownexcounter": {},
+    "ifownfnexcounter": {},
+    "ifresetownfnexcounter": {},
+    "iftweaklayout": {},
+    "lastword{}{}{}": {
+      "snippet": "lastword{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "lineone": {},
+    "linethree": {},
+    "linetwo": {},
+    "more": {},
+    "noglossbreaksfalse": {},
+    "noglossbreakstrue": {},
+    "notdonefalse": {},
+    "notdonetrue": {},
+    "ownexcounterfalse": {},
+    "ownexcountertrue": {},
+    "ownfnexcounterfalse": {},
+    "ownfnexcountertrue": {},
+    "pline": {},
+    "RegisterExPreamble{}": {
+      "snippet": "RegisterExPreamble{${1:arg}}"
+    },
+    "resetownfnexcounterfalse": {},
+    "resetownfnexcountertrue": {},
+    "testdone": {},
+    "thecovex": {},
+    "theexplid": {},
+    "threesent": {},
+    "tweaklayoutfalse": {},
+    "tweaklayouttrue": {},
+    "twosent": {},
+    "wordone": {},
+    "wordthree": {},
+    "wordtwo": {},
+    "xdonewords": {},
+    "xgetwords": {},
+    "xthreesent": {},
+    "xtwosent": {}
+  },
+  "envs": {
+    "example": {},
+    "example[]": {
+      "name": "example",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "covexample": {},
+    "covexample[]": {
+      "name": "covexample",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "examples": {},
+    "examples[]": {
+      "name": "examples",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "covexamples": {},
+    "covexamples[]": {
+      "name": "covexamples",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "subexamples": {},
+    "subexamples[]": {
+      "name": "subexamples",
+      "snippet": "[${1:option}]"
+    },
+    "covsubexamples[]": {
+      "name": "covsubexamples",
+      "snippet": "[${1:option}]"
+    },
+    "exercise": {},
+    "exercise[]": {
+      "name": "exercise",
+      "snippet": "[${1:name}]"
+    },
+    "covexercise": {},
+    "covexercise[]": {
+      "name": "covexercise",
+      "snippet": "[${1:name}]"
+    },
+    "reflist": {},
+    "covgloss": {},
+    "covsubexs": {}
+  },
+  "options": [
+    "force",
+    "keeplayout",
+    "noglossbreaks",
+    "owncounter",
+    "fnexamplecounter="
+  ],
+  "keyvals": [
+    [
+      "fs={${1:font settings}}",
+      "fsno={${1:font settings}}",
+      "judge={${1:text}}",
+      "*",
+      "?",
+      "*?",
+      "??",
+      "fsjudge={${1:font settings}}",
+      "leftmargin=",
+      "addnumbersep=",
+      "judgewidth={${1:text}}",
+      "addjudgesep=",
+      "numberformat={${1:template}}",
+      "fnnumberformat={${1:template}}",
+      "preamble={${1:text}}",
+      "postamble={${1:text}}",
+      "fspreamble={${1:font settings}}",
+      "fspostamble={${1:font settings}}",
+      "postamble*={${1:text}}",
+      "fssubpreamble={${1:font settings}}",
+      "fssubpostamble={${1:font settings}}",
+      "addsubnumbersep=",
+      "subnumberformat={${1:template}}",
+      "subjudge={${1:text}}",
+      "subpreamble={${1:text}}",
+      "subpostamble={${1:text}}"
+    ],
+    [
+      "ex",
+      "tlr",
+      "tlr*",
+      "fsi={${1:font settings}}",
+      "fsii={${1:font settings}}",
+      "fsiii={${1:font settings}}",
+      "fstl={${1:font settings}}",
+      "enquotetl",
+      "addlinesepi=",
+      "addlinesepii=",
+      "addlinesepiii=",
+      "judge={${1:text}}",
+      "fsjudge={${1:font settings}}",
+      "addjudgesep=",
+      "preamble={${1:text}}",
+      "postamble={${1:text}}",
+      "fspreamble={${1:font settings}}",
+      "fspostamble={${1:font settings}}",
+      "glosswidth=",
+      "glosssep=",
+      "glosscommentwidth=",
+      "fscomments={${1:font settings}}"
+    ],
+    [
+      "fs={${1:font settings}}",
+      "fsno={${1:font settings}}",
+      "judge={${1:text}}",
+      "*",
+      "?",
+      "*?",
+      "??",
+      "fsjudge={${1:font settings}}",
+      "leftmargin=",
+      "addnumbersep=",
+      "judgewidth={${1:text}}",
+      "addjudgesep=",
+      "numberformat={${1:template}}",
+      "fnnumberformat={${1:template}}",
+      "preamble={${1:text}}",
+      "postamble={${1:text}}",
+      "fspreamble={${1:font settings}}",
+      "fspostamble={${1:font settings}}",
+      "postamble*={${1:text}}"
+    ],
+    [
+      "fs={${1:font settings}}",
+      "fsno={${1:font settings}}",
+      "judge={${1:text}}",
+      "*",
+      "?",
+      "*?",
+      "??",
+      "fsjudge={${1:font settings}}",
+      "leftmargin=",
+      "addnumbersep=",
+      "judgewidth={${1:text}}",
+      "addjudgesep=",
+      "numberformat={${1:template}}",
+      "fnnumberformat={${1:template}}"
+    ]
+  ]
+}

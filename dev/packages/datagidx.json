@@ -1,0 +1,425 @@
+{
+  "includes": {
+    "datatool": [],
+    "etoolbox": [],
+    "xkeyval": [],
+    "mfirstuc": [],
+    "xfor": [],
+    "multicol": [],
+    "textcase": [],
+    "afterpage": []
+  },
+  "macros": {
+    "loadgidx{}{}": {
+      "snippet": "loadgidx{${1:file}}{${2:title}}"
+    },
+    "loadgidx[]{}{}": {
+      "snippet": "loadgidx[${3:options}]{${1:file}}{${2:title}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "newgidx{}{}": {
+      "snippet": "newgidx{${1:db}}{${2:title}}"
+    },
+    "newgidx[]{}{}": {
+      "snippet": "newgidx[${3:options}]{${1:db}}{${2:title}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "DTLgidxCounter": {},
+    "DTLgidxAddLocationType{}": {
+      "snippet": "DTLgidxAddLocationType{${1:cmd}}"
+    },
+    "DTLgidxSetCompositor{}": {
+      "snippet": "DTLgidxSetCompositor{${1:symbol}}"
+    },
+    "newterm{}": {
+      "snippet": "newterm{${1:name}}"
+    },
+    "newterm[]{}": {
+      "snippet": "newterm[${2:options}]{${1:name}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "DTLgidxSetDefaultDB{}": {
+      "snippet": "DTLgidxSetDefaultDB{${1:label}}"
+    },
+    "DTLgidxParen{}": {
+      "snippet": "DTLgidxParen{${1:text}}"
+    },
+    "DTLgidxPlace{}{}": {
+      "snippet": "DTLgidxPlace{${1:country/county}}{${2:city/town}}"
+    },
+    "DTLgidxSubject{}{}": {
+      "snippet": "DTLgidxSubject{${1:subject}}{${2:text}}"
+    },
+    "DTLgidxName{}{}": {
+      "snippet": "DTLgidxName{${1:forename}}{${2:surname}}"
+    },
+    "DTLgidxRank{}{}": {
+      "snippet": "DTLgidxRank{${1:title}}{${2:forename/initials}}"
+    },
+    "DTLgidxNameNum{}": {
+      "snippet": "DTLgidxNameNum{${1:number}}"
+    },
+    "DTLgidxMac{}": {
+      "snippet": "DTLgidxMac{${1:text}}"
+    },
+    "DTLgidxSaint{}": {
+      "snippet": "DTLgidxSaint{${1:text}}"
+    },
+    "DTLgidxParticle{}": {
+      "snippet": "DTLgidxParticle{${1:text}}"
+    },
+    "DTLgidxOffice{}{}": {
+      "snippet": "DTLgidxOffice{${1:office}}{${2:name}}"
+    },
+    "newtermlabelhook": {},
+    "DTLgidxNoFormat{}": {
+      "snippet": "DTLgidxNoFormat{${1:text}}"
+    },
+    "DTLgidxGobble{}": {
+      "snippet": "DTLgidxGobble{${1:text}}"
+    },
+    "DTLgidxIgnore": {},
+    "DTLgidxStripBackslash{}": {
+      "snippet": "DTLgidxStripBackslash{${1:cmd}}"
+    },
+    "useentry{}{}": {
+      "snippet": "useentry{${1:label}}{${2:field}}"
+    },
+    "Useentry{}{}": {
+      "snippet": "Useentry{${1:label}}{${2:field}}"
+    },
+    "USEentry{}{}": {
+      "snippet": "USEentry{${1:label}}{${2:field}}"
+    },
+    "useentrynl{}{}": {
+      "snippet": "useentrynl{${1:label}}{${2:field}}"
+    },
+    "Useentrynl{}{}": {
+      "snippet": "Useentrynl{${1:label}}{${2:field}}"
+    },
+    "USEentrynl{}{}": {
+      "snippet": "USEentrynl{${1:label}}{${2:field}}"
+    },
+    "glslink{}{}": {
+      "snippet": "glslink{${1:label}}{${2:text}}"
+    },
+    "glsdispentry{}{}": {
+      "snippet": "glsdispentry{${1:label}}{${2:field}}"
+    },
+    "Glsdispentry{}{}": {
+      "snippet": "Glsdispentry{${1:label}}{${2:field}}"
+    },
+    "DTLgidxFetchEntry{}{}{}": {
+      "snippet": "DTLgidxFetchEntry{${1:cmd}}{${2:label}}{${3:field}}"
+    },
+    "glsadd{}": {
+      "snippet": "glsadd{${1:label}}"
+    },
+    "glsaddall{}": {
+      "snippet": "glsaddall{${1:db}}"
+    },
+    "gls{}": {
+      "snippet": "gls{${1:label}}"
+    },
+    "glspl{}": {
+      "snippet": "glspl{${1:label}}"
+    },
+    "glsnl{}": {
+      "snippet": "glsnl{${1:label}}"
+    },
+    "glsplnl{}": {
+      "snippet": "glsplnl{${1:label}}"
+    },
+    "Gls{}": {
+      "snippet": "Gls{${1:label}}"
+    },
+    "Glspl{}": {
+      "snippet": "Glspl{${1:label}}"
+    },
+    "Glsnl{}": {
+      "snippet": "Glsnl{${1:label}}"
+    },
+    "Glsplnl{}": {
+      "snippet": "Glsplnl{${1:label}}"
+    },
+    "glssym{}": {
+      "snippet": "glssym{${1:label}}"
+    },
+    "Glssym{}": {
+      "snippet": "Glssym{${1:label}}"
+    },
+    "newtermaddfield{}{}{}": {
+      "snippet": "newtermaddfield{${1:field name}}{${2:key name}}{${3:default value}}"
+    },
+    "newtermaddfield[]{}{}{}": {
+      "snippet": "newtermaddfield[${4:db list}]{${1:field name}}{${2:key name}}{${3:default value}}"
+    },
+    "field{}": {
+      "snippet": "field{${1:key}}"
+    },
+    "newacro{}{}": {
+      "snippet": "newacro{${1:short}}{${2:long}}"
+    },
+    "newacro[]{}{}": {
+      "snippet": "newacro[${3:options}]{${1:short}}{${2:long}}"
+    },
+    "acronymfont": {},
+    "DTLgidxAcrStyle{}{}": {
+      "snippet": "DTLgidxAcrStyle{${1:long}}{${2:short}}"
+    },
+    "acr{}": {
+      "snippet": "acr{${1:label}}"
+    },
+    "acrpl{}": {
+      "snippet": "acrpl{${1:label}}"
+    },
+    "Acr{}": {
+      "snippet": "Acr{${1:label}}"
+    },
+    "Acrpl{}": {
+      "snippet": "Acrpl{${1:label}}"
+    },
+    "glsreset{}": {
+      "snippet": "glsreset{${1:label}}"
+    },
+    "glsunset{}": {
+      "snippet": "glsunset{${1:label}}"
+    },
+    "glsresetall{}": {
+      "snippet": "glsresetall{${1:db}}"
+    },
+    "glsunsetall{}": {
+      "snippet": "glsunsetall{${1:db}}"
+    },
+    "iftermexists{}{}{}": {
+      "snippet": "iftermexists{${1:label}}{${2:true case}}{${3:false case}}"
+    },
+    "ifentryused{}{}{}": {
+      "snippet": "ifentryused{${1:label}}{${2:true case}}{${3:false case}}"
+    },
+    "printterms": {},
+    "printterms[]": {
+      "snippet": "printterms[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "DTLgidxChildSep": {},
+    "DTLgidxPostChild": {},
+    "DTLgidxCategoryNameFont": {},
+    "DTLgidxCategorySep": {},
+    "DTLgidxSubCategorySep": {},
+    "DTLgidxDictPostItem": {},
+    "datagidxdictindent": {},
+    "DTLgidxCurrentdb": {},
+    "datagidxbalancefalse": {},
+    "datagidxbalancetrue": {},
+    "datagidxchildend": {},
+    "datagidxchilditem": {},
+    "datagidxchildstart": {},
+    "datagidxconvertchars": {},
+    "datagidxcurrentgroup": {},
+    "datagidxdb{}": {
+      "snippet": "datagidxdb{${1:entry}}"
+    },
+    "datagidxdescwidth": {},
+    "datagidxdictparshape": {},
+    "datagidxdoseealso{}": {
+      "snippet": "datagidxdoseealso{${1:arg}}"
+    },
+    "datagidxend": {},
+    "datagidxextendedtoascii": {},
+    "datagidxgroupheader": {},
+    "datagidxgroupsep": {},
+    "datagidxhighoptfilename{}": {
+      "snippet": "datagidxhighoptfilename{${1:filename}}"
+    },
+    "datagidxindent": {},
+    "datagidxitem": {},
+    "datagidxlastlabel": {},
+    "datagidxlink{}{}": {
+      "snippet": "datagidxlink{${1:arg1}}{${2:arg2}}"
+    },
+    "datagidxlocalign": {},
+    "datagidxlocationwidth": {},
+    "datagidxnamewidth": {},
+    "datagidxprevgroup": {},
+    "datagidxseealsoend": {},
+    "datagidxseealsostart": {},
+    "datagidxsetstyle{}": {
+      "snippet": "datagidxsetstyle{${1:style}}"
+    },
+    "datagidxshowgroupsfalse": {},
+    "datagidxshowgroupstrue": {},
+    "datagidxshowifdraft{}": {
+      "snippet": "datagidxshowifdraft{${1:arg}}"
+    },
+    "datagidxstart": {},
+    "datagidxstripaccents": {},
+    "datagidxsymalign": {},
+    "datagidxsymbolwidth": {},
+    "datagidxtarget{}": {
+      "snippet": "datagidxtarget{${1:arg}}"
+    },
+    "datagidxtermkeys": {},
+    "datagidxwordifygreek": {},
+    "dtldofirstlocation": {},
+    "dtldolocationlist": {},
+    "DTLgidxChildCountLabel": {},
+    "DTLgidxChildren": {},
+    "DTLgidxChildrenSeeAlso": {},
+    "DTLgidxChildStyle{}": {
+      "snippet": "DTLgidxChildStyle{${1:text}}"
+    },
+    "DTLgidxDictHead": {},
+    "DTLgidxDisableHyper": {},
+    "DTLgidxDoSeeOrLocation": {},
+    "DTLgidxEnableHyper": {},
+    "DTLgidxForeachEntry{}": {
+      "snippet": "DTLgidxForeachEntry{${1:body}}"
+    },
+    "DTLgidxFormatAcr{}{}{}": {
+      "snippet": "DTLgidxFormatAcr{${1:label}}{${2:long}}{${3:short}}"
+    },
+    "DTLgidxFormatAcrUC{}{}{}": {
+      "snippet": "DTLgidxFormatAcrUC{${1:label}}{${2:long}}{${3:short}}"
+    },
+    "DTLgidxFormatDesc{}": {
+      "snippet": "DTLgidxFormatDesc{${1:text}}"
+    },
+    "DTLgidxFormatSee{}{}": {
+      "snippet": "DTLgidxFormatSee{${1:tag}}{${2:label list}}"
+    },
+    "DTLgidxFormatSeeAlso{}{}": {
+      "snippet": "DTLgidxFormatSeeAlso{${1:tag}}{${2:label list}}"
+    },
+    "DTLgidxGroupHeaderTitle{}": {
+      "snippet": "DTLgidxGroupHeaderTitle{${1:text}}"
+    },
+    "DTLgidxLocation": {},
+    "DTLgidxLocationF{}{}": {
+      "snippet": "DTLgidxLocationF{${1:loc1}}{${2:loc2}}"
+    },
+    "DTLgidxLocationFF{}{}": {
+      "snippet": "DTLgidxLocationFF{${1:loc1}}{${2:loc2}}"
+    },
+    "DTLgidxLocationSep": {},
+    "DTLgidxNameCase{}": {
+      "snippet": "DTLgidxNameCase{${1:text}}"
+    },
+    "DTLgidxNameFont{}": {
+      "snippet": "DTLgidxNameFont{${1:text}}"
+    },
+    "DTLgidxNoHeading": {},
+    "DTLgidxPostChildName": {},
+    "DTLgidxPostDescription": {},
+    "DTLgidxPostName": {},
+    "DTLgidxPreLocation": {},
+    "DTLgidxSee": {},
+    "DTLgidxSeeAlso": {},
+    "DTLgidxSeeList{}": {
+      "snippet": "DTLgidxSeeList{${1:label list}}"
+    },
+    "DTLgidxSeeTagFont{}": {
+      "snippet": "DTLgidxSeeTagFont{${1:text}}"
+    },
+    "DTLgidxSetColumns{}": {
+      "snippet": "DTLgidxSetColumns{${1:integer}}"
+    },
+    "DTLgidxSymbolDescLeft": {},
+    "DTLgidxSymbolDescRight": {},
+    "DTLgidxSymbolDescription": {},
+    "DTLgidxSymDescSep": {},
+    "DTLidxFormatSeeItem{}": {
+      "snippet": "DTLidxFormatSeeItem{${1:label}}"
+    },
+    "DTLidxSeeLastSep": {},
+    "DTLidxSeeSep": {},
+    "ifdatagidxbalance": {},
+    "ifdatagidxshowgroups": {},
+    "ifnewtermfield{}{}{}": {
+      "snippet": "ifnewtermfield{${1:name}}{${2:true}}{${3:false}}"
+    },
+    "newtermfield{}": {
+      "snippet": "newtermfield{${1:name}}"
+    },
+    "postnewtermhook": {},
+    "printtermsrestoreonecolumn": {},
+    "printtermsstartpar": {},
+    "seealsoname": {},
+    "seename": {},
+    "theDTLgidxChildCount": {},
+    "theHDTLgidxChildCount": {}
+  },
+  "envs": {},
+  "options": [
+    "utf8",
+    "optimize=",
+    "columns=${1:integer}",
+    "child=",
+    "namecase=",
+    "namefont=${1:font cmd}",
+    "postname=${1:text}",
+    "postdesc=",
+    "prelocation=",
+    "location=",
+    "see=",
+    "symboldesc=",
+    "compositor=${1:symbol}",
+    "draft",
+    "final",
+    "verbose",
+    "nowarn"
+  ],
+  "keyvals": [
+    [
+      "showgroups",
+      "style=",
+      "sort={${1:sort cmd}}",
+      "balance",
+      "heading=${1:text}",
+      "postheading=${1:text}"
+    ],
+    [
+      "database=${1:database name}",
+      "label=${1:label}",
+      "sort=${1:sort key}",
+      "parent=${1:parent entry}",
+      "text=${1:text}",
+      "description=${1:text}",
+      "plural=${1:plural form}",
+      "symbol=${1:symbol}",
+      "short=${1:short form}",
+      "long=${1:long form}",
+      "shortplural=${1:short plural form}",
+      "longplural=${1:long plural form}",
+      "see=${1:label}",
+      "seealso=${1:label}"
+    ],
+    [
+      "database=${1:database name}",
+      "postdesc=",
+      "prelocation=",
+      "location=",
+      "symboldesc=",
+      "columns=${1:integer}",
+      "namecase=",
+      "namefont=${1:font cmd}",
+      "postname=${1:text}",
+      "see=",
+      "child=",
+      "showgroups",
+      "style=",
+      "symbolwidth=",
+      "locationwidth=",
+      "childsort",
+      "heading=${1:text}",
+      "postheading=${1:text}",
+      "sort={${1:sort cmd}}",
+      "balance",
+      "condition={${1:condition}}"
+    ]
+  ]
+}

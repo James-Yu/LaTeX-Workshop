@@ -1,0 +1,430 @@
+{
+  "includes": {
+    "tikz": [],
+    "xcolor": [],
+    "xspace": [],
+    "l3keys2e": [],
+    "tikzlibrarydecorations.pathmorphing": [],
+    "tikzlibrarytrees": []
+  },
+  "macros": {
+    "tikzsymbolsset{}": {
+      "snippet": "tikzsymbolsset{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "tikzsymbolsuse{}": {
+      "snippet": "tikzsymbolsuse{${1:symbol name}}"
+    },
+    "Kochtopf": {},
+    "pot": {},
+    "Bratpfanne": {},
+    "fryingpan": {},
+    "Schneebesen": {},
+    "eggbeater": {},
+    "Sieb": {},
+    "sieve": {},
+    "Purierstab": {},
+    "blender": {},
+    "Dreizack": {},
+    "trident": {},
+    "Backblech": {},
+    "bakingplate": {},
+    "Ofen": {},
+    "oven": {},
+    "Pfanne": {},
+    "pan": {},
+    "Herd": {},
+    "cooker": {},
+    "Saftpresse": {},
+    "squeezer": {},
+    "Schussel": {},
+    "bowl": {},
+    "Schaler": {},
+    "peeler": {},
+    "Reibe": {},
+    "grater": {},
+    "Flasche": {},
+    "bottle": {},
+    "Nudelholz": {},
+    "rollingpin": {},
+    "Knoblauchpresse": {},
+    "garlicpress": {},
+    "Kochtopf[]": {
+      "snippet": "Kochtopf[${1:scale}]"
+    },
+    "pot[]": {
+      "snippet": "pot[${1:scale}]"
+    },
+    "Bratpfanne[]": {
+      "snippet": "Bratpfanne[${1:scale}]"
+    },
+    "fryingpan[]": {
+      "snippet": "fryingpan[${1:scale}]"
+    },
+    "Schneebesen[]": {
+      "snippet": "Schneebesen[${1:scale}]"
+    },
+    "eggbeater[]": {
+      "snippet": "eggbeater[${1:scale}]"
+    },
+    "Sieb[]": {
+      "snippet": "Sieb[${1:scale}]"
+    },
+    "sieve[]": {
+      "snippet": "sieve[${1:scale}]"
+    },
+    "Purierstab[]": {
+      "snippet": "Purierstab[${1:scale}]"
+    },
+    "blender[]": {
+      "snippet": "blender[${1:scale}]"
+    },
+    "Dreizack[]": {
+      "snippet": "Dreizack[${1:scale}]"
+    },
+    "trident[]": {
+      "snippet": "trident[${1:scale}]"
+    },
+    "Backblech[]": {
+      "snippet": "Backblech[${1:scale}]"
+    },
+    "bakingplate[]": {
+      "snippet": "bakingplate[${1:scale}]"
+    },
+    "Ofen[]": {
+      "snippet": "Ofen[${1:scale}]"
+    },
+    "oven[]": {
+      "snippet": "oven[${1:scale}]"
+    },
+    "Pfanne[]": {
+      "snippet": "Pfanne[${1:scale}]"
+    },
+    "pan[]": {
+      "snippet": "pan[${1:scale}]"
+    },
+    "Herd[]": {
+      "snippet": "Herd[${1:scale}]"
+    },
+    "cooker[]": {
+      "snippet": "cooker[${1:scale}]"
+    },
+    "Saftpresse[]": {
+      "snippet": "Saftpresse[${1:scale}]"
+    },
+    "squeezer[]": {
+      "snippet": "squeezer[${1:scale}]"
+    },
+    "Schussel[]": {
+      "snippet": "Schussel[${1:scale}]"
+    },
+    "bowl[]": {
+      "snippet": "bowl[${1:scale}]"
+    },
+    "Schaler[]": {
+      "snippet": "Schaler[${1:scale}]"
+    },
+    "peeler[]": {
+      "snippet": "peeler[${1:scale}]"
+    },
+    "Reibe[]": {
+      "snippet": "Reibe[${1:scale}]"
+    },
+    "grater[]": {
+      "snippet": "grater[${1:scale}]"
+    },
+    "Flasche[]": {
+      "snippet": "Flasche[${1:scale}]"
+    },
+    "bottle[]": {
+      "snippet": "bottle[${1:scale}]"
+    },
+    "Nudelholz[]": {
+      "snippet": "Nudelholz[${1:scale}]"
+    },
+    "rollingpin[]": {
+      "snippet": "rollingpin[${1:scale}]"
+    },
+    "Knoblauchpresse[]": {
+      "snippet": "Knoblauchpresse[${1:scale}]"
+    },
+    "garlicpress[]": {
+      "snippet": "garlicpress[${1:scale}]"
+    },
+    "Smiley": {},
+    "Sadey": {},
+    "Neutrey": {},
+    "Annoey": {},
+    "Laughey": {},
+    "Winkey": {},
+    "oldWinkey": {},
+    "Sey": {},
+    "Xey": {},
+    "Innocey": {},
+    "wInnocey": {},
+    "Cooley": {},
+    "Tongey": {},
+    "Nursey": {},
+    "Vomey": {},
+    "Walley": {},
+    "rWalley": {},
+    "Cat": {},
+    "Ninja": {},
+    "Sleepey": {},
+    "Maskey": {},
+    "NiceReapey": {},
+    "Smiley[][]": {
+      "snippet": "Smiley[${1:scale}][${2:color}]"
+    },
+    "Sadey[][]": {
+      "snippet": "Sadey[${1:scale}][${2:color}]"
+    },
+    "Neutrey[][]": {
+      "snippet": "Neutrey[${1:scale}][${2:color}]"
+    },
+    "Changey[][]{}": {
+      "snippet": "Changey[${2:scale}][${3:color}]{${1:mood}}"
+    },
+    "cChangey[][][][]{}": {
+      "snippet": "cChangey[${2:scale}][${3:color1}][${4:color2}][${5:color3}]{${1:mood}}"
+    },
+    "Annoey[][]": {
+      "snippet": "Annoey[${1:scale}][${2:color}]"
+    },
+    "Laughey[][][]": {
+      "snippet": "Laughey[${1:scale}][${2:color}][${3:mouth color}]"
+    },
+    "Winkey[][]": {
+      "snippet": "Winkey[${1:scale}][${2:color}]"
+    },
+    "oldWinkey[][]": {
+      "snippet": "oldWinkey[${1:scale}][${2:color}]"
+    },
+    "Sey[][]": {
+      "snippet": "Sey[${1:scale}][${2:color}]"
+    },
+    "Xey[][]": {
+      "snippet": "Xey[${1:scale}][${2:color}]"
+    },
+    "Innocey[][][]": {
+      "snippet": "Innocey[${1:scale}][${2:color}][${3:halo color}]"
+    },
+    "wInnocey[]": {
+      "snippet": "wInnocey[${1:scale}]"
+    },
+    "Cooley[][]": {
+      "snippet": "Cooley[${1:scale}][${2:color}]"
+    },
+    "Tongey[][][]": {
+      "snippet": "Tongey[${1:scale}][${2:color}][${3:tongue color}]"
+    },
+    "Nursey[][][]": {
+      "snippet": "Nursey[${1:scale}][${2:color}][${3:cross color}]"
+    },
+    "Vomey[][][]": {
+      "snippet": "Vomey[${1:scale}][${2:color}][${3:vomit color}]"
+    },
+    "Walley[][][]": {
+      "snippet": "Walley[${1:scale}][${2:color}][${3:wall color}]"
+    },
+    "rWalley[][][]": {
+      "snippet": "rWalley[${1:scale}][${2:color}][${3:wall color}]"
+    },
+    "Cat[]": {
+      "snippet": "Cat[${1:scale}]"
+    },
+    "SchrodingersCat[]{}": {
+      "snippet": "SchrodingersCat[${2:scale}]{${1:case}}"
+    },
+    "Ninja[][][][]": {
+      "snippet": "Ninja[${1:scale}][${2:color}][${3:headband color}][${4:eye color}]"
+    },
+    "Sleepey[][][][]": {
+      "snippet": "Sleepey[${1:scale}][${2:color}][${3:cap color}][${4:star color}]"
+    },
+    "Maskey[][][]": {
+      "snippet": "Maskey[${1:scale}][${2:color}][${3:mask color}]"
+    },
+    "NiceReapey[]": {
+      "snippet": "NiceReapey[${1:scale}]"
+    },
+    "dSmiley": {},
+    "dSadey": {},
+    "dNeutrey": {},
+    "dAnnoey": {},
+    "dLaughey": {},
+    "dWinkey": {},
+    "dSey": {},
+    "dXey": {},
+    "dInnocey": {},
+    "dCooley": {},
+    "dNinja": {},
+    "drWalley": {},
+    "dWalley": {},
+    "dVomey": {},
+    "dNursey": {},
+    "dTongey": {},
+    "dSleepey": {},
+    "olddWinkey": {},
+    "dSmiley[][]": {
+      "snippet": "dSmiley[${1:scale}][${2:color}]"
+    },
+    "dSadey[][]": {
+      "snippet": "dSadey[${1:scale}][${2:color}]"
+    },
+    "dNeutrey[][]": {
+      "snippet": "dNeutrey[${1:scale}][${2:color}]"
+    },
+    "dChangey[][]{}": {
+      "snippet": "dChangey[${2:scale}][${3:color}]{${1:mood}}"
+    },
+    "dcChangey[][][][]{}": {
+      "snippet": "dcChangey[${2:scale}][${3:color1}][${4:color2}][${5:color3}]{${1:mood}}"
+    },
+    "dAnnoey[][]": {
+      "snippet": "dAnnoey[${1:scale}][${2:color}]"
+    },
+    "dLaughey[][][]": {
+      "snippet": "dLaughey[${1:scale}][${2:color}][${3:mouth color}]"
+    },
+    "dWinkey[][]": {
+      "snippet": "dWinkey[${1:scale}][${2:color}]"
+    },
+    "dSey[][]": {
+      "snippet": "dSey[${1:scale}][${2:color}]"
+    },
+    "dXey[][]": {
+      "snippet": "dXey[${1:scale}][${2:color}]"
+    },
+    "dInnocey[][][]": {
+      "snippet": "dInnocey[${1:scale}][${2:color}][${3:halo color}]"
+    },
+    "dCooley[][]": {
+      "snippet": "dCooley[${1:scale}][${2:color}]"
+    },
+    "dNinja[][][][]": {
+      "snippet": "dNinja[${1:scale}][${2:color}][${3:headband color}][${4:eye color}]"
+    },
+    "drWalley[][][]": {
+      "snippet": "drWalley[${1:scale}][${2:color}][${3:wall color}]"
+    },
+    "dWalley[][][]": {
+      "snippet": "dWalley[${1:scale}][${2:color}][${3:wall color}]"
+    },
+    "dVomey[][][]": {
+      "snippet": "dVomey[${1:scale}][${2:color}][${3:vomit color}]"
+    },
+    "dNursey[][][][]": {
+      "snippet": "dNursey[${1:scale}][${2:color}][${3:cap color}][${4:cross color}]"
+    },
+    "dTongey[][][]": {
+      "snippet": "dTongey[${1:scale}][${2:color}][${3:tongue color}]"
+    },
+    "dSleepey[][][][]": {
+      "snippet": "dSleepey[${1:scale}][${2:color}][${3:cap color}][${4:star color}]"
+    },
+    "olddWinkey[]": {
+      "snippet": "olddWinkey[${1:scale}]"
+    },
+    "Strichmaxerl": {},
+    "Heart": {},
+    "dHeart": {},
+    "Candle": {},
+    "Fire": {},
+    "Coffeecup": {},
+    "Chair": {},
+    "Bed": {},
+    "Tribar": {},
+    "Moai": {},
+    "Snowman": {},
+    "Strichmaxerl[][][][][]": {
+      "snippet": "Strichmaxerl[${1:scale}][${2:left arm}][${3:right arm}][${4:left leg}][${5:right leg}]"
+    },
+    "Heart[][]": {
+      "snippet": "Heart[${1:scale}][${2:color}]"
+    },
+    "dHeart[][]": {
+      "snippet": "dHeart[${1:scale}][${2:color}]"
+    },
+    "Candle[]": {
+      "snippet": "Candle[${1:scale}]"
+    },
+    "Fire[]": {
+      "snippet": "Fire[${1:scale}]"
+    },
+    "Coffeecup[]": {
+      "snippet": "Coffeecup[${1:scale}]"
+    },
+    "Chair[]": {
+      "snippet": "Chair[${1:scale}]"
+    },
+    "Bed[]": {
+      "snippet": "Bed[${1:scale}]"
+    },
+    "Tribar[][][][]": {
+      "snippet": "Tribar[${1:scale}][${2:color1}][${3:color2}][${4:color3}]"
+    },
+    "Moai[]": {
+      "snippet": "Moai[${1:scale}]"
+    },
+    "Snowman[]": {
+      "snippet": "Snowman[${1:scale}]"
+    },
+    "BasicTree{}{}{}{}": {
+      "snippet": "BasicTree{${1:trunkcolor}}{${2:leafcolor1}}{${3:leafcolor2}}{${4:leaf}}"
+    },
+    "Springtree": {},
+    "Summertree": {},
+    "Autumntree": {},
+    "Wintertree": {},
+    "WorstTree": {},
+    "BasicTree[]{}{}{}{}": {
+      "snippet": "BasicTree[${5:scale}]{${1:trunkcolor}}{${2:leafcolor1}}{${3:leafcolor2}}{${4:leaf}}"
+    },
+    "Springtree[]": {
+      "snippet": "Springtree[${1:scale}]"
+    },
+    "Summertree[]": {
+      "snippet": "Summertree[${1:scale}]"
+    },
+    "Autumntree[]": {
+      "snippet": "Autumntree[${1:scale}]"
+    },
+    "Wintertree[]": {
+      "snippet": "Wintertree[${1:scale}]"
+    },
+    "WorstTree[]": {
+      "snippet": "WorstTree[${1:scale}]"
+    },
+    "tikzsymbolsdefinesymbol{}{}{}": {
+      "snippet": "tikzsymbolsdefinesymbol{${1:symbol name}}{${2:args}}{${3:code}}"
+    },
+    "tikzsymbolsprovideandusesavebox{}{}": {
+      "snippet": "tikzsymbolsprovideandusesavebox{${1:box name}}{${2:code}}"
+    },
+    "tikzsymbolssetscaleabs{}": {
+      "snippet": "tikzsymbolssetscaleabs{${1:dimen}}"
+    },
+    "tikzsymbolsscaleabs": {}
+  },
+  "envs": {},
+  "options": [
+    "marvosym",
+    "prefix=${1:string}"
+  ],
+  "keyvals": [
+    [
+      "draft",
+      "final",
+      "tree=",
+      "after-symbol=${1:code}",
+      "global-scale=${1:number}",
+      "symbol-scale={${1:sym1=num1,sym2=num2,...}}",
+      "append-style={${1:TikZ keys}}",
+      "usebox",
+      "baseline",
+      "remember-picture"
+    ]
+  ]
+}

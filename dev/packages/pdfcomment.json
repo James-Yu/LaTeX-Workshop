@@ -1,0 +1,391 @@
+{
+  "includes": {
+    "xkeyval": [],
+    "etoolbox": [],
+    "luatex85": [],
+    "datetime2": [],
+    "zref-savepos": [],
+    "refcount": [],
+    "ifthen": [],
+    "calc": [],
+    "marginnote": [],
+    "ifpdf": [],
+    "ifluatex": [],
+    "soulpos": [],
+    "hyperref": []
+  },
+  "macros": {
+    "pdfcomment{}": {
+      "snippet": "pdfcomment{${1:comment}}"
+    },
+    "pdfcomment[]{}": {
+      "snippet": "pdfcomment[${2:options}]{${1:comment}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "pdfmargincomment{}": {
+      "snippet": "pdfmargincomment{${1:comment}}"
+    },
+    "pdfmargincomment[]{}": {
+      "snippet": "pdfmargincomment[${2:options}]{${1:comment}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "textHT{}": {
+      "snippet": "textHT{${1:text}}"
+    },
+    "textLF{}": {
+      "snippet": "textLF{${1:text}}"
+    },
+    "textCR{}": {
+      "snippet": "textCR{${1:text}}"
+    },
+    "pdfmarkupcomment{}{}": {
+      "snippet": "pdfmarkupcomment{${1:markup text}}{${2:comment}}"
+    },
+    "pdfmarkupcomment[]{}{}": {
+      "snippet": "pdfmarkupcomment[${3:options}]{${1:markup text}}{${2:comment}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "pdffreetextcomment{}": {
+      "snippet": "pdffreetextcomment{${1:comment}}"
+    },
+    "pdffreetextcomment[]{}": {
+      "snippet": "pdffreetextcomment[${2:options}]{${1:comment}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "pdfsquarecomment{}": {
+      "snippet": "pdfsquarecomment{${1:comment}}"
+    },
+    "pdfsquarecomment[]{}": {
+      "snippet": "pdfsquarecomment[${2:options}]{${1:comment}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "pdfcirclecomment{}": {
+      "snippet": "pdfcirclecomment{${1:comment}}"
+    },
+    "pdfcirclecomment[]{}": {
+      "snippet": "pdfcirclecomment[${2:options}]{${1:comment}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "pdflinecomment{}": {
+      "snippet": "pdflinecomment{${1:comment}}"
+    },
+    "pdflinecomment[]{}": {
+      "snippet": "pdflinecomment[${2:options}]{${1:comment}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "pdftooltip{}{}": {
+      "snippet": "pdftooltip{${1:object}}{${2:comment}}"
+    },
+    "pdftooltip[]{}{}": {
+      "snippet": "pdftooltip[${3:options}]{${1:object}}{${2:comment}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "pdfcommentsetup{}": {
+      "snippet": "pdfcommentsetup{${1:options}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "listofpdfcomments": {},
+    "listofpdfcomments[]": {
+      "snippet": "listofpdfcomments[${1:options}]",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
+    "setliststyle{}": {
+      "snippet": "setliststyle{${1:name}}"
+    },
+    "defineliststyle{}{}": {
+      "snippet": "defineliststyle{${1:name}}{${2:definition}}"
+    },
+    "defineavatar{}{}": {
+      "snippet": "defineavatar{${1:name}}{${2:options}}",
+      "keyvalindex": 8,
+      "keyvalpos": 1
+    },
+    "definestyle{}{}": {
+      "snippet": "definestyle{${1:name}}{${2:options}}",
+      "keyvalindex": 8,
+      "keyvalpos": 1
+    }
+  },
+  "envs": {
+    "pdfsidelinecomment": {},
+    "pdfsidelinecomment[]": {
+      "name": "pdfsidelinecomment",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 9,
+      "keyvalpos": 0
+    }
+  },
+  "options": [
+    "final",
+    "draft",
+    "dvipdfmx",
+    "version=",
+    "subject=${1:subject}",
+    "author=${1:author}",
+    "opacity=${1:factor}",
+    "icon=",
+    "deadline=${1:deadline}",
+    "color=${1:color}",
+    "icolor=${1:color}",
+    "open",
+    "hspace=",
+    "type=",
+    "font=${1:font}",
+    "fontsize=${1:fontsize}",
+    "fontcolor=${1:color}",
+    "line={${1:coordinates}}",
+    "linewidth=${1:linewidth}",
+    "linebegin={${1:arrow type}}",
+    "lineend={${1:arrow type}}",
+    "linesep=",
+    "borderstyle=",
+    "dashstyle={${1:thickness} ${2:space}}",
+    "bse=",
+    "bsei=${1:number}",
+    "caption=",
+    "captionhoffset=",
+    "captionvoffset=",
+    "voffset=",
+    "hoffset=",
+    "width=",
+    "height=",
+    "markup=",
+    "disable",
+    "date=${1:date}",
+    "timezone=${1:timezone}",
+    "avatar=${1:avatar}",
+    "style=${1:style}",
+    "printSOfinal"
+  ],
+  "keyvals": [
+    [
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "icon=",
+      "color=${1:color}",
+      "opacity=",
+      "open",
+      "hspace=",
+      "voffset=",
+      "hoffset=",
+      "disable",
+      "date=${1:date}",
+      "timezone=${1:timezone}",
+      "id=",
+      "deadline=${1:deadline}"
+    ],
+    [
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "color=${1:color}",
+      "opacity=",
+      "markup=",
+      "mathstyle=",
+      "disable",
+      "date=${1:date}",
+      "timezone=${1:timezone}",
+      "id=",
+      "open"
+    ],
+    [
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "color=${1:color}",
+      "font=${1:font name}",
+      "fontsize=",
+      "fontcolor=${1:color}",
+      "opacity=",
+      "line={${1:coordinates}}",
+      "linewidth=",
+      "lineend={${1:arrow type}}",
+      "borderstyle=",
+      "dashstyle={${1:thickness} ${2:space}}",
+      "bse=",
+      "bsei=${1:number}",
+      "type=",
+      "height=",
+      "width=",
+      "voffset=",
+      "hoffset=",
+      "disable",
+      "date=${1:date}",
+      "timezone=${1:timezone}",
+      "justification="
+    ],
+    [
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "color=${1:color}",
+      "icolor=${1:color}",
+      "opacity=",
+      "linewidth=",
+      "borderstyle=",
+      "dashstyle={${1:thickness} ${2:space}}",
+      "bse=",
+      "bsei=${1:number}",
+      "height=",
+      "width=",
+      "voffset=",
+      "hoffset=",
+      "disable",
+      "date=${1:date}",
+      "timezone=${1:timezone}",
+      "justification="
+    ],
+    [
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "type=",
+      "color=${1:color}",
+      "icolor=${1:color}",
+      "opacity=",
+      "caption=",
+      "captionhoffset=",
+      "captionvoffset=",
+      "linewidth=",
+      "linebegin={${1:arrow type}}",
+      "lineend={${1:arrow type}}",
+      "line={${1:coordinates}}",
+      "bse=",
+      "bsei=${1:number}",
+      "borderstyle=",
+      "dashstyle={${1:thickness} ${2:space}}",
+      "disable",
+      "date=${1:date}",
+      "timezone=${1:timezone}"
+    ],
+    [
+      "disable",
+      "mathstyle="
+    ],
+    [
+      "local={${1:local options}}",
+      "final",
+      "draft",
+      "dvipdfmx",
+      "version=${1:number}",
+      "avatar=${1:avatar}",
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "color=${1:color}",
+      "icolor=${1:color}",
+      "opacity=",
+      "linewidth=",
+      "linebegin={${1:arrow type}}",
+      "lineend={${1:arrow type}}",
+      "linesep=",
+      "borderstyle=",
+      "dashstyle={${1:thickness} ${2:space}}",
+      "caption=",
+      "captionhoffset=",
+      "captionvoffset=",
+      "disable",
+      "date=${1:date}",
+      "timezone=${1:timezone}",
+      "deadline=${1:deadline}",
+      "open",
+      "hspace=",
+      "type=",
+      "font=${1:font name}",
+      "fontsize=",
+      "fontcolor=${1:color}",
+      "line={${1:coordinates}}",
+      "bse=",
+      "bsei=${1:number}",
+      "voffset=",
+      "hoffset=",
+      "width",
+      "height",
+      "markup=",
+      "mathstyle=",
+      "printSOfinal",
+      "icon="
+    ],
+    [
+      "liststyle=",
+      "heading={${1:heading}}"
+    ],
+    [
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "color=${1:color}",
+      "icolor=${1:color}",
+      "opacity=",
+      "linewidth=",
+      "linebegin={${1:arrow type}}",
+      "lineend={${1:arrow type}}",
+      "linesep=",
+      "borderstyle=",
+      "dashstyle={${1:thickness} ${2:space}}",
+      "caption=",
+      "captionhoffset=",
+      "captionvoffset=",
+      "disable",
+      "date=${1:date}",
+      "timezone=${1:timezone}",
+      "deadline=${1:deadline}",
+      "open",
+      "hspace=",
+      "type=",
+      "font=${1:font name}",
+      "fontsize=",
+      "fontcolor=${1:color}",
+      "line={${1:coordinates}}",
+      "bse=",
+      "bsei=${1:number}",
+      "voffset=",
+      "hoffset=",
+      "width",
+      "height",
+      "markup=",
+      "mathstyle=",
+      "printSOfinal",
+      "icon="
+    ],
+    [
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "color=${1:color}",
+      "icolor=${1:color}",
+      "opacity=${1:factor}",
+      "linewidth=${1:linewidth}",
+      "linebegin={${1:arrow type}}",
+      "lineend={${1:arrow type}}",
+      "linesep=",
+      "borderstyle=",
+      "dashstyle={${1:thickness} ${2:space}}",
+      "caption=",
+      "captionhoffset=",
+      "captionvoffset=",
+      "disable",
+      "date=${1:date}",
+      "timezone=${1:timezone}"
+    ]
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "includes": {
+    "ifthen": [],
+    "kvoptions": [],
+    "tikz": [],
+    "tikzlibrarycalc": [],
+    "tikzlibrarydecorations.pathreplacing": [],
+    "tikzlibrarypositioning": [],
+    "tikzlibrarydecorations.pathmorphing": [],
+    "xkeyval": [],
+    "xstring": []
+  },
+  "macros": {
+    "setstructmech{}": {
+      "snippet": "setstructmech{${1:options}}"
+    },
+    "NodalForce{}": {
+      "snippet": "NodalForce{${1:x,y}}"
+    },
+    "NodalForce[]{}": {
+      "snippet": "NodalForce[${2:color}]{${1:x,y}}"
+    },
+    "NodalForce[]{}[][][]": {
+      "snippet": "NodalForce[${2:color}]{${1:x,y}}[${3:Hlabel}][${4:Vlabel}][${5:Rlabel}]"
+    },
+    "NodalForce[]{}[][][]{}[]": {
+      "snippet": "NodalForce[${3:color}]{${1:x,y}}[${4:Hlabel}][${5:Vlabel}][${6:Rlabel}]{${2:rotation}}[${7:scale}]"
+    },
+    "BasicForce{}{}{}": {
+      "snippet": "BasicForce{${1:x1,y1}}{${2:x2,y2}}{${3:label}}"
+    },
+    "BasicForce[]{}{}{}": {
+      "snippet": "BasicForce[${4:number}]{${1:x1,y1}}{${2:x2,y2}}{${3:label}}"
+    },
+    "BasicForce[]{}{}{}{}": {
+      "snippet": "BasicForce[${5:number}]{${1:x1,y1}}{${2:x2,y2}}{${3:label}}{${4:TikZ keys}}"
+    },
+    "BasicForce[]{}{}{}{}[][][]": {
+      "snippet": "BasicForce[${5:number}]{${1:x1,y1}}{${2:x2,y2}}{${3:label}}{${4:TikZ keys}}[${6:label1}][${7:label2}][${8:label3}]"
+    },
+    "UDL{}{}": {
+      "snippet": "UDL{${1:x1,y1}}{${2:x2,y2}}"
+    },
+    "UDL[]{}{}": {
+      "snippet": "UDL[${3:F}]{${1:x1,y1}}{${2:x2,y2}}"
+    },
+    "UDL[]{}{}[]": {
+      "snippet": "UDL[${3:F}]{${1:x1,y1}}{${2:x2,y2}}[${4:label}]"
+    },
+    "UDL[]{}{}[]{}": {
+      "snippet": "UDL[${4:F}]{${1:x1,y1}}{${2:x2,y2}}[${5:label}]{${3:scale}}"
+    },
+    "HingeSupport{}": {
+      "snippet": "HingeSupport{${1:x,y}}"
+    },
+    "HingeSupport[]{}": {
+      "snippet": "HingeSupport[${2:rotation}]{${1:x,y}}"
+    },
+    "HingeSupport[]{}{}": {
+      "snippet": "HingeSupport[${3:rotation}]{${1:x,y}}{${2:scale}}"
+    },
+    "FixedSupport{}": {
+      "snippet": "FixedSupport{${1:x,y}}"
+    },
+    "FixedSupport[]{}": {
+      "snippet": "FixedSupport[${2:rotation}]{${1:x,y}}"
+    },
+    "FixedSupport[]{}{}": {
+      "snippet": "FixedSupport[${3:rotation}]{${1:x,y}}{${2:scale}}"
+    },
+    "RollerSupport{}": {
+      "snippet": "RollerSupport{${1:x,y}}"
+    },
+    "RollerSupport[]{}": {
+      "snippet": "RollerSupport[${2:rotation}]{${1:x,y}}"
+    },
+    "RollerSupport[]{}{}": {
+      "snippet": "RollerSupport[${3:rotation}]{${1:x,y}}{${2:scale}}"
+    },
+    "SliderSupport{}": {
+      "snippet": "SliderSupport{${1:x,y}}"
+    },
+    "SliderSupport[]{}": {
+      "snippet": "SliderSupport[${2:rotation}]{${1:x,y}}"
+    },
+    "SliderSupport[]{}{}": {
+      "snippet": "SliderSupport[${3:rotation}]{${1:x,y}}{${2:scale}}"
+    },
+    "SleeveSupport{}": {
+      "snippet": "SleeveSupport{${1:x,y}}"
+    },
+    "SleeveSupport[]{}": {
+      "snippet": "SleeveSupport[${2:rotation}]{${1:x,y}}"
+    },
+    "SleeveSupport[]{}[]": {
+      "snippet": "SleeveSupport[${2:rotation}]{${1:x,y}}[${3:gap}]"
+    },
+    "SleeveSupport[]{}[]{}": {
+      "snippet": "SleeveSupport[${3:rotation}]{${1:x,y}}[${4:gap}]{${2:scale}}"
+    },
+    "Rigid{}": {
+      "snippet": "Rigid{${1:x,y}}"
+    },
+    "Rigid[]{}": {
+      "snippet": "Rigid[${2:rotation}]{${1:x,y}}"
+    },
+    "Rigid[]{}{}": {
+      "snippet": "Rigid[${3:rotation}]{${1:x,y}}{${2:scale}}"
+    },
+    "CoorOrigin{}": {
+      "snippet": "CoorOrigin{${1:x,y}}"
+    },
+    "CoorOrigin[]{}": {
+      "snippet": "CoorOrigin[${2:rotation}]{${1:x,y}}"
+    },
+    "CoorOrigin[]{}[][]": {
+      "snippet": "CoorOrigin[${2:rotation}]{${1:x,y}}[${3:xlabel}][${4:ylabel}]"
+    },
+    "CoorOrigin[]{}[][]{}": {
+      "snippet": "CoorOrigin[${3:rotation}]{${1:x,y}}[${4:xlabel}][${5:ylabel}]{${2:scale}}"
+    },
+    "IForceA{}{}{}{}": {
+      "snippet": "IForceA{${1:x1,y1}}{${2:x2,y2}}{${3:force-lower}}{${4:force-higher}}"
+    },
+    "IForceA[]{}{}{}{}": {
+      "snippet": "IForceA[${5:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:force-lower}}{${4:force-higher}}"
+    },
+    "IForceA[]{}{}{}{}{}": {
+      "snippet": "IForceA[${6:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:force-lower}}{${4:force-higher}}{${5:scale}}"
+    },
+    "IForceB{}{}{}{}{}": {
+      "snippet": "IForceB{${1:x1,y1}}{${2:x2,y2}}{${3:moment-lower}}{${4:moment-higher}}{${5:increment}}"
+    },
+    "IForceB[]{}{}{}{}{}": {
+      "snippet": "IForceB[${6:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:moment-lower}}{${4:moment-higher}}{${5:increment}}"
+    },
+    "IForceB[]{}{}{}{}{}{}": {
+      "snippet": "IForceB[${7:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:moment-lower}}{${4:moment-higher}}{${5:increment}}{${6:scale}}"
+    },
+    "BeamDeformP{}{}{}{}": {
+      "snippet": "BeamDeformP{${1:x1,y1}}{${2:x2,y2}}{${3:disp-lower}}{${4:disp-higher}}"
+    },
+    "BeamDeformP[]{}{}{}{}": {
+      "snippet": "BeamDeformP[${5:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:disp-lower}}{${4:disp-higher}}"
+    },
+    "BeamDeformP[]{}{}{}[]{}[]": {
+      "snippet": "BeamDeformP[${5:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:disp-lower}}[${6:rot-lower}]{${4:disp-higher}}[${7:rot-higher}]"
+    },
+    "BeamDeformP[]{}{}{}[]{}[]{}": {
+      "snippet": "BeamDeformP[${6:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:disp-lower}}[${7:rot-lower}]{${4:disp-higher}}[${8:rot-higher}]{${5:scale}}"
+    },
+    "BeamDeformR{}{}": {
+      "snippet": "BeamDeformR{${1:x1,y1}}{${2:x2,y2}}"
+    },
+    "BeamDeformR[]{}{}": {
+      "snippet": "BeamDeformR[${3:color}]{${1:x1,y1}}{${2:x2,y2}}"
+    },
+    "BeamDeformR[]{}{}[][]": {
+      "snippet": "BeamDeformR[${3:color}]{${1:x1,y1}}{${2:x2,y2}}[${4:rot-lower}][${5:rot-higher}]"
+    },
+    "BeamDeformR[]{}{}[][]{}": {
+      "snippet": "BeamDeformR[${4:color}]{${1:x1,y1}}{${2:x2,y2}}[${5:rot-lower}][${6:rot-higher}]{${3:scale}}"
+    },
+    "Dashpot{}{}": {
+      "snippet": "Dashpot{${1:x1,y1}}{${2:x2,y2}}"
+    },
+    "Dashpot{}{}{}": {
+      "snippet": "Dashpot{${1:x1,y1}}{${2:x2,y2}}{${3:scale}}"
+    },
+    "Dashpot[]{}{}": {
+      "snippet": "Dashpot[${3:color}]{${1:x1,y1}}{${2:x2,y2}}"
+    },
+    "Dashpot[]{}{}{}": {
+      "snippet": "Dashpot[${4:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:scale}}"
+    },
+    "Spring{}{}": {
+      "snippet": "Spring{${1:x1,y1}}{${2:x2,y2}}"
+    },
+    "Spring{}{}{}": {
+      "snippet": "Spring{${1:x1,y1}}{${2:x2,y2}}{${3:scale}}"
+    },
+    "Spring[]{}{}": {
+      "snippet": "Spring[${3:color}]{${1:x1,y1}}{${2:x2,y2}}"
+    },
+    "Spring[]{}{}{}": {
+      "snippet": "Spring[${4:color}]{${1:x1,y1}}{${2:x2,y2}}{${3:scale}}"
+    },
+    "Angle": {},
+    "FAC": {},
+    "Length": {},
+    "lvla": {},
+    "lvlb": {},
+    "absvalue": {},
+    "axisColor": {},
+    "convention": {},
+    "fillColor": {},
+    "fillOpacity": {},
+    "lineColor": {},
+    "lineWidth": {},
+    "nodeColor": {},
+    "rotationColor": {},
+    "showvalue": {},
+    "unitL": {}
+  },
+  "envs": {},
+  "options": [
+    "fill=",
+    "line=",
+    "node=",
+    "axis=",
+    "rotation=",
+    "convention=",
+    "showvalue=",
+    "absvalue=",
+    "opacity=${1:factor}",
+    "linewidth="
+  ],
+  "keyvals": []
+}

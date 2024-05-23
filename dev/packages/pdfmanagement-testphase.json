@@ -1,0 +1,76 @@
+{
+  "includes": {
+    "tagpdf": []
+  },
+  "macros": {
+    "PDFManagementAdd{}{}{}": {
+      "snippet": "PDFManagementAdd{${1:resource path}}{${2:name}}{${3:value}}"
+    },
+    "AddToDocumentProperties{}{}": {
+      "snippet": "AddToDocumentProperties{${1:property}}{${2:value}}"
+    },
+    "AddToDocumentProperties[]{}{}": {
+      "snippet": "AddToDocumentProperties[${3:label}]{${1:property}}{${2:value}}"
+    },
+    "GetDocumentProperties{}": {
+      "snippet": "GetDocumentProperties{${1:label/property}}"
+    },
+    "ShowDocumentProperties": {},
+    "documentmetadatasupportversion": {},
+    "documentmetadatasupportdate": {},
+    "DeclareDocumentMetadata{}": {
+      "snippet": "DeclareDocumentMetadata{${1:options}}"
+    },
+    "url[]{}": {
+      "snippet": "url[${2:options}]{${1:URL}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "hrefurl{}{}": {
+      "snippet": "hrefurl{${1:URL}}{${2:text}}"
+    },
+    "hrefurl[]{}{}": {
+      "snippet": "hrefurl[${3:options}]{${1:URL}}{${2:text}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "hrefpdf{}{}": {
+      "snippet": "hrefpdf{${1:file}}{${2:text}}"
+    },
+    "hrefpdf[]{}{}": {
+      "snippet": "hrefpdf[${3:options}]{${1:file}}{${2:text}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "hrefrun{}{}": {
+      "snippet": "hrefrun{${1:launch link}}{${2:text}}"
+    },
+    "hrefrun[]{}{}": {
+      "snippet": "hrefrun[${3:options}]{${1:launch link}}{${2:text}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    }
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "protocol=${1:prefix}",
+      "format=${1:format commands}"
+    ],
+    [
+      "urlencode",
+      "protocol=${1:prefix}",
+      "ismap"
+    ],
+    [
+      "destination=${1:dest name}",
+      "page=${1:number}",
+      "pdfremotestartview=",
+      "afrelationship=${1:PDF name}"
+    ],
+    [
+      "run-parameter=${1:parameter}"
+    ]
+  ]
+}

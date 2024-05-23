@@ -1,0 +1,78 @@
+{
+  "includes": {
+    "crefthe": [],
+    "amsfonts": []
+  },
+  "macros": {
+    "NameTheorem{}{}": {
+      "snippet": "NameTheorem{${1:envname}}{${2:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "CreateTheorem{}{}": {
+      "snippet": "CreateTheorem{${1:envname}}{${2:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "SetTheorem{}{}": {
+      "snippet": "SetTheorem{${1:envname}}{${2:keyvals}}",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "SetTheoremBinding{}{}": {
+      "snippet": "SetTheoremBinding{${1:envname}}{${2:envname to bind with}}"
+    },
+    "NameTheorems{}{}": {
+      "snippet": "NameTheorems{${1:language}}{${2:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 1
+    },
+    "CreateTheoremAddLanguage{}": {
+      "snippet": "CreateTheoremAddLanguage{${1:language}}"
+    }
+  },
+  "envs": {},
+  "options": [
+    "name as context",
+    "name as is",
+    "name in link",
+    "no preset names"
+  ],
+  "keyvals": [
+    [
+      "heading=${1:string}",
+      "heading={${1:lang1=string1,lang2=string2,...}}",
+      "heading style=${1:font commands}",
+      "crefname={${1:singular name}}{${2:plural name}}",
+      "crefname={${1:lang1={name1}{pluralname1},...}}",
+      "crefname style=${1:font commands}",
+      "Crefname={${1:singular name}}{${2:plural name}}",
+      "Crefname={${1:lang1={name1}{pluralname1},...}}",
+      "Crefname style=${1:font commands}",
+      "numbering style=${1:font commands}",
+      "use name={${1:envname1;envname2;...}}"
+    ],
+    [
+      "name={${1:\\NameTheorem keyvals}}",
+      "use name={${1:envname1;envname2;...}}",
+      "style=${1:theorem style}",
+      "qed=${1:symbol}",
+      "parent counter=${1:counter}",
+      "shared counter=${1:counter}",
+      "numberless",
+      "create starred version",
+      "copy existed=${1:envname}"
+    ],
+    [
+      "name={${1:\\NameTheorem keyvals}}",
+      "qed=${1:symbol}",
+      "parent counter=${1:counter}",
+      "shared counter=${1:counter}"
+    ],
+    [
+      "heading={${1:envname}=${2:string}}",
+      "crefname={${1:envname}={${2:singular}}{${3:plural}}}",
+      "Crefname={${1:envname}={${2:singular}}{${3:plural}}}"
+    ]
+  ]
+}

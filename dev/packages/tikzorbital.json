@@ -1,0 +1,61 @@
+{
+  "includes": {
+    "ifthen": [],
+    "tikz": [],
+    "tikzlibraryshapes": []
+  },
+  "macros": {
+    "drawLevel[]{}": {
+      "snippet": "drawLevel[${2:options}]{${1:name}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "orbital[]{}": {
+      "snippet": "orbital[${2:options}]{${1:type}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "satom[]{}": {
+      "snippet": "satom[${2:options}]{${1:color/rotation-angle/${3:anchor}/${4:number of electrons}/scale}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "atom[]{}": {
+      "snippet": "atom[${2:options}]{${1:color/rotation-angle/${3:anchor}/${4:number of electrons}/scale}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "setOrbitalDrawing{}": {
+      "snippet": "setOrbitalDrawing{${1:TikZ options}}"
+    }
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "elec=",
+      "pos={(%|)}",
+      "width=${1:number}",
+      "style={${1:TikZ options}}",
+      "spinstyle={${1:TikZ options}}",
+      "spinlength=${1:number}"
+    ],
+    [
+      "pos={(%|)}",
+      "scale=${1:factor}",
+      "opacity=${1:factor}",
+      "pcolor=",
+      "ncolor=",
+      "color=",
+      "rotate=${1:degrees}",
+      "nelec=${1:integer}"
+    ],
+    [
+      "pos={(%|)}",
+      "name=${1:name}",
+      "color=",
+      "opacity=${1:factor}",
+      "scale=${1:factor}"
+    ]
+  ]
+}

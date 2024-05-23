@@ -1,0 +1,334 @@
+{
+  "includes": {
+    "ucs": [],
+    "inputenc": [],
+    "array": [],
+    "longtable": [],
+    "fancyhdr": [],
+    "etoolbox": [],
+    "hyperref": [],
+    "totpages": [
+      "totpages"
+    ],
+    "booktabs": [
+      "booktabs"
+    ]
+  },
+  "macros": {
+    "ecvdate{}": {
+      "snippet": "ecvdate{${1:date}}"
+    },
+    "ecvname{}": {
+      "snippet": "ecvname{${1:name,surname}}"
+    },
+    "ecvfootername{}": {
+      "snippet": "ecvfootername{${1:name}}"
+    },
+    "ecvfirstname{}": {
+      "snippet": "ecvfirstname{${1:name}}"
+    },
+    "ecvlastname{}": {
+      "snippet": "ecvlastname{${1:name}}"
+    },
+    "ecvaddress{}": {
+      "snippet": "ecvaddress{${1:address}}"
+    },
+    "ecvaddress[]{}": {
+      "snippet": "ecvaddress[${2:mobile}]{${1:address}}"
+    },
+    "ecvaddress[][]{}": {
+      "snippet": "ecvaddress[${2:mobile}][${3:office}]{${1:address}}"
+    },
+    "ecvfax{}": {
+      "snippet": "ecvfax{${1:fax}}"
+    },
+    "ecvtelephone{}": {
+      "snippet": "ecvtelephone{${1:tel}}"
+    },
+    "ecvtelephone[]{}": {
+      "snippet": "ecvtelephone[${2:mobile}]{${1:tel}}"
+    },
+    "ecvtelephone[][]{}": {
+      "snippet": "ecvtelephone[${2:mobile}][${3:office}]{${1:tel}}"
+    },
+    "ecvemail{}": {
+      "snippet": "ecvemail{${1:email}}"
+    },
+    "ecvprofessional{}": {
+      "snippet": "ecvprofessional{${1:professional email}}"
+    },
+    "ecvpec{}": {
+      "snippet": "ecvpec{${1:PEC}}"
+    },
+    "ecvskype{}": {
+      "snippet": "ecvskype{${1:skype}}"
+    },
+    "ecvmatrixriot{}": {
+      "snippet": "ecvmatrixriot{${1:matrixriot}}"
+    },
+    "ecvyoutube{}": {
+      "snippet": "ecvyoutube{${1:youtubeChannel}}"
+    },
+    "ecvnationality{}": {
+      "snippet": "ecvnationality{${1:nationality}}"
+    },
+    "ecvdateofbirth{}": {
+      "snippet": "ecvdateofbirth{${1:date}}"
+    },
+    "ecvgender{}": {
+      "snippet": "ecvgender{${1:gender}}"
+    },
+    "ecvpicture{}": {
+      "snippet": "ecvpicture{${1:imagefile}}"
+    },
+    "ecvbeforepicture{}": {
+      "snippet": "ecvbeforepicture{${1:text}}"
+    },
+    "ecvafterpicture{}": {
+      "snippet": "ecvafterpicture{${1:text}}"
+    },
+    "ecvspace{}": {
+      "snippet": "ecvspace{${1:space}}"
+    },
+    "ecvpersonalinfo": {},
+    "ecvpersonalinfo[]": {
+      "snippet": "ecvpersonalinfo[${1:vspace}]"
+    },
+    "ecvitem{}{}": {
+      "snippet": "ecvitem{${1:left}}{${2:right}}"
+    },
+    "ecvitem[]{}{}": {
+      "snippet": "ecvitem[${3:vspace}]{${1:left}}{${2:right}}"
+    },
+    "ecvmothertongue{}": {
+      "snippet": "ecvmothertongue{${1:language}}"
+    },
+    "ecvmothertongue[]{}": {
+      "snippet": "ecvmothertongue[${2:vspace}]{${1:language}}"
+    },
+    "ecvlanguageheader{}": {
+      "snippet": "ecvlanguageheader{${1:symbol}}"
+    },
+    "ecvlanguagefooter{}": {
+      "snippet": "ecvlanguagefooter{${1:language}}"
+    },
+    "ecvlanguagefooter[]": {
+      "snippet": "ecvlanguagefooter[${1:vspace}]"
+    },
+    "ecvlanguage{}{}{}{}{}": {
+      "snippet": "ecvlanguage{${1:l1}}{${2:l2}}{${3:l3}}{${4:l4}}{${5:l5}}"
+    },
+    "ecvlanguage[]{}{}{}{}{}": {
+      "snippet": "ecvlanguage[${6:vspace}]{${1:l1}}{${2:l2}}{${3:l3}}{${4:l4}}{${5:l5}}"
+    },
+    "ecvlastlanguage{}{}{}{}{}": {
+      "snippet": "ecvlastlanguage{${1:l1}}{${2:l2}}{${3:l3}}{${4:l4}}{${5:l5}}"
+    },
+    "ecvlastlanguage[]{}{}{}{}{}": {
+      "snippet": "ecvlastlanguage[${6:vspace}]{${1:l1}}{${2:l2}}{${3:l3}}{${4:l4}}{${5:l5}}"
+    },
+    "ecvCEF": {},
+    "ecvAOne": {},
+    "ecvATwo": {},
+    "ecvBOne": {},
+    "ecvBTwo": {},
+    "ecvCOne": {},
+    "ecvCTwo": {},
+    "ecvdisplayFootNoteCounter": {},
+    "ecvdisplayFootNoteCounter[]": {
+      "snippet": "ecvdisplayFootNoteCounter[${1:key}]"
+    },
+    "ecvdisplayConferencePublications": {},
+    "ecvdisplayConferencePublications[]": {
+      "snippet": "ecvdisplayConferencePublications[${1:key}]"
+    },
+    "ecvdisplayBookChapterPublications": {},
+    "ecvdisplayBookChapterPublications[]": {
+      "snippet": "ecvdisplayBookChapterPublications[${1:key}]"
+    },
+    "ecvdisplayReferredJournalsPublications": {},
+    "ecvdisplayReferredJournalsPublications[]": {
+      "snippet": "ecvdisplayReferredJournalsPublications[${1:key}]"
+    },
+    "ecvdisplayWorkshops": {},
+    "ecvdisplayWorkshops[]": {
+      "snippet": "ecvdisplayWorkshops[${1:key}]"
+    },
+    "ecvdisplayPosters": {},
+    "ecvdisplayPosters[]": {
+      "snippet": "ecvdisplayPosters[${1:key}]"
+    },
+    "ecvdisplayResearchProjects": {},
+    "ecvdisplayResearchProjects[]": {
+      "snippet": "ecvdisplayResearchProjects[${1:key}]"
+    },
+    "ecvdisplayAwards": {},
+    "ecvdisplayAwards[]": {
+      "snippet": "ecvdisplayAwards[${1:key}]"
+    },
+    "ecvrefFootNoteCounter": {},
+    "ecvrefFootNoteCounter[]": {
+      "snippet": "ecvrefFootNoteCounter[${1:key}]"
+    },
+    "ecvrefConferencePublications": {},
+    "ecvrefConferencePublications[]": {
+      "snippet": "ecvrefConferencePublications[${1:key}]"
+    },
+    "ecvrefBookChapterPublications": {},
+    "ecvrefBookChapterPublications[]": {
+      "snippet": "ecvrefBookChapterPublications[${1:key}]"
+    },
+    "ecvrefReferredJournalsPublications": {},
+    "ecvrefReferredJournalsPublications[]": {
+      "snippet": "ecvrefReferredJournalsPublications[${1:key}]"
+    },
+    "ecvrefWorkshops": {},
+    "ecvrefWorkshops[]": {
+      "snippet": "ecvrefWorkshops[${1:key}]"
+    },
+    "ecvrefPosters": {},
+    "ecvrefPosters[]": {
+      "snippet": "ecvrefPosters[${1:key}]"
+    },
+    "ecvrefResearchProjects": {},
+    "ecvrefResearchProjects[]": {
+      "snippet": "ecvrefResearchProjects[${1:key}]"
+    },
+    "ecvrefAwards": {},
+    "ecvrefAwards[]": {
+      "snippet": "ecvrefAwards[${1:key}]"
+    },
+    "ecvfootnote{}": {
+      "snippet": "ecvfootnote{${1:note}}"
+    },
+    "ecvpage{}": {
+      "snippet": "ecvpage{${1:code}}"
+    },
+    "ecvWithHorRule": {},
+    "ecvNoHorRule": {},
+    "ecvRuleWidth{}": {
+      "snippet": "ecvRuleWidth{${1:width}}"
+    },
+    "ecvExtraRowHeight{}": {
+      "snippet": "ecvExtraRowHeight{${1:height}}"
+    },
+    "ecvColSep{}": {
+      "snippet": "ecvColSep{${1:width}}"
+    },
+    "ecvFlagWidth{}": {
+      "snippet": "ecvFlagWidth{${1:width}}"
+    },
+    "ecvLogoWidth{}": {
+      "snippet": "ecvLogoWidth{${1:width}}"
+    },
+    "ecvLogoOffset{}": {
+      "snippet": "ecvLogoOffset{${1:offset}}"
+    },
+    "ecvLeftColumnWidth{}": {
+      "snippet": "ecvLeftColumnWidth{${1:width}}"
+    },
+    "ecvTitleKern{}": {
+      "snippet": "ecvTitleKern{${1:kern}}"
+    },
+    "draweuropasslogo": {},
+    "draweuropeflag": {},
+    "ecvarg": {},
+    "ecvbullet": {},
+    "ecvdrawpicture": {},
+    "ecvrefWorkshopsPublications": {},
+    "ecvrefWorkshopsPublications[]": {
+      "snippet": "ecvrefWorkshopsPublications[${1:key}]"
+    },
+    "ecvsection{}": {
+      "snippet": "ecvsection{${1:title}}"
+    },
+    "myhyperlink{}": {
+      "snippet": "myhyperlink{${1:URL}}"
+    },
+    "oldhypertarget": {},
+    "theAwards": {},
+    "theBookChapterPublications": {},
+    "theConferencePublications": {},
+    "theFootNoteCounter": {},
+    "thePosters": {},
+    "theReferredJournalsPublications": {},
+    "theResearchProjects": {},
+    "theWorkshops": {}
+  },
+  "envs": {
+    "europecv": {}
+  },
+  "options": [
+    "utf8",
+    "ansinew",
+    "applemac",
+    "ascii",
+    "cp850",
+    "cp852",
+    "cp858",
+    "cp437",
+    "cp437de",
+    "cp865",
+    "cp866",
+    "cp1250",
+    "cp1251",
+    "cp1252",
+    "cp1257",
+    "decmulti",
+    "koi8-r",
+    "koi8-ru",
+    "koi8-u",
+    "latin1",
+    "latin2",
+    "latin3",
+    "latin4",
+    "latin5",
+    "latin9",
+    "latin10",
+    "maccyr",
+    "macukr",
+    "next",
+    "helvetica",
+    "arial",
+    "narrow",
+    "bulgarian",
+    "catalan",
+    "czech",
+    "danish",
+    "dutch",
+    "english",
+    "estonian",
+    "french",
+    "finnish",
+    "galician",
+    "german",
+    "greek",
+    "hungarian",
+    "icelandic",
+    "italian",
+    "latvian",
+    "lithuanian",
+    "maltese",
+    "norwegian",
+    "polish",
+    "portuguese",
+    "romanian",
+    "serbian",
+    "slovak",
+    "slovenian",
+    "spanish",
+    "swedish",
+    "noflag",
+    "flagWB",
+    "flagBW",
+    "flagCMYK",
+    "flagBlueCMYK",
+    "logo",
+    "nologo",
+    "notitle",
+    "nobranding",
+    "totpages",
+    "booktabs"
+  ],
+  "keyvals": []
+}

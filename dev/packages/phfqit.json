@@ -1,0 +1,302 @@
+{
+  "includes": {
+    "calc": [],
+    "etoolbox": [],
+    "dsfont": [],
+    "mathrsfs": [],
+    "mathtools": [],
+    "kvoptions": []
+  },
+  "macros": {
+    "Hs": {},
+    "Ident": {},
+    "IdentProc{}": {
+      "snippet": "IdentProc{${1:arg}}"
+    },
+    "IdentProc[]{}": {
+      "snippet": "IdentProc[${2:sub}]{${1:arg}}"
+    },
+    "IdentProc[][]{}": {
+      "snippet": "IdentProc[${2:sub from}][${3:sub to}]{${1:arg}}"
+    },
+    "ee^{}": {
+      "snippet": "ee^{${1:arg}}"
+    },
+    "tr": {},
+    "supp": {},
+    "rank": {},
+    "linspan": {},
+    "spec": {},
+    "diag": {},
+    "poly": {},
+    "bit{}": {
+      "snippet": "bit{${1:0 or 1}}"
+    },
+    "bitstring{}": {
+      "snippet": "bitstring{${1:string}}"
+    },
+    "gate{}": {
+      "snippet": "gate{${1:arg}}"
+    },
+    "AND": {},
+    "XOR": {},
+    "CNOT": {},
+    "NOT": {},
+    "NOOP": {},
+    "ket{}": {
+      "snippet": "ket{${1:arg}}"
+    },
+    "ket[]{}": {
+      "snippet": "ket[${2:size cmd}]{${1:arg}}"
+    },
+    "ket*{}": {
+      "snippet": "ket*{${1:arg}}"
+    },
+    "bra{}": {
+      "snippet": "bra{${1:arg}}"
+    },
+    "bra[]{}": {
+      "snippet": "bra[${2:size cmd}]{${1:arg}}"
+    },
+    "bra*{}": {
+      "snippet": "bra*{${1:arg}}"
+    },
+    "braket{}{}": {
+      "snippet": "braket{${1:arg1}}{${2:arg2}}"
+    },
+    "braket[]{}{}": {
+      "snippet": "braket[${3:size cmd}]{${1:arg1}}{${2:arg2}}"
+    },
+    "braket*{}{}": {
+      "snippet": "braket*{${1:arg1}}{${2:arg2}}"
+    },
+    "ketbra{}{}": {
+      "snippet": "ketbra{${1:arg1}}{${2:arg2}}"
+    },
+    "ketbra[]{}{}": {
+      "snippet": "ketbra[${3:size cmd}]{${1:arg1}}{${2:arg2}}"
+    },
+    "ketbra*{}{}": {
+      "snippet": "ketbra*{${1:arg1}}{${2:arg2}}"
+    },
+    "proj{}": {
+      "snippet": "proj{${1:arg}}"
+    },
+    "proj[]{}": {
+      "snippet": "proj[${2:size cmd}]{${1:arg}}"
+    },
+    "proj*{}": {
+      "snippet": "proj*{${1:arg}}"
+    },
+    "matrixel{}{}{}": {
+      "snippet": "matrixel{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "matrixel[]{}{}{}": {
+      "snippet": "matrixel[${4:size cmd}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "matrixel*{}{}{}": {
+      "snippet": "matrixel*{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "dmatrixel{}{}": {
+      "snippet": "dmatrixel{${1:arg1}}{${2:arg2}}"
+    },
+    "dmatrixel[]{}{}": {
+      "snippet": "dmatrixel[${3:size cmd}]{${1:arg1}}{${2:arg2}}"
+    },
+    "dmatrixel*{}{}": {
+      "snippet": "dmatrixel*{${1:arg1}}{${2:arg2}}"
+    },
+    "innerprod{}{}": {
+      "snippet": "innerprod{${1:arg1}}{${2:arg2}}"
+    },
+    "innerprod[]{}{}": {
+      "snippet": "innerprod[${3:size cmd}]{${1:arg1}}{${2:arg2}}"
+    },
+    "innerprod*{}{}": {
+      "snippet": "innerprod*{${1:arg1}}{${2:arg2}}"
+    },
+    "abs{}": {
+      "snippet": "abs{${1:arg}}"
+    },
+    "abs[]{}": {
+      "snippet": "abs[${2:size cmd}]{${1:arg}}"
+    },
+    "abs*{}": {
+      "snippet": "abs*{${1:arg}}"
+    },
+    "avg{}": {
+      "snippet": "avg{${1:arg}}"
+    },
+    "avg[]{}": {
+      "snippet": "avg[${2:size cmd}]{${1:arg}}"
+    },
+    "avg*{}": {
+      "snippet": "avg*{${1:arg}}"
+    },
+    "norm{}": {
+      "snippet": "norm{${1:arg}}"
+    },
+    "norm[]{}": {
+      "snippet": "norm[${2:size cmd}]{${1:arg}}"
+    },
+    "norm*{}": {
+      "snippet": "norm*{${1:arg}}"
+    },
+    "intervalc{}{}": {
+      "snippet": "intervalc{${1:arg1}}{${2:arg2}}"
+    },
+    "intervalc[]{}{}": {
+      "snippet": "intervalc[${3:size cmd}]{${1:arg1}}{${2:arg2}}"
+    },
+    "intervalc*{}{}": {
+      "snippet": "intervalc*{${1:arg1}}{${2:arg2}}"
+    },
+    "intervalo{}{}": {
+      "snippet": "intervalo{${1:arg1}}{${2:arg2}}"
+    },
+    "intervalo[]{}{}": {
+      "snippet": "intervalo[${3:size cmd}]{${1:arg1}}{${2:arg2}}"
+    },
+    "intervalo*{}{}": {
+      "snippet": "intervalo*{${1:arg1}}{${2:arg2}}"
+    },
+    "intervalco{}{}": {
+      "snippet": "intervalco{${1:arg1}}{${2:arg2}}"
+    },
+    "intervalco[]{}{}": {
+      "snippet": "intervalco[${3:size cmd}]{${1:arg1}}{${2:arg2}}"
+    },
+    "intervalco*{}{}": {
+      "snippet": "intervalco*{${1:arg1}}{${2:arg2}}"
+    },
+    "intervaloc{}{}": {
+      "snippet": "intervaloc{${1:arg1}}{${2:arg2}}"
+    },
+    "intervaloc[]{}{}": {
+      "snippet": "intervaloc[${3:size cmd}]{${1:arg1}}{${2:arg2}}"
+    },
+    "intervaloc*{}{}": {
+      "snippet": "intervaloc*{${1:arg1}}{${2:arg2}}"
+    },
+    "Hmin{}": {
+      "snippet": "Hmin{${1:target sys}}"
+    },
+    "Hmin[]{}": {
+      "snippet": "Hmin[${2:state}]{${1:target sys}}"
+    },
+    "Hmin{}[]": {
+      "snippet": "Hmin{${1:target sys}}[${2:cond sys}]"
+    },
+    "Hmin[][]{}[]": {
+      "snippet": "Hmin[${2:state}][${3:epsilon}]{${1:target sys}}[${4:cond sys}]"
+    },
+    "HH{}": {
+      "snippet": "HH{${1:target sys}}"
+    },
+    "HH[]{}": {
+      "snippet": "HH[${2:state}]{${1:target sys}}"
+    },
+    "HH{}[]": {
+      "snippet": "HH{${1:target sys}}[${2:cond sys}]"
+    },
+    "HH[][]{}[]": {
+      "snippet": "HH[${2:state}][${3:epsilon}]{${1:target sys}}[${4:cond sys}]"
+    },
+    "Hzero{}": {
+      "snippet": "Hzero{${1:target sys}}"
+    },
+    "Hzero[]{}": {
+      "snippet": "Hzero[${2:state}]{${1:target sys}}"
+    },
+    "Hzero{}[]": {
+      "snippet": "Hzero{${1:target sys}}[${2:cond sys}]"
+    },
+    "Hzero[][]{}[]": {
+      "snippet": "Hzero[${2:state}][${3:epsilon}]{${1:target sys}}[${4:cond sys}]"
+    },
+    "Hmaxf{}": {
+      "snippet": "Hmaxf{${1:target sys}}"
+    },
+    "Hmaxf[]{}": {
+      "snippet": "Hmaxf[${2:state}]{${1:target sys}}"
+    },
+    "Hmaxf{}[]": {
+      "snippet": "Hmaxf{${1:target sys}}[${2:cond sys}]"
+    },
+    "Hmaxf[][]{}[]": {
+      "snippet": "Hmaxf[${2:state}][${3:epsilon}]{${1:target sys}}[${4:cond sys}]"
+    },
+    "HSym": {},
+    "Hbase{}{}[][]{}[]": {
+      "snippet": "Hbase{${1:Hsym}}{${2:subscript}}[${3:state}][${4:epsilon}]{${5:target sys}}[${6:cond sys}]"
+    },
+    "DD{}{}": {
+      "snippet": "DD{${1:state}}{${2:relative-to state}}"
+    },
+    "DD_{}^{}{}{}": {
+      "snippet": "DD_{${1:sub}}^{${2:sup}}{${3:state}}{${4:relative-to state}}"
+    },
+    "Dmax{}{}": {
+      "snippet": "Dmax{${1:state}}{${2:relative-to state}}"
+    },
+    "Dmax[]{}{}": {
+      "snippet": "Dmax[${3:epsilon}]{${1:state}}{${2:relative-to state}}"
+    },
+    "Dminz{}{}": {
+      "snippet": "Dminz{${1:state}}{${2:relative-to state}}"
+    },
+    "Dminz[]{}{}": {
+      "snippet": "Dminz[${3:epsilon}]{${1:state}}{${2:relative-to state}}"
+    },
+    "Dminf{}{}": {
+      "snippet": "Dminf{${1:state}}{${2:relative-to state}}"
+    },
+    "Dminf[]{}{}": {
+      "snippet": "Dminf[${3:epsilon}]{${1:state}}{${2:relative-to state}}"
+    },
+    "Dr{}{}": {
+      "snippet": "Dr{${1:state}}{${2:relative-to state}}"
+    },
+    "Dr[]{}{}": {
+      "snippet": "Dr[${3:epsilon}]{${1:state}}{${2:relative-to state}}"
+    },
+    "Dsym": {},
+    "Dbase{}_{}^{}{}{}": {
+      "snippet": "Dbase{${1:Dsym}}_{${2:sub}}^{${3:sup}}{${4:state}}{${5:relative-to state}}"
+    },
+    "DCohx{}{}{}{}{}": {
+      "snippet": "DCohx{${1:rho}}{${2:X}}{${3:X'}}{${4:GammaX}}{${5:GammaX'}}"
+    },
+    "DCohx[]{}{}{}{}{}": {
+      "snippet": "DCohx[${6:epsilon}]{${1:rho}}{${2:X}}{${3:X'}}{${4:GammaX}}{${5:GammaX'}}"
+    },
+    "emptysystem": {},
+    "DCohxRefSystemName": {},
+    "DCSym": {},
+    "DCoh{}{}{}{}{}": {
+      "snippet": "DCoh{${1:rho}}{${2:R}}{${3:X'}}{${4:GammaR}}{${5:GammaX'}}"
+    },
+    "DCoh[]{}{}{}{}{}": {
+      "snippet": "DCoh[${6:epsilon}]{${1:rho}}{${2:R}}{${3:X'}}{${4:GammaR}}{${5:GammaX'}}"
+    },
+    "DCohbase{}[]{}{}{}{}{}": {
+      "snippet": "DCohbase{${1:Dsym}}[${2:epsilon}]{${3:rho}}{${4:R}}{${5:X'}}{${6:GammaR}}{${7:GammaX'}}"
+    },
+    "qitobjAddArg": {},
+    "qitobjAddArgx": {},
+    "qitobjParseDone": {},
+    "qitobjDone": {},
+    "DefineQitObject{}{}{}": {
+      "snippet": "DefineQitObject{${1:name}}{${2:parse cmd}}{${3:render cmd}}"
+    },
+    "DefineTunedQitObject{}{}{}{}{}": {
+      "snippet": "DefineTunedQitObject{${1:name}}{${2:parse cmd}}{${3:render cmd}}{${4:first arg}}{${5:custom defs}}"
+    },
+    "phfqitParen": {},
+    "phfqitSquareBrackets": {},
+    "phfqitCurlyBrackets": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

@@ -1,0 +1,115 @@
+{
+  "includes": {},
+  "macros": {
+    "nduKeys{}": {
+      "snippet": "nduKeys{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "nduValue{}{}": {
+      "snippet": "nduValue{${1:unit group}}{${2:value}}"
+    },
+    "nduValue{}[]{}": {
+      "snippet": "nduValue{${1:unit group}}[${2:options}]{${3:value}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "VALUE": {},
+    "SYMBOL": {},
+    "nduMath{}{}{}{}": {
+      "snippet": "nduMath{${1:unit group}}{${2:variable}}{${3:operator}}{${4:value}}"
+    },
+    "nduMath{}[]{}{}{}": {
+      "snippet": "nduMath{${1:unit group}}[${2:options}]{${3:variable}}{${4:operator}}{${5:value}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "nduResult{}{}": {
+      "snippet": "nduResult{${1:unit group}}{${2:variable}}"
+    },
+    "nduResult{}[]{}": {
+      "snippet": "nduResult{${1:unit group}}[${2:options}]{${3:variable}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "nduNormalize{}{}{}": {
+      "snippet": "nduNormalize{${1:unit group}}{${2:amount}}{${3:unit}}"
+    },
+    "nduNormalize{}[]{}{}": {
+      "snippet": "nduNormalize{${1:unit group}}[${2:options}]{${3:amount}}{${4:unit}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "nduHeader{}": {
+      "snippet": "nduHeader{${1:unit name}}"
+    },
+    "nduHeader{}[]": {
+      "snippet": "nduHeader{${1:unit name}}[${2:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "nduSymbol{}": {
+      "snippet": "nduSymbol{${1:unit group}}"
+    },
+    "nduFactor{}{}": {
+      "snippet": "nduFactor{${1:unit group}}{${2:unit name}}"
+    },
+    "nduNewBaseUnit{}{}": {
+      "snippet": "nduNewBaseUnit{${1:unit group}}{${2:keyvals}}"
+    },
+    "nduNewUnitGroup{}{}": {
+      "snippet": "nduNewUnitGroup{${1:unit group}}{${2:base units}}"
+    },
+    "nduNewUnitGroup{}{}[]": {
+      "snippet": "nduNewUnitGroup{${1:unit group}}{${2:base units}}[${3:cmd}]"
+    },
+    "nduNewUnitGroup[]{}{}": {
+      "snippet": "nduNewUnitGroup[${3:keyvals}]{${1:unit group}}{${2:base units}}"
+    },
+    "nduNewUnitGroup[]{}{}[]": {
+      "snippet": "nduNewUnitGroup[${3:keyvals}]{${1:unit group}}{${2:base units}}[${4:cmd}]"
+    }
+  },
+  "envs": {},
+  "options": [
+    "british",
+    "danish",
+    "german"
+  ],
+  "keyvals": [
+    [
+      "display=",
+      "format=${1:code}",
+      "replace nil with=${1:code}",
+      "treat zero as nil",
+      "unit depth=${1:unit name}",
+      "unit separator=${1:symbol}",
+      "use numprint",
+      "add to variable=${1:code}",
+      "subtract from variable=${1:code}",
+      "normalize",
+      "aligned",
+      "cell widths=",
+      "set aligned for environment=${1:name}",
+      "tabularray column type=${1:letter}"
+    ],
+    [
+      "display=",
+      "format=${1:code}",
+      "replace nil with=${1:code}",
+      "treat zero as nil",
+      "unit depth=${1:unit name}",
+      "unit separator=${1:symbol}",
+      "use numprint",
+      "add to variable=${1:code}",
+      "subtract from variable=${1:code}",
+      "normalize"
+    ],
+    [
+      "aligned",
+      "cell widths=",
+      "set aligned for environment=${1:name}",
+      "tabularray column type=${1:letter}"
+    ]
+  ]
+}

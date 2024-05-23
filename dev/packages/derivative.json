@@ -1,0 +1,461 @@
+{
+  "includes": {
+    "l3keys2e": []
+  },
+  "macros": {
+    "pdv[]{}{}_{}^{}": {
+      "snippet": "pdv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "pdv[]{}{}": {
+      "snippet": "pdv[${3:keyvals}]{${1:function}}{${2:variables}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "pdv{}{}_{}^{}": {
+      "snippet": "pdv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "pdv{}{}": {
+      "snippet": "pdv{${1:function}}{${2:variables}}"
+    },
+    "pdv*[]{}{}_{}^{}": {
+      "snippet": "pdv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "pdv*[]{}{}": {
+      "snippet": "pdv*[${3:keyvals}]{${1:function}}{${2:variables}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "pdv*{}{}_{}^{}": {
+      "snippet": "pdv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "pdv*{}{}": {
+      "snippet": "pdv*{${1:function}}{${2:variables}}"
+    },
+    "odv[]{}{}_{}^{}": {
+      "snippet": "odv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "odv[]{}{}": {
+      "snippet": "odv[${3:keyvals}]{${1:function}}{${2:variables}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "odv{}{}_{}^{}": {
+      "snippet": "odv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "odv{}{}": {
+      "snippet": "odv{${1:function}}{${2:variables}}"
+    },
+    "odv*[]{}{}_{}^{}": {
+      "snippet": "odv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "odv*[]{}{}": {
+      "snippet": "odv*[${3:keyvals}]{${1:function}}{${2:variables}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "odv*{}{}_{}^{}": {
+      "snippet": "odv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "odv*{}{}": {
+      "snippet": "odv*{${1:function}}{${2:variables}}"
+    },
+    "mdv[]{}{}_{}^{}": {
+      "snippet": "mdv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "mdv[]{}{}": {
+      "snippet": "mdv[${3:keyvals}]{${1:function}}{${2:variables}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mdv{}{}_{}^{}": {
+      "snippet": "mdv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "mdv{}{}": {
+      "snippet": "mdv{${1:function}}{${2:variables}}"
+    },
+    "mdv*[]{}{}_{}^{}": {
+      "snippet": "mdv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "mdv*[]{}{}": {
+      "snippet": "mdv*[${3:keyvals}]{${1:function}}{${2:variables}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "mdv*{}{}_{}^{}": {
+      "snippet": "mdv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "mdv*{}{}": {
+      "snippet": "mdv*{${1:function}}{${2:variables}}"
+    },
+    "fdv[]{}{}_{}^{}": {
+      "snippet": "fdv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "fdv[]{}{}": {
+      "snippet": "fdv[${3:keyvals}]{${1:function}}{${2:variables}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "fdv{}{}_{}^{}": {
+      "snippet": "fdv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "fdv{}{}": {
+      "snippet": "fdv{${1:function}}{${2:variables}}"
+    },
+    "fdv*[]{}{}_{}^{}": {
+      "snippet": "fdv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "fdv*[]{}{}": {
+      "snippet": "fdv*[${3:keyvals}]{${1:function}}{${2:variables}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "fdv*{}{}_{}^{}": {
+      "snippet": "fdv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "fdv*{}{}": {
+      "snippet": "fdv*{${1:function}}{${2:variables}}"
+    },
+    "adv[]{}{}_{}^{}": {
+      "snippet": "adv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "adv[]{}{}": {
+      "snippet": "adv[${3:keyvals}]{${1:function}}{${2:variables}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "adv{}{}_{}^{}": {
+      "snippet": "adv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "adv{}{}": {
+      "snippet": "adv{${1:function}}{${2:variables}}"
+    },
+    "adv*[]{}{}_{}^{}": {
+      "snippet": "adv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "adv*[]{}{}": {
+      "snippet": "adv*[${3:keyvals}]{${1:function}}{${2:variables}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "adv*{}{}_{}^{}": {
+      "snippet": "adv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "adv*{}{}": {
+      "snippet": "adv*{${1:function}}{${2:variables}}"
+    },
+    "jdv[]{}{}_{}^{}": {
+      "snippet": "jdv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "jdv[]{}{}": {
+      "snippet": "jdv[${3:keyvals}]{${1:function}}{${2:variables}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "jdv{}{}_{}^{}": {
+      "snippet": "jdv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "jdv{}{}": {
+      "snippet": "jdv{${1:function}}{${2:variables}}"
+    },
+    "jdv*[]{}{}_{}^{}": {
+      "snippet": "jdv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "jdv*[]{}{}": {
+      "snippet": "jdv*[${3:keyvals}]{${1:function}}{${2:variables}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "jdv*{}{}_{}^{}": {
+      "snippet": "jdv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+    },
+    "jdv*{}{}": {
+      "snippet": "jdv*{${1:function}}{${2:variables}}"
+    },
+    "odif[]{}": {
+      "snippet": "odif[${2:keyvals}]{${1:variables}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "odif{}": {
+      "snippet": "odif{${1:variables}}"
+    },
+    "odif*[]{}": {
+      "snippet": "odif*[${2:keyvals}]{${1:variables}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "odif*{}": {
+      "snippet": "odif*{${1:variables}}"
+    },
+    "pdif[]{}": {
+      "snippet": "pdif[${2:keyvals}]{${1:variables}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "pdif{}": {
+      "snippet": "pdif{${1:variables}}"
+    },
+    "pdif*[]{}": {
+      "snippet": "pdif*[${2:keyvals}]{${1:variables}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "pdif*{}": {
+      "snippet": "pdif*{${1:variables}}"
+    },
+    "mdif[]{}": {
+      "snippet": "mdif[${2:keyvals}]{${1:variables}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "mdif{}": {
+      "snippet": "mdif{${1:variables}}"
+    },
+    "mdif*[]{}": {
+      "snippet": "mdif*[${2:keyvals}]{${1:variables}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "mdif*{}": {
+      "snippet": "mdif*{${1:variables}}"
+    },
+    "fdif[]{}": {
+      "snippet": "fdif[${2:keyvals}]{${1:variables}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "fdif{}": {
+      "snippet": "fdif{${1:variables}}"
+    },
+    "fdif*[]{}": {
+      "snippet": "fdif*[${2:keyvals}]{${1:variables}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "fdif*{}": {
+      "snippet": "fdif*{${1:variables}}"
+    },
+    "adif[]{}": {
+      "snippet": "adif[${2:keyvals}]{${1:variables}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "adif{}": {
+      "snippet": "adif{${1:variables}}"
+    },
+    "adif*[]{}": {
+      "snippet": "adif*[${2:keyvals}]{${1:variables}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "adif*{}": {
+      "snippet": "adif*{${1:variables}}"
+    },
+    "derivset{}": {
+      "snippet": "derivset{${1:derivative}}"
+    },
+    "derivset{}[]": {
+      "snippet": "derivset{${1:derivative}}[${2:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 1
+    },
+    "NewDerivative{}{}[]": {
+      "snippet": "NewDerivative{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
+    },
+    "RenewDerivative{}{}[]": {
+      "snippet": "RenewDerivative{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
+    },
+    "ProvideDerivative{}{}[]": {
+      "snippet": "ProvideDerivative{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
+    },
+    "DeclareDerivative{}{}[]": {
+      "snippet": "DeclareDerivative{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
+    },
+    "NewDifferential{}{}[]": {
+      "snippet": "NewDifferential{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
+    },
+    "RenewDifferential{}{}[]": {
+      "snippet": "RenewDifferential{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
+    },
+    "ProvideDifferential{}{}[]": {
+      "snippet": "ProvideDifferential{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
+    },
+    "DeclareDifferential{}{}[]": {
+      "snippet": "DeclareDifferential{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
+    },
+    "slashfrac{}{}": {
+      "snippet": "slashfrac{${1:numerator}}{${2:denominator}}"
+    },
+    "slashfrac[]{}{}": {
+      "snippet": "slashfrac[${3:scale}]{${1:numerator}}{${2:denominator}}"
+    }
+  },
+  "envs": {},
+  "options": [
+    "italic",
+    "upright"
+  ],
+  "keyvals": [
+    [
+      "style-inf=${1:infinitesimal}",
+      "style-inf-num=${1:infinitesimal}",
+      "style-inf-den=${1:infinitesimal}",
+      "style-frac=${1:frac macro}",
+      "style-frac-/=${1:slashfrac macro}",
+      "style-var=",
+      "style-var-/=",
+      "style-var-!=",
+      "style-var-/!=",
+      "scale-eval=",
+      "scale-eval-/=",
+      "scale-eval-!=",
+      "scale-fun=",
+      "scale-var=",
+      "scale-var-!=",
+      "scale-frac=",
+      "scale-frac-/=",
+      "delims-eval={${1:left delim}}{${2:right delim}}",
+      "delims-eval-/={${1:left delim}}{${2:right delim}}",
+      "delims-eval-!={${1:left delim}}{${2:right delim}}",
+      "delims-fun={${1:left delim}}{${2:right delim}}",
+      "delims-var={${1:left delim}}{${2:right delim}}",
+      "delims-var-!={${1:left delim}}{${2:right delim}}",
+      "delims-frac={${1:left delim}}{${2:right delim}}",
+      "delims-frac-/={${1:left delim}}{${2:right delim}}",
+      "sep-inf-ord=${1:<num>, <mspace>, or <delim>}",
+      "sep-inf-fun=${1:<num>, <mspace>, or <delim>}",
+      "sep-ord-func=${1:<num>, <mspace>, or <delim>}",
+      "sep-frac-fun=${1:<num>, <mspace>, or <delim>}",
+      "sep-inf-var=${1:<num>, <mspace>, or <delim>}",
+      "sep-var-ord=${1:<num>, <mspace>, or <delim>}",
+      "sep-var-inf=${1:<num>, <mspace>, or <delim>}",
+      "sep-ord-inf=${1:<num>, <mspace>, or <delim>}",
+      "sep-ord-ord=${1:<num>, <mspace>, or <delim>}",
+      "sep-ord-var=${1:<num>, <mspace>, or <delim>}",
+      "sep-var-var=${1:<num>, <mspace>, or <delim>}",
+      "sep-eval-sb=${1:<num>, <mspace>, or <delim>}",
+      "sep-eval-sp=${1:<num>, <mspace>, or <delim>}",
+      "switch-*",
+      "switch-/",
+      "switch-!",
+      "switch-sort",
+      "sort-method={${1:abs, lexical, number, sign, and/or symbol}}",
+      "sort-numerical=",
+      "sort-abs-reverse",
+      "sort-number-reverse",
+      "sort-sign-reverse",
+      "sort-symbol-reverse",
+      "sort-lexical-reverse",
+      "fun",
+      "frac",
+      "var",
+      "var=${1:none, all, or {cs-numbers}}",
+      "order={${1:cs-orders}}",
+      "ord={${1:cs-orders}}",
+      "mixed-order={${1:mixed order}}",
+      "mixord={${1:mixed order}}"
+    ],
+    [
+      "style-inf=${1:infinitesimal}",
+      "style-var=",
+      "style-var-*=",
+      "scale-var=",
+      "scale-var-*=",
+      "delims-var={${1:left delim}}{${2:right delim}}",
+      "delims-var-*={${1:left delim}}{${2:right delim}}",
+      "sep-begin=${1:<num>, <mspace>, or <delim>}",
+      "sep-inf-ord=${1:<num>, <mspace>, or <delim>}",
+      "sep-inf-var=${1:<num>, <mspace>, or <delim>}",
+      "sep-ord-var=${1:<num>, <mspace>, or <delim>}",
+      "sep-var-inf=${1:<num>, <mspace>, or <delim>}",
+      "sep-var-var=${1:<num>, <mspace>, or <delim>}",
+      "sep-ord-ord=${1:<num>, <mspace>, or <delim>}",
+      "sep-end=${1:<num>, <mspace>, or <delim>}",
+      "switch-*=",
+      "var",
+      "var=${1:none, all, or {cs-numbers}}",
+      "order={${1:cs-orders}}",
+      "ord={${1:cs-orders}}"
+    ],
+    [
+      "style-inf=${1:infinitesimal}",
+      "style-inf-num=${1:infinitesimal}",
+      "style-inf-den=${1:infinitesimal}",
+      "style-frac=${1:frac macro}",
+      "style-frac-/=${1:slashfrac macro}",
+      "style-var=",
+      "style-var-/=",
+      "style-var-!=",
+      "style-var-/!=",
+      "scale-eval=",
+      "scale-eval-/=",
+      "scale-eval-!=",
+      "scale-fun=",
+      "scale-var=",
+      "scale-var-!=",
+      "scale-frac=",
+      "scale-frac-/=",
+      "delims-eval={${1:left delim}}{${2:right delim}}",
+      "delims-eval-/={${1:left delim}}{${2:right delim}}",
+      "delims-eval-!={${1:left delim}}{${2:right delim}}",
+      "delims-fun={${1:left delim}}{${2:right delim}}",
+      "delims-var={${1:left delim}}{${2:right delim}}",
+      "delims-var-!={${1:left delim}}{${2:right delim}}",
+      "delims-frac={${1:left delim}}{${2:right delim}}",
+      "delims-frac-/={${1:left delim}}{${2:right delim}}",
+      "sep-inf-ord=${1:<num>, <mspace>, or <delim>}",
+      "sep-inf-fun=${1:<num>, <mspace>, or <delim>}",
+      "sep-ord-func=${1:<num>, <mspace>, or <delim>}",
+      "sep-frac-fun=${1:<num>, <mspace>, or <delim>}",
+      "sep-inf-var=${1:<num>, <mspace>, or <delim>}",
+      "sep-var-ord=${1:<num>, <mspace>, or <delim>}",
+      "sep-var-inf=${1:<num>, <mspace>, or <delim>}",
+      "sep-ord-inf=${1:<num>, <mspace>, or <delim>}",
+      "sep-ord-ord=${1:<num>, <mspace>, or <delim>}",
+      "sep-ord-var=${1:<num>, <mspace>, or <delim>}",
+      "sep-var-var=${1:<num>, <mspace>, or <delim>}",
+      "sep-eval-sb=${1:<num>, <mspace>, or <delim>}",
+      "sep-eval-sp=${1:<num>, <mspace>, or <delim>}",
+      "switch-*",
+      "switch-/",
+      "switch-!",
+      "switch-sort",
+      "sort-method={${1:abs, lexical, number, sign, and/or symbol}}",
+      "sort-numerical=",
+      "sort-abs-reverse",
+      "sort-number-reverse",
+      "sort-sign-reverse",
+      "sort-symbol-reverse",
+      "sort-lexical-reverse",
+      "fun",
+      "frac",
+      "var",
+      "var=${1:none, all, or {cs-numbers}}",
+      "order={${1:cs-orders}}",
+      "ord={${1:cs-orders}}",
+      "mixed-order={${1:mixed order}}",
+      "mixord={${1:mixed order}}",
+      "style-inf=${1:infinitesimal}",
+      "style-var=",
+      "style-var-*=",
+      "scale-var=",
+      "scale-var-*=",
+      "delims-var={${1:left delim}}{${2:right delim}}",
+      "delims-var-*={${1:left delim}}{${2:right delim}}",
+      "sep-begin=${1:<num>, <mspace>, or <delim>}",
+      "sep-inf-ord=${1:<num>, <mspace>, or <delim>}",
+      "sep-inf-var=${1:<num>, <mspace>, or <delim>}",
+      "sep-ord-var=${1:<num>, <mspace>, or <delim>}",
+      "sep-var-inf=${1:<num>, <mspace>, or <delim>}",
+      "sep-var-var=${1:<num>, <mspace>, or <delim>}",
+      "sep-ord-ord=${1:<num>, <mspace>, or <delim>}",
+      "sep-end=${1:<num>, <mspace>, or <delim>}",
+      "switch-*=",
+      "var",
+      "var=${1:none, all, or {cs-numbers}}",
+      "order={${1:cs-orders}}",
+      "ord={${1:cs-orders}}",
+      "scale-auto="
+    ]
+  ]
+}

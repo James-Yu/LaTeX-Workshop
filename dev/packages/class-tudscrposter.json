@@ -1,0 +1,498 @@
+{
+  "includes": {
+    "tudscrbase": [],
+    "class-scrartcl": [],
+    "environ": [],
+    "graphicx": [],
+    "tudscrcolor": [],
+    "mathastext": [],
+    "newunicodechar": [],
+    "bm": [],
+    "geometry": [],
+    "scrlayer-scrpage": []
+  },
+  "macros": {
+    "cdfont{}": {
+      "snippet": "cdfont{${1:Schriftart}}"
+    },
+    "textcd{}{}": {
+      "snippet": "textcd{${1:Schriftart}}{${2:Text}}"
+    },
+    "cdfontln": {},
+    "textcdln{}": {
+      "snippet": "textcdln{${1:Text}}"
+    },
+    "cdfontrn": {},
+    "textcdrn{}": {
+      "snippet": "textcdrn{${1:Text}}"
+    },
+    "cdfontsn": {},
+    "textcdsn{}": {
+      "snippet": "textcdsn{${1:Text}}"
+    },
+    "cdfontbn": {},
+    "textcdbn{}": {
+      "snippet": "textcdbn{${1:Text}}"
+    },
+    "cdfontxn": {},
+    "textcdxn{}": {
+      "snippet": "textcdxn{${1:Text}}"
+    },
+    "cdfontli": {},
+    "textcdli{}": {
+      "snippet": "textcdli{${1:Text}}"
+    },
+    "cdfontri": {},
+    "textcdri{}": {
+      "snippet": "textcdri{${1:Text}}"
+    },
+    "cdfontsi": {},
+    "textcdsi{}": {
+      "snippet": "textcdsi{${1:Text}}"
+    },
+    "cdfontbi": {},
+    "textcdbi{}": {
+      "snippet": "textcdbi{${1:Text}}"
+    },
+    "cdfontxi": {},
+    "textcdxi{}": {
+      "snippet": "textcdxi{${1:Text}}"
+    },
+    "upGamma": {
+      "detail": "Γ",
+      "documentation": "capital gamma, greek"
+    },
+    "itGamma": {},
+    "upDelta": {
+      "detail": "Δ",
+      "documentation": "capital del greek"
+    },
+    "itDelta": {},
+    "upTheta": {
+      "detail": "Θ",
+      "documentation": "capital greek"
+    },
+    "itTheta": {},
+    "upLambda": {
+      "detail": "Λ",
+      "documentation": "capital lambda, greek"
+    },
+    "itLambda": {},
+    "upXi": {
+      "detail": "Ξ",
+      "documentation": "capital greek"
+    },
+    "itXi": {},
+    "upPi": {
+      "detail": "Π",
+      "documentation": "capital pi, greek"
+    },
+    "itPi": {},
+    "upSigma": {
+      "detail": "Σ",
+      "documentation": "capital sigma, greek"
+    },
+    "itSigma": {},
+    "upUpsilon": {
+      "detail": "ϒ",
+      "documentation": "GREEK UPSILON WITH HOOK SYMBOL"
+    },
+    "itUpsilon": {},
+    "upPhi": {
+      "detail": "Φ",
+      "documentation": "capital phi, greek"
+    },
+    "itPhi": {},
+    "upPsi": {
+      "detail": "Ψ",
+      "documentation": "capital psi, greek"
+    },
+    "itPsi": {},
+    "upOmega": {
+      "detail": "Ω",
+      "documentation": "capital omega, greek"
+    },
+    "itOmega": {},
+    "upalpha": {
+      "detail": "α",
+      "documentation": "alpha, greek"
+    },
+    "italpha": {},
+    "upbeta": {
+      "detail": "β",
+      "documentation": "be greek"
+    },
+    "itbeta": {},
+    "upgamma": {
+      "detail": "γ",
+      "documentation": "gamma, greek"
+    },
+    "itgamma": {},
+    "updelta": {
+      "detail": "δ",
+      "documentation": "del greek"
+    },
+    "itdelta": {},
+    "upepsilon": {
+      "detail": "ε",
+      "documentation": "rounded epsilon, greek"
+    },
+    "itepsilon": {},
+    "upvarepsilon": {
+      "detail": "ϵ",
+      "documentation": "GREEK LUNATE EPSILON SYMBOL"
+    },
+    "itvarepsilon": {},
+    "upzeta": {
+      "detail": "ζ",
+      "documentation": "ze greek"
+    },
+    "itzeta": {},
+    "upeta": {
+      "detail": "η",
+      "documentation": "e greek"
+    },
+    "iteta": {},
+    "uptheta": {
+      "detail": "θ",
+      "documentation": "straigh greek"
+    },
+    "ittheta": {},
+    "upvartheta": {
+      "detail": "ϑ",
+      "documentation": "curly or open theta"
+    },
+    "itvartheta": {},
+    "upiota": {
+      "detail": "ι",
+      "documentation": "io greek"
+    },
+    "itiota": {},
+    "upkappa": {
+      "detail": "κ",
+      "documentation": "kappa, greek"
+    },
+    "itkappa": {},
+    "uplambda": {
+      "detail": "λ",
+      "documentation": "lambda, greek"
+    },
+    "itlambda": {},
+    "upmu": {
+      "detail": "μ",
+      "documentation": "mu, greek"
+    },
+    "itmu": {},
+    "upnu": {
+      "detail": "ν",
+      "documentation": "nu, greek"
+    },
+    "itnu": {},
+    "upxi": {
+      "detail": "ξ",
+      "documentation": "greek"
+    },
+    "itxi": {},
+    "uppi": {
+      "detail": "π",
+      "documentation": "pi, greek"
+    },
+    "itpi": {},
+    "upvarpi": {
+      "detail": "ϖ",
+      "documentation": "GREEK PI SYMBOL (pomega)"
+    },
+    "itvarpi": {},
+    "uprho": {
+      "detail": "ρ",
+      "documentation": "rho, greek"
+    },
+    "itrho": {},
+    "upvarrho": {
+      "detail": "ϱ",
+      "documentation": "GREEK RHO SYMBOL (round)"
+    },
+    "itvarrho": {},
+    "upsigma": {
+      "detail": "σ",
+      "documentation": "sigma, greek"
+    },
+    "itsigma": {},
+    "upvarsigma": {
+      "detail": "ς",
+      "documentation": "terminal sigma, greek"
+    },
+    "itvarsigma": {},
+    "uptau": {
+      "detail": "τ",
+      "documentation": "greek"
+    },
+    "ittau": {},
+    "upupsilon": {
+      "detail": "υ",
+      "documentation": "upsilon, greek"
+    },
+    "itupsilon": {},
+    "upphi": {
+      "detail": "ϕ",
+      "documentation": "GREEK PHI SYMBOL (straight)"
+    },
+    "itphi": {},
+    "upvarphi": {
+      "detail": "φ",
+      "documentation": "curly or open phi, greek"
+    },
+    "itvarphi": {},
+    "upchi": {
+      "detail": "χ",
+      "documentation": "chi, greek"
+    },
+    "itchi": {},
+    "uppsi": {
+      "detail": "ψ",
+      "documentation": "psi, greek"
+    },
+    "itpsi": {},
+    "upomega": {
+      "detail": "ω",
+      "documentation": "omega, greek"
+    },
+    "itomega": {},
+    "otherGamma": {},
+    "otherDelta": {},
+    "otherTheta": {},
+    "otherLambda": {},
+    "otherXi": {},
+    "otherPi": {},
+    "otherSigma": {},
+    "otherUpsilon": {},
+    "otherPhi": {},
+    "otherPsi": {},
+    "otherOmega": {},
+    "otheralpha": {},
+    "otherbeta": {},
+    "othergamma": {},
+    "otherdelta": {},
+    "otherepsilon": {},
+    "othervarepsilon": {},
+    "otherzeta": {},
+    "othereta": {},
+    "othertheta": {},
+    "othervartheta": {},
+    "otheriota": {},
+    "otherkappa": {},
+    "otherlambda": {},
+    "othermu": {},
+    "othernu": {},
+    "otherxi": {},
+    "otherpi": {},
+    "othervarpi": {},
+    "otherrho": {},
+    "othervarrho": {},
+    "othersigma": {},
+    "othervarsigma": {},
+    "othertau": {},
+    "otherupsilon": {},
+    "otherphi": {},
+    "othervarphi": {},
+    "otherchi": {},
+    "otherpsi": {},
+    "otheromega": {},
+    "faculty{}": {
+      "snippet": "faculty{${1:Fakultät}}"
+    },
+    "department{}": {
+      "snippet": "department{${1:Einrichtung}}"
+    },
+    "institute{}": {
+      "snippet": "institute{${1:Institut}}"
+    },
+    "chair{}": {
+      "snippet": "chair{${1:Lehrstuhl}}"
+    },
+    "extraheadline{}": {
+      "snippet": "extraheadline{${1:Textzeile}}"
+    },
+    "headlogo{}": {
+      "snippet": "headlogo{${1:imagefile}}"
+    },
+    "headlogo[]{}": {
+      "snippet": "headlogo[${2:Parameterliste}]{${1:imagefile}}"
+    },
+    "footlogo{}": {
+      "snippet": "footlogo{${1:imagefile}}"
+    },
+    "footlogo[]{}": {
+      "snippet": "footlogo[${2:Parameterliste}]{${1:imagefile}}"
+    },
+    "footlogosep": {},
+    "footcontent{}": {
+      "snippet": "footcontent{${1:Inhalt}}"
+    },
+    "footcontent{}[]": {
+      "snippet": "footcontent{${1:linker Inhalt}}[${2:rechter Inhalt}]"
+    },
+    "footcontent[]{}": {
+      "snippet": "footcontent[${2:Anweisungen}]{${1:Inhalt}}"
+    },
+    "footcontent[]{}[]": {
+      "snippet": "footcontent[${2:Anweisungen}]{${1:linker Inhalt}}[${3:rechter Inhalt}]"
+    },
+    "maketitle[]": {
+      "snippet": "maketitle[${1:Parameterliste}]"
+    },
+    "maketitleonecolumn{}": {
+      "snippet": "maketitleonecolumn{${1:Einspaltentext}}"
+    },
+    "maketitleonecolumn[]{}": {
+      "snippet": "maketitleonecolumn[${2:Parameterliste}]{${1:Einspaltentext}}"
+    },
+    "raggedtitle": {},
+    "authormore{}": {
+      "snippet": "authormore{${1:Autorenzusatz}}"
+    },
+    "emailaddress{}": {
+      "snippet": "emailaddress{${1:E-Mail-Adresse}}"
+    },
+    "emailaddress[]{}": {
+      "snippet": "emailaddress[${2:Einstellungen}]{${1:E-Mail-Adresse}}"
+    },
+    "emailaddress*{}": {
+      "snippet": "emailaddress*{${1:E-Mail-Adresse}}"
+    },
+    "course{}": {
+      "snippet": "course{${1:Studiengang}}"
+    },
+    "discipline{}": {
+      "snippet": "discipline{${1:Studienrichtung}}"
+    },
+    "date[]{}": {
+      "snippet": "date[${2:Parameterliste}]{${1:Datum}}"
+    },
+    "date*{}": {
+      "snippet": "date*{${1:Datum}}"
+    },
+    "date*[]{}": {
+      "snippet": "date*[${2:Parameterliste}]{${1:Datum}}"
+    },
+    "habilitationname": {},
+    "dissertationname": {},
+    "diplomathesisname": {},
+    "masterthesisname": {},
+    "bachelorthesisname": {},
+    "studentthesisname": {},
+    "studentresearchname": {},
+    "projectpapername": {},
+    "seminarpapername": {},
+    "termpapername": {},
+    "researchname": {},
+    "logname": {},
+    "reportname": {},
+    "internshipname": {},
+    "supervisor{}": {
+      "snippet": "supervisor{${1:Name(${2:n})}}"
+    },
+    "professor{}": {
+      "snippet": "professor{${1:Name}}"
+    },
+    "setpartsubtitle{}": {
+      "snippet": "setpartsubtitle{${1:Untertitel}}"
+    },
+    "getfield{}": {
+      "snippet": "getfield{${1:Feldname}}"
+    },
+    "nextabstract": {},
+    "nextabstract[]": {
+      "snippet": "nextabstract[${1:Parameterliste}]"
+    },
+    "tudbookmark{}{}": {
+      "snippet": "tudbookmark{${1:Text}}{${2:Ankername}}"
+    },
+    "tudbookmark[]{}{}": {
+      "snippet": "tudbookmark[${3:Ebene}]{${1:Text}}{${2:Ankername}}"
+    },
+    "coursename": {},
+    "disciplinename": {},
+    "listingname": {},
+    "listlistingname": {},
+    "TUDClassName": {},
+    "TUDScriptClassName": {},
+    "printdate{}": {
+      "snippet": "printdate{${1:date}}"
+    },
+    "webpage{}": {
+      "snippet": "webpage{${1:URL}}"
+    },
+    "webpage[]{}": {
+      "snippet": "webpage[${2:Einstellungen}]{${1:URL}}"
+    },
+    "contactperson{}": {
+      "snippet": "contactperson{${1:Name(${2:n})}}"
+    },
+    "office{}": {
+      "snippet": "office{${1:Adresse/Gebäude}}"
+    },
+    "telephone{}": {
+      "snippet": "telephone{${1:Telefonnummer}}"
+    },
+    "telefax{}": {
+      "snippet": "telefax{${1:Telefaxnummer}}"
+    },
+    "authorname": {},
+    "contactname": {},
+    "contactpersonname": {},
+    "dinbn": {},
+    "footlogoheight": {},
+    "ifdin{}{}": {
+      "snippet": "ifdin{${1:arg1}}{${2:arg2}}"
+    },
+    "publisher{}": {
+      "snippet": "publisher{${1:arg}}"
+    },
+    "textdbn{}": {
+      "snippet": "textdbn{${1:text}}"
+    },
+    "textubn{}": {
+      "snippet": "textubn{${1:text}}"
+    },
+    "textubs{}": {
+      "snippet": "textubs{${1:text}}"
+    },
+    "textuln{}": {
+      "snippet": "textuln{${1:text}}"
+    },
+    "textuls{}": {
+      "snippet": "textuls{${1:text}}"
+    },
+    "texturn{}": {
+      "snippet": "texturn{${1:text}}"
+    },
+    "texturs{}": {
+      "snippet": "texturs{${1:text}}"
+    },
+    "textuxn{}": {
+      "snippet": "textuxn{${1:text}}"
+    },
+    "textuxs{}": {
+      "snippet": "textuxs{${1:text}}"
+    },
+    "univbn": {},
+    "univbs": {},
+    "univln": {},
+    "univls": {},
+    "univrn": {},
+    "univrs": {},
+    "univxn": {},
+    "univxs": {}
+  },
+  "envs": {
+    "abstract[]": {
+      "name": "abstract",
+      "snippet": "[${1:Parameterliste}]"
+    },
+    "figurehere": {},
+    "tablehere": {}
+  },
+  "options": [],
+  "keyvals": []
+}

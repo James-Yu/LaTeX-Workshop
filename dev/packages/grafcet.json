@@ -1,0 +1,322 @@
+{
+  "includes": {
+    "ifsym": [],
+    "ifthen": [],
+    "tikz": [],
+    "tikzlibraryshapes": []
+  },
+  "macros": {
+    "Etape{}": {
+      "snippet": "Etape{${1:nom}}"
+    },
+    "Etape[]{}": {
+      "snippet": "Etape[${2:pos}]{${1:nom}}"
+    },
+    "EtapeInit{}": {
+      "snippet": "EtapeInit{${1:nom}}"
+    },
+    "EtapeInit[]{}": {
+      "snippet": "EtapeInit[${2:pos}]{${1:nom}}"
+    },
+    "EtapeActive{}": {
+      "snippet": "EtapeActive{${1:nom}}"
+    },
+    "MacroEtape{}": {
+      "snippet": "MacroEtape{${1:nom}}"
+    },
+    "MacroEtape[]{}": {
+      "snippet": "MacroEtape[${2:pos}]{${1:nom}}"
+    },
+    "MacroEtapeE{}": {
+      "snippet": "MacroEtapeE{${1:nom}}"
+    },
+    "MacroEtapeE[]{}": {
+      "snippet": "MacroEtapeE[${2:pos}]{${1:nom}}"
+    },
+    "MacroEtapeS{}": {
+      "snippet": "MacroEtapeS{${1:nom}}"
+    },
+    "MacroEtapeS[]{}": {
+      "snippet": "MacroEtapeS[${2:pos}]{${1:nom}}"
+    },
+    "EtapeEncapsulante{}": {
+      "snippet": "EtapeEncapsulante{${1:nom}}"
+    },
+    "EtapeEncapsulante[]{}": {
+      "snippet": "EtapeEncapsulante[${2:pos}]{${1:nom}}"
+    },
+    "EtapeEncapsulanteInit{}": {
+      "snippet": "EtapeEncapsulanteInit{${1:nom}}"
+    },
+    "EtapeEncapsulanteInit[]{}": {
+      "snippet": "EtapeEncapsulanteInit[${2:pos}]{${1:nom}}"
+    },
+    "LienActivation{}": {
+      "snippet": "LienActivation{${1:nom}}"
+    },
+    "Transition{}": {
+      "snippet": "Transition{${1:nom}}"
+    },
+    "Transition[]{}": {
+      "snippet": "Transition[${2:pos}]{${1:nom}}"
+    },
+    "Recept{}{}": {
+      "snippet": "Recept{${1:Tnnn}}{${2:condition}}"
+    },
+    "Recepts{}": {
+      "snippet": "Recepts{${1:1/r1,2/r2,...}}"
+    },
+    "TransitionSource{}": {
+      "snippet": "TransitionSource{${1:nom}}"
+    },
+    "TransitionSource[]{}": {
+      "snippet": "TransitionSource[${2:pos}]{${1:nom}}"
+    },
+    "TransitionPuits{}": {
+      "snippet": "TransitionPuits{${1:nom}}"
+    },
+    "TransitionPuits[]{}": {
+      "snippet": "TransitionPuits[${2:pos}]{${1:nom}}"
+    },
+    "TransitionRecept{}{}": {
+      "snippet": "TransitionRecept{${1:nom}}{${2:condition}}"
+    },
+    "TransitionRecept[]{}{}": {
+      "snippet": "TransitionRecept[${3:pos}]{${1:nom}}{${2:condition}}"
+    },
+    "ActionX{}{}": {
+      "snippet": "ActionX{${1:Xnnn}}{${2:action}}"
+    },
+    "ActionX[]{}{}": {
+      "snippet": "ActionX[${3:dist}]{${1:Xnnn}}{${2:action}}"
+    },
+    "Action{}{}": {
+      "snippet": "Action{${1:Xnnn}}{${2:action}}"
+    },
+    "ActionCond{}{}": {
+      "snippet": "ActionCond{${1:Xnnn}}{${2:condition}}"
+    },
+    "ActionActiv{}": {
+      "snippet": "ActionActiv{${1:Xnnn}}"
+    },
+    "ActionDesactiv{}": {
+      "snippet": "ActionDesactiv{${1:Xnnn}}"
+    },
+    "ActionEvenement{}{}": {
+      "snippet": "ActionEvenement{${1:Xnnn}}{${2:condition}}"
+    },
+    "ActionFranchissement{}{}": {
+      "snippet": "ActionFranchissement{${1:Tnnn}}{${2:action}}"
+    },
+    "ActionXV{}{}": {
+      "snippet": "ActionXV{${1:etape}}{${2:liste actions}}"
+    },
+    "ActionXV[]{}{}": {
+      "snippet": "ActionXV[${3:dist}]{${1:etape}}{${2:liste actions}}"
+    },
+    "Actions{}": {
+      "snippet": "Actions{${1:1/A1,2/A2,...}}"
+    },
+    "ForcageX{}{}": {
+      "snippet": "ForcageX{${1:Xnnn}}{${2:forçage}}"
+    },
+    "ForcageXV{}{}": {
+      "snippet": "ForcageXV{${1:etape}}{${2:liste forçage}}"
+    },
+    "ForcageXV[]{}{}": {
+      "snippet": "ForcageXV[${3:dist}]{${1:etape}}{${2:liste forçage}}"
+    },
+    "EtapeTransition{}{}{}": {
+      "snippet": "EtapeTransition{${1:nom}}{${2:action}}{${3:recept}}"
+    },
+    "EtapeTransition[]{}{}{}": {
+      "snippet": "EtapeTransition[${4:pos}]{${1:nom}}{${2:action}}{${3:recept}}"
+    },
+    "EtapeInitTransition{}{}{}": {
+      "snippet": "EtapeInitTransition{${1:nom}}{${2:action}}{${3:recept}}"
+    },
+    "EtapeInitTransition[]{}{}{}": {
+      "snippet": "EtapeInitTransition[${4:pos}]{${1:nom}}{${2:action}}{${3:recept}}"
+    },
+    "SequenceET{}": {
+      "snippet": "SequenceET{${1:liste}}"
+    },
+    "SequenceET[]{}": {
+      "snippet": "SequenceET[${2:pos}]{${1:liste}}"
+    },
+    "SequenceEE{}{}": {
+      "snippet": "SequenceEE{${1:liste}}{${2:derniere etape}}"
+    },
+    "SequenceEE[]{}{}": {
+      "snippet": "SequenceEE[${3:pos}]{${1:liste}}{${2:derniere etape}}"
+    },
+    "SequenceTE{}{}{}": {
+      "snippet": "SequenceTE{${1:nom trans}}{${2:liste}}{${3:derniere etape}}"
+    },
+    "SequenceTE[]{}{}{}": {
+      "snippet": "SequenceTE[${4:pos}]{${1:nom trans}}{${2:liste}}{${3:derniere etape}}"
+    },
+    "SequenceTT{}{}": {
+      "snippet": "SequenceTT{${1:trans init}}{${2:liste}}"
+    },
+    "SequenceTT[]{}{}": {
+      "snippet": "SequenceTT[${3:pos}]{${1:trans init}}{${2:liste}}"
+    },
+    "ActionRecept{}": {
+      "snippet": "ActionRecept{${1:1/A1/r1,2/A2/r2,...}}"
+    },
+    "Graphe{}": {
+      "snippet": "Graphe{${1:1/A1/r1,2/A2/r2,...}}"
+    },
+    "Graphe[]{}": {
+      "snippet": "Graphe[${2:pos}]{${1:1/A1/r1,2/A2/r2,...}}"
+    },
+    "GrapheBoucle{}": {
+      "snippet": "GrapheBoucle{${1:1/A1/r1,2/A2/r2,...}}"
+    },
+    "GrapheBoucle[]{}": {
+      "snippet": "GrapheBoucle[${2:pos}]{${1:1/A1/r1,2/A2/r2,...}}"
+    },
+    "DivOU{}{}": {
+      "snippet": "DivOU{${1:Xnnn}}{${2:d1/nom1,d2/nom2,...}}"
+    },
+    "ConvOU{}{}{}": {
+      "snippet": "ConvOU{${1:Tnnn}}{${2:liste}}{${3:nom}}"
+    },
+    "ConvOU[]{}{}{}": {
+      "snippet": "ConvOU[${4:dist}]{${1:Tnnn}}{${2:liste}}{${3:nom}}"
+    },
+    "SautEtapes{}{}{}": {
+      "snippet": "SautEtapes{${1:Xnnn}}{${2:liste}}{${3:nom}}"
+    },
+    "SautEtapes[]{}{}{}": {
+      "snippet": "SautEtapes[${4:dist}]{${1:Xnnn}}{${2:liste}}{${3:nom}}"
+    },
+    "RepriseEtapes{}{}{}": {
+      "snippet": "RepriseEtapes{${1:Tnnn}}{${2:liste}}{${3:nom}}"
+    },
+    "RepriseEtapes[]{}{}{}": {
+      "snippet": "RepriseEtapes[${4:dist}]{${1:Tnnn}}{${2:liste}}{${3:nom}}"
+    },
+    "DeplaceNoeudx{}{}": {
+      "snippet": "DeplaceNoeudx{${1:ni}}{${2:nf}}"
+    },
+    "DeplaceNoeudx[]{}{}": {
+      "snippet": "DeplaceNoeudx[${3:dist}]{${1:ni}}{${2:nf}}"
+    },
+    "DeplaceNoeudy{}{}": {
+      "snippet": "DeplaceNoeudy{${1:ni}}{${2:nf}}"
+    },
+    "DeplaceNoeudy[]{}{}": {
+      "snippet": "DeplaceNoeudy[${3:dist}]{${1:ni}}{${2:nf}}"
+    },
+    "DecaleNoeudx{}{}": {
+      "snippet": "DecaleNoeudx{${1:ni}}{${2:nf}}"
+    },
+    "DecaleNoeudx[]{}{}": {
+      "snippet": "DecaleNoeudx[${3:dist}]{${1:ni}}{${2:nf}}"
+    },
+    "DecaleNoeudy{}{}": {
+      "snippet": "DecaleNoeudy{${1:ni}}{${2:nf}}"
+    },
+    "DecaleNoeudy[]{}{}": {
+      "snippet": "DecaleNoeudy[${3:dist}]{${1:ni}}{${2:nf}}"
+    },
+    "DivET{}{}": {
+      "snippet": "DivET{${1:Tnnn}}{${2:d1/br1,d2/br2,...}}"
+    },
+    "ConvET{}{}{}": {
+      "snippet": "ConvET{${1:Tnnn}}{${2:liste}}{${3:nom}}"
+    },
+    "ConvET[]{}{}{}": {
+      "snippet": "ConvET[${4:dist}]{${1:Tnnn}}{${2:liste}}{${3:nom}}"
+    },
+    "LienRetour{}{}": {
+      "snippet": "LienRetour{${1:Tnnn}}{${2:Xnnn}}"
+    },
+    "LienRetour[]{}{}": {
+      "snippet": "LienRetour[${3:dist}]{${1:Tnnn}}{${2:Xnnn}}"
+    },
+    "Lien{}{}{}": {
+      "snippet": "Lien{${1:NoeudGraf}}{${2:noeud2}}{${3:noeud3}}"
+    },
+    "Lien[]{}{}{}": {
+      "snippet": "Lien[${4:dist}]{${1:NoeudGraf}}{${2:noeud2}}{${3:noeud3}}"
+    },
+    "LienET{}": {
+      "snippet": "LienET{${1:Xnnn}}"
+    },
+    "LienET[]{}": {
+      "snippet": "LienET[${2:long}]{${1:Xnnn}}"
+    },
+    "LienTE{}": {
+      "snippet": "LienTE{${1:Xnnn}}"
+    },
+    "LienTE[]{}": {
+      "snippet": "LienTE[${2:long}]{${1:Xnnn}}"
+    },
+    "Comment{}{}": {
+      "snippet": "Comment{${1:pos}}{${2:commentaire}}"
+    },
+    "Comment[]{}{}": {
+      "snippet": "Comment[${3:dist}]{${1:pos}}{${2:commentaire}}"
+    },
+    "ActionEfface[]{}": {
+      "snippet": "ActionEfface[${2:opt}]{${1:arg1}}"
+    },
+    "BrancheOU[]{}": {
+      "snippet": "BrancheOU[${2:opt}]{${1:arg1}}"
+    },
+    "CadreEncap{}{}{}{}": {
+      "snippet": "CadreEncap{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "EspaceV[]{}": {
+      "snippet": "EspaceV[${2:opt}]{${1:arg1}}"
+    },
+    "EtapeAction[]{}{}": {
+      "snippet": "EtapeAction[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "EtapeInitAction[]{}{}": {
+      "snippet": "EtapeInitAction[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "EtapeSeule[]{}": {
+      "snippet": "EtapeSeule[${2:opt}]{${1:arg1}}"
+    },
+    "FinBrancheOU[]{}{}": {
+      "snippet": "FinBrancheOU[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "FinBrancheOUa[]{}{}": {
+      "snippet": "FinBrancheOUa[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "Forcage[]{}{}": {
+      "snippet": "Forcage[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "LienRetourN[]{}{}": {
+      "snippet": "LienRetourN[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "LienRetourOU[]{}{}": {
+      "snippet": "LienRetourOU[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "LienRetourUp[]{}{}{}": {
+      "snippet": "LienRetourUp[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "LienRetoura[]{}{}": {
+      "snippet": "LienRetoura[${3:opt}]{${1:arg1}}{${2:arg2}}"
+    },
+    "encap": {},
+    "nometape": {},
+    "nomgraphe": {}
+  },
+  "envs": {
+    "Encap{}{}{}": {
+      "name": "Encap",
+      "snippet": "{${1:pos}}{${2:etape}}{${3:Grafcet}}"
+    },
+    "Encap[]{}{}{}": {
+      "name": "Encap",
+      "snippet": "[${4:nom}]{${1:pos}}{${2:etape}}{${3:Grafcet}}"
+    }
+  },
+  "options": [],
+  "keyvals": []
+}

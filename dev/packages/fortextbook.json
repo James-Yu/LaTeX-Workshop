@@ -1,0 +1,462 @@
+{
+  "includes": {
+    "eqexam": [],
+    "web": [
+      "email",
+      "links",
+      "pdf",
+      "online"
+    ],
+    "exerquiz": [
+      "email",
+      "links",
+      "online"
+    ],
+    "eso-pic": [],
+    "colortbl": [
+      "table"
+    ],
+    "pdfcolmk": [
+      "fixpdftex"
+    ]
+  },
+  "macros": {
+    "InitSeedValue": {
+      "option": "allowrandomize"
+    },
+    "writeSeedToSolnFile": {
+      "option": "allowrandomize"
+    },
+    "saveRandomSeed": {
+      "option": "allowrandomize"
+    },
+    "inputRandomSeed": {
+      "option": "allowrandomize"
+    },
+    "useRandomSeed{}": {
+      "snippet": "useRandomSeed{${1:number}}",
+      "option": "allowrandomize"
+    },
+    "ifsaveseed": {
+      "option": "allowrandomize"
+    },
+    "saveseedtrue": {
+      "option": "allowrandomize"
+    },
+    "saveseedfalse": {
+      "option": "allowrandomize"
+    },
+    "saveseedinfo": {
+      "option": "allowrandomize"
+    },
+    "readsavfile": {
+      "option": "allowrandomize"
+    },
+    "eFreeze": {
+      "option": "allowrandomize"
+    },
+    "randomi": {
+      "option": "allowrandomize"
+    },
+    "nextrandom": {
+      "option": "allowrandomize"
+    },
+    "setrannum{}{}{}": {
+      "snippet": "setrannum{${1:count register}}{${2:min}}{${3:max}}",
+      "option": "allowrandomize"
+    },
+    "setrandim{}{}{}": {
+      "snippet": "setrandim{${1:dimen register}}{${2:min}}{${3:max}}",
+      "option": "allowrandomize"
+    },
+    "pointless": {
+      "option": "allowrandomize"
+    },
+    "PoinTless": {
+      "option": "allowrandomize"
+    },
+    "ranval": {
+      "option": "allowrandomize"
+    },
+    "textbookOpts{}": {
+      "snippet": "textbookOpts{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "annotPage": {},
+    "annotThePage{}": {
+      "snippet": "annotThePage{${1:format}}"
+    },
+    "ANS{}": {
+      "snippet": "ANS{${1:answer}}"
+    },
+    "ANSFmt{}{}": {
+      "snippet": "ANSFmt{${1:number}}{${2:text}}"
+    },
+    "autoInsSolns": {},
+    "bGrpANS{}": {
+      "snippet": "bGrpANS{${1:answer}}"
+    },
+    "bpartsmrk": {},
+    "chapHeadSolnFmt{}": {
+      "snippet": "chapHeadSolnFmt{${1:text}}"
+    },
+    "chapterexercisesfalse": {},
+    "chapterexercisestrue": {},
+    "chaptersolutions": {},
+    "chkmarginboxwidth": {},
+    "clearBotMargin": {},
+    "clearTopMargin": {},
+    "cngMargHeadColorTo{}": {
+      "snippet": "cngMargHeadColorTo{${1:color}}"
+    },
+    "convertChapHeadToChapters": {},
+    "currProbHead": {},
+    "displayProbNumOnce": {},
+    "eGrpANS{}": {
+      "snippet": "eGrpANS{${1:answer}}"
+    },
+    "epartsmrk": {},
+    "eqedecPointSoln": {},
+    "eqedsplyOnlyFrst{}{}": {
+      "snippet": "eqedsplyOnlyFrst{${1:arg1}}{${2:arg2}}"
+    },
+    "eqeGenProbNumfalse": {},
+    "eqeGenProbNumtrue": {},
+    "eqeifnext{}": {
+      "snippet": "eqeifnext{${1:code}}"
+    },
+    "eqepquesitemsep{}": {
+      "snippet": "eqepquesitemsep{${1:length}}"
+    },
+    "eqepquesparsep{}": {
+      "snippet": "eqepquesparsep{${1:length}}"
+    },
+    "eqepquestopsep{}": {
+      "snippet": "eqepquestopsep{${1:length}}"
+    },
+    "eqExtArg": {},
+    "examenvfalse": {},
+    "examenvtrue": {},
+    "examplenoname": {},
+    "exercisesAtEndOfChapter": {},
+    "exPrtsep{}": {
+      "snippet": "exPrtsep{${1:space cmd}}"
+    },
+    "fbInsSolnsStyle": {},
+    "firstemitfalse": {},
+    "firstemittrue": {},
+    "firstPartLtr": {},
+    "frstProbNumShownfalse": {},
+    "frstProbNumShowntrue": {},
+    "ftbFmtChapter{}": {
+      "snippet": "ftbFmtChapter{${1:text}}"
+    },
+    "ftbInputBookAux{}": {
+      "snippet": "ftbInputBookAux{${1:file}}"
+    },
+    "ftbInputSolnFiles": {},
+    "ftbInputSolnFiles[]": {
+      "snippet": "ftbInputSolnFiles[${1:file}]"
+    },
+    "ftblabel{}": {
+      "snippet": "ftblabel{${1:label}}"
+    },
+    "gobblelabel": {},
+    "grpANSDelimiter": {},
+    "hangSolWPrtsFmt{}{}": {
+      "snippet": "hangSolWPrtsFmt{${1:num format}}{${2:label format}}"
+    },
+    "ifchapterexercises": {},
+    "ifeqeGenProbNum": {},
+    "ifexamenv": {},
+    "iffirstemit": {},
+    "iffrstProbNumShown": {},
+    "ifiscarryover": {},
+    "ifisinlineans": {},
+    "ifisinstred": {},
+    "ifismarginans": {},
+    "ifisstudented": {},
+    "ifmarginsonleft": {},
+    "ifshowlsols": {},
+    "ifshowssols": {},
+    "ifWithinANSGrp": {},
+    "initChapAfterSolns": {},
+    "insertpageifcarryover": {},
+    "insertpageifcarryover[]": {
+      "snippet": "insertpageifcarryover[${1:text}]"
+    },
+    "insMargHead[]{}": {
+      "snippet": "insMargHead[${2:mark text}]{${1:head text}}"
+    },
+    "insMargHead{}": {
+      "snippet": "insMargHead{${1:head text}}"
+    },
+    "insMidMarg{}": {
+      "snippet": "insMidMarg{${1:content}}"
+    },
+    "insProbHead[]{}": {
+      "snippet": "insProbHead[${2:mark text}]{${1:head text}}"
+    },
+    "insProbHead{}": {
+      "snippet": "insProbHead{${1:head text}}"
+    },
+    "iscarryoverfalse": {},
+    "iscarryovertrue": {},
+    "isinlineansfalse": {},
+    "isinlineanstrue": {},
+    "isinstredfalse": {},
+    "isinstredtrue": {},
+    "ismarginansfalse": {},
+    "ismarginanstrue": {},
+    "isstudentedfalse": {},
+    "isstudentedtrue": {},
+    "marginsonleftfalse": {},
+    "marginsonlefttrue": {},
+    "MarParBoxFmt": {},
+    "marparboxwidth{}": {
+      "snippet": "marparboxwidth{${1:width}}"
+    },
+    "midMargFmt{}": {
+      "snippet": "midMargFmt{${1:formatting}}"
+    },
+    "mrgDecPt{}": {
+      "snippet": "mrgDecPt{${1:symbol}}"
+    },
+    "mrgDigitFmt{}": {
+      "snippet": "mrgDigitFmt{${1:format}}"
+    },
+    "mrgNumPrtsep{}": {
+      "snippet": "mrgNumPrtsep{${1:space cmd}}"
+    },
+    "mrgPartFmt{}": {
+      "snippet": "mrgPartFmt{${1:format}}"
+    },
+    "mrgPrtsep{}": {
+      "snippet": "mrgPrtsep{${1:space cmd}}"
+    },
+    "NewCommentCutFile": {},
+    "noProbHeader": {},
+    "postChapSolnHead": {},
+    "preChapSolnHead": {},
+    "probSet{}": {
+      "snippet": "probSet{${1:format}}"
+    },
+    "resetMargHeadColor": {},
+    "RestoreCommentCutFile": {},
+    "restoreFromChapAfterSolns": {},
+    "restorelabel": {},
+    "restoreLastBotMargin": {},
+    "restoreLastTopMargin": {},
+    "restorePageLayout": {},
+    "saveBasicLayoutParams": {},
+    "setBotMargin{}": {
+      "snippet": "setBotMargin{${1:content}}"
+    },
+    "setFullWidthHeader": {},
+    "setFullWidthLayout": {},
+    "setMarIndents[]{}{}": {
+      "snippet": "setMarIndents[${3:formatting}]{${1:num content}}{${2:label content}}"
+    },
+    "setMarIndents{}{}": {
+      "snippet": "setMarIndents{${1:num content}}{${2:label content}}"
+    },
+    "setSolnIndent[]{}{}": {
+      "snippet": "setSolnIndent[${3:formatting}]{${1:num content}}{${2:label content}}"
+    },
+    "setSolnIndent{}{}": {
+      "snippet": "setSolnIndent{${1:num content}}{${2:label content}}"
+    },
+    "setTopMargin{}": {
+      "snippet": "setTopMargin{${1:content}}"
+    },
+    "showlsolsfalse": {},
+    "showlsolstrue": {},
+    "showssolsfalse": {},
+    "showssolstrue": {},
+    "solDecPt{}": {
+      "snippet": "solDecPt{${1:symbol}}"
+    },
+    "solnGutter": {},
+    "solnsAtEndcomment": {},
+    "solNumPrtsep{}": {
+      "snippet": "solNumPrtsep{${1:space cmd}}"
+    },
+    "solPrtsep{}": {
+      "snippet": "solPrtsep{${1:space cmd}}"
+    },
+    "solWoPrtsFmt{}": {
+      "snippet": "solWoPrtsFmt{${1:format}}"
+    },
+    "solWPrtsFmt{}{}": {
+      "snippet": "solWPrtsFmt{${1:num format}}{${2:label format}}"
+    },
+    "tballowAllNums": {},
+    "tbBaseName": {},
+    "tbBotMargin": {},
+    "tbcontinued": {},
+    "tbfilterOutEvenNums": {},
+    "tblastpageshipped": {},
+    "tbMakeFinalCalcs": {},
+    "tbMarginHeaderFmt{}": {
+      "snippet": "tbMarginHeaderFmt{${1:text}}"
+    },
+    "tbmarparboxwidth": {},
+    "tbminskipbtnlayers": {},
+    "tbmrgpartwdth": {},
+    "tbplaceMargins": {},
+    "tbPostMarginHeader": {},
+    "tbprbNumFmt{}": {
+      "snippet": "tbprbNumFmt{${1:format}}"
+    },
+    "tbPreMarginHeader": {},
+    "tbSaveBotMargin": {},
+    "tbSaveTopMargin": {},
+    "tbSetupForMargins": {},
+    "tbsolnpartwdth": {},
+    "tbsolWoPrtsFmt{}": {
+      "snippet": "tbsolWoPrtsFmt{${1:format}}"
+    },
+    "tbsolWPrtsFmt{}{}": {
+      "snippet": "tbsolWPrtsFmt{${1:num format}}{${2:label format}}"
+    },
+    "tbSourceFile": {},
+    "tbTopMargin": {},
+    "theeqquestionnoi": {},
+    "theexampleno": {},
+    "thisPart": {},
+    "toggleInstrAns": {},
+    "turnOffFTBShipout": {},
+    "turnOffMarAnsOnAnsInline": {},
+    "turnOnFTBShipout": {},
+    "turnOnMarAnsOffAnsInline": {},
+    "WithinANSGrpfalse": {},
+    "WithinANSGrptrue": {},
+    "writeallsolutions": {},
+    "wrtChapSolnHead{}": {
+      "snippet": "wrtChapSolnHead{${1:text}}"
+    }
+  },
+  "envs": {
+    "afterChapSolns": {},
+    "carryOverFmt{}": {
+      "name": "carryOverFmt",
+      "snippet": "{${1:formatting}}"
+    },
+    "eqeList{}": {
+      "name": "eqeList",
+      "snippet": "{${1:label}}"
+    },
+    "eqeList[]{}": {
+      "name": "eqeList",
+      "snippet": "[${2:width}]{${1:label}}"
+    },
+    "eqepartsquestions": {},
+    "example": {},
+    "example*": {},
+    "fullwidthtext": {},
+    "lsol": {},
+    "probset{}": {
+      "name": "probset",
+      "snippet": "{${1:title}}"
+    },
+    "probset[]{}": {
+      "name": "probset",
+      "snippet": "[${2:margin title}]{${1:title}}"
+    },
+    "solnsAtEnd": {},
+    "ssol": {}
+  },
+  "options": [
+    "nocustomdesign",
+    "forinstr",
+    "forstudent",
+    "nomarginwrite",
+    "cfg=${1:basename}",
+    "pointsonleft",
+    "pointsonright",
+    "pointsonboth",
+    "nopoints",
+    "totalsonleft",
+    "totalsonright",
+    "nozerototals",
+    "nototals",
+    "noparttotals",
+    "parttotalsonright",
+    "parttotalsonleft",
+    "nosummarytotals",
+    "coverpage",
+    "coverpagesumry=",
+    "nospacetowork",
+    "answerkey",
+    "flextended",
+    "useforms",
+    "allowcirc4mc",
+    "online",
+    "pdf",
+    "links",
+    "email",
+    "obeylocalversions",
+    "max=${1:integer}",
+    "rendition=${1:version letter}",
+    "allowrandomize",
+    "forpaper",
+    "forcolorpaper*",
+    "preview",
+    "nosolutions",
+    "nohiddensolutions",
+    "noHiddensolutions",
+    "solutionsafter",
+    "solutionsonly",
+    "proofing",
+    "showgrayletters",
+    "noxcolor",
+    "useclassmaketitle",
+    "bypasspkgpagestyle",
+    "dvipsone",
+    "dvips",
+    "pdftex",
+    "dvipdfm",
+    "dvipdfmx",
+    "xetex",
+    "textures",
+    "natural",
+    "rgb",
+    "cmy",
+    "cmyk",
+    "hsb",
+    "gray",
+    "RGB",
+    "HTML",
+    "HSB",
+    "Gray",
+    "monochrome",
+    "dvipsnames",
+    "dvipsnames*",
+    "svgnames",
+    "svgnames*",
+    "x11names",
+    "x11names*",
+    "table",
+    "fixpdftex",
+    "hyperref",
+    "prologue",
+    "kernelfbox",
+    "xcdraw",
+    "noxcdraw",
+    "fixinclude",
+    "showerrors",
+    "hideerrors"
+  ],
+  "keyvals": [
+    [
+      "instred",
+      "studented",
+      "marginans",
+      "inlineans",
+      "marginsonleft",
+      "ssols",
+      "lsols"
+    ]
+  ]
+}

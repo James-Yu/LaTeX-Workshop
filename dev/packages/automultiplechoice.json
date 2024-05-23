@@ -1,0 +1,603 @@
+{
+  "includes": {
+    "xcolor": [],
+    "fancyhdr": [],
+    "bophook": [],
+    "xkeyval": [],
+    "rotating": [],
+    "fancybox": [],
+    "csvsimple": [],
+    "environ": [],
+    "geometry": [],
+    "storebox": [
+      "storebox"
+    ],
+    "hyperref": [
+      "pdfform"
+    ],
+    "tikz": [
+      "survey"
+    ],
+    "tikzlibrarypositioning": [
+      "survey"
+    ],
+    "tikzlibraryshapes": [
+      "survey"
+    ],
+    "tikzlibrarytikzmark": [
+      "survey"
+    ],
+    "tikzlibrarydecorations.pathreplacing": [
+      "survey"
+    ]
+  },
+  "macros": {
+    "answer[]{}{}{}{}": {
+      "snippet": "answer[${5:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "survey"
+    },
+    "answer{}{}{}{}": {
+      "snippet": "answer{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}",
+      "option": "survey"
+    },
+    "alafin": {},
+    "AMCaddpagesto{}": {
+      "snippet": "AMCaddpagesto{${1:integer}}"
+    },
+    "AMCanswer{}{}": {
+      "snippet": "AMCanswer{${1:arg1}}{${2:arg2}}"
+    },
+    "AMCassociation[]{}": {
+      "snippet": "AMCassociation[${2:filename}]{${1:id}}"
+    },
+    "AMCassociation{}": {
+      "snippet": "AMCassociation{${1:id}}"
+    },
+    "AMCbeginAnswer": {},
+    "AMCbeginQuestion{}{}": {
+      "snippet": "AMCbeginQuestion{${1:arg1}}{${2:arg2}}"
+    },
+    "AMCbloc": {},
+    "AMCBoxedAnswers": {},
+    "AMCBoxOnly{}{}": {
+      "snippet": "AMCBoxOnly{${1:keyvals}}{${2:text}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "AMCboxStyle{}": {
+      "snippet": "AMCboxStyle{${1:keyvals}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "AMCchoiceLabel": {},
+    "AMCchoiceLabelFormat{}": {
+      "snippet": "AMCchoiceLabelFormat{${1:text}}"
+    },
+    "AMCcleardoublepage": {},
+    "AMCcodeGrid[]{}{}": {
+      "snippet": "AMCcodeGrid[${3:options}]{${1:key}}{${2:description}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "AMCcodeGrid{}{}": {
+      "snippet": "AMCcodeGrid{${1:key}}{${2:description}}"
+    },
+    "AMCcodeGridInt[]{}{}": {
+      "snippet": "AMCcodeGridInt[${3:options}]{${1:key}}{${2:n}}"
+    },
+    "AMCcodeGridInt{}{}": {
+      "snippet": "AMCcodeGridInt{${1:key}}{${2:n}}"
+    },
+    "AMCcodeHspace": {},
+    "AMCcodeVspace": {},
+    "AMCcompleteMulti": {},
+    "AMCdecimalPoint": {},
+    "AMCdontAnnotate": {},
+    "AMCendAnswer": {},
+    "AMCexponent": {},
+    "AMCform": {},
+    "AMCformAnswer{}": {
+      "snippet": "AMCformAnswer{${1:arg}}"
+    },
+    "AMCformBeforeQuestion": {},
+    "AMCformBegin": {},
+    "AMCformFilter{}": {
+      "snippet": "AMCformFilter{${1:filter}}"
+    },
+    "AMCformHSpace": {},
+    "AMCformQuestion{}": {
+      "snippet": "AMCformQuestion{${1:arg}}"
+    },
+    "AMCformS": {},
+    "AMCformVSpace": {},
+    "AMChorizAnswerSep": {},
+    "AMChorizBoxSep": {},
+    "AMCidsPosition{}": {
+      "snippet": "AMCidsPosition{${1:keyvals}}",
+      "keyvalindex": 3,
+      "keyvalpos": 0
+    },
+    "AMCinterBquest": {},
+    "AMCinterBrep": {},
+    "AMCinterIquest": {},
+    "AMCinterIrep": {},
+    "AMCIntervalFormat{}{}": {
+      "snippet": "AMCIntervalFormat{${1:arg1}}{${2:arg2}}"
+    },
+    "AMCIntervals{}{}{}{}": {
+      "snippet": "AMCIntervals{${1:answer}}{${2:x1}}{${3:x2}}{${4:len}}"
+    },
+    "AMClabel{}": {
+      "snippet": "AMClabel{${1:label}}"
+    },
+    "AMCnobloc": {},
+    "AMCnoCompleteMulti": {},
+    "AMCntextGoto": {},
+    "AMCntextSign": {},
+    "AMCntextVHead{}": {
+      "snippet": "AMCntextVHead{${1:text}}"
+    },
+    "AMCnumericChoices{}{}": {
+      "snippet": "AMCnumericChoices{${1:answer}}{${2:keyvals}}",
+      "keyvalindex": 4,
+      "keyvalpos": 1
+    },
+    "AMCnumericOpts{}": {
+      "snippet": "AMCnumericOpts{${1:keyvals}}",
+      "keyvalindex": 4,
+      "keyvalpos": 0
+    },
+    "AMCnumero{}": {
+      "snippet": "AMCnumero{${1:number}}"
+    },
+    "AMCOpen{}{}": {
+      "snippet": "AMCOpen{${1:keyvals}}{${2:text}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "AMCopenOpts{}": {
+      "snippet": "AMCopenOpts{${1:keyvals}}",
+      "keyvalindex": 5,
+      "keyvalpos": 0
+    },
+    "AMCotextGoto": {},
+    "AMCotextReserved": {},
+    "AMCoutsideLabelFormat{}": {
+      "snippet": "AMCoutsideLabelFormat{${1:text}}"
+    },
+    "AMCpageref{}": {
+      "snippet": "AMCpageref{${1:label}}"
+    },
+    "AMCpostNquest": {},
+    "AMCpostOquest": {},
+    "AMCquestionNumberfalse": {},
+    "AMCquestionNumbertrue": {},
+    "AMCrandomseed{}": {
+      "snippet": "AMCrandomseed{${1:integer}}"
+    },
+    "AMCref{}": {
+      "snippet": "AMCref{${1:label}}"
+    },
+    "AMCsection*{}": {
+      "snippet": "AMCsection*{${1:title}}"
+    },
+    "AMCsection{}": {
+      "snippet": "AMCsection{${1:title}}"
+    },
+    "AMCsectionNumbered{}": {
+      "snippet": "AMCsectionNumbered{${1:title}}"
+    },
+    "AMCsectionStar{}": {
+      "snippet": "AMCsectionStar{${1:title}}"
+    },
+    "AMCsetFoot{}": {
+      "snippet": "AMCsetFoot{${1:text}}"
+    },
+    "AMCsetScoreZone{}": {
+      "snippet": "AMCsetScoreZone{${1:keyvals}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "AMCsetScoreZoneAnswerSheet{}": {
+      "snippet": "AMCsetScoreZoneAnswerSheet{${1:keyvals}}",
+      "keyvalindex": 6,
+      "keyvalpos": 0
+    },
+    "AMCstudentlabel{}": {
+      "snippet": "AMCstudentlabel{${1:label}}"
+    },
+    "AMCStudentNumber": {},
+    "AMCstudentslistfile{}{}": {
+      "snippet": "AMCstudentslistfile{${1:file}}{${2:id}}"
+    },
+    "AMCsubjectPageTag": {},
+    "AMCsubsection*{}": {
+      "snippet": "AMCsubsection*{${1:title}}"
+    },
+    "AMCsubsection{}": {
+      "snippet": "AMCsubsection{${1:title}}"
+    },
+    "AMCsubsectionNumbered{}": {
+      "snippet": "AMCsubsectionNumbered{${1:title}}"
+    },
+    "AMCsubsectionStar{}": {
+      "snippet": "AMCsubsectionStar{${1:title}}"
+    },
+    "AMCtext{}{}": {
+      "snippet": "AMCtext{${1:type}}{${2:text}}"
+    },
+    "bareme{}": {
+      "snippet": "bareme{${1:values}}"
+    },
+    "baremeDefautM{}": {
+      "snippet": "baremeDefautM{${1:values}}"
+    },
+    "baremeDefautS{}": {
+      "snippet": "baremeDefautS{${1:values}}"
+    },
+    "bonne[]{}": {
+      "snippet": "bonne[${2:label text}]{${1:answer}}"
+    },
+    "bonne{}": {
+      "snippet": "bonne{${1:answer}}"
+    },
+    "champnom{}": {
+      "snippet": "champnom{${1:content}}"
+    },
+    "choixIntervalles{}{}{}{}": {
+      "snippet": "choixIntervalles{${1:answer}}{${2:x1}}{${3:x2}}{${4:len}}"
+    },
+    "cleargroup{}": {
+      "snippet": "cleargroup{${1:group}}"
+    },
+    "copygroup[]{}{}": {
+      "snippet": "copygroup[${3:n}]{${1:groupA}}{${2:groupB}}"
+    },
+    "copygroup{}{}": {
+      "snippet": "copygroup{${1:groupA}}{${2:groupB}}"
+    },
+    "copygroupfrom[]{}{}{}": {
+      "snippet": "copygroupfrom[${4:n}]{${1:groupA}}{${2:groupB}}{${3:index}}"
+    },
+    "copygroupfrom{}{}{}": {
+      "snippet": "copygroupfrom{${1:groupA}}{${2:groupB}}{${3:index}}"
+    },
+    "correctchoice[]{}": {
+      "snippet": "correctchoice[${2:label text}]{${1:answer}}"
+    },
+    "correctchoice{}": {
+      "snippet": "correctchoice{${1:answer}}"
+    },
+    "element{}{}": {
+      "snippet": "element{${1:group}}{${2:content}}"
+    },
+    "exemplaire{}{}": {
+      "snippet": "exemplaire{${1:number}}{${2:content}}"
+    },
+    "exemplairepair": {},
+    "explain{}": {
+      "snippet": "explain{${1:text}}"
+    },
+    "formulaire": {},
+    "insertgroup[]{}": {
+      "snippet": "insertgroup[${2:n}]{${1:group}}"
+    },
+    "insertgroup{}": {
+      "snippet": "insertgroup{${1:group}}"
+    },
+    "insertgroupfrom[]{}{}": {
+      "snippet": "insertgroupfrom[${3:n}]{${1:group}}{${2:index}}"
+    },
+    "insertgroupfrom{}{}": {
+      "snippet": "insertgroupfrom{${1:group}}{${2:index}}"
+    },
+    "lastchoices": {},
+    "mauvaise[]{}": {
+      "snippet": "mauvaise[${2:label text}]{${1:answer}}"
+    },
+    "mauvaise{}": {
+      "snippet": "mauvaise{${1:answer}}"
+    },
+    "melangegroupe{}": {
+      "snippet": "melangegroupe{${1:group}}"
+    },
+    "multiSymbole": {},
+    "namefield{}": {
+      "snippet": "namefield{${1:content}}"
+    },
+    "namefielddots": {},
+    "onecopy{}{}": {
+      "snippet": "onecopy{${1:number}}{${2:content}}"
+    },
+    "QuestionIndicative": {},
+    "restituegroupe[]{}": {
+      "snippet": "restituegroupe[${2:n}]{${1:group}}"
+    },
+    "restituegroupe{}": {
+      "snippet": "restituegroupe{${1:group}}"
+    },
+    "scoring{}": {
+      "snippet": "scoring{${1:values}}"
+    },
+    "scoringDefaultM{}": {
+      "snippet": "scoringDefaultM{${1:values}}"
+    },
+    "scoringDefaultS{}": {
+      "snippet": "scoringDefaultS{${1:values}}"
+    },
+    "setdefaultgroupmode{}": {
+      "snippet": "setdefaultgroupmode{${1:mode}}"
+    },
+    "setgroupmode{}{}": {
+      "snippet": "setgroupmode{${1:group}}{${2:mode}}"
+    },
+    "shufflegroup{}": {
+      "snippet": "shufflegroup{${1:group}}"
+    },
+    "theAMCquestionaff": {},
+    "wrongchoice[]{}": {
+      "snippet": "wrongchoice[${2:label text}]{${1:answer}}"
+    },
+    "wrongchoice{}": {
+      "snippet": "wrongchoice{${1:answer}}"
+    },
+    "AMCbeforeQuestion": {},
+    "AMCboHide{}{}": {
+      "snippet": "AMCboHide{${1:arg1}}{${2:arg2}}"
+    },
+    "AMCboOpts{}": {
+      "snippet": "AMCboOpts{${1:arg1}}"
+    },
+    "AMCboShow{}{}": {
+      "snippet": "AMCboShow{${1:arg1}}{${2:arg2}}"
+    },
+    "AMCbotextGoto": {},
+    "AMCboxColor{}": {
+      "snippet": "AMCboxColor{${1:arg1}}"
+    },
+    "AMCboxOutsideLetter{}{}": {
+      "snippet": "AMCboxOutsideLetter{${1:arg1}}{${2:arg2}}"
+    },
+    "AMCcercle{}{}": {
+      "snippet": "AMCcercle{${1:arg1}}{${2:arg2}}"
+    },
+    "AMCcodeID": {},
+    "AMCcurrentenv": {},
+    "AMCdebutFormulaire": {},
+    "AMCdontScan": {},
+    "AMCdump": {},
+    "AMCemptybox{}{}{}": {
+      "snippet": "AMCemptybox{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "AMCformAfterQuestion": {},
+    "AMCformAnswerA{}": {
+      "snippet": "AMCformAnswerA{${1:arg1}}"
+    },
+    "AMCformatChoices{}{}{}{}": {
+      "snippet": "AMCformatChoices{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "AMCformQuestionA": {},
+    "AMCformQuestionN": {},
+    "AMCIDBoxesA": {},
+    "AMCIDBoxesABC": {},
+    "AMCIDBoxesB": {},
+    "AMCIDBoxesC": {},
+    "AMCload": {},
+    "AMClocalized{}": {
+      "snippet": "AMClocalized{${1:arg1}}"
+    },
+    "AMCmarginNote{}": {
+      "snippet": "AMCmarginNote{${1:arg1}}"
+    },
+    "AMCmessage{}": {
+      "snippet": "AMCmessage{${1:arg1}}"
+    },
+    "AMCnoScoreZone": {},
+    "AMCnumericChoicesPlain": {},
+    "AMCnumericHide": {},
+    "AMCnumericShow": {},
+    "AMCopenHide{}{}": {
+      "snippet": "AMCopenHide{${1:arg1}}{${2:arg2}}"
+    },
+    "AMCopenShow{}{}": {
+      "snippet": "AMCopenShow{${1:arg1}}{${2:arg2}}"
+    },
+    "AMCqlabel{}": {
+      "snippet": "AMCqlabel{${1:arg1}}"
+    },
+    "AMCscoreZone{}": {
+      "snippet": "AMCscoreZone{${1:arg1}}"
+    },
+    "AMCshowSignificantDigits": {},
+    "AMCsignificantDigits": {},
+    "ifAMCquestionNumber": {},
+    "nouveaugroupe{}{}": {
+      "snippet": "nouveaugroupe{${1:arg1}}{${2:arg2}}"
+    },
+    "shufflegroupslice{}{}{}": {
+      "snippet": "shufflegroupslice{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "AMCboxDimensions{}": {
+      "snippet": "AMCboxDimensions{${1:keyvals}}"
+    }
+  },
+  "envs": {
+    "auto{}": {
+      "name": "auto",
+      "snippet": "{${1:arg}}",
+      "option": "survey"
+    },
+    "Questionnaires{}": {
+      "name": "Questionnaires",
+      "snippet": "{${1:number}}",
+      "option": "survey"
+    },
+    "values": {
+      "option": "survey"
+    },
+    "choices": {},
+    "choicescustom": {},
+    "choiceshoriz": {},
+    "examcopy": {},
+    "examcopy[]": {
+      "name": "examcopy",
+      "snippet": "[${1:number}]"
+    },
+    "question{}": {
+      "name": "question",
+      "snippet": "{${1:identifier}}"
+    },
+    "questionmult{}": {
+      "name": "questionmult",
+      "snippet": "{${1:identifier}}"
+    },
+    "questionmultx{}": {
+      "name": "questionmultx",
+      "snippet": "{${1:identifier}}"
+    },
+    "amcxyfile{}": {
+      "name": "amcxyfile",
+      "snippet": "{${1:arg}}"
+    },
+    "copieexamen": {},
+    "questionouverte": {},
+    "questionouverte[]": {
+      "name": "questionouverte",
+      "snippet": "[${1:length}]"
+    },
+    "reponses": {},
+    "reponseshoriz": {},
+    "reponsesperso": {}
+  },
+  "options": [
+    "noshuffle",
+    "noshufflegroups",
+    "fullgroups",
+    "answers",
+    "indivanswers",
+    "textpos",
+    "extractonly",
+    "box",
+    "asbox",
+    "separateanswersheet",
+    "digits",
+    "ordre",
+    "correc",
+    "modele",
+    "correcindiv",
+    "init",
+    "bloc",
+    "completemulti",
+    "insidebox",
+    "ensemble",
+    "chiffres",
+    "outsidebox",
+    "calibration",
+    "nowatermark",
+    "catalog",
+    "keys=line",
+    "francais",
+    "lang=",
+    "versionA",
+    "plain",
+    "nopage",
+    "postcorrect",
+    "automarks",
+    "storebox",
+    "pdfform",
+    "codedigit=",
+    "survey"
+  ],
+  "keyvals": [
+    [
+      "help=${1:text}",
+      "ordered"
+    ],
+    [
+      "shape=",
+      "size=",
+      "height=",
+      "width=",
+      "rule=",
+      "outsidesep=",
+      "down=",
+      "color=",
+      "cross",
+      "crosschar=${1:symbol}",
+      "crossrule="
+    ],
+    [
+      "vertical",
+      "v",
+      "h",
+      "top"
+    ],
+    [
+      "pos=",
+      "width=",
+      "height="
+    ],
+    [
+      "digits=${1:num}",
+      "decimals=${1:num}",
+      "base=${1:num}",
+      "significant",
+      "exponent=${1:num}",
+      "nozero",
+      "sign",
+      "exposign",
+      "strict",
+      "vertical",
+      "expovertical",
+      "reverse",
+      "vhead",
+      "hspace=",
+      "vspace=",
+      "borderwidth=",
+      "bordercol=",
+      "backgroundcol=",
+      "Tsign=${1:text}",
+      "Tpoint=${1:text}",
+      "Texponent=${1:text}",
+      "scoring",
+      "scoreexact=${1:num}",
+      "exact=${1:num}",
+      "scoreapprox=${1:num}",
+      "approx=${1:num}",
+      "scorewrong=${1:num}",
+      "ignoreblank",
+      "keepas=${1:text}",
+      "alsocorrect=${1:text}"
+    ],
+    [
+      "lineup",
+      "lineuptext=${1:text}",
+      "lines=${1:num}",
+      "lineheight=",
+      "dots",
+      "contentcommand=${1:csname}",
+      "hspace=",
+      "backgroundcol=",
+      "foregroundcol=",
+      "scan",
+      "annotate",
+      "question=${1:text}",
+      "answer=${1:text}",
+      "width=",
+      "framerule=",
+      "framerulecol=",
+      "boxmargin=",
+      "boxframerule=",
+      "boxframerulecol=",
+      "Treserved="
+    ],
+    [
+      "width=",
+      "height=",
+      "depth=",
+      "calloutside=",
+      "callinside=",
+      "position="
+    ]
+  ]
+}

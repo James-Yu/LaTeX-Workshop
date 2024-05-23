@@ -1,0 +1,225 @@
+{
+  "includes": {
+    "pgf": [],
+    "pgffor": [],
+    "graphicx": [],
+    "bookmark": []
+  },
+  "macros": {
+    "incgraph{}": {
+      "snippet": "incgraph{${1:imagefile}}"
+    },
+    "incgraph[]{}": {
+      "snippet": "incgraph[${2:options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "incgraph[][]{}": {
+      "snippet": "incgraph[${2:options}][${3:graphics options}]{${1:imagefile}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "incmultigraph{}{}": {
+      "snippet": "incmultigraph{${1:file name pattern}}{${2:list}}"
+    },
+    "incmultigraph[]{}{}": {
+      "snippet": "incmultigraph[${3:options}]{${1:file name pattern}}{${2:list}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "incmultigraph[][]{}{}": {
+      "snippet": "incmultigraph[${3:options}][${4:graphics options}]{${1:file name pattern}}{${2:list}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "n": {
+      "detail": "𝑛",
+      "documentation": "MATHEMATICAL ITALIC SMALL N"
+    },
+    "ni": {
+      "detail": "∋",
+      "documentation": "con variant"
+    },
+    "nn": {},
+    "nt": {},
+    "igrset{}": {
+      "snippet": "igrset{${1:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "igrGetPageSize": {},
+    "igrPageWidth": {},
+    "igrPageHeight": {},
+    "igrSetPageSize{}{}": {
+      "snippet": "igrSetPageSize{${1:width}}{${2:height}}"
+    },
+    "igrGetLastPage{}": {
+      "snippet": "igrGetLastPage{${1:file}}"
+    },
+    "igrLastPage": {},
+    "igfpage{}": {
+      "snippet": "igfpage{${1:text}}"
+    },
+    "igrcenter{}": {
+      "snippet": "igrcenter{${1:text}}"
+    },
+    "igrcenterfit{}{}{}": {
+      "snippet": "igrcenterfit{${1:width}}{${2:height}}{${3:text}}"
+    },
+    "igrtargetset{}": {
+      "snippet": "igrtargetset{${1:hyperref anchor}}"
+    },
+    "theigrpage": {},
+    "igrpagestyle": {},
+    "igrmatchvalue": {},
+    "igfboxset{}": {
+      "snippet": "igfboxset{${1:text}}"
+    },
+    "igrboxcenter": {},
+    "igrboxtikz": {},
+    "igrboxtikzpage": {},
+    "igrboxtikzcenter": {},
+    "igrbox": {},
+    "igrAutoTarget": {},
+    "igrBoxWidth": {},
+    "igrBoxHeight": {},
+    "igrBoxht": {},
+    "igrBoxdp": {},
+    "igrsetmatchvalue{}{}": {
+      "snippet": "igrsetmatchvalue{${1:key}}{${2:value}}"
+    },
+    "igrsetmatches{}": {
+      "snippet": "igrsetmatches{${1:list}}"
+    },
+    "igrifmatch{}{}{}": {
+      "snippet": "igrifmatch{${1:key}}{${2:then}}{${3:else}}"
+    },
+    "igrmakezerofill{}{}": {
+      "snippet": "igrmakezerofill{${1:macro}}{${2:digits}}"
+    }
+  },
+  "envs": {
+    "inctext": {},
+    "inctext[]": {
+      "name": "inctext",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [
+    "pgf",
+    "nopgf",
+    "graphicx",
+    "nographicx",
+    "bookmark",
+    "nobookmark"
+  ],
+  "keyvals": [
+    [
+      "currentpaper",
+      "documentpaper",
+      "graphicspaper",
+      "paper size=${1:width}:${2:height}",
+      "paper=",
+      "landscape",
+      "portrait",
+      "a0paper",
+      "a1paper",
+      "a2paper",
+      "a3paper",
+      "a4paper",
+      "a5paper",
+      "a6paper",
+      "a7paper",
+      "a8paper",
+      "a9paper",
+      "a10paper",
+      "b0paper",
+      "b1paper",
+      "b2paper",
+      "b3paper",
+      "b4paper",
+      "b5paper",
+      "b6paper",
+      "b7paper",
+      "b8paper",
+      "b9paper",
+      "b10paper",
+      "c0paper",
+      "c1paper",
+      "c2paper",
+      "c3paper",
+      "c4paper",
+      "c5paper",
+      "c6paper",
+      "c7paper",
+      "c8paper",
+      "c9paper",
+      "c10paper",
+      "d0paper",
+      "d1paper",
+      "d2paper",
+      "d3paper",
+      "d4paper",
+      "d5paper",
+      "d6paper",
+      "d7paper",
+      "executivepaper",
+      "letterpaper",
+      "legalpeper",
+      "ledgerpaper",
+      "center",
+      "page",
+      "options={${1:graphics options}}",
+      "options add={${1:graphics options}}",
+      "include command=${1:macro}",
+      "existence check=${1:macro}",
+      "no existence check",
+      "fail on not found",
+      "ignore on not found",
+      "ignore on not found with extensions={${1:extension list}}",
+      "ignore on not found with extensions*={${1:extension list}}",
+      "extensions={${1:extension list}}",
+      "extensions add={${1:extension list}}",
+      "extensions from graphics",
+      "hyper",
+      "no hyper",
+      "target=${1:hyperref anchor}",
+      "label=",
+      "bookmark=${1:text}",
+      "bookmark options={${1:options}}",
+      "bookmark heading=${1:text}",
+      "bookmark heading options={${1:options}}",
+      "autosize",
+      "autosize width gap=",
+      "autosize height gap=",
+      "autosize gap=",
+      "autosize min scale=${1:fp expr}",
+      "autosize max scale=${1:fp expr}",
+      "left border=",
+      "bottom border=",
+      "right border=",
+      "top border=",
+      "horizontal border=",
+      "vertical border=",
+      "border=",
+      "xshift=",
+      "yshift=",
+      "set matches={${1:list}}",
+      "if match code={${1:key}}{${2:then}}{${3:else}}",
+      "if match set={${1:key}}{${2:then}}{${3:else}}",
+      "if match set bookmark={${1:key}}{${2:then}}{${3:else}}",
+      "disable match",
+      "overlay={${1:tikz code}}",
+      "overlay page number at=${1:position}",
+      "overlay page number at bottom=",
+      "overlay page number at top=",
+      "overlay page number options={${1:TikZ options}}",
+      "overlay page number options app={${1:TikZ options}}",
+      "no overlay",
+      "pagestyle=${1:page style}",
+      "zerofill=${1:digits}"
+    ]
+  ]
+}

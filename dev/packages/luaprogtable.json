@@ -1,0 +1,82 @@
+{
+  "includes": {
+    "iftex": [],
+    "luatexbase": []
+  },
+  "macros": {
+    "LPTNewTable{}{}{}": {
+      "snippet": "LPTNewTable{${1:name}}{${2:num cols}}{${3:preamble}}"
+    },
+    "LPTNewTable{}{}{}[]": {
+      "snippet": "LPTNewTable{${1:name}}{${2:num cols}}{${3:preamble}}[${4:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 3
+    },
+    "LPTSetCurrentTable{}": {
+      "snippet": "LPTSetCurrentTable{${1:table name}}"
+    },
+    "LPTGetCurrentTable": {},
+    "LPTAddRow": {},
+    "LPTAddRow[]": {
+      "snippet": "LPTAddRow[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "LPTSetRowProp{}{}": {
+      "snippet": "LPTSetRowProp{${1:index expr}}{${2:row options}}"
+    },
+    "LPTUseTable": {},
+    "LPTDeleteTable{}": {
+      "snippet": "LPTDeleteTable{${1:table name}}"
+    },
+    "LPTSetCell{}{}": {
+      "snippet": "LPTSetCell{${1:index expr}}{${2:content}}"
+    },
+    "LPTSetCell{}[]{}": {
+      "snippet": "LPTSetCell{${1:index expr}}[${2:shape}]{${3:content}}"
+    },
+    "LPTFill{}{}": {
+      "snippet": "LPTFill{${1:index expr}}{${2:content}}"
+    },
+    "LPTGetTableNames": {},
+    "LPTGetTableShape": {},
+    "LPTGetCellData{}": {
+      "snippet": "LPTGetCellData{${1:index expr}}"
+    },
+    "LPTGetCellShape{}": {
+      "snippet": "LPTGetCellShape{${1:index expr}}"
+    },
+    "LPTGetCellParent{}": {
+      "snippet": "LPTGetCellParent{${1:index expr}}"
+    },
+    "LPTGetCellMetaIndex{}{}": {
+      "snippet": "LPTGetCellMetaIndex{${1:arg1}}{${2:arg2}}"
+    }
+  },
+  "envs": {
+    "lptview{}": {
+      "name": "lptview",
+      "snippet": "{${1:index expr}}"
+    },
+    "lptfill{}": {
+      "name": "lptfill",
+      "snippet": "{${1:index expr}}"
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "backend=${1:envname}",
+      "default before line=${1:code}",
+      "default after line=${1:code}",
+      "default after spacing=${1:code}",
+      "input method=",
+      "nrows=${1:integer}"
+    ],
+    [
+      "before line",
+      "after line",
+      "after spacing"
+    ]
+  ]
+}

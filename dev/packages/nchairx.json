@@ -1,0 +1,982 @@
+{
+  "includes": {
+    "xkeyval": [],
+    "amsmath": [],
+    "amssymb": [],
+    "suffix": [],
+    "mathtools": [],
+    "ntheorem": [],
+    "graphicx": [],
+    "enumitem": [],
+    "tensor": [],
+    "aliascnt": []
+  },
+  "macros": {
+    "nchairxheader": {},
+    "nchairxlogo{}": {
+      "snippet": "nchairxlogo{${1:width}}"
+    },
+    "chairxfonts{}": {
+      "snippet": "chairxfonts{${1:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "vast": {},
+    "Vast": {},
+    "vastl": {},
+    "vastm": {},
+    "vastr": {},
+    "Vastl": {},
+    "Vastm": {},
+    "Vastr": {},
+    "decorate{}{}": {
+      "snippet": "decorate{${1:symbol}}{${2:^sup1_sub1^sup2_sub2...}}"
+    },
+    "decorate[]{}{}": {
+      "snippet": "decorate[${3:pre-indices}]{${1:symbol}}{${2:^sup1_sub1^sup2_sub2...}}"
+    },
+    "deco{}{}{}{}{}": {
+      "snippet": "deco{${1:ul}}{${2:ll}}{${3:arg}}{${4:ur}}{${5:lr}}"
+    },
+    "deco[]{}{}{}{}{}": {
+      "snippet": "deco[${6:size-cmd}]{${1:ul}}{${2:ll}}{${3:arg}}{${4:ur}}{${5:lr}}"
+    },
+    "script{}": {
+      "snippet": "script{${1:text}}"
+    },
+    "I": {
+      "detail": "𝐼",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL I"
+    },
+    "E": {
+      "detail": "𝐸",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL E"
+    },
+    "D": {
+      "detail": "𝐷",
+      "documentation": "MATHEMATICAL ITALIC CAPITAL D"
+    },
+    "cc{}": {
+      "snippet": "cc{${1:arg}}"
+    },
+    "sign": {},
+    "RE": {},
+    "IM": {},
+    "Unit": {},
+    "const": {},
+    "canonical": {},
+    "pt": {},
+    "at{}": {
+      "snippet": "at{${1:arg}}"
+    },
+    "at[]{}": {
+      "snippet": "at[${2:size-cmd}]{${1:arg}}"
+    },
+    "Map": {},
+    "Bij": {},
+    "argument": {},
+    "domain": {},
+    "range": {},
+    "id": {},
+    "pr": {},
+    "inv": {},
+    "ev": {},
+    "image": {},
+    "graph": {},
+    "coimage": {},
+    "coker": {},
+    "operator": {},
+    "later": {},
+    "earlier": {},
+    "bigplus": {},
+    "bigtimes": {
+      "detail": "⨉",
+      "documentation": "N-ARY TIMES OPERATOR"
+    },
+    "biprod": {},
+    "smiley": {
+      "detail": "☺",
+      "documentation": "WHITE SMILING FACE"
+    },
+    "frownie": {
+      "detail": "☹",
+      "documentation": "WHITE FROWNING FACE"
+    },
+    "heart": {},
+    "field{}": {
+      "snippet": "field{${1:letter}}"
+    },
+    "ring{}": {
+      "snippet": "ring{${1:letter}}"
+    },
+    "group{}": {
+      "snippet": "group{${1:letter}}"
+    },
+    "algebra{}": {
+      "snippet": "algebra{${1:letter}}"
+    },
+    "module{}": {
+      "snippet": "module{${1:letter}}"
+    },
+    "liealg{}": {
+      "snippet": "liealg{${1:letter}}"
+    },
+    "MC": {},
+    "gerstenhaber{}": {
+      "snippet": "gerstenhaber{${1:letter}}"
+    },
+    "Pol": {},
+    "lmult": {},
+    "rmult": {},
+    "Lmult": {},
+    "Rmult": {},
+    "Center": {},
+    "ad": {},
+    "Ad": {},
+    "Conj": {},
+    "acts": {},
+    "racts": {},
+    "Char": {},
+    "modulo": {},
+    "Clifford": {},
+    "cClifford": {},
+    "Der": {},
+    "Der*": {},
+    "InnDer": {},
+    "InnDer*": {},
+    "OutDer": {},
+    "OutDer*": {},
+    "InnAut": {},
+    "InnAut*": {},
+    "OutAut": {},
+    "OutAut*": {},
+    "formal{}": {
+      "snippet": "formal{${1:arg}}"
+    },
+    "laurent{}": {
+      "snippet": "laurent{${1:arg}}"
+    },
+    "sweedler{}": {
+      "snippet": "sweedler{${1:arg}}"
+    },
+    "algebras": {},
+    "algebras*": {},
+    "Algebras": {},
+    "Algebras*": {},
+    "reps": {},
+    "reps*": {},
+    "Reps": {},
+    "Reps*": {},
+    "PoissonAlg": {},
+    "PoissonAlg*": {},
+    "modules": {},
+    "modules*": {},
+    "Leftmodules": {},
+    "Rightmodules": {},
+    "Modules": {},
+    "LeftModules": {},
+    "RightModules": {},
+    "Bimodules": {},
+    "Bimodules*": {},
+    "Rings": {},
+    "Groups": {},
+    "Ab": {},
+    "Lattices": {},
+    "Sets": {},
+    "Vect": {},
+    "LieAlgs": {},
+    "Posets": {},
+    "Directed": {},
+    "GSets": {},
+    "GSets[]": {
+      "snippet": "GSets[${1:group}]"
+    },
+    "Groupoids": {},
+    "vol": {},
+    "complete{}": {
+      "snippet": "complete{${1:arg}}"
+    },
+    "Ball": {},
+    "abs{}": {
+      "snippet": "abs{${1:arg}}"
+    },
+    "abs[]{}": {
+      "snippet": "abs[${2:size-cmd}]{${1:arg}}"
+    },
+    "abs*{}": {
+      "snippet": "abs*{${1:arg}}"
+    },
+    "norm{}": {
+      "snippet": "norm{${1:arg}}"
+    },
+    "norm[]{}": {
+      "snippet": "norm[${2:size-cmd}]{${1:arg}}"
+    },
+    "norm*{}": {
+      "snippet": "norm*{${1:arg}}"
+    },
+    "supnorm{}": {
+      "snippet": "supnorm{${1:arg}}"
+    },
+    "supnorm[]{}": {
+      "snippet": "supnorm[${2:size-cmd}]{${1:arg}}"
+    },
+    "supnorm*{}": {
+      "snippet": "supnorm*{${1:arg}}"
+    },
+    "expands": {},
+    "expands[]": {
+      "snippet": "expands[${1:scale}]"
+    },
+    "std": {},
+    "Weyl": {},
+    "Op": {},
+    "Opstd": {},
+    "OpWeyl": {},
+    "spacename{}": {
+      "snippet": "spacename{${1:arg}}"
+    },
+    "Bounded": {},
+    "Continuous": {},
+    "Contbound": {},
+    "Fun": {},
+    "Fun[]": {
+      "snippet": "Fun[${1:sup}]"
+    },
+    "Cinfty": {},
+    "Comega": {},
+    "Holomorphic": {},
+    "AntiHolomorphic": {},
+    "Schwartz": {},
+    "Riemann": {},
+    "singsupp": {},
+    "seminorm{}": {
+      "snippet": "seminorm{${1:arg}}"
+    },
+    "ord": {},
+    "conv": {},
+    "extreme": {},
+    "hilbert{}": {
+      "snippet": "hilbert{${1:arg}}"
+    },
+    "prehilb{}": {
+      "snippet": "prehilb{${1:arg}}"
+    },
+    "Adjointable": {},
+    "Adjointable[]": {
+      "snippet": "Adjointable[${1:sub}]"
+    },
+    "Finite": {},
+    "Finite[]": {
+      "snippet": "Finite[${1:sub}]"
+    },
+    "Compact": {},
+    "Compact[]": {
+      "snippet": "Compact[${1:sub}]"
+    },
+    "opdomain": {},
+    "spec": {},
+    "closure{}": {
+      "snippet": "closure{${1:arg}}"
+    },
+    "res": {},
+    "Res": {},
+    "specrad": {},
+    "slim": {},
+    "wlim": {},
+    "bra{}": {
+      "snippet": "bra{${1:arg}}"
+    },
+    "bra[]{}": {
+      "snippet": "bra[${2:size-cmd}]{${1:arg}}"
+    },
+    "bra*{}": {
+      "snippet": "bra*{${1:arg}}"
+    },
+    "ket{}": {
+      "snippet": "ket{${1:arg}}"
+    },
+    "ket[]{}": {
+      "snippet": "ket[${2:size-cmd}]{${1:arg}}"
+    },
+    "ket*{}": {
+      "snippet": "ket*{${1:arg}}"
+    },
+    "braket{}{}": {
+      "snippet": "braket{${1:arg1}}{${2:arg2}}"
+    },
+    "braket[]{}{}": {
+      "snippet": "braket[${3:size-cmd}]{${1:arg1}}{${2:arg2}}"
+    },
+    "ketbra{}{}": {
+      "snippet": "ketbra{${1:arg1}}{${2:arg2}}"
+    },
+    "ketbra[]{}{}": {
+      "snippet": "ketbra[${3:size-cmd}]{${1:arg1}}{${2:arg2}}"
+    },
+    "Spec": {},
+    "Rad": {},
+    "ind": {},
+    "Measurable": {},
+    "Meas": {},
+    "BoundMeas": {},
+    "Lp": {},
+    "Lp[]": {
+      "snippet": "Lp[${1:sup}]"
+    },
+    "Lone": {},
+    "Ltwo": {},
+    "Linfty": {},
+    "Intp": {},
+    "Intp[]": {
+      "snippet": "Intp[${1:sup}]"
+    },
+    "Intone": {},
+    "Inttwo": {},
+    "Intinfty": {},
+    "essrange": {},
+    "esssup": {},
+    "esssupnorm{}": {
+      "snippet": "esssupnorm{${1:arg}}"
+    },
+    "esssupnorm[]{}": {
+      "snippet": "esssupnorm[${2:size-cmd}]{${1:arg}}"
+    },
+    "esssupnorm*{}": {
+      "snippet": "esssupnorm*{${1:arg}}"
+    },
+    "ac": {},
+    "sing": {},
+    "indlim": {},
+    "projlim": {},
+    "category{}": {
+      "snippet": "category{${1:arg}}"
+    },
+    "categoryname{}": {
+      "snippet": "categoryname{${1:arg}}"
+    },
+    "functor{}": {
+      "snippet": "functor{${1:arg}}"
+    },
+    "groupoid{}": {
+      "snippet": "groupoid{${1:arg}}"
+    },
+    "source": {},
+    "target": {},
+    "unit": {},
+    "opp": {},
+    "asso": {},
+    "Hom": {},
+    "End": {},
+    "Aut": {},
+    "Aut*": {},
+    "Iso": {},
+    "Iso*": {},
+    "Obj": {},
+    "Morph": {},
+    "colim": {},
+    "Lie": {},
+    "Schouten{}": {
+      "snippet": "Schouten{${1:arg}}"
+    },
+    "Schouten[]{}": {
+      "snippet": "Schouten[${2:size-cmd}]{${1:arg}}"
+    },
+    "Schouten*{}": {
+      "snippet": "Schouten*{${1:arg}}"
+    },
+    "Forms": {},
+    "ZdR": {},
+    "BdR": {},
+    "HdR": {},
+    "Diffeo": {},
+    "Diffop": {},
+    "loc": {},
+    "germ": {},
+    "prol": {},
+    "NRbracket{}": {
+      "snippet": "NRbracket{${1:arg}}"
+    },
+    "NRbracket[]{}": {
+      "snippet": "NRbracket[${2:size-cmd}]{${1:arg}}"
+    },
+    "NRbracket*{}": {
+      "snippet": "NRbracket*{${1:arg}}"
+    },
+    "FNbracket{}": {
+      "snippet": "FNbracket{${1:arg}}"
+    },
+    "FNbracket[]{}": {
+      "snippet": "FNbracket[${2:size-cmd}]{${1:arg}}"
+    },
+    "FNbracket*{}": {
+      "snippet": "FNbracket*{${1:arg}}"
+    },
+    "Manifolds": {},
+    "lefttriv": {},
+    "righttriv": {},
+    "Gau": {},
+    "Conn": {},
+    "ratio": {},
+    "Parallel": {},
+    "CE": {},
+    "HCE": {},
+    "fund": {},
+    "Universal": {},
+    "BCH": {},
+    "LieGroups": {},
+    "Principal": {},
+    "GPrincipal": {},
+    "Fiber": {},
+    "FFiber": {},
+    "FFiber[]": {
+      "snippet": "FFiber[${1:fiber}]"
+    },
+    "Pin": {},
+    "Spin": {},
+    "nablaLC": {},
+    "Laplace": {},
+    "dAlembert": {},
+    "feynman{}": {
+      "snippet": "feynman{${1:arg}}"
+    },
+    "Dirac": {},
+    "rotation": {},
+    "curl": {},
+    "divergence": {},
+    "gradient": {},
+    "Tor": {},
+    "Ric": {},
+    "scal": {},
+    "Riem": {},
+    "Hessian": {},
+    "hodge": {},
+    "Nijenhuis": {},
+    "del": {},
+    "delbar": {},
+    "FS": {},
+    "Lift": {},
+    "ver": {},
+    "hor": {},
+    "Ver": {},
+    "Hor": {},
+    "Sec": {},
+    "Sec[]": {
+      "snippet": "Sec[${1:sup}]"
+    },
+    "Secinfty": {},
+    "HolSec": {},
+    "SymD": {},
+    "Densities": {},
+    "Densities[]": {
+      "snippet": "Densities[${1:sup}]"
+    },
+    "MeasurableSections": {},
+    "IntpSections": {},
+    "IntpSections[]": {
+      "snippet": "IntpSections[${1:sup}]"
+    },
+    "IntegrableSections": {},
+    "Translation": {},
+    "frames{}": {
+      "snippet": "frames{${1:arg}}"
+    },
+    "Frames": {},
+    "FDiff": {},
+    "Sympl": {},
+    "Jacobiator": {},
+    "Jacobiator[]": {
+      "snippet": "Jacobiator[${1:sub}]"
+    },
+    "red": {},
+    "Hess": {},
+    "KKS": {},
+    "Courant{}": {
+      "snippet": "Courant{${1:arg}}"
+    },
+    "Courant[]{}": {
+      "snippet": "Courant[${2:size-cmd}]{${1:arg}}"
+    },
+    "Courant*{}": {
+      "snippet": "Courant*{${1:arg}}"
+    },
+    "Dorfman{}": {
+      "snippet": "Dorfman{${1:arg}}"
+    },
+    "Dorfman[]{}": {
+      "snippet": "Dorfman[${2:size-cmd}]{${1:arg}}"
+    },
+    "Dorfman*{}": {
+      "snippet": "Dorfman*{${1:arg}}"
+    },
+    "Dir": {},
+    "Forward": {},
+    "Backward": {},
+    "Tangent": {},
+    "MWreduction": {},
+    "Mon": {},
+    "Hol": {},
+    "tr": {},
+    "rank": {},
+    "codim": {},
+    "diag": {},
+    "Trans": {},
+    "Mat": {},
+    "SymMat": {},
+    "ann": {},
+    "Span": {},
+    "Span[]": {
+      "snippet": "Span[${1:sub}]"
+    },
+    "basis{}": {
+      "snippet": "basis{${1:arg}}"
+    },
+    "tensor": {},
+    "tensor[]": {
+      "snippet": "tensor[${1:sub}]"
+    },
+    "Tensor": {},
+    "Anti": {},
+    "Sym": {},
+    "Symmetrizer": {},
+    "AntiSymmetrizer": {},
+    "ins": {},
+    "jns": {},
+    "insa": {},
+    "inss": {},
+    "degs": {},
+    "dega": {},
+    "SP{}": {
+      "snippet": "SP{${1:arg}}"
+    },
+    "SP[]{}": {
+      "snippet": "SP[${2:size-cmd}]{${1:arg}}"
+    },
+    "SP*{}": {
+      "snippet": "SP*{${1:arg}}"
+    },
+    "littlepara": {},
+    "IP{}{}{}{}{}": {
+      "snippet": "IP{${1:ul}}{${2:ll}}{${3:arg}}{${4:ur}}{${5:lr}}"
+    },
+    "IP[]{}{}{}{}{}": {
+      "snippet": "IP[${6:size-cmd}]{${1:ul}}{${2:ll}}{${3:arg}}{${4:ur}}{${5:lr}}"
+    },
+    "EX": {},
+    "Var": {},
+    "Cov": {},
+    "Cor": {},
+    "cl": {},
+    "scl": {},
+    "interior": {},
+    "boundary": {},
+    "supp": {},
+    "dist": {},
+    "topology{}": {
+      "snippet": "topology{${1:letter}}"
+    },
+    "filter{}": {
+      "snippet": "filter{${1:letter}}"
+    },
+    "sheaf{}": {
+      "snippet": "sheaf{${1:letter}}"
+    },
+    "Sections": {},
+    "HOM": {},
+    "etale{}": {
+      "snippet": "etale{${1:arg}}"
+    },
+    "etale[]{}": {
+      "snippet": "etale[${2:size-cmd}]{${1:arg}}"
+    },
+    "etale*{}": {
+      "snippet": "etale*{${1:arg}}"
+    },
+    "topological": {},
+    "Topological": {},
+    "Sheaves": {},
+    "PreSheaves": {},
+    "Etale": {},
+    "claimautorefname": {},
+    "conjectureautorefname": {},
+    "conventionautorefname": {},
+    "corollaryautorefname": {},
+    "definitionautorefname": {},
+    "exampleautorefname": {},
+    "exerciseautorefname": {},
+    "lemmaautorefname": {},
+    "maintheoremautorefname": {},
+    "notationautorefname": {},
+    "propositionautorefname": {},
+    "questionautorefname": {},
+    "remarkautorefname": {},
+    "thmautorefname": {},
+    "originalleft": {},
+    "originalright": {},
+    "originaltensor": {},
+    "theoremsymbol{}": {
+      "snippet": "theoremsymbol{${1:symbol}}"
+    },
+    "theendNonectr": {},
+    "thecurrNonectr": {},
+    "ifsetendmark": {},
+    "setendmarktrue": {},
+    "setendmarkfalse": {}
+  },
+  "envs": {
+    "claim": {},
+    "claim[]": {
+      "name": "claim",
+      "snippet": "[${1:heading}]"
+    },
+    "nnclaim": {},
+    "nnclaim[]": {
+      "name": "nnclaim",
+      "snippet": "[${1:heading}]"
+    },
+    "corollary": {},
+    "corollary[]": {
+      "name": "corollary",
+      "snippet": "[${1:heading}]"
+    },
+    "nncorollary": {},
+    "nncorollary[]": {
+      "name": "nncorollary",
+      "snippet": "[${1:heading}]"
+    },
+    "definition": {},
+    "definition[]": {
+      "name": "definition",
+      "snippet": "[${1:heading}]"
+    },
+    "nndefinition": {},
+    "nndefinition[]": {
+      "name": "nndefinition",
+      "snippet": "[${1:heading}]"
+    },
+    "lemma": {},
+    "lemma[]": {
+      "name": "lemma",
+      "snippet": "[${1:heading}]"
+    },
+    "nnlemma": {},
+    "nnlemma[]": {
+      "name": "nnlemma",
+      "snippet": "[${1:heading}]"
+    },
+    "proposition": {},
+    "proposition[]": {
+      "name": "proposition",
+      "snippet": "[${1:heading}]"
+    },
+    "nnproposition": {},
+    "nnproposition[]": {
+      "name": "nnproposition",
+      "snippet": "[${1:heading}]"
+    },
+    "theorem": {},
+    "theorem[]": {
+      "name": "theorem",
+      "snippet": "[${1:heading}]"
+    },
+    "nntheorem": {},
+    "nntheorem[]": {
+      "name": "nntheorem",
+      "snippet": "[${1:heading}]"
+    },
+    "conjecture": {},
+    "conjecture[]": {
+      "name": "conjecture",
+      "snippet": "[${1:heading}]"
+    },
+    "nnconjecture": {},
+    "nnconjecture[]": {
+      "name": "nnconjecture",
+      "snippet": "[${1:heading}]"
+    },
+    "convention": {},
+    "convention[]": {
+      "name": "convention",
+      "snippet": "[${1:heading}]"
+    },
+    "nnconvention": {},
+    "nnconvention[]": {
+      "name": "nnconvention",
+      "snippet": "[${1:heading}]"
+    },
+    "example": {},
+    "example[]": {
+      "name": "example",
+      "snippet": "[${1:heading}]"
+    },
+    "nnexample": {},
+    "nnexample[]": {
+      "name": "nnexample",
+      "snippet": "[${1:heading}]"
+    },
+    "notation": {},
+    "notation[]": {
+      "name": "notation",
+      "snippet": "[${1:heading}]"
+    },
+    "nnnotation": {},
+    "nnnotation[]": {
+      "name": "nnnotation",
+      "snippet": "[${1:heading}]"
+    },
+    "question": {},
+    "question[]": {
+      "name": "question",
+      "snippet": "[${1:heading}]"
+    },
+    "nnquestion": {},
+    "nnquestion[]": {
+      "name": "nnquestion",
+      "snippet": "[${1:heading}]"
+    },
+    "remark": {},
+    "remark[]": {
+      "name": "remark",
+      "snippet": "[${1:heading}]"
+    },
+    "nnremark": {},
+    "nnremark[]": {
+      "name": "nnremark",
+      "snippet": "[${1:heading}]"
+    },
+    "exercise": {},
+    "exercise[]": {
+      "name": "exercise",
+      "snippet": "[${1:heading}]"
+    },
+    "nnexercise": {},
+    "nnexercise[]": {
+      "name": "nnexercise",
+      "snippet": "[${1:heading}]"
+    },
+    "maintheorem": {},
+    "maintheorem[]": {
+      "name": "maintheorem",
+      "snippet": "[${1:heading}]"
+    },
+    "nnmaintheorem": {},
+    "nnmaintheorem[]": {
+      "name": "nnmaintheorem",
+      "snippet": "[${1:heading}]"
+    },
+    "proof": {},
+    "proof[]": {
+      "name": "proof",
+      "snippet": "[${1:heading}]"
+    },
+    "subproof": {},
+    "subproof[]": {
+      "name": "subproof",
+      "snippet": "[${1:heading}]"
+    },
+    "hint": {},
+    "claimlist": {},
+    "claimlist[]": {
+      "name": "claimlist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "conjecturelist": {},
+    "conjecturelist[]": {
+      "name": "conjecturelist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "conventionlist": {},
+    "conventionlist[]": {
+      "name": "conventionlist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "corollarylist": {},
+    "corollarylist[]": {
+      "name": "corollarylist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "definitionlist": {},
+    "definitionlist[]": {
+      "name": "definitionlist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "examplelist": {},
+    "examplelist[]": {
+      "name": "examplelist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "exerciselist": {},
+    "exerciselist[]": {
+      "name": "exerciselist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "lemmalist": {},
+    "lemmalist[]": {
+      "name": "lemmalist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "maintheoremlist": {},
+    "maintheoremlist[]": {
+      "name": "maintheoremlist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "notationlist": {},
+    "notationlist[]": {
+      "name": "notationlist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "propositionlist": {},
+    "propositionlist[]": {
+      "name": "propositionlist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "questionlist": {},
+    "questionlist[]": {
+      "name": "questionlist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "remarklist": {},
+    "remarklist[]": {
+      "name": "remarklist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "theoremlist": {},
+    "theoremlist[]": {
+      "name": "theoremlist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "prooflist": {},
+    "prooflist[]": {
+      "name": "prooflist",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "cptenum": {},
+    "cptenum[]": {
+      "name": "cptenum",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "cptitem": {},
+    "cptitem[]": {
+      "name": "cptitem",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "cptdesc": {},
+    "cptdesc[]": {
+      "name": "cptdesc",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    }
+  },
+  "options": [
+    "noMath"
+  ],
+  "keyvals": [
+    [
+      "algebrafont=${1:math font command}",
+      "basisfont=${1:math font command}",
+      "categoryfont=${1:math font command}",
+      "categorynamefont=${1:math font command}",
+      "fieldfont=${1:math font command}",
+      "filterfont=${1:math font command}",
+      "functorfont=${1:math font command}",
+      "groupfont=${1:math font command}",
+      "groupoidfont=${1:math font command}",
+      "gerstenhaberfont=${1:math font command}",
+      "hilbertfont=${1:math font command}",
+      "liealgfont=${1:math font command}",
+      "modulefont=${1:math font command}",
+      "prehilbfont=${1:math font command}",
+      "operatorfont=${1:math font command}",
+      "ringfont=${1:math font command}",
+      "scriptfont=${1:math font command}",
+      "sheaffont=${1:math font command}",
+      "spacefont=${1:math font command}",
+      "topologyfont=${1:math font command}"
+    ],
+    [
+      "topsep=",
+      "partopsep=",
+      "parsep=",
+      "itemsep=",
+      "leftmargin=",
+      "rightmargin=",
+      "listparindent=",
+      "labelwidth=",
+      "labelsep=",
+      "itemindent=",
+      "label=${1:commands}",
+      "label*=${1:commands}",
+      "ref=${1:commands}",
+      "font=${1:commands}",
+      "format=${1:commands}",
+      "align=",
+      "labelindent=",
+      "left=${1:labelindent}",
+      "left=${1:labelindent} .. ${2:leftmargin}",
+      "widest",
+      "widest=${1:string}",
+      "widest*=${1:integer}",
+      "labelsep*=",
+      "labelindent*=",
+      "start=${1:integer}",
+      "resume",
+      "resume=${1:series name}",
+      "resume*",
+      "resume*=${1:series name}",
+      "series=${1:series name}",
+      "beginpenalty=${1:integer}",
+      "midpenalty=${1:integer}",
+      "endpenalty=${1:integer}",
+      "before=${1:code}",
+      "before*=${1:code}",
+      "after=${1:code}",
+      "after*=${1:code}",
+      "first=${1:code}",
+      "first*=${1:code}",
+      "style=",
+      "noitemsep",
+      "nosep",
+      "wide",
+      "wide=${1:parindent}",
+      "itemjoin=${1:string}",
+      "itemjoin*=${1:string}",
+      "afterlabel=${1:string}",
+      "mode="
+    ]
+  ]
+}
