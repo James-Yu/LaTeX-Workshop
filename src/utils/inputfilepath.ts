@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { resolveFile } from './utils'
-import { replaceArgumentPlaceholders }  from '../utils/utils'
+import { replaceArgumentPlaceholders } from '../utils/utils'
 
 enum MatchType {
     Input,
@@ -88,8 +88,8 @@ export class InputFileRegExp {
      */
     static parseInputFilePath(match: MatchPath, currentFile: string, rootFile: string): string | undefined {
 
-        const texDirs_raw = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
-        const texDirs = texDirs_raw.map((texDir) => {return replaceArgumentPlaceholders("","")(texDir)}) 
+        const rawTexDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
+        const texDirs = rawTexDirs.map((texDir) => {return replaceArgumentPlaceholders('', '')(texDir)})
         /* match of this.childReg */
         if (match.type === MatchType.Child) {
             return resolveFile([path.dirname(currentFile), path.dirname(rootFile), ...texDirs], match.path)
