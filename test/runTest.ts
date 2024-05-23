@@ -31,6 +31,7 @@ async function runTestSuites(fixture: 'testground' | 'multiroot' | 'unittest') {
 
 async function main() {
     try {
+        await runTestSuites('unittest')
         await runTestSuites('testground')
         await runTestSuites('multiroot')
     } catch (err) {
