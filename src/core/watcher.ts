@@ -36,7 +36,7 @@ class Watcher {
      *
      * @param {'.*' | '.bib' | '.pdf'} [fileExt='.*'] - The file extension to watch.
      */
-    constructor(private readonly fileExt: '.*' | '.bib' | '.pdf' = '.*') {}
+    constructor(readonly fileExt: '.*' | '.bib' | '.pdf' = '.*') {}
 
     /**
      * Adds a handler for file creation events.
@@ -257,7 +257,7 @@ class Watcher {
      * @param {string} filePath - The path of the file to stop watching.
      */
     remove(filePath: string) {
-        this.watchers[path.basename(filePath)]?.files.delete(path.basename(filePath))
+        this.watchers[path.dirname(filePath)]?.files.delete(path.basename(filePath))
     }
 
     /**
@@ -280,10 +280,21 @@ class Watcher {
         })
         logger.log('Reset.')
     }
+
+    /**
+     * Get all current watchers
+     */
+    getWatchers() {
+        return this.watchers
+    }
 }
 
 export const watcher = {
     src: new Watcher(),
     pdf: new Watcher('.pdf'),
     bib: new Watcher('.bib')
+}
+
+export const _test = {
+    Watcher
 }

@@ -3,7 +3,6 @@ import * as os from 'os'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as tmp from 'tmp'
-import * as cs from 'cross-spawn'
 import * as utils from '../utils/utils'
 import { lw } from '../lw'
 
@@ -26,6 +25,10 @@ export const file = {
     exists,
     read,
     kpsewhich,
+}
+
+export const _test = {
+    createTmpDir
 }
 
 /**
@@ -54,10 +57,10 @@ function handleTmpDirError(error: Error) {
     if (/['"]/.exec(os.tmpdir())) {
         const msg = `The path of tmpdir cannot include single quotes and double quotes: ${os.tmpdir()}`
         void vscode.window.showErrorMessage(msg)
-        console.log(msg)
+        logger.log(msg)
     } else {
         void vscode.window.showErrorMessage(`Error during making tmpdir to build TeX files: ${error.message}. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.`)
-        console.log(`TEMP, TMP, and TMPDIR: ${JSON.stringify([process.env.TEMP, process.env.TMP, process.env.TMPDIR])}`)
+        logger.log(`TEMP, TMP, and TMPDIR: ${JSON.stringify([process.env.TEMP, process.env.TMP, process.env.TMPDIR])}`)
     }
 }
 
@@ -153,12 +156,17 @@ function getOutDir(texPath?: string): string {
     }
 
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath))
-    const outDir = configuration.get('latex.outDir') as string
+    const outDir = configuration.get('latex.outDir') as string || './'
     const out = utils.replaceArgumentPlaceholders(texPath, file.tmpDirPath)(outDir)
+    let result = undefined
     if (outDir === '%DIR%' || outDir === '%DIR_W32%') {
-        return texDirs[texPath]?.out ?? path.normalize(out).split(path.sep).join('/')
+        result = texDirs[texPath]?.out
     }
-    return path.normalize(out).split(path.sep).join('/')
+    result = result ?? path.normalize(out).replaceAll(path.sep, '/')
+    if (result !== './' && result.endsWith('/')) {
+        result = result.slice(0, -1)
+    }
+    return result
 }
 
 /**
@@ -233,8 +241,8 @@ const kpsecache: {[query: string]: string} = {}
  * @returns {string | undefined} - The resolved file path or undefined if not
  * found.
  */
-function kpsewhich(args: string[]): string | undefined {
-    const query = args.join(' ')
+function kpsewhich(target: string, isBib: boolean = false): string | undefined {
+    const query = (isBib ? '-format=.bib ' : '') + target
     if (kpsecache[query]) {
         logger.log(`kpsewhich cache hit on ${query}: ${kpsecache[query]} .`)
         return kpsecache[query]
@@ -243,14 +251,15 @@ function kpsewhich(args: string[]): string | undefined {
     logger.log(`Calling ${command} to resolve ${query} .`)
 
     try {
-        const kpsewhichReturn = cs.sync(command, args, {cwd: lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path})
+        const args = isBib ? ['-format=.bib', target] : [target]
+        const kpsewhichReturn = lw.external.sync(command, args, {cwd: lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path})
         if (kpsewhichReturn.status === 0) {
             const output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
             logger.log(`kpsewhich returned with '${output}'.`)
             if (output !== '') {
                 kpsecache[query] = output
-                return output
             }
+            return output
         }
         logger.log(`kpsewhich returned with non-zero code ${kpsewhichReturn.status}.`)
         return undefined
@@ -291,7 +300,7 @@ function getBibPath(bib: string, baseDir: string): string[] {
 
     if (bibPath === undefined || bibPath.length === 0) {
         if (configuration.get('kpsewhich.bibtex.enabled')) {
-            const kpsePath = kpsewhich(['-format=.bib', bib])
+            const kpsePath = kpsewhich(bib, true)
             return kpsePath ? [ kpsePath ] : []
         } else {
             logger.log(`Cannot resolve bib path: ${bib} .`)
@@ -340,7 +349,7 @@ async function exists(uri: vscode.Uri): Promise<boolean> {
         if (uri.scheme === 'file') {
             return fs.existsSync(uri.fsPath)
         } else {
-            await vscode.workspace.fs.stat(uri)
+            await lw.external.stat(uri)
             return true
         }
     } catch {

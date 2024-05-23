@@ -3,10 +3,10 @@ import * as process from 'process'
 import * as tmpFile from 'tmp'
 import { runTests } from '@vscode/test-electron'
 
-async function runTestSuites(fixture: 'testground' | 'multiroot') {
+async function runTestSuites(fixture: 'testground' | 'multiroot' | 'unittest') {
     try {
         const extensionDevelopmentPath = path.resolve(__dirname, '../../')
-        const extensionTestsPath = path.resolve(__dirname, './suites/index')
+        const extensionTestsPath = fixture === 'unittest' ? path.resolve(__dirname, './units/index') : path.resolve(__dirname, './suites/index')
 
         await runTests({
             version: '1.88.0',

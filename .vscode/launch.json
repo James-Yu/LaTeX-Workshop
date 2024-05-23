@@ -17,6 +17,25 @@
             "preLaunchTask": "task-watch-all"
         },
         {
+            "name": "Unit Tests",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
+                "${workspaceFolder}/test/fixtures/unittest",
+                "--extensionDevelopmentPath=${workspaceFolder}",
+                "--extensionTestsPath=${workspaceFolder}/out/test/units/index"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/out/src/**/*.js",
+                "${workspaceFolder}/out/test/**/*.js"
+            ],
+            "preLaunchTask": "task-watch-all",
+            "env": {
+                "LATEXWORKSHOP_UNIT": ""
+            }
+        },
+        {
             "name": "Test testground",
             "type": "extensionHost",
             "request": "launch",
