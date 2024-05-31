@@ -251,7 +251,7 @@ export function resolveFileGlob(dirs: string[], inputGlob: string, suffix: strin
         if (path.extname(inputFileGlob) === '') {
             inputFileGlob += suffix
         }
-        const paths = glob.sync(inputFileGlob)
+        const paths = glob.sync(inputFileGlob.replaceAll(path.sep, '/'))
         if (paths.length > 0) {
             return paths
         }

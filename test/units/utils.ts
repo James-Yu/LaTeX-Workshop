@@ -21,17 +21,19 @@ export function stubObject(obj: any, ignore?: string) {
 }
 
 export function getPath(...paths: string[ ]) {
-    return path.resolve(
+    const result = path.resolve(
         vscode.workspace.workspaceFile?.fsPath ?? vscode.workspace.workspaceFolders?.[0].uri.fsPath ?? '',
         ...paths
     )
+    if (os.platform() === 'win32') {
+        return result.charAt(0).toUpperCase() + result.slice(1)
+    } else {
+        return result
+    }
 }
 
 export function setRoot(testLabel: string, fixture: string, root: string) {
-    let rootDir = getPath(testLabel, fixture)
-    if (os.platform() === 'win32') {
-        rootDir = rootDir.charAt(0).toUpperCase() + rootDir.slice(1)
-    }
+    const rootDir = getPath(testLabel, fixture)
     sinon.stub(lw.root.file, 'path').value(path.resolve(rootDir, root))
     sinon.stub(lw.root.dir, 'path').value(rootDir)
 }
