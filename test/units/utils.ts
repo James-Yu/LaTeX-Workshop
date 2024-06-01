@@ -25,7 +25,7 @@ export function getPath(...paths: string[ ]) {
         ...paths
     )
     if (os.platform() === 'win32') {
-        return result.charAt(0).toUpperCase() + result.slice(1)
+        return result.charAt(0).toLowerCase() + result.slice(1)
     } else {
         return result
     }
@@ -56,11 +56,13 @@ export async function resetConfig() {
 }
 
 export function pathEqual(path1?: string, path2?: string) {
-    if (path1 === undefined || path2 === undefined) {
-        assert.strictEqual(path1, path2)
-    } else {
-        assert.strictEqual(path1.replaceAll(path.sep, '/'), path2.replaceAll(path.sep, '/'))
+    path1 = path.normalize(path1 ?? '.')
+    path2 = path.normalize(path2 ?? '.')
+    if (os.platform() === 'win32') {
+        path1 = path1.toLowerCase()
+        path2 = path2.toLowerCase()
     }
+    assert.strictEqual(path.relative(path1, path2), '')
 }
 
 export function sleep(ms: number) {

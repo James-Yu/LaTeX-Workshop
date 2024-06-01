@@ -124,14 +124,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             lw.watcher.src.add('/path/to/test.tex')
             await lw.watcher.src._test.onDidChange('create', vscode.Uri.file('/path/to/test.tex'))
             assert.strictEqual(stub.callCount, 1)
-            assert.deepStrictEqual(stub.getCall(0)?.args, ['/path/to/test.tex'])
+            assert.strictEqual(stub.getCall(0).args.length, 1)
+            assert.strictEqual(stub.getCall(0).args[0], '/path/to/test.tex')
         })
 
         it('should call onChangeHandlers when changing watched file', async () => {
             lw.watcher.src.add('/path/to/test.tex')
             await lw.watcher.src._test.onDidChange('change', vscode.Uri.file('/path/to/test.tex'))
             assert.strictEqual(stub.callCount, 1)
-            assert.deepStrictEqual(stub.getCall(0)?.args, ['/path/to/test.tex'])
+            assert.strictEqual(stub.getCall(0).args.length, 1)
+            assert.strictEqual(stub.getCall(0).args[0], '/path/to/test.tex')
         })
 
         it('should not call onChangeHandlers when creating non-watched file', async () => {
@@ -184,7 +186,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             lw.watcher.src.add('/path/to/test.tex')
             await lw.watcher.src._test.onDidDelete(vscode.Uri.file('/path/to/test.tex'))
             assert.strictEqual(stub.callCount, 1)
-            assert.deepStrictEqual(stub.getCall(0)?.args, ['/path/to/test.tex'])
+            assert.strictEqual(stub.getCall(0).args.length, 1)
+            assert.strictEqual(stub.getCall(0).args[0], '/path/to/test.tex')
         })
 
         it('should not call onChangeHandlers when watched file is deleted then created in a short time', async () => {

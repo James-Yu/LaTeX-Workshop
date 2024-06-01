@@ -198,33 +198,38 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should correctly find BibTeX files', () => {
             setRoot(testLabel, '01', 'main.tex')
             const result = lw.file.getBibPath('main.bib', lw.root.dir.path ?? '')
-            assert.deepStrictEqual(result, [path.resolve(lw.root.dir.path ?? '', 'main.bib')])
+            assert.strictEqual(result.length, 1)
+            pathEqual(result[0], path.resolve(lw.root.dir.path ?? '', 'main.bib'))
         })
 
         it('should correctly find BibTeX files in basedir', () => {
             setRoot(testLabel, '01', 'main.tex')
             const result = lw.file.getBibPath('sub.bib', path.resolve(lw.root.dir.path ?? '', 'subdir'))
-            assert.deepStrictEqual(result, [ path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib') ])
+            assert.strictEqual(result.length, 1)
+            pathEqual(result[0], path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib'))
         })
 
         it('should correctly find BibTeX files in `latex.bibDirs`', async () => {
             setRoot(testLabel, '01', 'main.tex')
             await setConfig('latex.bibDirs', [ path.resolve(lw.root.dir.path ?? '', 'subdir') ])
             const result = lw.file.getBibPath('sub.bib', lw.root.dir.path ?? '')
-            assert.deepStrictEqual(result, [ path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib') ])
+            assert.strictEqual(result.length, 1)
+            pathEqual(result[0], path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib'))
         })
 
         it('should return an empty array when no BibTeX file is found', async () => {
             setRoot(testLabel, '01', 'main.tex')
             await setConfig('latex.bibDirs', [ path.resolve(lw.root.dir.path ?? '', 'subdir') ])
             const result = lw.file.getBibPath('nonexistent.bib', path.resolve(lw.root.dir.path ?? '', 'output'))
-            assert.deepStrictEqual(result, [ ])
+            assert.strictEqual(result.length, 0)
         })
 
         it('should correctly handle wildcard in BibTeX file name', () => {
             setRoot(testLabel, '01', 'main.tex')
             const result = lw.file.getBibPath('*.bib', lw.root.dir.path ?? '')
-            assert.deepStrictEqual(result, [ path.resolve(lw.root.dir.path ?? '', 'main.bib'), path.resolve(lw.root.dir.path ?? '', 'another.bib') ])
+            assert.strictEqual(result.length, 2)
+            pathEqual(result[0], path.resolve(lw.root.dir.path ?? '', 'main.bib'))
+            pathEqual(result[1], path.resolve(lw.root.dir.path ?? '', 'another.bib'))
         })
 
         it('should handle case when kpsewhich is disabled and BibTeX file not found', async () => {
@@ -233,7 +238,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             setRoot(testLabel, '01', 'main.tex')
             const result = lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
-            assert.deepStrictEqual(result, [ ])
+            assert.strictEqual(result.length, 0)
         })
 
         it('should handle case when kpsewhich is enabled and BibTeX file not found', async () => {
@@ -242,7 +247,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             setRoot(testLabel, '01', 'main.tex')
             const result = lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
-            assert.deepStrictEqual(result, [ '/path/to/nonexistent.bib' ])
+            assert.strictEqual(result.length, 1)
+            pathEqual(result[0], '/path/to/nonexistent.bib')
         })
 
         it('should return an empty array when kpsewhich is enabled but file is not found', async () => {
@@ -251,7 +257,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             setRoot(testLabel, '01', 'main.tex')
             const result = lw.file.getBibPath('another-nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
-            assert.deepStrictEqual(result, [ ])
+            assert.strictEqual(result.length, 0)
         })
     })
 
