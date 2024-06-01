@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
-import * as path from 'path'
 import os from 'os'
+import * as path from 'path'
 import micromatch from 'micromatch'
 import { performance } from 'perf_hooks'
 
@@ -240,7 +239,7 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<Promis
     cachingFilesCount++
     const openEditor: vscode.TextDocument | undefined = vscode.workspace.textDocuments.find(
         document => document.fileName === path.normalize(filePath))
-    const content = openEditor?.isDirty ? openEditor.getText() : (lw.file.read(filePath) ?? '')
+    const content = openEditor?.isDirty ? openEditor.getText() : (await lw.file.read(filePath) ?? '')
     const fileCache: FileCache = {
         filePath,
         content,
@@ -251,7 +250,7 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<Promis
         external: {}}
     caches.set(filePath, fileCache)
     rootPath = rootPath || lw.root.file.path
-    updateChildren(fileCache, rootPath)
+    await updateChildren(fileCache, rootPath)
 
     promises.set(
         filePath,
@@ -344,10 +343,10 @@ async function updateAST(fileCache: FileCache): Promise<void> {
  * @param {string | undefined} rootPath - The root path to be used for updating
  * children elements.
  */
-function updateChildren(fileCache: FileCache, rootPath: string | undefined) {
+async function updateChildren(fileCache: FileCache, rootPath: string | undefined) {
     rootPath = rootPath || fileCache.filePath
-    updateChildrenInput(fileCache, rootPath)
-    updateChildrenXr(fileCache, rootPath)
+    await updateChildrenInput(fileCache, rootPath)
+    await updateChildrenXr(fileCache, rootPath)
     logger.log(`Updated inputs of ${fileCache.filePath} .`)
 }
 
@@ -367,7 +366,7 @@ function updateChildren(fileCache: FileCache, rootPath: string | undefined) {
  * @param {string} rootPath - The root path used for resolving relative input
  * file paths.
  */
-function updateChildrenInput(fileCache: FileCache, rootPath: string) {
+async function updateChildrenInput(fileCache: FileCache, rootPath: string) {
     const inputFileRegExp = new InputFileRegExp()
     while (true) {
         const result = inputFileRegExp.exec(fileCache.contentTrimmed, fileCache.filePath, rootPath)
@@ -375,7 +374,7 @@ function updateChildrenInput(fileCache: FileCache, rootPath: string) {
             break
         }
 
-        if (!fs.existsSync(result.path) || path.relative(result.path, rootPath) === '') {
+        if (!await lw.file.exists(result.path) || path.relative(result.path, rootPath) === '') {
             continue
         }
 
@@ -410,7 +409,7 @@ function updateChildrenInput(fileCache: FileCache, rootPath: string) {
  * @param {string} rootPath - The root path to be used for resolving external
  * document paths.
  */
-function updateChildrenXr(fileCache: FileCache, rootPath: string) {
+async function updateChildrenXr(fileCache: FileCache, rootPath: string) {
     const externalDocRegExp = /\\externaldocument(?:\[(.*?)\])?\{(.*?)\}/g
     while (true) {
         const result = externalDocRegExp.exec(fileCache.contentTrimmed)
@@ -420,7 +419,7 @@ function updateChildrenXr(fileCache: FileCache, rootPath: string) {
 
         const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
         const externalPath = utils.resolveFile([path.dirname(fileCache.filePath), path.dirname(rootPath), ...texDirs], result[2])
-        if (!externalPath || !fs.existsSync(externalPath) || path.relative(externalPath, rootPath) === '') {
+        if (!externalPath || !await lw.file.exists(externalPath) || path.relative(externalPath, rootPath) === '') {
             logger.log(`Failed resolving external ${result[2]} . Tried ${externalPath} ` +
                 (externalPath && path.relative(externalPath, rootPath) === '' ? ', which is root.' : '.'))
             continue
@@ -526,20 +525,20 @@ function updateBibfiles(fileCache: FileCache) {
  * processed.
  */
 async function loadFlsFile(filePath: string): Promise<void> {
-    const flsPath = lw.file.getFlsPath(filePath)
+    const flsPath = await lw.file.getFlsPath(filePath)
     if (flsPath === undefined) {
         return
     }
     logger.log(`Parsing .fls ${flsPath} .`)
     const rootDir = path.dirname(filePath)
     const outDir = lw.file.getOutDir(filePath)
-    const ioFiles = parseFlsContent(fs.readFileSync(flsPath).toString(), rootDir)
+    const ioFiles = parseFlsContent(await lw.file.read(flsPath) ?? '', rootDir)
 
     for (const inputFile of ioFiles.input) {
         // Drop files that are also listed as OUTPUT or should be ignored
         if (ioFiles.output.includes(inputFile) ||
             isExcluded(inputFile) ||
-            !fs.existsSync(inputFile)) {
+            !await lw.file.exists(inputFile)) {
             continue
         }
         if (inputFile === filePath || lw.watcher.src.has(inputFile)) {
@@ -575,9 +574,9 @@ async function loadFlsFile(filePath: string): Promise<void> {
     }
 
     for (const outputFile of ioFiles.output) {
-        if (path.extname(outputFile) === '.aux' && fs.existsSync(outputFile)) {
+        if (path.extname(outputFile) === '.aux' && await lw.file.exists(outputFile)) {
             logger.log(`Found .aux ${filePath} from .fls ${flsPath} , parsing.`)
-            parseAuxFile(outputFile, path.dirname(outputFile).replace(outDir, rootDir))
+            await parseAuxFile(outputFile, path.dirname(outputFile).replace(outDir, rootDir))
             logger.log(`Parsed .aux ${filePath} .`)
         }
     }
@@ -645,8 +644,8 @@ function parseFlsContent(content: string, rootDir: string): {input: string[], ou
  * @param {string} srcDir - The source directory used to resolve bibliography
  * file paths.
  */
-function parseAuxFile(filePath: string, srcDir: string) {
-    const content = fs.readFileSync(filePath).toString()
+async function parseAuxFile(filePath: string, srcDir: string) {
+    const content = await lw.file.read(filePath) ?? ''
     const regex = /^\\bibdata{(.*)}$/gm
     while (true) {
         const result = regex.exec(content)
@@ -764,15 +763,15 @@ function getIncludedTeX(filePath?: string, includedTeX: string[] = [], cachedOnl
  *
  * @param {string} texFile - The path to the TeX file whose input file
  * dependencies are to be retrieved.
- * @returns {string[]} - An array of strings representing the input file
- * dependencies of the TeX file.
+ * @returns {Promise<string[]>} - An array of strings representing the input
+ * file dependencies of the TeX file.
  */
-function getFlsChildren(texFile: string): string[] {
-    const flsPath = lw.file.getFlsPath(texFile)
+async function getFlsChildren(texFile: string): Promise<string[]> {
+    const flsPath = await lw.file.getFlsPath(texFile)
     if (flsPath === undefined) {
         return []
     }
     const rootDir = path.dirname(texFile)
-    const ioFiles = parseFlsContent(fs.readFileSync(flsPath).toString(), rootDir)
+    const ioFiles = parseFlsContent(await lw.file.read(flsPath) ?? '', rootDir)
     return ioFiles.input
 }

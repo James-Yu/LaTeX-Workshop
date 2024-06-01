@@ -86,7 +86,7 @@ async function resolveMacroDefFile(filepath: string): Promise<string | undefined
         }
         filepathAbs = path.join(rootDir, filepath)
     }
-    if (await lw.file.exists(vscode.Uri.file(filepathAbs))) {
+    if (await lw.file.exists(filepathAbs)) {
         return filepathAbs
     }
     return undefined

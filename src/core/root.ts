@@ -150,7 +150,7 @@ function getWorkspace(filePath?: string): vscode.Uri | undefined {
  *
  * @returns {string | undefined} The root file path, or undefined if not found.
  */
-function findFromMagic(): string | undefined {
+async function findFromMagic(): Promise<string | undefined> {
     if (!vscode.window.activeTextEditor) {
         return
     }
@@ -161,7 +161,7 @@ function findFromMagic(): string | undefined {
     const fileStack: string[] = []
     if (result) {
         let filePath = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
-        content = lw.file.read(filePath)
+        content = await lw.file.read(filePath)
         if (content === undefined) {
             logger.log(`Non-existent magic root ${filePath} .`)
             return
@@ -180,7 +180,7 @@ function findFromMagic(): string | undefined {
                 logger.log(`Found magic root ${filePath}`)
             }
 
-            content = lw.file.read(filePath)
+            content = await lw.file.read(filePath)
             if (content === undefined) {
                 logger.log(`Non-existent magic root ${filePath} .`)
                 return
@@ -307,7 +307,7 @@ async function findInWorkspace(): Promise<string | undefined> {
                 logger.log(`Skip the file: ${fileUri.toString(true)}`)
                 continue
             }
-            const flsChildren = lw.cache.getFlsChildren(fileUri.fsPath)
+            const flsChildren = await lw.cache.getFlsChildren(fileUri.fsPath)
             if (vscode.window.activeTextEditor && flsChildren.includes(vscode.window.activeTextEditor.document.fileName)) {
                 logger.log(`Found root file from '.fls': ${fileUri.fsPath}`)
                 return fileUri.fsPath

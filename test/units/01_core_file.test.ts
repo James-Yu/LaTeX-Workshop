@@ -164,35 +164,35 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.file.getFlsPath', () => {
-        it('should return the correct path when .fls exists in the output directory', () => {
-            pathEqual(lw.file.getFlsPath(texPath), flsPath)
+        it('should return the correct path when .fls exists in the output directory', async () => {
+            pathEqual(await lw.file.getFlsPath(texPath), flsPath)
         })
 
-        it('should return undefined when .fls does not exist in the output directory', () => {
-            pathEqual(lw.file.getFlsPath(getPath(testLabel, '01', 'nonexistent.tex')), undefined)
+        it('should return undefined when .fls does not exist in the output directory', async () => {
+            pathEqual(await lw.file.getFlsPath(getPath(testLabel, '01', 'nonexistent.tex')), undefined)
         })
 
         it('should respect custom output directory when config is set', async () => {
             await setConfig('latex.outDir', 'output')
-            pathEqual(lw.file.getFlsPath(texPath), getPath(testLabel, '01', 'output', 'main.fls'))
+            pathEqual(await lw.file.getFlsPath(texPath), getPath(testLabel, '01', 'output', 'main.fls'))
         })
 
-        it('should handle when `auxdir` is available in last compilation', () => {
+        it('should handle when `auxdir` is available in last compilation', async () => {
             setRoot(testLabel, '01', 'another.tex')
             lw.file.setTeXDirs(lw.root.file.path ?? '', undefined, 'auxfiles')
-            pathEqual(lw.file.getFlsPath(getPath(testLabel, '01', 'another.tex')), getPath(testLabel, '01', 'auxfiles', 'another.fls'))
+            pathEqual(await lw.file.getFlsPath(getPath(testLabel, '01', 'another.tex')), getPath(testLabel, '01', 'auxfiles', 'another.fls'))
         })
 
-        it('should handle when `auxdir` is missing in last compilation', () => {
+        it('should handle when `auxdir` is missing in last compilation', async () => {
             setRoot(testLabel, '01', 'main.tex')
             lw.file.setTeXDirs(lw.root.file.path ?? '', '/output')
-            pathEqual(lw.file.getFlsPath(texPath), flsPath)
+            pathEqual(await lw.file.getFlsPath(texPath), flsPath)
         })
 
-        it('should handle when `auxdir` is available in last compilation, but another .fls file in the output folder has higher priority', () => {
+        it('should handle when `auxdir` is available in last compilation, but another .fls file in the output folder has higher priority', async () => {
             setRoot(testLabel, '01', 'main.tex')
             lw.file.setTeXDirs(lw.root.file.path ?? '', undefined, 'auxfiles')
-            pathEqual(lw.file.getFlsPath(texPath), flsPath)
+            pathEqual(await lw.file.getFlsPath(texPath), flsPath)
         })
     })
 
@@ -437,10 +437,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(content, undefined)
         })
 
-        it('should throw error when file does not exist and raise is true', () => {
+        it('should throw error when file does not exist and raise is true', async () => {
             setRoot(testLabel, '01', 'main.tex')
             try {
-                lw.file.read(lw.root.file.path?.replaceAll('main.tex', 'nonexistent.tex') ?? '', true)
+                await lw.file.read(lw.root.file.path?.replaceAll('main.tex', 'nonexistent.tex') ?? '', true)
                 assert.fail('Expected an error to be thrown')
             } catch (error: any) {
                 assert.strictEqual(error.code, 'ENOENT')
@@ -451,12 +451,12 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('lw.file.exists', () => {
         it('should return true for an existing file URI', async () => {
             setRoot(testLabel, '01', 'main.tex')
-            assert.ok(await lw.file.exists(vscode.Uri.file(lw.root.file.path ?? '')))
+            assert.ok(await lw.file.exists(lw.root.file.path ?? ''))
         })
 
         it('should return false for a non-existing file URI', async () => {
             setRoot(testLabel, '01', 'main.tex')
-            assert.ok(!await lw.file.exists(vscode.Uri.file(lw.root.file.path?.replaceAll('main.tex', 'nonexistent.tex') ?? '')))
+            assert.ok(!await lw.file.exists(lw.root.file.path?.replaceAll('main.tex', 'nonexistent.tex') ?? ''))
         })
 
         it('should handle non-file URIs', async () => {
