@@ -5,11 +5,10 @@ import * as assert from 'assert'
 import * as sinon from 'sinon'
 import { lw } from '../../src/lw'
 
-export function stubObject(obj: any, ignore?: string) {
+export function stubObject(obj: any, ...ignore: string[]) {
     Object.getOwnPropertyNames(obj).forEach(item => {
         // Don't stub the unit to be tested or the logging/external functions.
-        if (item === ignore ||
-            (ignore !== undefined && ['log', 'external'].includes(item))) {
+        if (ignore.includes(item) || ['log', 'external'].includes(item)) {
             return
         }
         if (typeof obj[item] === 'object') {
@@ -62,4 +61,8 @@ export function pathEqual(path1?: string, path2?: string) {
     } else {
         assert.strictEqual(path1.replaceAll(path.sep, '/'), path2.replaceAll(path.sep, '/'))
     }
+}
+
+export function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms))
 }

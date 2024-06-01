@@ -340,18 +340,17 @@ function read(filePath: string, raise: boolean = false): string | undefined {
 /**
  * Checks if a file or URI exists.
  *
- * @param {vscode.Uri} uri - The URI of the file or resource.
+ * @param {vscode.Uri | string} uri - The URI or fspath of the file or resource.
  * @returns {Promise<boolean>} - A promise that resolves to true if the file or
  * URI exists, false otherwise.
  */
-async function exists(uri: vscode.Uri): Promise<boolean> {
+async function exists(uri: vscode.Uri | string): Promise<boolean> {
+    if (typeof(uri) === 'string') {
+        uri = vscode.Uri.file(uri)
+    }
     try {
-        if (uri.scheme === 'file') {
-            return fs.existsSync(uri.fsPath)
-        } else {
-            await lw.external.stat(uri)
-            return true
-        }
+        await lw.external.stat(uri)
+        return true
     } catch {
         return false
     }

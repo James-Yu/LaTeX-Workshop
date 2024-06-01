@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
 import * as path from 'path'
 import { lw } from '../lw'
 
@@ -30,6 +29,17 @@ class Watcher {
      * 'change' events are therefore emitted in a short period of time.
      */
     private readonly polling: {[filePath: string]: {time: number, size: number}} = {}
+
+    readonly _test = {
+        handlers: {
+            onCreateHandlers: this.onCreateHandlers,
+            onChangeHandlers: this.onChangeHandlers,
+            onDeleteHandlers: this.onDeleteHandlers,
+        },
+        getWatchers: () => this.watchers,
+        onDidChange: (...args: Parameters<Watcher['onDidChange']>) => this.onDidChange(...args),
+        onDidDelete: (...args: Parameters<Watcher['onDidDelete']>) => this.onDidDelete(...args)
+    }
 
     /**
      * Creates a new Watcher instance.
@@ -86,7 +96,7 @@ class Watcher {
      * @param {'create' | 'change'} event - The type of event.
      * @param {vscode.Uri} uri - The URI of the changed file.
      */
-    private onDidChange(event: 'create' | 'change', uri: vscode.Uri): void {
+    private async onDidChange(event: 'create' | 'change', uri: vscode.Uri): Promise<void> {
         const folder = path.dirname(uri.fsPath)
         const fileName = path.basename(uri.fsPath)
         const watcherInfo = this.watchers[folder]
@@ -98,7 +108,7 @@ class Watcher {
         if (!lw.file.hasBinaryExt(path.extname(uri.fsPath))) {
             this.handleNonBinaryFileChange(event, uri)
         } else if (!this.polling[uri.fsPath]) {
-            this.initiatePolling(uri)
+            await this.initiatePolling(uri)
         }
     }
 
@@ -126,15 +136,15 @@ class Watcher {
      *
      * @param {vscode.Uri} uri - The URI of the changed file.
      */
-    private initiatePolling(uri: vscode.Uri): void {
+    private async initiatePolling(uri: vscode.Uri): Promise<void> {
         const filePath = uri.fsPath
         const firstChangeTime = Date.now()
-        const size = fs.statSync(filePath).size
+        const size = (await lw.external.stat(vscode.Uri.file(filePath))).size
 
         this.polling[filePath] = { size, time: firstChangeTime }
 
-        const pollingInterval = setInterval(() => {
-            this.handlePolling(filePath, size, firstChangeTime, pollingInterval)
+        const pollingInterval = setInterval(async () => {
+            await this.handlePolling(filePath, size, firstChangeTime, pollingInterval)
         }, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number)
     }
 
@@ -153,14 +163,14 @@ class Watcher {
      * @param {number} firstChangeTime - The timestamp of the first change.
      * @param {NodeJS.Timeout} interval - The polling interval.
      */
-    private handlePolling(filePath: string, size: number, firstChangeTime: number, interval: NodeJS.Timeout): void {
-        if (!fs.existsSync(filePath)) {
+    private async handlePolling(filePath: string, size: number, firstChangeTime: number, interval: NodeJS.Timeout): Promise<void> {
+        if (!await lw.file.exists(filePath)) {
             clearInterval(interval)
             delete this.polling[filePath]
             return
         }
 
-        const currentSize = fs.statSync(filePath).size
+        const currentSize = (await lw.external.stat(vscode.Uri.file(filePath))).size
 
         if (currentSize !== size) {
             this.polling[filePath].size = currentSize
@@ -182,7 +192,7 @@ class Watcher {
      *
      * @param {vscode.Uri} uri - The URI of the deleted file.
      */
-    private onDidDelete(uri: vscode.Uri): void {
+    private async onDidDelete(uri: vscode.Uri): Promise<void> {
         const folder = path.dirname(uri.fsPath)
         const fileName = path.basename(uri.fsPath)
         const watcherInfo = this.watchers[folder]
@@ -193,21 +203,25 @@ class Watcher {
 
         const filePath = uri.fsPath
         logger.log(`"delete" emitted on ${filePath}.`)
-        setTimeout(() => {
-            if (fs.existsSync(filePath)) {
-                logger.log(`File deleted and re-created: ${filePath} .`)
-                return
-            }
-            logger.log(`File deletion confirmed: ${filePath} .`)
-            this.onDeleteHandlers.forEach(handler => handler(filePath))
-            watcherInfo.files.delete(fileName)
+        return new Promise(resolve => {
+            setTimeout(async () => {
+                if (await lw.file.exists(filePath)) {
+                    logger.log(`File deleted and re-created: ${filePath} .`)
+                    resolve()
+                    return
+                }
+                logger.log(`File deletion confirmed: ${filePath} .`)
+                this.onDeleteHandlers.forEach(handler => handler(filePath))
+                watcherInfo.files.delete(fileName)
 
-            if (watcherInfo.files.size === 0) {
-                this.disposeWatcher(folder)
-            }
+                if (watcherInfo.files.size === 0) {
+                    this.disposeWatcher(folder)
+                }
 
-            lw.event.fire(lw.event.FileRemoved, filePath)
-        }, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.delay') as number)
+                lw.event.fire(lw.event.FileRemoved, filePath)
+                resolve()
+            }, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.delay') as number)
+        })
     }
 
     /**
@@ -280,21 +294,10 @@ class Watcher {
         })
         logger.log('Reset.')
     }
-
-    /**
-     * Get all current watchers
-     */
-    getWatchers() {
-        return this.watchers
-    }
 }
 
 export const watcher = {
     src: new Watcher(),
     pdf: new Watcher('.pdf'),
     bib: new Watcher('.bib')
-}
-
-export const _test = {
-    Watcher
 }

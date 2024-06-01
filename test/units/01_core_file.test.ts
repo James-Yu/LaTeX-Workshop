@@ -24,7 +24,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         sinon.restore()
     })
 
-    describe('temporary directory creation', () => {
+    describe('lw.file.createTmpDir', () => {
         it('should create temporary directories', () => {
             assert.ok(_test?.createTmpDir())
         })
