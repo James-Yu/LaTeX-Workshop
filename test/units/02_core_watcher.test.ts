@@ -8,6 +8,9 @@ import { lw } from '../../src/lw'
 const testLabel = path.basename(__filename).split('.')[0]
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
+    const rootDir = getPath(testLabel, '01')
+    const texPath = getPath(testLabel, '01', 'main.tex')
+
     before(() => {
         stubObject(lw, 'file', 'watcher')
         resetRoot()
@@ -43,17 +46,17 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should add a new file to be watched and create a new watcher if necessary', () => {
             const stub = sinon.spy(lw.watcher.src as any, 'createWatcher')
-            lw.watcher.src.add('/path/to/test.tex')
+            lw.watcher.src.add(texPath)
             assert.ok(stub.called)
-            assert.ok(Object.keys(lw.watcher.src._test.getWatchers()).includes('/path/to'))
-            assert.ok(lw.watcher.src._test.getWatchers()['/path/to'].files.has('test.tex'))
+            assert.ok(Object.keys(lw.watcher.src._test.getWatchers()).includes(rootDir))
+            assert.ok(lw.watcher.src._test.getWatchers()[rootDir].files.has('main.tex'))
         })
 
         it('should add a file to the existing watcher if a watcher already exists for the folder', () => {
-            lw.watcher.src.add('/path/to/test.tex')
-            lw.watcher.src.add('/path/to/another.tex')
+            lw.watcher.src.add(texPath)
+            lw.watcher.src.add(getPath(testLabel, '01', 'another.tex'))
             assert.strictEqual(Object.keys(lw.watcher.src._test.getWatchers()).length, 1)
-            assert.ok(lw.watcher.src._test.getWatchers()['/path/to'].files.has('another.tex'))
+            assert.ok(lw.watcher.src._test.getWatchers()[rootDir].files.has('another.tex'))
         })
     })
 
@@ -63,14 +66,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should remove a file from being watched', () => {
-            lw.watcher.src.add('/path/to/test.tex')
-            assert.ok(lw.watcher.src._test.getWatchers()['/path/to'].files.has('test.tex'))
-            lw.watcher.src.remove('/path/to/test.tex')
-            assert.ok(!lw.watcher.src._test.getWatchers()['/path/to'].files.has('test.tex'))
+            lw.watcher.src.add(texPath)
+            assert.ok(lw.watcher.src._test.getWatchers()[rootDir].files.has('main.tex'))
+            lw.watcher.src.remove(texPath)
+            assert.ok(!lw.watcher.src._test.getWatchers()[rootDir].files.has('main.tex'))
         })
 
         it('should not throw an error if the file is not being watched', () => {
-            lw.watcher.src.remove('/path/to/notadded.tex')
+            lw.watcher.src.remove(texPath)
             assert.ok(true)
         })
     })
@@ -81,13 +84,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should return true if a file is being watched', () => {
-            lw.watcher.src.add('/path/to/test.tex')
-            assert.ok(lw.watcher.src._test.getWatchers()['/path/to'].files.has('test.tex'))
+            lw.watcher.src.add(texPath)
+            assert.ok(lw.watcher.src._test.getWatchers()[rootDir].files.has('main.tex'))
         })
 
         it('should return false if a file is not being watched', () => {
-            lw.watcher.src.add('/path/to/test.tex')
-            assert.ok(!lw.watcher.src._test.getWatchers()['/path/to'].files.has('another.tex'))
+            lw.watcher.src.add(texPath)
+            assert.ok(!lw.watcher.src._test.getWatchers()[rootDir].files.has('another.tex'))
         })
     })
 
@@ -97,8 +100,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should dispose of all watchers and reset the watchers map', () => {
-            lw.watcher.src.add('/path/to/test.tex')
-            const spy = sinon.spy(lw.watcher.src._test.getWatchers()['/path/to'].watcher, 'dispose')
+            lw.watcher.src.add(texPath)
+            const spy = sinon.spy(lw.watcher.src._test.getWatchers()[rootDir].watcher, 'dispose')
             lw.watcher.src.reset()
             spy.restore()
             assert.ok(spy.called)
@@ -121,48 +124,48 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should call onChangeHandlers when creating watched file', async () => {
-            lw.watcher.src.add('/path/to/test.tex')
-            await lw.watcher.src._test.onDidChange('create', vscode.Uri.file('/path/to/test.tex'))
+            lw.watcher.src.add(texPath)
+            await lw.watcher.src._test.onDidChange('create', vscode.Uri.file(texPath))
             assert.strictEqual(stub.callCount, 1)
             assert.strictEqual(stub.getCall(0).args.length, 1)
-            assert.strictEqual(stub.getCall(0).args[0], '/path/to/test.tex')
+            assert.strictEqual(stub.getCall(0).args[0], texPath)
         })
 
         it('should call onChangeHandlers when changing watched file', async () => {
-            lw.watcher.src.add('/path/to/test.tex')
-            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file('/path/to/test.tex'))
+            lw.watcher.src.add(texPath)
+            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(texPath))
             assert.strictEqual(stub.callCount, 1)
             assert.strictEqual(stub.getCall(0).args.length, 1)
-            assert.strictEqual(stub.getCall(0).args[0], '/path/to/test.tex')
+            assert.strictEqual(stub.getCall(0).args[0], texPath)
         })
 
         it('should not call onChangeHandlers when creating non-watched file', async () => {
-            lw.watcher.src.add('/path/to/test.tex')
-            await lw.watcher.src._test.onDidChange('create', vscode.Uri.file('/path/to/another.tex'))
+            lw.watcher.src.add(texPath)
+            await lw.watcher.src._test.onDidChange('create', vscode.Uri.file(getPath(testLabel, '01', 'another.tex')))
             assert.strictEqual(stub.callCount, 0)
         })
 
         it('should not call onChangeHandlers when changing non-watched file', async () => {
-            lw.watcher.src.add('/path/to/test.tex')
-            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file('/path/to/another.tex'))
+            lw.watcher.src.add(texPath)
+            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(getPath(testLabel, '01', 'another.tex')))
             assert.strictEqual(stub.callCount, 0)
         })
 
         it('should call onChangeHandlers once when quickly changing watched binary file', async () => {
-            const binaryPath = getPath(testLabel, '01', 'main.bin')
-            lw.watcher.src.add(binaryPath)
-            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binaryPath))
-            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binaryPath))
+            const binPath = getPath(testLabel, '01', 'main.bin')
+            lw.watcher.src.add(binPath)
+            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binPath))
+            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binPath))
             await sleep(vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number * 2)
             assert.strictEqual(stub.callCount, 1)
         })
 
         it('should call onChangeHandlers multiple times when slowly changing watched binary file', async () => {
-            const binaryPath = getPath(testLabel, '01', 'main.bin')
-            lw.watcher.src.add(binaryPath)
-            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binaryPath))
+            const binPath = getPath(testLabel, '01', 'main.bin')
+            lw.watcher.src.add(binPath)
+            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binPath))
             await sleep(vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number * 2)
-            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binaryPath))
+            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binPath))
             await sleep(vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number * 2)
             assert.strictEqual(stub.callCount, 2)
         })
@@ -183,17 +186,17 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should call onDeleteHandlers when deleting watched file', async () => {
-            lw.watcher.src.add('/path/to/test.tex')
-            await lw.watcher.src._test.onDidDelete(vscode.Uri.file('/path/to/test.tex'))
+            lw.watcher.src.add(texPath)
+            await lw.watcher.src._test.onDidDelete(vscode.Uri.file(texPath))
             assert.strictEqual(stub.callCount, 1)
             assert.strictEqual(stub.getCall(0).args.length, 1)
-            assert.strictEqual(stub.getCall(0).args[0], '/path/to/test.tex')
+            assert.strictEqual(stub.getCall(0).args[0], texPath)
         })
 
         it('should not call onChangeHandlers when watched file is deleted then created in a short time', async () => {
-            const binaryPath = getPath(testLabel, '01', 'main.bin')
-            lw.watcher.src.add(binaryPath)
-            await lw.watcher.src._test.onDidDelete(vscode.Uri.file(binaryPath))
+            const binPath = getPath(testLabel, '01', 'main.bin')
+            lw.watcher.src.add(binPath)
+            await lw.watcher.src._test.onDidDelete(vscode.Uri.file(binPath))
             assert.strictEqual(stub.callCount, 0)
         })
     })
