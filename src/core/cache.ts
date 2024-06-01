@@ -13,7 +13,21 @@ import { InputFileRegExp } from '../utils/inputfilepath'
 
 const logger = lw.log('Cacher')
 
+/**
+ * A map to store cached file data.
+ *
+ * This map holds `FileCache` objects indexed by their file paths. It is used to
+ * quickly retrieve cached data for files during various operations.
+ */
 const caches: Map<string, FileCache> = new Map()
+
+/**
+ * A map to store promises related to file caching operations.
+ *
+ * This map holds promises that resolve when file caching operations are
+ * complete, indexed by their file paths. It is used to keep track of ongoing
+ * caching processes.
+ */
 const promises: Map<string, Promise<void>> = new Map()
 
 export const cache = {
@@ -31,36 +45,53 @@ export const cache = {
     loadFlsFile
 }
 
+// Listener for file changes: refreshes the cache if the file can be cached.
 lw.watcher.src.onChange((filePath: string) => {
     if (canCache(filePath)) {
         void refreshCache(filePath)
     }
 })
+
+// Listener for file deletions: removes the file from the cache if it exists.
 lw.watcher.src.onDelete((filePath: string) => {
     if (get(filePath) === undefined) {
         caches.delete(filePath)
         logger.log(`Removed ${filePath} .`)
     }
 })
+
+// Dispose handler: resets the state when the application is disposed of.
 lw.onDispose({ dispose: () => reset() })
 
 /**
- * Checks if a file path can be cached based on its extension and exclusion
- * criteria.
+ * Determines if a file can be cached based on its extension and specific
+ * exclusions.
  *
- * @param {string} filePath - The file path to be checked.
- * @returns {boolean} - True if the file can be cached, false otherwise.
+ * This function checks if a given file path has a TeX file extension with
+ * lw.file.hasTeXExt and does not include the string 'expl3-code.tex'.
+ *
+ * @param {string} filePath - The path to the file to be checked for cache
+ * eligibility.
+ * @returns {boolean} - Returns `true` if the file can be cached, otherwise
+ * `false`.
  */
 function canCache(filePath: string): boolean {
     return lw.file.hasTeXExt(path.extname(filePath)) && !filePath.includes('expl3-code.tex')
 }
 
 /**
- * Checks if a file path is excluded based on user-defined globs in
- * 'latex.watch.files.ignore'.
+ * Determines if a file path should be excluded based on ignore patterns.
  *
- * @param {string} filePath - The file path to be checked.
- * @returns {boolean} - True if the file is excluded, false otherwise.
+ * This function checks if a given file path matches any of the ignore patterns
+ * specified in the workspace configuration. It retrieves the list of patterns
+ * to ignore from the 'latex.watch.files.ignore' configuration and uses the
+ * `micromatch` library to check if the file path matches any of these patterns.
+ * The file path format is adjusted based on the operating system to ensure
+ * compatibility.
+ *
+ * @param {string} filePath - The path to the file to be checked for exclusion.
+ * @returns {boolean} - Returns `true` if the file path matches any ignore
+ * patterns, otherwise `false`.
  */
 function isExcluded(filePath: string): boolean {
     const globsToIgnore = vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.files.ignore') as string[]
@@ -69,9 +100,14 @@ function isExcluded(filePath: string): boolean {
 }
 
 /**
- * Adds a file path to the watcher if it is not excluded.
+ * Adds a file to the watcher if it is not excluded and not already being
+ * watched.
  *
- * @param {string} filePath - The file path to be added.
+ * This function checks if a given file path should be excluded from the
+ * watcher. If the file is not excluded and is not already in the watcher, it
+ * logs the addition and adds the file path to the source watcher.
+ *
+ * @param {string} filePath - The path to the file to be added to the watcher.
  */
 function add(filePath: string) {
     if (isExcluded(filePath)) {
@@ -85,38 +121,51 @@ function add(filePath: string) {
 }
 
 /**
- * Retrieves the cache for a specific file path.
+ * Retrieves the cache data for a specified file path.
  *
- * @param {string} filePath - The file path to retrieve the cache for.
- * @returns {FileCache | undefined} - The cache for the specified file path, or
- * undefined if not found.
+ * This function looks up the cache for a given file path and returns the
+ * corresponding `FileCache` object if it exists. If the file path is not found
+ * in the cache, it returns `undefined`.
+ *
+ * @param {string} filePath - The path to the file whose cache data is to be
+ * retrieved.
+ * @returns {FileCache | undefined} - The `FileCache` object associated with the
+ * file path, or `undefined` if not found.
  */
 function get(filePath: string): FileCache | undefined {
     return caches.get(filePath)
 }
 
 /**
- * Retrieves an array of all cached file paths.
+ * Retrieves a list of all cached file paths.
  *
- * @returns {string[]} - An array of cached file paths.
+ * This function returns an array containing all the file paths currently stored
+ * in the cache. It does this by converting the keys of the `caches` map, which
+ * holds the cached file data, into an array.
+ *
+ * @returns {string[]} - An array of strings representing the file paths of all
+ * cached files.
  */
 function paths(): string[] {
     return Array.from(caches.keys())
 }
 
 /**
- * Waits for a file to be cached, refreshing if necessary.
+ * Waits for a file to be cached, with a specified timeout.
  *
- * The function waits for the specified file to be either cached or a promise to
- * be created, with a maximum wait time determined by the 'seconds' parameter.
- * If the file is not cached or no promise is created within the specified time,
- * it forcefully refreshes the cache for the file and returns the corresponding
- * promise.
+ * This function monitors the caching status of a specified file path. It
+ * continuously checks if the file has been cached by looking up its promise and
+ * cache entries. If the file is not found in the cache within the default or
+ * provided timeout duration, it forces the cache to refresh for the file. The
+ * function waits in increments of 100 milliseconds, and if the total wait time
+ * exceeds the specified timeout (default is 2 seconds), it logs an error
+ * message and invokes the `refreshCache` function to cache the file forcibly.
  *
- * @param {string} filePath - The file path to wait for.
- * @param {number} seconds - The maximum wait time in seconds.
- * @returns {Promise<Promise<void> | undefined>} - A promise resolving when the file is
- * cached, or undefined if an error occurs.
+ * @param {string} filePath - The path to the file to wait for caching.
+ * @param {number} [seconds=2] - The number of seconds to wait before forcing
+ * the cache refresh.
+ * @returns {Promise<void> | undefined} - A promise that resolves when the file
+ * is cached, or undefined if the cache is not refreshed.
  */
 async function wait(filePath: string, seconds: number = 2): Promise<Promise<void> | undefined> {
     let waited = 0
@@ -135,7 +184,12 @@ async function wait(filePath: string, seconds: number = 2): Promise<Promise<void
 }
 
 /**
- * Resets the watchers and clears all caches.
+ * Resets the state of various watchers and clears the file cache.
+ *
+ * This function resets the source and bibliography watchers to their initial
+ * states, ensuring that any ongoing file watching activities are terminated and
+ * prepared for a fresh start. It iterates through all cached files and removes
+ * them from the cache, effectively clearing all stored file data.
  */
 function reset() {
     lw.watcher.src.reset()
@@ -144,27 +198,35 @@ function reset() {
     Object.keys(caches).forEach(filePath => caches.delete(filePath))
 }
 
-let cachingFilesCount = 0
 /**
- * Refreshes the cache for a specific file path.
+ * A counter to keep track of the number of files currently being cached.
  *
- * The function refreshes the cache for the specified file path. If the file is
- * excluded or cannot be cached, it skips the refresh. After the cache is
- * refreshed, it updates the Abstract Syntax Tree (AST) and various elements in
- * the file cache.
+ * This variable is incremented each time a file starts the caching process and
+ * decremented upon completion. It helps manage the state of caching and ensures
+ * that the system knows when all files have been cached.
+ */
+let cachingFilesCount: number = 0
+/**
+ * Refreshes the cache for a given file, optionally considering a root path.
  *
- * The function also utilizes the 'cachingFilesCount' variable, which is a count
- * of the number of files currently being cached. This count is used to
- * determine when all files have been successfully cached. Once the caching
- * process for a file is completed, it decrements the count and checks if it was
- * the last file being cached. If so, it triggers a reconstruction of the
- * structure viewer. This ensures that the structure viewer is updated only
- * after all file caches have been refreshed.
+ * This function is responsible for updating the cache of a file specified by
+ * its path. It first checks if the file should be excluded or can be cached
+ * based on predefined conditions. If the file is valid for caching, it logs the
+ * caching action, increases the count of files being cached, and reads the
+ * content of the file. The content is then processed to remove comments and
+ * verbatim sections, and a `FileCache` object is created to store this
+ * processed content along with other metadata. The function then updates the
+ * children elements of the file cache and initiates the AST update. Once the
+ * AST is updated, the elements of the file cache are also updated. Finally, it
+ * performs lint checks, decreases the caching file count, removes the promise
+ * from the active promises, fires a file parsed event, and reconstructs the
+ * outline if no other files are being cached.
  *
- * @param {string} filePath - The file path to refresh the cache for.
- * @param {string} rootPath - The root path for resolving relative paths.
- * @returns {Promise<Promise<void> | undefined>} - A promise resolving when the cache is
- * refreshed, or undefined if the file is excluded or cannot be cached.
+ * @param {string} filePath - The path to the file to be cached.
+ * @param {string} [rootPath] - The optional root path to be considered for
+ * updating children elements.
+ * @returns {Promise<void> | undefined} - A promise that resolves when the cache
+ * is refreshed, or undefined if the file is excluded or cannot be cached.
  */
 async function refreshCache(filePath: string, rootPath?: string): Promise<Promise<void> | undefined> {
     if (isExcluded(filePath)) {
@@ -210,17 +272,27 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<Promis
     return promises.get(filePath)
 }
 
+/**
+ * A timeout identifier used for scheduling the aggressive cache refresh
+ * operation.
+ */
 let updateCompleter: NodeJS.Timeout
 /**
- * Refreshes the cache aggressively based on user-defined settings.
+ * Refreshes the cache for a file aggressively based on the user's configuration
+ * settings.
  *
- * The function checks if aggressive cache updating is enabled in the user's
- * configuration. If enabled, it schedules a delayed refresh of the cache for
- * the specified file path. If the refresh is already scheduled, it cancels the
- * existing timeout and schedules a new one. This helps prevent excessive cache
- * refreshing during rapid file changes.
+ * This function checks if the specified file path has an existing cache entry.
+ * If it does, and if the aggressive update setting
+ * 'intellisense.update.aggressive.enabled' is enabled in the workspace
+ * configuration, it schedules a cache refresh operation. If there is an
+ * existing scheduled operation, it is cleared to prevent multiple refreshes
+ * from overlapping. The refresh operation is then scheduled to run after a
+ * delay specified in the configuration 'intellisense.update.delay'. During the
+ * refresh, it also attempts to load the FLS file associated with the root path
+ * or the file path.
  *
- * @param {string} filePath - The file path to refresh the cache for.
+ * @param {string} filePath - The path to the file for which to refresh the
+ * cache aggressively.
  */
 function refreshCacheAggressive(filePath: string) {
     if (get(filePath) === undefined) {
@@ -239,22 +311,38 @@ function refreshCacheAggressive(filePath: string) {
 }
 
 /**
- * Updates the Abstract Syntax Tree (AST) for a given file cache using parser.
+ * Updates the Abstract Syntax Tree (AST) for a given file cache.
  *
- * @param {FileCache} fileCache - The file cache to update the AST for.
+ * This function is responsible for parsing the content of a file stored in the
+ * file cache and updating its AST. It logs the start of the parsing process,
+ * measures the time taken to parse the content, and logs the elapsed time once
+ * the parsing is complete. The parsed AST is then stored in the `ast` property
+ * of the `fileCache` object.
+ *
+ * @param {FileCache} fileCache - The file cache object containing the content
+ * to be parsed.
+ * @returns {Promise<void>} - A promise that resolves when the AST is updated.
  */
-async function updateAST(fileCache: FileCache) {
+async function updateAST(fileCache: FileCache): Promise<void> {
     logger.log(`Parse LaTeX AST: ${fileCache.filePath} .`)
+    const start = performance.now()
     fileCache.ast = await lw.parser.parse.tex(fileCache.content)
-    logger.log(`Parsed LaTeX AST: ${fileCache.filePath} .`)
+    const elapsed = performance.now() - start
+    logger.log(`Parsed LaTeX AST in ${elapsed.toFixed(2)} ms: ${fileCache.filePath} .`)
 }
 
 /**
- * Updates the children of a file cache based on input files and external
- * documents.
+ * Updates the children elements of a file cache, considering a root path.
  *
- * @param {FileCache} fileCache - The file cache to update the children for.
- * @param {string} rootPath - The root path for resolving relative paths.
+ * This function updates the children of a given file cache by processing input
+ * and cross-references. It first sets the root path to either the provided root
+ * path or the file path from the file cache. It then calls
+ * `updateChildrenInput` to handle the input elements and `updateChildrenXr` to
+ * manage cross-references within the file cache.
+ *
+ * @param {FileCache} fileCache - The file cache object to be updated.
+ * @param {string | undefined} rootPath - The root path to be used for updating
+ * children elements.
  */
 function updateChildren(fileCache: FileCache, rootPath: string | undefined) {
     rootPath = rootPath || fileCache.filePath
@@ -264,16 +352,20 @@ function updateChildren(fileCache: FileCache, rootPath: string | undefined) {
 }
 
 /**
- * Parses input files from the content of a file cache and updates the children
- * array.
+ * Updates the children of a file cache by parsing input file references.
  *
- * The function uses a regular expression to find input files in the trimmed
- * content of the specified file cache. It adds each identified input file to
- * the children array, and if the file is not already being watched, it adds it
- * to the watcher and triggers a refresh of its cache.
+ * This function iterates over the trimmed content of a given file cache to
+ * identify and process input file references. It uses a regular expression to
+ * find these references and checks if the referenced files exist and are not
+ * the same as the root path. Valid input files are added to the children array
+ * of the file cache, and a log message is generated for each identified input
+ * file. If the input file is not already being watched, it is added to the
+ * watcher and its cache is refreshed.
  *
- * @param {FileCache} fileCache - The file cache to update the input children for.
- * @param {string} rootPath - The root path for resolving relative paths.
+ * @param {FileCache} fileCache - The file cache object containing the content
+ * and metadata of the file being processed.
+ * @param {string} rootPath - The root path used for resolving relative input
+ * file paths.
  */
 function updateChildrenInput(fileCache: FileCache, rootPath: string) {
     const inputFileRegExp = new InputFileRegExp()
@@ -302,18 +394,21 @@ function updateChildrenInput(fileCache: FileCache, rootPath: string) {
 }
 
 /**
- * Parses external document references from the content of a file cache and
- * updates the children array.
+ * Updates the children references in the file cache based on \externaldocument
+ * macros.
  *
- * The function uses a regular expression to find external document references
- * in the trimmed content of the specified file cache. It resolves the paths of
- * external documents and adds them to the children array. If an external
- * document is not already being watched, it adds it to the watcher and triggers
- * a refresh of its cache.
+ * This function parses the trimmed content of a file to find any
+ * `\externaldocument` macros, which reference external documents. It then
+ * resolves the paths of these external documents relative to the current file
+ * path, root path, and additional LaTeX directories configured in the
+ * workspace. If an external document path is resolved and exists, it updates
+ * the root cache with the external document reference and logs the action. If
+ * the external document is already being watched, it continues; otherwise, it
+ * adds the document to the watcher and refreshes its cache.
  *
- * @param {FileCache} fileCache - The file cache to update the external document
- * children for.
- * @param {string} rootPath - The root path for resolving relative paths.
+ * @param {FileCache} fileCache - The cache object of the file being processed.
+ * @param {string} rootPath - The root path to be used for resolving external
+ * document paths.
  */
 function updateChildrenXr(fileCache: FileCache, rootPath: string) {
     const externalDocRegExp = /\\externaldocument(?:\[(.*?)\])?\{(.*?)\}/g
@@ -346,16 +441,17 @@ function updateChildrenXr(fileCache: FileCache, rootPath: string) {
 }
 
 /**
- * Updates various elements in the file cache after parsing the LaTeX Abstract
- * Syntax Tree (AST).
+ * Updates various elements in the file cache, parsing different components.
  *
- * The function updates elements in the specified file cache based on the parsed
- * LaTeX AST. It includes updating citations, packages, references, glossaries,
- * environments, commands, and input graphics paths. Additionally, it updates
- * the bibliography files referenced in the file content and logs the time taken
- * to complete the update.
+ * This function updates the elements of a file cache by parsing various
+ * components, namely, citations, packages, references, glossaries,
+ * environments, macros, subscripts, superscripts, and graphics paths. It
+ * records the time taken to perform these updates and logs the elapsed time
+ * along with the file path. Each parsing step is performed in a specific order
+ * to ensure dependencies are resolved correctly.
  *
- * @param {FileCache} fileCache - The file cache to update the elements for.
+ * @param {FileCache} fileCache - The cache object containing the file data and
+ * metadata to be updated.
  */
 function updateElements(fileCache: FileCache) {
     const start = performance.now()
@@ -374,26 +470,24 @@ function updateElements(fileCache: FileCache) {
 }
 
 /**
- * Updates bibliography files in the file cache based on the content of the
- * LaTeX file.
+ * Updates the bibliography files associated with a given file cache.
  *
- * The function uses regular expressions to find bibliography file references in
- * the content of the specified file cache. It extracts the paths of the
- * bibliography files and adds them to the bibliography files set in the cache.
- * If a bibliography file is not already being watched, it adds it to the
- * bibliography watcher.
+ * This function parses the content of a file cache to find bibliography macros
+ * (such as `\bibliography`, `\addbibresource`, and `\putbib`) using a regular
+ * expression. It extracts the bibliography file paths specified in these
+ * macros, resolves their full paths, and adds them to the set of bibliography
+ * files in the file cache. If a bibliography file is not excluded, it logs the
+ * action, adds the file to the cache, and ensures that it is being watched for
+ * changes.
  *
- * @param {FileCache} fileCache - The file cache to update the bibliography files
- * for.
+ * @param {FileCache} fileCache - The file cache object to update with
+ * bibliography files.
  */
 function updateBibfiles(fileCache: FileCache) {
     const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(?:\\subfix{)?([\s\S]+?)(?:\})?}|(?:\\putbib)\[(.+?)\]/gm
-    while (true) {
-        const result = bibReg.exec(fileCache.contentTrimmed)
-        if (!result) {
-            break
-        }
 
+    let result: RegExpExecArray | null
+    while ((result = bibReg.exec(fileCache.contentTrimmed)) !== null) {
         const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => bib.trim())
 
         for (const bib of bibs) {
@@ -413,18 +507,25 @@ function updateBibfiles(fileCache: FileCache) {
 }
 
 /**
- * Parses the content of a `.fls` file attached to the given `filePath` and
- * updates caches accordingly.
+ * Loads and processes a .fls file related to a specified file path.
  *
- * The function parses the content of a `.fls` file associated with the
- * specified `filePath`. It identifies input files and output files, updates the
- * cache's children, and checks for `.aux` files to parse for possible `.bib`
- * files. This function is typically called after a successful build to look for
- * the root file and compute the cachedContent tree.
+ * This function handles the parsing and processing of a .fls file, which
+ * contains information about input and output files involved in the compilation
+ * of a LaTeX document. It retrieves the path to the .fls file associated with
+ * the given file path, reads its content, and parses it to extract input and
+ * output file paths. For each input file, it performs various checks to
+ * determine whether the file should be cached, watched, or ignored. For .tex
+ * files, it ensures they are added as children to the cache of the main file
+ * and refreshes their cache. Non-.tex files are watched unless they are
+ * auto-generated files like .aux or .out. Additionally, if any output files are
+ * .aux files, they are parsed accordingly.
  *
- * @param {string} filePath - The path of a LaTeX file.
+ * @param {string} filePath - The path to the main file whose .fls file is to be
+ * loaded and processed.
+ * @returns {Promise<void>} - A promise that resolves when the .fls file is
+ * processed.
  */
-async function loadFlsFile(filePath: string) {
+async function loadFlsFile(filePath: string): Promise<void> {
     const flsPath = lw.file.getFlsPath(filePath)
     if (flsPath === undefined) {
         return
@@ -484,17 +585,20 @@ async function loadFlsFile(filePath: string) {
 }
 
 /**
- * Parses the content of a `.fls` file and extracts input and output files.
+ * Parses the content of a .fls file to extract input and output file paths.
  *
- * The function uses a regular expression to match lines in the `.fls` file
- * indicating input and output files. It then resolves the paths of these files
- * relative to the root directory and returns an object with arrays of input and
- * output files.
+ * This function processes the content of a .fls file, identifying and
+ * extracting file paths associated with INPUT and OUTPUT entries. It utilizes a
+ * regular expression to match lines indicating input and output files, then
+ * resolves these paths relative to a given root directory. The function
+ * collects unique input and output file paths using sets and returns them as
+ * arrays.
  *
- * @param {string} content - The content of the `.fls` file.
- * @param {string} rootDir - The root directory for resolving relative paths.
+ * @param {string} content - The content of the .fls file to be parsed.
+ * @param {string} rootDir - The root directory used to resolve relative file
+ * paths.
  * @returns {{input: string[], output: string[]}} - An object containing arrays
- * of input and output files.
+ * of input and output file paths.
  */
 function parseFlsContent(content: string, rootDir: string): {input: string[], output: string[]} {
     const inputFiles: Set<string> = new Set()
@@ -525,15 +629,21 @@ function parseFlsContent(content: string, rootDir: string): {input: string[], ou
 }
 
 /**
- * Parses a `.aux` file to extract bibliography file references and updates the
- * caches.
+ * Parses an auxiliary (.aux) file to extract bibliography data and update the
+ * cache.
  *
- * The function reads the content of the specified `.aux` file and uses a
- * regular expression to find bibliography file references. It then updates the
- * cache with the discovered bibliography files.
+ * This function reads the content of a specified .aux file and uses a regular
+ * expression to find `\bibdata` entries. It extracts the bibliography file
+ * names, splits them into an array, and trims any whitespace. For each
+ * bibliography file name, it determines the corresponding file paths and checks
+ * if these paths are excluded from caching. If not excluded, it adds the
+ * bibliography paths to the root file's bibliography set and logs the
+ * discovery. It also ensures that the bibliography paths are being watched for
+ * changes by adding them to the watcher.
  *
- * @param {string} filePath - The path of the `.aux` file.
- * @param {string} srcDir - The source directory for resolving relative paths.
+ * @param {string} filePath - The path to the .aux file to be parsed.
+ * @param {string} srcDir - The source directory used to resolve bibliography
+ * file paths.
  */
 function parseAuxFile(filePath: string, srcDir: string) {
     const content = fs.readFileSync(filePath).toString()
@@ -564,18 +674,23 @@ function parseAuxFile(filePath: string, srcDir: string) {
 
 
 /**
- * Returns an array of included bibliography files in the specified LaTeX file.
+ * Retrieves a list of included bibliography files for a given file, ensuring
+ * uniqueness.
  *
- * The function recursively traverses the included LaTeX files starting from the
- * specified file path (or the root file if undefined) and collects the
- * bibliography files. It avoids duplicates and returns an array of unique
- * included bibliography files.
+ * This function processes a specified file path to extract and return all
+ * associated bibliography files. It starts with the provided file path (or the
+ * root file path if not specified) and checks its cache entry. If the cache
+ * entry exists, the function collects the bibliography files associated with
+ * the file and its children. The function ensures that the same file is not
+ * processed multiple times by keeping track of checked files. The result is an
+ * array of unique bibliography file paths.
  *
- * @param {string | undefined} filePath - The path of the LaTeX file. If
- * undefined, traces from the root file.
- * @param {string[]} includedBib - An array to store the included bibliography
- * files (default: []).
- * @returns {string[]} - An array of included bibliography files.
+ * @param {string} [filePath] - The path to the file to check for included
+ * bibliography files. Defaults to the root file path if not provided.
+ * @param {string[]} [includedBib=[]] - An array to accumulate the bibliography
+ * files found.
+ * @returns {string[]} - An array of unique bibliography file paths included in
+ * the specified file and its children.
  */
 function getIncludedBib(filePath?: string, includedBib: string[] = []): string[] {
     filePath = filePath ?? lw.root.file.path
@@ -600,21 +715,21 @@ function getIncludedBib(filePath?: string, includedBib: string[] = []): string[]
 }
 
 /**
- * Returns an array of included LaTeX files in the specified LaTeX file.
+ * Retrieves a list of included TeX files, starting from a given file path.
  *
- * The function recursively traverses the included LaTeX files starting from the
- * specified file path (or the root file if undefined) and collects the LaTeX
- * files. It avoids duplicates and returns an array of unique included LaTeX
- * files. The 'cachedOnly' parameter controls whether to include only cached
- * files or all included files.
+ * This function recursively gathers all TeX files included in a specified file,
+ * starting from the provided file path or the root file path if none is
+ * specified. It uses a depth-first search approach to traverse the file
+ * dependencies and caches the results to avoid redundant processing. If the
+ * `cachedOnly` flag is set, it considers only cached files.
  *
- * @param {string | undefined} filePath - The path of the LaTeX file. If
- * undefined, traces from the root file.
- * @param {string[]} includedTeX - An array to store the included LaTeX files
- * (default: []).
- * @param {boolean} cachedOnly - Indicates whether to include only cached files
- * (default: true).
- * @returns {string[]} - An array of included LaTeX files.
+ * @param {string} [filePath] - The path to the starting file. Defaults to the
+ * root file path.
+ * @param {string[]} [includedTeX=[]] - An array to store the paths of included
+ * TeX files.
+ * @param {boolean} [cachedOnly=true] - A flag indicating whether to consider
+ * only cached files.
+ * @returns {string[]} - An array of paths to included TeX files.
  */
 function getIncludedTeX(filePath?: string, includedTeX: string[] = [], cachedOnly: boolean = true): string[] {
     filePath = filePath ?? lw.root.file.path
@@ -640,16 +755,17 @@ function getIncludedTeX(filePath?: string, includedTeX: string[] = [], cachedOnl
 }
 
 /**
- * Returns an array of input files from the `.fls` file associated with the
- * specified LaTeX file.
+ * Retrieves the input file dependencies for a given TeX file from its FLS file.
  *
- * @param {string} texFile - The path of the LaTeX file.
- * @returns {string[]} - An array of input files from the `.fls` file.
+ * This function determines the path to the FLS file corresponding to a given
+ * TeX file. If the FLS file path is found, it reads the content of the FLS file
+ * and parses it to extract the list of input files. The function then returns
+ * this list of input files, which represent the dependencies of the TeX file.
  *
- * The function reads the content of the `.fls` file associated with the
- * specified LaTeX file, parses the input files, and returns an array of
- * included input files. It is used to identify the dependencies of a LaTeX file
- * after a successful build.
+ * @param {string} texFile - The path to the TeX file whose input file
+ * dependencies are to be retrieved.
+ * @returns {string[]} - An array of strings representing the input file
+ * dependencies of the TeX file.
  */
 function getFlsChildren(texFile: string): string[] {
     const flsPath = lw.file.getFlsPath(texFile)
