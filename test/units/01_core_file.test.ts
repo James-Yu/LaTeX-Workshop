@@ -425,15 +425,15 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.file.read', () => {
-        it('should read the content of an existing file', () => {
+        it('should read the content of an existing file', async () => {
             setRoot(testLabel, '01', 'main.tex')
-            const content = lw.file.read(lw.root.file.path ?? '')
+            const content = await lw.file.read(lw.root.file.path ?? '')
             assert.strictEqual(content, '\\documentclass{article}\n\\begin{document}\nabc\n\\end{document}\n')
         })
 
-        it('should return undefined when file does not exist and raise is false', () => {
+        it('should return undefined when file does not exist and raise is false', async () => {
             setRoot(testLabel, '01', 'main.tex')
-            const content = lw.file.read(lw.root.file.path?.replaceAll('main.tex', 'nonexistent.tex') ?? '', false)
+            const content = await lw.file.read(lw.root.file.path?.replaceAll('main.tex', 'nonexistent.tex') ?? '', false)
             assert.strictEqual(content, undefined)
         })
 
@@ -443,7 +443,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
                 await lw.file.read(lw.root.file.path?.replaceAll('main.tex', 'nonexistent.tex') ?? '', true)
                 assert.fail('Expected an error to be thrown')
             } catch (error: any) {
-                assert.strictEqual(error.code, 'ENOENT')
+                assert.strictEqual(error.code, 'FileNotFound')
             }
         })
     })
