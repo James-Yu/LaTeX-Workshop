@@ -7,8 +7,13 @@ export function run(): Promise<void> {
     const mocha = new Mocha({
         ui: 'bdd',
         color: true,
-        timeout: process.env['LATEXWORKSHOP_CLI'] ? 10000 : 8000,
-        retries: process.env['LATEXWORKSHOP_CLI'] ? 8 : 2
+        timeout: process.env['LATEXWORKSHOP_CITEST'] ? 10000 : 8000,
+        retries: process.env['LATEXWORKSHOP_CITEST'] ? 8 : 2
+    })
+
+    mocha.suite.on('pre-require', (context) => {
+        context.describe.only = process.env['LATEXWORKSHOP_CITEST'] ? context.describe : context.describe.only
+        context.it.only = process.env['LATEXWORKSHOP_CITEST'] ? context.it : context.it.only
     })
 
     return new Promise((resolve, reject) => {

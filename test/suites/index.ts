@@ -7,8 +7,8 @@ export function run(): Promise<void> {
     const mocha = new Mocha({
         ui: 'tdd',
         color: true,
-        timeout: process.env['LATEXWORKSHOP_CLI'] ? 10000 : 8000,
-        retries: process.env['LATEXWORKSHOP_CLI'] ? 8 : 2
+        timeout: process.env['LATEXWORKSHOP_CITEST'] ? 10000 : 5000,
+        retries: process.env['LATEXWORKSHOP_CITEST'] ? 3 : 1
     })
 
     return new Promise((resolve, reject) => {

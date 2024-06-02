@@ -54,7 +54,7 @@ export function run(testName: string, cb: (fixturePath: string) => unknown, plat
     }
 
     testIndex++
-    const testFunction = (process.env['LATEXWORKSHOP_CLI'] || !runonly) ? test : test.only
+    const testFunction = (process.env['LATEXWORKSHOP_CITEST'] || !runonly) ? test : test.only
 
     const label = testLabel()
     testFunction(`[${label}] ${suite.name}: ${testName}`, async () => {

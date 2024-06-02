@@ -44,6 +44,11 @@ export const cache = {
     loadFlsFile
 }
 
+export const _test = {
+    canCache,
+    isExcluded
+}
+
 // Listener for file changes: refreshes the cache if the file can be cached.
 lw.watcher.src.onChange((filePath: string) => {
     if (canCache(filePath)) {
@@ -104,7 +109,8 @@ function isExcluded(filePath: string): boolean {
  *
  * This function checks if a given file path should be excluded from the
  * watcher. If the file is not excluded and is not already in the watcher, it
- * logs the addition and adds the file path to the source watcher.
+ * logs the addition and adds the file path to the source watcher. This function
+ * will not automatically invoke `refreshCache` in the chain.
  *
  * @param {string} filePath - The path to the file to be added to the watcher.
  */
@@ -194,7 +200,7 @@ function reset() {
     lw.watcher.src.reset()
     lw.watcher.bib.reset()
     // lw.watcher.pdf.reset()
-    Object.keys(caches).forEach(filePath => caches.delete(filePath))
+    paths().forEach(filePath => caches.delete(filePath))
 }
 
 /**
