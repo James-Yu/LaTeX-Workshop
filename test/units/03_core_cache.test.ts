@@ -31,7 +31,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.canCache', () => {
         it('should return true for supported TeX files', () => {
-            assert.ok(_test.canCache(bblPath))
+            assert.ok(_test.canCache(texPath))
             assert.ok(_test.canCache(getPath(testLabel, '01', 'main.rnw')))
             assert.ok(_test.canCache(getPath(testLabel, '01', 'main.jnw')))
             assert.ok(_test.canCache(getPath(testLabel, '01', 'main.pnw')))
@@ -192,11 +192,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         beforeEach(async () => {
             await setConfig('intellisense.update.aggressive.enabled', true)
             await setConfig('intellisense.update.delay', 100)
-        })
-
-        afterEach(async () => {
-            await resetConfig()
-            resetCache()
         })
 
         it('should not aggressively cache non-cached files', async () => {
