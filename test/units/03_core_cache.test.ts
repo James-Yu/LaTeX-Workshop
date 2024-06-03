@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as assert from 'assert'
 import * as sinon from 'sinon'
-import { getPath, resetConfig, resetRoot, setConfig, stubObject } from './utils'
+import { getPath, resetCache, resetConfig, resetRoot, setConfig, sleep, stubObject, stubTextDocument } from './utils'
 import { lw } from '../../src/lw'
 import { _test } from '../../src/core/cache'
 
@@ -20,6 +20,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     afterEach(async () => {
+        resetCache()
         resetRoot()
         await resetConfig()
     })
@@ -30,7 +31,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.canCache', () => {
         it('should return true for supported TeX files', () => {
-            assert.ok(_test.canCache(getPath(testLabel, '01', 'main.tex')))
+            assert.ok(_test.canCache(bblPath))
             assert.ok(_test.canCache(getPath(testLabel, '01', 'main.rnw')))
             assert.ok(_test.canCache(getPath(testLabel, '01', 'main.jnw')))
             assert.ok(_test.canCache(getPath(testLabel, '01', 'main.pnw')))
@@ -49,16 +50,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.isExcluded', () => {
         it('should return true for excluded files', () => {
-            assert.ok(_test.isExcluded(getPath(testLabel, '01', 'main.bbl')))
+            assert.ok(_test.isExcluded(bblPath))
             assert.ok(_test.isExcluded('/dev/null'))
         })
 
         it('should return false for non-excluded files', () => {
-            assert.ok(!_test.isExcluded(getPath(testLabel, '01', 'main.tex')))
+            assert.ok(!_test.isExcluded(texPath))
         })
         it('should return true for excluded files with config set ', async () => {
             await setConfig('latex.watch.files.ignore', ['**/*.bbl'])
-            assert.ok(_test.isExcluded(getPath(testLabel, '01', 'main.bbl')))
+            assert.ok(_test.isExcluded(bblPath))
             assert.ok(!_test.isExcluded('/dev/null'))
         })
     })
@@ -81,10 +82,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.cache.get', () => {
-        afterEach(() => {
-            lw.cache.reset()
-        })
-
         it('should get the cache for a TeX file if exist', async () => {
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
@@ -97,10 +94,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.cache.paths', () => {
-        afterEach(() => {
-            lw.cache.reset()
-        })
-
         it('should get the paths of cached files', async () => {
             lw.cache.add(texPath)
             lw.cache.add(texPathAnother)
@@ -118,10 +111,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.cache.wait', () => {
-        afterEach(() => {
-            lw.cache.reset()
-        })
-
         it('should wait for finishing current caching', async () => {
             lw.cache.add(texPath)
             void lw.cache.refreshCache(texPath)
@@ -142,7 +131,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe('lw.cache.wait', () => {
+    describe('lw.cache.reset', () => {
         it('should reset the src and bib watchers, but not pdf', () => {
             lw.watcher.src.add(texPath)
             lw.watcher.bib.add(bibPath)
@@ -158,6 +147,128 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(texPath)
             lw.cache.reset()
             assert.strictEqual(lw.cache.paths().length, 0)
+        })
+    })
+
+    describe('lw.cache.refreshCache', () => {
+        it('should properly exclude configged sources', async () => {
+            await lw.cache.refreshCache(bblPath)
+            assert.strictEqual(lw.cache.paths().length, 0)
+        })
+
+        it('should properly skip non-cacheable sources', async () => {
+            await lw.cache.refreshCache(getPath(testLabel, '01', 'expl3-code.tex'))
+            assert.strictEqual(lw.cache.paths().length, 0)
+        })
+
+        it('should cache provided TeX source', async () => {
+            await lw.cache.refreshCache(texPath)
+            assert.strictEqual(lw.cache.paths().length, 1)
+        })
+
+        it('should cache provided dirty TeX source', async () => {
+            const stub = stubTextDocument(texPath, '', { isDirty: true })
+            await lw.cache.refreshCache(texPath)
+            stub.restore()
+            assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '')
+        })
+
+        it('should manage caching promises properly', async () => {
+            await lw.cache.refreshCache(texPath)
+            assert.ok(!lw.cache.promises.get(texPath))
+        })
+
+        it('should refresh cache if content is changed', async () => {
+            await lw.cache.refreshCache(texPath)
+            assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%')
+            const stub = stubTextDocument(texPath, '', { isDirty: true })
+            await lw.cache.refreshCache(texPath)
+            stub.restore()
+            assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '')
+        })
+    })
+
+    describe('lw.cache.refreshCacheAggressive', () => {
+        beforeEach(async () => {
+            await setConfig('intellisense.update.aggressive.enabled', true)
+            await setConfig('intellisense.update.delay', 100)
+        })
+
+        afterEach(async () => {
+            await resetConfig()
+            resetCache()
+        })
+
+        it('should not aggressively cache non-cached files', async () => {
+            lw.cache.refreshCacheAggressive(texPath)
+            await sleep(150)
+            assert.strictEqual(lw.cache.paths().length, 0)
+        })
+
+        it('should aggressively cache cached files', async () => {
+            lw.cache.add(texPath)
+            await lw.cache.refreshCache(texPath)
+
+            let stub = stubTextDocument(texPath, '', { isDirty: true })
+            lw.cache.refreshCacheAggressive(texPath)
+            await sleep(50)
+            stub.restore()
+            assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%')
+
+            stub = stubTextDocument(texPath, '', { isDirty: true })
+            await sleep(100)
+            stub.restore()
+            assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '')
+        })
+
+        it('should not aggressively cache cached files without `intellisense.update.aggressive.enabled`', async () => {
+            await setConfig('intellisense.update.aggressive.enabled', false)
+            lw.cache.add(texPath)
+            await lw.cache.refreshCache(texPath)
+            const stub = stubTextDocument(texPath, '', { isDirty: true })
+            lw.cache.refreshCacheAggressive(texPath)
+            await sleep(150)
+            stub.restore()
+            assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%')
+        })
+
+        it('should aggressively cache cached files once on quick changes', async () => {
+            lw.cache.add(texPath)
+            await lw.cache.refreshCache(texPath)
+
+            let stub = stubTextDocument(texPath, '', { isDirty: true })
+            lw.cache.refreshCacheAggressive(texPath)
+            await sleep(50)
+            stub.restore()
+            assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%')
+
+            stub = stubTextDocument(texPath, '%%', { isDirty: true })
+            lw.cache.refreshCacheAggressive(texPath)
+            await sleep(50)
+            stub.restore()
+            assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%')
+
+            stub = stubTextDocument(texPath, '%%', { isDirty: true })
+            await sleep(100)
+            stub.restore()
+            assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%%')
+        })
+
+        it('should aggressively cache cached files multiple times on slow changes', async () => {
+            lw.cache.add(texPath)
+            await lw.cache.refreshCache(texPath)
+
+            let stub = stubTextDocument(texPath, '', { isDirty: true })
+            lw.cache.refreshCacheAggressive(texPath)
+            await sleep(150)
+            stub.restore()
+            assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '')
+
+            stub = stubTextDocument(texPath, '%%', { isDirty: true })
+            lw.cache.refreshCacheAggressive(texPath)
+            await sleep(150)
+            stub.restore()
+            assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%%')
         })
     })
 })

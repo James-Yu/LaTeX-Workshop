@@ -42,6 +42,10 @@ export function resetRoot() {
     sinon.stub(lw.root.dir, 'path').value(undefined)
 }
 
+export function resetCache() {
+    lw.cache.reset()
+}
+
 const changedConfigs: Set<string> = new Set()
 export async function setConfig(section: string, value: any) {
     await vscode.workspace.getConfiguration('latex-workshop').update(section, value)
@@ -67,4 +71,41 @@ export function pathEqual(path1?: string, path2?: string) {
 
 export function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+class TextDocument implements vscode.TextDocument {
+    content: string
+    lines: string[]
+    uri: vscode.Uri
+    fileName: string
+    isUntitled: boolean = false
+    languageId: string
+    version: number = 0
+    isDirty: boolean
+    isClosed: boolean
+    eol: vscode.EndOfLine = vscode.EndOfLine.LF
+    lineCount: number
+
+    constructor(filePath: string, content: string, { languageId = 'latex', isDirty = false, isClosed = false }: { languageId?: string, isDirty?: boolean, isClosed?: boolean }) {
+        this.content = content
+        this.lines = content.split('\n')
+        this.uri = vscode.Uri.file(filePath)
+        this.fileName = filePath
+        this.languageId = languageId
+        this.isDirty = isDirty
+        this.isClosed = isClosed
+        this.lineCount = this.lines.length
+    }
+    save(): Thenable<boolean> { throw new Error('Not implemented.') }
+    lineAt(_: number | vscode.Position): vscode.TextLine { throw new Error('Not implemented.') }
+    offsetAt(_: vscode.Position): number { throw new Error('Not implemented.') }
+    positionAt(_: number): vscode.Position { throw new Error('Not implemented.') }
+    getText(_?: vscode.Range): string { return this.content }
+    getWordRangeAtPosition(_p: vscode.Position, _r?: RegExp): vscode.Range | undefined { throw new Error('Not implemented.') }
+    validateRange(_: vscode.Range): vscode.Range { throw new Error('Not implemented.') }
+    validatePosition(_: vscode.Position): vscode.Position { throw new Error('Not implemented.') }
+}
+
+export function stubTextDocument(filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean } = {}) {
+    return sinon.stub(vscode.workspace, 'textDocuments').value([new TextDocument(filePath, content, params)])
 }

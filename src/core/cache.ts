@@ -46,7 +46,10 @@ export const cache = {
 
 export const _test = {
     canCache,
-    isExcluded
+    isExcluded,
+    updateChildren,
+    updateAST,
+    updateElements
 }
 
 // Listener for file changes: refreshes the cache if the file can be cached.
@@ -349,7 +352,7 @@ async function updateAST(fileCache: FileCache): Promise<void> {
  * @param {string | undefined} rootPath - The root path to be used for updating
  * children elements.
  */
-async function updateChildren(fileCache: FileCache, rootPath: string | undefined) {
+async function updateChildren(fileCache: FileCache, rootPath: string | undefined): Promise<void> {
     rootPath = rootPath || fileCache.filePath
     await updateChildrenInput(fileCache, rootPath)
     await updateChildrenXr(fileCache, rootPath)
@@ -458,7 +461,7 @@ async function updateChildrenXr(fileCache: FileCache, rootPath: string) {
  * @param {FileCache} fileCache - The cache object containing the file data and
  * metadata to be updated.
  */
-function updateElements(fileCache: FileCache) {
+function updateElements(fileCache: FileCache): void {
     const start = performance.now()
     lw.completion.citation.parse(fileCache)
     // Package parsing must be before command and environment.
