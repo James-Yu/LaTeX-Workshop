@@ -2639,7 +2639,7 @@
             ]
         },
         {
-            "begin": "((\\\\)(?:\\w*[rR]ef\\*?))(\\{)",
+            "begin": "((\\\\)(?:\\w*[rR]ef\\*?))(?:\\[[^\\]]*\\])?(\\{)",
             "beginCaptures": {
                 "1": {
                     "name": "keyword.control.ref.latex"
@@ -3041,7 +3041,7 @@
                     "name": "punctuation.definition.variable.latex"
                 }
             },
-            "match": "(\\\\)[cgl](?:[_\\p{Alphabetic}@]+)+_(?:bitset|clist|dim|fp|int|muskip|str|tl|bool|box|coffin|flag|fparray|intarray|ior|iow|prop|regex|seq)",
+            "match": "(\\\\)[cgl](?:[_\\p{Alphabetic}@]+)+_[a-z]+",
             "name": "variable.other.latex3.latex"
         },
         {
@@ -3141,7 +3141,7 @@
             "match": "\\s*((\\\\)(?:begin|end))(\\{)([a-zA-Z]*\\*?)(\\})(?:(\\[)([^\\]]*)(\\])){,2}(?:(\\{)([^{}]*)(\\}))?"
         },
         "definition-label": {
-            "begin": "((\\\\)label)((?:\\[[^\\[]*?\\])*)(\\{)",
+            "begin": "((\\\\)z?label)((?:\\[[^\\[]*?\\])*)(\\{)",
             "beginCaptures": {
                 "1": {
                     "name": "keyword.control.label.latex"
