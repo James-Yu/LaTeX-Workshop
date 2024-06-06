@@ -7,12 +7,11 @@ import { getPath, pathEqual, resetConfig, resetRoot, setConfig, setRoot, stubObj
 import { lw } from '../../src/lw'
 import { _test } from '../../src/core/file'
 
-const testLabel = path.basename(__filename).split('.')[0]
-
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const rootDir = getPath(testLabel, '01')
-    const texPath = getPath(testLabel, '01', 'main.tex')
-    const flsPath = getPath(testLabel, '01', 'main.fls')
+    const fixture = path.basename(__filename).split('.')[0]
+    const rootDir = getPath(fixture)
+    const texPath = getPath(fixture, 'main.tex')
+    const flsPath = getPath(fixture, 'main.fls')
 
     before(() => {
         stubObject(lw, 'file')
@@ -64,7 +63,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.file.getOutDir', () => {
         it('should get output directory from root', () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             pathEqual(lw.file.getOutDir(), lw.root.dir.path)
         })
 
@@ -77,82 +76,82 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should get output directory with an input latex over the root', () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             pathEqual(lw.file.getOutDir(texPath), rootDir)
         })
 
         it('should get output directory with absolute `latex.outDir` and root', async () => {
             await setConfig('latex.outDir', '/output')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             pathEqual(lw.file.getOutDir(), '/output')
         })
 
         it('should get output directory with relative `latex.outDir` and root', async () => {
             await setConfig('latex.outDir', 'output')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             pathEqual(lw.file.getOutDir(), 'output')
         })
 
         it('should get output directory with relative `latex.outDir` with leading `./` and root', async () => {
             await setConfig('latex.outDir', './output')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             pathEqual(lw.file.getOutDir(), 'output')
         })
 
         it('should get output directory with relative `latex.outDir`, root, and an input latex', async () => {
             await setConfig('latex.outDir', 'output')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             pathEqual(lw.file.getOutDir(texPath), 'output')
         })
 
         it('should get output directory with placeholder in `latex.outDir` and root', async () => {
             await setConfig('latex.outDir', '%DIR%')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             pathEqual(lw.file.getOutDir(), lw.root.dir.path)
         })
 
         it('should get output directory with placeholder in `latex.outDir`, root, and an input latex', async () => {
             await setConfig('latex.outDir', '%DIR%')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             pathEqual(lw.file.getOutDir(texPath), rootDir)
         })
 
         it('should get output directory from last compilation if `latex.outDir` is `%DIR%`', async () => {
             await setConfig('latex.outDir', '%DIR%')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             lw.file.setTeXDirs(lw.root.file.path ?? '', '/output')
             pathEqual(lw.file.getOutDir(), '/output')
         })
 
         it('should ignore output directory from last compilation if `latex.outDir` is not `%DIR%`', async () => {
             await setConfig('latex.outDir', '/output')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             lw.file.setTeXDirs(lw.root.file.path ?? '', '/trap')
             pathEqual(lw.file.getOutDir(), '/output')
         })
 
         it('should ignore output directory from last compilation if no `outdir` is recorded', async () => {
             await setConfig('latex.outDir', '%DIR%')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             lw.file.setTeXDirs(lw.root.file.path ?? '')
             pathEqual(lw.file.getOutDir(), lw.root.dir.path)
         })
 
         it('should handle empty `latex.outDir` correctly', async () => {
             await setConfig('latex.outDir', '')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             pathEqual(lw.file.getOutDir(), './')
         })
 
         it('should handle absolute `latex.outDir` with trailing slashes correctly', async () => {
             await setConfig('latex.outDir', '/output/')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             pathEqual(lw.file.getOutDir(), '/output')
         })
 
         it('should handle relative `latex.outDir` with trailing slashes correctly', async () => {
             await setConfig('latex.outDir', 'output/')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             pathEqual(lw.file.getOutDir(), 'output')
         })
 
@@ -169,28 +168,28 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should return undefined when .fls does not exist in the output directory', async () => {
-            pathEqual(await lw.file.getFlsPath(getPath(testLabel, '01', 'nonexistent.tex')), undefined)
+            pathEqual(await lw.file.getFlsPath(getPath(fixture, 'nonexistent.tex')), undefined)
         })
 
         it('should respect custom output directory when config is set', async () => {
             await setConfig('latex.outDir', 'output')
-            pathEqual(await lw.file.getFlsPath(texPath), getPath(testLabel, '01', 'output', 'main.fls'))
+            pathEqual(await lw.file.getFlsPath(texPath), getPath(fixture, 'output', 'main.fls'))
         })
 
         it('should handle when `auxdir` is available in last compilation', async () => {
-            setRoot(testLabel, '01', 'another.tex')
+            setRoot(fixture, 'another.tex')
             lw.file.setTeXDirs(lw.root.file.path ?? '', undefined, 'auxfiles')
-            pathEqual(await lw.file.getFlsPath(getPath(testLabel, '01', 'another.tex')), getPath(testLabel, '01', 'auxfiles', 'another.fls'))
+            pathEqual(await lw.file.getFlsPath(getPath(fixture, 'another.tex')), getPath(fixture, 'auxfiles', 'another.fls'))
         })
 
         it('should handle when `auxdir` is missing in last compilation', async () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             lw.file.setTeXDirs(lw.root.file.path ?? '', '/output')
             pathEqual(await lw.file.getFlsPath(texPath), flsPath)
         })
 
         it('should handle when `auxdir` is available in last compilation, but another .fls file in the output folder has higher priority', async () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             lw.file.setTeXDirs(lw.root.file.path ?? '', undefined, 'auxfiles')
             pathEqual(await lw.file.getFlsPath(texPath), flsPath)
         })
@@ -198,21 +197,21 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.file.getBibPath', () => {
         it('should correctly find BibTeX files', () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             const result = lw.file.getBibPath('main.bib', lw.root.dir.path ?? '')
             assert.strictEqual(result.length, 1)
             pathEqual(result[0], path.resolve(lw.root.dir.path ?? '', 'main.bib'))
         })
 
         it('should correctly find BibTeX files in basedir', () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             const result = lw.file.getBibPath('sub.bib', path.resolve(lw.root.dir.path ?? '', 'subdir'))
             assert.strictEqual(result.length, 1)
             pathEqual(result[0], path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib'))
         })
 
         it('should correctly find BibTeX files in `latex.bibDirs`', async () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             await setConfig('latex.bibDirs', [ path.resolve(lw.root.dir.path ?? '', 'subdir') ])
             const result = lw.file.getBibPath('sub.bib', lw.root.dir.path ?? '')
             assert.strictEqual(result.length, 1)
@@ -220,14 +219,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should return an empty array when no BibTeX file is found', async () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             await setConfig('latex.bibDirs', [ path.resolve(lw.root.dir.path ?? '', 'subdir') ])
             const result = lw.file.getBibPath('nonexistent.bib', path.resolve(lw.root.dir.path ?? '', 'output'))
             assert.strictEqual(result.length, 0)
         })
 
         it('should correctly handle wildcard in BibTeX file name', () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             const result = lw.file.getBibPath('*.bib', lw.root.dir.path ?? '')
             assert.strictEqual(result.length, 2)
             pathEqual(result[0], path.resolve(lw.root.dir.path ?? '', 'main.bib'))
@@ -235,28 +234,28 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should handle case when kpsewhich is disabled and BibTeX file not found', async () => {
-            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: getPath(testLabel, '01', 'nonexistent.bib'), output: [''], stderr: '', signal: 'SIGTERM' })
+            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: getPath(fixture, 'nonexistent.bib'), output: [''], stderr: '', signal: 'SIGTERM' })
             await setConfig('kpsewhich.bibtex.enabled', false)
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             const result = lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
             assert.strictEqual(result.length, 0)
         })
 
         it('should handle case when kpsewhich is enabled and BibTeX file not found', async () => {
-            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: getPath(testLabel, '01', 'nonexistent.bib'), output: [''], stderr: '', signal: 'SIGTERM' })
+            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: getPath(fixture, 'nonexistent.bib'), output: [''], stderr: '', signal: 'SIGTERM' })
             await setConfig('kpsewhich.bibtex.enabled', true)
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             const result = lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
             assert.strictEqual(result.length, 1)
-            pathEqual(result[0], getPath(testLabel, '01', 'nonexistent.bib'))
+            pathEqual(result[0], getPath(fixture, 'nonexistent.bib'))
         })
 
         it('should return an empty array when kpsewhich is enabled but file is not found', async () => {
             const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: '', output: [''], stderr: '', signal: 'SIGTERM' })
             await setConfig('kpsewhich.bibtex.enabled', true)
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             const result = lw.file.getBibPath('another-nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
             assert.strictEqual(result.length, 0)
@@ -326,26 +325,26 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('lw.file.getPdfPath', () => {
         it('should return the correct PDF path when outDir is empty', async () => {
             await setConfig('latex.outDir', '')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             const texpath = lw.root.file.path ?? ''
             pathEqual(lw.file.getPdfPath(texpath), texpath.replaceAll('.tex', '.pdf'))
         })
 
         it('should return the correct PDF path when outDir is specified', async () => {
             await setConfig('latex.outDir', 'output')
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             const texpath = lw.root.file.path ?? ''
             pathEqual(lw.file.getPdfPath(texpath), texpath.replaceAll('main.tex', 'output/main.pdf'))
         })
 
         it('should handle spaces in file paths correctly', () => {
-            setRoot(testLabel, '01', 'document with spaces.tex')
+            setRoot(fixture, 'document with spaces.tex')
             const texpath = lw.root.file.path ?? ''
             pathEqual(lw.file.getPdfPath(texpath), texpath.replaceAll('.tex', '.pdf'))
         })
 
         it('should handle special characters in file names correctly', () => {
-            setRoot(testLabel, '01', 'special_!@#$%^&*()-_=+[ ]{}\'`~,.<>?.tex')
+            setRoot(fixture, 'special_!@#$%^&*()-_=+[ ]{}\'`~,.<>?.tex')
             const texpath = lw.root.file.path ?? ''
             pathEqual(lw.file.getPdfPath(texpath), texpath.replaceAll('.tex', '.pdf'))
         })
@@ -426,19 +425,19 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.file.read', () => {
         it('should read the content of an existing file', async () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             const content = await lw.file.read(lw.root.file.path ?? '')
             assert.strictEqual(content, '\\documentclass{article}\n\\begin{document}\nabc\n\\end{document}\n')
         })
 
         it('should return undefined when file does not exist and raise is false', async () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             const content = await lw.file.read(lw.root.file.path?.replaceAll('main.tex', 'nonexistent.tex') ?? '', false)
             assert.strictEqual(content, undefined)
         })
 
         it('should throw error when file does not exist and raise is true', async () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             try {
                 await lw.file.read(lw.root.file.path?.replaceAll('main.tex', 'nonexistent.tex') ?? '', true)
                 assert.fail('Expected an error to be thrown')
@@ -450,12 +449,12 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.file.exists', () => {
         it('should return true for an existing file URI', async () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             assert.ok(await lw.file.exists(lw.root.file.path ?? ''))
         })
 
         it('should return false for a non-existing file URI', async () => {
-            setRoot(testLabel, '01', 'main.tex')
+            setRoot(fixture, 'main.tex')
             assert.ok(!await lw.file.exists(lw.root.file.path?.replaceAll('main.tex', 'nonexistent.tex') ?? ''))
         })
 
@@ -497,7 +496,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should cache resolved path and hit', () => {
-            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: getPath(testLabel, '01', 'article.cls'), output: [''], stderr: '', signal: 'SIGTERM' })
+            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: getPath(fixture, 'article.cls'), output: [''], stderr: '', signal: 'SIGTERM' })
             const result1 = lw.file.kpsewhich('article.cls')
             const result2 = lw.file.kpsewhich('article.cls')
             stub.restore()
@@ -506,7 +505,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should not cache on non-zero return', () => {
-            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 1, stdout: getPath(testLabel, '01', 'article.cls'), output: [''], stderr: '', signal: 'SIGTERM' })
+            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 1, stdout: getPath(fixture, 'article.cls'), output: [''], stderr: '', signal: 'SIGTERM' })
             lw.file.kpsewhich('another-article.cls')
             lw.file.kpsewhich('another-article.cls')
             stub.restore()

@@ -5,14 +5,13 @@ import { getPath, resetCache, resetConfig, resetRoot, setConfig, sleep, stubObje
 import { lw } from '../../src/lw'
 import { _test } from '../../src/core/cache'
 
-const testLabel = path.basename(__filename).split('.')[0]
-
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const texPath = getPath(testLabel, '01', 'main.tex')
-    const texPathAnother = getPath(testLabel, '01', 'another.tex')
-    const bibPath = getPath(testLabel, '01', 'main.bib')
-    const pdfPath = getPath(testLabel, '01', 'main.pdf')
-    const bblPath = getPath(testLabel, '01', 'main.bbl')
+    const fixture = path.basename(__filename).split('.')[0]
+    const texPath = getPath(fixture, 'main.tex')
+    const texPathAnother = getPath(fixture, 'another.tex')
+    const bibPath = getPath(fixture, 'main.bib')
+    const pdfPath = getPath(fixture, 'main.pdf')
+    const bblPath = getPath(fixture, 'main.bbl')
 
     before(() => {
         stubObject(lw, 'file', 'watcher', 'cache')
@@ -32,19 +31,19 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('lw.cache.canCache', () => {
         it('should return true for supported TeX files', () => {
             assert.ok(_test.canCache(texPath))
-            assert.ok(_test.canCache(getPath(testLabel, '01', 'main.rnw')))
-            assert.ok(_test.canCache(getPath(testLabel, '01', 'main.jnw')))
-            assert.ok(_test.canCache(getPath(testLabel, '01', 'main.pnw')))
+            assert.ok(_test.canCache(getPath(fixture, 'main.rnw')))
+            assert.ok(_test.canCache(getPath(fixture, 'main.jnw')))
+            assert.ok(_test.canCache(getPath(fixture, 'main.pnw')))
         })
 
         it('should return false for unsupported files', () => {
-            assert.ok(!_test.canCache(getPath(testLabel, '01', 'main.cls')))
-            assert.ok(!_test.canCache(getPath(testLabel, '01', 'main.sty')))
-            assert.ok(!_test.canCache(getPath(testLabel, '01', 'main.txt')))
+            assert.ok(!_test.canCache(getPath(fixture, 'main.cls')))
+            assert.ok(!_test.canCache(getPath(fixture, 'main.sty')))
+            assert.ok(!_test.canCache(getPath(fixture, 'main.txt')))
         })
 
         it('should return false for expl3-code.tex', () => {
-            assert.ok(!_test.canCache(getPath(testLabel, '01', 'expl3-code.tex')))
+            assert.ok(!_test.canCache(getPath(fixture, 'expl3-code.tex')))
         })
     })
 
@@ -157,7 +156,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should properly skip non-cacheable sources', async () => {
-            await lw.cache.refreshCache(getPath(testLabel, '01', 'expl3-code.tex'))
+            await lw.cache.refreshCache(getPath(fixture, 'expl3-code.tex'))
             assert.strictEqual(lw.cache.paths().length, 0)
         })
 

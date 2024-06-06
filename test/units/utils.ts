@@ -19,7 +19,7 @@ export function stubObject(obj: any, ...ignore: string[]) {
     })
 }
 
-export function getPath(...paths: string[ ]) {
+export function getPath(...paths: string[]) {
     const result = path.resolve(
         vscode.workspace.workspaceFile?.fsPath ?? vscode.workspace.workspaceFolders?.[0].uri.fsPath ?? '',
         ...paths
@@ -31,10 +31,10 @@ export function getPath(...paths: string[ ]) {
     }
 }
 
-export function setRoot(testLabel: string, fixture: string, root: string) {
-    const rootDir = getPath(testLabel, fixture)
-    sinon.stub(lw.root.file, 'path').value(path.resolve(rootDir, root))
-    sinon.stub(lw.root.dir, 'path').value(rootDir)
+export function setRoot(...paths: string[]) {
+    const rootFile = getPath(...paths)
+    sinon.stub(lw.root.file, 'path').value(rootFile)
+    sinon.stub(lw.root.dir, 'path').value(path.dirname(rootFile))
 }
 
 export function resetRoot() {
