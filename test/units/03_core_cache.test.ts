@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as assert from 'assert'
 import * as sinon from 'sinon'
-import { getPath, resetCache, resetConfig, resetRoot, setConfig, sleep, stubObject, stubTextDocument } from './utils'
+import { getPath, hasLog, setConfig, sleep, stubObject, stubTextDocument } from './utils'
 import { lw } from '../../src/lw'
 import { _test } from '../../src/core/cache'
 
@@ -15,13 +15,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     before(() => {
         stubObject(lw, 'file', 'watcher', 'cache')
-        resetRoot()
-    })
-
-    afterEach(async () => {
-        resetCache()
-        resetRoot()
-        await resetConfig()
     })
 
     after(() => {
@@ -162,6 +155,12 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should cache provided TeX source', async () => {
             await lw.cache.refreshCache(texPath)
+            assert.strictEqual(lw.cache.paths().length, 1)
+        })
+
+        it('should call `updateChildren` during caching', async () => {
+            await lw.cache.refreshCache(texPath)
+            hasLog('Updated inputs of ')
             assert.strictEqual(lw.cache.paths().length, 1)
         })
 

@@ -4,6 +4,15 @@ import * as path from 'path'
 import * as assert from 'assert'
 import * as sinon from 'sinon'
 import { lw } from '../../src/lw'
+import { log } from '../../src/utils/logger'
+
+export const mochaHooks = {
+    afterEach: async () => {
+        resetCache()
+        resetRoot()
+        await resetConfig()
+    }
+}
 
 export function stubObject(obj: any, ...ignore: string[]) {
     Object.getOwnPropertyNames(obj).forEach(item => {
@@ -67,6 +76,19 @@ export function pathEqual(path1?: string, path2?: string) {
         path2 = path2.toLowerCase()
     }
     assert.strictEqual(path.relative(path1, path2), '')
+}
+
+export function resetLog() {
+    log.resetCachedLog()
+}
+
+export function hasLog(message: string | RegExp): boolean {
+    const logs = log.getCachedLog().CACHED_EXTLOG
+    if (typeof message === 'string') {
+        return logs.find(logMessage => logMessage.includes(message)) !== undefined
+    } else {
+        return logs.find(logMessage => message.exec(logMessage)) !== undefined
+    }
 }
 
 export function sleep(ms: number) {

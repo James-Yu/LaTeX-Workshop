@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
 import * as sinon from 'sinon'
-import { getPath, resetConfig, resetRoot, sleep, stubObject } from './utils'
+import { getPath, sleep, stubObject } from './utils'
 import { lw } from '../../src/lw'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
@@ -12,12 +12,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     before(() => {
         stubObject(lw, 'file', 'watcher')
-        resetRoot()
-    })
-
-    afterEach(async () => {
-        resetRoot()
-        await resetConfig()
     })
 
     after(() => {

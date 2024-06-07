@@ -1,6 +1,7 @@
 import * as path from 'path'
 import Mocha from 'mocha'
 import { glob } from 'glob'
+import { mochaHooks } from './utils'
 
 export function run(): Promise<void> {
     // Create the mocha test
@@ -15,6 +16,8 @@ export function run(): Promise<void> {
         context.describe.only = process.env['LATEXWORKSHOP_CITEST'] ? context.describe : context.describe.only
         context.it.only = process.env['LATEXWORKSHOP_CITEST'] ? context.it : context.it.only
     })
+
+    mocha.rootHooks({ afterEach: mochaHooks.afterEach })
 
     return new Promise((resolve, reject) => {
         glob.sync('**/**.test.js', { cwd: __dirname })

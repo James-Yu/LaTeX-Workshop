@@ -3,7 +3,7 @@ import * as os from 'os'
 import * as path from 'path'
 import * as assert from 'assert'
 import * as sinon from 'sinon'
-import { getPath, pathEqual, resetConfig, resetRoot, setConfig, setRoot, stubObject } from './utils'
+import { getPath, pathEqual, setConfig, setRoot, stubObject } from './utils'
 import { lw } from '../../src/lw'
 import { _test } from '../../src/core/file'
 
@@ -15,12 +15,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     before(() => {
         stubObject(lw, 'file')
-        resetRoot()
-    })
-
-    afterEach(async () => {
-        resetRoot()
-        await resetConfig()
     })
 
     after(() => {
