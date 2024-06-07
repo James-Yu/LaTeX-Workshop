@@ -17,7 +17,9 @@ export function run(): Promise<void> {
         context.it.only = process.env['LATEXWORKSHOP_CITEST'] ? context.it : context.it.only
     })
 
-    mocha.rootHooks({ afterEach: mochaHooks.afterEach })
+    mocha.rootHooks(mochaHooks)
+
+    ;(globalThis as any).mocha = mocha
 
     return new Promise((resolve, reject) => {
         glob.sync('**/**.test.js', { cwd: __dirname })

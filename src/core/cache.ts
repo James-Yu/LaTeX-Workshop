@@ -41,15 +41,14 @@ export const cache = {
     reset,
     refreshCache,
     refreshCacheAggressive,
-    loadFlsFile
-}
-
-export const _test = {
-    canCache,
-    isExcluded,
-    updateChildren,
-    updateAST,
-    updateElements
+    loadFlsFile,
+    _test: {
+        canCache,
+        isExcluded,
+        updateChildren,
+        updateAST,
+        updateElements
+    }
 }
 
 // Listener for file changes: refreshes the cache if the file can be cached.
@@ -313,6 +312,9 @@ function refreshCacheAggressive(filePath: string) {
         }
         updateCompleter = setTimeout(async () => {
             await refreshCache(filePath, lw.root.file.path)
+            // After refreshing the cache, children from .fls file only is
+            // discarded. We need to re-parse the .fls file to build the
+            // complete children dependency.
             await loadFlsFile(lw.root.file.path || filePath)
         }, configuration.get('intellisense.update.delay', 1000))
     }

@@ -7,6 +7,9 @@ import { lw } from '../../src/lw'
 import { log } from '../../src/utils/logger'
 
 export const mochaHooks = {
+    beforeEach: () => {
+        log.resetCachedLog()
+    },
     afterEach: async () => {
         resetCache()
         resetRoot()
@@ -85,9 +88,9 @@ export function resetLog() {
 export function hasLog(message: string | RegExp): boolean {
     const logs = log.getCachedLog().CACHED_EXTLOG
     if (typeof message === 'string') {
-        return logs.find(logMessage => logMessage.includes(message)) !== undefined
+        return logs.some(logMessage => logMessage.includes(message))
     } else {
-        return logs.find(logMessage => message.exec(logMessage)) !== undefined
+        return logs.some(logMessage => message.exec(logMessage))
     }
 }
 

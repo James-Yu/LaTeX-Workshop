@@ -24,10 +24,9 @@ export const file = {
     exists,
     read,
     kpsewhich,
-}
-
-export const _test = {
-    createTmpDir
+    _test: {
+        createTmpDir
+    }
 }
 
 /**

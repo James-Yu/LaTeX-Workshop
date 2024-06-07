@@ -5,7 +5,6 @@ import * as assert from 'assert'
 import * as sinon from 'sinon'
 import { getPath, pathEqual, setConfig, setRoot, stubObject } from './utils'
 import { lw } from '../../src/lw'
-import { _test } from '../../src/core/file'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
@@ -23,11 +22,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.file.createTmpDir', () => {
         it('should create temporary directories', () => {
-            assert.ok(_test?.createTmpDir())
+            assert.ok(lw.file._test.createTmpDir())
         })
 
         it('should create different temporary directories', () => {
-            assert.notEqual(_test?.createTmpDir(), _test?.createTmpDir())
+            assert.notEqual(lw.file._test.createTmpDir(), lw.file._test.createTmpDir())
         })
 
         function forbiddenTemp(chars: string[ ]) {
@@ -36,7 +35,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             chars.forEach(char => {
                 tmpNames.forEach(envvar => process.env[envvar] = (process.env[envvar] === undefined ? undefined : ('\\Test ' + char)))
                 try {
-                    _test?.createTmpDir()
+                    lw.file._test.createTmpDir()
                     assert.fail('Expected an error to be thrown')
                 } catch {
                     assert.ok(true)

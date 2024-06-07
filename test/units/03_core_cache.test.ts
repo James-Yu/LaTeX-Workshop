@@ -1,9 +1,9 @@
+import * as Mocha from 'mocha'
 import * as path from 'path'
 import * as assert from 'assert'
 import * as sinon from 'sinon'
 import { getPath, hasLog, setConfig, sleep, stubObject, stubTextDocument } from './utils'
 import { lw } from '../../src/lw'
-import { _test } from '../../src/core/cache'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
@@ -23,36 +23,36 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.canCache', () => {
         it('should return true for supported TeX files', () => {
-            assert.ok(_test.canCache(texPath))
-            assert.ok(_test.canCache(getPath(fixture, 'main.rnw')))
-            assert.ok(_test.canCache(getPath(fixture, 'main.jnw')))
-            assert.ok(_test.canCache(getPath(fixture, 'main.pnw')))
+            assert.ok(lw.cache._test.canCache(texPath))
+            assert.ok(lw.cache._test.canCache(getPath(fixture, 'main.rnw')))
+            assert.ok(lw.cache._test.canCache(getPath(fixture, 'main.jnw')))
+            assert.ok(lw.cache._test.canCache(getPath(fixture, 'main.pnw')))
         })
 
         it('should return false for unsupported files', () => {
-            assert.ok(!_test.canCache(getPath(fixture, 'main.cls')))
-            assert.ok(!_test.canCache(getPath(fixture, 'main.sty')))
-            assert.ok(!_test.canCache(getPath(fixture, 'main.txt')))
+            assert.ok(!lw.cache._test.canCache(getPath(fixture, 'main.cls')))
+            assert.ok(!lw.cache._test.canCache(getPath(fixture, 'main.sty')))
+            assert.ok(!lw.cache._test.canCache(getPath(fixture, 'main.txt')))
         })
 
         it('should return false for expl3-code.tex', () => {
-            assert.ok(!_test.canCache(getPath(fixture, 'expl3-code.tex')))
+            assert.ok(!lw.cache._test.canCache(getPath(fixture, 'expl3-code.tex')))
         })
     })
 
     describe('lw.cache.isExcluded', () => {
         it('should return true for excluded files', () => {
-            assert.ok(_test.isExcluded(bblPath))
-            assert.ok(_test.isExcluded('/dev/null'))
+            assert.ok(lw.cache._test.isExcluded(bblPath))
+            assert.ok(lw.cache._test.isExcluded('/dev/null'))
         })
 
         it('should return false for non-excluded files', () => {
-            assert.ok(!_test.isExcluded(texPath))
+            assert.ok(!lw.cache._test.isExcluded(texPath))
         })
         it('should return true for excluded files with config set ', async () => {
             await setConfig('latex.watch.files.ignore', ['**/*.bbl'])
-            assert.ok(_test.isExcluded(bblPath))
-            assert.ok(!_test.isExcluded('/dev/null'))
+            assert.ok(lw.cache._test.isExcluded(bblPath))
+            assert.ok(!lw.cache._test.isExcluded('/dev/null'))
         })
     })
 
@@ -158,9 +158,21 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(lw.cache.paths().length, 1)
         })
 
-        it('should call `updateChildren` during caching', async () => {
+        it('should update children during caching', async () => {
             await lw.cache.refreshCache(texPath)
-            hasLog('Updated inputs of ')
+            assert.ok(hasLog('Updated inputs of '))
+            assert.strictEqual(lw.cache.paths().length, 1)
+        })
+
+        it('should update AST during caching', async () => {
+            await lw.cache.refreshCache(texPath)
+            assert.ok(hasLog('Parsed LaTeX AST in '))
+            assert.strictEqual(lw.cache.paths().length, 1)
+        })
+
+        it('should update document elements during caching', async () => {
+            await lw.cache.refreshCache(texPath)
+            assert.ok(hasLog('Updated elements in '))
             assert.strictEqual(lw.cache.paths().length, 1)
         })
 
@@ -192,13 +204,17 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await setConfig('intellisense.update.delay', 100)
         })
 
-        it('should not aggressively cache non-cached files', async () => {
+        it('should not aggressively cache non-cached files', async function (this: Mocha.Context) {
+            this.slow(350)
+
             lw.cache.refreshCacheAggressive(texPath)
             await sleep(150)
             assert.strictEqual(lw.cache.paths().length, 0)
         })
 
-        it('should aggressively cache cached files', async () => {
+        it('should aggressively cache cached files', async function (this: Mocha.Context) {
+            this.slow(350)
+
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
 
@@ -214,7 +230,22 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '')
         })
 
-        it('should not aggressively cache cached files without `intellisense.update.aggressive.enabled`', async () => {
+        it('should reload .fls file when aggressively caching cached files', async function (this: Mocha.Context) {
+            this.slow(350)
+
+            lw.cache.add(texPath)
+            await lw.cache.refreshCache(texPath)
+
+            const stub = stubTextDocument(texPath, '', { isDirty: true })
+            lw.cache.refreshCacheAggressive(texPath)
+            await sleep(150)
+            stub.restore()
+            assert.ok(hasLog('Parsing .fls '))
+        })
+
+        it('should not aggressively cache cached files without `intellisense.update.aggressive.enabled`', async function (this: Mocha.Context) {
+            this.slow(350)
+
             await setConfig('intellisense.update.aggressive.enabled', false)
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
@@ -225,7 +256,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%')
         })
 
-        it('should aggressively cache cached files once on quick changes', async () => {
+        it('should aggressively cache cached files once on quick changes', async function (this: Mocha.Context) {
+            this.slow(450)
+
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
 
@@ -247,7 +280,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%%')
         })
 
-        it('should aggressively cache cached files multiple times on slow changes', async () => {
+        it('should aggressively cache cached files multiple times on slow changes', async function (this: Mocha.Context) {
+            this.slow(650)
+
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
 
