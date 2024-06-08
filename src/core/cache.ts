@@ -389,6 +389,10 @@ async function updateChildrenInput(fileCache: FileCache, rootPath: string) {
             continue
         }
 
+        if (fileCache.children.some(child => child.filePath === result.path)) {
+            continue
+        }
+
         fileCache.children.push({
             index: result.match.index,
             filePath: result.path

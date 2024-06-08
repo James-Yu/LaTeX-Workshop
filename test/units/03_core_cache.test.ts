@@ -2,7 +2,7 @@ import * as Mocha from 'mocha'
 import * as path from 'path'
 import * as assert from 'assert'
 import * as sinon from 'sinon'
-import { getPath, hasLog, setConfig, sleep, stubObject, stubTextDocument } from './utils'
+import { getPath, hasLog, setConfig, setRoot, sleep, stubObject, stubTextDocument } from './utils'
 import { lw } from '../../src/lw'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
@@ -297,6 +297,66 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await sleep(150)
             stub.restore()
             assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%%')
+        })
+    })
+
+    describe('lw.cache.updateAST', () => {
+        it('should call lw.parser.parse.tex to parse AST', async () => {
+            lw.cache.add(texPath)
+            await lw.cache.refreshCache(texPath)
+            const texCache = lw.cache.get(texPath)
+            assert.ok(texCache)
+            ;(lw.parser.parse.tex as sinon.SinonStub).reset()
+            await lw.cache._test.updateAST(texCache)
+            assert.strictEqual((lw.parser.parse.tex as sinon.SinonStub).callCount, 1)
+        })
+    })
+
+    describe('lw.cache.updateChildrenInput', () => {
+        it('should not add any children if there is nothing', async () => {
+            lw.cache.add(texPath)
+            await lw.cache.refreshCache(texPath)
+            assert.strictEqual(lw.cache.get(texPath)?.children.length, 0)
+        })
+
+        it('should not add a child if the files does not exist', async () => {
+            const toParse = getPath(fixture, 'update_children_file_not_exist.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+        })
+
+        it('should not add a child if it is the root', async () => {
+            const toParse = getPath(fixture, 'update_children_input_main.tex')
+            setRoot(fixture, 'main.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+        })
+
+        it('should add a child and cache it if not cached', async () => {
+            const toParse = getPath(fixture, 'update_children_input_main.tex')
+            setRoot(fixture, 'another.tex')
+            assert.strictEqual(lw.cache.get(texPath), undefined)
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.children.length, 1)
+            await lw.cache.wait(texPath, 60)
+            assert.strictEqual(lw.cache.get(texPath)?.filePath, texPath)
+        })
+
+        it('should add two children if there are two inputs', async () => {
+            const toParse = getPath(fixture, 'update_children_two_inputs.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.children.length, 2)
+        })
+
+        it('should add one child if two inputs are identical', async () => {
+            const toParse = getPath(fixture, 'update_children_two_same_inputs.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.children.length, 1)
         })
     })
 })
