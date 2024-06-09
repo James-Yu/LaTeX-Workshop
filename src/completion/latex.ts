@@ -11,6 +11,7 @@ import { provider as referenceProvider } from './completer/reference'
 import { provider as packageProvider } from './completer/package'
 import { inputProvider, importProvider, subimportProvider } from './completer/input'
 import { provider as glossaryProvider } from './completer/glossary'
+import { provider as closeenvProvider } from './completer/closeenv'
 import { atSuggestion, provider as atProvider } from './completer/atsuggestion'
 
 import { escapeRegExp } from '../utils/utils'
@@ -37,7 +38,7 @@ export class Provider implements vscode.CompletionItemProvider {
     provide(args: CompletionArgs): vscode.CompletionItem[] {
         // Note that the order of the following array affects the result.
         // 'macro' must be at the last because it matches any macros.
-        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'argument', 'macro', 'subsuper']) {
+        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'argument', 'macro', 'subsuper', 'closeenv']) {
             const suggestions = this.completion(type, args)
             if (suggestions.length > 0) {
                 if (type === 'citation') {
@@ -142,6 +143,10 @@ export class Provider implements vscode.CompletionItemProvider {
             case 'subsuper':
                 reg = /(?:\^|_){([^}]*)$/
                 provider = subsuperProvider
+                break
+            case 'closeenv':
+                reg = /(?:\\begin){([^}]*)}$/
+                provider = closeenvProvider
                 break
             default:
                 // This shouldn't be possible, so mark as error case in log.

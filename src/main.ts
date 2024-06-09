@@ -272,7 +272,7 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     let triggerDisposable: vscode.Disposable | undefined
     const registerTrigger = () => {
         const userTriggersLatex = configuration.get('intellisense.triggers.latex') as string[]
-        const latexTriggers = ['\\', ','].concat(userTriggersLatex)
+        const latexTriggers = ['\\', ',', '{', '}'].concat(userTriggersLatex)
         logger.log(`Trigger characters for intellisense of LaTeX documents: ${JSON.stringify(latexTriggers)}`)
 
         triggerDisposable = vscode.languages.registerCompletionItemProvider(latexDoctexSelector, lw.completion.provider, ...latexTriggers)
