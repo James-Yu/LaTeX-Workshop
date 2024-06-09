@@ -532,4 +532,79 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(lw.watcher.bib.has(bibPath))
         })
     })
+
+    describe('lw.cache.loadFlsFile and lw.cache.parseFlsContent', () => {
+        it('should do nothing if no .fls is found', async () => {
+            await lw.cache.loadFlsFile(texPathAnother)
+            assert.ok(!hasLog('Parsing .fls '))
+        })
+
+        it('should not consider files that are both INPUT and OUTPUT', async () => {
+            const toParse = getPath(fixture, 'load_fls_file', 'both_input_output.tex')
+            await lw.cache.refreshCache(toParse)
+            await lw.cache.loadFlsFile(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+        })
+
+        it('should not consider files that are excluded', async () => {
+            const toParse = getPath(fixture, 'load_fls_file', 'excluded_file.tex')
+            await lw.cache.refreshCache(toParse)
+            await lw.cache.loadFlsFile(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+        })
+
+        it('should not consider files that do not exist', async () => {
+            const toParse = getPath(fixture, 'load_fls_file', 'file_not_exist.tex')
+            await lw.cache.refreshCache(toParse)
+            await lw.cache.loadFlsFile(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+        })
+
+        it('should not consider the file itself if listed in .fls', async () => {
+            const toParse = getPath(fixture, 'load_fls_file', 'self_include.tex')
+            await lw.cache.refreshCache(toParse)
+            await lw.cache.loadFlsFile(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+        })
+
+        it('should not consider files that already been cached', async () => {
+            lw.cache.add(texPath)
+            await lw.cache.refreshCache(texPath)
+            const toParse = getPath(fixture, 'load_fls_file', 'include_main.tex')
+            await lw.cache.refreshCache(toParse)
+            await lw.cache.loadFlsFile(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+        })
+
+        it('should add file as child if all checks passed', async () => {
+            const toParse = getPath(fixture, 'load_fls_file', 'include_main.tex')
+            await lw.cache.loadFlsFile(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.children.length, 1)
+        })
+
+        it('should add multiple files as children if all checks passed', async () => {
+            const toParse = getPath(fixture, 'load_fls_file', 'include_many.tex')
+            await lw.cache.loadFlsFile(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.children.length, 2)
+        })
+
+        it('should watch added .tex files', async () => {
+            const toParse = getPath(fixture, 'load_fls_file', 'include_main.tex')
+            await lw.cache.loadFlsFile(toParse)
+            assert.ok(lw.watcher.src.has(texPath))
+        })
+
+        it('should watch added non-.tex files', async () => {
+            const toParse = getPath(fixture, 'load_fls_file', 'non_tex_input.tex')
+            await lw.cache.loadFlsFile(toParse)
+            assert.ok(lw.watcher.src.has(pdfPath))
+        })
+
+        it('should watch added non-.tex files, except for aux or out files', async () => {
+            const toParse = getPath(fixture, 'load_fls_file', 'aux_out_input.tex')
+            await lw.cache.loadFlsFile(toParse)
+            assert.ok(!lw.watcher.src.has(getPath(fixture, 'load_fls_file', 'main.aux')))
+            assert.ok(!lw.watcher.src.has(getPath(fixture, 'load_fls_file', 'main.out')))
+        })
+    })
 })
