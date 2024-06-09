@@ -43,11 +43,10 @@ export const cache = {
     refreshCacheAggressive,
     loadFlsFile,
     _test: {
+        caches,
         canCache,
         isExcluded,
-        updateChildren,
-        updateAST,
-        updateElements
+        updateAST
     }
 }
 
@@ -590,9 +589,9 @@ async function loadFlsFile(filePath: string): Promise<void> {
 
     for (const outputFile of ioFiles.output) {
         if (path.extname(outputFile) === '.aux' && await lw.file.exists(outputFile)) {
-            logger.log(`Found .aux ${filePath} from .fls ${flsPath} , parsing.`)
+            logger.log(`Found .aux ${outputFile} from .fls ${flsPath} , parsing.`)
             await parseAuxFile(outputFile, path.dirname(outputFile).replace(outDir, rootDir))
-            logger.log(`Parsed .aux ${filePath} .`)
+            logger.log(`Parsed .aux ${outputFile} .`)
         }
     }
     logger.log(`Parsed .fls ${flsPath} .`)
@@ -703,10 +702,12 @@ async function parseAuxFile(filePath: string, srcDir: string) {
  * bibliography files. Defaults to the root file path if not provided.
  * @param {string[]} [includedBib=[]] - An array to accumulate the bibliography
  * files found.
+ * @param {string[]} [checkedTeX=[]] - An array to store the paths of TeX files
+ * already checked.
  * @returns {string[]} - An array of unique bibliography file paths included in
  * the specified file and its children.
  */
-function getIncludedBib(filePath?: string, includedBib: string[] = []): string[] {
+function getIncludedBib(filePath?: string, includedBib: string[] = [], checkedTeX: string[] = []): string[] {
     filePath = filePath ?? lw.root.file.path
     if (filePath === undefined) {
         return []
@@ -715,14 +716,14 @@ function getIncludedBib(filePath?: string, includedBib: string[] = []): string[]
     if (fileCache === undefined) {
         return []
     }
-    const checkedTeX = [ filePath ]
+    checkedTeX.push(filePath)
     includedBib.push(...fileCache.bibfiles)
     for (const child of fileCache.children) {
         if (checkedTeX.includes(child.filePath)) {
             // Already parsed
             continue
         }
-        getIncludedBib(child.filePath, includedBib)
+        getIncludedBib(child.filePath, includedBib, checkedTeX)
     }
     // Make sure to return an array with unique entries
     return Array.from(new Set(includedBib))
@@ -765,7 +766,7 @@ function getIncludedTeX(filePath?: string, includedTeX: string[] = [], cachedOnl
         }
         getIncludedTeX(child.filePath, includedTeX, cachedOnly)
     }
-    return includedTeX
+    return Array.from(new Set(includedTeX))
 }
 
 /**

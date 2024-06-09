@@ -607,4 +607,121 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(!lw.watcher.src.has(getPath(fixture, 'load_fls_file', 'main.out')))
         })
     })
+
+    describe('lw.cache.parseAuxFile', () => {
+        it('should do nothing if no \\bibdata is found', async () => {
+            const toParse = getPath(fixture, 'load_aux_file', 'nothing.tex')
+            setRoot(fixture, 'load_aux_file', 'nothing.tex')
+            await lw.cache.refreshCache(toParse)
+            await lw.cache.loadFlsFile(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.bibfiles.size, 0)
+        })
+
+        it('should add \\bibdata from .aux file', async () => {
+            const toParse = getPath(fixture, 'load_aux_file', 'main.tex')
+            setRoot(fixture, 'load_aux_file', 'main.tex')
+            await lw.cache.refreshCache(toParse)
+            await lw.cache.loadFlsFile(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.bibfiles.size, 1)
+        })
+
+        it('should not add \\bibdata if the bib is excluded', async () => {
+            await setConfig('latex.watch.files.ignore', ['**/main.bib'])
+            const toParse = getPath(fixture, 'load_aux_file', 'main.tex')
+            setRoot(fixture, 'load_aux_file', 'main.tex')
+            await lw.cache.refreshCache(toParse)
+            await lw.cache.loadFlsFile(toParse)
+            assert.strictEqual(lw.cache.get(toParse)?.bibfiles.size, 0)
+        })
+
+        it('should watch bib files if added', async () => {
+            const toParse = getPath(fixture, 'load_aux_file', 'main.tex')
+            setRoot(fixture, 'load_aux_file', 'main.tex')
+            await lw.cache.refreshCache(toParse)
+            await lw.cache.loadFlsFile(toParse)
+            assert.ok(lw.watcher.bib.has(getPath(fixture, 'load_aux_file', 'main.bib')))
+        })
+    })
+
+    describe('lw.cache.getIncludedBib', () => {
+        it('should return an empty list if no file path is given', () => {
+            assert.strictEqual(lw.cache.getIncludedBib().length, 0)
+        })
+
+        it('should return an empty list if the given file is not cached', () => {
+            const toParse = getPath(fixture, 'included_bib', 'main.tex')
+            assert.strictEqual(lw.cache.getIncludedBib(toParse).length, 0)
+        })
+
+        it('should return a list of included .bib files', async () => {
+            const toParse = getPath(fixture, 'included_bib', 'main.tex')
+            await lw.cache.refreshCache(toParse)
+            assert.strictEqual(lw.cache.getIncludedBib(toParse).length, 1)
+        })
+
+        it('should return a list of included .bib files with \\input', async () => {
+            const toParse = getPath(fixture, 'included_bib', 'another.tex')
+            await lw.cache.refreshCache(toParse)
+            assert.strictEqual(lw.cache.getIncludedBib(toParse).length, 1)
+        })
+
+        it('should return a list of included .bib files with circular inclusions', async () => {
+            const toParse = getPath(fixture, 'included_bib', 'circular_1.tex')
+            await lw.cache.refreshCache(toParse)
+            assert.strictEqual(lw.cache.getIncludedBib(toParse).length, 1)
+        })
+
+        it('should return a list of de-duplicated .bib files', async () => {
+            const toParse = getPath(fixture, 'included_bib', 'duplicate_1.tex')
+            await lw.cache.refreshCache(toParse)
+            assert.strictEqual(lw.cache.getIncludedBib(toParse).length, 1)
+        })
+    })
+
+    describe('lw.cache.getIncludedTeX', () => {
+        it('should return an empty list if no file path is given', () => {
+            assert.strictEqual(lw.cache.getIncludedTeX().length, 0)
+        })
+
+        it('should return an empty list if the given file is not cached', () => {
+            const toParse = getPath(fixture, 'included_tex', 'main.tex')
+            assert.strictEqual(lw.cache.getIncludedTeX(toParse).length, 0)
+        })
+
+        it('should return a list of included .tex files', async () => {
+            const toParse = getPath(fixture, 'included_tex', 'main.tex')
+            await lw.cache.refreshCache(toParse)
+            assert.strictEqual(lw.cache.getIncludedTeX(toParse).length, 2)
+        })
+
+        it('should return a list of included .tex files, but only cached ones with `cachedOnly` flag', async () => {
+            const toParse = getPath(fixture, 'included_tex', 'main.tex')
+            await lw.cache.refreshCache(toParse)
+            lw.cache._test.caches.delete(getPath(fixture, 'included_tex', 'another.tex'))
+            assert.strictEqual(lw.cache.getIncludedTeX(toParse, [], true).length, 1)
+        })
+
+        it('should return a list of included .bib files with circular inclusions', async () => {
+            const toParse = getPath(fixture, 'included_tex', 'circular_1.tex')
+            await lw.cache.refreshCache(toParse)
+            assert.strictEqual(lw.cache.getIncludedTeX(toParse).length, 2)
+        })
+
+        it('should return a list of de-duplicated .tex files', async () => {
+            const toParse = getPath(fixture, 'included_tex', 'duplicate_1.tex')
+            await lw.cache.refreshCache(toParse)
+            assert.strictEqual(lw.cache.getIncludedTeX(toParse).length, 3)
+        })
+    })
+
+    describe('lw.cache.getFlsChildren', () => {
+        it('should return an empty list if no .fls is found', async () => {
+            assert.strictEqual((await lw.cache.getFlsChildren(texPathAnother)).length, 0)
+        })
+
+        it('should return a list of input files in the .fls file', async () => {
+            const toParse = getPath(fixture, 'load_fls_file', 'include_main.tex')
+            assert.strictEqual((await lw.cache.getFlsChildren(toParse)).length, 1)
+        })
+    })
 })
