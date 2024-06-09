@@ -498,7 +498,7 @@ function updateElements(fileCache: FileCache): void {
  * bibliography files.
  */
 function updateBibfiles(fileCache: FileCache) {
-    const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(?:\\subfix{)?([\s\S]+?)(?:\})?}|(?:\\putbib)\[(.+?)\]/gm
+    const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(?:\\subfix{)?([\s\S]+?)(?:\})?}|(?:\\putbib)\[(?:\\subfix{)?([\s\S]+?)(?:\})?\]/gm
 
     let result: RegExpExecArray | null
     while ((result = bibReg.exec(fileCache.contentTrimmed)) !== null) {

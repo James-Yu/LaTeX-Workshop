@@ -345,6 +345,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(lw.cache.get(texPath)?.filePath, texPath)
         })
 
+        it('should watch the child', async () => {
+            const toParse = getPath(fixture, 'update_children_input_main.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            assert.ok(lw.watcher.src.has(texPath))
+        })
+
         it('should add two children if there are two inputs', async () => {
             const toParse = getPath(fixture, 'update_children_two_inputs.tex')
             lw.cache.add(toParse)
@@ -456,6 +463,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(lw.cache.get(texPath)?.filePath, texPath)
         })
 
+        it('should watch the child', async () => {
+            const toParse = getPath(fixture, 'update_childrenxr_input_main.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            assert.ok(lw.watcher.src.has(texPath))
+        })
+
         it('should add a child with prefix', async () => {
             const toParse = getPath(fixture, 'update_childrenxr_input_main_prefix.tex')
             lw.cache.add(toParse)
@@ -463,6 +477,59 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const fileCache = lw.cache.get(toParse)
             assert.ok(fileCache)
             assert.strictEqual(fileCache.external[texPath], 'prefix')
+        })
+    })
+
+    describe('lw.cache.updateBibfiles', () => {
+        it('should not add any bib files if there is nothing', async () => {
+            lw.cache.add(texPath)
+            await lw.cache.refreshCache(texPath)
+            const fileCache = lw.cache.get(texPath)
+            assert.ok(fileCache)
+            assert.strictEqual(fileCache.bibfiles.size, 0)
+        })
+
+        it('should not add a bib file if the file does not exist', async () => {
+            const toParse = getPath(fixture, 'update_bibfiles_file_not_exist.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            const fileCache = lw.cache.get(toParse)
+            assert.ok(fileCache)
+            assert.strictEqual(fileCache.bibfiles.size, 0)
+        })
+
+        it('should add bib files with \\bibliography, \\addbibresource, \\putbib, and possible presense of \\subfix', async () => {
+            const toParse = getPath(fixture, 'update_bibfiles.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            const fileCache = lw.cache.get(toParse)
+            assert.ok(fileCache)
+            assert.strictEqual(fileCache.bibfiles.size, 6)
+        })
+
+        it('should add multiple bib files in one macro', async () => {
+            const toParse = getPath(fixture, 'update_bibfiles_same_macro.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            const fileCache = lw.cache.get(toParse)
+            assert.ok(fileCache)
+            assert.strictEqual(fileCache.bibfiles.size, 2)
+        })
+
+        it('should not add excluded bib files', async () => {
+            const toParse = getPath(fixture, 'update_bibfiles_file_excluded.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            const fileCache = lw.cache.get(toParse)
+            assert.ok(fileCache)
+            assert.strictEqual(fileCache.bibfiles.size, 0)
+        })
+
+        it('should watch bib files if added', async () => {
+            const toParse = getPath(fixture, 'update_bibfiles_same_macro.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            assert.ok(lw.watcher.bib.has(bibPath))
         })
     })
 })
