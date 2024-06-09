@@ -359,4 +359,110 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(lw.cache.get(toParse)?.children.length, 1)
         })
     })
+
+    describe('lw.cache.updateChildrenXr', () => {
+        it('should not add any children if there is nothing', async () => {
+            lw.cache.add(texPath)
+            await lw.cache.refreshCache(texPath)
+            const fileCache = lw.cache.get(texPath)
+            assert.ok(fileCache)
+            assert.strictEqual(Object.keys(fileCache.external).length, 0)
+        })
+
+        it('should not add a child if the files does not exist', async () => {
+            const toParse = getPath(fixture, 'update_childrenxr_file_not_exist.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            const fileCache = lw.cache.get(toParse)
+            assert.ok(fileCache)
+            assert.strictEqual(Object.keys(fileCache.external).length, 0)
+        })
+
+        it('should not add a child if it is the root', async () => {
+            const toParse = getPath(fixture, 'update_childrenxr_input_main.tex')
+            setRoot(fixture, 'main.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            const fileCache = lw.cache.get(toParse)
+            assert.ok(fileCache)
+            assert.strictEqual(Object.keys(fileCache.external).length, 0)
+        })
+
+        it('should add a child to root instead of the current file', async () => {
+            setRoot(texPathAnother)
+            lw.cache.add(texPathAnother)
+            await lw.cache.refreshCache(texPathAnother)
+
+            const toParse = getPath(fixture, 'update_childrenxr_input_main.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+
+            let fileCache = lw.cache.get(texPathAnother)
+            assert.ok(fileCache)
+            assert.strictEqual(Object.keys(fileCache.external)[0], texPath)
+
+            fileCache = lw.cache.get(toParse)
+            assert.ok(fileCache)
+            assert.strictEqual(Object.keys(fileCache.external).length, 0)
+        })
+
+        it('should add a child if it is next to the source', async () => {
+            const toParse = getPath(fixture, 'update_childrenxr_input_main.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            const fileCache = lw.cache.get(toParse)
+            assert.ok(fileCache)
+            assert.strictEqual(Object.keys(fileCache.external)[0], texPath)
+        })
+
+        it('should add a child if it is next to the root', async () => {
+            const rootPath = getPath(fixture, 'sub', 'main.tex')
+            setRoot(rootPath)
+            lw.cache.add(rootPath)
+            await lw.cache.refreshCache(rootPath)
+
+            const toParse = getPath(fixture, 'update_childrenxr_input_sub.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+
+            const fileCache = lw.cache.get(rootPath)
+            assert.ok(fileCache)
+            assert.strictEqual(Object.keys(fileCache.external)[0], getPath(fixture, 'sub', 'sub.tex'))
+        })
+
+        it('should add a child if it is defined in `latex.texDirs`', async () => {
+            await setConfig('latex.texDirs', [ getPath(fixture, 'sub') ])
+
+            setRoot(texPath)
+            lw.cache.add(texPath)
+            await lw.cache.refreshCache(texPath)
+
+            const toParse = getPath(fixture, 'update_childrenxr_input_sub.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+
+            const fileCache = lw.cache.get(texPath)
+            assert.ok(fileCache)
+            assert.strictEqual(Object.keys(fileCache.external)[0], getPath(fixture, 'sub', 'sub.tex'))
+        })
+
+        it('should add a child and cache it if not cached', async () => {
+            assert.strictEqual(lw.cache.get(texPath), undefined)
+
+            const toParse = getPath(fixture, 'update_childrenxr_input_main.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            await lw.cache.wait(texPath, 60)
+            assert.strictEqual(lw.cache.get(texPath)?.filePath, texPath)
+        })
+
+        it('should add a child with prefix', async () => {
+            const toParse = getPath(fixture, 'update_childrenxr_input_main_prefix.tex')
+            lw.cache.add(toParse)
+            await lw.cache.refreshCache(toParse)
+            const fileCache = lw.cache.get(toParse)
+            assert.ok(fileCache)
+            assert.strictEqual(fileCache.external[texPath], 'prefix')
+        })
+    })
 })
