@@ -1,17 +1,16 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as assert from 'assert'
 import * as sinon from 'sinon'
-import { getPath, sleep, stubObject } from './utils'
+import { assert, get, mock, set, sleep } from './utils'
 import { lw } from '../../src/lw'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
-    const rootDir = getPath(fixture)
-    const texPath = getPath(fixture, 'main.tex')
+    const rootDir = get.path(fixture)
+    const texPath = get.path(fixture, 'main.tex')
 
     before(() => {
-        stubObject(lw, 'file', 'watcher')
+        mock.object(lw, 'file', 'watcher')
     })
 
     after(() => {
@@ -38,16 +37,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add a new file to be watched and create a new watcher if necessary', () => {
-            const stub = sinon.spy(lw.watcher.src as any, 'createWatcher')
+            const spy = sinon.spy(lw.watcher.src as any, 'createWatcher')
             lw.watcher.src.add(texPath)
-            assert.ok(stub.called)
+            assert.ok(spy.called)
             assert.ok(Object.keys(lw.watcher.src._test.getWatchers()).includes(rootDir))
             assert.ok(lw.watcher.src._test.getWatchers()[rootDir].files.has('main.tex'))
         })
 
         it('should add a file to the existing watcher if a watcher already exists for the folder', () => {
             lw.watcher.src.add(texPath)
-            lw.watcher.src.add(getPath(fixture, 'another.tex'))
+            lw.watcher.src.add(get.path(fixture, 'another.tex'))
             assert.strictEqual(Object.keys(lw.watcher.src._test.getWatchers()).length, 1)
             assert.ok(lw.watcher.src._test.getWatchers()[rootDir].files.has('another.tex'))
         })
@@ -134,32 +133,36 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should not call onChangeHandlers when creating non-watched file', async () => {
             lw.watcher.src.add(texPath)
-            await lw.watcher.src._test.onDidChange('create', vscode.Uri.file(getPath(fixture, 'another.tex')))
+            await lw.watcher.src._test.onDidChange('create', vscode.Uri.file(get.path(fixture, 'another.tex')))
             assert.strictEqual(stub.callCount, 0)
         })
 
         it('should not call onChangeHandlers when changing non-watched file', async () => {
             lw.watcher.src.add(texPath)
-            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(getPath(fixture, 'another.tex')))
+            await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(get.path(fixture, 'another.tex')))
             assert.strictEqual(stub.callCount, 0)
         })
 
-        it('should call onChangeHandlers once when quickly changing watched binary file', async () => {
-            const binPath = getPath(fixture, 'main.bin')
+        it('should call onChangeHandlers once when quickly changing watched binary file', async function (this: Mocha.Context) {
+            this.slow(1050)
+
+            const binPath = get.path(fixture, 'main.bin')
             lw.watcher.src.add(binPath)
             await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binPath))
             await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binPath))
-            await sleep(vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number * 2)
+            await sleep(500)
             assert.strictEqual(stub.callCount, 1)
         })
 
-        it('should call onChangeHandlers multiple times when slowly changing watched binary file', async () => {
-            const binPath = getPath(fixture, 'main.bin')
+        it('should call onChangeHandlers multiple times when slowly changing watched binary file', async function (this: Mocha.Context) {
+            this.slow(2050)
+
+            const binPath = get.path(fixture, 'main.bin')
             lw.watcher.src.add(binPath)
             await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binPath))
-            await sleep(vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number * 2)
+            await sleep(500)
             await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binPath))
-            await sleep(vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number * 2)
+            await sleep(500)
             assert.strictEqual(stub.callCount, 2)
         })
     })
@@ -168,9 +171,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         const stub = sinon.stub()
         const handler = (filePath: string) => { stub(filePath) }
 
-        beforeEach(() => {
+        beforeEach(async () => {
             stub.reset()
             lw.watcher.src.onDelete(handler)
+            await set.config('latex.watch.pdf.delay', 100)
         })
 
         afterEach(() => {
@@ -178,7 +182,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             lw.watcher.src._test.handlers.onDeleteHandlers.delete(handler)
         })
 
-        it('should call onDeleteHandlers when deleting watched file', async () => {
+        it('should call onDeleteHandlers when deleting watched file', async function (this: Mocha.Context) {
+            this.slow(250)
+
             lw.watcher.src.add(texPath)
             await lw.watcher.src._test.onDidDelete(vscode.Uri.file(texPath))
             assert.strictEqual(stub.callCount, 1)
@@ -186,8 +192,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(stub.getCall(0).args[0], texPath)
         })
 
-        it('should not call onChangeHandlers when watched file is deleted then created in a short time', async () => {
-            const binPath = getPath(fixture, 'main.bin')
+        it('should not call onChangeHandlers when watched file is deleted then created in a short time', async function (this: Mocha.Context) {
+            this.slow(250)
+
+            const binPath = get.path(fixture, 'main.bin')
             lw.watcher.src.add(binPath)
             await lw.watcher.src._test.onDidDelete(vscode.Uri.file(binPath))
             assert.strictEqual(stub.callCount, 0)

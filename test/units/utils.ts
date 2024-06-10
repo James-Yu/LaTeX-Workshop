@@ -1,96 +1,83 @@
 import * as vscode from 'vscode'
 import * as os from 'os'
 import * as path from 'path'
-import * as assert from 'assert'
+import * as nodeAssert from 'assert'
 import * as sinon from 'sinon'
 import { lw } from '../../src/lw'
 import { log } from '../../src/utils/logger'
 
-export const mochaHooks = {
-    beforeEach: () => {
-        log.resetCachedLog()
-    },
-    afterEach: async () => {
-        resetCache()
-        resetRoot()
-        await resetConfig()
-    }
+type ExtendedAssert = typeof nodeAssert & {
+    listStrictEqual: (actual: unknown[], expected: unknown[], message?: string | Error) => void,
+    pathStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void
 }
-
-export function stubObject(obj: any, ...ignore: string[]) {
-    Object.getOwnPropertyNames(obj).forEach(item => {
-        // Don't stub the unit to be tested or the logging/external functions.
-        if (ignore.includes(item) || ['log', 'external'].includes(item)) {
-            return
-        }
-        if (typeof obj[item] === 'object') {
-            stubObject(obj[item])
-        } else if (typeof obj[item] === 'function') {
-            sinon.stub(obj, item)
-        }
-    })
+export const assert: ExtendedAssert = nodeAssert as ExtendedAssert
+assert.listStrictEqual = (actual: unknown[], expected: unknown[], message?: string | Error) => {
+    nodeAssert.deepStrictEqual(actual.sort(), expected.sort(), message)
 }
-
-export function getPath(...paths: string[]) {
-    const result = path.resolve(
-        vscode.workspace.workspaceFile?.fsPath ?? vscode.workspace.workspaceFolders?.[0].uri.fsPath ?? '',
-        ...paths
-    )
+assert.pathStrictEqual = (actual: string | undefined, expected: string | undefined, message?: string | Error) => {
+    actual = path.normalize(actual ?? '.')
+    expected = path.normalize(expected ?? '.')
     if (os.platform() === 'win32') {
-        return result.charAt(0).toLowerCase() + result.slice(1)
-    } else {
-        return result
+        actual = actual.toLowerCase()
+        expected = expected.toLowerCase()
     }
+    nodeAssert.strictEqual(path.relative(actual, expected), '', message)
 }
 
-export function setRoot(...paths: string[]) {
-    const rootFile = getPath(...paths)
-    sinon.stub(lw.root.file, 'path').value(rootFile)
-    sinon.stub(lw.root.dir, 'path').value(path.dirname(rootFile))
-}
-
-export function resetRoot() {
-    sinon.stub(lw.root.file, 'path').value(undefined)
-    sinon.stub(lw.root.dir, 'path').value(undefined)
-}
-
-export function resetCache() {
-    lw.cache.reset()
+export const get = {
+    path: (...paths: string[]) => {
+        const result = path.resolve(
+            vscode.workspace.workspaceFile?.fsPath ?? vscode.workspace.workspaceFolders?.[0].uri.fsPath ?? '',
+            ...paths
+        )
+        if (os.platform() === 'win32') {
+            return result.charAt(0).toLowerCase() + result.slice(1)
+        } else {
+            return result
+        }
+    }
 }
 
 const changedConfigs: Set<string> = new Set()
-export async function setConfig(section: string, value: any) {
-    await vscode.workspace.getConfiguration('latex-workshop').update(section, value)
-    changedConfigs.add(section)
-}
-
-export async function resetConfig() {
-    for (const section of changedConfigs.values()) {
-        await setConfig(section, undefined)
+export const set = {
+    root: (...paths: string[]) => {
+        const rootFile = get.path(...paths)
+        sinon.stub(lw.root.file, 'path').value(rootFile)
+        sinon.stub(lw.root.dir, 'path').value(path.dirname(rootFile))
+    },
+    config: async (section: string, value: any) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update(section, value)
+        changedConfigs.add(section)
     }
-    changedConfigs.clear()
 }
 
-export function pathEqual(path1?: string, path2?: string) {
-    path1 = path.normalize(path1 ?? '.')
-    path2 = path.normalize(path2 ?? '.')
-    if (os.platform() === 'win32') {
-        path1 = path1.toLowerCase()
-        path2 = path2.toLowerCase()
+export const reset = {
+    root: () => {
+        sinon.stub(lw.root.file, 'path').value(undefined)
+        sinon.stub(lw.root.dir, 'path').value(undefined)
+    },
+    cache: () => {
+        lw.cache.reset()
+    },
+    config: async () => {
+        for (const section of changedConfigs.values()) {
+            await set.config(section, undefined)
+        }
+        changedConfigs.clear()
+    },
+    log: () => {
+        log.resetCachedLog()
     }
-    assert.strictEqual(path.relative(path1, path2), '')
 }
 
-export function resetLog() {
-    log.resetCachedLog()
-}
-
-export function hasLog(message: string | RegExp): boolean {
-    const logs = log.getCachedLog().CACHED_EXTLOG
-    if (typeof message === 'string') {
-        return logs.some(logMessage => logMessage.includes(message))
-    } else {
-        return logs.some(logMessage => message.exec(logMessage))
+export const has = {
+    log: (message: string | RegExp): boolean => {
+        const logs = log.getCachedLog().CACHED_EXTLOG
+        if (typeof message === 'string') {
+            return logs.some(logMessage => logMessage.includes(message))
+        } else {
+            return logs.some(logMessage => message.exec(logMessage))
+        }
     }
 }
 
@@ -131,6 +118,32 @@ class TextDocument implements vscode.TextDocument {
     validatePosition(_: vscode.Position): vscode.Position { throw new Error('Not implemented.') }
 }
 
-export function stubTextDocument(filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean } = {}) {
-    return sinon.stub(vscode.workspace, 'textDocuments').value([new TextDocument(filePath, content, params)])
+export const mock = {
+    object: (obj: any, ...ignore: string[]) => {
+        Object.getOwnPropertyNames(obj).forEach(item => {
+            // Don't stub the unit to be tested or the logging/external functions.
+            if (ignore.includes(item) || ['log', 'external'].includes(item)) {
+                return
+            }
+            if (typeof obj[item] === 'object') {
+                mock.object(obj[item])
+            } else if (typeof obj[item] === 'function') {
+                sinon.stub(obj, item)
+            }
+        })
+    },
+    textDocument: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean } = {}) => {
+        return sinon.stub(vscode.workspace, 'textDocuments').value([new TextDocument(filePath, content, params)])
+    }
+}
+
+export const hooks = {
+    beforeEach: () => {
+        log.resetCachedLog()
+    },
+    afterEach: async () => {
+        reset.cache()
+        reset.root()
+        await reset.config()
+    }
 }

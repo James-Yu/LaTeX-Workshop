@@ -1,7 +1,7 @@
 import * as path from 'path'
 import Mocha from 'mocha'
 import { glob } from 'glob'
-import { mochaHooks } from './utils'
+import { hooks } from './utils'
 
 export function run(): Promise<void> {
     // Create the mocha test
@@ -17,7 +17,7 @@ export function run(): Promise<void> {
         context.it.only = process.env['LATEXWORKSHOP_CITEST'] ? context.it : context.it.only
     })
 
-    mocha.rootHooks(mochaHooks)
+    mocha.rootHooks(hooks)
 
     ;(globalThis as any).mocha = mocha
 
