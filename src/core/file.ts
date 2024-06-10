@@ -437,7 +437,13 @@ function getBibPath(bib: string, baseDir: string): string[] {
             return []
         }
     }
-    return [ bibPath ].flat()
+
+    if (os.platform() === 'win32') {
+        // Normalize drive letters on Windows.
+        return [ bibPath ].flat().map(p => p.replace(/^([a-zA-Z]):/, (_, p1: string) => p1.toLowerCase() + ':'))
+    } else {
+        return [ bibPath ].flat()
+    }
 }
 
 /**

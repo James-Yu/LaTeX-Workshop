@@ -22,8 +22,8 @@ assert.pathStrictEqual = (actual: string | undefined, expected: string | undefin
     actual = path.normalize(actual ?? '.')
     expected = path.normalize(expected ?? '.')
     if (os.platform() === 'win32') {
-        actual = actual.toLowerCase()
-        expected = expected.toLowerCase()
+        actual = actual.replace(/^([a-zA-Z]):/, (_, p1: string) => p1.toLowerCase() + ':')
+        expected = expected.replace(/^([a-zA-Z]):/, (_, p1: string) => p1.toLowerCase() + ':')
     }
     nodeAssert.strictEqual(path.relative(actual, expected), '', message)
 }
