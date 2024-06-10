@@ -7,12 +7,16 @@ import { lw } from '../../src/lw'
 import { log } from '../../src/utils/logger'
 
 type ExtendedAssert = typeof nodeAssert & {
-    listStrictEqual: (actual: unknown[], expected: unknown[], message?: string | Error) => void,
+    listStrictEqual: <T>(actual: T[] | undefined, expected: T[] | undefined, message?: string | Error) => void,
     pathStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void
 }
 export const assert: ExtendedAssert = nodeAssert as ExtendedAssert
-assert.listStrictEqual = (actual: unknown[], expected: unknown[], message?: string | Error) => {
-    nodeAssert.deepStrictEqual(actual.sort(), expected.sort(), message)
+assert.listStrictEqual = <T>(actual: T[] | undefined, expected: T[] | undefined, message?: string | Error) => {
+    if (actual === undefined || expected === undefined) {
+        nodeAssert.strictEqual(actual, expected)
+    } else {
+        nodeAssert.deepStrictEqual(actual.sort(), expected.sort(), message)
+    }
 }
 assert.pathStrictEqual = (actual: string | undefined, expected: string | undefined, message?: string | Error) => {
     actual = path.normalize(actual ?? '.')

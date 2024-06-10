@@ -91,13 +91,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(texPath)
             await lw.cache.refreshCache(texPathAnother)
             const paths = lw.cache.paths()
-            assert.strictEqual(paths.length, 2)
-            assert.strictEqual(paths[0], texPath)
-            assert.strictEqual(paths[1], texPathAnother)
+            assert.listStrictEqual(paths, [ texPath, texPathAnother ])
         })
 
         it('should get an empty array if no files are cached', () => {
-            assert.strictEqual(lw.cache.paths().length, 0)
+            assert.listStrictEqual(lw.cache.paths(), [ ])
         })
     })
 
@@ -137,49 +135,47 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
             lw.cache.reset()
-            assert.strictEqual(lw.cache.paths().length, 0)
+            assert.listStrictEqual(lw.cache.paths(), [ ])
         })
     })
 
     describe('lw.cache.refreshCache', () => {
         it('should properly exclude configged sources', async () => {
             await lw.cache.refreshCache(bblPath)
-            assert.strictEqual(lw.cache.paths().length, 0)
+            assert.listStrictEqual(lw.cache.paths(), [ ])
         })
 
         it('should properly skip non-cacheable sources', async () => {
             await lw.cache.refreshCache(get.path(fixture, 'expl3-code.tex'))
-            assert.strictEqual(lw.cache.paths().length, 0)
+            assert.listStrictEqual(lw.cache.paths(), [ ])
         })
 
         it('should cache provided TeX source', async () => {
             await lw.cache.refreshCache(texPath)
-            assert.strictEqual(lw.cache.paths().length, 1)
+            assert.listStrictEqual(lw.cache.paths(), [ texPath ])
         })
 
         it('should update children during caching', async () => {
             await lw.cache.refreshCache(texPath)
             assert.ok(has.log('Updated inputs of '))
-            assert.strictEqual(lw.cache.paths().length, 1)
         })
 
         it('should update AST during caching', async () => {
             await lw.cache.refreshCache(texPath)
             assert.ok(has.log('Parsed LaTeX AST in '))
-            assert.strictEqual(lw.cache.paths().length, 1)
         })
 
         it('should update document elements during caching', async () => {
             await lw.cache.refreshCache(texPath)
             assert.ok(has.log('Updated elements in '))
-            assert.strictEqual(lw.cache.paths().length, 1)
         })
 
         it('should cache provided dirty TeX source', async () => {
             const stub = mock.textDocument(texPath, '', { isDirty: true })
             await lw.cache.refreshCache(texPath)
             stub.restore()
-            assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '')
+            assert.listStrictEqual(lw.cache.paths(), [ texPath ])
+            assert.strictEqual(lw.cache.get(texPath)?.content, '')
         })
 
         it('should manage caching promises properly', async () => {
@@ -208,7 +204,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             lw.cache.refreshCacheAggressive(texPath)
             await sleep(150)
-            assert.strictEqual(lw.cache.paths().length, 0)
+            assert.listStrictEqual(lw.cache.paths(), [ ])
         })
 
         it('should aggressively cache cached files', async function (this: Mocha.Context) {
@@ -315,14 +311,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should not add any children if there is nothing', async () => {
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
-            assert.strictEqual(lw.cache.get(texPath)?.children.length, 0)
+            assert.listStrictEqual(lw.cache.get(texPath)?.children, [ ])
         })
 
         it('should not add a child if the files does not exist', async () => {
             const toParse = get.path(fixture, 'update_children', 'file_not_exist.tex')
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+            assert.listStrictEqual(lw.cache.get(toParse)?.children, [ ])
         })
 
         it('should not add a child if it is the root', async () => {
@@ -330,7 +326,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.root(fixture, 'main.tex')
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+            assert.listStrictEqual(lw.cache.get(toParse)?.children, [ ])
         })
 
         it('should add a child and cache it if not cached', async () => {
@@ -339,7 +335,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(lw.cache.get(texPath), undefined)
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.children.length, 1)
+            assert.listStrictEqual(lw.cache.get(toParse)?.children.map(child => child.filePath), [ texPath ])
             await lw.cache.wait(texPath, 60)
             assert.strictEqual(lw.cache.get(texPath)?.filePath, texPath)
         })
@@ -355,14 +351,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const toParse = get.path(fixture, 'update_children', 'two_inputs.tex')
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.children.length, 2)
+            assert.listStrictEqual(lw.cache.get(toParse)?.children.map(child => child.filePath), [ texPath, texPathAnother ])
         })
 
         it('should add one child if two inputs are identical', async () => {
             const toParse = get.path(fixture, 'update_children', 'two_same_inputs.tex')
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.children.length, 1)
+            assert.listStrictEqual(lw.cache.get(toParse)?.children.map(child => child.filePath), [ texPath ])
         })
     })
 
@@ -372,7 +368,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(texPath)
             const fileCache = lw.cache.get(texPath)
             assert.ok(fileCache)
-            assert.strictEqual(Object.keys(fileCache.external).length, 0)
+            assert.listStrictEqual(Object.keys(fileCache.external), [ ])
         })
 
         it('should not add a child if the files does not exist', async () => {
@@ -381,7 +377,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(toParse)
             const fileCache = lw.cache.get(toParse)
             assert.ok(fileCache)
-            assert.strictEqual(Object.keys(fileCache.external).length, 0)
+            assert.listStrictEqual(Object.keys(fileCache.external), [ ])
         })
 
         it('should not add a child if it is the root', async () => {
@@ -391,7 +387,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(toParse)
             const fileCache = lw.cache.get(toParse)
             assert.ok(fileCache)
-            assert.strictEqual(Object.keys(fileCache.external).length, 0)
+            assert.listStrictEqual(Object.keys(fileCache.external), [ ])
         })
 
         it('should add a child to root instead of the current file', async () => {
@@ -405,11 +401,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             let fileCache = lw.cache.get(texPathAnother)
             assert.ok(fileCache)
-            assert.strictEqual(Object.keys(fileCache.external)[0], texPath)
+            assert.listStrictEqual(Object.keys(fileCache.external), [ texPath ])
 
             fileCache = lw.cache.get(toParse)
             assert.ok(fileCache)
-            assert.strictEqual(Object.keys(fileCache.external).length, 0)
+            assert.listStrictEqual(Object.keys(fileCache.external), [ ])
         })
 
         it('should add a child if it is next to the source', async () => {
@@ -418,7 +414,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(toParse)
             const fileCache = lw.cache.get(toParse)
             assert.ok(fileCache)
-            assert.strictEqual(Object.keys(fileCache.external)[0], texPath)
+            assert.listStrictEqual(Object.keys(fileCache.external), [ texPath ])
         })
 
         it('should add a child if it is next to the root', async () => {
@@ -433,7 +429,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             const fileCache = lw.cache.get(rootPath)
             assert.ok(fileCache)
-            assert.strictEqual(Object.keys(fileCache.external)[0], get.path(fixture, 'update_children_xr', 'sub', 'sub.tex'))
+            assert.listStrictEqual(Object.keys(fileCache.external), [ get.path(fixture, 'update_children_xr', 'sub', 'sub.tex') ])
         })
 
         it('should add a child if it is defined in `latex.texDirs`', async () => {
@@ -449,7 +445,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             const fileCache = lw.cache.get(texPath)
             assert.ok(fileCache)
-            assert.strictEqual(Object.keys(fileCache.external)[0], get.path(fixture, 'update_children_xr', 'sub', 'sub.tex'))
+            assert.listStrictEqual(Object.keys(fileCache.external), [ get.path(fixture, 'update_children_xr', 'sub', 'sub.tex') ])
         })
 
         it('should add a child and cache it if not cached', async () => {
@@ -494,7 +490,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(toParse)
             const fileCache = lw.cache.get(toParse)
             assert.ok(fileCache)
-            assert.strictEqual(fileCache.bibfiles.size, 0)
+            assert.listStrictEqual(Array.from(fileCache.bibfiles), [ ])
         })
 
         it('should add bib files with \\bibliography, \\addbibresource, \\putbib, and possible presense of \\subfix', async () => {
@@ -503,7 +499,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(toParse)
             const fileCache = lw.cache.get(toParse)
             assert.ok(fileCache)
-            assert.strictEqual(fileCache.bibfiles.size, 6)
+            assert.listStrictEqual(Array.from(fileCache.bibfiles), [
+                bibPath,
+                get.path(fixture, 'update_bibfiles', 'bib', '1.bib'),
+                get.path(fixture, 'update_bibfiles', 'bib', '2.bib'),
+                get.path(fixture, 'update_bibfiles', 'bib', '3.bib'),
+                get.path(fixture, 'update_bibfiles', 'bib', '4.bib'),
+                get.path(fixture, 'update_bibfiles', 'bib', '5.bib')
+            ])
         })
 
         it('should add multiple bib files in one macro', async () => {
@@ -512,7 +515,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(toParse)
             const fileCache = lw.cache.get(toParse)
             assert.ok(fileCache)
-            assert.strictEqual(fileCache.bibfiles.size, 2)
+            assert.listStrictEqual(Array.from(fileCache.bibfiles), [
+                bibPath,
+                get.path(fixture, 'update_bibfiles', 'bib', '1.bib')
+            ])
         })
 
         it('should not add excluded bib files', async () => {
@@ -521,7 +527,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(toParse)
             const fileCache = lw.cache.get(toParse)
             assert.ok(fileCache)
-            assert.strictEqual(fileCache.bibfiles.size, 0)
+            assert.listStrictEqual(Array.from(fileCache.bibfiles), [ ])
         })
 
         it('should watch bib files if added', async () => {
@@ -542,28 +548,28 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const toParse = get.path(fixture, 'load_fls_file', 'both_input_output.tex')
             await lw.cache.refreshCache(toParse)
             await lw.cache.loadFlsFile(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+            assert.listStrictEqual(lw.cache.get(toParse)?.children, [ ])
         })
 
         it('should not consider files that are excluded', async () => {
             const toParse = get.path(fixture, 'load_fls_file', 'excluded_file.tex')
             await lw.cache.refreshCache(toParse)
             await lw.cache.loadFlsFile(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+            assert.listStrictEqual(lw.cache.get(toParse)?.children, [ ])
         })
 
         it('should not consider files that do not exist', async () => {
             const toParse = get.path(fixture, 'load_fls_file', 'file_not_exist.tex')
             await lw.cache.refreshCache(toParse)
             await lw.cache.loadFlsFile(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+            assert.listStrictEqual(lw.cache.get(toParse)?.children, [ ])
         })
 
         it('should not consider the file itself if listed in .fls', async () => {
             const toParse = get.path(fixture, 'load_fls_file', 'self_include.tex')
             await lw.cache.refreshCache(toParse)
             await lw.cache.loadFlsFile(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+            assert.listStrictEqual(lw.cache.get(toParse)?.children, [ ])
         })
 
         it('should not consider files that already been cached', async () => {
@@ -572,19 +578,19 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const toParse = get.path(fixture, 'load_fls_file', 'include_main.tex')
             await lw.cache.refreshCache(toParse)
             await lw.cache.loadFlsFile(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.children.length, 0)
+            assert.listStrictEqual(lw.cache.get(toParse)?.children, [ ])
         })
 
         it('should add file as child if all checks passed', async () => {
             const toParse = get.path(fixture, 'load_fls_file', 'include_main.tex')
             await lw.cache.loadFlsFile(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.children.length, 1)
+            assert.listStrictEqual(lw.cache.get(toParse)?.children.map(child => child.filePath), [ texPath ])
         })
 
         it('should add multiple files as children if all checks passed', async () => {
             const toParse = get.path(fixture, 'load_fls_file', 'include_many.tex')
             await lw.cache.loadFlsFile(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.children.length, 2)
+            assert.listStrictEqual(lw.cache.get(toParse)?.children.map(child => child.filePath), [ texPath, texPathAnother ])
         })
 
         it('should watch added .tex files', async () => {
@@ -613,7 +619,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.root(fixture, 'load_aux_file', 'nothing.tex')
             await lw.cache.refreshCache(toParse)
             await lw.cache.loadFlsFile(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.bibfiles.size, 0)
+            assert.listStrictEqual(Array.from(lw.cache.get(toParse)?.bibfiles ?? new Set([''])), [ ])
         })
 
         it('should add \\bibdata from .aux file', async () => {
@@ -621,7 +627,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.root(fixture, 'load_aux_file', 'main.tex')
             await lw.cache.refreshCache(toParse)
             await lw.cache.loadFlsFile(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.bibfiles.size, 1)
+            assert.listStrictEqual(Array.from(lw.cache.get(toParse)?.bibfiles ?? new Set()), [ get.path(fixture, 'load_aux_file', 'main.bib') ])
         })
 
         it('should not add \\bibdata if the bib is excluded', async () => {
@@ -630,7 +636,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.root(fixture, 'load_aux_file', 'main.tex')
             await lw.cache.refreshCache(toParse)
             await lw.cache.loadFlsFile(toParse)
-            assert.strictEqual(lw.cache.get(toParse)?.bibfiles.size, 0)
+            assert.listStrictEqual(Array.from(lw.cache.get(toParse)?.bibfiles ?? new Set([''])), [ ])
         })
 
         it('should watch bib files if added', async () => {
@@ -644,53 +650,56 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.getIncludedBib', () => {
         it('should return an empty list if no file path is given', () => {
-            assert.strictEqual(lw.cache.getIncludedBib().length, 0)
+            assert.listStrictEqual(lw.cache.getIncludedBib(), [ ])
         })
 
         it('should return an empty list if the given file is not cached', () => {
             const toParse = get.path(fixture, 'included_bib', 'main.tex')
-            assert.strictEqual(lw.cache.getIncludedBib(toParse).length, 0)
+            assert.listStrictEqual(lw.cache.getIncludedBib(toParse), [ ])
         })
 
         it('should return a list of included .bib files', async () => {
             const toParse = get.path(fixture, 'included_bib', 'main.tex')
             await lw.cache.refreshCache(toParse)
-            assert.strictEqual(lw.cache.getIncludedBib(toParse).length, 1)
+            assert.listStrictEqual(lw.cache.getIncludedBib(toParse), [ bibPath ])
         })
 
         it('should return a list of included .bib files with \\input', async () => {
             const toParse = get.path(fixture, 'included_bib', 'another.tex')
             await lw.cache.refreshCache(toParse)
-            assert.strictEqual(lw.cache.getIncludedBib(toParse).length, 1)
+            assert.listStrictEqual(lw.cache.getIncludedBib(toParse), [ bibPath ])
         })
 
         it('should return a list of included .bib files with circular inclusions', async () => {
             const toParse = get.path(fixture, 'included_bib', 'circular_1.tex')
             await lw.cache.refreshCache(toParse)
-            assert.strictEqual(lw.cache.getIncludedBib(toParse).length, 1)
+            assert.listStrictEqual(lw.cache.getIncludedBib(toParse), [ bibPath ])
         })
 
         it('should return a list of de-duplicated .bib files', async () => {
             const toParse = get.path(fixture, 'included_bib', 'duplicate_1.tex')
             await lw.cache.refreshCache(toParse)
-            assert.strictEqual(lw.cache.getIncludedBib(toParse).length, 1)
+            assert.listStrictEqual(lw.cache.getIncludedBib(toParse), [ bibPath ])
         })
     })
 
     describe('lw.cache.getIncludedTeX', () => {
         it('should return an empty list if no file path is given', () => {
-            assert.strictEqual(lw.cache.getIncludedTeX().length, 0)
+            assert.listStrictEqual(lw.cache.getIncludedTeX(), [ ])
         })
 
         it('should return an empty list if the given file is not cached', () => {
             const toParse = get.path(fixture, 'included_tex', 'main.tex')
-            assert.strictEqual(lw.cache.getIncludedTeX(toParse).length, 0)
+            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse), [ ])
         })
 
         it('should return a list of included .tex files', async () => {
             const toParse = get.path(fixture, 'included_tex', 'main.tex')
             await lw.cache.refreshCache(toParse)
-            assert.strictEqual(lw.cache.getIncludedTeX(toParse).length, 2)
+            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse), [
+                get.path(fixture, 'included_tex', 'main.tex'),
+                get.path(fixture, 'included_tex', 'another.tex')
+            ])
         })
 
         it('should return a list of included .tex files, but only cached ones with `cachedOnly` flag', async () => {
@@ -698,29 +707,38 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(toParse)
             lw.cache._test.caches.delete(get.path(fixture, 'included_tex', 'another.tex'))
             assert.strictEqual(lw.cache.getIncludedTeX(toParse, [], true).length, 1)
+            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse, [], true), [ get.path(fixture, 'included_tex', 'main.tex') ])
         })
 
         it('should return a list of included .bib files with circular inclusions', async () => {
             const toParse = get.path(fixture, 'included_tex', 'circular_1.tex')
             await lw.cache.refreshCache(toParse)
-            assert.strictEqual(lw.cache.getIncludedTeX(toParse).length, 2)
+            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse), [
+                get.path(fixture, 'included_tex', 'circular_1.tex'),
+                get.path(fixture, 'included_tex', 'circular_2.tex')
+            ])
         })
 
         it('should return a list of de-duplicated .tex files', async () => {
             const toParse = get.path(fixture, 'included_tex', 'duplicate_1.tex')
             await lw.cache.refreshCache(toParse)
-            assert.strictEqual(lw.cache.getIncludedTeX(toParse).length, 3)
+            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse), [
+                get.path(fixture, 'included_tex', 'duplicate_1.tex'),
+                get.path(fixture, 'included_tex', 'duplicate_2.tex'),
+                get.path(fixture, 'included_tex', 'main.tex'),
+                get.path(fixture, 'included_tex', 'another.tex')
+            ])
         })
     })
 
     describe('lw.cache.getFlsChildren', () => {
         it('should return an empty list if no .fls is found', async () => {
-            assert.strictEqual((await lw.cache.getFlsChildren(texPathAnother)).length, 0)
+            assert.listStrictEqual(await lw.cache.getFlsChildren(texPathAnother), [ ])
         })
 
         it('should return a list of input files in the .fls file', async () => {
             const toParse = get.path(fixture, 'load_fls_file', 'include_main.tex')
-            assert.strictEqual((await lw.cache.getFlsChildren(toParse)).length, 1)
+            assert.listStrictEqual(await lw.cache.getFlsChildren(toParse), [ texPath ])
         })
     })
 })

@@ -191,38 +191,36 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should correctly find BibTeX files', () => {
             set.root(fixture, 'main.tex')
             const result = lw.file.getBibPath('main.bib', lw.root.dir.path ?? '')
-            assert.strictEqual(result.length, 1)
-            assert.pathStrictEqual(result[0], path.resolve(lw.root.dir.path ?? '', 'main.bib'))
+            assert.listStrictEqual(result, [ path.resolve(lw.root.dir.path ?? '', 'main.bib') ])
         })
 
         it('should correctly find BibTeX files in basedir', () => {
             set.root(fixture, 'main.tex')
             const result = lw.file.getBibPath('sub.bib', path.resolve(lw.root.dir.path ?? '', 'subdir'))
-            assert.strictEqual(result.length, 1)
-            assert.pathStrictEqual(result[0], path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib'))
+            assert.listStrictEqual(result, [ path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib') ])
         })
 
         it('should correctly find BibTeX files in `latex.bibDirs`', async () => {
             set.root(fixture, 'main.tex')
             await set.config('latex.bibDirs', [ path.resolve(lw.root.dir.path ?? '', 'subdir') ])
             const result = lw.file.getBibPath('sub.bib', lw.root.dir.path ?? '')
-            assert.strictEqual(result.length, 1)
-            assert.pathStrictEqual(result[0], path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib'))
+            assert.listStrictEqual(result, [ path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib') ])
         })
 
         it('should return an empty array when no BibTeX file is found', async () => {
             set.root(fixture, 'main.tex')
             await set.config('latex.bibDirs', [ path.resolve(lw.root.dir.path ?? '', 'subdir') ])
             const result = lw.file.getBibPath('nonexistent.bib', path.resolve(lw.root.dir.path ?? '', 'output'))
-            assert.strictEqual(result.length, 0)
+            assert.listStrictEqual(result, [ ])
         })
 
         it('should correctly handle wildcard in BibTeX file name', () => {
             set.root(fixture, 'main.tex')
             const result = lw.file.getBibPath('*.bib', lw.root.dir.path ?? '')
-            assert.strictEqual(result.length, 2)
-            assert.pathStrictEqual(result[0], path.resolve(lw.root.dir.path ?? '', 'main.bib'))
-            assert.pathStrictEqual(result[1], path.resolve(lw.root.dir.path ?? '', 'another.bib'))
+            assert.listStrictEqual(result, [
+                path.resolve(lw.root.dir.path ?? '', 'main.bib'),
+                path.resolve(lw.root.dir.path ?? '', 'another.bib')
+            ])
         })
 
         it('should handle case when kpsewhich is disabled and BibTeX file not found', async () => {
@@ -231,7 +229,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.root(fixture, 'main.tex')
             const result = lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
-            assert.strictEqual(result.length, 0)
+            assert.listStrictEqual(result, [ ])
         })
 
         it('should handle case when kpsewhich is enabled and BibTeX file not found', async () => {
@@ -240,8 +238,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.root(fixture, 'main.tex')
             const result = lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
-            assert.strictEqual(result.length, 1)
-            assert.pathStrictEqual(result[0], get.path(fixture, 'nonexistent.bib'))
+            assert.listStrictEqual(result, [ get.path(fixture, 'nonexistent.bib') ])
         })
 
         it('should return an empty array when kpsewhich is enabled but file is not found', async () => {
@@ -250,7 +247,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.root(fixture, 'main.tex')
             const result = lw.file.getBibPath('another-nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
-            assert.strictEqual(result.length, 0)
+            assert.listStrictEqual(result, [ ])
         })
     })
 
