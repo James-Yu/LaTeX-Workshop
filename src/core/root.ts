@@ -163,42 +163,37 @@ async function findFromMagic(): Promise<string | undefined> {
     if (!vscode.window.activeTextEditor) {
         return
     }
-    const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.(?:tex|[jrsRS]nw|[rR]tex|jtexw))$)/m
-    let content: string | undefined = vscode.window.activeTextEditor.document.getText()
 
-    let result = content.match(regex)
+    const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.(?:tex|[jrsRS]nw|[rR]tex|jtexw))$)/m
     const fileStack: string[] = []
-    if (result) {
-        let filePath = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
+    let content: string | undefined = vscode.window.activeTextEditor.document.getText()
+    let filePath = vscode.window.activeTextEditor.document.fileName
+    let result = content.match(regex)
+
+    while (result) {
+        filePath = path.resolve(path.dirname(filePath), result[1])
+
+        if (fileStack.includes(filePath)) {
+            logger.log(`Found looped magic root ${filePath} .`)
+            return filePath
+        }
+        fileStack.push(filePath)
+        logger.log(`Found magic root ${filePath}`)
+
         content = await lw.file.read(filePath)
         if (content === undefined) {
             logger.log(`Non-existent magic root ${filePath} .`)
             return
         }
-        fileStack.push(filePath)
-        logger.log(`Found magic root ${filePath} from active.`)
 
         result = content.match(regex)
-        while (result) {
-            filePath = path.resolve(path.dirname(filePath), result[1])
-            if (fileStack.includes(filePath)) {
-                logger.log(`Found looped magic root ${filePath} .`)
-                return filePath
-            } else {
-                fileStack.push(filePath)
-                logger.log(`Found magic root ${filePath}`)
-            }
-
-            content = await lw.file.read(filePath)
-            if (content === undefined) {
-                logger.log(`Non-existent magic root ${filePath} .`)
-                return
-            }
-            result = content.match(regex)
-        }
-        logger.log(`Finalized magic root ${filePath} .`)
-        return filePath
     }
+    if (fileStack.length > 0) {
+        const finalFilePath = fileStack[fileStack.length - 1]
+        logger.log(`Finalized magic root ${finalFilePath} .`)
+        return finalFilePath
+    }
+
     return
 }
 
