@@ -89,6 +89,39 @@ export function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
+export const mock = {
+    object: (obj: any, ...ignore: string[]) => {
+        Object.getOwnPropertyNames(obj).forEach(item => {
+            // Don't stub the unit to be tested or the logging/external functions.
+            if (ignore.includes(item) || ['log', 'external'].includes(item)) {
+                return
+            }
+            if (typeof obj[item] === 'object') {
+                mock.object(obj[item])
+            } else if (typeof obj[item] === 'function') {
+                sinon.stub(obj, item)
+            }
+        })
+    },
+    textDocument: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean } = {}) => {
+        return sinon.stub(vscode.workspace, 'textDocuments').value([ new TextDocument(filePath, content, params) ])
+    },
+    activeTextEditor: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean } = {}) => {
+        return sinon.stub(vscode.window, 'activeTextEditor').value(new TextEditor(filePath, content, params))
+    }
+}
+
+export const hooks = {
+    beforeEach: () => {
+        log.resetCachedLog()
+    },
+    afterEach: async () => {
+        reset.cache()
+        reset.root()
+        await reset.config()
+    }
+}
+
 class TextDocument implements vscode.TextDocument {
     content: string
     lines: string[]
@@ -122,32 +155,22 @@ class TextDocument implements vscode.TextDocument {
     validatePosition(_: vscode.Position): vscode.Position { throw new Error('Not implemented.') }
 }
 
-export const mock = {
-    object: (obj: any, ...ignore: string[]) => {
-        Object.getOwnPropertyNames(obj).forEach(item => {
-            // Don't stub the unit to be tested or the logging/external functions.
-            if (ignore.includes(item) || ['log', 'external'].includes(item)) {
-                return
-            }
-            if (typeof obj[item] === 'object') {
-                mock.object(obj[item])
-            } else if (typeof obj[item] === 'function') {
-                sinon.stub(obj, item)
-            }
-        })
-    },
-    textDocument: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean } = {}) => {
-        return sinon.stub(vscode.workspace, 'textDocuments').value([new TextDocument(filePath, content, params)])
-    }
-}
+class TextEditor implements vscode.TextEditor {
+    document: TextDocument
+    selection: vscode.Selection = new vscode.Selection(new vscode.Position(0, 0), new vscode.Position(0, 0))
+    selections: vscode.Selection[] = [ this.selection ]
+    visibleRanges: vscode.Range[] = [ new vscode.Range(new vscode.Position(0, 0), new vscode.Position(0, 0)) ]
+    options: vscode.TextEditorOptions = {}
+    viewColumn: vscode.ViewColumn | undefined = vscode.ViewColumn.Active
 
-export const hooks = {
-    beforeEach: () => {
-        log.resetCachedLog()
-    },
-    afterEach: async () => {
-        reset.cache()
-        reset.root()
-        await reset.config()
+    constructor(filePath: string, content: string, { languageId = 'latex', isDirty = false, isClosed = false }: { languageId?: string, isDirty?: boolean, isClosed?: boolean }) {
+        this.document = new TextDocument(filePath, content, { languageId, isDirty, isClosed })
     }
+
+    edit(_: (_: vscode.TextEditorEdit) => void): Thenable<boolean> { throw new Error('Not implemented.') }
+    insertSnippet(_: vscode.SnippetString): Thenable<boolean> { throw new Error('Not implemented.') }
+    setDecorations(_d: vscode.TextEditorDecorationType, _r: vscode.Range[] | vscode.DecorationOptions[]): void { throw new Error('Not implemented.') }
+    revealRange(_: vscode.Range): void { throw new Error('Not implemented.') }
+    show(): void { throw new Error('Not implemented.') }
+    hide(): void { throw new Error('Not implemented.') }
 }

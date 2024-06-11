@@ -198,7 +198,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         beforeEach(async () => {
             stub.reset()
             lw.watcher.src.onDelete(handler)
-            await set.config('latex.watch.pdf.delay', 100)
+            await set.config('latex.watch.delay', 100)
         })
 
         afterEach(() => {

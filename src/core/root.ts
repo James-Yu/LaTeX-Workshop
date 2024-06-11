@@ -20,7 +20,16 @@ export const root = {
         langId: undefined as string | undefined,
     },
     find,
-    getWorkspace
+    getWorkspace,
+    _test: {
+        getIndicator,
+        getWorkspace,
+        findFromMagic,
+        findFromActive,
+        findFromRoot,
+        findInWorkspace,
+        findSubfiles
+    }
 }
 
 lw.watcher.src.onDelete(filePath => {
