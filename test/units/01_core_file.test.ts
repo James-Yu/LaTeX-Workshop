@@ -7,9 +7,6 @@ import { lw } from '../../src/lw'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
-    const rootDir = get.path(fixture)
-    const texPath = get.path(fixture, 'main.tex')
-    const flsPath = get.path(fixture, 'main.fls')
 
     before(() => {
         mock.object(lw, 'file')
@@ -64,10 +61,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should get output directory with an input latex', () => {
+            const rootDir = get.path(fixture)
+            const texPath = get.path(fixture, 'main.tex')
+
             assert.pathStrictEqual(lw.file.getOutDir(texPath), rootDir)
         })
 
         it('should get output directory with an input latex over the root', () => {
+            const rootDir = get.path(fixture)
+            const texPath = get.path(fixture, 'main.tex')
+
             set.root(fixture, 'main.tex')
             assert.pathStrictEqual(lw.file.getOutDir(texPath), rootDir)
         })
@@ -91,6 +94,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should get output directory with relative `latex.outDir`, root, and an input latex', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             await set.config('latex.outDir', 'output')
             set.root(fixture, 'main.tex')
             assert.pathStrictEqual(lw.file.getOutDir(texPath), 'output')
@@ -103,6 +108,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should get output directory with placeholder in `latex.outDir`, root, and an input latex', async () => {
+            const rootDir = get.path(fixture)
+            const texPath = get.path(fixture, 'main.tex')
+
             await set.config('latex.outDir', '%DIR%')
             set.root(fixture, 'main.tex')
             assert.pathStrictEqual(lw.file.getOutDir(texPath), rootDir)
@@ -156,31 +164,48 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.file.getFlsPath', () => {
         it('should return the correct path when .fls exists in the output directory', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const flsPath = get.path(fixture, 'main.fls')
+
             assert.pathStrictEqual(await lw.file.getFlsPath(texPath), flsPath)
         })
 
         it('should return undefined when .fls does not exist in the output directory', async () => {
-            assert.pathStrictEqual(await lw.file.getFlsPath(get.path(fixture, 'nonexistent.tex')), undefined)
+            const nonPath = get.path(fixture, 'nonexistent.tex')
+
+            assert.pathStrictEqual(await lw.file.getFlsPath(nonPath), undefined)
         })
 
         it('should respect custom output directory when config is set', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const flsPath = get.path(fixture, 'output', 'main.fls')
+
             await set.config('latex.outDir', 'output')
-            assert.pathStrictEqual(await lw.file.getFlsPath(texPath), get.path(fixture, 'output', 'main.fls'))
+            assert.pathStrictEqual(await lw.file.getFlsPath(texPath), flsPath)
         })
 
         it('should handle when `auxdir` is available in last compilation', async () => {
+            const texPathAnother = get.path(fixture, 'another.tex')
+            const flsPath = get.path(fixture, 'auxfiles', 'another.fls')
+
             set.root(fixture, 'another.tex')
             lw.file.setTeXDirs(lw.root.file.path ?? '', undefined, 'auxfiles')
-            assert.pathStrictEqual(await lw.file.getFlsPath(get.path(fixture, 'another.tex')), get.path(fixture, 'auxfiles', 'another.fls'))
+            assert.pathStrictEqual(await lw.file.getFlsPath(texPathAnother), flsPath)
         })
 
         it('should handle when `auxdir` is missing in last compilation', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const flsPath = get.path(fixture, 'main.fls')
+
             set.root(fixture, 'main.tex')
             lw.file.setTeXDirs(lw.root.file.path ?? '', '/output')
             assert.pathStrictEqual(await lw.file.getFlsPath(texPath), flsPath)
         })
 
         it('should handle when `auxdir` is available in last compilation, but another .fls file in the output folder has higher priority', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const flsPath = get.path(fixture, 'main.fls')
+
             set.root(fixture, 'main.tex')
             lw.file.setTeXDirs(lw.root.file.path ?? '', undefined, 'auxfiles')
             assert.pathStrictEqual(await lw.file.getFlsPath(texPath), flsPath)
@@ -191,20 +216,26 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should correctly find BibTeX files', () => {
             set.root(fixture, 'main.tex')
             const result = lw.file.getBibPath('main.bib', lw.root.dir.path ?? '')
-            assert.listStrictEqual(result, [ path.resolve(lw.root.dir.path ?? '', 'main.bib') ])
+            assert.listStrictEqual(result, [
+                path.resolve(lw.root.dir.path ?? '', 'main.bib')
+            ])
         })
 
         it('should correctly find BibTeX files in basedir', () => {
             set.root(fixture, 'main.tex')
             const result = lw.file.getBibPath('sub.bib', path.resolve(lw.root.dir.path ?? '', 'subdir'))
-            assert.listStrictEqual(result, [ path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib') ])
+            assert.listStrictEqual(result, [
+                path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib')
+            ])
         })
 
         it('should correctly find BibTeX files in `latex.bibDirs`', async () => {
             set.root(fixture, 'main.tex')
             await set.config('latex.bibDirs', [ path.resolve(lw.root.dir.path ?? '', 'subdir') ])
             const result = lw.file.getBibPath('sub.bib', lw.root.dir.path ?? '')
-            assert.listStrictEqual(result, [ path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib') ])
+            assert.listStrictEqual(result, [
+                path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib')
+            ])
         })
 
         it('should return an empty array when no BibTeX file is found', async () => {
@@ -233,12 +264,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should handle case when kpsewhich is enabled and BibTeX file not found', async () => {
+            const nonPath = get.path(fixture, 'nonexistent.bib')
+
             const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: get.path(fixture, 'nonexistent.bib'), output: [''], stderr: '', signal: 'SIGTERM' })
             await set.config('kpsewhich.bibtex.enabled', true)
             set.root(fixture, 'main.tex')
             const result = lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
-            assert.listStrictEqual(result, [ get.path(fixture, 'nonexistent.bib') ])
+            assert.listStrictEqual(result, [ nonPath ])
         })
 
         it('should return an empty array when kpsewhich is enabled but file is not found', async () => {
@@ -294,17 +327,23 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.file.getJobname', () => {
         it('should return the jobname if present in configuration', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             await set.config('latex.jobname', 'myJob')
             assert.strictEqual(lw.file.getJobname(texPath), 'myJob')
         })
 
         it('should return the name of the input texPath if jobname is empty', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             await set.config('latex.jobname', '')
             const expectedJobname = path.parse(texPath).name
             assert.strictEqual(lw.file.getJobname(texPath), expectedJobname)
         })
 
         it('should return the name of the input texPath if configuration is not set', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             await set.config('latex.jobname', undefined) // Ensuring the jobname is not set
             const expectedJobname = path.parse(texPath).name
             assert.strictEqual(lw.file.getJobname(texPath), expectedJobname)

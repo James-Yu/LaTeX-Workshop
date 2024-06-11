@@ -6,11 +6,6 @@ import { lw } from '../../src/lw'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
-    const texPath = get.path(fixture, 'main.tex')
-    const texPathAnother = get.path(fixture, 'another.tex')
-    const bibPath = get.path(fixture, 'main.bib')
-    const pdfPath = get.path(fixture, 'main.pdf')
-    const bblPath = get.path(fixture, 'main.bbl')
 
     before(() => {
         mock.object(lw, 'file', 'watcher', 'cache')
@@ -22,6 +17,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.canCache', () => {
         it('should return true for supported TeX files', () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             assert.ok(lw.cache._test.canCache(texPath))
             assert.ok(lw.cache._test.canCache(get.path(fixture, 'main.rnw')))
             assert.ok(lw.cache._test.canCache(get.path(fixture, 'main.jnw')))
@@ -40,6 +37,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.cache.isExcluded', () => {
+        const texPath = get.path(fixture, 'main.tex')
+        const bblPath = get.path(fixture, 'main.bbl')
+
         it('should return true for excluded files', () => {
             assert.ok(lw.cache._test.isExcluded(bblPath))
             assert.ok(lw.cache._test.isExcluded('/dev/null'))
@@ -57,16 +57,22 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.add', () => {
         it('should add a TeX file to watcher if not excluded', () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.cache.add(texPath)
             assert.ok(lw.watcher.src.has(texPath))
         })
 
         it('should ignore excluded files', () => {
+            const bblPath = get.path(fixture, 'main.bbl')
+
             lw.cache.add(bblPath)
             assert.ok(!lw.watcher.src.has(bblPath))
         })
 
         it('should add a file to watcher but not cache it', () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.cache.add(texPath)
             assert.strictEqual(lw.cache.promises.get(texPath), undefined)
         })
@@ -74,18 +80,25 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.get', () => {
         it('should get the cache for a TeX file if exist', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
             assert.ok(lw.cache.get(texPath))
         })
 
         it('should get undefined if a TeX file is not cached', () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             assert.ok(!lw.cache.get(texPath))
         })
     })
 
     describe('lw.cache.paths', () => {
         it('should get the paths of cached files', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const texPathAnother = get.path(fixture, 'another.tex')
+
             lw.cache.add(texPath)
             lw.cache.add(texPathAnother)
             await lw.cache.refreshCache(texPath)
@@ -101,6 +114,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.wait', () => {
         it('should wait for finishing current caching', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.cache.add(texPath)
             void lw.cache.refreshCache(texPath)
             await lw.cache.wait(texPath)
@@ -108,11 +123,15 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should initiate a caching if not already cached', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             await lw.cache.wait(texPath, 0.2)
             assert.ok(lw.cache.get(texPath))
         })
 
         it('should handle concurrent caching', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             const wait = lw.cache.wait(texPath)
             void lw.cache.refreshCache(texPath)
             await wait
@@ -122,6 +141,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.reset', () => {
         it('should reset the src and bib watchers, but not pdf', () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const bibPath = get.path(fixture, 'main.bib')
+            const pdfPath = get.path(fixture, 'main.pdf')
+
             lw.watcher.src.add(texPath)
             lw.watcher.bib.add(bibPath)
             lw.watcher.pdf.add(pdfPath)
@@ -132,6 +155,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should reset the cache', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
             lw.cache.reset()
@@ -141,6 +166,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.refreshCache', () => {
         it('should properly exclude configged sources', async () => {
+            const bblPath = get.path(fixture, 'main.bbl')
+
             await lw.cache.refreshCache(bblPath)
             assert.listStrictEqual(lw.cache.paths(), [ ])
         })
@@ -151,27 +178,37 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should cache provided TeX source', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             await lw.cache.refreshCache(texPath)
             assert.listStrictEqual(lw.cache.paths(), [ texPath ])
         })
 
         it('should update children during caching', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             await lw.cache.refreshCache(texPath)
             assert.ok(has.log('Updated inputs of '))
         })
 
         it('should update AST during caching', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             await lw.cache.refreshCache(texPath)
             assert.ok(has.log('Parsed LaTeX AST in '))
         })
 
         it('should update document elements during caching', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             await lw.cache.refreshCache(texPath)
             assert.ok(has.log('Updated elements in '))
         })
 
         it('should cache provided dirty TeX source', async () => {
+            const texPath = get.path(fixture, 'main.tex')
             const stub = mock.textDocument(texPath, '', { isDirty: true })
+
             await lw.cache.refreshCache(texPath)
             stub.restore()
             assert.listStrictEqual(lw.cache.paths(), [ texPath ])
@@ -179,11 +216,15 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should manage caching promises properly', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             await lw.cache.refreshCache(texPath)
             assert.ok(!lw.cache.promises.get(texPath))
         })
 
         it('should refresh cache if content is changed', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             await lw.cache.refreshCache(texPath)
             assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%')
             const stub = mock.textDocument(texPath, '', { isDirty: true })
@@ -201,6 +242,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should not aggressively cache non-cached files', async function (this: Mocha.Context) {
             this.slow(350)
+            const texPath = get.path(fixture, 'main.tex')
 
             lw.cache.refreshCacheAggressive(texPath)
             await sleep(150)
@@ -209,6 +251,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should aggressively cache cached files', async function (this: Mocha.Context) {
             this.slow(350)
+            const texPath = get.path(fixture, 'main.tex')
 
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
@@ -227,6 +270,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should reload .fls file when aggressively caching cached files', async function (this: Mocha.Context) {
             this.slow(350)
+            const texPath = get.path(fixture, 'main.tex')
 
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
@@ -240,6 +284,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should not aggressively cache cached files without `intellisense.update.aggressive.enabled`', async function (this: Mocha.Context) {
             this.slow(350)
+            const texPath = get.path(fixture, 'main.tex')
 
             await set.config('intellisense.update.aggressive.enabled', false)
             lw.cache.add(texPath)
@@ -253,6 +298,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should aggressively cache cached files once on quick changes', async function (this: Mocha.Context) {
             this.slow(450)
+            const texPath = get.path(fixture, 'main.tex')
 
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
@@ -277,6 +323,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should aggressively cache cached files multiple times on slow changes', async function (this: Mocha.Context) {
             this.slow(650)
+            const texPath = get.path(fixture, 'main.tex')
 
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
@@ -297,6 +344,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.updateAST', () => {
         it('should call lw.parser.parse.tex to parse AST', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
             const texCache = lw.cache.get(texPath)
@@ -309,6 +358,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.updateChildrenInput', () => {
         it('should not add any children if there is nothing', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
             assert.listStrictEqual(lw.cache.get(texPath)?.children, [ ])
@@ -316,6 +367,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should not add a child if the files does not exist', async () => {
             const toParse = get.path(fixture, 'update_children', 'file_not_exist.tex')
+
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
             assert.listStrictEqual(lw.cache.get(toParse)?.children, [ ])
@@ -323,6 +375,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should not add a child if it is the root', async () => {
             const toParse = get.path(fixture, 'update_children', 'input_main.tex')
+
             set.root(fixture, 'main.tex')
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
@@ -330,7 +383,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add a child and cache it if not cached', async () => {
+            const texPath = get.path(fixture, 'main.tex')
             const toParse = get.path(fixture, 'update_children', 'input_main.tex')
+
             set.root(fixture, 'another.tex')
             assert.strictEqual(lw.cache.get(texPath), undefined)
             lw.cache.add(toParse)
@@ -341,21 +396,28 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should watch the child', async () => {
+            const texPath = get.path(fixture, 'main.tex')
             const toParse = get.path(fixture, 'update_children', 'input_main.tex')
+
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
             assert.ok(lw.watcher.src.has(texPath))
         })
 
         it('should add two children if there are two inputs', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const texPathAnother = get.path(fixture, 'another.tex')
             const toParse = get.path(fixture, 'update_children', 'two_inputs.tex')
+
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
             assert.listStrictEqual(lw.cache.get(toParse)?.children.map(child => child.filePath), [ texPath, texPathAnother ])
         })
 
         it('should add one child if two inputs are identical', async () => {
+            const texPath = get.path(fixture, 'main.tex')
             const toParse = get.path(fixture, 'update_children', 'two_same_inputs.tex')
+
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
             assert.listStrictEqual(lw.cache.get(toParse)?.children.map(child => child.filePath), [ texPath ])
@@ -364,6 +426,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.updateChildrenXr', () => {
         it('should not add any children if there is nothing', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
             const fileCache = lw.cache.get(texPath)
@@ -391,6 +455,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add a child to root instead of the current file', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const texPathAnother = get.path(fixture, 'another.tex')
+
             set.root(texPathAnother)
             lw.cache.add(texPathAnother)
             await lw.cache.refreshCache(texPathAnother)
@@ -409,7 +476,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add a child if it is next to the source', async () => {
+            const texPath = get.path(fixture, 'main.tex')
             const toParse = get.path(fixture, 'update_children_xr', 'input_main.tex')
+
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
             const fileCache = lw.cache.get(toParse)
@@ -433,6 +502,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add a child if it is defined in `latex.texDirs`', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             await set.config('latex.texDirs', [ get.path(fixture, 'update_children_xr', 'sub') ])
 
             set.root(texPath)
@@ -449,6 +520,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add a child and cache it if not cached', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             assert.strictEqual(lw.cache.get(texPath), undefined)
 
             const toParse = get.path(fixture, 'update_children_xr', 'input_main.tex')
@@ -459,14 +532,18 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should watch the child', async () => {
+            const texPath = get.path(fixture, 'main.tex')
             const toParse = get.path(fixture, 'update_children_xr', 'input_main.tex')
+
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
             assert.ok(lw.watcher.src.has(texPath))
         })
 
         it('should add a child with prefix', async () => {
+            const texPath = get.path(fixture, 'main.tex')
             const toParse = get.path(fixture, 'update_children_xr', 'input_main_prefix.tex')
+
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
             const fileCache = lw.cache.get(toParse)
@@ -477,6 +554,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.updateBibfiles', () => {
         it('should not add any bib files if there is nothing', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
             const fileCache = lw.cache.get(texPath)
@@ -494,7 +573,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add bib files with \\bibliography, \\addbibresource, \\putbib, and possible presense of \\subfix', async () => {
+            const bibPath = get.path(fixture, 'main.bib')
             const toParse = get.path(fixture, 'update_bibfiles', 'main.tex')
+
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
             const fileCache = lw.cache.get(toParse)
@@ -510,7 +591,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add multiple bib files in one macro', async () => {
+            const bibPath = get.path(fixture, 'main.bib')
             const toParse = get.path(fixture, 'update_bibfiles', 'same_macro.tex')
+
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
             const fileCache = lw.cache.get(toParse)
@@ -531,7 +614,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should watch bib files if added', async () => {
+            const bibPath = get.path(fixture, 'main.bib')
             const toParse = get.path(fixture, 'update_bibfiles', 'same_macro.tex')
+
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
             assert.ok(lw.watcher.bib.has(bibPath))
@@ -540,6 +625,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.loadFlsFile and lw.cache.parseFlsContent', () => {
         it('should do nothing if no .fls is found', async () => {
+            const texPathAnother = get.path(fixture, 'another.tex')
+
             await lw.cache.loadFlsFile(texPathAnother)
             assert.ok(!has.log('Parsing .fls '))
         })
@@ -573,6 +660,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should not consider files that already been cached', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
             const toParse = get.path(fixture, 'load_fls_file', 'include_main.tex')
@@ -582,25 +671,34 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add file as child if all checks passed', async () => {
+            const texPath = get.path(fixture, 'main.tex')
             const toParse = get.path(fixture, 'load_fls_file', 'include_main.tex')
+
             await lw.cache.loadFlsFile(toParse)
             assert.listStrictEqual(lw.cache.get(toParse)?.children.map(child => child.filePath), [ texPath ])
         })
 
         it('should add multiple files as children if all checks passed', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const texPathAnother = get.path(fixture, 'another.tex')
             const toParse = get.path(fixture, 'load_fls_file', 'include_many.tex')
+
             await lw.cache.loadFlsFile(toParse)
             assert.listStrictEqual(lw.cache.get(toParse)?.children.map(child => child.filePath), [ texPath, texPathAnother ])
         })
 
         it('should watch added .tex files', async () => {
+            const texPath = get.path(fixture, 'main.tex')
             const toParse = get.path(fixture, 'load_fls_file', 'include_main.tex')
+
             await lw.cache.loadFlsFile(toParse)
             assert.ok(lw.watcher.src.has(texPath))
         })
 
         it('should watch added non-.tex files', async () => {
+            const pdfPath = get.path(fixture, 'main.pdf')
             const toParse = get.path(fixture, 'load_fls_file', 'non_tex_input.tex')
+
             await lw.cache.loadFlsFile(toParse)
             assert.ok(lw.watcher.src.has(pdfPath))
         })
@@ -659,25 +757,33 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should return a list of included .bib files', async () => {
+            const bibPath = get.path(fixture, 'main.bib')
             const toParse = get.path(fixture, 'included_bib', 'main.tex')
+
             await lw.cache.refreshCache(toParse)
             assert.listStrictEqual(lw.cache.getIncludedBib(toParse), [ bibPath ])
         })
 
         it('should return a list of included .bib files with \\input', async () => {
+            const bibPath = get.path(fixture, 'main.bib')
             const toParse = get.path(fixture, 'included_bib', 'another.tex')
+
             await lw.cache.refreshCache(toParse)
             assert.listStrictEqual(lw.cache.getIncludedBib(toParse), [ bibPath ])
         })
 
         it('should return a list of included .bib files with circular inclusions', async () => {
+            const bibPath = get.path(fixture, 'main.bib')
             const toParse = get.path(fixture, 'included_bib', 'circular_1.tex')
+
             await lw.cache.refreshCache(toParse)
             assert.listStrictEqual(lw.cache.getIncludedBib(toParse), [ bibPath ])
         })
 
         it('should return a list of de-duplicated .bib files', async () => {
+            const bibPath = get.path(fixture, 'main.bib')
             const toParse = get.path(fixture, 'included_bib', 'duplicate_1.tex')
+
             await lw.cache.refreshCache(toParse)
             assert.listStrictEqual(lw.cache.getIncludedBib(toParse), [ bibPath ])
         })
@@ -733,11 +839,15 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.getFlsChildren', () => {
         it('should return an empty list if no .fls is found', async () => {
+            const texPathAnother = get.path(fixture, 'another.tex')
+
             assert.listStrictEqual(await lw.cache.getFlsChildren(texPathAnother), [ ])
         })
 
         it('should return a list of input files in the .fls file', async () => {
+            const texPath = get.path(fixture, 'main.tex')
             const toParse = get.path(fixture, 'load_fls_file', 'include_main.tex')
+
             assert.listStrictEqual(await lw.cache.getFlsChildren(toParse), [ texPath ])
         })
     })

@@ -6,8 +6,6 @@ import { lw } from '../../src/lw'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
-    const rootDir = get.path(fixture)
-    const texPath = get.path(fixture, 'main.tex')
 
     before(() => {
         mock.object(lw, 'file', 'watcher')
@@ -37,7 +35,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add a new file to be watched and create a new watcher if necessary', () => {
+            const rootDir = get.path(fixture)
+            const texPath = get.path(fixture, 'main.tex')
             const spy = sinon.spy(lw.watcher.src as any, 'createWatcher')
+
             lw.watcher.src.add(texPath)
             assert.ok(spy.called)
             assert.ok(Object.keys(lw.watcher.src._test.getWatchers()).includes(rootDir))
@@ -45,6 +46,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add a file to the existing watcher if a watcher already exists for the folder', () => {
+            const rootDir = get.path(fixture)
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.watcher.src.add(texPath)
             lw.watcher.src.add(get.path(fixture, 'another.tex'))
             assert.listStrictEqual(Object.keys(lw.watcher.src._test.getWatchers()), [ rootDir ])
@@ -58,6 +62,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should remove a file from being watched', () => {
+            const rootDir = get.path(fixture)
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.watcher.src.add(texPath)
             assert.ok(lw.watcher.src._test.getWatchers()[rootDir].files.has('main.tex'))
             lw.watcher.src.remove(texPath)
@@ -65,6 +72,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should not throw an error if the file is not being watched', () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.watcher.src.remove(texPath)
             assert.ok(true)
         })
@@ -76,11 +85,17 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should return true if a file is being watched', () => {
+            const rootDir = get.path(fixture)
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.watcher.src.add(texPath)
             assert.ok(lw.watcher.src._test.getWatchers()[rootDir].files.has('main.tex'))
         })
 
         it('should return false if a file is not being watched', () => {
+            const rootDir = get.path(fixture)
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.watcher.src.add(texPath)
             assert.ok(!lw.watcher.src._test.getWatchers()[rootDir].files.has('another.tex'))
         })
@@ -92,6 +107,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should dispose of all watchers and reset the watchers map', () => {
+            const rootDir = get.path(fixture)
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.watcher.src.add(texPath)
             const spy = sinon.spy(lw.watcher.src._test.getWatchers()[rootDir].watcher, 'dispose')
             lw.watcher.src.reset()
@@ -116,6 +134,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should call onChangeHandlers when creating watched file', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.watcher.src.add(texPath)
             await lw.watcher.src._test.onDidChange('create', vscode.Uri.file(texPath))
             assert.strictEqual(stub.callCount, 1)
@@ -123,6 +143,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should call onChangeHandlers when changing watched file', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.watcher.src.add(texPath)
             await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(texPath))
             assert.strictEqual(stub.callCount, 1)
@@ -130,12 +152,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should not call onChangeHandlers when creating non-watched file', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.watcher.src.add(texPath)
             await lw.watcher.src._test.onDidChange('create', vscode.Uri.file(get.path(fixture, 'another.tex')))
             assert.strictEqual(stub.callCount, 0)
         })
 
         it('should not call onChangeHandlers when changing non-watched file', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
             lw.watcher.src.add(texPath)
             await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(get.path(fixture, 'another.tex')))
             assert.strictEqual(stub.callCount, 0)
@@ -143,8 +169,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should call onChangeHandlers once when quickly changing watched binary file', async function (this: Mocha.Context) {
             this.slow(1050)
-
             const binPath = get.path(fixture, 'main.bin')
+
             lw.watcher.src.add(binPath)
             await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binPath))
             await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binPath))
@@ -154,8 +180,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should call onChangeHandlers multiple times when slowly changing watched binary file', async function (this: Mocha.Context) {
             this.slow(2050)
-
             const binPath = get.path(fixture, 'main.bin')
+
             lw.watcher.src.add(binPath)
             await lw.watcher.src._test.onDidChange('change', vscode.Uri.file(binPath))
             await sleep(500)
@@ -182,6 +208,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should call onDeleteHandlers when deleting watched file', async function (this: Mocha.Context) {
             this.slow(250)
+            const texPath = get.path(fixture, 'main.tex')
 
             lw.watcher.src.add(texPath)
             await lw.watcher.src._test.onDidDelete(vscode.Uri.file(texPath))
@@ -191,8 +218,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should not call onChangeHandlers when watched file is deleted then created in a short time', async function (this: Mocha.Context) {
             this.slow(250)
-
             const binPath = get.path(fixture, 'main.bin')
+
             lw.watcher.src.add(binPath)
             await lw.watcher.src._test.onDidDelete(vscode.Uri.file(binPath))
             assert.strictEqual(stub.callCount, 0)
