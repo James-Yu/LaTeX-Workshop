@@ -177,5 +177,56 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             assert.strictEqual(root, texPath)
         })
+
+        it('should find root from magic comment with different syntax', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
+            let stub = mock.activeTextEditor(texPath, '% !TeX root=main.tex')
+            let root = await lw.root._test.findFromMagic()
+            stub.restore()
+            assert.strictEqual(root, texPath)
+
+            stub = mock.activeTextEditor(texPath, '% ! TeX root=main.tex')
+            root = await lw.root._test.findFromMagic()
+            stub.restore()
+            assert.strictEqual(root, texPath)
+
+            stub = mock.activeTextEditor(texPath, '%!TEX root=main.tex')
+            root = await lw.root._test.findFromMagic()
+            stub.restore()
+            assert.strictEqual(root, texPath)
+        })
+
+        it('should find root from magic comment with different file name extension', async () => {
+            let rootPath = get.path(fixture, 'find_magic', 'main.jnw')
+            let stub = mock.activeTextEditor(rootPath, '%!TeX root=main.jnw')
+            let root = await lw.root._test.findFromMagic()
+            stub.restore()
+            assert.strictEqual(root, rootPath)
+
+            rootPath = get.path(fixture, 'find_magic', 'main.rnw')
+            stub = mock.activeTextEditor(rootPath, '%!TeX root=main.rnw')
+            root = await lw.root._test.findFromMagic()
+            stub.restore()
+            assert.strictEqual(root, rootPath)
+
+            rootPath = get.path(fixture, 'find_magic', 'main.snw')
+            stub = mock.activeTextEditor(rootPath, '%!TeX root=main.snw')
+            root = await lw.root._test.findFromMagic()
+            stub.restore()
+            assert.strictEqual(root, rootPath)
+
+            rootPath = get.path(fixture, 'find_magic', 'main.rtex')
+            stub = mock.activeTextEditor(rootPath, '%!TeX root=main.rtex')
+            root = await lw.root._test.findFromMagic()
+            stub.restore()
+            assert.strictEqual(root, rootPath)
+
+            rootPath = get.path(fixture, 'find_magic', 'main.jtexw')
+            stub = mock.activeTextEditor(rootPath, '%!TeX root=main.jtexw')
+            root = await lw.root._test.findFromMagic()
+            stub.restore()
+            assert.strictEqual(root, rootPath)
+        })
     })
 })
