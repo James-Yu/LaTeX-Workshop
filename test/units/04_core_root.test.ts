@@ -26,7 +26,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should remove root info and refind', async function (this: Mocha.Context) {
             this.slow(250)
-            const texPath = get.path(fixture, 'main.tex')
+            const texPath = get.path(fixture, 'another.tex')
 
             lw.root.file.path = texPath
             lw.watcher.src.add(texPath)
@@ -106,7 +106,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe.only('lw.root.findFromMagic', () => {
+    describe('lw.root.findFromMagic', () => {
         it('should return undefined if there is no active editor', async () => {
             const stub = sinon.stub(vscode.window, 'activeTextEditor').value(undefined)
             const root = await lw.root._test.findFromMagic()
