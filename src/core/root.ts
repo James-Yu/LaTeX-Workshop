@@ -27,8 +27,7 @@ export const root = {
         findFromMagic,
         findFromActive,
         findFromRoot,
-        findInWorkspace,
-        findSubfiles
+        findInWorkspace
     }
 }
 
@@ -264,19 +263,16 @@ function findFromActive(): string | undefined {
  * if not found.
  */
 function findSubfiles(content: string): string | undefined {
-    if (!vscode.window.activeTextEditor) {
-        return
-    }
     const regex = /(?:\\documentclass\[(.*)\]{subfiles})/s
     const result = content.match(regex)
-    if (result) {
-        const filePath = utils.resolveFile([path.dirname(vscode.window.activeTextEditor.document.fileName)], result[1])
-        if (filePath) {
-            logger.log(`Found subfile root ${filePath} from active.`)
-        }
-        return filePath
+    if (!result) {
+        return
     }
-    return
+    const filePath = utils.resolveFile([path.dirname(vscode.window.activeTextEditor!.document.fileName)], result[1])
+    if (filePath) {
+        logger.log(`Found subfile root ${filePath} from active.`)
+    }
+    return filePath
 }
 
 /**

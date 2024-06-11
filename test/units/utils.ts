@@ -103,10 +103,10 @@ export const mock = {
             }
         })
     },
-    textDocument: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean } = {}) => {
+    textDocument: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string } = {}) => {
         return sinon.stub(vscode.workspace, 'textDocuments').value([ new TextDocument(filePath, content, params) ])
     },
-    activeTextEditor: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean } = {}) => {
+    activeTextEditor: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string } = {}) => {
         return sinon.stub(vscode.window, 'activeTextEditor').value(new TextEditor(filePath, content, params))
     }
 }
@@ -135,10 +135,10 @@ class TextDocument implements vscode.TextDocument {
     eol: vscode.EndOfLine = vscode.EndOfLine.LF
     lineCount: number
 
-    constructor(filePath: string, content: string, { languageId = 'latex', isDirty = false, isClosed = false }: { languageId?: string, isDirty?: boolean, isClosed?: boolean }) {
+    constructor(filePath: string, content: string, { languageId = 'latex', isDirty = false, isClosed = false, scheme = 'file' }: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string }) {
         this.content = content
         this.lines = content.split('\n')
-        this.uri = vscode.Uri.file(filePath)
+        this.uri = scheme === 'file' ? vscode.Uri.file(filePath) : vscode.Uri.from({ scheme, path: filePath })
         this.fileName = filePath
         this.languageId = languageId
         this.isDirty = isDirty
@@ -163,8 +163,8 @@ class TextEditor implements vscode.TextEditor {
     options: vscode.TextEditorOptions = {}
     viewColumn: vscode.ViewColumn | undefined = vscode.ViewColumn.Active
 
-    constructor(filePath: string, content: string, { languageId = 'latex', isDirty = false, isClosed = false }: { languageId?: string, isDirty?: boolean, isClosed?: boolean }) {
-        this.document = new TextDocument(filePath, content, { languageId, isDirty, isClosed })
+    constructor(filePath: string, content: string, { languageId = 'latex', isDirty = false, isClosed = false, scheme = 'file' }: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string }) {
+        this.document = new TextDocument(filePath, content, { languageId, isDirty, isClosed, scheme })
     }
 
     edit(_: (_: vscode.TextEditorEdit) => void): Thenable<boolean> { throw new Error('Not implemented.') }

@@ -828,6 +828,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should return a list of de-duplicated .tex files', async () => {
             const toParse = get.path(fixture, 'included_tex', 'duplicate_1.tex')
             await lw.cache.refreshCache(toParse)
+            await lw.cache.wait(get.path(fixture, 'included_tex', 'another.tex'))
             assert.listStrictEqual(lw.cache.getIncludedTeX(toParse), [
                 get.path(fixture, 'included_tex', 'duplicate_1.tex'),
                 get.path(fixture, 'included_tex', 'duplicate_2.tex'),
