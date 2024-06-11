@@ -79,8 +79,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const workspace = lw.root._test.getWorkspace(texPath)
 
             assert.strictEqual(
-                workspace?.path,
-                vscode.workspace.workspaceFile?.fsPath ?? vscode.workspace.workspaceFolders?.[0].uri.fsPath ?? ''
+                workspace,
+                vscode.workspace.workspaceFile ?? vscode.workspace.workspaceFolders?.[0].uri
             )
         })
 
@@ -88,8 +88,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const workspace = lw.root._test.getWorkspace()
 
             assert.strictEqual(
-                workspace?.path,
-                vscode.workspace.workspaceFile?.fsPath ?? vscode.workspace.workspaceFolders?.[0].uri.fsPath ?? ''
+                workspace,
+                vscode.workspace.workspaceFile ?? vscode.workspace.workspaceFolders?.[0].uri
             )
         })
 
@@ -100,8 +100,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             stub.restore()
 
             assert.strictEqual(
-                workspace?.path,
-                vscode.workspace.workspaceFile?.fsPath ?? vscode.workspace.workspaceFolders?.[0].uri.fsPath ?? ''
+                workspace,
+                vscode.workspace.workspaceFile ?? vscode.workspace.workspaceFolders?.[0].uri
             )
         })
     })
