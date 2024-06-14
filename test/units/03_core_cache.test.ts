@@ -808,12 +808,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             ])
         })
 
-        it('should return a list of included .tex files, but only cached ones with `cachedOnly` flag', async () => {
+        it('should return a list of included .tex files even non-cached with `cachedOnly` set to `false`', async () => {
             const toParse = get.path(fixture, 'included_tex', 'main.tex')
             await lw.cache.refreshCache(toParse)
             lw.cache._test.caches.delete(get.path(fixture, 'included_tex', 'another.tex'))
-            assert.strictEqual(lw.cache.getIncludedTeX(toParse, [], true).length, 1)
-            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse, [], true), [ get.path(fixture, 'included_tex', 'main.tex') ])
+            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse, false), [
+                get.path(fixture, 'included_tex', 'main.tex'),
+                get.path(fixture, 'included_tex', 'another.tex')
+            ])
         })
 
         it('should return a list of included .bib files with circular inclusions', async () => {

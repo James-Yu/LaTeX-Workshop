@@ -740,13 +740,13 @@ function getIncludedBib(filePath?: string, includedBib: string[] = [], checkedTe
  *
  * @param {string} [filePath] - The path to the starting file. Defaults to the
  * root file path.
- * @param {string[]} [includedTeX=[]] - An array to store the paths of included
- * TeX files.
  * @param {boolean} [cachedOnly=true] - A flag indicating whether to consider
  * only cached files.
+ * @param {string[]} [includedTeX=[]] - An array to store the paths of included
+ * TeX files.
  * @returns {string[]} - An array of paths to included TeX files.
  */
-function getIncludedTeX(filePath?: string, includedTeX: string[] = [], cachedOnly: boolean = true): string[] {
+function getIncludedTeX(filePath?: string, cachedOnly: boolean = true, includedTeX: string[] = []): string[] {
     filePath = filePath ?? lw.root.file.path
     if (filePath === undefined) {
         return []
@@ -764,7 +764,7 @@ function getIncludedTeX(filePath?: string, includedTeX: string[] = [], cachedOnl
             // Already included
             continue
         }
-        getIncludedTeX(child.filePath, includedTeX, cachedOnly)
+        getIncludedTeX(child.filePath, cachedOnly, includedTeX)
     }
     return Array.from(new Set(includedTeX))
 }
