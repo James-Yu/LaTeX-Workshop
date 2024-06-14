@@ -406,6 +406,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
             await lw.cache.refreshCache(texPath)
+            const children = lw.cache.getIncludedTeX(texPath, false)
+            assert.listStrictEqual(children, [texPath, texPathAnother])
+
             const stub = mock.activeTextEditor(texPathAnother, '\\documentclass{article}\n')
             const root = await lw.root._test.findInWorkspace()
             stub.restore()
