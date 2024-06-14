@@ -405,15 +405,26 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const texPathAnother = get.path(fixture, 'find_workspace', 'another.tex')
 
             await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
+            await set.config('latex.search.rootFiles.exclude', [ `${fixture}/find_workspace/main.tex` ])
             await lw.cache.refreshCache(texPath)
-            const children = lw.cache.getIncludedTeX(texPath, false)
-            assert.listStrictEqual(children, [texPath, texPathAnother])
-
             const stub = mock.activeTextEditor(texPathAnother, '\\documentclass{article}\n')
             const root = await lw.root._test.findInWorkspace()
             stub.restore()
 
             assert.strictEqual(root, texPath)
+        })
+
+        it('should find the correct root if there is a fls file, and the children of root includes active editor', async () => {
+            const texPath = get.path(fixture, 'find_workspace', 'parent.tex')
+            const texPathAnother = get.path(fixture, 'find_workspace', 'another.tex')
+
+            await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
+            await lw.cache.refreshCache(texPath)
+            const stub = mock.activeTextEditor(texPathAnother, '\\documentclass{article}\n')
+            const root = await lw.root._test.findInWorkspace()
+            stub.restore()
+
+            assert.strictEqual(root, get.path(fixture, 'find_workspace', 'main.tex'))
         })
 
         it('should find the correct root if current root is in the candidates', async () => {

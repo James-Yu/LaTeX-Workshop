@@ -318,8 +318,8 @@ async function findInWorkspace(): Promise<string | undefined> {
                 // Can be a root
                 const children = lw.cache.getIncludedTeX(fileUri.fsPath, false).filter(filePath => filePath !== fileUri.fsPath)
                 if (vscode.window.activeTextEditor && children.includes(vscode.window.activeTextEditor.document.fileName)) {
-                    logger.log(`Found root file from parent: ${fileUri.fsPath}`)
-                    return fileUri.fsPath
+                    logger.log(`Found root file from active editor by parent: ${fileUri.fsPath}`)
+                    candidates.unshift(fileUri.fsPath)
                 }
                 // Not including the active file, yet can still be a root candidate
                 candidates.push(fileUri.fsPath)
