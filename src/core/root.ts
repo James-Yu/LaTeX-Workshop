@@ -302,27 +302,32 @@ async function findInWorkspace(): Promise<string | undefined> {
     try {
         const fileUris = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
         const candidates: string[] = []
+        console.log(fileUris)
         for (const fileUri of fileUris) {
             if (fileUri.scheme !== 'file') {
                 logger.log(`Skip the file: ${fileUri.toString(true)}`)
                 continue
             }
             const flsChildren = await lw.cache.getFlsChildren(fileUri.fsPath)
+            console.log('fls', flsChildren)
             if (vscode.window.activeTextEditor && flsChildren.includes(vscode.window.activeTextEditor.document.fileName)) {
                 logger.log(`Found root file from '.fls': ${fileUri.fsPath}`)
                 return fileUri.fsPath
             }
             const content = utils.stripCommentsAndVerbatim(fs.readFileSync(fileUri.fsPath).toString())
             const result = content.match(getIndicator())
+            console.log('res', result)
             if (result) {
                 // Can be a root
                 const children = lw.cache.getIncludedTeX(fileUri.fsPath, false).filter(filePath => filePath !== fileUri.fsPath)
+                console.log('cld', children, vscode.window.activeTextEditor?.document.fileName)
                 if (vscode.window.activeTextEditor && children.includes(vscode.window.activeTextEditor.document.fileName)) {
                     logger.log(`Found root file from parent: ${fileUri.fsPath}`)
                     return fileUri.fsPath
                 }
                 // Not including the active file, yet can still be a root candidate
                 candidates.push(fileUri.fsPath)
+                console.log('can', candidates)
             }
         }
         if (root.file.path && candidates.includes(root.file.path)) {
