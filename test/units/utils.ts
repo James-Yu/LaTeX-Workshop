@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as os from 'os'
+import * as fs from 'fs'
 import * as path from 'path'
 import * as nodeAssert from 'assert'
 import * as sinon from 'sinon'
@@ -115,11 +116,30 @@ export const hooks = {
     beforeEach: () => {
         log.resetCachedLog()
     },
-    afterEach: async () => {
+    async afterEach(this: Mocha.Context) {
+        cacheLog(this)
         reset.cache()
         reset.root()
         await reset.config()
     }
+}
+
+function cacheLog(context: Mocha.Context) {
+    function sanitize(name: string): string {
+        return name.replace(/[^a-z0-9_]/gi, '_').replace(/_{2,}/gi, '_').toLowerCase()
+    }
+    const name = sanitize(context.currentTest?.title ?? '')
+
+    const cachedLog = log.getCachedLog()
+    const folders = []
+    let parent = context.currentTest?.parent
+    while(parent && parent.title !== '') {
+        folders.unshift(sanitize(parent.title.replaceAll(':', '')))
+        parent = parent.parent
+    }
+    const logFolder = path.resolve(__dirname, '../../../test/log', 'unittest', ...folders)
+    fs.mkdirSync(logFolder, {recursive: true})
+    fs.writeFileSync(path.resolve(logFolder, `${name}.log`), cachedLog.CACHED_EXTLOG.join('\n'))
 }
 
 class TextDocument implements vscode.TextDocument {
