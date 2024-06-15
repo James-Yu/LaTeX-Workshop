@@ -9,6 +9,7 @@ import {ViewerHistory} from './components/viewerhistory.js'
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState, SynctexData, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
 
+declare const pdfjsLib: any
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
 
@@ -412,7 +413,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         scrollTop: number,
         scrollLeft: number
     } | undefined
-    private refreshPDFViewer() {
+    private async refreshPDFViewer() {
         if (!this.autoReloadEnabled) {
             this.addLogMessage('Auto reload temporarily disabled.')
             return
@@ -437,12 +438,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             PDFViewerApplicationOptions.set('spreadModeOnLoad', pack.spreadMode)
         }
 
-        void PDFViewerApplication.open({
-            url: `${utils.pdfFilePrefix}${this.encodedPdfFilePath}`
-        }).then(() => {
-            // reset the document title to the original value to avoid duplication
-            document.title = this.documentTitle
-        })
+        // eslint-disable-next-line
+        PDFViewerApplication.load(await pdfjsLib.getDocument(`/${utils.pdfFilePrefix}${this.encodedPdfFilePath}`).promise)
+        // reset the document title to the original value to avoid duplication
+        document.title = this.documentTitle
         this.onPagesInit(() => {
             if (pack.sidebarView) {
                 PDFViewerApplication.pdfSidebar.switchView(pack.sidebarView)
@@ -537,7 +536,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     break
                 }
                 case 'refresh': {
-                    this.refreshPDFViewer()
+                    void this.refreshPDFViewer()
                     break
                 }
                 case 'reload': {
