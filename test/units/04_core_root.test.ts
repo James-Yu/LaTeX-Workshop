@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { assert, get, has, mock, set } from './utils'
+import { assert, get, has, mock, set, sleep } from './utils'
 import { lw } from '../../src/lw'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
@@ -339,6 +339,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             stub.restore()
 
             assert.strictEqual(root, get.path(fixture, 'find_active', 'main.tex'))
+            assert.strictEqual(lw.root.subfiles.path, texPath)
         })
 
         it('should find root if active file is a subfile but points to non-existing file', () => {
@@ -437,6 +438,85 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             stub.restore()
 
             assert.strictEqual(root, texPath)
+        })
+    })
+
+    describe.only('lw.root.find', () => {
+        beforeEach(() => {
+            (lw.outline.refresh as sinon.SinonStub).reset()
+            ;(lw.completion.input.reset as sinon.SinonStub).reset()
+            ;(lw.lint.label.reset as sinon.SinonStub).reset()
+        })
+
+        it('should not change root if no new root can be found, only refresh outline', async () => {
+            await set.config('latex.search.rootFiles.exclude', [ '**/*.*' ])
+
+            await lw.root.find()
+
+            assert.strictEqual(lw.root.file.path, undefined)
+            assert.strictEqual((lw.outline.refresh as sinon.SinonStub).callCount, 1)
+        })
+
+        it('should not change root if new root remains the same, only refresh outline', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            set.root(fixture, 'main.tex')
+
+            const stub = mock.activeTextEditor(texPath, '%!TeX root=main.tex')
+            const cacheStub = sinon.spy(lw.cache, 'refreshCache')
+            await lw.root.find()
+            stub.restore()
+            cacheStub.restore()
+
+            assert.strictEqual(lw.root.file.path, texPath)
+            assert.strictEqual((lw.outline.refresh as sinon.SinonStub).callCount, 1)
+            assert.strictEqual(cacheStub.callCount, 0)
+        })
+
+        it('should set path, dir, langId on newly found root', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
+            const stub = mock.activeTextEditor(texPath, '%!TeX root=main.tex')
+            await lw.root.find()
+            stub.restore()
+
+            assert.strictEqual(lw.root.file.path, texPath)
+            assert.strictEqual(lw.root.file.langId, lw.file.getLangId(texPath))
+            assert.strictEqual(lw.root.dir.path, path.dirname(texPath))
+        })
+
+        it('should reset input completion, duplicate label cache, and file caches on newly found root', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
+            const stub = mock.activeTextEditor(texPath, '%!TeX root=main.tex')
+            const cacheSpy = sinon.spy(lw.cache, 'reset')
+            await lw.root.find()
+            stub.restore()
+            cacheSpy.restore()
+
+            assert.strictEqual(cacheSpy.callCount, 1)
+            assert.strictEqual((lw.completion.input.reset as sinon.SinonStub).callCount, 1)
+            assert.strictEqual((lw.lint.label.reset as sinon.SinonStub).callCount, 1)
+        })
+
+        it('should watch, cache, and parse fls of the new root', async function (this: Mocha.Context) {
+            this.slow(300)
+            const texPath = get.path(fixture, 'main.tex')
+
+            const stub = mock.activeTextEditor(texPath, '%!TeX root=main.tex')
+            const cacheSpy1 = sinon.spy(lw.cache, 'refreshCache')
+            const cacheSpy2 = sinon.spy(lw.cache, 'loadFlsFile')
+            await lw.root.find()
+            stub.restore()
+            cacheSpy1.restore()
+
+            assert.ok(lw.watcher.src.has(texPath))
+            assert.strictEqual(cacheSpy1.callCount, 1)
+
+            await lw.cache.wait(texPath)
+            await sleep(50)
+            cacheSpy2.restore()
+
+            assert.strictEqual(cacheSpy2.callCount, 1)
         })
     })
 })

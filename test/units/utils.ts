@@ -92,14 +92,17 @@ export function sleep(ms: number) {
 
 export const mock = {
     object: (obj: any, ...ignore: string[]) => {
-        Object.getOwnPropertyNames(obj).forEach(item => {
+        const items = Object.getPrototypeOf(obj) === Object.prototype
+            ? Object.getOwnPropertyNames(obj)
+            : Object.getOwnPropertyNames(Object.getPrototypeOf(obj))
+        items.forEach(item => {
             // Don't stub the unit to be tested or the logging/external functions.
             if (ignore.includes(item) || ['log', 'external'].includes(item)) {
                 return
             }
             if (typeof obj[item] === 'object') {
                 mock.object(obj[item])
-            } else if (typeof obj[item] === 'function') {
+            } else if (typeof obj[item] === 'function' && obj[item].callCount === undefined) {
                 sinon.stub(obj, item)
             }
         })
