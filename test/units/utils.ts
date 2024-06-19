@@ -97,7 +97,7 @@ export const mock = {
             : Object.getOwnPropertyNames(Object.getPrototypeOf(obj))
         items.forEach(item => {
             // Don't stub the unit to be tested or the logging/external functions.
-            if (ignore.includes(item) || ['log', 'external'].includes(item)) {
+            if (ignore.includes(item) || ['log', 'external', 'constant'].includes(item)) {
                 return
             }
             if (typeof obj[item] === 'object') {

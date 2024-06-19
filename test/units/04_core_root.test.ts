@@ -441,7 +441,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe.only('lw.root.find', () => {
+    describe('lw.root.find', () => {
         beforeEach(() => {
             (lw.outline.refresh as sinon.SinonStub).reset()
             ;(lw.completion.input.reset as sinon.SinonStub).reset()
