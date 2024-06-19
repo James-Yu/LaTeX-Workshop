@@ -33,7 +33,7 @@ lw.watcher.pdf.onChange(pdfPath => {
         refresh(pdfPath)
     }
 })
-lw.onConfigChange(['view.pdf.trim', 'view.pdf.invert', 'view.pdf.invertMode', 'view.pdf.color', 'view.pdf.internal'], () => {
+lw.onConfigChange(['view.pdf.invert', 'view.pdf.invertMode', 'view.pdf.color', 'view.pdf.internal'], () => {
     reload()
 })
 

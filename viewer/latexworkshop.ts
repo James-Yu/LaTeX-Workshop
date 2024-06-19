@@ -206,7 +206,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
     private async applyParamsOnStart() {
         const params = await this.fetchParams()
-        this.applyNonStatefulParams(params)
+        await this.applyNonStatefulParams(params)
         const restoredState = await this.restoredState
         if (restoredState) {
             await this.restorePdfViewerState(restoredState)
@@ -435,7 +435,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
     }
 
-    private applyNonStatefulParams(params: PdfViewerParams) {
+    private async applyNonStatefulParams(params: PdfViewerParams) {
         PDFViewerApplication.pdfCursorTools.switchTool(params.hand ? 1 : 0)
         if (params.invertMode.enabled) {
             const { brightness, grayscale, hueRotate, invert, sepia } = params.invertMode
@@ -463,7 +463,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             this.synctex.registerListenerOnEachPage()
         }
 
-        changePDFViewerTrim(params.trim)
+        changePDFViewerTrim(params.trim / 100, await getPDFViewerEventBus())
     }
 
     private async setupConnectionPort() {
@@ -816,7 +816,7 @@ async function sleep(timeout: number) {
 
 const extension = new LateXWorkshopPdfViewer()
 await extension.waitSetupAppOptionsFinished()
-onPDFViewerEvent('pagesloaded', registerPDFViewerTrim)
+onPDFViewerEvent('pagesloaded', async () => registerPDFViewerTrim(await getPDFViewerEventBus()))
 
 // @ts-expect-error Must import viewer.mjs here, otherwise some config won't work. #4096
 await import('../../viewer/viewer.mjs')
