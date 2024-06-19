@@ -301,10 +301,16 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             const pos_left_top = PDFViewerApplication.pdfViewer._pages[record.page - 1].viewport.convertToViewportPoint(record.h, record.v - record.H)
             const pos_right_down = PDFViewerApplication.pdfViewer._pages[record.page - 1].viewport.convertToViewportPoint(record.h + record.W, record.v)
 
+            const canvas = document.getElementsByClassName('canvasWrapper')[0] as HTMLElement
+            pos_left_top[0] += canvas.offsetLeft
+            pos_left_top[1] += canvas.offsetTop
+            pos_right_down[0] += canvas.offsetLeft
+            pos_right_down[1] += canvas.offsetTop
+
             const { scrollX, scrollY } = this.scrollToPosition(page, pos_left_top[0], pos_left_top[1])
 
             if (record.indicator) {
-                const width_px = pos_right_down[0] - pos_left_top[0]
+                const width_px = pos_right_down[0] - Math.max(scrollX, pos_left_top[0])
                 const height_px = pos_left_top[1] - pos_right_down[1]
                 this.createIndicator('rect', scrollX, scrollY, width_px, height_px)
             }
@@ -316,6 +322,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
         // https://github.com/James-Yu/LaTeX-Workshop/pull/417
         const pos = PDFViewerApplication.pdfViewer._pages[data.page - 1].viewport.convertToViewportPoint(data.x, data.y)
+        console.log(pos)
         const { scrollX, scrollY } = this.scrollToPosition(page, pos[0], pos[1], true)
 
         if (data.indicator) {

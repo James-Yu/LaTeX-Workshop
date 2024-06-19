@@ -28,14 +28,9 @@ export class SyncTex {
                 textAfterSelection = text.substring(selection.anchorOffset)
             }
         }
-        const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
-        let left = e.pageX - pageDom.offsetLeft + viewerContainer.scrollLeft
-        const top = e.pageY - pageDom.offsetTop + viewerContainer.scrollTop
-        if (trimSelect.selectedIndex > 0) {
-            const m = canvasDom.style.left.match(/-(.*)px/)
-            const offsetLeft = m ? Number(m[1]) : 0
-            left += offsetLeft
-        }
+        const canvas = document.getElementsByClassName('canvasWrapper')[0] as HTMLElement
+        const left = e.pageX - pageDom.offsetLeft + viewerContainer.scrollLeft - canvas.offsetLeft
+        const top = e.pageY - pageDom.offsetTop + viewerContainer.scrollTop - canvas.offsetTop
         const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvasDom.offsetHeight - top)
         this.lwApp.send({type: 'reverse_synctex', pdfFileUri: this.lwApp.pdfFileUri, pos, page, textBeforeSelection, textAfterSelection})
     }
