@@ -1,4 +1,3 @@
-import type {PageTrimmer} from './pagetrimmer.js'
 import type {ClientRequest} from '../../types/latex-workshop-protocol-types/index'
 import type {SyncTex} from './synctex.js'
 import type {ViewerHistory} from './viewerhistory.js'
@@ -11,7 +10,6 @@ export interface ILatexWorkshopPdfViewer {
     readonly documentTitle: string,
     readonly embedded: boolean,
     readonly encodedPdfFilePath: string,
-    readonly pageTrimmer: PageTrimmer,
     readonly pdfFileUri: string,
     readonly synctex: SyncTex,
     readonly viewerHistory: ViewerHistory,
@@ -64,6 +62,12 @@ export interface IPDFViewerApplication {
         _currentScale: number,
         _pages: {
             viewport: {
+                rawDims: {
+                    pageHeight: number,
+                    pageWidth: number,
+                    pageX: number,
+                    pageY: number
+                },
                 convertToViewportPoint(x: number, y: number): [number, number]
             },
             getPagePoint(x: number, y: number): [number, number]

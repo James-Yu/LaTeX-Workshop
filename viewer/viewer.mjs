@@ -12177,8 +12177,8 @@ class PDFViewer {
       } else if (this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.HORIZONTAL) {
         [hPadding, vPadding] = [vPadding, hPadding];
       }
-      const pageWidthScale = (this.container.clientWidth - hPadding) / currentPage.width * currentPage.scale / this.#pageWidthScaleFactor;
-      const pageHeightScale = (this.container.clientHeight - vPadding) / currentPage.height * currentPage.scale;
+      const pageWidthScale = (this.container.clientWidth - hPadding) / currentPage.width * currentPage.scale / this.#pageWidthScaleFactor * (1 / (1 - (viewerTrim ?? 0)));
+      const pageHeightScale = (this.container.clientHeight - vPadding) / currentPage.height * currentPage.scale * (1 / (1 - (viewerTrim ?? 0)));
       switch (value) {
         case "page-actual":
           scale = 1;

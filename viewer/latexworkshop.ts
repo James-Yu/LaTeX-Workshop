@@ -1,13 +1,13 @@
 import {IConnectionPort, createConnectionPort} from './components/connection.js'
 import {editHTML} from './components/htmleditor.js'
 import {SyncTex} from './components/synctex.js'
-import {PageTrimmer, registerPageTrimmer} from './components/pagetrimmer.js'
 import * as utils from './components/utils.js'
 import {ExternalPromise} from './components/externalpromise.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState, SynctexData, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
+import { changePDFViewerTrim, registerPDFViewerTrim } from './components/trimming.js'
 
 declare const pdfjsLib: any
 declare const PDFViewerApplication: IPDFViewerApplication
@@ -17,7 +17,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly documentTitle: string = ''
     readonly embedded = window.parent !== window
     readonly encodedPdfFilePath: string
-    readonly pageTrimmer: PageTrimmer
     readonly pdfFileUri: string
     readonly synctex: SyncTex
     readonly viewerHistory: ViewerHistory
@@ -27,18 +26,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private connectionPort: IConnectionPort
     private pdfPagesLoaded: Promise<void>
     private readonly pdfViewerStarted: Promise<void>
-    // The 'webviewerloaded' event is fired just before the initialization of PDF.js.
-    // We can set PDFViewerApplicationOptions at the time.
-    // - https://github.com/mozilla/pdf.js/wiki/Third-party-viewer-usage#initialization-promise
-    // - https://github.com/mozilla/pdf.js/pull/10318
-    private readonly webViewerLoaded: Promise<void> = new Promise((resolve) => {
-        document.addEventListener('webviewerloaded', () => resolve() )
-
-        // https://github.com/James-Yu/LaTeX-Workshop/pull/4220#issuecomment-2034520751
-        try {
-          parent.document.addEventListener('webviewerloaded', () => resolve() )
-        } catch(err) { /* do nothing */ }
-    })
     private synctexEnabled = true
     private autoReloadEnabled = true
     private readonly setupAppOptionsPromise = new ExternalPromise<void>()
@@ -62,7 +49,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.viewerHistory = new ViewerHistory(this)
         this.connectionPort = createConnectionPort(this)
         this.synctex = new SyncTex(this)
-        this.pageTrimmer = new PageTrimmer(this)
 
         this.setupConnectionPort()
             .catch((e) => console.error('Setting up connection port failed:', e))
@@ -83,8 +69,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.startSendingState()
         void this.startReceivingPanelManagerResponse()
 
-        registerPageTrimmer()
-
         this.pdfPagesLoaded = new Promise((resolve) => {
             this.onPagesLoaded(() => resolve(), {once: true})
         })
@@ -95,16 +79,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         })
         this.onViewUpdated(() => this.repositionDOM())
         void this.setupAppOptions()
-    }
-
-    // For the details of the initialization of PDF.js,
-    // see https://github.com/mozilla/pdf.js/wiki/Third-party-viewer-usage
-    // We should use only the promises provided by PDF.js here, not the ones defined by us,
-    // to avoid deadlock.
-    private async getEventBus() {
-        await this.webViewerLoaded
-        await PDFViewerApplication.initializedPromise
-        return PDFViewerApplication.eventBus
     }
 
     private repositionDOM() {
@@ -128,7 +102,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             cb()
             PDFViewerApplication.eventBus.off(documentLoadedEvent, cb0)
         }
-        void this.getEventBus().then(eventBus => {
+        void getPDFViewerEventBus().then(eventBus => {
             eventBus.on(documentLoadedEvent, cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off(documentLoadedEvent, cb0) }
@@ -142,7 +116,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 PDFViewerApplication.eventBus.off(pagesInitEvent, cb0)
             }
         }
-        void this.getEventBus().then(eventBus => {
+        void getPDFViewerEventBus().then(eventBus => {
             eventBus.on(pagesInitEvent, cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off(pagesInitEvent, cb0) }
@@ -156,7 +130,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 PDFViewerApplication.eventBus.off(pagesLoadedEvent, cb0)
             }
         }
-        void this.getEventBus().then(eventBus => {
+        void getPDFViewerEventBus().then(eventBus => {
             eventBus.on(pagesLoadedEvent, cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off(pagesLoadedEvent, cb0) }
@@ -170,7 +144,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 PDFViewerApplication.eventBus.off(viewUpdatedEvent, cb0)
             }
         }
-        void this.getEventBus().then(eventBus => {
+        void getPDFViewerEventBus().then(eventBus => {
             eventBus.on(viewUpdatedEvent, cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off(viewUpdatedEvent, cb0) }
@@ -193,7 +167,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
             scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
             scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft,
-            trim: (document.getElementById('trimSelect') as HTMLSelectElement).selectedIndex,
             synctexEnabled: this.synctexEnabled,
             autoReloadEnabled: this.autoReloadEnabled
         }
@@ -249,7 +222,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         } else {
             await this.restorePdfViewerState(params)
         }
-        this.setCssRule()
     }
 
     private async restorePdfViewerState(state: PdfViewerState) {
@@ -280,33 +252,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
         if (state.autoReloadEnabled !== undefined) {
             this.setAutoReload(state.autoReloadEnabled)
-        }
-        if (state.trim !== undefined) {
-            const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
-            const ev = new Event('change')
-            // We have to wait for currentScaleValue set above to be effected
-            // especially for cases of non-number scales.
-            // https://github.com/James-Yu/LaTeX-Workshop/issues/1870
-            void this.pdfPagesLoaded.then(() => {
-                if (state.trim === undefined) {
-                    return
-                }
-                trimSelect.selectedIndex = state.trim
-                trimSelect.dispatchEvent(ev)
-                // By setting the scale, the callbacks of trimming pages are invoked.
-                // However, given "auto" and other non-number scales, the scale will be
-                // unnecessarily recalculated, which we must avoid.
-                if (state.scale !== undefined && /\d/.exec(state.scale)) {
-                    PDFViewerApplication.pdfViewer.currentScaleValue = state.scale
-                }
-                if (state.scrollTop !== undefined) {
-                    (document.getElementById('viewerContainer') as HTMLElement).scrollTop = state.scrollTop
-                }
-                if (state.sidebarView !== undefined) {
-                    PDFViewerApplication.pdfSidebar.switchView(state.sidebarView)
-                }
-                this.sendCurrentStateToPanelManager()
-            })
         }
         this.sendCurrentStateToPanelManager()
     }
@@ -519,6 +464,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             this.synctex.reverseSynctexKeybinding = params.keybindings['synctex']
             this.synctex.registerListenerOnEachPage()
         }
+
+        changePDFViewerTrim(params.trim)
     }
 
     private async setupConnectionPort() {
@@ -591,33 +538,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 clearInterval(this.hideToolbarInterval)
             }
         }, 3000)
-    }
-
-    // Since the width of the selector of scaling depends on each locale,
-    // we have to set its `max-width` dynamically on initialization.
-    private setCssRule() {
-        let styleSheet: CSSStyleSheet | undefined
-        for (const style of document.styleSheets) {
-            if (style.href && /latexworkshop.css/.exec(style.href)) {
-                styleSheet = style
-                break
-            }
-        }
-        if (!styleSheet) {
-            return
-        }
-        const buttonW = utils.elementWidth(document.getElementById('toolbarViewerLeft') as HTMLElement, false) +
-                        utils.elementWidth(document.getElementById('secondaryToolbarToggle') as HTMLElement, false) +
-                        utils.elementWidth(document.getElementById('zoomOut')?.parentElement as HTMLElement, false) -
-                        utils.elementWidth(document.getElementById('previous')?.parentElement as HTMLElement, false)
-
-        const scaleW = utils.elementWidth(document.getElementById('scaleSelectContainer') as HTMLElement)
-        const trimW = utils.elementWidth(document.getElementById('trimSelectContainer') as HTMLElement)
-
-        const scaleRule = `@media all and (max-width: ${buttonW + scaleW}px) { #scaleSelectContainer { display: none; } }`
-        styleSheet.insertRule(scaleRule)
-        const trimRule = `@media all and (max-width: ${buttonW + scaleW + trimW}px) { #trimSelectContainer { display: none; } }`
-        styleSheet.insertRule(trimRule)
     }
 
     private decodeQuery() {
@@ -821,7 +741,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, true)
         const events: PdfjsEventName[] = ['scroll', 'scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
         for (const ev of events) {
-            void this.getEventBus().then(eventBus => {
+            void getPDFViewerEventBus().then(eventBus => {
                 eventBus.on(ev, () => {
                     this.sendCurrentStateToPanelManager()
                 })
@@ -859,11 +779,46 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
 }
 
+// The 'webviewerloaded' event is fired just before the initialization of PDF.js.
+// We can set PDFViewerApplicationOptions at the time.
+// - https://github.com/mozilla/pdf.js/wiki/Third-party-viewer-usage#initialization-promise
+// - https://github.com/mozilla/pdf.js/pull/10318
+const webViewerLoaded = new Promise<void>((resolve) => {
+    document.addEventListener('webviewerloaded', () => resolve() )
+
+    // https://github.com/James-Yu/LaTeX-Workshop/pull/4220#issuecomment-2034520751
+    try {
+        parent.document.addEventListener('webviewerloaded', () => resolve() )
+    } catch(err) { /* do nothing */ }
+})
+
+// For the details of the initialization of PDF.js,
+// see https://github.com/mozilla/pdf.js/wiki/Third-party-viewer-usage
+// We should use only the promises provided by PDF.js here, not the ones defined by us,
+// to avoid deadlock.
+async function getPDFViewerEventBus() {
+    await webViewerLoaded
+    await PDFViewerApplication.initializedPromise
+    return PDFViewerApplication.eventBus
+}
+
+export function onPDFViewerEvent(event: 'pagesloaded', cb: () => unknown, option?: { once: boolean }): IDisposable {
+    const cb0 = () => {
+        cb()
+        if (option?.once) { PDFViewerApplication.eventBus.off(event, cb0) }
+    }
+    void getPDFViewerEventBus().then(eventBus => eventBus.on(event, cb0))
+    return { dispose: () => PDFViewerApplication.eventBus.off(event, cb0) }
+}
+
+
 async function sleep(timeout: number) {
     await new Promise((resolve) => setTimeout(resolve, timeout))
 }
 
 const extension = new LateXWorkshopPdfViewer()
 await extension.waitSetupAppOptionsFinished()
+onPDFViewerEvent('pagesloaded', registerPDFViewerTrim)
+
 // @ts-expect-error Must import viewer.mjs here, otherwise some config won't work. #4096
 await import('../../viewer/viewer.mjs')

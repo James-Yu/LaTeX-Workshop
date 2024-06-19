@@ -42,21 +42,21 @@ export function editHTML() {
         }
     }
 
-    template.innerHTML =
-`<span id="trimSelectContainer" class="dropdownToolbarButton">
-<select id="trimSelect" title="Trim" tabindex="23" >
-  <option title="" value="0.0" selected="selected" >No trim</option>
-  <option title="" value="0.05" >Trim 5%</option>
-  <option title="" value="0.10" >Trim 10%</option>
-  <option title="" value="0.15" >Trim 15%</option>
-</select>
-</span>`
-    anchor = document.getElementById('scaleSelectContainer')
-    if (anchor) {
-        for (const node of template.content.childNodes) {
-            anchor.parentNode?.appendChild(node)
-        }
-    }
+//     template.innerHTML =
+// `<span id="trimSelectContainer" class="dropdownToolbarButton">
+// <select id="trimSelect" title="Trim" tabindex="23" >
+//   <option title="" value="0.0" selected="selected" >No trim</option>
+//   <option title="" value="0.05" >Trim 5%</option>
+//   <option title="" value="0.10" >Trim 10%</option>
+//   <option title="" value="0.15" >Trim 15%</option>
+// </select>
+// </span>`
+//     anchor = document.getElementById('scaleSelectContainer')
+//     if (anchor) {
+//         for (const node of template.content.childNodes) {
+//             anchor.parentNode?.appendChild(node)
+//         }
+//     }
 
     template.innerHTML = '<div id="synctex-indicator"></div>'
     anchor = document.getElementById('viewerContainer')
