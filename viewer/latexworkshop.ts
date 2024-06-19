@@ -24,7 +24,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private hideToolbarInterval: number | undefined
 
     private connectionPort: IConnectionPort
-    private pdfPagesLoaded: Promise<void>
     private readonly pdfViewerStarted: Promise<void>
     private synctexEnabled = true
     private autoReloadEnabled = true
@@ -69,14 +68,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.startSendingState()
         void this.startReceivingPanelManagerResponse()
 
-        this.pdfPagesLoaded = new Promise((resolve) => {
-            this.onPagesLoaded(() => resolve(), {once: true})
-        })
-        this.onPagesInit(() => {
-            this.pdfPagesLoaded = new Promise((resolve) => {
-                this.onPagesLoaded(() => resolve(), {once: true})
-            })
-        })
         this.onViewUpdated(() => this.repositionDOM())
         void this.setupAppOptions()
     }
@@ -802,7 +793,7 @@ async function getPDFViewerEventBus() {
     return PDFViewerApplication.eventBus
 }
 
-export function onPDFViewerEvent(event: 'pagesloaded', cb: () => unknown, option?: { once: boolean }): IDisposable {
+function onPDFViewerEvent(event: 'pagesloaded', cb: () => unknown, option?: { once: boolean }): IDisposable {
     const cb0 = () => {
         cb()
         if (option?.once) { PDFViewerApplication.eventBus.off(event, cb0) }
