@@ -37,8 +37,8 @@ with open(args.web + '/viewer.mjs', 'rt', encoding='utf-8') as fin:
                     .replace('''value: "../build/pdf.worker.mjs"''', '''value: "./build/pdf.worker.mjs"''')
                     .replace('''value: "../build/pdf.sandbox.mjs"''', '''value: "./build/pdf.sandbox.mjs"''')
                     .replace('''value: "../web/standard_fonts/"''', '''value: "../standard_fonts/"''')
-                    .replace('''(this.container.clientWidth - hPadding) / currentPage.width * currentPage.scale / this.#pageWidthScaleFactor;''', '''(this.container.clientWidth - hPadding) / currentPage.width * currentPage.scale / this.#pageWidthScaleFactor * (1 / (1 - (viewerTrim ?? 0)));''')
-                    .replace('''(this.container.clientHeight - vPadding) / currentPage.height * currentPage.scale;''', '''(this.container.clientHeight - vPadding) / currentPage.height * currentPage.scale * (1 / (1 - (viewerTrim ?? 0)));''')
+                    .replace('''(this.container.clientWidth - hPadding) / currentPage.width * currentPage.scale / this.#pageWidthScaleFactor;''', '''(this.container.clientWidth - hPadding) / currentPage.width * currentPage.scale / this.#pageWidthScaleFactor * (1 / (1 - (viewerTrim ?? 0) / 100));''')
+                    .replace('''(this.container.clientHeight - vPadding) / currentPage.height * currentPage.scale;''', '''(this.container.clientHeight - vPadding) / currentPage.height * currentPage.scale * (1 / (1 - (viewerTrim ?? 0) / 100));''')
                     # .replace('''parent.document.dispatchEvent(event);''', '''parent.document.dispatchEvent(event); \n    document.dispatchEvent(event);''')
                 )
 

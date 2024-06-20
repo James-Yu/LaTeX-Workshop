@@ -45,6 +45,7 @@ export type PdfjsEventName
     | 'scrollmodechanged'
     | 'spreadmodechanged'
     | 'pagenumberchanged'
+    | 'rotationchanging'
 
 export interface IPDFViewerApplication {
     eventBus: {

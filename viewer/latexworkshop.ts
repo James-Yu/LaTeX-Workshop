@@ -7,7 +7,7 @@ import {ViewerHistory} from './components/viewerhistory.js'
 
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState, SynctexData, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
-import { changePDFViewerTrim, registerPDFViewerTrim } from './components/trimming.js'
+import { setTrimming, initTrimming, rotateTrimming } from './components/trimming.js'
 
 declare const pdfjsLib: any
 declare const PDFViewerApplication: IPDFViewerApplication
@@ -93,7 +93,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             cb()
             PDFViewerApplication.eventBus.off(documentLoadedEvent, cb0)
         }
-        void getPDFViewerEventBus().then(eventBus => {
+        void getViewerEventBus().then(eventBus => {
             eventBus.on(documentLoadedEvent, cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off(documentLoadedEvent, cb0) }
@@ -107,7 +107,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 PDFViewerApplication.eventBus.off(pagesInitEvent, cb0)
             }
         }
-        void getPDFViewerEventBus().then(eventBus => {
+        void getViewerEventBus().then(eventBus => {
             eventBus.on(pagesInitEvent, cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off(pagesInitEvent, cb0) }
@@ -121,7 +121,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 PDFViewerApplication.eventBus.off(pagesLoadedEvent, cb0)
             }
         }
-        void getPDFViewerEventBus().then(eventBus => {
+        void getViewerEventBus().then(eventBus => {
             eventBus.on(pagesLoadedEvent, cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off(pagesLoadedEvent, cb0) }
@@ -135,7 +135,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 PDFViewerApplication.eventBus.off(viewUpdatedEvent, cb0)
             }
         }
-        void getPDFViewerEventBus().then(eventBus => {
+        void getViewerEventBus().then(eventBus => {
             eventBus.on(viewUpdatedEvent, cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off(viewUpdatedEvent, cb0) }
@@ -463,7 +463,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             this.synctex.registerListenerOnEachPage()
         }
 
-        changePDFViewerTrim(params.trim / 100, await getPDFViewerEventBus())
+        setTrimming(params.trim, await getViewerEventBus())
     }
 
     private async setupConnectionPort() {
@@ -739,7 +739,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, true)
         const events: PdfjsEventName[] = ['scroll', 'scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
         for (const ev of events) {
-            void getPDFViewerEventBus().then(eventBus => {
+            void getViewerEventBus().then(eventBus => {
                 eventBus.on(ev, () => {
                     this.sendCurrentStateToPanelManager()
                 })
@@ -794,18 +794,18 @@ const webViewerLoaded = new Promise<void>((resolve) => {
 // see https://github.com/mozilla/pdf.js/wiki/Third-party-viewer-usage
 // We should use only the promises provided by PDF.js here, not the ones defined by us,
 // to avoid deadlock.
-async function getPDFViewerEventBus() {
+async function getViewerEventBus() {
     await webViewerLoaded
     await PDFViewerApplication.initializedPromise
     return PDFViewerApplication.eventBus
 }
 
-function onPDFViewerEvent(event: 'pagesloaded', cb: () => unknown, option?: { once: boolean }): IDisposable {
-    const cb0 = () => {
-        cb()
+function onPDFViewerEvent(event: 'pagesloaded' | 'rotationchanging', cb: (evt?: any) => unknown, option?: { once: boolean }): IDisposable {
+    const cb0 = (evt?: unknown) => {
+        cb(evt)
         if (option?.once) { PDFViewerApplication.eventBus.off(event, cb0) }
     }
-    void getPDFViewerEventBus().then(eventBus => eventBus.on(event, cb0))
+    void getViewerEventBus().then(eventBus => eventBus.on(event, cb0))
     return { dispose: () => PDFViewerApplication.eventBus.off(event, cb0) }
 }
 
@@ -816,7 +816,8 @@ async function sleep(timeout: number) {
 
 const extension = new LateXWorkshopPdfViewer()
 await extension.waitSetupAppOptionsFinished()
-onPDFViewerEvent('pagesloaded', async () => registerPDFViewerTrim(await getPDFViewerEventBus()))
+onPDFViewerEvent('pagesloaded', async () => initTrimming(await getViewerEventBus()), { once: true })
+onPDFViewerEvent('rotationchanging', (evt: { pagesRotation: number }) => rotateTrimming(evt.pagesRotation))
 
 // @ts-expect-error Must import viewer.mjs here, otherwise some config won't work. #4096
 await import('../../viewer/viewer.mjs')
