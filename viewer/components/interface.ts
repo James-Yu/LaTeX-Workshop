@@ -69,6 +69,7 @@ export interface IPDFViewerApplication {
                     pageX: number,
                     pageY: number
                 },
+                rotation: number,
                 convertToViewportPoint(x: number, y: number): [number, number]
             },
             getPagePoint(x: number, y: number): [number, number]

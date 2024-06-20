@@ -816,7 +816,7 @@ async function sleep(timeout: number) {
 
 const extension = new LateXWorkshopPdfViewer()
 await extension.waitSetupAppOptionsFinished()
-onPDFViewerEvent('pagesloaded', async () => initTrim(await getViewerEventBus()), { once: true })
+onPDFViewerEvent('pagesloaded', async () => initTrim(await getViewerEventBus()))
 onPDFViewerEvent('rotationchanging', (evt: { pagesRotation: number }) => setTrimCSS(evt.pagesRotation))
 
 // @ts-expect-error Must import viewer.mjs here, otherwise some config won't work. #4096

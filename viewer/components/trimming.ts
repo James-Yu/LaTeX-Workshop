@@ -28,36 +28,40 @@ export function initTrim(eventBus: { dispatch: (eventName: string, payload: any)
 
 export function setTrimCSS(rotation: number) {
     const css = document.styleSheets[document.styleSheets.length - 1]
-
-    // Remove previous rules
-    const pageRuleIndex = ([...css.cssRules] as (CSSRule | CSSStyleRule)[])
-        .findIndex(rule => 'selectorText' in rule && rule.selectorText.includes('.page'))
-    if (pageRuleIndex > -1) {
-        css.deleteRule(pageRuleIndex)
-    }
-    const canvasRuleIndex = ([...css.cssRules] as (CSSRule | CSSStyleRule)[])
-        .findIndex(rule => 'selectorText' in rule && rule.selectorText.includes('.canvasWrapper'))
-    if (canvasRuleIndex > -1) {
-        css.deleteRule(canvasRuleIndex)
-    }
+    const prevCssCount = css.cssRules.length
 
     // Add new rules
-    const { pageRule, canvasRule } = getCSSRules([0, 180].includes(rotation))
-    css.insertRule(pageRule, css.cssRules.length)
-    css.insertRule(canvasRule, css.cssRules.length)
+    for (const [pageNum, page] of PDFViewerApplication.pdfViewer._pages.entries()) {
+        let { pageHeight, pageWidth } = page.viewport.rawDims
+        if ([90, 270].includes(page.viewport.rotation)) {
+            const temp = pageHeight
+            pageHeight = pageWidth
+            pageWidth = temp
+        }
+        const { pageRule, canvasRule } = getCSSRules(pageNum, pageHeight, pageWidth, [0, 180].includes(rotation))
+        css.insertRule(pageRule, css.cssRules.length)
+        css.insertRule(canvasRule, css.cssRules.length)
+    }
+
+    // Remove previous rules
+    for (let index = prevCssCount - 1; index >= 0; index--) {
+        const rule = css.cssRules[index] as (CSSRule | CSSStyleRule)
+        if ('selectorText' in rule && rule.selectorText.includes('.page')) {
+            css.deleteRule(index)
+        }
+    }
 }
 
-function getCSSRules(vertical: boolean = true): { pageRule: string, canvasRule: string } {
-    const { pageHeight, pageWidth } = PDFViewerApplication.pdfViewer._pages[0].viewport.rawDims
+function getCSSRules(pageNum: number, pageHeight: number, pageWidth: number, vertical: boolean = true): { pageRule: string, canvasRule: string } {
     const pageRule = `
-        .page {
+        .page[data-page-number="${pageNum + 1}"] {
             width: calc(var(--scale-factor) * ${vertical ? pageWidth : pageHeight}px * (1 - var(--trim-factor) / 100)) !important;
             height: calc(var(--scale-factor) * ${vertical ? pageHeight : pageWidth}px * (1 - var(--trim-factor) / 100)) !important;
         }`
     const canvasRule = `
-        .canvasWrapper,
-        .textLayer,
-        .annotationLayer {
+        .page[data-page-number="${pageNum + 1}"] .canvasWrapper,
+        .page[data-page-number="${pageNum + 1}"] .textLayer,
+        .page[data-page-number="${pageNum + 1}"] .annotationLayer {
             width: calc(var(--scale-factor) * ${vertical ? pageWidth : pageHeight}px) !important;
             height: calc(var(--scale-factor) * ${vertical ? pageHeight : pageWidth}px) !important;
             margin-left: calc(var(--scale-factor) * ${vertical ? pageWidth : pageHeight}px * var(--trim-factor) / -200) !important;
