@@ -5,7 +5,7 @@ declare const PDFViewerApplication: IPDFViewerApplication
 let viewerTrim = 0
 ;(globalThis as any).viewerTrim = 0
 
-export function setTrimming(trim: number, eventBus: { dispatch: (eventName: string, payload: any) => void }) {
+export function setTrimValue(trim: number, eventBus: { dispatch: (eventName: string, payload: any) => void }) {
     viewerTrim = Math.min(100, Math.max(0, trim))
     ;(globalThis as any).viewerTrim = viewerTrim
     const select = document.getElementById('scaleSelect') as HTMLInputElement
@@ -14,19 +14,19 @@ export function setTrimming(trim: number, eventBus: { dispatch: (eventName: stri
     trimPct.value = trim.toString()
 }
 
-export function initTrimming(eventBus: { dispatch: (eventName: string, payload: any) => void }) {
+export function initTrim(eventBus: { dispatch: (eventName: string, payload: any) => void }) {
     document.getElementById('viewer')!.style.setProperty('--trim-factor', (viewerTrim).toString())
-    rotateTrimming(0)
+    setTrimCSS(0)
 
     const trimPct = document.getElementById('trimPct') as HTMLInputElement
     trimPct.onchange = _ => {
         viewerTrim = Number.parseFloat(trimPct.value)
         document.getElementById('viewer')!.style.setProperty('--trim-factor', viewerTrim.toString())
-        setTrimming(viewerTrim, eventBus)
+        setTrimValue(viewerTrim, eventBus)
     }
 }
 
-export function rotateTrimming(rotation: number) {
+export function setTrimCSS(rotation: number) {
     const css = document.styleSheets[document.styleSheets.length - 1]
 
     // Remove previous rules

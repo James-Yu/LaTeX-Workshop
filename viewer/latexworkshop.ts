@@ -7,7 +7,7 @@ import {ViewerHistory} from './components/viewerhistory.js'
 
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState, SynctexData, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
-import { setTrimming, initTrimming, rotateTrimming } from './components/trimming.js'
+import { initTrim, setTrimCSS, setTrimValue } from './components/trimming.js'
 
 declare const pdfjsLib: any
 declare const PDFViewerApplication: IPDFViewerApplication
@@ -463,7 +463,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             this.synctex.registerListenerOnEachPage()
         }
 
-        setTrimming(params.trim, await getViewerEventBus())
+        setTrimValue(params.trim, await getViewerEventBus())
     }
 
     private async setupConnectionPort() {
@@ -816,8 +816,8 @@ async function sleep(timeout: number) {
 
 const extension = new LateXWorkshopPdfViewer()
 await extension.waitSetupAppOptionsFinished()
-onPDFViewerEvent('pagesloaded', async () => initTrimming(await getViewerEventBus()), { once: true })
-onPDFViewerEvent('rotationchanging', (evt: { pagesRotation: number }) => rotateTrimming(evt.pagesRotation))
+onPDFViewerEvent('pagesloaded', async () => initTrim(await getViewerEventBus()), { once: true })
+onPDFViewerEvent('rotationchanging', (evt: { pagesRotation: number }) => setTrimCSS(evt.pagesRotation))
 
 // @ts-expect-error Must import viewer.mjs here, otherwise some config won't work. #4096
 await import('../../viewer/viewer.mjs')
