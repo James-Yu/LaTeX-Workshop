@@ -20,6 +20,13 @@ export function isEmbedded(): boolean {
     return window.parent !== window
 }
 
+export function isPrefersColorSchemeDark(codeColorTheme: 'light' | 'dark') {
+    if (isEmbedded()) {
+        return codeColorTheme === 'dark'
+    }
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
 export function isPdfjsShortcut(e: Pick<KeyboardEvent, 'altKey' | 'ctrlKey' | 'metaKey' | 'shiftKey' | 'code' | 'key'>) {
     // exclusive or
     const ctrlKey = (e.ctrlKey && !e.metaKey) || (!e.ctrlKey && e.metaKey)

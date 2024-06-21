@@ -13,12 +13,6 @@ export interface ILatexWorkshopPdfViewer {
     readonly pdfFileUri: string,
     readonly synctex: SyncTex,
     readonly viewerHistory: ViewerHistory,
-
-    /**
-     * `cb` is called after the viewer started.
-     */
-    onDidStartPdfViewer(cb: () => unknown): IDisposable,
-
     send(message: ClientRequest): void
 }
 
@@ -37,12 +31,14 @@ export type PdfjsEventName
     | 'pagenumberchanged'
     | 'rotationchanging'
 
+export type PDFViewerEventBus = {
+    on: (eventName: PdfjsEventName, listener: () => void) => void,
+    off: (eventName: PdfjsEventName, listener: () => void) => void,
+    dispatch: (eventName: string, payload: any) => void
+}
+
 export interface IPDFViewerApplication {
-    eventBus: {
-        on: (eventName: PdfjsEventName, listener: () => void) => void,
-        off: (eventName: PdfjsEventName, listener: () => void) => void,
-        dispatch: (eventName: string) => void
-    },
+    eventBus: PDFViewerEventBus,
     findBar: {
         opened: boolean,
         open(): void

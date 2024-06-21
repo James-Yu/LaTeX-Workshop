@@ -6,14 +6,15 @@ import {ExternalPromise} from './components/externalpromise.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
-import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState, SynctexData, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
-import { initTrim, setTrimCSS, setTrimValue } from './components/trimming.js'
+import type {ClientRequest, ServerResponse, PanelRequest, PdfViewerParams, PdfViewerState, SynctexData, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
+import { initTrim, setTrimCSS } from './components/trimming.js'
 import { initState, refresh } from './components/refresh.js'
+import { initRestore, setParams } from './components/state.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
 
-class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
+export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly documentTitle: string = ''
     readonly embedded = window.parent !== window
     readonly encodedPdfFilePath: string
@@ -24,19 +25,11 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private hideToolbarInterval: number | undefined
 
     private connectionPort: IConnectionPort
-    private readonly pdfViewerStarted: Promise<void>
-    private synctexEnabled = true
-    private autoReloadEnabled = true
+    synctexEnabled = true
+    autoReloadEnabled = true
     private readonly setupAppOptionsPromise = new ExternalPromise<void>()
-    readonly #restoredState = new ExternalPromise<PdfViewerState | undefined>()
 
     constructor() {
-        // When the promise is resolved, the initialization
-        // of LateXWorkshopPdfViewer and PDF.js is completed.
-        this.pdfViewerStarted = new Promise((resolve) => {
-            this.onDidStartPdfViewer(() => resolve())
-        })
-
         const pack = this.decodeQuery()
         this.encodedPdfFilePath = pack.encodedPdfFilePath
         this.documentTitle = pack.documentTitle || ''
@@ -52,20 +45,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.setupConnectionPort()
             .catch((e) => console.error('Setting up connection port failed:', e))
 
-        this.onDidStartPdfViewer(() => {
-            return this.applyParamsOnStart()
-        })
-
         this.hidePrintButton()
         this.registerKeybinding()
         this.registerSynctexCheckBox()
         this.registerAutoReloadCheckBox()
         this.startRebroadcastingKeyboardEvent()
-        this.startSendingState()
-        void this.startReceivingPanelManagerResponse()
 
         this.onViewUpdated(() => this.repositionDOM())
-        void this.setupAppOptions()
     }
 
     private repositionDOM() {
@@ -81,18 +67,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 popup.style.right = '0px'
             }
         }
-    }
-
-    onDidStartPdfViewer(cb: () => unknown): IDisposable {
-        const documentLoadedEvent = 'documentloaded'
-        const cb0 = () => {
-            cb()
-            PDFViewerApplication.eventBus.off(documentLoadedEvent, cb0)
-        }
-        void getViewerEventBus().then(eventBus => {
-            eventBus.on(documentLoadedEvent, cb0)
-        })
-        return { dispose: () => PDFViewerApplication.eventBus.off(documentLoadedEvent, cb0) }
     }
 
     onViewUpdated(cb: () => unknown, option?: {once: boolean}): IDisposable {
@@ -138,81 +112,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return params
     }
 
-    private get restoredState() {
-        if (this.embedded) {
-            return this.#restoredState.promise
-        } else {
-            return
-        }
-    }
-
     async waitSetupAppOptionsFinished() {
         return this.setupAppOptionsPromise.promise
-    }
-
-    private async setupAppOptions() {
-        const workerPort = new Worker('build/pdf.worker.mjs', { type: 'module' })
-        const params = await this.fetchParams()
-        document.addEventListener('webviewerloaded', () => {
-            const color = this.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark : params.color.light
-            const options = {
-                annotationEditorMode: -1,
-                disablePreferences: true,
-                enableScripting: false,
-                cMapUrl: '../cmaps/',
-                sidebarViewOnLoad: 0,
-                standardFontDataUrl: '../standard_fonts/',
-                workerPort,
-                workerSrc: './build/pdf.worker.mjs',
-                forcePageColors: true,
-                ...color
-            }
-            PDFViewerApplicationOptions.setAll(options)
-        })
-        this.setupAppOptionsPromise.resolve()
-    }
-
-    private async applyParamsOnStart() {
-        const params = await this.fetchParams()
-        await this.applyNonStatefulParams(params)
-        const restoredState = await this.restoredState
-        if (restoredState) {
-            await this.restorePdfViewerState(restoredState)
-        } else {
-            await this.restorePdfViewerState(params)
-        }
-    }
-
-    private async restorePdfViewerState(state: PdfViewerState) {
-        await this.pdfViewerStarted
-
-        // By setting the scale, scaling will be invoked if necessary.
-        // The scale can be a non-number one.
-        if (state.scale !== undefined) {
-            PDFViewerApplication.pdfViewer.currentScaleValue = state.scale
-        }
-        if (state.scrollMode !== undefined) {
-            PDFViewerApplication.pdfViewer.scrollMode = state.scrollMode
-        }
-        if (state.spreadMode !== undefined) {
-            PDFViewerApplication.pdfViewer.spreadMode = state.spreadMode
-        }
-        if (state.scrollTop !== undefined) {
-            (document.getElementById('viewerContainer') as HTMLElement).scrollTop = state.scrollTop
-        }
-        if (state.scrollLeft !== undefined) {
-            (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = state.scrollLeft
-        }
-        if (state.sidebarView !== undefined) {
-            PDFViewerApplication.pdfSidebar.switchView(state.sidebarView)
-        }
-        if (state.synctexEnabled !== undefined) {
-            this.setSynctex(state.synctexEnabled)
-        }
-        if (state.autoReloadEnabled !== undefined) {
-            this.setAutoReload(state.autoReloadEnabled)
-        }
-        this.sendCurrentStateToPanelManager()
     }
 
     private scrollToPosition(page: HTMLElement, posX: number, posY: number, isCircle: boolean = false): { scrollX: number, scrollY: number } {
@@ -314,45 +215,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
     private reload() {
         location.reload()
-    }
-
-    isPrefersColorSchemeDark(codeColorTheme: 'light' | 'dark') {
-        if (this.embedded) {
-            return codeColorTheme === 'dark'
-        }
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    }
-
-    private async applyNonStatefulParams(params: PdfViewerParams) {
-        PDFViewerApplication.pdfCursorTools.switchTool(params.hand ? 1 : 0)
-        if (params.invertMode.enabled) {
-            const { brightness, grayscale, hueRotate, invert, sepia } = params.invertMode
-            const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`
-            if (this.isPrefersColorSchemeDark(params.codeColorTheme)) {
-                (document.querySelector('#viewerContainer') as HTMLHtmlElement).style.filter = filter
-                ;(document.querySelector('#thumbnailView') as HTMLHtmlElement).style.filter = filter
-                ;(document.querySelector('#sidebarContent') as HTMLHtmlElement).style.background = 'var(--body-bg-color)'
-            } else {
-                (document.querySelector('html') as HTMLHtmlElement).style.filter = filter
-                ;(document.querySelector('html') as HTMLHtmlElement).style.background = 'white'
-            }
-        }
-        const css = document.styleSheets[document.styleSheets.length - 1]
-        if (this.isPrefersColorSchemeDark(params.codeColorTheme)) {
-            (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.dark.backgroundColor
-            css.insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.dark.pageBorderColor}}`, css.cssRules.length)
-        } else {
-            console.log('applied');
-            (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.light.backgroundColor
-            css.insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.light.pageBorderColor}}`, css.cssRules.length)
-        }
-
-        if (params.keybindings) {
-            this.synctex.reverseSynctexKeybinding = params.keybindings['synctex']
-            this.synctex.registerListenerOnEachPage()
-        }
-
-        setTrimValue(params.trim, await getViewerEventBus())
     }
 
     private async setupConnectionPort() {
@@ -523,7 +385,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    private setSynctex(flag: boolean) {
+    setSynctex(flag: boolean) {
         const synctexOff = document.getElementById('synctexOff') as HTMLInputElement
         if (flag) {
             if (synctexOff.checked) {
@@ -552,7 +414,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         })
     }
 
-    private setAutoReload(flag: boolean) {
+    setAutoReload(flag: boolean) {
         const autoReloadOff = document.getElementById('autoReloadOff') as HTMLInputElement
         if (flag) {
             if (autoReloadOff.checked) {
@@ -581,14 +443,14 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         })
     }
 
-    private sendToPanelManager(msg: PanelRequest) {
+    sendToPanelManager(msg: PanelRequest) {
         if (!this.embedded) {
             return
         }
         window.parent?.postMessage(msg, '*')
     }
 
-    private sendCurrentStateToPanelManager() {
+    sendCurrentStateToPanelManager() {
         const pack = this.getPdfViewerState()
         this.sendToPanelManager({type: 'state', state: pack})
     }
@@ -622,52 +484,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             })
         })
     }
-
-    private startSendingState() {
-        if (!this.embedded) {
-            return
-        }
-        window.addEventListener('scroll', () => {
-            this.sendCurrentStateToPanelManager()
-        }, true)
-        const events: PdfjsEventName[] = ['scroll', 'scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
-        for (const ev of events) {
-            void getViewerEventBus().then(eventBus => {
-                eventBus.on(ev, () => {
-                    this.sendCurrentStateToPanelManager()
-                })
-            })
-        }
-    }
-
-    private async startReceivingPanelManagerResponse() {
-        await this.pdfViewerStarted
-        window.addEventListener('message', (e) => {
-            const data = e.data as PanelManagerResponse
-            if (!data.type) {
-                console.log('LateXWorkshopPdfViewer received a message of unknown type: ' + JSON.stringify(data))
-                return
-            }
-            switch (data.type) {
-                case 'restore_state': {
-                    if (data.state.kind !== 'not_stored') {
-                        this.#restoredState.resolve(data.state)
-                    } else {
-                        this.#restoredState.resolve(undefined)
-                    }
-                    break
-                }
-                default: {
-                    break
-                }
-            }
-        })
-        /**
-         * Since this.pdfViewerStarted is resolved, the PDF viewer has started.
-         */
-        this.sendToPanelManager({type: 'initialized'})
-    }
-
 }
 
 // The 'webviewerloaded' event is fired just before the initialization of PDF.js.
@@ -693,7 +509,7 @@ async function getViewerEventBus() {
     return PDFViewerApplication.eventBus
 }
 
-function onPDFViewerEvent(event: 'pagesinit' | 'pagesloaded' | 'rotationchanging', cb: (evt?: any) => unknown, option?: { once: boolean }): IDisposable {
+function onPDFViewerEvent(event: PdfjsEventName, cb: (evt?: any) => unknown, option?: { once: boolean }): IDisposable {
     const cb0 = (evt?: unknown) => {
         cb(evt)
         if (option?.once) { PDFViewerApplication.eventBus.off(event, cb0) }
@@ -702,13 +518,38 @@ function onPDFViewerEvent(event: 'pagesinit' | 'pagesloaded' | 'rotationchanging
     return { dispose: () => PDFViewerApplication.eventBus.off(event, cb0) }
 }
 
+async function initialization() {
+    const workerPort = new Worker('build/pdf.worker.mjs', { type: 'module' })
+    const params = await (await fetch('config.json')).json() as PdfViewerParams
+    document.addEventListener('webviewerloaded', () => {
+        const color = utils.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark : params.color.light
+        const options = {
+            annotationEditorMode: -1,
+            disablePreferences: true,
+            enableScripting: false,
+            cMapUrl: '../cmaps/',
+            sidebarViewOnLoad: 0,
+            standardFontDataUrl: '../standard_fonts/',
+            workerPort,
+            workerSrc: './build/pdf.worker.mjs',
+            forcePageColors: true,
+            ...color
+        }
+        PDFViewerApplicationOptions.setAll(options)
+    })
+}
 
 async function sleep(timeout: number) {
     await new Promise((resolve) => setTimeout(resolve, timeout))
 }
 
 const extension = new LateXWorkshopPdfViewer()
-await extension.waitSetupAppOptionsFinished()
+await initialization()
+onPDFViewerEvent('documentloaded', async () => {
+    void setParams(extension, await getViewerEventBus())
+    initRestore(extension, await getViewerEventBus())
+    extension.sendToPanelManager({type: 'initialized'})
+})
 onPDFViewerEvent('pagesinit', () => {
     extension.synctex.registerListenerOnEachPage()
     initState()
