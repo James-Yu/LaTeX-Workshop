@@ -16,7 +16,7 @@ export function setTrimValue(trim: number, eventBus: { dispatch: (eventName: str
 
 export function initTrim(eventBus: { dispatch: (eventName: string, payload: any) => void }) {
     document.getElementById('viewer')!.style.setProperty('--trim-factor', (viewerTrim).toString())
-    setTrimCSS(0)
+    setTrimCSS()
 
     const trimPct = document.getElementById('trimPct') as HTMLInputElement
     trimPct.onchange = _ => {
@@ -26,7 +26,7 @@ export function initTrim(eventBus: { dispatch: (eventName: string, payload: any)
     }
 }
 
-export function setTrimCSS(rotation: number) {
+export function setTrimCSS() {
     const css = document.styleSheets[document.styleSheets.length - 1]
     const prevCssCount = css.cssRules.length
 
@@ -38,7 +38,7 @@ export function setTrimCSS(rotation: number) {
             pageHeight = pageWidth
             pageWidth = temp
         }
-        const { pageRule, canvasRule } = getCSSRules(pageNum, pageHeight, pageWidth, [0, 180].includes(rotation))
+        const { pageRule, canvasRule } = getCSSRules(pageNum, pageHeight, pageWidth)
         css.insertRule(pageRule, css.cssRules.length)
         css.insertRule(canvasRule, css.cssRules.length)
     }
@@ -52,20 +52,20 @@ export function setTrimCSS(rotation: number) {
     }
 }
 
-function getCSSRules(pageNum: number, pageHeight: number, pageWidth: number, vertical: boolean = true): { pageRule: string, canvasRule: string } {
+function getCSSRules(pageNum: number, pageHeight: number, pageWidth: number): { pageRule: string, canvasRule: string } {
     const pageRule = `
         .page[data-page-number="${pageNum + 1}"] {
-            width: calc(var(--scale-factor) * ${vertical ? pageWidth : pageHeight}px * (1 - var(--trim-factor) / 100)) !important;
-            height: calc(var(--scale-factor) * ${vertical ? pageHeight : pageWidth}px * (1 - var(--trim-factor) / 100)) !important;
+            width: calc(var(--scale-factor) * ${pageWidth}px * (1 - var(--trim-factor) / 100)) !important;
+            height: calc(var(--scale-factor) * ${pageHeight}px * (1 - var(--trim-factor) / 100)) !important;
         }`
     const canvasRule = `
         .page[data-page-number="${pageNum + 1}"] .canvasWrapper,
         .page[data-page-number="${pageNum + 1}"] .textLayer,
         .page[data-page-number="${pageNum + 1}"] .annotationLayer {
-            width: calc(var(--scale-factor) * ${vertical ? pageWidth : pageHeight}px) !important;
-            height: calc(var(--scale-factor) * ${vertical ? pageHeight : pageWidth}px) !important;
-            margin-left: calc(var(--scale-factor) * ${vertical ? pageWidth : pageHeight}px * var(--trim-factor) / -200) !important;
-            margin-top: calc(var(--scale-factor) * ${vertical ? pageHeight : pageWidth}px * var(--trim-factor) / -200) !important;
+            width: calc(var(--scale-factor) * ${pageWidth}px) !important;
+            height: calc(var(--scale-factor) * ${pageHeight}px) !important;
+            margin-left: calc(var(--scale-factor) * ${pageWidth}px * var(--trim-factor) / -200) !important;
+            margin-top: calc(var(--scale-factor) * ${pageHeight}px * var(--trim-factor) / -200) !important;
         }`
     return { pageRule, canvasRule }
 }

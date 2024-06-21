@@ -8,8 +8,8 @@ import {ViewerHistory} from './components/viewerhistory.js'
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState, SynctexData, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
 import { initTrim, setTrimCSS, setTrimValue } from './components/trimming.js'
+import { initState, refresh } from './components/refresh.js'
 
-declare const pdfjsLib: any
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
 
@@ -348,86 +348,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         location.reload()
     }
 
-    private prevPack: {
-        scale: string,
-        scrollMode: number,
-        sidebarView: number,
-        spreadMode: number,
-        scrollTop: number,
-        scrollLeft: number
-    } | undefined
-    private async refreshPDFViewer() {
-        if (!this.autoReloadEnabled) {
-            this.addLogMessage('Auto reload temporarily disabled.')
-            return
-        }
-        // Fail-safe. For unknown reasons, the pack may have null values #4076
-        const pack = {
-            scale: PDFViewerApplication.pdfViewer.currentScaleValue ?? this.prevPack?.scale,
-            scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? this.prevPack?.scrollMode,
-            sidebarView: PDFViewerApplication.pdfSidebar.visibleView ?? this.prevPack?.sidebarView,
-            spreadMode: PDFViewerApplication.pdfViewer.spreadMode ?? this.prevPack?.spreadMode,
-            scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop ?? this.prevPack?.scrollTop,
-            scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft ?? this.prevPack?.scrollLeft
-        }
-        this.prevPack = pack
-
-        // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
-        // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
-        PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false)
-        // Override the spread mode specified in PDF documents with the current one.
-        // https://github.com/James-Yu/LaTeX-Workshop/issues/1871
-        if (typeof pack.spreadMode === 'number') {
-            PDFViewerApplicationOptions.set('spreadModeOnLoad', pack.spreadMode)
-        }
-
-        // eslint-disable-next-line
-        PDFViewerApplication.load(await pdfjsLib.getDocument(`/${utils.pdfFilePrefix}${this.encodedPdfFilePath}`).promise)
-        // reset the document title to the original value to avoid duplication
-        document.title = this.documentTitle
-        this.onPagesInit(() => {
-            if (pack.sidebarView) {
-                PDFViewerApplication.pdfSidebar.switchView(pack.sidebarView)
-            }
-            if (['number', 'string'].includes(typeof pack.scale) && PDFViewerApplication.pdfViewer.currentScaleValue !== pack.scale) {
-                PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale
-            }
-            if (typeof pack.scrollMode === 'number' && PDFViewerApplication.pdfViewer.scrollMode !== pack.scrollMode) {
-                PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode
-            }
-            if (typeof pack.spreadMode === 'number' && PDFViewerApplication.pdfViewer.spreadMode !== pack.spreadMode) {
-                PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode
-            }
-            const viewerContainer: HTMLElement | null = document.getElementById('viewerContainer')
-            if (viewerContainer === null) {
-                return
-            }
-            if (typeof pack.scrollTop === 'number' && viewerContainer.scrollTop !== pack.scrollTop) {
-                viewerContainer.scrollTop = pack.scrollTop
-            }
-            if (typeof pack.scrollLeft === 'number' && viewerContainer.scrollLeft !== pack.scrollLeft) {
-                viewerContainer.scrollLeft = pack.scrollLeft
-            }
-        }, {once: true})
-        // The height of each page can change after a `pagesinit` event.
-        // We have to set scrollTop on a `pagesloaded` event for that case.
-        this.onPagesLoaded(() => {
-            const viewerContainer: HTMLElement | null = document.getElementById('viewerContainer')
-            if (viewerContainer === null) {
-                return
-            }
-            if (typeof pack.scrollTop === 'number' && viewerContainer.scrollTop !== pack.scrollTop) {
-                viewerContainer.scrollTop = pack.scrollTop
-            }
-            if (typeof pack.scrollLeft === 'number' && viewerContainer.scrollLeft !== pack.scrollLeft) {
-                viewerContainer.scrollLeft = pack.scrollLeft
-            }
-        }, {once: true})
-        this.onPagesLoaded(() => {
-            this.send({type:'loaded', pdfFileUri: this.pdfFileUri})
-        }, {once: true})
-    }
-
     isPrefersColorSchemeDark(codeColorTheme: 'light' | 'dark') {
         if (this.embedded) {
             return codeColorTheme === 'dark'
@@ -481,7 +401,11 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     break
                 }
                 case 'refresh': {
-                    void this.refreshPDFViewer()
+                    if (!this.autoReloadEnabled) {
+                        this.addLogMessage('Auto reload temporarily disabled.')
+                        break
+                    }
+                    void refresh()
                     break
                 }
                 case 'reload': {
@@ -800,7 +724,7 @@ async function getViewerEventBus() {
     return PDFViewerApplication.eventBus
 }
 
-function onPDFViewerEvent(event: 'pagesloaded' | 'rotationchanging', cb: (evt?: any) => unknown, option?: { once: boolean }): IDisposable {
+function onPDFViewerEvent(event: 'pagesinit' | 'pagesloaded' | 'rotationchanging', cb: (evt?: any) => unknown, option?: { once: boolean }): IDisposable {
     const cb0 = (evt?: unknown) => {
         cb(evt)
         if (option?.once) { PDFViewerApplication.eventBus.off(event, cb0) }
@@ -816,8 +740,15 @@ async function sleep(timeout: number) {
 
 const extension = new LateXWorkshopPdfViewer()
 await extension.waitSetupAppOptionsFinished()
-onPDFViewerEvent('pagesloaded', async () => initTrim(await getViewerEventBus()))
-onPDFViewerEvent('rotationchanging', (evt: { pagesRotation: number }) => setTrimCSS(evt.pagesRotation))
+onPDFViewerEvent('pagesinit', () => {
+    initState()
+})
+onPDFViewerEvent('pagesloaded', async () => {
+    initTrim(await getViewerEventBus())
+    initState()
+    extension.send({type:'loaded', pdfFileUri: extension.pdfFileUri})
+})
+onPDFViewerEvent('rotationchanging', () => setTrimCSS())
 
 // @ts-expect-error Must import viewer.mjs here, otherwise some config won't work. #4096
 await import('../../viewer/viewer.mjs')
