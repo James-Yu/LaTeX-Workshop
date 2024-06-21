@@ -39,6 +39,7 @@ export async function refresh() {
     PDFViewerApplication.load(await pdfjsLib.getDocument(`/${utils.pdfFilePrefix}${encodedPath}`).promise)
     // reset the document title to the original value to avoid duplication
     document.title = docTitle
+    initState()
 }
 
 export function initState() {

@@ -106,12 +106,6 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return pack
     }
 
-    private async fetchParams(): Promise<PdfViewerParams> {
-        const response = await fetch('config.json')
-        const params = await response.json() as PdfViewerParams
-        return params
-    }
-
     async waitSetupAppOptionsFinished() {
         return this.setupAppOptionsPromise.promise
     }
