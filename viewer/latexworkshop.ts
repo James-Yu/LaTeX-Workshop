@@ -56,10 +56,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             return this.applyParamsOnStart()
         })
 
-        this.onPagesLoaded(() => {
-            this.send({type:'loaded', pdfFileUri: this.pdfFileUri})
-        }, {once: true})
-
         this.hidePrintButton()
         this.registerKeybinding()
         this.registerSynctexCheckBox()
@@ -97,34 +93,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             eventBus.on(documentLoadedEvent, cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off(documentLoadedEvent, cb0) }
-    }
-
-    onPagesInit(cb: () => unknown, option?: {once: boolean}): IDisposable {
-        const pagesInitEvent = 'pagesinit'
-        const cb0 = () => {
-            cb()
-            if (option?.once) {
-                PDFViewerApplication.eventBus.off(pagesInitEvent, cb0)
-            }
-        }
-        void getViewerEventBus().then(eventBus => {
-            eventBus.on(pagesInitEvent, cb0)
-        })
-        return { dispose: () => PDFViewerApplication.eventBus.off(pagesInitEvent, cb0) }
-    }
-
-    onPagesLoaded(cb: () => unknown, option?: {once: boolean}): IDisposable {
-        const pagesLoadedEvent = 'pagesloaded'
-        const cb0 = () => {
-            cb()
-            if (option?.once) {
-                PDFViewerApplication.eventBus.off(pagesLoadedEvent, cb0)
-            }
-        }
-        void getViewerEventBus().then(eventBus => {
-            eventBus.on(pagesLoadedEvent, cb0)
-        })
-        return { dispose: () => PDFViewerApplication.eventBus.off(pagesLoadedEvent, cb0) }
     }
 
     onViewUpdated(cb: () => unknown, option?: {once: boolean}): IDisposable {
@@ -374,6 +342,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.dark.backgroundColor
             css.insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.dark.pageBorderColor}}`, css.cssRules.length)
         } else {
+            console.log('applied');
             (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.light.backgroundColor
             css.insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.light.pageBorderColor}}`, css.cssRules.length)
         }
@@ -741,6 +710,7 @@ async function sleep(timeout: number) {
 const extension = new LateXWorkshopPdfViewer()
 await extension.waitSetupAppOptionsFinished()
 onPDFViewerEvent('pagesinit', () => {
+    extension.synctex.registerListenerOnEachPage()
     initState()
 })
 onPDFViewerEvent('pagesloaded', async () => {

@@ -19,16 +19,6 @@ export interface ILatexWorkshopPdfViewer {
      */
     onDidStartPdfViewer(cb: () => unknown): IDisposable,
 
-    /**
-     * `cb` is called after a PDF document is loaded and reloaded.
-     */
-    onPagesInit(cb: () => unknown, option?: {once: boolean}): IDisposable,
-
-    /**
-     * `cb` is called after the a PDF document is rendered.
-     */
-    onPagesLoaded(cb: () => unknown, option?: {once: boolean}): IDisposable,
-
     send(message: ClientRequest): void
 }
 

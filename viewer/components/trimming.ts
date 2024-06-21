@@ -46,7 +46,7 @@ export function setTrimCSS() {
     // Remove previous rules
     for (let index = prevCssCount - 1; index >= 0; index--) {
         const rule = css.cssRules[index] as (CSSRule | CSSStyleRule)
-        if ('selectorText' in rule && rule.selectorText.includes('.page')) {
+        if ('selectorText' in rule && rule.selectorText.includes('.page[data-page-number=')) {
             css.deleteRule(index)
         }
     }

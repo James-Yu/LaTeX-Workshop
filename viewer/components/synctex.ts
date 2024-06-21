@@ -3,17 +3,9 @@ import type {ILatexWorkshopPdfViewer, IPDFViewerApplication} from './interface.j
 declare const PDFViewerApplication: IPDFViewerApplication
 
 export class SyncTex {
-    private readonly lwApp: ILatexWorkshopPdfViewer
     reverseSynctexKeybinding: string = 'ctrl-click'
 
-    constructor(lwApp: ILatexWorkshopPdfViewer) {
-        this.lwApp = lwApp
-        // Since DOM of each page is recreated when a PDF document is reloaded,
-        // we must register listeners every time.
-        this.lwApp.onPagesInit(() => {
-            this.registerListenerOnEachPage()
-        })
-    }
+    constructor(private readonly lwApp: ILatexWorkshopPdfViewer) { }
 
     private callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerContainer: HTMLElement) {
         const canvasDom = pageDom.getElementsByTagName('canvas')[0]
