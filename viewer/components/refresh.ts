@@ -6,7 +6,7 @@ declare const pdfjsLib: any
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
 
-let viewerState: {
+let prevState: {
     trimValue: number,
     scrollMode: number,
     sidebarView: number,
@@ -19,13 +19,13 @@ export async function refresh() {
     // Fail-safe. For unknown reasons, the pack may have null values #4076
     const currentState = {
         trimValue: getTrimValue(),
-        scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? viewerState?.scrollMode,
-        sidebarView: PDFViewerApplication.pdfSidebar.visibleView ?? viewerState?.sidebarView,
-        spreadMode: PDFViewerApplication.pdfViewer.spreadMode ?? viewerState?.spreadMode,
-        scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop ?? viewerState?.scrollTop,
-        scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft ?? viewerState?.scrollLeft
+        scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? prevState?.scrollMode,
+        sidebarView: PDFViewerApplication.pdfSidebar.visibleView ?? prevState?.sidebarView,
+        spreadMode: PDFViewerApplication.pdfViewer.spreadMode ?? prevState?.spreadMode,
+        scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop ?? prevState?.scrollTop,
+        scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft ?? prevState?.scrollLeft
     }
-    viewerState = currentState
+    prevState = currentState
 
     // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
     // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
@@ -33,8 +33,8 @@ export async function refresh() {
 
     // Override the spread mode specified in PDF documents with the current one.
     // https://github.com/James-Yu/LaTeX-Workshop/issues/1871
-    if (typeof viewerState.spreadMode === 'number') {
-        PDFViewerApplicationOptions.set('spreadModeOnLoad', viewerState.spreadMode)
+    if (typeof prevState.spreadMode === 'number') {
+        PDFViewerApplicationOptions.set('spreadModeOnLoad', prevState.spreadMode)
     }
 
     const { encodedPath, docTitle } = parseURL()
@@ -44,31 +44,31 @@ export async function refresh() {
     document.title = docTitle
 }
 
-export function initState() {
-    if (viewerState === undefined) {
+export function restoreState() {
+    if (prevState === undefined) {
         return
     }
 
-    if (viewerState.trimValue !== undefined) {
-        setTrimValue(viewerState.trimValue)
+    if (prevState.trimValue !== undefined) {
+        setTrimValue(prevState.trimValue)
     }
 
-    if (viewerState.sidebarView) {
-        PDFViewerApplication.pdfSidebar.switchView(viewerState.sidebarView)
+    if (prevState.sidebarView) {
+        PDFViewerApplication.pdfSidebar.switchView(prevState.sidebarView)
     }
-    if (typeof viewerState.scrollMode === 'number' && PDFViewerApplication.pdfViewer.scrollMode !== viewerState.scrollMode) {
-        PDFViewerApplication.pdfViewer.scrollMode = viewerState.scrollMode
+    if (typeof prevState.scrollMode === 'number' && PDFViewerApplication.pdfViewer.scrollMode !== prevState.scrollMode) {
+        PDFViewerApplication.pdfViewer.scrollMode = prevState.scrollMode
     }
-    if (typeof viewerState.spreadMode === 'number' && PDFViewerApplication.pdfViewer.spreadMode !== viewerState.spreadMode) {
-        PDFViewerApplication.pdfViewer.spreadMode = viewerState.spreadMode
+    if (typeof prevState.spreadMode === 'number' && PDFViewerApplication.pdfViewer.spreadMode !== prevState.spreadMode) {
+        PDFViewerApplication.pdfViewer.spreadMode = prevState.spreadMode
     }
 
     const viewerContainer = document.getElementById('viewerContainer')!
-    if (typeof viewerState.scrollTop === 'number' && viewerContainer.scrollTop !== viewerState.scrollTop) {
-        viewerContainer.scrollTop = viewerState.scrollTop
+    if (typeof prevState.scrollTop === 'number' && viewerContainer.scrollTop !== prevState.scrollTop) {
+        viewerContainer.scrollTop = prevState.scrollTop
     }
-    if (typeof viewerState.scrollLeft === 'number' && viewerContainer.scrollLeft !== viewerState.scrollLeft) {
-        viewerContainer.scrollLeft = viewerState.scrollLeft
+    if (typeof prevState.scrollLeft === 'number' && viewerContainer.scrollLeft !== prevState.scrollLeft) {
+        viewerContainer.scrollLeft = prevState.scrollLeft
     }
 }
 

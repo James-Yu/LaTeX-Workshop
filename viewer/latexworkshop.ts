@@ -7,9 +7,9 @@ import {ViewerHistory} from './components/viewerhistory.js'
 
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import type {ClientRequest, ServerResponse, PanelRequest, PdfViewerParams, SynctexData, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
-import { initTrim, setTrimCSS } from './components/trimming.js'
-import { initState, refresh } from './components/refresh.js'
-import { initRestore, setParams, updateState } from './components/state.js'
+import { restoreTrim, setTrimCSS } from './components/trimming.js'
+import { restoreState, refresh } from './components/refresh.js'
+import { setParams } from './components/state.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
@@ -377,7 +377,7 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
             this.synctexEnabled = false
         }
-        updateState(this)
+        // uploadState(this)
     }
 
     private registerSynctexCheckBox() {
@@ -406,7 +406,7 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
             this.autoReloadEnabled = false
         }
-        updateState(this)
+        // uploadState(this)
     }
 
     private registerAutoReloadCheckBox() {
@@ -523,19 +523,24 @@ async function sleep(timeout: number) {
 
 const extension = new LateXWorkshopPdfViewer()
 await initialization()
-onPDFViewerEvent('documentloaded', async () => {
+onPDFViewerEvent('documentloaded', () => {
     void setParams(extension)
-    initRestore(extension, await getViewerEventBus())
-    extension.sendToPanelManager({type: 'initialized'})
+    // void setState(extension)
+    if (utils.isEmbedded()) {
+        // initRestore(extension, await getViewerEventBus())
+        // extension.sendToPanelManager({type: 'initialized'})
+    }
 })
 onPDFViewerEvent('pagesinit', () => {
     extension.synctex.registerListenerOnEachPage()
-    initState()
+    restoreState()
 })
 onPDFViewerEvent('pagesloaded', () => {
-    initTrim()
-    initState()
-    updateState(extension)
+    restoreTrim()
+    restoreState()
+    if (utils.isEmbedded()) {
+        // uploadState(extension)
+    }
     extension.send({type:'loaded', pdfFileUri: extension.pdfFileUri})
 })
 onPDFViewerEvent('rotationchanging', () => setTrimCSS())

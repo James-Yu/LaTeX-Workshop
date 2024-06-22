@@ -22,7 +22,7 @@ export function setTrimValue(trim: number) {
     trimPct.value = viewerTrim.toString()
 }
 
-export function initTrim() {
+export function restoreTrim() {
     document.getElementById('viewer')!.style.setProperty('--trim-factor', getTrimValue().toString())
     setTrimCSS()
 
