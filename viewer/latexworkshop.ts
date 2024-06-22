@@ -535,6 +535,7 @@ onPDFViewerEvent('pagesinit', () => {
 onPDFViewerEvent('pagesloaded', () => {
     initTrim()
     initState()
+    updateState(extension)
     extension.send({type:'loaded', pdfFileUri: extension.pdfFileUri})
 })
 onPDFViewerEvent('rotationchanging', () => setTrimCSS())
