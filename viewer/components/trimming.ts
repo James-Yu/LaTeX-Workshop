@@ -1,4 +1,4 @@
-import { IPDFViewerApplication, PDFViewerEventBus } from './interface'
+import { IPDFViewerApplication } from './interface'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 
@@ -9,16 +9,20 @@ export function getTrimValue() {
     return viewerTrim
 }
 
-export function setTrimValue(trim: number, eventBus: PDFViewerEventBus) {
+export function setTrimValue(trim: number) {
     viewerTrim = Math.min(100, Math.max(0, trim))
     ;(globalThis as any).viewerTrim = viewerTrim
-    const select = document.getElementById('scaleSelect') as HTMLInputElement
-    eventBus.dispatch('scalechanged', { source: select, value: select.value })
+    const select = document.getElementById('scaleSelect') as HTMLSelectElement
+    if (select.value === 'custom') {
+        PDFViewerApplication.pdfViewer.currentScaleValue = ((JSON.parse(select.options[select.selectedIndex].getAttribute('data-l10n-args')!) as any).scale / 100).toString()
+    } else {
+        PDFViewerApplication.pdfViewer.currentScaleValue = select.value
+    }
     const trimPct = document.getElementById('trimPct') as HTMLInputElement
     trimPct.value = viewerTrim.toString()
 }
 
-export function initTrim(eventBus: PDFViewerEventBus) {
+export function initTrim() {
     document.getElementById('viewer')!.style.setProperty('--trim-factor', getTrimValue().toString())
     setTrimCSS()
 
@@ -26,7 +30,7 @@ export function initTrim(eventBus: PDFViewerEventBus) {
     trimPct.onchange = _ => {
         viewerTrim = Number.parseFloat(trimPct.value)
         document.getElementById('viewer')!.style.setProperty('--trim-factor', viewerTrim.toString())
-        setTrimValue(viewerTrim, eventBus)
+        setTrimValue(viewerTrim)
     }
 }
 

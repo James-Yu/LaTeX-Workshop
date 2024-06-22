@@ -1,5 +1,5 @@
 import * as utils from './utils.js'
-import type { IPDFViewerApplication, IPDFViewerApplicationOptions, PDFViewerEventBus } from './interface'
+import type { IPDFViewerApplication, IPDFViewerApplicationOptions } from './interface'
 import { getTrimValue, setTrimValue } from './trimming.js'
 
 declare const pdfjsLib: any
@@ -7,8 +7,8 @@ declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
 
 let viewerState: {
-    scrollMode: number,
     trimValue: number,
+    scrollMode: number,
     sidebarView: number,
     spreadMode: number,
     scrollTop: number,
@@ -18,8 +18,8 @@ let viewerState: {
 export async function refresh() {
     // Fail-safe. For unknown reasons, the pack may have null values #4076
     const currentState = {
-        scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? viewerState?.scrollMode,
         trimValue: getTrimValue(),
+        scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? viewerState?.scrollMode,
         sidebarView: PDFViewerApplication.pdfSidebar.visibleView ?? viewerState?.sidebarView,
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode ?? viewerState?.spreadMode,
         scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop ?? viewerState?.scrollTop,
@@ -44,13 +44,13 @@ export async function refresh() {
     document.title = docTitle
 }
 
-export function initState(eventBus: PDFViewerEventBus) {
+export function initState() {
     if (viewerState === undefined) {
         return
     }
 
-    if (viewerState.trimValue) {
-        setTrimValue(viewerState.trimValue, eventBus)
+    if (viewerState.trimValue !== undefined) {
+        setTrimValue(viewerState.trimValue)
     }
 
     if (viewerState.sidebarView) {

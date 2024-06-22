@@ -2,7 +2,7 @@ import * as utils from './utils.js'
 import type { LateXWorkshopPdfViewer } from '../latexworkshop'
 import type { IPDFViewerApplication, PDFViewerEventBus, PdfjsEventName } from './interface'
 import type { PanelManagerResponse, PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index.js'
-import { setTrimValue } from './trimming.js'
+import { getTrimValue, setTrimValue } from './trimming.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 
@@ -18,7 +18,7 @@ export function initRestore(extension: LateXWorkshopPdfViewer, eventBus: PDFView
         }
         switch (data.type) {
             case 'restore_state': {
-                void setState(extension, eventBus, data.state.kind !== 'not_stored' ? data.state : undefined)
+                void setState(extension, data.state.kind !== 'not_stored' ? data.state : undefined)
                 break
             }
             default: {
@@ -27,18 +27,19 @@ export function initRestore(extension: LateXWorkshopPdfViewer, eventBus: PDFView
         }
     })
 
-    window.addEventListener('scroll', () => { extension.sendCurrentStateToPanelManager() }, true)
+    window.addEventListener('scroll', () => { updateState(extension) }, true)
 
     const events: PdfjsEventName[] = ['scroll', 'scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
     for (const ev of events) {
-        eventBus.on(ev, () => { extension.sendCurrentStateToPanelManager() })
+        eventBus.on(ev, () => { updateState(extension) })
     }
 }
 
-function updateState(extension: LateXWorkshopPdfViewer) {
+export function updateState(extension: LateXWorkshopPdfViewer) {
     const state: PdfViewerState = {
         pdfFileUri: extension.pdfFileUri,
         scale: PDFViewerApplication.pdfViewer.currentScaleValue,
+        trim: getTrimValue(),
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
         sidebarView: PDFViewerApplication.pdfSidebar.visibleView,
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
@@ -85,11 +86,11 @@ export async function setParams(extension: LateXWorkshopPdfViewer) {
     }
 }
 
-async function setState(extension: LateXWorkshopPdfViewer, eventBus: PDFViewerEventBus, state?: PdfViewerState) {
+async function setState(extension: LateXWorkshopPdfViewer, state?: PdfViewerState) {
     state = state ?? await (await fetch('config.json')).json() as PdfViewerParams
 
-    if (state.trim) {
-        setTrimValue(state.trim, eventBus)
+    if (state.trim !== undefined) {
+        setTrimValue(state.trim)
     }
 
     // By setting the scale, scaling will be invoked if necessary.
@@ -118,5 +119,4 @@ async function setState(extension: LateXWorkshopPdfViewer, eventBus: PDFViewerEv
     if (state.autoReloadEnabled !== undefined) {
         extension.setAutoReload(state.autoReloadEnabled)
     }
-    updateState(extension)
 }
