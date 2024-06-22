@@ -5,17 +5,21 @@ declare const PDFViewerApplication: IPDFViewerApplication
 let viewerTrim = 0
 ;(globalThis as any).viewerTrim = 0
 
+export function getTrimValue() {
+    return viewerTrim
+}
+
 export function setTrimValue(trim: number, eventBus: PDFViewerEventBus) {
     viewerTrim = Math.min(100, Math.max(0, trim))
     ;(globalThis as any).viewerTrim = viewerTrim
     const select = document.getElementById('scaleSelect') as HTMLInputElement
     eventBus.dispatch('scalechanged', { source: select, value: select.value })
     const trimPct = document.getElementById('trimPct') as HTMLInputElement
-    trimPct.value = trim.toString()
+    trimPct.value = viewerTrim.toString()
 }
 
 export function initTrim(eventBus: PDFViewerEventBus) {
-    document.getElementById('viewer')!.style.setProperty('--trim-factor', (viewerTrim).toString())
+    document.getElementById('viewer')!.style.setProperty('--trim-factor', getTrimValue().toString())
     setTrimCSS()
 
     const trimPct = document.getElementById('trimPct') as HTMLInputElement

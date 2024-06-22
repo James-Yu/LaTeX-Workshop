@@ -503,6 +503,10 @@ async function getViewerEventBus() {
     return PDFViewerApplication.eventBus
 }
 
+export async function dispatchViewerEvent(eventName: string, payload: any) {
+    (await getViewerEventBus()).dispatch(eventName, payload)
+}
+
 function onPDFViewerEvent(event: PdfjsEventName, cb: (evt?: any) => unknown, option?: { once: boolean }): IDisposable {
     const cb0 = (evt?: unknown) => {
         cb(evt)
@@ -540,17 +544,17 @@ async function sleep(timeout: number) {
 const extension = new LateXWorkshopPdfViewer()
 await initialization()
 onPDFViewerEvent('documentloaded', async () => {
-    void setParams(extension, await getViewerEventBus())
+    void setParams(extension)
     initRestore(extension, await getViewerEventBus())
     extension.sendToPanelManager({type: 'initialized'})
 })
-onPDFViewerEvent('pagesinit', () => {
+onPDFViewerEvent('pagesinit', async () => {
     extension.synctex.registerListenerOnEachPage()
-    initState()
+    initState(await getViewerEventBus())
 })
 onPDFViewerEvent('pagesloaded', async () => {
     initTrim(await getViewerEventBus())
-    initState()
+    initState(await getViewerEventBus())
     extension.send({type:'loaded', pdfFileUri: extension.pdfFileUri})
 })
 onPDFViewerEvent('rotationchanging', () => setTrimCSS())

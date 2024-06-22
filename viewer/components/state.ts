@@ -18,7 +18,7 @@ export function initRestore(extension: LateXWorkshopPdfViewer, eventBus: PDFView
         }
         switch (data.type) {
             case 'restore_state': {
-                void setState(extension, data.state.kind !== 'not_stored' ? data.state : undefined)
+                void setState(extension, eventBus, data.state.kind !== 'not_stored' ? data.state : undefined)
                 break
             }
             default: {
@@ -50,7 +50,7 @@ function updateState(extension: LateXWorkshopPdfViewer) {
     extension.sendToPanelManager({type: 'state', state})
 }
 
-export async function setParams(extension: LateXWorkshopPdfViewer, eventBus: PDFViewerEventBus) {
+export async function setParams(extension: LateXWorkshopPdfViewer) {
     const params = await (await fetch('config.json')).json() as PdfViewerParams
 
     const htmlElement = document.querySelector('html') as HTMLHtmlElement
@@ -83,12 +83,14 @@ export async function setParams(extension: LateXWorkshopPdfViewer, eventBus: PDF
         extension.synctex.reverseSynctexKeybinding = params.keybindings['synctex']
         extension.synctex.registerListenerOnEachPage()
     }
-
-    setTrimValue(params.trim, eventBus)
 }
 
-export async function setState(extension: LateXWorkshopPdfViewer, state?: PdfViewerState) {
+async function setState(extension: LateXWorkshopPdfViewer, eventBus: PDFViewerEventBus, state?: PdfViewerState) {
     state = state ?? await (await fetch('config.json')).json() as PdfViewerParams
+
+    if (state.trim) {
+        setTrimValue(state.trim, eventBus)
+    }
 
     // By setting the scale, scaling will be invoked if necessary.
     // The scale can be a non-number one.
