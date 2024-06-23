@@ -13,6 +13,7 @@ export function setTrimValue(trim: number) {
     viewerTrim = Math.min(100, Math.max(0, trim))
     ;(globalThis as any).viewerTrim = viewerTrim
     const select = document.getElementById('scaleSelect') as HTMLSelectElement
+    // ;(await getViewerEventBus()).dispatch('scalechanged', { source: select, value: select.value })
     if (select.value === 'custom') {
         PDFViewerApplication.pdfViewer.currentScaleValue = ((JSON.parse(select.options[select.selectedIndex].getAttribute('data-l10n-args')!) as any).scale / 100).toString()
     } else {
@@ -22,7 +23,7 @@ export function setTrimValue(trim: number) {
     trimPct.value = viewerTrim.toString()
 }
 
-export function restoreTrim() {
+export function initTrim() {
     document.getElementById('viewer')!.style.setProperty('--trim-factor', getTrimValue().toString())
     setTrimCSS()
 

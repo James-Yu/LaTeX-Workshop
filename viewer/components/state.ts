@@ -2,7 +2,6 @@ import * as utils from './utils.js'
 import type { LateXWorkshopPdfViewer } from '../latexworkshop'
 import type { IPDFViewerApplication } from './interface'
 import type { PdfViewerParams } from '../../types/latex-workshop-protocol-types/index.js'
-import { setTrimValue } from './trimming.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 
@@ -83,21 +82,6 @@ export async function setParams(extension: LateXWorkshopPdfViewer) {
     if (params.keybindings) {
         extension.synctex.reverseSynctexKeybinding = params.keybindings['synctex']
         extension.synctex.registerListenerOnEachPage()
-    }
-
-    // By setting the scale, scaling will be invoked if necessary.
-    // The scale can be a non-number one.
-    if (params.scale !== undefined) {
-        PDFViewerApplication.pdfViewer.currentScaleValue = params.scale
-    }
-    if (params.trim !== undefined) {
-        setTrimValue(params.trim)
-    }
-    if (params.scrollMode !== undefined) {
-        PDFViewerApplication.pdfViewer.scrollMode = params.scrollMode
-    }
-    if (params.spreadMode !== undefined) {
-        PDFViewerApplication.pdfViewer.spreadMode = params.spreadMode
     }
 }
 

@@ -7,7 +7,7 @@ import {ViewerHistory} from './components/viewerhistory.js'
 
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import type {ClientRequest, ServerResponse, PanelRequest, PdfViewerParams, SynctexData, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
-import { restoreTrim, setTrimCSS } from './components/trimming.js'
+import { initTrim, setTrimCSS } from './components/trimming.js'
 import { restoreState, refresh } from './components/refresh.js'
 import { setParams } from './components/state.js'
 
@@ -477,7 +477,7 @@ const webViewerLoaded = new Promise<void>((resolve) => {
 // see https://github.com/mozilla/pdf.js/wiki/Third-party-viewer-usage
 // We should use only the promises provided by PDF.js here, not the ones defined by us,
 // to avoid deadlock.
-async function getViewerEventBus() {
+export async function getViewerEventBus() {
     await webViewerLoaded
     await PDFViewerApplication.initializedPromise
     return PDFViewerApplication.eventBus
@@ -525,22 +525,15 @@ const extension = new LateXWorkshopPdfViewer()
 await initialization()
 onPDFViewerEvent('documentloaded', () => {
     void setParams(extension)
-    // void setState(extension)
-    if (utils.isEmbedded()) {
-        // initRestore(extension, await getViewerEventBus())
-        // extension.sendToPanelManager({type: 'initialized'})
-    }
-})
-onPDFViewerEvent('pagesinit', () => {
+}, { once: true })
+onPDFViewerEvent('pagesinit', async () => {
     extension.synctex.registerListenerOnEachPage()
-    restoreState()
+    initTrim()
+    await restoreState()
 })
-onPDFViewerEvent('pagesloaded', () => {
-    restoreTrim()
-    restoreState()
-    if (utils.isEmbedded()) {
-        // uploadState(extension)
-    }
+onPDFViewerEvent('pagesloaded', async () => {
+    initTrim()
+    await restoreState()
     extension.send({type:'loaded', pdfFileUri: extension.pdfFileUri})
 })
 onPDFViewerEvent('rotationchanging', () => setTrimCSS())

@@ -1,13 +1,15 @@
 import * as utils from './utils.js'
 import type { IPDFViewerApplication, IPDFViewerApplicationOptions } from './interface'
 import { getTrimValue, setTrimValue } from './trimming.js'
+import { PdfViewerParams } from '../../types/latex-workshop-protocol-types/index.js'
 
 declare const pdfjsLib: any
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
 
 let prevState: {
-    trimValue: number,
+    trim: number,
+    scale: string,
     scrollMode: number,
     sidebarView: number,
     spreadMode: number,
@@ -18,7 +20,8 @@ let prevState: {
 export async function refresh() {
     // Fail-safe. For unknown reasons, the pack may have null values #4076
     const currentState = {
-        trimValue: getTrimValue(),
+        trim: getTrimValue(),
+        scale: PDFViewerApplication.pdfViewer.currentScaleValue ?? prevState?.scale,
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? prevState?.scrollMode,
         sidebarView: PDFViewerApplication.pdfSidebar.visibleView ?? prevState?.sidebarView,
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode ?? prevState?.spreadMode,
@@ -42,17 +45,21 @@ export async function refresh() {
     PDFViewerApplication.load(await pdfjsLib.getDocument(`/${utils.pdfFilePrefix}${encodedPath}`).promise)
     // reset the document title to the original value to avoid duplication
     document.title = docTitle
+    PDFViewerApplicationOptions.setAll({ cMapUrl: '../cmaps/' })
 }
 
-export function restoreState() {
+export async function restoreState() {
     if (prevState === undefined) {
+        await restoreDefault()
         return
     }
 
-    if (prevState.trimValue !== undefined) {
-        setTrimValue(prevState.trimValue)
+    if (prevState.trim !== undefined) {
+        setTrimValue(prevState.trim)
     }
-
+    if (prevState.scale !== undefined) {
+        PDFViewerApplication.pdfViewer.currentScaleValue = prevState.scale
+    }
     if (prevState.sidebarView) {
         PDFViewerApplication.pdfSidebar.switchView(prevState.sidebarView)
     }
@@ -69,6 +76,25 @@ export function restoreState() {
     }
     if (typeof prevState.scrollLeft === 'number' && viewerContainer.scrollLeft !== prevState.scrollLeft) {
         viewerContainer.scrollLeft = prevState.scrollLeft
+    }
+}
+
+async function restoreDefault() {
+    const params = await (await fetch('config.json')).json() as PdfViewerParams
+
+    if (params.trim !== undefined) {
+        setTrimValue(params.trim)
+    }
+    // By setting the scale, scaling will be invoked if necessary.
+    // The scale can be a non-number one.
+    if (params.scale !== undefined) {
+        PDFViewerApplication.pdfViewer.currentScaleValue = params.scale
+    }
+    if (params.scrollMode !== undefined) {
+        PDFViewerApplication.pdfViewer.scrollMode = params.scrollMode
+    }
+    if (params.spreadMode !== undefined) {
+        PDFViewerApplication.pdfViewer.spreadMode = params.spreadMode
     }
 }
 
