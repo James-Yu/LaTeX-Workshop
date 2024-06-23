@@ -43,9 +43,7 @@ export function setTrimCSS() {
     for (const [pageNum, page] of PDFViewerApplication.pdfViewer._pages.entries()) {
         let { pageHeight, pageWidth } = page.viewport.rawDims
         if ([90, 270].includes(page.viewport.rotation)) {
-            const temp = pageHeight
-            pageHeight = pageWidth
-            pageWidth = temp
+            [ pageHeight, pageWidth ] = [ pageWidth, pageHeight ]
         }
         const { pageRule, canvasRule } = getCSSRules(pageNum, pageHeight, pageWidth)
         css.insertRule(pageRule, css.cssRules.length)
