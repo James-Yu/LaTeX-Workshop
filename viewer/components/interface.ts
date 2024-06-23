@@ -60,6 +60,7 @@ export interface IPDFViewerApplication {
             },
             getPagePoint(x: number, y: number): [number, number]
         }[],
+        currentPageNumber: number,
         currentScaleValue: string,
         scrollMode: number,
         spreadMode: number

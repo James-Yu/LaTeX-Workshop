@@ -8,6 +8,7 @@ declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
 
 let prevState: {
+    page: number,
     trim: number,
     scale: string,
     scrollMode: number,
@@ -20,6 +21,7 @@ let prevState: {
 export async function refresh() {
     // Fail-safe. For unknown reasons, the pack may have null values #4076
     const currentState = {
+        page: PDFViewerApplication.pdfViewer.currentPageNumber ?? prevState?.page,
         trim: getTrimValue(),
         scale: PDFViewerApplication.pdfViewer.currentScaleValue ?? prevState?.scale,
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? prevState?.scrollMode,
@@ -54,6 +56,9 @@ export async function restoreState() {
         return
     }
 
+    if (prevState.page !== undefined) {
+        PDFViewerApplication.pdfViewer.currentPageNumber = prevState.page
+    }
     if (prevState.trim !== undefined) {
         setTrimValue(prevState.trim)
     }

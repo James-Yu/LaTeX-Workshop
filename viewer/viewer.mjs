@@ -14521,10 +14521,10 @@ function scrollIntoView(element, spot, scrollMatches = false) {
     }
     if (spot.left !== undefined) {
       offsetX += spot.left;
-      parent.scrollLeft = offsetX;
+      // parent.scrollLeft = offsetX;
     }
   }
-  parent.scrollTop = offsetY;
+  // parent.scrollTop = offsetY;
 }
 function watchScroll(viewAreaElement, callback) {
   const debounceScroll = function (evt) {
