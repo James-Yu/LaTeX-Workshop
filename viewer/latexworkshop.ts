@@ -9,7 +9,7 @@ import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApp
 import type {ClientRequest, ServerResponse, PanelRequest, PdfViewerParams, SynctexData, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
 import { initTrim, setTrimCSS } from './components/trimming.js'
 import { restoreState, refresh } from './components/refresh.js'
-import { setParams } from './components/state.js'
+import { initUploadState, setParams, uploadState } from './components/state.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
@@ -376,7 +376,7 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
             this.synctexEnabled = false
         }
-        // uploadState(this)
+        uploadState(this)
     }
 
     private registerSynctexCheckBox() {
@@ -405,7 +405,7 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
             this.autoReloadEnabled = false
         }
-        // uploadState(this)
+        uploadState(this)
     }
 
     private registerAutoReloadCheckBox() {
@@ -524,6 +524,7 @@ const extension = new LateXWorkshopPdfViewer()
 await initialization()
 onPDFViewerEvent('documentloaded', () => {
     void setParams(extension)
+    void initUploadState(extension)
 }, { once: true })
 onPDFViewerEvent('pagesinit', async () => {
     initTrim()
@@ -533,7 +534,8 @@ onPDFViewerEvent('pagesinit', async () => {
 onPDFViewerEvent('pagesloaded', async () => {
     initTrim()
     await restoreState()
-    extension.send({type:'loaded', pdfFileUri: extension.pdfFileUri})
+    void uploadState(extension)
+    extension.send({ type: 'loaded', pdfFileUri: extension.pdfFileUri })
 })
 onPDFViewerEvent('rotationchanging', () => setTrimCSS())
 

@@ -1,13 +1,14 @@
 import * as utils from './utils.js'
-import type { LateXWorkshopPdfViewer } from '../latexworkshop'
-import type { IPDFViewerApplication } from './interface'
-import type { PdfViewerParams } from '../../types/latex-workshop-protocol-types/index.js'
+import { getViewerEventBus, type LateXWorkshopPdfViewer } from '../latexworkshop.js'
+import type { IPDFViewerApplication, PdfjsEventName } from './interface'
+import type { PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index.js'
+import { getTrimValue } from './trimming.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 
 // let viewerState: PdfViewerState | undefined
 
-// export function initRestore(extension: LateXWorkshopPdfViewer, eventBus: PDFViewerEventBus) {
+export async function initUploadState(extension: LateXWorkshopPdfViewer) {
 //     window.addEventListener('message', (e) => {
 //         const data = e.data as PanelManagerResponse
 //         if (!data.type) {
@@ -26,29 +27,29 @@ declare const PDFViewerApplication: IPDFViewerApplication
 //         }
 //     })
 
-//     window.addEventListener('scroll', () => { uploadState(extension) }, true)
+    window.addEventListener('scrollend', () => { uploadState(extension) }, true)
 
-//     const events: PdfjsEventName[] = ['scroll', 'scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
-//     for (const ev of events) {
-//         eventBus.on(ev, () => { uploadState(extension) })
-//     }
-// }
+    const events: PdfjsEventName[] = ['scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
+    for (const ev of events) {
+        (await getViewerEventBus()).on(ev, () => { uploadState(extension) })
+    }
+}
 
-// export function uploadState(extension: LateXWorkshopPdfViewer) {
-//     const state: PdfViewerState = {
-//         pdfFileUri: extension.pdfFileUri,
-//         scale: PDFViewerApplication.pdfViewer.currentScaleValue,
-//         trim: getTrimValue(),
-//         scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
-//         sidebarView: PDFViewerApplication.pdfSidebar.visibleView,
-//         spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
-//         scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
-//         scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft,
-//         synctexEnabled: extension.synctexEnabled,
-//         autoReloadEnabled: extension.autoReloadEnabled
-//     }
-//     extension.sendToPanelManager({type: 'state', state})
-// }
+export function uploadState(extension: LateXWorkshopPdfViewer) {
+    const state: PdfViewerState = {
+        pdfFileUri: extension.pdfFileUri,
+        scale: PDFViewerApplication.pdfViewer.currentScaleValue,
+        trim: getTrimValue(),
+        scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
+        sidebarView: PDFViewerApplication.pdfSidebar.visibleView,
+        spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
+        scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
+        scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft,
+        synctexEnabled: extension.synctexEnabled,
+        autoReloadEnabled: extension.autoReloadEnabled
+    }
+    extension.sendToPanelManager({type: 'state', state})
+}
 
 export async function setParams(extension: LateXWorkshopPdfViewer) {
     const params = await (await fetch('config.json')).json() as PdfViewerParams
