@@ -1,15 +1,15 @@
-import {IConnectionPort, createConnectionPort} from './components/connection.js'
 import {editHTML} from './components/htmleditor.js'
-import {SyncTex} from './components/synctex.js'
 import * as utils from './components/utils.js'
 import {ExternalPromise} from './components/externalpromise.js'
-import {ViewerHistory} from './components/viewerhistory.js'
+import { registerHistoryKeyBind, scrollHistory } from './components/viewerhistory.js'
 
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
-import type {ClientRequest, ServerResponse, PanelRequest, PdfViewerParams, SynctexData, SynctexRangeData} from '../types/latex-workshop-protocol-types/index'
+import type {PanelRequest, PdfViewerParams} from '../types/latex-workshop-protocol-types/index'
 import { initTrim, setTrimCSS } from './components/trimming.js'
-import { restoreState, refresh } from './components/refresh.js'
+import { getAutoReloadEnabled, restoreState, setAutoReloadEnabled } from './components/refresh.js'
 import { initUploadState, setParams, uploadState } from './components/state.js'
+import { initConnect, send } from './components/connection.js'
+import { getSyncTeXEnabled, registerSyncTeX, setSyncTeXEnabled } from './components/synctex.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
@@ -19,14 +19,9 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly embedded = window.parent !== window
     readonly encodedPdfFilePath: string
     readonly pdfFileUri: string
-    readonly synctex: SyncTex
-    readonly viewerHistory: ViewerHistory
 
     private hideToolbarInterval: number | undefined
 
-    private connectionPort: IConnectionPort
-    synctexEnabled = true
-    autoReloadEnabled = true
     private readonly setupAppOptionsPromise = new ExternalPromise<void>()
 
     constructor() {
@@ -37,13 +32,6 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.pdfFileUri = pack.pdfFileUri
 
         editHTML()
-
-        this.viewerHistory = new ViewerHistory(this)
-        this.connectionPort = createConnectionPort(this)
-        this.synctex = new SyncTex(this)
-
-        this.setupConnectionPort()
-            .catch((e) => console.error('Setting up connection port failed:', e))
 
         this.hidePrintButton()
         this.registerKeybinding()
@@ -83,177 +71,8 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return { dispose: () => PDFViewerApplication.eventBus.off(viewUpdatedEvent, cb0) }
     }
 
-    send(message: ClientRequest) {
-        void this.connectionPort.send(message)
-    }
-
-    addLogMessage(message: string) {
-        this.send({ type: 'add_log', message})
-    }
-
     async waitSetupAppOptionsFinished() {
         return this.setupAppOptionsPromise.promise
-    }
-
-    private scrollToPosition(page: HTMLElement, posX: number, posY: number, isCircle: boolean = false): { scrollX: number, scrollY: number } {
-        const container = document.getElementById('viewerContainer') as HTMLElement
-        const maxScrollX = window.innerWidth * (isCircle ? 0.9 : 1)
-        const minScrollX = window.innerWidth * (isCircle ? 0.1 : 0)
-        let scrollX = page.offsetLeft + posX
-        scrollX = Math.min(scrollX, maxScrollX)
-        scrollX = Math.max(scrollX, minScrollX)
-        const scrollY = page.offsetTop + page.offsetHeight - posY
-
-        this.viewerHistory.set(container.scrollTop)
-        if (PDFViewerApplication.pdfViewer.scrollMode === 1) {
-            container.scrollLeft = page.offsetLeft
-        } else {
-            container.scrollTop = scrollY - document.body.offsetHeight * 0.4
-        }
-        this.viewerHistory.set(container.scrollTop)
-
-        return { scrollX, scrollY }
-    }
-
-    private createIndicator(type: 'rect' | 'circ', scrollX: number, scrollY: number, width_px?: number, height_px?: number): void {
-        let indicator = document.getElementById('synctex-indicator') as HTMLElement
-
-        if (type === 'rect') {
-            const parent = indicator.parentNode as HTMLElement
-            indicator = indicator.cloneNode(true) as HTMLElement
-            indicator.id = ''
-            indicator.classList.add('synctex-indicator-rect')
-            indicator.style.width = `${width_px}px`
-            indicator.style.height = `${height_px}px`
-            indicator.addEventListener('animationend', () => {
-                indicator.style.display = 'none'
-                parent.removeChild(indicator)
-            })
-            parent.appendChild(indicator)
-        } else {
-            indicator.className = 'show'
-            setTimeout(() => indicator.className = 'hide', 10)
-            // setTimeout(() => {
-            //     indicator.style.left = ''
-            //     indicator.style.top = ''
-            // }, 1000)
-        }
-        indicator.style.left = `${scrollX}px`
-        indicator.style.top = `${scrollY}px`
-
-    }
-
-    private forwardSynctexRect(data: SynctexRangeData[]) {
-        for (const record of data) {
-            const page = document.getElementsByClassName('page')[record.page - 1] as HTMLElement
-            const pos_left_top = PDFViewerApplication.pdfViewer._pages[record.page - 1].viewport.convertToViewportPoint(record.h, record.v - record.H)
-            const pos_right_down = PDFViewerApplication.pdfViewer._pages[record.page - 1].viewport.convertToViewportPoint(record.h + record.W, record.v)
-
-            const canvas = document.getElementsByClassName('canvasWrapper')[0] as HTMLElement
-            pos_left_top[0] += canvas.offsetLeft
-            pos_left_top[1] += canvas.offsetTop
-            pos_right_down[0] += canvas.offsetLeft
-            pos_right_down[1] += canvas.offsetTop
-
-            const { scrollX, scrollY } = this.scrollToPosition(page, pos_left_top[0], pos_left_top[1])
-
-            if (record.indicator) {
-                const width_px = pos_right_down[0] - Math.max(scrollX, pos_left_top[0])
-                const height_px = pos_left_top[1] - pos_right_down[1]
-                this.createIndicator('rect', scrollX, scrollY, width_px, height_px)
-            }
-        }
-    }
-
-    private forwardSynctexCirc(data: SynctexData) {
-        const page = document.getElementsByClassName('page')[data.page - 1] as HTMLElement
-        // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
-        // https://github.com/James-Yu/LaTeX-Workshop/pull/417
-        const pos = PDFViewerApplication.pdfViewer._pages[data.page - 1].viewport.convertToViewportPoint(data.x, data.y)
-        const { scrollX, scrollY } = this.scrollToPosition(page, pos[0], pos[1], true)
-
-        if (data.indicator) {
-            this.createIndicator('circ', scrollX, scrollY)
-        }
-    }
-
-    private forwardSynctex(data: SynctexData | SynctexRangeData[]) {
-        if (!this.synctexEnabled) {
-            this.addLogMessage('SyncTeX temporarily disabled.')
-            return
-        }
-
-        // if the type of data is SynctexRangeData[], parse as a rectangular indicator.
-        if (Array.isArray(data)){
-            this.forwardSynctexRect(data)
-        } else {
-            this.forwardSynctexCirc(data)
-        }
-    }
-
-    private reload() {
-        location.reload()
-    }
-
-    private async setupConnectionPort() {
-        const openPack: ClientRequest = {
-            type: 'open',
-            pdfFileUri: this.pdfFileUri,
-            viewer: (this.embedded ? 'tab' : 'browser')
-        }
-        this.send(openPack)
-        await this.connectionPort.onDidReceiveMessage((event: MessageEvent<string>) => {
-            const data = JSON.parse(event.data) as ServerResponse
-            switch (data.type) {
-                case 'synctex': {
-                    this.forwardSynctex(data.data)
-                    break
-                }
-                case 'refresh': {
-                    if (!this.autoReloadEnabled) {
-                        this.addLogMessage('Auto reload temporarily disabled.')
-                        break
-                    }
-                    void refresh()
-                    break
-                }
-                case 'reload': {
-                    this.reload()
-                    break
-                }
-                default: {
-                    break
-                }
-            }
-        })
-
-        await this.connectionPort.onDidClose(async () => {
-            document.title = `[Disconnected] ${this.documentTitle}`
-            console.log('Closed: WebSocket to LaTeX Workshop.')
-
-            // Since WebSockets are disconnected when PC resumes from sleep,
-            // we have to reconnect. https://github.com/James-Yu/LaTeX-Workshop/pull/1812
-            await sleep(3000)
-
-            let tries = 1
-            while (tries <= 10) {
-                console.log(`Try to reconnect to LaTeX Workshop: (${tries}/10).`)
-                try {
-                    this.connectionPort = createConnectionPort(this)
-                    await this.connectionPort.awaitOpen()
-                    document.title = this.documentTitle
-                    await this.setupConnectionPort()
-                    console.log('Reconnected: WebSocket to LaTeX Workshop.')
-                    return
-                } catch (e) {
-                    console.error(e)
-                }
-
-                await sleep(1000 * (tries + 2))
-                tries++
-            }
-            console.error('Cannot reconnect to LaTeX Workshop.')
-        })
     }
 
     private showToolbar(animate: boolean) {
@@ -300,7 +119,7 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             document.addEventListener('click', (e) => {
                 const target = e.target as HTMLAnchorElement
                 if (target.nodeName === 'A' && !target.href.startsWith(window.location.href) && !target.href.startsWith('blob:')) { // is external link
-                    this.send({type:'external_link', url:target.href})
+                    void send({ type:'external_link', url:target.href })
                     e.preventDefault()
                 }
             })
@@ -311,7 +130,7 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             if (this.embedded && evt.key === 'c' && (evt.ctrlKey || evt.metaKey)) {
                 const selection = window.getSelection()
                 if (selection !== null && selection.toString().length > 0) {
-                    this.send({type: 'copy', content: selection.toString(), isMetaKey: evt.metaKey})
+                    void send({ type: 'copy', content: selection.toString(), isMetaKey: evt.metaKey })
                 }
             }
 
@@ -319,9 +138,9 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             // Back/Forward don't work in the embedded viewer, so we simulate them.
             if (this.embedded && (navigator.userAgent.includes('Mac OS') ? evt.metaKey : evt.altKey)) {
                 if (evt.key === 'ArrowLeft') {
-                    this.viewerHistory.back()
+                    scrollHistory.back()
                 } else if(evt.key === 'ArrowRight') {
-                    this.viewerHistory.forward()
+                    scrollHistory.forward()
                 }
             }
 
@@ -332,10 +151,10 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
 
             if (evt.key === 'Backspace') {
-                this.viewerHistory.back()
+                scrollHistory.back()
             }
             if (evt.key === 'Backspace' && evt.shiftKey) {
-                this.viewerHistory.forward()
+                scrollHistory.forward()
             }
 
             // Configure VIM-like shortcut keys
@@ -369,12 +188,12 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             if (synctexOff.checked) {
                 synctexOff.checked = false
             }
-            this.synctexEnabled = true
+            setSyncTeXEnabled(true)
         } else {
             if (!synctexOff.checked) {
                 synctexOff.checked = true
             }
-            this.synctexEnabled = false
+            setSyncTeXEnabled(false)
         }
         uploadState(this)
     }
@@ -387,7 +206,7 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         })
         const synctexOffButton = document.getElementById('synctexOffButton') as HTMLButtonElement
         synctexOffButton.addEventListener('click', () => {
-            this.setSynctex(!this.synctexEnabled)
+            this.setSynctex(!getSyncTeXEnabled())
             PDFViewerApplication.secondaryToolbar.close()
         })
     }
@@ -398,12 +217,12 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             if (autoReloadOff.checked) {
                 autoReloadOff.checked = false
             }
-            this.autoReloadEnabled = true
+            setAutoReloadEnabled(true)
         } else {
             if (!autoReloadOff.checked) {
                 autoReloadOff.checked = true
             }
-            this.autoReloadEnabled = false
+            setAutoReloadEnabled(false)
         }
         uploadState(this)
     }
@@ -416,7 +235,7 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         })
         const autoReloadOffButton = document.getElementById('autoReloadOffButton') as HTMLButtonElement
         autoReloadOffButton.addEventListener('click', () => {
-            this.setAutoReload(!this.autoReloadEnabled)
+            this.setAutoReload(!getAutoReloadEnabled())
             PDFViewerApplication.secondaryToolbar.close()
         })
     }
@@ -496,7 +315,7 @@ function onPDFViewerEvent(event: PdfjsEventName, cb: (evt?: any) => unknown, opt
 }
 
 async function initialization() {
-    const workerPort = new Worker('build/pdf.worker.mjs', { type: 'module' })
+    const worker = new Worker('build/pdf.worker.mjs', { type: 'module' })
     const params = await (await fetch('config.json')).json() as PdfViewerParams
     document.addEventListener('webviewerloaded', () => {
         const color = utils.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark : params.color.light
@@ -507,35 +326,33 @@ async function initialization() {
             cMapUrl: '../cmaps/',
             sidebarViewOnLoad: 0,
             standardFontDataUrl: '../standard_fonts/',
-            workerPort,
+            workerPort: worker,
             workerSrc: './build/pdf.worker.mjs',
             forcePageColors: true,
             ...color
         }
         PDFViewerApplicationOptions.setAll(options)
     })
-}
-
-async function sleep(timeout: number) {
-    await new Promise((resolve) => setTimeout(resolve, timeout))
+    initConnect()
+    registerHistoryKeyBind()
 }
 
 const extension = new LateXWorkshopPdfViewer()
 await initialization()
 onPDFViewerEvent('documentloaded', () => {
-    void setParams(extension)
+    void setParams()
     void initUploadState(extension)
 }, { once: true })
 onPDFViewerEvent('pagesinit', async () => {
     initTrim()
     await restoreState()
-    extension.synctex.registerListenerOnEachPage()
+    registerSyncTeX()
 })
 onPDFViewerEvent('pagesloaded', async () => {
     initTrim()
     await restoreState()
     void uploadState(extension)
-    extension.send({ type: 'loaded', pdfFileUri: extension.pdfFileUri })
+    void send({ type: 'loaded', pdfFileUri: extension.pdfFileUri })
 })
 onPDFViewerEvent('rotationchanging', () => setTrimCSS())
 

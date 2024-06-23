@@ -1,11 +1,20 @@
 import * as utils from './utils.js'
 import { getTrimValue, setTrimValue } from './trimming.js'
+import { sendLog } from './connection.js'
 import type { IPDFViewerApplication, IPDFViewerApplicationOptions } from './interface'
 import type { PdfViewerParams } from '../../types/latex-workshop-protocol-types/index.js'
 
 declare const pdfjsLib: any
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
+
+let autoReloadEnabled = true
+export function setAutoReloadEnabled(enabled: boolean) {
+    autoReloadEnabled = enabled
+}
+export function getAutoReloadEnabled() {
+    return autoReloadEnabled
+}
 
 let prevState: {
     page: number,
@@ -19,6 +28,11 @@ let prevState: {
 } | undefined
 
 export async function refresh() {
+    if (!getAutoReloadEnabled()) {
+        sendLog('Auto reload temporarily disabled.')
+        return
+    }
+
     // Fail-safe. For unknown reasons, the pack may have null values #4076
     const currentState = {
         page: PDFViewerApplication.pdfViewer.currentPageNumber ?? prevState?.page,
@@ -42,7 +56,7 @@ export async function refresh() {
         PDFViewerApplicationOptions.set('spreadModeOnLoad', prevState.spreadMode)
     }
 
-    const { encodedPath, docTitle } = parseURL()
+    const { encodedPath, docTitle } = utils.parseURL()
     // eslint-disable-next-line
     PDFViewerApplication.load(await pdfjsLib.getDocument(`/${utils.pdfFilePrefix}${encodedPath}`).promise)
     // reset the document title to the original value to avoid duplication
@@ -101,20 +115,4 @@ async function restoreDefault() {
     if (params.spreadMode !== undefined) {
         PDFViewerApplication.pdfViewer.spreadMode = params.spreadMode
     }
-}
-
-function parseURL(): { encodedPath: string, docTitle: string } {
-    const query = document.location.search.substring(1)
-    const parts = query.split('&')
-
-    for (let i = 0, ii = parts.length; i < ii; ++i) {
-        const param = parts[i].split('=')
-        if (param[0].toLowerCase() === 'file') {
-            const encodedPath = param[1].replace(utils.pdfFilePrefix, '')
-            const pdfFileUri = utils.decodePath(encodedPath)
-            const docTitle = pdfFileUri.split(/[\\/]/).pop() ?? 'Untitled PDF'
-            return { encodedPath, docTitle }
-        }
-    }
-    throw new Error('file not given in the query.')
 }

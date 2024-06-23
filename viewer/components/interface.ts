@@ -1,7 +1,3 @@
-import type {ClientRequest} from '../../types/latex-workshop-protocol-types/index'
-import type {SyncTex} from './synctex.js'
-import type {ViewerHistory} from './viewerhistory.js'
-
 export interface IDisposable {
     dispose(): unknown
 }
@@ -10,10 +6,7 @@ export interface ILatexWorkshopPdfViewer {
     readonly documentTitle: string,
     readonly embedded: boolean,
     readonly encodedPdfFilePath: string,
-    readonly pdfFileUri: string,
-    readonly synctex: SyncTex,
-    readonly viewerHistory: ViewerHistory,
-    send(message: ClientRequest): void
+    readonly pdfFileUri: string
 }
 
 export type PdfjsEventName

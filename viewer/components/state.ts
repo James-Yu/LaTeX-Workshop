@@ -3,6 +3,8 @@ import { getViewerEventBus, type LateXWorkshopPdfViewer } from '../latexworkshop
 import type { IPDFViewerApplication, PdfjsEventName } from './interface'
 import type { PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index.js'
 import { getTrimValue } from './trimming.js'
+import { getSyncTeXEnabled, registerSyncTeX, setSyncTeXKey } from './synctex.js'
+import { getAutoReloadEnabled } from './refresh.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 
@@ -45,13 +47,13 @@ export function uploadState(extension: LateXWorkshopPdfViewer) {
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
         scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
         scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft,
-        synctexEnabled: extension.synctexEnabled,
-        autoReloadEnabled: extension.autoReloadEnabled
+        synctexEnabled: getSyncTeXEnabled(),
+        autoReloadEnabled: getAutoReloadEnabled()
     }
     extension.sendToPanelManager({type: 'state', state})
 }
 
-export async function setParams(extension: LateXWorkshopPdfViewer) {
+export async function setParams() {
     const params = await (await fetch('config.json')).json() as PdfViewerParams
 
     const htmlElement = document.querySelector('html') as HTMLHtmlElement
@@ -81,8 +83,8 @@ export async function setParams(extension: LateXWorkshopPdfViewer) {
     css.insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${pageBorderColor}}`, css.cssRules.length)
 
     if (params.keybindings) {
-        extension.synctex.reverseSynctexKeybinding = params.keybindings['synctex']
-        extension.synctex.registerListenerOnEachPage()
+        setSyncTeXKey(params.keybindings['synctex'])
+        registerSyncTeX()
     }
 }
 
