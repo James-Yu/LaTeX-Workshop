@@ -1,7 +1,7 @@
 import * as utils from './utils.js'
-import type { IPDFViewerApplication, IPDFViewerApplicationOptions } from './interface'
 import { getTrimValue, setTrimValue } from './trimming.js'
-import { PdfViewerParams } from '../../types/latex-workshop-protocol-types/index.js'
+import type { IPDFViewerApplication, IPDFViewerApplicationOptions } from './interface'
+import type { PdfViewerParams } from '../../types/latex-workshop-protocol-types/index.js'
 
 declare const pdfjsLib: any
 declare const PDFViewerApplication: IPDFViewerApplication

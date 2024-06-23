@@ -527,9 +527,9 @@ onPDFViewerEvent('documentloaded', () => {
     void setParams(extension)
 }, { once: true })
 onPDFViewerEvent('pagesinit', async () => {
-    extension.synctex.registerListenerOnEachPage()
     initTrim()
     await restoreState()
+    extension.synctex.registerListenerOnEachPage()
 })
 onPDFViewerEvent('pagesloaded', async () => {
     initTrim()
