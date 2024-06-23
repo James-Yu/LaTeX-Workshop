@@ -1,4 +1,3 @@
-import type {PageTrimmer} from './pagetrimmer.js'
 import type {ClientRequest} from '../../types/latex-workshop-protocol-types/index'
 import type {SyncTex} from './synctex.js'
 import type {ViewerHistory} from './viewerhistory.js'
@@ -11,26 +10,9 @@ export interface ILatexWorkshopPdfViewer {
     readonly documentTitle: string,
     readonly embedded: boolean,
     readonly encodedPdfFilePath: string,
-    readonly pageTrimmer: PageTrimmer,
     readonly pdfFileUri: string,
     readonly synctex: SyncTex,
     readonly viewerHistory: ViewerHistory,
-
-    /**
-     * `cb` is called after the viewer started.
-     */
-    onDidStartPdfViewer(cb: () => unknown): IDisposable,
-
-    /**
-     * `cb` is called after a PDF document is loaded and reloaded.
-     */
-    onPagesInit(cb: () => unknown, option?: {once: boolean}): IDisposable,
-
-    /**
-     * `cb` is called after the a PDF document is rendered.
-     */
-    onPagesLoaded(cb: () => unknown, option?: {once: boolean}): IDisposable,
-
     send(message: ClientRequest): void
 }
 
@@ -47,13 +29,16 @@ export type PdfjsEventName
     | 'scrollmodechanged'
     | 'spreadmodechanged'
     | 'pagenumberchanged'
+    | 'rotationchanging'
+
+export type PDFViewerEventBus = {
+    on: (eventName: PdfjsEventName, listener: () => void) => void,
+    off: (eventName: PdfjsEventName, listener: () => void) => void,
+    dispatch: (eventName: string, payload: any) => void
+}
 
 export interface IPDFViewerApplication {
-    eventBus: {
-        on: (eventName: PdfjsEventName, listener: () => void) => void,
-        off: (eventName: PdfjsEventName, listener: () => void) => void,
-        dispatch: (eventName: string) => void
-    },
+    eventBus: PDFViewerEventBus,
     findBar: {
         opened: boolean,
         open(): void
@@ -64,10 +49,18 @@ export interface IPDFViewerApplication {
         _currentScale: number,
         _pages: {
             viewport: {
+                rawDims: {
+                    pageHeight: number,
+                    pageWidth: number,
+                    pageX: number,
+                    pageY: number
+                },
+                rotation: number,
                 convertToViewportPoint(x: number, y: number): [number, number]
             },
             getPagePoint(x: number, y: number): [number, number]
         }[],
+        currentPageNumber: number,
         currentScaleValue: string,
         scrollMode: number,
         spreadMode: number
