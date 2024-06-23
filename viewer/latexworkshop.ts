@@ -170,7 +170,6 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
         // https://github.com/James-Yu/LaTeX-Workshop/pull/417
         const pos = PDFViewerApplication.pdfViewer._pages[data.page - 1].viewport.convertToViewportPoint(data.x, data.y)
-        console.log(pos)
         const { scrollX, scrollY } = this.scrollToPosition(page, pos[0], pos[1], true)
 
         if (data.indicator) {
