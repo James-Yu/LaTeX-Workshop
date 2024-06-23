@@ -11765,6 +11765,8 @@ class PDFViewer {
     }
   }
   setDocument(pdfDocument) {
+    let oldVisiblePages = this._getVisiblePages().ids;
+    const oldPageCount = this.viewer.children.length;
     if (this.pdfDocument) {
       this.eventBus.dispatch("pagesdestroy", {
         source: this
@@ -11821,11 +11823,11 @@ class PDFViewer {
       this._onAfterDraw = null;
     };
     this.eventBus._on("pagerendered", this._onAfterDraw);
-    Promise.all([firstPagePromise, permissionsPromise]).then(([firstPdfPage, permissions]) => {
+    Promise.all([firstPagePromise, permissionsPromise]).then(async ([firstPdfPage, permissions]) => {
       if (pdfDocument !== this.pdfDocument) {
         return;
       }
-      this._firstPageCapability.resolve(firstPdfPage);
+      // this._firstPageCapability.resolve(firstPdfPage);
       this._optionalContentConfigPromise = optionalContentConfigPromise;
       const {
         annotationEditorMode,
@@ -11884,6 +11886,26 @@ class PDFViewer {
         this._pages.push(pageView);
       }
       this._pages[0]?.setPdfPage(firstPdfPage);
+      let getPagesLeft = pagesCount - 1;
+      const setPagePromises = 
+        Array.from(oldVisiblePages)
+          .filter(pageNum => pageNum <= pagesCount)
+          .map(pageNum => pdfDocument.getPage(pageNum).then(pdfPage => [pageNum, pdfPage]))
+          .reduce((accPromise, currPromise) => accPromise.then(() => 
+            currPromise.then(([pageNum, pdfPage]) => {
+              const pageView = this._pages[pageNum - 1];
+              if (!pageView.pdfPage) {
+                pageView.setPdfPage(pdfPage);
+                getPagesLeft--;
+              }
+              this.renderingQueue.highestPriorityPage = pageView.renderingId;
+              return this._pages[pageNum - 1].draw();
+            })), Promise.resolve());
+
+      await setPagePromises;
+      for (let i = 1; i <= oldPageCount; i++)
+        this.viewer.removeChild(this.viewer.firstChild);
+      this._firstPageCapability.resolve(firstPdfPage);
       if (this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.PAGE) {
         this.#ensurePageViewVisible();
       } else if (this._spreadMode !== _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.SpreadMode.NONE) {
@@ -11906,7 +11928,6 @@ class PDFViewer {
           this._pagesCapability.resolve();
           return;
         }
-        let getPagesLeft = pagesCount - 1;
         if (getPagesLeft <= 0) {
           this._pagesCapability.resolve();
           return;
@@ -12001,7 +12022,7 @@ class PDFViewer {
       document.removeEventListener("visibilitychange", this.#onVisibilityChange);
       this.#onVisibilityChange = null;
     }
-    this.viewer.textContent = "";
+    // this.viewer.textContent = "";
     this._updateScrollMode();
     this.viewer.removeAttribute("lang");
     if (this.#hiddenCopyElement) {
