@@ -57,11 +57,15 @@ export async function refresh() {
     }
 
     const { encodedPath, docTitle } = utils.parseURL()
-    // eslint-disable-next-line
-    PDFViewerApplication.load(await pdfjsLib.getDocument(`/${utils.pdfFilePrefix}${encodedPath}`).promise)
+    /* eslint-disable */
+    const doc = await pdfjsLib.getDocument({
+        url: `/${utils.pdfFilePrefix}${encodedPath}`,
+        cMapUrl: '../cmaps/'
+    }).promise
+    PDFViewerApplication.load(doc)
+    /* eslint-enable */
     // reset the document title to the original value to avoid duplication
     document.title = docTitle
-    PDFViewerApplicationOptions.setAll({ cMapUrl: '../cmaps/' })
 }
 
 export async function restoreState() {

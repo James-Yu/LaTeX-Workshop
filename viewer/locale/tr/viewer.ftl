@@ -51,12 +51,6 @@ pdfjs-download-button-label = İndir
 pdfjs-bookmark-button =
     .title = Geçerli sayfa (geçerli sayfanın adresini görüntüle)
 pdfjs-bookmark-button-label = Geçerli sayfa
-# Used in Firefox for Android.
-pdfjs-open-in-app-button =
-    .title = Uygulamada aç
-# Used in Firefox for Android.
-# Length of the translation matters since we are in a mobile context, with limited screen estate.
-pdfjs-open-in-app-button-label = Uygulamada aç
 
 ##  Secondary toolbar and context menu
 
@@ -273,7 +267,7 @@ pdfjs-rendering-error = Sayfa yorumlanırken bir hata oluştu.
 # Variables:
 #   $date (Date) - the modification date of the annotation
 #   $time (Time) - the modification time of the annotation
-pdfjs-annotation-date-string = { $date }, { $time }
+pdfjs-annotation-date-string = { $date } { $time }
 # .alt: This is used as a tooltip.
 # Variables:
 #   $type (String) - an annotation type from a list defined in the PDF spec
@@ -351,11 +345,11 @@ pdfjs-ink-canvas =
 pdfjs-editor-alt-text-button-label = Alternatif metin
 pdfjs-editor-alt-text-edit-button-label = Alternatif metni düzenle
 pdfjs-editor-alt-text-dialog-label = Bir seçenek seçin
-pdfjs-editor-alt-text-dialog-description = Alternatif metin, insanlar görseli göremediğinde veya görsel yüklenmediğinde işe yarar.
+pdfjs-editor-alt-text-dialog-description = Alternatif metin, insanlar resmi göremediğinde veya resim yüklenmediğinde işe yarar.
 pdfjs-editor-alt-text-add-description-label = Açıklama ekle
 pdfjs-editor-alt-text-add-description-description = Konuyu, ortamı veya eylemleri tanımlayan bir iki cümle yazmaya çalışın.
 pdfjs-editor-alt-text-mark-decorative-label = Dekoratif olarak işaretle
-pdfjs-editor-alt-text-mark-decorative-description = Kenarlıklar veya filigranlar gibi dekoratif görüntüler için kullanılır.
+pdfjs-editor-alt-text-mark-decorative-description = Kenarlıklar veya filigranlar gibi dekoratif resimler için kullanılır.
 pdfjs-editor-alt-text-cancel-button = Vazgeç
 pdfjs-editor-alt-text-save-button = Kaydet
 pdfjs-editor-alt-text-decorative-tooltip = Dekoratif olarak işaretlendi
