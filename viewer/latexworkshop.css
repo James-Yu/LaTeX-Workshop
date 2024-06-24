@@ -109,6 +109,15 @@ html[dir='rtl'] .findbar {
     box-shadow: 0px 0px 0px 1px lightgrey;
 }
 
+.pdfViewer .page.loadingIcon::after{
+    z-index: -100000 !important;
+}
+
+.pdfViewer .page:not(.loading)::after{
+    transition-property: auto !important;
+    display:block !important;
+}
+
 .notransition {
     transition: none !important;
 }
