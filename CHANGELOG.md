@@ -1,5 +1,29 @@
 # Change Log
 
+## [9.21.1] - 2024-06-24
+
+### Fixed
+- (#4294) Internal links in pdf viewer do not scroll to position.
+
+## [9.21.0] - 2024-06-23
+
+### Added
+- Upgrade pdf.js to v4.2.67.
+- Add all package suggestions to repo, let users download.
+- Allow more relative paths in `latex.texDirs` and `intellisense.package.dirs`.
+- (#4222) Customize docker (or podman) path.
+- (#4277) Add a close-env suggestion after `\begin{env}`.
+
+### Changed
+- (#4281) Try use `PDFViewerApplication.load` in viewer refresh.
+- (#4292) Better viewer trimming.
+
+### Fixed
+- Fix a duplicate children parsing bug in caching.
+- `\putbib` can also have `\subfix`.
+- Avoid included bib circular inclusion.
+- When finding root from workspace, we don't care if it is cached or not.
+
 ## [9.20.1] - 2024-04-29
 
 ### Fixed

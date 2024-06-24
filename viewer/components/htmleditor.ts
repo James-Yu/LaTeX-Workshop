@@ -5,11 +5,16 @@ export function editHTML() {
 
     const template = document.createElement('template')
     template.innerHTML =
-`<button id="synctexOffButton" class="secondaryToolbarButton" title="Disable forward SyncTeX" tabindex="70">
+`<button id="TrimButton" class="secondaryToolbarButton" title="Trim margin" tabindex="70">
+    <label for="trimPct">Trim margin by </label>
+    <input type="number" id="trimPct" name="trimPct" min="0" max="99" value="0">
+    <label for="trimPct">%</label>
+</button>
+<button id="synctexOffButton" class="secondaryToolbarButton" title="Disable forward SyncTeX" tabindex="71">
     <input id="synctexOff" type="checkbox"><span>Stop SyncTeX</span>
 </button>
-<button id="autoReloadOffButton" class="secondaryToolbarButton" title="Disable auto reload" tabindex="71">
-    <input id="autoReloadOff" type="checkbox"><span>Auto Reload</span>
+<button id="autoReloadOffButton" class="secondaryToolbarButton" title="Disable auto reload" tabindex="72">
+    <input id="autoReloadOff" type="checkbox"><span>Disable auto-reload</span>
 </button>
 <div class="horizontalToolbarSeparator"></div>`
     let anchor: HTMLElement | Element | null | undefined = document.getElementById('documentProperties')
@@ -34,29 +39,29 @@ export function editHTML() {
         }
     }
 
-    template.innerHTML = '<option id="trimOption" title="" disabled="disabled" hidden="true"> Trimming </option>'
-    anchor = document.getElementById('scaleSelect')
-    if (anchor) {
-        for (const node of template.content.childNodes) {
-            anchor.appendChild(node)
-        }
-    }
+// template.innerHTML = '<option id="trimOption" title="" disabled="disabled" hidden="true"> Trimming </option>'
+// anchor = document.getElementById('scaleSelect')
+// if (anchor) {
+//     for (const node of template.content.childNodes) {
+//         anchor.appendChild(node)
+//     }
+// }
 
-    template.innerHTML =
-`<span id="trimSelectContainer" class="dropdownToolbarButton">
-<select id="trimSelect" title="Trim" tabindex="23" >
-  <option title="" value="0.0" selected="selected" >No trim</option>
-  <option title="" value="0.05" >Trim 5%</option>
-  <option title="" value="0.10" >Trim 10%</option>
-  <option title="" value="0.15" >Trim 15%</option>
-</select>
-</span>`
-    anchor = document.getElementById('scaleSelectContainer')
-    if (anchor) {
-        for (const node of template.content.childNodes) {
-            anchor.parentNode?.appendChild(node)
-        }
-    }
+//     template.innerHTML =
+// `<span id="trimSelectContainer" class="dropdownToolbarButton">
+// <select id="trimSelect" title="Trim" tabindex="23" >
+//   <option title="" value="0.0" selected="selected" >No trim</option>
+//   <option title="" value="0.05" >Trim 5%</option>
+//   <option title="" value="0.10" >Trim 10%</option>
+//   <option title="" value="0.15" >Trim 15%</option>
+// </select>
+// </span>`
+//     anchor = document.getElementById('scaleSelectContainer')
+//     if (anchor) {
+//         for (const node of template.content.childNodes) {
+//             anchor.parentNode?.appendChild(node)
+//         }
+//     }
 
     template.innerHTML = '<div id="synctex-indicator"></div>'
     anchor = document.getElementById('viewerContainer')

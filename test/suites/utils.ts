@@ -33,6 +33,10 @@ const suite = {
 }
 export { suite }
 
+export function skip(_testName: string, _cb: (fixturePath: string) => unknown, _platforms?: NodeJS.Platform[]) {
+    return
+}
+
 export function only(testName: string, cb: (fixturePath: string) => unknown, platforms?: NodeJS.Platform[]) {
     return run(testName, cb, platforms, true)
 }

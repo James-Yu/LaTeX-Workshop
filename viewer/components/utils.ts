@@ -1,5 +1,9 @@
 export const pdfFilePrefix = 'pdf..'
 
+export async function sleep(timeout: number) {
+    await new Promise((resolve) => setTimeout(resolve, timeout))
+}
+
 // We use base64url to encode the path of PDF file.
 // https://github.com/James-Yu/LaTeX-Workshop/pull/1501
 export function encodePath(path: string): string {
@@ -16,8 +20,31 @@ export function decodePath(b64url: string): string {
   return decodeURIComponent(s)
 }
 
+export function parseURL(): { encodedPath: string, pdfFileUri: string, docTitle: string } {
+    const query = document.location.search.substring(1)
+    const parts = query.split('&')
+
+    for (let i = 0, ii = parts.length; i < ii; ++i) {
+        const param = parts[i].split('=')
+        if (param[0].toLowerCase() === 'file') {
+            const encodedPath = param[1].replace(pdfFilePrefix, '')
+            const pdfFileUri = decodePath(encodedPath)
+            const docTitle = pdfFileUri.split(/[\\/]/).pop() ?? 'Untitled PDF'
+            return { encodedPath, pdfFileUri, docTitle }
+        }
+    }
+    throw new Error('file not given in the query.')
+}
+
 export function isEmbedded(): boolean {
     return window.parent !== window
+}
+
+export function isPrefersColorSchemeDark(codeColorTheme: 'light' | 'dark') {
+    if (isEmbedded()) {
+        return codeColorTheme === 'dark'
+    }
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 }
 
 export function isPdfjsShortcut(e: Pick<KeyboardEvent, 'altKey' | 'ctrlKey' | 'metaKey' | 'shiftKey' | 'code' | 'key'>) {
@@ -67,21 +94,4 @@ export function isPdfjsShortcut(e: Pick<KeyboardEvent, 'altKey' | 'ctrlKey' | 'm
         return false
     }
     return false
-}
-
-export function elementWidth(element: HTMLElement, forceDisplay = true): number {
-    if (!forceDisplay && window.getComputedStyle(element).display === 'none') {
-        return 0
-    }
-    const originalDisplay = element.style.display
-    if (forceDisplay) {
-        element.style.display = 'block'
-    }
-    const style = window.getComputedStyle(element)
-    const width = element.offsetWidth
-    const margin = parseFloat(style.marginLeft) + parseFloat(style.marginRight)
-    if (forceDisplay) {
-        element.style.display = originalDisplay
-    }
-    return width + margin
 }

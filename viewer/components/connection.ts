@@ -1,71 +1,101 @@
-import type {ClientRequest} from '../../types/latex-workshop-protocol-types/index'
-import type {ILatexWorkshopPdfViewer} from './interface.js'
+import type { ClientRequest, ServerResponse } from '../../types/latex-workshop-protocol-types/index'
+import { refresh } from './refresh.js'
+import { forwardSynctex } from './synctex.js'
+import * as utils from './utils.js'
 
-export interface IConnectionPort {
-    send(message: ClientRequest): Promise<void>,
-    onDidReceiveMessage(cb: (event: WebSocketEventMap['message']) => void): Promise<void>,
-    onDidClose(cb: () => unknown): Promise<void>,
-    awaitOpen(): Promise<void>
+let server: string
+let websocket: Promise<WebSocket>
+
+export function initConnect() {
+    const scheme = 'https:' === window.location.protocol ? 'wss' : 'ws'
+    const path = window.location.pathname.substring(0, window.location.pathname.indexOf('viewer.html'))
+    server = `${scheme}://${window.location.hostname}:${window.location.port}${path}`
+    websocket = new Promise((resolve, reject) => {
+        const ws = new WebSocket(server)
+        ws.addEventListener('open', () => { resolve(ws) })
+        ws.addEventListener('error', () => reject(new Error(`Failed to connect to ${server}`)))
+    })
+    websocket.then((ws: WebSocket) => {
+        ws.addEventListener('message', handler)
+        ws.addEventListener('close', reconnect)
+        const openPack: ClientRequest = {
+            type: 'open',
+            pdfFileUri: utils.parseURL().pdfFileUri,
+            viewer: (utils.isEmbedded() ? 'tab' : 'browser')
+        }
+        void send(openPack)
+    }).catch((e) => console.error('Setting up connection port failed:', e))
+
+    // Send packets every 30 sec to prevent the connection closed by timeout.
+    const id = setInterval(async () => {
+        try {
+            await send({type: 'ping'})
+        }
+        catch {
+            clearInterval(id)
+        }
+    }, 30000)
 }
 
-export function createConnectionPort(lwApp: ILatexWorkshopPdfViewer): IConnectionPort {
-    return new WebSocketPort(lwApp)
+export async function send(message: ClientRequest) {
+    const ws = await websocket
+    if (ws.readyState === 1) {
+        ws.send(JSON.stringify(message))
+    }
 }
 
-export class WebSocketPort implements IConnectionPort {
-    readonly lwApp: ILatexWorkshopPdfViewer
-    readonly server: string
-    private readonly socket: Promise<WebSocket>
+export function sendLog(message: string) {
+    void send({ type: 'add_log', message })
+}
 
-    constructor(lwApp: ILatexWorkshopPdfViewer) {
-        this.lwApp = lwApp
-        const scheme = 'https:' === window.location.protocol ? 'wss' : 'ws'
-        const path = window.location.pathname.substring(0, window.location.pathname.indexOf('viewer.html'))
-        const server = `${scheme}://${window.location.hostname}:${window.location.port}${path}`
-        this.server = server
-        this.socket = new Promise((resolve, reject) => {
-            const sock = new WebSocket(server)
-            sock.addEventListener('open', () => {
-                resolve(sock)
-            })
-            sock.addEventListener('error', () => reject(new Error(`Failed to connect to ${server}`)))
-        })
-        this.startConnectionKeeper()
-    }
-
-    private startConnectionKeeper() {
-        // Send packets every 30 sec to prevent the connection closed by timeout.
-        const id = setInterval(async () => {
-            try {
-                await this.send({type: 'ping'})
-            }
-            catch {
-                clearInterval(id)
-            }
-        }, 30000)
-    }
-
-    async send(message: ClientRequest) {
-        const sock = await this.socket
-        if (sock.readyState === 1) {
-            sock.send(JSON.stringify(message))
+function handler(event: MessageEvent<string>) {
+    const data = JSON.parse(event.data) as ServerResponse
+    switch (data.type) {
+        case 'synctex': {
+            forwardSynctex(data.data)
+            break
+        }
+        case 'refresh': {
+            void refresh()
+            break
+        }
+        case 'reload': {
+            location.reload()
+            break
+        }
+        default: {
+            break
         }
     }
+}
 
-    async onDidReceiveMessage(cb: (event: WebSocketEventMap['message']) => void) {
-        const sock = await this.socket
-        sock.addEventListener('message', cb)
-    }
+async function reconnect() {
+    const originalTitle = document.title
+    document.title = `[Disconnected] ${originalTitle}`
+    console.log('Closed: WebSocket to LaTeX Workshop.')
 
-    async onDidClose(cb: () => unknown) {
-        const sock = await this.socket
-        sock.addEventListener('close', () => cb())
-    }
+    // Since WebSockets are disconnected when PC resumes from sleep,
+    // we have to reconnect. https://github.com/James-Yu/LaTeX-Workshop/pull/1812
+    await utils.sleep(3000)
 
-    async awaitOpen() {
-        const sock = await this.socket
-        if (sock.readyState !== 1) {
-            throw new Error(`Connection to ${this.server} is not open.`)
+    let tries = 1
+    while (tries <= 10) {
+        console.log(`Try to reconnect to LaTeX Workshop: (${tries}/10).`)
+        try {
+            initConnect()
+            const ws = await websocket
+            if (ws.readyState !== 1) {
+                throw new Error(`Connection to ${server} is not open.`)
+            }
+            document.title = originalTitle
+            console.log('Reconnected: WebSocket to LaTeX Workshop.')
+            return
+        } catch (e) {
+            console.error(e)
         }
+
+        await utils.sleep(1000 * (tries + 2))
+        tries++
     }
+    console.error('Cannot reconnect to LaTeX Workshop.')
 }
