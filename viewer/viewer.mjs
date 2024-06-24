@@ -11767,7 +11767,7 @@ class PDFViewer {
   setDocument(pdfDocument) {
     let oldVisiblePages = this._getVisiblePages().ids;
     const oldPageCount = this.viewer.children.length;
-    const oldScale = this.pdfDocument ? this.currentScale : null;
+    const oldScale = this.currentScale;
     const viewerContainer = document.getElementById('viewerContainer');
     let oldScrollHeight = this.pdfDocument ? viewerContainer.scrollHeight : 0;
     if (this.pdfDocument) {
@@ -11860,6 +11860,7 @@ class PDFViewer {
         }
       }
       const viewerElement = this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.PAGE ? null : this.viewer;
+      this._currentScale = oldScale;
       const scale = oldScale ? oldScale : this.currentScale;
       const viewport = firstPdfPage.getViewport({
         scale: scale * pdfjs_lib__WEBPACK_IMPORTED_MODULE_0__.PixelsPerInch.PDF_TO_CSS_UNITS
@@ -11894,7 +11895,7 @@ class PDFViewer {
         Array.from(oldVisiblePages)
           .filter(pageNum => pageNum <= pagesCount)
           .map(pageNum => pdfDocument.getPage(pageNum).then(pdfPage => [pageNum, pdfPage]))
-          .reduce((accPromise, currPromise) => accPromise.then(() =>         // This forces all visible pages to be rendered synchronously rather than asynchronously to avoid race condition involving this.renderingQueue.highestPriorityPage
+          .reduce((accPromise, currPromise) => accPromise.then(() =>         // This forces all visible pages to be rendered synchronously rather than asynchronously to avoid race condition involving this.renderingQueue.highestPriorityPage. So Promise.all doesn't work.
             currPromise.then(([pageNum, pdfPage]) => {
               const pageView = this._pages[pageNum - 1];
               if (!pageView.pdfPage) {
@@ -11907,7 +11908,7 @@ class PDFViewer {
               });
             })), Promise.resolve());
 
-      await setPagePromises;
+      await setPagePromises; // wait for all visible pages to render before scrolling and deleting old pages
       viewerContainer.scrollTop += oldScrollHeight;
       for (let i = 1; i <= oldPageCount; i++)
         this.viewer.removeChild(this.viewer.firstChild);
@@ -11998,7 +11999,7 @@ class PDFViewer {
   _resetView() {
     this._pages = [];
     this._currentPageNumber = 1;
-    // this._currentScale = _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.UNKNOWN_SCALE;
+    this._currentScale = _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.UNKNOWN_SCALE;
     // this._currentScaleValue = null;
     this._pageLabels = null;
     this.#buffer = new PDFPageViewBuffer(DEFAULT_CACHE_SIZE);
