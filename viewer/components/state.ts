@@ -1,16 +1,17 @@
 import * as utils from './utils.js'
-import { getViewerEventBus, type LateXWorkshopPdfViewer } from '../latexworkshop.js'
+import { getViewerEventBus } from '../latexworkshop.js'
 import type { IPDFViewerApplication, PdfjsEventName } from './interface'
 import type { PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index.js'
 import { getTrimValue } from './trimming.js'
 import { getSyncTeXEnabled, registerSyncTeX, setSyncTeXKey } from './synctex.js'
 import { getAutoReloadEnabled } from './refresh.js'
+import { sendPanel } from './connection.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 
 // let viewerState: PdfViewerState | undefined
 
-export async function initUploadState(extension: LateXWorkshopPdfViewer) {
+export async function initUploadState() {
 //     window.addEventListener('message', (e) => {
 //         const data = e.data as PanelManagerResponse
 //         if (!data.type) {
@@ -29,17 +30,17 @@ export async function initUploadState(extension: LateXWorkshopPdfViewer) {
 //         }
 //     })
 
-    window.addEventListener('scrollend', () => { uploadState(extension) }, true)
+    window.addEventListener('scrollend', () => { uploadState() }, true)
 
     const events: PdfjsEventName[] = ['scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
     for (const ev of events) {
-        (await getViewerEventBus()).on(ev, () => { uploadState(extension) })
+        (await getViewerEventBus()).on(ev, () => { uploadState() })
     }
 }
 
-export function uploadState(extension: LateXWorkshopPdfViewer) {
+export function uploadState() {
     const state: PdfViewerState = {
-        pdfFileUri: extension.pdfFileUri,
+        pdfFileUri: utils.parseURL().pdfFileUri,
         scale: PDFViewerApplication.pdfViewer.currentScaleValue,
         trim: getTrimValue(),
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
@@ -50,7 +51,7 @@ export function uploadState(extension: LateXWorkshopPdfViewer) {
         synctexEnabled: getSyncTeXEnabled(),
         autoReloadEnabled: getAutoReloadEnabled()
     }
-    extension.sendToPanelManager({type: 'state', state})
+    sendPanel({type: 'state', state})
 }
 
 export async function setParams() {

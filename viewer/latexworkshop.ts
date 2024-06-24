@@ -1,14 +1,13 @@
-import {editHTML} from './components/htmleditor.js'
+import { editHTML } from './components/htmleditor.js'
 import * as utils from './components/utils.js'
-import {ExternalPromise} from './components/externalpromise.js'
 import { registerHistoryKeyBind, scrollHistory } from './components/viewerhistory.js'
 
 import type { PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions } from './components/interface.js'
-import type { PanelRequest, PdfViewerParams } from '../types/latex-workshop-protocol-types/index'
+import type { PdfViewerParams } from '../types/latex-workshop-protocol-types/index'
 import { initTrim, setTrimCSS } from './components/trimming.js'
 import { getAutoReloadEnabled, restoreState, setAutoReloadEnabled } from './components/refresh.js'
 import { initUploadState, setParams, uploadState } from './components/state.js'
-import { initConnect, send } from './components/connection.js'
+import { initConnect, send, sendPanel } from './components/connection.js'
 import { getSyncTeXEnabled, registerSyncTeX, setSyncTeXEnabled } from './components/synctex.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
@@ -21,8 +20,6 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly pdfFileUri: string
 
     private hideToolbarInterval: number | undefined
-
-    private readonly setupAppOptionsPromise = new ExternalPromise<void>()
 
     constructor() {
         const pack = this.decodeQuery()
@@ -69,10 +66,6 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             eventBus.on(viewUpdatedEvent, cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off(viewUpdatedEvent, cb0) }
-    }
-
-    async waitSetupAppOptionsFinished() {
-        return this.setupAppOptionsPromise.promise
     }
 
     private showToolbar(animate: boolean) {
@@ -195,7 +188,7 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
             setSyncTeXEnabled(false)
         }
-        uploadState(this)
+        uploadState()
     }
 
     private registerSynctexCheckBox() {
@@ -224,7 +217,7 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
             setAutoReloadEnabled(false)
         }
-        uploadState(this)
+        uploadState()
     }
 
     private registerAutoReloadCheckBox() {
@@ -238,13 +231,6 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             this.setAutoReload(!getAutoReloadEnabled())
             PDFViewerApplication.secondaryToolbar.close()
         })
-    }
-
-    sendToPanelManager(msg: PanelRequest) {
-        if (!this.embedded) {
-            return
-        }
-        window.parent?.postMessage(msg, '*')
     }
 
     // To enable keyboard shortcuts of VS Code when the iframe is focused,
@@ -270,7 +256,7 @@ export class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             if (utils.isPdfjsShortcut(obj)) {
                 return
             }
-            this.sendToPanelManager({
+            sendPanel({
                 type: 'keyboard_event',
                 event: obj
             })
@@ -341,7 +327,7 @@ const extension = new LateXWorkshopPdfViewer()
 await initialization()
 onPDFViewerEvent('documentloaded', () => {
     void setParams()
-    void initUploadState(extension)
+    void initUploadState()
 }, { once: true })
 onPDFViewerEvent('pagesinit', async () => {
     initTrim()
@@ -351,7 +337,7 @@ onPDFViewerEvent('pagesinit', async () => {
 onPDFViewerEvent('pagesloaded', async () => {
     initTrim()
     await restoreState()
-    void uploadState(extension)
+    void uploadState()
     void send({ type: 'loaded', pdfFileUri: extension.pdfFileUri })
 })
 onPDFViewerEvent('rotationchanging', () => setTrimCSS())
