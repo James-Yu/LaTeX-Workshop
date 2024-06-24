@@ -40,8 +40,8 @@ with open(args.web + '/viewer.mjs', 'rt', encoding='utf-8') as fin:
                     .replace('''value: "../web/cmaps/"''', '''value: "../cmaps/"''')
                     .replace('''(this.container.clientWidth - hPadding) / currentPage.width * currentPage.scale / this.#pageWidthScaleFactor;''', '''(this.container.clientWidth - hPadding) / Math.max(...this._pages.map(p => p.width)) * currentPage.scale / this.#pageWidthScaleFactor * (1 / (1 - (viewerTrim ?? 0) / 100));''')
                     .replace('''(this.container.clientHeight - vPadding) / currentPage.height * currentPage.scale;''', '''(this.container.clientHeight - vPadding) / Math.max(...this._pages.map(p => p.height)) * currentPage.scale * (1 / (1 - (viewerTrim ?? 0) / 100));''')
-                    .replace('''parent.scrollLeft = offsetX;''', '''// parent.scrollLeft = offsetX;''')
-                    .replace('''parent.scrollTop = offsetY;''', '''// parent.scrollTop = offsetY;''')
+                    .replace('''setRotation(this.initialRotation);''', '''// setRotation(this.initialRotation);''')
+                    .replace('''this.pdfLinkService.setHash(this.initialBookmark);''', '''// this.pdfLinkService.setHash(this.initialBookmark);''')
                     # .replace('''parent.document.dispatchEvent(event);''', '''parent.document.dispatchEvent(event); \n    document.dispatchEvent(event);''')
                 )
 

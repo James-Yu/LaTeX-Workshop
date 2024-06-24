@@ -3129,9 +3129,9 @@ const PDFViewerApplication = {
     this.pdfSidebar?.setInitialView(sidebarView);
     setViewerModes(scrollMode, spreadMode);
     if (this.initialBookmark) {
-      setRotation(this.initialRotation);
+      // setRotation(this.initialRotation);
       delete this.initialRotation;
-      this.pdfLinkService.setHash(this.initialBookmark);
+      // this.pdfLinkService.setHash(this.initialBookmark);
       this.initialBookmark = null;
     } else if (storedHash) {
       setRotation(rotation);
@@ -14521,10 +14521,10 @@ function scrollIntoView(element, spot, scrollMatches = false) {
     }
     if (spot.left !== undefined) {
       offsetX += spot.left;
-      // parent.scrollLeft = offsetX;
+      parent.scrollLeft = offsetX;
     }
   }
-  // parent.scrollTop = offsetY;
+  parent.scrollTop = offsetY;
 }
 function watchScroll(viewAreaElement, callback) {
   const debounceScroll = function (evt) {
