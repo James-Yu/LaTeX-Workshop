@@ -11767,9 +11767,8 @@ class PDFViewer {
   setDocument(pdfDocument) {
     let oldVisiblePages = this._getVisiblePages().ids;
     const oldPageCount = this.viewer.children.length;
-    const oldScale = this.pdfDocument ? this.currentScale : 0;
+    const oldScale = this.pdfDocument ? this.currentScale : null;
     const viewerContainer = document.getElementById('viewerContainer');
-    let oldScrollTop = this.pdfDocument ? viewerContainer.scrollTop : 0;
     let oldScrollHeight = this.pdfDocument ? viewerContainer.scrollHeight : 0;
     if (this.pdfDocument) {
       this.eventBus.dispatch("pagesdestroy", {
@@ -11861,7 +11860,7 @@ class PDFViewer {
         }
       }
       const viewerElement = this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.PAGE ? null : this.viewer;
-      const scale = oldScale == 0 ? this.currentScale : oldScale;
+      const scale = oldScale ? oldScale : this.currentScale;
       const viewport = firstPdfPage.getViewport({
         scale: scale * pdfjs_lib__WEBPACK_IMPORTED_MODULE_0__.PixelsPerInch.PDF_TO_CSS_UNITS
       });
@@ -11891,11 +11890,11 @@ class PDFViewer {
       }
       this._pages[0]?.setPdfPage(firstPdfPage);
       let getPagesLeft = pagesCount - 1;
-      const setPagePromises = 
+      const setPagePromises =
         Array.from(oldVisiblePages)
           .filter(pageNum => pageNum <= pagesCount)
           .map(pageNum => pdfDocument.getPage(pageNum).then(pdfPage => [pageNum, pdfPage]))
-          .reduce((accPromise, currPromise) => accPromise.then(() => 
+          .reduce((accPromise, currPromise) => accPromise.then(() =>         // This forces all visible pages to be rendered synchronously rather than asynchronously to avoid race condition involving this.renderingQueue.highestPriorityPage
             currPromise.then(([pageNum, pdfPage]) => {
               const pageView = this._pages[pageNum - 1];
               if (!pageView.pdfPage) {
@@ -11999,8 +11998,8 @@ class PDFViewer {
   _resetView() {
     this._pages = [];
     this._currentPageNumber = 1;
-    this._currentScale = _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.UNKNOWN_SCALE;
-    this._currentScaleValue = null;
+    // this._currentScale = _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.UNKNOWN_SCALE;
+    // this._currentScaleValue = null;
     this._pageLabels = null;
     this.#buffer = new PDFPageViewBuffer(DEFAULT_CACHE_SIZE);
     this._location = null;
