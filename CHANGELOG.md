@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.21.1] - 2024-06-24
+
+### Fixed
+- (#4294) Internal links in pdf viewer do not scroll to position.
+
 ## [9.21.0] - 2024-06-23
 
 ### Added
