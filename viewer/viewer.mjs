@@ -11765,7 +11765,7 @@ class PDFViewer {
     }
   }
   setDocument(pdfDocument) {
-    const oldScale = lwRecordRender(this)
+    const oldScale = lwRecordRender(this);
     if (this.pdfDocument) {
       this.eventBus.dispatch("pagesdestroy", {
         source: this
@@ -11856,8 +11856,7 @@ class PDFViewer {
         }
       }
       const viewerElement = this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.PAGE ? null : this.viewer;
-      this._currentScale = oldScale;
-      const scale = oldScale ? oldScale : this.currentScale;
+      this._currentScale = oldScale; const scale = oldScale ? oldScale : this.currentScale;
       const viewport = firstPdfPage.getViewport({
         scale: scale * pdfjs_lib__WEBPACK_IMPORTED_MODULE_0__.PixelsPerInch.PDF_TO_CSS_UNITS
       });
@@ -11886,7 +11885,7 @@ class PDFViewer {
         this._pages.push(pageView);
       }
       this._pages[0]?.setPdfPage(firstPdfPage);
-      await lwRenderSync(this, pdfDocument, pagesCount)
+      await lwRenderSync(this, pdfDocument, pagesCount);
       if (this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.PAGE) {
         this.#ensurePageViewVisible();
       } else if (this._spreadMode !== _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.SpreadMode.NONE) {

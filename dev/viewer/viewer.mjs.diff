@@ -1,5 +1,5 @@
 diff --git a/../../web/viewer.mjs b/../viewer/viewer.mjs
-index 28fdb8765..8cfd52e60 100644
+index 28fdb8765..f327f44d6 100644
 --- a/../../web/viewer.mjs
 +++ b/../viewer/viewer.mjs
 @@ -1121,7 +1121,7 @@ class Localization {
@@ -29,6 +29,18 @@ index 28fdb8765..8cfd52e60 100644
      let pdfTitle = info.Title;
      const metadataTitle = metadata?.get("dc:title");
      if (metadataTitle) {
+@@ -3129,9 +3129,9 @@ const PDFViewerApplication = {
+     this.pdfSidebar?.setInitialView(sidebarView);
+     setViewerModes(scrollMode, spreadMode);
+     if (this.initialBookmark) {
+-      setRotation(this.initialRotation);
++      // setRotation(this.initialRotation);
+       delete this.initialRotation;
+-      this.pdfLinkService.setHash(this.initialBookmark);
++      // this.pdfLinkService.setHash(this.initialBookmark);
+       this.initialBookmark = null;
+     } else if (storedHash) {
+       setRotation(rotation);
 @@ -4558,7 +4558,7 @@ const defaultOptions = {
      kind: OptionKind.API
    },
@@ -116,7 +128,70 @@ index 28fdb8765..8cfd52e60 100644
      this.maxCanvasPixels = options.maxCanvasPixels;
      this.l10n = options.l10n;
      this.l10n ||= new web_null_l10n__WEBPACK_IMPORTED_MODULE_2__.GenericL10n();
-@@ -14951,10 +14954,10 @@ class ViewHistory {
+@@ -11762,6 +11765,7 @@ class PDFViewer {
+     }
+   }
+   setDocument(pdfDocument) {
++    const oldScale = lwRecordRender(this);
+     if (this.pdfDocument) {
+       this.eventBus.dispatch("pagesdestroy", {
+         source: this
+@@ -11818,7 +11822,7 @@ class PDFViewer {
+       this._onAfterDraw = null;
+     };
+     this.eventBus._on("pagerendered", this._onAfterDraw);
+-    Promise.all([firstPagePromise, permissionsPromise]).then(([firstPdfPage, permissions]) => {
++    Promise.all([firstPagePromise, permissionsPromise]).then(async ([firstPdfPage, permissions]) => {
+       if (pdfDocument !== this.pdfDocument) {
+         return;
+       }
+@@ -11852,7 +11856,7 @@ class PDFViewer {
+         }
+       }
+       const viewerElement = this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.PAGE ? null : this.viewer;
+-      const scale = this.currentScale;
++      this._currentScale = oldScale; const scale = oldScale ? oldScale : this.currentScale;
+       const viewport = firstPdfPage.getViewport({
+         scale: scale * pdfjs_lib__WEBPACK_IMPORTED_MODULE_0__.PixelsPerInch.PDF_TO_CSS_UNITS
+       });
+@@ -11881,6 +11885,7 @@ class PDFViewer {
+         this._pages.push(pageView);
+       }
+       this._pages[0]?.setPdfPage(firstPdfPage);
++      await lwRenderSync(this, pdfDocument, pagesCount);
+       if (this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.PAGE) {
+         this.#ensurePageViewVisible();
+       } else if (this._spreadMode !== _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.SpreadMode.NONE) {
+@@ -11969,7 +11974,7 @@ class PDFViewer {
+     this._pages = [];
+     this._currentPageNumber = 1;
+     this._currentScale = _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.UNKNOWN_SCALE;
+-    this._currentScaleValue = null;
++    // this._currentScaleValue = null;
+     this._pageLabels = null;
+     this.#buffer = new PDFPageViewBuffer(DEFAULT_CACHE_SIZE);
+     this._location = null;
+@@ -11998,7 +12003,7 @@ class PDFViewer {
+       document.removeEventListener("visibilitychange", this.#onVisibilityChange);
+       this.#onVisibilityChange = null;
+     }
+-    this.viewer.textContent = "";
++    // this.viewer.textContent = "";
+     this._updateScrollMode();
+     this.viewer.removeAttribute("lang");
+     if (this.#hiddenCopyElement) {
+@@ -12174,8 +12179,8 @@ class PDFViewer {
+       } else if (this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.HORIZONTAL) {
+         [hPadding, vPadding] = [vPadding, hPadding];
+       }
+-      const pageWidthScale = (this.container.clientWidth - hPadding) / currentPage.width * currentPage.scale / this.#pageWidthScaleFactor;
+-      const pageHeightScale = (this.container.clientHeight - vPadding) / currentPage.height * currentPage.scale;
++      const pageWidthScale = (this.container.clientWidth - hPadding) / Math.max(...this._pages.map(p => p.width)) * currentPage.scale / this.#pageWidthScaleFactor * (1 / (1 - (viewerTrim ?? 0) / 100));
++      const pageHeightScale = (this.container.clientHeight - vPadding) / Math.max(...this._pages.map(p => p.height)) * currentPage.scale * (1 / (1 - (viewerTrim ?? 0) / 100));
+       switch (value) {
+         case "page-actual":
+           scale = 1;
+@@ -14951,10 +14956,10 @@ class ViewHistory {
    }
    async _writeToStorage() {
      const databaseStr = JSON.stringify(this.database);
@@ -129,7 +204,7 @@ index 28fdb8765..8cfd52e60 100644
    }
    async set(name, val) {
      await this._initializedPromise;
-@@ -15156,7 +15159,7 @@ function webViewerLoad() {
+@@ -15156,7 +15161,7 @@ function webViewerLoad() {
    try {
      parent.document.dispatchEvent(event);
    } catch (ex) {
@@ -138,7 +213,7 @@ index 28fdb8765..8cfd52e60 100644
      document.dispatchEvent(event);
    }
    _app_js__WEBPACK_IMPORTED_MODULE_3__.PDFViewerApplication.run(config);
-@@ -15379,4 +15382,3 @@ __webpack_async_result__();
+@@ -15379,4 +15384,3 @@ __webpack_async_result__();
  /******/ export { __webpack_exports__PDFViewerApplication as PDFViewerApplication, __webpack_exports__PDFViewerApplicationConstants as PDFViewerApplicationConstants, __webpack_exports__PDFViewerApplicationOptions as PDFViewerApplicationOptions };
  /******/ 
  
