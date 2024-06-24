@@ -11767,6 +11767,10 @@ class PDFViewer {
   setDocument(pdfDocument) {
     let oldVisiblePages = this._getVisiblePages().ids;
     const oldPageCount = this.viewer.children.length;
+    const oldScale = this.pdfDocument ? this.currentScale : 0;
+    const viewerContainer = document.getElementById('viewerContainer');
+    let oldScrollTop = this.pdfDocument ? viewerContainer.scrollTop : 0;
+    let oldScrollHeight = this.pdfDocument ? viewerContainer.scrollHeight : 0;
     if (this.pdfDocument) {
       this.eventBus.dispatch("pagesdestroy", {
         source: this
@@ -11857,7 +11861,7 @@ class PDFViewer {
         }
       }
       const viewerElement = this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.PAGE ? null : this.viewer;
-      const scale = this.currentScale;
+      const scale = oldScale == 0 ? this.currentScale : oldScale;
       const viewport = firstPdfPage.getViewport({
         scale: scale * pdfjs_lib__WEBPACK_IMPORTED_MODULE_0__.PixelsPerInch.PDF_TO_CSS_UNITS
       });
@@ -11899,10 +11903,13 @@ class PDFViewer {
                 getPagesLeft--;
               }
               this.renderingQueue.highestPriorityPage = pageView.renderingId;
-              return this._pages[pageNum - 1].draw();
+              return this._pages[pageNum - 1].draw().finally(() => {
+                this.renderingQueue.renderHighestPriority();
+              });
             })), Promise.resolve());
 
       await setPagePromises;
+      viewerContainer.scrollTop += oldScrollHeight;
       for (let i = 1; i <= oldPageCount; i++)
         this.viewer.removeChild(this.viewer.firstChild);
       this._firstPageCapability.resolve(firstPdfPage);
