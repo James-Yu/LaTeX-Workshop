@@ -74,10 +74,10 @@ export async function restoreState() {
         PDFViewerApplication.pdfViewer.currentPageNumber = prevState.page
     }
     if (prevState.trim !== undefined) {
-        setTrimValue(prevState.trim)
+        // setTrimValue(prevState.trim)
     }
     if (prevState.scale !== undefined) {
-        PDFViewerApplication.pdfViewer.currentScaleValue = prevState.scale
+        // PDFViewerApplication.pdfViewer.currentScaleValue = prevState.scale
     }
     if (prevState.sidebarView) {
         PDFViewerApplication.pdfSidebar.switchView(prevState.sidebarView)

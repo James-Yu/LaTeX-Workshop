@@ -11765,6 +11765,7 @@ class PDFViewer {
     }
   }
   setDocument(pdfDocument) {
+    const oldScale = lwRecordRender(this);
     if (this.pdfDocument) {
       this.eventBus.dispatch("pagesdestroy", {
         source: this
@@ -11821,7 +11822,7 @@ class PDFViewer {
       this._onAfterDraw = null;
     };
     this.eventBus._on("pagerendered", this._onAfterDraw);
-    Promise.all([firstPagePromise, permissionsPromise]).then(([firstPdfPage, permissions]) => {
+    Promise.all([firstPagePromise, permissionsPromise]).then(async ([firstPdfPage, permissions]) => {
       if (pdfDocument !== this.pdfDocument) {
         return;
       }
@@ -11855,7 +11856,7 @@ class PDFViewer {
         }
       }
       const viewerElement = this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.PAGE ? null : this.viewer;
-      const scale = this.currentScale;
+      this._currentScale = oldScale; const scale = oldScale ? oldScale : this.currentScale;
       const viewport = firstPdfPage.getViewport({
         scale: scale * pdfjs_lib__WEBPACK_IMPORTED_MODULE_0__.PixelsPerInch.PDF_TO_CSS_UNITS
       });
@@ -11884,6 +11885,7 @@ class PDFViewer {
         this._pages.push(pageView);
       }
       this._pages[0]?.setPdfPage(firstPdfPage);
+      await lwRenderSync(this, pdfDocument, pagesCount);
       if (this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.PAGE) {
         this.#ensurePageViewVisible();
       } else if (this._spreadMode !== _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.SpreadMode.NONE) {
@@ -11972,7 +11974,7 @@ class PDFViewer {
     this._pages = [];
     this._currentPageNumber = 1;
     this._currentScale = _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.UNKNOWN_SCALE;
-    this._currentScaleValue = null;
+    // this._currentScaleValue = null;
     this._pageLabels = null;
     this.#buffer = new PDFPageViewBuffer(DEFAULT_CACHE_SIZE);
     this._location = null;
@@ -12001,7 +12003,7 @@ class PDFViewer {
       document.removeEventListener("visibilitychange", this.#onVisibilityChange);
       this.#onVisibilityChange = null;
     }
-    this.viewer.textContent = "";
+    // this.viewer.textContent = "";
     this._updateScrollMode();
     this.viewer.removeAttribute("lang");
     if (this.#hiddenCopyElement) {
