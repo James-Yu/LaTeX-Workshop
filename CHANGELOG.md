@@ -1,5 +1,17 @@
 # Change Log
 
+## [10.0.0] - 2024-06-24 - Viewer Update
+
+### General
+- We revamped the UX experience when working with the built-in PDF viewer.
+  - (#4295) Flicker-free PDF refreshing contributed by @quoc-ho
+  - (#4292) New page trimming implementation.
+  - Upgrade PDF.js to v4.3.136
+
+### Changed
+- Now the trimming select UI element is moved to the dropdown menu of viewer.
+- Now the config item `latex-workshop.view.pdf.trim` has a new definition and usage.
+
 ## [9.21.1] - 2024-06-24
 
 ### Fixed
