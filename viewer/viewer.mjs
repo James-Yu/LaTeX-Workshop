@@ -11830,7 +11830,7 @@ class PDFViewer {
       if (pdfDocument !== this.pdfDocument) {
         return;
       }
-      // this._firstPageCapability.resolve(firstPdfPage);
+      this._firstPageCapability.resolve(firstPdfPage);
       this._optionalContentConfigPromise = optionalContentConfigPromise;
       const {
         annotationEditorMode,
@@ -11890,7 +11890,6 @@ class PDFViewer {
         this._pages.push(pageView);
       }
       this._pages[0]?.setPdfPage(firstPdfPage);
-      let getPagesLeft = pagesCount - 1;
       const setPagePromises =
         Array.from(oldVisiblePages)
           .filter(pageNum => pageNum <= pagesCount)
@@ -11898,10 +11897,8 @@ class PDFViewer {
           .reduce((accPromise, currPromise) => accPromise.then(() =>         // This forces all visible pages to be rendered synchronously rather than asynchronously to avoid race condition involving this.renderingQueue.highestPriorityPage. So Promise.all doesn't work.
             currPromise.then(([pageNum, pdfPage]) => {
               const pageView = this._pages[pageNum - 1];
-              if (!pageView.pdfPage) {
+              if (!pageView.pdfPage)
                 pageView.setPdfPage(pdfPage);
-                getPagesLeft--;
-              }
               this.renderingQueue.highestPriorityPage = pageView.renderingId;
               return this._pages[pageNum - 1].draw().finally(() => {
                 this.renderingQueue.renderHighestPriority();
@@ -11912,7 +11909,6 @@ class PDFViewer {
       viewerContainer.scrollTop += oldScrollHeight;
       for (let i = 1; i <= oldPageCount; i++)
         this.viewer.removeChild(this.viewer.firstChild);
-      this._firstPageCapability.resolve(firstPdfPage);
       if (this._scrollMode === _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.ScrollMode.PAGE) {
         this.#ensurePageViewVisible();
       } else if (this._spreadMode !== _ui_utils_js__WEBPACK_IMPORTED_MODULE_1__.SpreadMode.NONE) {
@@ -11935,6 +11931,7 @@ class PDFViewer {
           this._pagesCapability.resolve();
           return;
         }
+        let getPagesLeft = pagesCount - 1;
         if (getPagesLeft <= 0) {
           this._pagesCapability.resolve();
           return;
