@@ -1,4 +1,4 @@
-import type { ClientRequest, ServerResponse } from '../../types/latex-workshop-protocol-types/index'
+import type { ClientRequest, PanelRequest, ServerResponse } from '../../types/latex-workshop-protocol-types/index'
 import { refresh } from './refresh.js'
 import { forwardSynctex } from './synctex.js'
 import * as utils from './utils.js'
@@ -46,6 +46,13 @@ export async function send(message: ClientRequest) {
 
 export function sendLog(message: string) {
     void send({ type: 'add_log', message })
+}
+
+export function sendPanel(msg: PanelRequest) {
+    if (!utils.isEmbedded()) {
+        return
+    }
+    window.parent?.postMessage(msg, '*')
 }
 
 function handler(event: MessageEvent<string>) {
