@@ -26,16 +26,23 @@ let prevState: {
 } | undefined
 
 export function doneRefresh() {
-    refreshing = false
+    if (shouldRefreshAgain) {
+        shouldRefreshAgain = false
+        void refresh()
+    } else {
+        refreshing = false
+    }
 }
 
 let refreshing = false
+let shouldRefreshAgain = false
 export async function refresh() {
     if (!IsAutoReloadEnabled()) {
         sendLog('Auto reload temporarily disabled.')
         return
     }
     if (refreshing) {
+        shouldRefreshAgain = true
         sendLog('Auto reload rate-limiting.')
         return
     }
