@@ -9,7 +9,9 @@ declare const PDFViewerApplication: PDFViewerApplicationType
 
 export function patchViewerUI() {
     if (utils.isEmbedded()) {
-        document.getElementById('print')?.remove()
+        // Cannot simply remove this element, as pdf.js indeed require it to
+        // bind listeners.
+        document.getElementById('print')!.style.display = 'none'
     }
 
     document.getElementById('outerContainer')!.onmousemove = (e) => {
