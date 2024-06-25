@@ -2,27 +2,6 @@
 let history: { scroll: number, temporary: boolean }[] = []
 let currentIndex: number | undefined
 
-export function registerHistoryKeyBind() {
-    const setHistory = () => {
-        const container = document.getElementById('viewerContainer') as HTMLElement
-        // set positions before and after clicking to viewerHistory
-        set(container.scrollTop)
-        setTimeout(() => { set(container.scrollTop) }, 500)
-    }
-
-    ;(document.getElementById('viewerContainer') as HTMLElement).addEventListener('click', setHistory)
-    ;(document.getElementById('sidebarContainer') as HTMLElement).addEventListener('click', setHistory)
-
-    // back button (mostly useful for the embedded viewer)
-    ;(document.getElementById('historyBack') as HTMLElement).addEventListener('click', () => { back() })
-    ;(document.getElementById('historyForward') as HTMLElement).addEventListener('click', () => { forward() })
-
-    document.addEventListener('mousedown', (ev) => {
-        if(ev.button === 3) { back() }
-        if(ev.button === 4) { forward() }
-    })
-}
-
 export const scrollHistory = {
     set,
     back,

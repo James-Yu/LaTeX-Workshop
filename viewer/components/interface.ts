@@ -1,20 +1,7 @@
-export interface IDisposable {
-    dispose(): unknown
-}
-
-export interface ILatexWorkshopPdfViewer {
-    readonly documentTitle: string,
-    readonly embedded: boolean,
-    readonly encodedPdfFilePath: string,
-    readonly pdfFileUri: string
-}
-
 export type PdfjsEventName
     = 'documentloaded'
     | 'pagesinit'
     | 'pagesloaded'
-    | 'updateviewarea'
-    | 'scroll'
     | 'scalechanged'
     | 'zoomin'
     | 'zoomout'
@@ -24,14 +11,12 @@ export type PdfjsEventName
     | 'pagenumberchanged'
     | 'rotationchanging'
 
-export type PDFViewerEventBus = {
-    on: (eventName: PdfjsEventName, listener: () => void) => void,
-    off: (eventName: PdfjsEventName, listener: () => void) => void,
-    dispatch: (eventName: string, payload: any) => void
-}
-
-export interface IPDFViewerApplication {
-    eventBus: PDFViewerEventBus,
+export type PDFViewerApplicationType = {
+    eventBus: {
+        on: (eventName: PdfjsEventName, listener: () => void) => void,
+        off: (eventName: PdfjsEventName, listener: () => void) => void,
+        dispatch: (eventName: string, payload: any) => void
+    },
     findBar: {
         opened: boolean,
         open(): void
@@ -73,7 +58,7 @@ export interface IPDFViewerApplication {
     load(doc: any): void
 }
 
-export interface IPDFViewerApplicationOptions {
+export type PDFViewerApplicationOptionsType = {
     set(name: string, value: unknown): void,
     setAll(options: unknown): void
 }

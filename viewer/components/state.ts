@@ -1,17 +1,16 @@
 import * as utils from './utils.js'
-import { getViewerEventBus } from '../latexworkshop.js'
-import type { IPDFViewerApplication, PdfjsEventName } from './interface'
+import type { PDFViewerApplicationType } from './interface'
 import type { PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index.js'
 import { getTrimValue } from './trimming.js'
-import { getSyncTeXEnabled, registerSyncTeX, setSyncTeXKey } from './synctex.js'
-import { getAutoReloadEnabled } from './refresh.js'
+import { isSyncTeXEnabled, registerSyncTeX, setSyncTeXKey } from './synctex.js'
+import { IsAutoReloadEnabled } from './refresh.js'
 import { sendPanel } from './connection.js'
 
-declare const PDFViewerApplication: IPDFViewerApplication
+declare const PDFViewerApplication: PDFViewerApplicationType
 
 // let viewerState: PdfViewerState | undefined
 
-export async function initUploadState() {
+export function initUploadState() {
 //     window.addEventListener('message', (e) => {
 //         const data = e.data as PanelManagerResponse
 //         if (!data.type) {
@@ -31,11 +30,6 @@ export async function initUploadState() {
 //     })
 
     window.addEventListener('scrollend', () => { uploadState() }, true)
-
-    const events: PdfjsEventName[] = ['scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
-    for (const ev of events) {
-        (await getViewerEventBus()).on(ev, () => { uploadState() })
-    }
 }
 
 export function uploadState() {
@@ -48,8 +42,8 @@ export function uploadState() {
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
         scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
         scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft,
-        synctexEnabled: getSyncTeXEnabled(),
-        autoReloadEnabled: getAutoReloadEnabled()
+        synctexEnabled: isSyncTeXEnabled(),
+        autoReloadEnabled: IsAutoReloadEnabled()
     }
     sendPanel({type: 'state', state})
 }

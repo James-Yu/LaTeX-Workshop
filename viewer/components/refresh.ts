@@ -1,25 +1,24 @@
 import * as utils from './utils.js'
-import { getTrimValue, setTrimValue } from './trimming.js'
+import { setTrimValue } from './trimming.js'
 import { sendLog } from './connection.js'
-import type { IPDFViewerApplication, IPDFViewerApplicationOptions } from './interface'
+import type { PDFViewerApplicationType, PDFViewerApplicationOptionsType } from './interface'
 import type { PdfViewerParams } from '../../types/latex-workshop-protocol-types/index.js'
 
 declare const pdfjsLib: any
-declare const PDFViewerApplication: IPDFViewerApplication
-declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
+declare const PDFViewerApplication: PDFViewerApplicationType
+declare const PDFViewerApplicationOptions: PDFViewerApplicationOptionsType
 
 let autoReloadEnabled = true
-export function setAutoReloadEnabled(enabled: boolean) {
-    autoReloadEnabled = enabled
+export function IsAutoReloadEnabled() {
+    return autoReloadEnabled
 }
-export function getAutoReloadEnabled() {
+export function toggleAutoReload() {
+    autoReloadEnabled = !autoReloadEnabled
     return autoReloadEnabled
 }
 
 let prevState: {
     page: number,
-    trim: number,
-    scale: string,
     scrollMode: number,
     sidebarView: number,
     spreadMode: number,
@@ -28,7 +27,7 @@ let prevState: {
 } | undefined
 
 export async function refresh() {
-    if (!getAutoReloadEnabled()) {
+    if (!IsAutoReloadEnabled()) {
         sendLog('Auto reload temporarily disabled.')
         return
     }
@@ -36,8 +35,6 @@ export async function refresh() {
     // Fail-safe. For unknown reasons, the pack may have null values #4076
     const currentState = {
         page: PDFViewerApplication.pdfViewer.currentPageNumber ?? prevState?.page,
-        trim: getTrimValue(),
-        scale: PDFViewerApplication.pdfViewer.currentScaleValue ?? prevState?.scale,
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? prevState?.scrollMode,
         sidebarView: PDFViewerApplication.pdfSidebar.visibleView ?? prevState?.sidebarView,
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode ?? prevState?.spreadMode,
@@ -77,12 +74,6 @@ export async function restoreState() {
     if (prevState.page !== undefined) {
         PDFViewerApplication.pdfViewer.currentPageNumber = prevState.page
     }
-    if (prevState.trim !== undefined) {
-        // setTrimValue(prevState.trim)
-    }
-    if (prevState.scale !== undefined) {
-        // PDFViewerApplication.pdfViewer.currentScaleValue = prevState.scale
-    }
     if (prevState.sidebarView) {
         PDFViewerApplication.pdfSidebar.switchView(prevState.sidebarView)
     }
@@ -119,4 +110,43 @@ async function restoreDefault() {
     if (params.spreadMode !== undefined) {
         PDFViewerApplication.pdfViewer.spreadMode = params.spreadMode
     }
+}
+
+let oldVisiblePages: number[]
+let oldScrollHeight: number
+let oldPageCount: number
+export function patchViewerRefresh() {
+    /* eslint-disable */
+    ;(globalThis as any).lwRecordRender = (pdfViewer: any) => {
+        oldVisiblePages = pdfViewer._getVisiblePages().ids
+        oldPageCount = pdfViewer.viewer.children.length
+        let oldScale = pdfViewer.currentScale
+        oldScrollHeight = pdfViewer.pdfDocument ? document.getElementById('viewerContainer')!.scrollHeight : 0
+        return oldScale
+    }
+    ;(globalThis as any).lwRenderSync = async (pdfViewer: any, pdfDocument: any, pagesCount: number) => {
+        await Array.from(oldVisiblePages)
+            .filter(pageNum => pageNum <= pagesCount)
+            .map(pageNum => pdfDocument.getPage(pageNum)
+                .then((pdfPage: [number, any]) => [pageNum, pdfPage])
+            )
+            .reduce((accPromise, currPromise) => accPromise.then(() =>
+                // This forces all visible pages to be rendered synchronously rather than asynchronously to avoid race condition involving this.renderingQueue.highestPriorityPage
+                currPromise.then(([pageNum, pdfPage]: [number, any]) => {
+                    const pageView = pdfViewer._pages[pageNum - 1]
+                    if (!pageView.pdfPage) {
+                        pageView.setPdfPage(pdfPage)
+                    }
+                    pdfViewer.renderingQueue.highestPriorityPage = pageView.renderingId
+                    return pdfViewer._pages[pageNum - 1].draw().finally(() => {
+                        pdfViewer.renderingQueue.renderHighestPriority()
+                    })
+                })), Promise.resolve()
+            )
+        document.getElementById('viewerContainer')!.scrollTop += oldScrollHeight
+        for (let i = 1; i <= oldPageCount; i++) {
+            pdfViewer.viewer.removeChild(pdfViewer.viewer.firstChild)
+        }
+    }
+    /* eslint-enable */
 }

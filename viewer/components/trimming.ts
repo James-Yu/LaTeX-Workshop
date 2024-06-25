@@ -1,6 +1,6 @@
-import { IPDFViewerApplication } from './interface'
+import { PDFViewerApplicationType } from './interface'
 
-declare const PDFViewerApplication: IPDFViewerApplication
+declare const PDFViewerApplication: PDFViewerApplicationType
 
 let viewerTrim = 0
 ;(globalThis as any).viewerTrim = 0

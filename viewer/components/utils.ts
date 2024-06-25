@@ -20,7 +20,11 @@ export function decodePath(b64url: string): string {
   return decodeURIComponent(s)
 }
 
+let urlComponents: ReturnType<typeof parseURL>
 export function parseURL(): { encodedPath: string, pdfFileUri: string, docTitle: string } {
+    if (urlComponents) {
+        return urlComponents
+    }
     const query = document.location.search.substring(1)
     const parts = query.split('&')
 
@@ -30,7 +34,8 @@ export function parseURL(): { encodedPath: string, pdfFileUri: string, docTitle:
             const encodedPath = param[1].replace(pdfFilePrefix, '')
             const pdfFileUri = decodePath(encodedPath)
             const docTitle = pdfFileUri.split(/[\\/]/).pop() ?? 'Untitled PDF'
-            return { encodedPath, pdfFileUri, docTitle }
+            urlComponents = { encodedPath, pdfFileUri, docTitle }
+            return urlComponents
         }
     }
     throw new Error('file not given in the query.')

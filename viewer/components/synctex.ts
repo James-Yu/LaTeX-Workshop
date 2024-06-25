@@ -1,16 +1,17 @@
 import type { SynctexData, SynctexRangeData } from '../../types/latex-workshop-protocol-types/index.js'
-import type { IPDFViewerApplication } from './interface.js'
+import type { PDFViewerApplicationType } from './interface.js'
 import { send, sendLog } from './connection.js'
 import { scrollHistory } from './viewerhistory.js'
 import * as utils from './utils.js'
 
-declare const PDFViewerApplication: IPDFViewerApplication
+declare const PDFViewerApplication: PDFViewerApplicationType
 
 let synctexEnabled = true
-export function setSyncTeXEnabled(enabled: boolean) {
-    synctexEnabled = enabled
+export function isSyncTeXEnabled() {
+    return synctexEnabled
 }
-export function getSyncTeXEnabled() {
+export function toggleSyncTeX() {
+    synctexEnabled = !synctexEnabled
     return synctexEnabled
 }
 
@@ -131,7 +132,7 @@ function forwardSynctexCirc(data: SynctexData) {
 }
 
 export function forwardSynctex(data: SynctexData | SynctexRangeData[]) {
-    if (!getSyncTeXEnabled()) {
+    if (!isSyncTeXEnabled()) {
         sendLog('SyncTeX temporarily disabled.')
         return
     }
