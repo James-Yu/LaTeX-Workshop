@@ -38,8 +38,8 @@ export async function refresh() {
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? prevState?.scrollMode,
         sidebarView: PDFViewerApplication.pdfSidebar.visibleView ?? prevState?.sidebarView,
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode ?? prevState?.spreadMode,
-        scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop ?? prevState?.scrollTop,
-        scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft ?? prevState?.scrollLeft
+        scrollTop: document.getElementById('viewerContainer')!.scrollTop ?? prevState?.scrollTop,
+        scrollLeft: document.getElementById('viewerContainer')!.scrollLeft ?? prevState?.scrollLeft
     }
     prevState = currentState
 

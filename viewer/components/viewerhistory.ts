@@ -39,7 +39,7 @@ function back() {
     if (history.length === 0) {
         return
     }
-    const container = document.getElementById('viewerContainer') as HTMLElement
+    const container = document.getElementById('viewerContainer')!
     let cur = currentIndex
     if (cur === undefined) {
         return
@@ -75,7 +75,7 @@ function forward() {
     if (currentIndex === history.length - 1) {
         return
     }
-    const container = document.getElementById('viewerContainer') as HTMLElement
+    const container = document.getElementById('viewerContainer')!
     const cur = currentIndex
     if (cur === undefined) {
         return

@@ -40,8 +40,8 @@ export function uploadState() {
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
         sidebarView: PDFViewerApplication.pdfSidebar.visibleView,
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
-        scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
-        scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft,
+        scrollTop: document.getElementById('viewerContainer')!.scrollTop,
+        scrollLeft: document.getElementById('viewerContainer')!.scrollLeft,
         synctexEnabled: isSyncTeXEnabled(),
         autoReloadEnabled: IsAutoReloadEnabled()
     }
@@ -106,10 +106,10 @@ export async function setParams() {
 //     }
 
 //     if (state.scrollTop !== undefined) {
-//         (document.getElementById('viewerContainer') as HTMLElement).scrollTop = state.scrollTop
+//         document.getElementById('viewerContainer')!.scrollTop = state.scrollTop
 //     }
 //     if (state.scrollLeft !== undefined) {
-//         (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = state.scrollLeft
+//         document.getElementById('viewerContainer')!.scrollLeft = state.scrollLeft
 //     }
 //     if (state.sidebarView !== undefined) {
 //         PDFViewerApplication.pdfSidebar.switchView(state.sidebarView)

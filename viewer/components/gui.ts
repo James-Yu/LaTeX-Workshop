@@ -101,7 +101,7 @@ export function registerKeyBind() {
         // Configure VIM-like shortcut keys
         if (!evt.altKey && !evt.ctrlKey && !evt.metaKey && ['J', 'K', 'H', 'L'].includes(evt.key)) {
             evt.stopImmediatePropagation()
-            const container = document.getElementById('viewerContainer') as HTMLElement
+            const container = document.getElementById('viewerContainer')!
 
             const configMap: {[key: string]: ScrollToOptions} = {
                 'J': { top: evt.repeat ? 20 : 40 },
@@ -117,18 +117,18 @@ export function registerKeyBind() {
     })
 
     const setHistory = () => {
-        const container = document.getElementById('viewerContainer') as HTMLElement
+        const container = document.getElementById('viewerContainer')!
         // set positions before and after clicking to viewerHistory
         scrollHistory.set(container.scrollTop)
         setTimeout(() => { scrollHistory.set(container.scrollTop) }, 500)
     }
 
-    ;(document.getElementById('viewerContainer') as HTMLElement).addEventListener('click', setHistory)
-    ;(document.getElementById('sidebarContainer') as HTMLElement).addEventListener('click', setHistory)
+    document.getElementById('viewerContainer')!.addEventListener('click', setHistory)
+    document.getElementById('sidebarContainer')!.addEventListener('click', setHistory)
 
     // back button (mostly useful for the embedded viewer)
-    ;(document.getElementById('historyBack') as HTMLElement).addEventListener('click', () => { scrollHistory.back() })
-    ;(document.getElementById('historyForward') as HTMLElement).addEventListener('click', () => { scrollHistory.forward() })
+    document.getElementById('historyBack')!.addEventListener('click', () => { scrollHistory.back() })
+    document.getElementById('historyForward')!.addEventListener('click', () => { scrollHistory.forward() })
 
     document.addEventListener('mousedown', (ev) => {
         if(ev.button === 3) { scrollHistory.back() }

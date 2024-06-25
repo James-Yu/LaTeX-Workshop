@@ -41,10 +41,10 @@ function callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerCo
 }
 
 export function registerSyncTeX() {
-    const viewerDom = document.getElementById('viewer') as HTMLElement
+    const viewerDom = document.getElementById('viewer')!
     for (const pageDom of viewerDom.childNodes as NodeListOf<HTMLElement>) {
         const page = Number(pageDom.dataset.pageNumber)
-        const viewerContainer = document.getElementById('viewerContainer') as HTMLElement
+        const viewerContainer = document.getElementById('viewerContainer')!
         switch (reverseSynctexKeybinding) {
             case 'ctrl-click': {
                 pageDom.onclick = (e) => {
@@ -70,10 +70,10 @@ export function registerSyncTeX() {
 }
 
 function createIndicator(type: 'rect' | 'circ', scrollX: number, scrollY: number, width_px?: number, height_px?: number): void {
-    let indicator = document.getElementById('synctex-indicator') as HTMLElement
+    let indicator = document.getElementById('synctex-indicator')!
 
     if (type === 'rect') {
-        const parent = indicator.parentNode as HTMLElement
+        const parent = indicator.parentNode!
         indicator = indicator.cloneNode(true) as HTMLElement
         indicator.id = ''
         indicator.classList.add('synctex-indicator-rect')
@@ -146,7 +146,7 @@ export function forwardSynctex(data: SynctexData | SynctexRangeData[]) {
 }
 
 function scrollToPosition(page: HTMLElement, posX: number, posY: number, isCircle: boolean = false): { scrollX: number, scrollY: number } {
-    const container = document.getElementById('viewerContainer') as HTMLElement
+    const container = document.getElementById('viewerContainer')!
     const maxScrollX = window.innerWidth * (isCircle ? 0.9 : 1)
     const minScrollX = window.innerWidth * (isCircle ? 0.1 : 0)
     let scrollX = page.offsetLeft + posX
