@@ -145,7 +145,11 @@ export function patchViewerRefresh() {
             )
         document.getElementById('viewerContainer')!.scrollTop += oldScrollHeight
         for (let i = 1; i <= oldPageCount; i++) {
-            pdfViewer.viewer.removeChild(pdfViewer.viewer.firstChild)
+            try {
+                pdfViewer.viewer.removeChild(pdfViewer.viewer.firstChild)
+            } catch {
+                setTimeout(() => pdfViewer.viewer.removeChild(pdfViewer.viewer.firstChild), 100)
+            }
         }
     }
     /* eslint-enable */
