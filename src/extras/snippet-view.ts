@@ -17,7 +17,7 @@ type SnippetViewResult = RenderResult | {
 type RenderResult = {
     type: 'png',
     uri: string,
-    data: string | undefined
+    davta: string | undefined
 }
 
 async function render(pdfFileUri: vscode.Uri, opts: { height: number, width: number, pageNumber: number }): Promise<string | undefined> {
@@ -93,6 +93,7 @@ class SnippetViewProvider implements vscode.WebviewViewProvider {
         webviewView.webview.html = readFileSync(webviewSourcePath, { encoding: 'utf8' })
             .replaceAll('%SRC%', (await lw.server.getUrl()).url)
             .replaceAll('%CSP%', webviewView.webview.cspSource + ' http://127.0.0.1:*')
+            .replaceAll('%LANG%', vscode.env.language);
 
         webviewView.webview.onDidReceiveMessage((e: SnippetViewResult) => {
             state.callbacks.forEach((cb) => void cb(e))
