@@ -17,13 +17,13 @@
     </head>
     <body>
         <div class="tab">
-            <button class="tablinks active" onclick="openTab(event, 'Symbols')">Symbols</button>
+            <button class="tablinks active" onclick="openTab(event, 'Symbols')"><span class="langja">記号</span>Symbols</button>
             <button class="tablinks" onclick="openTab(event, 'TikZ')">TikZ</button>
         </div>
 
         <div id="Symbols" class="tabcontent">
             <div class="header">
-                <input type="text" name="search" id="symbolsearch" placeholder="Search" oninput="mathSymbolSearch()" />
+                <input type="text" name="search" id="symbolsearch" placeholder="Search" placeholderja="検索" oninput="mathSymbolSearch()" />
                 <select onchange="mathSymbolSearch()"> </select>
             </div>
 
@@ -31,42 +31,46 @@
         </div>
 
         <div id="TikZ" class="tabcontent">
-            <h3>General</h3>
+            <h3>General<span class="langja">基本</span></h3>
             <div>
-                <a class="cmd" data-snippet="\n\\coordinate (${1:id}) at ${2:position};" data-description="name a point X"
+                <a class="cmd" data-snippet="\n\\coordinate (${1:id}) at ${2:position};" data-description="name a point X" data-descriptionja="点 X を命名"
                     >\coordinate (X) at (3,5)</a
                 >
                 <a
                     class="cmd"
                     data-snippet="\n\\node[${4:options}] (${1:id}) at ${2:position} {${3:label}};"
                     data-description="place a node and name it X"
+                    data-descriptionja="点 X を命名してプロット"
                     >\node (X) at (3,5) {}</a
                 >
             </div>
-            <h3>Coordinate Specifications</h3>
+            <h3>Coordinate Specifications<span class="langja">座標指定</span></h3>
             <div>
-                <a class="cmd" data-snippet="(${1:x}, ${2:y})" data-description="Cartesian coordinate">(x,y)</a>
-                <a class="cmd" data-snippet="(${1:θ}:${2:r})" data-description="Polar coordinate">(θ:r)</a>
-                <small>Using <span class="tt">calc</span> library</small>
+                <a class="cmd" data-snippet="(${1:x}, ${2:y})" data-description="Cartesian coordinate" data-descriptionja="直交座標">(x,y)</a>
+                <a class="cmd" data-snippet="(${1:θ}:${2:r})" data-description="Polar coordinate" data-descriptionja="極座標">(θ:r)</a>
+                <small>Using <span class="tt"></span> library</small>
                 <a
                     class="cmd"
                     data-snippet="($ (${1:A}) + {sin(${2:θ})}*(${3:B}) $)"
                     data-description="coordinate calculations"
+                    data-descriptionja="座標計算"
                     >($ (A) + {sin(60)}*(B) $)</a
                 >
-                <a class="cmd" data-snippet="($ (${1:A})!${2:r}!(${3:B}) $)" data-description="From (A) 25% to (B)"
+                <a class="cmd" data-snippet="($ (${1:A})!${2:r}!(${3:B}) $)" data-description="From (A) 25% to (B)" data-descriptionja="(A) の 25% から (B)"
                     >($ (A)!.25!(B) $)</a
                 >
                 <a
                     class="cmd"
                     data-snippet="($ (${1:A})!${3:r}!${4:θ}:(${2:B}) $)"
                     data-description="From (A) 3cm to (B) then rotate 30°"
+                    data-descriptionja="(A) から (B) に 3cm 移動し 30° 回転"
                     >($ (A)!3cm!30:(B) $)</a
                 >
                 <a
                     class="cmd"
                     data-snippet="($ (${1:A})!(${2:B})!(${3:C}) $)"
                     data-description="Projection of (B) onto line (AC)"
+                    data-descriptionja="(B) の線分 (AC) への投影"
                     >($ (A)!(B)!(C) $)</a
                 >
                 <small>Using <span class="tt">positioning</span> library</small>
@@ -74,30 +78,31 @@
                     class="cmd"
                     data-snippet="\n\\node[${3|above,below|} ${4|left,right|}=${2:dist} of ${1:node}${5|.north,.center,.south|} ${6|west,east|}] (${7:id}) {${8:label}};"
                     data-description="Position new node 1cm above existing anchor"
+                    data-descriptionja="新しい点を既存のアンカーより 1cm 上に配置"
                     >\node[above=1cm of node.north]</a
                 >
             </div>
-            <h3>Paths</h3>
+            <h3>Paths<span class="langja">パス</span></h3>
             <div>
                 <svg>
                     <line x1="15%" y1="50%" x2="100%" y2="50%"
                         style="stroke-width: 0.8; shape-rendering: crispEdges;"/>
                 </svg>
-                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$4] (${2:A}) -- (${3:B});" data-description="line">\path (A) -- (B)</a>
-                <a class="cmd" data-snippet=" -- (${1:C})" data-description="extend line">&emsp;&emsp;&emsp;&emsp;&thinsp;&#8202-- (C)</a>
-                <a class="cmd" data-snippet=" -- cycle;" data-description="joint to start">&emsp;&emsp;&emsp;&emsp;&thinsp;&#8202-- cycle</a>
+                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$4] (${2:A}) -- (${3:B});" data-description="line" data-descriptionja="線">\path (A) -- (B)</a>
+                <a class="cmd" data-snippet=" -- (${1:C})" data-description="extend line" data-descriptionja="延長線">&emsp;&emsp;&emsp;&emsp;&thinsp;&#8202-- (C)</a>
+                <a class="cmd" data-snippet=" -- cycle;" data-description="joint to start" data-descriptionja="閉じた図形">&emsp;&emsp;&emsp;&emsp;&thinsp;&#8202-- cycle</a>
                 <svg viewBox="0 0 190 160" xmlns="http://www.w3.org/2000/svg">
                     <line x1="10" y1="100" x2="80" y2="15" style="stroke-width: 16; shape-rendering: crispEdges;"></line>
     				<line x1="180" y1="100" x2="110" y2="15" style="stroke-width: 16;shape-rendering: crispEdges;"></line>
                     <path d="M 10 100 Q 95 0 180 100" style="stroke-width:16;" fill="transparent"></path>
                 </svg>
-                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$6] (${2:A}) to[out=${4:θ}, in=${5:θ}] (${3:B});" data-description="line with tweaked entry and exit angles"
+                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$6] (${2:A}) to[out=${4:θ}, in=${5:θ}] (${3:B});" data-description="line with tweaked entry and exit angles" data-descriptionja="始点と終点の角度を調整した線"
                     >\path (A) to[out=θ, in=θ] (B)</a>
                 <svg viewBox="0 0 190 160" xmlns="http://www.w3.org/2000/svg">
                     <line x1="95" y1="55" x2="95" y2="110" style="stroke-width: 16; shape-rendering: crispEdges;"/>
                     <path d="M 10 100 Q 95 0 180 100" style="stroke-width:16;" fill="transparent"/>
                 </svg>
-                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$6] (${2:A}) to[bend ${4|left,right|}=${5:θ}] (${3:B});" data-description="line with center displaced"
+                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$6] (${2:A}) to[bend ${4|left,right|}=${5:θ}] (${3:B});" data-description="line with center displaced" data-descriptionja="中心をずらした線"
                     >\path (A) to[bend left=θ] (B)</a>
                 <svg>
                     <rect
@@ -108,7 +113,7 @@
                         style="stroke-width:2"
                     />
                 </svg>
-                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$4] (${2:A}) rectangle (${3:B});" data-description="rectangle"
+                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$4] (${2:A}) rectangle (${3:B});" data-description="rectangle" data-descriptionja="四角形"
                     >\path (A) rectangle (B)</a
                 >
                 <svg>
@@ -121,7 +126,7 @@
                         style="stroke-width:1"
                     />
                 </svg>
-                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$4] (${2:A}) circle (${3:r});" data-description="circle"
+                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$4] (${2:A}) circle (${3:r});" data-description="circle" data-descriptionja="円"
                     >\path (A) circle (r)</a
                 >
                 <svg>
@@ -131,6 +136,7 @@
                     class="cmd"
                     data-snippet="\n\\${1|draw,path,fill,node|}[$4] (${2:center}) ellipse (${3:width} and ${4:height});"
                     data-description="ellipse"
+                    data-descriptionja="楕円"
                     >\path (A) ellipse (3 and 2)</a
                 >
                 <svg viewBox="0 0 190 160" xmlns="http://www.w3.org/2000/svg">
@@ -140,6 +146,7 @@
                     class="cmd"
                     data-snippet="\n\\${1|draw,path,fill,node|}[$7] (${2:A}) arc(${4:θ1}:${5:θ2}:${6:r}) (${3:B});"
                     data-description="circular arc"
+                    data-descriptionja="円弧"
                     >\path (A) arc(θ1:θ2:r) (B)</a
                 >
                 <svg viewBox="0 0 190 160" xmlns="http://www.w3.org/2000/svg">
@@ -149,6 +156,7 @@
                     class="cmd"
                     data-snippet="\n\\${1|draw,path,fill,node|}[$7] (${2:A}) arc(${4:θ1}:${5:θ2}:${6:r1} and ${7:r2}) (${3:B});"
                     data-description="elliptic arc"
+                    data-descriptionja="楕円弧"
                     >\path (A) arc(θ1:θ2:r1 and r2) (B)</a
                 >
                 <svg viewBox="0 0 190 160" xmlns="http://www.w3.org/2000/svg">
@@ -158,6 +166,7 @@
                     class="cmd"
                     data-snippet="\n\\${1|draw,path,fill,node|}[$7] (${2:A}) .. controls (${3:C1}) and (${4:C2}) .. (${3:B});"
                     data-description="Bezier curve"
+                    data-descriptionja="ベジェ曲線"
                     >\path (A) .. controls (C1) and (C2) .. (B)</a
                 >
                 <svg>
@@ -174,6 +183,7 @@
                     class="cmd"
                     data-snippet="\n\\${1|draw,path,fill,node|}[${5:step=1}] (${2:A}) grid[$4] (${3:B});"
                     data-description="grid"
+                    data-descriptionja="格子（グリッド）"
                     >\path (A) grid (B);</a
                 >
                 <!-- <a
@@ -183,7 +193,7 @@
                     >\path (A) parabola (B);</a
                 > -->
             </div>
-            <h3>Path Options</h3>
+            <h3>Path Options<span class="langja">線の設定</span></h3>
             <div>
                 <div class="col3">
                     <svg>
@@ -350,7 +360,7 @@
                     >-to</a>
                 </div>
             </div>
-            <h3>Colour</h3>
+            <h3>Colour<span class="langja">色</span></h3>
             <div>
                 <div class="col4">
                         <svg  viewBox="0 0 100 100">
@@ -406,7 +416,7 @@
                         >opacity</a>
                 </div>
             </div>
-            <h3>Maths</h3>
+            <h3>Maths<span class="langja">数学</span></h3>
             <div>
                 <div class="col3">
                     <svg viewBox="0 0 190 160" xmlns="http://www.w3.org/2000/svg">
@@ -432,5 +442,11 @@
                 </div>
             </div>
         </div>
+        <script>
+            Array.from(document.querySelectorAll(".lang%LANG%")).forEach(e => e.parentElement.innerHTML = e.innerHTML);
+            Array.from(document.querySelectorAll("[class^=lang]")).forEach(e => e.remove());
+            Array.from(document.querySelectorAll("[placeholder%LANG%]")).forEach(e => e.setAttribute("placeholder", e.getAttribute("placeholder%LANG%")));
+            Array.from(document.querySelectorAll("[data-description%LANG%]")).forEach(e => e.setAttribute("data-description", e.getAttribute("data-description%LANG%")));
+        </script>
     </body>
 </html>
