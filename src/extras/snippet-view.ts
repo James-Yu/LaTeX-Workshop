@@ -17,7 +17,7 @@ type SnippetViewResult = RenderResult | {
 type RenderResult = {
     type: 'png',
     uri: string,
-    davta: string | undefined
+    data: string | undefined
 }
 
 async function render(pdfFileUri: vscode.Uri, opts: { height: number, width: number, pageNumber: number }): Promise<string | undefined> {
