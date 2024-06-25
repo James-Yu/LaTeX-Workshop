@@ -4,7 +4,7 @@ import * as utils from './components/utils.js'
 import type { PdfjsEventName, PDFViewerApplicationType, PDFViewerApplicationOptionsType } from './components/interface.js'
 import type { PdfViewerParams } from '../types/latex-workshop-protocol-types/index'
 import { initTrim, setTrimCSS } from './components/trimming.js'
-import { patchViewerRefresh, restoreState } from './components/refresh.js'
+import { doneRefresh, patchViewerRefresh, restoreState } from './components/refresh.js'
 import { initUploadState, setParams, uploadState } from './components/state.js'
 import { initConnect, send } from './components/connection.js'
 import { registerSyncTeX } from './components/synctex.js'
@@ -94,6 +94,7 @@ onPDFViewerEvent('pagesloaded', () => {
         .then(() => uploadState())
         .then(() => send({ type: 'loaded', pdfFileUri: utils.parseURL().pdfFileUri }))
     repositionAnnotation()
+    doneRefresh()
 })
 onPDFViewerEvent('rotationchanging', () => setTrimCSS())
 

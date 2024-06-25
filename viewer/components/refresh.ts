@@ -18,7 +18,6 @@ export function toggleAutoReload() {
 }
 
 let prevState: {
-    page: number,
     scrollMode: number,
     sidebarView: number,
     spreadMode: number,
@@ -26,15 +25,24 @@ let prevState: {
     scrollLeft: number
 } | undefined
 
+export function doneRefresh() {
+    refreshing = false
+}
+
+let refreshing = false
 export async function refresh() {
     if (!IsAutoReloadEnabled()) {
         sendLog('Auto reload temporarily disabled.')
         return
     }
+    if (refreshing) {
+        sendLog('Auto reload rate-limiting.')
+        return
+    }
+    refreshing = true
 
     // Fail-safe. For unknown reasons, the pack may have null values #4076
     const currentState = {
-        page: PDFViewerApplication.pdfViewer.currentPageNumber ?? prevState?.page,
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? prevState?.scrollMode,
         sidebarView: PDFViewerApplication.pdfSidebar.visibleView ?? prevState?.sidebarView,
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode ?? prevState?.spreadMode,
@@ -71,9 +79,6 @@ export async function restoreState() {
         return
     }
 
-    if (prevState.page !== undefined) {
-        PDFViewerApplication.pdfViewer.currentPageNumber = prevState.page
-    }
     if (prevState.sidebarView) {
         PDFViewerApplication.pdfSidebar.switchView(prevState.sidebarView)
     }
@@ -119,7 +124,7 @@ export function patchViewerRefresh() {
     /* eslint-disable */
     ;(globalThis as any).lwRecordRender = (pdfViewer: any) => {
         oldVisiblePages = pdfViewer._getVisiblePages().ids
-        oldPageCount = pdfViewer.viewer.children.length
+        oldPageCount = pdfViewer.pdfDocument?.numPages ?? 0
         let oldScale = pdfViewer.currentScale
         oldScrollHeight = pdfViewer.pdfDocument ? document.getElementById('viewerContainer')!.scrollHeight : 0
         return oldScale
@@ -145,11 +150,7 @@ export function patchViewerRefresh() {
             )
         document.getElementById('viewerContainer')!.scrollTop += oldScrollHeight
         for (let i = 1; i <= oldPageCount; i++) {
-            try {
-                pdfViewer.viewer.removeChild(pdfViewer.viewer.firstChild)
-            } catch {
-                setTimeout(() => pdfViewer.viewer.removeChild(pdfViewer.viewer.firstChild), 100)
-            }
+            pdfViewer.viewer.removeChild(pdfViewer.viewer.firstChild)
         }
     }
     /* eslint-enable */
