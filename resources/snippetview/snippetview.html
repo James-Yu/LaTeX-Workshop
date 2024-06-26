@@ -17,13 +17,13 @@
     </head>
     <body>
         <div class="tab">
-            <button class="tablinks active" onclick="openTab(event, 'Symbols')"><span class="langja">記号</span>Symbols</button>
-            <button class="tablinks" onclick="openTab(event, 'TikZ')">TikZ</button>
+            <button class="tablinks active" onclick="openTab(event, 'Symbols')">{%snippetview.symbol%}</button>
+            <button class="tablinks" onclick="openTab(event, 'TikZ')">{%snippetview.tikz%}</button>
         </div>
 
         <div id="Symbols" class="tabcontent">
             <div class="header">
-                <input type="text" name="search" id="symbolsearch" placeholder="Search" placeholderja="検索" oninput="mathSymbolSearch()" />
+                <input type="text" name="search" id="symbolsearch" placeholder="{%snippetview.search%}" oninput="mathSymbolSearch()" />
                 <select onchange="mathSymbolSearch()"> </select>
             </div>
 
@@ -442,11 +442,5 @@
                 </div>
             </div>
         </div>
-        <script>
-            Array.from(document.querySelectorAll(".lang%LANG%")).forEach(e => e.parentElement.innerHTML = e.innerHTML);
-            Array.from(document.querySelectorAll("[class^=lang]")).forEach(e => e.remove());
-            Array.from(document.querySelectorAll("[placeholder%LANG%]")).forEach(e => e.setAttribute("placeholder", e.getAttribute("placeholder%LANG%")));
-            Array.from(document.querySelectorAll("[data-description%LANG%]")).forEach(e => e.setAttribute("data-description", e.getAttribute("data-description%LANG%")));
-        </script>
     </body>
 </html>
