@@ -16,21 +16,24 @@ const MACROS: MacroInfoRecord = {
     subinputfrom: { signature: 'm m' },
     subincludefrom: { signature: 'm m' },
     // \label{some-label}
-    linelabel: { signature: 'o m'},
+    linelabel: { signature: 'o m' },
     // \newglossaryentry{vscode}{name=VSCode, description=Editor}
-    newglossaryentry: { signature: 'm m'},
-    provideglossaryentry: { signature: 'm m'},
+    newglossaryentry: { signature: 'm m' },
+    provideglossaryentry: { signature: 'm m' },
     // \newacronym[optional parameters]{lw}{LW}{LaTeX Workshop}
-    longnewglossaryentry: { signature: 'o m m m'},
-    longprovideglossaryentry: { signature: 'o m m m'},
-    newacronym: { signature: 'o m m m'},
-    newabbreviation: { signature: 'o m m m'},
-    newabbr: { signature: 'o m m m'},
-    DeclareRobustCommand: { signature: 's +m o +o +m'},
-    DeclareMathOperator: { signature: 's m m'},
-    DeclarePairedDelimiter: { signature: 'm m m'},
-    DeclarePairedDelimiterX: { signature: 'm o m m m'},
-    DeclarePairedDelimiterXPP: { signature: 'm o m m m m m'},
+    longnewglossaryentry: { signature: 'o m m m' },
+    longprovideglossaryentry: { signature: 'o m m m' },
+    newacronym: { signature: 'o m m m' },
+    newabbreviation: { signature: 'o m m m' },
+    newabbr: { signature: 'o m m m' },
+    newrobustcmd: { signature: 's d<> +m o +o +m' },
+    renewrobustcmd: { signature: 's d<> +m o +o +m' },
+    providerobustcmd: { signature: 's +m o +o +m' },
+    DeclareRobustCommand: { signature: 's +m o +o +m' },
+    DeclareMathOperator: { signature: 's m m' },
+    DeclarePairedDelimiter: { signature: 'm m m' },
+    DeclarePairedDelimiterX: { signature: 'm o m m m' },
+    DeclarePairedDelimiterXPP: { signature: 'm o m m m m m' },
 }
 
 const ENVS: EnvInfoRecord = {}

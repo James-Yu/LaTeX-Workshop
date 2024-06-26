@@ -136,7 +136,8 @@ function parseAst(node: Ast.Node, nodeStack: Ast.Node[], filePath: string, lines
         ['renewcommand', 'newcommand', 'providecommand', 'DeclareMathOperator', 'renewenvironment', 'newenvironment',
          'NewDocumentCommand', 'RenewDocumentCommand', 'ProvideDocumentCommand', 'DeclareDocumentCommand',
          'NewDocumentEnvironment', 'RenewDocumentEnvironment', 'ProvideDocumentEnvironment', 'DeclareDocumentEnvironment',
-         'NewExpandableDocumentCommand', 'RenewExpandableDocumentCommand', 'ProvideExpandableDocumentCommand', 'DeclareExpandableDocumentCommand'
+         'NewExpandableDocumentCommand', 'RenewExpandableDocumentCommand', 'ProvideExpandableDocumentCommand', 'DeclareExpandableDocumentCommand',
+         'newrobustcmd', 'renewrobustcmd', 'providerobustcmd'
         ].includes(node.content)) {
         // Do not scan labels inside \newcommand, \newenvironment & co
         return []

@@ -41,14 +41,14 @@ function parseAst(content: string, node: Ast.Node): string[] {
     // \newcommand{\fix}[3][]{\chdeleted{#2}\chadded[comment={#1}]{#3}}
     // \newcommand\WARNING{\textcolor{red}{WARNING}}
     const isNewCommand = node.type === 'macro' &&
-        ['renewcommand', 'newcommand'].includes(node.content) &&
+        ['newcommand', 'renewcommand', 'newrobustcmd', 'renewrobustcmd'].includes(node.content) &&
         node.args?.[2]?.content?.[0]?.type === 'macro'
     // \DeclarePairedDelimiterX\braketzw[2]{\langle}{\rangle}{#1\,\delimsize\vert\,\mathopen{}#2}
     const isDeclarePairedDelimiter = node.type === 'macro' &&
         ['DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.content) &&
         node.args?.[0]?.content?.[0]?.type === 'macro'
     const isProvideCommand = node.type === 'macro' &&
-        ['providecommand', 'DeclareMathOperator', 'DeclareRobustCommand'].includes(node.content) &&
+        ['providecommand', 'providerobustcmd', 'DeclareMathOperator', 'DeclareRobustCommand'].includes(node.content) &&
         node.args?.[1]?.content?.[0]?.type === 'macro'
     if (isNewCommand || isDeclarePairedDelimiter || isProvideCommand) {
         macros.push(

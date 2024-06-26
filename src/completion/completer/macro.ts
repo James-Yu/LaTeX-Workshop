@@ -221,7 +221,7 @@ function parseAst(node: Ast.Node, filePath: string, defined?: Set<string>): CmdE
     let name = ''
     let args = ''
     if (node.type === 'macro' &&
-        ['renewcommand', 'newcommand'].includes(node.content) &&
+        ['renewcommand', 'newcommand', 'newrobustcmd', 'renewrobustcmd'].includes(node.content) &&
         node.args?.[2]?.content?.[0]?.type === 'macro') {
         // \newcommand{\fix}[3][]{\chdeleted{#2}\chadded[comment={#1}]{#3}}
         // \newcommand\WARNING{\textcolor{red}{WARNING}}
@@ -243,7 +243,7 @@ function parseAst(node: Ast.Node, filePath: string, defined?: Set<string>): CmdE
             args = (node.args?.[2].openMark === '[' ? '[]' : '{}') + '{}'.repeat(parseInt(node.args?.[1].content?.[0].content) - 1)
         }
     } else if (node.type === 'macro' &&
-        ['providecommand', 'DeclareMathOperator', 'DeclareRobustCommand'].includes(node.content) &&
+        ['providecommand', 'providerobustcmd', 'DeclareMathOperator', 'DeclareRobustCommand'].includes(node.content) &&
         node.args?.[1]?.content?.[0]?.type === 'macro') {
         found = true
         name = node.args[1].content[0].content
