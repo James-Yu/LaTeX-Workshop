@@ -12,72 +12,74 @@ function buildNode(parent: LaTeXCommand, children: LaTeXCommand[]) {
     return parent
 }
 
-function buildCommandTree(): LaTeXCommand[] {
+async function buildCommandTree(): Promise<LaTeXCommand[]> {
     const commands: LaTeXCommand[] = []
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
 
-    const buildCommand = new LaTeXCommand('Build LaTeX project', {command: 'latex-workshop.build'}, 'debug-start')
+    const buildCommand = new LaTeXCommand(await lw.language.getLocaleString('command.build'), {command: 'latex-workshop.build'}, 'debug-start')
     const recipes = configuration.get('latex.recipes', []) as {name: string}[]
-    const recipeCommands = recipes.map(recipe => new LaTeXCommand(`Recipe: ${recipe.name}`, {command: 'latex-workshop.recipes', arguments: [recipe.name]}, 'debug-start'))
+    const recipeCommands = await Promise.all(
+        recipes.map(async recipe =>
+            new LaTeXCommand(await lw.language.getLocaleString('activity.recipe') + `: ${recipe.name}`, {command: 'latex-workshop.recipes', arguments: [recipe.name]}, 'debug-start')))
     let node: LaTeXCommand
     node = buildNode(buildCommand, [
-        new LaTeXCommand('Clean up auxiliary files', {command: 'latex-workshop.clean'}, 'clear-all'),
-        new LaTeXCommand('Terminate current compilation', {command: 'latex-workshop.kill'}, 'debug-stop'),
+        new LaTeXCommand(await lw.language.getLocaleString('command.clean'), {command: 'latex-workshop.clean'}, 'clear-all'),
+        new LaTeXCommand(await lw.language.getLocaleString('command.kill'), {command: 'latex-workshop.kill'}, 'debug-stop'),
         ...recipeCommands
     ])
     commands.push(node)
 
-    const viewCommand = new LaTeXCommand('View LaTeX PDF', {command: 'latex-workshop.view'}, 'open-preview')
+    const viewCommand = new LaTeXCommand(await lw.language.getLocaleString('activity.view'), {command: 'latex-workshop.view'}, 'open-preview')
     node = buildNode(viewCommand, [
-        new LaTeXCommand('View in VSCode tab', {command: 'latex-workshop.view', arguments: ['tab']}, 'open-preview'),
-        new LaTeXCommand('View in web browser', {command: 'latex-workshop.view', arguments: ['browser']}, 'browser'),
-        new LaTeXCommand('View in external viewer', {command: 'latex-workshop.view', arguments: ['external']}, 'preview'),
-        new LaTeXCommand('Refresh all viewers', {command: 'latex-workshop.refresh-viewer'}, 'refresh')
+        new LaTeXCommand(await lw.language.getLocaleString('activity.viewintab'), {command: 'latex-workshop.view', arguments: ['tab']}, 'open-preview'),
+        new LaTeXCommand(await lw.language.getLocaleString('activity.viewinweb'), {command: 'latex-workshop.view', arguments: ['browser']}, 'browser'),
+        new LaTeXCommand(await lw.language.getLocaleString('activity.viewinexternal'), {command: 'latex-workshop.view', arguments: ['external']}, 'preview'),
+        new LaTeXCommand(await lw.language.getLocaleString('command.refresh-viewer'), {command: 'latex-workshop.refresh-viewer'}, 'refresh')
     ])
     commands.push(node)
 
-    const logCommand = new LaTeXCommand('View Log messages', {command: 'latex-workshop.log'}, 'output')
-    const compilerLog = new LaTeXCommand('View LaTeX compiler log', {command: 'latex-workshop.compilerlog'}, 'output')
-    const latexWorkshopLog = new LaTeXCommand('View LaTeX Workshop extension log', {command: 'latex-workshop.log'}, 'output')
+    const logCommand = new LaTeXCommand(await lw.language.getLocaleString('activity.log'), {command: 'latex-workshop.log'}, 'output')
+    const compilerLog = new LaTeXCommand(await lw.language.getLocaleString('command.compilerlog'), {command: 'latex-workshop.compilerlog'}, 'output')
+    const latexWorkshopLog = new LaTeXCommand(await lw.language.getLocaleString('command.log'), {command: 'latex-workshop.log'}, 'output')
     node = buildNode(logCommand, [
         latexWorkshopLog,
         compilerLog
     ])
     commands.push(node)
 
-    const navCommand = new LaTeXCommand('Navigate, select, and edit', undefined, 'edit')
+    const navCommand = new LaTeXCommand(await lw.language.getLocaleString('activity.navigate'), undefined, 'edit')
     node= buildNode(navCommand, [
-        new LaTeXCommand('SyncTeX from cursor', {command: 'latex-workshop.synctex'}, 'go-to-file'),
-        new LaTeXCommand('Navigate to matching begin/end', {command: 'latex-workshop.navigate-envpair'}),
-        new LaTeXCommand('Select current environment content', {command: 'latex-workshop.select-envcontent'}),
-        new LaTeXCommand('Select current environment name', {command: 'latex-workshop.select-envname'}),
-        new LaTeXCommand('Close current environment', {command: 'latex-workshop.close-env'}),
-        new LaTeXCommand('Surround with begin{}...\\end{}', {command: 'latex-workshop.wrap-env'}),
-        new LaTeXCommand('Insert %!TeX root magic comment', {command: 'latex-workshop.addtexroot'})
+        new LaTeXCommand(await lw.language.getLocaleString('command.synctex'), {command: 'latex-workshop.synctex'}, 'go-to-file'),
+        new LaTeXCommand(await lw.language.getLocaleString('command.navigate-envpair'), {command: 'latex-workshop.navigate-envpair'}),
+        new LaTeXCommand(await lw.language.getLocaleString('command.select-envcontent'), {command: 'latex-workshop.select-envcontent'}),
+        new LaTeXCommand(await lw.language.getLocaleString('command.select-envname'), {command: 'latex-workshop.select-envname'}),
+        new LaTeXCommand(await lw.language.getLocaleString('command.close-env'), {command: 'latex-workshop.close-env'}),
+        new LaTeXCommand(await lw.language.getLocaleString('command.wrap-env'), {command: 'latex-workshop.wrap-env'}),
+        new LaTeXCommand(await lw.language.getLocaleString('command.addtexroot'), {command: 'latex-workshop.addtexroot'})
     ])
     commands.push(node)
 
-    const miscCommand = new LaTeXCommand('Miscellaneous', undefined, 'menu')
+    const miscCommand = new LaTeXCommand(await lw.language.getLocaleString('activity.misc'), undefined, 'menu')
     node = buildNode(miscCommand, [
-        new LaTeXCommand('Open citation browser', {command: 'latex-workshop.citation'}),
-        new LaTeXCommand('Count words in LaTeX project', {command: 'latex-workshop.wordcount'}),
-        new LaTeXCommand('Reveal output folder in OS', {command: 'latex-workshop.revealOutputDir'}, 'folder-opened')
+        new LaTeXCommand(await lw.language.getLocaleString('command.citation'), {command: 'latex-workshop.citation'}),
+        new LaTeXCommand(await lw.language.getLocaleString('command.wordcount'), {command: 'latex-workshop.wordcount'}),
+        new LaTeXCommand(await lw.language.getLocaleString('command.revealoutput'), {command: 'latex-workshop.revealOutputDir'}, 'folder-opened')
     ])
     commands.push(node)
 
-    const bibtexCommand = new LaTeXCommand('BibTeX actions', undefined, 'references')
+    const bibtexCommand = new LaTeXCommand(await lw.language.getLocaleString('activity.bibtex'), undefined, 'references')
     node = buildNode(bibtexCommand, [
-        new LaTeXCommand('Align bibliography', {command: 'latex-workshop.bibalign'}),
-        new LaTeXCommand('Sort bibliography', {command: 'latex-workshop.bibsort'}, 'sort-precedence'),
-        new LaTeXCommand('Align and sort bibliography', {command: 'latex-workshop.bibalignsort'})
+        new LaTeXCommand(await lw.language.getLocaleString('command.bibalign'), {command: 'latex-workshop.bibalign'}),
+        new LaTeXCommand(await lw.language.getLocaleString('command.bibsort'), {command: 'latex-workshop.bibsort'}, 'sort-precedence'),
+        new LaTeXCommand(await lw.language.getLocaleString('command.bibalignsort'), {command: 'latex-workshop.bibalignsort'})
     ])
     commands.push(node)
     return commands
 }
 
 
-function update() {
-    state.commands = buildCommandTree()
+async function update() {
+    state.commands = await buildCommandTree()
     state.treeDataProvider._onDidChangeTreeData.fire(undefined)
 }
 
@@ -92,12 +94,15 @@ class CommandProvider implements vscode.TreeDataProvider<LaTeXCommand> {
         return treeItem
     }
 
-    getChildren(element?: LaTeXCommand): LaTeXCommand[] {
-        if (!element) {
+    async getChildren(element?: LaTeXCommand): Promise<LaTeXCommand[]> {
+        if (element) {
+            return element.children
+        }
+        if (state.commands.length > 0) {
             return state.commands
         }
-
-        return element.children
+        state.commands = await buildCommandTree()
+        return state.commands
     }
 
     getParent(element: LaTeXCommand) {
@@ -124,7 +129,7 @@ class LaTeXCommand {
 
 const treeDataProvider = new CommandProvider()
 const state = {
-    commands: buildCommandTree(),
+    commands: [] as LaTeXCommand[],
     view: vscode.window.createTreeView('latex-workshop-commands', { treeDataProvider, showCollapseAll: true }),
     treeDataProvider
 }

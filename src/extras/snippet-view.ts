@@ -90,9 +90,13 @@ class SnippetViewProvider implements vscode.WebviewViewProvider {
         })
 
         const webviewSourcePath = path.join(lw.extensionRoot, 'resources', 'snippetview', 'snippetview.html')
-        webviewView.webview.html = readFileSync(webviewSourcePath, { encoding: 'utf8' })
+
+        const htmlContent = readFileSync(webviewSourcePath, { encoding: 'utf8' })
             .replaceAll('%SRC%', (await lw.server.getUrl()).url)
             .replaceAll('%CSP%', webviewView.webview.cspSource + ' http://127.0.0.1:*')
+        const replacements = await Promise.all(Array.from(htmlContent.matchAll(/\{%(.*?)%\}/g), match => lw.language.getLocaleString(match[1])))
+        let index = 0
+        webviewView.webview.html = htmlContent.replace(/\{%(.*?)%\}/g, () => replacements[index++])
 
         webviewView.webview.onDidReceiveMessage((e: SnippetViewResult) => {
             state.callbacks.forEach((cb) => void cb(e))
