@@ -25,21 +25,33 @@ let prevState: {
     scrollLeft: number
 } | undefined
 
+// https://github.com/James-Yu/LaTeX-Workshop/pull/4295#issuecomment-2191226562
 export function doneRefresh() {
     refreshing = false
+    clearTimeout(doneRefreshTimeout)
+    if (shouldRefreshAgain) {
+        shouldRefreshAgain = false
+        void refresh()
+    }
 }
 
 let refreshing = false
+let shouldRefreshAgain = false
+let doneRefreshTimeout = 0
 export async function refresh() {
     if (!IsAutoReloadEnabled()) {
         sendLog('Auto reload temporarily disabled.')
         return
     }
     if (refreshing) {
+        shouldRefreshAgain = true
         sendLog('Auto reload rate-limiting.')
         return
     }
+    // https://github.com/James-Yu/LaTeX-Workshop/pull/4295#issuecomment-2191384019
     refreshing = true
+    clearTimeout(doneRefreshTimeout)
+    doneRefreshTimeout = setTimeout(() => doneRefresh(), 1000)
 
     // Fail-safe. For unknown reasons, the pack may have null values #4076
     const currentState = {
