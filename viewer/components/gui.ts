@@ -1,7 +1,8 @@
 import { send, sendPanel } from './connection.js'
 import { scrollHistory } from './viewerhistory.js'
 import { toggleSyncTeX } from './synctex.js'
-import { toggleAutoReload } from './refresh.js'
+import { toggleAutoRefresh } from './refresh.js'
+import { getL10n } from './l10n.js'
 import * as utils from './utils.js'
 import type { PDFViewerApplicationType } from './interface.js'
 
@@ -26,16 +27,16 @@ export function patchViewerUI() {
 
     const template = document.createElement('template')
     template.innerHTML =
-`<button id="TrimButton" class="secondaryToolbarButton" title="Trim margin" tabindex="70">
-    <label for="trimPct">Trim margin by </label>
+`<button id="TrimButton" class="secondaryToolbarButton" title="${getL10n('trimMargin')}" tabindex="70">
+    <label for="trimPct">${getL10n('trimMargin')}</label>
     <input type="number" id="trimPct" name="trimPct" min="0" max="99" value="0">
     <label for="trimPct">%</label>
 </button>
-<button id="synctexOnButton" class="secondaryToolbarButton" title="Enable SyncTeX" tabindex="71">
-    <input id="synctexOn" type="checkbox" checked><span>Enable SyncTeX</span>
+<button id="synctexOnButton" class="secondaryToolbarButton" title="${getL10n('enableSyncTeX')}" tabindex="71">
+    <input id="synctexOn" type="checkbox" checked><span>${getL10n('enableSyncTeX')}</span>
 </button>
-<button id="autoReloadOnButton" class="secondaryToolbarButton" title="Enable reload" tabindex="72">
-    <input id="autoReloadOn" type="checkbox" checked><span>Enable reload</span>
+<button id="autoRefreshOnButton" class="secondaryToolbarButton" title="${getL10n('enableRefresh')}" tabindex="72">
+    <input id="autoRefreshOn" type="checkbox" checked><span>${getL10n('enableRefresh')}</span>
 </button>
 <div class="horizontalToolbarSeparator"></div>`
     let anchor: HTMLElement | Element = document.getElementById('documentProperties')!
@@ -48,10 +49,10 @@ export function patchViewerUI() {
 
     template.innerHTML =
 `<!-- History back button, useful in the embedded viewer -->
-<button class="toolbarButton findPrevious" title="Back (←)" id="historyBack">
+<button class="toolbarButton findPrevious" title="${getL10n('navBack')} (←)" id="historyBack">
   <span>Back</span>
 </button>
-<button class="toolbarButton findNext" title="Forward (⇧←)" id="historyForward">
+<button class="toolbarButton findNext" title="${getL10n('navForward')} (⇧←)" id="historyForward">
   <span>Forward</span>
 </button>`
     anchor = document.getElementById('sidebarToggle')!.nextElementSibling!
@@ -76,10 +77,10 @@ function registerSynctexCheckBox() {
 }
 
 function registerAutoReloadCheckBox() {
-    const autoReloadOn = document.getElementById('autoReloadOn')! as HTMLInputElement
-    const autoReloadOnButton = document.getElementById('autoReloadOnButton')! as HTMLButtonElement
-    autoReloadOnButton.addEventListener('click', () => {
-        autoReloadOn.checked = toggleAutoReload()
+    const autoRefreshOn = document.getElementById('autoRefreshOn')! as HTMLInputElement
+    const autoRefreshOnButton = document.getElementById('autoRefreshOnButton')! as HTMLButtonElement
+    autoRefreshOnButton.addEventListener('click', () => {
+        autoRefreshOn.checked = toggleAutoRefresh()
         // PDFViewerApplication.secondaryToolbar.close()
     })
 }

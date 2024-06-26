@@ -8,13 +8,13 @@ declare const pdfjsLib: any
 declare const PDFViewerApplication: PDFViewerApplicationType
 declare const PDFViewerApplicationOptions: PDFViewerApplicationOptionsType
 
-let autoReloadEnabled = true
-export function IsAutoReloadEnabled() {
-    return autoReloadEnabled
+let autoRefreshEnabled = true
+export function IsAutoRefreshEnabled() {
+    return autoRefreshEnabled
 }
-export function toggleAutoReload() {
-    autoReloadEnabled = !autoReloadEnabled
-    return autoReloadEnabled
+export function toggleAutoRefresh() {
+    autoRefreshEnabled = !autoRefreshEnabled
+    return autoRefreshEnabled
 }
 
 let prevState: {
@@ -39,7 +39,7 @@ let refreshing = false
 let shouldRefreshAgain = false
 let doneRefreshTimeout = 0
 export async function refresh() {
-    if (!IsAutoReloadEnabled()) {
+    if (!IsAutoRefreshEnabled()) {
         sendLog('Auto reload temporarily disabled.')
         return
     }

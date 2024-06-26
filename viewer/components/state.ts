@@ -3,7 +3,7 @@ import type { PDFViewerApplicationType } from './interface'
 import type { PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index.js'
 import { getTrimValue } from './trimming.js'
 import { isSyncTeXEnabled, registerSyncTeX, setSyncTeXKey } from './synctex.js'
-import { IsAutoReloadEnabled } from './refresh.js'
+import { IsAutoRefreshEnabled } from './refresh.js'
 import { sendPanel } from './connection.js'
 
 declare const PDFViewerApplication: PDFViewerApplicationType
@@ -43,7 +43,7 @@ export function uploadState() {
         scrollTop: document.getElementById('viewerContainer')!.scrollTop,
         scrollLeft: document.getElementById('viewerContainer')!.scrollLeft,
         synctexEnabled: isSyncTeXEnabled(),
-        autoReloadEnabled: IsAutoReloadEnabled()
+        autoReloadEnabled: IsAutoRefreshEnabled()
     }
     sendPanel({type: 'state', state})
 }
