@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import { lw } from '../lw'
 import { getBibtexFormatConfig } from '../lint/bibtex-formatter/utils'
-import * as bibParser from '@retorquere/bibtex-parser'
+import { getLongestBalancedString } from '../utils/utils'
 
 const logger = lw.log('Intelli', 'Bib')
 
@@ -157,25 +157,15 @@ export class BibProvider implements vscode.CompletionItemProvider {
             }
             return
         }
-        const result = currentLine.substring(0, position.character).match(/^\s*([a-zA-Z]*)\s*=\s*\{$/)
-        if (!result) {
+        const result = currentLine.substring(0, position.character).match(/^\s*([a-zA-Z]*)\s*=\s*([{|"]?)$/)
+        // If not found, or right before the starting { / "
+        if (!result || result[2] === '' && ['{', '"'].includes(currentLine.substring(position.character)[0])) {
             return
         }
-        const library = bibParser.parse(document.getText(), { fieldMode: {
-            author: 'verbatim',
-            bookauthor: 'verbatim',
-            editor: 'verbatim',
-            editors: 'verbatim',
-            keywords: 'verbatim',
-            institution: 'verbatim',
-            publisher: 'verbatim',
-            organization: 'verbatim',
-            location: 'verbatim'
-        } })
-        const field = result[1]
-        const suggestions = library.entries
-            .filter(entry => entry.fields[field])
-            .map(entry => entry.fields[field])
+        // Exclude the current editing field from searched
+        const lines = document.getText().split('\n')
+        lines[position.line] = lines[position.line].replace(RegExp(`${result[1]}\\s*=\\s*`, 'g'), '')
+        return findFieldValues(result[1], lines.join('\n'))
             .reduce((unique, value) => {
                 if (!unique.includes(value)) {
                     unique.push(value)
@@ -183,7 +173,6 @@ export class BibProvider implements vscode.CompletionItemProvider {
                 return unique
             }, [] as string[])
             .map(entry => new vscode.CompletionItem(entry, vscode.CompletionItemKind.Text))
-        return suggestions
     }
 
     private provideOptFields(document: vscode.TextDocument, position: vscode.Position): vscode.CompletionItem[] {
@@ -199,4 +188,35 @@ export class BibProvider implements vscode.CompletionItemProvider {
         }
         return []
     }
+}
+
+function findFieldValues(field: string, text: string) {
+    const re = RegExp(`(${field}\\s*=\\s*)`, 'g')
+    const candidates: string[] = []
+    while (true) {
+        const match = re.exec(text)
+        if (!match) {
+            break
+        }
+        const startPos = match.index + match[1].length
+        if (text[startPos] === '{') {
+            const candidate = getLongestBalancedString(text.slice(startPos))
+            if (candidate !== undefined) {
+                candidates.push(candidate)
+            }
+        } else if (text[startPos] === '"') {
+            const quoteRe = /(?<!\\)"/g
+            const quoteMatch = quoteRe.exec(text.slice(startPos + 1))
+            if (quoteMatch) {
+                candidates.push(text.slice(startPos + 1, startPos + quoteMatch.index + 1))
+            }
+        } else {
+            const commaRe = /,/g
+            const commaMatch = commaRe.exec(text.slice(startPos + 1))
+            if (commaMatch) {
+                candidates.push(text.slice(startPos, startPos + commaMatch.index + 1))
+            }
+        }
+    }
+    return candidates
 }
