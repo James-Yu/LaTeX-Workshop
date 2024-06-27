@@ -1,5 +1,14 @@
 # Change Log
 
+## [10.1.0] - 2024-06-27
+
+### Added
+- (#4301) Multi-language support.
+
+### Fixed
+- (#4300) Prevent concurrent pdf refresh and queue a refresh if rate-limited.
+- (#4303) Support new command macros by `etoolbox`.
+
 ## [10.0.0] - 2024-06-24 - Viewer Update
 
 ### General
