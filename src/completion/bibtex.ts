@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import { lw } from '../lw'
 import { getBibtexFormatConfig } from '../lint/bibtex-formatter/utils'
+import * as bibParser from '@retorquere/bibtex-parser'
 
 const logger = lw.log('Intelli', 'Bib')
 
@@ -70,7 +71,7 @@ export class BibProvider implements vscode.CompletionItemProvider {
         const entries: { [key: string]: string[] } = JSON.parse(fs.readFileSync(entriesFile, {encoding: 'utf8'})) as DataBibtexJsonType
         const optFields: { [key: string]: string[] } = JSON.parse(fs.readFileSync(optEntriesFile, {encoding: 'utf8'})) as DataBibtexOptionalJsonType
 
-        const maxLengths: {[key: string]: number} = this.computeMaxLengths(entries, optFields)
+        // const maxLengths: {[key: string]: number} = this.computeMaxLengths(entries, optFields)
         const entriesList: string[] = []
         this.entryItems.length = 0
         Object.keys(entries).forEach(entry => {
@@ -78,35 +79,35 @@ export class BibProvider implements vscode.CompletionItemProvider {
                 return
             }
             if (entry in entriesReplacements) {
-                this.entryItems.push(this.entryToCompletion(entry, entriesReplacements[entry], this.bibtexFormatConfig, maxLengths))
+                this.entryItems.push(this.entryToCompletion(entry, entriesReplacements[entry], this.bibtexFormatConfig))
             } else {
-                this.entryItems.push(this.entryToCompletion(entry, entries[entry], this.bibtexFormatConfig, maxLengths))
+                this.entryItems.push(this.entryToCompletion(entry, entries[entry], this.bibtexFormatConfig))
             }
             entriesList.push(entry)
         })
         Object.entries(optFields).forEach(([field, item]) => {
-            this.optFieldItems[field] = this.fieldsToCompletion(field, item, this.bibtexFormatConfig, maxLengths)
+            this.optFieldItems[field] = this.fieldsToCompletion(item, this.bibtexFormatConfig)
         })
     }
 
-    private computeMaxLengths(entries: {[key: string]: string[]}, optFields: {[key: string]: string[]}): {[key: string]: number} {
-        const maxLengths = Object.create(null) as { [key: string]: number }
-        Object.keys(entries).forEach(key => {
-            let maxFieldLength = 0
-            entries[key].forEach(field => {
-                maxFieldLength = Math.max(maxFieldLength, field.length)
-            })
-            if (key in optFields) {
-                optFields[key].forEach(field => {
-                    maxFieldLength = Math.max(maxFieldLength, field.length)
-                })
-            }
-            maxLengths[key] = maxFieldLength
-        })
-        return maxLengths
-    }
+    // private computeMaxLengths(entries: {[key: string]: string[]}, optFields: {[key: string]: string[]}): {[key: string]: number} {
+    //     const maxLengths = Object.create(null) as { [key: string]: number }
+    //     Object.keys(entries).forEach(key => {
+    //         let maxFieldLength = 0
+    //         entries[key].forEach(field => {
+    //             maxFieldLength = Math.max(maxFieldLength, field.length)
+    //         })
+    //         if (key in optFields) {
+    //             optFields[key].forEach(field => {
+    //                 maxFieldLength = Math.max(maxFieldLength, field.length)
+    //             })
+    //         }
+    //         maxLengths[key] = maxFieldLength
+    //     })
+    //     return maxLengths
+    // }
 
-    private entryToCompletion(itemName: string, itemFields: string[], config: ReturnType<typeof getBibtexFormatConfig>, maxLengths: {[key: string]: number}): vscode.CompletionItem {
+    private entryToCompletion(itemName: string, itemFields: string[], config: ReturnType<typeof getBibtexFormatConfig>): vscode.CompletionItem {
         const suggestion: vscode.CompletionItem = new vscode.CompletionItem(itemName, vscode.CompletionItemKind.Snippet)
         suggestion.detail = itemName
         suggestion.documentation = `Add a @${itemName} entry`
@@ -117,7 +118,7 @@ export class BibProvider implements vscode.CompletionItemProvider {
         let s: string = itemName + '{${0:key}'
         itemFields.forEach(field => {
             s += ',\n' + config.tab + (config.case === 'lowercase' ? field.toLowerCase() : field.toUpperCase())
-            s += ' '.repeat(maxLengths[itemName] - field.length) + ' = '
+            s += ' = '
             s += config.left + `$${count}` + config.right
             count++
         })
@@ -126,13 +127,13 @@ export class BibProvider implements vscode.CompletionItemProvider {
         return suggestion
     }
 
-    private fieldsToCompletion(itemName: string, fields: string[], config: ReturnType<typeof getBibtexFormatConfig>, maxLengths: {[key: string]: number}): vscode.CompletionItem[] {
+    private fieldsToCompletion(fields: string[], config: ReturnType<typeof getBibtexFormatConfig>): vscode.CompletionItem[] {
         const suggestions: vscode.CompletionItem[] = []
         fields.forEach(field => {
             const suggestion: vscode.CompletionItem = new vscode.CompletionItem(field, vscode.CompletionItemKind.Snippet)
             suggestion.detail = field
             suggestion.documentation = `Add ${field} = ${config.left}${config.right}`
-            suggestion.insertText = new vscode.SnippetString(`${field}` + ' '.repeat(maxLengths[itemName] - field.length) + ` = ${config.left}$1${config.right},`)
+            suggestion.insertText = new vscode.SnippetString(`${field} = ${config.left}$1${config.right},`)
             suggestions.push(suggestion)
         })
         return suggestions
@@ -143,15 +144,46 @@ export class BibProvider implements vscode.CompletionItemProvider {
         if (currentLine.match(/@[a-zA-Z]*$/)) {
             // Complete an entry name
             return this.entryItems
-        } else {
-            const prevLine = position.line > 0 ? document.lineAt(position.line - 1).text : ''
-            if (currentLine.match(/^\s*[a-zA-Z]*/) && prevLine.match(/(?:@[a-zA-Z]{)|(?:["}0-9],\s*$)/)) {
-                // Add optional fields
-                const optFields = this.provideOptFields(document, position)
-                return optFields
+        } else if (currentLine.match(/^\s*[a-zA-Z]*$/)) {
+            let offset = 0
+            while (offset < 100) {
+                const prevLine = position.line - offset > 0 ? document.lineAt(position.line - offset - 1).text : ''
+                if (prevLine.match(/(?:@[a-zA-Z]{)|(?:["}0-9],\s*$)/)) {
+                    // Add optional fields
+                    const optFields = this.provideOptFields(document, position)
+                    return optFields
+                }
+                offset += 1
             }
+            return
         }
-        return
+        const result = currentLine.substring(0, position.character).match(/^\s*([a-zA-Z]*)\s*=\s*\{$/)
+        if (!result) {
+            return
+        }
+        const library = bibParser.parse(document.getText(), { fieldMode: {
+            author: 'verbatim',
+            bookauthor: 'verbatim',
+            editor: 'verbatim',
+            editors: 'verbatim',
+            keywords: 'verbatim',
+            institution: 'verbatim',
+            publisher: 'verbatim',
+            organization: 'verbatim',
+            location: 'verbatim'
+        } })
+        const field = result[1]
+        const suggestions = library.entries
+            .filter(entry => entry.fields[field])
+            .map(entry => entry.fields[field])
+            .reduce((unique, value) => {
+                if (!unique.includes(value)) {
+                    unique.push(value)
+                }
+                return unique
+            }, [] as string[])
+            .map(entry => new vscode.CompletionItem(entry, vscode.CompletionItemKind.Text))
+        return suggestions
     }
 
     private provideOptFields(document: vscode.TextDocument, position: vscode.Position): vscode.CompletionItem[] {
