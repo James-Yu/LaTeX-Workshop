@@ -431,7 +431,7 @@ function showInvisibleWebviewPanel(pdfUri: vscode.Uri): boolean {
         if (panel.webviewPanel.viewColumn !== activeViewColumn
             && !panel.webviewPanel.visible
             && isSyntexOn) {
-            panel.webviewPanel.reveal(undefined, true)
+            panel.webviewPanel.reveal(panel.webviewPanel.viewColumn, true)
             return true
         }
         if (panel.webviewPanel.visible && isSyntexOn) {
