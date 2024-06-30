@@ -420,7 +420,14 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     if (!lastStep.isExternal && skipped) {
         return
     }
-    lw.viewer.refresh(lw.file.getPdfPath(lastStep.rootFile))
+    const pdfFilePath = lw.file.getPdfPath(lastStep.rootFile)
+    lw.viewer.refresh(pdfFilePath)
+    if (lw.liveshare.isHost) {
+        const pdfFileUri = vscode.Uri.file(pdfFilePath)
+        const encodedPdfPath = await lw.server.encodePathWithPrefix(pdfFileUri)
+        const pdfLiveShareFile = vscode.Uri.file(lw.file.getPdfLiveSharePath(lastStep.rootFile))
+        await vscode.workspace.fs.writeFile(pdfLiveShareFile, Buffer.from(encodedPdfPath))
+    }
     lw.completion.reference.setNumbersFromAuxFile(lastStep.rootFile)
     await lw.cache.loadFlsFile(lastStep.rootFile ?? '')
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(lastStep.rootFile))

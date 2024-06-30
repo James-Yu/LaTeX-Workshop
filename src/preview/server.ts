@@ -10,9 +10,12 @@ const logger = lw.log('Server')
 
 export {
     getPort,
+    urlFromPortAndEncodedUri,
     getUrl,
     setHandler,
     initialize,
+    encodePathWithPrefix,
+    decodePathWithPrefix
     // initialized
 }
 
@@ -30,10 +33,10 @@ class WsServer extends ws.Server {
     // - https://github.com/websockets/ws/blob/master/doc/ws.md#servershouldhandlerequest
     //
     shouldHandle(req: http.IncomingMessage): boolean {
-        if (!this.validOrigin.includes('127.0.0.1')) {
+        const reqOrigin = req.headers['origin']
+        if (!this.validOrigin.includes('127.0.0.1') || reqOrigin?.includes('127.0.0.1')) {
             return true
         }
-        const reqOrigin = req.headers['origin']
         if (reqOrigin !== undefined && reqOrigin !== this.validOrigin) {
             logger.log(`Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
             logger.log(`Valid origin: ${this.validOrigin}`)
@@ -73,11 +76,16 @@ function getPort(): number {
 }
 
 async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
+    const res = await urlFromPortAndEncodedUri(lw.server.getPort(), pdfUri ? encodePathWithPrefix(pdfUri) : '')
+    return res
+}
+
+async function urlFromPortAndEncodedUri(port: number, encodedUri: string): Promise<{url: string, uri: vscode.Uri}> {
     // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
-    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.getPort()}`, true))
+    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${port}`, true))
     const url =
         (origUrl.toString().endsWith('/') ? origUrl.toString().slice(0, -1) : origUrl.toString()) +
-        (pdfUri ? ('/viewer.html?file=' + encodePathWithPrefix(pdfUri)) : '')
+        ('/viewer.html?file=' + encodedUri)
     return { url, uri: vscode.Uri.parse(url, true) }
 }
 
@@ -149,7 +157,7 @@ function initializeWsServer(httpServer: http.Server, validOrigin: string) {
 //
 function checkHttpOrigin(req: http.IncomingMessage, response: http.ServerResponse): boolean {
     const validOrigin = getValidOrigin()
-    if (!validOrigin.includes('127.0.0.1')) {
+    if (!validOrigin.includes('127.0.0.1') || req.headers['origin']?.includes('127.0.0.1')) {
         return true
     }
     const reqOrigin = req.headers['origin']

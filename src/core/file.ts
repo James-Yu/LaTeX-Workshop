@@ -14,6 +14,7 @@ export const file = {
     getJobname,
     getBibPath,
     getPdfPath,
+    getPdfLiveSharePath,
     getFlsPath,
     hasBinaryExt,
     hasTeXExt,
@@ -309,6 +310,19 @@ function getJobname(texPath: string): string {
  */
 function getPdfPath(texPath: string): string {
     return path.resolve(path.dirname(texPath), getOutDir(texPath), path.basename(`${getJobname(texPath)}.pdf`))
+}
+
+/**
+ * Construct the absolute path to the pdf.liveshare file to a given TeX file.
+ *
+ * This the content of a pdf.liveshare file is the encoded link to be embded
+ * in the viewer.
+ *
+ * @param texPath - The path to the TeX file.
+ * @returns - The absolute path to the corresponding pdf.liveshare file.
+ */
+function getPdfLiveSharePath(texPath: string): string {
+    return `${getPdfPath(texPath)}.liveshare`
 }
 
 /**
