@@ -4,10 +4,11 @@ import { lw } from '../lw'
 import * as url from 'url'
 
 export class LiveShare {
-    private liveshare: vsls.LiveShare | undefined | null
     private role: vsls.Role = vsls.Role.None
 
     private hostServerPort: number | undefined | null
+
+    liveshare: vsls.LiveShare | undefined | null
 
     constructor() {
         void this.init()
@@ -24,6 +25,7 @@ export class LiveShare {
 
     private set sessionRole(role: vsls.Role) {
         this.role = role
+        this.hostServerPort = null
         if (this.role === vsls.Role.Guest) {
             void this.initGuest()
         } else if (this.role === vsls.Role.Host) {

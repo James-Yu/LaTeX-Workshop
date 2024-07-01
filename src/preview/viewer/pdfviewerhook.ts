@@ -20,24 +20,17 @@ class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvider {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewerLocation = configuration.get<ViewerMode>('view.pdf.viewer', 'tab')
 
-        if (document.uri.fsPath.toLocaleLowerCase().endsWith('.pdf.liveshare')) {
-            const encodedPdfPath = (await vscode.workspace.fs.readFile(document.uri)).toString()
-            const decodedPdfUri = lw.server.decodePathWithPrefix(encodedPdfPath)
-            if (lw.liveshare.isGuest) {
-                if (viewerLocation === 'tab') {
-                    webviewPanel.webview.options = {
-                        ...webviewPanel.webview.options,
-                        enableScripts: true
-                    }
-                    const uri = (await lw.server.urlFromPortAndEncodedUri(await lw.liveshare.getHostServerPort(), encodedPdfPath)).uri
-                    const htmlContent = await getPDFViewerContentHelper(uri)
-                    webviewPanel.webview.html = htmlContent
-                    const pdfPanel = new PdfViewerPanel(uri, webviewPanel)
-                    void insert(pdfPanel)
+        if (lw.liveshare.isGuest) {
+            if (viewerLocation === 'tab') {
+                webviewPanel.webview.options = {
+                    ...webviewPanel.webview.options,
+                    enableScripts: true
                 }
-            }
-            else {
-                await this.resolveCustomEditor({ uri: decodedPdfUri, dispose: () => { } }, webviewPanel)
+                const uri = (await lw.server.urlFromPortAndEncodedUri(await lw.liveshare.getHostServerPort(), lw.server.encodePathWithPrefix(document.uri))).uri
+                const htmlContent = await getPDFViewerContentHelper(uri)
+                webviewPanel.webview.html = htmlContent
+                const pdfPanel = new PdfViewerPanel(uri, webviewPanel)
+                void insert(pdfPanel)
             }
             return
         }
