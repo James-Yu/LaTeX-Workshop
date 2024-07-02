@@ -60,15 +60,18 @@ function refresh(pdfFile?: string): void {
         })
         return
     }
-    const clientSet = manager.getClients(pdfUri)
-    if (!clientSet) {
-        logger.log(`Not found PDF viewers to refresh: ${pdfFile}`)
-        return
-    }
+    let clientSet = manager.getClients(pdfUri)
     if (lw.liveshare.isHost && lw.liveshare.liveshare !== null && pdfFile !== undefined) {
         const sharedUri = lw.liveshare.liveshare?.convertLocalUriToShared(vscode.Uri.file(pdfFile))
         const guestClients = manager.getClients(sharedUri)
-        guestClients?.forEach(client => clientSet.add(client))
+        if (guestClients) {
+            clientSet?.forEach(client => guestClients.add(client))
+            clientSet = guestClients
+        }
+    }
+    if (!clientSet) {
+        logger.log(`Not found PDF viewers to refresh: ${pdfFile}`)
+        return
     }
     logger.log(`Refresh PDF viewer: ${pdfFile}`)
     clientSet.forEach(client => {
