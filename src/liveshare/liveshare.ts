@@ -24,13 +24,17 @@ export class LiveShare {
     }
 
     private set sessionRole(role: vsls.Role) {
-        this.role = role
-        this.hostServerPort = null
+        this.reset(role)
         if (this.role === vsls.Role.Guest) {
             void this.initGuest()
         } else if (this.role === vsls.Role.Host) {
             void this.initHost()
         }
+    }
+
+    private reset(role: vsls.Role) {
+        this.role = role
+        this.hostServerPort = null
     }
 
     get isGuest(): boolean {
@@ -41,12 +45,8 @@ export class LiveShare {
         return this.role === vsls.Role.Host
     }
 
-    private initGuest() {
-        setTimeout(async () => {
-            await vscode.commands.executeCommand('liveshare.listServers')
-            const hostUrl = await vscode.env.clipboard.readText()
-            this.hostServerPort = Number(url.parse(hostUrl).port)
-        }, 1000)
+    private async initGuest() {
+        await this.getHostServerPort()
     }
 
     public async getHostServerPort(): Promise<number> {
@@ -54,10 +54,13 @@ export class LiveShare {
             return this.hostServerPort
         }
         else {
+            const savedClipboard = await vscode.env.clipboard.readText()
             await vscode.commands.executeCommand('liveshare.listServers')
             const hostUrl = await vscode.env.clipboard.readText()
-            this.hostServerPort = Number(url.parse(hostUrl).port)
-            return this.hostServerPort
+            await vscode.env.clipboard.writeText(savedClipboard)
+            const hostServerPort = Number(url.parse(hostUrl).port)
+            this.hostServerPort = hostServerPort
+            return hostServerPort
         }
     }
 
