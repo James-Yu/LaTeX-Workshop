@@ -17,6 +17,7 @@ import type { parser } from './parse'
 import type { extra } from './extras'
 
 import type * as commands from './core/commands'
+import { LiveShare } from './liveshare/liveshare'
 
 const wrapper = <T extends Array<any>, U>(fn: (...args: T) => U) => {
     return (...args: T): U => fn(...args)
@@ -43,6 +44,7 @@ export const lw = {
     lint: {} as typeof lint,
     outline: {} as typeof outline,
     extra: {} as typeof extra,
+    liveshare: new LiveShare(),
     commands: Object.create(null) as typeof commands,
     external: {
         spawn: wrapper(cs.spawn),

@@ -7,8 +7,9 @@ import { escapeHtml, sleep } from '../../utils/utils'
 const logger = lw.log('Viewer', 'Panel')
 
 export {
-    type PdfViewerPanel,
+    PdfViewerPanel,
     serializer,
+    getPDFViewerContentHelper,
     populate
 }
 
@@ -107,20 +108,14 @@ function getKeyboardEventConfig(): boolean {
     }
 }
 
-/**
- * Returns the HTML content of the internal PDF viewer.
- *
- * @param pdfUri The path of a PDF file to be opened.
- */
-async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
-    const uri = (await lw.server.getUrl(pdfUri)).uri
+async function getPDFViewerContentHelper(uri: vscode.Uri): Promise<string> {
     const iframeSrcOrigin = `${uri.scheme}://${uri.authority}`
     const iframeSrcUrl = uri.toString(true)
     await patchCodespaces(uri)
     logger.log(`Internal PDF viewer at ${iframeSrcUrl} .`)
     const rebroadcast: boolean = getKeyboardEventConfig()
     return `
-    <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; frame-src ${iframeSrcOrigin}; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
+    <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; frame-src *; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
     <body><iframe id="preview-panel" class="preview-panel" src="${iframeSrcUrl}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
     </iframe>
     <script>
@@ -176,4 +171,15 @@ async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
     </script>
     </body></html>
     `
+}
+
+
+/**
+ * Returns the HTML content of the internal PDF viewer.
+ *
+ * @param pdfUri The path of a PDF file to be opened.
+ */
+async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
+    const res = await getPDFViewerContentHelper((await lw.server.getUrl(pdfUri)).uri)
+    return res
 }

@@ -156,6 +156,8 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
 function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext) {
     extensionContext.subscriptions.push(
+        vscode.commands.registerCommand('latex-workshop.acquireHostPort', () => lw.commands.acquireHostPort()),
+        vscode.commands.registerCommand('latex-workshop.shareHostPort', () => lw.commands.shareHostPort()),
         vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => lw.commands.saveActive()),
         vscode.commands.registerCommand('latex-workshop.build', () => lw.commands.build()),
         vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => lw.commands.recipes(recipe)),

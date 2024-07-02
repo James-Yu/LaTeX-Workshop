@@ -60,7 +60,15 @@ function refresh(pdfFile?: string): void {
         })
         return
     }
-    const clientSet = manager.getClients(pdfUri)
+    let clientSet = manager.getClients(pdfUri)
+    if (lw.liveshare.isHost && lw.liveshare.liveshare !== null && pdfFile !== undefined) {
+        const sharedUri = lw.liveshare.liveshare?.convertLocalUriToShared(vscode.Uri.file(pdfFile))
+        const guestClients = manager.getClients(sharedUri)
+        if (guestClients) {
+            clientSet?.forEach(client => guestClients.add(client))
+            clientSet = guestClients
+        }
+    }
     if (!clientSet) {
         logger.log(`Not found PDF viewers to refresh: ${pdfFile}`)
         return
@@ -274,6 +282,9 @@ function handler(websocket: ws, msg: string): void {
     switch (data.type) {
         case 'open': {
             const pdfUri = vscode.Uri.parse(data.pdfFileUri, true)
+            if (pdfUri.scheme === 'vsls' && lw.liveshare.isHost) {
+                manager.create(pdfUri)
+            }
             const clientSet = manager.getClients(pdfUri)
             if (clientSet === undefined) {
                 break
