@@ -5,6 +5,26 @@ import { getSurroundingMacroRange, stripText } from '../utils/utils'
 
 const logger = lw.log('Commander')
 
+export async function acquireHostPort() {
+    logger.log('ACQUIREHOSTPORT command invoked.')
+    if (lw.liveshare.isGuest) {
+        await lw.liveshare.getHostServerPort(true)
+    }
+    else {
+        void vscode.window.showInformationMessage('This command only works for guests in a Live Share session.')
+    }
+}
+
+export async function shareHostPort() {
+    logger.log('SHAREHOSTPORT command invoked.')
+    if (lw.liveshare.isHost) {
+        await lw.liveshare.shareServer()
+    }
+    else {
+        void vscode.window.showInformationMessage('This command only works for a host in a Live Share session.')
+    }
+}
+
 export async function build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
     logger.log('BUILD command invoked.')
     await lw.compile.build(skipSelection, rootFile, languageId, recipe)
