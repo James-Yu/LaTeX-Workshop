@@ -76,7 +76,7 @@ export async function refresh() {
     const { encodedPath, docTitle } = utils.parseURL()
     /* eslint-disable */
     const doc = await pdfjsLib.getDocument({
-        url: `/${utils.pdfFilePrefix}${encodedPath}`,
+        url: `${utils.pdfFilePrefix}${encodedPath}`,
         cMapUrl: '../cmaps/'
     }).promise
     PDFViewerApplication.load(doc)
