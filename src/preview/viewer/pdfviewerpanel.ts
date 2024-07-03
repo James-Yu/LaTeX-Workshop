@@ -7,9 +7,8 @@ import { escapeHtml, sleep } from '../../utils/utils'
 const logger = lw.log('Viewer', 'Panel')
 
 export {
-    PdfViewerPanel,
+    type PdfViewerPanel,
     serializer,
-    getPDFViewerContentHelper,
     populate
 }
 
@@ -108,7 +107,13 @@ function getKeyboardEventConfig(): boolean {
     }
 }
 
-async function getPDFViewerContentHelper(uri: vscode.Uri): Promise<string> {
+/**
+ * Returns the HTML content of the internal PDF viewer.
+ *
+ * @param pdfUri The path of a PDF file to be opened.
+ */
+async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
+    const uri = (await lw.server.getUrl(pdfUri)).uri
     const iframeSrcOrigin = `${uri.scheme}://${uri.authority}`
     const iframeSrcUrl = uri.toString(true)
     await patchCodespaces(uri)
@@ -171,15 +176,4 @@ async function getPDFViewerContentHelper(uri: vscode.Uri): Promise<string> {
     </script>
     </body></html>
     `
-}
-
-
-/**
- * Returns the HTML content of the internal PDF viewer.
- *
- * @param pdfUri The path of a PDF file to be opened.
- */
-async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
-    const res = await getPDFViewerContentHelper((await lw.server.getUrl(pdfUri)).uri)
-    return res
 }

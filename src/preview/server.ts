@@ -10,7 +10,6 @@ const logger = lw.log('Server')
 
 export {
     getPort,
-    urlFromPortAndEncodedUri,
     getUrl,
     setHandler,
     initialize,
@@ -66,7 +65,11 @@ const state: {
 
 lw.onDispose({ dispose: () => state.httpServer.close() })
 
-function getPort(): number {
+async function getPort(): Promise<number> {
+    if (lw.liveshare.isGuest) {
+        const portNum = await lw.liveshare.getHostServerPort()
+        return portNum
+    }
     const portNum = state.address?.port
     if (portNum === undefined) {
         logger.log('Server port number is undefined.')
@@ -76,16 +79,11 @@ function getPort(): number {
 }
 
 async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
-    const res = await urlFromPortAndEncodedUri(lw.server.getPort(), pdfUri ? encodePathWithPrefix(pdfUri) : '')
-    return res
-}
-
-async function urlFromPortAndEncodedUri(port: number, encodedUri: string): Promise<{url: string, uri: vscode.Uri}> {
     // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
-    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${port}`, true))
+    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${await lw.server.getPort()}`, true))
     const url =
         (origUrl.toString().endsWith('/') ? origUrl.toString().slice(0, -1) : origUrl.toString()) +
-        ('/viewer.html?file=' + encodedUri)
+        (pdfUri ? ('/viewer.html?file=' + encodePathWithPrefix(pdfUri)) : '')
     return { url, uri: vscode.Uri.parse(url, true) }
 }
 

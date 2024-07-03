@@ -35,6 +35,7 @@ export class LiveShare {
     private reset(role: vsls.Role) {
         this.role = role
         this.hostServerPort = null
+        this.shareServerDisposable?.dispose()
     }
 
     get isGuest(): boolean {
@@ -55,7 +56,9 @@ export class LiveShare {
         }
         else {
             const savedClipboard = await vscode.env.clipboard.readText()
-            await vscode.commands.executeCommand('liveshare.listServers')
+            void vscode.commands.executeCommand('liveshare.listServers')
+            // delay here instead of doing await vscode.commands.executeCommand acquires the port more reliably because await vscode.commands.executeCommand does not return until the user closes the info box of the command or clicks copy again.
+            await this.delay(500)
             const hostUrl = await vscode.env.clipboard.readText()
             const hostServerPort = Number(url.parse(hostUrl).port)
             this.hostServerPort = hostServerPort
@@ -65,10 +68,17 @@ export class LiveShare {
     }
 
     public async shareServer() {
+        if (!this.isHost) {
+            return
+        }
         if (this.shareServerDisposable !== null) {
             this.shareServerDisposable?.dispose()
         }
-        this.shareServerDisposable = await this.liveshare?.shareServer({ port: lw.server.getPort(), displayName: 'latex-workshop-server' })
+        this.shareServerDisposable = await this.liveshare?.shareServer({ port: await lw.server.getPort(), displayName: 'latex-workshop-server' })
+    }
+
+    private async delay(t: number) {
+        return new Promise(resolve => setTimeout(resolve, t))
     }
 
     private async initHost() {
