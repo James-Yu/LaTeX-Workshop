@@ -21,6 +21,7 @@ export const root = {
     },
     find,
     getWorkspace,
+    canBeRoot,
     _test: {
         getIndicator,
         getWorkspace,
@@ -138,7 +139,7 @@ function getWorkspace(filePath?: string): vscode.Uri | undefined {
     }
     // If provided with a filePath, check its workspace
     if (filePath !== undefined) {
-        return (vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath)) ?? firstWorkspace).uri
+        return (vscode.workspace.getWorkspaceFolder(lw.file.fileUriFromPath(filePath)) ?? firstWorkspace).uri
     }
     // If we don't have an active text editor, we can only make a guess.
     // Let's guess the first one.
@@ -208,7 +209,7 @@ function findFromRoot(): string | undefined {
     if (!vscode.window.activeTextEditor || root.file.path === undefined) {
         return
     }
-    if (vscode.window.activeTextEditor.document.uri.scheme !== 'file') {
+    if (!canBeRoot(vscode.window.activeTextEditor.document.uri)) {
         logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         return
     }
@@ -231,7 +232,7 @@ function findFromActive(): string | undefined {
     if (!vscode.window.activeTextEditor) {
         return
     }
-    if (vscode.window.activeTextEditor.document.uri.scheme !== 'file') {
+    if (!canBeRoot(vscode.window.activeTextEditor.document.uri)) {
         logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         return
     }
@@ -303,7 +304,7 @@ async function findInWorkspace(): Promise<string | undefined> {
         const fileUris = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
         const candidates: string[] = []
         for (const fileUri of fileUris) {
-            if (fileUri.scheme !== 'file') {
+            if (!canBeRoot(fileUri)) {
                 logger.log(`Skip the file: ${fileUri.toString(true)}`)
                 continue
             }
@@ -334,4 +335,8 @@ async function findInWorkspace(): Promise<string | undefined> {
         }
     } catch (e) {}
     return
+}
+
+function canBeRoot(file: vscode.Uri): boolean {
+    return file.scheme === 'file' || file.scheme === 'vsls'
 }

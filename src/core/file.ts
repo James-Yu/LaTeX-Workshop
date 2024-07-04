@@ -24,6 +24,8 @@ export const file = {
     exists,
     read,
     kpsewhich,
+    getUriScheme,
+    fileUriFromPath,
     _test: {
         createTmpDir
     }
@@ -176,7 +178,7 @@ function hasDtxLangId(langId: string): boolean {
  *
  * @type {Object.<string, {out?: string, aux?: string}>}
  */
-const texDirs: {[tex: string]: {out?: string, aux?: string}} = {}
+const texDirs: { [tex: string]: { out?: string, aux?: string } } = {}
 /**
  * Sets the output and auxiliary files directory for a root TeX file.
  *
@@ -199,7 +201,7 @@ function setTeXDirs(tex: string, out?: string, aux?: string) {
     if (!tex.endsWith('.tex')) {
         tex += '.tex'
     }
-    texDirs[tex] = {out, aux}
+    texDirs[tex] = { out, aux }
 }
 
 /**
@@ -237,7 +239,7 @@ function getOutDir(texPath?: string): string {
         return './'
     }
 
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.fileUriFromPath(texPath))
     const outDir = configuration.get('latex.outDir') as string || './'
     const out = utils.replaceArgumentPlaceholders(texPath, file.tmpDirPath)(outDir)
     let result = undefined
@@ -290,7 +292,7 @@ function getLangId(filename: string): string | undefined {
  * configuration or derived from the file name.
  */
 function getJobname(texPath: string): string {
-    const jobname = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath)).get('latex.jobname') as string
+    const jobname = vscode.workspace.getConfiguration('latex-workshop', lw.file.fileUriFromPath(texPath)).get('latex.jobname') as string
     return jobname || path.parse(texPath).name
 }
 
@@ -350,7 +352,7 @@ async function getFlsPath(texPath: string): Promise<string | undefined> {
  * avoiding redundant executions of the `kpsewhich` command by returning
  * previously computed results quickly.
  */
-const kpsecache: {[query: string]: string} = {}
+const kpsecache: { [query: string]: string } = {}
 /**
  * Resolves the path to a given LaTeX target using the `kpsewhich` command.
  *
@@ -380,7 +382,7 @@ function kpsewhich(target: string, isBib: boolean = false): string | undefined {
 
     try {
         const args = isBib ? ['-format=.bib', target] : [target]
-        const kpsewhichReturn = lw.external.sync(command, args, {cwd: lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path})
+        const kpsewhichReturn = lw.external.sync(command, args, { cwd: lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path })
         if (kpsewhichReturn.status === 0) {
             const output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
             logger.log(`kpsewhich returned with '${output}'.`)
@@ -431,7 +433,7 @@ function getBibPath(bib: string, baseDir: string): string[] {
     if (bibPath === undefined || bibPath.length === 0) {
         if (configuration.get('kpsewhich.bibtex.enabled')) {
             const kpsePath = kpsewhich(bib, true)
-            return kpsePath ? [ kpsePath ] : []
+            return kpsePath ? [kpsePath] : []
         } else {
             logger.log(`Cannot resolve bib path: ${bib} .`)
             return []
@@ -440,9 +442,9 @@ function getBibPath(bib: string, baseDir: string): string[] {
 
     if (os.platform() === 'win32') {
         // Normalize drive letters on Windows.
-        return [ bibPath ].flat().map(p => p.replace(/^([a-zA-Z]):/, (_, p1: string) => p1.toLowerCase() + ':'))
+        return [bibPath].flat().map(p => p.replace(/^([a-zA-Z]):/, (_, p1: string) => p1.toLowerCase() + ':'))
     } else {
-        return [ bibPath ].flat()
+        return [bibPath].flat()
     }
 }
 
@@ -472,7 +474,7 @@ function getBibPath(bib: string, baseDir: string): string[] {
  */
 async function read(filePath: string, raise: boolean = false): Promise<string | undefined> {
     try {
-        return (await vscode.workspace.fs.readFile(vscode.Uri.file(filePath))).toString()
+        return (await vscode.workspace.fs.readFile(lw.file.fileUriFromPath(filePath))).toString()
     } catch (err) {
         if (raise === false) {
             return undefined
@@ -486,7 +488,7 @@ async function read(filePath: string, raise: boolean = false): Promise<string | 
  *
  * This function accepts a URI object or a string representing a file path. If
  * the input is a string, it is converted to a file URI using
- * `vscode.Uri.file()`. The function then attempts to retrieve the status of the
+ * `lw.file.fileUriFromPath()`. The function then attempts to retrieve the status of the
  * file or directory at the given URI using `stat()` of VS Code workspace file
  * system API. If the status retrieval is successful, the function returns
  * `true`, indicating that the file or directory exists. If an error occurs
@@ -499,8 +501,8 @@ async function read(filePath: string, raise: boolean = false): Promise<string | 
  * or directory exists, and `false` otherwise.
  */
 async function exists(uri: vscode.Uri | string): Promise<boolean> {
-    if (typeof(uri) === 'string') {
-        uri = vscode.Uri.file(uri)
+    if (typeof (uri) === 'string') {
+        uri = lw.file.fileUriFromPath(uri)
     }
     try {
         await lw.external.stat(uri)
@@ -508,4 +510,26 @@ async function exists(uri: vscode.Uri | string): Promise<boolean> {
     } catch {
         return false
     }
+}
+
+/**
+* Returns the scheme of the URI based on the file path.
+*
+* This function determines the URI scheme based on the file path provided. It
+* checks if the file path starts with any of the workspace folder paths and
+* returns the scheme associated with the workspace folder. If the file path
+* does not match any workspace folder, it returns the default scheme based on
+* whether the user is a guest in a Live Share session.
+*
+* @param {string} filePath - The file path for which to determine the URI scheme.
+* @returns {string} - The URI scheme associated with the file path.
+*/
+function getUriScheme(filePath?: string): string {
+    const scheme =
+        vscode.workspace.workspaceFolders?.filter(folder => filePath?.startsWith(folder.uri.path))[0]?.uri.scheme
+    return scheme ?? (lw.liveshare.isGuest ? 'vsls' : 'file')
+}
+
+function fileUriFromPath(filePath: string): vscode.Uri {
+    return vscode.Uri.file(filePath).with({ scheme: getUriScheme(filePath) })
 }

@@ -3,6 +3,7 @@ import { type TeXElement, TeXElementType } from '../types'
 import { buildBibTeX } from '../outline/structure/bibtex'
 import { construct as constructLaTeX } from '../outline/structure/latex'
 import { construct } from '../outline/structure/doctex'
+import { lw } from '../lw'
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
 
@@ -12,7 +13,7 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         } else if (document.languageId === 'doctex') {
             return construct(document).then((sections: TeXElement[]) => this.sectionToSymbols(sections))
         }
-        if (document.uri.scheme !== 'file') {
+        if (!lw.root.canBeRoot(document.uri)) {
             return []
         }
         const sections = await constructLaTeX(document.fileName, false)

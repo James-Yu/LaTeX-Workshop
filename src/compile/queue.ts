@@ -1,5 +1,6 @@
 import vscode from 'vscode'
 import type { ExternalStep, RecipeStep, Step, StepQueue, Tool } from '../types'
+import { lw } from '../lw'
 
 const stepQueue: StepQueue = { steps: [], nextSteps: [] }
 
@@ -99,7 +100,7 @@ function getStepString(step: Step): string {
 
     // Determine the format of the stepString based on timestamp and index
     if(step.rootFile) {
-        const rootFileUri = vscode.Uri.file(step.rootFile)
+        const rootFileUri = lw.file.fileUriFromPath(step.rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop', rootFileUri)
         const showFilename = configuration.get<boolean>('latex.build.rootfileInStatus', false)
         if(showFilename) {

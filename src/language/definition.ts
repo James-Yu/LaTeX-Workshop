@@ -41,7 +41,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
     }
 
     provideDefinition(document: vscode.TextDocument, position: vscode.Position): vscode.Location | undefined {
-        if (document.uri.scheme !== 'file') {
+        if (!lw.root.canBeRoot(document.uri)) {
             return
         }
         const token = tokenizer(document, position)
@@ -58,15 +58,15 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         }
         const ref = lw.completion.reference.getItem(token)
         if (ref) {
-            return new vscode.Location(vscode.Uri.file(ref.file), ref.position)
+            return new vscode.Location(lw.file.fileUriFromPath(ref.file), ref.position)
         }
         const cite = lw.completion.citation.getItem(token)
         if (cite) {
-            return new vscode.Location(vscode.Uri.file(cite.file), cite.position)
+            return new vscode.Location(lw.file.fileUriFromPath(cite.file), cite.position)
         }
         const glossary = lw.completion.glossary.getItem(token)
         if (glossary) {
-            return new vscode.Location(vscode.Uri.file(glossary.filePath), glossary.position)
+            return new vscode.Location(lw.file.fileUriFromPath(glossary.filePath), glossary.position)
         }
         if (vscode.window.activeTextEditor && token.includes('.')) {
             // We skip graphics files
@@ -77,13 +77,13 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
             }
             const absolutePath = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), token)
             if (fs.existsSync(absolutePath)) {
-                return new vscode.Location( vscode.Uri.file(absolutePath), new vscode.Position(0, 0) )
+                return new vscode.Location( lw.file.fileUriFromPath(absolutePath), new vscode.Position(0, 0) )
             }
         }
 
         const filename = this.onAFilename(document, position, token)
         if (filename) {
-            return new vscode.Location( vscode.Uri.file(filename), new vscode.Position(0, 0) )
+            return new vscode.Location( lw.file.fileUriFromPath(filename), new vscode.Position(0, 0) )
         }
         return
     }

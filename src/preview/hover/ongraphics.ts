@@ -37,7 +37,7 @@ export async function onGraphics(document: vscode.TextDocument, position: vscode
 }
 
 export async function graph2md(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<vscode.MarkdownString | undefined> {
-    const filePathUriString = vscode.Uri.file(filePath).toString()
+    const filePathUriString = (filePath).toString()
     if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
         // Workaround for https://github.com/microsoft/vscode/issues/137632
         if (vscode.env.remoteName) {
@@ -57,7 +57,7 @@ export async function graph2md(filePath: string, opts: { height: number, width: 
             return md
         } else {
             let msg = '$(error) Failed to render.'
-            if (!vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath))) {
+            if (!vscode.workspace.getWorkspaceFolder(lw.file.fileUriFromPath(filePath))) {
                 msg = '$(warning) Cannot render a PDF file not in workspaces.'
             } else if (lw.extra.snippet.state.view?.webview === undefined) {
                 msg = '$(info) Please activate the LaTeX Workshop activity bar item to render PDF thumbnails.'
@@ -73,19 +73,19 @@ async function renderPdfFileAsDataUrl(pdfFilePath: string, opts: { height: numbe
         const maxDataUrlLength = 99980
         let scale = 1.5
         let newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-        let dataUrl = await lw.extra.snippet.render(vscode.Uri.file(pdfFilePath), newOpts)
+        let dataUrl = await lw.extra.snippet.render(lw.file.fileUriFromPath(pdfFilePath), newOpts)
         if (!dataUrl || dataUrl.length < maxDataUrlLength) {
             return dataUrl
         }
         scale = 1
         newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-        dataUrl = await lw.extra.snippet.render(vscode.Uri.file(pdfFilePath), newOpts)
+        dataUrl = await lw.extra.snippet.render(lw.file.fileUriFromPath(pdfFilePath), newOpts)
         if (!dataUrl || dataUrl.length < maxDataUrlLength) {
             return dataUrl
         }
         scale = Math.sqrt(maxDataUrlLength/dataUrl.length) / 1.2
         newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-        dataUrl = await lw.extra.snippet.render(vscode.Uri.file(pdfFilePath), newOpts)
+        dataUrl = await lw.extra.snippet.render(lw.file.fileUriFromPath(pdfFilePath), newOpts)
         if (dataUrl && dataUrl.length >= maxDataUrlLength) {
             logger.log(`Data URL still too large: ${pdfFilePath}`)
             return

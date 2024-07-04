@@ -36,13 +36,13 @@ export async function revealOutputDir() {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
         const rootDir = lw.root.dir.path || workspaceFolder?.uri.fsPath
         if (rootDir === undefined) {
-            logger.log(`Cannot reveal ${vscode.Uri.file(outDir)}: no root dir can be identified.`)
+            logger.log(`Cannot reveal ${lw.file.fileUriFromPath(outDir)}: no root dir can be identified.`)
             return
         }
         outDir = path.resolve(rootDir, outDir)
     }
-    logger.log(`Reveal ${vscode.Uri.file(outDir)}`)
-    await vscode.commands.executeCommand('revealFileInOS', vscode.Uri.file(outDir))
+    logger.log(`Reveal ${lw.file.fileUriFromPath(outDir)}`)
+    await vscode.commands.executeCommand('revealFileInOS', lw.file.fileUriFromPath(outDir))
 }
 
 export function recipes(recipe?: string) {
@@ -482,7 +482,7 @@ export function toggleMathPreviewPanel() {
 }
 
 async function quickPickRootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.fileUriFromPath(rootFile))
     const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
     if (doNotPrompt) {
         if (configuration.get('latex.rootFile.useSubFile')) {
