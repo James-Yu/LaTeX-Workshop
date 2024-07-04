@@ -21,7 +21,6 @@ export const root = {
     },
     find,
     getWorkspace,
-    canBeRoot,
     _test: {
         getIndicator,
         getWorkspace,
@@ -209,7 +208,7 @@ function findFromRoot(): string | undefined {
     if (!vscode.window.activeTextEditor || root.file.path === undefined) {
         return
     }
-    if (!canBeRoot(vscode.window.activeTextEditor.document.uri)) {
+    if (!lw.file.hasAcceptedScheme(vscode.window.activeTextEditor.document.uri)) {
         logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         return
     }
@@ -232,7 +231,7 @@ function findFromActive(): string | undefined {
     if (!vscode.window.activeTextEditor) {
         return
     }
-    if (!canBeRoot(vscode.window.activeTextEditor.document.uri)) {
+    if (!lw.file.hasAcceptedScheme(vscode.window.activeTextEditor.document.uri)) {
         logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         return
     }
@@ -304,7 +303,7 @@ async function findInWorkspace(): Promise<string | undefined> {
         const fileUris = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
         const candidates: string[] = []
         for (const fileUri of fileUris) {
-            if (!canBeRoot(fileUri)) {
+            if (!lw.file.hasAcceptedScheme(fileUri)) {
                 logger.log(`Skip the file: ${fileUri.toString(true)}`)
                 continue
             }
@@ -335,8 +334,4 @@ async function findInWorkspace(): Promise<string | undefined> {
         }
     } catch (e) {}
     return
-}
-
-function canBeRoot(file: vscode.Uri): boolean {
-    return file.scheme === 'file' || file.scheme === 'vsls'
 }

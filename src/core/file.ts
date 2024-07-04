@@ -26,6 +26,8 @@ export const file = {
     kpsewhich,
     getUriScheme,
     fileUriFromPath,
+    hasAcceptedScheme,
+    isAcceptedScheme,
     _test: {
         createTmpDir
     }
@@ -532,4 +534,12 @@ function getUriScheme(filePath?: string): string {
 
 function fileUriFromPath(filePath: string): vscode.Uri {
     return vscode.Uri.file(filePath).with({ scheme: getUriScheme(filePath) })
+}
+
+function hasAcceptedScheme(fileUri: vscode.Uri): boolean {
+    return isAcceptedScheme(fileUri.scheme)
+}
+
+function isAcceptedScheme(scheme: string): boolean {
+    return ['file', 'vsls'].includes(scheme)
 }

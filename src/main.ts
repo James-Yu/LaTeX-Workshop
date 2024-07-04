@@ -67,7 +67,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     extensionContext.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
-        if (!lw.root.canBeRoot(e.uri)){
+        if (!lw.file.hasAcceptedScheme(e.uri)){
             return
         }
         if (lw.file.hasTeXLangId(e.languageId) ||
@@ -100,7 +100,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             logger.showStatus()
         }
-        if (e && !lw.root.canBeRoot(e.document.uri)) {
+        if (e && !lw.file.hasAcceptedScheme(e.document.uri)) {
             return
         }
         if (e && lw.file.hasTeXLangId(e.document.languageId) && e.document.fileName !== prevTeXDocumentPath) {
@@ -119,7 +119,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     extensionContext.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
-        if (!lw.root.canBeRoot(e.document.uri)){
+        if (!lw.file.hasAcceptedScheme(e.document.uri)){
             return
         }
         if (!lw.file.hasTeXLangId(e.document.languageId) &&

@@ -41,7 +41,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
     }
 
     provideDefinition(document: vscode.TextDocument, position: vscode.Position): vscode.Location | undefined {
-        if (!lw.root.canBeRoot(document.uri)) {
+        if (!lw.file.hasAcceptedScheme(document.uri)) {
             return
         }
         const token = tokenizer(document, position)
