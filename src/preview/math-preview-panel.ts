@@ -33,7 +33,7 @@ class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
             enableScripts: true,
             localResourceRoots: [resourcesFolder(lw.extensionRoot)]
         }
-        panel.webview.html = await getHtml()
+        panel.webview.html = getHtml()
         logger.log('Math preview panel: restored')
         return Promise.resolve()
     }
