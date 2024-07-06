@@ -14,6 +14,8 @@ const logger = lw.log('Locator')
 export const synctex = {
     toPDF,
     toPDFFromRef,
+    computeToTeX,
+    openTeX,
     toTeX
 }
 
@@ -420,6 +422,13 @@ function toPDFFromRef(args: {line: number, filePath: string}) {
  * @param pdfPath - The path of the PDF file.
  */
 async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfPath: string) {
+    const record = computeToTeX(data, pdfPath)
+    if (record) {
+        await openTeX(record.input, record.line, record.column, data.textBeforeSelection, data.textAfterSelection)
+    }
+}
+
+function computeToTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfPath: string): SyncTeXRecordToTeX | undefined {
     let record: SyncTeXRecordToTeX
 
     // We only use synctex.js for backward sync as the binary cannot handle CJK encodings #4239.
@@ -460,19 +469,27 @@ async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pd
         }
     }
 
-    const filePath = path.resolve(record.input)
-    if (!fs.existsSync(filePath)) {
+    record.input = path.resolve(record.input)
+    return record
+}
+
+async function openTeX(input: string, line: number, column: number, textBeforeSelection: string, textAfterSelection: string) {
+    const filePath = path.resolve(input)
+    const uri = lw.file.fileUriFromPath(input)
+    try {
+        await vscode.workspace.fs.stat(uri)
+    } catch (e) {
         logger.log(`Backward SyncTeX failed on non-existent ${filePath} .`)
         return
     }
     logger.log(`Backward SyncTeX to ${filePath} .`)
     try {
-        const doc = await vscode.workspace.openTextDocument(filePath)
-        let row = record.line - 1
-        let col = record.column < 0 ? 0 : record.column
+        const doc = await vscode.workspace.openTextDocument(uri)
+        let row = line - 1
+        let col = column < 0 ? 0 : column
         // columns are typically not supplied by SyncTex, this could change in the future for some engines though
         if (col === 0) {
-            [row, col] = getRowAndColumn(doc, row, data.textBeforeSelection, data.textAfterSelection)
+            [row, col] = getRowAndColumn(doc, row, textBeforeSelection, textAfterSelection)
         }
         const pos = new vscode.Position(row, col)
 

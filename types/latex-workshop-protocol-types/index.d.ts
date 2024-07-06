@@ -20,6 +20,13 @@ export type ServerResponse = {
     type: 'synctex',
     data: SynctexData | SynctexRangeData[]
 } | {
+    type: 'reverse_synctex_result',
+    input: string,
+    line: number,
+    column: number,
+    textBeforeSelection: string,
+    textAfterSelection: string
+} | {
     type: 'reload'
 }
 

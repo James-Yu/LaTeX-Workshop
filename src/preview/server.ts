@@ -252,7 +252,7 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
     if (hasPrefix(request.url) && !request.url.includes('viewer.html')) {
         const s = request.url.replace('/', '')
         let fileUri = decodePathWithPrefix(s)
-        const isVsls = fileUri.scheme === 'vsls'
+        const isVsls = (fileUri.scheme === 'vsls') && (lw.liveshare.isHost)
         if (isVsls && lw.liveshare.isHost) {
             fileUri = lw.liveshare.liveshare?.convertSharedUriToLocal(fileUri) ?? fileUri
         }

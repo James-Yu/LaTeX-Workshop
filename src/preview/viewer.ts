@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import type ws from 'ws'
+import ws from 'ws'
 import * as path from 'path'
 import * as os from 'os'
 import * as cs from 'cross-spawn'
@@ -8,7 +8,7 @@ import type { SyncTeXRecordToPDF, SyncTeXRecordToPDFAll, ViewerMode } from '../t
 import * as manager from './viewer/pdfviewermanager'
 import { populate } from './viewer/pdfviewerpanel'
 
-import type { ClientRequest, PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index'
+import type { ClientRequest, PdfViewerParams, PdfViewerState, ServerResponse } from '../../types/latex-workshop-protocol-types/index'
 import { Client } from './viewer/client'
 
 import { moveActiveEditor } from '../utils/webview'
@@ -309,6 +309,25 @@ function handler(websocket: ws, msg: string): void {
         }
         case 'reverse_synctex': {
             const uri = vscode.Uri.parse(data.pdfFileUri, true)
+            if (lw.liveshare.isGuest) {
+                void lw.hostConnection.wsToHost?.then(hostWs => hostWs.send(JSON.stringify(data))) // forward the request to host
+                break
+            } else if (lw.liveshare.isHost && uri.scheme === 'vsls' && lw.liveshare.liveshare) { // reply to guest if request comes from guest
+                const localUri = lw.liveshare.liveshare.convertSharedUriToLocal(uri) ?? uri
+                const record = lw.locate.synctex.computeToTeX(data, localUri.fsPath)
+                if (record) {
+                    const response: ServerResponse = {
+                        type: 'reverse_synctex_result',
+                        input: lw.liveshare.liveshare.convertLocalUriToShared(vscode.Uri.file(record.input)).toString(true),
+                        line: record.line,
+                        column: record.column,
+                        textBeforeSelection: data.textAfterSelection,
+                        textAfterSelection: data.textAfterSelection
+                    }
+                    websocket.send(JSON.stringify(response))
+                }
+                break
+            }
             void lw.locate.synctex.toTeX(data, uri.fsPath)
             break
         }

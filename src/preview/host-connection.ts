@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import { WebSocket } from 'ws'
 import { lw } from '../lw'
 import * as utils from '../utils/utils'
-import { ClientRequest, ServerResponse } from '../../types/latex-workshop-protocol-types'
+import { ClientRequest, ServerResponse } from '../../types/latex-workshop-protocol-types/index'
 import * as manager from './viewer/pdfviewermanager'
 import { Client } from './viewer/client'
 
@@ -22,6 +22,10 @@ function hostConnectionHandler(_: WebSocket, msg: string): void {
     switch (data.type) {
         case 'refresh': {
             lw.viewer.refresh(vscode.Uri.parse(data.pdfFileUri).fsPath)
+            break
+        }
+        case 'reverse_synctex_result': {
+            void lw.locate.synctex.openTeX(vscode.Uri.parse(data.input).fsPath, data.line, data.column, data.textBeforeSelection, data.textAfterSelection)
             break
         }
         default: {
