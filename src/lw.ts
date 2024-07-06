@@ -7,7 +7,7 @@ import type { watcher } from './core/watcher'
 import type { cache } from './core/cache'
 import type { root } from './core/root'
 import type { compile } from './compile'
-import type { preview, server, viewer } from './preview'
+import type { preview, server, viewer, hostConnection } from './preview'
 import type { locate } from './locate'
 import type { completion } from './completion'
 import type { language } from './language'
@@ -44,7 +44,8 @@ export const lw = {
     lint: {} as typeof lint,
     outline: {} as typeof outline,
     extra: {} as typeof extra,
-    liveshare: new LiveShare(),
+    liveshare: {} as LiveShare,
+    hostConnection: {} as typeof hostConnection,
     commands: Object.create(null) as typeof commands,
     external: {
         spawn: wrapper(cs.spawn),

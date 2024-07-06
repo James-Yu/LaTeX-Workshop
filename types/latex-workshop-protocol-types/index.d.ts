@@ -14,7 +14,8 @@ type SynctexRangeData = SynctexData & {
 }
 
 export type ServerResponse = {
-    type: 'refresh'
+    type: 'refresh',
+    pdfFileUri: string
 } | {
     type: 'synctex',
     data: SynctexData | SynctexRangeData[]

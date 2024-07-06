@@ -56,7 +56,7 @@ function refresh(pdfFile?: string): void {
     const pdfUri = pdfFile ? lw.file.fileUriFromPath(pdfFile) : undefined
     if (pdfUri === undefined) {
         manager.getClients()?.forEach(client => {
-            client.send({type: 'refresh'})
+            client.send({type: 'refresh', pdfFileUri: client.pdfFileUri})
         })
         return
     }
@@ -75,7 +75,7 @@ function refresh(pdfFile?: string): void {
     }
     logger.log(`Refresh PDF viewer: ${pdfFile}`)
     clientSet.forEach(client => {
-        client.send({type: 'refresh'})
+        client.send({type: 'refresh', pdfFileUri: client.pdfFileUri})
     })
 }
 
@@ -289,7 +289,8 @@ function handler(websocket: ws, msg: string): void {
             if (clientSet === undefined) {
                 break
             }
-            const client = new Client(data.viewer, websocket)
+            const client = new Client(data.viewer, websocket, pdfUri.toString(true))
+            lw.hostConnection.registerWithHost(client)
             clientSet.add(client)
             client.onDidDispose(() => {
                 clientSet.delete(client)

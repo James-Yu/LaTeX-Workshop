@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as http from 'http'
+import * as URL from 'url'
 import type { AddressInfo } from 'net'
 import ws from 'ws'
 import * as fs from 'fs'
@@ -9,7 +10,8 @@ import { lw } from '../lw'
 const logger = lw.log('Server')
 
 export {
-    getPort,
+    getHostPort,
+    getLocalPort,
     getUrl,
     setHandler,
     initialize,
@@ -65,11 +67,15 @@ const state: {
 
 lw.onDispose({ dispose: () => state.httpServer.close() })
 
-async function getPort(): Promise<number> {
+async function getHostPort(): Promise<number> {
     if (lw.liveshare.isGuest) {
         const portNum = await lw.liveshare.getHostServerPort()
         return portNum
     }
+    return getLocalPort()
+}
+
+function getLocalPort(): number {
     const portNum = state.address?.port
     if (portNum === undefined) {
         logger.log('Server port number is undefined.')
@@ -80,7 +86,7 @@ async function getPort(): Promise<number> {
 
 async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
     // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
-    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${await lw.server.getPort()}`, true))
+    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.getLocalPort()}`, true))
     const url =
         (origUrl.toString().endsWith('/') ? origUrl.toString().slice(0, -1) : origUrl.toString()) +
         (pdfUri ? ('/viewer.html?file=' + encodePathWithPrefix(pdfUri)) : '')
@@ -190,7 +196,52 @@ function sendOkResponse(response: http.ServerResponse, content: Buffer, contentT
     response.end(content)
 }
 
+async function proxyHandler(req: http.IncomingMessage, res: http.ServerResponse) {
+    if (!lw.liveshare.isGuest || !req.url) {
+        return
+    }
+
+    const request = URL.parse(req.url)
+
+    const options = {
+        host: request.hostname,
+        port: await lw.server.getHostPort(),
+        path: request.path,
+        method: req.method,
+        headers: req.headers,
+    }
+
+    const backendReq = http.request(options, (backendRes) => {
+        if (!backendRes.statusCode) {
+            res.end()
+            return
+        }
+        res.writeHead(backendRes.statusCode, backendRes.headers)
+
+        backendRes.on('data', (chunk) => {
+            res.write(chunk)
+        })
+
+        backendRes.on('end', () => {
+            res.end()
+        })
+    })
+
+    req.on('data', (chunk) => {
+        backendReq.write(chunk)
+    })
+
+    req.on('end', () => {
+        backendReq.end()
+    })
+}
+
 async function handler(request: http.IncomingMessage, response: http.ServerResponse) {
+    if (lw.liveshare.isGuest) {
+        await proxyHandler(request, response)
+        return
+    }
+
     if (!request.url) {
         return
     }

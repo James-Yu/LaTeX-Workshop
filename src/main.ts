@@ -39,6 +39,10 @@ import { extra } from './extras'
 lw.extra = extra
 import * as commander from './core/commands'
 lw.commands = commander
+import { LiveShare } from './liveshare/liveshare'
+lw.liveshare = new LiveShare()
+import { hostConnection } from './preview'
+lw.hostConnection = hostConnection
 
 log.initStatusBarItem()
 

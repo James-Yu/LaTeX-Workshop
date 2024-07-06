@@ -48,7 +48,7 @@ const state = {
     prevMacros: undefined as string | undefined,
 }
 
-async function open() {
+function open() {
     const activeDocument = vscode.window.activeTextEditor?.document
     if (state.panel) {
         if (!state.panel.visible) {
@@ -67,7 +67,7 @@ async function open() {
         }
     )
     initializePanel(panel)
-    panel.webview.html = await getHtml()
+    panel.webview.html = getHtml()
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const editorGroup = configuration.get('mathpreviewpanel.editorGroup') as string
     if (activeDocument) {
@@ -132,7 +132,7 @@ function clearCache() {
 }
 
 let serverHandlerInserted = false
-async function getHtml() {
+function getHtml() {
     if (serverHandlerInserted === false) {
         lw.server.setHandler((url: string) => {
             if (url.startsWith('/mathpreviewpanel/')) {
@@ -157,7 +157,7 @@ async function getHtml() {
                 padding-left: 50px;
             }
         </style>
-        <script src='http://127.0.0.1:${(await lw.server.getPort()).toString()}/mathpreviewpanel/mathpreview.js' defer></script>
+        <script src='http://127.0.0.1:${(lw.server.getLocalPort()).toString()}/mathpreviewpanel/mathpreview.js' defer></script>
     </head>
     <body>
         <div id="mathBlock"><img src="" id="math" /></div>

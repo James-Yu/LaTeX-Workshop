@@ -2,6 +2,7 @@ import * as vsls from 'vsls/vscode'
 import * as vscode from 'vscode'
 import { lw } from '../lw'
 import * as url from 'url'
+import * as utils from '../utils/utils'
 
 export class LiveShare {
     private role: vsls.Role = vsls.Role.None
@@ -36,6 +37,7 @@ export class LiveShare {
         this.role = role
         this.hostServerPort = null
         this.shareServerDisposable?.dispose()
+        lw.hostConnection.resetConnectionToHost()
     }
 
     get isGuest(): boolean {
@@ -48,6 +50,7 @@ export class LiveShare {
 
     private async initGuest() {
         await this.getHostServerPort()
+        await lw.hostConnection.connectToHostWs()
     }
 
     public async getHostServerPort(reset: boolean = false): Promise<number> {
@@ -58,7 +61,7 @@ export class LiveShare {
             const savedClipboard = await vscode.env.clipboard.readText()
             void vscode.commands.executeCommand('liveshare.listServers')
             // delay here instead of doing await vscode.commands.executeCommand acquires the port more reliably because await vscode.commands.executeCommand does not return until the user closes the info box of the command or clicks copy again.
-            await this.delay(500)
+            await utils.delay(500)
             const hostUrl = await vscode.env.clipboard.readText()
             const hostServerPort = Number(url.parse(hostUrl).port)
             this.hostServerPort = hostServerPort
@@ -74,11 +77,7 @@ export class LiveShare {
         if (this.shareServerDisposable !== null) {
             this.shareServerDisposable?.dispose()
         }
-        this.shareServerDisposable = await this.liveshare?.shareServer({ port: await lw.server.getPort(), displayName: 'latex-workshop-server' })
-    }
-
-    private async delay(t: number) {
-        return new Promise(resolve => setTimeout(resolve, t))
+        this.shareServerDisposable = await this.liveshare?.shareServer({ port: lw.server.getLocalPort(), displayName: 'latex-workshop-server' })
     }
 
     private async initHost() {

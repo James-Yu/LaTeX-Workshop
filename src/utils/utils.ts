@@ -306,3 +306,7 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
         return expandPlaceHolders(arg).replace(/%OUTDIR%/g, outDir).replace(/%OUTDIR_W32%/g, outDirW32)
     }
 }
+
+export async function delay(t: number) {
+    return new Promise(resolve => setTimeout(resolve, t))
+}

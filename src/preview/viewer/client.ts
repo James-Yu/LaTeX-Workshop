@@ -5,14 +5,16 @@ import type { ServerResponse } from '../../../types/latex-workshop-protocol-type
 export class Client {
     readonly viewer: 'browser' | 'tab'
     readonly websocket: ws
+    readonly pdfFileUri: string
     private readonly disposables = new Set<vscode.Disposable>()
 
-    constructor(viewer: 'browser' | 'tab', websocket: ws) {
+    constructor(viewer: 'browser' | 'tab', websocket: ws, pdfFileUri: string) {
         this.viewer = viewer
         this.websocket = websocket
         this.websocket.on('close', () => {
             this.disposeDisposables()
         })
+        this.pdfFileUri = pdfFileUri
     }
 
     private disposeDisposables() {
@@ -25,6 +27,7 @@ export class Client {
     }
 
     send(message: ServerResponse) {
+        console.log(' sends message ', JSON.stringify(message))
         this.websocket.send(JSON.stringify(message))
     }
 }
