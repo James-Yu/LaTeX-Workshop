@@ -108,7 +108,7 @@ async function reconnectToHostWs() {
     while (tries <= 10) {
         try {
             await connectToHostWs()
-            await registerWithHost()
+            registerWithHost()
             const ws = await wsToHost
             if (ws?.readyState !== 1) {
                 throw new Error('Connection to host is not open.')
