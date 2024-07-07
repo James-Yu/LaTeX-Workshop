@@ -113,13 +113,27 @@ export function synctex() {
         return
     }
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
-    let pdfFile: string | undefined = undefined
-    if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
-        pdfFile = lw.file.getPdfPath(lw.root.subfiles.path)
-    } else if (lw.root.file.path !== undefined) {
-        pdfFile = lw.file.getPdfPath(lw.root.file.path)
+
+    if (lw.liveshare.isGuest) {
+        const coords = lw.locate.synctex.getCurrentEditorCoordinates()
+        const pdfFileUri = lw.root.getRootFileAndTargetPdfUri()?.pdfFileUri
+
+        if (pdfFileUri === undefined || coords === undefined) {
+            logger.log('Cannot find LaTeX root PDF to perform synctex.')
+            return
+        }
+
+        const indicator = configuration.get('synctex.indicator') as 'none' | 'circle' | 'rectangle'
+        void lw.hostConnection.send({type: 'synctex', line: coords.line, column: coords.column, filePath: coords.inputFileUri.toString(true), targetPdfFile: pdfFileUri.toString(true), indicator})
+    } else {
+        let pdfFile: string | undefined = undefined
+        if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
+            pdfFile = lw.file.getPdfPath(lw.root.subfiles.path)
+        } else if (lw.root.file.path !== undefined) {
+            pdfFile = lw.file.getPdfPath(lw.root.file.path)
+        }
+        lw.locate.synctex.toPDF(undefined, undefined, pdfFile)
     }
-    lw.locate.synctex.toPDF(undefined, undefined, pdfFile)
 }
 
 export function synctexonref(line: number, filePath: string) {

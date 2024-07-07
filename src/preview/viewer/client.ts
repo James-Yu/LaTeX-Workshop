@@ -27,7 +27,6 @@ export class Client {
     }
 
     send(message: ServerResponse) {
-        console.log(' sends message ', JSON.stringify(message))
         this.websocket.send(JSON.stringify(message))
     }
 }

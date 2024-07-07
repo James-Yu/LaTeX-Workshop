@@ -13,10 +13,12 @@ const logger = lw.log('Locator')
 
 export const synctex = {
     toPDF,
+    synctexToPDFCombined,
     toPDFFromRef,
     computeToTeX,
     openTeX,
-    toTeX
+    toTeX,
+    getCurrentEditorCoordinates
 }
 
 /**
@@ -176,6 +178,47 @@ function parseToPDFList(result: string): SyncTeXRecordToPDFAll[] {
 //     }
 // }
 
+function getCurrentEditorCoordinates(): {line: number, column: number, inputFileUri: vscode.Uri} | undefined {
+    if (!vscode.window.activeTextEditor) {
+        logger.log('No active editor found.')
+        return
+    }
+
+    const inputFileUri = vscode.window.activeTextEditor.document.uri
+    if (!lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+        logger.log(`${inputFileUri} is not valid LaTeX.`)
+        return
+    }
+    const position = vscode.window.activeTextEditor.selection.active
+    if (!position) {
+        logger.log(`No cursor position from ${position}`)
+        return
+    }
+
+    let line = position.line + 1
+    const column = position.character
+
+    if (vscode.window.activeTextEditor.document.lineCount === line &&
+        vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {
+            line -= 1
+    }
+
+    return {line, column, inputFileUri}
+}
+
+async function synctexToPDFCombined(line: number, col: number, filePath: string, targetPdfFile: string, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDF> {
+    try {
+        return await callSyncTeXToPDF(line, col, filePath, targetPdfFile, indicator)
+    } catch {
+        logger.log(`Compute with synctex.js from ${filePath} to ${targetPdfFile} on line ${line}.`)
+        const record = syncTeXToPDF(line, filePath, targetPdfFile)
+        if (!record) {
+            throw new Error('Failed to compute the SyncTeX record.')
+        }
+        return record
+    }
+}
+
 /**
  * Execute forward SyncTeX with respect to the provided arguments.
  *
@@ -194,59 +237,45 @@ function parseToPDFList(result: string): SyncTeXRecordToPDFAll[] {
 function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | 'tabOrBrowser' | 'external' = 'auto', pdfFile?: string) {
     let line: number
     let filePath: string
-    let character = 0
+    let column = 0
+
     if (!vscode.window.activeTextEditor) {
         logger.log('No active editor found.')
         return
     }
 
     if (args === undefined) {
-        filePath = vscode.window.activeTextEditor.document.uri.fsPath
-        if (!lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
-            logger.log(`${filePath} is not valid LaTeX.`)
+        const currentEditorCoordinates = getCurrentEditorCoordinates()
+        if (currentEditorCoordinates === undefined) {
             return
         }
-        const position = vscode.window.activeTextEditor.selection.active
-        if (!position) {
-            logger.log(`No cursor position from ${position}`)
-            return
-        }
-        line = position.line + 1
-        character = position.character
+        line = currentEditorCoordinates.line
+        column = currentEditorCoordinates.column
+        filePath = currentEditorCoordinates.inputFileUri.fsPath
     } else {
         line = args.line
         filePath = args.filePath
     }
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const rootFile = lw.root.file.path
-    if (rootFile === undefined) {
-        logger.log('No root file found.')
+
+    const currentRootAndPdf = lw.root.getRootFileAndTargetPdfUri()
+    if (currentRootAndPdf === undefined) {
         return
     }
-    const targetPdfFile = pdfFile ?? lw.file.getPdfPath(rootFile)
-    if (vscode.window.activeTextEditor.document.lineCount === line &&
-        vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {
-            line -= 1
-    }
+
+    const rootFile = currentRootAndPdf.rootFileUri.fsPath
+    const targetPdfFile = pdfFile ?? currentRootAndPdf.pdfFileUri.fsPath
+
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (forcedViewer === 'external' || (forcedViewer === 'auto' && configuration.get('view.pdf.viewer') === 'external') ) {
         syncTeXExternal(line, targetPdfFile, rootFile)
         return
     }
 
-    callSyncTeXToPDF(line, character, filePath, targetPdfFile, configuration.get('synctex.indicator') as 'none' | 'circle' | 'rectangle').then((record) => {
-        void lw.viewer.locate(targetPdfFile, record)
-    }).catch(() => {
-        try {
-            logger.log(`Forward with synctex.js from ${filePath} to ${pdfFile} on line ${line}.`)
-            const record = syncTeXToPDF(line, filePath, targetPdfFile)
-            if (!record) {
-                return
-            }
-            void lw.viewer.locate(targetPdfFile, record)
-        } catch (e) {
-            logger.logError('Forward SyncTeX failed.', e)
-        }
-    })
+    void synctexToPDFCombined(line, column, filePath, targetPdfFile, configuration.get('synctex.indicator') as 'none' | 'circle' | 'rectangle').then(async (record) => {
+        await lw.viewer.locate(targetPdfFile, record)
+    }).catch(e =>
+        logger.logError('Forward SyncTeX failed.', e)
+    )
 }
 
 /**

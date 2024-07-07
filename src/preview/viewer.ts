@@ -331,6 +331,29 @@ function handler(websocket: ws, msg: string): void {
             void lw.locate.synctex.toTeX(data, uri.fsPath)
             break
         }
+        case 'synctex': {
+            if (!lw.liveshare.isHost || !lw.liveshare.liveshare) {
+                return
+            }
+
+            const filePath = lw.liveshare.liveshare.convertSharedUriToLocal(vscode.Uri.parse(data.filePath, true)).fsPath
+            const targetPdfFile = lw.liveshare.liveshare.convertSharedUriToLocal(vscode.Uri.parse(data.targetPdfFile, true)).fsPath
+            void lw.locate.synctex.synctexToPDFCombined(data.line, data.column, filePath, targetPdfFile, data.indicator).then(record => {
+                if (!record) {
+                    logger.log(`Failed to locate synctex for ${filePath}. This was requested from a guest.`)
+                    return
+                }
+
+                const response: ServerResponse = {
+                    type: 'synctex_result',
+                    pdfFile: data.targetPdfFile,
+                    synctexData: record
+                }
+
+                websocket.send(JSON.stringify(response))
+            })
+            break
+        }
         case 'external_link': {
             void vscode.env.clipboard.writeText(data.url)
             const uri = vscode.Uri.parse(data.url)

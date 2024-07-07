@@ -6,11 +6,14 @@ import { ClientRequest, ServerResponse } from '../../types/latex-workshop-protoc
 import * as manager from './viewer/pdfviewermanager'
 import { Client } from './viewer/client'
 
+const logger = lw.log('HostConnection')
+
 export {
     hostConnectionHandler,
     connectToHostWs,
     resetConnectionToHost,
-    registerWithHost
+    registerWithHost,
+    send
 }
 
 export let wsToHost: Promise<WebSocket> | undefined
@@ -18,6 +21,7 @@ export let initialized: boolean = false
 
 function hostConnectionHandler(_: WebSocket, msg: string): void {
     const data = JSON.parse(msg) as ServerResponse
+    logger.log(`Handle data type: ${data.type}`)
 
     switch (data.type) {
         case 'refresh': {
@@ -28,6 +32,10 @@ function hostConnectionHandler(_: WebSocket, msg: string): void {
             void lw.locate.synctex.openTeX(vscode.Uri.parse(data.input).fsPath, data.line, data.column, data.textBeforeSelection, data.textAfterSelection)
             break
         }
+        case 'synctex_result': {
+            void lw.viewer.locate(vscode.Uri.parse(data.pdfFile, true).fsPath, data.synctexData)
+            break
+        }
         default: {
             break
         }
@@ -35,12 +43,14 @@ function hostConnectionHandler(_: WebSocket, msg: string): void {
 }
 
 async function connectToHostWs() {
+    logger.log('Connecting to host')
     if (!lw.liveshare.isGuest) {
         resetConnectionToHost()
         return
     }
 
     if (initialized) {
+        logger.log('Already connected to host.')
         return
     }
 
@@ -49,6 +59,7 @@ async function connectToHostWs() {
     wsToHost = new Promise((resolve, reject) => {
         const ws = new WebSocket(server.toString(true))
         ws.addEventListener('open', () => {
+            logger.log('Connected to host')
             initialized = true
             resolve(ws)
         })
@@ -62,6 +73,7 @@ async function connectToHostWs() {
             }
         })
         ws.addEventListener('close', async () => {
+            logger.log('Connection to host disconnected')
             initialized = false
             await reconnectToHostWs()
         })
@@ -96,6 +108,7 @@ async function reconnectToHostWs() {
     while (tries <= 10) {
         try {
             await connectToHostWs()
+            await registerWithHost()
             const ws = await wsToHost
             if (ws?.readyState !== 1) {
                 throw new Error('Connection to host is not open.')
@@ -110,11 +123,13 @@ async function reconnectToHostWs() {
 }
 
 function resetConnectionToHost() {
+    logger.log('Reset connection to host')
     initialized = false
     lw.hostConnection.wsToHost = undefined
 }
 
-export async function send(message: ClientRequest) {
+async function send(message: ClientRequest) {
+    logger.log(`Sends message ${JSON.stringify(message)} to host`)
     if (!lw.liveshare.isGuest) {
         return
     }

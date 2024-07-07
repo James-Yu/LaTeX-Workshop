@@ -19,6 +19,7 @@ export const root = {
         path: undefined as string | undefined,
         langId: undefined as string | undefined,
     },
+    getRootFileAndTargetPdfUri,
     find,
     getWorkspace,
     _test: {
@@ -38,6 +39,18 @@ lw.watcher.src.onDelete(filePath => {
     root.file = { path: undefined, langId: undefined }
     void find()
 })
+
+function getRootFileAndTargetPdfUri(): {rootFileUri: vscode.Uri, pdfFileUri: vscode.Uri} | undefined{
+    if (lw.root.file.path === undefined) {
+        logger.log('No root file found.')
+        return
+    }
+
+    const rootFileUri = lw.file.fileUriFromPath(lw.root.file.path)
+    const pdfFileUri = lw.file.fileUriFromPath(lw.file.getPdfPath(lw.root.file.path))
+
+    return {rootFileUri, pdfFileUri}
+}
 
 /**
  * Finds the LaTeX project's root file.
