@@ -5,19 +5,35 @@
     "multido": []
   },
   "macros": {
+    "psmoire()": {
+      "snippet": "psmoire(${1:x},${2:y})"
+    },
+    "psmoire[]()": {
+      "snippet": "psmoire[${1:options}](${2:x},${3:y})",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
     "addtomoirelisttype{}": {
       "snippet": "addtomoirelisttype{${1:name}}"
     },
     "psRandomDotPatterns": {},
     "psRandomDotPatterns[]": {
       "snippet": "psRandomDotPatterns[${1:options}]",
-      "keyvalindex": 0,
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "psRandomDot()": {
+      "snippet": "psRandomDot(${1:x},${2:y})"
+    },
+    "psRandomDot[]()": {
+      "snippet": "psRandomDot[${1:options}](${2:x},${3:y})",
+      "keyvalindex": 2,
       "keyvalpos": 0
     },
     "psGlassPattern": {},
     "psGlassPattern[]": {
       "snippet": "psGlassPattern[${1:options}]",
-      "keyvalindex": 1,
+      "keyvalindex": 3,
       "keyvalpos": 0
     },
     "variablesMoirages": {}
@@ -25,6 +41,20 @@
   "envs": {},
   "options": [],
   "keyvals": [
+    [
+      "type=",
+      "rotate=${1:degrees}",
+      "Rmax=${1:length in cm}",
+      "scale=${1:factor}",
+      "Alpha=${1:degrees}",
+      "E=${1:distance in cm}",
+      "n=${1:number}",
+      "T=${1:distance in mm}",
+      "linewidth=",
+      "linecolor=",
+      "dotstyle=${1:style}",
+      "dotsize="
+    ],
     [
       "NumberDots=${1:integer}",
       "coefficients=${1:a b θ x0 y0}",
@@ -34,6 +64,18 @@
       "linecolor=",
       "fillcolor=",
       "unit=${1:number}"
+    ],
+    [
+      "hole=",
+      "r=${1:radius in pts}",
+      "p=${1:distance in pts}",
+      "rotate=${1:degrees}",
+      "k=${1:dispersion factor}",
+      "symbole=${1:digit or letter}",
+      "PSfont=${1:PS font name}",
+      "fontsize=${1:size in pts}",
+      "vadjust=${1:number}",
+      "hadjust=${1:number}"
     ],
     [
       "function=${1:function}",

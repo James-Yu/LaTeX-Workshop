@@ -1,6 +1,5 @@
 {
   "includes": {
-    "etoolbox": [],
     "xcolor": [],
     "tikz": [],
     "tikzlibrarycalc": []
@@ -14,34 +13,26 @@
       "keyvalindex": 0,
       "keyvalpos": 0
     },
-    "liftarmconnect{}{}{}{}": {
-      "snippet": "liftarmconnect{${1:point1}}{${2:length1}}{${3:point2}}{${4:length2}}"
+    "liftarmconstruct{}": {
+      "snippet": "liftarmconstruct{${1:commands}}"
     },
-    "liftarmconnect[]{}{}{}{}": {
-      "snippet": "liftarmconnect[${5:options}]{${1:point1}}{${2:length1}}{${3:point2}}{${4:length2}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "liftarmconstruct{}{}": {
-      "snippet": "liftarmconstruct{${1:text}}{${2:commands}}"
-    },
-    "liftarmconstruct[]{}{}": {
-      "snippet": "liftarmconstruct[${3:TikZ options}]{${1:text}}{${2:commands}}"
-    },
+    "liftarmconstructclear": {},
     "liftarmanimate{}{}{}": {
       "snippet": "liftarmanimate{${1:frame rate}}{${2:list}}{${3:commands}}"
     },
     "liftarmanimate[]{}{}{}": {
       "snippet": "liftarmanimate[${4:options}]{${1:frame rate}}{${2:list}}{${3:commands}}",
-      "keyvalindex": 2,
+      "keyvalindex": 1,
       "keyvalpos": 0
     }
   },
   "envs": {
-    "liftarmconstruction": {},
-    "liftarmconstruction[]": {
-      "name": "liftarmconstruction",
-      "snippet": "[${1:TikZ options}]"
+    "liftarmconnect": {},
+    "liftarmconnect[]": {
+      "name": "liftarmconnect",
+      "snippet": "[${1:options}]",
+      "keyvalindex": 2,
+      "keyvalpos": 0
     }
   },
   "options": [],
@@ -49,58 +40,25 @@
     [
       "axle holes={${1:values}}",
       "brick",
-      "color=",
-      "${1:color}",
-      "color 0=",
-      "color 1=",
-      "color 2=",
-      "color 3=",
-      "color 4=",
-      "color 5=",
-      "color 6=",
-      "color 7=",
-      "color modulo=${1:integer}",
+      "color={${1:number}}{${2:color}}",
+      "color modulo=${1:number}",
       "contour",
+      "contour style={${1:options}}",
       "coordinate={${1:num1/name1,num2/name2/...}}",
       "hole radius=${1:number}",
+      "liftarm style={${1:options}}",
       "liftarm thickness=${1:number}",
-      "mark color=",
       "mark holes={${1:values}}",
+      "mark radius=${1:factor}",
+      "mark style={${1:options}}",
       "origin=${1:number}",
       "scalefactor=${1:factor}",
-      "screw color=",
+      "screw angle=${1:degrees}",
       "screw holes={${1:values}}",
-      "screw holes angle=${1:degrees}"
-    ],
-    [
-      "axle holes={${1:values}}",
-      "brick",
-      "color=",
-      "${1:color}",
-      "color 0=",
-      "color 1=",
-      "color 2=",
-      "color 3=",
-      "color 4=",
-      "color 5=",
-      "color 6=",
-      "color 7=",
-      "color modulo=${1:integer}",
-      "contour",
-      "coordinate={${1:num1/name1,num2/name2/...}}",
-      "hole radius=${1:number}",
-      "liftarm thickness=${1:number}",
-      "mark color=",
-      "mark holes={${1:values}}",
-      "origin=${1:number}",
-      "scalefactor=${1:factor}",
-      "screw color=",
-      "screw holes={${1:values}}",
-      "screw holes angle=${1:degrees}",
-      "connect coordinate=${1:name}",
-      "connect reverse",
-      "liftarm 1={${1:options}}",
-      "liftarm 2={${1:options}}"
+      "screw radius=${1:factor}",
+      "screw style={${1:options}}",
+      "trace={${1:num1/numframes1/code1,...}}",
+      "type="
     ],
     [
       "label=${1:label}",
@@ -141,6 +99,30 @@
       "begin={${1:begin code}}",
       "end={${1:end code}}",
       "timeline=${1:file}"
+    ],
+    [
+      "axle holes={${1:values}}",
+      "brick",
+      "color={${1:number}}{${2:color}}",
+      "color modulo=${1:number}",
+      "contour",
+      "contour style={${1:options}}",
+      "coordinate={${1:num1/name1,num2/name2/...}}",
+      "hole radius=${1:number}",
+      "liftarm style={${1:options}}",
+      "liftarm thickness=${1:number}",
+      "mark holes={${1:values}}",
+      "mark radius=${1:factor}",
+      "mark style={${1:options}}",
+      "origin=${1:number}",
+      "scalefactor=${1:factor}",
+      "screw angle=${1:degrees}",
+      "screw holes={${1:values}}",
+      "screw radius=${1:factor}",
+      "screw style={${1:options}}",
+      "trace={${1:num1/numframes1/code1,...}}",
+      "type=",
+      "connect stop="
     ]
   ]
 }

@@ -5,12 +5,21 @@
     "pict2e": []
   },
   "macros": {
+    "Arc()(){}": {
+      "snippet": "Arc(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:angle}}"
+    },
     "AutoGrid": {},
+    "AutoGrid()": {
+      "snippet": "AutoGrid(${1:coordinates})"
+    },
     "ChangeDir<>": {
       "snippet": "ChangeDir<${1:cmd}>"
     },
     "CurveEnd": {},
     "CurveFinish": {},
+    "Dashline()(){}": {
+      "snippet": "Dashline(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dash length}}"
+    },
     "defaultlinethickness{}": {
       "snippet": "defaultlinethickness{${1:dimension}}"
     },
@@ -18,6 +27,12 @@
     "Diam": {},
     "Divvect{}{}{}": {
       "snippet": "Divvect{${1:vector1}}{${2:vector2}}{${3:vector macro}}"
+    },
+    "Dotline()(){}": {
+      "snippet": "Dotline(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dot gap}}"
+    },
+    "Dotline()(){}[]": {
+      "snippet": "Dotline(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dot gap}}[${2:dot diameter}]"
     },
     "FillCurve": {},
     "fillstroke": {},
@@ -30,13 +45,25 @@
     "fpwhiledo{}{}": {
       "snippet": "fpwhiledo{${1:test}}{${2:code}}"
     },
+    "GetCoord(){}{}": {
+      "snippet": "GetCoord(${3:cmd}){${1:x}}{${2:y}}"
+    },
+    "GraphGrid()": {
+      "snippet": "GraphGrid(${1:coordinates})"
+    },
     "Integer{}": {
       "snippet": "Integer{${1:number}}"
     },
     "IsPolar{}": {
       "snippet": "IsPolar{${1:arg1}}"
     },
+    "legenda(){}": {
+      "snippet": "legenda(${2:coordinates}){${1:formula}}"
+    },
     "legendbox": {},
+    "LIne()": {
+      "snippet": "LIne(${1:cmd})"
+    },
     "ModDirDot": {},
     "Multvect{}*{}*{}": {
       "snippet": "Multvect{${1:vector1}}*{${2:vector2}}*{${3:vector macro}}"
@@ -55,12 +82,105 @@
       "snippet": "Numero{${1:cmd}}{${2:dimen}}"
     },
     "PbDim": {},
+    "Pbox()[]{}": {
+      "snippet": "Pbox(${3:coordinates})[${2:position}]{${1:formula}}"
+    },
+    "Pbox()[]{}*": {
+      "snippet": "Pbox(${3:coordinates})[${2:position}]{${1:formula}}*"
+    },
+    "Pbox()[]{}*<>": {
+      "snippet": "Pbox(${4:coordinates})[${2:position}]{${1:formula}}*<${3:angle}>"
+    },
+    "Pbox()[]{}[]": {
+      "snippet": "Pbox(${4:coordinates})[${2:position}]{${1:formula}}[${3:dot diameter}]"
+    },
+    "Pbox()[]{}[]*": {
+      "snippet": "Pbox(${4:coordinates})[${2:position}]{${1:formula}}[${3:dot diameter}]*"
+    },
+    "Pbox()[]{}[]*<>": {
+      "snippet": "Pbox(${5:coordinates})[${2:position}]{${1:formula}}[${3:dot diameter}]*<${4:angle}>"
+    },
+    "Pbox()[]{}[]<>": {
+      "snippet": "Pbox(${5:coordinates})[${2:position}]{${1:formula}}[${3:dot diameter}]<${4:angle}>"
+    },
+    "Pbox()[]{}<>": {
+      "snippet": "Pbox(${4:coordinates})[${2:position}]{${1:formula}}<${3:angle}>"
+    },
+    "Pbox(){}": {
+      "snippet": "Pbox(${2:coordinates}){${1:formula}}"
+    },
+    "Pbox(){}*": {
+      "snippet": "Pbox(${2:coordinates}){${1:formula}}*"
+    },
+    "Pbox(){}*<>": {
+      "snippet": "Pbox(${3:coordinates}){${1:formula}}*<${2:angle}>"
+    },
+    "Pbox(){}[]": {
+      "snippet": "Pbox(${3:coordinates}){${1:formula}}[${2:dot diameter}]"
+    },
+    "Pbox(){}[]*": {
+      "snippet": "Pbox(${3:coordinates}){${1:formula}}[${2:dot diameter}]*"
+    },
+    "Pbox(){}[]*<>": {
+      "snippet": "Pbox(${4:coordinates}){${1:formula}}[${2:dot diameter}]*<${3:angle}>"
+    },
+    "Pbox(){}[]<>": {
+      "snippet": "Pbox(${4:coordinates}){${1:formula}}[${2:dot diameter}]<${3:angle}>"
+    },
+    "Pbox(){}<>": {
+      "snippet": "Pbox(${3:coordinates}){${1:formula}}<${2:angle}>"
+    },
     "Rapp": {},
+    "segment()()": {
+      "snippet": "segment(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    },
     "Segno": {},
+    "SplitCartesian(){}{}": {
+      "snippet": "SplitCartesian(${3:x},${4:y}){${1:xmacro}}{${2:ymacro}}"
+    },
+    "SplitPolar(){}{}": {
+      "snippet": "SplitPolar(${3:angle:radius}){${1:anglemacro}}{${2:radiusmacro}}"
+    },
     "TROF": {},
     "TRON": {},
+    "VECTOR()()": {
+      "snippet": "VECTOR(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    },
+    "VectorArc()(){}": {
+      "snippet": "VectorArc(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:angle}}"
+    },
+    "VectorARC()(){}": {
+      "snippet": "VectorARC(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:angle}}"
+    },
+    "VVECTOR()()": {
+      "snippet": "VVECTOR(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    },
+    "VVectorArc()(){}": {
+      "snippet": "VVectorArc(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:angle}}"
+    },
+    "xmultiput()(){}{}": {
+      "snippet": "xmultiput(${3:x},${4:y})(${5:Δx},${6:Δy}){${1:copies}}{${2:object}}"
+    },
+    "xmultiput[]()(){}{}": {
+      "snippet": "xmultiput[${3:center}](${4:x},${5:y})(${6:Δx},${7:Δy}){${1:copies}}{${2:object}}"
+    },
+    "Zbox()[]{}": {
+      "snippet": "Zbox(${3:coordinates})[${2:position}]{${1:formula}}"
+    },
+    "Zbox()[]{}[]": {
+      "snippet": "Zbox(${4:coordinates})[${2:position}]{${1:formula}}[${3:dot diameter}]"
+    },
+    "Zbox(){}": {
+      "snippet": "Zbox(${2:coordinates}){${1:formula}}"
+    },
+    "Zbox(){}[]": {
+      "snippet": "Zbox(${3:coordinates}){${1:formula}}[${2:dot diameter}]"
+    },
     "DivideFN": {},
     "DivVect": {},
+    "Dline()(){}": {
+      "snippet": "Dline(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dash length}}"
+    },
     "MultiplyFN": {},
     "MultVect": {},
     "originalcurveto": {},

@@ -13,13 +13,22 @@
     },
     "and": {},
     "asciispace": {},
+    "bezier{}()()()": {
+      "snippet": "bezier{${1:n}}(${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})"
+    },
     "bfseries": {},
     "bibindent": {},
     "Bigg": {},
+    "Bigg(": {
+      "snippet": "Bigg(${2:${1}\\Bigg})"
+    },
     "Bigg[": {
       "snippet": "Bigg[${1}\\Bigg]"
     },
     "bigg": {},
+    "bigg(": {
+      "snippet": "bigg(${2:${1}\\bigg})"
+    },
     "bigg[": {
       "snippet": "bigg[${1}\\bigg]"
     },
@@ -40,6 +49,12 @@
       "snippet": "contentsline{${1:type}}{${2:text}}{${3:page}}{${4:Href}}"
     },
     "contentsname": {},
+    "dashbox{}()[]{}": {
+      "snippet": "dashbox{${1:dashlength}}(${4:width},${5:height})[${2:position}]{${3:text}}"
+    },
+    "dashbox{}(){}": {
+      "snippet": "dashbox{${1:dashlength}}(${3:width},${4:height}){${2:text}}"
+    },
     "date{}": {
       "snippet": "date{${1:text}}"
     },
@@ -91,6 +106,12 @@
     "fpeval{}": {
       "snippet": "fpeval{${1:fp expression}}"
     },
+    "framebox()[]{}": {
+      "snippet": "framebox(${3:xdimen},${4:ydimen})[${2:position}]{${1:text}}"
+    },
+    "framebox(){}": {
+      "snippet": "framebox(${2:xdimen},${3:ydimen}){${1:text}}"
+    },
     "frame{}": {
       "snippet": "frame{${1:text}}"
     },
@@ -136,21 +157,35 @@
       "snippet": "legacyoldstylenums{${1:text}}"
     },
     "lhook": {},
+    "line(){}": {
+      "snippet": "line(${2:xslope},${3:yslope}){${1:length}}"
+    },
     "linethickness{}": {
       "snippet": "linethickness{${1:dimension}}"
     },
     "linewidth": {},
     "listfigurename": {},
     "listfiles": {},
+    "listfiles[]": {
+      "snippet": "listfiles[${1:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
     "listparindent": {},
     "listtablename": {},
+    "makebox()[]{}": {
+      "snippet": "makebox(${3:width},${4:height})[${2:position}]{${1:text}}"
+    },
+    "makebox(){}": {
+      "snippet": "makebox(${2:width},${3:height}){${1:text}}"
+    },
     "makelabel": {},
     "MakeLowercase{}": {
       "snippet": "MakeLowercase{${1:text}}"
     },
     "MakeLowercase[]{}": {
       "snippet": "MakeLowercase[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
+      "keyvalindex": 1,
       "keyvalpos": 0
     },
     "MakeTitlecase{}": {
@@ -158,7 +193,7 @@
     },
     "MakeTitlecase[]{}": {
       "snippet": "MakeTitlecase[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
+      "keyvalindex": 1,
       "keyvalpos": 0
     },
     "MakeUppercase{}": {
@@ -166,7 +201,7 @@
     },
     "MakeUppercase[]{}": {
       "snippet": "MakeUppercase[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
+      "keyvalindex": 1,
       "keyvalpos": 0
     },
     "mapstochar": {},
@@ -195,6 +230,9 @@
       "documentation": "MEDIUM MATHEMATICAL SPACE, four-eighteenths of an em"
     },
     "mdseries": {},
+    "multiput()(){}{}": {
+      "snippet": "multiput(${3:xcoord},${4:ycoord})(${5:xdelta},${6:ydelta}){${1:copies}}{${2:object}}"
+    },
     "negmedspace": {},
     "negthickspace": {},
     "newblock": {},
@@ -226,6 +264,12 @@
       "snippet": "oldstylenums{${1:text}}"
     },
     "onecolumn": {},
+    "oval()": {
+      "snippet": "oval(${1:width},${2:height})"
+    },
+    "oval()[]": {
+      "snippet": "oval(${2:width},${3:height})[${1:portion}]"
+    },
     "pageref*{}": {
       "snippet": "pageref*{${1:label}}"
     },
@@ -246,6 +290,15 @@
     },
     "protect": {},
     "pushtabs": {},
+    "put(){}": {
+      "snippet": "put(${2:xcoord},${3:ycoord}){${1:text}}"
+    },
+    "qbezier()()()": {
+      "snippet": "qbezier(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})"
+    },
+    "qbezier[]()()()": {
+      "snippet": "qbezier[${1:n}](${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})"
+    },
     "qbeziermax": {},
     "r{}": {
       "snippet": "r{${1:letter}}"
@@ -422,6 +475,9 @@
       "detail": "⋮",
       "documentation": "VERTICAL ELLIPSIS"
     },
+    "vector(){}": {
+      "snippet": "vector(${2:xslope},${3:yslope}){${1:length}}"
+    },
     "verb": {
       "snippet": "verb|${1:text}|"
     },
@@ -517,7 +573,7 @@
     "filecontents[]{}": {
       "name": "filecontents",
       "snippet": "[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
+      "keyvalindex": 2,
       "keyvalpos": 0
     },
     "filecontents*{}": {
@@ -527,7 +583,7 @@
     "filecontents*[]{}": {
       "name": "filecontents*",
       "snippet": "[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
+      "keyvalindex": 2,
       "keyvalpos": 0
     },
     "flushleft": {},
@@ -566,6 +622,14 @@
       "snippet": "{${1:width}}"
     },
     "normalsize": {},
+    "picture(width,height)": {
+      "name": "picture",
+      "snippet": "(${1:width},${2:height})"
+    },
+    "picture(width,height)(xoffset,yoffset)": {
+      "name": "picture",
+      "snippet": "(${1:width},${2:height})(${3:xoffset},${4:yoffset})"
+    },
     "pmatrix": {},
     "quotation": {},
     "quote": {},
@@ -635,6 +699,10 @@
     "openbib"
   ],
   "keyvals": [
+    [
+      "hashes",
+      "sizes"
+    ],
     [
       "locale=${1:BCP-47 tag}",
       "lang=${1:BCP-47 tag}"

@@ -365,46 +365,46 @@
       "snippet": "pgfplotsutilsortfour{${1:macro1}}{${2:macro2}}{${3:macro3}}{${4:macro4}}"
     },
     "pgfplotsmathvectortostring{}{}": {
-      "snippet": "pgfplotsmathvectortostring{${1:x,y,z}}{${2:arg}}"
+      "snippet": "pgfplotsmathvectortostring{${1:x,${3:y},z}}{${2:arg}}"
     },
     "pgfplotsmathvectorfromstring{}{}": {
-      "snippet": "pgfplotsmathvectorfromstring{${1:x,y,z}}{${2:arg}}"
+      "snippet": "pgfplotsmathvectorfromstring{${1:x,${3:y},z}}{${2:arg}}"
     },
     "pgfplotsmathvectorsubtract{}{}{}": {
-      "snippet": "pgfplotsmathvectorsubtract{${1:x1,y1,z1}}{${2:x2,y2,z2}}{${3:arg}}"
+      "snippet": "pgfplotsmathvectorsubtract{${1:x1,${4:y1},${5:z1}}{${2:x2},${6:y2},z2}}{${3:arg}}"
     },
     "pgfplotsmathvectoradd{}{}{}": {
-      "snippet": "pgfplotsmathvectoradd{${1:x1,y1,z1}}{${2:x2,y2,z2}}{${3:arg}}"
+      "snippet": "pgfplotsmathvectoradd{${1:x1,${4:y1},${5:z1}}{${2:x2},${6:y2},z2}}{${3:arg}}"
     },
     "pgfplotsmathvectorcompwise{}{}{}{}": {
-      "snippet": "pgfplotsmathvectorcompwise{${1:x1,y1,z1}}{${2:x2,y2,z2}}{${3:operation}}{${4:arg}}"
+      "snippet": "pgfplotsmathvectorcompwise{${1:x1,${5:y1},${6:z1}}{${2:x2},${7:y2},z2}}{${3:operation}}{${4:arg}}"
     },
     "pgfplotsmathvectorsum{}{}": {
-      "snippet": "pgfplotsmathvectorsum{${1:x,y,z}}{${2:arg}}"
+      "snippet": "pgfplotsmathvectorsum{${1:x,${3:y},z}}{${2:arg}}"
     },
     "pgfplotsmathvectorscalarproduct{}{}{}": {
-      "snippet": "pgfplotsmathvectorscalarproduct{${1:x1,y1,z1}}{${2:x2,y2,z2}}{${3:arg}}"
+      "snippet": "pgfplotsmathvectorscalarproduct{${1:x1,${4:y1},${5:z1}}{${2:x2},${6:y2},z2}}{${3:arg}}"
     },
     "pgfplotsmathvectortocomponents{}{}{}": {
-      "snippet": "pgfplotsmathvectortocomponents{${1:x,y,z}}{${2:string}}{${3:arg}}"
+      "snippet": "pgfplotsmathvectortocomponents{${1:x,${4:y},z}}{${2:string}}{${3:arg}}"
     },
     "pgfplotsmathvectorcrossprod{}{}{}": {
-      "snippet": "pgfplotsmathvectorcrossprod{${1:x1,y1,z1}}{${2:x2,y2,z2}}{${3:arg}}"
+      "snippet": "pgfplotsmathvectorcrossprod{${1:x1,${4:y1},${5:z1}}{${2:x2},${6:y2},z2}}{${3:arg}}"
     },
     "pgfplotsmathvectorscaleindividually{}{}{}": {
-      "snippet": "pgfplotsmathvectorscaleindividually{${1:x1,y1,z1}}{${2:x2,y2,z2}}{${3:arg}}"
+      "snippet": "pgfplotsmathvectorscaleindividually{${1:x1,${4:y1},${5:z1}}{${2:x2},${6:y2},z2}}{${3:arg}}"
     },
     "pgfplotspointfromcsvvector{}{}": {
-      "snippet": "pgfplotspointfromcsvvector{${1:x,y,z}}{${2:arg}}"
+      "snippet": "pgfplotspointfromcsvvector{${1:x,${3:y},z}}{${2:arg}}"
     },
     "pgfplotsmathvectorlength{}{}": {
-      "snippet": "pgfplotsmathvectorlength{${1:x,y,z}}{${2:arg}}"
+      "snippet": "pgfplotsmathvectorlength{${1:x,${3:y},z}}{${2:arg}}"
     },
     "pgfplotsmathvectorscale{}{}{}": {
-      "snippet": "pgfplotsmathvectorscale{${1:x,y,z}}{${2:scale}}{${3:arg}}"
+      "snippet": "pgfplotsmathvectorscale{${1:x,${4:y},z}}{${2:scale}}{${3:arg}}"
     },
     "pgfplotsmathvectordatascaletrafoinverse{}{}": {
-      "snippet": "pgfplotsmathvectordatascaletrafoinverse{${1:x,y,z}}{${2:arg}}"
+      "snippet": "pgfplotsmathvectordatascaletrafoinverse{${1:x,${3:y},z}}{${2:arg}}"
     },
     "pgfplotsDQ": {},
     "pgfplotsVERTBAR": {},
@@ -980,6 +980,9 @@
     "rangea": {},
     "rangeb": {},
     "factor": {},
+    "simplecoordinate()": {
+      "snippet": "simplecoordinate(${1:x},${2:y},${3:z})"
+    },
     "curelem": {},
     "pgfplotssetaxesfromazel{}{}{}": {
       "snippet": "pgfplotssetaxesfromazel{${1:azimuth}}{${2:elevation}}{${3:macro}}"
@@ -1190,7 +1193,7 @@
     },
     "pgfplotsaxisvisphasepreparedatapoint": {},
     "pgfplotsaxisvisphasetransformcoordinateentry{}{}": {
-      "snippet": "pgfplotsaxisvisphasetransformcoordinateentry{${1:x, y, or z}}{${2:input}}"
+      "snippet": "pgfplotsaxisvisphasetransformcoordinateentry{${1:x,${3: y}, or z}}{${2:input}}"
     },
     "pgfplotstransformplotattime{}": {
       "snippet": "pgfplotstransformplotattime{${1:fraction}}"
@@ -1206,13 +1209,16 @@
       "snippet": "pgfplotspointplotattime{${1:fraction}}"
     },
     "pgfplotsplothandlergraphics": {},
+    "pgfplotsplothandlergraphicspointmappoint()()": {
+      "snippet": "pgfplotsplothandlergraphicspointmappoint(${1:x},${2:y},${3:z})(${4:a},${5:b})"
+    },
     "pgfplotsplothandlergraphicspointmapcomputerequiredview": {},
     "pgfplotsE": {},
     "pgfplotsmathfloatviewdepthxyz{}{}{}": {
       "snippet": "pgfplotsmathfloatviewdepthxyz{${1:x}}{${2:y}}{${3:z}}"
     },
     "pgfplotsmathvectorviewdepth{}": {
-      "snippet": "pgfplotsmathvectorviewdepth{${1:x,y,z}}"
+      "snippet": "pgfplotsmathvectorviewdepth{${1:x,${2:y},z}}"
     },
     "pgfplotsmathviewdepthxyz{}{}{}": {
       "snippet": "pgfplotsmathviewdepthxyz{${1:x}}{${2:y}}{${3:z}}"
@@ -1227,22 +1233,22 @@
     "tick": {},
     "nexttick": {},
     "pgfplotsvalueoflargesttickdimen{}": {
-      "snippet": "pgfplotsvalueoflargesttickdimen{${1:x, y, or z}}"
+      "snippet": "pgfplotsvalueoflargesttickdimen{${1:x,${2: y}, or z}}"
     },
     "pgfplotsqpointoutsideofticklabelaxis{}{}{}": {
-      "snippet": "pgfplotsqpointoutsideofticklabelaxis{${1:x, y, or z}}{${2:coord}}{${3:dimen}}"
+      "snippet": "pgfplotsqpointoutsideofticklabelaxis{${1:x,${4: y}, or z}}{${2:coord}}{${3:dimen}}"
     },
     "pgfplotsqpointoutsideofticklabelaxisrel{}{}{}": {
-      "snippet": "pgfplotsqpointoutsideofticklabelaxisrel{${1:x, y, or z}}{${2:coord}}{${3:dimen}}"
+      "snippet": "pgfplotsqpointoutsideofticklabelaxisrel{${1:x,${4: y}, or z}}{${2:coord}}{${3:dimen}}"
     },
     "pgfplotsqpointoutsideofticklabelaxistransformed{}{}{}": {
-      "snippet": "pgfplotsqpointoutsideofticklabelaxistransformed{${1:x, y, or z}}{${2:coord}}{${3:dimen}}"
+      "snippet": "pgfplotsqpointoutsideofticklabelaxistransformed{${1:x,${4: y}, or z}}{${2:coord}}{${3:dimen}}"
     },
     "pgfplotsticklabelaxisspec{}": {
-      "snippet": "pgfplotsticklabelaxisspec{${1:x, y, or z}}"
+      "snippet": "pgfplotsticklabelaxisspec{${1:x,${2: y}, or z}}"
     },
     "pgfplotspointouternormalvectorofticklabelaxis{}": {
-      "snippet": "pgfplotspointouternormalvectorofticklabelaxis{${1:x, y, or z}}"
+      "snippet": "pgfplotspointouternormalvectorofticklabelaxis{${1:x,${2: y}, or z}}"
     },
     "Hmacro": {},
     "Hmacrobaseten": {},
