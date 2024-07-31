@@ -36,13 +36,13 @@ export async function revealOutputDir() {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
         const rootDir = lw.root.dir.path || workspaceFolder?.uri.fsPath
         if (rootDir === undefined) {
-            logger.log(`Cannot reveal ${lw.file.fileUriFromPath(outDir)}: no root dir can be identified.`)
+            logger.log(`Cannot reveal ${lw.file.getUri(outDir)}: no root dir can be identified.`)
             return
         }
         outDir = path.resolve(rootDir, outDir)
     }
-    logger.log(`Reveal ${lw.file.fileUriFromPath(outDir)}`)
-    await vscode.commands.executeCommand('revealFileInOS', lw.file.fileUriFromPath(outDir))
+    logger.log(`Reveal ${lw.file.getUri(outDir)}`)
+    await vscode.commands.executeCommand('revealFileInOS', lw.file.getUri(outDir))
 }
 
 export function recipes(recipe?: string) {
@@ -116,13 +116,13 @@ export function synctex() {
 
     if (lw.liveshare.isGuest) {
         const coords = lw.locate.synctex.getCurrentEditorCoordinates()
-        const pdfFileUri = lw.root.getRootFileAndTargetPdfUri()?.pdfFileUri
 
-        if (pdfFileUri === undefined || coords === undefined) {
+        if (lw.root.file.path === undefined || coords === undefined) {
             logger.log('Cannot find LaTeX root PDF to perform synctex.')
             return
         }
 
+        const pdfFileUri = lw.file.getUri(lw.file.getPdfPath(lw.root.file.path))
         const indicator = configuration.get('synctex.indicator') as 'none' | 'circle' | 'rectangle'
         void lw.hostConnection.send({type: 'synctex', line: coords.line, column: coords.column, filePath: coords.inputFileUri.toString(true), targetPdfFile: pdfFileUri.toString(true), indicator})
     } else {
@@ -496,7 +496,7 @@ export function toggleMathPreviewPanel() {
 }
 
 async function quickPickRootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.fileUriFromPath(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(rootFile))
     const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
     if (doNotPrompt) {
         if (configuration.get('latex.rootFile.useSubFile')) {

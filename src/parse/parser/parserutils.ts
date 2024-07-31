@@ -74,6 +74,6 @@ export function showCompilerDiagnostics(diagnostics: vscode.DiagnosticCollection
                 file1 = f
             }
         }
-        diagnostics.set(lw.file.fileUriFromPath(file1), diagsCollection[file])
+        diagnostics.set(lw.file.getUri(file1), diagsCollection[file])
     }
 }

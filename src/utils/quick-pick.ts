@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import { lw } from '../lw'
 
 export async function pickRootPath(rootPath: string, subRootPath: string, verb: string): Promise<string | undefined> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.fileUriFromPath(rootPath))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(rootPath))
     const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
     if (doNotPrompt) {
         if (configuration.get('latex.rootFile.useSubFile')) {

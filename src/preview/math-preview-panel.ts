@@ -23,7 +23,7 @@ type UpdateEvent = {
 
 function resourcesFolder(extensionRoot: string) {
     const folder = path.join(extensionRoot, 'resources', 'mathpreviewpanel')
-    return lw.file.fileUriFromPath(folder)
+    return lw.file.getUri(folder)
 }
 
 class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {

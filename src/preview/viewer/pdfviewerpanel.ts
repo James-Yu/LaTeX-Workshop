@@ -47,7 +47,7 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
         const state = argState.state
         let pdfFileUri: vscode.Uri | undefined
         if (state.path) {
-            pdfFileUri = lw.file.fileUriFromPath(state.path)
+            pdfFileUri = lw.file.getUri(state.path)
         } else if (state.pdfFileUri) {
             pdfFileUri = vscode.Uri.parse(state.pdfFileUri, true)
         }

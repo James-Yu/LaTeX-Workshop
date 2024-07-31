@@ -120,7 +120,7 @@ function createOutputSubFolders(rootFile: string) {
 function createBuildTools(rootFile: string, langId: string, recipeName?: string): Tool[] | undefined {
     let buildTools: Tool[] = []
 
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.fileUriFromPath(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(rootFile))
     const magic = findMagicComments(rootFile)
 
     if (recipeName === undefined && magic.tex && !configuration.get('latex.build.forceRecipeUsage')) {
@@ -233,7 +233,7 @@ function findMagicComments(rootFile: string): {tex?: Tool, bib?: Tool, recipe?: 
  * @returns {Tool[]} - An array of Tool objects representing the build tools.
  */
 function createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): Tool[] {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.fileUriFromPath(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(rootFile))
 
     if (!magicTex.args) {
         magicTex.args = configuration.get('latex.magic.args') as string[]
@@ -261,7 +261,7 @@ function createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): To
  * provided parameters.
  */
 function findRecipe(rootFile: string, langId: string, recipeName?: string): Recipe | undefined {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.fileUriFromPath(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(rootFile))
 
     const recipes = configuration.get('latex.recipes') as Recipe[]
     const defaultRecipeName = configuration.get('latex.recipe.default') as string
@@ -317,7 +317,7 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
  * @returns {Tool[]} - An array of Tool objects with expanded values.
  */
 function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.fileUriFromPath(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(rootFile))
     const docker = configuration.get('docker.enabled')
 
     buildTools.forEach(tool => {

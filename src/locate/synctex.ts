@@ -244,6 +244,10 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
         return
     }
 
+    if (lw.root.file.path === undefined) {
+        return
+    }
+
     if (args === undefined) {
         const currentEditorCoordinates = getCurrentEditorCoordinates()
         if (currentEditorCoordinates === undefined) {
@@ -257,13 +261,8 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
         filePath = args.filePath
     }
 
-    const currentRootAndPdf = lw.root.getRootFileAndTargetPdfUri()
-    if (currentRootAndPdf === undefined) {
-        return
-    }
-
-    const rootFile = currentRootAndPdf.rootFileUri.fsPath
-    const targetPdfFile = pdfFile ?? currentRootAndPdf.pdfFileUri.fsPath
+    const rootFile = lw.file.getUri(lw.root.file.path).fsPath
+    const targetPdfFile = pdfFile ?? lw.file.getUri(lw.file.getPdfPath(lw.root.file.path)).fsPath
 
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (forcedViewer === 'external' || (forcedViewer === 'auto' && configuration.get('view.pdf.viewer') === 'external') ) {
@@ -504,7 +503,7 @@ function computeToTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, p
 
 async function openTeX(input: string, line: number, column: number, textBeforeSelection: string, textAfterSelection: string) {
     const filePath = path.resolve(input)
-    const uri = lw.file.fileUriFromPath(input)
+    const uri = lw.file.getUri(input)
     try {
         await vscode.workspace.fs.stat(uri)
     } catch (e) {

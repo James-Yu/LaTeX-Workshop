@@ -269,7 +269,7 @@ export function resolveFileGlob(dirs: string[], inputGlob: string, suffix: strin
  */
 export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (arg: string) => string {
     return (arg: string) => {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.fileUriFromPath(rootFile))
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(rootFile))
         const docker = configuration.get('docker.enabled')
 
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]

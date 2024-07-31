@@ -19,7 +19,6 @@ export const root = {
         path: undefined as string | undefined,
         langId: undefined as string | undefined,
     },
-    getRootFileAndTargetPdfUri,
     find,
     getWorkspace,
     _test: {
@@ -39,18 +38,6 @@ lw.watcher.src.onDelete(filePath => {
     root.file = { path: undefined, langId: undefined }
     void find()
 })
-
-function getRootFileAndTargetPdfUri(): {rootFileUri: vscode.Uri, pdfFileUri: vscode.Uri} | undefined{
-    if (lw.root.file.path === undefined) {
-        logger.log('No root file found.')
-        return
-    }
-
-    const rootFileUri = lw.file.fileUriFromPath(lw.root.file.path)
-    const pdfFileUri = lw.file.fileUriFromPath(lw.file.getPdfPath(lw.root.file.path))
-
-    return {rootFileUri, pdfFileUri}
-}
 
 /**
  * Finds the LaTeX project's root file.
@@ -151,7 +138,7 @@ function getWorkspace(filePath?: string): vscode.Uri | undefined {
     }
     // If provided with a filePath, check its workspace
     if (filePath !== undefined) {
-        return (vscode.workspace.getWorkspaceFolder(lw.file.fileUriFromPath(filePath)) ?? firstWorkspace).uri
+        return (vscode.workspace.getWorkspaceFolder(lw.file.getUri(filePath)) ?? firstWorkspace).uri
     }
     // If we don't have an active text editor, we can only make a guess.
     // Let's guess the first one.
@@ -221,7 +208,7 @@ function findFromRoot(): string | undefined {
     if (!vscode.window.activeTextEditor || root.file.path === undefined) {
         return
     }
-    if (!lw.file.hasAcceptedScheme(vscode.window.activeTextEditor.document.uri)) {
+    if (!lw.file.isUriScheme(vscode.window.activeTextEditor.document.uri)) {
         logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         return
     }
@@ -244,7 +231,7 @@ function findFromActive(): string | undefined {
     if (!vscode.window.activeTextEditor) {
         return
     }
-    if (!lw.file.hasAcceptedScheme(vscode.window.activeTextEditor.document.uri)) {
+    if (!lw.file.isUriScheme(vscode.window.activeTextEditor.document.uri)) {
         logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         return
     }
@@ -316,7 +303,7 @@ async function findInWorkspace(): Promise<string | undefined> {
         const fileUris = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
         const candidates: string[] = []
         for (const fileUri of fileUris) {
-            if (!lw.file.hasAcceptedScheme(fileUri)) {
+            if (!lw.file.isUriScheme(fileUri)) {
                 logger.log(`Skip the file: ${fileUri.toString(true)}`)
                 continue
             }

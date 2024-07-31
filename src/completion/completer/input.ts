@@ -148,7 +148,7 @@ class Input extends InputAbstract {
         if (['includegraphics', 'includesvg'].includes(macro) && this.graphicsPath.size > 0) {
             baseDir = Array.from(this.graphicsPath).map(dir => path.join(rootDir, dir))
         } else {
-            const baseConfig = vscode.workspace.getConfiguration('latex-workshop', lw.file.fileUriFromPath(currentFile)).get('intellisense.file.base')
+            const baseConfig = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(currentFile)).get('intellisense.file.base')
             const baseDirCurrentFile = path.dirname(currentFile)
             switch (baseConfig) {
                 case 'root relative':

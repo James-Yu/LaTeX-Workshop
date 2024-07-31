@@ -13,7 +13,7 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         } else if (document.languageId === 'doctex') {
             return construct(document).then((sections: TeXElement[]) => this.sectionToSymbols(sections))
         }
-        if (!lw.file.hasAcceptedScheme(document.uri)) {
+        if (!lw.file.isUriScheme(document.uri)) {
             return []
         }
         const sections = await constructLaTeX(document.fileName, false)

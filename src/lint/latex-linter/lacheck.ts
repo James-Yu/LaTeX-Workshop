@@ -21,7 +21,7 @@ export const laCheck: LaTeXLinter = {
 let linterProcess: ChildProcessWithoutNullStreams | undefined
 
 async function lintRootFile(rootPath: string) {
-    const stdout = await lacheckWrapper('root', lw.file.fileUriFromPath(rootPath), rootPath, undefined)
+    const stdout = await lacheckWrapper('root', lw.file.getUri(rootPath), rootPath, undefined)
     if (stdout === undefined) { // It's possible to have empty string as output
         return
     }
@@ -130,7 +130,7 @@ function showLinterDiagnostics(linterLog: LaCheckLogEntry[]) {
                     file1 = f
                 }
             }
-            laCheck.linterDiagnostics.set(lw.file.fileUriFromPath(file1), diagsCollection[file])
+            laCheck.linterDiagnostics.set(lw.file.getUri(file1), diagsCollection[file])
         }
     }
 }
