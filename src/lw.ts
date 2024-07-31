@@ -17,7 +17,7 @@ import type { parser } from './parse'
 import type { extra } from './extras'
 
 import type * as commands from './core/commands'
-import { LiveShare } from './liveshare/liveshare'
+import { LiveShare } from './extras/liveshare'
 
 const wrapper = <T extends Array<any>, U>(fn: (...args: T) => U) => {
     return (...args: T): U => fn(...args)
