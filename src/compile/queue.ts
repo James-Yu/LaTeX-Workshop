@@ -135,5 +135,8 @@ export const queue = {
     clear,
     isLastStep,
     getStep,
-    getStepString
+    getStepString,
+    _test: {
+        getQueue: () => stepQueue
+    }
 }
