@@ -1,12 +1,11 @@
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { assert, get, has, mock, set, sleep } from './utils'
+import { assert, mock } from './utils'
 import { lw } from '../../src/lw'
-import type { ExternalStep, RecipeStep, Tool } from '../../src/types'
 import { queue } from '../../src/compile/queue'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
+    // const fixture = path.basename(__filename).split('.')[0]
 
     before(() => {
         mock.object(lw, 'file', 'root')
@@ -53,7 +52,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should add a Tool as an ExternalStep to the queue', () => {
             queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), true, '/usr/bin')
 
-            const step = queue.getStep() as ExternalStep
+            const step = queue.getStep()
             assert.ok(step)
             assert.strictEqual(step.recipeName, 'External')
             assert.strictEqual(step.isExternal, true)
