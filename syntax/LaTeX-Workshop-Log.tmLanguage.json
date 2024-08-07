@@ -4,7 +4,6 @@
         {
             "begin": "^\\[([0-9\\.:]*)\\]\\[(\\w*)\\](?:\\[(\\w*)\\])?\\s?",
             "end":"$",
-            "name": "meta.line.latex_workshop.log",
             "beginCaptures": {
                 "1": {
                     "name": "constant.numeric.timestamp.latex_workshop.log"
@@ -42,10 +41,11 @@
                 "2": {
                     "name": "string.latex_workshop.log"
                 }
-            }
+            },
+            "name": "meta.event.latex_workshop.log"
         },
          "variables": {
-            "match": "\\G(?:Set\\s)?(\\$?[\\w\\.-]+):\\s?(.*)",
+            "match": "\\G(?:Set\\s)?(\\$?[\\w\\.-]+):\\s?(.*(?=\\s?\\.$)|.*(?=$))",
             "captures": {
                 "1": {
                     "name": "support.variable.latex_workshop.log"
@@ -53,29 +53,32 @@
                 "2": {
                     "name": "string.latex_workshop.log"
                 }
-            }
+            },
+            "name": "meta.variable.latex_workshop.log"
         },
         "message_with_bracket_arguments": {
             "match": "\\G([\\w\\s]+):\\s?\\[(.*)\\]",
             "captures": {
                 "1": {
-                    "name": "meta.message.latex_workshop.log"
+                    "name": "entity.message.latex_workshop.log"
                 },
                 "2": {
                     "name": "string.latex_workshop.log"
                 }
-            }
+            },
+            "name": "meta.message.latex_workshop.log"
         },
         "message_with_brace_arguments": {
             "match": "\\G([\\w\\s]+):\\s?\\{(.*)\\}",
             "captures": {
                 "1": {
-                    "name": "meta.message.latex_workshop.log"
+                    "name": "entity.message.latex_workshop.log"
                 },
                 "2": {
                     "name": "string.latex_workshop.log"
                 }
-            }
+            },
+            "name": "meta.message.latex_workshop.log"
         }
     },
     "scopeName": "text.latex_workshop.log"
