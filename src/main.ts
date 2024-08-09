@@ -39,6 +39,10 @@ import { extra } from './extras'
 lw.extra = extra
 import * as commander from './core/commands'
 lw.commands = commander
+import { LiveShare } from './extras/liveshare'
+lw.liveshare = new LiveShare()
+import { hostConnection } from './preview'
+lw.hostConnection = hostConnection
 
 log.initStatusBarItem()
 
@@ -67,7 +71,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     extensionContext.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
-        if (e.uri.scheme !== 'file'){
+        if (!lw.file.isUriScheme(e.uri)){
             return
         }
         if (lw.file.hasTeXLangId(e.languageId) ||
@@ -100,7 +104,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             logger.showStatus()
         }
-        if (e && e.document.uri.scheme !== 'file'){
+        if (e && !lw.file.isUriScheme(e.document.uri)) {
             return
         }
         if (e && lw.file.hasTeXLangId(e.document.languageId) && e.document.fileName !== prevTeXDocumentPath) {
@@ -119,7 +123,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     extensionContext.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
-        if (e.document.uri.scheme !== 'file'){
+        if (!lw.file.isUriScheme(e.document.uri)){
             return
         }
         if (!lw.file.hasTeXLangId(e.document.languageId) &&
@@ -156,6 +160,8 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
 function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext) {
     extensionContext.subscriptions.push(
+        vscode.commands.registerCommand('latex-workshop.acquireHostPort', () => lw.commands.acquireHostPort()),
+        vscode.commands.registerCommand('latex-workshop.shareHostPort', () => lw.commands.shareHostPort()),
         vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => lw.commands.saveActive()),
         vscode.commands.registerCommand('latex-workshop.build', () => lw.commands.build()),
         vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => lw.commands.recipes(recipe)),
@@ -266,6 +272,7 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
 
     extensionContext.subscriptions.push(
         vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, lw.completion.provider, '\\', '{'),
+        vscode.languages.registerCompletionItemProvider({ scheme: 'vsls', language: 'tex'}, lw.completion.provider, '\\', '{'),
         vscode.languages.registerCompletionItemProvider(bibtexSelector, lw.completion.bibProvider, '@')
     )
 
@@ -336,7 +343,7 @@ function conflictCheck() {
 
 function selectDocumentsWithId(ids: string[]): vscode.DocumentSelector {
    const selector = ids.map( (id) => {
-       return { scheme: 'file', language: id }
+       return { scheme: lw.file.getUriScheme(), language: id }
    })
    return selector
 }

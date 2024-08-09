@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import { glob } from 'glob'
+import { lw } from '../lw'
 
 export function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -268,7 +269,7 @@ export function resolveFileGlob(dirs: string[], inputGlob: string, suffix: strin
  */
 export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (arg: string) => string {
     return (arg: string) => {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(rootFile))
         const docker = configuration.get('docker.enabled')
 
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
@@ -304,4 +305,8 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
         const outDir = outDirW32.split(path.sep).join('/')
         return expandPlaceHolders(arg).replace(/%OUTDIR%/g, outDir).replace(/%OUTDIR_W32%/g, outDirW32)
     }
+}
+
+export async function delay(t: number) {
+    return new Promise(resolve => setTimeout(resolve, t))
 }

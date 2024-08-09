@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as http from 'http'
+import * as URL from 'url'
 import type { AddressInfo } from 'net'
 import ws from 'ws'
 import * as fs from 'fs'
@@ -9,10 +10,13 @@ import { lw } from '../lw'
 const logger = lw.log('Server')
 
 export {
-    getPort,
+    getHostPort,
+    getLocalPort,
     getUrl,
     setHandler,
     initialize,
+    encodePathWithPrefix,
+    decodePathWithPrefix
     // initialized
 }
 
@@ -30,10 +34,10 @@ class WsServer extends ws.Server {
     // - https://github.com/websockets/ws/blob/master/doc/ws.md#servershouldhandlerequest
     //
     shouldHandle(req: http.IncomingMessage): boolean {
-        if (!this.validOrigin.includes('127.0.0.1')) {
+        const reqOrigin = req.headers['origin']
+        if (!this.validOrigin.includes('127.0.0.1') || reqOrigin?.includes('127.0.0.1')) {
             return true
         }
-        const reqOrigin = req.headers['origin']
         if (reqOrigin !== undefined && reqOrigin !== this.validOrigin) {
             logger.log(`Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
             logger.log(`Valid origin: ${this.validOrigin}`)
@@ -63,7 +67,15 @@ const state: {
 
 lw.onDispose({ dispose: () => state.httpServer.close() })
 
-function getPort(): number {
+async function getHostPort(): Promise<number> {
+    if (lw.liveshare.isGuest) {
+        const portNum = await lw.liveshare.getHostServerPort()
+        return portNum
+    }
+    return getLocalPort()
+}
+
+function getLocalPort(): number {
     const portNum = state.address?.port
     if (portNum === undefined) {
         logger.log('Server port number is undefined.')
@@ -74,7 +86,7 @@ function getPort(): number {
 
 async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
     // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
-    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.getPort()}`, true))
+    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.getLocalPort()}`, true))
     const url =
         (origUrl.toString().endsWith('/') ? origUrl.toString().slice(0, -1) : origUrl.toString()) +
         (pdfUri ? ('/viewer.html?file=' + encodePathWithPrefix(pdfUri)) : '')
@@ -149,7 +161,7 @@ function initializeWsServer(httpServer: http.Server, validOrigin: string) {
 //
 function checkHttpOrigin(req: http.IncomingMessage, response: http.ServerResponse): boolean {
     const validOrigin = getValidOrigin()
-    if (!validOrigin.includes('127.0.0.1')) {
+    if (!validOrigin.includes('127.0.0.1') || req.headers['origin']?.includes('127.0.0.1')) {
         return true
     }
     const reqOrigin = req.headers['origin']
@@ -184,7 +196,52 @@ function sendOkResponse(response: http.ServerResponse, content: Buffer, contentT
     response.end(content)
 }
 
+async function proxyHandler(req: http.IncomingMessage, res: http.ServerResponse) {
+    if (!lw.liveshare.isGuest || !req.url) {
+        return
+    }
+
+    const request = URL.parse(req.url)
+
+    const options = {
+        host: request.hostname,
+        port: await lw.server.getHostPort(),
+        path: request.path,
+        method: req.method,
+        headers: req.headers,
+    }
+
+    const backendReq = http.request(options, (backendRes) => {
+        if (!backendRes.statusCode) {
+            res.end()
+            return
+        }
+        res.writeHead(backendRes.statusCode, backendRes.headers)
+
+        backendRes.on('data', (chunk) => {
+            res.write(chunk)
+        })
+
+        backendRes.on('end', () => {
+            res.end()
+        })
+    })
+
+    req.on('data', (chunk) => {
+        backendReq.write(chunk)
+    })
+
+    req.on('end', () => {
+        backendReq.end()
+    })
+}
+
 async function handler(request: http.IncomingMessage, response: http.ServerResponse) {
+    if (lw.liveshare.isGuest) {
+        await proxyHandler(request, response)
+        return
+    }
+
     if (!request.url) {
         return
     }
@@ -194,8 +251,12 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
     }
     if (hasPrefix(request.url) && !request.url.includes('viewer.html')) {
         const s = request.url.replace('/', '')
-        const fileUri = decodePathWithPrefix(s)
-        if (!lw.viewer.isViewing(fileUri)) {
+        let fileUri = decodePathWithPrefix(s)
+        const isVsls = (fileUri.scheme === 'vsls') && (lw.liveshare.isHost)
+        if (isVsls && lw.liveshare.isHost) {
+            fileUri = lw.liveshare.liveshare?.convertSharedUriToLocal(fileUri) ?? fileUri
+        }
+        if (!lw.viewer.isViewing(fileUri) && !isVsls) {
             logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
             return
         }
