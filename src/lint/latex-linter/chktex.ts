@@ -24,7 +24,7 @@ let linterProcess: ChildProcessWithoutNullStreams | undefined
 async function lintRootFile(rootPath: string) {
     const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', rootPath]
 
-    const stdout = await chktexWrapper('root', lw.file.getUri(rootPath), rootPath, requiredArgs, undefined)
+    const stdout = await chktexWrapper('root', lw.file.toUri(rootPath), rootPath, requiredArgs, undefined)
     if (stdout === undefined) { // It's possible to have empty string as output
         return
     }
@@ -131,7 +131,7 @@ function globalRcPath(): string | undefined {
 }
 
 function getChktexrcTabSize(file: string): number | undefined {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(file))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(file))
     const args = configuration.get('linting.chktex.exec.args') as string[]
     let filePath: string | undefined
     if (args.includes('-l')) {
@@ -197,7 +197,7 @@ function parseLog(log: string, singleFileOriginalPath?: string, tabSizeArg?: num
     } else if (linterLog.length === 0) {
         // We are linting a single file and the new log is empty for it -
         // clean existing records.
-        chkTeX.linterDiagnostics.set(lw.file.getUri(singleFileOriginalPath), [])
+        chkTeX.linterDiagnostics.set(lw.file.toUri(singleFileOriginalPath), [])
     }
     showLinterDiagnostics(linterLog)
 }
@@ -279,7 +279,7 @@ function showLinterDiagnostics(linterLog: ChkTeXLogEntry[]) {
                     file1 = f
                 }
             }
-            chkTeX.linterDiagnostics.set(lw.file.getUri(file1), diagsCollection[file])
+            chkTeX.linterDiagnostics.set(lw.file.toUri(file1), diagsCollection[file])
         }
     }
 }

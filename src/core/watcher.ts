@@ -139,7 +139,7 @@ class Watcher {
     private async initiatePolling(uri: vscode.Uri): Promise<void> {
         const filePath = uri.fsPath
         const firstChangeTime = Date.now()
-        const size = (await lw.external.stat(lw.file.getUri(filePath))).size
+        const size = (await lw.external.stat(lw.file.toUri(filePath))).size
 
         this.polling[filePath] = { size, time: firstChangeTime }
 
@@ -170,7 +170,7 @@ class Watcher {
             return
         }
 
-        const currentSize = (await lw.external.stat(lw.file.getUri(filePath))).size
+        const currentSize = (await lw.external.stat(lw.file.toUri(filePath))).size
 
         if (currentSize !== size) {
             this.polling[filePath].size = currentSize

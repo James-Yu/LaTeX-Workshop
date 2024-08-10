@@ -5,23 +5,13 @@ import { getSurroundingMacroRange, stripText } from '../utils/utils'
 
 const logger = lw.log('Commander')
 
-export async function acquireHostPort() {
-    logger.log('ACQUIREHOSTPORT command invoked.')
-    if (lw.liveshare.isGuest) {
-        await lw.liveshare.getHostServerPort(true)
+export async function hostPort() {
+    logger.log('HOSTPORT command invoked.')
+    if (lw.extra.liveshare.isGuest()) {
+        await lw.extra.liveshare.getHostServerPort(true)
     }
     else {
-        void vscode.window.showInformationMessage('This command only works for guests in a Live Share session.')
-    }
-}
-
-export async function shareHostPort() {
-    logger.log('SHAREHOSTPORT command invoked.')
-    if (lw.liveshare.isHost) {
-        await lw.liveshare.shareServer()
-    }
-    else {
-        void vscode.window.showInformationMessage('This command only works for a host in a Live Share session.')
+        await lw.extra.liveshare.shareServer()
     }
 }
 
@@ -36,13 +26,13 @@ export async function revealOutputDir() {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
         const rootDir = lw.root.dir.path || workspaceFolder?.uri.fsPath
         if (rootDir === undefined) {
-            logger.log(`Cannot reveal ${lw.file.getUri(outDir)}: no root dir can be identified.`)
+            logger.log(`Cannot reveal ${lw.file.toUri(outDir)}: no root dir can be identified.`)
             return
         }
         outDir = path.resolve(rootDir, outDir)
     }
-    logger.log(`Reveal ${lw.file.getUri(outDir)}`)
-    await vscode.commands.executeCommand('revealFileInOS', lw.file.getUri(outDir))
+    logger.log(`Reveal ${lw.file.toUri(outDir)}`)
+    await vscode.commands.executeCommand('revealFileInOS', lw.file.toUri(outDir))
 }
 
 export function recipes(recipe?: string) {
@@ -114,26 +104,16 @@ export function synctex() {
     }
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
 
-    if (lw.liveshare.isGuest) {
-        const coords = lw.locate.synctex.getCurrentEditorCoordinates()
-
-        if (lw.root.file.path === undefined || coords === undefined) {
-            logger.log('Cannot find LaTeX root PDF to perform synctex.')
-            return
-        }
-
-        const pdfFileUri = lw.file.getUri(lw.file.getPdfPath(lw.root.file.path))
-        const indicator = configuration.get('synctex.indicator') as 'none' | 'circle' | 'rectangle'
-        void lw.hostConnection.send({type: 'synctex', line: coords.line, column: coords.column, filePath: coords.inputFileUri.toString(true), targetPdfFile: pdfFileUri.toString(true), indicator})
-    } else {
-        let pdfFile: string | undefined = undefined
-        if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
-            pdfFile = lw.file.getPdfPath(lw.root.subfiles.path)
-        } else if (lw.root.file.path !== undefined) {
-            pdfFile = lw.file.getPdfPath(lw.root.file.path)
-        }
-        lw.locate.synctex.toPDF(undefined, undefined, pdfFile)
+    if (lw.extra.liveshare.handle.command.syncTeX()) {
+        return
     }
+    let pdfFile: string | undefined = undefined
+    if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
+        pdfFile = lw.file.getPdfPath(lw.root.subfiles.path)
+    } else if (lw.root.file.path !== undefined) {
+        pdfFile = lw.file.getPdfPath(lw.root.file.path)
+    }
+    lw.locate.synctex.toPDF(undefined, undefined, pdfFile)
 }
 
 export function synctexonref(line: number, filePath: string) {
@@ -496,7 +476,7 @@ export function toggleMathPreviewPanel() {
 }
 
 async function quickPickRootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
     if (doNotPrompt) {
         if (configuration.get('latex.rootFile.useSubFile')) {

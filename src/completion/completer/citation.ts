@@ -238,7 +238,7 @@ function updateAll(bibFiles?: string[]): CitationItem[] {
  */
 async function parseBibFile(fileName: string) {
     logger.log(`Parsing .bib entries from ${fileName}`)
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(fileName))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(fileName))
     if (fs.statSync(fileName).size >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
         logger.log(`Bib file is too large, ignoring it: ${fileName}`)
         data.bibEntries.delete(fileName)

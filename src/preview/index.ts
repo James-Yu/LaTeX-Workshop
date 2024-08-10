@@ -4,7 +4,6 @@ import * as mathpreview from './math-preview-panel'
 
 export * as viewer from './viewer'
 export * as server from './server'
-export * as hostConnection from './host-connection'
 
 export const preview = {
     graph2md,

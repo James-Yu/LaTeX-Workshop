@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as http from 'http'
-import * as URL from 'url'
 import type { AddressInfo } from 'net'
 import ws from 'ws'
 import * as fs from 'fs'
@@ -10,8 +9,7 @@ import { lw } from '../lw'
 const logger = lw.log('Server')
 
 export {
-    getHostPort,
-    getLocalPort,
+    getPort,
     getUrl,
     setHandler,
     initialize,
@@ -67,15 +65,7 @@ const state: {
 
 lw.onDispose({ dispose: () => state.httpServer.close() })
 
-async function getHostPort(): Promise<number> {
-    if (lw.liveshare.isGuest) {
-        const portNum = await lw.liveshare.getHostServerPort()
-        return portNum
-    }
-    return getLocalPort()
-}
-
-function getLocalPort(): number {
+function getPort(): number {
     const portNum = state.address?.port
     if (portNum === undefined) {
         logger.log('Server port number is undefined.')
@@ -86,7 +76,7 @@ function getLocalPort(): number {
 
 async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
     // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
-    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.getLocalPort()}`, true))
+    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.getPort()}`, true))
     const url =
         (origUrl.toString().endsWith('/') ? origUrl.toString().slice(0, -1) : origUrl.toString()) +
         (pdfUri ? ('/viewer.html?file=' + encodePathWithPrefix(pdfUri)) : '')
@@ -196,49 +186,8 @@ function sendOkResponse(response: http.ServerResponse, content: Buffer, contentT
     response.end(content)
 }
 
-async function proxyHandler(req: http.IncomingMessage, res: http.ServerResponse) {
-    if (!lw.liveshare.isGuest || !req.url) {
-        return
-    }
-
-    const request = URL.parse(req.url)
-
-    const options = {
-        host: request.hostname,
-        port: await lw.server.getHostPort(),
-        path: request.path,
-        method: req.method,
-        headers: req.headers,
-    }
-
-    const backendReq = http.request(options, (backendRes) => {
-        if (!backendRes.statusCode) {
-            res.end()
-            return
-        }
-        res.writeHead(backendRes.statusCode, backendRes.headers)
-
-        backendRes.on('data', (chunk) => {
-            res.write(chunk)
-        })
-
-        backendRes.on('end', () => {
-            res.end()
-        })
-    })
-
-    req.on('data', (chunk) => {
-        backendReq.write(chunk)
-    })
-
-    req.on('end', () => {
-        backendReq.end()
-    })
-}
-
 async function handler(request: http.IncomingMessage, response: http.ServerResponse) {
-    if (lw.liveshare.isGuest) {
-        await proxyHandler(request, response)
+    if (await lw.extra.liveshare.handle.server.request(request, response)) {
         return
     }
 
@@ -252,9 +201,9 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
     if (hasPrefix(request.url) && !request.url.includes('viewer.html')) {
         const s = request.url.replace('/', '')
         let fileUri = decodePathWithPrefix(s)
-        const isVsls = (fileUri.scheme === 'vsls') && (lw.liveshare.isHost)
-        if (isVsls && lw.liveshare.isHost) {
-            fileUri = lw.liveshare.liveshare?.convertSharedUriToLocal(fileUri) ?? fileUri
+        const isVsls = (fileUri.scheme === 'vsls') && (lw.extra.liveshare.isHost())
+        if (isVsls) {
+            fileUri = lw.extra.liveshare.getApi()?.convertSharedUriToLocal(fileUri) ?? fileUri
         }
         if (!lw.viewer.isViewing(fileUri) && !isVsls) {
             logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)

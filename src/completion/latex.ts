@@ -57,7 +57,7 @@ export class Provider implements vscode.CompletionItemProvider {
     async resolveCompletionItem(item: vscode.CompletionItem, ctoken: vscode.CancellationToken): Promise<vscode.CompletionItem> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (item.kind === vscode.CompletionItemKind.Reference) {
-            if (!('file' in item || 'vsls' in item) || !configuration.get('hover.ref.enabled')) {
+            if (!('file' in item) || !configuration.get('hover.ref.enabled')) {
                 return item
             }
             const refItem = item as ReferenceItem

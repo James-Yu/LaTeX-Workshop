@@ -7,7 +7,7 @@ import type { watcher } from './core/watcher'
 import type { cache } from './core/cache'
 import type { root } from './core/root'
 import type { compile } from './compile'
-import type { preview, server, viewer, hostConnection } from './preview'
+import type { preview, server, viewer } from './preview'
 import type { locate } from './locate'
 import type { completion } from './completion'
 import type { language } from './language'
@@ -17,7 +17,6 @@ import type { parser } from './parse'
 import type { extra } from './extras'
 
 import type * as commands from './core/commands'
-import { LiveShare } from './extras/liveshare'
 
 const wrapper = <T extends Array<any>, U>(fn: (...args: T) => U) => {
     return (...args: T): U => fn(...args)
@@ -44,8 +43,6 @@ export const lw = {
     lint: {} as typeof lint,
     outline: {} as typeof outline,
     extra: {} as typeof extra,
-    liveshare: {} as LiveShare,
-    hostConnection: {} as typeof hostConnection,
     commands: Object.create(null) as typeof commands,
     external: {
         spawn: wrapper(cs.spawn),

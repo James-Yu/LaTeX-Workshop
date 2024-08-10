@@ -261,8 +261,8 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
         filePath = args.filePath
     }
 
-    const rootFile = lw.file.getUri(lw.root.file.path).fsPath
-    const targetPdfFile = pdfFile ?? lw.file.getUri(lw.file.getPdfPath(lw.root.file.path)).fsPath
+    const rootFile = lw.file.toUri(lw.root.file.path).fsPath
+    const targetPdfFile = pdfFile ?? lw.file.toUri(lw.file.getPdfPath(lw.root.file.path)).fsPath
 
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (forcedViewer === 'external' || (forcedViewer === 'auto' && configuration.get('view.pdf.viewer') === 'external') ) {
@@ -503,7 +503,7 @@ function computeToTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, p
 
 async function openTeX(input: string, line: number, column: number, textBeforeSelection: string, textAfterSelection: string) {
     const filePath = path.resolve(input)
-    const uri = lw.file.getUri(input)
+    const uri = lw.file.toUri(input)
     try {
         await vscode.workspace.fs.stat(uri)
     } catch (e) {

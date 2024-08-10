@@ -25,8 +25,8 @@ export const file = {
     read,
     kpsewhich,
     getUriScheme,
-    getUri,
     isUriScheme,
+    toUri,
     _test: {
         createTmpDir
     }
@@ -240,7 +240,7 @@ function getOutDir(texPath?: string): string {
         return './'
     }
 
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(texPath))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(texPath))
     const outDir = configuration.get('latex.outDir') as string || './'
     const out = utils.replaceArgumentPlaceholders(texPath, file.tmpDirPath)(outDir)
     let result = undefined
@@ -293,7 +293,7 @@ function getLangId(filename: string): string | undefined {
  * configuration or derived from the file name.
  */
 function getJobname(texPath: string): string {
-    const jobname = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(texPath)).get('latex.jobname') as string
+    const jobname = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(texPath)).get('latex.jobname') as string
     return jobname || path.parse(texPath).name
 }
 
@@ -475,7 +475,7 @@ function getBibPath(bib: string, baseDir: string): string[] {
  */
 async function read(filePath: string, raise: boolean = false): Promise<string | undefined> {
     try {
-        return (await vscode.workspace.fs.readFile(lw.file.getUri(filePath))).toString()
+        return (await vscode.workspace.fs.readFile(lw.file.toUri(filePath))).toString()
     } catch (err) {
         if (raise === false) {
             return undefined
@@ -503,7 +503,7 @@ async function read(filePath: string, raise: boolean = false): Promise<string | 
  */
 async function exists(uri: vscode.Uri | string): Promise<boolean> {
     if (typeof (uri) === 'string') {
-        uri = lw.file.getUri(uri)
+        uri = lw.file.toUri(uri)
     }
     try {
         await lw.external.stat(uri)
@@ -528,13 +528,13 @@ async function exists(uri: vscode.Uri | string): Promise<boolean> {
 function getUriScheme(filePath?: string): string {
     const scheme =
         vscode.workspace.workspaceFolders?.filter(folder => filePath?.startsWith(folder.uri.path))[0]?.uri.scheme
-    return scheme ?? (lw.liveshare.isGuest ? 'vsls' : 'file')
-}
-
-function getUri(filePath: string): vscode.Uri {
-    return vscode.Uri.file(filePath).with({ scheme: getUriScheme(filePath) })
+    return scheme ?? (lw.extra.liveshare.isGuest() ? 'vsls' : 'file')
 }
 
 function isUriScheme(fileUri: vscode.Uri): boolean {
     return ['file', 'vsls'].includes(fileUri.scheme)
+}
+
+function toUri(filePath: string): vscode.Uri {
+    return vscode.Uri.file(filePath).with({ scheme: getUriScheme(filePath) })
 }

@@ -8,7 +8,7 @@ import type { SyncTeXRecordToPDF, SyncTeXRecordToPDFAll, ViewerMode } from '../t
 import * as manager from './viewer/pdfviewermanager'
 import { populate } from './viewer/pdfviewerpanel'
 
-import type { ClientRequest, PdfViewerParams, PdfViewerState, ServerResponse } from '../../types/latex-workshop-protocol-types/index'
+import type { ClientRequest, PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index'
 import { Client } from './viewer/client'
 
 import { moveActiveEditor } from '../utils/webview'
@@ -53,7 +53,7 @@ function reload(): void {
  */
 function refresh(pdfFile?: string): void {
     logger.log(`Call refreshExistingViewer: ${JSON.stringify(pdfFile)} .`)
-    const pdfUri = pdfFile ? lw.file.getUri(pdfFile) : undefined
+    const pdfUri = pdfFile ? lw.file.toUri(pdfFile) : undefined
     if (pdfUri === undefined) {
         manager.getClients()?.forEach(client => {
             client.send({type: 'refresh', pdfFileUri: client.pdfFileUri})
@@ -61,14 +61,7 @@ function refresh(pdfFile?: string): void {
         return
     }
     let clientSet = manager.getClients(pdfUri)
-    if (lw.liveshare.isHost && lw.liveshare.liveshare !== null && pdfFile !== undefined) {
-        const sharedUri = lw.liveshare.liveshare?.convertLocalUriToShared(lw.file.getUri(pdfFile))
-        const guestClients = manager.getClients(sharedUri)
-        if (guestClients) {
-            clientSet?.forEach(client => guestClients.add(client))
-            clientSet = guestClients
-        }
-    }
+    clientSet = lw.extra.liveshare.handle.viewer.refresh(pdfFile, clientSet)
     if (!clientSet) {
         logger.log(`Not found PDF viewers to refresh: ${pdfFile}`)
         return
@@ -80,7 +73,7 @@ function refresh(pdfFile?: string): void {
 }
 
 async function getUrl(pdfFile: string): Promise<string | undefined> {
-    const pdfUri = lw.file.getUri(pdfFile)
+    const pdfUri = lw.file.toUri(pdfFile)
     if (!await lw.file.exists(pdfUri)) {
         logger.log(`Cannot find PDF file ${pdfUri}`)
         logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfUri}`, 'warning')
@@ -119,7 +112,7 @@ async function viewInBrowser(pdfFile: string): Promise<void> {
     if (!url) {
         return
     }
-    const pdfUri = lw.file.getUri(pdfFile)
+    const pdfUri = lw.file.toUri(pdfFile)
     manager.create(pdfUri)
     lw.watcher.pdf.add(pdfUri.fsPath)
     try {
@@ -147,7 +140,7 @@ async function viewInTab(pdfFile: string, tabEditorGroup: string, preserveFocus:
     if (!url) {
         return
     }
-    const pdfUri = lw.file.getUri(pdfFile)
+    const pdfUri = lw.file.toUri(pdfFile)
     return viewInWebviewPanel(pdfUri, tabEditorGroup, preserveFocus)
 }
 
@@ -158,7 +151,7 @@ async function viewInCustomEditor(pdfFile: string): Promise<void> {
     }
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const editorGroup = configuration.get('view.pdf.tab.editorGroup') as string
-    const pdfUri = lw.file.getUri(pdfFile)
+    const pdfUri = lw.file.toUri(pdfFile)
     const showOptions: vscode.TextDocumentShowOptions = {
         viewColumn: vscode.ViewColumn.Active,
         preserveFocus: true
@@ -282,7 +275,7 @@ function handler(websocket: ws, msg: string): void {
     switch (data.type) {
         case 'open': {
             const pdfUri = vscode.Uri.parse(data.pdfFileUri, true)
-            if (pdfUri.scheme === 'vsls' && lw.liveshare.isHost) {
+            if (pdfUri.scheme === 'vsls' && lw.extra.liveshare.isHost()) {
                 manager.create(pdfUri)
             }
             const clientSet = manager.getClients(pdfUri)
@@ -290,7 +283,7 @@ function handler(websocket: ws, msg: string): void {
                 break
             }
             const client = new Client(data.viewer, websocket, pdfUri.toString(true))
-            lw.hostConnection.registerWithHost(client)
+            lw.extra.liveshare.register(client)
             clientSet.add(client)
             client.onDidDispose(() => {
                 clientSet.delete(client)
@@ -309,49 +302,10 @@ function handler(websocket: ws, msg: string): void {
         }
         case 'reverse_synctex': {
             const uri = vscode.Uri.parse(data.pdfFileUri, true)
-            if (lw.liveshare.isGuest) {
-                void lw.hostConnection.wsToHost?.then(hostWs => hostWs.send(JSON.stringify(data))) // forward the request to host
-                break
-            } else if (lw.liveshare.isHost && uri.scheme === 'vsls' && lw.liveshare.liveshare) { // reply to guest if request comes from guest
-                const localUri = lw.liveshare.liveshare.convertSharedUriToLocal(uri) ?? uri
-                const record = lw.locate.synctex.computeToTeX(data, localUri.fsPath)
-                if (record) {
-                    const response: ServerResponse = {
-                        type: 'reverse_synctex_result',
-                        input: lw.liveshare.liveshare.convertLocalUriToShared(vscode.Uri.file(record.input)).toString(true),
-                        line: record.line,
-                        column: record.column,
-                        textBeforeSelection: data.textAfterSelection,
-                        textAfterSelection: data.textAfterSelection
-                    }
-                    websocket.send(JSON.stringify(response))
-                }
+            if (lw.extra.liveshare.handle.viewer.reverseSyncTeX(websocket, uri, data)) {
                 break
             }
             void lw.locate.synctex.toTeX(data, uri.fsPath)
-            break
-        }
-        case 'synctex': {
-            if (!lw.liveshare.isHost || !lw.liveshare.liveshare) {
-                return
-            }
-
-            const filePath = lw.liveshare.liveshare.convertSharedUriToLocal(vscode.Uri.parse(data.filePath, true)).fsPath
-            const targetPdfFile = lw.liveshare.liveshare.convertSharedUriToLocal(vscode.Uri.parse(data.targetPdfFile, true)).fsPath
-            void lw.locate.synctex.synctexToPDFCombined(data.line, data.column, filePath, targetPdfFile, data.indicator).then(record => {
-                if (!record) {
-                    logger.log(`Failed to locate synctex for ${filePath}. This was requested from a guest.`)
-                    return
-                }
-
-                const response: ServerResponse = {
-                    type: 'synctex_result',
-                    pdfFile: data.targetPdfFile,
-                    synctexData: record
-                }
-
-                websocket.send(JSON.stringify(response))
-            })
             break
         }
         case 'external_link': {
@@ -392,6 +346,9 @@ function handler(websocket: ws, msg: string): void {
             break
         }
         default: {
+            if (lw.extra.liveshare.handle.viewer.syncTeX(websocket, data)) {
+                break
+            }
             logger.log(`Unknown websocket message: ${msg}`)
             break
         }
@@ -447,7 +404,7 @@ function getParams(): PdfViewerParams {
  * @param record The position to be revealed.
  */
 async function locate(pdfFile: string, record: SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]): Promise<void> {
-    const pdfUri = lw.file.getUri(pdfFile)
+    const pdfUri = lw.file.toUri(pdfFile)
     let clientSet = manager.getClients(pdfUri)
     if (clientSet === undefined || clientSet.size === 0) {
         logger.log(`PDF is not opened: ${pdfFile} , try opening.`)

@@ -30,7 +30,7 @@ lw.watcher.bib.onChange(filePath => autoBuild(filePath, 'onFileChange', true))
  * changed.
  */
 function autoBuild(file: string, type: 'onFileChange' | 'onSave', bibChanged: boolean = false) {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(file))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(file))
     if (configuration.get('latex.autoBuild.run') as string !== type) {
         return
     }
@@ -57,7 +57,7 @@ function autoBuild(file: string, type: 'onFileChange' | 'onSave', bibChanged: bo
  * @returns {boolean} - True if auto-build can be triggered, false otherwise.
  */
 function canAutoBuild(): boolean {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.file.path ? lw.file.getUri(lw.root.file.path) : undefined)
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.file.path ? lw.file.toUri(lw.root.file.path) : undefined)
     return Date.now() - lw.compile.lastAutoBuildTime >= (configuration.get('latex.autoBuild.interval', 1000) as number)
 }
 
@@ -91,7 +91,7 @@ async function build(skipSelection: boolean = false, rootFile: string | undefine
 
     logger.log(`The document of the active editor: ${activeEditor.document.uri.toString(true)}`)
     logger.log(`The languageId of the document: ${activeEditor.document.languageId}`)
-    const workspace = rootFile ? lw.file.getUri(rootFile) : activeEditor.document.uri
+    const workspace = rootFile ? lw.file.toUri(rootFile) : activeEditor.document.uri
     const configuration = vscode.workspace.getConfiguration('latex-workshop', workspace)
     const externalBuildCommand = configuration.get('latex.external.build.command') as string
     const externalBuildArgs = configuration.get('latex.external.build.args') as string[]
@@ -187,7 +187,7 @@ async function buildLoop() {
  * process.
  */
 function spawnProcess(step: Step): ProcessEnv {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? lw.file.getUri(step.rootFile) : undefined)
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? lw.file.toUri(step.rootFile) : undefined)
     if (step.index === 0 || configuration.get('latex.build.clearLog.everyRecipeStep.enabled') as boolean) {
         logger.clearCompilerMessage()
     }
@@ -332,7 +332,7 @@ function handleExitCodeError(step: Step, env: ProcessEnv, stderr: string, code: 
         logger.log(`${stderr}`)
     }
 
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? lw.file.getUri(step.rootFile) : undefined)
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? lw.file.toUri(step.rootFile) : undefined)
     if (!step.isExternal && signal !== 'SIGTERM' && !step.isRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
         handleRetryError(step)
     } else if (!step.isExternal && signal !== 'SIGTERM') {
@@ -423,7 +423,7 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     lw.viewer.refresh(lw.file.getPdfPath(lastStep.rootFile))
     lw.completion.reference.setNumbersFromAuxFile(lastStep.rootFile)
     await lw.cache.loadFlsFile(lastStep.rootFile ?? '')
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.getUri(lastStep.rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(lastStep.rootFile))
     // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
     if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
         const pdfFile = lw.file.getPdfPath(lastStep.rootFile)

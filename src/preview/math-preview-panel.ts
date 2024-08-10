@@ -23,7 +23,7 @@ type UpdateEvent = {
 
 function resourcesFolder(extensionRoot: string) {
     const folder = path.join(extensionRoot, 'resources', 'mathpreviewpanel')
-    return lw.file.getUri(folder)
+    return lw.file.toUri(folder)
 }
 
 class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
@@ -157,7 +157,7 @@ function getHtml() {
                 padding-left: 50px;
             }
         </style>
-        <script src='http://127.0.0.1:${(lw.server.getLocalPort()).toString()}/mathpreviewpanel/mathpreview.js' defer></script>
+        <script src='http://127.0.0.1:${(lw.server.getPort()).toString()}/mathpreviewpanel/mathpreview.js' defer></script>
     </head>
     <body>
         <div id="mathBlock"><img src="" id="math" /></div>

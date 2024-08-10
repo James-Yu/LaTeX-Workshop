@@ -57,7 +57,7 @@ export async function graph2md(filePath: string, opts: { height: number, width: 
             return md
         } else {
             let msg = '$(error) Failed to render.'
-            if (!vscode.workspace.getWorkspaceFolder(lw.file.getUri(filePath))) {
+            if (!vscode.workspace.getWorkspaceFolder(lw.file.toUri(filePath))) {
                 msg = '$(warning) Cannot render a PDF file not in workspaces.'
             } else if (lw.extra.snippet.state.view?.webview === undefined) {
                 msg = '$(info) Please activate the LaTeX Workshop activity bar item to render PDF thumbnails.'
@@ -73,19 +73,19 @@ async function renderPdfFileAsDataUrl(pdfFilePath: string, opts: { height: numbe
         const maxDataUrlLength = 99980
         let scale = 1.5
         let newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-        let dataUrl = await lw.extra.snippet.render(lw.file.getUri(pdfFilePath), newOpts)
+        let dataUrl = await lw.extra.snippet.render(lw.file.toUri(pdfFilePath), newOpts)
         if (!dataUrl || dataUrl.length < maxDataUrlLength) {
             return dataUrl
         }
         scale = 1
         newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-        dataUrl = await lw.extra.snippet.render(lw.file.getUri(pdfFilePath), newOpts)
+        dataUrl = await lw.extra.snippet.render(lw.file.toUri(pdfFilePath), newOpts)
         if (!dataUrl || dataUrl.length < maxDataUrlLength) {
             return dataUrl
         }
         scale = Math.sqrt(maxDataUrlLength/dataUrl.length) / 1.2
         newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
-        dataUrl = await lw.extra.snippet.render(lw.file.getUri(pdfFilePath), newOpts)
+        dataUrl = await lw.extra.snippet.render(lw.file.toUri(pdfFilePath), newOpts)
         if (dataUrl && dataUrl.length >= maxDataUrlLength) {
             logger.log(`Data URL still too large: ${pdfFilePath}`)
             return

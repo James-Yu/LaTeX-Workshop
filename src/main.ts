@@ -39,10 +39,6 @@ import { extra } from './extras'
 lw.extra = extra
 import * as commander from './core/commands'
 lw.commands = commander
-import { LiveShare } from './extras/liveshare'
-lw.liveshare = new LiveShare()
-import { hostConnection } from './preview'
-lw.hostConnection = hostConnection
 
 log.initStatusBarItem()
 
@@ -160,8 +156,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
 function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext) {
     extensionContext.subscriptions.push(
-        vscode.commands.registerCommand('latex-workshop.acquireHostPort', () => lw.commands.acquireHostPort()),
-        vscode.commands.registerCommand('latex-workshop.shareHostPort', () => lw.commands.shareHostPort()),
+        vscode.commands.registerCommand('latex-workshop.hostPort', () => lw.commands.hostPort()),
         vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => lw.commands.saveActive()),
         vscode.commands.registerCommand('latex-workshop.build', () => lw.commands.build()),
         vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => lw.commands.recipes(recipe)),

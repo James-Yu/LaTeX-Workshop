@@ -58,15 +58,15 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         }
         const ref = lw.completion.reference.getItem(token)
         if (ref) {
-            return new vscode.Location(lw.file.getUri(ref.file), ref.position)
+            return new vscode.Location(lw.file.toUri(ref.file), ref.position)
         }
         const cite = lw.completion.citation.getItem(token)
         if (cite) {
-            return new vscode.Location(lw.file.getUri(cite.file), cite.position)
+            return new vscode.Location(lw.file.toUri(cite.file), cite.position)
         }
         const glossary = lw.completion.glossary.getItem(token)
         if (glossary) {
-            return new vscode.Location(lw.file.getUri(glossary.filePath), glossary.position)
+            return new vscode.Location(lw.file.toUri(glossary.filePath), glossary.position)
         }
         if (vscode.window.activeTextEditor && token.includes('.')) {
             // We skip graphics files
@@ -77,13 +77,13 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
             }
             const absolutePath = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), token)
             if (fs.existsSync(absolutePath)) {
-                return new vscode.Location( lw.file.getUri(absolutePath), new vscode.Position(0, 0) )
+                return new vscode.Location( lw.file.toUri(absolutePath), new vscode.Position(0, 0) )
             }
         }
 
         const filename = this.onAFilename(document, position, token)
         if (filename) {
-            return new vscode.Location( lw.file.getUri(filename), new vscode.Position(0, 0) )
+            return new vscode.Location( lw.file.toUri(filename), new vscode.Position(0, 0) )
         }
         return
     }
