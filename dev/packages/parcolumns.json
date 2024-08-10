@@ -1,0 +1,37 @@
+{
+  "includes": {
+    "processkv": []
+  },
+  "macros": {
+    "colchunk{}": {
+      "snippet": "colchunk{${1:chunk}}"
+    },
+    "colchunk[]{}": {
+      "snippet": "colchunk[${2:column}]{${1:chunk}}"
+    },
+    "colplacechunks": {}
+  },
+  "envs": {
+    "parcolumns{}": {
+      "name": "parcolumns",
+      "snippet": "{${1:number of cols}}"
+    },
+    "parcolumns[]{}": {
+      "name": "parcolumns",
+      "snippet": "[${2:options}]{${1:number of cols}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    }
+  },
+  "options": [],
+  "keyvals": [
+    [
+      "colwidths={${1:col=width,...}}",
+      "distance=",
+      "rulebetween",
+      "nofirstindent",
+      "sloppy",
+      "sloppyspaces"
+    ]
+  ]
+}

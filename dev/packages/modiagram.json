@@ -22,13 +22,29 @@
     "molecule[]{}": {
       "snippet": "molecule[${2:name}]{${1:MO-spec}}"
     },
+    "AO(){}{}": {
+      "snippet": "AO(${3:xshift}){${1:type}}{${2:energy; el-spec}}"
+    },
+    "AO(){}[]{}": {
+      "snippet": "AO(${4:xshift}){${1:type}}[${2:options}]{${3:energy; el-spec}}",
+      "keyvalindex": 1,
+      "keyvalpos": 2
+    },
+    "AO[](){}{}": {
+      "snippet": "AO[${3:name}](${4:xshift}){${1:type}}{${2:energy; el-spec}}"
+    },
+    "AO[](){}[]{}": {
+      "snippet": "AO[${3:name}](${5:xshift}){${1:type}}[${4:options}]{${2:energy; el-spec}}",
+      "keyvalindex": 1,
+      "keyvalpos": 3
+    },
     "connect{}": {
       "snippet": "connect{${1:AO-connect}}"
     },
     "EnergyAxis": {},
     "EnergyAxis[]": {
       "snippet": "EnergyAxis[${1:options}]",
-      "keyvalindex": 1,
+      "keyvalindex": 2,
       "keyvalpos": 0
     }
   },
@@ -57,6 +73,24 @@
       "labels",
       "labels-fs=${1:cmd}",
       "labels-style={${1:TikZ}}"
+    ],
+    [
+      "label=",
+      "label[x]=",
+      "label[y]=",
+      "label[z]=",
+      "color=",
+      "color[x]=",
+      "color[y]=",
+      "color[z]=",
+      "up-el-pos=${1:number}",
+      "up-el-pos[x]=${1:number}",
+      "up-el-pos[y]=${1:number}",
+      "up-el-pos[z]=${1:number}",
+      "down-el-pos=${1:number}",
+      "down-el-pos[x]=${1:number}",
+      "down-el-pos[y]=${1:number}",
+      "down-el-pos[z]=${1:number}"
     ],
     [
       "title=",

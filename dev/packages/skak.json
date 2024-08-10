@@ -1,0 +1,584 @@
+{
+  "includes": {
+    "chessfss": [],
+    "lambda": [],
+    "ifthen": [],
+    "calc": [],
+    "pstricks": [
+      "ps"
+    ],
+    "pst-node": [
+      "ps"
+    ]
+  },
+  "macros": {
+    "newgame": {},
+    "mainline{}": {
+      "snippet": "mainline{${1:moves}}"
+    },
+    "variation{}": {
+      "snippet": "variation{${1:moves}}"
+    },
+    "showboard": {},
+    "hidemoves{}": {
+      "snippet": "hidemoves{${1:moves}}"
+    },
+    "storegame{}": {
+      "snippet": "storegame{${1:name}}"
+    },
+    "restoregame{}": {
+      "snippet": "restoregame{${1:name}}"
+    },
+    "savegame{}": {
+      "snippet": "savegame{${1:name}}"
+    },
+    "loadgame{}": {
+      "snippet": "loadgame{${1:name}}"
+    },
+    "notationon": {},
+    "notationoff": {},
+    "notationOn": {},
+    "notationOff": {},
+    "showinverseboard": {},
+    "wmove{}": {
+      "snippet": "wmove{${1:move}}"
+    },
+    "bmove{}": {
+      "snippet": "bmove{${1:move}}"
+    },
+    "lastmove{}": {
+      "snippet": "lastmove{${1:move}}"
+    },
+    "showonlywhite": {},
+    "showonlyblack": {},
+    "showonly{}": {
+      "snippet": "showonly{${1:piece1,${2:piece2},...}}"
+    },
+    "showallbut{}": {
+      "snippet": "showallbut{${1:piece1,${2:piece2},...}}"
+    },
+    "fenboard{}": {
+      "snippet": "fenboard{${1:instructions}}"
+    },
+    "styleA": {},
+    "styleB": {},
+    "styleC": {},
+    "variationstyle": {},
+    "mainlinestyle": {},
+    "longmoves": {},
+    "shortmoves": {},
+    "newskaklanguage{}{}": {
+      "snippet": "newskaklanguage{${1:language}}{${2:pieces}}"
+    },
+    "skaklanguage[]": {
+      "snippet": "skaklanguage[${1:language}]"
+    },
+    "boardasfen": {},
+    "EnPassantSquare": {},
+    "variationcurrent": {},
+    "continuevariation": {},
+    "continuevariationcurrent": {},
+    "tinyboard": {},
+    "smallboard": {},
+    "normalboard": {},
+    "largeboard": {},
+    "movecomment{}": {
+      "snippet": "movecomment{${1:moves}}"
+    },
+    "showall": {},
+    "showonlypawns": {},
+    "showmoveron": {},
+    "showmoveroff": {},
+    "showmoverOn": {},
+    "showmoverOff": {},
+    "printarrow{}{}": {
+      "snippet": "printarrow{${1:from}}{${2:to}}"
+    },
+    "highlight{}": {
+      "snippet": "highlight{${1:square list}}"
+    },
+    "highlight[]{}": {
+      "snippet": "highlight[${2:marker}]{${1:square list}}"
+    },
+    "printknightmove{}{}": {
+      "snippet": "printknightmove{${1:from}}{${2:to}}"
+    },
+    "afterblack": {},
+    "AfterBlack": {},
+    "aftergrouplength": {},
+    "afterwhite": {},
+    "AfterWhite": {},
+    "Apply{}{}": {
+      "snippet": "Apply{${1:arg1}}{${2:arg2}}"
+    },
+    "arga": {},
+    "argb": {},
+    "BackwardDirection{}": {
+      "snippet": "BackwardDirection{${1:arg1}}"
+    },
+    "beforeblack": {},
+    "beforenumber": {},
+    "beforewhite": {},
+    "BlackCastling": {},
+    "BlackKingSquare": {},
+    "blackopen": {},
+    "BlackPiece{}": {
+      "snippet": "BlackPiece{${1:arg1}}"
+    },
+    "BlackSquarePiece{}": {
+      "snippet": "BlackSquarePiece{${1:arg1}}"
+    },
+    "BoolToString{}": {
+      "snippet": "BoolToString{${1:arg1}}"
+    },
+    "Capture": {},
+    "CastleDone{}": {
+      "snippet": "CastleDone{${1:arg1}}"
+    },
+    "CastleKingFile{}": {
+      "snippet": "CastleKingFile{${1:arg1}}"
+    },
+    "CastleRookFromFile{}": {
+      "snippet": "CastleRookFromFile{${1:arg1}}"
+    },
+    "CastleRookToFile{}": {
+      "snippet": "CastleRookToFile{${1:arg1}}"
+    },
+    "Castling": {},
+    "CheckTest": {},
+    "closecommands": {},
+    "currentlanguage": {},
+    "currentstyle": {},
+    "DoTheMove{}": {
+      "snippet": "DoTheMove{${1:arg1}}"
+    },
+    "DoTheMoveList{}": {
+      "snippet": "DoTheMoveList{${1:arg1}}"
+    },
+    "EatNumber{}": {
+      "snippet": "EatNumber{${1:arg1}}"
+    },
+    "EatNumberA()": {
+      "snippet": "EatNumberA(${1:arg1})"
+    },
+    "EmptyBoard": {},
+    "EqPiece{}{}": {
+      "snippet": "EqPiece{${1:arg1}}{${2:arg2}}"
+    },
+    "EqSquare{}{}": {
+      "snippet": "EqSquare{${1:arg1}}{${2:arg2}}"
+    },
+    "EqStr{}{}": {
+      "snippet": "EqStr{${1:arg1}}{${2:arg2}}"
+    },
+    "ExecuteCastling": {},
+    "ExecuteKingMove": {},
+    "ExecuteMoves": {},
+    "ExecutePawnMove": {},
+    "ExecutePieceMove": {},
+    "ExpectedColour": {},
+    "Explode{}": {
+      "snippet": "Explode{${1:arg1}}"
+    },
+    "ExplodeA{}{}": {
+      "snippet": "ExplodeA{${1:arg1}}{${2:arg2}}"
+    },
+    "ExtractBlackCastling{}": {
+      "snippet": "ExtractBlackCastling{${1:arg1}}"
+    },
+    "ExtractBlackCastlingA()": {
+      "snippet": "ExtractBlackCastlingA(${1:arg1})"
+    },
+    "ExtractWhiteCastling{}": {
+      "snippet": "ExtractWhiteCastling{${1:arg1}}"
+    },
+    "ExtractWhiteCastlingA()": {
+      "snippet": "ExtractWhiteCastlingA(${1:arg1})"
+    },
+    "FenBoard": {},
+    "FenConvert{}": {
+      "snippet": "FenConvert{${1:arg1}}"
+    },
+    "FF{}{}": {
+      "snippet": "FF{${1:arg1}}{${2:arg2}}"
+    },
+    "File{}": {
+      "snippet": "File{${1:arg1}}"
+    },
+    "FileDiscriminator": {},
+    "FileNames": {},
+    "FileOf()": {
+      "snippet": "FileOf(${1:arg})"
+    },
+    "FilterShowOnly{}": {
+      "snippet": "FilterShowOnly{${1:arg1}}"
+    },
+    "FindPieceSquares{}{}": {
+      "snippet": "FindPieceSquares{${1:arg1}}{${2:arg2}}"
+    },
+    "FirstChar()": {
+      "snippet": "FirstChar(${1:arg1})"
+    },
+    "FirstRank{}": {
+      "snippet": "FirstRank{${1:arg1}}"
+    },
+    "ForwardDirection{}": {
+      "snippet": "ForwardDirection{${1:arg1}}"
+    },
+    "FromRank": {},
+    "Get{}": {
+      "snippet": "Get{${1:arg1}}"
+    },
+    "GetBool{}": {
+      "snippet": "GetBool{${1:arg1}}"
+    },
+    "GetNeighbour{}{}": {
+      "snippet": "GetNeighbour{${1:arg1}}{${2:arg2}}"
+    },
+    "Glue{}{}": {
+      "snippet": "Glue{${1:arg1}}{${2:arg2}}"
+    },
+    "HandleMove()": {
+      "snippet": "HandleMove(${1:arg1})"
+    },
+    "InitBoard()": {
+      "snippet": "InitBoard(${1:arg1})"
+    },
+    "InitialRank": {},
+    "InitRank{}{}{}{}{}{}{}{}{}": {
+      "snippet": "InitRank{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}{${9:arg9}}"
+    },
+    "IsBishopQueen{}{}": {
+      "snippet": "IsBishopQueen{${1:arg1}}{${2:arg2}}"
+    },
+    "IsCapture{}": {
+      "snippet": "IsCapture{${1:arg1}}"
+    },
+    "IsDash{}": {
+      "snippet": "IsDash{${1:arg1}}"
+    },
+    "IsFile{}": {
+      "snippet": "IsFile{${1:arg1}}"
+    },
+    "IsNil{}": {
+      "snippet": "IsNil{${1:arg1}}"
+    },
+    "IsO{}": {
+      "snippet": "IsO{${1:arg1}}"
+    },
+    "IsPieceName{}": {
+      "snippet": "IsPieceName{${1:arg1}}"
+    },
+    "IsPromotion{}": {
+      "snippet": "IsPromotion{${1:arg1}}"
+    },
+    "IsRank{}": {
+      "snippet": "IsRank{${1:arg1}}"
+    },
+    "IsRightPiece{}{}": {
+      "snippet": "IsRightPiece{${1:arg1}}{${2:arg2}}"
+    },
+    "IsRookQueen{}{}": {
+      "snippet": "IsRookQueen{${1:arg1}}{${2:arg2}}"
+    },
+    "KingSquare{}": {
+      "snippet": "KingSquare{${1:arg1}}"
+    },
+    "KnightSquares{}": {
+      "snippet": "KnightSquares{${1:arg1}}"
+    },
+    "LambdaAnd": {},
+    "LastCharWasCastle": {},
+    "LastMoveString": {},
+    "leavestylec": {},
+    "LeftDirection{}": {
+      "snippet": "LeftDirection{${1:arg1}}"
+    },
+    "LegalMove{}": {
+      "snippet": "LegalMove{${1:arg1}}"
+    },
+    "LongCastling": {},
+    "LookFor{}{}{}": {
+      "snippet": "LookFor{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "LookForA{}{}{}": {
+      "snippet": "LookForA{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "LookForMove()": {
+      "snippet": "LookForMove(${1:arg1})"
+    },
+    "Mainline()": {
+      "snippet": "Mainline(${1:arg1})"
+    },
+    "MakeMove{}": {
+      "snippet": "MakeMove{${1:arg1}}"
+    },
+    "MakeMoveMainline{}": {
+      "snippet": "MakeMoveMainline{${1:arg1}}"
+    },
+    "MateTest": {},
+    "Member{}{}{}": {
+      "snippet": "Member{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "MemberA{}{}{}{}": {
+      "snippet": "MemberA{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "MoveFrom": {},
+    "movehyphen": {},
+    "MoveRest": {},
+    "MoveTo": {},
+    "MoveToFile": {},
+    "MoveToRank": {},
+    "movewhite": {},
+    "MyEqual{}{}": {
+      "snippet": "MyEqual{${1:arg1}}{${2:arg2}}"
+    },
+    "MyEqualB{}{}{}{}": {
+      "snippet": "MyEqualB{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "MyFirst()": {
+      "snippet": "MyFirst(${1:arg})"
+    },
+    "myrestore{}": {
+      "snippet": "myrestore{${1:arg}}"
+    },
+    "myrightfile{}{}": {
+      "snippet": "myrightfile{${1:arg1}}{${2:arg2}}"
+    },
+    "MySecond()": {
+      "snippet": "MySecond(${1:arg})"
+    },
+    "mystore{}": {
+      "snippet": "mystore{${1:arg}}"
+    },
+    "next": {},
+    "NoEnemiesFound": {},
+    "normalstyles": {},
+    "NotMember{}{}": {
+      "snippet": "NotMember{${1:arg1}}{${2:arg2}}"
+    },
+    "NumberNext": {},
+    "oldpiece": {},
+    "opencommands": {},
+    "pap": {},
+    "ParseCastling()": {
+      "snippet": "ParseCastling(${1:arg1})"
+    },
+    "ParseCastlingA()": {
+      "snippet": "ParseCastlingA(${1:arg1})"
+    },
+    "ParseCoordinates()": {
+      "snippet": "ParseCoordinates(${1:arg1})"
+    },
+    "ParseFenRank{}": {
+      "snippet": "ParseFenRank{${1:arg1}}"
+    },
+    "ParseFenRankA()": {
+      "snippet": "ParseFenRankA(${1:arg1})"
+    },
+    "ParseMove{}": {
+      "snippet": "ParseMove{${1:arg1}}"
+    },
+    "ParseMoveA()": {
+      "snippet": "ParseMoveA(${1:arg1})"
+    },
+    "ParseMoveInit": {},
+    "PawnFrom": {},
+    "PieceNames": {},
+    "PieceNameToMove": {},
+    "PieceNameToPiece{}{}": {
+      "snippet": "PieceNameToPiece{${1:arg1}}{${2:arg2}}"
+    },
+    "PieceToFen{}": {
+      "snippet": "PieceToFen{${1:arg1}}"
+    },
+    "PieceToMove": {},
+    "PrintCastling": {},
+    "printfileangle{}{}": {
+      "snippet": "printfileangle{${1:arg1}}{${2:arg2}}"
+    },
+    "printmove": {},
+    "PrintMoves": {},
+    "printrankangle{}{}": {
+      "snippet": "printrankangle{${1:arg1}}{${2:arg2}}"
+    },
+    "Promotion": {},
+    "PromotionPieceName": {},
+    "Rank{}": {
+      "snippet": "Rank{${1:arg1}}"
+    },
+    "RankDiscriminator": {},
+    "ranklift": {},
+    "RankNames": {},
+    "RankOf()": {
+      "snippet": "RankOf(${1:arg})"
+    },
+    "RemoveLongCastling": {},
+    "RemoveShortCastling": {},
+    "RestChars()": {
+      "snippet": "RestChars(${1:arg1})"
+    },
+    "RightDirection{}": {
+      "snippet": "RightDirection{${1:arg1}}"
+    },
+    "RightFile()": {
+      "snippet": "RightFile(${1:arg1})"
+    },
+    "RightRank()": {
+      "snippet": "RightRank(${1:arg1})"
+    },
+    "runmoves{}": {
+      "snippet": "runmoves{${1:arg1}}"
+    },
+    "ScanDirections{}{}{}": {
+      "snippet": "ScanDirections{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "Set{}{}": {
+      "snippet": "Set{${1:arg1}}{${2:arg2}}"
+    },
+    "SetCheckKing{}{}": {
+      "snippet": "SetCheckKing{${1:arg1}}{${2:arg2}}"
+    },
+    "SetDownLeftNeighbour{}{}{}": {
+      "snippet": "SetDownLeftNeighbour{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "SetDownNeighbour{}{}{}": {
+      "snippet": "SetDownNeighbour{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "SetDownRightNeighbour{}{}{}": {
+      "snippet": "SetDownRightNeighbour{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "SetKingSquare{}{}": {
+      "snippet": "SetKingSquare{${1:arg1}}{${2:arg2}}"
+    },
+    "SetKnightSquares{}{}": {
+      "snippet": "SetKnightSquares{${1:arg1}}{${2:arg2}}"
+    },
+    "SetLeftNeighbour{}{}{}": {
+      "snippet": "SetLeftNeighbour{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "SetNeighbour{}{}{}": {
+      "snippet": "SetNeighbour{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "SetRank{}{}": {
+      "snippet": "SetRank{${1:arg1}}{${2:arg2}}"
+    },
+    "SetRightNeighbour{}{}{}": {
+      "snippet": "SetRightNeighbour{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "setupboard{}{}": {
+      "snippet": "setupboard{${1:arg1}}{${2:arg2}}"
+    },
+    "SetUpLeftNeighbour{}{}{}": {
+      "snippet": "SetUpLeftNeighbour{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "SetUpNeighbour{}{}{}": {
+      "snippet": "SetUpNeighbour{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "SetUpRightNeighbour{}{}{}": {
+      "snippet": "SetUpRightNeighbour{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "Showchar{}": {
+      "snippet": "Showchar{${1:arg1}}"
+    },
+    "Showfile{}": {
+      "snippet": "Showfile{${1:arg1}}"
+    },
+    "Showfiles": {},
+    "ShowMover": {},
+    "ShowMoverBlackInverse": {},
+    "ShowMoverBlackNormal": {},
+    "ShowMoverWhiteInverse": {},
+    "ShowMoverWhiteNormal": {},
+    "ShowOnlyList": {},
+    "ShowParseInfo": {},
+    "Showrank{}": {
+      "snippet": "Showrank{${1:arg1}}"
+    },
+    "ShowrankInverse{}": {
+      "snippet": "ShowrankInverse{${1:arg1}}"
+    },
+    "ShowrankInverseWithNumber{}": {
+      "snippet": "ShowrankInverseWithNumber{${1:arg1}}"
+    },
+    "ShowrankNumber{}": {
+      "snippet": "ShowrankNumber{${1:arg1}}"
+    },
+    "ShowrankWithNumber{}": {
+      "snippet": "ShowrankWithNumber{${1:arg1}}"
+    },
+    "showskaklanguage": {},
+    "Sideeffect{}{}{}": {
+      "snippet": "Sideeffect{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "skakstore": {},
+    "squarelength": {},
+    "StoreBool{}{}": {
+      "snippet": "StoreBool{${1:arg1}}{${2:arg2}}"
+    },
+    "StoreLastMove": {},
+    "StringToTokens{}": {
+      "snippet": "StringToTokens{${1:arg1}}"
+    },
+    "StripMove()": {
+      "snippet": "StripMove(${1:arg1})"
+    },
+    "StrToTokens()": {
+      "snippet": "StrToTokens(${1:arg1})"
+    },
+    "tempCastling": {},
+    "TeXifx{}{}{}": {
+      "snippet": "TeXifx{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "thefileFrom": {},
+    "thefileTo": {},
+    "thehalfmove": {},
+    "thehelpgobble": {},
+    "thehelpnumber": {},
+    "thehelpnumberMove": {},
+    "themove": {},
+    "therankFrom": {},
+    "therankTo": {},
+    "tmpCastling": {},
+    "ToggleWhiteSquare": {},
+    "trimhelp": {},
+    "TrimMoveList{}": {
+      "snippet": "TrimMoveList{${1:arg1}}"
+    },
+    "TypeSetAfterBlack": {},
+    "TypeSetAfterWhite": {},
+    "TypeSetColour": {},
+    "TypeSetNumberNext": {},
+    "UndoMove{}": {
+      "snippet": "UndoMove{${1:arg1}}"
+    },
+    "UniqueMove": {},
+    "UpdateCastling": {},
+    "WhiteCastling": {},
+    "WhiteKingSquare": {},
+    "whiteopen": {},
+    "WhiteSquare": {},
+    "WhiteSquarePiece": {},
+    "WhiteToMove{}{}": {
+      "snippet": "WhiteToMove{${1:arg1}}{${2:arg2}}"
+    }
+  },
+  "envs": {},
+  "options": [
+    "tiny",
+    "small",
+    "normal",
+    "large",
+    "notation",
+    "mover",
+    "moveroff",
+    "notationoff",
+    "ps",
+    "psoff",
+    "english",
+    "styleA",
+    "styleB",
+    "styleC"
+  ],
+  "keyvals": []
+}

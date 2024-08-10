@@ -1,0 +1,49 @@
+{
+  "includes": {
+    "environ": [],
+    "etoolbox": [],
+    "pgfkeys": [],
+    "pgfopts": []
+  },
+  "macros": {
+    "NewMultilangCmd{}{}": {
+      "snippet": "NewMultilangCmd{${1:command}}{${2:options}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "NewMultilangEnv{}{}": {
+      "snippet": "NewMultilangEnv{${1:envname}}{${2:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 1
+    },
+    "NewMultilangType{}{}": {
+      "snippet": "NewMultilangType{${1:type name}}{${2:format}}"
+    },
+    "NewMultilangType[]{}{}": {
+      "snippet": "NewMultilangType[${3:arg count}]{${1:type name}}{${2:format}}"
+    }
+  },
+  "envs": {},
+  "options": [
+    "languages={${1:lang1,lang2,...}}"
+  ],
+  "keyvals": [
+    [
+      "command=${1:command}",
+      "margs={${1:arg1,arg2,...}}",
+      "oargs={${1:arg1,arg2,...}}",
+      "starred",
+      "disablable",
+      "defaults={${1:arg1=val1,arg2=val2,...}}",
+      "alias/${1:name}={${2:arg1,arg2,...}}"
+    ],
+    [
+      "environment=${1:environment}",
+      "margs={${1:arg1,arg2,...}}",
+      "oargs={${1:arg1,arg2,...}}",
+      "disablable",
+      "defaults={${1:arg1=val1,arg2=val2,...}}",
+      "alias/${1:name}={${2:arg1,arg2,...}}"
+    ]
+  ]
+}

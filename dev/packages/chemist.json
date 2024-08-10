@@ -1,0 +1,470 @@
+{
+  "includes": {
+    "assurechemist": []
+  },
+  "macros": {
+    "bury{}": {
+      "snippet": "bury{${1:content}}"
+    },
+    "cdonecell{}{}{}": {
+      "snippet": "cdonecell{${1:dimenA}}{${2:dimenB}}{${3:content}}"
+    },
+    "cdtwocell{}{}{}{}": {
+      "snippet": "cdtwocell{${1:dimenA}}{${2:dimenB}}{${3:content}}{${4:label}}"
+    },
+    "ChemEqFont": {},
+    "ChemForm{}": {
+      "snippet": "ChemForm{${1:formula}}"
+    },
+    "chemform{}": {
+      "snippet": "chemform{${1:formula}}"
+    },
+    "chemistsw": {},
+    "ChemStrut": {},
+    "compd": {},
+    "compdlabel{}": {
+      "snippet": "compdlabel{${1:label}}"
+    },
+    "cref{}": {
+      "snippet": "cref{${1:label}}"
+    },
+    "dbond": {},
+    "degC": {},
+    "degF": {},
+    "deriv": {},
+    "deriva": {},
+    "derivalabel{}": {
+      "snippet": "derivalabel{${1:label}}"
+    },
+    "derivlabel{}": {
+      "snippet": "derivlabel{${1:label}}"
+    },
+    "derivnum": {},
+    "doublebond": {},
+    "eqlbarrowstretch": {},
+    "Equilibarrow": {},
+    "equilibarrow": {},
+    "Equiliblongarrow": {},
+    "equiliblongarrow": {},
+    "fboxit{}{}": {
+      "snippet": "fboxit{${1:width}}{${2:text}}"
+    },
+    "leftshfbox{}": {
+      "snippet": "leftshfbox{${1:text}}"
+    },
+    "leftshframe{}{}": {
+      "snippet": "leftshframe{${1:width}}{${2:text}}"
+    },
+    "Lllongleftarrow": {},
+    "lllongleftarrow": {},
+    "lllongleftharpoondown": {},
+    "lllongleftharpoonup": {},
+    "Lllongleftrightarrow": {},
+    "lllongleftrightarrow": {},
+    "Lllongrightarrow": {},
+    "lllongrightarrow": {},
+    "lllongrightharpoondown": {},
+    "lllongrightharpoonup": {},
+    "Llongleftarrow": {},
+    "llongleftarrow": {},
+    "llongleftharpoondown": {},
+    "llongleftharpoonup": {},
+    "Llongleftrightarrow": {},
+    "llongleftrightarrow": {},
+    "Llongrightarrow": {},
+    "llongrightarrow": {},
+    "llongrightharpoondown": {},
+    "llongrightharpoonup": {},
+    "newchemenvironment{}{}": {
+      "snippet": "newchemenvironment{${1:envname}}{${2:old envname}}"
+    },
+    "nocompd": {},
+    "nocompdlabel{}": {
+      "snippet": "nocompdlabel{${1:label}}"
+    },
+    "noderiv": {},
+    "noderiva": {},
+    "noderivalabel{}": {
+      "snippet": "noderivalabel{${1:label}}"
+    },
+    "noderivlabel{}": {
+      "snippet": "noderivlabel{${1:label}}"
+    },
+    "reactarrowsep": {},
+    "reactarrowseprate": {},
+    "reactdarrow{}{}{}{}": {
+      "snippet": "reactdarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactDEqarrow{}{}{}{}": {
+      "snippet": "reactDEqarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactdeqarrow{}{}{}{}": {
+      "snippet": "reactdeqarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactdlrarrow{}{}{}{}": {
+      "snippet": "reactdlrarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactduarrow{}{}{}{}": {
+      "snippet": "reactduarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactEqarrow{}{}{}{}": {
+      "snippet": "reactEqarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reacteqarrow{}{}{}{}": {
+      "snippet": "reacteqarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactlarrow{}{}{}{}": {
+      "snippet": "reactlarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactLEqarrow{}{}{}{}": {
+      "snippet": "reactLEqarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactleqarrow{}{}{}{}": {
+      "snippet": "reactleqarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactlrarrow{}{}{}{}": {
+      "snippet": "reactlrarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactnearrow{}{}{}{}": {
+      "snippet": "reactnearrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactnwarrow{}{}{}{}": {
+      "snippet": "reactnwarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactrarrow{}{}{}{}": {
+      "snippet": "reactrarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactREqarrow{}{}{}{}": {
+      "snippet": "reactREqarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactreqarrow{}{}{}{}": {
+      "snippet": "reactreqarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactsearrow{}{}{}{}": {
+      "snippet": "reactsearrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactswarrow{}{}{}{}": {
+      "snippet": "reactswarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactuarrow{}{}{}{}": {
+      "snippet": "reactuarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactUEqarrow{}{}{}{}": {
+      "snippet": "reactUEqarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactueqarrow{}{}{}{}": {
+      "snippet": "reactueqarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactulrarrow{}{}{}{}": {
+      "snippet": "reactulrarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactVEqarrow{}{}{}{}": {
+      "snippet": "reactVEqarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "reactveqarrow{}{}{}{}": {
+      "snippet": "reactveqarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "rightshfbox{}": {
+      "snippet": "rightshfbox{${1:text}}"
+    },
+    "rightshframe{}{}": {
+      "snippet": "rightshframe{${1:width}}{${2:text}}"
+    },
+    "schemelarrow{}{}{}{}": {
+      "snippet": "schemelarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "schemelrarrow{}{}{}{}": {
+      "snippet": "schemelrarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "schemerarrow{}{}{}{}": {
+      "snippet": "schemerarrow{${1:shift}}{${2:length}}{${3:above}}{${4:below}}"
+    },
+    "tbond": {},
+    "tboxtitle": {},
+    "thecompd": {},
+    "triplebond": {},
+    "aaa": {},
+    "agx": {},
+    "agxdv": {},
+    "agxlatent": {},
+    "bbb": {},
+    "Bib": {},
+    "BibTeX": {},
+    "calcontrolpoints{}": {
+      "snippet": "calcontrolpoints{${1:arg1}}"
+    },
+    "Cent": {},
+    "changespace{}": {
+      "snippet": "changespace{${1:arg1}}"
+    },
+    "chapinitial": {},
+    "ChemAccent{}{}{}": {
+      "snippet": "ChemAccent{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "chemcorr": {},
+    "chemGreekletter{}{}": {
+      "snippet": "chemGreekletter{${1:arg1}}{${2:arg2}}"
+    },
+    "chemtimesfalse": {},
+    "chemtimestrue": {},
+    "chemUpGreekletter{}{}{}": {
+      "snippet": "chemUpGreekletter{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "compdfbox{}{}{}": {
+      "snippet": "compdfbox{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "compdmbox{}{}{}": {
+      "snippet": "compdmbox{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "cyandv": {},
+    "cyandye": {},
+    "deHBr": {},
+    "derivfbox{}{}{}": {
+      "snippet": "derivfbox{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "derivlist{}": {
+      "snippet": "derivlist{${1:arg1}}"
+    },
+    "derivmbox{}{}{}": {
+      "snippet": "derivmbox{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "downwardarrowcalcA": {},
+    "downwardarrowcalcB": {},
+    "endash": {},
+    "eqproton": {},
+    "ffparbox{}{}": {
+      "snippet": "ffparbox{${1:arg1}}{${2:arg2}}"
+    },
+    "fgcaption": {},
+    "horizon": {},
+    "ifchemtimes": {},
+    "ifupgreekrm": {},
+    "ifverbswitch": {},
+    "jBibTeX": {},
+    "jLaTeX": {},
+    "journalID": {},
+    "jTeX": {},
+    "kanzanchi": {},
+    "kanzanhalf": {},
+    "kkk": {},
+    "La": {},
+    "lbcompdpbox{}{}{}": {
+      "snippet": "lbcompdpbox{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "lbderivpbox{}{}{}": {
+      "snippet": "lbderivpbox{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "leavechemcorr": {},
+    "Leftarrowfill": {},
+    "Leftrightarrowfill": {},
+    "leftrightarrowfill": {},
+    "lethead{}{}{}": {
+      "snippet": "lethead{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    },
+    "magentadv": {},
+    "magentadye": {},
+    "member": {},
+    "miniscreentoprule": {},
+    "next": {},
+    "nrep": {},
+    "nrepmax": {},
+    "oldalpha": {},
+    "oldbeta": {},
+    "oldcal": {},
+    "oldchi": {},
+    "oldDelta": {},
+    "olddelta": {},
+    "oldepsilon": {},
+    "oldEquilibarrow": {},
+    "oldequilibarrow": {},
+    "oldEquiliblongarrow": {},
+    "oldequiliblongarrow": {},
+    "oldeta": {},
+    "oldGamma": {},
+    "oldgamma": {},
+    "oldiota": {},
+    "oldkappa": {},
+    "oldlambda": {},
+    "oldLamda": {},
+    "oldLllongleftarrow": {},
+    "oldlllongleftarrow": {},
+    "oldlllongleftharpoondown": {},
+    "oldLllongleftrightarrow": {},
+    "oldlllongleftrightarrow": {},
+    "oldLllongrightarrow": {},
+    "oldlllongrightarrow": {},
+    "oldlllongrightharpoonup": {},
+    "oldLlongleftarrow": {},
+    "oldllongleftarrow": {},
+    "oldllongleftharpoondown": {},
+    "oldLlongleftrightarrow": {},
+    "oldllongleftrightarrow": {},
+    "oldLlongrightarrow": {},
+    "oldllongrightarrow": {},
+    "oldllongrightharpoonup": {},
+    "oldmathcal": {},
+    "oldmathnormal": {},
+    "oldmu": {},
+    "oldnu": {},
+    "oldOmega": {},
+    "oldomega": {},
+    "oldPhi": {},
+    "oldphi": {},
+    "oldPi": {},
+    "oldpi": {},
+    "oldPsi": {},
+    "oldpsi": {},
+    "oldreactdarrow": {},
+    "oldreactdeqarrow": {},
+    "oldreactdlrarrow": {},
+    "oldreactduarrow": {},
+    "oldreacteqarrow": {},
+    "oldreactlarrow": {},
+    "oldreactleqarrow": {},
+    "oldreactlrarrow": {},
+    "oldreactnearrow": {},
+    "oldreactnwarrow": {},
+    "oldreactrarrow": {},
+    "oldreactreqarrow": {},
+    "oldreactsearrow": {},
+    "oldreactswarrow": {},
+    "oldreactuarrow": {},
+    "oldreactueqarrow": {},
+    "oldreactulrarrow": {},
+    "oldreactveqarrow": {},
+    "oldrho": {},
+    "oldschemelarrow{}{}{}{}": {
+      "snippet": "oldschemelarrow{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "oldschemelrarrow{}{}{}{}": {
+      "snippet": "oldschemelrarrow{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "oldschemerarrow{}{}{}{}": {
+      "snippet": "oldschemerarrow{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    },
+    "oldSigma": {},
+    "oldsigma": {},
+    "oldstyle": {},
+    "oldtau": {},
+    "oldTheta": {},
+    "oldtheta": {},
+    "oldUpsilon": {},
+    "oldupsilon": {},
+    "oldvarepsilon": {},
+    "oldvarphi": {},
+    "oldvarpi": {},
+    "oldvarrho": {},
+    "oldvarsigma": {},
+    "oldvartheta": {},
+    "oldXi": {},
+    "oldxi": {},
+    "oldzeta": {},
+    "penetrate{}{}": {
+      "snippet": "penetrate{${1:arg1}}{${2:arg2}}"
+    },
+    "PiC": {},
+    "PiCTeX": {},
+    "Post": {},
+    "PostScript": {},
+    "pTeX": {},
+    "pushtowall": {},
+    "resetfontsize": {},
+    "Rightarrowfill": {},
+    "rshfboxit{}": {
+      "snippet": "rshfboxit{${1:arg1}}"
+    },
+    "sboxit{}{}": {
+      "snippet": "sboxit{${1:arg1}}{${2:arg2}}"
+    },
+    "Script": {},
+    "SetChemSymbol": {},
+    "smcaption": {},
+    "Sub": {},
+    "SubBib": {},
+    "tbaselineshift": {},
+    "tbcaption": {},
+    "tboxscreentoprule": {},
+    "TestCount": {},
+    "thederiv": {},
+    "tmpkern": {},
+    "tpic": {},
+    "upgreekrmfalse": {},
+    "upgreekrmtrue": {},
+    "upwardarrowcalcA": {},
+    "upwardarrowcalcB": {},
+    "verbatimbaselineskip": {},
+    "verbatimleftmargin": {},
+    "verbatimsize": {},
+    "verbswitchfalse": {},
+    "verbswitchtrue": {},
+    "xlethead{}": {
+      "snippet": "xlethead{${1:arg1}}"
+    },
+    "xymrefa": {},
+    "xymrefb": {},
+    "ybaselineshift": {},
+    "yellowdv": {},
+    "yellowdye": {},
+    "yen": {
+      "detail": "¥",
+      "documentation": "YEN SIGN"
+    },
+    "yubin": {},
+    "Yubin{}": {
+      "snippet": "Yubin{${1:arg1}}"
+    }
+  },
+  "envs": {
+    "ChemEqnarray": {},
+    "ChemEqnarray*": {},
+    "ChemEquation": {},
+    "XyMcompd(width,height)(xshift,yshift){}{}": {
+      "name": "XyMcompd",
+      "snippet": "(${3:width},${4:height})(${5:xshift},${6:yshift}){${1:refkey}}{${2:subkey}}"
+    },
+    "XyMtab{}": {
+      "name": "XyMtab",
+      "snippet": "{${1:cols}}"
+    },
+    "chemeqn": {},
+    "chemeqnarray": {},
+    "chemeqnarraya": {},
+    "chemmath": {},
+    "frameboxit{}": {
+      "name": "frameboxit",
+      "snippet": "{${1:width}}"
+    },
+    "glshfboxit{}": {
+      "name": "glshfboxit",
+      "snippet": "{${1:width}}"
+    },
+    "grshfboxit{}": {
+      "name": "grshfboxit",
+      "snippet": "{${1:width}}"
+    },
+    "lshfboxit{}": {
+      "name": "lshfboxit",
+      "snippet": "{${1:width}}"
+    },
+    "miniscreen{}": {
+      "name": "miniscreen",
+      "snippet": "{${1:width}}"
+    },
+    "rshfboxit{}": {
+      "name": "rshfboxit",
+      "snippet": "{${1:width}}"
+    },
+    "screen": {},
+    "tboxminiscreen{}": {
+      "name": "tboxminiscreen",
+      "snippet": "{${1:width}}"
+    },
+    "tboxscreen": {},
+    "ffboxit": {},
+    "XyMderiv": {}
+  },
+  "options": [
+    "chemtimes"
+  ],
+  "keyvals": []
+}

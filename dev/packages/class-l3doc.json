@@ -185,11 +185,11 @@
     },
     "macro{}": {
       "name": "macro",
-      "snippet": "{${1:macro1,macro2,...}}"
+      "snippet": "{${1:macro1,${2:macro2},...}}"
     },
     "macro[]{}": {
       "name": "macro",
-      "snippet": "[${2:options}]{${1:macro1,macro2,...}}",
+      "snippet": "[${2:options}]{${1:macro1,${3:macro2},...}}",
       "keyvalindex": 1,
       "keyvalpos": 0
     },
@@ -231,14 +231,11 @@
     "full",
     "onlydoc",
     "check",
-    "nocheck",
     "checktest",
-    "nochecktest",
     "kernel",
     "stdmodule",
-    "cm-default",
     "lm-default",
-    "cs-break-off",
+    "cs-break",
     "cs-break-nohyphen",
     "show-notes",
     "hide-notes",
@@ -271,11 +268,19 @@
       "replace"
     ],
     [
-      "int",
+      "EXP",
+      "rEXP",
       "TF",
       "pTF",
       "noTF",
-      "verb"
+      "added=${1:date}",
+      "updated=${1:date}",
+      "deprecated",
+      "no-user-doc",
+      "label=",
+      "verb",
+      "module=",
+      "int"
     ]
   ]
 }

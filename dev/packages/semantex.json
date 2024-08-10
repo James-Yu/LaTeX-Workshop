@@ -1,0 +1,630 @@
+{
+  "includes": {
+    "l3keys2e": [],
+    "leftindex": [],
+    "semtex": []
+  },
+  "macros": {
+    "NewVariableClass{}": {
+      "snippet": "NewVariableClass{${1:\\Class}}"
+    },
+    "NewVariableClass{}[]": {
+      "snippet": "NewVariableClass{${1:\\Class}}[${2:options}]"
+    },
+    "DeclareVariableClass{}": {
+      "snippet": "DeclareVariableClass{${1:\\Class}}"
+    },
+    "DeclareVariableClass{}[]": {
+      "snippet": "DeclareVariableClass{${1:\\Class}}[${2:options}]"
+    },
+    "NewSymbolClass{}": {
+      "snippet": "NewSymbolClass{${1:\\Class}}"
+    },
+    "NewSymbolClass{}[]": {
+      "snippet": "NewSymbolClass{${1:\\Class}}[${2:options}]"
+    },
+    "DeclareSymbolClass{}": {
+      "snippet": "DeclareSymbolClass{${1:\\Class}}"
+    },
+    "DeclareSymbolClass{}[]": {
+      "snippet": "DeclareSymbolClass{${1:\\Class}}[${2:options}]"
+    },
+    "NewSimpleClass{}": {
+      "snippet": "NewSimpleClass{${1:\\Class}}"
+    },
+    "NewSimpleClass{}[]": {
+      "snippet": "NewSimpleClass{${1:\\Class}}[${2:options}]"
+    },
+    "DeclareSimpleClass{}": {
+      "snippet": "DeclareSimpleClass{${1:\\Class}}"
+    },
+    "DeclareSimpleClass{}[]": {
+      "snippet": "DeclareSimpleClass{${1:\\Class}}[${2:options}]"
+    },
+    "SemantexBaseObject": {},
+    "NewObject{}{}{}": {
+      "snippet": "NewObject{${1:\\Class}}{${2:\\object}}{${3:symbol}}"
+    },
+    "NewObject{}{}{}[]": {
+      "snippet": "NewObject{${1:\\Class}}{${2:\\object}}{${3:symbol}}[${4:options}]"
+    },
+    "DeclareObject{}{}{}": {
+      "snippet": "DeclareObject{${1:\\Class}}{${2:\\object}}{${3:symbol}}"
+    },
+    "DeclareObject{}{}{}[]": {
+      "snippet": "DeclareObject{${1:\\Class}}{${2:\\object}}{${3:symbol}}[${4:options}]"
+    },
+    "SetupClass{}{}": {
+      "snippet": "SetupClass{${1:\\Class}}{${2:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "SetupObject{}{}": {
+      "snippet": "SetupObject{${1:\\object}}{${2:keyvals}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "UseClassInCommand{}{}": {
+      "snippet": "UseClassInCommand{${1:\\Class}}{${2:symbol}}"
+    },
+    "UseClassInCommand{}[]{}": {
+      "snippet": "UseClassInCommand{${1:\\Class}}[${2:options}]{${3:symbol}}",
+      "keyvalindex": 0,
+      "keyvalpos": 1
+    },
+    "SemantexSetup{}": {
+      "snippet": "SemantexSetup{${1:options}}",
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "SemantexRecordObject{}": {
+      "snippet": "SemantexRecordObject{${1:command}}"
+    },
+    "SemantexRecordSource{}": {
+      "snippet": "SemantexRecordSource{${1:source}}"
+    },
+    "SemantexThis": {},
+    "SemantexSetKeys{}": {
+      "snippet": "SemantexSetKeys{${1:keyvals}}"
+    },
+    "SemantexKeysSet{}": {
+      "snippet": "SemantexKeysSet{${1:keyvals}}"
+    },
+    "SemantexSetKeysx{}": {
+      "snippet": "SemantexSetKeysx{${1:keyvals}}"
+    },
+    "SemantexKeysSetx{}": {
+      "snippet": "SemantexKeysSetx{${1:keyvals}}"
+    },
+    "SemantexSetArgKeys{}": {
+      "snippet": "SemantexSetArgKeys{${1:keyvals}}"
+    },
+    "SemantexArgKeysSet{}": {
+      "snippet": "SemantexArgKeysSet{${1:keyvals}}"
+    },
+    "SemantexSetArgKeysx{}": {
+      "snippet": "SemantexSetArgKeysx{${1:keyvals}}"
+    },
+    "SemantexArgKeysSetx{}": {
+      "snippet": "SemantexArgKeysSetx{${1:keyvals}}"
+    },
+    "SemantexSetArgSingleKeys{}": {
+      "snippet": "SemantexSetArgSingleKeys{${1:keyvals}}"
+    },
+    "SemantexArgSingleKeysSet{}": {
+      "snippet": "SemantexArgSingleKeysSet{${1:keyvals}}"
+    },
+    "SemantexSetArgSingleKeysx{}": {
+      "snippet": "SemantexSetArgSingleKeysx{${1:keyvals}}"
+    },
+    "SemantexArgSingleKeysSetx{}": {
+      "snippet": "SemantexArgSingleKeysSetx{${1:keyvals}}"
+    },
+    "SemantexSetOneArgSingleKey{}": {
+      "snippet": "SemantexSetOneArgSingleKey{${1:keyvals}}"
+    },
+    "SemantexOneSingleArgKeySet{}": {
+      "snippet": "SemantexOneSingleArgKeySet{${1:keyvals}}"
+    },
+    "SemantexSetOneArgSingleKeyx{}": {
+      "snippet": "SemantexSetOneArgSingleKeyx{${1:keyvals}}"
+    },
+    "SemantexOneSingleArgKeySetx{}": {
+      "snippet": "SemantexOneSingleArgKeySetx{${1:keyvals}}"
+    },
+    "SemantexSetArgWithoutKeyval{}": {
+      "snippet": "SemantexSetArgWithoutKeyval{${1:keyvals}}"
+    },
+    "SemantexArgWithoutKeyvalSet{}": {
+      "snippet": "SemantexArgWithoutKeyvalSet{${1:keyvals}}"
+    },
+    "SemantexSetArgWithoutKeyvalx{}": {
+      "snippet": "SemantexSetArgWithoutKeyvalx{${1:keyvals}}"
+    },
+    "SemantexArgWithoutKeyvalSetx{}": {
+      "snippet": "SemantexArgWithoutKeyvalSetx{${1:keyvals}}"
+    },
+    "SemantexDataProvide{}": {
+      "snippet": "SemantexDataProvide{${1:data}}"
+    },
+    "SemantexDataSet{}{}": {
+      "snippet": "SemantexDataSet{${1:data}}{${2:value}}"
+    },
+    "SemantexDataSetx{}{}": {
+      "snippet": "SemantexDataSetx{${1:data}}{${2:value}}"
+    },
+    "SemantexDataPutLeft{}{}": {
+      "snippet": "SemantexDataPutLeft{${1:data}}{${2:value}}"
+    },
+    "SemantexDataPutLeftx{}{}": {
+      "snippet": "SemantexDataPutLeftx{${1:data}}{${2:value}}"
+    },
+    "SemantexDataPutRight{}{}": {
+      "snippet": "SemantexDataPutRight{${1:data}}{${2:value}}"
+    },
+    "SemantexDataPutRightx{}{}": {
+      "snippet": "SemantexDataPutRightx{${1:data}}{${2:value}}"
+    },
+    "SemantexDataGet{}": {
+      "snippet": "SemantexDataGet{${1:data}}"
+    },
+    "SemantexDataGetExpNot{}": {
+      "snippet": "SemantexDataGetExpNot{${1:data}}"
+    },
+    "SemantexDataClear{}": {
+      "snippet": "SemantexDataClear{${1:data}}"
+    },
+    "SemantexBoolProvide{}": {
+      "snippet": "SemantexBoolProvide{${1:boolean}}"
+    },
+    "SemantexBoolSetTrue{}": {
+      "snippet": "SemantexBoolSetTrue{${1:boolean}}"
+    },
+    "SemantexBoolSetFalse{}": {
+      "snippet": "SemantexBoolSetFalse{${1:boolean}}"
+    },
+    "SemantexBoolIfTF{}{}{}": {
+      "snippet": "SemantexBoolIfTF{${1:boolean}}{${2:true}}{${3:false}}"
+    },
+    "SemantexBoolIfT{}{}": {
+      "snippet": "SemantexBoolIfT{${1:boolean}}{${2:true}}"
+    },
+    "SemantexBoolIfF{}{}": {
+      "snippet": "SemantexBoolIfF{${1:boolean}}{${2:false}}"
+    },
+    "SemantexIntProvide{}": {
+      "snippet": "SemantexIntProvide{${1:integer}}"
+    },
+    "SemantexIntGet{}": {
+      "snippet": "SemantexIntGet{${1:integer}}"
+    },
+    "SemantexIntSet{}{}": {
+      "snippet": "SemantexIntSet{${1:integer}}{${2:value}}"
+    },
+    "SemantexIntIncr{}": {
+      "snippet": "SemantexIntIncr{${1:integer}}"
+    },
+    "SemantexIntIfEqTF{}{}{}{}": {
+      "snippet": "SemantexIntIfEqTF{${1:integer1}}{${2:integer2}}{${3:true}}{${4:false}}"
+    },
+    "SemantexIntIfEqT{}{}{}": {
+      "snippet": "SemantexIntIfEqT{${1:integer1}}{${2:integer2}}{${3:true}}"
+    },
+    "SemantexIntIfEqF{}{}{}": {
+      "snippet": "SemantexIntIfEqF{${1:integer1}}{${2:integer2}}{${3:false}}"
+    },
+    "SemantexIntIfGreaterTF{}{}{}{}": {
+      "snippet": "SemantexIntIfGreaterTF{${1:integer1}}{${2:integer2}}{${3:true}}{${4:false}}"
+    },
+    "SemantexIntIfGreaterT{}{}{}": {
+      "snippet": "SemantexIntIfGreaterT{${1:integer1}}{${2:integer2}}{${3:true}}"
+    },
+    "SemantexIntIfGreaterF{}{}{}": {
+      "snippet": "SemantexIntIfGreaterF{${1:integer1}}{${2:integer2}}{${3:false}}"
+    },
+    "SemantexIntIfLessTF{}{}{}{}": {
+      "snippet": "SemantexIntIfLessTF{${1:integer1}}{${2:integer2}}{${3:true}}{${4:false}}"
+    },
+    "SemantexIntIfLessT{}{}{}": {
+      "snippet": "SemantexIntIfLessT{${1:integer1}}{${2:integer2}}{${3:true}}"
+    },
+    "SemantexIntIfLessF{}{}{}": {
+      "snippet": "SemantexIntIfLessF{${1:integer1}}{${2:integer2}}{${3:false}}"
+    },
+    "SemantexIntClear{}": {
+      "snippet": "SemantexIntClear{${1:integer}}"
+    },
+    "SemantexIfBlankTF{}{}{}": {
+      "snippet": "SemantexIfBlankTF{${1:tokens}}{${2:true}}{${3:false}}"
+    },
+    "SemantexIfBlankT{}{}": {
+      "snippet": "SemantexIfBlankT{${1:tokens}}{${2:true}}"
+    },
+    "SemantexIfBlankF{}{}": {
+      "snippet": "SemantexIfBlankF{${1:tokens}}{${2:false}}"
+    },
+    "SemantexStrIfEqTF{}{}{}{}": {
+      "snippet": "SemantexStrIfEqTF{${1:string1}}{${2:string2}}{${3:true}}{${4:false}}"
+    },
+    "SemantexStrIfEqT{}{}{}": {
+      "snippet": "SemantexStrIfEqT{${1:string1}}{${2:string2}}{${3:true}}"
+    },
+    "SemantexStrIfEqF{}{}{}": {
+      "snippet": "SemantexStrIfEqF{${1:string1}}{${2:string2}}{${3:false}}"
+    },
+    "SemantexERROR{}": {
+      "snippet": "SemantexERROR{${1:error message}}"
+    },
+    "SemantexERRORKeyValueNotFound{}{}": {
+      "snippet": "SemantexERRORKeyValueNotFound{${1:key}}{${2:value}}"
+    },
+    "SemantexERRORArgKeyValueNotFound{}{}": {
+      "snippet": "SemantexERRORArgKeyValueNotFound{${1:key}}{${2:value}}"
+    },
+    "SemantexExpNot{}": {
+      "snippet": "SemantexExpNot{${1:value}}"
+    },
+    "RecordSemantexDelimiterSize": {},
+    "SemantexDelimiterSizeNoRecord": {},
+    "SemantexMathCloseAuto{}": {
+      "snippet": "SemantexMathCloseAuto{${1:arg1}}"
+    },
+    "SemantexMathCloseNoPar": {},
+    "SemantexMathClose{}": {
+      "snippet": "SemantexMathClose{${1:arg1}}"
+    },
+    "SemantexMathOpenAuto{}": {
+      "snippet": "SemantexMathOpenAuto{${1:arg1}}"
+    },
+    "SemantexMathOpenNoPar": {},
+    "SemantexMathOpen{}": {
+      "snippet": "SemantexMathOpen{${1:arg1}}"
+    },
+    "SemantexVersion": {},
+    "SemantexAddToRecordedSource": {},
+    "SemantexRecordOutput": {},
+    "SemantexID{}": {
+      "snippet": "SemantexID{${1:id}}"
+    }
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "define keys={{${1:key1}}{${2:keys to run}}${3:,{key2}{keys to run},...}}",
+      "define keys[${1:args}]={{${2:key1}}{${3:keys to run}}${4:,{key2}{keys to run},...}}",
+      "append keys={{${1:key1}}{${2:keys to run}}${3:,{key2}{keys to run},...}}",
+      "append keys[${1:args}]={{${2:key1}}{${3:keys to run}}${4:,{key2}{keys to run},...}}",
+      "prepend keys={{${1:key1}}{${2:keys to run}}${3:,{key2}{keys to run},...}}",
+      "prepend keys[${1:args}]={{${2:key1}}{${3:keys to run}}${4:,{key2}{keys to run},...}}",
+      "remove key=${1:key name}",
+      "remove key[${1:args}]=${2:key name}",
+      "define arg keys={{${1:key1}}{${2:keys to run}}${3:,{key2}{keys to run},...}}",
+      "define arg keys[${1:args}]={{${2:key1}}{${3:keys to run}}${4:,{key2}{keys to run},...}}",
+      "append arg keys={{${1:key1}}{${2:keys to run}}${3:,{key2}{keys to run},...}}",
+      "append arg keys[${1:args}]={{${2:key1}}{${3:keys to run}}${4:,{key2}{keys to run},...}}",
+      "prepend arg keys={{${1:key1}}{${2:keys to run}}${3:,{key2}{keys to run},...}}",
+      "prepend arg keys[${1:args}]={{${2:key1}}{${3:keys to run}}${4:,{key2}{keys to run},...}}",
+      "remove arg key=${1:key name}",
+      "remove arg key[${1:args}]=${2:key name}",
+      "execute={${1:TeX code}}",
+      "set keys={${1:keyvals}}",
+      "set keys x={${1:keyvals}}",
+      "data provide={${1:data}}",
+      "data set={${1:data}}{${2:value}}",
+      "data set x={${1:data}}{${2:value}}",
+      "data put left={${1:data}}{${2:value}}",
+      "data put left x={${1:data}}{${2:value}}",
+      "data put right={${1:data}}{${2:value}}",
+      "data put right x={${1:data}}{${2:value}}",
+      "data clear={${1:data}}{${2:value}}",
+      "bool provide={${1:boolean}}",
+      "bool set true={${1:boolean}}",
+      "bool set false={${1:boolean}}",
+      "bool if TF={${1:boolean}}{${2:true}}{${3:false}}",
+      "bool if T={${1:boolean}}{${2:true}}",
+      "bool if F={${1:boolean}}{${2:false}}",
+      "int provide={${1:integer}}",
+      "int set={${1:integer}}{${2:value}}",
+      "int incr={${1:integer}}",
+      "int if eq TF={${1:integer1}}{${2:integer2}}{${3:true}}{${4:false}}",
+      "int if eq T={${1:integer1}}{${2:integer2}}{${3:true}}",
+      "int if eq F={${1:integer1}}{${2:integer2}}{${3:false}}",
+      "int if greater TF={${1:integer1}}{${2:integer2}}{${3:true}}{${4:false}}",
+      "int if greater T={${1:integer1}}{${2:integer2}}{${3:true}}",
+      "int if greater F={${1:integer1}}{${2:integer2}}{${3:false}}",
+      "int if less TF={${1:integer1}}{${2:integer2}}{${3:true}}{${4:false}}",
+      "int if less T={${1:integer1}}{${2:integer2}}{${3:true}}",
+      "int if less F={${1:integer1}}{${2:integer2}}{${3:false}}",
+      "int clear={${1:integer}}",
+      "if blank TF={${1:tokens}}{${2:true}}{${3:false}}",
+      "if blank T={${1:tokens}}{${2:true}}",
+      "if blank F={${1:tokens}}{${2:false}}",
+      "string if eq TF={${1:string1}}{${2:string2}}{${3:true}}{${4:false}}",
+      "string if eq T={${1:string1}}{${2:string2}}{${3:true}}",
+      "string if eq F={${1:string1}}{${2:string2}}{${3:false}}",
+      "ERROR={${1:error message}}",
+      "ERROR key value not found={${1:key}}{${2:value}}",
+      "ERROR arg key value not found={${1:key}}{${2:value}}",
+      "parent=${1:\\Class}",
+      "class=${1:\\Class}",
+      "copy=${1:\\object}",
+      "symbol={${1:value}}",
+      "symbol put left=${1:value}",
+      "symbol put right=${1:value}",
+      "height phantom=${1:value}",
+      "slanting phantom=${1:value}",
+      "grading position=",
+      "command=${1:command}",
+      "clear command",
+      "return",
+      "inner return",
+      "right return",
+      "left return",
+      "left index return",
+      "right index return",
+      "index return",
+      "left arg return",
+      "right arg return",
+      "arg return",
+      "output=${1:\\Class}",
+      "do output",
+      "output options={${1:keys}}",
+      "parse options={${1:keys}}",
+      "parse",
+      "parse code",
+      "math class=${1:command}",
+      "default=${1:value}",
+      "*",
+      "**",
+      "slot",
+      "dots",
+      "* with other sep=${1:separator}",
+      "** with other sep=${1:separator}",
+      "arg=${1:value}",
+      "smash",
+      "prime",
+      "par",
+      "no par",
+      "never par",
+      "use par=",
+      "par size=",
+      "left par=${1:parenthesis}",
+      "right par=${1:parenthesis}",
+      "spar",
+      "spar=",
+      "spar size=",
+      "left spar=${1:parenthesis}",
+      "right spar=${1:parenthesis}",
+      "other spar={${1:left parenthesis}}{${2:right parenthesis}}",
+      "Other spar={${1:left parenthesis}}{${2:right parenthesis}}{${3:normal|auto|*}}",
+      "set arg keys={${1:keyvals}}",
+      "set arg keys x={${1:keyvals}}",
+      "set arg single keys={${1:keyvals}}",
+      "set arg single keys x={${1:keyvals}}",
+      "set one arg single key=${1:key}",
+      "set one arg single key x=${1:key}",
+      "set arg without keyval=${1:value}",
+      "set arg without keyval x=${1:value}",
+      "pre arg=${1:value}",
+      "pre arg put left=${1:value}",
+      "post arg=${1:value}",
+      "post arg put right=${1:value}",
+      "set arg sep=${1:value}",
+      "set arg slot=${1:value}",
+      "set arg dots=${1:value}",
+      "arg keyval=",
+      "arg position=",
+      "next arg with sep",
+      "sep arg=${1:value}",
+      "comma arg=${1:value}",
+      "arg with other sep={${1:separator}}{${2:value}}",
+      "arg dots with other sep=${1:separator}",
+      "arg slot with other sep=${1:separator}",
+      "arg dots",
+      "comma arg dots",
+      "arg slot",
+      "comma arg slot",
+      "clear arg",
+      "clear pre arg",
+      "clear post arg",
+      "upper=${1:value}",
+      "sep upper=${1:value}",
+      "comman upper=${1:value}",
+      "pre upper=${1:value}",
+      "pre upper put left=${1:value}",
+      "post upper=${1:value}",
+      "post upper put right=${1:value}",
+      "upper put left=${1:value}",
+      "set upper sep=${1:value}",
+      "next upper with sep",
+      "upper with other sep={${1:separator}}{${2:value}}",
+      "upper slot",
+      "sep upper slot",
+      "comma upper slot",
+      "set upper slot=${1:value}",
+      "upper slot with other sep=${1:separator}",
+      "upper dots",
+      "sep upper dots",
+      "comma upper dots",
+      "set upper dots=${1:value}",
+      "upper dots with other sep=${1:separator}",
+      "upper *",
+      "upper **",
+      "sep upper *",
+      "sep upper **",
+      "comma upper *",
+      "comma upper **",
+      "upper * with other sep=${1:separator}",
+      "upper ** with other sep=${1:separator}",
+      "clear upper",
+      "clear pre upper",
+      "clear post upper",
+      "lower=${1:value}",
+      "sep lower=${1:value}",
+      "comma lower=${1:value}",
+      "pre lower=${1:value}",
+      "pre lower put left=${1:value}",
+      "post lower=${1:value}",
+      "post lower put right=${1:value}",
+      "lower put left=${1:value}",
+      "set lower sep=${1:value}",
+      "next lower with sep",
+      "lower with other sep={${1:separator}}{${2:value}}",
+      "lower slot",
+      "sep lower slot",
+      "comma lower slot",
+      "set lower slot=${1:value}",
+      "lower slot with other sep=${1:separator}",
+      "lower dots",
+      "sep lower dots",
+      "comma lower dots",
+      "set lower dots=${1:value}",
+      "lower dots with other sep=${1:separator}",
+      "lower *",
+      "lower **",
+      "sep lower *",
+      "sep lower **",
+      "comma lower *",
+      "comma lower **",
+      "lower * with other sep=${1:separator}",
+      "lower ** with other sep=${1:separator}",
+      "clear lower",
+      "clear pre lower",
+      "clear post lower",
+      "upper left=${1:value}",
+      "sep upper left=${1:value}",
+      "comman upper left=${1:value}",
+      "pre upper left=${1:value}",
+      "pre upper left put left=${1:value}",
+      "post upper left=${1:value}",
+      "post upper left put right=${1:value}",
+      "upper left put left=${1:value}",
+      "set upper left sep=${1:value}",
+      "next upper left with sep",
+      "upper left with other sep={${1:separator}}{${2:value}}",
+      "upper left slot",
+      "sep upper left slot",
+      "comma upper left slot",
+      "set upper left slot=${1:value}",
+      "upper left slot with other sep=${1:separator}",
+      "upper left dots",
+      "sep upper left dots",
+      "comma upper left dots",
+      "set upper left dots=${1:value}",
+      "upper left dots with other sep=${1:separator}",
+      "upper left *",
+      "upper left **",
+      "sep upper left *",
+      "sep upper left **",
+      "comma upper left *",
+      "comma upper left **",
+      "upper left * with other sep=${1:separator}",
+      "upper left ** with other sep=${1:separator}",
+      "clear upper left",
+      "clear pre upper left",
+      "clear post upper left",
+      "lower left=${1:value}",
+      "sep lower left=${1:value}",
+      "comman lower left=${1:value}",
+      "pre lower left=${1:value}",
+      "pre lower left put left=${1:value}",
+      "post lower left=${1:value}",
+      "post lower left put right=${1:value}",
+      "lower left put left=${1:value}",
+      "set lower left sep=${1:value}",
+      "next lower left with sep",
+      "lower left with other sep={${1:separator}}{${2:value}}",
+      "lower left slot",
+      "sep lower left slot",
+      "comma lower left slot",
+      "set lower left slot=${1:value}",
+      "lower left slot with other sep=${1:separator}",
+      "lower left dots",
+      "sep lower left dots",
+      "comma lower left dots",
+      "set lower left dots=${1:value}",
+      "lower left dots with other sep=${1:separator}",
+      "lower left *",
+      "lower left **",
+      "sep lower left *",
+      "sep lower left **",
+      "comma lower left *",
+      "comma lower left **",
+      "lower left * with other sep=${1:separator}",
+      "lower left ** with other sep=${1:separator}",
+      "clear lower left",
+      "clear pre lower left",
+      "clear post lower left",
+      "d=${1:value}",
+      "sep d=${1:value}",
+      "comma d=${1:value}",
+      "pre d=${1:value}",
+      "pre d put left=${1:value}",
+      "post d=${1:value}",
+      "post d put left=${1:value}",
+      "d put left=${1:value}",
+      "set d sep=${1:value}",
+      "next d with sep",
+      "d with other sep={${1:separator}}{${2:value}}",
+      "d slot",
+      "sep d slot",
+      "comma d slot",
+      "set d slot=${1:value}",
+      "d slot with other sep=${1:separator}",
+      "d dots",
+      "sep d dots",
+      "comma d dots",
+      "set d dots=${1:value}",
+      "d dots with other sep=${1:separator}",
+      "d *",
+      "d **",
+      "sep d *",
+      "sep d **",
+      "comma d *",
+      "comma d **",
+      "d * with other sep=${1:separator}",
+      "d ** with other sep=${1:separator}",
+      "clear d",
+      "clear pre d",
+      "clear post d",
+      "i=${1:value}",
+      "sep i=${1:value}",
+      "comma i=${1:value}",
+      "pre i=${1:value}",
+      "pre i put left=${1:value}",
+      "post d=${1:value}",
+      "post i put left=${1:value}",
+      "i put left=${1:value}",
+      "set i sep=${1:value}",
+      "next i with sep",
+      "i with other sep={${1:separator}}{${2:value}}",
+      "i slot",
+      "sep i slot",
+      "comma i slot",
+      "set i slot=${1:value}",
+      "i slot with other sep=${1:separator}",
+      "i dots",
+      "sep i dots",
+      "comma i dots",
+      "set i dots=${1:value}",
+      "i dots with other sep=${1:separator}",
+      "i *",
+      "i **",
+      "sep i *",
+      "sep i **",
+      "comma i *",
+      "comma i **",
+      "i * with other sep=${1:separator}",
+      "i ** with other sep=${1:separator}",
+      "clear i",
+      "clear pre i",
+      "clear post i"
+    ],
+    [
+      "keyval parser=${1:command}",
+      "single key parser=${1:command}",
+      "semtex file"
+    ]
+  ]
+}

@@ -14,6 +14,15 @@
     "pictcolor{}": {
       "snippet": "pictcolor{${1:color}}"
     },
+    "referencesystem()()()": {
+      "snippet": "referencesystem(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
+    },
+    "changereferencesystem()()()": {
+      "snippet": "changereferencesystem(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
+    },
+    "translateorigin()": {
+      "snippet": "translateorigin(${1:x0},${2:y0})"
+    },
     "rotateaxes{}": {
       "snippet": "rotateaxes{${1:angle}}"
     },
@@ -26,6 +35,9 @@
     "cartesianreference": {},
     "polarreference": {},
     "draftPictures": {},
+    "cartesianaxes()()": {
+      "snippet": "cartesianaxes(${1:x0},${2:y0})(${3:x1},${4:y1})"
+    },
     "axescolor": {},
     "axesthickness": {},
     "xunitdivisions": {},
@@ -99,6 +111,9 @@
     "printyticslabels[]{}{}{}": {
       "snippet": "printyticslabels[${4:digits}]{${1:firstcoor}}{${2:incr}}{${3:bound}}"
     },
+    "cartesiangrid()()": {
+      "snippet": "cartesiangrid(${1:x0},${2:y0})(${3:x1},${4:y1})"
+    },
     "gridcolor": {},
     "secundarygridcolor": {},
     "gridthickness": {},
@@ -110,6 +125,27 @@
     "degreespolarlabels": {},
     "radianspolarlabels": {},
     "rlabelpos": {},
+    "Put(){}": {
+      "snippet": "Put(${2:x},${3:y}){${1:object}}"
+    },
+    "Put[](){}": {
+      "snippet": "Put[${2:position}](${3:x},${4:y}){${1:object}}"
+    },
+    "Put*(){}": {
+      "snippet": "Put*(${2:x},${3:y}){${1:object}}"
+    },
+    "Put*[](){}": {
+      "snippet": "Put*[${2:position}](${3:x},${4:y}){${1:object}}"
+    },
+    "cPut{}(){}": {
+      "snippet": "cPut{${1:position}}(${3:x},${4:y}){${2:object}}"
+    },
+    "rPut{}(){}": {
+      "snippet": "rPut{${1:position}}(${3:x},${4:y}){${2:object}}"
+    },
+    "rPut*{}(){}": {
+      "snippet": "rPut*{${1:position}}(${3:x},${4:y}){${2:object}}"
+    },
     "Pictlabelsep": {},
     "defaultPut{}": {
       "snippet": "defaultPut{${1:c|r}}"
@@ -117,8 +153,53 @@
     "highestlabel{}": {
       "snippet": "highestlabel{${1:text}}"
     },
+    "multiPut()(){}{}": {
+      "snippet": "multiPut(${3:x0},${4:y0})(${5:∆x},${6:∆y}){${1:n}}{${2:object}}"
+    },
+    "multiPut[]()(){}{}": {
+      "snippet": "multiPut[${3:position}](${4:x0},${5:y0})(${6:∆x},${7:∆y}){${1:n}}{${2:object}}"
+    },
+    "multiPut*()(){}{}": {
+      "snippet": "multiPut*(${3:x0},${4:y0})(${5:∆x},${6:∆y}){${1:n}}{${2:object}}"
+    },
+    "multiPut*[]()(){}{}": {
+      "snippet": "multiPut*[${3:position}](${4:x0},${5:y0})(${6:∆x},${7:∆y}){${1:n}}{${2:object}}"
+    },
+    "multicPut{}()(){}{}": {
+      "snippet": "multicPut{${1:position}}(${4:x0},${5:y0})(${6:∆x},${7:∆y}){${2:n}}{${3:object}}"
+    },
+    "multirPut{}()(){}{}": {
+      "snippet": "multirPut{${1:position}}(${4:x0},${5:y0})(${6:∆x},${7:∆y}){${2:n}}{${3:object}}"
+    },
+    "multirPut*{}()(){}{}": {
+      "snippet": "multirPut*{${1:position}}(${4:x0},${5:y0})(${6:∆x},${7:∆y}){${2:n}}{${3:object}}"
+    },
+    "xLINE()()": {
+      "snippet": "xLINE(${1:x0},${2:y0})(${3:x1},${4:y1})"
+    },
+    "xVECTOR()()": {
+      "snippet": "xVECTOR(${1:x0},${2:y0})(${3:x1},${4:y1})"
+    },
+    "xtrivVECTOR()()": {
+      "snippet": "xtrivVECTOR(${1:x0},${2:y0})(${3:x1},${4:y1})"
+    },
     "arrowsize{}{}": {
       "snippet": "arrowsize{${1:xlen}}{${2:ylen}}"
+    },
+    "xline(){}": {
+      "snippet": "xline(${2:x},${3:y}){${1:size}}"
+    },
+    "xvector(){}": {
+      "snippet": "xvector(${2:x},${3:y}){${1:size}}"
+    },
+    "xtrivvector(){}": {
+      "snippet": "xtrivvector(${2:x},${3:y}){${1:size}}"
+    },
+    "zerovector()": {
+      "snippet": "zerovector(${1:x},${2:y})"
+    },
+    "zerotrivvector()": {
+      "snippet": "zerotrivvector(${1:x},${2:y})"
     },
     "regularPolygon{}{}": {
       "snippet": "regularPolygon{${1:radius}}{${2:sides}}"
@@ -180,6 +261,9 @@
     },
     "pointmarkdiam": {},
     "pointmark": {},
+    "qCurve()()()()": {
+      "snippet": "qCurve(${1:x0},${2:y0})(${3:u0},${4:v0})(${5:x1},${6:y1})(${7:u1},${8:v1})"
+    },
     "bgfalse": {},
     "bgtrue": {},
     "degreesfalse": {},
@@ -208,6 +292,9 @@
     "labelstrue": {},
     "makegrid": {},
     "makenogrid": {},
+    "polarcoor()()": {
+      "snippet": "polarcoor(${1:a},${2:b})(${3:c},${4:d})"
+    },
     "polarfalse": {},
     "polartrue": {},
     "qCOS{}{}": {
@@ -216,8 +303,32 @@
     "qSIN{}{}": {
       "snippet": "qSIN{${1:angle}}{${2:cmd}}"
     },
+    "qUNITVECTOR()()": {
+      "snippet": "qUNITVECTOR(${1:a},${2:b})(${3:c},${4:d})"
+    },
+    "refsysPoint()()": {
+      "snippet": "refsysPoint(${1:a},${2:b})(${3:c},${4:d})"
+    },
+    "refsyspPoint()()": {
+      "snippet": "refsyspPoint(${1:a},${2:b})(${3:c},${4:d})"
+    },
+    "refsyspVector()()": {
+      "snippet": "refsyspVector(${1:a},${2:b})(${3:c},${4:d})"
+    },
+    "refsysVector()()": {
+      "snippet": "refsysVector(${1:a},${2:b})(${3:c},${4:d})"
+    },
+    "refsysxyPoint()()": {
+      "snippet": "refsysxyPoint(${1:a},${2:b})(${3:c},${4:d})"
+    },
+    "refsysxyVector()()": {
+      "snippet": "refsysxyVector(${1:a},${2:b})(${3:c},${4:d})"
+    },
     "rputstarfalse": {},
     "rputstartrue": {},
+    "strline()()": {
+      "snippet": "strline(${1:x0},${2:y0})(${3:x1},${4:y1})"
+    },
     "themultiput": {},
     "ticsfalse": {},
     "ticslabelsgridfalse": {},
@@ -228,7 +339,24 @@
     "yone": {},
     "yzero": {}
   },
-  "envs": {},
+  "envs": {
+    "Picture(x0,y0)(x1,y1)": {
+      "name": "Picture",
+      "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+    },
+    "Picture[](x0,y0)(x1,y1)": {
+      "name": "Picture",
+      "snippet": "[${1:color}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+    },
+    "xpicture(x0,y0)(x1,y1)": {
+      "name": "xpicture",
+      "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+    },
+    "xpicture[](x0,y0)(x1,y1)": {
+      "name": "xpicture",
+      "snippet": "[${1:color}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+    }
+  },
   "options": [
     "draft",
     "dvips",

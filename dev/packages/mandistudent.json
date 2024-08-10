@@ -169,16 +169,16 @@
       "keyvalpos": 0
     },
     "colvec{}": {
-      "snippet": "colvec{${1:c1,c2,...}}"
+      "snippet": "colvec{${1:c1,${2:c2},...}}"
     },
     "colvec[]{}": {
-      "snippet": "colvec[${2:delimiter}]{${1:c1,c2,...}}"
+      "snippet": "colvec[${2:delimiter}]{${1:c1,${3:c2},...}}"
     },
     "rowvec{}": {
-      "snippet": "rowvec{${1:c1,c2,...}}"
+      "snippet": "rowvec{${1:c1,${2:c2},...}}"
     },
     "rowvec[]{}": {
-      "snippet": "rowvec[${2:delimiter}]{${1:c1,c2,...}}"
+      "snippet": "rowvec[${2:delimiter}]{${1:c1,${3:c2},...}}"
     },
     "veccomp{}": {
       "snippet": "veccomp{${1:symbol}}"
@@ -217,8 +217,14 @@
     "vpythonfile{}{}": {
       "snippet": "vpythonfile{${1:file}}{${2:caption}}"
     },
+    "vpythonfile(){}{}": {
+      "snippet": "vpythonfile(${3:link}){${1:file}}{${2:caption}}"
+    },
     "vpythonfile[]{}{}": {
       "snippet": "vpythonfile[${3:options}]{${1:file}}{${2:caption}}"
+    },
+    "vpythonfile[](){}{}": {
+      "snippet": "vpythonfile[${3:options}](${4:link}){${1:file}}{${2:caption}}"
     },
     "webvpythoninline{}": {
       "snippet": "webvpythoninline{${1:Web VPython code}}"
@@ -329,6 +335,22 @@
     "parts": {},
     "physicssolution": {},
     "physicssolution*": {},
+    "webvpythonblock(link){}": {
+      "name": "webvpythonblock",
+      "snippet": "(${2:link}){${1:caption}}"
+    },
+    "webvpythonblock[](link){}": {
+      "name": "webvpythonblock",
+      "snippet": "[${2:options}](${3:link}){${1:caption}}"
+    },
+    "webvpythonblock*(link){}": {
+      "name": "webvpythonblock*",
+      "snippet": "(${2:link}){${1:caption}}"
+    },
+    "webvpythonblock*[](link){}": {
+      "name": "webvpythonblock*",
+      "snippet": "[${2:options}](${3:link}){${1:caption}}"
+    },
     "enumerate*": {},
     "enumerate*[]": {
       "name": "enumerate*",

@@ -34,6 +34,7 @@
     "AssignSocketPlug{}{}": {
       "snippet": "AssignSocketPlug{${1:socket}}{${2:socket plug}}"
     },
+    "AssignTemplateKeys": {},
     "AtBeginDocument[]{}": {
       "snippet": "AtBeginDocument[${2:label}]{${1:code}}"
     },
@@ -142,6 +143,8 @@
     "DebugShipoutsOn": {},
     "DebugSocketsOff": {},
     "DebugSocketsOn": {},
+    "DebugTablesOff": {},
+    "DebugTablesOn": {},
     "DeclareCaseChangeEquivalent{}{}": {
       "snippet": "DeclareCaseChangeEquivalent{${1:cmd}}{${2:replacement text}}"
     },
@@ -210,6 +213,12 @@
     },
     "DeclareHookRule{}{}{}{}": {
       "snippet": "DeclareHookRule{${1:hook}}{${2:label1}}{${3:relation}}{${4:label2}}"
+    },
+    "DeclareInstance{}{}{}{}": {
+      "snippet": "DeclareInstance{${1:type}}{${2:instance}}{${3:template}}{${4:parameters}}"
+    },
+    "DeclareInstanceCopy{}{}{}": {
+      "snippet": "DeclareInstanceCopy{${1:type}}{${2:instance2}}{${3:instance1}}"
     },
     "DeclareKeys[]{}": {
       "snippet": "DeclareKeys[${2:family}]{${1:declarations}}"
@@ -289,6 +298,15 @@
     "DeclareSymbolFontAlphabet{}{}": {
       "snippet": "DeclareSymbolFontAlphabet{${1:math-alph}}{${2:sym-font}}"
     },
+    "DeclareTemplateCode{}{}{}{}{}": {
+      "snippet": "DeclareTemplateCode{${1:type}}{${2:template}}{${3:no. of args}}{${4:key bindings}}{${5:code}}"
+    },
+    "DeclareTemplateCopy{}{}{}": {
+      "snippet": "DeclareTemplateCopy{${1:type}}{${2:template2}}{${3:template1}}"
+    },
+    "DeclareTemplateInterface{}{}{}{}": {
+      "snippet": "DeclareTemplateInterface{${1:type}}{${2:template}}{${3:no. of args}}{${4:key list}}"
+    },
     "DeclareTextAccent{}{}{}": {
       "snippet": "DeclareTextAccent{${1:cmd}}{${2:encoding}}{${3:slot}}"
     },
@@ -350,6 +368,12 @@
       "snippet": "DisableHook{${1:hook}}"
     },
     "DiscardShipoutBox": {},
+    "EditInstance{}{}{}": {
+      "snippet": "EditInstance{${1:type}}{${2:instance}}{${3:new values}}"
+    },
+    "EditTemplateDefaults{}{}{}": {
+      "snippet": "EditTemplateDefaults{${1:type}}{${2:template}}{${3:new defaults}}"
+    },
     "EndIncludeInRelease": {},
     "EndModuleRelease": {},
     "ExecuteOptions{}": {
@@ -393,11 +417,29 @@
     "IfBooleanTF{}{}{}": {
       "snippet": "IfBooleanTF{${1:arg}}{${2:true code}}{${3:false code}}"
     },
+    "IfClassAtLeastF{}{}{}": {
+      "snippet": "IfClassAtLeastF{${1:class}}{${2:date}}{${3:false code}}"
+    },
+    "IfClassAtLeastT{}{}{}": {
+      "snippet": "IfClassAtLeastT{${1:class}}{${2:date}}{${3:true code}}"
+    },
     "IfClassAtLeastTF{}{}{}{}": {
       "snippet": "IfClassAtLeastTF{${1:class}}{${2:date}}{${3:true code}}{${4:false code}}"
     },
+    "IfClassLoadedF{}{}": {
+      "snippet": "IfClassLoadedF{${1:class}}{${2:false code}}"
+    },
+    "IfClassLoadedT{}{}": {
+      "snippet": "IfClassLoadedT{${1:class}}{${2:true code}}"
+    },
     "IfClassLoadedTF{}{}{}": {
       "snippet": "IfClassLoadedTF{${1:class}}{${2:true code}}{${3:false code}}"
+    },
+    "IfClassLoadedWithOptionsF{}{}{}": {
+      "snippet": "IfClassLoadedWithOptionsF{${1:class}}{${2:options}}{${3:false code}}"
+    },
+    "IfClassLoadedWithOptionsT{}{}{}": {
+      "snippet": "IfClassLoadedWithOptionsT{${1:class}}{${2:options}}{${3:true code}}"
     },
     "IfClassLoadedWithOptionsTF{}{}{}{}": {
       "snippet": "IfClassLoadedWithOptionsTF{${1:class}}{${2:options}}{${3:true code}}{${4:false code}}"
@@ -405,14 +447,35 @@
     "IfExplAtLeastTF{}{}{}": {
       "snippet": "IfExplAtLeastTF{${1:date}}{${2:true code}}{${3:false code}}"
     },
+    "IfFileAtLeastF{}{}{}": {
+      "snippet": "IfFileAtLeastF{${1:file}}{${2:date}}{${3:false code}}"
+    },
+    "IfFileAtLeastT{}{}{}": {
+      "snippet": "IfFileAtLeastT{${1:file}}{${2:date}}{${3:true code}}"
+    },
     "IfFileAtLeastTF{}{}{}{}": {
       "snippet": "IfFileAtLeastTF{${1:file}}{${2:date}}{${3:true code}}{${4:false code}}"
     },
     "IfFileExists{}{}{}": {
       "snippet": "IfFileExists{${1:file}}{${2:true code}}{${3:false code}}"
     },
+    "IfFileLoadedF{}{}": {
+      "snippet": "IfFileLoadedF{${1:file}}{${2:false code}}"
+    },
+    "IfFileLoadedT{}{}": {
+      "snippet": "IfFileLoadedT{${1:file}}{${2:true code}}"
+    },
+    "IfFileLoadedTF{}{}{}": {
+      "snippet": "IfFileLoadedTF{${1:file}}{${2:true code}}{${3:false code}}"
+    },
     "IfFontSeriesContextTF{}{}{}": {
       "snippet": "IfFontSeriesContextTF{${1:face}}{${2:true code}}{${3:false code}}"
+    },
+    "IfFormatAtLeastF{}{}": {
+      "snippet": "IfFormatAtLeastF{${1:date}}{${2:false code}}"
+    },
+    "IfFormatAtLeastT{}{}": {
+      "snippet": "IfFormatAtLeastT{${1:date}}{${2:true code}}"
     },
     "IfFormatAtLeastTF{}{}{}": {
       "snippet": "IfFormatAtLeastTF{${1:date}}{${2:true code}}{${3:false code}}"
@@ -420,8 +483,23 @@
     "IfHookEmptyTF{}{}{}": {
       "snippet": "IfHookEmptyTF{${1:hook}}{${2:true code}}{${3:false code}}"
     },
-    "IfLabelExistTF{}{}{}": {
-      "snippet": "IfLabelExistTF{${1:label}}{${2:true code}}{${3:false code}}"
+    "IfInstanceExistsF{}{}{}{}": {
+      "snippet": "IfInstanceExistsF{${1:type}}{${2:instance}}{${3:true}}{${4:false}}"
+    },
+    "IfInstanceExistsT{}{}{}{}": {
+      "snippet": "IfInstanceExistsT{${1:type}}{${2:instance}}{${3:true}}{${4:false}}"
+    },
+    "IfInstanceExistsTF{}{}{}{}": {
+      "snippet": "IfInstanceExistsTF{${1:type}}{${2:instance}}{${3:true}}{${4:false}}"
+    },
+    "IfLabelExistsF{}{}": {
+      "snippet": "IfLabelExistsF{${1:label}}{${2:false code}}"
+    },
+    "IfLabelExistsT{}{}": {
+      "snippet": "IfLabelExistsT{${1:label}}{${2:true code}}"
+    },
+    "IfLabelExistsTF{}{}{}": {
+      "snippet": "IfLabelExistsTF{${1:label}}{${2:true code}}{${3:false code}}"
     },
     "IfMarksEqualTF[]{}{}{}{}{}": {
       "snippet": "IfMarksEqualTF[${6:region}]{${1:class}}{${2:pos1}}{${3:pos2}}{${4:true code}}{${5:false code}}"
@@ -438,11 +516,29 @@
     "IfNoValueTF{}{}{}": {
       "snippet": "IfNoValueTF{${1:arg}}{${2:-NoValue-Code}}{${3:ValueCode}}"
     },
+    "IfPackageAtLeastF{}{}{}": {
+      "snippet": "IfPackageAtLeastF{${1:package}}{${2:date}}{${3:false code}}"
+    },
+    "IfPackageAtLeastT{}{}{}": {
+      "snippet": "IfPackageAtLeastT{${1:package}}{${2:date}}{${3:true code}}"
+    },
     "IfPackageAtLeastTF{}{}{}{}": {
       "snippet": "IfPackageAtLeastTF{${1:package}}{${2:date}}{${3:true code}}{${4:false code}}"
     },
+    "IfPackageLoadedF{}{}": {
+      "snippet": "IfPackageLoadedF{${1:package}}{${2:false code}}"
+    },
+    "IfPackageLoadedT{}{}": {
+      "snippet": "IfPackageLoadedT{${1:package}}{${2:true code}}"
+    },
     "IfPackageLoadedTF{}{}{}": {
       "snippet": "IfPackageLoadedTF{${1:package}}{${2:true code}}{${3:false code}}"
+    },
+    "IfPackageLoadedWithOptionsF{}{}{}": {
+      "snippet": "IfPackageLoadedWithOptionsF{${1:package}}{${2:options}}{${3:false code}}"
+    },
+    "IfPackageLoadedWithOptionsT{}{}{}": {
+      "snippet": "IfPackageLoadedWithOptionsT{${1:package}}{${2:options}}{${3:true code}}"
     },
     "IfPackageLoadedWithOptionsTF{}{}{}{}": {
       "snippet": "IfPackageLoadedWithOptionsTF{${1:package}}{${2:options}}{${3:true code}}{${4:false code}}"
@@ -450,8 +546,14 @@
     "IfPDFManagementActiveTF{}{}": {
       "snippet": "IfPDFManagementActiveTF{${1:true code}}{${2:false code}}"
     },
-    "IfPropertyExistTF{}{}{}": {
-      "snippet": "IfPropertyExistTF{${1:property}}{${2:true code}}{${3:false code}}"
+    "IfPropertyExistsF{}{}": {
+      "snippet": "IfPropertyExistsF{${1:property}}{${2:false code}}"
+    },
+    "IfPropertyExistsT{}{}": {
+      "snippet": "IfPropertyExistsT{${1:property}}{${2:true code}}"
+    },
+    "IfPropertyExistsTF{}{}{}": {
+      "snippet": "IfPropertyExistsTF{${1:property}}{${2:true code}}{${3:false code}}"
     },
     "IfPropertyRecordedTF{}{}{}{}": {
       "snippet": "IfPropertyRecordedTF{${1:label}}{${2:property}}{${3:true code}}{${4:false code}}"
@@ -477,6 +579,9 @@
     },
     "InsertMark{}{}": {
       "snippet": "InsertMark{${1:class}}{${2:text}}"
+    },
+    "KeyValue{}": {
+      "snippet": "KeyValue{${1:key name}}"
     },
     "LastDeclaredEncoding": {},
     "LastMark[]{}": {
@@ -582,13 +687,14 @@
     "NewSocketPlug{}{}{}": {
       "snippet": "NewSocketPlug{${1:socket}}{${2:socket plug}}{${3:code}}"
     },
+    "NewTemplateType{}{}": {
+      "snippet": "NewTemplateType{${1:template type}}{${2:no. of args}}"
+    },
     "NextLinkTarget{}": {
       "snippet": "NextLinkTarget{${1:target name}}"
     },
     "OmitIndent": {},
     "OptionNotUsed": {},
-    "obeyedline": {},
-    "obeyedspace": {},
     "PackageError{}{}{}": {
       "snippet": "PackageError{${1:package name}}{${2:error text}}{${3:help text}}"
     },
@@ -732,6 +838,9 @@
     "RequirePackageWithOptions{}[]": {
       "snippet": "RequirePackageWithOptions{${1:package}}[${2:release}]"
     },
+    "ResumeTagging{}": {
+      "snippet": "ResumeTagging{${1:string}}"
+    },
     "ReverseBoolean": {},
     "SetDefaultHookLabel{}": {
       "snippet": "SetDefaultHookLabel{${1:default label}}"
@@ -751,6 +860,9 @@
     "SetSymbolFont{}{}{}{}{}{}": {
       "snippet": "SetSymbolFont{${1:sym-font}}{${2:version}}{${3:encoding}}{${4:family}}{${5:series}}{${6:shape}}"
     },
+    "SetTemplateKeys{}{}{}": {
+      "snippet": "SetTemplateKeys{${1:type}}{${2:template}}{${3:keyvals}}"
+    },
     "ShipoutBox": {},
     "ShipoutBoxDepth": {},
     "ShipoutBoxHeight": {},
@@ -767,14 +879,35 @@
     "ShowHook{}": {
       "snippet": "ShowHook{${1:hook}}"
     },
+    "ShowInstanceValues{}{}": {
+      "snippet": "ShowInstanceValues{${1:type}}{${2:instance}}"
+    },
+    "ShowMarksAt{}": {
+      "snippet": "ShowMarksAt{${1:text}}"
+    },
     "ShowSocket{}": {
       "snippet": "ShowSocket{${1:socket}}"
+    },
+    "ShowTemplateCode{}{}": {
+      "snippet": "ShowTemplateCode{${1:type}}{${2:template}}"
+    },
+    "ShowTemplateDefaults{}{}": {
+      "snippet": "ShowTemplateDefaults{${1:type}}{${2:template}}"
+    },
+    "ShowTemplateInterface{}{}": {
+      "snippet": "ShowTemplateInterface{${1:type}}{${2:template}}"
+    },
+    "ShowTemplateVariables{}{}": {
+      "snippet": "ShowTemplateVariables{${1:type}}{${2:template}}"
     },
     "SplitArgument{}{}": {
       "snippet": "SplitArgument{${1:number}}{${2:tokens}}"
     },
     "SplitList{}": {
       "snippet": "SplitList{${1:tokens}}"
+    },
+    "SuspendTagging{}": {
+      "snippet": "SuspendTagging{${1:string}}"
     },
     "TextSymbolUnavailable{}": {
       "snippet": "TextSymbolUnavailable{${1:arg}}"
@@ -792,6 +925,9 @@
     "UseHook{}": {
       "snippet": "UseHook{${1:hook}}"
     },
+    "UseInstance{}{}": {
+      "snippet": "UseInstance{${1:type}}{${2:instance}}"
+    },
     "UseLegacyTextSymbols": {},
     "UseName{}": {
       "snippet": "UseName{${1:csname}}"
@@ -801,7 +937,13 @@
     },
     "UseRawInputEncoding": {},
     "UseSocket{}": {
-      "snippet": "UseSocket{${1:socket}}"
+      "snippet": "UseSocket{${1:socket name}}"
+    },
+    "UseTaggingSocket{}": {
+      "snippet": "UseTaggingSocket{${1:socket}}"
+    },
+    "UseTemplate{}{}{}": {
+      "snippet": "UseTemplate{${1:type}}{${2:template}}{${3:settings}}"
     },
     "UseTextAccent{}{}{}": {
       "snippet": "UseTextAccent{${1:encoding}}{${2:cmd}}{${3:text}}"
@@ -1245,26 +1387,6 @@
     "itdefault": {},
     "loggingall": {},
     "loggingoutput": {},
-    "ltcmddate": {},
-    "ltcmdhooksdate": {},
-    "ltcmdhooksversion": {},
-    "ltcmdversion": {},
-    "ltfilehookdate": {},
-    "ltfilehookversion": {},
-    "lthooksdate": {},
-    "lthooksversion": {},
-    "ltmarksdate": {},
-    "ltmarksversion": {},
-    "ltmetadate": {},
-    "ltmetaversion": {},
-    "ltparadate": {},
-    "ltparaversion": {},
-    "ltpropertiesdate": {},
-    "ltpropertiesversion": {},
-    "ltshipoutdate": {},
-    "ltshipoutversion": {},
-    "ltsocketsdate": {},
-    "ltsocketsversion": {},
     "mathalpha": {},
     "mathgroup": {},
     "mathhexbox": {},
@@ -1275,6 +1397,8 @@
     "numberline{}": {
       "snippet": "numberline{${1:number}}"
     },
+    "obeyedline": {},
+    "obeyedspace": {},
     "poptabs": {},
     "pushtabs": {},
     "requestedLaTeXdate": {},

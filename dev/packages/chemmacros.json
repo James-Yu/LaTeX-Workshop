@@ -323,6 +323,11 @@
       "keyvalindex": 2,
       "keyvalpos": 0
     },
+    "newman[](){}": {
+      "snippet": "newman[${2:options}](${3:angle}){${1:part-list}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
     "orbital{}": {
       "snippet": "orbital{${1:type}}"
     },
@@ -465,21 +470,54 @@
     "OX{}": {
       "snippet": "OX{${1:name,atom}}"
     },
+    "redox(){}": {
+      "snippet": "redox(${2:name1},${3:name2}){${1:text}}"
+    },
+    "redox()[]{}": {
+      "snippet": "redox(${3:name1},${4:name2})[${2:TikZ-options}]{${1:text}}"
+    },
+    "redox()[][]{}": {
+      "snippet": "redox(${4:name1},${5:name2})[${2:TikZ-options}][${3:vertical-factor}]{${1:text}}"
+    },
     "listschemename": {},
     "schemename": {},
     "listofschemes": {},
+    "NMR{}()[]": {
+      "snippet": "NMR{${1:isotope,element}}(${3:frequency})[${2:solvent}]"
+    },
+    "NMR{}()": {
+      "snippet": "NMR{${1:isotope,element}}(${2:frequency})"
+    },
     "NMR{}": {
       "snippet": "NMR{${1:isotope,element}}"
     },
     "NMR{}[]": {
       "snippet": "NMR{${1:isotope,element}}[${2:solvent}]"
     },
+    "NMR()[]": {
+      "snippet": "NMR(${2:frequency})[${1:solvent}]"
+    },
+    "NMR()": {
+      "snippet": "NMR(${1:frequency})"
+    },
     "NMR": {},
+    "NMR*{}()[]": {
+      "snippet": "NMR*{${1:isotope,element}}(${3:frequency})[${2:solvent}]"
+    },
+    "NMR*{}()": {
+      "snippet": "NMR*{${1:isotope,element}}(${2:frequency})"
+    },
     "NMR*{}": {
       "snippet": "NMR*{${1:isotope,element}}"
     },
     "NMR*{}[]": {
       "snippet": "NMR*{${1:isotope,element}}[${2:solvent}]"
+    },
+    "NMR*()[]": {
+      "snippet": "NMR*(${2:frequency})[${1:solvent}]"
+    },
+    "NMR*()": {
+      "snippet": "NMR*(${1:frequency})"
     },
     "NMR*": {},
     "data{}": {
@@ -493,6 +531,12 @@
     },
     "data*{}[]": {
       "snippet": "data*{${1:type}}[${2:specification}]"
+    },
+    "J()[]{}": {
+      "snippet": "J(${3:bonds;nuclei})[${2:unit}]{${1:num-list}}"
+    },
+    "J(){}": {
+      "snippet": "J(${2:bonds;nuclei}){${1:num-list}}"
     },
     "J[]{}": {
       "snippet": "J[${2:unit}]{${1:num-list}}"
@@ -527,50 +571,98 @@
       "keyvalindex": 6,
       "keyvalpos": 0
     },
+    "enthalpy[](){}": {
+      "snippet": "enthalpy[${2:options}](${3:subscript}){${1:value}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
+    },
     "enthalpy[]{}": {
       "snippet": "enthalpy[${2:options}]{${1:value}}",
       "keyvalindex": 7,
       "keyvalpos": 0
     },
+    "enthalpy(){}": {
+      "snippet": "enthalpy(${2:subscript}){${1:value}}"
+    },
     "enthalpy{}": {
       "snippet": "enthalpy{${1:value}}"
+    },
+    "enthalpy*[](){}": {
+      "snippet": "enthalpy*[${2:options}](${3:subscript}){${1:value}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
     },
     "enthalpy*[]{}": {
       "snippet": "enthalpy*[${2:options}]{${1:value}}",
       "keyvalindex": 7,
       "keyvalpos": 0
     },
+    "enthalpy*(){}": {
+      "snippet": "enthalpy*(${2:subscript}){${1:value}}"
+    },
     "enthalpy*{}": {
       "snippet": "enthalpy*{${1:value}}"
+    },
+    "entropy[](){}": {
+      "snippet": "entropy[${2:options}](${3:subscript}){${1:value}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
     },
     "entropy[]{}": {
       "snippet": "entropy[${2:options}]{${1:value}}",
       "keyvalindex": 7,
       "keyvalpos": 0
     },
+    "entropy(){}": {
+      "snippet": "entropy(${2:subscript}){${1:value}}"
+    },
     "entropy{}": {
       "snippet": "entropy{${1:value}}"
+    },
+    "entropy*[](){}": {
+      "snippet": "entropy*[${2:options}](${3:subscript}){${1:value}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
     },
     "entropy*[]{}": {
       "snippet": "entropy*[${2:options}]{${1:value}}",
       "keyvalindex": 7,
       "keyvalpos": 0
     },
+    "entropy*(){}": {
+      "snippet": "entropy*(${2:subscript}){${1:value}}"
+    },
     "entropy*{}": {
       "snippet": "entropy*{${1:value}}"
+    },
+    "gibbs[](){}": {
+      "snippet": "gibbs[${2:options}](${3:subscript}){${1:value}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
     },
     "gibbs[]{}": {
       "snippet": "gibbs[${2:options}]{${1:value}}",
       "keyvalindex": 7,
       "keyvalpos": 0
     },
+    "gibbs(){}": {
+      "snippet": "gibbs(${2:subscript}){${1:value}}"
+    },
     "gibbs{}": {
       "snippet": "gibbs{${1:value}}"
+    },
+    "gibbs*[](){}": {
+      "snippet": "gibbs*[${2:options}](${3:subscript}){${1:value}}",
+      "keyvalindex": 7,
+      "keyvalpos": 0
     },
     "gibbs*[]{}": {
       "snippet": "gibbs*[${2:options}]{${1:value}}",
       "keyvalindex": 7,
       "keyvalpos": 0
+    },
+    "gibbs*(){}": {
+      "snippet": "gibbs*(${2:subscript}){${1:value}}"
     },
     "gibbs*{}": {
       "snippet": "gibbs*{${1:value}}"

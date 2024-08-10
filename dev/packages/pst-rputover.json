@@ -5,12 +5,52 @@
     "pst-xkey": []
   },
   "macros": {
+    "rputover()(){}": {
+      "snippet": "rputover(${2:x0},${3:y0})(${4:x1},${5:y1}){${1:stuff}}"
+    },
+    "rputover{}(){}": {
+      "snippet": "rputover{${1:angle}}(${3:x0},${4:y0}){${2:stuff}}"
+    },
+    "rputover{}()(){}": {
+      "snippet": "rputover{${1:angle}}(${3:x0},${4:y0})(${5:x1},${6:y1}){${2:stuff}}"
+    },
+    "rputover[]()(){}": {
+      "snippet": "rputover[${2:options}](${3:x0},${4:y0})(${5:x1},${6:y1}){${1:stuff}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "rputover[]{}(){}": {
+      "snippet": "rputover[${3:options}]{${1:angle}}(${4:x0},${5:y0}){${2:stuff}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "rputover[]{}()(){}": {
+      "snippet": "rputover[${3:options}]{${1:angle}}(${4:x0},${5:y0})(${6:x1},${7:y1}){${2:stuff}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
     "coverable{}": {
       "snippet": "coverable{${1:stuff}}"
     },
     "coverable[]{}": {
       "snippet": "coverable[${2:options}]{${1:stuff}}",
-      "keyvalindex": 0,
+      "keyvalindex": 1,
+      "keyvalpos": 0
+    },
+    "pclineover()(){}": {
+      "snippet": "pclineover(${2:x0},${3:y0})(${4:x1},${5:y1}){${1:stuff}}"
+    },
+    "pclineover[]()(){}": {
+      "snippet": "pclineover[${2:options}](${3:x0},${4:y0})(${5:x1},${6:y1}){${1:stuff}}",
+      "keyvalindex": 2,
+      "keyvalpos": 0
+    },
+    "pcarrowC()(){}": {
+      "snippet": "pcarrowC(${2:x0},${3:y0})(${4:x1},${5:y1}){${1:stuff}}"
+    },
+    "pcarrowC[]()(){}": {
+      "snippet": "pcarrowC[${2:options}](${3:x0},${4:y0})(${5:x1},${6:y1}){${1:stuff}}",
+      "keyvalindex": 3,
       "keyvalpos": 0
     },
     "PSTRPUTOVERLoaded": {}
@@ -19,7 +59,26 @@
   "options": [],
   "keyvals": [
     [
+      "autoangle",
+      "inverscl",
+      "boxpos=${1:pos}",
+      "fboxsep=",
+      "npos=${1:number}"
+    ],
+    [
       "inverscl"
+    ],
+    [
+      "absnodesep=",
+      "angleadd=${1:degrees}",
+      "arrows=${1:arrows}",
+      "offset="
+    ],
+    [
+      "addbars=${1:bars}",
+      "baroffset=",
+      "Cbarwidth=",
+      "tbarsize="
     ]
   ]
 }

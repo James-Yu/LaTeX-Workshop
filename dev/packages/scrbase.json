@@ -1,0 +1,351 @@
+{
+  "includes": {
+    "scrlfile": [],
+    "keyval": [],
+    "scrlogo": []
+  },
+  "macros": {
+    "KOMAScriptVersion": {},
+    "rloop{}": {
+      "snippet": "rloop{${1:arg}}"
+    },
+    "IfLTXAtLeastTF{}{}{}": {
+      "snippet": "IfLTXAtLeastTF{${1:date}}{${2:then code}}{${3:else code}}"
+    },
+    "DefineFamily{}": {
+      "snippet": "DefineFamily{${1:family}}"
+    },
+    "DefineFamilyMember{}": {
+      "snippet": "DefineFamilyMember{${1:family}}"
+    },
+    "DefineFamilyMember[]{}": {
+      "snippet": "DefineFamilyMember[${2:member}]{${1:family}}"
+    },
+    "DefineFamilyKey{}{}{}": {
+      "snippet": "DefineFamilyKey{${1:family}}{${2:key}}{${3:action}}"
+    },
+    "DefineFamilyKey[]{}{}{}": {
+      "snippet": "DefineFamilyKey[${4:member}]{${1:family}}{${2:key}}{${3:action}}"
+    },
+    "DefineFamilyKey[]{}{}[]{}": {
+      "snippet": "DefineFamilyKey[${4:member}]{${1:family}}{${2:key}}[${5:default}]{${3:action}}"
+    },
+    "RelaxFamilyKey{}{}": {
+      "snippet": "RelaxFamilyKey{${1:family}}{${2:key}}"
+    },
+    "RelaxFamilyKey[]{}{}": {
+      "snippet": "RelaxFamilyKey[${3:member}]{${1:family}}{${2:key}}"
+    },
+    "FamilyKeyState": {},
+    "FamilyKeyStateUnknown": {},
+    "FamilyKeyStateUnknownValue": {},
+    "FamilyKeyStateNeedValue": {},
+    "FamilyKeyStateProcessed": {},
+    "FamilyOfKey": {},
+    "FamilyMemberOfKey": {},
+    "FamilyProcessOptions{}": {
+      "snippet": "FamilyProcessOptions{${1:family}}"
+    },
+    "FamilyProcessOptions[]{}": {
+      "snippet": "FamilyProcessOptions[${2:member}]{${1:family}}"
+    },
+    "AtEndOfFamilyOptions{}": {
+      "snippet": "AtEndOfFamilyOptions{${1:action}}"
+    },
+    "AtEndOfFamilyOptions*{}": {
+      "snippet": "AtEndOfFamilyOptions*{${1:action}}"
+    },
+    "IfArgIsEmpty{}{}{}": {
+      "snippet": "IfArgIsEmpty{${1:arg}}{${2:then code}}{${3:else code}}"
+    },
+    "XdivY{}{}": {
+      "snippet": "XdivY{${1:dividend}}{${2:divisor}}"
+    },
+    "XmodY{}{}": {
+      "snippet": "XmodY{${1:dividend}}{${2:divisor}}"
+    },
+    "Ifundefinedorrelax{}{}{}": {
+      "snippet": "Ifundefinedorrelax{${1:name}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifnotundefined{}{}{}": {
+      "snippet": "Ifnotundefined{${1:name}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifstr{}{}{}{}": {
+      "snippet": "Ifstr{${1:string1}}{${2:string2}}{${3:then code}}{${4:else code}}"
+    },
+    "Ifstrstart{}{}{}{}": {
+      "snippet": "Ifstrstart{${1:string1}}{${2:string2}}{${3:then code}}{${4:else code}}"
+    },
+    "Ifislengthprimitive{}{}{}": {
+      "snippet": "Ifislengthprimitive{${1:expression}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifisdimen{}{}{}": {
+      "snippet": "Ifisdimen{${1:string}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifisskip{}{}{}": {
+      "snippet": "Ifisskip{${1:expression}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifiscount{}{}{}": {
+      "snippet": "Ifiscount{${1:count}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifisdimexpr{}{}{}": {
+      "snippet": "Ifisdimexpr{${1:expression}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifisglueexpr{}{}{}": {
+      "snippet": "Ifisglueexpr{${1:expression}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifisnumexpr{}{}{}": {
+      "snippet": "Ifisnumexpr{${1:expression}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifisdefchar{}{}{}": {
+      "snippet": "Ifisdefchar{${1:arg}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifiscounter{}{}{}": {
+      "snippet": "Ifiscounter{${1:counter}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifisinteger{}{}{}": {
+      "snippet": "Ifisinteger{${1:expression}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifisdimension{}{}{}": {
+      "snippet": "Ifisdimension{${1:expression}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifisglue{}{}{}": {
+      "snippet": "Ifisglue{${1:expression}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifnumber{}{}{}": {
+      "snippet": "Ifnumber{${1:string}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifintnumber{}{}{}": {
+      "snippet": "Ifintnumber{${1:string}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifdimen{}{}{}": {
+      "snippet": "Ifdimen{${1:string}}{${2:then code}}{${3:else code}}"
+    },
+    "Ifpdfoutput{}{}": {
+      "snippet": "Ifpdfoutput{${1:then code}}{${2:else code}}"
+    },
+    "Ifpsoutput{}{}": {
+      "snippet": "Ifpsoutput{${1:then code}}{${2:else code}}"
+    },
+    "Ifdvioutput{}{}": {
+      "snippet": "Ifdvioutput{${1:then code}}{${2:else code}}"
+    },
+    "IfRTL{}{}": {
+      "snippet": "IfRTL{${1:then code}}{${2:else code}}"
+    },
+    "IfLTR{}{}": {
+      "snippet": "IfLTR{${1:then code}}{${2:else code}}"
+    },
+    "PackageInfoNoLine{}{}": {
+      "snippet": "PackageInfoNoLine{${1:package}}{${2:information}}"
+    },
+    "ClassInfoNoLine{}{}": {
+      "snippet": "ClassInfoNoLine{${1:class}}{${2:information}}"
+    },
+    "IfActiveMkBoth{}{}": {
+      "snippet": "IfActiveMkBoth{${1:then code}}{${2:else code}}"
+    },
+    "BeforeFamilyProcessOptions{}{}": {
+      "snippet": "BeforeFamilyProcessOptions{${1:family}}{${2:code}}"
+    },
+    "BeforeFamilyProcessOptions[]{}{}": {
+      "snippet": "BeforeFamilyProcessOptions[${3:member}]{${1:family}}{${2:code}}"
+    },
+    "FamilyExecuteOptions{}{}": {
+      "snippet": "FamilyExecuteOptions{${1:family}}{${2:options list}}"
+    },
+    "FamilyExecuteOptions[]{}{}": {
+      "snippet": "FamilyExecuteOptions[${3:member}]{${1:family}}{${2:options list}}"
+    },
+    "FamilyOptions{}{}": {
+      "snippet": "FamilyOptions{${1:family}}{${2:options list}}"
+    },
+    "FamilyOption{}{}{}": {
+      "snippet": "FamilyOption{${1:family}}{${2:option}}{${3:value list}}"
+    },
+    "FamilyUnknownKeyValue{}{}{}{}": {
+      "snippet": "FamilyUnknownKeyValue{${1:family}}{${2:key}}{${3:value}}{${4:value list}}"
+    },
+    "FamilyElseValues": {},
+    "FamilyBoolKey{}{}{}": {
+      "snippet": "FamilyBoolKey{${1:family}}{${2:key}}{${3:switch name}}"
+    },
+    "FamilyBoolKey[]{}{}{}": {
+      "snippet": "FamilyBoolKey[${4:member}]{${1:family}}{${2:key}}{${3:switch name}}"
+    },
+    "FamilySetBool{}{}{}{}": {
+      "snippet": "FamilySetBool{${1:family}}{${2:key}}{${3:switch name}}{${4:value}}"
+    },
+    "FamilyInverseBoolKey{}{}{}": {
+      "snippet": "FamilyInverseBoolKey{${1:family}}{${2:key}}{${3:switch name}}"
+    },
+    "FamilyInverseBoolKey[]{}{}{}": {
+      "snippet": "FamilyInverseBoolKey[${4:member}]{${1:family}}{${2:key}}{${3:switch name}}"
+    },
+    "FamilySetInverseBool{}{}{}{}": {
+      "snippet": "FamilySetInverseBool{${1:family}}{${2:key}}{${3:switch name}}{${4:value}}"
+    },
+    "FamilyCounterKey{}{}{}": {
+      "snippet": "FamilyCounterKey{${1:family}}{${2:key}}{${3:counter}}"
+    },
+    "FamilyCounterKey[]{}{}{}": {
+      "snippet": "FamilyCounterKey[${4:member}]{${1:family}}{${2:key}}{${3:counter}}"
+    },
+    "FamilyCounterKey[]{}{}[]{}": {
+      "snippet": "FamilyCounterKey[${4:member}]{${1:family}}{${2:key}}[${5:default}]{${3:counter}}"
+    },
+    "FamilySetCounter{}{}{}{}": {
+      "snippet": "FamilySetCounter{${1:family}}{${2:key}}{${3:counter}}{${4:value}}"
+    },
+    "FamilyCounterMacroKey{}{}{}": {
+      "snippet": "FamilyCounterMacroKey{${1:family}}{${2:key}}{${3:macro}}"
+    },
+    "FamilyCounterMacroKey{}{}[]{}": {
+      "snippet": "FamilyCounterMacroKey{${1:family}}{${2:key}}[${3:default}]{${4:macro}}"
+    },
+    "FamilyCounterMacroKey[]{}{}{}": {
+      "snippet": "FamilyCounterMacroKey[${4:member}]{${1:family}}{${2:key}}{${3:macro}}"
+    },
+    "FamilyCounterMacroKey[]{}{}[]{}": {
+      "snippet": "FamilyCounterMacroKey[${4:member}]{${1:family}}{${2:key}}[${5:default}]{${3:macro}}"
+    },
+    "FamilySetCounterMacro{}{}{}{}": {
+      "snippet": "FamilySetCounterMacro{${1:family}}{${2:key}}{${3:macro}}{${4:value}}"
+    },
+    "FamilyLengthKey{}{}{}": {
+      "snippet": "FamilyLengthKey{${1:family}}{${2:key}}{${3:length}}"
+    },
+    "FamilyLengthKey[]{}{}{}": {
+      "snippet": "FamilyLengthKey[${4:member}]{${1:family}}{${2:key}}{${3:csname}}"
+    },
+    "FamilyLengthKey[]{}{}[]{}": {
+      "snippet": "FamilyLengthKey[${4:member}]{${1:family}}{${2:key}}[${5:default}]{${3:csname}}"
+    },
+    "FamilySetLength{}{}{}{}": {
+      "snippet": "FamilySetLength{${1:family}}{${2:key}}{${3:length}}{${4:value}}"
+    },
+    "FamilyLengthMacroKey{}{}{}": {
+      "snippet": "FamilyLengthMacroKey{${1:family}}{${2:key}}{${3:macro}}"
+    },
+    "FamilyLengthMacroKey{}{}[]{}": {
+      "snippet": "FamilyLengthMacroKey{${1:family}}{${2:key}}[${3:default}]{${4:macro}}"
+    },
+    "FamilyLengthMacroKey[]{}{}{}": {
+      "snippet": "FamilyLengthMacroKey[${4:member}]{${1:family}}{${2:key}}{${3:macro}}"
+    },
+    "FamilyLengthMacroKey[]{}{}[]{}": {
+      "snippet": "FamilyLengthMacroKey[${4:member}]{${1:family}}{${2:key}}[${5:default}]{${3:macro}}"
+    },
+    "FamilySetLengthMacro{}{}{}{}": {
+      "snippet": "FamilySetLengthMacro{${1:family}}{${2:key}}{${3:macro}}{${4:value}}"
+    },
+    "FamilyUseLengthMacroKey{}{}{}": {
+      "snippet": "FamilyUseLengthMacroKey{${1:family}}{${2:key}}{${3:macro}}"
+    },
+    "FamilyUseLengthMacroKey{}{}[]{}": {
+      "snippet": "FamilyUseLengthMacroKey{${1:family}}{${2:key}}[${3:default}]{${4:macro}}"
+    },
+    "FamilyUseLengthMacroKey[]{}{}{}": {
+      "snippet": "FamilyUseLengthMacroKey[${4:member}]{${1:family}}{${2:key}}{${3:macro}}"
+    },
+    "FamilyUseLengthMacroKey[]{}{}[]{}": {
+      "snippet": "FamilyUseLengthMacroKey[${4:member}]{${1:family}}{${2:key}}[${5:default}]{${3:macro}}"
+    },
+    "FamilySetUseLengthMacro{}{}{}{}": {
+      "snippet": "FamilySetUseLengthMacro{${1:family}}{${2:key}}{${3:macro}}{${4:value}}"
+    },
+    "FamilyNumericalKey{}{}{}{}": {
+      "snippet": "FamilyNumericalKey{${1:family}}{${2:key}}{${3:macro}}{${4:value list}}"
+    },
+    "FamilyLengthMacroKey{}{}[]{}{}": {
+      "snippet": "FamilyLengthMacroKey{${1:family}}{${2:key}}[${3:default}]{${4:macro}}{${5:value list}}"
+    },
+    "FamilyLengthMacroKey[]{}{}{}{}": {
+      "snippet": "FamilyLengthMacroKey[${5:member}]{${1:family}}{${2:key}}{${3:macro}}{${4:value list}}"
+    },
+    "FamilyLengthMacroKey[]{}{}[]{}{}": {
+      "snippet": "FamilyLengthMacroKey[${5:member}]{${1:family}}{${2:key}}[${6:default}]{${3:macro}}{${4:value list}}"
+    },
+    "FamilySetNumerical{}{}{}{}{}": {
+      "snippet": "FamilySetNumerical{${1:family}}{${2:key}}{${3:macro}}{${4:value list}}{${5:value}}"
+    },
+    "FamilyStringKey{}{}{}": {
+      "snippet": "FamilyStringKey{${1:family}}{${2:key}}{${3:macro}}"
+    },
+    "FamilyStringKey{}{}[]{}": {
+      "snippet": "FamilyStringKey{${1:family}}{${2:key}}[${3:default}]{${4:macro}}"
+    },
+    "FamilyStringKey[]{}{}{}": {
+      "snippet": "FamilyStringKey[${4:member}]{${1:family}}{${2:key}}{${3:macro}}"
+    },
+    "FamilyStringKey[]{}{}[]{}": {
+      "snippet": "FamilyStringKey[${4:member}]{${1:family}}{${2:key}}[${5:default}]{${3:macro}}"
+    },
+    "FamilyCSKey{}{}{}": {
+      "snippet": "FamilyCSKey{${1:family}}{${2:key}}{${3:csname}}"
+    },
+    "ForDoHook{}{}": {
+      "snippet": "ForDoHook{${1:specification}}{${2:command}}"
+    },
+    "SplitDoHook{}{}{}": {
+      "snippet": "SplitDoHook{${1:specifier}}{${2:head macro}}{${3:remainder macro}}"
+    },
+    "ExecuteDoHook{}": {
+      "snippet": "ExecuteDoHook{${1:specifier}}"
+    },
+    "AddtoDoHook{}{}": {
+      "snippet": "AddtoDoHook{${1:name}}{${2:command}}"
+    },
+    "AddtoOneTimeDoHook{}{}": {
+      "snippet": "AddtoOneTimeDoHook{${1:name}}{${2:command}}"
+    },
+    "defcaptionname{}{}{}": {
+      "snippet": "defcaptionname{${1:language list}}{${2:term}}{${3:definition}}"
+    },
+    "defcaptionname*{}{}{}": {
+      "snippet": "defcaptionname*{${1:language list}}{${2:term}}{${3:definition}}"
+    },
+    "providecaptionname{}{}{}": {
+      "snippet": "providecaptionname{${1:language list}}{${2:term}}{${3:definition}}"
+    },
+    "providecaptionname*{}{}{}": {
+      "snippet": "providecaptionname*{${1:language list}}{${2:term}}{${3:definition}}"
+    },
+    "newcaptionname{}{}{}": {
+      "snippet": "newcaptionname{${1:language list}}{${2:term}}{${3:definition}}"
+    },
+    "newcaptionname*{}{}{}": {
+      "snippet": "newcaptionname*{${1:language list}}{${2:term}}{${3:definition}}"
+    },
+    "renewcaptionname{}{}{}": {
+      "snippet": "renewcaptionname{${1:language list}}{${2:term}}{${3:definition}}"
+    },
+    "renewcaptionname*{}{}{}": {
+      "snippet": "renewcaptionname*{${1:language list}}{${2:term}}{${3:definition}}"
+    },
+    "ifnotundefined": {},
+    "ifislengthprimitive": {},
+    "ifisdefchar": {},
+    "ifstr": {},
+    "ifstrstart": {},
+    "ifisdimen": {},
+    "ifisskip": {},
+    "ifiscount": {},
+    "ifisdimexpr": {},
+    "ifisglueexpr": {},
+    "ifisnumexpr": {},
+    "ifiscounter": {},
+    "ifisinteger": {},
+    "ifisdimension": {},
+    "ifisglue": {},
+    "ifnumber": {},
+    "ifintnumber": {},
+    "ifdimen": {},
+    "ifpdfoutput": {},
+    "ifpsoutput": {},
+    "ifdvioutput": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": []
+}

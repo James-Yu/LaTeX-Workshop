@@ -1,0 +1,699 @@
+{
+  "includes": {
+    "upmethodology-p-common": [],
+    "babel": [],
+    "vmargin": [],
+    "upmethodology-extension": [],
+    "upmethodology-fmt": [],
+    "upmethodology-version": [],
+    "draftwatermark": []
+  },
+  "macros": {
+    "listendskip": {},
+    "declaredocument{}{}{}": {
+      "snippet": "declaredocument{${1:project}}{${2:name}}{${3:ref}}"
+    },
+    "declaredocumentex{}{}{}{}": {
+      "snippet": "declaredocumentex{${1:project}}{${2:subproject}}{${3:name}}{${4:ref}}"
+    },
+    "upmdocumentsummary": {},
+    "upmdocumentsummary[]": {
+      "snippet": "upmdocumentsummary[${1:width}]"
+    },
+    "upmdocinfopage": {},
+    "upmpublicationpage": {},
+    "upmpublicationminipage": {},
+    "theupmproject": {},
+    "theupmsubproject": {},
+    "theupmdocname": {},
+    "theupmdocref": {},
+    "theupmsmalldoclogo": {},
+    "theupmdoclogo": {},
+    "defupmsmalllogo{}": {
+      "snippet": "defupmsmalllogo{${1:imagefile}}"
+    },
+    "defupmlogo{}": {
+      "snippet": "defupmlogo{${1:imagefile}}"
+    },
+    "theupmfulldocname": {},
+    "setdocabstract{}": {
+      "snippet": "setdocabstract{${1:text}}"
+    },
+    "setdocabstract[]{}": {
+      "snippet": "setdocabstract[${2:language}]{${1:text}}"
+    },
+    "setdockeywords{}": {
+      "snippet": "setdockeywords{${1:keywords}}"
+    },
+    "setdockeywords[]{}": {
+      "snippet": "setdockeywords[${2:language}]{${1:keywords}}"
+    },
+    "theupmdocabstract": {},
+    "theupmdockeywords": {},
+    "theauthorlist": {},
+    "ifdocumentauthor{}{}{}": {
+      "snippet": "ifdocumentauthor{${1:name}}{${2:true}}{${3:false}}"
+    },
+    "addauthor{}{}": {
+      "snippet": "addauthor{${1:first name}}{${2:name}}"
+    },
+    "addauthor[]{}{}": {
+      "snippet": "addauthor[${3:email}]{${1:first name}}{${2:name}}"
+    },
+    "addauthor*{}{}{}": {
+      "snippet": "addauthor*{${1:first name}}{${2:name}}{${3:comment}}"
+    },
+    "addauthor*[]{}{}{}": {
+      "snippet": "addauthor*[${4:email}]{${1:first name}}{${2:name}}{${3:comment}}"
+    },
+    "upmdocumentauthors": {},
+    "upmdocumentauthors[]": {
+      "snippet": "upmdocumentauthors[${1:width}]"
+    },
+    "thevalidatorlist": {},
+    "addvalidator{}{}": {
+      "snippet": "addvalidator{${1:first name}}{${2:name}}"
+    },
+    "addvalidator[]{}{}": {
+      "snippet": "addvalidator[${3:email}]{${1:first name}}{${2:name}}"
+    },
+    "addvalidator*{}{}{}": {
+      "snippet": "addvalidator*{${1:first name}}{${2:name}}{${3:comment}}"
+    },
+    "addvalidator*[]{}{}{}": {
+      "snippet": "addvalidator*[${4:email}]{${1:first name}}{${2:name}}{${3:comment}}"
+    },
+    "upmdocumentvalidators": {},
+    "upmdocumentvalidators[]": {
+      "snippet": "upmdocumentvalidators[${1:width}]"
+    },
+    "addauthorvalidator{}{}": {
+      "snippet": "addauthorvalidator{${1:first name}}{${2:name}}"
+    },
+    "addauthorvalidator[]{}{}": {
+      "snippet": "addauthorvalidator[${3:email}]{${1:first name}}{${2:name}}"
+    },
+    "addauthorvalidator*{}{}{}": {
+      "snippet": "addauthorvalidator*{${1:first name}}{${2:name}}{${3:comment}}"
+    },
+    "addauthorvalidator*[]{}{}{}": {
+      "snippet": "addauthorvalidator*[${4:email}]{${1:first name}}{${2:name}}{${3:comment}}"
+    },
+    "theinformedlist": {},
+    "addinformed{}{}": {
+      "snippet": "addinformed{${1:first name}}{${2:name}}"
+    },
+    "addinformed[]{}{}": {
+      "snippet": "addinformed[${3:email}]{${1:first name}}{${2:name}}"
+    },
+    "addinformed*{}{}{}": {
+      "snippet": "addinformed*{${1:first name}}{${2:name}}{${3:comment}}"
+    },
+    "addinformed*[]{}{}{}": {
+      "snippet": "addinformed*[${4:email}]{${1:first name}}{${2:name}}{${3:comment}}"
+    },
+    "upmdocumentinformedpeople": {},
+    "upmdocumentinformedpeople[]": {
+      "snippet": "upmdocumentinformedpeople[${1:width}]"
+    },
+    "theupmcopyrighter": {},
+    "theupmpublisher": {},
+    "theupmprintedin": {},
+    "theupmisbn": {},
+    "theupmissn": {},
+    "theupmdoi": {},
+    "theupmpublishingdate": {},
+    "theupmformattedpublisher": {},
+    "theupmformattedcopyrighter": {},
+    "setdocumentpurpose{}": {
+      "snippet": "setdocumentpurpose{${1:text}}"
+    },
+    "setpublisher{}": {
+      "snippet": "setpublisher{${1:name}}"
+    },
+    "setcopyrighter{}": {
+      "snippet": "setcopyrighter{${1:name}}"
+    },
+    "setprintingaddress{}": {
+      "snippet": "setprintingaddress{${1:address}}"
+    },
+    "setisbn{}": {
+      "snippet": "setisbn{${1:ISBN}}"
+    },
+    "setissn{}": {
+      "snippet": "setissn{${1:ISSN}}"
+    },
+    "setdoi{}": {
+      "snippet": "setdoi{${1:DOI}}"
+    },
+    "captionsenglish": {},
+    "dateenglish": {},
+    "extrasenglish": {},
+    "noextrasenglish": {},
+    "englishhyphenmins": {},
+    "britishhyphenmins": {},
+    "americanhyphenmins": {},
+    "prefacename": {
+      "option": "francais"
+    },
+    "bibname": {
+      "option": "francais"
+    },
+    "chaptername": {
+      "option": "francais"
+    },
+    "enclname": {
+      "option": "francais"
+    },
+    "ccname": {
+      "option": "francais"
+    },
+    "headtoname": {
+      "option": "francais"
+    },
+    "seename": {
+      "option": "francais"
+    },
+    "alsoname": {
+      "option": "francais"
+    },
+    "proofname": {
+      "option": "francais"
+    },
+    "glossaryname": {
+      "option": "francais"
+    },
+    "frenchsetup{}": {
+      "snippet": "frenchsetup{${1:options}}",
+      "option": "francais",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "frenchbsetup{}": {
+      "snippet": "frenchbsetup{${1:options}}",
+      "option": "francais",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "AddThinSpaceBeforeFootnotes": {
+      "option": "francais"
+    },
+    "at": {
+      "option": "francais"
+    },
+    "AutoSpaceBeforeFDP": {
+      "option": "francais"
+    },
+    "boi": {
+      "option": "francais"
+    },
+    "bsc{}": {
+      "snippet": "bsc{${1:text}}",
+      "option": "francais"
+    },
+    "CaptionSeparator": {
+      "option": "francais"
+    },
+    "captionsfrench": {
+      "option": "francais"
+    },
+    "circonflexe": {
+      "option": "francais"
+    },
+    "dateacadian": {
+      "option": "francais"
+    },
+    "datefrench": {
+      "option": "francais"
+    },
+    "DecimalMathComma": {
+      "option": "francais"
+    },
+    "degre": {
+      "option": "francais"
+    },
+    "degres": {
+      "option": "francais"
+    },
+    "descindentFB": {
+      "option": "francais"
+    },
+    "dotFFN": {
+      "option": "francais"
+    },
+    "extrasfrench": {
+      "option": "francais"
+    },
+    "FBcolonspace": {
+      "option": "francais"
+    },
+    "FBdatebox": {
+      "option": "francais"
+    },
+    "FBdatespace": {
+      "option": "francais"
+    },
+    "FBeverylineguill": {
+      "option": "francais"
+    },
+    "FBfigtabshape": {
+      "option": "francais"
+    },
+    "FBfnindent": {
+      "option": "francais"
+    },
+    "FBFrenchFootnotesfalse": {
+      "option": "francais"
+    },
+    "FBFrenchFootnotestrue": {
+      "option": "francais"
+    },
+    "FBFrenchSuperscriptstrue": {
+      "option": "francais"
+    },
+    "FBGlobalLayoutFrenchtrue": {
+      "option": "francais"
+    },
+    "FBgspchar": {
+      "option": "francais"
+    },
+    "FBguillopen": {
+      "option": "francais"
+    },
+    "FBguillspace": {
+      "option": "francais"
+    },
+    "FBInnerGuillSinglefalse": {
+      "option": "francais"
+    },
+    "FBInnerGuillSingletrue": {
+      "option": "francais"
+    },
+    "FBListItemsAsParfalse": {
+      "option": "francais"
+    },
+    "FBListItemsAsPartrue": {
+      "option": "francais"
+    },
+    "FBLowercaseSuperscriptstrue": {
+      "option": "francais"
+    },
+    "FBmedkern": {
+      "option": "francais"
+    },
+    "FBPartNameFulltrue": {
+      "option": "francais"
+    },
+    "FBsetspaces[]{}{}{}{}": {
+      "snippet": "FBsetspaces[${5:language}]{${1:type}}{${2:width}}{${3:stretch}}{${4:shrink}}",
+      "option": "francais"
+    },
+    "FBsetspaces{}{}{}{}": {
+      "snippet": "FBsetspaces{${1:type}}{${2:width}}{${3:stretch}}{${4:shrink}}",
+      "option": "francais"
+    },
+    "FBSmallCapsFigTabCaptionstrue": {
+      "option": "francais"
+    },
+    "FBStandardEnumerateEnvtrue": {
+      "option": "francais"
+    },
+    "FBStandardItemizeEnvtrue": {
+      "option": "francais"
+    },
+    "FBStandardItemLabelstrue": {
+      "option": "francais"
+    },
+    "FBStandardLayouttrue": {
+      "option": "francais"
+    },
+    "FBStandardListSpacingtrue": {
+      "option": "francais"
+    },
+    "FBStandardListstrue": {
+      "option": "francais"
+    },
+    "FBsupR": {
+      "option": "francais"
+    },
+    "FBsupS": {
+      "option": "francais"
+    },
+    "FBtextellipsis": {
+      "option": "francais"
+    },
+    "FBthickkern": {
+      "option": "francais"
+    },
+    "FBthinspace": {
+      "option": "francais"
+    },
+    "FBthousandsep": {
+      "option": "francais"
+    },
+    "FBWarning{}": {
+      "snippet": "FBWarning{${1:message}}",
+      "option": "francais"
+    },
+    "fg": {
+      "option": "francais"
+    },
+    "fgi": {
+      "option": "francais"
+    },
+    "fgii": {
+      "option": "francais"
+    },
+    "fprimo)": {
+      "option": "francais"
+    },
+    "frenchdate{}{}{}": {
+      "snippet": "frenchdate{${1:day}}{${2:month}}{${3:year}}",
+      "option": "francais"
+    },
+    "FrenchEnumerate{}": {
+      "snippet": "FrenchEnumerate{${1:arg}}",
+      "option": "francais"
+    },
+    "FrenchFootnotes": {
+      "option": "francais"
+    },
+    "FrenchLabelItem": {
+      "option": "francais"
+    },
+    "frenchpartfirst": {
+      "option": "francais"
+    },
+    "frenchpartsecond": {
+      "option": "francais"
+    },
+    "FrenchPopularEnumerate{}": {
+      "snippet": "FrenchPopularEnumerate{${1:arg}}",
+      "option": "francais"
+    },
+    "frenchtoday": {
+      "option": "francais"
+    },
+    "Frlabelitemi": {
+      "option": "francais"
+    },
+    "Frlabelitemii": {
+      "option": "francais"
+    },
+    "Frlabelitemiii": {
+      "option": "francais"
+    },
+    "Frlabelitemiv": {
+      "option": "francais"
+    },
+    "frquote{}": {
+      "snippet": "frquote{${1:text}}",
+      "option": "francais"
+    },
+    "fup{}": {
+      "snippet": "fup{${1:text}}",
+      "option": "francais"
+    },
+    "ieme": {
+      "option": "francais"
+    },
+    "iemes": {
+      "option": "francais"
+    },
+    "ier": {
+      "option": "francais"
+    },
+    "iere": {
+      "option": "francais"
+    },
+    "ieres": {
+      "option": "francais"
+    },
+    "iers": {
+      "option": "francais"
+    },
+    "ifFBAutoSpaceFootnotes": {
+      "option": "francais"
+    },
+    "ifFBCompactItemize": {
+      "option": "francais"
+    },
+    "ifFBCustomiseFigTabCaptions": {
+      "option": "francais"
+    },
+    "ifFBfrench": {
+      "option": "francais"
+    },
+    "ifFBFrenchFootnotes": {
+      "option": "francais"
+    },
+    "ifFBFrenchSuperscripts": {
+      "option": "francais"
+    },
+    "ifFBGlobalLayoutFrench": {
+      "option": "francais"
+    },
+    "ifFBIndentFirst": {
+      "option": "francais"
+    },
+    "ifFBINGuillSpace": {
+      "option": "francais"
+    },
+    "ifFBListItemsAsPar": {
+      "option": "francais"
+    },
+    "ifFBListOldLayout": {
+      "option": "francais"
+    },
+    "ifFBLowercaseSuperscripts": {
+      "option": "francais"
+    },
+    "ifFBLuaTeX": {
+      "option": "francais"
+    },
+    "ifFBOldFigTabCaptions": {
+      "option": "francais"
+    },
+    "ifFBOriginalTypewriter": {
+      "option": "francais"
+    },
+    "ifFBPartNameFull": {
+      "option": "francais"
+    },
+    "ifFBReduceListSpacing": {
+      "option": "francais"
+    },
+    "ifFBShowOptions": {
+      "option": "francais"
+    },
+    "ifFBSmallCapsFigTabCaptions": {
+      "option": "francais"
+    },
+    "ifFBStandardEnumerateEnv": {
+      "option": "francais"
+    },
+    "ifFBStandardItemizeEnv": {
+      "option": "francais"
+    },
+    "ifFBStandardItemLabels": {
+      "option": "francais"
+    },
+    "ifFBStandardLayout": {
+      "option": "francais"
+    },
+    "ifFBStandardLists": {
+      "option": "francais"
+    },
+    "ifFBStandardListSpacing": {
+      "option": "francais"
+    },
+    "ifFBSuppressWarning": {
+      "option": "francais"
+    },
+    "ifFBThinColonSpace": {
+      "option": "francais"
+    },
+    "ifFBThinSpaceInFrenchNumbers": {
+      "option": "francais"
+    },
+    "ifFBunicode": {
+      "option": "francais"
+    },
+    "ifFBXeTeX": {
+      "option": "francais"
+    },
+    "ifLaTeXe": {
+      "option": "francais"
+    },
+    "kernFFN": {
+      "option": "francais"
+    },
+    "labelindentFB": {
+      "option": "francais"
+    },
+    "labelwidthFB": {
+      "option": "francais"
+    },
+    "leftmarginFB": {
+      "option": "francais"
+    },
+    "listfigurename": {
+      "option": "francais"
+    },
+    "listindentFB": {
+      "option": "francais"
+    },
+    "No": {
+      "option": "francais"
+    },
+    "no": {
+      "option": "francais"
+    },
+    "NoAutoSpaceBeforeFDP": {
+      "option": "francais"
+    },
+    "NoAutoSpacing": {
+      "option": "francais"
+    },
+    "NoEveryParQuote": {
+      "option": "francais"
+    },
+    "noextrasfrench": {
+      "option": "francais"
+    },
+    "nombre{}": {
+      "snippet": "nombre{${1:arg}}",
+      "option": "francais"
+    },
+    "nos": {
+      "option": "francais"
+    },
+    "Nos": {
+      "option": "francais"
+    },
+    "og": {
+      "option": "francais"
+    },
+    "ogi": {
+      "option": "francais"
+    },
+    "ogii": {
+      "option": "francais"
+    },
+    "parindentFFN": {
+      "option": "francais"
+    },
+    "partfirst": {
+      "option": "francais"
+    },
+    "partnameord": {
+      "option": "francais"
+    },
+    "partsecond": {
+      "option": "francais"
+    },
+    "primo": {
+      "option": "francais"
+    },
+    "quarto": {
+      "option": "francais"
+    },
+    "rmfamilyFB": {
+      "option": "francais"
+    },
+    "secundo": {
+      "option": "francais"
+    },
+    "sffamilyFB": {
+      "option": "francais"
+    },
+    "StandardFootnotes": {
+      "option": "francais"
+    },
+    "StandardMathComma": {
+      "option": "francais"
+    },
+    "tertio": {
+      "option": "francais"
+    },
+    "tild": {
+      "option": "francais"
+    },
+    "ttfamilyFB": {
+      "option": "francais"
+    },
+    "up{}": {
+      "snippet": "up{${1:text}}",
+      "option": "francais"
+    },
+    "xspace": {
+      "option": "francais"
+    }
+  },
+  "envs": {
+    "descriptionFB": {
+      "option": "francais"
+    },
+    "enumerateFB": {
+      "option": "francais"
+    },
+    "itemizeFB": {
+      "option": "francais"
+    },
+    "listFB{}": {
+      "name": "listFB",
+      "snippet": "{${1:symbol}}",
+      "option": "francais"
+    },
+    "listORI{}": {
+      "name": "listORI",
+      "snippet": "{${1:symbol}}",
+      "option": "francais"
+    }
+  },
+  "options": [
+    "french",
+    "francais",
+    "english"
+  ],
+  "keyvals": [
+    [
+      "ShowOptions",
+      "StandardLayout",
+      "GlobalLayoutFrench",
+      "IndentFirst",
+      "PartNameFull",
+      "ListItemsAsPar",
+      "StandardListSpacing",
+      "StandardItemizeEnv",
+      "StandardEnumerateEnv",
+      "StandardItemLabels",
+      "ItemLabels=",
+      "ItemLabeli=",
+      "ItemLabelii=",
+      "ItemLabeliii=",
+      "ItemLabeliv=",
+      "StandardLists",
+      "ListOldLayout",
+      "FrenchFootnotes",
+      "AutoSpaceFootnotes",
+      "AutoSpacePunctuation",
+      "ThinColonSpace",
+      "OriginalTypewriter",
+      "UnicodeNoBreakSpaces",
+      "og=",
+      "fg=",
+      "INGuillSpace",
+      "EveryParGuill=",
+      "EveryLineGuill=",
+      "InnerGuillSingle",
+      "ThinSpaceInFrenchNumbers",
+      "SmallCapsFigTabCaptions",
+      "CustomiseFigTabCaptions",
+      "OldFigTabCaptions",
+      "FrenchSuperscripts",
+      "LowercaseSuperscripts",
+      "SuppressWarning"
+    ]
+  ]
+}

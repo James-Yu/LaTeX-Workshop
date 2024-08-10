@@ -1,0 +1,288 @@
+{
+  "includes": {
+    "scrbase": [],
+    "scrlogo": []
+  },
+  "macros": {
+    "Ifattoclist{}{}{}": {
+      "snippet": "Ifattoclist{${1:extension}}{${2:then code}}{${3:else code}}"
+    },
+    "addtotoclist{}": {
+      "snippet": "addtotoclist{${1:extension}}"
+    },
+    "addtotoclist[]{}": {
+      "snippet": "addtotoclist[${2:owner}]{${1:extension}}"
+    },
+    "owneroftoc{}": {
+      "snippet": "owneroftoc{${1:arg}}"
+    },
+    "categoryoftoc{}": {
+      "snippet": "categoryoftoc{${1:arg}}"
+    },
+    "AtAddToTocList{}": {
+      "snippet": "AtAddToTocList{${1:commands}}"
+    },
+    "AtAddToTocList[]{}": {
+      "snippet": "AtAddToTocList[${2:owner}]{${1:commands}}"
+    },
+    "removefromtoclist{}": {
+      "snippet": "removefromtoclist{${1:extension}}"
+    },
+    "removefromtoclist[]{}": {
+      "snippet": "removefromtoclist[${2:owner}]{${1:extension}}"
+    },
+    "doforeachtocfile{}": {
+      "snippet": "doforeachtocfile{${1:commands}}"
+    },
+    "doforeachtocfile[]{}": {
+      "snippet": "doforeachtocfile[${2:owner}]{${1:commands}}"
+    },
+    "addtoeachtocfile{}": {
+      "snippet": "addtoeachtocfile{${1:content}}"
+    },
+    "addtoeachtocfile[]{}": {
+      "snippet": "addtoeachtocfile[${2:owner}]{${1:content}}"
+    },
+    "addcontentslinetoeachtocfile{}{}": {
+      "snippet": "addcontentslinetoeachtocfile{${1:level}}{${2:text}}"
+    },
+    "addcontentslinetoeachtocfile[]{}{}": {
+      "snippet": "addcontentslinetoeachtocfile[${3:owner}]{${1:level}}{${2:text}}"
+    },
+    "addxcontentsline{}{}{}": {
+      "snippet": "addxcontentsline{${1:extension}}{${2:level}}{${3:text}}"
+    },
+    "addxcontentsline{}{}[]{}": {
+      "snippet": "addxcontentsline{${1:extension}}{${2:level}}[${3:section number}]{${4:text}}"
+    },
+    "nonumberline": {},
+    "addxcontentslinetoeachtocfile{}{}": {
+      "snippet": "addxcontentslinetoeachtocfile{${1:level}}{${2:text}}"
+    },
+    "addxcontentslinetoeachtocfile{}[]{}": {
+      "snippet": "addxcontentslinetoeachtocfile{${1:level}}[${2:section number}]{${3:text}}"
+    },
+    "addxcontentslinetoeachtocfile[]{}{}": {
+      "snippet": "addxcontentslinetoeachtocfile[${3:owner}]{${1:level}}{${2:text}}"
+    },
+    "addxcontentslinetoeachtocfile[]{}[]{}": {
+      "snippet": "addxcontentslinetoeachtocfile[${3:owner}]{${1:level}}[${4:section number}]{${2:text}}"
+    },
+    "BeforeStartingTOC{}": {
+      "snippet": "BeforeStartingTOC{${1:commands}}"
+    },
+    "BeforeStartingTOC[]{}": {
+      "snippet": "BeforeStartingTOC[${2:extension}]{${1:commands}}"
+    },
+    "AfterStartingTOC{}": {
+      "snippet": "AfterStartingTOC{${1:commands}}"
+    },
+    "AfterStartingTOC[]{}": {
+      "snippet": "AfterStartingTOC[${2:extension}]{${1:commands}}"
+    },
+    "listoftoc{}": {
+      "snippet": "listoftoc{${1:extension}}"
+    },
+    "listoftoc[]{}": {
+      "snippet": "listoftoc[${2:list-of title}]{${1:extension}}"
+    },
+    "listoftoc*{}": {
+      "snippet": "listoftoc*{${1:extension}}"
+    },
+    "listofname": {},
+    "listofeachtoc": {},
+    "listofeachtoc[]": {
+      "snippet": "listofeachtoc[${1:owner}]"
+    },
+    "BeforeTOCHead{}": {
+      "snippet": "BeforeTOCHead{${1:commands}}"
+    },
+    "BeforeTOCHead[]{}": {
+      "snippet": "BeforeTOCHead[${2:extension}]{${1:commands}}"
+    },
+    "AfterTOCHead{}": {
+      "snippet": "AfterTOCHead{${1:commands}}"
+    },
+    "AfterTOCHead[]{}": {
+      "snippet": "AfterTOCHead[${2:extension}]{${1:commands}}"
+    },
+    "deftocheading{}{}": {
+      "snippet": "deftocheading{${1:extension}}{${2:definition}}"
+    },
+    "setuptoc{}{}": {
+      "snippet": "setuptoc{${1:extension}}{${2:feature list}}"
+    },
+    "unsettoc{}{}": {
+      "snippet": "unsettoc{${1:extension}}{${2:feature list}}"
+    },
+    "Iftocfeature{}{}{}{}": {
+      "snippet": "Iftocfeature{${1:extension}}{${2:feature}}{${3:then code}}{${4:else code}}"
+    },
+    "tocbasicautomode": {},
+    "DeclareNewTOC{}": {
+      "snippet": "DeclareNewTOC{${1:extension}}"
+    },
+    "DeclareNewTOC[]{}": {
+      "snippet": "DeclareNewTOC[${2:options}]{${1:extension}}",
+      "keyvalindex": 0,
+      "keyvalpos": 0
+    },
+    "usetocbasicnumberline": {},
+    "usetocbasicnumberline[]": {
+      "snippet": "usetocbasicnumberline[${1:code}]"
+    },
+    "TOCEntryStyleInitCode{}{}": {
+      "snippet": "TOCEntryStyleInitCode{${1:style}}{${2:initial code}}"
+    },
+    "TOCEntryStyleInitCode*{}{}": {
+      "snippet": "TOCEntryStyleInitCode*{${1:style}}{${2:initial code}}"
+    },
+    "TOCEntryStyleStartInitCode{}{}": {
+      "snippet": "TOCEntryStyleStartInitCode{${1:style}}{${2:initial code}}"
+    },
+    "DefineTOCEntryBooleanOption{}{}{}{}": {
+      "snippet": "DefineTOCEntryBooleanOption{${1:option}}{${2:prefix}}{${3:postfix}}{${4:description}}"
+    },
+    "DefineTOCEntryBooleanOption{}[]{}{}{}": {
+      "snippet": "DefineTOCEntryBooleanOption{${1:option}}[${2:default}]{${3:prefix}}{${4:postfix}}{${5:description}}"
+    },
+    "DefineTOCEntryCommandOption{}{}{}{}": {
+      "snippet": "DefineTOCEntryCommandOption{${1:option}}{${2:prefix}}{${3:postfix}}{${4:description}}"
+    },
+    "DefineTOCEntryCommandOption{}[]{}{}{}": {
+      "snippet": "DefineTOCEntryCommandOption{${1:option}}[${2:default}]{${3:prefix}}{${4:postfix}}{${5:description}}"
+    },
+    "DefineTOCEntryIfOption{}{}{}{}": {
+      "snippet": "DefineTOCEntryIfOption{${1:option}}{${2:prefix}}{${3:postfix}}{${4:description}}"
+    },
+    "DefineTOCEntryIfOption{}[]{}{}{}": {
+      "snippet": "DefineTOCEntryIfOption{${1:option}}[${2:default}]{${3:prefix}}{${4:postfix}}{${5:description}}"
+    },
+    "DefineTOCEntryLengthOption{}{}{}{}": {
+      "snippet": "DefineTOCEntryLengthOption{${1:option}}{${2:prefix}}{${3:postfix}}{${4:description}}"
+    },
+    "DefineTOCEntryLengthOption{}[]{}{}{}": {
+      "snippet": "DefineTOCEntryLengthOption{${1:option}}[${2:default}]{${3:prefix}}{${4:postfix}}{${5:description}}"
+    },
+    "DefineTOCEntryListOption{}{}{}{}": {
+      "snippet": "DefineTOCEntryListOption{${1:option}}{${2:prefix}}{${3:postfix}}{${4:description}}"
+    },
+    "DefineTOCEntryListOption{}[]{}{}{}": {
+      "snippet": "DefineTOCEntryListOption{${1:option}}[${2:default}]{${3:prefix}}{${4:postfix}}{${5:description}}"
+    },
+    "DefineTOCEntryNumberOption{}{}{}{}": {
+      "snippet": "DefineTOCEntryNumberOption{${1:option}}{${2:prefix}}{${3:postfix}}{${4:description}}"
+    },
+    "DefineTOCEntryNumberOption{}[]{}{}{}": {
+      "snippet": "DefineTOCEntryNumberOption{${1:option}}[${2:default}]{${3:prefix}}{${4:postfix}}{${5:description}}"
+    },
+    "DefineTOCEntryOption{}{}": {
+      "snippet": "DefineTOCEntryOption{${1:option}}{${2:code}}"
+    },
+    "DefineTOCEntryOption{}[]{}": {
+      "snippet": "DefineTOCEntryOption{${1:option}}[${2:default}]{${3:code}}"
+    },
+    "AddToDeclareTOCEntryStylePreCheckNeeds{}": {
+      "snippet": "AddToDeclareTOCEntryStylePreCheckNeeds{${1:code}}"
+    },
+    "PreToDeclareTOCEntryStylePreCheckNeeds{}": {
+      "snippet": "PreToDeclareTOCEntryStylePreCheckNeeds{${1:code}}"
+    },
+    "TOCEntryStyleNeedsCommandByOption{}{}{}{}{}": {
+      "snippet": "TOCEntryStyleNeedsCommandByOption{${1:option}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+    },
+    "DeclareTOCEntryStyle{}{}": {
+      "snippet": "DeclareTOCEntryStyle{${1:style}}{${2:command code}}"
+    },
+    "DeclareTOCEntryStyle{}[]{}": {
+      "snippet": "DeclareTOCEntryStyle{${1:style}}[${2:initial code}]{${3:command code}}"
+    },
+    "CloneTOCEntryStyle{}{}": {
+      "snippet": "CloneTOCEntryStyle{${1:style}}{${2:new style}}"
+    },
+    "DeclareTOCStyleEntry{}{}": {
+      "snippet": "DeclareTOCStyleEntry{${1:style}}{${2:entry level}}"
+    },
+    "DeclareTOCStyleEntry[]{}{}": {
+      "snippet": "DeclareTOCStyleEntry[${3:option list}]{${1:style}}{${2:entry level}}"
+    },
+    "DeclareTOCStyleEntries{}{}": {
+      "snippet": "DeclareTOCStyleEntries{${1:style}}{${2:entry level}}"
+    },
+    "DeclareTOCStyleEntries[]{}{}": {
+      "snippet": "DeclareTOCStyleEntries[${3:option list}]{${1:style}}{${2:entry level}}"
+    },
+    "LastTOCLevelWasHigher": {},
+    "LastTOCLevelWasSame": {},
+    "LastTOCLevelWasLower": {},
+    "TOCLineLeaderFill": {},
+    "TOCLineLeaderFill[]": {
+      "snippet": "TOCLineLeaderFill[${1:leader}]"
+    },
+    "MakeMarkcase{}": {
+      "snippet": "MakeMarkcase{${1:text}}"
+    },
+    "parttocdepth": {},
+    "sectiontocdepth": {},
+    "subsectiontocdepth": {},
+    "subsubsectiontocdepth": {},
+    "paragraphtocdepth": {},
+    "subparagraphtocdepth": {},
+    "ifattoclist": {},
+    "iftocfeature": {}
+  },
+  "envs": {},
+  "options": [],
+  "keyvals": [
+    [
+      "atbegin=${1:commands}",
+      "atend=${1:commands}",
+      "category=${1:string}",
+      "counterwithin=${1:counter}",
+      "float",
+      "floatpos=${1:float positions}",
+      "floattype=${1:number}",
+      "forcenames",
+      "hang=",
+      "indent=",
+      "level=${1:number}",
+      "listname=${1:title}",
+      "name=${1:entry name}",
+      "nonfloat",
+      "owner=${1:string}",
+      "setup={${1:list of attributes}}",
+      "tocentrystyle=${1:TOC-entry style}",
+      "tocentryafterpar=${1:code}",
+      "tocentrybeforeskip=",
+      "tocentrybreakafternumber=",
+      "tocentrydynindent=",
+      "tocentrydynnumwidth=",
+      "tocentryentryformat=${1:command}",
+      "tocentryentrynumberformat=${1:command}",
+      "tocentryindent=",
+      "tocentrylevel=${1:integer}",
+      "tocentryindentfollows={${1:list of levels}}",
+      "tocentrylinefill=${1:code}",
+      "tocentrynumsep=",
+      "tocentrynumwidth=",
+      "tocentryonendentry=${1:code}",
+      "tocentryonendlastentry=${1:code}",
+      "tocentryonstartentry=${1:code}",
+      "tocentryonstartfirstentry=${1:code}",
+      "tocentryonstarthigherlevel=${1:code}",
+      "tocentryonstartlowerlevel=${1:code}",
+      "tocentryonstartsamelevel=${1:code}",
+      "tocentrypagenumberbox=${1:command}",
+      "tocentrypagenumberformat=${1:command}",
+      "tocentrypagenumberwidth=",
+      "tocentryprepagenumber=${1:code}",
+      "tocentryraggedentrytext=",
+      "tocentryraggedpagenumber=",
+      "tocentryraggedright=",
+      "tocentryrightindent=",
+      "type=${1:entry type}",
+      "types=${1:string}",
+      "unset={${1:list of attributes}}"
+    ]
+  ]
+}

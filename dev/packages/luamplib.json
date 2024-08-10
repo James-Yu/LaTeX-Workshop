@@ -45,10 +45,10 @@
       "snippet": "mplibnumbersystem{${1:type}}"
     },
     "mplibmakenocache{}": {
-      "snippet": "mplibmakenocache{${1:file1,file2,...}}"
+      "snippet": "mplibmakenocache{${1:file1,${2:file2},...}}"
     },
     "mplibcancelnocache{}": {
-      "snippet": "mplibcancelnocache{${1:file1,file2,...}}"
+      "snippet": "mplibcancelnocache{${1:file1,${2:file2},...}}"
     },
     "mplibcachedir{}": {
       "snippet": "mplibcachedir{${1:directory path}}"
@@ -69,6 +69,13 @@
     "mplibshowlog{}": {
       "snippet": "mplibshowlog{${1:choice}}"
     },
+    "mppattern{}": {
+      "snippet": "mppattern{${1:name}}"
+    },
+    "mppattern{}[]": {
+      "snippet": "mppattern{${1:name}}[${2:options}]"
+    },
+    "endmppattern": {},
     "mplibsetformat{}": {
       "snippet": "mplibsetformat{${1:format name}}"
     },
@@ -103,6 +110,12 @@
     "mplibdoprempfig": {},
     "mplibmainmpfig": {},
     "mplibmpfigbranch": {},
+    "mplibpatternbranch": {},
+    "mplibpatterngetnexttok": {},
+    "mplibpatternmain": {},
+    "mplibpatternname": {},
+    "mplibpatternopts": {},
+    "mplibpatternskipspace": {},
     "mplibprempfig{}": {
       "snippet": "mplibprempfig{${1:arg}}"
     },
@@ -130,8 +143,29 @@
     "mplibcode[]": {
       "name": "mplibcode",
       "snippet": "[${1:instance name}]"
+    },
+    "mppattern{}": {
+      "name": "mppattern",
+      "snippet": "{${1:name}}"
+    },
+    "mppattern{}[]": {
+      "name": "mppattern",
+      "snippet": "{${1:name}}[${2:options}]",
+      "keyvalindex": 0,
+      "keyvalpos": 1
     }
   },
   "options": [],
-  "keyvals": []
+  "keyvals": [
+    [
+      "xstep=${1:number}",
+      "ystep=${1:number}",
+      "xshift=${1:number}",
+      "yshift=${1:number}",
+      "bbox=\"${1:llx lly urx ury}\"",
+      "matrix=\"${1:xx xy yx yy}\"",
+      "resources=${1:PDF resources}",
+      "colored"
+    ]
+  ]
 }
