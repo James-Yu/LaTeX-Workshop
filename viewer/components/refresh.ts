@@ -1,7 +1,6 @@
 import * as utils from './utils.js'
 import { setTrimValue } from './trimming.js'
 import { sendLog } from './connection.js'
-import { viewerState, viewerStatePromise } from './state.js'
 import type { PDFViewerApplicationType, PDFViewerApplicationOptionsType } from './interface'
 import type { PdfViewerParams } from '../../types/latex-workshop-protocol-types/index.js'
 
@@ -113,7 +112,6 @@ export async function restoreState() {
 
 async function restoreDefault() {
     const params = await (await fetch('config.json')).json() as PdfViewerParams
-    await viewerStatePromise
 
     if (params.trim !== undefined) {
         setTrimValue(params.trim)
@@ -128,14 +126,6 @@ async function restoreDefault() {
     }
     if (params.spreadMode !== undefined) {
         PDFViewerApplication.pdfViewer.spreadMode = params.spreadMode
-    }
-
-    const viewerContainer = document.getElementById('viewerContainer')!
-    if (typeof viewerState.scrollTop === 'number' && viewerContainer.scrollTop !== viewerState.scrollTop) {
-        viewerContainer.scrollTop = viewerState.scrollTop
-    }
-    if (typeof viewerState.scrollLeft === 'number' && viewerContainer.scrollLeft !== viewerState.scrollLeft) {
-        viewerContainer.scrollLeft = viewerState.scrollLeft
     }
 }
 

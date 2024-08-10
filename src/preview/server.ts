@@ -109,7 +109,7 @@ function initialize(hostname?: string): http.Server {
                 logger.log(`BE AWARE: YOU ARE PUBLIC TO ${hostname} !`)
             }
             state.validOriginUri = await obtainValidOrigin(address.port, hostname ?? '127.0.0.1')
-            logger.log(`validOrigin is ${getValidOrigin()}`)
+            logger.log(`valdOrigin is ${getValidOrigin()}`)
             initializeWsServer(httpServer, getValidOrigin())
             // if (initializeResolve) {
             //     initializeResolve(undefined)

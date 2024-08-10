@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import { lw } from '../lw'
 
-const LOG_PANEL = vscode.window.createOutputChannel('LaTeX Workshop', 'latex_workshop_log')
+const LOG_PANEL = vscode.window.createOutputChannel('LaTeX Workshop')
 const COMPILER_PANEL = vscode.window.createOutputChannel('LaTeX Compiler')
 const STATUS_ITEM = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10000)
 const PLACEHOLDERS: {[placeholder: string]: string} = {}

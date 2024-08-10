@@ -6,88 +6,24 @@
     "multido": []
   },
   "macros": {
-    "axesIIID()()": {
-      "snippet": "axesIIID(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})"
-    },
-    "axesIIID[]()()": {
-      "snippet": "axesIIID[${1:options}](${2:x1},${3:y1},${4:z1})(${5:x2},${6:y2},${7:z2})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
     "psSolid[]": {
       "snippet": "psSolid[${1:object=name,options}]"
-    },
-    "psSolid[]()": {
-      "snippet": "psSolid[${1:options}](${2:x},${3:y},${4:z})",
-      "keyvalindex": 1,
-      "keyvalpos": 0
     },
     "codejps{}": {
       "snippet": "codejps{${1:jps code}}"
     },
-    "defFunction{}(){}{}{}": {
-      "snippet": "defFunction{${1:name}}(${5:var}){${2:x}}{${3:y}}{${4:z}}"
-    },
-    "defFunction[]{}(){}{}{}": {
-      "snippet": "defFunction[${5:options}]{${1:name}}(${6:var}){${2:x}}{${3:y}}{${4:z}}"
-    },
-    "psSurface()(){}": {
-      "snippet": "psSurface(${2:xmin},${3:ymin})(${4:xmax},${5:ymax}){${1:surface definition}}"
-    },
-    "psSurface[]()(){}": {
-      "snippet": "psSurface[${2:options}](${3:xmin},${4:ymin})(${5:xmax},${6:ymax}){${1:surface definition}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
     "psImplicitSurface[]": {
       "snippet": "psImplicitSurface[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "psImplicitSurface[]()": {
-      "snippet": "psImplicitSurface[${1:options}](${2:x},${3:y},${4:z})",
-      "keyvalindex": 3,
+      "keyvalindex": 0,
       "keyvalpos": 0
     },
     "composeSolid": {},
-    "psPoint(){}": {
-      "snippet": "psPoint(${2:x},${3:y},${4:z}){${1:name}}"
-    },
-    "psTransformPoint()(){}": {
-      "snippet": "psTransformPoint(${2:x},${3:y},${4:z})(${5:vx},${6:vy},${7:vz}){${1:name}}"
-    },
-    "psTransformPoint[]()(){}": {
-      "snippet": "psTransformPoint[${2:options}](${3:x},${4:y},${5:z})(${6:vx},${7:vy},${8:vz}){${1:name}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
     "psProjection[]": {
       "snippet": "psProjection[${1:object=name,options}]"
     },
-    "psProjection[]()": {
-      "snippet": "psProjection[${1:options}](${2:x},${3:y},${4:z})",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
     "psResetSolidKeys": {},
-    "gridIIID()()": {
-      "snippet": "gridIIID(${1:x1},${2:y1})(${3:x2},${4:y2})"
-    },
-    "gridIIID[]()()": {
-      "snippet": "gridIIID[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})",
-      "keyvalindex": 6,
-      "keyvalpos": 0
-    },
     "psImage[]": {
       "snippet": "psImage[${1:filename=imagefile,options}]"
-    },
-    "psImage[]()": {
-      "snippet": "psImage[${1:options}](${2:x},${3:y})",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "Normale()": {
-      "snippet": "Normale(${1:radius},${2:longitude},${3:latitude})"
     },
     "addtosolideslistobject{}": {
       "snippet": "addtosolideslistobject{${1:name}}"
@@ -97,135 +33,6 @@
   "envs": {},
   "options": [],
   "keyvals": [
-    [
-      "arrowinset=${1:number}",
-      "arrowsize=",
-      "axisemph=${1:font commands}",
-      "axisnames={${1:x,y,z}}",
-      "labelsep=",
-      "linecolor=",
-      "linewidth=",
-      "mathLabel",
-      "showOrigin"
-    ],
-    [
-      "object=",
-      "a=${1:length}",
-      "action=",
-      "affinage=",
-      "affinagecoeff=${1:factor}",
-      "affinagerm",
-      "args=${1:args spec}",
-      "axe=${1:x y z}",
-      "b=${1:length}",
-      "base=${1:base spec}",
-      "biface",
-      "c=${1:length}",
-      "chanfrein",
-      "chanfreincoeff=${1:factor}",
-      "color1=${1:xcolor color}",
-      "color2=${1:xcolor color}",
-      "color3=${1:xcolor color}",
-      "color4=${1:xcolor color}",
-      "deactivatecolor",
-      "decal=${1:integer}",
-      "definition=",
-      "dualreg",
-      "faces={${1:faces spec}}",
-      "fcol=${1:n1 (col1) n2 (col2) ...}",
-      "fcolor=",
-      "filename=${1:file name}",
-      "fillcolor=",
-      "fontsize=",
-      "function=",
-      "grid",
-      "h=${1:height}",
-      "hollow",
-      "hue=${1:hue spec}",
-      "incolor=",
-      "inhue=${1:hue spec}",
-      "inouthue=${1:hue spec}",
-      "intersectioncolor=${1:(color1) (color2) ...}",
-      "intersectionlinewidth=${1:w1 w2 ...}",
-      "intersectionplan={[${1:eq1}] ${2:[eq2] ...}}",
-      "intersectiontype=",
-      "lightintensity=${1:number}",
-      "lightsrc=${1:x y z}",
-      "linecolor=",
-      "linestyle=${1:style}",
-      "linewidth=",
-      "load=${1:name}",
-      "mode=",
-      "name=${1:name}",
-      "ngrid=${1:<n> or <n1 n2>}",
-      "normal=${1:x y z}",
-      "num=",
-      "numfaces=",
-      "opacity=${1:factor}",
-      "origine=${1:x y z}",
-      "phi=${1:degrees}",
-      "plangrid",
-      "planmarks",
-      "plansection={${1:plan1 plan2 ...}}",
-      "plansepare={[${1:a b c d}]}",
-      "QZ=${1:number}",
-      "R=${1:outer radius}",
-      "r=${1:radius}",
-      "r0=${1:radius0}",
-      "r1=${1:radius1}",
-      "range=${1:xmin xmax}",
-      "resolution=${1:resolution}",
-      "rm=${1:face1 face2 face3}",
-      "RotSequence=${1:sequence}",
-      "RotX=${1:degrees}",
-      "RotY=${1:degrees}",
-      "RotZ=${1:degrees}",
-      "section=",
-      "show=",
-      "showbase",
-      "showBase",
-      "sommets=${1:data}",
-      "theta=${1:degrees}",
-      "transform={${1:transform}}",
-      "trunc=",
-      "trunccoeff=${1:factor}",
-      "unit=${1:number}",
-      "visibility"
-    ],
-    [
-      "algebraic",
-      "axesboxed",
-      "base=${1:base spec}",
-      "color1=${1:xcolor color}",
-      "color2=${1:xcolor color}",
-      "color3=${1:xcolor color}",
-      "color4=${1:xcolor color}",
-      "deactivatecolor",
-      "fcol=${1:n1 (col1) n2 (col2) ...}",
-      "fillcolor=",
-      "grid",
-      "hue=${1:hue spec}",
-      "incolor=",
-      "inhue=${1:hue spec}",
-      "inouthue=${1:hue spec}",
-      "intersectionplan={[${1:eq1}] ${2:[eq2] ...}}",
-      "intersectiontype=",
-      "intersectioncolor=${1:(color1) (color2) ...}",
-      "intersectionlinewidth=${1:w1 w2 ...}",
-      "lightintensity=${1:number}",
-      "lightsrc=${1:x y z}",
-      "linecolor=",
-      "linewidth=",
-      "ngrid=${1:<n> or <n1 n2>}",
-      "opacity=${1:factor}",
-      "QZ=${1:number}",
-      "spotX=${1:pos}",
-      "spotY=${1:pos}",
-      "spotZ=${1:pos}",
-      "xytranslate=${1:x y}",
-      "Zmax=${1:number}",
-      "Zmin=${1:number}"
-    ],
     [
       "algebraic",
       "axesboxed",
@@ -263,56 +70,6 @@
       "XMinMax=${1:min max step}",
       "YMinMax=${1:min max step}",
       "ZMinMax=${1:min max step}"
-    ],
-    [
-      "RotX=${1:degrees}",
-      "RotY=${1:degrees}",
-      "RotZ=${1:degrees}"
-    ],
-    [
-      "definition=",
-      "args=${1:args spec}",
-      "fillcolor=",
-      "fillstyle=",
-      "fontsize=",
-      "function=${1:function}",
-      "hatchcolor=",
-      "isolatin",
-      "linecolor=",
-      "linestyle=${1:style}",
-      "name=${1:name}",
-      "normal=${1:x y z}",
-      "object=",
-      "path={${1:PS code}}",
-      "phi=${1:degrees}",
-      "plan=${1:plan type}",
-      "pos=${1:pos}",
-      "PSfont=${1:font name}",
-      "range=${1:xmin xmax}",
-      "resolution=${1:resolution}",
-      "text=${1:text}",
-      "visibility"
-    ],
-    [
-      "axisemph=${1:font commands}",
-      "linecolor=",
-      "spotX=${1:pos}",
-      "spotY=${1:pos}",
-      "spotZ=${1:pos}",
-      "stepX=${1:number}",
-      "stepY=${1:number}",
-      "stepZ=${1:number}",
-      "ticklength=",
-      "Zmax=${1:number}",
-      "Zmin=${1:number}"
-    ],
-    [
-      "divisions=${1:integer}",
-      "filename=${1:imagefile}",
-      "normal=${1:x y z}",
-      "origine=${1:x y z}",
-      "phi=${1:degrees}",
-      "unitPicture=${1:number}"
     ]
   ]
 }

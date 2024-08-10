@@ -1,6 +1,6 @@
 import * as utils from './utils.js'
 import type { PDFViewerApplicationType } from './interface'
-import type { PanelManagerResponse, PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index.js'
+import type { PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index.js'
 import { getTrimValue } from './trimming.js'
 import { isSyncTeXEnabled, registerSyncTeX, setSyncTeXKey } from './synctex.js'
 import { IsAutoRefreshEnabled } from './refresh.js'
@@ -8,32 +8,28 @@ import { sendPanel } from './connection.js'
 
 declare const PDFViewerApplication: PDFViewerApplicationType
 
-export let viewerState: PdfViewerState
-let viewerStatePromiseResolve: () => void
-export const viewerStatePromise = new Promise<void>(resolve => viewerStatePromiseResolve = resolve)
+// let viewerState: PdfViewerState | undefined
 
 export function initUploadState() {
-    window.addEventListener('message', (e) => {
-        const data = e.data as PanelManagerResponse
-        if (!data.type) {
-            console.log('LateXWorkshopPdfViewer received a message of unknown type: ' + JSON.stringify(data))
-            return
-        }
-        switch (data.type) {
-            case 'restore_state': {
-                viewerState = data.state
-                viewerStatePromiseResolve()
-                break
-            }
-            default: {
-                break
-            }
-        }
-    })
+//     window.addEventListener('message', (e) => {
+//         const data = e.data as PanelManagerResponse
+//         if (!data.type) {
+//             console.log('LateXWorkshopPdfViewer received a message of unknown type: ' + JSON.stringify(data))
+//             return
+//         }
+//         switch (data.type) {
+//             case 'restore_state': {
+//                 console.log(data.state)
+//                 // viewerState = data.state
+//                 break
+//             }
+//             default: {
+//                 break
+//             }
+//         }
+//     })
 
     window.addEventListener('scrollend', () => { uploadState() }, true)
-
-    sendPanel({ type: 'initialized' })
 }
 
 export function uploadState() {
@@ -86,3 +82,42 @@ export async function setParams() {
         registerSyncTeX()
     }
 }
+
+// export async function setState(extension: LateXWorkshopPdfViewer) {
+//     const state = viewerState ?? await (await fetch('config.json')).json() as PdfViewerParams
+
+//     if (state.trim !== undefined) {
+//         setTrimValue(state.trim)
+//     }
+
+//     // By setting the scale, scaling will be invoked if necessary.
+//     // The scale can be a non-number one.
+//     if (state.scale !== undefined) {
+//         PDFViewerApplication.pdfViewer.currentScaleValue = state.scale
+//     }
+//     if (state.scrollMode !== undefined) {
+//         PDFViewerApplication.pdfViewer.scrollMode = state.scrollMode
+//     }
+//     if (state.spreadMode !== undefined) {
+//         PDFViewerApplication.pdfViewer.spreadMode = state.spreadMode
+//     }
+//     if (!('scrollTop' in state)) {
+//         return
+//     }
+
+//     if (state.scrollTop !== undefined) {
+//         document.getElementById('viewerContainer')!.scrollTop = state.scrollTop
+//     }
+//     if (state.scrollLeft !== undefined) {
+//         document.getElementById('viewerContainer')!.scrollLeft = state.scrollLeft
+//     }
+//     if (state.sidebarView !== undefined) {
+//         PDFViewerApplication.pdfSidebar.switchView(state.sidebarView)
+//     }
+//     if (state.synctexEnabled !== undefined) {
+//         extension.setSynctex(state.synctexEnabled)
+//     }
+//     if (state.autoReloadEnabled !== undefined) {
+//         extension.setAutoReload(state.autoReloadEnabled)
+//     }
+// }
