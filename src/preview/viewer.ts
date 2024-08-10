@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import type ws from 'ws'
+import ws from 'ws'
 import * as path from 'path'
 import * as os from 'os'
 import * as cs from 'cross-spawn'
@@ -53,26 +53,27 @@ function reload(): void {
  */
 function refresh(pdfFile?: string): void {
     logger.log(`Call refreshExistingViewer: ${JSON.stringify(pdfFile)} .`)
-    const pdfUri = pdfFile ? vscode.Uri.file(pdfFile) : undefined
+    const pdfUri = pdfFile ? lw.file.toUri(pdfFile) : undefined
     if (pdfUri === undefined) {
         manager.getClients()?.forEach(client => {
-            client.send({type: 'refresh'})
+            client.send({type: 'refresh', pdfFileUri: client.pdfFileUri})
         })
         return
     }
-    const clientSet = manager.getClients(pdfUri)
+    let clientSet = manager.getClients(pdfUri)
+    clientSet = lw.extra.liveshare.handle.viewer.refresh(pdfFile, clientSet)
     if (!clientSet) {
         logger.log(`Not found PDF viewers to refresh: ${pdfFile}`)
         return
     }
     logger.log(`Refresh PDF viewer: ${pdfFile}`)
     clientSet.forEach(client => {
-        client.send({type: 'refresh'})
+        client.send({type: 'refresh', pdfFileUri: client.pdfFileUri})
     })
 }
 
 async function getUrl(pdfFile: string): Promise<string | undefined> {
-    const pdfUri = vscode.Uri.file(pdfFile)
+    const pdfUri = lw.file.toUri(pdfFile)
     if (!await lw.file.exists(pdfUri)) {
         logger.log(`Cannot find PDF file ${pdfUri}`)
         logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfUri}`, 'warning')
@@ -111,7 +112,7 @@ async function viewInBrowser(pdfFile: string): Promise<void> {
     if (!url) {
         return
     }
-    const pdfUri = vscode.Uri.file(pdfFile)
+    const pdfUri = lw.file.toUri(pdfFile)
     manager.create(pdfUri)
     lw.watcher.pdf.add(pdfUri.fsPath)
     try {
@@ -139,7 +140,7 @@ async function viewInTab(pdfFile: string, tabEditorGroup: string, preserveFocus:
     if (!url) {
         return
     }
-    const pdfUri = vscode.Uri.file(pdfFile)
+    const pdfUri = lw.file.toUri(pdfFile)
     return viewInWebviewPanel(pdfUri, tabEditorGroup, preserveFocus)
 }
 
@@ -150,7 +151,7 @@ async function viewInCustomEditor(pdfFile: string): Promise<void> {
     }
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const editorGroup = configuration.get('view.pdf.tab.editorGroup') as string
-    const pdfUri = vscode.Uri.file(pdfFile)
+    const pdfUri = lw.file.toUri(pdfFile)
     const showOptions: vscode.TextDocumentShowOptions = {
         viewColumn: vscode.ViewColumn.Active,
         preserveFocus: true
@@ -274,11 +275,15 @@ function handler(websocket: ws, msg: string): void {
     switch (data.type) {
         case 'open': {
             const pdfUri = vscode.Uri.parse(data.pdfFileUri, true)
+            if (pdfUri.scheme === 'vsls' && lw.extra.liveshare.isHost()) {
+                manager.create(pdfUri)
+            }
             const clientSet = manager.getClients(pdfUri)
             if (clientSet === undefined) {
                 break
             }
-            const client = new Client(data.viewer, websocket)
+            const client = new Client(data.viewer, websocket, pdfUri.toString(true))
+            lw.extra.liveshare.register(client)
             clientSet.add(client)
             client.onDidDispose(() => {
                 clientSet.delete(client)
@@ -297,6 +302,9 @@ function handler(websocket: ws, msg: string): void {
         }
         case 'reverse_synctex': {
             const uri = vscode.Uri.parse(data.pdfFileUri, true)
+            if (lw.extra.liveshare.handle.viewer.reverseSyncTeX(websocket, uri, data)) {
+                break
+            }
             void lw.locate.synctex.toTeX(data, uri.fsPath)
             break
         }
@@ -338,6 +346,9 @@ function handler(websocket: ws, msg: string): void {
             break
         }
         default: {
+            if (lw.extra.liveshare.handle.viewer.syncTeX(websocket, data)) {
+                break
+            }
             logger.log(`Unknown websocket message: ${msg}`)
             break
         }
@@ -393,7 +404,7 @@ function getParams(): PdfViewerParams {
  * @param record The position to be revealed.
  */
 async function locate(pdfFile: string, record: SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]): Promise<void> {
-    const pdfUri = vscode.Uri.file(pdfFile)
+    const pdfUri = lw.file.toUri(pdfFile)
     let clientSet = manager.getClients(pdfUri)
     if (clientSet === undefined || clientSet.size === 0) {
         logger.log(`PDF is not opened: ${pdfFile} , try opening.`)

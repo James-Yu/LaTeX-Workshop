@@ -5,6 +5,16 @@ import { getSurroundingMacroRange, stripText } from '../utils/utils'
 
 const logger = lw.log('Commander')
 
+export async function hostPort() {
+    logger.log('HOSTPORT command invoked.')
+    if (lw.extra.liveshare.isGuest()) {
+        await lw.extra.liveshare.getHostServerPort(true)
+    }
+    else {
+        await lw.extra.liveshare.shareServer()
+    }
+}
+
 export async function build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
     logger.log('BUILD command invoked.')
     await lw.compile.build(skipSelection, rootFile, languageId, recipe)
@@ -16,13 +26,13 @@ export async function revealOutputDir() {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
         const rootDir = lw.root.dir.path || workspaceFolder?.uri.fsPath
         if (rootDir === undefined) {
-            logger.log(`Cannot reveal ${vscode.Uri.file(outDir)}: no root dir can be identified.`)
+            logger.log(`Cannot reveal ${lw.file.toUri(outDir)}: no root dir can be identified.`)
             return
         }
         outDir = path.resolve(rootDir, outDir)
     }
-    logger.log(`Reveal ${vscode.Uri.file(outDir)}`)
-    await vscode.commands.executeCommand('revealFileInOS', vscode.Uri.file(outDir))
+    logger.log(`Reveal ${lw.file.toUri(outDir)}`)
+    await vscode.commands.executeCommand('revealFileInOS', lw.file.toUri(outDir))
 }
 
 export function recipes(recipe?: string) {
@@ -93,6 +103,10 @@ export function synctex() {
         return
     }
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
+
+    if (lw.extra.liveshare.handle.command.syncTeX()) {
+        return
+    }
     let pdfFile: string | undefined = undefined
     if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
         pdfFile = lw.file.getPdfPath(lw.root.subfiles.path)
@@ -462,7 +476,7 @@ export function toggleMathPreviewPanel() {
 }
 
 async function quickPickRootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
     if (doNotPrompt) {
         if (configuration.get('latex.rootFile.useSubFile')) {

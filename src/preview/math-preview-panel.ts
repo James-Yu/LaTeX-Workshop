@@ -23,11 +23,11 @@ type UpdateEvent = {
 
 function resourcesFolder(extensionRoot: string) {
     const folder = path.join(extensionRoot, 'resources', 'mathpreviewpanel')
-    return vscode.Uri.file(folder)
+    return lw.file.toUri(folder)
 }
 
 class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
-    deserializeWebviewPanel(panel: vscode.WebviewPanel) {
+    async deserializeWebviewPanel(panel: vscode.WebviewPanel) {
         initializePanel(panel)
         panel.webview.options = {
             enableScripts: true,
@@ -113,14 +113,14 @@ function close() {
 function toggle(action?: 'open' | 'close') {
     if (action) {
         if (action === 'open') {
-            open()
+            void open()
         } else {
             close()
         }
     } else if (state.panel) {
         close()
     } else {
-        open()
+        void open()
     }
 }
 
@@ -157,7 +157,7 @@ function getHtml() {
                 padding-left: 50px;
             }
         </style>
-        <script src='http://127.0.0.1:${lw.server.getPort().toString()}/mathpreviewpanel/mathpreview.js' defer></script>
+        <script src='http://127.0.0.1:${(lw.server.getPort()).toString()}/mathpreviewpanel/mathpreview.js' defer></script>
     </head>
     <body>
         <div id="mathBlock"><img src="" id="math" /></div>

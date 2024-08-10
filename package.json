@@ -298,6 +298,11 @@
     ],
     "commands": [
       {
+        "command": "latex-workshop.hostPort",
+        "title": "%command.hostPort%",
+        "category": "LaTeX Workshop"
+      },
+      {
         "command": "latex-workshop.navigate-envpair",
         "title": "%command.navigate-envpair%",
         "category": "LaTeX Workshop"
@@ -369,8 +374,7 @@
         "command": "latex-workshop.view",
         "title": "%command.view%",
         "category": "LaTeX Workshop",
-        "icon": "$(open-preview)",
-        "enablement": "!virtualWorkspace"
+        "icon": "$(open-preview)"
       },
       {
         "command": "latex-workshop.tab",
@@ -380,8 +384,7 @@
       {
         "command": "latex-workshop.viewInBrowser",
         "title": "%command.viewInBrowser%",
-        "category": "LaTeX Workshop",
-        "enablement": "!virtualWorkspace"
+        "category": "LaTeX Workshop"
       },
       {
         "command": "latex-workshop.viewExternal",
@@ -403,8 +406,7 @@
       {
         "command": "latex-workshop.synctex",
         "title": "%command.synctex%",
-        "category": "LaTeX Workshop",
-        "enablement": "!virtualWorkspace"
+        "category": "LaTeX Workshop"
       },
       {
         "command": "latex-workshop.clean",
@@ -415,8 +417,7 @@
       {
         "command": "latex-workshop.citation",
         "title": "%command.citation%",
-        "category": "LaTeX Workshop",
-        "enablement": "!virtualWorkspace"
+        "category": "LaTeX Workshop"
       },
       {
         "command": "latex-workshop.addtexroot",
@@ -553,13 +554,13 @@
         "key": "ctrl+l alt+v",
         "mac": "cmd+l alt+v",
         "command": "latex-workshop.view",
-        "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+l alt+j",
         "mac": "cmd+l alt+j",
         "command": "latex-workshop.synctex",
-        "when": "editorTextFocus && editorLangId =~ /^latex$|^latex-expl3$|^doctex$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorTextFocus && editorLangId =~ /^latex$|^latex-expl3$|^doctex$/ && config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+l alt+x",
@@ -589,13 +590,13 @@
         "key": "ctrl+alt+v",
         "mac": "cmd+alt+v",
         "command": "latex-workshop.view",
-        "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+alt+j",
         "mac": "cmd+alt+j",
         "command": "latex-workshop.synctex",
-        "when": "editorTextFocus && editorLangId =~ /^latex$|^latex-expl3$|^doctex$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorTextFocus && editorLangId =~ /^latex$|^latex-expl3$|^doctex$/ && !config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+alt+x",
@@ -2505,7 +2506,7 @@
       ],
       "editor/title": [
         {
-          "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !virtualWorkspace",
+          "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/",
           "command": "latex-workshop.view",
           "group": "navigation@2"
         },
@@ -2582,6 +2583,7 @@
     "micromatch": "4.0.5",
     "pdfjs-dist": "4.3.136",
     "tmp": "0.2.3",
+    "vsls": "1.0.4753",
     "workerpool": "9.1.1",
     "ws": "8.17.1"
   },

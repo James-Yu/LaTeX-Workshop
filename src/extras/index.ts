@@ -5,6 +5,7 @@ import { texroot } from './texroot'
 import { section } from './section'
 import * as commands from './activity-bar'
 import * as snippet from './snippet-view'
+import * as liveshare from './liveshare'
 
 export const extra = {
     count,
@@ -13,5 +14,6 @@ export const extra = {
     texroot,
     section,
     commands,
-    snippet
+    snippet,
+    liveshare
 }
