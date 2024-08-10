@@ -182,7 +182,7 @@ function connectionHandler(msg: string): void {
             break
         }
         case 'reverse_synctex_result': {
-            void lw.locate.synctex.openTeX(vscode.Uri.parse(data.input).fsPath, data.line, data.column, data.textBeforeSelection, data.textAfterSelection)
+            void lw.locate.synctex.components.openTeX(vscode.Uri.parse(data.input).fsPath, data.line, data.column, data.textBeforeSelection, data.textAfterSelection)
             break
         }
         case 'synctex_result': {
@@ -242,7 +242,7 @@ function handleCommandSyncTeX(): boolean {
     if (!isGuest()) {
         return false
     }
-    const coords = lw.locate.synctex.getCurrentEditorCoordinates()
+    const coords = lw.locate.synctex.components.getCurrentEditorCoordinates()
 
     if (lw.root.file.path === undefined || coords === undefined) {
         logger.log('Cannot find LaTeX root PDF to perform synctex.')
@@ -274,7 +274,7 @@ function handleViewerReverseSyncTeX(websocket: ws, uri: vscode.Uri, data: Extrac
         return true
     } else if (isHost() && uri.scheme === 'vsls' && state.liveshare) { // reply to guest if request comes from guest
         const localUri = state.liveshare.convertSharedUriToLocal(uri) ?? uri
-        const record = lw.locate.synctex.computeToTeX(data, localUri.fsPath)
+        const record = lw.locate.synctex.components.computeToTeX(data, localUri.fsPath)
         if (record) {
             const response: ServerResponse = {
                 type: 'reverse_synctex_result',
@@ -301,7 +301,7 @@ function handleViewerSyncTeX(websocket: ws, data: ClientRequest): boolean {
 
     const filePath = state.liveshare.convertSharedUriToLocal(vscode.Uri.parse(data.filePath, true)).fsPath
     const targetPdfFile = state.liveshare.convertSharedUriToLocal(vscode.Uri.parse(data.targetPdfFile, true)).fsPath
-    void lw.locate.synctex.synctexToPDFCombined(data.line, data.column, filePath, targetPdfFile, data.indicator).then(record => {
+    void lw.locate.synctex.components.synctexToPDFCombined(data.line, data.column, filePath, targetPdfFile, data.indicator).then(record => {
         if (!record) {
             logger.log(`Failed to locate synctex for ${filePath}. This was requested from a guest.`)
             return

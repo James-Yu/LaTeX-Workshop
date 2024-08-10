@@ -13,8 +13,6 @@ export {
     getUrl,
     setHandler,
     initialize,
-    encodePathWithPrefix,
-    decodePathWithPrefix
     // initialized
 }
 

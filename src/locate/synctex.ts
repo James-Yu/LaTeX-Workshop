@@ -13,12 +13,14 @@ const logger = lw.log('Locator')
 
 export const synctex = {
     toPDF,
-    synctexToPDFCombined,
     toPDFFromRef,
-    computeToTeX,
-    openTeX,
     toTeX,
-    getCurrentEditorCoordinates
+    components: {
+        synctexToPDFCombined,
+        computeToTeX,
+        openTeX,
+        getCurrentEditorCoordinates
+    }
 }
 
 /**
