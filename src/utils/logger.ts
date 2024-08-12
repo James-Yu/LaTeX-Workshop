@@ -19,7 +19,8 @@ export const log = {
     initStatusBarItem,
     logConfig,
     logConfigChange,
-    logDeprecatedConfig
+    logDeprecatedConfig,
+    applyPlaceholders
 }
 
 function resetCachedLog() {

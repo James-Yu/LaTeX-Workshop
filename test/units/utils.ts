@@ -49,6 +49,7 @@ export const set = {
         const rootFile = get.path(...paths)
         sinon.stub(lw.root.file, 'path').value(rootFile)
         sinon.stub(lw.root.dir, 'path').value(path.dirname(rootFile))
+        return rootFile
     },
     config: async (section: string, value: any) => {
         await vscode.workspace.getConfiguration('latex-workshop').update(section, value)
@@ -79,7 +80,7 @@ export const has = {
     log: (message: string | RegExp): boolean => {
         const logs = log.getCachedLog().CACHED_EXTLOG
         if (typeof message === 'string') {
-            return logs.some(logMessage => logMessage.includes(message))
+            return logs.some(logMessage => logMessage.includes(log.applyPlaceholders(message)))
         } else {
             return logs.some(logMessage => message.exec(logMessage))
         }

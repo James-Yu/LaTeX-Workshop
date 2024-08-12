@@ -5,8 +5,6 @@ import { lw } from '../../src/lw'
 import { queue } from '../../src/compile/queue'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    // const fixture = path.basename(__filename).split('.')[0]
-
     before(() => {
         mock.object(lw, 'file', 'root')
     })
@@ -15,7 +13,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         sinon.restore()
     })
 
-    describe.only('queue module', () => {
+    describe('lw.compile->queue', () => {
         beforeEach(() => {
             queue.clear()
         })

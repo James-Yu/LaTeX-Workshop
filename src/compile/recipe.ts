@@ -1,6 +1,5 @@
 import vscode from 'vscode'
 import path from 'path'
-import fs from 'fs'
 import * as cp from 'child_process'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 
@@ -48,7 +47,7 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
     await vscode.workspace.saveAll()
 
     // Create build tools based on the recipe system
-    const tools = createBuildTools(rootFile, langId, recipeName)
+    const tools = await createBuildTools(rootFile, langId, recipeName)
 
     // Create output subdirectories for included files
     if (tools?.map(tool => tool.command).includes('latexmk') && rootFile === lw.root.subfiles.path && lw.root.file.path) {
@@ -91,8 +90,8 @@ function createOutputSubFolders(rootFile: string) {
         // To avoid issues when fullOutDir is the root dir
         // Using fs.mkdir() on the root directory even with recursion will result in an error
         try {
-            if (! (fs.existsSync(fullOutDir) && fs.statSync(fullOutDir).isDirectory())) {
-                fs.mkdirSync(fullOutDir, { recursive: true })
+            if (! (lw.external.existsSync(fullOutDir) && lw.external.statSync(fullOutDir)?.isDirectory())) {
+                lw.external.mkdirSync(fullOutDir, { recursive: true })
             }
         } catch (e) {
             if (e instanceof Error) {
@@ -117,11 +116,11 @@ function createOutputSubFolders(rootFile: string) {
  * @returns {Tool[] | undefined} - An array of Tool objects representing the
  * build tools.
  */
-function createBuildTools(rootFile: string, langId: string, recipeName?: string): Tool[] | undefined {
+async function createBuildTools(rootFile: string, langId: string, recipeName?: string): Promise<Tool[] | undefined> {
     let buildTools: Tool[] = []
 
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
-    const magic = findMagicComments(rootFile)
+    const magic = await findMagicComments(rootFile)
 
     if (recipeName === undefined && magic.tex && !configuration.get('latex.build.forceRecipeUsage')) {
         buildTools = createBuildMagic(rootFile, magic.tex, magic.bib)
@@ -169,14 +168,14 @@ function createBuildTools(rootFile: string, langId: string, recipeName?: string)
  * @returns {{tex?: Tool, bib?: Tool, recipe?: string}} - An object containing
  * the TeX and BibTeX tools and the LW recipe name.
  */
-function findMagicComments(rootFile: string): {tex?: Tool, bib?: Tool, recipe?: string} {
+async function findMagicComments(rootFile: string): Promise<{tex?: Tool, bib?: Tool, recipe?: string}> {
     const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
     const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
     const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m
     const regexBibOptions = /^(?:%\s*!\s*BIB\s(?:TS-)?options\s*=\s*(.*)$)/m
     const regexRecipe = /^(?:%\s*!\s*LW\srecipe\s*=\s*(.*)$)/m
     let content = ''
-    for (const line of fs.readFileSync(rootFile).toString().split('\n')) {
+    for (const line of (await lw.file.read(rootFile))?.split('\n') || []) {
         if (line.startsWith('%') || line.trim().length === 0) {
             content += line + '\n'
         } else {
@@ -329,7 +328,7 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
                         tool.command = path.resolve(lw.extensionRoot, './scripts/latexmk.bat')
                     } else {
                         tool.command = path.resolve(lw.extensionRoot, './scripts/latexmk')
-                        fs.chmodSync(tool.command, 0o755)
+                        lw.external.chmodSync(tool.command, 0o755)
                     }
                     break
                 default:
@@ -385,4 +384,12 @@ function isMikTeX(): boolean {
         }
     }
     return _isMikTeX
+}
+
+export const _test = {
+    setDockerImage,
+    setDockerPath,
+    createOutputSubFolders,
+    findMagicComments,
+    createBuildMagic
 }

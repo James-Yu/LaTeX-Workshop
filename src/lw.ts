@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
 import * as cs from 'cross-spawn'
 import type { log } from './utils/logger'
 import type { event } from './core/event'
@@ -47,7 +48,11 @@ export const lw = {
     external: {
         spawn: wrapper(cs.spawn),
         sync: wrapper(cs.sync),
-        stat: wrapper(vscode.workspace.fs.stat)
+        stat: wrapper(vscode.workspace.fs.stat),
+        existsSync: wrapper(fs.existsSync),
+        mkdirSync: wrapper(fs.mkdirSync),
+        statSync: wrapper(fs.statSync),
+        chmodSync: wrapper(fs.chmodSync)
     },
     onConfigChange,
     onDispose
