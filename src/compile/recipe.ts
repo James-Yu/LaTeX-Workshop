@@ -1,6 +1,5 @@
 import vscode from 'vscode'
 import path from 'path'
-import * as cp from 'child_process'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 
 import { lw } from '../lw'
@@ -9,8 +8,15 @@ import { queue } from './queue'
 
 const logger = lw.log('Build', 'Recipe')
 
-let prevRecipe: Recipe | undefined = undefined
-let prevLangId = ''
+const state: {
+    prevRecipe: Recipe | undefined,
+    prevLangId: string,
+    isMikTeX: boolean | undefined
+} = {
+    prevRecipe: undefined,
+    prevLangId: '',
+    isMikTeX: undefined
+}
 
 setDockerImage()
 lw.onConfigChange('docker.image.latex', setDockerImage)
@@ -130,8 +136,8 @@ async function createBuildTools(rootFile: string, langId: string, recipeName?: s
             return
         }
         logger.log(`Preparing to run recipe: ${recipe.name}.`)
-        prevRecipe = recipe
-        prevLangId = langId
+        state.prevRecipe = recipe
+        state.prevLangId = langId
         const tools = configuration.get('latex.tools') as Tool[]
         recipe.tools.forEach(tool => {
             if (typeof tool === 'string') {
@@ -270,8 +276,8 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
         void logger.showErrorMessage('[Builder] No recipes defined.')
         return
     }
-    if (prevLangId !== langId) {
-        prevRecipe = undefined
+    if (state.prevLangId !== langId) {
+        state.prevRecipe = undefined
     }
     let recipe: Recipe | undefined
     // Find recipe according to the given name
@@ -286,8 +292,8 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
         }
     }
     // Find default recipe of last used
-    if (recipe === undefined && defaultRecipeName === 'lastUsed' && recipes.find(candidate => candidate.name === prevRecipe?.name)) {
-        recipe = prevRecipe
+    if (recipe === undefined && defaultRecipeName === 'lastUsed' && recipes.find(candidate => candidate.name === state.prevRecipe?.name)) {
+        recipe = state.prevRecipe
     }
     // If still not found, fallback to 'first'
     if (recipe === undefined) {
@@ -362,7 +368,6 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
     return buildTools
 }
 
-let _isMikTeX: boolean
 /**
  * Check whether the LaTeX toolchain compilers are provided by MikTeX.
  *
@@ -370,20 +375,20 @@ let _isMikTeX: boolean
  * otherwise, false.
  */
 function isMikTeX(): boolean {
-    if (_isMikTeX === undefined) {
+    if (state.isMikTeX === undefined) {
         try {
-            if (cp.execSync('pdflatex --version').toString().match(/MiKTeX/)) {
-                _isMikTeX = true
+            if (lw.external.sync('pdflatex --version').toString().match(/MiKTeX/)) {
+                state.isMikTeX = true
                 logger.log('`pdflatex` is provided by MiKTeX.')
             } else {
-                _isMikTeX = false
+                state.isMikTeX = false
             }
         } catch (e) {
             logger.log('Cannot run `pdflatex` to determine if we are using MiKTeX.')
-            _isMikTeX = false
+            state.isMikTeX = false
         }
     }
-    return _isMikTeX
+    return state.isMikTeX
 }
 
 export const _test = {
@@ -391,5 +396,9 @@ export const _test = {
     setDockerPath,
     createOutputSubFolders,
     findMagicComments,
-    createBuildMagic
+    createBuildMagic,
+    findRecipe,
+    state,
+    populateTools,
+    isMikTeX
 }

@@ -1,6 +1,6 @@
 import * as path from 'path'
 import * as fs from 'fs'
-import * as sinon from 'sinon'
+import Sinon, * as sinon from 'sinon'
 import { assert, get, has, mock, set } from './utils'
 import { lw } from '../../src/lw'
 import { queue } from '../../src/compile/queue'
@@ -177,7 +177,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             recipe.createOutputSubFolders(rootFile)
 
-            assert.ok(getOutDirStub.calledWith(rootFile))
+            assert.strictEqual(getOutDirStub.getCall(0).args[0], rootFile)
             assert.ok(has.log(`outDir: ${expectedOutDir} .`))
         })
 
@@ -190,7 +190,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             recipe.createOutputSubFolders(rootFile)
 
-            assert.ok(getOutDirStub.calledWith(rootFile))
+            assert.strictEqual(getOutDirStub.getCall(0).args[0], rootFile)
             assert.ok(has.log(`outDir: ${absoluteOutDir} .`))
         })
 
@@ -376,7 +376,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe.only('lw.compile->recipe.createBuildMagic', () => {
+    describe('lw.compile->recipe.createBuildMagic', () => {
         it('should set magicTex.args and magicTex.name if magicTex.args is undefined and magicBib is undefined', async () => {
             const rootFile = set.root(fixture, 'main.tex')
             await set.config('latex.magic.args', ['--shell-escape'])
@@ -468,6 +468,287 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.listStrictEqual(texTool.args, ['-interaction=nonstopmode'])
             assert.strictEqual(bibTool.name, 'BibTool')
             assert.listStrictEqual(bibTool.args, ['--min-crossrefs=2'])
+        })
+    })
+
+    describe('lw.compile->recipe.findRecipe', () => {
+        beforeEach(() => {
+            recipe.state.prevLangId = ''
+            recipe.state.prevRecipe = undefined
+        })
+
+        it('should return undefined and log an error if no recipes are defined', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.recipes', [])
+
+            const result = recipe.findRecipe(rootFile, 'latex')
+
+            assert.strictEqual(result, undefined)
+            assert.ok(has.log('No recipes defined.'))
+        })
+
+        it('should reset prevRecipe if the language ID changes', async () => {
+            recipe.state.prevLangId = 'oldLangId'
+            await set.config('latex.recipes', [{ name: 'recipe1' }])
+            await set.config('latex.recipe.default', 'recipe1')
+
+            recipe.findRecipe('root.tex', 'newLangId')
+
+            assert.strictEqual(recipe.state.prevRecipe, undefined)
+        })
+
+        it('should use the default recipe name if recipeName is undefined', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.recipes', [{ name: 'recipe1' }])
+            await set.config('latex.recipe.default', 'recipe1')
+
+            const result = recipe.findRecipe(rootFile, 'latex')
+
+            assert.deepStrictEqual(result, { name: 'recipe1' })
+        })
+
+        it('should log an error and return undefined if the specified recipe is not found', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.recipes', [{ name: 'recipe1' }])
+
+            recipe.findRecipe(rootFile, 'latex', 'nonExistentRecipe')
+
+            assert.ok(has.log('Failed to resolve build recipe'))
+        })
+
+        it('should return the last used recipe if defaultRecipeName is lastUsed', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.recipes', [{ name: 'recipe1' }, { name: 'lastUsedRecipe' }])
+            await set.config('latex.recipe.default', 'lastUsed')
+            recipe.state.prevLangId = 'latex'
+            recipe.state.prevRecipe = { name: 'lastUsedRecipe', tools: [] }
+
+            const result = recipe.findRecipe(rootFile, 'latex')
+
+            assert.deepStrictEqual(result, { name: 'lastUsedRecipe', tools: [] })
+        })
+
+        it('should return the first matching recipe based on langId if no recipe is found', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.recipes', [
+                { name: 'recipe1' },
+                { name: 'rsweave Recipe' },
+                { name: 'weave.jl Recipe' },
+                { name: 'pweave Recipe' },
+            ])
+            await set.config('latex.recipe.default', 'first')
+
+            let result = recipe.findRecipe(rootFile, 'rsweave')
+            assert.deepStrictEqual(result, { name: 'rsweave Recipe' })
+
+            result = recipe.findRecipe(rootFile, 'jlweave')
+            assert.deepStrictEqual(result, { name: 'weave.jl Recipe' })
+
+            result = recipe.findRecipe(rootFile, 'pweave')
+            assert.deepStrictEqual(result, { name: 'pweave Recipe' })
+        })
+
+        it('should log an error and return undefined if no matching recipe is found for the specific langId', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.recipes', [{ name: 'recipe1' }])
+
+            const result = recipe.findRecipe(rootFile, 'rsweave')
+
+            assert.strictEqual(result, undefined)
+            assert.ok(has.log('Failed to resolve build recipe: undefined.'))
+        })
+
+        it('should return the first recipe if no other recipe matches', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.recipes', [{ name: 'recipe1' }, { name: 'recipe2' }])
+            await set.config('latex.recipe.default', 'first')
+
+            const result = recipe.findRecipe(rootFile, 'latex')
+
+            sinon.assert.match(result, { name: 'recipe1' })
+        })
+    })
+
+    describe('lw.compile->recipe.populateTools', () => {
+        let readStub: sinon.SinonStub
+        let platform: PropertyDescriptor | undefined
+        let extRoot: string
+
+        const setPlatform = (newPlatform: NodeJS.Platform) => {
+            Object.defineProperty(process, 'platform', { value: newPlatform })
+        }
+
+        before(() => {
+            readStub = sinon.stub(lw.file, 'read')
+            platform = Object.getOwnPropertyDescriptor(process, 'platform')
+            extRoot = lw.extensionRoot
+        })
+
+        afterEach(() => {
+            readStub.reset()
+            if (platform !== undefined) {
+                Object.defineProperty(process, 'platform', platform)
+            }
+            lw.extensionRoot = extRoot
+            recipe.state.isMikTeX = undefined
+        })
+
+        after(() => {
+            readStub.restore()
+        })
+
+        it('should modify command when Docker is enabled on Windows', async () => {
+            const tools: Tool[] = [{ name: 'latexmk', command: 'latexmk', args: [], env: {} }]
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('docker.enabled', true)
+
+            setPlatform('win32')
+            lw.extensionRoot = '/path/to/extension'
+
+            const result = recipe.populateTools(rootFile, tools)
+
+            assert.strictEqual(result[0].command, path.resolve('/path/to/extension', './scripts/latexmk.bat'))
+        })
+
+        it('should modify command and chmod when Docker is enabled on non-Windows', async () => {
+            const tools: Tool[] = [{ name: 'latexmk', command: 'latexmk', args: [], env: {} }]
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('docker.enabled', true)
+
+            setPlatform('linux')
+            lw.extensionRoot = '/path/to/extension'
+            const stub = sinon.stub(lw.external, 'chmodSync')
+            const result = recipe.populateTools(rootFile, tools)
+            stub.restore()
+
+            assert.strictEqual(result[0].command, path.resolve('/path/to/extension', './scripts/latexmk'))
+            assert.listStrictEqual(stub.getCall(0).args, [result[0].command, 0o755])
+        })
+
+        it('should not modify command when Docker is disabled', async () => {
+            const tools: Tool[] = [{ name: 'latexmk', command: 'latexmk', args: [], env: {} }]
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('docker.enabled', false)
+
+            const result = recipe.populateTools(rootFile, tools)
+
+            assert.strictEqual(result[0].command, 'latexmk')
+        })
+
+        it('should replace argument placeholders', () => {
+            const tools: Tool[] = [{ name: 'latexmk', command: 'latexmk', args: ['%DOC%', '%DOC%', '%DIR%'], env: {} }]
+            const rootFile = set.root(fixture, 'main.tex')
+
+            const result = recipe.populateTools(rootFile, tools)
+
+            assert.strictEqual(result[0].args?.[0], rootFile.replace('.tex', ''))
+            assert.strictEqual(result[0].args?.[1], rootFile.replace('.tex', ''))
+            assert.strictEqual(result[0].args?.[2], get.path(fixture))
+        })
+
+        it('should set TeX directories correctly', () => {
+            const tools: Tool[] = [
+                {
+                    name: 'latexmk',
+                    command: 'latexmk',
+                    args: ['-out-directory=out', '-aux-directory=aux'],
+                    env: {},
+                },
+            ]
+            const rootFile = set.root(fixture, 'main.tex')
+
+            const stub = sinon.stub(lw.file, 'setTeXDirs')
+            recipe.populateTools(rootFile, tools)
+            stub.restore()
+
+            assert.listStrictEqual(stub.getCall(0).args, [rootFile, 'out', 'aux'])
+        })
+
+        it('should process environment variables correctly', () => {
+            const tools: Tool[] = [
+                {
+                    name: 'latexmk',
+                    command: 'latexmk',
+                    args: [],
+                    env: { DOC: '%DOC%' },
+                },
+            ]
+            const rootFile = set.root(fixture, 'main.tex')
+
+            const result = recipe.populateTools(rootFile, tools)
+
+            assert.strictEqual(result[0].env?.['DOC'], rootFile.replace('.tex', ''))
+        })
+
+        it('should append max print line arguments when enabled', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.option.maxPrintLine.enabled', true)
+            recipe.state.isMikTeX = true
+
+            let result = recipe.populateTools(rootFile, [{ name: 'latexmk', command: 'latexmk', args: [], env: {} }])
+            assert.ok(result[0].args?.includes('--max-print-line=' + lw.constant.MAX_PRINT_LINE))
+
+            result = recipe.populateTools(rootFile, [{ name: 'pdflatex', command: 'pdflatex', args: [], env: {} }])
+            assert.ok(result[0].args?.includes('--max-print-line=' + lw.constant.MAX_PRINT_LINE))
+
+            result = recipe.populateTools(rootFile, [
+                { name: 'latexmk', command: 'latexmk', args: ['-lualatex'], env: {} },
+            ])
+            assert.listStrictEqual(result[0].args, ['-lualatex'])
+        })
+    })
+
+    describe.only('lw.compile->recipe.isMikTeX', () => {
+        let syncStub: Sinon.SinonStub
+
+        before(() => {
+            syncStub = sinon.stub(lw.external, 'sync')
+        })
+
+        afterEach(() => {
+            syncStub.reset()
+            recipe.state.isMikTeX = undefined
+        })
+
+        after(() => {
+            syncStub.restore()
+        })
+
+        it('should return true when pdflatex is provided by MiKTeX', () => {
+            syncStub.returns('pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)')
+
+            const result = recipe.isMikTeX()
+
+            assert.ok(result)
+            assert.strictEqual(syncStub.callCount, 1)
+        })
+
+        it('should return false when pdflatex is not provided by MiKTeX', () => {
+            syncStub.returns('pdfTeX 3.14159265-2.6-1.40.21 (TeX Live 2020)')
+
+            const result = recipe.isMikTeX()
+
+            assert.ok(!result)
+            assert.strictEqual(syncStub.callCount, 1)
+        })
+
+        it('should return false when pdflatex command fails', () => {
+            syncStub.throws(new Error('Command failed'))
+
+            const result = recipe.isMikTeX()
+
+            assert.ok(!result)
+            assert.strictEqual(syncStub.callCount, 1)
+            assert.ok(has.log('Cannot run `pdflatex` to determine if we are using MiKTeX.'))
+        })
+
+        it('should return cached value if _isMikTeX is already defined', () => {
+            recipe.state.isMikTeX = true
+
+            const result = recipe.isMikTeX()
+
+            assert.ok(result)
+            assert.strictEqual(syncStub.callCount, 0)
         })
     })
 })
