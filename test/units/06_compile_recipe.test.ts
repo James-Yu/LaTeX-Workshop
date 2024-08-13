@@ -698,7 +698,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe.only('lw.compile->recipe.isMikTeX', () => {
+    describe('lw.compile->recipe.isMikTeX', () => {
         let syncStub: Sinon.SinonStub
 
         before(() => {
@@ -742,13 +742,72 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(has.log('Cannot run `pdflatex` to determine if we are using MiKTeX.'))
         })
 
-        it('should return cached value if _isMikTeX is already defined', () => {
+        it('should return cached value if state.isMikTeX is already defined', () => {
             recipe.state.isMikTeX = true
 
             const result = recipe.isMikTeX()
 
             assert.ok(result)
             assert.strictEqual(syncStub.callCount, 0)
+        })
+    })
+
+    describe('lw.compile->recipe.createBuildTools', () => {
+        it('should return undefined if no recipe is found', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.recipes', [])
+
+            const result = await recipe.createBuildTools(rootFile, 'latex')
+
+            assert.strictEqual(result, undefined)
+        })
+
+        it('should create build tools based on magic comments when enabled', async () => {
+            const rootFile = set.root(fixture, 'magic.tex')
+            await set.config('latex.recipes', [])
+            await set.config('latex.build.forceRecipeUsage', false)
+            await set.config('latex.magic.args', ['--shell-escape'])
+
+            const result = await recipe.createBuildTools(rootFile, 'latex')
+
+            assert.deepStrictEqual(result, [
+                {
+                    name: lw.constant.TEX_MAGIC_PROGRAM_NAME + lw.constant.MAGIC_PROGRAM_ARGS_SUFFIX,
+                    command: 'pdflatex',
+                    args: ['--shell-escape'],
+                },
+            ])
+        })
+
+        it('should return undefined with magic comments but disabled', async () => {
+            const rootFile = set.root(fixture, 'magic.tex')
+            await set.config('latex.recipes', [])
+            await set.config('latex.build.forceRecipeUsage', true)
+
+            const result = await recipe.createBuildTools(rootFile, 'latex')
+
+            assert.strictEqual(result, undefined)
+        })
+
+        it('should skip undefined tools in the recipe and log an error', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.tools', [{ name: 'existingTool', command: 'pdflatex' }])
+            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool', 'existingTool'] }])
+
+            const result = await recipe.createBuildTools(rootFile, 'latex')
+
+            assert.deepStrictEqual(result, [{ name: 'existingTool', command: 'pdflatex', args: [] }])
+            assert.ok(has.log('Skipping undefined tool nonexistentTool in recipe Recipe1.'))
+        })
+
+        it('should return undefined if no tools are prepared', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.tools', [])
+            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool'] }])
+
+            const result = await recipe.createBuildTools(rootFile, 'latex')
+
+            assert.strictEqual(result, undefined)
         })
     })
 })

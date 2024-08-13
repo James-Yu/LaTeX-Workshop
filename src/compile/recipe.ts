@@ -400,5 +400,6 @@ export const _test = {
     findRecipe,
     state,
     populateTools,
-    isMikTeX
+    isMikTeX,
+    createBuildTools
 }
