@@ -47,8 +47,8 @@ const changedConfigs: Set<string> = new Set()
 export const set = {
     root: (...paths: string[]) => {
         const rootFile = get.path(...paths)
-        sinon.stub(lw.root.file, 'path').value(rootFile)
-        sinon.stub(lw.root.dir, 'path').value(path.dirname(rootFile))
+        lw.root.file.path = rootFile
+        lw.root.dir.path = path.dirname(rootFile)
         return rootFile
     },
     config: async (section: string, value: any) => {
@@ -59,8 +59,8 @@ export const set = {
 
 export const reset = {
     root: () => {
-        sinon.stub(lw.root.file, 'path').value(undefined)
-        sinon.stub(lw.root.dir, 'path').value(undefined)
+        lw.root.file.path = undefined
+        lw.root.dir.path = undefined
     },
     cache: () => {
         lw.cache.reset()

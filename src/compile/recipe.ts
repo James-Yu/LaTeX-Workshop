@@ -401,5 +401,6 @@ export const _test = {
     state,
     populateTools,
     isMikTeX,
-    createBuildTools
+    createBuildTools,
+    build
 }

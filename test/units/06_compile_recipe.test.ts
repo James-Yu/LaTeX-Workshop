@@ -810,4 +810,76 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(result, undefined)
         })
     })
+
+    describe('lw.compile->recipe.build', () => {
+        let getOutDirStub: sinon.SinonStub
+        let getIncludedTeXStub: sinon.SinonStub
+
+        before(() => {
+            getOutDirStub = sinon.stub(lw.file, 'getOutDir')
+            getIncludedTeXStub = lw.cache.getIncludedTeX as sinon.SinonStub
+        })
+
+        afterEach(() => {
+            getOutDirStub.reset()
+            getIncludedTeXStub.reset()
+            lw.root.subfiles.path = undefined
+            lw.compile.compiledPDFPath = ''
+        })
+
+        after(() => {
+            getOutDirStub.restore()
+        })
+
+        it('should call `createOutputSubFolders` with correct args', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            const subPath = get.path(fixture, 'sub', 'main.tex')
+            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+            lw.root.subfiles.path = subPath
+            getIncludedTeXStub.returns([rootFile, subPath])
+            getOutDirStub.returns('.')
+
+            await recipe.build(rootFile, 'latex', async () => {})
+            assert.ok(has.log(`outDir: ${path.dirname(rootFile)} .`))
+        })
+
+        it('should call `createOutputSubFolders` with correct args with subfiles package', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            const subPath = get.path(fixture, 'sub', 'main.tex')
+            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+            lw.root.subfiles.path = subPath
+            getIncludedTeXStub.returns([rootFile, subPath])
+            getOutDirStub.returns('.')
+
+            await recipe.build(subPath, 'latex', async () => {})
+            assert.ok(has.log(`outDir: ${path.dirname(rootFile)} .`))
+        })
+
+        it('should not call buildLoop if no tool is created', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.tools', [])
+            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool'] }])
+            getIncludedTeXStub.returns([rootFile])
+            getOutDirStub.returns('.')
+
+            const stub = sinon.stub()
+            await recipe.build(rootFile, 'latex', stub)
+
+            assert.strictEqual(stub.callCount, 0)
+        })
+
+        it('should set lw.compile.compiledPDFPath', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+            getIncludedTeXStub.returns([rootFile])
+            getOutDirStub.returns('.')
+
+            await recipe.build(rootFile, 'latex', async () => {})
+
+            assert.strictEqual(lw.compile.compiledPDFPath, rootFile.replace('.tex', '.pdf'))
+        })
+    })
 })
