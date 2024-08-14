@@ -643,7 +643,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             assert.strictEqual(result[0].args?.[0], rootFile.replace('.tex', ''))
             assert.strictEqual(result[0].args?.[1], rootFile.replace('.tex', ''))
-            assert.strictEqual(result[0].args?.[2], get.path(fixture))
+            assert.pathStrictEqual(result[0].args?.[2], get.path(fixture))
         })
 
         it('should set TeX directories correctly', () => {
@@ -677,7 +677,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             const result = recipe.populateTools(rootFile, tools)
 
-            assert.strictEqual(result[0].env?.['DOC'], rootFile.replace('.tex', ''))
+            assert.pathStrictEqual(result[0].env?.['DOC'], rootFile.replace('.tex', ''))
         })
 
         it('should append max print line arguments when enabled', async () => {
