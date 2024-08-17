@@ -26,6 +26,7 @@ const wrapper = <T extends Array<any>, U>(fn: (...args: T) => U) => {
 /* eslint-disable */
 export const lw = {
     extensionRoot: '',
+    previousActive: undefined as vscode.TextEditor | undefined,
     constant: {} as typeof constant,
     log: {} as typeof log.getLogger,
     event: {} as typeof event,

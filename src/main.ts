@@ -85,8 +85,6 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         }
     }))
 
-    /** The previous active TeX document path. If this changed, root need to be re-searched */
-    let prevTeXDocumentPath: string | undefined
     let isLaTeXActive = false
     extensionContext.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -100,16 +98,21 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             logger.showStatus()
         }
+
         if (e && e.document.uri.scheme !== 'file'){
             return
         }
-        if (e && lw.file.hasTeXLangId(e.document.languageId) && e.document.fileName !== prevTeXDocumentPath) {
-            prevTeXDocumentPath = e.document.fileName
+        if (e && lw.file.hasTeXLangId(e.document.languageId) && e.document.fileName !== lw.previousActive?.document.fileName) {
             await lw.root.find()
             lw.lint.latex.root()
         } else if (!e || !lw.file.hasBibLangId(e.document.languageId)) {
             isLaTeXActive = false
         }
+
+        if (e && lw.file.hasTeXLangId(e.document.languageId)) {
+            lw.previousActive = e
+        }
+
         if (e && (
             lw.file.hasTeXLangId(e.document.languageId)
             || lw.file.hasBibLangId(e.document.languageId)
@@ -146,7 +149,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     void lw.root.find().then(() => {
         lw.lint.latex.root()
         if (lw.file.hasTeXLangId(vscode.window.activeTextEditor?.document.languageId ?? '')) {
-            prevTeXDocumentPath = vscode.window.activeTextEditor?.document.fileName
+            lw.previousActive = vscode.window.activeTextEditor
         }
     })
     conflictCheck()

@@ -193,18 +193,19 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
     let line: number
     let filePath: string
     let character = 0
-    if (!vscode.window.activeTextEditor) {
-        logger.log('No active editor found.')
+    const active = vscode.window.activeTextEditor ?? lw.previousActive
+    if (!active) {
+        logger.log('No active LaTeX editor found or previous one recorded.')
         return
     }
 
     if (args === undefined) {
-        filePath = vscode.window.activeTextEditor.document.uri.fsPath
-        if (!lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+        filePath = active.document.uri.fsPath
+        if (!lw.file.hasTeXLangId(active.document.languageId)) {
             logger.log(`${filePath} is not valid LaTeX.`)
             return
         }
-        const position = vscode.window.activeTextEditor.selection.active
+        const position = active.selection.active
         if (!position) {
             logger.log(`No cursor position from ${position}`)
             return
@@ -222,8 +223,8 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
         return
     }
     const targetPdfFile = pdfFile ?? lw.file.getPdfPath(rootFile)
-    if (vscode.window.activeTextEditor.document.lineCount === line &&
-        vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {
+    if (active.document.lineCount === line &&
+        active.document.lineAt(line - 1).text === '') {
             line -= 1
     }
     if (forcedViewer === 'external' || (forcedViewer === 'auto' && configuration.get('view.pdf.viewer') === 'external') ) {
