@@ -641,8 +641,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             const result = recipe.populateTools(rootFile, tools)
 
-            assert.strictEqual(result[0].args?.[0], rootFile.replace('.tex', ''))
-            assert.strictEqual(result[0].args?.[1], rootFile.replace('.tex', ''))
+            assert.pathStrictEqual(result[0].args?.[0], rootFile.replace('.tex', ''))
+            assert.pathStrictEqual(result[0].args?.[1], rootFile.replace('.tex', ''))
             assert.pathStrictEqual(result[0].args?.[2], get.path(fixture))
         })
 
