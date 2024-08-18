@@ -11,6 +11,8 @@ import { latexLogParser } from './parser/latexlog'
 // @ts-expect-error Load unified.js from /out/src/...
 import { toString } from '../../../resources/unified.js'
 
+const logger = lw.log('Parser')
+
 export const parser = {
     bib,
     log,
@@ -40,8 +42,14 @@ async function reset() {
     return (await proxy).reset(getMacroDefs(), getEnvDefs())
 }
 
-async function bib(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst> {
-    return (await proxy).parseBibTeX(s, options)
+async function bib(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst | undefined> {
+    let ast = undefined
+    try {
+        ast = (await proxy).parseBibTeX(s, options)
+    } catch (err) {
+        logger.logError('Error when parsing bib file.', err)
+    }
+    return ast
 }
 
 function stringify(ast: Ast.Ast): string {
