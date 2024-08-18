@@ -333,6 +333,13 @@ class CwlIntel:
                                 pkg.envs[pkgenv].keyvalpos = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.envs[pkgenv].snippet[:haskeyvals.start()])))
                             pkg.envs[pkgenv].keyvalindex = pkg.envs[pkgenv].keyvalindex or []
                             pkg.envs[pkgenv].keyvalindex.append(match[1])
+                    elif envcmd.startswith('\\usepackage/'):
+                        for i in range(len(re.findall(r'%<([^%]*?)%>', line))):
+                            line = re.sub(r'%<([^%]*?)%>', '${' + str(i + 1) + r':\1}', line, 1)
+                        match = re.match(r'^([^#%\n]*)', line)
+                        if match is None:
+                            continue
+                        pkg.options.append(match[1])
                     else:
                         cmd = re.match(r'\\?([^{\[#]*)', envcmd)[1]
                         for pkgcmd in pkg.macros:
