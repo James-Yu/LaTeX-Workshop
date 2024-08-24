@@ -3,6 +3,7 @@ This script generates intellisense data for LaTeX 3
     ../data/expl3.json
 """
 from pathlib import Path
+import os
 import re
 import json
 import itertools
@@ -14,7 +15,14 @@ UNIMATHSYMBOLS = CWD.joinpath('unimathsymbols.txt').resolve()
 COMMANDS_FILE = CWD.joinpath('../data/commands.json').resolve()
 ENVS_FILE = CWD.joinpath('../data/environments.json').resolve()
 OUT_DIR = CWD.joinpath('../data/packages').resolve()
-dtx_files = Path('/usr/local/texlive/2023/texmf-dist/source/latex/l3kernel/').glob('*.dtx')
+
+PATH_TO_DTX = os.environ.get(
+    "PATH_TO_DTX",
+    default='/usr/local/texlive/2024/texmf-dist/source/latex/l3kernel/')
+dtx_path = Path(PATH_TO_DTX).resolve()
+if not dtx_path.exists():
+    raise FileNotFoundError(f'Directory {dtx_path} does not exist. Do you have PATH_TO_DTX set?')
+dtx_files = dtx_path.glob('*.dtx')
 dtx_files_to_ignore = ['l3doc.dtx']
 
 def exclude(entry: str) -> bool:
