@@ -2,7 +2,8 @@ name: 'Lock Threads'
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    # avoid rate limit at 00:00 everyday
+    - cron: '37 2 * * *'
   workflow_dispatch:
 
 permissions:
@@ -20,4 +21,5 @@ jobs:
         with:
           issue-inactive-days: '30'
           pr-inactive-days: '30'
+          process-only: 'issues, prs'
           log-output: true
