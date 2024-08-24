@@ -2,7 +2,8 @@ name: 'Lock Threads'
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    # avoid rate limit at 00:00 everyday
+    - cron: '37 2 * * *'
   workflow_dispatch:
 
 permissions:
