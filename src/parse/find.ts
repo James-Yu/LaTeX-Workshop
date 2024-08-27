@@ -3,7 +3,7 @@ import { escapeRegExp, stripCommentsAndVerbatim } from '../utils/utils'
 import type { TeXMathEnv } from '../types'
 
 const ENV_NAMES = [
-    'align', 'align\\*', 'alignat', 'alignat\\*', 'aligned', 'alignedat', 'array', 'Bmatrix', 'bmatrix', 'cases', 'CD', 'eqnarray', 'eqnarray\\*', 'equation', 'equation\\*', 'flalign', 'flalign\\*', 'gather', 'gather\\*', 'gathered', 'matrix', 'multline', 'multline\\*', 'pmatrix', 'smallmatrix', 'split', 'subarray', 'Vmatrix', 'vmatrix'
+    'align', 'align\\*', 'alignat', 'alignat\\*', 'aligned', 'alignedat', 'array', 'Bmatrix', 'bmatrix', 'cases', 'CD', 'eqnarray', 'eqnarray\\*', 'equation', 'equation\\*', 'flalign', 'flalign\\*', 'gather', 'gather\\*', 'gathered', 'matrix', 'multline', 'multline\\*', 'pmatrix', 'smallmatrix', 'split', 'subarray', 'Vmatrix', 'vmatrix', 'empheq'
 ]
 
 export function findTeX(document: vscode.TextDocument, position: vscode.Position): TeXMathEnv | undefined {
@@ -106,7 +106,7 @@ function getFirstRememberedSubstring(s: string, pat: RegExp): string {
 }
 
 const MATH_ENV_NAMES = [
-    'align', 'align\\*', 'alignat', 'alignat\\*', 'eqnarray', 'eqnarray\\*', 'equation', 'equation\\*', 'flalign', 'flalign\\*', 'gather', 'gather\\*', 'multline', 'multline\\*'
+    'align', 'align\\*', 'alignat', 'alignat\\*', 'eqnarray', 'eqnarray\\*', 'equation', 'equation\\*', 'flalign', 'flalign\\*', 'gather', 'gather\\*', 'multline', 'multline\\*', 'empheq'
 ]
 
 export function findMath(document: vscode.TextDocument, position: vscode.Position): TeXMathEnv | undefined {

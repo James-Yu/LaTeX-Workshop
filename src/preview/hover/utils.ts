@@ -15,6 +15,10 @@ export function mathjaxify(tex: string, envname: string, opt = { stripLabel: tru
     if (envname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
         s = '\\begin{equation}' + s + '\\end{equation}'
     }
+    if (envname == 'empheq') {
+        const empheqPat = /\\begin\{empheq\}\[.*?\]\{(\w+)\}/g;
+        s = s.replace(empheqPat, '\\begin{empheq}[]{$1}');
+    }
     return s
 }
 
