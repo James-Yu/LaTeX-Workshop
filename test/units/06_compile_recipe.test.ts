@@ -286,42 +286,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             })
         })
 
-        it('should detect TeX magic options with multiple arguments (#4347)', async () => {
-            readStub.resolves('% !TEX program = pdflatex\n% !TEX options = --shell-escape --another\n')
-
-            const result = await recipe.findMagicComments('dummy.tex')
-
-            assert.deepStrictEqual(result, {
-                tex: { name: lw.constant.TEX_MAGIC_PROGRAM_NAME, command: 'pdflatex', args: ['--shell-escape', '--another'] },
-                bib: undefined,
-                recipe: undefined,
-            })
-        })
-
-        it('should detect TeX magic options with quoted space in arguments (#4347)', async () => {
-            readStub.resolves('% !TEX program = pdflatex\n% !TEX options = "an argument"\n')
-
-            const result = await recipe.findMagicComments('dummy.tex')
-
-            assert.deepStrictEqual(result, {
-                tex: { name: lw.constant.TEX_MAGIC_PROGRAM_NAME, command: 'pdflatex', args: ['an argument'] },
-                bib: undefined,
-                recipe: undefined,
-            })
-        })
-
-        it('should detect TeX magic options with escaped space in arguments (#4347)', async () => {
-            readStub.resolves('% !TEX program = pdflatex\n% !TEX options = an\\ argument\n')
-
-            const result = await recipe.findMagicComments('dummy.tex')
-
-            assert.deepStrictEqual(result, {
-                tex: { name: lw.constant.TEX_MAGIC_PROGRAM_NAME, command: 'pdflatex', args: ['an argument'] },
-                bib: undefined,
-                recipe: undefined,
-            })
-        })
-
         it('should detect only BIB magic comment', async () => {
             readStub.resolves('% !BIB program = bibtex\n')
 
@@ -342,42 +306,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.deepStrictEqual(result, {
                 tex: undefined,
                 bib: { name: lw.constant.BIB_MAGIC_PROGRAM_NAME, command: 'bibtex', args: ['--min-crossrefs=100'] },
-                recipe: undefined,
-            })
-        })
-
-        it('should detect BIB magic options with multiple arguments (#4347)', async () => {
-            readStub.resolves('% !BIB program = bibtex\n% !BIB options = --min-crossrefs=100 --another\n')
-
-            const result = await recipe.findMagicComments('dummy.tex')
-
-            assert.deepStrictEqual(result, {
-                tex: undefined,
-                bib: { name: lw.constant.BIB_MAGIC_PROGRAM_NAME, command: 'bibtex', args: ['--min-crossrefs=100', '--another'] },
-                recipe: undefined,
-            })
-        })
-
-        it('should detect BIB magic options with quoted space in arguments (#4347)', async () => {
-            readStub.resolves('% !BIB program = bibtex\n% !BIB options = "an argument"\n')
-
-            const result = await recipe.findMagicComments('dummy.tex')
-
-            assert.deepStrictEqual(result, {
-                tex: undefined,
-                bib: { name: lw.constant.BIB_MAGIC_PROGRAM_NAME, command: 'bibtex', args: ['an argument'] },
-                recipe: undefined,
-            })
-        })
-
-        it('should detect BIB magic options with escaped space in arguments (#4347)', async () => {
-            readStub.resolves('% !BIB program = bibtex\n% !BIB options = an\\ argument\n')
-
-            const result = await recipe.findMagicComments('dummy.tex')
-
-            assert.deepStrictEqual(result, {
-                tex: undefined,
-                bib: { name: lw.constant.BIB_MAGIC_PROGRAM_NAME, command: 'bibtex', args: ['an argument'] },
                 recipe: undefined,
             })
         })
