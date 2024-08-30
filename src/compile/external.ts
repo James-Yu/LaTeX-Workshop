@@ -27,7 +27,8 @@ export async function build(command: string, args: string[], pwd: string, buildL
 
     // Replace argument placeholders if a root file is provided
     if (rootFile !== undefined) {
-        args = args.map(replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath))
+        const replaceFn = replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)
+        args = args.map(replaceFn)
     }
 
     // Create a Tool object representing the build command and arguments

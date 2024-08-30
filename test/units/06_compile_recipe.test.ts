@@ -1,3 +1,4 @@
+import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import Sinon, * as sinon from 'sinon'
@@ -238,7 +239,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe.only('lw.compile->recipe.findMagicComments', () => {
+    describe('lw.compile->recipe.findMagicComments', () => {
         let readStub: sinon.SinonStub
 
         before(() => {
@@ -886,21 +887,34 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('lw.compile->recipe.build', () => {
         let getOutDirStub: sinon.SinonStub
         let getIncludedTeXStub: sinon.SinonStub
+        let saveAllStub: sinon.SinonStub
 
         before(() => {
             getOutDirStub = sinon.stub(lw.file, 'getOutDir')
             getIncludedTeXStub = lw.cache.getIncludedTeX as sinon.SinonStub
+            saveAllStub = sinon.stub(vscode.workspace, 'saveAll') as sinon.SinonStub
         })
 
         afterEach(() => {
             getOutDirStub.reset()
             getIncludedTeXStub.reset()
+            saveAllStub.reset()
             lw.root.subfiles.path = undefined
             lw.compile.compiledPDFPath = ''
         })
 
         after(() => {
             getOutDirStub.restore()
+        })
+
+        it('should save all open files in the workspace', async () => {
+            const rootFile = set.root(fixture, 'main.tex')
+            getIncludedTeXStub.returns([rootFile])
+            getOutDirStub.returns('.')
+
+            await recipe.build(rootFile, 'latex', async () => {})
+
+            assert.ok(saveAllStub.calledOnce)
         })
 
         it('should call `createOutputSubFolders` with correct args', async () => {
