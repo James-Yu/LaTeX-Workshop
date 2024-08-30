@@ -1,5 +1,22 @@
 # Change Log
 
+## [10.2.0] - 2024-08-30
+
+### Added
+- Add bibTeX field content suggestions
+- (#4331) Add highlighting to the extension logs.
+- (#4338) Control showing over/underfull warning seperately by `message.badbox.show`.
+
+### Fixed
+- (#4304) Reveal PDF on SyncTeX if it's invisible instead of create a new tab.
+- (#4306) No PDF refresh on code-server.
+- (#4313) Include `(arg)` macro signature in package intellisense.
+- (#4334) PDF viewer position retained across vscode reloads.
+- (#4335) Handle bibtex parsing exception.
+- (#4336) Record past active latex editor instead of just file path.
+- (#4347) `%!TEX/%!BIB options` accept multiple bash args and handles spaces.
+- (#4339) Handle cwl package option in format `#keyvals:\geometry,\usepackage/geometry#c`.
+
 ## [10.1.0] - 2024-06-27
 
 ### Added
