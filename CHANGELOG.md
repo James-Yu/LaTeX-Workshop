@@ -1,5 +1,11 @@
 # Change Log
 
+## [10.2.1] - 2024-08-30
+
+### Fixed
+- (#4354) Reverted #4347.
+  - #4347 was a local issue.
+
 ## [10.2.0] - 2024-08-30
 
 ### Added
