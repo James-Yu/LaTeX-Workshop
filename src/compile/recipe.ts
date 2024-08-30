@@ -180,6 +180,7 @@ async function findMagicComments(rootFile: string): Promise<{tex?: Tool, bib?: T
     const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m
     const regexBibOptions = /^(?:%\s*!\s*BIB\s(?:TS-)?options\s*=\s*(.*)$)/m
     const regexRecipe = /^(?:%\s*!\s*LW\srecipe\s*=\s*(.*)$)/m
+    const bashArgSplit = /(?:"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|\\.|[^\s\\'"])+/g
     let content = ''
     for (const line of (await lw.file.read(rootFile))?.split('\n') || []) {
         if (line.startsWith('%') || line.trim().length === 0) {
@@ -199,7 +200,7 @@ async function findMagicComments(rootFile: string): Promise<{tex?: Tool, bib?: T
         logger.log(`Found TeX program by magic comment: ${texCommand.command}.`)
         const res = content.match(regexTexOptions)
         if (res) {
-            texCommand.args = [res[1]]
+            texCommand.args = [...res[1].matchAll(bashArgSplit)].map(arg => arg[0].replace(/(\\\s)/g, ' ').replace(/(^['"]|['"]$)/g, ''))
             logger.log(`Found TeX options by magic comment: ${texCommand.args}.`)
         }
     }
@@ -214,7 +215,7 @@ async function findMagicComments(rootFile: string): Promise<{tex?: Tool, bib?: T
         logger.log(`Found BIB program by magic comment: ${bibCommand.command}.`)
         const res = content.match(regexBibOptions)
         if (res) {
-            bibCommand.args = [res[1]]
+            bibCommand.args = [...res[1].matchAll(bashArgSplit)].map(arg => arg[0].replace(/(\\\s)/g, ' ').replace(/(^['"]|['"]$)/g, ''))
             logger.log(`Found BIB options by magic comment: ${bibCommand.args}.`)
         }
     }
