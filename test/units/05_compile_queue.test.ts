@@ -20,10 +20,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should clear the queue', () => {
             queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false)
-            assert.strictEqual(queue._test.getQueue().steps.length, 1)
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false)
+            assert.ok(queue.getStep())
 
             queue.clear()
-            assert.strictEqual(queue._test.getQueue().steps.length, 0)
+            assert.strictEqual(queue.getStep(), undefined)
         })
 
         it('should get the next step from the queue', () => {
