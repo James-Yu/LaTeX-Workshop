@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { assert, get, has, mock, set, sleep } from './utils'
+import { assert, get, mock, set, sleep } from './utils'
 import { lw } from '../../src/lw'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
@@ -30,35 +30,12 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             lw.root.file.path = texPath
             lw.watcher.src.add(texPath)
-            assert.ok(!has.log('Current workspace folders: '))
-            await lw.watcher.src._test.onDidDelete(vscode.Uri.file(texPath))
-            assert.ok(has.log('Current workspace folders: '))
-        })
-    })
+            assert.noLog('Current workspace folders: ')
 
-    describe('lw.root.getIndicator', () => {
-        it('should return \\documentclass indicator on selecting `\\documentclass[]{}`', async () => {
-            await set.config('latex.rootFile.indicator', '\\documentclass[]{}')
-            const indicator = lw.root._test.getIndicator()
-
-            assert.ok(indicator.exec('\\documentclass{article}\n'))
-            assert.ok(!indicator.exec('\\begin{document}\n\\end{document}\n'))
-        })
-
-        it('should return \\begin{document} indicator on selecting `\\begin{document}`', async () => {
-            await set.config('latex.rootFile.indicator', '\\begin{document}')
-            const indicator = lw.root._test.getIndicator()
-
-            assert.ok(!indicator.exec('\\documentclass{article}\n'))
-            assert.ok(indicator.exec('\\begin{document}\n\\end{document}\n'))
-        })
-
-        it('should return \\documentclass indicator on other values', async () => {
-            await set.config('latex.rootFile.indicator', 'invalid value')
-            const indicator = lw.root._test.getIndicator()
-
-            assert.ok(indicator.exec('\\documentclass{article}\n'))
-            assert.ok(!indicator.exec('\\begin{document}\n\\end{document}\n'))
+            const onDidDeleteSpy = sinon.spy(lw.watcher.src as any, 'onDidDelete')
+            await onDidDeleteSpy.call(lw.watcher.src, vscode.Uri.file(texPath))
+            onDidDeleteSpy.restore()
+            assert.hasLog('Current workspace folders: ')
         })
     })
 
@@ -66,8 +43,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should return undefined if no workspace is opened', () => {
             const texPath = get.path(fixture, 'main.tex')
             const stub = sinon.stub(vscode.workspace, 'workspaceFolders').value([])
-            const workspace1 = lw.root._test.getWorkspace()
-            const workspace2 = lw.root._test.getWorkspace(texPath)
+            const workspace1 = lw.root.getWorkspace()
+            const workspace2 = lw.root.getWorkspace(texPath)
             stub.restore()
 
             assert.strictEqual(workspace1, undefined)
@@ -76,7 +53,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should return the workspace of provided file', () => {
             const texPath = get.path(fixture, 'main.tex')
-            const workspace = lw.root._test.getWorkspace(texPath)
+            const workspace = lw.root.getWorkspace(texPath)
 
             assert.strictEqual(
                 workspace,
@@ -85,7 +62,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should return the first workspace if no file is provided or opened', () => {
-            const workspace = lw.root._test.getWorkspace()
+            const workspace = lw.root.getWorkspace()
 
             assert.strictEqual(
                 workspace,
@@ -96,7 +73,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should return the workspace of active editor if no file is provided', () => {
             const texPath = get.path(fixture, 'main.tex')
             const stub = mock.activeTextEditor(texPath, '')
-            const workspace = lw.root._test.getWorkspace()
+            const workspace = lw.root.getWorkspace()
             stub.restore()
 
             assert.strictEqual(
@@ -107,157 +84,159 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.root.findFromMagic', () => {
-        it('should return undefined if there is no active editor', async () => {
+        it('should do nothing if there is no active editor', async () => {
             const stub = sinon.stub(vscode.window, 'activeTextEditor').value(undefined)
-            const root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, undefined)
+            assert.noLog('Try finding root from magic comment.')
         })
 
         it('should find root from magic comment', async () => {
             const texPath = get.path(fixture, 'main.tex')
             const stub = mock.activeTextEditor(texPath, '%!TeX root=main.tex')
-            const root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, texPath)
+            assert.strictEqual(lw.root.file.path, texPath)
         })
 
         it('should find root from magic comment with relative path', async () => {
             const texPath = get.path(fixture, 'find_magic', 'main.tex')
             const stub = mock.activeTextEditor(texPath, '%!TeX root=../main.tex')
-            const root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, get.path(fixture, 'main.tex'))
+            assert.strictEqual(lw.root.file.path, get.path(fixture, 'main.tex'))
         })
 
         it('should return undefined if the magic root does not exist', async () => {
             const texPath = get.path(fixture, 'main.tex')
             const stub = mock.activeTextEditor(texPath, '%!TeX root=non-existing.tex')
-            const root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, undefined)
+            assert.hasLog(`Non-existent magic root ${get.path(fixture, 'non-existing.tex')} .`)
         })
 
         it('should find root from chained magic comment `a->b->c`', async () => {
             const texPath = get.path(fixture, 'main.tex')
             const stub = mock.activeTextEditor(texPath, '%!TeX root=find_magic/chain.tex')
-            const root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, get.path(fixture, 'find_magic', 'main.tex'))
+            assert.strictEqual(lw.root.file.path, get.path(fixture, 'find_magic', 'main.tex'))
         })
 
         it('should find root from deeply chained magic comment `a->b->c->d`', async () => {
             const texPath = get.path(fixture, 'main.tex')
             const stub = mock.activeTextEditor(texPath, '%!TeX root=find_magic/more_chain.tex')
-            const root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, get.path(fixture, 'find_magic', 'main.tex'))
+            assert.strictEqual(lw.root.file.path, get.path(fixture, 'find_magic', 'main.tex'))
         })
 
         it('should return undefined if the chained magic root does not exist', async () => {
             const texPath = get.path(fixture, 'main.tex')
             const stub = mock.activeTextEditor(texPath, '%!TeX root=find_magic/chain_file_not_exist.tex')
-            const root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, undefined)
+            assert.hasLog(`Non-existent magic root ${get.path(fixture, 'find_magic', 'non-existent.tex')} .`)
         })
 
         it('should return the looped root if the chain forms a loop `a->b->c->a`', async () => {
             const texPath = get.path(fixture, 'main.tex')
             const stub = mock.activeTextEditor(texPath, '%!TeX root=find_magic/loop_1.tex')
-            const root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, texPath)
+            assert.strictEqual(lw.root.file.path, texPath)
         })
 
         it('should find root from magic comment with different syntax', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             let stub = mock.activeTextEditor(texPath, '% !TeX root=main.tex')
-            let root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
-            assert.strictEqual(root, texPath)
+            assert.strictEqual(lw.root.file.path, texPath)
 
+            lw.root.file.path = undefined
             stub = mock.activeTextEditor(texPath, '% ! TeX root=main.tex')
-            root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
-            assert.strictEqual(root, texPath)
+            assert.strictEqual(lw.root.file.path, texPath)
 
+            lw.root.file.path = undefined
             stub = mock.activeTextEditor(texPath, '%!TEX root=main.tex')
-            root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
-            assert.strictEqual(root, texPath)
+            assert.strictEqual(lw.root.file.path, texPath)
         })
 
         it('should find root from magic comment with different file name extension', async () => {
             let rootPath = get.path(fixture, 'find_magic', 'main.jnw')
             let stub = mock.activeTextEditor(rootPath, '%!TeX root=main.jnw')
-            let root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
-            assert.strictEqual(root, rootPath)
+            assert.strictEqual(lw.root.file.path, rootPath)
 
             rootPath = get.path(fixture, 'find_magic', 'main.rnw')
             stub = mock.activeTextEditor(rootPath, '%!TeX root=main.rnw')
-            root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
-            assert.strictEqual(root, rootPath)
+            assert.strictEqual(lw.root.file.path, rootPath)
 
             rootPath = get.path(fixture, 'find_magic', 'main.snw')
             stub = mock.activeTextEditor(rootPath, '%!TeX root=main.snw')
-            root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
-            assert.strictEqual(root, rootPath)
+            assert.strictEqual(lw.root.file.path, rootPath)
 
             rootPath = get.path(fixture, 'find_magic', 'main.rtex')
             stub = mock.activeTextEditor(rootPath, '%!TeX root=main.rtex')
-            root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
-            assert.strictEqual(root, rootPath)
+            assert.strictEqual(lw.root.file.path, rootPath)
 
             rootPath = get.path(fixture, 'find_magic', 'main.jtexw')
             stub = mock.activeTextEditor(rootPath, '%!TeX root=main.jtexw')
-            root = await lw.root._test.findFromMagic()
+            await lw.root.find()
             stub.restore()
-            assert.strictEqual(root, rootPath)
+            assert.strictEqual(lw.root.file.path, rootPath)
         })
     })
 
     describe('lw.root.findFromRoot', () => {
-        it('should return undefined if there is no active editor', () => {
+        it('should return undefined if there is no active editor', async () => {
             const stub = sinon.stub(vscode.window, 'activeTextEditor').value(undefined)
-            const root = lw.root._test.findFromRoot()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, undefined)
+            assert.noLog('Try finding root from current root.')
         })
 
-        it('should return undefined if there is no root', () => {
+        it('should return undefined if there is no root', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             const stub = mock.activeTextEditor(texPath, '')
-            const root = lw.root._test.findFromRoot()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, undefined)
+            assert.noLog('Try finding root from current root.')
         })
 
-        it('should return undefined if active editor is not a file', () => {
+        it('should return undefined if active editor is not a file', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             set.root(texPath)
             const stub = mock.activeTextEditor('https://google.com', '', { scheme: 'https' })
-            const root = lw.root._test.findFromRoot()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, undefined)
+            assert.hasLog('The active document cannot be used as the root file: ')
         })
 
         it('should find root if active file is in the root tex tree', async () => {
@@ -265,12 +244,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const toParse = get.path(fixture, 'find_root', 'root.tex')
 
             set.root(toParse)
+            await lw.cache.refreshCache(texPath)
             await lw.cache.refreshCache(toParse)
             const stub = mock.activeTextEditor(texPath, '')
-            const root = lw.root._test.findFromRoot()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, toParse)
+            assert.hasLog('Try finding root from current root.')
+            assert.pathStrictEqual(lw.root.file.path, toParse)
         })
 
         it('should return undefined if active file is not in the root tex tree', async () => {
@@ -278,12 +259,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const toParse = get.path(fixture, 'find_root', 'root_no_input.tex')
 
             set.root(toParse)
+            await lw.cache.refreshCache(texPath)
             await lw.cache.refreshCache(toParse)
             const stub = mock.activeTextEditor(texPath, '')
-            const root = lw.root._test.findFromRoot()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, undefined)
+            assert.hasLog('Try finding root from current root.')
+            assert.pathNotStrictEqual(lw.root.file.path, toParse)
         })
     })
 
@@ -292,84 +275,115 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await set.config('latex.rootFile.indicator', '\\documentclass[]{}')
         })
 
-        it('should return undefined if there is no active editor', () => {
+        it('should do nothing if there is no active editor', async () => {
             const stub = sinon.stub(vscode.window, 'activeTextEditor').value(undefined)
-            const root = lw.root._test.findFromActive()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, undefined)
+            assert.noLog('Try finding root from active editor.')
         })
 
-        it('should return undefined if active editor is not a file', () => {
+        it('should do nothing if active editor is not a file', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             set.root(texPath)
             const stub = mock.activeTextEditor('https://google.com', '', { scheme: 'https' })
-            const root = lw.root._test.findFromActive()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, undefined)
+            assert.hasLog('The active document cannot be used as the root file:')
         })
 
-        it('should find root if active file has root file indicator', () => {
+        it('should find root if active file has root file indicator', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             const stub = mock.activeTextEditor(texPath, '\\documentclass{article}\n')
-            const root = lw.root._test.findFromActive()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, texPath)
+            assert.hasLog(`Found root file from active editor: ${texPath}`)
+            assert.pathStrictEqual(lw.root.file.path, texPath)
         })
 
-        it('should ignore root file indicators in comments', () => {
+        it('should ignore root file indicators in comments', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             const stub = mock.activeTextEditor(texPath, '% \\documentclass{article}\n')
-            const root = lw.root._test.findFromActive()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, undefined)
+            assert.noLog(`Found root file from active editor: ${texPath}`)
         })
 
-        it('should find subfile root if active file is a subfile', () => {
+        it('should find subfile root if active file is a subfile', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             const stub = mock.activeTextEditor(texPath, '\\documentclass[find_active/main.tex]{subfiles}\n')
-            const root = lw.root._test.findFromActive()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, get.path(fixture, 'find_active', 'main.tex'))
-            assert.strictEqual(lw.root.subfiles.path, texPath)
+            assert.hasLog('Try finding root from active editor.')
+            assert.pathStrictEqual(lw.root.file.path, get.path(fixture, 'find_active', 'main.tex'))
+            assert.pathStrictEqual(lw.root.subfiles.path, texPath)
         })
 
-        it('should find root if active file is a subfile but points to non-existing file', () => {
+        it('should find root if active file is a subfile but points to non-existing file', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             const stub = mock.activeTextEditor(texPath, '\\documentclass[find_active/nothing.tex]{subfiles}\n')
-            const root = lw.root._test.findFromActive()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, texPath)
+            assert.hasLog('Try finding root from active editor.')
+            assert.pathStrictEqual(lw.root.file.path, texPath)
+        })
+    })
+
+    describe('lw.root.getIndicator', () => {
+        it('should use \\begin{document} indicator on selecting `\\begin{document}`', async () => {
+            await set.config('latex.rootFile.indicator', '\\begin{document}')
+
+            const texPath = get.path(fixture, 'main.tex')
+
+            const stub = mock.activeTextEditor(texPath, '\\begin{document}\n\\end{document}\n')
+            await lw.root.find()
+            stub.restore()
+
+            assert.hasLog(`Found root file from active editor: ${texPath}`)
+            assert.pathStrictEqual(lw.root.file.path, texPath)
+        })
+
+        it('should return \\documentclass indicator on other values', async () => {
+            await set.config('latex.rootFile.indicator', 'invalid value')
+
+            const texPath = get.path(fixture, 'main.tex')
+
+            const stub = mock.activeTextEditor(texPath, '\\documentclass{article}\n')
+            await lw.root.find()
+            stub.restore()
+
+            assert.hasLog(`Found root file from active editor: ${texPath}`)
+            assert.pathStrictEqual(lw.root.file.path, texPath)
         })
     })
 
     describe('lw.root.findInWorkspace', () => {
         beforeEach(async () => {
-            await set.config('latex.rootFile.indicator', '\\documentclass[]{}')
+            await set.config('latex.rootFile.indicator', '\\begin{document}') // avoid active editor check
         })
 
         it('should follow `latex.search.rootFiles.include` config', async () => {
             await set.config('latex.search.rootFiles.include', [ 'absolutely-nothing.tex' ])
-            const root = await lw.root._test.findInWorkspace()
+            await lw.root.find()
 
-            assert.strictEqual(root, undefined)
+            assert.strictEqual(lw.root.file.path, undefined)
         })
 
         it('should follow `latex.search.rootFiles.exclude` config', async () => {
             await set.config('latex.search.rootFiles.exclude', [ '**/*' ])
-            const root = await lw.root._test.findInWorkspace()
+            await lw.root.find()
 
-            assert.strictEqual(root, undefined)
+            assert.strictEqual(lw.root.file.path, undefined)
         })
 
         it('should find the correct root from workspace', async () => {
@@ -377,16 +391,17 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
             await set.config('latex.search.rootFiles.exclude', [ `${fixture}/find_workspace/**/parent.tex` ])
-            const root = await lw.root._test.findInWorkspace()
+            await lw.root.find()
 
-            assert.strictEqual(root, texPath)
+            assert.hasLog('Try finding root from current workspaceRootDir:')
+            assert.strictEqual(lw.root.file.path, texPath)
         })
 
         it('should ignore root file indicators in comments', async () => {
             await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/comment.tex` ])
-            const root = await lw.root._test.findInWorkspace()
+            await lw.root.find()
 
-            assert.strictEqual(root, undefined)
+            assert.strictEqual(lw.root.file.path, undefined)
         })
 
         it('should find the correct root if the .fls of root includes active editor', async () => {
@@ -395,10 +410,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
             const stub = mock.activeTextEditor(texPathAnother, '\\documentclass{article}\n')
-            const root = await lw.root._test.findInWorkspace()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, texPath)
+            assert.hasLog('Try finding root from current workspaceRootDir:')
+            assert.strictEqual(lw.root.file.path, texPath)
         })
 
         it('should find the correct root if the children of root includes active editor', async () => {
@@ -409,10 +425,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await set.config('latex.search.rootFiles.exclude', [ `${fixture}/find_workspace/main.tex` ])
             await lw.cache.refreshCache(texPath)
             const stub = mock.activeTextEditor(texPathAnother, '\\documentclass{article}\n')
-            const root = await lw.root._test.findInWorkspace()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, texPath)
+            assert.hasLog('Try finding root from current workspaceRootDir:')
+            assert.strictEqual(lw.root.file.path, texPath)
         })
 
         it('should find the correct root if there is a fls file, and the children of root includes active editor', async () => {
@@ -422,10 +439,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
             await lw.cache.refreshCache(texPath)
             const stub = mock.activeTextEditor(texPathAnother, '\\documentclass{article}\n')
-            const root = await lw.root._test.findInWorkspace()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, get.path(fixture, 'find_workspace', 'main.tex'))
+            assert.hasLog('Try finding root from current workspaceRootDir:')
+            assert.strictEqual(lw.root.file.path, get.path(fixture, 'find_workspace', 'main.tex'))
         })
 
         it('should find the correct root if current root is in the candidates', async () => {
@@ -434,10 +452,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
             set.root(fixture, 'find_workspace', 'main.tex')
             const stub = mock.activeTextEditor(texPath, '\\documentclass{article}\n')
-            const root = await lw.root._test.findInWorkspace()
+            await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(root, texPath)
+            assert.hasLog('Try finding root from current workspaceRootDir:')
+            assert.strictEqual(lw.root.file.path, texPath)
         })
     })
 

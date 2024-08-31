@@ -9,6 +9,7 @@ logger.log('Initializing LaTeX Workshop.')
 import { event } from './core/event'
 lw.event = event
 import { file } from './core/file'
+file.initialize()
 lw.file = file
 import { watcher } from './core/watcher'
 lw.watcher = watcher
@@ -17,8 +18,8 @@ lw.cache = cache
 import { root } from './core/root'
 lw.root = root
 import { parser } from './parse'
+void parser.parse.reset()
 lw.parser = parser
-void lw.parser.parse.reset()
 import { compile } from './compile'
 lw.compile = compile
 import { preview, server, viewer } from './preview'

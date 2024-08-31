@@ -41,13 +41,7 @@ export const cache = {
     reset,
     refreshCache,
     refreshCacheAggressive,
-    loadFlsFile,
-    _test: {
-        caches,
-        canCache,
-        isExcluded,
-        updateAST
-    }
+    loadFlsFile
 }
 
 // Listener for file changes: refreshes the cache if the file can be cached.
@@ -59,7 +53,7 @@ lw.watcher.src.onChange((filePath: string) => {
 
 // Listener for file deletions: removes the file from the cache if it exists.
 lw.watcher.src.onDelete((filePath: string) => {
-    if (get(filePath) === undefined) {
+    if (get(filePath) !== undefined) {
         caches.delete(filePath)
         logger.log(`Removed ${filePath} .`)
     }
@@ -236,10 +230,11 @@ let cachingFilesCount: number = 0
  */
 async function refreshCache(filePath: string, rootPath?: string): Promise<Promise<void> | undefined> {
     if (isExcluded(filePath)) {
-        logger.log(`Ignored ${filePath} .`)
+        logger.log(`File is excluded from caching: ${filePath} .`)
         return
     }
     if (!canCache(filePath)) {
+        logger.log(`File cannot be cached: ${filePath} .`)
         return
     }
     logger.log(`Caching ${filePath} .`)

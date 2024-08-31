@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import Sinon, * as sinon from 'sinon'
-import { assert, get, has, mock, set } from './utils'
+import { assert, get, mock, set } from './utils'
 import { lw } from '../../src/lw'
 import { queue } from '../../src/compile/queue'
 import { _test as recipe } from '../../src/compile/recipe'
@@ -179,7 +179,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             recipe.createOutputSubFolders(rootFile)
 
             assert.strictEqual(getOutDirStub.getCall(0).args[0], rootFile)
-            assert.ok(has.log(`outDir: ${expectedOutDir} .`))
+            assert.hasLog(`outDir: ${expectedOutDir} .`)
         })
 
         it('should use the absolute output directory as is', () => {
@@ -192,7 +192,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             recipe.createOutputSubFolders(rootFile)
 
             assert.strictEqual(getOutDirStub.getCall(0).args[0], rootFile)
-            assert.ok(has.log(`outDir: ${absoluteOutDir} .`))
+            assert.hasLog(`outDir: ${absoluteOutDir} .`)
         })
 
         it('should create the output directory if it does not exist', () => {
@@ -485,7 +485,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const result = recipe.findRecipe(rootFile, 'latex')
 
             assert.strictEqual(result, undefined)
-            assert.ok(has.log('No recipes defined.'))
+            assert.hasLog('No recipes defined.')
         })
 
         it('should reset prevRecipe if the language ID changes', async () => {
@@ -514,7 +514,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             recipe.findRecipe(rootFile, 'latex', 'nonExistentRecipe')
 
-            assert.ok(has.log('Failed to resolve build recipe'))
+            assert.hasLog('Failed to resolve build recipe')
         })
 
         it('should return the last used recipe if defaultRecipeName is lastUsed', async () => {
@@ -556,7 +556,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const result = recipe.findRecipe(rootFile, 'rsweave')
 
             assert.strictEqual(result, undefined)
-            assert.ok(has.log('Failed to resolve build recipe: undefined.'))
+            assert.hasLog('Failed to resolve build recipe: undefined.')
         })
 
         it('should return the first recipe if no other recipe matches', async () => {
@@ -740,7 +740,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             assert.ok(!result)
             assert.strictEqual(syncStub.callCount, 1)
-            assert.ok(has.log('Cannot run `pdflatex` to determine if we are using MiKTeX.'))
+            assert.hasLog('Cannot run `pdflatex` to determine if we are using MiKTeX.')
         })
 
         it('should return cached value if state.isMikTeX is already defined', () => {
@@ -798,7 +798,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const result = await recipe.createBuildTools(rootFile, 'latex')
 
             assert.deepStrictEqual(result, [{ name: 'existingTool', command: 'pdflatex', args: [] }])
-            assert.ok(has.log('Skipping undefined tool nonexistentTool in recipe Recipe1.'))
+            assert.hasLog('Skipping undefined tool nonexistentTool in recipe Recipe1.')
         })
 
         it('should return undefined if no tools are prepared', async () => {
@@ -855,7 +855,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             getOutDirStub.returns('.')
 
             await recipe.build(rootFile, 'latex', async () => {})
-            assert.ok(has.log(`outDir: ${path.dirname(rootFile)} .`))
+            assert.hasLog(`outDir: ${path.dirname(rootFile)} .`)
         })
 
         it('should call `createOutputSubFolders` with correct args with subfiles package', async () => {
@@ -868,7 +868,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             getOutDirStub.returns('.')
 
             await recipe.build(subPath, 'latex', async () => {})
-            assert.ok(has.log(`outDir: ${path.dirname(rootFile)} .`))
+            assert.hasLog(`outDir: ${path.dirname(rootFile)} .`)
         })
 
         it('should not call buildLoop if no tool is created', async () => {

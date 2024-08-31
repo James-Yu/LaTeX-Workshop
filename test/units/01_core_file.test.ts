@@ -18,11 +18,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.file.createTmpDir', () => {
         it('should create temporary directories', () => {
-            assert.ok(lw.file._test.createTmpDir())
+            assert.ok(path.isAbsolute(lw.file.tmpDirPath), lw.file.tmpDirPath)
         })
 
         it('should create different temporary directories', () => {
-            assert.notStrictEqual(lw.file._test.createTmpDir(), lw.file._test.createTmpDir())
+            const tmpDir1 = lw.file.tmpDirPath
+            lw.file.initialize()
+
+            assert.notStrictEqual(tmpDir1, lw.file.tmpDirPath)
         })
 
         function forbiddenTemp(chars: string[ ]) {
@@ -31,7 +34,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             chars.forEach(char => {
                 tmpNames.forEach(envvar => process.env[envvar] = (process.env[envvar] === undefined ? undefined : ('\\Test ' + char)))
                 try {
-                    lw.file._test.createTmpDir()
+                    lw.file.initialize()
                     assert.fail('Expected an error to be thrown')
                 } catch {
                     assert.ok(true)

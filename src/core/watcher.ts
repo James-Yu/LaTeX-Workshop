@@ -9,37 +9,38 @@ class Watcher {
      * Map of folder paths to watcher information. Each folder has its own
      * watcher to save resources.
      */
-    private readonly watchers: {[folder: string]: {watcher: vscode.FileSystemWatcher, files: Set<string>}} = {}
+    private get watchers() {
+        return this._watchers
+    }
+    private readonly _watchers: {[folder: string]: {watcher: vscode.FileSystemWatcher, files: Set<string>}} = {}
 
     /**
      * Set of handlers to be called when a file is created.
      */
-    private readonly onCreateHandlers: Set<(filePath: string) => void> = new Set()
+    private get onCreateHandlers() {
+        return this._onCreateHandlers
+    }
+    private readonly _onCreateHandlers: Set<(filePath: string) => void> = new Set()
     /**
      * Set of handlers to be called when a file is changed.
      */
-    private readonly onChangeHandlers: Set<(filePath: string) => void> = new Set()
+    private get onChangeHandlers() {
+        return this._onChangeHandlers
+    }
+    private readonly _onChangeHandlers: Set<(filePath: string) => void> = new Set()
     /**
      * Set of handlers to be called when a file is deleted.
      */
-    private readonly onDeleteHandlers: Set<(filePath: string) => void> = new Set()
+    private get onDeleteHandlers() {
+        return this._onDeleteHandlers
+    }
+    private readonly _onDeleteHandlers: Set<(filePath: string) => void> = new Set()
     /**
      * Map of file paths to polling information. This may be of particular use
      * when large binary files are progressively write to disk, and multiple
      * 'change' events are therefore emitted in a short period of time.
      */
     private readonly polling: {[filePath: string]: {time: number, size: number}} = {}
-
-    readonly _test = {
-        handlers: {
-            onCreateHandlers: this.onCreateHandlers,
-            onChangeHandlers: this.onChangeHandlers,
-            onDeleteHandlers: this.onDeleteHandlers,
-        },
-        getWatchers: () => this.watchers,
-        onDidChange: (...args: Parameters<Watcher['onDidChange']>) => this.onDidChange(...args),
-        onDidDelete: (...args: Parameters<Watcher['onDidDelete']>) => this.onDidDelete(...args)
-    }
 
     /**
      * Creates a new Watcher instance.

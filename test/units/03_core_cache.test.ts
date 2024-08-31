@@ -1,7 +1,8 @@
+import * as vscode from 'vscode'
 import * as Mocha from 'mocha'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { assert, get, has, mock, set, sleep } from './utils'
+import { assert, get, log, mock, set, sleep } from './utils'
 import { lw } from '../../src/lw'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
@@ -15,43 +16,91 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         sinon.restore()
     })
 
-    describe('lw.cache.canCache', () => {
-        it('should return true for supported TeX files', () => {
-            const texPath = get.path(fixture, 'main.tex')
-
-            assert.ok(lw.cache._test.canCache(texPath))
-            assert.ok(lw.cache._test.canCache(get.path(fixture, 'main.rnw')))
-            assert.ok(lw.cache._test.canCache(get.path(fixture, 'main.jnw')))
-            assert.ok(lw.cache._test.canCache(get.path(fixture, 'main.pnw')))
-        })
-
-        it('should return false for unsupported files', () => {
-            assert.ok(!lw.cache._test.canCache(get.path(fixture, 'main.cls')))
-            assert.ok(!lw.cache._test.canCache(get.path(fixture, 'main.sty')))
-            assert.ok(!lw.cache._test.canCache(get.path(fixture, 'main.txt')))
-        })
-
-        it('should return false for expl3-code.tex', () => {
-            assert.ok(!lw.cache._test.canCache(get.path(fixture, 'expl3-code.tex')))
-        })
-    })
-
     describe('lw.cache.isExcluded', () => {
         const texPath = get.path(fixture, 'main.tex')
         const bblPath = get.path(fixture, 'main.bbl')
 
-        it('should return true for excluded files', () => {
-            assert.ok(lw.cache._test.isExcluded(bblPath))
-            assert.ok(lw.cache._test.isExcluded('/dev/null'))
+        it('should excluded files', async () => {
+            log.start()
+            await lw.cache.refreshCache(bblPath)
+            log.stop()
+            assert.hasLog(`File is excluded from caching: ${bblPath} .`)
+
+            log.start()
+            await lw.cache.refreshCache('/dev/null')
+            log.stop()
+            assert.hasLog('File is excluded from caching: /dev/null .')
         })
 
-        it('should return false for non-excluded files', () => {
-            assert.ok(!lw.cache._test.isExcluded(texPath))
+        it('should not exclude non-excluded files', async () => {
+            await lw.cache.refreshCache(texPath)
+            assert.noLog(`File is excluded from caching: ${texPath} .`)
         })
-        it('should return true for excluded files with config set ', async () => {
+
+        it('should excluded files with config set ', async () => {
             await set.config('latex.watch.files.ignore', ['**/*.bbl'])
-            assert.ok(lw.cache._test.isExcluded(bblPath))
-            assert.ok(!lw.cache._test.isExcluded('/dev/null'))
+
+            log.start()
+            await lw.cache.refreshCache(bblPath)
+            log.stop()
+            assert.hasLog(`File is excluded from caching: ${bblPath} .`)
+
+            log.start()
+            await lw.cache.refreshCache('/dev/null')
+            log.stop()
+            assert.noLog('File is excluded from caching: /dev/null .')
+        })
+    })
+
+    describe('lw.cache.canCache', () => {
+        beforeEach(async () => {
+            await set.config('latex.watch.files.ignore', [])
+        })
+
+        it('should cache supported TeX files', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+
+            log.start()
+            await lw.cache.refreshCache(texPath)
+            log.stop()
+            assert.noLog(`File cannot be cached: ${texPath} .`)
+
+            log.start()
+            await lw.cache.refreshCache(get.path(fixture, 'main.rnw'))
+            log.stop()
+            assert.noLog(`File cannot be cached: ${get.path(fixture, 'main.rnw')} .`)
+
+            log.start()
+            await lw.cache.refreshCache(get.path(fixture, 'main.jnw'))
+            log.stop()
+            assert.noLog(`File cannot be cached: ${get.path(fixture, 'main.jnw')} .`)
+
+            log.start()
+            await lw.cache.refreshCache(get.path(fixture, 'main.pnw'))
+            log.stop()
+            assert.noLog(`File cannot be cached: ${get.path(fixture, 'main.pnw')} .`)
+        })
+
+        it('should return false for unsupported files', async () => {
+            log.start()
+            await lw.cache.refreshCache(get.path(fixture, 'main.cls'))
+            log.stop()
+            assert.hasLog(`File cannot be cached: ${get.path(fixture, 'main.cls')} .`)
+
+            log.start()
+            await lw.cache.refreshCache(get.path(fixture, 'main.sty'))
+            log.stop()
+            assert.hasLog(`File cannot be cached: ${get.path(fixture, 'main.sty')} .`)
+
+            log.start()
+            await lw.cache.refreshCache(get.path(fixture, 'main.txt'))
+            log.stop()
+            assert.hasLog(`File cannot be cached: ${get.path(fixture, 'main.txt')} .`)
+        })
+
+        it('should return false for expl3-code.tex', async () => {
+            await lw.cache.refreshCache(get.path(fixture, 'expl3-code.tex'))
+            assert.hasLog(`File cannot be cached: ${get.path(fixture, 'expl3-code.tex')} .`)
         })
     })
 
@@ -188,21 +237,21 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const texPath = get.path(fixture, 'main.tex')
 
             await lw.cache.refreshCache(texPath)
-            assert.ok(has.log('Updated inputs of '))
+            assert.hasLog('Updated inputs of ')
         })
 
         it('should update AST during caching', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             await lw.cache.refreshCache(texPath)
-            assert.ok(has.log('Parsed LaTeX AST in '))
+            assert.hasLog('Parsed LaTeX AST in ')
         })
 
         it('should update document elements during caching', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             await lw.cache.refreshCache(texPath)
-            assert.ok(has.log('Updated elements in '))
+            assert.hasLog('Updated elements in ')
         })
 
         it('should cache provided dirty TeX source', async () => {
@@ -279,7 +328,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             lw.cache.refreshCacheAggressive(texPath)
             await sleep(150)
             stub.restore()
-            assert.ok(has.log('Parsing .fls '))
+            assert.hasLog('Parsing .fls ')
         })
 
         it('should not aggressively cache cached files without `intellisense.update.aggressive.enabled`', async function (this: Mocha.Context) {
@@ -346,12 +395,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should call lw.parser.parse.tex to parse AST', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.cache.add(texPath)
-            await lw.cache.refreshCache(texPath)
-            const texCache = lw.cache.get(texPath)
-            assert.ok(texCache)
             ;(lw.parser.parse.tex as sinon.SinonStub).reset()
-            await lw.cache._test.updateAST(texCache)
+            await lw.cache.refreshCache(texPath)
+            assert.hasLog(`Parse LaTeX AST: ${texPath} .`)
             assert.strictEqual((lw.parser.parse.tex as sinon.SinonStub).callCount, 1)
         })
     })
@@ -628,7 +674,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const texPathAnother = get.path(fixture, 'another.tex')
 
             await lw.cache.loadFlsFile(texPathAnother)
-            assert.ok(!has.log('Parsing .fls '))
+            assert.noLog('Parsing .fls ')
         })
 
         it('should not consider files that are both INPUT and OUTPUT', async () => {
@@ -810,12 +856,18 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should return a list of included .tex files even non-cached with `cachedOnly` set to `false`', async () => {
             const toParse = get.path(fixture, 'included_tex', 'main.tex')
+            const texPathAnother = get.path(fixture, 'included_tex', 'another.tex')
+
             await lw.cache.refreshCache(toParse)
-            lw.cache._test.caches.delete(get.path(fixture, 'included_tex', 'another.tex'))
-            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse, false), [
-                get.path(fixture, 'included_tex', 'main.tex'),
-                get.path(fixture, 'included_tex', 'another.tex')
-            ])
+
+            const onDidDeleteSpy = sinon.spy(lw.watcher.src as any, 'onDidDelete')
+            const existsStub = sinon.stub(lw.file, 'exists').returns(Promise.resolve(false))
+            await onDidDeleteSpy.call(lw.watcher.src, vscode.Uri.file(texPathAnother))
+            onDidDeleteSpy.restore()
+            existsStub.restore()
+
+            assert.strictEqual(lw.cache.get(texPathAnother), undefined)
+            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse, false), [ toParse, texPathAnother ])
         })
 
         it('should return a list of included .bib files with circular inclusions', async () => {
