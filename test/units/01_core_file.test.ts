@@ -4,6 +4,7 @@ import * as path from 'path'
 import * as sinon from 'sinon'
 import { assert, get, mock, set } from './utils'
 import { lw } from '../../src/lw'
+import { initialize } from '../../src/core/file'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
@@ -23,7 +24,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should create different temporary directories', () => {
             const tmpDir1 = lw.file.tmpDirPath
-            lw.file.initialize()
+            initialize()
 
             assert.notStrictEqual(tmpDir1, lw.file.tmpDirPath)
         })
@@ -34,7 +35,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             chars.forEach(char => {
                 tmpNames.forEach(envvar => process.env[envvar] = (process.env[envvar] === undefined ? undefined : ('\\Test ' + char)))
                 try {
-                    lw.file.initialize()
+                    initialize()
                     assert.fail('Expected an error to be thrown')
                 } catch {
                     assert.ok(true)

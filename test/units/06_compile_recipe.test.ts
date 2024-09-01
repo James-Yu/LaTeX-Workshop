@@ -4,7 +4,7 @@ import * as fs from 'fs'
 import Sinon, * as sinon from 'sinon'
 import { assert, get, log, mock, set, sleep } from './utils'
 import { lw } from '../../src/lw'
-import { build } from '../../src/compile/recipe'
+import { build, initialize } from '../../src/compile/recipe'
 import { queue } from '../../src/compile/queue'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
@@ -18,8 +18,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         getIncludedTeXStub = lw.cache.getIncludedTeX as sinon.SinonStub
     })
 
-    beforeEach(() => {
+    beforeEach(async () => {
+        initialize()
         getIncludedTeXStub.returns([])
+        await set.config('latex.recipe.default', 'first')
     })
 
     afterEach(() => {
@@ -108,12 +110,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             await build(rootFile, 'latex', async () => {})
 
-            assert.strictEqual(lw.compile.compiledPDFPath, rootFile.replace('.tex', '.pdf'))
+            assert.pathStrictEqual(lw.compile.compiledPDFPath, rootFile.replace('.tex', '.pdf'))
         })
     })
 
     describe('lw.compile->recipe.createBuildTools', () => {
-
         it('should return undefined if no recipe is found', async () => {
             const rootFile = set.root(fixture, 'main.tex')
             await set.config('latex.recipes', [])
@@ -610,6 +611,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         after(() => {
             readStub.restore()
+            syncStub.restore()
         })
 
         it('should modify command when Docker is enabled on Windows', async () => {
@@ -711,7 +713,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(step.args?.includes('--max-print-line=' + lw.constant.MAX_PRINT_LINE), step.args?.join(' '))
 
             await set.config('latex.tools', [{ name: 'latexmk', command: 'pdflatex' }])
-
+            initialize()
             await build(rootFile, 'latex', async () => {})
 
             step = queue.getStep()
@@ -719,7 +721,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(step.args?.includes('--max-print-line=' + lw.constant.MAX_PRINT_LINE), step.args?.join(' '))
 
             await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', args: ['--lualatex'] }])
-
+            initialize()
             await build(rootFile, 'latex', async () => {})
 
             step = queue.getStep()

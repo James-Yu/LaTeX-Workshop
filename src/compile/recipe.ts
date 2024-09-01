@@ -1,6 +1,6 @@
 import vscode from 'vscode'
 import path from 'path'
-import { isTesting, replaceArgumentPlaceholders } from '../utils/utils'
+import { replaceArgumentPlaceholders } from '../utils/utils'
 
 import { lw } from '../lw'
 import type { Recipe, Tool } from '../types'
@@ -8,14 +8,19 @@ import { queue } from './queue'
 
 const logger = lw.log('Build', 'Recipe')
 
-const state: {
+let state: {
     prevRecipe: Recipe | undefined,
     prevLangId: string,
     isMikTeX: boolean | undefined
-} = {
-    prevRecipe: undefined,
-    prevLangId: '',
-    isMikTeX: undefined
+}
+
+initialize()
+export function initialize() {
+    state = {
+        prevRecipe: undefined,
+        prevLangId: '',
+        isMikTeX: undefined
+    }
 }
 
 setDockerImage()
@@ -375,7 +380,7 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
  * otherwise, false.
  */
 function isMikTeX(): boolean {
-    if (state.isMikTeX === undefined || isTesting()) {
+    if (state.isMikTeX === undefined) {
         try {
             if (lw.external.sync('pdflatex --version').toString().match(/MiKTeX/)) {
                 state.isMikTeX = true

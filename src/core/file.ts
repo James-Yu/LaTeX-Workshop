@@ -9,7 +9,6 @@ const logger = lw.log('File')
 
 export const file = {
     tmpDirPath: '',
-    initialize,
     getOutDir,
     getLangId,
     getJobname,
@@ -27,7 +26,8 @@ export const file = {
     kpsewhich
 }
 
-function initialize() {
+initialize()
+export function initialize() {
     file.tmpDirPath = createTmpDir()
 }
 

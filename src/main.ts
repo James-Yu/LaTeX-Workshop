@@ -9,7 +9,6 @@ logger.log('Initializing LaTeX Workshop.')
 import { event } from './core/event'
 lw.event = event
 import { file } from './core/file'
-file.initialize()
 lw.file = file
 import { watcher } from './core/watcher'
 lw.watcher = watcher
