@@ -1,6 +1,6 @@
 import vscode from 'vscode'
 import path from 'path'
-import { replaceArgumentPlaceholders } from '../utils/utils'
+import { isTesting, replaceArgumentPlaceholders } from '../utils/utils'
 
 import { lw } from '../lw'
 import type { Recipe, Tool } from '../types'
@@ -306,8 +306,8 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
             candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('pnw|pweave'))
         }
         if (candidates.length < 1) {
-            logger.log(`Failed to resolve build recipe: ${recipeName}.`)
-            void logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}.`)
+            logger.log(`Cannot find any recipe for langID \`${langId}\`.`)
+            void logger.showErrorMessage(`[Builder] Cannot find any recipe for langID \`${langId}\`: ${recipeName}.`)
         }
         recipe = candidates[0]
     }
@@ -360,7 +360,7 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
                                tool.args.includes('--lualatex') ||
                                tool.args.includes('--pdflua') ||
                                tool.args.includes('--pdflualatex')
-            if (isMikTeX() && ((tool.command === 'latexmk' && !isLuaLatex) || tool.command === 'pdflatex')) {
+            if (((tool.command === 'latexmk' && !isLuaLatex) || tool.command === 'pdflatex') && isMikTeX()) {
                 tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
             }
         }
@@ -375,7 +375,7 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
  * otherwise, false.
  */
 function isMikTeX(): boolean {
-    if (state.isMikTeX === undefined) {
+    if (state.isMikTeX === undefined || isTesting()) {
         try {
             if (lw.external.sync('pdflatex --version').toString().match(/MiKTeX/)) {
                 state.isMikTeX = true
@@ -389,18 +389,4 @@ function isMikTeX(): boolean {
         }
     }
     return state.isMikTeX
-}
-
-export const _test = {
-    setDockerImage,
-    setDockerPath,
-    createOutputSubFolders,
-    findMagicComments,
-    createBuildMagic,
-    findRecipe,
-    state,
-    populateTools,
-    isMikTeX,
-    createBuildTools,
-    build
 }

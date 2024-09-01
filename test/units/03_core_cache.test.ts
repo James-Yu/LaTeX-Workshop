@@ -34,7 +34,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should not exclude non-excluded files', async () => {
             await lw.cache.refreshCache(texPath)
-            assert.noLog(`File is excluded from caching: ${texPath} .`)
+            assert.notHasLog(`File is excluded from caching: ${texPath} .`)
         })
 
         it('should excluded files with config set ', async () => {
@@ -48,7 +48,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             log.start()
             await lw.cache.refreshCache('/dev/null')
             log.stop()
-            assert.noLog('File is excluded from caching: /dev/null .')
+            assert.notHasLog('File is excluded from caching: /dev/null .')
         })
     })
 
@@ -63,22 +63,22 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             log.start()
             await lw.cache.refreshCache(texPath)
             log.stop()
-            assert.noLog(`File cannot be cached: ${texPath} .`)
+            assert.notHasLog(`File cannot be cached: ${texPath} .`)
 
             log.start()
             await lw.cache.refreshCache(get.path(fixture, 'main.rnw'))
             log.stop()
-            assert.noLog(`File cannot be cached: ${get.path(fixture, 'main.rnw')} .`)
+            assert.notHasLog(`File cannot be cached: ${get.path(fixture, 'main.rnw')} .`)
 
             log.start()
             await lw.cache.refreshCache(get.path(fixture, 'main.jnw'))
             log.stop()
-            assert.noLog(`File cannot be cached: ${get.path(fixture, 'main.jnw')} .`)
+            assert.notHasLog(`File cannot be cached: ${get.path(fixture, 'main.jnw')} .`)
 
             log.start()
             await lw.cache.refreshCache(get.path(fixture, 'main.pnw'))
             log.stop()
-            assert.noLog(`File cannot be cached: ${get.path(fixture, 'main.pnw')} .`)
+            assert.notHasLog(`File cannot be cached: ${get.path(fixture, 'main.pnw')} .`)
         })
 
         it('should return false for unsupported files', async () => {
@@ -674,7 +674,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const texPathAnother = get.path(fixture, 'another.tex')
 
             await lw.cache.loadFlsFile(texPathAnother)
-            assert.noLog('Parsing .fls ')
+            assert.notHasLog('Parsing .fls ')
         })
 
         it('should not consider files that are both INPUT and OUTPUT', async () => {
@@ -861,7 +861,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(toParse)
 
             const onDidDeleteSpy = sinon.spy(lw.watcher.src as any, 'onDidDelete')
-            const existsStub = sinon.stub(lw.file, 'exists').returns(Promise.resolve(false))
+            const existsStub = sinon.stub(lw.file, 'exists').resolves(false)
             await onDidDeleteSpy.call(lw.watcher.src, vscode.Uri.file(texPathAnother))
             onDidDeleteSpy.restore()
             existsStub.restore()

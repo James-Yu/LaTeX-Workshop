@@ -12,7 +12,7 @@ type ExtendedAssert = typeof nodeAssert & {
     pathStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void,
     pathNotStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void,
     hasLog: (message: string | RegExp) => void,
-    noLog: (message: string | RegExp) => void
+    notHasLog: (message: string | RegExp) => void
 }
 export const assert: ExtendedAssert = nodeAssert as ExtendedAssert
 assert.listStrictEqual = <T>(actual: T[] | undefined, expected: T[] | undefined, message?: string | Error) => {
@@ -45,7 +45,7 @@ function hasLog(message: string | RegExp) {
 assert.hasLog = (message: string | RegExp) => {
     assert.ok(hasLog(message), log.all().join('\n'))
 }
-assert.noLog = (message: string | RegExp) => {
+assert.notHasLog = (message: string | RegExp) => {
     assert.ok(!hasLog(message), log.all().join('\n'))
 }
 

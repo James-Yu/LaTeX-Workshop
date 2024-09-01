@@ -490,10 +490,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should handle non-file URIs', async () => {
-            const oldStat = lw.external.stat
-            lw.external.stat = () => { return Promise.resolve({type: 0, ctime: 0, mtime: 0, size: 0}) }
+            const stub = sinon.stub(lw.external, 'stat').resolves({type: 0, ctime: 0, mtime: 0, size: 0})
             const result = await lw.file.exists(vscode.Uri.parse('https://code.visualstudio.com/'))
-            lw.external.stat = oldStat
+            stub.restore()
             assert.ok(result)
         })
 

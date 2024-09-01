@@ -30,7 +30,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             lw.root.file.path = texPath
             lw.watcher.src.add(texPath)
-            assert.noLog('Current workspace folders: ')
+            assert.notHasLog('Current workspace folders: ')
 
             const onDidDeleteSpy = sinon.spy(lw.watcher.src as any, 'onDidDelete')
             await onDidDeleteSpy.call(lw.watcher.src, vscode.Uri.file(texPath))
@@ -89,7 +89,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.root.find()
             stub.restore()
 
-            assert.noLog('Try finding root from magic comment.')
+            assert.notHasLog('Try finding root from magic comment.')
         })
 
         it('should find root from magic comment', async () => {
@@ -215,7 +215,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.root.find()
             stub.restore()
 
-            assert.noLog('Try finding root from current root.')
+            assert.notHasLog('Try finding root from current root.')
         })
 
         it('should return undefined if there is no root', async () => {
@@ -225,7 +225,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.root.find()
             stub.restore()
 
-            assert.noLog('Try finding root from current root.')
+            assert.notHasLog('Try finding root from current root.')
         })
 
         it('should return undefined if active editor is not a file', async () => {
@@ -280,7 +280,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.root.find()
             stub.restore()
 
-            assert.noLog('Try finding root from active editor.')
+            assert.notHasLog('Try finding root from active editor.')
         })
 
         it('should do nothing if active editor is not a file', async () => {
@@ -312,7 +312,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.root.find()
             stub.restore()
 
-            assert.noLog(`Found root file from active editor: ${texPath}`)
+            assert.notHasLog(`Found root file from active editor: ${texPath}`)
         })
 
         it('should find subfile root if active file is a subfile', async () => {

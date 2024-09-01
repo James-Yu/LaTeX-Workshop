@@ -18,6 +18,10 @@ export function escapeRegExp(str: string) {
     return str.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')
 }
 
+export function isTesting() {
+    return process.env['LATEXWORKSHOP_TEST'] !== '' || process.env['LATEXWORKSHOP_CITEST'] !== ''
+}
+
 /**
  * Strip text and comments from LaTeX, leaving only macros and environments.
  *
