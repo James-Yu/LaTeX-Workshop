@@ -257,7 +257,7 @@ class Watcher {
         const folder = path.dirname(uri.fsPath)
         if (!this.watchers[folder]) {
             this.watchers[folder] = {
-                watcher: this.createWatcher(new vscode.RelativePattern(folder, `**/*${this.fileExt}`)),
+                watcher: this.createWatcher(new vscode.RelativePattern(folder, `*${this.fileExt}`)),
                 files: new Set([fileName])
             }
             this.onCreateHandlers.forEach(handler => handler(uri))
