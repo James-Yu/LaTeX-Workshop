@@ -114,9 +114,10 @@ function add(filePath: string) {
         logger.log(`Ignored ${filePath} .`)
         return
     }
-    if (!lw.watcher.src.has(filePath)) {
+    const uri = vscode.Uri.file(filePath)
+    if (!lw.watcher.src.has(uri)) {
         logger.log(`Adding ${filePath} .`)
-        lw.watcher.src.add(filePath)
+        lw.watcher.src.add(uri)
     }
 }
 
@@ -393,7 +394,7 @@ async function updateChildrenInput(fileCache: FileCache, rootPath: string) {
         })
         logger.log(`Input ${result.path} from ${fileCache.filePath} .`)
 
-        if (lw.watcher.src.has(result.path)) {
+        if (lw.watcher.src.has(vscode.Uri.file(result.path))) {
             continue
         }
         add(result.path)
@@ -440,7 +441,7 @@ async function updateChildrenXr(fileCache: FileCache, rootPath: string) {
             logger.log(`External document ${externalPath} from ${fileCache.filePath} .` + (result[1] ? ` Prefix is ${result[1]}`: ''))
         }
 
-        if (lw.watcher.src.has(externalPath)) {
+        if (lw.watcher.src.has(vscode.Uri.file(externalPath))) {
             continue
         }
         add(externalPath)
@@ -506,8 +507,9 @@ function updateBibfiles(fileCache: FileCache) {
                 }
                 fileCache.bibfiles.add(bibPath)
                 logger.log(`Bib ${bibPath} from ${fileCache.filePath} .`)
-                if (!lw.watcher.bib.has(bibPath)) {
-                    lw.watcher.bib.add(bibPath)
+                const bibUri = vscode.Uri.file(bibPath)
+                if (!lw.watcher.bib.has(bibUri)) {
+                    lw.watcher.bib.add(bibUri)
                 }
             }
         }
@@ -544,13 +546,14 @@ async function loadFlsFile(filePath: string): Promise<void> {
     const ioFiles = parseFlsContent(await lw.file.read(flsPath) ?? '', rootDir)
 
     for (const inputFile of ioFiles.input) {
+        const inputUri = vscode.Uri.file(inputFile)
         // Drop files that are also listed as OUTPUT or should be ignored
         if (ioFiles.output.includes(inputFile) ||
             isExcluded(inputFile) ||
             !await lw.file.exists(inputFile)) {
             continue
         }
-        if (inputFile === filePath || lw.watcher.src.has(inputFile)) {
+        if (inputFile === filePath || lw.watcher.src.has(inputUri)) {
             // Drop the current rootFile often listed as INPUT
             // Drop any file that is already watched as it is handled by
             // onWatchedFileChange.
@@ -576,7 +579,7 @@ async function loadFlsFile(filePath: string): Promise<void> {
             } else {
                 logger.log(`Cache not finished on ${filePath} when parsing fls.`)
             }
-        } else if (!lw.watcher.src.has(inputFile) && !['.aux', '.out'].includes(inputExt)) {
+        } else if (!lw.watcher.src.has(inputUri) && !['.aux', '.out'].includes(inputExt)) {
             // Watch non-tex files. aux and out are excluded because they are auto-generated during the building process
             add(inputFile)
         }
@@ -672,8 +675,9 @@ async function parseAuxFile(filePath: string, srcDir: string) {
                     get(lw.root.file.path)?.bibfiles.add(bibPath)
                     logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
                 }
-                if (!lw.watcher.bib.has(bibPath)) {
-                    lw.watcher.bib.add(bibPath)
+                const bibUri = vscode.Uri.file(bibPath)
+                if (!lw.watcher.bib.has(bibUri)) {
+                    lw.watcher.bib.add(bibUri)
                 }
             }
         }

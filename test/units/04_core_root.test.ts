@@ -29,7 +29,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const texPath = get.path(fixture, 'another.tex')
 
             lw.root.file.path = texPath
-            lw.watcher.src.add(texPath)
+            lw.watcher.src.add(vscode.Uri.file(texPath))
             assert.notHasLog('Current workspace folders: ')
 
             const onDidDeleteSpy = sinon.spy(lw.watcher.src as any, 'onDidDelete')
@@ -528,7 +528,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             stub.restore()
             cacheSpy1.restore()
 
-            assert.ok(lw.watcher.src.has(texPath))
+            assert.ok(lw.watcher.src.has(vscode.Uri.file(texPath)))
             assert.strictEqual(cacheSpy1.callCount, 1)
 
             await lw.cache.wait(texPath)

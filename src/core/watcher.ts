@@ -247,12 +247,9 @@ class Watcher {
      * the set of files being watched. If a watcher already exists, the file is
      * simply added to the set of files being watched by the existing watcher.
      *
-     * @param {vscode.Uri | string} uri - The uri of the file to watch.
+     * @param {vscode.Uri} uri - The uri of the file to watch.
      */
-    add(uri: vscode.Uri | string) {
-        if (typeof uri === 'string') {
-            uri = vscode.Uri.file(uri)
-        }
+    add(uri: vscode.Uri) {
         const fileName = path.basename(uri.fsPath)
         const folder = path.dirname(uri.fsPath)
         if (!this.watchers[folder]) {
@@ -273,22 +270,20 @@ class Watcher {
     /**
      * Removes a file from being watched.
      *
-     * @param {vscode.Uri | string} uri - The uri of the file to stop watching.
+     * @param {vscode.Uri} uri - The uri of the file to stop watching.
      */
-    remove(uri: vscode.Uri | string) {
-        const filePath = typeof uri === 'string' ? uri : uri.fsPath
-        this.watchers[path.dirname(filePath)]?.files.delete(path.basename(filePath))
+    remove(uri: vscode.Uri) {
+        this.watchers[path.dirname(uri.fsPath)]?.files.delete(path.basename(uri.fsPath))
     }
 
     /**
      * Checks if a file is currently being watched.
      *
-     * @param {vscode.Uri | string} uri - The uri of the file to check.
+     * @param {vscode.Uri} uri - The uri of the file to check.
      * @returns {boolean} - Indicates whether the file is being watched.
      */
-    has(uri: vscode.Uri | string): boolean {
-        const filePath = typeof uri === 'string' ? uri : uri.fsPath
-        return this.watchers[path.dirname(filePath)]?.files.has(path.basename(filePath))
+    has(uri: vscode.Uri): boolean {
+        return this.watchers[path.dirname(uri.fsPath)]?.files.has(path.basename(uri.fsPath))
     }
 
     /**
