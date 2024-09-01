@@ -23,8 +23,8 @@ export const root = {
     getWorkspace
 }
 
-lw.watcher.src.onDelete(filePath => {
-    if (filePath !== root.file.path) {
+lw.watcher.src.onDelete(uri => {
+    if (uri.fsPath !== root.file.path) {
         return
     }
     root.file = { path: undefined, langId: undefined }

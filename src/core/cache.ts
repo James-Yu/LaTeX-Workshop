@@ -45,17 +45,17 @@ export const cache = {
 }
 
 // Listener for file changes: refreshes the cache if the file can be cached.
-lw.watcher.src.onChange((filePath: string) => {
-    if (canCache(filePath)) {
-        void refreshCache(filePath)
+lw.watcher.src.onChange(uri => {
+    if (canCache(uri.fsPath)) {
+        void refreshCache(uri.fsPath)
     }
 })
 
 // Listener for file deletions: removes the file from the cache if it exists.
-lw.watcher.src.onDelete((filePath: string) => {
-    if (get(filePath) !== undefined) {
-        caches.delete(filePath)
-        logger.log(`Removed ${filePath} .`)
+lw.watcher.src.onDelete(uri => {
+    if (get(uri.fsPath) !== undefined) {
+        caches.delete(uri.fsPath)
+        logger.log(`Removed ${uri.fsPath} .`)
     }
 })
 

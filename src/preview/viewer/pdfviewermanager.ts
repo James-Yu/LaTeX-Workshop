@@ -49,7 +49,7 @@ function getPanels(pdfUri: vscode.Uri): Set<PdfViewerPanel> | undefined {
 
 function insert(pdfPanel: PdfViewerPanel): PdfViewerPanel | undefined {
     const pdfUri = pdfPanel.pdfUri
-    lw.watcher.pdf.add(pdfUri.fsPath)
+    lw.watcher.pdf.add(pdfUri)
     create(pdfUri)
     const panelSet = getPanels(pdfUri)
     if (!panelSet) {

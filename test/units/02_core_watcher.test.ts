@@ -13,9 +13,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     let _watchersSpy: sinon.SinonSpy
     const getWatchers = () => _watchersSpy.call(lw.watcher.src) as {[folder: string]: {watcher: vscode.FileSystemWatcher, files: Set<string>}}
     let _onChangeHandlersSpy: sinon.SinonSpy
-    const getOnChangeHandlers = () => _onChangeHandlersSpy.call(lw.watcher.src) as Set<(filePath: string) => void>
+    const getOnChangeHandlers = () => _onChangeHandlersSpy.call(lw.watcher.src) as Set<(uri: vscode.Uri) => void>
     let _onDeleteHandlersSpy: sinon.SinonSpy
-    const getOnDeleteHandlers = () => _onDeleteHandlersSpy.call(lw.watcher.src) as Set<(filePath: string) => void>
+    const getOnDeleteHandlers = () => _onDeleteHandlersSpy.call(lw.watcher.src) as Set<(uri: vscode.Uri) => void>
 
     before(() => {
         mock.object(lw, 'file', 'watcher')
@@ -136,7 +136,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.watcher.src.onDidChange', () => {
         const stub = sinon.stub()
-        const handler = (filePath: string) => { stub(filePath) }
+        const handler = (filePath: vscode.Uri) => { stub(filePath.fsPath) }
 
         beforeEach(() => {
             stub.reset()
@@ -208,7 +208,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.watcher.src.onDidDelete', () => {
         const stub = sinon.stub()
-        const handler = (filePath: string) => { stub(filePath) }
+        const handler = (filePath: vscode.Uri) => { stub(filePath.fsPath) }
 
         beforeEach(async () => {
             stub.reset()
