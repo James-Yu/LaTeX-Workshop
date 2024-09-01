@@ -5,28 +5,48 @@ import * as path from 'path'
 import * as nodeAssert from 'assert'
 import * as sinon from 'sinon'
 import { lw } from '../../src/lw'
-import { log } from '../../src/utils/logger'
+import { log as lwLog } from '../../src/utils/logger'
 
 type ExtendedAssert = typeof nodeAssert & {
     listStrictEqual: <T>(actual: T[] | undefined, expected: T[] | undefined, message?: string | Error) => void,
-    pathStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void
+    pathStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void,
+    pathNotStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void,
+    hasLog: (message: string | RegExp) => void,
+    notHasLog: (message: string | RegExp) => void
 }
 export const assert: ExtendedAssert = nodeAssert as ExtendedAssert
 assert.listStrictEqual = <T>(actual: T[] | undefined, expected: T[] | undefined, message?: string | Error) => {
     if (actual === undefined || expected === undefined) {
-        nodeAssert.strictEqual(actual, expected)
+        assert.strictEqual(actual, expected)
     } else {
-        nodeAssert.deepStrictEqual(actual.sort(), expected.sort(), message)
+        assert.deepStrictEqual(actual.sort(), expected.sort(), message)
     }
 }
-assert.pathStrictEqual = (actual: string | undefined, expected: string | undefined, message?: string | Error) => {
+function getPaths(actual: string | undefined, expected: string | undefined): [string, string] {
     actual = path.normalize(actual ?? '.')
     expected = path.normalize(expected ?? '.')
     if (os.platform() === 'win32') {
         actual = actual.replace(/^([a-zA-Z]):/, (_, p1: string) => p1.toLowerCase() + ':')
         expected = expected.replace(/^([a-zA-Z]):/, (_, p1: string) => p1.toLowerCase() + ':')
     }
-    nodeAssert.strictEqual(path.relative(actual, expected), '', message)
+    return [actual, expected]
+}
+assert.pathStrictEqual = (actual: string | undefined, expected: string | undefined, message?: string | Error) => {
+    assert.strictEqual(path.relative(...getPaths(actual, expected)), '', message)
+}
+assert.pathNotStrictEqual = (actual: string | undefined, expected: string | undefined, message?: string | Error) => {
+    assert.notStrictEqual(path.relative(...getPaths(actual, expected)), '', message)
+}
+function hasLog(message: string | RegExp) {
+    return typeof message === 'string'
+        ? log.all().some(logMessage => logMessage.includes(lwLog.applyPlaceholders(message)))
+        : log.all().some(logMessage => message.exec(logMessage))
+}
+assert.hasLog = (message: string | RegExp) => {
+    assert.ok(hasLog(message), log.all().join('\n'))
+}
+assert.notHasLog = (message: string | RegExp) => {
+    assert.ok(!hasLog(message), log.all().join('\n'))
 }
 
 export const get = {
@@ -72,18 +92,23 @@ export const reset = {
         changedConfigs.clear()
     },
     log: () => {
-        log.resetCachedLog()
+        lwLog.resetCachedLog()
+        _logStartIdx = 0
+        _logStopIdx = 0
     }
 }
 
-export const has = {
-    log: (message: string | RegExp): boolean => {
-        const logs = log.getCachedLog().CACHED_EXTLOG
-        if (typeof message === 'string') {
-            return logs.some(logMessage => logMessage.includes(log.applyPlaceholders(message)))
-        } else {
-            return logs.some(logMessage => message.exec(logMessage))
-        }
+let _logStartIdx = 0
+let _logStopIdx = 0
+export const log = {
+    all: () => {
+        return lwLog.getCachedLog().CACHED_EXTLOG.slice(_logStartIdx, _logStopIdx ? _logStopIdx : undefined)
+    },
+    start: () => {
+        _logStartIdx = lwLog.getCachedLog().CACHED_EXTLOG.length
+    },
+    stop: () => {
+        _logStopIdx = lwLog.getCachedLog().CACHED_EXTLOG.length
     }
 }
 
@@ -118,7 +143,7 @@ export const mock = {
 
 export const hooks = {
     beforeEach: () => {
-        log.resetCachedLog()
+        reset.log()
     },
     async afterEach(this: Mocha.Context) {
         cacheLog(this)
@@ -134,7 +159,7 @@ function cacheLog(context: Mocha.Context) {
     }
     const name = sanitize(context.currentTest?.title ?? '')
 
-    const cachedLog = log.getCachedLog()
+    const cachedLog = lwLog.getCachedLog()
     const folders = []
     let parent = context.currentTest?.parent
     while(parent && parent.title !== '') {

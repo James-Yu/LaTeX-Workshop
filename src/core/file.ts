@@ -8,7 +8,7 @@ import { lw } from '../lw'
 const logger = lw.log('File')
 
 export const file = {
-    tmpDirPath: createTmpDir(),
+    tmpDirPath: '',
     getOutDir,
     getLangId,
     getJobname,
@@ -23,10 +23,12 @@ export const file = {
     setTeXDirs,
     exists,
     read,
-    kpsewhich,
-    _test: {
-        createTmpDir
-    }
+    kpsewhich
+}
+
+initialize()
+export function initialize() {
+    file.tmpDirPath = createTmpDir()
 }
 
 /**

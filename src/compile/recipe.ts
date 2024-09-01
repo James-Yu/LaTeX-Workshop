@@ -8,14 +8,19 @@ import { queue } from './queue'
 
 const logger = lw.log('Build', 'Recipe')
 
-const state: {
+let state: {
     prevRecipe: Recipe | undefined,
     prevLangId: string,
     isMikTeX: boolean | undefined
-} = {
-    prevRecipe: undefined,
-    prevLangId: '',
-    isMikTeX: undefined
+}
+
+initialize()
+export function initialize() {
+    state = {
+        prevRecipe: undefined,
+        prevLangId: '',
+        isMikTeX: undefined
+    }
 }
 
 setDockerImage()
@@ -306,8 +311,8 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
             candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('pnw|pweave'))
         }
         if (candidates.length < 1) {
-            logger.log(`Failed to resolve build recipe: ${recipeName}.`)
-            void logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}.`)
+            logger.log(`Cannot find any recipe for langID \`${langId}\`.`)
+            void logger.showErrorMessage(`[Builder] Cannot find any recipe for langID \`${langId}\`: ${recipeName}.`)
         }
         recipe = candidates[0]
     }
@@ -360,7 +365,7 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
                                tool.args.includes('--lualatex') ||
                                tool.args.includes('--pdflua') ||
                                tool.args.includes('--pdflualatex')
-            if (isMikTeX() && ((tool.command === 'latexmk' && !isLuaLatex) || tool.command === 'pdflatex')) {
+            if (((tool.command === 'latexmk' && !isLuaLatex) || tool.command === 'pdflatex') && isMikTeX()) {
                 tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
             }
         }
@@ -389,18 +394,4 @@ function isMikTeX(): boolean {
         }
     }
     return state.isMikTeX
-}
-
-export const _test = {
-    setDockerImage,
-    setDockerPath,
-    createOutputSubFolders,
-    findMagicComments,
-    createBuildMagic,
-    findRecipe,
-    state,
-    populateTools,
-    isMikTeX,
-    createBuildTools,
-    build
 }

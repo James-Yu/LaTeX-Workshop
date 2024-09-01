@@ -37,9 +37,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             await build('command', ['arg1', 'arg2'], '/cwd', sinon.stub(), rootFile)
 
-            assert.strictEqual(queue._test.getQueue().steps.length, 1)
-
-            const step = queue._test.getQueue().steps[0] as ExternalStep
+            const step = queue.getStep() as ExternalStep | undefined
+            assert.ok(step)
             assert.strictEqual(step.name, 'command')
             assert.strictEqual(step.command, 'command')
             assert.strictEqual(step.isExternal, true)
@@ -49,7 +48,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should determine the current working directory for the build', async () => {
             await build('command', ['arg1', 'arg2'], '/cwd', sinon.stub())
 
-            const step = queue._test.getQueue().steps[0] as ExternalStep
+            const step = queue.getStep() as ExternalStep | undefined
+            assert.ok(step)
             assert.pathStrictEqual(step.cwd, get.path())
         })
 
@@ -58,7 +58,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await build('command', ['arg1', 'arg2'], '/cwd', sinon.stub())
             stub.restore()
 
-            const step = queue._test.getQueue().steps[0] as ExternalStep
+            const step = queue.getStep() as ExternalStep | undefined
+            assert.ok(step)
             assert.pathStrictEqual(step.cwd, '/cwd')
         })
 
@@ -117,7 +118,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             await build('command', ['arg1', 'arg2'], '/cwd', sinon.stub(), rootFile)
 
-            assert.strictEqual(queue._test.getQueue().steps.length, 1)
+            assert.ok(queue.getStep())
+            assert.strictEqual(queue.getStep(), undefined)
         })
     })
 })

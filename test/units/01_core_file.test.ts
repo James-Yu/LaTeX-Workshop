@@ -4,6 +4,7 @@ import * as path from 'path'
 import * as sinon from 'sinon'
 import { assert, get, mock, set } from './utils'
 import { lw } from '../../src/lw'
+import { initialize } from '../../src/core/file'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
@@ -18,11 +19,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.file.createTmpDir', () => {
         it('should create temporary directories', () => {
-            assert.ok(lw.file._test.createTmpDir())
+            assert.ok(path.isAbsolute(lw.file.tmpDirPath), lw.file.tmpDirPath)
         })
 
         it('should create different temporary directories', () => {
-            assert.notStrictEqual(lw.file._test.createTmpDir(), lw.file._test.createTmpDir())
+            const tmpDir1 = lw.file.tmpDirPath
+            initialize()
+
+            assert.notStrictEqual(tmpDir1, lw.file.tmpDirPath)
         })
 
         function forbiddenTemp(chars: string[ ]) {
@@ -31,7 +35,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             chars.forEach(char => {
                 tmpNames.forEach(envvar => process.env[envvar] = (process.env[envvar] === undefined ? undefined : ('\\Test ' + char)))
                 try {
-                    lw.file._test.createTmpDir()
+                    initialize()
                     assert.fail('Expected an error to be thrown')
                 } catch {
                     assert.ok(true)
@@ -487,10 +491,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should handle non-file URIs', async () => {
-            const oldStat = lw.external.stat
-            lw.external.stat = () => { return Promise.resolve({type: 0, ctime: 0, mtime: 0, size: 0}) }
+            const stub = sinon.stub(lw.external, 'stat').resolves({type: 0, ctime: 0, mtime: 0, size: 0})
             const result = await lw.file.exists(vscode.Uri.parse('https://code.visualstudio.com/'))
-            lw.external.stat = oldStat
+            stub.restore()
             assert.ok(result)
         })
 

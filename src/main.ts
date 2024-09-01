@@ -17,8 +17,8 @@ lw.cache = cache
 import { root } from './core/root'
 lw.root = root
 import { parser } from './parse'
+void parser.parse.reset()
 lw.parser = parser
-void lw.parser.parse.reset()
 import { compile } from './compile'
 lw.compile = compile
 import { preview, server, viewer } from './preview'
