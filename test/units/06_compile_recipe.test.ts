@@ -58,7 +58,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.compile->recipe.build', () => {
-        it('should save all open files in the workspace', async () => {
+        it('should call `saveAll` before building', async () => {
             const stub = sinon.stub(vscode.workspace, 'saveAll') as sinon.SinonStub
             const rootFile = set.root(fixture, 'main.tex')
 
@@ -115,7 +115,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.compile->recipe.createBuildTools', () => {
-        it('should return undefined if no recipe is found', async () => {
+        it('should do nothing but log an error if no recipe is found', async () => {
             const rootFile = set.root(fixture, 'main.tex')
             await set.config('latex.recipes', [])
 
@@ -139,7 +139,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.listStrictEqual(step.args, ['--shell-escape'])
         })
 
-        it('should return undefined with magic comments but disabled', async () => {
+        it('should do nothing but log an error with magic comments but disabled', async () => {
             const rootFile = set.root(fixture, 'magic.tex')
             await set.config('latex.recipes', [])
             await set.config('latex.build.forceRecipeUsage', true)
@@ -164,7 +164,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.listStrictEqual(step.args, [])
         })
 
-        it('should return undefined if no tools are prepared', async () => {
+        it('should do nothing but log an error if no tools are prepared', async () => {
             const rootFile = set.root(fixture, 'main.tex')
             await set.config('latex.tools', [])
             await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool'] }])
@@ -264,7 +264,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             readStub.restore()
         })
 
-        it('should return an empty object if there are no magic comments', async () => {
+        it('should do nothing if there are no magic comments', async () => {
             readStub.resolves('Some regular content\nwith no magic comments')
 
             await build('dummy.tex', 'latex', async () => {})
@@ -481,7 +481,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['Tool1'] }, { name: 'Recipe2', tools: ['Tool2'] }, { name: 'Recipe3', tools: ['Tool3'] }])
         })
 
-        it('should return undefined and log an error if no recipes are defined', async () => {
+        it('should do nothing but log an error if no recipes are defined', async () => {
             await set.config('latex.recipes', [])
 
             await build('dummy.tex', 'latex', async () => {})
@@ -499,13 +499,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(step.name, 'Tool2')
         })
 
-        it('should log an error and return undefined if the specified recipe is not found', async () => {
+        it('should do nothing log an error if the specified recipe is not found', async () => {
             await build('dummy.tex', 'latex', async () => {}, 'nonExistentRecipe')
 
             assert.hasLog('Failed to resolve build recipe')
         })
 
-        it('should return the last used recipe if defaultRecipeName is lastUsed', async () => {
+        it('should return the last used recipe if defaultRecipeName is `lastUsed`', async () => {
             await set.config('latex.recipe.default', 'lastUsed')
 
             await build('dummy.tex', 'latex', async () => {}, 'Recipe2')
@@ -562,13 +562,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.hasLog('Preparing to run recipe: pweave Recipe.')
         })
 
-        it('should log an error and return undefined if no matching recipe is found for the specific langId', async () => {
+        it('should do nothing but log an error if no matching recipe is found for the specific langId', async () => {
             await build('dummy.tex', 'rsweave', async () => {})
 
             assert.hasLog('Cannot find any recipe for langID `rsweave`.')
         })
 
-        it('should return the first recipe if no other recipe matches', async () => {
+        it('should use the first recipe if no other recipe matches', async () => {
             await build('dummy.tex', 'latex', async () => {})
 
             const step = queue.getStep()
@@ -750,7 +750,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             syncStub.restore()
         })
 
-        it('should return false when pdflatex command fails', async () => {
+        it('should not consider MikTeX logic when pdflatex command fails', async () => {
             syncStub.throws(new Error('Command failed'))
             const rootFile = set.root(fixture, 'main.tex')
 
@@ -762,20 +762,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.hasLog('Cannot run `pdflatex` to determine if we are using MiKTeX.')
         })
 
-        it('should return cached value if state.isMikTeX is already defined', async () => {
+        it('should not execute compile program again to determine MikTeX if already executed and cached', async () => {
             const rootFile = set.root(fixture, 'main.tex')
             syncStub.returns('pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)')
 
             await build(rootFile, 'latex', async () => {})
             queue.clear()
             syncStub.resetHistory()
-            const testEnv = process.env['LATEXWORKSHOP_TEST']
-            const ciEnv = process.env['LATEXWORKSHOP_CITEST']
-            process.env['LATEXWORKSHOP_TEST'] = ''
-            process.env['LATEXWORKSHOP_CITEST'] = ''
             await build(rootFile, 'latex', async () => {})
-            process.env['LATEXWORKSHOP_TEST'] = testEnv
-            process.env['LATEXWORKSHOP_CITEST'] = ciEnv
 
             const step = queue.getStep()
             assert.ok(step)
