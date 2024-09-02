@@ -109,14 +109,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const texPath = get.path(fixture, 'main.tex')
 
             lw.cache.add(texPath)
-            assert.ok(lw.watcher.src.has(texPath))
+            assert.ok(lw.watcher.src.has(vscode.Uri.file(texPath)))
         })
 
         it('should ignore excluded files', () => {
             const bblPath = get.path(fixture, 'main.bbl')
 
             lw.cache.add(bblPath)
-            assert.ok(!lw.watcher.src.has(bblPath))
+            assert.ok(!lw.watcher.src.has(vscode.Uri.file(bblPath)))
         })
 
         it('should add a file to watcher but not cache it', () => {
@@ -194,13 +194,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const bibPath = get.path(fixture, 'main.bib')
             const pdfPath = get.path(fixture, 'main.pdf')
 
-            lw.watcher.src.add(texPath)
-            lw.watcher.bib.add(bibPath)
-            lw.watcher.pdf.add(pdfPath)
+            lw.watcher.src.add(vscode.Uri.file(texPath))
+            lw.watcher.bib.add(vscode.Uri.file(bibPath))
+            lw.watcher.pdf.add(vscode.Uri.file(pdfPath))
             lw.cache.reset()
-            assert.ok(!lw.watcher.src.has(texPath))
-            assert.ok(!lw.watcher.bib.has(bibPath))
-            assert.ok(lw.watcher.pdf.has(pdfPath))
+            assert.ok(!lw.watcher.src.has(vscode.Uri.file(texPath)))
+            assert.ok(!lw.watcher.bib.has(vscode.Uri.file(bibPath)))
+            assert.ok(lw.watcher.pdf.has(vscode.Uri.file(pdfPath)))
         })
 
         it('should reset the cache', async () => {
@@ -447,7 +447,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
-            assert.ok(lw.watcher.src.has(texPath))
+            assert.ok(lw.watcher.src.has(vscode.Uri.file(texPath)))
         })
 
         it('should add two children if there are two inputs', async () => {
@@ -583,7 +583,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
-            assert.ok(lw.watcher.src.has(texPath))
+            assert.ok(lw.watcher.src.has(vscode.Uri.file(texPath)))
         })
 
         it('should add a child with prefix', async () => {
@@ -665,7 +665,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             lw.cache.add(toParse)
             await lw.cache.refreshCache(toParse)
-            assert.ok(lw.watcher.bib.has(bibPath))
+            assert.ok(lw.watcher.bib.has(vscode.Uri.file(bibPath)))
         })
     })
 
@@ -738,7 +738,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const toParse = get.path(fixture, 'load_fls_file', 'include_main.tex')
 
             await lw.cache.loadFlsFile(toParse)
-            assert.ok(lw.watcher.src.has(texPath))
+            assert.ok(lw.watcher.src.has(vscode.Uri.file(texPath)))
         })
 
         it('should watch added non-.tex files', async () => {
@@ -746,14 +746,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const toParse = get.path(fixture, 'load_fls_file', 'non_tex_input.tex')
 
             await lw.cache.loadFlsFile(toParse)
-            assert.ok(lw.watcher.src.has(pdfPath))
+            assert.ok(lw.watcher.src.has(vscode.Uri.file(pdfPath)))
         })
 
         it('should watch added non-.tex files, except for aux or out files', async () => {
             const toParse = get.path(fixture, 'load_fls_file', 'aux_out_input.tex')
             await lw.cache.loadFlsFile(toParse)
-            assert.ok(!lw.watcher.src.has(get.path(fixture, 'load_fls_file', 'main.aux')))
-            assert.ok(!lw.watcher.src.has(get.path(fixture, 'load_fls_file', 'main.out')))
+            assert.ok(!lw.watcher.src.has(vscode.Uri.file(get.path(fixture, 'load_fls_file', 'main.aux'))))
+            assert.ok(!lw.watcher.src.has(vscode.Uri.file(get.path(fixture, 'load_fls_file', 'main.out'))))
         })
     })
 
@@ -788,7 +788,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.root(fixture, 'load_aux_file', 'main.tex')
             await lw.cache.refreshCache(toParse)
             await lw.cache.loadFlsFile(toParse)
-            assert.ok(lw.watcher.bib.has(get.path(fixture, 'load_aux_file', 'main.bib')))
+            assert.ok(lw.watcher.bib.has(vscode.Uri.file(get.path(fixture, 'load_aux_file', 'main.bib'))))
         })
     })
 

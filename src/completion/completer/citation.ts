@@ -22,9 +22,9 @@ const data = {
     bibEntries: new Map<string, CitationItem[]>()
 }
 
-lw.watcher.bib.onCreate(filePath => parseBibFile(filePath))
-lw.watcher.bib.onChange(filePath => parseBibFile(filePath))
-lw.watcher.bib.onDelete(filePath => removeEntriesInFile(filePath))
+lw.watcher.bib.onCreate(uri => parseBibFile(uri.fsPath))
+lw.watcher.bib.onChange(uri => parseBibFile(uri.fsPath))
+lw.watcher.bib.onDelete(uri => removeEntriesInFile(uri.fsPath))
 
 /**
  * Read the value `intellisense.citation.format`

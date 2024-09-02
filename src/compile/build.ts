@@ -15,8 +15,8 @@ export {
     build,
 }
 
-lw.watcher.src.onChange(filePath => autoBuild(filePath, 'onFileChange'))
-lw.watcher.bib.onChange(filePath => autoBuild(filePath, 'onFileChange', true))
+lw.watcher.src.onChange(filePath => autoBuild(filePath.fsPath, 'onFileChange'))
+lw.watcher.bib.onChange(filePath => autoBuild(filePath.fsPath, 'onFileChange', true))
 
 /**
  * Triggers auto build based on file change or file save events. If the
@@ -420,7 +420,7 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     if (!lastStep.isExternal && skipped) {
         return
     }
-    lw.viewer.refresh(lw.file.getPdfPath(lastStep.rootFile))
+    lw.viewer.refresh(vscode.Uri.file(lw.file.getPdfPath(lastStep.rootFile)))
     lw.completion.reference.setNumbersFromAuxFile(lastStep.rootFile)
     await lw.cache.loadFlsFile(lastStep.rootFile ?? '')
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(lastStep.rootFile))

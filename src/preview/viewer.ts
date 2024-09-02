@@ -28,9 +28,9 @@ export {
 export { serializer } from './viewer/pdfviewerpanel'
 export { hook } from './viewer/pdfviewerhook'
 
-lw.watcher.pdf.onChange(pdfPath => {
-    if (lw.compile.compiledPDFWriting === 0 || path.relative(lw.compile.compiledPDFPath, pdfPath) !== '') {
-        refresh(pdfPath)
+lw.watcher.pdf.onChange(pdfUri => {
+    if (lw.compile.compiledPDFWriting === 0 || path.relative(lw.compile.compiledPDFPath, pdfUri.fsPath) !== '') {
+        refresh(pdfUri)
     }
 })
 lw.onConfigChange(['view.pdf.invert', 'view.pdf.invertMode', 'view.pdf.color', 'view.pdf.internal'], () => {
@@ -51,9 +51,8 @@ function reload(): void {
  * @param pdfFile The path of a PDF file. If `pdfFile` is `undefined`,
  * refreshes all the PDF viewers.
  */
-function refresh(pdfFile?: string): void {
-    logger.log(`Call refreshExistingViewer: ${JSON.stringify(pdfFile)} .`)
-    const pdfUri = pdfFile ? vscode.Uri.file(pdfFile) : undefined
+function refresh(pdfUri?: vscode.Uri): void {
+    logger.log(`Call refreshExistingViewer: ${pdfUri ?? 'undefined'} .`)
     if (pdfUri === undefined) {
         manager.getClients()?.forEach(client => {
             client.send({type: 'refresh'})
@@ -62,10 +61,10 @@ function refresh(pdfFile?: string): void {
     }
     const clientSet = manager.getClients(pdfUri)
     if (!clientSet) {
-        logger.log(`Not found PDF viewers to refresh: ${pdfFile}`)
+        logger.log(`Not found PDF viewers to refresh: ${pdfUri}`)
         return
     }
-    logger.log(`Refresh PDF viewer: ${pdfFile}`)
+    logger.log(`Refresh PDF viewer: ${pdfUri}`)
     clientSet.forEach(client => {
         client.send({type: 'refresh'})
     })
@@ -113,7 +112,7 @@ async function viewInBrowser(pdfFile: string): Promise<void> {
     }
     const pdfUri = vscode.Uri.file(pdfFile)
     manager.create(pdfUri)
-    lw.watcher.pdf.add(pdfUri.fsPath)
+    lw.watcher.pdf.add(pdfUri)
     try {
         logger.log(`Serving PDF file at ${url}`)
         await vscode.env.openExternal(vscode.Uri.parse(url, true))
